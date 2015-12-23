@@ -1,0 +1,239 @@
+* 題解
+
+  - 用 idris 來重新實現 第一版編譯器
+
+* 討論 <2015-12-16>
+
+  - x ::
+       這次在使用 idris 的時候
+       我們已經有一部分具體蟬語實現計劃
+       可以用來理解 idris 的語義了
+
+  - k ::
+       我們已經知道一些注意事項了
+       比如
+       ------
+    1. 模式匹配是運行時的謂詞 用以形成分支
+    2. 若 類型理解爲集合
+       則 類型的 元素構造子 是集合的 有名字的子集
+       形成集合的不交劃分
+       每個子集的名字 就形成這個子集的所屬謂詞
+       運行時 模式匹配 就是用這個 所屬謂詞來做判斷以分支的
+    3. 函數體非平凡的返回值類型爲 Type 的函數
+       可以對整個 Type 的空間做細緻的手術
+    4. 函數類型的後項[返回類型] 比 其前項[輸入類型] 重要
+       比如
+       同一個類型的 元素構造子
+       都有 類型構造子相同的 返回類型
+       注意 類型構造子相同 類型不一定相同
+    5. 類型構造子所依賴的東西
+       決定了對這個集合所能形成的 最細劃分
+       不同的元素構造子 在 最細劃分 的基礎上
+       給出了 有語義的[我們所關心的]更粗的劃分
+       Each constructor targets a different part of the family of types.
+
+  - x ::
+
+* 問題
+
+*** terms
+
+    - x ::
+         #+begin_src idris
+         data Vect : Nat -> Type -> Type where
+              Nil  : Vect Z a
+              (::) : a -> Vect k a -> Vect (S k) a
+         #+end_src
+         Vect is
+         ------
+      1. indexed over Nat
+         類型構造子的前後項中 Nat 類型的值 可變
+      2. parameterised by Type
+         類型構造子的前後項中 Type 類型的值 不變
+
+    - k ::
+         The type of a function over Vect
+         will describe what happens to the lengths of the vectors involved
+         #+begin_src idris
+         (++) : Vect n a -> Vect m a -> Vect (n + m) a
+         (++) Nil       ys = ys
+         (++) (x :: xs) ys = x :: xs ++ ys
+         #+end_src
+
+*** modules and namespaces
+
+    http://docs.idris-lang.org/en/latest/tutorial/modules.html#sect-namespaces
+
+    - x ::
+         idris 中 Modules and Namespaces 是兩個不同的概念邪
+
+    - k ::
+         類型的 元素構造子 在不同的 Namespaces 下是可以重名的
+         文檔裏說
+         Ad-hoc name overloading is accepted by Idris,
+         provided that the names are declared in different namespaces
+         (in practice, normally in different modules)
+         Ambiguous constructor names can normally be resolved from context.
+
+    - x ::
+
+*** new foreign function interface
+
+    http://docs.idris-lang.org/en/latest/reference/ffi.html
+
+    - x ::
+
+    - k ::
+
+*** error report of the type checker
+
+    - x ::
+         當類型檢查失敗時
+         idris 的方式是 指出對於某個項
+         所算得的類型是什麼
+         所聲明的類型是什麼
+         並嘗試簡要說明二者如何不匹配
+
+* type classe
+
+  - x ::
+       idris 在這裏由於模仿 haskell 而背離了簡單而容易理解的語法
+       正如 idris 模仿 haskell 而把 List 定義成如下的樣子一樣
+       #+begin_src idris
+       data Lis a = Nil | (::) a (Lis a)
+       data Lis : (a : Type) -> Type where
+         Nil :
+           Lis a
+         (::) :
+           a -> Lis a -> Lis a
+       #+end_src
+       後果是 Pair 要定義成如下的樣子
+       #+begin_src idris
+       data Pai a b = MkPai a b
+       data Pai : (a : Type) -> (b : Type) -> Type where
+         MkPai : a -> b -> (Pai a b)
+       #+end_src
+
+  - k ::
+       那麼 type classe 簡單的語法應該如何呢
+
+  - x ::
+       首先說 非語義極簡主義 的語法
+       #+begin_src idris
+       class Show a where
+         show : a -> String
+
+       show : Show a => a -> String
+
+       instance Show Nat where
+         show Z = "Z"
+         show (S k) = "s" ++ show k
+
+       instance Show a => Show (Vect n a) where
+         show xs = "[" ++ show' xs ++ "]" where
+           show' : Vect n a -> String
+           show' Nil        = ""
+           show' (x :: Nil) = show x
+           show' (x :: xs)  = show x ++ ", " ++ show' xs
+
+
+       class Eq a where
+         (==) : a -> a -> Bool
+         (/=) : a -> a -> Bool
+         x /= y = not (x == y)
+         x == y = not (x /= y)
+
+       instance Eq Nat where
+         Z     == Z     = True
+         (S x) == (S y) = x == y
+         Z     == (S y) = False
+         (S x) == Z     = False
+
+
+       data Ordering = LT | EQ | GT
+
+       class Eq a => Ord a where
+         compare : a -> a -> Ordering
+         (<) : a -> a -> Bool
+         (>) : a -> a -> Bool
+         (<=) : a -> a -> Bool
+         (>=) : a -> a -> Bool
+         max : a -> a -> a
+         min : a -> a -> a
+
+       sort : Ord a => List a -> List a
+
+       sortAndShow : (Ord a, Show a) => List a -> String
+       sortAndShow xs = show (sort xs)
+       #+end_src
+
+  - k ::
+       看來 type class 就是 named subtype of Type
+       如此的語法有錯邪
+
+  - x ::
+       type class 看似也是函數
+       #+begin_src idris
+       class Show a where
+         show : a -> String
+
+       instance Show Nat where
+         show Z = "Z"
+         show (S k) = "s" ++ show k
+       #+end_src
+       寫成
+       #+begin_src idris
+       data Show : Type where
+         show : Show -> String
+
+       |Nat->Show| :
+       show (|Nat->Show| Z) =
+         "Z"
+       show (|Nat->Show| (S Z)) =
+         "s" ++ show k
+       #+end_src
+       發現了嘛
+       與類型的 元素構造子 相反
+       這裏是在用 函數所接受的數據之類型來分類函數
+       又比如
+       #+begin_src idris
+       class Functor (f : Type -> Type) where
+         map : (m : a -> b) -> f a -> f b
+
+       instance Functor List where
+         map f []      = []
+         map f (x::xs) = f x :: map f xs
+
+       infixl 2 <*>
+
+       class Functor f => Applicative (f : Type -> Type) where
+         pure  : a -> f a
+         (<*>) : f (a -> b) -> f a -> f b
+       #+end_src
+       寫成
+       #+begin_src idris
+       data Functor : (Type -> Type) where
+         map : (m : a -> b) -> (Functor a) -> (Functor b)
+
+       |List->Functor| :
+       map f (|List->Functor| []) =
+         []
+       map f (|List->Functor| (x::xs)) =
+         f x :: map f xs
+       #+end_src
+       也就是說 用子類型來理解 類型類
+       而 子類型 使用映射給出
+       也就是說 每個子類型關係的有一個名字
+       idris 所模仿的 haskell 的 類型類
+       只是把這種一般的東西的平凡情況特殊處理而已
+
+* monad
+
+  - x ::
+       不可能有 (IO String -> String) 類型的函數
+       這正是 IO 的性質
+       也就是說如果一個函數帶有 IO 了
+       那麼把別的函數複合上去 是不可能消除 IO 的
+       也就是說
+       在類型檢查的時候 帶有 IO 的函數會入 不減棧一個值
+       函數複合的時候是不可能把這個值出棧的

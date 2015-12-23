@@ -1,0 +1,706 @@
+#+TITLE:  小蟬記
+#+AUTHOR: 謝宇恆 / XIE Yuheng
+
+* 題解
+
+* >< 原則
+
+*** 認知負擔
+
+    - offload cognitive burden
+
+    - 人以程序語言與機器對話
+      正如人與人對話
+      其思想互交流兩相影響
+      笨機器 成人的認知負擔
+      正如笨人 成我的認知負擔
+      而程序語言之設計 只爲減少這種認知負擔
+
+*** 莫若以名
+    - 少使機器自動處理
+      多以人工明顯表達
+
+*** 順序
+    - 一個文件中代碼 之 處理順序
+      一個函數定義 之 處理順序
+      定義好的函數 之 作用順序
+
+*** 底層
+    - 我要能完全控制底層機器資源
+      如果把類型信息編碼到值中 [即 所謂的動態語言]
+      因爲要對編碼和數值做轉換
+      那麼這種對底層的控制就成了一種負擔
+      是故 小蟬 不用動態類型編碼
+      只爲更好控制底層資源
+
+*** 簡單
+    - 複雜性狀都在解釋器中實現
+      解釋器本身是一個很簡單的匯編程序
+    - 我一直維持着上面所聲明的這個特性
+      只爲將來能夠快速把解釋器移植到各種機器上
+    - 但是我所使用的匯編器能力有限
+      這就導致了一下幾點
+      1. name-hash-table 在解釋器中實現
+         在解釋器中把 link 中的名字加載到 name-hash-table 中
+      2. 如果有靜態類型檢查的話
+         在匯編代碼中 可能很難做好類型聲明
+         也必須在解釋器中 順着 link 來重新把聲明補上
+
+* >< 術語
+
+*** 機制 與 性狀
+    - 一個機制 實現 一個性狀
+      一組機制 可以被稱爲 一組性狀的實現
+
+* >< 評論
+
+*** 命名 與 分解 與 匿名
+    - 命名
+      命名有兩種
+      1. 局部的
+      2. 全局的
+    - 分解
+      分解有兩種
+      1. 利用函數作用的
+         這種分解利用了局部的名
+      2. 利用函數複合的
+         這種分解利用了全局的名
+    - 許多 forth 所崇尚的分解
+      其實是單純爲了緩解 置換棧 的壓力的
+    - 匿名
+      緩解命名壓力的方式是匿名
+      實現匿名的方式有兩種
+      1. lambda
+         其實是一種標記語言
+         lambda 的參數名字 是用來標記代入點用的
+         這裏
+         理解上的壓力來源於
+         對標記的分析
+      2. 組合子
+         每個組合子都是一個全局的名字
+         從 lambda 的角度看
+         每個組合子捕捉某種代入模式
+         然後給這種代入模式一個名字
+         這裏
+         理解上的壓力來源於
+         對名字所捕捉的模式的熟悉
+
+*** 圓上的點
+    - 一個點在圓上移動
+      它的位置在變 但是它到圓心的距離始終相等
+
+
+
+* 函數
+
+*** 作用函數
+    - 置數據於 參數棧
+      再呼喚函數處理數據
+      自然用 後綴表達式 來表達
+    #+begin_src cicada-nymph
+    1 2 add
+    #+end_src
+
+*** 定義函數
+    - 定義函數 的語法模仿 forth
+      1. 先調用 冒號
+         讀輸入的字符串
+         直到遇到一個 分號[由空白間隔開]
+         並把這個字符串入棧
+      2. 再調用 define-function
+         它分析棧頂的字符串
+         並定義一個函數到內存裏
+    #+begin_src cicada-nymph
+    : square
+      dup mul
+      end
+    ; define-function
+    #+end_src
+
+*** 參數棧
+    - 常規的函數 所有的參數都從參數棧中取
+      其返回值就放回參數棧中
+    - 其中保存 不帶類型信息的值
+      以 cell 爲單位
+
+*** 返回棧
+    - 最初 返回棧 中只是保存 jojo 而已
+      - 用來記錄
+        函數因嵌套調用
+        而形成的一系列返回點
+      但是我不斷增加性狀
+      使得 返回棧 中保存的數據變複雜了
+      - 相關的性轉是
+        1. 局部有名變元
+        2. 動態內存分配
+      現在 其中保存的是一個個的返回點
+      一個返回點 是 返回棧中的 一組值
+    - 返回點[return-point]
+      | 共軛局部內存[conjugate-local-memory] |
+      | 局部內存[local-memory]               |
+      | 局部變元[local-variable]             |
+      | 珠珠[jojo]                           |
+
+*** 基本語義總結
+    - 所謂基本語義有兩點
+      對每個程序語言來說都一樣
+      1. 如何讓函數作用於參數
+      2. 如何定義新的函數
+    - 函數定義
+      - 我稱函數爲珠
+        我稱函數體爲珠珠
+        珠 與 珠珠 形成嵌套
+      - 又有名來給珠命名
+        函數體中保存的是珠而不是名
+        其重要特點是
+        名動 而 珠靜
+      - 返回棧 即 珠珠之棧
+    - 函數作用
+      - 參數棧 即 函數作用時所取參數之所
+        函數所取參數之個數與形態 不受語法控制
+      - keywork argument 沒有默認值
+        實爲函數作用本性所致
+
+* >< 線串碼解釋器
+
+* 給參數棧中的數據命名
+
+*** 題解
+    - 用 參數棧 傳遞 與 返回 數據
+      是最簡單的方法
+      但是
+      有的數據被用到很多次
+      此時就要不斷調整參數棧中值的順序
+      這樣很麻煩
+      解決辦法就是 命名
+      命名之後 就方便多次使用了
+
+*** 全局命名 與 局部命名
+    - 此時命名的方式有兩種
+    - 全局命名
+      [全局變元][global-varibale]
+      [有名全局變元][global-named-variable]
+      [變元的全局命名][global-name-for-variable]
+      用 define-variable 來定義
+      定義好了之後 爲所有函數共用
+      #+begin_src cicada-nymph
+      : *example-global-varibale*
+        3
+      ; define-variable
+
+      : example
+        *example-global-varibale*
+        *example-global-varibale*
+        add
+        end
+      ; define-function
+      #+end_src
+      實現起來很簡單
+      只要在 全局分配內存
+      把 參數棧 中的值放到裏面
+      並給這個內存地址一個名字
+    - 局部命名
+      [局部變元][local-variable]
+      [有名局部變元][local-named-variable]
+      [變元的局部命名][local-name-for-variable]
+      每個命名 限由某個函數使用
+      比如
+      #+begin_src cicada-nymph
+      : square
+        >:n
+        :n :n mul
+        end
+      ; define-function
+      #+end_src
+      效果如下
+      1. 這個函數 每次作用 時
+         都有一塊名字叫 :n 的內存可以使用
+         - 注意
+           每次作用
+           都有 新的 分配好的內存可用
+      2. >:n
+         會取出參數棧中的一個值
+         並把它保存在 名字叫 :n 的這塊內存中
+         - 即
+           保存在 :n 這個 有名局部變元 中
+      3. :n
+         把 :n 裏面保存值 複製回 參數棧 中
+         :n 出現兩次
+         這個值就也在參數棧中 出現兩次
+      :n 這個命名
+      只有在函數 square 體內才能使用
+      在別的函數中自然有各自的 局部命名
+      這就是 局部 這個限定詞 在這裏的含義
+
+*** 局部命名之實現
+    - 想要實現 局部命名
+      就要在 返回棧 中做手腳了
+      回想 返回點[return-point]
+      | 共軛局部內存[conjugate-local-memory] |
+      | 局部內存[local-memory]               |
+      | 局部變元[local-variable]             |
+      | 珠珠[jojo]                           |
+      其中 局部變元[local-variable] 這個域
+      就是專門爲實現 局部命名 這個性轉而準備的
+    - 在線串碼解釋器中 專門分配一大段內存
+      做爲 local-variable-area
+      有 local-variable-area:*address*
+      又有 local-variable-area:*current-free-address*
+      它被初始化爲 local-variable-area:*address*
+    - 每次調用[非素]函數時
+      需要在 返回棧 中加入一個新的返回點
+      其中
+      1. 珠珠[jojo]
+         就是 [非素]函數 的函數體 的首地址
+      2. 局部變元[local-variable]
+         就是 local-variable-area:*current-free-address*
+         這個全局變元當前的值
+         即 local-variable-area 中當前能被使用的地址
+    - 此時 在 local-variable-area 中
+      上面所保存的 地址 之後的 內存
+      在這個函數作用的過程中
+      都是能被隨便使用的
+      每次 想要在這塊可以被自由使用的內存中分配一些出來
+      只要
+      遞增 local-variable-area:*current-free-address*
+      這個變量即可
+    - 當 函數作用 完畢 而退出時
+      因 這次 函數作用 而入棧 的返回點將被取出
+      其中的 局部變元[local-variable] 這個域
+      將被用於
+      恢復 local-variable-area:*current-free-address*
+      成這次 函數作用 之前的值
+    - 編譯函數的方式是這樣的
+      比如
+      #+begin_src cicada-nymph
+      : square
+        >:n
+        :n :n mul
+        end
+      ; define-function
+      #+end_src
+      1. 首先要知道 局部變元 將被分配到
+         這次函數作用 的 返回點
+         中的 local-variable-area 地址之下
+      2. 函數體中所用到的
+         所有的不同局部變元的名字
+         將對應一個 offset
+         [這個 offset 在編譯時算出]
+         這個 offset 是就
+         這次函數作用 的 返回點
+         中的 local-variable-area 地址
+         而言的
+      2. 遇到 >:n
+         就編譯一次
+           利用 :n 這名字所對應的 offset
+           再利用 當前返回點
+           找到 local-variable-area 中的一個地址
+           並 從 參數棧 複製值到 這個地址 中
+         到 jojo 中
+         也就是說
+         offset 被編譯到 jojo 中
+         而 對 local-variable-area 中地址的計算
+         是利用 offset 在運行時完成的
+      3. 注意
+         初次遇到 >:n
+         還需要編譯一次
+           對 local-variable-area:*current-free-address*
+           的遞增
+         到 jojo 中
+         而
+         再次遇到 >:n
+         將會更新裏面的值
+      4. 當遇 :n
+         就編譯一次
+           利用 :n 這名字所對應的 offset
+           再利用 當前返回點
+           找到 local-variable-area 中的一個地址
+           並 從 這個地址 複製值到 參數棧 中
+         到 jojo 中
+
+*** 總結
+    - 給 返回棧 中的 返回點 增加一個域
+      就能實現
+      給參數棧中的數據 作局部的命名
+    - 我利用 >:var :var 這種語法
+      來做爲 這個機制的接口
+
+* 動態分配局部內存
+
+*** 題解
+    - 所謂 動態分配
+      就是自動回收
+    - 如此說來
+      上面的
+      給參數棧中的數據 作局部的命名
+      也是動態的
+      因爲函數退出之後
+      通過 恢復 local-variable-area:*current-free-address*
+      在 local-variable-area 中
+      所分配內存 就被回收了
+    - 而這裏所說的
+      動態分配局部內存
+      是想要
+      - 在某個函數的作用過程中
+        隨時分配任意大小的內存
+        並且在函數作用完畢 而退出時
+        自動回收這些內存
+      可以發現
+      這裏並不涉及到 命名
+      可以料想
+      這裏的實現方式將於 局部命名 異曲同工
+      因爲都是要 在函數退出時
+      自動回收 函數作用過程中 所用到的內存
+
+*** 全局內存 與 局部內存
+    - 如同命名 內存分配也分 全局 局部
+    - 全局內存
+      其接口爲 allocate-memory
+      所分得內存將不能回收
+      比如
+      #+begin_src cicada-nymph
+      : allocate-memory:*example-buffer*
+        1024 allocate-memory
+      ; define-variable
+      #+end_src
+    - 局部內存
+      其接口爲 allocate-local-memory
+      所分得內存將在函數退出時回收
+      比如
+      #+begin_src cicada-nymph
+      : allocate-local-memory:example
+        1024 allocate-local-memory >:example-buffer
+        :example-buffer ...
+        :example-buffer ...
+        end
+      ; define-function
+      #+end_src
+
+*** 返回動態分配的局部內存中的數據
+    - 考慮下面的情況 就會發現一個難點
+      假設 有一個叫 son 的函數
+      它被 一個叫 father 的函數調用
+      son 使用 allocate-local-memory 分配了一些內存
+      如下
+      #+begin_src cicada-nymph
+      : son
+        1024 allocate-local-memory >:buffer
+        ...
+        :buffer
+        end
+      ; define-function
+
+      : father
+        son ...
+        1024 allocate-local-memory >:buffer
+        ...
+        end
+      ; define-function
+      #+end_src
+    - 發現
+      son 這個函數想要返回數據之結構很複雜
+      不能直接放入參數棧中
+        因爲參數棧中
+        保存的都是以 cell 爲單位的定長數字
+      經過對數據的計算與處理
+      這個函數把想要返回的結果保存在了
+      由 allocate-local-memory 多分配的局部內存中
+    - 難點在於
+      如果
+      在函數作用完畢 而退出時
+      由 allocate-local-memory 所分配的內存 被自動回收
+      那麼
+      son 所返回的 :buffer 地址下的內存就是被回收了的
+      在 father 使用 allocate-local-memory 來給自己分配局部內存時
+      這些內存將被認爲是自由內存
+      這樣
+      son 所算得的數據就被破壞了
+
+*** 利用共軛來解決返回數據問題
+    - 回想 返回點[return-point]
+      | 共軛局部內存[conjugate-local-memory] |
+      | 局部內存[local-memory]               |
+      | 局部變元[local-variable]             |
+      | 珠珠[jojo]                           |
+      其中
+      局部內存[local-memory]
+      共軛局部內存[conjugate-local-memory]
+      這兩個域
+      專門爲解決這個問題而設計
+    - 回想 局部變元[local-variable] 這個域
+      保存的是 local-variable-area:*current-free-address*
+      而
+      局部內存[local-memory]
+      共軛局部內存[conjugate-local-memory]
+      這兩個域
+      保存的是
+      local-memory-even-area:*current-free-address*
+      local-memory-odd-area:*current-free-address*
+      並且 每次函數調用的時候
+      就交換 odd 和 even
+      比如 如果 father 有
+      | local-memory           | even |
+      | conjugate-local-memory | odd  |
+      那麼 當 father 中調用 son 時
+      son 就有
+      | local-memory           | odd  |
+      | conjugate-local-memory | even |
+    - 這樣
+      son 需要返回數據時
+      用 allocate-conjugate-local-memory 來分配內存就行了
+      此時的 :buffer 地址
+      對 father 而言
+      就像是用 allocate-local-memory 分配的內存一般
+      #+begin_src cicada-nymph
+      : son
+        1024 allocate-conjugate-local-memory >:buffer
+        ...
+        :buffer
+        end
+      ; define-function
+
+      : father
+        son >:buffer-of-son
+        1024 allocate-local-memory >:buffer
+        ...
+        end
+      ; define-function
+      #+end_src
+
+*** 總結
+    - 我用 共軛的兩塊內存
+      來動態分配局部內存
+    - 共軛 是爲了解決返回數據問題
+    - 接口爲
+      allocate-local-memory
+      allocate-conjugate-local-memory
+
+* >< 命名
+
+*** 鍊
+    - 之所以需要 鍊
+      是因爲匯編語言的能力太弱
+      直接在其中實現 名散表 太費心力
+    - 一旦解釋器被執行起來
+      就不用鍊做主要的查找了
+    - 但是 鏈還被用於撤銷機制
+      因爲 只有唯一一個鏈
+      它記錄函數被定義的線性順序
+
+*** 名散表
+    - 實現對函數的快速查找
+    - 名散表 是處理命名的唯一數據結構
+      其中每個 名欄 之 珠域 對珠的保存
+      就是命名過程
+    - 珠子本身還是有名字的
+      但是這些名字只用來打印函數體
+      而別無他用
+      來自模塊的珠子
+      其名字中的前綴指示其模塊
+      這樣我就能在出錯時從文件中找到這個珠子的位置
+      也許有多個位置 因爲可能有重複命名
+
+*** 珠 到 名
+    - 假設 珠->名 這種函數
+      只爲除錯所用
+      那麼在 -global-naming-stack* 中搜索 珠 的名字
+      也是可以接受的
+      我選擇這種方式
+
+*** 實現函數作用
+
+*** 實現函數定義
+
+*** 命名難題
+    - 命名行爲有很多類型
+      令人困惑 列舉如下
+      1. 首先是全局變量
+         一個全局變量 是一個有名字的盒子
+         裏面可以保存值
+      2. 其次是有 名域 的數據結構
+         比如 珠 和 鍊
+      3. 再次是 名散表 中
+         一個 名 下所保存的值
+    - 特點是
+      1. 由值不能找回名字
+      2. 值本身是一個數據結構的地址
+         可以用以找回名字
+         因爲名字只是這個數據結構的一個域
+      3. 目前 名散表 中所保存的值
+         只限於 珠
+         一個 珠 可以存在於很多 名散表 中的 名欄 中
+         每個 名欄 之名 都是這個珠的別名
+         珠 做爲數據結構其內所保存的名字
+         纔是這個珠的真名
+    - 問題
+      1. 珠 內的真名 是有必要的還是沒必要的
+         這個名字的唯一目的就是 用以打印於顯示
+         完全沒有查找的功能
+    - 這種混亂的原因在於
+      1. 函數體中所保存的
+         不是 名散表 中的 名欄
+         而是 函數的真正地址
+    - 這導致動態性的喪失
+      即 重新定義一個函數的時候
+      有時必須重新定義所有依賴於它的函數
+      才能達到所期望的效果
+      同時獲得靜態性
+      即 重新定義一個函數時
+      不會破壞以前的定義
+
+* >< 線串碼解釋器的指令
+
+* >< 基本輸入輸出
+
+*** 閱讀棧[reading-stack]
+    - 使得閱讀地點可以被重新定向到字符串
+      實現對字符串的解釋
+      即 爲了實現 (eval-string)
+    - 實現 把括號識別爲詞
+
+* >< 語法擴展機制
+
+*** 語法棧[syntax-stack]
+    - 實現對語境的靈活轉換
+    - 語法棧中保存的規則集
+      實現對語法動態添加與刪除
+
+*** 語境
+
+* >< 非局部退出
+
+*** 題解
+    - 異常處理
+
+*** 期待棧
+    - 對返回棧的查找與直接操縱
+      實現異常處理
+
+* >< 撤銷機制
+
+*** 撤銷棧
+    - 用以保存某一時刻的全局狀態
+      以實現撤銷
+
+* >< 模塊系統
+
+*** 加載棧
+    - 用以保存被加載的代碼的信息
+      使得代碼可以被分散到不同的文件
+      以形成相對獨立的的模塊
+
+* >< 測試框架
+
+* >< 類型系統
+
+*** 類型棧
+
+*** 實現接口
+    - 類型檢查的接口 要植入 函數語義的接口 當中
+      即 函數作用 與 函數定義 當中
+
+*** >< 優化
+    - 有了類型信息
+      就有可能在定義函數的時候把某些可以執行的計算進行掉
+      如果引入這種優化
+      那麼 就有必要 區分變元與常元了
+
+*** >< 局部變元的語法
+    - joy 中的匿名謂詞
+      在作用於棧中的值的時候
+      不必複製它所作用的值
+    - 而 cicada-nymph 必須以明顯的方式複製棧中的值
+      如果每一組函數對棧中的值的消耗都能夠被編譯器計算出來
+      那麼就可以省略這些明顯的複製了
+      類型檢查器就可以做到這一點
+
+
+
+* >< 舊記
+
+*** 結構化數據的初始化語法
+    - [ ] 是 匿名的 jo 這種結構化數據的初始化語法
+      然而
+      別的結構化的數據應該如何呢 ?
+    - 比如 path: directory-name file-name ;
+      是一種用來初始化 特殊的[代表 path 的]字符串的語法
+    - 需要類似的語法的地方還有
+      1. vector of name
+      2. vector of string
+      注意這裏的 vector 都是類型良好的
+      必須是這樣
+      因爲我根本沒有對類型編碼
+    - 對於上面所欠缺的兩種語法
+      我可以很容易想出很多設計方式
+      但是要知道
+      語法是可以靈活轉換的
+      所以可以先實現幾個語法試試效果
+
+*** 局部變元代入嵌套的無名函數
+    - 局部變元代入嵌套的無名函數 是可以實現的
+      可以實現特殊的標記語法來支持這個特性
+      並且
+      當些無名函數需要被做爲返回值返回時
+      去返回無名函數的複製
+      而不返回在大函數體內的無名函數本身 就行了
+      此時的複製有兩種
+      1. 複製到圈狀內存中
+         此時所返回的值必須在短時間內被用掉
+      2. 複製到靜態內存中
+         這樣就提供了一種生成函數的方式了
+
+*** data-structure
+    - a data-structure is a pattern of bit [thus byte [thus jo]] in memory
+    - a data-structure is referenced by is address in memory
+    - what a low level programming language should provide
+      is a flexible way [a mechanism]
+      to manage the interfaces of all kinds of data-structures
+      including
+      1. define
+      2. allocate & init
+      3. get & set
+      4. equal & copy
+      and other operating functions
+    - that is to say
+      the interface of a data-structure is a set of functions
+      what should be managed are
+      1. how to define these functions
+         maybe to generate these functions group by group
+      2. how to apply these functions on their arguments
+         i.e. to call these functions
+    - the mechanism implemented here is very flexible
+      thus
+      it usage is not limited to help to form the concept about data-structure
+
+*** 能夠編譯自己之後之後才能實現的性狀
+    - jotionary 中 jojo 的長度
+    - 把對 棧註釋 處理成 元數據
+      利用這些元數據 就能夠實現簡單的類型推導
+    - 一個 debug 模式
+      在其中 對所有的基本的 棧的接口加上保護
+    - jojo 的頭部 和 jojo 本身的分離
+      這樣就能在 link 方面增加一層間接
+      而實現別名機制
+
+*** 對匯編器的需要
+    - 爲了實現上面的性狀
+      把 cicada-nymph 編譯到任何一個語言都是可以的
+      [比如 Fasm]
+    - 但是我還是需要自己實現匯編器
+      因爲就工作量而言 二者相當
+      就所形成的實現策略的靈活性而言
+      根據 自己的匯編器 所制定的實現策略 要靈活很多
+
+*** 交叉匯編器構架
+    - cross assembler framework
+    - 目的 爲了寫 cicada-language 的 VM 的 匯編器
+    - 在 name-hash-table 中貢獻出一個域
+      來分離 匯編器 的命名空間
+    - memory buffer editor
+      1. bit buffer editor
+      2. byte buffer editor
+    - 多光標編輯
+      - cursor = 1 cursor
+      - buffer = 2 cursor
+      - xxxxxx = 3 cursor
+    - line editor 外加各種 mode

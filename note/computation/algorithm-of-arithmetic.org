@@ -1,0 +1,6 @@
+#+TITLE:  算數算法 / algorithm of arithmetic
+#+AUTHOR: 謝宇恆 / XIE Yuheng
+
+* 問
+  * 用 lambda 編碼的數字
+    爲什麼沒有高效的算數算法 ?

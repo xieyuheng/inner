@@ -1,0 +1,1547 @@
+#+TITLE:  to be the reasoned schemer
+#+AUTHOR: 謝宇恆 / XIE Yuheng
+
+* >< *the reasoned schemer*
+* syntactic extension
+  1. syntax-rules被理解爲是用syntax-case實現的
+  2. 用syntax-case實現它本身是可能的 因爲有類似於(quote ...)的機制
+  3. (syntax-rules ...)會被解釋成transformer
+     正如(lambda ...)會被解釋成closure
+     但是並不盡然
+  #+begin_src scheme
+  (define-syntax cond
+    (syntax-rules (else)
+      [(_ (else e1 e2 ...)) (begin e1 e2 ...)]
+      [(_ (e0 e1 e2 ...)) (if e0 (begin e1 e2 ...))]
+      [(_ (e0 e1 e2 ...) c1 c2 ...)
+       (if e0 (begin e1 e2 ...) (cond c1 c2 ...))]))
+  (define-syntax my-syntax-rules
+    (lambda (x)
+      (syntax-case x
+          ()
+        [(my-syntax-rules (i ...)
+               [(keyword . pattern) template]
+               ...)
+         #'(lambda (x)
+             (syntax-case x
+                 (i ...)
+               [(_ . pattern) #'template]
+               ...))]
+        )))
+  (define-syntax or
+    (syntax-rules ()
+      [(_) #f]
+      [(_ e) e]
+      [(_ e1 e2 e3 ...)
+       (let ([t e1])
+         (if t t (or e2 e3 ...)))]))
+  (define-syntax my-or
+    (lambda (x)
+      (syntax-case x
+          ()
+        [(_) #'#f]
+        [(_ e) #'e]
+        [(_ e1 e2 e3 ...)
+         #'(let ([t e1])
+             (if t t (my-or e2 e3 ...)))])))
+  (my-or 1 2)
+  if the expander encounters a syntactic extension
+  it invokes the associated transformer
+  to expand the syntactic extension
+  (syntax-case '(my-or 1 2)
+      ()
+    [(_) #'#f]
+    [(_ e) #'e]
+    [(_ e1 e2 e3 ...)
+     #'(let ([t e1])
+         (if t t (my-or e2 e3 ...)))])
+  then repeats the expansion process for the form
+  returned by the transformer
+  (#<syntax let>
+            ((#<syntax t> 1 . #<syntax ()>) . #<syntax ()>)
+            (#<syntax if> #<syntax t>
+                      #<syntax t>
+                      (#<syntax my-or> 2) . #<syntax ()>) . #<syntax ()>)
+  但是上上面的東西在解釋器中的返回值是上面的東西
+  這個東西如何再被expander作用呢?
+  expander會去找來對應於#<syntax let>的transformer來作用嗎?
+  如何實驗這一想法的
+  (define-syntax test1
+    (lambda (x)
+      (syntax-case x
+          ()
+        [(_) #'(let () (car '(1 2)))]
+        )))
+  (test1)
+  (syntax-case '(test1)
+      ()
+    [(_) #'(my-or)]
+    )
+  #<syntax (my-or)>
+  (syntax-case '(my-or)
+      ()
+    [(_) #'#f]
+    [(_ e) #'e]
+    [(_ e1 e2 e3 ...)
+     #'(let ([t e1])
+         (if t t (my-or e2 e3 ...)))])
+  #<syntax #f>
+  expand就這樣作用於返回的syntax-object
+  直到syntax-object的頭一個位置變成了core中的東西
+
+  因爲一種分離機制的存在
+  所以根本沒法實驗一些東西
+  想要實驗的話只有自己定義一個expand完全像value只不過使用的是match範式
+  它輸入<sexp>然後從環境中遞歸調用各種有名有姓的syntax-case
+  然後輸出的<sexp*>就是隻包含core中的語法關鍵詞的了
+  這可以說是實現了另一個語言了
+  如何讓這兩種語言在scheme中合作?
+
+  (define syntax-case
+    (lambda (x <help-keywords> <rules>)
+      ()))
+
+  <rules> == (<rule> ...)
+  <rule> == [<pattern> <fender> <output-sexp>]
+  <fender> == <sexp> | <syntax-obj>
+  <output-sexp> == <sexp> | <syntax-obj>
+  - match pattern 邊 matach 邊 綁定<pattern-var>
+  - 以<output-sexp>爲基礎形成類似closure的東西
+    <syntax-obj> 是爲了closure的效果嗎?
+  - syntax-case只用來做一次匹配 遞歸由expand完成
+  - scheme中的分離機制在於 這一次匹配所得的結果是不在解釋器中被使用的
+    只有expand遞歸地把一個語法匹配完了 得到全是core中的語法的東西之後
+    才能被解釋器使用
+  - (syntax <template>)
+    replaces matched pattern variables in template with their values
+    pattern variables can be referenced only within
+  #+end_src
+* core
+  [[shell:nautilus ~/kanren/ &]]
+** note
+   + 創作過程:
+     一個想法 ->
+     一些數據結構 + 一些算法: 使得這些想法能夠被機器處理
+
+   + goal: knowledge -> knowledge
+     a ``goal'' is the result of a `measurement'
+     with the quantum-mechanical connotations
+
+   + 自由邏輯變元是表達的工具
+
+     自由邏輯變元之間的關係
+     是我們描述我們知識的方式
+
+     自由邏輯變元之間的關係
+     用一種特殊的格來表示
+
+     當一個邏輯變元不是完全自由的時候
+     哪怕只有一點限制
+     哪怕在這些限制之下變元可能的取值還是無窮多個
+     我們也試着把它們打印出來
+
+     當一個邏輯變元是完全自由的時候
+     也給它一個表示 即reification
+
+     通過一步一步限制自由邏輯變元 而一步一步精確知識
+
+   + relation: can-be-anything -> goal
+
+   + 之前的錯誤理解 也許是對的:
+     如果一個座標軸上的一些代入點被代入了一些座標軸
+     那麼就形成了一個二維的東西
+     回想 函數式編程是想用確定性的變化規則之間的複合來描述函數
+     而函數是一個具有單值性的二元關係
+     因此幾何上看 函數式編程是在描述這種特殊的二元關係
+     而之前錯誤地以爲邏輯式編程是在描述 一般的多元關係
+     + 可能並不是最一般的 因爲可數性(離散性)對於計算來說是基本的
+       + 而確實又是非常一般的 因爲這很可能就是計算的本質
+
+** variable, substitution
+   ``unify'' using the ``walk''
+   to look up variables in a triangular substitution
+   :tangle mk.scm
+   #+begin_src scheme
+   ;; represent logic variables as vectors of length one
+   ;; so (eq? (var 'x) (var 'x)) ==> #f
+   ;; so (equal? (var 'x) (var 'x)) ==> #t
+   ;; but one consequence is that vectors should
+   ;; not appear in arguments passed to ``unify''
+   (define-syntax var
+     ;; logic variable
+     (syntax-rules ()
+       [(_ x) (vector x)]))
+   (define-syntax var?
+     (syntax-rules ()
+       [(_ x) (vector? x)]))
+   ;; the single argument to the var constructor should be a symbol
+   ;; (no check is done)
+   ;; representing the name of the variable
+   ;; so legal representation of logic-var is like #(x)
+
+   ;; relational-programming is special-lattice processing
+   ;; the semantic of lattice is `knowledge'
+   ;; a substitution ``s'' is a special lattice
+   ;; (without any circularity)
+   ;; (without any downward-branch to two different non-var)
+   ;; of which elements are logic-variables and terms
+   ;; using a-list to represent substitution
+   ;; in a-list: [<var> . <term>]
+   ;; in lattice: <var> --> <term> (<term> maybe <var>)
+   ;; using ``walk'' to walk <var> --> down-to-the-ground
+   ;; ``down-to-the-ground'' maens that the term returned by walk
+   ;; is not <var>
+   ;; but it maybe a list of terms where there maybe <var> in it
+   ;; at this moment one need to use ``walk*''
+   ;; to walk the <var>s in the list down-to-the-ground
+   (define empty-s '())
+   ;; extend a substitution ``s''
+   (define ext-s
+     ;; x is var, v is term
+     (lambda (x v s)
+       (cons `(,x . ,v) s)))
+   (define-syntax rhs
+     (syntax-rules ()
+       [(_ x) (cdr x)]))
+   (define-syntax lhs
+     (syntax-rules ()
+       [(_ x) (car x)]))
+
+   ;; idempotent substitutions
+   ;; ([y . 5] [x . 5])
+   ;; (define lookup
+   ;;   ;; v is var, s is idempotent-substitution
+   ;;   (lambda (v s)
+   ;;     (cond [(var? v)
+   ;;         (let ([a (assq v s)])
+   ;;           (cond [a (rhs a)]
+   ;;                 ;; if v is an unassociated variable just returns v
+   ;;                 [else v]
+   ;;                 ))]
+   ;;        ;; if v is a non-variable just returns v
+   ;;        [else v])))
+
+   ;; triangular substitution
+   ;; ([y . 5] [x . y])
+   (define walk
+     ;; v is term that maybe var, s is triangular-substitution
+     (lambda (v s)
+       (cond
+        [(var? v)
+         (let ([a (assq v s)])
+           (cond [a (walk (rhs a) s)]
+                 ;; if v is an unassociated variable just returns v
+                 [else v]
+                 ))]
+        ;; if v is a non-variable just returns v
+        [else v]
+        )))
+   ;; ``walk'' is therefore not primitive recursive
+   ;; ``walk'' can diverge if used on a substitution containing a circularity
+   ;; ([x . x]) ([x . y] [y . x])
+   ;; unification function ``unify'' ensures that
+   ;; these kinds of circularities are never introduced into a substitution
+   ;; in addition
+   ;; ``unify'' prohibits circularities of the form ([x . (x)])
+   ;; from being added to the substitution
+   ;; although this circularity will not cause walk to diverge
+   ;; it can cause divergence during reification
+   ;; (define walk ;; sugar!
+   ;;   (lambda (u S)
+   ;;     (cond
+   ;;      ((and (var? u) (assq u S)) =>
+   ;;       (lambda (pr) (walk (rhs pr) S)))
+   ;;      (else u))))
+
+
+   ;; to prevent circularities from being introduced
+   ;; we extend the substitution using ext-s√ rather than ext-s
+   (define ext-s√
+     ;; x is var, v is term
+     (lambda (x v s)
+       (cond
+        ;; if ext-s√ returns #f instead of an extended substitution
+        ;; indicating that unification has failed
+        [(occurs√ x v s) #f]
+        [else (ext-s x v s)]
+        )))
+
+   (define occurs√
+     ;; x is logic-var, v is term or list of terms
+     ;; returns #t if x --> v
+     ;; would introduce a circularity to lattice ``s''
+     (lambda (x v s)
+       ;; the following let is under the assumption
+       ;; that there is no circularity in ``s''
+       ;; >< but way we don't need walk x down????
+       (let ([v-down (walk v s)])
+         (cond
+          [(var? v-down) (eq? v-down x)]
+          ;; to prevent ([x . (x)])
+          [(pair? v-down)
+           (or (occurs√ x (car v-down) s)
+               (occurs√ x (cdr v-down) s))]
+          [else #f]
+          ))))
+
+   ;; to unifies two terms ``u'' and ``v''
+   ;; is to extend ``s``
+   (define unify
+     ;; returning a maybe-extended-substitution if unification succeeds
+     ;; returning #f if unification fails (contradiction)
+     ;; or would introduce a circularity
+     (lambda (u v s)
+       ;; find out what `u` `v` actually is given our knowledge s
+       ;; to guarantee the extend happen on the ground of the lattice
+       (let ([u-down (walk u s)]
+             [v-down (walk v s)])
+         (cond
+          ;; (equal? (var 'x) (var 'x)) ==> #t
+          ;; (eq? (var 'x) (var 'x)) ==> #f
+          [(eq? u-down v-down) s]
+          [(var? u-down) (ext-s√ u-down v-down s)]
+          [(var? v-down) (ext-s√ v-down u-down s)]
+          [(and (pair? u-down) (pair? v-down))
+           (let ([s+car (unify (car u-down) (car v-down) s)])
+             ;; ``and'' not only return boolean
+             (and s+car (unify (cdr u-down) (cdr v-down) s+car)))]
+          [(equal? u-down v-down) s]
+          [else #f]
+          ))))
+   #+end_src
+** reification algorithm
+   which converts minikanren terms into regular scheme values
+   i.e. without logic variables
+   to make the value returned by run more informative
+   :tangle mk.scm
+   #+begin_src scheme
+   (define reify
+     ;; s is substitution
+     ;; v is term that perhaps containing variables
+     (lambda (v s)
+       (let ([v-down* (walk* v s)])
+         (walk* v-down* (reify-s v-down* empty-s)))))
+
+   (define walk*
+     (lambda (v s)
+       (let ([v-down (walk v s)])
+         (cond
+          [(var? v-down)
+           v-down]
+          [(pair? v-down)
+           (cons
+            (walk* (car v-down) s)
+            (walk* (cdr v-down) s))]
+          [else v-down]))))
+
+   (define-syntax size-s
+     (syntax-rules ()
+       [(_ x) (length x)]))
+
+   (define reify-s
+     ;; return substitution which helps ``reify'' to return reified-term
+     ;; (size-s s) is smart code to recognize every different var
+     (lambda (v s)
+       (let ([v-down (walk v s)])
+         (cond
+          [(var? v-down)
+           (ext-s v-down (reify-name (size-s s)) s)]
+          [(pair? v-down)
+           (reify-s (cdr v-down)
+                    ;; the following will be eval eagerly first in scheme
+                    ;; so we control the order of reifying here
+                    ;; i.e. from left to right
+                    (reify-s (car v-down) s))]
+          [else s]))))
+
+   (define reify-name
+     (lambda (n)
+       (string->symbol
+         (string-append "_" "." (number->string n)))))
+   #+end_src
+** goals
+   goal:
+   substitution -> a∞
+   a∞ is an ordered sequence of zero or more values (stream)
+   these values are almost always substitutions
+
+   λᴳ: goal as closure
+   λ~: closure when invoked produces the remainder of a stream
+   goal constructors: ==, fresh, begin°
+   interface operator: run
+   :tangle mk.scm
+   #+begin_src scheme
+   (define-syntax λᴳ
+     ;; to protect ``e'' from being rec-call eagerly
+     (syntax-rules ()
+       [(_ (p) e)
+        (lambda (p) e)]))
+   (define-syntax λ~
+     ;; to build stream
+     (syntax-rules ()
+       [(_ () e)
+        (lambda () e)]))
+
+   ;; never used mzero
+   (define-syntax mzero
+     (syntax-rules ()
+       [(_) #f]))
+   ;; never used inc~
+   (define-syntax inc~ ;; incomplete stream == (delay e)
+     (syntax-rules ()
+       [(_ e) (λ~ () e)]))
+   ;; never used inc~
+   (define-syntax unit
+     (syntax-rules ()
+       [(_ a) a]))
+   ;; never used choice
+   ;; the name `choice' should evoke THE AXIOM OF CHOICE
+   (define-syntax choice
+     (syntax-rules ()
+       [(_ a f~) (cons a f~)]))
+   ;; stream:
+   ;; a∞ ::== (cons a d~) | (cons~ a d)
+   ;;       | #f
+   ;;       | other-scheme-val
+   ;; for to distinguish basic-step when deal with stream
+   ;; we restrict:
+   ;; other-scheme-val == {scheme-val} - {#f, (cons~ a d)}
+   ;; but in scheme one can't write good predicate about closure
+   ;; among other-scheme-val good a∞ is lattice-as-alist
+
+   ;; to ensure that streams produced by these four streams constructors
+   ;; can be distinguished
+   ;; we assume that a singleton streams is never:
+   ;; #f, a function, a pair whose cdr is a function
+   ;; and to discriminate among these four cases, we define case∞
+
+   ;; the following pattern is used three times here
+   ;; so one write a macro
+   ;; but the with out good explain it is hard to read
+   ;; 用pmatch-who重新寫試試
+   (define-syntax case∞
+     (syntax-rules ()
+       [(_ a∞
+           ;; in the following
+           ;; the f's and a's may occur in e's
+           [() e0]
+           [(f~) e1]
+           [(a) e2]
+           [(b h~) e3])
+        (cond
+         ;; a∞ == (mzero) == #f
+         [(not a∞)
+          e0]
+         ;; a∞ == (inc~ e) == (λ~ () e)
+         [(procedure? a∞)
+          (let ([f~ a∞])
+            e1)]
+         ;; a∞ == (unit a) == a{a singleton stream}
+         [(not (and (pair? a∞)
+                    (procedure? (cdr a∞))))
+          (let ([a a∞])
+            e2)]
+         ;; a∞ == (choice b h~) == (cons b h~)
+         [else
+          (let ([b (car a∞)]
+                [h~ (cdr a∞)])
+            e3)]
+         )]))
+
+   ;; (define-syntax ==
+   ;;   ;; returns either a singleton stream or an empty stream
+   ;;   ;; depending on whether the arguments ``unify'' with the implicit substitution
+   ;;   (syntax-rules ()
+   ;;     [(_ u v)
+   ;;      (λᴳ (a)
+   ;;        (cond [(unify u v a) => (lambda (a) (unit a))]
+   ;;              [else #f] ))]))
+
+   (define ==
+     (lambda (u v)
+       ;; returns a basic-goal: substitution -> substitution
+       (λᴳ (s) (unify u v s))))
+
+   (define-syntax begin°
+     ;; : goal -> messed-goal(which is not a alist-operator anymore)
+     ;; this is bad for to representation the lattice we
+     (syntax-rules ()
+       ;; transverse:    conjunction (by conj)
+       ;; longitudinal:  disjunction (by disj)
+       ;; all of the stream values will be interleaved
+       [(_ [g11 g12 ...]
+           [g21 g22 ...]
+           ...)
+        (λᴳ (s) ;; to protect-eager-rec-call
+          (λ~ () ;; what is this for?
+           (disj*
+            (conj* (g11 s) g12 ...)
+            (conj* (g21 s) g22 ...)
+            ...)))]))
+
+
+   (define-syntax conj*
+     ;; : [a∞ g ...] -> a∞
+     (syntax-rules ()
+       [(_ e) e]
+       [(_ e g1 g2 ...)
+        (conj* (conj e g1) g2 ...)]
+       ))
+   ;; (conj* (g11 s) g12 g13 g14)
+   ;; =extend=>
+   ;; (conj (conj (conj (g11 s)
+   ;;                g12)
+   ;;          g13)
+   ;;       g14)
+
+   ;; 下面的例子都還是單純地在處理alist
+   ;; 只用到case∞中的一個從句
+   ;; 但是實際使用時必須用更復雜的數據結構
+   ;; 因爲這些結果將和disj所返回的結果交織起來
+   ;; 而disj所返回的結果是stream
+   ;; ((== (var 'w) (var 'k))
+   ;;  ((== 3 (var 'z))
+   ;;   ((== 2 (var 'y))
+   ;;    ((== 1 (var 'x))
+   ;;     '()))))
+
+   ;; (conj (conj (conj ((== 1 (var 'x)) '())
+   ;;                   (== 2 (var 'y)))
+   ;;             (== 3 (var 'z)))
+   ;;       (== (var 'w) (var 'k)))
+
+   ;; (conj* ((== 1 (var 'x)) '())
+   ;;        (== 2 (var 'y))
+   ;;        (== 3 (var 'z))
+   ;;        (== (var 'w) (var 'k)))
+
+   (define conj
+     ;; : a∞ g -> a∞
+     (lambda (a∞ g)
+       (case∞ a∞
+         [() #f]
+         [(f~) (λ~ () (conj (f~) g))]
+         [(a) (g a)]
+         [(a f~) (disj
+                  (g a)
+                  (λ~ () (conj (f~) g)))]
+         )))
+
+
+   (define-syntax disj*
+     (syntax-rules ()
+       ;; : [a∞ a∞ ...] -> a∞
+       [(_ e) e]
+       [(_ e1 e2 ...)
+        (disj e1 (λ~ () (disj* e2 ...)))]
+       ))
+
+   ;; (disj* e1 e2 e3 e4)
+   ;; =extend=>
+   ;; (disj e1
+   ;;       (λ~ ()
+   ;;          (disj e2
+   ;;               (λ~ ()
+   ;;                  (disj e3
+   ;;                        (λ~ ()
+   ;;                            e4))))))
+
+   ;; 把alist並起來
+   ;; 因爲要lazy 所以並不能簡單的還得到alist
+   ;; 而必須在這裏使用stream
+   ;; disj*先幫助disj處理第二個參數 把h化爲h~
+
+   ;; 所以a∞的典型值是alist所形成的stream
+   ;; (disj ((== 1 (var 'x)) '())
+   ;;       (λ~ () ((== 2 (var 'y)) '())))
+   ;; (disj* ((== 1 (var 'x)) '())
+   ;;        ((== 2 (var 'y)) '())
+   ;;        ((== 3 (var 'z)) '())
+   ;;        ((== (var 'w) (var 'k)) '()))
+
+
+   (define disj
+     ;; : a∞ h~ -> a∞
+     (lambda (a∞ h~)
+       (case∞ a∞
+         ;; empty-stream
+         [() (h~)]
+         ;; (~ x), but why this occur?
+         [(f~) (λ~ () (disj (h~) f~))]
+         ;; a is non-stream extend the stream h~ by a
+         [(a) (cons a h~)]
+         ;; a is stream append, which order is right?
+         [(a f~) (cons a (λ~ () (disj (h~) f~)))]
+         )))
+
+
+   (define-syntax fresh
+     (syntax-rules ()
+       [(_ (x ...)
+           g1 g2 ...)
+        ;; a fresh-exp is extended to a goal
+        (λᴳ (s)
+          (λ~ ()
+            (let ([x (var 'x)] ...)
+              (conj* (g1 s) g2 ...))))]))
+
+   (define-syntax run
+     (syntax-rules ()
+       [(_ n (x)
+           g1 g2 ...)
+        (take n (λ~ ()
+                  ((fresh (x)
+                     g1 g2 ...
+                     (λᴳ (s)
+                       (cons (reify x s) '())) )
+                   ;; goal act on empty-s to reveal itself
+                   empty-s)))]))
+   (define-syntax run*
+     (syntax-rules ()
+       [(_ (x) g ...)
+        (run #f (x) g ...)]))
+
+   (define take
+     (lambda (n f)
+       (if (and n (zero? n))
+         '()
+         (case∞ (f)
+           [() '()]
+           [(f~) (take n f~)]
+           [(a) a]
+           [(a f) (cons (car a)
+                        (take (and n (sub1 n)) f))]))))
+
+   (define succeed (== #f #f))
+   (define fail (== #f #t))
+   #+end_src
+* 1 playthings
+  *the law of fresh*
+  if x is fresh
+  then (v x) succeeds and associates x with v
+
+  *the law of ==*
+  (v w) is the same as (w v)
+
+  *the law of conde*
+  to get more values from conde
+  pretend that the successful conde line has failed
+  refreshing all variables that got an association from that line
+  #+begin_src scheme
+  (run* (q)
+    fail)
+
+  (run* (q)
+    (== 1 q))
+
+  (run* (x)
+    succeed)
+
+  (run* (c)
+    (let ([a 1]
+          [d 2])
+      (== c `(,a ,d))))
+
+  ;; reified name of unbound-var
+  (run* (c)
+    (fresh (a d)
+      (== c `(,a ,d))))
+
+  (run* (r)
+    (fresh (x)
+      (let ([y x])
+        (fresh (x)
+          (== `(,y ,x ,y) r)))))
+  (run* (q)
+    (== 1 q)
+    (== 1 q))
+
+  (run* (q)
+    (let ([x q])
+      (== 1 x)))
+
+  (run* (q)
+    (fresh (x)
+      (== q x)))
+  (run* (q)
+    (fresh (x)
+      (== 1 x)
+      (== x q)))
+  (run* (q)
+    (fresh (x)
+      (== x q)
+      ;; oc-refer or share
+      (== 1 x)))
+
+  (run* (q)
+    (fresh (x)
+      (== (eq? x q) q)))
+  (run* (q)
+    (let ([x q])
+      (fresh (q)
+        (== (eq? x q) x))))
+
+  (run* (x)
+    (begin°
+     [(== 1 x) (== 1 x)]
+     [(== 2 x) (== 3 x)]
+     ))
+  (run* (x)
+    (begin° ;; ``e'' stand for ``every line''
+      [(== 'kkk x) fail]
+      [(== 'kk x) succeed]
+      [(== 'k x) succeed]
+      ))
+  (run 1 (x)
+    (begin°
+      [(== 'kkk x) succeed]
+      [(== 'kk x) succeed]
+      [(== 'k x) succeed]
+      ))
+  (run 2 (x)
+    (begin°
+      [(== 'kkk x) succeed]
+      [(== 'kk x) succeed]
+      [(== 'k x) succeed]
+      ))
+  (run #f (x)
+    (begin°
+      [(== 'kkk x) succeed]
+      [(== 'kk x) succeed]
+      [(== 'k x) succeed]
+      ))
+  (run* (x)
+    (begin°
+      [(== 'kkk x) fail]
+      [(== 'kk x) succeed]
+      [succeed succeed]
+      [(== 'k x) succeed fail]
+      ))
+  (run* (r)
+    (fresh (x y)
+      (begin°
+        [(== 'kkk x) (== 'aaa y)]
+        [(== 'kk x) (== 'aa y)] )
+      (== `(,x ,y 123) r)))
+
+  (run* (r)
+    (fresh (x y z)
+      (begin°
+        [(== y x) (fresh (x)
+                    (== z x))]
+        [(fresh (x)
+           (== y x)) (== z x)])
+      (== `(,y ,z) r)))
+  (run* (r)
+    (fresh (x y z)
+      (begin°
+        [(== y x) (fresh (x)
+                    (== z x))]
+        [(fresh (x)
+           (== y x)) (== z x)])
+      (== 1 x)
+      (== `(,y ,z) r)))
+  (run* (q)
+    (let ([a (== 1 q)]
+          [b (== 2 q)])
+      b))
+  #+end_src
+* 2 teaching old toys new tricks
+  #+begin_src scheme
+  ;; (define-syntax begin°
+  ;;   (syntax-rules ()
+  ;;     [(begin° . body)
+  ;;      (conde . body)]))
+  (run* (r)
+    (fresh (x y z)
+      (begin°
+       [(== y x) (fresh (x)
+                   (== z x))]
+       [(fresh (x)
+          (== y x)) (== z x)])
+      (== 1 x)
+      (== `(,y ,z) r)))
+
+  ;; (define car°
+  ;;   (lambda (p a)
+  ;;     (== (car p) a)))
+  (define car°
+    (lambda (p a)
+      (fresh (d)
+        (== (cons a d) p))))
+
+  (run* (r)
+    (fresh (x y)
+      (car° `(,r ,y) x)
+      ;(== (car `(,r ,y)) x)
+      (== 'kkk x)))
+  (run* (r)
+    (fresh (x y)
+      (car° '(1 2 3) x)
+      (car° '((a) (b) (c)) y)
+      (== (cons x y) r)))
+  ;; (define cdr°
+  ;;   (lambda (p a)
+  ;;     (== (cdr p) a)))
+  (define cdr°
+    (lambda (p d)
+      (fresh (a)
+        (== (cons a d) p))))
+  ;; the following is called unnesting
+  ;; looks like CPS
+  (run* (r)
+    (fresh (v)
+      (cdr° '(1 2 3) v)
+      (car° v r)))
+
+  (run* (x)
+    (cdr° '(1 2 3) `(,x 3)))
+  也就是說引發``代入事件''的==有能力看list之內的座標軸
+  (run* (x)
+    (fresh (a b)
+      (== '(1 2) `(,a ,b))
+      (== `(,a ,b) x)))
+  (run* (l)
+    (fresh (x)
+      (cdr° l '(1 2 3 4))
+      (car° l x)
+      (== 0 x)))
+  這裏cdr°的兩種定義中的前一種就錯了!
+  因爲==有能力看list之內的東西
+  所以作爲``代入事件''的cdr°必須引發對p的代入而不是對a或d的
+  即 在用==定義一個代入事件時 以結構更大的list爲基準
+  不夠的地方用fresh引入新的座標軸進行補充 就能讓所定義的東西獲得更大的能力
+  所以看來要經常使用quasiquote而不是quote了
+  (define cons°
+    (lambda (a d p)
+      (== (cons a d) p)))
+  (run* (l)
+    (cons° 1 2 l))
+  (run* (x)
+    (cons° x '(1 2) '(0 1 2)))
+  (run* (x)
+    (cons° x `(1 ,x 3) `(0 1 ,x 3)))
+  (run* (l)
+    (fresh (x)
+      (== `(0 1 ,x 3) l)
+      (cons° x `(1 ,x 3) l)))
+  (run* (l)
+    (fresh (x)
+      (cons° x `(1 ,x 3) l)
+      (== `(0 1 ,x 3) l)))
+
+  (define null°
+    (lambda (x)
+      (== x '())))
+  (run* (x)
+    (null° x))
+
+  ==有謂詞的功能 又有代入的功能
+  因爲需要判斷是否要插入一個值
+  (define eq°
+    (lambda (x y)
+      (== x y)))
+
+  ;; (define cons°
+  ;;   (lambda (a d p)
+  ;;     (== (cons a d) p)))
+  (define pair°
+    (lambda (p)
+      (fresh (a d)
+        ;; (== (cons a d) p)
+        (cons° a d p))))
+  (run* (q)
+    (pair° (cons q q))
+    (== 1 q))
+  (run* (q)
+    (pair° q)
+    (== '(1 2) q))
+  (run* (q)
+    (pair° 'atom)
+    (== 1 q))
+  (run* (x)
+    (pair° x))
+
+  (define tri°
+    (lambda (tri)
+      (fresh (x1 x2 x3)
+        (== `(,x1 ,x2 ,x3) tri))))
+  (run* (x)
+    (tri° x))
+  #+end_src
+** preparing for the following practice
+   #+begin_src scheme
+   (define car°
+     (lambda (p a)
+       (fresh (d)
+         (== (cons a d) p))))
+   (define cdr°
+     (lambda (p d)
+       (fresh (a)
+         (== (cons a d) p))))
+   (define cons°
+     (lambda (a d p)
+       (== (cons a d) p)))
+   (define null°
+     (lambda (x)
+       (== x '())))
+   (define eq°
+     (lambda (x y)
+       (== x y)))
+   (define pair°
+     (lambda (p)
+       (fresh (a d)
+         ;; (== (cons a d) p)
+         (cons° a d p))))
+   ;; (define tri°
+   ;;   (lambda (tri)
+   ;;     (fresh (x1 x2 x3)
+   ;;       (== `(,x1 ,x2 ,x3) tri))))
+   #+end_src
+* 3 seeing old friends in new ways
+  *THE FIRST COMMANDMENT*
+  to transform a function whose value is a boolean
+  into a function whose value is a goal
+  replace cond with conde and unnest each question and answer
+  unnest the answer #t (or #f) by replacing it with #s (or #u)
+  #+begin_src scheme
+  (define list?
+    (lambda (l)
+      (cond [(null? l) #t]
+            [(pair? l) (list? (cdr l))]
+            [else #f]
+            )))
+  (define list°
+    (lambda (l)
+      (begin°
+       [(null° l)]
+       [(pair° l) (fresh (d)
+                     ;; unnesting of (list? (cdr l))
+                     (cdr° l d)
+                     (list° d))]
+       )))
+  (run* (x)
+    (list° `(a b ,x d)))
+  ;; loop occur!
+  ;; (run* (x)
+  ;;   (list° x))
+  (run 10 (x)
+    (list° x))
+  (run 1 (x)
+    (list° `(a b . ,x)))
+
+  ``==有謂詞的功能 又有代入的功能
+  因爲需要判斷是否要插入一個值''
+  說的是機制
+  而有趣的是這種機制所形成的語義是:
+  比如:
+  (run 10 (x)
+    (list° `(a b . ,x)))
+  x的值爲什麼的時候(list° `(a b . ,x))是真的?
+
+  (define lol? ;; list-of-lists?
+    (lambda (l)
+      (cond [(null? l) #t]
+            [(list? (car l))
+             (lol? (cdr l))]
+            [else #f])))
+  (define lol°
+    (lambda (l)
+      (begin°
+       [(null° l)]
+       [(fresh (a)
+          (car° l a)
+          (list° a))
+        (fresh (d)
+          (cdr° l d)
+          (lol° d))]
+       )))
+  (run 1 (l)
+    (lol° l))
+  (run 1 (q)
+    (fresh (x y)
+      (lol° `((1 2) (,x 3) (4 ,y)))
+      (== `(,x ,y) q)))
+  (run 5 (x)
+    (lol° `((1) . ,x)))
+  ;; (define twins°
+  ;;   (lambda (s)
+  ;;     (fresh (x y)
+  ;;       (cons° x y s)
+  ;;       (cons° x '() y))))
+  ;; (define twins°
+  ;;   (lambda (s)
+  ;;     (fresh (x y)
+  ;;       (== `(,x ,y) s)
+  ;;       (== x y))))
+  (define twins°
+    (lambda (s)
+      (fresh (x)
+        (== `(,x ,x) s))))
+  (run* (q)
+    (twins° '(1 1))
+    (== #t q))
+  (run* (q)
+    (twins° `(1 ,q)))
+
+  (define lot° ;; list-of-twins
+    (lambda (l)
+      (begin°
+       [(null° l)]
+       [(fresh (a)
+          (car° l a)
+          (twins° a))
+        (fresh (d)
+          (cdr° l d)
+          (lot° d))]
+       )))
+  (run 10 (z)
+    (lot° `((1 1) . ,z)))
+  (define listof°
+    (lambda (pred° l) ;; pred denote predicate
+      (begin°
+       [(null° l)]
+       [(fresh (a)
+          (car° l a)
+          (pred° a))
+        (fresh (d)
+          (cdr° l d)
+          (listof° pred° d))]
+       )))
+  (run 10 (out)
+    (fresh (w x y z)
+      (== `((1 1) (2 ,w) (,x ,y) . ,z) out)
+      (listof° twins° out)))
+  (run 100 (out)
+    (fresh (w x y z)
+      (== z out)
+      (listof° null° out)))
+  (define lot°
+    (lambda (l)
+      (listof° twins° l)))
+
+  (define member?
+    (lambda (x l)
+      (cond [(null? l) #f]
+            [(eq-car? l x) #t]
+            [else (member? x (cdr l))]
+            )))
+  (define eq-car?
+    (lambda (l x)
+      (eq? (car l) x)))
+  (define eq-car°
+    (lambda (l x)
+      (car° l x)))
+  (define member°
+    (lambda (x l)
+      (begin°
+       [(eq-car° l x)]
+       [(fresh (d)
+          (cdr° l d)
+          (member° x d))]
+       )))
+  (run 10 (l)
+    (member° 1 `(,l . 1)))
+  (run* (x)
+    (member° '2 `(1 ,x 3)))
+  (run* (x)
+    (member° '2 `(1  2 ,x 3)))
+  (run* (x)
+    (member° '2 `(1 ,x 2 3)))
+  (run* (out)
+    (fresh (x y)
+      (member° '2 `(1 ,x 3 ,y))
+      (== `(,x ,y) out)))
+
+  (define list-copy
+    (lambda (l)
+      (run* (y)
+        (member° y l))))
+  (let ([test
+         '(1 2 (3 (4)))])
+    (newline)
+    (printf "test:list-copy:a version which don't handle loop,\n")
+    (printf "all answers should be #f,\n")
+    (printf "SRFI-1 con't pass this test.\n")
+    (newline)
+    (printf
+     "(list-copy test)\n==>\n~s\n\n"
+     (list-copy test))
+    (printf
+     "(eq? test (list-copy test))\n==>\n~s\n\n"
+     (eq? test (list-copy test)))
+    (printf
+     "(eq? (cdr test) (cdr (list-copy test)))\n==>\n~s\n\n"
+     (eq? (cdr test) (cdr (list-copy test))))
+    (printf
+     "(caddr test)\n==>\n~s\n\n"
+     (caddr test))
+    (printf
+     "(caddr (list-copy test))\n==>\n~s\n\n"
+     (caddr (list-copy test)))
+    (printf
+     "(eq? (caddr test) (caddr (list-copy test)))\n==>\n~s\n\n"
+     (eq? (caddr test) (caddr (list-copy test))))
+    )
+
+  (define pmember°
+    (lambda (x l)
+      (begin°
+       [(eq-car° l x) (cdr° l '())]
+       [(fresh (d)
+          (cdr° l d)
+          (pmember° x d))]
+       )))
+  (run 5 (l)
+    (pmember° 'kkk l))
+  (run* (out)
+    (pmember° 1 '(a b 1 c d 1))
+    (== #f out))
+  (run* (out)
+    (member° 1 '(a b 1 c d 1))
+    (== #f out))
+  (define pmember°
+    (lambda (x l)
+      (begin°
+       [(eq-car° l x) (cdr° l '())]
+       [(eq-car° l x)]
+       [(fresh (d)
+          (cdr° l d)
+          (pmember° x d))]
+       )))
+  (run* (out)
+    (pmember° 1 '(a b 1 c d 1))
+    (== #f out))
+  (define pmember°
+    (lambda (x l)
+      (begin°
+       [(eq-car° l x) (cdr° l '())]
+       [(eq-car° l x)
+        (fresh (a d)
+          (cdr° l `(,a . ,d)))]
+       [(fresh (d)
+          (cdr° l d)
+          (pmember° x d))]
+       )))
+  (run* (out)
+    (pmember° 1 '(a b 1 c d 1))
+    (== #f out))
+  (run 10 (l)
+    (pmember° 'kkk l))
+  (define pmember°
+    (lambda (x l)
+      (begin°
+       [(eq-car° l x)
+        (fresh (a d)
+          (cdr° l `(,a . ,d)))]
+       [(eq-car° l x) (cdr° l '())]
+       [(fresh (d)
+          (cdr° l d)
+          (pmember° x d))]
+       )))
+  (run 10 (l)
+    (pmember° 'kkk l))
+
+  (define first-value
+    (lambda (l)
+      (run 1 (y)
+        (member° y l))))
+  (first-value 1)
+  (first-value '())
+  ;; so when there is nothing to return here is a reason to return ()
+  (first-value '(1 2 3))
+  (first-value '((1) (2) (3)))
+  ;; return the list of ``the-first-value''
+
+
+  ----------------------------------
+  (define memberrev°
+    (lambda (x l)
+      (begin°
+       [(fresh (d)
+          (cdr° l d)
+          (memberrev° x d))]
+       [(eq-car° l x)]
+       )))
+  (run* (x)
+    (memberrev° x '(1 2)))
+  (define memberrev°
+    (lambda (x l)
+      (begin°
+       [(eq-car° l x)]
+       [(fresh (d)
+          (cdr° l d)
+          (memberrev° x d))]
+       )))
+  (run* (x)
+    (memberrev° x '(1 2 3 4 5)))
+  "bug here"
+  在begin°中的遞歸調用的行和一般的行不一樣
+  一般行的順序會被begin°保持 但是遞歸調用行不行
+  begin°中的遞歸調用將形成begin°的嵌套
+  嵌套的begin°不保持順序嗎?
+  (run 100 (k)
+    (begin°
+     [(== k 1)]
+     [(begin°
+       [(== k 2)])]
+     [(== k 3)]
+     ))
+  ==>
+  (1 3 2)真是這樣
+  --------------------------------
+  (define list-reverse-copy
+    (lambda (l)
+      (run* (y)
+        (memberrev° y l))))
+  (list-reverse-copy'(1 2 3))
+  #+end_src
+** preparing for the following practice
+   #+begin_src scheme
+   (define member?
+     (lambda (x l)
+       (cond [(null? l) #f]
+             [(eq-car? l x) #t]
+             [else (member? x (cdr l))]
+             )))
+   (define eq-car?
+     (lambda (l x)
+       (eq? (car l) x)))
+
+   (define list°
+     (lambda (l)
+       (begin°
+        [(null° l)]
+        [(pair° l) (fresh (d)
+                      ;; unnesting of (list? (cdr l))
+                      (cdr° l d)
+                      (list° d))]
+        )))
+
+   (define eq-car°
+     (lambda (l x)
+       (car° l x)))
+   (define member°
+     (lambda (x l)
+       (begin°
+        [(eq-car° l x)]
+        [(fresh (d)
+           (cdr° l d)
+           (member° x d))]
+        )))
+   #+end_src
+* 4 members only
+  *THE SECOND COMMANDMENT*
+  to transform a function whose value is not a boolean into
+  a function whose value is a goal
+  add an extra argument to hold its value
+  replace cond with conde
+  and unnest each question and answer
+  #+begin_src scheme
+  (define mem
+    (lambda (x l)
+      (cond [(null? l) #f]
+            [(eq-car? l x) l]
+            [else (mem x (cdr l))]
+            )))
+  (run* (out)
+    (== (mem 1 '(0 0 1 2 3)) out))
+  (mem 2
+       (mem 1
+            '(0 0 1 2 3)))
+  (define mem°
+    (lambda (x l out)
+      (begin°
+       [(eq-car° l x) (== l out)]
+       [(fresh (d)
+          (cdr° l d)
+          (mem° x d out))]
+       )))
+  (run 1 (out)
+    (mem° 1 '(0 0 1 2 3) out))
+  (run* (r)
+    (mem° r
+           '(0 0 1 2 3)
+           '(1 2 3)))
+  (run* (r)
+    (mem° 1 '(1 2 3) '(1 2 3))
+    (== #f r))
+  (run* (r)
+    (mem° 1 '(1 2 3) '(1 2))
+    (== #f r))
+  (run* (r)
+    (mem° 1 '(1 2 3) '(1 2))
+    (== #f r))
+  (run* (x)
+    (mem° 1 `(1 2) `(7 ,x)))
+  (run* (out)
+    (fresh (x)
+      (mem° 1 `(0 0 ,x 0 1 2) out)))
+  (run 12 (z)
+    (fresh (u)
+      (mem° 'kkk `(0 0 kkk 0 kkk 2 . ,z) u)))
+
+  (define rember
+    (lambda (x l)
+      (cond [(null? l) '()]
+            [(eq-car? l x) (cdr l)]
+            [else (cons (car l) (rember x (cdr l)))]
+            )))
+
+  (define rember°
+    (lambda (x l out)
+      (begin°
+       [(null° l) (== '() out)]
+       [(eq-car° l x) (cdr° l out)]
+       [(fresh (res)
+          (fresh (d)
+            (cdr° l d)
+            (rember° x d res))
+          (fresh (a)
+            (car° l a)
+            (cons° a res out)))]
+       )))
+  (define rember°
+    (lambda (x l out)
+      (begin°
+       [(null° l) (== '() out)]
+       [(eq-car° l x) (cdr° l out)]
+       [(fresh (a d r)
+          ;; (car° l a)
+          ;; (cdr° l d)
+          (cons° a d l) ;; take apart a cons
+          (rember° x d r)
+          (cons° a r out)) ;; build a cons
+        ]
+       )))
+  (run* (out)
+    (rember° 1 '(1 2 3) out))
+  (run 10 (out)
+    (fresh (y)
+      (rember° 0 `(1 2 ,y 3 0 4) out)))
+  (run* (out)
+    (fresh (y z)
+      (rember° y `(a b ,y d ,z e) out)))
+
+  (run* (r)
+    (fresh (y z)
+      (rember° y `(,y d ,z e) `(,y d e))
+      (== `(,y ,z) r)))
+
+  (run 13 (w)
+    (fresh (y z out)
+      (rember° y `(a b ,y d ,z . ,w) out)))
+
+  (define surprise°
+    (lambda (s)
+      (rember° s '(a b c) '(a b c))))
+  (run* (r)
+    (== 'd r)
+    (surprise° r))
+  --------------
+  "bug?"
+  (run* (r)
+    (== 'a r)
+    (surprise° r))
+  "no!"
+  (run* (x)
+   (rember° 'a '(a b c) '(a b c)))
+  (define rember°
+    (lambda (x l out)
+      (begin°
+       ;; [(null° l) (== '() out)]
+       [(eq-car° l x) (cdr° l out)]
+       [(fresh (a d r)
+          ;; (car° l a)
+          ;; (cdr° l d)
+          (cons° a d l) ;; take apart a cons
+          (rember° x d r)
+          (cons° a r out)) ;; build a cons
+        ]
+       )))
+  so don't handle '() in rember°
+  for there is a '() return by run* naturely
+  that means
+  ``don't follow the way you write procedure in scheme''
+  (run* (x)
+   (rember° 'a '(a b c) '(a b c)))
+  ----------------
+  (run* (r)
+    (surprise° r))
+  (run* (r)
+    (surprise° r)
+    (== 'b r))
+  #+end_src
+** preparing for the following practice
+   #+begin_src scheme
+   (define rember
+     (lambda (x l)
+       (cond [(null? l) '()]
+             [(eq-car? l x) (cdr l)]
+             [else (cons (car l) (rember x (cdr l)))]
+             )))
+
+   (define rember°
+     (lambda (x l out)
+       (begin°
+        [(null° l) (== '() out)]
+        [(eq-car° l x) (cdr° l out)]
+        [(fresh (a d r)
+           ;; (car° l a)
+           ;; (cdr° l d)
+           (cons° a d l) ;; take apart a cons
+           (rember° x d r)
+           (cons° a r out)) ;; build a cons
+         ]
+        )))
+   #+end_src
+* 5 double your fun
+  #+begin_src scheme
+  (define append
+    (lambda (proper-list sexp)
+      (cond [(null? proper-list) sexp]
+            [else
+             (cons (car proper-list)
+                   (append (cdr proper-list) sexp))]
+            )))
+  (define append°
+    (lambda (proper-list sexp out)
+      (begin°
+       [(null° proper-list) (== out sexp)]
+       [(fresh (a d rec)
+          (cons° a d proper-list)
+          (append° d sexp rec)
+          (cons° a rec out))]
+       )))
+  (run* (out)
+    (append° `(1 2 3) `(a b c) out))
+  (run 10 (x)
+    (fresh (y)
+      (append° `(a b c . ,y) `(d e) x)))
+  (run 10 (y)
+    (fresh (x)
+      (append° `(a b c . ,y) `(d e) x)))
+  (run 10 (x)
+    (fresh (y)
+      (append° `(a b c . ,y) `(d e . ,y) x)))
+
+  ;; can't run 11
+  (run 10 (x)
+    (fresh (y)
+      (append° x y `(1 2 3 4 5 6 7 8 9 10))))
+  (run 10 (y)
+    (fresh (x)
+      (append° x y `(1 2 3 4 5 6 7 8 9 10))))
+  (run 10 (out)
+    (fresh (x y)
+      (append° x y `(1 2 3 4 5 6 7 8 9 10))
+      (== `(,x ,y) out)))
+  better version:
+  (define append°
+    (lambda (proper-list sexp out)
+      (begin°
+       [(null° proper-list) (== out sexp)]
+       [(fresh (a d rec)
+          (cons° a d proper-list)
+          (cons° a rec out)
+          ;; after the above rec is (cdr out)
+          (append° d sexp rec))]
+       )))
+  ;; can run 11
+  (run 11 (x)
+    (fresh (y)
+      (append° x y `(1 2 3 4 5 6 7 8 9 10))))
+  (run 11 (y)
+    (fresh (x)
+      (append° x y `(1 2 3 4 5 6 7 8 9 10))))
+  (run 11 (out)
+    (fresh (x y)
+      (append° x y `(1 2 3 4 5 6 7 8 9 10))
+      (== `(,x ,y) out)))
+
+  (run 3 (x)
+    (fresh (y z)
+      (append° x y z)))
+  (run 3 (y)
+    (fresh (x z)
+      (append° x y z)))
+  (run 3 (z)
+    (fresh (x y)
+      (append° x y z)))
+  (run 3 (out)
+    (fresh (x y z)
+      (append° x y z)
+      (== `(,x ,y ,z) out)))
+  --------------------------------
+  "bug here as before!"
+  (define swappend°
+    (lambda (proper-list sexp out)
+      (begin°
+       [(fresh (a d rec)
+          (cons° a d proper-list)
+          (cons° a rec out)
+          (swappend° d sexp rec))]
+       [(null° proper-list) (== out sexp)]
+       )))
+  (run 1 (z)
+    (fresh (x y)
+      (swappend° x y z)))
+  (run 1 (z)
+    (fresh (x y)
+      (append° x y z)))
+  ----------------------------------
+  (define unwarp
+    (lambda (x)
+      (cond [(pair? x) (unwarp (car x))]
+            [else x]
+            )))
+  (define unwarp°
+    (lambda (x out)
+      (begin°
+       [(pair° x) (fresh (a)
+                     (car° x a)
+                     (unwarp° a out))]
+       [(== x out)]
+       )))
+  the order is wrong
+  can't stand the bug anymore
+  (run* (x)
+    (unwarp° '((((((1)))))) x))
+
+
+
+  ;; 1維的x 2維的y
+  (run 10 (y)
+    (begin°
+     [(== y (run 10 (x)
+              (begin°
+               [(== 1 x)]
+               [(== 2 x)]
+               )))]
+     [(== y (run 10 (x)
+              (begin°
+               [(== 3 x)]
+               [(== 4 x)]
+               )))] ) )
+  #+end_src
+** preparing for the following practice
+   #+begin_src scheme
+   ;; (define append°
+   ;;   (lambda (proper-list sexp out)
+   ;;     (begin°
+   ;;      [(null° proper-list) (== out sexp)]
+   ;;      [(fresh (a d rec)
+   ;;         (cons° a d proper-list)
+   ;;         (append° d sexp rec)
+   ;;         (cons° a rec out))]
+   ;;      )))
+   (define append°
+     (lambda (proper-list sexp out)
+       (begin°
+        [(null° proper-list) (== out sexp)]
+        [(fresh (a d rec)
+           (cons° a d proper-list)
+           (cons° a rec out)
+           (append° d sexp rec))]
+        )))
+   #+end_src

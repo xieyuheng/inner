@@ -1,0 +1,231 @@
+#+TITLE:  tutorial of prolog
+#+AUTHOR: 謝宇恆 / XIE Yuheng
+
+* note type check
+
+*** note
+    - dependent type 也使用 variable 的 unification
+      來做 type check
+      所以也許可以在這裏學到實現類型檢查器的技術
+
+    - 之後可以總結一下
+      我所設計的類型檢查算法
+      對 variable unification 的使用
+      與 prolog 有什麼區別
+      讓我們來討論一下吧
+
+** 討論
+
+   - x ::
+        都是 declarative
+        類型檢查的時候
+        類型鍵擦通過與否
+        正如 prolog 中一個 query 的結果 爲 true 還是 false
+
+   - k ::
+        感覺上 你所設計的 type check 實現方式
+        像是 prolog 的特殊情況
+
+* note learn prolog now
+
+  - fact rule query
+
+  - variable unification
+
+  - The business of unifying variables
+    with information in the knowledge base
+    is the heart of Prolog
+
+  - As we’ll learn
+    there are many interesting ideas in Prolog
+    but when you get right down to it,
+    it’s Prolog’s ability to perform unification
+    and return the values of the variable bindings to us
+    that is crucial
+
+  - As we shall see,
+    such nested (or recursively structured) terms
+    enable us to represent many problems naturally.
+    In fact the interplay between recursive term structure
+    and variable unification
+    is the source of much of Prolog’s power.
+
+* note interface
+
+  - fact and rule in file
+  - query in interpreter
+
+* k1
+
+  #+begin_src prolog
+  loves(vincent,mia).
+  loves(marsellus,mia).
+  loves(pumpkin,honey_bunny).
+  loves(honey_bunny,pumpkin).
+
+  jealous(X,Y):-
+    loves(X,Z),
+    loves(Y,Z).
+  #+end_src
+
+* unification
+
+*** 簡要敘述
+
+    - Two terms unify
+      if
+      1. they are the same term
+      2. or if they contain variables
+         that can be uniformly instantiated with terms
+         in such a way that the resulting terms are equal
+         - 這裏所說的 'uniformly instantiated with terms'
+           就是可能給兩個變元共同鏈接到一個新的變元
+           這樣就能保持有向圖無圈
+
+*** 具體算法描述
+
+    - If term1 and term2 are constants,
+      then term1 and term2 unify
+      if and only if
+      they are the same atom,
+      or the same number.
+
+    - If term1 is a variable and term2 is any type of term,
+      then term1 and term2 unify,
+      and term1 is instantiated to term2 .
+      Similarly, if term2 is a variable
+      and term1 is any type of term,
+      then term1 and term2 unify, and term2 is instantiated to term1 .
+      - So if they are both variables,
+        they’re both instantiated to each other,
+        and we say that they share values.
+        這裏就是困難的地方
+        或者不如說是實現方式非平凡的地方
+
+    - If term1 and term2 are complex terms,
+      then they unify if and only if:
+      - They have the same functor and arity,
+      - and all their corresponding arguments unify,
+      - and the variable instantiations are compatible.
+        - For example,
+          it is not possible to instantiate variable X to mia
+          when unifying one pair of arguments,
+          and to instantiate X to vincent
+          when unifying another pair of arguments .
+
+    - Two terms unify
+      if and only if
+      it follows from the previous three clauses that they unify.
+
+*** 實現方式非平凡的地方
+
+    - X = Y demands that
+      we unify two finite representations of infinite terms
+      #+begin_src prolog
+      X = father(X),
+      Y = father(Y),
+      X = Y.
+      #+end_src
+
+    - here we need the function 'equal?'
+      to be able to check two looped lists
+
+    - standard unification algorithms are pessimistic.
+      They first carry out the occurs check,
+      and only when they are sure that the situation is safe
+      they do go ahead and actually try to unify the terms.
+
+* proof search as computation
+
+  - prolog reads the knowledge base,
+    and tries to unify k(Y) with
+    either a fact, or the head of a rule.
+
+  - 雖說運行方式是 search
+    但是只要按照 functor 的名字 來查找 hash-table
+    就也是線性時間
+
+  - 所以每次 通過 functor 查找到的是函數體
+    所謂的 在查找中試錯
+    其實就是用 return-stack 來記錄之前執行到的函數體中的位置
+    這樣 與我目前所使用的實現方式就非常相似了
+    注意
+    函數體中都是 一次一次得 unification
+    在一次 unification 中 X 可能匹配到 a
+    在下一次 unification 中 X 可能匹配到 b
+    可以想像如何使用 scope-stack
+    和 編譯時在 clauses 之間增加一些特殊的 primitive-function
+    來實現這種效果
+    - 也就是需要 undo binding
+
+* note 以 謂詞的處理方式 分類語言
+
+  - x ::
+       之前說過 謂詞的處理方式 可用以 分類語言
+       prolog 就是一個極端的例子
+       因爲裏面所有的函數都是謂詞
+       根本沒有正常意義上的函數
+
+* recursive definition
+
+*** note
+
+    - recursive definition is different from recursive unification
+      how ?
+
+* ffi and instantiation_error
+
+  - 默認的語義是
+    =(X,+(1,2)).
+    需要做算數時使用
+    is(X,+(1,2)).
+    也就是說
+    參數都被當作 term 了
+    但是函數頭不是
+
+  - But there is a deeper point that is worth reflecting on:
+    bolting on the extra capability
+    to do arithmetic in this way
+    has further widened the gap
+    between the procedural and declarative meanings
+    of Prolog programs.
+
+* 多出一個命名
+
+  - 有些東西可以表達地很簡單
+    因爲於等式相比
+    謂詞多了一個命名
+    比如
+    #+begin_src prolog
+    add(0, N, N).
+    add(succ(M), N, succ(O)):-
+      add(M, N, O).
+
+    %% add(0, N) = N.
+    %% add(succ(M), N)
+    %% = succ(add(M, M)).
+    %% with
+    %% add(M, M) = O.
+
+    append([], List2, List2).
+    append([Head1 | Tail1], List2, [Head1 | Tail2]):-
+      append(Tail1, List2, Tail2).
+
+    %% append([], List2) = List2.
+    %% append([Head1 | Tail1], List2)
+    %% = [Head1 | append(Tail1, List2)].
+    %% with
+    %% append(Tail1, List2) = Tail2.
+    #+end_src
+
+  - 函數 -> 謂詞
+    把等號右邊命名
+    然後重新組織模式匹配對算法的表達方式
+    - 很可能就更簡單了
+      因爲多了一個名字
+
+  - 謂詞 -> 函數
+    當某個變元做爲 結果變元 在某個謂詞式子末尾的位置單獨出現時
+    把這個謂詞式子轉化爲等式
+
+  - 可以發現 logic 編程的特點是能夠模式匹配運算結果

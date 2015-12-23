@@ -1,0 +1,731 @@
+#+TITLE:  tutorial of haskell
+#+AUTHOR: 謝宇恆 / XIE Yuheng
+
+* haskell 98
+** 記
+   * 理論上的
+     語法沒有做任何優化的 haskell
+     以 symbol 爲基礎
+     所有的 exp 都是
+     完全一元化的
+     前綴表達式的
+     向左結合的[就像組合邏輯中的約定一樣]
+     函數作用
+   * 所謂
+     語法沒有做任何優化
+     其實就是由
+     1) 完全一元化的
+     2) 前綴表達式的
+     3) 向左結合的[就像組合邏輯中的約定一樣]
+     這幾項定義的
+     但是這並不是唯一的定義方式
+     比如 scheme 的語法就是完全沒有被優化過的例子
+     所以這裏的 "優化" 其實就是複雜化
+     然而
+     我真正想問的問題是
+     在不作 "複雜化" 的前提下
+     能否以系統的方式使用多種表達式
+     而不侷限於
+     前綴表達式的
+     或後綴表達式的
+     即
+     把中綴表達式和邊綴表達式以系統的方式添加進來
+     能行邪
+   * symbol 各種
+     | 類型       | 數據 即 構造子 | 函數       |
+     | 首字母大寫 | 首字母大寫     | 首字母小寫 |
+     可以區分構造子與函數
+     也可以不區分
+     haskell 的設計是區分
+     構造子作爲函數 因爲有"不作爲"的簡單性
+     所以可以被用在模式匹配中
+     而一般的函數不可以
+     要知道
+     構造子作用與一個值
+     其實就是貼一個標籤到這個值上
+     而這個標籤上寫的就是這個構造子的名字
+   * 數據被視爲零元的函數的話
+     數據和函數就沒有區別了
+   * date <被定義的類型> = <構造子作用於類型所形成的表達式>
+     這樣就允許了遞歸
+     因爲右邊的構造子所作用於的類型 可以左邊正在被定義的類型本身
+     左邊是 名字的作用
+     右邊不是 單純地用已有的類型而做的組合構造
+   * ":" 是 List 這個類型的 中綴構造子
+     數據類型的構造子的概念在蟬語中還是沒有想過的
+   * 如何理解 [type] 還有 type -> type 的引入還有消去
+   * type <被定義的類型> = <類型的作用於類型所形成的表達式>
+     左邊只是 名字
+     右邊是 單純地用已有的類型而做的組合構造
+   * <被聲明的函數> : <類型的作用於類型所形成的表達式>
+   * <被定義的函數> = <函數作用於數據所形成的表達式>
+     * 左邊只是 名字
+       右邊是 單純地用已有的函數而做的組合構造
+     * 左邊是 名字的作用
+       作用於數據
+       而數據 是有構造子以認識方式組成的
+       右邊不是 單純地用已有的函數而做的組合構造
+   * 類型並非一等公民
+     模式匹配中的模式也並非一等公民
+   * 模式匹配的時候
+     模式中的常元所對應的位置會被求值
+     而模式中的約束變元所對應的位置不會
+* 記
+** 语法
+   1. scheme 中
+      前缀表达式的 sexp 使得 syntax-rules 变得很强大
+      而 haskell 中不可能由如此强大的宏系统
+   2. haskell 的语法是极端数学化的
+      这是不可在 scheme 中实现的
+      但是数学语言的很多缺陷都被 haskell 继承了下来
+      比如为了形成高级语义而使用大量的约束变元
+      [使用约束变元是好 有利于理解问题 與否 也是要看情况的]
+* REPL
+  1. haskell 的 REPL 設計糟糕
+     函數定義不能在 REPL 中進行
+     表達式求值 不能在被編譯的文件中進行
+  2. 以 ":" 開頭的 是 REPL 中的命令
+     :help 可以用來查看所有命令
+     比如
+     :set prompt "> "
+     :l fileName.hs
+  3. only "Show" type class
+     can be show in the repl directly
+* 函數作用與函數定義
+  #+begin_src haskell :tangle play/function1.hs
+  -- 函數定義 用類似於等式的語法完成
+  -- 等號左邊是 <函數名> <約束變元名>*
+  -- 函數作用 的語法是 <函數名> <約束變元名>*
+  -- 可以看出其語法是如何 接近數學 又是如何就函數作用而優化的
+  function1 arg1 arg2 arg3 =
+    function2 arg1 arg2 arg3
+
+  -- 縮進是重要的
+  function2 arg1 arg2 arg3
+   = arg1 + arg2 + arg3
+
+  -- function1  6 7 8
+  -- ((function1  6) 7) 8
+
+
+  doubleSmallNumber x =
+      if x > 100
+      then x
+      else x*2
+
+  -- doubleSmallNumber 50
+  -- doubleSmallNumber 100
+
+
+
+  conanO'Brien = "It's a-me, Conan O'Brien!"
+  -- 每個名字只能被綁定一次
+  -- 簡單的變元可以被視爲是零元函數
+
+  -- conanO'Brien
+  #+end_src
+* list processing
+  bacause of a list must have a type
+  the elements in a list must be of the same type
+  (so called homogenous)
+  | scheme   | haskell         | note                               |
+  |----------+-----------------+------------------------------------|
+  | append   | ++              | which walks through the whole list |
+  |          |                 | on the left side of ++             |
+  |          |                 | so it is not lazy at all           |
+  | cons     | :               | (:) :: a -> [a] -> [a]             |
+  |          |                 | but no (cons 1 2)                  |
+  | '()      | []              | [1,2,3] ==  1:2:3:[]               |
+  | list-ref | !!              |                                    |
+  | car      | head            |                                    |
+  | cdr      | tail            |                                    |
+  |          | last  init      |                                    |
+  | length   | length          |                                    |
+  | null?    | null            |                                    |
+  |          | reverse         |                                    |
+  | member?  | elem            |                                    |
+  |          | take drop       |                                    |
+  |          | maximum minimum |                                    |
+  |          | sum product     |                                    |
+  #+begin_src haskell
+  [1,2,3,4] ++ [9,10,11,12]
+
+  4:[9,10,11,12]
+
+  [1,2,3]
+  1:2:3:[]
+
+  []
+  [[]]
+  [[[]] , [] , [[]]]
+  [[[1]] , [] , [[]]]
+
+  let b = [[1,2,3,4],[5,3,3,3],[1,2,2,3,4],[1,2,3]]
+
+  [3,10,2] > [3,4,123,123213,123123]
+
+  head [5,4,3,2,1]
+  tail [5,4,3,2,1]
+  last [5,4,3,2,1]
+  init [5,4,3,2,1]
+
+  -- let x = [1,13..]
+  -- infinitie list con't be printed
+  #+end_src
+* list comprehension
+  1. which is like map in scheme
+     this is what i want in scheme's map
+     i.e. map~, which is lazy, and have a predicate list
+     即 過濾
+     而 過濾 之 效果 是由謂詞列表來達到的
+     and my map~ is batter,
+     for it have a algorithm to rebuild the bi-tree
+     so the predicate should be tald to map~,
+     when map~ is act on a lazy-list
+     but not build in to map~
+  2. (map~ fun list predicate-list)
+     =~=
+     [ fun x | x <- list, predicate , ... ]
+     map~ can't handle non-unary functions,
+     for map~ have to rebuild the bi-tree
+  3. 這裏的語法繼承於數學中對集合的表達
+     其特點是大量約束變元的使用
+  #+begin_src haskell
+  -- [ fun x | x <- list ]
+  [x*2 | x <- [1..10]]
+  [x*2 | x <- [x*2 | x <- [1..10]]]
+
+  -- [ fun x | x <- list, predicate , ... ]
+  [ 1 + x*3 | x <- [1..10], x*2 >= 12]
+  [ x | x <- [1..100], x `mod` 7 == 3 , x >= 12]
+
+  let kkk xs = [ if odd x then 0 else x | x <- xs ]
+  kkk [7..230]
+
+  let length' xs = sum [1 | _ <- xs]
+  length' "123"
+  length' [1,2,3,12,3,1]
+  -- 注意這裏 函數看似是類型重載
+  -- 其實是因爲字符串是用字符的鏈表來實現的
+
+  let removeNonUppercase st = [ c | c <- st, c `elem` ['A'..'Z']]
+  let removeNonUppercase st = [ c | c <- st, elem c ['A'..'Z']]
+  -- elem == member?
+  removeNonUppercase "Hahaha! Ahahaha!"
+
+  let xss = [[1,3,5,2,3,1,2,4,5], [1,2,3,4,5,6,7,8,9], [1,2,4,2,1,6,3,1,3,2,3,6]]
+  [ [ x | x <- xs, even x ] | xs <- xss]
+  #+end_src
+* tuple (vector) processing
+  #+begin_src haskell
+  -- tuple's type is depended on the number of its elements
+  -- and all the types of its elements
+
+  -- pair as 2-tuple
+  fst (1, False)
+  snd (1, False)
+
+  -- there is no 1-tuple
+  -- because () is used to group expressions
+
+  -- zip helps to make alist
+  zip [1 .. 5] ["one", "two", "three", "four", "five"]
+  zip [5,3,2,6,2,7,2,5,4,6,6] ["im","a","turtle"]
+  zip [1..] ["apple", "orange", "cherry", "mango"]
+
+  let rightTriangles = [ (a,b,c) | c <- [1..], b <- [1..c], a <- [1..b], a^2 + b^2 == c^2]
+
+  take 30 rightTriangles
+
+  -- 其中真的被取無窮個的變量只有 c
+
+  -- what is the order of the output?
+  -- c then b then a
+  #+end_src
+* static type & type inference
+  #+begin_src haskell
+  -- a type is a math-structure
+  -- a type class is a class of math-structure
+
+  -- a concrete group is a type
+  -- a group defined by rules is a type class
+
+  -- 平凡的 數學結構族 中可能只有一個 數學結構
+
+  removeNonUppercase :: [Char] -> [Char]
+  -- 在這個類型聲明中也可以看出 數學語言的影響
+
+  removeNonUppercase st = [ c | c <- st, c `elem` ['A'..'Z']]
+  #+end_src
+* 數據匹配
+  #+begin_src haskell :tangle play/pattern.hs
+  -- pattern matching is syntactic sugar for case expressions
+  -- pattern matching on function parameters
+  -- can be done only when defining functions
+  -- but case expressions can be used anywhere
+
+  head' :: [a] -> a
+  head' [] = error "No head for empty lists!"
+  head' (x:_) = x
+
+  head' :: [a] -> a
+  head' xs = case xs
+             of [] -> error "No head for empty lists!"
+                (x:_) -> x
+
+  -- case expression of pattern -> result
+  --                    pattern -> result
+  --                    pattern -> result
+  --                    ...
+
+
+  -- 因爲 haskell 使用 數據匹配 來定義函數
+  -- 這使得它對函數定義的表示像是一個 "被解好了的方程"
+  lucky :: Int -> [Int]
+  lucky 7 = [7,7,7]
+  lucky x = [x]
+
+  -- lucky 7
+  -- lucky 123
+
+
+  factorial :: Integer -> Integer
+  factorial 0 = 1
+  factorial n = n * factorial (n - 1)
+
+  -- factorial 30
+
+
+  charName :: Char -> String
+  charName 'a' = "Albert"
+  charName 'b' = "Broseph"
+  charName 'c' = "Cecil"
+
+
+  addVectors :: (Double, Double) -> (Double, Double) -> (Double, Double)
+  addVectors (x1, y1) (x2, y2) = (x1 + x2, y1 + y2)
+
+  first :: (a, b, c) -> a
+  first (x, _, _) = x
+
+  second :: (a, b, c) -> b
+  second (_, y, _) = y
+
+  third :: (a, b, c) -> c
+  third (_, _, z) = z
+  #+end_src
+* car-and-cdr
+  #+begin_src haskell :tangle play/car-and-cdr.hs
+  car :: [a] -> a
+  car [] = error "\ncar speaking:\ninput must be non-null list"
+  car (x:xs) = x
+
+  cdr :: [a] -> [a]
+  cdr [] = error "\ncdr speaking:\ninput must be non-null list"
+  cdr (x:xs) = xs
+
+  -- 在類型聲明中 =>
+  -- 用來限制一個約束變量所取的類型
+  tell :: (Show a) => [a] -> String
+  tell [] = "The list is empty"
+  tell (x:[]) = "The list has one element: " ++ show x
+  tell (x:y:[]) = "The list has two elements: " ++ show x ++ " and " ++ show y
+  tell (x:y:_) = "This list is long. The first two elements are: " ++ show x ++ " and " ++ show y
+
+  firstLetter :: String -> String
+  firstLetter "" = "Empty string, whoops!"
+  firstLetter all@(x:xs) = "The first letter of " ++ all ++ " is " ++ [x]
+
+  -- "|" 用來引入謂詞 就像是 scheme 中的 cond
+  max' :: (Ord a) => a -> a -> a
+  max' a b
+      | a <= b = b
+      | otherwise = a
+  #+end_src
+* where
+  #+begin_src haskell
+  bmiTell :: Double -> Double -> String
+  bmiTell weight height
+      | bmi <= skinny = "You're underweight, you emo, you!"                   |
+      | bmi <= normal = "You're supposedly normal. Pffft, I bet you're ugly!" |
+      | bmi <= fat = "You're fat! Lose some weight, fatty!"                   |
+      | otherwise = "You're a whale, congratulations!"                        |
+      where bmi = weight / height ^ 2
+            (skinny, normal, fat) = (18.5, 25.0, 30.0)
+  -- 綁定後置
+
+
+  calcBmis :: [(Double, Double)] -> [Double]
+  calcBmis xs = [bmi w h | (w, h) <- xs]
+      where bmi weight height = weight / height ^ 2
+
+  initials :: String -> String -> String
+  initials firstname lastname = [f] ++ "." ++ [l] ++ "."
+      where (f:_) = firstname
+            (l:_) = lastname
+  #+end_src
+* let & in
+  #+begin_src haskell
+  -- let-expressions are expressions
+  -- whereas where-bindings aren’t
+
+  -- 綁定前置
+  cylinder :: Double -> Double -> Double
+  cylhinder r h =
+      let sideArea = 2 * pi * r * h
+          topArea = pi * r ^ 2
+      in sideArea + 2 * topArea
+
+  calcBmis :: [(Double, Double)] -> [Double]
+  calcBmis xs = [let bmi = w / h ^ 2 in bmi | (w, h) <- xs]
+
+  -- let 可以被用在 list comprehension 中
+  -- 也就是說
+  -- 一個 list comprehension 中 已經有很多中類型的語法單元了
+  -- 這種強行地貼近數學語言的設計 在我看來是不好的
+  calcBmis :: [(Double, Double)] -> [Double]
+  calcBmis xs = [bmi | (w, h) <- xs, let bmi = w / h ^ 2, bmi > 25.0]
+
+
+  -- 不在函數體內時 let 和 in 必須在一行內
+  let square x = x * x in (square 5, square 3, square 2)
+  let a = 100; b = 200; c = 300; in a*b*c
+  let foo="Hey "; bar = "there!" in foo ++ bar
+  #+end_src
+* recursion
+  #+begin_src haskell
+  replicate' :: Int -> a -> [a]
+  replicate' n x
+      | n == 0    = []
+      | otherwise = x : (replicate' (n-1) x)
+
+  take' :: (Num i, Ord i) => i -> [a] -> [a]
+  take' 0 _ = []
+  take' _ [] = []
+  take' n (car:cdr) = car : (take' (n-1) cdr)
+
+  reverse' :: [a] -> [a]
+  reverse' [] = []
+  reverse' (car:cdr) = (reverse' cdr) ++ [car]
+
+  repeat' :: a -> [a]
+  repeat' x = x : repeat' x
+
+  zip' :: [a] -> [b] -> [(a,b)]
+  zip' _ [] = []
+  zip' [] _ = []
+  zip' (x:xs) (y:ys) = (x,y) : (zip' xs ys)
+
+  elem' :: (Eq a) => a -> [a] -> Bool
+  elem' a [] = False
+  elem' a (x:xs)
+      | a == x    = True
+      | otherwise = elem' a xs
+
+  quicksort :: (Ord a) => [a] -> [a]
+  quicksort [] = []
+  quicksort (x:[]) = [x]
+  quicksort (x:xs) = quicksort front ++ [x] ++ quicksort back
+      where front = [y|y<-xs,y<=x]
+            back = [y|y<-xs,y>x]
+  #+end_src
+* high-order functions
+  #+begin_src haskell
+  -- 純粹的 curry
+  let kkk x y z = x*y*z
+  let kk = kkk 1
+  kk 2 3
+
+  -- 使用 純粹的 curry 時
+  -- 需要約定結合方向
+  -- 這裏
+  -- 函數類型聲明 是從右向左
+  cccqq :: ((a->a)->(a->a))
+  cccqq :: (a->a)->a->a
+  -- 函數作用 是從左向右
+  cccqq f x = f (f x)
+
+
+  -- map fun list == [fun x | x<-list]
+  map' :: (a -> b) -> [a] -> [b]
+  map' _ [] = []
+  map' f (x:xs) = (f x) : (map' f xs)
+  map'' f l = [ f x | x <- l ]
+
+
+  filter' :: (a -> Bool) -> [a] -> [a]
+  filter' _ [] = []
+  filter' p (x:xs)
+      | p x       = x : filter' p xs
+      | otherwise = filter' p xs
+
+  filter'' p l = [x | x <- l, p x]
+
+  kkk = head (filter' p [1000000,999999..])
+      where p x = x `mod` 1341 == 0
+
+
+  -- `acc' denote `accumulator'
+  sum' :: (Num a) => [a] -> a
+  sum' = foldl' (+) 0
+  -- sum' l = foldl (\ acc x -> acc + x) 0 l
+  -- sum' l = foldl (+) 0 l
+
+  foldl' :: (acc -> x -> acc) -> acc -> [x] -> acc
+  foldl' f acc (x:[]) = (f acc x)
+  foldl' f acc (x:xs) = foldl' f (f acc x) xs
+
+  -- map' with foldr'
+  map' :: (x -> b) -> [x] -> [b]
+  map' f xs = foldr' (\x acc -> f x : acc) xs []
+
+  -- -- map' with foldr
+  -- map' :: (x -> b) -> [x] -> [b]
+  -- map' f xs = foldr (\x acc -> f x : acc) [] xs
+
+  -- -- map' with foldl' or foldl
+  -- map' :: (a -> b) -> [a] -> [b]
+  -- map' f xs = foldl' (\acc x -> acc ++ [f x]) [] xs
+
+  -- different form haskell's foldr'
+  -- haskell's insane syntax is always insane
+  foldr' :: (x -> acc -> acc) -> [x] -> acc -> acc
+  foldr' f (x:[]) acc = f x acc
+  foldr' f l acc = foldr' f (init l) (f (last l) acc)
+
+
+  -- fold is one kind of iteration
+  foldr' f [1,2,3] 0
+  ==
+  (f 1 (f 2 (f 3 0)))
+
+  foldl' f 0 [1,2,3]
+  ==
+  (f (f (f 0 1) 2) 3)
+  #+end_src
+* function application operator
+  1. 用 "$" 來改變函數作用的結合方向
+     f a x == ((f a) x)
+     f $ g $ x == (f $ (g $ x))
+  2. $ == apply [of scheme]
+  #+begin_src haskell
+  ($) :: (a -> b) -> a -> b
+  f $ x = f x
+
+  sqrt (3 + 4 + 9)
+  sqrt $ 3 + 4 + 9
+  -- $ 這個運算被最後處理
+  -- 減少了括號的使用
+
+  -- 可以把 空格 和 "$" 都理解爲 apply
+  -- 空格 先算左邊的函數
+  -- "$" 先算右邊的參數
+  map ($ 3) [(4+), (10*), (^2), sqrt]
+
+  -- 下面就換成了前綴表達式
+  apply :: (a -> b) -> a -> b
+  apply f a = f a
+  #+end_src
+* function composition operator
+  #+begin_src haskell
+  ($) :: (a -> b) -> a -> b
+  f $ x = f x
+
+  (.) :: (b -> c) -> (a -> b) -> a -> c
+  f . g = (\ x -> (f (g x)))
+  -- (f ◦ g)(x) = f (g(x))
+
+  replicate 2 (product (map (*3) (zipWith max [1,2] [4,5])))
+  -- 利用 curry 與函數複合
+  replicate 2 . product . map (*3) $ zipWith max [1,2] [4,5]
+  -- right associative
+
+
+  -- point-free style
+  -- 還是利用 curry
+  sum' :: (Num a) => [a] -> a
+
+  sum' xs = foldl (+) 0 xs
+  sum' = foldl (+) 0
+
+  fn x = ceiling (negate (tan (cos (max 50 x))))
+  fn = ceiling . negate . tan . cos . max 50
+
+  -- 完全 curry 系統下
+  -- 每當在表達式中看到函數的時候
+  -- 首先要考慮的是它如何形成 curry
+  -- 即 它如何被一元化
+
+  -- haskell 的 "." 設計地固然很好
+  -- 並且因爲有全面的 curry
+  -- 所以 函數複合的使用也看似靈活
+  -- 但是因爲沒有明顯的參數棧
+  -- 導致實際的使用很不方便
+  #+end_src
+* module
+  in GHCi:
+  :m + Data.List Data.Map Data.Set
+  #+begin_src haskell :tangle play/numUniques.hs
+  import Data.List
+  -- import Data.List (nub, sort)
+
+  -- numUniques :: (Eq a) => [a] -> Int
+  numUniques = length . nub
+
+  -- numUniques [1,2,3,1,4]
+
+
+  -- import Data.List hiding (nub)
+
+  -- import qualified Data.Map
+  --- then  Data.Map ’s filter == Data.Map.filter
+
+  -- import qualified Data.Map as M
+  --- then  Data.Map ’s filter == M.filter
+
+
+  wordNums :: String -> [(String,Int)]
+  wordNums = map (\ws->(head ws, length ws)) . group . sort . words
+
+  #+end_src
+* type
+  #+begin_src haskell :tangle play/type.hs
+  data Shape = Circle Float Float Float | Rectangle Float Float Float Float
+  -- 類型名是 Shape
+  -- 而其構造子爲 Circle 與 Rectangle
+  #+end_src
+  這裏用 data 定義類型名 其實是構造子
+  這有點類似於 ml 中的構造子
+  並且這裏 構造子所構造的數據是用
+  函數的一元化 來實現的
+* >< input and output
+  to get the value out of an I/O action
+  you must perform it inside another I/O action
+  by binding it to a name with <-
+
+  <- I/O actions will be performed when they are given a name of main
+  or when they're inside a bigger I/O action that we composed with a do block
+
+  there's also one more case when I/O actions will be performed:
+  when we type out an I/O action in GHCi and press ENTER
+  #+begin_src haskell
+  -- main = do
+  --   putStrLn "Hello, what's your name?"
+  --   name <- getLine
+  --   putStrLn ("Hey " ++ name ++ ", you rock!")
+
+  main = do
+    foo <- putStrLn "Hello, what's your name?"
+    name <- getLine
+    putStrLn ("Hey " ++ name ++ ", you rock!")
+    getLine
+  #+end_src
+
+  #+begin_src haskell
+  import Data.Char (toUpper)
+
+  main = do
+    putStrLn "What's your first name?"
+    firstName <- getLine
+    putStrLn "What's your last name?"
+    lastName <- getLine
+    let bigFirstName = map toUpper firstName
+        bigLastName = map toUpper lastName
+    putStrLn $ "hey " ++ bigFirstName ++ " "
+                 ++ bigLastName
+                 ++ ", how are you?"
+  #+end_src
+
+  #+begin_src haskell
+  main = do
+    line <- getLine
+    if null line
+    then return ()
+    else do
+      putStrLn $ reverseWords line
+      main
+
+  reverseWords :: String -> String
+  reverseWords = unwords . map reverse . words
+  #+end_src
+
+  ``return'' in haskell is nothing like the return in most other languages
+  using return doesn't cause the I/O do block to end in execution
+  it transforming a pure value into an I/O action
+  #+begin_src haskell
+  main = do
+    ha <- return "HAHA"
+    line <- getLine
+    hapi <- return "HAHApi"
+    -- putStrLn (ha ++ line ++ hapi)
+    putStrLn $ ha ++ line ++ hapi
+  #+end_src
+  ``return'' is sort of the opposite of ``<-''
+  when we don't want the I/O action that's made up from a do block
+  to have the result value of its last action
+  we use ``return'', and it is why we call it ``return''
+  while we use ``let'' in ``do'' to do other bindings
+
+  putStr doesn’t jump into a new line after printing out the string, whereas putStrLn does.
+  #+begin_src haskell
+  putStr' [] = return "haha"
+  putStr' (x:xs) = do
+    putChar x
+    putStr' xs
+
+  main = do
+    putStr "Hey, "
+    putStr "I'm "
+    putStr "Andy!\n"
+
+    putChar 't'
+    putChar 'e'
+    putChar 'h'
+    putChar '\n'
+
+    putStr' "123"
+    a <- putStr' "321\n"
+
+    return [a]
+
+    print True
+    print 2
+    print "haha"
+    print 3.2
+    print [3,4,3]
+    -- >< using the above I/Os to build a repl
+  #+end_src
+
+  in a do block, it looks like a flowcontrol statement
+  but it's actually a normal function
+  #+begin_src haskell
+  import Control.Monad (when)
+
+  main = do
+    input <- getLine
+    when (input == "SWORDFISH") $ do putStrLn input
+
+  -- main = do
+  --   input <- getLine
+  --   if (input == "SWORDFISH")
+  --   then putStrLn input
+  --   else return ()
+  #+end_src
+
+  #+begin_src haskell
+  main = do
+    rs <- sequence [getLine, getLine, getLine]
+    print rs
+  #+end_src
+
+  haskell 对 sideeffects 的处理非常复杂
+  这都是因为设计者追求所谓的纯洁性
+  这是为了类型系统吗?
+  如果只是为了所谓的``安全编程''那么这些设计就是愚蠢的
+* >< more in put and more output
+* >< function a lly solving problems
+* >< applic ative functors
+* >< monoids
+* >< a fistful of monads
+* >< for a few monads more
+* >< zippers

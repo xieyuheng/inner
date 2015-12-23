@@ -1,0 +1,228 @@
+#+TITLE:  learning racket ^-^
+#+AUTHOR: 謝宇恆 / XIE Yuheng
+
+* 古典 scheme                         :old:
+
+** 遞歸函數就在於能夠高效地捕捉正規性
+   - 正規性 -- 結構
+   - 這種可被遞歸函數處理的性質
+     從某種意義上來說就是 "結構" 的本質
+
+** 對副作用的需要
+   - 這裏有一個很重要的說明
+     在 scheme 中用副作用來構造
+     帶有很多自身引用的 list 這件事
+     困擾了我很久
+     我現在明白這是因爲我對我寫的代碼所表達的東西的理解
+     和機器實際上對我代碼的處理方式之間有一個偏差
+     這可以說成是一種語義的錯亂
+     對這一點的解釋如下
+   - 首先要明白
+     當結構化的數據被作爲參數來傳遞的時候
+     自然而然傳遞的是地址
+     [這樣效率更高]
+   - 其次要熟悉 scheme 中的一種編程風格
+     這種風格是用遞歸函數處理歸納定義的數據的標準方式
+     這種標準處理方式在 ml 這種具有更強類型限制的語言中
+     體現的最爲明顯
+     這種風格是
+     1. 函數以輸入的結構化數據爲原材料
+        因爲所使用的結構化的數據有良好的遞歸定義
+        所以很容易形成遞歸函數去解構這個結構
+     2. 然後在這個拆解原料的過程中
+        函數會利用拆解所得到部分原料
+        並添加一些新的物質
+        去構建一個需要被輸出的結構化數據
+        [注意這裏重點是 拆解所得到部分原料 被重新使用了]
+     3. 重要的是
+        當一個東西被當成原料而傳給某個函數的時候
+        做了這樣的重要假設
+        即 這些原料是以後不需要的了
+        並且這些原料沒有同時在別的地方被用到
+        即 這些原料中的任何部分的地址別人都不知道
+        只有當下這個原料所服務於的那個函數知道
+     4. 在函數構造需要被輸出的新的結構化數據的時候
+        原料的一些部分被用到
+        同時原料的另一些部分沒有被用到
+        那些沒有被用到的原料的部分
+        當然就是需要被垃圾回收器回收的廢料了
+   - scheme 中的列表處理函數基本上都是以這種風格寫成的
+     這是一種很好的風格
+     它使得編程變得清晰簡單而明瞭
+   - 但是
+     當我需要用副作用來構造
+     帶有很多自身引用的 list 的時候
+     問題就來了
+     因爲上面的那個重要的假設不再被滿足了
+   - 此時我們就需要新的理解方式與處理風格
+     這時遞歸函數的行爲
+     不是 解構的同時構造
+     而是 遍歷的同時修改 [必要的時候複製]
+     1. 或者遍歷的同時記錄需要做修改的地方的信息
+        然後遍歷之後一起作修改
+        這是因爲 scheme 中
+        運算的順序不好控制而致的
+     2. 就是用很多副作用去修改原來的值
+        然後返回的還是原來的值的地址
+        只不過原來的值被修改過了
+        甚至有時可以不返回值
+        因爲在別的地方還能引用到原來的數據
+
+* class & mixin & trait
+
+*** note
+
+    - 可以把 class 看成是 函數接口集合的前綴定義器
+      每個接口前綴 可以有自己的數據
+
+    - 接口集合編碼了類型[class]
+      mixin 就是 (class -> class)
+      因此 mixin 就是 (接口集合 -> 接口集合)
+
+    - 這樣
+      經過一些簡化 並放棄不好的比喻
+      class 的抽象能力就很強了
+
+*** class
+    #+begin_src scheme
+    (define fish-interface
+      (interface ()
+        get-size
+        grow
+        eat))
+
+    (define fish%
+      (class* object% (fish-interface)
+
+        (display "creating new fish\n")
+
+        (init :size)
+        ;; initialization arguments like size
+        ;; are available only during class instantiation
+        ;; so they cannot be referenced directly from a method
+        (define current-size :size)
+
+        (super-new)
+
+        (define/public get-size
+          (lambda ()
+            current-size))
+
+        (define/public grow
+          (lambda (amt)
+            (set! current-size (+ amt current-size))))
+
+        (define/public eat
+          (lambda (other-fish)
+            (grow (send other-fish get-size))))))
+
+    (define charlie (new fish% [:size 10]))
+
+    (send charlie get-size)
+
+    (define hungry-fish%
+      (class fish%
+        (super-new)
+        (define/public eat-more
+          (lambda (fish1 fish2)
+            (send this eat fish1)
+            (send this eat fish2)))))
+
+    (define hungry-fish%
+      (class fish%
+        (super-new)
+        (inherit eat)
+        (define/public eat-more
+          (lambda (fish1 fish2)
+            (eat fish1)
+            (eat fish2)))))
+
+    (define picky-fish%
+      (class fish%
+        (super-new)
+        (define/override grow
+          (lambda (amt)
+            (super grow (* 3/4 amt))))))
+
+    (define daisy (new picky-fish% [:size 20]))
+
+    (send daisy eat charlie)
+    (send daisy get-size)
+
+    (define size-10-fish%
+      (class fish%
+        (super-new [:size 10])))
+
+    (send (new size-10-fish%) get-size)
+
+    (define default-10-fish%
+      (class fish%
+        (init [:size 10])
+        (super-new [:size :size])))
+
+    (send (new default-10-fish%) get-size)
+    (send (new default-10-fish% [:size 20]) get-size)
+    #+end_src
+
+*** mixin
+    #+begin_src scheme
+    (define-syntax :
+      (syntax-rules ()
+        [(: . body)
+         (send . body)]))
+
+    (define-syntax ::
+      (syntax-rules ()
+        [(:: . body)
+         (: this . body)]))
+
+    (define kkk-interface (interface () kkk))
+    (define aaa-interface (interface () aaa))
+    (define choosy-interface (interface () choose?))
+    (define hungry-interface (interface () eat))
+
+    (define choosy-eater-mixin
+      (mixin (choosy-interface aaa-interface) (hungry-interface kkk-interface)
+
+        (super-new)
+
+        (define/public eat
+          (lambda (x)
+            (cond
+             [(:: choose? x)
+              (printf "chomp chomp chomp on ~a.\n" x)]
+             [else
+              (printf "I'm not crazy about ~a.\n" x)])))
+
+        (define/public kkk
+          (lambda ()
+            (display "kkk took my baby away!\n")))))
+
+    (define herring-lover%
+      (class* object% (choosy-interface aaa-interface)
+        (super-new)
+
+        (define/public choose?
+          (lambda (x)
+            (regexp-match #px"^herring" x)))
+
+        (define/public aaa
+          (lambda ()
+            (display "aaa aaa aaa\n")))))
+
+    (define herring-eater%
+      (choosy-eater-mixin herring-lover%))
+
+    (define eater (new herring-eater%))
+
+    (: eater eat "elderberry")
+    (: eater eat "herring")
+    (: eater eat "herring ice cream")
+    (: eater kkk)
+    (: eater aaa)
+    #+end_src
+
+*** trait
+    #+begin_src scheme
+
+    #+end_src

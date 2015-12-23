@@ -1,0 +1,3463 @@
+* 舊記
+
+*** ><
+
+    - 前項的匹配代表着
+      你想如何解構 結構化的數據
+
+    - 後項代表你想如何使用所解構而來的數據
+
+*** ><
+
+    - 集合 類型 命題 定理 是同義詞
+
+    - 類型構造子是特殊的函數
+      其返回值屬 type
+
+    - 元素構造子是特殊的函數
+      其特殊性在於沒有函數體
+      因爲它們的作用方式是平凡的
+      類型構造子也沒有函數體
+
+    - 遞歸定義類型時
+      類型構造子 要和 元素構造子 寫在一起
+      以聲明這是它的全部元素構造子
+      之後用以在模式匹配檢查完全性
+
+    - 一般返回值屬某個類型的元素
+      由其 元素構造子 給出
+
+    - 類型是特殊的類型
+      它沒有元素構造子
+      其元素構造子 就是類型構造子
+      其元素構造子 可以隨時定義
+
+*** ><
+
+    - 類型檢查的本質是
+      編譯時期對帶有不定元的計算結果的檢查
+
+    - 左邊通常是用於匹配的
+      當把它們做爲值入棧時
+      就得到不定元了
+      這樣
+      利用不定元來做匹配
+      就不浪費代碼了
+
+    - 類型檢查時
+      所聲明的則式的前項
+      就是只在參數棧中做不定元
+      而不形成 argument-vector
+
+    - 函數作用分如下步驟
+
+      1. 在參數棧中 形成不定元
+         不定元就是 local-point
+         [也就是說在形成不定元的階段
+          已經在向 local-stack 中入值了
+          匹配的過程中
+          local-stack 中 local-point 所保存的信息
+          可能會進一步被確定下來]
+
+      2. 把 argument-stack 中的不定元轉移到
+         argument-vector 中
+
+      3. 用 argument-vector 來匹配
+         argument-stack 中真正的元
+         注意 不匹配時的異常處理
+         在不匹配時 報錯 [類型檢查]
+         在不匹配時 報錯 轉移到下一個 pattern [函數作用]
+
+      4. 匹配的效果是 local-stack 中有很多 名與值的對子
+         這些局部的命名可以在 則式的後項 中得以使用
+         [則式的後項 不允許引入新的 不定元[local-point]]
+
+    - 注意
+      每次退出一個 case 的時候
+      都要 重置 return-point 中的各個指針
+      而
+      重置 return-point 中的各個指針
+      這種操作 就代表了 scope 這個概念
+      重置指針所用到的域是在 返回點 中的
+      所以
+      每個新的 返回點 就代表一個 scope
+
+    - 如若如此
+      每個返回點也許要記錄當前的函數體才行
+      因爲要遞歸呢
+
+    - case 是一列 匿名的子函數調用
+      每個子函數都會做新 return-point
+      case 在全局調度這些 匿名函數體
+      所謂 '調度' 就是
+      當因匹配失敗而退出時
+      case 需要轉而進行下一項匹配
+      匹配成功時 就執行相應函數體
+      函數體退出時 會退出這次 case
+
+    - 這樣並不對
+      應該是
+      匹配成功時 就取代這次 case 的 return-point
+      然後 執行相應函數體
+      函數體退出時 就不必有特殊處理了
+
+    - case 也可被稱爲 match
+
+    - 但是取代 case 的 return-point 的行爲
+      涉及到 共軛空間的轉換
+      如何能避免 共軛空間的轉換 呢
+      像是處理 tail-call 一樣
+      只用一個 case 的 return-point
+      匹配失敗時馬上利用這個 return-point 重置各個 pointer
+
+    - case 在做控制的時候
+      不能用 return-stack 來記錄返回點了
+      return-stack 是很特殊的 需要小心使用
+      因爲有兩個共軛空間之間的複製
+
+    - 類型做爲模式匹配的處理方式如何
+      此時沒有 case 因爲只有一個 case 項
+      也可以用 case 來實現
+      匹配成功時很簡單
+      匹配失敗時需要做特殊處理
+      所以可能不能用 case 來實現了
+      此時 type-checker 就像是之前的 case 一樣
+      需要來做控制
+
+    - type-checker 的控制
+      首先定義好了函數體
+      注意 函數體 就是 case
+      所以這裏其實還是要處理 case
+      只不過這次 case 所使用的都不是 function-body
+      而是 type
+      實現這一點的方式不是使用 return-stack 了
+      而是使用一個全局變量記錄 函數體 的位置
+      也就說 不是要執行函數體
+      而是用一個函數體解釋器來解釋函數體
+      此處並不用嵌套
+
+*** ><
+
+    - 結構化的值需要能夠在兩個共軛局部內存之間來回複製
+      這種複製是自動完成的
+
+    - 在一個函數的作用過程中
+      所有的 內存分配 都在 局部內存 中完成
+      當需要返回值是
+      把 有可能在 局部內存 中的數據
+      [也有可能 已經在 共軛局部內存 中了
+       所以說 '有可能']
+      遞歸地複製到 共軛局部內存 中
+
+    - 這相當於一個極端激進的
+      複製壓縮型 垃圾回收器
+
+    - 類型檢查的時候
+      每個則式退出時
+      都會重置 return-point 中的各個 pointer 域
+
+*** ><
+
+    - 類型檢查的時候
+      模式匹配的分支會使得
+      後面作用的類型比棧中的類型範圍小
+      帶有分支的則式在作用時
+      分以下步驟
+
+      1. 完全性檢查
+         匹配項的則式前項和 應該大於棧中的不定元
+
+      2. 之後
+         每個匹配項都會特化棧中的不定元
+         然後再作用
+
+      3. 這樣
+         最終的
+         比較所聲明的則式後項
+         和所算得的則式後項是否匹配
+         的過程
+         所比較的就都是被[某個匹配分支的則式前項]特化了的東西
+
+      4. 要特化很多次
+         所以需要備份棧中的初始不定元
+
+* 具體
+
+  - 嘗試解說語義的時候
+    一定要依照具體的實現方式
+  - 想像一個實現方式
+    設計簡單的語法來描述這種實現方式
+    然後實驗語義
+
+* 則式作用
+
+*** 記
+    - 分類
+      - 帶有 #name 的
+        不帶 #name 的
+      - 作用於不定元的
+        非作用於不定元的
+
+    - 單個 則式
+      是特殊的 則式列
+
+    - 可以通過 tag-group 找到 則式
+      可能是找 function-body
+      也可能是找 type-body
+      也可以有匿名的 則式
+
+    - 函數體作用與類型所用
+      通過名字 找到則式的方式不同
+      不匹配時的處理方式不同
+
+    - 則式前項 中出現的局部變元
+      會入 local-point 到 local-stack
+      注意
+      這樣就可能有不確定類型的不定元出現在 type 的前項中了
+      因爲 爲了適應函數體中的則式
+      前項中沒有聲明類型的局部變元
+      第一次出現時 會增加一個類型不定的 不定元
+
+*** 明
+
+    - 則式前項 作 argument-vector
+
+    - argument-vector 匹配 argument-stack
+
+    - 則式後項 所用
+
+* 函數作用
+
+*** 明
+
+    - 入
+
+    - 合
+
+      - 不合而轉
+
+        - 轉盡則誤
+
+      - 合而行
+
+        - 行盡則已
+
+* 類型檢查
+
+*** 明
+
+    - 入
+
+    - 合
+
+      - 不合而斥
+
+      - 合而行
+
+        - 行盡則比
+
+          - 不成則斥
+
+          - 比成則轉
+
+            - 轉盡則已
+
+* 關於 local-stack
+
+  - 如果子函數不允許找到 父函數所綁定的名字
+    那麼
+    用 查找 帶有名字的 stack
+    來實現 這種性質就沒有意義
+  - 不用 local-stack 的話
+    可以考慮豐富 則式 的結構
+    使得 前項中有一個域
+    記錄 local-memory 中
+    保存匹配到的 local-point 的地址
+    在後項中 不要去查全局的 local-stack
+    而是從這個所保存的地址開始查找
+    內存分配在 local-memory 中
+    函數退出時就一定被釋放了
+
+* add 類型檢查 例
+
+  #+begin_src cicada-language
+  - 類型檢查的時候
+    作用的時候
+    則式 前項 和 後項 中的每一個詞
+    都會找到 type-body
+    而不是 function-body
+
+  * add
+    (natural natural -> natural)
+    + :m zero
+    | :m
+    + :m :n succ
+    | :m :n recur succ
+
+  - 聲明的 則式前項
+    - antecedent:
+      natural
+      natural
+    - succedent:
+      natural
+
+  - 則式
+    + :m zero
+    | :m
+    前項作用
+    - pattern:
+      :m
+      natural
+    - local-stack:
+      #m
+
+  - 匹配前項
+    - antecedent:
+      natural
+      natural
+    - pattern:
+      :m
+      natural
+    - local-stack:
+      #m
+        natural
+    效果是
+    pattern-stack 中
+    沒有類型的 不定元 #m
+    被加上了類型 natural
+
+
+  - 則式
+    + :m zero
+    | :m
+    後項作用
+    - result:
+      natural
+    - local-stack:
+      #m
+        natural
+
+  - 匹配後項
+    - succedent:
+      natural
+    - result:
+      natural
+    - local-stack:
+      #m
+        natural
+
+  - 轉
+
+  - 則式
+    + :m :n succ
+    | :m :n recur succ
+    前項作用
+    - pattern:
+      :m
+      natural
+    - local-stack:
+      #m
+      #n
+        natural
+
+  - 匹配前項
+    - antecedent:
+      natural
+      natural
+    - pattern:
+      :m
+      natural
+    - local-stack:
+      #m
+        natural
+      #n
+        natural
+    效果是
+    pattern-stack 中
+    沒有類型的 不定元 #m
+    被加上了類型 natural
+
+  - 則式
+    + :m :n succ
+    | :m :n recur succ
+    後項作用
+    - pattern:
+      natural
+    - local-stack:
+      #m
+        natural
+      #n
+        natural
+
+  - 匹配後項
+    - succedent:
+      natural
+    - result:
+      natural
+    - local-stack:
+      #m
+        natural
+      #n
+        natural
+  #+end_src
+
+* 函數作用於不定元
+
+  - :n succ
+    在類型檢查時
+    會賦 :n 類型 natural
+    算得結果 natural
+    因爲
+    此時作用的是 succ 的 type-body 而不是 function-body
+    對於 type-body 來說
+    :n
+      natural
+    是足夠用以給出結果的
+
+  - :n succ
+    在運行時
+    才需要生成匿名的不定元
+    尚未確定 這個性狀 是否要加入到語言中
+
+* list-length?map 類型檢查 例
+
+*** 原定義
+    #+begin_src cicada-language
+    * map
+
+      # { type #type #type' }
+        :type list
+        ( :type -> :type' )
+      | :type' list
+
+      : null :function
+      | null
+
+      : :car :cdr cons :function
+      | :car :function apply
+        :cdr :function recur cons
+
+    * list-length?
+
+      # { type #type }
+        :type list natural
+      | type
+
+      * list-length?null
+
+        #
+        | null
+          zero
+          list-length?
+
+      * list-length?cons
+
+        # { type #type
+            natural #length
+            :type #car
+            :type list #cdr }
+          :cdr
+          :length
+          list-length?
+        | :car :cdr cons
+          :length succ
+          list-length?
+
+    * list-length?map
+
+      # { type #type #type'
+          ( :type -> :type' ) #function
+          :type list #list
+          natural #length }
+        :list
+        :length
+        list-length?
+      | :list :function map
+        :length
+        list-length?
+
+      : list-length?null
+      | list-length?null
+
+      : :inductive-hypothesis
+        list-length?cons
+      | :inductive-hypothesis recur
+        list-length?cons
+    #+end_src
+
+*** 聲明的 則式前項
+    #+begin_src cicada-language
+    - 聲明的 則式前項
+      apply-antecedent
+      而得
+      - 聲明前項:
+        :list
+        :length
+        list-length?
+      - local-stack:
+        #type
+          type
+        #type'
+          type
+        #function
+          (:type -> :type')
+        #list
+          :type list
+        #length
+          natural
+    #+end_src
+
+*** 則式的第一從句 apply-antecedent-type
+    #+begin_src cicada-language
+    - 則式
+      + list-length?null
+      | list-length?null
+      apply-antecedent-type
+      而得
+      - 模式:
+        null
+        zero
+        list-length?
+    #+end_src
+
+*** 則式的第一從句 match-antecedent
+    #+begin_src cicada-language
+    - match-antecedent
+      注意
+      如果這裏的匹配失敗了
+      就說明
+      模式匹配的這一項 不必處理 可以忽略
+      - 聲明前項:
+        :list
+        :length
+        list-length?
+      - 模式:
+        null
+        zero
+        list-length?
+      注意
+      local-stack 中的不定元被特化了
+      - local-stack:
+        #type
+          type
+        #type'
+          type
+        #function
+          (:type -> :type')
+        #list
+          :type list
+          null
+        #length
+          natural
+          zero
+    #+end_src
+
+*** 則式的第一從句 apply-succedent-type
+    #+begin_src cicada-language
+    - apply-succedent-type
+      而得
+      - 結果:
+        null
+        zero
+        list-length?
+
+      for the created type
+      apply-succedent
+      此時 local-stack 並沒有被擾亂
+      - 聲明後項:
+        :list :function map
+        :length
+        list-length?
+      - local-stack:
+        #type
+          type
+        #type'
+          type
+        #function
+          (:type -> :type')
+        #list
+          :type list
+          null
+        #length
+          natural
+          zero
+       結果 與 聲明後項 匹配
+    #+end_src
+
+*** 轉
+    #+begin_src cicada-language
+    - 轉
+      則式 的新一個從句
+      需要重新製作 聲明前項
+      因爲之前的 聲明前項
+      其 local-stack
+      已經被之前的從句特化了
+    #+end_src
+
+*** 聲明的 則式前項
+    #+begin_src cicada-language
+    - 聲明的 則式前項
+      apply-antecedent
+      而得
+      - 聲明前項:
+        :list
+        :length
+        list-length?
+      - local-stack:
+        #type
+          type
+        #type'
+          type
+        #function
+          (:type -> :type')
+        #list
+          :type list
+        #length
+          natural
+    #+end_src
+
+*** 則式的第二從句 apply-antecedent-type
+    #+begin_src cicada-language
+    - apply-antecedent-type
+      + :inductive-hypothesis list-length?cons
+      | :inductive-hypothesis recur list-length?cons
+      apply-antecedent-type
+      首先
+      :inductive-hypothesis 這個 完全不定元 入棧
+      - 部分模式:
+        :inductive-hypothesis
+      - local-stack:
+        #type
+          type
+        #type'
+          type
+        #function
+          (:type -> :type')
+        #list
+          :type list
+        #length
+          natural
+        ------
+        #inductive-hypothesis
+      其次
+      list-length?cons 的類型作用
+      回顧其類型定義
+        - {type #type
+           natural #length
+           :type #car
+           :type list #cdr}
+          :cdr
+          :length
+          list-length?
+        | :car :cdr cons
+          :length succ
+          list-length?
+      知道它將入新的 local-point 到 local-stack
+      保存這些 local-point 的內存
+      在 list-length?cons 作用結束之後
+      將因 重置指針 而被回收
+      所以 但是返回值的時候
+      已經把這些 local-point 複製到 conjugate-local-memory 了
+      注意
+      類型則式 的後項中的 :car 因爲不可能匹配到值
+      所以 一定會被做爲 不定元 返回
+      也就是 它所對應的 local-point 會被複製
+      list-length?cons 的 類型則式 的前項
+      會被用於 特化 :inductive-hypothesis
+
+      在 list-length?cons 退出之前
+      - 模式:
+        :car :cdr cons
+        :length succ
+        list-length?
+      - local-stack:
+        #type
+          type
+        #type'
+          type
+        #function
+          (:type -> :type')
+        #list
+          :type list
+        #length
+          natural
+        ------
+        #inductive-hypothesis
+          :cdr :length list-length?
+        ------
+        #type
+          type
+        #length
+          natural
+        #car
+          :type
+        #cdr
+          :type list
+
+      在 list-length?cons 退出之後
+      - 模式:
+        :car :cdr cons
+        :length succ
+        list-length?
+        [local-point in local-memory]
+      - local-stack:
+        #type
+          type
+        #type'
+          type
+        #function
+          (:type -> :type')
+        #list
+          :type list
+        #length
+          natural
+        ------
+        #inductive-hypothesis
+          :cdr :length list-length?
+          [local-point in local-memory]
+      - local-memory:
+        #type
+          type
+        #length
+          natural
+        #car
+          :type
+        #cdr
+          :type list
+    #+end_src
+
+*** 則式的第二從句 match-antecedent
+    #+begin_src cicada-language
+    - match-antecedent
+      匹配看來是最曖昧不明的部分
+      之前的匹配
+      效果是
+      特化 聲明前項 所入 local-stack 的 local-point
+      現在也可嘗試如此
+
+      - 聲明前項:
+        :list
+        :length
+        list-length?
+
+      - 模式:
+        :car :cdr cons
+        :length succ
+        list-length?
+        - where:
+          :car
+          :cdr
+          :length
+          in local-memory
+
+      - local-stack:
+        #type
+          type
+        #type'
+          type
+        #function
+          (:type -> :type')
+        #list
+          :type list
+          :car :cdr cons
+          - where:
+            :car
+            :cdr
+            in local-memory
+        #length
+          natural
+          :length succ
+          - where:
+            :length
+            in local-memory
+        ------
+        #inductive-hypothesis
+          :cdr :length list-length?
+          - where:
+            :cdr
+            :length
+            in local-memory
+
+      - local-memory:
+        #type
+          type
+        #length
+          natural
+        #car
+          :type
+        #cdr
+          :type list
+    #+end_src
+
+*** 則式的第二從句 apply-succedent-type
+    #+begin_src cicada-language
+    - 則式
+      + :inductive-hypothesis list-length?cons
+      | :inductive-hypothesis recur list-length?cons
+      apply-succedent-type
+      此時 local-stack 和 local-memory 中的東西
+      就是 之前的勞動成果
+      在這次作用中要使用了
+      但是 這裏又是一次 list-length?cons 的作用
+      又要引入新的 local-point
+      並且在返回時一定要複製 到 local-memory 中
+      此時 :inductive-hypothesis 已經有確定的類型了
+      因爲這裏是 類型作用
+      所以不會再有不定元了
+
+      - 部分結果:
+        :cdr
+        :length
+        list-length?
+        - where:
+          :cdr
+          :length
+          in local-memory
+
+      - local-stack:
+        #type
+          type
+          - 注意
+            後面的實驗表明
+            此處應該有
+            :type
+            - where:
+              :type
+              in local-memory
+            這可以在 #list 被匹配時確定
+            因爲此時發現 #list 的類型中有 :type
+            這個 :type 也應該 匹配值的 :type
+            這就是爲什麼
+            帶有 dependent-type 的 模式匹配
+            叫做 unification 的緣故了
+            因爲是雙向的 而不是單向的
+        #type'
+          type
+        #function
+          (:type -> :type')
+        #list
+          :type list
+          :car :cdr cons
+          - where:
+            :car
+            :cdr
+            in local-memory
+        #length
+          natural
+          :length succ
+          - where:
+            :length
+            in local-memory
+        ------
+        #inductive-hypothesis
+          :cdr :length list-length?
+          - where:
+            :cdr
+            :length
+            in local-memory
+
+      - local-memory:
+        #type
+          type
+        #length
+          natural
+        #car
+          :type
+        #cdr
+          :type list
+
+    - recur
+      回顧當前函數的類型
+        - {type #type #type'
+           (:type -> :type') #function
+           :type list #list
+           natural #length}
+          :list
+          :length
+          list-length?
+        | :list :function map
+          :length
+          list-length?
+      簡直可怕
+      因爲這裏的 :function
+      又一定是部分不確定的不定元
+      注意
+      此時 recur 的前項在匹配的時候
+      是 不定元 在 匹配 不定元
+      後向進行時 並不單單是給出類型
+      還要給出 不定元 所 匹配 到的 不定元
+      也就是 返回的東西越精確越好
+      這樣看來 recur 中 :list 和 :length 兩個變元
+      就像是漏勺一樣
+      但是這裏 形成了變量之間的等同的效果
+      之後 被留下來的 :function 可能會用到
+      注意
+      map 因爲遇到不定元而不能作用的函數
+      可以被認爲是如同構造子的 只有平凡函數體的 函數
+
+      - 部分結果:
+        :cdr :function map
+        :length
+        list-length?
+        - where:
+          :cdr
+          :length
+          in local-memory
+        - where:
+          :function
+          in local-memory1
+
+      - local-stack:
+        #type
+          type
+        #type'
+          type
+        #function
+          (:type -> :type')
+        #list
+          :type list
+          :car :cdr cons
+          - where:
+            :car
+            :cdr
+            in local-memory
+        #length
+          natural
+          :length succ
+          - where:
+            :length
+            in local-memory
+        ------
+        #inductive-hypothesis
+          :cdr :length list-length?
+          - where:
+            :cdr
+            :length
+            in local-memory
+
+      - local-memory:
+        #type
+          type
+        #length
+          natural
+        #car
+          :type
+        #cdr
+          :type list
+
+      - local-memory1:
+        #type
+          type
+          :type
+          - where:
+            :type
+            in local-memory
+        #type'
+          type
+        #function
+          (:type -> :type')
+
+    - list-length?cons
+      - 結果:
+        :car
+        :cdr :function map cons
+        :length succ
+        list-length?
+        - where:
+          :cdr
+          :length
+          in local-memory
+        - where:
+          :function
+          in local-memory1
+        - where:
+          :car
+          in local-memory2
+
+      - local-stack:
+        #type
+          type
+        #type'
+          type
+        #function
+          (:type -> :type')
+        #list
+          :type list
+          :car :cdr cons
+          - where:
+            :car
+            :cdr
+            in local-memory
+        #length
+          natural
+          :length succ
+          - where:
+            :length
+            in local-memory
+        ------
+        #inductive-hypothesis
+          :cdr :length list-length?
+          - where:
+            :cdr
+            :length
+            in local-memory
+
+      - local-memory:
+        #type
+          type
+        #length
+          natural
+        #car
+          :type
+        #cdr
+          :type list
+
+      - local-memory1:
+        #type
+          type
+          :type
+          - where:
+            :type
+            in local-memory
+        #type'
+          type
+        #function
+          (:type -> :type')
+
+      - local-memory2:
+        #type
+          type
+          :type'
+          - where:
+            :type'
+            in local-memory1
+        #length
+          natural
+          :length
+          - where:
+            :length
+            in local-memory
+        #car
+          :type
+        #cdr
+          :type list
+          :cdr :function map
+          - where:
+            :cdr
+            :function
+            in local-memory1
+
+    - 匹配後項
+      注意 匹配的是值
+      而不是棧中項的類型
+      因爲類型就是值
+      賓且
+      類型還包裹了非類型的值在裏面
+      注意
+      對於某些實在的不定元
+      比如這裏的 :car
+      只能比較類型
+      注意
+      這裏等詞如何實現
+      是通過在引用所導入的偏序關係中實現的
+
+      - 聲明後項:
+        :list :function map
+        :length
+        list-length?
+
+      - 結果:
+        :car
+        :cdr :function map cons
+        :length succ
+        list-length?
+        - where:
+          :cdr
+          :length
+          in local-memory
+        - where:
+          :function
+          in local-memory1
+        - where:
+          :car
+          in local-memory2
+    #+end_src
+
+*** ><><>< old
+    #+begin_src cicada-language
+    - 入
+      null
+      zero
+      list-length?
+      ------
+      #type
+        type
+      #type'
+        type
+      #function
+        (:type -> :type')
+      #list
+        :type list
+      #length
+        natural
+
+    - 合
+      :list
+      :length
+      list-length?
+      ------
+      #type
+        type
+      #type'
+        type
+      #function
+        (:type -> :type')
+      #list
+        :type list
+        null
+      #length
+        natural
+        zero
+
+    - 行
+      null
+      zero
+      list-length?
+      ------
+      #type
+        type
+      #type'
+        type
+      #function
+        (:type -> :type')
+      #list
+        :type list
+        null
+      #length
+        natural
+        zero
+
+    - 比
+      體爲
+      :list :function map
+      :length
+      list-length?
+      ------
+      #type
+        type
+      #type'
+        type
+      #function
+        (:type -> :type')
+      #list
+        :type list
+        null
+      #length
+        natural
+        zero
+      行而化爲
+      null
+      :length
+      list-length?
+      比成
+      注意
+      這裏比的時候
+      聲明的後項帶有非平凡計算
+
+    - 轉
+
+    - 入
+
+      :inductive-hypothesis
+      list-length?cons
+      而得
+      ':car ':cdr cons
+      ':length succ
+      list-length?
+      需要 有 '
+      可能是因爲
+      有對 不定元 :inductive-hypothesis
+      的特化
+      這好像是 函數體 的特點
+      因爲 在 類型體 裏 沒有這種情況
+      每個變元的類型都是 由 #name 引入的
+
+      ------
+
+      #type
+        type
+      #type'
+        type
+      #function
+        (:type -> :type')
+      #list
+        :type list
+      #length
+        natural
+
+      '''
+      #type
+        type
+      #length
+        natural
+      #car
+        :type
+      #cdr
+        :type list
+      '''
+
+      #inductive-hypothesis
+        ':cdr ':length list-length?
+
+    - 一個
+      :name 的出現
+      應該是
+      [local-point . address]
+      而不是 名字
+      注意
+      類型檢查開始時
+      製作
+      類型的前項和後項時
+      :list :length list-length?
+      -------------------------->
+      :list :function map :length list-length?
+      local-stack 中
+      還只是
+      #type
+        type
+      #type'
+        type
+      #function
+        (:type -> :type')
+      #list
+        :type list
+      #length
+        natural
+      所以
+      後面新入棧的名字
+      這些製作好的東南
+
+    - 合
+
+      '''
+      ':car ':cdr cons
+      ':length succ
+      list-length?
+      '''
+
+      :list
+      :length
+      list-length?
+
+      ------
+
+      #type
+        type
+      #type'
+        type
+      #function
+        (:type -> :type')
+      #list
+        :type list
+        ':car ':cdr cons
+      #length
+        natural
+        ':length succ
+
+      '''
+      #type
+        type
+      #length
+        natural
+      #car
+        :type
+      #cdr
+        :type list
+      '''
+
+      #inductive-hypothesis
+        ':cdr ':length list-length?
+
+    - 行
+
+      -- 關於行 還有疑問
+
+      ':car :function apply
+      ':cdr :function map cons
+      ':length succ
+      list-length?
+
+      '':car :function apply
+      ':cdr :function map cons
+      ':length succ
+      list-length?
+
+      ------
+
+      #type
+        type
+      #type'
+        type
+      #function
+        (:type -> :type')
+      #list
+        :type list
+        ':car ':cdr cons
+      #length
+        natural
+        ':length succ
+
+      '''
+      #type
+        type
+      #length
+        natural
+      #car
+        :type
+      #cdr
+        :type list
+      '''
+
+      #inductive-hypothesis
+        ':cdr ':length list-length?
+
+    - 比
+      :list :function map
+      :length
+      list-length?
+
+      ':car :function apply
+      ':cdr :function map cons
+      ':length succ
+      list-length?
+    #+end_src
+
+* interface of sequent
+
+  - apply
+    new-local-point [or reset-local-point]
+      apply-antecedent
+      match-antecedent
+      apply-succedent
+    copy-return-data
+    [maybe remove-local-point
+     maybe next clause]
+
+  - apply-type
+    new-local-point [or reset-local-point]
+      apply-antecedent-type
+      match-antecedent
+      apply-succedent-type
+    copy-return-data
+    [maybe remove-local-point
+     maybe next clause]
+
+  - note that
+    match-antecedent
+    is bi-direction
+    normally
+    local-point pushed to the argument-stack
+    by apply-succedent
+    will be specified
+    but
+    when there are already local-points in argument-stack
+    these local-points maybe specified by the matching
+
+* type-checker
+
+  1. create the function
+     create the type
+
+  2. for the created type
+     apply-antecedent
+
+  3. for the created function
+     apply-type
+
+  4. for the created type
+     apply-succedent
+     note that
+     at this point
+     the local-stack is cleared
+     just as right after (2)
+     this means that
+     local-point pushed to local-stack
+     during (3)
+     must be copied to local-memory
+
+  5. for the created type
+     compare the succedent
+     with the result of apply-type
+
+* type & data
+
+  - 上面的例子說明
+    如若要求 元素在 argument-stack 中的存在
+    是帶有 type-tag 的
+    那麼
+    在 local-stack 和 local-memory 中
+    卻不能這樣
+    此時只保存 類型構造子的名字 做爲 type-tag 是不夠的
+
+* 實現
+
+  - x ::
+       雖然
+       我們對類型檢查的設計越來越具體了
+       但是
+       實現方面 還有很多問題沒考慮到呢
+  - k ::
+       我想這些問題總是只有在真正實現的時候
+       才能顯現出來
+  - x ::
+       共軛內存之間的複製就是難點之一
+       還有 等詞的實現方式
+       還有 unification 的策略
+       unification 是爲了使得等詞能行
+
+* 子類型關係
+
+  - 子類型關係的實現方式要格外注意
+    此處實現方式與思想模型可能會有很大差距
+
+  - 之前說過
+    非平凡的子類型 是不被機器處理的
+    而只被人類證明
+    然而
+    平凡的子類型
+    都是因 '或' 而產生的
+    也就是因 程序的分支而產生的
+    或者遞歸定義中 對一列 數據生成子 的聲明
+    偏序關係 是用 等價關係來實現的
+    而 等價關係 是相當平凡的
+
+* 函數作用於不定元時應該如何記錄
+
+  - 在只需要類型的時候
+    有的時候看似根本不需要記錄
+  - 但是又想要給以統一的處理方式
+    因爲有的時候 感覺又需要記錄
+  - 記錄的時候
+    函數可以被理解 無函數體 的平凡者
+    因爲 雖然有函數體
+    但是參數沒有確定
+    所以函數體無法施展
+
+* 特化
+
+  - 特化有兩種
+    1. 類型檢查時
+       函數體的分支 特化 所聲明的則式的前項中的不定元
+    2. 則式前項 作用時
+       後面的函數複合 特化 前面入棧的不定元
+
+  - 特化 只出現在如上兩個地方
+
+  - 前者 可以被視爲是 特殊的 後者
+    因爲 類型檢查時被特化的 聲明前項
+    就是 '前面入棧的不定元'
+    而每個 匹配分支 都是一個匿名的函數作用
+
+* 匿名函數
+
+  - 對類型 ( -> )
+    對運行 [ -> ]
+
+* 用以匹配的模式的前項
+
+  - x ::
+       我又觀察到一個之前沒有注意的特點
+       首先考慮 類型檢查 沒有模式匹配 的函數體
+       此時
+       沒有 局部變元
+       沒有 分支結構
+       再看 類型檢查 有模式匹配的函數體
+       每個模式 都有前項和後向
+       當前項被作用之後
+       就把問題劃歸到了 沒有模式匹配 的函數體
+       只不過
+       此時 local-stack 中有可以查找的局部變元了
+       這裏
+       這個劃歸過程 就對應於 對函數體分支結構的處理
+       這裏的 local-stack 當然就是對局部變元的處理了
+  - k ::
+       而前項的作用就是一個特化過程
+  - x ::
+       沒錯
+       所謂特化就是賦值
+       所以
+       我們只要明白 在兩種特化過程中 發生了那些賦值行爲就行
+  - k ::
+       首先是前項的作用
+       先不管前項是如何獲得的
+       當有前項之時
+       在匹配過程中 它們就被賦值給 聲明的前項中的局部變元
+  - x ::
+       在生成 匹配前項 過程中
+       對先入棧的不定元的處理也是如此
+
+* 重複例子
+
+*** list-length?map
+    #+begin_src cicada-language
+    * list-length?map
+
+      - {type #type #type'
+         (:type -> :type') #function
+         :type list #list
+         natural #length}
+        :list
+        :length
+        list-length?
+      | :list :function map
+        :length
+        list-length?
+
+      + list-length?null
+      | list-length?null
+
+      + :inductive-hypothesis
+        list-length?cons
+      | :inductive-hypothesis recur
+        list-length?cons
+    #+end_src
+
+*** 流程
+    - 聲明的類型則式
+    - 計算的類型則式
+    - 計算的類型則式前項
+      特化
+      聲明的類型則式前項
+    - 比較是否有
+      計算的類型則式後項
+      小於
+      聲明的類型則式後項
+
+*** 聲明的類型則式
+    #+begin_src cicada-language
+    - 前項:
+      :list
+      :length
+      list-length?
+
+    - local-stack:
+      #type
+        type
+      #type'
+        type
+      #function
+        (:type -> :type')
+      #list
+        :type list
+      #length
+        natural
+
+    - 後項:
+      :list :function map
+      :length
+      list-length?
+    #+end_src
+
+*** 計算的類型則式
+    #+begin_src cicada-language
+    - 前項:
+
+      - :inductive-hypothesis
+        #inductive-hypothesis
+
+      - local-memory:
+        #type
+          type
+        #length
+          natural
+        #car
+          :type
+        #cdr
+          :type list
+
+      - list-length?cons
+        :car :cdr cons
+        :length succ
+        list-length?
+        @ :car
+          :cdr
+          :length
+
+    - local-stack:
+      #inductive-hypothesis
+        :cdr
+        :length
+        list-length?
+        @ :cdr
+          :length
+
+    - 計算後項的時候
+      並不需要讓 匹配前項 特化 聲明前項
+      因爲
+      因爲這個特化過程是
+      匹配前項 對 聲明前項 中的變元 的賦值過程
+      這個賦值 不會影響到 後項的計算
+      不知是否如此
+      可以先嘗試再做論斷
+      但是
+      如若如此
+      模式匹配的意義就非常有趣了
+      整個系統的實現方式也變簡單了
+
+    - 後項:
+
+      - :inductive-hypothesis
+        :cdr
+        :length
+        list-length?
+        @ :cdr
+          :length
+
+      - local-memory:
+        #type
+          type
+        :type
+          :type
+          @ :type
+        #type'
+          type
+        #function
+          ( :type -> :type' )
+        #list
+          :type list
+        :list
+          :cdr
+          @ :cdr
+        #length
+          natural
+        :length
+          :length
+          @ :length
+
+      - recur
+        :list :function map
+        :length
+        list-length?
+        @ :list
+          :function
+          :length
+
+      - local-memory:
+        #type
+          type
+        :type
+          - 此時需要計算
+            the type of
+            :list :function map
+            @ :list
+              :function
+            也就是說
+            此時又需要計算 map 作用於 不定元 的類型
+            也就是說
+            進行這種工作的函數是需要被抽象出來遞歸調用的
+          :type'
+          @ :type'
+        #length
+          natural
+        :length
+          :length
+          @ :length
+        #car
+          :type
+        #cdr
+          :type list
+        :cdr
+          :list :function map
+          @ :list
+            :function
+
+      - list-length?cons
+        :car :cdr cons
+        :length succ
+        list-length?
+    #+end_src
+
+*** 計算的類型則式 簡
+    #+begin_src cicada-language
+    - 前項:
+
+    - :inductive-hypothesis
+
+      - argument-stack:
+        #inductive-hypothesis
+
+    - list-length?cons
+
+      - local-memory:
+        #type
+          type
+        #length
+          natural
+        #car
+          :type
+        #cdr
+          :type list
+
+      - argument-stack:
+        :car :cdr cons
+        :length succ
+        list-length?
+        @ :car
+          :cdr
+          :length
+
+    - local-stack:
+      #inductive-hypothesis
+        :cdr
+        :length
+        list-length?
+        @ :cdr
+          :length
+
+    - 後項:
+
+    - :inductive-hypothesis
+
+      - argument-stack:
+        :cdr
+        :length
+        list-length?
+        @ :cdr
+          :length
+
+    - recur
+
+      - local-memory:
+        #type
+          type
+        :type
+          :type
+          @ :type
+        #type'
+          type
+        #function
+          ( :type -> :type' )
+        #list
+          :type list
+        :list
+          :cdr
+          @ :cdr
+        #length
+          natural
+        :length
+          :length
+          @ :length
+
+      - argument-stack:
+        :list :function map
+        :length
+        list-length?
+        @ :list
+          :function
+          :length
+
+    - list-length?cons
+
+      - local-memory:
+        #type
+          type
+        :type
+          :type'
+          @ :type'
+        #length
+          natural
+        :length
+          :length
+          @ :length
+        #car
+          :type
+        #cdr
+          :type list
+        :cdr
+          :list :function map
+          @ :list
+            :function
+
+      - argument-stack:
+        :car :cdr cons
+        :length succ
+        list-length?
+    #+end_src
+
+*** 計算的類型則式前項 特化 聲明的類型則式前項
+    #+begin_src cicada-language
+    - 前項:
+      :list
+      :length
+      list-length?
+
+    - local-stack:
+      #type
+        type
+        :type
+        @ :type
+      #type'
+        type
+      #function
+        (:type -> :type')
+      #list
+        :type list
+        :car :cdr cons
+        @ :car
+          :cdr
+      #length
+        natural
+        :length succ
+        @ :length
+
+    - 後項:
+      :list :function map
+      :length
+      list-length?
+    #+end_src
+
+*** >< 計算的類型則式後項 小於 聲明的類型則式後項
+    ><><><
+    如何判斷 小於
+    #+begin_src cicada-language
+
+    #+end_src
+
+* explicit
+
+*** 記
+
+    - 不應該先嘗試 implicit
+      而應該先嘗試 explicit
+
+*** explicit 定義
+    #+begin_src cicada-language
+    * list
+
+      * list
+        - {type #type}
+          :type
+        | type
+
+        * null
+          - {type #type}
+          | :type list
+
+        * cons
+          - {type #type}
+            :type :type list
+          | :type list
+
+    * map
+
+      - { type #type #type' }
+        :type list
+        ( :type -> :type' )
+      | :type' list
+
+      + null :function
+      | null
+
+      + :car :cdr cons :function
+      | :car :function apply
+        :cdr :function recur cons
+
+    * list-length?
+
+      - { type #type }
+        :type list natural
+      | type
+
+      * list-length?null
+
+        -
+        | null
+          zero
+          list-length?
+
+      * list-length?cons
+
+        - { type #type }
+            natural #length
+            :type #car
+            :type list #cdr
+          :cdr
+          :length
+          list-length?
+        | :car :cdr cons
+          :length succ
+          list-length?
+
+    * list-length?map
+
+      - { type #type #type' }
+          ( :type -> :type' ) #function
+          :type list #list
+          natural #length
+        :list
+        :length
+        list-length?
+      | :list :function map
+        :length
+        list-length?
+
+      +   :function
+          :list
+          :length
+        list-length?null
+      | list-length?null
+
+      +   :function
+          :car :cdr cons
+          :length succ
+            :length
+            :car
+            :cdr
+        :inductive-hypothesis
+        list-length?cons
+      |   :length
+          :car :function apply
+          :cdr :function map
+            :function
+            :cdr
+            :length
+        :inductive-hypothesis
+        recur
+        list-length?cons
+    #+end_src
+
+*** 聲明的類型則式
+    #+begin_src cicada-language
+    - 前項:
+        .function
+        .list
+        .length
+      :list
+      :length
+      list-length?
+
+    - local-stack:
+      #type
+      . type
+      #type'
+      . type
+      #function
+      . (:type -> :type')
+      #list
+      . :type list
+      #length
+      . natural
+
+    - 後項:
+      :list :function map
+      :length
+      list-length?
+    #+end_src
+
+*** 計算的類型則式 簡
+    #+begin_src cicada-language
+    - 前項:
+
+    -   :function
+        :car :cdr cons
+
+      - local-memory^0:
+        #type
+        . type
+
+      - local-stack:
+        #function
+        #car
+        . :type^0
+        #cdr
+        . :type^0 list
+
+      - argument-stack:
+          .function
+          :type^0 list
+
+    -   :length succ
+          :length
+          :car
+          :cdr
+      :inductive-hypothesis
+
+      - argument-stack:
+          .function
+          :type^0 list
+          natural
+            .length
+            .car
+            .cdr
+        .inductive-hypothesis
+
+      - local-stack:
+        #function
+        #car
+        . :type^0
+        #cdr
+        . :type^0 list
+        #length
+        . natural
+        #inductive-hypothesis
+
+    - list-length?cons
+
+      - local-memory^1:
+        #type
+        . type
+        #length
+        . natural
+        #car
+        . :type
+        #cdr
+        . :type list
+
+      - local-stack:
+        #function
+        #car
+        . :type^1
+        = :type^0
+        #cdr
+        . :type^1 list
+        = :type^0 list
+        #length
+        . natural
+        #inductive-hypothesis
+        . :cdr^1
+          :length^1
+          list-length?
+
+      - argument-stack:
+          .function
+          :type^0 list
+          natural
+        :car^ :cdr^ cons
+        :length^ succ
+        list-length?
+
+    - 後項:
+
+    -   :length
+        :car :function apply
+        :cdr :function map
+          :function
+          :cdr
+          :length
+      :inductive-hypothesis
+
+      - argument-stack:
+        natural
+        :type^1 .function [apply] type-apply
+        :type^1 list .function map type-apply
+          .function
+          :type^1 list
+          natural
+        :cdr^1
+        :length^1
+        list-length?
+
+    - recur
+
+      - tmp:
+          .function
+          .list
+          .length
+        :list
+        :length
+        list-length?
+
+      - local-memory^2:
+        #type
+        . type
+        #type'
+        . type
+        #function
+        . ( :type -> :type' )
+        = .function^LS
+        #list
+        . :type^1 list
+        : :cdr^1
+        #length
+        . natural
+        : :length^1
+
+      - local-stack:
+        #function
+        . ???
+        = .function^2
+        #car
+        . :type^1
+        = :type^0
+        #cdr
+        . :type^1 list
+        = :type^0 list
+        #length
+        . natural
+        #inductive-hypothesis
+        . :cdr^1
+          :length^1
+          list-length?
+
+      - argument-stack:
+        natural
+        :type^1 .function [apply] type-apply
+        :type^1 list .function map type-apply
+        :cdr^1 :function map
+        :length^1
+        list-length?
+
+      - local-memory^2:
+        #type
+        . type
+        : :type^1
+        #type'
+        . type
+        #function
+        . ( :type -> :type' )
+        = .function^LS
+        #list
+        . :type^1 list
+        : :cdr^1
+        #length
+        . natural
+        : :length^1
+
+      - argument-stack:
+        natural
+        :type'^2
+        :type'^2 list
+        :cdr^1 :function map
+        :length^1
+        list-length?
+
+    - list-length?cons
+
+      - local-memory^3:
+        #type
+        . type
+        : :type'^2
+        #length
+        . natural
+        #car
+        . :type
+        = :type'^2
+        #cdr
+        . :type list
+        = :type'^2 list
+        : :cdr^1 :function map
+
+      - argument-stack:
+        :car^3 :cdr^3 cons
+        :length^3 succ
+        list-length?
+
+      - local-stack:
+        #function
+        . ???
+        = .function^2
+        #car
+        . :type^1
+        = :type^0
+        #cdr
+        . :type^1 list
+        = :type^0 list
+        #length
+        . natural
+        #inductive-hypothesis
+        . :cdr^1
+          :length^1
+          list-length?
+    #+end_src
+
+*** 計算的類型則式前項 特化 聲明的類型則式前項
+    #+begin_src cicada-language
+    - 前項:
+        .function
+        .list
+        .length
+      :list
+      :length
+      list-length?
+
+    - local-stack:
+      #type
+      . type
+      #type'
+      . type
+      #function
+      . (:type -> :type')
+      #list
+      . :type list
+      #length
+      . natural
+
+    - 後項:
+      :list :function map
+      :length
+      list-length?
+    #+end_src
+
+* 比較的原則
+
+  - 類型檢查中
+    比較只出現在最終比較後項的時候
+    此時
+    如果有兩個不定元需要比較
+    就先看它們的類型是否相等[此時可能進入遞歸的比較過程]
+    如果相等
+    就另它們的元素相等[通過指針標記來另兩個元素相等]
+
+  - 如果這種相等在之後的比較中不會引發問題
+    類型檢查就通過
+
+  - 原理在於
+    這種不定元 如果被處理爲現式參數
+    就可以在手寫的代碼中製作這種相等
+    this is what is been made implicit
+
+* lazy code block 之生成
+
+  - 有時 type-apply 不能作用
+    但是之後 當 type 匹配到了東西
+    type-apply 又能作用了
+    這就需要 lazy code block 了
+
+* 重複 implicit
+
+*** 定義
+    #+begin_src cicada-language
+    * list
+
+      - {type #type}
+        :type
+      | type
+
+      * null
+
+        - {type #type}
+        | :type list
+
+      * cons
+
+        - {type #type}
+          :type :type list
+        | :type list
+
+      * map
+
+        - { type #type #type' }
+          :type list
+          ( :type -> :type' )
+        | :type' list
+
+        + null :function
+        | null
+
+        + :car :cdr cons :function
+        | :car :function apply
+          :cdr :function recur cons
+
+      * has-length
+
+        - { type #type }
+          :type list natural
+        | type
+
+        * has-length:null
+
+          -
+          | null
+            zero
+            has-length
+
+        * has-length:cons
+
+          - { type #type
+              natural #length
+              :type #car
+              :type list #cdr }
+            :cdr
+            :length
+            has-length
+          | :car :cdr cons
+            :length succ
+            has-length
+
+      * has-length:map
+
+        - { type #type #type'
+            ( :type -> :type' ) #function
+            :type list #list
+            natural #length }
+          :list
+          :length
+          has-length
+        | :list :function map
+          :length
+          has-length
+
+        + has-length:null
+        | has-length:null
+
+        + :inductive-hypothesis
+          has-length:cons
+        | :inductive-hypothesis
+          recur
+          has-length:cons
+    #+end_src
+
+*** 聲明的類型則式
+    #+begin_src cicada-language
+    - 前項:
+      :list
+      :length
+      has-length
+
+    - local-stack:
+      #type
+      . type
+      #type'
+      . type
+      #function
+      . (:type -> :type')
+      #list
+      . :type list
+      #length
+      . natural
+
+    - 後項:
+      [ :list :function map ] wait
+      :length
+      has-length
+    #+end_src
+
+*** 計算的類型則式
+    #+begin_src cicada-language
+    - 前項:
+
+    - .inductive-hypothesis
+
+      - local-stack:
+        #inductive-hypothesis
+
+    - [ has-length:cons ] type-apply
+
+      - local-memory^0:
+        #type
+        . type
+        #length
+        . natural
+        #car
+        . :type^0
+        #cdr
+        . :type^0 list
+
+      - local-stack:
+        #inductive-hypothesis
+        . :cdr^0
+          :length^0
+          has-length
+
+      - argument-stack:
+        :car^0 :cdr^0 cons
+        :length^0 succ
+        has-length
+
+    - 後項:
+
+    - .inductive-hypothesis
+
+      - local-stack:
+        #inductive-hypothesis
+        . :cdr^0
+          :length^0
+          has-length
+
+      - argument-stack:
+        :cdr^0
+        :length^0
+        has-length
+
+    - [ recur ] type-apply
+
+      - local-memory^1:
+        #type
+        . type
+        : :type^0
+            #type'
+            . type
+            #function
+            . ( :type^1 -> :type'^1 )
+            #list
+            . :type^1 list
+            : :cdr^0
+            #length
+            . natural
+            : :length^0
+
+          - local-stack:
+            #inductive-hypothesis
+            . :cdr^0
+          :length^0
+          has-length
+
+      - argument-stack:
+        [ :cdr^0 :function map ] wait
+        :length^0
+        has-length
+
+    - has-length:cons
+
+      - local-memory^2:
+        #type
+        . type
+        : :type'^1
+        #length
+        . natural
+        : :length^0
+        #car
+        . :type^2
+        #cdr
+        . :type^2 list
+        : [ :cdr^0 :function^1 map ] wait
+
+      - local-stack:
+        #inductive-hypothesis
+        . :cdr^0
+          :length^0
+          has-length
+
+      - argument-stack:
+        :car^2 :cdr^2 cons
+        :length^2 succ
+        has-length
+    #+end_src
+
+*** 計算的類型則式前項 特化 聲明的類型則式前項
+    #+begin_src cicada-language
+    - 前項:
+      :list
+      :length
+      has-length
+
+    - local-stack:
+      #type
+      . type
+      : :type^0
+      #type'
+      . type
+      #function
+      . (:type -> :type')
+      #list
+      . :type list
+      : :car^0 :cdr^0 cons
+      #length
+      . natural
+      : :length^0 succ
+
+    - 後項:
+      [ :list :function map ] wait
+      :length
+      has-length
+    #+end_src
+
+* 實現計劃
+
+*** the structure of function
+
+    - 保留 使用模式匹配
+      和 不使用模式匹配
+      兩種模式
+
+    - 模式匹配可以利用一個類似 case 的 instruction 實現
+
+*** about instruction
+
+    - 可以設想 擴展編譯器的方式就是
+      製作新的 instruction
+      但是要注意 每個新的 instruction 都應該保證能夠類型檢查
+
+    - 每次擴展 就是指明何種語法 把哪種 instruction 的作用
+      編譯到內存
+      每種 instruction 的作用方式都要仔細設計
+
+* case as instruction
+
+  - x ::
+       我們到底使用不使用看似靈活的 instruction 呢
+       之間的經驗是
+       它好像會把類型檢查複雜化
+       因爲擴展語法的時候
+       你還要考慮如何讓所做的擴展被類型檢查
+       這就相當於把你所希望的性轉實現兩遍了
+
+  - k ::
+       如果實現兩遍是必要的
+       那麼就應該實現兩遍
+
+  - x ::
+       如果有這種擴展機制
+       我們就能用這種擴展機制所提供的基礎設施來實現 case 了
+
+  - k ::
+       也就是說函數複合所需要的
+       基本 類型檢查
+       與 函數作用 語義
+       提供給你了
+       並給你以擴展機制來利用基礎語義構建更複雜的語義
+
+  - x ::
+       想得很好但是實現起來不一定可行
+       想必這種擴展語義必定出離基本語言了
+       正如 scheme 的 macro 系統一樣
+
+  ------------------------------
+
+  - x ::
+       不如先做一層 vm 的匯編語言
+       正如以前的設計一樣
+
+  - k ::
+       這樣就可以少一些語法上決策的耽擱了
+
+* 觀察
+
+  - x ::
+       我們知道 當函數名字相繼而寫時
+       就是各個函數的複合
+       而 instruction 能改變這種基本語義
+       比如之前
+       用以實現分支結構的 branch 和 false?branch
+       都是 instruction
+       現在
+       用以實現分支結構的是 case 了
+       觀察一下 case 對正常的函數複合所做的改變
+
+  - k ::
+       分 函數作用 和 類型檢查 兩種
+       先說 函數作用
+    1. 前項入棧
+       - 此時 局部點 入 局部棧
+    2. 前項匹配棧中原有數據
+       匹配的時候 要使用數據的複製
+       因爲不匹配的時候還要嘗試下一個匹配
+       - 此時 局部棧 中 局部點 被特化
+    3. 清空匹配掉的數據
+    4. 後向入棧
+       - 此時 使用 被特化的 局部點
+
+  - x ::
+       重要的是
+       要知道 正常函數作用的部分 是哪些
+       這種 正常函數作用的部分 是語言所提供的 primitive 語義
+       instruction 機制
+       是在使用這些 primitive
+       來構造更複雜的東西
+
+  - k ::
+       這就是之前所說的
+       把則式前後項的作用抽象出來不是嗎
+
+  - x ::
+       沒錯
+       類型檢查也是一樣
+       和 match 一樣
+       它也應該被實現爲 instruction
+
+  - k ::
+       但是這些 instruction 很難實現
+       因爲要操作 return-stack
+       但是所以就必須被實現爲 primitive-function
+       然而 每個函數的複雜讀其實不適合被實現爲 primitive-function
+
+  - x ::
+       設置一個 instruction-return-stack 吧
+
+  ---------------------------------
+
+  - x ::
+       我明白了
+       match 不應該被實現爲 對 return-stack 的操作
+       而應該被實現爲一個一般的函數
+       被 match 的東西是 sequent
+       這些 sequent 應該做爲 match 這個函數的數據
+
+  - k ::
+       這樣
+       match 就有 << vector of sequent -- unknow >>
+
+  - x ::
+       這裏不是 unknow
+       只不過這個返回的類型由 參數的值決定而已
+       這就是所謂的 dependent-type
+
+  - k ::
+       如果這樣的話
+       前面對 check 的所有討論
+       其實就是對 match 的 check 的討論
+       而一般的 check 就又被簡化了
+
+  - x ::
+       而且 前面所說的要將每個 instruction 實現兩遍
+       其實
+       其中的一遍就是類型
+       而另一遍就是函數體
+
+  - k ::
+       注意
+       每次定義匿名函數的時候
+       同時也要帶上它的類型
+
+  - x ::
+       但是
+       如果我有
+       <sequent-vector> match
+       在函數體裏
+       那麼檢查到 match 之前的時候
+       入棧的顯然不能只是 <sequent-vector> 的類型
+       還必須是 <sequent-vector> 的值
+
+  - k ::
+       好像只有對直接數據纔有這種情況
+       對於一般的函數沒有這種情況
+       哦 不對
+       其實 check 是遞歸的
+       當 見到 匿名的函數體 <sequent-vector> 的時候
+       就需要檢查它的類型了
+
+  - x ::
+       所以說
+       我們這裏全錯了
+       我們說的 match 其實是 apply
+       而 match 還是函數體的核心
+       每個匿名的函數
+       都是用 pattern-match 來做的
+       也就是 sequent-vector
+
+  - k ::
+       我們應該先處理匿名
+       再處理命名
+
+  - x ::
+       所以
+       函數體就是 <sequent-vector>
+       並且不能嵌套
+       其實
+       嵌套的匹配只是語法糖
+       沒有本質新意
+       模式匹配必須是線性的
+
+  - k ::
+       這樣 explain-function 就是處理模式匹配的地方了
+
+  - x ::
+       我想可能需要形成兩個層次
+       並且整個實現技術都要改變了
+
+  - k ::
+       實際上沒有改變
+       只是改變 explain-function 而已
+       如果用舊的 explain-function
+       先入棧做爲匿名函數體的數據
+       再作用 match
+       就相當於每次函數作用開頭的時候都有個 overhead
+       而使用更改 explain-function
+       就相當於把這個 overhead 融入到了 explain-function 裏面
+       考慮到 上面關於類型檢查原因
+       後者纔是正確的實現方法
+
+  - x ::
+       也就是說
+       做爲內部解釋器的 explain-function
+       所解釋的數據更爲豐富了
+       不是直接入函數體到棧裏來
+       而是根據參數棧中的情況來挑選入棧的函數體
+       也就是說 增加了一個挑選過程
+       也就是說 分支語句被整合到內部解釋器裏面了
+       注意
+       在挑選過程中 explain-function 會入棧前項
+       所謂 '入棧前項'
+       其實是 把 前項 做爲匿名函數體來執行
+
+  - k ::
+       這樣 explain-function 就相當複雜了
+
+  - x ::
+       沒錯
+       但是這是正確的
+
+  - k ::
+       可以着手實現了嘛
+
+  - x ::
+       既然 function-body 的結構清楚了
+       就可以進入更細的細節了
+
+* 新實現計劃
+
+  - function-body as sequent-vector
+
+  - 在 explain-function 裏處理 pattern-match
+
+* 則式後項中對計算了一點的數據的再次 match
+
+  - 用匿名的函數體的 apply 實現
+    注意
+    匿名的函數體 帶有 類型聲明
+    注意
+    匿名函數體嵌套進去的時候
+    不用先入棧一個做爲數據的函數體 再 apply
+    直接就能作用
+    因爲 function-body 中做保存不是名字 而是 jo
+
+* 用
+
+  - 考慮實際使用的情況
+    考慮所擅長處理的數據結構
+
+* 動態類型標籤
+
+  - 模式匹配需要等詞
+    以判斷 運行時對數據是否相等
+    爲了完成這種判斷 需要棧中的數據帶有類型標籤
+    否則無法區分 不定元 和 定元
+
+  - 但是
+    其實爲了知道使用那個等詞來做判斷
+    並不需要動態類型標籤
+    因爲 用以確定等詞的元數據
+    已經被保存在函數的類型聲明裏了
+    只要假設所有棧中的元素類型都是正確的
+    就 不必使用動態類型標籤 了
+
+  - 然而
+    不定元 所影響的
+    不是 應該使用哪個等詞
+    而是 如何處理等詞
+
+  - 決策
+    觀察到 type-apply 和普通 apply 的區別
+    就知道有兩種實現方式
+    1. 只在類型檢查時期才加 type-tag
+       運行時不加
+    2. 運行時也加
+
+  - 實現方式
+    可以用 不定元的 map
+    而不使用動態類型標籤來標記 不定元
+    這樣看來實現更靈活
+
+* >< 動態類型標籤 與 '或'
+* 可逆函數都應該能模式匹配 <2015-11-11>
+
+  - x ::
+       可逆函數都可以用於 pattern-match
+       只要給出判斷值域的謂詞就行了
+       succ 做爲沒有函數體的 元素構造子
+       之所以能用於 pattern-match
+       就是因爲
+       succ 是可逆的
+       並且 有對這個函數值域的判斷
+       即 認給一個 natural 的元素
+       可以判斷這個元素是否可以是 succ 作用的結果
+       可見
+       古典的處理方式是非常嚴格的
+       每個 元素構造子
+       其實是把 類型劃分爲了不相交的子類型
+       並且 對於每個類型
+       只有一套這種劃分
+
+  - k ::
+       而你的新想法是
+       可以使用多套劃分
+       這樣
+       模式匹配的用場更廣泛
+       而使用更靈活
+       此時
+       需要強調可逆函數
+       比如 :n :m add
+       匹配到 :n :m 的方式有多種
+       所以其逆並非函數
+       所以並不能用於匹配
+
+  - x ::
+       但是
+       難點在於 完全性檢查
+       要知道 沒有完全性檢查的話 證明就是失效的
+       如果要檢查這種靈活的模式匹配的完全性
+       就要能夠處理相當一般的子類型關係
+       因爲要能夠判斷模式匹配中的分支是否覆蓋了整體
+       難點又在於
+       這裏的子類型關係一定是聲明而成的
+       古典的處理方式 每個 元素構造子 的值域 都是類型的子集
+       每個 元素構造子 就代表了一個子類型
+       這種 子類型 關係 也是聲明而成的
+       這種聲明其實是在構造一個 偏序集 它也是在構造一個 格
+       古典處理方式中的 單一劃分
+       尚可處理
+       如果想處理任意劃分
+       所聲明的子類型關係 就可能與模型是不一致的
+       [這裏的 不一致性 將引發 runtime error]
+
+  - k ::
+       有沒有可能保證這裏的不一致性呢
+
+  - x ::
+       不一致性 就是 runtime error
+       消除 runtime error 的方式就是 compile time checking
+       所以問題就是
+       這裏的聲明有沒有可能被檢查
+
+  - k ::
+       還有聲明被使用的方式
+
+  - x ::
+       沒錯
+       我們要維護一個格
+       抽象的格有各種實現方式
+       我們要找一種合適計算機的
+
+* disjoint union
+
+  - disjoint union
+    tagged union
+    variant
+    variant record
+    discriminated union
+    disjoint union
+    sum type
+
+  - 古典的處理方式是 disjoint union [所謂 sum type]
+    而不是 union
+
+  - disjoint union 也可以看成是 type family
+    而 type family 就是[特殊的]映射[dependent-type]
+
+  - disjoint union 是把 集合做一個劃分 然後再給每個劃分一個名字
+    或者說 集合做 union 的時候 標明 union 的來源
+
+  - dependent-type 或 type family 也是劃分
+    但是 劃分的時候用到了另外一個集合 來做 index
+    與簡單的 一些 tag 相比
+    這顯然複雜了
+
+  - dependent-type 是一種劃分
+    爲了靜態類型檢查
+
+  - disjoint union 也是劃分
+    爲了運行時的模式匹配
+
+  - subtype 不是劃分
+    而是可以真正描述集合的子集之間關係的細節
+    disjoint union 可以看成是 平凡的 subtype
+    但是 disjoint union 和由其發展而來的 dependent-type
+    更適合在計算機上實現
+
+* 受限制的子類型關係
+
+*** 辯解
+
+    - 考慮構造主義原則
+      受限制是自然的
+      因爲
+      實現一個 具體數學結構 的方式
+      將以一個類型構造子的方式出現
+
+*** 目的
+
+    - 假設
+      所有[值域]可逆函數
+      給值域一個謂詞之後
+      都能用於模式匹配
+      那麼
+      爲了模式匹配時的完全性檢查
+      還需要判斷各個匹配分支的值域是否覆蓋整個集合
+      考慮子類型的目的
+      就是爲了判別這種覆蓋
+      也就是爲了完全性檢查
+
+*** 謂詞
+
+    - 每個值域都要被一個謂詞實現
+      在運行時 做模式匹配的時候
+      會用到這個謂詞
+
+*** 聲明
+
+    - 每增加一個子類型的時候
+      要完整地聲明它和已有的子類型之間的關係
+      爲的是在模式匹配的時候 能夠檢查完全性
+
+*** 危險
+
+    - 定義一個類型之後
+      必須小心維護其子類型
+      子類型關係的聲明
+      如果與 實際用於實現子類型的謂詞 不相符的話
+      就會造成運行時錯誤
+
+    - 不想使用這種危險的特性的話
+      就可以退回到 古典的 disjoint union 處理方式
+
+*** >< 受限
+
+    - 如果 子類型 可以像類型一樣 出現在函數的類型聲明中
+      那麼 其實就是沒有受限的
+
+*** 格
+
+    - 不能用接口函數編碼
+      必須依賴手動聲明
+      每次聲明都會更改一個有限格
+      這個格記錄所有子類型關係
+
+    - 格 的兩個運算要求
+      聲明的時候不能含糊
+      比如 有兩個對集合的劃分
+      不能 不顧這個劃分中的集合 和那個劃分中的集合 之間的關係
+      必須要完整的聲明
+
+    - 要求 聲明的完備性
+      會使得 需要聲明的東西越來越多
+      然而
+      因爲 圖是稀疏的
+      所以 只要不聲明的時候都默認沒有關係就行了
+
+*** >< 理論
+
+    - 爲什麼必須要做危險的聲明
+      而不能讓機器檢查這些聲明
+      函數的類型檢查
+      通過對比 聲明類型 與 計算函數體所得類型 是否一致
+      就能做到自動檢查
+      但是
+      子類型關係爲什麼不能自動檢查
+      注意
+      上面能檢查的 函數的類型聲明 其實是集合之間的所屬關係
+      難道集合之間的兩大關係 '屬於' 與 '子集'
+      只有 '屬於' 能夠檢查
+      而 '子集' 不能檢查 邪
+
+*** 遲疑
+
+    - dependent-type must has a way around subtype
+
+*** 解遲
+
+    - 使用時 可以退回到 古典的方式
+
+    - 更符合 構造主義 的理解方式
+
+    - 能夠把優化 Nat 的方式暴露出來
+      跟底層優化的銜接更好
+
+*** ><><>< 實現
+
+    - 不能要求集中聲明
+      也不能要求每次對格有修改的時候都把格重寫一遍
+
+    - 可以實現爲對有向圖的編輯
+      有向圖 用點點關係 實現
+
+    - 還有一種實現方式
+      就是 通過維護 不斷加細的劃分
+      [每個劃分都以明顯的方式命名]
+      用 劃分中的子集的不同組合方式
+      來編碼 所要取別的子集
+      [從 multiple inheritance 轉到 minin]
+
+*** 用法
+
+    - 子類型關係 與 OO 中是的使用風格不同
+
+* 等詞
+
+  - 如果每個類型都有自己的等詞
+    那麼沒有任何理由不讓每個類型有自己的其他接口函數
+
+  - 注意
+    修改等詞的行爲
+    因爲
+    一個一元謂詞代表一個子集
+    一個二元謂詞代表一個劃分[等價關係就是劃分]
+    而 完全性判斷就用到劃分
+
+  - 注意
+    用於模式匹配的 tag 對類型的劃分 並不像等價關係
+    而 dependent-type 的 indexed-type 就像是等價關係了
+    比如 vector 帶有長度
+    其實就是一個 長度相等 就是 vector 之間的一個等詞
+
+* 暫時放棄
+
+  - 先放棄對子類型的實現
+    爲了多體會一下古典的處理方式
+
+  - 有兩策略
+    1. 維護實現方式
+       使得想要加入新性狀的時候很容易
+    2. 實現多個版本
+       初版使用古典處理方式
+
+* 實現 <2015-11-20>
+
+  - x ::
+       漸進地增加性狀
+       | 非結構化的數據     | define-function explain-function |
+       |                    | symple-equal of datatype         |
+       | 結構化的數據       | define-function explain-function |
+       |                    | equal of datatype                |
+       | 結構化的數據的返回 | end                              |
+       |                    | copy of datatype                 |
+
+* antecedent
+
+  - x ::
+       讓 antecedent 在運行時生成
+       因爲 antecedent 中的結構化數據 有分配內存的操作
+       這些結構化的數據的結果可能並不適合在編譯時保存在函數體中
+
+  - k ::
+       ':name' 這種語法是重載了的
+       在 antecedent 和 succedent 中對它們的處理方式可能不同
+
+  - x ::
+       如果想要以一致方式處理
+       就必須能夠在運行時詢問這個 ':name' 是否已經定義
+       限制在 scope-stack 中的搜索範圍
+       就可以做到這一點
+       return-point 中可以額外保存一個
+       scope-stack 搜索範圍 點
+       以在需要的時候 使用前一個 jojo 的搜索範圍
+
+  - k ::
+       但是
+       在 succedent 中
+       出現沒有被綁定的 local-variable 是沒有任何意義的
+       重載了兩種語義的東西是沒法以一致的方式處理的
+       並且
+       應該不允許在運行時改變一個 local-variable 的值
+
+  - x ::
+       需要在運行時生成前項
+       是因爲不定元在 scope-stack 中的的地址
+       只有在運行是才能確定
+       而結構化的數據作用於不定元的時候
+       需要用到這些地址
+       並且
+       不能用 scope-stack 從上到下的 offset
+       來做爲 local-variable 的存在
+       因爲從頂到下的 offset 會變化
+       而從某個固定點到上的 offset 不好處理 [因爲嵌套]
+       並且
+       因爲前項作用的相對平凡性
+       所以這裏的作用與 遞歸複製鏈表 的速度相差無幾
+       在運行時處理是正確的選擇
+       但是
+       這種運行時處理
+       並不是爲了以一致的方式處理 ':name'
+       因爲那是不可能的
+
+  - k ::
+       但是其實可以讓 scope-stack 中
+       不保存 local-variable
+       而保存 local-variable 的引用
+
+  - x ::
+       這是不行的
+       因爲 local-variable 的實體不能存在在函數體中
+       這是因爲 一個函數體的遞歸作用會覆蓋之前的 local-variable
+       不直接使用 scope-stack 是沒有任何意義的
+       我們還是按照之前的計劃來進行吧
+
+  - k ::
+       那麼
+       先說簡單的後項
+       后項就被編譯成對 ':name' 做爲 tag 的查找
+       注意
+       查找的範圍由當前的 return-point 中
+       所保存的新域確定
+       找到的一定是 local-variable 中保存的值
+       並且
+       不允在后項中更改局部變元的值
+       那麼前項如何呢
+
+  - x ::
+       先不考慮 '#name'
+       先考慮函數體
+       而函數體中不允許 '#'
+       前項也被編譯成運行時的 scope-stack 相關的行爲
+       ':name' 運行時作用的效果
+       一定是入棧 local-variable
+       同名的 ':name' 要入棧相同的 local-variable
+       最簡單的實現方式
+       就是在 scope-stack 中尋找
+       如果沒有 就入棧新的
+       如果有 就入棧舊的
+       具體地
+       前項 和 後向
+       都編譯成 一個 tag 入棧
+       然後跟着 一個處理 tag 的函數
+       | 前項 | antecedent-local-variable |
+       | 後向 | succedent-local-variable  |
+       而上面所描述的語義就由這兩個函數來實現
+
+* >< literal <2015-11-23>
+
+  - x ::
+       如何處理各種類型的 literal
+
+  - k ::
+       做爲 threaded coda 的 literal
+       可以被實現爲一個對 return-stack 有 effect 的函數
+       但是對函數體的編譯目前是被一個 map 處理的
+
+* >< postfix notation <2015-11-23>
+
+  - x ::
+       發現之前認爲需要特殊處理的部分
+       都可以簡單得使用基本的 後綴表達式 語義
+       但是又發現
+       後綴表達式 與 正常從左上到右下的文本編輯順序 不一致
+
+  - k ::
+       我想這裏可以問
+       爲什麼需要出離基本的後綴表達式語義
+       設計語法的時候完全沒有考慮語法的實現方式
+       設計與實現是分離的
+       只有在 forth 中
+       編譯時是被運行時控制的
+       現在發現在很多地方又需要這種控制
+
+  - x ::
+       使用縮進來做語法
+       是爲了避免末尾的括號
+       以方便編輯
+       之前認爲在縮進語法和編譯之間
+       應該有個 sexp 中間層
+       #+begin_src scheme :tangle no
+       (define-function 'map
+         '(%sequent
+           (null :function)
+           (null))
+         '(%sequent
+           (:car :cdr cons :function)
+           (:car :function apply
+            :cdr :function recur cons)))
+       #+end_src
+       但是更合適的 可能是純粹後綴表達式的中間
+       因爲現在
+       已經不使用 explain-function
+       來處理 pattern-match 了
+       而是退回到一般的函數語義
+
+  - k ::
+       避免末尾括號對於編輯來說很重要
+       是一定要實現的性狀
+       語法解析的第一個階段就是要處理這些縮進
+       從縮進出發 把括號補全
+       然而
+       對語法的靈活擴展 也許是需要被排斥的性狀
+       因爲它不利於語言生態系統的穩定性
+
+* * + -
+
+  - x ::
+       '*' 被用來做命名 和 tag-group
+       除此之外的其他
+       '+' 和 '-' 都是無名的列表項
+       有名的 '*' 內
+       默認都是模式匹配的函數定義
+       可以更改默認的對 '*' 內文本的處理方式
+       也可以在 '*' 內使用額外的標記來聲明使用別的處理方式
+
+  - k ::
+       但是 top-level 的東西呢
+
+  - x ::
+       之前想過
+       可以把 路徑名 和 文件名
+       做爲隱含的 tag-group 前綴
+       這樣
+       所謂的 top-level 就不是就某個文件而言的了
+       而是就 所聲明的根節點而言的
+       具體地
+       我們現在遇到的其實是兩個問題
+       一個是 想要用 top-level 的 '- entry' 聲明
+       一個是 想要在函數體內部做 註釋
+
+  - k ::
+       前者其實是在編譯時期把 一個 jojo 入返回棧
+       但是可能不能允許在編譯時期亂動返回棧
+       因爲在 cicada 編譯自己的函數時
+       返回棧中已經有函數在等待返回了
+       也沒有必要這樣做
+       只要有一個入口聲明就夠了
+
+  - x ::
+       並且所說的 路徑做爲隱含 tag-group
+       也是不好的設計
+       對系統路徑完全不敏感纔好
+
+  - k ::
+       那麼就有 top-level 了
+       在讀一個文件的時候
+       沒有 tag-group 前綴的 code black 就屬 top-level
+       編譯的時候可以識別出它們然後特殊處理他們
+
+  - x ::
+       還有函數內部的臨時註釋
+       可以用 ':' 來做類型
+       把 '-' 讓出來做註釋
+       全局的時候 也忽略 '-'
+       只處理 '+' 和其他
+       這樣就能暫時滿足當前的需求了
+       其實還有個方式是
+       把不縮進 於 '+' 的都當作是註釋
+       但是這樣就不整齊
+       所以放棄這種設計
+
+  - k ::
+       我觀察到我們自己的風格了
+       那就是
+       即便是沒有列表的單塊文檔
+       也要用一個單個列表 '-' 來處理
+       這是爲了是的文檔的排版能夠整齊
+       同時這也將使得數據結構更加正規
+       這樣就簡化了實現方式
+
+  - x ::
+       也就是說
+       在有名列表處理完畢之後
+       還需要一個對無名列表的處理
+       比如可以用 '+' 外加 '<name>' 之類的關鍵詞
+       也就是說把 '<>' 做爲標記語言的語法
+       這樣就能獲得和 html 之間的有趣關係了
+
+* 報錯信息 <2015-11-28>
+
+  - x ::
+       結構化的報錯信息
+       可以根據 tag-group 來報錯
+
+* structured data <2015-12-05>
+
+  - x ::
+       最重要的結構化數據是
+       string
+       vector
+       另外
+       type element constructor without function body
+       會生成特殊的 list cons with element-constructor-tag [not type-tag]
+       這些 without function body 的函數
+       被認爲是平凡的可逆函數
+
+  - k ::
+       我們實現這些基本數據類型的時候並不必考慮類型
+       畢竟相關的函數一定都是 primitive-function
+       因爲類型就是特殊的 structured data
+
+  - x ::
+       類型如何是 特殊的 structured data
+
+  - k ::
+       type-constructor 本身也是
+       without function body 的平凡可逆函數
+
+  - x ::
+       我看 <trivial> 可以做爲他們的函數體的標籤
+       但是我們是不是應該考慮一下之後類型系統要如何加進來
+       那一定要是 structured data 實現之後了
+
+  - k ::
+       也就是說 <trivial> 一定要在 string 和 vector 之前實現
+       實現它之後 就馬上去給之前的所有 primitive-function 加上類型
+       之後再編譯函數體的時候
+       就帶有類型檢查了
+
+  - x ::
+       那麼 <trivial> 如何實現
+       一定要用 類似鏈表的數據結構嘛
+       或者可以用就地分配的內存
+
+  - k ::
+       鏈表的特點是
+       每個 data 的大小是固定的
+       先分配出這個大小
+       其內區域需要分配更多內存的時候可以跟在後面
+       就地分配的特點是
+       每個 data 的大小不定
+
+  - x ::
+       想要使用就地分配的原因是
+       減少一層間接 複製方式簡單[不用遍歷]
+       不能使用就地分配的原因是
+       影響到處理數據的算法
+       比如某個 data 有個域用來保存字符串
+       更改這個域的方式在就地分配時是複雜的
+       新字符串的長度大於舊字符串時
+       需要 複製整個 data 或 臨時轉爲間接
+       不論如何都是無法接受的
+
+  - k ::
+       那麼就決定使用鏈表式的實現方式了
+
+  - x ::
+       沒錯
+       每個 data 單位就像是 lisp 的 cons 一樣
+       只不過比 cons 要豐富
+       豐富在於
+       數據域的個數可以超過兩個
+       另外還可以包含一些元數據 比如類型標籤和長度
+
+  - k ::
+       注意
+       類型 並不能完全跟着數據走
+       那樣就是真正的 動態類型語言 了
+       只有 類型標籤 能跟着數據走
+       他們的使命是 幫助分配 equal? copy 之類的函數
+       然而
+       完整的類型信息會保存到有名字的東西裏面
+       比如 函數 變元和常元[特殊的函數]
+       比如 局部變元[local-variable 有 field 可以保存完整的類型信息]
+
+  - x ::
+       考慮 統一的命名命名空間
+       函數是特殊的變元
+       還是變元是特殊的函數
+
+  - k ::
+       函數像是特殊的變元
+       因爲它裏面保存了一個類型構造子爲 sequent 的數據
+       變元像是特殊的函數
+       因爲在函數複合語義中 它就是一個類型爲 ( -> ...) 的特殊函數
+
+  - x ::
+       但是其實他們都是 sequent
+       只不過 因爲帶有不同的 explainer
+       所以有不用的使用方式
+
+  - k ::
+       現在所觀察到的 function-body
+       就是一個特殊的[最重要的] structured data 了
+
+  - x ::
+       沒錯
+       同時 function-body 又是一個 就地分配內存的例子
+       所以我們一定不能以一致的方式去實現所有的 structured data
+       或者說 function-body 已經不是 <trivial> 的數據類型了
+       一個 <trivial> 比如 list 和 cons
+
+* <trivial>
+
+  - <trivial> 只是標記函數體
+    被標記的函數
+    作用時所需要的信息
+    都包含在函數的類型聲明中了
+    比如
+    我們可以利用類型聲明中的信息
+    製作一個函數體
+
+  - 既然有兩類 <trivial> 了
+    那麼其中之一可以被聲明爲
+    <type-constructor>
+    另一類被聲明爲
+    <element-constructor>
+    注意
+    <trivial> 的意思是 平凡的可逆函數
+
+* implementation
+
+  - integer
+    in stack : ['type, 'integer]
+    the information about 'integer as a primitive-type
+    should be stored at where ?
+    the tag-group-hash-table ?
+    maybe a type should be implemented as a sequent
+    integer should not be a tag or tag-group
+    but a function address
+    thus in the function-body
+    we can say that this is a primitive-type
+    and information about the 'integer is stored
+    so
+    in stack : ['type, address of integer as a fucntion]
+    address :
+    primitive
+    'integer
+
+  - integer list
+    in stack : ['type, address]
+    non-primitive
+    'list
+
+  - primitive vs non-primitive means
+    there should be different explainers for type
+    just as function
+    for they are both sequent
+
+  - if type looks like function
+    and type have a name field
+    so should function
+    thus one function-body only can be binded to one name
+    thus from a function address
+    I can ask the name of the function
+
+  - 類型一定要能以很好的方式被當成數據返回並被處理
+    ( integer -> integer )
+    函數也需要能夠如此
+    既然函數與類型類似
+
+  - 類似但是有差別
+    那麼差別是什麼呢
+    除了作用時間不同之外幾乎就沒有差別了
+
+* tag & tag-group
+
+  - maybe tag should not be exposed to user
+    every thing about naming should be about tag-group
+
+* threaded code
+
+  - threaded code should not be jmp jmp
+    it is from old implementation tech
+    and it limits the structure of the function-body
+
+  - 現在覺得 不容易實現所需要的語義
+    是因爲 sequent 的結構
+    被限制與古典的 forth threaded code 的實現方式
+    只要重新設計這個機構
+
+* data
+
+  - data 的數據域中不可能包含嵌套的 data 的類型
+    最多只能包含類型標籤
+
+  - 假設 data 的數據域中包含類型標籤
+    但是有的時候確實需要不包含類型標籤
+    比如某些 primitive 的情況
+    既然能夠處理 primitive 的情況
+    那麼 類型標籤看來也就沒有必要了
+
+  - 假設 data 的數據域中不包含類型標籤
+    要知道 在取出 data 的數據域並返回的時候
+    是需要類型標籤的
+    但是此時的類型標籤是可以推導出來的
+    所以說 目前所能想像到的所需要的信息都已經在了
+    只要想像語義是否定義良好就行了
+    先做次假設
+    不行再改
+
+* 類型構造子 和 類型元素構造子的區別
+
+  - 類型構造子[返回類型爲 type 的特殊 <trivial> 函數]
+    的名字 可以被做爲 type-tag
+
+* type-tag
+
+  - type-tag 有可能是 在接口方面 被隱藏起來的實現技術
+
+* 自治性
+
+  - 命名空間是統一的
+    所找到的名字之內的東西如何解釋是自治的

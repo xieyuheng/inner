@@ -1,0 +1,240 @@
+#+TITLE:  learning herbrand
+#+AUTHOR: 謝宇恆 / XIE Yuheng
+
+* ===================================
+* note source
+  * JACQUES HERBRAND LOGICAL WRITINGS
+    Edited by WARREN D.OOLDFARB
+    Harvard University
+    A Translation of the' Ecrits logiques·. edited by JEAN VAN HEIJENOORT
+* on proof theory                     :1928:
+* the consistency of the axioms of arithmetic :1929:
+* on several properties of true propositions and their applications :1929a:
+* on the fundamental problem of mathematics :1929b:
+* investigations in proof theory      :1930:thesis:
+** notation
+   * 所有類型的符號都有可數多個
+   * elementary descriptive function [fundamental descriptive function]
+   * descriptive function
+     elementary descriptive function 由嵌套生成
+   * primitive constant
+     0-place function
+   * individual
+     variable and descriptive function
+   * predicate
+     可視爲特殊的 function
+     也可另取一類
+   * atomic proposition
+     由 predicate 和 function 嵌套構成
+     最外層是 predicate
+   * proposition
+     由 atomic propositions 在 connective 和 quantifier 下生成
+     * connective
+       | negation      | ~  | primitive     |
+       | disjunction   | v  | primitive     |
+       | conjunction   | &  | non-primitive |
+       | conditional   | -> | non-primitive |
+       | biconditional | == | non-primitive |
+       non-primitive 到 primitive 的化歸
+       可以減少在使用歸納法時需要檢查的分支情況
+     * quantifier
+       | universal quantifier   | (+x) |
+       | existential quantifier | (-x) |
+   * apparent variable [bound variable]
+     real variable [free variable]
+   * elementary proposition [quantifier-free proposition]
+   * propositional function
+     1. of its real variable
+     2. of its any atomic proposition occurring in it
+   * proposition is true [such proposition is called identity]
+     provable in quantification theory
+     proposition is true in a theory
+     provable in that theory
+** introduction
+   * 關於歸納法的使用 有很長篇幅的說明
+     這是爲了 把使用歸納法的範式總結出來
+     在之後的論證中 就可以不必敘述歸納法的細節了
+     [在我看來這些說明是多餘的]
+** the theory of identities of the first kind
+*** signs
+    * 只用 negation 和 disjunction 來生成命題
+      即 只有兩個基本生成子
+      其他命題連詞用上面兩個來定義
+      這是爲了方便歸納法的使用
+*** rules of reasoning
+    * 推演規則是
+      1. 五個命題演算公理的代入
+      2. 蘊含消去
+*** consequences
+    * 以所生成的所有命題爲點的空間
+      可證的 帶有 蘊含連詞[條件連詞] 的命題
+      可以用來定義空間中的有向邊[二元謂詞]
+      [用 可證 這個一元謂詞 來定義其他謂詞的例子]
+      這個 有向邊 可以生成 有向路 和 無向路[等價關係][equivalence]
+      用歸納法可以證明 這個等價關係 在空間點的生成子下被保持
+      即 相等的點可以代入等式兩邊
+    * 無向路[等價關係] 這個 二元謂詞 的特點在於
+      若命題在這個等價關係下相等
+      那麼兩個命題的可證性相同
+      即 對其中一個的證明可以被轉化爲對另一個的證明
+      因爲此時已知 A -> B 且 B -> A
+      如果有對 A 的證明
+      利用 A -> B 就得到對 B 的證明
+    * 上面
+      定義 有向邊 這個 二元謂詞 的方式 表明
+      蘊含連詞
+      1. 可以被視爲 空間中點的生成子
+      2. 也可以被視爲 空間中關於點的二元謂詞
+      去定義這個謂詞 並證明相關性質 的過程
+      可以被認爲是 去揭示語法之語義 的過程
+      因爲對理論做了很大程度的化歸
+      所以這些語義被藏起來了
+*** logical values
+    * 以 bool 代數 爲模型 證明一致性
+      一致性 被定義爲 不能同時推演出一個命題與它的否定
+      只要用歸納法證明 推演規則 所推到出來的都是[就模型而言的]恆真式 即可
+      即 形式的真[可證] 蘊含 模型中的真
+    * 注意
+      一致性 是有內蘊與形式系統的定義的
+      而就模型而言的 一致性
+      1. 可以被認爲是 證明內蘊的一致性的手段
+      2. 也可以被認爲是 對內蘊與形式系統的一致性 的語義解釋
+*** the two normal forms of a proposition
+    * 這裏的目的是 證明就模型而言的 完備性
+      即 模型中的真 蘊含 形式的真[可證]
+    * 給出算法來把 proposition 化爲如下兩種範式
+      1. disjunctive normal form
+         a sum of products of simple propositions
+      2. conjunctive normal form
+         a product of sums of simple propositions
+      simple proposition 是
+      atomic proposition
+      或 atomic proposition 外加一個否定
+    * 注意上面對 proposition 的轉化
+      是對 proposition 的恆等變形
+      這裏 恆等變形 是就 形式體系中所定義的等價關係而言的
+      即 以無向路 爲等價關係
+      這個 等價關係 捕捉的是 可證性的等價
+      即 相等者 其二者之間的證明可以相互轉化
+    * 一個 運算律
+      即 一個對公式的恆等變形
+      這種 恆等變形 是用等式來表達的
+      每一個等式都代表 對等式兩邊的命題的證明 可以相互轉化
+      也就是說
+      每個 運算律 都是一個小引理
+      這些引理 是需要利用 推演規則 來證明的
+      [作者說 這些引理 羅素 證明過了 所以都省略了]
+    * 這裏利用範式來證明就模型而言的完備性
+      其實先解決了 命題演算 的 判定問題
+      即 找到了一個算法 來判斷 一個命題是否可證[並且找到它的證明]
+      算法如下
+      把命題化爲 product of sums
+      首先
+      這個命題可證的一個顯然的充分條件是
+      每個 sum 中都同時有 某個 A 和 A 的否定
+      [A 或 否 A 的可證性也是個引理 作者聲明羅素證明過它了]
+      其次
+      可以發現這也是必要條件
+      假設有某個 sum 其中沒有任何 A 和 A 的否定 同時出現
+      此時我們已經有了就模型而言的一致性
+      即 形式的真[可證] 蘊含 模型中的真
+      所以爲了證明 不具備所預證明的必要條件的命題 不可證
+      只要找它的一個在模型中的 假的賦值 即可
+      在上面假設的 sum 中
+      給不帶否定者賦值假 給帶否定者賦值真
+      則得到所求賦值
+      這樣就得到了對 可證性 的判定
+    * 這個對 可證性 的判定
+      顯然也是 對是否是 恆真式 的判定
+      二者判定相同
+      即 模型中的真 等價與 形式的真[可證]
+      完備性和一致性都得證了
+      [注意這個證明中用到了 之前獨立正過的 一致性]
+    * 注意
+      上面每每提到引理的地方 都是需要用 推演規則 來證明的
+      當更換形式系統的時候 重新證明這些引理[運算律]就足夠了
+      也就是說
+      這裏對一致性與完備性的證明
+      其實是利用一個 抽象的代數結構 來完成的
+      [即 抽象的 bool 代數]
+    * 另外
+      也可以反過來理解
+      首先我們知道
+      1. 模型[具體的數學結構]
+      2. 抽象的代數 以及其中的計算
+      設計形式系統時
+      我們要找出足夠的公理與推演規則
+      使得可以恢復我們所想要形式化的模型的代數性質
+*** an algebraic criterion
+    * 這一節的討論說明
+      上面的兩種範式的靈感
+      來源於 多項式 的完全展開
+      而之所以有兩種範式
+      是因爲
+      且 與 或 之完全對稱 導致了兩種分配律
+    * 這裏關於 範式 或 範型 這個詞
+      我可以總結出非常好的教學法
+    * 作者之前把形式系統劃歸到了 否定 和 或
+      利用 或 與 且 的完全對應
+      作者在不使用[也許因爲不知道] 不交或 的情況下
+      也能討論 形式系統 與 二元有限域 之間的關係
+      即 且 對應 乘法
+      而 0 對應 真
+      [考錄對 加法 的處理 尤其有趣 加法被 二元有限域 中的加一代替了]
+    * 這裏 二元有限域 還建議了一種看來更簡單的 判別算法
+      即 看二元有限域中的多項式是否恆爲零
+      把邏輯問題劃歸爲數論問題 看來獲得了更簡單的算法
+      這要歸因與 我們對 二元有限域 的熟悉
+*** transformation of the primitive propositions into rules
+    * 這裏通過減少公理性的命題公式
+      並增加推演規則
+      作者獲得了 等價於 sequent calculus 的東西 [其特點是語法中帶有否定詞]
+      並推到出了 羅素 的形式體系中的 公理性的命題公式
+** the theory of identities of the second kind
+*** signs
+*** rules of reasoning
+    * 這裏有很多套的推演規則可以使用
+      這導致 初學時
+      想要把語義聯繫起來
+      並體會到形式推演規則的合理性 非常困難
+*** consequences
+    * 以同樣的方式定義等價關係[無向邊]
+    * 母體[matrix]
+      去掉量詞 全部變元都是自由變元
+    * 前束式[前束範式][prenex form]
+      用量詞 在最前面 指定好 全部約束變元 的式子
+      推演規則中的某些規則
+      好像專門爲把公式變形到 前束範式 而設計一般
+      歸納證明即可
+*** connection with the theory of identities of the first kind
+*** continuation of the preceding section
+*** another method
+*** the methods of russell and whitehead
+*** finite domains
+*** applications
+** mathematical theories
+*** the general notion of a mathematical theory
+*** elementary study of mathematical theories
+*** incomplete descriptions
+** arithmetic
+*** arithmetic without apparent variables
+*** a consistency theorem
+*** the canonical form of a proposition
+*** a criterion of truth
+*** introduction of apparent variables
+*** a necessary condition for truth
+*** a criterion of truth
+*** the axiom of mathematical induction
+** the properties of true propositions
+*** thorough study of the rules of passage
+*** property a
+*** properties band c
+*** infinite domains
+*** fundamental theorem
+*** consequences
+* the principles of hilbert's logic   :1930a:
+* on the fundamental problem of mathematical logic :1931:
+* unsigned note on herbrand's thesis, written by herbrand himself :1931a:
+* to jacques hadamard                 :1931b:
+* on the consistency of arithmetic    :1931c:
+* ===================================

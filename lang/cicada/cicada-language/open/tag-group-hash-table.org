@@ -1,0 +1,103 @@
+* 題解
+
+  - tag group over tree
+
+* 初始 <2015-10-09>
+
+  - not tree
+    but tag group
+    implemented by hash-table
+
+  - every tag group can have content
+    for example
+    a list of function definitions
+    a list of comments
+
+  - the format have not special design for cicada-language
+    to make it not limited to cicada-language
+
+  - the meta-data of content
+    must be written in an uniform way
+    the meta-data [configuration]
+    must be written in the same language
+
+  - to design the format to be as symmetric as possible
+
+  - good default configuration
+
+  - '*' named tag
+    '-' unnamed list
+    '+' named meta data of a tag
+
+  - in configuration you can set key word of a file
+    first '+' is configuration for the file itself
+
+  - 但是 不論如何 都要先實現對 縮進的 '*' 的語法解析
+    從樹狀圖來生成一個 tag group hash table
+    忽略順序
+    並且 一個 group 中
+    重複的 tag 也消除
+    這樣就能最大限度維護 tag 的語義
+
+  - 如果重複的 tag group 出現了
+    就把其內容合併爲一個
+
+  - 需要能夠刪除 tag-group-hash-table
+
+  - 需要額外使用 name-hash-table
+    來避免 重複的 tag 被做爲字符串多次保存
+    這樣 jo 就不保存在 name-hash-table 中了
+    name-hash-table 也許應該被命名 symbol-hash-table
+
+  - 不同的輸入字符串能夠生成相同的 tag-group-hash-table
+    但是 構成差異的數據還是要保存在 tag-group-hash-table 中
+    做爲元數據 以便重新輸出 內存中的東西
+    就是說 商空間 在做商過程中 所忽略的信息要保存下來
+    有各種方案可以使用
+    1. 單單保存 用以 hash 的字符串
+       這裏所有的信息都有了
+    2. 保存語法解析之後的信息
+    也就是說 基本把源代碼全都保存在內存裏了
+
+  - 必須完全要求縮進
+    在把字符串讀進來之後
+    縮進就被刪除
+
+  - 我們現在 已經可以着手實現 只有 '*' 的版本的語法解析器了
+
+* 醞釀 <2015-10-10>
+
+  - 對於 tag-group-hash-table 的操作主要有兩個
+    1. 讀 函數題的代碼 來編譯個函數到內存中 時
+       需要 從 tag-group 的字符串表示
+       找到 tag-group entry 中保存的東西
+       用到了 tag-group-hash-table:search
+    2. 製作好一個函數 需要個這個函數綁定名字 時
+       此時需要 tag-group-hash-table:search
+    可以想像
+    在 '1.' 中
+    搜索名字時
+    可以靈活控制 所搜索的 tag
+    函數體中可能 只出現一個 tag
+    可以想像各種方式來指定其他的 tag
+    比如
+    當前定義的函數 的 tag prefix 可以加上來
+    import 的 tag prefix 可以加上來
+
+* 整理 <2015-10-11>
+
+  - general purpose
+    not only for cicada-language
+
+  - tag-group over tree
+    tag-group-hash-table uses tag-hash-table
+
+  - no order in a tag-group
+    no dup in a tag-group
+
+  - a tag-group can have data
+    a tag-group occurs twice
+    the data get appended
+
+  - strict format
+    strict indentation

@@ -1,0 +1,67 @@
+#+TITLE:  筆記 / note
+#+AUTHOR: 謝宇恆 / XIE Yuheng
+
+* 數學 / math
+
+*** 證明 / proof theory
+    - [[math/proof-theory/an-investigation-of-mathematical-deduction/contents.html][演繹法研究 / an investigation of mathematical deduction]]
+
+*** 構造 / constructivism
+    - [[math/constructivism/learning-constructivism/contents.html][構造主義學記 / learning constructivism]]
+    - [[math/constructivism/math-structure/contents.html][數學結構 / math structure]]
+    - [[math/constructivism/level-of-arithmetic/contents.html][算數之級 / level of arithmetic]]
+
+*** 幾何 / geometry
+    - [[math/geometry/shape-of-nature/contents.html][自然之形筆記 / shape of nature note]]
+
+* 計算 / computation
+
+*** 引導 / intro
+    - [[computation/intro/SICP-note/overview.html][SICP 記 / SICP note]]
+    - [[computation/intro/note-on-combinator/overview.html][組合子記 / note on combinator]]
+
+*** 程語 / programming language
+    - [[computation/programming-language/programming-language-note/show-all.html][程序語言 / programming language note]]
+    - [[computation/programming-language/the-inspiration-from-joy/contents.html][愉快之靈感 / the inspiration from joy]]
+    - [[computation/programming-language/daedalus/contents.html][青澀的戴达勒斯 / daedalus]]
+    - [[computation/programming-language/tutorial-of-shen/overview.html][神語引導 / tutorial of shen]]
+    - [[computation/programming-language/tutorial-of-common-lisp/overview.html][common-lisp 引導 / tutorial of common-lisp]]
+    - [[computation/programming-language/tutorial-of-javascript/overview.html][javascript 引導 / tutorial of javascript]]
+
+*** 類型 / type
+    - [[computation/type/homotopy-type-theory-note/overview.html][同倫類型論記 / homotopy type theory note]]
+
+*** 蟬語 / cicada-language
+    - [[computation/cicada-language/cicada-nymph-note--chinese/overview.html][小蟬記 / cicada nymph note]]  [[computation/cicada-language/cicada-nymph-note/overview.html][(pure english version)]]
+    - [[computation/cicada-language/cicada-type-system/overview.html][蟬語類型系統 / cicada type system]]
+
+*** 算法 / algorithm
+    - [[computation/algorithm/learning-algorithm/contents.html][算法學記 / learning algorithm]]
+
+*** 成爲 / to be
+    - [[computation/to-be/to-be-the-little-schemer/overview.html][成爲小小策略家 / to be the little schemer]]
+    - [[computation/to-be/to-be-the-seasoned-schemer/overview.html][成爲老練的策略家 / to be the seasoned schemer]]
+    - [[computation/to-be/to-be-the-reasoned-schemer/overview.html][成爲言之有據的策略家 / to be the reasoned schemer]]
+    - [[computation/to-be/to-be-the-little-prover/overview.html][成爲小小證明家 / to be the little prover]]
+
+*** 網絡 / web
+    - [[computation/web/artanis-learning-note/overview.html][artanis 學記 / artanis learning note]]
+
+* 生物 / biology
+
+*** 神經 / neuroscience
+    - [[biology/neuroscience/learning-neuroscience/contents.html][神經學記 / learning neuroscience]]
+
+* 語言 / linguistic
+
+*** 小學 / chinese
+    - [[linguistic/chinese/shi-ci-bi-ji/show-all.html][釋詞筆記 / word explaining note]]
+
+*** 比較 / comparative linguistics
+    - [[linguistic/comparative-linguistics/show-all.html][比較筆記 / comparing note]]
+
+* 哲學 / philosophy
+
+*** 道家 / daoism
+    - [[philosophy/daoism/zhuangzi/contents.html][莊子記 / ZHUANG Zi note]]
+    - [[philosophy/daoism/independence-awake/contents.html][獨性之覺醒 / independence awake]]

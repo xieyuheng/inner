@@ -1,0 +1,44 @@
+#+AUTHOR: 謝宇恆 / XIE Yuheng
+
+* 簡歷 / resume
+
+*** 自述 / self statement
+    - [[xieyuheng/self-statement/chinese/show-all.html][漢語]]
+    - [[xieyuheng/self-statement/english/show-all.html][english]]
+    - [[xieyuheng/self-statement/toki-pona/show-all.html][toki pona]]
+
+*** 聯絡 / contact
+    | email | xyheme (at) gmail (dot) com  |
+    | city  | ShenZhen of China            |
+    | IRC   | #cicada-language at freenode |
+
+
+* 人物 / person
+  - [[person/show-all.html][人物 / person]]
+
+* 筆記 / note
+  - [[note/show-all.html][筆記 / note]]
+
+
+* 出版 / publish
+
+*** 數學 / math
+    - 演繹法研究 / an investigation of mathematical deduction
+
+* 講授 / lecture
+
+*** 計算 / computation
+    - [[http://the-little-language-designer.github.io/cicada-nymph/course/contents.html][實驗性的匯編實驗 廣州中山大學]]
+      [[http://the-little-language-designer.github.io/cicada-nymph/course/contents.html][experimental assembly programming experiment]]
+      [[http://the-little-language-designer.github.io/cicada-nymph/course/contents.html][SYSU, GuangZhou, 2015]]
+
+* 製作 / make
+
+*** 軟件 / software
+
+*** 硬件 / hardware
+
+*** 網站 / web site
+    - personal org -- this site ([[https://github.com/xieyuheng/xieyuheng.github.io][source]])
+    - [[http://cicada-language.github.io][cicada langauge]] ([[https://github.com/cicada-language/cicada-language.github.io][source]])
+    - [[http://the-little-language-designer.github.io/][the little language designer]] ([[https://github.com/the-little-language-designer/the-little-language-designer.github.io][source]])

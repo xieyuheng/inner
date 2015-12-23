@@ -1,0 +1,10 @@
+#+TITLE:  tutorial of emacs-lisp
+#+AUTHOR: 謝宇恆 / XIE Yuheng
+
+* ===================================
+* note
+* -----------------------------------
+* function application
+* lambda abstraction
+* data type
+* ===================================

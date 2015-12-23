@@ -1,0 +1,16 @@
+* prototype
+
+  - x ::
+       我發現我們所選擇的實現策略還不夠 prototype
+       這在於
+       我們過度追求 threaded-code 了
+       如果不考慮 不同語言的 host 可以共用 vm
+       那麼實現速度就快多了
+
+  - k ::
+       比如
+       類型檢查算法的設計就可以分開來實驗
+       可以用 prolog 之類的語言
+       編譯器可以用 haskell 或 ocaml 之類的語言
+       runtime 可以用動態語言
+       等等

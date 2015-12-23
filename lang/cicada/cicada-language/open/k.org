@@ -1,0 +1,208 @@
+* k <2015-12-09>
+
+  - 新
+
+* 新
+
+  - x ::
+       我們害怕新的東西不是嗎
+       每當我停止學習
+       每當我停止觀察
+       看似是因厭倦而爲之
+       其實不都是因爲我害怕在觀察中發現新的東西嘛
+
+  - k ::
+       也許如此
+       但是這種恐懼很不合理不是嘛
+       因爲
+       正是在這些對新知的觀察中
+       你體會到最大的快樂
+       爲什麼你會懼怕並排斥這種快樂呢
+
+  - x ::
+       我完全們有任何理由這樣做
+
+* invertible function
+
+  - x ::
+       我之前想
+       平凡的可逆函數應該省略函數體
+       現在我們不要省略函數體
+       試着以統一的方式來處理可逆函數
+
+  - k ::
+       注意
+       某個函數可以返回 某個類型的值才重要
+       它能作用於哪個類型的值不重要
+       前者纔是分類可逆函數的依據
+
+  - x ::
+       那麼
+       某個類型 :type 中的可逆函數 invertible function
+       需要
+    1. 本 -> :type
+    2. 逆 <- :type
+    3. 本的值域 逆的義域 [:type 的子類型] 的謂詞
+       - 逆的義域 正是模式匹配的關鍵
+    4. 複製函數
+
+  - k ::
+       注意
+       所說的 某個類型
+       是能夠做爲類型標籤在運行時被看到的
+       需要能夠從這個名字來分配到其他名字
+       以完成運行時的 匹配與複製
+       其中
+       匹配 用到 謂詞 和 逆
+       複製 用到 複製函數
+       我們先不考慮
+       如何編碼子類型關係 以完成完全性檢查
+       也不考慮
+       用語法擴展機制 來生成重複的底層代碼
+       我們單單考慮一下如此設計的效果
+
+  - x ::
+       此時通過聲明新的構造性的 元素構造子
+       你可以動態地擴展一個已有的類型
+       後果是
+       之前被證明的命題 之後就需要重新證明了
+       這種效果是可以想像的嘛
+
+  - k ::
+       這樣之前的證明就不足以做爲引理了
+       或者說 每當進行一次添加的時候
+       之前證明的命題就都不能做爲引理了
+       但是這是可以想像的
+       比如
+       你加載一個模塊進來
+       在你的模塊裏 你擴展了已有的數據類型
+       爲了使用之前的引理
+       你必須把你這些引理就你的擴展再重新證明一遍
+       當你的模塊退出之後
+       類型又回到了原來的狀態
+       之前的引理又有效了
+
+  - x ::
+       不行
+       這是不合理的
+       因爲不同的子類型標籤可能相互依賴
+       所以
+       必須要有一個基本覆蓋
+       複製 就由這個基本覆蓋完成
+       定義新的可逆函數的時候
+       不能添加新的構造性可逆函數
+
+  - k ::
+       是否之前的關於可逆函數的計劃根本就是不可行的
+       我不知道了
+
+  - x ::
+       我還是需要對可逆函數的 pattern match 的
+       因爲這是最簡單的 作用逆函數的方式
+       我們就按原來的計劃進行吧
+       使用一個基本覆蓋
+       暴露重複的底層代碼 先不考慮語法擴展機制
+
+* 類型信息 <2015-12-10>
+
+  - x ::
+       也許應該先處理類型信息
+       這樣就能利用這些元數據來決定
+       函數體內的字符串應該如何編譯了
+
+  - k ::
+       不行
+       因爲返回 type 的不一定就是類型構造子
+       所以關於編譯 必須要用額外的標籤來標記
+
+* 問題
+
+  - x ::
+       (1)
+       語法上如何聲明 類型構造子
+       和 它的 元素構造子 之間的關係
+       (2)
+       copy 應該以某個 類型構造子 爲單位實現
+       還是應該以 各個元素構造子 爲單位實現
+       (3)
+       發現目前所設計的語法缺少正規性
+       嘗試分析正規性
+
+  - k ::
+       (3)
+       我們嘗試設計 一般的 使用縮進的
+       帶有語法擴展機制的 標記語言
+
+* tg 問題
+
+  - x ::
+       目前的 tg 語義
+       相當於是 implicit import
+       而這種 implicit import 並不能滿足正常的需要
+       比如
+       #+begin_src cicada-language
+       * list
+         * null
+         * cons
+         * map
+         * has-length
+           * null
+           * cons
+           * map
+       #+end_src
+       在實現 list:has-length:map 的時候
+       可能會用到 list:cons
+       然而
+       cons 在 list:has-length:map 的函數體中出現時
+       如果
+       implicit import 的 tg 前綴
+       先是 list:has-length
+       後是 list
+       這樣
+       找到的就只能是 list:has-length:cons
+       而不是 list:cons
+       又如果
+       implicit import 的 tg 前綴
+       先是 list
+       後是 list:has-length
+       此時有可能同時以如下方式引用到二者
+       cons            -> list:cons
+       has-length:cons -> list:has-length:cons
+       但是 對於重名的函數 而言
+       has-length 這個 tg 前綴就浪費了
+       如果使用 explicit import
+       每次寫函數體的時候就都要帶有 explicit import 的信息
+       這就太羅嗦了
+
+  - k ::
+       給出 explicit import 的方式
+       使用後一種 implicit import
+       這樣每當需要
+       #+begin_src cicada-language
+       define-type-constructor: list
+         define-element-constructor: null
+         define-element-constructor: cons
+         define-function: map
+         define-type-constructor: has-length
+           define-element-constructor: null
+           define-element-constructor: cons
+           define-function: map
+       #+end_src
+       的時候
+       函數體內看來 就相當於 直接使用
+       #+begin_src cicada-language
+       define-type-constructor: list
+         define-element-constructor: null
+         define-element-constructor: cons
+         define-function: map
+         define-type-constructor: has-length
+         define-element-constructor: has-length:null
+         define-element-constructor: has-length:cons
+         define-function: has-length:map
+       #+end_src
+
+  - x ::
+       回到之前的 問題 (3)
+       tg 使用 '*' 來形成 namespace
+       '*' 重複的時候會被合併
+       這就違背了 HTML 中 tag 的語義
