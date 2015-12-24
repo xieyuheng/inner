@@ -1,0 +1,18 @@
+* 題解
+
+* 用操作系統的文件系統來實現簡單的數據庫
+
+  - 設想直接使用 os 的 fs 會有問題
+    比如
+    #+begin_src scheme
+    <data-point> / <data-point> -- <data>
+                 / <tag-group> -- <tags>
+                 / <tag-group> -- <tags>
+                 / ...
+    #+end_src
+    每個 等曾 <data-point> 路徑
+    必須有不同的名字 才能保證 main-key 唯一
+
+  - 只要脫離文件系統了
+    整個設計就是一個簡單的 db
+    根本不用考慮什麼奇怪的技巧

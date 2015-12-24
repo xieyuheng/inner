@@ -14,3 +14,17 @@
        編譯器可以用 haskell 或 ocaml 之類的語言
        runtime 可以用動態語言
        等等
+
+* 新嘗試 <2015-12-23>
+
+  - x ::
+       這次嘗試不使用底層的 byte-array 了
+       這樣就不要求 hosting language 具有處理 底層 byte-array 的能力了
+
+  - k ::
+       hosting language 之間的相互作用
+       可以用 更高層的 protocol 來實現
+       可以發現之前的 protocol 就是 byte-array
+
+  - x ::
+

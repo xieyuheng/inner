@@ -229,3 +229,333 @@
     把這個謂詞式子轉化爲等式
 
   - 可以發現 logic 編程的特點是能夠模式匹配運算結果
+
+* 實現
+
+  - 做爲 functor 的名字的同時
+    每個 atom 本身也數據
+    - 被 quote 的時候 lisp 中的 symbol 是數據
+      而 prolog 中默認所有的 atom 在 參數位置的出現是 quote 的
+      只有在頂層的
+
+* 語義
+
+  - 特點是
+    沒有 argument-stack
+    只有 scope-stack
+    我的 unification 是
+    函數體中 一個 sequent 的 antecedent 去匹配 argument-stack 中的值
+    但是這裏已經沒有 argument-stack 了
+    要知道
+    邏輯範式下 定義的不是函數 而是謂詞
+    只有函數才需要使用參數棧來 傳遞參數 和返回值
+
+  - 函數體 jojo 中的每個 jo
+    都代表 一個等待 unify 的 term
+    而不是一個等待作用的 function
+    每個函數體中項所帶有的變元 需要在 scope-stack 中查找來知道其意思
+    每個函數退出時 忘掉它自己的 scope-stack 就能維護 lexical-scope
+
+  - 好像還是需要一個類似 argument-stack 的棧
+    感覺上是 argument-stack 來處理 '且'
+    而 return-stack 來處理 '或'
+
+  - 但是 argument-stack 和 return-stack 看起來是連動的
+    所以
+    還是設想單獨的 return-stack
+    此時每個 return-point 是
+    return-point = [querying term, index to functor body]
+    需要兩個指針
+    一個是 return-stack-top
+    一個是 return-stack-current
+    但是這樣 可能使用的就不是深度優先的搜索了
+    但是這種語義是正確的 並不應該使用深度有限
+    注意 [term, index]
+    在遞增 index 的時候 會伴隨特定的副作用
+    比如
+    - 若前一個 jo 給 X 賦值了
+      那麼在遞增 index 的時候 就應該 undo 這個賦值
+    - 若錢一個 jo 入返回棧了新的元素
+      那麼在遞增 index 的時候 就應該 undo 這些入棧的元素
+
+  - 注意在每次 :- 成功時 都要 reset scope-stack
+    所有的 local-variable 都應該被匹配到了 [因爲這樣謂詞才算是成功]
+    所以 在返回的 term 的時候 取出這些匹配到的元素就行了
+    注意
+    如果匹配的時候兩個都是變元 那麼就會生成新的變元
+    新的變元所佔用的內存 在返回之後也是不能回收的
+    [上面的 '返回' 和函數返回意義不同]
+
+  - 比如
+    #+begin_src prolog
+    append([], List2, List2).
+    append([Head1|Tail1], List2, [Head1|Tail2]):-
+      append(Tail1, List2, Tail2).
+    #+end_src
+    問 append([a,b,c],[1,2,3],X).
+    X 匹配到了 [Head1|Tail2]
+    在返回 append(Tail1, List2, Tail2) 的時候
+    就不能把 所有的 Tail1, List2, Tail2 都代換成值
+    其中 Tail2 不能代換成值
+    因爲 雖然 匹配成功了
+    但是它所匹配到的是不定元
+    匹配的方式是
+    X = [a|Tail2]
+
+* lispy
+
+  - play
+    #+begin_src scheme
+    (append () :list2 :list2)
+    (append (cons :head1 :tail1) :list2 (cons :head1 :tail2) <-
+            (append :tail1 :list2 :tail2))
+
+    (goal:
+      (append (list a b c) (list 1 2 3) :x))
+    (variable-stack:
+      :x -- ?)
+
+    (unify:
+      (append (cons :head1 :tail1) :list2 (cons :head1 :tail2)))
+    (variable-stack:
+      :x -- (cons a :tail2)
+      :head1 -- a
+      :tail1 -- (list b c)
+      :list2 -- (list 1 2 3)
+      :tail2 -- ?)
+
+    (note:
+      此時需要複製壓縮了
+      但是 複製壓縮 的依據 看來有兩個
+      一個是 :x
+      一個是 新返回的
+      (goal:
+        (append (list b c) (list 1 2 3) :tail2)))
+
+    (goal:
+      (append (list b c) (list 1 2 3) :tail2))
+    (variable-stack:
+      :x -- (cons a :tail2)
+      :tail2 -- ?)
+
+    (unify:
+      (append (cons :head1 :tail1) :list2 (cons :head1 :tail2)))
+    (variable-stack:
+      :x -- (cons a :tail2)
+      :tail2 -- (cons b :tail2)
+      ------
+      :head1 -- b
+      :tail1 -- (list c)
+      :list2 -- (list 1 2 3)
+      :tail2 -- ?)
+
+    (goal:
+      (append (list c) (list 1 2 3) :tail2))
+    (variable-stack:
+      :x -- (cons a :tail2)
+      :tail2 -- (cons b :tail2)
+      ------
+      :tail2 -- ?)
+    #+end_src
+
+* 討論 <2015-12-24>
+
+  - x ::
+       上面的 :tail2 不能代換成值 的原因是
+       unify 的時候 它沒有匹配到確定的值
+       匹配的方式是
+       :x = (cons a :tail2)
+       :tail2 的不確定性來源於 :x
+       但是 完整的信息卻是保存在 :x 中的
+       當看 :tail2 的時候 是不能知道爲什麼這個元素是不確定的
+
+  - k ::
+       那麼能不能反過來編碼
+       把 unify 的方式
+       :x = (cons a :tail2)
+       轉化爲
+       :tail2 = (equal :x (cons a ::))
+       這樣當 :tail2 確定了的時候
+       就能順次去確定 :x
+
+  - x ::
+       總之在編碼這些信息的時候
+       如果使用一些技巧 看來就是可能有利於垃圾回收器的
+       又比如 我們可以通過生成共同引用
+       使得 從 :x 開始 也能獲得獲得全部的信息
+       需要 編碼的 unify 是
+       :x = (cons a :tail2)
+       此時可以生成公共引用點 (= :x (cons a :tail2))
+       然後
+       (:x
+         (= :x (cons a :tail2)))
+       (:tail2
+         (= :x (cons a :tail2)))
+       比如
+       :x = :y
+       (:x
+         (= :x :y))
+       (:y
+         (= :x :y))
+       注意
+       只有在做 unify 的時候
+       才有機會生成這種相互引用的編碼
+
+* lispy
+
+  #+begin_src scheme
+  (append () :list2 :list2)
+  (append (cons :head1 :tail1) :list2 (cons :head1 :tail2) <-
+          (append :tail1 :list2 :tail2))
+
+  ------
+
+  (goal:
+    (append (list a b c) (list 1 2 3) :x))
+  (variable-stack:
+    :x ?)
+  (unify:
+    (append (cons :head1 :tail1) :list2 (cons :head1 :tail2) <-
+            (append :tail1 :list2 :tail2)))
+  (variable-stack:
+    :x (= :x (cons a :tail2))
+    :head1 a
+    :tail1 (list b c)
+    :list2 (list 1 2 3)
+    :tail2 (= :x (cons a :tail2)))
+  (new-goal:
+    (append (list b c) (list 1 2 3) :tail2))
+  (variable-stack:
+    ;; copy to conjugate
+    :x (= :x (cons a :tail2))
+    :tail2 (= :x (cons a :tail2)))
+  (unify:
+    (append (cons :head1 :tail1) :list2 (cons :head1 :tail2) <-
+            (append :tail1 :list2 :tail2)))
+  (variable-stack:
+    :x:1 (= :x:1 (cons a :tail2:1))
+    :tail2:1 (= :x:1 (cons a :tail2:1)) (= :tail2:1 (cons b :tail2:2))
+    ------
+    :head1 b
+    :tail1 (list c)
+    :list2 (list 1 2 3)
+    :tail2:2 (= :tail2:1 (cons b :tail2:2)))
+  (new-goal:
+    (append (list c) (list 1 2 3) :tail2))
+  (variable-stack:
+    ;; copy to conjugate
+    :x:1 (= :x:1 (cons a :tail2:1))
+    :tail2:1 (= :x:1 (cons a :tail2:1)) (= :tail2:1 (cons b :tail2:2))
+    :tail2:2 (= :tail2:1 (cons b :tail2:2)))
+  #+end_src
+
+* 回收內存的時機
+
+  - 起初我想 回收內存應該激進 每次函數退除的時候都應該回收
+
+  - 之後我想 回收內存的時機應該延遲
+
+  - 最後我發現 根本不需要回收 local-variable 的內存
+    只要使用一個很大的 round-buffer 就可以了
+    假設沒有一個單獨的循環或者遞歸會使用到這麼多的內存就行了
+
+  - 注意
+    在 cicada-language 的類型檢查中也有同樣的問題
+    也可以使用同樣的處理方式
+
+  #+begin_src scheme
+  (define
+    (append () :list2 :list2)
+    (append (cons :head1 :tail1) :list2 (cons :head1 :tail2) <-
+            (append :tail1 :list2 :tail2)))
+
+  (goal:
+    (append (list a b c) (list 1 2 3) :x))
+  (variable-stack:
+    :x ?)
+  (unify: #1#
+    (append (cons :head1 :tail1) :list2 (cons :head1 :tail2) <-
+            (append :tail1 :list2 :tail2)))
+  (variable-stack:
+    :x (cons a :tail2)
+    ------
+    #1#
+    :head1 a
+    :tail1 (list b c)
+    :list2 (list 1 2 3)
+    :tail2 ?)
+
+  (goal: #1#
+    (append (list b c) (list 1 2 3) :tail2))
+  (unify: #2#
+    (append (cons :head1 :tail1) :list2 (cons :head1 :tail2) <-
+            (append :tail1 :list2 :tail2)))
+  (variable-stack:
+    :x (cons a :tail2#1)
+    ------
+    #1#
+    :head1 a
+    :tail1 (list b c)
+    :list2 (list 1 2 3)
+    :tail2 (cons b :tail2#2)
+    ------
+    #2#
+    :head1 b
+    :tail1 (list c)
+    :list2 (list 1 2 3)
+    :tail2 ?)
+
+  (goal: #2#
+    (append (list c) (list 1 2 3) :tail2))
+  (unify: #3#
+    (append (cons :head1 :tail1) :list2 (cons :head1 :tail2) <-
+            (append :tail1 :list2 :tail2)))
+  (variable-stack:
+    :x (cons a :tail2#1)
+    ------
+    #1#
+    :head1 a
+    :tail1 (list b c)
+    :list2 (list 1 2 3)
+    :tail2 (cons b :tail2#2)
+    ------
+    #2#
+    :head1 b
+    :tail1 (list c)
+    :list2 (list 1 2 3)
+    :tail2 (cons c :tail2#3)
+    ------
+    #3#
+    :head1 c
+    :tail1 ()
+    :list2 (list 1 2 3)
+    :tail2 ?)
+
+  (goal: #3#
+    (append () (list 1 2 3) :tail2))
+  (unify: #4#
+    (append () :list2 :list2))
+  (variable-stack:
+    :x (cons a :tail2#1)
+    ------
+    #1#
+    :head1 a
+    :tail1 (list b c)
+    :list2 (list 1 2 3)
+    :tail2 (cons b :tail2#2)
+    ------
+    #2#
+    :head1 b
+    :tail1 (list c)
+    :list2 (list 1 2 3)
+    :tail2 (cons c :tail2#3)
+    ------
+    #3#
+    :head1 c
+    :tail1 ()
+    :list2 (list 1 2 3)
+    :tail2 (list 1 2 3)
+    ------
+    #4#
+    :list2 (list 1 2 3))
+  #+end_src

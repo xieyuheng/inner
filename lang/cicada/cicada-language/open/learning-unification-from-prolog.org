@@ -105,6 +105,7 @@
 *** note declaration
 
     - declaration after computation
+      計算之後 再把 declaration 的 antecedent 作用到結果上
 
 *** note type-apply
 
@@ -135,6 +136,24 @@
       #+end_src
 
 ***** [has-length:cons] type-apply
+
+      - 在這次 type-apply 之後
+        不能馬上以複製壓縮的方式
+        回收 scope-stack 中
+        由 has-length:cons 所引入的
+        local-variable 所佔用的內存
+
+      - 在這裏看似也不需要回收
+        因爲所有的變元都還能引用到
+
+      - 而一般情形並非如此
+        可能又某些變元所佔用的內存是可以回收的
+        但是由於 匹配不定元時
+        會形成複雜的相互引用
+        所以並不是每個 type-apply 退除時
+        都應該回收內存
+
+      - 回收內存的時機應該延遲
 
       #+begin_src cicada-language
       local-memory^has-length:cons:
@@ -403,17 +422,3 @@
         :length^has-length:cons succ
         has-length
     #+end_src
-
-* prolog <2015-12-22>
-
-  - x ::
-       上面所使用的 unification 和 prolog 的語義有什麼異同
-
-  - k ::
-       首先是帶有計算
-       而計算其實就是 用 map 這個函數的 pattern match
-       一種 rewrite
-
-  - x ::
-       
-  - k ::
