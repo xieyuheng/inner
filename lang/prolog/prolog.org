@@ -269,13 +269,13 @@
     一個是 return-stack-top
     一個是 return-stack-current
     但是這樣 可能使用的就不是深度優先的搜索了
-    但是這種語義是正確的 並不應該使用深度有限
+    但是這種語義是正確的 並不應該使用深度優先
     注意 [term, index]
     在遞增 index 的時候 會伴隨特定的副作用
     比如
     - 若前一個 jo 給 X 賦值了
       那麼在遞增 index 的時候 就應該 undo 這個賦值
-    - 若錢一個 jo 入返回棧了新的元素
+    - 若前一個 jo 入返回棧了新的元素
       那麼在遞增 index 的時候 就應該 undo 這些入棧的元素
 
   - 注意在每次 :- 成功時 都要 reset scope-stack
@@ -301,6 +301,287 @@
     但是它所匹配到的是不定元
     匹配的方式是
     X = [a|Tail2]
+
+  - 所以
+    不應該在每次 :- 成功時 都要 reset variable-stack
+    因爲
+    有些 local-variable 會匹配到不定元
+    也許
+    在 undo 的時候 或者遇到 fact 的時候
+    可以 reset variable-stack
+    直接使用一個 round-buffer 不是長久之計
+
+  - 我們再來考慮一下 undo 和 fact
+
+  - undo [或者說 back]
+    就在於
+    一般的函數結束一個分支之後 就能出 return-stack
+    但是邏輯式中 要遍歷所有的分支
+    所以一個分支結束之後 也不能出 return-stack
+    只有當所有的分支都結束之後 才能出 return-stack
+    每個分支就是一個 jo
+    當 k(X):-f(X),g(X). 匹配成功
+    而把 f(X),g(X) 作爲 goal 入 goal-stack 之前
+    要先入 goal-stack 一個收尾 jojo
+    當作爲 goal 的兩個 jojo [ f(X) 和 g(X) ] 結束之後
+
+* k 的例子
+
+*** define
+
+    #+begin_src scheme
+    (define
+      (f a)
+      (f b))
+    (define
+      (g a)
+      (g b))
+    (define
+      (h b))
+    (define
+      (k :x <-
+         (f :x)
+         (g :x)
+         (h :x)))
+    #+end_src
+
+***
+    #+begin_src scheme
+    (goal: (k :y))
+
+    (variable-stack:
+      :y ?)
+    (unify: #1#
+      (k :x <-
+         (f :x)
+         (g :x)
+         (h :x)))
+    (variable-stack:
+      :y :y:x
+      ------
+      #1#
+      :y :y:x
+      :y:x ?)
+
+    (goal: #1#
+      (f :x)
+      (g :x)
+      (h :x))
+    (unify: (f a))
+    (variable-stack:
+      :y :y:x
+      ------
+      #1#
+      :y :y:x
+      :y:x a)
+    #+end_src
+
+* back
+
+  - back 時
+    sub-goal 的撤銷是用過 pop goal-stack 實現的
+    但是
+    back 時
+    unify 的撤銷 卻不可以用 pop 實現
+
+* k 的例子 更嵌套
+
+*** defind
+
+    #+begin_src scheme
+    (define
+      (f a)
+      (f b)
+      (f c))
+
+    (define
+      (g a)
+      (g b))
+
+    (define
+      (h :x <-
+         (f :x)
+         (g :x)))
+
+    (define
+      (k :x <-
+         (f :x)
+         (g :x)
+         (h :x)))
+    #+end_src
+
+*** #0#
+
+    #+begin_src scheme
+    (goal: #0#
+      (<and>
+       [(k :y)
+        (<or> #1#
+         (k :x <-
+            (f :x)
+            (g :x)
+            (h :x)))]))
+    (variable-stack:
+      ------
+      #0#
+      :y :y:x
+      ------
+      #1#
+      :x :y:x
+      :y:x ?)
+    #+end_src
+
+*** #1#
+
+    #+begin_src scheme
+    (goal: #1#
+      (<and>
+       [(f :x)
+        (<or>
+         (f a)
+         (f b)
+         (f c))]
+       [(g :x)
+        (<or>
+         (g a)
+         (g b))]
+       [(h :x)
+        (<or>
+         (h :x <-
+            (f :x)
+            (g :x)))]))
+    (variable-stack:
+      ------
+      #0#
+      :y :y:x
+      ------
+      #1#
+      :x :y:x
+      :y:x a)
+    #+end_src
+
+*** #2#
+
+    #+begin_src scheme
+    (goal: #2#
+      ([(f :x)
+        ((f a)
+         <or>
+         (f b)
+         (f c))]
+       <and>
+       [(g :x)
+        (<or>
+         (g a)
+         (g b))]
+       [(h :x)
+        (<or>
+         (h :x <-
+            (f :x)
+            (g :x)))]))
+    (variable-stack:
+      ------
+      #0#
+      :y :y:x
+      ------
+      #1#
+      :x :y:x
+      :y:x a)
+    #+end_src
+
+*** #3#
+
+    #+begin_src scheme
+    (goal: #3#
+      ([(f :x)
+        ((f a)
+         <or>
+         (f b)
+         (f c))]
+       [(g :x)
+        ((g a)
+         <or>
+         (g b))]
+       <and>
+       [(h :x)
+        (<or> #3#
+         (h :x <-
+            (f :x)
+            (g :x)))]))
+    (variable-stack:
+      ------
+      #0#
+      :y :y:x
+      ------
+      #1#
+      :x :y:x
+      :y:x a
+      ------
+      #3#
+      :x :x#1)
+    #+end_src
+
+*** #4#
+
+    #+begin_src scheme
+    (goal: #4#
+      ([(f :x)
+        ((f a)
+         <or>
+         (f b)
+         (f c))]
+       [(g :x)
+        ((g a)
+         <or>
+         (g b))]
+       <and>
+       [(h :x)
+        ((h :x <-
+            (f :x)
+            (g :x))
+         <or>)])
+      ------
+      (<and>
+       [(f :x)
+        <or>
+        ...]
+       [(g :x)
+        <or>
+        ...]))
+
+    (variable-stack:
+      ------
+      #0#
+      :y :y:x
+      ------
+      #1#
+      :x :y:x
+      :y:x a
+      ------
+      #3#
+      :x :x#1)
+    #+end_src
+
+*** note
+
+    - 只有當所有的指針都到盡頭了都沒有匹配到
+      才算是失敗了
+
+    - 注意
+      <and> 和 <or> 這兩個指針
+      所指向都 都是編譯好的 jo 內的數組
+      <and> 顯然是如此
+      <or> 也顯然是如此
+      如果全都使用 jo 內部靜態的數據 就可以不返回結構化的數據了
+      所有 結構化的數據 都是靜態的
+
+    - 這樣說是不對的
+      遇到 ':-' 或 '<-' 的時候
+      還是需要返回新的值的
+      比如 開始匹配的時候所使用的 k(Y)
+      就不同於謂詞體中所出現的 or 分支 k(X) 等等
+
+    - 已經可以着手實現了
 
 * lispy
 
@@ -451,111 +732,183 @@
 
 * 回收內存的時機
 
-  - 起初我想 回收內存應該激進 每次函數退除的時候都應該回收
+*** note
 
-  - 之後我想 回收內存的時機應該延遲
+    - 起初我想 回收內存應該激進 每次函數退除的時候都應該回收
 
-  - 最後我發現 根本不需要回收 local-variable 的內存
-    只要使用一個很大的 round-buffer 就可以了
-    假設沒有一個單獨的循環或者遞歸會使用到這麼多的內存就行了
+    - 之後我想 回收內存的時機應該延遲
 
-  - 注意
-    在 cicada-language 的類型檢查中也有同樣的問題
-    也可以使用同樣的處理方式
+    - 最後我發現 根本不需要回收 local-variable 的內存
+      只要使用一個很大的 round-buffer 就可以了
+      假設沒有一個單獨的循環或者遞歸會使用到這麼多的內存就行了
 
-  #+begin_src scheme
-  (define
-    (append () :list2 :list2)
-    (append (cons :head1 :tail1) :list2 (cons :head1 :tail2) <-
-            (append :tail1 :list2 :tail2)))
+    - 注意
+      在 cicada-language 的類型檢查中也有同樣的問題
+      也可以使用同樣的處理方式
 
-  (goal:
-    (append (list a b c) (list 1 2 3) :x))
-  (variable-stack:
-    :x ?)
-  (unify: #1#
-    (append (cons :head1 :tail1) :list2 (cons :head1 :tail2) <-
-            (append :tail1 :list2 :tail2)))
-  (variable-stack:
-    :x (cons a :tail2)
-    ------
-    #1#
-    :head1 a
-    :tail1 (list b c)
-    :list2 (list 1 2 3)
-    :tail2 ?)
+*** define
 
-  (goal: #1#
-    (append (list b c) (list 1 2 3) :tail2))
-  (unify: #2#
-    (append (cons :head1 :tail1) :list2 (cons :head1 :tail2) <-
-            (append :tail1 :list2 :tail2)))
-  (variable-stack:
-    :x (cons a :tail2#1)
-    ------
-    #1#
-    :head1 a
-    :tail1 (list b c)
-    :list2 (list 1 2 3)
-    :tail2 (cons b :tail2#2)
-    ------
-    #2#
-    :head1 b
-    :tail1 (list c)
-    :list2 (list 1 2 3)
-    :tail2 ?)
+    #+begin_src scheme
+    (define
+      (append () :list2 :list2)
+      (append (cons :head1 :tail1) :list2 (cons :head1 :tail2) <-
+              (append :tail1 :list2 :tail2)))
+    #+end_src
 
-  (goal: #2#
-    (append (list c) (list 1 2 3) :tail2))
-  (unify: #3#
-    (append (cons :head1 :tail1) :list2 (cons :head1 :tail2) <-
-            (append :tail1 :list2 :tail2)))
-  (variable-stack:
-    :x (cons a :tail2#1)
-    ------
-    #1#
-    :head1 a
-    :tail1 (list b c)
-    :list2 (list 1 2 3)
-    :tail2 (cons b :tail2#2)
-    ------
-    #2#
-    :head1 b
-    :tail1 (list c)
-    :list2 (list 1 2 3)
-    :tail2 (cons c :tail2#3)
-    ------
-    #3#
-    :head1 c
-    :tail1 ()
-    :list2 (list 1 2 3)
-    :tail2 ?)
+*** #0#
 
-  (goal: #3#
-    (append () (list 1 2 3) :tail2))
-  (unify: #4#
-    (append () :list2 :list2))
-  (variable-stack:
-    :x (cons a :tail2#1)
-    ------
-    #1#
-    :head1 a
-    :tail1 (list b c)
-    :list2 (list 1 2 3)
-    :tail2 (cons b :tail2#2)
-    ------
-    #2#
-    :head1 b
-    :tail1 (list c)
-    :list2 (list 1 2 3)
-    :tail2 (cons c :tail2#3)
-    ------
-    #3#
-    :head1 c
-    :tail1 ()
-    :list2 (list 1 2 3)
-    :tail2 (list 1 2 3)
-    ------
-    #4#
-    :list2 (list 1 2 3))
-  #+end_src
+    #+begin_src scheme
+    (goal: #0#
+      (<and>
+       [(append (list a b c) (list 1 2 3) :x)
+        ((append () :list2 :list2)
+         <or> #1#
+         (append (cons :head1 :tail1) :list2 (cons :head1 :tail2) <-
+                 (append :tail1 :list2 :tail2)))]))
+    (variable-stack:
+      ------
+      #0#
+      :x (cons a :tail2)
+      ------
+      #1#
+      :head1 a
+      :tail1 (list b c)
+      :list2 (list 1 2 3)
+      :tail2 ?)
+    #+end_src
+
+*** #1#
+
+    #+begin_src scheme
+    (goal: #1#
+      (<and>
+       [(append (list b c) (list 1 2 3) :tail2)
+        ((append () :list2 :list2)
+         <or> #2#
+         (append (cons :head1 :tail1) :list2 (cons :head1 :tail2) <-
+                 (append :tail1 :list2 :tail2)))]))
+    (variable-stack:
+      ------
+      #0#
+      :x (cons a :tail2#1)
+      ------
+      #1#
+      :head1 a
+      :tail1 (list b c)
+      :list2 (list 1 2 3)
+      :tail2 (cons b :tail2#2)
+      ------
+      #2#
+      :head1 b
+      :tail1 (list c)
+      :list2 (list 1 2 3)
+      :tail2 ?)
+    #+end_src
+
+*** #2#
+
+    #+begin_src scheme
+    (goal: #2#
+      (<and>
+       [(append (list c) (list 1 2 3) :tail2)
+        ((append () :list2 :list2)
+         <or> #3#
+         (append (cons :head1 :tail1) :list2 (cons :head1 :tail2) <-
+                 (append :tail1 :list2 :tail2)))]))
+    (variable-stack:
+      ------
+      #0#
+      :x (cons a :tail2#1)
+      ------
+      #1#
+      :head1 a
+      :tail1 (list b c)
+      :list2 (list 1 2 3)
+      :tail2 (cons b :tail2#2)
+      ------
+      #2#
+      :head1 b
+      :tail1 (list c)
+      :list2 (list 1 2 3)
+      :tail2 (cons c :tail2#3)
+      ------
+      #3#
+      :head1 c
+      :tail1 ()
+      :list2 (list 1 2 3)
+      :tail2 ?)
+    #+end_src
+
+*** #3#
+
+    #+begin_src scheme
+    (goal: #3#
+      (<and>
+       [(append () (list 1 2 3) :tail2)
+        (<or> #4#
+         (append () :list2 :list2)
+         (append (cons :head1 :tail1) :list2 (cons :head1 :tail2) <-
+                 (append :tail1 :list2 :tail2)))]))
+    (variable-stack:
+      ------
+      #0#
+      :x (cons a :tail2#1)
+      ------
+      #1#
+      :head1 a
+      :tail1 (list b c)
+      :list2 (list 1 2 3)
+      :tail2 (cons b :tail2#2)
+      ------
+      #2#
+      :head1 b
+      :tail1 (list c)
+      :list2 (list 1 2 3)
+      :tail2 (cons c :tail2#3)
+      ------
+      #3#
+      :head1 c
+      :tail1 ()
+      :list2 (list 1 2 3)
+      :tail2 (list 1 2 3)
+      ------
+      #4#
+      :list2 (list 1 2 3))
+    #+end_src
+
+* 實現 <2015-12-25>
+
+  - x ::
+       感覺最大的題已經解決了
+       我們再來細化一下實現方式
+
+  - k ::
+       我們回到我們以前的 jojo 術語吧
+       因爲這裏已經不是 函數體 而是 謂詞體 了
+
+  - x ::
+       那麼 jojo 中的每個 jo 都是一個等待 unify 的謂詞 term
+       在 prolog 教程的指導下 已經知道如何實現 unify 了
+       看來難點在於 這裏的運算流程需要 undo
+       此次的優勢是 我們直接使用 scheme 中的 vector
+       而不使用底層的 byte-vector [byte-array] 了
+
+* unification
+
+  - x ::
+       其實
+       不光是在 back 的時候
+       需要記錄信息以 undo variable-instantiation
+       [variable-substitution]
+       用 variable-stack 來實現 unification 算法的時候
+       在失敗一般的 unification 失敗的時候
+       都要做 undo
+       以使得某個 term 之後還能被用於下次的 unification
+       我還發現
+       在分類 unification 的時候所說的
+       higher-order unification
+       syntactical unification
+       semantical unification
+       其中 higher-order unification
+       是 semantical unification 的特殊情況
+       此時 關於 semantical 的就是 函數作用

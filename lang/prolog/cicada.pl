@@ -29,3 +29,22 @@ reverse(L, R):-
 reverse([], R, R).
 reverse([Head|Tail], R, Ac):-
   reverse(Tail, R, [Head|Ac]).
+
+
+f(a).
+f(b).
+f(c).
+
+g(a).
+g(b).
+
+h(X):-
+  f(X),
+  g(X).
+
+k(X):-
+  f(X),
+  g(X),
+  h(X).
+
+%% k(Y).
