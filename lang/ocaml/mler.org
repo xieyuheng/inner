@@ -2,879 +2,755 @@
 #+AUTHOR: 謝宇恆 / XIE Yuheng
 
 * note
-** type
-   注意 ocaml 的语法和语义的设计中 重要的一点是
-   要 使得 类型检查 和 类型推导 成为可能
-   可以 注意一下 ocaml 是如何设计以小心的维护这种性质的
-** expression
-   就表达式 的类型而言
-   ocaml 的表达式 是与缩进和换行无关的
-   并且是 以 ";;" 来分界的
-** REPL
-   1. ocaml 的 REPL 为了实现 多行的表达式的 输入
-      而 只在看见 ";;" 的时候 才会去求值整个表达式
-   2. scheme 的 REPL 也可以实现 多行的表达式的 输入
-      这是通过看括号是否完备而实现的
-   3. 在 cicada 中 没有这种问题
-      因为 没有 表达式的概念
-      可以认为 所输入的 一段 词
-      所组成的是 具有 "后缀表达式" 语法的表达式
-** differences between sml and ocaml
-   1. 在sml中构造子就是函数
-      而在ocaml中构造子不是函数
-   2. 显然ocaml的语法更简洁
-   3. ocaml比sml拥有更多的用户和更好的支持
-** before reading
-   #+begin_src caml
-   # print_depth 20;;
 
-   (* 下面是需要作的对代码的修改 *)
+*** type
+    注意 ocaml 的語法和語義的設計中 重要的一點是
+    要 使得 類型檢查 和 類型推導 成爲可能
+    可以 注意一下 ocaml 是如何設計以小心的維護這種性質的
 
-   type seasoning =
-       Salt
-     | Pepper ;;
+*** expression
+    就表達式 的類型而言
+    ocaml 的表達式 是與縮進和換行無關的
+    並且是 以 ";;" 來分界的
 
-   type shish_kebab =
-       Skewer
-     | Onion of shish_kebab
-     | Lamb of shish_kebab
-     | Tomato of shish_kebab ;;
+*** REPL
+    1. ocaml 的 REPL 爲了實現 多行的表達式的 輸入
+       而 只在看見 ";;" 的時候 纔會去求值整個表達式
+    2. scheme 的 REPL 也可以實現 多行的表達式的 輸入
+       這是通過看括號是否完備而實現的
+    3. 在 cicada 中 沒有這種問題
+       因爲 沒有 表達式的概念
+       可以認爲 所輸入的 一段 詞
+       所組成的是 具有 "後綴表達式" 語法的表達式
 
+*** differences between sml and ocaml
+    1. 在sml中構造子就是函數
+       而在ocaml中構造子不是函數
+    2. 顯然ocaml的語法更簡潔
+    3. ocaml比sml擁有更多的用戶和更好的支持
 
-   let rec only_onions =
-     function
-         (Skewer)
-         -> true
-       | (Onion(x))
-         -> only_onions (x)
-       |  (Lamb(x))
-         -> false
-       | (Tomato(x))
-         -> false ;;
-
-   fun (has_steak : meza * main * dessert -> bool) =
-     function
-         (x, Steak, d)
-         -> true
-       | (x, ns, d)
-         -> false ;;
-
-   let rec combine_c =
-     function
-         (Empty)
-         -> function
-             (12)
-             -> 12
-       | (Cons(a, 11))
-         -> function
-             (12)
-             -> Cons (a, combine_c (11) (12)) ;;
-   #+end_src
-* the little mler
-** 1 building blocks
-*** simple play
+*** before reading
     #+begin_src caml
-    1 ;;
-    -1 ;;
-    true ;;
-    false ;;
-    1.1 ;;
+    # print_depth 20;;
 
-
-    (* 一个type就是一个归纳定义的集合
-     ,* 因为只有这样的集合才能被一个谓词来识别
-     ,* 也就是说定义一个type的时候其实是在写一个谓词
-     ,* 能写出什么样的谓词就能定义出什么样的type(集合) *)
+    (* 下面是需要作的對代碼的修改 *)
 
     type seasoning =
         Salt
       | Pepper ;;
 
-    Pepper ;;
-
-    type num =
-        Zero
-      | One_more_than of num ;;
-
-    (* 当定义类型时
-       1. 给出 单一的 <symbol> 就是这个类型的原子
-       2. 使用 <symbol> of 就 形成了一个
-          名字为 这个 <symbol> 的构造子 *)
-
-    Zero ;;
-    (Zero) ;;
-
-    One_more_than
-        (One_more_than
-         (One_more_than
-          (One_more_than
-           (Zero)))) ;;
-
-    (* 下面是类型变量的使用 *)
-
-    type 'a open_faced_sandwich =
-        Bread of 'a
-      | Slice of 'a open_faced_sandwich ;;
-
-    Bread (0) ;;
-    Bread (true) ;;
-
-    Bread (One_more_than
-           (One_more_than
-            (One_more_than
-             (One_more_than
-              (Zero))))) ;;
-
-    Slice (Bread (0)) ;;
-    Bread (Bread (0)) ;;
-    #+end_src
-*** the first moral
-    use type to describe types.
-    when a type contains lots of values,
-    the type definition refers to itself.
-    use 'a with type to define shapes.
-    --------------------------
-    用 type 来 描述类型
-    归纳定义的数据类型 是那些在定义中 出现了这个类型自身的 类型
-    用 'a 之类的类型变量来 定义一个类型的集合
-** 2 matchmaker, matchmaker
-*** simple functions
-    #+begin_src caml
     type shish_kebab =
         Skewer
       | Onion of shish_kebab
       | Lamb of shish_kebab
       | Tomato of shish_kebab ;;
 
-    (* 上面的定义描述靠羊肉串怎么做 *)
-    (* 下面的函数描述一个只爱吃洋葱的人是怎么吃烤羊肉串的 *)
 
-    (* 递归处理与归纳定义在ml中的对应关系很明显 *)
-    (* k:编译器是如何决定x是变元的?? *)
-    (* d:可能是根据它是出现在最里面的括号里 *)
-
-    (* function就是lambda *)
     let rec only_onions =
       function
-       (Skewer)
-       -> true
-     | (Onion(x))
-       -> only_onions (x)
-     | (Lamb(x))
-       -> false
-     | (Tomato(x))
-       -> false ;;
-    (only_onions :
-     shish_kebab -> bool) ;;
-
-    only_onions
-         (Onion
-          (Onion
-           (Skewer))) ;;
-
-    only_onions
-         (Onion(Lamb(Skewer))) ;;
-
-    (* 注意递归函数的处理顺序几乎总要符合数据结构的归纳定义的顺序 *)
-    let rec is_vegetarian =
-      function
-       (Skewer)
-       -> true
-     | (Onion(x))
-       -> is_vegetarian (x)
-     | (Lamb(x))
-       -> false
-     | (Tomato(x))
-       -> is_vegetarian (x) ;;
-
-    (is_vegetarian :
-          shish_kebab -> bool) ;;
-
-    is_vegetarian(
-      Onion(Onion(Skewer))) ;;
-
-    is_vegetarian(
-      Onion(Lamb(Skewer))) ;;
-
-
-    (* 下面覆盖了上面定义过的一些构造子 *)
-    type 'a shish =
-        Bottom of 'a
-      | Onion of 'a shish
-      | Lamb of 'a shish
-      | Tomato of 'a shish ;;
-
-    type rod =
-        Dagger
-      | Fork
-      | Sword ;;
-
-    type palte =
-        Gold_palte
-      | Silver_plate
-      | Brass_plate ;;
-
-    Onion
-        (Tomato
-         (Bottom(Dagger))) ;;
-
-    Onion
-        (Tomato
-         (Bottom(Gold_palte))) ;;
-
-
-    let rec is_veggie =
-      function
-          (Bottom(x))
+          (Skewer)
           -> true
         | (Onion(x))
-          -> is_veggie (x)
-        | (Lamb(x))
+          -> only_onions (x)
+        |  (Lamb(x))
           -> false
         | (Tomato(x))
-          -> is_veggie (x) ;;
+          -> false ;;
 
-
-    (is_veggie :
-     'a shish -> bool) ;;
-
-    is_veggie(
-      Onion
-        (Tomato
-           (Bottom(Dagger)))) ;;
-
-    is_veggie(
-      Onion
-        (Tomato
-           (Bottom(Gold_palte)))) ;;
-
-    is_veggie(
-      Lamb
-        (Tomato
-           (Bottom(Gold_palte)))) ;;
-
-    is_veggie(
-      Onion
-        (Tomato
-           (Bottom(666)))) ;;
-
-
-    type 'a shish =
-        Bottom of 'a
-      | Onion of 'a shish
-      | Lamb of 'a shish
-      | Tomato of 'a shish ;;
-
-    let rec what_bottom =
+    fun (has_steak : meza * main * dessert -> bool) =
       function
-          (Bottom(x))
-          -> x
-        | (Onion(x))
-          -> what_bottom(x)
-        | (Lamb(x))
-          -> what_bottom(x)
-        | (Tomato(x))
-          -> what_bottom(x) ;;
-    (what_bottom :
-     'a shish -> 'a) ;;
+          (x, Steak, d)
+          -> true
+        | (x, ns, d)
+          -> false ;;
 
-    what_bottom
+    let rec combine_c =
+      function
+          (Empty)
+          -> function
+              (12)
+              -> 12
+        | (Cons(a, 11))
+          -> function
+              (12)
+              -> Cons (a, combine_c (11) (12)) ;;
+    #+end_src
+
+* the little mler
+
+*** 1 building blocks
+
+***** simple play
+      #+begin_src caml
+      1 ;;
+      -1 ;;
+      true ;;
+      false ;;
+      1.1 ;;
+
+
+      (* 一個type就是一個歸納定義的集合
+       * 因爲只有這樣的集合才能被一個謂詞來識別
+       * 也就是說定義一個type的時候其實是在寫一個謂詞
+       * 能寫出什麼樣的謂詞就能定義出什麼樣的type(集合) *)
+
+      type seasoning =
+          Salt
+        | Pepper ;;
+
+      Pepper ;;
+
+      type num =
+          Zero
+        | One_more_than of num ;;
+
+      (* 當定義類型時
+         1. 給出 單一的 <symbol> 就是這個類型的原子
+         2. 使用 <symbol> of 就 形成了一個
+            名字爲 這個 <symbol> 的構造子 *)
+
+      Zero ;;
+      (Zero) ;;
+
+      One_more_than
+          (One_more_than
+           (One_more_than
+            (One_more_than
+             (Zero)))) ;;
+
+      (* 下面是類型變量的使用 *)
+
+      type 'a open_faced_sandwich =
+          Bread of 'a
+        | Slice of 'a open_faced_sandwich ;;
+
+      Bread (0) ;;
+      Bread (true) ;;
+
+      Bread (One_more_than
+             (One_more_than
+              (One_more_than
+               (One_more_than
+                (Zero))))) ;;
+
+      Slice (Bread (0)) ;;
+      Bread (Bread (0)) ;;
+      #+end_src
+
+***** the first moral
+      use type to describe types.
+      when a type contains lots of values,
+      the type definition refers to itself.
+      use 'a with type to define shapes.
+      --------------------------
+      用 type 來 描述類型
+      歸納定義的數據類型 是那些在定義中 出現了這個類型自身的 類型
+      用 'a 之類的類型變量來 定義一個類型的集合
+
+*** 2 matchmaker, matchmaker
+
+***** simple functions
+      #+begin_src caml
+      type shish_kebab =
+          Skewer
+        | Onion of shish_kebab
+        | Lamb of shish_kebab
+        | Tomato of shish_kebab ;;
+
+      (* 上面的定義描述烤羊肉串怎麼做 *)
+      (* 下面的函數描述一個只愛吃洋蔥的人是怎麼吃烤羊肉串的 *)
+
+      (* 遞歸處理與歸納定義在ml中的對應關係很明顯 *)
+      (* k:編譯器是如何決定x是變元的?? *)
+      (* d:可能是根據它是出現在最裏面的括號裏 *)
+
+      (* function就是lambda *)
+      let rec only_onions =
+        function
+         (Skewer)
+         -> true
+       | (Onion(x))
+         -> only_onions (x)
+       | (Lamb(x))
+         -> false
+       | (Tomato(x))
+         -> false ;;
+      (only_onions :
+       shish_kebab -> bool) ;;
+
+      only_onions
+           (Onion
+            (Onion
+             (Skewer))) ;;
+
+      only_onions
+           (Onion(Lamb(Skewer))) ;;
+
+      (* 注意遞歸函數的處理順序幾乎總要符合數據結構的歸納定義的順序 *)
+      let rec is_vegetarian =
+        function
+         (Skewer)
+         -> true
+       | (Onion(x))
+         -> is_vegetarian (x)
+       | (Lamb(x))
+         -> false
+       | (Tomato(x))
+         -> is_vegetarian (x) ;;
+
+      (is_vegetarian :
+            shish_kebab -> bool) ;;
+
+      is_vegetarian(
+        Onion(Onion(Skewer))) ;;
+
+      is_vegetarian(
+        Onion(Lamb(Skewer))) ;;
+
+
+      (* 下面覆蓋了上面定義過的一些構造子 *)
+      type 'a shish =
+          Bottom of 'a
+        | Onion of 'a shish
+        | Lamb of 'a shish
+        | Tomato of 'a shish ;;
+
+      type rod =
+          Dagger
+        | Fork
+        | Sword ;;
+
+      type palte =
+          Gold_palte
+        | Silver_plate
+        | Brass_plate ;;
+
+      Onion
+          (Tomato
+           (Bottom(Dagger))) ;;
+
+      Onion
+          (Tomato
+           (Bottom(Gold_palte))) ;;
+
+
+      let rec is_veggie =
+        function
+            (Bottom(x))
+            -> true
+          | (Onion(x))
+            -> is_veggie (x)
+          | (Lamb(x))
+            -> false
+          | (Tomato(x))
+            -> is_veggie (x) ;;
+
+
+      (is_veggie :
+       'a shish -> bool) ;;
+
+      is_veggie(
+        Onion
+          (Tomato
+            (Bottom(Dagger)))) ;;
+
+      is_veggie(
+        Onion
+          (Tomato
+             (Bottom(Gold_palte)))) ;;
+
+      is_veggie(
+        Lamb
+          (Tomato
+             (Bottom(Gold_palte)))) ;;
+
+      is_veggie(
+        Onion
+          (Tomato
+             (Bottom(666)))) ;;
+
+
+      type 'a shish =
+          Bottom of 'a
+        | Onion of 'a shish
+        | Lamb of 'a shish
+        | Tomato of 'a shish ;;
+
+      let rec what_bottom =
+        function
+            (Bottom(x))
+            -> x
+          | (Onion(x))
+            -> what_bottom(x)
+          | (Lamb(x))
+            -> what_bottom(x)
+          | (Tomato(x))
+            -> what_bottom(x) ;;
+      (what_bottom :
+       'a shish -> 'a) ;;
+
+      what_bottom
       (Bottom(666)) ;;
-    what_bottom
+      what_bottom
       (Onion
          (Tomato
-            (Bottom(Dagger)))) ;;
-    #+end_src
-*** the second moral
-    the number and order of the patterns
-    in the definition of a function
-    should match that of the definition
-    of the consumed type.
-    --------------------------
-    用模式匹配定义函数时
-    在定义中 模式的 个数 和 顺序
-    要与 这个函数所处理的 类型 的定义中
-    模式的 个数 和 顺序 一致
-** 3 cons is still magnificent
-*** back to old friend : list processing
-    1. 注意这里实现列表语义的方式
-       它是用构造子来实现的 而不是用 cons
-    2. 构造子既是函数也是数据
-       但是这样作限制了列表中所能出现的数据的数据类型
-       即 列表中只能包含一些 <symbol>
-    #+begin_src caml
-    type pizza =
-        Crust
-      | Cheese of pizza
-      | Onion of pizza
-      | Anchovy of pizza
-      | Sausage of pizza ;;
+              (Bottom(Dagger)))) ;;
+      #+end_src
+
+***** the second moral
+      the number and order of the patterns
+      in the definition of a function
+      should match that of the definition
+      of the consumed type.
+      --------------------------
+      用模式匹配定義函數時
+      在定義中 模式的 個數 和 順序
+      要與 這個函數所處理的 類型 的定義中
+      模式的 個數 和 順序 一致
+
+*** 3 cons is still magnificent
+
+***** back to old friend : list processing
+      1. 注意這裏實現列表語義的方式
+         它是用構造子來實現的 而不是用 cons
+      2. 構造子既是函數也是數據
+         但是這樣作限制了列表中所能出現的數據的數據類型
+         即 列表中只能包含一些 <symbol>
+      #+begin_src caml
+      type pizza =
+          Crust
+        | Cheese of pizza
+        | Onion of pizza
+        | Anchovy of pizza
+        | Sausage of pizza ;;
 
 
-    (Anchovy
-       (Onion
-          (Anchovy
-             (Anchovy
-                (Cheese
-                   (Crust)))))) ;;
-
-    let rec remove_Anchovy =
-      function
-          (Crust)
-          -> Crust
-        | (Cheese (x))
-          -> Cheese (remove_Anchovy (x))
-        | (Onion (x))
-          -> Onion (remove_Anchovy (x))
-        | (Anchovy (x))
-          -> (remove_Anchovy (x))
-        | (Sausage (x))
-          -> Sausage (remove_Anchovy (x)) ;;
-
-    (remove_Anchovy :
-       pizza -> pizza) ;;
-
-    (remove_Anchovy
-       (Anchovy
-          (Onion
-             (Anchovy
-                (Anchovy
-                   (Cheese
-                      (Crust))))))) ;;
-
-
-    let rec top_anchovy_with_cheese =
-      function
-          (Crust)
-          -> (Crust)
-        | (Cheese (x))
-          -> Cheese (top_anchovy_with_cheese (x))
-        | (Onion (x))
-          -> Onion (top_anchovy_with_cheese (x))
-        | (Anchovy (x))
-          -> (Cheese
-              (Anchovy
-               (top_anchovy_with_cheese (x))))
-        | (Sausage (x))
-          -> Sausage (top_anchovy_with_cheese (x)) ;;
-
-    (top_anchovy_with_cheese :
-     pizza -> pizza) ;;
-
-    top_anchovy_with_cheese
-    (Anchovy
-     (Onion
       (Anchovy
-       (Anchovy
-        (Cheese
-         (Crust)))))) ;;
+         (Onion
+            (Anchovy
+               (Anchovy
+                  (Cheese
+                     (Crust)))))) ;;
+
+      let rec remove_Anchovy =
+        function
+            (Crust)
+            -> Crust
+          | (Cheese (x))
+            -> Cheese (remove_Anchovy (x))
+          | (Onion (x))
+            -> Onion (remove_Anchovy (x))
+          | (Anchovy (x))
+            -> (remove_Anchovy (x))
+          | (Sausage (x))
+            -> Sausage (remove_Anchovy (x)) ;;
+
+      (remove_Anchovy :
+         pizza -> pizza) ;;
+
+      (remove_Anchovy
+         (Anchovy
+            (Onion
+               (Anchovy
+                  (Anchovy
+                     (Cheese
+                        (Crust))))))) ;;
 
 
-    let rec subst_anchovy_by_cheese =
-      function
-          (x)
-          -> (top_anchovy_with_cheese
-                (remove_Anchovy(x))) ;;
+      let rec top_anchovy_with_cheese =
+        function
+            (Crust)
+            -> (Crust)
+          | (Cheese (x))
+            -> Cheese (top_anchovy_with_cheese (x))
+          | (Onion (x))
+            -> Onion (top_anchovy_with_cheese (x))
+          | (Anchovy (x))
+            -> (Cheese
+                (Anchovy
+                 (top_anchovy_with_cheese (x))))
+          | (Sausage (x))
+            -> Sausage (top_anchovy_with_cheese (x)) ;;
 
-    (subst_anchovy_by_cheese :
+      (top_anchovy_with_cheese :
        pizza -> pizza) ;;
-    #+end_src
-*** the third moral
-    functions that produce values of a type
-    must use associated constructors
-    to build data of that type.
-    --------------------------
-    返回 某种类型的数据的 函数
-    必须 用这种 类型 的构造子 来构造这种类型的数据
-** 4 look to the stars
-*** 星星其实是笛卡尔积的意思
-    #+begin_src caml
-    type meza =
-        Shrimp
-      | Calamari
-      | Escargots
-      | Hummus ;;
 
-    type main =
-        Steak
-      | Ravioli
-      | Chichen
-      | Eggplant ;;
-
-    type salad =
-        Green
-      | Cucumber
-      | Greek ;;
-
-    type dessert =
-        Sundae
-      | Mousse
-      | Torte ;;
-
-    (Calamari, Ravioli, Greek, Sundae) ;;
-    (Hummus, Steak, Green, Torte) ;;
+      top_anchovy_with_cheese
+      (Anchovy
+       (Onion
+        (Anchovy
+         (Anchovy
+          (Cheese
+           (Crust)))))) ;;
 
 
-    let rec (add_a_steak : meza -> (meza * main)) =
-      function
-       (Shrimp) -> (Shrimp, Steak)
-     | (Calamari) -> (Calamari, Steak)
-     | (Escargots) -> (Escargots, Steak)
-     | (Hummus) -> (Hummus, Steak) ;;
-    (add_a_steak :
-       meza -> (meza * main)) ;;
+      let rec subst_anchovy_by_cheese =
+        function
+            (x)
+            -> (top_anchovy_with_cheese
+                  (remove_Anchovy(x))) ;;
 
-    add_a_steak(Hummus) ;;
+      (subst_anchovy_by_cheese :
+         pizza -> pizza) ;;
+      #+end_src
+
+***** the third moral
+      functions that produce values of a type
+      must use associated constructors
+      to build data of that type.
+      --------------------------
+      返回 某種類型的數據的 函數
+      必須 用這種 類型 的構造子 來構造這種類型的數據
+
+*** 4 look to the stars
+
+***** 星星其實是笛卡爾積的意思
+      #+begin_src caml
+      type meza =
+          Shrimp
+        | Calamari
+        | Escargots
+        | Hummus ;;
+
+      type main =
+          Steak
+        | Ravioli
+        | Chichen
+        | Eggplant ;;
+
+      type salad =
+          Green
+        | Cucumber
+        | Greek ;;
+
+      type dessert =
+          Sundae
+        | Mousse
+        | Torte ;;
+
+      (Calamari, Ravioli, Greek, Sundae) ;;
+      (Hummus, Steak, Green, Torte) ;;
 
 
-    let rec add_a_steak =
-      function
-       (x)
-       -> (x, Steak) ;;
+      let rec (add_a_steak : meza -> (meza * main)) =
+        function
+         (Shrimp) -> (Shrimp, Steak)
+       | (Calamari) -> (Calamari, Steak)
+       | (Escargots) -> (Escargots, Steak)
+       | (Hummus) -> (Hummus, Steak) ;;
+      (add_a_steak :
+         meza -> (meza * main)) ;;
 
-    (add_a_steak :
-        'a -> ('a * main)) ;;
-
-    add_a_steak(666) ;;
-
-    (* 变元可以把函数的类型泛化
-       但是构造子的位置上不能使用变元
-       因为 只有明确了是哪个 构造子 之后
-       才能 明确 它的性质 *)
-
-    (* 我想更精确的函数更好 尽管多写一些文字 但是在运行的时候也更容易发现错误 *)
+      add_a_steak(Hummus) ;;
 
 
-    let rec eq_main =
-      function
-          (Steak, Steak)
+      let rec add_a_steak =
+        function
+         (x)
+         -> (x, Steak) ;;
+
+      (add_a_steak :
+          'a -> ('a * main)) ;;
+
+      add_a_steak(666) ;;
+
+      (* 變元可以把函數的類型泛化
+         但是構造子的位置上不能使用變元
+         因爲 只有明確了是哪個 構造子 之後
+         才能 明確 它的性質 *)
+
+      (* 我想更精確的函數更好 儘管多寫一些文字 但是在運行的時候也更容易發現錯誤 *)
+
+
+      let rec eq_main =
+        function
+            (Steak, Steak)
+            -> true
+        | (Ravioli, Ravioli)
           -> true
-      | (Ravioli, Ravioli)
-        -> true
-      | (Chichen, Chichen)
-        -> true
-      | (Eggplant, Eggplant)
-        -> true
-      | (a_main, another_main)
-        -> false ;;
-    (eq_main :
-       (main * main) -> bool) ;;
-
-    eq_main(Steak, Ravioli) ;;
-    eq_main(Steak, Steak) ;;
-
-
-    let rec (has_steak : meza * main * dessert -> bool) =
-      function
-          (a, Steak, b)
+        | (Chichen, Chichen)
           -> true
-        | (a, x, b)
+        | (Eggplant, Eggplant)
+          -> true
+        | (a_main, another_main)
           -> false ;;
+      (eq_main :
+         (main * main) -> bool) ;;
 
-    has_steak(Calamari, Ravioli, Sundae) ;;
-    has_steak(Hummus, Steak, Torte) ;;
-
-
-
-    let rec (add_a_steak : meza -> (meza * main)) =
-      function
-          (a)
-          -> (a, Steak) ;;
-    add_a_steak(Hummus) ;;
-    #+end_src
-*** the fourth moral
-    some functions consume values of star type;
-    some produce values of star type.
-    --------------------------
-    一般的 构造子 之外
-    笛卡尔积 是 另一种 形成新的数据类型的 方式
-    它也可以被看成是一种 中缀的 构造子
-    要知道 其他的构造子 都是 前缀的
-** note
-*** 关于命名空间
-    1. ocaml 中 type 与 函数在不同的 命名空间中
-       求值 一个 代表 type 的 <symbol> 就知道了
-*** 关于构造子
-    - k :: 构造子和函数都是函数
-           以相同的方式作用
-           它们有什么区别呢???
-    - x ::
-      1. 最重要的区别是人类语义方面的区别
-         构造子代表归纳定义
-         - 构造子在作用之后 也融入了数据本身
-         函数代表递归处理
-      2. 其次是实现方式可以不一样
-         也就是说 既然 在人类 语义上有了区别
-         那么 实现的时候 就可以做一个 决策
-         是以统一的方式 实现它们 还是区分它们
-         sml以统一的方式实现它们
-         而ocaml区分了这两中东西的类型
-         也就是说 在 ocaml 中
-         非原子的构造子 是不能作为表达式被单独求值的
-      3. 定义方式也不一样
-         构造子 可以看成是在定义类型的时候 被隐含定义的函数
-    - x :: 我更倾向于 统一的处理方式
-           我想 Dan 之所以没有选择 ocaml 作为这本书的基础
-           就是因为 这里 ocaml 缺乏一致性
-    - k :: 在Dan的书中构造子都是首字母大写的词
-           而函数和类型都是首字母小写
-    - x :: 没错
-           不知道在 ocaml 中还有什么需要遵循的惯例
-           可能在它的官方引导中可以找到一些说明
-*** 关于作用的语法
-    - x :: 我发现只要作连个约定就可以把作用的语法从(M N)转换到M(N)
-      1. 第二个位置的 N == (N)
-      2. 对最外层的括号可以去掉
-    - k :: 但是显然这种转换只对一元作用有效
-** 5 couples ars magnificent, too
-*** 也可以模仿lisp用pair来形成列表语义
-    #+begin_src caml
-    type 'a pizza =
-        Bottom
-      | Topping of ('a * ('a pizza)) ;;
-
-    type fish =
-        Anchovy
-      | Lox
-      | Tuna ;;
-
-    (Topping(Anchovy, Topping(Tuna, Topping(Anchovy, Bottom)))) ;;
-
-    (* 把递归函数与归纳定义的顺序想匹配对机器来说其实不重要
-     ,* 但是这种匹配对人类来说很重要 *)
-    let rec (rem_anchovy : fish pizza -> fish pizza) =
-      function
-          (Bottom)
-          -> Bottom
-        | (Topping (Anchovy, p))
-          -> rem_anchovy (p)
-        | (Topping (other_fish, p))
-          -> (Topping (other_fish, rem_anchovy (p))) ;;
-
-    rem_anchovy
-     (Topping(Anchovy, Topping(Tuna, Topping(Anchovy, Bottom)))) ;;
+      eq_main(Steak, Ravioli) ;;
+      eq_main(Steak, Steak) ;;
 
 
-    (* 下面的函数打破了递归函数与归纳定义的顺序的匹配
-     ,* 这是有必要的
-     ,* 并且只有在有必要的时候才应该作这种打破 *)
-    let rec (rem_fish : (fish * fish pizza) -> (fish pizza)) =
-      function
-          (x, Bottom)
-          -> Bottom
-        | (Anchovy, (Topping (Anchovy, p)))
-          -> rem_fish (Anchovy, p)
-        | (Anchovy, (Topping (not_Anchovy, p)))
-          -> (Topping (not_Anchovy, rem_fish (Anchovy, p)))
-        | (Lox, (Topping (Lox, p)))
-          -> rem_fish (Lox, p)
-        | (Lox, (Topping (not_Lox, p)))
-          -> (Topping (not_Lox, rem_fish (Lox, p)))
-        | (Tuna, (Topping (Tuna, p)))
-          -> rem_fish (Tuna, p)
-        | (Tuna, (Topping (not_Tuna, p)))
-          -> (Topping (not_Tuna, rem_fish (Tuna, p))) ;;
+      let rec (has_steak : meza * main * dessert -> bool) =
+        function
+            (a, Steak, b)
+            -> true
+          | (a, x, b)
+            -> false ;;
 
-    rem_fish
-     (Anchovy, Topping(Anchovy, Topping(Tuna, Topping(Anchovy, Bottom)))) ;;
-
-    rem_fish
-     (Tuna, Topping(Anchovy, Topping(Tuna, Topping(Anchovy, Bottom)))) ;;
-
-    (* 下面的函数尝试完成与上面的函数相同的任务
-     ,* 可惜 它的 语法是 ocaml 不允许的
-     ,* 即 匹配的时候不能有重复的变元
-     ,* 这样可能简化了实现 但是却麻烦了用户
-     ,* 别的以模式匹配的方式来定义函数的语言都实现了这个性状
-     ,*
-     ,* let rec (rem_fish : (fish * fish pizza) -> (fish pizza)) =
-     ,*   function
-     ,*       (a_fish, Bottom)
-     ,*       -> Bottom
-     ,*     | (the_fish, (Topping (the_fish, p)))
-     ,*       -> rem_fish (the_fish, p)
-     ,*     | (a_fish, (Topping (another_fish, p)))
-     ,*       -> Topping (another_fish, rem_fish (a_fish, p)) ;;
-     ,*
-     ,* 为了在上面的语法缺失的情况下 以合理的方式写出上面这类二元函数
-     ,* 就需要一个等词 *)
-
-    let rec (eq_fish : (fish * fish) -> bool) =
-      function
-          (Anchovy, Anchovy)
-          -> true
-        | (Lox, Lox)
-          -> true
-        | (Tuna, Tuna)
-          -> true
-        | (a_fish, another_fish)
-          -> false ;;
-
-    eq_fish(Tuna, Tuna) ;;
-    eq_fish(Tuna, Anchovy) ;;
-
-    (* 看一下下面表达 还是可以接受的
-       就当作是 factoring 好了 *)
-
-    let rec (rem_fish : (fish * fish pizza) -> (fish pizza)) =
-      function
-          (a_fish, Bottom)
-          -> Bottom
-        | (a_fish, (Topping (another_fish, p)))
-          -> if eq_fish (a_fish, another_fish)
-            then rem_fish (a_fish, p)
-            else Topping (another_fish, rem_fish (a_fish, p)) ;;
-           (* if的两个从句中的表达式的类型应该一样
-              否则就没法计算类型了 *)
-
-    rem_fish
-      (Anchovy,
-       Topping(Anchovy, Topping(Tuna, Topping(Anchovy, Bottom)))) ;;
-
-    rem_fish
-      (Tuna,
-       Topping(Anchovy, Topping(Tuna, Topping(Anchovy, Bottom)))) ;;
+      has_steak(Calamari, Ravioli, Sundae) ;;
+      has_steak(Hummus, Steak, Torte) ;;
 
 
-    let rec (subst_fish : (fish * fish * fish pizza) -> fish pizza) =
-      function
-          (x, y, Bottom)
-          -> Bottom
-        | (x, y, Topping (a, p))
-          -> if eq_fish (y, a)
-          then Topping (x, subst_fish (x, y, p))
-          else Topping (a, subst_fish (x, y, p)) ;;
+
+      let rec (add_a_steak : meza -> (meza * main)) =
+        function
+            (a)
+            -> (a, Steak) ;;
+      add_a_steak(Hummus) ;;
+      #+end_src
+
+***** the fourth moral
+      some functions consume values of star type;
+      some produce values of star type.
+      --------------------------
+      一般的 構造子 之外
+      笛卡爾積 是 另一種 形成新的數據類型的 方式
+      它也可以被看成是一種 中綴的 構造子
+      要知道 其他的構造子 都是 前綴的
+
+*** note
+
+***** 關於命名空間
+      1. ocaml 中 type 與 函數在不同的 命名空間中
+         求值 一個 代表 type 的 <symbol> 就知道了
+
+***** 關於構造子
+      - k :: 構造子和函數都是函數
+             以相同的方式作用
+             它們有什麼區別呢???
+      - x ::
+        1. 最重要的區別是人類語義方面的區別
+           構造子代表歸納定義
+           - 構造子在作用之後 也融入了數據本身
+           函數代表遞歸處理
+        2. 其次是實現方式可以不一樣
+           也就是說 既然 在人類 語義上有了區別
+           那麼 實現的時候 就可以做一個 決策
+           是以統一的方式 實現它們 還是區分它們
+           sml以統一的方式實現它們
+           而ocaml區分了這兩中東西的類型
+           也就是說 在 ocaml 中
+           非原子的構造子 是不能作爲表達式被單獨求值的
+        3. 定義方式也不一樣
+           構造子 可以看成是在定義類型的時候 被隱含定義的函數
+      - x :: 我更傾向於 統一的處理方式
+             我想 Dan 之所以沒有選擇 ocaml 作爲這本書的基礎
+             就是因爲 這裏 ocaml 缺乏一致性
+      - k :: 在Dan的書中構造子都是首字母大寫的詞
+             而函數和類型都是首字母小寫
+      - x :: 沒錯
+             不知道在 ocaml 中還有什麼需要遵循的慣例
+             可能在它的官方引導中可以找到一些說明
+
+***** 關於作用的語法
+      - x :: 我發現只要作連個約定就可以把作用的語法從(M N)轉換到M(N)
+        1. 第二個位置的 N == (N)
+        2. 對最外層的括號可以去掉
+      - k :: 但是顯然這種轉換隻對一元作用有效
+
+*** 5 couples ars magnificent, too
+
+***** 也可以模仿lisp用pair來形成列表語義
+      #+begin_src caml
+      type 'a pizza =
+          Bottom
+        | Topping of ('a * ('a pizza)) ;;
+
+      type fish =
+          Anchovy
+        | Lox
+        | Tuna ;;
+
+      (Topping(Anchovy, Topping(Tuna, Topping(Anchovy, Bottom)))) ;;
+
+      (* 把遞歸函數與歸納定義的順序想匹配對機器來說其實不重要
+       * 但是這種匹配對人類來說很重要 *)
+      let rec (rem_anchovy : fish pizza -> fish pizza) =
+        function
+            (Bottom)
+            -> Bottom
+          | (Topping (Anchovy, p))
+            -> rem_anchovy (p)
+          | (Topping (other_fish, p))
+            -> (Topping (other_fish, rem_anchovy (p))) ;;
+
+      rem_anchovy
+       (Topping(Anchovy, Topping(Tuna, Topping(Anchovy, Bottom)))) ;;
 
 
-    subst_fish(Tuna, Anchovy,
-      Topping(Anchovy,
-        Topping(Tuna,
-          Topping(Anchovy,
-            Bottom)))) ;;
+      (* 下面的函數打破了遞歸函數與歸納定義的順序的匹配
+       * 這是有必要的
+       * 並且只有在有必要的時候才應該作這種打破 *)
+      let rec (rem_fish : (fish * fish pizza) -> (fish pizza)) =
+        function
+            (x, Bottom)
+            -> Bottom
+          | (Anchovy, (Topping (Anchovy, p)))
+            -> rem_fish (Anchovy, p)
+          | (Anchovy, (Topping (not_Anchovy, p)))
+            -> (Topping (not_Anchovy, rem_fish (Anchovy, p)))
+          | (Lox, (Topping (Lox, p)))
+            -> rem_fish (Lox, p)
+          | (Lox, (Topping (not_Lox, p)))
+            -> (Topping (not_Lox, rem_fish (Lox, p)))
+          | (Tuna, (Topping (Tuna, p)))
+            -> rem_fish (Tuna, p)
+          | (Tuna, (Topping (not_Tuna, p)))
+            -> (Topping (not_Tuna, rem_fish (Tuna, p))) ;;
+
+      rem_fish
+       (Anchovy, Topping(Anchovy, Topping(Tuna, Topping(Anchovy, Bottom)))) ;;
+
+      rem_fish
+       (Tuna, Topping(Anchovy, Topping(Tuna, Topping(Anchovy, Bottom)))) ;;
+
+      (* 下面的函數嘗試完成與上面的函數相同的任務
+       * 可惜 它的 語法是 ocaml 不允許的
+       * 即 匹配的時候不能有重複的變元
+       * 這樣可能簡化了實現 但是卻麻煩了用戶
+       * 別的以模式匹配的方式來定義函數的語言都實現了這個性狀
+       *
+       * let rec (rem_fish : (fish * fish pizza) -> (fish pizza)) =
+       *   function
+       *       (a_fish, Bottom)
+       *       -> Bottom
+       *     | (the_fish, (Topping (the_fish, p)))
+       *       -> rem_fish (the_fish, p)
+       *     | (a_fish, (Topping (another_fish, p)))
+       *       -> Topping (another_fish, rem_fish (a_fish, p)) ;;
+       *
+       * 爲了在上面的語法缺失的情況下 以合理的方式寫出上面這類二元函數
+       * 就需要一個等詞 *)
+
+      let rec (eq_fish : (fish * fish) -> bool) =
+        function
+            (Anchovy, Anchovy)
+            -> true
+          | (Lox, Lox)
+            -> true
+          | (Tuna, Tuna)
+            -> true
+          | (a_fish, another_fish)
+            -> false ;;
+
+      eq_fish(Tuna, Tuna) ;;
+      eq_fish(Tuna, Anchovy) ;;
+
+      (* 看一下下面表達 還是可以接受的
+         就當作是 factoring 好了 *)
+
+      let rec (rem_fish : (fish * fish pizza) -> (fish pizza)) =
+        function
+            (a_fish, Bottom)
+            -> Bottom
+          | (a_fish, (Topping (another_fish, p)))
+            -> if eq_fish (a_fish, another_fish)
+              then rem_fish (a_fish, p)
+              else Topping (another_fish, rem_fish (a_fish, p)) ;;
+             (* if的兩個從句中的表達式的類型應該一樣
+                否則就沒法計算類型了 *)
+
+      rem_fish
+        (Anchovy,
+         Topping(Anchovy, Topping(Tuna, Topping(Anchovy, Bottom)))) ;;
+
+      rem_fish
+        (Tuna,
+         Topping(Anchovy, Topping(Tuna, Topping(Anchovy, Bottom)))) ;;
 
 
-    type num =
-        Zero
-      | One_more_than of num ;;
-
-    let rec (eq_num : (num * num) -> bool) =
-      function
-          (Zero, Zero)
-          -> true
-        | (One_more_than (m), Zero)
-          -> false
-        | (Zero, One_more_than (n))
-          -> false
-        | (One_more_than (m), One_more_than (n))
-          -> eq_num (m, n) ;;
-
-    (* 总是从已经能够正确工作的版本来化简
-     ,* 不要想一下就写出又正确又精简的版本 尤其是在不熟练的时候
-     ,* 先写出能正确工作的版本再说
-     ,* 然后再化简 *)
-
-    let rec (eq_num : (num * num) -> bool) =
-      function
-          (Zero, Zero)
-          -> true
-        | (One_more_than (m), One_more_than (n))
-          -> eq_num (m, n)
-        | (m, n)
-          -> false ;;
-
-    eq_num(Zero, Zero) ;;
-    eq_num(Zero, One_more_than(Zero)) ;;
-    #+end_src
-*** the fifth moral
-    write the first draft of a function
-    following all the morals.
-    when it is correct and no sooner no later, simplify!
-    --------------------------
-    遵循所有的准则 先写出 函数的第一个版本
-    这个版本的函数 可能在表达当有点罗嗦
-    或者在执行效率上并不高
-    但是总要先写出这个版本
-    当它正确了的时候
-    马上就进行 就表达的简化 和就性能的优化
-** 6 oh my, it's full of stars !
-*** 一颗能长出各种水果的树
-    从上向下 从左向右长的
-    下面所处理的二叉树的分支节点是有类型的(有名字的)
-    这与经典的lisp对二叉树的实现方式不一样
-    #+begin_src caml
-    type fruit =
-        Peach
-      | Apple
-      | Pear
-      | Lemon
-      | Fig ;;
-
-    type tree =
-        Bud
-      | Flat of fruit * tree
-      | Split of tree * tree ;;
-
-    let rec (flat_only : tree -> bool) =
-      function
-          (Bud)
-          -> true
-        | (Flat(f,t))
-          -> flat_only (t)
-        | (Split(t1,t2))
-          -> false ;;
-
-    flat_only(
-      Split(
-        Bud,
-        Flat(
-          Fig,
-          Split(
-            Bud,
-            Bud)))) ;;
-
-    flat_only(
-      Split(
-        Split(
-          Bud,
-          Flat(Lemon,Bud)),
-        Flat(
-          Fig,
-          Split(
-            Bud,
-            Bud)))) ;;
-
-    let rec (split_only : tree -> bool) =
-      function
-          (Bud)
-          -> true
-        | (Flat(f,t))
-          -> false
-        | (Split(t1,t2))
-          -> if split_only(t1)
-          then split_only(t2)
-          else false ;;
-
-    split_only(
-      Split(
-        Bud,
-        Flat(
-          Fig,
-          Split(
-            Bud,
-            Bud)))) ;;
-    split_only(
-      Split(
-        Split(
-          Bud,
-          Bud),
-        Bud)) ;;
-
-    (* let rec (contains_fruit : tree -> bool) =
-     ,*   function
-     ,*       (Bud)
-     ,*       -> false
-     ,*     | (Flat(f,t))
-     ,*       -> true
-     ,*     | (Split(t1,t2))
-     ,*       -> if contains_fruit(t1)
-     ,*       then true
-     ,*       else contains_fruit(t2) ;; *)
-
-    let rec (contains_fruit : tree -> bool) =
-      function
-          (x)
-          -> not (split_only (x)) ;;
-         (* -> if split_only (x)
-          ,*   then false
-          ,*   else true ;; *)
+      let rec (subst_fish : (fish * fish * fish pizza) -> fish pizza) =
+        function
+            (x, y, Bottom)
+            -> Bottom
+          | (x, y, Topping (a, p))
+            -> if eq_fish (y, a)
+            then Topping (x, subst_fish (x, y, p))
+            else Topping (a, subst_fish (x, y, p)) ;;
 
 
-    contains_fruit(
-      Split(
-        Bud,
-        Flat(
-          Fig,
-          Split(
-            Bud,
-            Bud)))) ;;
-    contains_fruit(
-      Split(
-        Split(
-          Bud,
-          Bud),
-        Bud)) ;;
-
-    (* 树的高被定义为最高的芽到根的距离
-     ,* 下面是height的辅助函数 *)
-    let rec (less_than : (int * int) -> bool) =
-      function
-          (n,m)
-          -> (n < m) ;;
-
-    let rec (larger_of : (int * int) -> int) =
-      function
-          (n,m)
-          -> if less_than (n,m)
-          then m
-          else n ;;
-
-    let rec (height : tree -> int) =
-      function
-          (Bud)
-          -> 0
-        | (Flat(f,t))
-          -> 1 + height(t)
-        | (Split(t1,t2))
-          -> 1 + larger_of(height(t1),height(t2)) ;;
+      subst_fish(Tuna, Anchovy,
+        Topping(Anchovy,
+          Topping(Tuna,
+            Topping(Anchovy,
+              Bottom)))) ;;
 
 
-    height(
-      Split(
-        Bud,
-        Flat(
-          Fig,
-          Split(
-            Bud,
-            Bud)))) ;;
-    height(
-      Split(
-        Split(
-          Bud,
-          Bud),
-        Bud)) ;;
+      type num =
+          Zero
+        | One_more_than of num ;;
 
+      let rec (eq_num : (num * num) -> bool) =
+        function
+            (Zero, Zero)
+            -> true
+          | (One_more_than (m), Zero)
+            -> false
+          | (Zero, One_more_than (n))
+            -> false
+          | (One_more_than (m), One_more_than (n))
+            -> eq_num (m, n) ;;
 
-    let rec (eq_fruit : (fruit * fruit) -> bool) =
-      function
-          (Peach,Peach)
-          -> true
-        | (Apple,Apple)
-          -> true
-        | (Pear,Pear)
-          -> true
-        | (Lemon,Lemon)
-          -> true
-        | (Fig,Fig)
-          -> true
-        | (f1,f2)
-          -> false ;;
+      (* 總是從已經能夠正確工作的版本來化簡
+       * 不要想一下就寫出又正確又精簡的版本 尤其是在不熟練的時候
+       * 先寫出能正確工作的版本再說
+       * 然後再化簡 *)
 
-    let rec (subst_in_tree : (fruit * fruit * tree) -> tree) =
-      function
-          (new_fruit, old_fruit, Bud)
-          -> Bud
-        | (new_fruit, old_fruit, Flat(f,t))
-          -> if eq_fruit (old_fruit, f)
-          then Flat(new_fruit,
-                    (subst_in_tree (new_fruit, old_fruit, t)))
-          else Flat(f,
-                    (subst_in_tree (new_fruit, old_fruit, t)))
-        | (new_fruit, old_fruit, Split(t1,t2))
-          -> Split (subst_in_tree (new_fruit, old_fruit, t1),
-                    subst_in_tree (new_fruit, old_fruit, t2)) ;;
+      let rec (eq_num : (num * num) -> bool) =
+        function
+            (Zero, Zero)
+            -> true
+          | (One_more_than (m), One_more_than (n))
+            -> eq_num (m, n)
+          | (m, n)
+            -> false ;;
 
-    subst_in_tree(Fig,Fig,Bud) ;;
-    subst_in_tree(Apple,Fig,
+      eq_num(Zero, Zero) ;;
+      eq_num(Zero, One_more_than(Zero)) ;;
+      #+end_src
+
+***** the fifth moral
+      write the first draft of a function
+      following all the morals.
+      when it is correct and no sooner no later, simplify!
+      --------------------------
+      遵循所有的準則 先寫出 函數的第一個版本
+      這個版本的函數 可能在表達當有點羅嗦
+      或者在執行效率上並不高
+      但是總要先寫出這個版本
+      當它正確了的時候
+      馬上就進行 就表達的簡化 和就性能的優化
+
+*** 6 oh my, it's full of stars !
+
+***** 一顆能長出各種水果的樹
+      從上向下 從左向右長的
+      下面所處理的二叉樹的分支節點是有類型的(有名字的)
+      這與經典的lisp對二叉樹的實現方式不一樣
+      #+begin_src caml
+      type fruit =
+          Peach
+        | Apple
+        | Pear
+        | Lemon
+        | Fig ;;
+
+      type tree =
+          Bud
+        | Flat of fruit * tree
+        | Split of tree * tree ;;
+
+      let rec (flat_only : tree -> bool) =
+        function
+            (Bud)
+            -> true
+          | (Flat(f,t))
+            -> flat_only (t)
+          | (Split(t1,t2))
+            -> false ;;
+
+      flat_only(
         Split(
           Bud,
           Flat(
@@ -882,679 +758,844 @@
             Split(
               Bud,
               Bud)))) ;;
-    subst_in_tree(Apple,Fig,
-      Split(
+
+      flat_only(
+        Split(
+          Split(
+            Bud,
+            Flat(Lemon,Bud)),
+          Flat(
+            Fig,
+            Split(
+              Bud,
+              Bud)))) ;;
+
+      let rec (split_only : tree -> bool) =
+        function
+            (Bud)
+            -> true
+          | (Flat(f,t))
+            -> false
+          | (Split(t1,t2))
+            -> if split_only(t1)
+            then split_only(t2)
+            else false ;;
+
+      split_only(
         Split(
           Bud,
           Flat(
             Fig,
             Split(
               Bud,
-              Bud))),
+              Bud)))) ;;
+      split_only(
+        Split(
+          Split(
+            Bud,
+            Bud),
+          Bud)) ;;
+
+      (* let rec (contains_fruit : tree -> bool) =
+       *   function
+       *       (Bud)
+       *       -> false
+       *     | (Flat(f,t))
+       *       -> true
+       *     | (Split(t1,t2))
+       *       -> if contains_fruit(t1)
+       *       then true
+       *       else contains_fruit(t2) ;; *)
+
+      let rec (contains_fruit : tree -> bool) =
+        function
+            (x)
+            -> not (split_only (x)) ;;
+           (* -> if split_only (x)
+            *   then false
+            *   else true ;; *)
+
+
+      contains_fruit(
         Split(
           Bud,
           Flat(
             Fig,
             Split(
               Bud,
-              Bud))))) ;;
+              Bud)))) ;;
+      contains_fruit(
+        Split(
+          Split(
+            Bud,
+            Bud),
+          Bud)) ;;
 
-    let rec (occurs : (fruit * tree) -> int) =
-      function
-          (x, Bud)
-          -> 0
-        | (x, Flat(f, t))
-          -> if eq_fruit (x, f)
-          then 1 + occurs(x, t)
-          else occurs(x, t)
-        | (x, Split (t1, t2))
-          -> occurs (x, t1) + occurs (x, t2) ;;
+      (* 樹的高被定義爲最高的芽到根的距離
+       * 下面是height的輔助函數 *)
+      let rec (less_than : (int * int) -> bool) =
+        function
+            (n,m)
+            -> (n < m) ;;
 
-    occurs(Fig,
-           Split(
+      let rec (larger_of : (int * int) -> int) =
+        function
+            (n,m)
+            -> if less_than (n,m)
+            then m
+            else n ;;
+
+      let rec (height : tree -> int) =
+        function
+            (Bud)
+            -> 0
+          | (Flat(f,t))
+            -> 1 + height(t)
+          | (Split(t1,t2))
+            -> 1 + larger_of(height(t1),height(t2)) ;;
+
+
+      height(
+        Split(
+          Bud,
+          Flat(
+            Fig,
+            Split(
+              Bud,
+              Bud)))) ;;
+      height(
+        Split(
+          Split(
+            Bud,
+            Bud),
+          Bud)) ;;
+
+
+      let rec (eq_fruit : (fruit * fruit) -> bool) =
+        function
+            (Peach,Peach)
+            -> true
+          | (Apple,Apple)
+            -> true
+          | (Pear,Pear)
+            -> true
+          | (Lemon,Lemon)
+            -> true
+          | (Fig,Fig)
+            -> true
+          | (f1,f2)
+            -> false ;;
+
+      let rec (subst_in_tree : (fruit * fruit * tree) -> tree) =
+        function
+            (new_fruit, old_fruit, Bud)
+            -> Bud
+          | (new_fruit, old_fruit, Flat(f,t))
+            -> if eq_fruit (old_fruit, f)
+            then Flat(new_fruit,
+                      (subst_in_tree (new_fruit, old_fruit, t)))
+            else Flat(f,
+                      (subst_in_tree (new_fruit, old_fruit, t)))
+          | (new_fruit, old_fruit, Split(t1,t2))
+            -> Split (subst_in_tree (new_fruit, old_fruit, t1),
+                      subst_in_tree (new_fruit, old_fruit, t2)) ;;
+
+      subst_in_tree(Fig,Fig,Bud) ;;
+      subst_in_tree(Apple,Fig,
+          Split(
+            Bud,
+            Flat(
+              Fig,
+              Split(
+                Bud,
+                Bud)))) ;;
+      subst_in_tree(Apple,Fig,
+        Split(
+          Split(
+            Bud,
+            Flat(
+              Fig,
+              Split(
+                Bud,
+                Bud))),
+          Split(
+            Bud,
+            Flat(
+              Fig,
+              Split(
+                Bud,
+                Bud))))) ;;
+
+      let rec (occurs : (fruit * tree) -> int) =
+        function
+            (x, Bud)
+            -> 0
+          | (x, Flat(f, t))
+            -> if eq_fruit (x, f)
+            then 1 + occurs(x, t)
+            else occurs(x, t)
+          | (x, Split (t1, t2))
+            -> occurs (x, t1) + occurs (x, t2) ;;
+
+      occurs(Fig,
              Split(
-               Bud,
-               Flat(
-                 Fig,
-                 Split(
-                   Bud,
-                   Bud))),
-             Split(
-               Bud,
-               Flat(
-                 Fig,
-                 Split(
-                   Bud,
-                   Bud))))) ;;
+               Split(
+                 Bud,
+                 Flat(
+                   Fig,
+                   Split(
+                     Bud,
+                     Bud))),
+               Split(
+                 Bud,
+                 Flat(
+                   Fig,
+                   Split(
+                     Bud,
+                     Bud))))) ;;
 
 
 
 
-    (* good old sexp !!!
-     ,* 但是为什么有这样奇怪的定义
-     ,* 因为sexp其实是pair 但是需要形成list的语义
-     ,* <sexp> ::= <null> | <atom> | <pair>
-     ,* <pair> ::= (<sexp> . <sexp>)
-     ,* <atom> ::= {先验的定义出的不同于<sexp>的所有其他数据类型}
-     ,* <null> ::= {可以被看成是特殊的<atom>, 但是为了形成list语义所以单独拿出来}
-     ,* 作代入可得:
-     ,* <sexp> ::= <null> | <atom> | (<sexp> . <sexp>) *)
+      (* good old sexp !!!
+       * 但是爲什麼有這樣奇怪的定義
+       * 因爲sexp其實是pair 但是需要形成list的語義
+       * <sexp> ::= <null> | <atom> | <pair>
+       * <pair> ::= (<sexp> . <sexp>)
+       * <atom> ::= {先驗的定義出的不同於<sexp>的所有其他數據類型}
+       * <null> ::= {可以被看成是特殊的<atom>, 但是爲了形成list語義所以單獨拿出來}
+       * 作代入可得:
+       * <sexp> ::= <null> | <atom> | (<sexp> . <sexp>) *)
 
-    (* 注意 由上面的定义可以看出 为了定义<sexp>并不需要<list>
-     ,* 下面的与上面不同的定义方式是为了形成list的语义
-     ,* 下面的定义是一种很巧妙的说明列表语义的方式
-     ,* 但是下面的计算说明两种对集合<sexp>的定义并不相等
-     ,* 下面的list只能是proper-list
-     ,* <list> ::= <null> | (<sexp> . <list>)
-     ,* <sexp> ::= <atom> | <list>
-     ,* <atom> ::= {~~~}
-     ,* <null> ::= {~~~}
-     ,* 作代入可得:
-     ,* <sexp> ::= <atom> | <null> | (<sexp> . [<sexp> - <atom>])
-     ,* <list> ::= <null> | (<atom> | <list> . <list>) *)
+      (* 注意 由上面的定義可以看出 爲了定義<sexp>並不需要<list>
+       * 下面的與上面不同的定義方式是爲了形成list的語義
+       * 下面的定義是一種很巧妙的說明列表語義的方式
+       * 但是下面的計算說明兩種對集合<sexp>的定義並不相等
+       * 下面的list只能是proper-list
+       * <list> ::= <null> | (<sexp> . <list>)
+       * <sexp> ::= <atom> | <list>
+       * <atom> ::= {~~~}
+       * <null> ::= {~~~}
+       * 作代入可得:
+       * <sexp> ::= <atom> | <null> | (<sexp> . [<sexp> - <atom>])
+       * <list> ::= <null> | (<atom> | <list> . <list>) *)
 
-    type
-        'a slist =
-        Empty
-      | Scons of ('a sexp * 'a slist)
-    and
-        'a sexp =
-        An_atom of 'a
-      | A_slist of ('a slist) ;;
-      (* 可以发现上面的一句与上面的BNF并不一致
-       ,* 这是因为 上面的最后一句并不是(<list>)而是<list>
-       ,* 但是要想使用('a slist)必须增加一个构造子
-       ,* 而不能使用下面的语法
-       ,* | ('a slist) ;;
-       ,* 也就是说 一个类型的定义中的任意一项都必须有一个有名有姓的构造子
-       ,* 因为在归纳定义中
-       ,* 一个构造子的名字代表了一种构造的方式
-       ,* 之所以需要给构造方式命名
-       ,* 是因为人们需要引用这些名字来分析一个物质的构造 *)
+      type
+          'a slist =
+          Empty
+        | Scons of ('a sexp * 'a slist)
+      and
+          'a sexp =
+          An_atom of 'a
+        | A_slist of ('a slist) ;;
+        (* 可以發現上面的一句與上面的BNF並不一致
+         * 這是因爲 上面的最後一句並不是(<list>)而是<list>
+         * 但是要想使用('a slist)必須增加一個構造子
+         * 而不能使用下面的語法
+         * | ('a slist) ;;
+         * 也就是說 一個類型的定義中的任意一項都必須有一個有名有姓的構造子
+         * 因爲在歸納定義中
+         * 一個構造子的名字代表了一種構造的方式
+         * 之所以需要給構造方式命名
+         * 是因爲人們需要引用這些名字來分析一個物質的構造 *)
 
-       (* 另外 值得注意的一点是
-        ,* 上面的BNF并没有包含构造子的名字
-        ,* 如果使用了明确命名的构造子
-        ,* 那么就改变了递归定义的性质
-        ,* 此时除非另外作出规定
-        ,* 否则是不能自由地像上面一样用代入来进行计算的
-        ,* 从范畴论的角度来说需要一个遗忘函子才能得到可以自由代换的BNF *)
-
-
-
-    (* in lisp the following would be :
-     ,* (cons (cons 'Fig
-     ,*               (cons 'Peach '()))
-     ,*         (cons 'Fig
-     ,*               (cons 'Lemon '())))
-     ,* '((Fig Peach) Fig Lemon) *)
+         (* 另外 值得注意的一點是
+          * 上面的BNF並沒有包含構造子的名字
+          * 如果使用了明確命名的構造子
+          * 那麼就改變了遞歸定義的性質
+          * 此時除非另外作出規定
+          * 否則是不能自由地像上面一樣用代入來進行計算的
+          * 從範疇論的角度來說需要一個遺忘函子才能得到可以自由代換的BNF *)
 
 
-    Scons(A_slist(
-             Scons(An_atom(Fig),
-                   Scons(An_atom(Peach),
-                         Empty))),
+
+      (* in lisp the following would be :
+       * (cons (cons 'Fig
+       *               (cons 'Peach '()))
+       *         (cons 'Fig
+       *               (cons 'Lemon '())))
+       * '((Fig Peach) Fig Lemon) *)
+
+
+      Scons(A_slist(
+               Scons(An_atom(Fig),
+                     Scons(An_atom(Peach),
+                           Empty))),
+            Scons(An_atom(Fig),
+                  Scons(An_atom(Lemon),
+                        Empty))) ;;
+
+      (* a mutually self-referential type
+       * lead to mutually self-referential functions *)
+      let rec (occurs_in_slist : (fruit * fruit slist) -> int) =
+        function
+            (a, Empty)
+            -> 0
+          | (a, Scons(s, l))
+            -> occurs_in_sexp(a, s) + occurs_in_slist(a, l)
+      and (occurs_in_sexp : (fruit * fruit sexp) -> int) =
+        function
+            (a, An_atom(b))
+            -> if eq_fruit (a, b)
+            then 1
+            else 0
+          | (a, A_slist(l))
+            -> occurs_in_slist (a, l) ;;
+
+
+      (* '((Fig Peach) Fig Lemon) *)
+      occurs_in_slist(Fig,
+        Scons(A_slist(
+              Scons(An_atom(Fig),
+                    Scons(An_atom(Peach),
+                          Empty))),
+              Scons(An_atom(Fig),
+                    Scons(An_atom(Lemon),
+                          Empty)))) ;;
+
+      (* '(Fig Peach) *)
+      occurs_in_sexp(Fig,
+        A_slist(
           Scons(An_atom(Fig),
-                Scons(An_atom(Lemon),
-                      Empty))) ;;
-
-    (* a mutually self-referential type
-     ,* lead to mutually self-referential functions *)
-    let rec (occurs_in_slist : (fruit * fruit slist) -> int) =
-      function
-          (a, Empty)
-          -> 0
-        | (a, Scons(s, l))
-          -> occurs_in_sexp(a, s) + occurs_in_slist(a, l)
-    and (occurs_in_sexp : (fruit * fruit sexp) -> int) =
-      function
-          (a, An_atom(b))
-          -> if eq_fruit (a, b)
-          then 1
-          else 0
-        | (a, A_slist(l))
-          -> occurs_in_slist (a, l) ;;
-
-
-    (* '((Fig Peach) Fig Lemon) *)
-    occurs_in_slist(Fig,
-      Scons(A_slist(
-            Scons(An_atom(Fig),
-                  Scons(An_atom(Peach),
-                        Empty))),
-            Scons(An_atom(Fig),
-                  Scons(An_atom(Lemon),
-                        Empty)))) ;;
-
-    (* '(Fig Peach) *)
-    occurs_in_sexp(Fig,
-      A_slist(
-        Scons(An_atom(Fig),
-              Scons(An_atom(Peach),
-                    Empty)))) ;;
-
-
-    let rec (subst_in_slist : (fruit * fruit * fruit slist) -> fruit slist) =
-      function
-          (a, b, Empty)
-          -> (Empty)
-        | (a, b, Scons(s, l))
-          -> Scons (subst_in_sexp (a, b, s),
-                    subst_in_slist (a, b, l))
-    and (subst_in_sexp : (fruit * fruit * fruit sexp) -> fruit sexp) =
-      function
-          (a, b, An_atom (x))
-          -> if eq_fruit (b, x)
-          then (An_atom (a))
-          else (An_atom (x))
-        | (a, b, A_slist (l))
-          -> A_slist (subst_in_slist (a, b, l)) ;;
-    (* 注意这类处理
-     ,* 再用模式匹配把参数解构之后
-     ,* 都要再用构造子把这些构造加回去 *)
-
-    (* '((Fig Peach) Fig Lemon) *)
-    subst_in_slist(Lemon, Fig,
-      Scons(A_slist(
-            Scons(An_atom(Fig),
-                  Scons(An_atom(Peach),
-                        Empty))),
-            Scons(An_atom(Fig),
-                  Scons(An_atom(Lemon),
-                        Empty)))) ;;
-
-    (* '(Fig Peach) *)
-    subst_in_sexp(Lemon, Fig,
-      A_slist(
-        Scons(An_atom(Fig),
-              Scons(An_atom(Peach),
-                    Empty)))) ;;
-
-
-    (* 下面一个函数不是简单的就归纳定义而作模式匹配了
-     ,* 而是需要预先判断一层
-     ,* 这是显然的
-     ,* 因为在这里我的输出值将比输入值小(指含有更少元素的list或sexp)
-     ,* 这些东西其实都是语言的实现方式的错误所带来的复杂性
-     ,*   试想如果有晦朔机制的话那么就没必要作预先判断了
-     ,*     >< 如何在编译器中实现这种晦朔机制呢 ???
-     ,*     每个构造子都应该把自己所形成的结构的地址让其构造部分可见
-     ,*     这样的话 当构造子嵌套时 就可以形成非局部返回
-     ,*     每个父函数在调用子函数的时候还要给子函数控制父函数的权利
-     ,*       并且把这种权利传递下去
-     ,*     >< 可否用call/cc在scheme中间接的实现这些呢 ???
-     ,* 同时这也是在作归纳定义的时候明显的指明构造子的名字的缺点 *)
-
-    (* 或者说 下面一个函数不是简单的一个构造子一个构造子地处理了
-     ,* 而是利用模式匹配一起处理很多构造子所形成的结构
-     ,* 这样我们就能对内层的构造子形成预先的判断 *)
-
-    (* 如何在digrap中解决这个问题呢 ???
-     ,* 在digrap中这个问题的表现形式是什么样的 ??? *)
-
-    (* let rec (rem_from_slist : (fruit * fruit slist) -> fruit slist ) =
-     ,*   function
-     ,*       (a, Empty)
-     ,*       -> (Empty)
-     ,*     | (a, Scons (s, l))
-     ,*       在下面的构造子的作用之前需要预先判断
-     ,*       上面的模式匹配也要相应的改变
-     ,*       -> (Scons (rem_from_sexp (a, s),
-     ,*               rem_from_slist (a, l)))
-     ,* and (rem_from_sexp : (fruit * fruit sexp) -> fruit sexp) =
-     ,*   function
-     ,*       (a, An_atom (x))
-     ,*       -> >< 这里没法写了 !!!
-     ,*     | (a, A_slist (l))
-     ,*       -> (A_slist (rem_from_sexp (l))) ;; *)
-
-    (* 因为有模式匹配可以方便地提取结构化数据的某一部分
-     ,* 所以ml算是对上面所提出的问题指出了一个解决方案
-     ,* 要知道 如果不用模式匹配的话 就需要写谓词来作很多判断
-     ,* 那将是一场灾难 *)
-
-    (* 下面的金玉良言使你耐心的看完下面的重复性很强的例子
-     ,* after [maybe only after] we have designed a program
-     ,* that naturally follows the type defintions,
-     ,* we can considerably improve it
-     ,* by focusing on its weaknesses
-     ,* and carefully rearranging its pieces. *)
-
-    (* 就下面的具体例子而言
-     ,* 首先发现了需要提前判断的地方
-     ,* 然后我明白 与其用谓词 我不如使用ml所提供的模式匹配来完成这中提前判断
-     ,* 首先要明确需要对那个东西形成提前判断(这里的An_atom)
-     ,* 然后看那个构造子用到了它 那里就是需要进入的位置(模式匹配分裂的位置)
-     ,* 注意每当进入一个构造子(这里的Scons)
-     ,* 就要从这个点 根据这个构造子来分叉 去增加匹配项的个数
-     ,* 这里进入的是Scons的第一个参数
-     ,* 得到的分叉是An_atom和A_slist *)
-
-    let rec (rem_from_slist : (fruit * fruit slist) -> fruit slist) =
-      function
-          (a, Empty)
-          -> (Empty)
-        | (a, Scons (An_atom (x), l))
-          -> if eq_fruit (a, x)
-          then (rem_from_slist (a, l))
-          else (Scons (An_atom (x),
-                       (rem_from_slist (a, l))))
-        | (a, Scons (A_slist (x), l))
-          (* 然后发现可以不用rem_from_sexp这个辅助类型就可以完成函数了
-           ,* 因为sexp的两个构造子在模式匹配中明显出现后就都被处理掉了
-           ,* -> (Scons (rem_from_sexp (a, A_slist (x)),
-           ,*            rem_from_slist (a, l))) *)
-          -> (Scons (A_slist (rem_from_slist (a, x)),
-                     rem_from_slist (a, l))) ;;
-
-    (* 没有rem_from_sexp了
-     ,* 要知道 是不可能从An_atom(Fig)移除它本身的
-     ,* no sexp is like An_atom(Fig) without Fig *)
-
-    (* 出现bug的时候
-     ,* 就去检查每个函数的作用是否符合 每个函数的类型
-     ,*
-     ,* 出现bug的时候
-     ,* 就去检查每个构造子的作用是否符合 每个构造子的定义 *)
-
-    (* '((Fig Peach) Fig Lemon) *)
-    rem_from_slist(Fig,
-                   Scons(A_slist(
-                         Scons(An_atom(Fig),
-                               Scons(An_atom(Peach),
-                                     Empty))),
-                         Scons(An_atom(Fig),
-                               Scons(An_atom(Lemon),
-                                     Empty)))) ;;
-    #+end_src
-*** the sixth moral
-    As type definitions get more compicated,
-    so do the functions over them.
-    --------------------------
-    所以写复杂的函数处理复杂的数据类型的时候
-    就更需要系统而合理的方法
-** 7 functions are people, too
-*** 正所谓函数是一等功民
-    #+begin_src caml
-    let rec identify =
-      function
-       (x) -> (x) ;;
-    (identify : 'a -> 'a) ;;
-
-    let rec (identify : 'a -> 'a) =
-      function
-       (x) -> (x) ;;
-
-    (identify 1) ;;
-
-
-    let rec (true_maker : 'a -> bool) =
-      function
-       (x) -> true ;;
-
-    true_maker 666 ;;
-
-
-    type bool_or_int =
-        Hot of bool
-      | Cold of int ;;
-
-    (* 构造子在ocaml中不是函数
-     ,* 尽管构造子的使用方式同函数相同
-     ,* 当完全想要把构造子作为函数来使用的时候
-     ,* 就需要用一个函数把构造子抽象出来
-     ,* 函数当然还是一等公民 但是构造子不是一等功民了
-     ,* 构造子的使用收到更大的限制
-     ,* 这种限制也许是正确的 *)
-
-    (* 如果构造子与函数相同那么下面的函数就可以写成 *)
-    (* let rec hot_maker =
-     ,*   function
-     ,*       (x) -> Hot ;; *)
-
-    let rec hot_maker =
-      function (x)
-       -> function (x)
-           -> Hot (x) ;;
-
-    hot_maker (true) ;;
-    (hot_maker 666 true) ;;
-    (* 真正的二元函数使用curry实现的
-     ,* 这太棒了 *)
-    (* Dan之所以不强调这一点是为了减少初学者的负担 *)
-    (* 但是怎么使用隐式的没有λ的函数定义呢 ??? *)
-
-
-    (* 注意了下面的函数的参数f的类型是推导出来的
-     ,* 或者说
-     ,* 经过类型推导
-     ,* 发现对f的类型的声明
-     ,* 和根据f的作用情况所推导出来的f的类型是一致的 *)
-    let rec (help : ('a -> bool) -> bool_or_int) =
-      function
-       (f)
-       -> Hot (true_maker
-               (if true_maker (666)
-               then f
-               else true_maker)) ;;
-    (* 在这里 想要推导f的类型
-     ,* 只要发现它的类型应该与true_maker一致就行了
-     ,* 因为每个表达式都必须存在一个类型
-     ,* 这就要求分支结构的两个分支的返回值的类型要一致 *)
-
-
-    (* 下面是一个有趣的东西
-     ,* 一个没有基础项的归纳定义 *)
-    type chain =
-        Link of (int * (int -> chain)) ;;
-
-    (* 为了得到一个属于上面的类型的数据
-     ,* 我们在下面定义了一个 不是递归调用自身
-     ,* 而是返回值中包含自身的``递归函数'' *)
-    let rec (ints : int -> chain) =
-      function (n)
-       -> Link (n + 1, ints) ;;
-    ints(0) ;;
-    ints(100) ;;
-    (* 一个chain中包含一个数列中的一项
-     ,* 和一个就这个数列而言的后继函数 *)
-
-    (* (function
-     ,*     (a_number, a_function)
-     ,*     -> (a_function 0)
-     ,*
-     ,* ints(0) );;
-     ,*
-     ,* (function
-     ,*     (a_number, b_number)
-     ,*     -> a_number
-     ,*
-     ,* (0) ) ;; *)
-    (* 如何让lambda-abstraction作用到参数上面 ??? *)
-    (* 暂时使用下面的明显定义来测试吧 *)
-    (* let kkk =
-     ,*   function
-     ,*       Link (a_number, a_function)
-     ,*       -> (a_function 0) ;;
-     ,* (kkk (kkk (ints 0))) ;; *)
-
-
-    (* scheme中可以让函数的返回值包含自己吗???
-     ,* 当然可以了 看这节末的scheme代码快就是知道了
-     ,* 不过不知道这根递归函数的实现方式有没有关系
-     ,* 比如如果用Y来实现递归函数那么是不是也能这样呢??? *)
-
-    let rec (skips : int -> chain) =
-      function
-          (n) -> Link (n + 2, skips) ;;
-
-    let rec (divides_evenly : (int * int) -> bool) =
-      function
-          (n, c)
-          -> (n mod c) = 0 ;;
-
-    let rec (is_mod_5_or_7 : int -> bool) =
-      function
-          (n)
-          -> if divides_evenly (n, 5)
-          then true
-          else divides_evenly (n, 7) ;;
-
-    let rec (some_ints : int -> chain) =
-      function
-          (n)
-          -> if is_mod_5_or_7 (n + 1) (* 这个位置的谓词像是一个过滤器 *)
-          then Link (n + 1, some_ints)
-          else some_ints (n + 1) ;;
-    (* 上面的那个个位置的谓词像是一个过滤器
-     ,* 也就是说只要能写出一个数列的谓词
-     ,* 就能以这种方式来虚拟地得到这个数列 *)
-
-    some_ints (0) ;;
-    some_ints (5) ;;
-    some_ints (100) ;;
-    some_ints (17) ;;
-    some_ints (6) ;;
-    (* 或者
-     ,* 一个chain中包含一个数
-     ,* 和一个就一个数列而言的后继函数
-     ,* 当这个函数作用于那个数的时候
-     ,* 就返回严格大于那个数的数列中的第一个数 *)
-    (* 那个可能不是数列中的数的数 也可以被当作是chain中的数
-     ,* 比如 可以写出后继函数的逆函数来作检验 然后解决这个问题 *)
-
-
-    (* 上面所得到的Link中保存着一个可以作用于其保存的数据的函数
-     ,* 这个函数通过返回一个同类型的Link 来改变Link的数据部分
-     ,* 而不是使用副作用 *)
-
-    (* 以上面的方式我们就得到了虚拟的与自然数集等式的无穷集
-     ,* 就像利用0与后继定义自然数的集合一样
-     ,* 并且我们还可以写函数来处理这类量 *)
-
-    let rec (chain_item : (int * chain) -> int) =
-      function
-       (n, Link (i, f))
-       -> if n = 1
-       then i
-       else chain_item (n - 1, (f i)) ;;
-
-    (chain_item (37, (some_ints (0)))) ;;
-    (chain_item (100, (some_ints (0)))) ;;
-    (chain_item (1000, (some_ints (0)))) ;;
-
-
-
-    (* 下面的and就像是在scheme中用letrec定义帮助函数一样
-     ,* 帮助函数在主要函数的下面 这才是合理的语法 *)
-    let rec (is_prime : int -> bool) =
-      function
-       (n)
-       -> has_no_divisors (n, n - 1)
-    and (has_no_divisors : (int * int) -> bool) =
-      function
-       (n, c)
-       -> if c = 1
-       then true
-       else
-         if divides_evenly (n, c)
-         then false
-         else has_no_divisors (n, c - 1) ;;
-
-
-    let rec (primes : int -> chain) =
-      function
-       (n)
-       -> if is_prime (n + 1)
-       then Link (n + 1, primes)
-       else primes (n + 1) ;;
-
-    chain_item (1, (primes 1)) ;;
-    chain_item (2, (primes 1)) ;;
-    chain_item (3, (primes 1)) ;;
-    chain_item (4, (primes 1)) ;;
-    chain_item (5, (primes 1)) ;;
-    chain_item (6, (primes 1)) ;;
-    chain_item (7, (primes 1)) ;;
-    chain_item (100, (primes 1)) ;;
-
-    (* curry缩进测试:
-     ,* 可以正确缩进的:
-     ,* let rec (f) =
-     ,*   function (m)
-     ,*    -> ><><><
-     ,*  | ()
-     ,*    -> ><><>< ;;
-     ,* 不能正确缩进的:
-     ,* let rec (f) =
-     ,*   function (m)
-     ,*    -> function (n)
-     ,*     -> ><><><
-     ,*  | ()
-     ,*    -> function ()
-     ,*     -> ><><>< ;;
-     ,* 上面的缩进是不可能正确的
-     ,* 因为每次<tab>所绑定的函数只看前面的一行
-     ,* 而当模式匹配嵌套的时候只看一行是不够的 *)
-
-    (* 不真正地理解语法就没办法正确地处理文本
-     ,* emacs中除了lisp的mode之外
-     ,* 没有一个mode是真正理解语法的
-     ,* emacs的设计上本身就有很大缺陷
-     ,* 使得mode与语言的融合并不紧密 *)
-
-
-    (* curry的作用顺序的测试:
-     ,* let rec (f : int -> int -> int) =
-     ,*   function (n)
-     ,*    -> function (m)
-     ,*     -> n ;;
-     ,* (fibs 1 2) ;; *)
-
-    let rec (fibs : int -> int -> chain) =
-      function (n)
-       -> function (m)
-        -> Link (n + m, fibs (m)) ;;
-    Link (0, fibs (1)) ;;
-    (fibs 0 1) ;;
-
-
-    fibs (1) ;;
-    (* heuristic: *)
-    let (fibs_1 : int -> chain) =
-      function (m)
-       -> Link (1 + m, fibs (m)) ;;
-
-
-    let rec (chain_item : (int * chain) -> int) =
-      function
-       (n, Link (i, f))
-       -> if n = 1
-       then i
-       else chain_item (n - 1, (f i)) ;;
-
-    (chain_item (1, (fibs 0 1)))  ;;
-    (chain_item (2, (fibs 0 1)))  ;;
-    (chain_item (3, (fibs 0 1)))  ;;
-    (chain_item (4, (fibs 0 1)))  ;;
-    (chain_item (5, (fibs 0 1)))  ;;
-    (chain_item (6, (fibs 0 1)))  ;;
-    (chain_item (7, (fibs 0 1)))  ;;
-    (chain_item (8, (fibs 0 1)))  ;;
-    (chain_item (9, (fibs 0 1)))  ;;
-    (chain_item (10, (fibs 0 1))) ;;
-    #+end_src
-*** scheme更好 不是吗?
-    #+begin_src scheme
-    (define ints
-      (lambda (x)
-        (cons (add1 x) ints)))
-
-    (ints 1)
-    (let ([int-1 (ints 0)])
-      ((cdr int-1)
-       (car int-1)))
-    (let ([int-4 (ints 3)])
-      ((cdr int-4)
-       (car int-4)))
-    #+end_src
-*** the seventh moral
-    some functions consume values of arrow type;
-    some produce values of arrow type.
-    这就是 "函数是一等公民" 的定义
-    这里
-    所谓 arrow type 就是函数
-    所谓函数就是具有 arrow type 的值
-** 8 bows and arrows
-*** 8:93
-*** ><
-    #+begin_src caml
-    (* 非嵌套的list: *)
-    type 'a list =
-        Empty
-      | Cons of 'a * 'a list ;;
-
-    (* 为了比较Apple与Orange
-     ,* 可以形成下面的类型
-     ,* 然后写出这个类型的等词 *)
-    type orange_or_apply =
-        Apple
-      | Orange ;;
-
-    let (eq_orange_or_apply : (orange_or_apply * orange_or_apply) -> bool) =
-      function (Apple, Apple)
-       -> true
-     | (Orange, Orange)
-       -> true
-     | (one,another)
-       -> false ;;
-
-    let (eq_int : (int * int) -> bool) =
-      function (a, b)
-       -> if a = b
-       then true
-       else false ;;
-
-    let rec (subst_int : (int * int * int list) -> int list) =
-      function (n, a, Empty)
-       -> Empty
-     | (n, a, Cons (b, l))
-       -> if eq_int (a, b)
-       then Cons (n, subst_int (n, a, l))
-       else Cons (b, subst_int (n, a, l)) ;;
-
-
-    (* 上一节介绍了函数作为返回值 下面就介绍函数作为输入了
-     ,* 下面的类型推到很有意思 *)
-    let rec (subst : ((('b * 'a) -> bool) * 'b * 'a * 'a list) -> 'a list) =
-      function (relation, n, a, Empty)
-       -> Empty
-     | (relation, n, a, Cons (b, l))
-       -> if relation (a, b)
-       then Cons (n, subst (relation, n, a, l))
-       else Cons (b, subst (relation, n, a, l)) ;;
-
-    (subst
-     (eq_int, 1, 3, (Cons (1, (Cons (2, (Cons (3, Empty)))))))) ;;
-
-    let (less_than : (int * int) -> bool) =
-      function (a, b)
-       -> if a < b
-       then true
-       else false ;;
-
-    (subst
-     (less_than, 1, 1, (Cons (0, (Cons (1, (Cons (2, (Cons (3, Empty)))))))))) ;;
-
-    let (in_range : ) =
-      function ()
-       ->
-     | ()
-       ->  ;;
-    #+end_src
-*** the eighth moral
-    replace stars by arrows to reduce
-    the number of values consumed
-    and to increase the generality of the function defined.
-** 9 oh no!
-*** 9:14:84
-***
-*** the ninth moral
-    some functions produce exceptions instead of values;
-    some don't produce anything.
-    handle raised exceptions carefully.
-** 10 building on blocks
-*** 这一章需要看手册才能完成转换
-***
-*** the tenth moral
-    real programs consist of many componets.
-    specify the dependencies among these componets
-    using signatures and functors.
+                Scons(An_atom(Peach),
+                      Empty)))) ;;
+
+
+      let rec (subst_in_slist : (fruit * fruit * fruit slist) -> fruit slist) =
+        function
+            (a, b, Empty)
+            -> (Empty)
+          | (a, b, Scons(s, l))
+            -> Scons (subst_in_sexp (a, b, s),
+                      subst_in_slist (a, b, l))
+      and (subst_in_sexp : (fruit * fruit * fruit sexp) -> fruit sexp) =
+        function
+            (a, b, An_atom (x))
+            -> if eq_fruit (b, x)
+            then (An_atom (a))
+            else (An_atom (x))
+          | (a, b, A_slist (l))
+            -> A_slist (subst_in_slist (a, b, l)) ;;
+      (* 注意這類處理
+       * 再用模式匹配把參數解構之後
+       * 都要再用構造子把這些構造加回去 *)
+
+      (* '((Fig Peach) Fig Lemon) *)
+      subst_in_slist(Lemon, Fig,
+        Scons(A_slist(
+              Scons(An_atom(Fig),
+                    Scons(An_atom(Peach),
+                          Empty))),
+              Scons(An_atom(Fig),
+                    Scons(An_atom(Lemon),
+                          Empty)))) ;;
+
+      (* '(Fig Peach) *)
+      subst_in_sexp(Lemon, Fig,
+        A_slist(
+          Scons(An_atom(Fig),
+                Scons(An_atom(Peach),
+                      Empty)))) ;;
+
+
+      (* 下面一個函數不是簡單的就歸納定義而作模式匹配了
+       * 而是需要預先判斷一層
+       * 這是顯然的
+       * 因爲在這裏我的輸出值將比輸入值小(指含有更少元素的list或sexp)
+       * 這些東西其實都是語言的實現方式的錯誤所帶來的複雜性
+       *   試想如果有晦朔機制的話那麼就沒必要作預先判斷了
+       *     >< 如何在編譯器中實現這種晦朔機制呢 ???
+       *     每個構造子都應該把自己所形成的結構的地址讓其構造部分可見
+       *     這樣的話 當構造子嵌套時 就可以形成非局部返回
+       *     每個父函數在調用子函數的時候還要給子函數控制父函數的權利
+       *       並且把這種權利傳遞下去
+       *     >< 可否用call/cc在scheme中間接的實現這些呢 ???
+       * 同時這也是在作歸納定義的時候明顯的指明構造子的名字的缺點 *)
+
+      (* 或者說 下面一個函數不是簡單的一個構造子一個構造子地處理了
+       * 而是利用模式匹配一起處理很多構造子所形成的結構
+       * 這樣我們就能對內層的構造子形成預先的判斷 *)
+
+      (* 如何在digrap中解決這個問題呢 ???
+       * 在digrap中這個問題的表現形式是什麼樣的 ??? *)
+
+      (* let rec (rem_from_slist : (fruit * fruit slist) -> fruit slist ) =
+       *   function
+       *       (a, Empty)
+       *       -> (Empty)
+       *     | (a, Scons (s, l))
+       *       在下面的構造子的作用之前需要預先判斷
+       *       上面的模式匹配也要相應的改變
+       *       -> (Scons (rem_from_sexp (a, s),
+       *               rem_from_slist (a, l)))
+       * and (rem_from_sexp : (fruit * fruit sexp) -> fruit sexp) =
+       *   function
+       *       (a, An_atom (x))
+       *       -> >< 這裏沒法寫了 !!!
+       *     | (a, A_slist (l))
+       *       -> (A_slist (rem_from_sexp (l))) ;; *)
+
+      (* 因爲有模式匹配可以方便地提取結構化數據的某一部分
+       * 所以ml算是對上面所提出的問題指出了一個解決方案
+       * 要知道 如果不用模式匹配的話 就需要寫謂詞來作很多判斷
+       * 那將是一場災難 *)
+
+      (* 下面的金玉良言使你耐心的看完下面的重複性很強的例子
+       * after [maybe only after] we have designed a program
+       * that naturally follows the type defintions,
+       * we can considerably improve it
+       * by focusing on its weaknesses
+       * and carefully rearranging its pieces. *)
+
+      (* 就下面的具體例子而言
+       * 首先發現了需要提前判斷的地方
+       * 然後我明白 與其用謂詞 我不如使用ml所提供的模式匹配來完成這中提前判斷
+       * 首先要明確需要對那個東西形成提前判斷(這裏的An_atom)
+       * 然後看那個構造子用到了它 那裏就是需要進入的位置(模式匹配分裂的位置)
+       * 注意每當進入一個構造子(這裏的Scons)
+       * 就要從這個點 根據這個構造子來分叉 去增加匹配項的個數
+       * 這裏進入的是Scons的第一個參數
+       * 得到的分叉是An_atom和A_slist *)
+
+      let rec (rem_from_slist : (fruit * fruit slist) -> fruit slist) =
+        function
+            (a, Empty)
+            -> (Empty)
+          | (a, Scons (An_atom (x), l))
+            -> if eq_fruit (a, x)
+            then (rem_from_slist (a, l))
+            else (Scons (An_atom (x),
+                         (rem_from_slist (a, l))))
+          | (a, Scons (A_slist (x), l))
+            (* 然後發現可以不用rem_from_sexp這個輔助類型就可以完成函數了
+             * 因爲sexp的兩個構造子在模式匹配中明顯出現後就都被處理掉了
+             * -> (Scons (rem_from_sexp (a, A_slist (x)),
+             *            rem_from_slist (a, l))) *)
+            -> (Scons (A_slist (rem_from_slist (a, x)),
+                       rem_from_slist (a, l))) ;;
+
+      (* 沒有rem_from_sexp了
+       * 要知道 是不可能從An_atom(Fig)移除它本身的
+       * no sexp is like An_atom(Fig) without Fig *)
+
+      (* 出現bug的時候
+       * 就去檢查每個函數的作用是否符合 每個函數的類型
+       *
+       * 出現bug的時候
+       * 就去檢查每個構造子的作用是否符合 每個構造子的定義 *)
+
+      (* '((Fig Peach) Fig Lemon) *)
+      rem_from_slist(Fig,
+                     Scons(A_slist(
+                           Scons(An_atom(Fig),
+                                 Scons(An_atom(Peach),
+                                       Empty))),
+                           Scons(An_atom(Fig),
+                                 Scons(An_atom(Lemon),
+                                       Empty)))) ;;
+      #+end_src
+
+***** the sixth moral
+      As type definitions get more compicated,
+      so do the functions over them.
+      --------------------------
+      所以寫複雜的函數處理複雜的數據類型的時候
+      就更需要系統而合理的方法
+
+*** 7 functions are people, too
+
+***** 正所謂函數是一等功民
+      #+begin_src caml
+      let rec identify =
+        function
+         (x) -> (x) ;;
+      (identify : 'a -> 'a) ;;
+
+      let rec (identify : 'a -> 'a) =
+        function
+         (x) -> (x) ;;
+
+      (identify 1) ;;
+
+
+      let rec (true_maker : 'a -> bool) =
+        function
+         (x) -> true ;;
+
+      true_maker 666 ;;
+
+
+      type bool_or_int =
+          Hot of bool
+        | Cold of int ;;
+
+      (* 構造子在ocaml中不是函數
+       * 儘管構造子的使用方式同函數相同
+       * 當完全想要把構造子作爲函數來使用的時候
+       * 就需要用一個函數把構造子抽象出來
+       * 函數當然還是一等公民 但是構造子不是一等功民了
+       * 構造子的使用收到更大的限制
+       * 這種限制也許是正確的 *)
+
+      (* 如果構造子與函數相同那麼下面的函數就可以寫成 *)
+      (* let rec hot_maker =
+       *   function
+       *       (x) -> Hot ;; *)
+
+      let rec hot_maker =
+        function (x)
+         -> function (x)
+             -> Hot (x) ;;
+
+      hot_maker (true) ;;
+      (hot_maker 666 true) ;;
+      (* 真正的二元函數使用curry實現的
+       * 這太棒了 *)
+      (* Dan之所以不強調這一點是爲了減少初學者的負擔 *)
+      (* 但是怎麼使用隱式的沒有λ的函數定義呢 ??? *)
+
+
+      (* 注意了下面的函數的參數f的類型是推導出來的
+       * 或者說
+       * 經過類型推導
+       * 發現對f的類型的聲明
+       * 和根據f的作用情況所推導出來的f的類型是一致的 *)
+      let rec (help : ('a -> bool) -> bool_or_int) =
+        function
+         (f)
+         -> Hot (true_maker
+                 (if true_maker (666)
+                 then f
+                 else true_maker)) ;;
+      (* 在這裏 想要推導f的類型
+       * 只要發現它的類型應該與true_maker一致就行了
+       * 因爲每個表達式都必須存在一個類型
+       * 這就要求分支結構的兩個分支的返回值的類型要一致 *)
+
+
+      (* 下面是一個有趣的東西
+       * 一個沒有基礎項的歸納定義 *)
+      type chain =
+          Link of (int * (int -> chain)) ;;
+
+      (* 爲了得到一個屬於上面的類型的數據
+       * 我們在下面定義了一個 不是遞歸調用自身
+       * 而是返回值中包含自身的``遞歸函數'' *)
+      let rec (ints : int -> chain) =
+        function (n)
+         -> Link (n + 1, ints) ;;
+      ints(0) ;;
+      ints(100) ;;
+      (* 一個chain中包含一個數列中的一項
+       * 和一個就這個數列而言的後繼函數 *)
+
+      (* (function
+       *     (a_number, a_function)
+       *     -> (a_function 0)
+       *
+       * ints(0) );;
+       *
+       * (function
+       *     (a_number, b_number)
+       *     -> a_number
+       *
+       * (0) ) ;; *)
+      (* 如何讓lambda-abstraction作用到參數上面 ??? *)
+      (* 暫時使用下面的明顯定義來測試吧 *)
+      (* let kkk =
+       *   function
+       *       Link (a_number, a_function)
+       *       -> (a_function 0) ;;
+       * (kkk (kkk (ints 0))) ;; *)
+
+
+      (* scheme中可以讓函數的返回值包含自己嗎???
+       * 當然可以了 看這節末的scheme代碼快就是知道了
+       * 不過不知道這根遞歸函數的實現方式有沒有關係
+       * 比如如果用Y來實現遞歸函數那麼是不是也能這樣呢??? *)
+
+      let rec (skips : int -> chain) =
+        function
+            (n) -> Link (n + 2, skips) ;;
+
+      let rec (divides_evenly : (int * int) -> bool) =
+        function
+            (n, c)
+            -> (n mod c) = 0 ;;
+
+      let rec (is_mod_5_or_7 : int -> bool) =
+        function
+            (n)
+            -> if divides_evenly (n, 5)
+            then true
+            else divides_evenly (n, 7) ;;
+
+      let rec (some_ints : int -> chain) =
+        function
+            (n)
+            -> if is_mod_5_or_7 (n + 1) (* 這個位置的謂詞像是一個過濾器 *)
+            then Link (n + 1, some_ints)
+            else some_ints (n + 1) ;;
+      (* 上面的那個個位置的謂詞像是一個過濾器
+       * 也就是說只要能寫出一個數列的謂詞
+       * 就能以這種方式來虛擬地得到這個數列 *)
+
+      some_ints (0) ;;
+      some_ints (5) ;;
+      some_ints (100) ;;
+      some_ints (17) ;;
+      some_ints (6) ;;
+      (* 或者
+       * 一個chain中包含一個數
+       * 和一個就一個數列而言的後繼函數
+       * 當這個函數作用於那個數的時候
+       * 就返回嚴格大於那個數的數列中的第一個數 *)
+      (* 那個可能不是數列中的數的數 也可以被當作是chain中的數
+       * 比如 可以寫出後繼函數的逆函數來作檢驗 然後解決這個問題 *)
+
+
+      (* 上面所得到的Link中保存着一個可以作用於其保存的數據的函數
+       * 這個函數通過返回一個同類型的Link 來改變Link的數據部分
+       * 而不是使用副作用 *)
+
+      (* 以上面的方式我們就得到了虛擬的與自然數集等式的無窮集
+       * 就像利用0與後繼定義自然數的集合一樣
+       * 並且我們還可以寫函數來處理這類量 *)
+
+      let rec (chain_item : (int * chain) -> int) =
+        function
+         (n, Link (i, f))
+         -> if n = 1
+         then i
+         else chain_item (n - 1, (f i)) ;;
+
+      (chain_item (37, (some_ints (0)))) ;;
+      (chain_item (100, (some_ints (0)))) ;;
+      (chain_item (1000, (some_ints (0)))) ;;
+
+
+
+      (* 下面的and就像是在scheme中用letrec定義幫助函數一樣
+       * 幫助函數在主要函數的下面 這纔是合理的語法 *)
+      let rec (is_prime : int -> bool) =
+        function
+         (n)
+         -> has_no_divisors (n, n - 1)
+      and (has_no_divisors : (int * int) -> bool) =
+        function
+         (n, c)
+         -> if c = 1
+         then true
+         else
+           if divides_evenly (n, c)
+           then false
+           else has_no_divisors (n, c - 1) ;;
+
+
+      let rec (primes : int -> chain) =
+        function
+         (n)
+         -> if is_prime (n + 1)
+         then Link (n + 1, primes)
+         else primes (n + 1) ;;
+
+      chain_item (1, (primes 1)) ;;
+      chain_item (2, (primes 1)) ;;
+      chain_item (3, (primes 1)) ;;
+      chain_item (4, (primes 1)) ;;
+      chain_item (5, (primes 1)) ;;
+      chain_item (6, (primes 1)) ;;
+      chain_item (7, (primes 1)) ;;
+      chain_item (100, (primes 1)) ;;
+
+      (* curry縮進測試:
+       * 可以正確縮進的:
+       * let rec (f) =
+       *   function (m)
+       *    -> ><><><
+       *  | ()
+       *    -> ><><>< ;;
+       * 不能正確縮進的:
+       * let rec (f) =
+       *   function (m)
+       *    -> function (n)
+       *     -> ><><><
+       *  | ()
+       *    -> function ()
+       *     -> ><><>< ;;
+       * 上面的縮進是不可能正確的
+       * 因爲每次<tab>所綁定的函數只看前面的一行
+       * 而當模式匹配嵌套的時候只看一行是不夠的 *)
+
+      (* 不真正地理解語法就沒辦法正確地處理文本
+       * emacs中除了lisp的mode之外
+       * 沒有一個mode是真正理解語法的
+       * emacs的設計上本身就有很大缺陷
+       * 使得mode與語言的融合並不緊密 *)
+
+
+      (* curry的作用順序的測試:
+       * let rec (f : int -> int -> int) =
+       *   function (n)
+       *    -> function (m)
+       *     -> n ;;
+       * (fibs 1 2) ;; *)
+
+      let rec (fibs : int -> int -> chain) =
+        function (n)
+         -> function (m)
+          -> Link (n + m, fibs (m)) ;;
+      Link (0, fibs (1)) ;;
+      (fibs 0 1) ;;
+
+
+      fibs (1) ;;
+      (* heuristic: *)
+      let (fibs_1 : int -> chain) =
+        function (m)
+         -> Link (1 + m, fibs (m)) ;;
+
+
+      let rec (chain_item : (int * chain) -> int) =
+        function
+         (n, Link (i, f))
+         -> if n = 1
+         then i
+         else chain_item (n - 1, (f i)) ;;
+
+      (chain_item (1, (fibs 0 1)))  ;;
+      (chain_item (2, (fibs 0 1)))  ;;
+      (chain_item (3, (fibs 0 1)))  ;;
+      (chain_item (4, (fibs 0 1)))  ;;
+      (chain_item (5, (fibs 0 1)))  ;;
+      (chain_item (6, (fibs 0 1)))  ;;
+      (chain_item (7, (fibs 0 1)))  ;;
+      (chain_item (8, (fibs 0 1)))  ;;
+      (chain_item (9, (fibs 0 1)))  ;;
+      (chain_item (10, (fibs 0 1))) ;;
+      #+end_src
+
+***** scheme更好 不是嗎?
+      #+begin_src scheme
+      (define ints
+        (lambda (x)
+          (cons (add1 x) ints)))
+
+      (ints 1)
+      (let ([int-1 (ints 0)])
+        ((cdr int-1)
+         (car int-1)))
+      (let ([int-4 (ints 3)])
+        ((cdr int-4)
+         (car int-4)))
+      #+end_src
+
+***** the seventh moral
+      some functions consume values of arrow type;
+      some produce values of arrow type.
+      這就是 "函數是一等公民" 的定義
+      這裏
+      所謂 arrow type 就是函數
+      所謂函數就是具有 arrow type 的值
+
+*** 8 bows and arrows
+
+***** 8:93
+
+***** ><
+      #+begin_src caml
+      (* 非嵌套的list: *)
+      type 'a list =
+          Empty
+        | Cons of 'a * 'a list ;;
+
+      (* 爲了比較Apple與Orange
+       * 可以形成下面的類型
+       * 然後寫出這個類型的等詞 *)
+      type orange_or_apply =
+          Apple
+        | Orange ;;
+
+      let (eq_orange_or_apply : (orange_or_apply * orange_or_apply) -> bool) =
+        function (Apple, Apple)
+         -> true
+       | (Orange, Orange)
+         -> true
+       | (one,another)
+         -> false ;;
+
+      let (eq_int : (int * int) -> bool) =
+        function (a, b)
+         -> if a = b
+         then true
+         else false ;;
+
+      let rec (subst_int : (int * int * int list) -> int list) =
+        function (n, a, Empty)
+         -> Empty
+       | (n, a, Cons (b, l))
+         -> if eq_int (a, b)
+         then Cons (n, subst_int (n, a, l))
+         else Cons (b, subst_int (n, a, l)) ;;
+
+
+      (* 上一節介紹了函數作爲返回值 下面就介紹函數作爲輸入了
+       * 下面的類型推到很有意思 *)
+      let rec (subst : ((('b * 'a) -> bool) * 'b * 'a * 'a list) -> 'a list) =
+        function (relation, n, a, Empty)
+         -> Empty
+       | (relation, n, a, Cons (b, l))
+         -> if relation (a, b)
+         then Cons (n, subst (relation, n, a, l))
+         else Cons (b, subst (relation, n, a, l)) ;;
+
+      (subst
+       (eq_int, 1, 3, (Cons (1, (Cons (2, (Cons (3, Empty)))))))) ;;
+
+      let (less_than : (int * int) -> bool) =
+        function (a, b)
+         -> if a < b
+         then true
+         else false ;;
+
+      (subst
+       (less_than, 1, 1, (Cons (0, (Cons (1, (Cons (2, (Cons (3, Empty)))))))))) ;;
+
+      let (in_range : ) =
+        function ()
+         ->
+       | ()
+         ->  ;;
+      #+end_src
+
+***** the eighth moral
+      replace stars by arrows to reduce
+      the number of values consumed
+      and to increase the generality of the function defined.
+
+*** 9 oh no!
+
+***** 9:14:84
+
+***** the ninth moral
+      some functions produce exceptions instead of values;
+      some don't produce anything.
+      handle raised exceptions carefully.
+
+*** 10 building on blocks
+
+***** 這一章需要看手冊才能完成轉換
+
+***** the tenth moral
+      real programs consist of many componets.
+      specify the dependencies among these componets
+      using signatures and functors.
+
 * simple example of ocaml
   #+begin_src caml
   (* explicit casts: *)
   (* 1 + 2.5 ;;
-   ,* 1 +. 2.5 ;; *)
+   * 1 +. 2.5 ;; *)
   (float_of_int 1) +. 2.5 ;;
   float_of_int 1 +. 2.5 ;;
   float 1 +. 2.5 ;;
@@ -1565,7 +1606,7 @@
   1 :: [] ;;
   1 :: [2] ;;
   1 :: 2 :: [3] ;;
-  (* ??? 中缀表达式 的 结合方式是 从右到左 ?? *)
+  (* ??? 中綴表達式 的 結合方式是 從右到左 ?? *)
 
 
   let rec range a b =
@@ -1577,17 +1618,17 @@
   (range 1) 10 ;;
   range 1 10 ;;
 
-  (* 也就是说 用户定义的函数都是
-   ,* 1. 完全 curry
-   ,* 2. 前缀作用
-   ,* 3. 结合方式是 从左到右 *)
+  (* 也就是說 用戶定義的函數都是
+   * 1. 完全 curry
+   * 2. 前綴作用
+   * 3. 結合方式是 從左到右 *)
   (range 1) ;;
 
   (* this is the best lisp like syntax for function application *)
   (range 1 10) ;;
 
 
-  (* 一般定义多元函数的时候 使用 curry 而不使用 笛卡尔积 *)
+  (* 一般定義多元函數的時候 使用 curry 而不使用 笛卡爾積 *)
   max ;;
 
   let positive_sum a b =
@@ -1596,7 +1637,7 @@
     in a + b ;;
 
   (* positive_sum 1 -1 ;; *)
-  (* 从报错 信息可看出来 前缀表达式的优先级 高于 中缀表达式 *)
+  (* 從報錯 信息可看出來 前綴表達式的優先級 高於 中綴表達式 *)
   positive_sum 1 (-1) ;;
   positive_sum 1 1 ;;
 
@@ -1606,25 +1647,26 @@
   give_me_a_five ;;
   give_me_a_five "kkk" ;;
   #+end_src
+
 * objects in ocaml
   #+begin_src caml
   (* Here's some basic code to provide a stack of integers.
-   ,* The class is implemented using a linked list. *)
+   * The class is implemented using a linked list. *)
 
   1 :: 1 :: [] ;;
   (* == (cons 1 (cons 1 '())) in lisp
-   ,* 但是 为了类型推到列表中的元素必须有一致的类型 *)
+   * 但是 爲了類型推到列表中的元素必須有一致的類型 *)
 
 
   class stack_of_ints =
     object (self)
       val mutable the_list = ( [] : int list ) (* an empty list, of type int list *)
       method push x =
-        the_list <- x :: the_list              (* 箭头<-表示assignment副作用 *)
+        the_list <- x :: the_list              (* 箭頭<-表示assignment副作用 *)
       method pop =
         let result = List.hd the_list
         in
-        the_list <- List.tl the_list ;(* 用来并列多个表达式而形成一个复合表达式 *)
+        the_list <- List.tl the_list ;(* 用來並列多個表達式而形成一個複合表達式 *)
         result
       method peek =
         List.hd the_list
@@ -1653,7 +1695,7 @@
 
 
   (* Objects without class:
-   ,* Objects can be used instead of records *)
+   * Objects can be used instead of records *)
 
   let o =
     object
@@ -1663,14 +1705,14 @@
     end ;;
   o ;;
   (* This object has a type,
-   ,* which is defined by its public methods only.
-   ,* Values are not visible
-   ,* and neither are private methods (not shown) *)
+   * which is defined by its public methods only.
+   * Values are not visible
+   * and neither are private methods (not shown) *)
 
   (* Unlike records,
-   ,* such a type does not need to be predefined explicitely,
-   ,* but doing so can make things clearer.
-   ,* We can do it like this: *)
+   * such a type does not need to be predefined explicitely,
+   * but doing so can make things clearer.
+   * We can do it like this: *)
   type counter =
       < get : int;  incr : unit >;;
 

@@ -345,7 +345,7 @@
          (h :x)))
     #+end_src
 
-***
+*** ><
     #+begin_src scheme
     (goal: (k :y))
 
@@ -912,3 +912,128 @@
        其中 higher-order unification
        是 semantical unification 的特殊情況
        此時 關於 semantical 的就是 函數作用
+
+* predicate-term & predicate-formal-term
+
+  - x ::
+       注意 predicate-formal-term 是純粹靜態的 [純粹語法的]
+       計算的時候 goal-stack 的一個 and-list 中
+       所保存的不是這種 predicate-formal-term
+       而是 predicate-term
+       需要把其中的 formal-variable [比如 :formal-variable]
+       變成 variable-stack 中的地址 [就是 真正的 variable]
+
+  - k ::
+       如果 undo 是 predicate-term by predicate-term
+       那麼只要在 predicate-term 中記錄信息
+       就知道如何擦除之前的 variable-instantiation 了
+
+  - x ::
+       不過看來不是 predicate-term by predicate-term
+       undo 信息應該保存在 or-list 裏面
+       每個分支之間 應該又 undo-info
+       或者說
+       只是在每次 or-pointer 的位置保存 undo-info
+
+* 模塊系統
+
+  - x ::
+       當我們之前爲一個純粹的解釋器做模塊系統的時候
+       我們當時的設計是
+       不斷修改 hash-table 中 無前綴的名字所對應的函數體
+       這些沒有前綴的名字 代表了當前我們能夠引到的東西
+       那時 使用的是靜態函數體
+       然而現在使用動態函數體了
+
+  - k ::
+       並且
+       因爲是在很高級的動態語言中實現這些
+       所以我們可以利用編譯時期的轉換了
+       在轉換的時候
+       我們需要一個全局變量來告訴我們
+       應該如何補全 不帶前綴的名字的模塊前綴
+       補全 的時候有兩個位置
+       一個是被定義的位置
+       一個是作爲定義內容的函數體
+
+  - x ::
+       我們嘗試在這裏實驗一下我們之前設計的 tag-group
+       並且這次就直接用 org-mode
+       畢竟這是一個非純粹縮進的語言
+
+  - k ::
+       也就是說在一個文件之內
+       又很多默認的 import
+
+  - x ::
+       沒錯
+       並且用明顯的語法來聲明 helper-function
+       使得它們不被 export
+       其他的不帶明顯聲明的都是默認的 export
+
+  - k ::
+       隱藏的搜索 tag-group 機制可能不易於推理程序行爲
+       也不利於調整代碼結構順序
+
+  - x ::
+       import
+       import all with prefix
+       use
+       import local with prefix
+       import other without prefix
+       同一個文件中
+       默認 import 之前的所有 module
+
+* 結構化的數據中的命名
+
+  - x ::
+       在設計一個數據結構時
+       發現有時可以命名
+       有時可以匿名
+       如何取捨
+
+  - k ::
+       在 racket 中
+       我們可以約定一下
+       名的結構化數據
+       [需要用 'keyword:' 處理的]
+       就用 list 的 pattern 來實現
+       無的結構化數據
+       就用單純的 vector 來實現
+       這還沒有解決具體設計數據結構的時候應該如何選擇的問題
+       但是 可以維持我們代碼的一致性
+
+* query 的回答 <2016-01-03>
+
+  - x ::
+       所收集到的信息可能還需要整理之後
+       才能 report
+
+* backtracking
+
+  - chronological backtracking
+    the latest choice at the moment of failure is reexamined first
+
+* goal tree
+
+  - node
+    and-vector
+
+  - possible sub-node
+    sequent in and-element
+    only for the and-element that is rule
+    but not fact
+
+  - change of sub-node
+    change the or-curser in the and-element
+
+  - a stack is uesd to help the tree
+
+  - the state is always ready to go next step
+
+  - goal-stack only stores and-vector
+    whose and-cursor is not at the end
+
+  - if or-curser is at the end
+    and you still wish to step
+    it moves the and-cursor back and loop

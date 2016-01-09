@@ -1,793 +1,663 @@
-#+TITLE: learning mler SML version 
-#+AUTHOR: XIE Yuheng
-#+EMAIL: xyheme@gmail.com
+#+TITLE:  learning mler SML version
+#+AUTHOR: 謝宇恆 / XIE Yuheng
 
-
-* ==================================================
 * play with sml
-** sml implementations
-   下面的实现都不支持unicode
-   - mosml
-   - poly
-   - hamlet
-** before (not using)
-   #+begin_src sml
-   Compiler.Control.Print.printDepth := 20;
 
-   <box> ;
+*** sml implementations
+    下面的实现都不支持unicode
+    - mosml
+    - poly
+    - hamlet
 
-   use "<file-name>";
-   #+end_src
-** 1 building blocks
-*** simple play
+*** before (not using)
     #+begin_src sml
-    1;
-    ~1;
-    true;
-    false;
-    1.1;
+    Compiler.Control.Print.printDepth := 20;
+
+    <box> ;
+
+    use "<file-name>";
     #+end_src
 
-    一个type就是一个集合
-    一个归纳定义的集合
-    因为只有这样的集合才能被一个谓词来识别
-    也就是说定义一个type的时候其实是在写一个谓词
-    能写出什么样的谓词就能定义出什么样的type(集合)
-    #+begin_src sml
-    datatype seasoning =
-             Salt
-           | Pepper ;
-     
-    Pepper ;
-     
-    datatype num =
-             Zero
-             | One_more_than of num ;
-     
-    Zero ;
-    (* 最外层可以有一次() 但是不能有更多 *)
-    (Zero);
-     
-    One_more_than
-        (One_more_than 
-             (One_more_than
-                  (One_more_than 
-                       (Zero)))) ;
-     
-     
-    (* 下面这个是带有类型变元的类定性定义 *)
-    (* 并且这个变元是约束变元 涉及到约束变元就涉及到了代入 *)
-    (* 当然也涉及到了有向图对这种东西的实现 *)
-    (* 但是与λ-cal中的代入相比 这里的代入更适合被几何化的理解 而不是被图论化的理解 *)
-     
-    datatype 'a open_faced_sandwich =
-             Bread of 'a
-             | Slice of 'a open_faced_sandwich ;
-     
-    Bread (0) ;
-    Bread (true) ;
-     
-     
-    Bread (One_more_than
-               (One_more_than 
+*** 1 building blocks
+
+***** simple play
+      #+begin_src sml
+      1;
+      ~1;
+      true;
+      false;
+      1.1;
+      #+end_src
+
+      一个type就是一个集合
+      一个归纳定义的集合
+      因为只有这样的集合才能被一个谓词来识别
+      也就是说定义一个type的时候其实是在写一个谓词
+      能写出什么样的谓词就能定义出什么样的type(集合)
+      #+begin_src sml
+      datatype seasoning =
+               Salt
+             | Pepper ;
+
+      Pepper ;
+
+      datatype num =
+               Zero
+               | One_more_than of num ;
+
+      Zero ;
+      (* 最外层可以有一次() 但是不能有更多 *)
+      (Zero);
+
+      One_more_than
+          (One_more_than
+               (One_more_than
                     (One_more_than
-                         (One_more_than 
-                              (Zero))))) ;
-     
-    Slice ;
-    Slice (Bread (0)) ;
-     
-    (* 当给出具体的'a的时候 *)
-    (* 比如int 即 比如给Bread代入1 *)
-    (* 那么Bread就是在用int类型的元素来构建int open_faced_sandwich类型的元素 *)
-     
-    Bread (Bread (0));
-    (* 可以发现构造过程是在数据与类型方面同时进行的 *)
-     
-    (* 有时可以忽略这些东西的语义而去想想实现方式 *)
-    (* 有时有把自己提高到语义的最高层次来看看应该如何来从更形而上的方面理解这一切 *)
-    #+end_src
-*** the first moral
-    use datatype to describe types.
-    when a type contains lots of values,
-    the datatype definition refers to itself.
-    use 'a with datatype to define shapes.
-** 2 matchmaker, matchmaker
-*** simple functions
-    #+begin_src sml
-    datatype shish_kebab =
-         Skewer
-       | Onion of shish_kebab
-       | Lamb of shish_kebab
-       | Tomato of shish_kebab;
-      
-    (* 上面的定义描述靠羊肉串怎么做 *)
-    (* 下面的函数描述一个只爱吃洋葱的人是怎么吃烤羊肉串的 *)
-        
-    (* 递归处理与归纳定义在ml中的对应关系很明显 *)
-    (* k:编译器是如何决定x是变元的?? *)
-    (* d:可能是根据它是出现在最里面的括号里 *)
-        
-    fun only_onions (Skewer)
-        = true
-      | only_onions (Onion(x))
-        = only_onions (x)
-      | only_onions (Lamb(x))
-        = false
-      | only_onions (Tomato(x))
-        = false;
-        
-        
-        
-    (* 这个mode的语法高亮又有问题 太心烦了 *);
-    (* 正确的高亮方法是把函数的定义中的函数名字全部亮起来 *)
-
-    (* 类型声明 *)
-    (* only_onions : shish_kebab -> bool; *)
-
-    (only_onions :
-     shish_kebab -> bool);
-
-    only_onions(
-            Onion(Onion(Skewer)));
-
-    only_onions(
-            Onion(Lamb(Skewer)));
-
-    (* 注意递归函数的处理顺序几乎总要符合数据结构的归纳定义的顺序 *)
-    fun is_vegetarian (Skewer)
-        = true         
-      | is_vegetarian (Onion(x))
-        = is_vegetarian (x)
-      | is_vegetarian (Lamb(x))
-        = false          
-      | is_vegetarian (Tomato(x))
-        = is_vegetarian (x);
-                     
-    (is_vegetarian :
-     shish_kebab -> bool);
-
-    is_vegetarian(
-      Onion(Onion(Skewer)));
-
-    is_vegetarian(
-      Onion(Lamb(Skewer)));
+                         (Zero)))) ;
 
 
-    (* 下面覆盖了上面定义过的一些构造子 *)
-    datatype 'a shish =
-        Bottom of 'a
-      | Onion of 'a shish
-      | Lamb of 'a shish
-      | Tomato of 'a shish;
-        
-    datatype rod =
-        Dagger
-      | Fork 
-      | Sword;
+      (* 下面这个是带有类型变元的类定性定义 *)
+      (* 并且这个变元是约束变元 涉及到约束变元就涉及到了代入 *)
+      (* 当然也涉及到了有向图对这种东西的实现 *)
+      (* 但是与λ-cal中的代入相比 这里的代入更适合被几何化的理解 而不是被图论化的理解 *)
 
-    datatype palte =
-        Gold_palte
-      | Silver_plate
-      | Brass_plate;
+      datatype 'a open_faced_sandwich =
+               Bread of 'a
+               | Slice of 'a open_faced_sandwich ;
 
-    Onion
-      (Tomato
-         (Bottom(Dagger)));
-
-    Onion
-      (Tomato
-         (Bottom(Gold_palte)));
+      Bread (0) ;
+      Bread (true) ;
 
 
-    fun is_veggie (Bottom(x))
-        = true     
-      | is_veggie (Onion(x))
-        = is_veggie (x)
-      | is_veggie (Lamb(x))
-        = false      
-      | is_veggie (Tomato(x))
-        = is_veggie (x);
+      Bread (One_more_than
+                 (One_more_than
+                      (One_more_than
+                           (One_more_than
+                                (Zero))))) ;
+
+      Slice ;
+      Slice (Bread (0)) ;
+
+      (* 当给出具体的'a的时候 *)
+      (* 比如int 即 比如给Bread代入1 *)
+      (* 那么Bread就是在用int类型的元素来构建int open_faced_sandwich类型的元素 *)
+
+      Bread (Bread (0));
+      (* 可以发现构造过程是在数据与类型方面同时进行的 *)
+
+      (* 有时可以忽略这些东西的语义而去想想实现方式 *)
+      (* 有时有把自己提高到语义的最高层次来看看应该如何来从更形而上的方面理解这一切 *)
+      #+end_src
+
+***** the first moral
+      use datatype to describe types.
+      when a type contains lots of values,
+      the datatype definition refers to itself.
+      use 'a with datatype to define shapes.
+
+*** 2 matchmaker, matchmaker
+
+***** simple functions
+      #+begin_src sml
+      datatype shish_kebab =
+           Skewer
+         | Onion of shish_kebab
+         | Lamb of shish_kebab
+         | Tomato of shish_kebab;
+
+      (* 上面的定义描述靠羊肉串怎么做 *)
+      (* 下面的函数描述一个只爱吃洋葱的人是怎么吃烤羊肉串的 *)
+
+      (* 递归处理与归纳定义在ml中的对应关系很明显 *)
+      (* k:编译器是如何决定x是变元的?? *)
+      (* d:可能是根据它是出现在最里面的括号里 *)
+
+      fun only_onions (Skewer)
+          = true
+        | only_onions (Onion(x))
+          = only_onions (x)
+        | only_onions (Lamb(x))
+          = false
+        | only_onions (Tomato(x))
+          = false;
 
 
-    (is_veggie :
-     'a shish -> bool);
 
-    is_veggie(
+      (* 这个mode的语法高亮又有问题 太心烦了 *);
+      (* 正确的高亮方法是把函数的定义中的函数名字全部亮起来 *)
+
+      (* 类型声明 *)
+      (* only_onions : shish_kebab -> bool; *)
+
+      (only_onions :
+       shish_kebab -> bool);
+
+      only_onions(
+              Onion(Onion(Skewer)));
+
+      only_onions(
+              Onion(Lamb(Skewer)));
+
+      (* 注意递归函数的处理顺序几乎总要符合数据结构的归纳定义的顺序 *)
+      fun is_vegetarian (Skewer)
+          = true
+        | is_vegetarian (Onion(x))
+          = is_vegetarian (x)
+        | is_vegetarian (Lamb(x))
+          = false
+        | is_vegetarian (Tomato(x))
+          = is_vegetarian (x);
+
+      (is_vegetarian :
+       shish_kebab -> bool);
+
+      is_vegetarian(
+        Onion(Onion(Skewer)));
+
+      is_vegetarian(
+        Onion(Lamb(Skewer)));
+
+
+      (* 下面覆盖了上面定义过的一些构造子 *)
+      datatype 'a shish =
+          Bottom of 'a
+        | Onion of 'a shish
+        | Lamb of 'a shish
+        | Tomato of 'a shish;
+
+      datatype rod =
+          Dagger
+        | Fork
+        | Sword;
+
+      datatype palte =
+          Gold_palte
+        | Silver_plate
+        | Brass_plate;
+
       Onion
         (Tomato
-           (Bottom(Dagger))));
+           (Bottom(Dagger)));
 
-    is_veggie(
       Onion
         (Tomato
-           (Bottom(Gold_palte))));
-
-    is_veggie(
-      Lamb
-        (Tomato
-           (Bottom(Gold_palte))));
-
-    is_veggie(
-      Onion
-        (Tomato
-           (Bottom(666))));
+           (Bottom(Gold_palte)));
 
 
-    datatype 'a shish =
-        Bottom of 'a
-      | Onion of 'a shish
-      | Lamb of 'a shish
-      | Tomato of 'a shish;
+      fun is_veggie (Bottom(x))
+          = true
+        | is_veggie (Onion(x))
+          = is_veggie (x)
+        | is_veggie (Lamb(x))
+          = false
+        | is_veggie (Tomato(x))
+          = is_veggie (x);
 
-    fun what_bottom (Bottom(x))
-        = x
-      | what_bottom (Onion(x))
-        = what_bottom(x)
-      | what_bottom (Lamb(x))
-        = what_bottom(x)
-      | what_bottom (Tomato(x))
-        =  what_bottom(x);
 
-    (what_bottom :
-     'a shish -> 'a);
+      (is_veggie :
+       'a shish -> bool);
 
-    what_bottom
-      (Bottom(666));
-    what_bottom
-      (Onion
-         (Tomato
-            (Bottom(Dagger))));
-    #+end_src
-*** the second moral
-    the number and order of the patterns
-    in the definition of a function
-    should match that of the definition
-    of the consumed datatype.
-** 3 cons is still magnificent
-*** back to old friend : list processing
-    注意这里实现列表语义的方式
+      is_veggie(
+        Onion
+          (Tomato
+             (Bottom(Dagger))));
 
-    它是用构造子来实现的 而不是用cons
-    构造子既是函数也是数据
-    但是这样作限制了列表中所能出现的数据的数据类型
-    即 列表中只能包含一些名字
-    #+begin_src sml
-    datatype pizza =
-        Crust
-      | Cheese of pizza
-      | Onion of pizza
-      | Anchovy of pizza
-      | Sausage of pizza;
+      is_veggie(
+        Onion
+          (Tomato
+             (Bottom(Gold_palte))));
 
-    Anchovy(
-      Onion(
+      is_veggie(
+        Lamb
+          (Tomato
+             (Bottom(Gold_palte))));
+
+      is_veggie(
+        Onion
+          (Tomato
+             (Bottom(666))));
+
+
+      datatype 'a shish =
+          Bottom of 'a
+        | Onion of 'a shish
+        | Lamb of 'a shish
+        | Tomato of 'a shish;
+
+      fun what_bottom (Bottom(x))
+          = x
+        | what_bottom (Onion(x))
+          = what_bottom(x)
+        | what_bottom (Lamb(x))
+          = what_bottom(x)
+        | what_bottom (Tomato(x))
+          =  what_bottom(x);
+
+      (what_bottom :
+       'a shish -> 'a);
+
+      what_bottom
+        (Bottom(666));
+      what_bottom
+        (Onion
+           (Tomato
+              (Bottom(Dagger))));
+      #+end_src
+
+***** the second moral
+      the number and order of the patterns
+      in the definition of a function
+      should match that of the definition
+      of the consumed datatype.
+
+*** 3 cons is still magnificent
+
+***** back to old friend : list processing
+      注意这里实现列表语义的方式
+
+      它是用构造子来实现的 而不是用cons
+      构造子既是函数也是数据
+      但是这样作限制了列表中所能出现的数据的数据类型
+      即 列表中只能包含一些名字
+      #+begin_src sml
+      datatype pizza =
+          Crust
+        | Cheese of pizza
+        | Onion of pizza
+        | Anchovy of pizza
+        | Sausage of pizza;
+
+      Anchovy(
+        Onion(
+          Anchovy(
+            Anchovy(
+              Cheese(
+                Crust)))));
+
+
+      fun remove_Anchovy (Crust)
+          = Crust
+
+        | remove_Anchovy (Cheese (x))
+          = Cheese (remove_Anchovy (x))
+
+        | remove_Anchovy (Onion (x))
+          = Onion (remove_Anchovy (x))
+
+        | remove_Anchovy (Anchovy (x))
+          = (remove_Anchovy (x))
+
+        | remove_Anchovy (Sausage (x))
+          = Sausage (remove_Anchovy (x));
+
+      (remove_Anchovy :
+       pizza -> pizza);
+
+      remove_Anchovy(
         Anchovy(
-          Anchovy(
-            Cheese(
-              Crust)))));
-
-
-    fun remove_Anchovy (Crust)
-        = Crust
-      
-      | remove_Anchovy (Cheese (x))
-        = Cheese (remove_Anchovy (x))
-      
-      | remove_Anchovy (Onion (x))
-        = Onion (remove_Anchovy (x))
-      
-      | remove_Anchovy (Anchovy (x))
-        = (remove_Anchovy (x))
-      
-      | remove_Anchovy (Sausage (x))
-        = Sausage (remove_Anchovy (x));
-
-    (remove_Anchovy :
-     pizza -> pizza);
-
-    remove_Anchovy(
-      Anchovy(
-        Onion(
-          Anchovy(
+          Onion(
             Anchovy(
-              Cheese(
-                Crust))))));
+              Anchovy(
+                Cheese(
+                  Crust))))));
 
 
-    fun top_anchovy_with_cheese (Crust)
-        = Crust
-      
-      | top_anchovy_with_cheese (Cheese (x))
-        = Cheese (top_anchovy_with_cheese (x))
-      
-      | top_anchovy_with_cheese (Onion (x))
-        = Onion (top_anchovy_with_cheese (x))
-      
-      | top_anchovy_with_cheese (Anchovy (x))
-        = Cheese(
+      fun top_anchovy_with_cheese (Crust)
+          = Crust
+
+        | top_anchovy_with_cheese (Cheese (x))
+          = Cheese (top_anchovy_with_cheese (x))
+
+        | top_anchovy_with_cheese (Onion (x))
+          = Onion (top_anchovy_with_cheese (x))
+
+        | top_anchovy_with_cheese (Anchovy (x))
+          = Cheese(
+              Anchovy(
+                top_anchovy_with_cheese (x)))
+
+        | top_anchovy_with_cheese (Sausage (x))
+          = Sausage (top_anchovy_with_cheese (x));
+
+      (top_anchovy_with_cheese :
+       pizza -> pizza);
+
+      top_anchovy_with_cheese(
+        Anchovy(
+          Onion(
             Anchovy(
-              top_anchovy_with_cheese (x)))
-      
-      | top_anchovy_with_cheese (Sausage (x))
-        = Sausage (top_anchovy_with_cheese (x));
-
-    (top_anchovy_with_cheese :
-     pizza -> pizza);
-
-    top_anchovy_with_cheese(
-      Anchovy(
-        Onion(
-          Anchovy(
-            Anchovy(
-              Cheese(
-                Crust))))));
+              Anchovy(
+                Cheese(
+                  Crust))))));
 
 
-    fun subst_anchovy_by_cheese (x)
-        = top_anchovy_with_cheese(
-          remove_Anchovy(x));
+      fun subst_anchovy_by_cheese (x)
+          = top_anchovy_with_cheese(
+            remove_Anchovy(x));
 
-    (subst_anchovy_by_cheese :
-     pizza -> pizza);
-    #+end_src
-*** the third moral
-    functions that produce values of a datatype
-    must use associated constructors
-    to build data of that type.
-** 4 look to the stars
-*** 星星其实是笛卡尔积的意思
-    #+begin_src sml
-    datatype meza =
-        Shrimp
-      | Calamari
-      | Escargots
-      | Hummus;
+      (subst_anchovy_by_cheese :
+       pizza -> pizza);
+      #+end_src
 
-    datatype main =
-        Steak
-      | Ravioli
-      | Chichen
-      | Eggplant;
+***** the third moral
+      functions that produce values of a datatype
+      must use associated constructors
+      to build data of that type.
 
-    datatype salad =
-        Green
-      | Cucumber
-      | Greek;
+*** 4 look to the stars
 
-    datatype dessert =
-        Sundae
-      | Mousse
-      | Torte;
+***** 星星其实是笛卡尔积的意思
+      #+begin_src sml
+      datatype meza =
+          Shrimp
+        | Calamari
+        | Escargots
+        | Hummus;
 
-    (Calamari, Ravioli, Greek, Sundae);
-    (Hummus, Steak, Green, Torte);
+      datatype main =
+          Steak
+        | Ravioli
+        | Chichen
+        | Eggplant;
+
+      datatype salad =
+          Green
+        | Cucumber
+        | Greek;
+
+      datatype dessert =
+          Sundae
+        | Mousse
+        | Torte;
+
+      (Calamari, Ravioli, Greek, Sundae);
+      (Hummus, Steak, Green, Torte);
 
 
 
-    fun add_a_steak (Shrimp)
-        = (Shrimp, Steak)
+      fun add_a_steak (Shrimp)
+          = (Shrimp, Steak)
 
-      | add_a_steak (Calamari)
-        = (Calamari, Steak)
+        | add_a_steak (Calamari)
+          = (Calamari, Steak)
 
-      | add_a_steak (Escargots)
-        = (Escargots, Steak)
+        | add_a_steak (Escargots)
+          = (Escargots, Steak)
 
-      | add_a_steak (Hummus)
-        = (Hummus, Steak);
+        | add_a_steak (Hummus)
+          = (Hummus, Steak);
 
-    (add_a_steak :
-       meza -> (meza * main));
+      (add_a_steak :
+         meza -> (meza * main));
 
-    add_a_steak(Hummus);
-
-
-    fun add_a_steak (x)
-        = (x, Steak);
-
-    (add_a_steak :
-        'a -> ('a * main));
-
-    add_a_steak(666);
-
-    (* 变元可以把函数泛化 但是构造子的位置上不能使用变元 *)
-    (* 我想更精确的函数更好 尽管多写一些文字 但是在运行的时候也更容易发现错误 *)
+      add_a_steak(Hummus);
 
 
-    fun eq_main (Steak, Steak)
-        = true
-      | eq_main (Ravioli, Ravioli)
-        = true
-      | eq_main (Chichen, Chichen)
-        = true
-      | eq_main (Eggplant, Eggplant)
-        = true
-      | eq_main (a_main, another_main)
-        = false;
-    (eq_main :
-       (main * main) -> bool);
+      fun add_a_steak (x)
+          = (x, Steak);
 
-    eq_main(Steak, Ravioli);
-    eq_main(Steak, Steak);
+      (add_a_steak :
+          'a -> ('a * main));
+
+      add_a_steak(666);
+
+      (* 变元可以把函数泛化 但是构造子的位置上不能使用变元 *)
+      (* 我想更精确的函数更好 尽管多写一些文字 但是在运行的时候也更容易发现错误 *)
 
 
-    fun has_steak (a:meza, Steak, b:dessert):bool
-        = true
-      | has_steak (a:meza, x, b:dessert):bool
-        = false;
+      fun eq_main (Steak, Steak)
+          = true
+        | eq_main (Ravioli, Ravioli)
+          = true
+        | eq_main (Chichen, Chichen)
+          = true
+        | eq_main (Eggplant, Eggplant)
+          = true
+        | eq_main (a_main, another_main)
+          = false;
+      (eq_main :
+         (main * main) -> bool);
 
-    has_steak(Calamari, Ravioli, Sundae);
-    has_steak(Hummus, Steak, Torte);
+      eq_main(Steak, Ravioli);
+      eq_main(Steak, Steak);
+
+
+      fun has_steak (a:meza, Steak, b:dessert):bool
+          = true
+        | has_steak (a:meza, x, b:dessert):bool
+          = false;
+
+      has_steak(Calamari, Ravioli, Sundae);
+      has_steak(Hummus, Steak, Torte);
 
 
 
-    fun add_a_steak (a:meza):(meza * main)
-        = (a, Steak);
-    #+end_src
-*** the fourth moral
-    some functions consume values of star type;
-    some produce values of star type.
-** 关于构造子
-   构造子和函数都是函数
-   它们有什么区别呢???
-   1. 定义方式不一样
-   2. 但是作用方式一样
-   3. 有统一的方式来描述它们的类型
-   4. 它们都与identifier绑定
-   5. 人对它们的理解不一样
-      一个是归纳定义
-      一个是递归处理
-   6. 构造子在作用之后
-      也融入了数据本身
-   7. 其实没有本质的区别不是吗?
-** 关于作用的语法
-   只要作连个约定就可以把作用的语法
-   从(M N)转换到M(N)
-   1. 第二个位置的 N == (N)
-   2. 对最外层的括号可以去掉
-   但是显然这种转换只对一元作用有效
-** 5 couples ars magnificent, too
-*** 也可以模仿lisp用pair来形成列表语义
-    #+begin_src sml
-    datatype 'a pizza =
-        Bottom
-      | Topping of ('a * ('a pizza));
+      fun add_a_steak (a:meza):(meza * main)
+          = (a, Steak);
+      #+end_src
 
-    datatype fish =
-        Anchovy
-      | Lox
-      | Tuna;
+***** the fourth moral
+      some functions consume values of star type;
+      some produce values of star type.
 
-    Topping(Anchovy,
-      Topping(Tuna,
+*** 关于构造子
+    构造子和函数都是函数
+    它们有什么区别呢???
+    1. 定义方式不一样
+    2. 但是作用方式一样
+    3. 有统一的方式来描述它们的类型
+    4. 它们都与identifier绑定
+    5. 人对它们的理解不一样
+       一个是归纳定义
+       一个是递归处理
+    6. 构造子在作用之后
+       也融入了数据本身
+    7. 其实没有本质的区别不是吗?
+
+*** 关于作用的语法
+    只要作连个约定就可以把作用的语法
+    从(M N)转换到M(N)
+    1. 第二个位置的 N == (N)
+    2. 对最外层的括号可以去掉
+    但是显然这种转换只对一元作用有效
+
+*** 5 couples ars magnificent, too
+
+***** 也可以模仿lisp用pair来形成列表语义
+      #+begin_src sml
+      datatype 'a pizza =
+          Bottom
+        | Topping of ('a * ('a pizza));
+
+      datatype fish =
+          Anchovy
+        | Lox
+        | Tuna;
+
+      Topping(Anchovy,
+        Topping(Tuna,
+          Topping(Anchovy,
+            Bottom)));
+
+      (* 把递归函数与归纳定义的顺序想匹配对机器来说其实不重要 *)
+      (* 但是这种匹配对人类来说很重要 *)
+      fun rem_anchovy (Bottom)
+          = Bottom
+        | rem_anchovy (Topping (Anchovy, p))
+          = rem_anchovy (p)
+        | rem_anchovy (Topping (other_fish, p))
+          = Topping (other_fish, rem_anchovy (p));
+      (rem_anchovy :
+        fish pizza -> fish pizza);
+
+      rem_anchovy(
         Topping(Anchovy,
-          Bottom)));
+          Topping(Tuna,
+            Topping(Anchovy,
+              Bottom))));
 
-    (* 把递归函数与归纳定义的顺序想匹配对机器来说其实不重要 *)
-    (* 但是这种匹配对人类来说很重要 *)
-    fun rem_anchovy (Bottom)
-        = Bottom
-      | rem_anchovy (Topping (Anchovy, p))
-        = rem_anchovy (p)
-      | rem_anchovy (Topping (other_fish, p))
-        = Topping (other_fish, rem_anchovy (p));
-    (rem_anchovy :
-      fish pizza -> fish pizza);
+      (* 下面的函数打破了递归函数与归纳定义的顺序的匹配 *)
+      (* 这是有必要的 *)
+      (* 并且只有在有必要的时候才应该作这种打破 *)
 
-    rem_anchovy(
-      Topping(Anchovy,
-        Topping(Tuna,
-          Topping(Anchovy,
-            Bottom))));
+      fun rem_fish (x, Bottom)
+          = Bottom
+        | rem_fish (Anchovy, (Topping (Anchovy, p)))
+          = rem_fish (Anchovy, p)
+        | rem_fish (Anchovy, (Topping (not_Anchovy, p)))
+          = (Topping (not_Anchovy, rem_fish (Anchovy, p)))
+        | rem_fish (Lox, (Topping (Lox, p)))
+          = rem_fish (Lox, p)
+        | rem_fish (Lox, (Topping (not_Lox, p)))
+          = (Topping (not_Lox, rem_fish (Lox, p)))
+        | rem_fish (Tuna, (Topping (Tuna, p)))
+          = rem_fish (Tuna, p)
+        | rem_fish (Tuna, (Topping (not_Tuna, p)))
+          = (Topping (not_Tuna, rem_fish (Tuna, p)));
+      (rem_fish :
+        (fish * fish pizza) -> (fish pizza));
 
-    (* 下面的函数打破了递归函数与归纳定义的顺序的匹配 *)
-    (* 这是有必要的 *)
-    (* 并且只有在有必要的时候才应该作这种打破 *)
+      rem_fish(Anchovy,
+        Topping(Anchovy,
+          Topping(Tuna,
+            Topping(Anchovy,
+              Bottom))));
 
-    fun rem_fish (x, Bottom)
-        = Bottom
-      | rem_fish (Anchovy, (Topping (Anchovy, p)))
-        = rem_fish (Anchovy, p)
-      | rem_fish (Anchovy, (Topping (not_Anchovy, p)))
-        = (Topping (not_Anchovy, rem_fish (Anchovy, p)))
-      | rem_fish (Lox, (Topping (Lox, p)))
-        = rem_fish (Lox, p)
-      | rem_fish (Lox, (Topping (not_Lox, p)))
-        = (Topping (not_Lox, rem_fish (Lox, p)))
-      | rem_fish (Tuna, (Topping (Tuna, p)))
-        = rem_fish (Tuna, p)
-      | rem_fish (Tuna, (Topping (not_Tuna, p)))
-        = (Topping (not_Tuna, rem_fish (Tuna, p)));
-    (rem_fish :
-      (fish * fish pizza) -> (fish pizza));
+      rem_fish(Tuna,
+        Topping(Anchovy,
+          Topping(Tuna,
+            Topping(Anchovy,
+              Bottom))));
 
-    rem_fish(Anchovy,
-      Topping(Anchovy,
-        Topping(Tuna,
-          Topping(Anchovy,
-            Bottom))));
+      (* 可惜下面的语法是错的 匹配的时候不能有重复的变元 *)
+      (* fun rem_fish (a_fish, Bottom) *)
+      (*     = Bottom *)
+      (*   | rem_fish (the_fish, (Topping (the_fish, p))) *)
+      (*     = rem_fish (the_fish, p) *)
+      (*   | rem_fish (a_fish, (Topping (another_fish, p))) *)
+      (*     = Topping (another_fish, rem_fish (a_fish, p)); *)
 
-    rem_fish(Tuna,
-      Topping(Anchovy,
-        Topping(Tuna,
-          Topping(Anchovy,
-            Bottom))));
+      (* 为了在上面的语法缺失的情况下 以合理的方式写出上面这类二元函数 *)
+      (* 就需要一个等词 *)
+      fun eq_fish (Anchovy, Anchovy)
+          = true
+        | eq_fish (Lox, Lox)
+          = true
+        | eq_fish (Tuna, Tuna)
+          = true
+        | eq_fish (a_fish, another_fish)
+          = false;
+      (eq_fish :
+        (fish * fish) -> bool);
 
-    (* 可惜下面的语法是错的 匹配的时候不能有重复的变元 *)
-    (* fun rem_fish (a_fish, Bottom) *)
-    (*     = Bottom *)
-    (*   | rem_fish (the_fish, (Topping (the_fish, p))) *)
-    (*     = rem_fish (the_fish, p) *)
-    (*   | rem_fish (a_fish, (Topping (another_fish, p))) *)
-    (*     = Topping (another_fish, rem_fish (a_fish, p)); *)
-
-    (* 为了在上面的语法缺失的情况下 以合理的方式写出上面这类二元函数 *)
-    (* 就需要一个等词 *)
-    fun eq_fish (Anchovy, Anchovy)
-        = true
-      | eq_fish (Lox, Lox)
-        = true   
-      | eq_fish (Tuna, Tuna)
-        = true
-      | eq_fish (a_fish, another_fish)
-        = false;
-    (eq_fish :
-      (fish * fish) -> bool);
-
-    eq_fish(Tuna, Tuna);
-    eq_fish(Tuna, Anchovy);
+      eq_fish(Tuna, Tuna);
+      eq_fish(Tuna, Anchovy);
 
 
-    fun rem_fish (a_fish, Bottom)
-        = Bottom
-      | rem_fish (a_fish, (Topping (another_fish, p)))
-        = if eq_fish (a_fish, another_fish)
-           then rem_fish (a_fish, p)
-           else Topping (another_fish, rem_fish (a_fish, p));
-           (* if的两个从句中的表达式的类型应该一样 否则就没法计算类型了 *)
-           (* 这对于写东西来说是一个很大的限制吗?? *)
-    (rem_fish :
-      (fish * fish pizza) -> (fish pizza));
+      fun rem_fish (a_fish, Bottom)
+          = Bottom
+        | rem_fish (a_fish, (Topping (another_fish, p)))
+          = if eq_fish (a_fish, another_fish)
+             then rem_fish (a_fish, p)
+             else Topping (another_fish, rem_fish (a_fish, p));
+             (* if的两个从句中的表达式的类型应该一样 否则就没法计算类型了 *)
+             (* 这对于写东西来说是一个很大的限制吗?? *)
+      (rem_fish :
+        (fish * fish pizza) -> (fish pizza));
 
-    rem_fish(Anchovy,
-      Topping(Anchovy,
-        Topping(Tuna,
-          Topping(Anchovy,
-            Bottom))));
+      rem_fish(Anchovy,
+        Topping(Anchovy,
+          Topping(Tuna,
+            Topping(Anchovy,
+              Bottom))));
 
-    rem_fish(Tuna,
-      Topping(Anchovy,
-        Topping(Tuna,
-          Topping(Anchovy,
-            Bottom))));
-
-
-    fun subst_fish (x, y, Bottom)
-        = Bottom
-      | subst_fish (x, y, Topping (a, p))
-        = if eq_fish (y, a)
-          then Topping (x, subst_fish (x, y, p))
-          else Topping (a, subst_fish (x, y, p));
-    (subst_fish :
-       (fish * fish * fish pizza) -> fish pizza);
-
-    subst_fish(Tuna, Anchovy,
-      Topping(Anchovy,
-        Topping(Tuna,
-          Topping(Anchovy,
-            Bottom))));
+      rem_fish(Tuna,
+        Topping(Anchovy,
+          Topping(Tuna,
+            Topping(Anchovy,
+              Bottom))));
 
 
-    datatype num =
-        Zero
-      | One_more_than of num;
+      fun subst_fish (x, y, Bottom)
+          = Bottom
+        | subst_fish (x, y, Topping (a, p))
+          = if eq_fish (y, a)
+            then Topping (x, subst_fish (x, y, p))
+            else Topping (a, subst_fish (x, y, p));
+      (subst_fish :
+         (fish * fish * fish pizza) -> fish pizza);
 
-    (* fun eq_num (Zero, Zero) *)
-    (*     = true *)
-    (*   | eq_num (One_more_than (m), Zero) *)
-    (*     = false *)
-    (*   | eq_num (Zero, One_more_than (n)) *)
-    (*     = false *)
-    (*   | eq_num (One_more_than (m), One_more_than (n)) *)
-    (*     = eq_num (m, n); *)
-    (* 总是从已经能够正确工作的版本来化简 *)
-    (* 不要想一下就写出又正确又精简的版本 尤其是在不熟练的时候 *)
-    (* 先写出能正确工作的版本再说 *)
-    (* 然后再化简 *)
-    fun eq_num (Zero, Zero)
-        = true
-      | eq_num (One_more_than (m), One_more_than (n))
-        = eq_num (m, n)
-      | eq_num (m, n)
-        = false;
-    (eq_num :
-       (num * num) -> bool);
-
-    eq_num(Zero, Zero);
-    eq_num(Zero, One_more_than(Zero));
-    #+end_src
-*** the fifth moral
-    write the first draft of a function
-    following all the morals.
-    when it is correct and no sooner no later, simplify!
-** >< 6 oh my, it's full of stars ! (从这里开始转而使用ocaml)
-*** >< 一颗能长出各种水果的神奇树
-    从上向下 从左向右长的
-    下面所处理的二叉树的分支节点是有类型的
-    这与经典的lisp对二叉树的实现方式不一样
-    #+begin_src sml
-    datatype fruit =
-        Peach
-      | Apple
-      | Pear
-      | Lemon
-      | Fig;
-
-    datatype tree =
-        Bud
-      | Flat of fruit * tree
-      | Split of tree * tree;
+      subst_fish(Tuna, Anchovy,
+        Topping(Anchovy,
+          Topping(Tuna,
+            Topping(Anchovy,
+              Bottom))));
 
 
-    fun flat_only (Bud)
-        = true
-      | flat_only (Flat(f,t))
-        = flat_only (t)
-      | flat_only (Split(t1,t2))
-        = false;
-    (flat_only :
-      tree -> bool);
+      datatype num =
+          Zero
+        | One_more_than of num;
 
-    flat_only(
-      Split(
-        Bud,
-        Flat(
-          Fig,
-          Split(
-            Bud,
-            Bud))));
-    flat_only(
-      Split(
-        Split(
-          Bud,
-          Flat(Lemon,Bud)),
-        Flat(
-          Fig,
-          Split(
-            Bud,
-            Bud))));
+      (* fun eq_num (Zero, Zero) *)
+      (*     = true *)
+      (*   | eq_num (One_more_than (m), Zero) *)
+      (*     = false *)
+      (*   | eq_num (Zero, One_more_than (n)) *)
+      (*     = false *)
+      (*   | eq_num (One_more_than (m), One_more_than (n)) *)
+      (*     = eq_num (m, n); *)
+      (* 总是从已经能够正确工作的版本来化简 *)
+      (* 不要想一下就写出又正确又精简的版本 尤其是在不熟练的时候 *)
+      (* 先写出能正确工作的版本再说 *)
+      (* 然后再化简 *)
+      fun eq_num (Zero, Zero)
+          = true
+        | eq_num (One_more_than (m), One_more_than (n))
+          = eq_num (m, n)
+        | eq_num (m, n)
+          = false;
+      (eq_num :
+         (num * num) -> bool);
 
+      eq_num(Zero, Zero);
+      eq_num(Zero, One_more_than(Zero));
+      #+end_src
 
-    fun split_only (Bud)
-        = true
-      | split_only (Flat(f,t))
-        = false
-      | split_only (Split(t1,t2))
-        = split_only(t1) andalso split_only(t2);
-        (* = if split_only(t1) *)
-        (*   then split_only(t2) *)
-        (*   else false; *)
-    (split_only :
-      tree -> bool);
+***** the fifth moral
+      write the first draft of a function
+      following all the morals.
+      when it is correct and no sooner no later, simplify!
 
-    split_only(
-      Split(
-        Bud,
-        Flat(
-          Fig,
-          Split(
-            Bud,
-            Bud))));
-    split_only(
-      Split(
-        Split(
-          Bud,
-          Bud),
-        Bud));
+*** >< 6 oh my, it's full of stars ! (从这里开始转而使用ocaml)
 
-    fun contains_fruit (Bud)
-        = false
-      | contains_fruit (Flat(f,t))
-        = true
-      | contains_fruit (Split(t1,t2))
-        = contains_fruit(t1) orelse contains_fruit(t2);
-        (* = if contains_fruit(t1) *)
-        (*   then true *)
-        (*   else contains_fruit(t2); *)
-    fun contains_fruit (x)
-        = not (split_only (x));
-        (* = if split_only (x) *)
-        (*   then false *)
-        (*   else true; *)
-    (contains_fruit :
-      tree -> bool);
+***** >< 一颗能长出各种水果的神奇树
+      从上向下 从左向右长的
+      下面所处理的二叉树的分支节点是有类型的
+      这与经典的lisp对二叉树的实现方式不一样
+      #+begin_src sml
+      datatype fruit =
+          Peach
+        | Apple
+        | Pear
+        | Lemon
+        | Fig;
 
-    contains_fruit(
-      Split(
-        Bud,
-        Flat(
-          Fig,
-          Split(
-            Bud,
-            Bud))));
-    contains_fruit(
-      Split(
-        Split(
-          Bud,
-          Bud),
-        Bud));
-
-    (* 树的高被定义为最高的芽到根的距离 *)
-    (* 下面是height的辅助函数 *)
-    fun less_than (n:int,m:int)
-        = (n < m);
-    (less_than :
-      (int * int) -> bool);
-    fun larger_of (n,m)
-        = if less_than (n,m)
-          then m
-          else n;
-    (larger_of :
-      (int * int) -> int);
-
-    fun height (Bud)
-        = 0
-      | height (Flat(f,t))
-        = 1 + height(t)
-      | height (Split(t1,t2))
-        = 1 + larger_of(height(t1),height(t2));
-    (height :
-      tree -> int);
-
-    height(
-      Split(
-        Bud,
-        Flat(
-          Fig,
-          Split(
-            Bud,
-            Bud))));
-    height(
-      Split(
-        Split(
-          Bud,
-          Bud),
-        Bud));
+      datatype tree =
+          Bud
+        | Flat of fruit * tree
+        | Split of tree * tree;
 
 
+      fun flat_only (Bud)
+          = true
+        | flat_only (Flat(f,t))
+          = flat_only (t)
+        | flat_only (Split(t1,t2))
+          = false;
+      (flat_only :
+        tree -> bool);
 
-    fun eq_fruit (Peach,Peach)
-        = true
-      | eq_fruit (Apple,Apple)
-        = true
-      | eq_fruit (Pear,Pear)
-        = true
-      | eq_fruit (Lemon,Lemon)
-        = true
-      | eq_fruit (Fig,Fig)
-        = true
-      | eq_fruit (f1:fruit,f2:fruit)
-        = false;
-    (eq_fruit :
-      (fruit * fruit) -> bool);
-
-    fun subst_in_tree (new_fruit, old_fruit, Bud)
-        = Bud
-      | subst_in_tree (new_fruit, old_fruit, Flat(f,t))
-        = if eq_fruit (old_fruit, f)
-          then Flat(new_fruit,
-                    (subst_in_tree (new_fruit, old_fruit, t)))
-          else Flat(f,
-                    (subst_in_tree (new_fruit, old_fruit, t)))
-      | subst_in_tree (new_fruit, old_fruit, Split(t1,t2))
-        = Split (subst_in_tree (new_fruit, old_fruit, t1),
-                 subst_in_tree (new_fruit, old_fruit, t2));
-    (subst_in_tree :
-      (fruit * fruit * tree) -> tree);
-
-    subst_in_tree(Fig,Fig,Bud);
-    subst_in_tree(Apple,Fig,
+      flat_only(
         Split(
           Bud,
           Flat(
@@ -795,142 +665,299 @@
             Split(
               Bud,
               Bud))));
-    subst_in_tree(Apple,Fig,
-      Split(
+      flat_only(
+        Split(
+          Split(
+            Bud,
+            Flat(Lemon,Bud)),
+          Flat(
+            Fig,
+            Split(
+              Bud,
+              Bud))));
+
+
+      fun split_only (Bud)
+          = true
+        | split_only (Flat(f,t))
+          = false
+        | split_only (Split(t1,t2))
+          = split_only(t1) andalso split_only(t2);
+          (* = if split_only(t1) *)
+          (*   then split_only(t2) *)
+          (*   else false; *)
+      (split_only :
+        tree -> bool);
+
+      split_only(
         Split(
           Bud,
           Flat(
             Fig,
             Split(
               Bud,
-              Bud))),
+              Bud))));
+      split_only(
+        Split(
+          Split(
+            Bud,
+            Bud),
+          Bud));
+
+      fun contains_fruit (Bud)
+          = false
+        | contains_fruit (Flat(f,t))
+          = true
+        | contains_fruit (Split(t1,t2))
+          = contains_fruit(t1) orelse contains_fruit(t2);
+          (* = if contains_fruit(t1) *)
+          (*   then true *)
+          (*   else contains_fruit(t2); *)
+      fun contains_fruit (x)
+          = not (split_only (x));
+          (* = if split_only (x) *)
+          (*   then false *)
+          (*   else true; *)
+      (contains_fruit :
+        tree -> bool);
+
+      contains_fruit(
         Split(
           Bud,
           Flat(
             Fig,
             Split(
               Bud,
-              Bud)))));
+              Bud))));
+      contains_fruit(
+        Split(
+          Split(
+            Bud,
+            Bud),
+          Bud));
 
-    fun occurs (x, Bud)
-        = 0
-      | occurs (x, Flat(f, t))
-        = if eq_fruit (x, f)
-          then 1 + occurs(x, t)
-          else occurs(x, t)
-      | occurs (x, Split (t1, t2))
-        = occurs (x, t1) + occurs (x, t2);
-    (occurs :
-     (fruit * tree) -> int);
+      (* 树的高被定义为最高的芽到根的距离 *)
+      (* 下面是height的辅助函数 *)
+      fun less_than (n:int,m:int)
+          = (n < m);
+      (less_than :
+        (int * int) -> bool);
+      fun larger_of (n,m)
+          = if less_than (n,m)
+            then m
+            else n;
+      (larger_of :
+        (int * int) -> int);
 
-    occurs(Fig,
-           Split(
+      fun height (Bud)
+          = 0
+        | height (Flat(f,t))
+          = 1 + height(t)
+        | height (Split(t1,t2))
+          = 1 + larger_of(height(t1),height(t2));
+      (height :
+        tree -> int);
+
+      height(
+        Split(
+          Bud,
+          Flat(
+            Fig,
+            Split(
+              Bud,
+              Bud))));
+      height(
+        Split(
+          Split(
+            Bud,
+            Bud),
+          Bud));
+
+
+
+      fun eq_fruit (Peach,Peach)
+          = true
+        | eq_fruit (Apple,Apple)
+          = true
+        | eq_fruit (Pear,Pear)
+          = true
+        | eq_fruit (Lemon,Lemon)
+          = true
+        | eq_fruit (Fig,Fig)
+          = true
+        | eq_fruit (f1:fruit,f2:fruit)
+          = false;
+      (eq_fruit :
+        (fruit * fruit) -> bool);
+
+      fun subst_in_tree (new_fruit, old_fruit, Bud)
+          = Bud
+        | subst_in_tree (new_fruit, old_fruit, Flat(f,t))
+          = if eq_fruit (old_fruit, f)
+            then Flat(new_fruit,
+                      (subst_in_tree (new_fruit, old_fruit, t)))
+            else Flat(f,
+                      (subst_in_tree (new_fruit, old_fruit, t)))
+        | subst_in_tree (new_fruit, old_fruit, Split(t1,t2))
+          = Split (subst_in_tree (new_fruit, old_fruit, t1),
+                   subst_in_tree (new_fruit, old_fruit, t2));
+      (subst_in_tree :
+        (fruit * fruit * tree) -> tree);
+
+      subst_in_tree(Fig,Fig,Bud);
+      subst_in_tree(Apple,Fig,
+          Split(
+            Bud,
+            Flat(
+              Fig,
+              Split(
+                Bud,
+                Bud))));
+      subst_in_tree(Apple,Fig,
+        Split(
+          Split(
+            Bud,
+            Flat(
+              Fig,
+              Split(
+                Bud,
+                Bud))),
+          Split(
+            Bud,
+            Flat(
+              Fig,
+              Split(
+                Bud,
+                Bud)))));
+
+      fun occurs (x, Bud)
+          = 0
+        | occurs (x, Flat(f, t))
+          = if eq_fruit (x, f)
+            then 1 + occurs(x, t)
+            else occurs(x, t)
+        | occurs (x, Split (t1, t2))
+          = occurs (x, t1) + occurs (x, t2);
+      (occurs :
+       (fruit * tree) -> int);
+
+      occurs(Fig,
              Split(
-               Bud,
-               Flat(
-                 Fig,
-                 Split(
-                   Bud,
-                   Bud))),
-             Split(
-               Bud,
-               Flat(
-                 Fig,
-                 Split(
-                   Bud,
-                   Bud)))));
+               Split(
+                 Bud,
+                 Flat(
+                   Fig,
+                   Split(
+                     Bud,
+                     Bud))),
+               Split(
+                 Bud,
+                 Flat(
+                   Fig,
+                   Split(
+                     Bud,
+                     Bud)))));
 
 
 
 
-    (* good old sexp !!! *)
-    (* 下面的定义有点奇怪 *)
-    (* 纯属为了展示ml的性状 *)
-    datatype 
-      'a slist =
-        Empty
-      | Scons of ('a sexp * 'a slist)
-    and
-      'a sexp =
-         An_atom of 'a
-       | A_slist of ('a slist);
+      (* good old sexp !!! *)
+      (* 下面的定义有点奇怪 *)
+      (* 纯属为了展示ml的性状 *)
+      datatype
+        'a slist =
+          Empty
+        | Scons of ('a sexp * 'a slist)
+      and
+        'a sexp =
+           An_atom of 'a
+         | A_slist of ('a slist);
 
 
-    (* in lisp : *)
+      (* in lisp : *)
 
-    (* (cons (list (cons 'Fig *)
-    (*                   (cons 'Peach '()))) *)
-    (*       (cons 'Fig *)
-    (*             (cons 'Lemon '()))) *)
+      (* (cons (list (cons 'Fig *)
+      (*                   (cons 'Peach '()))) *)
+      (*       (cons 'Fig *)
+      (*             (cons 'Lemon '()))) *)
 
-    (* '(((Fig Peach)) Fig Lemon) *)
+      (* '(((Fig Peach)) Fig Lemon) *)
 
-    Scons(A_slist(
-             Scons(An_atom(Fig),
-                   Scons(An_atom(Peach),
-                         Empty))),
-          Scons(An_atom(Fig),
-                Scons(An_atom(Lemon),
-                      Empty)));
-
-    fun occurs_in_slist (a, Empty)
-        = 0
-      | occurs_in_slist (a, Scons(s,l))
-        = occurs_in_sexp(a, s) + occurs_in_slist(a, l)
-    and occurs_in_sexp (a, An_atom(b))
-        = if eq_fruit (a, b)
-          then 1
-          else 0
-      | occurs_in_sexp (a, A_slist(l))
-        = occurs_in_slist (a, l);
-
-    (occurs_in_slist :
-       (fruit * fruit slist) -> int);
-    (occurs_in_sexp :
-       (fruit * fruit sexp) -> int);
-
-    (* '(((Fig Peach)) Fig Lemon) *)
-    occurs_in_slist(Fig,
       Scons(A_slist(
                Scons(An_atom(Fig),
-                    Scons(An_atom(Peach),
-                          Empty))),
+                     Scons(An_atom(Peach),
+                           Empty))),
             Scons(An_atom(Fig),
-                 Scons(An_atom(Lemon),
-                   Empty))));
+                  Scons(An_atom(Lemon),
+                        Empty)));
 
-    (* '((Fig Peach)) *)
-    occurs_in_sexp(Fig,
-      A_slist(
-        Scons(An_atom(Fig),
-              Scons(An_atom(Peach),
-                    Empty))));
+      fun occurs_in_slist (a, Empty)
+          = 0
+        | occurs_in_slist (a, Scons(s,l))
+          = occurs_in_sexp(a, s) + occurs_in_slist(a, l)
+      and occurs_in_sexp (a, An_atom(b))
+          = if eq_fruit (a, b)
+            then 1
+            else 0
+        | occurs_in_sexp (a, A_slist(l))
+          = occurs_in_slist (a, l);
+
+      (occurs_in_slist :
+         (fruit * fruit slist) -> int);
+      (occurs_in_sexp :
+         (fruit * fruit sexp) -> int);
+
+      (* '(((Fig Peach)) Fig Lemon) *)
+      occurs_in_slist(Fig,
+        Scons(A_slist(
+                 Scons(An_atom(Fig),
+                      Scons(An_atom(Peach),
+                            Empty))),
+              Scons(An_atom(Fig),
+                   Scons(An_atom(Lemon),
+                     Empty))));
+
+      (* '((Fig Peach)) *)
+      occurs_in_sexp(Fig,
+        A_slist(
+          Scons(An_atom(Fig),
+                Scons(An_atom(Peach),
+                      Empty))));
 
 
-    ><
-    #+end_src
-*** the sixth moral
-    As datatype definitions get more compicated,
-    so do the functions over them.
-** 7 functions are people, too
-*** arrow
-*** the seventh moral
-    some functions consume values of arrow type;
-    some produce values of arrow type.
-** 8 bows and arrows
-*** the eighth moral
-    replace stars by arrows to reduce
-    the number of values consumed
-    and to increase the generality of the function defined.
-    - k :: 也就是弱化函数的类型
-** 9 oh no!
-*** the ninth moral
-    some functions produce exceptions instead of values;
-    some don't produce anything.
-    handle raised exceptions carefully.
-** 10 building on blocks
-*** the tenth moral
-    real programs consist of many componets.
-    specify the dependencies among these componets
-    using signatures and functors.
-* ==================================================
+      ><
+      #+end_src
+
+***** the sixth moral
+      As datatype definitions get more compicated,
+      so do the functions over them.
+
+*** 7 functions are people, too
+
+***** arrow
+
+***** the seventh moral
+      some functions consume values of arrow type;
+      some produce values of arrow type.
+
+*** 8 bows and arrows
+
+***** the eighth moral
+      replace stars by arrows to reduce
+      the number of values consumed
+      and to increase the generality of the function defined.
+      - k :: 也就是弱化函数的类型
+
+*** 9 oh no!
+
+***** the ninth moral
+      some functions produce exceptions instead of values;
+      some don't produce anything.
+      handle raised exceptions carefully.
+
+*** 10 building on blocks
+
+***** the tenth moral
+      real programs consist of many componets.
+      specify the dependencies among these componets
+      using signatures and functors.
