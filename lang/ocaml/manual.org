@@ -4,9 +4,6 @@
 * Chapter 1  The core language
 
 *** 1.1  Basics
-    1. ocaml : the interactive system
-    2. cicada 对 phrases 的处理方式已经 超过 ocaml 了
-       cicada 的处理方式更简洁 并且易于理解
     #+begin_src caml
     let pi = 4.0 *. atan 1.0;;
 
@@ -25,16 +22,9 @@
 *** 1.2  Data types
     #+begin_src caml
     (2 < 1) = false;;
-
     'a';;
-
     "hello world";;
-
     let l = ["is"; "a"; "tale"; "told"; "etc."];;
-
-    (* 下面的是 cons 是函数式的 而非副作用
-     * 这对于符号计算来说非常好
-     * 但是对于有向图处理来说并不好 *)
     "life" :: l;;
 
     let rec sort list =
@@ -50,17 +40,28 @@
           else head :: insert element tail
     ;;
 
+
+    (* let rec sort : 'a list -> 'a list =
+     *   fun list ->
+     *     match list with
+     *     | [] -> []
+     *     | head :: tail -> insert head (sort tail)
+     * and insert : 'a -> 'a list -> 'a list =
+     *   fun element list ->
+     *     match element, list with
+     *     | element, [] -> [element]
+     *     | element, head :: tail ->
+     *       if element <= head
+     *       then element :: list
+     *       else head :: insert element tail
+     * ;; *)
+
     (* = 还有 <= 这两个函数是多态的
      * 或者说是 重载的
-     * 所以 sort 有这样的类型
-     * 但是 其实 = 和 <= 并不是函数
-     * 它们是 中缀的 *)
+     * 所以 sort 有这样的类型 *)
     sort;;
-
     sort l;;
-
     sort [6;2;5;3];;
-
     sort [3.14; 2.718];;
     #+end_src
 

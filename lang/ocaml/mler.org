@@ -68,12 +68,44 @@
       function
           (Empty)
           -> function
-              (12)
-              -> 12
-        | (Cons(a, 11))
+              (l2)
+              -> l2
+        | (Cons(a, l1))
           -> function
-              (12)
-              -> Cons (a, combine_c (11) (12)) ;;
+              (l2)
+              -> Cons (a, combine_c (l1) (l2)) ;;
+    #+end_src
+
+*** curry ocaml
+    #+begin_src caml
+    (* curry in ocaml *)
+
+    let rec combine_c =
+      function
+          (Empty)
+          -> function
+              (l2)
+              -> l2
+        | (Cons(a, l1))
+          -> function
+              (l2)
+              -> Cons (a, combine_c (l1) (l2)) ;;
+
+    1;;
+
+    let rec curry_test l1 l2 = match l1, l2 with
+       | 1, 1 -> 1
+       | 2, 2 -> 2 ;;
+    #+end_src
+
+*** curry sml
+    #+begin_src sml
+    (* curry in sml *)
+
+    fun combine_c(Empty)(l2)
+        = l2
+      | combine_c(Cons(a,l1))(l2)
+        = Cons(a,combine_c(l1)(l2))
     #+end_src
 
 * the little mler
@@ -160,13 +192,11 @@
       (* 上面的定義描述烤羊肉串怎麼做 *)
       (* 下面的函數描述一個只愛吃洋蔥的人是怎麼吃烤羊肉串的 *)
 
-      (* 遞歸處理與歸納定義在ml中的對應關係很明顯 *)
-      (* k:編譯器是如何決定x是變元的?? *)
-      (* d:可能是根據它是出現在最裏面的括號裏 *)
+      (* 遞歸處理與歸納定義在 ml 中的對應關係很明顯 *)
 
-      (* function就是lambda *)
-      let rec only_onions =
-        function
+      (* function 就是 lambda *)
+      let rec only_onions : shish_kebab -> bool =
+       function
          (Skewer)
          -> true
        | (Onion(x))
@@ -175,8 +205,18 @@
          -> false
        | (Tomato(x))
          -> false ;;
-      (only_onions :
-       shish_kebab -> bool) ;;
+
+      let rec only_onions : shish_kebab -> bool =
+       function
+         (Skewer)
+         -> true
+       | (Onion(x))
+         -> only_onions (x)
+       | (Lamb(x))
+         -> false
+       | (Tomato(x))
+         -> false ;;
+
 
       only_onions
            (Onion
@@ -187,8 +227,8 @@
            (Onion(Lamb(Skewer))) ;;
 
       (* 注意遞歸函數的處理順序幾乎總要符合數據結構的歸納定義的順序 *)
-      let rec is_vegetarian =
-        function
+      let rec is_vegetarian : shish_kebab -> bool =
+       function
          (Skewer)
          -> true
        | (Onion(x))
@@ -197,9 +237,6 @@
          -> false
        | (Tomato(x))
          -> is_vegetarian (x) ;;
-
-      (is_vegetarian :
-            shish_kebab -> bool) ;;
 
       is_vegetarian(
         Onion(Onion(Skewer))) ;;
@@ -324,7 +361,6 @@
         | Anchovy of pizza
         | Sausage of pizza ;;
 
-
       (Anchovy
          (Onion
             (Anchovy
@@ -332,7 +368,7 @@
                   (Cheese
                      (Crust)))))) ;;
 
-      let rec remove_Anchovy =
+      let rec remove_Anchovy : pizza -> pizza =
         function
             (Crust)
             -> Crust
@@ -345,19 +381,16 @@
           | (Sausage (x))
             -> Sausage (remove_Anchovy (x)) ;;
 
-      (remove_Anchovy :
-         pizza -> pizza) ;;
-
       (remove_Anchovy
-         (Anchovy
-            (Onion
-               (Anchovy
-                  (Anchovy
-                     (Cheese
-                        (Crust))))))) ;;
+        (Anchovy
+          (Onion
+            (Anchovy
+              (Anchovy
+                (Cheese
+                  (Crust))))))) ;;
 
 
-      let rec top_anchovy_with_cheese =
+      let rec top_anchovy_with_cheese : pizza -> pizza =
         function
             (Crust)
             -> (Crust)
@@ -372,9 +405,6 @@
           | (Sausage (x))
             -> Sausage (top_anchovy_with_cheese (x)) ;;
 
-      (top_anchovy_with_cheese :
-       pizza -> pizza) ;;
-
       top_anchovy_with_cheese
       (Anchovy
        (Onion
@@ -384,14 +414,11 @@
            (Crust)))))) ;;
 
 
-      let rec subst_anchovy_by_cheese =
+      let rec subst_anchovy_by_cheese : pizza -> pizza =
         function
-            (x)
-            -> (top_anchovy_with_cheese
-                  (remove_Anchovy(x))) ;;
-
-      (subst_anchovy_by_cheese :
-         pizza -> pizza) ;;
+          (x)
+           -> (top_anchovy_with_cheese
+                (remove_Anchovy(x))) ;;
       #+end_src
 
 ***** the third moral
@@ -516,9 +543,10 @@
          求值 一個 代表 type 的 <symbol> 就知道了
 
 ***** 關於構造子
-      - k :: 構造子和函數都是函數
-             以相同的方式作用
-             它們有什麼區別呢???
+      - k ::
+           構造子和函數都是函數
+           以相同的方式作用
+           它們有什麼區別呢???
       - x ::
         1. 最重要的區別是人類語義方面的區別
            構造子代表歸納定義
@@ -532,16 +560,21 @@
            而ocaml區分了這兩中東西的類型
            也就是說 在 ocaml 中
            非原子的構造子 是不能作爲表達式被單獨求值的
+           類型的數據構造子 不能 curry
         3. 定義方式也不一樣
            構造子 可以看成是在定義類型的時候 被隱含定義的函數
-      - x :: 我更傾向於 統一的處理方式
-             我想 Dan 之所以沒有選擇 ocaml 作爲這本書的基礎
-             就是因爲 這裏 ocaml 缺乏一致性
-      - k :: 在Dan的書中構造子都是首字母大寫的詞
-             而函數和類型都是首字母小寫
-      - x :: 沒錯
-             不知道在 ocaml 中還有什麼需要遵循的慣例
-             可能在它的官方引導中可以找到一些說明
+      - x ::
+           我更傾向於 統一的處理方式
+           我想 Dan 之所以沒有選擇 ocaml 作爲這本書的基礎
+           就是因爲 這裏 ocaml 缺乏一致性
+      - k ::
+           在Dan的書中構造子都是首字母大寫的詞
+           而函數和類型都是首字母小寫
+           也就是說 這裏確實有 有意義的差別 值得區分
+      - x ::
+           沒錯
+           不知道在 ocaml 中還有什麼需要遵循的慣例
+           可能在它的官方引導中可以找到一些說明
 
 ***** 關於作用的語法
       - x :: 我發現只要作連個約定就可以把作用的語法從(M N)轉換到M(N)
@@ -566,7 +599,7 @@
 
       (* 把遞歸函數與歸納定義的順序想匹配對機器來說其實不重要
        * 但是這種匹配對人類來說很重要 *)
-      let rec (rem_anchovy : fish pizza -> fish pizza) =
+      let rec rem_anchovy : fish pizza -> fish pizza =
         function
             (Bottom)
             -> Bottom
@@ -623,7 +656,7 @@
        * 爲了在上面的語法缺失的情況下 以合理的方式寫出上面這類二元函數
        * 就需要一個等詞 *)
 
-      let rec (eq_fish : (fish * fish) -> bool) =
+      let rec eq_fish : (fish * fish) -> bool =
         function
             (Anchovy, Anchovy)
             -> true
@@ -640,7 +673,7 @@
       (* 看一下下面表達 還是可以接受的
          就當作是 factoring 好了 *)
 
-      let rec (rem_fish : (fish * fish pizza) -> (fish pizza)) =
+      let rec rem_fish : (fish * fish pizza) -> (fish pizza) =
         function
             (a_fish, Bottom)
             -> Bottom
@@ -660,7 +693,7 @@
          Topping(Anchovy, Topping(Tuna, Topping(Anchovy, Bottom)))) ;;
 
 
-      let rec (subst_fish : (fish * fish * fish pizza) -> fish pizza) =
+      let rec subst_fish : (fish * fish * fish pizza) -> fish pizza =
         function
             (x, y, Bottom)
             -> Bottom
@@ -681,7 +714,7 @@
           Zero
         | One_more_than of num ;;
 
-      let rec (eq_num : (num * num) -> bool) =
+      let rec eq_num : (num * num) -> bool =
         function
             (Zero, Zero)
             -> true
@@ -697,7 +730,7 @@
        * 先寫出能正確工作的版本再說
        * 然後再化簡 *)
 
-      let rec (eq_num : (num * num) -> bool) =
+      let rec eq_num : (num * num) -> bool =
         function
             (Zero, Zero)
             -> true
