@@ -4,6 +4,7 @@
 * Chapter 1  The core language
 
 *** 1.1  Basics
+
     #+begin_src caml
     let pi = 4.0 *. atan 1.0;;
 
@@ -20,6 +21,7 @@
     #+end_src
 
 *** 1.2  Data types
+
     #+begin_src caml
     (2 < 1) = false;;
     'a';;
@@ -27,38 +29,26 @@
     let l = ["is"; "a"; "tale"; "told"; "etc."];;
     "life" :: l;;
 
-    let rec sort list =
-      match list with
-      | [] -> []
-      | head :: tail -> insert head (sort tail)
-    and insert element list =
-      match list with
-      | [] -> [element]
-      | head :: tail ->
+    let rec sort
+    : 'a list -> 'a list
+    = fun list ->
+        match list with
+        | [] -> []
+        | head :: tail -> insert head (sort tail)
+    and insert
+    : 'a -> 'a list -> 'a list
+    = fun element list ->
+        match element, list with
+        | element, [] -> [element]
+        | element, head :: tail ->
           if element <= head
           then element :: list
           else head :: insert element tail
     ;;
 
+    (* = 還有 <= 這兩個函數是 重載的
+       所以 sort 是 重載的 *)
 
-    (* let rec sort : 'a list -> 'a list =
-     *   fun list ->
-     *     match list with
-     *     | [] -> []
-     *     | head :: tail -> insert head (sort tail)
-     * and insert : 'a -> 'a list -> 'a list =
-     *   fun element list ->
-     *     match element, list with
-     *     | element, [] -> [element]
-     *     | element, head :: tail ->
-     *       if element <= head
-     *       then element :: list
-     *       else head :: insert element tail
-     * ;; *)
-
-    (* = 还有 <= 这两个函数是多态的
-     * 或者说是 重载的
-     * 所以 sort 有这样的类型 *)
     sort;;
     sort l;;
     sort [6;2;5;3];;
@@ -66,74 +56,121 @@
     #+end_src
 
 *** 1.3  Functions as values
-    #+begin_src caml
-    (* 微分算子 以函数为参数 以函数为返回值 *)
-    let deriv f dx = function x -> (f (x +. dx) -. f x) /. dx;;
 
-    let sin' = deriv sin 1e-6;;
+    #+begin_src caml
+    (* 微分算子
+       以函數爲參數
+       以函數爲返回值 *)
+
+    let deriv
+    : (float -> float) -> float -> (float -> float)
+    = fun f dx ->
+        fun x ->
+          (f (x +. dx) -. f x) /. dx
+    ;;
+
+    let sin'
+    : (float -> float)
+    = deriv sin 1e-6
+    ;;
 
     sin' pi;;
 
-
-    let compose f g = function x -> f (g x);;
+    let compose
+    : ('b -> 'c) -> ('a -> 'b) -> 'a -> 'c
+    = fun f g ->
+        fun x -> f (g x)
+    ;;
 
     let cos2 = compose square cos;;
+    cos2 1.;;
 
+    List.map (fun n -> n * 2 + 1) [0; 1; 2; 3; 4];;
 
-    List.map (function n -> n * 2 + 1) [0;1;2;3;4];;
-
-    let rec map f l =
+    let rec map
+    : ('a -> 'a) -> 'a list -> 'a list
+    = fun f l ->
       match l with
-      | [] -> []
-      | hd :: tl -> f hd :: map f tl;;
+        | [] -> []
+        | hd :: tl ->
+          f hd :: map f tl
+    ;;
 
-    map (function n -> n * 2 + 1) [0;1;2;3;4];;
-
-    map cos2 [0.;1.;2.;3.;4.];;
+    map (function n -> n * 2 + 1) [0; 1; 2; 3; 4];;
+    map cos2 [0.; 1.; 2.; 3.; 4.];;
     #+end_src
 
-*** 1.4  Records and variants
-    1. records and variants
-       是用户定义类型的两种方式
-       variants 是个很有趣的命名
-       这个命名也许来源于这个词在法语中的词义
-       可以理解为:
-       1) 构造子 (利用 of 这个虚词) 对数据的变化
-       2) of 这个虚词 外加一个 词
-          形成 形容词短语 或 定语
-          以 在已有的 类型上 演化出来的新类型
+*** >< 1.4  Records and variants
+
+    - records and variants
+      是用戶定義類型的兩種方式
+
+    - records
+      list with named fields
+
+    - variants
+      The declaration of a variant type
+      lists all possible shapes for values of that type
+      at run time pattern-matching use such as predicates
+      to do branch
+
+    - 定義新類型的時候
+      一定要以已有類型爲基礎
+      所以 variant 取衍化派生之義
+
     #+begin_src caml
     type ratio = {num: int; denom: int};;
 
-    let add_ratio r1 r2 =
+    let add_ratio
+    : ratio -> ratio -> ratio
+    = fun r1 r2 ->
       {num = r1.num * r2.denom + r2.num * r1.denom;
        denom = r1.denom * r2.denom};;
 
     add_ratio {num=1; denom=3} {num=2; denom=5};;
 
+    (* need branch to handle function
+       that can apply to both int and float
+       use variants to define new type
+       do branch by pattern-matching *)
 
     type number =
       | Int of int
       | Float of float
       | Error;;
 
+    type number2 =
+      | Int of int
+      | Float of float
+      | Error;;
+
+    let k1
+    : number
+    = Int 1;;
+
+    let k2
+    : number2
+    = Int 1;;
 
     type sign =
       | Positive
       | Negative;;
 
-    let sign_int n =
+    let sign_int
+    : int -> sign
+    = fun n ->
       if n >= 0
       then Positive
       else Negative;;
 
-
-    let add_num n1 n2 =
-      match (n1, n2) with
+    let add_num
+    : number -> number -> number
+    = fun n1 n2 ->
+      match n1, n2 with
       | (Int i1, Int i2) ->
           (* Check for overflow of integer addition *)
           if sign_int i1 = sign_int i2
-              && sign_int (i1 + i2) <> sign_int i1
+            && sign_int (i1 + i2) <> sign_int i1
           then Float(float i1 +. float i2)
           else Int(i1 + i2)
       | (Int i1, Float f2) -> Float(float i1 +. f2)
@@ -144,12 +181,10 @@
 
     add_num (Int 123) (Float 3.14159);;
 
-
     type 'a btree =
       | Empty
       | Node of 'a * 'a btree * 'a btree
     ;;
-
 
     let rec member x btree =
       match btree with
@@ -307,7 +342,7 @@
 
 *** 2.1  Structures
     1. modules
-       在这里 模块系统是一种命名空间的管理方式
+       在這裏 模塊系統是一種命名空間的管理方式
     #+begin_src caml
     module PrioQueue  =
       struct
