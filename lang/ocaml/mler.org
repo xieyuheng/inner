@@ -1682,30 +1682,28 @@
   #+end_src
 
 * objects in ocaml
+
   #+begin_src caml
   (* Here's some basic code to provide a stack of integers.
    * The class is implemented using a linked list. *)
-
   1 :: 1 :: [] ;;
-  (* == (cons 1 (cons 1 '())) in lisp
-   * 但是 爲了類型推到列表中的元素必須有一致的類型 *)
-
 
   class stack_of_ints =
     object (self)
-      val mutable the_list = ( [] : int list ) (* an empty list, of type int list *)
+      val mutable the_list = ( [] : int list )
       method push x =
-        the_list <- x :: the_list              (* 箭頭<-表示assignment副作用 *)
+        the_list <- x :: the_list
       method pop =
         let result = List.hd the_list
         in
-        the_list <- List.tl the_list ;(* 用來並列多個表達式而形成一個複合表達式 *)
+        the_list <- List.tl the_list ;
         result
       method peek =
         List.hd the_list
       method size =
         List.length the_list
-    end ;;
+    end
+  ;;
 
 
   (* test: *)

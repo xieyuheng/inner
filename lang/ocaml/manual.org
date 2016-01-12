@@ -100,7 +100,7 @@
     map cos2 [0.; 1.; 2.; 3.; 4.];;
     #+end_src
 
-*** >< 1.4  Records and variants
+*** 1.4  Records and variants
 
     - records and variants
       是用戶定義類型的兩種方式
@@ -137,20 +137,35 @@
     type number =
       | Int of int
       | Float of float
-      | Error;;
+      | Error
+    ;;
 
     type number2 =
       | Int of int
       | Float of float
-      | Error;;
+      | Error
+    ;;
+
+    type number3 =
+      | Int of float
+      | Float of int
+      | Error
+    ;;
 
     let k1
     : number
-    = Int 1;;
+    = Int 1
+    ;;
 
     let k2
     : number2
-    = Int 1;;
+    = Int 1
+    ;;
+
+    let k3
+    : number3
+    = Int 1.
+    ;;
 
     type sign =
       | Positive
@@ -186,7 +201,9 @@
       | Node of 'a * 'a btree * 'a btree
     ;;
 
-    let rec member x btree =
+    let rec member
+    : 'a -> 'a btree -> bool
+    = fun x btree ->
       match btree with
       | Empty -> false
       | Node(y, left, right) ->
@@ -194,7 +211,9 @@
           if x < y then member x left else member x right
     ;;
 
-    let rec insert x btree =
+    let rec insert
+    : 'a -> 'a btree -> 'a btree
+    = fun x btree ->
       match btree with
       | Empty -> Node(x, Empty, Empty)
       | Node(y, left, right) ->
@@ -203,36 +222,106 @@
     ;;
     #+end_src
 
+*** 1.5  Imperative features
+
+    #+begin_src caml
+    let add_vect
+    : float array -> float array -> float array
+    = fun v1 v2 ->
+      let len = min (Array.length v1) (Array.length v2) in
+      let res = Array.make len 0.0 in
+      for i = 0 to len - 1 do
+        res.(i) <- v1.(i) +. v2.(i)
+      done;
+      res
+    ;;
+
+    add_vect [| 1.0; 2.0 |] [| 3.0; 4.0 |];;
+
+    (* Record fields can also be modified by assignment
+     * provided they are declared mutable in the definition of the record type *)
+
+    type mutable_point = { mutable x: float; mutable y: float };;
+
+    let translate
+    : mutable_point -> float -> float -> unit
+    = fun p dx dy ->
+      p.x <- p.x +. dx;
+      p.y <- p.y +. dy
+    ;;
+
+    let mypoint = { x = 0.0; y = 0.0 };;
+    translate mypoint 1.0 2.0;;
+    mypoint;;
+
+    let insertion_sort
+    : 'a array -> unit
+    = fun a ->
+      for i = 1 to Array.length a - 1 do
+        let val_i = a.(i) in
+        let j = ref i in
+        while !j > 0 && val_i < a.(!j - 1) do
+          a.(!j) <- a.(!j - 1);
+          j := !j - 1
+        done;
+        a.(!j) <- val_i
+      done
+    ;;
+
+    type 'a myref = { mutable contents: 'a };;
+    let ( ! ) r = r.contents;;
+    let ( := ) r newval = r.contents <- newval;;
+
+    let myref
+    : 'a -> 'a myref
+    = fun a -> { contents = a }
+    ;;
+
+    let current_rand = myref 0;;
+    let random
+    : unit -> int
+    = fun () ->
+        current_rand := !current_rand * 25713 + 1345;
+        !current_rand
+    ;;
+
+    random ();;
+    #+end_src
+
 *** 1.6  Exceptions
+
     #+begin_src caml
     exception Empty_list;;
 
-    let head l =
+    let head
+    : 'a list -> 'a
+    = fun l ->
       match l with
         [] -> raise Empty_list
       | hd :: tl -> hd;;
 
     head [1;2];;
-
     head [];;
 
 
     List.assoc 1 [(0, "zero"); (1, "one")];;
-
     List.assoc 2 [(0, "zero"); (1, "one")];;
 
-
-    let name_of_binary_digit digit =
+    let name_of_binary_digit
+    : int -> string
+    = fun digit ->
       try
         List.assoc digit [0, "zero"; 1, "one"]
       with Not_found ->
-        "not a binary digit";;
+        "not a binary digit"
+    ;;
 
     name_of_binary_digit 0;;
     name_of_binary_digit (-1);;
     #+end_src
 
 *** 1.7  Symbolic processing of expressions
+
     #+begin_src caml
     type expression =
       | Const of float
@@ -281,6 +370,7 @@
     #+end_src
 
 *** 1.8  Pretty-printing and parsing
+
     #+begin_src caml
     let print_expr exp =
       (* Local function definitions *)
@@ -320,9 +410,10 @@
     #+end_src
 
 *** 1.9  Standalone OCaml programs
-    ocamlc -o fib  fib.ml
+
+    ocamlc -o fib fib.ml
+
     #+begin_src caml
-    (* File fib.ml *)
     let rec fib n =
       if n < 2
       then 1
@@ -341,8 +432,13 @@
 * Chapter 2  The module system
 
 *** 2.1  Structures
-    1. modules
-       在這裏 模塊系統是一種命名空間的管理方式
+
+    - A primary motivation for modules
+      is to package together related definitions
+      - such as the definitions of a data type
+        and associated operations over that type
+      and enforce a consistent naming scheme for these definitions
+
     #+begin_src caml
     module PrioQueue  =
       struct
@@ -375,6 +471,7 @@
     #+end_src
 
 *** 2.2  Signatures
+
     #+begin_src caml
     module type PRIOQUEUE =
       sig
@@ -386,9 +483,78 @@
         exception Queue_is_empty
       end;;
 
-    module AbstractPrioQueue = (PrioQueue : PRIOQUEUE);;
-
     AbstractPrioQueue.remove_top;;
-
     AbstractPrioQueue.insert AbstractPrioQueue.empty 1 "hello";;
+
+    module PrioQueue
+    : PRIOQUEUE
+    = struct
+      ...
+      end
+    ;;
     #+end_src
+
+*** >< 2.3  Functors
+
+    #+begin_src caml
+
+    #+end_src
+
+*** >< 2.4  Functors and type abstraction
+
+    #+begin_src caml
+
+    #+end_src
+
+*** 2.5  Modules and separate compilation
+
+    #+begin_src caml
+    module A
+    : sig
+      (* contents of file A.mli *)
+      end
+    = struct
+      (* contents of file A.ml *)
+      end
+    ;;
+    #+end_src
+
+* Chapter 3  Objects in OCaml
+
+*** 3.1 Classes and objects
+
+    #+begin_src caml
+    
+    #+end_src
+
+*** 3.2 Immediate objects
+
+*** 3.3 Reference to self
+
+*** 3.4 Initializers
+
+*** 3.5 Virtual methods
+
+*** 3.6 Private methods
+
+*** 3.7 Class interfaces
+
+*** 3.8 Inheritance
+
+*** 3.9 Multiple inheritance
+
+*** 3.10 Parameterized classes
+
+*** 3.11 Polymorphic methods
+
+*** 3.12 Using coercions
+
+*** 3.13 Functional objects
+
+*** 3.14 Cloning objects
+
+*** 3.15 Recursive classes
+
+*** 3.16 Binary methods
+
+*** 3.17 Friends
