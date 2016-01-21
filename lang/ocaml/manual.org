@@ -524,16 +524,168 @@
 *** 3.1 Classes and objects
 
     #+begin_src caml
-    
+    class point =
+      object
+        val mutable x = 0
+        method get_x = x
+        method move d = x <- x + d
+      end
+    ;;
+
+    let p = new point;;
+
+    let x0 = ref 0;;
+
+    class point =
+      object
+        val mutable x = incr x0; !x0
+        method get_x = x
+        method move d = x <- x + d
+      end
+    ;;
+
+    new point#get_x;;
+    new point#get_x;;
+
+    class point = fun x_init ->
+      object
+        val mutable x = x_init
+        method get_x = x
+        method get_offset = x - x_init
+        method move d = x <- x + d
+      end
+    ;;
+
+    new point;;
+    let p = new point 7;;
+    p#get_x;;
+    p#get_offset;;
+    p#move 10;;
+    p#get_offset;;
+    p#move 10;;
+    p#get_offset;;
+
+    class adjusted_point
+    = fun x_init ->
+      let origin = (x_init / 10) * 10 in
+      object
+        val mutable x = origin
+        method get_x = x
+        method get_offset = x - origin
+        method move d = x <- x + d
+      end
+    ;;
+
+    class adjusted_point
+    = fun x_init ->
+      point ((x_init / 10) * 10)
+    ;;
+
+    (* or *)
+    let new_adjusted_point
+    = fun x_init ->
+      new point ((x_init / 10) * 10)
+    ;;
     #+end_src
 
 *** 3.2 Immediate objects
 
+    - 此時類型是無名的
+      其由接口函數編碼的事實尤爲明顯
+
+    #+begin_src caml
+    let p
+    : < get_x : int; move : int -> unit >
+    = object
+        val mutable x = 0
+        method get_x = x
+        method move d = x <- x + d
+      end
+    ;;
+
+    p#get_x;;
+    p#move 3;;
+    p#get_x;;
+
+    let minmax
+    : 'a -> 'a -> < max : 'a; min : 'a >
+    = fun x y ->
+      if x < y
+      then object method min = x method max = y end
+      else object method min = y method max = x end
+    ;;
+    #+end_src
+
 *** 3.3 Reference to self
+
+    #+begin_src caml
+    class printable_point
+    = fun x_init ->
+      object (s)
+        val mutable x = x_init
+        method get_x = x
+        method move d = x <- x + d
+        method print = print_int s#get_x
+      end
+    ;;
+
+    let p = new printable_point (123, 123);;
+    p#print;;
+
+    let ints = ref [];;
+
+    class my_int =
+      object (self)
+        method n = 1
+        method register = ints := self :: !ints
+      end
+    ;;
+    (* Error: Self type cannot escape its class *)
+    (* for its type may be extended in subclasses *)
+
+    (* immediate objects are not extensible *)
+    let my_int =
+      object (self)
+        method n = 1
+        method register = ints := self :: !ints
+      end
+    ;;
+    #+end_src
 
 *** 3.4 Initializers
 
-*** 3.5 Virtual methods
+    #+begin_src caml
+    class printable_point
+    : int ->
+      object
+        val mutable x : int
+        method get_x : int
+        method move : int -> unit
+        method print : unit
+      end
+    = fun x_init ->
+      let origin = (x_init / 10) * 10 in
+      object (self)
+        val mutable x
+        : int
+        = origin
+        method get_x = x
+        method move d = x <- x + d
+        method print = print_int self#get_x
+        initializer
+          print_string "new point at ";
+          self#print;
+          print_newline ();
+      end;;
+
+    let p = new printable_point 17;;
+    #+end_src
+
+*** >< 3.5 Virtual methods
+
+    #+begin_src caml
+
+    #+end_src
 
 *** 3.6 Private methods
 

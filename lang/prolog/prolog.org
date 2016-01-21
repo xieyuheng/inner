@@ -1037,3 +1037,62 @@
   - if or-curser is at the end
     and you still wish to step
     it moves the and-cursor back and loop
+
+* learn prolog again
+
+*** note
+
+    - 限制 由 primitive 構成複雜函數的方式
+      以保證
+      在 primitive 能夠雙向計算的前提下
+      如此所定義的函數能夠雙向計算
+      這就是邏輯式編程的特點了
+
+    - 但是
+      有些 primitive 不能雙向計算
+      由其複合而得的複合函數也 不能雙向計算
+      這樣對 primitive 的分類
+      需要給一個小類型系統以標記
+      例如
+      prolog 中關於算數計算的函數
+      #+begin_src prolog
+      %% 如下則可
+      8 is 6 + 2.
+      is(8, +(6, 2)).
+
+      N is 6 + 2.
+      is(N, +(6, 2)).
+
+      N = 2,
+      is(8, +(6, N)).
+
+      N = 2,
+      is(M, +(6, N)).
+
+      %% 如下則不可
+      %%   is(8, +(6, N)).
+
+      %% 因爲
+      %%   此時計算的方向受到了限制
+      %%   is 的第二個參數中不能包含 未確定的 參數
+      %% 也就是說
+      %%   is 的第二個參數中不能包含 計算的結構 [unify 的結果]
+
+      %% 此時記錄 is 如下
+      %%   is()
+
+      kkk(X) :-
+        abs(X).
+      #+end_src
+
+* ><     
+  
+  #+begin_src prolog
+  %% :- module(shapes, []).
+  %% :- use_module(library(lists)).
+
+  flatten(cube, square).
+  flatten(ball, circle).
+
+  f(Y,X).
+  #+end_src

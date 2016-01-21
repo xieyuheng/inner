@@ -823,6 +823,9 @@
   - the action of a new content-explainer
     might be just trans the content
     and apply-keyword again to it
+    - thus
+      under one keyword
+      the syntax can be optimized little by little
 
 * 標記語言中的 macro
 

@@ -32,8 +32,6 @@
        給出了 有語義的[我們所關心的]更粗的劃分
        Each constructor targets a different part of the family of types.
 
-  - x ::
-
 * 問題
 
 *** terms
@@ -195,6 +193,9 @@
        發現了嘛
        與類型的 元素構造子 相反
        這裏是在用 函數所接受的數據之類型來分類函數
+       後果是
+       定義的時候 
+       被定義的函數並不出現在最外層的函數作用 [邏輯式編程]       
        又比如
        #+begin_src idris
        class Functor (f : Type -> Type) where

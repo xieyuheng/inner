@@ -47,6 +47,14 @@ k(X):-
   g(X),
   h(X).
 
+kkk(X):-
+  abs(X).
+
+k1(Array):-
+  new_array(Array).
+
+
+
 %% k(Y).
 
 %% X = f(X).
