@@ -1085,8 +1085,8 @@
         abs(X).
       #+end_src
 
-* ><     
-  
+* ><
+
   #+begin_src prolog
   %% :- module(shapes, []).
   %% :- use_module(library(lists)).

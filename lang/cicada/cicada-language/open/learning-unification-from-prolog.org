@@ -112,7 +112,7 @@
     - when type-checking
       all local-variable
       and function
-      get type-apply ed
+      get type-apply-ed
 
     - local-variable
       #name
