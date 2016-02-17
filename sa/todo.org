@@ -1,0 +1,45 @@
+* depentent type for minikanren
+
+* 漢字的結構化編碼
+
+* org-mode parser
+
+* build system for things do not have good build system
+
+* emacs
+
+  - emacs-lisp version threaded-code-interpreter
+
+  - 好好熟悉一下 emacs 的 API 設計
+    總結一下才好批判它
+
+* sa & electron & GUI design
+
+  - sad-coffee & play with old doc of joy
+
+  - really parse org-mode
+    to be able to tangle the code to
+    1. with or without test
+    2. with or without export
+    3. to include file or code block
+       for example header file for js code
+       to require a lot of functions from a module
+
+  - to play with DOM
+
+* cicada vm in coffee & js
+
+  - 以 sad-coffee 爲 main-lib
+
+  - 等待 unification 算法
+    用來實現 pattern match 和 type check
+
+* minikanren
+
+  - 重新學習 minikanren 的 unification 算法
+
+* prolog
+
+* the little prover
+
+* idris

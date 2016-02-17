@@ -171,3 +171,135 @@
     3. 關於命名
        在解釋 jojo 時
        遇到 name 又有一層 dispatch
+  ---------------------
+  - x ::
+       一般的 g 裏面有 type: 和 data:
+       local_variable 裏面還有 determinacy:
+       那麼作爲 type-constructor 的 g 裏面有什麼呢
+       需不需要用一個 field 區分出 type-constructor
+       或者不使用一個 field 而用所能接收的 message 來編碼它
+
+  - k ::
+       用 message 來編碼吧
+       然後我們可以通過聞訊 是否有某個 message 來實現謂詞
+
+* <2016-02-10>
+
+  - 我需要在每次做設計決策的時候
+    都把所考量的可選設計方案整理成可供回顧的筆記
+    否則
+    將可能在類似的問題上浪費時間
+    把稿子改了九遍 發現又改成了初稿
+
+  - 我發現在下面的某些地方我又回到了原來的設計
+    [畢竟現在有 JS 的 native GC 可以使用]
+    - 純粹的後綴表達式
+      先入棧兩個 jojo 在 match
+    - cut of sequent
+      當只考慮類型檢查的時候
+      總可以假設已經有東西在棧中了
+      所以 a -> b 這種消耗 a 的 sequent 總能得以作用
+      連續作用的過程中 棧中的值都是充分的
+      這樣最後得到結果
+      但是
+      如果需要類型推導
+      或者說 如果需要計算 jojo 的類型的時候
+      並沒有參數可供作用
+      此時就需要用 cut 來計算複合函數的類型了
+      就是 sequent 的 cut
+
+  ---------------------
+
+  - x ::
+    1. 總是以 sequent 爲單位 而不是以 jojo 爲單位
+       - 但是 return_stack 的 麼個 r 中 還是保存 jojo 用以執行
+         這樣 也許 jojo 也允許出現在 定義當中
+         只不過不可以計算 jojo 的類型
+         [可以檢查 但是不能計算]
+         [也許 也可以計算 只不過需要一些技巧]
+       就可以 用 stack 來實現 對一個 sequent 的類型的計算
+       感覺像是 term rewrite 只不過是用 stack 來實現的
+       因爲
+       sequent 的前項會入棧參數
+       使得後面消耗棧中參數的 sequent 得以作用
+    2. 類型檢查 做了 cut
+       而函數複合沒有做
+       因爲
+       函數複合中包含分支
+       分支的個數在 cut 時會相乘
+
+  ---------------------
+
+  - x ::
+       不論如何都先要實現就 tag 的 dispatch
+       check 需要區分 for_name 和 for_eval
+       因爲 for_eval 必須從 literal 重新生成類型
+       而 for_name 則可以直接使用所聲明的類型
+
+  ---------------------
+
+  - x ::
+       如何實現 sequent -> type 呢
+       畢竟 每個 sequent 中所出現的 local_variable 都是未分配內存的
+       只有在 運行一個 sequent 的時候 才分配內存
+
+  - k ::
+       是不是要實現某種意義上的有向圖處理
+
+  - x ::
+       我們之前說過 sequent -> type 是利用棧中的實際作用來實現的
+       先作用 sequent 的 antecedent
+       然後再作用 succedent
+       利用所收集到的信息 返回一個新的 sequent
+
+  - k ::
+       這也許是可能的
+       並且 這裏提到的 '利用棧'
+       就需要能夠靈活地使用棧
+       僅僅是兩個全局的 argument_stack 和 return_stack 可能是不夠的
+
+  - x ::
+       但是很多 primitive_function 的接口
+       都已經是使用這些全局棧的了
+       難點在於
+       處理 sequent 語義的 是一個 primitive_function
+       如果在這個 primitive_function 內調用 return_stack.eval
+       那麼只有當 return_stack.eval 空了之後
+       才能返回到這個 primitive_function 中來了
+       這裏需要一些 exception 可以讓 return_stack.eval 提前返回
+
+  - k ::
+       這將是不錯的設計
+       這樣就能在 寄主函數中調用 cicada 函數了
+
+  - x ::
+       沒錯
+       可以通過在 return_stack 中加入 中斷 r-point
+       這個 r-point 中的 jojo 裏有 特殊的 primitive_function
+       這個 特殊的 primitive_function 會讓 return_stack.eval 提前返回
+
+* scope <2016-02-11>
+
+  - x ::
+       如何處理 scope
+       我們現在知道了一些實現 scope 的條件了
+    1. 使用 r-point 中的一個域來實現一個 從 name 找 value 的 map
+       r point 退出時這個 field 的引用可能就消失了
+       這樣就能利用 native gc 來回收爲 map 所分配的內存
+    2. 這個 map 必須保存在 local_variable 的一個域中
+       這樣返回一個不定元的時候
+       map 的引用就不會消失 native gc 就不會回收它
+
+  - k ::
+       我們還需要知道使用 local_variable 的時候對 scope 有什麼要求
+
+  - x ::
+       ><><><
+
+* sequent->type vs jojo->type
+
+  - x ::
+       sequent->type 可以用棧實現
+       而 jojo->type 也不是無法想象的
+       只要知道棧中有多少參數是爲 jo 準備的就行了
+       畢竟我們現在能對不定元實行計算

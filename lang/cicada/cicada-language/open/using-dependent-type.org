@@ -98,7 +98,10 @@
        idris 在這裏由於模仿 haskell 而背離了簡單而容易理解的語法
        正如 idris 模仿 haskell 而把 List 定義成如下的樣子一樣
        #+begin_src idris
+       -- sugar
        data Lis a = Nil | (::) a (Lis a)
+
+       -- no sugar
        data Lis : (a : Type) -> Type where
          Nil :
            Lis a
@@ -107,7 +110,10 @@
        #+end_src
        後果是 Pair 要定義成如下的樣子
        #+begin_src idris
+       -- sugar
        data Pai a b = MkPai a b
+
+       -- no sugar
        data Pai : (a : Type) -> (b : Type) -> Type where
          MkPai : a -> b -> (Pai a b)
        #+end_src
@@ -194,8 +200,8 @@
        與類型的 元素構造子 相反
        這裏是在用 函數所接受的數據之類型來分類函數
        後果是
-       定義的時候 
-       被定義的函數並不出現在最外層的函數作用 [邏輯式編程]       
+       定義的時候
+       被定義的函數並不出現在最外層的函數作用 [邏輯式編程]
        又比如
        #+begin_src idris
        class Functor (f : Type -> Type) where
