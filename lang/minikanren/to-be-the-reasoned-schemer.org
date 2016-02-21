@@ -672,9 +672,9 @@
     (list-reverse-copy'(1 2 3))
     #+end_src
 
-* ><><>< 4 members only
+* 4 members only
 
-*** note
+*** function to unifier
 
     - THE SECOND COMMANDMENT
       to transform a function whose value is not a boolean into
@@ -683,90 +683,74 @@
       replace cond with conde
       and unnest each question and answer
 
-*** ><
+    - 注意
+      在一次 unification 中
+      memo 的 out 只可能有一種結果
 
     #+begin_src scheme
-    (define mem
-      (lambda (x l)
-        (cond [(null? l) #f]
-              [(eq-car? l x) l]
-              [else (mem x (cdr l))]
-              )))
-    (run* (out)
-      (== (mem 1 '(0 0 1 2 3)) out))
-    (mem 2
-         (mem 1
-              '(0 0 1 2 3)))
     (define memo
       (lambda (x l out)
-        (conde
-         [(caro l x) (== l out)]
-         [(fresh (d)
+        (oro
+          (ando (caro l x) (== l out))
+          (ando+ (d)
             (cdro l d)
-            (memo x d out))]
-         )))
+            (memo x d out)))))
+
     (run 1 (out)
       (memo 1 '(0 0 1 2 3) out))
+
     (run* (r)
       (memo r
              '(0 0 1 2 3)
              '(1 2 3)))
+
     (run* (r)
       (memo 1 '(1 2 3) '(1 2 3))
       (== #f r))
+
     (run* (r)
       (memo 1 '(1 2 3) '(1 2))
       (== #f r))
+
     (run* (r)
       (memo 1 '(1 2 3) '(1 2))
       (== #f r))
+
     (run* (x)
       (memo 1 `(1 2) `(7 ,x)))
+
     (run* (out)
       (fresh (x)
         (memo 1 `(0 0 ,x 0 1 2) out)))
-    (run 12 (z)
+
+    (run 10 (z)
       (fresh (u)
-        (memo 'kkk `(0 0 kkk 0 kkk 2 . ,z) u)))
+        (memo 'k `(0 0 k 0 k 2 . ,z) u)))
+    #+end_src
 
-    (define rember
-      (lambda (x l)
-        (cond [(null? l) '()]
-              [(eq-car? l x) (cdr l)]
-              [else (cons (car l) (rember x (cdr l)))]
-              )))
+*** rembero
 
+    #+begin_src scheme
     (define rembero
       (lambda (x l out)
-        (conde
-         [(nullo l) (== '() out)]
-         [(caro l x) (cdro l out)]
-         [(fresh (res)
-            (fresh (d)
-              (cdro l d)
-              (rembero x d res))
-            (fresh (a)
-              (caro l a)
-              (conso a res out)))]
-         )))
-    (define rembero
-      (lambda (x l out)
-        (conde
-         [(nullo l) (== '() out)]
-         [(caro l x) (cdro l out)]
-         [(fresh (a d r)
-            ;; (caro l a)
-            ;; (cdro l d)
-            (conso a d l) ;; take apart a cons
-            (rembero x d r)
-            (conso a r out)) ;; build a cons
-          ]
-         )))
+        (oro
+          (ando
+            (nullo l)
+            (== '() out))
+          (ando
+            (conso x out l))
+          (ando+ (res a d)
+            (conso a d l)
+            (rembero x d res)
+            (conso a res out)))))
+
     (run* (out)
       (rembero 1 '(1 2 3) out))
-    (run 10 (out)
+
+    (run* (out)
       (fresh (y)
         (rembero 0 `(1 2 ,y 3 0 4) out)))
+
     (run* (out)
       (fresh (y z)
         (rembero y `(a b ,y d ,z e) out)))
@@ -780,229 +764,314 @@
       (fresh (y z out)
         (rembero y `(a b ,y d ,z . ,w) out)))
 
+    (run 13 (r)
+      (fresh (w y z out)
+        (rembero y `(a b ,y d ,z . ,w) out)
+        (== (list w y z out) r)))
+
+    ;; 以爲不移除任何東西是允許的
+    ;; 而且 在轉向下個 oro 分支的時候
+    ;; 之前 unification 都被忘記了
+    ;; 所以處理語義的時候要小心
     (define surpriseo
       (lambda (s)
         (rembero s '(a b c) '(a b c))))
+
+    ;; 下面的語義是正常的
     (run* (r)
       (== 'd r)
       (surpriseo r))
-    --------------
-    "bug?"
+
+    ;; 而下面的三個例子中 語義可能就是有偏差的了
     (run* (r)
-      (== 'a r)
       (surpriseo r))
-    "no!"
-    (run* (x)
-     (rembero 'a '(a b c) '(a b c)))
-    (define rembero
-      (lambda (x l out)
-        (conde
-         ;; [(nullo l) (== '() out)]
-         [(caro l x) (cdro l out)]
-         [(fresh (a d r)
-            ;; (caro l a)
-            ;; (cdro l d)
-            (conso a d l) ;; take apart a cons
-            (rembero x d r)
-            (conso a r out)) ;; build a cons
-          ]
-         )))
-    so don't handle '() in rembero
-    for there is a '() return by run* naturely
-    that means
-    ``don't follow the way you write procedure in scheme''
-    (run* (x)
-     (rembero 'a '(a b c) '(a b c)))
-    ----------------
     (run* (r)
+      (== 'b r)
       (surpriseo r))
     (run* (r)
       (surpriseo r)
       (== 'b r))
-    #+end_src
 
-*** preparing for the following practice
-
-    #+begin_src scheme
-    (define rember
-      (lambda (x l)
-        (cond [(null? l) '()]
-              [(eq-car? l x) (cdr l)]
-              [else (cons (car l) (rember x (cdr l)))]
-              )))
-
+    ;; 下面可以讓 移除 的語義更加嚴格
+    ;; 不接受沒有移除任何元素的情況
+    ;; 這種東西在 一般的函數式編程中是表達不出來的
     (define rembero
       (lambda (x l out)
-        (conde
-         [(nullo l) (== '() out)]
-         [(caro l x) (cdro l out)]
-         [(fresh (a d r)
-            ;; (caro l a)
-            ;; (cdro l d)
-            (conso a d l) ;; take apart a cons
-            (rembero x d r)
-            (conso a r out)) ;; build a cons
-          ]
-         )))
+        (oro
+          ;; without the following
+          ;; it can not succeed by remove nothing
+          ;; (ando
+          ;;   (nullo l)
+          ;;   (== '() out))
+          (ando
+            (conso x out l))
+          (ando+ (res a d)
+            (conso a d l)
+            (rembero x d res)
+            (conso a res out)))))
     #+end_src
 
-* ><>< 5 double your fun
+* 5 double your fun
 
-*** ><
+*** appendo
+
+    - order of ando
+      make recursive call as late as possible
+      thus recursive call is not on fresh variables
 
     #+begin_src scheme
-    (define append
-      (lambda (proper-list sexp)
-        (cond [(null? proper-list) sexp]
-              [else
-               (cons (car proper-list)
-                     (append (cdr proper-list) sexp))]
-              )))
     (define appendo
-      (lambda (proper-list sexp out)
-        (conde
-         [(nullo proper-list) (== out sexp)]
-         [(fresh (a d rec)
-            (conso a d proper-list)
-            (appendo d sexp rec)
-            (conso a rec out))]
-         )))
+      (lambda (l s out)
+        (oro (ando
+               (nullo l)
+               (== out s))
+             (ando+ (a d rec)
+               (conso a d l)
+               (appendo d s rec)
+               (conso a rec out)))))
+
     (run* (out)
       (appendo `(1 2 3) `(a b c) out))
+
     (run 10 (x)
       (fresh (y)
         (appendo `(a b c . ,y) `(d e) x)))
-    (run 10 (y)
-      (fresh (x)
-        (appendo `(a b c . ,y) `(d e) x)))
+
     (run 10 (x)
       (fresh (y)
         (appendo `(a b c . ,y) `(d e . ,y) x)))
 
-    ;; can't run 11
     (run 10 (x)
       (fresh (y)
-        (appendo x y `(1 2 3 4 5 6 7 8 9 10))))
-    (run 10 (y)
-      (fresh (x)
-        (appendo x y `(1 2 3 4 5 6 7 8 9 10))))
-    (run 10 (out)
-      (fresh (x y)
-        (appendo x y `(1 2 3 4 5 6 7 8 9 10))
-        (== `(,x ,y) out)))
-    better version:
-    (define appendo
-      (lambda (proper-list sexp out)
-        (conde
-         [(nullo proper-list) (== out sexp)]
-         [(fresh (a d rec)
-            (conso a d proper-list)
-            (conso a rec out)
-            ;; after the above rec is (cdr out)
-            (appendo d sexp rec))]
-         )))
-    ;; can run 11
+        (appendo `(a b c) `(d e . ,y) x)))
+
+    ;; can't run 12
+    ;; because on the 12th times
+    ;; where you pretend that the first branch does not unify
+    ;; l & s are fresh
+    ;; thus d s rec are all fresh in the recursive call
     (run 11 (x)
       (fresh (y)
         (appendo x y `(1 2 3 4 5 6 7 8 9 10))))
+
     (run 11 (y)
       (fresh (x)
         (appendo x y `(1 2 3 4 5 6 7 8 9 10))))
+
     (run 11 (out)
       (fresh (x y)
         (appendo x y `(1 2 3 4 5 6 7 8 9 10))
         (== `(,x ,y) out)))
 
+    (define appendo
+      (lambda (l s out)
+        (oro (ando
+               (nullo l)
+               (== out s))
+             (ando+ (a d rec)
+               (conso a d l)
+               (conso a rec out)
+               (appendo d s rec)))))
+
+    ;; can run 12
+    (run 12 (x)
+      (fresh (y)
+        (appendo x y `(1 2 3 4 5 6 7 8 9 10))))
+
+    (run 12 (y)
+      (fresh (x)
+        (appendo x y `(1 2 3 4 5 6 7 8 9 10))))
+
+    (run 12 (out)
+      (fresh (x y)
+        (appendo x y `(1 2 3 4 5 6 7 8 9 10))
+        (== `(,x ,y) out)))
+
+
     (run 3 (x)
       (fresh (y z)
         (appendo x y z)))
+
     (run 3 (y)
       (fresh (x z)
         (appendo x y z)))
+
     (run 3 (z)
       (fresh (x y)
         (appendo x y z)))
+
     (run 3 (out)
       (fresh (x y z)
         (appendo x y z)
         (== `(,x ,y ,z) out)))
-    --------------------------------
-    "bug here as before!"
+
     (define swappendo
-      (lambda (proper-list sexp out)
-        (conde
-         [(fresh (a d rec)
-            (conso a d proper-list)
-            (conso a rec out)
-            (swappendo d sexp rec))]
-         [(nullo proper-list) (== out sexp)]
-         )))
-    (run 1 (z)
-      (fresh (x y)
-        (swappendo x y z)))
-    (run 1 (z)
-      (fresh (x y)
-        (appendo x y z)))
-    ----------------------------------
-    (define unwarp
-      (lambda (x)
-        (cond [(pair? x) (unwarp (car x))]
-              [else x]
-              )))
+      (lambda (l s out)
+        (oro (ando+ (a d rec)
+               (conso a d l)
+               (conso a rec out)
+               ;; on recursive unification
+               ;; all variables are fresh
+               (swappendo d s rec))
+             (and (nullo l)
+                  (== out s)))))
+
+    ;; forever
+    ;; (run 1 (z)
+    ;;   (fresh (x y)
+    ;;     (swappendo x y z)))
+    #+end_src
+
+*** note 思想模型
+
+    - 在對例子的觀察中
+      獨立建立起自己的思想模型
+      來理解語言的語義
+
+*** unwarp
+
+    - order of oro
+
+    #+begin_src scheme
     (define unwarpo
       (lambda (x out)
-        (conde
-         [(pairo x) (fresh (a)
-                       (caro x a)
-                       (unwarpo a out))]
-         [(== x out)]
-         )))
-    the order is wrong
-    can't stand the bug anymore
+        (oro
+          (ando+ (a)
+            (pairo x)
+            (caro x a)
+            (unwarpo a out))
+          (== x out))))
+
     (run* (x)
       (unwarpo '((((((1)))))) x))
 
+    ;; loop
+    ;; (run 1 (x)
+    ;;   (unwarpo x 1))
+    ;; for recursive call on 'a' 'out'
+    ;; but after
+    ;;   (pairo x)
+    ;;   (caro x a)
+    ;; 'a' 'out' are still fresh variables
 
+    (define unwarpo
+      (lambda (x out)
+        (oro
+          (== x out)
+          (ando+ (a)
+            (pairo x)
+            (caro x a)
+            (unwarpo a out)))))
 
-    ;; 1維的x 2維的y
-    (run 10 (y)
-      (conde
-       [(== y (run 10 (x)
-                (conde
-                 [(== 1 x)]
-                 [(== 2 x)]
-                 )))]
-       [(== y (run 10 (x)
-                (conde
-                 [(== 3 x)]
-                 [(== 4 x)]
-                 )))] ) )
+    (run* (x)
+      (unwarpo '((((((1)))))) x))
+
+    (run 3 (x)
+      (unwarpo x 1))
+
+    (run 3 (x)
+      (unwarpo `((,x)) 1))
     #+end_src
 
-*** preparing for the following practice
+*** flatteno
+
+    - 注意解的列表如何循環
 
     #+begin_src scheme
-    ;; (define appendo
-    ;;   (lambda (proper-list sexp out)
-    ;;     (conde
-    ;;      [(nullo proper-list) (== out sexp)]
-    ;;      [(fresh (a d rec)
-    ;;         (conso a d proper-list)
-    ;;         (appendo d sexp rec)
-    ;;         (conso a rec out))]
-    ;;      )))
-    (define appendo
-      (lambda (proper-list sexp out)
-        (conde
-         [(nullo proper-list) (== out sexp)]
-         [(fresh (a d rec)
-            (conso a d proper-list)
-            (conso a rec out)
-            (appendo d sexp rec))]
-         )))
+    (define flatten
+      (lambda (s)
+        (cond [(null? s) '()]
+              [(pair? s)
+               (append (flatten (car s))
+                       (flatten (cdr s)))]
+              [else (cons s '())])))
+
+    (flatten '((1 (2)) 3))
+    (flatten '(1))
+    (flatten '(1 . ()))
+    (flatten '(1 . 2))
+    (flatten '1)
+
+    (define flatteno
+      (lambda (s out)
+        (oro (ando (nullo s) (== '() out))
+             (ando+ (a d res-a res-d)
+               (conso a d s)
+               (flatteno a res-a)
+               (flatteno d res-d)
+               (appendo res-a res-d out))
+             (conso s '() out))))
+
+    (run* (out)
+      (flatteno '((1 (2)) 3) out))
+
+    (run* (out)
+      (flatteno '((1 2) 3) out))
+
+    (run* (out)
+      (flatteno '(1) out))
+
+    ;; loop
+    ;; (run 3 (x)
+    ;;   (flatteno x '(1)))
+
+
+    (define flattenrevo
+      (lambda (s out)
+        (oro (ando (nullo s) (== '() out))
+             (conso s '() out)
+             (ando+ (a d res-a res-d)
+               (conso a d s)
+               (flattenrevo a res-a)
+               (flattenrevo d res-d)
+               (appendo res-a res-d out)))))
+
+    (run 2 (x)
+      (flattenrevo x '(1)))
+
+    (run 3 (x)
+      (flattenrevo x '(1)))
+
+    (run 10 (x)
+      (flattenrevo x '(1)))
+
+    (equal?
+     (run* (out)
+       (flattenrevo '((1 2) 3) out))
+     (reverse
+      (run* (out)
+        (flatteno '((1 2) 3) out))))
+
+
+    (define flattenrevo
+      (lambda (s out)
+        (oro (conso s '() out)
+             (ando (nullo s) (== '() out))
+             (ando+ (a d res-a res-d)
+               (conso a d s)
+               (flattenrevo a res-a)
+               (flattenrevo d res-d)
+               (appendo res-a res-d out)))))
+
+    ;; can not run 3
+    (run 2 (x)
+      (flattenrevo x '(1)))
+
+    (equal?
+     (run* (out)
+       (flattenrevo '((1 2) 3) out))
+     (reverse
+      (run* (out)
+        (flatteno '((1 2) 3) out))))
     #+end_src
 
-* >< 6 the fun never ends
+* 6 the fun never ends
+
+*** ><
+
+    #+begin_src scheme
+
+    #+end_src
 
 * >< 7 a bit too much
 

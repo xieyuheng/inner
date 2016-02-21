@@ -92,7 +92,7 @@
          所聲明的類型是什麼
          並嘗試簡要說明二者如何不匹配
 
-* type classe
+* type class
 
   - x ::
        idris 在這裏由於模仿 haskell 而背離了簡單而容易理解的語法
@@ -119,7 +119,7 @@
        #+end_src
 
   - k ::
-       那麼 type classe 簡單的語法應該如何呢
+       那麼 type class 簡單的語法應該如何呢
 
   - x ::
        首先說 非語義極簡主義 的語法
@@ -190,6 +190,7 @@
        data Show : Type where
          show : Show -> String
 
+       -- 用 -> 來做 轉換式的 subtype
        |Nat->Show| :
        show (|Nat->Show| Z) =
          "Z"
@@ -237,10 +238,88 @@
 * monad
 
   - x ::
+       設想給帶有 IO 的函數加以類型聲明
+       把字符串打印到終端的函數類型爲
+       (String -> IO String)
+       那麼
        不可能有 (IO String -> String) 類型的函數
        這正是 IO 的性質
        也就是說如果一個函數帶有 IO 了
        那麼把別的函數複合上去 是不可能消除 IO 的
-       也就是說
+
+  - k ::
+       用棧爲基礎的類型檢查來理解的話
        在類型檢查的時候 帶有 IO 的函數會入 不減棧一個值
        函數複合的時候是不可能把這個值出棧的
+
+  - x ::
+       一些類型爲 (IO String -> IO String) 的函數還是可以以複合的
+       但是 類型爲 (... -> String) 的函數
+       就沒法和這些 IO 函數複合了
+       需要 一個一般的 return :: (a -> IO a) 的函數
+       才能作用之後 才能複合
+       反過來 類型爲 (String -> ...) 的函數
+       也沒法和 (IO String -> IO String) 複合
+       但是 雖說一般的函數複合不行 但是可以用特殊的方式來複合
+       那就是 (>>=) :: IO a -> (a -> IO b) -> IO b
+       注意
+       這裏 (String -> ...) 一定要形如 (String -> IO String) 才行
+
+  - k ::
+       爲了更好的理解 這種類型類
+       我們需要回顧一下 類型類
+       在這之前我們先回顧一下 類型
+
+* type
+
+*** note
+
+    - Type is the universe set
+      everything is element of this set
+
+    - a type is a named subset of Type
+      declared with some element constructors
+      element constructors have the type in succedent
+
+    - thus
+      one can use those element constructors
+      to construct element of this type
+
+    - element constructors are trivially reverse-able function
+      implemented by add a tag to its argument
+      for it is reverse-able
+      it can be used in pattern match
+      to make branches in function body
+
+*** >< idris example
+
+*** >< haskell example
+
+* type class
+
+*** note
+
+    - type class is named subset of Type
+      declared with some interface functions
+      and is encoded by its interface functions
+      - the type of interface functions
+        involve the type class in some way
+        for example
+        have the type class in antecedent
+        have the type class in succedent
+
+    - one can use those interface functions
+      to define abstract functions
+      which can not be directly called
+
+    - by implement such interface functions
+      one can declare a type is a member of a type class
+      thus all the abstract functions of this type class
+      can be called for this type
+
+    - type class can also be subset of (Type -> Type) and so on
+      thus only type of the same shape can be member of it
+
+*** >< idirs example
+
+*** >< haskell example
