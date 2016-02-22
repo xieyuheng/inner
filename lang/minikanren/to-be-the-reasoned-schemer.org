@@ -1067,13 +1067,223 @@
 
 * 6 the fun never ends
 
+*** 思想模型
+
+    - 還是用 or-list and-list
+      還有 or-cursor and-cursor
+      還有 undo-info
+      來考慮
+      儘管這是 prolog VM 的實現方式
+
+    - the law of condi
+      condi behaves like conde
+      except that its values are interleaved
+
+    #+begin_src scheme
+    (define anyo
+      (lambda (g)
+        (oro g
+             (anyo g))))
+
+    (run 3 (x)
+      (anyo succeed))
+
+    ;; loop
+    ;; (run 1 (x)
+    ;;   (anyo fail))
+
+    (define nevero (anyo fail))
+    (define alwayso (anyo succeed))
+
+    ;; loop
+    ;; (run 1 (q)
+    ;;   nevero
+    ;;   (== q #t))
+
+    (run 1 (q)
+      fail
+      nevero)
+
+    (run 1 (q)
+      succeed
+      (== q #t))
+
+    (run 1 (q)
+      alwayso
+      (== q #t))
+
+    (run 3 (q)
+      succeed
+      (== q #t))
+
+    ;; different from succeed
+    ;; alwayso can succeed any number of times
+    (run 3 (q)
+      alwayso
+      (== q #t))
+
+    (define salo
+      ;; succeeds at least onec
+      (lambda (g)
+        (oro succeed
+             g)))
+
+    (run 3 (g)
+      (salo alwayso)
+      (== #t g))
+
+    (run 1 (g)
+      (salo nevero)
+      (== #t g))
+
+    ;; loop
+    ;; (run 2 (g)
+    ;;   (salo nevero)
+    ;;   (== #t g))
+
+    ;; loop
+    ;; (run 1 (g)
+    ;;   (salo nevero)
+    ;;   fail
+    ;;   (== #t g))
+
+    ;; loop
+    ;; (run 1 (g)
+    ;;   alwayso
+    ;;   fail
+    ;;   (== #t g))
+
+    ;; loop
+    ;; (run 1 (g)
+    ;;   (oro (ando (== #f g) alwayso)
+    ;;        (== #t g))
+    ;;   (== #t g))
+
+    ;; no loop
+    ;; because after the first failure
+    ;; instead of staying on the first line
+    ;; we try the second condi line
+    (run 1 (g)
+      (condi [(== #f g) alwayso]
+             [(== #t g)])
+      (== #t g))
+
+    ;; it has no value
+    ;; since the second condi line is out of values
+    ;; (run 2 (g)
+    ;;   (condi [(== #f g) alwayso]
+    ;;          [(== #t g)])
+    ;;   (== #t g))
+
+    (run 5 (g)
+      (condi [(== #f g) alwayso]
+             [(anyo (== #t g))])
+      (== #t g))
+
+    (define teacupo
+      (lambda (x)
+        (oro
+          (== 'tea x)
+          (== 'cup x))))
+
+    (run 5 (r)
+      (condi [(teacupo r)]
+             [(== #t r)]))
+
+    (run 5 (r)
+      (conde [(teacupo r)]
+             [(== #t r)]))
+
+
+    (run 5 (q)
+      (condi
+        [(== #f q) alwayso]
+        [(== #t q) alwayso])
+      (== #t q))
+
+    ;; loop
+    ;; (run 5 (q)
+    ;;   (conde
+    ;;     [(== #f q) alwayso]
+    ;;     [(== #t q) alwayso])
+    ;;   (== #t q))
+
+
+    (run 4 (q)
+      (condi
+        [(== 0 q) alwayso]
+        [(== 1 q) alwayso]))
+
+    (run 4 (q)
+      (conde
+        [(== 0 q) alwayso]
+        [(== 1 q) alwayso]))
+
+
+    ;; loop
+    ;; (run 4 (q)
+    ;;   (condi
+    ;;     [alwayso]
+    ;;     [nevero]))
+
+    (run 4 (q)
+      (conde
+        [alwayso]
+        [nevero]))
+
+    ;; loop
+    ;; (run 1 (q)
+    ;;   (all (conde
+    ;;          [(== #f q)]
+    ;;          [(== #t q)])
+    ;;        alwayso)
+    ;;   (== #t q))
+
+    (run 1 (q)
+      (alli (conde
+              [(== #f q)]
+              [(== #t q)])
+            alwayso)
+      (== #t q))
+
+    (run 5 (q)
+      (alli (conde
+              [(== #f q)]
+              [(== #t q)])
+            alwayso)
+      (== #t q))
+
+    (run 5 (q)
+      (alli (conde
+              [(== #t q)]
+              [(== #f q)])
+            alwayso)
+      (== #t q))
+
+
+    (run 5 (q)
+      (all (conde
+             [succeed]
+             [nevero])
+           alwayso)
+      (== #t q))
+
+    ;; loop
+    ;; (run 5 (q)
+    ;;   (alli (conde
+    ;;          [succeed]
+    ;;          [nevero])
+    ;;        alwayso)
+    ;;   (== #t q))
+    #+end_src
+
+* 7 a bit too much
+
 *** ><
 
     #+begin_src scheme
 
     #+end_src
-
-* >< 7 a bit too much
 
 * >< 8 just a bit more
 

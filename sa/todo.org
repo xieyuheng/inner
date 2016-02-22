@@ -1,3 +1,5 @@
+* to mock a mocking bird
+
 * recursive theory
 
 * depentent type for minikanren
@@ -7,13 +9,6 @@
 * org-mode parser
 
 * build system for things do not have good build system
-
-* emacs
-
-  - emacs-lisp version threaded-code-interpreter
-
-  - 好好熟悉一下 emacs 的 API 設計
-    總結一下才好批判它
 
 * sa & electron & GUI design
 
