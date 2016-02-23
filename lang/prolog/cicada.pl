@@ -53,7 +53,8 @@ kkk(X):-
 k1(Array):-
   new_array(Array).
 
-
+peano(z).
+peano(s(N)) :- peano(N).
 
 %% k(Y).
 

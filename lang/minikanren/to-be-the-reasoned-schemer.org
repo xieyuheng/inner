@@ -6,6 +6,559 @@
   - try to name some discussions
     to learn how to teach
 
+* minikanren implementation
+
+*** typing about unification
+
+    - term
+      - var :: term
+      - non-var :: term
+
+    - substitution
+      var term pair list
+
+    - walk ::
+         (term substitution -> term)
+    - extend-substitution ::
+         (var term substitution -> substitution)
+    - unify ::
+         (term term substitution -> (substitution or #f))
+
+    - occurs-check ::
+         (var term substitution -> bool)
+    - extend-substitution-check ::
+         (var term substitution -> (substitution or #f))
+    - unify-check ::
+         (term term substitution -> (substitution or #f))
+
+    - walk* ::
+         (term substitution -> term)
+
+*** term & var
+
+    #+begin_src scheme :tangle the-reasoned-schemer.scm
+    (define-syntax var
+      (syntax-rules ()
+        [(var w) (vector w)]))
+
+    (define-syntax var?
+      (syntax-rules ()
+        [(var? w) (vector? w)]))
+    #+end_src
+
+*** unification
+
+    - substitution = var term pair list
+
+    #+begin_src scheme :tangle the-reasoned-schemer.scm
+    (define walk
+      ;; (term substitution -> term)
+      (lambda (v s)
+        (cond [(var? v)
+               (cond [(assq v s) =>
+                      (lambda (a)
+                        ;; cdr as right-hand-side
+                        (let ([v^ (cdr a)])
+                          (walk v^ s)))]
+                     [else v])]
+              [else v])))
+
+    ;; extend-substitution
+    (define ext-s
+      ;; (var term substitution -> substitution)
+      (lambda (x v s)
+        (cons (cons x v) s)))
+
+    (define unify
+      ;; (term term substitution -> (substitution or #f))
+      (lambda (v w s)
+        (let ([v (walk v s)]
+              [w (walk w s)])
+          (cond [(eq? v w) s]
+                [(var? v) (ext-s v w s)]
+                [(var? w) (ext-s w v s)]
+                [(and (pair? v) (pair? w))
+                 (cond [(unify (car v) (car w) s) =>
+                        (lambda (s)
+                          (unify (cdr v) (cdr w) s))]
+                       [else #f])]
+                [(equal? v w) s]
+                [else #f]))))
+    #+end_src
+
+*** unification with occurs-check
+
+    #+begin_src scheme :tangle the-reasoned-schemer.scm
+    (define occurs-check
+      ;; (var term substitution -> bool)
+      (lambda (x v s)
+        (let ((v (walk v s)))
+          (cond [(var? v) (eq? v x)]
+                [(pair? v)
+                 (or
+                  (occurs-check x (car v) s)
+                  (occurs-check x (cdr v) s))]
+                [else #f]))))
+
+    (define ext-s-check
+      ;; (var term substitution -> (substitution or #f))
+      (lambda (x v s)
+        (cond [(occurs-check x v s) #f]
+              [else (ext-s x v s)])))
+
+    (define unify-check
+      ;; (term term substitution -> (substitution or #f))
+      (lambda (v w s)
+        (let ([v (walk v s)]
+              [w (walk w s)])
+          (cond [(eq? v w) s]
+                [(var? v) (ext-s-check v w s)]
+                [(var? w) (ext-s-check w v s)]
+                [(and (pair? v) (pair? w))
+                 (cond [(unify-check (car v) (car w) s) =>
+                        (lambda (s)
+                          (unify-check (cdr v) (cdr w) s))]
+                       [else #f])]
+                [(equal? v w) s]
+                [else #f]))))
+    #+end_src
+
+*** walk* & reify
+
+    #+begin_src scheme :tangle the-reasoned-schemer.scm
+    (define walk*
+      ;; (term substitution -> term)
+      (lambda (v s)
+        (let ((v (walk v s)))
+          (cond [(var? v) v]
+                [(pair? v)
+                 (cons
+                  (walk* (car v) s)
+                  (walk* (cdr v) s))]
+                [else v]))))
+
+    ;; reify-substitution
+    (define reify-s
+      (lambda (v s)
+        (let ((v (walk v s)))
+          (cond
+           ((var? v) (ext-s v (reify-name (length s)) s))
+           ((pair? v) (reify-s (cdr v) (reify-s (car v) s)))
+           (else s)))))
+
+    (define reify-name
+      (lambda (n)
+        (string->symbol
+         (string-append ":" (number->string n)))))
+
+    (define empty-s '())
+
+    (define reify
+      (lambda (v)
+        (walk* v (reify-s v empty-s))))
+    #+end_src
+
+*** trunk
+
+    - (trunk _) is trunk constructor
+      it is just (lambda () _)
+
+    - for example
+      [string] denote a trunk when applied
+      return a value of type string
+
+    #+begin_src scheme :tangle the-reasoned-schemer.scm
+    (define-syntax trunk
+      ;; [_ -> [_]]
+      (syntax-rules ()
+        [(_ e) (lambda () e)]))
+    #+end_src
+
+*** stream constructor
+
+    - the depentent type 'substitution _ stream' can be
+      substitution 0 stream
+      substitution 1 stream
+      substitution more stream
+
+    #+begin_src scheme :tangle the-reasoned-schemer.scm
+    ;; measure-zero
+    (define-syntax mzero
+      ;; _ 0 stream
+      (syntax-rules ()
+        [(_) #f]))
+
+    (define-syntax unit
+      ;; (_ -> _ 1 stream)
+      (syntax-rules ()
+        [(_ a) a]))
+
+    (define-syntax choice
+      ;; (_ [_ _ stream] -> _ more stream)
+      (syntax-rules ()
+        [(_ a f) (cons a f)]))
+    #+end_src
+
+*** streams processing
+
+    #+begin_src scheme :tangle the-reasoned-schemer.scm
+    (define-syntax case-inf
+      (syntax-rules ()
+        [(_ e
+            [() on-zero]
+            [(a^) on-one]
+            [(a f) on-choice])
+         (let ([a-inf e])
+           (cond [(not a-inf)
+                  on-zero]
+                 [(not (and (pair? a-inf)
+                            (procedure? (cdr a-inf))))
+                  (let ([a^ a-inf])
+                    on-one)]
+                 [else
+                  (let ([a (car a-inf)]
+                        [f (cdr a-inf)])
+                    on-choice)]))]))
+
+    ;; stream-concatenate
+    (define mplus
+      ;; ([_ _ stream] [_ _ stream] -> [_ _ stream])
+      (lambda (a-inf f)
+        (case-inf a-inf
+          [() (f)]
+          [(a) (choice a f)]
+          [(a f0) (choice a (trunk (mplus (f0) f)))])))
+
+    ;; stream-interleave
+    (define mplusi
+      ;; ([_ _ stream] [_ _ stream] -> [_ _ stream])
+      (lambda (a-inf f)
+        (case-inf a-inf
+          [() (f)]
+          [(a) (choice a f)]
+          [(a f0) (choice a (trunk
+                              ;; swap
+                              ;; thus the next value
+                              ;; would be taken form the second stream
+                              (mplusi (f) f0)))])))
+
+    ;; stream-map
+    (define bind
+      ;; ([t1 _ stream] (t1 -> t2) -> [t2 _ stream])
+      (lambda (a-inf g)
+        (case-inf a-inf
+          [() (mzero)]
+          [(a) (g a)]
+          [(a f) (mplus (g a) (trunk (bind (f) g)))])))
+
+    (define bindi
+      ;; ([t1 _ stream] (t1 -> t2) -> [t2 _ stream])
+      (lambda (a-inf g)
+        (case-inf a-inf
+          [() (mzero)]
+          [(a) (g a)]
+          [(a f) (mplusi (g a) (trunk (bindi (f) g)))])))
+    #+end_src
+
+*** goal constructor
+
+    - _ goal = (substitution -> substitution _ stream)
+
+    #+begin_src scheme :tangle the-reasoned-schemer.scm
+    (define fail
+      ;; 0 goal
+      ;; (substitution -> substitution 0 stream)
+      (lambda (s) (mzero)))
+
+    (define succeed
+      ;; 1 goal
+      ;; (substitution -> substitution 1 stream)
+      (lambda (s) (unit s)))
+
+    (define ==
+      ;; (term term -> (0 or 1) goal)
+      ;; (term term -> (substitution -> substitution (0 or 1) stream))
+      (lambda (v w)
+        (lambda (s)
+          (cond [(unify v w s) => succeed]
+                [else (fail s)]))))
+
+    (define ==-check
+      ;; (term term -> (0 or 1) goal)
+      ;; (term term -> (substitution -> substitution (0 or 1) stream))
+      (lambda (v w)
+        (lambda (s)
+          (cond [(unify-check v w s) => succeed]
+                [else (fail s)]))))
+    #+end_src
+
+*** goal conjunction
+
+    #+begin_src scheme :tangle the-reasoned-schemer.scm
+    (define-syntax all
+      (syntax-rules ()
+        [(_) succeed]
+        [(_ g)
+         (lambda (s)
+           (g s))]
+        [(_ g^ g ...)
+         (lambda (s)
+           (bind (g^ s) (all g ...)))]))
+
+    (define-syntax alli
+      (syntax-rules ()
+        [(_) succeed]
+        [(_ g)
+         (lambda (s)
+           (g s))]
+        [(_ g^ g ...)
+         (lambda (s)
+           (bindi (g^ s) (alli g ...)))]))
+
+    (define-syntax fresh
+      (syntax-rules ()
+        [(_ (x ...)
+            g ...)
+         (lambda (s)
+           (let ([x (var 'x)]
+                 ...)
+             ((all g ...) s)))]))
+    #+end_src
+
+*** goal discussions
+
+***** conde
+
+      #+begin_src scheme :tangle the-reasoned-schemer.scm
+      (define-syntax anye
+        (syntax-rules ()
+          [(_ g1 g2)
+           ;; substitution -> substitution _ stream
+           (lambda (s)
+             (mplus (g1 s)
+                    (trunk (g2 s))))]))
+
+      (define-syntax conde
+        (syntax-rules (else)
+          [(_) fail]
+          [(_ (else g0 g ...)) (all g0 g ...)]
+          [(_ (g0 g ...) c ...)
+           (anye (all g0 g ...) (conde c ...))]))
+      #+end_src
+
+***** condi
+
+      #+begin_src scheme :tangle the-reasoned-schemer.scm
+      (define-syntax anyi
+        (syntax-rules ()
+          [(_ g1 g2)
+           ;; substitution -> substitution _ stream
+           (lambda (s)
+             (mplusi (g1 s)
+                     (trunk (g2 s))))]))
+
+      (define-syntax condi
+        (syntax-rules (else)
+          ((_) fail)
+          ((_ (else g0 g ...)) (all g0 g ...))
+          ((_ (g0 g ...) c ...)
+           (anyi (all g0 g ...) (condi c ...)))))
+      #+end_src
+
+***** conda
+
+      #+begin_src scheme :tangle the-reasoned-schemer.scm
+      (define-syntax ifa
+        (syntax-rules ()
+          [(_ g0 g1 g2)
+           ;; substitution -> substitution _ stream
+           (lambda (s)
+             (let ([s-inf (g0 s)]
+                   [g^ g1])
+               (case-inf s-inf
+                 [() (g2 s)]
+                 [(s) (g^ s)]
+                 [(s f) (bind s-inf g^)])))]))
+
+      (define-syntax conda
+        (syntax-rules (else)
+          ((_) fail)
+          ((_ (else g0 g ...)) (all g0 g ...))
+          ((_ (g0 g ...) c ...)
+           (ifa g0 (all g ...) (conda c ...)))))
+      #+end_src
+
+***** condu
+
+      #+begin_src scheme :tangle the-reasoned-schemer.scm
+      (define-syntax ifu
+        (syntax-rules ()
+          ((_ g0 g1 g2)
+           ;; substitution -> substitution _ stream
+           (lambda (s)
+             (let ([s-inf (g0 s)]
+                   [g^ g1])
+               (case-inf s-inf
+                 [() (g2 s)]
+                 [(s) (g^ s)]
+                 [(s f) (g^ s)]))))))
+
+      (define-syntax condu
+        (syntax-rules (else)
+          [(_) fail]
+          [(_ (else g0 g ...)) (all g0 g ...)]
+          [(_ (g0 g ...) c ...)
+           (ifu g0 (all g ...) (condu c ...))]))
+      #+end_src
+
+*** run
+
+    #+begin_src scheme :tangle the-reasoned-schemer.scm
+    ;; run converts a stream of substitutions
+    ;; to a list of values using map-inf
+
+    (define map-inf
+      (lambda (n p a-inf)
+        (case-inf a-inf
+          [() '()]
+          [(a)
+           (cons (p a) '())]
+          [(a f)
+           (cons (p a)
+                 (cond [(not n) (map-inf n p (f))]
+                       [(> n 1) (map-inf (- n 1) p (f))]
+                       [else '()]))])))
+
+    (define-syntax run
+      (syntax-rules ()
+        [(_ n^ (x) g ...)
+         (let ((n n^) (x (var 'x)))
+           (if (or (not n) (> n 0))
+             (map-inf n
+                      (lambda (s) (reify (walk* x s)))
+                      ((all g ...) empty-s))
+             '()))]))
+
+    (define-syntax run*
+      (syntax-rules ()
+        [(_ (x) g ...)
+         (run #f (x) g ...)]))
+    #+end_src
+
+*** misc
+
+    #+begin_src scheme :tangle the-reasoned-schemer.scm
+    (define-syntax lambda-limited
+      (syntax-rules ()
+        ((_ n formals g)
+         (let ([x (var 'x)])
+           (lambda formals
+             (ll n x g))))))
+
+    (define ll
+      (lambda (n x g)
+        ;; substitution -> substitution _ stream
+        (lambda (s)
+          (let ([v (walk x s)])
+            (cond [(var? v) (g (ext-s x 1 s))]
+                  [(< v n) (g (ext-s x (+ v 1) s))]
+                  [else (fail s)])))))
+
+    (define-syntax project
+      (syntax-rules ()
+        [(_ (x ...) g ...)
+         ;; substitution -> substitution _ stream
+         (lambda (s)
+           (let ((x (walk* x s)) ...)
+             ((all g ...) s)))]))
+    #+end_src
+
+* minikanren library
+
+*** oro & ando
+
+    #+begin_src scheme :tangle the-reasoned-schemer.scm
+    (define-syntax ando+
+      (syntax-rules ()
+        [(_ name-list . body)
+         (fresh name-list . body)]))
+
+    (define-syntax oro+
+      (syntax-rules ()
+        [(_ name-list
+            a
+            ...)
+         (fresh name-list
+           (conde
+             [a]
+             ...))]))
+
+    (define-syntax ando
+      (syntax-rules ()
+        [(_ . body)
+         (ando+ () . body)]))
+
+    (define-syntax oro
+      (syntax-rules ()
+        [(_ . body)
+         (oro+ () . body)]))
+    #+end_src
+
+*** list processing
+
+    #+begin_src scheme :tangle the-reasoned-schemer.scm
+    (define conso
+      (lambda (a d p)
+        (== (cons a d) p)))
+
+    (define caro
+      (lambda (p a)
+        (fresh (d)
+          (== (cons a d) p))))
+
+    (define cdro
+      (lambda (p d)
+        (fresh (a)
+          (== (cons a d) p))))
+
+    (define pairo
+      (lambda (p)
+        (fresh (a d)
+          (== (cons a d) p))))
+
+    (define nullo
+      (lambda (x)
+        (== x '())))
+
+    (define listo
+      (lambda (l)
+        (oro
+          (nullo l)
+          (ando+ (d)
+            (pairo l)
+            (cdro l d)
+            (listo d)))))
+
+    (define appendo
+      (lambda (l s out)
+        (oro (ando
+               (nullo l)
+               (== out s))
+             (ando+ (a d rec)
+               (conso a d l)
+               (appendo d s rec)
+               (conso a rec out)))))
+
+    (define unwarpo
+      (lambda (x out)
+        (oro
+          (== x out)
+          (ando+ (a)
+            (pairo x)
+            (caro x a)
+            (unwarpo a out)))))
+    #+end_src
+
 * 1 playthings
 
 *** note
@@ -1279,18 +1832,208 @@
 
 * 7 a bit too much
 
-*** ><
+*** bit
 
     #+begin_src scheme
+    (define bit-xoro
+      (lambda (x y r)
+        (oro
+          (ando (== 0 x) (== 0 y) (== 0 r))
+          (ando (== 1 x) (== 0 y) (== 1 r))
+          (ando (== 0 x) (== 1 y) (== 1 r))
+          (ando (== 1 x) (== 1 y) (== 0 r)))))
 
+    (run* (s)
+      (ando+ (x y)
+        (bit-xoro x y 0)
+        (== (list x y) s)))
+
+    (run* (s)
+      (ando+ (x y)
+        (bit-xoro x y 1)
+        (== (list x y) s)))
+
+    (run* (s)
+      (ando+ (x y r)
+        (bit-xoro x y r)
+        (== (list x y r) s)))
+
+    (define bit-ando
+      (lambda (x y r)
+        (oro
+          (ando (== 0 x) (== 0 y) (== 0 r))
+          (ando (== 1 x) (== 0 y) (== 0 r))
+          (ando (== 0 x) (== 1 y) (== 0 r))
+          (ando (== 1 x) (== 1 y) (== 1 r)))))
+
+    (run* (s)
+      (ando+ (x y)
+        (bit-ando x y 1)
+        (== (list x y) s)))
+
+    (define half-addero
+      (lambda (x y r c)
+        (all
+         (bit-xoro x y r)
+         (bit-ando x y c))))
+    #+end_src
+
+*** number
+
+    #+begin_src scheme
+    (define build-num
+      (lambda (n)
+        (cond
+         [(zero? n) '()]
+         [(and (not (zero? n)) (even? n))
+          (cons 0
+                (build-num (/ n 2)))]
+         [(odd? n)
+          (cons 1
+                (build-num (/ (- n 1) 2)))])))
+
+    (build-num 6)
+
+    (define poso
+      (lambda (n)
+        (ando+ (a d)
+          (== (cons a d) n))))
+
+    (run* (r)
+      (poso r))
     #+end_src
 
 * >< 8 just a bit more
 
-* >< 9 under the hood
+* 9 under the hood
+
+*** note unification
+
+    - 變元之間的融合關係有向圖
+      首先想到的有兩種實現方式
+      1. 以點爲實現實體
+         每個點中儲存它於其他點的關係
+         - 再限制每個點內只能保存一個點
+           再對圖加以等價變形
+           就得到 prolog 的實現方式
+      2. 以邊爲實現實體
+         每個邊中保存與他相關的點的關係
+
+    - 後者實現起來簡單
+      設想要給三維拓撲圖形編碼
+      那麼可能以最高維的幾何體作爲實現實體
+      實現起來最簡單
+      此時
+      某先操作要通過查找來完成
+
+*** circular
+
+    - minikanren 加上 check 之後
+      ==-check 就不接受 循環的 term 了
+      這樣 walk* 的時候就不會有無線循環
+
+    - 而 prolog 總是接受有循環的 term
+      但是在 walk* 的時候
+      發現循環的 term 並處理他們
+      也就是有個 walk*-check
+
+    - 目的都是爲了避免運行時的無線循環
+
+    #+begin_src scheme
+    (run 1 (x)
+      (fresh (y z)
+        (== y z)
+        (== z x)
+        (== x y)))
+
+    ;; loop
+    ;; (run 1 (x)
+    ;;   (fresh (y z)
+    ;;     (== (cons x y) z)
+    ;;     (== (cons z x) y)
+    ;;     (== (cons y z) x)))
+
+    (run 1 (x)
+      (fresh (y)
+        (== y x)
+        (== x y)))
+
+    ;; loop
+    ;; (run 1 (x)
+    ;;   (fresh (y)
+    ;;     (== x (list y))
+    ;;     (== y (list x))))
+
+    ;; loop
+    ;; (run 1 (x)
+    ;;   (== (list x) x))
+
+    (run 1 (q)
+      (fresh (x)
+        (== (list x) x)
+        (== #t q)))
+
+    (run 1 (q)
+      (fresh (x y)
+        (== (list x) y)
+        (== (list y) x)
+        (== #t q)))
+
+    (run 1 (x)
+      (==-check (list x) x))
+
+    (run 1 (x)
+      (==-check x (list x)))
+    #+end_src
+
+*** note 表達方式
+
+    - 當你把觀察後的理解成果 表達地特別機械化時
+      你大概就知道如何實現這些想法了
 
 * >< 10 thin ice
 
-* >< connecting the wires
+*** conda
 
-* >< welcome to the club
+    - 'a' denotes a single line
+
+    - The Law of conda
+      If the question of a conda line succeeds
+      pretend that the remaining conda lines
+      have been not there
+
+    - only if the question of a conda line fails
+      do we consider the remaining conda lines
+
+    - 注意此時 oro 的設計已經失效了
+      cond 的 [] 中第一項語義特殊
+      在這裏體現出來了
+
+    - THE THIRD COMMANDMENT
+      If prior to determining the question of a conda line
+      a variable is fresh
+      it must remain fresh in the question of that line
+
+    #+begin_src scheme
+    (run* (x)
+      (conda
+       [(== 'olive x)]
+       [(== 'oil x)]))
+
+    (define not-pastao
+      (lambda (x)
+        (conda
+         [(== 'pasta x) fail]
+         [else succeed])))
+
+    (run* (x)
+      (conda
+       [(not-pastao x) fail]
+       [else (== 'spaghetti x)]))
+
+    (run* (x)
+      (== 'spaghetti x)
+      (conda
+       [(not-pastao x ) fail]
+       [else (== 'spaghetti x)]))
+    #+end_src
