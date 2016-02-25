@@ -359,10 +359,10 @@
 
       (define-syntax condi
         (syntax-rules (else)
-          ((_) fail)
-          ((_ (else g0 g ...)) (all g0 g ...))
-          ((_ (g0 g ...) c ...)
-           (anyi (all g0 g ...) (condi c ...)))))
+          [(_) fail]
+          [(_ (else g0 g ...)) (all g0 g ...)]
+          [(_ (g0 g ...) c ...)
+           (anyi (all g0 g ...) (condi c ...))]))
       #+end_src
 
 ***** conda
@@ -382,10 +382,10 @@
 
       (define-syntax conda
         (syntax-rules (else)
-          ((_) fail)
-          ((_ (else g0 g ...)) (all g0 g ...))
-          ((_ (g0 g ...) c ...)
-           (ifa g0 (all g ...) (conda c ...)))))
+          [(_) fail]
+          [(_ (else g0 g ...)) (all g0 g ...)]
+          [(_ (g0 g ...) c ...)
+           (ifa g0 (all g ...) (conda c ...))]))
       #+end_src
 
 ***** condu
@@ -393,7 +393,7 @@
       #+begin_src scheme :tangle the-reasoned-schemer.scm
       (define-syntax ifu
         (syntax-rules ()
-          ((_ g0 g1 g2)
+          [(_ g0 g1 g2)
            ;; substitution -> substitution _ stream
            (lambda (s)
              (let ([s-inf (g0 s)]
@@ -401,7 +401,7 @@
                (case-inf s-inf
                  [() (g2 s)]
                  [(s) (g^ s)]
-                 [(s f) (g^ s)]))))))
+                 [(s f) (g^ s)])))]))
 
       (define-syntax condu
         (syntax-rules (else)

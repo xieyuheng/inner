@@ -1,8 +1,36 @@
+* depentent type for minikanren
+
+  - 用 haskell 和 idris 實現 minikanren
+    練習 monad
+
+* cicada vm in coffee & js
+
+  - 以 recursive-combinator 爲 main-lib
+
+  - 新的 unification 算法
+    用來實現 pattern match 和 type check
+
+  - 注意
+    這裏我只需要 unification
+    所以可能不需要用 monad 來處理 minikanren 一樣的 goal
+
+  - 注意處理 scope 的方式
+    是把 scope 當作參數來傳遞
+    而不是使用全局變元
+
+  - 只實現主要想法
+    放棄
+    每個 js 函數加上類型 都能被當作 primitive-function
+    這個性狀
+    這次把 primitive-function 限制在純粹的 符號演算 領域
+
+  - 主要想法是 則式演算
+
+  - 用 recursive-combinator 來實現簡單的 parser
+
 * to mock a mocking bird
 
-* recursive theory
-
-* depentent type for minikanren
+  - 給 recursive-combinator 寫一些文檔和例子
 
 * 漢字的結構化編碼
 
@@ -11,8 +39,6 @@
 * build system for things do not have good build system
 
 * sa & electron & GUI design
-
-  - sad-coffee & play with old doc of joy
 
   - really parse org-mode
     to be able to tangle the code to
@@ -23,17 +49,6 @@
        to require a lot of functions from a module
 
   - to play with DOM
-
-* cicada vm in coffee & js
-
-  - 以 sad-coffee 爲 main-lib
-
-  - 等待 unification 算法
-    用來實現 pattern match 和 type check
-
-* minikanren
-
-  - 重新學習 minikanren 的 unification 算法
 
 * prolog
 
