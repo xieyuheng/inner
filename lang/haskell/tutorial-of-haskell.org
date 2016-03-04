@@ -2,84 +2,88 @@
 #+AUTHOR: 謝宇恆 / XIE Yuheng
 
 * haskell 98
-** 記
-   * 理論上的
-     語法沒有做任何優化的 haskell
-     以 symbol 爲基礎
-     所有的 exp 都是
-     完全一元化的
-     前綴表達式的
-     向左結合的[就像組合邏輯中的約定一樣]
-     函數作用
-   * 所謂
-     語法沒有做任何優化
-     其實就是由
-     1) 完全一元化的
-     2) 前綴表達式的
-     3) 向左結合的[就像組合邏輯中的約定一樣]
-     這幾項定義的
-     但是這並不是唯一的定義方式
-     比如 scheme 的語法就是完全沒有被優化過的例子
-     所以這裏的 "優化" 其實就是複雜化
-     然而
-     我真正想問的問題是
-     在不作 "複雜化" 的前提下
-     能否以系統的方式使用多種表達式
-     而不侷限於
-     前綴表達式的
-     或後綴表達式的
-     即
-     把中綴表達式和邊綴表達式以系統的方式添加進來
-     能行邪
-   * symbol 各種
-     | 類型       | 數據 即 構造子 | 函數       |
-     | 首字母大寫 | 首字母大寫     | 首字母小寫 |
-     可以區分構造子與函數
-     也可以不區分
-     haskell 的設計是區分
-     構造子作爲函數 因爲有"不作爲"的簡單性
-     所以可以被用在模式匹配中
-     而一般的函數不可以
-     要知道
-     構造子作用與一個值
-     其實就是貼一個標籤到這個值上
-     而這個標籤上寫的就是這個構造子的名字
-   * 數據被視爲零元的函數的話
-     數據和函數就沒有區別了
-   * date <被定義的類型> = <構造子作用於類型所形成的表達式>
-     這樣就允許了遞歸
-     因爲右邊的構造子所作用於的類型 可以左邊正在被定義的類型本身
-     左邊是 名字的作用
-     右邊不是 單純地用已有的類型而做的組合構造
-   * ":" 是 List 這個類型的 中綴構造子
-     數據類型的構造子的概念在蟬語中還是沒有想過的
-   * 如何理解 [type] 還有 type -> type 的引入還有消去
-   * type <被定義的類型> = <類型的作用於類型所形成的表達式>
-     左邊只是 名字
-     右邊是 單純地用已有的類型而做的組合構造
-   * <被聲明的函數> : <類型的作用於類型所形成的表達式>
-   * <被定義的函數> = <函數作用於數據所形成的表達式>
-     * 左邊只是 名字
-       右邊是 單純地用已有的函數而做的組合構造
-     * 左邊是 名字的作用
-       作用於數據
-       而數據 是有構造子以認識方式組成的
-       右邊不是 單純地用已有的函數而做的組合構造
-   * 類型並非一等公民
-     模式匹配中的模式也並非一等公民
-   * 模式匹配的時候
-     模式中的常元所對應的位置會被求值
-     而模式中的約束變元所對應的位置不會
+
+*** 記
+    * 理論上的
+      語法沒有做任何優化的 haskell
+      以 symbol 爲基礎
+      所有的 exp 都是
+      完全一元化的
+      前綴表達式的
+      向左結合的[就像組合邏輯中的約定一樣]
+      函數作用
+    * 所謂
+      語法沒有做任何優化
+      其實就是由
+      1) 完全一元化的
+      2) 前綴表達式的
+      3) 向左結合的[就像組合邏輯中的約定一樣]
+      這幾項定義的
+      但是這並不是唯一的定義方式
+      比如 scheme 的語法就是完全沒有被優化過的例子
+      所以這裏的 "優化" 其實就是複雜化
+      然而
+      我真正想問的問題是
+      在不作 "複雜化" 的前提下
+      能否以系統的方式使用多種表達式
+      而不侷限於
+      前綴表達式的
+      或後綴表達式的
+      即
+      把中綴表達式和邊綴表達式以系統的方式添加進來
+      能行邪
+    * symbol 各種
+      | 類型       | 數據 即 構造子 | 函數       |
+      | 首字母大寫 | 首字母大寫     | 首字母小寫 |
+      可以區分構造子與函數
+      也可以不區分
+      haskell 的設計是區分
+      構造子作爲函數 因爲有"不作爲"的簡單性
+      所以可以被用在模式匹配中
+      而一般的函數不可以
+      要知道
+      構造子作用與一個值
+      其實就是貼一個標籤到這個值上
+      而這個標籤上寫的就是這個構造子的名字
+    * 數據被視爲零元的函數的話
+      數據和函數就沒有區別了
+    * date <被定義的類型> = <構造子作用於類型所形成的表達式>
+      這樣就允許了遞歸
+      因爲右邊的構造子所作用於的類型 可以左邊正在被定義的類型本身
+      左邊是 名字的作用
+      右邊不是 單純地用已有的類型而做的組合構造
+    * ":" 是 List 這個類型的 中綴構造子
+      數據類型的構造子的概念在蟬語中還是沒有想過的
+    * 如何理解 [type] 還有 type -> type 的引入還有消去
+    * type <被定義的類型> = <類型的作用於類型所形成的表達式>
+      左邊只是 名字
+      右邊是 單純地用已有的類型而做的組合構造
+    * <被聲明的函數> : <類型的作用於類型所形成的表達式>
+    * <被定義的函數> = <函數作用於數據所形成的表達式>
+      * 左邊只是 名字
+        右邊是 單純地用已有的函數而做的組合構造
+      * 左邊是 名字的作用
+        作用於數據
+        而數據 是有構造子以認識方式組成的
+        右邊不是 單純地用已有的函數而做的組合構造
+    * 類型並非一等公民
+      模式匹配中的模式也並非一等公民
+    * 模式匹配的時候
+      模式中的常元所對應的位置會被求值
+      而模式中的約束變元所對應的位置不會
+
 * 記
-** 语法
-   1. scheme 中
-      前缀表达式的 sexp 使得 syntax-rules 变得很强大
-      而 haskell 中不可能由如此强大的宏系统
-   2. haskell 的语法是极端数学化的
-      这是不可在 scheme 中实现的
-      但是数学语言的很多缺陷都被 haskell 继承了下来
-      比如为了形成高级语义而使用大量的约束变元
-      [使用约束变元是好 有利于理解问题 與否 也是要看情况的]
+
+*** 语法
+    1. scheme 中
+       前缀表达式的 sexp 使得 syntax-rules 变得很强大
+       而 haskell 中不可能由如此强大的宏系统
+    2. haskell 的语法是极端数学化的
+       这是不可在 scheme 中实现的
+       但是数学语言的很多缺陷都被 haskell 继承了下来
+       比如为了形成高级语义而使用大量的约束变元
+       [使用约束变元是好 有利于理解问题 與否 也是要看情况的]
+
 * REPL
   1. haskell 的 REPL 設計糟糕
      函數定義不能在 REPL 中進行
@@ -91,6 +95,7 @@
      :l fileName.hs
   3. only "Show" type class
      can be show in the repl directly
+
 * 函數作用與函數定義
   #+begin_src haskell :tangle play/function1.hs
   -- 函數定義 用類似於等式的語法完成
@@ -124,6 +129,7 @@
 
   -- conanO'Brien
   #+end_src
+
 * list processing
   bacause of a list must have a type
   the elements in a list must be of the same type
@@ -172,6 +178,7 @@
   -- let x = [1,13..]
   -- infinitie list con't be printed
   #+end_src
+
 * list comprehension
   1. which is like map in scheme
      this is what i want in scheme's map
@@ -216,6 +223,7 @@
   let xss = [[1,3,5,2,3,1,2,4,5], [1,2,3,4,5,6,7,8,9], [1,2,4,2,1,6,3,1,3,2,3,6]]
   [ [ x | x <- xs, even x ] | xs <- xss]
   #+end_src
+
 * tuple (vector) processing
   #+begin_src haskell
   -- tuple's type is depended on the number of its elements
@@ -242,6 +250,7 @@
   -- what is the order of the output?
   -- c then b then a
   #+end_src
+
 * static type & type inference
   #+begin_src haskell
   -- a type is a math-structure
@@ -257,6 +266,7 @@
 
   removeNonUppercase st = [ c | c <- st, c `elem` ['A'..'Z']]
   #+end_src
+
 * 數據匹配
   #+begin_src haskell :tangle play/pattern.hs
   -- pattern matching is syntactic sugar for case expressions
@@ -314,6 +324,7 @@
   third :: (a, b, c) -> c
   third (_, _, z) = z
   #+end_src
+
 * car-and-cdr
   #+begin_src haskell :tangle play/car-and-cdr.hs
   car :: [a] -> a
@@ -342,6 +353,7 @@
       | a <= b = b
       | otherwise = a
   #+end_src
+
 * where
   #+begin_src haskell
   bmiTell :: Double -> Double -> String
@@ -364,6 +376,7 @@
       where (f:_) = firstname
             (l:_) = lastname
   #+end_src
+
 * let & in
   #+begin_src haskell
   -- let-expressions are expressions
@@ -392,6 +405,7 @@
   let a = 100; b = 200; c = 300; in a*b*c
   let foo="Hey "; bar = "there!" in foo ++ bar
   #+end_src
+
 * recursion
   #+begin_src haskell
   replicate' :: Int -> a -> [a]
@@ -429,6 +443,7 @@
       where front = [y|y<-xs,y<=x]
             back = [y|y<-xs,y>x]
   #+end_src
+
 * high-order functions
   #+begin_src haskell
   -- 純粹的 curry
@@ -503,6 +518,7 @@
   ==
   (f (f (f 0 1) 2) 3)
   #+end_src
+
 * function application operator
   1. 用 "$" 來改變函數作用的結合方向
      f a x == ((f a) x)
@@ -526,6 +542,7 @@
   apply :: (a -> b) -> a -> b
   apply f a = f a
   #+end_src
+
 * function composition operator
   #+begin_src haskell
   ($) :: (a -> b) -> a -> b
@@ -562,6 +579,7 @@
   -- 但是因爲沒有明顯的參數棧
   -- 導致實際的使用很不方便
   #+end_src
+
 * module
   in GHCi:
   :m + Data.List Data.Map Data.Set
@@ -588,6 +606,7 @@
   wordNums = map (\ws->(head ws, length ws)) . group . sort . words
 
   #+end_src
+
 * type
   #+begin_src haskell :tangle play/type.hs
   data Shape = Circle Float Float Float | Rectangle Float Float Float Float
@@ -598,6 +617,7 @@
   這有點類似於 ml 中的構造子
   並且這裏 構造子所構造的數據是用
   函數的一元化 來實現的
+
 * >< input and output
   to get the value out of an I/O action
   you must perform it inside another I/O action
@@ -722,10 +742,17 @@
   这都是因为设计者追求所谓的纯洁性
   这是为了类型系统吗?
   如果只是为了所谓的``安全编程''那么这些设计就是愚蠢的
+
 * >< more in put and more output
+
 * >< function a lly solving problems
+
 * >< applic ative functors
+
 * >< monoids
+
 * >< a fistful of monads
+
 * >< for a few monads more
+
 * >< zippers

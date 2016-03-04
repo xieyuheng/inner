@@ -422,3 +422,92 @@
         :length^has-length:cons succ
         has-length
     #+end_src
+
+* 再來
+
+*** list
+
+    #+begin_src cicada-language
+    type-constructor: list
+      : { type #type }
+        :type
+      | type
+
+      element-constructor: null
+        : { type #type }
+        | :type list
+
+      element-constructor: cons
+        : { type #type }
+          :type :type list
+        | :type list
+
+    function: map
+      : { type #type #type' }
+        :type list
+        ( :type -- :type' )
+      | :type' list
+      + null :function
+      | null
+      + :car :cdr cons :function
+      | :car :function apply
+        :cdr :function recur cons
+    #+end_src
+
+*** has-length
+
+    #+begin_src cicada-language
+    type-constructor: has-length
+      : { type #type }
+        :type list natural
+      | type
+
+      element-constructor: null
+        :
+        | null
+          zero
+          has-length
+
+      element-constructor: cons
+        : { type #type
+            natural #length
+            :type #car
+            :type list #cdr }
+          :cdr
+          :length
+          has-length
+        | :car :cdr cons
+          :length succ
+          has-length
+
+    function: map
+      : { type #type #type'
+          ( :type -> :type' ) #function
+          :type list #list
+          natural #length }
+        :list
+        :length
+        has-length
+      | :list :function map
+        :length
+        has-length
+      + has-length:null
+      | has-length:null
+      + :inductive-hypothesis
+        has-length:cons
+      | :inductive-hypothesis recur
+        has-length:cons
+    #+end_src
+
+*** ><
+
+    #+begin_src cicada-language
+    typeof
+    + :inductive-hypothesis
+      has-length:cons
+    | :inductive-hypothesis recur
+      has-length:cons
+
+    #+end_src
+
+*** ><

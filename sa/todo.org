@@ -1,7 +1,20 @@
+* learn more about prolog
+
+  - clause-and-effect
+
+* clean ref
+
+  - lambda
+    term re-writing
+    graph re-writing
+
+  - VM for graph re-writing
+
 * depentent type for minikanren
 
-  - 用 haskell 和 idris 實現 minikanren
-    練習 monad
+  - new namespace
+
+  - new syntax
 
 * cicada vm in coffee & js
 
@@ -24,9 +37,9 @@
     這個性狀
     這次把 primitive-function 限制在純粹的 符號演算 領域
 
-  - 主要想法是 則式演算
-
   - 用 recursive-combinator 來實現簡單的 parser
+
+  - 主要想法是 則式演算
 
 * to mock a mocking bird
 
