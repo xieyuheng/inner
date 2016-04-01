@@ -76,7 +76,7 @@
 (define walk*
   ;; (term substitution -> term)
   (lambda (v s)
-    (let ((v (walk v s)))
+    (let ([v (walk v s)])
       (cond [(var? v) v]
             [(pair? v)
              (cons
@@ -87,7 +87,7 @@
 ;; reify-substitution
 (define reify-s
   (lambda (v s)
-    (let ((v (walk v s)))
+    (let ([v (walk v s)])
       (cond
        ((var? v) (ext-s v (reify-name (length s)) s))
        ((pair? v) (reify-s (cdr v) (reify-s (car v) s)))
@@ -105,7 +105,7 @@
     (walk* v (reify-s v empty-s))))
 
 (define-syntax trunk
-  ;; [_ -> [_]]
+  ;; _ -> [_]
   (syntax-rules ()
     [(_ e) (lambda () e)]))
 
@@ -211,9 +211,10 @@
 (define-syntax all
   (syntax-rules ()
     [(_) succeed]
-    [(_ g)
-     (lambda (s)
-       (g s))]
+    [(_ g) g
+     ;;      (lambda (s)
+     ;;        (g s))
+     ]
     [(_ g^ g ...)
      (lambda (s)
        (bind (g^ s) (all g ...)))]))
@@ -221,9 +222,10 @@
 (define-syntax alli
   (syntax-rules ()
     [(_) succeed]
-    [(_ g)
-     (lambda (s)
-       (g s))]
+    [(_ g) g
+     ;;      (lambda (s)
+     ;;        (g s))
+     ]
     [(_ g^ g ...)
      (lambda (s)
        (bindi (g^ s) (alli g ...)))]))
@@ -262,10 +264,10 @@
 
 (define-syntax condi
   (syntax-rules (else)
-    ((_) fail)
-    ((_ (else g0 g ...)) (all g0 g ...))
-    ((_ (g0 g ...) c ...)
-     (anyi (all g0 g ...) (condi c ...)))))
+    [(_) fail]
+    [(_ (else g0 g ...)) (all g0 g ...)]
+    [(_ (g0 g ...) c ...)
+     (anyi (all g0 g ...) (condi c ...))]))
 
 (define-syntax ifa
   (syntax-rules ()
@@ -281,14 +283,14 @@
 
 (define-syntax conda
   (syntax-rules (else)
-    ((_) fail)
-    ((_ (else g0 g ...)) (all g0 g ...))
-    ((_ (g0 g ...) c ...)
-     (ifa g0 (all g ...) (conda c ...)))))
+    [(_) fail]
+    [(_ (else g0 g ...)) (all g0 g ...)]
+    [(_ (g0 g ...) c ...)
+     (ifa g0 (all g ...) (conda c ...))]))
 
 (define-syntax ifu
   (syntax-rules ()
-    ((_ g0 g1 g2)
+    [(_ g0 g1 g2)
      ;; substitution -> substitution _ stream
      (lambda (s)
        (let ([s-inf (g0 s)]
@@ -296,7 +298,7 @@
          (case-inf s-inf
            [() (g2 s)]
            [(s) (g^ s)]
-           [(s f) (g^ s)]))))))
+           [(s f) (g^ s)])))]))
 
 (define-syntax condu
   (syntax-rules (else)

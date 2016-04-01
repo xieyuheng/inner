@@ -1,8 +1,32 @@
+* language to use
+
+  - prolog
+    for logic programming
+
+  - clean
+    for type system
+
+  - scheme
+    for sexp
+
+  - erlang
+    functional prolog
+
+  - haskell
+    for monad
+
+* fast string interpreter as VM
+
+  - use hash-table to implement symbol
+  - tag value encoding
+  - GC
+  - many namespaces
+
 * learn more about prolog
 
   - clause-and-effect
 
-* clean ref
+* ref of clean
 
   - lambda
     term re-writing
@@ -62,8 +86,6 @@
        to require a lot of functions from a module
 
   - to play with DOM
-
-* prolog
 
 * the little prover
 

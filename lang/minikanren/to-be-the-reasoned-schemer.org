@@ -34,7 +34,7 @@
     - walk* ::
          (term substitution -> term)
 
-*** term & var
+*** var
 
     #+begin_src scheme :tangle the-reasoned-schemer.scm
     (define-syntax var
@@ -169,7 +169,7 @@
 
     #+begin_src scheme :tangle the-reasoned-schemer.scm
     (define-syntax trunk
-      ;; [_ -> [_]]
+      ;; _ -> [_]
       (syntax-rules ()
         [(_ e) (lambda () e)]))
     #+end_src
@@ -298,9 +298,7 @@
     (define-syntax all
       (syntax-rules ()
         [(_) succeed]
-        [(_ g)
-         (lambda (s)
-           (g s))]
+        [(_ g) g]
         [(_ g^ g ...)
          (lambda (s)
            (bind (g^ s) (all g ...)))]))
@@ -308,9 +306,7 @@
     (define-syntax alli
       (syntax-rules ()
         [(_) succeed]
-        [(_ g)
-         (lambda (s)
-           (g s))]
+        [(_ g) g]
         [(_ g^ g ...)
          (lambda (s)
            (bindi (g^ s) (alli g ...)))]))
@@ -325,7 +321,7 @@
              ((all g ...) s)))]))
     #+end_src
 
-*** goal discussions
+*** goal disjunction
 
 ***** conde
 
