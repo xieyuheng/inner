@@ -1,6 +1,7 @@
-#+TITLE:  演繹法研究
-#+TITLE:  an investigation of mathematical deduction
-#+AUTHOR: 謝宇恆 / XIE Yuheng
++ 演繹法研究
+  an investigation of mathematical deduction
+
++ 謝宇恆 / XIE Yuheng
 
 * 形式體系
 
@@ -1525,8 +1526,6 @@
     * 上面只是對 <-> 這個等詞而言
       處理其他等詞的 等價 或 弱化
       必須臨時切換語法
-
-
 
 * >< constructivism [dijkstra & bishop]
 

@@ -1,5 +1,6 @@
-#+TITLE:  note on lambda
-#+AUTHOR: 謝宇恆 / XIE Yuheng
++ note on lambda
+
++ XIE Yuheng
 
 * todo
   1. 用從 EDW 那裏學到的風格
@@ -2439,7 +2440,8 @@
 *** >< λ-cube
 
 * >< 用一個遺忘函子來把church轉化成curry (即從範疇論的角度來理解)
-遺忘函子就是簡單地把所有對約束變元的類型聲明都刪除
+
+  遺忘函子就是簡單地把所有對約束變元的類型聲明都刪除
 
 
 * >< classical logic formal language

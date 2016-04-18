@@ -1,19 +1,12 @@
-* language to use
+* 個人主頁
 
-  - prolog
-    for logic programming
+  - 重寫主頁
 
-  - clean
-    for type system
+* sequent1
 
-  - scheme
-    for sexp
+  - 整理 sequent1 的筆記 形成設計要點的提要 爲論文作準備
 
-  - erlang
-    functional prolog
-
-  - haskell
-    for monad
+  - 用 scheme 重寫 sequent1
 
 * fast string interpreter as VM
 

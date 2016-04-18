@@ -119,7 +119,7 @@
       所以 variant 取衍化派生之義
 
     #+begin_src caml
-    type ratio = {num: int; denom: int};;
+    type ratio = {num : int; denom : int};;
 
     let add_ratio
     : ratio -> ratio -> ratio

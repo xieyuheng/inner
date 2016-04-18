@@ -22,95 +22,95 @@
   比如 cell-complexes 的定就很像是遞歸定義
   根這裏提供的語法有些類似嗎 ?
 * >< handbook-of-graph-grammars
-** note
-   [[shell:xpdf ~/learning/digrap/graph-grammar/handbook-of-graph-grammars-and-computing-by-graph-transformation.pdf &][handbook-of-graph-grammars]]
-** node replacement graph grammars
 *** note
-    1. 首先要明白這裏想做的是用一種形式語言
-       來歸納定義一個有向圖的集合
-       而不是用一種形式語言描述對有向圖的操作
-    2. 用有限狀態機
-       可以寫出一個謂詞
-       以識別一個字符串的集合
-    3. 在良好的條件下
-       也可以寫出一個謂詞
-       以識別一個有限圖的集合
-       so called recognizing string-language and graph-language
-    4. 但是與考慮字符串的時候一樣
-       對有限圖的處理就是另一回事了
-    5. 圖中的每一點
-       在 replacement-rules 的作用下
-       可以爆炸開來形成一個子圖
-       這個子圖的中的點會被用新的邊與原來的圖中的節點連接起來
-       + >< 這與對無窮有向圖的惰性求值有什麼關係 ??
-         這給出了一種方式來惰性求值一個無窮有向圖嗎 ???
-*** production
-    a production is (M,D,E)
-    M : mather
-    D : daughter
-    E : embedding mechanism
+    [[shell:xpdf ~/learning/digrap/graph-grammar/handbook-of-graph-grammars-and-computing-by-graph-transformation.pdf &][handbook-of-graph-grammars]]
+*** node replacement graph grammars
+***** note
+      1. 首先要明白這裏想做的是用一種形式語言
+         來歸納定義一個有向圖的集合
+         而不是用一種形式語言描述對有向圖的操作
+      2. 用有限狀態機
+         可以寫出一個謂詞
+         以識別一個字符串的集合
+      3. 在良好的條件下
+         也可以寫出一個謂詞
+         以識別一個有限圖的集合
+         so called recognizing string-language and graph-language
+      4. 但是與考慮字符串的時候一樣
+         對有限圖的處理就是另一回事了
+      5. 圖中的每一點
+         在 replacement-rules 的作用下
+         可以爆炸開來形成一個子圖
+         這個子圖的中的點會被用新的邊與原來的圖中的節點連接起來
+         + >< 這與對無窮有向圖的惰性求值有什麼關係 ??
+           這給出了一種方式來惰性求值一個無窮有向圖嗎 ???
+***** production
+      a production is (M,D,E)
+      M : mather
+      D : daughter
+      E : embedding mechanism
 
-    a production can be applied to H
-    H : host graph
+      a production can be applied to H
+      H : host graph
 
-    to apply is (M,D,E) on H
-    is to replace M in H by D
-    and attach D to H/M by E
+      to apply is (M,D,E) on H
+      is to replace M in H by D
+      and attach D to H/M by E
 
-    two main type of embedding:
-    1. gluing
-       定義是顯然的
-    2. connecting
-       定義是顯然的
-       + note that
-         there are old edges between M and H/M
-         has been removed during the application
+      two main type of embedding:
+      1. gluing
+         定義是顯然的
+      2. connecting
+         定義是顯然的
+         + note that
+           there are old edges between M and H/M
+           has been removed during the application
 
-    two main approaches of graph-grammars
-    1. the gluing approach
-       (the algebraic approach)
-    2. the connecting approach
-       (the algorithmic approach)
-       (the set approach)
+      two main approaches of graph-grammars
+      1. the gluing approach
+         (the algebraic approach)
+      2. the connecting approach
+         (the algorithmic approach)
+         (the set approach)
 
-    >< -β->顯然可以用上面的方法來描述
-*** NLC and edNCE
-    NLE : note ladel controlled
-    NCE : neighbourhood controlled embedding
-*** NLC
-    此時被操作的對象是無向點標記圖
-    M : 單個的節點
-    E : connecting embedding
+      >< -β->顯然可以用上面的方法來描述
+***** NLC and edNCE
+      NLE : note ladel controlled
+      NCE : neighbourhood controlled embedding
+***** NLC
+      此時被操作的對象是無向點標記圖
+      M : 單個的節點
+      E : connecting embedding
 
-    production形如X->D
-    其中X是一個對H中node的標記
+      production形如X->D
+      其中X是一個對H中node的標記
 
-    connecting instructions:
-    E == ((μ1 . δ1) (μ2 . δ2) ...)
-    + the so called connection relation
-    當(M,D,E)中的M是單點m時
-    a-list中的項(μ,δ)表示需要連接
-    m的neighbourhood中被標記爲μ的點
-    與D中被標記爲δ的點
+      connecting instructions:
+      E == ((μ1 . δ1) (μ2 . δ2) ...)
+      + the so called connection relation
+      當(M,D,E)中的M是單點m時
+      a-list中的項(μ,δ)表示需要連接
+      m的neighbourhood中被標記爲μ的點
+      與D中被標記爲δ的點
 
-    >< 當我寫下一個MN時
-    對application的理解有兩種方式
-    一個是M作用於N 一個是N作用於M
+      >< 當我寫下一個MN時
+      對application的理解有兩種方式
+      一個是M作用於N 一個是N作用於M
 
-    an NLC graph grammar is
-    notation:
-    G == (Σ, Δ, P, C, S)
-    L(G) : 歸納定義的有向圖的集合
-*** edNCE
-    C-edNCE:
-    C- denote confluent
-    d denote directed
-    e denote edge ladels in addition to node ladels
+      an NLC graph grammar is
+      notation:
+      G == (Σ, Δ, P, C, S)
+      L(G) : 歸納定義的有向圖的集合
+***** edNCE
+      C-edNCE:
+      C- denote confluent
+      d denote directed
+      e denote edge ladels in addition to node ladels
 * >< deterministic graph grammars
-** note
-   用圖語法來生成正規無窮有向圖
-** notations
-   deterministic graph grammar =generate=> regular graphs
+*** note
+    用圖語法來生成正規無窮有向圖
+*** notations
+    deterministic graph grammar =generate=> regular graphs
 * >< about
   看前人寫的論文
   越看越覺得它們愚蠢
