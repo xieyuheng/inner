@@ -1,3 +1,33 @@
-#+SETUPFILE: setup.org
+#+setupfile: asset/org-header/index.org
+#+title: XIE Yuheng
+
+@@html:
+<div style="float: right; margin-left: 5px; padding: 5px;">
+<img src="asset/image/xieyuheng1.jpg" width=250 />
+<br/>
+in the library of SYSU
+</div>
+@@
+
+* study
+
+  - language-design
+  - constructive-math
+
+* writing
+
+  - an investigation of mathematical deduction, (todo)
+
+* project
 
 
+
+* lecture
+
+  - experimental assembly programming experiment, SYSU, GuangZhou, 2015
+
+* contact
+
+  - email : xyheme (at) gmail (dot) com
+  - city : YinChuan of China
+  - irc : #cicada-language at freenode

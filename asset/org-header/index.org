@@ -1,4 +1,4 @@
-#+HTML_HEAD: <link rel="stylesheet" href="css/worg.css" type="text/css" media="screen" />
+#+HTML_HEAD: <link rel="stylesheet" href="asset/css/index.css" type="text/css" media="screen" />
 
 #+MACRO: begin-summary #+HTML: <div class="summary"><h2>Summary</h2>
 #+MACRO: end-summary #+HTML: </div>

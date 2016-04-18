@@ -2,14 +2,12 @@
 {
     body {
         font-family: "Helvetica Neue", "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, sans-serif !important;
-        font-size: 14px;
-        line-height: 21px;
-        /* color: #333; */
-
+        font-size: 16px;
+        line-height: 23px;
         color: #f8f8f0;
-        background-color: #1b1d1e;
-
-        max-width: 62em;
+        /* background-color: #1b1d1e; */
+        background-color: #709870;
+        max-width: 61em;
         margin: auto;
     }
     body #content {
@@ -32,15 +30,19 @@
         position: fixed;
         right: 0em;
         top: 0em;
-        background: white;
+        /* background: #1b1d1e; */
+        background: #709870;
         -webkit-box-shadow: 0 0 0.5em #777777;
         -moz-box-shadow: 0 0 0.5em #777777;
         -webkit-border-bottom-left-radius: 5px;
         -moz-border-radius-bottomleft: 5px;
         text-align: right;
         /* ensure doesn't flow off the screen when expanded */
-        max-height: 80%;
+        max-height: 98%;
         overflow: auto;
+        border-radius: 0.5em;
+        text-align: center;
+        font-weight: bold;
     }
     #table-of-contents h2 {
         font-size: 10pt;
@@ -56,10 +58,12 @@
         display: none;
         text-align: left;
     }
+
     #table-of-contents:hover #text-table-of-contents {
         display: block;
         padding: 0.5em;
         margin-top: -1.5em;
+        max-width: 29em;
     }
 
     #table-of-contents #text-table-of-contents ul {
@@ -73,22 +77,22 @@
     /* } */
 
     h1 {
-        /*
-          font-family:Sans;
-          font-weight:bold; */
+        /* font-family:Sans;
+         * font-weight:bold; */
         font-size:2.1em;
         padding:0 0 30px 0;
         margin-top: 10px;
         margin-bottom: 10px;
-        color: #333;
+        /* color: #333; */
+        color: #f8f8f0;
     }
 
     h2 {
-        font-family:Arial,sans-serif;
+        /* font-family:Arial,sans-serif; */
         font-size:1.45em;
         line-height:16px;
         padding:7px 0 0 0;
-        color: #666;
+        color: #a6e22e
     }
 
     .outline-text-2 {
@@ -100,9 +104,9 @@
     }
 
     h3 {
-        font-family:Arial,sans-serif;
+        /* font-family:Arial,sans-serif; */
         font-size:1.3em;
-        color: #666;
+        color: #fd971f;
         margin-left: 0.6em;
     }
 
@@ -111,10 +115,10 @@
     }
 
     h4 {
-        font-family:Arial,sans-serif;
+        /* font-family:Arial,sans-serif; */
         font-size:1.2em;
         margin-left: 1.2em;
-        color: #666;
+        color: #ff2727;
     }
 
     .outline-text-4 {
@@ -123,16 +127,16 @@
 
     a {
         text-decoration: none;
-        color: #3399cc;
+        color: #ffffff;
     }
     /* a:visited {text-decoration: none; color: #224444} */ /* Taken out because color too similar to text. */
     a:visited {
         text-decoration: none;
-        color: #3399cc;
+        color: #dddddd;
     }  /* this is now the color of the Unicorns horn */
     a:hover {
         text-decoration: underline;
-        color: #3399cc;
+        color: #dddddd;
     }
 
     ul, ol {
@@ -140,10 +144,8 @@
     }
 
     ul {
-        list-style-type: square;
-        list-style-image: inherit;
+        list-style-type: disc;
         list-style-position: outside;
-        /* white-space: pre-wrap; */
     }
     ol {
         list-style-type: decimal;
@@ -154,11 +156,11 @@
     }
 
     .todo {
-        color: #CA0000;
+        color: #e6db74;
     }
 
     .done {
-        color: #006666;
+        color: #c4be89;
     }
 
     .timestamp-kwd {
@@ -171,7 +173,6 @@
 
     li {
         margin: .4em;
-        /* white-space: pre-wrap; */
     }
 
     table {
@@ -221,43 +222,17 @@
         filter: alpha(opacity=100);
     }
 
-    /* pre {border: 1px solid #555; */
-    /*      background: #EEE; */
-    /*      font-size: 9pt; */
-    /*      padding: 1em; */
-    /*     } */
-
-    /* pre { */
-    /*     color: #e5e5e5; */
-    /*     background-color: #000000; */
-    /*     padding: 1.4em; */
-    /*     border: 2px solid gray; */
-    /* } */
-
-    /* pre { */
-    /*     background-color: #2b2b2b; */
-    /*     border: 4px solid gray; */
-    /*     color: #EEE; */
-    /*     overflow: auto; */
-    /*     padding: 1em; */
-    /*  } */
-
     pre {
+        margin-left: 2em;
+        margin-right: 2em;
         font-family: Input, Monaco, Consolas, "Lucida Console", monospace;
-        /* color: black; */
-        /* background-color: #ffffff; */
+        font-size: 14px;
+        line-height: 21px;
         color: #f8f8f0;
         background-color: #1b1d1e;
-        padding: 1.2em;
-        /* border: 1px solid #dddddd; */
         overflow: auto;
         white-space: pre-wrap;
-
-        /*
-        -webkit-box-shadow: 0px 0px 4px rgba(0,0,0,0.23);
-        -moz-box-shadow: 0px 0px 4px rgba(0,0,0,0.23);
-        box-shadow: 0px 0px 4px rgba(0,0,0,0.23);
-        */
+        border-left: 1px solid #585850;
     }
 
     div.summary {
@@ -280,9 +255,9 @@
         margin-left:auto;
         margin-right:auto;
         padding:0.7em;
-    /* border:1px solid #CCC; */
-    /* border-radius:10px; */
-    /* -moz-border-radius:10px; */
+        /* border:1px solid #CCC; */
+        /* border-radius:10px; */
+        /* -moz-border-radius:10px; */
     }
     .org-info-box img {
         float:left;
@@ -869,7 +844,7 @@
         color: #bc8f8f;
     }
     .outline-text-1, .outline-text-2, .outline-text-3, .outline-text-4, .outline-text-5, .outline-text-6 {
-    /* Add more spacing between section. Padding, so that folding with org-info.js works as expected. */
+        /* Add more spacing between section. Padding, so that folding with org-info.js works as expected. */
 
     }
 
@@ -967,17 +942,28 @@
     .rss_items {
     }
     .rss_item a:link, .rss_item a:visited, .rss_item a:active {
-    }
+                                           }
     .rss_item a:hover {
     }
     .rss_date {
     }
 
+    /* div#preamble div#plupperButton a img { */
+    /*     height: 16px; */
+    /*     position: absolute; */
+    /*     top: 4px; */
+    /* } */
+
+    #preamble {
+        padding: 0.5em;
+        color: #f8f8f0;
+        background-color: #f8f8f0;
+    }
+
     #postamble {
-        padding: .3em;
-        margin-bottom: 1em;
-        border: 1px solid gray;
-        background-color: #eeeeee;
+        padding: 0.5em;
+        color: #f8f8f0;
+        background-color: #f8f8f0;
     }
 
     #show_source {
@@ -992,13 +978,13 @@
 
 @media screen
 {
-  #table-of-contents {
-    float: right;
-    padding-right: 5px;
-    border: 1px solid #CCC;
-    max-width: 50%;
-    overflow: auto;
-  }
+    #table-of-contents {
+        float: right;
+        padding-right: 5px;
+        border: 1px solid #CCC;
+        max-width: 50%;
+        overflow: auto;
+    }
 } /* END OF @media screen */
 
 .due {
@@ -1018,12 +1004,6 @@ ul.index-links {
 ul.index-links li {
     list-style-type: none;
     margin-left: 0;
-}
-
-div#preamble div#plupperButton a img {
-    height: 16px;
-    position: absolute;
-    top: 4px;
 }
 
 blockquote {
