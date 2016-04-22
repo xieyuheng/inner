@@ -1,5 +1,5 @@
 #+HTML_HEAD: <link rel="stylesheet" href="asset/css/index.css" type="text/css" media="screen" />
-#+title: XIE Yuheng
+#+title: XIE Yuheng / 謝宇恆
 
 @@html:
 <div style="float: right; margin-left: 5px; padding: 5px;">
