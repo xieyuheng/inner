@@ -1,5 +1,5 @@
-#+TITLE:  一個構造主義者的宣言
-#+TITLE:  a constructivist manifesto
+#+HTML_HEAD: <link rel="stylesheet" href="../asset/css/worg.css" type="text/css" media="screen" />
+#+TITLE: a constructivist manifesto / 一個構造主義者的宣言
 #+AUTHOR: Errett Bishop
 
 * 題解

@@ -1,8 +1,9 @@
-#+TITLE:  上帝是道家的嗎 / is god a taoist
+#+HTML_HEAD: <link rel="stylesheet" href="../asset/css/worg.css" type="text/css" media="screen" />
+#+TITLE:  is god a taoist / 上帝是道家的嗎
 #+AUTHOR: Raymond Smullyan
 
-* ===================================
 * 題解
+
   * 古代的聖賢在觀察和思考自然時之興趣盎然
     在如今已經鮮見了
     而本文的作者 *薩繆里安* 就是這樣一個興趣盎然的人
@@ -19,8 +20,9 @@
     請您給我發電子郵件以告知我
     我將改正
 
-* -----------------------------------
+
 * 譯文
+
   * 凡人：
     上帝啊
     我向您祈禱
@@ -1407,6 +1409,7 @@
     欲見本真 莫守是非 是非之爭 是爲心病
 
 * 原文
+
   * Mortal:
     And therefore, O God, I pray thee,
     if thou hast one ounce of mercy for this thy suffering creature,
@@ -2726,5 +2729,3 @@
     - Be not concerned with right and wrong.
     - The conflict between right and wrong
     - Is the sickness of the mind.
-
-* ===================================

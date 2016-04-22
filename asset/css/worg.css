@@ -3,7 +3,7 @@
     body {
         font-family: "Helvetica Neue", "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, sans-serif !important;
         font-size: 16px;
-        line-height: 23px;
+        line-height: 1.3em;
         color: #f8f8f0;
         background-color: #1b1d1e;
         max-width: 61em;
@@ -14,6 +14,7 @@
     }
     body .title {
         margin-left: 0;
+        line-height: 1.3em;
     }
 
     #org-div-home-and-up{
@@ -22,7 +23,6 @@
         top: 4em;
     }
 
-    /* TOC inspired by http://jashkenas.github.com/coffee-script */
     #table-of-contents {
         z-index: 100;
         font-size: 10pt;
@@ -125,17 +125,18 @@
     }
 
     a {
-        text-decoration: none;
-        color: #3399cc;
+        text-decoration: underline;
+        color: #ffffff;
     }
-    /* a:visited {text-decoration: none; color: #224444} */ /* Taken out because color too similar to text. */
+
     a:visited {
-        text-decoration: none;
-        color: #3399cc;
-    }  /* this is now the color of the Unicorns horn */
+        text-decoration: underline;
+        color: #dddddd;
+    }
+
     a:hover {
         text-decoration: underline;
-        color: #3399cc;
+        color: #dddddd;
     }
 
     ul, ol {

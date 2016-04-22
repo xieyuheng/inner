@@ -1,9 +1,6 @@
-+ title
-  當代數學之精神分裂症
-  schizophrenia in contemporary mathematics
-
-+ author
-  errett bishop
+#+HTML_HEAD: <link rel="stylesheet" href="../asset/css/worg.css" type="text/css" media="screen" />
+#+TITLE: schizophrenia in contemporary mathematics / 當代數學之精神分裂症
+#+AUTHOR: Errett Bishop
 
 * 題解
 
@@ -38,7 +35,7 @@
 
 *** 譯文
 
-    *
+    * ><
 
 *** 原文
 
@@ -313,7 +310,7 @@
 
 *** 譯文
 
-    *
+    * ><
 
 *** 原文
 
@@ -562,7 +559,7 @@
 
 *** 譯文
 
-    *
+    * ><
 
 *** 原文
 
