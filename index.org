@@ -18,21 +18,32 @@ in the library of SYSU
 
   - (todo) an investigation of mathematical deduction
 
-* project
+* program
 
+  - (todo) [[http://xieyuheng.github.io/sequent1][sequent1]]
+    - a prototype interpreter for a functional language
+      which uses sequent calculus as dependent type system
 
 * lecture
 
-  - experimental assembly programming experiment, SYSU, GuangZhou, 2015
+  - [[http://the-little-language-designer.github.io/cicada-nymph/course/contents.html][experimental assembly programming experiment]], SYSU, GuangZhou, 2015
 
 * translate
 
-  - [[./translate/is-god-a-taoist.html][is god a taoist / 上帝是道家的嗎]], by Raymond Smullyan, 1977
-  - [[./translate/a-constructivist-manifesto.html][a constructivist manifesto / 一個構造主義者的宣言]], by Errett Bishop, 1967
-  - (todo) [[./translate/schizophrenia-in-contemporary-mathematics.html][schizophrenia in contemporary mathematics / 當代數學之精神分裂症]], by Errett Bishop, 1973
+*** from Raymond Smullyan
+
+    - [[./translate/is-god-a-taoist.html][is god a taoist / 上帝是道家的嗎]], 1977
+    - (todo) [[http://xieyuheng.github.io/the-tao-is-silent][the tao is silent / 道者無聲]], 1977
+      - translated together with BAO Hongran / 鮑鴻然
+
+*** from Errett Bishop
+
+    - [[./translate/a-constructivist-manifesto.html][a constructivist manifesto / 一個構造主義者的宣言]], 1967
+    - (todo) [[./translate/schizophrenia-in-contemporary-mathematics.html][schizophrenia in contemporary mathematics / 當代數學之精神分裂症]], 1973
 
 * contact
 
   - email : xyheme (at) gmail (dot) com
   - city : YinChuan of China
   - irc : #cicada-language at freenode
+  - github : https://github.com/xieyuheng
