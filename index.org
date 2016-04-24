@@ -33,7 +33,7 @@ in the library of SYSU
 *** from Raymond Smullyan
 
     - [[./translate/is-god-a-taoist.html][is god a taoist / 上帝是道家的嗎]], 1977
-    - (todo) [[http://xieyuheng.github.io/the-tao-is-silent][the tao is silent / 道者無聲]], 1977
+    - (todo) [[http://xieyuheng.github.io/the-tao-is-silent][the tao is silent / 道是靜的]], 1977
       - translated together with BAO Hongran / 鮑鴻然
 
 *** from Errett Bishop
@@ -43,7 +43,7 @@ in the library of SYSU
 
 * contact
 
+  - github : https://github.com/xieyuheng
   - email : xyheme (at) gmail (dot) com
   - city : YinChuan of China
   - irc : #cicada-language at freenode
-  - github : https://github.com/xieyuheng
