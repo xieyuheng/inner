@@ -2,7 +2,7 @@
 #+title: XIE Yuheng / 謝宇恆
 
 @@html:
-<div style="float: right; margin-left: 5px; padding: 5px;">
+<div phide='true'; style="float: right; margin-left: 5px; padding: 5px;">
 <img src="asset/image/xieyuheng1.jpg" width=250 />
 <br/>
 in the library of SYSU
