@@ -18,11 +18,12 @@ in the library of SYSU
 
   - (todo) an investigation of mathematical deduction
 
-* program
+* language design
 
-  - (todo) [[http://xieyuheng.github.io/sequent1][sequent1]]
-    - a prototype interpreter for a functional language
-      which uses sequent calculus as dependent type system
+  - [[http://xieyuheng.github.io/sequent1][sequent1]] -- a prototype interpreter of a lovely functional language
+    which uses sequent calculus as its dependent type system
+    the main idea is that
+    functions compose and types cut
 
 * lecture
 
