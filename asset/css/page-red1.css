@@ -1,0 +1,14 @@
+@import url("page.css");
+
+@media all
+{
+    #preamble {
+        color: #fd5656;
+        background-color: #fd5656;
+    }
+
+    #postamble {
+        color: #fd5656;
+        background-color: #fd5656;
+    }
+}

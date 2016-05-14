@@ -1,0 +1,25 @@
+@import url("index.css");
+
+@media all
+{
+    body {
+        background-color: #fd5656;
+    }
+
+    h1 {
+        color: #f8f8f0;
+    }
+
+    h2 {
+        color: #AA3939;
+    }
+
+    h3 {
+        color: #AA3939;
+    }
+
+    h4 {
+        color: #AA3939;
+    }
+
+}
