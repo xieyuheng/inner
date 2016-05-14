@@ -9,21 +9,27 @@ in the library of SYSU
 </div>
 @@
 
-* study
+* math
 
-  - language design
-  - constructive math
-
-* writing
-
+  - (todo) constructive math in my view
+  - (todo) term lattice
+  - (todo) function compose type cut
   - (todo) an investigation of mathematical deduction
 
 * language design
 
-  - [[http://xieyuheng.github.io/sequent1][sequent1]] -- a prototype interpreter of a lovely functional language
+  - [[https://github.com/xieyuheng/cicada-nymph][cicada-nymph]] -- a forth-like language
+
+  - [[https://github.com/xieyuheng/recursive-combinator][recursive-combinator]] -- DSL embedded in js
+    inspired by joy (the language)
+    implemented by an interpreter of js array
+
+  - [[http://xieyuheng.github.io/sequent1][sequent1]] -- a prototype functional language
     which uses sequent calculus as its dependent type system
-    the main idea is that
-    functions compose and types cut
+
+  - (todo) [[https://github.com/xieyuheng/vm1][vm1]] -- low-level interpreter as extensible virtual machine
+
+  - (todo) [[https://github.com/xieyuheng/logic1][logic1]] -- a prototype logic language with type system
 
 * lecture
 
@@ -41,6 +47,11 @@ in the library of SYSU
 
     - [[./translate/a-constructivist-manifesto.html][a constructivist manifesto / 一個構造主義者的宣言]], 1967
     - (todo) [[./translate/schizophrenia-in-contemporary-mathematics.html][schizophrenia in contemporary mathematics / 當代數學之精神分裂症]], 1973
+
+* social
+
+  - I graduated from Sun Yat-sen university of China (a.k.a. SYSU)
+  - I am a member and part time maintainer of [[https://szdiy.org/][SZDIY hackerspace]]
 
 * contact
 
