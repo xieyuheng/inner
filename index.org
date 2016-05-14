@@ -52,6 +52,7 @@ in the library of SYSU
 
   - I graduated from Sun Yat-sen university of China (a.k.a. SYSU)
   - I am a member and part time maintainer of [[https://szdiy.org/][SZDIY hackerspace]]
+  - [[./friend-links.html][links to friends on the net]]
 
 * contact
 
