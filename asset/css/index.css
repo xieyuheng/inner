@@ -12,12 +12,12 @@
     }
     body #content {
         padding-top: 30px;
-        padding-left: 13px;
+        padding-left: 1em;
+        padding-right: 1em;
     }
     body .title {
         margin-left: 0;
         line-height: 1.3em;
-
     }
 
     #org-div-home-and-up{
@@ -1052,4 +1052,10 @@ div.hidden div.hidden-content {
 div.hidden {
     margin-bottom: 1em;
     margin-left: 2em;
+}
+
+@media (max-aspect-ratio: 4/5) {
+    [phide='true'] {
+        display: none;
+    }
 }
