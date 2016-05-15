@@ -1,15 +1,3 @@
-* RH 的計算意義是什麼
-
-  - 留數計算的數值意義是什麼
-  - 數值分析是特殊的符號演算嗎
-  - 用 scheme 來描述微分幾何
-
-* sequent1
-
-  - 整理 sequent1 的筆記 形成設計要點的提要 爲論文作準備
-
-  - 用 scheme 重寫 sequent1
-
 * fast string interpreter as VM
 
   - use hash-table to implement symbol
@@ -17,15 +5,17 @@
   - GC
   - many namespaces
 
+* RH 的計算意義是什麼
+
+  - 留數計算的數值意義是什麼
+  - 數值分析是特殊的符號演算嗎
+  - 用 scheme 來描述微分幾何
+
 * learn more about prolog
 
   - clause-and-effect
 
 * ref of clean
-
-  - lambda
-    term re-writing
-    graph re-writing
 
   - VM for graph re-writing
 
@@ -34,31 +24,6 @@
   - new namespace
 
   - new syntax
-
-* cicada vm in coffee & js
-
-  - 以 recursive-combinator 爲 main-lib
-
-  - 新的 unification 算法
-    用來實現 pattern match 和 type check
-
-  - 注意
-    這裏我只需要 unification
-    所以可能不需要用 monad 來處理 minikanren 一樣的 goal
-
-  - 注意處理 scope 的方式
-    是把 scope 當作參數來傳遞
-    而不是使用全局變元
-
-  - 只實現主要想法
-    放棄
-    每個 js 函數加上類型 都能被當作 primitive-function
-    這個性狀
-    這次把 primitive-function 限制在純粹的 符號演算 領域
-
-  - 用 recursive-combinator 來實現簡單的 parser
-
-  - 主要想法是 則式演算
 
 * to mock a mocking bird
 
@@ -84,4 +49,27 @@
 
 * the little prover
 
-* idris
+* cicada vm in coffee & js
+
+  - 以 recursive-combinator 爲 main-lib
+
+  - 新的 unification 算法
+    用來實現 pattern match 和 type check
+
+  - 注意
+    這裏我只需要 unification
+    所以可能不需要用 monad 來處理 minikanren 一樣的 goal
+
+  - 注意處理 scope 的方式
+    是把 scope 當作參數來傳遞
+    而不是使用全局變元
+
+  - 只實現主要想法
+    放棄
+    每個 js 函數加上類型 都能被當作 primitive-function
+    這個性狀
+    這次把 primitive-function 限制在純粹的 符號演算 領域
+
+  - 用 recursive-combinator 來實現簡單的 parser
+
+  - 主要想法是 則式演算

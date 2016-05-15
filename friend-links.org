@@ -2,6 +2,7 @@
 #+title: friend links
 
 - Jason Hemann : http://hemann.pl
+- wicast : http://tnt.wicast.tk
 - NalaGinrut / 穆垒 : https://nalaginrut.com
 - felixonmars / 肥貓 : https://blog.felixc.at
 - frantic1048 / 卡夫 : https://frantic1048.com
