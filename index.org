@@ -9,6 +9,16 @@ in the library of SYSU
 </div>
 @@
 
+------
+
+@@html:
+<p> a student of math and natural science </p>
+<p> a language designer </p>
+<p> a reader of ZHUANG Zi </p>
+@@
+
+------
+
 * math
 
   - (todo) constructive math in my view
