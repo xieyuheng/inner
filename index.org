@@ -1,5 +1,5 @@
 #+HTML_HEAD: <link rel="stylesheet" href="asset/css/index.css" type="text/css" media="screen" />
-#+title: XIE Yuheng / 謝宇恆
+#+title: XIE YuHeng / 謝宇恆
 
 @@html:
 <div phide='true'; style="float: right; margin-left: 5px; padding: 5px;">
@@ -61,10 +61,16 @@
   - I graduated from Sun Yat-sen university of China (a.k.a. SYSU)
   - I am a member and part time maintainer of [[https://szdiy.org/][SZDIY hackerspace]]
   - [[./friend-links.html][links to friends on the net]]
+  - github : https://github.com/xieyuheng
 
 * contact
 
-  - github : https://github.com/xieyuheng
   - email : xyheme (at) gmail (dot) com
-  - city : YinChuan of China
+  - city : YinChuan, China
   - irc : #cicada-language at freenode
+
+* resume
+
+  - born : 1992/01/15, YinChuan, China
+
+  - died : not yet, but will be
