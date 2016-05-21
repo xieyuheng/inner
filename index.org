@@ -3,9 +3,7 @@
 
 @@html:
 <div phide='true'; style="float: right; margin-left: 5px; padding: 5px;">
-<img src="asset/image/xieyuheng1.jpg" width=250 />
-<br/>
-in the library of SYSU
+<img src="asset/image/yin-yang.png" width=250 />
 </div>
 @@
 
