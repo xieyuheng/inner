@@ -1,7 +1,5 @@
-+ 演繹法研究
-  an investigation of mathematical deduction
-
-+ 謝宇恆 / XIE Yuheng
+#+TITLE:  演繹法研究 / investigations of mathematical deduction
+#+AUTHOR: 謝宇恆 / XIE Yuheng
 
 * 形式體系
 

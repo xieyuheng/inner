@@ -21,7 +21,6 @@
   - 譯文中
     方形括號內的段落爲我的筆記
 
-
 * 說數 / the descriptive basis of mathematics
 
 *** 譯文
@@ -206,7 +205,6 @@
       我們首先要儘可能
       把數學置於一個現實主義基礎之上
       但並不關注效率問題
-
 
 *** 原文
 
@@ -405,7 +403,6 @@
       on a realistic basis
       without close attention to questions of efficiency.
 
-
 *** 記 數學的超越性
 
     - 在翻譯之前
@@ -425,7 +422,6 @@
       重新定義了這個詞
       以合乎自己對數學研究的分類
       之後這個詞轉而可以用來辯護 構造主義數學 了
-
 
 * 理想 / the idealistic component of mathematics
 
@@ -681,7 +677,6 @@
       布勞維爾有卓越的洞見
       且他英雄壯舉 預要改正數學
 
-
 *** 原文
 
     - Geometry was highly idealistic
@@ -936,7 +931,6 @@
       into the defects of classical mathematics,
       and he made a heroic attempt to set things right.
 
-
 * 構造 / the constructivization of mathematics
 
 *** 譯文
@@ -1102,14 +1096,13 @@
 
     - 任意量詞
       即 任意 A 之元素 有性質 P
-      [記爲 (x : A -> P(x))]
+      [記爲 (x : A 則 P(x))
+       或 (x : A -> P(x))]
       在構造主義數學中的意思與古典數學一樣
       爲了證明這種命題
       需證
       若 x 爲 A 的元素
       則 x 有性質 P
-      [即 (x : A 則 P(x))
-       即 (x : A -> P(x))]
 
     - 存在量詞
       構造主義數學中 存在量詞
@@ -1126,19 +1119,19 @@
       如下原則在古典數學中有效
         要麼 任意 A 的元素 有性質 P
         要麼 存在 A 的某個元素 有性質 (否 P)
-     這個原則
-     我們稱之爲 無所不知原則[the principle of omniscience]
-     是古典數學中 大多數不具有構造性的結果 的根源
-     看 無所不知原則的簡化版本 就知道了
-       若 {n(k)} 是整數數列
-       則 要麼 n(k) = 0 對某些 k 成立
-          要麼 n(k) =/= 0 對所有 k 成立
-     我們稱之爲 受限無所不知原則[the limited principle of omniscience]
-     古典數學中的 一個接一個的定理
-     都本質上依賴 受限無所不知原則
-     因此 他們的證明 是不具有構造性的
+      這個原則
+      我們稱之爲 無所不知原則[the principle of omniscience]
+      是古典數學中 大多數不具有構造性的結果 的根源
+      看 無所不知原則的簡化版本 就知道了
+        若 {n(k)} 是整數數列
+        則 要麼 n(k) = 0 對某些 k 成立
+           要麼 n(k) =/= 0 對所有 k 成立
+      我們稱之爲 受限無所不知原則[the limited principle of omniscience]
+      古典數學中的 一個接一個的定理
+      都本質上依賴 受限無所不知原則
+      因此 他們的證明 是不具有構造性的
 
-     例如
+      例如
       - 閉區間上 連續實值函數 達到其最大值
       - 封閉單元上 連續變換 具有不動點 [即 不動點定理]
       - 遍歷定理[ergodictheorem]
@@ -1223,7 +1216,6 @@
       現實主義的 簡單處理數學 的方式
       還有待嘗試呢
       現在 是時候做這樣的嘗試了
-
 
 *** 原文
 
@@ -1479,7 +1471,6 @@
       It is no exaggeration to say that
       a straightforward realistic approach to mathematics has yet to be tried.
       It is time to make the attempt.
-
 
 *** 記 任何使人心悅誠服的論證都是證明
 

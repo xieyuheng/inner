@@ -22,7 +22,7 @@
   - (todo) constructive math in my view
   - (todo) term lattice
   - (todo) function compose type cut
-  - (todo) an investigation of mathematical deduction
+  - (todo) investigations of mathematical deduction
 
 * language design
 
