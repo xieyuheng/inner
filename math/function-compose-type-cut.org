@@ -1,0 +1,217 @@
+#+HTML_HEAD: <link rel="stylesheet" href="http://xieyuheng.github.io/asset/css/page.css" type="text/css" media="screen" />
+#+title: function compose, type cut
+
+* first I would like to summarize intuitionistic logic
+
+  - first I would like to summarize intuitionistic logic
+    it is also called constructive logic
+
+  - to prove (P and Q)
+    is to prove P and prove Q
+    - this is the same as classical logic
+
+  - to prove (P or Q)
+    is to prove P or prove Q
+    - while in classical logic
+      you can prove (P or Q)
+      without a proof of P
+      and without a proof of Q
+
+  - to prove (P -> Q)
+    is to prove that
+    if we have a proof of P
+    then we can construct a proof of Q
+    - this is the same as classical logic
+
+  - to prove (not P)
+    is to prove (P -> something-we-consider-wrong)
+    - something-we-consider-wrong like (0 = 1)
+    - (not (not P)) is weaker than P
+      while in classical logic
+      (not (not P)) is equal to P
+
+  - to prove "for all x belong to A, we have P(x)"
+    is to prove that
+    for all x belong to A
+    we can construct a proof of P(x)
+    - this is the same as classical logic
+
+  - to prove "there exist x belong to A, such that P(x)"
+    is to construct a value of type A
+    and construct a proof of P(x)
+    - the only way to prove something exist
+      is to find such thing
+    - while in classical logic
+      to prove something exist
+      you do not need to find such thing
+
+* let us design a language to express logic expression to be proved
+
+  - let us design a little language to express logic expression to be proved
+    a logic expression to be proved is called a theorem or a proposition
+
+  - firstly we see the fact that the general form of theorem is like (A -> B)
+    let us optimize our syntax a little for "and"
+    we do not write ((A and B) -> (C and D))
+    but just write (A B -> C D)
+
+  - I call express of form (A B C ... -> E F G ...) sequent or arrow
+    this term is taken from Gentzen
+    but you should note that
+    sequent for us is not exactly the same as sequent for Gentzen
+    for Gentzen (A B -> C D) is viewed as ((A and B) -> (C or D))
+    but for us (A B -> C D) is viewed as ((A and B) -> (C and D))
+
+  - how about (C or D) ? you might ask
+    I would say, let us ignore (C or D) for now
+    we will not be able to express such thing in our language
+    but no worry
+    because we will be able to express
+    "there exist x belong to A, such that P(x)" in our language
+    you see that (C or D) is an unnamed way to express alternative
+    while "there exist x belong to A" is a named way to express alternative
+    so, whenever we want to express alternative
+    we would have to introduce name
+
+  - we can add "or" back to our language later
+    but I insist that we ignore "or" for now
+    because I want the language to be simple
+    I also suggest to ignore "not"
+    because you see (not P) is just (P -> something-we-consider-wrong)
+    the negation we want to express
+    is parameterized by something-we-consider-wrong
+    if we simple say (not P)
+    the information of this parameterization will be lost
+
+  - I express it as ((x : A) -> P(x))
+
+  - I express it as (-> (x : A) P(x))
+
+* a deduction system, and a language to record deduction, a record of a deduction is a proof
+
+* >< to compare with other deduction systems
+
+  - sequent calculus with a little change to get an algebra of logic
+
+* >< the language just designed can be viewed as a term-rewriting-system
+
+* >< implementation of such a language
+
+* ><
+
+  - 所有的命題都是蘊含式
+    其表示方式有兩種
+    首先 箭頭
+    (A -> B)
+    其次 分數
+    | A |
+    |---|
+    | B |
+    對推演規則的表達可以用表格來寫
+    比如
+  - cut [product 的特殊形式]
+    即同分子分母的消去
+    | A | B | cut | A |
+    |---+---+-----+---|
+    | B | C |     | C |
+  - curry & apply
+    這裏與同形式的分數變換不同
+    分子移下去以形成嵌套的分母時 還是做爲分子
+    | A | curry |          |
+    |---+-------+----------|
+    | B | apply | (A -> B) |
+  - imply 的語義
+    如果有對 (-> A) 的構造
+    那麼把這個構造轉化爲對 (-> B) 的構造的算法 就是對 (A -> B) 的構造
+    imply [product 的特殊形式]
+    |   | A | imply |   |
+    |---+---+-------+---|
+    | A | B |       | B |
+  - conjunction-right [product 的特殊形式]
+    |   |   | conjunction-right |     |
+    |---+---+-------------------+-----|
+    | A | B |                   | A B |
+    in another way
+    | C | D | conjunction-right | C D |
+    |---+---+-------------------+-----|
+    | A | B |                   | A B |
+  - conjunction-left [drop]
+    | A | conjunction-left | A B |
+    |---+------------------+-----|
+    |   |                  |     |
+    or
+    | B | conjunction-left | A B |
+    |---+------------------+-----|
+    |   |                  |     |
+  - sum-left
+    注意這裏的規則如何與一般的分式相加不同
+    也就是說
+    類型的運算規則
+    只有 product 在形式上與分式的算數運算規則相同
+    | A | B | sum-left | (A + B) |
+    |---+---+----------+---------|
+    |   |   |          |         |
+    in another way
+    | A | B | sum-left | (A + B) |
+    |---+---+----------+---------|
+    | C | D |          | (C + D) |
+  - sum-right
+    |   | sum-right |         |
+    |---+-----------+---------|
+    | A |           | (A + B) |
+    or
+    |   | sum-right |         |
+    |---+-----------+---------|
+    | B |           | (A + B) |
+    即
+    有對 (-> A) 的構造 就有對 (-> (A + B)) 的構造
+    有對 (-> B) 的構造 就有對 (-> (A + B)) 的構造
+    而古典的邏輯
+    允許在證明 (-> (A + B)) 的時候根本不用構造 (-> A) 或 (-> A)
+  - De Morgan's laws
+    這裏涉及到 否定消除
+    即 否定必須出現在最外層 並且用 conjunction 相連
+    (否 (A 且 B))
+    對應於
+    | A B |
+    |-----|
+    |     |
+    De Morgan's laws 沒法用 分式的推演規則表達
+    如果能夠自由的使用 De Morgan's laws
+    那麼
+    命題演算中所有命題就能化爲可用分式表達的形式
+    也就是說 分式的形式化能力是有限的
+    把一個式子化爲 分式 已經是一次變化了
+    這種解釋 否定 的方式是有問題的
+    要知道
+    一般人們定義 A 的 否定 的方式是 (A -> (0 = 1))
+  - drop 之 存在 並不代表 能證明任何命題的否定
+    因爲 drop 是個變換規則
+    每個 變換規則 本身 也有類型 (... ->)
+    但是
+    drop 的類型對應的命題並不影響形式系統的一致性
+  - pattern match
+    match 與否
+    決定了 product 的可行性
+    一般的 product 是不交換的 考慮 cut 就知道了
+    | A | (B + C) | product | A |
+    |---+---------+---------+---|
+    | B | D       |         | D |
+    match 與否 被一個序關係決定
+    在這個序關係中 (B + C) 高於 B
+    所以
+    就可以用 分子中的 (B + C)
+    消除 分母中的 B
+
+* note
+
+  - 函數複合 與 類型切合 之間的區別是
+    函數體爲則式的列表
+    而類型爲單一的則式
+
+  - cut 與分數的乘法太相似了
+    是否能找到 sequent 在 cut 下的代數結構
+
+    發現如果類型信息不減少的話
+    也就是所有的 unify 都是嚴絲合縫的話
+    那麼就有較好的代數性質

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2016-05-29 Sun 05:48 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>function compose, type cut</title>
+<meta name="generator" content="Org-mode" />
+<meta name="author" content="XIE Yuheng" />
+<link rel="stylesheet" href="http://xieyuheng.github.io/asset/css/page.css" type="text/css" media="screen" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+喪以不執 所執者喪 執喪相比 方死方生
+</div>
+<div id="content">
+<h1 class="title">function compose, type cut</h1>
+<div id="table-of-contents">
+<h2>overview</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org937f789">first I would like to summarize intuitionistic logic</a></li>
+<li><a href="#org7ddcc58">let us design a language to express logic expression to be proved</a></li>
+<li><a href="#orgbd67964">a deduction system, and a language to record deduction, a record of a deduction is a proof</a></li>
+<li><a href="#orga20c2a"><span class="todo _gt__lt_">&gt;&lt;</span> to compare with other deduction systems</a></li>
+<li><a href="#org187ff8e"><span class="todo _gt__lt_">&gt;&lt;</span> the language just designed can be viewed as a term-rewriting-system</a></li>
+<li><a href="#orgd2adc4c"><span class="todo _gt__lt_">&gt;&lt;</span> implementation of such a language</a></li>
+<li><a href="#org1887610"><span class="todo _gt__lt_">&gt;&lt;</span> </a></li>
+<li><a href="#org70a1938"><span class="todo note">note</span> </a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org937f789" class="outline-2">
+<h2 id="org937f789">first I would like to summarize intuitionistic logic</h2>
+<div class="outline-text-2" id="text-org937f789">
+<ul class="org-ul">
+<li><p>first I would like to summarize intuitionistic logic</p><p>it is also called constructive logic</p></li>
+
+<li><p>to prove (P and Q)</p><p>is to prove P and prove Q</p><p><ul class="org-ul"></p><p><li><p>this is the same as classical logic</p></li></ul></p></li>
+
+<li><p>to prove (P or Q)</p><p>is to prove P or prove Q</p><p><ul class="org-ul"></p><p><li><p>while in classical logic</p><p>you can prove (P or Q)</p><p>without a proof of P</p><p>and without a proof of Q</p></li></ul></p></li>
+
+<li><p>to prove (P -&gt; Q)</p><p>is to prove that</p><p>if we have a proof of P</p><p>then we can construct a proof of Q</p><p><ul class="org-ul"></p><p><li><p>this is the same as classical logic</p></li></ul></p></li>
+
+<li><p>to prove (not P)</p><p>is to prove (P -&gt; something-we-consider-wrong)</p><p><ul class="org-ul"></p><p><li><p>something-we-consider-wrong like (0 = 1)</p></li></p><p><li><p>(not (not P)) is weaker than P</p><p>while in classical logic</p><p>(not (not P)) is equal to P</p></li></ul></p></li>
+
+<li><p>to prove "for all x belong to A, we have P(x)"</p><p>is to prove that</p><p>for all x belong to A</p><p>we can construct a proof of P(x)</p><p><ul class="org-ul"></p><p><li><p>this is the same as classical logic</p></li></ul></p></li>
+
+<li><p>to prove "there exist x belong to A, such that P(x)"</p><p>is to construct a value of type A</p><p>and construct a proof of P(x)</p><p><ul class="org-ul"></p><p><li><p>the only way to prove something exist</p><p>is to find such thing</p></li></p><p><li><p>while in classical logic</p><p>to prove something exist</p><p>you do not need to find such thing</p></li></ul></p></li></ul>
+</div>
+</div>
+
+<div id="outline-container-org7ddcc58" class="outline-2">
+<h2 id="org7ddcc58">let us design a language to express logic expression to be proved</h2>
+<div class="outline-text-2" id="text-org7ddcc58">
+<ul class="org-ul">
+<li><p>let us design a little language to express logic expression to be proved</p><p>a logic expression to be proved is called a theorem or a proposition</p></li>
+
+<li><p>firstly we see the fact that the general form of theorem is like (A -&gt; B)</p><p>let us optimize our syntax a little for "and"</p><p>we do not write ((A and B) -&gt; (C and D))</p><p>but just write (A B -&gt; C D)</p></li>
+
+<li><p>I call express of form (A B C &#x2026; -&gt; E F G &#x2026;) sequent or arrow</p><p>this term is taken from Gentzen</p><p>but you should note that</p><p>sequent for us is not exactly the same as sequent for Gentzen</p><p>for Gentzen (A B -&gt; C D) is viewed as ((A and B) -&gt; (C or D))</p><p>but for us (A B -&gt; C D) is viewed as ((A and B) -&gt; (C and D))</p></li>
+
+<li><p>how about (C or D) ? you might ask</p><p>I would say, let us ignore (C or D) for now</p><p>we will not be able to express such thing in our language</p><p>but no worry</p><p>because we will be able to express</p><p>"there exist x belong to A, such that P(x)" in our language</p><p>you see that (C or D) is an unnamed way to express alternative</p><p>while "there exist x belong to A" is a named way to express alternative</p><p>so, whenever we want to express alternative</p><p>we would have to introduce name</p></li>
+
+<li><p>we can add "or" back to our language later</p><p>but I insist that we ignore "or" for now</p><p>because I want the language to be simple</p><p>I also suggest to ignore "not"</p><p>because you see (not P) is just (P -&gt; something-we-consider-wrong)</p><p>the negation we want to express</p><p>is parameterized by something-we-consider-wrong</p><p>if we simple say (not P)</p><p>the information of this parameterization will be lost</p></li>
+
+<li><p>I express it as ((x : A) -&gt; P(x))</p></li>
+
+<li><p>I express it as (-&gt; (x : A) P(x))</p></li></ul>
+</div>
+</div>
+
+<div id="outline-container-orgbd67964" class="outline-2">
+<h2 id="orgbd67964">a deduction system, and a language to record deduction, a record of a deduction is a proof</h2>
+</div>
+
+<div id="outline-container-orga20c2a" class="outline-2">
+<h2 id="orga20c2a"><span class="todo _gt__lt_">&gt;&lt;</span> to compare with other deduction systems</h2>
+<div class="outline-text-2" id="text-orga20c2a">
+<ul class="org-ul">
+<li><p>sequent calculus with a little change to get an algebra of logic</p></li></ul>
+</div>
+</div>
+
+<div id="outline-container-org187ff8e" class="outline-2">
+<h2 id="org187ff8e"><span class="todo _gt__lt_">&gt;&lt;</span> the language just designed can be viewed as a term-rewriting-system</h2>
+</div>
+
+<div id="outline-container-orgd2adc4c" class="outline-2">
+<h2 id="orgd2adc4c"><span class="todo _gt__lt_">&gt;&lt;</span> implementation of such a language</h2>
+</div>
+
+<div id="outline-container-org1887610" class="outline-2">
+<h2 id="org1887610"><span class="todo _gt__lt_">&gt;&lt;</span> </h2>
+<div class="outline-text-2" id="text-org1887610">
+<ul class="org-ul">
+<li><p><p></p><p>所有的命題都是蘊含式</p><p>其表示方式有兩種</p><p>首先 箭頭</p><p>(A -&gt; B)</p><p>其次 分數</p><p></p></p><p><table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"></p><p></p><p></p><p><colgroup></p><p><col  class="org-left" /></p><p></colgroup></p><p><thead></p><p><tr></p><p><th scope="col" class="org-left">A</th></p><p></tr></p><p></thead></p><p><tbody></p><p><tr></p><p><td class="org-left">B</td></p><p></tr></p><p></tbody></p><p></table></p><p><p></p><p>對推演規則的表達可以用表格來寫</p><p>比如</p><p></p></p></li>
+<li><p><p></p><p>cut [product 的特殊形式]</p><p>即同分子分母的消去</p><p></p></p><p><table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"></p><p></p><p></p><p><colgroup></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></colgroup></p><p><thead></p><p><tr></p><p><th scope="col" class="org-left">A</th></p><p><th scope="col" class="org-left">B</th></p><p><th scope="col" class="org-left">cut</th></p><p><th scope="col" class="org-left">A</th></p><p></tr></p><p></thead></p><p><tbody></p><p><tr></p><p><td class="org-left">B</td></p><p><td class="org-left">C</td></p><p><td class="org-left">&#xa0;</td></p><p><td class="org-left">C</td></p><p></tr></p><p></tbody></p><p></table></p></li>
+<li><p><p></p><p>curry &amp; apply</p><p>這裏與同形式的分數變換不同</p><p>分子移下去以形成嵌套的分母時 還是做爲分子</p><p></p></p><p><table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"></p><p></p><p></p><p><colgroup></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></colgroup></p><p><thead></p><p><tr></p><p><th scope="col" class="org-left">A</th></p><p><th scope="col" class="org-left">curry</th></p><p><th scope="col" class="org-left">&#xa0;</th></p><p></tr></p><p></thead></p><p><tbody></p><p><tr></p><p><td class="org-left">B</td></p><p><td class="org-left">apply</td></p><p><td class="org-left">(A -&gt; B)</td></p><p></tr></p><p></tbody></p><p></table></p></li>
+<li><p><p></p><p>imply 的語義</p><p>如果有對 (-&gt; A) 的構造</p><p>那麼把這個構造轉化爲對 (-&gt; B) 的構造的算法 就是對 (A -&gt; B) 的構造</p><p>imply [product 的特殊形式]</p><p></p></p><p><table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"></p><p></p><p></p><p><colgroup></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></colgroup></p><p><thead></p><p><tr></p><p><th scope="col" class="org-left">&#xa0;</th></p><p><th scope="col" class="org-left">A</th></p><p><th scope="col" class="org-left">imply</th></p><p><th scope="col" class="org-left">&#xa0;</th></p><p></tr></p><p></thead></p><p><tbody></p><p><tr></p><p><td class="org-left">A</td></p><p><td class="org-left">B</td></p><p><td class="org-left">&#xa0;</td></p><p><td class="org-left">B</td></p><p></tr></p><p></tbody></p><p></table></p></li>
+<li><p><p></p><p>conjunction-right [product 的特殊形式]</p><p></p></p><p><table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"></p><p></p><p></p><p><colgroup></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></colgroup></p><p><thead></p><p><tr></p><p><th scope="col" class="org-left">&#xa0;</th></p><p><th scope="col" class="org-left">&#xa0;</th></p><p><th scope="col" class="org-left">conjunction-right</th></p><p><th scope="col" class="org-left">&#xa0;</th></p><p></tr></p><p></thead></p><p><tbody></p><p><tr></p><p><td class="org-left">A</td></p><p><td class="org-left">B</td></p><p><td class="org-left">&#xa0;</td></p><p><td class="org-left">A B</td></p><p></tr></p><p></tbody></p><p></table></p><p><p></p><p>in another way</p><p></p></p><p><table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"></p><p></p><p></p><p><colgroup></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></colgroup></p><p><thead></p><p><tr></p><p><th scope="col" class="org-left">C</th></p><p><th scope="col" class="org-left">D</th></p><p><th scope="col" class="org-left">conjunction-right</th></p><p><th scope="col" class="org-left">C D</th></p><p></tr></p><p></thead></p><p><tbody></p><p><tr></p><p><td class="org-left">A</td></p><p><td class="org-left">B</td></p><p><td class="org-left">&#xa0;</td></p><p><td class="org-left">A B</td></p><p></tr></p><p></tbody></p><p></table></p></li>
+<li><p><p></p><p>conjunction-left [drop]</p><p></p></p><p><table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"></p><p></p><p></p><p><colgroup></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></colgroup></p><p><thead></p><p><tr></p><p><th scope="col" class="org-left">A</th></p><p><th scope="col" class="org-left">conjunction-left</th></p><p><th scope="col" class="org-left">A B</th></p><p></tr></p><p></thead></p><p><tbody></p><p><tr></p><p><td class="org-left">&#xa0;</td></p><p><td class="org-left">&#xa0;</td></p><p><td class="org-left">&#xa0;</td></p><p></tr></p><p></tbody></p><p></table></p><p><p></p><p>or</p><p></p></p><p><table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"></p><p></p><p></p><p><colgroup></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></colgroup></p><p><thead></p><p><tr></p><p><th scope="col" class="org-left">B</th></p><p><th scope="col" class="org-left">conjunction-left</th></p><p><th scope="col" class="org-left">A B</th></p><p></tr></p><p></thead></p><p><tbody></p><p><tr></p><p><td class="org-left">&#xa0;</td></p><p><td class="org-left">&#xa0;</td></p><p><td class="org-left">&#xa0;</td></p><p></tr></p><p></tbody></p><p></table></p></li>
+<li><p><p></p><p>sum-left</p><p>注意這裏的規則如何與一般的分式相加不同</p><p>也就是說</p><p>類型的運算規則</p><p>只有 product 在形式上與分式的算數運算規則相同</p><p></p></p><p><table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"></p><p></p><p></p><p><colgroup></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></colgroup></p><p><thead></p><p><tr></p><p><th scope="col" class="org-left">A</th></p><p><th scope="col" class="org-left">B</th></p><p><th scope="col" class="org-left">sum-left</th></p><p><th scope="col" class="org-left">(A + B)</th></p><p></tr></p><p></thead></p><p><tbody></p><p><tr></p><p><td class="org-left">&#xa0;</td></p><p><td class="org-left">&#xa0;</td></p><p><td class="org-left">&#xa0;</td></p><p><td class="org-left">&#xa0;</td></p><p></tr></p><p></tbody></p><p></table></p><p><p></p><p>in another way</p><p></p></p><p><table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"></p><p></p><p></p><p><colgroup></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></colgroup></p><p><thead></p><p><tr></p><p><th scope="col" class="org-left">A</th></p><p><th scope="col" class="org-left">B</th></p><p><th scope="col" class="org-left">sum-left</th></p><p><th scope="col" class="org-left">(A + B)</th></p><p></tr></p><p></thead></p><p><tbody></p><p><tr></p><p><td class="org-left">C</td></p><p><td class="org-left">D</td></p><p><td class="org-left">&#xa0;</td></p><p><td class="org-left">(C + D)</td></p><p></tr></p><p></tbody></p><p></table></p></li>
+<li><p><p></p><p>sum-right</p><p></p></p><p><table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"></p><p></p><p></p><p><colgroup></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></colgroup></p><p><thead></p><p><tr></p><p><th scope="col" class="org-left">&#xa0;</th></p><p><th scope="col" class="org-left">sum-right</th></p><p><th scope="col" class="org-left">&#xa0;</th></p><p></tr></p><p></thead></p><p><tbody></p><p><tr></p><p><td class="org-left">A</td></p><p><td class="org-left">&#xa0;</td></p><p><td class="org-left">(A + B)</td></p><p></tr></p><p></tbody></p><p></table></p><p><p></p><p>or</p><p></p></p><p><table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"></p><p></p><p></p><p><colgroup></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></colgroup></p><p><thead></p><p><tr></p><p><th scope="col" class="org-left">&#xa0;</th></p><p><th scope="col" class="org-left">sum-right</th></p><p><th scope="col" class="org-left">&#xa0;</th></p><p></tr></p><p></thead></p><p><tbody></p><p><tr></p><p><td class="org-left">B</td></p><p><td class="org-left">&#xa0;</td></p><p><td class="org-left">(A + B)</td></p><p></tr></p><p></tbody></p><p></table></p><p><p></p><p>即</p><p>有對 (-&gt; A) 的構造 就有對 (-&gt; (A + B)) 的構造</p><p>有對 (-&gt; B) 的構造 就有對 (-&gt; (A + B)) 的構造</p><p>而古典的邏輯</p><p>允許在證明 (-&gt; (A + B)) 的時候根本不用構造 (-&gt; A) 或 (-&gt; A)</p><p></p></p></li>
+<li><p><p></p><p>De Morgan's laws</p><p>這裏涉及到 否定消除</p><p>即 否定必須出現在最外層 並且用 conjunction 相連</p><p>(否 (A 且 B))</p><p>對應於</p><p></p></p><p><table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"></p><p></p><p></p><p><colgroup></p><p><col  class="org-left" /></p><p></colgroup></p><p><thead></p><p><tr></p><p><th scope="col" class="org-left">A B</th></p><p></tr></p><p></thead></p><p><tbody></p><p><tr></p><p><td class="org-left">&#xa0;</td></p><p></tr></p><p></tbody></p><p></table></p><p><p></p><p>De Morgan's laws 沒法用 分式的推演規則表達</p><p>如果能夠自由的使用 De Morgan's laws</p><p>那麼</p><p>命題演算中所有命題就能化爲可用分式表達的形式</p><p>也就是說 分式的形式化能力是有限的</p><p>把一個式子化爲 分式 已經是一次變化了</p><p>這種解釋 否定 的方式是有問題的</p><p>要知道</p><p>一般人們定義 A 的 否定 的方式是 (A -&gt; (0 = 1))</p><p></p></p></li>
+<li><p>drop 之 存在 並不代表 能證明任何命題的否定</p><p>因爲 drop 是個變換規則</p><p>每個 變換規則 本身 也有類型 (&#x2026; -&gt;)</p><p>但是</p><p>drop 的類型對應的命題並不影響形式系統的一致性</p></li>
+<li><p><p></p><p>pattern match</p><p>match 與否</p><p>決定了 product 的可行性</p><p>一般的 product 是不交換的 考慮 cut 就知道了</p><p></p></p><p><table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"></p><p></p><p></p><p><colgroup></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></colgroup></p><p><thead></p><p><tr></p><p><th scope="col" class="org-left">A</th></p><p><th scope="col" class="org-left">(B + C)</th></p><p><th scope="col" class="org-left">product</th></p><p><th scope="col" class="org-left">A</th></p><p></tr></p><p></thead></p><p><tbody></p><p><tr></p><p><td class="org-left">B</td></p><p><td class="org-left">D</td></p><p><td class="org-left">&#xa0;</td></p><p><td class="org-left">D</td></p><p></tr></p><p></tbody></p><p></table></p><p><p></p><p>match 與否 被一個序關係決定</p><p>在這個序關係中 (B + C) 高於 B</p><p>所以</p><p>就可以用 分子中的 (B + C)</p><p>消除 分母中的 B</p><p></p></p></li></ul>
+</div>
+</div>
+
+<div id="outline-container-org70a1938" class="outline-2">
+<h2 id="org70a1938"><span class="todo note">note</span> </h2>
+<div class="outline-text-2" id="text-org70a1938">
+<ul class="org-ul">
+<li><p>函數複合 與 類型切合 之間的區別是</p><p>函數體爲則式的列表</p><p>而類型爲單一的則式</p></li>
+
+<li><p><p></p><p>cut 與分數的乘法太相似了</p><p>是否能找到 sequent 在 cut 下的代數結構</p><p></p></p><p></p><p><p></p><p>發現如果類型信息不減少的話</p><p>也就是所有的 unify 都是嚴絲合縫的話</p><p>那麼就有較好的代數性質</p><p></p></p></li></ul>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+喪以不執 所執者喪 執喪相比 方死方生
+</div>
+</body>
+</html>

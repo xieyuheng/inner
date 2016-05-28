@@ -19,9 +19,9 @@
 
 * math
 
+  - [[./math/function-compose-type-cut.html][function compose type cut]]
+  - (todo) [[./math/term-lattice.html][term lattice]]
   - (todo) constructive math in my view
-  - (todo) term lattice
-  - (todo) function compose type cut
   - (todo) investigations of mathematical deduction
 
 * language design
