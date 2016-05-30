@@ -525,7 +525,83 @@
 
 *** 譯文
 
-    - ><
+    - 在討論構造主義的原則時
+      我嘗試區分出 基本哲學原則
+      與 僅僅爲方便而設的原則
+
+      四個基本原則凸顯了出來
+
+      (A) 數學即常識
+
+      (B) 別問一個論斷是否真實 除非你明瞭論斷的意思
+
+      (C) 使你信服的論證皆爲證明
+
+      (D) 有意義的區別值得保留
+
+    - 出奇的是
+      很多有才能的人 拒絕拒絕在數學中使用常識
+      常見的態度是
+      數學的形式化價值重大
+      因爲形式主義構成了最高法庭
+      關於一個證明是否正確的爭論都要在那裏解決
+      而相反 嘗試告訴我們
+      如果一個證明如此繁雜
+      使得我們沒法用非形式化的方式判斷它是否正確
+      那麼我們也沒法用形式化的方法檢驗它
+      而且 形式主義也不能被用來解決哲學爭論
+      因爲形式主義僅僅體現出基礎的哲學
+      而哲學爭論必定會上升到形式主義方法的有效性
+
+    - 原則 (B) 解決 構造意義下的真 的問題
+      就此而言 它也解決 古典意義下的真 的問題 如果古典主義數學家接受它的話
+      我們也許可以說 真 是就約定而言的
+      也就是說
+      有關任意一個論斷之真假的討論 可能討論雙方都有依據
+      這種討論之所以會出現
+      就是因爲討論雙方沒有就論斷的意義達成一致
+      例如 就如下的問題而言
+      "是否 構造主義者相信 不是每個單調有限實數數列都收斂"
+      如果我回答 "是"
+      ><><><
+
+    - 每當有學生問我 他給出的一個證明是否正確時
+      在回答他的問題之前
+      我先試着弄清楚 對他而言 證明意味着什麼
+      然後我告訴他我的觀點 也就是上面的 原則 (C)
+      然後我問他
+      他是否徹底信服自己的證明
+      又 他是否覺得他已經表達地足夠清晰
+      使得別的 充分獲得信息 的智慧生物
+      也能徹底信服他的證明
+
+    - 顯然 不接受 原則 (B) 就沒法接受 原則 (C)
+      因爲 不明瞭論斷的意義 就談不上信服與否
+
+    - ><><><
+
+    - 古典主義數學家
+      沒能發現整數之間的 一種有意義的區別
+      這種基本的失敗反映在古典數學發展的各個方面
+      設想一個數 n
+      定義爲 0 若 黎曼假設爲真
+      定義爲 1 若 黎曼假設爲假
+      構造主義者無法阻止古典主義數學家使用這類數
+      (儘管他個人相信 這類數意義有限)
+      然是他的確希望古典主義數學家能夠
+      把這類數 和能夠被 "計算" 的數 區分開來
+      例如 n1 被定義爲 小於 10^(10^10) 的素數的個數
+      古典主義數學家 有時的確會考慮某些數 可否被 "計算"
+      但是沒有系統的方法
+      在古典數學的系統發展中 這種區別沒能體現出來
+      即使他想要觀察
+      也沒有工具 能讓古典主義數學家 以系統的方式觀察到這些區別
+
+    - The constructivists are frequently accused of
+
+    -
+
+
 
 *** 原文
 
@@ -563,21 +639,98 @@
       and consequently philosophical disagreements
       are bound to result in disagreements about the validity of the formalism.
 
-    - Principle (B) resolves the problem of constructive truth. For thatmatter, it would resolve the problem of classical truth if the classicalmathematicians would accept it. We might say that truth is a matter of convention.This simply means that all arguments concerning the truth or falsity of anygiven statement about which both parties possess the same relevant factsoccur because they have not reached a clear agreement as to what thestatement means. For instance in response to the inquiry "Is it true the construe -tivists believe that not every bounded monotone sequence of real numbersconverges?, " if I am tired I answer "yes. "
-      Otherwise I tell the questionerthat my answer will depend on what meaning he wishes to assign to thestatement (*), that every bounded monotone sequence or real numbers converges.Moreover I tell him that once he has assigned a precise meaning to statement(*), then my answer to his question will probably be clear to him before I giveit. The two meanings commonly assigned to (*) are the classical and theconstructive. It seems to me that the classical mathematician is not as preciseas he might be about the meaning he assigns to such a statement. I shall showyou later one simple and attractive approach to the problem of meaning inclassical mathematics. However in the case before us the intuition at least is
-      clear. We represent the terms of the sequence by vertical marks marchingto the right, but remaining to the left of the bound B.I I I I I I I I 1111 - * - IBThe classical intuition is that the sequence gets cramped, because there areinfinitely many terms, but only a finite amount of space available to the leftof B. Thus it has to pile up somewhere. That somewhere is its limit L.I I I I I I ••• I IL BThe constructivist grants that some sequences behave in precisely this way.I call those sequences stupid. Let me tell you what a smart sequence will do.It will pretend to be stupid, piling up at a limit (in reality a false limit) Lf .Then when you have been convinced that it really is piling up at Lf , it willtake a jump and land somewhere to the right!
-      I I I I llll •••jumpLet us postpone a serious discussion of this example until we have discussedthe constructive real number system. The point I wish to make now is thatunder neither interpretation will there be any disagreement as to the truth of(*), once that interpretation has been fixed and made precise.
+    - Principle (B) resolves the problem of constructive truth.
+      For that matter, it would resolve the problem of classical truth
+      if the classical mathematicians would accept it.
+      We might say that truth is a matter of convention.
+      This simply means that all arguments concerning the truth or falsity
+      of any given statement about which
+      both parties possess the same relevant facts
+      occur because they have not reached a clear agreement
+      as to what the statement means.
+      For instance in response to the inquiry
+      "Is it true the construetivists believe that
+       not every bounded monotone sequence of real numbers converges?,"
+      if I am tired I answer "yes."
+      ><><><
 
-    - Whenever a student asks me whether a proof he has given is correct,before answering his question I try to discover his concept of what constitutesa proof. Then I tell him my own concept, (C) above, and ask him whether hefinds his argument completely convincing, and whether he thinks he hasexpressed himself clearly enough so that other informed and intelligent peoplewill also be completely convinced.
+    - Whenever a student asks me whether a proof he has given is correct,
+      before answering his question
+      I try to discover his concept of what constitutes a proof.
+      Then I tell him my own concept, (C) above,
+      and ask him whether he finds his argument completely convincing,
+      and whether he thinks he has expressed himself clearly enough
+      so that other informed and intelligent people
+      will also be completely convinced.
 
-    - Clearly it is impossible to accept (C) without accepting (B), because itdoesn't make sense to be convinced that something is true unless you knowwhat it means.
+    - Clearly it is impossible to accept (C) without accepting (B),
+      because it doesn't make sense to be convinced that
+      something is true unless you know what it means.
 
-    - The question often arises, whether a constructivist would accept a non-constructive proof of a numerical result involving no existential quantifiers,such as Goldbach's conjecture or Fermat's last theorem. My answer issupplied by (C): I would want to examine the proof to see whether I found itcompletely convincing. Perhaps one should keep an open mind, but I find it hardto believe that I would find any proof that relied on the principle of the
-      excluded middle for instance completely convincing. Fortunately the problemis hypothetical, because such proofs do not seem to arise. It does raise theinteresting point that a classically acceptable proof of Goldbach's conjecturemight not be constructively acceptable, and therefore the classical and theconstructive interpretations of Goldbach's conjecture must differ in somefundamental respect. We shall see later that this is indeed the case.
+    - The question often arises,
+      whether a constructivist would accept a non-constructive proof
+      of a numerical result involving no existential quantifiers,
+      such as Goldbach's conjecture
+      or Fermat's last theorem.
+      My answer is supplied by (C):
+      I would want to examine the proof to see
+      whether I found it completely convincing.
+      Perhaps one should keep an open mind,
+      but I find it hard to believe that
+      I would find any proof that
+      relied on the principle of the
+      ><><><
 
-    - Classical mathematics fails to observe meaningful distinctions having todo with integers. This basic failure reflects itself at all levels of theclassical development of mathematics. Consider the number n , defined to be 0 ifthe Riemann hypothesis is true and 1 if it is false. The constructivist doesnot wish to prevent the classicist from working with such numbers (althoughhe may personally believe that their interest is limited). He does want theclassicist to distinguish such numbers from numbers which can be"computed, fl such as the number n of primes less than 1010 . Classicalmathematicians do concern themselves sporadically with whether numberscan be "computed, !l but only on an ad hoc basis. The distinction is notobserved in the systematic development of classical mathematics, nor would thetools available to the classicist permit him to observe the distinctionsystematically even if he were so inclined.
+    - Classical mathematics
+      fails to observe meaningful distinctions having to do with integers.
+      This basic failure reflects itself
+      at all levels of the classical development of mathematics.
+      Consider the number n,
+      defined to be 0 if the Riemann hypothesis is true
+      and 1 if it is false.
+      The constructivist does not wish to prevent the classicist from
+      working with such numbers
+      (although he may personally believe that their interest is limited).
+      He does want the classicist to distinguish such numbers
+      from numbers which can be "computed".
+      such as the number n1 of primes less than 10^(10^10).
+      Classical mathematicians do concern themselves sporadically
+      with whether numbers can be "computed"
+      but only on an ad hoc basis.
+      The distinction is not observed
+      in the systematic development of classical mathematics,
+      nor would the tools available to the classicist
+      permit him to observe the distinction systematically
+      even if he were so inclined.
 
-    - The constructivists are frequently accused of displaying the same insen-sitivity to shades of meaning of which they accuse the classicist, because theydo not distinguish between numbers that can be computed in principle, such asthe number n defined above, and numbers that can be computed in fact.Thus they violate their own principle (D). This is a serious accusation, andone that is not easy to refute. Rather than attempting to refute it, I shall giveyou my personal point of view. First, it may be demanding too much of theconstructivists to ask them to lead the way in the development of usable andsystematic methods for distinguishing computability in principle from compu-tability in fact. If and when such methods are found, the constructivists willgratefully incorporate them into their mathematics. Second, it is by no meansclear that such methods are going to be found. There is no fast distinctionbetween computability in principle and in fact, because of the constant progressof the state of the art among other reasons. The most we can hope for issome good systematic measure of the efficiency of a computation. Until suchis found, the problem will continue to be treated on an ad hoc basis.
+    - The constructivists are frequently accused of
+      displaying the same insensitivity
+      to shades of meaning of which they accuse the classicist,
+      because they do not distinguish between numbers
+      that can be computed in principle, such as the number n defined above,
+      and numbers that can be computed in fact.
+      Thus they violate their own principle (D).
+      This is a serious accusation,
+      and one that is not easy to refute.
+      Rather than attempting to refute it,
+      I shall give you my personal point of view.
+      First, it may be demanding too much of the constructivists
+      to ask them to lead the way
+      in the development of usable and systematic methods
+      for distinguishing computability in principle from computability in fact.
+      If and when such methods are found,
+      the constructivists will gratefully incorporate them
+      into their mathematics.
+      Second, it is by no means clear that
+      such methods are going to be found.
+      There is no fast distinction
+      between computability in principle and in fact,
+      because of the constant progress of
+      the state of the art among other reasons.
+      The most we can hope for is some good systematic measure
+      of the efficiency of a computation.
+      Until such is found,
+      the problem will continue to be treated on an ad hoc basis.
 
     - I was careful not to call the number nn defined above an integer.Whether we do call it an integer is of no real importance, as long as wedistinguish it in some way from numbers such as n . For instance we mightcall nn an integer and call n a constructive integer. The constructivistshave not accepted this terminology, in part because of Brouwer's influence,but also because it does not accord with their estimate of the relativeimportance of the two concepts. I shall reserve the term "integer11 for what aclassicist might call a constructive integer, and put aside, at least for now,the problem of what would be an appropriate term for what is classicallycalled an integer (assuming that the classical notion of an integer is indeedviable).
 

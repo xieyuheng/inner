@@ -1,2 +1,2 @@
 #+HTML_HEAD: <link rel="stylesheet" href="http://xieyuheng.github.io/asset/css/page.css" type="text/css" media="screen" />
-#+title: term lattice
+#+title: term lattice -- the meaning of equality

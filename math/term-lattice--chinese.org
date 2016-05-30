@@ -109,54 +109,53 @@
 * ><
 
   #+begin_src scheme
-  (lattice
+  (* lattice (-> type)
+     cover (lattice lattice -> type)
+     reflexive ((:x : lattice) -> :x :x cover)
+     antisymmetry
+     ((:x :y : lattice)
+      :x :y cover :y :x cover
+      ------------------->
+      :x :y equal)
+     ;; maybe it is the very definition of equal
+     ;; that maintaining this proposition
+     indirect-cover
+     (((:z : lattice) :z :x cover -> :z :y cover)
+      ---------------->
+      :x :y cover)
+     indirect-cover'
+     (((:z : lattice) :y :z cover -> :x :z cover)
+      ---------------->
+      :x :y cover)
 
-   cover (lattice lattice -> type)
-   reflexive ((:x : lattice) -> :x :x cover)
-   antisymmetry
-   ((:x :y : lattice)
-    :x :y cover :y :x cover
-    ------------------->
-    :x :y equal)
-   ;; maybe it is the very definition of equal
-   ;; that maintaining this proposition
-   indirect-cover
-   (((:z : lattice) :z :x cover -> :z :y cover)
-    ---------------->
-    :x :y cover)
-   indirect-cover'
-   (((:z : lattice) :y :z cover -> :x :z cover)
-    ---------------->
-    :x :y cover)
-
-   meet (lattice lattice -> lattice)
-   join (lattice lattice -> lattice)
-   idempotent
-   ((:x : lattice) -> :x :x meet :x equal)
-   symmetry
-   ((:x :y : lattice) -> :x :y meet :y :x meet equal)
-   associative
-   (-> :x :y meet :z meet
-       :x :y :z meet meet
-       equal))
+     meet (lattice lattice -> lattice)
+     join (lattice lattice -> lattice)
+     idempotent
+     ((:x : lattice) -> :x :x meet :x equal)
+     symmetry
+     ((:x :y : lattice) -> :x :y meet :y :x meet equal)
+     associative
+     (-> :x :y meet :z meet
+         :x :y :z meet meet
+         equal))
 
   ((:x : lattice) -> :x :x cover)
 
   ;; use the follow theorem reflexive2 to proof reflexive
 
-  (defn reflexive2
-      ((:x :y : lattice) :x :y equal -> :y :x cover :x :y cover)
-    ><><><)
+  (~ reflexive2
+     ((:x :y : lattice) :x :y equal -> :y :x cover :x :y cover)
+     ><><><)
 
   ((:x :y : lattice)
    :x :y cover :y :x cover
    <------------------->
    :x :y equal)
 
-  (defn same-equal-same
-      (:x :x -> :x :x equal)
-    ><><><)
+  (~ same-equal-same
+     (:x :x -> :x :x equal)
+     ><><><)
 
-  (defn reflexive ((:x : lattice) -> :x :x cover)
-    (:d -> dup dup2 same-equal-same reflexive2 drop))
+  (~ reflexive ((:x : lattice) -> :x :x cover)
+     (:d -> dup dup2 same-equal-same reflexive2 drop))
   #+end_src

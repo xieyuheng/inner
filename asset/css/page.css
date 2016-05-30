@@ -244,10 +244,9 @@
         margin-right: 2em;
         font-family: Input, Monaco, Consolas, "Lucida Console", monospace;
         font-size: 14px;
-        line-height: 21px;
+        line-height: 1em;
         color: #f8f8f0;
         background-color: #1b1d1e;
-        overflow: auto;
         white-space: pre-wrap;
         border-left: 1px solid #585850;
     }

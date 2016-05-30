@@ -1,10 +1,20 @@
-#+HTML_HEAD: <link rel="stylesheet" href="http://xieyuheng.github.io/asset/css/page.css" type="text/css" media="screen" />
-#+title: function compose, type cut
+#+HTML_HEAD: <link rel="stylesheet" href="../asset/css/page.css" type="text/css" media="screen" />
+#+title: function compose, type cut, and the algebra of logic is a field
+
+------
+
+@@html:
+<p> Mathematics is common sense. -- Errett Bishop </p>
+@@
+
+------
 
 * first I would like to summarize intuitionistic logic
 
   - first I would like to summarize intuitionistic logic
     it is also called constructive logic
+    it is very well known now
+    and is gloriously called the Brouwer–Heyting–Kolmogorov interpretation
 
   - to prove (P and Q)
     is to prove P and prove Q
@@ -45,13 +55,17 @@
       to prove something exist
       you do not need to find such thing
 
-* let us design a language to express logic expression to be proved
+* let us design a formal language to express theorem
 
-  - let us design a little language to express logic expression to be proved
-    a logic expression to be proved is called a theorem or a proposition
+  - let us design a formal language to express theorem
 
   - firstly we see the fact that the general form of theorem is like (A -> B)
-    let us optimize our syntax a little for "and"
+    let us unite our syntax toward "->"
+    we do not write A
+    instead we will write (-> A)
+    - this is just like one does not write 3 but write 1\3 or 3/1 instead
+
+  - and let us optimize our syntax for "and"
     we do not write ((A and B) -> (C and D))
     but just write (A B -> C D)
 
@@ -61,6 +75,8 @@
     sequent for us is not exactly the same as sequent for Gentzen
     for Gentzen (A B -> C D) is viewed as ((A and B) -> (C or D))
     but for us (A B -> C D) is viewed as ((A and B) -> (C and D))
+    - if you want to know more about the meaning of sequent for Gentzen
+      please see his paper "investigations into logical deduction"
 
   - how about (C or D) ? you might ask
     I would say, let us ignore (C or D) for now
@@ -72,146 +88,251 @@
     while "there exist x belong to A" is a named way to express alternative
     so, whenever we want to express alternative
     we would have to introduce name
+    - we can add "or" back to our language later
+      but I insist that we ignore "or" for now
+      because I want the language to be simple
 
-  - we can add "or" back to our language later
-    but I insist that we ignore "or" for now
-    because I want the language to be simple
-    I also suggest to ignore "not"
-    because you see (not P) is just (P -> something-we-consider-wrong)
+  - I also suggest to ignore "not"
+    because you see that (not P) is just (P -> something-we-consider-wrong)
     the negation we want to express
     is parameterized by something-we-consider-wrong
+    (or say, depends on something-we-consider-wrong)
     if we simple say (not P)
     the information of this parameterization will be lost
 
-  - I express it as ((x : A) -> P(x))
+  - I express "for all x belong to A, we have P(x)"
+    as ((x : A) -> x P)
+    and express "there exist x belong to A, such that P(x)"
+    as (-> (x : A) x P)
+    I am using postfix notation here
+    I write "x P" instead of "P(x)"
+    - why should we use postfix notation ? one wonders
+      you might argue that
+      compare to the traditional math notation, it looks really alien
+      if you care, please see [[rationale of using postfix notation]]
 
-  - I express it as (-> (x : A) P(x))
+  - recall that
+    ((x : A) -> x P) means "for all x belong to A, we have P(x)"
+    (-> (x : A) x P) means "there exist x belong to A, such that P(x)"
+    in the above two example expressions
+    variables are written in lower-case latin letter
+    functions are written in upper-case latin letter
+    personally I do not wish to
+    distinguish meaning by lower-case v.s. upper-case
+    (maybe because I am a scheme user, or maybe because I am a Chinese)
+    so, in the following implementation of our language
+    I will write
+    #+begin_src scheme
+    ((:x : a) -> :x p)
+    (-> (:x : a) :x p)
+    #+end_src
 
-* a deduction system, and a language to record deduction, a record of a deduction is a proof
+  - now that we have designed a language to express theorem
+    where except for the symbol "->" setting in the
+    and every thing else seems are intrinsic to the language
+    let us write some examples
+    #+begin_src scheme
+    (* wanderer/poe (-> poe is-wanderer))
+    (* way-worn (:x is-wanderer -> :x is-weary))
+    (~ weary/poe (-> poe is-weary)
+       (-> wanderer/poe way-worn))
+    #+end_src
 
-* >< to compare with other deduction systems
+* >< theorem can be viewed as type of function
 
-  - sequent calculus with a little change to get an algebra of logic
+  - theorem can be viewed as type of function
+    this is well known as "theorem as type"
 
-* >< the language just designed can be viewed as a term-rewriting-system
+  - natural number
+    #+begin_src scheme
+    (+ natural (-> type)
+       zero (-> natural)
+       succ (natural -> natural))
 
-* >< implementation of such a language
+    (~ add (natural natural -> natural)
+       (:m zero -> :m)
+       (:m :n succ -> :m :n add succ))
 
-* ><
+    (~ mul (natural natural -> natural)
+       (:m zero -> zero)
+       (:m :n succ -> :m :n mul :m add))
 
-  - 所有的命題都是蘊含式
-    其表示方式有兩種
-    首先 箭頭
-    (A -> B)
-    其次 分數
-    | A |
-    |---|
-    | B |
-    對推演規則的表達可以用表格來寫
-    比如
-  - cut [product 的特殊形式]
-    即同分子分母的消去
-    | A | B | cut | A |
-    |---+---+-----+---|
-    | B | C |     | C |
-  - curry & apply
-    這裏與同形式的分數變換不同
-    分子移下去以形成嵌套的分母時 還是做爲分子
-    | A | curry |          |
-    |---+-------+----------|
-    | B | apply | (A -> B) |
-  - imply 的語義
-    如果有對 (-> A) 的構造
-    那麼把這個構造轉化爲對 (-> B) 的構造的算法 就是對 (A -> B) 的構造
-    imply [product 的特殊形式]
-    |   | A | imply |   |
-    |---+---+-------+---|
-    | A | B |       | B |
-  - conjunction-right [product 的特殊形式]
-    |   |   | conjunction-right |     |
-    |---+---+-------------------+-----|
-    | A | B |                   | A B |
-    in another way
-    | C | D | conjunction-right | C D |
-    |---+---+-------------------+-----|
-    | A | B |                   | A B |
-  - conjunction-left [drop]
-    | A | conjunction-left | A B |
-    |---+------------------+-----|
-    |   |                  |     |
-    or
-    | B | conjunction-left | A B |
-    |---+------------------+-----|
-    |   |                  |     |
-  - sum-left
-    注意這裏的規則如何與一般的分式相加不同
-    也就是說
-    類型的運算規則
-    只有 product 在形式上與分式的算數運算規則相同
-    | A | B | sum-left | (A + B) |
-    |---+---+----------+---------|
-    |   |   |          |         |
-    in another way
-    | A | B | sum-left | (A + B) |
-    |---+---+----------+---------|
-    | C | D |          | (C + D) |
-  - sum-right
-    |   | sum-right |         |
-    |---+-----------+---------|
-    | A |           | (A + B) |
-    or
-    |   | sum-right |         |
-    |---+-----------+---------|
-    | B |           | (A + B) |
-    即
-    有對 (-> A) 的構造 就有對 (-> (A + B)) 的構造
-    有對 (-> B) 的構造 就有對 (-> (A + B)) 的構造
-    而古典的邏輯
-    允許在證明 (-> (A + B)) 的時候根本不用構造 (-> A) 或 (-> A)
-  - De Morgan's laws
-    這裏涉及到 否定消除
-    即 否定必須出現在最外層 並且用 conjunction 相連
-    (否 (A 且 B))
-    對應於
-    | A B |
-    |-----|
-    |     |
-    De Morgan's laws 沒法用 分式的推演規則表達
-    如果能夠自由的使用 De Morgan's laws
-    那麼
-    命題演算中所有命題就能化爲可用分式表達的形式
-    也就是說 分式的形式化能力是有限的
-    把一個式子化爲 分式 已經是一次變化了
-    這種解釋 否定 的方式是有問題的
-    要知道
-    一般人們定義 A 的 否定 的方式是 (A -> (0 = 1))
-  - drop 之 存在 並不代表 能證明任何命題的否定
-    因爲 drop 是個變換規則
-    每個 變換規則 本身 也有類型 (... ->)
-    但是
-    drop 的類型對應的命題並不影響形式系統的一致性
-  - pattern match
-    match 與否
-    決定了 product 的可行性
-    一般的 product 是不交換的 考慮 cut 就知道了
-    | A | (B + C) | product | A |
-    |---+---------+---------+---|
-    | B | D       |         | D |
-    match 與否 被一個序關係決定
-    在這個序關係中 (B + C) 高於 B
-    所以
-    就可以用 分子中的 (B + C)
-    消除 分母中的 B
+    (~ factorial (natural -> natural)
+       (zero -> zero succ)
+       (:n succ -> :n factorial :n succ mul))
+    #+end_src
 
-* note
+  - stack processing
+    #+begin_src scheme
+    (~ drop (:t ->)
+       (:d ->))
 
-  - 函數複合 與 類型切合 之間的區別是
-    函數體爲則式的列表
-    而類型爲單一的則式
+    (~ dup (:t -> :t :t)
+       (:d -> :d :d))
 
-  - cut 與分數的乘法太相似了
-    是否能找到 sequent 在 cut 下的代數結構
+    (~ over (:t1 :t2 -> :t1 :t2 :t1)
+       (:d1 :d2 -> :d1 :d2 :d1))
 
-    發現如果類型信息不減少的話
-    也就是所有的 unify 都是嚴絲合縫的話
-    那麼就有較好的代數性質
+    (~ tuck (:t1 :t2 -> :t2 :t1 :t2)
+       (:d1 :d2 -> :d2 :d1 :d2))
+
+    (~ swap (:t1 :t2 -> :t2 :t1)
+       (:d1 :d2 -> :d2 :d1))
+    #+end_src
+
+  - list
+    #+begin_src scheme
+    (+ list ({:t : type} :t -> type)
+       null (-> :t list)
+       cons (:t list :t -> :t list))
+
+    (~ append (:t list :t list -> :t list)
+       (:l null -> :l)
+       (:l :r :e cons -> :l :r append :e cons))
+
+    (~ map (:t1 list (:t1 -> :t2) -> :t2 list)
+       (null :f -> null)
+       (:l :e cons :f -> :l :f map :e :f apply cons))
+    #+end_src
+
+  - vector
+    #+begin_src scheme
+    (+ vector ({:t : type} natural :t -> type)
+       null (-> zero :t vector)
+       cons (:n :t vector :t -> :n succ :t vector))
+
+    (~ append (:m :t vector :n :t vector -> :m :n add :t vector)
+       (:l null -> :l)
+       (:l :r :e cons -> :l :r append :e cons))
+
+    (~ map (:n :t1 vector (:t1 -> :t2) -> :n :t2 vector)
+       (null :f -> null)
+       (:l :e cons :f -> :l :f map :e :f apply cons))
+    #+end_src
+
+* >< the way we write function forms a language to record deduction
+
+  - the way we write function forms a language to record deduction
+    a record of many steps of deduction is called a proof
+    this is well known as "function as proof"
+
+    | deduction   | language to record deduction |
+    |-------------+------------------------------|
+    | cut         | function composition         |
+    | exist-intro | define new type              |
+    | exist-elim  | branching by a list of arrow |
+    | conj-elim   | binding by unification       |
+
+  - the following seems like conj-intro & conj-elim in natural deduction
+    but we do not view them the that way
+    #+begin_src scheme
+    ;; conj-intro
+    (* p1 (-> a))
+    (* p2 (-> b))
+    (~ p3 (-> a b)
+       (-> p1 p2))
+
+    (* drop (:t ->)
+       (:d ->))
+    (~ swap (:t1 :t2 -> :t2 :t1)
+       (:d1 :d2 -> :d2 :d1))
+
+    ;; conj-elim
+    (* p3 (-> a b))
+    (~ p1 (-> a)
+       (-> p3 drop))
+    (~ p1 (-> a)
+       (-> p3 swap drop))
+    #+end_src
+
+* >< carefully define equality of theorem, we will get a field
+
+  - carefully define equality of theorem, we will get a field
+
+    | deduction   | language to record deduction | logic field        |
+    |-------------+------------------------------+--------------------|
+    | cut         | function composition         | equality or weaken |
+    | exist-intro | define new type              | field extension    |
+    | exist-elim  | branching by a list of arrow | distributive       |
+    | conj-elim   | binding by unification       |                    |
+
+  - >< logic harmony
+
+  - so, we have the field of logic
+    during deduction
+    we can not only add or multiply elements of the field together
+    we also are allowed to weaken the resulting element as we wish
+    a proof is a record of many steps of deductions
+
+  - cut is a way to weaken an element of the field
+
+* >< an attempt to implement such a language
+
+  - project page : http://xieyuheng.github.io/sequent1
+
+* appendix
+
+*** rationale of using postfix notation
+
+    - rationale of using postfix notation is the following
+      in the linear writing system of our language
+      we can roughly distinguish four kinds of notations for function or predicate
+      | infix     | ((1 + 2) + 3) |
+      | prefix    | + + 1 2 3     |
+      | postfix   | 3 2 1 + +     |
+      | borderfix | (+ 1 2 3)     |
+      - infix is especially good for associative binary function
+      - prefix and postfix are not ambiguous without bracket
+      - borderfix can be used for functions
+        that can apply to different numbers of arguments
+      our choice is between prefix and postfix
+      because for simplicity we have the following two features
+      - the arity of all functions must be fixed
+      - we want our expressions to be not ambiguous without bracket
+      then, how do we decide to use postfix instead of prefix ?
+      seemingly, prefix and postfix are symmetric
+      while we still can distinguish them
+      because we write in special order (from left to right in most western language)
+      in postfix notation suppose we have written
+      1 2 +
+      and we want to add 3 to the result of 1 2 +
+      we simply write
+      1 2 + 3 +
+      while in prefix notation suppose we have written
+      @@html: + 1 2 @@
+      and we want to add 3 to the result of + 1 2
+      we have to insert + 3 in front of + 1 2 and write
+      @@html: + 3 + 1 2 @@
+      I summarize this difference by say
+      postfix notation respect the special order of a linear writing system
+      the above conclude my rationale
+
+*** >< rationale of function composition over function application
+
+    - 代數的特點是
+      - 基本變換方式較少
+      - 變換本身被代數結構自身的元素參數化
+      Hilbert system 與 combinatory logic 滿足這兩個條件
+      但是由於 combinatory logic 作爲語法 所記錄的變化是函數作用
+      而與函數複合相比 函數作用不具有結合性
+      因此看起來不像是代數 因爲代數結構的特點就是結合性
+
+*** remark on deduction and inference
+
+    - first question one might ask is
+      what is a deduction or a inference ?
+      my answer is a deduction or a inference
+      is a way to express a change of theorem
+      "a change" means "one step of change"
+
+    - let us generalized a little bit
+      and to discuss "a change of thing" and "language to record changes"
+      you will find these two concepts are very common
+      and they also are named gloriously in different places
+      | thing   | a change of thing     | language to record changes |
+      |---------+-----------------------+----------------------------|
+      | theorem | deduction             | proof                      |
+      | food    |                       | cookbook                   |
+      | data    |                       | algorithm                  |
+      | number  | elementary arithmetic |                            |
+      (seems to me a market for language designer)
