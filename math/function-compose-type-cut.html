@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-05-30 Mon 12:50 -->
+<!-- 2016-05-31 Tue 07:30 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>function compose, type cut, and the algebra of logic is a field</title>
@@ -67,22 +67,32 @@ for the JavaScript code in this tag.
 <h2>overview</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgbc0cd66">first I would like to summarize intuitionistic logic</a></li>
-<li><a href="#org8081882">let us design a formal language to express theorem</a></li>
-<li><a href="#org2010663"><span class="todo _gt__lt_">&gt;&lt;</span> theorem can be viewed as type of function</a></li>
-<li><a href="#orge2059a"><span class="todo _gt__lt_">&gt;&lt;</span> the way we write function forms a language to record deduction</a></li>
-<li><a href="#orgf9953f7"><span class="todo _gt__lt_">&gt;&lt;</span> carefully define equality of theorem, we will get a field</a></li>
-<li><a href="#org4e25c79"><span class="todo _gt__lt_">&gt;&lt;</span> an attempt to implement such a language</a></li>
-<li><a href="#orgbe89818">appendix</a>
+<li><a href="#org6bd794b">first I would like to summarize intuitionistic logic</a></li>
+<li><a href="#orge3870be">let us design a formal language to express theorem</a></li>
+<li><a href="#orga68b20a"><span class="todo _gt__lt_">&gt;&lt;</span> theorem can be viewed as type of function</a></li>
+<li><a href="#orgac3edaa"><span class="todo _gt__lt__gt__lt__gt__lt_">&gt;&lt;&gt;&lt;&gt;&lt;</span> the way we write function forms a language to record deduction</a></li>
+<li><a href="#orgea767ad"><span class="todo _gt__lt_">&gt;&lt;</span> carefully define equality of theorem, we will get a field</a></li>
+<li><a href="#org4c5f1c8"><span class="todo _gt__lt_">&gt;&lt;</span> an attempt to implement such a language</a></li>
+<li><a href="#org6780853">appendix</a>
 <ul>
-<li><a href="#org1aab552">rationale of using postfix notation</a></li>
-<li><a href="#org6f5ff4c"><span class="todo _gt__lt_">&gt;&lt;</span> rationale of function composition over function application</a></li>
-<li><a href="#org4efc66b">remark on deduction and inference</a></li>
+<li><a href="#org1f942da">rationale of using postfix notation</a></li>
+<li><a href="#org5013b75"><span class="todo _gt__lt_">&gt;&lt;</span> rationale of function composition over function application</a></li>
+<li><a href="#orgeb1f451">remark on deduction and inference</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
+<hr  />
+
+<p>
+
+<p> this article is not finished yet </p>
+
+</p>
+
+<hr  />
+
 <hr  />
 
 <p>
@@ -93,9 +103,9 @@ for the JavaScript code in this tag.
 
 <hr  />
 
-<div id="outline-container-orgbc0cd66" class="outline-2">
-<h2 id="orgbc0cd66">first I would like to summarize intuitionistic logic</h2>
-<div class="outline-text-2" id="text-orgbc0cd66">
+<div id="outline-container-org6bd794b" class="outline-2">
+<h2 id="org6bd794b">first I would like to summarize intuitionistic logic</h2>
+<div class="outline-text-2" id="text-org6bd794b">
 <ul class="org-ul">
 <li><p>first I would like to summarize intuitionistic logic</p><p>it is also called constructive logic</p><p>it is very well known now</p><p>and is gloriously called the Brouwer–Heyting–Kolmogorov interpretation</p></li>
 
@@ -113,9 +123,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org8081882" class="outline-2">
-<h2 id="org8081882">let us design a formal language to express theorem</h2>
-<div class="outline-text-2" id="text-org8081882">
+<div id="outline-container-orge3870be" class="outline-2">
+<h2 id="orge3870be">let us design a formal language to express theorem</h2>
+<div class="outline-text-2" id="text-orge3870be">
 <ul class="org-ul">
 <li><p>let us design a formal language to express theorem</p></li>
 
@@ -129,7 +139,7 @@ for the JavaScript code in this tag.
 
 <li><p>I also suggest to ignore "not"</p><p>because you see that (not P) is just (P -&gt; something-we-consider-wrong)</p><p>the negation we want to express</p><p>is parameterized by something-we-consider-wrong</p><p>(or say, depends on something-we-consider-wrong)</p><p>if we simple say (not P)</p><p>the information of this parameterization will be lost</p></li>
 
-<li><p>I express "for all x belong to A, we have P(x)"</p><p>as ((x : A) -&gt; x P)</p><p>and express "there exist x belong to A, such that P(x)"</p><p>as (-&gt; (x : A) x P)</p><p>I am using postfix notation here</p><p>I write "x P" instead of "P(x)"</p><p><ul class="org-ul"></p><p><li><p>why should we use postfix notation ? one wonders</p><p>you might argue that</p><p>compare to the traditional math notation, it looks really alien</p><p>if you care, please see <a href="#org1aab552">rationale of using postfix notation</a></p></li></ul></p></li>
+<li><p>I express "for all x belong to A, we have P(x)"</p><p>as ((x : A) -&gt; x P)</p><p>and express "there exist x belong to A, such that P(x)"</p><p>as (-&gt; (x : A) x P)</p><p>I am using postfix notation here</p><p>I write "x P" instead of "P(x)"</p><p><ul class="org-ul"></p><p><li><p>why should we use postfix notation ? one wonders</p><p>you might argue that</p><p>compare to the traditional math notation, it looks really alien</p><p>if you care, please see <a href="#org1f942da">rationale of using postfix notation</a></p></li></ul></p></li>
 
 <li><p><p></p><p>recall that</p><p>((x : A) -&gt; x P) means "for all x belong to A, we have P(x)"</p><p>(-&gt; (x : A) x P) means "there exist x belong to A, such that P(x)"</p><p>in the above two example expressions</p><p>variables are written in lower-case latin letter</p><p>functions are written in upper-case latin letter</p><p>personally I do not wish to</p><p>distinguish meaning by lower-case v.s. upper-case</p><p>(maybe because I am a scheme user, or maybe because I am a Chinese)</p><p>so, in the following implementation of our language</p><p>I will write</p><p></p></p><p><div class="org-src-container"></p><p></p><p><pre class="src src-scheme"><span style="color: #696969;">((</span><span style="color: #a6e22e;">:x</span> : a<span style="color: #696969;">)</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:x</span> p<span style="color: #696969;">)</span></p><p><span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #696969;">(</span><span style="color: #a6e22e;">:x</span> : a<span style="color: #696969;">)</span> <span style="color: #a6e22e;">:x</span> p<span style="color: #696969;">)</span></p><p></pre></p><p></div></p></li>
 
@@ -137,9 +147,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org2010663" class="outline-2">
-<h2 id="org2010663"><span class="todo _gt__lt_">&gt;&lt;</span> theorem can be viewed as type of function</h2>
-<div class="outline-text-2" id="text-org2010663">
+<div id="outline-container-orga68b20a" class="outline-2">
+<h2 id="orga68b20a"><span class="todo _gt__lt_">&gt;&lt;</span> theorem can be viewed as type of function</h2>
+<div class="outline-text-2" id="text-orga68b20a">
 <ul class="org-ul">
 <li><p>theorem can be viewed as type of function</p><p>this is well known as "theorem as type"</p></li>
 
@@ -153,19 +163,25 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orge2059a" class="outline-2">
-<h2 id="orge2059a"><span class="todo _gt__lt_">&gt;&lt;</span> the way we write function forms a language to record deduction</h2>
-<div class="outline-text-2" id="text-orge2059a">
+<div id="outline-container-orgac3edaa" class="outline-2">
+<h2 id="orgac3edaa"><span class="todo _gt__lt__gt__lt__gt__lt_">&gt;&lt;&gt;&lt;&gt;&lt;</span> the way we write function forms a language to record deduction</h2>
+<div class="outline-text-2" id="text-orgac3edaa">
 <ul class="org-ul">
 <li><p><p></p><p>the way we write function forms a language to record deduction</p><p>a record of many steps of deduction is called a proof</p><p>this is well known as "function as proof"</p><p></p></p><p></p><p><table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"></p><p></p><p></p><p><colgroup></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></colgroup></p><p><thead></p><p><tr></p><p><th scope="col" class="org-left">deduction</th></p><p><th scope="col" class="org-left">language to record deduction</th></p><p></tr></p><p></thead></p><p><tbody></p><p><tr></p><p><td class="org-left">cut</td></p><p><td class="org-left">function composition</td></p><p></tr></p><p></p><p><tr></p><p><td class="org-left">exist-intro</td></p><p><td class="org-left">define new type</td></p><p></tr></p><p></p><p><tr></p><p><td class="org-left">exist-elim</td></p><p><td class="org-left">branching by a list of arrow</td></p><p></tr></p><p></p><p><tr></p><p><td class="org-left">conj-elim</td></p><p><td class="org-left">binding by unification</td></p><p></tr></p><p></tbody></p><p></table></p></li>
 
-<li><p><p></p><p>the following seems like conj-intro &amp; conj-elim in natural deduction</p><p>but we do not view them the that way</p><p></p></p><p><div class="org-src-container"></p><p></p><p><pre class="src src-scheme"><span style="color: #FF8888;">;; </span><span style="color: #FF8888;">conj-intro</span></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> p1 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> a<span style="color: #696969;">))</span></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> p2 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> b<span style="color: #696969;">))</span></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">~</span> p3 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> a b<span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> p1 p2<span style="color: #696969;">))</span></p><p></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> drop <span style="color: #696969;">(</span><span style="color: #a6e22e;">:t</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span><span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span><span style="color: #a6e22e;">:d</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span><span style="color: #696969;">))</span></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">~</span> swap <span style="color: #696969;">(</span><span style="color: #a6e22e;">:t1</span> <span style="color: #a6e22e;">:t2</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:t2</span> <span style="color: #a6e22e;">:t1</span><span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span><span style="color: #a6e22e;">:d1</span> <span style="color: #a6e22e;">:d2</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:d2</span> <span style="color: #a6e22e;">:d1</span><span style="color: #696969;">))</span></p><p></p><p><span style="color: #FF8888;">;; </span><span style="color: #FF8888;">conj-elim</span></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> p3 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> a b<span style="color: #696969;">))</span></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">~</span> p1 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> a<span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> p3 drop<span style="color: #696969;">))</span></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">~</span> p1 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> a<span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> p3 swap drop<span style="color: #696969;">))</span></p><p></pre></p><p></div></p></li></ul>
+<li><p>first is cut</p><p>it is the hero deduction rule occupys the center of the stage</p><p>of the sequent calculus designed by Gentzen</p><p>it says if we have (A -&gt; B) and (B -&gt; C)</p><p>cut them together, we get (A -&gt; C)</p></li>
+
+<li><p>on the other hand</p><p>if we have function f1 of type (A -&gt; B) and f2 of (B -&gt; C)</p><p>compose f1 and f2, we get a function of type (A -&gt; C)</p><p>this is what I mean by "function compose, type cut" in the title</p></li>
+
+<li><p>in the table above</p><p>I show exist-intro</p><p>define new type</p></li>
+
+<li><p><p></p><p>the following seems like conj-intro &amp; conj-elim in natural deduction</p><p>but we can use stack processing function to express them</p><p></p></p><p><div class="org-src-container"></p><p></p><p><pre class="src src-scheme"><span style="color: #FF8888;">;; </span><span style="color: #FF8888;">conj-intro</span></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> p1 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> a<span style="color: #696969;">))</span></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> p2 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> b<span style="color: #696969;">))</span></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">~</span> p3 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> a b<span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> p1 p2<span style="color: #696969;">))</span></p><p></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> drop <span style="color: #696969;">(</span><span style="color: #a6e22e;">:t</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span><span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span><span style="color: #a6e22e;">:d</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span><span style="color: #696969;">))</span></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">~</span> swap <span style="color: #696969;">(</span><span style="color: #a6e22e;">:t1</span> <span style="color: #a6e22e;">:t2</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:t2</span> <span style="color: #a6e22e;">:t1</span><span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span><span style="color: #a6e22e;">:d1</span> <span style="color: #a6e22e;">:d2</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:d2</span> <span style="color: #a6e22e;">:d1</span><span style="color: #696969;">))</span></p><p></p><p><span style="color: #FF8888;">;; </span><span style="color: #FF8888;">conj-elim</span></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> p3 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> a b<span style="color: #696969;">))</span></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">~</span> p1 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> a<span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> p3 drop<span style="color: #696969;">))</span></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">~</span> p1 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> a<span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> p3 swap drop<span style="color: #696969;">))</span></p><p></pre></p><p></div></p></li></ul>
 </div>
 </div>
 
-<div id="outline-container-orgf9953f7" class="outline-2">
-<h2 id="orgf9953f7"><span class="todo _gt__lt_">&gt;&lt;</span> carefully define equality of theorem, we will get a field</h2>
-<div class="outline-text-2" id="text-orgf9953f7">
+<div id="outline-container-orgea767ad" class="outline-2">
+<h2 id="orgea767ad"><span class="todo _gt__lt_">&gt;&lt;</span> carefully define equality of theorem, we will get a field</h2>
+<div class="outline-text-2" id="text-orgea767ad">
 <ul class="org-ul">
 <li><p><p></p><p>carefully define equality of theorem, we will get a field</p><p></p></p><p></p><p><table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"></p><p></p><p></p><p><colgroup></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></colgroup></p><p><thead></p><p><tr></p><p><th scope="col" class="org-left">deduction</th></p><p><th scope="col" class="org-left">language to record deduction</th></p><p><th scope="col" class="org-left">logic field</th></p><p></tr></p><p></thead></p><p><tbody></p><p><tr></p><p><td class="org-left">cut</td></p><p><td class="org-left">function composition</td></p><p><td class="org-left">equality or weaken</td></p><p></tr></p><p></p><p><tr></p><p><td class="org-left">exist-intro</td></p><p><td class="org-left">define new type</td></p><p><td class="org-left">field extension</td></p><p></tr></p><p></p><p><tr></p><p><td class="org-left">exist-elim</td></p><p><td class="org-left">branching by a list of arrow</td></p><p><td class="org-left">distributive</td></p><p></tr></p><p></p><p><tr></p><p><td class="org-left">conj-elim</td></p><p><td class="org-left">binding by unification</td></p><p><td class="org-left">&#xa0;</td></p><p></tr></p><p></tbody></p><p></table></p></li>
 
@@ -177,36 +193,36 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org4e25c79" class="outline-2">
-<h2 id="org4e25c79"><span class="todo _gt__lt_">&gt;&lt;</span> an attempt to implement such a language</h2>
-<div class="outline-text-2" id="text-org4e25c79">
+<div id="outline-container-org4c5f1c8" class="outline-2">
+<h2 id="org4c5f1c8"><span class="todo _gt__lt_">&gt;&lt;</span> an attempt to implement such a language</h2>
+<div class="outline-text-2" id="text-org4c5f1c8">
 <ul class="org-ul">
 <li><p>project page : <a href="http://xieyuheng.github.io/sequent1">http://xieyuheng.github.io/sequent1</a></p></li></ul>
 </div>
 </div>
 
-<div id="outline-container-orgbe89818" class="outline-2">
-<h2 id="orgbe89818">appendix</h2>
-<div class="outline-text-2" id="text-orgbe89818">
-</div><div id="outline-container-org1aab552" class="outline-3">
-<h3 id="org1aab552">rationale of using postfix notation</h3>
-<div class="outline-text-3" id="text-org1aab552">
+<div id="outline-container-org6780853" class="outline-2">
+<h2 id="org6780853">appendix</h2>
+<div class="outline-text-2" id="text-org6780853">
+</div><div id="outline-container-org1f942da" class="outline-3">
+<h3 id="org1f942da">rationale of using postfix notation</h3>
+<div class="outline-text-3" id="text-org1f942da">
 <ul class="org-ul">
 <li><p><p></p><p>rationale of using postfix notation is the following</p><p>in the linear writing system of our language</p><p>we can roughly distinguish four kinds of notations for function or predicate</p><p></p></p><p><table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"></p><p></p><p></p><p><colgroup></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></colgroup></p><p><tbody></p><p><tr></p><p><td class="org-left">infix</td></p><p><td class="org-left">((1 + 2) + 3)</td></p><p></tr></p><p></p><p><tr></p><p><td class="org-left">prefix</td></p><p><td class="org-left">+ + 1 2 3</td></p><p></tr></p><p></p><p><tr></p><p><td class="org-left">postfix</td></p><p><td class="org-left">3 2 1 + +</td></p><p></tr></p><p></p><p><tr></p><p><td class="org-left">borderfix</td></p><p><td class="org-left">(+ 1 2 3)</td></p><p></tr></p><p></tbody></p><p></table></p><p><ul class="org-ul"></p><p><li><p>infix is especially good for associative binary function</p></li></p><p><li><p>prefix and postfix are not ambiguous without bracket</p></li></p><p><li><p>borderfix can be used for functions</p><p>that can apply to different numbers of arguments</p></li></ul></p><p><p></p><p>our choice is between prefix and postfix</p><p>because for simplicity we have the following two features</p><p></p></p><p><ul class="org-ul"></p><p><li><p>the arity of all functions must be fixed</p></li></p><p><li><p>we want our expressions to be not ambiguous without bracket</p></li></ul></p><p><p></p><p>then, how do we decide to use postfix instead of prefix ?</p><p>seemingly, prefix and postfix are symmetric</p><p>while we still can distinguish them</p><p>because we write in special order (from left to right in most western language)</p><p>in postfix notation suppose we have written</p><p>1 2 +</p><p>and we want to add 3 to the result of 1 2 +</p><p>we simply write</p><p>1 2 + 3 +</p><p>while in prefix notation suppose we have written</p><p> + 1 2 </p><p>and we want to add 3 to the result of + 1 2</p><p>we have to insert + 3 in front of + 1 2 and write</p><p> + 3 + 1 2 </p><p>I summarize this difference by say</p><p>postfix notation respect the special order of a linear writing system</p><p>the above conclude my rationale</p><p></p></p></li></ul>
 </div>
 </div>
 
-<div id="outline-container-org6f5ff4c" class="outline-3">
-<h3 id="org6f5ff4c"><span class="todo _gt__lt_">&gt;&lt;</span> rationale of function composition over function application</h3>
-<div class="outline-text-3" id="text-org6f5ff4c">
+<div id="outline-container-org5013b75" class="outline-3">
+<h3 id="org5013b75"><span class="todo _gt__lt_">&gt;&lt;</span> rationale of function composition over function application</h3>
+<div class="outline-text-3" id="text-org5013b75">
 <ul class="org-ul">
 <li><p><p></p><p>代數的特點是</p><p></p></p><p><ul class="org-ul"></p><p><li><p>基本變換方式較少</p></li></p><p><li><p>變換本身被代數結構自身的元素參數化</p></li></ul></p><p><p></p><p>Hilbert system 與 combinatory logic 滿足這兩個條件</p><p>但是由於 combinatory logic 作爲語法 所記錄的變化是函數作用</p><p>而與函數複合相比 函數作用不具有結合性</p><p>因此看起來不像是代數 因爲代數結構的特點就是結合性</p><p></p></p></li></ul>
 </div>
 </div>
 
-<div id="outline-container-org4efc66b" class="outline-3">
-<h3 id="org4efc66b">remark on deduction and inference</h3>
-<div class="outline-text-3" id="text-org4efc66b">
+<div id="outline-container-orgeb1f451" class="outline-3">
+<h3 id="orgeb1f451">remark on deduction and inference</h3>
+<div class="outline-text-3" id="text-orgeb1f451">
 <ul class="org-ul">
 <li><p>first question one might ask is</p><p>what is a deduction or a inference ?</p><p>my answer is a deduction or a inference</p><p>is a way to express a change of theorem</p><p>"a change" means "one step of change"</p></li>
 

@@ -4,6 +4,14 @@
 ------
 
 @@html:
+<p> this article is not finished yet </p>
+@@
+
+------
+
+------
+
+@@html:
 <p> Mathematics is common sense. -- Errett Bishop </p>
 @@
 
@@ -210,7 +218,7 @@
        (:l :e cons :f -> :l :f map :e :f apply cons))
     #+end_src
 
-* >< the way we write function forms a language to record deduction
+* ><><>< the way we write function forms a language to record deduction
 
   - the way we write function forms a language to record deduction
     a record of many steps of deduction is called a proof
@@ -223,8 +231,23 @@
     | exist-elim  | branching by a list of arrow |
     | conj-elim   | binding by unification       |
 
+  - first is cut
+    it is the hero deduction rule occupys the center of the stage
+    of the sequent calculus designed by Gentzen
+    it says if we have (A -> B) and (B -> C)
+    cut them together, we get (A -> C)
+
+  - on the other hand
+    if we have function f1 of type (A -> B) and f2 of (B -> C)
+    compose f1 and f2, we get a function of type (A -> C)
+    this is what I mean by "function compose, type cut" in the title
+
+  - in the table above
+    I show exist-intro
+    define new type
+
   - the following seems like conj-intro & conj-elim in natural deduction
-    but we do not view them the that way
+    but we can use stack processing function to express them
     #+begin_src scheme
     ;; conj-intro
     (* p1 (-> a))
