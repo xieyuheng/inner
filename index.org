@@ -17,7 +17,7 @@
 
 * math
 
-  - [[./math/function-compose-type-cut.html][function compose, type cut, and the algebra of logic is a field]]
+  - [[./math/function-compose-type-cut.html][function compose, type cut, and the algebra of logic is a natural field]]
   - (todo) term lattice -- the meaning of equality
   - (todo) constructive math in my view -- the rebellion against abstraction
 

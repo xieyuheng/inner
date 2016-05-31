@@ -1,5 +1,5 @@
 #+HTML_HEAD: <link rel="stylesheet" href="../asset/css/page.css" type="text/css" media="screen" />
-#+title: function compose, type cut, and the algebra of logic is a field
+#+title: function compose, type cut, and the algebra of logic is a natural field
 
 ------
 
@@ -139,17 +139,40 @@
     where except for the symbol "->" setting in the
     and every thing else seems are intrinsic to the language
     let us write some examples
+
+  - ><><><
+
     #+begin_src scheme
     (* wanderer/poe (-> poe is-wanderer))
     (* way-worn (:x is-wanderer -> :x is-weary))
     (~ weary/poe (-> poe is-weary)
        (-> wanderer/poe way-worn))
+
+
+    (+ natural (-> type)
+       zero (-> natural)
+       succ (natural -> natural))
+
+    (~ natural-induction
+
+       ((:p : (natural -> type))
+        zero :p apply
+        ((:k : natural) :k :p apply -> :k succ :p apply)
+        (:x : natural) -> :x :p apply)
+
+       (:p :p/z :p/s zero -> :p/z)
+       (:p :p/z :p/s :k succ ->
+           :k
+           :p :p/z :p/s :k natural-induction
+           :p/s apply))
     #+end_src
 
 * >< theorem can be viewed as type of function
 
   - theorem can be viewed as type of function
     this is well known as "theorem as type"
+
+  - ><><><
 
   - natural number
     #+begin_src scheme
@@ -218,9 +241,9 @@
        (:l :e cons :f -> :l :f map :e :f apply cons))
     #+end_src
 
-* ><><>< the way we write function forms a language to record deduction
+* >< the way we write functions forms a language to record deduction
 
-  - the way we write function forms a language to record deduction
+  - the way we write functions forms a language to record deduction
     a record of many steps of deduction is called a proof
     this is well known as "function as proof"
 
@@ -232,8 +255,8 @@
     | conj-elim   | binding by unification       |
 
   - first is cut
-    it is the hero deduction rule occupys the center of the stage
-    of the sequent calculus designed by Gentzen
+    it is the hero deduction rule
+    which occupys the center of the stage of Gentzen's sequent calculus
     it says if we have (A -> B) and (B -> C)
     cut them together, we get (A -> C)
 
@@ -242,58 +265,132 @@
     compose f1 and f2, we get a function of type (A -> C)
     this is what I mean by "function compose, type cut" in the title
 
-  - in the table above
-    I show exist-intro
-    define new type
+  - ><><><
 
-  - the following seems like conj-intro & conj-elim in natural deduction
-    but we can use stack processing function to express them
-    #+begin_src scheme
-    ;; conj-intro
-    (* p1 (-> a))
-    (* p2 (-> b))
-    (~ p3 (-> a b)
-       (-> p1 p2))
+* >< carefully define equality of theorem, we will get a natural field
 
-    (* drop (:t ->)
-       (:d ->))
-    (~ swap (:t1 :t2 -> :t2 :t1)
-       (:d1 :d2 -> :d2 :d1))
+  - carefully define equality of theorem, we will get a natural field
 
-    ;; conj-elim
-    (* p3 (-> a b))
-    (~ p1 (-> a)
-       (-> p3 drop))
-    (~ p1 (-> a)
-       (-> p3 swap drop))
-    #+end_src
+    | deduction   | language to record deduction | logic field     |
+    |-------------+------------------------------+-----------------|
+    | cut         | function composition         | weaken          |
+    | exist-intro | define new type              | field extension |
+    | exist-elim  | branching by a list of arrow | distributive    |
+    | conj-elim   | binding by unification       |                 |
 
-* >< carefully define equality of theorem, we will get a field
+  - ><><><
 
-  - carefully define equality of theorem, we will get a field
+*** the natural field
 
-    | deduction   | language to record deduction | logic field        |
-    |-------------+------------------------------+--------------------|
-    | cut         | function composition         | equality or weaken |
-    | exist-intro | define new type              | field extension    |
-    | exist-elim  | branching by a list of arrow | distributive       |
-    | conj-elim   | binding by unification       |                    |
+    - let us view theorem (A -> B) as fraction
+      A as denominator
+      B as numerator
+      - so, one might write (A \ B)
+        note that
+        we are using reverse-slash instead of slash
+        to maintain the order of A B in (A -> B)
 
-  - >< logic harmony
+    - to add two theorems (A -> B) and (C -> D)
+      we get (A B -> (B C or A D))
+      - just like (A \ B) + (C \ D) = (A C \ (B C + A D))
 
-  - so, we have the field of logic
-    during deduction
-    we can not only add or multiply elements of the field together
-    we also are allowed to weaken the resulting element as we wish
-    a proof is a record of many steps of deductions
+    - theorems under addition is an Abelian semigroup
+      we do not have identity element
+      and we do not have inverse
+      - of course, we can introduce a "zero-theorem"
+        (a theorem that we can never prove)
+        as the identity element of addition
+        to make our algebraic structure more like fraction of natural number
+        but let us do not do this for now
 
-  - cut is a way to weaken an element of the field
+    - to multiply two theorems (A -> B) and (C -> D)
+      we get (A C -> B D)
+      - just like (A \ B) (C \ D) = (A C \ B D)
+
+    - theorems under multiplication is an Abelian group
+      identity element is (->)
+      inverse of (A -> B) is (B -> A)
+
+    - distributive is just like fraction of natural number
+      because the way we define addition
+      is just like the addition of fraction of natural number
+
+    - I would like to coin a new term "natural field"
+      for our algebraic structure
+      to recall its similarites between the fraction of natural number
+      - note that
+        other terms like 'semi-field' is ambiguous
+        because it does not inform us
+        whether addition or multiplication is semi
+
+*** the order structure of our natural field
+
+    - the next question one should ask is
+      what is the relation between this natural field and deduction ?
+      the answer relates to the order structure of our natural field
+      (actually we have a lattice, I will address its detail in another article)
+
+    - just like natural number
+      we have an order between elements of natural field
+      I will use the term "weaker" to denote this order relation
+      for natural number, we say, x is less than y
+      for natural field, let us say, x is weaker than y
+      - but our definition will not be total
+        thus we will only have a poset (partially ordered set)
+
+    - let us define "weaker" as
+      - (-> (A or B)) is weaker than (-> A)
+        (-> (A or B)) is weaker than (-> A)
+      - (-> :x :x) is weaker than (-> :x :y)
+        (-> :x P :x P) is weaker than (-> :x P :y P)
+      - if X is weaker than Y
+        then the reverse of Y is weaker than X
+
+*** the relation between natural field of logic and deduction
+
+    - now we can observe that
+      deduction is
+      to build new theorem by addition or multiplication theorems
+      or weaken a theorem
+
+    - cut can be viewed as an important way to weaken a theorem
+      recall that
+      if we have (A -> B) and (B -> C)
+      cut them, we get (A -> C)
+      multiply them, we get (A B -> B C)
+      we can view cut as changing (A B -> B C) to (A -> C)
+      - just like the fraction of natural number
+        where (A B \ B C) = (A \ C)
+
+    - I said that, cut can be viewed as weaken
+      but the above example is not weakening the theorem at all
+      while the following example do
+      if we have theorem (A -> B) and ((B or D) -> C)
+      cut them, we can deduce theorem (A -> C)
+      - just like for the fraction of natural number
+        we have (A B \ (D + B) C) > (A \ C)
+
+*** to summarize
+
+    - the algebraic structure of logic is a natural field
+    - deduction is
+      to build new theorem by addition and multiplication theorems
+      or weaken a theorem
+    - cut can be viewed as an important way to weaken a theorem
+    - a proof is a record of many steps of deductions
 
 * >< an attempt to implement such a language
+
+  - ><><><
 
   - project page : http://xieyuheng.github.io/sequent1
 
 * appendix
+
+*** >< remark on formal language for deduction and proof
+
+    - ><><><
+      A proof is any completely convincing argument. -- Errett Bishop
 
 *** rationale of using postfix notation
 
@@ -332,13 +429,15 @@
 
 *** >< rationale of function composition over function application
 
-    - 代數的特點是
-      - 基本變換方式較少
-      - 變換本身被代數結構自身的元素參數化
-      Hilbert system 與 combinatory logic 滿足這兩個條件
-      但是由於 combinatory logic 作爲語法 所記錄的變化是函數作用
-      而與函數複合相比 函數作用不具有結合性
-      因此看起來不像是代數 因爲代數結構的特點就是結合性
+    - ><><><
+      function composition
+      associative
+      rich
+
+    - ><><><
+      Hilbert system
+      combinatory logic
+      function application
 
 *** remark on deduction and inference
 
@@ -359,3 +458,27 @@
       | data    |                       | algorithm                  |
       | number  | elementary arithmetic |                            |
       (seems to me a market for language designer)
+
+*** remark on conj-intro and conj-elim
+
+    - the following seems like conj-intro and conj-elim in natural deduction
+      but we can use stack processing function to express them
+      #+begin_src scheme
+      ;; conj-intro
+      (* p1 (-> a))
+      (* p2 (-> b))
+      (~ p3 (-> a b)
+         (-> p1 p2))
+
+      (* drop (:t ->)
+         (:d ->))
+      (~ swap (:t1 :t2 -> :t2 :t1)
+         (:d1 :d2 -> :d2 :d1))
+
+      ;; conj-elim
+      (* p3 (-> a b))
+      (~ p1 (-> a)
+         (-> p3 drop))
+      (~ p1 (-> a)
+         (-> p3 swap drop))
+      #+end_src
