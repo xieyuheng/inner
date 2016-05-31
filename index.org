@@ -32,7 +32,7 @@
   - [[http://xieyuheng.github.io/sequent1][sequent1]] -- a prototype functional language
     which uses sequent calculus as its dependent type system
 
-  - (todo) [[https://github.com/xieyuheng/vm1][vm1]] -- low-level interpreter as extensible virtual machine
+  - (todo) [[https://github.com/xieyuheng/jojo][jojo]] -- low-level interpreter as extensible virtual machine
 
   - (todo) [[https://github.com/xieyuheng/logic1][logic1]] -- a prototype logic language with type system
 
