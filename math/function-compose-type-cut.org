@@ -385,6 +385,10 @@
 
   - project page : http://xieyuheng.github.io/sequent1
 
+*** cover-check
+
+*** recur-check
+
 * appendix
 
 *** >< remark on formal language for deduction and proof
