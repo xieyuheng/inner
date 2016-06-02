@@ -236,6 +236,8 @@
     }
 
     pre {
+        margin-left: 1em;
+        margin-right: 1em;
         font-family: Input, Monaco, Consolas, "Lucida Console", monospace;
         font-size: 14px;
         line-height: 1em;
