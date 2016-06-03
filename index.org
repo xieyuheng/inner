@@ -17,24 +17,24 @@
 
 * math
 
-  - [[./math/function-compose-type-cut.html][function compose, type cut, and the algebra of logic is a natural field]]
-  - (todo) term lattice -- the meaning of equality
   - (todo) constructive math in my view -- the rebellion against abstraction
+  - (todo) term lattice -- the meaning of equality
+  - [[./math/function-compose-type-cut.html][function compose, type cut, and the algebra of logic is a natural field]]
 
 * language design
 
-  - [[https://github.com/xieyuheng/cicada-nymph][cicada-nymph]] -- a forth-like language
+  - (todo) [[https://github.com/xieyuheng/logic1][logic1]] -- a prototype logic language with type system
+
+  - [[http://xieyuheng.github.io/jojo][jojo]] -- a low-level untyped language
+
+  - [[http://xieyuheng.github.io/sequent1][sequent1]] -- a prototype functional language
+    which uses sequent calculus as its dependent type system
 
   - [[https://github.com/xieyuheng/recursive-combinator][recursive-combinator]] -- DSL embedded in js
     inspired by joy (the language)
     implemented by an interpreter of js array
 
-  - [[http://xieyuheng.github.io/sequent1][sequent1]] -- a prototype functional language
-    which uses sequent calculus as its dependent type system
-
-  - [[http://xieyuheng.github.io/jojo][jojo]] -- a low-level untyped language
-
-  - (todo) [[https://github.com/xieyuheng/logic1][logic1]] -- a prototype logic language with type system
+  - [[https://github.com/xieyuheng/cicada-nymph][cicada-nymph]] -- a forth-like language
 
 * lecture
 
@@ -44,21 +44,21 @@
 
 *** from Raymond Smullyan
 
-    - [[./translate/is-god-a-taoist.html][is god a taoist / 上帝是道家的嗎]], 1977
     - (todo) [[http://xieyuheng.github.io/the-tao-is-silent][the tao is silent / 道是靜的]], 1977
       - translated together with [[http://naredbuddha.github.io/][BAO Hongran / 鮑鴻然]]
+    - [[./translate/is-god-a-taoist.html][is god a taoist / 上帝是道家的嗎]], 1977
 
 *** from Errett Bishop
 
-    - [[./translate/a-constructivist-manifesto.html][a constructivist manifesto / 一個構造主義者的宣言]], 1967
     - (todo) [[./translate/schizophrenia-in-contemporary-mathematics.html][schizophrenia in contemporary mathematics / 當代數學之精神分裂症]], 1973
+    - [[./translate/a-constructivist-manifesto.html][a constructivist manifesto / 一個構造主義者的宣言]], 1967
 
 * social
 
-  - I graduated from Sun Yat-sen university of China (a.k.a. SYSU)
   - I am a member and part time maintainer of [[https://szdiy.org/][SZDIY hackerspace]]
-  - [[./friend-links.html][links to friends on the net]]
+  - I graduated from Sun Yat-sen university of China (a.k.a. SYSU)
   - github : https://github.com/xieyuheng
+  - [[./friend-links.html][links to friends on the net]]
 
 * contact
 
