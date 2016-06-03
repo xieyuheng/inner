@@ -385,9 +385,9 @@
 
   - project page : http://xieyuheng.github.io/sequent1
 
-*** cover-check
+*** >< cover-check
 
-*** recur-check
+*** >< recur-check
 
 * appendix
 
