@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-06-05 Sun 21:45 -->
+<!-- 2016-06-06 Mon 16:12 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>function compose, type cut, and the algebra of logic</title>
@@ -67,33 +67,34 @@ for the JavaScript code in this tag.
 <h2>overview</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org1a7d94a">intuitionistic logic</a></li>
-<li><a href="#orgf1d8aed">formal theorem</a></li>
-<li><a href="#org16d620f">theorem as type, and function</a></li>
-<li><a href="#org62b3a51">function as proof</a></li>
-<li><a href="#orgbe6bbb1"><span class="todo _gt__lt_">&gt;&lt;</span> algebra of logic</a>
+<li><a href="#org91df13e">intuitionistic logic</a></li>
+<li><a href="#org6a06e78">formal theorem</a></li>
+<li><a href="#orgb880488">theorem as type</a></li>
+<li><a href="#org2b7c5e5">function as proof</a>
 <ul>
-<li><a href="#org109ee57">the natural field</a></li>
-<li><a href="#orgfa27a9c">the order structure of our natural field</a></li>
-<li><a href="#orga49c4ee">the relation between natural field of logic and deduction</a></li>
-<li><a href="#orgd75cca4">to summarize</a></li>
+<li><a href="#orgc1f775f">concatenation, composition and cut</a></li>
+<li><a href="#orga271632">other deduction rules of natural deduction</a></li>
+<li><a href="#orgcc47d50">the meaning of proof</a></li>
+<li><a href="#org9bfb5a7"><span class="todo _gt__lt_">&gt;&lt;</span> the meaning of type definition</a></li>
 </ul>
 </li>
-<li><a href="#org479c0d2"><span class="todo _gt__lt_">&gt;&lt;</span> implementation</a>
+<li><a href="#org4755d3b"><span class="todo _gt__lt_">&gt;&lt;</span> algebra of logic</a>
 <ul>
-<li><a href="#orgfd50b3d"><span class="todo _gt__lt_">&gt;&lt;</span> cover-check</a></li>
-<li><a href="#org214e71c"><span class="todo _gt__lt_">&gt;&lt;</span> recur-check</a></li>
+<li><a href="#orged0fd8e">the natural field</a></li>
+<li><a href="#org29138be">the order structure of our natural field</a></li>
+<li><a href="#orga38cdd6">the relation between natural field of logic and deduction</a></li>
+<li><a href="#org867b9e1">to summarize</a></li>
 </ul>
 </li>
-<li><a href="#orgacf99e6">appendix</a>
+<li><a href="#orgc956817">implementation</a></li>
+<li><a href="#org5a6c6fa">appendix</a>
 <ul>
-<li><a href="#orgf3e16d0"><span class="todo _gt__lt_">&gt;&lt;</span> remark on the use of stack in implementation</a></li>
-<li><a href="#org91462b6"><span class="todo _gt__lt_">&gt;&lt;</span> remark on formal language for deduction and proof</a></li>
-<li><a href="#org6aa2d83">rationale of using postfix notation</a></li>
-<li><a href="#org80a471a"><span class="todo _gt__lt_">&gt;&lt;</span> rationale of function composition over function application</a></li>
-<li><a href="#orga20220d">remark on deduction and inference</a></li>
-<li><a href="#org39001de">remark on conj-intro and conj-elim</a></li>
-<li><a href="#org498df50"><span class="todo _gt__lt_">&gt;&lt;</span> </a></li>
+<li><a href="#orgb729b39">remark on formalization</a></li>
+<li><a href="#orge41531a">rationale of using postfix notation</a></li>
+<li><a href="#org6e7ad61"><span class="todo _gt__lt_">&gt;&lt;</span> remark on the use of stack in implementation</a></li>
+<li><a href="#org7dad6f3">rationale of composition over application</a></li>
+<li><a href="#org5626545">remark on deduction and inference</a></li>
+<li><a href="#org8417520"><span class="todo _gt__lt_">&gt;&lt;</span> </a></li>
 </ul>
 </li>
 </ul>
@@ -120,9 +121,9 @@ for the JavaScript code in this tag.
 </p>
 <hr  />
 
-<div id="outline-container-org1a7d94a" class="outline-2">
-<h2 id="org1a7d94a">intuitionistic logic</h2>
-<div class="outline-text-2" id="text-org1a7d94a">
+<div id="outline-container-org91df13e" class="outline-2">
+<h2 id="org91df13e">intuitionistic logic</h2>
+<div class="outline-text-2" id="text-org91df13e">
 <ul class="org-ul">
 <li><p>first I would like to summarize intuitionistic logic</p><p>it is also called constructive logic</p><p>it is very well known now</p><p>and is gloriously called the Brouwer–Heyting–Kolmogorov interpretation</p></li>
 
@@ -140,11 +141,11 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgf1d8aed" class="outline-2">
-<h2 id="orgf1d8aed">formal theorem</h2>
-<div class="outline-text-2" id="text-orgf1d8aed">
+<div id="outline-container-org6a06e78" class="outline-2">
+<h2 id="org6a06e78">formal theorem</h2>
+<div class="outline-text-2" id="text-org6a06e78">
 <ul class="org-ul">
-<li><p>let us design a formal language to express theorem</p><p>I agree with Errett Bishop who said</p><p>"a proof is any completely convincing argument."</p><p>I also think theorems expressed by formal language are specially clear</p><p>and proofs checked by computer are specially convincing</p></li>
+<li><p>let us design a formal language to express theorem</p><p><ul class="org-ul"></p><p><li><p><a href="#orgb729b39">remark on formalization</a></p></li></ul></p></li>
 
 <li><p>firstly we see the fact that the general form of theorem is like (A -&gt; B)</p><p>let us unite our syntax toward "-&gt;"</p><p>we do not write A</p><p>instead we will write (-&gt; A)</p><p><ul class="org-ul"></p><p><li><p>this is just like one does not write 3 but write 1\3 or 3/1 instead</p></li></ul></p></li>
 
@@ -156,17 +157,17 @@ for the JavaScript code in this tag.
 
 <li><p>I suggest to ignore "not"</p><p>because you see that (not P) is just (P -&gt; something-we-consider-wrong)</p><p>the negation we want to express</p><p>is parameterized by something-we-consider-wrong</p><p>(or say, depends on something-we-consider-wrong)</p><p>if we simple say (not P)</p><p>the information of this parameterization will be lost</p></li>
 
-<li><p>I express "for all x belong to A, we have P(x)"</p><p>as ((x : A) -&gt; x P)</p><p>and express "there exist x belong to A, such that P(x)"</p><p>as (-&gt; (x : A) x P)</p><p>I am using postfix notation here</p><p>I write "x P" instead of "P(x)"</p><p><ul class="org-ul"></p><p><li><p>you might argue that</p><p>compare to the traditional math notation, postfix looks really alien</p><p>if you care, please see my <a href="#org6aa2d83">rationale of using postfix notation</a></p></li></ul></p></li>
+<li><p>I express "for all x belong to A, we have P(x)"</p><p>as ((x : A) -&gt; x P)</p><p>and express "there exist x belong to A, such that P(x)"</p><p>as (-&gt; (x : A) x P)</p><p>I am using postfix notation here</p><p>I write "x P" instead of "P(x)"</p><p><ul class="org-ul"></p><p><li><p>you might argue that</p><p>compare to the traditional math notation, postfix looks really alien</p><p>if you care, please see my <a href="#orge41531a">rationale of using postfix notation</a></p></li></ul></p></li>
 
 <li><p><p></p><p>recall that</p><p>((x : A) -&gt; x P) means "for all x belong to A, we have P(x)"</p><p>(-&gt; (x : A) x P) means "there exist x belong to A, such that P(x)"</p><p>in the above two example expressions</p><p>variables are written in lower-case latin letter</p><p>functions are written in upper-case latin letter</p><p>personally I do not wish to</p><p>distinguish meaning by lower-case v.s. upper-case</p><p>(maybe because I am a scheme user, or maybe because I am a Chinese)</p><p>so, in the following implementation of our language</p><p>I will write</p><p></p></p><p><div class="org-src-container"></p><p></p><p><pre class="src src-scheme"><span style="color: #696969;">((</span><span style="color: #a6e22e;">:x</span> : a<span style="color: #696969;">)</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:x</span> p<span style="color: #696969;">)</span></p><p><span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #696969;">(</span><span style="color: #a6e22e;">:x</span> : a<span style="color: #696969;">)</span> <span style="color: #a6e22e;">:x</span> p<span style="color: #696969;">)</span></p><p></pre></p><p></div></p></li>
 
-<li><p>now we have designed a language to express theorem</p><p>the best way to show how to use them in deduction</p><p>is a detour through functional programming language</p><p>theorem -&gt; type -&gt; function -&gt; proof</p></li></ul>
+<li><p>now we have designed a formal language to express theorem</p><p>the best way to show how to use formal theorem in deduction</p><p>is a detour through functional programming language</p><p>theorem -&gt; type -&gt; function -&gt; proof</p></li></ul>
 </div>
 </div>
 
-<div id="outline-container-org16d620f" class="outline-2">
-<h2 id="org16d620f">theorem as type, and function</h2>
-<div class="outline-text-2" id="text-org16d620f">
+<div id="outline-container-orgb880488" class="outline-2">
+<h2 id="orgb880488">theorem as type</h2>
+<div class="outline-text-2" id="text-orgb880488">
 <ul class="org-ul">
 <li><p>theorem can be viewed as type of function</p><p>this is well known as "theorem as type"</p></li>
 
@@ -184,46 +185,108 @@ for the JavaScript code in this tag.
 
 <li><p><p></p><p>when applying a function</p><p>the interperter will try to match (or cover) its arguments</p><p>with the antecedent of each arrow in the function body</p><p></p></p><p><ul class="org-ul"></p><p><li><p>for "add", the antecedents will be (:m zero) and (:m :n zero)</p></li></ul></p><p><p></p><p>when one antecedent successes</p><p>it will bind variables occurs in the antecedent to data in arguments</p><p>and rewrite its corresponding succedent</p><p>and returned the result</p><p></p></p><p><ul class="org-ul"></p><p><li><p>because all functions are "cover-checked"</p><p>there must be at least one antecedent can cover the arguments</p><p>then there are many antecedents can cover the arguments</p><p>the first one is used</p></li></p><p><li><p>note that</p><p>the order of rewriting is revealed by the postfix notation</p></li></p><p><li><p>"use the first covering antecedent" and "the order of rewriting"</p><p>conclude the reduction strategy of our term-rewriting-system</p></li></ul></p></li>
 
-<li><p><p></p><p>because we are using postfix notation</p><p>beside function application</p><p>we can also use function composition to explain the semantic of function</p><p>with the help of a stack</p><p>we will be able to handle function composition of functions</p><p>with multiple arguments and multiple return values</p><p>for example, we can define the following stack processing functions</p><p></p></p><p><div class="org-src-container"></p><p></p><p><pre class="src src-scheme"><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">~</span> drop <span style="color: #696969;">(</span><span style="color: #a6e22e;">:t</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span><span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span><span style="color: #a6e22e;">:d</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span><span style="color: #696969;">))</span></p><p></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">~</span> dup <span style="color: #696969;">(</span><span style="color: #a6e22e;">:t</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:t</span> <span style="color: #a6e22e;">:t</span><span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span><span style="color: #a6e22e;">:d</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:d</span> <span style="color: #a6e22e;">:d</span><span style="color: #696969;">))</span></p><p></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">~</span> over <span style="color: #696969;">(</span><span style="color: #a6e22e;">:t1</span> <span style="color: #a6e22e;">:t2</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:t1</span> <span style="color: #a6e22e;">:t2</span> <span style="color: #a6e22e;">:t1</span><span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span><span style="color: #a6e22e;">:d1</span> <span style="color: #a6e22e;">:d2</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:d1</span> <span style="color: #a6e22e;">:d2</span> <span style="color: #a6e22e;">:d1</span><span style="color: #696969;">))</span></p><p></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">~</span> tuck <span style="color: #696969;">(</span><span style="color: #a6e22e;">:t1</span> <span style="color: #a6e22e;">:t2</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:t2</span> <span style="color: #a6e22e;">:t1</span> <span style="color: #a6e22e;">:t2</span><span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span><span style="color: #a6e22e;">:d1</span> <span style="color: #a6e22e;">:d2</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:d2</span> <span style="color: #a6e22e;">:d1</span> <span style="color: #a6e22e;">:d2</span><span style="color: #696969;">))</span></p><p></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">~</span> swap <span style="color: #696969;">(</span><span style="color: #a6e22e;">:t1</span> <span style="color: #a6e22e;">:t2</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:t2</span> <span style="color: #a6e22e;">:t1</span><span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span><span style="color: #a6e22e;">:d1</span> <span style="color: #a6e22e;">:d2</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:d2</span> <span style="color: #a6e22e;">:d1</span><span style="color: #696969;">))</span></p><p></pre></p><p></div></p><p><p></p><p>for more about this</p><p>please read <a href="#orgf3e16d0">remark on the use of stack in implementation</a></p><p></p></p></li>
+<li><p><p></p><p>because we are using postfix notation</p><p>beside function application</p><p>we can also use function composition to explain the semantic of function</p><p>with the help of a stack</p><p>we will be able to handle function composition of functions</p><p>with multiple arguments and multiple return values</p><p>for example, we can define the following stack processing functions</p><p></p></p><p><div class="org-src-container"></p><p></p><p><pre class="src src-scheme"><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">~</span> drop <span style="color: #696969;">(</span><span style="color: #a6e22e;">:t</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span><span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span><span style="color: #a6e22e;">:d</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span><span style="color: #696969;">))</span></p><p></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">~</span> dup <span style="color: #696969;">(</span><span style="color: #a6e22e;">:t</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:t</span> <span style="color: #a6e22e;">:t</span><span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span><span style="color: #a6e22e;">:d</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:d</span> <span style="color: #a6e22e;">:d</span><span style="color: #696969;">))</span></p><p></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">~</span> over <span style="color: #696969;">(</span><span style="color: #a6e22e;">:t1</span> <span style="color: #a6e22e;">:t2</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:t1</span> <span style="color: #a6e22e;">:t2</span> <span style="color: #a6e22e;">:t1</span><span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span><span style="color: #a6e22e;">:d1</span> <span style="color: #a6e22e;">:d2</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:d1</span> <span style="color: #a6e22e;">:d2</span> <span style="color: #a6e22e;">:d1</span><span style="color: #696969;">))</span></p><p></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">~</span> tuck <span style="color: #696969;">(</span><span style="color: #a6e22e;">:t1</span> <span style="color: #a6e22e;">:t2</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:t2</span> <span style="color: #a6e22e;">:t1</span> <span style="color: #a6e22e;">:t2</span><span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span><span style="color: #a6e22e;">:d1</span> <span style="color: #a6e22e;">:d2</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:d2</span> <span style="color: #a6e22e;">:d1</span> <span style="color: #a6e22e;">:d2</span><span style="color: #696969;">))</span></p><p></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">~</span> swap <span style="color: #696969;">(</span><span style="color: #a6e22e;">:t1</span> <span style="color: #a6e22e;">:t2</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:t2</span> <span style="color: #a6e22e;">:t1</span><span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span><span style="color: #a6e22e;">:d1</span> <span style="color: #a6e22e;">:d2</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:d2</span> <span style="color: #a6e22e;">:d1</span><span style="color: #696969;">))</span></p><p></pre></p><p></div></p><p><p></p><p>for more about this</p><p>please read <a href="#org6e7ad61">remark on the use of stack in implementation</a></p><p></p></p></li>
 
 <li><p><p></p><p>more examples about natural number</p><p></p></p><p><div class="org-src-container"></p><p></p><p><pre class="src src-scheme"><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">~</span> mul <span style="color: #696969;">(</span>natural natural <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> natural<span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span><span style="color: #a6e22e;">:m</span> zero <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> zero<span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span><span style="color: #a6e22e;">:m</span> <span style="color: #a6e22e;">:n</span> succ <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:m</span> <span style="color: #a6e22e;">:n</span> mul <span style="color: #a6e22e;">:m</span> add<span style="color: #696969;">))</span></p><p></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">~</span> factorial <span style="color: #696969;">(</span>natural <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> natural<span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span>zero <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> zero succ<span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span><span style="color: #a6e22e;">:n</span> succ <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:n</span> factorial <span style="color: #a6e22e;">:n</span> succ mul<span style="color: #696969;">))</span></p><p></pre></p><p></div></p></li>
 
 <li><p><p></p><p>examples about list</p><p></p></p><p><div class="org-src-container"></p><p></p><p><pre class="src src-scheme"><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">+</span> list <span style="color: #696969;">(</span><span style="color: #B380A8;">{</span><span style="color: #a6e22e;">:t</span> : type<span style="color: #B380A8;">}</span> <span style="color: #a6e22e;">:t</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> type<span style="color: #696969;">)</span></p><p>   null <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:t</span> list<span style="color: #696969;">)</span></p><p>   cons <span style="color: #696969;">(</span><span style="color: #a6e22e;">:t</span> list <span style="color: #a6e22e;">:t</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:t</span> list<span style="color: #696969;">))</span></p><p></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">~</span> append <span style="color: #696969;">(</span><span style="color: #a6e22e;">:t</span> list <span style="color: #a6e22e;">:t</span> list <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:t</span> list<span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span><span style="color: #a6e22e;">:l</span> null <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:l</span><span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span><span style="color: #a6e22e;">:l</span> <span style="color: #a6e22e;">:r</span> <span style="color: #a6e22e;">:e</span> cons <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:l</span> <span style="color: #a6e22e;">:r</span> append <span style="color: #a6e22e;">:e</span> cons<span style="color: #696969;">))</span></p><p></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">~</span> map <span style="color: #696969;">(</span><span style="color: #a6e22e;">:t1</span> list <span style="color: #696969;">(</span><span style="color: #a6e22e;">:t1</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:t2</span><span style="color: #696969;">)</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:t2</span> list<span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span>null <span style="color: #a6e22e;">:f</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> null<span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span><span style="color: #a6e22e;">:l</span> <span style="color: #a6e22e;">:e</span> cons <span style="color: #a6e22e;">:f</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:l</span> <span style="color: #a6e22e;">:f</span> map <span style="color: #a6e22e;">:e</span> <span style="color: #a6e22e;">:f</span> apply cons<span style="color: #696969;">))</span></p><p></pre></p><p></div></p></li>
 
-<li><p><p></p><p>examples about vector</p><p>function bodys are the same as examples about list</p><p>but the types also express the information about the length of list</p><p></p></p><p><div class="org-src-container"></p><p></p><p><pre class="src src-scheme"><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">+</span> vector <span style="color: #696969;">(</span><span style="color: #B380A8;">{</span><span style="color: #a6e22e;">:t</span> : type<span style="color: #B380A8;">}</span> natural <span style="color: #a6e22e;">:t</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> type<span style="color: #696969;">)</span></p><p>   null <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> zero <span style="color: #a6e22e;">:t</span> vector<span style="color: #696969;">)</span></p><p>   cons <span style="color: #696969;">(</span><span style="color: #a6e22e;">:n</span> <span style="color: #a6e22e;">:t</span> vector <span style="color: #a6e22e;">:t</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:n</span> succ <span style="color: #a6e22e;">:t</span> vector<span style="color: #696969;">))</span></p><p></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">~</span> append <span style="color: #696969;">(</span><span style="color: #a6e22e;">:m</span> <span style="color: #a6e22e;">:t</span> vector <span style="color: #a6e22e;">:n</span> <span style="color: #a6e22e;">:t</span> vector <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:m</span> <span style="color: #a6e22e;">:n</span> add <span style="color: #a6e22e;">:t</span> vector<span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span><span style="color: #a6e22e;">:l</span> null <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:l</span><span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span><span style="color: #a6e22e;">:l</span> <span style="color: #a6e22e;">:r</span> <span style="color: #a6e22e;">:e</span> cons <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:l</span> <span style="color: #a6e22e;">:r</span> append <span style="color: #a6e22e;">:e</span> cons<span style="color: #696969;">))</span></p><p></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">~</span> map <span style="color: #696969;">(</span><span style="color: #a6e22e;">:n</span> <span style="color: #a6e22e;">:t1</span> vector <span style="color: #696969;">(</span><span style="color: #a6e22e;">:t1</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:t2</span><span style="color: #696969;">)</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:n</span> <span style="color: #a6e22e;">:t2</span> vector<span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span>null <span style="color: #a6e22e;">:f</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> null<span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span><span style="color: #a6e22e;">:l</span> <span style="color: #a6e22e;">:e</span> cons <span style="color: #a6e22e;">:f</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:l</span> <span style="color: #a6e22e;">:f</span> map <span style="color: #a6e22e;">:e</span> <span style="color: #a6e22e;">:f</span> apply cons<span style="color: #696969;">))</span></p><p></pre></p><p></div></p></li></ul>
+<li><p><p></p><p>examples about vector</p><p>function bodys are the same as examples about list</p><p>but the types also express the information about the length of list</p><p></p></p><p><div class="org-src-container"></p><p></p><p><pre class="src src-scheme"><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">+</span> vector <span style="color: #696969;">(</span><span style="color: #B380A8;">{</span><span style="color: #a6e22e;">:t</span> : type<span style="color: #B380A8;">}</span> natural <span style="color: #a6e22e;">:t</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> type<span style="color: #696969;">)</span></p><p>   null <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> zero <span style="color: #a6e22e;">:t</span> vector<span style="color: #696969;">)</span></p><p>   cons <span style="color: #696969;">(</span><span style="color: #a6e22e;">:n</span> <span style="color: #a6e22e;">:t</span> vector <span style="color: #a6e22e;">:t</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:n</span> succ <span style="color: #a6e22e;">:t</span> vector<span style="color: #696969;">))</span></p><p></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">~</span> append <span style="color: #696969;">(</span><span style="color: #a6e22e;">:m</span> <span style="color: #a6e22e;">:t</span> vector <span style="color: #a6e22e;">:n</span> <span style="color: #a6e22e;">:t</span> vector <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:m</span> <span style="color: #a6e22e;">:n</span> add <span style="color: #a6e22e;">:t</span> vector<span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span><span style="color: #a6e22e;">:l</span> null <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:l</span><span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span><span style="color: #a6e22e;">:l</span> <span style="color: #a6e22e;">:r</span> <span style="color: #a6e22e;">:e</span> cons <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:l</span> <span style="color: #a6e22e;">:r</span> append <span style="color: #a6e22e;">:e</span> cons<span style="color: #696969;">))</span></p><p></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">~</span> map <span style="color: #696969;">(</span><span style="color: #a6e22e;">:n</span> <span style="color: #a6e22e;">:t1</span> vector <span style="color: #696969;">(</span><span style="color: #a6e22e;">:t1</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:t2</span><span style="color: #696969;">)</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:n</span> <span style="color: #a6e22e;">:t2</span> vector<span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span>null <span style="color: #a6e22e;">:f</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> null<span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span><span style="color: #a6e22e;">:l</span> <span style="color: #a6e22e;">:e</span> cons <span style="color: #a6e22e;">:f</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:l</span> <span style="color: #a6e22e;">:f</span> map <span style="color: #a6e22e;">:e</span> <span style="color: #a6e22e;">:f</span> apply cons<span style="color: #696969;">))</span></p><p></pre></p><p></div></p></li>
+
+<li><p><p></p><p>examples that use lambda</p><p></p></p><p><div class="org-src-container"></p><p></p><p><pre class="src src-scheme">&gt;&lt;&gt;&lt;&gt;&lt;</p><p></pre></p><p></div></p></li></ul>
 </div>
 </div>
 
-<div id="outline-container-org62b3a51" class="outline-2">
-<h2 id="org62b3a51">function as proof</h2>
-<div class="outline-text-2" id="text-org62b3a51">
+<div id="outline-container-org2b7c5e5" class="outline-2">
+<h2 id="org2b7c5e5">function as proof</h2>
+<div class="outline-text-2" id="text-org2b7c5e5">
 <ul class="org-ul">
 <li><p>now we are at the finial step of the detour from formal theorem to proof</p><p>theorem -&gt; type -&gt; function -&gt; proof</p></li>
 
 <li><p>this is well known as "function as proof"</p><p>it says, the way we write functions forms a language to record deduction</p><p>a record of many steps of deduction is called a proof</p></li>
 
-<li><p><p></p><p>&gt;&lt;</p><p></p></p><p></p><p><div class="org-src-container"></p><p></p><p><pre class="src src-scheme"><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> wanderer/poe <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> poe is-wanderer<span style="color: #696969;">))</span></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> way-worn <span style="color: #696969;">(</span><span style="color: #a6e22e;">:x</span> is-wanderer <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:x</span> is-weary<span style="color: #696969;">))</span></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">~</span> weary/poe <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> poe is-weary<span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> wanderer/poe way-worn<span style="color: #696969;">))</span></p><p></p><p></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">+</span> natural <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> type<span style="color: #696969;">)</span></p><p>   zero <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> natural<span style="color: #696969;">)</span></p><p>   succ <span style="color: #696969;">(</span>natural <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> natural<span style="color: #696969;">))</span></p><p></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">~</span> natural-induction</p><p></p><p>   <span style="color: #696969;">((</span><span style="color: #a6e22e;">:p</span> : <span style="color: #696969;">(</span>natural <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> type<span style="color: #696969;">))</span></p><p>    zero <span style="color: #a6e22e;">:p</span> apply</p><p>    <span style="color: #696969;">((</span><span style="color: #a6e22e;">:k</span> : natural<span style="color: #696969;">)</span> <span style="color: #a6e22e;">:k</span> <span style="color: #a6e22e;">:p</span> apply <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:k</span> succ <span style="color: #a6e22e;">:p</span> apply<span style="color: #696969;">)</span></p><p>    <span style="color: #696969;">(</span><span style="color: #a6e22e;">:x</span> : natural<span style="color: #696969;">)</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:x</span> <span style="color: #a6e22e;">:p</span> apply<span style="color: #696969;">)</span></p><p></p><p>   <span style="color: #696969;">(</span><span style="color: #a6e22e;">:p</span> <span style="color: #a6e22e;">:p/z</span> <span style="color: #a6e22e;">:p/s</span> zero <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:p/z</span><span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span><span style="color: #a6e22e;">:p</span> <span style="color: #a6e22e;">:p/z</span> <span style="color: #a6e22e;">:p/s</span> <span style="color: #a6e22e;">:k</span> succ <span style="color: #66d9ef; font-weight: bold;">-&gt;</span></p><p>       <span style="color: #a6e22e;">:k</span></p><p>       <span style="color: #a6e22e;">:p</span> <span style="color: #a6e22e;">:p/z</span> <span style="color: #a6e22e;">:p/s</span> <span style="color: #a6e22e;">:k</span> natural-induction</p><p>       <span style="color: #a6e22e;">:p/s</span> apply<span style="color: #696969;">))</span></p><p></pre></p><p></div></p><p></p><p><table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"></p><p></p><p></p><p><colgroup></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></colgroup></p><p><thead></p><p><tr></p><p><th scope="col" class="org-left">deduction</th></p><p><th scope="col" class="org-left">language to record deduction</th></p><p></tr></p><p></thead></p><p><tbody></p><p><tr></p><p><td class="org-left">cut</td></p><p><td class="org-left">function composition</td></p><p></tr></p><p></p><p><tr></p><p><td class="org-left">exist-intro</td></p><p><td class="org-left">define new type</td></p><p></tr></p><p></p><p><tr></p><p><td class="org-left">exist-elim</td></p><p><td class="org-left">branching by a list of arrow</td></p><p></tr></p><p></p><p><tr></p><p><td class="org-left">conj-elim</td></p><p><td class="org-left">binding by unification</td></p><p></tr></p><p></tbody></p><p></table></p></li>
+<li><p>I agree with Wittgenstein</p><p>that a rule cannot be used to explain an action</p><p>because any course of action can be made out to accord with some rule</p></li>
 
-<li><p>first is cut</p><p>it is the hero deduction rule</p><p>which occupys the center of the stage of Gentzen's sequent calculus</p><p>it says if we have (A -&gt; B) and (B -&gt; C)</p><p>cut them together, we get (A -&gt; C)</p></li>
+<li><p>so, first we observe actions</p><p>then we design some rules to summarize them</p><p>(or compare what we observed with existing deduction rules (or inference rules))</p></li>
+
+<li><p>the question is</p><p>when we use this kind of syntax to write function body</p><p>what actions upon types we are recording ?</p><p>(what deductions upon theorems we are recording ?)</p></li></ul>
+</div>
+
+<div id="outline-container-orgc1f775f" class="outline-3">
+<h3 id="orgc1f775f">concatenation, composition and cut</h3>
+<div class="outline-text-3" id="text-orgc1f775f">
+<ul class="org-ul">
+<li><p>first syntax operation is concatenation</p><p>concatenation of two names corresponds to</p><p><ol class="org-ol"></p><p><li>composition of two functions under these names</li></p><p><li>cut of two types under these names</li></ol></p></li>
+
+<li><p><a href="#org7dad6f3">rationale of composition over application</a></p></li>
+
+<li><p>by "cut" I mean the hero deduction rule</p><p>which occupys the center of the stage of Gentzen's sequent calculus</p><p>it says if we have (A -&gt; B) and (B -&gt; C)</p><p>cut them together, we get (A -&gt; C)</p></li>
 
 <li><p>on the other hand</p><p>if we have function f1 of type (A -&gt; B) and f2 of (B -&gt; C)</p><p>compose f1 and f2, we get a function of type (A -&gt; C)</p><p>this is what I mean by "function compose, type cut" in the title</p></li>
 
-<li><p>&gt;&lt;&gt;&lt;&gt;&lt;</p></li></ul>
+<li><p><p></p><p>in the following example</p><p>"*" can be read as "define-hypothesis"</p><p></p></p><p><div class="org-src-container"></p><p></p><p><pre class="src src-scheme"><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> wanderer/poe <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> poe is-wanderer<span style="color: #696969;">))</span></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> way-worn <span style="color: #696969;">(</span><span style="color: #a6e22e;">:x</span> is-wanderer <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:x</span> is-weary<span style="color: #696969;">))</span></p><p></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">~</span> weary/poe <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> poe is-weary<span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> wanderer/poe way-worn<span style="color: #696969;">))</span></p><p></pre></p><p></div></p></li>
+
+<li><p>when view them as functions and types</p><p>it is really intuitive to see</p><p>with two functions "wanderer/poe" and "way-worn"</p><p>how we can compose a function of type (-&gt; poe is-weary)</p><p>this is why I said that</p><p>the best way to show how to use formal theorems in deduction</p><p>is a detour through functional programming language</p></li></ul>
 </div>
 </div>
 
-<div id="outline-container-orgbe6bbb1" class="outline-2">
-<h2 id="orgbe6bbb1"><span class="todo _gt__lt_">&gt;&lt;</span> algebra of logic</h2>
-<div class="outline-text-2" id="text-orgbe6bbb1">
+<div id="outline-container-orga271632" class="outline-3">
+<h3 id="orga271632">other deduction rules of natural deduction</h3>
+<div class="outline-text-3" id="text-orga271632">
+<ul class="org-ul">
+<li><p><p></p><p>the following seems like conj-intro and conj-elim in natural deduction</p><p>we can simply use stack processing function to express them</p><p></p></p><p><ul class="org-ul"></p><p><li><p>the types of stack processing functions</p><p>should remind you of the so called structural rules of sequent calculus</p></li></ul></p><p><div class="org-src-container"></p><p></p><p><pre class="src src-scheme"><span style="color: #FF8888;">;; </span><span style="color: #FF8888;">conj-intro</span></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> p1 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> a<span style="color: #696969;">))</span></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> p2 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> b<span style="color: #696969;">))</span></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">~</span> p3 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> a b<span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> p1 p2<span style="color: #696969;">))</span></p><p></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> drop <span style="color: #696969;">(</span><span style="color: #a6e22e;">:t</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span><span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span><span style="color: #a6e22e;">:d</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span><span style="color: #696969;">))</span></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">~</span> swap <span style="color: #696969;">(</span><span style="color: #a6e22e;">:t1</span> <span style="color: #a6e22e;">:t2</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:t2</span> <span style="color: #a6e22e;">:t1</span><span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span><span style="color: #a6e22e;">:d1</span> <span style="color: #a6e22e;">:d2</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:d2</span> <span style="color: #a6e22e;">:d1</span><span style="color: #696969;">))</span></p><p></p><p><span style="color: #FF8888;">;; </span><span style="color: #FF8888;">conj-elim</span></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> p3 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> a b<span style="color: #696969;">))</span></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">~</span> p1 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> a<span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> p3 drop<span style="color: #696969;">))</span></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">~</span> p2 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> b<span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> p3 swap drop<span style="color: #696969;">))</span></p><p></pre></p><p></div></p></li></ul>
+</div>
+</div>
+
+<div id="outline-container-orgcc47d50" class="outline-3">
+<h3 id="orgcc47d50">the meaning of proof</h3>
+<div class="outline-text-3" id="text-orgcc47d50">
+<ul class="org-ul">
+<li><p>we have the advantage to observe</p><p>the concrete meaning of "proof" within our concrete model</p></li>
+
+<li><p><p></p><p>concretely, how proof (type) is checked by the language ?</p><p>I have the following summarization</p><p></p></p><p></p><p><table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"></p><p></p><p></p><p><colgroup></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></colgroup></p><p><thead></p><p><tr></p><p><th scope="col" class="org-left">arrow list in function body</th></p><p><th scope="col" class="org-left">&#xa0;</th></p><p></tr></p><p></thead></p><p><tbody></p><p><tr></p><p><td class="org-left">for each arrow</td></p><p><td class="org-left">type-check</td></p><p></tr></p><p></p><p><tr></p><p><td class="org-left">for all antecedents</td></p><p><td class="org-left">cover-check</td></p><p></tr></p><p></p><p><tr></p><p><td class="org-left">for each succedent</td></p><p><td class="org-left">recur-check</td></p><p></tr></p><p></tbody></p><p></table></p></li>
+
+<li><p>to type-check one arrow, is to</p><p><ul class="org-ul"></p><p><li><p>unify the antecedent of type-arrow</p><p>with the type of the antecedent of arrow</p></li></p><p><li><p>during which, variables will be bound to data or other variables</p></li></p><p><li><p>under these bindings</p><p>try to cover the succedent of type-arrow</p><p>by the type of the succedent of arrow</p></li></ul></p></li>
+
+<li><p><p></p><p>for example, if we define natural number as the following</p><p>then we can proof natural-induction</p><p></p></p><p><div class="org-src-container"></p><p></p><p><pre class="src src-scheme"><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">+</span> natural <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> type<span style="color: #696969;">)</span></p><p>   zero <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> natural<span style="color: #696969;">)</span></p><p>   succ <span style="color: #696969;">(</span>natural <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> natural<span style="color: #696969;">))</span></p><p></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">~</span> natural-induction <span style="color: #696969;">((</span><span style="color: #a6e22e;">:p</span> : <span style="color: #696969;">(</span>natural <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> type<span style="color: #696969;">))</span></p><p>                      zero <span style="color: #a6e22e;">:p</span> apply</p><p>                      <span style="color: #696969;">((</span><span style="color: #a6e22e;">:k</span> : natural<span style="color: #696969;">)</span> <span style="color: #a6e22e;">:k</span> <span style="color: #a6e22e;">:p</span> apply <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:k</span> succ <span style="color: #a6e22e;">:p</span> apply<span style="color: #696969;">)</span></p><p>                      <span style="color: #696969;">(</span><span style="color: #a6e22e;">:x</span> : natural<span style="color: #696969;">)</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:x</span> <span style="color: #a6e22e;">:p</span> apply<span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span><span style="color: #a6e22e;">:q</span> <span style="color: #a6e22e;">:q/z</span> <span style="color: #a6e22e;">:q/s</span> zero <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:q/z</span><span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span><span style="color: #a6e22e;">:q</span> <span style="color: #a6e22e;">:q/z</span> <span style="color: #a6e22e;">:q/s</span> <span style="color: #a6e22e;">:n</span> succ <span style="color: #66d9ef; font-weight: bold;">-&gt;</span></p><p>       <span style="color: #a6e22e;">:n</span></p><p>       <span style="color: #a6e22e;">:q</span> <span style="color: #a6e22e;">:q/z</span> <span style="color: #a6e22e;">:q/s</span> <span style="color: #a6e22e;">:n</span> natural-induction</p><p>       <span style="color: #a6e22e;">:q/s</span> apply<span style="color: #696969;">))</span></p><p></p><p><span style="color: #FF8888;">;; </span><span style="color: #FF8888;">take the type check of the second arrow for example</span></p><p></p><p><span style="color: #FF8888;">;; </span><span style="color: #FF8888;">unify the antecedent of type-arrow :</span></p><p><span style="color: #696969;">((</span><span style="color: #a6e22e;">:p</span> : <span style="color: #696969;">(</span>natural <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> type<span style="color: #696969;">))</span></p><p> zero <span style="color: #a6e22e;">:p</span> apply</p><p> <span style="color: #696969;">((</span><span style="color: #a6e22e;">:k</span> : natural<span style="color: #696969;">)</span> <span style="color: #a6e22e;">:k</span> <span style="color: #a6e22e;">:p</span> apply <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:k</span> succ <span style="color: #a6e22e;">:p</span> apply<span style="color: #696969;">)</span></p><p> <span style="color: #696969;">(</span><span style="color: #a6e22e;">:x</span> : natural<span style="color: #696969;">))</span></p><p></p><p><span style="color: #FF8888;">;; </span><span style="color: #FF8888;">with the type of antecedent of the second arrow :</span></p><p>type of <span style="color: #696969;">(</span><span style="color: #a6e22e;">:q</span> <span style="color: #a6e22e;">:q/z</span> <span style="color: #a6e22e;">:q/s</span> <span style="color: #a6e22e;">:n</span> succ<span style="color: #696969;">)</span></p><p></p><p><span style="color: #FF8888;">;; </span><span style="color: #FF8888;">bindings :</span></p><p><span style="color: #696969;">((</span><span style="color: #a6e22e;">:p</span> = <span style="color: #a6e22e;">:q</span><span style="color: #696969;">)</span></p><p> <span style="color: #696969;">(</span><span style="color: #a6e22e;">:q</span> : <span style="color: #696969;">(</span>natural <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> type<span style="color: #696969;">))</span></p><p> <span style="color: #696969;">(</span><span style="color: #a6e22e;">:q/z</span> : zero <span style="color: #a6e22e;">:p</span> apply<span style="color: #696969;">)</span></p><p> <span style="color: #696969;">(</span><span style="color: #a6e22e;">:q/s</span> : <span style="color: #696969;">((</span><span style="color: #a6e22e;">:k</span> : natural<span style="color: #696969;">)</span> <span style="color: #a6e22e;">:k</span> <span style="color: #a6e22e;">:p</span> apply <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:k</span> succ <span style="color: #a6e22e;">:p</span> apply<span style="color: #696969;">))</span></p><p> <span style="color: #696969;">(</span><span style="color: #a6e22e;">:x</span> = <span style="color: #a6e22e;">:n</span><span style="color: #696969;">)</span></p><p> <span style="color: #696969;">(</span><span style="color: #a6e22e;">:n</span> : natural<span style="color: #696969;">))</span></p><p></p><p><span style="color: #FF8888;">;; </span><span style="color: #FF8888;">the type of the succedent of the second arrow :</span></p><p>type of</p><p><span style="color: #696969;">(</span><span style="color: #a6e22e;">:n</span></p><p> <span style="color: #a6e22e;">:q</span> <span style="color: #a6e22e;">:q/z</span> <span style="color: #a6e22e;">:q/s</span> <span style="color: #a6e22e;">:n</span> natural-induction</p><p> <span style="color: #a6e22e;">:q/s</span> apply<span style="color: #696969;">)</span></p><p>== <span style="color: #FF8888;">;; </span><span style="color: #FF8888;">under bindings</span></p><p><span style="color: #696969;">((</span><span style="color: #a6e22e;">:n</span> : natural<span style="color: #696969;">)</span></p><p> <span style="color: #696969;">(</span><span style="color: #a6e22e;">:q</span> : <span style="color: #696969;">(</span>natural <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> type<span style="color: #696969;">))</span></p><p> <span style="color: #696969;">(</span><span style="color: #a6e22e;">:q/z</span> : zero <span style="color: #a6e22e;">:q</span> apply<span style="color: #696969;">)</span></p><p> <span style="color: #696969;">(</span><span style="color: #a6e22e;">:q/s</span> : <span style="color: #696969;">((</span><span style="color: #a6e22e;">:k</span> : natural<span style="color: #696969;">)</span> <span style="color: #a6e22e;">:k</span> <span style="color: #a6e22e;">:q</span> apply <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:k</span> succ <span style="color: #a6e22e;">:q</span> apply<span style="color: #696969;">))</span></p><p> <span style="color: #696969;">(</span><span style="color: #a6e22e;">:n</span> : natural<span style="color: #696969;">)</span></p><p> natural-induction</p><p> <span style="color: #a6e22e;">:q/s</span> type/apply<span style="color: #696969;">)</span></p><p>==</p><p><span style="color: #696969;">((</span><span style="color: #a6e22e;">:n</span> : natural<span style="color: #696969;">)</span></p><p> <span style="color: #a6e22e;">:n</span> <span style="color: #a6e22e;">:q</span> apply</p><p> <span style="color: #a6e22e;">:q/s</span> type/apply<span style="color: #696969;">)</span></p><p>==</p><p><span style="color: #696969;">((</span><span style="color: #a6e22e;">:n</span> succ <span style="color: #a6e22e;">:q</span> apply<span style="color: #696969;">))</span></p><p></p><p><span style="color: #FF8888;">;; </span><span style="color: #FF8888;">cover the succedent of type-arrow :</span></p><p><span style="color: #696969;">(</span><span style="color: #a6e22e;">:x</span> <span style="color: #a6e22e;">:p</span> apply<span style="color: #696969;">)</span></p><p>== <span style="color: #FF8888;">;; </span><span style="color: #FF8888;">under bindings</span></p><p><span style="color: #696969;">((</span><span style="color: #a6e22e;">:n</span> succ <span style="color: #a6e22e;">:q</span> apply<span style="color: #696969;">))</span></p><p></pre></p><p></div></p></li>
+
+<li><p>to summarize the meaning of "proof" within our concrete model</p><p><ul class="org-ul"></p><p><li><p>we can express theorems about</p><p><ul class="org-ul"></p><p><li><p>recursively defined data</p></li></p><p><li><p>recursively defined function</p></li></ul></p></li></p><p><li><p>we can do prove by</p><p><ul class="org-ul"></p><p><li><p>cut &#x2013; function composition</p></li></p><p><li><p>exhaustion &#x2013; cover-check</p></li></p><p><li><p>structural induction &#x2013;</p><p>where first we proof some basic steps</p><p>and by unification we change get next-theorem</p><p>(just as the next-number in natural-induction)</p><p>a function recursive call is a use of the induction hypothesis</p></li></ul></p></li></ul></p></li></ul>
+</div>
+</div>
+
+<div id="outline-container-org9bfb5a7" class="outline-3">
+<h3 id="org9bfb5a7"><span class="todo _gt__lt_">&gt;&lt;</span> the meaning of type definition</h3>
+<div class="outline-text-3" id="text-org9bfb5a7">
+<p>
+define new type
+exist-intro
+</p>
+
+<p>
+branching by a list of arrow
+exist-elim
+</p>
+
+<p>
+binding by unification
+conj-elim
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4755d3b" class="outline-2">
+<h2 id="org4755d3b"><span class="todo _gt__lt_">&gt;&lt;</span> algebra of logic</h2>
+<div class="outline-text-2" id="text-org4755d3b">
 <ul class="org-ul">
 <li><p><p></p><p>carefully define equality of theorem, we will get a natural field</p><p></p></p><p></p><p><table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"></p><p></p><p></p><p><colgroup></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></colgroup></p><p><thead></p><p><tr></p><p><th scope="col" class="org-left">deduction</th></p><p><th scope="col" class="org-left">language to record deduction</th></p><p><th scope="col" class="org-left">logic field</th></p><p></tr></p><p></thead></p><p><tbody></p><p><tr></p><p><td class="org-left">cut</td></p><p><td class="org-left">function composition</td></p><p><td class="org-left">weaken</td></p><p></tr></p><p></p><p><tr></p><p><td class="org-left">exist-intro</td></p><p><td class="org-left">define new type</td></p><p><td class="org-left">field extension</td></p><p></tr></p><p></p><p><tr></p><p><td class="org-left">exist-elim</td></p><p><td class="org-left">branching by a list of arrow</td></p><p><td class="org-left">distributive</td></p><p></tr></p><p></p><p><tr></p><p><td class="org-left">conj-elim</td></p><p><td class="org-left">binding by unification</td></p><p><td class="org-left">&#xa0;</td></p><p></tr></p><p></tbody></p><p></table></p></li>
 
 <li><p>&gt;&lt;&gt;&lt;&gt;&lt;</p></li></ul>
 </div>
 
-<div id="outline-container-org109ee57" class="outline-3">
-<h3 id="org109ee57">the natural field</h3>
-<div class="outline-text-3" id="text-org109ee57">
+<div id="outline-container-orged0fd8e" class="outline-3">
+<h3 id="orged0fd8e">the natural field</h3>
+<div class="outline-text-3" id="text-orged0fd8e">
 <ul class="org-ul">
 <li><p>let us view theorem (A -&gt; B) as fraction</p><p>A as denominator</p><p>B as numerator</p><p><ul class="org-ul"></p><p><li><p>so, one might write (A \ B)</p><p>note that</p><p>we are using reverse-slash instead of slash</p><p>to maintain the order of A B in (A -&gt; B)</p></li></ul></p></li>
 
@@ -241,9 +304,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgfa27a9c" class="outline-3">
-<h3 id="orgfa27a9c">the order structure of our natural field</h3>
-<div class="outline-text-3" id="text-orgfa27a9c">
+<div id="outline-container-org29138be" class="outline-3">
+<h3 id="org29138be">the order structure of our natural field</h3>
+<div class="outline-text-3" id="text-org29138be">
 <ul class="org-ul">
 <li><p>the next question one should ask is</p><p>what is the relation between this natural field and deduction ?</p><p>the answer relates to the order structure of our natural field</p><p>(actually we have a lattice, I will address its detail in another article)</p></li>
 
@@ -253,9 +316,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orga49c4ee" class="outline-3">
-<h3 id="orga49c4ee">the relation between natural field of logic and deduction</h3>
-<div class="outline-text-3" id="text-orga49c4ee">
+<div id="outline-container-orga38cdd6" class="outline-3">
+<h3 id="orga38cdd6">the relation between natural field of logic and deduction</h3>
+<div class="outline-text-3" id="text-orga38cdd6">
 <ul class="org-ul">
 <li><p>now we can observe that</p><p>deduction is</p><p>to build new theorem by addition or multiplication theorems</p><p>or weaken a theorem</p></li>
 
@@ -265,9 +328,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgd75cca4" class="outline-3">
-<h3 id="orgd75cca4">to summarize</h3>
-<div class="outline-text-3" id="text-orgd75cca4">
+<div id="outline-container-org867b9e1" class="outline-3">
+<h3 id="org867b9e1">to summarize</h3>
+<div class="outline-text-3" id="text-org867b9e1">
 <ul class="org-ul">
 <li><p>the algebraic structure of logic is a natural field</p></li>
 <li><p>deduction is</p><p>to build new theorem by addition and multiplication theorems</p><p>or weaken a theorem</p></li>
@@ -277,78 +340,66 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org479c0d2" class="outline-2">
-<h2 id="org479c0d2"><span class="todo _gt__lt_">&gt;&lt;</span> implementation</h2>
-<div class="outline-text-2" id="text-org479c0d2">
+<div id="outline-container-orgc956817" class="outline-2">
+<h2 id="orgc956817">implementation</h2>
+<div class="outline-text-2" id="text-orgc956817">
 <ul class="org-ul">
-<li><p>&gt;&lt;&gt;&lt;&gt;&lt;</p><p>an attempt to implement such a language</p></li>
+<li><p>an attempt to implement such a language</p></li>
 
 <li><p>project page : <a href="http://xieyuheng.github.io/sequent1">http://xieyuheng.github.io/sequent1</a></p></li></ul>
 </div>
-
-<div id="outline-container-orgfd50b3d" class="outline-3">
-<h3 id="orgfd50b3d"><span class="todo _gt__lt_">&gt;&lt;</span> cover-check</h3>
 </div>
 
-<div id="outline-container-org214e71c" class="outline-3">
-<h3 id="org214e71c"><span class="todo _gt__lt_">&gt;&lt;</span> recur-check</h3>
-</div>
-</div>
-
-<div id="outline-container-orgacf99e6" class="outline-2">
-<h2 id="orgacf99e6">appendix</h2>
-<div class="outline-text-2" id="text-orgacf99e6">
-</div><div id="outline-container-orgf3e16d0" class="outline-3">
-<h3 id="orgf3e16d0"><span class="todo _gt__lt_">&gt;&lt;</span> remark on the use of stack in implementation</h3>
-</div>
-
-<div id="outline-container-org91462b6" class="outline-3">
-<h3 id="org91462b6"><span class="todo _gt__lt_">&gt;&lt;</span> remark on formal language for deduction and proof</h3>
-<div class="outline-text-3" id="text-org91462b6">
+<div id="outline-container-org5a6c6fa" class="outline-2">
+<h2 id="org5a6c6fa">appendix</h2>
+<div class="outline-text-2" id="text-org5a6c6fa">
+</div><div id="outline-container-orgb729b39" class="outline-3">
+<h3 id="orgb729b39">remark on formalization</h3>
+<div class="outline-text-3" id="text-orgb729b39">
 <ul class="org-ul">
-<li><p>&gt;&lt;&gt;&lt;&gt;&lt;</p><p>A proof is any completely convincing argument. &#x2013; Errett Bishop</p></li></ul>
+<li><p>I agree with Errett Bishop who said</p><p>"a proof is any completely convincing argument."</p><p>I also think theorems expressed by formal language are specially clear</p><p>and proofs checked by computer are specially convincing</p></li>
+
+<li><p>on the other hand</p><p>I also think that</p><p>formal language can never be used to satisfactorily explain</p><p>or totally simulate human language</p><p>formal theorem and formal proof can never fully capture "human proof"</p><p>this fact is specially clear</p><p>if you are willing to think of "human proof" historically</p></li>
+
+<li><p>the aim (or one aim) of formalization is to reduce (or remove) vagueness</p><p>while the definition of vagueness is always vague</p></li></ul>
 </div>
 </div>
 
-<div id="outline-container-org6aa2d83" class="outline-3">
-<h3 id="org6aa2d83">rationale of using postfix notation</h3>
-<div class="outline-text-3" id="text-org6aa2d83">
+<div id="outline-container-orge41531a" class="outline-3">
+<h3 id="orge41531a">rationale of using postfix notation</h3>
+<div class="outline-text-3" id="text-orge41531a">
 <ul class="org-ul">
 <li><p><p></p><p>rationale of using postfix notation is the following</p><p>in the linear writing system of our language</p><p>we can roughly distinguish four kinds of notations for function or predicate</p><p></p></p><p><table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"></p><p></p><p></p><p><colgroup></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></colgroup></p><p><tbody></p><p><tr></p><p><td class="org-left">infix</td></p><p><td class="org-left">((1 + 2) + 3)</td></p><p></tr></p><p></p><p><tr></p><p><td class="org-left">prefix</td></p><p><td class="org-left">+ + 1 2 3</td></p><p></tr></p><p></p><p><tr></p><p><td class="org-left">postfix</td></p><p><td class="org-left">3 2 1 + +</td></p><p></tr></p><p></p><p><tr></p><p><td class="org-left">borderfix</td></p><p><td class="org-left">(+ 1 2 3)</td></p><p></tr></p><p></tbody></p><p></table></p><p><ul class="org-ul"></p><p><li><p>infix is especially good for associative binary function</p></li></p><p><li><p>prefix and postfix are not ambiguous without bracket</p></li></p><p><li><p>borderfix can be used for functions</p><p>that can apply to different numbers of arguments</p></li></ul></p><p><p></p><p>our choice is between prefix and postfix</p><p>because for simplicity we have the following two features</p><p></p></p><p><ul class="org-ul"></p><p><li><p>the arity of all functions must be fixed</p></li></p><p><li><p>we want our expressions to be not ambiguous without bracket</p></li></ul></p><p><p></p><p>then, how do we decide to use postfix instead of prefix ?</p><p>seemingly, prefix and postfix are symmetric</p><p>while we still can distinguish them</p><p>because we write in special order (from left to right in most western language)</p><p>in postfix notation suppose we have written</p><p>1 2 +</p><p>and we want to add 3 to the result of 1 2 +</p><p>we simply write</p><p>1 2 + 3 +</p><p>while in prefix notation suppose we have written</p><p> + 1 2 </p><p>and we want to add 3 to the result of + 1 2</p><p>we have to insert + 3 in front of + 1 2 and write</p><p> + 3 + 1 2 </p><p>I summarize this difference by say</p><p>postfix notation respect the special order of a linear writing system</p><p>the above conclude my rationale</p><p></p></p></li></ul>
 </div>
 </div>
 
-<div id="outline-container-org80a471a" class="outline-3">
-<h3 id="org80a471a"><span class="todo _gt__lt_">&gt;&lt;</span> rationale of function composition over function application</h3>
-<div class="outline-text-3" id="text-org80a471a">
-<ul class="org-ul">
-<li><p>&gt;&lt;&gt;&lt;&gt;&lt;</p><p>function composition</p><p>associative</p><p>rich</p></li>
+<div id="outline-container-org6e7ad61" class="outline-3">
+<h3 id="org6e7ad61"><span class="todo _gt__lt_">&gt;&lt;</span> remark on the use of stack in implementation</h3>
+</div>
 
-<li><p>&gt;&lt;&gt;&lt;&gt;&lt;</p><p>Hilbert system</p><p>combinatory logic</p><p>function application</p></li></ul>
+<div id="outline-container-org7dad6f3" class="outline-3">
+<h3 id="org7dad6f3">rationale of composition over application</h3>
+<div class="outline-text-3" id="text-org7dad6f3">
+<ul class="org-ul">
+<li><p>to optimize system for composition</p><p>is to denote composition by concatenation of term</p></li>
+
+<li><p>when optimize syntax for composition instead of application</p><p><ul class="org-ul"></p><p><li><p>we get better algebra-like structure</p><p>because function composition is associative</p><p>while function application is not</p></li></p><p><li><p>we lost good syntax about currying</p><p>because currying is designed as a convention</p><p>of the syntax of function application</p></li></ul></p></li></ul>
 </div>
 </div>
 
-<div id="outline-container-orga20220d" class="outline-3">
-<h3 id="orga20220d">remark on deduction and inference</h3>
-<div class="outline-text-3" id="text-orga20220d">
+<div id="outline-container-org5626545" class="outline-3">
+<h3 id="org5626545">remark on deduction and inference</h3>
+<div class="outline-text-3" id="text-org5626545">
 <ul class="org-ul">
-<li><p>first question one might ask is</p><p>what is a deduction or a inference ?</p><p>my answer is a deduction or a inference</p><p>is a way to express a change of theorem</p><p>"a change" means "one step of change"</p></li>
+<li><p>one might ask, what is a deduction or a inference ?</p><p>my answer is a deduction or a inference</p><p>is a way to express a change of theorem</p><p>"a change" means "one step of change"</p></li>
 
 <li><p><p></p><p>let us generalized a little bit</p><p>and to discuss "a change of thing" and "language to record changes"</p><p>you will find these two concepts are very common</p><p>and they also are named gloriously in different places</p><p></p></p><p><table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"></p><p></p><p></p><p><colgroup></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></colgroup></p><p><thead></p><p><tr></p><p><th scope="col" class="org-left">thing</th></p><p><th scope="col" class="org-left">a change of thing</th></p><p><th scope="col" class="org-left">language to record changes</th></p><p></tr></p><p></thead></p><p><tbody></p><p><tr></p><p><td class="org-left">theorem</td></p><p><td class="org-left">deduction</td></p><p><td class="org-left">proof</td></p><p></tr></p><p></p><p><tr></p><p><td class="org-left">food</td></p><p><td class="org-left">&#xa0;</td></p><p><td class="org-left">cookbook</td></p><p></tr></p><p></p><p><tr></p><p><td class="org-left">data</td></p><p><td class="org-left">&#xa0;</td></p><p><td class="org-left">algorithm</td></p><p></tr></p><p></p><p><tr></p><p><td class="org-left">number</td></p><p><td class="org-left">elementary arithmetic</td></p><p><td class="org-left">&#xa0;</td></p><p></tr></p><p></tbody></p><p></table></p><p><p></p><p>(seems to me a market for language designer)</p><p></p></p></li></ul>
 </div>
 </div>
 
-<div id="outline-container-org39001de" class="outline-3">
-<h3 id="org39001de">remark on conj-intro and conj-elim</h3>
-<div class="outline-text-3" id="text-org39001de">
-<ul class="org-ul">
-<li><p><p></p><p>the following seems like conj-intro and conj-elim in natural deduction</p><p>but we can use stack processing function to express them</p><p></p></p><p><div class="org-src-container"></p><p></p><p><pre class="src src-scheme"><span style="color: #FF8888;">;; </span><span style="color: #FF8888;">conj-intro</span></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> p1 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> a<span style="color: #696969;">))</span></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> p2 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> b<span style="color: #696969;">))</span></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">~</span> p3 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> a b<span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> p1 p2<span style="color: #696969;">))</span></p><p></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> drop <span style="color: #696969;">(</span><span style="color: #a6e22e;">:t</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span><span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span><span style="color: #a6e22e;">:d</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span><span style="color: #696969;">))</span></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">~</span> swap <span style="color: #696969;">(</span><span style="color: #a6e22e;">:t1</span> <span style="color: #a6e22e;">:t2</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:t2</span> <span style="color: #a6e22e;">:t1</span><span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span><span style="color: #a6e22e;">:d1</span> <span style="color: #a6e22e;">:d2</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:d2</span> <span style="color: #a6e22e;">:d1</span><span style="color: #696969;">))</span></p><p></p><p><span style="color: #FF8888;">;; </span><span style="color: #FF8888;">conj-elim</span></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> p3 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> a b<span style="color: #696969;">))</span></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">~</span> p1 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> a<span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> p3 drop<span style="color: #696969;">))</span></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">~</span> p1 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> a<span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> p3 swap drop<span style="color: #696969;">))</span></p><p></pre></p><p></div></p></li></ul>
-</div>
-</div>
-
-<div id="outline-container-org498df50" class="outline-3">
-<h3 id="org498df50"><span class="todo _gt__lt_">&gt;&lt;</span> </h3>
-<div class="outline-text-3" id="text-org498df50">
+<div id="outline-container-org8417520" class="outline-3">
+<h3 id="org8417520"><span class="todo _gt__lt_">&gt;&lt;</span> </h3>
+<div class="outline-text-3" id="text-org8417520">
 <ul class="org-ul">
 <li><p>how about (C or D) ? you might ask</p><p>I would say, let us ignore (C or D) for now</p><p>we will not be able to express such thing in our language</p><p>but no worry</p><p>because we will be able to express</p><p>"there exist x belong to A, such that P(x)" in our language</p><p>you see that (C or D) is an unnamed way to express alternative</p><p>while "there exist x belong to A" is a named way to express alternative</p><p>so, whenever we want to express alternative</p><p>we would have to introduce name</p><p><ul class="org-ul"></p><p><li><p>we can add "or" back to our language later</p><p>but I insist that we ignore "or" for now</p><p>because I want the language to be simple</p></li></ul></p></li></ul>
 </div>

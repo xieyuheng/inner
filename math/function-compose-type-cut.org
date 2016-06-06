@@ -66,10 +66,7 @@
 * formal theorem
 
   - let us design a formal language to express theorem
-    I agree with Errett Bishop who said
-    "a proof is any completely convincing argument."
-    I also think theorems expressed by formal language are specially clear
-    and proofs checked by computer are specially convincing
+    - [[remark on formalization]]
 
   - firstly we see the fact that the general form of theorem is like (A -> B)
     let us unite our syntax toward "->"
@@ -126,12 +123,12 @@
     (-> (:x : a) :x p)
     #+end_src
 
-  - now we have designed a language to express theorem
-    the best way to show how to use them in deduction
+  - now we have designed a formal language to express theorem
+    the best way to show how to use formal theorem in deduction
     is a detour through functional programming language
     theorem -> type -> function -> proof
 
-* theorem as type, and function
+* theorem as type
 
   - theorem can be viewed as type of function
     this is well known as "theorem as type"
@@ -271,6 +268,11 @@
        (:l :e cons :f -> :l :f map :e :f apply cons))
     #+end_src
 
+  - examples that use lambda
+    #+begin_src scheme
+    ><><><
+    #+end_src
+
 * function as proof
 
   - now we are at the finial step of the detour from formal theorem to proof
@@ -280,52 +282,189 @@
     it says, the way we write functions forms a language to record deduction
     a record of many steps of deduction is called a proof
 
-  - ><
+  - I agree with Wittgenstein
+    that a rule cannot be used to explain an action
+    because any course of action can be made out to accord with some rule
 
-    #+begin_src scheme
-    (* wanderer/poe (-> poe is-wanderer))
-    (* way-worn (:x is-wanderer -> :x is-weary))
-    (~ weary/poe (-> poe is-weary)
-       (-> wanderer/poe way-worn))
+  - so, first we observe actions
+    then we design some rules to summarize them
+    (or compare what we observed with existing deduction rules (or inference rules))
 
+  - the question is
+    when we use this kind of syntax to write function body
+    what actions upon types we are recording ?
+    (what deductions upon theorems we are recording ?)
 
-    (+ natural (-> type)
-       zero (-> natural)
-       succ (natural -> natural))
+*** concatenation, composition and cut
 
-    (~ natural-induction
+    - first syntax operation is concatenation
+      concatenation of two names corresponds to
+      1. composition of two functions under these names
+      2. cut of two types under these names
 
-       ((:p : (natural -> type))
-        zero :p apply
-        ((:k : natural) :k :p apply -> :k succ :p apply)
-        (:x : natural) -> :x :p apply)
+    - [[rationale of composition over application]]
 
-       (:p :p/z :p/s zero -> :p/z)
-       (:p :p/z :p/s :k succ ->
-           :k
-           :p :p/z :p/s :k natural-induction
-           :p/s apply))
-    #+end_src
+    - by "cut" I mean the hero deduction rule
+      which occupys the center of the stage of Gentzen's sequent calculus
+      it says if we have (A -> B) and (B -> C)
+      cut them together, we get (A -> C)
 
-    | deduction   | language to record deduction |
-    |-------------+------------------------------|
-    | cut         | function composition         |
-    | exist-intro | define new type              |
-    | exist-elim  | branching by a list of arrow |
-    | conj-elim   | binding by unification       |
+    - on the other hand
+      if we have function f1 of type (A -> B) and f2 of (B -> C)
+      compose f1 and f2, we get a function of type (A -> C)
+      this is what I mean by "function compose, type cut" in the title
 
-  - first is cut
-    it is the hero deduction rule
-    which occupys the center of the stage of Gentzen's sequent calculus
-    it says if we have (A -> B) and (B -> C)
-    cut them together, we get (A -> C)
+    - in the following example
+      "*" can be read as "define-hypothesis"
+      #+begin_src scheme
+      (* wanderer/poe (-> poe is-wanderer))
+      (* way-worn (:x is-wanderer -> :x is-weary))
 
-  - on the other hand
-    if we have function f1 of type (A -> B) and f2 of (B -> C)
-    compose f1 and f2, we get a function of type (A -> C)
-    this is what I mean by "function compose, type cut" in the title
+      (~ weary/poe (-> poe is-weary)
+         (-> wanderer/poe way-worn))
+      #+end_src
 
-  - ><><><
+    - when view them as functions and types
+      it is really intuitive to see
+      with two functions "wanderer/poe" and "way-worn"
+      how we can compose a function of type (-> poe is-weary)
+      this is why I said that
+      the best way to show how to use formal theorems in deduction
+      is a detour through functional programming language
+
+*** other deduction rules of natural deduction
+
+    - the following seems like conj-intro and conj-elim in natural deduction
+      we can simply use stack processing function to express them
+      - the types of stack processing functions
+        should remind you of the so called structural rules of sequent calculus
+      #+begin_src scheme
+      ;; conj-intro
+      (* p1 (-> a))
+      (* p2 (-> b))
+      (~ p3 (-> a b)
+         (-> p1 p2))
+
+      (* drop (:t ->)
+         (:d ->))
+      (~ swap (:t1 :t2 -> :t2 :t1)
+         (:d1 :d2 -> :d2 :d1))
+
+      ;; conj-elim
+      (* p3 (-> a b))
+      (~ p1 (-> a)
+         (-> p3 drop))
+      (~ p2 (-> b)
+         (-> p3 swap drop))
+      #+end_src
+
+*** the meaning of proof
+
+    - we have the advantage to observe
+      the concrete meaning of "proof" within our concrete model
+
+    - concretely, how proof (type) is checked by the language ?
+      I have the following summarization
+
+      | arrow list in function body |             |
+      |-----------------------------+-------------|
+      | for each arrow              | type-check  |
+      | for all antecedents         | cover-check |
+      | for each succedent          | recur-check |
+
+    - to type-check one arrow, is to
+      - unify the antecedent of type-arrow
+        with the type of the antecedent of arrow
+      - during which, variables will be bound to data or other variables
+      - under these bindings
+        try to cover the succedent of type-arrow
+        by the type of the succedent of arrow
+
+    - for example, if we define natural number as the following
+      then we can proof natural-induction
+      #+begin_src scheme
+      (+ natural (-> type)
+         zero (-> natural)
+         succ (natural -> natural))
+
+      (~ natural-induction ((:p : (natural -> type))
+                            zero :p apply
+                            ((:k : natural) :k :p apply -> :k succ :p apply)
+                            (:x : natural) -> :x :p apply)
+         (:q :q/z :q/s zero -> :q/z)
+         (:q :q/z :q/s :n succ ->
+             :n
+             :q :q/z :q/s :n natural-induction
+             :q/s apply))
+
+      ;; take the type check of the second arrow for example
+
+      ;; unify the antecedent of type-arrow :
+      ((:p : (natural -> type))
+       zero :p apply
+       ((:k : natural) :k :p apply -> :k succ :p apply)
+       (:x : natural))
+
+      ;; with the type of antecedent of the second arrow :
+      type of (:q :q/z :q/s :n succ)
+
+      ;; bindings :
+      ((:p = :q)
+       (:q : (natural -> type))
+       (:q/z : zero :p apply)
+       (:q/s : ((:k : natural) :k :p apply -> :k succ :p apply))
+       (:x = :n)
+       (:n : natural))
+
+      ;; the type of the succedent of the second arrow :
+      type of
+      (:n
+       :q :q/z :q/s :n natural-induction
+       :q/s apply)
+      == ;; under bindings
+      ((:n : natural)
+       (:q : (natural -> type))
+       (:q/z : zero :q apply)
+       (:q/s : ((:k : natural) :k :q apply -> :k succ :q apply))
+       (:n : natural)
+       natural-induction
+       :q/s type/apply)
+      ==
+      ((:n : natural)
+       :n :q apply
+       :q/s type/apply)
+      ==
+      ((:n succ :q apply))
+
+      ;; cover the succedent of type-arrow :
+      (:x :p apply)
+      == ;; under bindings
+      ((:n succ :q apply))
+      #+end_src
+
+    - to summarize the meaning of "proof" within our concrete model
+      - we can express theorems about
+        - recursively defined data
+        - recursively defined function
+      - we can do prove by
+        - cut -- function composition
+        - exhaustion -- cover-check
+        - structural induction --
+          where first we proof some basic steps
+          and by unification we change get next-theorem
+          (just as the next-number in natural-induction)
+          a function recursive call is a use of the induction hypothesis
+
+*** >< the meaning of type definition
+
+    define new type
+    exist-intro
+
+    branching by a list of arrow
+    exist-elim
+
+    binding by unification
+    conj-elim
 
 * >< algebra of logic
 
@@ -439,25 +578,31 @@
     - cut can be viewed as an important way to weaken a theorem
     - a proof is a record of many steps of deductions
 
-* >< implementation
+* implementation
 
-  - ><><><
-    an attempt to implement such a language
+  - an attempt to implement such a language
 
   - project page : http://xieyuheng.github.io/sequent1
 
-*** >< cover-check
-
-*** >< recur-check
-
 * appendix
 
-*** >< remark on the use of stack in implementation
+*** remark on formalization
 
-*** >< remark on formal language for deduction and proof
+    - I agree with Errett Bishop who said
+      "a proof is any completely convincing argument."
+      I also think theorems expressed by formal language are specially clear
+      and proofs checked by computer are specially convincing
 
-    - ><><><
-      A proof is any completely convincing argument. -- Errett Bishop
+    - on the other hand
+      I also think that
+      formal language can never be used to satisfactorily explain
+      or totally simulate human language
+      formal theorem and formal proof can never fully capture "human proof"
+      this fact is specially clear
+      if you are willing to think of "human proof" historically
+
+    - the aim (or one aim) of formalization is to reduce (or remove) vagueness
+      while the definition of vagueness is always vague
 
 *** rationale of using postfix notation
 
@@ -494,22 +639,24 @@
       postfix notation respect the special order of a linear writing system
       the above conclude my rationale
 
-*** >< rationale of function composition over function application
+*** >< remark on the use of stack in implementation
 
-    - ><><><
-      function composition
-      associative
-      rich
+*** rationale of composition over application
 
-    - ><><><
-      Hilbert system
-      combinatory logic
-      function application
+    - to optimize system for composition
+      is to denote composition by concatenation of term
+
+    - when optimize syntax for composition instead of application
+      - we get better algebra-like structure
+        because function composition is associative
+        while function application is not
+      - we lost good syntax about currying
+        because currying is designed as a convention
+        of the syntax of function application
 
 *** remark on deduction and inference
 
-    - first question one might ask is
-      what is a deduction or a inference ?
+    - one might ask, what is a deduction or a inference ?
       my answer is a deduction or a inference
       is a way to express a change of theorem
       "a change" means "one step of change"
@@ -525,30 +672,6 @@
       | data    |                       | algorithm                  |
       | number  | elementary arithmetic |                            |
       (seems to me a market for language designer)
-
-*** remark on conj-intro and conj-elim
-
-    - the following seems like conj-intro and conj-elim in natural deduction
-      but we can use stack processing function to express them
-      #+begin_src scheme
-      ;; conj-intro
-      (* p1 (-> a))
-      (* p2 (-> b))
-      (~ p3 (-> a b)
-         (-> p1 p2))
-
-      (* drop (:t ->)
-         (:d ->))
-      (~ swap (:t1 :t2 -> :t2 :t1)
-         (:d1 :d2 -> :d2 :d1))
-
-      ;; conj-elim
-      (* p3 (-> a b))
-      (~ p1 (-> a)
-         (-> p3 drop))
-      (~ p1 (-> a)
-         (-> p3 swap drop))
-      #+end_src
 
 *** ><
 
