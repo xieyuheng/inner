@@ -34,7 +34,7 @@
     inspired by joy (the language)
     implemented by an interpreter of js array
 
-  - [[https://github.com/xieyuheng/cicada-nymph][cicada-nymph]] -- a forth-like language
+  - [[http://xieyuheng.github.io/cicada-nymph][cicada-nymph]] -- a forth-like language
 
 * lecture
 
