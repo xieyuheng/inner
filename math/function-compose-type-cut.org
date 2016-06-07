@@ -4,11 +4,10 @@
 ------
 @@html:
 <p> auther : XIE Yuheng of Sun Yat-sen university </p>
-<p> (this paper is still under revise) </p>
 @@
 ------
 @@html:
-<p> abstract : </p>
+<p> abstract : (this paper is still under revising) </p>
 @@
 ------
 @@html:
@@ -105,14 +104,13 @@
 
 *** or
 
-    - for "or" we write (A or B) (A or B or C) etc
+    - for "or" we write (A or B) (A B or C D) (A or B or C) etc
 
 *** not
 
     - I suggest to ignore "not"
       because you see that (not P) is just (P -> something-we-consider-wrong)
-      the negation we want to express
-      is parameterized by something-we-consider-wrong
+      the negation we want to express is parameterized by something-we-consider-wrong
       (or say, depends on something-we-consider-wrong)
       if we simple say (not P)
       the information of this parameterization will be lost
@@ -177,7 +175,7 @@
       #+end_src
 
     - in the above example
-      "+" can be read as "define-type"
+      "+" can be readed as "define-type"
       the type to be defined is "natural"
       and the type of "natural" is (-> type)
       "natural" has two data-constructors
@@ -195,7 +193,8 @@
         (although I am not able to achieve it in this language)
 
     - in the above example
-      "~" can be read as "define-function"
+      "~" can be readed as "define-function"
+      - in other places, "~" can also be readed as "define-theorem"
       the function to be defined is "add"
       the type of "add" is (natural natural -> natural)
       and its function body has two arrows
@@ -229,13 +228,15 @@
 
 *** stack processing functions
 
-    - because we are using postfix notation
-      beside function application
+    - beside function application
       we can also use function composition to explain the semantic of function
-      with the help of a stack
+      (because we are using postfix notation)
+
+    - and with the help of a stack
       we will be able to handle function composition of functions
       with multiple arguments and multiple return values
-      for example, we can define the following stack processing functions
+
+    - for example, we can define the following stack processing functions
       #+begin_src scheme
       (~ drop (:t ->)
          (:d ->))
@@ -252,8 +253,8 @@
       (~ swap (:t1 :t2 -> :t2 :t1)
          (:d1 :d2 -> :d2 :d1))
       #+end_src
-      for more about this
-      please read [[remark on the use of stack in implementation]]
+
+    - [[remark on the use of stack in implementation]]
 
 *** more examples
 
@@ -300,9 +301,9 @@
          (:l :e cons :f -> :l :f map :e :f apply cons))
       #+end_src
 
-    - nore examples
+    - more examples
       #+begin_src scheme
-      ><><><
+      ><
       #+end_src
 
 * function as proof
@@ -341,7 +342,7 @@
       this is what I mean by "function compose, type cut" in the title
 
     - in the following example
-      "*" can be read as "define-hypothesis"
+      "*" can be readed as "define-hypothesis"
       #+begin_src scheme
       (* wanderer/poe (-> poe is-wanderer))
       (* way-worn (:x is-wanderer -> :x is-weary))
@@ -364,6 +365,7 @@
       we can simply use stack processing function to express them
       - the types of stack processing functions
         should remind you of the so called structural rules of sequent calculus
+      - linear logic and other substructural logics can be investigated under this framework
       #+begin_src scheme
       ;; conj-intro
       (* p1 (-> a))
@@ -481,9 +483,10 @@
         - exhaustion -- cover-check
         - structural induction --
           where first we proof some basic steps
-          and by unification we change get next-theorem
+          and by unification we get next-theorem
           (just as the next-number in natural-induction)
           a function recursive call is a use of the induction hypothesis
+          aimming to prove the next-theorem
 
 *** the meaning of proof, again
 
@@ -551,7 +554,7 @@
 
 *** the use of "or"
 
-    - when or is used
+    - when "or" is used
       we just need to cover all the cases
       #+begin_src scheme
       (~ length (:t list -> natural)
@@ -570,7 +573,7 @@
          (:n -> :n))
       #+end_src
 
-    - type definition is like named or
+    - type definition is like named "or"
       #+begin_src scheme
       (+ nali (-> type)
          na (natural -> nali)
@@ -581,7 +584,7 @@
          (:n na -> :n))
       #+end_src
 
-    - type definition is like named or of and
+    - type definition is like named "or" of "and"s
       #+begin_src scheme
       (+ nanalili (-> type)
          nana (natural natural -> nanalili)
@@ -608,6 +611,8 @@
     that are closed in the set of derivable theorems
 
   - hopefully we will be able to capture all deduction by algebraic operations
+
+  - [[remark on algebraic structure]]
 
 *** to mimic fraction of natural number
 
@@ -718,9 +723,9 @@
         identity element is (->)
         but we do not have inverse
 
-*** term lattice, and cut as weaken
+*** term-lattice, and cut as weaken
 
-    - this is where we must take term lattice into account
+    - this is where we must take term-lattice into account
 
       | lattice          | term                   |
       |------------------+------------------------|
@@ -731,10 +736,10 @@
       - note that
         equal can be defined by greater-or-equal
 
-    - term lattice is also called "subsumption lattice" by other authers
-      I call it "term lattice"
+    - term-lattice is also called "subsumption lattice" by other authers
+      I call it "term-lattice"
       because I want to make explicit its relation with term-rewriting-system
-      (I will address the detail of term lattice in another paper)
+      (I will address the detail of term-lattice in another paper)
 
     - if we have (A -> B) and (C -> D)
       we can cut them only when (C cover B)
@@ -751,12 +756,12 @@
       then weaken it to (A -> D)
       - provides that (C cover B)
 
-    - we can extend the term lattice to cedent (antecedent and succedent)
-      because cedent is Cartesian product of term of the term lattice
+    - we can extend the term-lattice to cedent (antecedent and succedent)
+      because cedent is Cartesian product of term in the term-lattice
 
 *** type-check, again
 
-    - with the new terminology introduced by term lattice
+    - with the new terminology introduced by term-lattice
       we can express type-check in a better way
 
     - type-arrow : (A -> B)
@@ -769,13 +774,24 @@
 
 *** >< definition as extension of algebraic structure
 
-    - 擴展是可以更自由的
-    - 遞歸定義的特點是能夠獲得平凡函數體
+    - ><
+
+    - extend freely by "*"
+
+    - extend by "+"
+
+    - difference between "+" and "*"
+
+* >< I do not know
+
+  - ><
 
 * implementation
 
-  - an attempt to implement a prototype of the language
-    project page : http://xieyuheng.github.io/sequent1
+  - I made an attempt to implement a prototype of the language
+    (project page at http://xieyuheng.github.io/sequent1)
+
+*** >< limits of my implementation
 
 * appendixes
 
@@ -832,11 +848,17 @@
       postfix notation respect the special order of a linear writing system
       the above conclude my rationale
 
-*** >< remark on the use of stack in implementation
+*** remark on the use of stack in implementation
 
-    - forth joy
     - first few versions is implemented as a stack-based language
-      only later changed to term-rewriting-system
+      only later, changed to term-rewriting-system
+      to make type inference easier
+
+    - for basic information about stack-based language
+      please see forth (the language)
+
+    - for enlightening view of stack
+      please see joy (the language)
 
 *** rationale of composition over application
 
@@ -847,7 +869,7 @@
       - we get better algebra-like structure
         because function composition is associative
         while function application is not
-      - we lost good syntax about currying
+      - we lost good syntax for currying
         because currying is designed as a convention
         of the syntax of function application
 
@@ -858,14 +880,16 @@
       is a way to express a change of theorem
       "a change" means "one step of change"
 
-    - let us generalized a little bit
+    - let us generalize it a little bit
       and to discuss "a change of thing" and "language to record changes"
       you will find these two concepts are very common
-      and they also are named gloriously in different places
+      and they also are named differently in different places
       | thing   | a change of thing     | language to record changes |
       |---------+-----------------------+----------------------------|
       | theorem | deduction             | proof                      |
       | food    |                       | cookbook                   |
       | data    |                       | algorithm                  |
       | number  | elementary arithmetic |                            |
-      (seems to me a market for language designer)
+      (seems to me like a market for language designer)
+
+*** >< remark on algebraic structure
