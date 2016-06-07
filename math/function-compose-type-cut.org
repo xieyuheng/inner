@@ -3,7 +3,7 @@
 
 ------
 @@html:
-<p> auther : XIE Yuheng of Sun Yat-sen university </p>
+<p> auther : XIE Yuheng of Sun Yat-sen university of China </p>
 @@
 ------
 @@html:
