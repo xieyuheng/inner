@@ -23,7 +23,7 @@
 
 * language design
 
-  - (todo) [[https://github.com/xieyuheng/logic1][logic1]] -- a prototype logic language with type system
+  - (todo) [[http://xieyuheng.github.io/logic1][logic1]] -- a prototype logic language with type system
 
   - [[http://xieyuheng.github.io/jojo][jojo]] -- a low-level untyped language
 
