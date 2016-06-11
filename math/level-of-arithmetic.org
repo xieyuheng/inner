@@ -1,6 +1,6 @@
 #+TITLE:  算數之級 / level of arithmetic
 #+AUTHOR: 謝宇恆 / XIE Yuheng
-
+* groupoid
 * 問
   - 用 lambda 編碼解釋 級不過三
     1. 首先要解釋
