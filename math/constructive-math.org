@@ -1,4 +1,4 @@
-#+title: constructive math in my view -- the rebellion against abstraction
+#+title: constructive math in my view, and its balance between abstraction
 
 * >< constructivism [dijkstra & bishop]
 

@@ -159,3 +159,23 @@
   (~ reflexive ((:x : lattice) -> :x :x cover)
      (:d -> dup dup2 same-equal-same reflexive2 drop))
   #+end_src
+
+* equality
+
+  - term lattice
+    refl
+    judgmental equality
+    equal by definition
+    equal by rewrite
+    constant path
+
+  - hott
+    introduced equality
+    path
+    high-level path
+    propositional equality
+    equality to be proved by induction
+
+  - bishop set theory
+    interface predicate required by set
+    等詞的相對性
