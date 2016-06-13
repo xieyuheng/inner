@@ -36,6 +36,10 @@ a humble math student of China
 
   - [[http://xieyuheng.github.io/cicada-nymph][cicada-nymph]] -- a forth-like language
 
+* program
+
+  - (todo) [[http://xieyuheng.github.io/autumn1][autumn1]] -- a prototype implementation of a note-taking APP
+
 * lecture
 
   - [[http://the-little-language-designer.github.io/cicada-nymph/course/contents.html][experimental assembly programming experiment]], SYSU, GuangZhou, 2015

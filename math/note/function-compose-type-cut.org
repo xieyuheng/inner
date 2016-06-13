@@ -1,20 +1,6 @@
 #+HTML_HEAD: <link rel="stylesheet" href="../asset/css/page.css" type="text/css" media="screen" />
 #+title: function compose, type cut, and the algebra of logic
 
-------
-@@html:
-<p> auther : XIE Yuheng a humble math student of China </p>
-@@
-------
-@@html:
-<p> abstract : (this paper is still under revising) </p>
-@@
-------
-@@html:
-<p> keywords : sequent calculus, deduction system, dependent type </p>
-@@
-------
-
 * intuitionistic logic
 
   - first I would like to summarize intuitionistic logic

@@ -7,13 +7,143 @@
 @@
 ------
 @@html:
-<p> abstract : </p>
-<p> (this paper is still under revising) </p>
-@@
-------
-@@html:
 <p> keywords : </p>
-<p> language design, syntax, type system, dependent type </p>
+<p> language design, syntax </p>
+<p> type system, dependent type, Curry–Howard correspondence </p>
 <p> deduction system, sequent calculus </p>
 @@
 ------
+
+* abstract
+
+  - some said that Gentzen's sequent calculus not corresponds with
+    a well-defined pre-existing model of computation
+    as it was for Hilbert-style and natural deduction
+
+  - in this paper, I will show that
+    in the framework of Curry–Howard correspondence
+    we can get what sequent calculus corresponds to
+    not by designing a new model of computation
+    but by changing the syntax of well known model
+
+  - I will show that
+    sequent calculus corresponds to a functional programming language
+    the syntax of which is optimized for function composition
+    instead of function application
+
+  - I will also show the trade-off of this syntax design
+    how we gain one algebraic law
+    how we lose the syntaxly best way for currying
+    and how one's view of deduction can be changed by the change of syntax
+
+* >< background
+
+  - forth & joy
+
+  - ><
+
+    | stack-based computation | call-by-value |
+    | term-rewriting-system   | call-by-name  |
+    | graph-rewriting-system  | call-by-need  |
+
+* >< the change of syntax
+
+  - I introduce my syntax by comparing it with
+    the syntax of a agda-like or idirs-like language
+
+*** natural number
+
+    - function application
+      #+begin_src idris
+      data natural : type where
+        zero : natural
+        succ : natural -> natural
+
+      add : natural -> natural -> natural
+      add zero n = n
+      add (succ m) n = succ (add m n)
+
+      mul : natural -> natural -> natural
+      mul zero n = zero
+      mul (succ m) n = add n (mul m n)
+      #+end_src
+
+    - function composition
+      #+begin_src scheme
+      (+ natural (-> type)
+         zero (-> natural)
+         succ (natural -> natural))
+
+      (~ add (natural natural -> natural)
+         (:m zero -> :m)
+         (:m :n succ -> :m :n add succ))
+
+      (~ mul (natural natural -> natural)
+         (:m zero -> zero)
+         (:m :n succ -> :m :n mul :m add))
+      #+end_src
+
+*** vector
+
+    - function application
+      #+begin_src idris
+      data vector : natural -> type -> type where
+        null : vector zero t
+        cons : t -> vector n t -> vector (succ n) t
+
+      append : vector m t -> vector n t -> vector (add m n) t
+      append null       l = l
+      append (cons e r) l = cons e (append r l)
+
+      map : (m : a -> b) -> f a -> f b
+      map f null      = null
+      map f (cons e l) = cons (f e) (map f l)
+      #+end_src
+
+    - function composition
+      #+begin_src scheme
+      (+ vector (natural type -> type)
+         null (-> zero :t vector)
+         cons (:n :t vector :t -> :n succ :t vector))
+
+      (~ append (:m :t vector :n :t vector -> :m :n add :t vector)
+         (:l null -> :l)
+         (:l :r :e cons -> :l :r append :e cons))
+
+      (~ map (:n :t1 vector (:t1 -> :t2) -> :n :t2 vector)
+         (null :f -> null)
+         (:l :e cons :f -> :l :f map :e :f apply cons))
+      #+end_src
+
+*** function composition
+
+    - function application
+      #+begin_src idris
+      compose : {A : Set}
+                {B : A -> Set}
+                {C : {x : A} -> (B x) -> Set} ->
+                (f : {x : A} (y : B x) -> (C y)) ->
+                (g : (x : A) -> (B x)) ->
+                ((x : A) -> (C (g x)))
+      compose f g = λ x -> (f (g x))
+      #+end_src
+
+    - function composition
+      optimized
+
+*** function application
+
+    - function application
+      optimized
+
+    - function composition
+      #+begin_src scheme
+      (~ apply (:a :b ... (:a :b ... -> :c :d ...) -> :c :d ...)
+         (note
+           it is a primitive-function
+           the function-body is not expressible in the language))
+      #+end_src
+
+* ><
+
+* >< appendixes
