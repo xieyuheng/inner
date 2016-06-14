@@ -1,4 +1,3 @@
-#+TITLE:  tutorial of common-lisp ^-^
 #+AUTHOR: 謝宇恆 / XIE Yuheng
 
 * todo

@@ -3,7 +3,7 @@
 
 ------
 @@html:
-<p> auther : XIE Yuheng, a humble math student of China </p>
+<p> auther : XIE Yuheng, a math student of China </p>
 <p> date: 2016/06/14 (this paper is still under revising) </p>
 <p> keywords :  language design, dependent type, deduction system, sequent calculus </p>
 @@
@@ -11,84 +11,99 @@
 
 * abstract
 
-  - some said that [for example, see the wikipedia page
-    (at the time when this paper is written) of "Curry–Howard correspondence"]
-    in the framework of Curry–Howard correspondence
+  - some said,
+    [for example, see the wikipedia page of "Curry–Howard correspondence", at the time when this paper is written]
+    in the framework of Curry–Howard correspondence,
     Gentzen's sequent calculus does not correspond with
-    a well-defined pre-existing model of computation
-    as it was for Hilbert-style and natural deduction
+    a well-defined pre-existing model of computation,
+    as it was for Hilbert-style and natural deduction.
 
-  - in this paper, I will show that
-    we can get what sequent calculus corresponds to
-    not by designing a new model of computation
-    but by changing the syntax of well known model
+    - in this paper, I will show that
+      we can get what sequent calculus corresponds to,
+      not by designing a new model of computation,
+      but by changing the syntax of well known model.
 
-  - I will show that
-    sequent calculus corresponds to a functional programming language
-    the syntax of which is optimized for function composition
-    instead of function application
+    - I will show that
+      sequent calculus corresponds to a functional programming language,
+      the syntax of which is optimized for function composition
+      instead of function application.
 
-  - I will also show the trade-off of this syntax design
-    how we lose the implicit syntax for currying
-    how we gain the algebraic associative law
-    and how one's view of deduction can be changed by the change of syntax
+    - I will also show the trade-off of this syntax design.
+      how we lose the implicit syntax for currying.
+      how we gain the algebraic associative law.
+      and how one's view of deduction can be changed by the change of syntax.
 
-  - some also said that [for example, see the first chapter of "Homotopy Type Theory"]
-    deduction system can be viewed as algebraic structure
-    where theorems are the elements (like elements of group)
-    where deductive rules are the operations (like multiplication of group)
+  - some also said, [for example, see the first chapter of "Homotopy Type Theory"]
+    deduction system can be viewed as algebraic structure,
+    where theorems are the elements (like elements of group),
+    where deductive rules are the operations (like multiplication of group).
 
-  - in this paper, I will show that
-    with the associative law we obtained by function composition
-    the corresponding deduction system of our programming language
-    is a very rich algebraic structure
+    - in this paper, I will show that
+      with the associative law which we obtained from function composition,
+      the corresponding deduction system of our programming language
+      is a very rich algebraic structure.
+
+    - I will define the rich-ness & poor-ness of algebraic structure,
+      and provide my arguments in the framework I defined.
+
+  - in this paper, I will also introduce a prototype implementation of such a language.
+    I call it "sequent1".
 
 * background
 
 *** how the idea was conceived
 
-    - two years ago
-      for some reason, I learned the design of the stack-based language -- forth
-      I began to write my own forth-like language
-      and tried to add various features to it
-      soon I found another forth-like language -- joy
-      and from it I learned the composition v.s. application trade-off in syntax
+    - two years ago,
+      for some reason, I learned the design of the stack-based language -- forth.
+      I began to write my own forth-like language,
+      and tried to add various features to it.
+      soon I found another forth-like language -- joy.
+      from joy I learned the composition v.s. application trade-off in syntax.
 
-    - I added more and more features to it
-      things went well, until I tried to add a type system to the language
+    - I added more and more features to my forth-like language.
+      things went well, until I tried to add a type system to the it.
+      I found that
+      to design a good type system,
+      a designer has to know Curry–Howard correspondence well.
 
-    - I found that
-      to design a good type system
-      a designer has to consider Curry–Howard correspondence
-
-    - and after some learning
+    - and after some learning,
       I figured that
-      the composition v.s. application trade-off in syntax
+      the composition v.s. application trade-off in syntax,
       corresponds to
-      the sequent-calculus v.s. natural-deduction in proof theory
+      the sequent-calculus v.s. natural-deduction in proof theory.
 
     - I tried to add such a sequent-calculus type system
-      to the forth-like language several times
-      I failed
-      because the implementation is written in assembly language
+      to the forth-like language several times.
+      I failed.
+      because the implementation is written in assembly language,
       the low-level detailed code would soon exceed the complexity
-      that a normal people like me can manage
+      that a normal people like me can manage.
 
-    - I steped back
-      I decided to write a prototype language in scheme
-      that only demonstrate the main idea of sequent-calculus as type system
-      thus I wrote sequent1
+    - I steped back.
+      I decided to write a prototype language in scheme.
+      the prototype only limited to demonstrates the main idea of "sequent-calculus as type system".
+      thus I wrote "sequent1".
+
+*** >< related works
+
+    - I declared that the computational models ><
+      but I changed the ><><><
+
+    - while
+      linear logic and ><><>< computational models
+
+    - maybe one logic system can corresponds to multiple computational models
 
 * the change of syntax
 
   - I will introduce my syntax by comparing it with
-    the syntax of an imaginary agda-like (or idris-like) language
-    I will mark it by << function application >>
-    and I will mark my sequent1 by << function composition >>
+    the syntax of an imaginary agda-like (or idris-like) language.
+    I will mark its syntax by << application-language >>,
+    and I will mark my syntax by << composition-language >>.
 
 *** natural number
 
-    - << function application >>
+    - << application-language >>
       #+begin_src idris
       data natural : type where
         zero : natural
@@ -103,12 +118,12 @@
       mul (succ m) n = add n (mul m n)
       #+end_src
 
-    - note that
+    - note that,
       in the following examples
-      "~" can be readed as "define-function"
-      "+" can be readed as "define-type"
+      "~" can be readed as "define-function",
+      "+" can be readed as "define-type".
 
-    - << function composition >>
+    - << composition-language >>
       #+begin_src scheme
       (+ natural (-> type)
          zero (-> natural)
@@ -160,16 +175,16 @@
 
 *** currying must also be explicit
 
-    - in type, input arguments and return values are made explicit
-      instead of (natural -> natural -> natural)
-      we write (natural natural -> natural)
+    - in type, input arguments and return values are made explicit.
+      instead of (natural -> natural -> natural),
+      we write (natural natural -> natural).
 
-    - thus, in function body, currying must also be explicit
-      the implicit syntax for currying is lost in our language
+    - thus, in function body, currying must also be explicit.
+      we lost the implicit syntax for currying.
 
 *** vector
 
-    - << function application >>
+    - << application-language >>
       #+begin_src idris
       data vector : natural -> type -> type where
         null : vector zero t
@@ -184,7 +199,7 @@
       map f (cons e l) = cons (f e) (map f l)
       #+end_src
 
-    - << function composition >>
+    - << composition-language >>
       #+begin_src scheme
       (+ vector (natural type -> type)
          null (-> zero :t vector)
@@ -201,48 +216,52 @@
 
 *** unified syntax
 
-    - the syntax of type and function-body seem to be the same
+    - the syntax of type and function-body seem to be the same.
 
-    - it is true
-      and it is also semanticly true
-      because in the implementation
-      we have "apply", which uses function-body (a list of arrow) to do computation
-      we also have "type-apply", which uses type (a type-arrow) to do computation
+    - it is true,
+      and it is also semanticly true.
+      because, in the implementation,
+      we have "apply", which uses function-body (a list of arrow) to do computation,
+      we also have "type-apply", which uses type (a type-arrow) to do computation.
       (the "type-apply" is used during type-check)
-      and the why how these computations are done is also unified
+      and the way how these computations are done is also unified.
 
-*** function composition
+*** different optimization of syntax
 
-    - << function application >>
-      #+begin_src idris
-      compose : {A B C : type} (A -> B) -> (B -> C) -> (A -> C)
-      compose f g = λ x -> (f (g x))
-      #+end_src
+    - ><><><
 
-    - << function composition >>
-      the syntax is optimized for function composition
-      function composition is expressed by term concatenation
+***** for function composition
 
-*** function application
+      - << application-language >>
+        #+begin_src idris
+        compose : {A B C : type} (A -> B) -> (B -> C) -> (A -> C)
+        compose f g = λ x -> (f (g x))
+        #+end_src
 
-    - << function application >>
-      the syntax is optimized for function application
-      function application is expressed by term concatenation
+      - << composition-language >>
+        the syntax is optimized for function composition.
+        function composition is expressed by term concatenation.
 
-    - << function composition >>
-      #+begin_src scheme
-      (~ apply (:a :b ... (:a :b ... -> :c :d ...) -> :c :d ...)
-         (note it is implemented as a primitive-function))
-      #+end_src
+***** for function application
+
+      - << application-language >>
+        the syntax is optimized for function application.
+        function application is expressed by term concatenation.
+
+      - << composition-language >>
+        #+begin_src scheme
+        (~ apply (:a :b ... (:a :b ... -> :c :d ...) -> :c :d ...)
+           (note it is implemented as a primitive-function))
+        #+end_src
 
 *** stack processing
 
-    - multiple return values are easily handled
+    - multiple return values are easily handled,
       and stack-processing functions can be used to help to
-      re-order return values (without naming them) for function composition
+      re-order return values (without naming them) for function composition.
       (just like in forth & joy)
 
-    - << function composition >>
+    - << composition-language >>
       #+begin_src scheme
       (~ drop (:t ->)
          (:d ->))
@@ -263,150 +282,40 @@
 * Curry–Howard correspondence under this syntax
 
   - to show such correspondence
-    is to show
-    1. how to view type as theorem
-    2. how to view function as proof
+    is to show,
+    1. how to view type as theorem ?
+    2. how to view function as proof ?
 
-  - firstly, I would like to summarize intuitionistic logic
-    and provide a formal syntax to express theorem
-    hopefully you could recognize how to view type as theorem easily
+*** type as theorem
 
-  - then we will discuss how to view function as proof
-    we will see how the corresponding deduction system is sequent calculus
+    - with the ability to handle multiple return values,
+      we can express "and" easily.
+      #+begin_src scheme
+      (A B -> C D) -- "(A and B) implies (C and D)"
+      #+end_src
+      we can express "for all" and "there exist" in an unified way.
+      #+begin_src scheme
+      ((:x : A) -> :x P) -- "for all x belong to A, we have P(x)"
+      (-> (:x : A) :x P) -- "there exist x belong to A, such that P(x)"
+      #+end_src
 
-*** intuitionistic logic
+    - I call express of form (A B C ... -> E F G ...) sequent.
+      but you should note that,
+      sequent for us, is not exactly the same as sequent for Gentzen.
+      Gentzen views succedent as "or", while we view succedent as "and".
+      #+begin_src scheme
+      for Gentzen -- (A B -> C D) -- "(A and B) implies (C or D)",
+      for us      -- (A B -> C D) -- "(A and B) implies (C and D)".
+      #+end_src
 
-***** and
+*** function as proof
 
-      - to prove (P and Q)
-        is to prove P and prove Q
-        - this is the same as classical logic
+    - "function as proof" means,
+      the way we write function body forms a language to record deduction.
+      a record of many steps of deduction is called a proof.
 
-***** or
-
-      - to prove (P or Q)
-        is to prove P or prove Q
-        - while in classical logic
-          you can prove (P or Q)
-          without a proof of P
-          and without a proof of Q
-
-***** imply
-
-      - to prove (P -> Q)
-        is to prove that
-        if we have a proof of P
-        then we can construct a proof of Q
-        - this is the same as classical logic
-
-***** not
-
-      - to prove (not P)
-        is to prove (P -> something-we-consider-wrong)
-        - something-we-consider-wrong like (0 = 1)
-        - (not (not P)) is weaker than P
-          while in classical logic
-          (not (not P)) is equal to P
-
-***** for all
-
-      - to prove "for all x belong to A, we have P(x)"
-        is to prove that
-        for all x belong to A
-        we can construct a proof of P(x)
-        - how to construct a proof discuss later
-        - this is the same as classical logic
-
-***** there exist
-
-      - to prove "there exist x belong to A, such that P(x)"
-        is to construct a value of type A
-        and construct a proof of P(x)
-        - the only way to prove something exist
-          is to find such thing
-        - while in classical logic
-          to prove something exist
-          you do not need to find such thing
-
-*** formal theorem
-
-***** imply
-
-      - firstly we see the fact that the general form of theorem is like (A -> B)
-        let us unite our syntax toward "->"
-        we do not write A
-        instead we will write (-> A)
-        - this is just like one does not write 3 but write 1\3 or 3/1 instead
-
-***** and
-
-      - and let us optimize our syntax for "and"
-        we do not write ((A and B) -> (C and D))
-        but just write (A B -> C D)
-
-      - I call express of form (A B C ... -> E F G ...) sequent or arrow
-        this term is taken from Gentzen
-        but you should note that
-        sequent for us is not exactly the same as sequent for Gentzen
-        for Gentzen (A B -> C D) is viewed as ((A and B) -> (C or D))
-        but for us (A B -> C D) is viewed as ((A and B) -> (C and D))
-        - if you want to know more about the meaning of sequent for Gentzen
-          please see his paper "investigations into logical deduction"
-
-***** or
-
-      - for "or" we write
-        (-> (A or B))
-        (-> (A B or C D))
-        (-> (A or B or C))
-        etc
-
-***** not
-
-      - I suggest to ignore "not"
-        because you see that (not P) is just (P -> something-we-consider-wrong)
-        the negation we want to express is parameterized by something-we-consider-wrong
-        (or say, depends on something-we-consider-wrong)
-        if we simple say (not P)
-        the information of this parameterization will be lost
-
-***** for all & there exist
-
-      - I express "for all x belong to A, we have P(x)"
-        as ((x : A) -> x P)
-        and express "there exist x belong to A, such that P(x)"
-        as (-> (x : A) x P)
-        I am using postfix notation here
-        I write "x P" instead of "P(x)"
-        - you might argue that
-          compare to the traditional math notation, postfix looks really alien
-          if you care, please see my [[rationale of using postfix notation]]
-
-      - recall that
-        ((x : A) -> x P) means "for all x belong to A, we have P(x)"
-        (-> (x : A) x P) means "there exist x belong to A, such that P(x)"
-        in the above two example expressions
-        variables are written in lower-case latin letter
-        functions are written in upper-case latin letter
-        personally I do not wish to
-        distinguish meaning by lower-case v.s. upper-case
-        (maybe because I am a scheme user, or maybe because I am a Chinese)
-        so, in the following implementation of our language
-        I will write
-        #+begin_src scheme
-        ((:x : a) -> :x p)
-        (-> (:x : a) :x p)
-        #+end_src
-
-*** >< function as proof
-
-    - it says, the way we write function body forms a language to record deduction
-      - [[remark on deduction and inference]]
-
-    - a record of many steps of deduction is called a proof
-
-    - the next question is
-      when we use this kind of syntax to write function body
+    - the next question is,
+      when we use this kind of syntax to write function body,
       what actions upon types we are recording ?
       (what deduction rules we are recording ?)
 
@@ -419,18 +328,16 @@
 
       - [[rationale of composition over application]]
 
-      - by "cut" I mean the hero deduction rule
-        which occupys the center of the stage of Gentzen's sequent calculus
-        it says if we have (A -> B) and (B -> C)
-        cut them together, we get (A -> C)
+      - in sequent calculus, "cut" rule says,
+        if we have (A -> B) and (B -> C),
+        cut them together, we get (A -> C).
 
-      - on the other hand
-        if we have function f1 of type (A -> B) and f2 of (B -> C)
-        compose f1 and f2, we get a function of type (A -> C)
-        this is what I mean by "function compose, type cut" in the title
+      - on the other hand, in programming language,
+        if we have function f1 of type (A -> B) and f2 of (B -> C),
+        compose f1 and f2, we get a function of type (A -> C).
 
       - in the following example
-        "*" can be readed as "define-hypothesis"
+        "*" can be readed as "define-hypothesis".
         #+begin_src scheme
         (* wanderer/poe (-> poe is-wanderer))
         (* way-worn (:x is-wanderer -> :x is-weary))
@@ -443,9 +350,6 @@
         it is really intuitive to see
         with two functions "wanderer/poe" and "way-worn"
         how we can compose a function of type (-> poe is-weary)
-        this is why I said that
-        the best way to show how to use formal theorems in deduction
-        is a detour through functional programming language
 
 ***** other deduction rules of natural deduction
 
@@ -704,19 +608,19 @@
 
 *** to mimic fraction of natural number
 
-    - let us view theorem (A -> B) as fraction
-      A as denominator
-      B as numerator
-      - so, one might write (A \ B)
-        note that
-        we are using reverse-slash instead of slash
-        to maintain the order of A B in (A -> B)
+    - let us view theorem (A -> B) as fraction,
+      A as denominator,
+      B as numerator.
+      - just like (A \ B).
+        note that,
+        we are using reverse-slash instead of slash,
+        to maintain the order of A B in (A -> B).
 
 *** multiplication
 
-    - to multiply two theorems (A -> B) and (C -> D)
-      we get (A C -> B D)
-      - just like (A \ B) (C \ D) = (A C \ B D)
+    - to multiply two theorems (A -> B) and (C -> D),
+      we get (A C -> B D).
+      - just like (A \ B) (C \ D) = (A C \ B D).
 
       #+begin_src scheme
       (* r (A -> B))
@@ -731,9 +635,9 @@
                      (:x :y -> :x :r apply :y :s apply))))
       #+end_src
 
-    - theorems under multiplication is an Abelian group
-      identity element is (->)
-      inverse of (A -> B) is (B -> A)
+    - theorems under multiplication is an Abelian group.
+      identity element is (->).
+      inverse of (A -> B) is (B -> A).
 
 *** two definitions of addition
 
@@ -813,7 +717,7 @@
 
 *** term-lattice, and cut as weaken
 
-    - this is where we must take term-lattice into account
+    - this is where we must take term-lattice into account.
 
       | lattice          | term                   |
       |------------------+------------------------|
@@ -821,8 +725,8 @@
       | join             | anti-unification (ani) |
       | greater-or-equal | cover (or match)       |
 
-      - note that
-        equal can be defined by greater-or-equal
+      - note that,
+        "equal" can be defined by "greater-or-equal".
 
     - term-lattice is also called "subsumption lattice" by other authers
       I call it "term-lattice"
