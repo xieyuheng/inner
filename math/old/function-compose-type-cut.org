@@ -257,7 +257,7 @@
 
     - examples about list
       #+begin_src scheme
-      (+ list ({:t : type} :t -> type)
+      (+ list (type -> type)
          null (-> :t list)
          cons (:t list :t -> :t list))
 
@@ -274,7 +274,7 @@
       function bodys are the same as examples about list
       but the types also express the information about the length of list
       #+begin_src scheme
-      (+ vector ({:t : type} natural :t -> type)
+      (+ vector (natural type -> type)
          null (-> zero :t vector)
          cons (:n :t vector :t -> :n succ :t vector))
 
@@ -400,7 +400,7 @@
          zero (-> natural)
          succ (natural -> natural))
 
-      (+ list ({:t : type} :t -> type)
+      (+ list (type -> type)
          null (-> :t list)
          cons (:t list :t -> :t list))
 
@@ -408,7 +408,7 @@
          (null :f -> null)
          (:l :e cons :f -> :l :f map :e :f apply cons))
 
-      (+ has-length ({:t : type} :t list natural -> type)
+      (+ has-length (:t list natural -> type)
          null/has-length (-> null zero has-length)
          cons/has-length (:l :n has-length -> :l :a cons :n succ has-length))
 
