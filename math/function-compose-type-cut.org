@@ -3,23 +3,16 @@
 
 ------
 @@html:
-<p> auther : </p>
-<p> XIE Yuheng </p>
-<p> a humble math student of China </p>
-<p> (this paper is still under revising) </p>
-@@
-------
-@@html:
-<p> keywords : </p>
-<p> language design, syntax </p>
-<p> type system, dependent type, Curry–Howard correspondence </p>
-<p> deduction system, sequent calculus </p>
+<p> auther : XIE Yuheng, a humble math student of China </p>
+<p> date: 2016/06/14 (this paper is still under revising) </p>
+<p> keywords :  language design, dependent type, deduction system, sequent calculus </p>
 @@
 ------
 
 * abstract
 
-  - some said that
+  - some said that [for example, see the wikipedia page
+    (at the time when this paper is written) of "Curry–Howard correspondence"]
     in the framework of Curry–Howard correspondence
     Gentzen's sequent calculus does not correspond with
     a well-defined pre-existing model of computation
@@ -39,6 +32,16 @@
     how we lose the implicit syntax for currying
     how we gain the algebraic associative law
     and how one's view of deduction can be changed by the change of syntax
+
+  - some also said that [for example, see the first chapter of "Homotopy Type Theory"]
+    deduction system can be viewed as algebraic structure
+    where theorems are the elements (like elements of group)
+    where deductive rules are the operations (like multiplication of group)
+
+  - in this paper, I will show that
+    with the associative law we obtained by function composition
+    the corresponding deduction system of our programming language
+    is a very rich algebraic structure
 
 * background
 
@@ -196,6 +199,18 @@
          (:l :e cons :f -> :l :f map :e :f apply cons))
       #+end_src
 
+*** unified syntax
+
+    - the syntax of type and function-body seem to be the same
+
+    - it is true
+      and it is also semanticly true
+      because in the implementation
+      we have "apply", which uses function-body (a list of arrow) to do computation
+      we also have "type-apply", which uses type (a type-arrow) to do computation
+      (the "type-apply" is used during type-check)
+      and the why how these computations are done is also unified
+
 *** function composition
 
     - << function application >>
@@ -252,13 +267,14 @@
     1. how to view type as theorem
     2. how to view function as proof
 
-  - I would like to summarize intuitionistic logic
-    and provide a more formal syntax to express theorem
+  - firstly, I would like to summarize intuitionistic logic
+    and provide a formal syntax to express theorem
     hopefully you could recognize how to view type as theorem easily
 
-  - then we will discuss and how to view function as proof
+  - then we will discuss how to view function as proof
+    we will see how the corresponding deduction system is sequent calculus
 
-*** >< intuitionistic logic
+*** intuitionistic logic
 
 ***** and
 
@@ -312,7 +328,7 @@
           to prove something exist
           you do not need to find such thing
 
-*** >< formal theorem
+*** formal theorem
 
 ***** imply
 
@@ -874,9 +890,13 @@
 
 * >< conclusion
 
+  - >< about better language
+
 * >< further work
 
-  - equality
+  - I planed to do ><><><
+  - the meaning of equality
+  - dependent type system for logic programming language
 
 * appendixes
 
@@ -978,3 +998,5 @@
       (seems to me like a market for language designer)
 
 *** >< remark on algebraic structure
+
+    - the richness of algebraic structure

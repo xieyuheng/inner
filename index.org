@@ -72,5 +72,5 @@ a humble math student of China
 
 * resume
 
-  - born : 1992/01/15, four o'clock in the morning, YinChuan, China
-  - died : not yet, but will be. hopefully, at a four in the morning
+  - born : 1992/01/15, YinChuan, China
+  - died : not today
