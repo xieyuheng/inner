@@ -10,7 +10,7 @@
         margin: auto;
     }
     body #content {
-        padding-top: 30px;
+        padding-top: 2em;
         padding-left: 1em;
         padding-right: 1em;
     }
@@ -36,12 +36,10 @@
         -moz-box-shadow: 0 0 0.5em #777777;
         -webkit-border-bottom-left-radius: 5px;
         -moz-border-radius-bottomleft: 5px;
-        text-align: right;
         /* ensure doesn't flow off the screen when expanded */
         max-height: 98%;
         overflow: auto;
-        border-radius: 0.5em;
-        text-align: center;
+        border-radius: 0.3em;
         font-weight: bold;
     }
     #table-of-contents h2 {
@@ -56,18 +54,11 @@
 
     #table-of-contents #text-table-of-contents {
         display: none;
-        text-align: left;
     }
 
     #table-of-contents:hover #text-table-of-contents {
         display: block;
-        padding: 0.5em;
-        margin-top: -1.5em;
         max-width: 29em;
-    }
-
-    #table-of-contents #text-table-of-contents ul {
-        list-style-position: outside;
     }
 
     h1 {

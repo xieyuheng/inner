@@ -5,7 +5,7 @@
 @@html:
 <p> auther : XIE Yuheng, a math student of China </p>
 <p> date: 2016/06/14 (this paper is still under revising) </p>
-<p> keywords :  language design, dependent type, deduction system, sequent calculus </p>
+<p> keywords :  language design, dependent type, deduction system, sequent calculus, algebraic structure </p>
 @@
 ------
 
@@ -31,7 +31,7 @@
     - I will also show the trade-off of this syntax design.
       how we lose the implicit syntax for currying.
       how we gain the algebraic associative law.
-      and how one's view of deduction can be changed by the change of syntax.
+      how one's view of deduction could be changed by the change of syntax.
 
   - some also said, [for example, see the first chapter of "Homotopy Type Theory"]
     deduction system can be viewed as algebraic structure,
@@ -81,18 +81,22 @@
 
     - I steped back.
       I decided to write a prototype language in scheme.
-      the prototype only limited to demonstrates the main idea of "sequent-calculus as type system".
+      the prototype only limited to demonstrate the main idea of "sequent-calculus as type system".
       thus I wrote "sequent1".
 
 *** >< related works
 
-    - I declared that the computational models ><
-      but I changed the ><><><
+    - there are many other works
+      that assign computational models to sequent-calculus-like logics.
+      for example :
+      | author | logic | model |
+      |--------+-------+-------|
+      |        |       |       |
 
-    - while
-      linear logic and ><><>< computational models
-
-    - maybe one logic system can corresponds to multiple computational models
+    - maybe one logic system can correspond to multiple computational models.
+      maybe more terminologys should be carefully coined,
+      and more general framework theory should be wisely designed,
+      to describe correspondences between deduction systems and computational models.
 
 * the change of syntax
 
@@ -226,9 +230,11 @@
       (the "type-apply" is used during type-check)
       and the way how these computations are done is also unified.
 
-*** different optimization of syntax
+*** >< different optimization of syntax
 
-    - ><><><
+    - you observed that
+      I keep using the term "optimization of syntax" here,
+      and ><><><
 
 ***** for function composition
 
@@ -434,18 +440,91 @@
         : (A -> (B -> C))
         #+end_src
 
-* >< algebra of logic
+*** examples
 
-  - since function composition satisfy associative law
-    I think I can design (or seek for) an algebraic structure
-    for formal theorems
+    - have-equal-human-rights
+      - in the following example
+        "*" can be readed as "define-hypothesis"
+      #+begin_src scheme
+      (* chinese-are-human (:x is-chinese -> :x is-human))
+      (* japanese-are-human (:x is-japanese -> :x is-human))
+      (* human-have-equal-human-rights
+         (:x is-human :y is-human -> :x :y have-equal-human-rights))
 
-  - we will only define those algebraic operations
-    that are closed in the set of derivable theorems
+      (~ chinese-and-japanese-have-equal-human-rights
+         (:x is-chinese :y is-japanese -> :x :y have-equal-human-rights)
+         (:cn :ja -> :cn chinese-are-human
+                     :ja japanese-are-human
+                     human-have-equal-human-rights))
+      #+end_src
 
-  - hopefully we will be able to capture all deduction by algebraic operations
+    - map/has-length
+      #+begin_src scheme
+      (+ list (type -> type)
+         null (-> :t list)
+         cons (:t list :t -> :t list))
 
-  - [[remark on algebraic structure]]
+      (~ map (:t1 list (:t1 -> :t2) -> :t2 list)
+         (null :f -> null)
+         (:l :e cons :f -> :l :f map :e :f apply cons))
+
+      (+ has-length (:t list natural -> type)
+         null/has-length (-> null zero has-length)
+         cons/has-length (:l :n has-length -> :l :a cons :n succ has-length))
+
+      (~ map/has-length (:l :n has-length -> :l :f map :n has-length)
+         (null/has-length -> null/has-length)
+         (:h cons/has-length -> :h map/has-length cons/has-length))
+      #+end_src
+
+    - natural-induction
+      #+begin_src scheme
+      (+ natural (-> type)
+         zero (-> natural)
+         succ (natural -> natural))
+
+      (~ natural-induction ((:p : (natural -> type))
+                            zero :p apply
+                            ((:k : natural) :k :p apply -> :k succ :p apply)
+                            (:x : natural) -> :x :p apply)
+         (:q :q/z :q/s zero -> :q/z)
+         (:q :q/z :q/s :n succ ->
+             :n
+             :q :q/z :q/s :n natural-induction
+             :q/s apply))
+      #+end_src
+
+    - to summarize the meaning of "proof" within our concrete model :
+      - we can express theorems about
+        - recursively defined data
+        - recursively defined function
+      - we can do proof by
+        - cut -- function composition
+        - exhaustion -- cover-check
+        - structural induction --
+          first we proof some basic steps,
+          and by unification we get next-theorem
+          (just as the next-number in natural-induction),
+          a recursive call is a use of the induction hypothesis
+          that aimming to prove the next-theorem.
+
+* algebra of logic
+
+  - a concrete algebraic structure is rich when
+    (note that I am not talking about abstract algebraic structure)
+    1. its elements have practical meaning.
+    2. it is equipped with many algebraic laws,
+       which you can use to transform equations.
+
+  - a good example of such rich concrete algebraic structure
+    is the field of multivariate rational function
+    (i.e. quotient (or fraction) of multivariate polynomials),
+    which is studied in algebraic geometry.
+
+  - since function composition already satisfies associative law,
+    we have the opportunity to demonstrate an rich algebraic structure of formal theorems.
+    we will try to define those algebraic operations that are closed in the set of derivable theorems.
+    hopefully we will be able to capture all deductions by algebraic operations.
 
 *** to mimic fraction of natural number
 
@@ -471,7 +550,8 @@
          (:x :y -> :x r :y s))
 
       ;; abstract it to a combinator
-      (~ general/mul ((:a -> :b) (:c -> :d) -> (:a :c -> :b :d))
+      (~ general/mul
+         ((:a -> :b) (:c -> :d) -> (:a :c -> :b :d))
          (:r :s -> (lambda (:a :c -> :b :d)
                      (:x :y -> :x :r apply :y :s apply))))
       #+end_src
@@ -484,12 +564,12 @@
 
 ***** first definition
 
-      - this definition recalls the fraction of natural number
-        but it seems not natural when written as function in our language
+      - this definition recalls the fraction of natural number,
+        but it seems not natural when written as function in our language.
 
-      - to add two theorems (A -> B) and (C -> D)
-        we get (A B -> (B C or A D))
-        - just like (A \ B) + (C \ D) = (A C \ (B C + A D))
+      - to add two theorems (A -> B) and (C -> D),
+        we get (A B -> (B C or A D)).
+        - just like (A \ B) + (C \ D) = (A C \ (B C + A D)).
 
         #+begin_src scheme
         (* r (A -> B))
@@ -500,150 +580,173 @@
            (:x :y -> :x :y s))
 
         ;; abstract it to a combinator
-        (~ general/fraction-add ((:a -> :b) (:c -> :d) -> (:a :c -> (:b :c or :a :d)))
+        (~ general/fraction-add
+           ((:a -> :b) (:c -> :d) -> (:a :c -> (:b :c or :a :d)))
            (:r :s -> (lambda (:a :c -> (:b :c or :a :d))
                        (:x :y -> :x :r apply :y)
                        (:x :y -> :x :y :s apply))))
         #+end_src
 
-      - distributive is just like fraction of natural number
+      - distributive is just like fraction of natural number,
         because the way we define addition
-        is just like the addition of fraction of natural number
+        is just like the addition of fraction of natural number.
 
-      - theorems under addition is an Abelian semigroup
-        we do not have identity element
-        and we do not have inverse
+      - theorems under addition is an Abelian semigroup.
+        we do not have identity element,
+        and we do not have inverse.
         - of course, we can introduce a "zero-theorem"
           (a theorem that we can never prove)
-          as the identity element of addition
-          to make our algebraic structure more like fraction of natural number
-          but let us do not do this for now
+          as the identity element of addition,
+          to make our algebraic structure more like fraction of natural number.
 
-      - under this definition of addition
-        one may call the algebraic structure "natural field"
-        to recall its similarites between the fraction of natural number
-        - note that
-          other terms like 'semi-field' is ambiguous
+      - under this definition of addition,
+        one may call the algebraic structure "natural field",
+        to recall its similarites between the fraction of natural number.
+        - note that,
+          other terms like 'semi-field' is ambiguous.
           because it does not inform us
-          whether addition or multiplication is semi
+          whether we mean addition is semi or multiplication is semi.
 
 ***** second definition
 
-      - this definition seems natural in our language
+      - this definition seems more natural in our language.
 
-      - to add two theorems (A -> B) and (C -> D)
-        we get ((A or B) -> (C or D))
+      - to add two theorems (A -> B) and (C -> D),
+        we get ((A or B) -> (C or D)).
 
         #+begin_src scheme
         (* r (A -> B))
         (* s (C -> D))
 
         (~ r/s/mul-like-add ((A or C) -> (B or D))
-           (:x -> :x r)
-           (:y -> :y s))
+           (:x {:x : A} -> :x r)
+           (:y {:y : C} -> :y s))
 
         ;; abstract it to a combinator
-        (~ general/mul-like-add ((:a -> :b) (:c -> :d) -> ((:a or :c) -> (:b or :d)))
+        (~ general/mul-like-add
+           ((:a -> :b) (:c -> :d) -> ((:a or :c) -> (:b or :d)))
            (:r :s -> (lambda ((:a or :c) -> (:b or :d))
-                       (:x -> :x :r apply)
-                       (:y -> :y :s apply))))
+                       (:x {:x : :a} -> :x :r apply)
+                       (:y {:y : :c} -> :y :s apply))))
         #+end_src
 
-      - distributive also hold under this definition of addition
-        because (-> A (B or C)) is the same as (-> (A B or A C))
+      - distributive also hold under this definition of addition,
+        because (-> A (B or C)) is the same as (-> (A B or A C)).
 
-      - theorems under addition is an Abelian semigroup
-        identity element is (->)
-        but we do not have inverse
+      - theorems under addition is an Abelian semigroup.
+        identity element is (->),
+        but we do not have inverse.
 
 *** term-lattice, and cut as weaken
 
     - this is where we must take term-lattice into account.
 
-      | lattice          | term                   |
-      |------------------+------------------------|
-      | meet             | unification (uni)      |
-      | join             | anti-unification (ani) |
-      | greater-or-equal | cover (or match)       |
+      | term                   | lattice          |
+      |------------------------+------------------|
+      | unification (uni)      | meet             |
+      | anti-unification (ani) | join             |
+      | cover (or match)       | greater-or-equal |
 
       - note that,
         "equal" can be defined by "greater-or-equal".
 
-    - term-lattice is also called "subsumption lattice" by other authers
-      I call it "term-lattice"
+    - term-lattice is also called "subsumption lattice" by other authers.
+      I call it "term-lattice",
       because I want to make explicit its relation with term-rewriting-system
-      (I will address the detail of term-lattice in another paper)
+      (I will address the detail of term-lattice in another paper).
 
-    - if we have (A -> B) and (C -> D)
-      we can cut them only when (C cover B)
-      for example when
+    - if we have (A -> B) and (C -> D),
+      we can cut them only when (C cover B).
+      for example, when :
       - C = B
       - C = (B or E)
       - C = :x :y P
         B = :x :x P
 
-    - cut can be viewed as an important way to weaken a theorem
-      because we can first
-      multiply (A -> B) and (C -> D)
-      to (A C -> B D)
-      then weaken it to (A -> D)
-      - provides that (C cover B)
+    - cut can be viewed as an important way to weaken a theorem.
+      we can first multiply (A -> B) and (C -> D) to (A C -> B D),
+      then weaken it to (A -> D), provides that (C cover B).
 
-    - we can extend the term-lattice to cedent (antecedent and succedent)
-      because cedent is Cartesian product of term in the term-lattice
+    - we can also extend the lattice operations to cedent (antecedent and succedent),
+      because cedent is Cartesian product of term.
 
-*** type-check, again
+*** equality of theorem
 
-    - with the new terminology introduced by term-lattice
-      we can express type-check in a better way
+    - we can define A == B, as (A -> B) and (B -> A).
 
-    - type-arrow : (A -> B)
-      arrows in function body : (a1 -> b1) (a2 -> b2)
-      (A uni a1) ((rewrite b1) cover (rewrite B))
-      (A uni a2) ((rewrite b1) cover (rewrite B))
-      - note that
-        after (A uni a1)
-        ((rewrite b1) cover (rewrite B)) is performed with new bindings
+*** constructiveness
 
-*** >< definition as extension of algebraic structure
+    - in our language, we have the following keywords to do definitions :
+      | keyword | read as                                | function-body |
+      |---------+----------------------------------------+---------------|
+      | "+"     | define-type, define-data               | trivial       |
+      | "~"     | proof, define-theorem, define-function | non-trivial   |
+      | "*"     | assume, define-hypothesis              | no            |
 
-    - ><
+    - whenever we have function-body, be it trivial or non-trivial,
+      we can use it to rewrite data.
+      - for example,
+        the function-body of "succ" is trivial,
+        it rewrites "zero" to "zero succ",
+        i.e. merely add a symbol to the data.
+        while the function-body of "add" is non-trivial,
+        it rewrites "zero succ zero succ" to "zero succ succ".
 
-    - extend freely by "*"
+    - whenever we use "*" to introduce a hypothesis,
+      the constructiveness of function is lost,
+      we can not use it to rewrite data.
+      (but abstractiveness is gained,
+      I will address the detail of the balance
+      between constructiveness and abstractiveness in another paper)
 
-    - extend by "+"
+*** algebraic extension
 
-    - difference between "+" and "*"
+    - then defining a new types by "+",
+      we provide a type-constructor,
+      and a list of data-constructors.
 
-* >< implementation
+    - by introducing such constructors,
+      we are extending our algebraic structure.
+      (just like field extension by root of equations)
+
+* implementation
 
   - I made an attempt to implement a prototype of the language
     (project page at http://xieyuheng.github.io/sequent1)
 
-*** >< the prototype language
+*** implementation-tech
 
     - during writing the prototype language
       I noticed the language is not necessarily stack-based
-      and we have the following correspondence
-      | implementation tech     | the natural of language       |
+      and we have the following relations :
+
+      | implementation-tech     | the natural of language       |
       |-------------------------+-------------------------------|
       | stack-based computation | call-by-value (non-lazy-eval) |
       | term-rewriting-system   | call-by-name (lazy-eval)      |
       | graph-rewriting-system  | call-by-need (lazy-eval)      |
 
+    - first few versions of sequent1 is implemented as a stack-based language,
+      only later, changed to term-rewriting-system.
+      because we have to handle lazy-trunk ><><><
+      to make type inference easier. ><><><
+
 *** >< limits of my implementation
+
+    - I fail to far see that
+      type check report ><><><
+
+* >< further work
+
+  - I planed to do ><><><
+  - the meaning of equality ><><><
+  - dependent type system for logic programming language ><><><
 
 * >< conclusion
 
   - >< about better language
 
-* >< further work
-
-  - I planed to do ><><><
-  - the meaning of equality
-  - dependent type system for logic programming language
-
-* appendixes
+* >< appendixes
 
 *** remark on formalization
 
@@ -665,8 +768,7 @@
 
 *** rationale of using postfix notation
 
-    - rationale of using postfix notation is the following
-      in the linear writing system of our language
+    - in the linear writing system of our language
       we can roughly distinguish four kinds of notations for function or predicate
       | infix     | ((1 + 2) + 3) |
       | prefix    | + + 1 2 3     |
@@ -697,18 +799,6 @@
       I summarize this difference by say
       postfix notation respect the special order of a linear writing system
       the above conclude my rationale
-
-*** remark on the use of stack in implementation
-
-    - first few versions is implemented as a stack-based language
-      only later, changed to term-rewriting-system
-      to make type inference easier
-
-    - for basic information about stack-based language
-      please see forth (the language)
-
-    - for enlightening view of stack
-      please see joy (the language)
 
 *** rationale of composition over application
 
@@ -741,271 +831,3 @@
       | data    |                       | algorithm                  |
       | number  | elementary arithmetic |                            |
       (seems to me like a market for language designer)
-
-*** >< remark on algebraic structure
-
-    - the richness of algebraic structure
-
-*** ><
-
-***** concatenation, composition and cut
-
-      - first syntax operation is concatenation
-        concatenation of two names corresponds to
-
-      - in the following example
-        "*" can be readed as "define-hypothesis".
-        #+begin_src scheme
-        (* wanderer/poe (-> poe is-wanderer))
-        (* way-worn (:x is-wanderer -> :x is-weary))
-
-        (~ weary/poe (-> poe is-weary)
-           (-> wanderer/poe way-worn))
-        #+end_src
-
-      - when view them as functions and types
-        it is really intuitive to see
-        with two functions "wanderer/poe" and "way-worn"
-        how we can compose a function of type (-> poe is-weary)
-
-***** other deductive rules of natural deduction
-
-      - the following seems like conj-intro and conj-elim in natural deduction
-        we can simply use stack processing function to express them
-        - the types of stack processing functions
-          should remind you of the so called structural rules of sequent calculus
-        - linear logic and other substructural logics can be investigated under this framework
-        #+begin_src scheme
-        ;; conj-intro
-        (* p1 (-> a))
-        (* p2 (-> b))
-        (~ p3 (-> a b)
-           (-> p1 p2))
-
-        (* drop (:t ->)
-           (:d ->))
-        (~ swap (:t1 :t2 -> :t2 :t1)
-           (:d1 :d2 -> :d2 :d1))
-
-        ;; conj-elim
-        (* p3 (-> a b))
-        (~ p1 (-> a)
-           (-> p3 drop))
-        (~ p2 (-> b)
-           (-> p3 swap drop))
-        #+end_src
-
-***** the meaning of proof
-
-      - we have the advantage to observe
-        the concrete meaning of "proof" within our concrete model
-
-      - concretely, how proof (type) is checked by the language ?
-        I have the following summarization
-
-        | arrow list in function body |                            |
-        |-----------------------------+----------------------------|
-        | for each arrow              | type-check                 |
-        | for all antecedents         | cover-check                |
-        | for each succedent          | structural-recursion-check |
-
-      - to type-check one arrow, is to
-        - unify the antecedent of type-arrow
-          with the type of the antecedent of arrow
-        - during which, variables will be bound to data or other variables
-        - under these bindings
-          try to cover the succedent of type-arrow
-          by the type of the succedent of arrow
-
-      - let us follow a check step by step
-        #+begin_src scheme
-        (+ natural (-> type)
-           zero (-> natural)
-           succ (natural -> natural))
-
-        (+ list (type -> type)
-           null (-> :t list)
-           cons (:t list :t -> :t list))
-
-        (~ map (:t1 list (:t1 -> :t2) -> :t2 list)
-           (null :f -> null)
-           (:l :e cons :f -> :l :f map :e :f apply cons))
-
-        (+ has-length (:t list natural -> type)
-           null/has-length (-> null zero has-length)
-           cons/has-length (:l :n has-length -> :l :a cons :n succ has-length))
-
-        (~ map/has-length (:l :n has-length -> :l :f map :n has-length)
-           (null/has-length -> null/has-length)
-           (:h cons/has-length -> :h map/has-length cons/has-length))
-
-        ;; take the type check of the second arrow of map/has-length for example
-
-        ;; unify the antecedent of type-arrow :
-        (:l :n has-length)
-
-        ;; with the type of antecedent of the second arrow :
-        type of (:h cons/has-length)
-        ==
-        (:l:0 :a:0 cons :n:0 succ has-length)
-
-        ;; bindings :
-        ((:h : :l:0 :n:0 has-length)
-         (:l = :l:0 :a:0 cons)
-         (:n = :n:0 succ))
-
-        ;; the type of the succedent of the second arrow :
-        type of (:h map/has-length cons/has-length)
-        == ;; under bindings
-        (:l:0
-         :n:0 has-length
-         (type/apply map/has-length)
-         (type/apply cons/has-length))
-        ==
-        (:l:0 :f:1 map
-         :n:0 has-length
-         (type/apply cons/has-length))
-        ==
-        (:l:0 :f:1 map :a:2 cons
-         :n:0 succ has-length)
-
-        ;; cover the succedent of type-arrow :
-        (:l :f map :n has-length)
-        == ;; under bindings
-        (:l:0 :a:0 cons :f map
-         :n:0 succ has-length)
-        == ;; rewrite map
-        (:l:0 :f map :a:0 :f apply cons
-         :n:0 succ has-length)
-
-        ;; cover :
-        ((:f:1 = :f)
-         (:a:2 = :a:0 :f apply))
-        #+end_src
-
-      - to summarize the meaning of "proof" within our concrete model
-        - we can express theorems about
-          - recursively defined data
-          - recursively defined function
-        - we can do proof by
-          - cut -- function composition
-          - exhaustion -- cover-check
-          - structural induction --
-            where first we proof some basic steps
-            and by unification we get next-theorem
-            (just as the next-number in natural-induction)
-            a function recursive call is a use of the induction hypothesis
-            aimming to prove the next-theorem
-
-***** the meaning of proof, again
-
-      - if we define natural number as the following
-        then we can proof natural-induction
-        #+begin_src scheme
-        (+ natural (-> type)
-           zero (-> natural)
-           succ (natural -> natural))
-
-        (~ natural-induction ((:p : (natural -> type))
-                              zero :p apply
-                              ((:k : natural) :k :p apply -> :k succ :p apply)
-                              (:x : natural) -> :x :p apply)
-           (:q :q/z :q/s zero -> :q/z)
-           (:q :q/z :q/s :n succ ->
-               :n
-               :q :q/z :q/s :n natural-induction
-               :q/s apply))
-
-        ;; take the type check of the second arrow for example
-
-        ;; unify the antecedent of type-arrow :
-        ((:p : (natural -> type))
-         zero :p apply
-         ((:k : natural) :k :p apply -> :k succ :p apply)
-         (:x : natural))
-
-        ;; with the type of antecedent of the second arrow :
-        type of (:q :q/z :q/s :n succ)
-
-        ;; bindings :
-        ((:p = :q)
-         (:q : (natural -> type))
-         (:q/z : zero :p apply)
-         (:q/s : ((:k : natural) :k :p apply -> :k succ :p apply))
-         (:x = :n)
-         (:n : natural))
-
-        ;; the type of the succedent of the second arrow :
-        type of
-        (:n
-         :q :q/z :q/s :n natural-induction
-         :q/s apply)
-        == ;; under bindings
-        ((:n : natural)
-         (:q : (natural -> type))
-         (:q/z : zero :q apply)
-         (:q/s : ((:k : natural) :k :q apply -> :k succ :q apply))
-         (:n : natural)
-         natural-induction
-         :q/s type/apply)
-        ==
-        ((:n : natural)
-         :n :q apply
-         :q/s type/apply)
-        ==
-        ((:n succ :q apply))
-
-        ;; cover the succedent of type-arrow :
-        (:x :p apply)
-        == ;; under bindings
-        ((:n succ :q apply))
-        #+end_src
-
-***** the use of "or"
-
-      - when "or" is used
-        we just need to cover all the cases
-        #+begin_src scheme
-        (~ length (:t list -> natural)
-           (null -> zero)
-           (:l :e cons -> :l length succ))
-
-        (~ length ((natural or :t list) -> natural)
-           (null -> zero)
-           (:l :e cons -> :l length succ)
-           (zero -> zero)
-           (:n succ -> :n succ))
-
-        (~ length ((natural or :t list) -> natural)
-           (null -> zero)
-           (:l :e cons -> :l length succ)
-           (:n -> :n))
-        #+end_src
-
-      - type definition is like named "or"
-        #+begin_src scheme
-        (+ nali (-> type)
-           na (natural -> nali)
-           li (:t list -> nali))
-
-        (~ nali/length (nali -> natural)
-           (:l li -> :l length)
-           (:n na -> :n))
-        #+end_src
-
-      - type definition is like named "or" of "and"s
-        #+begin_src scheme
-        (+ nanalili (-> type)
-           nana (natural natural -> nanalili)
-           lili (:t1 list :t2 list -> nanalili))
-
-        (~ nanalili/length (nanalili -> natural)
-           (:l1 li :l2 li -> :l1 length :l2 length add)
-           (:n1 na :n2 na -> :n1 :n2 add))
-        #+end_src
-
-      - thus
-        | function body                | deduction               |
-        |------------------------------+-------------------------|
-        | branching by a list of arrow | disj-elim or exist-elim |
-        | binding by unification       | conj-elim               |
