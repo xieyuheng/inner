@@ -314,284 +314,125 @@
       the way we write function body forms a language to record deduction.
       a record of many steps of deduction is called a proof.
 
-    - the next question is,
-      when we use this kind of syntax to write function body,
-      what actions upon types we are recording ?
-      (what deduction rules we are recording ?)
+    - let us summarize deductive rules in sequent calculus in our language
+      I will simplify some explicit contexts variables from them
+      because for our language contexts can be implicit
 
-***** concatenation, composition and cut
+***** cut
 
-      - first syntax operation is concatenation
-        concatenation of two names corresponds to
-        1. composition of two functions under these names
-        2. cut of two types under these names
-
-      - [[rationale of composition over application]]
-
-      - in sequent calculus, "cut" rule says,
-        if we have (A -> B) and (B -> C),
-        cut them together, we get (A -> C).
-
-      - on the other hand, in programming language,
-        if we have function f1 of type (A -> B) and f2 of (B -> C),
-        compose f1 and f2, we get a function of type (A -> C).
-
-      - in the following example
-        "*" can be readed as "define-hypothesis".
+      - cut
         #+begin_src scheme
-        (* wanderer/poe (-> poe is-wanderer))
-        (* way-worn (:x is-wanderer -> :x is-weary))
-
-        (~ weary/poe (-> poe is-weary)
-           (-> wanderer/poe way-worn))
+        f : (A -> B)
+        g : (B -> C)
+        --------------
+        f g : (A -> C)
         #+end_src
 
-      - when view them as functions and types
-        it is really intuitive to see
-        with two functions "wanderer/poe" and "way-worn"
-        how we can compose a function of type (-> poe is-weary)
+***** structural
 
-***** other deduction rules of natural deduction
-
-      - the following seems like conj-intro and conj-elim in natural deduction
-        we can simply use stack processing function to express them
-        - the types of stack processing functions
-          should remind you of the so called structural rules of sequent calculus
-        - linear logic and other substructural logics can be investigated under this framework
+      - left-weakening
         #+begin_src scheme
-        ;; conj-intro
-        (* p1 (-> a))
-        (* p2 (-> b))
-        (~ p3 (-> a b)
-           (-> p1 p2))
-
-        (* drop (:t ->)
-           (:d ->))
-        (~ swap (:t1 :t2 -> :t2 :t1)
-           (:d1 :d2 -> :d2 :d1))
-
-        ;; conj-elim
-        (* p3 (-> a b))
-        (~ p1 (-> a)
-           (-> p3 drop))
-        (~ p2 (-> b)
-           (-> p3 swap drop))
+        f : (A -> C)
+        -------------------
+        drop f : (A B -> C)
         #+end_src
 
-***** the meaning of proof
-
-      - we have the advantage to observe
-        the concrete meaning of "proof" within our concrete model
-
-      - concretely, how proof (type) is checked by the language ?
-        I have the following summarization
-
-        | arrow list in function body |                            |
-        |-----------------------------+----------------------------|
-        | for each arrow              | type-check                 |
-        | for all antecedents         | cover-check                |
-        | for each succedent          | structural-recursion-check |
-
-      - to type-check one arrow, is to
-        - unify the antecedent of type-arrow
-          with the type of the antecedent of arrow
-        - during which, variables will be bound to data or other variables
-        - under these bindings
-          try to cover the succedent of type-arrow
-          by the type of the succedent of arrow
-
-      - let us follow a check step by step
+      - left-contraction
         #+begin_src scheme
-        (+ natural (-> type)
-           zero (-> natural)
-           succ (natural -> natural))
-
-        (+ list (type -> type)
-           null (-> :t list)
-           cons (:t list :t -> :t list))
-
-        (~ map (:t1 list (:t1 -> :t2) -> :t2 list)
-           (null :f -> null)
-           (:l :e cons :f -> :l :f map :e :f apply cons))
-
-        (+ has-length (:t list natural -> type)
-           null/has-length (-> null zero has-length)
-           cons/has-length (:l :n has-length -> :l :a cons :n succ has-length))
-
-        (~ map/has-length (:l :n has-length -> :l :f map :n has-length)
-           (null/has-length -> null/has-length)
-           (:h cons/has-length -> :h map/has-length cons/has-length))
-
-        ;; take the type check of the second arrow of map/has-length for example
-
-        ;; unify the antecedent of type-arrow :
-        (:l :n has-length)
-
-        ;; with the type of antecedent of the second arrow :
-        type of (:h cons/has-length)
-        ==
-        (:l:0 :a:0 cons :n:0 succ has-length)
-
-        ;; bindings :
-        ((:h : :l:0 :n:0 has-length)
-         (:l = :l:0 :a:0 cons)
-         (:n = :n:0 succ))
-
-        ;; the type of the succedent of the second arrow :
-        type of (:h map/has-length cons/has-length)
-        == ;; under bindings
-        (:l:0
-         :n:0 has-length
-         (type/apply map/has-length)
-         (type/apply cons/has-length))
-        ==
-        (:l:0 :f:1 map
-         :n:0 has-length
-         (type/apply cons/has-length))
-        ==
-        (:l:0 :f:1 map :a:2 cons
-         :n:0 succ has-length)
-
-        ;; cover the succedent of type-arrow :
-        (:l :f map :n has-length)
-        == ;; under bindings
-        (:l:0 :a:0 cons :f map
-         :n:0 succ has-length)
-        == ;; rewrite map
-        (:l:0 :f map :a:0 :f apply cons
-         :n:0 succ has-length)
-
-        ;; cover :
-        ((:f:1 = :f)
-         (:a:2 = :a:0 :f apply))
+        f : (A A -> B)
+        ----------------
+        dup f : (A -> B)
         #+end_src
 
-      - to summarize the meaning of "proof" within our concrete model
-        - we can express theorems about
-          - recursively defined data
-          - recursively defined function
-        - we can do proof by
-          - cut -- function composition
-          - exhaustion -- cover-check
-          - structural induction --
-            where first we proof some basic steps
-            and by unification we get next-theorem
-            (just as the next-number in natural-induction)
-            a function recursive call is a use of the induction hypothesis
-            aimming to prove the next-theorem
-
-***** the meaning of proof, again
-
-      - if we define natural number as the following
-        then we can proof natural-induction
+      - right-contraction
         #+begin_src scheme
-        (+ natural (-> type)
-           zero (-> natural)
-           succ (natural -> natural))
-
-        (~ natural-induction ((:p : (natural -> type))
-                              zero :p apply
-                              ((:k : natural) :k :p apply -> :k succ :p apply)
-                              (:x : natural) -> :x :p apply)
-           (:q :q/z :q/s zero -> :q/z)
-           (:q :q/z :q/s :n succ ->
-               :n
-               :q :q/z :q/s :n natural-induction
-               :q/s apply))
-
-        ;; take the type check of the second arrow for example
-
-        ;; unify the antecedent of type-arrow :
-        ((:p : (natural -> type))
-         zero :p apply
-         ((:k : natural) :k :p apply -> :k succ :p apply)
-         (:x : natural))
-
-        ;; with the type of antecedent of the second arrow :
-        type of (:q :q/z :q/s :n succ)
-
-        ;; bindings :
-        ((:p = :q)
-         (:q : (natural -> type))
-         (:q/z : zero :p apply)
-         (:q/s : ((:k : natural) :k :p apply -> :k succ :p apply))
-         (:x = :n)
-         (:n : natural))
-
-        ;; the type of the succedent of the second arrow :
-        type of
-        (:n
-         :q :q/z :q/s :n natural-induction
-         :q/s apply)
-        == ;; under bindings
-        ((:n : natural)
-         (:q : (natural -> type))
-         (:q/z : zero :q apply)
-         (:q/s : ((:k : natural) :k :q apply -> :k succ :q apply))
-         (:n : natural)
-         natural-induction
-         :q/s type/apply)
-        ==
-        ((:n : natural)
-         :n :q apply
-         :q/s type/apply)
-        ==
-        ((:n succ :q apply))
-
-        ;; cover the succedent of type-arrow :
-        (:x :p apply)
-        == ;; under bindings
-        ((:n succ :q apply))
+        f : (A -> B B)
+        -----------------
+        f drop : (A -> B)
         #+end_src
 
-***** the use of "or"
-
-      - when "or" is used
-        we just need to cover all the cases
+      - left-permutation
         #+begin_src scheme
-        (~ length (:t list -> natural)
-           (null -> zero)
-           (:l :e cons -> :l length succ))
-
-        (~ length ((natural or :t list) -> natural)
-           (null -> zero)
-           (:l :e cons -> :l length succ)
-           (zero -> zero)
-           (:n succ -> :n succ))
-
-        (~ length ((natural or :t list) -> natural)
-           (null -> zero)
-           (:l :e cons -> :l length succ)
-           (:n -> :n))
+        f : (A B -> C)
+        -------------------
+        swap f : (B A -> C)
         #+end_src
 
-      - type definition is like named "or"
+      - right-permutation
         #+begin_src scheme
-        (+ nali (-> type)
-           na (natural -> nali)
-           li (:t list -> nali))
-
-        (~ nali/length (nali -> natural)
-           (:l li -> :l length)
-           (:n na -> :n))
+        f : (A -> B C)
+        -------------------
+        f swap : (A -> C B)
         #+end_src
 
-      - type definition is like named "or" of "and"s
-        #+begin_src scheme
-        (+ nanalili (-> type)
-           nana (natural natural -> nanalili)
-           lili (:t1 list :t2 list -> nanalili))
+***** and
 
-        (~ nanalili/length (nanalili -> natural)
-           (:l1 li :l2 li -> :l1 length :l2 length add)
-           (:n1 na :n2 na -> :n1 :n2 add))
+      - left-and-1
+        #+begin_src scheme
+        f : (A -> C)
+        -------------------
+        drop f : (A B -> C)
         #+end_src
 
-      - thus
-        | function body                | deduction               |
-        |------------------------------+-------------------------|
-        | branching by a list of arrow | disj-elim or exist-elim |
-        | binding by unification       | conj-elim               |
+      - left-and-2
+        #+begin_src scheme
+        f : (B -> C)
+        ------------------------
+        swap drop f : (A B -> C)
+        #+end_src
+
+      - right-and
+        #+begin_src scheme
+        f : (A -> B)
+        g : (C -> D)
+        ----------------------------
+        g swap f swap : (A C -> B D)
+        #+end_src
+
+***** or
+
+      - right-or-1
+        #+begin_src scheme
+        f : (A -> B)
+        -------------------
+        f : (A -> (B or C))
+        #+end_src
+
+      - right-or-2
+        #+begin_src scheme
+        f : (A -> C)
+        -------------------
+        f : (A -> (B or C))
+        #+end_src
+
+      - left-or
+        #+begin_src scheme
+        f : (A -> B)
+        g : (C -> D)
+        -----------------------------
+        (case (:x {:x : A} -> :x f)
+              (:y {:y : C} -> :y g))
+        : ((A or C) -> (B or D))
+        #+end_src
+
+***** implies
+
+      - left-implies
+        #+begin_src scheme
+        f : (A -> B)
+        g : (C -> D)
+        --------------------------
+        (:a :h -> :a f :h apply g)
+        : (A (B -> C) -> D)
+        #+end_src
+
+      - right-implies
+        #+begin_src scheme
+        f : (A B -> C)
+        -----------------------
+        (:x -> (:y -> :x :y f))
+        : (A -> (B -> C))
+        #+end_src
 
 * >< algebra of logic
 
@@ -904,3 +745,267 @@
 *** >< remark on algebraic structure
 
     - the richness of algebraic structure
+
+*** ><
+
+***** concatenation, composition and cut
+
+      - first syntax operation is concatenation
+        concatenation of two names corresponds to
+
+      - in the following example
+        "*" can be readed as "define-hypothesis".
+        #+begin_src scheme
+        (* wanderer/poe (-> poe is-wanderer))
+        (* way-worn (:x is-wanderer -> :x is-weary))
+
+        (~ weary/poe (-> poe is-weary)
+           (-> wanderer/poe way-worn))
+        #+end_src
+
+      - when view them as functions and types
+        it is really intuitive to see
+        with two functions "wanderer/poe" and "way-worn"
+        how we can compose a function of type (-> poe is-weary)
+
+***** other deductive rules of natural deduction
+
+      - the following seems like conj-intro and conj-elim in natural deduction
+        we can simply use stack processing function to express them
+        - the types of stack processing functions
+          should remind you of the so called structural rules of sequent calculus
+        - linear logic and other substructural logics can be investigated under this framework
+        #+begin_src scheme
+        ;; conj-intro
+        (* p1 (-> a))
+        (* p2 (-> b))
+        (~ p3 (-> a b)
+           (-> p1 p2))
+
+        (* drop (:t ->)
+           (:d ->))
+        (~ swap (:t1 :t2 -> :t2 :t1)
+           (:d1 :d2 -> :d2 :d1))
+
+        ;; conj-elim
+        (* p3 (-> a b))
+        (~ p1 (-> a)
+           (-> p3 drop))
+        (~ p2 (-> b)
+           (-> p3 swap drop))
+        #+end_src
+
+***** the meaning of proof
+
+      - we have the advantage to observe
+        the concrete meaning of "proof" within our concrete model
+
+      - concretely, how proof (type) is checked by the language ?
+        I have the following summarization
+
+        | arrow list in function body |                            |
+        |-----------------------------+----------------------------|
+        | for each arrow              | type-check                 |
+        | for all antecedents         | cover-check                |
+        | for each succedent          | structural-recursion-check |
+
+      - to type-check one arrow, is to
+        - unify the antecedent of type-arrow
+          with the type of the antecedent of arrow
+        - during which, variables will be bound to data or other variables
+        - under these bindings
+          try to cover the succedent of type-arrow
+          by the type of the succedent of arrow
+
+      - let us follow a check step by step
+        #+begin_src scheme
+        (+ natural (-> type)
+           zero (-> natural)
+           succ (natural -> natural))
+
+        (+ list (type -> type)
+           null (-> :t list)
+           cons (:t list :t -> :t list))
+
+        (~ map (:t1 list (:t1 -> :t2) -> :t2 list)
+           (null :f -> null)
+           (:l :e cons :f -> :l :f map :e :f apply cons))
+
+        (+ has-length (:t list natural -> type)
+           null/has-length (-> null zero has-length)
+           cons/has-length (:l :n has-length -> :l :a cons :n succ has-length))
+
+        (~ map/has-length (:l :n has-length -> :l :f map :n has-length)
+           (null/has-length -> null/has-length)
+           (:h cons/has-length -> :h map/has-length cons/has-length))
+
+        ;; take the type check of the second arrow of map/has-length for example
+
+        ;; unify the antecedent of type-arrow :
+        (:l :n has-length)
+
+        ;; with the type of antecedent of the second arrow :
+        type of (:h cons/has-length)
+        ==
+        (:l:0 :a:0 cons :n:0 succ has-length)
+
+        ;; bindings :
+        ((:h : :l:0 :n:0 has-length)
+         (:l = :l:0 :a:0 cons)
+         (:n = :n:0 succ))
+
+        ;; the type of the succedent of the second arrow :
+        type of (:h map/has-length cons/has-length)
+        == ;; under bindings
+        (:l:0
+         :n:0 has-length
+         (type/apply map/has-length)
+         (type/apply cons/has-length))
+        ==
+        (:l:0 :f:1 map
+         :n:0 has-length
+         (type/apply cons/has-length))
+        ==
+        (:l:0 :f:1 map :a:2 cons
+         :n:0 succ has-length)
+
+        ;; cover the succedent of type-arrow :
+        (:l :f map :n has-length)
+        == ;; under bindings
+        (:l:0 :a:0 cons :f map
+         :n:0 succ has-length)
+        == ;; rewrite map
+        (:l:0 :f map :a:0 :f apply cons
+         :n:0 succ has-length)
+
+        ;; cover :
+        ((:f:1 = :f)
+         (:a:2 = :a:0 :f apply))
+        #+end_src
+
+      - to summarize the meaning of "proof" within our concrete model
+        - we can express theorems about
+          - recursively defined data
+          - recursively defined function
+        - we can do proof by
+          - cut -- function composition
+          - exhaustion -- cover-check
+          - structural induction --
+            where first we proof some basic steps
+            and by unification we get next-theorem
+            (just as the next-number in natural-induction)
+            a function recursive call is a use of the induction hypothesis
+            aimming to prove the next-theorem
+
+***** the meaning of proof, again
+
+      - if we define natural number as the following
+        then we can proof natural-induction
+        #+begin_src scheme
+        (+ natural (-> type)
+           zero (-> natural)
+           succ (natural -> natural))
+
+        (~ natural-induction ((:p : (natural -> type))
+                              zero :p apply
+                              ((:k : natural) :k :p apply -> :k succ :p apply)
+                              (:x : natural) -> :x :p apply)
+           (:q :q/z :q/s zero -> :q/z)
+           (:q :q/z :q/s :n succ ->
+               :n
+               :q :q/z :q/s :n natural-induction
+               :q/s apply))
+
+        ;; take the type check of the second arrow for example
+
+        ;; unify the antecedent of type-arrow :
+        ((:p : (natural -> type))
+         zero :p apply
+         ((:k : natural) :k :p apply -> :k succ :p apply)
+         (:x : natural))
+
+        ;; with the type of antecedent of the second arrow :
+        type of (:q :q/z :q/s :n succ)
+
+        ;; bindings :
+        ((:p = :q)
+         (:q : (natural -> type))
+         (:q/z : zero :p apply)
+         (:q/s : ((:k : natural) :k :p apply -> :k succ :p apply))
+         (:x = :n)
+         (:n : natural))
+
+        ;; the type of the succedent of the second arrow :
+        type of
+        (:n
+         :q :q/z :q/s :n natural-induction
+         :q/s apply)
+        == ;; under bindings
+        ((:n : natural)
+         (:q : (natural -> type))
+         (:q/z : zero :q apply)
+         (:q/s : ((:k : natural) :k :q apply -> :k succ :q apply))
+         (:n : natural)
+         natural-induction
+         :q/s type/apply)
+        ==
+        ((:n : natural)
+         :n :q apply
+         :q/s type/apply)
+        ==
+        ((:n succ :q apply))
+
+        ;; cover the succedent of type-arrow :
+        (:x :p apply)
+        == ;; under bindings
+        ((:n succ :q apply))
+        #+end_src
+
+***** the use of "or"
+
+      - when "or" is used
+        we just need to cover all the cases
+        #+begin_src scheme
+        (~ length (:t list -> natural)
+           (null -> zero)
+           (:l :e cons -> :l length succ))
+
+        (~ length ((natural or :t list) -> natural)
+           (null -> zero)
+           (:l :e cons -> :l length succ)
+           (zero -> zero)
+           (:n succ -> :n succ))
+
+        (~ length ((natural or :t list) -> natural)
+           (null -> zero)
+           (:l :e cons -> :l length succ)
+           (:n -> :n))
+        #+end_src
+
+      - type definition is like named "or"
+        #+begin_src scheme
+        (+ nali (-> type)
+           na (natural -> nali)
+           li (:t list -> nali))
+
+        (~ nali/length (nali -> natural)
+           (:l li -> :l length)
+           (:n na -> :n))
+        #+end_src
+
+      - type definition is like named "or" of "and"s
+        #+begin_src scheme
+        (+ nanalili (-> type)
+           nana (natural natural -> nanalili)
+           lili (:t1 list :t2 list -> nanalili))
+
+        (~ nanalili/length (nanalili -> natural)
+           (:l1 li :l2 li -> :l1 length :l2 length add)
+           (:n1 na :n2 na -> :n1 :n2 add))
+        #+end_src
+
+      - thus
+        | function body                | deduction               |
+        |------------------------------+-------------------------|
+        | branching by a list of arrow | disj-elim or exist-elim |
+        | binding by unification       | conj-elim               |
