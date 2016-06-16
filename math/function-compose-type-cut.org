@@ -3,7 +3,7 @@
 
 ------
 @@html:
-<p> auther : XIE Yuheng, a math student of China </p>
+<p> author : XIE Yuheng, a math student of China </p>
 <p> date: 2016/06/14 (this paper is still under revising) </p>
 <p> keywords :  language design, dependent type, deduction system, sequent calculus, algebraic structure </p>
 @@
@@ -29,9 +29,9 @@
       instead of function application.
 
     - I will also show the trade-off of this syntax design.
-      how we lose the implicit syntax for currying.
-      how we gain the algebraic associative law.
-      how one's view of deduction could be changed by the change of syntax.
+      1. how we lose the implicit syntax for currying.
+      2. how we gain the algebraic associative law.
+      3. how one's view of deduction could be changed by the change of syntax.
 
   - some also said, [for example, see the first chapter of "Homotopy Type Theory"]
     deduction system can be viewed as algebraic structure,
@@ -46,7 +46,7 @@
     - I will define the rich-ness & poor-ness of algebraic structure,
       and provide my arguments in the framework I defined.
 
-  - in this paper, I will also introduce a prototype implementation of such a language.
+  - I will also introduce a prototype implementation of such a language.
     I call it "sequent1".
 
 * background
@@ -89,9 +89,10 @@
     - there are many other works
       that assign computational models to sequent-calculus-like logics.
       for example :
-      | author | logic | model |
-      |--------+-------+-------|
-      |        |       |       |
+      | people         | logic        | model                  |
+      |----------------+--------------+------------------------|
+      | Frank Pfenning | linear logic | concurrent programming |
+      |                |              |                        |
 
     - maybe one logic system can correspond to multiple computational models.
       maybe more terminologys should be carefully coined,
@@ -185,6 +186,8 @@
 
     - thus, in function body, currying must also be explicit.
       we lost the implicit syntax for currying.
+      because currying is designed as a convention
+      for the syntax of function application.
 
 *** vector
 
@@ -230,11 +233,15 @@
       (the "type-apply" is used during type-check)
       and the way how these computations are done is also unified.
 
-*** >< different optimization of syntax
+*** different optimization of syntax
 
-    - you observed that
-      I keep using the term "optimization of syntax" here,
-      and ><><><
+    - I use the term "optimization of syntax",
+      because just like
+      by changing a data structure or an algorithm,
+      we can achieve different impacts on computer.
+      by changing syntax,
+      we can also achieve different impacts on the psychologic state of reader.
+      (the first reader being myself)
 
 ***** for function composition
 
@@ -320,9 +327,9 @@
       the way we write function body forms a language to record deduction.
       a record of many steps of deduction is called a proof.
 
-    - let us summarize deductive rules in sequent calculus in our language
-      I will simplify some explicit contexts variables from them
-      because for our language contexts can be implicit
+    - let us summarize deductive rules in sequent calculus in our language.
+      I will omit some explicit contexts variables in the deductive rules,
+      because in our language contexts can be implicit.
 
 ***** cut
 
@@ -650,7 +657,7 @@
       - note that,
         "equal" can be defined by "greater-or-equal".
 
-    - term-lattice is also called "subsumption lattice" by other authers.
+    - term-lattice is also called "subsumption lattice" by other authors.
       I call it "term-lattice",
       because I want to make explicit its relation with term-rewriting-system
       (I will address the detail of term-lattice in another paper).
@@ -694,6 +701,8 @@
 
     - whenever we use "*" to introduce a hypothesis,
       the constructiveness of function is lost,
+      although we still can use it to define functions
+      and type check the definitions,
       we can not use it to rewrite data.
       (but abstractiveness is gained,
       I will address the detail of the balance
@@ -711,13 +720,13 @@
 
 * implementation
 
-  - I made an attempt to implement a prototype of the language
-    (project page at http://xieyuheng.github.io/sequent1)
+  - I made an attempt to implement a prototype of the language,
+    project page at http://xieyuheng.github.io/sequent1
 
 *** implementation-tech
 
-    - during writing the prototype language
-      I noticed the language is not necessarily stack-based
+    - during writing the prototype language,
+      I noticed the language is not necessarily stack-based.
       and we have the following relations :
 
       | implementation-tech     | the natural of language       |
@@ -728,106 +737,100 @@
 
     - first few versions of sequent1 is implemented as a stack-based language,
       only later, changed to term-rewriting-system.
-      because we have to handle lazy-trunk ><><><
-      to make type inference easier. ><><><
+      because we have to handle lazy-trunk in the language,
+      and in a term-rewriting-system,
+      I can handle lazy-trunk in an unified implicit way.
 
-*** >< limits of my implementation
+*** mistakes in my implementation
 
-    - I fail to far see that
-      type check report ><><><
+    - (1) I fail to far see that
+      the structure of reports, which returned by various checkers,
+      must be highly structured data, instead of string.
+      thus, I fail to print useful reports when checkers find mistakes in code.
 
-* >< further work
+    - (2) I know graph-rewriting-system is needed,
+      but I did not implement the language by it.
+      because I want to keep the prototype simple.
 
-  - I planed to do ><><><
-  - the meaning of equality ><><><
-  - dependent type system for logic programming language ><><><
+    - (3) can not handle mutual recursive function.
+
+    - (4) can not handle un-named "or".
+
+    - (5) the meaning of equality is not fully understood.
+
+    - (6) not yet designed a good mechanism for abstractiveness.
+
+    - I will correct these mistakes in next versions of the prototype.
+
+* further work
+
+  - (1) I planed to do develop the algebra of logic further.
+
+  - (2) I know with carefully handled "equality",
+    I will be able to use the language as a concrete tool
+    to investigate algebraic topology.
 
 * >< conclusion
 
-  - >< about better language
+  - ><
 
-* >< appendixes
-
-*** remark on formalization
-
-    - I agree with Errett Bishop who said
-      "a proof is any completely convincing argument."
-      I also think theorems expressed by formal language are specially clear
-      and proofs checked by computer are specially convincing
-
-    - on the other hand
-      I also think that
-      formal language can never be used to satisfactorily explain
-      or totally simulate human language
-      formal theorem and formal proof can never fully capture "human proof"
-      this fact is specially clear
-      if you are willing to think of "human proof" historically
-
-    - the aim (or one aim) of formalization is to reduce (or remove) vagueness
-      while the definition of vagueness is always vague
+* appendixes
 
 *** rationale of using postfix notation
 
-    - in the linear writing system of our language
-      we can roughly distinguish four kinds of notations for function or predicate
+    - in the linear writing system of our language,
+      we can roughly distinguish four kinds of notations for function or predicate :
       | infix     | ((1 + 2) + 3) |
       | prefix    | + + 1 2 3     |
       | postfix   | 3 2 1 + +     |
       | borderfix | (+ 1 2 3)     |
-      - infix is especially good for associative binary function
-      - prefix and postfix are not ambiguous without bracket
+      - infix is especially good for associative binary function.
+      - prefix and postfix are not ambiguous without bracket.
       - borderfix can be used for functions
-        that can apply to different numbers of arguments
-      our choice is between prefix and postfix
-      because for simplicity we have the following two features
+        that can apply to different numbers of arguments.
+
+    - my choice is between prefix and postfix,
+      because for simplicity I need the following two features :
       - the arity of all functions must be fixed
       - we want our expressions to be not ambiguous without bracket
-      then, how do we decide to use postfix instead of prefix ?
-      seemingly, prefix and postfix are symmetric
-      while we still can distinguish them
-      because we write in special order (from left to right in most western language)
-      in postfix notation suppose we have written
-      1 2 +
-      and we want to add 3 to the result of 1 2 +
-      we simply write
-      1 2 + 3 +
-      while in prefix notation suppose we have written
-      @@html: + 1 2 @@
-      and we want to add 3 to the result of + 1 2
-      we have to insert + 3 in front of + 1 2 and write
-      @@html: + 3 + 1 2 @@
-      I summarize this difference by say
-      postfix notation respect the special order of a linear writing system
-      the above conclude my rationale
 
-*** rationale of composition over application
+    - then, how do I decide to use postfix instead of prefix ?
+      seemingly, prefix and postfix are symmetric,
+      while we still can distinguish them.
+      because we write in special order
+      (from left to right in most western language).
+      - in postfix notation suppose we have written :
+        1 2 +
+        and we want to add 3 to the result of 1 2 +,
+        we simply write :
+        1 2 + 3 +
+      - while in prefix notation suppose we have written :
+        @@html: + 1 2 @@
+        and we want to add 3 to the result of + 1 2,
+        we have to insert + 3 in front of + 1 2 and write :
+        @@html: + 3 + 1 2 @@
 
-    - to optimize system for composition
-      is to denote composition by concatenation of term
-
-    - when optimize syntax for composition instead of application
-      - we get better algebra-like structure
-        because function composition is associative
-        while function application is not
-      - we lost good syntax for currying
-        because currying is designed as a convention
-        of the syntax of function application
+    - I summarize the above difference by say :
+      postfix notation respect the special order of a linear writing system.
+      thus, I use postfix notation.
 
 *** remark on deduction and inference
 
     - one might ask, what is a deduction or a inference ?
-      my answer is a deduction or a inference
-      is a way to express a change of theorem
-      "a change" means "one step of change"
+      my answer is,
+      a deduction or a inference is a way to express a change of theorem.
+      ("a change" means "one step of change")
 
-    - let us generalize it a little bit
-      and to discuss "a change of thing" and "language to record changes"
-      you will find these two concepts are very common
-      and they also are named differently in different places
+    - let us generalize it a little bit,
+      and to discuss "a change of thing" and "language to record changes".
+      you will find these two concepts are very common,
+      and they are also named differently in different places :
       | thing   | a change of thing     | language to record changes |
       |---------+-----------------------+----------------------------|
       | theorem | deduction             | proof                      |
       | food    |                       | cookbook                   |
       | data    |                       | algorithm                  |
       | number  | elementary arithmetic |                            |
-      (seems to me like a market for language designer)
+      (seems to me like a market for language designers)
+
+* >< references
