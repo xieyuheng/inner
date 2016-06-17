@@ -453,15 +453,15 @@
       - in the following example
         "*" can be readed as "define-hypothesis"
       #+begin_src scheme
-      (* chinese-are-human (:x is-chinese -> :x is-human))
-      (* japanese-are-human (:x is-japanese -> :x is-human))
+      (* rich-human (:x is-rich -> :x is-human))
+      (* poor-human (:x is-poor -> :x is-human))
       (* human-have-equal-human-rights
          (:x is-human :y is-human -> :x :y have-equal-human-rights))
 
-      (~ chinese-and-japanese-have-equal-human-rights
-         (:x is-chinese :y is-japanese -> :x :y have-equal-human-rights)
-         (:cn :ja -> :cn chinese-are-human
-                     :ja japanese-are-human
+      (~ rich-and-poor-have-equal-human-rights
+         (:x is-rich :y is-poor -> :x :y have-equal-human-rights)
+         (:ri :po -> :ri rich-human
+                     :po poor-human
                      human-have-equal-human-rights))
       #+end_src
 
