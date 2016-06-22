@@ -4,7 +4,7 @@
 ------
 @@html:
 <p> author : XIE Yuheng, a math student of China </p>
-<p> date: 2016/06/14 (this paper is still under revising) </p>
+<p> date: 2016/06/14 </p>
 <p> keywords :  language design, dependent type, deduction system, sequent calculus, algebraic structure </p>
 @@
 ------
@@ -29,9 +29,9 @@
       instead of function application.
 
     - I will also show the trade-off of this syntax design.
-      1. how we lose the implicit syntax for currying.
-      2. how we gain the algebraic associative law.
-      3. how one's view of deduction could be changed by the change of syntax.
+      1. the syntax of type and function-body are unified.
+      2. we lose the implicit syntax for currying.
+      3. we gain the algebraic associative law.
 
   - some also said, [for example, see the first chapter of "Homotopy Type Theory"]
     deduction system can be viewed as algebraic structure,
@@ -41,10 +41,8 @@
     - in this paper, I will show that
       with the associative law which we obtained from function composition,
       the corresponding deduction system of our programming language
-      is a very rich algebraic structure.
-
-    - I will define the rich-ness & poor-ness of algebraic structure,
-      and provide my arguments in the framework I defined.
+      not merely "can be viewed as" algebraic structure,
+      but actually has a very rich algebraic structure.
 
   - I will also introduce a prototype implementation of such a language.
     I call it "sequent1".
@@ -84,7 +82,7 @@
       the prototype only limited to demonstrate the main idea of "sequent-calculus as type system".
       thus I wrote "sequent1".
 
-*** >< related works
+*** related works
 
     - there are many other works
       that assign computational models to sequent-calculus-like logics.
@@ -92,7 +90,6 @@
       | people         | logic        | model                  |
       |----------------+--------------+------------------------|
       | Frank Pfenning | linear logic | concurrent programming |
-      |                |              |                        |
 
     - maybe one logic system can correspond to multiple computational models.
       maybe more terminologys should be carefully coined,
@@ -223,25 +220,10 @@
 
 *** unified syntax
 
-    - the syntax of type and function-body seem to be the same.
-
-    - it is true,
-      and it is also semanticly true.
-      because, in the implementation,
-      we have "apply", which uses function-body (a list of arrow) to do computation,
-      we also have "type-apply", which uses type (a type-arrow) to do computation.
-      (the "type-apply" is used during type-check)
-      and the way how these computations are done is also unified.
+    - the syntax of type and function-body are unified.
+      a type is an arrow, a function-body is a list of arrows.
 
 *** different optimization of syntax
-
-    - I use the term "optimization of syntax",
-      because just like
-      by changing a data structure or an algorithm,
-      we can achieve different impacts on computer.
-      by changing syntax,
-      we can also achieve different impacts on the psychologic state of reader.
-      (the first reader being myself)
 
 ***** for function composition
 
@@ -292,9 +274,9 @@
          (:d1 :d2 -> :d2 :d1))
       #+end_src
 
-* Curry–Howard correspondence under this syntax
+* the correspondence
 
-  - to show such correspondence
+  - to show Curry–Howard correspondence under this syntax
     is to show,
     1. how to view type as theorem ?
     2. how to view function as proof ?
@@ -312,7 +294,7 @@
       (-> (:x : A) :x P) -- "there exist x belong to A, such that P(x)"
       #+end_src
 
-    - I call express of form (A B C ... -> E F G ...) sequent.
+    - I call expression of form (A B C ... -> E F G ...) sequent.
       but you should note that,
       sequent for us, is not exactly the same as sequent for Gentzen.
       Gentzen views succedent as "or", while we view succedent as "and".
@@ -490,10 +472,11 @@
          zero (-> natural)
          succ (natural -> natural))
 
-      (~ natural-induction ((:p : (natural -> type))
-                            zero :p apply
-                            ((:k : natural) :k :p apply -> :k succ :p apply)
-                            (:x : natural) -> :x :p apply)
+      (~ natural-induction
+         ((:p : (natural -> type))
+          zero :p apply
+          ((:k : natural) :k :p apply -> :k succ :p apply)
+          (:x : natural) -> :x :p apply)
          (:q :q/z :q/s zero -> :q/z)
          (:q :q/z :q/s :n succ ->
              :n
@@ -501,24 +484,9 @@
              :q/s apply))
       #+end_src
 
-    - to summarize the meaning of "proof" within our concrete model :
-      - we can express theorems about
-        - recursively defined data
-        - recursively defined function
-      - we can do proof by
-        - cut -- function composition
-        - exhaustion -- cover-check
-        - structural induction --
-          first we proof some basic steps,
-          and by unification we get next-theorem
-          (just as the next-number in natural-induction),
-          a recursive call is a use of the induction hypothesis
-          that aimming to prove the next-theorem.
-
 * algebra of logic
 
-  - a concrete algebraic structure is rich when
-    (note that I am not talking about abstract algebraic structure)
+  - a concrete (not abstract) algebraic structure is rich when
     1. its elements have practical meaning.
     2. it is equipped with many algebraic laws,
        which you can use to transform equations.
@@ -529,8 +497,10 @@
     which is studied in algebraic geometry.
 
   - since function composition already satisfies associative law,
-    we have the opportunity to demonstrate an rich algebraic structure of formal theorems.
-    we will try to define those algebraic operations that are closed in the set of derivable theorems.
+    we have the opportunity to demonstrate an rich algebraic structure,
+    the elements of which are formal theorems.
+
+  - we will try to define those algebraic operations that are closed in the set of derivable theorems.
     hopefully we will be able to capture all deductions by algebraic operations.
 
 *** to mimic fraction of natural number
@@ -766,13 +736,9 @@
 
   - (1) I planed to do develop the algebra of logic further.
 
-  - (2) I know with carefully handled "equality",
+  - (2) I know that with carefully handled "equality",
     I will be able to use the language as a concrete tool
     to investigate algebraic topology.
-
-* >< conclusion
-
-  - ><
 
 * appendixes
 
@@ -832,5 +798,3 @@
       | data    |                       | algorithm                  |
       | number  | elementary arithmetic |                            |
       (seems to me like a market for language designers)
-
-* >< references
