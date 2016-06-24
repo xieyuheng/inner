@@ -3,9 +3,9 @@
 
 ------
 @@html:
-<p> author : XIE Yuheng, a math student of China </p>
+<p> author : XIE Yuheng, a math student </p>
 <p> date: 2016/06/14 </p>
-<p> keywords :  language design, dependent type, deduction system, sequent calculus, algebraic structure </p>
+<p> keywords : language design, dependent type, deduction system, sequent calculus, algebraic structure </p>
 @@
 ------
 
