@@ -67,10 +67,4 @@ a humble math student
 * contact
 
   - email : xyheme (at) gmail (dot) com
-  - city : YinChuan, China
   - irc : #cicada-language at freenode
-
-* resume
-
-  - born : 1992/01/15, YinChuan, China
-  - died : not today

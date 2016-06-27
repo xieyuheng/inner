@@ -1,0 +1,648 @@
+#+TITLE:  learning wildberger
+#+AUTHOR: 謝宇恆 / XIE Yuheng
+
+* *幾何*
+
+* intro-to-rational-trigonometry
+
+*** an invitation to geometry
+    - 圖形用於啓發
+      但論證不依賴圖形
+      若依賴 則易有誤
+
+*** why trigonometry is hard
+    - 角度這個值[弧長制 或 360 度] 不適合直接度量
+      實際應用中 角度都是算出來的[利用三點]
+      而 實際的計算中
+      如果直接利用用以計算角度的數據 效果就更好了
+      因此 整個三角學理論也應該更改
+      不應該以角度爲基礎
+    - 如果三角學這樣改了
+      分析學也得跟着改
+
+*** quadrance via Pythagoras and Archimedes
+    - 距離之平方 [距離的距離函數]
+      稱 方[quadrance]
+      以代替 距離
+
+*** spread, angles and astronomy
+    - 角度起源於球面幾何 而不適用於平面幾何
+    - 對方 比 斜方 [角度的單調函數] [值爲 0 到 1]
+      稱 延[spread]
+      以代替 角度
+
+*** five main laws of rational trigonometry
+
+*** Applications of rational trigonometry
+
+*** Heron's formula viewed rationally
+
+*** Centers of triangles with rational trigonometry
+
+*** The laws of proportion for a triangle
+
+*** Geometry of circles with rational trigonometry
+
+*** Applications of rational trig to surveying
+
+*** Cartesian coordinates and geometry
+
+*** Why spreads are better than angles
+
+*** Rational parameters for circles
+
+*** Complex numbers and rotations
+
+*** Rational Trigonometry Quiz 1
+
+*** Rational trigonometry - Solutions to Quiz 1
+
+*** Medians, altitudes and vertex bisectors
+
+*** Trigonometry with finite fields
+
+*** Highlights from triangle geometry
+
+*** Spread polynomials
+
+*** Applications of rational trig to surveying, again
+
+*** Stewart's theorem
+
+*** What size ladder fits around a corner
+
+*** Trisecting angles and Hadley's theorem
+
+*** Polar coordinates and rational trigonometry
+
+*** Introduction to Projective Geometry
+
+*** Projective geometry and perspective
+
+*** Projective geometry and homogeneous coordinates
+
+*** Affine geometry and barycentric coordinates
+
+*** The cross ratio
+
+*** More about the cross ratio
+
+*** Harmonic ranges and pencils
+
+*** The fundamental theorem of projective geometry
+
+*** Conics via projective geometry
+
+*** An algebraic framework for rational trigonometry
+
+*** Einstein's special relativity - an introduction
+
+*** Red geometry
+
+*** Circles in red geometry
+
+*** Green geometry
+
+*** An introduction to chromogeometry
+
+*** Chromogeometry and Euler lines
+
+*** Chromogeometry and nine-point circles
+
+*** Proofs in chromogeometry
+
+*** Triangle spread rules
+
+*** Triangle spread rules in action
+
+*** Acute and obtuse triangles
+
+*** Proofs of the Triangle spread rules
+
+*** Rational trigonometry Quiz #2
+
+*** Hints for solutions to Quiz #2
+
+*** The 6-7-8 triangle
+
+*** Trisecting a right triangle
+
+*** Euler's Four Point Relation
+
+*** What is geometry really about
+
+*** Determinants in geometry
+
+* universal-hyperbolic-geometry
+
+*** Apollonius and polarity
+    - [[http://tube.geogebra.org/m/1553065][點之極線定理 / polar of a point theorem]]
+      - 攝影幾何中
+        只能用沒有刻度的直尺作圖
+        1. 取點[認取點 和 取交點]
+        2. 連線
+        爲兩個基本操作
+        可以被理解爲 素函數[primitive-function]
+        - 有基本操作
+          則由各種組合方式
+          可構建更複雜的操作
+        - 正如在蟬語中
+          給出素函數
+          由函數複合等組合方式
+          可構建複雜的函數
+        - 正如在算數中
+          給出素數
+          由乘法
+          可構造所有整數
+      - 平面上有一圓時
+        就得到點與線之間的對應關係
+        極點 對 極線
+        是爲 阿波羅涅斯極偶[Apollonius' polarity]
+        帶有這樣一個圓的 攝影幾何
+        即爲 雙曲幾何
+        或者說 雙曲幾何 的模型之一
+      - 由點構造極線之法如下
+        任取圓上兩點 分別連與原點相連 得二直線
+        二直線交圓於四點[切點特殊處理] 補足另外兩點
+        四點定六直線 補足另外四線
+        所補四線 新交出兩點 此兩點確定原點之極線
+      - 其圖示如下
+        首先三點[白]以定一圓
+        取一點[紅]不在圓上
+        利用三白點中兩點以作其極線[紅]
+    - [[http://tube.geogebra.org/m/1553151][極線獨立定理 / polar independence theorem]]
+      - 若以兩種方式構造極線
+        則兩次所作的極線相重
+      - 即 此種構造方式保持等詞
+        因而 此種構造方式屬函數
+    - [[http://tube.geogebra.org/m/1553237][給圓上的四點 觀察其所能形成的三對 阿波羅涅斯極偶 關係]]
+      - 此時三極線給出一個三角形
+    - [[http://tube.geogebra.org/m/1553401][極線對偶定理 / polar duality theorem]]
+      - 對於兩點來說
+        若 你恰在我的極線上
+        則 我亦在你的極線上
+      - 證明的思路如下
+        已知 a 在 b 的極線上
+        考慮 構造 b 的極線 的過程
+        發現 是通過構造兩個來確定其極線
+        選取圓上四點
+        使得
+        a 爲構造 b 的極線過程中的兩點之一
+        反而可知
+        b 爲構造 a 的極線過程中的兩點之一
+        而得證
+      - 另外
+        注意將用到的公理 並分析證明
+        就能得到將理論形式化的頭緒
+      - 考慮一點和其極線
+        並觀察其極線上每一點的極線
+        發現 這些極線都過原點 而成直線束[pencil]
+        直線束 覆蓋整個平面
+    - [[http://tube.geogebra.org/m/1555171][線之極點定理 / pole of a line theorem]]
+      - 由點出發 可構造極線
+        利用這種構造 由直線出發 認取其兩點
+        做兩點之兩極線
+        兩極線相交於原直線之極點
+        由 線之極點定理 易察之
+      - 爲了構造 線之極點
+        作了兩次 點之極線
+        正如在蟬語中 以已經定義好的函數爲基礎
+        由函數複合等組合方式 可以定義更複雜的函數
+      - 構造點之極線 與 構造線之極點 互逆
+        兩次 點之極線 可得 線之極點
+        兩次 線之極點 可得 點之極線
+        因而推知
+        四次 點之極線 可得 點之極線 等等
+      - 注意
+        構造時 所取原直線不能過圓心
+        此時所作兩極線將平行
+      - 這給出了判斷某直線是否過圓心的方法
+    - [[http://tube.geogebra.org/m/1555291][構造切線 / construct the tangent line]]
+      - 由 線之極點定理
+        知
+        兩次 點之極線 可得 線之極點
+        兩次 線之極點 可得 點之極線
+        因而推知
+        四次 點之極線 可得 點之極線
+        如此可得第二種 構造點之極線 之法
+        此法對與圓上的點也適用
+        此時作得過圓上某點之切線
+    - 極偶的一般性 / polarity for general conics
+      - 如上諸構造 於圓錐曲線階適用
+        如上諸定理 對圓錐曲線階成立
+        - [[http://tube.geogebra.org/m/1555023][橢圓之極偶 / polarity for ellipse]]
+        - [[http://tube.geogebra.org/m/1555037][拋物線之極偶 / polarity for parabola]]
+        - [[http://tube.geogebra.org/m/1555051][雙曲線之極偶 / polarity for hyperbola]]
+    - 圓心
+      - 雙曲幾何中不能作出基本圓之圓心
+        一旦有圓心 就有半徑 就有單位長度 直尺就有刻度
+        一旦有圓心 就可作垂徑的切線 就可得垂直 就可得平行
+        由此看出幾何之整體性質將會改變
+        雖然 何以證明邪
+    - 幾何之類
+      - 射影幾何[projective geometry]
+        1. 可作直線[可用直尺]
+      - 仿射幾何[affine geometry]
+        1. 可作直線[可用直尺]
+        2. 可作平行線
+      - 歐氏幾何[Euclid geometry]
+        1. 可作直線[可用直尺]
+        2. 可定點作圓[可用圓規]
+      - 此爲幾何之層次分類
+        分類所依者 作圖工具也 表達能力也
+
+*** 四點和諧[harmonic conjugates]
+
+*** Pappus' theorem and the cross ratio
+    - Pappus' theorem
+      兩組共線三點 給出 第三組共線三點
+    - 交比 是攝影幾何中的計算 不涉及圓
+      且爲攝影不變量 這樣共線四點算得的值 實爲共點四線之值
+    - chasles theorem 又說明瞭額外的不變性
+      即 共圓錐曲線的五點
+      以其中一點爲基 作共點四線
+      則此基點在圓錐曲線上變化時 交比不變
+
+*** First steps in hyperbolic geometry
+
+*** The circle and Cartesian coordinates
+
+*** Duality, quadrance and spread in Cartesian coordinates
+
+*** The circle and projective homogeneous coordinates
+
+*** Computations with homogeneous coordinates
+
+*** Duality and perpendicularity
+
+*** Orthocenters exist!
+
+*** Theorems using perpendicularity
+
+*** Null points and null lines
+
+*** Apollonius and polarity revisited
+
+*** Reflections in hyperbolic geometry
+
+*** Reflections and projective linear algebra
+
+*** Midpoints and bisectors
+
+*** Medians, midlines, centroids and circumcenters
+
+*** Parallels and the double triangle
+
+*** The J function, sl(2) and the Jacobi identity
+
+*** Pure and applied geometry--understanding the continuum
+
+*** Quadrance and spread
+
+*** Pythagoras' theorem in Universal Hyperbolic Geometry
+
+*** The Triple quad formula in Universal Hyperbolic Geometry
+
+*** Visualizing quadrance with circles
+
+*** Geometer's Sketchpad and circles in Universal Hyperbolic Geometry
+
+*** Trigonometric laws in hyperbolic geometry using Geometer's Sketchpad
+
+*** The Spread law in Universal Hyperbolic Geometry
+
+*** The Cross law in Universal Hyperbolic Geometry
+
+*** Thales' theorem, right triangles and Napier's rules
+
+*** Isosceles triangles in hyperbolic geometry
+
+*** Menelaus, Ceva and the Laws of proportion
+
+*** Trigonometric dual laws and the Parallax formula
+
+*** Spherical and elliptic geometries - an introduction
+
+*** Spherical and elliptic geometries (cont.)
+
+*** Areas and volumes for a sphere
+
+*** Classical spherical trigonometry
+
+*** Perpendicularity, polarity and duality on a sphere
+
+*** Parametrizing and projecting a sphere
+
+*** Rational trigonometry - an overview-dVk3
+
+*** Rational trigonometry in three dimensions
+
+*** Trigonometry in elliptic geometry
+
+* divine-proportions--rational-trigonometry-to-universal-geometry
+
+* algebraic-topology
+
+*** introduction to algebraic topology
+
+    - 研究形狀
+      以代數做爲工具
+      觀察
+      在連續形變[continuous deform]下 幾何體的不變量
+      所找到的不變量經常是一個羣
+      即 一整個具體的數據結構
+      成了不變量
+      用以標記某個幾何體的特徵
+      用以分類幾何體
+
+    - 起源於 黎曼 的 複變函數 理論
+      由 龐加萊 發展
+
+    - 相關學科是 微分幾何 代數幾何 現代物理
+
+    - 此處介紹方式之新穎在於
+      1. 曲率
+      2. 用 conway 的 ZIP proof 來證明曲面的分類定理
+
+    - topic
+      - curve
+        winding number
+        curvature
+      - surface classification
+      - knot
+        link
+        invariant
+      - graph
+        tree
+        polyhedra
+        euler number
+        vector field
+      - fundamental group
+      - three dimensional manifold
+        quaternion
+      - homology
+        application
+
+*** note 因想像而有趣 因想像而難交流
+
+    - 找不變量 由各種等價關係指引
+      相等由各種連續形變定義
+      但是其構造性很弱
+      [很難寫一個程序 幫你形變幾何體]
+
+    - 每個人 想像 連續形變 的方式可能很不同
+      所以 繪圖以交流 很重要
+      設計好的語言 去描述這些想像 也很重要
+
+    - 依賴想像與圖形
+      而沒有良好的形式語言
+
+*** one-dimensional objects
+
+*** Homeomorphism and the group structure on a circle
+
+*** Two-dimensional surfaces - the sphere
+
+*** More on the sphere
+
+*** Two-dimensional objects--the torus and genus
+
+*** Non-orientable surfaces---the Mobius band
+
+*** The Klein bottle and projective plane
+
+*** Polyhedra and Euler's formula
+
+*** Applications of Euler's formula and graphs
+
+*** More on graphs and Euler's formula
+
+*** Rational curvature, winding and turning
+
+*** Duality for polygons and the Fundamental theorem of Algebra
+
+*** More applications of winding numbers
+
+*** The Ham Sandwich theorem and the continuum
+
+*** Rational curvature of a polytope
+
+*** Rational curvature of polytopes and the Euler number
+
+*** Classification of combinatorial surfaces
+
+*** An algebraic ZIP proof of the classification
+
+*** The geometry of surfaces
+
+*** The two-holed torus and 3-crosscaps surface
+
+*** Knots and surfaces
+
+*** The fundamental group
+
+*** >< More on the fundamental group
+
+    - 計算 fundamental group 的例子
+      - projective plane P2 -- torsion
+      - torus
+      - two hole torus
+      - mobius band
+      - klein bottle
+
+*** Covering spaces
+
+    - how to view covering-map from S2 -> P2
+      in the cell-complex picture of P2
+      考慮 cell-complex picture 中的邊界的 neighborhood
+
+    - torus knot 也是 covering-map
+      t -> (t 7t) mod 1 -- 平凡 knot
+      t -> (2t 7t) mod 1 -- 非平凡 knot
+      可以用平面座標系中的整點表示
+      (就像表示分數一樣)
+      t -> (2t 3t) mod 1 -- 著名的 trefoil knot
+
+*** Covering spaces and 2-oriented graphs
+
+    - covering-spaces 有局部相同的特性
+      尤其是在交叉點上需要驗證這一特性
+
+    - 兩個生成子的羣爲 base-space 的有向圖
+      添加等詞就得到 covering-space 的有向圖
+      注意 這裏用有向邊來記錄進行 covering-map 的方式
+
+    - 注意
+      所嵌入的空間決定了 fundamental group
+      比如 circle 作爲空間 是沒法穿過 circle 的中空的
+      但是用生成子描述 cell complex 時就不同
+
+    - universal-covering-space -- simply connected
+      一階同倫羣爲平凡羣
+      沒有不可收縮的 loop
+      這樣所有圈就都能穿過了
+
+    - 對於 universal-covering-space 來說
+      如果是沒有二維元素的話 就只能沒有圈了
+      這樣就是自由羣的圖
+      這個 universal-covering-space 能用來 cover 所有能 cover 原圖的圖
+
+*** Covering spaces and fundamental groups
+
+    - covering-map 是連續函數
+      所以 利用同倫函子 自然就能得到同論羣之間的同態
+
+    - 並且所得到的同態是單射 (這樣就得到 base-space 同倫羣的子羣)
+      這是因爲 可收縮 loop 還是被映射成 可收縮 loop (因此 ker 是單位元)
+      這是因爲 用於把 loop 收縮成點的 homotopy 也被映射成 homotopy
+      (注意 這裏用到了 covering-space 的鄰域性質)
+
+    - 也就是說此時得到的是 a tower of groups 之間的同態
+
+    - 這個性質就使得 covering-space 成了計算同倫羣的工具
+      但是
+      考慮 universal-covering 就知道 所得到的羣同態可能不是滿射
+      這樣 一個空間越能 cover 更多的空間
+      反而他的羣就越平凡
+
+    - 但是如果能建立反方向的關係
+      即 從一個 base-space 同倫羣的子羣
+      能找到 covering-space
+      那麼從 平凡子羣就能找到 universal-covering-space
+      然後縮小 universal-covering-space 找到其他子羣
+      (galois 理論)
+
+*** Universal covering spaces
+
+    - universal-covering-space defined as space of pathes
+      注意形變一個 path 時 要保持始末點
+      需要驗證其構造滿足 定義 universal-covering-space 的兩個性質
+
+    - base-space 的同論羣 羣作用於 covering-space
+
+*** An introduction to homology
+
+*** Simplices and simplicial complexes
+
+*** Computing homology groups
+
+*** More homology computations
+
+*** Delta complexes, Betti numbers and torsion
+
+*** -review*
+
+*** An informal introduction to abstract algebra
+
+*** Introduction to group theory
+
+*** More on commutative groups---isomorphisms, homomorphisms, cosets and quotient groups
+
+*** Free abelian groups and non-commutative groups
+
+* differential-geometry
+
+*** classical curves
+
+*** introduction to geogebra
+
+*** parametrized curves and algebraic curves
+
+*** the differential calculus for curves, via lagrange
+
+*** tangent conics and tangent quadrics
+
+*** visualizing the folium surface with geogebra
+
+*** differential geometry with finite fields
+
+*** the differential calculus for curves (ii)
+
+*** projective view of conics and quadrics
+
+*** Duality, polarity and projective linear algebra
+
+*** Metrical structure and curvature of a parabola
+
+*** Curvature for the general parabola
+
+*** Quadratic curvature for algebraic curves
+
+*** Curvature, turning numbers and winding numbers
+
+*** The Frenet Serret equations
+
+*** Geometric and algebraic aspects of space curves
+
+*** An introduction to surfaces-J
+
+*** A tutorial - some differential geometry problems
+
+*** More general surfaces
+
+*** Paraboloids and associated quadratic forms
+
+*** Topological spaces and manifolds
+
+*** Manifolds, classification of surfaces and Euler characteristic
+
+*** Classification of 2-manifolds and Euler characteristic
+
+*** Curvature for the general paraboloid
+
+*** Curvature for general algebraic surfaces
+
+*** Examples of curvatures of surfaces
+
+*** Meusnier, Monge and Dupin
+
+*** Gauss, normals and fundamental forms
+
+*** Gauss's view of curvature and the Theorema Egregium
+
+* *週邊*
+
+* math-foundations
+
+* math-history
+
+*** pythagoras' theorem
+    - 現在的數學中 勾股定理 被用來定義 兩點之間的距離
+
+*** greek geometry
+
+*** greek number theory
+
+*** infinity in greek mathematics
+
+*** number theory and algebra in asia
+
+*** ><
+
+*** projective geometry
+    - 給文藝復興時期的畫家的實用定理
+      平行線 相交與 畫布中的地平線
+    - 利用攝影平面的齊次座標
+      來分類三次曲線 [把曲線投影到圓上]
+
+*** ><
+
+*** number systems and stevin's decimals
+
+*** problems with the calculus
+
+*** matrices, determinants and the birth of linear algebra
+
+*** sets, logic and computability
+
+*** computability and problems with set theory
+
+*** combinatorics
+
+* famous-math-problems
+
+* *概率*
+
+* probability-and-statistics--an-introduction
+
+*** review of sets and functions
