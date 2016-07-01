@@ -522,6 +522,8 @@
 
 *** An introduction to homology
 
+    - 重要的是能在無法想象出高維幾何體的情況下計算不變量
+
 *** Simplices and simplicial complexes
 
 *** Computing homology groups

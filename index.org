@@ -7,13 +7,9 @@
 </div>
 @@
 
-------
+* about
 
-@@html:
-a humble math student
-@@
-
-------
+  - XIE Yuheng is a humble math student
 
 * math
 
@@ -57,14 +53,8 @@ a humble math student
     - (todo) [[./translate/schizophrenia-in-contemporary-mathematics.html][schizophrenia in contemporary mathematics / 當代數學之精神分裂症]], 1973
     - [[./translate/a-constructivist-manifesto.html][a constructivist manifesto / 一個構造主義者的宣言]], 1967
 
-* social
-
-  - I am a member and part time maintainer of [[https://szdiy.org/][SZDIY hackerspace]]
-  - I graduated from Sun Yat-sen university of China (a.k.a. SYSU)
-  - github : https://github.com/xieyuheng
-  - [[./friend-links.html][links to friends on the net]]
-
 * contact
 
+  - github : https://github.com/xieyuheng
   - email : xyheme (at) gmail (dot) com
   - irc : #cicada-language at freenode
