@@ -34,7 +34,8 @@
 
 * program
 
-  - (todo) [[http://xieyuheng.github.io/autumn1][autumn1]] -- a prototype implementation of a note-taking APP
+  - (todo) [[https://github.com/xieyuheng/autumn][autumn]] -- a note-taking app for spring
+  - (todo) [[https://github.com/xieyuheng/spring][spring]] -- an editor written in jojo
 
 * lecture
 
