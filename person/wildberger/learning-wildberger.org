@@ -523,14 +523,42 @@
 *** An introduction to homology
 
     - 重要的是能在無法想象出高維幾何體的情況下計算不變量
+    - 利用 點的 free group 和 邊的 free group
+      還有邊界算子
+      描述有向圖中的圈
+      - 以此爲例子來介紹
+        與先介紹 simplices 相比
+        這種教學方式更好
+    - 定向來源於具體的邊界算子
+      而 邊界算子 都是在有限集上窮舉而定義的
 
 *** Simplices and simplicial complexes
 
+    - 面可用點編碼
+      對於點所編碼的面 需要約定定向
+    - 編碼給出計算邊界算子的一般公式
+    - 不論階級定向方式只有兩種
+
 *** Computing homology groups
+
+    - 注意
+      商羣中 元素的編碼 與計算 [bishop 構造主義]
+      類似 (mod n) 演算
+      或者
+      把 分母 中用來生成羣的元素 等於 單位元
+      而形成方程組 [線性方程的解空間]
+      即 商空間是解空間
+      (mod n) = Z / n Z
 
 *** More homology computations
 
+    - 用更簡單的同倫空間來簡化計算
+      但是空間必須有三角形
+      否則就成 cell-complex 而沒有邊可以用來計算了
+
 *** Delta complexes, Betti numbers and torsion
+
+    - 
 
 *** -review*
 

@@ -672,7 +672,7 @@
       thus
       it usage is not limited to help to form the concept about data-structure
 
-*** 能夠編譯自己之後之後才能實現的性狀
+*** 能夠編譯自己之後才能實現的性狀
     - jotionary 中 jojo 的長度
     - 把對 棧註釋 處理成 元數據
       利用這些元數據 就能夠實現簡單的類型推導
@@ -685,7 +685,7 @@
 *** 對匯編器的需要
     - 爲了實現上面的性狀
       把 cicada-nymph 編譯到任何一個語言都是可以的
-      [比如 Fasm]
+      [比如 fasm]
     - 但是我還是需要自己實現匯編器
       因爲就工作量而言 二者相當
       就所形成的實現策略的靈活性而言
