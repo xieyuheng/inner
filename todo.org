@@ -1,0 +1,29 @@
+* RH 的計算意義是什麼
+
+  - 留數計算的數值意義
+  - 數值分析作爲特殊的符號演算
+  - 用 scheme 來描述微分幾何
+
+* n-cat
+
+  - 高階與低階不同
+  - 需要爲高階設計新的語法
+
+* hott vs euclid
+
+  - 對做圖的理解方式有別
+  - 形式化 euclid 中的公理化方法
+
+* bishop 的計劃
+
+  - 如何明確地敘述 bishop 的計劃 ?
+  - 對算法複雜度的形式化描述與機械化推導
+    就是向 bishop 的計劃 更買進了一步
+
+* cover space 與 galois theory
+
+* homotopy 與 homology 的關係
+
+* 漢字
+
+  - 漢字的架構化編碼

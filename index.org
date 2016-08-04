@@ -13,8 +13,9 @@
 
 * math
 
-  - (todo) [[./math/constructive-math.html][constructive math -- the balance between abstract and concrete]]
-  - (todo) term lattice -- the meaning of equality
+  - (todo) constructive math -- the balance between abstract and concrete
+  - (todo) the meaning of equality
+  - (todo) term lattice
   - [[./math/function-compose-type-cut.html][function compose, type cut, and the algebra of logic]] ([[http://xieyuheng.github.io/paper/function-compose-type-cut.pdf][paper]])
 
 * language design

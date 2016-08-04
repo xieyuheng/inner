@@ -1,0 +1,73 @@
+#+HTML_HEAD: <link rel="stylesheet" href="../asset/css/page.css" type="text/css" media="screen" />
+#+title: function compose, type cut, and the algebra of logic
+
+------
+------
+------
+
+- Curry–Howard correspondence
+  type as proposition
+  function body as proof
+  a proof is a record of many steps of deduction
+
+- main idea
+  | syntax               | deduction system  |
+  |----------------------+-------------------|
+  | function application | natural deduction |
+  | function composition | sequent calculus  |
+  no new computation model
+  only a change of syntax
+
+  after changing the syntax from function application
+  to function composition
+
+  the corresponding type system (as deduction system)
+  changes from natural deduction to sequent calculus
+
+------
+------
+------
+
+- some said,
+  [for example, see the wikipedia page of "Curry–Howard correspondence", at the time when this paper is written]
+  in the framework of Curry–Howard correspondence,
+  Gentzen's sequent calculus does not correspond with
+  a well-defined pre-existing model of computation,
+  as it was for Hilbert-style and natural deduction.
+
+  - in this paper, I will show that
+    we can get what sequent calculus corresponds to,
+    not by designing a new model of computation,
+    but by changing the syntax of well known model.
+
+  - I will show that
+    sequent calculus corresponds to a functional programming language,
+    the syntax of which is optimized for function composition
+    instead of function application.
+
+  - I will also show the trade-off of this syntax design.
+    1. the syntax of type and function-body are unified.
+    2. we lose the implicit syntax for currying.
+    3. we gain the algebraic associative law.
+
+------
+------
+------
+
+- some also said, [for example, see the first chapter of "Homotopy Type Theory"]
+  deduction system can be viewed as algebraic structure,
+  where theorems are the elements (like elements of group),
+  where deductive rules are the operations (like multiplication of group).
+
+  - in this paper, I will show that
+    with the associative law which we obtained from function composition,
+    the corresponding deduction system of our programming language
+    not merely "can be viewed as" algebraic structure,
+    but actually has a very rich algebraic structure.
+
+- I will also introduce a prototype implementation of such a language.
+  I call it "sequent1".
+
+------
+------
+------

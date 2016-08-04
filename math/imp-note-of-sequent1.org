@@ -1,0 +1,227 @@
+#+title: imp note of sequent1
+
+* todo
+
+*** stack-based vs term-rewrite
+
+    - 如果沒有 stack-based 論文本身可能就會淪爲平凡的語法變化
+    - term-rewrite 是爲了
+      1. lazy
+      2. function as data
+    - graph-rewrite 纔是正確的實現
+    - stack-based 的效果是什麼
+      是否可以用 macro 來實現這種效果
+
+* for demo
+
+  - use sequent2
+    and fix syntax
+
+  - try under 500 lines of scheme code
+
+  - a demo repl
+    and better report-info
+
+  - linear logic from others
+
+* 想象
+
+*** note
+
+    - 在介紹的時候
+      重要的是把自己對模型的想象傳遞給大家
+
+*** 關於所使用的算法
+
+    - 注意 在這裏所述的函數時
+      可能使用了簡單的低效算法
+      - 試 明確所需要解決的問題
+        並 簡化所使用的算法
+
+*** unify & cover in the term-lattice
+
+    - 因爲 antecedent 與 succedent 相互依賴
+      每次 unify 或 cover 兩個 antecedent 時
+      會影響到相應二者的 succedent
+
+    - 所謂 type 中可以帶有任意計算
+      就是說
+      當 type-check 中所出現的 unify 與 cover 需要判斷兩 term 相等
+      而其中一個 term 帶有 trunk 時
+      除了純粹語法層次的等詞判斷
+      這個 trunk 還可能被轉化成 redex 並且 rewrite
+      而後 再判斷其相等
+
+    - 注意
+      這裏在判斷 equal 時 雖然帶有對 成爲了 redex 的 trunk 的 rewrite
+      但是 並不是 substitutional equal
+      因爲 當出現了 不能成爲 redex 的 trunk 時
+      就只有 純粹的 syntax 意義上的 equal 判斷
+
+    - 注意
+      在 term-lattice 中 cover and cover-back 可以形成基本的 equal
+
+    - 注意
+      unify 與 cover 中要帶有 occur-check
+
+*** rewrite (compute)
+
+    - rewrite (compute)
+      當不定元充分確定了之後
+      就有 (不定元 -> redex)
+      就可以進行一步 rewrite
+      - >> for at least one arrow in ((trunk function) arrow-list)
+        >> trunk argument-list
+        >> trunk function arrow antecedent
+        >> cover
+        success
+      - rewrite 的結果是
+        >> trunk function arrow succedent
+      - 注意
+        這裏用的是 cover 而不是 unify
+
+*** 不定元
+
+    - 在 rewrite 時所發現的 不定元 有兩種情況
+      1) >> trunk argument-list type-antecedent
+         >> trunk function type-arrow antecedent
+         >> cover
+         fail
+      2) >> for all
+         >> arrow in ((trunk function) arrow-list)
+         >> trunk argument-list
+         >> trunk function arrow antecedent
+         >> cover
+         fail
+
+*** init-write
+
+    - to rewrite
+      we first need init-write
+
+    - init-write 處理
+      1. 某些 default argument
+      2. var
+         - 注意
+           var 帶有 id 與 level
+           這裏 id 要通過生成的方式來保證其唯一性
+
+    - init-write
+      1. type-check
+      2. cover-check
+      3. recur-check
+
+*** type-check (proof-check)
+
+    - type-check (proof-check)
+      >> for all arrow in ((name find-function) arrow-list)
+      >> arrow-list antecedent
+      >> type-arrow antecedent
+      >> unify
+      - 注意
+        這裏用的是 unify 而不是 cover
+        這是唯一要用到 unify 的地方
+      - 注意
+        這裏的 unify 是要考慮到 binding 的所有 level
+      然後
+      >> arrow-list succedent
+      >> type-arrow succedent
+      >> cover
+      cover 的 success 與否就是 type-check 成功與否
+      - type-check
+        保證了
+        所能夠成功定義的函數都是類型正確的
+        因此 不定元不會有情形 (1)
+
+*** cover-check
+
+    - cover-check
+      >> generate example a list of argument-list from arrow-list
+      >> for each argument-list in the generated list
+      >> there is at least one arrow in ((name find-function) arrow-list) that
+      >> trunk argument-list
+      >> trunk function arrow antecedent
+      >> cover
+      - 注意
+        generate 的時候需要用到 term 的 depth 這個概念
+      - cover-check
+        保證了
+        只要 參數 term 是充分特化的
+        不定元的情形 (2) 就能被解除
+
+*** recur-check
+
+    - recur-check is done by functions of type :
+      data -> bounded-total-order-set
+      to use bounded-total-order-set
+      is to use the infinite descent method of Fermat
+
+    - I only know how to do structural-recur-check
+      the bounded-total-order-set I used is
+      ordered list of linearized cons
+      I call it 'licons'
+
+    - recur-check is extensible
+      because a list of such functions can be used to confirm descent
+
+    - note that
+      if "the halting problem is undecidable"
+      then we know that
+      for each checker
+      one can find a function which
+      will never running into infinite loop (i.e. a good function)
+      but can not pass the checker
+      - I do not know how to prove this
+
+    - I merely provide two checkers for structural recursion
+      better checkers can be added
+      to make more good functions be able to written in this language
+
+*** >< 設計數據結構來實現 many levels of binding
+
+    - 很多數據結構設計的難點都與 many levels of binding 有關
+
+    - level-up 與信息丟失
+      many levels of bindings
+
+    - in binding
+      it might occur commit too much problem
+
+*** env passing
+
+    #+begin_src scheme :tangle no
+    (type env {ds bs ns})
+    (type ds {data ...})
+    (type bs {(id . ls) ...})
+    (type ns {(name . meaning) ...})
+    (type ls {(level . data) ...})
+    (type meaning
+      {'cons/type {arrow name {name ...}}}
+      {'cons/data {arrow name name}}
+      {'lambda    {arrow {arrow ...}}})
+    #+end_src
+
+*** term
+
+    #+begin_src scheme :tangle no
+    (type data
+      {'var    {id level}}
+      {'cons   {name {data ...}}}
+      {'arrow  {cedent cedent}}
+      {'lambda {arrow {arrow ...}}}
+      {'trunk  {arrow tody {data ...} index}}
+      {'bind   {var data}})
+    (type cedent {data ...}
+          [reverse a cedent get data-list])
+    (type tody ;; trunk-body
+      {'tody/name name}
+      {'tody/arrow-list {arrow ...}}
+      {'tody/var var})
+    #+end_src
+
+*** >< structured report-info
+
+* init-write
+
+  - type-check in init-write
+    postfix notation is used to form term

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2016-08-03 Wed 23:57 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>function compose, type cut, and the algebra of logic</title>
+<meta name="generator" content="Org-mode" />
+<meta name="author" content="XIE Yuheng" />
+<link rel="stylesheet" href="../asset/css/page.css" type="text/css" media="screen" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+近死之心 莫使復陽也
+</div>
+<div id="content">
+<h1 class="title">function compose, type cut, and the algebra of logic</h1>
+<hr  />
+<hr  />
+<hr  />
+
+<ul class="org-ul">
+<li><p><p></p><p>Curry–Howard correspondence</p><p>type as proposition</p><p>function body as proof</p><p>a proof is a record of many steps of deduction</p><p></p></p><p></p><p><p></p><p>main idea</p><p></p></p><p><table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"></p><p></p><p></p><p><colgroup></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></colgroup></p><p><thead></p><p><tr></p><p><th scope="col" class="org-left">syntax</th></p><p><th scope="col" class="org-left">deduction system</th></p><p></tr></p><p></thead></p><p><tbody></p><p><tr></p><p><td class="org-left">function application</td></p><p><td class="org-left">natural deduction</td></p><p></tr></p><p></p><p><tr></p><p><td class="org-left">function composition</td></p><p><td class="org-left">sequent calculus</td></p><p></tr></p><p></tbody></p><p></table></p></li></ul>
+
+<hr  />
+<hr  />
+<hr  />
+
+<ul class="org-ul">
+<li><p>some said,</p><p>[for example, see the wikipedia page of "Curry–Howard correspondence", at the time when this paper is written]</p><p>in the framework of Curry–Howard correspondence,</p><p>Gentzen's sequent calculus does not correspond with</p><p>a well-defined pre-existing model of computation,</p><p>as it was for Hilbert-style and natural deduction.</p><p></p><p><ul class="org-ul"></p><p><li><p>in this paper, I will show that</p><p>we can get what sequent calculus corresponds to,</p><p>not by designing a new model of computation,</p><p>but by changing the syntax of well known model.</p></li></p><p></p><p><li><p>I will show that</p><p>sequent calculus corresponds to a functional programming language,</p><p>the syntax of which is optimized for function composition</p><p>instead of function application.</p></li></p><p></p><p><li><p>I will also show the trade-off of this syntax design.</p><p><ol class="org-ol"></p><p><li>the syntax of type and function-body are unified.</li></p><p><li>we lose the implicit syntax for currying.</li></p><p><li>we gain the algebraic associative law.</li></ol></p></li></ul></p></li></ul>
+
+<hr  />
+<hr  />
+<hr  />
+
+<ul class="org-ul">
+<li><p>some also said, [for example, see the first chapter of "Homotopy Type Theory"]</p><p>deduction system can be viewed as algebraic structure,</p><p>where theorems are the elements (like elements of group),</p><p>where deductive rules are the operations (like multiplication of group).</p><p></p><p><ul class="org-ul"></p><p><li><p>in this paper, I will show that</p><p>with the associative law which we obtained from function composition,</p><p>the corresponding deduction system of our programming language</p><p>not merely "can be viewed as" algebraic structure,</p><p>but actually has a very rich algebraic structure.</p></li></ul></p></li>
+
+<li><p>I will also introduce a prototype implementation of such a language.</p><p>I call it "sequent1".</p></li></ul>
+
+<hr  />
+<hr  />
+<hr  />
+</div>
+<div id="postamble" class="status">
+近死之心 莫使復陽也
+</div>
+</body>
+</html>

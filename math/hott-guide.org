@@ -1,0 +1,54 @@
+#+title: hott guide
+
+* todo
+
+*** a reading guide of hott
+
+    - always concern yourself about the geometry aspects
+      of the formal language,
+      because the language is to be used as a formalization
+      of the geometry intuition of human.
+
+    - a type is a geometry object.
+      a definition of a geometry object is just like
+      a description of how you could draw a picture of the geometry object.
+
+    - constructors are used to construct geometry objects.
+      | level | geometry object |
+      |-------+-----------------|
+      |     0 | point           |
+      |     1 | path            |
+      |     2 | surface         |
+      |   ... | ...             |
+
+    - a dependent type is a type family,
+      a type family is a fibration,
+      a function of such type is a section of the fibration.
+
+    - all functions are considered continuous.
+      when you want to find a function of certain type,
+      such as (A -> B), (x:A -> B(x)),
+      it must satisfy some constrains to be continuous.
+      what are such constrains ?
+
+      - a fibration is a type family,
+        a type family can be used as a function.
+        to be able to describe the constraint of continuous function,
+        what constrains a type family must satisfy ?
+
+    - a type is a proposition,
+      a function body of such type is its proof.
+      a proof is a record of deduction steps
+      that finally would arrive the proposition.
+
+    - what is the meaning of being constructive ?
+
+* >< the meaning of being constructive
+
+* >< arith-level
+
+* >< continuous
+
+  - (A -> B)
+
+  - (x:A -> B(x))
