@@ -1,54 +1,235 @@
 #+title: hott guide
 
-* todo
+* a reading guide of hott
 
-*** a reading guide of hott
+  - always concern yourself about the geometry aspects
+    of the formal language,
+    because the language is to be used as a formalization
+    of the geometry intuition of human.
 
-    - always concern yourself about the geometry aspects
-      of the formal language,
-      because the language is to be used as a formalization
-      of the geometry intuition of human.
+  - a type is a geometry object.
+    a definition of a geometry object is just like
+    a description of how you could draw a picture of the geometry object.
 
-    - a type is a geometry object.
-      a definition of a geometry object is just like
-      a description of how you could draw a picture of the geometry object.
+  - constructors are used to construct geometry objects.
+    | level | geometry object |
+    |-------+-----------------|
+    |     0 | point           |
+    |     1 | path            |
+    |     2 | surface         |
+    |   ... | ...             |
 
-    - constructors are used to construct geometry objects.
-      | level | geometry object |
-      |-------+-----------------|
-      |     0 | point           |
-      |     1 | path            |
-      |     2 | surface         |
-      |   ... | ...             |
+  - cell complex
+    注意 不能跨階粘貼邊界
+    boundary
+    ><><><
+    note that the '=' based syntax is not 對稱
+    因爲 (例如就二階元素而言) p = q 等價於 p q^{-1} = 1
+    在高階的情形更是如此
 
-    - a dependent type is a type family,
-      a type family is a fibration,
-      a function of such type is a section of the fibration.
+  - a dependent type is a type family,
+    a type family is a fibration,
+    a function of such type is a section of the fibration.
 
-    - all functions are considered continuous.
-      when you want to find a function of certain type,
-      such as (A -> B), (x:A -> B(x)),
-      it must satisfy some constrains to be continuous.
-      what are such constrains ?
+  - all functions are considered continuous.
+    when you want to find a function of certain type,
+    such as (A -> B), (x:A -> B(x)),
+    it must satisfy some constrains to be continuous.
+    what are such constrains ?
 
-      - a fibration is a type family,
-        a type family can be used as a function.
-        to be able to describe the constraint of continuous function,
-        what constrains a type family must satisfy ?
+    - a fibration is a type family,
+      a type family can be used as a function.
+      to be able to describe the constraint of continuous function,
+      what constrains a type family must satisfy ?
 
-    - a type is a proposition,
-      a function body of such type is its proof.
-      a proof is a record of deduction steps
-      that finally would arrive the proposition.
+  - a type is a proposition,
+    a function body of such type is its proof.
+    a proof is a record of deduction steps
+    that finally would arrive the proposition.
 
-    - what is the meaning of being constructive ?
+  - what is the meaning of being constructive ?
 
-* >< the meaning of being constructive
+* the meaning of being constructive
 
-* >< arith-level
+  - deduction system 與 rewrite system 之間的關係
+    首先以 deduction system 爲本
+    設計用來記錄 record of deduction steps 的語法
+    此時的語法並沒有 rewrite 的意義
+
+  - rewrite 的意義來原於
+    1. constructor 作爲平凡的函數體
+    2. 定義函數體的 pattern match 語法使得新定義的函數體描述 rewrite
+
+  - 注意
+    type class 的接口函數名字 與 constructor 不同
+    不能被當作平凡函數體
+    我想這就是 logic harmony
+    constructor 構造
+    而 pattern match 解構
+
+* constraint of fibration
+
+  - to be able to describe the constraint of continuous function,
+    a fibration must also has a function body for its transport.
+    because constraints of continuous function of fibration
+    are described by transport.
+
+  - 如果 一個 dependent type 不足以確定一個 fibration
+    即 還需要明確指定其 transport
+    那麼 就不可能有一般的 獲得 transport 的函數體 的方式
+
+* 單值性 與 連續性
+
+  - 當把 path 理解爲 geometry object 時
+    函數定義的基本限制是 連續性
+
+  - 當把 path 理解爲 引入的等詞時
+    函數定義的基本限制是 也可以被理解爲 單值性
+
+* higher inductive definition
+
+  - ~ 是遞歸展開
+    = 是遞歸基礎
 
 * >< continuous
 
   - (A -> B)
 
   - (x:A -> B(x))
+
+* (Σ2 ~> S^1) 與 (ΣΣ2 ~> S^2)
+
+  - 函數之間的 同倫 記 '~'
+    空間之間的 同倫等價 記 '~>'
+
+  - 目前所有的計算都來源於想要證明
+    Σ2 ~> S^1 與 ΣΣ2 ~> S^2
+    證明 '~>'
+    即 構造兩個作爲 fibration 的特殊 path space 中的元素
+    f : (A ~> B) {g : (B ~> A)}
+    k : ((x : A) -> x f g = x)
+    z : ((x : B) -> x g f = x)
+
+* (bool-suspend ~> sphere-1)
+
+  #+begin_src scheme
+  (+ sphere-1 : type
+     b : sphere-1
+     loop : (b = b))
+
+  (+ bool : type
+     0 : bool
+     1 : bool)
+
+  (+ bool-suspend : type
+     n : bool-suspend
+     s : bool-suspend
+     m : (bool -> (n = s)))
+
+  (~ f : (bool-suspend -> sphere-1)
+     (n -> b)
+     (s -> b)
+     f : ((n = s) -> (b = b))
+     (0 m -> loop)
+     (1 m -> b rf))
+
+  (~ g : (sphere-1 -> bool-suspend)
+     (b -> n)
+     g : ((b = b) -> (n = n))
+     (loop -> {0 m 1 m rev}))
+
+  (~ g f : (sphere-1 -> sphere-1)
+     (b -> b)
+     g f : ((b = b) -> (b = b))
+     (loop -> loop))
+
+  (~ f g : (bool-suspend -> bool-suspend)
+     (n -> n)
+     (s -> n)
+     f g : ((n = s) -> (n = n))
+     (0 m -> {0 m 1 m rev})
+     (1 m -> n rf))
+
+  (~ :k : ((:x : bool-suspend) -> (:x f g = :x))
+     {n :k : (n = n)}
+     {s :k : (n = s)}
+     :k : ((:p : (n = s)) -> (n :k (:p :k tp) = s :k))
+     {0 m :k : ((0 m f g) rev n :k 0 m = s :k)}
+     {1 m :k : ((1 m f g) rev n :k 1 m = s :k)}
+     (solve-by
+      n :k == n rf
+      s :k == 1 m
+      0 m :k == 1 m rf
+      1 m :k == 1 m rf))
+  #+end_src
+
+* (bool-suspend-suspend ~> sphere-2)
+
+  #+begin_src scheme
+  (+ sphere-1 : type
+     b : sphere-1
+     loop : (b = b))
+
+  (+ sphere-2 : type
+     b2 : sphere-2
+     surf : (b2 rf = b2 rf))
+
+  (+ bool : type
+     0 : bool
+     1 : bool)
+
+  (+ bool-suspend : type
+     n : bool-suspend
+     s : bool-suspend
+     m : (bool -> (n = s)))
+
+  (+ bool-suspend-suspend : type
+     n2 : bool-suspend-suspend
+     s2 : bool-suspend-suspend
+     m2 : (bool-suspend -> (n2 = s2)))
+
+  (~ f : (bool-suspend-suspend -> sphere-2)
+     (n2 -> b2)
+     (s2 -> b2)
+     f : ((n2 = s2) -> (b2 = b2))
+     (n m2 -> b2 rf)
+     (s m2 -> b2 rf)
+     f : ((n m2 = s m2) -> (b2 rf = b2 rf))
+     (0 m m2 -> surf)
+     (1 m m2 -> b2 rf rf))
+
+  (~ g : (sphere-2 -> bool-suspend-suspend)
+     (b2 -> n2)
+     g : ((b2 rf = b2 rf) -> (n2 rf = n2 rf))
+     (surf -> {0 m m2 1 m m2 {n m2 s m2 rev}}))
+
+  (~ f g : (bool-suspend-suspend -> bool-suspend-suspend)
+     (n2 -> n2)
+     (s2 -> n2)
+     f g : ((n2 = s2) -> (n2 = n2))
+     (n m2 -> n2 rf)
+     (s m2 -> n2 rf)
+     f g : ((n m2 = s m2) -> (n2 rf = n2 rf))
+     (0 m m2 -> {0 m m2 1 m m2 {n m2 s m2 rev}})
+     (1 m m2 -> n rf rf))
+
+  (~ g f : (sphere-2 -> sphere-2)
+     (b2 -> b2)
+     g f : ((b2 rf = b2 rf) -> (b2 rf = b2 rf))
+     (surf -> surf))
+
+  (~ :k : ((:x : bool-suspend-suspend) -> (:x f g = :x))
+     {n2 :k : (n2 = n2)}
+     {s2 :k : (n2 = s2)}
+     :k : ((:p : (n2 = s2)) -> (n2 :k (:p :k tp) = s2 :k))
+     {n m2 :k : (n2 :k n m2 = s2 :k)}
+     {s m2 :k : (n2 :k s m2 = s2 :k)}
+     :k : ((:h : (n m2 = s m2)) -> (n m2 :k (:h :k tp2) = s m2 :k))
+     ;; 這裏的 tp2 用了 比 hott 更高階的類型
+     ;; 需要對更高階的幾何對象做實驗
+     ;; 才能知道那種形式是合理的
+     {0 m m2 :k : (><><><)}
+     {1 m m2 :k : (><><><)}
+     (solve-by
+      ><><><))
+  #+end_src
