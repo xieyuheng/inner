@@ -1,5 +1,17 @@
 #+title: hott guide
 
+* todo
+
+  - 現在有了
+    1. 構造幾何對象的形式語法
+    2. 判斷(低階)幾何對象之間的同倫等價的方法
+    而 引入同倫等價這個概念 最初就是爲了在計算同倫群時
+    給出 判斷群中元素是否等價的方式
+
+  - 但是這只不過是最近本的概念的形式化處理而已
+    已經可以用來形成某些定義了
+    但是要想計算同倫群 就還要有更精進的理論
+
 * a reading guide of hott
 
   - always concern yourself about the geometry aspects
@@ -225,11 +237,47 @@
      {n m2 :k : (n2 :k n m2 = s2 :k)}
      {s m2 :k : (n2 :k s m2 = s2 :k)}
      :k : ((:h : (n m2 = s m2)) -> (n m2 :k (:h :k tp2) = s m2 :k))
-     ;; 這裏的 tp2 用了 比 hott 更高階的類型
-     ;; 需要對更高階的幾何對象做實驗
-     ;; 才能知道那種形式是合理的
+     ;; 這裏的 tp2 使用比 hott 更高階的類型
      {0 m m2 :k : (><><><)}
      {1 m m2 :k : (><><><)}
      (solve-by
       ><><><))
   #+end_src
+
+* >< tp 與 apd
+
+  #+begin_src scheme
+  ;; fibration
+  F := ((:x : A) -> :x P)
+  ;; 每個 fibration 必須有 tp
+  (* (F tp) : ((:x = :y) -> (:x P ~> :y P)))
+  ;; section
+  (* k : ((:x : A) -> :x P))
+  ;; k 和 (F tp) 的作用 出現在 (k apd) 的類型中
+  (* (k apd) : ((:p : (:x = :y)) -> (:x k (:p F tp) = :y k)))
+  ;; (k apd) 的函數體的存在性 就是限制 k 的函數體的方程
+  ;; 所謂 限制
+  ;;   即 x k 與 y k 不能在 x P 與 y P 中任意取值
+  ;;   即 有邊相連的點 x 與 y 其值 x k 與 y k 受邊所生成的方程的限制
+  #+end_src
+
+  - 而古典理論中 描述 fibre bundle 的方式是
+    projection : total-space -> base-space
+    這裏 total-space 的定義本身就描述了全局結構
+
+  - fibre bundle 中 fibre 是固定的空間
+    而 fibration 中 fibre 是可依賴 x 的
+    此時 fibre 不必是相等的空間
+    但是必須是同倫等價的
+    這就是 要求 tp 存在的原因
+
+  - 而在形式理論中 描述 fibration 的方式是
+    F := (x : base-space -> x P)
+    此時 total-space 是構造出來的 F
+    需要額外用 tp 給出 fibration 的全局結構
+    - 所謂 全局結構 或 全局信息
+      其實也是局部的 只不過不是就 point 來描述
+      而是就 path 或高階幾何元素來描述而已
+
+  - apd 的類型中 有 tp 的作用 可能是爲了
+    能夠以線性的方式表示封閉的高階 path
