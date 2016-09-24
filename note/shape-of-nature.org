@@ -71,7 +71,10 @@
 
   Kurt Reidemeister (1893-1971)
   給出保持knot不變的 對knot的投影表示的 三個操作
-  並且證明 這三種對knot的投影表示的變換可以把一個knot的某個投影表示變成同一個knot的任意另外一個投影表示
+  並且證明
+  這三種對knot的投影表示的變換
+  可以把一個knot的某個投影表示
+  變成同一個knot的任意另外一個投影表示
   (即這個變換羣形成了knot的一個(通過投影表示得到)的完整的不變量)
   (這也是局部操作決定整體性質的例子)
   (這也是如何從一些樸素的直觀想像形成數學理論的例子)
@@ -116,7 +119,7 @@
   在投影表示中不引進新相交位置地將兩個knot融合爲一個只有一種方法
   這個運算形成以unknot爲零元的交換半羣
   ??通過補充定義元素總可以把半羣擴充爲羣嗎?
-  但是不是羣 因爲並不存在減法（逆運算)這樣的相加只能增加knot的複雜性（用2維輔助流形來證明)
+  但是不是羣 因爲並不存在減法(逆運算)這樣的相加只能增加knot的複雜性(用2維輔助流形來證明)
   但是可以用不可分解性定義prime knot
 
   knot的不變量(即knot的分類問題):
@@ -498,3 +501,22 @@
   每個地圖上至少有一個國家 有5個或更少的鄰國
   這單純的是平面的一個拓撲性質 很容易經反證發證明由Euler公式
   由這個命題經反證法就得到6色定理
+
+* >< 23 Orange Stackings and Bubble Partitions
+
+* >< 24 The Topology of the Universe
+
+  - Universe 有界但是沒有邊 如球面
+
+* >< 25 Tetrahedra and Mathematical Surgery
+* >< 26 The Fundamental Group
+* >< 27 Poincaré's Question and Perelman's Answer
+* >< 28 The Geometry of the Universe
+* >< 29 Visualizing in Higher Dimensions
+* >< 30 Polyhedra in Higher Dimensions
+* >< 31 Particle Motions
+* >< 32 Particle Collisions
+* >< 33 Evolutionary Trees
+* >< 34 Chaos and Fractals
+* >< 35 Reclaiming Leonardo da Vinci
+* >< 36 Pushing the Forefront

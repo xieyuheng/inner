@@ -1,19 +1,13 @@
-#+title: imp note of sequent1
-
-* todo
-
-  - merge 紙質的 note 成電子版本
-    注意 保持細節之分離
-
-  - 把新筆記中的實現細節分離出來
-    分別介紹
+#+title: sequent1 imp note
 
 * stack-based vs term-rewrite
 
   - 如果沒有 stack-based 論文本身可能就會淪爲平凡的語法變化
+    pointfree
   - term-rewrite 是爲了
     1. lazy
     2. function as data
+  - 爲了 infer 又回到 term ?
   - graph-rewrite 纔是正確的實現
   - stack-based 的效果是什麼
     是否可以用 macro 來實現這種效果
@@ -30,16 +24,8 @@
 
   - linear logic from others
 
-* note 想象
-
-  - 在介紹的時候
-    重要的是把自己對模型的想象傳遞給大家
-
-  - 介紹要分層次 先重點再細節
-
-* 關於所使用的算法
-
-  - 注意 在這裏所述的函數時
+  - 注意
+    在這裏所述的函數時
     可能使用了簡單的低效算法
     - 試 明確所需要解決的問題
       並 簡化所使用的算法
@@ -63,6 +49,8 @@
     但是 並不是 substitutional equal
     因爲 當出現了 不能成爲 redex 的 trunk 時
     就只有 純粹的 syntax 意義上的 equal 判斷
+    - 可以 rewrite 的 term (redex) 本来就和 rewrite 的结果相等
+      而真正的 substitutional equal 需要处理函数之间的相等
 
   - 注意
     在 term-lattice 中 cover and cover-back 可以形成基本的 equal
@@ -72,6 +60,7 @@
 
   - 從解方程的角度來看 unify 與 cover
     - env passing 就是對解的記錄
+      之所以用 passing 是因爲可以實現 對記錄的 undo
     - unify 允許雙向代入 而 cover 只允許單向代入
     - 這裏所謂的代入
       也可以理解爲 用消去法來給等式做恆等變換
@@ -99,7 +88,7 @@
     就可以進行一步 rewrite
     - >> for at least one arrow in ((trunk function) arrow-list)
       >> trunk argument-list
-      >> trunk function arrow antecedent
+      >> arrow antecedent
       >> cover
       success
     - rewrite 的結果是
@@ -126,7 +115,7 @@
     2) >> for all
        >> arrow in ((trunk function) arrow-list)
        >> trunk argument-list
-       >> trunk function arrow antecedent
+       >> arrow antecedent
        >> cover
        fail
 
@@ -134,6 +123,7 @@
 
   - to rewrite
     we first need init-write
+    - so called 'init-write' is just the definition
 
   - postfix notation -> term
 
@@ -165,7 +155,7 @@
 
   - type-check (proof-check)
     >> for all arrow in ((name find-function) arrow-list)
-    >> arrow-list antecedent
+    >> arrow antecedent
     >> type-arrow antecedent
     >> unify
     - 注意
@@ -174,7 +164,7 @@
     - 注意
       這裏的 unify 是要考慮到 binding 的所有 level
     然後
-    >> arrow-list succedent
+    >> arrow succedent
     >> type-arrow succedent
     >> cover
     cover 的 success 與否就是 type-check 成功與否
@@ -182,6 +172,12 @@
       保證了
       所能夠成功定義的函數都是類型正確的
       因此 不定元不會有情形 (1)
+
+  - 注意
+    上面不能直接說
+    >> arrow succedent
+    因爲這裏正是主要難點所在
+    正是需要 cut 的時候
 
   - 注意
     這裏就是機械化的 proof 的意義
@@ -201,7 +197,7 @@
     >> for each argument-list in the generated list
     >> there is at least one arrow in ((name find-function) arrow-list) that
     >> trunk argument-list
-    >> trunk function arrow antecedent
+    >> arrow antecedent
     >> cover
     - 注意
       generate 是利用 var 與 bs 來完成的
@@ -225,12 +221,12 @@
   - recur-check is done by functions of type :
     data -> bounded-total-order-set
     to use bounded-total-order-set
-    is to use the infinite descent method of Fermat
+    is to use the infinite descent method of fermat
 
-  - I only know how to do structural-recur-check
-    the bounded-total-order-set I used is
+  - i only know how to do structural-recur-check
+    the bounded-total-order-set i used is
     ordered list of linearized cons
-    I call it 'licons'
+    i call it 'licons'
 
   - recur-check is extensible
     because a list of such functions can be used to confirm descent
@@ -242,9 +238,9 @@
     one can find a function which
     will never running into infinite loop (i.e. a good function)
     but can not pass the checker
-    - I do not know how to prove this
+    - i do not know how to prove this
 
-  - I merely provide two checkers for structural recursion
+  - i merely provide two checkers for structural recursion
     better checkers can be added
     to make more good functions be able to written in this language
 
@@ -361,30 +357,3 @@
     2. 分式作爲就逆運算的擴張
        - 逆運算有關等詞
     3. 分式的代數幾何
-
-* logic harmony
-
-  - 就 sequent1 而言
-    說 deftype 保持 logic harmony
-    | intro | constructors  |
-    | elim  | pattern match |
-
-  - 說能把 harmony 轉達爲 可逆性
-    注意 可逆性 是用等詞定義的
-
-  - 對比 or 的 intro & elim
-    還有 or 的 harmony
-
-  - 注意
-    pattern match 也可以被表示爲一些 有名的 deconstructors
-    intro 與 elim 就像是一組接口函數了
-    但是類型並非用接口函數編碼
-
-  - 注意
-    pattern match 不光結構 還要形成分支
-
-  - 如何明確敘述這裏的 logic harmony
-    可能剩下的能夠做敘述的例子就是 lambda 了
-
-  - 在語言中 primitive 就只是 constructor
-    如何突破這個限制 ><><><
