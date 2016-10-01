@@ -168,7 +168,7 @@
      :k : ((:p : (n = s)) -> (n :k (:p :k tp) = s :k))
      {0 m :k : ((0 m f g) rev n :k 0 m = s :k)}
      {1 m :k : ((1 m f g) rev n :k 1 m = s :k)}
-     (solve-by
+     (<solve>
       n :k == n rf
       s :k == 1 m
       0 m :k == 1 m rf
