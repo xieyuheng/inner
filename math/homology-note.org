@@ -1,0 +1,19 @@
+#+title: homology-note
+
+* ><
+
+  #+begin_src scheme
+  (define-function
+      H : ((:X : type) (:A < :X) int -> abelian-group))
+  (define-function
+      H/induce : ((:X :A -> :Y :B) :q : int -> (:X :A :q H -> :Y :B :q H)))
+  (define-function
+      boundary : (:X :A :q H -> :X empty-space :q 1 sub H))
+
+  (define-function
+      co-H : ((:X : type) (:A < :X) int -> abelian-group))
+  (define-function
+      co-H/induce : ((:X :A -> :Y :B) :q : int -> (:Y :B q co-H -> :X :A q co-H)))
+  (define-function
+      co-boundary : (:X empty-space :q 1 sub co-H -> :X :A :q co-H))
+  #+end_src

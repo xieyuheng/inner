@@ -1,3 +1,43 @@
+* homotopy and homology
+
+*** hatcher
+
+***** AT.pdf
+
+      rifle /home/xyh/lern/person/hatcher/AT.pdf
+
+*** samuel-eilenberg
+
+***** foundations-of-algebraic-topology--samuel-eilenberg-and-norman-steenrod.djvu
+
+      rifle /home/xyh/lern/person/samuel-eilenberg/foundations-of-algebraic-topology--samuel-eilenberg-and-norman-steenrod.djvu
+
+*** sze-tsen-hu
+
+***** homology-theory--a-first-course-in-algebraic-topology.djvu
+
+      rifle /home/xyh/lern/person/sze-tsen-hu/homology-theory--a-first-course-in-algebraic-topology.djvu
+
+      - no simplex
+        late chain complex
+
+***** homotopy-theory.djvu
+
+      rifle /home/xyh/lern/person/sze-tsen-hu/homotopy-theory.djvu
+
+*** norman-steenrod
+
+***** how-to-write-mathematics--norman-steenrod.djvu
+
+      rifle /home/xyh/lern/person/norman-steenrod/how-to-write-mathematics--norman-steenrod.djvu
+
+      - norman-steenrod
+        formal vs informal
+
+***** the-topology-of-fibre-bundles.djvu
+
+      rifle /home/xyh/lern/person/norman-steenrod/the-topology-of-fibre-bundles.djvu
+
 * RH 的計算意義是什麼
 
   - 留數計算的數值意義
@@ -21,8 +61,6 @@
     就是向 bishop 的計劃 更買進了一步
 
 * cover space 與 galois theory
-
-* homotopy 與 homology 的關係
 
 * 漢字
 
