@@ -1,10 +1,4 @@
-* homotopy and homology
-
-*** hatcher
-
-***** AT.pdf
-
-      rifle /home/xyh/lern/person/hatcher/AT.pdf
+* approach by axioms
 
 *** samuel-eilenberg
 
@@ -13,6 +7,10 @@
       rifle /home/xyh/lern/person/samuel-eilenberg/foundations-of-algebraic-topology--samuel-eilenberg-and-norman-steenrod.djvu
 
 *** sze-tsen-hu
+
+***** elements-of-general-topology.djvu
+
+      rifle lern/person/sze-tsen-hu/elements-of-general-topology.djvu
 
 ***** homology-theory--a-first-course-in-algebraic-topology.djvu
 
@@ -24,6 +22,24 @@
 ***** homotopy-theory.djvu
 
       rifle /home/xyh/lern/person/sze-tsen-hu/homotopy-theory.djvu
+
+***** cohomology-theory.djvu
+
+      rifle /home/xyh/lern/person/sze-tsen-hu/cohomology-theory.djvu
+
+* homotopy and homology
+
+*** homotopy theory
+
+***** simplecial homotopy theory
+
+      rifle /home/xyh/lern/algebraic-topology/simplicial-homotopy-theory.pdf
+
+*** hatcher
+
+***** AT.pdf
+
+      rifle /home/xyh/lern/person/hatcher/AT.pdf
 
 *** norman-steenrod
 

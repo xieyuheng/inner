@@ -1,19 +1,145 @@
 #+title: homology-note
 
-* ><
+* note
+
+  - to say a map is continuous
+    is to allow it to be used in the language
+
+* homology
+
+*** definition
+
+    #+begin_src scheme
+    (~ H : ((:X : space) (:A < :X) int -> abelian-group))
+    (~ H/induce : ((:X :A -> :Y :B) (:q : int) ->
+                   (:X :A :q H -> :Y :B :q H)))
+    (~ boundary : (:X :A :q H -> :X empty-space :q 1 sub H))
+
+    (~ co-H : ((:X : space) (:A < :X) int -> abelian-group))
+    (~ co-H/induce : ((:X :A -> :Y :B) (:q : int) ->
+                      (:Y :B q co-H -> :X :A q co-H)))
+    (~ co-boundary : (:X empty-space :q 1 sub co-H -> :X :A :q co-H))
+    #+end_src
+
+*** >< axioms
+
+    #+begin_src scheme
+    (~ H/identity : ({:id : (:X :A -> :X :A)} :id space/iso {:q : int} ->
+                     :id :q H/induce abelian-group/iso))
+
+    (~ H/compose : ()
+       (note
+         this is always true
+         for H/induce is recursively defined over function composition))
+
+    (~ >< : ())
+    #+end_src
+
+* the extension problem
+
+  - in the view of sze-tsen-hu
+    extension problem is the main kind of general problem of topology
+
+  - to solve the extension problem
+    is to solve an equation in the continuous function space
 
   #+begin_src scheme
-  (define-function
-      H : ((:X : type) (:A < :X) int -> abelian-group))
-  (define-function
-      H/induce : ((:X :A -> :Y :B) :q : int -> (:X :A :q H -> :Y :B :q H)))
-  (define-function
-      boundary : (:X :A :q H -> :X empty-space :q 1 sub H))
-
-  (define-function
-      co-H : ((:X : type) (:A < :X) int -> abelian-group))
-  (define-function
-      co-H/induce : ((:X :A -> :Y :B) :q : int -> (:Y :B q co-H -> :X :A q co-H)))
-  (define-function
-      co-boundary : (:X empty-space :q 1 sub co-H -> :X :A :q co-H))
+  (~ A X inclusion : (A < X) -> X)
+  (~ g : ((A < X) -> Y))
+  (~ f : (X -> Y
+          (g = A X inclusion f)))
   #+end_src
+
+* the method of algebraic topology
+
+  - to induce algebraic equation from continuous equation
+    is the method of algebraic topology
+
+  #+begin_src scheme
+  (~ g H/induce : ({A < X} A empty-space :m H -> Y empty-space :m H))
+  (~ f H/induce : (X empty-space :m H -> Y empty-space :m H
+                   (g H/induce = A X inclusion H/induce f H/induce)))
+  #+end_src
+
+* retraction
+
+  #+begin_src scheme
+  (~ r : (X -> A
+          (A id = A X inclusion r)))
+
+  (~ r H/induce : (X empty-space :m H -> A empty-space :m H
+                     (A empty-space :m H id =
+                      A X inclusion H/induce r H/induce)))
+  #+end_src
+
+* quotient space
+
+*** note
+
+    - to define a quotient space
+      is to lessen the equality
+
+*** by natural projection
+
+    #+begin_src scheme
+    (~ p : (X -> Z))
+    (~ :a :b equal in X / p
+       :a p :b p equal in Z)
+    #+end_src
+
+*** by group action
+
+    #+begin_src scheme
+    (~ G : group act on X)
+    (~ :a :b equal in X / G
+       (:g : G) :a g :b equal in X)
+    #+end_src
+
+*** by enlarge zero (or one) in algebraic structure
+
+    #+begin_src scheme
+    (~ A < X)
+    (~ :a :b equal in X / A
+       (:a :b sub : A))
+    #+end_src
+
+*** adjunction space
+
+    - by adding more equal tests
+
+    #+begin_src scheme
+    (~ X Y g adjoin
+       adjoining X to Y by (~ g : (A -> Y))
+       {A < X})
+    (~ equal-test in (X Y g adjoin)
+       :a :=: :a g)
+    (~ :a :b equal in (X Y g adjoin)
+       (:a g :b g equal in Y))
+    #+end_src
+
+*** extension equal to retraction of adjunction
+
+    #+begin_src scheme
+    (~ g : ((A < X) -> Y))
+
+    (~ r : ((X Y g adjoin) -> Y
+            (Y id = Y (X Y g adjoin) inclusion r)))
+    (~ f : (X -> Y
+              (g = A X inclusion f))
+       (:x -> :x p r))
+
+    (~ f : (X -> Y
+              (g = A X inclusion f)))
+    (~ r : ((X Y g adjoin) -> Y
+            (Y id = Y (X Y g adjoin) inclusion r))
+       ><><><)
+    #+end_src
+
+* >< from chain-complex to homology
+
+* >< the cat of top
+
+  - for the cat of top
+    a top constructor is defined by
+    specifying set-level construction
+    and specifying the open set or closed set
