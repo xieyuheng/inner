@@ -79,6 +79,10 @@
     - to define a quotient space
       is to lessen the equality
 
+    - the construction of quotient space
+      is also called topological identification
+      which can always be done by natural projection
+
 *** by natural projection
 
     #+begin_src scheme
@@ -103,9 +107,10 @@
        (:a :b sub : A))
     #+end_src
 
-*** adjunction space
+*** >< adjunction space
 
-    - by adding more equal tests
+    - instead of adding more equal tests
+      we specify a natural projection
 
     #+begin_src scheme
     (~ X Y g adjoin
