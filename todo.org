@@ -1,3 +1,9 @@
+* cell complex
+
+*** the-topology-of-cw-complexes--albert-lundell.djvu
+
+    /home/xyh/disk0/lern/algebraic-topology/cell-complex
+
 * approach by axioms
 
 *** samuel-eilenberg
@@ -11,6 +17,8 @@
 ***** elements-of-general-topology.djvu
 
       rifle lern/person/sze-tsen-hu/elements-of-general-topology.djvu
+
+      - ignore ill-cases
 
 ***** homology-theory--a-first-course-in-algebraic-topology.djvu
 
