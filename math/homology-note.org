@@ -27,6 +27,59 @@
   - the methods of set theory have no fault
     the fault is to not to view them with implementation in mind
 
+* note term-lattice
+
+  - 定義 type 時使用 一列 constructor
+    可以生成一個函數來判斷任意的 term 是否屬於這個 type
+    constructor 本身作爲平凡函數來生成這個類型的 term
+
+* set
+
+  #+begin_src scheme
+  (define-type T
+    T.C = [(c1 : (* -> T))
+           (c2 : (* -> T))]
+    T.G = [(g1 : (term -> bool))
+           (g2 : (term -> bool))]
+    T.I = [(i1 : (T -> *))
+           (i2 : (T -> *))
+           (note
+             interface functions are implemented by term rewriting)
+           (note
+             interface can be limited by type-cless)])
+
+  (T1 < T2 :=
+      T1.C < T2.C
+      T1.G > T2.G
+      T1.I > T2.I)
+
+  (note
+    comparing can only be done by comparing list of names
+    or declared relation between names
+    (naming itself is also a declaration))
+
+  (note
+    names are made as unique as possible
+    this labor can be easied by a module-system or infer-system)
+
+  (note
+    constructor can be shared by different types
+    thus can not infer a unique type from a constructor
+    thus cut needs to do search and backtracing)
+
+  ;; in the view of
+  ;; function as proof and type as theorem and space
+
+  (note
+    union of two types as a list of glue operations
+    intersection in the two types will intro new connection
+    continuous is all about levels of glues
+    maybe the main formal law of continuous condition is hidden in the union)
+
+  (define-function union)
+  (define-function intersection)
+  #+end_src
+
 * homology
 
 *** definition
