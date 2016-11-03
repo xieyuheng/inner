@@ -15,6 +15,3 @@
 
   - x ::
        爲什麼說 stack 能夠模擬 tree
-
-  - k ::
-       有人看過 knuth 的 < the-art-of-computer-porgramming >
