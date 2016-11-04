@@ -9,7 +9,9 @@
 
 * about
 
-  - XIE Yuheng is a humble math student
+  - I'm XIE Yuheng
+    I'm a humble math student
+    I'm the cofounder of [[https://magismoke.github.io][magisomke electronic / 魔煙電子]]
 
 * math
 
