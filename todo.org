@@ -1,8 +1,5 @@
 * --------------------------
 * the little mler in mlton
-  to-be-the-little-prover/  to-be-the-reasoned-schemer/
-
-
 * threaded code interpreter in sml
 * --------------------------
 * cell complex

@@ -13,6 +13,13 @@
     I'm a humble math student
     I'm the cofounder of [[https://magismoke.github.io][magisomke electronic / 魔煙電子]]
 
+*** contact
+
+    - I'm living in BaiShiZhou, ShenZhen, China
+    - github : https://github.com/xieyuheng
+    - email : xyheme (at) gmail (dot) com
+    - irc : #cicada-language at freenode
+
 * math
 
   - (todo) constructive math -- the balance between abstract and concrete
@@ -56,9 +63,3 @@
 
     - (todo) [[./translate/schizophrenia-in-contemporary-mathematics.html][schizophrenia in contemporary mathematics / 當代數學之精神分裂症]], 1973
     - [[./translate/a-constructivist-manifesto.html][a constructivist manifesto / 一個構造主義者的宣言]], 1967
-
-* contact
-
-  - github : https://github.com/xieyuheng
-  - email : xyheme (at) gmail (dot) com
-  - irc : #cicada-language at freenode
