@@ -1,7 +1,4 @@
 * --------------------------
-* the little mler in mlton
-* threaded code interpreter in sml
-* --------------------------
 * cell complex
 
 *** the-topology-of-cw-complexes--albert-lundell.djvu
