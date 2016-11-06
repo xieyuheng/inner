@@ -15,10 +15,11 @@
 
 *** contact
 
-    - I'm living in BaiShiZhou, ShenZhen, China
-      it is a poor and deep polluted dirty place
-      where people are stupid and absurdly mean to each other
-      (I enjoy it so much)
+    - I'm living at :
+      room 301, building 41, shahe industrial park, baishizhou, shenzhen, china
+      - it is an awesome poor and deeply polluted dirty place
+        where people are stupid and absurdly mean to each other
+        (I enjoy it so much)
 
     - github : https://github.com/xieyuheng
     - email : xyheme (at) gmail (dot) com
