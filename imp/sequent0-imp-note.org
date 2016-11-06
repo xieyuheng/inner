@@ -34,3 +34,11 @@
     | jo   |            |         |
     | data |            |         |
     jo 不爲 call 優化而直接用 (<tag> ~)
+
+* ocaml version
+
+  - 用 ocaml 重寫 sequent0
+    有類型檢查就不必擔心相互遞歸函數之難以測試了
+
+  - 需要重寫 sexp 的 parser
+    區分 () [] {}
