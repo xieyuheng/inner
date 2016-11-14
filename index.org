@@ -1,5 +1,5 @@
 #+HTML_HEAD: <link rel="stylesheet" href="asset/css/index.css" type="text/css" media="screen" />
-#+title: xie yuheng / 謝宇恆
+#+title: xieyuheng / 謝宇恆
 
 @@html:
 <div phide='true'; style="float: right; margin-left: 5px; padding: 5px;">
@@ -9,7 +9,7 @@
 
 * about
 
-  - xie yuheng is
+  - xieyuheng is
     a humble math student
     a language designer
     designing cicada-language
