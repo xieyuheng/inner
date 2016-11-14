@@ -37,8 +37,14 @@
 
 * ocaml version
 
-  - 用 ocaml 重寫 sequent0
-    有類型檢查就不必擔心相互遞歸函數之難以測試了
+*** using ocaml
 
-  - 需要重寫 sexp 的 parser
-    區分 () [] {}
+    - 用 ocaml 重寫 sequent0
+      有類型檢查就不必擔心相互遞歸函數之難以測試了
+
+*** 區分 () [] {}
+
+    - 需要重寫 sexp 的 parser
+      區分 () [] {}
+
+*** >< 

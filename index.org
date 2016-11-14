@@ -1,5 +1,5 @@
 #+HTML_HEAD: <link rel="stylesheet" href="asset/css/index.css" type="text/css" media="screen" />
-#+title: XIE YuHeng / 謝宇恆
+#+title: xie yuheng / 謝宇恆
 
 @@html:
 <div phide='true'; style="float: right; margin-left: 5px; padding: 5px;">
@@ -9,17 +9,12 @@
 
 * about
 
-  - I'm XIE Yuheng
-    I'm a humble math student
-    I'm the cofounder of [[https://magismoke.github.io][magisomke electronic / 魔煙電子]]
+  - xie yuheng is
+    a humble math student
+    a language designer
+    designing cicada-language
 
 *** contact
-
-    - I'm living at :
-      room 301, building 41, shahe industrial park, baishizhou, shenzhen, china
-      - it is an awesome poor and deeply polluted dirty place
-        where people are stupid and absurdly mean to each other
-        (I enjoy it so much)
 
     - github : https://github.com/xieyuheng
     - email : xyheme (at) gmail (dot) com
@@ -41,7 +36,7 @@
   - [[http://xieyuheng.github.io/sequent1][sequent1]] -- a prototype functional language
     which uses sequent calculus as its dependent type system
 
-  - [[https://github.com/xieyuheng/recursive-combinator][recursive-combinator]] -- DSL embedded in js
+  - [[https://github.com/xieyuheng/recursive-combinator][recursive-combinator]] -- dsl embedded in js
     inspired by joy (the language)
     implemented by an interpreter of js array
 
@@ -58,13 +53,13 @@
 
 * translate
 
-*** from Raymond Smullyan
+*** from raymond smullyan
 
     - (todo) [[http://xieyuheng.github.io/the-tao-is-silent][the tao is silent / 道是靜的]], 1977
       - translated together with [[http://naredbuddha.github.io/][BAO Hongran / 鮑鴻然]]
     - [[./translate/is-god-a-taoist.html][is god a taoist / 上帝是道家的嗎]], 1977
 
-*** from Errett Bishop
+*** from errett bishop
 
     - (todo) [[./translate/schizophrenia-in-contemporary-mathematics.html][schizophrenia in contemporary mathematics / 當代數學之精神分裂症]], 1973
     - [[./translate/a-constructivist-manifesto.html][a constructivist manifesto / 一個構造主義者的宣言]], 1967

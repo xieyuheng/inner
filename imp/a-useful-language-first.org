@@ -1,0 +1,5 @@
+* a useful language first
+
+  - change sequent0 form an interpreter to a compiler
+
+  - compile-time type-check needs run-time
