@@ -35,7 +35,7 @@
     | data |            |         |
     jo 不爲 call 優化而直接用 (<tag> ~)
 
-* ocaml version
+* ocaml version [give up]
 
 *** using ocaml
 
@@ -47,4 +47,9 @@
     - 需要重寫 sexp 的 parser
       區分 () [] {}
 
-*** >< 
+* dispatching
+
+  | jo      | data    | double data |
+  |---------+---------+-------------|
+  | compose | bs/deep | cover       |
+  | cut     |         | unify       |

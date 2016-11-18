@@ -1,0 +1,335 @@
+* <2016-11-01 Tue> the use of prefix notation
+
+  - use prefix notation for syntax keyword
+    '->' ':' '='
+    just as '~' '+'
+
+  - replace () by {} change explicate to implicate
+    thus a keyword
+    1. has side-effect -- can use {}
+       and has return value -- can use ()
+    2. has side-effect -- can use {}
+       does not have return value -- can not use ()
+
+  - [] for a list of (any kind of) things
+    [x] can be written as x
+
+  - example about the change
+
+    #+begin_src scheme
+    (~ H : ((:X : space) (:A < :X) int -> abelian-group))
+    (~ H/induce : ((:X :A -> :Y :B) (:q : int) ->
+                   (:X :A :q H -> :Y :B :q H)))
+    (~ boundary : (:X :A :q H -> :X empty-space :q 1 sub H))
+
+    (~ co-H : ((:X : space) (:A < :X) int -> abelian-group))
+    (~ co-H/induce : ((:X :A -> :Y :B) (:q : int) ->
+                      (:Y :B q co-H -> :X :A q co-H)))
+    (~ co-boundary : (:X empty-space :q 1 sub co-H -> :X :A :q co-H))
+
+
+    (~ H (-> [(: :X space) (< :A :X) int]
+             abelian-group))
+    (~ H/induce (-> [(-> [:X :A] [:Y :B]) (: :q int)]
+                    (-> [:X :A :q H] [:Y :B :q H])))
+    (~ boundary (-> [:X :A :q H]
+                    [:X empty-space :q 1 sub H]))
+
+    (~ co-H (-> [(: :X space) (< :A :X) int]
+                abelian-group))
+    (~ co-H/induce (-> [(-> [:X :A] [:Y :B]) (: :q int)]
+                       (-> [:Y :B q co-H] [:X :A q co-H])))
+    (~ co-boundary (-> [:X empty-space :q 1 sub co-H]
+                       [:X :A :q co-H]))
+    #+end_src
+
+  - 如是
+    就區分了 中綴表達式中的 (-> nat) 與 nat
+    即 (-> [] [nat]) 與 [nat]
+    只不過爲 (-> [] [nat nat]) 與 [nat nat]
+    否則 (-> nat nat) 與 nat nat
+    這後面的 nat nat 在語境中可能有歧義
+
+  - more example
+
+    #+begin_src scheme
+    (+ (~ natural type)
+       (~ zero natural)
+       (~ succ (-> natural natural)))
+
+    (~ add
+       (-> [natural natural]
+           natural)
+       [(-> [:m zero]
+            :m)
+        (-> [:m :n succ]
+            [:m :n add succ])])
+
+    (~ quotient/natural-projection
+       (-> [{: :y type}
+            (: :x type) (-> :x :y)]
+           [(: :z type)])
+       [(-> [:x :p]
+            [{= :z (derive :x)}
+             {= :z.== (-> [:a :b]
+                          [:a :p @ :b :p @ :y.== @])}
+             :z])])
+    #+end_src
+
+  - rationale
+    在設計語法過程中
+    經常需要 border-fix notation
+    用中綴表達式 (* -> *) 來實現 border-fix notation
+    固然簡介
+    但是 如此就佔用了 () 這個 structural lexicon
+    解放出這個 ()
+    模仿古典 lisp
+    以靈活處理 border-fix notation
+
+  - 注意
+    如此產生的 keyword 之 返回值後置
+    比如 ':' 與 '<'
+    (: :x type) 是說 此位返回值 類型爲 type 名爲 :x
+    (< :a :x) 是說 此位返回值 類型爲 :x 的 subtype 名爲 :a
+
+* keyword 之 返回值後置 <2016-11-16 Wed>
+
+  - x ::
+       keyword 用前綴表達式
+       之後我發現
+       我們語言設計的重要特點就是偏向 explicit
+       而我可以觀察到
+       目前的設計中 (: :t type) 就是典型的 implicit
+
+  - k ::
+       我想我們可以總結一下當前設計中的 implicit 之處
+       要知道 implicit 就是 語法優化
+       我們之後要看看這些優化是否必要
+
+  - x ::
+       首先需要考察的就是 (: :t type)
+       例如
+       #+begin_src scheme
+       (define nat
+         (data type
+           (: zero nat)
+           (: succ (-> nat nat))))
+
+       (define nat-induction
+         (lambda (-> [(: :p (-> nat type))
+                      zero :p @
+                      (-> [(: :k nat) :k :p @]
+                          [:k succ :p @])
+                      (: :x nat)]
+                     [:x :p @])
+           (-> [:q :q/z :q/s zero] :q/z)
+           (-> [:q :q/z :q/s :n succ]
+               [:n
+                :q :q/z :q/s :n nat-induction
+                :q/s @])))
+       #+end_src
+       如此看來
+       它出現在不同的地方意義是不同的
+       我想我們所說的 explicit 與 正規性
+       就是要儘量減少這種情況
+       即 減少語法關鍵詞對上下文的依賴
+
+  - k ::
+       如若換成
+       #+begin_src scheme
+       (define nat
+         (data type
+           zero nat
+           succ (-> nat nat)))
+       #+end_src
+       就可以說 data 把它 body 中的 list 當作 alist 來處理了
+
+  - x ::
+       這樣就算是解決了 這個語法關鍵詞 依賴上下文的問題
+       還有就是他本身的意義問題
+       我有了一個好想法
+       就是說
+       每個語法關鍵詞也是有類型的
+       [每次都去考慮類型]
+       之前想要區分 (: :t type) 與 {: :t type}
+       所想要區分的是
+       前者 在局部的副作用之外 返回一個值到棧中
+       後者 只有局部的副作用
+       我們應該用系統的方式來處理這種對差異的需求
+
+  - k ::
+       還有就是命名問題
+       或者說 lexicon 問題
+       比如
+       以 (: :x type) 記 之前之 (: :x type)
+       以 (:- :x type) 記 之前之 {: :x type}
+       我們要讓 lexicon 之間的形式關係
+       體現出 lexicon 之間的語義關係
+       這有些類似與 孤立語 黏着語
+
+  - x ::
+       我們可以製作一個表格如下
+       | 返回值到棧中 | 不返回值到棧中     | 對比語言學中的分類 |
+       |--------------+--------------------+--------------------|
+       | (: :t type)  | {: :t type}        | 特殊               |
+       |--------------+--------------------+--------------------|
+       | (: :t type)  | (:- :t type)       | 動詞變位           |
+       |--------------+--------------------+--------------------|
+       | (: :t type)  | (# (: :t type))    | 前綴黏着           |
+       |              | (hide (: :t type)) |                    |
+       |--------------+--------------------+--------------------|
+       | (: :t type)  | (: :t type) drop   | 後綴黏着           |
+
+  - k ::
+       我們應該想想自然語言中 爲什麼有這種需要
+       而程序語言中的這種設計 在類比中又意謂如何
+
+* 對比自然語言中的 '設計' <2016-11-18 Fri>
+
+  - x ::
+       自然語言之 分析 綜合 之分
+       看來主要是區分是否依賴語序
+
+  - k ::
+       我們來熟悉一些術語
+       | 語素     | morpheme       | 意義最小單位     |
+       | 詞       | word           | 可使用的最小單位 |
+       | 詞序     | word order     |                  |
+       | 自由語素 | free morpheme  | 可獨立使用       |
+       | 粘著語素 | bound morpheme | 不可獨立使用     |
+
+  - x ::
+       看來 曲折 指 詞根詞綴 詞綴詞綴 之間的區分不明
+       而導致詞形多不規則變化 (拉丁語)
+
+  - k ::
+       好像 語法範疇 這個概念就是我們需要的
+    1. 名詞
+       性 (gender)
+       數 (number)
+       格 (case)
+    2. 動詞
+       限定性 (finiteness)
+       時 (tense)
+       體 (aspect)
+       態 (voice)
+       式 (mood)
+       人稱 (person)
+    3. 形容詞 副詞
+       級 (degree)
+
+  - x ::
+       格 (case) 用於處理多名詞句子
+       我們可以想象在一個線性的 jojo 中
+       利用不同的 call 來區分對同一個詞的不同使用方式
+       拉丁語為例
+       | 主格 | nominative case | 主語               |
+       | 屬格 | genitive case   | 表示領屬關係的定語 |
+       | 與格 | dative case     | 間接賓語           |
+       | 賓格 | accusative case | 直接賓語           |
+       | 呼格 | vocative case   | 呼語               |
+       | 奪格 | ablative case   | 表示某些意義的狀語 |
+       不用變格來區分多名詞句子中不同名詞的使用方式
+       就需要用語序來區分之了
+
+  - k ::
+       一個句子 動詞之間是有時間上相互關聯
+       比如 完成體 (perfect aspect)
+       一個動詞本身也有進行中或已經完成之分
+       比如 完全體 (perfective aspect)
+       形式上記錄這些關係的就是語法
+       [屈折語用 動詞變位]
+       類似 名詞變格 處理多名詞句子
+       很多語言也有一種處理 多動詞句子 的獨特策略
+       即 限定性 (finiteness)
+       就是把動詞區分為 限定 和 非限定 兩種形式
+       | 限定動詞   | 句子(或分句)之 謂語     |
+       | 非限定動詞 | 句子(或分句)之 其他成分 |
+       由於一句 只有一謂語
+       所以一個簡單分句最多只有一個 限定動詞
+       [除非使用 並列連詞 (coordinator)
+       把多個 限定動詞 組成 並列謂語]
+
+  - x ::
+       一句一謂語 這個規則
+       看來也能體現在程序語言的語法設計之中
+       不論是 前綴中綴還是後綴
+       都只有一個函數作用於多個參數
+
+  - x ::
+       我還發現了程序語言設計中一個有趣的事實
+       程序語言需以無歧義的形式語法
+       描述如何完成(how)一段計算(一段變化)
+       而在形式語言之外
+       我們一定也能用自然語言描述這種計算
+       只不過所做的描述不足夠形式 而不易被機器處理
+
+  - k ::
+       這樣 在對比自然語言與程序語言之間的關係的時候
+       我們就可以總結一下
+       自然語言 是如何描述 如何進行一段計算的
+
+  - x ::
+       等等
+       在總結之前
+       我還發現了這篇文章的方法
+       首先 西語之語法學主要在於 名詞變格 動詞變位
+       再 總結這些語法現象的功能
+       然後 在漢語中尋找完成類似功能的(與之完全不同的)語法現象
+       我們可以試着構擬這些 '語法' 之產生
+
+* emergent grammar & grammaticalization
+
+  - x ::
+       emergent grammar 不想語言的語法是現設計完備的
+       而說 語言沿 grammaticalization 演化 而產生語法
+
+  - k ::
+       也就是說我們要找
+       自然語言的 grammaticalization 在程序語言中的類比
+
+  - x ::
+       grammar emerges through interaction among participants
+       who are constantly reusing and modifying prior utterances
+       to achieve current interactive goals
+
+  - k ::
+       比如
+       使用一個 sequent 法形式很多次 而把它定義爲新的 function
+       使用一種語法形式很多次 而把它做成 macro
+
+  - x ::
+       但是其實我們不能說 定義一個 macro 是 grammaticalization
+       因爲 定義 macro 與 定義 function 重在定義之命名過程
+       命名似用典
+
+* 一些新的 語法設計 與 語言實現 原則 <2016-11-19 Sat>
+
+  - x ::
+       我想出了一些新的語法設計原則
+       有三條
+       一
+       爲定義過的名做 派
+       比如 計算 與 類型檢查
+       分派兩個不同的函數體來作用
+       二
+       以 珠珠 爲函數語義之核心
+       圓括號作爲直接數據之語法
+       三
+       要知道
+       不論是如何分派
+       不論是計算或類型檢查
+       最終都是對機器狀態的變化
+       而我們常常用棧來記錄這些狀態
+
+  - k ::
+       其中第三點尤爲重要
+       看似是常識 可是總是被忘記
+       下面就是要明確應該如何踐行這些新的原則
+
+  - x ::
+
+* >< 總結 自然語言對算法的描述
+
+  - k ::
+       回到 計算描述 之總結

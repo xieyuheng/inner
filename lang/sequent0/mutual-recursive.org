@@ -1,0 +1,12 @@
+* mutual-recursive
+
+  - x ::
+       sequent0 這種解釋器中有很多需要 mutual-recursive 的地方
+       ocaml 中
+       定義 mutual-recursive function 時
+       需要使用顯示語法
+
+  - k ::
+       這可能不是問題
+       因爲 sequent0 中的相互遞歸
+       實際上是通過 動態調用 explainer 來完成的

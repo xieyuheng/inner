@@ -1,0 +1,33 @@
+* record type
+
+  <2016-11-07 Mon>
+
+  - x ::
+       record type 就是 named produce type
+       我想 record type 用處有三
+       一
+       作爲文檔
+       二
+       處理當 produce type 的項非常多的情況
+       因爲又名之後 在模式匹配的時候 就能省略不需要的
+       三
+       在 pattern match 時建議變元的名字
+
+  - k ::
+       record type 其實就是 operational argument of function
+       因爲是 named argument
+       所以可以 operational
+       也因爲是 named argument
+       所以可以在 pattern match 的時候省略
+       也就是說
+       如果想要加上這個性狀的話
+       就要兩個性狀一起加
+       並且語法上要有一致性
+
+  - x ::
+       這兩個性狀看來是 dual 的
+       因爲 pattern match 用到的就是 reverse 和 reversible function
+
+  - k ::
+       dependent type 也给出了参数的名字
+       二者有什么不同
