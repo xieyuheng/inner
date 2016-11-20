@@ -36,42 +36,31 @@
 * ----------------------------------
 * the extension problem
 
-  - in the view of sze-tsen-hu
-    extension problem is the main kind of general problem of topology
-
-  - to solve the extension problem
-    is to solve an equation in the continuous function space
-
   #+begin_src scheme
-  (define icl
-    (lambda (-> [(< :a :x) (: :x type)]
-                (-> :a :x))
-      (-> [:a :x]
-          (lambda (-> :a :x)
-            (-> :v :v)))))
-
-  ;; the type
-
-  (define icl
+  (define inclusion
     (lambda (-> [(: :a type) (: :x type)
-                 (# (< :a :x))]
+                 (< :a :x) drop]
                 (-> :a :x))
       (-> [:a :x]
           (lambda (-> :a :x)
             (-> :v :v)))))
+
+  ;; in the view of sze-tsen-hu
+  ;; extension problem is the main kind of general problem of topology
 
   ;; to solve the extension problem
-  ;; is to find a f for a given g
+  ;; is to solve an equation in the continuous function space
+  ;; is to find x for given condition
 
   (define g
-    (lambda (-> [{< A X} A]
+    (lambda (-> [(< A X) drop A]
                 Y)
       ...))
 
   (define f
     (lambda (-> X
                 [Y (== [g]
-                       [A X icl @ f])])
+                       [A X inclusion @ f])])
       ...))
   #+end_src
 
@@ -100,7 +89,7 @@
   (define f
     (lambda (-> X
                 [Y (== [g]
-                       [A X icl @ f])])
+                       [A X inclusion @ f])])
       ...))
 
   (define [g H/induce]
@@ -112,7 +101,7 @@
     (lambda (-> [X empty-space :m H]
                 [Y empty-space :m H
                    (== [g H/induce]
-                       [A X icl @ H/induce f H/induce])]))
+                       [A X inclusion @ H/induce f H/induce])]))
     ...)
 
   ;; many styles pf homology theory
@@ -147,14 +136,14 @@
   #+begin_src scheme
   (define r
     (lambda (-> X
-                [A (== [A id] [A X icl @ r])])
+                [A (== [A id] [A X inclusion @ r])])
       ...))
 
   (define [r H/induce]
     (lambda (-> [X empty-space :m H]
                 [A empty-space :m H
                    (== [A empty-space :m H id]
-                       [A X icl @ H/induce r H/induce])])
+                       [A X inclusion @ H/induce r H/induce])])
       ...))
   #+end_src
 
@@ -245,15 +234,15 @@
   (~ g : ((A < X) -> Y))
 
   (~ r : ((X Y g adjoin) -> Y
-          (Y id = Y (X Y g adjoin) icl @ r)))
+          (Y id = Y (X Y g adjoin) inclusion @ r)))
   (~ f : (X -> Y
-            (g = A X icl @ f))
+            (g = A X inclusion @ f))
      (:x -> :x p r))
 
   (~ f : (X -> Y
-            (g = A X icl @ f)))
+            (g = A X inclusion @ f)))
   (~ r : ((X Y g adjoin) -> Y
-          (Y id = Y (X Y g adjoin) icl @ r))
+          (Y id = Y (X Y g adjoin) inclusion @ r))
      ><><><)
   #+end_src
 
@@ -303,6 +292,7 @@
   (~ f p cover : (X -> E
                     (p f p cover = f)))
   #+end_src
+
 * ----------------------------------
 * note continuous
 

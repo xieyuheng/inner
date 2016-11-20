@@ -428,7 +428,80 @@
   - x ::
        這並不困難
 
-* >< 總結 自然語言對算法的描述
+* 關於 oo 與 functional
+
+  - x ::
+       增減代碼的方式有別
+       導致
+       oo 中可以動態地新增新的數據類型
+       而 functional 中可以動態地生成新的函數
+
+* 語言標準
+
+  - x ::
+       we can design new way to add new things
+       but the way always must be limited in some way
+
+* 實用的實現 與 爲理論而做的原型實現
+
+  - x ::
+    1. 爲理論而實現原型需要使用實用的語言
+    2. 實用的語言的語法設計新需求來自爲理論而作的原型
 
   - k ::
-       回到 計算描述 之總結
+       可否二者兼顧呢
+
+* >< 彙編
+
+  - x ::
+       用更底層的一層語言來描述 : 與 < 之實現細節
+       難點在於
+       這種低一層的語言如何融合到 sequent0 當前的實現方式中
+
+  - k ::
+       我想這並不重要
+       因爲
+       不論用什麼語言
+       我們總有能力把這種類似彙編語言的中間層在實現中表達出來
+
+  - x ::
+       那麼就具體的 : 與 < 而言
+       #+begin_src scheme
+       (: :data :type)
+       (:bind (level 1 :data) (level 0 :type))
+       (:return a new data which will mainly be treated as type)
+       (::)
+
+       (< :subtype :type)
+       (:bind (level 1 :data) (level 0 :type))
+       #+end_src
+
+  - k ::
+       我發現正如我們第一次嘗試爲每個名字區分 compute 與 type-check 兩種方法時
+       '類型安全' 這個概念在那個語言中是靈活可變的
+       這裏 類似 (: :data :type) 這種 具有返回值 且帶有副作用的表達式
+       也可以出現在 jojo 中
+
+  - x ::
+       之前的想法是
+       遇一名時 可能是爲了 compute 也可能是爲了 type-check
+       (: :data :type) 是一個數據
+       正如遇到別的數據時需要改變 ds 的狀態
+       遇到 (: :data :type) 時
+       之所以說它有副作用
+       是因爲在改變 ds 的狀態之外
+       它還會改變 bind 的狀態
+       gs 之於 bs
+       正如 rs 之於 ds
+
+* >< homology 與 homtopy 的語言
+
+  - x ::
+       既然目的是實現 at1
+       而且又知道 對語法和語義的新需求都來源於 at
+       那麼就以新需求爲引導吧
+
+  - k ::
+       那麼我們努力嘗試表達 homology 與 homtopy 中所遇到的所有構造細節
+
+* >< 總結 自然語言對算法的描述
