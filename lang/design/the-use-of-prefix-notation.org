@@ -1021,9 +1021,149 @@
          我想我們使用編譯到 js 的實現方式
          在編譯的過程中考慮元編程能力
 
-*** >< compose
+* pre-jo 與 uni-copy <2016-11-23 Wed>
 
-    #+begin_src scheme
-    ;; on
+  - x ::
+       作爲 jo 的 var
+       和 data 的 var 可以不一樣
+       jo 的 var 中增加一層查找 找到 uni-id 的 作爲 data 的 var
+       這樣就能避免 unique-copy 這個運行時的操作
+       同時避免 pre-jo 這個中間數據結構
+       直接把源代碼編譯到 jo
+       這樣編譯語義本身也就明確了
 
-    #+end_src
+  - k ::
+       我們就先從改 sequent0 現在的 scheme 代碼開始
+       如此依賴整個代碼的結構都大大簡化了
+       並且要知道
+       rc1 中的 oo 機制 可能算是爲 at1 設計的
+       因爲 at1 語法不定 而經常需要添加新的數據類型
+       [甚至還要能動態添加之]
+       而就 sequent0 而言 scheme 就足夠了
+
+  - x ::
+       沒錯
+       最快的能觀察出新技巧的效果的地方
+       就是現在 sequent0 的 scheme 代碼了
+
+  -----------
+
+  - x ::
+       我發現 作爲 jo 的 var 如果與 作爲 data 的不同
+       那麼 可能嵌套別的 jo 的 arrow 與 lambda
+       也有別於其作爲 data 的存在
+
+  - k ::
+       看似這裏在返回 arrow 和 lambda 的時候
+       還是需要 unique-copy
+       但是其實
+       這裏還是可以模仿 對 name 下所綁定的 lambda 的處理
+       也就是說每個需要被作用的東西
+       [因爲被作用 而需要 unify 而需要做 binding]
+       都可以如此處理
+
+  - x ::
+       這樣只要讓每個 lambda 中帶有一個 list
+       來記錄其中出現的 var name
+       還有一個 list 來記錄 這些 var name 中已知值者
+       當需要返回一個 lambda 的
+       用第一個 list 對照當前 返回點 中的 var name list
+       以生成第二個 list
+
+  - k ::
+       這樣做爲 data 的 lambda 與作爲 jo 的 lambda
+       就是沒有區別的
+       jo 中的 lambda 第二個 list 是空的
+       只有返回成 data 的時候才得以確定
+
+  - x ::
+       但是我們應該把這些新增的元數據放在哪裏呢
+       有三個地方可以放
+       lambda arrow 或者 jojo
+
+  - k ::
+       我覺得我們把新增的兩個 list 域放在 arrow 就好了
+       因爲 我們可以完全放棄單獨出現的 jojo
+       或者直接把這些 jojo 作爲 macro 處理
+
+* 之前所設計的縮寫 與 兩種風格的命名空間
+
+  - k ::
+       我發現
+       我們對於 (-> [] nat) 等價與 nat 的處理還有欠之處
+       之前做這種等價
+       是因爲要求每當從 name 下找到一個 lambda 就自動 apply 它
+       而不返回以 -> 爲類型的值
+       還記得之前的 dispatch 嗎
+       不是兩種而是四種
+       比如
+       兩種是
+       由 name 找到 lambda 作爲計算
+       由 name 找到 lambda 作爲類型
+       另兩種是
+       lambda 本身出現在 jojo 中 作爲計算
+       lambda 本身出現在 jojo 中 作爲類型
+
+  - x ::
+       我們之所以需要這種約定的等價
+       是因爲我們需要以多種方式處理名字
+       把名字當成是 box
+       已經有當遇到 box 名字時
+       已經有 返回 box 地址
+       或者 返回 box 內的值之分了
+       當考慮 lambda 時
+       就是新增了一種可能
+       即 返回數據之後再 apply
+       又因爲
+       (-> [] nat) apply == nat
+       所以我們有這種約定
+
+  - k ::
+       同樣
+       以 (-> [nat nat] nat) 爲 (-> [nat nat] [nat]) 之縮寫
+       也會遇到類似的問題
+
+  - x ::
+       看來我們應該完全避免這種無關緊要的縮寫
+       但是如何處理對 box 的多種處理呢
+       這裏可以觀察到 scheme 與 common-lisp 命名所用語法詞之原理
+       #+begin_src scheme
+       ;; scheme
+       (define add
+         (lambda (-> [nat nat] [nat])
+           (-> [:m zero] [:m])
+           (-> [:m :n succ] [:m :n add succ])))
+
+       ;; common-lisp
+       (defun add (-> [nat nat] [nat])
+         (-> [:m zero] [:m])
+         (-> [:m :n succ] [:m :n add succ]))
+       #+end_src
+       在 scheme 中編綴表達式 (fun arg ...) 本身就是 apply
+       所以 box 取值爲 lambda
+       而 lambda 又出現在 sexp 的 head 位置
+       那麼它就被 apply 了
+       [common-lisp 區分兩個明明空間
+       可能也是受到這種有區別的 defun defvar 的影響]
+       但是我們的純後綴表達式語言 沒有這種編綴
+       所以所有的數據都應該以 -> 爲類型
+
+  - k ::
+       由此看來我們也需要區分 defun defvar 不是嗎
+
+  - x ::
+       既然每次遇到名字的時候我們都要取值然後 apply
+       那麼我們就可以使用 scheme 的關鍵詞風格
+       只要讓每個被定義的值 比如 lambda jojo string 等等
+       可以接受 apply 這個 message 就可以了
+
+  ------------
+
+  - x ::
+       我們
+
+
+  - k ::
+
+
+  - x ::
