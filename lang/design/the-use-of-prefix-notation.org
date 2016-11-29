@@ -1,11 +1,27 @@
 * todo
 
-  - 使用編譯到 js 的實現方式
-    在編譯的過程中考慮元編程能力
+*** rc1
 
-  - 在語言沒有被實現的前提下
-    嘗試用新語法實現 sequent0 中的核心部分
-    是爲 '自上而下的' 編程
+    - rc1 以實踐更世俗的編程
+
+    - 使用編譯到 js 的實現方式
+      在編譯的過程中考慮元編程能力
+      即
+      1. 語法本身 作爲數據 如何暴露於語言之內
+      2. 被編譯出來的函數 作爲數據 如何暴露於語言之內
+
+    - 在語言沒有被實現的前提下
+      嘗試用 rc1 的新語法實現 sequent0 中的核心部分
+      是爲 '自上而下的' 編程
+
+*** at1
+
+    - at1 爲語義新的需求
+      因此 是語法語義設計之 應用源泉
+
+*** hoare logic
+
+    - hoare logic 與類型系統靈感
 
 * the use of prefix notation <2016-11-01 Tue>
 
@@ -1335,7 +1351,7 @@
          區分 >:name 與 #:name
          二者也可以記 '類型'
          前者爲 (-> [data] [])
-         後者爲 (-> [data] [(ex-bind #:name data)])
+         後者爲 (-> [data] [(# :name data)])
 
     - x ::
          啊 後者正如把 #:name 當作一個構造子
@@ -1415,21 +1431,645 @@
     - x ::
          沒錯 我們把這個話題留做下次討論吧
 
-*** >< 副作用之 undo
+*** 副作用之 undo
 
     - x ::
          當考慮 用一般的後綴表達式來做 bind 時
          區分了兩種語法
          #+begin_src scheme
          >:name (-> [data] [])
-         #:name (-> [data] [(ex-bind #:name data)])
+         #:name (-> [data] [(# :name data)])
          #+end_src
          二者都應該是帶有 binding 這個副作用的
          即 他們會影響 bs
          但是 這些影響又可能被 undo 掉
          那麼 有可能在這裏利用 bs 的類型系統 來獲得安全性嗎
 
-*** ><>< hoare logic
+    - k ::
+         函數的類型聲明
+         即 對 ds 之變化的大略描述
+         之所以有用
+         是因爲 ds 的變化可能非常複雜
+         因而需要大略描述
+         但是 這裏 bs 的變化很簡單
+         所以可能根本就不需要這種大略描述
+
+*** >:name == #:name drop
+
+    - k ::
+         啊 我們根本就不需要 >:name
+         只要 #:name drop 就好了
+         #+begin_src scheme
+         >:name (-> [data] [])
+         #:name (-> [data] [(# :name data)])
+         #:name drop (-> [data] [])
+         #+end_src
+
+*** hoare-logic
 
     - x ::
-         ><><><
+         我們在日本就發現
+         我們的 sequent 語言只是 hoare-logic 的特例
+
+    - k ::
+         沒錯
+         sequent 的特別指出在於
+         所有的狀態都是用棧來描述的
+         而 hoare-logic 則更底層
+
+    - x ::
+         即便是對 #:name 來說
+         他的類型 (-> [data] [(# :name data)])
+         也是用棧中元素的變化來表達的
+
+*** 實現中需要做的變化
+
+    - x ::
+         首先
+         語法上需要特殊處理形如 #:name 的 symbol
+         正如爲了 var 而特殊處理 :name
+         等等
+
+*** 爲何不後綴處理 ->
+
+    - x ::
+         既然我們用後綴表達式來處理 :
+         那麼爲什麼不用後綴表達式來處理 ->
+         #+begin_src scheme
+         (def nat-induction
+           (lambda (-> [(-> [nat] [type]) #:p
+                        zero :p @
+                        (-> [nat #:k :k :p @]
+                            [:k succ :p @])
+                        nat #:x]
+                       [:x :p @])
+             (-> [:p :p/z :p/s zero] [:p/z])
+             (-> [:p :p/z :p/s :n succ]
+                 [:n
+                  :p :p/z :p/s :n nat-induction
+                  :p/s @])))
+
+         (def nat-induction
+
+           lambda
+
+           [[nat] [type] -> #:p
+            zero :p @
+            [nat #:k :k :p @]
+            [:k succ :p @] ->
+            nat #:x]
+           [:x :p @] ->
+
+           [:p :p/z :p/s zero]
+           [:p/z] ->
+
+           [:p :p/z :p/s :n succ]
+           [:n
+            :p :p/z :p/s :n nat-induction
+            :p/s @] ->)
+         #+end_src
+
+    - k ::
+         既然我們不使用縮略語法了
+         而又要以 只有需要的時候才使用編綴爲原則的話
+         那麼 就真的沒有必要
+
+    - x ::
+         #+begin_src scheme
+         (def nat-induction
+           [[nat] [type] -> #:p
+            zero :p @
+            [nat #:k :k :p @]
+            [:k succ :p @] ->
+            nat #:x]
+           [:x :p @] ->
+           [:p :p/z :p/s zero]
+           [:p/z] ->
+           [:p :p/z :p/s :n succ]
+           [:n
+            :p :p/z :p/s :n nat-induction
+            :p/s @] ->)
+
+         ;; 省略 -> 而依據雙數斷句
+         (def nat-induction
+           [[nat] [type] -> #:p
+            zero :p @
+            [nat #:k :k :p @]
+            [:k succ :p @] ->
+            nat #:x]
+           [:x :p @]
+
+           [:p :p/z :p/s zero]
+           [:p/z]
+
+           [:p :p/z :p/s :n succ]
+           [:n
+            :p :p/z :p/s :n nat-induction
+            :p/s @])
+
+         (def nat-induction
+           [[nat] [type] -> #:p
+            zero :p @
+            [nat #:k :k :p @]
+            [:k succ :p @] ->
+            nat #:x]
+           [:x :p @]
+           [:p :p/z :p/s zero]
+           [:p/z]
+           [:p :p/z :p/s :n succ]
+           [:n
+            :p :p/z :p/s :n nat-induction
+            :p/s @])
+
+         ;; 同時以這種方式處理 lambda
+         (def nat-induction
+           [[[nat] [type] -> #:p
+             zero :p @
+             [nat #:k :k :p @]
+             [:k succ :p @] ->
+             nat #:x]
+            [:x :p @]
+            [:p :p/z :p/s zero]
+            [:p/z]
+            [:p :p/z :p/s :n succ]
+            [:n
+             :p :p/z :p/s :n nat-induction
+             :p/s @]] lambda)
+
+         ;; 不省略 ->
+         ;; 畢竟省略 -> 算是一種 sugar
+         (def nat-induction
+           [[[nat] [type] -> #:p
+             zero :p @
+             [nat #:k :k :p @]
+             [:k succ :p @] ->
+             nat #:x]
+            [:x :p @] ->
+            [:p :p/z :p/s zero]
+            [:p/z] ->
+            [:p :p/z :p/s :n succ]
+            [:n
+             :p :p/z :p/s :n nat-induction
+             :p/s @] ->] lambda)
+
+         ;; 甚至 def 也用後綴處理
+         [[[nat] [type] -> #:p
+           zero :p @
+           [nat #:k :k :p @]
+           [:k succ :p @] ->
+           nat #:x]
+          [:x :p @] ->
+          [:p :p/z :p/s zero]
+          [:p/z] ->
+          [:p :p/z :p/s :n succ]
+          [:n
+           :p :p/z :p/s :n nat-induction
+           :p/s @] ->] lambda
+         'nat-induction def
+
+         ;; 或
+         [[[nat] [type] -> #:p
+           zero :p @
+           [nat #:k :k :p @]
+           [:k succ :p @] ->
+           nat #:x]
+          [:x :p @] ->
+          [:p :p/z :p/s zero]
+          [:p/z] ->
+          [:p :p/z :p/s :n succ]
+          [:n
+           :p :p/z :p/s :n nat-induction
+           :p/s @] ->] lambda
+         [nat-induction] def
+
+         ;; 這樣其實是在解決 meta-programming 的問題
+         ;; 既然程序本身被作爲數據如此肢解了
+         #+end_src
+
+    - k ::
+         那麼我們就好好討論一下 meta-programming 的問題
+         #+begin_src scheme
+         [[[[nat] [type] -> #:p
+            zero :p @
+            [nat #:k :k :p @]
+            [:k succ :p @] ->
+            nat #:x]
+           [:x :p @]]
+          [[:p :p/z :p/s zero]
+           [:p/z]]
+          [[:p :p/z :p/s :n succ]
+           [:n
+            :p :p/z :p/s :n nat-induction
+            :p/s @]]] lambda
+         [nat-induction] def
+
+
+         [[[nat] [type] -> #:p
+           zero :p @
+           [nat #:k :k :p @]
+           [:k succ :p @] ->
+           nat #:x]
+          [:x :p @]
+
+          [:p :p/z :p/s zero]
+          [:p/z]
+
+          [:p :p/z :p/s :n succ]
+          [:n
+           :p :p/z :p/s :n nat-induction
+           :p/s @]] lambda
+         [nat-induction] def
+
+
+         [[[nat] [type] -> #:p
+           zero :p @
+           [nat #:k :k :p @]
+           [:k succ :p @] ->
+           nat #:x]
+          [:x :p @]]
+         [[:p :p/z :p/s zero]
+          [:p/z]
+
+          [:p :p/z :p/s :n succ]
+          [:n
+           :p :p/z :p/s :n nat-induction
+           :p/s @]] lambda
+         [nat-induction] def
+
+
+         lambda
+         [[[nat] [type] -> #:p
+           zero :p @
+           [nat #:k :k :p @]
+           [:k succ :p @] ->
+           nat #:x]
+          [:x :p @]]
+         [[:p :p/z :p/s zero]
+          [:p/z]
+          [:p :p/z :p/s :n succ]
+          [:n
+           :p :p/z :p/s :n nat-induction
+           :p/s @]]
+         end
+
+         ;; 假設我們的原則是
+         ;; 讓 lambda 所做的工作越少越好
+         [[[nat] [type] -> #:p
+           zero :p @
+           [nat #:k :k :p @]
+           [:k succ :p @] ->
+           nat #:x]
+          [:x :p @]
+          ->
+          [:p :p/z :p/s zero]
+          [:p/z]
+          ->
+          [:p :p/z :p/s :n succ]
+          [:n
+           :p :p/z :p/s :n nat-induction
+           :p/s @]
+          ->] lambda
+         [nat-induction] def
+
+         [[[nat] [type] -> #:p
+           zero :p @
+           [nat #:k :k :p @]
+           [:k succ :p @] ->
+           nat #:x]
+          [:x :p @] ->
+          [:p :p/z :p/s zero]
+          [:p/z] ->
+          [:p :p/z :p/s :n succ]
+          [:n
+           :p :p/z :p/s :n nat-induction
+           :p/s @] ->]
+         lambda
+         [nat-induction] def
+
+
+         (((nat) (type) -> #:p
+           zero :p @
+           (nat #:k :k :p @)
+           (:k succ :p @) ->
+           nat #:x)
+          (:x :p @) ->
+          (:p :p/z :p/s zero)
+          (:p/z) ->
+          (:p :p/z :p/s :n succ)
+          (:n
+           :p :p/z :p/s :n nat-induction
+           :p/s @) ->)
+         lambda
+         (nat-induction) def
+
+
+         {{{nat} {type} -> #:p
+           zero :p @
+           {nat #:k :k :p @}
+           {:k succ :p @} ->
+           nat #:x}
+          {:x :p @} ->
+          {:p :p/z :p/s zero}
+          {:p/z} ->
+          {:p :p/z :p/s :n succ}
+          {:n
+           :p :p/z :p/s :n nat-induction
+           :p/s @} ->}
+         lambda
+         {nat-induction} def
+         #+end_src
+
+    - x ::
+         啊 如若依照這種原則
+         根本就只要用到三種括號中的一種
+         我們選擇 [] 就好了
+
+    - k ::
+         我們是否要在這個 sequent0 中實踐這種語法
+
+    - x ::
+         哈哈
+         這種感受就是脫離了 lisp 的傳統
+         但是又接近了 forth
+         我想使用 {} 可能優於使用 [] 或 ()
+         因爲 [] 或 () 不單獨成行
+         而 {} 單獨成行
+         #+begin_src cicada-language
+         [[[nat] [type] -> #:p
+           zero :p @
+           [nat #:k :k :p @]
+           [:k succ :p @] ->
+           nat #:x]
+          [:x :p @] ->
+          [:p :p/z :p/s zero]
+          [:p/z] ->
+          [:p :p/z :p/s :n succ]
+          [:n
+           :p :p/z :p/s :n nat-induction
+           :p/s @] ->]
+         lambda
+         [nat-induction] def
+
+
+         (((nat) (type) -> #:p
+           zero :p @
+           (nat #:k :k :p @)
+           (:k succ :p @) ->
+           nat #:x)
+          (:x :p @) ->
+          (:p :p/z :p/s zero)
+          (:p/z) ->
+          (:p :p/z :p/s :n succ)
+          (:n
+           :p :p/z :p/s :n nat-induction
+           :p/s @) ->)
+         lambda
+         (nat-induction) def
+
+
+         {{{nat} {type} -> #:p
+           zero :p @
+           {nat #:k :k :p @}
+           {:k succ :p @} ->
+           nat #:x}
+          {:x :p @} ->
+          {:p :p/z :p/s zero}
+          {:p/z} ->
+          {:p :p/z :p/s :n succ}
+          {:n
+           :p :p/z :p/s :n nat-induction
+           :p/s @} ->}
+         lambda
+         {nat-induction} def
+         #+end_src
+         再看單獨成行的
+         #+begin_src cicada-language
+         [ [ [ nat ] [ type ] -> #:p
+             zero :p @
+             [ nat #:k :k :p @ ]
+             [ :k succ :p @ ] ->
+             nat #:x ]
+           [ :x :p @ ] ->
+           [ :p :p/z :p/s zero ]
+           [ :p/z ] ->
+           [ :p :p/z :p/s :n succ ]
+           [ :n
+             :p :p/z :p/s :n nat-induction
+             :p/s @ ] ->
+         ] lambda
+         [ nat-induction ] def
+
+
+         ( ( ( nat ) ( type ) -> #:p
+             zero :p @
+             (nat #:k :k :p @ )
+             ( :k succ :p @ ) ->
+             nat #:x )
+           ( :x :p @ ) ->
+           ( :p :p/z :p/s zero )
+           ( :p/z ) ->
+           ( :p :p/z :p/s :n succ )
+           ( :n
+             :p :p/z :p/s :n nat-induction
+             :p/s @ ) ->
+         ) lambda
+         ( nat-induction ) def
+
+
+         { { { nat } { type } -> #:p
+             zero :p @
+             { nat #:k :k :p @ }
+             { :k succ :p @ } ->
+             nat #:x }
+           { :x :p @ } ->
+           { :p :p/z :p/s zero }
+           { :p/z } ->
+           { :p :p/z :p/s :n succ }
+           { :n
+             :p :p/z :p/s :n nat-induction
+             :p/s @ } ->
+         } lambda
+         { nat-induction } def
+         #+end_src
+
+    - k ::
+         如此看來又是 [ ] 最順眼
+         看來 這些都是 習慣所致呀
+
+    - x ::
+         那麼我們不考慮排版問題了
+         先考慮實現
+         首先我們可以把 [ ] 實現爲 call-with-output-to-new-ds
+         這樣 lambda 所看到的就是 arrow-list
+         而不是 syntax-tree 了
+
+    - k ::
+         但是這樣對 [ ] 中的 name 的解釋就有衝突了
+         -> 需要他們是 literal
+         而 lambda 需要他們是 call-with-output-to-new-ds
+         所以 必須區分二者
+         #+begin_src scheme
+         { [ [ nat ] [ type ] -> #:p
+             zero :p @
+             [ nat #:k :k :p @ ]
+             [ :k succ :p @ ] ->
+             nat #:x ]
+           [ :x :p @ ] ->
+           [ :p :p/z :p/s zero ]
+           [ :p/z ] ->
+           [ :p :p/z :p/s :n succ ]
+           [ :n
+             :p :p/z :p/s :n nat-induction
+             :p/s @ ] ->
+         } lambda
+         [ nat-induction ] def
+
+         ;; 如果所有的 literal-symbol 都必須出現在 [ ] 中
+         ;; 那麼就必須改如下爲下下或下下下
+         { [ ] [ type ] ->
+           zero  [ ] [ <> ] ->
+           succ  [ <> ] [ <> ] ->
+         } type
+         [ def ] nat
+
+         { [ ] [ type ] ->
+           'zero  [ ] [ <> ] ->
+           'succ  [ <> ] [ <> ] ->
+           } type
+         [ def ] nat
+
+         { [ ] [ type ] ->
+           [ zero ] [ ] [ <> ] ->
+           [ succ ] [ <> ] [ <> ] ->
+         } type
+         [ def ] nat
+
+         { [ nat nat ] [ nat ] ->
+           [ :m zero ] [ :m ] ->
+           [ :m :n succ ] [ :m :n add succ ] ->
+         } lambda
+         [ add ] def
+         #+end_src
+
+    - x ::
+         我發現這種純粹的後綴表達式
+         會強迫語言的正規性
+
+    ------------
+
+    - x ::
+         但是我想我要放棄這種設計
+
+    - k ::
+         既然語言本身以後綴表達式爲特點
+         爲什麼要放棄這種設計呢
+         如果後綴表達式本身並不好
+         爲什麼要設計一個以後綴表達式爲特點的語言呢
+
+    - x ::
+         我也不知道
+         我想問題出在元編程能力上
+         我們應該完全放棄這種能力
+         以維護語言的穩定性
+
+* 完全放棄元編程能力 以維護語言的穩定性
+
+*** 引
+
+    - x ::
+         說元編程能力不利與語言之穩定
+         難道不是可笑而保守的說辭嗎
+         我感覺我已經喪失了 對是非對錯的判別了
+
+    - k ::
+         我們可以在不做是非對錯之判別的條件下行動嗎
+
+    - x ::
+         比如埋頭實現 sequent0
+         而不考慮其優劣
+
+    ------------
+
+    - x ::
+         啊 我能想到 如果使用純粹的後綴表達式來實現它
+         效果將是如何有趣
+         用於實現語言核心語義的函數本身
+         也將是用語言的 meta-programming 能力來實現的
+         但是我還是決定暫時放棄這種效果
+         之要求 jojo 中的東西是完全後綴的
+         而自由地[不在乎純粹性地]處理外層非後綴語法
+         [只要知道這些語法是可以利用元編程來後綴化的就可以了]
+
+* 更換新語法 而轉回到 at1
+
+*** 引
+
+    - x ::
+         更換新語法之後
+         我想我們的探索 就應該轉回到 at1 了
+         畢竟它纔是應用源泉
+
+    - k ::
+         每次轉回到理論學習都非易事
+         可能又是需要用到 k 的認識倫的時候
+
+    - x ::
+         我想說明天我們找個安靜的地方在談
+         但是 k 之方法的關鍵就在於
+         不要受到限於環境與時間
+
+    - k ::
+         我們今天讀的 k 可以總結如下
+      1. 我堆非我成我
+      2. 努力是盲目的最高形式
+
+* new structure of rs
+
+*** 引
+
+    - x ::
+         we need a new structure of rs
+         當前我們有
+         #+begin_src scheme
+         (type rs {{counter explainer ender jojo} ...})
+         (type gs {{counter explainer ender {data-list data-list}} ...})
+         #+end_src
+         我們需要的只是簡單地在 rs-point 中增加一個 field 嗎
+
+    - k ::
+         其不簡單之處在於
+         此時需要重新寫所有有關 rs-point 的 pattern-marching
+
+    - x ::
+         這就是 pattern-marching 所寫的代碼的弱點了
+         [因爲數據結構的接口變化
+          也要反應在使用這些接口的函數中
+          除非給每個 field 以名字]
+         也許我們應該分場合使用 pattern-marching
+         只有在 term-rewrite 的過程中 pattern-marching 纔是最適合的
+         在這種需要大量副作用的地方
+         就使用類似 oo 的接口
+
+    - k ::
+         正如上所說
+         想要不讓數據結構的接口反應在使用這些接口的函數體里
+         就只能給這些 field 以名字
+         不論是 agda 的 record 還是 oo
+
+    --------------------
+
+    - x ::
+         我們是否應該讓每一個 stack 都使用新設計的簡單 oo 機制
+
+    - k ::
+         首先 ds 可能就不應該使用這個機制
+         即便是就一個 不考慮效率的 實驗性解釋器 而言
+         在 ds 中的 data 上加一層 也會讓處理 ds 的函數變複雜
+
+    - x ::
+         這樣我們就喪失了 stack 的統一性
+
+    - k ::
+         我們沒必要維持這種統一性
+         我覺得只有 rs 與 gs 值得一改
+         其他的 stack 就維持簡單的接口
