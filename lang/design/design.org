@@ -1,0 +1,2167 @@
+* todo
+
+*** rc1
+
+    - rc1 以實踐更世俗的編程
+
+    - 使用編譯到 js 的實現方式
+      在編譯的過程中考慮元編程能力
+      即
+      1. 語法本身 作爲數據 如何暴露於語言之內
+      2. 被編譯出來的函數 作爲數據 如何暴露於語言之內
+
+    - 在語言沒有被實現的前提下
+      嘗試用 rc1 的新語法實現 sequent0 中的核心部分
+      是爲 '自上而下的' 編程
+
+*** at1
+
+    - at1 爲語義新的需求
+      因此 是語法語義設計之 應用源泉
+
+*** hoare logic
+
+    - hoare logic 與類型系統靈感
+
+* keyword 之 返回值後置 <2016-11-16 Wed>
+
+  - x ::
+       keyword 用前綴表達式
+       之後我發現
+       我們語言設計的重要特點就是偏向 explicit
+       而我可以觀察到
+       目前的設計中 (: :t type) 就是典型的 implicit
+
+  - k ::
+       我想我們可以總結一下當前設計中的 implicit 之處
+       要知道 implicit 就是 語法優化
+       我們之後要看看這些優化是否必要
+
+  - x ::
+       首先需要考察的就是 (: :t type)
+       例如
+       #+begin_src scheme
+       (define nat
+         (data type
+           (: zero nat)
+           (: succ (-> nat nat))))
+
+       (define nat-induction
+         (lambda (-> [(: :p (-> nat type))
+                      zero :p @
+                      (-> [(: :k nat) :k :p @]
+                          [:k succ :p @])
+                      (: :x nat)]
+                     [:x :p @])
+           (-> [:q :q/z :q/s zero] :q/z)
+           (-> [:q :q/z :q/s :n succ]
+               [:n
+                :q :q/z :q/s :n nat-induction
+                :q/s @])))
+       #+end_src
+       如此看來
+       它出現在不同的地方意義是不同的
+       我想我們所說的 explicit 與 正規性
+       就是要儘量減少這種情況
+       即 減少語法關鍵詞對上下文的依賴
+
+  - k ::
+       如若換成
+       #+begin_src scheme
+       (define nat
+         (data type
+           zero nat
+           succ (-> nat nat)))
+       #+end_src
+       就可以說 data 把它 body 中的 list 當作 alist 來處理了
+
+  - x ::
+       這樣就算是解決了 這個語法關鍵詞 依賴上下文的問題
+       還有就是他本身的意義問題
+       我有了一個好想法
+       就是說
+       每個語法關鍵詞也是有類型的
+       [每次都去考慮類型]
+       之前想要區分 (: :t type) 與 {: :t type}
+       所想要區分的是
+       前者 在局部的副作用之外 返回一個值到棧中
+       後者 只有局部的副作用
+       我們應該用系統的方式來處理這種對差異的需求
+
+  - k ::
+       還有就是命名問題
+       或者說 lexicon 問題
+       比如
+       以 (: :x type) 記 之前之 (: :x type)
+       以 (:- :x type) 記 之前之 {: :x type}
+       我們要讓 lexicon 之間的形式關係
+       體現出 lexicon 之間的語義關係
+       這有些類似與 孤立語 黏着語
+
+  - x ::
+       我們可以製作一個表格如下
+       | 返回值到棧中 | 不返回值到棧中     | 對比語言學中的分類 |
+       |--------------+--------------------+--------------------|
+       | (: :t type)  | {: :t type}        | 特殊               |
+       |--------------+--------------------+--------------------|
+       | (: :t type)  | (:- :t type)       | 動詞變位           |
+       |--------------+--------------------+--------------------|
+       | (: :t type)  | (# (: :t type))    | 前綴黏着           |
+       |              | (hide (: :t type)) |                    |
+       |--------------+--------------------+--------------------|
+       | (: :t type)  | (: :t type) drop   | 後綴黏着           |
+
+  - k ::
+       我們應該想想自然語言中 爲什麼有這種需要
+       而程序語言中的這種設計 在類比中又意謂如何
+
+* 對比自然語言中的 '設計' <2016-11-18 Fri>
+
+  - x ::
+       自然語言之 分析 綜合 之分
+       看來主要是區分是否依賴語序
+
+  - k ::
+       我們來熟悉一些術語
+       | 語素     | morpheme       | 意義最小單位     |
+       | 詞       | word           | 可使用的最小單位 |
+       | 詞序     | word order     |                  |
+       | 自由語素 | free morpheme  | 可獨立使用       |
+       | 粘著語素 | bound morpheme | 不可獨立使用     |
+
+  - x ::
+       看來 曲折 指 詞根詞綴 詞綴詞綴 之間的區分不明
+       而導致詞形多不規則變化 (拉丁語)
+
+  - k ::
+       好像 語法範疇 這個概念就是我們需要的
+    1. 名詞
+       性 (gender)
+       數 (number)
+       格 (case)
+    2. 動詞
+       限定性 (finiteness)
+       時 (tense)
+       體 (aspect)
+       態 (voice)
+       式 (mood)
+       人稱 (person)
+    3. 形容詞 副詞
+       級 (degree)
+
+  - x ::
+       格 (case) 用於處理多名詞句子
+       我們可以想象在一個線性的 jojo 中
+       利用不同的 call 來區分對同一個詞的不同使用方式
+       拉丁語為例
+       | 主格 | nominative case | 主語               |
+       | 屬格 | genitive case   | 表示領屬關係的定語 |
+       | 與格 | dative case     | 間接賓語           |
+       | 賓格 | accusative case | 直接賓語           |
+       | 呼格 | vocative case   | 呼語               |
+       | 奪格 | ablative case   | 表示某些意義的狀語 |
+       不用變格來區分多名詞句子中不同名詞的使用方式
+       就需要用語序來區分之了
+
+  - k ::
+       一個句子 動詞之間是有時間上相互關聯
+       比如 完成體 (perfect aspect)
+       一個動詞本身也有進行中或已經完成之分
+       比如 完全體 (perfective aspect)
+       形式上記錄這些關係的就是語法
+       [屈折語用 動詞變位]
+       類似 名詞變格 處理多名詞句子
+       很多語言也有一種處理 多動詞句子 的獨特策略
+       即 限定性 (finiteness)
+       就是把動詞區分為 限定 和 非限定 兩種形式
+       | 限定動詞   | 句子(或分句)之 謂語     |
+       | 非限定動詞 | 句子(或分句)之 其他成分 |
+       由於一句 只有一謂語
+       所以一個簡單分句最多只有一個 限定動詞
+       [除非使用 並列連詞 (coordinator)
+       把多個 限定動詞 組成 並列謂語]
+
+  - x ::
+       一句一謂語 這個規則
+       看來也能體現在程序語言的語法設計之中
+       不論是 前綴中綴還是後綴
+       都只有一個函數作用於多個參數
+
+  - x ::
+       我還發現了程序語言設計中一個有趣的事實
+       程序語言需以無歧義的形式語法
+       描述如何完成(how)一段計算(一段變化)
+       而在形式語言之外
+       我們一定也能用自然語言描述這種計算
+       只不過所做的描述不足夠形式 而不易被機器處理
+
+  - k ::
+       這樣 在對比自然語言與程序語言之間的關係的時候
+       我們就可以總結一下
+       自然語言 是如何描述 如何進行一段計算的
+
+  - x ::
+       等等
+       在總結之前
+       我還發現了這篇文章的方法
+       首先 西語之語法學主要在於 名詞變格 動詞變位
+       再 總結這些語法現象的功能
+       然後 在漢語中尋找完成類似功能的(與之完全不同的)語法現象
+       我們可以試着構擬這些 '語法' 之產生
+
+* emergent grammar & grammaticalization
+
+  - x ::
+       emergent grammar 不想語言的語法是現設計完備的
+       而說 語言沿 grammaticalization 演化 而產生語法
+
+  - k ::
+       也就是說我們要找
+       自然語言的 grammaticalization 在程序語言中的類比
+
+  - x ::
+       grammar emerges through interaction among participants
+       who are constantly reusing and modifying prior utterances
+       to achieve current interactive goals
+
+  - k ::
+       比如
+       使用一個 sequent 法形式很多次 而把它定義爲新的 function
+       使用一種語法形式很多次 而把它做成 macro
+
+  - x ::
+       但是其實我們不能說 定義一個 macro 是 grammaticalization
+       因爲 定義 macro 與 定義 function 重在定義之命名過程
+       命名似用典
+
+* 一些新的 語法設計 與 語言實現 原則 <2016-11-19 Sat>
+
+  - x ::
+       我想出了一些新的語法設計原則
+       有三條
+       一
+       爲定義過的名做 派
+       比如 計算 與 類型檢查
+       分派兩個不同的函數體來作用
+       二
+       以 珠珠 爲函數語義之核心
+       用圓括號作爲直接數據之語法
+       三
+       要知道
+       不論是如何分派
+       不論是計算或類型檢查
+       最終都是對機器狀態的變化
+       而我們常常用棧來記錄這些狀態
+
+  - k ::
+       其中第三點尤爲重要
+       看似是常識 可是總是被忘記
+       下面就是要明確應該如何踐行這些新的原則
+
+  - x ::
+       既然機器的狀態纔是最重要的
+       我們就要設計彙編語言來分解 jojo 與 arrow-list 之計算 還有類型檢查
+       彙編語言本身是不經過類型檢查的
+
+  - k ::
+       但是我發現了一個問題
+       如果我們寫解釋器的話
+       有些機器的狀態是依賴宿主語言的
+
+  - x ::
+       這沒有關係
+       只要我們小心地明確這些依賴就行了
+
+* 以 珠珠 爲函數語義之核心 用圓括號作爲直接數據之語法
+
+  - x ::
+       我想這種設計對於目前的需求來說是夠用的
+       這樣我們就要用 (: :t type) drop 這種語法了
+
+  - k ::
+       我們可以把 key 區分爲兩種
+       一種是 top 如 define
+       一種是 lit 如 lambda -> : <
+
+  - x ::
+       我想又找到了一個新的原則
+       就是說 對於每個這樣的 詞 不論是 key 也好 還是 function 或 macro 也好
+       我們都應該嘗試給其以類型
+       畢竟它們被編譯或解釋的效果都是對機器之狀態的變化
+
+  - k ::
+       首先
+       這些語法關鍵詞的特點是
+       他們的參數不光是棧中的數據
+       還可能是圓括號中所包含的 lit
+
+  - x ::
+       我們看一些例子
+       (: :t type) 不能只在副作用之後返回 type 這個數據
+       而要 返回 bind
+       這就是之前所說的 信息不丟失
+       之所以需要這樣來避免信息丟失
+       是因爲 var 的 level
+
+  - k ::
+       我們來仔細分析一下
+       首先 var 是爲了 bind
+       bind 是爲了 unify
+       而 var 的 level
+       是爲了 (type-of jo)
+       不能直接返回 level-1 的數據
+       而要返回 bind 是因爲
+       之後 arrow 的 (type-of antecedent) 需要與它做 unify
+
+  - x ::
+       我們在這裏之所以需要新增一個 bind 數據類型
+       也許是因爲我們沒能設計好 type-check 的過程
+       這裏就回到了第三條原則
+       要知道 type-check 是對機器的狀態的變化而已
+
+  - k ::
+       幾遍如此 我們也很難拋棄 新增的這個 bind 數據類型
+       因爲想要避免 bind 作爲數據類型
+       唯一的辦法看來就是用帶有兩層數據的 data-stack
+       這看來是不合理的
+       爲了更好的實現 unify
+       我們可以在 data-stack 的接口上加一層 pointer
+       來改變數據的輸出方向等等
+       但是這些看來都有點複雜了
+
+  - x ::
+       也許 這種返回新數據類型的效果是需要的
+       比如 (: :t type) (< :a :x) 這些東西
+       我們隨時可能增加這類東西
+       這時就需要使用類似 oo 的效果了
+       需要使用消息傳遞的實現方式
+
+  - k ::
+       也就是說 在這個層次實現的數據類型 需要有自己的方法
+       這樣就避免了用 pattern 來 dispatch
+       回顧之前的 dispatch 表格
+       | jo      | data    | double data |
+       |---------+---------+-------------|
+       | compose | bs/deep | cover       |
+       | cut     |         | unify       |
+       所能接受的信息至少包括這些
+       其中 double data 使得 oo 中主次參數之分也有意義了
+
+  - x ::
+       就具體實現而言
+       我們還是需要 typed-racket
+       因爲即便是實現 oo 的 method
+       我們還是需要類型系統
+
+  - k ::
+       但是這就要求我們在 typed-racket 中自己實現一個 oo 機制
+
+  - x ::
+       這並不困難
+
+* 關於 oo 與 functional
+
+  - x ::
+       增減代碼的方式有別
+       導致
+       oo 中可以動態地新增新的數據類型
+       而 functional 中可以動態地生成新的函數
+
+* 語言標準
+
+  - x ::
+       we can design new way to add new things
+       but the way always must be limited in some way
+
+* 實用的實現 與 爲理論而做的原型實現
+
+  - x ::
+    1. 爲理論而實現原型需要使用實用的語言
+    2. 實用的語言的語法設計新需求來自爲理論而作的原型
+
+  - k ::
+       可否二者兼顧呢
+
+* >< 彙編
+
+  - x ::
+       用更底層的一層語言來描述 : 與 < 之實現細節
+       難點在於
+       這種低一層的語言如何融合到 sequent0 當前的實現方式中
+
+  - k ::
+       我想這並不重要
+       因爲
+       不論用什麼語言
+       我們總有能力把這種類似彙編語言的中間層在實現中表達出來
+
+  - x ::
+       那麼就具體的 : 與 < 而言
+       #+begin_src scheme
+       (: :data :type)
+       (:bind (level 1 :data) (level 0 :type))
+       (:return a new data which will mainly be treated as type)
+       (::)
+
+       (< :subtype :type)
+       (:bind (level 1 :data) (level 0 :type))
+       #+end_src
+
+  - k ::
+       我發現正如我們第一次嘗試爲每個名字區分 compute 與 type-check 兩種方法時
+       '類型安全' 這個概念在那個語言中是靈活可變的
+       這裏 類似 (: :data :type) 這種 具有返回值 且帶有副作用的表達式
+       也可以出現在 jojo 中
+
+  - x ::
+       之前的想法是
+       遇一名時 可能是爲了 compute 也可能是爲了 type-check
+       (: :data :type) 是一個數據
+       正如遇到別的數據時需要改變 ds 的狀態
+       遇到 (: :data :type) 時
+       之所以說它有副作用
+       是因爲在改變 ds 的狀態之外
+       它還會改變 bind 的狀態
+       gs 之於 bs
+       正如 rs 之於 ds
+       既然 這些都是 stack
+       那麼 給它們加類型 就是描述他們對 stack 的狀態之改變了
+
+  - k ::
+       看來 類型系統的核心想法 就是這種兩層計算
+       計算有兩層 兩層都是計算
+
+* >< homology 與 homtopy 的語言
+
+  - x ::
+       既然目的是實現 at1
+       而且又知道 對語法和語義的新需求都來源於 at
+       那麼就以新需求爲引導吧
+
+  - k ::
+       那麼我們努力嘗試表達 homology 與 homtopy 中所遇到的所有構造細節
+
+* 關於 oo
+
+  - 術語
+    | 消息 | 數據 |
+    | 方法 | 對象 |
+
+  - 一個數據可能有很多域
+    不同的域可能是爲了不同的方法所準備的
+    - 比如 lambda 的 type 域 爲 type-check 這個方法而準備
+      比如 lambda 的 data 域 爲 compute 這個方法而準備
+
+  - 定義每個數據時
+    也要定義它的一系列方法
+    一個數據的方法可以在之後定義
+    一個方法以這種數據類型爲主要參數
+    它可能有一些控制結構
+    並且查看某些域並向這些域中的數據發送消息
+    - 比如 lambda 的 compute 要遍歷其 data 域
+      並向其中數據[遞歸地]發送 compute 消息
+      比如 lmabda 的 type-check 要遍歷其 type 域
+      並向其中數據[遞歸地]發送 type-check 消息
+
+  - 方法的效果都是改變機器的狀態
+
+  - 注意 實現層 和 被實現層 兩層語言
+
+  - 被完全展開的語法 要能夠清晰簡單地描述如何定義數據
+
+  --------------------
+
+  - k ::
+       注意 jo 與 data 有別
+       如上所述 應該是 jo
+
+  - x ::
+       jo 與 data 有別但是又有重疊
+       可以依接口函數來區別類
+
+  - k ::
+       我們好像不需要 oo 中的繼承機制
+
+  - x ::
+       有時同一個方法可以作用於多種類型
+       繼承機制 可能就是爲此
+
+  - k ::
+       我們可以在使用 js 的同時
+       用 js 寫一個 runtime 來改變它
+       然後把 sexp 的簡單語法 編譯到這個 runtime 的特殊 js
+       可爲找錯而實現 查找可接受某組 message 的所有數據類型 等等
+
+  - x ::
+       還有很多問題
+    1. 傳遞消息的語法
+       後綴 或 中綴
+    2. 數據 消息 函數 之分
+
+  - k ::
+       數據構造子 就是 oo 的 class
+       與 pattern-matching 不同
+       這裏的每個數據之域都要有名
+       如果說 函數都是消息
+       那麼 數據構造子 作爲函數就是特殊的消息
+       因爲沒有數據來接受這個消息
+       [或者說接受這個消息的數據被隱藏了起來]
+
+  - x ::
+       如若如此
+       如果我們還使用後綴表達式的話
+       棧處理函數也是特殊的消息
+       難點是消息是可以帶有參數的
+       這裏是否要求消息的所有參數都有名
+       如若都有名則看似純粹的後綴表達式也可行
+       不過語法上這可能過於極端了
+
+  - k ::
+       不妨區分數據域之求取消息 object.field
+       與帶有參數的消息 object (message arg ...)
+       不帶參數的消息 不做特殊處理 object (message)
+
+  - k ::
+       如此看來
+       一個帶有局部變元支持的 類 forth 語言 就可以勝任了
+
+  - x ::
+       既然構造子的每個域都要有名稱
+       那麼 構造子在被當作函數而作用時
+       就需要 optional argument
+       object.field 的語法也不對
+       因爲 object 是棧頂元素而已
+       並不出現在文本中
+
+  - k ::
+       我們可以假設順序
+       #+begin_src scheme
+       (data var id level)
+       #+end_src
+       這樣 var 就可以直接作用於棧中的兩個元素了
+
+  - x ::
+       我發現 object (message arg ...)
+       應該寫爲 (message arg ...)
+       因爲 object 是棧頂的數據 它不一定出現在文本中
+       那麼 (message arg ...) 就是默認以棧頂元素爲主參數的
+       或者我們可以用 {message arg ...}
+       而把 (message arg ...) 留給 (define ...) 之類的東西
+
+  - k ::
+       構造數據也可想象用
+       new (constructor-as-message arg ...)
+       先置 new 於棧頂
+
+  - x ::
+       我想我們還是簡單地利用順序吧
+       再看消息傳遞的語法
+       (message arg ...) 中的 arg 都是一些直接數據或變元
+       或者說 arg ... 計算出的結果返回到一個臨時棧中
+
+  - k ::
+       變元機制就用 #name 與 :name 的對子吧
+
+  - x ::
+       我想我們已經可以在實現之前試用我們的語法來實現 sequent0 了
+
+* >< 總結 自然語言對算法的描述
+
+* 語法試用
+
+  - x ::
+       比如
+       #+begin_src scheme
+       (+ var id level)
+       (~ var (compose)
+          ds (push bs (deep :self)))
+       (~ var (unify :data)
+          ...)
+       (* swap
+          #1 #2
+          :1 :2)
+       ;; when you are defining a method
+       ;; all the arguments in the returned new data-stack are named
+
+       (define-data var id level)
+       (define-method var (compose)
+         ds (push bs (deep :self)))
+       (define-method var (unify :data)
+         ...)
+       (define-function swap
+         #1 #2
+         :1 :2)
+       #+end_src
+
+  - k ::
+       下面我們還需要明白如何實現 if 或者單純用 cond
+       我們從之間的 rc1 找靈感
+
+  - x ::
+       我們可以有 'if' as message
+       (if [] [])
+       或者 還有 'cond' as message
+       (cond [] []
+             ...)
+
+  - k ::
+       如此的話 if 是 true 和 false 的 message
+       但是 cond 是誰的 message 呢
+
+  - x ::
+       所以不能
+       (cond [] []
+             ...)
+       而只能
+       [ [] []
+         ...
+       ] (cond)
+       這樣 cond 就是 list 這個數據的 message
+
+  - k ::
+       還有多參數的 combinator
+       比如 linrec binrec
+       應該如何處理
+
+  - x ::
+       我知道了
+       只要不要把 cond 實現爲 list 的 message
+       而實現爲一般的對棧中的 list 做 processing 的函數就好了
+       不是
+       [ [] []
+         ...
+       ] (cond)
+       而是
+       [ [] []
+         ...
+       ] cond
+       或
+       [ {} {}
+         ...
+       ] cond
+       同樣 linrec binrec ifte 也是如此
+
+  - k ::
+       看起來是不錯
+       既然這裏用到了很多 list
+       那麼 這個語言應該如何對待 list 呢
+
+  - x ::
+       既然 list 中可以包含各種類型的數據
+       那麼我們就把 list 處理函數都實現爲一般的 非消息型函數
+       並且 我們甚至可以把 object 這個數據結構如何用 list 實現給暴露出來
+
+  - k ::
+       literal list 的語法是什麼
+
+  - x ::
+       literal list of data 是 []
+       literal list of jojo 是 {}
+
+  - k ::
+       我們還要區分 定義消息的語法 與 定義一般函數的語法
+
+  - x ::
+       沒錯
+       如果說 object 要暴露出來
+       那麼 object 機制可能就能在語言內部實現
+       但是我想還是不要暴露的好
+       因爲這樣我們就有更多優化語言的機會
+
+  - k ::
+
+* 再 語法試用
+
+*** data & jo
+
+    #+begin_src scheme
+    ;; data
+    (+ var                id   level)
+    (+ cons               name {data ...})
+    (+ arrow              jojo jojo)
+    (+ lambda             type body)
+    (+ bind               data sub-data)
+    (+ trunk              type (vector trunky) index)
+
+    ;; trunky
+    (+ trunky-todo        body {data ...})
+    (+ trunky-done        {data ...})
+
+    ;; can be viewed as type
+    ;; jojo               {jo ...}
+    ;; body               {arrow ...}
+
+    ;; vector thus unique
+    ;; ls (level binding-list) in id for commit
+    (+ id                 (vector (name . counter) ls))
+
+    ;; jo
+    (+ call               name)
+    (+ apply)
+    (+ ex-bind            jo   jojo)
+    (+ im-bind            jo   jojo)
+    #+end_src
+
+*** 妙
+
+    - x ::
+         我們現在可以定義
+         數據構造子
+         消息
+         函數
+         還需要定義變元
+
+    - k ::
+         作爲一個動態語言
+         我們只要試用一個 box
+         使得裏面可以保存任何 data 就好了
+
+    - x ::
+         那麼相關的語法如何設計呢
+         必須引入新的語法關鍵詞了
+         比如
+         #+begin_src scheme
+         (= ns [])
+         #+end_src
+         就像之前設計 類似 forth 的全局變元一樣
+         這裏又有兩種選擇了
+         即 比如當 ns 的名字出現時
+         默認的處理方式是給出 box 本身
+         還是 box 中的值
+
+    -----------------
+
+    - x ::
+         我們竟然迂迴曲折地選擇了這麼久
+         也選擇不出 '正確的' 實現方式
+         遠方的朋友的友好的信件看起來都像是催促了
+
+    - k ::
+         可是說我們是在這種思考中積累經驗嗎
+
+    - x ::
+         那看似是在爲自己的行爲開脫
+
+    - k ::
+         很難找到 '正確' 的實現方法
+         所謂 '正確' 本身之存在性也值得懷疑
+         如何找尋 之問本身看來也失意
+         正誤爲一問
+         失意爲一問
+         失意之問 之意又生問
+
+    - x ::
+         啊
+         如此如此
+         鬧怪欲停問而行
+         需循方生方死之法
+
+    - k ::
+         而行者循者看來也失悟
+         文字比之行動之弱
+         由此得以觀知
+
+    - x ::
+         而文之爲行
+         亦行也
+         何高下強弱之分
+         古之真人
+         化其爲醇酒而樂享之
+
+*** 關於全局變元
+
+    - x ::
+         關於全局變元
+         必須從語法上區別
+         得其地址
+         或取其地址下的值
+         這兩種語義
+         #+begin_src scheme
+         (^ <ns> [])
+         ns
+         <ns>
+         #+end_src
+
+    - k ::
+         或者我們可以學習 clojure erlang 等等其他語言對全局變元之限制
+         以獲得更好的函數式語義
+
+*** 實現
+
+    - x ::
+         我們就使用上面所定下的語法吧
+         我們一邊用假想的語言寫 sequent0
+         一邊想辦法實現這個語言
+         總之就是一個簡單那的解釋器
+         編譯到 js 若是不行
+         就用 js 或 scheme 寫一個簡單那的解釋器
+
+    - k ::
+         scheme 用得太多
+         我們這次用 js 吧
+
+    - x ::
+         但是我們可能脫離不了 scheme
+         我暫且希望我們的語言實現起來能極爲簡單
+         這樣所使用的語言就不重要了
+         但是 但是
+         如果要自己處理命名空間
+         就難以做到極端簡單
+
+    - k ::
+         type +
+         method ~
+         function *
+         global-var ^
+         這就是我們要的全部了
+         而且
+         其實命名空間也可以先不用 hash-table 處理
+         直接用一個 name-list
+
+* 再試
+
+*** data & jo
+
+    #+begin_src scheme
+    ;; data
+    (+ var                id   level)
+    (+ cons               name data-list)
+    (+ arrow              antecedent succedent)
+    (+ lambda             type body)
+    (+ bind               data sub-data)
+    (+ trunk              type trunky index)
+
+    ;; trunky
+    (+ trunky-todo        body data-list-ref)
+    (+ trunky-done        data-list-ref)
+
+    ;; can be viewed as type
+    ;; jojo               {jo ...}
+    ;; body               {arrow ...}
+
+    ;; vector thus unique
+    ;; ls (level binding-list) in id for commit
+    (+ id                 (vector (name . counter) ls) ref)
+
+    ;; jo
+    (+ call               name)
+    (+ apply)
+    (+ ex-bind            jo   jojo)
+    (+ im-bind            jo   jojo)
+    #+end_src
+
+*** stack
+
+    #+begin_src scheme
+    (^ <ns> [])
+    (^ <ds> [])
+    (^ <bs> [])
+    (^ <rs> [])
+    (^ <gs> [])
+
+    (* push
+       )
+    (* push-list
+       )
+    (* pop
+       )
+    (* pop-list
+       )
+    #+end_src
+
+*** note
+
+    - x ::
+         我要用 rc1 來實現 sequent0
+         同時也要用 rc1 來實現 at1
+
+    - k ::
+         我們可以先試試看 rc1 實現 sequent0 的核心部分時的感受
+         這樣就是強迫的自上而下的編程了
+         因爲不光其中所調用的底層函數根本還沒有實現
+         甚至這個語言本身也沒有實現
+
+    - x ::
+         就這麼辦
+         但是還有一個問題
+         我之前說
+         [] 爲 list
+         {} 爲 jojo
+         其實是錯誤的
+         因爲 rc1 里根本就沒有 jojo
+         rc1 的 meta-programming 應該如何設計還不知道
+
+    - k ::
+         我想被基本的符號模式所區分的 lex
+         都應該在 meta-programming 有自己的數據類型存在
+         這樣 meta-programming 本身就更結構化
+
+    - x ::
+         基本的 符號模式 有
+
+         global-constructor
+         .field
+         (message . body)
+
+         global-function
+
+         <global-data-box>
+         global-data
+
+         :local-name
+         #local-name
+
+         [element ...]
+
+         頂層的 + ~ * ^ 除外
+         它們之後甚至可以被處理爲縮進語法
+         而不用 sexp
+
+    - k ::
+         注意 這裏只有下面三個是有歧義的
+         global-constructor
+         global-function
+         global-data
+         其他都是在語法上就能夠區分出來的
+
+    - x ::
+         在元編程時
+         如果我們使用編譯語義
+         那麼我們就可能在編譯時 確定這三種同樣模式的 symbol 之具體類型
+         這樣我們就能在元編程是完全區分他們了
+
+    - k ::
+         還有一個問題是
+         constructor 所構造出來的東西應該如何處理
+
+    - x ::
+         也許我們應該讓這些東西完全不透明
+         儘管開始的時候我們處理它們的方式可能很簡單
+
+    - k ::
+         沒錯
+         我想我們使用編譯到 js 的實現方式
+         在編譯的過程中考慮元編程能力
+
+* pre-jo 與 uni-copy <2016-11-23 Wed>
+
+*** 引
+
+    - x ::
+         作爲 jo 的 var
+         和 data 的 var 可以不一樣
+         jo 的 var 中增加一層查找 找到 uni-id 的 作爲 data 的 var
+         這樣就能避免 unique-copy 這個運行時的操作
+         同時避免 pre-jo 這個中間數據結構
+         直接把源代碼編譯到 jo
+         這樣編譯語義本身也就明確了
+
+    - k ::
+         我們就先從改 sequent0 現在的 scheme 代碼開始
+         如此一來整個代碼的結構都大大簡化了
+         並且要知道
+         rc1 中的 oo 機制 可能算是爲 at1 設計的
+         因爲 at1 語法不定 而經常需要添加新的數據類型
+         [甚至還要能動態添加之]
+         而就 sequent0 而言 scheme 就足夠了
+
+    - x ::
+         沒錯
+         最快的能觀察出新技巧的效果的地方
+         就是現在 sequent0 的 scheme 代碼了
+
+    -----------
+
+    - x ::
+         我發現 作爲 jo 的 var 如果與 作爲 data 的不同
+         那麼 可能嵌套別的 jo 的 arrow 與 lambda
+         也有別於其作爲 data 的存在
+
+    - k ::
+         看似這裏在返回 arrow 和 lambda 的時候
+         還是需要 unique-copy
+         [因爲它們與 name 下所綁定的 lambda 不同]
+         但是其實
+         這裏還是可以模仿 對 name 下所綁定的 lambda 的處理
+         也就是說每個需要被作用的東西
+         [因爲被作用 而需要 unify 而需要做 binding]
+         都可以如此處理
+
+    - x ::
+         這樣只要讓每個 lambda 中帶有一個 list
+         來記錄其中出現的 var name
+         還有一個 list 來記錄 這些 var name 中已知值者
+         當需要返回一個 lambda 的
+         用第一個 list 對照當前 返回點 中的 var name list
+         以生成第二個 list
+
+    - k ::
+         這樣做爲 data 的 lambda 與作爲 jo 的 lambda
+         就是沒有區別的
+         jo 中的 lambda 第二個 list 是空的
+         只有返回成 data 的時候才得以確定
+
+    - x ::
+         但是我們應該把這些新增的元數據放在哪裏呢
+         有三個地方可以放
+         lambda arrow 或者 jojo
+
+    - k ::
+         我覺得我們把新增的兩個 list 域放在 arrow 就好了
+         因爲 我們可以完全放棄單獨出現的 jojo
+         或者直接把這些 jojo 作爲 macro 處理
+
+*** 詳細重述 var 與 uni-var 這個新的技巧 <2016-11-30 Wed>
+
+    - x ::
+         我們這次嘗試將筆記如此如此
+         使得之後我們一旦瀏覽筆記
+         就能回想其如今實現中的要點
+
+    - k ::
+         首先是因爲我們使用了 bs 來尋找 var 的值
+         var 有 level
+         因此 level 1 有值 而 level 0 無值的 var
+         作爲 level 0 而返回的時候 就還是不定的
+         這導致古典的處理方式可能不能用
+
+    - x ::
+         然後我們 愚蠢地 '發明' 了
+         用 unique-copy 來保證每個 arrow 中變元之 unique
+         之後又把它改進成了現在的 分 var 與 uni-var
+         而在 rs 中留一個域保存 {(var . uni-var) ...}
+         我們難道不應該先看古典的處理方式
+         然後再試圖改進它麼
+
+    --------------------
+
+    - x ::
+         具體到這個新技巧之運作
+         先說需要作用一個 arrow 的時候
+         應該如何
+         [要知道 '作用一個 arrow'
+          並沒有被一個函數處理完畢
+          而是利用了 scheme 的控制流
+          作用本身是通過 push rs 與 調用 相應的 next 完成的]
+         首先
+         '作用一個 arrow' 就是 push rs
+         在 push rs 的時候需要生成當前的 unirc [bind-record]
+         此時 arrow 中有 occur-list 與 bind-record
+         [occur-list 與 bind-record 是不交的
+          它們的並構成了這個 arrow 中的所有 var
+          其中 bind-record 是有 uni-var 的 var
+          而 occur-list 是還沒有 uni-var 的 var]
+         這個 bind-record 就是 unirc 的一部分
+         而 occur-list 將被用以 生成新的 uni-var
+         這樣這個 arrow 中所有的 var 就都有 uni-var 對應了
+         其次
+         當遇到 :name 或 #name 的時候
+         先從當前的 rsp 的 unirc 中找到 其所對應的 uni-var
+         然後再用 uni-var 在 bs 中找對應的 data
+         最後
+         當要返回一個 arrow 或 lambda 的時候
+         [也就是 compose/arrow 或 compose/lambda]
+         遇到的是 {'arrow local jojo jojo}
+         返回的是 {'arrow new-local jojo jojo}
+         其中 new-local 是
+         移動 local 的 occur-list 中
+         出現在 當前 rsp 的 unirc 中的 var
+         到 bind-record 中
+         而得到的
+         注意
+         這個 arrow 可能已經有 非空的 bind-record 了
+         如果 之前返回這個 arrow 的時候
+         已經返回了 某 var 的 uni-var 到 bind-record 中了
+         而 這次 unirc 中還有這個 var
+         因爲此時 occur-list 中已經沒有了這個 var
+         所以這個 var 就不會影響這次返回
+         這樣 就達到了 lexical-scope 的效果
+
+    - k ::
+         我發現我們的 arrow 和 lambda 沒有
+         對局部變元的明顯聲明
+
+    - x ::
+         其實有判別約束變元和自由變元的方式
+         比如
+         (-> [:v1] [:v1 :v2])
+         :v1 在 antecedent 中出現
+         所以是一個約束變元
+         但是
+         其實我們並沒有 lexical-scope
+         比如 我們允許如下的 arrow
+         #+begin_src scheme
+         (-> [:v1 :v2]
+             [(-> [:v1]
+                  [:v1 :v2])])
+         #+end_src
+         此時 :v1 在內層的 antecedent 中的出現
+         但是它並沒有 block 外層 :v1
+
+    - k ::
+         這是不合理的
+         我們必須要實現 lexical-scope
+         因爲
+         如果所返回的 arrow 中的 antecedent 中的變元
+         可以在返回 arrow 時被特化
+         那麼 這個 arrow 作用的條件就更狹窄了
+         這是我們的類型檢查器所不能處理的
+
+    - x ::
+         的確如此
+         而且我們也不需要這種性狀
+         如此看來
+         當前對 arrow 結構的擴展可能是不夠的
+
+    - k ::
+         沒錯
+         我們還需要區分 約束變元 與 自由變元
+
+    - x ::
+         可否從語法上區分之
+         #+begin_src scheme
+         (-> [:v1 :v2]
+             [(-> [:v1]
+                  [:v1 ::v2])])
+         #+end_src
+         比如自由變元用 ::name 而約束變元用 :name
+
+    - k ::
+         occur-list 其實是爲約束變元而做的
+         而 bind-record 是爲自由變元而做的
+         [注意
+          約束與自由與否是相對某個 arrow 而言的]
+         語法上的直接明顯區分是不錯的解決方式
+         同時
+         還要考慮的一個問題是
+         var 的 level
+
+*** var 的 level
+
+    - x ::
+         其實我們現在只有兩個 level
+         即 level-0 與 level-1
+         當 :name 在函數體的 arrow 中出現
+         都是 level-0
+         之前需要 level-1 的地方是
+         #+begin_src scheme
+         (: :var type)
+         #+end_src
+         如上則 :var 之出現與其在函數體中出現相同
+         但是
+         現在是語法是有明顯區別的
+         #+begin_src scheme
+         type %:var
+         #+end_src
+         這樣就不用考慮遇到 :var 時的 default-level 了
+
+    - k ::
+         對 :var level-0 的綁定
+         全是用 unify 與 cover 完成的
+         [我們並沒有 綁定 level-0 的其他方式]
+         而對 :var level-1 的綁定
+         是用 %:var 來完成的
+
+* 之前所設計的縮寫 與 兩種風格的命名空間
+
+  - k ::
+       我發現
+       我們對於 (-> [] nat) 等價與 nat 的處理還有欠之處
+       之前做這種等價
+       是因爲要求每當從 name 下找到一個 lambda 就自動 apply 它
+       而不返回以 -> 爲類型的值
+       還記得之前的 dispatch 嗎
+       不是兩種而是四種
+       比如
+       兩種是
+       由 name 找到 lambda 作爲計算
+       由 name 找到 lambda 作爲類型
+       另兩種是
+       lambda 本身出現在 jojo 中 作爲計算
+       lambda 本身出現在 jojo 中 作爲類型
+
+  - x ::
+       我們之所以需要這種約定的等價
+       是因爲我們需要以多種方式處理名字
+       把名字當成是 box
+       已經有當遇到 box 名字時
+       已經有 返回 box 地址
+       或者 返回 box 內的值之分了
+       當考慮 lambda 時
+       就是新增了一種可能
+       即 返回數據之後再 apply
+       又因爲
+       (-> [] nat) apply == nat
+       所以我們有這種約定
+       我們爲 curry 所設計的語法糖
+       其實與 scheme 相同
+       是利用編綴來把
+       (... arg fun)
+       化爲
+       ... arg fun apply
+       或
+       ... arg fun n n-apply
+
+  - k ::
+       同樣
+       以 (-> [nat nat] nat) 爲 (-> [nat nat] [nat]) 之縮寫
+       也會遇到類似的問題
+
+  - x ::
+       看來我們應該完全避免這種無關緊要的縮寫
+       但是如何處理對 box 的多種處理呢
+       這裏可以觀察到 scheme 與 common-lisp 命名所用語法詞之原理
+       #+begin_src scheme
+       ;; scheme
+       (define add
+         (lambda (-> [nat nat] [nat])
+           (-> [:m zero] [:m])
+           (-> [:m :n succ] [:m :n add succ])))
+
+       ;; common-lisp
+       (defun add (-> [nat nat] [nat])
+         (-> [:m zero] [:m])
+         (-> [:m :n succ] [:m :n add succ]))
+       #+end_src
+       在 scheme 中編綴表達式 (fun arg ...) 本身就是 apply
+       所以 box 取值爲 lambda
+       而 lambda 又出現在 sexp 的 head 位置
+       那麼它就被 apply 了
+       [common-lisp 區分兩個明明空間
+       可能也是受到這種有區別的 defun defvar 的影響]
+       但是我們的純後綴表達式語言 沒有這種編綴
+       所以所有的數據都應該以 -> 爲類型
+
+  - k ::
+       由此看來我們也需要區分 defun defvar 不是嗎
+
+  - x ::
+       既然每次遇到名字的時候我們都要取值然後 apply
+       那麼我們就可以使用 scheme 的關鍵詞風格
+       只要讓每個被定義的值 比如 lambda jojo string 等等
+       可以接受 apply 這個 message 就可以了
+
+  ------------
+
+  - x ::
+       現在我們所定義的東西非常侷限
+       就只有 function 和 constructor 而已
+       只要讓這兩個東西能夠接受 apply 這個 message 就可以了
+
+  - k ::
+       如此而言
+       當前的 通過區分不同的 meaning 來做 dispatch 是不對的
+       正確的方式是
+       保存在 name 下的都是數據
+       每個可以保存在 name 中的數據
+       都可以接受 apply 這個 message
+
+  - x ::
+       返回一個 lambda 與 apply 一個 lambda 不同
+       但是
+       返回一個 string 與 apply 一個 string 看來是相同的
+       所以我們還是按照當前的處理方式吧
+
+* 遞歸調用 與 遞歸函數的類型檢查
+
+  - x ::
+       這個問題也包括相互遞歸調的函數
+       以及他們的類型檢查
+
+  - k ::
+       當前語言的解釋性還是很強
+       畢竟語言是利用 macro 而嵌入在 scheme 中的
+
+  - x ::
+       那麼我們就先不處相互遞歸函數
+       以保持簡單的解釋語義
+
+  - k ::
+       其實 爲了處理遞歸函數 也沒有必要給 compile 相關的函數增加參數
+       只要在類型檢查之前先把編譯好的 meaning push 到 ns 中就行
+
+  -----------
+
+  - x ::
+       我想當前對 def 的使用是很沒有意義的
+       #+begin_src scheme
+       (def nat
+         (data (-> [] [type])
+           zero (-> [] [nat])
+           succ (-> [nat] [nat])))
+
+       (def add
+         (lambda (-> [nat nat] [nat])
+           (-> [:m zero] [:m])
+           (-> [:m :n succ] [:m :n add succ])))
+       #+end_src
+       完全可以寫成是
+       #+begin_src scheme
+       (data nat (-> [] [type])
+         zero (-> [] [nat])
+         succ (-> [nat] [nat]))
+
+       (lambda add (-> [nat nat] [nat])
+         (-> [:m zero] [:m])
+         (-> [:m :n succ] [:m :n add succ]))
+       #+end_src
+       甚至
+       #+begin_src scheme
+       (+ nat (-> [] [type])
+          zero (-> [] [nat])
+          succ (-> [nat] [nat]))
+
+       (~ add (-> [nat nat] [nat])
+          (-> [:m zero] [:m])
+          (-> [:m :n succ] [:m :n add succ]))
+       #+end_src
+
+  - k ::
+       之所以不這樣做
+       而使用類似 scheme 的 def
+       是因爲
+       我們要求之後的可擴展性
+
+  - x ::
+       但是這種可擴展性可能是虛的
+       因爲 雖然 (lambda ...) 可以被當作一個數據返回找棧中
+       但是 (data ...) 或者 (type ...) 並不可以
+       而且 後二者幾乎總是遞歸的
+
+  - k ::
+       還有一個處理方法是
+       我們讓 (data ...) 也能作爲數據返回到棧中
+       並且增加標記語法來處理無名遞歸
+
+  - x ::
+       如若如此
+       最好能夠利用返回棧 來處理代表遞歸的 標記語法關鍵詞
+       並且完全禁止有名的遞歸
+       甚至可以用標記語法處理相互遞歸
+
+  - k ::
+       用標記語法處理相互遞歸 可能太過極端了
+       可以限制成
+       非相互遞歸只能無名
+       而 相互遞歸只能有名
+
+  - x ::
+       或者不做任何限制
+       只是爲遞歸調用增加標記語法
+       標記語法能夠 利用 <> <1> <2> 來處理嵌套的 (lambda ...)
+       或 (data ...)
+
+  ------------
+
+  - x ::
+       但是添加這種性狀之後
+       編譯過程本身就變複雜了
+
+  - k ::
+       可以這樣說
+       我們知道這種潛在的處理方式之後
+       就知道要使用 def 而不用 ~ + 了
+       我們還是先實現最簡單的編譯
+
+* 喪我
+
+  - x ::
+       我是非我的堆砌而已
+
+  - k ::
+       何以見得
+
+  - x ::
+       我是 我的 我們 我說 我想
+       只要你不執着得堆砌這些原本非我之物
+       我便瓦解
+       誠實地承認這些東西原本非我
+       我便消失
+
+  - k ::
+       我说有可能 而你说 教我怎样做
+       我已经教你了 但是你的意愿也许极为表面
+       只是描述 分析 定义 就满足你了
+       你怀着这些描述 分析 定义 从中架构了一个构想并说
+       那么 我要怎么实现那个构想呢
+
+* no syntax keyword for ex-bind
+
+*** 引
+
+    - x ::
+         假使在這裏我們不用前綴 keyword
+         而緊切 stack 語義
+         那麼應該如何設計 binding 的語法呢
+
+    - k ::
+         我們可以回到之前的 #name 或 #:name
+
+    - x ::
+         我都忘記了我們當初爲何要背離這種語義
+         在各種實現方式中遊蕩
+         最終發現自己在原地轉圈
+         正如找尋友誼之手
+         正如找尋安寧之境
+         找到一種生活的原則也是無謂
+         因爲轉身我又會拋棄它
+
+    - k ::
+         我可以設想如此
+         區分 >:name 與 #:name
+         二者也可以記 '類型'
+         前者爲 (-> [data] [])
+         後者爲 (-> [data] [(# :name data)])
+
+    - x ::
+         啊 後者正如把 #:name 當作一個構造子
+
+    - k ::
+         看來是如此
+
+    - x ::
+         我們應該如何聲明與副作用有關的類型
+
+*** 不論如何 計算機之計算都是對機器狀態之改變
+
+    - k ::
+         我想這時就是使用我們之前所提出來的原則的時候了
+         即 不論如何 計算機之計算都是對機器狀態之改變
+
+    - x ::
+         沒錯 計算機之計算都是對機器狀態之改變
+         我們寫的函數將要[在適當的條件下]改變機器的狀態
+         我們爲函數加的類型就是要大略記錄這些狀態之改變
+         而函數式編程的特點就是 狀態之改變都是 '可逆'
+         所謂 '可逆' 並非是說函數是可逆函數
+         而是要試着給所謂帶有 '副作用' 的函數加類型才能看出
+         進行 input 的函數 比如類型記爲 (-> [A] [B (output)])
+         不論與什麼函數複合
+         其 succedent 中的 (output) 都不能被消除
+
+    - k ::
+         啊 這樣就完全錯了不是嗎
+         因爲 (-> [...] [...]) 只是用來記錄棧中的變化之大略
+         而不能用來記錄輸入輸出相關的機器變化
+         但是說 '副作用' 是不可逆的 可能也對
+         因爲副作用可能會改變 '機器外部' 的狀態
+         當然 這裏的 內部外部 也是人爲界定的
+
+    - x ::
+         如此一來這種 (-> [...] [...]) 記法 就有了普世性
+         只要是能夠相互消的 狀態變化 都可以如此來記錄
+         對我的語言來說是副作用的東西
+         對 system shell 的管道來說可能是可以被 (-> [...] [...]) 記法 記錄的
+
+    - k ::
+         這是不是可以說成是 輸入輸出的相對性
+
+    - x ::
+         如若如此
+         我們就知道帶有 IO 的函數
+         雖然最然在外層也可能被處理爲 antecedent 與 succedent
+         但是在我們的語言之內是沒法處理它們的
+         只能另行標記 而不用 (-> [...] [...]) 語法
+
+*** 類型系統之向上抽象
+
+    - k ::
+         上面提到的普世性值得考察
+         能想到反例嗎
+
+    - x ::
+         邏輯式編程可能是反例之一
+         當要給邏輯式語言設計類型系統的時候
+         用來描述關係之大概的 就不是箭頭所代表的有向變化
+         而是一個多邊形的邊界了
+         [正如之前所設想的爲 代數拓撲 所設計的語言一樣]
+         但是也許可以這樣敘述普世性
+         比如 hoare logic 描述底層帶有副作用的函數的類型
+         也就是說 類型系統 總是可以向上抽象
+         有時 當在 所使用的類型系統中描述某些 變化之大概
+         而太過瑣碎繁複時
+         可能就需要 把類型系統抽象到更高的層次
+         但是 可能還沒有語言有這種能力
+
+    - k ::
+         我想這里還有很多需要學習的地方
+         尤其是 hoare logic
+         我想它能給我們的語法和語義設計帶來新的靈感
+
+    - x ::
+         沒錯 我們把這個話題留做下次討論吧
+
+*** 副作用之 undo
+
+    - x ::
+         當考慮 用一般的後綴表達式來做 bind 時
+         區分了兩種語法
+         #+begin_src scheme
+         >:name (-> [data] [])
+         #:name (-> [data] [(# :name data)])
+         #+end_src
+         二者都應該是帶有 binding 這個副作用的
+         即 他們會影響 bs
+         但是 這些影響又可能被 undo 掉
+         那麼 有可能在這裏利用 bs 的類型系統 來獲得安全性嗎
+
+    - k ::
+         函數的類型聲明
+         即 對 ds 之變化的大略描述
+         之所以有用
+         是因爲 ds 的變化可能非常複雜
+         因而需要大略描述
+         但是 這裏 bs 的變化很簡單
+         所以可能根本就不需要這種大略描述
+
+*** >:name == #:name drop
+
+    - k ::
+         啊 我們根本就不需要 >:name
+         只要 #:name drop 就好了
+         #+begin_src scheme
+         >:name (-> [data] [])
+         #:name (-> [data] [(# :name data)])
+         #:name drop (-> [data] [])
+         #+end_src
+
+*** hoare-logic
+
+    - x ::
+         我們在日本就發現
+         我們的 sequent 語言只是 hoare-logic 的特例
+
+    - k ::
+         沒錯
+         sequent 的特別指出在於
+         所有的狀態都是用棧來描述的
+         而 hoare-logic 則更底層
+
+    - x ::
+         即便是對 #:name 來說
+         他的類型 (-> [data] [(# :name data)])
+         也是用棧中元素的變化來表達的
+
+*** 實現中需要做的變化
+
+    - x ::
+         首先
+         語法上需要特殊處理形如 #:name 的 symbol
+         正如爲了 var 而特殊處理 :name
+         等等
+
+*** 爲何不後綴處理 ->
+
+    - x ::
+         既然我們用後綴表達式來處理 :
+         那麼爲什麼不用後綴表達式來處理 ->
+         #+begin_src scheme
+         (def nat-induction
+           (lambda (-> [(-> [nat] [type]) #:p
+                        zero :p @
+                        (-> [nat #:k :k :p @]
+                            [:k succ :p @])
+                        nat #:x]
+                       [:x :p @])
+             (-> [:p :p/z :p/s zero] [:p/z])
+             (-> [:p :p/z :p/s :n succ]
+                 [:n
+                  :p :p/z :p/s :n nat-induction
+                  :p/s @])))
+
+         (def nat-induction
+
+           lambda
+
+           [[nat] [type] -> #:p
+            zero :p @
+            [nat #:k :k :p @]
+            [:k succ :p @] ->
+            nat #:x]
+           [:x :p @] ->
+
+           [:p :p/z :p/s zero]
+           [:p/z] ->
+
+           [:p :p/z :p/s :n succ]
+           [:n
+            :p :p/z :p/s :n nat-induction
+            :p/s @] ->)
+         #+end_src
+
+    - k ::
+         既然我們不使用縮略語法了
+         而又要以 只有需要的時候才使用編綴爲原則的話
+         那麼 就真的沒有必要
+
+    - x ::
+         #+begin_src scheme
+         (def nat-induction
+           [[nat] [type] -> #:p
+            zero :p @
+            [nat #:k :k :p @]
+            [:k succ :p @] ->
+            nat #:x]
+           [:x :p @] ->
+           [:p :p/z :p/s zero]
+           [:p/z] ->
+           [:p :p/z :p/s :n succ]
+           [:n
+            :p :p/z :p/s :n nat-induction
+            :p/s @] ->)
+
+         ;; 省略 -> 而依據雙數斷句
+         (def nat-induction
+           [[nat] [type] -> #:p
+            zero :p @
+            [nat #:k :k :p @]
+            [:k succ :p @] ->
+            nat #:x]
+           [:x :p @]
+
+           [:p :p/z :p/s zero]
+           [:p/z]
+
+           [:p :p/z :p/s :n succ]
+           [:n
+            :p :p/z :p/s :n nat-induction
+            :p/s @])
+
+         (def nat-induction
+           [[nat] [type] -> #:p
+            zero :p @
+            [nat #:k :k :p @]
+            [:k succ :p @] ->
+            nat #:x]
+           [:x :p @]
+           [:p :p/z :p/s zero]
+           [:p/z]
+           [:p :p/z :p/s :n succ]
+           [:n
+            :p :p/z :p/s :n nat-induction
+            :p/s @])
+
+         ;; 同時以這種方式處理 lambda
+         (def nat-induction
+           [[[nat] [type] -> #:p
+             zero :p @
+             [nat #:k :k :p @]
+             [:k succ :p @] ->
+             nat #:x]
+            [:x :p @]
+            [:p :p/z :p/s zero]
+            [:p/z]
+            [:p :p/z :p/s :n succ]
+            [:n
+             :p :p/z :p/s :n nat-induction
+             :p/s @]] lambda)
+
+         ;; 不省略 ->
+         ;; 畢竟省略 -> 算是一種 sugar
+         (def nat-induction
+           [[[nat] [type] -> #:p
+             zero :p @
+             [nat #:k :k :p @]
+             [:k succ :p @] ->
+             nat #:x]
+            [:x :p @] ->
+            [:p :p/z :p/s zero]
+            [:p/z] ->
+            [:p :p/z :p/s :n succ]
+            [:n
+             :p :p/z :p/s :n nat-induction
+             :p/s @] ->] lambda)
+
+         ;; 甚至 def 也用後綴處理
+         [[[nat] [type] -> #:p
+           zero :p @
+           [nat #:k :k :p @]
+           [:k succ :p @] ->
+           nat #:x]
+          [:x :p @] ->
+          [:p :p/z :p/s zero]
+          [:p/z] ->
+          [:p :p/z :p/s :n succ]
+          [:n
+           :p :p/z :p/s :n nat-induction
+           :p/s @] ->] lambda
+         'nat-induction def
+
+         ;; 或
+         [[[nat] [type] -> #:p
+           zero :p @
+           [nat #:k :k :p @]
+           [:k succ :p @] ->
+           nat #:x]
+          [:x :p @] ->
+          [:p :p/z :p/s zero]
+          [:p/z] ->
+          [:p :p/z :p/s :n succ]
+          [:n
+           :p :p/z :p/s :n nat-induction
+           :p/s @] ->] lambda
+         [nat-induction] def
+
+         ;; 這樣其實是在解決 meta-programming 的問題
+         ;; 既然程序本身被作爲數據如此肢解了
+         #+end_src
+
+    - k ::
+         那麼我們就好好討論一下 meta-programming 的問題
+         #+begin_src scheme
+         [[[[nat] [type] -> #:p
+            zero :p @
+            [nat #:k :k :p @]
+            [:k succ :p @] ->
+            nat #:x]
+           [:x :p @]]
+          [[:p :p/z :p/s zero]
+           [:p/z]]
+          [[:p :p/z :p/s :n succ]
+           [:n
+            :p :p/z :p/s :n nat-induction
+            :p/s @]]] lambda
+         [nat-induction] def
+
+
+         [[[nat] [type] -> #:p
+           zero :p @
+           [nat #:k :k :p @]
+           [:k succ :p @] ->
+           nat #:x]
+          [:x :p @]
+
+          [:p :p/z :p/s zero]
+          [:p/z]
+
+          [:p :p/z :p/s :n succ]
+          [:n
+           :p :p/z :p/s :n nat-induction
+           :p/s @]] lambda
+         [nat-induction] def
+
+
+         [[[nat] [type] -> #:p
+           zero :p @
+           [nat #:k :k :p @]
+           [:k succ :p @] ->
+           nat #:x]
+          [:x :p @]]
+         [[:p :p/z :p/s zero]
+          [:p/z]
+
+          [:p :p/z :p/s :n succ]
+          [:n
+           :p :p/z :p/s :n nat-induction
+           :p/s @]] lambda
+         [nat-induction] def
+
+
+         lambda
+         [[[nat] [type] -> #:p
+           zero :p @
+           [nat #:k :k :p @]
+           [:k succ :p @] ->
+           nat #:x]
+          [:x :p @]]
+         [[:p :p/z :p/s zero]
+          [:p/z]
+          [:p :p/z :p/s :n succ]
+          [:n
+           :p :p/z :p/s :n nat-induction
+           :p/s @]]
+         end
+
+         ;; 假設我們的原則是
+         ;; 讓 lambda 所做的工作越少越好
+         [[[nat] [type] -> #:p
+           zero :p @
+           [nat #:k :k :p @]
+           [:k succ :p @] ->
+           nat #:x]
+          [:x :p @]
+          ->
+          [:p :p/z :p/s zero]
+          [:p/z]
+          ->
+          [:p :p/z :p/s :n succ]
+          [:n
+           :p :p/z :p/s :n nat-induction
+           :p/s @]
+          ->] lambda
+         [nat-induction] def
+
+         [[[nat] [type] -> #:p
+           zero :p @
+           [nat #:k :k :p @]
+           [:k succ :p @] ->
+           nat #:x]
+          [:x :p @] ->
+          [:p :p/z :p/s zero]
+          [:p/z] ->
+          [:p :p/z :p/s :n succ]
+          [:n
+           :p :p/z :p/s :n nat-induction
+           :p/s @] ->]
+         lambda
+         [nat-induction] def
+
+
+         (((nat) (type) -> #:p
+           zero :p @
+           (nat #:k :k :p @)
+           (:k succ :p @) ->
+           nat #:x)
+          (:x :p @) ->
+          (:p :p/z :p/s zero)
+          (:p/z) ->
+          (:p :p/z :p/s :n succ)
+          (:n
+           :p :p/z :p/s :n nat-induction
+           :p/s @) ->)
+         lambda
+         (nat-induction) def
+
+
+         {{{nat} {type} -> #:p
+           zero :p @
+           {nat #:k :k :p @}
+           {:k succ :p @} ->
+           nat #:x}
+          {:x :p @} ->
+          {:p :p/z :p/s zero}
+          {:p/z} ->
+          {:p :p/z :p/s :n succ}
+          {:n
+           :p :p/z :p/s :n nat-induction
+           :p/s @} ->}
+         lambda
+         {nat-induction} def
+         #+end_src
+
+    - x ::
+         啊 如若依照這種原則
+         根本就只要用到三種括號中的一種
+         我們選擇 [] 就好了
+
+    - k ::
+         我們是否要在這個 sequent0 中實踐這種語法
+
+    - x ::
+         哈哈
+         這種感受就是脫離了 lisp 的傳統
+         但是又接近了 forth
+         我想使用 {} 可能優於使用 [] 或 ()
+         因爲 [] 或 () 不單獨成行
+         而 {} 單獨成行
+         #+begin_src cicada-language
+         [[[nat] [type] -> #:p
+           zero :p @
+           [nat #:k :k :p @]
+           [:k succ :p @] ->
+           nat #:x]
+          [:x :p @] ->
+          [:p :p/z :p/s zero]
+          [:p/z] ->
+          [:p :p/z :p/s :n succ]
+          [:n
+           :p :p/z :p/s :n nat-induction
+           :p/s @] ->]
+         lambda
+         [nat-induction] def
+
+
+         (((nat) (type) -> #:p
+           zero :p @
+           (nat #:k :k :p @)
+           (:k succ :p @) ->
+           nat #:x)
+          (:x :p @) ->
+          (:p :p/z :p/s zero)
+          (:p/z) ->
+          (:p :p/z :p/s :n succ)
+          (:n
+           :p :p/z :p/s :n nat-induction
+           :p/s @) ->)
+         lambda
+         (nat-induction) def
+
+
+         {{{nat} {type} -> #:p
+           zero :p @
+           {nat #:k :k :p @}
+           {:k succ :p @} ->
+           nat #:x}
+          {:x :p @} ->
+          {:p :p/z :p/s zero}
+          {:p/z} ->
+          {:p :p/z :p/s :n succ}
+          {:n
+           :p :p/z :p/s :n nat-induction
+           :p/s @} ->}
+         lambda
+         {nat-induction} def
+         #+end_src
+         再看單獨成行的
+         #+begin_src cicada-language
+         [ [ [ nat ] [ type ] -> #:p
+             zero :p @
+             [ nat #:k :k :p @ ]
+             [ :k succ :p @ ] ->
+             nat #:x ]
+           [ :x :p @ ] ->
+           [ :p :p/z :p/s zero ]
+           [ :p/z ] ->
+           [ :p :p/z :p/s :n succ ]
+           [ :n
+             :p :p/z :p/s :n nat-induction
+             :p/s @ ] ->
+         ] lambda
+         [ nat-induction ] def
+
+
+         ( ( ( nat ) ( type ) -> #:p
+             zero :p @
+             (nat #:k :k :p @ )
+             ( :k succ :p @ ) ->
+             nat #:x )
+           ( :x :p @ ) ->
+           ( :p :p/z :p/s zero )
+           ( :p/z ) ->
+           ( :p :p/z :p/s :n succ )
+           ( :n
+             :p :p/z :p/s :n nat-induction
+             :p/s @ ) ->
+         ) lambda
+         ( nat-induction ) def
+
+
+         { { { nat } { type } -> #:p
+             zero :p @
+             { nat #:k :k :p @ }
+             { :k succ :p @ } ->
+             nat #:x }
+           { :x :p @ } ->
+           { :p :p/z :p/s zero }
+           { :p/z } ->
+           { :p :p/z :p/s :n succ }
+           { :n
+             :p :p/z :p/s :n nat-induction
+             :p/s @ } ->
+         } lambda
+         { nat-induction } def
+         #+end_src
+
+    - k ::
+         如此看來又是 [ ] 最順眼
+         看來 這些都是 習慣所致呀
+
+    - x ::
+         那麼我們不考慮排版問題了
+         先考慮實現
+         首先我們可以把 [ ] 實現爲 call-with-output-to-new-ds
+         這樣 lambda 所看到的就是 arrow-list
+         而不是 syntax-tree 了
+
+    - k ::
+         但是這樣對 [ ] 中的 name 的解釋就有衝突了
+         -> 需要他們是 literal
+         而 lambda 需要他們是 call-with-output-to-new-ds
+         所以 必須區分二者
+         #+begin_src scheme
+         { [ [ nat ] [ type ] -> #:p
+             zero :p @
+             [ nat #:k :k :p @ ]
+             [ :k succ :p @ ] ->
+             nat #:x ]
+           [ :x :p @ ] ->
+           [ :p :p/z :p/s zero ]
+           [ :p/z ] ->
+           [ :p :p/z :p/s :n succ ]
+           [ :n
+             :p :p/z :p/s :n nat-induction
+             :p/s @ ] ->
+         } lambda
+         [ nat-induction ] def
+
+         ;; 如果所有的 literal-symbol 都必須出現在 [ ] 中
+         ;; 那麼就必須改如下爲下下或下下下
+         { [ ] [ type ] ->
+           zero  [ ] [ <> ] ->
+           succ  [ <> ] [ <> ] ->
+         } type
+         [ def ] nat
+
+         { [ ] [ type ] ->
+           'zero  [ ] [ <> ] ->
+           'succ  [ <> ] [ <> ] ->
+           } type
+         [ def ] nat
+
+         { [ ] [ type ] ->
+           [ zero ] [ ] [ <> ] ->
+           [ succ ] [ <> ] [ <> ] ->
+         } type
+         [ def ] nat
+
+         { [ nat nat ] [ nat ] ->
+           [ :m zero ] [ :m ] ->
+           [ :m :n succ ] [ :m :n add succ ] ->
+         } lambda
+         [ add ] def
+         #+end_src
+
+    - x ::
+         我發現這種純粹的後綴表達式
+         會強迫語言的正規性
+
+    ------------
+
+    - x ::
+         但是我想我要放棄這種設計
+
+    - k ::
+         既然語言本身以後綴表達式爲特點
+         爲什麼要放棄這種設計呢
+         如果後綴表達式本身並不好
+         爲什麼要設計一個以後綴表達式爲特點的語言呢
+
+    - x ::
+         我也不知道
+         我想問題出在元編程能力上
+         我們應該完全放棄這種能力
+         以維護語言的穩定性
+
+* 完全放棄元編程能力 以維護語言的穩定性
+
+*** 引
+
+    - x ::
+         說元編程能力不利與語言之穩定
+         難道不是可笑而保守的說辭嗎
+         我感覺我已經喪失了 對是非對錯的判別了
+
+    - k ::
+         我們可以在不做是非對錯之判別的條件下行動嗎
+
+    - x ::
+         比如埋頭實現 sequent0
+         而不考慮其優劣
+
+    ------------
+
+    - x ::
+         啊 我能想到 如果使用純粹的後綴表達式來實現它
+         效果將是如何有趣
+         用於實現語言核心語義的函數本身
+         也將是用語言的 meta-programming 能力來實現的
+         但是我還是決定暫時放棄這種效果
+         之要求 jojo 中的東西是完全後綴的
+         而自由地[不在乎純粹性地]處理外層非後綴語法
+         [只要知道這些語法是可以利用元編程來後綴化的就可以了]
+
+* 更換新語法 而轉回到 at1
+
+*** 引
+
+    - x ::
+         更換新語法之後
+         我想我們的探索 就應該轉回到 at1 了
+         畢竟它纔是應用源泉
+
+    - k ::
+         每次轉回到理論學習都非易事
+         可能又是需要用到 k 的認識倫的時候
+
+    - x ::
+         我想說明天我們找個安靜的地方在談
+         但是 k 之方法的關鍵就在於
+         不要受到限於環境與時間
+
+    - k ::
+         我們今天讀的 k 可以總結如下
+      1. 我堆非我成我
+      2. 努力是盲目的最高形式
+
+* new structure of rs
+
+*** 引
+
+    - x ::
+         we need a new structure of rs
+         當前我們有
+         #+begin_src scheme
+         (type rs {{counter explainer ender jojo} ...})
+         (type gs {{counter explainer ender {data-list data-list}} ...})
+         #+end_src
+         我們需要的只是簡單地在 rs-point 中增加一個 field 嗎
+
+    - k ::
+         其不簡單之處在於
+         此時需要重新寫所有有關 rs-point 的 pattern-marching
+
+    - x ::
+         這就是 pattern-marching 所寫的代碼的弱點了
+         [因爲數據結構的接口變化
+          也要反應在使用這些接口的函數中
+          除非給每個 field 以名字]
+         也許我們應該分場合使用 pattern-marching
+         只有在 term-rewrite 的過程中 pattern-marching 纔是最適合的
+         在這種需要大量副作用的地方
+         就使用類似 oo 的接口
+
+    - k ::
+         正如上所說
+         想要不讓數據結構的接口反應在使用這些接口的函數體里
+         就只能給這些 field 以名字
+         不論是 agda 的 record 還是 oo
+
+    --------------------
+
+    - x ::
+         我們是否應該讓每一個 stack 都使用新設計的簡單 oo 機制
+
+    - k ::
+         首先 ds 可能就不應該使用這個機制
+         即便是就一個 不考慮效率的 實驗性解釋器 而言
+         在 ds 中的 data 上加一層 也會讓處理 ds 的函數變複雜
+
+    - x ::
+         這樣我們就喪失了 stack 的統一性
+
+    - k ::
+         我們沒必要維持這種統一性
+         我覺得只有 rs 與 gs 值得一改
+         其他的 stack 就維持簡單的接口
+
+* 區分 arrow 中的 自由變元 與 約束邊緣 <2016-12-01 Thu>
+
+*** 引
+
+    - x ::
+         這是與變元有關的新設計之改進
+         首先
+         自由變元有明顯的語法區分
+         約束變元 記以 :name
+         自由變元 記以 ::name
+         同一個 arrow 中自由變元與約束變元不能重名
+         分兩個域在 arrow 中記錄 自由變元與約束變元
+         每當作用一個 arrow 時
+         要爲其約束變元生成 uni-var
+         每當返回一個 arrow 時
+         其中所有的自由變元都要 被確定其 uni-var
+         這樣 所有的 arrow 在作用時 其自由變元之 uni-var 都是已經確定的
+         不用再另行生成
+
+    - k ::
+         如此一來
+         作爲 jo 的 arrow
+         就與 作爲 data 的 arrow 不同了
+         作爲 jo 的 arrow 有 fvar-list
+         作爲 data 的 arrow 有 fvar-record
+
+    - x ::
+         正如 var 與 uni-var
+         這裏也可以區分 arrow 與 uni-arrow
+         lambda 與 uni-lambda
+         如此看來 jo 與 data 的 data-constructor 就完全不同了
