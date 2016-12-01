@@ -2239,3 +2239,78 @@
     - x ::
          但是我們可以想象增加 返回 uni-var level-1 的值的直接語法
          我們先保留這個 level field 吧
+
+* oo 機制之氾用
+
+*** 引
+
+    - x ::
+         看如下的函數體
+         #+begin_src scheme
+         (define (cut/call j)
+           (match j
+             [{'call n}
+              (let ([found (assq n ns)])
+                (if (not found)
+                  (orz 'cut/call ("unknow name : ~a~%" n))
+                  (match (cdr found)
+                    [{'meaning-type a n nl}
+                     (cut/type a)]
+                    [{'meaning-data a n n0}
+                     (cut/type a)]
+                    [{'meaning-lambda a al}
+                     (cut/type a)])))]))
+         #+end_src
+         看來這裏也是需要使用 oo 機制的地方
+
+    - k ::
+         這裏的衝突到底是什麼
+         我想重點甚至不在於 pattern match 與否
+         重点也不在于 oo 与 fp 的冲突
+         而是在于
+         有名的 field 与 无名的 field
+         只有当 field 有名时
+         对接口函数的使用才能与数据结构本身的构造分离
+         #+begin_src scheme
+         (define (cut/call j)
+           (match j
+             [{'call n}
+              (let ([found (assq n ns)])
+                (if (not found)
+                  (orz 'cut/call ("unknow name : ~a~%" n))
+                  (cut/type (^ (cdr found) 'a))))]))
+         #+end_src
+
+    - x ::
+         也許這裏需要的只是 match 中的 or 語句
+
+* the structure of uni-bind
+
+*** 引
+
+    - x ::
+         now the structure of uni-bind is
+         {'uni-bind uni-var data}
+         需要修改其 field
+         這設計到當前實現的可擴展性
+         具體地說
+         一種是 在 uni-bind 中記錄 level
+         一種是 不在 uni-bind 中記錄 level
+         問題是我們應該使用那種實現方式
+         因爲我們知道
+         有一個重要的原則是保持當前實現之最簡
+         而不爲了之後所謂的 '擴展'
+         來把當前的代碼複雜化
+
+    - k ::
+         當前所有的 binding 都是 uni-var 的 level-1 與 data 的綁定
+         記錄 level 看似可以把 binding 擴展到 別的情況
+         但是其實可能根本就是不需要的
+         因爲
+         type-check 的關鍵就是 兩層信息
+         並且
+         level-0 的 binding 只能通過 cover 與 unify 來形成
+         這是 一個不錯的不變量
+
+    - x ::
+         那麼我們就遵循 '保持當前實現之最簡' 這個原則吧
