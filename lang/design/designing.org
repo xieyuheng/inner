@@ -2165,3 +2165,77 @@
          這裏也可以區分 arrow 與 uni-arrow
          lambda 與 uni-lambda
          如此看來 jo 與 data 的 data-constructor 就完全不同了
+
+*** 更多的不變量
+
+    - x ::
+         能夠被作用的是 uni-arrow
+         作用 uni-arrow 的時候也要利用 vl 生成 vrc
+         從名字找到的 arrow 與 lambda fvl 總是空的
+         因爲作爲等層函數體 他們是不能帶有自由變元的
+
+* 漸進測試
+
+*** 引
+
+    - x ::
+         漸進測試的方式應該如何
+         先實現 run 爲漸進
+         還是先實現 type-check 爲漸進
+
+    - k ::
+         我們先實現 type-check 吧
+         這樣算是把 最難的地方優先處理
+         然後馬上測試 run
+
+* scope
+
+*** 引
+
+    - x ::
+         關於 scope 還有一個問題
+         #+begin_src scheme
+         (define f3 (-> [nat (-> [nat] [])]
+                        [])
+           (-> [:n :f]
+               [:n :f @
+                :n succ :f @
+                :n succ succ :f @]))
+
+         ;; 假使一個函數的參數里有函數
+         (run
+           zero
+           (lambda (-> [nat] [])
+             (-> [:n] []))
+           f3)
+         #+end_src
+         問題是
+         當有這樣的作用時
+         f3 函數體內部的 :n 與 :f 內部的 :n 如何不相互影響
+
+    - k ::
+         因爲每次 apply 的時候 [或者 compose/arrow 等等]
+         都會入 rs 新的 rsp
+         而 uni-var 是從 rsp 中的 vrc 中找到的
+         不同的 arrow 之 apply 不會互相響
+
+    - x ::
+         沒錯
+         這樣我們就有合理的 scope 語義了
+
+* level of var
+
+*** 引
+
+    - x ::
+         好像 uni-var 不必是 {'uni-var id level}
+         而可以直接是 {'uni-var id}
+         因爲 並沒有 uni-var 的不同 level 作爲 data 的出現
+
+    - k ::
+         uni-var 之 level-1 的值是在 bind-unify 中才用到的
+         並且只能在這個時候用到
+
+    - x ::
+         但是我們可以想象增加 返回 uni-var level-1 的值的直接語法
+         我們先保留這個 level field 吧
