@@ -2479,3 +2479,107 @@
          世襲而超人之力難存
 
 * >< 漢語的自言性
+* ><>< more about type-check & compose & cut
+
+*** 引
+
+    - x ::
+         我想這也是總結之前筆記的時候了
+
+    - k ::
+         cover & unify
+         又有 bind-unify
+         type-check & compose & cut 都是用它們實現的
+
+*** 記
+
+    - 此處編譯
+      簡之又簡
+      轉寫增補
+      消文本歧義以成珠而已
+
+    - 這裏實現方式固定
+      不能增添珠類
+      爲增添珠類
+      需依類查方法
+      增一珠類 補其方法已矣
+
+*** unify 與 珠類
+
+    - x ::
+         增添珠類之難點在於
+         compose & cut 參數爲一
+         但是 cover & unify 參數爲二
+         每當增添 必須補全其他
+         珠類越多 需補全的就越多
+         尤其是對不可交換的 cover 來說更是如此
+
+    - k ::
+         需補全
+         亦可缺省
+         至少就 cover & unify 而言是如此
+
+    - x ::
+         也許可擴展性是虛的
+         literal 數據結構都應該用 cons 實現
+         [或用 與 cons 類似的處理方式缺省]
+
+*** compose & cut
+
+    - x ::
+         不考慮運行時的話
+         compose 只作用於 type-arrow 中的 jo
+         而 cut 只作用於 body-arrow 中的 jo
+
+    - k ::
+         類型中能出現 add 之類的任意計算
+         這正是 compose 作用於 type-arrow 中的 jo
+         但是之前我們沒有觀察到
+         compose 只作用於 type-arrow 中的 jo
+         這個事實
+         既然如此 compose 的時候就應該還伴隨着 type-level 的 unify
+         這就要求我們從 data 得到 type
+         這是可能的嗎
+
+    - x ::
+         這是可能的
+         甚至 cut 本身就能用 data->type 來實現
+
+    - k ::
+         如若如此
+         我們就來實現 data->type
+         並且 重新審視 compose & cut 這種分類
+         也許不要 cut 了
+         但是
+         這樣還伴隨着 type-level 的 unify
+         對於真正的運行時有什麼影響
+
+    - x ::
+         可以增加 flag
+         使得這個 unify 不影響真正的運行時
+         我們並不考慮運行效率
+         我們是爲了數學證明的形式化而設計語言的
+
+    - k ::
+         how to data->type a trunk ?
+
+*** factor data->type out form cut
+
+    - x ::
+         不能 factor data->type out form cut
+         cut 獨立的存在算是一種優化
+
+    - k ::
+         也許應該如此處理
+         否則的話 簡單的 cut 就被隱藏在對 d2t 對 trunk 的處理當中了
+
+*** the structure of trunk
+
+    - x ::
+         當前是
+         #+begin_src scheme
+         {'trunk uni-arrow (vector trunky) index}
+         ;; 其中 uni-arrow 應該改成 兩列數據
+         {'trunk adl sdl (vector trunky) index}
+         ;; 其中 adl 是經過 unify 的
+         #+end_src

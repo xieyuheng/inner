@@ -1,5 +1,8 @@
 * ><
 
+  - sequent0 完成 agda 的基本功能
+    并以此为工具 重新審視 haskell agda idris coq 等等類似的語言
+
   - 首先是系統地學透各種 homology theory
     看看各種表達方式之間的差異
     看看哪個適合用來實現形式化語言
