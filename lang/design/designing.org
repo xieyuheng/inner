@@ -2538,6 +2538,7 @@
          compose 只作用於 type-arrow 中的 jo
          這個事實
          既然如此 compose 的時候就應該還伴隨着 type-level 的 unify
+         [即所謂的 bind-unify]
          這就要求我們從 data 得到 type
          這是可能的嗎
 
@@ -2583,3 +2584,121 @@
          {'trunk adl sdl (vector trunky) index}
          ;; 其中 adl 是經過 unify 的
          #+end_src
+
+* 信息不減
+
+*** 引
+
+    - x ::
+         之前說過 需要保持 信息不減
+         而這裏所說的 data->type 就是信息減少之處
+         正確的方式
+         不是使用 data->type 之後
+         再用 unify 與 bind-unify 這兩層 unify
+         而是用一個 diff-level-unify 來處理
+         也就是說
+         要用函數來解決問題
+         而不是用數據結構來解決問題
+         或者說
+         解決問題的時候
+         數據結構可以儘量保持簡單
+         而把函數寫複雜一點
+
+* unify arrow
+
+*** 引
+
+    - x ::
+         我們不能 unify arrow 與 arrow
+
+    - k ::
+         我想這裏我們不能苟且
+         我們應該想出 unify arrow 的方式
+         並且講我們語言的理論特性弄明白
+
+    - x ::
+         how to define the unification of arrow ?
+         if some data can be covered by both of them
+         then unify or cover the result
+         how to imp the definition ?
+         unify ajj1 ajj2
+         then unify or cover the result of sjj1 sjj2
+
+* review the commit problem
+
+*** 引
+
+    - x ::
+         目前用到 commit 的地方就只有 compose/try-body
+         但是這明顯是不夠的
+
+    - k ::
+         要知道 commit 的原則是
+         只要確定不需要 undo 就可以 commit
+         把變元所綁定到的值寫到變元內部
+         而存在於變元外部的 變量綁定值 只是爲了 undo 而準備的
+
+    - x ::
+         目前實現 commit 的方式可能也有問題
+         之前的處理方式是把 bs/commit 作爲 ender 放入 gsp 中
+         以求自治與擴展
+         但是這可能又是一個虛的設計
+         #+begin_src scheme
+         ;; 比如
+         (if3 [(push bs '(commit-point))
+               (push gs (% gsp-proto
+                           'ex   (unify 'cover)
+                           'end  bs/commit
+                           'dl+  (reverse dl1)
+                           'dl-  (reverse dl2)))
+               (gs/next)]
+              [{sjj vrc}]
+              [(set! ds ds0)
+               (set! bs bs0)
+               (set! gs gs0)
+               (compose/try-body r)])
+         ;; 完全可以被替代成
+         (if3 [(push bs '(commit-point))
+               (push gs (% gsp-proto
+                           'ex   (unify 'cover)
+                           'end  gs/exit
+                           'dl+  (reverse dl1)
+                           'dl-  (reverse dl2)))
+               (gs/next)]
+              ;; commit or undo
+              [(bs/commit)
+               {sjj vrc}]
+              [(set! ds ds0)
+               (set! bs bs0)
+               (set! gs gs0)
+               (compose/try-body r)])
+         #+end_src
+
+    - k ::
+         也就是說 commit 不應該放到 gsp 中自治
+         而應該放在 scheme 代碼所形成的控制流中
+
+* steper <2016-12-13 Tue>
+
+*** 引
+
+    - x ::
+         我們需要一個 steper
+         爲了弄清一個 steper 應該如何實現
+         我們也能釐清運行時解釋器的工作方式
+
+    - k ::
+         然後我們去處理完餘下的問題
+         再寫一些例子程序來檢驗解釋器
+         需要做的工作還有很多
+         還有 cover-check 與 recur-check
+         我們還需要對比 agda 相關的論文與文檔
+         看看我們是否已經到達 agda 的用性
+
+    - x ::
+         我們不妨把今天作爲這些工作的 deadline 試試
+
+    - k ::
+         可以一試
+         這將是全情投入的一個下午
+         就像在奈良一樣
