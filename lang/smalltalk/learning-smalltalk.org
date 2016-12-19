@@ -4,6 +4,7 @@
 * design principles behind smalltalk
 
 *** design
+
     Personal Mastery:
     If a system is to serve the creative spirit,
     it must be entirely comprehensible to a single individual.
@@ -22,8 +23,8 @@
     those parts should be as general as possible;
     and all parts of the system should be held in a uniform framework.
 
-
 *** language
+
     Purpose of Language:
     To provide a framework for communication.
 
@@ -38,8 +39,8 @@
     + 也就是强调设计并实现一个程序语言并不是单单写一个编译器那么简单
       而是要设计人和机器之间交流的方式
 
-
 *** Communicating Objects
+
     Objects:
     A computer language should support the concept of "object"
     and provide a uniform means for referring to the objects in its universe.
@@ -82,8 +83,8 @@
     the message + 5 (add five) carries an implicit assumption that
     the augend is the present value of the number receiving the message.
 
-
 *** Organization
+
     System complexity:
     As the number of components in a system increases,
     the chances for unwanted interaction increase rapidly.
@@ -114,8 +115,8 @@
     Virtual Machine:
     A virtual machine specification establishes a framework for the application of technology.
 
-
 *** User Interface
+
     Reactive Principle:
     Every component accessible to the user
     should be able to present itself in a meaningful way for observation and manipulation.
@@ -123,18 +124,20 @@
     Operating System:
     An operating system is a collection of things that don't fit into a language. There shouldn't be one.
 
-
 *** Future Work
+
     Natural Selection:
     Languages and systems that are of sound design will persist,
     to be supplanted only by better ones.
 
 * smalltalk 中對函數的命名
-  * smalltalk 中函數的命名是非常靈活的
+
+  - smalltalk 中函數的命名是非常靈活的
     函數的命名變成了
     對象之間傳遞消息的協議
     這種特性正是爲了解決命名問題
-  * 我把這種特性理解爲
+
+  - 我把這種特性理解爲
     把函數名 分散爲部分
     [這樣帶來了很有趣的閱讀體驗]
     每部分匹配一個參數
@@ -142,5 +145,6 @@
     效果是類似的
 
 * 匿名函數
-  * 有代碼塊可用
+
+  - 有代碼塊可用
     並且 也較爲良好的代入語義
