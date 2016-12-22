@@ -1,3 +1,57 @@
+* todo
+
+  - at
+    sze-tsen-hu/homotopy-theory.djvu
+
+  - ag
+    algebraic-geometry-a-problem-solving-approach.pdf
+
+  - cs
+    feynman/lectures-on-computation.pdf
+
+* >< 關於筆記
+
+*** 引
+
+    - x ::
+         關於 hott 與 at 之形式語言的設計
+         我們記了很多筆記
+         但是我們一定還漏記了很多重要的東西
+         因爲回顧筆記的時候
+         我發現它們鬆散凌亂
+         根本不能讓我們很快回憶起之前的想法與思考結果
+
+    - k ::
+         我想這可能是因爲我們根本就沒有
+         在理性的指引下依照科學的方法論而行事吧
+         我們熟知那些方法
+         首先是觀察
+         然後提出假說以求解釋現象
+         之後剩下的就是在真誠地實驗中檢驗自己的假說
+         並且勇敢地修改自己的結果
+         我想筆記的作用就是記錄下某一時刻的假說
+         以備之後修改
+
+    - x ::
+         這是對物理研究而言的
+         但是我想對語言設計這種工程問題也是如此
+         我們觀察代數拓撲所關心的問題本身
+         我們學習古典的代數拓撲理論
+         然後提出假想的語法與語義模型來實現這些理論
+         可讀的筆記 重點不在於記錄設計決策的細節
+         而在於 以內蘊的方式 記錄某一時刻的假說
+         設計決策與下決策時所考量的條件 都應該是附屬
+
+         既然知道需要改成和交流
+         那麼筆記就是不可避免的
+         我們需要有耐心來清晰描述一個假說
+         我們還需要有檢驗和更改假說的勇氣
+         勤奮並持之以恆
+
+    - k ::
+
+         記錄是寫給未來需要在新的條件下考察這些假說的自己的
+
 * ><
 
   - sequent0 完成 agda 的基本功能
@@ -20,30 +74,20 @@
 
 ***** foundations-of-algebraic-topology--samuel-eilenberg-and-norman-steenrod.djvu
 
-      rifle /home/xyh/lern/person/samuel-eilenberg/foundations-of-algebraic-topology--samuel-eilenberg-and-norman-steenrod.djvu
-
 *** sze-tsen-hu
 
 ***** elements-of-general-topology.djvu
 
-      rifle lern/person/sze-tsen-hu/elements-of-general-topology.djvu
-
       - ignore ill-cases
 
 ***** homology-theory--a-first-course-in-algebraic-topology.djvu
-
-      rifle /home/xyh/lern/person/sze-tsen-hu/homology-theory--a-first-course-in-algebraic-topology.djvu
 
       - no simplex
         late chain complex
 
 ***** homotopy-theory.djvu
 
-      rifle /home/xyh/lern/person/sze-tsen-hu/homotopy-theory.djvu
-
 ***** cohomology-theory.djvu
-
-      rifle /home/xyh/lern/person/sze-tsen-hu/cohomology-theory.djvu
 
 * homotopy and homology
 
@@ -51,26 +95,22 @@
 
 ***** simplecial homotopy theory
 
-      rifle /home/xyh/lern/algebraic-topology/simplicial-homotopy-theory.pdf
+      algebraic-topology/simplicial-homotopy-theory.pdf
 
 *** hatcher
 
 ***** AT.pdf
 
-      rifle /home/xyh/lern/person/hatcher/AT.pdf
+      hatcher/AT.pdf
 
 *** norman-steenrod
 
 ***** how-to-write-mathematics--norman-steenrod.djvu
 
-      rifle /home/xyh/lern/person/norman-steenrod/how-to-write-mathematics--norman-steenrod.djvu
-
       - norman-steenrod
         formal vs informal
 
 ***** the-topology-of-fibre-bundles.djvu
-
-      rifle /home/xyh/lern/person/norman-steenrod/the-topology-of-fibre-bundles.djvu
 
 * --------------------------
 * RH 的計算意義是什麼

@@ -2509,13 +2509,12 @@
            (lambda (-> [nat %:m]
                        [:m zero add
                         zero :m add eq])
-             ;; (-> [zero] [refl])
+             (-> [zero] [refl])
              (-> [:m succ]
                  [:m add/zero-commute
                      (lambda (-> [nat] [nat])
                        (-> [:n] [:n succ]))
-                     cong])
-             ))
+                     cong])))
 
          ;;;; :m = zero
          ;; zero zero add
@@ -2600,3 +2599,132 @@
     - x ::
          沒錯
          我們需要看一些與 unification 有關的理論
+
+*** self-unify & equation
+
+    - x ::
+         #+begin_src scheme
+         (def add/zero-commute
+           (lambda (-> [nat %:m]
+                       [:m zero add
+                        zero :m add eq])
+             (-> [zero] [refl])
+             (-> [:m succ]
+                 [:m add/zero-commute
+                     (lambda (-> [nat] [nat])
+                       (-> [:n] [:n succ]))
+                     cong])))
+         ;; 證
+         [:m zero add
+          zero :m add eq]
+         ;; 基礎步驟 :m = zero
+         [zero zero add
+          zero zero add eq]
+         ;; 遞歸步驟 :m = :n succ
+         [:n succ zero add
+          zero :n succ add eq]
+
+         ;; 遞歸調用 == 使用歸納假設
+         ;; 遞歸調用 可以用來 寫函數
+         ;; 歸納假設 可以用來 作證明
+         ;; 遞歸調用 就記錄着 證明中使用歸納假設的地方
+
+         ;; :n add/zero-commute [succ] cons
+         [:n zero add succ
+          zero :n add succ eq]
+
+         ;; 而
+         [:n succ zero add
+          zero :n succ add eq]
+         ;; =>
+         [:n succ
+          zero :n add succ eq]
+         ;; 其次
+         [:n zero add succ
+          zero :n add succ eq]
+         ;; =>
+         [:n succ
+          zero :n add succ eq]
+         ;; 二者結果形式上相同
+         ;; 都是
+         [:n succ
+          zero :n add succ eq]
+         ;; 這會得到
+         { equation
+           :var:   :n
+           :self:  (<trunk> zero :n add) }
+         ;; 我們則需要 unify/equation/equation 處理
+         ;;   uni-var 不同 而結構如上的 兩個 equation
+         #+end_src
+
+    - k ::
+         cong 的原理是什麼
+         #+begin_src scheme
+         (def eq
+           (type (-> [type %:t drop
+                      :t %:d
+                      :t %:d]
+                     [type])
+             refl (-> [type %:t drop :t %:d drop]
+                      [:d :d eq])))
+
+         (def cong
+           (lambda (-> [type %:t1 drop
+                        type %:t2 drop
+                        :t1 %:x drop
+                        :t1 %:y drop
+                        :x :y eq
+                        (-> [:t1] [:t2]) %:f]
+                       [:x :f @ :y :f @ eq])
+             (-> [refl :f] [refl])))
+         #+end_src
+
+    - x ::
+         當想要在證明
+         [:x :y eq] 時
+         在函數體中 並不能直接使用 :x :y 本身
+         從 [:x :y eq] 到 [:x :f @ :y :f @ eq]
+         這類對 eq 這個數據的合法 rewrite
+         都要定義一個函數之後方可使用
+         爲什麼會這樣
+
+    - k ::
+         type-constructor 只能出現在 type-arrow 中
+         type-constructor 所構造的數據
+         是被 別的 type-arrow 的作用所 rewrite 的
+         cong 所描述的 對 eq 的轉寫
+         是合法的
+         這是由 type-check 與 unify 的具體方式決定的
+
+    - x ::
+         對於 cong 來說
+         好像他的 type-arrow 纔是真正的 rewrite 主體
+         而 body-arrow 反而成了類似類型的 meta-data
+         這個 meta-data 的效用是
+         證明 這個 rewrite 主體 是合法的
+
+* 回到 at1
+
+*** 引
+
+    - x ::
+         但是類似 eq 的還有 has-length 等等
+         在進行下一步的實現工作之前
+         我想先考察一下 at1 中應該如何理解如上的語義
+         at1 中的等詞如何處理
+
+    - k ::
+         在 at1 中
+         隨處可見函數之間的等詞
+         這在 sequent0 中是難以實現的
+         at1 中還有 class 等等
+         還有 quotient 對等詞的改變等等
+         這些都是現在所實現的 sequent0 中難以想象的
+
+    - x ::
+         首先
+         我們應該嘗試思考這些東西的實現方式
+         其次
+         我們要再堅定我們的知識
+         使得我們能夠明確地判斷出
+         某個命題或定義只構造性到底有多少

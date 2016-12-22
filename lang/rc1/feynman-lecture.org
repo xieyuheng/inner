@@ -1,3 +1,56 @@
 #+title: feynman-lecture
 
 * ><
+
+  - x ::
+       這些底層的知識可能會讓我們重新想要寫 os
+
+  - k ::
+       也許能讓我們重新審視其他的底層程序語言呢
+
+  ------
+
+  - x ::
+       哦 太有趣了
+       我們來好好學學 feynman 的教學方式
+       還有從這些教學方式中體現出來的 他的思考方式
+
+  - k ::
+       首先他以這句話勾勒自己的講授內容
+
+       In fact, we're not going to spend much of our time
+       looking at individual machines.
+       The reason for this is that
+       once you get down to the guts of computers
+       you find that,
+       like people, they tend to be more or less alike.
+
+       我們再看看他問的問題吧
+
+       What does the inside of a computer look like?
+       How are they arranged?
+       how do you connect up which set of elements to do the most things?
+
+       提出 計算機的 universality
+       並用語言的 universality 類比之
+
+  - x ::
+       啊 我們這樣逐個考察他教學過程中令人叫絕細節
+       就會總是感嘆不完
+       後面的段落與教學法太精彩了
+       我們千萬不要去點評或摘錄
+
+  ------
+
+  - x ::
+       讀這種講解
+       已經超越了閱讀本身了
+       對我而言 它有一種治療效果
+       機敏的思考與豐富的想象
+       能引我脫離憂傷的情景
+       並鼓勵我向他看齊
+
+  - k ::
+       物理學講義也何嘗不是如此呢
+       我們有這麼多的好書讀
+       爲什麼還會憂愁呢

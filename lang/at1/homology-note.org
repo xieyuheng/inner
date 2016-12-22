@@ -54,11 +54,11 @@
 
   (define g
     (lambda (-> [(< A X) drop A]
-                Y)
+                [Y])
       ...))
 
   (define f
-    (lambda (-> X
+    (lambda (-> [X]
                 [Y (== [g]
                        [A X inclusion @ f])])
       ...))

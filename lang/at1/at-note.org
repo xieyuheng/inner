@@ -1,4 +1,4 @@
-#+title: hott guide
+#+title: algebraic topology note
 
 * todo
 
@@ -7,10 +7,6 @@
     2. 判斷(低階)幾何對象之間的同倫等價的方法
     而 引入同倫等價這個概念 最初就是爲了在計算同倫群時
     給出 判斷群中元素是否等價的方式
-
-  - 但是這只不過是最近本的概念的形式化處理而已
-    已經可以用來形成某些定義了
-    但是要想計算同倫群 就還要有更精進的理論
 
 * a reading guide of hott
 
@@ -118,9 +114,32 @@
     Σ2 ~> S^1 與 ΣΣ2 ~> S^2
     證明 '~>'
     即 構造兩個作爲 fibration 的特殊 path space 中的元素
-    f : (A ~> B) {g : (B ~> A)}
-    k : ((x : A) -> x f g = x)
-    z : ((x : B) -> x g f = x)
+    f : (A ~> B)
+    g : (B ~> A)
+    k : ((a : A) -> a f g = a)
+    z : ((b : B) -> b g f = b)
+
+* curry vs uncurry
+
+  #+begin_src scheme
+  f ~ g
+  ;; curry
+  (define f
+    (lambda (-> [A] [B])
+      ...))
+  (define g
+    (lambda (-> [A] [B])
+      ...))
+  (define h
+    (lambda (-> [A I] [B])
+      ...))
+
+  ;; uncurry
+
+  f : (A -> B)
+  g : (B -> A)
+  h : (A I)
+  #+end_src
 
 * (bool-suspend ~> sphere-1)
 
