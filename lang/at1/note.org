@@ -1,0 +1,440 @@
+#+title: note
+
+* note
+
+*** term
+
+    | at | algebraic-topology |
+    | dc | data-constructor   |
+    | tc | type-constructor   |
+
+* todo
+
+  - why design at1 ?
+    what is the use of at ?
+    why lisp was designed ?
+    why riemman did his study ?
+    can we use n-level to model things
+    which are not in the kingdom of at theory ?
+    what I want to do with at1 ?
+
+  - eq must be able to be used as a rewriter
+    and not like arrow
+    it can rewrite data in both ways
+    it uses unify instead of cover
+
+  - homology and homotopy uses different type-check for dc and for function
+
+* at
+
+  - at -{formalization or algebraiclization}-> infi-groupoid
+
+* chiso
+
+  - type as proposition
+    function-body as proof
+
+  - 在 sequent0 中 可以定義數據
+    還可以定義變化這些數據的函數
+    之後我們就能 '證明' add/commute 這種函數的性質
+    這些性質也是藉助 eq 和 has-length 之類的 tc 來表達的
+
+  - 而在 at1 中
+    也是定義數據
+    但是所允許定義的數據不同了
+    然後定義變化這些數據的函數
+    但是檢查這些函數合法性的方式也不同了
+
+  - 同樣是結構
+    但是用以檢查結構合法性的方式不同了
+    這樣就形成了不同的理論和不同的語言
+
+* tc & dc
+
+  - to define a type by higher-inductive-type
+    is like to describe how to draw it level-by-level
+
+  - rules for production-by-gluing
+
+    1. production in many ways
+       not as classical algebra
+       product along common border
+
+    2. position of element in border is important
+       same-position-self-production will be canceled
+       this is the concept of the reverse-of-element generalized
+
+    3. n+1-level elements as relation of n-level elements
+       thinking about a combinatorial infi-groupoid theory
+
+  - to intro a new n+1-level dc for a type
+    we need to form a closed orientable n-level element
+    by producting many n-level elements
+    this closed orientable n-level element will be viewed as
+    the border of the newly intro-ed dc
+
+* function
+
+  - to capture the concept of continuity
+    we define function level-by-level
+    for all the levels of the input type
+
+  - type-check for elements of level above 0
+    is like continuity-check
+
+  - continuity-check of 1-level elements
+    uses the rewrite-rule of 0-level elements
+
+    - ><><><
+      a group of specific principles are needed
+      as a general way to generate the border-condition
+      (A B -> C)
+      (:a :b -> :c {:c : border-condition})
+      the border-condition must be generated from
+      the value
+      on  ((border :a) :b -> ?)
+      and (:a (border :b) -> ?)
+
+    - ><><><
+      this is where the dependent-type come into play
+
+    - ><><><
+      (border (:a * :b)) = (((border :a) * :b) + (:a * (border :b)))
+
+* >< elim diff-level-map as product-type-map
+
+  - uncurry level to number of input elements
+
+* the extension problem
+
+  - not the extension of a function
+    of which the input type is a subtype of another
+    but the extension of a partial function
+    which is defined only for part of the dc of the input type
+
+* solve the problem by design new syntax
+
+*** 語法的原則
+
+    - 信息充分 與 信息必要
+
+    - 語法不必是單一的
+      爲了簡化而向必要性靠近的同時
+      也可以爲了方便而偏離必要性
+      一切都是爲了好用
+
+*** 語法的難點
+
+    - 語法的難點並不出現在構造過程的前幾階
+      glue 首先出現在 dc 的 type 限制中
+
+    - 0-level
+      a : T
+      任意引入
+
+    - 1-level
+      b : a0 == a1
+      [即使是 a0 == a0 也不能消去 而使得信息減少]
+
+    - 2-level
+      c : b1 + b2 - b3 - b4
+
+    - 每次 glue 的時候
+      有兩體
+      兩體都有邊界
+      語法要能夠指出是就哪個公共邊界來做 glue
+
+    - 1-level 元素的邊界很簡單
+      爲了指明就哪個公共邊界來 glue
+      只要用 + - 就好了
+      比如
+      b1 + b2 - b3 - b4
+      對於 2-level 元素就有
+      c1 [ ] c2 [ ] c3 [ ] c4
+      這裏 [ ] 有兩種設計方法
+      - (積)
+        寫出 glue 之後的複合元素的邊界
+      - (微)
+        寫出 每次變化的細節
+        [比如 1-level 時的 + - 就是如此]
+
+*** 例子
+
+    #+begin_src scheme
+    (type (-> [] [space])
+
+      a1 a2 a3 a4 (0)
+
+      b12 (1 a1 a2)
+      b13 (1 a1 a3)
+      b14 (1 a1 a4)
+      b23 (1 a2 a3)
+      b24 (1 a2 a4)
+      b34 (1 a3 a4)
+
+      c123 (2 b12 + b23 - b13)
+      c124 (2 b12 + b24 - b14)
+      c134 (2 b13 + b34 - b14)
+      c234 (2 b23 + b34 - b24)
+
+      d1234 (3 (+ c123 (2 b12 + b23 - b13))
+               (+ c124 (2 b23 - b13 + b14 - b24))
+               (+ c134 (2 b23 + b34 - b24))
+               (+ c234 (2))))
+    #+end_src
+
+    - 如上的語法設計到了搜索
+      並非是完全信息充分的語法
+      但是可以依照這個來定義完全信息充分的語法
+      在這個基礎上的改進
+      可以看成是增加信息以保證唯一搜索
+
+    - 上面這些以數字爲語法關鍵詞的 sexp
+      都是相對自治的 不同 level 上語法可能都不一樣
+
+    - 我想這種描述邊界而自動搜索的語法可能纔是正確的
+      否則 高階幾何體的 glue 細節實在是難以用充分的語法描述
+      但是
+      即便是有自動搜索
+      還是要設計信息充分的語法來向用戶展示搜索的結果
+
+*** 後綴表達式
+
+    - 有必要不用 + - 的中綴
+      而完全使用後綴表達式
+      但是如此一來
+      對等式的變換就 ><><><
+
+    - ><><><
+      還需要好好分析語法的一致性
+
+    - ><><><
+      典型的認知過程是要看出
+      兩體就公共邊界 glue 之後
+      所得到的邊界是什麼
+      [在低階情形這是利用等式代換來完成的]
+
+    #+begin_src scheme
+    (type (-> [] [space])
+
+      a1 a2 a3 a4 (0)
+
+      b12 (1 a1 a2)
+      b13 (1 a1 a3)
+      b14 (1 a1 a4)
+      b23 (1 a2 a3)
+      b24 (1 a2 a4)
+      b34 (1 a3 a4)
+
+      c123 (2 b12 + b23 + b13 -)
+      c124 (2 b12 + b24 + b14 -)
+      c134 (2 b13 + b34 + b14 -)
+      c234 (2 b23 + b34 + b24 -)
+
+      d1234 (3 c123 (2 b12 + b23 - b13)
+               c124 (2 b23 - b13 + b14 - b24)
+               c134 (2 b23 + b34 - b24)
+               c234 (2)))
+    #+end_src
+
+*** [curry] (bool-suspend ~> sphere-1)
+
+    #+begin_src scheme
+    (def sphere-1
+      (type (-> [] [space])
+        b (0)
+        loop (1 b b)))
+
+    (def bool
+      (type (-> [] [space])
+        #f #t (0)))
+
+    (def bool-suspend
+      (type (-> [] [space])
+        n s (0)
+        m (-> [bool] (1 n - s))))
+
+    (def f
+      (lambda (-> [bool-suspend] [sphere-1])
+        (-> [n] [b])
+        (-> [s] [b])
+        <> (-> (1 n - s) (1 b - b))
+        (-> [#f m] [loop])
+        (-> [#t m] [b rf])))
+
+    (def g
+      (lambda (sphere-1 -> bool-suspend)
+        (-> [b] [n])
+        <> (-> (1 b - b) (1 n - n))
+        (-> [loop] {#f m #t m rev})))
+
+    (~ g f : (sphere-1 -> sphere-1)
+       (b -> b)
+       g f : ((b = b) -> (b = b))
+       (loop -> loop))
+
+    (~ f g : (bool-suspend -> bool-suspend)
+       (n -> n)
+       (s -> n)
+       f g : ((n = s) -> (n = n))
+       (#f m -> {#f m #t m rev})
+       (#t m -> n rf))
+
+    (~ :k : ((:x : bool-suspend) -> (:x f g = :x))
+       {n :k : (n = n)}
+       {s :k : (n = s)}
+       :k : ((:p : (n = s)) -> (n :k (:p :k tp) = s :k))
+       {#f m :k : ((#f m f g) rev n :k #f m = s :k)}
+       {#t m :k : ((#t m f g) rev n :k #t m = s :k)}
+       (<solve>
+        n :k == n rf
+        s :k == #t m
+        #f m :k == #t m rf
+        #t m :k == #t m rf))
+    #+end_src
+
+*** [uncurry] (bool-suspend ~> sphere-1)
+
+    #+begin_src scheme
+    (def sphere-1
+      (type (-> [] [space])
+        b (0)
+        loop (1 b b)))
+
+    (def bool
+      (type (-> [] [space])
+        #f #t (0)))
+
+    (def bool-suspend
+      (type (-> [] [space])
+        n s (0)
+        m (-> [bool] [(1 n s)])))
+
+    (def f
+      (lambda (-> [bool-suspend] [sphere-1])
+        (-> [n] [b])
+        (-> [s] [b])
+        : (-> [(1 n s)] [(1 b b)])
+        (-> [#f m] [loop])
+        (-> [#t m] [b rf])))
+
+    (def g
+      (lambda (-> [sphere-1] [bool-suspend])
+        (-> [b] [n])
+        : (-> [(1 b b)] [(1 n n)])
+        (-> [loop] {#f m #t m rev})))
+
+    (~ g f : (-> [sphere-1] [sphere-1])
+       (-> [b] [b])
+       : (-> [(1 b b)] [(1 b b)])
+       (-> [loop] [loop]))
+
+    (~ f g : (bool-suspend -> bool-suspend)
+       (n -> n)
+       (s -> n)
+       f g : ((n = s) -> (n = n))
+       (#f m -> {#f m #t m rev})
+       (#t m -> n rf))
+
+    (~ :k : ((:x : bool-suspend) -> (:x f g = :x))
+       {n :k : (n = n)}
+       {s :k : (n = s)}
+       :k : ((:p : (n = s)) -> (n :k (:p :k tp) = s :k))
+       {#f m :k : ((#f m f g) rev n :k #f m = s :k)}
+       {#t m :k : ((#t m f g) rev n :k #t m = s :k)}
+       (<solve>
+        n :k == n rf
+        s :k == #t m
+        #f m :k == #t m rf
+        #t m :k == #t m rf))
+    #+end_src
+
+* 記
+
+*** 關於生成無窮多樣數據的方式
+
+    - 在 at1 中定義一個 type
+      其 0 階元可能只有有限多個
+      而其 1 階元可能有無限多個
+      相反在 sequent0 中
+      一個 type 中只有 0 階構造子
+      而其無限多元素只能通過遞歸定義來生成
+
+    - 這是因爲 at1 中的一階或更高階元素可以做乘法
+      而這種乘法可以生成無限多元素
+
+*** 從代數角度考察連續性
+
+    - at1 中的一個函數可以作用於屬這某 type 的所有階元素
+      包括這些在乘法下生成的元素
+      而函數的定義是有限的
+      定義這個函數時
+      只要對這個 type 的有限個 dc 描述函數所施的變化就行了
+      對於相乘而來的元素
+      函數所施的變化由函數與乘法的交換性來完成
+      即 所有的函數都是 type 之間的同態
+
+    - sequent0 中也可以定義能處理無限多數據的函數
+      不同點在於
+      此時 type 只有 0-level 元素
+      元素之間沒有乘法
+      每個 dc 代表了 type 的一類數據
+      函數定義只要覆蓋了所有這些 dc
+      就能處理屬這個 type 的所有數據了
+      此時並沒有什麼同態發生
+
+*** 具體的連續性檢查
+
+    - 如此說來 連續性檢查 就是 同態性檢查
+      但是 我們知道 連續性檢查 的具體形式是
+      (f a) : (G (f (border a)))
+      爲什麼它就算是連續性檢查呢
+      因爲假設我們有
+      a : 0 == 1
+      b : 1 == 2
+      如過想要定義 f 使得
+      (f (a + b)) = ((f a) + (f b))
+      如果 (f a) 和 (f b) 還想要相 glue
+      就必須保證 (f a) 的末點和 (f b) 的始點相同
+      而 continuity-check 是用
+      (f a) : (f 0) == (f 1)
+      (f b) : (f 1) == (f 2)
+      此時 (f a) 的末點和 (f b) 的始點 都是 (f 1)
+
+*** at1 之於 at
+
+    - 首先 at 作爲一個數學結構
+      有其對象 即拓撲空間
+      at 給出了空間之間的基本等詞的定義 即同胚
+      這個等詞難以計算於是就有了 at 中的 a 與 同倫
+      [畢竟有了等詞之後自然就有分類問題]
+      我們在 at1 中定義 type
+      就是給出 at 這個數學結構的研究對象
+      而我們能就我們所定義的對象 來定義 at 中的基本等詞
+      這樣我們就把一個數學理論形式化了
+
+*** 被檢查的其他條件
+
+    - 這包括 closeness 和 orientable
+      由 (border (:a * :b)) = (((border :a) * :b) + (:a * (border :b)))
+      看來 (border (border :x)) = 0 如果對於所有 dc 成立
+      那麼對於所有 dc 相 + 而得的數據也成立
+
+    - 同樣 orientable 可能也有這個性質
+      即 被 * 與 + 保持
+
+    - 類似的性質可能不只是 closeness 和 orientable
+      這些性質都可能被作爲檢查的條件
+
+*** 何謂計算同倫羣
+
+    - 我之前認爲這在於
+      找出一組形式簡單且易於比較的已知其不同倫的空間
+      然後證明所要求同倫羣的空間與其同倫
+      並且還要發展出系統的方法來這樣做
+      這才稱得上是計算
+
+    - 但是
+      一個空間有多階同倫羣
+      如果是與基本的已知不同倫的一組空間比較
+      那麼這 多階 又是如何體現出來的呢
