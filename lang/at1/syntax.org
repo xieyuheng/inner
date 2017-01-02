@@ -1,0 +1,452 @@
+#+title: syntax
+
+* from politics of aristotle
+
+  - When several villages are united in a single complete community, large
+    enough to be nearly or quite self-sufficing, the state comes into
+    existence, originating in the bare needs of life, and continuing in
+    existence for the sake of a good life.
+    And therefore, if the earlier forms of society are natural,
+    so is the state, for it is the end of them,
+    and the nature of a thing is its end.
+    For what each thing is when fully developed, we call its nature,
+    whether we are speaking of a man, a horse, or a family.
+    Besides, the final cause and end of a thing is the best,
+    and to be self-sufficing is the end and the best.
+
+  - Now we should begin by examining everything in its fewest possible
+    elements; and the first and fewest possible parts of a family are
+    master and slave, husband and wife, father and children.
+
+  - for in all things which form a composite whole and which are made
+    up of parts, whether continuous or discrete, a distinction between
+    the ruling and the subject element comes to fight.
+
+* todo
+
+  - 確定一個可用的語法以試驗例子
+
+  - 我們現在還停留在對語法的討論上
+    而他人已經日進百步了
+
+* note
+
+  - solve the problem by design new syntax
+
+* 語法的原則
+
+  - 信息充分 與 信息必要
+
+  - 語法不必是單一的
+    爲了簡化而向必要性靠近的同時
+    也可以爲了方便而偏離必要性
+    一切都是爲了好用
+
+* 語法的難點
+
+  - 語法的難點並不出現在構造過程的前幾階
+    glue 首先出現在 dc 的 type 限制中
+
+  - 0-level
+    a : T
+    任意引入
+
+  - 1-level
+    b : a0 == a1
+    [即使是 a0 == a0 也不能消去 而使得信息減少]
+
+  - 2-level
+    c : b1 + b2 - b3 - b4
+
+  - 每次 glue 的時候
+    有兩體
+    兩體都有邊界
+    語法要能夠指出是就哪個公共邊界來做 glue
+
+  - 1-level 元素的邊界很簡單
+    爲了指明就哪個公共邊界來 glue
+    只要用 + - 就好了
+    比如
+    b1 + b2 - b3 - b4
+    對於 2-level 元素就有
+    c1 [ ] c2 [ ] c3 [ ] c4
+    這裏 [ ] 有兩種設計方法
+    - (積)
+      寫出 glue 之後的複合元素的邊界
+    - (微)
+      寫出 每次變化的細節
+      [比如 1-level 時的 + - 就是如此]
+
+* ><><>< 純粹的後綴表達式
+
+  - 有必要不用 + - 的中綴
+    而完全使用後綴表達式
+    但是如此一來
+    對等式的變換就 ><><><
+
+* 典型的認知過程
+
+  - 典型的認知過程是
+    看出 兩體就公共邊界 glue 之後 所得到的邊界是什麼
+    [在低階情形這是利用等式代換來完成的]
+
+* 不能用 + 來表示 glue
+
+  - 首先
+    想要用 + 表示 glue 是爲了如下定律
+    (border (:a * :b)) = (((border :a) * :b) + (:a * (border :b)))
+
+* 例子
+
+  #+begin_src scheme
+  (note
+    這些以數字爲名字的語法詞
+    其內常常出現變長數據
+    或者說 with-output-to-new-list)
+
+  (type (-> [] [space])
+
+    a1 a2 a3 a4 (0 <>)
+
+    b12 (1 a1 a2)
+    b13 (1 a1 a3)
+    b14 (1 a1 a4)
+    b23 (1 a2 a3)
+    b24 (1 a2 a4)
+    b34 (1 a3 a4)
+
+    c123 (2 b12 b23 b13 rev)
+    c124 (2 b12 b24 b14 rev)
+    c134 (2 b13 b34 b14 rev)
+    c234 (2 b23 b34 b24 rev)
+
+    d1234
+    ;; (3 c123 (2 b12 b23 b13 rev)
+    ;;    c124 (2 b14 b24 rev b23 b13 rev)
+    ;;    c134 (2 b13 b34 b24 rev b23 b13 rev)
+    ;;    c234 (2 b13 b34 b34 rev b23 rev b23 b13 rev))
+    (3 c123 (2 b12 b23 b13 rev)
+       c124 (2 b14 b24 rev b23 b13 rev)
+       c134 (2 b34 b24 rev b23)
+       c234 (2)))
+
+  (note
+    need syntax for solve-equation-with-condition
+    or solve/condition)
+
+  (type (-> [] [space])
+
+    a1 a2 a3 a4 (0 <>)
+
+    b12 (1 a1 a2)
+    b13 (1 a1 a3)
+    b14 (1 a1 a4)
+    b23 (1 a2 a3)
+    b24 (1 a2 a4)
+    b34 (1 a3 a4)
+
+    c123 (2 b12 b23 b13 rev)
+    c124 (2 b12 b24 b14 rev)
+    c134 (2 b13 b34 b14 rev)
+    c234 (2 b23 b34 b24 rev)
+
+    d1234
+
+    (note 三階的構造語法詞 (3) 就已經不需要 with-output-to-new-list 語義了)
+
+    (3 c123 (check-init-border (2 b12 b23 b13 rev))
+       c124 (glue-for-border (2 b14 b24 rev b23 b13 rev))
+       c134 (glue-for-border (2 b34 b24 rev b23))
+       c234 (glue-for-border (2)))
+
+    (3 c123
+       c124 (2 b14 b24 rev b23 b13 rev)  glue-for-border
+       c134 (2 b34 b24 rev b23)          glue-for-border
+       c234 (2)                          glue-for-border)
+
+    (note 這裏又算是需要 with-output-to-new-list 語義的
+          但是這種效果也可以用組合子實現
+          只不過這裏不是用組合子 而是用語法關鍵詞)
+
+    (3 c123
+       c124 (2 b14 b24 rev b23 b13 rev)
+       c134 (2 b34 b24 rev b23)
+       c234 (2))
+
+    (note 既然 3 可以被實現爲一個組合子)
+
+    [c123
+     c124 (2 b14 b24 rev b23 b13 rev)
+     c134 (2 b34 b24 rev b23)
+     c234 (2)]
+    3
+
+    (note 注意
+          如上破壞了 type 本身作爲語法關鍵詞的規則
+          組合子的意義就再用用函數來捕捉這種規則
+          就是說
+          要麼完全用後綴表達式
+          並把 [...] 作爲 with-output-to-new-list
+          要麼使用 syntax-Keyword 與類似 lisp 的 macro 機制)
+
+    (note (key1 ... (key2 ...))
+          key2 might be a marker for key1 which follows the rule of key1
+          or itself a key which follows its own rule)
+
+    (note 我放棄 純粹的後綴表達式
+          因爲 有時 前綴表達式比後綴表達式易於編輯和閱讀
+          (key ...)
+          優於
+          [...] key)
+
+    (note 而後綴表達式的優勢在於語義簡單)
+
+    (note 我們可以試着把 lisp-like-macro-system 加入到語言當中來)
+
+    (the-end))
+
+  ;; 最終的結果是
+
+  (type (-> [] [space])
+    a1 a2 a3 a4 (0 <>)
+    b12 (1 a1 a2)
+    b13 (1 a1 a3)
+    b14 (1 a1 a4)
+    b23 (1 a2 a3)
+    b24 (1 a2 a4)
+    b34 (1 a3 a4)
+    c123 (2 b12 b23 b13 rev)
+    c124 (2 b12 b24 b14 rev)
+    c134 (2 b13 b34 b14 rev)
+    c234 (2 b23 b34 b24 rev)
+    d1234 (3 c123
+             c124 (2 b14 b24 rev b23 b13 rev)
+             c134 (2 b34 b24 rev b23)
+             c234 (2)))
+
+  (note 其中
+        (3 c123
+           c124 (2 b14 b24 rev b23 b13 rev)
+           c134 (2 b34 b24 rev b23)
+           c234 (2))
+        ==>
+        (3 c123
+           c124 (2 b14 b24 rev b23 b13 rev)  glue-for-border
+           c134 (2 b34 b24 rev b23)          glue-for-border
+           c234 (2)                          glue-for-border)
+        我想在這種設計之下
+        (3 ...) 本身的意義也能被擴展)
+
+  (note (1) (2) (3) they all use with-output-to-new-list
+        just the list of (3) is of length one)
+  #+end_src
+
+* 關於例子
+
+  - 如上的語法設計到了搜索
+    並非是完全信息充分的語法
+    但是可以依照這個來定義完全信息充分的語法
+    在這個基礎上的改進
+    可以看成是增加信息以保證唯一搜索
+
+  - 上面這些以數字爲語法關鍵詞的 sexp
+    都是相對自治的 不同 level 上語法可能都不一樣
+
+  - 我想這種描述邊界而自動搜索的語法可能纔是正確的
+    否則 高階幾何體的 glue 細節實在是難以用充分的語法描述
+    但是
+    即便是有自動搜索
+    還是要設計信息充分的語法來向用戶展示搜索的結果
+
+* 確定語法以實驗更多的例子
+
+*** 引
+
+    - x ::
+         我們需要確定語法之後才能實驗更多的例子
+
+    - k ::
+         目前關於語法的設計決策有什麼
+
+    - x ::
+         啊 我想難點不在於語法設計
+         而在於確定語義
+         之後語法就是自然的了
+
+*** semantic 總是比 syntax 重要
+
+    - k ::
+         semantic 總是比 syntax 重要
+         因爲 semantic 就是我們對解釋器運行狀態的想象
+
+*** 用 di-graph 來實現 composed data
+
+    - x ::
+         with higher-inductive-type we can form data that can be composed
+         假設我們用 di-graph 來實現 composed data
+         那麼
+         每次用到 composition [glue] 的時候
+         就是對棧中已有的東西做 di-graph processing
+
+    - k ::
+         如若如此
+         glue 本身就應該被實現爲一個 明顯的函數了
+         如上我們用 (3 ...) 這個 macro
+         隱藏了 glue-for-border 這個明顯的函數調用
+
+* (bool-suspend ~> sphere-1)
+
+*** sphere-1 & bool & bool-suspend
+
+    #+begin_src scheme
+    (def sphere-1
+      (type (-> [] [space])
+        b (-> [] [(0 <>)])
+        loop (-> [] [(1 b b)])))
+
+    (def bool
+      (type (-> [] [space])
+        #f #t (-> [] [(0 <>)])))
+
+    (def bool-suspend
+      (type (-> [] [space])
+        n s (-> [] [(0 <>)])
+        m (-> [(0 bool)] [(1 n s)])))
+    #+end_src
+
+*** f & g
+
+    #+begin_src scheme
+    (def f
+      (lambda (-> [(0 bool-suspend)] [(0 sphere-1)])
+        (-> [n] [b])
+        (-> [s] [b])
+        (with (-> [(1 n s)] [(1 b b)]))
+        (-> [#f m] [loop])
+        (-> [#t m] [(2 b refl)])))
+
+    (def g
+      (lambda (-> [(0 sphere-1)] [(0 bool-suspend)])
+        (-> [b] [n])
+        (with (-> [(1 b b)] [(1 n n)]))
+        ;; (2 ...) is only needed when there is glue of elements of 2-level
+        (-> [loop] [(2 #f m #t m rev)])))
+
+    (def [g f]
+      (lambda (-> [(0 sphere-1)] [(0 sphere-1)])
+        (-> [b] [b])
+        (with (-> [(1 b b)] [(1 b b)]))
+        (-> [loop] [loop])))
+
+    (def [f g]
+      (lambda (-> [(0 bool-suspend)] [(0 bool-suspend)])
+        (-> [n] [n])
+        (-> [s] [n])
+        (with (-> [(1 n s)] [(1 n n)]))
+        (-> [#f m] [(2 #f m #t m rev)])
+        (-> [#t m] [(2 n refl]))))
+    #+end_src
+
+*** >< curry
+
+    #+begin_src scheme
+    (def :k
+      (lambda ((:x : bool-suspend) -> (:x f g = :x))
+        {n :k : (n = n)}
+        {s :k : (n = s)}
+        :k : ((:p : (n = s)) -> (n :k (:p :k tp) = s :k))
+        {#f m :k : ((#f m f g) rev n :k #f m = s :k)}
+        {#t m :k : ((#t m f g) rev n :k #t m = s :k)}
+        (<solve>
+         n :k == n rf
+         s :k == #t m
+         #f m :k == #t m rf
+         #t m :k == #t m rf)))
+    #+end_src
+
+*** >< uncurry by product
+
+* (bool-suspend-suspend ~> sphere-2)
+
+*** >< (bool-suspend-suspend ~> sphere-2)
+
+    #+begin_src scheme
+    (+ sphere-1 : type
+       b : sphere-1
+       loop : (b = b))
+
+    (+ sphere-2 : type
+       b2 : sphere-2
+       surf : (b2 rf = b2 rf))
+
+    (+ bool : type
+       0 : bool
+       1 : bool)
+
+    (+ bool-suspend : type
+       n : bool-suspend
+       s : bool-suspend
+       m : (bool -> (n = s)))
+
+    (+ bool-suspend-suspend : type
+       n2 : bool-suspend-suspend
+       s2 : bool-suspend-suspend
+       m2 : (bool-suspend -> (n2 = s2)))
+    #+end_src
+
+*** >< f & g
+
+    #+begin_src scheme
+    (~ f : (bool-suspend-suspend -> sphere-2)
+       (n2 -> b2)
+       (s2 -> b2)
+       f : ((n2 = s2) -> (b2 = b2))
+       (n m2 -> b2 rf)
+       (s m2 -> b2 rf)
+       f : ((n m2 = s m2) -> (b2 rf = b2 rf))
+       (0 m m2 -> surf)
+       (1 m m2 -> b2 rf rf))
+
+    (~ g : (sphere-2 -> bool-suspend-suspend)
+       (b2 -> n2)
+       g : ((b2 rf = b2 rf) -> (n2 rf = n2 rf))
+       (surf -> {0 m m2 1 m m2 {n m2 s m2 rev}}))
+
+    (~ f g : (bool-suspend-suspend -> bool-suspend-suspend)
+       (n2 -> n2)
+       (s2 -> n2)
+       f g : ((n2 = s2) -> (n2 = n2))
+       (n m2 -> n2 rf)
+       (s m2 -> n2 rf)
+       f g : ((n m2 = s m2) -> (n2 rf = n2 rf))
+       (0 m m2 -> {0 m m2 1 m m2 {n m2 s m2 rev}})
+       (1 m m2 -> n rf rf))
+
+    (~ g f : (sphere-2 -> sphere-2)
+       (b2 -> b2)
+       g f : ((b2 rf = b2 rf) -> (b2 rf = b2 rf))
+       (surf -> surf))
+    #+end_src
+
+*** >< curry
+
+    #+begin_src scheme
+    (~ :k : ((:x : bool-suspend-suspend) -> (:x f g = :x))
+       {n2 :k : (n2 = n2)}
+       {s2 :k : (n2 = s2)}
+       :k : ((:p : (n2 = s2)) -> (n2 :k (:p :k tp) = s2 :k))
+       {n m2 :k : (n2 :k n m2 = s2 :k)}
+       {s m2 :k : (n2 :k s m2 = s2 :k)}
+       :k : ((:h : (n m2 = s m2)) -> (n m2 :k (:h :k tp2) = s m2 :k))
+       ;; 這裏的 tp2 使用比 hott 更高階的類型
+       {0 m m2 :k : (><><><)}
+       {1 m m2 :k : (><><><)}
+       (solve-by
+        ><><><))
+    #+end_src
+
+*** >< uncurry
+
+    #+begin_src scheme
+
+    #+end_src
