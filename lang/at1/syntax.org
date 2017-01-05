@@ -207,7 +207,7 @@
 
   ;; 最終的結果是
 
-  (type (-> [] [space])
+  (type space
     a1 a2 a3 a4 (0 <>)
     b12 (1 a1 a2)
     b13 (1 a1 a3)
@@ -294,6 +294,16 @@
          如上我們用 (3 ...) 這個 macro
          隱藏了 glue-for-border 這個明顯的函數調用
 
+* simple principle of uncurry
+
+  - a path in B is a function of type (I -> B)
+    thus (A -> (path in B)) == (A -> (I -> B))
+    can be uncurried to (A I -> B)
+
+  - with the method of path-as-function
+    we can define homotopy between pathes by equality of functions
+    (f1 ~ f2)
+
 * (bool-suspend ~> sphere-1)
 
 *** sphere-1 & bool & bool-suspend
@@ -350,99 +360,156 @@
 *** >< curry
 
     #+begin_src scheme
-    (def :k
-      (lambda ((:x : bool-suspend) -> (:x f g = :x))
-        {n :k : (n = n)}
-        {s :k : (n = s)}
-        :k : ((:p : (n = s)) -> (n :k (:p :k tp) = s :k))
-        {#f m :k : ((#f m f g) rev n :k #f m = s :k)}
-        {#t m :k : ((#t m f g) rev n :k #t m = s :k)}
-        (<solve>
-         n :k == n rf
-         s :k == #t m
-         #f m :k == #t m rf
-         #t m :k == #t m rf)))
+    (def k
+      (lambda (-> [(0 bool-suspend) %:x] [(1 :x f g :x)])
+        (-> [n] [(2 n refl) : (1 n n)])
+        (-> [s] [#t m : (1 n s)])
+        (with (-> [(1 n s) %:p] [(2 n k :p tp1 s k rev)])
+              (-> [(1 n s) %:p] [(2 n refl :p tp1 #t m rev)])
+              (-> [(1 n s) %:p] [(2 n refl :p tp1 #t m rev)]))
+        (-> [#f m] [(2 #t m refl) : ((#f m f g) rev n k #f m = s k)])
+        (-> [#t m] [(2 #t m refl) : ((#t m f g) rev n k #t m = s k)])))
     #+end_src
 
 *** >< uncurry by product
 
+    #+begin_src scheme
+    (def k
+      (lambda (-> [A %:a] [(1 :a f :a g)])
+        ...))
+
+    ;; uncurry
+    (def h
+      (lambda (-> [A I] [B])
+        {(-> [:a #0] [:a f])
+         (-> [:a #1] [:a g])}
+        ;; an extension problem indeed
+        ...))
+
+    (def k
+      (lambda (-> [(0 bool-suspend) %:x] [(1 :x f g :x)])
+        (-> [n] [(2 n refl) : (1 n n)])
+        (-> [s] [#t m : (1 n s)])
+        (with (-> [(1 n s) %:p] [(2 n k :p tp1 s k rev)])
+              (-> [(1 n s) %:p] [(2 n refl :p tp1 #t m rev)])
+              (-> [(1 n s) %:p] [(2 n refl :p tp1 #t m rev)]))
+        (-> [#f m] [(2 #t m refl) : ((#f m f g) rev n k #f m = s k)])
+        (-> [#t m] [(2 #t m refl) : ((#t m f g) rev n k #t m = s k)])))
+
+    (def h
+      (lambda (-> [(0 I) (0 bool-suspend)] [(0 bool-suspend)])
+        {(-> [i0 n] [n f g])
+         (-> [i1 s] [s])}
+        (with (-> [(1 i0 i1) [()]]))
+        ))
+
+    (def I
+      (type space
+        i0 i1 (0 <>)
+        i01 (1 i0 i1)))
+
+    (def f
+      (lambda (-> [(0 I) (0 I)] [(0 X)])
+        (-> [i0 i0] [])
+        (-> [i0 i1] [])
+        (-> [i1 i0] [])
+        (-> [i1 i1] [])
+        (with (-> [(0 I) %:i (1 i0 i1)] [(1 :i i0 f :i i1 f)]))
+        ;; (1 :i i0 f :i i1 f) == :i (1 i0 i1) f
+        (-> [i0 i01] [])
+        (-> [i1 i01] [])
+        (with (-> [(1 i0 i1) (0 I) %:i] [(1 i0 :i f i1 :i f)]))
+        (-> [i01 i0] [])
+        (-> [i01 i1] [])
+        (with (-> [(1 i0 i1) %:p0
+                   (1 i0 i1) %:p1]
+                  [(2 :p0 i0 f
+                      i1 :p1 f
+                      :p0 i1 f rev
+                      i0 :p1 f rev)]))
+        ;; product 的各個部分 之邊界 所生成的 函數值
+        ;; 想要融合成一個 封閉的圖形 其方式可能總是唯一的
+        ;; 如果我允許 (2 ...) 內構造出不聯通的圖形
+        ;; 那麼我可能就有機會描述出來這種唯一可能
+        ;; [(2 :p0 i0 f
+        ;;     :p0 i1 f rev
+        ;;     (2 i0 :p1 f
+        ;;        i1 :p1 f rev) rev)]
+        (-> [i01 i01] [])))
+    #+end_src
+
 * (bool-suspend-suspend ~> sphere-2)
 
-*** >< (bool-suspend-suspend ~> sphere-2)
+*** sphere-2 & bool-suspend-suspend
 
     #+begin_src scheme
-    (+ sphere-1 : type
-       b : sphere-1
-       loop : (b = b))
+    (def sphere-2
+      (type (-> [] [space])
+        b2 (-> [] [(0 <>)])
+        ;; no need for (2 b2 refl b2 refl rev) ?
+        ;; for b2 refl is as identity
+        surf (-> [] [(2 b2 refl)])))
 
-    (+ sphere-2 : type
-       b2 : sphere-2
-       surf : (b2 rf = b2 rf))
-
-    (+ bool : type
-       0 : bool
-       1 : bool)
-
-    (+ bool-suspend : type
-       n : bool-suspend
-       s : bool-suspend
-       m : (bool -> (n = s)))
-
-    (+ bool-suspend-suspend : type
-       n2 : bool-suspend-suspend
-       s2 : bool-suspend-suspend
-       m2 : (bool-suspend -> (n2 = s2)))
+    (def bool-suspend-suspend
+      (type (-> [] [space])
+        n2 s2 (-> [] [(0 bool-suspend-suspend)])
+        m2 (-> [(0 bool-suspend)] [(1 n2 s2)])))
     #+end_src
 
 *** >< f & g
 
     #+begin_src scheme
-    (~ f : (bool-suspend-suspend -> sphere-2)
-       (n2 -> b2)
-       (s2 -> b2)
-       f : ((n2 = s2) -> (b2 = b2))
-       (n m2 -> b2 rf)
-       (s m2 -> b2 rf)
-       f : ((n m2 = s m2) -> (b2 rf = b2 rf))
-       (0 m m2 -> surf)
-       (1 m m2 -> b2 rf rf))
+    (def f
+      (lambda (-> [(0 bool-suspend-suspend)] [(0 sphere-2)])
+        (-> [n2] [b2])
+        (-> [s2] [b2])
+        (with (-> [(1 n2 s2)] [(1 b2 b2)]))
+        (-> [n m2] [b2 rf])
+        (-> [s m2] [b2 rf])
+        (with (-> [(n m2 = s m2)] [(b2 rf = b2 rf)]))
+        (-> [#f m m2] [surf])
+        (-> [#t m m2] [b2 rf rf])))
 
-    (~ g : (sphere-2 -> bool-suspend-suspend)
-       (b2 -> n2)
-       g : ((b2 rf = b2 rf) -> (n2 rf = n2 rf))
-       (surf -> {0 m m2 1 m m2 {n m2 s m2 rev}}))
+    (def g
+      (lambda (-> [(0 sphere-2)] [(0 bool-suspend-suspend)])
+        (-> [b2] [n2])
+        (with (-> [(2 b2 refl b2 refl rev)] [(2 b2 refl b2 refl rev)]))
+        (-> [surf] [(3 #f m m2 #t m m2 {n m2 s m2 rev})])))
 
-    (~ f g : (bool-suspend-suspend -> bool-suspend-suspend)
-       (n2 -> n2)
-       (s2 -> n2)
-       f g : ((n2 = s2) -> (n2 = n2))
-       (n m2 -> n2 rf)
-       (s m2 -> n2 rf)
-       f g : ((n m2 = s m2) -> (n2 rf = n2 rf))
-       (0 m m2 -> {0 m m2 1 m m2 {n m2 s m2 rev}})
-       (1 m m2 -> n rf rf))
+    (def [f g]
+      (lambda (-> [(0 bool-suspend-suspend)] [(0 bool-suspend-suspend)])
+        (-> [n2] [n2])
+        (-> [s2] [n2])
+        (with (-> [(1 n2 s2)] [(1 n2 n2)]))
+        (-> [n m2] [n2 refl])
+        (-> [s m2] [n2 refl])
+        (with (-> [(2 n m2 s m2)] [(2 n2 refl n2 refl)]))
+        (-> [#f m m2] [{#f m m2 #t m m2 {n m2 s m2 rev}}])
+        (-> [#t m m2] [n rf rf])))
 
-    (~ g f : (sphere-2 -> sphere-2)
-       (b2 -> b2)
-       g f : ((b2 rf = b2 rf) -> (b2 rf = b2 rf))
-       (surf -> surf))
+    (def [g f]
+      (lambda (-> [(0 sphere-2)] [(0 sphere-2)])
+        (-> [b2] [b2])
+        (with (-> [(2 b2 refl b2 refl rev)] [(2 b2 refl b2 refl rev)]))
+        (-> [surf] [surf])))
     #+end_src
 
 *** >< curry
 
     #+begin_src scheme
-    (~ :k : ((:x : bool-suspend-suspend) -> (:x f g = :x))
-       {n2 :k : (n2 = n2)}
-       {s2 :k : (n2 = s2)}
-       :k : ((:p : (n2 = s2)) -> (n2 :k (:p :k tp) = s2 :k))
-       {n m2 :k : (n2 :k n m2 = s2 :k)}
-       {s m2 :k : (n2 :k s m2 = s2 :k)}
-       :k : ((:h : (n m2 = s m2)) -> (n m2 :k (:h :k tp2) = s m2 :k))
-       ;; 這裏的 tp2 使用比 hott 更高階的類型
-       {0 m m2 :k : (><><><)}
-       {1 m m2 :k : (><><><)}
-       (solve-by
-        ><><><))
+    (def :k
+      (lambda ((:x : bool-suspend-suspend) -> (:x f g = :x))
+        {n2 :k : (n2 = n2)}
+        {s2 :k : (n2 = s2)}
+        (with ((:p : (n2 = s2)) -> (n2 :k (:p :k tp) = s2 :k)))
+        {n m2 :k : (n2 :k n m2 = s2 :k)}
+        {s m2 :k : (n2 :k s m2 = s2 :k)}
+        (with ((:h : (n m2 = s m2)) -> (n m2 :k (:h :k tp2) = s m2 :k)))
+        ;; 這裏的 tp2 使用比 hott 更高階的類型
+        {0 m m2 :k : (><><><)}
+        {1 m m2 :k : (><><><)}
+        (solve-by
+         ><><><)))
     #+end_src
 
 *** >< uncurry

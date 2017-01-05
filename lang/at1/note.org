@@ -133,14 +133,14 @@
 
   ;; curry
   (def k
-    (lambda (-> [A %:a] [:a f :a g ==])
+    (lambda (-> [A %:a] [(1 :a f :a g)])
       ...))
 
   ;; uncurry
   (def h
     (lambda (-> [A I] [B])
-      {(-> [:a 0] [:a f])
-       (-> [:a 1] [:a g])}
+      {(-> [:a #0] [:a f])
+       (-> [:a #1] [:a g])}
       ;; an extension problem indeed
       ...))
   #+end_src
@@ -271,44 +271,6 @@
      (solve-by
       ><><><))
   #+end_src
-
-* >< tp 與 apd
-
-  #+begin_src scheme
-  ;; fibration
-  F := ((:x : A) -> :x P)
-  ;; 每個 fibration 必須有 tp
-  (* (F tp) : ((:x = :y) -> (:x P ~> :y P)))
-  ;; section
-  (* k : ((:x : A) -> :x P))
-  ;; k 和 (F tp) 的作用 出現在 (k apd) 的類型中
-  (* (k apd) : ((:p : (:x = :y)) -> (:x k (:p F tp) = :y k)))
-  ;; (k apd) 的函數體的存在性 就是限制 k 的函數體的方程
-  ;; 所謂 限制
-  ;;   即 x k 與 y k 不能在 x P 與 y P 中任意取值
-  ;;   即 有邊相連的點 x 與 y 其值 x k 與 y k 受邊所生成的方程的限制
-  #+end_src
-
-  - 而古典理論中 描述 fibre bundle 的方式是
-    projection : total-space -> base-space
-    這裏 total-space 的定義本身就描述了全局結構
-
-  - fibre bundle 中 fibre 是固定的空間
-    而 fibration 中 fibre 是可依賴 x 的
-    此時 fibre 不必是相等的空間
-    但是必須是同倫等價的
-    這就是 要求 tp 存在的原因
-
-  - 而在形式理論中 描述 fibration 的方式是
-    F := (x : base-space -> x P)
-    此時 total-space 是構造出來的 F
-    需要額外用 tp 給出 fibration 的全局結構
-    - 所謂 全局結構 或 全局信息
-      其實也是局部的 只不過不是就 point 來描述
-      而是就 path 或高階幾何元素來描述而已
-
-  - apd 的類型中 有 tp 的作用 可能是爲了
-    能夠以線性的方式表示封閉的高階 path
 
 * at1 之用
 
@@ -1038,3 +1000,13 @@
          等等
          甚至形式化之後的 homotopy 已經與古典不同
          都有可能
+
+* at1 的目的
+
+  - 設計 at1 還有類似語言的目的在於
+    我發現 當形式化某個領域之後
+    就可能用計算機來實現這個形式系統
+    如此我的目的有二
+    1. 把數學知識變具體 這關乎教學
+    2. 把對數學知識之 '價值' 之評價變得客觀
+       消除主管評價數學成果的價值之必要
