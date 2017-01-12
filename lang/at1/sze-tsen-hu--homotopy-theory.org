@@ -1,0 +1,107 @@
+#+title: sze-tsen-hu--homotopy-theory
+
+* todo
+
+*** now
+
+    - change the syntax of earlier code.
+      setup the rule about how to add new syntax.
+
+* note
+
+*** to express retraction-problem
+
+    - to express retraction-problem better,
+      do we need syntax for expressing unnamed type
+      formed by a list of elements ?
+
+    - how about the relation between (0 I) and I
+
+    ------
+
+    - I should allow them
+      and I should not be bothered by such problems anymore
+      for to add a new syntax is simply
+      to add a new syntax keyword
+      and use symbol-expression (<keyword> ...)
+
+    - the relationship between (0 I) and I,
+      depends on the syntax of the type of a function
+      [which has several levels].
+      beside the syntax to address each levels of the space,
+      such as (0 I) and (1 I),
+      we also need syntax to address the whole space as 'I'.
+      and the type of a function should firstly be about the whole space,
+      only then, each levels of it.
+
+* retraction-problem & extension-problem
+
+  - if the retraction-problem
+    (lambda (-> [X] [A]) (with-part on A))
+    is solvable,
+    then every extension-problem
+    (lambda (-> [X] [Y]) (with-part on A))
+    is solvable.
+
+* the proof of (f0 ~ f1)
+
+  - to proof (f0 ~ f1)
+    is to form a special extension-problem.
+    with (f0, f1 : A -> B)
+    we need to extend a partial-map of type (-> [A I] [B])
+    #+begin_src scheme
+    (lambda (-> [A I] [B])
+      (with-part
+       (-> [:a i0] [:a f0])
+       (-> [:a i1] [:a f1])))
+    #+end_src
+
+  - the corresponding retraction-problem is
+    #+begin_src scheme
+    (lambda (-> [A I] [A (0 I)])
+      (with-part on (0 I)))
+
+    (lambda (-> [A I] [A (0 I)])
+      (with-part
+       (-> [:a i0] [:a f0])
+       (-> [:a i1] [:a f1])))
+    #+end_src
+    if this retraction-problem is solvable
+    then for all (f0, f1 : A -> B)
+    we have (f0 ~ f1)
+
+* the proof of (A == B)
+
+  - to proof (A == B)
+    is to form find (f : A -> B) and (g : B -> A)
+    and to proof (f g ~ A id) and (g f ~ B id)
+    #+begin_src scheme
+    (lambda (-> [A I] [A])
+      (with-part
+        (-> [:a i0] [:a f g])
+        (-> [:a i1] [:a])))
+
+    (lambda (-> [B I] [B])
+      (with-part
+        (-> [:b i0] [:b g f])
+        (-> [:b i1] [:b])))
+    #+end_src
+
+  - the corresponding retraction-problem is
+    #+begin_src scheme
+    (lambda (-> [A I] [A (0 I)])
+      (with-part on (0 I)))
+
+    (lambda (-> [A I] [A (0 I)])
+      (with-part
+        (-> [:a i0] [:a i0])
+        (-> [:a i1] [:a i1])))
+
+    ;; for B the same
+    #+end_src
+
+  - it is to say
+    if the above retraction-problem is solvable
+    then to proof (A == B)
+    it is suffice to proof (A -> B) and (B -> A)
+    [i.e. to find two functions of such types]

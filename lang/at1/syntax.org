@@ -1,46 +1,33 @@
 #+title: syntax
 
-* from politics of aristotle
+* my personal principle about syntax design
 
-  - When several villages are united in a single complete community, large
-    enough to be nearly or quite self-sufficing, the state comes into
-    existence, originating in the bare needs of life, and continuing in
-    existence for the sake of a good life.
-    And therefore, if the earlier forms of society are natural,
-    so is the state, for it is the end of them,
-    and the nature of a thing is its end.
-    For what each thing is when fully developed, we call its nature,
-    whether we are speaking of a man, a horse, or a family.
-    Besides, the final cause and end of a thing is the best,
-    and to be self-sufficing is the end and the best.
+  - when there is a problem to be solved by designing new syntax,
+    first I capture all the information by a info-sufficient language,
+    then try to simplify the language,
+    and try to make it info-necessary.
+    but absolutely info-necessary is not the aim,
+    the aim is easy to read.
 
-  - Now we should begin by examining everything in its fewest possible
-    elements; and the first and fewest possible parts of a family are
-    master and slave, husband and wife, father and children.
+  - to make it easier to modify the design,
+    I do not early-sugarize the syntax,
+    but only use prefix symbol-expression and postfix notation.
 
-  - for in all things which form a composite whole and which are made
-    up of parts, whether continuous or discrete, a distinction between
-    the ruling and the subject element comes to fight.
+  - when need to initiate some data in the stack,
+    I use prefix symbol-expression to describ the literal-data,
+    like '(keyword ...)'.
+    when need to do an operation on such data,
+    I use postfix notation.
 
-* todo
+  - the above rules must not be followed strictly.
+    because for some kinds of simple literal-data,
+    there is no need to use symbol-expression.
+    while for some kinds of complicated operation,
+    symbol-expression is needed.
 
-  - 確定一個可用的語法以試驗例子
-
-  - 我們現在還停留在對語法的討論上
-    而他人已經日進百步了
-
-* note
-
-  - solve the problem by design new syntax
-
-* 語法的原則
-
-  - 信息充分 與 信息必要
-
-  - 語法不必是單一的
-    爲了簡化而向必要性靠近的同時
-    也可以爲了方便而偏離必要性
-    一切都是爲了好用
+  - there are many ways to sugarize a syntax,
+    1. symbel-pattern
+    2. local macro
 
 * 語法的難點
 
@@ -77,26 +64,15 @@
       寫出 每次變化的細節
       [比如 1-level 時的 + - 就是如此]
 
-* ><><>< 純粹的後綴表達式
-
-  - 有必要不用 + - 的中綴
-    而完全使用後綴表達式
-    但是如此一來
-    對等式的變換就 ><><><
-
 * 典型的認知過程
 
   - 典型的認知過程是
     看出 兩體就公共邊界 glue 之後 所得到的邊界是什麼
     [在低階情形這是利用等式代換來完成的]
 
-* 不能用 + 來表示 glue
+* >< (border (:a * :b)) = (((border :a) * :b) + (:a * (border :b)))
 
-  - 首先
-    想要用 + 表示 glue 是爲了如下定律
-    (border (:a * :b)) = (((border :a) * :b) + (:a * (border :b)))
-
-* 例子
+* example syntax
 
   #+begin_src scheme
   (note
@@ -204,9 +180,11 @@
     (note 我們可以試着把 lisp-like-macro-system 加入到語言當中來)
 
     (the-end))
+  #+end_src
 
-  ;; 最終的結果是
+* the resulting example syntax
 
+  #+begin_src scheme
   (type space
     a1 a2 a3 a4 (0 <>)
     b12 (1 a1 a2)
@@ -224,7 +202,7 @@
              c134 (2 b34 b24 rev b23)
              c234 (2)))
 
-  (note 其中
+  (note where
         (3 c123
            c124 (2 b14 b24 rev b23 b13 rev)
            c134 (2 b34 b24 rev b23)
@@ -234,14 +212,14 @@
            c124 (2 b14 b24 rev b23 b13 rev)  glue-for-border
            c134 (2 b34 b24 rev b23)          glue-for-border
            c234 (2)                          glue-for-border)
-        我想在這種設計之下
-        (3 ...) 本身的意義也能被擴展)
+        under this design,
+        the syntax inside (3 ...) can also be extended)
 
   (note (1) (2) (3) they all use with-output-to-new-list
         just the list of (3) is of length one)
   #+end_src
 
-* 關於例子
+* about the example
 
   - 如上的語法設計到了搜索
     並非是完全信息充分的語法
@@ -304,6 +282,23 @@
     we can define homotopy between pathes by equality of functions
     (f1 ~ f2)
 
+* about modularity
+
+  - it is such a burden
+    to have to come up with unique name for every dc.
+    it is also not satisfactory
+    to prefix every dc with their space name.
+
+  - a module-system must be design to solve this.
+    a syntax for 'prefixing every dc with their space name'
+    must be designed.
+    but locally, in every source code file,
+    the prefix can be omited.
+
+  - I will use symbel-pattern '<space-name>/<dc-name>' here.
+    or '<module-name>/<space-name>/<dc-name>'
+    or '<module-name>/<function-name>'
+
 * (bool-suspend ~> sphere-1)
 
 *** sphere-1 & bool & bool-suspend
@@ -328,7 +323,8 @@
 
     #+begin_src scheme
     (def f
-      (lambda (-> [(0 bool-suspend)] [(0 sphere-1)])
+      (lambda (-> [bool-suspend] [sphere-1])
+        (with (-> [(0 bool-suspend)] [(0 sphere-1)]))
         (-> [n] [b])
         (-> [s] [b])
         (with (-> [(1 n s)] [(1 b b)]))
@@ -336,20 +332,23 @@
         (-> [#t m] [(2 b refl)])))
 
     (def g
-      (lambda (-> [(0 sphere-1)] [(0 bool-suspend)])
+      (lambda (-> [sphere-1] [bool-suspend])
+        (with (-> [(0 sphere-1)] [(0 bool-suspend)]))
         (-> [b] [n])
         (with (-> [(1 b b)] [(1 n n)]))
         ;; (2 ...) is only needed when there is glue of elements of 2-level
         (-> [loop] [(2 #f m #t m rev)])))
 
     (def [g f]
-      (lambda (-> [(0 sphere-1)] [(0 sphere-1)])
+      (lambda (-> [sphere-1] [sphere-1])
+        (with (-> [(0 sphere-1)] [(0 sphere-1)]))
         (-> [b] [b])
         (with (-> [(1 b b)] [(1 b b)]))
         (-> [loop] [loop])))
 
     (def [f g]
-      (lambda (-> [(0 bool-suspend)] [(0 bool-suspend)])
+      (lambda (-> [bool-suspend] [bool-suspend])
+        (with (-> [(0 bool-suspend)] [(0 bool-suspend)]))
         (-> [n] [n])
         (-> [s] [n])
         (with (-> [(1 n s)] [(1 n n)]))
@@ -397,7 +396,8 @@
         (-> [#t m] [(2 #t m refl) : ((#t m f g) rev n k #t m = s k)])))
 
     (def h
-      (lambda (-> [(0 I) (0 bool-suspend)] [(0 bool-suspend)])
+      (lambda (-> [I bool-suspend] [bool-suspend])
+        (with (-> [(0 I) (0 bool-suspend)] [(0 bool-suspend)]))
         {(-> [i0 n] [n f g])
          (-> [i1 s] [s])}
         (with (-> [(1 i0 i1) [()]]))
@@ -409,32 +409,33 @@
         i01 (1 i0 i1)))
 
     (def f
-      (lambda (-> [(0 I) (0 I)] [(0 X)])
+      (lambda (-> [I I] [X])
+        (with (-> [(0 I) (0 I)] [(0 X)]))
         (-> [i0 i0] [])
         (-> [i0 i1] [])
         (-> [i1 i0] [])
         (-> [i1 i1] [])
-        (with (-> [(0 I) %:i (1 i0 i1)] [(1 :i i0 f :i i1 f)]))
-        ;; (1 :i i0 f :i i1 f) == :i (1 i0 i1) f
+        (with (-> [(0 I) %:i (1 i0 i1)] [(1 :i i0 <> :i i1 <>)]))
+        ;; (1 :i i0 <> :i i1 <>) == :i (1 i0 i1) <>
         (-> [i0 i01] [])
         (-> [i1 i01] [])
-        (with (-> [(1 i0 i1) (0 I) %:i] [(1 i0 :i f i1 :i f)]))
+        (with (-> [(1 i0 i1) (0 I) %:i] [(1 i0 :i <> i1 :i <>)]))
         (-> [i01 i0] [])
         (-> [i01 i1] [])
         (with (-> [(1 i0 i1) %:p0
                    (1 i0 i1) %:p1]
-                  [(2 :p0 i0 f
-                      i1 :p1 f
-                      :p0 i1 f rev
-                      i0 :p1 f rev)]))
+                  [(2 :p0 i0 <>
+                      i1 :p1 <>
+                      :p0 i1 <> rev
+                      i0 :p1 <> rev)]))
         ;; product 的各個部分 之邊界 所生成的 函數值
         ;; 想要融合成一個 封閉的圖形 其方式可能總是唯一的
         ;; 如果我允許 (2 ...) 內構造出不聯通的圖形
         ;; 那麼我可能就有機會描述出來這種唯一可能
-        ;; [(2 :p0 i0 f
-        ;;     :p0 i1 f rev
-        ;;     (2 i0 :p1 f
-        ;;        i1 :p1 f rev) rev)]
+        ;; [(2 :p0 i0 <>
+        ;;     :p0 i1 <> rev
+        ;;     (2 i0 :p1 <>
+        ;;        i1 :p1 <> rev) rev)]
         (-> [i01 i01] [])))
     #+end_src
 
@@ -460,7 +461,8 @@
 
     #+begin_src scheme
     (def f
-      (lambda (-> [(0 bool-suspend-suspend)] [(0 sphere-2)])
+      (lambda (-> [bool-suspend-suspend] [sphere-2])
+        (with (-> [(0 bool-suspend-suspend)] [(0 sphere-2)]))
         (-> [n2] [b2])
         (-> [s2] [b2])
         (with (-> [(1 n2 s2)] [(1 b2 b2)]))
@@ -471,13 +473,15 @@
         (-> [#t m m2] [b2 rf rf])))
 
     (def g
-      (lambda (-> [(0 sphere-2)] [(0 bool-suspend-suspend)])
+      (lambda (-> [sphere-2] [bool-suspend-suspend])
+        (with (-> [(0 sphere-2)] [(0 bool-suspend-suspend)]))
         (-> [b2] [n2])
         (with (-> [(2 b2 refl b2 refl rev)] [(2 b2 refl b2 refl rev)]))
         (-> [surf] [(3 #f m m2 #t m m2 {n m2 s m2 rev})])))
 
     (def [f g]
-      (lambda (-> [(0 bool-suspend-suspend)] [(0 bool-suspend-suspend)])
+      (lambda (-> [bool-suspend-suspend] [bool-suspend-suspend])
+        (with (-> [(0 bool-suspend-suspend)] [(0 bool-suspend-suspend)]))
         (-> [n2] [n2])
         (-> [s2] [n2])
         (with (-> [(1 n2 s2)] [(1 n2 n2)]))
@@ -488,7 +492,8 @@
         (-> [#t m m2] [n rf rf])))
 
     (def [g f]
-      (lambda (-> [(0 sphere-2)] [(0 sphere-2)])
+      (lambda (-> [sphere-2] [sphere-2])
+        (with (-> [(0 sphere-2)] [(0 sphere-2)]))
         (-> [b2] [b2])
         (with (-> [(2 b2 refl b2 refl rev)] [(2 b2 refl b2 refl rev)]))
         (-> [surf] [surf])))
