@@ -1,34 +1,5 @@
 #+title: syntax
 
-* my personal principle about syntax design
-
-  - when there is a problem to be solved by designing new syntax,
-    first I capture all the information by a info-sufficient language,
-    then try to simplify the language,
-    and try to make it info-necessary.
-    but absolutely info-necessary is not the aim,
-    the aim is easy to read.
-
-  - to make it easier to modify the design,
-    I do not early-sugarize the syntax,
-    but only use prefix symbol-expression and postfix notation.
-
-  - when need to initiate some data in the stack,
-    I use prefix symbol-expression to describ the literal-data,
-    like '(keyword ...)'.
-    when need to do an operation on such data,
-    I use postfix notation.
-
-  - the above rules must not be followed strictly.
-    because for some kinds of simple literal-data,
-    there is no need to use symbol-expression.
-    while for some kinds of complicated operation,
-    symbol-expression is needed.
-
-  - there are many ways to sugarize a syntax,
-    1. symbel-pattern
-    2. local macro
-
 * 語法的難點
 
   - 語法的難點並不出現在構造過程的前幾階
@@ -324,36 +295,36 @@
     #+begin_src scheme
     (def f
       (lambda (-> [bool-suspend] [sphere-1])
-        (with (-> [(0 bool-suspend)] [(0 sphere-1)]))
-        (-> [n] [b])
-        (-> [s] [b])
-        (with (-> [(1 n s)] [(1 b b)]))
-        (-> [#f m] [loop])
-        (-> [#t m] [(2 b refl)])))
+        (with (-> [(0 bool-suspend)] [(0 sphere-1)])
+          (-> [n] [b])
+          (-> [s] [b]))
+        (with (-> [(1 n s)] [(1 b b)])
+          (-> [#f m] [loop])
+          (-> [#t m] [(2 b refl)]))))
 
     (def g
       (lambda (-> [sphere-1] [bool-suspend])
-        (with (-> [(0 sphere-1)] [(0 bool-suspend)]))
-        (-> [b] [n])
-        (with (-> [(1 b b)] [(1 n n)]))
-        ;; (2 ...) is only needed when there is glue of elements of 2-level
-        (-> [loop] [(2 #f m #t m rev)])))
+        (with (-> [(0 sphere-1)] [(0 bool-suspend)])
+          (-> [b] [n]))
+        (with (-> [(1 b b)] [(1 n n)])
+          ;; (2 ...) is only needed when there is glue of elements of 2-level
+          (-> [loop] [(2 #f m #t m rev)]))))
 
     (def [g f]
       (lambda (-> [sphere-1] [sphere-1])
-        (with (-> [(0 sphere-1)] [(0 sphere-1)]))
-        (-> [b] [b])
-        (with (-> [(1 b b)] [(1 b b)]))
-        (-> [loop] [loop])))
+        (with (-> [(0 sphere-1)] [(0 sphere-1)])
+          (-> [b] [b]))
+        (with (-> [(1 b b)] [(1 b b)])
+          (-> [loop] [loop]))))
 
     (def [f g]
       (lambda (-> [bool-suspend] [bool-suspend])
-        (with (-> [(0 bool-suspend)] [(0 bool-suspend)]))
-        (-> [n] [n])
-        (-> [s] [n])
-        (with (-> [(1 n s)] [(1 n n)]))
-        (-> [#f m] [(2 #f m #t m rev)])
-        (-> [#t m] [(2 n refl]))))
+        (with (-> [(0 bool-suspend)] [(0 bool-suspend)])
+          (-> [n] [n])
+          (-> [s] [n]))
+        (with (-> [(1 n s)] [(1 n n)])
+          (-> [#f m] [(2 #f m #t m rev)])
+          (-> [#t m] [(2 n refl])))))
     #+end_src
 
 *** >< curry
@@ -462,41 +433,41 @@
     #+begin_src scheme
     (def f
       (lambda (-> [bool-suspend-suspend] [sphere-2])
-        (with (-> [(0 bool-suspend-suspend)] [(0 sphere-2)]))
-        (-> [n2] [b2])
-        (-> [s2] [b2])
-        (with (-> [(1 n2 s2)] [(1 b2 b2)]))
-        (-> [n m2] [b2 rf])
-        (-> [s m2] [b2 rf])
-        (with (-> [(n m2 = s m2)] [(b2 rf = b2 rf)]))
-        (-> [#f m m2] [surf])
-        (-> [#t m m2] [b2 rf rf])))
+        (with (-> [(0 bool-suspend-suspend)] [(0 sphere-2)])
+          (-> [n2] [b2])
+          (-> [s2] [b2]))
+        (with (-> [(1 n2 s2)] [(1 b2 b2)])
+          (-> [n m2] [b2 rf])
+          (-> [s m2] [b2 rf]))
+        (with (-> [(n m2 = s m2)] [(b2 rf = b2 rf)])
+          (-> [#f m m2] [surf])
+          (-> [#t m m2] [b2 rf rf]))))
 
     (def g
       (lambda (-> [sphere-2] [bool-suspend-suspend])
-        (with (-> [(0 sphere-2)] [(0 bool-suspend-suspend)]))
-        (-> [b2] [n2])
-        (with (-> [(2 b2 refl b2 refl rev)] [(2 b2 refl b2 refl rev)]))
-        (-> [surf] [(3 #f m m2 #t m m2 {n m2 s m2 rev})])))
+        (with (-> [(0 sphere-2)] [(0 bool-suspend-suspend)])
+          (-> [b2] [n2]))
+        (with (-> [(2 b2 refl b2 refl rev)] [(2 b2 refl b2 refl rev)])
+          (-> [surf] [(3 #f m m2 #t m m2 {n m2 s m2 rev})]))))
 
     (def [f g]
       (lambda (-> [bool-suspend-suspend] [bool-suspend-suspend])
-        (with (-> [(0 bool-suspend-suspend)] [(0 bool-suspend-suspend)]))
-        (-> [n2] [n2])
-        (-> [s2] [n2])
-        (with (-> [(1 n2 s2)] [(1 n2 n2)]))
-        (-> [n m2] [n2 refl])
-        (-> [s m2] [n2 refl])
-        (with (-> [(2 n m2 s m2)] [(2 n2 refl n2 refl)]))
-        (-> [#f m m2] [{#f m m2 #t m m2 {n m2 s m2 rev}}])
-        (-> [#t m m2] [n rf rf])))
+        (with (-> [(0 bool-suspend-suspend)] [(0 bool-suspend-suspend)])
+          (-> [n2] [n2])
+          (-> [s2] [n2]))
+        (with (-> [(1 n2 s2)] [(1 n2 n2)])
+          (-> [n m2] [n2 refl])
+          (-> [s m2] [n2 refl]))
+        (with (-> [(2 n m2 s m2)] [(2 n2 refl n2 refl)])
+          (-> [#f m m2] [{#f m m2 #t m m2 {n m2 s m2 rev}}])
+          (-> [#t m m2] [n rf rf]))))
 
     (def [g f]
       (lambda (-> [sphere-2] [sphere-2])
-        (with (-> [(0 sphere-2)] [(0 sphere-2)]))
-        (-> [b2] [b2])
-        (with (-> [(2 b2 refl b2 refl rev)] [(2 b2 refl b2 refl rev)]))
-        (-> [surf] [surf])))
+        (with (-> [(0 sphere-2)] [(0 sphere-2)])
+          (-> [b2] [b2]))
+        (with (-> [(2 b2 refl b2 refl rev)] [(2 b2 refl b2 refl rev)])
+          (-> [surf] [surf]))))
     #+end_src
 
 *** >< curry

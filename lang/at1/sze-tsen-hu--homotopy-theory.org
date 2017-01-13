@@ -2,46 +2,31 @@
 
 * todo
 
-*** now
+*** the rule about syntax
 
-    - change the syntax of earlier code.
-      setup the rule about how to add new syntax.
+    - how to describe them ?
+      how to design them so that you can add or change what already in them ?
 
 * note
 
-*** to express retraction-problem
+*** subtype
 
-    - to express retraction-problem better,
-      do we need syntax for expressing unnamed type
-      formed by a list of elements ?
-
-    - how about the relation between (0 I) and I
-
-    ------
-
-    - I should allow them
-      and I should not be bothered by such problems anymore
-      for to add a new syntax is simply
-      to add a new syntax keyword
-      and use symbol-expression (<keyword> ...)
-
-    - the relationship between (0 I) and I,
-      depends on the syntax of the type of a function
-      [which has several levels].
-      beside the syntax to address each levels of the space,
-      such as (0 I) and (1 I),
-      we also need syntax to address the whole space as 'I'.
-      and the type of a function should firstly be about the whole space,
-      only then, each levels of it.
+    - a type is encoded by its dc,
+      a subtype of it is encoded by a subset of its dc.
 
 * retraction-problem & extension-problem
 
   - if the retraction-problem
-    (lambda (-> [X] [A]) (with-part on A))
-    is solvable,
+    #+begin_src scheme
+    (lambda (type (-> [X] [X0])
+              (part on X0)))
+    #+end_src
+    is solvable by 'r',
     then every extension-problem
-    (lambda (-> [X] [Y]) (with-part on A))
-    is solvable.
+    #+begin_src scheme
+    (lambda (-> [X] [Y]) (part on X0))
+    #+end_src
+    is solvable by 'e'.
 
 * the proof of (f0 ~ f1)
 
@@ -50,21 +35,26 @@
     with (f0, f1 : A -> B)
     we need to extend a partial-map of type (-> [A I] [B])
     #+begin_src scheme
-    (lambda (-> [A I] [B])
-      (with-part
-       (-> [:a i0] [:a f0])
-       (-> [:a i1] [:a f1])))
+    (let ([f0 (lambda (-> [A] [B]) ...)]
+          [f1 (lambda (-> [A] [B]) ...)])
+      (lambda (-> [A I] [B])
+        (extend-from
+          (lambda (-> [A (0 I)] [B])
+            (-> [:a i0] [:a f0])
+            (-> [:a i1] [:a f1])))))
     #+end_src
 
   - the corresponding retraction-problem is
     #+begin_src scheme
     (lambda (-> [A I] [A (0 I)])
-      (with-part on (0 I)))
+      (extend-from
+        (identity-map-of [A (0 I)])))
 
     (lambda (-> [A I] [A (0 I)])
-      (with-part
-       (-> [:a i0] [:a f0])
-       (-> [:a i1] [:a f1])))
+      (extend-from
+        (lambda (->  [A (0 I)]  [A (0 I)])
+          (-> [:a i0] [:a f0])
+          (-> [:a i1] [:a f1]))))
     #+end_src
     if this retraction-problem is solvable
     then for all (f0, f1 : A -> B)
@@ -77,27 +67,31 @@
     and to proof (f g ~ A id) and (g f ~ B id)
     #+begin_src scheme
     (lambda (-> [A I] [A])
-      (with-part
-        (-> [:a i0] [:a f g])
-        (-> [:a i1] [:a])))
+      (extend-from
+        (lambda (-> [A (0 I)] [A])
+          (-> [:a i0] [:a f g])
+          (-> [:a i1] [:a]))))
 
     (lambda (-> [B I] [B])
-      (with-part
-        (-> [:b i0] [:b g f])
-        (-> [:b i1] [:b])))
+      (extend-from
+        (lambda (-> [B (0 I)] [B])
+          (-> [:b i0] [:b g f])
+          (-> [:b i1] [:b]))))
     #+end_src
 
   - the corresponding retraction-problem is
     #+begin_src scheme
     (lambda (-> [A I] [A (0 I)])
-      (with-part on (0 I)))
+      (extend-from
+        (identity-map-of [A (0 I)])))
 
     (lambda (-> [A I] [A (0 I)])
-      (with-part
-        (-> [:a i0] [:a i0])
-        (-> [:a i1] [:a i1])))
+      (extend-from
+        (lambda (-> [A (0 I)] [A (0 I)])
+          (-> [:a i0] [:a i0])
+          (-> [:a i1] [:a i1]))))
 
-    ;; for B the same
+    (note the-same-for B)
     #+end_src
 
   - it is to say
