@@ -7,95 +7,141 @@
     - how to describe them ?
       how to design them so that you can add or change what already in them ?
 
-* note
+* 1.2 the extension problem
 
 *** subtype
 
     - a type is encoded by its dc,
       a subtype of it is encoded by a subset of its dc.
 
-* retraction-problem & extension-problem
+*** 關於解函數方程
 
-  - if the retraction-problem
-    #+begin_src scheme
-    (lambda (type (-> [X] [X0])
-              (part on X0)))
-    #+end_src
-    is solvable by 'r',
-    then every extension-problem
-    #+begin_src scheme
-    (lambda (-> [X] [Y]) (part on X0))
-    #+end_src
-    is solvable by 'e'.
+    - 在描述 extension-problem 時
+      作者用一個 inclusion-map 'h'
+      把問題描述成了解特殊的函數方程 (h f == g)
 
-* the proof of (f0 ~ f1)
+    - 我認爲這種方式是不可取的
+      首先
+      有太多的信息被隱藏在語境中了
 
-  - to proof (f0 ~ f1)
-    is to form a special extension-problem.
-    with (f0, f1 : A -> B)
-    we need to extend a partial-map of type (-> [A I] [B])
-    #+begin_src scheme
-    (let ([f0 (lambda (-> [A] [B]) ...)]
-          [f1 (lambda (-> [A] [B]) ...)])
-      (lambda (-> [A I] [B])
+    - 其次
+      我需要做的是明確語法
+      以指示機器 使得它知道 應該如何檢查我寫下的方程的解 是否正確
+      然而
+      把所有的對方程的描述都劃歸爲函數之間的等式
+      就我所實現的語言而言是不現實的
+      因爲
+      我正是要利用 extension-problem 來解釋什麼是函數之間的相等
+      而不是相反
+
+    - 因此
+      我所設計的描述 extension-problem 的語法與作者相比更低級
+      因爲我寫出了更多的細節來指示機器
+
+*** retraction-problem & extension-problem
+
+    - if the retraction-problem
+      #+begin_src scheme
+      (lambda (type (-> [X] [X0])
+                (part on X0)))
+      #+end_src
+      is solvable by 'r',
+      then every extension-problem
+      #+begin_src scheme
+      (lambda (-> [X] [Y]) (part on X0))
+      #+end_src
+      is solvable by 'e'.
+
+*** the proof of (f0 ~ f1)
+
+    - to proof (f0 ~ f1)
+      is to form a special extension-problem.
+      with (f0, f1 : A -> B)
+      we need to extend a partial-map of type (-> [A I] [B])
+      #+begin_src scheme
+      (let ([f0 (lambda (-> [A] [B]) ...)]
+            [f1 (lambda (-> [A] [B]) ...)])
+        (lambda (-> [A I] [B])
+          (extend-from
+            (lambda (-> [A (0 I)] [B])
+              (-> [:a i0] [:a f0])
+              (-> [:a i1] [:a f1])))))
+      #+end_src
+
+    - the corresponding retraction-problem is
+      #+begin_src scheme
+      (lambda (-> [A I] [A (0 I)])
         (extend-from
-          (lambda (-> [A (0 I)] [B])
+          (identity-map-of [A (0 I)])))
+
+      (lambda (-> [A I] [A (0 I)])
+        (extend-from
+          (lambda (->  [A (0 I)]  [A (0 I)])
             (-> [:a i0] [:a f0])
-            (-> [:a i1] [:a f1])))))
-    #+end_src
+            (-> [:a i1] [:a f1]))))
+      #+end_src
+      if this retraction-problem is solvable
+      then for all (f0, f1 : A -> B)
+      we have (f0 ~ f1)
 
-  - the corresponding retraction-problem is
+*** the proof of (A == B)
+
+    - to proof (A == B)
+      is to form find (f : A -> B) and (g : B -> A)
+      and to proof (f g ~ A id) and (g f ~ B id)
+      #+begin_src scheme
+      (lambda (-> [A I] [A])
+        (extend-from
+          (lambda (-> [A (0 I)] [A])
+            (-> [:a i0] [:a f g])
+            (-> [:a i1] [:a]))))
+
+      (lambda (-> [B I] [B])
+        (extend-from
+          (lambda (-> [B (0 I)] [B])
+            (-> [:b i0] [:b g f])
+            (-> [:b i1] [:b]))))
+      #+end_src
+
+    - the corresponding retraction-problem is
+      #+begin_src scheme
+      (lambda (-> [A I] [A (0 I)])
+        (extend-from
+          (identity-map-of [A (0 I)])))
+
+      (lambda (-> [A I] [A (0 I)])
+        (extend-from
+          (lambda (-> [A (0 I)] [A (0 I)])
+            (-> [:a i0] [:a i0])
+            (-> [:a i1] [:a i1]))))
+
+      (note the-same-for B)
+      #+end_src
+
+    - it is to say
+      if the above retraction-problem is solvable
+      then to proof (A == B)
+      it is suffice to proof (A -> B) and (B -> A)
+      [i.e. to find two functions of such types]
+
+*** >< example
+
     #+begin_src scheme
-    (lambda (-> [A I] [A (0 I)])
+    (lambda (-> [X] [(0 I)])
       (extend-from
-        (identity-map-of [A (0 I)])))
+        (lambda (-> [(0 x0 x1)] [(0 I)])
+          (-> [x0] [i0])
+          (-> [x1] [i1]))))
 
-    (lambda (-> [A I] [A (0 I)])
+    (note the above is solvable
+          iff x0 x1 lie in different quasi-components)
+
+    (lambda (-> [I] [X])
       (extend-from
-        (lambda (->  [A (0 I)]  [A (0 I)])
-          (-> [:a i0] [:a f0])
-          (-> [:a i1] [:a f1]))))
+        (lambda (-> [(0 I)] [X])
+          (-> [i0] [x0])
+          (-> [i1] [x1]))))
+
+    (note the above is solvable
+          iff x0 x1 lie in diff)
     #+end_src
-    if this retraction-problem is solvable
-    then for all (f0, f1 : A -> B)
-    we have (f0 ~ f1)
-
-* the proof of (A == B)
-
-  - to proof (A == B)
-    is to form find (f : A -> B) and (g : B -> A)
-    and to proof (f g ~ A id) and (g f ~ B id)
-    #+begin_src scheme
-    (lambda (-> [A I] [A])
-      (extend-from
-        (lambda (-> [A (0 I)] [A])
-          (-> [:a i0] [:a f g])
-          (-> [:a i1] [:a]))))
-
-    (lambda (-> [B I] [B])
-      (extend-from
-        (lambda (-> [B (0 I)] [B])
-          (-> [:b i0] [:b g f])
-          (-> [:b i1] [:b]))))
-    #+end_src
-
-  - the corresponding retraction-problem is
-    #+begin_src scheme
-    (lambda (-> [A I] [A (0 I)])
-      (extend-from
-        (identity-map-of [A (0 I)])))
-
-    (lambda (-> [A I] [A (0 I)])
-      (extend-from
-        (lambda (-> [A (0 I)] [A (0 I)])
-          (-> [:a i0] [:a i0])
-          (-> [:a i1] [:a i1]))))
-
-    (note the-same-for B)
-    #+end_src
-
-  - it is to say
-    if the above retraction-problem is solvable
-    then to proof (A == B)
-    it is suffice to proof (A -> B) and (B -> A)
-    [i.e. to find two functions of such types]

@@ -9,10 +9,8 @@
 
 * about
 
-  - xieyuheng is
-    a humble math student
-    a language designer
-    designing cicada-language
+  - xieyuheng is a language designer
+    designing cicada-language.
 
 *** contact
 
