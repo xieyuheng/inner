@@ -124,24 +124,79 @@
       it is suffice to proof (A -> B) and (B -> A)
       [i.e. to find two functions of such types]
 
-*** >< example
+*** note
+
+    - in the book, there is a semantic usage of space-name :
+      X -- domain
+      A -- sub-domain
+      Y -- co-domain
+
+    - in the book,
+      firstly, a restricted extension-problem is formed.
+      but in my language,
+      we always have the final version of extension-problem.
+      [this is realized by the level-map and continuity-check]
+
+*** example
 
     #+begin_src scheme
-    (lambda (-> [X] [(0 I)])
-      (extend-from
-        (lambda (-> [(0 x0 x1)] [(0 I)])
-          (-> [x0] [i0])
-          (-> [x1] [i1]))))
+    (def example-1
+      (lambda (-> [X] [(0 I)])
+        (extend-from
+          (lambda (-> [(list x0 x1)] [(0 I)])
+            (-> [x0] [i0])
+            (-> [x1] [i1])))
+        (note the above is solvable
+              iff x0 x1 lie in different quasi-components)))
 
-    (note the above is solvable
-          iff x0 x1 lie in different quasi-components)
+    (note about syntax design ::
+          if (0 X) can be viewed as an individual type,
+          so should (1 X) be.
+          then it would be not true that
+          we can elim diff-level-map by production-space.
+          maybe we should allow diff-level-map,
+          and we also should find the rule for its continuity-check.
+          [just as what has been done for hott by 'tp']
+          just this time, we do not use 'tp',
+          but try to re-create 'tp'
+          by the rule of the continuity-check of production-space.)
 
-    (lambda (-> [I] [X])
-      (extend-from
-        (lambda (-> [(0 I)] [X])
-          (-> [i0] [x0])
-          (-> [i1] [x1]))))
+    (def example-2
+      (lambda (-> [I] [Y])
+        (extend-from
+          (lambda (-> [(0 I)] [Y])
+            (-> [i0] [y0])
+            (-> [i1] [y1])))
+        (note the above is solvable
+              iff y0 y1 lie in a compact, connected and locally connected
+              subspace of Y satisfying the second countability axiom.)))
 
-    (note the above is solvable
-          iff x0 x1 lie in diff)
+    (def example-3
+      (note about Normal space
+            :: https://en.wikipedia.org/wiki/Normal_space
+            and Urysohn's lemma
+            :: https://en.wikipedia.org/wiki/Urysohn%27s_lemma
+            this is kind of low-level topology facts
+            can not be constructed in my language.))
+
+    (def example-4
+      (note about Tietze extension theorem
+            :: https://en.wikipedia.org/wiki/Tietze_extension_theorem))
+
+    (note Y is solid-space
+          if all of the following problems are solvable
+          (lambda (-> [X] [Y])
+            (note X is normal space)
+            (extend-from
+              (lambda (-> [A] [Y])
+                (note A is closed sub-space))))
+          [solid seems no hole])
     #+end_src
+
+* >< 1.3 the method of algebraic topology
+* >< 1.4 the retraction problem
+* 1.5 combined maps
+
+  - the way we define a continuous map data-constructor by data-constructor,
+    is just like define a combined map.
+    [the continuity of the combined map is demonstrated in this section]
