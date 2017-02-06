@@ -270,6 +270,56 @@
     or '<module-name>/<space-name>/<dc-name>'
     or '<module-name>/<function-name>'
 
+* I
+
+  #+begin_src scheme
+  (def I
+    (type space
+      i0 i1 (0 <>)
+      i01 (1 i0 i1)))
+
+  (def f
+    (lambda (-> [I I] [X])
+      (with (-> [(0 I) (0 I)] [(0 X)]))
+      (-> [i0 i0] [])
+      (-> [i0 i1] [])
+      (-> [i1 i0] [])
+      (-> [i1 i1] [])
+      (with (-> [(0 I) %:i (1 i0 i1)] [(1 :i i0 <> :i i1 <>)]))
+      ;; (1 :i i0 <> :i i1 <>) == :i (1 i0 i1) <>
+      (-> [i0 i01] [])
+      (-> [i1 i01] [])
+      (with (-> [(1 i0 i1) (0 I) %:i] [(1 i0 :i <> i1 :i <>)]))
+      (-> [i01 i0] [])
+      (-> [i01 i1] [])
+      (with (-> [(1 i0 i1) %:p0
+                 (1 i0 i1) %:p1]
+                [(2 :p0 i0 <>
+                    i1 :p1 <>
+                    :p0 i1 <> rev
+                    i0 :p1 <> rev)]))
+      ;; product 的各個部分 之邊界 所生成的 函數值
+      ;; 想要融合成一個 封閉的圖形 其方式可能總是唯一的
+      ;; 如果我允許 (2 ...) 內構造出不聯通的圖形
+      ;; 那麼我可能就有機會描述出來這種唯一可能
+      ;; [(2 :p0 i0 <>
+      ;;     :p0 i1 <> rev
+      ;;     (2 i0 :p1 <>
+      ;;        i1 :p1 <> rev) rev)]
+      (-> [i01 i01] [])))
+
+  (A * B) f : (br (A * B)) f
+  (br (A * B)) = (((br A) * B) + (A * (br B)))
+
+  (01 * 0) f : (1 (0 * 0) f (1 * 0) f)
+  (1 * 01) f : (1 (1 * 0) f (1 * 1) f)
+  (01 * 1) f : (1 (0 * 1) f (1 * 1) f)
+  (0 * 01) f : (1 (0 * 0) f (0 * 1) f)
+
+  (01 * 01) f : (2 (01 * 0) f (1 * 01) f
+                   (01 * 1) rev f (0 * 01) rev f)
+  #+end_src
+
 * (bool-suspend ~> sphere-1)
 
 *** sphere-1 & bool & bool-suspend
@@ -290,7 +340,7 @@
         m (-> [(0 bool)] [(1 n s)])))
     #+end_src
 
-*** f & g
+*** f & g & the proof
 
     #+begin_src scheme
     (def f
@@ -310,7 +360,7 @@
           ;; (2 ...) is only needed when there is glue of elements of 2-level
           (-> [loop] [(2 #f m #t m rev)]))))
 
-    (def [g f]
+    (def [g f] ;; which is already id of sphere-1
       (lambda (-> [sphere-1] [sphere-1])
         (with (-> [(0 sphere-1)] [(0 sphere-1)])
           (-> [b] [b]))
@@ -324,90 +374,50 @@
           (-> [s] [n]))
         (with (-> [(1 n s)] [(1 n n)])
           (-> [#f m] [(2 #f m #t m rev)])
-          (-> [#t m] [(2 n refl])))))
-    #+end_src
-
-*** >< curry
-
-    #+begin_src scheme
-    (def k
-      (lambda (-> [(0 bool-suspend) %:x] [(1 :x f g :x)])
-        (-> [n] [(2 n refl) : (1 n n)])
-        (-> [s] [#t m : (1 n s)])
-        (with (-> [(1 n s) %:p] [(2 n k :p tp1 s k rev)])
-              (-> [(1 n s) %:p] [(2 n refl :p tp1 #t m rev)])
-              (-> [(1 n s) %:p] [(2 n refl :p tp1 #t m rev)]))
-        (-> [#f m] [(2 #t m refl) : ((#f m f g) rev n k #f m = s k)])
-        (-> [#t m] [(2 #t m refl) : ((#t m f g) rev n k #t m = s k)])))
-    #+end_src
-
-*** >< uncurry by product
-
-    #+begin_src scheme
-    (def k
-      (lambda (-> [A %:a] [(1 :a f :a g)])
-        ...))
+          (-> [#t m] [(2 n refl)]))))
 
     ;; uncurry
-    (def h
-      (lambda (-> [A I] [B])
-        {(-> [:a #0] [:a f])
-         (-> [:a #1] [:a g])}
-        ;; an extension problem indeed
-        ...))
+    (def h ;; to proof (f g ~ id of bool-suspend)
+      (lambda (-> [bool-suspend I] [bool-suspend])
+        (extend-from
+          (lambda  (-> [bool-suspend (0 I)] [bool-suspend])
+            (-> [:a i0] [:a f g])
+            (-> [:a i1] [:a])))
+        (with (-> [(0 bool-suspend) %:a (1 i0 i1)]
+                  [(1 :a i0 <> :a i1 <>)])
+          (-> [n i01]
+              [(2 n refl)]
+              : [(1 n n)])
+          (-> [s i01]
+              [#t m]
+              : [(1 n s)]))
+        (with (-> [(1 n s) %:b (1 i0 i1) %:i]
+                  [(2 :b i0 <> s :i <>
+                      :b i1 <> rev n :i <> rev)])
+          (-> [#f m i01]
+              [(3)]
+              : [(2 (2 #f m #t m rev) #t m
+                    #f m rev (2 n refl) rev)])
+          (-> [#t m i01]
+              [(3)]
+              : [(2 (2 n refl) #t m
+                    #t m rev (2 n refl) rev)]))))
 
-    (def k
-      (lambda (-> [(0 bool-suspend) %:x] [(1 :x f g :x)])
-        (-> [n] [(2 n refl) : (1 n n)])
-        (-> [s] [#t m : (1 n s)])
-        (with (-> [(1 n s) %:p] [(2 n k :p tp1 s k rev)])
-              (-> [(1 n s) %:p] [(2 n refl :p tp1 #t m rev)])
-              (-> [(1 n s) %:p] [(2 n refl :p tp1 #t m rev)]))
-        (-> [#f m] [(2 #t m refl) : ((#f m f g) rev n k #f m = s k)])
-        (-> [#t m] [(2 #t m refl) : ((#t m f g) rev n k #t m = s k)])))
-
-    (def h
-      (lambda (-> [I bool-suspend] [bool-suspend])
-        (with (-> [(0 I) (0 bool-suspend)] [(0 bool-suspend)]))
-        {(-> [i0 n] [n f g])
-         (-> [i1 s] [s])}
-        (with (-> [(1 i0 i1) [()]]))
-        ))
-
-    (def I
-      (type space
-        i0 i1 (0 <>)
-        i01 (1 i0 i1)))
-
-    (def f
-      (lambda (-> [I I] [X])
-        (with (-> [(0 I) (0 I)] [(0 X)]))
-        (-> [i0 i0] [])
-        (-> [i0 i1] [])
-        (-> [i1 i0] [])
-        (-> [i1 i1] [])
-        (with (-> [(0 I) %:i (1 i0 i1)] [(1 :i i0 <> :i i1 <>)]))
-        ;; (1 :i i0 <> :i i1 <>) == :i (1 i0 i1) <>
-        (-> [i0 i01] [])
-        (-> [i1 i01] [])
-        (with (-> [(1 i0 i1) (0 I) %:i] [(1 i0 :i <> i1 :i <>)]))
-        (-> [i01 i0] [])
-        (-> [i01 i1] [])
-        (with (-> [(1 i0 i1) %:p0
-                   (1 i0 i1) %:p1]
-                  [(2 :p0 i0 <>
-                      i1 :p1 <>
-                      :p0 i1 <> rev
-                      i0 :p1 <> rev)]))
-        ;; product 的各個部分 之邊界 所生成的 函數值
-        ;; 想要融合成一個 封閉的圖形 其方式可能總是唯一的
-        ;; 如果我允許 (2 ...) 內構造出不聯通的圖形
-        ;; 那麼我可能就有機會描述出來這種唯一可能
-        ;; [(2 :p0 i0 <>
-        ;;     :p0 i1 <> rev
-        ;;     (2 i0 :p1 <>
-        ;;        i1 :p1 <> rev) rev)]
-        (-> [i01 i01] [])))
+    (def h ;; to proof (f g ~ id of bool-suspend)
+      (lambda (-> [bool-suspend I] [bool-suspend])
+        (extend-from
+          (lambda  (-> [bool-suspend (0 I)] [bool-suspend])
+            (-> [:a i0] [:a f g])
+            (-> [:a i1] [:a])))
+        (with (-> [(0 bool-suspend) %:a (1 i0 i1)]
+                  [(1 :a i0 <> :a i1 <>)])
+          (-> [n i01] [(2 n refl)])
+          (-> [s i01] [#t m]))
+        (with (-> [(1 n s) %:b (1 i0 i1) %:i]
+                  [(2 :b i0 <> s :i <>
+                      :b i1 <> rev n :i <> rev)])
+          (-> [#f m i01] [(3)])
+          (-> [#t m i01] [(3)]))))
     #+end_src
 
 * (bool-suspend-suspend ~> sphere-2)
@@ -428,7 +438,7 @@
         m2 (-> [(0 bool-suspend)] [(1 n2 s2)])))
     #+end_src
 
-*** >< f & g
+*** >< f & g & the proof
 
     #+begin_src scheme
     (def f
@@ -486,10 +496,4 @@
         {1 m m2 :k : (><><><)}
         (solve-by
          ><><><)))
-    #+end_src
-
-*** >< uncurry
-
-    #+begin_src scheme
-
     #+end_src
