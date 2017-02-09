@@ -1,5 +1,22 @@
 #+title: syntax
 
+* 語法的好壞
+
+*** 引
+
+    - x ::
+         在設計語言的過程中
+         我總是需要不停地做判斷
+         像一個立法者一樣
+         來判斷什麼是好什麼是壞
+         因爲我想要我的語言好
+         但是這非常困難
+         因爲我沒有用以判斷好壞的客觀標準
+
+    - k ::
+         good syntax make meaning explicit to reader.
+         meaning is use.
+
 * 語法的難點
 
   - 語法的難點並不出現在構造過程的前幾階
@@ -35,13 +52,21 @@
       寫出 每次變化的細節
       [比如 1-level 時的 + - 就是如此]
 
+* 描述語法的語法
+
+  - 全局變元用 <name>
+    局部邊緣用 :name
+
+  #+begin_src scheme
+  (:= <name> (or ...))
+  (:= :name (or ...))
+  #+end_src
+
 * 典型的認知過程
 
   - 典型的認知過程是
     看出 兩體就公共邊界 glue 之後 所得到的邊界是什麼
     [在低階情形這是利用等式代換來完成的]
-
-* >< (border (:a * :b)) = (((border :a) * :b) + (:a * (border :b)))
 
 * example syntax
 
@@ -53,29 +78,29 @@
 
   (type (-> [] [space])
 
-    a1 a2 a3 a4 (0 <>)
+    a1 a2 a3 a4 (pof <>)
 
-    b12 (1 a1 a2)
-    b13 (1 a1 a3)
-    b14 (1 a1 a4)
-    b23 (1 a2 a3)
-    b24 (1 a2 a4)
-    b34 (1 a3 a4)
+    b12 (0 a1 a2)
+    b13 (0 a1 a3)
+    b14 (0 a1 a4)
+    b23 (0 a2 a3)
+    b24 (0 a2 a4)
+    b34 (0 a3 a4)
 
-    c123 (2 b12 b23 b13 rev)
-    c124 (2 b12 b24 b14 rev)
-    c134 (2 b13 b34 b14 rev)
-    c234 (2 b23 b34 b24 rev)
+    c123 (1 b12 b23 b13 rev)
+    c124 (1 b12 b24 b14 rev)
+    c134 (1 b13 b34 b14 rev)
+    c234 (1 b23 b34 b24 rev)
 
     d1234
-    ;; (3 c123 (2 b12 b23 b13 rev)
-    ;;    c124 (2 b14 b24 rev b23 b13 rev)
-    ;;    c134 (2 b13 b34 b24 rev b23 b13 rev)
-    ;;    c234 (2 b13 b34 b34 rev b23 rev b23 b13 rev))
-    (3 c123 (2 b12 b23 b13 rev)
-       c124 (2 b14 b24 rev b23 b13 rev)
-       c134 (2 b34 b24 rev b23)
-       c234 (2)))
+    ;; (2 c123 (1 b12 b23 b13 rev)
+    ;;    c124 (1 b14 b24 rev b23 b13 rev)
+    ;;    c134 (1 b13 b34 b24 rev b23 b13 rev)
+    ;;    c234 (1 b13 b34 b34 rev b23 rev b23 b13 rev))
+    (2 c123 (1 b12 b23 b13 rev)
+       c124 (1 b14 b24 rev b23 b13 rev)
+       c134 (1 b34 b24 rev b23)
+       c234 (1)))
 
   (note
     need syntax for solve-equation-with-condition
@@ -83,49 +108,49 @@
 
   (type (-> [] [space])
 
-    a1 a2 a3 a4 (0 <>)
+    a1 a2 a3 a4 (pof <>)
 
-    b12 (1 a1 a2)
-    b13 (1 a1 a3)
-    b14 (1 a1 a4)
-    b23 (1 a2 a3)
-    b24 (1 a2 a4)
-    b34 (1 a3 a4)
+    b12 (0 a1 a2)
+    b13 (0 a1 a3)
+    b14 (0 a1 a4)
+    b23 (0 a2 a3)
+    b24 (0 a2 a4)
+    b34 (0 a3 a4)
 
-    c123 (2 b12 b23 b13 rev)
-    c124 (2 b12 b24 b14 rev)
-    c134 (2 b13 b34 b14 rev)
-    c234 (2 b23 b34 b24 rev)
+    c123 (1 b12 b23 b13 rev)
+    c124 (1 b12 b24 b14 rev)
+    c134 (1 b13 b34 b14 rev)
+    c234 (1 b23 b34 b24 rev)
 
     d1234
 
-    (note 三階的構造語法詞 (3) 就已經不需要 with-output-to-new-list 語義了)
+    (note 三階的構造語法詞 (2) 就已經不需要 with-output-to-new-list 語義了)
 
-    (3 c123 (check-init-border (2 b12 b23 b13 rev))
-       c124 (glue-for-border (2 b14 b24 rev b23 b13 rev))
-       c134 (glue-for-border (2 b34 b24 rev b23))
-       c234 (glue-for-border (2)))
+    (2 c123 (check-init-border (1 b12 b23 b13 rev))
+       c124 (glue-for-border (1 b14 b24 rev b23 b13 rev))
+       c134 (glue-for-border (1 b34 b24 rev b23))
+       c234 (glue-for-border (1)))
 
-    (3 c123
-       c124 (2 b14 b24 rev b23 b13 rev)  glue-for-border
-       c134 (2 b34 b24 rev b23)          glue-for-border
-       c234 (2)                          glue-for-border)
+    (2 c123
+       c124 (1 b14 b24 rev b23 b13 rev)  glue-for-border
+       c134 (1 b34 b24 rev b23)          glue-for-border
+       c234 (1)                          glue-for-border)
 
     (note 這裏又算是需要 with-output-to-new-list 語義的
           但是這種效果也可以用組合子實現
           只不過這裏不是用組合子 而是用語法關鍵詞)
 
-    (3 c123
-       c124 (2 b14 b24 rev b23 b13 rev)
-       c134 (2 b34 b24 rev b23)
-       c234 (2))
+    (2 c123
+       c124 (1 b14 b24 rev b23 b13 rev)
+       c134 (1 b34 b24 rev b23)
+       c234 (1))
 
     (note 既然 3 可以被實現爲一個組合子)
 
     [c123
-     c124 (2 b14 b24 rev b23 b13 rev)
-     c134 (2 b34 b24 rev b23)
-     c234 (2)]
+     c124 (1 b14 b24 rev b23 b13 rev)
+     c134 (1 b34 b24 rev b23)
+     c234 (1)]
     3
 
     (note 注意
@@ -157,38 +182,48 @@
 
   #+begin_src scheme
   (type space
-    a1 a2 a3 a4 (0 <>)
-    b12 (1 a1 a2)
-    b13 (1 a1 a3)
-    b14 (1 a1 a4)
-    b23 (1 a2 a3)
-    b24 (1 a2 a4)
-    b34 (1 a3 a4)
-    c123 (2 b12 b23 b13 rev)
-    c124 (2 b12 b24 b14 rev)
-    c134 (2 b13 b34 b14 rev)
-    c234 (2 b23 b34 b24 rev)
-    d1234 (3 c123
-             c124 (2 b14 b24 rev b23 b13 rev)
-             c134 (2 b34 b24 rev b23)
-             c234 (2)))
+    a1 a2 a3 a4 (pof <>)
+    b12 (0 a1 a2)
+    b13 (0 a1 a3)
+    b14 (0 a1 a4)
+    b23 (0 a2 a3)
+    b24 (0 a2 a4)
+    b34 (0 a3 a4)
+    c123 (1 b12 b23 b13 rev)
+    c124 (1 b12 b24 b14 rev)
+    c134 (1 b13 b34 b14 rev)
+    c234 (1 b23 b34 b24 rev)
+    d1234 (2 c123
+             c124 (1 b14 b24 rev b23 b13 rev)
+             c134 (1 b34 b24 rev b23)
+             c234 (1)))
 
   (note where
-        (3 c123
-           c124 (2 b14 b24 rev b23 b13 rev)
-           c134 (2 b34 b24 rev b23)
-           c234 (2))
+        (2 c123
+           c124 (1 b14 b24 rev b23 b13 rev)
+           c134 (1 b34 b24 rev b23)
+           c234 (1))
         ==>
-        (3 c123
-           c124 (2 b14 b24 rev b23 b13 rev)  glue-for-border
-           c134 (2 b34 b24 rev b23)          glue-for-border
-           c234 (2)                          glue-for-border)
+        (2 c123
+           c124 (1 b14 b24 rev b23 b13 rev)  glue-for-border
+           c134 (1 b34 b24 rev b23)          glue-for-border
+           c234 (1)                          glue-for-border)
         under this design,
-        the syntax inside (3 ...) can also be extended)
+        the syntax inside (2 ...) can also be extended)
 
-  (note (1) (2) (3) they all use with-output-to-new-list
-        just the list of (3) is of length one)
+  (note (0) (1) (2) they all use with-output-to-new-list
+        just the list of (2) is of length one)
   #+end_src
+
+* >< continuity-check
+
+  - the border of the succedent of a dc
+    must be empty,
+    i.e. the succedent of a dc must be closed.
+
+  - not only closed,
+    a dc is also a characteristic-map
+    ><><><
 
 * about the example
 
@@ -240,7 +275,7 @@
     - k ::
          如若如此
          glue 本身就應該被實現爲一個 明顯的函數了
-         如上我們用 (3 ...) 這個 macro
+         如上我們用 (2 ...) 這個 macro
          隱藏了 glue-for-border 這個明顯的函數調用
 
 * simple principle of uncurry
@@ -270,230 +305,224 @@
     or '<module-name>/<space-name>/<dc-name>'
     or '<module-name>/<function-name>'
 
-* I
+* I & the rule
 
   #+begin_src scheme
   (def I
     (type space
-      i0 i1 (0 <>)
-      i01 (1 i0 i1)))
+      i0 i1 (pof <>)
+      i01 (0 i0 i1)))
 
   (def f
     (lambda (-> [I I] [X])
-      (with (-> [(0 I) (0 I)] [(0 X)]))
+      (with (-> [(pof I) (pof I)] [(pof X)]))
       (-> [i0 i0] [])
       (-> [i0 i1] [])
       (-> [i1 i0] [])
       (-> [i1 i1] [])
-      (with (-> [(0 I) %:i (1 i0 i1)] [(1 :i i0 <> :i i1 <>)]))
-      ;; (1 :i i0 <> :i i1 <>) == :i (1 i0 i1) <>
+      (with (-> [(pof I) %:i (0 i0 i1)] [(0 :i i0 <> :i i1 <>)]))
+      ;; (0 :i i0 <> :i i1 <>) == :i (0 i0 i1) <>
       (-> [i0 i01] [])
       (-> [i1 i01] [])
-      (with (-> [(1 i0 i1) (0 I) %:i] [(1 i0 :i <> i1 :i <>)]))
+      (with (-> [(0 i0 i1) (pof I) %:i] [(0 i0 :i <> i1 :i <>)]))
       (-> [i01 i0] [])
       (-> [i01 i1] [])
-      (with (-> [(1 i0 i1) %:p0
-                 (1 i0 i1) %:p1]
-                [(2 :p0 i0 <>
+      (with (-> [(0 i0 i1) %:p0
+                 (0 i0 i1) %:p1]
+                [(1 :p0 i0 <>
                     i1 :p1 <>
                     :p0 i1 <> rev
                     i0 :p1 <> rev)]))
       ;; product 的各個部分 之邊界 所生成的 函數值
       ;; 想要融合成一個 封閉的圖形 其方式可能總是唯一的
-      ;; 如果我允許 (2 ...) 內構造出不聯通的圖形
+      ;; 如果我允許 (1 ...) 內構造出不聯通的圖形
       ;; 那麼我可能就有機會描述出來這種唯一可能
-      ;; [(2 :p0 i0 <>
+      ;; [(1 :p0 i0 <>
       ;;     :p0 i1 <> rev
-      ;;     (2 i0 :p1 <>
+      ;;     (1 i0 :p1 <>
       ;;        i1 :p1 <> rev) rev)]
       (-> [i01 i01] [])))
 
+  ;; the rule
   (A * B) f : (br (A * B)) f
   (br (A * B)) = (((br A) * B) + (A * (br B)))
 
-  (01 * 0) f : (1 (0 * 0) f (1 * 0) f)
-  (1 * 01) f : (1 (1 * 0) f (1 * 1) f)
-  (01 * 1) f : (1 (0 * 1) f (1 * 1) f)
-  (0 * 01) f : (1 (0 * 0) f (0 * 1) f)
+  ;; example of the rule
+  (i01 * i0) f : (0 (i0 * i0) f (i1 * i0) f)
+  (i1 * i01) f : (0 (i1 * i0) f (i1 * i1) f)
+  (i01 * i1) f : (0 (i0 * i1) f (i1 * i1) f)
+  (i0 * i01) f : (0 (i0 * i0) f (i0 * i1) f)
 
-  (01 * 01) f : (2 (01 * 0) f (1 * 01) f
-                   (01 * 1) rev f (0 * 01) rev f)
+  (i01 * i01) f : (1 (i01 * i0) f (i1 * i01) f
+                     (i01 * i1) rev f (i0 * i01) rev f)
   #+end_src
 
 * (bool-suspend ~> sphere-1)
 
-*** sphere-1 & bool & bool-suspend
+  #+begin_src scheme
+  (def sphere-1
+    (type (-> [] [space])
+      b (-> [] [(pof <>)])
+      loop (-> [] [(0 b b)])))
 
-    #+begin_src scheme
-    (def sphere-1
-      (type (-> [] [space])
-        b (-> [] [(0 <>)])
-        loop (-> [] [(1 b b)])))
+  (def bool
+    (type (-> [] [space])
+      #f #t (-> [] [(pof <>)])))
 
-    (def bool
-      (type (-> [] [space])
-        #f #t (-> [] [(0 <>)])))
+  (def bool-suspend
+    (type (-> [] [space])
+      n s (-> [] [(pof <>)])
+      m (-> [(pof bool)] [(0 n s)])))
 
-    (def bool-suspend
-      (type (-> [] [space])
-        n s (-> [] [(0 <>)])
-        m (-> [(0 bool)] [(1 n s)])))
-    #+end_src
+  (def bool-suspend
+    (type (-> [] [space])
+      n s (-> [] [(pof <>)])
+      m (level (-> [(pof bool)] [(0 n s)]))))
 
-*** f & g & the proof
+  (def f
+    (lambda (-> [bool-suspend] [sphere-1])
+      (with (-> [(pof bool-suspend)] [(pof sphere-1)])
+        (-> [n] [b])
+        (-> [s] [b]))
+      (with (-> [(0 n s)] [(0 b b)])
+        (-> [#f m] [loop])
+        (-> [#t m] [(1 b refl)]))))
 
-    #+begin_src scheme
-    (def f
-      (lambda (-> [bool-suspend] [sphere-1])
-        (with (-> [(0 bool-suspend)] [(0 sphere-1)])
-          (-> [n] [b])
-          (-> [s] [b]))
-        (with (-> [(1 n s)] [(1 b b)])
-          (-> [#f m] [loop])
-          (-> [#t m] [(2 b refl)]))))
+  (def g
+    (lambda (-> [sphere-1] [bool-suspend])
+      (with (-> [(pof sphere-1)] [(pof bool-suspend)])
+        (-> [b] [n]))
+      (with (-> [(0 b b)] [(0 n n)])
+        ;; (1 ...) is only needed when there is glue of elements of 2-level
+        (-> [loop] [(1 #f m #t m rev)]))))
 
-    (def g
-      (lambda (-> [sphere-1] [bool-suspend])
-        (with (-> [(0 sphere-1)] [(0 bool-suspend)])
-          (-> [b] [n]))
-        (with (-> [(1 b b)] [(1 n n)])
-          ;; (2 ...) is only needed when there is glue of elements of 2-level
-          (-> [loop] [(2 #f m #t m rev)]))))
+  (def [g f] ;; which is already id of sphere-1
+    (lambda (-> [sphere-1] [sphere-1])
+      (with (-> [(pof sphere-1)] [(pof sphere-1)])
+        (-> [b] [b]))
+      (with (-> [(0 b b)] [(0 b b)])
+        (-> [loop] [loop]))))
 
-    (def [g f] ;; which is already id of sphere-1
-      (lambda (-> [sphere-1] [sphere-1])
-        (with (-> [(0 sphere-1)] [(0 sphere-1)])
-          (-> [b] [b]))
-        (with (-> [(1 b b)] [(1 b b)])
-          (-> [loop] [loop]))))
+  (def [f g]
+    (lambda (-> [bool-suspend] [bool-suspend])
+      (with (-> [(pof bool-suspend)] [(pof bool-suspend)])
+        (-> [n] [n])
+        (-> [s] [n]))
+      (with (-> [(0 n s)] [(0 n n)])
+        (-> [#f m] [(1 #f m #t m rev)])
+        (-> [#t m] [(1 n refl)]))))
 
-    (def [f g]
-      (lambda (-> [bool-suspend] [bool-suspend])
-        (with (-> [(0 bool-suspend)] [(0 bool-suspend)])
-          (-> [n] [n])
-          (-> [s] [n]))
-        (with (-> [(1 n s)] [(1 n n)])
-          (-> [#f m] [(2 #f m #t m rev)])
-          (-> [#t m] [(2 n refl)]))))
+  ;; uncurry
+  (def h ;; to proof (f g ~ id of bool-suspend)
+    (lambda (-> [bool-suspend I] [bool-suspend])
+      (extend-from
+        (lambda  (-> [bool-suspend (pof I)] [bool-suspend])
+          (-> [:a i0] [:a f g])
+          (-> [:a i1] [:a])))
+      (with (-> [(pof bool-suspend) %:a (0 i0 i1)]
+                [(0 :a i0 <> :a i1 <>)])
+        (-> [n i01] [(1 n refl)]
+            : [(0 n n)])
+        (-> [s i01] [#t m]
+            : [(0 n s)]))
+      (with (-> [(0 n s) %:b (0 i0 i1) %:i]
+                [(1 :b i0 <> s :i <>
+                    :b i1 <> rev n :i <> rev)])
+        (-> [#f m i01] [(2)]
+            : [(1 (1 #f m #t m rev) #t m
+                  #f m rev (1 n refl) rev)])
+        (-> [#t m i01] [(2)]
+            : [(1 (1 n refl) #t m
+                  #t m rev (1 n refl) rev)]))))
 
-    ;; uncurry
-    (def h ;; to proof (f g ~ id of bool-suspend)
-      (lambda (-> [bool-suspend I] [bool-suspend])
-        (extend-from
-          (lambda  (-> [bool-suspend (0 I)] [bool-suspend])
-            (-> [:a i0] [:a f g])
-            (-> [:a i1] [:a])))
-        (with (-> [(0 bool-suspend) %:a (1 i0 i1)]
-                  [(1 :a i0 <> :a i1 <>)])
-          (-> [n i01]
-              [(2 n refl)]
-              : [(1 n n)])
-          (-> [s i01]
-              [#t m]
-              : [(1 n s)]))
-        (with (-> [(1 n s) %:b (1 i0 i1) %:i]
-                  [(2 :b i0 <> s :i <>
-                      :b i1 <> rev n :i <> rev)])
-          (-> [#f m i01]
-              [(3)]
-              : [(2 (2 #f m #t m rev) #t m
-                    #f m rev (2 n refl) rev)])
-          (-> [#t m i01]
-              [(3)]
-              : [(2 (2 n refl) #t m
-                    #t m rev (2 n refl) rev)]))))
-
-    (def h ;; to proof (f g ~ id of bool-suspend)
-      (lambda (-> [bool-suspend I] [bool-suspend])
-        (extend-from
-          (lambda  (-> [bool-suspend (0 I)] [bool-suspend])
-            (-> [:a i0] [:a f g])
-            (-> [:a i1] [:a])))
-        (with (-> [(0 bool-suspend) %:a (1 i0 i1)]
-                  [(1 :a i0 <> :a i1 <>)])
-          (-> [n i01] [(2 n refl)])
-          (-> [s i01] [#t m]))
-        (with (-> [(1 n s) %:b (1 i0 i1) %:i]
-                  [(2 :b i0 <> s :i <>
-                      :b i1 <> rev n :i <> rev)])
-          (-> [#f m i01] [(3)])
-          (-> [#t m i01] [(3)]))))
-    #+end_src
+  (def h ;; to proof (f g ~ id of bool-suspend)
+    (lambda (-> [bool-suspend I] [bool-suspend])
+      (extend-from
+        (lambda (-> [bool-suspend (pof I)] [bool-suspend])
+          (-> [:a i0] [:a f g])
+          (-> [:a i1] [:a])))
+      (with (-> [(pof bool-suspend) %:a (0 i0 i1)]
+                [(0 :a i0 <> :a i1 <>)])
+        (-> [n i01] [(1 n refl)])
+        (-> [s i01] [#t m]))
+      (with (-> [(0 n s) %:b (0 i0 i1) %:i]
+                [(1 :b i0 <> s :i <>
+                    :b i1 <> rev n :i <> rev)])
+        (-> [#f m i01] [(2)])
+        (-> [#t m i01] [(2)]))))
+  #+end_src
 
 * (bool-suspend-suspend ~> sphere-2)
 
-*** sphere-2 & bool-suspend-suspend
+  #+begin_src scheme
+  (def sphere-2
+    (type (-> [] [space])
+      b2 (-> [] [(pof <>)])
+      ;; no need for (1 b2 refl b2 refl rev) ?
+      ;; for b2 refl is as identity
+      surf (-> [] [(1 b2 refl)])))
 
-    #+begin_src scheme
-    (def sphere-2
-      (type (-> [] [space])
-        b2 (-> [] [(0 <>)])
-        ;; no need for (2 b2 refl b2 refl rev) ?
-        ;; for b2 refl is as identity
-        surf (-> [] [(2 b2 refl)])))
+  (def bool-suspend-suspend
+    (type (-> [] [space])
+      n2 s2 (-> [] [(pof bool-suspend-suspend)])
+      m2 (-> [(pof bool-suspend)] [(0 n2 s2)])))
 
-    (def bool-suspend-suspend
-      (type (-> [] [space])
-        n2 s2 (-> [] [(0 bool-suspend-suspend)])
-        m2 (-> [(0 bool-suspend)] [(1 n2 s2)])))
-    #+end_src
+  (def bool-suspend-suspend
+    (type (-> [] [space])
+      n2 s2 (-> [] [(pof bool-suspend-suspend)])
+      m2 (level
+          (-> [(pof bool-suspend)] [(0 n2 s2)])
+          (-> [(0 n s)] [(0 n2 s2)]))))
 
-*** >< f & g & the proof
+  (def f
+    (lambda (-> [bool-suspend-suspend] [sphere-2])
+      (with (-> [(pof bool-suspend-suspend)] [(pof sphere-2)])
+        (-> [n2] [b2])
+        (-> [s2] [b2]))
+      (with (-> [(0 n2 s2)] [(0 b2 b2)])
+        (-> [n m2] [b2 rf])
+        (-> [s m2] [b2 rf]))
+      (with (-> [(n m2 = s m2)] [(b2 rf = b2 rf)])
+        (-> [#f m m2] [surf])
+        (-> [#t m m2] [b2 rf rf]))))
 
-    #+begin_src scheme
-    (def f
-      (lambda (-> [bool-suspend-suspend] [sphere-2])
-        (with (-> [(0 bool-suspend-suspend)] [(0 sphere-2)])
-          (-> [n2] [b2])
-          (-> [s2] [b2]))
-        (with (-> [(1 n2 s2)] [(1 b2 b2)])
-          (-> [n m2] [b2 rf])
-          (-> [s m2] [b2 rf]))
-        (with (-> [(n m2 = s m2)] [(b2 rf = b2 rf)])
-          (-> [#f m m2] [surf])
-          (-> [#t m m2] [b2 rf rf]))))
+  (def g
+    (lambda (-> [sphere-2] [bool-suspend-suspend])
+      (with (-> [(pof sphere-2)] [(pof bool-suspend-suspend)])
+        (-> [b2] [n2]))
+      (with (-> [(1 b2 refl b2 refl rev)] [(1 b2 refl b2 refl rev)])
+        (-> [surf] [(2 #f m m2 #t m m2 {n m2 s m2 rev})]))))
 
-    (def g
-      (lambda (-> [sphere-2] [bool-suspend-suspend])
-        (with (-> [(0 sphere-2)] [(0 bool-suspend-suspend)])
-          (-> [b2] [n2]))
-        (with (-> [(2 b2 refl b2 refl rev)] [(2 b2 refl b2 refl rev)])
-          (-> [surf] [(3 #f m m2 #t m m2 {n m2 s m2 rev})]))))
+  (def [f g]
+    (lambda (-> [bool-suspend-suspend] [bool-suspend-suspend])
+      (with (-> [(pof bool-suspend-suspend)] [(pof bool-suspend-suspend)])
+        (-> [n2] [n2])
+        (-> [s2] [n2]))
+      (with (-> [(0 n2 s2)] [(0 n2 n2)])
+        (-> [n m2] [n2 refl])
+        (-> [s m2] [n2 refl]))
+      (with (-> [(1 n m2 s m2)] [(1 n2 refl n2 refl)])
+        (-> [#f m m2] [{#f m m2 #t m m2 {n m2 s m2 rev}}])
+        (-> [#t m m2] [n rf rf]))))
 
-    (def [f g]
-      (lambda (-> [bool-suspend-suspend] [bool-suspend-suspend])
-        (with (-> [(0 bool-suspend-suspend)] [(0 bool-suspend-suspend)])
-          (-> [n2] [n2])
-          (-> [s2] [n2]))
-        (with (-> [(1 n2 s2)] [(1 n2 n2)])
-          (-> [n m2] [n2 refl])
-          (-> [s m2] [n2 refl]))
-        (with (-> [(2 n m2 s m2)] [(2 n2 refl n2 refl)])
-          (-> [#f m m2] [{#f m m2 #t m m2 {n m2 s m2 rev}}])
-          (-> [#t m m2] [n rf rf]))))
+  (def [g f]
+    (lambda (-> [sphere-2] [sphere-2])
+      (with (-> [(pof sphere-2)] [(pof sphere-2)])
+        (-> [b2] [b2]))
+      (with (-> [(1 b2 refl b2 refl rev)] [(1 b2 refl b2 refl rev)])
+        (-> [surf] [surf]))))
 
-    (def [g f]
-      (lambda (-> [sphere-2] [sphere-2])
-        (with (-> [(0 sphere-2)] [(0 sphere-2)])
-          (-> [b2] [b2]))
-        (with (-> [(2 b2 refl b2 refl rev)] [(2 b2 refl b2 refl rev)])
-          (-> [surf] [surf]))))
-    #+end_src
-
-*** >< curry
-
-    #+begin_src scheme
-    (def :k
-      (lambda ((:x : bool-suspend-suspend) -> (:x f g = :x))
-        {n2 :k : (n2 = n2)}
-        {s2 :k : (n2 = s2)}
-        (with ((:p : (n2 = s2)) -> (n2 :k (:p :k tp) = s2 :k)))
-        {n m2 :k : (n2 :k n m2 = s2 :k)}
-        {s m2 :k : (n2 :k s m2 = s2 :k)}
-        (with ((:h : (n m2 = s m2)) -> (n m2 :k (:h :k tp2) = s m2 :k)))
-        ;; 這裏的 tp2 使用比 hott 更高階的類型
-        {0 m m2 :k : (><><><)}
-        {1 m m2 :k : (><><><)}
-        (solve-by
-         ><><><)))
-    #+end_src
+  (def :k
+    (lambda ((:x : bool-suspend-suspend) -> (:x f g = :x))
+      {n2 :k : (n2 = n2)}
+      {s2 :k : (n2 = s2)}
+      (with ((:p : (n2 = s2)) -> (n2 :k (:p :k tp) = s2 :k)))
+      {n m2 :k : (n2 :k n m2 = s2 :k)}
+      {s m2 :k : (n2 :k s m2 = s2 :k)}
+      (with ((:h : (n m2 = s m2)) -> (n m2 :k (:h :k tp2) = s m2 :k)))
+      ;; 這裏的 tp2 使用比 hott 更高階的類型
+      {0 m m2 :k : (><><><)}
+      {1 m m2 :k : (><><><)}
+      (solve-by
+       ><><><)))
+  #+end_src
