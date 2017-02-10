@@ -372,12 +372,7 @@
   (def bool-suspend
     (type (-> [] [space])
       n s (-> [] [(pof <>)])
-      m (-> [(pof bool)] [(0 n s)])))
-
-  (def bool-suspend
-    (type (-> [] [space])
-      n s (-> [] [(pof <>)])
-      m (level (-> [(pof bool)] [(0 n s)]))))
+      m (-> [bool] [(0 n s)])))
 
   (def f
     (lambda (-> [bool-suspend] [sphere-1])
@@ -417,21 +412,21 @@
     (lambda (-> [bool-suspend I] [bool-suspend])
       (extend-from
         (lambda  (-> [bool-suspend (pof I)] [bool-suspend])
-          (-> [:a i0] [:a f g])
-          (-> [:a i1] [:a])))
+          (-> [:x i0] [:x f g])
+          (-> [:x i1] [:x])))
       (with (-> [(pof bool-suspend) %:a (0 i0 i1)]
                 [(0 :a i0 <> :a i1 <>)])
-        (-> [n i01] [(1 n refl)]
+        (-> [n (1 i01)] [(1 n refl)]
             : [(0 n n)])
-        (-> [s i01] [#t m]
+        (-> [s (1 i01)] [(1 #t m)]
             : [(0 n s)]))
       (with (-> [(0 n s) %:b (0 i0 i1) %:i]
                 [(1 :b i0 <> s :i <>
                     :b i1 <> rev n :i <> rev)])
-        (-> [#f m i01] [(2)]
+        (-> [(1 #f m) (1 i01)] [(2)]
             : [(1 (1 #f m #t m rev) #t m
                   #f m rev (1 n refl) rev)])
-        (-> [#t m i01] [(2)]
+        (-> [(1 #t m) (1 i01)] [(2)]
             : [(1 (1 n refl) #t m
                   #t m rev (1 n refl) rev)]))))
 
@@ -439,17 +434,17 @@
     (lambda (-> [bool-suspend I] [bool-suspend])
       (extend-from
         (lambda (-> [bool-suspend (pof I)] [bool-suspend])
-          (-> [:a i0] [:a f g])
-          (-> [:a i1] [:a])))
+          (-> [:x i0] [:x f g])
+          (-> [:x i1] [:x])))
       (with (-> [(pof bool-suspend) %:a (0 i0 i1)]
                 [(0 :a i0 <> :a i1 <>)])
-        (-> [n i01] [(1 n refl)])
-        (-> [s i01] [#t m]))
+        (-> [n (1 i01)] [(1 n refl)])
+        (-> [s (1 i01)] [(1 #t m)]))
       (with (-> [(0 n s) %:b (0 i0 i1) %:i]
                 [(1 :b i0 <> s :i <>
                     :b i1 <> rev n :i <> rev)])
-        (-> [#f m i01] [(2)])
-        (-> [#t m i01] [(2)]))))
+        (-> [(1 #f m) (1 i01)] [(2)])
+        (-> [(1 #t m) (1 i01)] [(2)]))))
   #+end_src
 
 * (bool-suspend-suspend ~> sphere-2)
@@ -464,15 +459,13 @@
 
   (def bool-suspend-suspend
     (type (-> [] [space])
-      n2 s2 (-> [] [(pof bool-suspend-suspend)])
-      m2 (-> [(pof bool-suspend)] [(0 n2 s2)])))
+      n2 s2 (-> [] [(pof <>)])
+      m2 (-> [bool-suspend] [(0 n2 s2)])))
 
-  (def bool-suspend-suspend
-    (type (-> [] [space])
-      n2 s2 (-> [] [(pof bool-suspend-suspend)])
-      m2 (level
-          (-> [(pof bool-suspend)] [(0 n2 s2)])
-          (-> [(0 n s)] [(0 n2 s2)]))))
+  ;; n m2 : (0 n2 s2)
+  ;; s m2 : (0 n2 s2)
+  ;; #f m m2 : (1 n m2 s m2 rev)
+  ;; #t m m2 : (1 n m2 s m2 rev)
 
   (def f
     (lambda (-> [bool-suspend-suspend] [sphere-2])
@@ -480,18 +473,36 @@
         (-> [n2] [b2])
         (-> [s2] [b2]))
       (with (-> [(0 n2 s2)] [(0 b2 b2)])
-        (-> [n m2] [b2 rf])
-        (-> [s m2] [b2 rf]))
-      (with (-> [(n m2 = s m2)] [(b2 rf = b2 rf)])
-        (-> [#f m m2] [surf])
-        (-> [#t m m2] [b2 rf rf]))))
+        (-> [(1 n m2)] [(1 b2 refl)])
+        (-> [(1 s m2)] [(1 b2 refl)]))
+      (with (-> [(1 n m2 s m2 rev)] [(1 b2 refl)])
+        (-> [(2 #f m m2)] [(2 surf)])
+        (-> [(2 #t m m2)] [(2 b2 refl refl)]))))
 
   (def g
     (lambda (-> [sphere-2] [bool-suspend-suspend])
       (with (-> [(pof sphere-2)] [(pof bool-suspend-suspend)])
         (-> [b2] [n2]))
-      (with (-> [(1 b2 refl b2 refl rev)] [(1 b2 refl b2 refl rev)])
-        (-> [surf] [(2 #f m m2 #t m m2 {n m2 s m2 rev})]))))
+      (with (-> [(1 b2 refl)] [(1 n2 refl)])
+        (-> [(2 surf)] [(2 #f m m2 (1 n m2 s m2 rev)
+                           #t m m2 (1))]))))
+
+  (def [g f]
+    (lambda (-> [sphere-2] [sphere-2])
+      (with (-> [(pof sphere-2)] [(pof sphere-2)])
+        (-> [b2] [b2]))
+      (with (-> [(1 b2 refl)] [(1 b2 refl)])
+        (-> [(2 surf)] [(2 surf)]))))
+
+  ;; [(2 surf)]
+  ;; g =>
+  ;; [(2 #f m m2 (1 n m2 s m2 rev)
+  ;;     #t m m2 (1))]
+  ;; f =>
+  ;; [(2 (2 surf) (1 (1 b2 refl) (1 b2 refl) rev)
+  ;;     (2 b2 refl refl) (1))]
+  ;; ==
+  ;; [(2 surf)]
 
   (def [f g]
     (lambda (-> [bool-suspend-suspend] [bool-suspend-suspend])
@@ -499,30 +510,77 @@
         (-> [n2] [n2])
         (-> [s2] [n2]))
       (with (-> [(0 n2 s2)] [(0 n2 n2)])
-        (-> [n m2] [n2 refl])
-        (-> [s m2] [n2 refl]))
-      (with (-> [(1 n m2 s m2)] [(1 n2 refl n2 refl)])
-        (-> [#f m m2] [{#f m m2 #t m m2 {n m2 s m2 rev}}])
-        (-> [#t m m2] [n rf rf]))))
+        (-> [(1 n m2)] [(1 n2 refl)])
+        (-> [(1 s m2)] [(1 n2 refl)]))
+      (with (-> [(1 n m2 s m2 rev)] [(1 n2 refl)])
+        (-> [(2 #f m m2)] [(2 #f m m2 (1 n m2 s m2 rev)
+                              #t m m2 (1))])
+        (-> [(2 #t m m2)] [(2 n2 refl refl)]))))
 
-  (def [g f]
-    (lambda (-> [sphere-2] [sphere-2])
-      (with (-> [(pof sphere-2)] [(pof sphere-2)])
-        (-> [b2] [b2]))
-      (with (-> [(1 b2 refl b2 refl rev)] [(1 b2 refl b2 refl rev)])
-        (-> [surf] [surf]))))
+  (def h ;; to proof (f g ~ id of bool-suspend-suspend)
+    (lambda (-> [bool-suspend-suspend I] [bool-suspend-suspend])
+      (extend-from
+        (lambda (-> [bool-suspend-suspend (pof I)] [bool-suspend-suspend])
+          (-> [:x i0] [:x f g])
+          (-> [:x i1] [:x])))
+      (with (-> [(pof bool-suspend-suspend) %:a (0 i0 i1)]
+                [(0 :a i0 <> :a i1 <>)])
+        (-> [n2 (1 i01)] [(1 n2 refl)] ;; [(1 n m2 s m2 rev)]
+            : [(0 n2 n2)])
+        (-> [s2 (1 i01)] [(1 s m2)] ;; [(1 n m2)]
+            : [(0 n2 s2)]))
+      (with (-> [(0 n2 s2) %:b (0 i0 i1) %:i]
+                [(1 :b i0 <> s2 :i <>
+                    :b i1 <> rev n2 :i <> rev)])
+        (-> [(1 n m2) (1 i01)] [(2 #t m m2)]
+            : [(1 (1 n2 refl) (1 s m2)
+                  (1 n m2) rev (1 n2 refl) rev)]
+            = [(1 (1 s m2) (1 n m2) rev)])
+        (-> [(1 s m2) (1 i01)] [(2)]
+            : [(1 (1 n2 refl) (1 s m2)
+                  (1 s m2) rev (1 n2 refl) rev)]
+            = [(1 (1 s m2)
+                  (1 s m2) rev)]
+            = [(1)]))
+      (with (-> [(1 n m2 s m2 rev) %:c (0 i0 i1) %:i]
+                [(2 n m2 :i <> (1 ...)
+                    s m2 :i <> (1 ...)
+                    :c i0 <> (1 ...)
+                    :c i1 <> (1))])
+        (-> [(2 #f m m2) (1 i01)] [(3)]
+            : [(2 (2 #t m m2)
+                  (2)
+                  (2 #f m m2 (1 n m2 s m2 rev)
+                     #t m m2 (1))
+                  (2 #f m m2))])
+        (-> [(2 #t m m2) (1 i01)] [(3)]
+            : [(2 (2 #t m m2)
+                  (2)
+                  (2 n2 refl refl)
+                  (2 #t m m2))]))))
 
-  (def :k
-    (lambda ((:x : bool-suspend-suspend) -> (:x f g = :x))
-      {n2 :k : (n2 = n2)}
-      {s2 :k : (n2 = s2)}
-      (with ((:p : (n2 = s2)) -> (n2 :k (:p :k tp) = s2 :k)))
-      {n m2 :k : (n2 :k n m2 = s2 :k)}
-      {s m2 :k : (n2 :k s m2 = s2 :k)}
-      (with ((:h : (n m2 = s m2)) -> (n m2 :k (:h :k tp2) = s m2 :k)))
-      ;; 這裏的 tp2 使用比 hott 更高階的類型
-      {0 m m2 :k : (><><><)}
-      {1 m m2 :k : (><><><)}
-      (solve-by
-       ><><><)))
+  ;; the detail in the glue in the above (2 ...) is important
+
+  (def h ;; to proof (f g ~ id of bool-suspend-suspend)
+    (lambda (-> [bool-suspend-suspend I] [bool-suspend-suspend])
+      (extend-from
+        (lambda (-> [bool-suspend-suspend (pof I)] [bool-suspend-suspend])
+          (-> [:x i0] [:x f g])
+          (-> [:x i1] [:x])))
+      (with (-> [(pof bool-suspend-suspend) %:a (0 i0 i1)]
+                [(0 :a i0 <> :a i1 <>)])
+        (-> [n2 (1 i01)] [(1 n2 refl)])
+        (-> [s2 (1 i01)] [(1 s m2)]))
+      (with (-> [(0 n2 s2) %:b (0 i0 i1) %:i]
+                [(1 :b i0 <> s2 :i <>
+                    :b i1 <> rev n2 :i <> rev)])
+        (-> [(1 n m2) (1 i01)] [(2 #t m m2)])
+        (-> [(1 s m2) (1 i01)] [(2)]))
+      (with (-> [(1 n m2 s m2 rev) %:c (0 i0 i1) %:i]
+                [(2 n m2 :i <> (1 ...)
+                    s m2 :i <> (1 ...)
+                    :c i0 <> (1 ...)
+                    :c i1 <> (1))])
+        (-> [(2 #f m m2) (1 i01)] [(3)])
+        (-> [(2 #t m m2) (1 i01)] [(3)]))))
   #+end_src
