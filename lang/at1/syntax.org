@@ -1,26 +1,64 @@
-#+title: syntax
+#+title: syntax -- design and notes
 
 * todo
+
+  - a syntax to do assertion
 
   - re resign the syntax of (type ...)
     [since the syntax of (lambda is almost fixed now)]
 
-* 語法的好壞
+  - product-space can be reduced to simple-space.
+    how about dependent-product-space ?
+    note that,
+    fiber-space is just dependent-product-space.
+    maybe the rule of boundary of product-space also holds here.
 
-*** 引
+* design the language with the UI in mind
 
-    - x ::
-         在設計語言的過程中
-         我總是需要不停地做判斷
-         像一個立法者一樣
-         來判斷什麼是好什麼是壞
-         因爲我想要我的語言好
-         但是這非常困難
-         因爲我沒有用以判斷好壞的客觀標準
+  - should I design the language with the UI in mind,
+    or seprate the language and the UI ?
 
-    - k ::
-         good syntax make meaning explicit to reader.
-         meaning is use.
+  - what kind of UI do I want ?
+
+* on the type of syntax
+
+  - infix
+    prefix
+    postfix
+    borderfix
+
+  - the asymmetry of writing method
+
+* syntax to describe syntax
+
+  | global | <name> |
+  | local  | :name  |
+
+  #+begin_src scheme
+  (:= <name> (or ...))
+  (:= :name (or ...))
+  #+end_src
+
+* general linguistics
+
+  - compare to natural language,
+    the syntaxes of programming languages are very simple.
+    this single fact makes it very important to learn general linguistics.
+
+* what is good syntax ?
+
+  - good syntax make meaning explicit to reader.
+    meaning is use.
+
+* the psychology of reading code
+
+  - by reading code in some language,
+    you imagine how the machine would run.
+    in your mind, you are always actively interpreting the code.
+    the understanding of code happens in many levels.
+
+  - this observation amost can guide a language designer.
+    language should help the imagination.
 
 * 語法的難點
 
@@ -53,25 +91,12 @@
     這裏 [ ] 有兩種設計方法
     - (積)
       寫出 glue 之後的複合元素的邊界
+      此時 典型的認知過程是
+      看出 兩體就公共邊界 glue 之後 所得到的邊界是什麼
+      [在低階情形這是利用等式代換來完成的]
     - (微)
       寫出 每次變化的細節
       [比如 1-level 時的 + - 就是如此]
-
-* 描述語法的語法
-
-  - 全局變元用 <name>
-    局部邊緣用 :name
-
-  #+begin_src scheme
-  (:= <name> (or ...))
-  (:= :name (or ...))
-  #+end_src
-
-* 典型的認知過程
-
-  - 典型的認知過程是
-    看出 兩體就公共邊界 glue 之後 所得到的邊界是什麼
-    [在低階情形這是利用等式代換來完成的]
 
 * example syntax
 
@@ -220,17 +245,7 @@
         just the list of (2) is of length one)
   #+end_src
 
-* >< continuity-check
-
-  - the border of the succedent of a dc
-    must be empty,
-    i.e. the succedent of a dc must be closed.
-
-  - not only closed,
-    a dc is also a characteristic-map
-    ><><><
-
-* about the example
+* >< about the example
 
   - 如上的語法設計到了搜索
     並非是完全信息充分的語法
@@ -247,26 +262,22 @@
     即便是有自動搜索
     還是要設計信息充分的語法來向用戶展示搜索的結果
 
-* 確定語法以實驗更多的例子
+* rules
 
-*** 引
+*** continuity-check
 
-    - x ::
-         我們需要確定語法之後才能實驗更多的例子
+    - the border of the succedent of a dc
+      must be empty,
+      i.e. the succedent of a dc must be closed.
 
-    - k ::
-         目前關於語法的設計決策有什麼
+    - not only closed,
+      a dc is also a characteristic-map
+      ><><><
 
-    - x ::
-         啊 我想難點不在於語法設計
-         而在於確定語義
-         之後語法就是自然的了
+* >< semantic
 
-*** semantic 總是比 syntax 重要
-
-    - k ::
-         semantic 總是比 syntax 重要
-         因爲 semantic 就是我們對解釋器運行狀態的想象
+  - semantic is more important than syntax,
+    for semantic is our imagination about how the machine runs.
 
 *** 用 di-graph 來實現 composed data
 
@@ -310,7 +321,7 @@
     or '<module-name>/<space-name>/<dc-name>'
     or '<module-name>/<function-name>'
 
-* ><><>< I
+* I
 
   #+begin_src scheme
   (def I
@@ -354,11 +365,15 @@
 
 * the rule
 
+  - it is assumed that the (+ ...) [the glue]
+    in the rule is always not ambiguous.
+    but I need more examples to be sure about this.
+
   #+begin_src scheme
   ;; [infix]
   ;; the rule
-  (A * B) f : (br (A * B)) f
-  (br (A * B)) = (((br A) * B) + (A * (br B)))
+  (A * B) f : (boundary (A * B)) f
+  (boundary (A * B)) = (((boundary A) * B) + (A * (boundary B)))
   ;; example of the rule
   (i01 * i0) f : (0 (i0 * i0) f (i1 * i0) f)
   (i1 * i01) f : (0 (i1 * i0) f (i1 * i1) f)
@@ -369,8 +384,8 @@
 
   ;; [prefix]
   ;; the rule
-  (* A B) f : (br (* A B)) f
-  (br (* A B)) = (+ (* (br A) B) (* A (br B)))
+  (* A B) f : (boundary (* A B)) f
+  (boundary (* A B)) = (+ (* (boundary A) B) (* A (boundary B)))
   ;; example of the rule
   (* i01 i0) f : (0 (* i0 i0) f (* i1 i0) f)
   (* i1 i01) f : (0 (* i1 i0) f (* i1 i1) f)
@@ -435,7 +450,7 @@
     (lambda (-> (* bool-suspend I) bool-suspend)
       (extend-from
         (lambda  (-> (* bool-suspend (-1 I)) bool-suspend)
-          (-> (* :x i0) :x f g)
+          (-> (* :x i0) [:x f g])
           (-> (* :x i1) :x)))
       (with (-> (* (-1 bool-suspend) %:a (0 i0 i1))
                 (0 (* :a i0) <> (* :a i1) <>))
@@ -528,7 +543,7 @@
     (lambda (-> (* bool-suspend-suspend I) bool-suspend-suspend)
       (extend-from
         (lambda (-> (* bool-suspend-suspend (-1 I)) bool-suspend-suspend)
-          (-> (* :x i0) (* :x f g))
+          (-> (* :x i0) (* [:x f g]))
           (-> (* :x i1) (* :x))))
       (with (-> (* (-1 bool-suspend-suspend) %:a (0 i0 i1))
                 (0 (* :a i0) <> (* :a i1) <>))
@@ -607,6 +622,11 @@
     rule for indexed space
     cellular ?
 
+* >< indexed space
+
+  - 'I' indexed by a space,
+    is the suspension of the space.
+
 * >< about SPSG
 
   - same-position-self-gluing
@@ -616,3 +636,17 @@
     can only happen,
     when there is at least one part of the border is repeating.
     [for example: p * p]
+
+* >< cw-complex
+
+  - disk 的 product 還是 disk
+
+  - cw-complex 是用 attaching map 定義的
+    attaching-map 所構造的 adjunction-space
+
+* >< 上同調與微分形式有關
+
+* the design
+
+  - space is defined part by part.
+    subspace relation is encoded by parts.

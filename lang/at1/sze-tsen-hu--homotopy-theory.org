@@ -2,201 +2,293 @@
 
 * todo
 
-*** the rule about syntax
+  - dual of extension problem is lifting problem
 
-    - how to describe them ?
-      how to design them so that you can add or change what already in them ?
+  - axiom of homotopy theory
 
-* 1.2 the extension problem
+  - dc as part of space
 
-*** subtype
+* 1 main problem and preliminary notions
 
-    - a type is encoded by its dc,
-      a subtype of it is encoded by a subset of its dc.
+*** 1 introduction
 
-*** 關於解函數方程
+*** 2 the extension problem
 
-    - 在描述 extension-problem 時
-      作者用一個 inclusion-map 'h'
-      把問題描述成了解特殊的函數方程 (h f == g)
+***** subtype
 
-    - 我認爲這種方式是不可取的
-      首先
-      有太多的信息被隱藏在語境中了
+      - a type is encoded by its dc,
+        a subtype of it is encoded by a subset of its dc.
 
-    - 其次
-      我需要做的是明確語法
-      以指示機器 使得它知道 應該如何檢查我寫下的方程的解 是否正確
-      然而
-      把所有的對方程的描述都劃歸爲函數之間的等式
-      就我所實現的語言而言是不現實的
-      因爲
-      我正是要利用 extension-problem 來解釋什麼是函數之間的相等
-      而不是相反
+      - a type is encoded by a list of its parts,
+        a subtype of it is encoded by a sub-list of the list of parts.
 
-    - 因此
-      我所設計的描述 extension-problem 的語法與作者相比更低級
-      因爲我寫出了更多的細節來指示機器
+***** about solving functional equations
 
-*** retraction-problem & extension-problem
+      - 在描述 extension-problem 時
+        作者用一個 inclusion-map 'h'
+        把問題描述成了解特殊的函數方程 (h f == g)
 
-    - if the retraction-problem
-      #+begin_src scheme
-      (lambda (type (-> [X] [X0])
-                (part on X0)))
-      #+end_src
-      is solvable by 'r',
-      then every extension-problem
-      #+begin_src scheme
-      (lambda (-> [X] [Y]) (part on X0))
-      #+end_src
-      is solvable by 'e'.
+      - 我認爲這種方式是不可取的
+        首先
+        有太多的信息被隱藏在語境中了
 
-*** the proof of (f0 ~ f1)
+      - 其次
+        我需要做的是明確語法
+        以指示機器 使得它知道 應該如何檢查我寫下的方程的解 是否正確
+        然而
+        把所有的對方程的描述都劃歸爲函數之間的等式
+        就我所實現的語言而言是不現實的
+        因爲
+        我正是要利用 extension-problem 來解釋什麼是函數之間的相等
+        而不是相反
 
-    - to proof (f0 ~ f1)
-      is to form a special extension-problem.
-      with (f0, f1 : A -> B)
-      we need to extend a partial-map of type (-> [A I] [B])
-      #+begin_src scheme
-      (let ([f0 (lambda (-> [A] [B]) ...)]
-            [f1 (lambda (-> [A] [B]) ...)])
-        (lambda (-> [A I] [B])
-          (extend-from
-            (lambda (-> [A (0 I)] [B])
-              (-> [:a i0] [:a f0])
-              (-> [:a i1] [:a f1])))))
-      #+end_src
+      - 因此
+        我所設計的描述 extension-problem 的語法與作者相比更低級
+        因爲我寫出了更多的細節來指示機器
 
-    - the corresponding retraction-problem is
-      #+begin_src scheme
-      (lambda (-> [A I] [A (0 I)])
-        (extend-from
-          (identity-map-of [A (0 I)])))
+***** retraction-problem & extension-problem
 
-      (lambda (-> [A I] [A (0 I)])
-        (extend-from
-          (lambda (->  [A (0 I)]  [A (0 I)])
-            (-> [:a i0] [:a f0])
-            (-> [:a i1] [:a f1]))))
-      #+end_src
-      if this retraction-problem is solvable
-      then for all (f0, f1 : A -> B)
-      we have (f0 ~ f1)
+      - if the retraction-problem
+        is solvable by 'r',
+        then every extension-problem
+        is solvable by 'e'.
 
-*** the proof of (A == B)
+        #+begin_src scheme
+        (let ([r (lambda (-> X A)
+                   (extend-from (identity-map-of A))
+                   ...)]
+              [g (lambda (-> A Y)
+                   ...)])
+          (def e
+            (lambda (-> X Y)
+              (extend-from
+                (lambda (-> A Y)
+                  (-> :a [:a g])))
+              (-> :x [:x r g]))))
+        #+end_src
 
-    - to proof (A == B)
-      is to form find (f : A -> B) and (g : B -> A)
-      and to proof (f g ~ A id) and (g f ~ B id)
-      #+begin_src scheme
-      (lambda (-> [A I] [A])
-        (extend-from
-          (lambda (-> [A (0 I)] [A])
-            (-> [:a i0] [:a f g])
-            (-> [:a i1] [:a]))))
 
-      (lambda (-> [B I] [B])
-        (extend-from
-          (lambda (-> [B (0 I)] [B])
-            (-> [:b i0] [:b g f])
-            (-> [:b i1] [:b]))))
-      #+end_src
+***** the proof of (f0 ~ f1)
 
-    - the corresponding retraction-problem is
-      #+begin_src scheme
-      (lambda (-> [A I] [A (0 I)])
-        (extend-from
-          (identity-map-of [A (0 I)])))
-
-      (lambda (-> [A I] [A (0 I)])
-        (extend-from
-          (lambda (-> [A (0 I)] [A (0 I)])
-            (-> [:a i0] [:a i0])
-            (-> [:a i1] [:a i1]))))
-
-      (note the-same-for B)
-      #+end_src
-
-    - it is to say
-      if the above retraction-problem is solvable
-      then to proof (A == B)
-      it is suffice to proof (A -> B) and (B -> A)
-      [i.e. to find two functions of such types]
-
-*** note
-
-    - in the book, there is a semantic usage of space-name :
-      X -- domain
-      A -- sub-domain
-      Y -- co-domain
-
-    - in the book,
-      firstly, a restricted extension-problem is formed.
-      but in my language,
-      we always have the final version of extension-problem.
-      [this is realized by the level-map and continuity-check]
-
-*** example
-
-    #+begin_src scheme
-    (def example-1
-      (lambda (-> [X] [(0 I)])
-        (extend-from
-          (lambda (-> [(list x0 x1)] [(0 I)])
-            (-> [x0] [i0])
-            (-> [x1] [i1])))
-        (note the above is solvable
-              iff x0 x1 lie in different quasi-components)))
-
-    (note about syntax design ::
-          if (0 X) can be viewed as an individual type,
-          so should (1 X) be.
-          then it would be not true that
-          we can elim diff-level-map by production-space.
-          maybe we should allow diff-level-map,
-          and we also should find the rule for its continuity-check.
-          [just as what has been done for hott by 'tp']
-          just this time, we do not use 'tp',
-          but try to re-create 'tp'
-          by the rule of the continuity-check of production-space.)
-
-    (def example-2
-      (lambda (-> [I] [Y])
-        (extend-from
-          (lambda (-> [(0 I)] [Y])
-            (-> [i0] [y0])
-            (-> [i1] [y1])))
-        (note the above is solvable
-              iff y0 y1 lie in a compact, connected and locally connected
-              subspace of Y satisfying the second countability axiom.)))
-
-    (def example-3
-      (note about Normal space
-            :: https://en.wikipedia.org/wiki/Normal_space
-            and Urysohn's lemma
-            :: https://en.wikipedia.org/wiki/Urysohn%27s_lemma
-            this is kind of low-level topology facts
-            can not be constructed in my language.))
-
-    (def example-4
-      (note about Tietze extension theorem
-            :: https://en.wikipedia.org/wiki/Tietze_extension_theorem))
-
-    (note Y is solid-space
-          if all of the following problems are solvable
-          (lambda (-> [X] [Y])
-            (note X is normal space)
+      - to proof (f0 ~ f1)
+        is to form a special extension-problem.
+        with (f0, f1 : A -> B)
+        we need to extend a partial-map of type (-> [A I] [B])
+        #+begin_src scheme
+        (let ([f0 (lambda (-> A B) ...)]
+              [f1 (lambda (-> A B) ...)])
+          (lambda (-> (* A I) B)
             (extend-from
-              (lambda (-> [A] [Y])
-                (note A is closed sub-space))))
-          [solid seems no hole])
-    #+end_src
+              (lambda (-> (* A (0 I)) B)
+                (-> (* :a i0) [:a f0])
+                (-> (* :a i1) [:a f1])))
+            ...))
+        #+end_src
 
-* >< 1.3 the method of algebraic topology
-* >< 1.4 the retraction problem
-* 1.5 combined maps
+      - the corresponding retraction-problem is
+        #+begin_src scheme
+        (lambda (-> (* A I) (* A (0 I)))
+          (extend-from
+            (identity-map-of (* A (0 I))))
+          ...)
 
-  - the way we define a continuous map data-constructor by data-constructor,
-    is just like define a combined map.
-    [the continuity of the combined map is demonstrated in this section]
+        (lambda (-> (* A I) (* A (0 I)))
+          (extend-from
+            (lambda (->  (* A (0 I)) (* A (0 I)))
+              (-> (* :a i0) [:a f0])
+              (-> (* :a i1) [:a f1])))
+          ...)
+        #+end_src
+        if this retraction-problem is solvable
+        then for all (f0, f1 : A -> B)
+        we have (f0 ~ f1)
+
+***** the proof of (A == B)
+
+      - to proof (A == B)
+        is to form find (f : A -> B) and (g : B -> A)
+        and to proof (f g ~ A id) and (g f ~ B id)
+        #+begin_src scheme
+        (lambda (-> (* A I) A)
+          (extend-from
+            (lambda (-> (* A (0 I)) A)
+              (-> (* :a i0) [:a f g])
+              (-> (* :a i1) :a))))
+
+        (lambda (-> (* B I) B)
+          (extend-from
+            (lambda (-> (* B (0 I)) B)
+              (-> (* :b i0) [:b g f])
+              (-> (* :b i1) :b))))
+        #+end_src
+
+      - the corresponding retraction-problem is
+        #+begin_src scheme
+        (lambda (-> (* A I) (* A (0 I)))
+          (extend-from
+            (identity-map-of (* A (0 I)))))
+
+        (lambda (-> (* A I) (* A (0 I)))
+          (extend-from
+            (lambda (-> (* A (0 I)) (* A (0 I)))
+              (-> (* :a i0) (* :a i0))
+              (-> (* :a i1) (* :a i1)))))
+
+        (note the-same-for B)
+        #+end_src
+
+      - it is to say
+        if the above retraction-problem is solvable
+        then to proof (A == B)
+        it is suffice to proof (A -> B) and (B -> A)
+        [i.e. to find two functions of such types]
+
+***** note
+
+      - in the book, there is a semantic usage of space-name :
+        X -- domain
+        A -- sub-domain
+        Y -- co-domain
+
+      - in the book,
+        firstly, a restricted extension-problem is formed.
+        but in my language,
+        we always have the final version of extension-problem.
+        [this is realized by the level-map and continuity-check]
+
+***** example
+
+      #+begin_src scheme
+      (def example-1
+        (lambda (-> X (0 I))
+          (extend-from
+            (lambda (-> (list x0 x1) (0 I))
+              (-> x0 i0)
+              (-> x1 i1)))
+          (note the above is solvable
+                iff x0 x1 lie in different quasi-components)))
+
+      (note about syntax design ::
+            if (0 X) can be viewed as an individual type,
+            so should (1 X) be.
+            then it would be not true that
+            we can elim diff-level-map by product-space.
+            maybe we should allow diff-level-map,
+            and we also should find the rule for its continuity-check.
+            [just as what has been done for hott by 'tp']
+            just this time, we do not use 'tp',
+            but try to re-create 'tp'
+            by the rule of the continuity-check of product-space.)
+
+      (def example-2
+        (lambda (-> I Y)
+          (extend-from
+            (lambda (-> (0 I) Y)
+              (-> i0 y0)
+              (-> i1 y1)))
+          (note the above is solvable
+                iff y0 y1 lie in a compact, connected and locally connected
+                subspace of Y satisfying the second countability axiom.)))
+
+      (def example-3
+        (note about Normal space
+              :: https://en.wikipedia.org/wiki/Normal_space
+              and Urysohn's lemma
+              :: https://en.wikipedia.org/wiki/Urysohn%27s_lemma
+              this is kind of low-level topology facts
+              can not be constructed in my language.))
+
+      (def example-4
+        (note about Tietze extension theorem
+              :: https://en.wikipedia.org/wiki/Tietze_extension_theorem))
+
+      (note Y is solid-space
+            if all of the following problems are solvable
+            (lambda (-> X Y)
+              (note X is normal space)
+              (extend-from
+                (lambda (-> A Y)
+                  (note A is closed sub-space))))
+            [solid seems no hole])
+      #+end_src
+
+*** characteristic-map
+
+    - the type of characteristic-map is
+      (-> (boundary (cell n)) (polytopy (sub1 n)))
+
+    - in at1, a dc is a characteristic-map.
+      if limited to model characteristic-map,
+      dc must always be viewed as unit cell,
+      while, ignore this limitation,
+      dc might be any orient-able closed space.
+
+*** topology structure
+
+    - the classical approach is to
+      set up the topological structure of cellular polytopy [CW complex].
+       maybe at1 should act at higher level of homotopical structure
+         instead of topological structure.
+      2. maybe at1 should maintain the ability to handle topological structure.
+
+*** >< 3 the method of algebraic topology
+*** >< 4 the retraction problem
+*** 5 combined maps
+
+    - the way we define a continuous map data-constructor by data-constructor,
+      is just like define a combined map.
+      [the continuity of the combined map is demonstrated in this section]
+
+*** 6 topological identification
+
+    - quotient-space must be implemented by redefining the equality.
+      thus, it seems that product-space and indexed-space,
+      all can be reduced to simple-space,
+      but quotient-space can not be reduced to simple-space,
+      thus is essentially different.
+
+    - in the book, natural-projection is used to depict quotient-space.
+
+    - for the example of quotient-space given by the book,
+      > the n-sphere is obtained from the n-cell, by identifying the boundary
+      > to a single point, and the real projective n-sphere is obtained from
+      > the n-sphere by identifying the antipodal points.
+
+    - but in at1, we can actually define the above spaces,
+      without the use of quotient-space.
+      and the use of topological identification above,
+      is changed to the use of repeated names [like a mark language].
+
+    - but also note that, not all quotient-space can be made simple-space.
+      as the other example given in the book,
+      where the equality of the space
+      is changed by a group of homeomorphisms of the space.
+      which is also called orbit-space.
+
+*** >< 7 the adjunction-space
+
+*** >< 8 homtopy problem and classification problem
+
+*** >< 9 the homotopy extension property
+
+*** >< 10 relative homotopy
+
+*** >< 11 homotopy equivalences
+
+*** >< 12 the mapping cylinder
+
+*** >< 13 a generalization of the extension-problem
+
+*** >< 14 the partial mapping cylinder
+
+*** >< 15 the deformation problem
+
+*** >< 16 the lifting problem
+
+*** >< 17 the most general problem
+
+* >< 2 some special cases of the main problems
+
+* >< 3 fiber spaces
+
+* >< 4 homotopy groups

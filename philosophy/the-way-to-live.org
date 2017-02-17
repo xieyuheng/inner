@@ -1,0 +1,51 @@
+#+title: the-way-to-live
+
+* principles
+
+  - endeavor
+    always give full awareness of the current learning
+
+  - about time
+    no past or some past -- past is ordered things
+    mostly now -- enjoy
+    a little future -- plan to maximize joy
+
+  - reading and learning and writing must be enjoyable
+
+* math reading list
+
+*** at
+
+    - sze-tsen-hu/homotopy-theory.djvu
+    - sze-tsen-hu/elements-of-general-topology.djvu
+    - cell-complex/the-topology-of-cw-complexes--albert-lundell.djvu
+    - hatcher/AT.pdf
+    - norman-steenrod/how-to-write-mathematics--norman-steenrod.djvu
+    - norman-steenrod/the-topology-of-fibre-bundles.djvu
+    - algebraic-topology/simplicial-homotopy-theory.pdf
+
+*** ag
+
+    - algebraic-geometry-a-problem-solving-approach.pdf
+
+*** dc
+
+    - a-comprehensive-introduction-to-differential-geometry
+
+*** cs
+
+    - feynman/lectures-on-computation.pdf
+
+* philosophy reading list
+
+*** aristotle
+
+    - topic
+
+*** language
+
+    - wittgenstein/><
+
+* >< to search
+
+  - Levi-Civita connection
