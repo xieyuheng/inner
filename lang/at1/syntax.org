@@ -276,10 +276,12 @@
 
 * >< semantic
 
-  - semantic is more important than syntax,
-    for semantic is our imagination about how the machine runs.
+*** note
 
-*** 用 di-graph 來實現 composed data
+    - semantic is more important than syntax,
+      for semantic is our imagination about how the machine runs.
+
+*** >< to use di-graph to implement composed data
 
     - x ::
          with higher-inductive-type we can form data that can be composed
@@ -646,7 +648,7 @@
 
 * >< 上同調與微分形式有關
 
-* the design
+* ><><>< the design
 
   - space is defined part by part.
     subspace relation is encoded by parts.
