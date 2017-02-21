@@ -1,5 +1,9 @@
 #+title: sze-tsen-hu--homotopy-theory
 
+* note
+
+  - Yet again, I have to read the book from beginning.
+
 * todo
 
   - dual of extension problem is lifting problem
@@ -16,13 +20,16 @@
 
 ***** subtype
 
-      - a type is encoded by its dc,
-        a subtype of it is encoded by a subset of its dc.
-
       - a type is encoded by a list of its parts,
         a subtype of it is encoded by a sub-list of the list of parts.
 
-***** about solving functional equations
+***** about solving functional equation
+
+      - the problem can be described by solving functional equation.
+        by 'functional', I mean the solution of the equation
+        would be a function, instead of lowest level data.
+
+      - ><><><
 
       - 在描述 extension-problem 時
         作者用一個 inclusion-map 'h'
@@ -269,7 +276,35 @@
 
 *** >< 8 homtopy problem and classification problem
 
-*** >< 9 the homotopy extension property
+*** >< 9 the homotopy-extension-property
+
+    - with homotopy-extension-property,
+      the extension-problem
+
+      will only dependent on
+      the homotopy class of
+
+    - Definition 9.1.
+      A subspace A of a space X
+      is said to have the homotopy-extension-property (abbreviated HEP)
+      in X
+      with respect to a space Y,
+      if every partial homotopy
+
+    #+begin_src scheme
+    (let ([f (lambda (-> X Y)
+               ...)]
+          [g (lambda (-> (* A I) Y)
+               (extend-from
+                 (lambda (-> (* A (list i0)) Y)
+                   (-> (* :a i0)
+                       [:a (restrict-on A f) @])))
+               ...)])
+      (def h
+        (lambda (-> (* X I) Y)
+          (extend-from g)
+          ...)))
+    #+end_src
 
 *** >< 10 relative homotopy
 

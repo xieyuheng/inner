@@ -413,3 +413,64 @@
     假設引力的存在 可以更好地解釋某些物體的運動
     假設上帝的存在 可以更好地解釋某羣人類的活動
     後者中的假設 其實並非是 上帝存在 而是這羣人相信上帝存在
+
+* 簡單的知識論
+
+  - 因果起源於 以我爲因
+    獲得知識 以 爲我所用
+
+* 獲得知識 以 爲我所用 可能是不正確的
+
+  - 因果起源於 以我爲因 是正確的
+    獲得知識 以 爲我所用 可能是不正確的
+
+  - ><><><
+    感覺上是不正確的
+    但是爲什麼
+    也許因爲對 '用' 的定義可以任意泛化
+
+* 類型論對知識論的衝擊
+
+  - 知識的形式是否只是因果
+    例如
+    - 分類
+    - 結構
+    但是注意
+    用類型系統來表達我們關於函數的知識的時候
+    因果被劃歸到了類型中
+    因果 是特殊的類型
+    所有的知識都是類型
+
+  - 顯然上面所說的 '所有的知識'
+    是有問題的
+    因爲我們有關程序的知識不光只是用函數的類型來表達的
+    但是
+    也許 理想的程序語言中
+    所有關於函數的知識都可以用類型來表達
+
+  - 注意上面所說的 '知識'
+    是有類型的
+    即 有關函數的
+    這種類型的只是可能是很侷限的
+    也可能不侷限
+    也可能最終所有類型的知識都可以劃歸到 有關函數的知識
+
+* 衝擊的加劇
+
+  - 如果把程序語言中的現象 類比到知識論與其他哲學門類中
+
+  - 比如程序語言中對等詞的處理
+    某些語言中必須要有一個基本等詞
+    而其他語言中可以對不同類型的數據賦予不同等詞
+
+* 用斯賓諾莎的倫理學一書做一些語言學實驗
+
+* on denoting by russell 1905
+
+  - meaning denotes denotation.
+    meaning is the way we construct an object [as in functional language],
+    or the way we limit our searching for certain object [as in logic language].
+    denotation is object to be constructed [as in functional language],
+    or found [as in logic language].
+
+* >< how the knowledge about programming language is important

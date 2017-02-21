@@ -13,6 +13,10 @@
     fiber-space is just dependent-product-space.
     maybe the rule of boundary of product-space also holds here.
 
+* note
+
+  - 上同調與微分形式有關
+
 * design the language with the UI in mind
 
   - should I design the language with the UI in mind,
@@ -60,7 +64,7 @@
   - this observation amost can guide a language designer.
     language should help the imagination.
 
-* 語法的難點
+* >< 語法的難點
 
   - 語法的難點並不出現在構造過程的前幾階
     glue 首先出現在 dc 的 type 限制中
@@ -98,7 +102,7 @@
       寫出 每次變化的細節
       [比如 1-level 時的 + - 就是如此]
 
-* example syntax
+* >< example syntax
 
   #+begin_src scheme
   (note
@@ -208,7 +212,7 @@
     (the-end))
   #+end_src
 
-* the resulting example syntax
+* >< the resulting example syntax
 
   #+begin_src scheme
   (type space
@@ -262,18 +266,6 @@
     即便是有自動搜索
     還是要設計信息充分的語法來向用戶展示搜索的結果
 
-* rules
-
-*** continuity-check
-
-    - the border of the succedent of a dc
-      must be empty,
-      i.e. the succedent of a dc must be closed.
-
-    - not only closed,
-      a dc is also a characteristic-map
-      ><><><
-
 * >< semantic
 
 *** note
@@ -296,32 +288,99 @@
          如上我們用 (2 ...) 這個 macro
          隱藏了 glue-for-border 這個明顯的函數調用
 
-* simple principle of uncurry
+* the rule
 
-  - a path in B is a function of type (I -> B)
-    thus (A -> (path in B)) == (A -> (I -> B))
-    can be uncurried to (A I -> B)
+*** >< primitive space & composed space
 
-  - with the method of path-as-function
-    we can define homotopy between pathes by equality of functions
-    (f1 ~ f2)
+    - composed space
+      1. product space
+      2. indexed space
 
-* about modularity
+    - a space is depicted by its parts and the borders of these parts.
+      for example,
+      we have rule for identifying parts of a product space and their borders.
 
-  - it is such a burden
-    to have to come up with unique name for every dc.
-    it is also not satisfactory
-    to prefix every dc with their space name.
+    - there can be many way by which we can compose new spaces,
+      each of such way must shows what is the parts of the space,
+      and what is the borders of the parts.
 
-  - a module-system must be design to solve this.
-    a syntax for 'prefixing every dc with their space name'
-    must be designed.
-    but locally, in every source code file,
-    the prefix can be omited.
+    - ><><><
+      rule for indexed space
+      cellular ?
 
-  - I will use symbel-pattern '<space-name>/<dc-name>' here.
-    or '<module-name>/<space-name>/<dc-name>'
-    or '<module-name>/<function-name>'
+*** product-space
+
+    - it is assumed that the (+ ...) [the glue]
+      in the rule is always not ambiguous.
+      but I need more examples to be sure about this.
+
+    #+begin_src scheme
+    ;; [infix]
+    ;; the rule
+    (A * B) f : (boundary (A * B)) f
+    (boundary (A * B)) = (((boundary A) * B) + (A * (boundary B)))
+    ;; example of the rule
+    (i01 * i0) f : (0 (i0 * i0) f (i1 * i0) f)
+    (i1 * i01) f : (0 (i1 * i0) f (i1 * i1) f)
+    (i01 * i1) f : (0 (i0 * i1) f (i1 * i1) f)
+    (i0 * i01) f : (0 (i0 * i0) f (i0 * i1) f)
+    (i01 * i01) f : (1 (i01 * i0) f (i1 * i01) f
+                       (i01 * i1) rev f (i0 * i01) rev f)
+
+    ;; [prefix]
+    ;; the rule
+    (* A B) f : (boundary (* A B)) f
+    (boundary (* A B)) = (+ (* (boundary A) B) (* A (boundary B)))
+    ;; example of the rule
+    (* i01 i0) f : (0 (* i0 i0) f (* i1 i0) f)
+    (* i1 i01) f : (0 (* i1 i0) f (* i1 i1) f)
+    (* i01 i1) f : (0 (* i0 i1) f (* i1 i1) f)
+    (* i0 i01) f : (0 (* i0 i0) f (* i0 i1) f)
+    (* i01 i01) f : (1 (* i01 i0) f (* i1 i01) f
+                       (* i01 i1) rev f (* i0 i01) rev f)
+    #+end_src
+
+*** >< indexed-space
+
+    - 'I' indexed by a space,
+      is the suspension of the space.
+
+*** >< about SPSG
+
+    - same-position-self-gluing
+      [for example: p * p^{-1}]
+
+    - non-same-position-self-gluing
+      can only happen,
+      when there is at least one part of the border is repeating.
+      [for example: p * p]
+
+*** simple principle of uncurry
+
+    - a path in B is a function of type (I -> B)
+      thus (A -> (path in B)) == (A -> (I -> B))
+      can be uncurried to (A I -> B)
+
+    - with the method of path-as-function
+      we can define homotopy between pathes by equality of functions
+      (f1 ~ f2)
+
+*** >< cw-complex
+
+    - disk 的 product 還是 disk
+
+    - cw-complex 是用 attaching map 定義的
+      attaching-map 所構造的 adjunction-space
+
+*** continuity-check
+
+    - the border of the succedent of a dc
+      must be empty,
+      i.e. the succedent of a dc must be closed.
+
+    - not only closed,
+      a dc is also a characteristic-map
+      ><><><
 
 * I
 
@@ -363,38 +422,6 @@
                (1 (* i0 (1 :p1)) <>
                   (* i1 (1 :p1)) <> rev) rev))
       (-> (* (1 i01) (1 i01)) ...)))
-  #+end_src
-
-* the rule
-
-  - it is assumed that the (+ ...) [the glue]
-    in the rule is always not ambiguous.
-    but I need more examples to be sure about this.
-
-  #+begin_src scheme
-  ;; [infix]
-  ;; the rule
-  (A * B) f : (boundary (A * B)) f
-  (boundary (A * B)) = (((boundary A) * B) + (A * (boundary B)))
-  ;; example of the rule
-  (i01 * i0) f : (0 (i0 * i0) f (i1 * i0) f)
-  (i1 * i01) f : (0 (i1 * i0) f (i1 * i1) f)
-  (i01 * i1) f : (0 (i0 * i1) f (i1 * i1) f)
-  (i0 * i01) f : (0 (i0 * i0) f (i0 * i1) f)
-  (i01 * i01) f : (1 (i01 * i0) f (i1 * i01) f
-                     (i01 * i1) rev f (i0 * i01) rev f)
-
-  ;; [prefix]
-  ;; the rule
-  (* A B) f : (boundary (* A B)) f
-  (boundary (* A B)) = (+ (* (boundary A) B) (* A (boundary B)))
-  ;; example of the rule
-  (* i01 i0) f : (0 (* i0 i0) f (* i1 i0) f)
-  (* i1 i01) f : (0 (* i1 i0) f (* i1 i1) f)
-  (* i01 i1) f : (0 (* i0 i1) f (* i1 i1) f)
-  (* i0 i01) f : (0 (* i0 i0) f (* i0 i1) f)
-  (* i01 i01) f : (1 (* i01 i0) f (* i1 i01) f
-                     (* i01 i1) rev f (* i0 i01) rev f)
   #+end_src
 
 * (bool-suspend ~> sphere-1)
@@ -606,49 +633,26 @@
                  (2 #t m m2))))))
   #+end_src
 
-* >< primitive space & composed space
-
-  - composed space
-    1. product space
-    2. indexed space
-
-  - a space is depicted by its parts and the borders of these parts.
-    for example,
-    we have rule for identifying parts of a product space and their borders.
-
-  - there can be many way by which we can compose new spaces,
-    each of such way must shows what is the parts of the space,
-    and what is the borders of the parts.
-
-  - ><><><
-    rule for indexed space
-    cellular ?
-
-* >< indexed space
-
-  - 'I' indexed by a space,
-    is the suspension of the space.
-
-* >< about SPSG
-
-  - same-position-self-gluing
-    [for example: p * p^{-1}]
-
-  - non-same-position-self-gluing
-    can only happen,
-    when there is at least one part of the border is repeating.
-    [for example: p * p]
-
-* >< cw-complex
-
-  - disk 的 product 還是 disk
-
-  - cw-complex 是用 attaching map 定義的
-    attaching-map 所構造的 adjunction-space
-
-* >< 上同調與微分形式有關
-
 * ><><>< the design
 
-  - space is defined part by part.
-    subspace relation is encoded by parts.
+*** note
+
+    - space is defined part by part.
+      subspace relation is encoded by parts.
+
+*** about modularity
+
+    - it is such a burden
+      to have to come up with unique name for every dc.
+      it is also not satisfactory
+      to prefix every dc with their space name.
+
+    - a module-system must be design to solve this.
+      a syntax for 'prefixing every dc with their space name'
+      must be designed.
+      but locally, in every source code file,
+      the prefix can be omited.
+
+    - I will use symbel-pattern '<space-name>/<dc-name>' here.
+      or '<module-name>/<space-name>/<dc-name>'
+      or '<module-name>/<function-name>'
