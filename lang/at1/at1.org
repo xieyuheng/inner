@@ -1,0 +1,590 @@
+#+title: algebraic-topology-1
+
+* todo
+* note
+
+  - 教與學的原則 在學習的候
+    我感到 只有當知道某個概念在之後的用處之後
+    我才能在嘗試掌握它的同時享受對其將有之用的期許
+    即便是一個小概念也是如此
+    比如 adjunction-space 與 CW-complex 一起講就能體現其用處
+
+* intro
+
+* simple-space
+
+*** note
+
+    - space is defined part by part.
+      subspace relation is encoded by parts.
+
+*** >< cw-complex
+
+    - disk 的 product 還是 disk
+
+    - cw-complex 是用 attaching map 定義的
+      attaching-map 所構造的 adjunction-space
+
+*** >< 語法的難點
+
+    - 語法的難點並不出現在構造過程的前幾階
+      glue 首先出現在 dc 的 type 限制中
+
+    - 0-level
+      a : T
+      任意引入
+
+    - 1-level
+      b : a0 == a1
+      [即使是 a0 == a0 也不能消去 而使得信息減少]
+
+    - 2-level
+      c : b1 + b2 - b3 - b4
+
+    - 每次 glue 的時候
+      有兩體
+      兩體都有邊界
+      語法要能夠指出是就哪個公共邊界來做 glue
+
+    - 1-level 元素的邊界很簡單
+      爲了指明就哪個公共邊界來 glue
+      只要用 + - 就好了
+      比如
+      b1 + b2 - b3 - b4
+      對於 2-level 元素就有
+      c1 [ ] c2 [ ] c3 [ ] c4
+      這裏 [ ] 有兩種設計方法
+      - (積)
+        寫出 glue 之後的複合元素的邊界
+        此時 典型的認知過程是
+        看出 兩體就公共邊界 glue 之後 所得到的邊界是什麼
+        [在低階情形這是利用等式代換來完成的]
+      - (微)
+        寫出 每次變化的細節
+        [比如 1-level 時的 + - 就是如此]
+
+*** >< example syntax
+
+    #+begin_src scheme
+    (note
+      這些以數字爲名字的語法詞
+      其內常常出現變長數據
+      或者說 with-output-to-new-list)
+
+    (type (-> [] [space])
+
+      a1 a2 a3 a4 (-1 <>)
+
+      b12 (0 a1 a2)
+      b13 (0 a1 a3)
+      b14 (0 a1 a4)
+      b23 (0 a2 a3)
+      b24 (0 a2 a4)
+      b34 (0 a3 a4)
+
+      c123 (1 b12 b23 b13 rev)
+      c124 (1 b12 b24 b14 rev)
+      c134 (1 b13 b34 b14 rev)
+      c234 (1 b23 b34 b24 rev)
+
+      d1234
+      ;; (2 c123 (1 b12 b23 b13 rev)
+      ;;    c124 (1 b14 b24 rev b23 b13 rev)
+      ;;    c134 (1 b13 b34 b24 rev b23 b13 rev)
+      ;;    c234 (1 b13 b34 b34 rev b23 rev b23 b13 rev))
+      (2 c123 (1 b12 b23 b13 rev)
+         c124 (1 b14 b24 rev b23 b13 rev)
+         c134 (1 b34 b24 rev b23)
+         c234 (1)))
+
+    (note
+      need syntax for solve-equation-with-condition
+      or solve/condition)
+
+    (type (-> [] [space])
+
+      a1 a2 a3 a4 (-1 <>)
+
+      b12 (0 a1 a2)
+      b13 (0 a1 a3)
+      b14 (0 a1 a4)
+      b23 (0 a2 a3)
+      b24 (0 a2 a4)
+      b34 (0 a3 a4)
+
+      c123 (1 b12 b23 b13 rev)
+      c124 (1 b12 b24 b14 rev)
+      c134 (1 b13 b34 b14 rev)
+      c234 (1 b23 b34 b24 rev)
+
+      d1234
+
+      (note 三階的構造語法詞 (2) 就已經不需要 with-output-to-new-list 語義了)
+
+      (2 c123 (check-init-border (1 b12 b23 b13 rev))
+         c124 (glue-for-border (1 b14 b24 rev b23 b13 rev))
+         c134 (glue-for-border (1 b34 b24 rev b23))
+         c234 (glue-for-border (1)))
+
+      (2 c123
+         c124 (1 b14 b24 rev b23 b13 rev)  glue-for-border
+         c134 (1 b34 b24 rev b23)          glue-for-border
+         c234 (1)                          glue-for-border)
+
+      (note 這裏又算是需要 with-output-to-new-list 語義的
+            但是這種效果也可以用組合子實現
+            只不過這裏不是用組合子 而是用語法關鍵詞)
+
+      (2 c123
+         c124 (1 b14 b24 rev b23 b13 rev)
+         c134 (1 b34 b24 rev b23)
+         c234 (1))
+
+      (note 既然 3 可以被實現爲一個組合子)
+
+      [c123
+       c124 (1 b14 b24 rev b23 b13 rev)
+       c134 (1 b34 b24 rev b23)
+       c234 (1)]
+      3
+
+      (note 注意
+            如上破壞了 type 本身作爲語法關鍵詞的規則
+            組合子的意義就再用用函數來捕捉這種規則
+            就是說
+            要麼完全用後綴表達式
+            並把 [...] 作爲 with-output-to-new-list
+            要麼使用 syntax-Keyword 與類似 lisp 的 macro 機制)
+
+      (note (key1 ... (key2 ...))
+            key2 might be a marker for key1 which follows the rule of key1
+            or itself a key which follows its own rule)
+
+      (note 我放棄 純粹的後綴表達式
+            因爲 有時 前綴表達式比後綴表達式易於編輯和閱讀
+            (key ...)
+            優於
+            [...] key)
+
+      (note 而後綴表達式的優勢在於語義簡單)
+
+      (note 我們可以試着把 lisp-like-macro-system 加入到語言當中來)
+
+      (the-end))
+    #+end_src
+
+*** >< the resulting example syntax
+
+    #+begin_src scheme
+    (type space
+      a1 a2 a3 a4 (-1 <>)
+      b12 (0 a1 a2)
+      b13 (0 a1 a3)
+      b14 (0 a1 a4)
+      b23 (0 a2 a3)
+      b24 (0 a2 a4)
+      b34 (0 a3 a4)
+      c123 (1 b12 b23 b13 rev)
+      c124 (1 b12 b24 b14 rev)
+      c134 (1 b13 b34 b14 rev)
+      c234 (1 b23 b34 b24 rev)
+      d1234 (2 c123
+               c124 (1 b14 b24 rev b23 b13 rev)
+               c134 (1 b34 b24 rev b23)
+               c234 (1)))
+
+    (note where
+          (2 c123
+             c124 (1 b14 b24 rev b23 b13 rev)
+             c134 (1 b34 b24 rev b23)
+             c234 (1))
+          ==>
+          (2 c123
+             c124 (1 b14 b24 rev b23 b13 rev)  glue-for-border
+             c134 (1 b34 b24 rev b23)          glue-for-border
+             c234 (1)                          glue-for-border)
+          under this design,
+          the syntax inside (2 ...) can also be extended)
+
+    (note (0) (1) (2) they all use with-output-to-new-list
+          just the list of (2) is of length one)
+    #+end_src
+
+*** >< about the example
+
+    - 如上的語法設計到了搜索
+      並非是完全信息充分的語法
+      但是可以依照這個來定義完全信息充分的語法
+      在這個基礎上的改進
+      可以看成是增加信息以保證唯一搜索
+
+    - 上面這些以數字爲語法關鍵詞的 sexp
+      都是相對自治的 不同 level 上語法可能都不一樣
+
+    - 我想這種描述邊界而自動搜索的語法可能纔是正確的
+      否則 高階幾何體的 glue 細節實在是難以用充分的語法描述
+      但是
+      即便是有自動搜索
+      還是要設計信息充分的語法來向用戶展示搜索的結果
+
+*** >< semantic
+
+***** note
+
+      - semantic is more important than syntax,
+        for semantic is our imagination about how the machine runs.
+
+***** >< to use di-graph to implement composed data
+
+      - x ::
+           with higher-inductive-type we can form data that can be composed
+           假設我們用 di-graph 來實現 composed data
+           那麼
+           每次用到 composition [glue] 的時候
+           就是對棧中已有的東西做 di-graph processing
+
+      - k ::
+           如若如此
+           glue 本身就應該被實現爲一個 明顯的函數了
+           如上我們用 (2 ...) 這個 macro
+           隱藏了 glue-for-border 這個明顯的函數調用
+
+* >< primitive space v.s. composed space
+
+  - composed space
+    1. product space
+    2. indexed space
+
+  - a space is depicted by its parts and the borders of these parts.
+    for example,
+    we have rule for identifying parts of a product space and their borders.
+
+  - there can be many way by which we can compose new spaces,
+    each of such way must shows what is the parts of the space,
+    and what is the borders of the parts.
+
+  - ><><><
+    rule for indexed space
+    cellular ?
+
+* >< product-space
+
+*** the rule
+
+    - it is assumed that the (+ ...) [the glue]
+      in the rule is always not ambiguous.
+      but I need more examples to be sure about this.
+
+    #+begin_src scheme
+    ;; [infix]
+    ;; the rule
+    (A * B) f : (boundary (A * B)) f
+    (boundary (A * B)) = (((boundary A) * B) + (A * (boundary B)))
+    ;; example of the rule
+    (i01 * i0) f : (0 (i0 * i0) f (i1 * i0) f)
+    (i1 * i01) f : (0 (i1 * i0) f (i1 * i1) f)
+    (i01 * i1) f : (0 (i0 * i1) f (i1 * i1) f)
+    (i0 * i01) f : (0 (i0 * i0) f (i0 * i1) f)
+    (i01 * i01) f : (1 (i01 * i0) f (i1 * i01) f
+                       (i01 * i1) rev f (i0 * i01) rev f)
+
+    ;; [prefix]
+    ;; the rule
+    (* A B) f : (boundary (* A B)) f
+    (boundary (* A B)) = (+ (* (boundary A) B) (* A (boundary B)))
+    ;; example of the rule
+    (* i01 i0) f : (0 (* i0 i0) f (* i1 i0) f)
+    (* i1 i01) f : (0 (* i1 i0) f (* i1 i1) f)
+    (* i01 i1) f : (0 (* i0 i1) f (* i1 i1) f)
+    (* i0 i01) f : (0 (* i0 i0) f (* i0 i1) f)
+    (* i01 i01) f : (1 (* i01 i0) f (* i1 i01) f
+                       (* i01 i1) rev f (* i0 i01) rev f)
+    #+end_src
+
+* >< indexed-space
+
+*** >< about 'I'
+
+    - 'I' indexed by a space,
+      is the suspension of the space.
+
+* >< SPSG
+
+  - same-position-self-gluing
+    [for example: p * p^{-1}]
+
+  - non-same-position-self-gluing
+    can only happen,
+    when there is at least one part of the border is repeating.
+    [for example: p * p]
+
+* simple principle of uncurry
+
+  - a path in B is a function of type (I -> B)
+    thus (A -> (path in B)) == (A -> (I -> B))
+    can be uncurried to (A I -> B)
+
+  - with the method of path-as-function
+    we can define homotopy between pathes by equality of functions
+    (f1 ~ f2)
+
+* continuity-check
+
+  - the border of the succedent of a dc
+    must be empty,
+    i.e. the succedent of a dc must be closed.
+
+  - not only closed,
+    a dc is also a characteristic-map
+    ><><><
+
+* I
+
+  #+begin_src scheme
+  (def I
+    (type space
+      i0 i1 (-1 <>)
+      i01 (0 i0 i1)))
+
+  (def f
+    (lambda (-> (* I I) X)
+      (with (-> (* (-1 I) (-1 I)) (-1 X))
+        (-> (* i0 i0) ...)
+        (-> (* i0 i1) ...)
+        (-> (* i1 i0) ...)
+        (-> (* i1 i1) ...))
+      (with (-> (* (-1 I) %:i (0 i0 i1))
+                (0 (* :i i0) <>
+                   (* :i i1) <>))
+        (-> (* i0 (1 i01)) ...)
+        (-> (* i1 (1 i01)) ...))
+      (with (-> (* (0 i0 i1) (-1 I) %:i)
+                (0 (* i0 (1 :i)) <>
+                   (* i1 (1 :i)) <>))
+        (-> (* (1 i01) i0) ...)
+        (-> (* (1 i01) i1) ...))
+      (with (-> (* (0 i0 i1) %:p0
+                   (0 i0 i1) %:p1)
+                (1 (* (1 :p0) i0) <>
+                   (* i1 (1 :p1)) <>
+                   (* (1 :p0) i1) <> rev
+                   (* i0 (1 :p1)) <> rev)))
+      ;; product 的各個部分 之邊界 所生成的 函數值
+      ;; 想要融合成一個 封閉的圖形 其方式可能總是唯一的
+      ;; 如果我允許 (1 ...) 內構造出不聯通的圖形
+      ;; 那麼我可能就有機會描述出來這種唯一可能
+      (note (1 (* (1 :p0) i0) <>
+               (* (1 :p0) i1) <> rev
+               (1 (* i0 (1 :p1)) <>
+                  (* i1 (1 :p1)) <> rev) rev))
+      (-> (* (1 i01) (1 i01)) ...)))
+  #+end_src
+
+* (bool-suspend ~> sphere-1)
+
+  #+begin_src scheme
+  (def sphere-1
+    (type (-> space)
+      b (-> (-1 <>))
+      loop (-> (0 b b))))
+
+  (def bool
+    (type (-> space)
+      #f #t (-> (-1 <>))))
+
+  (def bool-suspend
+    (type (-> space)
+      n s (-> (-1 <>))
+      m (-> bool (0 n s))))
+
+  (def f
+    (lambda (-> bool-suspend sphere-1)
+      (with (-> (-1 bool-suspend) (-1 sphere-1))
+        (-> n b)
+        (-> s b))
+      (with (-> (0 n s) (0 b b))
+        (-> (1 #f m) (1 loop))
+        (-> (1 #t m) (1 b refl)))))
+
+  (def g
+    (lambda (-> sphere-1 bool-suspend)
+      (with (-> (-1 sphere-1) (-1 bool-suspend))
+        (-> b n))
+      (with (-> (0 b b) (0 n n))
+        ;; (1 ...) is only needed when there is glue of elements of 2-level
+        (-> (1 loop) (1 #f m #t m rev)))))
+
+  (def [g f] ;; which is already id of sphere-1
+    (lambda (-> sphere-1 sphere-1)
+      (with (-> (-1 sphere-1) (-1 sphere-1))
+        (-> b b))
+      (with (-> (0 b b) (0 b b))
+        (-> (1 loop) (1 loop)))))
+
+  (def [f g]
+    (lambda (-> bool-suspend bool-suspend)
+      (with (-> (-1 bool-suspend) (-1 bool-suspend))
+        (-> n n)
+        (-> s n))
+      (with (-> (0 n s) (0 n n))
+        (-> (1 #f m) (1 #f m #t m rev))
+        (-> (1 #t m) (1 n refl)))))
+
+  ;; uncurry
+  (def h ;; to proof (f g ~ id of bool-suspend)
+    (lambda (-> (* bool-suspend I) bool-suspend)
+      (extend-from
+        (lambda  (-> (* bool-suspend (-1 I)) bool-suspend)
+          (-> (* :x i0) [:x f g])
+          (-> (* :x i1) :x)))
+      (with (-> (* (-1 bool-suspend) %:a (0 i0 i1))
+                (0 (* :a i0) <> (* :a i1) <>))
+        (-> (* n (1 i01)) (1 n refl)
+            : (0 n n))
+        (-> (* s (1 i01)) (1 #t m)
+            : (0 n s)))
+      (with (-> (* (0 n s) %:b (0 i0 i1) %:i)
+                (1 (* :b i0) <> (* s :i) <>
+                   (* :b i1) <> rev (* n :i) <> rev))
+        (-> (* (1 #f m) (1 i01)) (2)
+            : (1 (1 #f m #t m rev) (1 #t m)
+                 (1 #f m) rev (1 n refl) rev))
+        (-> (* (1 #t m) (1 i01)) (2)
+            : (1 (1 n refl) (1 #t m)
+                 (1 #t m) rev (1 n refl) rev)))))
+  #+end_src
+
+* (bool-suspend-suspend ~> sphere-2)
+
+  #+begin_src scheme
+  (def sphere-2
+    (type (-> space)
+      b2 (-> (-1 <>))
+      ;; no need for (1 b2 refl b2 refl rev) ?
+      ;; for b2 refl is as identity
+      surf (-> (1 b2 refl))))
+
+  (def bool-suspend-suspend
+    (type (-> space)
+      n2 s2 (-> (-1 <>))
+      m2 (-> bool-suspend (0 n2 s2))))
+
+  ;; n m2 : (0 n2 s2)
+  ;; s m2 : (0 n2 s2)
+  ;; #f m m2 : (1 n m2 s m2 rev)
+  ;; #t m m2 : (1 n m2 s m2 rev)
+
+  (def f
+    (lambda (-> bool-suspend-suspend sphere-2)
+      (with (-> (-1 bool-suspend-suspend) (-1 sphere-2))
+        (-> n2 b2)
+        (-> s2 b2))
+      (with (-> (0 n2 s2) (0 b2 b2))
+        (-> (1 n m2) (1 b2 refl))
+        (-> (1 s m2) (1 b2 refl)))
+      (with (-> (1 n m2 s m2 rev) (1 b2 refl))
+        (-> (2 #f m m2) (2 surf))
+        (-> (2 #t m m2) (2 b2 refl refl)))))
+
+  (def g
+    (lambda (-> sphere-2 bool-suspend-suspend)
+      (with (-> (-1 sphere-2) (-1 bool-suspend-suspend))
+        (-> b2 n2))
+      (with (-> (1 b2 refl) (1 n2 refl))
+        (-> (2 surf) (2 #f m m2 (1 n m2 s m2 rev)
+                        #t m m2 (1))))))
+
+  (def [g f]
+    (lambda (-> sphere-2 sphere-2)
+      (with (-> (-1 sphere-2) (-1 sphere-2))
+        (-> b2 b2))
+      (with (-> (1 b2 refl) (1 b2 refl))
+        (-> (2 surf) (2 surf)))))
+
+  ;; (2 surf)
+  ;; g =>
+  ;; (2 #f m m2 (1 n m2 s m2 rev)
+  ;;     #t m m2 (1))
+  ;; f =>
+  ;; (2 (2 surf) (1 (1 b2 refl) (1 b2 refl) rev)
+  ;;     (2 b2 refl refl) (1))
+  ;; ==
+  ;; (2 surf)
+
+  (def [f g]
+    (lambda (-> bool-suspend-suspend bool-suspend-suspend)
+      (with (-> (-1 bool-suspend-suspend) (-1 bool-suspend-suspend))
+        (-> n2 n2)
+        (-> s2 n2))
+      (with (-> (0 n2 s2) (0 n2 n2))
+        (-> (1 n m2) (1 n2 refl))
+        (-> (1 s m2) (1 n2 refl)))
+      (with (-> (1 n m2 s m2 rev) (1 n2 refl))
+        (-> (2 #f m m2) (2 #f m m2 (1 n m2 s m2 rev)
+                           #t m m2 (1)))
+        (-> (2 #t m m2) (2 n2 refl refl)))))
+
+  (def h ;; to proof (f g ~ id of bool-suspend-suspend)
+    (lambda (-> (* bool-suspend-suspend I) bool-suspend-suspend)
+      (extend-from
+        (lambda (-> (* bool-suspend-suspend (-1 I)) bool-suspend-suspend)
+          (-> (* :x i0) (* [:x f g]))
+          (-> (* :x i1) (* :x))))
+      (with (-> (* (-1 bool-suspend-suspend) %:a (0 i0 i1))
+                (0 (* :a i0) <> (* :a i1) <>))
+        (-> (* n2 (1 i01)) (1 n2 refl) ;; (1 n m2 s m2 rev)
+            : (0 n2 n2))
+        (-> (* s2 (1 i01)) (1 s m2) ;; (1 n m2)
+            : (0 n2 s2)))
+      (with (-> (* (0 n2 s2) %:b (0 i0 i1) %:i)
+                (1 (* (1 :b) i0) <> (* s2 (1 :i)) <>
+                   (* (1 :b) i1) <> rev (* n2 (1 :i)) <> rev))
+        (-> (* (1 n m2) (1 i01)) (2 #t m m2)
+            : (1 (1 n2 refl) (1 s m2)
+                 (1 n m2) rev (1 n2 refl) rev)
+            = (1 (1 s m2) (1 n m2) rev))
+        (-> (* (1 s m2) (1 i01)) (2)
+            : (1 (1 n2 refl) (1 s m2)
+                 (1 s m2) rev (1 n2 refl) rev)
+            = (1 (1 s m2)
+                 (1 s m2) rev)
+            = (1)))
+      (with (-> (* (1 n m2 s m2 rev) %:c (0 i0 i1) %:i)
+                (2 (* (1 n m2) (1 :i)) <>
+                   (1 (* n2 (1 i01)) <>
+                      (* (1 n m2) i1) <>
+                      (* s2 (1 i01)) <> rev
+                      (* (1 n m2) i0) <> rev)
+                   (* (1 s m2) (1 :i)) <>
+                   (1 (* (1 n m2) i1) <>
+                      (* (1 n m2) i0) <> rev
+                      (* (1 s m2) i1) <> rev
+                      (* (1 s m2) i0) <>)
+                   (* (2 :c) i0) <>
+                   (1 (* (1 n m2) i1) <>
+                      (* (1 s m2) i1) <> rev)
+                   (* (2 :c) i1) <>
+                   (1)))
+        (-> (* (2 #f m m2) (1 i01)) (3)
+            : (2 (2 #t m m2)
+                 (1 (1 n2 refl)
+                    (1 n m2)
+                    (1 s m2) rev
+                    (1 n2 refl) rev)
+                 (2)
+                 (1 (1 n m2)
+                    (1 n2 refl) rev
+                    (1 s m2) rev
+                    (1 n2 refl) rev)
+                 (2 #f m m2 (1 n m2 s m2 rev)
+                    #t m m2 (1))
+                 (1 (1 n m2)
+                    (1 s m2) rev)
+                 (2 #f m m2)
+                 (1)))
+        (-> (* (2 #t m m2) (1 i01)) (3)
+            : (2 (2 #t m m2)
+                 (2)
+                 (2 n2 refl refl)
+                 (2 #t m m2))))))
+  #+end_src

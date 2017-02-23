@@ -1,57 +1,80 @@
 #+title: sze-tsen-hu--homotopy-theory
 
-* note
-
-  - Yet again, I have to read the book from beginning.
-
 * todo
 
   - dual of extension problem is lifting problem
 
   - axiom of homotopy theory
 
-  - dc as part of space
-
 * 1 main problem and preliminary notions
 
 *** 1 introduction
 
+    > There is a general type of topological problem
+    > which will be called theextension problem.
+    > One of the principal objectives of the book is to show that
+    > this problem is fundamental in topology.
+    > It will be shown that many theorems of topology
+    > and most of its applications in other fields of mathematics
+    > are solutions of special cases of the extension problem.
+
 *** 2 the extension problem
 
-***** subtype
+***** a low-level way to express the problem
 
-      - a type is encoded by a list of its parts,
-        a subtype of it is encoded by a sub-list of the list of parts.
+      - the problem can be described as
+        solving the following functional equation :
+        #+begin_src scheme
+        (<equation>
+         (<given>
+          g : (-> A Y)
+          inclusion : (-> A X))
+         (<find>
+          f : (-> X Y))
+         (<such-that>
+          (== [g] [inclusion f])
+          (note
+            'A is a subtype of X' is expressed by a named inclusion-map.)))
+        #+end_src
 
-***** about solving functional equation
-
-      - the problem can be described by solving functional equation.
-        by 'functional', I mean the solution of the equation
+      - by 'functional', I mean the solution of the equation
         would be a function, instead of lowest level data.
 
-      - ><><><
+      - If the machine were to check, whether the solution I found,
+        suffices the condition of the equation,
+        it must be able to check, whether two functions are equal.
+        I can not follow this way led by the author,
+        because, in my prospect, the equality of function
+        will be implemented by a special kind of extension-problem.
 
-      - 在描述 extension-problem 時
-        作者用一個 inclusion-map 'h'
-        把問題描述成了解特殊的函數方程 (h f == g)
+      - Thus, I use a low-level definition of extension-problem :
+        #+begin_src scheme
+        (let ([g (lambda (-> A Y) ...)])
+          (def f
+            (lambda (-> X Y)
+              (extend-from g)
+              ...)))
+        #+end_src
 
-      - 我認爲這種方式是不可取的
-        首先
-        有太多的信息被隱藏在語境中了
+      - Since a type is encoded by a list of its parts,
+        I let subtype be encoded by a sub-list of the list of parts.
 
-      - 其次
-        我需要做的是明確語法
-        以指示機器 使得它知道 應該如何檢查我寫下的方程的解 是否正確
-        然而
-        把所有的對方程的描述都劃歸爲函數之間的等式
-        就我所實現的語言而言是不現實的
-        因爲
-        我正是要利用 extension-problem 來解釋什麼是函數之間的相等
-        而不是相反
+      - In an extension-problem,
+        we extend a partial-map to a total-map step by step,
+        while maintain the continuity of the map.
+        What the machine should be checking,
+        is shifted from equality to continuity.
+        Since we already established the rules for continuity-check,
+        we can express extension-problem in my language now.
 
-      - 因此
-        我所設計的描述 extension-problem 的語法與作者相比更低級
-        因爲我寫出了更多的細節來指示機器
+      - In the book,
+        firstly, a restricted extension-problem is formed,
+        but in my language,
+        we always have the final version of extension-problem,
+        i.e. equality between two functions,
+        is understood as homotopy between two functions by default.
+
+***** >< retraction-problem
 
 ***** retraction-problem & extension-problem
 
@@ -74,10 +97,9 @@
               (-> :x [:x r g]))))
         #+end_src
 
+***** the proof of (== f0 f1)
 
-***** the proof of (f0 ~ f1)
-
-      - to proof (f0 ~ f1)
+      - to proof (== f0 f1)
         is to form a special extension-problem.
         with (f0, f1 : A -> B)
         we need to extend a partial-map of type (-> [A I] [B])
@@ -98,19 +120,21 @@
           (extend-from
             (identity-map-of (* A (0 I))))
           ...)
-
-        (lambda (-> (* A I) (* A (0 I)))
-          (extend-from
-            (lambda (->  (* A (0 I)) (* A (0 I)))
-              (-> (* :a i0) [:a f0])
-              (-> (* :a i1) [:a f1])))
-          ...)
         #+end_src
         if this retraction-problem is solvable
         then for all (f0, f1 : A -> B)
         we have (f0 ~ f1)
 
 ***** the proof of (A == B)
+
+      - the corresponding retraction-problem is
+        #+begin_src scheme
+        (lambda (-> (* A I) (* A (0 I)))
+          (extend-from
+            (identity-map-of (* A (0 I)))))
+
+        (note the-same-for B)
+        #+end_src
 
       - to proof (A == B)
         is to form find (f : A -> B) and (g : B -> A)
@@ -129,21 +153,6 @@
               (-> (* :b i1) :b))))
         #+end_src
 
-      - the corresponding retraction-problem is
-        #+begin_src scheme
-        (lambda (-> (* A I) (* A (0 I)))
-          (extend-from
-            (identity-map-of (* A (0 I)))))
-
-        (lambda (-> (* A I) (* A (0 I)))
-          (extend-from
-            (lambda (-> (* A (0 I)) (* A (0 I)))
-              (-> (* :a i0) (* :a i0))
-              (-> (* :a i1) (* :a i1)))))
-
-        (note the-same-for B)
-        #+end_src
-
       - it is to say
         if the above retraction-problem is solvable
         then to proof (A == B)
@@ -152,16 +161,10 @@
 
 ***** note
 
-      - in the book, there is a semantic usage of space-name :
+      - in the book, there is a semantic usage of space name :
         X -- domain
         A -- sub-domain
         Y -- co-domain
-
-      - in the book,
-        firstly, a restricted extension-problem is formed.
-        but in my language,
-        we always have the final version of extension-problem.
-        [this is realized by the level-map and continuity-check]
 
 ***** example
 
