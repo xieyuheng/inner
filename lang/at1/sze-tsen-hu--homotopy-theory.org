@@ -60,7 +60,7 @@
         I let subtype be encoded by a sub-list of the list of parts.
 
       - In an extension-problem,
-        we extend a partial-map to a total-map step by step,
+        we extend a partial map to a total-map step by step,
         while maintain the continuity of the map.
         What the machine should be checking,
         is shifted from equality to continuity.
@@ -102,7 +102,7 @@
       - to proof (== f0 f1)
         is to form a special extension-problem.
         with (f0, f1 : A -> B)
-        we need to extend a partial-map of type (-> [A I] [B])
+        we need to extend a partial map of type (-> [A I] [B])
         #+begin_src scheme
         (let ([f0 (lambda (-> A B) ...)]
               [f1 (lambda (-> A B) ...)])
@@ -182,8 +182,8 @@
             if (0 X) can be viewed as an individual type,
             so should (1 X) be.
             then it would be not true that
-            we can elim diff-level-map by product-space.
-            maybe we should allow diff-level-map,
+            we can elim level-diff map by product-space.
+            maybe we should allow level-diff map,
             and we also should find the rule for its continuity-check.
             [just as what has been done for hott by 'tp']
             just this time, we do not use 'tp',
@@ -327,6 +327,8 @@
 
 * >< 2 some special cases of the main problems
 
-* >< 3 fiber spaces
+* 3 fiber spaces
+
+*** 1 introduction
 
 * >< 4 homotopy groups

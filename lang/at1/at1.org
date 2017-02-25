@@ -1,22 +1,58 @@
 #+title: algebraic-topology-1
 
 * todo
+
 * note
 
-  - 教與學的原則 在學習的候
-    我感到 只有當知道某個概念在之後的用處之後
-    我才能在嘗試掌握它的同時享受對其將有之用的期許
-    即便是一個小概念也是如此
-    比如 adjunction-space 與 CW-complex 一起講就能體現其用處
+*** Bishop's plan
+
+    - To define property of object
+      by the solvability of problem fromed around the object.
+
+*** To teach
+
+    - 教與學的原則 在學習的候
+      我感到 只有當知道某個概念在之後的用處之後
+      我才能在嘗試掌握它的同時享受對其將有之用的期許
+      即便是一個小概念也是如此
+      比如 adjunction-space 與 CW-complex 一起講就能體現其用處
 
 * intro
 
+  - In this book, I will show how to design and implement a language,
+    to formalize and machine-lize the object of study
+    of a little part of algebraic topology,
+    and to express some classical algebraic topology construction in my language.
+
+  - I call this prototype 'at1',
+    which is an abbreviation of 'algebraic-topology-1'.
+
 * simple-space
 
-*** note
+*** terminology
+
+    - space
+      part
+      subspace
 
     - space is defined part by part.
       subspace relation is encoded by parts.
+
+*** continuity-check
+
+    - map have the following general types
+      - level-same
+      - level-diff
+        - level-up
+        - level-down
+
+    - the border of the succedent of a dc
+      must be empty,
+      i.e. the succedent of a dc must be closed.
+
+    - not only closed,
+      a dc is also a characteristic-map
+      ><><><
 
 *** >< cw-complex
 
@@ -301,7 +337,22 @@
                        (* i01 i1) rev f (* i0 i01) rev f)
     #+end_src
 
+* >< extension-problem of partial map defined on subspace
+
+* >< extension-problem and retraction-problem
+
 * >< indexed-space
+
+*** note
+
+    - When defining a space, parts of it can be indexed
+      by parts of another space.
+      Such a named indexing of parts is called an indexed-parts,
+      which is also a subspace of the larger space.
+
+    - Note that,
+      if the indexing is to be viewed as a map,
+      it would be a level-up map.
 
 *** >< about 'I'
 
@@ -327,16 +378,6 @@
   - with the method of path-as-function
     we can define homotopy between pathes by equality of functions
     (f1 ~ f2)
-
-* continuity-check
-
-  - the border of the succedent of a dc
-    must be empty,
-    i.e. the succedent of a dc must be closed.
-
-  - not only closed,
-    a dc is also a characteristic-map
-    ><><><
 
 * I
 
@@ -588,3 +629,19 @@
                  (2 n2 refl refl)
                  (2 #t m m2))))))
   #+end_src
+
+* >< fiber-space
+
+  - After a construction of a fiber-bundle,
+    we can proof the total-space is equal to another space,
+    and by doing so, we get a level-down map from the space to the base-space.
+
+  - level-down map can only be achieved by means of fiber-bundle.
+
+* >< lifting-problem of ><><>< fiber-space
+
+* >< lifting-problem and cross-section-problem
+
+  - cross-section-problem can be viewed as
+    lifting a subspace [instead of function] of the base-space,
+    or just lifting the base-space itself [i.e. global cross-section].
