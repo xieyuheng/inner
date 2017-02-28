@@ -265,25 +265,21 @@
 
 *** >< semantic
 
-***** note
+    - semantic is more important than syntax,
+      for semantic is our imagination about how the machine runs.
 
-      - semantic is more important than syntax,
-        for semantic is our imagination about how the machine runs.
+    - x ::
+         with higher-inductive-type we can form data that can be composed
+         假設我們用 di-graph 來實現 composed data
+         那麼
+         每次用到 composition [glue] 的時候
+         就是對棧中已有的東西做 di-graph processing
 
-***** >< to use di-graph to implement composed data
-
-      - x ::
-           with higher-inductive-type we can form data that can be composed
-           假設我們用 di-graph 來實現 composed data
-           那麼
-           每次用到 composition [glue] 的時候
-           就是對棧中已有的東西做 di-graph processing
-
-      - k ::
-           如若如此
-           glue 本身就應該被實現爲一個 明顯的函數了
-           如上我們用 (2 ...) 這個 macro
-           隱藏了 glue-for-border 這個明顯的函數調用
+    - k ::
+         如若如此
+         glue 本身就應該被實現爲一個 明顯的函數了
+         如上我們用 (2 ...) 這個 macro
+         隱藏了 glue-for-border 這個明顯的函數調用
 
 * >< primitive space v.s. composed space
 
@@ -628,6 +624,40 @@
                  (2)
                  (2 n2 refl refl)
                  (2 #t m m2))))))
+
+  (def h ;; to proof (f g ~ id of bool-suspend-suspend)
+    (lambda (-> (* bool-suspend-suspend I) bool-suspend-suspend)
+      (extend-from
+        (lambda (-> (* bool-suspend-suspend (-1 I)) bool-suspend-suspend)
+          (-> (* :x i0) (* [:x f g]))
+          (-> (* :x i1) (* :x))))
+      (with (-> (* (-1 bool-suspend-suspend) %:a (0 i0 i1))
+                (0 (* :a i0) <> (* :a i1) <>))
+        (-> (* n2 (1 i01)) (1 n2 refl))
+        (-> (* s2 (1 i01)) (1 s m2)))
+      (with (-> (* (0 n2 s2) %:b (0 i0 i1) %:i)
+                (1 (* (1 :b) i0) <> (* s2 (1 :i)) <>
+                   (* (1 :b) i1) <> rev (* n2 (1 :i)) <> rev))
+        (-> (* (1 n m2) (1 i01)) (2 #t m m2))
+        (-> (* (1 s m2) (1 i01)) (2)))
+      (with (-> (* (1 n m2 s m2 rev) %:c (0 i0 i1) %:i)
+                (2 (* (1 n m2) (1 :i)) <>
+                   (1 (* n2 (1 i01)) <>
+                      (* (1 n m2) i1) <>
+                      (* s2 (1 i01)) <> rev
+                      (* (1 n m2) i0) <> rev)
+                   (* (1 s m2) (1 :i)) <>
+                   (1 (* (1 n m2) i1) <>
+                      (* (1 n m2) i0) <> rev
+                      (* (1 s m2) i1) <> rev
+                      (* (1 s m2) i0) <>)
+                   (* (2 :c) i0) <>
+                   (1 (* (1 n m2) i1) <>
+                      (* (1 s m2) i1) <> rev)
+                   (* (2 :c) i1) <>
+                   (1)))
+        (-> (* (2 #f m m2) (1 i01)) (3))
+        (-> (* (2 #t m m2) (1 i01)) (3)))))
   #+end_src
 
 * >< fiber-space
