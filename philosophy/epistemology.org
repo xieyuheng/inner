@@ -474,3 +474,42 @@
     or found [as in logic language].
 
 * >< how the knowledge about programming language is important
+
+* 排中律
+
+  1. aristotle 對排中律的消極證明
+     有意義的論斷 一定假設排中律
+  2. bishop 構造主義對排中律的駁斥
+     排中律對存在性的證明有違常識 並且缺少意義
+  3. 東方思想之無排中律
+     語言的歧義性
+
+* type theory of aristotle
+
+*** type of cause
+
+*** type of being
+
+* aristotle on force
+
+  - Force can only occur, when a substance is actuallizing
+    some kind of its potential.
+
+* form and matter of aristotle and plato
+
+  - Matter is the structure that capable of changing,
+    while form is the invariant of the structure.
+
+  - A direction can be setup for the changing.
+
+  - To maximize certain measure can functioned as a direction.
+    For example, the flourishing of man.
+
+  - Certain invariant [i.e. form] of a structure
+    might be the condition of certain functionality of the structure,
+    and enable certain functionality of the structure.
+    For example, the rationality of man,
+    the sensation of animal,
+    the nutrition of vegetable.
+
+  - Accident might happen during a directed changing.

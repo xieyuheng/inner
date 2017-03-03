@@ -4,7 +4,14 @@
 
 * note
 
-*** Bishop's plan
+*** Yuheng's plan
+
+    - Inspired by Bishop's plan
+      and the treatment of algebraic-topology by sze-tsen-hu.
+
+    - A concept is defined once we explain how to implement it in our language.
+      - Just like in physics, a concept is operationally defined,
+        once we explain how to measure it.
 
     - To define property of object
       by the solvability of problem fromed around the object.
@@ -298,6 +305,11 @@
   - ><><><
     rule for indexed space
     cellular ?
+
+* note
+
+  - Suppose the glue in (1 ...) is always explict,
+    and the (+ ...) in the boundary rule is strict to position.
 
 * >< product-space
 
@@ -675,3 +687,76 @@
   - cross-section-problem can be viewed as
     lifting a subspace [instead of function] of the base-space,
     or just lifting the base-space itself [i.e. global cross-section].
+
+* ><
+
+  #+begin_src scheme
+  (def I
+    (type space
+      i0 i1 (-1 <>)
+      i01 (0 i0 i1)))
+
+  (def sphere-1
+    (type (-> space)
+      b1 (-> (-1 <>))
+      loop (-> (0 b1 b1))))
+
+  (* sphere-1 I)
+  (* b1 i0)    : (-1 (* sphere-1 I))
+  (* b1 i1)    : (-1 (* sphere-1 I))
+  (* b1 i01)   : (* b1 (0 i0 i1))
+  -->            (0 (* b1 i0) (* b1 i1))
+  (* loop i0)  : (* (0 b1 b1) i0)
+  -->            (0 (* b1 i0) (* b1 i0))
+  (* loop i1)  : (* (0 b1 b1) i1)
+  -->            (0 (* b1 i1) (* b1 i1))
+  (* loop i01) : (+ (* loop (0 i0 i1)) (* (0 b1 b1) i01))
+  -->            (+ (1 (* loop i0) (* loop i1) rev)
+                    (1 (* b1 i01) (* b1 i01) rev))
+  -->            (1 (* loop i0) (* b1 i01)
+                    (* loop i1) rev (* b1 i01) rev)
+
+  (? sphere-1 I)
+  (? b1 i0)    : (-1 (? sphere-1 I))
+  (? b1 i1)    : (-1 (? sphere-1 I))
+  (? b1 i01)   : (? b1 (0 i0 i1))
+  -->            (0 (? b1 i0) (? b1 i1))
+  (? loop i0)  : (? (0 b1 b1) i0)
+  -->            (0 (? b1 i0) (? b1 i1))
+  (? loop i1)  : (? (0 b1 b1) i1)
+  -->            (0 (? b1 i1) (? b1 i0))
+  (? loop i01) : (1 (? loop i0)
+                    (? loop i1))
+
+  (def sphere-1
+    (type (-> space)
+      b1 (-> (-1 <>))
+      loop (-> (0 b1 b1))))
+
+  (def sphere-2
+    (type (-> space)
+      b2 (-> (-1 <>))
+      surf (-> (1 b2 refl))))
+
+  (* sphere-2 sphere-1)
+  (* b2 b1)     : (-1 (* sphere-2 sphere-1))
+  (* b2 loop)   : (* b2 (0 b1 b1))
+  -->             (0 (* b2 b1) (* b2 b1))
+  (* surf b1)   : (* (1 b2 refl) b1)
+  -->             (1 (* b2 b1) refl)
+  (* surf loop) : (+ (* surf (0 b1 b1))
+                     (* (1 b2 refl) loop))
+  -->             (+ (2 (* surf b1) (* surf b1))
+                     (2 (1 (* b2 loop)) refl))
+  -->             (2 (* surf b1) (* surf b1)
+                     (1 (* b2 loop)) refl)
+
+  (? sphere-2 sphere-1)
+  (? b2 b1)     : (-1 (? sphere-2 sphere-1))
+  (? b2 loop)   : (? b2 (0 b1 b1))
+  -->             (0 (? b2 b1) (? b2 b1))
+  (? surf b1)   : (? (1 b2 refl) b1)
+  -->             (1 (? b2 loop))
+  (? surf loop) : (+ (? surf (0 b1 b1))
+                     (? (1 b2 refl) loop))
+  #+end_src
