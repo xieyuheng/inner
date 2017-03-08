@@ -513,3 +513,18 @@
     the nutrition of vegetable.
 
   - Accident might happen during a directed changing.
+
+* hermeneutic circle for code reading
+
+  - one's understanding of the text as a whole
+    is established by reference to the individual parts
+    and one's understanding of each individual part by reference to the whole.
+
+  - but in programming language,
+    one's understanding of a program as a whole,
+    can be independent of the code of certain language,
+    by imagine how the whole program should run.
+    and the context needed to understand of each individual part of the code
+    is always limited, and this indeed is how the complexity of the code,
+    measured by how hard it is to understand the code,
+    is control by program language art.

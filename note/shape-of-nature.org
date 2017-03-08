@@ -508,7 +508,22 @@
 
   - Universe 有界但是沒有邊 如球面
 
-* >< 25 Tetrahedra and Mathematical Surgery
+* 25 Tetrahedra and Mathematical Surgery
+
+  - p q curve on torus
+    and how to glue two tori
+
+  - p q lens-space
+    glue maridian to of one torus
+    to the p q curve of the other torus
+    - note that
+      there are different ways to construct lens-space
+
+  - glue general handlebody
+    heegaard splitting
+
+  - Dehn surgery
+
 * >< 26 The Fundamental Group
 * >< 27 Poincaré's Question and Perelman's Answer
 * >< 28 The Geometry of the Universe

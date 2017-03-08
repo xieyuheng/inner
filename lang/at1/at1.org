@@ -1,10 +1,125 @@
 #+title: algebraic-topology-1
 
-* todo
+* todo before leaving
 
-* note
+*** note
 
-*** Yuheng's plan
+    - I am thinking of leaving this project for a better life.
+      Before leaving, I have to write down the topics I have touched
+      by the psycho-logical order of my psyche, instead of the
+      merely logical order of the topics.
+
+*** cobordism
+
+    - not all closed space can be boundary of 1-dim higher space.
+      if two disjoint closed spaces, B1 and B2, are boundary of
+      1-dim higher space C, then C is the cobordism of B1 and B2,
+      B1 and B2 are called cobordant.
+
+*** immersion and imbedding
+
+    - a map is a (topological) immersion.
+      with conditations, a map can be a imbedding.
+      thus different kinds of map need to be distinguished in the language.
+
+*** to be expressed more explictly
+
+    - continuity-check
+    - the ways to glue
+      - the explict way to glue 1-level parts
+      - the implict way to glue 2-level parts
+    - boundary conditation in type definition
+      - way 0-level parts can only be glued by path ?
+
+*** hopf fibration
+
+    #+begin_src scheme
+    (def I
+      (type space
+        i0 i1 (-1 <>)
+        i01 (0 i0 i1)))
+
+    (def sphere-1
+      (type (-> space)
+        b1 (-> (-1 <>))
+        loop (-> (0 b1 b1))))
+
+    (* sphere-1 I)
+    (* b1 i0)    : (-1 (* sphere-1 I))
+    (* b1 i1)    : (-1 (* sphere-1 I))
+    (* b1 i01)   : (* b1 (0 i0 i1))
+    -->            (0 (* b1 i0) (* b1 i1))
+    (* loop i0)  : (* (0 b1 b1) i0)
+    -->            (0 (* b1 i0) (* b1 i0))
+    (* loop i1)  : (* (0 b1 b1) i1)
+    -->            (0 (* b1 i1) (* b1 i1))
+    (* loop i01) : (+ (* loop (0 i0 i1)) (* (0 b1 b1) i01))
+    -->            (+ (1 (* loop i0) (* loop i1) rev)
+                      (1 (* b1 i01) (* b1 i01) rev))
+    -->            (1 (* loop i0) (* b1 i01)
+                      (* loop i1) rev (* b1 i01) rev)
+
+    (? sphere-1 I)
+    (? b1 i0)    : (-1 (? sphere-1 I))
+    (? b1 i1)    : (-1 (? sphere-1 I))
+    (? b1 i01)   : (? b1 (0 i0 i1))
+    -->            (0 (? b1 i0) (? b1 i1))
+    (? loop i0)  : (? (0 b1 b1) i0)
+    -->            (0 (? b1 i0) (? b1 i1))
+    (? loop i1)  : (? (0 b1 b1) i1)
+    -->            (0 (? b1 i1) (? b1 i0))
+    (? loop i01) : (1 (? loop i0)
+                      (? loop i1))
+
+    (def sphere-1
+      (type (-> space)
+        b1 (-> (-1 <>))
+        loop (-> (0 b1 b1))))
+
+    (def sphere-2
+      (type (-> space)
+        b2 (-> (-1 <>))
+        surf (-> (1 b2 refl))))
+
+    (* sphere-2 sphere-1)
+    (* b2 b1)     : (-1 (* sphere-2 sphere-1))
+    (* b2 loop)   : (* b2 (0 b1 b1))
+    -->             (0 (* b2 b1) (* b2 b1))
+    (* surf b1)   : (* (1 b2 refl) b1)
+    -->             (1 (* b2 b1) refl)
+    (* surf loop) : (+ (* surf (0 b1 b1))
+                       (* (1 b2 refl) loop))
+    -->             (+ (2 (* surf b1) (* surf b1))
+                       (2 (1 (* b2 loop)) refl))
+    -->             (2 (* surf b1) (* surf b1)
+                       (1 (* b2 loop)) refl)
+
+    (? sphere-2 sphere-1)
+    (? b2 b1)     : (-1 (? sphere-2 sphere-1))
+    (? b2 loop)   : (? b2 (0 b1 b1))
+    -->             (0 (? b2 b1) (? b2 b1))
+    (? surf b1)   : (? (1 b2 refl) b1)
+    -->             (1 (? b2 loop))
+    (? surf loop) : (+ (? surf (0 b1 b1))
+                       (? (1 b2 refl) loop))
+    #+end_src
+
+*** lens-space
+
+    - how can we do a cutting-and-regluing
+      to cut (* sphere-1 sphere-2)
+      and to reglue it to sphere-3
+
+    - is this the same as hopf fibration
+
+    - what lens-space are equal to ?
+
+    - different ways to construct lens-space
+      - dehn-surgery
+        - note that, we have a change of dim here
+      - ><><><
+
+*** the plan
 
     - Inspired by Bishop's plan
       and the treatment of algebraic-topology by sze-tsen-hu.
@@ -16,57 +131,69 @@
     - To define property of object
       by the solvability of problem fromed around the object.
 
-*** To teach
-
-    - 教與學的原則 在學習的候
-      我感到 只有當知道某個概念在之後的用處之後
-      我才能在嘗試掌握它的同時享受對其將有之用的期許
-      即便是一個小概念也是如此
-      比如 adjunction-space 與 CW-complex 一起講就能體現其用處
-
 * intro
 
-  - In this book, I will show how to design and implement a language,
-    to formalize and machine-lize the object of study
-    of a little part of algebraic topology,
-    and to express some classical algebraic topology construction in my language.
+  1. I will show how to design and implement a language,
+     to formalize and machine-lize the object of study
+     of a little part of algebraic topology.
 
-  - I call this prototype 'at1',
-    which is an abbreviation of 'algebraic-topology-1'.
+  2. I call this prototype 'at1',
+     which is an abbreviation of 'algebraic-topology-1'.
 
 * simple-space
 
-*** terminology
+  1. In a language, we always have primitive elements,
+     and many ways to compose elements to new compound element,
+     also many ways to derive new element from old one.
 
-    - space
-      part
-      subspace
+  2. Here, I describe a simple way to construct spaces,
+     so constructed spaces will be called simple-spaces,
+     which constitute the first kind of primitive spaces in my language.
+     Before having other ways to construct spaces,
+     I will simply call them 'space' instead of 'simple-space'.
 
-    - space is defined part by part.
-      subspace relation is encoded by parts.
+     - In algebraic topology,
+       our simple-space is called
+       CW-complex, cell-complex or cellular polytopes.
 
-*** continuity-check
+  3. A space is constructed part by part.
 
-    - map have the following general types
-      - level-same
-      - level-diff
-        - level-up
-        - level-down
+  4. A part is of certain dimension,
+     part of 0 dimension is point,
+     part of 1 dimension is an interval,
+     part of 2 dimension is a disk,
+     part of 3 dimension is a ball,
+     part of 4 dimension is a 4-cell,
+     part of n dimension is a n-cell.
 
-    - the border of the succedent of a dc
-      must be empty,
-      i.e. the succedent of a dc must be closed.
+  5. The way to construct a space from parts,
+     goes from low dimension to high dimension.
 
-    - not only closed,
-      a dc is also a characteristic-map
-      ><><><
+     - 0 dimension ::
+          we name all the points of the space.
 
-*** >< cw-complex
+     - 1 dimension ::
+          we name all the intervals of the space,
+          for each interval,
+          we attach its two end points to two points of the space,
+          the two points of the space might be the same point.
+          to speciiy such attaching,
+          ><><><
 
-    - disk 的 product 還是 disk
+     - 2 dimension ::
+          we name all the disk of the space,
+          for each disk,
+          we attach its boundary circle to a loop in the space.
+          to speciiy such attaching,
+          ><><><
 
-    - cw-complex 是用 attaching map 定義的
-      attaching-map 所構造的 adjunction-space
+     - 3 dimension ::
+          ><><><
+
+     - 4 dimension ::
+          ><><><
+
+* ><
 
 *** >< 語法的難點
 
@@ -236,21 +363,17 @@
                c134 (1 b34 b24 rev b23)
                c234 (1)))
 
-    (note where
-          (2 c123
-             c124 (1 b14 b24 rev b23 b13 rev)
-             c134 (1 b34 b24 rev b23)
-             c234 (1))
-          ==>
-          (2 c123
-             c124 (1 b14 b24 rev b23 b13 rev)  glue-for-border
-             c134 (1 b34 b24 rev b23)          glue-for-border
-             c234 (1)                          glue-for-border)
-          under this design,
-          the syntax inside (2 ...) can also be extended)
+    (2 c123
+       c124 (1 b14 b24 rev b23 b13 rev) glue-for-border
+       c134 (1 b34 b24 rev b23) glue-for-border
+       c234 (1) glue-for-border)
 
-    (note (0) (1) (2) they all use with-output-to-new-list
-          just the list of (2) is of length one)
+    (note syntax in (0 ...) (1 ...) (2 ...) are different,
+          but syntax in (2 ...) (3 ...) (4 ...) ... are similar.
+          because (0 ...) is special, in the sense that, ><><><
+          and (1 ...) is special, in the sense that, ><><><
+          and the nature of (2 ...) (3 ...) (4 ...) ... are ><><><
+          )
     #+end_src
 
 *** >< about the example
@@ -288,9 +411,29 @@
          如上我們用 (2 ...) 這個 macro
          隱藏了 glue-for-border 這個明顯的函數調用
 
-* >< primitive space v.s. composed space
+* subspace relation
 
-  - composed space
+  - The subspace relation between spaces is encoded by parts.
+
+* continuity-check
+
+  - map have the following general types
+    - level-same
+    - level-diff
+      - level-up
+      - level-down
+
+  - the border of the succedent of a dc
+    must be empty,
+    i.e. the succedent of a dc must be closed.
+
+  - not only closed,
+    a dc is also a characteristic-map
+    ><><><
+
+* >< primitive space v.s. compound space
+
+  - compound space
     1. product space
     2. indexed space
 
@@ -687,76 +830,3 @@
   - cross-section-problem can be viewed as
     lifting a subspace [instead of function] of the base-space,
     or just lifting the base-space itself [i.e. global cross-section].
-
-* ><
-
-  #+begin_src scheme
-  (def I
-    (type space
-      i0 i1 (-1 <>)
-      i01 (0 i0 i1)))
-
-  (def sphere-1
-    (type (-> space)
-      b1 (-> (-1 <>))
-      loop (-> (0 b1 b1))))
-
-  (* sphere-1 I)
-  (* b1 i0)    : (-1 (* sphere-1 I))
-  (* b1 i1)    : (-1 (* sphere-1 I))
-  (* b1 i01)   : (* b1 (0 i0 i1))
-  -->            (0 (* b1 i0) (* b1 i1))
-  (* loop i0)  : (* (0 b1 b1) i0)
-  -->            (0 (* b1 i0) (* b1 i0))
-  (* loop i1)  : (* (0 b1 b1) i1)
-  -->            (0 (* b1 i1) (* b1 i1))
-  (* loop i01) : (+ (* loop (0 i0 i1)) (* (0 b1 b1) i01))
-  -->            (+ (1 (* loop i0) (* loop i1) rev)
-                    (1 (* b1 i01) (* b1 i01) rev))
-  -->            (1 (* loop i0) (* b1 i01)
-                    (* loop i1) rev (* b1 i01) rev)
-
-  (? sphere-1 I)
-  (? b1 i0)    : (-1 (? sphere-1 I))
-  (? b1 i1)    : (-1 (? sphere-1 I))
-  (? b1 i01)   : (? b1 (0 i0 i1))
-  -->            (0 (? b1 i0) (? b1 i1))
-  (? loop i0)  : (? (0 b1 b1) i0)
-  -->            (0 (? b1 i0) (? b1 i1))
-  (? loop i1)  : (? (0 b1 b1) i1)
-  -->            (0 (? b1 i1) (? b1 i0))
-  (? loop i01) : (1 (? loop i0)
-                    (? loop i1))
-
-  (def sphere-1
-    (type (-> space)
-      b1 (-> (-1 <>))
-      loop (-> (0 b1 b1))))
-
-  (def sphere-2
-    (type (-> space)
-      b2 (-> (-1 <>))
-      surf (-> (1 b2 refl))))
-
-  (* sphere-2 sphere-1)
-  (* b2 b1)     : (-1 (* sphere-2 sphere-1))
-  (* b2 loop)   : (* b2 (0 b1 b1))
-  -->             (0 (* b2 b1) (* b2 b1))
-  (* surf b1)   : (* (1 b2 refl) b1)
-  -->             (1 (* b2 b1) refl)
-  (* surf loop) : (+ (* surf (0 b1 b1))
-                     (* (1 b2 refl) loop))
-  -->             (+ (2 (* surf b1) (* surf b1))
-                     (2 (1 (* b2 loop)) refl))
-  -->             (2 (* surf b1) (* surf b1)
-                     (1 (* b2 loop)) refl)
-
-  (? sphere-2 sphere-1)
-  (? b2 b1)     : (-1 (? sphere-2 sphere-1))
-  (? b2 loop)   : (? b2 (0 b1 b1))
-  -->             (0 (? b2 b1) (? b2 b1))
-  (? surf b1)   : (? (1 b2 refl) b1)
-  -->             (1 (? b2 loop))
-  (? surf loop) : (+ (? surf (0 b1 b1))
-                     (? (1 b2 refl) loop))
-  #+end_src

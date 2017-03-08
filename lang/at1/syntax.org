@@ -17,6 +17,13 @@
 
   - 上同調與微分形式有關
 
+  - 古典的數學語言之所以晦澀
+    是因爲 爲了 書寫的速度 而 放棄了 易讀性
+    寫者在當時的思考環境下 可以很容易讀懂自己的簡記
+    但是另外一個讀者 或者寫着本身脫離了當時的思考環境之後
+    所寫的東西就需要解釋許久才能恢復意義
+    有時甚至根本不可能再恢復意義
+
 * design the language with the UI in mind
 
   - should I design the language with the UI in mind,
