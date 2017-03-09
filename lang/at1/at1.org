@@ -1,5 +1,10 @@
 #+title: algebraic-topology-1
 
+* for reader
+
+  - If you know how to implement a interpreter,
+    try to imagine how you would implement this language.
+
 * todo before leaving
 
 *** note
@@ -133,9 +138,9 @@
 
 * intro
 
-  1. I will show how to design and implement a language,
-     to formalize and machine-lize the object of study
-     of a little part of algebraic topology.
+  1. I will show how to design and implement a language
+     to formalize and machine-lize
+     a little part of algebraic topology.
 
   2. I call this prototype 'at1',
      which is an abbreviation of 'algebraic-topology-1'.
@@ -168,30 +173,117 @@
 
   5. The way to construct a space from parts,
      goes from low dimension to high dimension.
+     I will take a >< as example.
 
-     - 0 dimension ::
-          we name all the points of the space.
+     - In 0 dimension,
 
-     - 1 dimension ::
-          we name all the intervals of the space,
-          for each interval,
-          we attach its two end points to two points of the space,
-          the two points of the space might be the same point.
-          to speciiy such attaching,
-          ><><><
+       we name all the points of the space.
 
-     - 2 dimension ::
-          we name all the disk of the space,
-          for each disk,
-          we attach its boundary circle to a loop in the space.
-          to speciiy such attaching,
-          ><><><
+       #+begin_src scheme
+       (type space
+         a1 a2 a3 a4 (-1 <>))
+       #+end_src
 
-     - 3 dimension ::
-          ><><><
+     - In 1 dimension,
 
-     - 4 dimension ::
-          ><><><
+       we name all the intervals of the space,
+
+       and for each interval,
+       we attach its two end points to two points of the space
+       [the two points of the space might be the same point],
+
+       so that the boundary of the interval
+       can be viewed as two points of the space.
+
+       #+begin_src scheme
+       (type space
+         a1 a2 a3 a4 (-1 <>)
+         b12 (0 a1 a2)
+         b13 (0 a1 a3)
+         b14 (0 a1 a4)
+         b23 (0 a2 a3)
+         b24 (0 a2 a4)
+         b34 (0 a3 a4))
+       #+end_src
+
+       For example, the boundary of 'b12' are 'a1' and 'a2'.
+
+       One can view 'b12' as a directed path pointing from 'a1' to 'a2'.
+
+       We write two points in the keyword (0 ...), and the order matters.
+
+     - In 2 dimension,
+
+       we name all the disk of the space,
+
+       and for each disk,
+       we attach its boundary circle to a loop in the space.
+
+       #+begin_src scheme
+       (type space
+         a1 a2 a3 a4 (-1 <>)
+         b12 (0 a1 a2)
+         b13 (0 a1 a3)
+         b14 (0 a1 a4)
+         b23 (0 a2 a3)
+         b24 (0 a2 a4)
+         b34 (0 a3 a4)
+         c123 (1 b12 b23 b13 rev)
+         c124 (1 b12 b24 b14 rev)
+         c134 (1 b13 b34 b14 rev)
+         c234 (1 b23 b34 b24 rev))
+       #+end_src
+
+       For example, the boundary of 'c123' can be described as
+       going through 'b12' forwardly, 'b23' forwardly, and 'b13' backwardly.
+
+       We write '(1 b12 b23 b13 rev)' to denote this loop.
+
+       In the keyword (1 ...) 1-dimensional parts [intervals]
+       are glued together, in which
+       the right end point of one interval must matches
+       the left end point of the next interval.
+
+       The 'rev' follows 'b13', is saying 'go through b13 backwardly',
+       thus during the gluing,
+       the left and right end points of 'b13' are reversed.
+
+       ><><>< need close check
+
+
+     - In 3 dimension,
+
+       #+begin_src scheme
+       (type space
+         a1 a2 a3 a4 (-1 <>)
+         b12 (0 a1 a2)
+         b13 (0 a1 a3)
+         b14 (0 a1 a4)
+         b23 (0 a2 a3)
+         b24 (0 a2 a4)
+         b34 (0 a3 a4)
+         c123 (1 b12 b23 b13 rev)
+         c124 (1 b12 b24 b14 rev)
+         c134 (1 b13 b34 b14 rev)
+         c234 (1 b23 b34 b24 rev)
+         d1234 (2 c123
+                  c124 (1 b14 b24 rev b23 b13 rev) glue-for-border
+                  c134 (1 b34 b24 rev b23) glue-for-border
+                  c234 (1) glue-for-border))
+       #+end_src
+
+       -
+
+
+  6. syntax in (0 ...) (1 ...) (2 ...) are different,
+     but syntax in (2 ...) (3 ...) (4 ...) ... are similar.
+     because (0 ...) is special, in the sense that, ><><><
+     and (1 ...) is special, in the sense that, ><><><
+     and the nature of (2 ...) (3 ...) (4 ...) ... are ><><><
+
+  7. in (key1 ... (key2 ...))
+     key2 might be a marker for key1 which follows the rule of key1
+     or itself a key which follows its own rule
 
 * ><
 
@@ -232,149 +324,6 @@
       - (微)
         寫出 每次變化的細節
         [比如 1-level 時的 + - 就是如此]
-
-*** >< example syntax
-
-    #+begin_src scheme
-    (note
-      這些以數字爲名字的語法詞
-      其內常常出現變長數據
-      或者說 with-output-to-new-list)
-
-    (type (-> [] [space])
-
-      a1 a2 a3 a4 (-1 <>)
-
-      b12 (0 a1 a2)
-      b13 (0 a1 a3)
-      b14 (0 a1 a4)
-      b23 (0 a2 a3)
-      b24 (0 a2 a4)
-      b34 (0 a3 a4)
-
-      c123 (1 b12 b23 b13 rev)
-      c124 (1 b12 b24 b14 rev)
-      c134 (1 b13 b34 b14 rev)
-      c234 (1 b23 b34 b24 rev)
-
-      d1234
-      ;; (2 c123 (1 b12 b23 b13 rev)
-      ;;    c124 (1 b14 b24 rev b23 b13 rev)
-      ;;    c134 (1 b13 b34 b24 rev b23 b13 rev)
-      ;;    c234 (1 b13 b34 b34 rev b23 rev b23 b13 rev))
-      (2 c123 (1 b12 b23 b13 rev)
-         c124 (1 b14 b24 rev b23 b13 rev)
-         c134 (1 b34 b24 rev b23)
-         c234 (1)))
-
-    (note
-      need syntax for solve-equation-with-condition
-      or solve/condition)
-
-    (type (-> [] [space])
-
-      a1 a2 a3 a4 (-1 <>)
-
-      b12 (0 a1 a2)
-      b13 (0 a1 a3)
-      b14 (0 a1 a4)
-      b23 (0 a2 a3)
-      b24 (0 a2 a4)
-      b34 (0 a3 a4)
-
-      c123 (1 b12 b23 b13 rev)
-      c124 (1 b12 b24 b14 rev)
-      c134 (1 b13 b34 b14 rev)
-      c234 (1 b23 b34 b24 rev)
-
-      d1234
-
-      (note 三階的構造語法詞 (2) 就已經不需要 with-output-to-new-list 語義了)
-
-      (2 c123 (check-init-border (1 b12 b23 b13 rev))
-         c124 (glue-for-border (1 b14 b24 rev b23 b13 rev))
-         c134 (glue-for-border (1 b34 b24 rev b23))
-         c234 (glue-for-border (1)))
-
-      (2 c123
-         c124 (1 b14 b24 rev b23 b13 rev)  glue-for-border
-         c134 (1 b34 b24 rev b23)          glue-for-border
-         c234 (1)                          glue-for-border)
-
-      (note 這裏又算是需要 with-output-to-new-list 語義的
-            但是這種效果也可以用組合子實現
-            只不過這裏不是用組合子 而是用語法關鍵詞)
-
-      (2 c123
-         c124 (1 b14 b24 rev b23 b13 rev)
-         c134 (1 b34 b24 rev b23)
-         c234 (1))
-
-      (note 既然 3 可以被實現爲一個組合子)
-
-      [c123
-       c124 (1 b14 b24 rev b23 b13 rev)
-       c134 (1 b34 b24 rev b23)
-       c234 (1)]
-      3
-
-      (note 注意
-            如上破壞了 type 本身作爲語法關鍵詞的規則
-            組合子的意義就再用用函數來捕捉這種規則
-            就是說
-            要麼完全用後綴表達式
-            並把 [...] 作爲 with-output-to-new-list
-            要麼使用 syntax-Keyword 與類似 lisp 的 macro 機制)
-
-      (note (key1 ... (key2 ...))
-            key2 might be a marker for key1 which follows the rule of key1
-            or itself a key which follows its own rule)
-
-      (note 我放棄 純粹的後綴表達式
-            因爲 有時 前綴表達式比後綴表達式易於編輯和閱讀
-            (key ...)
-            優於
-            [...] key)
-
-      (note 而後綴表達式的優勢在於語義簡單)
-
-      (note 我們可以試着把 lisp-like-macro-system 加入到語言當中來)
-
-      (the-end))
-    #+end_src
-
-*** >< the resulting example syntax
-
-    #+begin_src scheme
-    (type space
-      a1 a2 a3 a4 (-1 <>)
-      b12 (0 a1 a2)
-      b13 (0 a1 a3)
-      b14 (0 a1 a4)
-      b23 (0 a2 a3)
-      b24 (0 a2 a4)
-      b34 (0 a3 a4)
-      c123 (1 b12 b23 b13 rev)
-      c124 (1 b12 b24 b14 rev)
-      c134 (1 b13 b34 b14 rev)
-      c234 (1 b23 b34 b24 rev)
-      d1234 (2 c123
-               c124 (1 b14 b24 rev b23 b13 rev)
-               c134 (1 b34 b24 rev b23)
-               c234 (1)))
-
-    (2 c123
-       c124 (1 b14 b24 rev b23 b13 rev) glue-for-border
-       c134 (1 b34 b24 rev b23) glue-for-border
-       c234 (1) glue-for-border)
-
-    (note syntax in (0 ...) (1 ...) (2 ...) are different,
-          but syntax in (2 ...) (3 ...) (4 ...) ... are similar.
-          because (0 ...) is special, in the sense that, ><><><
-          and (1 ...) is special, in the sense that, ><><><
-          and the nature of (2 ...) (3 ...) (4 ...) ... are ><><><
-          )
-    #+end_src
 
 *** >< about the example
 

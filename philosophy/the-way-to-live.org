@@ -138,3 +138,21 @@
 *** 漢字
 
     - 漢字的架構化編碼
+
+* >< topology
+
+  - analysis is arithmeticalization of calculus,
+    which goes for rigorous ><><>< power.
+
+    - why we have the arithmeticalization of calculus ?
+      how avoid it ?
+
+  - many ideas of analysis could be understood completely
+    without need for the concept of a distance function.
+
+  - thus the axioms of topology.
+
+  - E.B. '沒有力量的數學是病態的'
+
+  - 想要學微積分就看牛頓和歐拉
+    想要學微分幾何就看高斯和黎曼
