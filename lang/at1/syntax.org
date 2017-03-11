@@ -87,3 +87,9 @@
   - I will use symbel-pattern '<space-name>/<dc-name>' here.
     or '<module-name>/<space-name>/<dc-name>'
     or '<module-name>/<function-name>'
+
+* about simple macro system
+
+  - in (key1 ... (key2 ...))
+    key2 might be a marker for key1 which follows the rule of key1
+    or itself a key which follows its own rule

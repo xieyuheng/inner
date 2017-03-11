@@ -1,18 +1,20 @@
 #+title: algebraic-topology-1
 
-* for reader
+* todo
 
-  - If you know how to implement a interpreter,
-    try to imagine how you would implement this language.
+*** leaning path
 
-* todo before leaving
+    - fiber-space -> hopf fibration ->
+      cutting-and-regluing -> dehn-surgery -> lens-space
 
-*** note
+*** about classical construction
 
-    - I am thinking of leaving this project for a better life.
-      Before leaving, I have to write down the topics I have touched
-      by the psycho-logical order of my psyche, instead of the
-      merely logical order of the topics.
+    - There are many ways to do classical constructions in algebraic topology.
+      One who wishes to design a formal language for algebraic topology,
+      must choose carefully which to implement,
+      which concept to include in, and which concept to hold still,
+      while waiting for a better understanding of
+      how constructive the concept is.
 
 *** cobordism
 
@@ -21,11 +23,14 @@
       1-dim higher space C, then C is the cobordism of B1 and B2,
       B1 and B2 are called cobordant.
 
-*** immersion and imbedding
+*** immersion and embedding
 
-    - a map is a (topological) immersion.
-      with conditations, a map can be a imbedding.
-      thus different kinds of map need to be distinguished in the language.
+    - map of type (-> A B)
+      is an immersion of A in B.
+
+    - with the 'no self-intersection' condition,
+      the map is an embedding,
+      B is the ambient space.
 
 *** to be expressed more explictly
 
@@ -145,6 +150,11 @@
   2. I call this prototype 'at1',
      which is an abbreviation of 'algebraic-topology-1'.
 
+     - [advice for reader]
+       If you know how to implement an interpreter,
+       try to imagine how you would implement this language
+       by directed graph processing.
+
 * simple-space
 
   1. In a language, we always have primitive elements,
@@ -154,6 +164,7 @@
   2. Here, I describe a simple way to construct spaces,
      so constructed spaces will be called simple-spaces,
      which constitute the first kind of primitive spaces in my language.
+
      Before having other ways to construct spaces,
      I will simply call them 'space' instead of 'simple-space'.
 
@@ -172,8 +183,21 @@
      part of n dimension is a n-cell.
 
   5. The way to construct a space from parts,
-     goes from low dimension to high dimension.
-     I will take a >< as example.
+     goes from low dimension to high dimension,
+     by attaching the boundary of a n-cell,
+     to a (n-1)-sphere in the space.
+
+     Our principle here is 'construct by attaching boundary'.
+
+  6. As an example, let us construct a tetrahedron.
+
+     - [advice for reader]
+       Draw a picture by yourself, when trying to follow
+       my description in my formal language.
+
+       And imagining how such picture can be dynamicly
+       and automaticly drawn by a drawer that
+       accompanies the main interpreter of the language.
 
      - In 0 dimension,
 
@@ -206,18 +230,25 @@
          b34 (0 a3 a4))
        #+end_src
 
-       For example, the boundary of 'b12' are 'a1' and 'a2'.
+       For example, the boundary of 'b12' are 'a1' and 'a2',
+       the boundary of 'b13' are 'a1' and 'a3'.
 
-       One can view 'b12' as a directed path pointing from 'a1' to 'a2'.
+       One can view 'b12' as a directed path pointing from 'a1' to 'a2',
+       and 'b13' as a directed path pointing form 'a1' to 'a3'.
 
-       We write two points in the keyword (0 ...), and the order matters.
+       We write two points in the keyword '(0 ...)', and the order matters.
+
+       Since, 'b12' and 'b13' have a common boundary -- 'a1',
+       we view 'b12' and 'b13' as glued together by the common boundary.
+
+       Our principle here is 'gluing by named common boundary'.
 
      - In 2 dimension,
 
        we name all the disk of the space,
 
        and for each disk,
-       we attach its boundary circle to a loop in the space.
+       we attach its boundary circle to a circle in the space.
 
        #+begin_src scheme
        (type space
@@ -234,24 +265,31 @@
          c234 (1 b23 b34 b24 rev))
        #+end_src
 
-       For example, the boundary of 'c123' can be described as
-       going through 'b12' forwardly, 'b23' forwardly, and 'b13' backwardly.
+       I use the keyword '(1 ...)' to specify path in the space.
 
-       We write '(1 b12 b23 b13 rev)' to denote this loop.
+       For example, '(1 b12 b23)' denotes
+       the path which goes through 'b12' forwardly and 'b23' forwardly.
 
-       In the keyword (1 ...) 1-dimensional parts [intervals]
-       are glued together, in which
+       In the keyword '(1 ...)',
        the right end point of one interval must matches
        the left end point of the next interval.
 
-       The 'rev' follows 'b13', is saying 'go through b13 backwardly',
-       thus during the gluing,
-       the left and right end points of 'b13' are reversed.
+       And '(1 b12 b23 b13 rev)' denotes the path which
+       goes through 'b12' forwardly, 'b23' forwardly, and 'b13' backwardly.
 
-       ><><>< need close check
+       The boundary of 'c123' is attached to the circle '(1 b12 b23 b13 rev)'.
 
+       We check whether a path is a circle,
+       by checking whether the left end point of the first interval,
+       is equal to the right end point of the last interval,
+       i.e. whether the path is closed.
 
      - In 3 dimension,
+
+       we name all the ball of the space,
+
+       and for each ball,
+       we attach its boundary sphere to a sphere in the space.
 
        #+begin_src scheme
        (type space
@@ -267,98 +305,66 @@
          c134 (1 b13 b34 b14 rev)
          c234 (1 b23 b34 b24 rev)
          d1234 (2 c123
-                  c124 (1 b14 b24 rev b23 b13 rev) glue-for-border
-                  c134 (1 b34 b24 rev b23) glue-for-border
-                  c234 (1) glue-for-border))
+                  c124 (1 b14 b24 rev b23 b13 rev) as-remained-boundary
+                  c134 (1 b34 b24 rev b23) as-remained-boundary
+                  c234 (1) as-remained-boundary))
        #+end_src
 
-       -
+       I use the keyword '(2 ...)' to specify glued polygon in the space.
 
+       For example :
+       #+begin_src scheme
+       (2 c123)
+       ;; a polygon in a stack
 
-  6. syntax in (0 ...) (1 ...) (2 ...) are different,
+       (2 c123
+          c124)
+       ;; two polygons in the stack
+
+       (2 c123
+          c124 (1 b14 b24 rev b23 b13 rev))
+       ;; two polygons and a circle in the stack
+
+       (2 c123
+          c124 (1 b14 b24 rev b23 b13 rev) as-remained-boundary)
+       ;; 'as-remained-boundary' is a function,
+       ;;   which takes two polygons and a circle out from the stack,
+       ;;   try cancel out part of the common boundary of 'c123' and 'c124',
+       ;;   so that the remained boundary can be '(1 b14 b24 rev b23 b13 rev)'.
+       ;; if there are no way or more then one way to do this,
+       ;;   it reports to the user.
+       ;; if there is only one way to do this,
+       ;;   it puts a glued polygon back to the stack,
+       ;;   whose boundary is '(1 b14 b24 rev b23 b13 rev)'.
+       #+end_src
+
+       The boundary of 'd1234' is attached to the sphere :
+       #+begin_src scheme
+       (2 c123
+          c124 (1 b14 b24 rev b23 b13 rev) as-remained-boundary
+          c134 (1 b34 b24 rev b23) as-remained-boundary
+          c234 (1) as-remained-boundary)
+       #+end_src
+
+       We check whether a glued polygon is sphere,
+       by checking whether the glued polygon is
+       2-dimensional, closed, connected and orientable.
+
+       Note that, we can implement more functions like 'as-remained-boundary',
+       to help us get 2-dimensional glued polygons.
+
+  7. Note that, syntax in (0 ...) (1 ...) (2 ...) are different,
      but syntax in (2 ...) (3 ...) (4 ...) ... are similar.
-     because (0 ...) is special, in the sense that, ><><><
-     and (1 ...) is special, in the sense that, ><><><
-     and the nature of (2 ...) (3 ...) (4 ...) ... are ><><><
+     - (0 ...) is special, in the sense that,
+       only two 0-dimensional points can occur in it.
+     - (1 ...) is special, in the sense that,
+       there is not explict functions, like 'as-remained-boundary' in it.
 
-  7. in (key1 ... (key2 ...))
-     key2 might be a marker for key1 which follows the rule of key1
-     or itself a key which follows its own rule
-
-* ><
-
-*** >< 語法的難點
-
-    - 語法的難點並不出現在構造過程的前幾階
-      glue 首先出現在 dc 的 type 限制中
-
-    - 0-level
-      a : T
-      任意引入
-
-    - 1-level
-      b : a0 == a1
-      [即使是 a0 == a0 也不能消去 而使得信息減少]
-
-    - 2-level
-      c : b1 + b2 - b3 - b4
-
-    - 每次 glue 的時候
-      有兩體
-      兩體都有邊界
-      語法要能夠指出是就哪個公共邊界來做 glue
-
-    - 1-level 元素的邊界很簡單
-      爲了指明就哪個公共邊界來 glue
-      只要用 + - 就好了
-      比如
-      b1 + b2 - b3 - b4
-      對於 2-level 元素就有
-      c1 [ ] c2 [ ] c3 [ ] c4
-      這裏 [ ] 有兩種設計方法
-      - (積)
-        寫出 glue 之後的複合元素的邊界
-        此時 典型的認知過程是
-        看出 兩體就公共邊界 glue 之後 所得到的邊界是什麼
-        [在低階情形這是利用等式代換來完成的]
-      - (微)
-        寫出 每次變化的細節
-        [比如 1-level 時的 + - 就是如此]
-
-*** >< about the example
-
-    - 如上的語法設計到了搜索
-      並非是完全信息充分的語法
-      但是可以依照這個來定義完全信息充分的語法
-      在這個基礎上的改進
-      可以看成是增加信息以保證唯一搜索
-
-    - 上面這些以數字爲語法關鍵詞的 sexp
-      都是相對自治的 不同 level 上語法可能都不一樣
-
-    - 我想這種描述邊界而自動搜索的語法可能纔是正確的
-      否則 高階幾何體的 glue 細節實在是難以用充分的語法描述
-      但是
-      即便是有自動搜索
-      還是要設計信息充分的語法來向用戶展示搜索的結果
-
-*** >< semantic
-
-    - semantic is more important than syntax,
-      for semantic is our imagination about how the machine runs.
-
-    - x ::
-         with higher-inductive-type we can form data that can be composed
-         假設我們用 di-graph 來實現 composed data
-         那麼
-         每次用到 composition [glue] 的時候
-         就是對棧中已有的東西做 di-graph processing
-
-    - k ::
-         如若如此
-         glue 本身就應該被實現爲一個 明顯的函數了
-         如上我們用 (2 ...) 這個 macro
-         隱藏了 glue-for-border 這個明顯的函數調用
+  8. Note that, 'as-remained-boundary' involves searching,
+     which makes the specification of part of the space implict,
+     such implicitness is need, for when the dimension gets higher,
+     the detail of high dimension information might be too complex
+     to use an explict method.
 
 * subspace relation
 
@@ -372,36 +378,23 @@
       - level-up
       - level-down
 
-  - the border of the succedent of a dc
-    must be empty,
-    i.e. the succedent of a dc must be closed.
-
-  - not only closed,
-    a dc is also a characteristic-map
-    ><><><
-
 * >< primitive space v.s. compound space
 
   - compound space
     1. product space
     2. indexed space
 
-  - a space is depicted by its parts and the borders of these parts.
+  - a space is depicted by its parts and the boundarys of these parts.
     for example,
-    we have rule for identifying parts of a product space and their borders.
+    we have rule for identifying parts of a product space and their boundarys.
 
   - there can be many way by which we can compose new spaces,
     each of such way must shows what is the parts of the space,
-    and what is the borders of the parts.
+    and what is the boundarys of the parts.
 
   - ><><><
     rule for indexed space
     cellular ?
-
-* note
-
-  - Suppose the glue in (1 ...) is always explict,
-    and the (+ ...) in the boundary rule is strict to position.
 
 * >< product-space
 
@@ -410,6 +403,9 @@
     - it is assumed that the (+ ...) [the glue]
       in the rule is always not ambiguous.
       but I need more examples to be sure about this.
+
+    - Suppose the glue in (1 ...) is always explict,
+      and the (+ ...) in the boundary rule is strict to position.
 
     #+begin_src scheme
     ;; [infix]
@@ -459,14 +455,14 @@
     - 'I' indexed by a space,
       is the suspension of the space.
 
-* >< SPSG
+* >< same-position-self-gluing, cancel or not cancel ?
 
   - same-position-self-gluing
     [for example: p * p^{-1}]
 
   - non-same-position-self-gluing
     can only happen,
-    when there is at least one part of the border is repeating.
+    when there is at least one part of the boundary is repeating.
     [for example: p * p]
 
 * simple principle of uncurry
