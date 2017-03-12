@@ -210,14 +210,6 @@
     而非同倫的形變是需要耗費更多 '能量' 的
     並且我們能夠把形變的性質與它所耗費的 '能量' 聯繫起來
 
-* >< type as knowledge
-
-  - we type things by the kinks of functions we can apply on them
-    thus type is encoded by the interface functions
-
-  - while 'space as type' is quite different
-    in which the type is encoded by constructors
-
 * >< 'form vs subtance' just as 'typeclass vs type'
 
 * >< type of causes of aristotle
@@ -560,3 +552,80 @@
 
   - pragmatism's methodology is about the use of experiment.
 
+* understanding type system of a programming language
+
+*** with kant
+
+    - different kinds of knowledge about program
+      1. type
+         before run the program
+         useful to optimize the program
+         rewrite the program by hand [or another program]
+         to make the program better
+      2. test
+         after run the program
+
+    - type-checking need to run some functions
+      but not the function been typed
+      [dependent-type system]
+
+    - Without any functions the a type is not useful,
+      [knowledge] [knowledge a posteriori]
+
+      while without any functions we still have the rules for type-checking.
+      [pure knowledge] [knowledge a priori] [math without examples]
+
+    - concepts without percepts are empty,
+      percepts without concepts are blind.
+
+*** with spinoza
+
+    - type and function are mixed in dependent-type system,
+      and they are in harmony.
+
+*** types of type systems
+
+    - we type things by the kinks of functions we can apply on them
+      thus type is encoded by the interface functions
+
+    - while 'space as type' is quite different
+      in which the type is encoded by constructors
+
+* 靈魂的類比
+
+  | 靈魂       | 肉體       | 二元論                       |
+  |------------+------------+------------------------------|
+  | 代碼       | 程序       | 性質差異                     |
+  |            |            | 反編譯的困難                 |
+  |            |            | 同一份代碼被不同的解釋器解釋 |
+  |            |            | 同一份代碼被編譯給不同的機器 |
+  |------------+------------+------------------------------|
+  | 程序[信息] | 機器[載體] | 性質差異                     |
+  |            |            | 超越載體之可能性             |
+
+  - 作爲一個運行着程序的載體
+    如何才能獲得有關程序本身的知識 ?
+    by transcendental argument
+
+* >< critique of arithmeticalization of infinit analysis
+
+  - also a critique of the axiom of topology
+
+  - analysis is arithmeticalization of calculus,
+    which goes for rigorous ><><>< power.
+
+    - why we have the arithmeticalization of calculus ?
+      how avoid it ?
+
+  - many ideas of analysis could be understood completely
+    without need for the concept of a distance function.
+
+  - thus the axioms of topology.
+
+  - E.B. '沒有力量的數學是病態的'
+
+  - 想要學微積分就看牛頓和歐拉
+    想要學微分幾何就看高斯和黎曼
+
+  - 沒有 topology 的公理
+    還如何捕捉各種模型中的連續性

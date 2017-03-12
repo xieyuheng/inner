@@ -136,6 +136,7 @@
 * universal-hyperbolic-geometry
 
 *** Apollonius and polarity
+
     - [[http://tube.geogebra.org/m/1553065][點之極線定理 / polar of a point theorem]]
       - 攝影幾何中
         只能用沒有刻度的直尺作圖
@@ -170,13 +171,16 @@
         首先三點[白]以定一圓
         取一點[紅]不在圓上
         利用三白點中兩點以作其極線[紅]
+
     - [[http://tube.geogebra.org/m/1553151][極線獨立定理 / polar independence theorem]]
       - 若以兩種方式構造極線
         則兩次所作的極線相重
       - 即 此種構造方式保持等詞
         因而 此種構造方式屬函數
+
     - [[http://tube.geogebra.org/m/1553237][給圓上的四點 觀察其所能形成的三對 阿波羅涅斯極偶 關係]]
       - 此時三極線給出一個三角形
+
     - [[http://tube.geogebra.org/m/1553401][極線對偶定理 / polar duality theorem]]
       - 對於兩點來說
         若 你恰在我的極線上
@@ -198,6 +202,7 @@
         並觀察其極線上每一點的極線
         發現 這些極線都過原點 而成直線束[pencil]
         直線束 覆蓋整個平面
+
     - [[http://tube.geogebra.org/m/1555171][線之極點定理 / pole of a line theorem]]
       - 由點出發 可構造極線
         利用這種構造 由直線出發 認取其兩點
@@ -217,6 +222,7 @@
         構造時 所取原直線不能過圓心
         此時所作兩極線將平行
       - 這給出了判斷某直線是否過圓心的方法
+
     - [[http://tube.geogebra.org/m/1555291][構造切線 / construct the tangent line]]
       - 由 線之極點定理
         知
@@ -227,18 +233,21 @@
         如此可得第二種 構造點之極線 之法
         此法對與圓上的點也適用
         此時作得過圓上某點之切線
+
     - 極偶的一般性 / polarity for general conics
       - 如上諸構造 於圓錐曲線階適用
         如上諸定理 對圓錐曲線階成立
         - [[http://tube.geogebra.org/m/1555023][橢圓之極偶 / polarity for ellipse]]
         - [[http://tube.geogebra.org/m/1555037][拋物線之極偶 / polarity for parabola]]
         - [[http://tube.geogebra.org/m/1555051][雙曲線之極偶 / polarity for hyperbola]]
+
     - 圓心
       - 雙曲幾何中不能作出基本圓之圓心
         一旦有圓心 就有半徑 就有單位長度 直尺就有刻度
         一旦有圓心 就可作垂徑的切線 就可得垂直 就可得平行
         由此看出幾何之整體性質將會改變
         雖然 何以證明邪
+
     - 幾何之類
       - 射影幾何[projective geometry]
         1. 可作直線[可用直尺]

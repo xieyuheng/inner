@@ -12,6 +12,17 @@
 
   - reading and learning and writing must be enjoyable
 
+  - A good state of mind is important for being.
+    Two ways to achieve a good state of mind :
+    1. to know
+    2. to feel working [progressing]
+
+* ><
+
+  - 完成對 fiber-space 的理解 並寫好 at1 的綱領
+  - 意譯 euler 以學教學法 與代數基礎
+  - 讀古典 以批判分析的算數化
+
 * math reading list
 
 *** classical
@@ -138,21 +149,3 @@
 *** 漢字
 
     - 漢字的架構化編碼
-
-* >< topology
-
-  - analysis is arithmeticalization of calculus,
-    which goes for rigorous ><><>< power.
-
-    - why we have the arithmeticalization of calculus ?
-      how avoid it ?
-
-  - many ideas of analysis could be understood completely
-    without need for the concept of a distance function.
-
-  - thus the axioms of topology.
-
-  - E.B. '沒有力量的數學是病態的'
-
-  - 想要學微積分就看牛頓和歐拉
-    想要學微分幾何就看高斯和黎曼

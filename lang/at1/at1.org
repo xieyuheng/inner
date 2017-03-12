@@ -1,159 +1,24 @@
 #+title: algebraic-topology-1
 
-* todo
-
-*** leaning path
-
-    - fiber-space -> hopf fibration ->
-      cutting-and-regluing -> dehn-surgery -> lens-space
-
-*** about classical construction
-
-    - There are many ways to do classical constructions in algebraic topology.
-      One who wishes to design a formal language for algebraic topology,
-      must choose carefully which to implement,
-      which concept to include in, and which concept to hold still,
-      while waiting for a better understanding of
-      how constructive the concept is.
-
-*** cobordism
-
-    - not all closed space can be boundary of 1-dim higher space.
-      if two disjoint closed spaces, B1 and B2, are boundary of
-      1-dim higher space C, then C is the cobordism of B1 and B2,
-      B1 and B2 are called cobordant.
-
-*** immersion and embedding
-
-    - map of type (-> A B)
-      is an immersion of A in B.
-
-    - with the 'no self-intersection' condition,
-      the map is an embedding,
-      B is the ambient space.
-
-*** to be expressed more explictly
-
-    - continuity-check
-    - the ways to glue
-      - the explict way to glue 1-level parts
-      - the implict way to glue 2-level parts
-    - boundary conditation in type definition
-      - way 0-level parts can only be glued by path ?
-
-*** hopf fibration
-
-    #+begin_src scheme
-    (def I
-      (type space
-        i0 i1 (-1 <>)
-        i01 (0 i0 i1)))
-
-    (def sphere-1
-      (type (-> space)
-        b1 (-> (-1 <>))
-        loop (-> (0 b1 b1))))
-
-    (* sphere-1 I)
-    (* b1 i0)    : (-1 (* sphere-1 I))
-    (* b1 i1)    : (-1 (* sphere-1 I))
-    (* b1 i01)   : (* b1 (0 i0 i1))
-    -->            (0 (* b1 i0) (* b1 i1))
-    (* loop i0)  : (* (0 b1 b1) i0)
-    -->            (0 (* b1 i0) (* b1 i0))
-    (* loop i1)  : (* (0 b1 b1) i1)
-    -->            (0 (* b1 i1) (* b1 i1))
-    (* loop i01) : (+ (* loop (0 i0 i1)) (* (0 b1 b1) i01))
-    -->            (+ (1 (* loop i0) (* loop i1) rev)
-                      (1 (* b1 i01) (* b1 i01) rev))
-    -->            (1 (* loop i0) (* b1 i01)
-                      (* loop i1) rev (* b1 i01) rev)
-
-    (? sphere-1 I)
-    (? b1 i0)    : (-1 (? sphere-1 I))
-    (? b1 i1)    : (-1 (? sphere-1 I))
-    (? b1 i01)   : (? b1 (0 i0 i1))
-    -->            (0 (? b1 i0) (? b1 i1))
-    (? loop i0)  : (? (0 b1 b1) i0)
-    -->            (0 (? b1 i0) (? b1 i1))
-    (? loop i1)  : (? (0 b1 b1) i1)
-    -->            (0 (? b1 i1) (? b1 i0))
-    (? loop i01) : (1 (? loop i0)
-                      (? loop i1))
-
-    (def sphere-1
-      (type (-> space)
-        b1 (-> (-1 <>))
-        loop (-> (0 b1 b1))))
-
-    (def sphere-2
-      (type (-> space)
-        b2 (-> (-1 <>))
-        surf (-> (1 b2 refl))))
-
-    (* sphere-2 sphere-1)
-    (* b2 b1)     : (-1 (* sphere-2 sphere-1))
-    (* b2 loop)   : (* b2 (0 b1 b1))
-    -->             (0 (* b2 b1) (* b2 b1))
-    (* surf b1)   : (* (1 b2 refl) b1)
-    -->             (1 (* b2 b1) refl)
-    (* surf loop) : (+ (* surf (0 b1 b1))
-                       (* (1 b2 refl) loop))
-    -->             (+ (2 (* surf b1) (* surf b1))
-                       (2 (1 (* b2 loop)) refl))
-    -->             (2 (* surf b1) (* surf b1)
-                       (1 (* b2 loop)) refl)
-
-    (? sphere-2 sphere-1)
-    (? b2 b1)     : (-1 (? sphere-2 sphere-1))
-    (? b2 loop)   : (? b2 (0 b1 b1))
-    -->             (0 (? b2 b1) (? b2 b1))
-    (? surf b1)   : (? (1 b2 refl) b1)
-    -->             (1 (? b2 loop))
-    (? surf loop) : (+ (? surf (0 b1 b1))
-                       (? (1 b2 refl) loop))
-    #+end_src
-
-*** lens-space
-
-    - how can we do a cutting-and-regluing
-      to cut (* sphere-1 sphere-2)
-      and to reglue it to sphere-3
-
-    - is this the same as hopf fibration
-
-    - what lens-space are equal to ?
-
-    - different ways to construct lens-space
-      - dehn-surgery
-        - note that, we have a change of dim here
-      - ><><><
-
-*** the plan
-
-    - Inspired by Bishop's plan
-      and the treatment of algebraic-topology by sze-tsen-hu.
-
-    - A concept is defined once we explain how to implement it in our language.
-      - Just like in physics, a concept is operationally defined,
-        once we explain how to measure it.
-
-    - To define property of object
-      by the solvability of problem fromed around the object.
-
 * intro
 
   1. I will show how to design and implement a language
-     to formalize and machine-lize
+     to formalize and machinalize
      a little part of algebraic topology.
 
   2. I call this prototype 'at1',
      which is an abbreviation of 'algebraic-topology-1'.
 
-     - [advice for reader]
-       If you know how to implement an interpreter,
-       try to imagine how you would implement this language
-       by directed graph processing.
+  3. [advice for reader]
+     If you know how to implement an interpreter,
+     try to imagine how you would implement this language
+     by directed graph processing.
+
+* summary of principles
+
+  1. construct by attaching boundary
+
+  2. gluing by named common boundary
 
 * simple-space
 
@@ -193,7 +58,7 @@
 
      - [advice for reader]
        Draw a picture by yourself, when trying to follow
-       my description in my formal language.
+       my formal description.
 
        And imagining how such picture can be dynamicly
        and automaticly drawn by a drawer that
@@ -236,7 +101,8 @@
        One can view 'b12' as a directed path pointing from 'a1' to 'a2',
        and 'b13' as a directed path pointing form 'a1' to 'a3'.
 
-       We write two points in the keyword '(0 ...)', and the order matters.
+       We write two points in the keyword '(0 ...)',
+       and the order matters.
 
        Since, 'b12' and 'b13' have a common boundary -- 'a1',
        we view 'b12' and 'b13' as glued together by the common boundary.
@@ -355,10 +221,20 @@
 
   7. Note that, syntax in (0 ...) (1 ...) (2 ...) are different,
      but syntax in (2 ...) (3 ...) (4 ...) ... are similar.
+
      - (0 ...) is special, in the sense that,
        only two 0-dimensional points can occur in it.
+
      - (1 ...) is special, in the sense that,
        there is not explict functions, like 'as-remained-boundary' in it.
+
+     - [hesitation]
+       Should these three distinctions be unified ?
+       If these distinctions are really meaningful,
+       and ought not to be unified,
+       Should we design distinct syntaxes for them,
+       to maintain the distinctions,
+       instead of using the seemingly unified syntax ?
 
   8. Note that, 'as-remained-boundary' involves searching,
      which makes the specification of part of the space implict,
@@ -366,412 +242,25 @@
      the detail of high dimension information might be too complex
      to use an explict method.
 
-* subspace relation
+  9. [hesitation about cobordism]
+     Note that, not all closed spaces
+     can be boundary of a 1-dim higher space.
+     if two disjoint closed spaces, B1 and B2, are boundary of
+     1-dim higher space C, then C is the cobordism of B1 and B2,
+     classically expressed as (C; B1, B2),
+     where B1 and B2 are called cobordant.
 
-  - The subspace relation between spaces is encoded by parts.
+     Under what conditions, a closed space can be
+     the boundary of a 1-dim higher space ?
+     This question should be thoroughly understood,
+     before developing the formal semantics of the language.
 
-* continuity-check
+* >< map and continuity-check
 
-  - map have the following general types
-    - level-same
-    - level-diff
-      - level-up
-      - level-down
+  1. We must distinguish following different types of maps
+     1. level-same
+     2. level-diff
+        1. level-up
+        2. level-down
 
-* >< primitive space v.s. compound space
-
-  - compound space
-    1. product space
-    2. indexed space
-
-  - a space is depicted by its parts and the boundarys of these parts.
-    for example,
-    we have rule for identifying parts of a product space and their boundarys.
-
-  - there can be many way by which we can compose new spaces,
-    each of such way must shows what is the parts of the space,
-    and what is the boundarys of the parts.
-
-  - ><><><
-    rule for indexed space
-    cellular ?
-
-* >< product-space
-
-*** the rule
-
-    - it is assumed that the (+ ...) [the glue]
-      in the rule is always not ambiguous.
-      but I need more examples to be sure about this.
-
-    - Suppose the glue in (1 ...) is always explict,
-      and the (+ ...) in the boundary rule is strict to position.
-
-    #+begin_src scheme
-    ;; [infix]
-    ;; the rule
-    (A * B) f : (boundary (A * B)) f
-    (boundary (A * B)) = (((boundary A) * B) + (A * (boundary B)))
-    ;; example of the rule
-    (i01 * i0) f : (0 (i0 * i0) f (i1 * i0) f)
-    (i1 * i01) f : (0 (i1 * i0) f (i1 * i1) f)
-    (i01 * i1) f : (0 (i0 * i1) f (i1 * i1) f)
-    (i0 * i01) f : (0 (i0 * i0) f (i0 * i1) f)
-    (i01 * i01) f : (1 (i01 * i0) f (i1 * i01) f
-                       (i01 * i1) rev f (i0 * i01) rev f)
-
-    ;; [prefix]
-    ;; the rule
-    (* A B) f : (boundary (* A B)) f
-    (boundary (* A B)) = (+ (* (boundary A) B) (* A (boundary B)))
-    ;; example of the rule
-    (* i01 i0) f : (0 (* i0 i0) f (* i1 i0) f)
-    (* i1 i01) f : (0 (* i1 i0) f (* i1 i1) f)
-    (* i01 i1) f : (0 (* i0 i1) f (* i1 i1) f)
-    (* i0 i01) f : (0 (* i0 i0) f (* i0 i1) f)
-    (* i01 i01) f : (1 (* i01 i0) f (* i1 i01) f
-                       (* i01 i1) rev f (* i0 i01) rev f)
-    #+end_src
-
-* >< extension-problem of partial map defined on subspace
-
-* >< extension-problem and retraction-problem
-
-* >< indexed-space
-
-*** note
-
-    - When defining a space, parts of it can be indexed
-      by parts of another space.
-      Such a named indexing of parts is called an indexed-parts,
-      which is also a subspace of the larger space.
-
-    - Note that,
-      if the indexing is to be viewed as a map,
-      it would be a level-up map.
-
-*** >< about 'I'
-
-    - 'I' indexed by a space,
-      is the suspension of the space.
-
-* >< same-position-self-gluing, cancel or not cancel ?
-
-  - same-position-self-gluing
-    [for example: p * p^{-1}]
-
-  - non-same-position-self-gluing
-    can only happen,
-    when there is at least one part of the boundary is repeating.
-    [for example: p * p]
-
-* simple principle of uncurry
-
-  - a path in B is a function of type (I -> B)
-    thus (A -> (path in B)) == (A -> (I -> B))
-    can be uncurried to (A I -> B)
-
-  - with the method of path-as-function
-    we can define homotopy between pathes by equality of functions
-    (f1 ~ f2)
-
-* I
-
-  #+begin_src scheme
-  (def I
-    (type space
-      i0 i1 (-1 <>)
-      i01 (0 i0 i1)))
-
-  (def f
-    (lambda (-> (* I I) X)
-      (with (-> (* (-1 I) (-1 I)) (-1 X))
-        (-> (* i0 i0) ...)
-        (-> (* i0 i1) ...)
-        (-> (* i1 i0) ...)
-        (-> (* i1 i1) ...))
-      (with (-> (* (-1 I) %:i (0 i0 i1))
-                (0 (* :i i0) <>
-                   (* :i i1) <>))
-        (-> (* i0 (1 i01)) ...)
-        (-> (* i1 (1 i01)) ...))
-      (with (-> (* (0 i0 i1) (-1 I) %:i)
-                (0 (* i0 (1 :i)) <>
-                   (* i1 (1 :i)) <>))
-        (-> (* (1 i01) i0) ...)
-        (-> (* (1 i01) i1) ...))
-      (with (-> (* (0 i0 i1) %:p0
-                   (0 i0 i1) %:p1)
-                (1 (* (1 :p0) i0) <>
-                   (* i1 (1 :p1)) <>
-                   (* (1 :p0) i1) <> rev
-                   (* i0 (1 :p1)) <> rev)))
-      ;; product 的各個部分 之邊界 所生成的 函數值
-      ;; 想要融合成一個 封閉的圖形 其方式可能總是唯一的
-      ;; 如果我允許 (1 ...) 內構造出不聯通的圖形
-      ;; 那麼我可能就有機會描述出來這種唯一可能
-      (note (1 (* (1 :p0) i0) <>
-               (* (1 :p0) i1) <> rev
-               (1 (* i0 (1 :p1)) <>
-                  (* i1 (1 :p1)) <> rev) rev))
-      (-> (* (1 i01) (1 i01)) ...)))
-  #+end_src
-
-* (bool-suspend ~> sphere-1)
-
-  #+begin_src scheme
-  (def sphere-1
-    (type (-> space)
-      b (-> (-1 <>))
-      loop (-> (0 b b))))
-
-  (def bool
-    (type (-> space)
-      #f #t (-> (-1 <>))))
-
-  (def bool-suspend
-    (type (-> space)
-      n s (-> (-1 <>))
-      m (-> bool (0 n s))))
-
-  (def f
-    (lambda (-> bool-suspend sphere-1)
-      (with (-> (-1 bool-suspend) (-1 sphere-1))
-        (-> n b)
-        (-> s b))
-      (with (-> (0 n s) (0 b b))
-        (-> (1 #f m) (1 loop))
-        (-> (1 #t m) (1 b refl)))))
-
-  (def g
-    (lambda (-> sphere-1 bool-suspend)
-      (with (-> (-1 sphere-1) (-1 bool-suspend))
-        (-> b n))
-      (with (-> (0 b b) (0 n n))
-        ;; (1 ...) is only needed when there is glue of elements of 2-level
-        (-> (1 loop) (1 #f m #t m rev)))))
-
-  (def [g f] ;; which is already id of sphere-1
-    (lambda (-> sphere-1 sphere-1)
-      (with (-> (-1 sphere-1) (-1 sphere-1))
-        (-> b b))
-      (with (-> (0 b b) (0 b b))
-        (-> (1 loop) (1 loop)))))
-
-  (def [f g]
-    (lambda (-> bool-suspend bool-suspend)
-      (with (-> (-1 bool-suspend) (-1 bool-suspend))
-        (-> n n)
-        (-> s n))
-      (with (-> (0 n s) (0 n n))
-        (-> (1 #f m) (1 #f m #t m rev))
-        (-> (1 #t m) (1 n refl)))))
-
-  ;; uncurry
-  (def h ;; to proof (f g ~ id of bool-suspend)
-    (lambda (-> (* bool-suspend I) bool-suspend)
-      (extend-from
-        (lambda  (-> (* bool-suspend (-1 I)) bool-suspend)
-          (-> (* :x i0) [:x f g])
-          (-> (* :x i1) :x)))
-      (with (-> (* (-1 bool-suspend) %:a (0 i0 i1))
-                (0 (* :a i0) <> (* :a i1) <>))
-        (-> (* n (1 i01)) (1 n refl)
-            : (0 n n))
-        (-> (* s (1 i01)) (1 #t m)
-            : (0 n s)))
-      (with (-> (* (0 n s) %:b (0 i0 i1) %:i)
-                (1 (* :b i0) <> (* s :i) <>
-                   (* :b i1) <> rev (* n :i) <> rev))
-        (-> (* (1 #f m) (1 i01)) (2)
-            : (1 (1 #f m #t m rev) (1 #t m)
-                 (1 #f m) rev (1 n refl) rev))
-        (-> (* (1 #t m) (1 i01)) (2)
-            : (1 (1 n refl) (1 #t m)
-                 (1 #t m) rev (1 n refl) rev)))))
-  #+end_src
-
-* (bool-suspend-suspend ~> sphere-2)
-
-  #+begin_src scheme
-  (def sphere-2
-    (type (-> space)
-      b2 (-> (-1 <>))
-      ;; no need for (1 b2 refl b2 refl rev) ?
-      ;; for b2 refl is as identity
-      surf (-> (1 b2 refl))))
-
-  (def bool-suspend-suspend
-    (type (-> space)
-      n2 s2 (-> (-1 <>))
-      m2 (-> bool-suspend (0 n2 s2))))
-
-  ;; n m2 : (0 n2 s2)
-  ;; s m2 : (0 n2 s2)
-  ;; #f m m2 : (1 n m2 s m2 rev)
-  ;; #t m m2 : (1 n m2 s m2 rev)
-
-  (def f
-    (lambda (-> bool-suspend-suspend sphere-2)
-      (with (-> (-1 bool-suspend-suspend) (-1 sphere-2))
-        (-> n2 b2)
-        (-> s2 b2))
-      (with (-> (0 n2 s2) (0 b2 b2))
-        (-> (1 n m2) (1 b2 refl))
-        (-> (1 s m2) (1 b2 refl)))
-      (with (-> (1 n m2 s m2 rev) (1 b2 refl))
-        (-> (2 #f m m2) (2 surf))
-        (-> (2 #t m m2) (2 b2 refl refl)))))
-
-  (def g
-    (lambda (-> sphere-2 bool-suspend-suspend)
-      (with (-> (-1 sphere-2) (-1 bool-suspend-suspend))
-        (-> b2 n2))
-      (with (-> (1 b2 refl) (1 n2 refl))
-        (-> (2 surf) (2 #f m m2 (1 n m2 s m2 rev)
-                        #t m m2 (1))))))
-
-  (def [g f]
-    (lambda (-> sphere-2 sphere-2)
-      (with (-> (-1 sphere-2) (-1 sphere-2))
-        (-> b2 b2))
-      (with (-> (1 b2 refl) (1 b2 refl))
-        (-> (2 surf) (2 surf)))))
-
-  ;; (2 surf)
-  ;; g =>
-  ;; (2 #f m m2 (1 n m2 s m2 rev)
-  ;;     #t m m2 (1))
-  ;; f =>
-  ;; (2 (2 surf) (1 (1 b2 refl) (1 b2 refl) rev)
-  ;;     (2 b2 refl refl) (1))
-  ;; ==
-  ;; (2 surf)
-
-  (def [f g]
-    (lambda (-> bool-suspend-suspend bool-suspend-suspend)
-      (with (-> (-1 bool-suspend-suspend) (-1 bool-suspend-suspend))
-        (-> n2 n2)
-        (-> s2 n2))
-      (with (-> (0 n2 s2) (0 n2 n2))
-        (-> (1 n m2) (1 n2 refl))
-        (-> (1 s m2) (1 n2 refl)))
-      (with (-> (1 n m2 s m2 rev) (1 n2 refl))
-        (-> (2 #f m m2) (2 #f m m2 (1 n m2 s m2 rev)
-                           #t m m2 (1)))
-        (-> (2 #t m m2) (2 n2 refl refl)))))
-
-  (def h ;; to proof (f g ~ id of bool-suspend-suspend)
-    (lambda (-> (* bool-suspend-suspend I) bool-suspend-suspend)
-      (extend-from
-        (lambda (-> (* bool-suspend-suspend (-1 I)) bool-suspend-suspend)
-          (-> (* :x i0) (* [:x f g]))
-          (-> (* :x i1) (* :x))))
-      (with (-> (* (-1 bool-suspend-suspend) %:a (0 i0 i1))
-                (0 (* :a i0) <> (* :a i1) <>))
-        (-> (* n2 (1 i01)) (1 n2 refl) ;; (1 n m2 s m2 rev)
-            : (0 n2 n2))
-        (-> (* s2 (1 i01)) (1 s m2) ;; (1 n m2)
-            : (0 n2 s2)))
-      (with (-> (* (0 n2 s2) %:b (0 i0 i1) %:i)
-                (1 (* (1 :b) i0) <> (* s2 (1 :i)) <>
-                   (* (1 :b) i1) <> rev (* n2 (1 :i)) <> rev))
-        (-> (* (1 n m2) (1 i01)) (2 #t m m2)
-            : (1 (1 n2 refl) (1 s m2)
-                 (1 n m2) rev (1 n2 refl) rev)
-            = (1 (1 s m2) (1 n m2) rev))
-        (-> (* (1 s m2) (1 i01)) (2)
-            : (1 (1 n2 refl) (1 s m2)
-                 (1 s m2) rev (1 n2 refl) rev)
-            = (1 (1 s m2)
-                 (1 s m2) rev)
-            = (1)))
-      (with (-> (* (1 n m2 s m2 rev) %:c (0 i0 i1) %:i)
-                (2 (* (1 n m2) (1 :i)) <>
-                   (1 (* n2 (1 i01)) <>
-                      (* (1 n m2) i1) <>
-                      (* s2 (1 i01)) <> rev
-                      (* (1 n m2) i0) <> rev)
-                   (* (1 s m2) (1 :i)) <>
-                   (1 (* (1 n m2) i1) <>
-                      (* (1 n m2) i0) <> rev
-                      (* (1 s m2) i1) <> rev
-                      (* (1 s m2) i0) <>)
-                   (* (2 :c) i0) <>
-                   (1 (* (1 n m2) i1) <>
-                      (* (1 s m2) i1) <> rev)
-                   (* (2 :c) i1) <>
-                   (1)))
-        (-> (* (2 #f m m2) (1 i01)) (3)
-            : (2 (2 #t m m2)
-                 (1 (1 n2 refl)
-                    (1 n m2)
-                    (1 s m2) rev
-                    (1 n2 refl) rev)
-                 (2)
-                 (1 (1 n m2)
-                    (1 n2 refl) rev
-                    (1 s m2) rev
-                    (1 n2 refl) rev)
-                 (2 #f m m2 (1 n m2 s m2 rev)
-                    #t m m2 (1))
-                 (1 (1 n m2)
-                    (1 s m2) rev)
-                 (2 #f m m2)
-                 (1)))
-        (-> (* (2 #t m m2) (1 i01)) (3)
-            : (2 (2 #t m m2)
-                 (2)
-                 (2 n2 refl refl)
-                 (2 #t m m2))))))
-
-  (def h ;; to proof (f g ~ id of bool-suspend-suspend)
-    (lambda (-> (* bool-suspend-suspend I) bool-suspend-suspend)
-      (extend-from
-        (lambda (-> (* bool-suspend-suspend (-1 I)) bool-suspend-suspend)
-          (-> (* :x i0) (* [:x f g]))
-          (-> (* :x i1) (* :x))))
-      (with (-> (* (-1 bool-suspend-suspend) %:a (0 i0 i1))
-                (0 (* :a i0) <> (* :a i1) <>))
-        (-> (* n2 (1 i01)) (1 n2 refl))
-        (-> (* s2 (1 i01)) (1 s m2)))
-      (with (-> (* (0 n2 s2) %:b (0 i0 i1) %:i)
-                (1 (* (1 :b) i0) <> (* s2 (1 :i)) <>
-                   (* (1 :b) i1) <> rev (* n2 (1 :i)) <> rev))
-        (-> (* (1 n m2) (1 i01)) (2 #t m m2))
-        (-> (* (1 s m2) (1 i01)) (2)))
-      (with (-> (* (1 n m2 s m2 rev) %:c (0 i0 i1) %:i)
-                (2 (* (1 n m2) (1 :i)) <>
-                   (1 (* n2 (1 i01)) <>
-                      (* (1 n m2) i1) <>
-                      (* s2 (1 i01)) <> rev
-                      (* (1 n m2) i0) <> rev)
-                   (* (1 s m2) (1 :i)) <>
-                   (1 (* (1 n m2) i1) <>
-                      (* (1 n m2) i0) <> rev
-                      (* (1 s m2) i1) <> rev
-                      (* (1 s m2) i0) <>)
-                   (* (2 :c) i0) <>
-                   (1 (* (1 n m2) i1) <>
-                      (* (1 s m2) i1) <> rev)
-                   (* (2 :c) i1) <>
-                   (1)))
-        (-> (* (2 #f m m2) (1 i01)) (3))
-        (-> (* (2 #t m m2) (1 i01)) (3)))))
-  #+end_src
-
-* >< fiber-space
-
-  - After a construction of a fiber-bundle,
-    we can proof the total-space is equal to another space,
-    and by doing so, we get a level-down map from the space to the base-space.
-
-  - level-down map can only be achieved by means of fiber-bundle.
-
-* >< lifting-problem of ><><>< fiber-space
-
-* >< lifting-problem and cross-section-problem
-
-  - cross-section-problem can be viewed as
-    lifting a subspace [instead of function] of the base-space,
-    or just lifting the base-space itself [i.e. global cross-section].
+  2. For level-same maps, the rule for continuity-check is simple.

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2017-03-11 Sat 22:03 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>algebraic-topology-1</title>
+<meta name="generator" content="Org-mode" />
+<meta name="author" content="XIE Yuheng" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+近死之心 莫使復陽也
+</div>
+<div id="content">
+<h1 class="title">algebraic-topology-1</h1>
+<div id="table-of-contents">
+<h2>overview</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org9d37972">intro</a></li>
+<li><a href="#org3ac53a8">summary of principles</a></li>
+<li><a href="#org2f7b70e">simple-space</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org9d37972" class="outline-2">
+<h2 id="org9d37972">intro</h2>
+<div class="outline-text-2" id="text-org9d37972">
+<ol class="org-ol">
+<li>I will show how to design and implement a language
+to formalize and machinalize
+a little part of algebraic topology.</li>
+
+<li>I call this prototype 'at1',
+which is an abbreviation of 'algebraic-topology-1'.</li>
+
+<li>[advice for reader]
+If you know how to implement an interpreter,
+try to imagine how you would implement this language
+by directed graph processing.</li></ol>
+</div>
+</div>
+
+<div id="outline-container-org3ac53a8" class="outline-2">
+<h2 id="org3ac53a8">summary of principles</h2>
+<div class="outline-text-2" id="text-org3ac53a8">
+<ol class="org-ol">
+<li>construct by attaching boundary</li>
+
+<li>gluing by named common boundary</li></ol>
+</div>
+</div>
+
+<div id="outline-container-org2f7b70e" class="outline-2">
+<h2 id="org2f7b70e">simple-space</h2>
+<div class="outline-text-2" id="text-org2f7b70e">
+<ol class="org-ol">
+<li>In a language, we always have primitive elements,
+and many ways to compose elements to new compound element,
+also many ways to derive new element from old one.</li>
+
+<li><p>
+Here, I describe a simple way to construct spaces,
+so constructed spaces will be called simple-spaces,
+which constitute the first kind of primitive spaces in my language.
+</p>
+
+<p>
+Before having other ways to construct spaces,
+I will simply call them 'space' instead of 'simple-space'.
+</p>
+
+<ul class="org-ul">
+<li><p>In algebraic topology,</p><p>our simple-space is called</p><p>CW-complex, cell-complex or cellular polytopes.</p></li></ul></li>
+
+<li>A space is constructed part by part.</li>
+
+<li>A part is of certain dimension,
+part of 0 dimension is point,
+part of 1 dimension is an interval,
+part of 2 dimension is a disk,
+part of 3 dimension is a ball,
+part of 4 dimension is a 4-cell,
+part of n dimension is a n-cell.</li>
+
+<li><p>
+The way to construct a space from parts,
+goes from low dimension to high dimension,
+by attaching the boundary of a n-cell,
+to a (n-1)-sphere in the space.
+</p>
+
+<p>
+Our principle here is 'construct by attaching boundary'.
+</p></li>
+
+<li>As an example, let us construct a tetrahedron.
+
+<ul class="org-ul">
+<li><p><p></p><p>[advice for reader]</p><p>Draw a picture by yourself, when trying to follow</p><p>my formal description.</p><p></p></p><p></p><p><p></p><p>And imagining how such picture can be dynamicly</p><p>and automaticly drawn by a drawer that</p><p>accompanies the main interpreter of the language.</p><p></p></p></li>
+
+<li><p><p></p><p>In 0 dimension,</p><p></p></p><p></p><p><p></p><p>we name all the points of the space.</p><p></p></p><p></p><p><div class="org-src-container"></p><p></p><p><pre class="src src-scheme"><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">type</span> space</p><p>  a1 a2 a3 a4 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-1</span> <span style="color: #66d9ef; font-weight: bold;">&lt;&gt;</span><span style="color: #696969;">))</span></p><p></pre></p><p></div></p></li>
+
+<li><p><p></p><p>In 1 dimension,</p><p></p></p><p></p><p><p></p><p>we name all the intervals of the space,</p><p></p></p><p></p><p><p></p><p>and for each interval,</p><p>we attach its two end points to two points of the space</p><p>[the two points of the space might be the same point],</p><p></p></p><p></p><p><p></p><p>so that the boundary of the interval</p><p>can be viewed as two points of the space.</p><p></p></p><p></p><p><div class="org-src-container"></p><p></p><p><pre class="src src-scheme"><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">type</span> space</p><p>  a1 a2 a3 a4 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-1</span> <span style="color: #66d9ef; font-weight: bold;">&lt;&gt;</span><span style="color: #696969;">)</span></p><p>  b12 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">0</span> a1 a2<span style="color: #696969;">)</span></p><p>  b13 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">0</span> a1 a3<span style="color: #696969;">)</span></p><p>  b14 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">0</span> a1 a4<span style="color: #696969;">)</span></p><p>  b23 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">0</span> a2 a3<span style="color: #696969;">)</span></p><p>  b24 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">0</span> a2 a4<span style="color: #696969;">)</span></p><p>  b34 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">0</span> a3 a4<span style="color: #696969;">))</span></p><p></pre></p><p></div></p><p></p><p><p></p><p>For example, the boundary of 'b12' are 'a1' and 'a2',</p><p>the boundary of 'b13' are 'a1' and 'a3'.</p><p></p></p><p></p><p><p></p><p>One can view 'b12' as a directed path pointing from 'a1' to 'a2',</p><p>and 'b13' as a directed path pointing form 'a1' to 'a3'.</p><p></p></p><p></p><p><p></p><p>We write two points in the keyword '(0 &#x2026;)',</p><p>and the order matters.</p><p></p></p><p></p><p><p></p><p>Since, 'b12' and 'b13' have a common boundary &#x2013; 'a1',</p><p>we view 'b12' and 'b13' as glued together by the common boundary.</p><p></p></p><p></p><p><p></p><p>Our principle here is 'gluing by named common boundary'.</p><p></p></p></li>
+
+<li><p><p></p><p>In 2 dimension,</p><p></p></p><p></p><p><p></p><p>we name all the disk of the space,</p><p></p></p><p></p><p><p></p><p>and for each disk,</p><p>we attach its boundary circle to a circle in the space.</p><p></p></p><p></p><p><div class="org-src-container"></p><p></p><p><pre class="src src-scheme"><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">type</span> space</p><p>  a1 a2 a3 a4 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-1</span> <span style="color: #66d9ef; font-weight: bold;">&lt;&gt;</span><span style="color: #696969;">)</span></p><p>  b12 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">0</span> a1 a2<span style="color: #696969;">)</span></p><p>  b13 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">0</span> a1 a3<span style="color: #696969;">)</span></p><p>  b14 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">0</span> a1 a4<span style="color: #696969;">)</span></p><p>  b23 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">0</span> a2 a3<span style="color: #696969;">)</span></p><p>  b24 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">0</span> a2 a4<span style="color: #696969;">)</span></p><p>  b34 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">0</span> a3 a4<span style="color: #696969;">)</span></p><p>  c123 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> b12 b23 b13 <span style="color: #66d9ef; font-weight: bold;">rev</span><span style="color: #696969;">)</span></p><p>  c124 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> b12 b24 b14 <span style="color: #66d9ef; font-weight: bold;">rev</span><span style="color: #696969;">)</span></p><p>  c134 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> b13 b34 b14 <span style="color: #66d9ef; font-weight: bold;">rev</span><span style="color: #696969;">)</span></p><p>  c234 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> b23 b34 b24 <span style="color: #66d9ef; font-weight: bold;">rev</span><span style="color: #696969;">))</span></p><p></pre></p><p></div></p><p></p><p><p></p><p>I use the keyword '(1 &#x2026;)' to specify path in the space.</p><p></p></p><p></p><p><p></p><p>For example, '(1 b12 b23)' denotes</p><p>the path which goes through 'b12' forwardly and 'b23' forwardly.</p><p></p></p><p></p><p><p></p><p>In the keyword '(1 &#x2026;)',</p><p>the right end point of one interval must matches</p><p>the left end point of the next interval.</p><p></p></p><p></p><p><p></p><p>And '(1 b12 b23 b13 rev)' denotes the path which</p><p>goes through 'b12' forwardly, 'b23' forwardly, and 'b13' backwardly.</p><p></p></p><p></p><p><p></p><p>The boundary of 'c123' is attached to the circle '(1 b12 b23 b13 rev)'.</p><p></p></p><p></p><p><p></p><p>We check whether a path is a circle,</p><p>by checking whether the left end point of the first interval,</p><p>is equal to the right end point of the last interval,</p><p>i.e. whether the path is closed.</p><p></p></p></li>
+
+<li><p><p></p><p>In 3 dimension,</p><p></p></p><p></p><p><p></p><p>we name all the ball of the space,</p><p></p></p><p></p><p><p></p><p>and for each ball,</p><p>we attach its boundary sphere to a sphere in the space.</p><p></p></p><p></p><p><div class="org-src-container"></p><p></p><p><pre class="src src-scheme"><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">type</span> space</p><p>  a1 a2 a3 a4 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-1</span> <span style="color: #66d9ef; font-weight: bold;">&lt;&gt;</span><span style="color: #696969;">)</span></p><p>  b12 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">0</span> a1 a2<span style="color: #696969;">)</span></p><p>  b13 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">0</span> a1 a3<span style="color: #696969;">)</span></p><p>  b14 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">0</span> a1 a4<span style="color: #696969;">)</span></p><p>  b23 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">0</span> a2 a3<span style="color: #696969;">)</span></p><p>  b24 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">0</span> a2 a4<span style="color: #696969;">)</span></p><p>  b34 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">0</span> a3 a4<span style="color: #696969;">)</span></p><p>  c123 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> b12 b23 b13 <span style="color: #66d9ef; font-weight: bold;">rev</span><span style="color: #696969;">)</span></p><p>  c124 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> b12 b24 b14 <span style="color: #66d9ef; font-weight: bold;">rev</span><span style="color: #696969;">)</span></p><p>  c134 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> b13 b34 b14 <span style="color: #66d9ef; font-weight: bold;">rev</span><span style="color: #696969;">)</span></p><p>  c234 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> b23 b34 b24 <span style="color: #66d9ef; font-weight: bold;">rev</span><span style="color: #696969;">)</span></p><p>  d1234 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">2</span> c123</p><p>           c124 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> b14 b24 <span style="color: #66d9ef; font-weight: bold;">rev</span> b23 b13 <span style="color: #66d9ef; font-weight: bold;">rev</span><span style="color: #696969;">)</span> as-remained-boundary</p><p>           c134 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> b34 b24 <span style="color: #66d9ef; font-weight: bold;">rev</span> b23<span style="color: #696969;">)</span> as-remained-boundary</p><p>           c234 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span><span style="color: #696969;">)</span> as-remained-boundary<span style="color: #696969;">))</span></p><p></pre></p><p></div></p><p></p><p><p></p><p>I use the keyword '(2 &#x2026;)' to specify glued polygon in the space.</p><p></p></p><p></p><p><p></p><p>For example :</p><p></p></p><p><div class="org-src-container"></p><p></p><p><pre class="src src-scheme"><span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">2</span> c123<span style="color: #696969;">)</span></p><p><span style="color: #FF8888;">;; </span><span style="color: #FF8888;">a polygon in a stack</span></p><p></p><p><span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">2</span> c123</p><p>   c124<span style="color: #696969;">)</span></p><p><span style="color: #FF8888;">;; </span><span style="color: #FF8888;">two polygons in the stack</span></p><p></p><p><span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">2</span> c123</p><p>   c124 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> b14 b24 <span style="color: #66d9ef; font-weight: bold;">rev</span> b23 b13 <span style="color: #66d9ef; font-weight: bold;">rev</span><span style="color: #696969;">))</span></p><p><span style="color: #FF8888;">;; </span><span style="color: #FF8888;">two polygons and a circle in the stack</span></p><p></p><p><span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">2</span> c123</p><p>   c124 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> b14 b24 <span style="color: #66d9ef; font-weight: bold;">rev</span> b23 b13 <span style="color: #66d9ef; font-weight: bold;">rev</span><span style="color: #696969;">)</span> as-remained-boundary<span style="color: #696969;">)</span></p><p><span style="color: #FF8888;">;; </span><span style="color: #FF8888;">'as-remained-boundary' is a function,</span></p><p><span style="color: #FF8888;">;;   </span><span style="color: #FF8888;">which takes two polygons and a circle out from the stack,</span></p><p><span style="color: #FF8888;">;;   </span><span style="color: #FF8888;">try cancel out part of the common boundary of 'c123' and 'c124',</span></p><p><span style="color: #FF8888;">;;   </span><span style="color: #FF8888;">so that the remained boundary can be '(1 b14 b24 rev b23 b13 rev)'.</span></p><p><span style="color: #FF8888;">;; </span><span style="color: #FF8888;">if there are no way or more then one way to do this,</span></p><p><span style="color: #FF8888;">;;   </span><span style="color: #FF8888;">it reports to the user.</span></p><p><span style="color: #FF8888;">;; </span><span style="color: #FF8888;">if there is only one way to do this,</span></p><p><span style="color: #FF8888;">;;   </span><span style="color: #FF8888;">it puts a glued polygon back to the stack,</span></p><p><span style="color: #FF8888;">;;   </span><span style="color: #FF8888;">whose boundary is '(1 b14 b24 rev b23 b13 rev)'.</span></p><p></pre></p><p></div></p><p></p><p><p></p><p>The boundary of 'd1234' is attached to the sphere :</p><p></p></p><p><div class="org-src-container"></p><p></p><p><pre class="src src-scheme"><span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">2</span> c123</p><p>   c124 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> b14 b24 <span style="color: #66d9ef; font-weight: bold;">rev</span> b23 b13 <span style="color: #66d9ef; font-weight: bold;">rev</span><span style="color: #696969;">)</span> as-remained-boundary</p><p>   c134 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> b34 b24 <span style="color: #66d9ef; font-weight: bold;">rev</span> b23<span style="color: #696969;">)</span> as-remained-boundary</p><p>   c234 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span><span style="color: #696969;">)</span> as-remained-boundary<span style="color: #696969;">)</span></p><p></pre></p><p></div></p><p></p><p><p></p><p>We check whether a glued polygon is sphere,</p><p>by checking whether the glued polygon is</p><p>2-dimensional, closed, connected and orientable.</p><p></p></p><p></p><p><p></p><p>Note that, we can implement more functions like 'as-remained-boundary',</p><p>to help us get 2-dimensional glued polygons.</p><p></p></p></li></ul></li>
+
+<li>Note that, syntax in (0 &#x2026;) (1 &#x2026;) (2 &#x2026;) are different,
+but syntax in (2 &#x2026;) (3 &#x2026;) (4 &#x2026;) &#x2026; are similar.
+
+<ul class="org-ul">
+<li><p>(0 &#x2026;) is special, in the sense that,</p><p>only two 0-dimensional points can occur in it.</p></li>
+
+<li><p>(1 &#x2026;) is special, in the sense that,</p><p>there is not explict functions, like 'as-remained-boundary' in it.</p></li></ul></li>
+
+<li>Note that, 'as-remained-boundary' involves searching,
+which makes the specification of part of the space implict,
+such implicitness is need, for when the dimension gets higher,
+the detail of high dimension information might be too complex
+to use an explict method.</li></ol>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+近死之心 莫使復陽也
+</div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+#+HTML_HEAD: <link rel="stylesheet" href="../asset/css/page.css" type="text/css" media="screen" />
+#+title: constructivism, computer and programming language
+
+* intro
+
+  1. Digital computers, nowaday, are often viewed as so unhuman.
+
+     While actually, the abstract prototype of digital computer
+     -- the Turing machine, is a model based on human computers
+     -- people who perform mathematical calculations.
+
+     The purpose of this modeling is to serve Turing's project,
+     which is to inquire the nature of mathematical calculations,
+     i.e. to understand computability.
+
+  2. As the art of manufacturing digital computers,
+     and the art of programming them, are so developed today,
+     a similar project, to inquire the nature of mathematical truth,
+     is naturally taken up by mathematicians,
+     in a certain computer aided way.
+
+     Since mathematical truth is ensured by deduction,
+     the steps of which, being written down, is called proof.
+
+     This time, the model is the type system of programming language,
+     with which the deductive rules of mathematics are built in,
+
+     We have type as proposition, function as proof.
+
+     The language game of mathematics is modeled by
+     the language game of programming.
+     [wittgenstein]
+
+  3. The language game of programming is so special,
+     ><><><
+
+  4. constructivism is not to limit ><>< the way how mathematics are studied,
+     [not as early wittgenstein]
+     but to draw a map
+     a map with rich information
+     [bishop's project]
+
+     just as Turing has successfully did
