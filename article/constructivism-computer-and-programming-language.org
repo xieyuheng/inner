@@ -1,5 +1,7 @@
 #+HTML_HEAD: <link rel="stylesheet" href="../asset/css/page.css" type="text/css" media="screen" />
-#+title: constructivism, computer and programming language
+#+title:  constructivism, computer and programming language
+
+- by XIE Yuheng, 2017
 
 * intro
 
@@ -21,23 +23,39 @@
 
      Since mathematical truth is ensured by deduction,
      the steps of which, being written down, is called proof.
-
      This time, the model is the type system of programming language,
-     with which the deductive rules of mathematics are built in,
+     with which the deductive rules of mathematics are built in.
 
      We have type as proposition, function as proof.
-
-     The language game of mathematics is modeled by
+     Thus the language game of mathematics is modeled by
      the language game of programming.
-     [wittgenstein]
+     [language game in the sense Wittgenstein]
 
-  3. The language game of programming is so special,
-     ><><><
+* bishop's project
 
-  4. constructivism is not to limit ><>< the way how mathematics are studied,
-     [not as early wittgenstein]
-     but to draw a map
-     a map with rich information
+  1. constructivism is not to limit ><>< the way how mathematics are studied,
+     [not as early Wittgenstein]
+
+     but to draw a map, a map with rich informations
+
      [bishop's project]
 
-     just as Turing has successfully did
+     just as Turing had successfully achieved
+
+  2. just as Kant said,
+     concepts without percepts are empty,
+     percepts without concepts are blind.
+
+  3. 把 bishop's 的說辭 用程序語言來解釋
+
+* programming language
+
+  1. In Bishop's age, constructivism against formalism.
+     But the language game of programming is so special,
+     it is constructivily formal.
+
+  2. We have to always care about how fast a function runs.
+
+* bishop's principles
+
+  1. ><><><

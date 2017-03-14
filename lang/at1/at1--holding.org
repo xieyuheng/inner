@@ -32,6 +32,29 @@
 
 *** hopf fibration
 
+    - The dependent product of sphere-1 and a circle in sphere-2
+      is a torus fibered as a circle of sphere-1 linked together
+      as hopf links.
+
+      | base-space (S2) | total-space (S3) |
+      |-----------------+------------------|
+      | a point         | a circle         |
+      | two points      | two hopf links   |
+      | a path          | a hopf band      |
+      | a circle        | a torus (*)      |
+      | half S2         | a solid torus    |
+
+    - A hopf band is a surface whose boundary are hopf links,
+      in hopf fibration, there are full of such surfaces.
+
+    - The torus with (*) in the table
+      might be useful for the construction of hopf-fibration of S3
+      by Dehn surgery.
+
+    - Can I construct the solid torus first by half S2 ?
+
+    - I must be able to express the facts above in my language.
+
     #+begin_src scheme
     (def I
       (type space
@@ -129,6 +152,16 @@
 
     - To define property of object
       by the solvability of problem fromed around the object.
+
+* geometry
+
+  - 如何算是將 geometry 引回我們爲同倫類而構造的語言
+    讓 所構造的對象所帶有的信息更豐富
+    使得 計算 距離 與 面積 等等 成爲可能
+
+  - 我們可能不能直接給出黎曼度量
+    而是要給出一種離散化的黎曼度量
+    - 注意 manifold 如何使得 黎曼度量 成爲可能
 
 * >< primitive space v.s. compound space
 

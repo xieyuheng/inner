@@ -545,6 +545,9 @@
 
   (D) Meaningful distinctions deserve to be maintained.
 
+  - to maintain meaningful distinctions between ><><><, we use type
+    to maintain meaningful distinctions between ><><><, we use different syntax
+
 * naturalism
 
   - to be a methodological naturalism is trying to universalize a methodology,
@@ -609,6 +612,9 @@
 
 * >< critique of arithmeticalization of infinit analysis
 
+  - arithmeticalization of infinit analysis
+    is also arithmetization of space
+
   - also a critique of the axiom of topology
 
   - analysis is arithmeticalization of calculus,
@@ -629,3 +635,23 @@
 
   - 沒有 topology 的公理
     還如何捕捉各種模型中的連續性
+
+* 測地線
+
+  - 人們在自己的空間中會體會到空間的測地線
+    人們有能力想象別樣的空間中的測地線
+
+  - 但是人們想象高維的能力確實侷限於 *經驗*
+    受限於人類感官的構造
+    受限與人類發展與學習的方式
+    如此說來
+    就成了休謨的經驗主義
+
+  - 人們對空間的知識
+    確實是可以被經驗改變的 [感官剝奪 導致空間降維]
+    正如藝術可以去發現和創造新的經驗
+
+  - 知識來源於感知
+    但是感知需要被想像力綜合
+
+  - neo-kant

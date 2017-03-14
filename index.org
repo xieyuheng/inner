@@ -27,8 +27,6 @@
 
 *** article
 
-    - [[./article/constructivism-computer-and-programming-language.html][constructivism, computer and programming language]]
-
 * language design
 
   - (todo) [[http://xieyuheng.github.io/logic1][logic1]] -- a prototype logic language with type system
