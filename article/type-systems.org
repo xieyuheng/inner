@@ -1,0 +1,17 @@
+#+HTML_HEAD: <link rel="stylesheet" href="../asset/css/page.css" type="text/css" media="screen" />
+#+title: type systems
+
+- by XIE Yuheng, 2017
+
+* intro
+
+  - Type systems appear in every aspects of knowledge.
+
+  - A type system is always changing.
+    Thus, when one develops upon it (intro change to it),
+    he will be blind of the homotopy,
+    if he does not study the history first.
+
+* Aristotle's type system of ><
+
+* Kant's type system of ><

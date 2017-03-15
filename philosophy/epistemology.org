@@ -535,6 +535,22 @@
   - a proof is to prove a statement is true,
     thus there is no objective truth.
 
+  - 這裏強調了數學證明的主觀性
+    但是 用程序語言來實現數學推演
+    就是說推演規則與數學定理的真理性是絕對客觀的
+    如何調和這裏的主觀與客觀
+    - 我承認主觀性
+      可能是因爲
+      不認同目前的客觀化策略
+      想要給出新的客觀化策略
+      就要強調主觀性 以說明新的策略的可能
+    - 但是上面的 '說服'
+      顯然可以用更好的方式完成
+      只要說明有多樣的策略就行了
+    如若如此
+    我其實想要強調的是客觀性
+    畢竟我是在用機器來形式化數學
+
   - (B) seems saying the meaning of a statement can be more objective.
 
   - machinallized proof system seems giving truth objectivity, but it is not.

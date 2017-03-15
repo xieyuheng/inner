@@ -1,5 +1,5 @@
 #+HTML_HEAD: <link rel="stylesheet" href="../asset/css/page.css" type="text/css" media="screen" />
-#+title:  constructivism, computer and programming language
+#+title: constructivism, computer and programming language
 
 - by XIE Yuheng, 2017
 
@@ -42,11 +42,14 @@
 
      just as Turing had successfully achieved
 
-  2. just as Kant said,
+  2. we extend the construction allowed
+     from number to computer program
+
+  3. just as Kant said,
      concepts without percepts are empty,
      percepts without concepts are blind.
 
-  3. 把 bishop's 的說辭 用程序語言來解釋
+  4. 把 bishop's 的說辭 用程序語言來解釋
 
 * programming language
 

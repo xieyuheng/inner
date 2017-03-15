@@ -1,0 +1,18 @@
+#+HTML_HEAD: <link rel="stylesheet" href="../asset/css/page.css" type="text/css" media="screen" />
+#+TITLE: the group of mapping classes / 映射類的羣
+#+AUTHOR: Max Dehn
+
+* 題解
+
+  - Dehn 的原文爲德文
+    由 >< 翻譯爲英文
+    本譯文轉譯自英文
+
+  - 我的筆記用 [謝] 標出
+
+* ><
+
+  - 一個空間 可能有很多等價的構造方式 [分割方式]
+    不同的構造方式 可能會展現出空間的不同對稱性
+
+  - 空間的一種構造方式能否用來構造空間的所有映射類 ?
