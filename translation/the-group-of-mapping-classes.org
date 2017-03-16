@@ -1,18 +1,172 @@
 #+HTML_HEAD: <link rel="stylesheet" href="../asset/css/page.css" type="text/css" media="screen" />
-#+TITLE: the group of mapping classes / 映射類的羣
+#+TITLE: the group of mapping classes / 映射類羣
 #+AUTHOR: Max Dehn
+
+* todo
+* note
+
+*** 不同構造方式揭示出不同的對稱性
+
+    - 一個空間 可能有很多等價的構造方式 [分割方式]
+      不同的構造方式 可能會展現出空間的不同對稱性
+
+    - 空間的一種構造方式能否用來構造空間的所有映射類 ?
+
+*** X MCG := X auto pi-0
+
+    - X MCG := X auto pi-0
+      也就是說 mapping-class-group 可以被看成是 函數空間的基本羣
+
+    - 函數空間 -- (-> X X)
+      空間中的元素相乘 -- 函數複合
+      空間中的元素相等 -- 類型爲 (-> [X I] X) 的 extension-problem
+
+    - 空間 X 的基本羣 -- (-> circle X)
+      空間中的元素相乘 -- circle 的 glue
+      空間中的元素相等 -- 類型爲 (-> [circle I] X) 的 extension-problem
+
+    - 可見 空間元素相乘的方式不同
+      因此 把 mapping-class-group 定義爲 'auto pi-0'
+      是不合理的
 
 * 題解
 
   - Dehn 的原文爲德文
-    由 >< 翻譯爲英文
+    基於 Dehn 1922 年在 Breslau 的演講
+    發表於 1938 年
+
+  - 原文由 John Stillwell 翻譯爲英文
+    出版於 papers on group theory and topology, 1987
     本譯文轉譯自英文
 
-  - 我的筆記用 [謝] 標出
+  - 因爲是轉譯 原作者的文風一定難以保留了
+    因此我純粹用意譯
+    我任意刪改原文的敘述方式
+    如此一來 這裏的譯文只能看作是我自己的學習筆記了
 
-* ><
+  - 文中插圖只給出標號
+    我將在之後重新繪製的插圖 來補全文章
 
-  - 一個空間 可能有很多等價的構造方式 [分割方式]
-    不同的構造方式 可能會展現出空間的不同對稱性
+  - 我的筆記用 [...] 標記
+    成段落的筆記 用 [謝] 標記於段落開頭
 
-  - 空間的一種構造方式能否用來構造空間的所有映射類 ?
+  - 原文中的一些着重標記
+    通過用 [...] 重複英文譯文來顯示
+
+  - 翻譯中的疑點用 [?] 標記
+    並在 [? ...] 中給出疑難的部分
+
+* 引子
+
+  - 在組合拓撲學中
+    拓撲概念由算數概念表示
+
+    如此 原則上 所有組合拓撲問題
+    都可以被劃歸爲 算數問題
+
+    然而 這種劃歸對於解決大多數問題來說 都是無用的
+    因爲 對應的算數問題與已知的結論與方法 少有聯繫
+
+    當 問題中 同倫變換 被看作是非平凡的時候 尤其是如此
+    或者說 當考慮
+    不同維度中 簡單聯通的多面體 之
+    越發大量的 且難以想象 的構造 時
+    情況尤其是如此
+
+    在之前的工作中
+    [Über kombinatorische Topologie, Acta math, 67 (1936), 123-168]
+    對於 二維多面體 [多邊形]
+    我嘗試以 容易理解的 算數的方式 來表達這些構造
+    我展示了 同倫問題 所給出的 算數問題 已經出離了羣倫的廣泛領域
+    它們關乎更一般的 難以研究的操作
+    這些操作的全體我稱之爲 '遊戲'
+
+  - 當人們研究那些忽略了同倫變換的問題時
+    情況就不同了
+
+    這裏 在很多情況在 人們可以很好地利用 羣論中的結果和方法
+
+    對於流形 甚至是高維流形
+    龐加萊的基本羣 開啓了解決這些問題的出路
+
+    對於二維流形 最近尤其成功地發展了出了 映射理論 [theory of mappings]
+    即 把所有只相差一個同倫變換的映射 收集成一類
+    (見 (1))
+
+  - 這裏 我用 一個曲面的算數域[arithmetic field] 中的操作
+    來表示 曲面的映射類
+
+    這種域中的個體不能是曲面上的點
+    因爲一個點可以被同倫變換到任意另一個點
+
+    其實
+    我們用 曲面上的 曲線系統[curve system] 的同倫類
+    來捕捉 曲面的 映射類
+    我們選擇 曲線系統 的算數表示
+    來作爲 算數域 中的個體
+
+    一個 曲線系統
+    作爲 曲線系統 的同倫類 中的一個代表元
+    被一列整數唯一確定
+
+    這列整數的個數 可以被看成是 算數域 的維數[dimension]
+
+    這一列整數就被看作是算數域中的個體
+    它決定着一個曲線系統的同倫類
+
+    一個映射類 誘導出 算數域上的一個變換
+    這個變換是線性變換 [?]
+    [? linear transformations related modular substitutions]
+
+  - 這種算數表示 可以讓我們解決一系列簡單的映射問題
+    這裏 我用這些解答 來初步把握更一般的問題
+    我只是初步使用了 算數域與其變換
+
+    我能給出 任意一個曲面的 映射類羣 的有限生成子
+    這些生成子 都是類型相似的 曲面到自身的映射
+    即 沿着確定曲線的 扭動[twists]
+    它們 與 高亏格[genus]曲面的通常表示方法
+    有簡單的關係
+
+  - 這裏給出了一個總結
+    但是 算數域的變換理論 還很不完全
+    這個方向的繼續發展 將是很重要的
+
+    當然 有了變換的公式
+    映射類羣 就有可由 線性變換 '表示'
+    而且
+    可能這種表示 將有助於從新的方面 解決
+    映射類羣的 共軛問題[the conjugacy problem]
+    這個問題是這個領域之前研究工作的主題
+
+  - 由於 預見着這種種可能性
+    目前的工作只能算是一些準備工作
+
+    作爲準備工作
+    我展示出簡單東西的細節
+    我還推導出很多已知的結果
+    它們有些是我們方法的必要基礎
+    有些作爲有用的例子
+
+* (1) 曲面的自我映射概論
+
+*** (a) 映射羣 和 映射類羣
+
+    - 映射 Φ
+
+*** (b) 不同類型的映射
+
+
+*** (c) 固定邊界的同倫
+
+*** (d) 指標[? indicatrix]
+
+* (2) the self-mappings of the one-, two-, and three-holed spheres
+* (3) special mappings of the four-holed sphere
+* (4) self-mappings of the torus and the one-holed torus
+* (5) the arithmetic field on the two- and three-holed spheres and the torus
+* (6) the arithmetic field or the curve systems on the one-holed torus
+* (7) arithmetic field on the four-holed sphere
+* (8) five-holed sphere
+* (9) generation of the mapping classes for the sphere with n holes
+* (10) generation of the mapping classes for every orientable surface

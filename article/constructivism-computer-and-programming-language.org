@@ -59,6 +59,15 @@
 
   2. We have to always care about how fast a function runs.
 
+  3. the language can be changed,
+     the rules we used to implement the language can be revised.
+     in practical always under development.
+     [a progressing dialectic]
+
+  4. One must always describe how the language is,
+     but not try to find a fixed set of axioms and rules
+     to deduce the language.
+
 * bishop's principles
 
   1. ><><><
