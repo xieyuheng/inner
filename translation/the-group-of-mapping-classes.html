@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2017-03-17 Fri 00:50 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>the group of mapping classes / 映射類羣</title>
+<meta name="generator" content="Org-mode" />
+<meta name="author" content="XIE Yuheng" />
+<link rel="stylesheet" href="../asset/css/page.css" type="text/css" media="screen" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+近死之心 莫使復陽也
+</div>
+<div id="content">
+<h1 class="title">the group of mapping classes / 映射類羣</h1>
+<div id="table-of-contents">
+<h2>overview</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org33c79a3">題解</a></li>
+<li><a href="#org47db06e">引子</a></li>
+<li><a href="#orgd7b8be7">(1) 曲面的自我映射概論</a>
+<ul>
+<li><a href="#org7308fd0">(a) 映射羣 和 映射類羣</a></li>
+<li><a href="#orgc694926">(b) 不同類型的映射</a></li>
+<li><a href="#org3fb6cb4">(c) 固定邊界的同倫</a></li>
+<li><a href="#org3102ed3">(d) 指標[? indicatrix]</a></li>
+</ul>
+</li>
+<li><a href="#orge003823">(2) the self-mappings of the one-, two-, and three-holed spheres</a></li>
+<li><a href="#orgaec6443">(3) special mappings of the four-holed sphere</a></li>
+<li><a href="#org6c26734">(4) self-mappings of the torus and the one-holed torus</a></li>
+<li><a href="#orgb91309e">(5) the arithmetic field on the two- and three-holed spheres and the torus</a></li>
+<li><a href="#orgf4ac414">(6) the arithmetic field or the curve systems on the one-holed torus</a></li>
+<li><a href="#org4e3016f">(7) arithmetic field on the four-holed sphere</a></li>
+<li><a href="#orgd9d8c5e">(8) five-holed sphere</a></li>
+<li><a href="#orgfada350">(9) generation of the mapping classes for the sphere with n holes</a></li>
+<li><a href="#org265de6c">(10) generation of the mapping classes for every orientable surface</a></li>
+</ul>
+</div>
+</div>
+<ul class="org-ul">
+<li><p>作者 Max Dehn</p><p>譯者 謝宇恆</p></li></ul>
+
+<div id="outline-container-org33c79a3" class="outline-2">
+<h2 id="org33c79a3">題解</h2>
+<div class="outline-text-2" id="text-org33c79a3">
+<ul class="org-ul">
+<li><p>Dehn 的原文爲德文</p><p>基於 Dehn 1922 年在 Breslau 的演講</p><p>發表於 1938 年</p></li>
+
+<li><p>原文由 John Stillwell 翻譯爲英文</p><p>出版於 papers on group theory and topology, 1987</p><p>本譯文轉譯自英文</p></li>
+
+<li><p>因爲是轉譯 原作者的文風一定難以保留了</p><p>因此我純粹用意譯</p><p>我任意刪改原文的敘述方式</p><p>如此一來 這裏的譯文只能看作是我自己的學習筆記了</p></li>
+
+<li><p>文中插圖只給出標號</p><p>我將在之後重新繪製的插圖 來補全文章</p></li>
+
+<li><p>記法方面</p><p><ol class="org-ol"></p><p><li>我用後綴表達式來表示函數作用與複合</li></p><p><li>並且用拉丁字母 而不用希臘字母</li></p><p><li>常常用 (&#x2026;) 來標記表達式</li></ol></p></li>
+
+<li><p>我的筆記用 [&#x2026;] 標記</p><p>成段落的筆記 用 [謝] 標記於段落開頭</p></li>
+
+<li><p>原文中的一些着重標記</p><p>通過用 [&#x2026;] 重複英文譯文來顯示</p></li>
+
+<li><p>翻譯中的疑點用 [?] 標記</p><p>並在 [? &#x2026;] 中給出疑難的部分</p><p>便於讀者指正</p></li></ul>
+</div>
+</div>
+
+<div id="outline-container-org47db06e" class="outline-2">
+<h2 id="org47db06e">引子</h2>
+<div class="outline-text-2" id="text-org47db06e">
+<ul class="org-ul">
+<li><p><p></p><p>在組合拓撲學中</p><p>拓撲概念由算數概念表示</p><p></p></p><p></p><p><p></p><p>如此 原則上 所有組合拓撲問題</p><p>都可以被劃歸爲 算數問題</p><p></p></p><p></p><p><p></p><p>然而 這種劃歸對於解決大多數問題來說 都是無用的</p><p>因爲 對應的算數問題 與已知的結論與方法 少有聯繫</p><p></p></p><p></p><p><p></p><p>當 問題中 同倫變換 被看作是非平凡的時候 尤其是如此</p><p>或者說 當考慮</p><p>不同維度中 簡單聯通的多面體 之</p><p>越發大量的 且難以想象的構造 時</p><p>情況尤其是如此</p><p></p></p><p></p><p><p></p><p>在之前的工作中</p><p>[Über kombinatorische Topologie, Acta math, 67 (1936), 123-168]</p><p>對於 二維多面體 [多邊形]</p><p>我嘗試以 容易理解的 算數的方式 來表達這些構造</p><p>我展示了 同倫問題 所給出的 算數問題 已經出離了羣倫的廣泛領域</p><p>它們關乎更一般的 難以研究的操作</p><p>這些操作的全體我稱之爲 '遊戲'</p><p></p></p></li>
+
+<li><p><p></p><p>當人們研究那些忽略了同倫變換的問題時</p><p>情況就不同了</p><p></p></p><p></p><p><p></p><p>這裏 在很多情況在 人們可以很好地利用 羣論中的結果和方法</p><p></p></p><p></p><p><p></p><p>對於流形 甚至是高維流形</p><p>龐加萊的基本羣 開啓了解決這些問題的出路</p><p></p></p><p></p><p><p></p><p>對於二維流形 最近尤其成功地發展了出了 映射理論 [theory of mappings]</p><p>即 把所有只相差一個同倫變換的映射 收集成一類</p><p>[見 (1)]</p><p></p></p></li>
+
+<li><p><p></p><p>這裏 我用 一個曲面的算數域[arithmetic field] 中的操作</p><p>來表示 曲面的映射類</p><p></p></p><p></p><p><p></p><p>這種域中的個體不能是曲面上的點</p><p>因爲一個點可以被同倫變換到任意另一個點</p><p></p></p><p></p><p><p></p><p>其實</p><p>我們用 曲面上的 曲線系統[curve system] 的同倫類</p><p>來捕捉 曲面的 映射類</p><p>我們選擇 曲線系統 的算數表示</p><p>來作爲 算數域 中的個體</p><p></p></p><p></p><p><p></p><p>一個 曲線系統</p><p>作爲 曲線系統 的同倫類 中的一個代表元</p><p>被一列整數唯一確定</p><p></p></p><p></p><p><p></p><p>這列整數的個數 可以被看成是 算數域 的維數[dimension]</p><p></p></p><p></p><p><p></p><p>這一列整數就被看作是算數域中的個體</p><p>它決定着一個曲線系統的同倫類</p><p></p></p><p></p><p><p></p><p>一個映射類 誘導出 算數域上的一個變換</p><p>這個變換是線性變換 [?]</p><p>[? linear transformations related modular substitutions]</p><p></p></p></li>
+
+<li><p><p></p><p>這種算數表示 可以讓我們解決一系列簡單的映射問題</p><p>這裏 我用這些解答 來初步把握更一般的問題</p><p>因此 我只是初步使用了 算數域與其變換</p><p></p></p><p></p><p><p></p><p>我能給出 任意一個曲面的 映射類羣 的有限生成子</p><p>這些生成子 都是類型相似的 曲面到自身的映射</p><p>即 沿着確定曲線的 扭動[twists]</p><p>它們 與 高亏格[genus]曲面的通常表示方法</p><p>有簡單的關係</p><p></p></p></li>
+
+<li><p><p></p><p>這裏給出了一個總結</p><p>但是 算數域的變換理論 還很不完全</p><p>這個方向的繼續發展 將是很重要的</p><p></p></p><p></p><p><p></p><p>當然 有了變換的公式</p><p>映射類羣 就有可由 線性變換 '表示'</p><p>而且</p><p>這種表示 可能將有助於從新的方面 解決</p><p>映射類羣的 共軛問題[the conjugacy problem]</p><p>這個問題是這個領域之前研究工作的主題</p><p></p></p></li>
+
+<li><p><p></p><p>由於 預見着這種種可能性</p><p>目前的工作只能算是一些準備工作</p><p></p></p><p></p><p><p></p><p>作爲準備工作</p><p>我展示出簡單東西的細節</p><p>我還推導出很多已知的結果</p><p>它們有些是我們方法的必要基礎</p><p>有些作爲有用的例子</p><p></p></p></li></ul>
+</div>
+</div>
+
+<div id="outline-container-orgd7b8be7" class="outline-2">
+<h2 id="orgd7b8be7">(1) 曲面的自我映射概論</h2>
+<div class="outline-text-2" id="text-orgd7b8be7">
+</div><div id="outline-container-org7308fd0" class="outline-3">
+<h3 id="org7308fd0">(a) 映射羣 和 映射類羣</h3>
+<div class="outline-text-3" id="text-org7308fd0">
+<ul class="org-ul">
+<li><p>[謝]</p><p>我是看了後面的幾個例子</p><p>才明白這裏的定義的</p></li>
+
+<li><p><p></p><p>曲面到自身的映射 m</p><p>由曲面的兩個分割[decomposition]</p><p>D1 與 D1 之間的一一對應給出</p><p>點對應點 邊對應邊 面對應面</p><p>並且要求</p><p>相對應的點 落在相對應的邊的邊界上</p><p>相對應的邊 落在相對應的面的邊界上</p><p></p></p><p></p><p><ul class="org-ul"></p><p><li><p>[謝]</p><p>設 (c : D1)</p><p>有 (c boundary m = c m boundary)</p></li></ul></p><p><p></p><p>記作 (D1 m = D2)</p><p></p></p><p></p><p><ul class="org-ul"></p><p><li><p>[謝]</p><p>下面的討論是爲了說明 如此定義的映射 如何可以做複合</p><p>複合 將成爲 映射羣中的乘法</p></li></ul></p><p><p></p><p>當 m 映 D1 到 D2 時</p><p>m 就也可以映射曲面的任意分割 D 到一個固定的分割 D'</p><p>因爲 D 可以被 D1 加細</p><p>這個更細的分割 就又可以被 m 映到 D2 的某個加細</p><p>這樣我們就得到了 m 映 任意 D 到 D'</p><p>比如 (D2 m = D3)</p><p>因此 (D1 m m = D3)</p><p>繼續複合 就得到 m 的冪[power]</p><p>如果 n 是另外一個映射 它可以作用於任意分割 因此可以作用於 D2</p><p>這樣我們就得到 (D1 m n = D2 n = D4)</p><p>如從 我們就能 複合[compose] 曲面上的映射</p><p>並且 曲面上的映射形成一個羣</p><p></p></p><p></p><p><ul class="org-ul"></p><p><li><p>[謝]</p><p>Dehn 略去了 驗證羣公理的工作</p><p>單位映射是顯然的</p><p>既然映射被定義爲了具體的一一對應 其逆也是顯然的</p></li></ul></p></li></ul>
+</div>
+</div>
+
+<div id="outline-container-orgc694926" class="outline-3">
+<h3 id="orgc694926">(b) 不同類型的映射</h3>
+</div>
+
+<div id="outline-container-org3fb6cb4" class="outline-3">
+<h3 id="org3fb6cb4">(c) 固定邊界的同倫</h3>
+</div>
+
+<div id="outline-container-org3102ed3" class="outline-3">
+<h3 id="org3102ed3">(d) 指標[? indicatrix]</h3>
+</div>
+</div>
+
+<div id="outline-container-orge003823" class="outline-2">
+<h2 id="orge003823">(2) the self-mappings of the one-, two-, and three-holed spheres</h2>
+</div>
+<div id="outline-container-orgaec6443" class="outline-2">
+<h2 id="orgaec6443">(3) special mappings of the four-holed sphere</h2>
+</div>
+<div id="outline-container-org6c26734" class="outline-2">
+<h2 id="org6c26734">(4) self-mappings of the torus and the one-holed torus</h2>
+</div>
+<div id="outline-container-orgb91309e" class="outline-2">
+<h2 id="orgb91309e">(5) the arithmetic field on the two- and three-holed spheres and the torus</h2>
+</div>
+<div id="outline-container-orgf4ac414" class="outline-2">
+<h2 id="orgf4ac414">(6) the arithmetic field or the curve systems on the one-holed torus</h2>
+</div>
+<div id="outline-container-org4e3016f" class="outline-2">
+<h2 id="org4e3016f">(7) arithmetic field on the four-holed sphere</h2>
+</div>
+<div id="outline-container-orgd9d8c5e" class="outline-2">
+<h2 id="orgd9d8c5e">(8) five-holed sphere</h2>
+</div>
+<div id="outline-container-orgfada350" class="outline-2">
+<h2 id="orgfada350">(9) generation of the mapping classes for the sphere with n holes</h2>
+</div>
+<div id="outline-container-org265de6c" class="outline-2">
+<h2 id="org265de6c">(10) generation of the mapping classes for every orientable surface</h2>
+</div>
+</div>
+<div id="postamble" class="status">
+近死之心 莫使復陽也
+</div>
+</body>
+</html>
