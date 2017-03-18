@@ -24,6 +24,17 @@
       the map is an embedding,
       B is the ambient space.
 
+    - If the embedding is to be expressed at all,
+      the sphere-3 defined as with no non-trivial path
+      will be not enough for embedding.
+
+    - Thus distinction between constructions of the same space
+      must be maintained.
+
+    - Or we must be able to intro subdivision locally.
+      for example, to intro a path in a surface,
+      which connects two point on the boundary of the surface.
+
 *** to be expressed more explictly
 
     - continuity-check
