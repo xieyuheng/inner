@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-03-19 Sun 08:09 -->
+<!-- 2017-03-19 Sun 19:38 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>the group of mapping classes / 映射類羣</title>
@@ -67,96 +67,96 @@ for the JavaScript code in this tag.
 <h2>overview</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org3df5c3f">題解</a></li>
-<li><a href="#orgcf495ab">引子</a></li>
-<li><a href="#orgac19cb3">(1) 曲面的自我映射概論</a>
+<li><a href="#org25425dc">題解</a></li>
+<li><a href="#orga1eb1de">引子</a></li>
+<li><a href="#org3eec0ee">(1) 曲面的自我映射概論</a>
 <ul>
-<li><a href="#orgcbcece">(a) 映射羣 和 映射類羣</a></li>
-<li><a href="#org6c0ca65">(b) 不同類型的映射</a></li>
-<li><a href="#org4d00f13">(c) 固定邊界的同倫</a></li>
-<li><a href="#orgc0d405b">(d) 指標[? indicatrix]</a></li>
+<li><a href="#org605abe7">(a) 映射羣 和 映射類羣</a></li>
+<li><a href="#org7475a2a">(b) 不同類型的映射</a></li>
+<li><a href="#org22f7a6e">(c) 固定邊界的同倫</a></li>
+<li><a href="#orgb04b992">(d) 指標[? indicatrix]</a></li>
 </ul>
 </li>
-<li><a href="#orgb52b7d4">(2) 一 二 三洞球面的自我映射</a>
+<li><a href="#org8daf68f">(2) 一 二 三洞球面的自我映射</a>
 <ul>
-<li><a href="#orgd937116">(a) 一洞球面</a></li>
-<li><a href="#orgdb85ecc">(b) 二洞球面</a></li>
-<li><a href="#orge4dd6a0">(c) 三洞球面</a></li>
+<li><a href="#org1230cd7">(a) 一洞球面</a></li>
+<li><a href="#orgebe3cec">(b) 二洞球面</a></li>
+<li><a href="#org795ec7e">(c) 三洞球面</a></li>
 </ul>
 </li>
-<li><a href="#orgdfd9dbb">(3) 四洞球面上的特殊映射</a></li>
-<li><a href="#orga9c4535">(4) self-mappings of the torus and the one-holed torus</a>
+<li><a href="#orgd3d54f0">(3) 四洞球面上的特殊映射</a></li>
+<li><a href="#org2050850">(4) 環面的自我映射 與 一洞環面</a>
 <ul>
-<li><a href="#org57b0b13">(a) torus</a></li>
-<li><a href="#orgda99c1a">(b) one-holed torus</a></li>
+<li><a href="#org1268d54">(a) 環面</a></li>
+<li><a href="#org4d14408">(b) 一洞環面</a></li>
 </ul>
 </li>
-<li><a href="#org7138cdf">(5) the arithmetic field on the two- and three-holed spheres and the torus</a>
+<li><a href="#org8ebae2b">(5) 二 三洞球面 和 環面上的算數域</a>
 <ul>
-<li><a href="#orgd5376fc">(a) general</a></li>
-<li><a href="#org8dd35de">(b) two-holed sphere</a></li>
-<li><a href="#org1aeeccd">(c) torus. orientation of curves</a></li>
-<li><a href="#orgf444702">(d) transformations of the arithmetic field on the torus by mapping classes. generation and relations.</a></li>
-<li><a href="#org4223c78">(e) three-holed sphere. arithmetic field. invariance under homotopic transformations</a></li>
+<li><a href="#org8f19598">(a) 曲面上的算數域 得自 曲面上的曲線系統</a></li>
+<li><a href="#org32908a3">(b) 二洞球面上的曲線系統</a></li>
+<li><a href="#orgb3902be">(c) torus. orientation of curves</a></li>
+<li><a href="#org92dd3f">(d) transformations of the arithmetic field on the torus by mapping classes. generation and relations.</a></li>
+<li><a href="#org9f5d125">(e) three-holed sphere. arithmetic field. invariance under homotopic transformations</a></li>
 </ul>
 </li>
-<li><a href="#orgb6b096a">(6) the arithmetic field or the curve systems on the one-holed torus</a>
+<li><a href="#org231aef2">(6) the arithmetic field or the curve systems on the one-holed torus</a>
 <ul>
-<li><a href="#orge85fd1f">(a) introduction of the field</a></li>
-<li><a href="#orgde6c628">(b) transformation by mappings. examples.</a></li>
-<li><a href="#org33792d2">(c) one-holed torus with fixed boundary. connection with the trefoil knot</a></li>
+<li><a href="#org81275a7">(a) introduction of the field</a></li>
+<li><a href="#org6cb1e09">(b) transformation by mappings. examples.</a></li>
+<li><a href="#org22c9ed0">(c) one-holed torus with fixed boundary. connection with the trefoil knot</a></li>
 </ul>
 </li>
-<li><a href="#orga75d31e">(7) arithmetic field on the four-holed sphere</a>
+<li><a href="#orga22b73">(7) arithmetic field on the four-holed sphere</a>
 <ul>
-<li><a href="#org3d15ec1">(a) system of closed curves on the four-holed sphere</a></li>
-<li><a href="#org50a373">(b) mappings of the four-holed sphere and the action on the arithmetic field</a></li>
-<li><a href="#orgca4a646">(c) derivation of invariants of a curve system from the arithmetic presentation</a></li>
-<li><a href="#org135d4c6">(d) orientation. examples</a></li>
-<li><a href="#org5327a47">(e) geometric presentation of the symbols. view of higher cases</a></li>
-<li><a href="#org363fff8">(f) curve systems on the four-holed sphere with endpoints on a boundary</a>
+<li><a href="#org731c313">(a) system of closed curves on the four-holed sphere</a></li>
+<li><a href="#orgf2dd2a5">(b) mappings of the four-holed sphere and the action on the arithmetic field</a></li>
+<li><a href="#org30ee447">(c) derivation of invariants of a curve system from the arithmetic presentation</a></li>
+<li><a href="#org6daa0a8">(d) orientation. examples</a></li>
+<li><a href="#org6085958">(e) geometric presentation of the symbols. view of higher cases</a></li>
+<li><a href="#org8a357b4">(f) curve systems on the four-holed sphere with endpoints on a boundary</a>
 <ul>
-<li><a href="#orge31663e">(1) normal form</a></li>
-<li><a href="#org765ba8d">(2) arithmetic field</a></li>
+<li><a href="#orgbd3775f">(1) normal form</a></li>
+<li><a href="#org84bf45">(2) arithmetic field</a></li>
 </ul>
 </li>
-<li><a href="#org382eb">(g) four-holed sphere with fixed boundaries</a>
+<li><a href="#org5cb3c98">(g) four-holed sphere with fixed boundaries</a>
 <ul>
-<li><a href="#orgf1593eb">(1) derivation of a relation</a></li>
-<li><a href="#org4380ded">(2) application to the two-holed torus with fixed boundaries</a></li>
-<li><a href="#org2f5fc7">(3) twists along the boundary of singly-bounded surfaces</a></li>
-<li><a href="#org93ca674">(4) twists along separating curves on closed or singly-bounded surfaces</a></li>
+<li><a href="#orga87c1fd">(1) derivation of a relation</a></li>
+<li><a href="#orgff35f63">(2) application to the two-holed torus with fixed boundaries</a></li>
+<li><a href="#orgf39f104">(3) twists along the boundary of singly-bounded surfaces</a></li>
+<li><a href="#orgdb3891b">(4) twists along separating curves on closed or singly-bounded surfaces</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgc9ea3ac">(8) five-holed sphere</a>
+<li><a href="#orgd593901">(8) five-holed sphere</a>
 <ul>
-<li><a href="#org505c3f2">(a) coordinate systems</a></li>
-<li><a href="#org58e57c4">(b) presentation of a system of closed curves</a></li>
-<li><a href="#org2ee162b">(c) reduction of symbols. generation of mappings</a></li>
+<li><a href="#org96cd86f">(a) coordinate systems</a></li>
+<li><a href="#orgf16424c">(b) presentation of a system of closed curves</a></li>
+<li><a href="#orge887295">(c) reduction of symbols. generation of mappings</a></li>
 </ul>
 </li>
-<li><a href="#org85b6414">(9) generation of the mapping classes for the sphere with n holes</a>
+<li><a href="#orgd9e426">(9) generation of the mapping classes for the sphere with n holes</a>
 <ul>
-<li><a href="#orgaa80370">(1) lemmas</a></li>
-<li><a href="#org7425365">(2) lemmas</a></li>
-<li><a href="#org46c97ca">(3) lemmas</a></li>
-<li><a href="#org12bc4d2">(4) lemmas</a></li>
-<li><a href="#org6277c05">(5) lemmas</a></li>
-<li><a href="#orgb532316">(6) generation with the help of complete induction</a></li>
-<li><a href="#org39992c1">(7) the five-holed sphere as an example</a></li>
-<li><a href="#org82ec550">(8) direct exhibition of generators on the basis of a cyclic ordering of boundaries. the number of generators</a></li>
+<li><a href="#org222a171">(1) lemmas</a></li>
+<li><a href="#orgcffcf36">(2) lemmas</a></li>
+<li><a href="#org6c171e0">(3) lemmas</a></li>
+<li><a href="#orgea5865b">(4) lemmas</a></li>
+<li><a href="#org8860d3a">(5) lemmas</a></li>
+<li><a href="#org41ef581">(6) generation with the help of complete induction</a></li>
+<li><a href="#org6f2a802">(7) the five-holed sphere as an example</a></li>
+<li><a href="#org42f6f85">(8) direct exhibition of generators on the basis of a cyclic ordering of boundaries. the number of generators</a></li>
 </ul>
 </li>
-<li><a href="#org3729620">(10) generation of the mapping classes for every orientable surface</a>
+<li><a href="#orgd67fc2b">(10) generation of the mapping classes for every orientable surface</a>
 <ul>
-<li><a href="#org77d9ad1">(1) lemmas</a></li>
-<li><a href="#orgd68b491">(2) lemmas</a></li>
-<li><a href="#org9434d18">(3) generation with the help of complete induction</a></li>
-<li><a href="#org8f2307c">(4) double and triple torus as examples</a></li>
-<li><a href="#orge07dc3c">(5) direct exhibition of generators on the basis of a normalrepresentation of the surfaces. the number of generators.</a></li>
-<li><a href="#org23c9956">(6) arithmetic field in the general case.</a></li>
+<li><a href="#org7f5fee3">(1) lemmas</a></li>
+<li><a href="#org14339bf">(2) lemmas</a></li>
+<li><a href="#org9c3608e">(3) generation with the help of complete induction</a></li>
+<li><a href="#orgba80691">(4) double and triple torus as examples</a></li>
+<li><a href="#org11b5f35">(5) direct exhibition of generators on the basis of a normalrepresentation of the surfaces. the number of generators.</a></li>
+<li><a href="#orgf313a96">(6) arithmetic field in the general case.</a></li>
 </ul>
 </li>
 </ul>
@@ -165,9 +165,9 @@ for the JavaScript code in this tag.
 <ul class="org-ul">
 <li><p>作者 Max Dehn</p><p>譯者 謝宇恆</p></li></ul>
 
-<div id="outline-container-org3df5c3f" class="outline-2">
-<h2 id="org3df5c3f">題解</h2>
-<div class="outline-text-2" id="text-org3df5c3f">
+<div id="outline-container-org25425dc" class="outline-2">
+<h2 id="org25425dc">題解</h2>
+<div class="outline-text-2" id="text-org25425dc">
 <ul class="org-ul">
 <li><p>Dehn 的原文爲德文</p><p>基於 Dehn 1922 年在 Breslau 的演講</p><p>發表於 1938 年</p></li>
 
@@ -189,9 +189,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgcf495ab" class="outline-2">
-<h2 id="orgcf495ab">引子</h2>
-<div class="outline-text-2" id="text-orgcf495ab">
+<div id="outline-container-orga1eb1de" class="outline-2">
+<h2 id="orga1eb1de">引子</h2>
+<div class="outline-text-2" id="text-orga1eb1de">
 <ul class="org-ul">
 <li><p><p></p><p>在組合拓撲學中</p><p>拓撲概念由算數概念表示</p><p></p></p><p></p><p><ul class="org-ul"></p><p><li><p>[謝]</p><p>這裏的 組合拓撲學 [combinatorial topology]</p><p>是 代數拓撲學 的舊稱</p><p>因此 這裏所說的 '算數概念'</p><p>可以理解爲 現在的 代數結構</p></li></ul></p><p><p></p><p>如此 原則上 所有組合拓撲問題</p><p>都可以被劃歸爲 算數問題</p><p></p></p><p></p><p><p></p><p>然而 這種劃歸對於解決大多數問題來說 都是無用的</p><p>因爲 劃歸所得的算數問題 與 已知的結論與方法 少有聯繫</p><p></p></p><p></p><p><p></p><p>當 問題中 同倫變換 被看作是非平凡的時候 尤其是如此</p><p></p></p><p><ul class="org-ul"></p><p><li><p>[謝] 之後 隨着文章展開</p><p>我們就能知道 這裏的 '非平凡' 所對應的 '平凡'</p><p>就是 用同倫等價來定義相等</p></li></ul></p><p><p></p><p>或者說</p><p>當考慮 不同維度中 簡單聯通的多面體</p><p>考慮它們 越發大量的 而且難以想象的構造 時</p><p>情況尤其是如此</p><p></p></p><p></p><p><p></p><p>在之前的工作中</p><p>[Über kombinatorische Topologie, Acta math, 67 (1936), 123-168]</p><p>對於 二維多面體 [多邊形]</p><p>我嘗試以 容易理解的 算數的方式 來表達這些構造</p><p>我展示了 同倫問題 所給出的 算數問題 已經出離了羣倫的廣泛領域</p><p>它們關乎更一般的 難以研究的操作</p><p>這些操作的全體我稱之爲 '遊戲'</p><p></p></p></li>
 
@@ -207,28 +207,28 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgac19cb3" class="outline-2">
-<h2 id="orgac19cb3">(1) 曲面的自我映射概論</h2>
-<div class="outline-text-2" id="text-orgac19cb3">
-</div><div id="outline-container-orgcbcece" class="outline-3">
-<h3 id="orgcbcece">(a) 映射羣 和 映射類羣</h3>
-<div class="outline-text-3" id="text-orgcbcece">
+<div id="outline-container-org3eec0ee" class="outline-2">
+<h2 id="org3eec0ee">(1) 曲面的自我映射概論</h2>
+<div class="outline-text-2" id="text-org3eec0ee">
+</div><div id="outline-container-org605abe7" class="outline-3">
+<h3 id="org605abe7">(a) 映射羣 和 映射類羣</h3>
+<div class="outline-text-3" id="text-org605abe7">
 <ul class="org-ul">
 <li><p><p></p><p>曲面到自身的映射 f</p><p>由曲面的兩個分割[decomposition]</p><p>D1 與 D1 之間的一一對應給出</p><p>點對應點 邊對應邊 面對應面</p><p>並且要求</p><p>相對應的點 落在相對應的邊的邊界上</p><p>相對應的邊 落在相對應的面的邊界上</p><p></p></p><p></p><p><ul class="org-ul"></p><p><li><p>[謝]</p><p>若 (c : D1)</p><p>則 (c boundary f = c f boundary)</p><p>或者記爲</p><p>((c : D1) -&gt; (c boundary f = c f boundary))</p></li></ul></p><p><p></p><p>記作 (D1 f = D2)</p><p></p></p><p></p><p><ul class="org-ul"></p><p><li><p>[謝 關於形式化]</p><p>我們也可以記錄類型 (f : (D1 -&gt; D2))</p><p>但是 其實這裏給出的信息不只是類型</p><p>因爲 分割不被當成是空間的定義</p><p>而是 分割本身就描述了映射的細節</p><p>'分割' 與 '粘合' 同義</p><p>在考慮 cell-complex 時</p><p>用 '粘合' 來構造空間</p><p>但是這裏所考慮的空間是曲面而已</p><p>曲面的分類方式是衆所周知的</p><p>只要說出 虧格 邊界 可定向性 一個曲面就確定了</p><p>因此 '粘合' 被理解爲 '分割'</p><p>不是用 '粘合' 來構造曲面</p><p>而是用 '分割' 來揭示曲面的不同對稱性</p></li></p><p></p><p><li><p>[謝]</p><p>下面的討論是爲了說明 如此定義的映射 如何可以做複合</p><p>複合 將成爲 映射羣中的乘法</p></li></ul></p><p><p></p><p>當 f 映 D1 到 D2 時</p><p>f 就也可以映射曲面的任意分割 D 到一個固定的分割 D'</p><p>因爲 D 可以被 D1 加細</p><p>這個更細的分割 就又可以被 f 映到 D2 的某個加細</p><p>這樣我們就得到了 f 映 任意 D 到 D'</p><p>比如 (D2 f = D3)</p><p>因此 (D1 f f = D3)</p><p>繼續複合 就得到 f 的冪[power]</p><p>如果 g 是另外一個映射 它可以作用於任意分割 因此可以作用於 D2</p><p>這樣我們就得到 (D1 f g = D2 g = D4)</p><p>如從 我們就能 複合[compose] 曲面上的映射</p><p>並且 曲面上的映射形成一個羣</p><p></p></p><p></p><p><ul class="org-ul"></p><p><li><p>[謝]</p><p>Dehn 略去了 驗證羣公理的工作</p><p>單位元是恆等映射 這是顯然的</p><p>之後 恆等映射[identity map] 也稱爲單位映射</p><p>既然映射被定義爲了具體的一一對應 其逆也是顯然的</p></li></ul></p><p><p></p><p>然而直接考慮這個羣是不切實際的</p><p>因爲它不是由有限個元素生成的</p><p>因此人們考慮它的商羣[quotient group]</p><p>做商就把映射分成了類</p><p></p></p><p></p><p><p></p><p>映射 f 屬於單位類[identity class]</p><p>如果 (D1 f = D2) 得自 (D1 id = D1) 的一個同倫變換</p><p>(也就是 形變[deformation])</p><p></p></p><p></p><p><p></p><p>兩個映射屬於同一類</p><p>如果 其中一個是是另一個與單位類中的變換的複合</p><p></p></p><p></p><p><p></p><p>單位類中的映射構成映射羣的正規子羣[normal subgroup]</p><p>因爲 如果 e 是單位類中的映射</p><p>(f e f {-1}) 映 (D f) 到 D 也與單位映射同倫</p><p></p></p><p></p><p><p></p><p>如此做商所得到的 映射類羣[mapping class group]</p><p>就是我們研究的主題</p><p></p></p></li></ul>
 </div>
 </div>
 
-<div id="outline-container-org6c0ca65" class="outline-3">
-<h3 id="org6c0ca65">(b) 不同類型的映射</h3>
-<div class="outline-text-3" id="text-org6c0ca65">
+<div id="outline-container-org7475a2a" class="outline-3">
+<h3 id="org7475a2a">(b) 不同類型的映射</h3>
+<div class="outline-text-3" id="text-org7475a2a">
 <ul class="org-ul">
 <li><p><p></p><p>一個非單位映射[的冪]</p><p>可能把某些分割映到自身</p><p>此時 說這個分割 許可[admits] 一個非單位映射</p><p>這個映射總是有限階的[of finite order]</p><p>即 它的冪 不只是屬於單位類</p><p>而且這個冪本身就是單位映射</p><p></p></p><p></p><p><p></p><p>其他不屬於這類的映射是無限階的</p><p>它們冪不屬於單位類</p><p></p></p><p></p><p><p></p><p>最後還有可能有有限階的映射</p><p>其 n 次冪 屬於單位類</p><p>但是這個有限階映射的類中</p><p>沒有映射的 n 次冪 等於單位映射</p><p>即 (f {n} = e) 其中 e 是一個形變 [形變屬於單位類]</p><p>但是 對於任意形變 e'</p><p>((e' f) {n}) 都不等於 單位映射</p><p></p></p><p></p><p><p></p><p>在之後的章節中</p><p>我們將給出 前兩類映射的例子</p><p></p></p><p></p><p><p></p><p>第三類映射是否存在尚且存疑</p><p></p></p><p></p><p><ul class="org-ul"></p><p><li><p>[英譯者註]</p><p>Nielsen 證明了第三類映射不存在</p><p>見 Acta math. 75 (1942), 23-115.</p></li></ul></p></li></ul>
 </div>
 </div>
 
-<div id="outline-container-org4d00f13" class="outline-3">
-<h3 id="org4d00f13">(c) 固定邊界的同倫</h3>
-<div class="outline-text-3" id="text-org4d00f13">
+<div id="outline-container-org22f7a6e" class="outline-3">
+<h3 id="org22f7a6e">(c) 固定邊界的同倫</h3>
+<div class="outline-text-3" id="text-org22f7a6e">
 <ul class="org-ul">
 <li><p><p></p><p>對於有邊界的曲面</p><p>我們可以以不同的方式來選擇 單位類</p><p></p></p><p></p><p><p></p><p>選取單位類爲與單位映射同倫的映射 而不在乎邊界</p><p>或者 要求單位類中的映射同倫與單位映射的過程中 保持邊界不變</p><p></p></p><p></p><p><p></p><p>者第二種 更小的 單位類</p><p>也是映射羣的正規子羣</p><p>當使用它來做商的時候</p><p>我們必須限制與映射羣中保持邊界不變的映射</p><p></p></p><p></p><p><p></p><p>與一邊的分類相比</p><p>這些映射 被保持邊界不變的單位類 分得更細</p><p></p></p></li>
 
@@ -236,33 +236,33 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgc0d405b" class="outline-3">
-<h3 id="orgc0d405b">(d) 指標[? indicatrix]</h3>
-<div class="outline-text-3" id="text-orgc0d405b">
+<div id="outline-container-orgb04b992" class="outline-3">
+<h3 id="orgb04b992">(d) 指標[? indicatrix]</h3>
+<div class="outline-text-3" id="text-orgb04b992">
 <ul class="org-ul">
 <li><p><p></p><p>一個映射 映有向曲線到另一個有確定定向的曲線</p><p></p></p><p></p><p><p></p><p>一個映射 要麼顛倒 要麼保留 indicatrix</p><p></p></p><p></p><p><p></p><p>保持 indicatrix 的映射類羣 是原映射類羣的正規子羣</p><p></p></p><p></p><p><p></p><p>之後 除非有個別聲明</p><p>映射都假設爲保持 indicatrix</p><p>[indicatrix preserving] [orientation preserving]</p><p></p></p></li></ul>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgb52b7d4" class="outline-2">
-<h2 id="orgb52b7d4">(2) 一 二 三洞球面的自我映射</h2>
-<div class="outline-text-2" id="text-orgb52b7d4">
+<div id="outline-container-org8daf68f" class="outline-2">
+<h2 id="org8daf68f">(2) 一 二 三洞球面的自我映射</h2>
+<div class="outline-text-2" id="text-org8daf68f">
 <ul class="org-ul">
 <li><p>我們稱 帶有 n 個洞的球面</p><p>爲 n 洞球面</p><p>記爲 Ln</p></li></ul>
 </div>
 
-<div id="outline-container-orgd937116" class="outline-3">
-<h3 id="orgd937116">(a) 一洞球面</h3>
-<div class="outline-text-3" id="text-orgd937116">
+<div id="outline-container-org1230cd7" class="outline-3">
+<h3 id="org1230cd7">(a) 一洞球面</h3>
+<div class="outline-text-3" id="text-org1230cd7">
 <ul class="org-ul">
 <li><p><p></p><p>考慮曲面上的算數域之前</p><p>先考慮一些簡單的映射問題 是有用的</p><p></p></p><p></p><p><p></p><p>一洞球面 即圓盤</p><p>其映射類羣是單位羣</p><p></p></p><p></p><p><p></p><p>不論固定邊界與否</p><p>所有映射都屬於單位類</p><p></p></p><p></p><p><p></p><p>其證明就是</p><p>曲面的一個分割</p><p>總是可以被相繼的同倫形變到另一個分割</p><p></p></p></li></ul>
 </div>
 </div>
 
-<div id="outline-container-orgdb85ecc" class="outline-3">
-<h3 id="orgdb85ecc">(b) 二洞球面</h3>
-<div class="outline-text-3" id="text-orgdb85ecc">
+<div id="outline-container-orgebe3cec" class="outline-3">
+<h3 id="orgebe3cec">(b) 二洞球面</h3>
+<div class="outline-text-3" id="text-orgebe3cec">
 <ul class="org-ul">
 <li><p><p></p><p>二洞球面 即圓柱</p><p>其映射類羣 是二階羣</p><p>其中的非單位映射就是交換邊界</p><p></p></p><p></p><p><p></p><p>如果要求不能交換邊界</p><p>但是邊界上的點不固定</p><p>其映射類羣 是單位羣</p><p></p></p><p></p><p><p></p><p>保持邊界不變</p><p>其映射類羣 是無限階循環羣</p><p>這是因爲</p><p>有無限多不同的方式</p><p>把一個邊界上的點 y1 連接到另一個邊界上的點 y2</p><p>(見 圖1 中的 (y1 y y2) 和 (y1 z y2))</p><p></p></p><p></p><p><ul class="org-ul"></p><p><li><p><p></p><p>[謝]</p><p>上面句話中的 '因爲'</p><p>隱藏了 Dehn 劃歸問題的方法</p><p>這個劃歸法就是</p><p>利用嵌入在二洞球面上的線段</p><p>來把二洞球面的映射問題 轉化爲 一洞球面的映射問題</p><p></p></p><p></p><p><p></p><p>如果確定了 二洞球面 兩個邊界之間的一條路</p><p>沿着這條路裁開 二洞球面 就成了 一洞球面</p><p></p></p><p></p><p><p></p><p>因此</p><p>二洞球面上 兩個邊界之間的路</p><p>外加 一洞球面上的一個自我映射</p><p>就給出了 二洞球面上的一個自我映射</p><p></p></p><p></p><p><p></p><p>並且</p><p>二洞球面上的所有自我映射</p><p>都可以如此構造出來</p><p></p></p><p></p><p><p></p><p>這個劃歸的方法 在這裏沒有明顯提及</p><p>可能是因爲這裏的映射非常直觀</p><p>但是在處理 三洞球面的時候 Dehn 明顯地指出了這個方法</p><p></p></p></li></ul></p><p><p></p><p>[&gt;&lt; 圖1]</p><p></p></p><p></p><p><p></p><p>圖1 展示了一個映射</p><p>這個映射可以生成 上面所說的無限階循環羣</p><p>映射由圓柱的兩個分割之間的如下一一對應定義</p><p>分割 D1 爲多面體 (z1 r1 y1 y y2 r2 z2 z) 和 (z1 s1 y1 y y2 s2 z2 z)</p><p>分割 D2 爲多面體 (z1 r1 y1 z y2 r2 z2 y) 和 (z1 s1 y1 z y2 s2 z2 y)</p><p>如下的對應 保持邊界不變 只是交換了點 y 與 z</p><p>(z1 r1 y1 y y2 r2 z2 z) 對 (z1 r1 y1 z y2 r2 z2 y)</p><p>(z1 s1 y1 y y2 s2 z2 z) 對 (z1 s1 y1 z y2 s2 z2 y)</p><p></p></p><p></p><p><p></p><p>我們稱這個映射爲 扭動[twist]</p><p>當邊界固定的時候 這個扭動不是同倫形變</p><p></p></p><p></p><p><p></p><p>如果不保持邊界不變 連接邊界的路 (y1 y y2)</p><p>與任意 連接邊界的路 (y1' y' y2') 同倫</p><p></p></p><p></p><p><p></p><p>如果保持邊界不變 (y1 y y2) 和 (y1 z y2) 就不同倫</p><p>並且有無窮多不同倫的路</p><p>確定了 正向 或 反向 繞邊界的次數</p><p>就在同倫意義上 確定了這樣一個路</p><p>[也就是說 這裏的算數域 就是整數的加法羣]</p><p></p></p><p></p><p><p></p><p>[略 至本段末]</p><p></p></p><p></p><p><ul class="org-ul"></p><p><li><p>[謝]</p><p>之後給出了 構造 映射類羣 中的兩個元素 之複合 的方式</p><p>即 因爲 考慮的是 同倫等價類</p><p>所以 我們可以用 辮子理論[braid theory] 來理解這個複合</p><p>注意</p><p>映射羣中的函數複合</p><p>在映射類羣中 被處理成了 非常簡單的構造</p><p>這就是同倫等價的力量</p></li></ul></p></li>
 
@@ -272,9 +272,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orge4dd6a0" class="outline-3">
-<h3 id="orge4dd6a0">(c) 三洞球面</h3>
-<div class="outline-text-3" id="text-orge4dd6a0">
+<div id="outline-container-org795ec7e" class="outline-3">
+<h3 id="org795ec7e">(c) 三洞球面</h3>
+<div class="outline-text-3" id="text-org795ec7e">
 <ul class="org-ul">
 <li><p>三洞球面 L3</p><p>其映射類羣 是三個邊界的對稱羣[symmetric group] [即 所有置換形成的羣]</p><p>[這與 MAGNUS, Math. Ann. 109. 中的結果相一致]</p></li>
 
@@ -291,157 +291,157 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgdfd9dbb" class="outline-2">
-<h2 id="orgdfd9dbb">(3) 四洞球面上的特殊映射</h2>
+<div id="outline-container-orgd3d54f0" class="outline-2">
+<h2 id="orgd3d54f0">(3) 四洞球面上的特殊映射</h2>
 </div>
-<div id="outline-container-orga9c4535" class="outline-2">
-<h2 id="orga9c4535">(4) self-mappings of the torus and the one-holed torus</h2>
-<div class="outline-text-2" id="text-orga9c4535">
-</div><div id="outline-container-org57b0b13" class="outline-3">
-<h3 id="org57b0b13">(a) torus</h3>
+<div id="outline-container-org2050850" class="outline-2">
+<h2 id="org2050850">(4) 環面的自我映射 與 一洞環面</h2>
+<div class="outline-text-2" id="text-org2050850">
+</div><div id="outline-container-org1268d54" class="outline-3">
+<h3 id="org1268d54">(a) 環面</h3>
 </div>
-<div id="outline-container-orgda99c1a" class="outline-3">
-<h3 id="orgda99c1a">(b) one-holed torus</h3>
-</div>
-</div>
-<div id="outline-container-org7138cdf" class="outline-2">
-<h2 id="org7138cdf">(5) the arithmetic field on the two- and three-holed spheres and the torus</h2>
-<div class="outline-text-2" id="text-org7138cdf">
-</div><div id="outline-container-orgd5376fc" class="outline-3">
-<h3 id="orgd5376fc">(a) general</h3>
-</div>
-<div id="outline-container-org8dd35de" class="outline-3">
-<h3 id="org8dd35de">(b) two-holed sphere</h3>
-</div>
-<div id="outline-container-org1aeeccd" class="outline-3">
-<h3 id="org1aeeccd">(c) torus. orientation of curves</h3>
-</div>
-<div id="outline-container-orgf444702" class="outline-3">
-<h3 id="orgf444702">(d) transformations of the arithmetic field on the torus by mapping classes. generation and relations.</h3>
-</div>
-<div id="outline-container-org4223c78" class="outline-3">
-<h3 id="org4223c78">(e) three-holed sphere. arithmetic field. invariance under homotopic transformations</h3>
+<div id="outline-container-org4d14408" class="outline-3">
+<h3 id="org4d14408">(b) 一洞環面</h3>
 </div>
 </div>
-<div id="outline-container-orgb6b096a" class="outline-2">
-<h2 id="orgb6b096a">(6) the arithmetic field or the curve systems on the one-holed torus</h2>
-<div class="outline-text-2" id="text-orgb6b096a">
-</div><div id="outline-container-orge85fd1f" class="outline-3">
-<h3 id="orge85fd1f">(a) introduction of the field</h3>
+<div id="outline-container-org8ebae2b" class="outline-2">
+<h2 id="org8ebae2b">(5) 二 三洞球面 和 環面上的算數域</h2>
+<div class="outline-text-2" id="text-org8ebae2b">
+</div><div id="outline-container-org8f19598" class="outline-3">
+<h3 id="org8f19598">(a) 曲面上的算數域 得自 曲面上的曲線系統</h3>
 </div>
-<div id="outline-container-orgde6c628" class="outline-3">
-<h3 id="orgde6c628">(b) transformation by mappings. examples.</h3>
+<div id="outline-container-org32908a3" class="outline-3">
+<h3 id="org32908a3">(b) 二洞球面上的曲線系統</h3>
 </div>
-<div id="outline-container-org33792d2" class="outline-3">
-<h3 id="org33792d2">(c) one-holed torus with fixed boundary. connection with the trefoil knot</h3>
+<div id="outline-container-orgb3902be" class="outline-3">
+<h3 id="orgb3902be">(c) torus. orientation of curves</h3>
 </div>
+<div id="outline-container-org92dd3f" class="outline-3">
+<h3 id="org92dd3f">(d) transformations of the arithmetic field on the torus by mapping classes. generation and relations.</h3>
 </div>
-<div id="outline-container-orga75d31e" class="outline-2">
-<h2 id="orga75d31e">(7) arithmetic field on the four-holed sphere</h2>
-<div class="outline-text-2" id="text-orga75d31e">
-</div><div id="outline-container-org3d15ec1" class="outline-3">
-<h3 id="org3d15ec1">(a) system of closed curves on the four-holed sphere</h3>
-</div>
-<div id="outline-container-org50a373" class="outline-3">
-<h3 id="org50a373">(b) mappings of the four-holed sphere and the action on the arithmetic field</h3>
-</div>
-<div id="outline-container-orgca4a646" class="outline-3">
-<h3 id="orgca4a646">(c) derivation of invariants of a curve system from the arithmetic presentation</h3>
-</div>
-<div id="outline-container-org135d4c6" class="outline-3">
-<h3 id="org135d4c6">(d) orientation. examples</h3>
-</div>
-<div id="outline-container-org5327a47" class="outline-3">
-<h3 id="org5327a47">(e) geometric presentation of the symbols. view of higher cases</h3>
-</div>
-<div id="outline-container-org363fff8" class="outline-3">
-<h3 id="org363fff8">(f) curve systems on the four-holed sphere with endpoints on a boundary</h3>
-<div class="outline-text-3" id="text-org363fff8">
-</div><div id="outline-container-orge31663e" class="outline-4">
-<h4 id="orge31663e">(1) normal form</h4>
-</div>
-<div id="outline-container-org765ba8d" class="outline-4">
-<h4 id="org765ba8d">(2) arithmetic field</h4>
+<div id="outline-container-org9f5d125" class="outline-3">
+<h3 id="org9f5d125">(e) three-holed sphere. arithmetic field. invariance under homotopic transformations</h3>
 </div>
 </div>
-<div id="outline-container-org382eb" class="outline-3">
-<h3 id="org382eb">(g) four-holed sphere with fixed boundaries</h3>
-<div class="outline-text-3" id="text-org382eb">
-</div><div id="outline-container-orgf1593eb" class="outline-4">
-<h4 id="orgf1593eb">(1) derivation of a relation</h4>
+<div id="outline-container-org231aef2" class="outline-2">
+<h2 id="org231aef2">(6) the arithmetic field or the curve systems on the one-holed torus</h2>
+<div class="outline-text-2" id="text-org231aef2">
+</div><div id="outline-container-org81275a7" class="outline-3">
+<h3 id="org81275a7">(a) introduction of the field</h3>
 </div>
-<div id="outline-container-org4380ded" class="outline-4">
-<h4 id="org4380ded">(2) application to the two-holed torus with fixed boundaries</h4>
+<div id="outline-container-org6cb1e09" class="outline-3">
+<h3 id="org6cb1e09">(b) transformation by mappings. examples.</h3>
 </div>
-<div id="outline-container-org2f5fc7" class="outline-4">
-<h4 id="org2f5fc7">(3) twists along the boundary of singly-bounded surfaces</h4>
-</div>
-<div id="outline-container-org93ca674" class="outline-4">
-<h4 id="org93ca674">(4) twists along separating curves on closed or singly-bounded surfaces</h4>
+<div id="outline-container-org22c9ed0" class="outline-3">
+<h3 id="org22c9ed0">(c) one-holed torus with fixed boundary. connection with the trefoil knot</h3>
 </div>
 </div>
+<div id="outline-container-orga22b73" class="outline-2">
+<h2 id="orga22b73">(7) arithmetic field on the four-holed sphere</h2>
+<div class="outline-text-2" id="text-orga22b73">
+</div><div id="outline-container-org731c313" class="outline-3">
+<h3 id="org731c313">(a) system of closed curves on the four-holed sphere</h3>
 </div>
-<div id="outline-container-orgc9ea3ac" class="outline-2">
-<h2 id="orgc9ea3ac">(8) five-holed sphere</h2>
-<div class="outline-text-2" id="text-orgc9ea3ac">
-</div><div id="outline-container-org505c3f2" class="outline-3">
-<h3 id="org505c3f2">(a) coordinate systems</h3>
+<div id="outline-container-orgf2dd2a5" class="outline-3">
+<h3 id="orgf2dd2a5">(b) mappings of the four-holed sphere and the action on the arithmetic field</h3>
 </div>
-<div id="outline-container-org58e57c4" class="outline-3">
-<h3 id="org58e57c4">(b) presentation of a system of closed curves</h3>
+<div id="outline-container-org30ee447" class="outline-3">
+<h3 id="org30ee447">(c) derivation of invariants of a curve system from the arithmetic presentation</h3>
 </div>
-<div id="outline-container-org2ee162b" class="outline-3">
-<h3 id="org2ee162b">(c) reduction of symbols. generation of mappings</h3>
+<div id="outline-container-org6daa0a8" class="outline-3">
+<h3 id="org6daa0a8">(d) orientation. examples</h3>
 </div>
+<div id="outline-container-org6085958" class="outline-3">
+<h3 id="org6085958">(e) geometric presentation of the symbols. view of higher cases</h3>
 </div>
-<div id="outline-container-org85b6414" class="outline-2">
-<h2 id="org85b6414">(9) generation of the mapping classes for the sphere with n holes</h2>
-<div class="outline-text-2" id="text-org85b6414">
-</div><div id="outline-container-orgaa80370" class="outline-3">
-<h3 id="orgaa80370">(1) lemmas</h3>
+<div id="outline-container-org8a357b4" class="outline-3">
+<h3 id="org8a357b4">(f) curve systems on the four-holed sphere with endpoints on a boundary</h3>
+<div class="outline-text-3" id="text-org8a357b4">
+</div><div id="outline-container-orgbd3775f" class="outline-4">
+<h4 id="orgbd3775f">(1) normal form</h4>
 </div>
-<div id="outline-container-org7425365" class="outline-3">
-<h3 id="org7425365">(2) lemmas</h3>
-</div>
-<div id="outline-container-org46c97ca" class="outline-3">
-<h3 id="org46c97ca">(3) lemmas</h3>
-</div>
-<div id="outline-container-org12bc4d2" class="outline-3">
-<h3 id="org12bc4d2">(4) lemmas</h3>
-</div>
-<div id="outline-container-org6277c05" class="outline-3">
-<h3 id="org6277c05">(5) lemmas</h3>
-</div>
-<div id="outline-container-orgb532316" class="outline-3">
-<h3 id="orgb532316">(6) generation with the help of complete induction</h3>
-</div>
-<div id="outline-container-org39992c1" class="outline-3">
-<h3 id="org39992c1">(7) the five-holed sphere as an example</h3>
-</div>
-<div id="outline-container-org82ec550" class="outline-3">
-<h3 id="org82ec550">(8) direct exhibition of generators on the basis of a cyclic ordering of boundaries. the number of generators</h3>
+<div id="outline-container-org84bf45" class="outline-4">
+<h4 id="org84bf45">(2) arithmetic field</h4>
 </div>
 </div>
-<div id="outline-container-org3729620" class="outline-2">
-<h2 id="org3729620">(10) generation of the mapping classes for every orientable surface</h2>
-<div class="outline-text-2" id="text-org3729620">
-</div><div id="outline-container-org77d9ad1" class="outline-3">
-<h3 id="org77d9ad1">(1) lemmas</h3>
+<div id="outline-container-org5cb3c98" class="outline-3">
+<h3 id="org5cb3c98">(g) four-holed sphere with fixed boundaries</h3>
+<div class="outline-text-3" id="text-org5cb3c98">
+</div><div id="outline-container-orga87c1fd" class="outline-4">
+<h4 id="orga87c1fd">(1) derivation of a relation</h4>
 </div>
-<div id="outline-container-orgd68b491" class="outline-3">
-<h3 id="orgd68b491">(2) lemmas</h3>
+<div id="outline-container-orgff35f63" class="outline-4">
+<h4 id="orgff35f63">(2) application to the two-holed torus with fixed boundaries</h4>
 </div>
-<div id="outline-container-org9434d18" class="outline-3">
-<h3 id="org9434d18">(3) generation with the help of complete induction</h3>
+<div id="outline-container-orgf39f104" class="outline-4">
+<h4 id="orgf39f104">(3) twists along the boundary of singly-bounded surfaces</h4>
 </div>
-<div id="outline-container-org8f2307c" class="outline-3">
-<h3 id="org8f2307c">(4) double and triple torus as examples</h3>
+<div id="outline-container-orgdb3891b" class="outline-4">
+<h4 id="orgdb3891b">(4) twists along separating curves on closed or singly-bounded surfaces</h4>
 </div>
-<div id="outline-container-orge07dc3c" class="outline-3">
-<h3 id="orge07dc3c">(5) direct exhibition of generators on the basis of a normalrepresentation of the surfaces. the number of generators.</h3>
 </div>
-<div id="outline-container-org23c9956" class="outline-3">
-<h3 id="org23c9956">(6) arithmetic field in the general case.</h3>
+</div>
+<div id="outline-container-orgd593901" class="outline-2">
+<h2 id="orgd593901">(8) five-holed sphere</h2>
+<div class="outline-text-2" id="text-orgd593901">
+</div><div id="outline-container-org96cd86f" class="outline-3">
+<h3 id="org96cd86f">(a) coordinate systems</h3>
+</div>
+<div id="outline-container-orgf16424c" class="outline-3">
+<h3 id="orgf16424c">(b) presentation of a system of closed curves</h3>
+</div>
+<div id="outline-container-orge887295" class="outline-3">
+<h3 id="orge887295">(c) reduction of symbols. generation of mappings</h3>
+</div>
+</div>
+<div id="outline-container-orgd9e426" class="outline-2">
+<h2 id="orgd9e426">(9) generation of the mapping classes for the sphere with n holes</h2>
+<div class="outline-text-2" id="text-orgd9e426">
+</div><div id="outline-container-org222a171" class="outline-3">
+<h3 id="org222a171">(1) lemmas</h3>
+</div>
+<div id="outline-container-orgcffcf36" class="outline-3">
+<h3 id="orgcffcf36">(2) lemmas</h3>
+</div>
+<div id="outline-container-org6c171e0" class="outline-3">
+<h3 id="org6c171e0">(3) lemmas</h3>
+</div>
+<div id="outline-container-orgea5865b" class="outline-3">
+<h3 id="orgea5865b">(4) lemmas</h3>
+</div>
+<div id="outline-container-org8860d3a" class="outline-3">
+<h3 id="org8860d3a">(5) lemmas</h3>
+</div>
+<div id="outline-container-org41ef581" class="outline-3">
+<h3 id="org41ef581">(6) generation with the help of complete induction</h3>
+</div>
+<div id="outline-container-org6f2a802" class="outline-3">
+<h3 id="org6f2a802">(7) the five-holed sphere as an example</h3>
+</div>
+<div id="outline-container-org42f6f85" class="outline-3">
+<h3 id="org42f6f85">(8) direct exhibition of generators on the basis of a cyclic ordering of boundaries. the number of generators</h3>
+</div>
+</div>
+<div id="outline-container-orgd67fc2b" class="outline-2">
+<h2 id="orgd67fc2b">(10) generation of the mapping classes for every orientable surface</h2>
+<div class="outline-text-2" id="text-orgd67fc2b">
+</div><div id="outline-container-org7f5fee3" class="outline-3">
+<h3 id="org7f5fee3">(1) lemmas</h3>
+</div>
+<div id="outline-container-org14339bf" class="outline-3">
+<h3 id="org14339bf">(2) lemmas</h3>
+</div>
+<div id="outline-container-org9c3608e" class="outline-3">
+<h3 id="org9c3608e">(3) generation with the help of complete induction</h3>
+</div>
+<div id="outline-container-orgba80691" class="outline-3">
+<h3 id="orgba80691">(4) double and triple torus as examples</h3>
+</div>
+<div id="outline-container-org11b5f35" class="outline-3">
+<h3 id="org11b5f35">(5) direct exhibition of generators on the basis of a normalrepresentation of the surfaces. the number of generators.</h3>
+</div>
+<div id="outline-container-orgf313a96" class="outline-3">
+<h3 id="orgf313a96">(6) arithmetic field in the general case.</h3>
 </div>
 </div>
 </div>

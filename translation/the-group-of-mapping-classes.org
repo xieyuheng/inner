@@ -575,12 +575,12 @@
       是由 t1 t2 t3 生成的自由阿貝爾羣
 
 * (3) 四洞球面上的特殊映射
-* (4) self-mappings of the torus and the one-holed torus
-*** (a) torus
-*** (b) one-holed torus
-* (5) the arithmetic field on the two- and three-holed spheres and the torus
-*** (a) general
-*** (b) two-holed sphere
+* (4) 環面的自我映射 與 一洞環面
+*** (a) 環面
+*** (b) 一洞環面
+* (5) 二 三洞球面 和 環面上的算數域
+*** (a) 曲面上的算數域 得自 曲面上的曲線系統
+*** (b) 二洞球面上的曲線系統
 *** (c) torus. orientation of curves
 *** (d) transformations of the arithmetic field on the torus by mapping classes. generation and relations.
 *** (e) three-holed sphere. arithmetic field. invariance under homotopic transformations
