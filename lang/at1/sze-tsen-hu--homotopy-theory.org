@@ -11,7 +11,7 @@
 *** 1 introduction
 
     > There is a general type of topological problem
-    > which will be called theextension problem.
+    > which will be called the extension problem.
     > One of the principal objectives of the book is to show that
     > this problem is fundamental in topology.
     > It will be shown that many theorems of topology
@@ -237,7 +237,7 @@
 
     - the classical approach is to
       set up the topological structure of cellular polytopy [CW complex].
-       maybe at1 should act at higher level of homotopical structure
+      1. maybe at1 should act at higher level of homotopical structure
          instead of topological structure.
       2. maybe at1 should maintain the ability to handle topological structure.
 
