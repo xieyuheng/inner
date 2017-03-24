@@ -29,6 +29,9 @@
 
 * language design
 
+  - at1 -- a language for algebraic topology
+    [[./lang/at1/at1.html][design note]]
+
   - (todo) [[http://xieyuheng.github.io/logic1][logic1]] -- a prototype logic language with type system
 
   - [[http://xieyuheng.github.io/jojo][jojo]] -- a low-level untyped language
