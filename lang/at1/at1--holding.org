@@ -2,9 +2,11 @@
 
 *** leaning path
 
-    - fiber-space -> hopf fibration ->
+    - fiber-space -> hopf-fibration ->
       cutting-and-regluing -> dehn-surgery -> lens-space ->
-      thurston's teach -> hyperbolic geometry
+      thurston's teach -> hyperbolic geometry -> projective geometry
+
+    - hopf-fibration -> GA and SO(3) -> matrix group
 
 *** about classical construction
 
@@ -174,67 +176,6 @@
     而是要給出一種離散化的黎曼度量
     - 注意 manifold 如何使得 黎曼度量 成爲可能
 
-* >< primitive space v.s. compound space
-
-  - compound space
-    1. product space
-    2. indexed space
-
-  - a space is depicted by its parts and the boundarys of these parts.
-    for example,
-    we have rule for identifying parts of a product space and their boundarys.
-
-  - there can be many way by which we can compose new spaces,
-    each of such way must shows what is the parts of the space,
-    and what is the boundarys of the parts.
-
-  - ><><><
-    rule for indexed space
-    cellular ?
-
-* the rule of product-space
-
-  - it is assumed that the (+ ...) [the glue]
-    in the rule is always not ambiguous.
-    but I need more examples to be sure about this.
-
-  - Suppose the glue in (1 ...) is always explict,
-    and the (+ ...) in the boundary rule is strict to position.
-
-  #+begin_src scheme
-  ;; [infix]
-  ;; the rule
-  (A * B) f : (boundary (A * B)) f
-  (boundary (A * B)) = (((boundary A) * B) + (A * (boundary B)))
-  ;; example of the rule
-  (i01 * i0) f : (0 (i0 * i0) f (i1 * i0) f)
-  (i1 * i01) f : (0 (i1 * i0) f (i1 * i1) f)
-  (i01 * i1) f : (0 (i0 * i1) f (i1 * i1) f)
-  (i0 * i01) f : (0 (i0 * i0) f (i0 * i1) f)
-  (i01 * i01) f : (1 (i01 * i0) f (i1 * i01) f
-                     (i01 * i1) rev f (i0 * i01) rev f)
-
-  ;; [prefix]
-  ;; the rule
-  (* A B) f : (boundary (* A B)) f
-  (boundary (* A B)) = (+ (* (boundary A) B) (* A (boundary B)))
-  ;; example of the rule
-  (* i01 i0) f : (0 (* i0 i0) f (* i1 i0) f)
-  (* i1 i01) f : (0 (* i1 i0) f (* i1 i1) f)
-  (* i01 i1) f : (0 (* i0 i1) f (* i1 i1) f)
-  (* i0 i01) f : (0 (* i0 i0) f (* i0 i1) f)
-  (* i01 i01) f : (1 (* i01 i0) f (* i1 i01) f
-                     (* i01 i1) rev f (* i0 i01) rev f)
-  #+end_src
-
-* subspace relation
-
-  - The subspace relation between spaces is encoded by parts.
-
-* >< extension-problem of partial map defined on subspace
-
-* >< extension-problem and retraction-problem
-
 * >< indexed-space
 
 *** note
@@ -247,6 +188,10 @@
     - Note that,
       if the indexing is to be viewed as a map,
       it would be a level-up map.
+
+    - ><><><
+      rule for indexed space
+      cellular ?
 
 *** >< about 'I'
 
@@ -272,48 +217,6 @@
   - with the method of path-as-function
     we can define homotopy between pathes by equality of functions
     (f1 ~ f2)
-
-* I
-
-  #+begin_src scheme
-  (def I
-    (type space
-      i0 i1 (-1 <>)
-      i01 (0 i0 i1)))
-
-  (def f
-    (lambda (-> (* I I) X)
-      (with (-> (* (-1 I) (-1 I)) (-1 X))
-        (-> (* i0 i0) ...)
-        (-> (* i0 i1) ...)
-        (-> (* i1 i0) ...)
-        (-> (* i1 i1) ...))
-      (with (-> (* (-1 I) %:i (0 i0 i1))
-                (0 (* :i i0) <>
-                   (* :i i1) <>))
-        (-> (* i0 (1 i01)) ...)
-        (-> (* i1 (1 i01)) ...))
-      (with (-> (* (0 i0 i1) (-1 I) %:i)
-                (0 (* i0 (1 :i)) <>
-                   (* i1 (1 :i)) <>))
-        (-> (* (1 i01) i0) ...)
-        (-> (* (1 i01) i1) ...))
-      (with (-> (* (0 i0 i1) %:p0
-                   (0 i0 i1) %:p1)
-                (1 (* (1 :p0) i0) <>
-                   (* i1 (1 :p1)) <>
-                   (* (1 :p0) i1) <> rev
-                   (* i0 (1 :p1)) <> rev)))
-      ;; product 的各個部分 之邊界 所生成的 函數值
-      ;; 想要融合成一個 封閉的圖形 其方式可能總是唯一的
-      ;; 如果我允許 (1 ...) 內構造出不聯通的圖形
-      ;; 那麼我可能就有機會描述出來這種唯一可能
-      (note (1 (* (1 :p0) i0) <>
-               (* (1 :p0) i1) <> rev
-               (1 (* i0 (1 :p1)) <>
-                  (* i1 (1 :p1)) <> rev) rev))
-      (-> (* (1 i01) (1 i01)) ...)))
-  #+end_src
 
 * (bool-suspend ~> sphere-1)
 

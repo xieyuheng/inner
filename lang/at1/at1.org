@@ -1,266 +1,364 @@
+#+HTML_HEAD: <link rel="stylesheet" href="../../asset/css/page.css" type="text/css" media="screen" />
 #+title: algebraic-topology-1
 
 * intro
 
-  1. I will show how to design and implement a language
-     to formalize and machinalize
-     a little part of algebraic topology.
+  - I will show how to design and implement a language
+    to formalize and machinalize
+    a little part of algebraic topology.
 
-  2. I call this prototype 'at1',
-     which is an abbreviation of 'algebraic-topology-1'.
+  - I call this prototype 'at1',
+    which is an abbreviation of 'algebraic-topology-1'.
 
-  3. [advice for reader]
-     If you know how to implement an interpreter,
-     try to imagine how you would implement this language
-     by directed graph processing.
-
-* summary of principles
-
-  1. construct by attaching boundary
-
-  2. gluing by named common boundary
+  - [advice for reader]
+    If you know how to implement an interpreter,
+    try to imagine how you would implement this language
+    by directed graph processing.
 
 * simple-space
 
-  1. In a language, we always have primitive elements,
-     and many ways to compose elements to new compound element,
-     also many ways to derive new element from old one.
+  - In a language, we always have primitive elements,
+    and many ways to compose elements to new compound element,
+    also many ways to derive new element from old one.
 
-  2. Here, I describe a simple way to construct spaces,
-     so constructed spaces will be called simple-spaces,
-     which constitute the first kind of primitive spaces in my language.
+  - Here, I describe a simple way to construct spaces,
+    so constructed spaces will be called simple-spaces,
+    which constitute the first kind of primitive space in my language.
 
-     Before having other ways to construct spaces,
-     I will simply call them 'space' instead of 'simple-space'.
+    Before having other ways to construct spaces,
+    I will simply call them 'space' instead of 'simple-space'.
 
-     - In algebraic topology,
-       our simple-space is called
-       CW-complex, cell-complex or cellular polytopes.
+    - In algebraic topology,
+      our simple-space is called
+      CW-complex, cell-complex or cellular polytopes.
 
-  3. A space is constructed part by part.
+  - A space is constructed part by part.
 
-  4. A part is of certain dimension,
-     part of 0 dimension is point,
-     part of 1 dimension is an interval,
-     part of 2 dimension is a disk,
-     part of 3 dimension is a ball,
-     part of 4 dimension is a 4-cell,
-     part of n dimension is a n-cell.
+  - A part is of certain dimension.
 
-  5. The way to construct a space from parts,
-     goes from low dimension to high dimension,
-     by attaching the boundary of a n-cell,
-     to a (n-1)-sphere in the space.
+    | dim | name     |
+    |-----+----------|
+    |   0 | point    |
+    |   1 | interval |
+    |   2 | disk     |
+    |   3 | ball     |
+    |   4 | 4-cell   |
+    |   n | n-cell   |
 
-     Our principle here is 'construct by attaching boundary'.
+  - The way to construct a space from parts,
+    goes from low dimension to high dimension,
+    by attaching the boundary of a n-cell,
+    to a (n-1)-sphere in the space.
 
-  6. As an example, let us construct a tetrahedron.
+    Our principle here is 'construction by attaching boundary'.
 
-     - [advice for reader]
-       Draw a picture by yourself, when trying to follow
-       my formal description.
+  - As an example, let us construct a tetrahedron.
 
-       And imagining how such picture can be dynamicly
-       and automaticly drawn by a drawer that
-       accompanies the main interpreter of the language.
+    - [advice for reader]
+      Draw a picture by yourself, when trying to follow
+      my formal description.
 
-     - In 0 dimension,
+      And imagining how such picture can be dynamicly
+      and automaticly drawn by a drawer that
+      accompanies the main interpreter of the language.
 
-       we name all the points of the space.
+    - In 0 dimension,
 
-       #+begin_src scheme
-       (type space
-         a1 a2 a3 a4 (-1 <>))
-       #+end_src
+      we name all the points of the space.
 
-     - In 1 dimension,
+      #+begin_src scheme
+      (type space
+        a1 a2 a3 a4 (-1 <>))
+      #+end_src
 
-       we name all the intervals of the space,
+    - In 1 dimension,
 
-       and for each interval,
-       we attach its two end points to two points of the space
-       [the two points of the space might be the same point],
+      we name all the intervals of the space,
 
-       so that the boundary of the interval
-       can be viewed as two points of the space.
+      and for each interval,
+      we attach its two end points to two points of the space
+      [the two points of the space might be the same point],
 
-       #+begin_src scheme
-       (type space
-         a1 a2 a3 a4 (-1 <>)
-         b12 (0 a1 a2)
-         b13 (0 a1 a3)
-         b14 (0 a1 a4)
-         b23 (0 a2 a3)
-         b24 (0 a2 a4)
-         b34 (0 a3 a4))
-       #+end_src
+      so that the boundary of the interval
+      can be viewed as two points of the space.
 
-       For example, the boundary of 'b12' are 'a1' and 'a2',
-       the boundary of 'b13' are 'a1' and 'a3'.
+      #+begin_src scheme
+      (type space
+        a1 a2 a3 a4 (-1 <>)
+        b12 (0 a1 a2)
+        b13 (0 a1 a3)
+        b14 (0 a1 a4)
+        b23 (0 a2 a3)
+        b24 (0 a2 a4)
+        b34 (0 a3 a4))
+      #+end_src
 
-       One can view 'b12' as a directed path pointing from 'a1' to 'a2',
-       and 'b13' as a directed path pointing form 'a1' to 'a3'.
+      For example, the boundary of 'b12' are 'a1' and 'a2',
+      the boundary of 'b13' are 'a1' and 'a3'.
 
-       We write two points in the keyword '(0 ...)',
-       and the order matters.
+      One can view 'b12' as a directed path pointing from 'a1' to 'a2',
+      and 'b13' as a directed path pointing form 'a1' to 'a3'.
 
-       Since, 'b12' and 'b13' have a common boundary -- 'a1',
-       we view 'b12' and 'b13' as glued together by the common boundary.
+      We write two points in the keyword '(0 ...)',
+      and the order matters.
 
-       Our principle here is 'gluing by named common boundary'.
+      Since, 'b12' and 'b13' have a common boundary -- 'a1',
+      we view 'b12' and 'b13' as glued together by the common boundary.
 
-     - In 2 dimension,
+      Our principle here is 'gluing by named common boundary'.
 
-       we name all the disk of the space,
+    - In 2 dimension,
 
-       and for each disk,
-       we attach its boundary circle to a circle in the space.
+      we name all the disk of the space,
 
-       #+begin_src scheme
-       (type space
-         a1 a2 a3 a4 (-1 <>)
-         b12 (0 a1 a2)
-         b13 (0 a1 a3)
-         b14 (0 a1 a4)
-         b23 (0 a2 a3)
-         b24 (0 a2 a4)
-         b34 (0 a3 a4)
-         c123 (1 b12 b23 b13 rev)
-         c124 (1 b12 b24 b14 rev)
-         c134 (1 b13 b34 b14 rev)
-         c234 (1 b23 b34 b24 rev))
-       #+end_src
+      and for each disk,
+      we attach its boundary circle to a circle in the space.
 
-       I use the keyword '(1 ...)' to specify path in the space.
+      #+begin_src scheme
+      (type space
+        a1 a2 a3 a4 (-1 <>)
+        b12 (0 a1 a2)
+        b13 (0 a1 a3)
+        b14 (0 a1 a4)
+        b23 (0 a2 a3)
+        b24 (0 a2 a4)
+        b34 (0 a3 a4)
+        c123 (1 b12 b23 b13 rev)
+        c124 (1 b12 b24 b14 rev)
+        c134 (1 b13 b34 b14 rev)
+        c234 (1 b23 b34 b24 rev))
+      #+end_src
 
-       For example, '(1 b12 b23)' denotes
-       the path which goes through 'b12' forwardly and 'b23' forwardly.
+      I use the keyword '(1 ...)' to specify path in the space.
 
-       In the keyword '(1 ...)',
-       the right end point of one interval must matches
-       the left end point of the next interval.
+      For example, '(1 b12 b23)' denotes
+      the path which goes through 'b12' forwardly and 'b23' forwardly.
 
-       And '(1 b12 b23 b13 rev)' denotes the path which
-       goes through 'b12' forwardly, 'b23' forwardly, and 'b13' backwardly.
+      In the keyword '(1 ...)',
+      the right end point of one interval must matches
+      the left end point of the next interval.
 
-       The boundary of 'c123' is attached to the circle '(1 b12 b23 b13 rev)'.
+      And '(1 b12 b23 b13 rev)' denotes the path which
+      goes through 'b12' forwardly, 'b23' forwardly, and 'b13' backwardly.
 
-       We check whether a path is a circle,
-       by checking whether the left end point of the first interval,
-       is equal to the right end point of the last interval,
-       i.e. whether the path is closed.
+      The boundary of 'c123' is attached to the circle '(1 b12 b23 b13 rev)'.
 
-     - In 3 dimension,
+      We check whether a path is a circle,
+      by checking whether the left end point of the first interval,
+      is equal to the right end point of the last interval,
+      i.e. whether the path is closed.
 
-       we name all the ball of the space,
+    - In 3 dimension,
 
-       and for each ball,
-       we attach its boundary sphere to a sphere in the space.
+      we name all the ball of the space,
 
-       #+begin_src scheme
-       (type space
-         a1 a2 a3 a4 (-1 <>)
-         b12 (0 a1 a2)
-         b13 (0 a1 a3)
-         b14 (0 a1 a4)
-         b23 (0 a2 a3)
-         b24 (0 a2 a4)
-         b34 (0 a3 a4)
-         c123 (1 b12 b23 b13 rev)
-         c124 (1 b12 b24 b14 rev)
-         c134 (1 b13 b34 b14 rev)
-         c234 (1 b23 b34 b24 rev)
-         d1234 (2 c123
-                  c124 (1 b14 b24 rev b23 b13 rev) as-remained-boundary
-                  c134 (1 b34 b24 rev b23) as-remained-boundary
-                  c234 (1) as-remained-boundary))
-       #+end_src
+      and for each ball,
+      we attach its boundary sphere to a sphere in the space.
 
-       I use the keyword '(2 ...)' to specify glued polygon in the space.
+      #+begin_src scheme
+      (type space
+        a1 a2 a3 a4 (-1 <>)
+        b12 (0 a1 a2)
+        b13 (0 a1 a3)
+        b14 (0 a1 a4)
+        b23 (0 a2 a3)
+        b24 (0 a2 a4)
+        b34 (0 a3 a4)
+        c123 (1 b12 b23 b13 rev)
+        c124 (1 b12 b24 b14 rev)
+        c134 (1 b13 b34 b14 rev)
+        c234 (1 b23 b34 b24 rev)
+        d1234 (2 c123
+                 c124 (1 b14 b24 rev b23 b13 rev) as-remained-boundary
+                 c134 (1 b34 b24 rev b23) as-remained-boundary
+                 c234 (1) as-remained-boundary))
+      #+end_src
 
-       For example :
-       #+begin_src scheme
-       (2 c123)
-       ;; a polygon in a stack
+      I use the keyword '(2 ...)' to specify polygons in the space.
+      Note that, a polygon might be obtained by gluing many polygons together.
 
-       (2 c123
-          c124)
-       ;; two polygons in the stack
+      For example :
+      #+begin_src scheme
+      (2 c123)
+      ;; a polygon in a stack
 
-       (2 c123
-          c124 (1 b14 b24 rev b23 b13 rev))
-       ;; two polygons and a circle in the stack
+      (2 c123
+         c124)
+      ;; two polygons in the stack
 
-       (2 c123
-          c124 (1 b14 b24 rev b23 b13 rev) as-remained-boundary)
-       ;; 'as-remained-boundary' is a function,
-       ;;   which takes two polygons and a circle out from the stack,
-       ;;   try cancel out part of the common boundary of 'c123' and 'c124',
-       ;;   so that the remained boundary can be '(1 b14 b24 rev b23 b13 rev)'.
-       ;; if there are no way or more then one way to do this,
-       ;;   it reports to the user.
-       ;; if there is only one way to do this,
-       ;;   it puts a glued polygon back to the stack,
-       ;;   whose boundary is '(1 b14 b24 rev b23 b13 rev)'.
-       #+end_src
+      (2 c123
+         c124 (1 b14 b24 rev b23 b13 rev))
+      ;; two polygons and a circle in the stack
 
-       The boundary of 'd1234' is attached to the sphere :
-       #+begin_src scheme
-       (2 c123
-          c124 (1 b14 b24 rev b23 b13 rev) as-remained-boundary
-          c134 (1 b34 b24 rev b23) as-remained-boundary
-          c234 (1) as-remained-boundary)
-       #+end_src
+      (2 c123
+         c124 (1 b14 b24 rev b23 b13 rev) as-remained-boundary)
+      ;; 'as-remained-boundary' is a function,
+      ;;   which takes two polygons and a circle out from the stack,
+      ;;   try cancel out part of the common boundary of 'c123' and 'c124',
+      ;;   so that the remained boundary can be '(1 b14 b24 rev b23 b13 rev)'.
+      ;; if there are no way or more then one way to do this,
+      ;;   it reports to the user.
+      ;; if there is only one way to do this,
+      ;;   it puts a polygon back to the stack,
+      ;;   whose boundary is '(1 b14 b24 rev b23 b13 rev)'.
+      #+end_src
 
-       We check whether a glued polygon is sphere,
-       by checking whether the glued polygon is
-       2-dimensional, closed, connected and orientable.
+      The boundary of 'd1234' is attached to the sphere :
+      #+begin_src scheme
+      (2 c123
+         c124 (1 b14 b24 rev b23 b13 rev) as-remained-boundary
+         c134 (1 b34 b24 rev b23) as-remained-boundary
+         c234 (1) as-remained-boundary)
+      #+end_src
 
-       Note that, we can implement more functions like 'as-remained-boundary',
-       to help us get 2-dimensional glued polygons.
+      We check whether a polygon is sphere [closed polygon],
+      by checking whether the polygon is
+      2-dimensional, closed, connected and orientable.
 
-  7. Note that, syntax in (0 ...) (1 ...) (2 ...) are different,
-     but syntax in (2 ...) (3 ...) (4 ...) ... are similar.
+      Note that, we can implement more functions like 'as-remained-boundary',
+      to help us get 2-dimensional polygons.
 
-     - (0 ...) is special, in the sense that,
-       only two 0-dimensional points can occur in it.
+  - Note that, syntax in (0 ...) (1 ...) (2 ...) are different,
+    but syntax in (2 ...) (3 ...) (4 ...) ... are similar.
 
-     - (1 ...) is special, in the sense that,
-       there is not explict functions, like 'as-remained-boundary' in it.
+    - (0 ...) is special, in the sense that,
+      only two 0-dimensional points can occur in it.
 
-     - [hesitation]
-       Should these three distinctions be unified ?
-       If these distinctions are really meaningful,
-       and ought not to be unified,
-       Should we design distinct syntaxes for them,
-       to maintain the distinctions,
-       instead of using the seemingly unified syntax ?
+    - (1 ...) is special, in the sense that,
+      there is not explict functions, like 'as-remained-boundary' in it.
 
-  8. Note that, 'as-remained-boundary' involves searching,
-     which makes the specification of part of the space implict,
-     such implicitness is need, for when the dimension gets higher,
-     the detail of high dimension information might be too complex
-     to use an explict method.
+    - [hesitation]
+      Should these three distinctions be unified ?
+      If these distinctions are really meaningful,
+      and ought not to be unified,
+      Should we design distinct syntaxes for them,
+      to maintain the distinctions,
+      instead of using the seemingly unified syntax ?
 
-  9. [hesitation about cobordism]
-     Note that, not all closed spaces
-     can be boundary of a 1-dim higher space.
-     if two disjoint closed spaces, B1 and B2, are boundary of
-     1-dim higher space C, then C is the cobordism of B1 and B2,
-     classically expressed as (C; B1, B2),
-     where B1 and B2 are called cobordant.
+  - Note that, 'as-remained-boundary' involves searching,
+    which makes the specification of part of the space implict,
+    such implicitness is need, for when the dimension gets higher,
+    the detail of high dimension information might be too complex
+    to use an explict method.
 
-     Under what conditions, a closed space can be
-     the boundary of a 1-dim higher space ?
-     This question should be thoroughly understood,
-     before developing the formal semantics of the language.
+  - [hesitation about cobordism]
+    Note that, not all closed spaces
+    can be boundary of a 1-dim higher space.
+    if two disjoint closed spaces, B1 and B2, are boundary of
+    1-dim higher space C, then C is the cobordism of B1 and B2,
+    classically expressed as (C; B1, B2),
+    where B1 and B2 are called cobordant.
 
-* >< map and continuity-check
+    Under what conditions, a closed space can be
+    the boundary of a 1-dim higher space ?
+    This question should be thoroughly understood,
+    before developing the formal semantics of the language.
 
-  1. We must distinguish following different types of maps
-     1. level-same
-     2. level-diff
-        1. level-up
-        2. level-down
+  - [summary of principles]
+    - [principle 1] construction by attaching boundary
+    - [principle 2] gluing by named common boundary
 
-  2. For level-same maps, the rule for continuity-check is simple.
+* map and continuity-check
+
+  - A map between space 'A' and 'B', is of type '(-> A B)'.
+    The simplest kind of map,
+    will map n-dim parts of 'A' to n-dim parts of 'B',
+    I call this kind of map 'level-same' map.
+
+  - Thus, we must distinguish following different kinds of maps :
+    - level-same
+    - level-diff
+      - level-up
+      - level-down
+
+  - I do not know what rules should be established
+    to handle level-diff map properly yet.
+
+  - For level-same maps, the rule for continuity-check is simple.
+    Suppose we have map f : (-> A B),
+    and 'p' is a n-dim part of 'A'.
+
+    continuity-check is simply
+    #+begin_src scheme
+    p f boundary = p boundary f
+    ;; or
+    p f : = p boundary f
+    #+end_src
+
+    i.e. how the boundary of 'p' is mapped to 'B' by 'f',
+    will constrain how 'p' can be mapped to 'B' by 'f'.
+
+* product-space
+
+  - The first kind of primitive space is simple-space defined above,
+    while the first kind of compound space is product-space.
+
+  - There can be many ways by which we can compose new spaces,
+    each of such way must shows
+    1. what are the parts of the space ?
+    2. what are the boundarys of the parts ?
+
+  - The rule of product-space
+    #+begin_src scheme
+    (* a b) boundary = (+ (* a boundary b) (* a b boundary))
+    ;; or
+    (* a b) : (+ (* a boundary b) (* a b boundary))
+    #+end_src
+
+  - The interval is defined as follow
+    #+begin_src scheme
+    (def I
+      (type space
+        i0 i1 (-1 <>)
+        i01 (0 i0 i1)))
+    #+end_src
+
+    Taking the interval as an example,
+    the rule for construction are
+    #+begin_src scheme
+    (* i01 i0) : (0 (* i0 i0) (* i1 i0))
+    (* i1 i01) : (0 (* i1 i0) (* i1 i1))
+    (* i01 i1) : (0 (* i0 i1) (* i1 i1))
+    (* i0 i01) : (0 (* i0 i0) (* i0 i1))
+    (* i01 i01) : (1 (* i01 i0) (* i1 i01)
+                       (* i01 i1) rev  (* i0 i01) rev)
+    #+end_src
+
+  - A function of type (-> (* I I) X)
+    can be defined as follow
+    #+begin_src scheme
+    (def f
+      (lambda (-> (* I I) X)
+        (with (-> (* (-1 I) (-1 I)) (-1 X))
+          (-> (* i0 i0) ...)
+          (-> (* i0 i1) ...)
+          (-> (* i1 i0) ...)
+          (-> (* i1 i1) ...))
+        (with (-> (* (-1 I) %:i (0 i0 i1))
+                  (0 (* :i i0) <>
+                     (* :i i1) <>))
+          (-> (* i0 (1 i01)) ...)
+          (-> (* i1 (1 i01)) ...))
+        (with (-> (* (0 i0 i1) (-1 I) %:i)
+                  (0 (* i0 (1 :i)) <>
+                     (* i1 (1 :i)) <>))
+          (-> (* (1 i01) i0) ...)
+          (-> (* (1 i01) i1) ...))
+        (with (-> (* (0 i0 i1) %:p0
+                     (0 i0 i1) %:p1)
+                  (1 (* (1 :p0) i0) <>
+                     (* i1 (1 :p1)) <>
+                     (* (1 :p0) i1) <> rev
+                     (* i0 (1 :p1)) <> rev))
+          (-> (* (1 i01) (1 i01)) ...))))
+    #+end_src
+
+* extension-problem of partial map defined on subspace
+
+  - The subspace relation between spaces is encoded by parts.
+
+  - ><
+
+* equality
+* indexed-space
+* fiber-space
