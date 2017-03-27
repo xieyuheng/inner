@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-03-24 Fri 16:26 -->
+<!-- 2017-03-27 Mon 19:24 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>algebraic-topology-1</title>
@@ -67,28 +67,28 @@ for the JavaScript code in this tag.
 <h2>overview</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orge52b67d">intro</a></li>
-<li><a href="#org2bcb1df">simple-space</a></li>
-<li><a href="#orga37889">map and continuity-check</a></li>
-<li><a href="#org1b99f20">product-space</a></li>
-<li><a href="#org82f263d">extension-problem</a></li>
-<li><a href="#org794855e">equality</a></li>
-<li><a href="#org155c330"><span class="todo _gt__lt_">&gt;&lt;</span> indexed-space</a></li>
-<li><a href="#org94ea42c">examples</a>
+<li><a href="#orgdd69520">intro</a></li>
+<li><a href="#org57dcd2f">simple-space</a></li>
+<li><a href="#orgacf3f47">map and continuity-check</a></li>
+<li><a href="#org18c1da8">product-space</a></li>
+<li><a href="#orgf4791b1">extension-problem</a></li>
+<li><a href="#org4857195">equality</a></li>
+<li><a href="#orgc62266f"><span class="todo _gt__lt_">&gt;&lt;</span> indexed-space</a></li>
+<li><a href="#org94d358f">examples</a>
 <ul>
-<li><a href="#org52936ee">(~~ bool-suspend sphere-1)</a></li>
-<li><a href="#orge45b118">(~~ bool-suspend-suspend sphere-2)</a></li>
+<li><a href="#org9d94bd9">(~~ bool-suspend sphere-1)</a></li>
+<li><a href="#org3c754bb">(~~ bool-suspend-suspend sphere-2)</a></li>
 </ul>
 </li>
-<li><a href="#org8da098e"><span class="todo _gt__lt_">&gt;&lt;</span> fiber-space</a></li>
-<li><a href="#org558e688"><span class="todo _gt__lt_">&gt;&lt;</span> lifting-problem</a></li>
+<li><a href="#orgb94508b"><span class="todo _gt__lt_">&gt;&lt;</span> fiber-space</a></li>
+<li><a href="#orgc3a991b"><span class="todo _gt__lt_">&gt;&lt;</span> lifting-problem</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orge52b67d" class="outline-2">
-<h2 id="orge52b67d">intro</h2>
-<div class="outline-text-2" id="text-orge52b67d">
+<div id="outline-container-orgdd69520" class="outline-2">
+<h2 id="orgdd69520">intro</h2>
+<div class="outline-text-2" id="text-orgdd69520">
 <ul class="org-ul">
 <li><p>I will show how to design and implement a language</p><p>to formalize and machinalize</p><p>a little part of algebraic topology.</p></li>
 
@@ -98,9 +98,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org2bcb1df" class="outline-2">
-<h2 id="org2bcb1df">simple-space</h2>
-<div class="outline-text-2" id="text-org2bcb1df">
+<div id="outline-container-org57dcd2f" class="outline-2">
+<h2 id="org57dcd2f">simple-space</h2>
+<div class="outline-text-2" id="text-org57dcd2f">
 <ul class="org-ul">
 <li><p>In a language, we always have primitive elements,</p><p>and many ways to compose elements to new compound element,</p><p>also many ways to derive new element from old one.</p></li>
 
@@ -124,9 +124,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orga37889" class="outline-2">
-<h2 id="orga37889">map and continuity-check</h2>
-<div class="outline-text-2" id="text-orga37889">
+<div id="outline-container-orgacf3f47" class="outline-2">
+<h2 id="orgacf3f47">map and continuity-check</h2>
+<div class="outline-text-2" id="text-orgacf3f47">
 <ul class="org-ul">
 <li><p>A map between space 'A' and 'B', is of type '(-&gt; A B)'.</p><p>The simplest kind of map,</p><p>will map n-dim parts of 'A' to n-dim parts of 'B',</p><p>I call this kind of map 'level-same' map.</p></li>
 
@@ -138,9 +138,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org1b99f20" class="outline-2">
-<h2 id="org1b99f20">product-space</h2>
-<div class="outline-text-2" id="text-org1b99f20">
+<div id="outline-container-org18c1da8" class="outline-2">
+<h2 id="org18c1da8">product-space</h2>
+<div class="outline-text-2" id="text-org18c1da8">
 <ul class="org-ul">
 <li><p>The first kind of primitive space is simple-space defined above,</p><p>while the first kind of compound space is product-space.</p></li>
 
@@ -154,9 +154,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org82f263d" class="outline-2">
-<h2 id="org82f263d">extension-problem</h2>
-<div class="outline-text-2" id="text-org82f263d">
+<div id="outline-container-orgf4791b1" class="outline-2">
+<h2 id="orgf4791b1">extension-problem</h2>
+<div class="outline-text-2" id="text-orgf4791b1">
 <ul class="org-ul">
 <li><p>An extension-problem is expressed for a partial-map on a subspace.</p></li>
 
@@ -170,9 +170,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org794855e" class="outline-2">
-<h2 id="org794855e">equality</h2>
-<div class="outline-text-2" id="text-org794855e">
+<div id="outline-container-org4857195" class="outline-2">
+<h2 id="org4857195">equality</h2>
+<div class="outline-text-2" id="text-org4857195">
 <ul class="org-ul">
 <li><p>With product-space and extension-problem,</p><p>we can define equality between two functions</p><p>as the extension-problem for certain kind of product-space.</p></li>
 
@@ -184,9 +184,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org155c330" class="outline-2">
-<h2 id="org155c330"><span class="todo _gt__lt_">&gt;&lt;</span> indexed-space</h2>
-<div class="outline-text-2" id="text-org155c330">
+<div id="outline-container-orgc62266f" class="outline-2">
+<h2 id="orgc62266f"><span class="todo _gt__lt_">&gt;&lt;</span> indexed-space</h2>
+<div class="outline-text-2" id="text-orgc62266f">
 <ul class="org-ul">
 <li><p>When defining a space, parts of it can be indexed</p><p>by parts of another space.</p><p>Such a named indexing of parts is called an index,</p><p>which is also a subspace of the larger space.</p></li>
 
@@ -198,12 +198,12 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org94ea42c" class="outline-2">
-<h2 id="org94ea42c">examples</h2>
-<div class="outline-text-2" id="text-org94ea42c">
-</div><div id="outline-container-org52936ee" class="outline-3">
-<h3 id="org52936ee">(~~ bool-suspend sphere-1)</h3>
-<div class="outline-text-3" id="text-org52936ee">
+<div id="outline-container-org94d358f" class="outline-2">
+<h2 id="org94d358f">examples</h2>
+<div class="outline-text-2" id="text-org94d358f">
+</div><div id="outline-container-org9d94bd9" class="outline-3">
+<h3 id="org9d94bd9">(~~ bool-suspend sphere-1)</h3>
+<div class="outline-text-3" id="text-org9d94bd9">
 <div class="org-src-container">
 
 <pre class="src src-scheme"><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">def</span> sphere-1
@@ -279,9 +279,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orge45b118" class="outline-3">
-<h3 id="orge45b118">(~~ bool-suspend-suspend sphere-2)</h3>
-<div class="outline-text-3" id="text-orge45b118">
+<div id="outline-container-org3c754bb" class="outline-3">
+<h3 id="org3c754bb">(~~ bool-suspend-suspend sphere-2)</h3>
+<div class="outline-text-3" id="text-org3c754bb">
 <div class="org-src-container">
 
 <pre class="src src-scheme"><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">def</span> sphere-2
@@ -454,21 +454,25 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org8da098e" class="outline-2">
-<h2 id="org8da098e"><span class="todo _gt__lt_">&gt;&lt;</span> fiber-space</h2>
-<div class="outline-text-2" id="text-org8da098e">
+<div id="outline-container-orgb94508b" class="outline-2">
+<h2 id="orgb94508b"><span class="todo _gt__lt_">&gt;&lt;</span> fiber-space</h2>
+<div class="outline-text-2" id="text-orgb94508b">
 <ul class="org-ul">
+<li><p>To view product-space as special fiber-space,</p><p>for which a gluing pattern is given.</p></li>
+
 <li><p>After a construction of a fiber-bundle,</p><p>we can proof the total-space is equal to another space,</p><p>and by doing so, we get a level-down map from the space to the base-space.</p></li>
 
 <li><p>A level-down map can only be achieved by means of fiber-bundle.</p></li></ul>
 </div>
 </div>
 
-<div id="outline-container-org558e688" class="outline-2">
-<h2 id="org558e688"><span class="todo _gt__lt_">&gt;&lt;</span> lifting-problem</h2>
-<div class="outline-text-2" id="text-org558e688">
+<div id="outline-container-orgc3a991b" class="outline-2">
+<h2 id="orgc3a991b"><span class="todo _gt__lt_">&gt;&lt;</span> lifting-problem</h2>
+<div class="outline-text-2" id="text-orgc3a991b">
 <ul class="org-ul">
-<li><p>A lifting-problem is expressed for a [?] on a fiber-space.</p></li></ul>
+<li><p>A lifting-problem is expressed for a [?] on a fiber-space.</p></li>
+
+<li><p>[lifting-problem and cross-section-problem]</p><p>cross-section-problem can be viewed as</p><p>lifting a subspace [instead of function] of the base-space,</p><p>or just lifting the base-space itself [i.e. global cross-section].</p></li></ul>
 </div>
 </div>
 </div>

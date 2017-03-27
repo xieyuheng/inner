@@ -1,182 +1,176 @@
-* todo
+* leaning path
 
-*** leaning path
+  - fiber-space -> hopf-fibration ->
+    cutting-and-regluing -> dehn-surgery -> lens-space ->
+    thurston's teach -> hyperbolic geometry -> projective geometry
 
-    - fiber-space -> hopf-fibration ->
-      cutting-and-regluing -> dehn-surgery -> lens-space ->
-      thurston's teach -> hyperbolic geometry -> projective geometry
+  - hopf-fibration -> GA and SO(3) -> matrix group
 
-    - hopf-fibration -> GA and SO(3) -> matrix group
+* about classical construction
 
-*** about classical construction
+  - There are many ways to do classical constructions in algebraic topology.
+    One who wishes to design a formal language for algebraic topology,
+    must choose carefully which to implement,
+    which concept to include in, and which concept to hold still,
+    while waiting for a better understanding of
+    how constructive the concept is.
 
-    - There are many ways to do classical constructions in algebraic topology.
-      One who wishes to design a formal language for algebraic topology,
-      must choose carefully which to implement,
-      which concept to include in, and which concept to hold still,
-      while waiting for a better understanding of
-      how constructive the concept is.
+* immersion and embedding
 
-*** immersion and embedding
+  - map of type (-> A B)
+    is an immersion of A in B.
 
-    - map of type (-> A B)
-      is an immersion of A in B.
+  - with the 'no self-intersection' condition,
+    the map is an embedding,
+    B is the ambient space.
 
-    - with the 'no self-intersection' condition,
-      the map is an embedding,
-      B is the ambient space.
+  - If the embedding is to be expressed at all,
+    the sphere-3 defined as with no non-trivial path
+    will be not enough for embedding.
 
-    - If the embedding is to be expressed at all,
-      the sphere-3 defined as with no non-trivial path
-      will be not enough for embedding.
+  - Thus distinction between constructions of the same space
+    must be maintained.
 
-    - Thus distinction between constructions of the same space
-      must be maintained.
+  - Or we must be able to intro subdivision locally.
+    for example, to intro a path in a surface,
+    which connects two point on the boundary of the surface.
 
-    - Or we must be able to intro subdivision locally.
-      for example, to intro a path in a surface,
-      which connects two point on the boundary of the surface.
+* hopf fibration
 
-*** to be expressed more explictly
+  - The dependent product of sphere-1 and a circle in sphere-2
+    is a torus fibered as a circle of sphere-1 linked together
+    as hopf links.
 
-    - continuity-check
-    - boundary conditation in type definition
-      - way 0-level parts can only be glued by path ?
+    | base-space (S2) | total-space (S3) |
+    |-----------------+------------------|
+    | a point         | a circle         |
+    | two points      | two hopf links   |
+    | a path          | a hopf band      |
+    | a circle        | a torus (*)      |
+    | half S2         | a solid torus    |
 
-*** hopf fibration
+  - A hopf band is a surface whose boundary are hopf links,
+    in hopf fibration, there are full of such surfaces.
 
-    - The dependent product of sphere-1 and a circle in sphere-2
-      is a torus fibered as a circle of sphere-1 linked together
-      as hopf links.
+  - The torus with (*) in the table
+    might be useful for the construction of hopf-fibration of S3
+    by Dehn surgery.
 
-      | base-space (S2) | total-space (S3) |
-      |-----------------+------------------|
-      | a point         | a circle         |
-      | two points      | two hopf links   |
-      | a path          | a hopf band      |
-      | a circle        | a torus (*)      |
-      | half S2         | a solid torus    |
+  - Can I construct the solid torus first by half S2 ?
 
-    - A hopf band is a surface whose boundary are hopf links,
-      in hopf fibration, there are full of such surfaces.
+  - I must be able to express the facts above in my language.
 
-    - The torus with (*) in the table
-      might be useful for the construction of hopf-fibration of S3
-      by Dehn surgery.
+  #+begin_src scheme
+  (def I
+    (type space
+      i0 i1 (-1 <>)
+      i01 (0 i0 i1)))
 
-    - Can I construct the solid torus first by half S2 ?
+  (def sphere-1
+    (type (-> space)
+      b1 (-> (-1 <>))
+      loop (-> (0 b1 b1))))
 
-    - I must be able to express the facts above in my language.
+  (* sphere-1 I)
+  (* b1 i0)    : (-1 (* sphere-1 I))
+  (* b1 i1)    : (-1 (* sphere-1 I))
+  (* b1 i01)   : (* b1 (0 i0 i1))
+  -->            (0 (* b1 i0) (* b1 i1))
+  (* loop i0)  : (* (0 b1 b1) i0)
+  -->            (0 (* b1 i0) (* b1 i0))
+  (* loop i1)  : (* (0 b1 b1) i1)
+  -->            (0 (* b1 i1) (* b1 i1))
+  (* loop i01) : (+ (* loop (0 i0 i1)) (* (0 b1 b1) i01))
+  -->            (+ (1 (* loop i0) (* loop i1) rev)
+                    (1 (* b1 i01) (* b1 i01) rev))
+  -->            (1 (* loop i0) (* b1 i01)
+                    (* loop i1) rev (* b1 i01) rev)
 
-    #+begin_src scheme
-    (def I
-      (type space
-        i0 i1 (-1 <>)
-        i01 (0 i0 i1)))
+  (? sphere-1 I)
+  (? b1 i0)    : (-1 (? sphere-1 I))
+  (? b1 i1)    : (-1 (? sphere-1 I))
+  (? b1 i01)   : (? b1 (0 i0 i1))
+  -->            (0 (? b1 i0) (? b1 i1))
+  (? loop i0)  : (? (0 b1 b1) i0)
+  -->            (0 (? b1 i0) (? b1 i1))
+  (? loop i1)  : (? (0 b1 b1) i1)
+  -->            (0 (? b1 i1) (? b1 i0))
+  (? loop i01) : (1 (? loop i0)
+                    (? loop i1))
 
-    (def sphere-1
-      (type (-> space)
-        b1 (-> (-1 <>))
-        loop (-> (0 b1 b1))))
+  (def sphere-1
+    (type (-> space)
+      b1 (-> (-1 <>))
+      loop (-> (0 b1 b1))))
 
-    (* sphere-1 I)
-    (* b1 i0)    : (-1 (* sphere-1 I))
-    (* b1 i1)    : (-1 (* sphere-1 I))
-    (* b1 i01)   : (* b1 (0 i0 i1))
-    -->            (0 (* b1 i0) (* b1 i1))
-    (* loop i0)  : (* (0 b1 b1) i0)
-    -->            (0 (* b1 i0) (* b1 i0))
-    (* loop i1)  : (* (0 b1 b1) i1)
-    -->            (0 (* b1 i1) (* b1 i1))
-    (* loop i01) : (+ (* loop (0 i0 i1)) (* (0 b1 b1) i01))
-    -->            (+ (1 (* loop i0) (* loop i1) rev)
-                      (1 (* b1 i01) (* b1 i01) rev))
-    -->            (1 (* loop i0) (* b1 i01)
-                      (* loop i1) rev (* b1 i01) rev)
+  (def sphere-2
+    (type (-> space)
+      b2 (-> (-1 <>))
+      surf (-> (1 b2 refl))))
 
-    (? sphere-1 I)
-    (? b1 i0)    : (-1 (? sphere-1 I))
-    (? b1 i1)    : (-1 (? sphere-1 I))
-    (? b1 i01)   : (? b1 (0 i0 i1))
-    -->            (0 (? b1 i0) (? b1 i1))
-    (? loop i0)  : (? (0 b1 b1) i0)
-    -->            (0 (? b1 i0) (? b1 i1))
-    (? loop i1)  : (? (0 b1 b1) i1)
-    -->            (0 (? b1 i1) (? b1 i0))
-    (? loop i01) : (1 (? loop i0)
-                      (? loop i1))
+  (* sphere-2 sphere-1)
+  (* b2 b1)     : (-1 (* sphere-2 sphere-1))
+  (* b2 loop)   : (* b2 (0 b1 b1))
+  -->             (0 (* b2 b1) (* b2 b1))
+  (* surf b1)   : (* (1 b2 refl) b1)
+  -->             (1 (* b2 b1) refl)
+  (* surf loop) : (+ (* surf (0 b1 b1))
+                     (* (1 b2 refl) loop))
+  -->             (+ (2 (* surf b1) (* surf b1))
+                     (2 (1 (* b2 loop)) refl))
+  -->             (2 (* surf b1) (* surf b1)
+                     (1 (* b2 loop)) refl)
 
-    (def sphere-1
-      (type (-> space)
-        b1 (-> (-1 <>))
-        loop (-> (0 b1 b1))))
+  (? sphere-2 sphere-1)
+  (? b2 b1)     : (-1 (? sphere-2 sphere-1))
+  (? b2 loop)   : (? b2 (0 b1 b1))
+  -->             (0 (? b2 b1) (? b2 b1))
+  (? surf b1)   : (? (1 b2 refl) b1)
+  -->             (1 (? b2 loop))
+  (? surf loop) : (+ (? surf (0 b1 b1))
+                     (? (1 b2 refl) loop))
+  #+end_src
 
-    (def sphere-2
-      (type (-> space)
-        b2 (-> (-1 <>))
-        surf (-> (1 b2 refl))))
+* lens-space
 
-    (* sphere-2 sphere-1)
-    (* b2 b1)     : (-1 (* sphere-2 sphere-1))
-    (* b2 loop)   : (* b2 (0 b1 b1))
-    -->             (0 (* b2 b1) (* b2 b1))
-    (* surf b1)   : (* (1 b2 refl) b1)
-    -->             (1 (* b2 b1) refl)
-    (* surf loop) : (+ (* surf (0 b1 b1))
-                       (* (1 b2 refl) loop))
-    -->             (+ (2 (* surf b1) (* surf b1))
-                       (2 (1 (* b2 loop)) refl))
-    -->             (2 (* surf b1) (* surf b1)
-                       (1 (* b2 loop)) refl)
+  - how can we do a cutting-and-regluing
+    to cut (* sphere-1 sphere-2)
+    and to reglue it to sphere-3
 
-    (? sphere-2 sphere-1)
-    (? b2 b1)     : (-1 (? sphere-2 sphere-1))
-    (? b2 loop)   : (? b2 (0 b1 b1))
-    -->             (0 (? b2 b1) (? b2 b1))
-    (? surf b1)   : (? (1 b2 refl) b1)
-    -->             (1 (? b2 loop))
-    (? surf loop) : (+ (? surf (0 b1 b1))
-                       (? (1 b2 refl) loop))
-    #+end_src
+  - is this the same as hopf fibration
 
-*** lens-space
+  - what lens-space are equal to ?
 
-    - how can we do a cutting-and-regluing
-      to cut (* sphere-1 sphere-2)
-      and to reglue it to sphere-3
+  - different ways to construct lens-space
+    - dehn-surgery
+      - note that, we have a change of dim here
+    - ><><><
 
-    - is this the same as hopf fibration
+* the plan
 
-    - what lens-space are equal to ?
+  - Inspired by Bishop's plan
+    and the treatment of algebraic-topology by sze-tsen-hu.
 
-    - different ways to construct lens-space
-      - dehn-surgery
-        - note that, we have a change of dim here
-      - ><><><
+  - A concept is defined once we explain how to implement it in our language.
+    - Just like in physics, a concept is operationally defined,
+      once we explain how to measure it.
 
-*** the plan
-
-    - Inspired by Bishop's plan
-      and the treatment of algebraic-topology by sze-tsen-hu.
-
-    - A concept is defined once we explain how to implement it in our language.
-      - Just like in physics, a concept is operationally defined,
-        once we explain how to measure it.
-
-    - To define property of object
-      by the solvability of problem fromed around the object.
+  - To define property of object
+    by the solvability of problem fromed around the object.
 
 * geometry
 
-  - 如何算是將 geometry 引回我們爲同倫類而構造的語言
-    讓 所構造的對象所帶有的信息更豐富
-    使得 計算 距離 與 面積 等等 成爲可能
+  - How to intro geometry back to a language for AT ?
+    by giving path a length ? surface an area ?
+    or by a general structure for all the measurement ?
 
-  - 我們可能不能直接給出黎曼度量
-    而是要給出一種離散化的黎曼度量
-    - 注意 manifold 如何使得 黎曼度量 成爲可能
+* mapping-class-group
 
-* >< same-position-self-gluing, cancel or not cancel ?
+  - disk[cell] is special,
+    for its mapping-class-group is trivial.
+    is this the reason why cell-complex is built by cells ?
+
+* same-position-self-gluing, cancel or not cancel ?
 
   - same-position-self-gluing
     [for example: p * p^{-1}]
@@ -186,8 +180,8 @@
     when there is at least one part of the boundary is repeating.
     [for example: p * p]
 
-* >< lifting-problem and cross-section-problem
-
-  - cross-section-problem can be viewed as
-    lifting a subspace [instead of function] of the base-space,
-    or just lifting the base-space itself [i.e. global cross-section].
+  - [cancel or not cancel ?]
+    when building a cylinder,
+    the boundary of the surface must be a circle,
+    thus part of the same-position-self-gluing of a path
+    can not be canceled !
