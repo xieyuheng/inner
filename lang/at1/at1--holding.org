@@ -1,3 +1,5 @@
+#+title: algebraic-topology-1 holding
+
 * leaning path
 
   - fiber-space -> hopf-fibration ->
@@ -158,18 +160,6 @@
   - To define property of object
     by the solvability of problem fromed around the object.
 
-* geometry
-
-  - How to intro geometry back to a language for AT ?
-    by giving path a length ? surface an area ?
-    or by a general structure for all the measurement ?
-
-* mapping-class-group
-
-  - disk[cell] is special,
-    for its mapping-class-group is trivial.
-    is this the reason why cell-complex is built by cells ?
-
 * same-position-self-gluing, cancel or not cancel ?
 
   - same-position-self-gluing
@@ -185,3 +175,76 @@
     the boundary of the surface must be a circle,
     thus part of the same-position-self-gluing of a path
     can not be canceled !
+
+* geometry
+
+  - How to intro geometry back to a language for AT ?
+    by giving path a length ? surface an area ?
+    or by a general structure for all the measurement ?
+
+* local-subdivision
+
+  - With the syntax for local-subdivision,
+    maybe we can prove the mapping-class-group of cell is trivial.
+
+* dehn 的方法
+
+  - x -
+    dehn 的方法在於
+    在曲面上給出一個座標系
+    使得密布曲面的嵌入曲線得以代數表示
+    因爲曲線是密布曲面的
+    所以這個代數結構的變換羣就是曲面的映射類羣
+
+* 映射類羣
+
+  - x -
+    disk[cell] is special,
+    for its mapping-class-group is trivial.
+    is this the reason why cell-complex is built by cells ?
+
+  - k -
+    首先我們需要知道如何在 at1 中定義映射類羣
+    並且要知道我們的定義是良好的
+
+  - x -
+    也就是說 我們必須給我們的形式語言以古典基礎
+    - 古典的定義是開端 它們定義了研究對象
+      爲了探究這些對象的某些性質
+      我們發現略去古典定義中的大部分信息
+      就可以簡化我們所使用的語言
+    - 我們想要直接使用這個更簡的語言
+      但是這需要辯護
+      我們需要證明這個更簡的語言是對原語言的有效簡化
+      而不會有不一致的地方
+    - 我們並不棄幾何而只看拓撲
+      也不棄拓撲而只看代數
+      我們要明確這些不同的語言之間的關係
+      作爲語言的設計者和理論的提出者
+      我們還要不斷地對比不同語言 就解決問題而言之優劣
+
+  - k -
+    古典定義之所以爲 '古典'
+    是因爲人們已經如此習以爲常
+    以至於略去了這些概念的啓發性例子
+    和這些概念之形成的歷史語境
+
+* 如何處理同倫中維數的變化
+
+  - x -
+    認爲路的寬度不是零而是無窮小何如
+
+  - k -
+    我想在 at1 中維度的變化主要體現在 refl 這個操作上
+
+  - x -
+    我們先來總結一些現象吧
+    (1)
+    首先 (x refl) 可以被理解爲單位元 [也就是說可以隨時消去和引入]
+    並且 (x refl boundary boundary) == 0
+    因爲 (x refl boundary) == (+ x x rev)
+    (2)
+    其次 計算 cylinder 的 mapping-class-group 時
+    所給出的扭轉
+    在 at1 中看起來是把一部分面積給擠壓掉了
+    可能需要用無窮小量來理解這種映射

@@ -1,6 +1,7 @@
 #+HTML_HEAD: <link rel="stylesheet" href="../../asset/css/page.css" type="text/css" media="screen" />
 #+title: algebraic-topology-1
 
+* >< guiding tendency
 * intro
 
   - I will show how to design and implement a language
