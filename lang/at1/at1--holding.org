@@ -182,10 +182,20 @@
     by giving path a length ? surface an area ?
     or by a general structure for all the measurement ?
 
+* adjunction-space
+
+  - 是否在 at1 中引入 adjunction-space ?
+    作爲一種構造新空間的方式 ?
+
+  - 注意
+    cell-complex 中的 characteristic-map 就是 adjunction-space
+
 * local-subdivision
 
   - With the syntax for local-subdivision,
     maybe we can prove the mapping-class-group of cell is trivial.
+
+  - 可以利用 local-subdivision 來恢復 topology structure 嗎 ?
 
 * dehn 的方法
 
@@ -241,10 +251,26 @@
     我們先來總結一些現象吧
     (1)
     首先 (x refl) 可以被理解爲單位元 [也就是說可以隨時消去和引入]
-    並且 (x refl boundary boundary) == 0
-    因爲 (x refl boundary) == (+ x x rev)
+    並且 (x refl boundary boundary) = 0
+    因爲 (x refl boundary) = (+ x x rev)
     (2)
     其次 計算 cylinder 的 mapping-class-group 時
     所給出的扭轉
     在 at1 中看起來是把一部分面積給擠壓掉了
     可能需要用無窮小量來理解這種映射
+
+* 非標準分析
+
+  - x -
+    我們開始學習 非標準分析
+    嘗試用它來解決 形式化的同倫論中的維數變化問題
+
+  - k -
+    並且 要知道
+    非標準分析 也是爲古典的領域設計新語言的一個例子
+
+  - x -
+    我想 看看古典的著作中作者是如何依直覺使用無窮小量的
+    也許會有益於我們的學習
+
+  - k -
