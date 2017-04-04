@@ -329,6 +329,7 @@
 
   #+begin_src scheme
   (def cylinder
-    (type (-> space)
-      (: a0 )))
+    (type space
+      (: a0 a1 (-1 <>))
+      (: )))
   #+end_src

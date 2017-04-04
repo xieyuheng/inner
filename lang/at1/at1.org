@@ -5,8 +5,6 @@
 
   - fix for as-remained-boundary
 
-  - fix for new keywords (: ...) and (= ...)
-
   - note about (+ ...)
 
 * intro
@@ -76,7 +74,7 @@
 
       #+begin_src scheme
       (type space
-        a1 a2 a3 a4 (-1 <>))
+        (: [a1, a2, a3, a4] (-1 <>)))
       #+end_src
 
     - In 1 dimension,
@@ -92,13 +90,13 @@
 
       #+begin_src scheme
       (type space
-        a1 a2 a3 a4 (-1 <>)
-        b12 (0 a1 a2)
-        b13 (0 a1 a3)
-        b14 (0 a1 a4)
-        b23 (0 a2 a3)
-        b24 (0 a2 a4)
-        b34 (0 a3 a4))
+        (: [a1, a2, a3, a4] (-1 <>))
+        (: b12 (0 a1 a2))
+        (: b13 (0 a1 a3))
+        (: b14 (0 a1 a4))
+        (: b23 (0 a2 a3))
+        (: b24 (0 a2 a4))
+        (: b34 (0 a3 a4)))
       #+end_src
 
       For example, the boundary of 'b12' are 'a1' and 'a2',
@@ -124,17 +122,17 @@
 
       #+begin_src scheme
       (type space
-        a1 a2 a3 a4 (-1 <>)
-        b12 (0 a1 a2)
-        b13 (0 a1 a3)
-        b14 (0 a1 a4)
-        b23 (0 a2 a3)
-        b24 (0 a2 a4)
-        b34 (0 a3 a4)
-        c123 (1 b12 b23 b13 rev)
-        c124 (1 b12 b24 b14 rev)
-        c134 (1 b13 b34 b14 rev)
-        c234 (1 b23 b34 b24 rev))
+        (: [a1, a2, a3, a4] (-1 <>))
+        (: b12 (0 a1 a2))
+        (: b13 (0 a1 a3))
+        (: b14 (0 a1 a4))
+        (: b23 (0 a2 a3))
+        (: b24 (0 a2 a4))
+        (: b34 (0 a3 a4))
+        (: c123 (1 b12 b23 b13 rev))
+        (: c124 (1 b12 b24 b14 rev))
+        (: c134 (1 b13 b34 b14 rev))
+        (: c234 (1 b23 b34 b24 rev)))
       #+end_src
 
       I use the keyword '(1 ...)' to specify path in the space.
@@ -165,21 +163,21 @@
 
       #+begin_src scheme
       (type space
-        a1 a2 a3 a4 (-1 <>)
-        b12 (0 a1 a2)
-        b13 (0 a1 a3)
-        b14 (0 a1 a4)
-        b23 (0 a2 a3)
-        b24 (0 a2 a4)
-        b34 (0 a3 a4)
-        c123 (1 b12 b23 b13 rev)
-        c124 (1 b12 b24 b14 rev)
-        c134 (1 b13 b34 b14 rev)
-        c234 (1 b23 b34 b24 rev)
-        d1234 (2 c123
-                 c124 (1 b14 b24 rev b23 b13 rev) as-remained-boundary
-                 c134 (1 b34 b24 rev b23) as-remained-boundary
-                 c234 (1) as-remained-boundary))
+        (: [a1, a2, a3, a4] (-1 <>))
+        (: b12 (0 a1 a2))
+        (: b13 (0 a1 a3))
+        (: b14 (0 a1 a4))
+        (: b23 (0 a2 a3))
+        (: b24 (0 a2 a4))
+        (: b34 (0 a3 a4))
+        (: c123 (1 b12 b23 b13 rev))
+        (: c124 (1 b12 b24 b14 rev))
+        (: c134 (1 b13 b34 b14 rev))
+        (: c234 (1 b23 b34 b24 rev))
+        (: d1234 (2 c123
+                    c124 (1 b14 b24 rev b23 b13 rev) as-remained-boundary
+                    c134 (1 b34 b24 rev b23) as-remained-boundary
+                    c234 (1) as-remained-boundary)))
       #+end_src
 
       I use the keyword '(2 ...)' to specify polygons in the space.
@@ -283,14 +281,14 @@
     to handle level-diff map properly yet.
 
   - For level-same maps, the rule for continuity-check is simple.
-    Suppose we have map f : (-> A B),
+    Suppose we have map (: f (-> A B)),
     and 'p' is a n-dim part of 'A'.
 
     continuity-check is simply
     #+begin_src scheme
-    p f boundary = p boundary f
+    (= [p f boundary] [p boundary f])
     ;; or
-    p f : = p boundary f
+    (: [p f] [p boundary f])
     #+end_src
 
     i.e. how the boundary of 'p' is mapped to 'B' by 'f',
@@ -308,28 +306,28 @@
 
   - The rule of product-space
     #+begin_src scheme
-    (* a b) boundary = (+ (* a boundary b) (* a b boundary))
+    (= [(* a b) boundary] (+ (* a boundary b) (* a b boundary)))
     ;; or
-    (* a b) : (+ (* a boundary b) (* a b boundary))
+    (: (* a b) (+ (* a boundary b) (* a b boundary)))
     #+end_src
 
   - The interval is defined as follow
     #+begin_src scheme
     (def I
       (type space
-        i0 i1 (-1 <>)
-        i01 (0 i0 i1)))
+        (: [i0, i1] (-1 <>))
+        (: i01 (0 i0 i1))))
     #+end_src
 
     Taking the interval as an example,
     the rule for construction are
     #+begin_src scheme
-    (* i01 i0) : (0 (* i0 i0) (* i1 i0))
-    (* i1 i01) : (0 (* i1 i0) (* i1 i1))
-    (* i01 i1) : (0 (* i0 i1) (* i1 i1))
-    (* i0 i01) : (0 (* i0 i0) (* i0 i1))
-    (* i01 i01) : (1 (* i01 i0) (* i1 i01)
-                       (* i01 i1) rev  (* i0 i01) rev)
+    (: (* i01 i0) (0 (* i0 i0) (* i1 i0)))
+    (: (* i1 i01) (0 (* i1 i0) (* i1 i1)))
+    (: (* i01 i1) (0 (* i0 i1) (* i1 i1)))
+    (: (* i0 i01) (0 (* i0 i0) (* i0 i1)))
+    (: (* i01 i01) (1 (* i01 i0) (* i1 i01)
+                      (* i01 i1) rev  (* i0 i01) rev))
     #+end_src
 
   - A function of type (-> (* I I) X)
@@ -390,7 +388,7 @@
     we can define equality between two functions
     as the extension-problem for certain kind of product-space.
 
-  - Suppose (f0, f1 : (-> A B)),
+  - Suppose (: [f0, f1] (-> A B)),
     to proof (~ f0 f1),
     we need to extend a partial-map of type (-> (* A I) B)
     #+begin_src scheme
@@ -409,7 +407,7 @@
 
   - Suppose 'A' and 'B' are two spaces,
     to proof (~~ A B),
-    is to find (f : (-> A B)) and (g : (-> B A))
+    is to find (: f (-> A B)) and (: g (-> B A))
     and to proof (~ [f g] [A id]) and (~ [g f] [B id])
     #+begin_src scheme
     (lambda (-> (* A I) A)
@@ -449,18 +447,18 @@
 
     #+begin_src scheme
     (def sphere-1
-      (type (-> space)
-        b (-> (-1 <>))
-        loop (-> (0 b b))))
+      (type space
+        (: b (-1 <>))
+        (: loop (0 b b))))
 
     (def bool
-      (type (-> space)
-        #f #t (-> (-1 <>))))
+      (type space
+        (: [#f, #t] (-1 <>))))
 
     (def bool-suspend
-      (type (-> space)
-        n s (-> (-1 <>))
-        m (-> bool (0 n s))))
+      (type space
+        (: [n, s] (-1 <>))
+        (: m (-> bool (0 n s)))))
 
     (def f
       (lambda (-> bool-suspend sphere-1)
@@ -476,10 +474,12 @@
         (with (-> (-1 sphere-1) (-1 bool-suspend))
           (-> b n))
         (with (-> (0 b b) (0 n n))
-          ;; (1 ...) is only needed when there is glue of elements of 2-level
           (-> (1 loop) (1 #f m #t m rev)))))
 
-    (def [g f] ;; which is already id of sphere-1
+    (note
+      [g f] is already id of sphere-1)
+
+    (def [g f]
       (lambda (-> sphere-1 sphere-1)
         (with (-> (-1 sphere-1) (-1 sphere-1))
           (-> b b))
@@ -495,7 +495,10 @@
           (-> (1 #f m) (1 #f m #t m rev))
           (-> (1 #t m) (1 n refl)))))
 
-    (def h ;; to proof (~ [f g] [bool-suspend id])
+    (note
+      'h' is to proof (~ [f g] [bool-suspend id]))
+
+    (def h
       (lambda (-> (* bool-suspend I) bool-suspend)
         (extend-from
           (lambda  (-> (* bool-suspend (-1 I)) bool-suspend)
@@ -504,39 +507,41 @@
         (with (-> (* (-1 bool-suspend) %:a (0 i0 i1))
                   (0 (* :a i0) <> (* :a i1) <>))
           (-> (* n (1 i01)) (1 n refl)
-              : (0 n n))
+              (: (1 n refl)
+                 (0 n n)))
           (-> (* s (1 i01)) (1 #t m)
-              : (0 n s)))
+              (: (1 #t m)
+                 (0 n s))))
         (with (-> (* (0 n s) %:b (0 i0 i1) %:i)
                   (1 (* :b i0) <> (* s :i) <>
                      (* :b i1) <> rev (* n :i) <> rev))
           (-> (* (1 #f m) (1 i01)) (2)
-              : (1 (1 #f m #t m rev) (1 #t m)
-                   (1 #f m) rev (1 n refl) rev))
+              (: (2)
+                 (1 (1 #f m #t m rev) (1 #t m)
+                    (1 #f m) rev (1 n refl) rev)))
           (-> (* (1 #t m) (1 i01)) (2)
-              : (1 (1 n refl) (1 #t m)
-                   (1 #t m) rev (1 n refl) rev)))))
+              (: (2)
+                 (1 (1 n refl) (1 #t m)
+                    (1 #t m) rev (1 n refl) rev))))))
     #+end_src
 
 *** (~~ bool-suspend-suspend sphere-2)
 
     #+begin_src scheme
     (def sphere-2
-      (type (-> space)
-        b2 (-> (-1 <>))
-        ;; no need for (1 b2 refl b2 refl rev) ?
-        ;; for b2 refl is as identity
-        surf (-> (1 b2 refl))))
+      (type space
+        (: b2 (-1 <>))
+        (: surf (1 b2 refl))))
 
     (def bool-suspend-suspend
-      (type (-> space)
-        n2 s2 (-> (-1 <>))
-        m2 (-> bool-suspend (0 n2 s2))))
+      (type space
+        (: [n2, s2] (-1 <>))
+        (: m2 (-> bool-suspend (0 n2 s2)))))
 
-    ;; n m2 : (0 n2 s2)
-    ;; s m2 : (0 n2 s2)
-    ;; #f m m2 : (1 n m2 s m2 rev)
-    ;; #t m m2 : (1 n m2 s m2 rev)
+    (: [n m2] (0 n2 s2))
+    (: [s m2] (0 n2 s2))
+    (: [#f m m2] (1 n m2 s m2 rev))
+    (: [#t m m2] (1 n m2 s m2 rev))
 
     (def f
       (lambda (-> bool-suspend-suspend sphere-2)
@@ -565,15 +570,16 @@
         (with (-> (1 b2 refl) (1 b2 refl))
           (-> (2 surf) (2 surf)))))
 
-    ;; (2 surf)
-    ;; g =>
-    ;; (2 #f m m2 (1 n m2 s m2 rev)
-    ;;     #t m m2 (1))
-    ;; f =>
-    ;; (2 (2 surf) (1 (1 b2 refl) (1 b2 refl) rev)
-    ;;     (2 b2 refl refl) (1))
-    ;; ==
-    ;; (2 surf)
+    (note
+      (2 surf)
+      g =>
+      (2 #f m m2 (1 n m2 s m2 rev)
+         #t m m2 (1))
+      f =>
+      (2 (2 surf) (1 (1 b2 refl) (1 b2 refl) rev)
+         (2 b2 refl refl) (1))
+      ==
+      (2 surf))
 
     (def [f g]
       (lambda (-> bool-suspend-suspend bool-suspend-suspend)
@@ -588,7 +594,10 @@
                              #t m m2 (1)))
           (-> (2 #t m m2) (2 n2 refl refl)))))
 
-    (def h ;; to proof (~ [f g] [bool-suspend-suspend id])
+    (note
+      'h' is to proof (~ [f g] [bool-suspend-suspend id]))
+
+    (def h
       (lambda (-> (* bool-suspend-suspend I) bool-suspend-suspend)
         (extend-from
           (lambda (-> (* bool-suspend-suspend (-1 I)) bool-suspend-suspend)
@@ -596,23 +605,28 @@
             (-> (* :x i1) (* :x))))
         (with (-> (* (-1 bool-suspend-suspend) %:a (0 i0 i1))
                   (0 (* :a i0) <> (* :a i1) <>))
-          (-> (* n2 (1 i01)) (1 n2 refl) ;; (1 n m2 s m2 rev)
-              : (0 n2 n2))
-          (-> (* s2 (1 i01)) (1 s m2) ;; (1 n m2)
-              : (0 n2 s2)))
+          (-> (* n2 (1 i01)) (1 n2 refl)
+              (: (1 n2 refl) (0 n2 n2))
+              (note
+                an alternative might be :: (1 n m2 s m2 rev)))
+          (-> (* s2 (1 i01)) (1 s m2)
+              (: (1 s m2) (0 n2 s2))
+              (note
+                an alternative might be :: (1 n m2))))
         (with (-> (* (0 n2 s2) %:b (0 i0 i1) %:i)
                   (1 (* (1 :b) i0) <> (* s2 (1 :i)) <>
                      (* (1 :b) i1) <> rev (* n2 (1 :i)) <> rev))
           (-> (* (1 n m2) (1 i01)) (2 #t m m2)
-              : (1 (1 n2 refl) (1 s m2)
-                   (1 n m2) rev (1 n2 refl) rev)
-              = (1 (1 s m2) (1 n m2) rev))
+              (:> (2 #t m m2)
+                  (1 (1 n2 refl) (1 s m2)
+                     (1 n m2) rev (1 n2 refl) rev)
+                  (1 (1 s m2) (1 n m2) rev)))
           (-> (* (1 s m2) (1 i01)) (2)
-              : (1 (1 n2 refl) (1 s m2)
-                   (1 s m2) rev (1 n2 refl) rev)
-              = (1 (1 s m2)
-                   (1 s m2) rev)
-              = (1))      )
+              (:> (2) (1 (1 n2 refl) (1 s m2)
+                         (1 s m2) rev (1 n2 refl) rev)
+                  (1 (1 s m2)
+                     (1 s m2) rev)
+                  (1)))      )
         (with (-> (* (1 n m2 s m2 rev) %:c (0 i0 i1) %:i)
                   (2 (* (1 n m2) (1 :i)) <>
                      (1 (* n2 (1 i01)) <>
@@ -630,61 +644,29 @@
                      (* (2 :c) i1) <>
                      (1)))
           (-> (* (2 #f m m2) (1 i01)) (3)
-              : (2 (2 #t m m2)
-                   (1 (1 n2 refl)
-                      (1 n m2)
-                      (1 s m2) rev
-                      (1 n2 refl) rev)
-                   (2)
-                   (1 (1 n m2)
-                      (1 n2 refl) rev
-                      (1 s m2) rev
-                      (1 n2 refl) rev)
-                   (2 #f m m2 (1 n m2 s m2 rev)
-                      #t m m2 (1))
-                   (1 (1 n m2)
-                      (1 s m2) rev)
-                   (2 #f m m2)
-                   (1)))
+              (: (3)
+                 (2 (2 #t m m2)
+                    (1 (1 n2 refl)
+                       (1 n m2)
+                       (1 s m2) rev
+                       (1 n2 refl) rev)
+                    (2)
+                    (1 (1 n m2)
+                       (1 n2 refl) rev
+                       (1 s m2) rev
+                       (1 n2 refl) rev)
+                    (2 #f m m2 (1 n m2 s m2 rev)
+                       #t m m2 (1))
+                    (1 (1 n m2)
+                       (1 s m2) rev)
+                    (2 #f m m2)
+                    (1))))
           (-> (* (2 #t m m2) (1 i01)) (3)
-              : (2 (2 #t m m2)
-                   (2)
-                   (2 n2 refl refl)
-                   (2 #t m m2))))))
-
-    (def h ;; to proof (~ [f g] [bool-suspend-suspend id])
-      (lambda (-> (* bool-suspend-suspend I) bool-suspend-suspend)
-        (extend-from
-          (lambda (-> (* bool-suspend-suspend (-1 I)) bool-suspend-suspend)
-            (-> (* :x i0) (* [:x f g]))
-            (-> (* :x i1) (* :x))))
-        (with (-> (* (-1 bool-suspend-suspend) %:a (0 i0 i1))
-                  (0 (* :a i0) <> (* :a i1) <>))
-          (-> (* n2 (1 i01)) (1 n2 refl))
-          (-> (* s2 (1 i01)) (1 s m2)))
-        (with (-> (* (0 n2 s2) %:b (0 i0 i1) %:i)
-                  (1 (* (1 :b) i0) <> (* s2 (1 :i)) <>
-                     (* (1 :b) i1) <> rev (* n2 (1 :i)) <> rev))
-          (-> (* (1 n m2) (1 i01)) (2 #t m m2))
-          (-> (* (1 s m2) (1 i01)) (2)))
-        (with (-> (* (1 n m2 s m2 rev) %:c (0 i0 i1) %:i)
-                  (2 (* (1 n m2) (1 :i)) <>
-                     (1 (* n2 (1 i01)) <>
-                        (* (1 n m2) i1) <>
-                        (* s2 (1 i01)) <> rev
-                        (* (1 n m2) i0) <> rev)
-                     (* (1 s m2) (1 :i)) <>
-                     (1 (* (1 n m2) i1) <>
-                        (* (1 n m2) i0) <> rev
-                        (* (1 s m2) i1) <> rev
-                        (* (1 s m2) i0) <>)
-                     (* (2 :c) i0) <>
-                     (1 (* (1 n m2) i1) <>
-                        (* (1 s m2) i1) <> rev)
-                     (* (2 :c) i1) <>
-                     (1)))
-          (-> (* (2 #f m m2) (1 i01)) (3))
-          (-> (* (2 #t m m2) (1 i01)) (3)))))
+              (: (3)
+                 (2 (2 #t m m2)
+                    (2)
+                    (2 n2 refl refl)
+                    (2 #t m m2)))))))
     #+end_src
 
 * >< fiber-space

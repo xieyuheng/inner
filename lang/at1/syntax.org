@@ -217,31 +217,121 @@
     = (1)
     #+end_src
 
-* ><
+* infix notation
 
   #+begin_src scheme
-  (def sphere-1
-    (type (-> space)
-      (: b (-> (-1 <>)))
-      (: loop (-> (0 b b)))))
+  (note
+    (2 surf)
+    g =>
+    (2 #f m m2 (1 n m2 s m2 rev)
+       #t m m2 (1))
+    f =>
+    (2 (2 surf) (1 (1 b2 refl) (1 b2 refl) rev)
+       (2 b2 refl refl) (1))
+    ==
+    (2 surf))
 
-  (def bool
-    (type (-> space)
-      (: #f #t (-> (-1 <>)))))
-
-  (def bool-suspend
-    (type (-> space)
-      (: n s (-> (-1 <>)))
-      (: m (-> bool (0 n s)))))
-
-
-  (def sphere-2
-    (type (-> space)
-      (: b2 (-> (-1 <>)))
-      (: surf (-> (1 b2 refl)))))
-
-  (def bool-suspend-suspend
-    (type (-> space)
-      (: n2 s2 (-> (-1 <>)))
-      (: m2 (-> bool-suspend (0 n2 s2)))))
+  (note
+    The above rewriting, if to be expressed in prefix notation,
+    would be ::
+    (= [(2 surf) g]
+       (2 #f m m2 (1 n m2 s m2 rev)
+          #t m m2 (1)))
+    (= [(2 #f m m2 (1 n m2 s m2 rev)
+           #t m m2 (1)) f]
+       (2 (2 surf) (1 (1 b2 refl) (1 b2 refl) rev)
+          (2 b2 refl refl) (1)))
+    (= (2 (2 surf) (1 (1 b2 refl) (1 b2 refl) rev)
+          (2 b2 refl refl) (1))
+       (2 surf))
+    I think this might be where we really need infix notation.)
   #+end_src
+
+* should we free the use of '[]' or using ',' as clojure ?
+
+  - x -
+    首先我們總結一下現象
+
+    #+begin_src scheme
+    (: [n m2] (0 n2 s2))
+    (: [s m2] (0 n2 s2))
+    (: [#f m m2] (1 n m2 s m2 rev))
+    (: [#t m m2] (1 n m2 s m2 rev))
+    #+end_src
+    這裏 [] 單純是爲了讓人知道 [] 內的是一個單一的元素
+
+    #+begin_src scheme
+    (lambda  (-> (* bool-suspend (-1 I)) bool-suspend)
+      (-> (* :x i0) [:x f g])
+      (-> (* :x i1) :x))
+    #+end_src
+    這個被認爲是下面的縮寫
+    #+begin_src scheme
+    (lambda  (-> (* bool-suspend (-1 I)) bool-suspend)
+      (-> [(* :x i0)] [:x f g])
+      (-> [(* :x i1)] [:x]))
+    #+end_src
+    這裏
+    (-> ...) 內 [] 使得多個參數和多個返回值成爲可能
+    [雖然 這個例子中 單參數 與 單返回值]
+    也就是說
+    [] 內可能是多個元素
+    比如
+    #+begin_src scheme
+    (lambda  (-> [(* bool-suspend (-1 I)) (* bool-suspend (-1 I))]
+                 [bool-suspend bool-suspend])
+      (-> [(* :x0 i0) (* :x1 i0)] [:x0 f g :x1 f g])
+      (-> [(* :x0 i1) (* :x1 i1)] [:x0 :x1]))
+    #+end_src
+
+    是否允許如下的 '明確化' 呢
+    #+begin_src scheme
+    (lambda  (-> [(* bool-suspend (-1 I)) (* bool-suspend (-1 I))]
+                 [bool-suspend bool-suspend])
+      (-> [(* :x0 i0) (* :x1 i0)] [[:x0 f g] [:x1 f g]])
+      (-> [(* :x0 i1) (* :x1 i1)] [[:x0] [:x1]]))
+    #+end_src
+    或者
+    #+begin_src scheme
+    (lambda  (-> [(* bool-suspend (-1 I)) (* bool-suspend (-1 I))]
+                 [bool-suspend bool-suspend])
+      (-> [(* :x0 i0) (* :x1 i0)] [:x0 f g, :x1 f g])
+      (-> [(* :x0 i1) (* :x1 i1)] [:x0, :x1]))
+    #+end_src
+
+  - k -
+    我想前者嵌套的 [[]] 肯定是不可取的
+
+  - x -
+    但是如果使用後者的話
+    比如
+    #+begin_src scheme
+    (def bool-suspend
+      (type space
+        (: n s (-1 <>))
+        (: m (-> bool (0 n s)))))
+    #+end_src
+    就應該寫成
+    #+begin_src scheme
+    (def bool-suspend
+      (type space
+        (: [n, s] (-1 <>))
+        (: m (-> bool (0 n s)))))
+    #+end_src
+    然而對於 (: ...) 來說 這其實是沒有必要的
+
+  - k -
+    但是我們可以要求這一點
+    以使得 對 [] 與 ',' 的使用變得一致
+
+  - x -
+    那我們就追求這種一致性吧    
+    也許之後對 (: ...) 這個語法關鍵詞的擴展
+    可能使得 (: ...) 類似於 (-> ...)
+    從而讓 這種用法變得有必要
+
+  - k - 
+    這樣我們就要以 clojure 的方式使用 ',' 了
+
+  - x - 
+    沒錯
