@@ -3,8 +3,6 @@
 
 * todo
 
-  - fix for as-remained-boundary
-
   - note about (+ ...)
 
 * intro
@@ -560,8 +558,8 @@
         (with (-> (-1 sphere-2) (-1 bool-suspend-suspend))
           (-> b2 n2))
         (with (-> (1 b2 refl) (1 n2 refl))
-          (-> (2 surf) (2 #f m m2 (1 n m2 s m2 rev)
-                          #t m m2 (1))))))
+          (-> (2 surf) (2 #f m m2 (1 n m2 s m2 rev) as-remained-boundary
+                          #t m m2 (1) as-remained-boundary)))))
 
     (def [g f]
       (lambda (-> sphere-2 sphere-2)
@@ -573,11 +571,11 @@
     (note
       (2 surf)
       g =>
-      (2 #f m m2 (1 n m2 s m2 rev)
-         #t m m2 (1))
+      (2 #f m m2 (1 n m2 s m2 rev) as-remained-boundary
+         #t m m2 (1) as-remained-boundary)
       f =>
-      (2 (2 surf) (1 (1 b2 refl) (1 b2 refl) rev)
-         (2 b2 refl refl) (1))
+      (2 (2 surf) (1 (1 b2 refl) (1 b2 refl) rev) as-remained-boundary
+         (2 b2 refl refl) (1) as-remained-boundary)
       ==
       (2 surf))
 
@@ -590,8 +588,8 @@
           (-> (1 n m2) (1 n2 refl))
           (-> (1 s m2) (1 n2 refl)))
         (with (-> (1 n m2 s m2 rev) (1 n2 refl))
-          (-> (2 #f m m2) (2 #f m m2 (1 n m2 s m2 rev)
-                             #t m m2 (1)))
+          (-> (2 #f m m2) (2 #f m m2 (1 n m2 s m2 rev) as-remained-boundary
+                             #t m m2 (1) as-remained-boundary))
           (-> (2 #t m m2) (2 n2 refl refl)))))
 
     (note
@@ -622,8 +620,9 @@
                      (1 n m2) rev (1 n2 refl) rev)
                   (1 (1 s m2) (1 n m2) rev)))
           (-> (* (1 s m2) (1 i01)) (2)
-              (:> (2) (1 (1 n2 refl) (1 s m2)
-                         (1 s m2) rev (1 n2 refl) rev)
+              (:> (2)
+                  (1 (1 n2 refl) (1 s m2)
+                     (1 s m2) rev (1 n2 refl) rev)
                   (1 (1 s m2)
                      (1 s m2) rev)
                   (1)))      )
@@ -633,16 +632,19 @@
                         (* (1 n m2) i1) <>
                         (* s2 (1 i01)) <> rev
                         (* (1 n m2) i0) <> rev)
+                     as-remained-boundary
                      (* (1 s m2) (1 :i)) <>
                      (1 (* (1 n m2) i1) <>
                         (* (1 n m2) i0) <> rev
                         (* (1 s m2) i1) <> rev
                         (* (1 s m2) i0) <>)
+                     as-remained-boundary
                      (* (2 :c) i0) <>
                      (1 (* (1 n m2) i1) <>
                         (* (1 s m2) i1) <> rev)
+                     as-remained-boundary
                      (* (2 :c) i1) <>
-                     (1)))
+                     (1) as-remained-boundary))
           (-> (* (2 #f m m2) (1 i01)) (3)
               (: (3)
                  (2 (2 #t m m2)
@@ -650,23 +652,27 @@
                        (1 n m2)
                        (1 s m2) rev
                        (1 n2 refl) rev)
+                    as-remained-boundary
                     (2)
                     (1 (1 n m2)
                        (1 n2 refl) rev
                        (1 s m2) rev
                        (1 n2 refl) rev)
+                    as-remained-boundary
                     (2 #f m m2 (1 n m2 s m2 rev)
                        #t m m2 (1))
                     (1 (1 n m2)
                        (1 s m2) rev)
+                    as-remained-boundary
                     (2 #f m m2)
-                    (1))))
+                    (1) as-remained-boundary)))
           (-> (* (2 #t m m2) (1 i01)) (3)
               (: (3)
                  (2 (2 #t m m2)
                     (2)
                     (2 n2 refl refl)
-                    (2 #t m m2)))))))
+                    (2 #t m m2)
+                    (1) as-final-boundary))))))
     #+end_src
 
 * >< fiber-space

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-04-05 Wed 01:51 -->
+<!-- 2017-04-05 Wed 01:58 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>algebraic-topology-1</title>
@@ -67,39 +67,37 @@ for the JavaScript code in this tag.
 <h2>overview</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org4522c0d"><span class="done todo">todo</span> </a></li>
-<li><a href="#org9d9595c">intro</a></li>
-<li><a href="#org4903201">simple-space</a></li>
-<li><a href="#orgc7a7d19">map and continuity-check</a></li>
-<li><a href="#org6ed496a">product-space</a></li>
-<li><a href="#org7d3c1ad">extension-problem</a></li>
-<li><a href="#orgaaf4b83">equality</a></li>
-<li><a href="#org78823e2"><span class="todo _gt__lt_">&gt;&lt;</span> indexed-space</a></li>
-<li><a href="#org8fad53e">examples</a>
+<li><a href="#org7750268"><span class="done todo">todo</span> </a></li>
+<li><a href="#orgf7281a3">intro</a></li>
+<li><a href="#org172b7f7">simple-space</a></li>
+<li><a href="#org5241730">map and continuity-check</a></li>
+<li><a href="#org5a16ab7">product-space</a></li>
+<li><a href="#org6ad646d">extension-problem</a></li>
+<li><a href="#orgecc2fc6">equality</a></li>
+<li><a href="#orgda5d67b"><span class="todo _gt__lt_">&gt;&lt;</span> indexed-space</a></li>
+<li><a href="#org33a572a">examples</a>
 <ul>
-<li><a href="#orgf4329fd">(~~ bool-suspend sphere-1)</a></li>
-<li><a href="#orgc0cf9b3">(~~ bool-suspend-suspend sphere-2)</a></li>
+<li><a href="#org50004a">(~~ bool-suspend sphere-1)</a></li>
+<li><a href="#orgef70ce1">(~~ bool-suspend-suspend sphere-2)</a></li>
 </ul>
 </li>
-<li><a href="#org3fecc17"><span class="todo _gt__lt_">&gt;&lt;</span> fiber-space</a></li>
-<li><a href="#org7845ece"><span class="todo _gt__lt_">&gt;&lt;</span> lifting-problem</a></li>
+<li><a href="#org16e7b93"><span class="todo _gt__lt_">&gt;&lt;</span> fiber-space</a></li>
+<li><a href="#orgdfbc394"><span class="todo _gt__lt_">&gt;&lt;</span> lifting-problem</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org4522c0d" class="outline-2">
-<h2 id="org4522c0d"><span class="done todo">todo</span> </h2>
-<div class="outline-text-2" id="text-org4522c0d">
+<div id="outline-container-org7750268" class="outline-2">
+<h2 id="org7750268"><span class="done todo">todo</span> </h2>
+<div class="outline-text-2" id="text-org7750268">
 <ul class="org-ul">
-<li><p>fix for as-remained-boundary</p></li>
-
 <li><p>note about (+ &#x2026;)</p></li></ul>
 </div>
 </div>
 
-<div id="outline-container-org9d9595c" class="outline-2">
-<h2 id="org9d9595c">intro</h2>
-<div class="outline-text-2" id="text-org9d9595c">
+<div id="outline-container-orgf7281a3" class="outline-2">
+<h2 id="orgf7281a3">intro</h2>
+<div class="outline-text-2" id="text-orgf7281a3">
 <ul class="org-ul">
 <li><p>I will show how to design and implement a language</p><p>to formalize and machinalize</p><p>a little part of algebraic topology.</p></li>
 
@@ -109,9 +107,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org4903201" class="outline-2">
-<h2 id="org4903201">simple-space</h2>
-<div class="outline-text-2" id="text-org4903201">
+<div id="outline-container-org172b7f7" class="outline-2">
+<h2 id="org172b7f7">simple-space</h2>
+<div class="outline-text-2" id="text-org172b7f7">
 <ul class="org-ul">
 <li><p>In a language, we always have primitive elements,</p><p>and many ways to compose elements to new compound element,</p><p>also many ways to derive new element from old one.</p></li>
 
@@ -135,9 +133,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgc7a7d19" class="outline-2">
-<h2 id="orgc7a7d19">map and continuity-check</h2>
-<div class="outline-text-2" id="text-orgc7a7d19">
+<div id="outline-container-org5241730" class="outline-2">
+<h2 id="org5241730">map and continuity-check</h2>
+<div class="outline-text-2" id="text-org5241730">
 <ul class="org-ul">
 <li><p>A map between space 'A' and 'B', is of type '(-&gt; A B)'.</p><p>The simplest kind of map,</p><p>will map n-dim parts of 'A' to n-dim parts of 'B',</p><p>I call this kind of map 'level-same' map.</p></li>
 
@@ -149,9 +147,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org6ed496a" class="outline-2">
-<h2 id="org6ed496a">product-space</h2>
-<div class="outline-text-2" id="text-org6ed496a">
+<div id="outline-container-org5a16ab7" class="outline-2">
+<h2 id="org5a16ab7">product-space</h2>
+<div class="outline-text-2" id="text-org5a16ab7">
 <ul class="org-ul">
 <li><p>The first kind of primitive space is simple-space defined above,</p><p>while the first kind of compound space is product-space.</p></li>
 
@@ -165,9 +163,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org7d3c1ad" class="outline-2">
-<h2 id="org7d3c1ad">extension-problem</h2>
-<div class="outline-text-2" id="text-org7d3c1ad">
+<div id="outline-container-org6ad646d" class="outline-2">
+<h2 id="org6ad646d">extension-problem</h2>
+<div class="outline-text-2" id="text-org6ad646d">
 <ul class="org-ul">
 <li><p>An extension-problem is expressed for a partial-map on a subspace.</p></li>
 
@@ -181,9 +179,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgaaf4b83" class="outline-2">
-<h2 id="orgaaf4b83">equality</h2>
-<div class="outline-text-2" id="text-orgaaf4b83">
+<div id="outline-container-orgecc2fc6" class="outline-2">
+<h2 id="orgecc2fc6">equality</h2>
+<div class="outline-text-2" id="text-orgecc2fc6">
 <ul class="org-ul">
 <li><p>With product-space and extension-problem,</p><p>we can define equality between two functions</p><p>as the extension-problem for certain kind of product-space.</p></li>
 
@@ -195,9 +193,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org78823e2" class="outline-2">
-<h2 id="org78823e2"><span class="todo _gt__lt_">&gt;&lt;</span> indexed-space</h2>
-<div class="outline-text-2" id="text-org78823e2">
+<div id="outline-container-orgda5d67b" class="outline-2">
+<h2 id="orgda5d67b"><span class="todo _gt__lt_">&gt;&lt;</span> indexed-space</h2>
+<div class="outline-text-2" id="text-orgda5d67b">
 <ul class="org-ul">
 <li><p>When defining a space, parts of it can be indexed</p><p>by parts of another space.</p><p>Such a named indexing of parts is called an index,</p><p>which is also a subspace of the larger space.</p></li>
 
@@ -209,12 +207,12 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org8fad53e" class="outline-2">
-<h2 id="org8fad53e">examples</h2>
-<div class="outline-text-2" id="text-org8fad53e">
-</div><div id="outline-container-orgf4329fd" class="outline-3">
-<h3 id="orgf4329fd">(~~ bool-suspend sphere-1)</h3>
-<div class="outline-text-3" id="text-orgf4329fd">
+<div id="outline-container-org33a572a" class="outline-2">
+<h2 id="org33a572a">examples</h2>
+<div class="outline-text-2" id="text-org33a572a">
+</div><div id="outline-container-org50004a" class="outline-3">
+<h3 id="org50004a">(~~ bool-suspend sphere-1)</h3>
+<div class="outline-text-3" id="text-org50004a">
 <div class="org-src-container">
 
 <pre class="src src-scheme"><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">def</span> sphere-1
@@ -299,9 +297,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgc0cf9b3" class="outline-3">
-<h3 id="orgc0cf9b3">(~~ bool-suspend-suspend sphere-2)</h3>
-<div class="outline-text-3" id="text-orgc0cf9b3">
+<div id="outline-container-orgef70ce1" class="outline-3">
+<h3 id="orgef70ce1">(~~ bool-suspend-suspend sphere-2)</h3>
+<div class="outline-text-3" id="text-orgef70ce1">
 <div class="org-src-container">
 
 <pre class="src src-scheme"><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">def</span> sphere-2
@@ -336,8 +334,8 @@ for the JavaScript code in this tag.
     <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">with</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-1</span> sphere-2<span style="color: #696969;">)</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-1</span> bool-suspend-suspend<span style="color: #696969;">))</span>
       <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> b2 n2<span style="color: #696969;">))</span>
     <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">with</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> b2 <span style="color: #66d9ef; font-weight: bold;">refl</span><span style="color: #696969;">)</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> n2 <span style="color: #66d9ef; font-weight: bold;">refl</span><span style="color: #696969;">))</span>
-      <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">2</span> surf<span style="color: #696969;">)</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">2</span> #f m m2 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> n m2 s m2 <span style="color: #66d9ef; font-weight: bold;">rev</span><span style="color: #696969;">)</span>
-                      #t m m2 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span><span style="color: #696969;">))))))</span>
+      <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">2</span> surf<span style="color: #696969;">)</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">2</span> #f m m2 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> n m2 s m2 <span style="color: #66d9ef; font-weight: bold;">rev</span><span style="color: #696969;">)</span> as-remained-boundary
+                      #t m m2 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span><span style="color: #696969;">)</span> as-remained-boundary<span style="color: #696969;">)))))</span>
 
 <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">def</span> <span style="color: #797979;">[</span>g f<span style="color: #797979;">]</span>
   <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">lambda</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> sphere-2 sphere-2<span style="color: #696969;">)</span>
@@ -349,11 +347,11 @@ for the JavaScript code in this tag.
 <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">note</span>
   <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">2</span> surf<span style="color: #696969;">)</span>
   g =&gt;
-  <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">2</span> #f m m2 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> n m2 s m2 <span style="color: #66d9ef; font-weight: bold;">rev</span><span style="color: #696969;">)</span>
-     #t m m2 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span><span style="color: #696969;">))</span>
+  <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">2</span> #f m m2 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> n m2 s m2 <span style="color: #66d9ef; font-weight: bold;">rev</span><span style="color: #696969;">)</span> as-remained-boundary
+     #t m m2 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span><span style="color: #696969;">)</span> as-remained-boundary<span style="color: #696969;">)</span>
   f =&gt;
-  <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">2</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">2</span> surf<span style="color: #696969;">)</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> b2 <span style="color: #66d9ef; font-weight: bold;">refl</span><span style="color: #696969;">)</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> b2 <span style="color: #66d9ef; font-weight: bold;">refl</span><span style="color: #696969;">)</span> <span style="color: #66d9ef; font-weight: bold;">rev</span><span style="color: #696969;">)</span>
-     <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">2</span> b2 <span style="color: #66d9ef; font-weight: bold;">refl</span> <span style="color: #66d9ef; font-weight: bold;">refl</span><span style="color: #696969;">)</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span><span style="color: #696969;">))</span>
+  <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">2</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">2</span> surf<span style="color: #696969;">)</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> b2 <span style="color: #66d9ef; font-weight: bold;">refl</span><span style="color: #696969;">)</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> b2 <span style="color: #66d9ef; font-weight: bold;">refl</span><span style="color: #696969;">)</span> <span style="color: #66d9ef; font-weight: bold;">rev</span><span style="color: #696969;">)</span> as-remained-boundary
+     <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">2</span> b2 <span style="color: #66d9ef; font-weight: bold;">refl</span> <span style="color: #66d9ef; font-weight: bold;">refl</span><span style="color: #696969;">)</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span><span style="color: #696969;">)</span> as-remained-boundary<span style="color: #696969;">)</span>
   ==
   <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">2</span> surf<span style="color: #696969;">))</span>
 
@@ -366,8 +364,8 @@ for the JavaScript code in this tag.
       <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> n m2<span style="color: #696969;">)</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> n2 <span style="color: #66d9ef; font-weight: bold;">refl</span><span style="color: #696969;">))</span>
       <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> s m2<span style="color: #696969;">)</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> n2 <span style="color: #66d9ef; font-weight: bold;">refl</span><span style="color: #696969;">)))</span>
     <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">with</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> n m2 s m2 <span style="color: #66d9ef; font-weight: bold;">rev</span><span style="color: #696969;">)</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> n2 <span style="color: #66d9ef; font-weight: bold;">refl</span><span style="color: #696969;">))</span>
-      <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">2</span> #f m m2<span style="color: #696969;">)</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">2</span> #f m m2 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> n m2 s m2 <span style="color: #66d9ef; font-weight: bold;">rev</span><span style="color: #696969;">)</span>
-                         #t m m2 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span><span style="color: #696969;">)))</span>
+      <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">2</span> #f m m2<span style="color: #696969;">)</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">2</span> #f m m2 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> n m2 s m2 <span style="color: #66d9ef; font-weight: bold;">rev</span><span style="color: #696969;">)</span> as-remained-boundary
+                         #t m m2 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span><span style="color: #696969;">)</span> as-remained-boundary<span style="color: #696969;">))</span>
       <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">2</span> #t m m2<span style="color: #696969;">)</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">2</span> n2 <span style="color: #66d9ef; font-weight: bold;">refl</span> <span style="color: #66d9ef; font-weight: bold;">refl</span><span style="color: #696969;">)))))</span>
 
 <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">note</span>
@@ -398,8 +396,9 @@ for the JavaScript code in this tag.
                  <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> n m2<span style="color: #696969;">)</span> <span style="color: #66d9ef; font-weight: bold;">rev</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> n2 <span style="color: #66d9ef; font-weight: bold;">refl</span><span style="color: #696969;">)</span> <span style="color: #66d9ef; font-weight: bold;">rev</span><span style="color: #696969;">)</span>
               <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> s m2<span style="color: #696969;">)</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> n m2<span style="color: #696969;">)</span> <span style="color: #66d9ef; font-weight: bold;">rev</span><span style="color: #696969;">)))</span>
       <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> s m2<span style="color: #696969;">)</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> i01<span style="color: #696969;">))</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">2</span><span style="color: #696969;">)</span>
-          <span style="color: #696969;">(</span><span style="color: #a6e22e;">:&gt;</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">2</span><span style="color: #696969;">)</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> n2 <span style="color: #66d9ef; font-weight: bold;">refl</span><span style="color: #696969;">)</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> s m2<span style="color: #696969;">)</span>
-                     <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> s m2<span style="color: #696969;">)</span> <span style="color: #66d9ef; font-weight: bold;">rev</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> n2 <span style="color: #66d9ef; font-weight: bold;">refl</span><span style="color: #696969;">)</span> <span style="color: #66d9ef; font-weight: bold;">rev</span><span style="color: #696969;">)</span>
+          <span style="color: #696969;">(</span><span style="color: #a6e22e;">:&gt;</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">2</span><span style="color: #696969;">)</span>
+              <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> n2 <span style="color: #66d9ef; font-weight: bold;">refl</span><span style="color: #696969;">)</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> s m2<span style="color: #696969;">)</span>
+                 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> s m2<span style="color: #696969;">)</span> <span style="color: #66d9ef; font-weight: bold;">rev</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> n2 <span style="color: #66d9ef; font-weight: bold;">refl</span><span style="color: #696969;">)</span> <span style="color: #66d9ef; font-weight: bold;">rev</span><span style="color: #696969;">)</span>
               <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> s m2<span style="color: #696969;">)</span>
                  <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> s m2<span style="color: #696969;">)</span> <span style="color: #66d9ef; font-weight: bold;">rev</span><span style="color: #696969;">)</span>
               <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span><span style="color: #696969;">)))</span>      <span style="color: #696969;">)</span>
@@ -409,16 +408,19 @@ for the JavaScript code in this tag.
                     <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> n m2<span style="color: #696969;">)</span> i1<span style="color: #696969;">)</span> <span style="color: #66d9ef; font-weight: bold;">&lt;&gt;</span>
                     <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> s2 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> i01<span style="color: #696969;">))</span> <span style="color: #66d9ef; font-weight: bold;">&lt;&gt;</span> <span style="color: #66d9ef; font-weight: bold;">rev</span>
                     <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> n m2<span style="color: #696969;">)</span> i0<span style="color: #696969;">)</span> <span style="color: #66d9ef; font-weight: bold;">&lt;&gt;</span> <span style="color: #66d9ef; font-weight: bold;">rev</span><span style="color: #696969;">)</span>
+                 as-remained-boundary
                  <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> s m2<span style="color: #696969;">)</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> <span style="color: #a6e22e;">:i</span><span style="color: #696969;">))</span> <span style="color: #66d9ef; font-weight: bold;">&lt;&gt;</span>
                  <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> n m2<span style="color: #696969;">)</span> i1<span style="color: #696969;">)</span> <span style="color: #66d9ef; font-weight: bold;">&lt;&gt;</span>
                     <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> n m2<span style="color: #696969;">)</span> i0<span style="color: #696969;">)</span> <span style="color: #66d9ef; font-weight: bold;">&lt;&gt;</span> <span style="color: #66d9ef; font-weight: bold;">rev</span>
                     <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> s m2<span style="color: #696969;">)</span> i1<span style="color: #696969;">)</span> <span style="color: #66d9ef; font-weight: bold;">&lt;&gt;</span> <span style="color: #66d9ef; font-weight: bold;">rev</span>
                     <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> s m2<span style="color: #696969;">)</span> i0<span style="color: #696969;">)</span> <span style="color: #66d9ef; font-weight: bold;">&lt;&gt;</span><span style="color: #696969;">)</span>
+                 as-remained-boundary
                  <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">2</span> <span style="color: #a6e22e;">:c</span><span style="color: #696969;">)</span> i0<span style="color: #696969;">)</span> <span style="color: #66d9ef; font-weight: bold;">&lt;&gt;</span>
                  <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> n m2<span style="color: #696969;">)</span> i1<span style="color: #696969;">)</span> <span style="color: #66d9ef; font-weight: bold;">&lt;&gt;</span>
                     <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> s m2<span style="color: #696969;">)</span> i1<span style="color: #696969;">)</span> <span style="color: #66d9ef; font-weight: bold;">&lt;&gt;</span> <span style="color: #66d9ef; font-weight: bold;">rev</span><span style="color: #696969;">)</span>
+                 as-remained-boundary
                  <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">2</span> <span style="color: #a6e22e;">:c</span><span style="color: #696969;">)</span> i1<span style="color: #696969;">)</span> <span style="color: #66d9ef; font-weight: bold;">&lt;&gt;</span>
-                 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span><span style="color: #696969;">)))</span>
+                 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span><span style="color: #696969;">)</span> as-remained-boundary<span style="color: #696969;">))</span>
       <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">2</span> #f m m2<span style="color: #696969;">)</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> i01<span style="color: #696969;">))</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">3</span><span style="color: #696969;">)</span>
           <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">:</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">3</span><span style="color: #696969;">)</span>
              <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">2</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">2</span> #t m m2<span style="color: #696969;">)</span>
@@ -426,32 +428,36 @@ for the JavaScript code in this tag.
                    <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> n m2<span style="color: #696969;">)</span>
                    <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> s m2<span style="color: #696969;">)</span> <span style="color: #66d9ef; font-weight: bold;">rev</span>
                    <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> n2 <span style="color: #66d9ef; font-weight: bold;">refl</span><span style="color: #696969;">)</span> <span style="color: #66d9ef; font-weight: bold;">rev</span><span style="color: #696969;">)</span>
+                as-remained-boundary
                 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">2</span><span style="color: #696969;">)</span>
                 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> n m2<span style="color: #696969;">)</span>
                    <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> n2 <span style="color: #66d9ef; font-weight: bold;">refl</span><span style="color: #696969;">)</span> <span style="color: #66d9ef; font-weight: bold;">rev</span>
                    <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> s m2<span style="color: #696969;">)</span> <span style="color: #66d9ef; font-weight: bold;">rev</span>
                    <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> n2 <span style="color: #66d9ef; font-weight: bold;">refl</span><span style="color: #696969;">)</span> <span style="color: #66d9ef; font-weight: bold;">rev</span><span style="color: #696969;">)</span>
+                as-remained-boundary
                 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">2</span> #f m m2 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> n m2 s m2 <span style="color: #66d9ef; font-weight: bold;">rev</span><span style="color: #696969;">)</span>
                    #t m m2 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span><span style="color: #696969;">))</span>
                 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> n m2<span style="color: #696969;">)</span>
                    <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> s m2<span style="color: #696969;">)</span> <span style="color: #66d9ef; font-weight: bold;">rev</span><span style="color: #696969;">)</span>
+                as-remained-boundary
                 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">2</span> #f m m2<span style="color: #696969;">)</span>
-                <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span><span style="color: #696969;">))))</span>
+                <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span><span style="color: #696969;">)</span> as-remained-boundary<span style="color: #696969;">)))</span>
       <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">2</span> #t m m2<span style="color: #696969;">)</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> i01<span style="color: #696969;">))</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">3</span><span style="color: #696969;">)</span>
           <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">:</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">3</span><span style="color: #696969;">)</span>
              <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">2</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">2</span> #t m m2<span style="color: #696969;">)</span>
                 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">2</span><span style="color: #696969;">)</span>
                 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">2</span> n2 <span style="color: #66d9ef; font-weight: bold;">refl</span> <span style="color: #66d9ef; font-weight: bold;">refl</span><span style="color: #696969;">)</span>
-                <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">2</span> #t m m2<span style="color: #696969;">)))))))</span>
+                <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">2</span> #t m m2<span style="color: #696969;">)</span>
+                <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span><span style="color: #696969;">)</span> as-final-boundary<span style="color: #696969;">))))))</span>
 </pre>
 </div>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org3fecc17" class="outline-2">
-<h2 id="org3fecc17"><span class="todo _gt__lt_">&gt;&lt;</span> fiber-space</h2>
-<div class="outline-text-2" id="text-org3fecc17">
+<div id="outline-container-org16e7b93" class="outline-2">
+<h2 id="org16e7b93"><span class="todo _gt__lt_">&gt;&lt;</span> fiber-space</h2>
+<div class="outline-text-2" id="text-org16e7b93">
 <ul class="org-ul">
 <li><p>To view product-space as special fiber-space,</p><p>for which a gluing pattern is given.</p></li>
 
@@ -461,9 +467,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org7845ece" class="outline-2">
-<h2 id="org7845ece"><span class="todo _gt__lt_">&gt;&lt;</span> lifting-problem</h2>
-<div class="outline-text-2" id="text-org7845ece">
+<div id="outline-container-orgdfbc394" class="outline-2">
+<h2 id="orgdfbc394"><span class="todo _gt__lt_">&gt;&lt;</span> lifting-problem</h2>
+<div class="outline-text-2" id="text-orgdfbc394">
 <ul class="org-ul">
 <li><p>A lifting-problem is expressed for a [?] on a fiber-space.</p></li>
 
