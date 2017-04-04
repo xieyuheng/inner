@@ -1,10 +1,6 @@
 #+HTML_HEAD: <link rel="stylesheet" href="../../asset/css/page.css" type="text/css" media="screen" />
 #+title: algebraic-topology-1
 
-* todo
-
-  - note about (+ ...)
-
 * intro
 
   - I will show how to design and implement a language
@@ -308,6 +304,10 @@
     ;; or
     (: (* a b) (+ (* a boundary b) (* a b boundary)))
     #+end_src
+
+  - Note that, in the rule above,
+    (+ ...) is implicit about how to view the resulting shape.
+    I do not know the general explict rule yet.
 
   - The interval is defined as follow
     #+begin_src scheme

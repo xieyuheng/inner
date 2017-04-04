@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-04-05 Wed 01:58 -->
+<!-- 2017-04-05 Wed 02:01 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>algebraic-topology-1</title>
@@ -67,37 +67,28 @@ for the JavaScript code in this tag.
 <h2>overview</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org7750268"><span class="done todo">todo</span> </a></li>
-<li><a href="#orgf7281a3">intro</a></li>
-<li><a href="#org172b7f7">simple-space</a></li>
-<li><a href="#org5241730">map and continuity-check</a></li>
-<li><a href="#org5a16ab7">product-space</a></li>
-<li><a href="#org6ad646d">extension-problem</a></li>
-<li><a href="#orgecc2fc6">equality</a></li>
-<li><a href="#orgda5d67b"><span class="todo _gt__lt_">&gt;&lt;</span> indexed-space</a></li>
-<li><a href="#org33a572a">examples</a>
+<li><a href="#org15d3383">intro</a></li>
+<li><a href="#org92031e">simple-space</a></li>
+<li><a href="#org7b0dc2c">map and continuity-check</a></li>
+<li><a href="#orgb894907">product-space</a></li>
+<li><a href="#org7130652">extension-problem</a></li>
+<li><a href="#orgd3cff67">equality</a></li>
+<li><a href="#org30ab0b8"><span class="todo _gt__lt_">&gt;&lt;</span> indexed-space</a></li>
+<li><a href="#orgef459cd">examples</a>
 <ul>
-<li><a href="#org50004a">(~~ bool-suspend sphere-1)</a></li>
-<li><a href="#orgef70ce1">(~~ bool-suspend-suspend sphere-2)</a></li>
+<li><a href="#org8ce0997">(~~ bool-suspend sphere-1)</a></li>
+<li><a href="#orgab935d4">(~~ bool-suspend-suspend sphere-2)</a></li>
 </ul>
 </li>
-<li><a href="#org16e7b93"><span class="todo _gt__lt_">&gt;&lt;</span> fiber-space</a></li>
-<li><a href="#orgdfbc394"><span class="todo _gt__lt_">&gt;&lt;</span> lifting-problem</a></li>
+<li><a href="#org1e6dfce"><span class="todo _gt__lt_">&gt;&lt;</span> fiber-space</a></li>
+<li><a href="#org83ff964"><span class="todo _gt__lt_">&gt;&lt;</span> lifting-problem</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org7750268" class="outline-2">
-<h2 id="org7750268"><span class="done todo">todo</span> </h2>
-<div class="outline-text-2" id="text-org7750268">
-<ul class="org-ul">
-<li><p>note about (+ &#x2026;)</p></li></ul>
-</div>
-</div>
-
-<div id="outline-container-orgf7281a3" class="outline-2">
-<h2 id="orgf7281a3">intro</h2>
-<div class="outline-text-2" id="text-orgf7281a3">
+<div id="outline-container-org15d3383" class="outline-2">
+<h2 id="org15d3383">intro</h2>
+<div class="outline-text-2" id="text-org15d3383">
 <ul class="org-ul">
 <li><p>I will show how to design and implement a language</p><p>to formalize and machinalize</p><p>a little part of algebraic topology.</p></li>
 
@@ -107,9 +98,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org172b7f7" class="outline-2">
-<h2 id="org172b7f7">simple-space</h2>
-<div class="outline-text-2" id="text-org172b7f7">
+<div id="outline-container-org92031e" class="outline-2">
+<h2 id="org92031e">simple-space</h2>
+<div class="outline-text-2" id="text-org92031e">
 <ul class="org-ul">
 <li><p>In a language, we always have primitive elements,</p><p>and many ways to compose elements to new compound element,</p><p>also many ways to derive new element from old one.</p></li>
 
@@ -133,9 +124,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org5241730" class="outline-2">
-<h2 id="org5241730">map and continuity-check</h2>
-<div class="outline-text-2" id="text-org5241730">
+<div id="outline-container-org7b0dc2c" class="outline-2">
+<h2 id="org7b0dc2c">map and continuity-check</h2>
+<div class="outline-text-2" id="text-org7b0dc2c">
 <ul class="org-ul">
 <li><p>A map between space 'A' and 'B', is of type '(-&gt; A B)'.</p><p>The simplest kind of map,</p><p>will map n-dim parts of 'A' to n-dim parts of 'B',</p><p>I call this kind of map 'level-same' map.</p></li>
 
@@ -147,9 +138,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org5a16ab7" class="outline-2">
-<h2 id="org5a16ab7">product-space</h2>
-<div class="outline-text-2" id="text-org5a16ab7">
+<div id="outline-container-orgb894907" class="outline-2">
+<h2 id="orgb894907">product-space</h2>
+<div class="outline-text-2" id="text-orgb894907">
 <ul class="org-ul">
 <li><p>The first kind of primitive space is simple-space defined above,</p><p>while the first kind of compound space is product-space.</p></li>
 
@@ -157,15 +148,17 @@ for the JavaScript code in this tag.
 
 <li><p><p></p><p>The rule of product-space</p><p></p></p><p><div class="org-src-container"></p><p></p><p><pre class="src src-scheme"><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">=</span> <span style="color: #797979;">[</span><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> a b<span style="color: #696969;">)</span> boundary<span style="color: #797979;">]</span> <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">+</span> <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> a boundary b<span style="color: #696969;">)</span> <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> a b boundary<span style="color: #696969;">)))</span></p><p><span style="color: #FF8888;">;; </span><span style="color: #FF8888;">or</span></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">:</span> <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> a b<span style="color: #696969;">)</span> <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">+</span> <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> a boundary b<span style="color: #696969;">)</span> <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> a b boundary<span style="color: #696969;">)))</span></p><p></pre></p><p></div></p></li>
 
+<li><p>Note that, in the rule above,</p><p>(+ &#x2026;) is implicit about how to view the resulting shape.</p><p>I do not know the general explict rule yet.</p></li>
+
 <li><p><p></p><p>The interval is defined as follow</p><p></p></p><p><div class="org-src-container"></p><p></p><p><pre class="src src-scheme"><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">def</span> I</p><p>  <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">type</span> space</p><p>    <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">:</span> <span style="color: #797979;">[</span>i0, i1<span style="color: #797979;">]</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-1</span> <span style="color: #66d9ef; font-weight: bold;">&lt;&gt;</span><span style="color: #696969;">))</span></p><p>    <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">:</span> i01 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">0</span> i0 i1<span style="color: #696969;">))))</span></p><p></pre></p><p></div></p><p></p><p><p></p><p>Taking the interval as an example,</p><p>the rule for construction are</p><p></p></p><p><div class="org-src-container"></p><p></p><p><pre class="src src-scheme"><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">:</span> <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> i01 i0<span style="color: #696969;">)</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">0</span> <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> i0 i0<span style="color: #696969;">)</span> <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> i1 i0<span style="color: #696969;">)))</span></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">:</span> <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> i1 i01<span style="color: #696969;">)</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">0</span> <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> i1 i0<span style="color: #696969;">)</span> <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> i1 i1<span style="color: #696969;">)))</span></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">:</span> <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> i01 i1<span style="color: #696969;">)</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">0</span> <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> i0 i1<span style="color: #696969;">)</span> <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> i1 i1<span style="color: #696969;">)))</span></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">:</span> <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> i0 i01<span style="color: #696969;">)</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">0</span> <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> i0 i0<span style="color: #696969;">)</span> <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> i0 i1<span style="color: #696969;">)))</span></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">:</span> <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> i01 i01<span style="color: #696969;">)</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> i01 i0<span style="color: #696969;">)</span> <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> i1 i01<span style="color: #696969;">)</span></p><p>                  <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> i01 i1<span style="color: #696969;">)</span> <span style="color: #66d9ef; font-weight: bold;">rev</span>  <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> i0 i01<span style="color: #696969;">)</span> <span style="color: #66d9ef; font-weight: bold;">rev</span><span style="color: #696969;">))</span></p><p></pre></p><p></div></p></li>
 
 <li><p><p></p><p>A function of type (-&gt; (* I I) X)</p><p>can be defined as follow</p><p></p></p><p><div class="org-src-container"></p><p></p><p><pre class="src src-scheme"><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">def</span> f</p><p>  <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">lambda</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> I I<span style="color: #696969;">)</span> X<span style="color: #696969;">)</span></p><p>    <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">with</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-1</span> I<span style="color: #696969;">)</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-1</span> I<span style="color: #696969;">))</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-1</span> X<span style="color: #696969;">))</span></p><p>      <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> i0 i0<span style="color: #696969;">)</span> ...<span style="color: #696969;">)</span></p><p>      <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> i0 i1<span style="color: #696969;">)</span> ...<span style="color: #696969;">)</span></p><p>      <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> i1 i0<span style="color: #696969;">)</span> ...<span style="color: #696969;">)</span></p><p>      <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> i1 i1<span style="color: #696969;">)</span> ...<span style="color: #696969;">))</span></p><p>    <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">with</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-1</span> I<span style="color: #696969;">)</span> <span style="color: #66d9ef; font-weight: bold;">%:i</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">0</span> i0 i1<span style="color: #696969;">))</span></p><p>              <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">0</span> <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> <span style="color: #a6e22e;">:i</span> i0<span style="color: #696969;">)</span> <span style="color: #66d9ef; font-weight: bold;">&lt;&gt;</span></p><p>                 <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> <span style="color: #a6e22e;">:i</span> i1<span style="color: #696969;">)</span> <span style="color: #66d9ef; font-weight: bold;">&lt;&gt;</span><span style="color: #696969;">))</span></p><p>      <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> i0 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> i01<span style="color: #696969;">))</span> ...<span style="color: #696969;">)</span></p><p>      <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> i1 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> i01<span style="color: #696969;">))</span> ...<span style="color: #696969;">))</span></p><p>    <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">with</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">0</span> i0 i1<span style="color: #696969;">)</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-1</span> I<span style="color: #696969;">)</span> <span style="color: #66d9ef; font-weight: bold;">%:i</span><span style="color: #696969;">)</span></p><p>              <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">0</span> <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> i0 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> <span style="color: #a6e22e;">:i</span><span style="color: #696969;">))</span> <span style="color: #66d9ef; font-weight: bold;">&lt;&gt;</span></p><p>                 <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> i1 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> <span style="color: #a6e22e;">:i</span><span style="color: #696969;">))</span> <span style="color: #66d9ef; font-weight: bold;">&lt;&gt;</span><span style="color: #696969;">))</span></p><p>      <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> i01<span style="color: #696969;">)</span> i0<span style="color: #696969;">)</span> ...<span style="color: #696969;">)</span></p><p>      <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> i01<span style="color: #696969;">)</span> i1<span style="color: #696969;">)</span> ...<span style="color: #696969;">))</span></p><p>    <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">with</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">0</span> i0 i1<span style="color: #696969;">)</span> <span style="color: #66d9ef; font-weight: bold;">%:p0</span></p><p>                 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">0</span> i0 i1<span style="color: #696969;">)</span> <span style="color: #66d9ef; font-weight: bold;">%:p1</span><span style="color: #696969;">)</span></p><p>              <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> <span style="color: #a6e22e;">:p0</span><span style="color: #696969;">)</span> i0<span style="color: #696969;">)</span> <span style="color: #66d9ef; font-weight: bold;">&lt;&gt;</span></p><p>                 <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> i1 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> <span style="color: #a6e22e;">:p1</span><span style="color: #696969;">))</span> <span style="color: #66d9ef; font-weight: bold;">&lt;&gt;</span></p><p>                 <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> <span style="color: #a6e22e;">:p0</span><span style="color: #696969;">)</span> i1<span style="color: #696969;">)</span> <span style="color: #66d9ef; font-weight: bold;">&lt;&gt;</span> <span style="color: #66d9ef; font-weight: bold;">rev</span></p><p>                 <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> i0 <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> <span style="color: #a6e22e;">:p1</span><span style="color: #696969;">))</span> <span style="color: #66d9ef; font-weight: bold;">&lt;&gt;</span> <span style="color: #66d9ef; font-weight: bold;">rev</span><span style="color: #696969;">))</span></p><p>      <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> i01<span style="color: #696969;">)</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">1</span> i01<span style="color: #696969;">))</span> ...<span style="color: #696969;">))))</span></p><p></pre></p><p></div></p></li></ul>
 </div>
 </div>
 
-<div id="outline-container-org6ad646d" class="outline-2">
-<h2 id="org6ad646d">extension-problem</h2>
-<div class="outline-text-2" id="text-org6ad646d">
+<div id="outline-container-org7130652" class="outline-2">
+<h2 id="org7130652">extension-problem</h2>
+<div class="outline-text-2" id="text-org7130652">
 <ul class="org-ul">
 <li><p>An extension-problem is expressed for a partial-map on a subspace.</p></li>
 
@@ -179,9 +172,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgecc2fc6" class="outline-2">
-<h2 id="orgecc2fc6">equality</h2>
-<div class="outline-text-2" id="text-orgecc2fc6">
+<div id="outline-container-orgd3cff67" class="outline-2">
+<h2 id="orgd3cff67">equality</h2>
+<div class="outline-text-2" id="text-orgd3cff67">
 <ul class="org-ul">
 <li><p>With product-space and extension-problem,</p><p>we can define equality between two functions</p><p>as the extension-problem for certain kind of product-space.</p></li>
 
@@ -193,9 +186,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgda5d67b" class="outline-2">
-<h2 id="orgda5d67b"><span class="todo _gt__lt_">&gt;&lt;</span> indexed-space</h2>
-<div class="outline-text-2" id="text-orgda5d67b">
+<div id="outline-container-org30ab0b8" class="outline-2">
+<h2 id="org30ab0b8"><span class="todo _gt__lt_">&gt;&lt;</span> indexed-space</h2>
+<div class="outline-text-2" id="text-org30ab0b8">
 <ul class="org-ul">
 <li><p>When defining a space, parts of it can be indexed</p><p>by parts of another space.</p><p>Such a named indexing of parts is called an index,</p><p>which is also a subspace of the larger space.</p></li>
 
@@ -207,12 +200,12 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org33a572a" class="outline-2">
-<h2 id="org33a572a">examples</h2>
-<div class="outline-text-2" id="text-org33a572a">
-</div><div id="outline-container-org50004a" class="outline-3">
-<h3 id="org50004a">(~~ bool-suspend sphere-1)</h3>
-<div class="outline-text-3" id="text-org50004a">
+<div id="outline-container-orgef459cd" class="outline-2">
+<h2 id="orgef459cd">examples</h2>
+<div class="outline-text-2" id="text-orgef459cd">
+</div><div id="outline-container-org8ce0997" class="outline-3">
+<h3 id="org8ce0997">(~~ bool-suspend sphere-1)</h3>
+<div class="outline-text-3" id="text-org8ce0997">
 <div class="org-src-container">
 
 <pre class="src src-scheme"><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">def</span> sphere-1
@@ -297,9 +290,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgef70ce1" class="outline-3">
-<h3 id="orgef70ce1">(~~ bool-suspend-suspend sphere-2)</h3>
-<div class="outline-text-3" id="text-orgef70ce1">
+<div id="outline-container-orgab935d4" class="outline-3">
+<h3 id="orgab935d4">(~~ bool-suspend-suspend sphere-2)</h3>
+<div class="outline-text-3" id="text-orgab935d4">
 <div class="org-src-container">
 
 <pre class="src src-scheme"><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">def</span> sphere-2
@@ -455,9 +448,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org16e7b93" class="outline-2">
-<h2 id="org16e7b93"><span class="todo _gt__lt_">&gt;&lt;</span> fiber-space</h2>
-<div class="outline-text-2" id="text-org16e7b93">
+<div id="outline-container-org1e6dfce" class="outline-2">
+<h2 id="org1e6dfce"><span class="todo _gt__lt_">&gt;&lt;</span> fiber-space</h2>
+<div class="outline-text-2" id="text-org1e6dfce">
 <ul class="org-ul">
 <li><p>To view product-space as special fiber-space,</p><p>for which a gluing pattern is given.</p></li>
 
@@ -467,9 +460,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgdfbc394" class="outline-2">
-<h2 id="orgdfbc394"><span class="todo _gt__lt_">&gt;&lt;</span> lifting-problem</h2>
-<div class="outline-text-2" id="text-orgdfbc394">
+<div id="outline-container-org83ff964" class="outline-2">
+<h2 id="org83ff964"><span class="todo _gt__lt_">&gt;&lt;</span> lifting-problem</h2>
+<div class="outline-text-2" id="text-org83ff964">
 <ul class="org-ul">
 <li><p>A lifting-problem is expressed for a [?] on a fiber-space.</p></li>
 
