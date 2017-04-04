@@ -93,3 +93,155 @@
   - in (key1 ... (key2 ...))
     key2 might be a marker for key1 which follows the rule of key1
     or itself a key which follows its own rule
+
+* the syntax of 'belong to'
+
+  - x -
+    'belong to' = 'boundary ='
+    目前 (lambda ...) 與 (type ...) 這兩個關鍵詞
+    使得 'belong to' 的語義被隱藏起來了
+
+  - k -
+    之前之所以有這種 (lambda ...) 與 (type ...)
+    是因爲想要統一 (def ...)
+    並且使得可以形成沒有命名的數據
+    但是這種對 '無名' 的追求是不切實際的
+
+  - x -
+    那麼我們就拋棄這種設計
+    新設計的要求是
+    1. make 'belong to' explicit
+    2. [maybe] make the mark-lang richer
+
+  - k -
+    首先我們不能使用中綴表達式
+    這必須當作是一個重要的原則
+    否則語法就喪失就設計者而言的簡潔性了
+
+  ------
+
+  - x -
+    我們不能取消 (lambda ...) 與 (type ...) 這種 '無名' 語法關鍵詞
+    因爲 我發現 '有名' 的傾向 會使得名字氾濫
+
+  - k -
+    那我們增加 (: ...) 與 (= ...) 這兩個前綴表達式的語法關鍵詞
+    用來做 assertion
+
+  - x -
+    中綴表達式的傾向體現於如下的例子中
+    #+begin_src scheme
+    (def h ;; to proof (~ [f g] [bool-suspend-suspend id])
+      (lambda (-> (* bool-suspend-suspend I) bool-suspend-suspend)
+        (extend-from
+          (lambda (-> (* bool-suspend-suspend (-1 I)) bool-suspend-suspend)
+            (-> (* :x i0) (* [:x f g]))
+            (-> (* :x i1) (* :x))))
+        (with (-> (* (-1 bool-suspend-suspend) %:a (0 i0 i1))
+                  (0 (* :a i0) <> (* :a i1) <>))
+          (-> (* n2 (1 i01)) (1 n2 refl) ;; (1 n m2 s m2 rev)
+              : (0 n2 n2))
+          (-> (* s2 (1 i01)) (1 s m2) ;; (1 n m2)
+              : (0 n2 s2)))
+        (with (-> (* (0 n2 s2) %:b (0 i0 i1) %:i)
+                  (1 (* (1 :b) i0) <> (* s2 (1 :i)) <>
+                     (* (1 :b) i1) <> rev (* n2 (1 :i)) <> rev))
+          (-> (* (1 n m2) (1 i01)) (2 #t m m2)
+              : (1 (1 n2 refl) (1 s m2)
+                   (1 n m2) rev (1 n2 refl) rev)
+              = (1 (1 s m2) (1 n m2) rev))
+          (-> (* (1 s m2) (1 i01)) (2)
+              : (1 (1 n2 refl) (1 s m2)
+                   (1 s m2) rev (1 n2 refl) rev)
+              = (1 (1 s m2)
+                   (1 s m2) rev)
+              = (1))      )
+        (with (-> (* (1 n m2 s m2 rev) %:c (0 i0 i1) %:i)
+                  (2 (* (1 n m2) (1 :i)) <>
+                     (1 (* n2 (1 i01)) <>
+                        (* (1 n m2) i1) <>
+                        (* s2 (1 i01)) <> rev
+                        (* (1 n m2) i0) <> rev)
+                     (* (1 s m2) (1 :i)) <>
+                     (1 (* (1 n m2) i1) <>
+                        (* (1 n m2) i0) <> rev
+                        (* (1 s m2) i1) <> rev
+                        (* (1 s m2) i0) <>)
+                     (* (2 :c) i0) <>
+                     (1 (* (1 n m2) i1) <>
+                        (* (1 s m2) i1) <> rev)
+                     (* (2 :c) i1) <>
+                     (1)))
+          (-> (* (2 #f m m2) (1 i01)) (3)
+              : (2 (2 #t m m2)
+                   (1 (1 n2 refl)
+                      (1 n m2)
+                      (1 s m2) rev
+                      (1 n2 refl) rev)
+                   (2)
+                   (1 (1 n m2)
+                      (1 n2 refl) rev
+                      (1 s m2) rev
+                      (1 n2 refl) rev)
+                   (2 #f m m2 (1 n m2 s m2 rev)
+                      #t m m2 (1))
+                   (1 (1 n m2)
+                      (1 s m2) rev)
+                   (2 #f m m2)
+                   (1)))
+          (-> (* (2 #t m m2) (1 i01)) (3)
+              : (2 (2 #t m m2)
+                   (2)
+                   (2 n2 refl refl)
+                   (2 #t m m2))))))
+    #+end_src
+
+  - x -
+    其中
+    有如下的縮寫
+    #+begin_src scheme
+    (:> (2)
+        (1 (1 n2 refl) (1 s m2)
+           (1 s m2) rev (1 n2 refl) rev)
+        (1 (1 s m2)
+           (1 s m2) rev)
+        (1))
+
+    ==>
+
+    (2)
+    : (1 (1 n2 refl) (1 s m2)
+         (1 s m2) rev (1 n2 refl) rev)
+    = (1 (1 s m2)
+         (1 s m2) rev)
+    = (1)
+    #+end_src
+
+* ><
+
+  #+begin_src scheme
+  (def sphere-1
+    (type (-> space)
+      (: b (-> (-1 <>)))
+      (: loop (-> (0 b b)))))
+
+  (def bool
+    (type (-> space)
+      (: #f #t (-> (-1 <>)))))
+
+  (def bool-suspend
+    (type (-> space)
+      (: n s (-> (-1 <>)))
+      (: m (-> bool (0 n s)))))
+
+
+  (def sphere-2
+    (type (-> space)
+      (: b2 (-> (-1 <>)))
+      (: surf (-> (1 b2 refl)))))
+
+  (def bool-suspend-suspend
+    (type (-> space)
+      (: n2 s2 (-> (-1 <>)))
+      (: m2 (-> bool-suspend (0 n2 s2)))))
+  #+end_src

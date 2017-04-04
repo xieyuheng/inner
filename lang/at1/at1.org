@@ -1,15 +1,19 @@
 #+HTML_HEAD: <link rel="stylesheet" href="../../asset/css/page.css" type="text/css" media="screen" />
 #+title: algebraic-topology-1
 
-* >< guiding tendency
+* todo
+
+  - fix for as-remained-boundary
+
+  - fix for new keywords (: ...) and (= ...)
+
+  - note about (+ ...)
+
 * intro
 
   - I will show how to design and implement a language
     to formalize and machinalize
     a little part of algebraic topology.
-
-  - Actually, I just attempt to show the HOW,
-    I do not know where my scheme will lead me to.
 
   - I call this prototype 'at1',
     which is an abbreviation of 'algebraic-topology-1'.
@@ -608,7 +612,7 @@
                    (1 s m2) rev (1 n2 refl) rev)
               = (1 (1 s m2)
                    (1 s m2) rev)
-              = (1)))
+              = (1))      )
         (with (-> (* (1 n m2 s m2 rev) %:c (0 i0 i1) %:i)
                   (2 (* (1 n m2) (1 :i)) <>
                      (1 (* n2 (1 i01)) <>

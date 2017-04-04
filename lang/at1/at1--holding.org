@@ -1,12 +1,27 @@
 #+title: algebraic-topology-1 holding
 
+* todo
+
+  - cylinder torus and MCG of dehn
+
 * leaning path
 
-  - fiber-space -> hopf-fibration ->
-    cutting-and-regluing -> dehn-surgery -> lens-space ->
-    thurston's teach -> hyperbolic geometry -> projective geometry
+  - fiber-space -> hopf-fibration
+
+  - hopf-fibration -> cutting-and-regluing -> dehn-surgery -> lens-space ->
+    thurston-s-teaching -> hyperbolic geometry -> projective geometry
 
   - hopf-fibration -> GA and SO(3) -> matrix group
+
+  - classical-background -> cobordism
+
+  - classical-background -> dimension-down
+
+  - dimension-down -> infinitesimal -> non-standard-analysis
+
+  - infinitesimal -> leibniz euler newton
+
+  - hopf-fibration -> H-space -> hopf-invariant -> hopf-algebra
 
 * about classical construction
 
@@ -273,4 +288,47 @@
     我想 看看古典的著作中作者是如何依直覺使用無窮小量的
     也許會有益於我們的學習
 
+* embedding 與 homotopy
+
+  - x -
+    MCG 中的映射是 X 到自身的 embedding
+    但是 把面积挤压到邊界的映射並非 embedding
+    但是我必須要允許這種映射
+    因爲在我的形式化語言中 我想象不出別的選擇
+
   - k -
+    這個被擠壓的映射 與某個不被擠壓的映射同倫
+    因此只有 在 homotopy 下 我們才能完成形式化
+
+* refl
+
+  - x -
+    可以想象 refl 所生成的空間不在原空間內
+
+* 關於邊界
+
+  - x -
+    同一個拼接起來的形狀
+    可能有多種不同的 描述其邊界的方式
+    比如
+    cylinder 的 mapping-class-group 涉及到了同一個 space 的不同邊界描述
+
+* homology
+
+  - x -
+    也許需要先在 at1 中發展出 homology theory
+    畢竟 homology 更簡單
+
+* the use of fibration in homotopy group
+
+  - x -
+    這應該是被優先考慮的
+    畢竟 fiber-space 的形式處理 一定要能夠捕捉這種應用
+
+* ><
+
+  #+begin_src scheme
+  (def cylinder
+    (type (-> space)
+      (: a0 )))
+  #+end_src
