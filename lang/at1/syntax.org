@@ -1,18 +1,5 @@
 #+title: syntax -- design and notes
 
-* todo
-
-  - a syntax to do assertion
-
-  - re resign the syntax of (type ...)
-    [since the syntax of (lambda is almost fixed now)]
-
-  - product-space can be reduced to simple-space.
-    how about dependent-product-space ?
-    note that,
-    fiber-space is just dependent-product-space.
-    maybe the rule of boundary of product-space also holds here.
-
 * note
 
   - 上同調與微分形式有關
@@ -325,13 +312,13 @@
     以使得 對 [] 與 ',' 的使用變得一致
 
   - x -
-    那我們就追求這種一致性吧    
+    那我們就追求這種一致性吧
     也許之後對 (: ...) 這個語法關鍵詞的擴展
     可能使得 (: ...) 類似於 (-> ...)
     從而讓 這種用法變得有必要
 
-  - k - 
+  - k -
     這樣我們就要以 clojure 的方式使用 ',' 了
 
-  - x - 
+  - x -
     沒錯

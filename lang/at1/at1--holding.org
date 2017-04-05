@@ -325,11 +325,25 @@
     這應該是被優先考慮的
     畢竟 fiber-space 的形式處理 一定要能夠捕捉這種應用
 
-* ><
+* classical view
 
-  #+begin_src scheme
-  (def cylinder
-    (type space
-      (: a0 a1 (-1 <>))
-      (: )))
-  #+end_src
+*** cell-complex 的映射
+
+    - cell-complex 之間的映射是一次指定一個 cell 的
+      因爲在 homotopy equivalent 下
+      固定邊界後 cell 之間的映射只能有一種情況
+
+* cutting-and-regluing
+
+  - x -
+    如果用 cutting-and-regluing 來構造 fiber-space
+    那麼同一個空間的不同 分解方式 就能揭示不同額 fiber-space
+
+  - k -
+    或者說
+    cutting-and-regluing 不是用來構造 fiber-space
+    而單單是一種構造新空間的方式
+    想要得到 classical fibration 中
+    total-space 到 base-space 的 projection
+    就要證明 cutting-and-regluing 所得到的 space 與某個 simple-space 等價
+    也許一個這樣的等價 就能爲我們生成一個 projection

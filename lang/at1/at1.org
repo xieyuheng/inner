@@ -675,6 +675,36 @@
                     (1) as-final-boundary))))))
     #+end_src
 
+* >< mapping-class-group
+
+  #+begin_src scheme
+  (def cylinder
+    (type space
+      (: [a0, a1] (-1 <>))
+      (: b0 (0 a0 a0))
+      (: b1 (0 a1 a1))
+      (: h  (0 a0 a1))
+      (: c0 (1 h b1 h rev b0 rev))))
+
+  (def twist
+    (lambda (-> cylinder cylinder)
+      (extend-from
+        (identity-map-of (list b0 b1)))
+      (with (-> (0 a0 a1) (0 a0 a1))
+        (-> (1 h) (1 h b1)))
+      (with (-> (1 h b1
+                   h rev b0 rev)
+                (1 h b1
+                   b1 b1 rev
+                   h rev b0 rev))
+        (-> (2 c0)
+            (2 c0 b1 refl
+               (1 h b1
+                  b1 b1 rev
+                  h rev b0 rev)
+               as-remained-boundary)))))
+  #+end_src
+
 * >< fiber-space
 
   - To view product-space as special fiber-space,
