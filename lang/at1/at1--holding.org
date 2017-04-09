@@ -212,6 +212,13 @@
 
   - 可以利用 local-subdivision 來恢復 topology structure 嗎 ?
 
+  - continuum 的一個直觀特徵是
+    可以被潛在無限地細分
+    local-subdivision 就是爲了捕捉這個特徵
+
+  - they may be divided anywhere,
+    though they cannot be divided everywhere at the same time.
+
 * dehn 的方法
 
   - x -
