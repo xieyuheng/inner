@@ -521,7 +521,7 @@
     measured by how hard it is to understand the code,
     is control by program language art.
 
-* four principles of constructivism
+* Bishop's four principles of constructivism
 
   (A) Mathematics is common sense.
 

@@ -197,6 +197,18 @@
     by giving path a length ? surface an area ?
     or by a general structure for all the measurement ?
 
+* classical mechanics
+
+  - 引入幾何的同時
+    可否像利用微分流形來處理經典力學一樣
+    利用 cell-complex-structure 來處理經典力學 ?
+    利用 cell-complex-structure 描述空間的同時
+    還要描述空間中的運動
+
+  - 如何在 cell-complex-structure 上引入座標系 ?
+    是否應該引入座標系 ?
+    這對描述運動而言是否是必要的
+
 * adjunction-space
 
   - 是否在 at1 中引入 adjunction-space ?
@@ -354,3 +366,19 @@
     total-space 到 base-space 的 projection
     就要證明 cutting-and-regluing 所得到的 space 與某個 simple-space 等價
     也許一個這樣的等價 就能爲我們生成一個 projection
+
+* >< how to define function in synthetic geometry ?
+
+* a new plan
+
+  - a synthetic homotopy theory with axioms;
+    and a implementation as its model.
+
+  - calculation of many different types of (co)homotopy and (co)homology,
+    might be done in an intrinsic way.
+
+  - to calculate
+    mapping-class-group
+    homotopy-group
+    homology-group
+    dRham-co-homology-group

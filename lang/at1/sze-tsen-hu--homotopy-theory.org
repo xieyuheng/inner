@@ -1,11 +1,5 @@
 #+title: sze-tsen-hu--homotopy-theory
 
-* todo
-
-  - dual of extension problem is lifting problem
-
-  - axiom of homotopy theory
-
 * 1 main problem and preliminary notions
 
 *** 1 introduction
@@ -74,7 +68,7 @@
         i.e. equality between two functions,
         is understood as homotopy between two functions by default.
 
-***** >< retraction-problem
+***** retraction-problem
 
 ***** retraction-problem & extension-problem
 
@@ -241,8 +235,10 @@
          instead of topological structure.
       2. maybe at1 should maintain the ability to handle topological structure.
 
-*** >< 3 the method of algebraic topology
-*** >< 4 the retraction problem
+*** 3 the method of algebraic topology
+
+*** 4 the retraction problem
+
 *** 5 combined maps
 
     - the way we define a continuous map data-constructor by data-constructor,
@@ -275,11 +271,11 @@
       is changed by a group of homeomorphisms of the space.
       which is also called orbit-space.
 
-*** >< 7 the adjunction-space
+*** 7 the adjunction-space
 
-*** >< 8 homtopy problem and classification problem
+*** 8 homtopy problem and classification problem
 
-*** >< 9 the homotopy-extension-property
+*** 9 the homotopy-extension-property
 
     - with homotopy-extension-property,
       the extension-problem
@@ -309,26 +305,188 @@
           ...)))
     #+end_src
 
-*** >< 10 relative homotopy
+*** 10 relative homotopy
 
-*** >< 11 homotopy equivalences
+*** 11 homotopy equivalences
 
-*** >< 12 the mapping cylinder
+*** 12 the mapping cylinder
 
-*** >< 13 a generalization of the extension-problem
+*** 13 a generalization of the extension-problem
 
-*** >< 14 the partial mapping cylinder
+*** 14 the partial mapping cylinder
 
-*** >< 15 the deformation problem
+*** 15 the deformation problem
 
-*** >< 16 the lifting problem
+*** 16 the lifting problem
 
-*** >< 17 the most general problem
+*** 17 the most general problem
 
-* >< 2 some special cases of the main problems
+* 2 some special cases of the main problems
 
-* 3 fiber spaces
+* 3 fiber-spaces
 
 *** 1 introduction
 
-* >< 4 homotopy groups
+    - bundle-spaces has local-product-structure.
+
+    - fiber-space = projection with covering-homotopy-property.
+      the axiomatization of homotopy theory need fiber-spaces.
+
+    - path space is fiber-spaces but do not has local-product-structure.
+      it has the path lifting property.
+
+    - covering-space = fiber-space with discrete fiber.
+
+*** 2 covering homotopy property
+
+    - (: p (-> E B))
+      E is total-space
+      B is base-space
+
+    - ><><><
+      CHP
+
+*** 6 algebraically trivial maps X -> S2
+
+*** 7 liftings and cross-sections
+
+*** 9 mapping spaces
+
+    - the exponential law of mapping spaces
+      (-> (* X T) Y) = (-> T (-> X Y))
+      [just as currying in programming language]
+
+*** note homotopy group of mapping space
+
+    - a path from a map to a map is a proof of (~ f0 f1)
+      of type
+      #+begin_src scheme
+      (let ([f0 (lambda (-> A B) ...)]
+            [f1 (lambda (-> A B) ...)])
+        (lambda (-> (* A I) B)
+          (extend-from
+            (lambda (-> (* A (0 I)) B)
+              (-> (* :a i0) [:a f0])
+              (-> (* :a i1) [:a f1])))
+          ...))
+      #+end_src
+
+    - similarly all higher homotopy group can be defined by uncurrying,
+      for example,
+      the mapping space (-> A (-> I (-> I (-> I B))))
+      uncurrying to (-> (* A I I I) B)
+
+*** 10 the spaces of paths
+
+*** 11 the space of loops
+
+    - special mapping space has algebraic structure.
+      for example, we have
+      - Proposition 11.4.
+        if X is an H-space with x0 as a homotopy unit,
+        then the fundamental group homotopy(1) (Χ, x0) is abelian.
+
+    - by level-up the space to mapping space
+      we can level-down its homotopy group
+      for example, we have
+      - Proposition 11.6.
+        Under the natural multiplication of loop space of point y,
+        the path-components of loop space form a group
+        which is essentially the fundamental group homotopy(1) (Υ, y).
+
+*** 12 the path lifting property
+
+    - we must express path lifting property in the uncurried way.
+      here we apply Bishop's fourth principle
+      "Meaningful distinctions deserve to be maintained."
+      Thus,
+      bundle-space and path-space and loop-space etc.
+      are not unified, by the covering-homotopy-property,
+      to the so called fiber-space.
+      [at least practically not so]
+
+* 4 homotopy groups
+
+*** 1 introduction
+
+    - homotopy groups of order higher then 1 are abelian.
+
+    - homotopy(0) (Х, x0) and relative-homotopy(1) (Χ, Α, x0)
+      are not ordinarily groups.
+
+    - homotopy(1) (Х, x0) and relative-homotopy(2) (Χ, Α, x0)
+      are not usually abelian.
+
+    - the excision-property for homology does not hold for homotopy.
+
+*** 2 absolute homotopy groups
+
+    - homotopy(n) (X, x0) = n-loop space of X
+      #+begin_src scheme
+      (-> n-cell X)
+      (restrict-by
+        (lambda (-> [...] [...])
+         (-> [n-cell boundary] [x0 refl {n-1}])))
+      ;; or
+      (-> n-sphere X)
+      (restrict-by
+        (lambda (-> [...] [...])
+         (-> [s0] [x0])))
+      #+end_src
+
+    - group production of homotopy(n) (X, x0)
+      is defined by a map of type
+      #+begin_src scheme
+      (-> n-cell ((glued at half boundary) n-cell n-cell))
+      (restrict-by
+        (lambda (-> [...] [...])
+         (-> [n-cell boundary] [x0 refl {n-1}])))
+      ;; or
+      (-> n-sphere ((contact at s0) n-sphere n-sphere))
+      (restrict-by
+        (lambda (-> [...] [...])
+         (-> [s0] [x0])))
+      #+end_src
+
+    - homotopy(n) (X, x0), where n > 1, is abelian.
+      because there exists a rotation of n-sphere
+      interchanges the two hemispheres,
+      which leaves s0 fixed.
+
+    - ><><><
+      but how should I argue the above fact more clearly ?
+
+*** 3 relative homotору groups
+
+    - relative-homotopy(n) (X, A, x0)
+      where X > A > x0
+      defined as follow
+      #+begin_src scheme
+      (-> n-cell X)
+      (restrict-by
+        (lambda (-> [...] [...])
+         (-> [n-cell boundary] [A]))
+        (lambda (-> [...] [...])
+         (-> [s0] [x0])))
+      #+end_src
+
+    - group production of relative-homotopy(n) (X, A, x0)
+      is defined by a map of type
+      #+begin_src scheme
+      (-> n-cell ((glued at half boundary) n-cell n-cell))
+      (restrict-by
+        (lambda (-> [...] [...])
+         (-> [n-cell boundary] [A]))
+        (lambda (-> [...] [...])
+         (-> [s0] [x0])))
+      #+end_src
+
+    - relative-homotopy(n) (X, A, x0), where n > 2, is abelian.
+      because there exists a rotation of n-cell
+      interchanges the two halves of n-cell,
+      which leaves s0 fixed.
+
+    - ><><><
+      derived triplet
+
+*** 9 the fibering property
