@@ -1,5 +1,11 @@
 #+title: sze-tsen-hu--homotopy-theory
 
+* todo 
+
+  - since the use of cell-complex in my view is to leave away topology structure,
+    how is the established topology structure of cell-complex is ? 
+    and how is it not good for implementation and construction ?
+
 * 1 main problem and preliminary notions
 
 *** 1 introduction
