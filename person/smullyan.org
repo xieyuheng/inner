@@ -1,5 +1,4 @@
-#+TITLE:  learning smullyan
-#+AUTHOR: 謝宇恆 / XIE Yuheng
+#+TITLE:  smullyan
 
 * ===================================
 * note blue three

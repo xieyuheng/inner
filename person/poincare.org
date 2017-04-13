@@ -1,6 +1,4 @@
-#+TITLE:  龐加萊如是說 / thus spoke Poincaré
-#+AUTHOR: 龐加萊 / Poincaré
-#+AUTHOR: 謝宇恆 / XIE Yuheng
+#+TITLE: Poincaré
 
 * 龐加萊之觀念論
   * 數學中頻繁出現着相類似的對某些概念的定義

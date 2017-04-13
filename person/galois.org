@@ -1,6 +1,4 @@
-#+TITLE:  伽羅瓦如是說 / thus spoke Galois
-#+AUTHOR: 伽羅瓦 / Galois
-#+AUTHOR: 謝宇恆 / XIE Yuheng
+#+TITLE:  Galois
 
 * 書籍
   * 最有價值的科學書籍

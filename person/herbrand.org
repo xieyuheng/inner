@@ -1,7 +1,5 @@
-#+TITLE:  learning herbrand
-#+AUTHOR: 謝宇恆 / XIE Yuheng
+#+TITLE:  herbrand
 
-* ===================================
 * note source
   * JACQUES HERBRAND LOGICAL WRITINGS
     Edited by WARREN D.OOLDFARB
@@ -237,4 +235,3 @@
 * unsigned note on herbrand's thesis, written by herbrand himself :1931a:
 * to jacques hadamard                 :1931b:
 * on the consistency of arithmetic    :1931c:
-* ===================================

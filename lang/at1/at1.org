@@ -394,7 +394,7 @@
           [f1 (lambda (-> A B) ...)])
       (lambda (-> (* A I) B)
         (extend-from
-          (lambda (-> (* A (0 I)) B)
+          (lambda (-> (* A (list i0 i1)) B)
             (-> (* :a i0) [:a f0])
             (-> (* :a i1) [:a f1])))
         ...))
@@ -410,14 +410,14 @@
     #+begin_src scheme
     (lambda (-> (* A I) A)
       (extend-from
-        (lambda (-> (* A (0 I)) A)
+        (lambda (-> (* A (list i0 i1)) A)
           (-> (* :a i0) [:a f g])
           (-> (* :a i1) :a)))
       ...)
 
     (lambda (-> (* B I) B)
       (extend-from
-        (lambda (-> (* B (0 I)) B)
+        (lambda (-> (* B (list i0 i1)) B)
           (-> (* :b i0) [:b g f])
           (-> (* :b i1) :b)))
       ...)

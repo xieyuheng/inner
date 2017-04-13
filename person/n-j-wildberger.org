@@ -1,5 +1,4 @@
-#+TITLE:  learning wildberger
-#+AUTHOR: 謝宇恆 / XIE Yuheng
+#+TITLE:  n-j-wildberger
 
 * *幾何*
 

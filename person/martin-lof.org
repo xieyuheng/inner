@@ -1,7 +1,5 @@
-#+TITLE:  learning martin lof
-#+AUTHOR: 謝宇恆 / XIE Yuheng
+#+TITLE:  martin lof
 
-* ===================================
 * in intuitionistic theory of types   :1972:
 * constructive math and computer programming :1979:
 
@@ -10,4 +8,3 @@
   - 溫和地批評一下古典數學
 
 * intuitionistic type theory          :1984:
-* ===================================
