@@ -1,0 +1,26 @@
+#+title: max dehn 
+
+* paper 1 : lectures on group theory (1910)
+  
+*** ><
+    
+    - 
+    
+* paper 2 : lectures on surface topology
+
+* paper 3 : on the topology of three-dimensional space
+
+* paper 4 : on infinite discontinuous groups
+
+* paper 5 : transformation of curves on two-sided surfaces
+
+* paper 6 : the two trefoil knots
+
+* appendix to paper 6 : on the groups A^a B^b = 1
+
+* paper 7 : on curve systems on two-sided surfaces, with application to the mapping problem.
+
+* paper 8 : the group of mapping classes
+
+* appendix : the dehn-nielsen theorem
+

@@ -533,34 +533,6 @@
       special mapping-space also have CHP,
       which can be checked after uncurrying.
 
-*** note about equality
-
-    - equality between two elements (: [x0, x1] X),
-      is established by a extension-problem
-      #+begin_src scheme
-      (lambda (-> I X)
-        (extend-from
-          (lambda (-> (list i0 i1) X)
-            (-> i0 x0)
-            (-> i1 x1)))
-        ...)
-      #+end_src
-
-    - equality between two elements (: [f, g] (-> A X)),
-      is established by a extension-problem
-      #+begin_src scheme
-      (lambda (-> (* A I) X)
-        (extend-from
-          (lambda (-> (* A (list i0 i1)) X)
-            (-> (* :a i0) [:a f g])
-            (-> (* :a i1) :a)))
-        ...)
-      #+end_src
-
-    - we know the equality between two spaces (~~ A B),
-      but how about equality between two mapping-spaces
-      (~~ (-> A X) (-> B X)) ?
-
 * 4 homotopy groups
 
 *** 1 introduction

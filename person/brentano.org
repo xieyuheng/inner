@@ -252,3 +252,42 @@
 * the theory of categories (1907 -- 1917)
 
 * psychology from an empirical standpoint (1874)
+
+*** book one psychology as a science
+
+***** 1 the concept and purpose of psychology
+
+***** 2 psychological method with special reference to its experiential basis
+
+      These two sciences are related to one another as polar opposites.
+      Mathematics considers the most simple and independent phenomena,
+      psychology those that are most dependent and complex.
+
+      Consequently, mathematics reveals in a clear and understandable way
+      the fundamental nature of all true scientific investigation.
+      There is no better field of study
+      for gaining one’s first clear view of laws,
+      deduction, hypothesis, and many other important logical concepts.
+
+      - genetic psychology -- psycho-physical
+        descriptive psychology -- inner experience
+
+      - mathematics is dependent upon descriptive psychology
+        insofar as a clarification of its basic concepts and ultimate axioms
+        is impossible without analysis of consciousness.
+
+      - there are not inner observations,
+        but only inner perception.
+        and we can do observation in memory.
+
+      In all the experimental sciences
+      memory makes possible the accumulation of observed facts
+      for the purpose of establishing general truths.
+      in psychology, it makes possible at the same time
+      the observation of the facts themselves.
+
+***** 3 further investigations concerning psychological method. induction of the fundamental laws of psychology
+
+***** 4 further investigations concerning psychological method. the inexact character of its highest laws. deduction and verification
+
+*** book two mental phenomena in general

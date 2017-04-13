@@ -439,6 +439,12 @@
   - 'I' indexed by a space,
     is the suspension of the space.
 
+  - While 'I' is 1-cell,
+    how about 2-cell 3-cell and n-cell ?
+    how about continuum other then n-cell ?
+    note that, n-cell indexed by a space 'A',
+    is specified by (-> A [n-cell boundary])
+
 * examples
 
 *** (~~ bool-suspend sphere-1)
