@@ -227,7 +227,7 @@
     - (1 ...) is special, in the sense that,
       there is not explict functions, like 'as-remained-boundary' in it.
 
-    - [hesitation]
+    - [hesitation about syntax]
       Should these three distinctions be unified ?
       If these distinctions are really meaningful,
       and ought not to be unified,
@@ -288,6 +288,8 @@
     i.e. how the boundary of 'p' is mapped to 'B' by 'f',
     will constrain how 'p' can be mapped to 'B' by 'f'.
 
+  - Since a map has many levels.
+
 * product-space
 
   - The first kind of primitive space is simple-space defined above,
@@ -338,16 +340,16 @@
           (-> (* i0 i1) ...)
           (-> (* i1 i0) ...)
           (-> (* i1 i1) ...))
+        (with (-> (* (0 i0 i1) (-1 I) %:i)
+                  (0 (* i0 :i) <>
+                     (* i1 :i) <>))
+          (-> (* (1 i01) i0) ...)
+          (-> (* (1 i01) i1) ...))
         (with (-> (* (-1 I) %:i (0 i0 i1))
                   (0 (* :i i0) <>
                      (* :i i1) <>))
           (-> (* i0 (1 i01)) ...)
           (-> (* i1 (1 i01)) ...))
-        (with (-> (* (0 i0 i1) (-1 I) %:i)
-                  (0 (* i0 (1 :i)) <>
-                     (* i1 (1 :i)) <>))
-          (-> (* (1 i01) i0) ...)
-          (-> (* (1 i01) i1) ...))
         (with (-> (* (0 i0 i1) %:p0
                      (0 i0 i1) %:p1)
                   (1 (* (1 :p0) i0) <>
@@ -511,22 +513,18 @@
         (with (-> (* (-1 bool-suspend) %:a (0 i0 i1))
                   (0 (* :a i0) <> (* :a i1) <>))
           (-> (* n (1 i01)) (1 n refl)
-              (: (1 n refl)
-                 (0 n n)))
+              (:> (0 n n)))
           (-> (* s (1 i01)) (1 #t m)
-              (: (1 #t m)
-                 (0 n s))))
+              (:> (0 n s))))
         (with (-> (* (0 n s) %:b (0 i0 i1) %:i)
                   (1 (* :b i0) <> (* s :i) <>
                      (* :b i1) <> rev (* n :i) <> rev))
           (-> (* (1 #f m) (1 i01)) (2)
-              (: (2)
-                 (1 (1 #f m #t m rev) (1 #t m)
-                    (1 #f m) rev (1 n refl) rev)))
+              (:> (1 (1 #f m #t m rev) (1 #t m)
+                     (1 #f m) rev (1 n refl) rev)))
           (-> (* (1 #t m) (1 i01)) (2)
-              (: (2)
-                 (1 (1 n refl) (1 #t m)
-                    (1 #t m) rev (1 n refl) rev))))))
+              (:> (1 (1 n refl) (1 #t m)
+                     (1 #t m) rev (1 n refl) rev))))))
     #+end_src
 
 *** (~~ bool-suspend-suspend sphere-2)
@@ -610,24 +608,22 @@
         (with (-> (* (-1 bool-suspend-suspend) %:a (0 i0 i1))
                   (0 (* :a i0) <> (* :a i1) <>))
           (-> (* n2 (1 i01)) (1 n2 refl)
-              (: (1 n2 refl) (0 n2 n2))
+              (:> (0 n2 n2))
               (note
                 an alternative might be :: (1 n m2 s m2 rev)))
           (-> (* s2 (1 i01)) (1 s m2)
-              (: (1 s m2) (0 n2 s2))
+              (:> (0 n2 s2))
               (note
                 an alternative might be :: (1 n m2))))
         (with (-> (* (0 n2 s2) %:b (0 i0 i1) %:i)
                   (1 (* (1 :b) i0) <> (* s2 (1 :i)) <>
                      (* (1 :b) i1) <> rev (* n2 (1 :i)) <> rev))
           (-> (* (1 n m2) (1 i01)) (2 #t m m2)
-              (:> (2 #t m m2)
-                  (1 (1 n2 refl) (1 s m2)
+              (:> (1 (1 n2 refl) (1 s m2)
                      (1 n m2) rev (1 n2 refl) rev)
                   (1 (1 s m2) (1 n m2) rev)))
           (-> (* (1 s m2) (1 i01)) (2)
-              (:> (2)
-                  (1 (1 n2 refl) (1 s m2)
+              (:> (1 (1 n2 refl) (1 s m2)
                      (1 s m2) rev (1 n2 refl) rev)
                   (1 (1 s m2)
                      (1 s m2) rev)
@@ -652,33 +648,31 @@
                      (* (2 :c) i1) <>
                      (1) as-remained-boundary))
           (-> (* (2 #f m m2) (1 i01)) (3)
-              (: (3)
-                 (2 (2 #t m m2)
-                    (1 (1 n2 refl)
-                       (1 n m2)
-                       (1 s m2) rev
-                       (1 n2 refl) rev)
-                    as-remained-boundary
-                    (2)
-                    (1 (1 n m2)
-                       (1 n2 refl) rev
-                       (1 s m2) rev
-                       (1 n2 refl) rev)
-                    as-remained-boundary
-                    (2 #f m m2 (1 n m2 s m2 rev)
-                       #t m m2 (1))
-                    (1 (1 n m2)
-                       (1 s m2) rev)
-                    as-remained-boundary
-                    (2 #f m m2)
-                    (1) as-remained-boundary)))
+              (:> (2 (2 #t m m2)
+                     (1 (1 n2 refl)
+                        (1 n m2)
+                        (1 s m2) rev
+                        (1 n2 refl) rev)
+                     as-remained-boundary
+                     (2)
+                     (1 (1 n m2)
+                        (1 n2 refl) rev
+                        (1 s m2) rev
+                        (1 n2 refl) rev)
+                     as-remained-boundary
+                     (2 #f m m2 (1 n m2 s m2 rev)
+                        #t m m2 (1))
+                     (1 (1 n m2)
+                        (1 s m2) rev)
+                     as-remained-boundary
+                     (2 #f m m2)
+                     (1) as-remained-boundary)))
           (-> (* (2 #t m m2) (1 i01)) (3)
-              (: (3)
-                 (2 (2 #t m m2)
-                    (2)
-                    (2 n2 refl refl)
-                    (2 #t m m2)
-                    (1) as-final-boundary))))))
+              (:> (2 (2 #t m m2)
+                     (2)
+                     (2 n2 refl refl)
+                     (2 #t m m2)
+                     (1) as-final-boundary))))))
     #+end_src
 
 * >< mapping-class-group

@@ -2,7 +2,9 @@
 
 * todo
 
-  - fix syntax of homotopy group and relative-homotopy group
+  - to develop a homotopy thoery in AT1
+
+  - fix the syntax of homotopy group and relative-homotopy group
 
   - cylinder torus and MCG of dehn
 
@@ -570,20 +572,142 @@
     and use (: g (-> B A)) to map
     elements in (-> I B) to elements in (-> I A)
 
-  - we must then prove whese two maps
+  - we must then prove these two maps
     1. are well defined w.r.t. the equality of the group.
        [this can be proved by homotopy-extension-property]
     2. respect the group production.
+       [this can be proved by ><><><]
     3. are revers of each other as group homomorphism.
        #+begin_src scheme
-       (: x (homotopy(n) (A, a0)))
-       (: [x f g] (homotopy(n) (A, a0)))
-       (~ x [x f g])
-       ;; and
-       (: y (homotopy(n) (B, b0)))
-       (: [y g f] (homotopy(n) (B, b0)))
-       (~ y [y g f])
+       (: [x, x f g] (-> I A))
+       (: (~ x [x f g]) (-> (* I I) A))
+
+       ;; ------------
+
+       (def f
+         (lambda (-> A B)
+           ...))
+
+       (def g
+         (lambda (-> B A)
+           ...))
+
+       ;; (~ [f g] (identity-map-of A))
+       (def h
+         (lambda (-> (* A I) A)
+           (extend-from
+             (lambda (-> (* A (list i0 i1)) A)
+               (-> (* :a i0) [:a f g])
+               (-> (* :a i1) :a)))
+           (with (-> (* (-1 A) (-1 I)) (-1 A))
+             ...)
+           (with (-> (* (-1 A) %:a (0 i0 i1))
+                     (0 (* :a i0) <>
+                        (* :a i1) <>))
+             (-> (* a0 (1 i01))
+                 (:> (0 (* a0 i0) <>
+                        (* a0 i1) <>)
+                     (0 a0 f g
+                        a0)))
+             ...)
+           ...))
+
+       ;; (~ [g f] (identity-map-of B))
+       (def k
+        (lambda (-> (* B I) B)
+          (extend-from
+            (lambda (-> (* B (list i0 i1)) B)
+              (-> (* :b i0) [:b g f])
+              (-> (* :b i1) :b)))
+          ...))
+
+       (def x
+         (lambda (-> I A)
+           (extend-from
+             (lambda (-> (list i0 i1) A)
+               (-> i0 a0)
+               (-> i1 a0)))
+           ...))
+
+       (def (~ [x f g] x)
+         (lambda (-> (* I I) A)
+           ;; (extend-from
+           ;;   (lambda (-> (* I I) A)
+           ;;     (with (-> (* (-1 I) (-1 I)) (-1 A))
+           ;;       (-> (* i0 i0) [i0 x f g])
+           ;;       (-> (* i1 i0) [i1 x f g])
+           ;;       (-> (* i1 i1) [i1 x])
+           ;;       (-> (* i0 i1) [i0 x]))
+           ;;     (with (-> (* (0 i0 i1) (-1 I) %:i)
+           ;;               (0 (* i0 :i) <>
+           ;;                  (* i1 :i) <>))
+           ;;       (-> (* (1 i01) i0) [(1 i01) x f g])
+           ;;       (-> (* (1 i01) i1) [(1 i01) x]))))
+           (extend-from
+             (lambda (-> (* I (list i0 i1)) A)
+               (-> (* :i i0) [:i x f g])
+               (-> (* :i i1) [:i x])))
+           (with (-> (* (-1 I) %:i (0 i0 i1))
+                     (0 (* :i i0) <>
+                        (* :i i1) <>))
+             (-> (* i0 (1 i01))
+                 [(* [i0 x] (1 i01)) h] (=> [(* a0 (1 i01)) h])
+                 (:> (0 i0 x f g
+                        i0 x)
+                     (0 a0 f g
+                        a0)))
+             ;; how can an element of the above type
+             ;; be given by 'h' and 'k' ?
+             (-> (* i1 (1 i01))
+                 [(* [i1 x] (1 i01)) h] (=> [(* a0 (1 i01)) h])
+                 (:> (0 i1 x f g
+                        i1 x)
+                     (0 a0 f g
+                        a0))))
+           (with (-> (* (0 i0 i1) %:p0
+                        (0 i0 i1) %:p1)
+                     (1 (* (1 :p0) i0) <>
+                        (* i1 (1 :p1)) <>
+                        (* (1 :p0) i1) <> rev
+                        (* i0 (1 :p1)) <> rev))
+             (-> (* (1 i01) (1 i01))
+                 [(* [(1 i01) x] (1 i01)) h]
+                 (:> (1 (1 i01) x f g
+                        (* i1 (1 i01)) <>
+                        (1 i01) x rev
+                        (* i0 (1 i01)) <> rev)
+                     (1 (1 i01) x f g
+                        (* [i1 x] (1 i01)) h
+                        (1 i01) x rev
+                        (* [i0 x] (1 i01)) h rev))))))
+
+       (def (~ [x f g] x)
+         (lambda (-> (* I I) A)
+           (extend-from
+             (lambda (-> (* I (list i0 i1)) A)
+               (-> (* :i i0) [:i x f g])
+               (-> (* :i i1) [:i x])))
+           (with (-> (* (-1 I) %:i (0 i0 i1))
+                     (0 (* :i i0) <>
+                        (* :i i1) <>))
+             (-> (* i0 (1 i01))
+                 [(* [i0 x] (1 i01)) h])
+             (-> (* i1 (1 i01))
+                 [(* [i1 x] (1 i01)) h] ))
+           (with (-> (* (0 i0 i1) %:p0
+                        (0 i0 i1) %:p1)
+                     (1 (* (1 :p0) i0) <>
+                        (* i1 (1 :p1)) <>
+                        (* (1 :p0) i1) <> rev
+                        (* i0 (1 :p1)) <> rev))
+             (-> (* (1 i01) (1 i01))
+                 [(* [(1 i01) x] (1 i01)) h]))))
        #+end_src
+
+  - for (~~ (-> A X) (-> B Y))
+    1.
+    2.
+    3.
 
 * about dim
 
