@@ -1,0 +1,19 @@
+#+title: euclid
+
+* the thirteen books of euclid's elements
+
+*** info
+
+    - translated from the text of heiberg with introduction and commentary
+
+* euclid’s elements of geometry
+
+*** info
+
+    - the greek text of j.l. heiberg (1883–1885)
+
+* byrne's euclid the first six books of the elements of euclid
+
+*** info
+
+    - with coloured diagrams and symbols
