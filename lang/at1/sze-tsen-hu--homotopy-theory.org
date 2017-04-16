@@ -164,7 +164,7 @@
       - Thus, I use a low-level definition of extension-problem :
         #+begin_src scheme
         (let ([g (lambda (-> A Y) ...)])
-          (def f
+          (define f
             (lambda (-> X Y)
               (extend-from g)
               ...)))
@@ -203,7 +203,7 @@
                    ...)]
               [g (lambda (-> A Y)
                    ...)])
-          (def e
+          (define e
             (lambda (-> X Y)
               (extend-from
                 (lambda (-> A Y)
@@ -283,7 +283,7 @@
 ***** example
 
       #+begin_src scheme
-      (def example-1
+      (define example-1
         (lambda (-> X (0 I))
           (extend-from
             (lambda (-> (list x0 x1) (0 I))
@@ -304,7 +304,7 @@
             but try to re-create 'tp'
             by the rule of the continuity-check of product-space.)
 
-      (def example-2
+      (define example-2
         (lambda (-> I Y)
           (extend-from
             (lambda (-> (0 I) Y)
@@ -314,7 +314,7 @@
                 iff y0 y1 lie in a compact, connected and locally connected
                 subspace of Y satisfying the second countability axiom.)))
 
-      (def example-3
+      (define example-3
         (note about Normal space
               :: https://en.wikipedia.org/wiki/Normal_space
               and Urysohn's lemma
@@ -322,7 +322,7 @@
               this is kind of low-level topology facts
               can not be constructed in my language.))
 
-      (def example-4
+      (define example-4
         (note about Tietze extension theorem
               :: https://en.wikipedia.org/wiki/Tietze_extension_theorem))
 
@@ -419,7 +419,7 @@
                    (-> (* :a i0)
                        [:a (restrict-on A f) @])))
                ...)])
-      (def h
+      (define h
         (lambda (-> (* X I) Y)
           (extend-from g)
           ...)))

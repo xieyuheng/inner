@@ -82,12 +82,12 @@
   - I must be able to express the facts above in my language.
 
   #+begin_src scheme
-  (def I
+  (define I
     (type space
       i0 i1 (-1 <>)
       i01 (0 i0 i1)))
 
-  (def sphere-1
+  (define sphere-1
     (type (-> space)
       b1 (-> (-1 <>))
       loop (-> (0 b1 b1))))
@@ -119,12 +119,12 @@
   (? loop i01) : (1 (? loop i0)
                     (? loop i1))
 
-  (def sphere-1
+  (define sphere-1
     (type (-> space)
       b1 (-> (-1 <>))
       loop (-> (0 b1 b1))))
 
-  (def sphere-2
+  (define sphere-2
     (type (-> space)
       b2 (-> (-1 <>))
       surf (-> (1 b2 refl))))
@@ -584,16 +584,16 @@
 
        ;; ------------
 
-       (def f
+       (define f
          (lambda (-> A B)
            ...))
 
-       (def g
+       (define g
          (lambda (-> B A)
            ...))
 
        ;; (~ [f g] (identity-map-of A))
-       (def h
+       (define h
          (lambda (-> (* A I) A)
            (extend-from
              (lambda (-> (* A (list i0 i1)) A)
@@ -613,7 +613,7 @@
            ...))
 
        ;; (~ [g f] (identity-map-of B))
-       (def k
+       (define k
         (lambda (-> (* B I) B)
           (extend-from
             (lambda (-> (* B (list i0 i1)) B)
@@ -621,7 +621,7 @@
               (-> (* :b i1) :b)))
           ...))
 
-       (def x
+       (define x
          (lambda (-> I A)
            (extend-from
              (lambda (-> (list i0 i1) A)
@@ -629,7 +629,7 @@
                (-> i1 a0)))
            ...))
 
-       (def (~ [x f g] x)
+       (define (~ [x f g] x)
          (lambda (-> (* I I) A)
            ;; (extend-from
            ;;   (lambda (-> (* I I) A)
@@ -681,7 +681,7 @@
                         (1 i01) x rev
                         (* [i0 x] (1 i01)) h rev))))))
 
-       (def (~ [x f g] x)
+       (define (~ [x f g] x)
          (lambda (-> (* I I) A)
            (extend-from
              (lambda (-> (* I (list i0 i1)) A)
@@ -1054,5 +1054,3 @@
     - 同調羣
     - 映射類羣
     等等
-  - 
-    

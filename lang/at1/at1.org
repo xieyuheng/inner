@@ -99,7 +99,7 @@
       One can view 'b12' as a directed path pointing from 'a1' to 'a2',
       and 'b13' as a directed path pointing form 'a1' to 'a3'.
 
-      We write two points in the keyword '(0 ...)',
+      We write the two points in the keyword '(0 ...)',
       and the order matters.
 
       Since, 'b12' and 'b13' have a common boundary -- 'a1',
@@ -313,7 +313,7 @@
 
   - The interval is defined as follow
     #+begin_src scheme
-    (def I
+    (define I
       (type space
         (: [i0, i1] (-1 <>))
         (: i01 (0 i0 i1))))
@@ -333,7 +333,7 @@
   - A function of type (-> (* I I) X)
     can be defined as follow
     #+begin_src scheme
-    (def f
+    (define f
       (lambda (-> (* I I) X)
         (with (-> (* (-1 I) (-1 I)) (-1 X))
           (-> (* i0 i0) ...)
@@ -376,7 +376,7 @@
     to a total-map 'f'
     #+begin_src scheme
     (let ([g (lambda (-> A Y) ...)])
-      (def f
+      (define f
         (lambda (-> X Y)
           (extend-from g)
           ...)))
@@ -452,21 +452,21 @@
 *** (~~ bool-suspend sphere-1)
 
     #+begin_src scheme
-    (def sphere-1
+    (define sphere-1
       (type space
         (: b (-1 <>))
         (: loop (0 b b))))
 
-    (def bool
+    (define bool
       (type space
         (: [#f, #t] (-1 <>))))
 
-    (def bool-suspend
+    (define bool-suspend
       (type space
         (: [n, s] (-1 <>))
         (: m (-> bool (0 n s)))))
 
-    (def f
+    (define f
       (lambda (-> bool-suspend sphere-1)
         (with (-> (-1 bool-suspend) (-1 sphere-1))
           (-> n b)
@@ -475,7 +475,7 @@
           (-> (1 #f m) (1 loop))
           (-> (1 #t m) (1 b refl)))))
 
-    (def g
+    (define g
       (lambda (-> sphere-1 bool-suspend)
         (with (-> (-1 sphere-1) (-1 bool-suspend))
           (-> b n))
@@ -485,14 +485,14 @@
     (note
       [g f] is already id of sphere-1)
 
-    (def [g f]
+    (define [g f]
       (lambda (-> sphere-1 sphere-1)
         (with (-> (-1 sphere-1) (-1 sphere-1))
           (-> b b))
         (with (-> (0 b b) (0 b b))
           (-> (1 loop) (1 loop)))))
 
-    (def [f g]
+    (define [f g]
       (lambda (-> bool-suspend bool-suspend)
         (with (-> (-1 bool-suspend) (-1 bool-suspend))
           (-> n n)
@@ -504,7 +504,7 @@
     (note
       'h' is to proof (~ [f g] [bool-suspend id]))
 
-    (def h
+    (define h
       (lambda (-> (* bool-suspend I) bool-suspend)
         (extend-from
           (lambda  (-> (* bool-suspend (-1 I)) bool-suspend)
@@ -530,12 +530,12 @@
 *** (~~ bool-suspend-suspend sphere-2)
 
     #+begin_src scheme
-    (def sphere-2
+    (define sphere-2
       (type space
         (: b2 (-1 <>))
         (: surf (1 b2 refl))))
 
-    (def bool-suspend-suspend
+    (define bool-suspend-suspend
       (type space
         (: [n2, s2] (-1 <>))
         (: m2 (-> bool-suspend (0 n2 s2)))))
@@ -545,7 +545,7 @@
     (: [#f m m2] (1 n m2 s m2 rev))
     (: [#t m m2] (1 n m2 s m2 rev))
 
-    (def f
+    (define f
       (lambda (-> bool-suspend-suspend sphere-2)
         (with (-> (-1 bool-suspend-suspend) (-1 sphere-2))
           (-> n2 b2)
@@ -557,7 +557,7 @@
           (-> (2 #f m m2) (2 surf))
           (-> (2 #t m m2) (2 b2 refl refl)))))
 
-    (def g
+    (define g
       (lambda (-> sphere-2 bool-suspend-suspend)
         (with (-> (-1 sphere-2) (-1 bool-suspend-suspend))
           (-> b2 n2))
@@ -565,7 +565,7 @@
           (-> (2 surf) (2 #f m m2 (1 n m2 s m2 rev) as-remained-boundary
                           #t m m2 (1) as-remained-boundary)))))
 
-    (def [g f]
+    (define [g f]
       (lambda (-> sphere-2 sphere-2)
         (with (-> (-1 sphere-2) (-1 sphere-2))
           (-> b2 b2))
@@ -583,7 +583,7 @@
       ==
       (2 surf))
 
-    (def [f g]
+    (define [f g]
       (lambda (-> bool-suspend-suspend bool-suspend-suspend)
         (with (-> (-1 bool-suspend-suspend) (-1 bool-suspend-suspend))
           (-> n2 n2)
@@ -599,7 +599,7 @@
     (note
       'h' is to proof (~ [f g] [bool-suspend-suspend id]))
 
-    (def h
+    (define h
       (lambda (-> (* bool-suspend-suspend I) bool-suspend-suspend)
         (extend-from
           (lambda (-> (* bool-suspend-suspend (-1 I)) bool-suspend-suspend)
@@ -678,7 +678,7 @@
 * >< mapping-class-group
 
   #+begin_src scheme
-  (def cylinder
+  (define cylinder
     (type space
       (: [a0, a1] (-1 <>))
       (: b0 (0 a0 a0))
@@ -686,7 +686,7 @@
       (: h  (0 a0 a1))
       (: c0 (1 h b1 h rev b0 rev))))
 
-  (def twist
+  (define twist
     (lambda (-> cylinder cylinder)
       (extend-from
         (identity-map-of (list b0 b1)))

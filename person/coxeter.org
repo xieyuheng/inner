@@ -24,13 +24,13 @@
 
       - example of isomorphic
         #+begin_src scheme
-        (def R
+        (define R
           (type space
             (: a (-1 <>))
             (: r (0 a a))
-            (: c (1 r r r r r r))))
+            (: c (1 {r} 6 times))))
 
-        (def S
+        (define S
           (type space
             (: a (-1 <>))
             (: [s, t] (0 a a))
@@ -38,42 +38,100 @@
             (: d1 (1 t t))
             (: d2 (1 s rev t s t))))
 
-        (def f
+        (define f
           (lambda (-> R S)
             (with (-> (-1 R) (-1 S))
               (-> R/a S/a))
             (with (-> (0 R/a R/a) (0 S/a S/a))
               (-> (1 r) (1 s t)))
-            (with (-> (1 r r r r r r)
-                      (1 s t s t s t s t s t s t)
-                      (=> (1 s s s s s s)))
-              (-> (2 c) (2 d0
-                           d0 (1 s s s s s s) as-remained-boundary
-                           d2 (1 s t s t s s s s) as-remained-boundary
-                           d2 (1 s t s t s t s t s s) as-remained-boundary
-                           d2 (1 s t s t s t s t s t s t) as-remained-boundary)))))
+            (with (-> (1 {r} 6 times)
+                      (1 {s t} 6 times))
+              (-> (2 c)
+                  (2 d0
+                     d0 (1 s s s s s s) as-remained-boundary
+                     d2 (1 s t s t s s s s) as-remained-boundary
+                     d2 (1 s t s t s t s t s s) as-remained-boundary
+                     d2 (1 s t s t s t s t s t s t) as-remained-boundary)))))
 
-        (def g
+        (define g
           (lambda (-> S R)
             (with (-> (-1 S) (-1 R))
               (-> S/a R/a))
             (with (-> (0 S/a S/a) (0 R/a R/a))
-              (-> (1 s) (1 r r r r))
-              (-> (1 t) (1 r r r)))
-            (with (-> (1 s s s) (1 ><))
-              (-> (2 d0) (2 ><)))
-            (with (-> (1 t t) (1 ><))
-              (-> (2 d1) (2 ><)))
-            (with (-> (1 s rev t s t) (1 ><))
-              (-> (2 d2) (2 ><)))))
+              (-> (1 s) (1 {r} 4 times))
+              (-> (1 t) (1 {r} 3 times)))
+            (with (-> (1 {s} 3 times)
+                      (1 {r} {4 times} 3 times))
+              (-> (2 d0)
+                  (2 c
+                     c (1 {r} {4 times} 3 times) as-remained-boundary)))
+            (with (-> (1 t t)
+                      (1 {r} {3 times} 2 times))
+              (-> (2 d1)
+                  (2 c)))
+            (with (-> (1 s rev t s t)
+                      (1 {r} -4 times
+                         {r} 3 times
+                         {r} 4 times
+                         {r} 3 times))
+              (-> (2 d2)
+                  (2 c)))))
+
+        (note
+          is this the end of the proof of the iso between the two space ?
+          do not need to prove
+          (~ [f g] (identity-map-of R)) and (~ [g f] (identity-map-of S)) ?)
+
+        (= [f g]
+           (lambda (-> R R)
+             (with (-> (-1 R) (-1 R))
+               (-> a a))
+             (with (-> (0 a a) (0 a a))
+               (-> (1 r) (1 {r} 7 times)))
+             (with (-> (1 {r} 6 times)
+                       (1 {{r} 4 times {r} 3 times} 6 times))
+               (-> (2 c)
+                   (2 {c} 7 times)))))
+
+        (note
+          each rewriting by relation
+          must be recorded by homotopy)
+
+        (= [g f]
+           (lambda (-> S S)
+             (with (-> (-1 S) (-1 S))
+               (-> a a))
+             (with (-> (0 a a) (0 a a))
+               (-> (1 s) (1 {s t} 4 times))
+               (-> (1 t) (1 {s t} 3 times)))
+             (with (-> (1 {s} 3 times)
+                       (1 {s t} {4 times} 3 times))
+               (-> (2 d0)
+                   (2 c
+                      c (1 {r} {4 times} 3 times) as-remained-boundary)))
+             (with (-> (1 t t)
+                       (1 {r} {3 times} 2 times))
+               (-> (2 d1)
+                   (2 c)))
+             (with (-> (1 s rev t s t)
+                       (1 {r} -4 times
+                          {r} 3 times
+                          {r} 4 times
+                          {r} 3 times))
+               (-> (2 d2)
+                   (2 c)))))
         #+end_src
 
 ***** factor groups
 
-      - ><
-
+      - In other words,
+        the effect of adding new relations
+        to the abstract definition of a group G,
+        is to form a new group G' which is a factor groupof G.
 
 ***** direct products
+
+      - ><
 
 *** 2 systematic enumeration of cosets
 
