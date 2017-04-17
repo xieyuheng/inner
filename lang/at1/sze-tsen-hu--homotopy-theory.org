@@ -1,10 +1,10 @@
-#+title: sze-tsen-hu--homotopy-theory
+#+title: sze-tsen-hu
 
-* cell-complex
+* the topology of cw complexes (1969)
 
 *** info
 
-    - The Topology of CW Complexes (1969)
+    - 
       by Albert T. Lundell and Stephen Weingram
 
 *** questions
@@ -120,103 +120,368 @@
       - under such topology, a map is continuous iff
         it is continuous on each cells.
 
-* 1 main problem and preliminary notions
+* homotopy theory (1959)
 
-*** 1 introduction
+*** 1 main problem and preliminary notions
 
-    > There is a general type of topological problem
-    > which will be called the extension problem.
-    > One of the principal objectives of the book is to show that
-    > this problem is fundamental in topology.
-    > It will be shown that many theorems of topology
-    > and most of its applications in other fields of mathematics
-    > are solutions of special cases of the extension problem.
+***** 1 introduction
 
-*** 2 the extension problem
+      > There is a general type of topological problem
+      > which will be called the extension problem.
+      > One of the principal objectives of the book is to show that
+      > this problem is fundamental in topology.
+      > It will be shown that many theorems of topology
+      > and most of its applications in other fields of mathematics
+      > are solutions of special cases of the extension problem.
 
-***** a low-level way to express the problem
+***** 2 the extension problem
 
-      - the problem can be described as
-        solving the following functional equation :
-        #+begin_src scheme
-        (<equation>
-         (<given>
-          g : (-> A Y)
-          inclusion : (-> A X))
-         (<find>
-          f : (-> X Y))
-         (<such-that>
-          (== [g] [inclusion f])
-          (note
-            'A is a subtype of X' is expressed by a named inclusion-map.)))
-        #+end_src
+******* a low-level way to express the problem
 
-      - by 'functional', I mean the solution of the equation
-        would be a function, instead of lowest level data.
+        - the problem can be described as
+          solving the following functional equation :
+          #+begin_src scheme
+          (<equation>
+           (<given>
+            g : (-> A Y)
+            inclusion : (-> A X))
+           (<find>
+            f : (-> X Y))
+           (<such-that>
+            (== [g] [inclusion f])
+            (note
+              'A is a subtype of X' is expressed by a named inclusion-map.)))
+          #+end_src
 
-      - If the machine were to check, whether the solution I found,
-        suffices the condition of the equation,
-        it must be able to check, whether two functions are equal.
-        I can not follow this way led by the author,
-        because, in my prospect, the equality of function
-        will be implemented by a special kind of extension-problem.
+        - by 'functional', I mean the solution of the equation
+          would be a function, instead of lowest level data.
 
-      - Thus, I use a low-level definition of extension-problem :
-        #+begin_src scheme
-        (let ([g (lambda (-> A Y) ...)])
-          (define f
-            (lambda (-> X Y)
-              (extend-from g)
-              ...)))
-        #+end_src
+        - If the machine were to check, whether the solution I found,
+          suffices the condition of the equation,
+          it must be able to check, whether two functions are equal.
+          I can not follow this way led by the author,
+          because, in my prospect, the equality of function
+          will be implemented by a special kind of extension-problem.
 
-      - Since a type is encoded by a list of its parts,
-        I let subtype be encoded by a sub-list of the list of parts.
+        - Thus, I use a low-level definition of extension-problem :
+          #+begin_src scheme
+          (let ([g (lambda (-> A Y) ...)])
+            (define f
+              (lambda (-> X Y)
+                (extend-from g)
+                ...)))
+          #+end_src
 
-      - In an extension-problem,
-        we extend a partial map to a total-map step by step,
-        while maintain the continuity of the map.
-        What the machine should be checking,
-        is shifted from equality to continuity.
-        Since we already established the rules for continuity-check,
-        we can express extension-problem in my language now.
+        - Since a type is encoded by a list of its parts,
+          I let subtype be encoded by a sub-list of the list of parts.
 
-      - In the book,
-        firstly, a restricted extension-problem is formed,
-        but in my language,
-        we always have the final version of extension-problem,
-        i.e. equality between two functions,
-        is understood as homotopy between two functions by default.
+        - In an extension-problem,
+          we extend a partial map to a total-map step by step,
+          while maintain the continuity of the map.
+          What the machine should be checking,
+          is shifted from equality to continuity.
+          Since we already established the rules for continuity-check,
+          we can express extension-problem in my language now.
 
-***** retraction-problem
+        - In the book,
+          firstly, a restricted extension-problem is formed,
+          but in my language,
+          we always have the final version of extension-problem,
+          i.e. equality between two functions,
+          is understood as homotopy between two functions by default.
 
-***** retraction-problem & extension-problem
+******* retraction-problem
 
-      - if the retraction-problem
-        is solvable by 'r',
-        then every extension-problem
-        is solvable by 'e'.
+******* retraction-problem & extension-problem
 
-        #+begin_src scheme
-        (let ([r (lambda (-> X A)
-                   (extend-from (identity-map-of A))
-                   ...)]
-              [g (lambda (-> A Y)
-                   ...)])
-          (define e
-            (lambda (-> X Y)
+        - if the retraction-problem
+          is solvable by 'r',
+          then every extension-problem
+          is solvable by 'e'.
+
+          #+begin_src scheme
+          (let ([r (lambda (-> X A)
+                     (extend-from (identity-map-of A))
+                     ...)]
+                [g (lambda (-> A Y)
+                     ...)])
+            (define e
+              (lambda (-> X Y)
+                (extend-from
+                  (lambda (-> A Y)
+                    (-> :a [:a g])))
+                (-> :x [:x r g]))))
+          #+end_src
+
+******* the proof of (== f0 f1)
+
+        - to proof (== f0 f1)
+          is to form a special extension-problem.
+          with (f0, f1 : A -> B)
+          we need to extend a partial map of type (-> [A I] [B])
+          #+begin_src scheme
+          (let ([f0 (lambda (-> A B) ...)]
+                [f1 (lambda (-> A B) ...)])
+            (lambda (-> (* A I) B)
               (extend-from
-                (lambda (-> A Y)
-                  (-> :a [:a g])))
-              (-> :x [:x r g]))))
+                (lambda (-> (* A (0 I)) B)
+                  (-> (* :a i0) [:a f0])
+                  (-> (* :a i1) [:a f1])))
+              ...))
+          #+end_src
+
+        - the corresponding retraction-problem is
+          #+begin_src scheme
+          (lambda (-> (* A I) (* A (0 I)))
+            (extend-from
+              (identity-map-of (* A (0 I))))
+            ...)
+          #+end_src
+          if this retraction-problem is solvable
+          then for all (f0, f1 : A -> B)
+          we have (f0 ~ f1)
+
+******* the proof of (A == B)
+
+        - the corresponding retraction-problem is
+          #+begin_src scheme
+          (lambda (-> (* A I) (* A (0 I)))
+            (extend-from
+              (identity-map-of (* A (0 I)))))
+
+          (note the-same-for B)
+          #+end_src
+
+        - to proof (A == B)
+          is to form find (f : A -> B) and (g : B -> A)
+          and to proof (f g ~ A id) and (g f ~ B id)
+          #+begin_src scheme
+          (lambda (-> (* A I) A)
+            (extend-from
+              (lambda (-> (* A (0 I)) A)
+                (-> (* :a i0) [:a f g])
+                (-> (* :a i1) :a))))
+
+          (lambda (-> (* B I) B)
+            (extend-from
+              (lambda (-> (* B (0 I)) B)
+                (-> (* :b i0) [:b g f])
+                (-> (* :b i1) :b))))
+          #+end_src
+
+        - it is to say
+          if the above retraction-problem is solvable
+          then to proof (A == B)
+          it is suffice to proof (A -> B) and (B -> A)
+          [i.e. to find two functions of such types]
+
+******* note
+
+        - in the book, there is a semantic usage of space name :
+          X -- domain
+          A -- sub-domain
+          Y -- co-domain
+
+******* example
+
+        #+begin_src scheme
+        (define example-1
+          (lambda (-> X (0 I))
+            (extend-from
+              (lambda (-> (list x0 x1) (0 I))
+                (-> x0 i0)
+                (-> x1 i1)))
+            (note the above is solvable
+                  iff x0 x1 lie in different quasi-components)))
+
+        (note about syntax design ::
+              if (0 X) can be viewed as an individual type,
+              so should (1 X) be.
+              then it would be not true that
+              we can elim level-diff map by product-space.
+              maybe we should allow level-diff map,
+              and we also should find the rule for its continuity-check.
+              [just as what has been done for hott by 'tp']
+              just this time, we do not use 'tp',
+              but try to re-create 'tp'
+              by the rule of the continuity-check of product-space.)
+
+        (define example-2
+          (lambda (-> I Y)
+            (extend-from
+              (lambda (-> (0 I) Y)
+                (-> i0 y0)
+                (-> i1 y1)))
+            (note the above is solvable
+                  iff y0 y1 lie in a compact, connected and locally connected
+                  subspace of Y satisfying the second countability axiom.)))
+
+        (define example-3
+          (note about Normal space
+                :: https://en.wikipedia.org/wiki/Normal_space
+                and Urysohn's lemma
+                :: https://en.wikipedia.org/wiki/Urysohn%27s_lemma
+                this is kind of low-level topology facts
+                can not be constructed in my language.))
+
+        (define example-4
+          (note about Tietze extension theorem
+                :: https://en.wikipedia.org/wiki/Tietze_extension_theorem))
+
+        (note Y is solid-space
+              if all of the following problems are solvable
+              (lambda (-> X Y)
+                (note X is normal space)
+                (extend-from
+                  (lambda (-> A Y)
+                    (note A is closed sub-space))))
+              [solid seems no hole])
         #+end_src
 
-***** the proof of (== f0 f1)
+***** characteristic-map
 
-      - to proof (== f0 f1)
-        is to form a special extension-problem.
-        with (f0, f1 : A -> B)
-        we need to extend a partial map of type (-> [A I] [B])
+      - the type of characteristic-map is
+        (-> (boundary (cell n)) (polytopy (sub1 n)))
+
+      - in at1, a dc is a characteristic-map.
+        if limited to model characteristic-map,
+        dc must always be viewed as unit cell,
+        while, ignore this limitation,
+        dc might be any orient-able closed space.
+
+***** topology structure
+
+      - the classical approach is to
+        set up the topological structure of cellular polytopy [CW complex].
+        1. maybe at1 should act at higher level of homotopical structure
+           instead of topological structure.
+        2. maybe at1 should maintain the ability to handle topological structure.
+
+***** 3 the method of algebraic topology
+
+***** 4 the retraction problem
+
+***** 5 combined maps
+
+      - the way we define a continuous map data-constructor by data-constructor,
+        is just like define a combined map.
+        [the continuity of the combined map is demonstrated in this section]
+
+***** 6 topological identification
+
+      - quotient-space must be implemented by redefining the equality.
+        thus, it seems that product-space and indexed-space,
+        all can be reduced to simple-space,
+        but quotient-space can not be reduced to simple-space,
+        thus is essentially different.
+
+      - in the book, natural-projection is used to depict quotient-space.
+
+      - for the example of quotient-space given by the book,
+        > the n-sphere is obtained from the n-cell, by identifying the boundary
+        > to a single point, and the real projective n-sphere is obtained from
+        > the n-sphere by identifying the antipodal points.
+
+      - but in at1, we can actually define the above spaces,
+        without the use of quotient-space.
+        and the use of topological identification above,
+        is changed to the use of repeated names [like a mark language].
+
+      - but also note that, not all quotient-space can be made simple-space.
+        as the other example given in the book,
+        where the equality of the space
+        is changed by a group of homeomorphisms of the space.
+        which is also called orbit-space.
+
+***** 7 the adjunction-space
+
+***** 8 homtopy problem and classification problem
+
+***** 9 the homotopy-extension-property
+
+      - with homotopy-extension-property,
+        the extension-problem
+
+        will only dependent on
+        the homotopy class of
+
+      - Definition 9.1.
+        A subspace A of a space X
+        is said to have the homotopy-extension-property (abbreviated HEP)
+        in X
+        with respect to a space Y,
+        if every partial homotopy
+
+      #+begin_src scheme
+      (let ([f (lambda (-> X Y)
+                 ...)]
+            [g (lambda (-> (* A I) Y)
+                 (extend-from
+                   (lambda (-> (* A (list i0)) Y)
+                     (-> (* :a i0)
+                         [:a (restrict-on A f) @])))
+                 ...)])
+        (define h
+          (lambda (-> (* X I) Y)
+            (extend-from g)
+            ...)))
+      #+end_src
+
+***** 10 relative homotopy
+
+***** 11 homotopy equivalences
+
+***** 12 the mapping cylinder
+
+***** 13 a generalization of the extension-problem
+
+***** 14 the partial mapping cylinder
+
+***** 15 the deformation problem
+
+***** 16 the lifting problem
+
+***** 17 the most general problem
+
+*** 2 some special cases of the main problems
+
+*** 3 fiber-spaces
+
+***** 1 introduction
+
+      - bundle-spaces has local-product-structure.
+
+      - fiber-space = projection with covering-homotopy-property.
+        the axiomatization of homotopy theory need fiber-spaces.
+
+      - path space is fiber-spaces but do not has local-product-structure.
+        it has the path lifting property.
+
+      - covering-space = fiber-space with discrete fiber.
+
+***** 2 covering homotopy property
+
+      - (: p (-> E B))
+        E is total-space
+        B is base-space
+
+      - ><><><
+        CHP
+
+***** 6 algebraically trivial maps X -> S2
+
+***** 7 liftings and cross-sections
+
+***** 9 mapping spaces
+
+      - the exponential law of mapping spaces
+        (-> (* X T) Y) = (-> T (-> X Y))
+        [just as currying in programming language]
+
+***** note homotopy group of mapping space
+
+      - a path from a map to a map is a proof of (~ f0 f1)
+        of type
         #+begin_src scheme
         (let ([f0 (lambda (-> A B) ...)]
               [f1 (lambda (-> A B) ...)])
@@ -228,393 +493,136 @@
             ...))
         #+end_src
 
-      - the corresponding retraction-problem is
+      - similarly all higher homotopy group can be defined by uncurrying,
+        for example,
+        the mapping space (-> A (-> I (-> I (-> I B))))
+        uncurrying to (-> (* A I I I) B)
+
+***** 10 the spaces of paths
+
+***** 11 the space of loops
+
+      - special mapping space has algebraic structure.
+        for example, we have
+        - Proposition 11.4.
+          if X is an H-space with x0 as a homotopy unit,
+          then the fundamental group homotopy(1) (Χ, x0) is abelian.
+
+      - by level-up the space to mapping space
+        we can level-down its homotopy group
+        for example, we have
+        - Proposition 11.6.
+          Under the natural multiplication of loop space of point y,
+          the path-components of loop space form a group
+          which is essentially the fundamental group homotopy(1) (Υ, y).
+
+***** 12 the path lifting property
+
+      - we must express path lifting property in the uncurried way.
+        here we apply Bishop's fourth principle
+        "Meaningful distinctions deserve to be maintained."
+        Thus,
+        bundle-space and path-space and loop-space etc.
+        are not unified, by the covering-homotopy-property,
+        to the so called fiber-space.
+        [at least practically not so]
+
+      - construct a bundle-space by local-product-structure
+        we can specify its higher elements,
+        and check its CHP
+        [covering-homotopy-property] [homotopy-lifting-property].
+
+        special mapping-space also have CHP,
+        which can be checked after uncurrying.
+
+*** 4 homotopy groups
+
+***** 1 introduction
+
+      - homotopy groups of order higher then 1 are abelian.
+
+      - homotopy(0) (Х, x0) and relative-homotopy(1) (Χ, Α, x0)
+        are not ordinarily groups.
+
+      - homotopy(1) (Х, x0) and relative-homotopy(2) (Χ, Α, x0)
+        are not usually abelian.
+
+      - the excision-property for homology does not hold for homotopy.
+
+***** 2 absolute homotopy groups
+
+      - homotopy(n) (X, x0) = n-loop space of X
         #+begin_src scheme
-        (lambda (-> (* A I) (* A (0 I)))
-          (extend-from
-            (identity-map-of (* A (0 I))))
-          ...)
+        (-> n-cell X)
+        (restrict-by
+          (lambda (-> [...] [...])
+           (-> [n-cell boundary] [x0 refl {n-1}])))
+        ;; or
+        (-> n-sphere X)
+        (restrict-by
+          (lambda (-> [...] [...])
+           (-> [s0] [x0])))
         #+end_src
-        if this retraction-problem is solvable
-        then for all (f0, f1 : A -> B)
-        we have (f0 ~ f1)
 
-***** the proof of (A == B)
-
-      - the corresponding retraction-problem is
+      - group production of homotopy(n) (X, x0)
+        is defined by a map of type
         #+begin_src scheme
-        (lambda (-> (* A I) (* A (0 I)))
-          (extend-from
-            (identity-map-of (* A (0 I)))))
-
-        (note the-same-for B)
+        (-> n-cell ((glued at half boundary) n-cell n-cell))
+        (restrict-by
+          (lambda (-> [...] [...])
+           (-> [n-cell boundary] [x0 refl {n-1}])))
+        ;; or
+        (-> n-sphere ((contact at s0) n-sphere n-sphere))
+        (restrict-by
+          (lambda (-> [...] [...])
+           (-> [s0] [x0])))
         #+end_src
 
-      - to proof (A == B)
-        is to form find (f : A -> B) and (g : B -> A)
-        and to proof (f g ~ A id) and (g f ~ B id)
+      - homotopy(n) (X, x0), where n > 1, is abelian.
+        because there exists a rotation of n-sphere
+        interchanges the two hemispheres,
+        which leaves s0 fixed.
+
+      - ><><><
+        but how should I argue the above fact more clearly ?
+
+***** 3 relative homotору groups
+
+      - relative-homotopy(n) (X, A, x0)
+        where X > A > x0
+        defined as follow
         #+begin_src scheme
-        (lambda (-> (* A I) A)
-          (extend-from
-            (lambda (-> (* A (0 I)) A)
-              (-> (* :a i0) [:a f g])
-              (-> (* :a i1) :a))))
-
-        (lambda (-> (* B I) B)
-          (extend-from
-            (lambda (-> (* B (0 I)) B)
-              (-> (* :b i0) [:b g f])
-              (-> (* :b i1) :b))))
+        (-> n-cell X)
+        (restrict-by
+          (lambda (-> [...] [...])
+           (-> [n-cell boundary] [A]))
+          (lambda (-> [...] [...])
+           (-> [s0] [x0])))
         #+end_src
 
-      - it is to say
-        if the above retraction-problem is solvable
-        then to proof (A == B)
-        it is suffice to proof (A -> B) and (B -> A)
-        [i.e. to find two functions of such types]
-
-***** note
-
-      - in the book, there is a semantic usage of space name :
-        X -- domain
-        A -- sub-domain
-        Y -- co-domain
-
-***** example
-
-      #+begin_src scheme
-      (define example-1
-        (lambda (-> X (0 I))
-          (extend-from
-            (lambda (-> (list x0 x1) (0 I))
-              (-> x0 i0)
-              (-> x1 i1)))
-          (note the above is solvable
-                iff x0 x1 lie in different quasi-components)))
-
-      (note about syntax design ::
-            if (0 X) can be viewed as an individual type,
-            so should (1 X) be.
-            then it would be not true that
-            we can elim level-diff map by product-space.
-            maybe we should allow level-diff map,
-            and we also should find the rule for its continuity-check.
-            [just as what has been done for hott by 'tp']
-            just this time, we do not use 'tp',
-            but try to re-create 'tp'
-            by the rule of the continuity-check of product-space.)
-
-      (define example-2
-        (lambda (-> I Y)
-          (extend-from
-            (lambda (-> (0 I) Y)
-              (-> i0 y0)
-              (-> i1 y1)))
-          (note the above is solvable
-                iff y0 y1 lie in a compact, connected and locally connected
-                subspace of Y satisfying the second countability axiom.)))
-
-      (define example-3
-        (note about Normal space
-              :: https://en.wikipedia.org/wiki/Normal_space
-              and Urysohn's lemma
-              :: https://en.wikipedia.org/wiki/Urysohn%27s_lemma
-              this is kind of low-level topology facts
-              can not be constructed in my language.))
-
-      (define example-4
-        (note about Tietze extension theorem
-              :: https://en.wikipedia.org/wiki/Tietze_extension_theorem))
-
-      (note Y is solid-space
-            if all of the following problems are solvable
-            (lambda (-> X Y)
-              (note X is normal space)
-              (extend-from
-                (lambda (-> A Y)
-                  (note A is closed sub-space))))
-            [solid seems no hole])
-      #+end_src
-
-*** characteristic-map
-
-    - the type of characteristic-map is
-      (-> (boundary (cell n)) (polytopy (sub1 n)))
-
-    - in at1, a dc is a characteristic-map.
-      if limited to model characteristic-map,
-      dc must always be viewed as unit cell,
-      while, ignore this limitation,
-      dc might be any orient-able closed space.
-
-*** topology structure
-
-    - the classical approach is to
-      set up the topological structure of cellular polytopy [CW complex].
-      1. maybe at1 should act at higher level of homotopical structure
-         instead of topological structure.
-      2. maybe at1 should maintain the ability to handle topological structure.
-
-*** 3 the method of algebraic topology
-
-*** 4 the retraction problem
-
-*** 5 combined maps
-
-    - the way we define a continuous map data-constructor by data-constructor,
-      is just like define a combined map.
-      [the continuity of the combined map is demonstrated in this section]
-
-*** 6 topological identification
-
-    - quotient-space must be implemented by redefining the equality.
-      thus, it seems that product-space and indexed-space,
-      all can be reduced to simple-space,
-      but quotient-space can not be reduced to simple-space,
-      thus is essentially different.
-
-    - in the book, natural-projection is used to depict quotient-space.
-
-    - for the example of quotient-space given by the book,
-      > the n-sphere is obtained from the n-cell, by identifying the boundary
-      > to a single point, and the real projective n-sphere is obtained from
-      > the n-sphere by identifying the antipodal points.
-
-    - but in at1, we can actually define the above spaces,
-      without the use of quotient-space.
-      and the use of topological identification above,
-      is changed to the use of repeated names [like a mark language].
-
-    - but also note that, not all quotient-space can be made simple-space.
-      as the other example given in the book,
-      where the equality of the space
-      is changed by a group of homeomorphisms of the space.
-      which is also called orbit-space.
-
-*** 7 the adjunction-space
-
-*** 8 homtopy problem and classification problem
-
-*** 9 the homotopy-extension-property
-
-    - with homotopy-extension-property,
-      the extension-problem
-
-      will only dependent on
-      the homotopy class of
-
-    - Definition 9.1.
-      A subspace A of a space X
-      is said to have the homotopy-extension-property (abbreviated HEP)
-      in X
-      with respect to a space Y,
-      if every partial homotopy
-
-    #+begin_src scheme
-    (let ([f (lambda (-> X Y)
-               ...)]
-          [g (lambda (-> (* A I) Y)
-               (extend-from
-                 (lambda (-> (* A (list i0)) Y)
-                   (-> (* :a i0)
-                       [:a (restrict-on A f) @])))
-               ...)])
-      (define h
-        (lambda (-> (* X I) Y)
-          (extend-from g)
-          ...)))
-    #+end_src
-
-*** 10 relative homotopy
-
-*** 11 homotopy equivalences
-
-*** 12 the mapping cylinder
-
-*** 13 a generalization of the extension-problem
-
-*** 14 the partial mapping cylinder
-
-*** 15 the deformation problem
-
-*** 16 the lifting problem
-
-*** 17 the most general problem
-
-* 2 some special cases of the main problems
-
-* 3 fiber-spaces
-
-*** 1 introduction
-
-    - bundle-spaces has local-product-structure.
-
-    - fiber-space = projection with covering-homotopy-property.
-      the axiomatization of homotopy theory need fiber-spaces.
-
-    - path space is fiber-spaces but do not has local-product-structure.
-      it has the path lifting property.
-
-    - covering-space = fiber-space with discrete fiber.
-
-*** 2 covering homotopy property
-
-    - (: p (-> E B))
-      E is total-space
-      B is base-space
-
-    - ><><><
-      CHP
-
-*** 6 algebraically trivial maps X -> S2
-
-*** 7 liftings and cross-sections
-
-*** 9 mapping spaces
-
-    - the exponential law of mapping spaces
-      (-> (* X T) Y) = (-> T (-> X Y))
-      [just as currying in programming language]
-
-*** note homotopy group of mapping space
-
-    - a path from a map to a map is a proof of (~ f0 f1)
-      of type
-      #+begin_src scheme
-      (let ([f0 (lambda (-> A B) ...)]
-            [f1 (lambda (-> A B) ...)])
-        (lambda (-> (* A I) B)
-          (extend-from
-            (lambda (-> (* A (0 I)) B)
-              (-> (* :a i0) [:a f0])
-              (-> (* :a i1) [:a f1])))
-          ...))
-      #+end_src
-
-    - similarly all higher homotopy group can be defined by uncurrying,
-      for example,
-      the mapping space (-> A (-> I (-> I (-> I B))))
-      uncurrying to (-> (* A I I I) B)
-
-*** 10 the spaces of paths
-
-*** 11 the space of loops
-
-    - special mapping space has algebraic structure.
-      for example, we have
-      - Proposition 11.4.
-        if X is an H-space with x0 as a homotopy unit,
-        then the fundamental group homotopy(1) (Χ, x0) is abelian.
-
-    - by level-up the space to mapping space
-      we can level-down its homotopy group
-      for example, we have
-      - Proposition 11.6.
-        Under the natural multiplication of loop space of point y,
-        the path-components of loop space form a group
-        which is essentially the fundamental group homotopy(1) (Υ, y).
-
-*** 12 the path lifting property
-
-    - we must express path lifting property in the uncurried way.
-      here we apply Bishop's fourth principle
-      "Meaningful distinctions deserve to be maintained."
-      Thus,
-      bundle-space and path-space and loop-space etc.
-      are not unified, by the covering-homotopy-property,
-      to the so called fiber-space.
-      [at least practically not so]
-
-    - construct a bundle-space by local-product-structure
-      we can specify its higher elements,
-      and check its CHP
-      [covering-homotopy-property] [homotopy-lifting-property].
-
-      special mapping-space also have CHP,
-      which can be checked after uncurrying.
-
-* 4 homotopy groups
-
-*** 1 introduction
-
-    - homotopy groups of order higher then 1 are abelian.
-
-    - homotopy(0) (Х, x0) and relative-homotopy(1) (Χ, Α, x0)
-      are not ordinarily groups.
-
-    - homotopy(1) (Х, x0) and relative-homotopy(2) (Χ, Α, x0)
-      are not usually abelian.
-
-    - the excision-property for homology does not hold for homotopy.
-
-*** 2 absolute homotopy groups
-
-    - homotopy(n) (X, x0) = n-loop space of X
-      #+begin_src scheme
-      (-> n-cell X)
-      (restrict-by
-        (lambda (-> [...] [...])
-         (-> [n-cell boundary] [x0 refl {n-1}])))
-      ;; or
-      (-> n-sphere X)
-      (restrict-by
-        (lambda (-> [...] [...])
-         (-> [s0] [x0])))
-      #+end_src
-
-    - group production of homotopy(n) (X, x0)
-      is defined by a map of type
-      #+begin_src scheme
-      (-> n-cell ((glued at half boundary) n-cell n-cell))
-      (restrict-by
-        (lambda (-> [...] [...])
-         (-> [n-cell boundary] [x0 refl {n-1}])))
-      ;; or
-      (-> n-sphere ((contact at s0) n-sphere n-sphere))
-      (restrict-by
-        (lambda (-> [...] [...])
-         (-> [s0] [x0])))
-      #+end_src
-
-    - homotopy(n) (X, x0), where n > 1, is abelian.
-      because there exists a rotation of n-sphere
-      interchanges the two hemispheres,
-      which leaves s0 fixed.
-
-    - ><><><
-      but how should I argue the above fact more clearly ?
-
-*** 3 relative homotору groups
-
-    - relative-homotopy(n) (X, A, x0)
-      where X > A > x0
-      defined as follow
-      #+begin_src scheme
-      (-> n-cell X)
-      (restrict-by
-        (lambda (-> [...] [...])
-         (-> [n-cell boundary] [A]))
-        (lambda (-> [...] [...])
-         (-> [s0] [x0])))
-      #+end_src
-
-    - group production of relative-homotopy(n) (X, A, x0)
-      is defined by a map of type
-      #+begin_src scheme
-      (-> n-cell ((glued at half boundary) n-cell n-cell))
-      (restrict-by
-        (lambda (-> [...] [...])
-         (-> [n-cell boundary] [A]))
-        (lambda (-> [...] [...])
-         (-> [s0] [x0])))
-      #+end_src
-
-    - relative-homotopy(n) (X, A, x0), where n > 2, is abelian.
-      because there exists a rotation of n-cell
-      interchanges the two halves of n-cell,
-      which leaves s0 fixed.
-
-    - ><><><
-      derived triplet
-
-*** 9 the fibering property
+      - group production of relative-homotopy(n) (X, A, x0)
+        is defined by a map of type
+        #+begin_src scheme
+        (-> n-cell ((glued at half boundary) n-cell n-cell))
+        (restrict-by
+          (lambda (-> [...] [...])
+           (-> [n-cell boundary] [A]))
+          (lambda (-> [...] [...])
+           (-> [s0] [x0])))
+        #+end_src
+
+      - relative-homotopy(n) (X, A, x0), where n > 2, is abelian.
+        because there exists a rotation of n-cell
+        interchanges the two halves of n-cell,
+        which leaves s0 fixed.
+
+      - ><><><
+        derived triplet
+
+***** 9 the fibering property
+
+* elements of modern algebra (1965)
+
+* elements of general topology (1964)
+
+* homology theory (1965)

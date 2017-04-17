@@ -1,12 +1,6 @@
 #+title: coxeter
 
-* todo
-
-  - a syntax for power
-    to help (: c (1 r r r r r r))
-    and (-> [n-cell boundary] [x0 refl {n-1}])
-
-* generators-and-relations-for-discrete-groups
+* generators and relations for discrete groups (1957)
 
 *** 1 cyclic, dicydic and metacyclic groups
 
