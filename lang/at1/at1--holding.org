@@ -2,6 +2,8 @@
 
 * todo
 
+  - syntax for weak equivalent
+
   - to develop a homotopy thoery in AT1
 
   - fix the syntax of homotopy group and relative-homotopy group
@@ -1047,3 +1049,48 @@
   (? surf loop) : (+ (? surf (0 b1 b1))
                      (? (1 b2 refl) loop))
   #+end_src
+
+* 同倫羣中乘法的定義
+
+  - x -
+    #+begin_src scheme
+    (define I
+      (: ))
+    #+end_src
+
+* >< 空間的邊界
+
+  - x -
+    如何定義空間的邊界
+
+  - k -
+    對於 cylinder 這種有 embedding 的空間來說
+    很容易看出其邊界
+    但是對於複雜的空間比如
+    #+begin_src scheme
+    (define R
+      (type space
+        (: a (-1 <>))
+        (: r (0 a a))
+        (: c (1 {r} 6 times))))
+
+    (define S
+      (type space
+        (: a (-1 <>))
+        (: [s, t] (0 a a))
+        (: d0 (1 s s s))
+        (: d1 (1 t t))
+        (: d2 (1 s rev t s t))))
+    #+end_src
+    定義就不簡單了
+
+  - x -
+    但是我們可以用 brentano 的處理方式
+
+* 截斷空間的階級
+
+  - x -
+    截斷空間的階級所證明的等價 或者說 '羣的同構'
+    其實就是空間的基本羣的同構
+    但是這並非是類型爲 ((~~ 1) (-> I A) (-> I B))
+    的函數

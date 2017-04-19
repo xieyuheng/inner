@@ -1,6 +1,0 @@
-#+TITLE:  sololog
-#+AUTHOR: 謝宇恆 / XIE Yuheng
-
-- sololog
-  - solo dialog
-  - appending only

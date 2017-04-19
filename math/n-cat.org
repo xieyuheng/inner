@@ -1,0 +1,184 @@
+#+title: n-cat
+
+* note
+
+  - why we need to weaken the composition ?
+    is there any natural models of weak n-cat ?
+
+* higher-dimensional categories: an illustrated guide book
+
+*** info
+
+    - Eugenia Cheng and Aaron Lauda
+
+*** 1 introduction
+
+***** 1.1 starting points for generalisation
+
+******* 1.1.1 categories i: graphs with structure
+
+        - levels of sets with source and target maps.
+
+        - glob as cell.
+
+        - a higher-level graph as a world at present.
+
+        - data-structure-properties trichotomy
+
+        ------
+
+        - this might be close to AT1,
+          the higher-level graph here might be a special space in AT1.
+
+        - source and target maps form the boundary operator.
+
+******* 1.1.2 categories ii: objects and morphisms
+
+        - objects
+          hom-sets
+          composition
+          identities [identities as refl in AT1]
+
+******* 1.1.3 categories iii: nerves
+
+        - every category has an underlying simplicial set called its nerve.
+          A category is a simplicial set satisfying the "nerve condition".
+
+        - the nerve condition asserts that
+          the m-cells give m-fold composition in an associative way.
+
+***** 1.2 key points of difference
+
+******* algebraic vs non-algebraic
+
+        - Some definitions specify composition and constraints uniquely,
+          where others just assert that they "exist".
+          This can be thought of as the difference between
+          being algebraic (specifying things uniquely) and non-algebraic.
+
+******* note groupoid
+
+        - A groupoid is a small category
+          in which each morphism is an isomorphism.
+
+******* cell shape
+
+        - the point is that different cell shapes
+          are invoked in order that cells might play a wider role
+          than just "being cells".
+          That is, differences in cell shape often belies
+          differences in the role that cells play in the structure.
+
+        - the most basic cell shape is the globular shape.
+          the rule of thumb is that
+          globular cells play no role except "being cells";
+          other shapes of cells are needed
+          if they are to be used for, say, giving composition.
+
+******* weak n-categories or n-weak categories ?
+
+        - weaken the structure first, and then increase dimensions.
+
+        - increase dimensions strictly, and then weaken the structure.
+
+******* beheading vs headshrinking
+
+        - some definitions include in their data k-cells for all k,
+          not just k ≤ n.
+          the idea to assert that,
+          for dimensions greater than n,
+          the structure has "shrunk" to being trivial, in some suitable sense.
+
+        - other definitions actually chop off the data at n dimensions.
+
+***** note forgetful functor
+
+      - forgetful functor can be used to reveal different views of cat.
+        for examples
+        - (U : Group -> Set)
+          equal elements of a group
+          will be mapped to the same element in a set.
+        - (U : Cat -> Graph)
+          equal arrows of a cat
+          will be mapped to the same arrow in a graph,
+          if we have (f : A -> B) (g : B -> C) (h : A -> C) and (= h [f g])
+          'h' and [f g] both will be mapped to the arrow
+          represented by 'h' in a graph.
+
+*** 2 penon
+
+***** 2.1 intro
+
+      - An n-category is an algebra for a certain monad
+        on the category RefGSet of reflexive globular sets.
+
+***** 2.2 intuition
+
+      - strict w-category
+        Given any pasting diagram
+        there is precisely one way of composing it.
+
+      - weak w-category
+        Given any pasting diagram
+        there is a whole bunch of ways of composing it in different orders,
+        but they should all be suitably related.
+
+***** note the information about the order of composition
+
+      - the concept of 'parallel elements' in magma
+        which is defined by strict w-category,
+        maintains the information about the order of composition.
+
+      - why we need this information ?
+        for syntax reason or semantic reason ?
+
+***** 2.4 a crash course on monads and their algebras
+
+      - a monad is an algebraic theory
+        and an algebra for a monad is a model of that theory.
+
+*** 3 batanin and leinster
+
+***** intro
+
+      - the use of operad
+
+*** note about 'weak'
+
+    - in the above definitions,
+      'weak' means 'composition is weak',
+      while another meaning of 'weak' can be 'equality is weak'.
+
+    - is these two meanings of 'weak' equal ?
+
+*** 4 opetopic
+
+***** 4.1 introduction
+
+      - opetopic cells are this shape in order to express composition.
+
+*** 5 tamsamani and simpson
+
+***** intro
+
+***** 5.1 intuitions
+
+******* 5.1.1 nerves
+
+*** 6 street
+
+***** 6.1 introduction
+
+      -
+
+*** 7 joyal
+
+***** intro
+
+      - ><
+
+*** 8 trimble and may
+
+***** intro
+
+      - ><
