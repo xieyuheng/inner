@@ -6,4 +6,50 @@
 
 * introduction to topology (1949)
 
+*** introduction, a survey of some topological concepts
+
+***** 1. theory of sets. topological spaces
+
+      - Topology begins where sets are implemented with some cohesive properties
+        enabling one to define continuity.
+        The sets are then called topological spaces.
+        Thus topology is a branch of general set theory.
+
+      - x -
+        既然質疑集合論的語言的有效性
+        這些隨之而來的定義也就都要受到質疑了
+
+      - The guiding purpose is to obtain properties
+        associated with the disappearance,
+        or the reduction in dimension, of certain parts,
+        as a consequence of continuous deformations.
+        [homotopy equivalent between mappings]
+
+      - (K : complex)
+        (C : p-chain of K)
+        From an intuitive standpoint the boundary of a cell
+        is "deformable" over the cell into a point.
+        Recalling our earlier intuitive remarks,
+        on geometric grounds the boundary of a cell,
+        and therefore owing to linearity, the boundary of the p-chain,
+        should be more or less neglected.
+        We introduce then with Poincare a homology (r ~ 0)
+        to signify that 'r' bounds.
+        (This is the origin of "homology theory.")
+
+      - x -
+        (r ~ 0) denotes that
+        'r' is the boundary of a higher chain,
+        or, 'r' is the image of the boundary operator.
+
+        only circle (closed continuum) can be boundary of a higher  chain,
+        but not all circles are boundary of a higher chain.
+
+      - x -
+        note that,
+        in homology thoery,
+        continuum is generalized to chain,
+        in AT1 such generalization is implemented by keywords such as
+        (1 ...) (2 ...)
+
 * differential equations: geometric theory

@@ -2,6 +2,9 @@
 
 * note
 
+  - what it means to have a simplicial homotopy theory ?
+    what it means to have a homotopy theory for a math construction ?
+
   - why we need to weaken the composition ?
     is there any natural models of weak n-cat ?
 
@@ -11,6 +14,8 @@
 
     - 爲什麼強調說是 language ?
       是不是因爲語法的問題 ?
+      可能是语法原因
+      可能是因为 'same-position-self-gluing as reverse'.
 
   - it turns out that major simplifications can be introduced
     if we are willing to restrict our attention to infi-categories
