@@ -1148,8 +1148,40 @@
     而使用 new syntax 之後
     看似豐富的表達能力是否是本質的
     即問 表達能力是否過於豐富了
-    比如 
+    比如
     考慮同調論中單一的乘法
-    這種從豐富到單一的簡化 爲什麼是有效的
-    
-    
+    這種從豐富到單一的簡化 爲什麼是有效的 ?
+
+* refl
+
+  - x -
+    if 'refl' can be used to define dim-down map,
+    can it be used to define dim-up map ?
+
+* extension-problem
+
+  - x -
+    we observed homotopy-extension-property of pair of spaces (X, A),
+    we express it as a family of extension-problems
+    solved by solving one retraction-problem.
+    retraction from (* X I) to (+ (* X i0) (* A I)).
+
+* mapping-cylinder
+
+  - x -
+    (f : (X -> Υ)) is homotopically equivalent to
+    (inclusion : (X -> (M f)))
+
+    for example,
+    'f' is homotopy equivalent of X and Y,
+    iff the (inclusion : (X -> (M f))) is homotopy equivalent,
+    iff the (retraction : ((M f) -> X)) is homotopy equivalent.
+
+* lifting-problem
+
+  - x -
+    we observed homotopy-lifting-property of fibration (p : (E -> B)),
+    we use it as the axiom of fibration,
+    we express it as a family of lifting-problems
+    solved by solving one [><><>< cross-section ?]
+    ><><><
