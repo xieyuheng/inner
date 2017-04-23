@@ -1,0 +1,9 @@
+#+title: van kampen
+
+* some remarks on the join of two complexes and on invariant subsets of a complex (1932)
+
+  - ><
+
+* on the connection between the fundamental groups of some related spaces (1933)
+
+* on the fundamental group of an algebraic curve (1933)

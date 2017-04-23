@@ -2,6 +2,13 @@
 
 * note
 
+  - why weak associative is more easier in infi-groupoid than in infi-cat ?
+
+    | groupoid              | cat              |
+    |-----------------------+------------------|
+    | reversible            | irreversible     |
+    | geometry and topology | computer science |
+
   - model category theory
     是爲了 homotopy theory 之抽象與推廣而設計的
     算是對具體的 homotopy theory 的結構公理化
@@ -260,8 +267,6 @@
       is to find special family of functions,
       which, up to homotopy-equivalent,
       can generate the whole function-space.
-
-
 
 * space as infi-groupoid
 

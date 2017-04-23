@@ -2,9 +2,16 @@
 
 * todo
 
+  - [about Van Kampen Theorem]
+    Van Kampen Theorem of groupoid
+    the Generalised Van Kampen Theorem
+
+    - an algebra in which compositions are of a geometric type
+      reflecting the geometrical properties of the spaces.
+
   - syntax for weak equivalent
 
-  - to develop a homotopy thoery in AT1
+  - to develop a homotopy theory in AT1
 
   - fix the syntax of homotopy group and relative-homotopy group
 
@@ -168,26 +175,6 @@
     以至於略去了這些概念的啓發性例子
     和這些概念之形成的歷史語境
 
-* 如何處理同倫中維數的變化
-
-  - x -
-    認爲路的寬度不是零而是無窮小何如
-
-  - k -
-    我想在 at1 中維度的變化主要體現在 refl 這個操作上
-
-  - x -
-    我們先來總結一些現象吧
-    (1)
-    首先 (x refl) 可以被理解爲單位元 [也就是說可以隨時消去和引入]
-    並且 (x refl boundary boundary) = 0
-    因爲 (x refl boundary) = (+ x x rev)
-    (2)
-    其次 計算 cylinder 的 mapping-class-group 時
-    所給出的扭轉
-    在 at1 中看起來是把一部分面積給擠壓掉了
-    可能需要用無窮小量來理解這種映射
-
 * 非標準分析
 
   - x -
@@ -213,11 +200,6 @@
   - k -
     這個被擠壓的映射 與某個不被擠壓的映射同倫
     因此只有 在 homotopy 下 我們才能完成形式化
-
-* refl
-
-  - x -
-    可以想象 refl 所生成的空間不在原空間內
 
 * 關於邊界
 
@@ -585,7 +567,7 @@
     2.
     3.
 
-* to develop a homotopy thoery in AT1
+* to develop a homotopy theory in AT1
 
   - x -
     不要着急把這些理論和語法固定下來
@@ -931,13 +913,6 @@
     - 映射類羣
     等等
 
-* 高維代數結構中的乘法
-
-  - 對於高維的乘法 (n ...)
-    既然乘法是 '可交換的'
-    爲什麼我們還需要相乘的序
-    因爲 序 給出指明乘合體中位置的方式
-
 * cutting-and-regluing
 
   - 用空間 B F 製作 bundle-space 時
@@ -1050,7 +1025,7 @@
                      (? (1 b2 refl) loop))
   #+end_src
 
-* 同倫羣中乘法的定義
+* >< 同倫羣中乘法的定義
 
   - x -
     還是需要利用 n-disk 來定義乘法
@@ -1158,30 +1133,23 @@
     if 'refl' can be used to define dim-down map,
     can it be used to define dim-up map ?
 
-* extension-problem
+  - x -
+    可以想象 refl 所生成的空間不在原空間內
 
   - x -
-    we observed homotopy-extension-property of pair of spaces (X, A),
-    we express it as a family of extension-problems
-    solved by solving one retraction-problem.
-    retraction from (* X I) to (+ (* X i0) (* A I)).
+    認爲路的寬度不是零而是無窮小何如
 
-* mapping-cylinder
+  - k -
+    我想在 at1 中維度的變化主要體現在 refl 這個操作上
 
   - x -
-    (f : (X -> Υ)) is homotopically equivalent to
-    (inclusion : (X -> (M f)))
-
-    for example,
-    'f' is homotopy equivalent of X and Y,
-    iff the (inclusion : (X -> (M f))) is homotopy equivalent,
-    iff the (retraction : ((M f) -> X)) is homotopy equivalent.
-
-* lifting-problem
-
-  - x -
-    we observed homotopy-lifting-property of fibration (p : (E -> B)),
-    we use it as the axiom of fibration,
-    we express it as a family of lifting-problems
-    solved by solving one [><><>< cross-section ?]
-    ><><><
+    我們先來總結一些現象吧
+    (1)
+    首先 (x refl) 可以被理解爲單位元 [也就是說可以隨時消去和引入]
+    並且 (x refl boundary boundary) = 0
+    因爲 (x refl boundary) = (+ x x rev)
+    (2)
+    其次 計算 cylinder 的 mapping-class-group 時
+    所給出的扭轉
+    在 at1 中看起來是把一部分面積給擠壓掉了
+    可能需要用無窮小量來理解這種映射

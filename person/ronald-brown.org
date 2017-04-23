@@ -1,0 +1,135 @@
+#+title: ronald brown
+
+* note
+
+*** group vs groupoid
+
+    - ronald brown -
+      all of the basic theory of the fundamental group obtained a better expression,
+      with more powerful theorems and more elegant proofs,
+      if expressed in terms of the fundamental groupoid
+      of a space X on a set A of base points,
+      rather than restricting to the fundamental group on a single base point.
+      The immediate problem was to calculate the fundamental group of a space
+      which was the union of two subsets with a non connected intersection W.
+      Since W had more than one component,
+      it was not clear in which component to put the base point.
+      A reasonable solution turned out to be to use one point in each component,
+      i.e. to use a set of base points.
+
+    - x -
+      loop 是可以分解成很多 path 的
+      因此 groupoid 描述了更多的細節信息
+      這些信息對於發展理論來說可能是必要的
+
+*** n-groupoid theory
+
+    - x -
+      when developing n-groupoid theory,
+      we can mimic the development of group theory.
+      then what is the development of group theory ?
+
+    - k -
+      先看表面的現象
+      羣論有一個乘法
+      而其公理中有
+      (1) 封閉性
+      (2) 單位元與可逆性
+      (3) 結合性
+
+    - x -
+      (1) 封閉性
+      我們考慮的是 生成子 加 關係 所定義的羣
+      同樣 生成子 加 關係 也可以定義高維的代數結構
+      此時封閉性是自然的
+      (2) 單位元與可逆性
+      單位元也是自然的
+      可逆性需要考慮相乘的位置
+      首先可以用 '相乘的位置'
+      來解釋一般的羣論中的乘法與逆元
+      爲不同位置的相乘
+      然後再推廣到高維
+      (3) 結合性
+      相乘的結果最終
+      與各種可能的相乘的方式無關
+
+    - k -
+      羣論本身可以用來描述空間的對稱性
+      高維的代數可以用來描述什麼呢 ?
+
+    - x -
+      group 描述對稱性
+      groupoid 可以看成是描述對稱性 但是加上了類型信息 和 類型檢查
+
+    - [關於正規性]
+      從一般的高維乘法看來
+      羣論之所以可以被如此簡化
+      是因爲線段是規則的圖形
+      正如 cube 和 simplex 是 規則的圖形一樣
+
+    - higher dim elements can be used
+      to record the proofs of equality
+      between elements of one dim lower.
+
+    - x -
+      the computation of product of higher algebra,
+      is enabled by two kinds of rules,
+      (1) same-position-self-gluing
+      (2) one-dim higher elements as relations
+
+*** higher homotopy groups are always commutative
+
+    - x -
+      by the definition of homotopy group I showed in AT1,
+      can I prove higher homotopy groups are always commutative ?
+
+*** 高維代數結構中的乘法
+
+    - 對於高維的乘法 (n ...)
+      既然乘法是 '可交換的'
+      爲什麼我們還需要相乘的序
+      因爲 序 給出指明乘合體中位置的方式
+
+*** interchange law
+
+    - 2 homotopy group (Cech 1932) -> two group structure ->
+      interchange law -> one group structure
+
+    - 2 homotopy groupoid -> two groupoid structure ->
+      interchange law -> more then one groupoid structure (more non abelian)
+
+    - x -
+      ><><><
+      對 interchange law 和 Ech... 有一個批判
+
+*** algebraic inverse to subdivision
+
+    - ronald brown -
+      That is, we know how to cut things up,
+      but do we have available an algebraic control
+      over the way we put them together again ?
+
+* topology and groupoids (1968 1988 2006)
+
+* nonabelian algebraic topology (2011)
+
+*** info
+
+    - filtered spaces, crossed complexes, cubical homotopy groupoids
+
+* from groups to groupoids: a brief survey (1987)
+
+* categories and groupoids (1971) (by p.j.higgins)
+
+* note combinatorial infi-groupoid theory
+
+*** 類比
+
+***** 正規子羣與羣同態
+
+      - x -
+        在 combinatorial group theory 中
+        通過增加 relation 可以得到已有的 g.r.group 的正規子羣
+        正規子羣 與 羣同態 之間 有一一對應關係
+        對於 combinatorial infi-groupoid theory
+        我們可以形成類似的理論嗎 ?

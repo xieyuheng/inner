@@ -1,10 +1,42 @@
 #+title: sze-tsen-hu
 
+* note
+
+*** extension-problem
+
+    - x -
+      we observed homotopy-extension-property of pair of spaces (X, A),
+      we express it as a family of extension-problems
+      solved by solving one retraction-problem.
+      retraction from (* X I) to (+ (* X i0) (* A I)).
+
+The immediate problem was to calculate the fundamental group of a space which was the union of two subsets with a non connected intersection W. Since W had more than one component, it was not clear in which component to put the base point. A reasonable solution turned out to be to use one point in each component, i.e. to use a set of base points. 
+
+*** mapping-cylinder
+
+    - x -
+      (f : (X -> Υ)) is homotopically equivalent to
+      (inclusion : (X -> (M f)))
+
+      for example,
+      'f' is homotopy equivalent of X and Y,
+      iff the (inclusion : (X -> (M f))) is homotopy equivalent,
+      iff the (retraction : ((M f) -> X)) is homotopy equivalent.
+
+*** lifting-problem
+
+    - x -
+      we observed homotopy-lifting-property of fibration (p : (E -> B)),
+      we use it as the axiom of fibration,
+      we express it as a family of lifting-problems
+      solved by solving one [><><>< cross-section ?]
+      ><><><
+
 * the topology of cw complexes (1969)
 
 *** info
 
-    - 
+    -
       by Albert T. Lundell and Stephen Weingram
 
 *** questions
