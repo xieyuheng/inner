@@ -109,21 +109,20 @@
       but do we have available an algebraic control
       over the way we put them together again ?
 
-* topology and groupoids (1968 1988 2006)
-
-* nonabelian algebraic topology (2011)
-
-*** info
-
-    - filtered spaces, crossed complexes, cubical homotopy groupoids
-
-* from groups to groupoids: a brief survey (1987)
-
-* categories and groupoids (1971) (by p.j.higgins)
-
 * note combinatorial infi-groupoid theory
 
 *** 類比
+
+***** generators and relations
+
+      - x -
+        adding types to the generators,
+        we get a combinatorial 1-groupoid theory.
+
+*****  object group [subgroup structure] of 1-groupoid
+
+      - x -
+        ><><><
 
 ***** 正規子羣與羣同態
 
@@ -133,3 +132,289 @@
         正規子羣 與 羣同態 之間 有一一對應關係
         對於 combinatorial infi-groupoid theory
         我們可以形成類似的理論嗎 ?
+
+* from groups to groupoids: a brief survey (1987)
+
+*** 1 intro
+
+    - Brandt's definition of groupoid arose out of his work on
+      generalising to quaternary quadratic
+      forms a composition of binary quadratic forms due to Gauss.
+
+*** 2 examples
+
+    - In the theory of groups,
+      two motivating examples are symmetry groups, that is, groups of automorphisms,
+      and groups derived from paths in a space, that is, the Poincaré or fundamental groups.
+      We find that these examples generalise
+      to give ‘symmetry groupoids’ and fundamental groupoids.
+
+    - example 1
+      a disjoint union of groups.
+
+    - example 2
+      an equivalence relation R on X,
+      with (x, y) (y, z) = (x, z) as groupoid product.
+
+      for examples, coarse groupoid and fine groupoid.
+
+      This consideration of an equivalence relation as a groupoid
+      also suggests the utility of groupoids for studying quotienting constructions,
+      particularly in cases where the quotient set X/R
+      cannot carry the appropriate structure.
+
+    - example 3
+      group G act on the set X,
+      (x, g) : (X, G) as element in the groupoid.
+
+    - example 4
+      study a geometry [a structure] by means of its group of automorphisms.
+      [Klein’s Erlangen Programme]
+      generalised to
+      study a family of structures by means of its actions typed by the structures.
+      for example, in fiber-space with projection (p : (E -> B)),
+      where transports [iso between fibers] are typed by points in B.
+      [so called symmetry groupoid of fiber-space]
+
+    - example 5
+      fundamental group of space
+      - i.e. loop space
+      generalised to
+      fundamental groupoid of space
+      - i.e. loop space with a set A of base points
+        or just the whole path space when the set A is the space itself
+
+*** 3 applications of the fundamental groupoid
+
+    - to use groupoid to express van kampen theory in a better way.
+
+    - orbit space
+
+*** 4 the category of groupoids
+
+    - the notation of object group or vertex group of groupoid.
+
+    - The classification of groupoids up to isomorphism
+      was early on found to be reducible to the classification of groups.
+
+    - One of the features of groupoids
+      is the variety of types of homomorphisms.
+      For groups, we have basically monomorphisms, epimorphisms, isomorphisms.
+
+      For groupoid homomorphisms
+      we have similar terminology to that for functors,
+      namely faithful, full, representative,
+      and also a variety of other types
+      such as quotient, universal, covering, fibration, and discrete kernel.
+
+      It may disturb people to learn that
+      the first isomorphism theorem fails for groupoids.
+      But in fact these apparent difficulties and complications
+      lead to a theory richer than that of groups, and with wider uses.
+
+    - the coarse groupoid (X * X), where X = {0, 1}, denoted as J.
+
+      - give element 'a' of groupoid G,
+        we have unique homomorphism (f : J -> G) of groupoids
+        such that f(i) = a.
+        thus, J plays for groupoids the role
+        that the infinite cyclic group Z plays for groups.
+
+      - J with the two inclusions {0} -> J {1} -> J,
+        it has properties analogous to the unit interval
+        in the homotopy theory of spaces.
+        So it is easy to write down a homotopy theory for groupoids,
+        with notions of homotopy equivalence,
+        covering morphism, fibration,
+        exact sequence, and so on.
+        [homotopy theory is enabled by unit interval]
+
+    - Indeed the construction of covering spaces
+      is nicely expressed in terms of the problem of
+      topologising the object set of a covering groupoid G
+      of the fundamental groupoid.
+
+    - Fibrations of groupoids occur naturally
+      in a number of ways in group or group action theory;
+      the resulting exact sequences give results
+      on the original group theoretic situation.
+
+*** 5 some applications
+
+*** 6 the classifying space of a topological groupoid
+
+    - about the nerve of a small category [groupoid].
+
+*** 7 structured groupoids
+
+    - groupoid object G internal to a category C.
+      [just as simplicial object]
+
+*** 8 conclusion
+
+    - it seems that the transition from group to groupoid
+      often leads to a more thoroughly non-abelian theory.
+
+      This is seen in the von Neumann algebra of a measured groupoid,
+      which has also been thought to be appropriate for quantisation in physics
+
+      - [90]
+        D. KASTLER, ‘On A. Connes’ non-commutative integration theory’,
+        Commun. Math. Phys. 85 (1982) 99-120.
+
+    - groupoid methods replace principal bundles
+
+      - [99]
+        K. MACKENZIE, Lie groupoids and Lie algebroids in differential geometry
+        (Cambridge University Press, 1987).
+
+    - higher dimensional groupoids have led in homotopy theory
+      to new results and calculations
+      which seem unobtainable by other means.
+
+      the ideas of ‘higher order symmetry’,
+      or ‘symmetry of symmetries’ and methods of calculation for these.
+
+      - [19]
+        R. BROWN,
+        ‘Coproducts of crossed P-modules:
+        applications to second homotopy groups and to the homology of groups’,
+        Topology 23 (1984) 337-345.
+
+      - [33]
+        R. BROWN and J.-L. LoDAY,
+        ‘Van Kampen theorems for diagrams of spaces’,
+        Topology, 26 (1987) 311-334.
+
+      - [34]
+        R. BROWN and J.-L. LODAy,
+        ‘Homotopica1 excision and Hurewicz theorems for n-cubes of spaces’,
+        Proc. London Math. Soc.,(3) 54 (1987) 176-192.
+
+      - [57]
+        G. J. ELLIS and R. STElNER,
+        ‘Higher dimensional crossed modules and the homotopy groups of (n + 1)-ads’,
+        J. Pure Appl. Algebra, 46 (2-3) (1987) 117–136.
+
+    - the relationship of covering spaces to Galois theory
+      and problems of descent in algebraic geometry.
+
+      - [103]
+        A. R. MAGID,
+        ‘Covering spaces of algebraic curves’,
+        Amer. Math. Monthly 83 (1976) 614-621.
+
+* topology and groupoids (1968 1988 2006)
+
+*** preface 2
+
+    - W. S. Massey -
+      this method of characterising various mathematical structures
+      as solutions to universal mapping problems
+      seems to be one of the truly unifying mathematical principles.
+
+    - brown -
+      is it possible to rewrite homotopy theory,
+      substituting the word groupoid for the word group,
+      and making other consequential changes ?
+      If this is done, is the result more pleasing ?
+
+*** preface 3
+
+    - geometry -> underlying processes ->
+      algebra -> algorithms -> computation
+
+    - [about universal property]
+      analogies are not between objects themselves,
+      but between the relations between objects.
+
+*** chapter 1 some topology on the real line
+
+***** note 拓撲公理
+
+      - x -
+        分析的算數化 -> 拓撲公理
+
+***** 1.1 Neighbourhoods in R
+
+      - given (a : R), we say P holds near a, or is valid near a,
+        if P holds for all points in some neighbourhood of a.
+
+        There is no notion of absolute nearness,
+        that is, of a point x being ‘near a’.
+
+      - a set A determines the set of points of which A is a neighbourhood;
+        this set is called the interior of A, and is written Int A.
+
+***** 1.2 continuity
+
+      - The function f is continuous at a
+        if for every neighbourhood N of f(a),
+        f^{−1}(N) is a neighbourhood of a.
+
+***** note 關於實數理論
+
+      - x -
+        我們幾乎沒法按照這種連續性的定義
+        來證明一個被計算機實現的函數的連續性
+
+      - k -
+        我想在下這個論斷之前
+        首先我們要知道 '實數上的函數' 是如何被實現的
+
+      - x -
+        實現實數函數的方式是
+        (1) 潛在無窮精確的有理數域上的函數
+        (2) 有限精度的實值函數 這就涉及到了誤差與數值分析
+        我想
+        當用集合論的語言來定義
+        函數的連續性和可微性等等性質時
+        就根本沒法用定義來驗證如此實現的函數的這些性質了
+
+      - k -
+        這就可以說成是 '不具構造性' 嗎 ?
+        '構造性' 就被定義爲 '可用計算機實現' ?
+
+      - x -
+        我想這些關於實數的理論
+        其應用都將體現在數值分析中
+        而數值分析中的概念與方法又需要用一個程序語言來實現
+        考慮實現這些概念與方法時所使用的類型系統
+        可能就能讓我們獲得一個 '具有現實意義的' 實數理論
+
+***** 1.3 open sets, closed sets, closure
+
+* nonabelian algebraic topology (2011)
+
+*** info
+
+    - filtered spaces, crossed complexes, cubical homotopy groupoids
+
+*** prerequisites and reading plan
+
+    - the use in algebraic topology of algebraic colimit arguments
+      rather than exact sequences that is a key feature of this book.
+
+*** historical context diagram
+
+    - The theory of groupoids and categories
+      gets more complicated in higher dimensions
+      basically because of the complexity of the basic geometric objects.
+      Thus in dimension 2 we might take as basic objects
+      the 2-disk, 2-globe, 2-simplex, or 2-cube.
+
+      | 2-disks | crossed modules     |
+      | 2-cubes | double groupoids    |
+      | n-disks | crossed complexes   |
+      | n-cubes | cubical w-groupoids |
+
+      the cubical model leads to conjectures and then theorems,
+      partly through the ease of expressing multiple compositions.
+
+      the disk model leads to calculations,
+      and clear relations to classical work.
+
+*** introduction
+
+    - ><
+      

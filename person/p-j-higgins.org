@@ -1,0 +1,21 @@
+#+title: p-j-higgins
+
+* presentations-of-groupoids-with-applications (1964)
+
+* categories and groupoids (1971)
+
+*** preface to the reprint
+
+    - the theory of presentations of groups
+      generalised easily to presentations of groupoids,
+      using generating graphs instead of generating sets.
+      [is using a type system]
+
+    - the general philosophy of algebra,
+      is the importance of universal properties and word problems.
+
+*** 1 some basic categories
+
+    
+
+*** 2 natural equivalence and adjoint functors
