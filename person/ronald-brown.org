@@ -210,7 +210,43 @@
 *** a critique of fibration in hott
 
     - x -
-      ><><><
+      hott 對乘法的處理方式與 AT 的直覺相左
+      並且與對 fiber-space 的對稱處理相衝突
+
+      對稱的處理方式在於
+      同一個幾何體的不同邊界表示 本質上還要被認爲是同一個幾何體
+      比如 (m : ((p1 * p2) = q)) 與 (m : (p2 = ((p1 rev) * q)))
+      而 hott 中處理它們的方式 講給幾何體加上多餘的信息
+      [考慮 一個邊在面中漸進到另一個邊]
+      這種多餘的信息 將使兩者不能視爲本質等同
+
+      所得到的 tp 將使得
+      一個 m 在同一個 fiber 中有兩種不同的像
+      同一個 m 沿着不同的推進方式 將被映爲同一個 fiber 中的兩個面
+      [在只考慮 globe 的情形下 是體現不出來的]
+
+    - x -
+      [bridges 與 logic programming]
+      在已有的形式處理中 不好的一點是 totel-space 是 fiber 的不交並
+      因爲其不交 所以當要把一個 path lift 到 totel-space 中時
+      f : ((x : A) -> x P)
+      ~ : ((p : (x = y)) -> (x f = y f))
+      而後面的這個 (x f = y f) 是不可能的
+      即 兩個不同空間中的點沒有路
+
+      已有的形式處理方式
+      可以在 '不交並' 的前提下
+      巧妙地給出這種 path 的定義
+
+      而我想用 bridge 把 fiber 連起來
+      這樣就不能說是 '不交並' 了
+
+      可逆性可以用 logic language 來處理
+      一個 path 引出兩個 fiber 之間的 等價
+      可以試着使用一個 relation 來處理這個等價
+      比如
+      p(x, y) 用來 unify x, y 的同時 還能返回一個邊
+      m(p1, p2, p3) 做 unify 的同時 也能返回一個面
 
 * from groups to groupoids: a brief survey (1987)
 
@@ -604,6 +640,26 @@
         I can generalise van kampen theory to n-dim by the language of AT1.
 
 *** chapter 7 cofibrations
+
+***** 7.1 the track groupoid
+
+      - the so called track groupoid
+        is the groupoid of mapping-space (X -> Y)
+        where objects are (f : (X -> Y))
+        and arrows [morphisms] are (h : ((X * I) -> Y))
+
+        to get groupoid from path-space,
+        we use maps of type ((X * I * I) -> Y) as equivalent relation.
+
+***** 7.2 fibrations of groupoids
+
+***** 7.3 examples
+
+***** 7.4 the gluing theorem for homotopy equivalences of closed unions
+
+***** 7.5 the homotopy type of adjunction spaces
+
+***** 7.6 the cellular approximation theorem
 
 *** chapter 8 some combinatorial groupoid theory
 
