@@ -98,10 +98,6 @@
     - 2 homotopy groupoid -> two groupoid structure ->
       interchange law -> more then one groupoid structure (more non abelian)
 
-    - x -
-      ><><><
-      對 interchange law 和 Ech... 有一個批判
-
 *** algebraic inverse to subdivision
 
     - ronald brown -
@@ -111,7 +107,7 @@
 
 * note combinatorial infi-groupoid theory
 
-*** 類比
+*** 類比 combinatorial group theory
 
 ***** generators and relations
 
@@ -119,9 +115,10 @@
         adding types to the generators,
         we get a combinatorial 1-groupoid theory.
 
-*****  object group [subgroup structure] of 1-groupoid
+***** object group [subgroup structure] of 1-groupoid
 
       - x -
+        about tree
         ><><><
 
 ***** 正規子羣與羣同態
@@ -132,6 +129,88 @@
         正規子羣 與 羣同態 之間 有一一對應關係
         對於 combinatorial infi-groupoid theory
         我們可以形成類似的理論嗎 ?
+
+      - k -
+        這種現象稱爲 第一同態定理
+        groupoid theory 並沒有這種現象
+        把 groupoid theory 劃歸爲 group theory
+        就能觀察到這個定理的缺失
+
+*** 高階代數的表示論之語言的特點
+
+    1. 需要設計新的語法來描述階元的乘法
+       '乘號' 本身應該被高階生成元的邊界結構化
+
+       - 可以用語言學來論述 '不存在良好的高維幾何[代數]語言'
+         比如 在 CL 中消去 lambda
+         所謂 '消去' 只是轉變了編碼方式
+         而不能從本質上簡化語言
+
+       - 幾何體的分類問題可以簡化描述的複雜度
+
+    2. 相乘的條件是有公共邊界
+       相乘後公共邊界被消除
+
+    3. 高一階元素是低一階元素之間的關係[等式]
+
+    4. 必須能描述一個元素的邊界的所有位置
+       同一個元素就相同的位置自乘則相消
+
+       - 描述粘合方式的語言必定是線性的
+         線性的描述方式自然給出指明粘合體中所有位置的方法
+
+*** a critique of eckmann-hilton argument
+
+    - about interchange law.
+
+    - x -
+      所謂 eckmann-hilton argument
+      與高階乘法的 '交換性'
+      應該被視爲一個語言學現象
+
+      首先
+      古典理論中對高階乘法的交換性的證明
+      用到了連續的 homotopy
+      而只是在形式化的處理方式中才需要用到 eckmann-hilton argument
+
+      eckmann-hilton argument 說
+      利用如下的條件
+      (A x B) o (C x D) = (A o C) * (B o D)
+      [即 多種粘合次序能粘合出同一個幾何體]
+      就能證明高階乘法的交換性
+
+      但是 這個條件本質上是交換性的另一種表述方式
+      考慮一階元素的兩種相乘方式 [>< 此處需要圖示]
+      (p * q) 與 ((p rev) * (q rev))
+      此時 eckmann-hilton 的條件就變成了
+      ((a * b) rev) * ((c * d) rev) =
+      ((a rev) * (c rev)) * ((b rev) * (d rev))
+      即
+      (b rev) * (a rev) * (d rev) * (c rev) =
+      (a rev) * (c rev) * (b rev) * (d rev)
+      另 c = d = 1 得
+      b * a = a * b
+
+      其實 正確的理解方式是
+      兩種相乘方式之所以相等 (A x B) = (A o B)
+      是因爲它只是就 a 與 b 的兩個不同的公共邊界來相乘
+      所得到的將是對同一個幾何體的兩種邊界不同的表述
+      這種不同的表示本質上代表相同的幾何體
+      因爲兩種相乘方式是 '同位的'
+      [比如 (p * p) 不等於 (p * (p rev)) 是因爲 用於相乘的公共邊界不是同位的]
+      以這一階幾何體爲邊界的更高階幾何體 將表示這這一階幾何體之間的關係
+      這些關係可以重載於這兩種不同的邊界表示方式之上
+
+    - k -
+      可以看出
+      數學語言之缺陷在於
+      它總是被侷限在語法上
+      而沒有考慮語法與語義之間的關係
+
+*** a critique of fibration in hott
+
+    - x -
+      ><><><
 
 * from groups to groupoids: a brief survey (1987)
 
@@ -382,7 +461,119 @@
         考慮實現這些概念與方法時所使用的類型系統
         可能就能讓我們獲得一個 '具有現實意義的' 實數理論
 
-***** 1.3 open sets, closed sets, closure
+*** chapter 2 topological spaces
+
+*** chapter 3 connected spaces, compact spaces
+
+*** chapter 4 identification spaces and cell complexes
+
+    - a generalision of equivalence class,
+      defined by universal property.
+
+    - local consideration -- what happens in a given space.
+      global consideration -- the relation of this space to other spaces.
+
+    - [cell complexes]
+      there are two useful ways of thinking about cell complexes
+      (a) constructive [cell complex]
+      (b) descriptive [complex structure]
+
+*** chapter 5 projective and other spaces
+
+***** 5.1 quaternions
+
+***** 5.2 normed vector spaces again
+
+***** 5.3 projective spaces
+
+***** 5.4 isometries of inner product spaces
+
+***** 5.5 simplicial complexes
+
+***** 5.6 bases and sub-bases for open sets; initial topologies
+
+***** 5.7 joins
+
+***** 5.8 the smash product
+
+***** 5.9 spaces of functions, and the compact-open topology
+
+*** chapter 6 the fundamental groupoid
+
+***** note
+
+      - the modelling of the geometry of pushouts of spaces
+        by pushouts of groupoids.
+
+      - analogies between topology and algebra
+        are described by the language of category theory.
+
+      - analogies between relations instead of objects.
+
+***** 6.1 categories
+
+      - from equations
+        (f g = 1) and (g f = 1)
+        we cannot deduce (f g = g f)
+        since 1 may denote different identities in each equation
+
+      - Here we already see the double use of the idea of category.
+
+        (a) General statements about topological spaces and continuous functions
+        can in many cases be regarded as statements of an algebraic character
+        about the category Top, and this is often convenient,
+        particularly when it brings out analogies between constructions
+        for topological spaces and constructions for other mathematical objects.
+
+        (b) The category PX of paths on X
+        is regarded as an algebraic object in its own right,
+        as much worthy of study as an example of a category
+        as are examples of groups, rings or fields.
+
+      - if f has a left and a right inverse,
+        then f has an unique two-sided inverse.
+        Such a morphism f is called invertible, or an isomorphism.
+
+***** 6.2 construction of the fundamental groupoid
+
+      - from path-space of X to fundamental groupoid of X.
+
+***** 6.3 properties of groupoids
+
+***** 6.4 functors and morphisms of groupoids
+
+***** 6.5 homotopies
+
+***** 6.6 coproducts and pushouts
+
+***** 6.7 the fundamental groupoid of a union of spaces
+
+*** chapter 7 cofibrations
+
+*** chapter 8 some combinatorial groupoid theory
+
+*** chapter 9 computation of the fundamental groupoid
+
+*** chapter 10 covering spaces, covering groupoids
+
+*** chapter 11 orbit spaces, orbit groupoids
+
+*** chapter 12 conclusion
+
+*** appendix a functions, cardinality, universal properties
+
+***** a.4 universal properties
+
+      - product
+
+      - sum
+
+      - equivalent class
+        topological identification
+
+      - pushout
+        adjunction space [for topological spaces]
+        van kampen theory [for groupoid]
 
 * nonabelian algebraic topology (2011)
 
@@ -414,7 +605,4 @@
       the disk model leads to calculations,
       and clear relations to classical work.
 
-*** introduction
-
-    - ><
-      
+*** part i 1- and 2-dimensional results
