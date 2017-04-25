@@ -79,8 +79,6 @@
                            (R (cdr l)))]
                     ))])
       (R l))
-
-
     #+end_src
 *** insert-g
     #+begin_src scheme
