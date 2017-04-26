@@ -657,7 +657,19 @@
 
 ***** 7.2 fibrations of groupoids
 
-      - 
+      - using lifting-property to define fibration of groupoid.
+        (p : (E -> G)) is a fibration if it has lifting-property,
+        #+begin_src scheme
+        ((:x : E) (:b : (:x p = :y)) -> (:e : (:x = :y1)) (:e p = :b))
+        #+end_src
+
+      - while for group,
+        (p : (E -> G)) is a fibration iff p is surjective.
+        Thus groupoids have a richer theory than that of groups
+        since there is a greater variety of morphisms of groupoids
+        than there is of groups.
+
+      - ><><><
 
 ***** 7.3 examples
 
@@ -668,6 +680,14 @@
 ***** 7.6 the cellular approximation theorem
 
 *** chapter 8 some combinatorial groupoid theory
+
+***** 8.1 universal morphisms
+
+***** 8.2 free groupoids
+
+***** 8.3 quotient groupoids
+
+***** 8.4 some computations
 
 *** chapter 9 computation of the fundamental groupoid
 

@@ -16,6 +16,46 @@
 
 *** 1 some basic categories
 
-    
+    - [concrete category]
+      a concrete category is a category
+      that is equipped with a faithful functor to the category of sets.
+      This functor makes it possible to think of the objects of the category
+      as sets with additional structure,
+      and of its morphisms as structure-preserving functions.
+
+      faithful functor means that
+      it maps different morphisms between the same objects to different functions.
+      However, it may map different objects to the same set,
+      if this occurs, it will also map different morphisms to the same function.
+
+      a category C may admit several faithful functors into (category set)
+      Hence there may be several concrete category structures of the same category C.
+      [not a property but a structure]
+
+      - concrete
+        (category topology) (category group) (category category)
+
+      - not concrete
+        (category homotopy-topology)
+        for the morphisms are not actual functions between them,
+        but rather classes of functions
+
+    - [some forgetful functors]
+
+      (category groupoid)
+      forget we can do inverse -> (category category)
+      forget we can do compose -> (category directed-graph)
+
+      (category directed-graph)
+      forget about edges -> (category set)
+
+      (category directed-graph)
+      forget about vertexes -> (category set)
+
+    - 
 
 *** 2 natural equivalence and adjoint functors
+
+    - adjoint functor typically arise from the constructions of universal property.
+
+    -
