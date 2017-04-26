@@ -1,4 +1,4 @@
-#+title: constructive math -- the balance between abstract and concrete
+#+title: constructive math
 
 * >< the meaning is use
 
@@ -334,3 +334,89 @@
       不如分別命名以
       共時語言學 synchronie [信息論]
       歷時語言學 diachronie [演化]
+
+* 構造主義方法中的難點
+
+  - 構造主義的證明論中
+    常常說 想要證明一個東西存在
+    就要給出構造這個東西的方法
+    在討論這個看似是常識的想法時
+    人們常常關心由此形成的推演系統的抽象性質
+    而忽略了如何使用這一想法
+    利用這一想法所啓發的思考角度
+    去觀察古典定理與古典證明
+    bishop 在分析學中做了這種嘗試
+    但是其實在比分析學更爲初等的數論中
+    構造主義的觀察角度所得到的觀察結果
+    也還從沒有得到系統地總結
+    我以一些古典的定理與證明爲例
+    討論構造主義的難點
+
+  - [fermat 小定理]
+    (1)
+    ((a : non-zero) (p : prime) -> (a ^{p} = a (mod p)))
+    又因爲 a 與 p coprime
+    因此有 (a ^{p-1} = 1 (mod p))
+
+    證明
+    在 (mod p) 的語境下
+    a * 2*a ... (p-1)*a = 1 * 2 * (p-1)
+    a^{p-1} * (p-1)! = (p-1)!
+    a^{p-1} = 1
+    證完
+
+  - fermat 小定理 可以用來否定一個數是素數
+    但是做出這種否定的同時
+    又不能給出這個合數的因子分解
+    看似我們有如下的逆否命題
+    (2)
+    ((a : non-zero) (a ^{p} = a (mod p)) -> (p : composite))
+    可以觀察到難點在於 prime 與 composite 的定義
+
+  - 考慮如下的定義
+    (p : composite) := ((x, y : non-trivial) (x * y = p))
+    (p : prime) := ((p : composite) -> unlikely)
+    這種定義下 prime 本身已經帶有一層否定了
+    而在古典數學的敘述中 這層否定是不明顯的
+
+  - 再考慮如下 fermat 小定理 的逆否
+    (3)
+    ((a : non-zero) (a ^{p} = a (mod p)) -> (p : prime -> unlikely))
+    即
+    ((a : non-zero) (a ^{p} = a (mod p)) -> ((p : composite -> unlikely) -> unlikely))
+    就定義的強度而言
+    有 (2) > (1) > (3)
+    古典的證明只證明到 (1)
+    而構造主義要求 (2)
+    即 不給出構造 也能否定一個數是素數
+    但是並不能 '證明' 這個數是合數
+
+  - 結論是
+    一個命題或證明的計算意義的強弱
+    在構造主義的方法下 是可以明顯體現出來的
+    而構造主義本身的目的就是要設計語言
+    來方便地描述[或者說 度量]
+    命題或者證明的計算意義之強弱
+
+  - euclid 定理 常常被認爲是證明了
+    the set of prime numbers is infinite
+    如下我們可以展示 定義了 finite 與 infinite 之後
+    定理可以分爲兩種強度
+    (1) ((prime : finite) -> unlikely)
+    (2) (-> (prime : infinite))
+    就強度而言 (2) > (1)
+    而 euclid 所證明的是 (1)
+
+  - 考慮如下的定義
+    (prime : finite) := (f : (fin -> prime)) [f 爲雙射]
+    (prime : infinite) := (f : (nat -> prime)) [f 爲單射]
+    [euclid 就是就某個 fin 的例子 (即有三個元素的集合) 來證明 (1) 的]
+
+  - 我們可以很容易找到雙射 (f : (nat -> prime))
+    儘管算法的效率可能非常低
+
+  - 結論是
+    與 prime 有關的不具有構造性的命題非常多
+    同時 與 prime 有關的實用算法也非常多
+    當設計 構造主義的語言 時
+    就可以以這裏命題與算法爲例子

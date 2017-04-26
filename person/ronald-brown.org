@@ -526,7 +526,7 @@
       (a) constructive [cell complex]
       (b) descriptive [complex structure]
 
-*** chapter 5 projective and other spaces
+*** ><><>< chapter 5 projective and other spaces
 
 ***** 5.1 quaternions
 
@@ -651,7 +651,13 @@
         to get groupoid from path-space,
         we use maps of type ((X * I * I) -> Y) as equivalent relation.
 
+      - use the language of category
+        to describe extension-problem
+        and homotopy-extension-property.
+
 ***** 7.2 fibrations of groupoids
+
+      - 
 
 ***** 7.3 examples
 
