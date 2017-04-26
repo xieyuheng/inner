@@ -151,6 +151,10 @@
     2. 相乘的條件是有公共邊界
        相乘後公共邊界被消除
 
+       - thus 'boundary as type'
+         which determines when and how
+         two elements can be composed together.
+
     3. 高一階元素是低一階元素之間的關係[等式]
 
     4. 必須能描述一個元素的邊界的所有位置

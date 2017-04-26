@@ -2,6 +2,10 @@
 
 * todo
 
+  - [hopf-fibration]
+    I need mapping-class-group of type (-> torus torus)
+    to express the re-gluing of (* sphere-2 sphere-1)
+
   - [about Van Kampen Theorem]
     Van Kampen Theorem of groupoid
     the Generalised Van Kampen Theorem
@@ -214,6 +218,11 @@
   - x -
     也許需要先在 at1 中發展出 homology theory
     畢竟 homology 更簡單
+
+  ------
+
+  - x -
+    homology is to ignore how gluings are down in homotopy ?
 
 * the use of fibration in homotopy group
 
@@ -1104,43 +1113,6 @@
     這種證明基本羣同構的方式能否被推廣到一般情形
     即 推廣到簡單空間和函數空間之間基本羣之同構
     並 推廣到高階同倫羣之同構的證明
-
-* to pretend
-
-  - x -
-    I do not want to pretend I really like what I learned from the textbooks,
-    they are not natural, not concrete, they are not good art.
-    While I can, and I think I have to, join in their game.
-    Can I ?
-    I am so puzzled now,
-    not only by the game of math,
-    but also the game of playing the game,
-    the game of life itself.
-    So many 'truthes' about the motivation of the game have been said,
-    but without given any evidence,
-    as if motivation is not part of the game,
-    as if the game is not played by human,
-    thus the whole play become not convincing.
-
-* 前提
-
-  - x -
-    爲了實現一個代數拓撲的語言
-    爲什麼我有必要學習這些構造性很弱的理論 ?
-
-  - k -
-    因爲 實現一個代數拓撲的語言 的動機本身
-    就是以更好的方式描述這些構造
-
-  - x -
-    但是爲什麼我不能直接研究代數拓撲的研究對象本身
-
-  - k -
-    因爲與物理學不同
-    數學沒有研究對象本身
-
-  - x -
-    不 不可能
 
 * syntax problem and new syntax
 
