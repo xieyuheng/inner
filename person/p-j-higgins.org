@@ -387,7 +387,11 @@
 
     ------
 
+    - forgetful functor as the left adjoint of a adjoint pair
+      can be used to describe free algebraic structure ?
+
     - adjoint functor can arise from the constructions of universal property.
+      [related to limits ?]
 
 *** note the border between invertible and non-invertible
 
@@ -414,16 +418,68 @@
 
     - x -
       我們可以找例子 並嘗試構造之
-      ><><><
+
+    ------
+
+    - x -
+      其實就是 adjunction-space 和 map-cylinder
 
 *** 3 paths and components
 
+    - path-space is a functor
+      (: path-space (category digraph) (category category))
+      thus [(category digraph) path-space] is a category
+
+    - path-space is left adjoint to the forgetful functor
+      (: forget-compose (category category) (category digraph))
+
+*** note the underlying space of infi-groupoid
+
+    - x -
+      instead of the underlying graph of groupoid,
+      we think of the underlying space of groupoid,
+      which is can be drawn by
+      the generators and relations of the groupoid.
+      the groupoid will be the fundamental groupoid of the space.
+
+      with generators and relations,
+      the we can define morphisms with a checker.
+      just like when writing functions
+      with the help of a type-checker in programming language.
+
 *** 4 free groupoids
+
+    - a graph has no faces, thus no relations,
+      thus its fundamental groupoid is free generated groupoid of the graph.
 
 *** 5 tree and simplicial groupoids
 
+    - free groupoids can be finite.
+
+    - ><><><
+
 *** 6 fundamental groupoids of topological spaces
 
-*** 7 limit in categories
+*** 7 limits in categories
+
+*** 8 universal morphisms in digraph category and groupoid
+
+*** 9 right limits in category and groupoid
+
+*** 10 the word problem of U
+
+*** 11 free products of categories and groupoids
+
+*** 12 quotient maps of groupoids
+
+*** 13 covering maps
+
+*** 14 applications to group theory
+
+*** 15 coverings of right limits
+
+*** 16 homology of groups and groupoids
+
+*** 17 calculation of fundamental groups
 
 * presentations-of-groupoids-with-applications (1964)

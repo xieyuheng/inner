@@ -103,14 +103,7 @@
     but do we have available an algebraic control
     over the way we put them together again ?
 
-* 類比 combinatorial group theory
-
-    
-*** fundamental theorem of finitely generated abelian groups
-    
-    - x - 
-      fundamental theorem of finitely generated abelian groups
-      is just like the fundamental theorem of arithmetic.
+* combinatorial group theory
 
 *** generators and relations
 
@@ -138,6 +131,12 @@
       groupoid theory 並沒有這種現象
       把 groupoid theory 劃歸爲 group theory
       就能觀察到這個定理的缺失
+
+*** fundamental theorem of finitely generated abelian groups
+
+    - x -
+      fundamental theorem of finitely generated abelian groups
+      is just like the fundamental theorem of arithmetic.
 
 * 高階代數的表示論之語言的特點
 
