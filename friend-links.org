@@ -1,9 +1,0 @@
-#+HTML_HEAD: <link rel="stylesheet" href="asset/css/index.css" type="text/css" media="screen" />
-#+title: friend links
-
-- wicast : http://tnt.wicast.tk
-- Jason Hemann : http://hemann.pl
-- NalaGinrut / 穆垒 : https://nalaginrut.com
-- felixonmars / 肥貓 : https://blog.felixc.at
-- frantic1048 / 卡夫 : https://frantic1048.com
-- BAO Hongran / 鮑鴻然 : http://naredbuddha.github.io

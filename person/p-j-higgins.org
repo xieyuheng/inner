@@ -106,6 +106,18 @@
       先看看通過遺忘函子能夠獲得哪些簡單的範疇
       然後用這些簡單的範疇中的定理和概念來提問
 
+      比如在這裏
+      (category set)
+      (category directed-graph)
+      (category category)
+      (category groupoid)
+
+    - k -
+      對於高維的代數也可以有類似的敘述方式嗎 ?
+
+    - x -
+      ><><><
+
 *** 2 natural equivalence and adjoint functors
 
     - adjoint functor typically arise from the constructions of universal property.
