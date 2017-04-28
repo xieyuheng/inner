@@ -1,5 +1,290 @@
-#+HTML_HEAD: <link rel="stylesheet" href="../../asset/css/page.css" type="text/css" media="screen" />
-#+title: algebraic-topology-1
+#+title: combinatorial theory of higher algebraic structure
+
+* note
+
+*** critiques
+
+***** a critique of eckmann-hilton argument
+
+      - about interchange law.
+
+      - x -
+        所謂 eckmann-hilton argument
+        與高階乘法的 '交換性'
+        應該被視爲一個語言學現象
+
+        首先
+        古典理論中對高階乘法的交換性的證明
+        用到了連續的 homotopy
+        而只是在形式化的處理方式中才需要用到 eckmann-hilton argument
+
+        eckmann-hilton argument 說
+        利用如下的條件
+        (A x B) o (C x D) = (A o C) * (B o D)
+        [即 多種粘合次序能粘合出同一個幾何體]
+        就能證明高階乘法的交換性
+
+        但是 這個條件本質上是交換性的另一種表述方式
+        考慮一階元素的兩種相乘方式 [>< 此處需要圖示]
+        (p * q) 與 ((p rev) * (q rev))
+        此時 eckmann-hilton 的條件就變成了
+        ((a * b) rev) * ((c * d) rev) =
+        ((a rev) * (c rev)) * ((b rev) * (d rev))
+        即
+        (b rev) * (a rev) * (d rev) * (c rev) =
+        (a rev) * (c rev) * (b rev) * (d rev)
+        另 c = d = 1 得
+        b * a = a * b
+
+        其實 正確的理解方式是
+        兩種相乘方式之所以相等 (A x B) = (A o B)
+        是因爲它只是就 a 與 b 的兩個不同的公共邊界來相乘
+        所得到的將是對同一個幾何體的兩種邊界不同的表述
+        這種不同的表示本質上代表相同的幾何體
+        因爲兩種相乘方式是 '同位的'
+        [比如 (p * p) 不等於 (p * (p rev)) 是因爲 用於相乘的公共邊界不是同位的]
+        以這一階幾何體爲邊界的更高階幾何體 將表示這這一階幾何體之間的關係
+        這些關係可以重載於這兩種不同的邊界表示方式之上
+
+      - k -
+        可以看出
+        數學語言之缺陷在於
+        它總是被侷限在語法上
+        而沒有考慮語法與語義之間的關係
+
+***** a critique of fibration in hott
+
+      - x -
+        hott 對乘法的處理方式與 AT 的直覺相左
+        並且與對 fiber-space 的對稱處理相衝突
+
+        對稱的處理方式在於
+        同一個幾何體的不同邊界表示 本質上還要被認爲是同一個幾何體
+        比如 (m : ((p1 * p2) = q)) 與 (m : (p2 = ((p1 rev) * q)))
+        而 hott 中處理它們的方式 講給幾何體加上多餘的信息
+        [考慮 一個邊在面中漸進到另一個邊]
+        這種多餘的信息 將使兩者不能視爲本質等同
+
+        所得到的 tp 將使得
+        一個 m 在同一個 fiber 中有兩種不同的像
+        同一個 m 沿着不同的推進方式 將被映爲同一個 fiber 中的兩個面
+        [在只考慮 globe 的情形下 是體現不出來的]
+
+      - x -
+        [bridges 與 logic programming]
+        在已有的形式處理中 不好的一點是 totel-space 是 fiber 的不交並
+        因爲其不交 所以當要把一個 path lift 到 totel-space 中時
+        f : ((x : A) -> x P)
+        ~ : ((p : (x = y)) -> (x f = y f))
+        而後面的這個 (x f = y f) 是不可能的
+        即 兩個不同空間中的點沒有路
+
+        已有的形式處理方式
+        可以在 '不交並' 的前提下
+        巧妙地給出這種 path 的定義
+
+        而我想用 bridge 把 fiber 連起來
+        這樣就不能說是 '不交並' 了
+
+        可逆性可以用 logic language 來處理
+        一個 path 引出兩個 fiber 之間的 等價
+        可以試着使用一個 relation 來處理這個等價
+        比如
+        p(x, y) 用來 unify x, y 的同時 還能返回一個邊
+        m(p1, p2, p3) 做 unify 的同時 也能返回一個面
+
+*** mimicing
+
+***** intro
+
+      - x -
+        when developing n-groupoid theory,
+        we can mimic the development of group theory.
+        then what is the development of group theory ?
+
+      - k -
+        先看表面的現象
+        羣論有一個乘法
+        而其公理中有
+        (1) 封閉性
+        (2) 單位元與可逆性
+        (3) 結合性
+
+      - x -
+        (1) 封閉性
+        我們考慮的是 生成子 加 關係 所定義的羣
+        同樣 生成子 加 關係 也可以定義高維的代數結構
+        此時封閉性是自然的
+        (2) 單位元與可逆性
+        單位元也是自然的
+        可逆性需要考慮相乘的位置
+        首先可以用 '相乘的位置'
+        來解釋一般的羣論中的乘法與逆元
+        爲不同位置的相乘
+        然後再推廣到高維
+        (3) 結合性
+        相乘的結果最終
+        與各種可能的相乘的方式無關
+
+      - k -
+        羣論本身可以用來描述空間的對稱性
+        高維的代數可以用來描述什麼呢 ?
+
+      - x -
+        group 描述對稱性
+        groupoid 可以看成是描述對稱性 但是加上了類型信息 和 類型檢查
+
+      - [關於正規性]
+        從一般的高維乘法看來
+        羣論之所以可以被如此簡化
+        是因爲線段是規則的圖形
+        正如 cube 和 simplex 是 規則的圖形一樣
+
+      - higher dim elements can be used
+        to record the proofs of equality
+        between elements of one dim lower.
+
+      - x -
+        the computation of product of higher algebra,
+        is enabled by two kinds of rules,
+        (1) same-position-self-gluing
+        (2) one-dim higher elements as relations
+
+***** generators and relations
+
+      - x -
+        adding types to the generators,
+        we get a combinatorial 1-groupoid theory.
+
+***** object group [subgroup structure] of 1-groupoid
+
+      - x -
+        about tree
+        ><><><
+
+***** 正規子羣與羣同態
+
+      - x -
+        在 combinatorial group theory 中
+        通過增加 relation 可以得到已有的 g.r.group 的正規子羣
+        正規子羣 與 羣同態 之間 有一一對應關係
+        對於 combinatorial infi-groupoid theory
+        我們可以形成類似的理論嗎 ?
+
+      - k -
+        這種現象稱爲 第一同態定理
+        groupoid theory 並沒有這種現象
+        把 groupoid theory 劃歸爲 group theory
+        就能觀察到這個定理的缺失
+
+***** fundamental theorem of finitely generated abelian groups
+
+      - x -
+        fundamental theorem of finitely generated abelian groups
+        is just like the fundamental theorem of arithmetic.
+
+*** phenomena
+
+***** higher homotopy groups are always commutative
+
+      - x -
+        by the definition of homotopy group I showed in AT1,
+        can I prove higher homotopy groups are always commutative ?
+
+***** 高維代數結構中的乘法
+
+      - 對於高維的乘法 (n ...)
+        既然乘法是 '可交換的'
+        爲什麼我們還需要相乘的序
+        因爲 序 給出指明乘合體中位置的方式
+
+***** interchange law
+
+      - 2 homotopy group (Cech 1932) -> two group structure ->
+        interchange law -> one group structure
+
+      - 2 homotopy groupoid -> two groupoid structure ->
+        interchange law -> more then one groupoid structure (more non abelian)
+
+* intro
+
+  - the simple idea is to study algebraic structures
+    by their generators and relations.
+
+* group
+
+  - in combinatorial group theory,
+    generators is described by a list of generators,
+    and relations are described by equivalent relations
+    between two expressions formed by generators.
+
+    draw each generator as a edge.
+
+    draw relation as a face
+    whose boundary is attached to the circle
+    induced by the equivalent relation.
+
+    we get a space whose fundamental group is the group.
+
+    the cayley graph of this group
+    is the covering space of the space.
+
+* groupoid
+
+  - in combinatorial groupoid theory,
+    we still can use generators and relations to study the algebraic structure.
+
+    while, generators must be expressed by a graph,
+    [instead of a list of elements, in the case of group]
+    which includes the informations about the type of elements.
+
+    relations -- faces.
+
+    the groupoid is the fundamental groupoid of the space.
+
+    if a graph has no faces, thus no relations,
+    its fundamental groupoid is free generated groupoid of the graph.
+
+  - examples
+    free groupoid
+    graph without faces
+    ><><><
+
+* higher algebraics structure
+
+  - if the space have higher level elements,
+    a graded algebraic structure,
+    in which compositions are typed by boundary of elements.
+
+  - we need a language to express
+    how to compose higher level elements together.
+
+* 高階代數的表示論之語言的特點
+
+  1. 需要設計新的語法來描述階元的乘法
+     '乘號' 本身應該被高階生成元的邊界結構化
+
+     - 可以用語言學來論述 '不存在良好的高維幾何[代數]語言'
+       比如 在 CL 中消去 lambda
+       所謂 '消去' 只是轉變了編碼方式
+       而不能從本質上簡化語言
+
+     - 幾何體的分類問題可以簡化描述的複雜度
+
+  2. 相乘的條件是有公共邊界
+     相乘後公共邊界被消除
+
+     - thus 'boundary as type'
+       which determines when and how
+       two elements can be composed together.
+
+  3. 高一階元素是低一階元素之間的關係[等式]
+
+  4. 必須能描述一個元素的邊界的所有位置
+     同一個元素就相同的位置自乘則相消
+
+     - 描述粘合方式的語言必定是線性的
+       線性的描述方式自然給出指明粘合體中所有位置的方法
 
 * intro
 
@@ -724,3 +1009,7 @@
     cross-section-problem can be viewed as
     lifting a subspace [instead of function] of the base-space,
     or just lifting the base-space itself [i.e. global cross-section].
+
+* >< homotopy theory
+
+* >< homology theory
