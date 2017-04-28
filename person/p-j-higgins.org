@@ -468,8 +468,6 @@
 
 *** 6 fundamental groupoids of topological spaces
 
-    - 
-
 *** 7 limits in categories
 
 *** 8 universal morphisms in digraph category and groupoid

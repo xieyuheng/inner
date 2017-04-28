@@ -211,6 +211,20 @@
   - the simple idea is to study algebraic structures
     by their generators and relations.
 
+* intro
+
+  - I will show how to design and implement a language
+    to formalize and machinalize
+    a little part of algebraic topology.
+
+  - I call this prototype 'at1',
+    which is an abbreviation of 'algebraic-topology-1'.
+
+  - [advice for reader]
+    If you know how to implement an interpreter,
+    try to imagine how you would implement this language
+    by directed graph processing.
+
 * group
 
   - in combinatorial group theory,
@@ -228,6 +242,9 @@
 
     the cayley graph of this group
     is the covering space of the space.
+
+  - classifying space
+    ><><><
 
 * groupoid
 
@@ -253,11 +270,19 @@
 * higher algebraics structure
 
   - if the space have higher level elements,
-    a graded algebraic structure,
+    it can generate a graded algebraic structure,
     in which compositions are typed by boundary of elements.
 
   - we need a language to express
     how to compose higher level elements together.
+
+  - 空間給出的高維代數結構
+    包含了空間的所有拓撲信息
+    [至少是同倫等價下的拓撲信息]
+    代數拓撲的方法就是去找這個高維代數結構的子結構
+    這些子結構可能容易計算一些
+    因此就有 '實用的' 分類空間[否定空間相等]的工具了
+    但是其實 這些子結構永遠都沒法包含原高維代數的所有信息
 
 * 高階代數的表示論之語言的特點
 
@@ -285,20 +310,6 @@
 
      - 描述粘合方式的語言必定是線性的
        線性的描述方式自然給出指明粘合體中所有位置的方法
-
-* intro
-
-  - I will show how to design and implement a language
-    to formalize and machinalize
-    a little part of algebraic topology.
-
-  - I call this prototype 'at1',
-    which is an abbreviation of 'algebraic-topology-1'.
-
-  - [advice for reader]
-    If you know how to implement an interpreter,
-    try to imagine how you would implement this language
-    by directed graph processing.
 
 * simple-space
 
