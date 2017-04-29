@@ -1,0 +1,15 @@
+#+title: history of math
+
+* (1988) a-history-of-algebraic-and-differential-topology-1900-1960
+
+*** part 1. simplicial techniques and homology
+
+***** introduction
+
+      - ><
+
+*** part 2. the first applications of simplicial methodsand of homology
+
+*** part 3. homotopy and its relation to homology
+
+* (2008) euler-s-gem--the-polyhedron-formula-and-the-birth-of-topology

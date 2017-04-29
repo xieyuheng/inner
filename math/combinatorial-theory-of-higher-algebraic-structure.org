@@ -1024,3 +1024,20 @@
 * >< homotopy theory
 
 * >< homology theory
+
+* ><
+
+  - x -
+    seifert–van kampen theorem
+    太平凡了在 AT1 中
+    這就是平凡的一句話
+    高維情形也是如此
+
+    在一個 groupoid 的表示中
+    找一個支撐樹
+    把它收縮成一點
+    就得到了 fundamental group 的表示
+
+    高維的情形可能是這樣的
+    (1) 把空間化爲一種有特殊性質的標準空間
+    (2) 在這個空間中尋找代數結構作爲不變量

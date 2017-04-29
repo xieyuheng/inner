@@ -497,7 +497,214 @@
 
 *** part i 1- and 2-dimensional results
 
-    - ><><><
+***** 1.3 The search for higher dimensional versions of the fundamental group
 
+      - According to [Die89],
+        Dehn had some ideas on this search in the 1920s,
+        as would not be surprising.
+
+        - [Die89]
+          Dieudonné, J.,
+          A history of algebraic and differential topology.
+          1900–1960. Birkhäuser, Boston, MA (1989).
+          10
+
+      - The first published attack on this question was the work of Čech,
+        using the idea of classes of maps of spheres instead of maps of circles.
+        [1932]
+
+      - In 1935, Hurewicz, without referring to Čech,
+        published the first of his celebrated notes on higher homotopy groups.
+
+        - [Hur35]
+          Hurewicz, W.,
+          Beiträge zur Topologie der Deformationen.
+          Nederl. Akad. Wetensch. Proc. Ser. A 38 (1935) 112–119,521–528.
+          12
+
+***** 1.4 The origin of the concept of abstract groupoid
+
+      - [bibliography]
+
+        - [Bra26]
+          Brandt, H.,
+          Über eine Verallgemeinerung des Gruppenbegriffes.
+          Math. Ann. 96 (4) (1926) 360–366.
+          13
+
+        - [KOK+ 86]
+          Kneser, M., Ojanguren, M., Knus, M.-A., Parimala, R., and Sridharan, R.,
+          Composition of quaternary quadratic forms.
+          Compositio Math. 60 (2) (1986) 133–150.
+          13
+
+        - [Rei32]
+          Reidemeister, K., Einführung die kombinatorische Topologie. F. Vieweg & Sohn,
+          Braunschweig, Berlin (1932); Reprint Chelsea, New York (1950).
+          13
+
+        - [CF63]
+          Crowell, R. H., and Fox, R. H.,
+          Introduction to knot theory.
+          Grad. Texts in Math. 57, Springer-Verlag, New York (1963).
+          13, 257
+
+        - [Pra07]
+          Pradines, J.,
+          In Ehresmann’s footsteps: from group geometries to groupoid geometries.
+          In Geometry and topology of manifolds,
+          Banach Center Publ. 76, Polish Acad. Sci., Warsaw (2007), 87-–157.
+          6, 13
+
+      - an important part of the development of good mathematics is finding:
+
+        (i) the appropriate underlying structures,
+        (ii) the appropriate language to describe these structures,
+        and (iii) means of calculating with these structures.
+
+        Without the appropriate structures to guide us,
+        we may take many wrong turnings.
+
+***** 1.5 the seifert–van kampen theorem
+
+      - the theorem expressed by group theory,
+        and free product with amalgamation,
+        for space with fixed point :
+
+        - [Cro71]
+          Crowell, R. H.,
+          The derived module of a homomorphism.
+          Adv. Math. 6 (1971) 210–238 (1971).
+          15, 257, 276
+
+      - So the fundamental group of the circle
+        is usually determined by the method of covering spaces.
+        Of course this method is basic stuff anyway,
+        and needs to be explained,
+        but having to make this detour,
+        however attractive the route, is unaesthetic.
+
+      - applications of groupoid to topology.
+
+        - [GZ67]
+          Gabriel, P., and Zisman, M.,
+          Calculus of fractions and homotopy theory.
+          Ergeb. Math. Grenzgeb. 35, Springer-Verlag, New York (1967).
+          16, 367, 394, 575
+
+***** 1.6 proof of the seifert–van kampen theorem (groupoid case)
+
+      - What one would expect is that
+        the proof would construct directly an inverse to the induced morphism.
+
+        Alternatively, the proof would verify in turn that
+        the morphism is surjective and injective.
+
+      - The proof we give might at first seem roundabout,
+        but in fact it follows the important procedure of verifying a universal property.
+
+        One advantage of this procedure is that
+        we do not need to show that
+        the free product with amalgamation of groupoids exists in general,
+        nor do we need to give a construction of it at this stage.
+        Instead we define the free product with amalgamation by its universal property,
+        which enables us to go directly to an efficient proof
+        of the Seifert–van Kampen Theorem.
+
+        It also turns out that the universal property guides many explicit calculations.
+        More importantly, the proof guides other results,
+        such the higher dimensional ones in this book.
+
+        - [Cro59]
+          Crowell, R. H.,
+          On the van Kampen theorem.
+          Pacific J. Math. 9 (1959) 43–50.
+          xxxiv, 30
+
+***** 1.8 Higher order groupoids
+
+      - Crossed modules had been defined by J. H. C. Whitehead in 1946
+        in order to express the properties of the boundary map
+        of the second relative homotopy group, a group which is in general nonabelian.
+
+        [fundamental crossed module]
+
+        - [Whi46]
+          Whitehead, J. H. C.,
+          Note on a previous paper entitled “On adding relations to homotopy groups.”.
+          Ann. of Math. (2) 47 (1946) 806–810.
+          28, 32, 42, 60, 255
+
+      - Whitehead’s highly original method of proof
+        (an exposition is given in [Bro80]) uses knot theory
+        and what is now called transversality,
+        and has become the foundation of a technique called 'pictures',
+        for which references are [BH82], [HAMS93]
+        for computing second homotopy groups of 2-complexes.
+
+        - [Bro80]
+          Brown, R.,
+          On the second relative homotopy group of an adjunction space:
+          an exposition of a theorem of J. H. C. Whitehead.
+          J. London Math. Soc. (2) 22 (1) (1980) 146–152.
+          32, 42, 140
+
+        - [BH82]
+          Brown, R., and Higgins, P. J.,
+          Crossed complexes and nonabelian extensions.
+          In Int. Conf. on Category theory (Gummersbach, 1981), Lecture Notes in Math. 962,
+          Springer-Verlag, Berlin (1982), 39–50.
+          364, 435, 436
+
+        - [HAMS93]
+          Hog-Angeloni, C., Metzler, W., and Sieradski, A. J. (eds.),
+          Two-dimensional homotopy and combinatorial group theory.
+          London Math. Soc. Lecture Note
+          Ser. 197, Cambridge University Press, Cambridge (1993).
+          32, 42, 103, 140, 365, 366, 545
+
+      - Section 2.7 shows that
+        crossed modules are also equivalent to ‘categories internal to groups’,
+        or, equivalently, to groupoids internal to groups.
+
+        This is important philosophically,
+        because groupoids are a generalisation of equivalence relations,
+        and equivalence relations give an expression of the idea of quotienting,
+        a fundamental process in mathematics and science,
+        because it is concerned with classification.
+
+        We can think of groupoids as giving ways of saying
+        not only that two objects are equivalent,
+        but also how they are equivalent:
+        the arrows between two objects give different ‘equivalences’ between them,
+        which can sometimes be regarded as ‘proofs’ that the objects are equivalent.
+
+***** 2.1 Homotopy groups and relative homotopy groups
+
+      - 
+
+*** chapter 2 homotopy theory and crossed modules
+
+***** note
+
+      - The topologist J. H. C. Whitehead (1904–1960)
+        was steeped in the combinatorial group theory of the 1930s,
+        and much of his work can be seen as
+        trying to extend the methods of group theory to higher dimensions,
+        keeping the interplay with geometry and topology.
+
+        These attempts led to greatly significant work,
+        such as the theory of simple homotopy types [Whi50b],
+        the algebraic background for which started the subject of algebraic K-theory.
+
+        - [Whi50b]
+          Whitehead, J. H. C.,
+          Simple homotopy types.
+          Amer. J. Math. 72 (1950) 1–57.
+          29, 30, 31, 85, 366, 394, 510, 547
+
+
+
+*** appendix c closed categories
 
 * modelling and computing homotopy types: i (2016)

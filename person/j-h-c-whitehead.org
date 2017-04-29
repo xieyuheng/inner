@@ -1,1 +1,15 @@
 #+title: john henry constantine whitehead
+
+* (1939) simplicial spaces, nuclei, and m-groups
+* (1940) on c1-complexes
+* (1941) on adding relations to homotopy groups
+* (1941) on incidence matrices, nuclei and homotopy types
+* (1946) note on a previous paper entitled "on adding relations to homotopy groups."
+* (1948) on operators in relative homotopy groups
+* (1949) combinatorial homotopy i
+* (1949) combinatorial homotopy ii
+* (1950) a certain exact sequence
+* (1950) simple homotopy types
+* (1950) on the 3-type of a complex
+* (1950) on group extensions with operators
+* (1961) manifolds with transverse fields in euclidean space
