@@ -10,7 +10,8 @@
 
 ***** 1. theory of sets. topological spaces
 
-      - Topology begins where sets are implemented with some cohesive properties
+      - [the origin of topology]
+        Topology begins where sets are implemented with some cohesive properties
         enabling one to define continuity.
         The sets are then called topological spaces.
         Thus topology is a branch of general set theory.
@@ -19,11 +20,11 @@
         既然質疑集合論的語言的有效性
         這些隨之而來的定義也就都要受到質疑了
 
-      - The guiding purpose is to obtain properties
+      - [homotopy equivalent between mappings]
+        The guiding purpose is to obtain properties
         associated with the disappearance,
         or the reduction in dimension, of certain parts,
         as a consequence of continuous deformations.
-        [homotopy equivalent between mappings]
 
       - (K : complex)
         (C : p-chain of K)
@@ -35,7 +36,7 @@
         should be more or less neglected.
         We introduce then with Poincare a homology (r ~ 0)
         to signify that 'r' bounds.
-        (This is the origin of "homology theory.")
+        [This is the origin of homology theory]
 
       - x -
         (r ~ 0) denotes that
@@ -47,9 +48,21 @@
 
       - x -
         note that,
-        in homology thoery,
+        in homology theory,
         continuum is generalized to chain,
         in AT1 such generalization is implemented by keywords such as
         (1 ...) (2 ...)
+
+*** Chapter I. Basic Information about Sets, Spaces, Vectors, Groups
+
+*** Chapter II. Two-dimensional Polyhedral Topology
+
+*** Chapter III. Theory of Complexes
+
+*** Chapter IV. Transformations of Complexes. Simplicial Approximations and Related Questions
+
+*** Chapter V. Further Properties of Homotopy. Fixed Points. Fundamental Group. Homotopy Groups
+
+*** Chapter VI. Introduction to Manifolds. Duality Theorems
 
 * differential equations: geometric theory

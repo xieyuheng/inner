@@ -1134,3 +1134,18 @@
     所給出的扭轉
     在 at1 中看起來是把一部分面積給擠壓掉了
     可能需要用無窮小量來理解這種映射
+
+* relative homotopy group
+
+  - x -
+    爲什麼人們會考慮 relative homotopy 這個概念 ?
+
+  - k -
+    可能是定義 homotopy group 自然要用到這個概念
+    因此這個概念就被泛化了
+
+  - x -
+    也就是說 'relative' 可能是有關 空間的正規化的
+    #+begin_src scheme
+    (-> (> X A) (> Y B))
+    #+end_src

@@ -6,7 +6,7 @@
 
 ***** introduction
 
-      - ><
+      - 
 
 *** part 2. the first applications of simplicial methodsand of homology
 

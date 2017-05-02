@@ -1,15 +1,198 @@
 #+title: john henry constantine whitehead
 
-* (1939) simplicial spaces, nuclei, and m-groups
-* (1940) on c1-complexes
-* (1941) on adding relations to homotopy groups
-* (1941) on incidence matrices, nuclei and homotopy types
-* (1946) note on a previous paper entitled "on adding relations to homotopy groups."
-* (1948) on operators in relative homotopy groups
-* (1949) combinatorial homotopy i
-* (1949) combinatorial homotopy ii
-* (1950) a certain exact sequence
-* (1950) simple homotopy types
-* (1950) on the 3-type of a complex
-* (1950) on group extensions with operators
-* (1961) manifolds with transverse fields in euclidean space
+* geometry
+
+*** (1931) (with o. veblen) a set of axioms for differential geometry
+*** (1932) (with o. veblen) the foundations of differential geometry
+*** (1952) on normalizators of transformation groups
+*** (1952) elie cartan
+
+* topology
+
+*** (1932) on duality and intersection chains in combinatorial analysis situs
+
+***** info
+
+      - a complement to Lefschetz's colloquium volume.
+
+*** (1933) (with s. lefschetz) on analytical complexes
+
+***** info
+
+      - a fuller exposition of Lefschetz's proof that
+        real analytic sets can be triangulated.
+
+*** (1935) on subdivisions of complexes
+
+***** info
+
+      - a complement to the Alexander-Newman theory of combinatorial equivalence;
+        relating Newman's formal moves with rectilinear subdivisions.
+
+*** an incorrect proof of this Poincare conjecture and its corrigendum
+
+***** (1934) certain theorems about three-dimensional manifolds (i)
+
+***** (1935) three-dimensional manifolds (corrigendum)
+
+*** an example shows that the open 3-cell cannot be characterized by homotopy invariants
+
+***** (1935) a certain region in euclidean 3-space
+
+***** (1936) on the decomposition of an infinitesimal group
+
+***** (1937) (with m. h. a. newman) on the group of a certain linkage
+
+*** (1937) on doubled knots
+
+*** (1936) on certain sets of elements in a free group
+
+*** (1936) on equivalent sets of elements in a free group
+
+*** (1939) on the asphericity of regions in a 3-sphere
+
+***** info
+
+      - set up an algebraic mechanism for deciding whether or not
+        the higher homotopy groups of a region in the 3-sphere are zero.
+
+* simple homotopy theory  cw-complex  combinatorial homotopy
+
+*** (1939) simplicial spaces, nuclei, and m-groups
+
+***** 1. introductory.
+
+      - That is to say, a geometric, or set-theoretic, representation
+        of an abstract group by a complex
+        may be regarded as equivalent to an algebraic representation
+        by a set of elements with a multiplication table.
+        From this point of view an m-group is seen to be
+        an automatic generalization of an abstract group.
+
+      - x -
+        whitehead 認爲所提出的理論是 group 這個概念的推廣
+        因爲 每個 group 都可以對應一個空間
+        而空間可以被推廣
+
+***** 2. nuclei and m-groups.
+
+      - [vertices]
+        sets of undefined vertices {a, b, c, ...}
+
+      - [open n-simplex]
+        Any set of n + 1 vertices (n >= — 1)
+        will be called an open (symbolic) n-simplex
+
+      - [closed n-simplex]
+        a closed (symbolic) n-simplex
+        will be the closure of an open n-simplex,
+        consisting of a set of n + 1 vertices
+        together with all its subsets,
+        including the empty set or (— l)-simplex.
+
+      - [closure of a set of simplexex]
+        (closure X) consist of the closures of the simplexes X
+        X is called closed if (= X (closure X))
+
+      - [(symbolic) complex]
+        a (symbolic) complex is any closed set of simplexes
+
+      - x -
+        thus a complex is a set of sets.
+        with a condition related to closure.
+
+      - [the algebra of complexex]
+        since a complex is a set of simplexes
+        we can define the following for complexes
+        #+begin_src scheme
+        (:= (+ X1 X2)
+            (set/union X1 X2)
+            (note looks like gluing))
+
+        (:= (- X1 X2)
+            (set/subtraction X1 X2))
+
+        (:= (^ X1 X2)
+            (set/intersection X1 X2))
+
+        (note we have [idempotent]
+              (= X (+ X X))
+              (= X (^ X X)))
+
+        (:= (: x (* X1 X2))
+            (and (: x1 X1)
+                 (: x2 X2)
+                 (= x (set/union x1 x2))))
+
+        (note we have [idempotent]
+              (= X (* X X)))
+        #+end_src
+
+      - [empty simplex]
+        the set of an empty simplex is unique
+        call it #1
+        we have
+        #+begin_src scheme
+        (= (^ X #1) #1)
+        (= (* X #1) X)
+        #+end_src
+
+      - [boundary of complexex]
+        #+begin_src scheme
+        (:= [X boundary]
+            [><><><])
+
+        (:= #0 [#1 boundary])
+
+        (note we have
+              (= (+ X #0) X)
+              (= (- X #0) X)
+              (= (^ X #0) #0)
+              (= (* X #0) #0))
+        #+end_src
+        
+
+***** 3. Formal deformations.
+
+***** 4. Sub-division.
+
+***** 5. Geometrical deformation.
+
+***** 6. Maps and homotopy.
+
+***** 7. m-Groups.
+
+***** 8. Retracts by deformation.
+
+***** 9. Homotopy types.
+
+***** 10. Certain questions: a ring.
+
+***** 11. A special class of groups.
+
+***** 12. Regular neighbourhoods in manifolds.
+
+***** 13. Newman's moves.
+
+***** 14. Infinite complexes.
+
+***** 15. The topology of infinite polyhedra.
+
+***** 16. Extension of previous results.
+
+*** (1940) on c1-complexes
+*** (1941) on adding relations to homotopy groups
+*** (1941) on incidence matrices, nuclei and homotopy types
+*** (1946) note on a previous paper entitled "on adding relations to homotopy groups."
+*** (1948) on operators in relative homotopy groups
+*** (1949) combinatorial homotopy i
+*** (1949) combinatorial homotopy ii
+*** (1949) on the realizability of homotopy groups
+*** (1950) a certain exact sequence
+*** (1950) simple homotopy types
+*** (1950) on the 3-type of a complex
+*** (1950) on group extensions with operators
+*** (1957) on involutions of spheres
+*** (1958) (with arnold shapiro) a proof and extension of dehn's lemma
+*** (1961) manifolds with transverse fields in euclidean space
+*** (1961) (with r . penrose and e. c . zeeman) imbedding of manifolds in euclidean

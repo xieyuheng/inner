@@ -1023,6 +1023,27 @@
 
 * >< homotopy theory
 
+*** note
+
+    - x -
+      homotopy group 被定義爲帶有代數結構的 mapping-space
+      但是 對我們來說
+      我們可以直接說它是 combinatorial group theory
+
+    - k -
+      也許 mapping-space 是必要的
+      考慮高維的情形就知道了
+
+    - x -
+      不想用 mapping-space
+      是因爲與 combinatorial theory 相比
+      這種空間的生成元和關係不明顯
+
+    - k -
+      我們可以考慮 在低維的情形
+      mapping-space 的代數結構如何獲得生成元與關係
+      然後再推廣到高維
+
 * >< homology theory
 
 * ><
@@ -1041,3 +1062,9 @@
     高維的情形可能是這樣的
     (1) 把空間化爲一種有特殊性質的標準空間
     (2) 在這個空間中尋找代數結構作爲不變量
+
+* ><
+
+  - x -
+    如何檢查一個組合是否爲 Sn ?
+    [因而可以成爲某個高階生成子的邊界]
