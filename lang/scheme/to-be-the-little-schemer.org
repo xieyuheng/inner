@@ -1066,9 +1066,11 @@
     (define value
       (lambda (e)
         (meaning e '())))
+
     (define meaning
       (lambda (e table)
         ((expression-to-action e) e table)))
+
     (define expression-to-action
       (lambda (e)
         (cond
@@ -1076,6 +1078,7 @@
           (atom-to-action e))
          (else
           (list-to-action e)))))
+
     (define atom-to-action
       (lambda (e)
         (cond
@@ -1107,6 +1110,7 @@
           ,*const)
          (else
           ,*identifer))))
+
     (define list-to-action
       (lambda (e)
         (cond ((null? e)
@@ -1121,7 +1125,7 @@
                      (else
                       ,*application)))
               (else
-               *application))))
+               ,*application))))
     #+end_src
 *** after classification
     下面是不同類型的作用的細節

@@ -1,0 +1,88 @@
+#+title: james-w-alexander
+
+* (1914) normal forms for one- and two-sided surfaces
+
+* (1916) on the factorization of cremona plane transformations
+
+* (1919) note on two three-dimensional manifolds with the same group
+
+* (1920) on the equilibrium of a fluid mass at rest
+
+* (1924) new topological invariants expressible as tensors
+
+* (1926) combinatorial analysis situs
+
+* (1930) the combinatorial theory of complexes
+
+*** i. combinatorial analysis situs and geometry.
+
+    - [to be combinatorial]
+      in combinatorial analysis situs,
+      it is customary to think of a space
+      not as an infinite aggregate of points,
+      but rather as something determined by a partition
+      composed of a finite number of interrelated entities, called cells.
+
+      If K and L are two partitions of the same space
+      we assume that it is always possible to
+      transform one partition into the other
+      by some finite sequence of operations of a definite, prescribed type.
+
+      It is on the basis of this assumption
+      that the theory is built up;
+      consequently the theory rests on its own foundations
+      and is quite independent of classical geometry.
+
+    - three kind of theory
+      1. combinatorial analysis situs
+      2. rectilinear analysis situs
+      3. general (point theoretical) analysis situs
+
+    - [to be combinatorial in this paper]
+      We may place the above interpretation
+      on the treatment given in this paper
+      if we regard a symbolic complex as a partition,
+      a symbolic simplex as a cell
+      (of a rather specialized type but involving no idea of "straightness"),
+      and two equivalent complexes as different partitions of the same space.
+
+      - [bib]
+        M. H. A. Newman
+        "On the Foundations of Combinatory Analysis Situs"
+
+    - x -
+      一個抽象的理論 被作者認爲是 各種不同的具體的處理方式的 '解釋'
+
+    - x -
+      這裏的定義很清晰
+      也很接近 AT1 對 cell-complex 的描述
+      所以可以想象給 simple-complex 的理論也設計一個形式語言
+
+    - k -
+      之所以很清晰
+      可能是因爲沒有把運算理解爲集合論的運算
+      沒有把 complex 沒有被理解爲集合的集合
+      而是把 complex 理解爲了 simplexes 的形式代數和
+
+    - x -
+      注意這裏的 simplex 是無定向的
+      只所以有這種簡化 可能就是因爲沒有考慮定向
+
+    - for simple-complexes,
+      define
+      1. congruent [very strong equivalent]
+      2. partition
+      3. equivalent [defined by partition and congruent]
+
+*** ii. the algebra of complexes.
+
+    - nilpotent
+      mod 2
+      without orientation
+
+*** iii. simple transformations.
+
+    - simple transformations of order k (A, a)
+
+    - x -
+      just like a rewriting system.

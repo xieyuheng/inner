@@ -79,30 +79,14 @@
       - [vertices]
         sets of undefined vertices {a, b, c, ...}
 
-      - [open n-simplex]
+      - [n-simplex]
         Any set of n + 1 vertices (n >= — 1)
-        will be called an open (symbolic) n-simplex
-
-      - [closed n-simplex]
-        a closed (symbolic) n-simplex
-        will be the closure of an open n-simplex,
-        consisting of a set of n + 1 vertices
-        together with all its subsets,
-        including the empty set or (— l)-simplex.
-
-      - [closure of a set of simplexex]
-        (closure X) consist of the closures of the simplexes X
-        X is called closed if (= X (closure X))
+        will be called an (symbolic) n-simplex
 
       - [(symbolic) complex]
         a (symbolic) complex is any closed set of simplexes
 
-      - x -
-        thus a complex is a set of sets.
-        with a condition related to closure.
-
       - [the algebra of complexex]
-        since a complex is a set of simplexes
         we can define the following for complexes
         #+begin_src scheme
         (:= (+ X1 X2)
@@ -128,6 +112,23 @@
               (= X (* X X)))
         #+end_src
 
+      - [idempotent]
+        idempotent has set theoretical semantic,
+        but the boundary operator seems not well defined in this semantic,
+        and since a closed set of sets is determined by its top level elements,
+        other informations are not needed at all.
+
+      - [nilpotent]
+        the semantic of nilpotent is without orientation.
+
+      - x [production] -
+        no matter nilpotent or idempotent,
+        the production of simplexes is not the (* ...) of AT1
+        but the a new kind of compositor called homotopy-join
+        - (homotopy-join A B)
+          for every two points in each A B,
+          join them by a path, space form by such pathes is (homotopy-join A B).
+
       - [empty simplex]
         the set of an empty simplex is unique
         call it #1
@@ -138,6 +139,8 @@
         #+end_src
 
       - [boundary of complexex]
+        The boundaries which appear in this paper
+        are calculated with residue classes mod 2 as coefficients
         #+begin_src scheme
         (:= [X boundary]
             [><><><])
@@ -150,7 +153,59 @@
               (= (^ X #0) #0)
               (= (* X #0) #0))
         #+end_src
-        
+
+      - three equivalent classes
+        defined by combinatorial [formal] transformations
+
+        | simplicial space | sub-division                                  |
+        | nuclei           | formal deformation (expansion or contraction) |
+        | m-group          | filling or perforation                        |
+
+        - note that,
+          only (+ ...) and (* ...) are used in these definitions.
+
+***** note about boundary operator
+
+      - x -
+        不論是 simplex 的定向
+        還是這裏使用的 (mod 2)
+        都是爲了使得 boundary boundary 等於 0
+
+        這些理論都是給定了一些數據
+        然後給定了一個確定的能夠從這些數據上算出邊界的算子
+
+        然而在 AT1 中 我要做的是
+        在把幾何元素實現爲數據的時候
+        讓每個數據本身帶有完整的邊界信息
+        這樣 對邊界的 '計算' 就稱不上是計算了
+
+        在 (2 ...) 之類的語法關鍵詞中做複合的時候
+        每一步都要指明複合所得的元素的邊界
+        這個邊界信息在數據中被小心維護着
+
+      - k -
+        沒錯
+        在定義 compositor 的時候
+        也是需要指明所得的 compound 元素的邊界
+        指明了邊界 就算是定義了一個 compositor 了
+
+      - x -
+        我們是否保證了 boundary boundary 爲 0 呢 ?
+        我們是如何保證這一點的呢 ?
+        首先對於 生成子
+        我們已經小心檢查了它們的邊界
+        使得對於生成子而言有 boundary boundary 爲 0
+        甚至我們檢查的是更強的條件
+        我們要求 n 階 生成子的邊界必須與 S-(n-1) 同倫等價
+        這意味這 不光有這些邊界的 boundary 爲 0
+        而且 (1) 它們是可定向的
+        (2) 其 mapping-class-group 爲平凡的
+        等等很多額外的條件
+
+      - k -
+        我們甚至還不知道那些條件能夠保證
+        檢查的有效性
+        即 能夠保證所合成的元素一定與 S-(n-1) 同倫等價
 
 ***** 3. Formal deformations.
 
