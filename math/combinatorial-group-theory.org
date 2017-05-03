@@ -1,0 +1,57 @@
+#+title: combinatorial group theory
+
+* note about developing theories
+
+  - x -
+    爲了發展 combinatorial theory of higher algebraic structure
+    我們學習 combinatorial group theory
+    學習他人對這個理論的展示方式
+    學習這個理論的歷史
+    學習如何發展一個理論
+
+  - k -
+    何以發展一個理論 ?
+    這確實是很重要的問題
+    同時這個問題也有點兒形而上了
+
+  - x -
+    形而上者謂其道
+    我們不迴避道
+    因爲道是沒法被迴避的
+    這是我們的原則 不是嗎
+
+  - k -
+    沒錯
+
+* (1966 1976) (wilhelm magnus) combinatorial group theory
+
+*** info
+
+    - presentations of groups in terms of generators and relations
+
+* (1980 1992) (john stillwell) classical topology and combinatorial group theory
+
+* (1982) (bruce chandler and wilhelm magnus) the history of combinatorial group theory: a case study in the history of ideas
+
+*** info
+
+    - Nearly the entire body of research in the field
+      is due to mathematicians who either are still alive
+      or who were the teachers or senior colleagues of living mathematicians.
+      This makes it possible to supplement the written tradition
+      with oral information which is particularly valuable
+      when dealing with questions of motivation
+      for a particular investigation or of the transfer of ideas.
+
+    - x -
+      it seems the tradition of writing hides motivations,
+      while the dialog reveals motivations.
+
+      it might also be the authors who fail to convey their motivations
+      are not good at their art.
+
+*** Part I The Beginning of Combinatorial Group Theory
+
+    - 
+
+*** Part II The Emergence of Combinatorial Group Theoryas an Independent Field
