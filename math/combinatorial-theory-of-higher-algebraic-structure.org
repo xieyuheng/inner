@@ -211,8 +211,6 @@
   - the simple idea is to study algebraic structures
     by their generators and relations.
 
-* intro
-
   - I will show how to design and implement a language
     to formalize and machinalize
     a little part of algebraic topology.
@@ -239,12 +237,6 @@
     induced by the equivalent relation.
 
     we get a space whose fundamental group is the group.
-
-    the cayley graph of this group
-    is the covering space of the space.
-
-  - classifying space
-    ><><><
 
 * groupoid
 

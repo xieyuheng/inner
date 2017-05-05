@@ -1,27 +1,44 @@
 #+title: combinatorial group theory
 
-* note about developing theories
+* note
 
-  - x -
-    爲了發展 combinatorial theory of higher algebraic structure
-    我們學習 combinatorial group theory
-    學習他人對這個理論的展示方式
-    學習這個理論的歷史
-    學習如何發展一個理論
+*** about developing theories
 
-  - k -
-    何以發展一個理論 ?
-    這確實是很重要的問題
-    同時這個問題也有點兒形而上了
+    - x -
+      爲了發展 combinatorial theory of higher algebraic structure
+      我們學習 combinatorial group theory
+      學習他人對這個理論的展示方式
+      學習這個理論的歷史
+      學習如何發展一個理論
 
-  - x -
-    形而上者謂其道
-    我們不迴避道
-    因爲道是沒法被迴避的
-    這是我們的原則 不是嗎
+    - k -
+      何以發展一個理論 ?
+      這確實是很重要的問題
+      同時這個問題也有點兒形而上了
 
-  - k -
-    沒錯
+    - x -
+      形而上者謂其道
+      我們不迴避道
+      因爲道是沒法被迴避的
+      這是我們的原則 不是嗎
+
+    - k -
+      沒錯
+
+*** normal subgroup
+
+    - x -
+      how to understood normal subgroups of a group
+      in the group's underlying-space and covering-space ?
+
+      what are the shapes of the normal subgroups ?
+
+      how to get the underlying-space and covering-space of the quotient group ?
+
+*** low order finite groups
+
+    - x -
+      what are the underlying-space and covering-space of low order finite groups ?
 
 * (1966 1976) (wilhelm magnus) combinatorial group theory
 
@@ -30,6 +47,34 @@
     - presentations of groups in terms of generators and relations
 
 * (1980 1992) (john stillwell) classical topology and combinatorial group theory
+
+*** info
+
+    - topology is ostensibly the study of arbitrary continuous functions.
+      in reality, however, we can comprehend and manipulate
+      only functions which relate finite "chunks" of space
+      in a simple combinatorial manner,
+      and topology originally developed on this basis.
+
+*** chapter 0 introduction and foundations
+
+*** chapter 1 complex analysis and surface topology
+
+*** chapter 2 graphs and free groups
+
+*** chapter 3 foundations for the fundamental group
+
+*** chapter 4 fundamental groups of complexes
+
+*** chapter 5 homology theory and abelianization
+
+*** chapter 6 curves on surfaces
+
+*** chapter 7 knots and braids
+
+*** chapter 8 three-dimensional manifolds
+
+*** chapter 9 unsolvable problems
 
 * (1982) (bruce chandler and wilhelm magnus) the history of combinatorial group theory: a case study in the history of ideas
 
@@ -52,6 +97,151 @@
 
 *** Part I The Beginning of Combinatorial Group Theory
 
-    - 
+***** Chapter 1.1 Introduction to Part I
 
-*** Part II The Emergence of Combinatorial Group Theoryas an Independent Field
+      - Part I of our book covers the period from 1882 to 1918,
+        the end of the first World War.
+
+***** Chapter 1.2 The Foundation: Dyck's Group-Theoretical Studies
+
+      - in Dyck's paper :
+        For the further development of the present group theoretical problems
+        the analytic (combinatorial) formulation has to replace every geometric description.
+        However, the primary geometric interpretation has produced certain viewpoints
+        and it is the purpose of the present paper
+        to develop both their geometric version and their analytic content.
+
+      - "a geometric concretization (Versinnlichung) of the group G."
+        like the theory of fuchsian groups.
+
+        tessellation of the hyperbolic disk
+
+      - Burnside's textbooks.
+
+      - De Siguier used Cantor's set theory
+        and coined the term 'semigroup'.
+
+      - What we called Proposition 1
+        [there exist free group for a set of generators]
+        is then what Dehn called the solution of the word problem for free groups.
+
+      - x -
+        當 [像 Dehn 一樣]
+        用 模型的實現 與 算法 來理解這些理論時
+        某些堂皇的命題就是顯然的事實了
+
+        作者區分了 The existence proof 與 The combinatorial proof
+        後者是 構造主義 的
+
+***** Chapter 1.3 The Origin: The Theory of Discontinuous Groups
+
+      - poincare and klein
+
+      - discontinuous action
+        discontinuous group acting on space
+
+      - the early theory of discontinuous groups did not stimulate
+        the development of the theory of group presentations,
+        because the discontinuous groups are not primarily given by presentations.
+        They are defined either by a set of generating elements
+        which describe circle-preserving conformal self-mappings of the complex plane [geometric]
+        or as a set of 2x2 matrices, subject to arithmetic conditions [arithmetic].
+
+***** Chapter 1.4 Motivation: The Fundamental Groups of Topological Spaces
+
+      - poincare -> tietze -> dehn
+
+      - [bib]
+
+        - Birman, J. S.
+          Poincare's conjecture and the homeotopy group of a closed, orientable 2-manifold
+          1973
+
+        - heinrich tietze
+          on the topological invariants of multidimensional manifolds
+          1908
+
+      - Tietze's results are motivated by an observation of a specific difficulty
+        arising when working with groups which are merely givenby a presentation.
+
+      - Dehn recognized that the difficulties of combinatorial group theory
+        start at a much lower level than that of the isomorphism problem as stated by Tietze.
+
+      - [bib]
+
+        - Greendlinger, M, 1960a,
+          Dehn's algorithm for the word problem,
+          Comm. Pure and Appl.Math. 13,67-83.1.4,9.11.14.
+
+        - Greendlinger, M., 1960b,
+          Dehn's algorithm for the conjugacy and word problems, with applications,
+          Comm. Pure and Appl. Math. 13, 641-677. 1.4, 5, 9. 11.14.
+
+***** Chapter 1.5 The Graphical Representation of Groups
+
+      - cayley diagram -> burnside [finite order] -> coxeter [finite order]
+
+      - The point to be made here is that
+        this is such an extremely simple definition
+        when phrased in topological terms.
+        Any possible translation into algebraic terms
+        appears to be clumsy and opaque.
+        Of course, one may say that
+        all that matters about a definition is its precision.
+        But this was certainly not Dehn's opinion.
+        In a public talk for a nonmathematical academic audience,
+        Dehn [1928] explained that the continued growth of mathematics
+        requires the continued emergence of new ideas which reduce its complexity.
+        He also expressed the hope that
+        topology would renew its power through such an injection of new ideas.
+        The reader should note the year when this was said.
+        Within the following 10 years,
+        there appeared monographs on topology by
+        Alexandroff and Hopf,
+        by Lefshetz, and by Seifert and Threlfall,
+        documenting an upsurge in topological research which has not yet abated.
+
+        - Dehn, M, 1928,
+          Uber die geistige Eigenart des Mathematikers,
+          Frankfurter Universitatsreden No. 27. 25 pp.,
+          Universitatsdruckerei Wemer und Winter, Frankfurt am Main.
+          Preface and 1.5,
+
+***** Chapter 1.6 Precursors of Later Developments
+
+******* note
+
+        - x -
+          這章節值得仔細分析
+          既然 羣論 可以用於描述諸多現象
+          那麼 推廣而得到的 高階代數 是否也能描述這些現象的推廣呢 ?
+
+        - k -
+          如果可以的話
+          就可以說 羣論 到 高階代數 的推廣是一個成功的推廣了
+
+******* A. Arithmetically Defined Linear Groups in Higher Dimensions
+
+        - siegel
+
+******* B. Arithmetically Defined Linear Groups in Two Dimensions
+
+        - magnus
+
+******* C. Geometric Constructions. Fuchsian Groups
+
+******* D. Braid Groups and Mapping Class Groups
+
+        - hurwitz
+          in a fiber space, the fundamental group of the base space
+          acts as a group of self-mappings on the fiber.
+
+******* E. Differential Equations, Linear Groups,and Lie Groups
+
+******* F. Finite Groups
+
+***** Chapter 1.7 Summary
+
+***** Chapter 1.8 Modes of Communication. Growth and Distribution of Research in Group Theory
+
+*** Part II The Emergence of Combinatorial Group Theory as an Independent Field

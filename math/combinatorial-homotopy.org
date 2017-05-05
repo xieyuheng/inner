@@ -1,0 +1,35 @@
+#+title: combinatorial homotopy
+
+* intro
+
+* combinatorial group theory
+
+*** motivation
+
+    study group by generators and relations
+
+*** underlying-space [classifying space]
+
+    only one point [base-point]
+
+    generator     as  edge (occur once)
+    relation      as  face (occur once)
+    group element as  path
+
+    (= G (fundamental-group (underlying-space G)))
+    the underlying-space itself
+    can be viewed as the combinatorial representation of the group
+    [by generators and relations]
+
+
+*** cayley-graph [covering-space]
+
+    one point for each group element
+
+    generator     as  edge (occur at each point)
+    relation      as  face (occur at each point)
+    group element as  point
+
+* groupoid
+
+* combinatorial homotopy

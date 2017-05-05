@@ -6,6 +6,17 @@
 
 * (1910) Uber die Topologie des dreidimensionalen Raumes [paper 3 : on the topology of three-dimensional space]
 
+*** info
+
+    - In this paper,
+      Dehn had proved a purely topological result
+      which is still known as "Dehn's Lemma"
+      and which implies that the group of a knot is abelian
+      and therefore cyclic if and only if the knot is isotopic in threespace with a circle.
+      There was a mistake in the proof of the lemma
+      which was pointed out in a letter dated April 22, 1929 from H. Kneser to Dehn.
+      The lemma, however, is true and was proved by Papakyriakopoulos in 1957, five years after Dehn's death.
+
 * (1911) Über unendliche diskontinuierliche Gruppen [paper 4 : on infinite discontinuous groups]
 
 * (1912) Transformation der Kurven auf zweiseitigen Flachen [paper 5 : transformation of curves on two-sided surfaces]

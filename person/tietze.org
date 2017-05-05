@@ -2,4 +2,8 @@
 
 * on the topological invariants of multidimensional manifolds (1908)
 
+*** note
+
+    - some parts of this paper may be read as a clarifying commentary on those by Poincare.
+
 * famous problems of mathematics (1959)

@@ -6,2215 +6,2313 @@
   * 我寫的第一個程序 和 那時的青澀的筆記
 * -----------------------------------
 * note
-** 澀
-   λ-cal可不可能作为范畴论的模型?
-   也就是问λ-cal可不可以以统一的方式实现所有的数学模型?
+*** 澀
+    λ-cal可不可能作为范畴论的模型?
+    也就是问λ-cal可不可以以统一的方式实现所有的数学模型?
 
-   可否用λ-term来表示群结构 而避免有限状态机之类的字符处理器呢?
-   输入procedure输出procedure的procedure可以被称为算子
-   群的元素就可以用这种算子来实现
-   这与表示论有什么关系?
-   一个群结构中群元素的等词怎么写?
-   + 类型论中一个类型如何给出这个类型所对应的等词?
-   自由代数结构中的元素可以用λ-abstraction来实现?
-   可以满足交换律与结合律的以λ-term为模型的代数结构?
-   对这些运算律的实现是否是互相不影响因而可以随意组合的?
-   还有分配律 等等
-   添加运算律也许只是对λ-abstraction的集合作一个统一的改变而已?
-   这样的实现是否符合我关联所有数学理论时所使用的主要思路?
+    可否用λ-term来表示群结构 而避免有限状态机之类的字符处理器呢?
+    输入procedure输出procedure的procedure可以被称为算子
+    群的元素就可以用这种算子来实现
+    这与表示论有什么关系?
+    一个群结构中群元素的等词怎么写?
+    + 类型论中一个类型如何给出这个类型所对应的等词?
+    自由代数结构中的元素可以用λ-abstraction来实现?
+    可以满足交换律与结合律的以λ-term为模型的代数结构?
+    对这些运算律的实现是否是互相不影响因而可以随意组合的?
+    还有分配律 等等
+    添加运算律也许只是对λ-abstraction的集合作一个统一的改变而已?
+    这样的实现是否符合我关联所有数学理论时所使用的主要思路?
 
-   首先一般的代数结构中元素的作用好像自然地可以用λ-term的作用来表达
-   因为λ-term的作用区分了函数项与参数项
+    首先一般的代数结构中元素的作用好像自然地可以用λ-term的作用来表达
+    因为λ-term的作用区分了函数项与参数项
 
-   自由代数结构中左作用生成右作用
-   所以我首先考虑对λ-term的作用来说最自然的左作用
-   因为是自由的 从作用的结果我必须能够看出是a作用于b
-   并且在必要的时候我必须能把a与b分离出来
-   这不就是kons吗!
-   只不过那样的话 (a b) 应该写为 (kons a b)
-   我正是想要避免这种对作用的表示
-   现在看起来好像很多余 但是我想之后看起来就很必须了
-   a必须包含自身吗?
-   那是不可能的...
-   a必须包含一些信息能使得作用之后看到这些信息的时候能找会自身
-   这一切都是因为是在自由代数结构中
-   如果是在不自由的代数结构中有时找回自身就是不可能的了
-   什么是找回自身呢?也就是说 (a b) 将与a b在样子上没什么不同
-   但是被a的左逆左作用就可以得到b 必须能够判断它与b相等
-   但是每个元素都有逆吗?是的
-   因为自由代数结构中元素的左作用是双射
-   所以总可以通过补充定义来得到任意元素的逆元素
-   如果我考虑双射我就已经包含了结合律了
-   我是不是应该先从数学入手
-   而不是从程序入手?
-   λ-term所实现的计算
-   是就一个结构和这个结构的展示性运算而言的
-   比如树结构与cons car cdr
-   利用λ-term和这些基础的东西就是列表处理
-   那么我是不是也需要一个结构和展示性运算呢?
-   ---------------------------------
-   没有思想是不狭隘的
-   我的这些狭隘的认识在人类的思想史中只渺小到是一个点
-   而人类认识自然的思想的长河是融汇于自然本身之中的
-   而我正是这自然的一部分
-   ---------------------------------
-   cons car cdr通过复合所能生成的函数是根本不需要λ-term就能完全表达的
-   λ-term能表达所有的泛函 所有的算子
-   算子的算子 泛函的泛函等等
-   考虑就λ-term的表达能力的生成
-   就将得到一个极为丰富的集合可以说是对计算的表达的极限
-   触及了表达计算的语言的边界
-   + 这种表达能力正是计算机科学所追求的
-     而数学所追求的是要找出去去表达什么东西才能够增进我们对问题的理解
-   然而所有的这一切却都起源与最朴素简单的想法
-   即去区分函数本身与函数的作用
-   现在的目的是要利用这种表达能里来为群结构做一个模型?
-   考虑一下ccc到kkk的变化
-   那不正是结构到结构上的算子的转变么!!
-   然后结构上的算子的集合与结构本身同构!!
-   这就与我我关联所有数学理论时所使用的主要思路相容了!!!
-   ---------------------------------
-   形式公理就是
-   如果一个机器人它根本就能不理解我的理论
-   但是他遵循我给它指明的形式公理 它就也能不出错
-   但是尽管人不是机器人 并且能够理解我的理论
-   但是这些形式公理也许能帮助一个人去理解我的理论
-   但是尽管人不是机器人 并且人已经理解了我的理论
-   但是人要明白如果一个机器人它根本就能不理解我的理论
-   但是他遵循我给它指明的形式公理 它就也能不出错
-   ---------------------------------------------
-   我想typed lambda calculus是对数学结构这个概念的计算化处理
-   这个计算化是指什么?
-   (对simply typed lambda calculus而言)
-   明确变元的类型之后
-   首先我有一个明确的对作用结果的分类方式 这是显然的
-   其次我还有一个明确的对作用本身的分类方式
-   这也是明显的 就是看
-   这些都由一个production system提供
-   这些类型都可以重叠
-** motivation
-   λ-cal is simple
-   so an interpreter that focus on λ-cal
-   should treat
-   not only lisp source code
-   but also lisp procedure
-   as list
-   then list-processing and pattern-matching
-   can be use to operate them
+    自由代数结构中左作用生成右作用
+    所以我首先考虑对λ-term的作用来说最自然的左作用
+    因为是自由的 从作用的结果我必须能够看出是a作用于b
+    并且在必要的时候我必须能把a与b分离出来
+    这不就是kons吗!
+    只不过那样的话 (a b) 应该写为 (kons a b)
+    我正是想要避免这种对作用的表示
+    现在看起来好像很多余 但是我想之后看起来就很必须了
+    a必须包含自身吗?
+    那是不可能的...
+    a必须包含一些信息能使得作用之后看到这些信息的时候能找会自身
+    这一切都是因为是在自由代数结构中
+    如果是在不自由的代数结构中有时找回自身就是不可能的了
+    什么是找回自身呢?也就是说 (a b) 将与a b在样子上没什么不同
+    但是被a的左逆左作用就可以得到b 必须能够判断它与b相等
+    但是每个元素都有逆吗?是的
+    因为自由代数结构中元素的左作用是双射
+    所以总可以通过补充定义来得到任意元素的逆元素
+    如果我考虑双射我就已经包含了结合律了
+    我是不是应该先从数学入手
+    而不是从程序入手?
+    λ-term所实现的计算
+    是就一个结构和这个结构的展示性运算而言的
+    比如树结构与cons car cdr
+    利用λ-term和这些基础的东西就是列表处理
+    那么我是不是也需要一个结构和展示性运算呢?
+    ---------------------------------
+    没有思想是不狭隘的
+    我的这些狭隘的认识在人类的思想史中只渺小到是一个点
+    而人类认识自然的思想的长河是融汇于自然本身之中的
+    而我正是这自然的一部分
+    ---------------------------------
+    cons car cdr通过复合所能生成的函数是根本不需要λ-term就能完全表达的
+    λ-term能表达所有的泛函 所有的算子
+    算子的算子 泛函的泛函等等
+    考虑就λ-term的表达能力的生成
+    就将得到一个极为丰富的集合可以说是对计算的表达的极限
+    触及了表达计算的语言的边界
+    + 这种表达能力正是计算机科学所追求的
+      而数学所追求的是要找出去去表达什么东西才能够增进我们对问题的理解
+    然而所有的这一切却都起源与最朴素简单的想法
+    即去区分函数本身与函数的作用
+    现在的目的是要利用这种表达能里来为群结构做一个模型?
+    考虑一下ccc到kkk的变化
+    那不正是结构到结构上的算子的转变么!!
+    然后结构上的算子的集合与结构本身同构!!
+    这就与我我关联所有数学理论时所使用的主要思路相容了!!!
+    ---------------------------------
+    形式公理就是
+    如果一个机器人它根本就能不理解我的理论
+    但是他遵循我给它指明的形式公理 它就也能不出错
+    但是尽管人不是机器人 并且能够理解我的理论
+    但是这些形式公理也许能帮助一个人去理解我的理论
+    但是尽管人不是机器人 并且人已经理解了我的理论
+    但是人要明白如果一个机器人它根本就能不理解我的理论
+    但是他遵循我给它指明的形式公理 它就也能不出错
+    ---------------------------------------------
+    我想typed lambda calculus是对数学结构这个概念的计算化处理
+    这个计算化是指什么?
+    (对simply typed lambda calculus而言)
+    明确变元的类型之后
+    首先我有一个明确的对作用结果的分类方式 这是显然的
+    其次我还有一个明确的对作用本身的分类方式
+    这也是明显的 就是看
+    这些都由一个production system提供
+    这些类型都可以重叠
+*** motivation
+    λ-cal is simple
+    so an interpreter that focus on λ-cal
+    should treat
+    not only lisp source code
+    but also lisp procedure
+    as list
+    then list-processing and pattern-matching
+    can be use to operate them
 
-   but in scheme procedures are not transparent
-   after an λ-abstraction be evaluated to a closure
-   + i think closure is inspired by the following expression of β-reduce:
-     (λx(λy.x))yy -β-> (λy.x)[x:=yy]
-   one can't do much operations on it
-   maybe that is for an efficient implementation of procedures
+    but in scheme procedures are not transparent
+    after an λ-abstraction be evaluated to a closure
+    + i think closure is inspired by the following expression of β-reduce:
+      (λx(λy.x))yy -β-> (λy.x)[x:=yy]
+    one can't do much operations on it
+    maybe that is for an efficient implementation of procedures
 
-   as i want to ues λ-term to build model for some math structure
-   + ``math struction'' in the sense of bourbaki
-   to operate on procedures is crucial to me
+    as i want to ues λ-term to build model for some math structure
+    + ``math struction'' in the sense of bourbaki
+    to operate on procedures is crucial to me
 
-   when use λ-term to model the basic elements and basic relations
-   of a math struction
-   as an expressive language of computation the semantics of λ-cal
-   can be used to build higher order elements and relations
-   such as homomorphism and isomorphism
-   and many interesting yet important things
-** argument1
-   编写程序时如果你必须时刻试图理解解释器的行为 那将是很劳神的
-   如果这种对解释器行为的理解是不可避免的
-   我也要尽力减少这种思考上的负担
-** argument2
-   (one of the reason of loving λ-cal)
-   计算是被底层机器实现的 计算的复杂度是以机器的一个计算步骤为单位的
-   所以一个语言的语义最好能展示出它所表达的算法的复杂度
-   + 最好能从代码推导出复杂度
-     解释器还应该帮我完成各种其他的推导并且完成的更好
-   因为否则为了控制就机器而言的复杂性
-   我又必须得劳神地思考解释器或编译器的行为
-   λ-cal中的一个计算步骤是reduce
-   因此实现λ-cal时 必须把一个reduce的复杂度控制在常数
-** λ-term的实现方式
-   λ-term的数学性质
-   all is about one rewrite rule!
-   1. β-reduces in one step
-      是把表达式中的一个λ-abstraction的application代入
-      这样的一个λ-abstraction的application被称为β-redex
-      + 我最好能有一个可以reduces指定的β-redex的机制
-        just to find out and collect the β-redexes
-        怎么才能明确地指定某个β-redex呢?
-        just to number them?
-      + ``if m has a normal form
-        then iterated contraction of the leftmost redex
-        leads to that normal form''
-   2. β-reduces
-      是给β-reduces in one step添加自反性与传递性
-      以形成一个偏序关系
-      β-normal form是这个偏序集的极小元
-   3. β-convertible
-      是给β-reduces添加对称性与传递性
-      以形成一个等价关系
-   4. 给一个二元关系添加性质形成新的二元关系
-      就是先声明新的二元关系被原二元关系蕴含
-      添加的性质是描述于新的二元关系的
-      用来指明新的二元关系到底变的多弱
-   5. 然后有一些定理来说明这个偏序集和这个等价类的良好性质
-   ---------------------------------------------------
-   用链表来实现λ-term就纯理论而言会对计算理论有什么影响?
-   1. 这样就能写关于procedure的更细致的谓词
-      这对我来说是重要的
-   2. 又比如我可以把一个λ-term变成另外一个λ-term
-      可能种变形很难在λ-cal中实现
-      可能两个λ-term没有β-reduces关系
-      此时我就可以利用链表处理来作这种形变 因为λ-term都是链表
-   3. 这与在λ-term的集合中添加常元与相应的推导规则不一样
-      因为那些常元所能作用于的只是closed normal form
-      即常元本身和λ-abstraction
-      而这里的链表处理可以作用于任何λ-term
-   4. >< 这会破坏理论上的某些优美的性质吗?
-** λ-abstraction的实现方式
-   λ-abstraction想要指明代入位置
-   这种指明自然应该用一些有向连线来表示
-
-   只有当人们想限制自己而只用一维的纯文本的表达式来表示时
-   才通过λ后面所跟的变元来指明代入位置
-   这样的表示下
-   当作代入时有可能会把自由变元变成约束变元
-   在理论上可以用等价类来处理这个问题
-   这等价与使用一个约束变元的重命名系统
-
-   我以第一种方式而不是第二种方式来实现λ-abstraction
-   因为变元重命名会弄乱代码
-   而且当我想要处理一个procedure时也记不住里面的变元到底被重命名为了什么
-** 极简
-   + 不用let而用λ-abstraction的作用来表示对局部名字的绑定
-     + let可不可以用ζ来实现?
-   + λ-abstraction只能是一元 且其中的body只能是一个term
-     + begin来实现body的多term
-     + 用一元来实现多元
-   + 用Y来写递归函数
-   + 注意
-     现在可能还有很多情况下
-     对错误的项的求值会造成循环等等
-** extend
-   other kinds of application:
-   1. δ-redex
-      写在我的解释器之内的扩展
-      using δ-rule as rewrite-rule
-      求值方式与β-redex一样 都是lazy
-      + 实现这中扩展就是要在我的解释器内实现一个非线性的pmatch
-   2.
-      写在scheme中
-      求值方式是eager
-   3.
-      写在别的语言中
-* remark
-** λ-calculus is a computation model
-*** 函数式编程利用函数来表达计算的概念
-    函数可以被理解为一个变换
-    在这种理解方式下 函数式编程就是回答下面的问题:
-    ``如何表达一个变换以使得一个机器可以帮助我进行这个变换?''
-    也就是要寻找一个语言 它要同时满足两个条件:
-    1. 它能描述变换
-    2. 机器能够根据它的描述来进行计算
-    单独回答其中的每一个都将出离计算机科学
-    而每寻找到一种这样的语言就建立了一个计算理论
-    + 比如在数学的传统中用笛卡尔积的一个特殊子集
-      即一个单值的``关系'' 来定义函数
-      - 这是在用集合论的形式语言来作定义
-        其中``关系''的单值性就是为了捕捉``变换''这一观念
-        一个语言被称为``形式的''
-        就在于它能精确地描述人们的思想 并且没有歧义
-        但是要知道``变换''才是要紧的
-      这种定义强调了人的几何直觉
-      但是机器显然不能根据这中描述来进行计算
-*** λ-cal是这样来回答上面的问题的
-    想法简单又朴素
-    即设计一种语言
-    形成一种语义 能够描述函数之间复合之时所进行的代入
-    就机器而言这就是输出端与输入端之间的电线的连接
-
-    那么如果复杂的函数都是由简单的函数复合而成的
-    而我拥有一些基本的简单函数 又能描述函数的复合 那么我就拥有了复杂的函数
-    + 就数学结构而言
-      由了这种语义之后
-      我能用展示性关系来构造多少其他的关系?
-      这就是``可计算性问题''
-
-    时间证明了这是非常好的设计
-    语义很强 甚至超过了数学中传统的函数概念
-    人们甚至在这种计算理论中用函数来作某些数学结构的模型
-
-    就像电线一样 我最好能用一些有向连线来描述代入的方式 这样既准确又直观
-    那样我就进入了图论 所需要的有向图可以用链表来实现
-
-    但是如果我希望我的描述是一维的文本 (可能是为了方便机器对它的处理)
-    那么我就需要一些技巧去处理自由变元与约束变元所引发的奇异 等等
-
-    具体的实现方式:
-    1) 下面在有向图的意义下讨论 因为这样就可以避免一些枯燥的技巧
-    2) notation:
-       下面的term会被<init-surgery>转化为对应的post-term
-       post-term是一个有向图
-       #+begin_src scheme
-       var ::= <*symbol*>
-       term ::= var | (λ (var) term) | (term term)
-       #+end_src
-       <-*- denote reduction
-       =*= denote conversion
-    3) 一个需要进行代入的位置被称作β-redex或λ-application
-       其中有两项 前一项被称作λ-abstraction用有向连线来指明代入的位置
-       后一项是被代入的东西
-    4) β-reduces one step
-       对一个β-redex的变换
-       形成了post-term的集合上的一个一一映射(就像自然数集上的后继关系)
-    5) β-reduces
+    when use λ-term to model the basic elements and basic relations
+    of a math struction
+    as an expressive language of computation the semantics of λ-cal
+    can be used to build higher order elements and relations
+    such as homomorphism and isomorphism
+    and many interesting yet important things
+*** argument1
+    编写程序时如果你必须时刻试图理解解释器的行为 那将是很劳神的
+    如果这种对解释器行为的理解是不可避免的
+    我也要尽力减少这种思考上的负担
+*** argument2
+    (one of the reason of loving λ-cal)
+    计算是被底层机器实现的 计算的复杂度是以机器的一个计算步骤为单位的
+    所以一个语言的语义最好能展示出它所表达的算法的复杂度
+    + 最好能从代码推导出复杂度
+      解释器还应该帮我完成各种其他的推导并且完成的更好
+    因为否则为了控制就机器而言的复杂性
+    我又必须得劳神地思考解释器或编译器的行为
+    λ-cal中的一个计算步骤是reduce
+    因此实现λ-cal时 必须把一个reduce的复杂度控制在常数
+*** λ-term的实现方式
+    λ-term的数学性质
+    all is about one rewrite rule!
+    1. β-reduces in one step
+       是把表达式中的一个λ-abstraction的application代入
+       这样的一个λ-abstraction的application被称为β-redex
+       + 我最好能有一个可以reduces指定的β-redex的机制
+         just to find out and collect the β-redexes
+         怎么才能明确地指定某个β-redex呢?
+         just to number them?
+       + ``if m has a normal form
+         then iterated contraction of the leftmost redex
+         leads to that normal form''
+    2. β-reduces
        是给β-reduces in one step添加自反性与传递性
        以形成一个偏序关系
        β-normal form是这个偏序集的极小元
-    6) β-convertible
+    3. β-convertible
        是给β-reduces添加对称性与传递性
        以形成一个等价关系
-       这个等价关系可以用来判断两个post-term是否会被reduce为相同的β-normal form
-       即 等价关系β-convertible给了所有post-term的集合一个划分
-       划分中每个子集中的post-term如果可能的话将被reduce为相同的β-normal form
-       β-convertible与application和abstraction这两个操作相容
-       同一等价者被这两个操作作用后还在某一个相同的等价类中
-       因此在等价类中的变换可以忽略周围的语境
-    7) 给一个二元关系添加性质形成新的二元关系
+    4. 给一个二元关系添加性质形成新的二元关系
        就是先声明新的二元关系被原二元关系蕴含
        添加的性质是描述于新的二元关系的
        用来指明新的二元关系到底变的多弱
-    8) 然后有一些定理来说明这个偏序集和这个等价类的良好性质
-    9) 如果一个post-term中只有一个β-redex
-       ``β-reduces one step''作为一一映射只能形成平凡的关系
-       但是如果post-term中有多个β-redex
-       即 这些β-redex可以作为β-redex的``被代入项''
-       或者作为β-redex的λ-abstraction中的``代入项''
-       (``被代入项''被代入``代入项'')
-       那么由``β-reduces in one step''添加自反性与传递性
-       就形成了一个复杂的偏序关系
-    10) <-β-是一个机器
-        它尝试(可能不成功)把一个作为β-redex的post-term化为β-normal form
-        + 人们可以从数学的角度抽象这一特点说:
-          偏序集给了``计算''以方向
-          使得当输入一个集合中的元素时
-          一个``进行计算的机器''可以把这个元素化为
-          偏序集中的极值
-          + galois理论中的代数计算
-        + 或者从另一个角度人们可以从数学的角度抽象这一特点说:
-          一个集合被划分了
-          划分中的每个子集中有特殊的``代表元''可以给``计算''指明方向
-          使得当输入一个集合中的元素时
-          一个``进行计算的机器''可以把这个元素化为
-          这个元素所在的划分中的子集的``代表元''
-          + 代表元的存在性 让人想到选择公理:
-            ``每个集合族 可以同时选出它们每个中的一个代表元''
-          + 代表元的存在性 和 存在时的唯一性 与下面的因素有关:
-            1. 所使用的表达式集合
-            2. 集合的划分
-            3. 指定代表元的方式
-            4. 寻找代表元的方式
-            5. 比如当赋予每个等价类的偏序关系然后指定最小元为代表元时又有下面的因素:
-               1) 赋予每个等价类的偏序关系如何
-               2) 求偏序集最小元(或极小元)的方式
-*** 回到原来的问题
-    ``如何表达一个变换以使得一个机器可以帮助我进行这个变换?''
-    λ-cal回答:
-    一个有λ-abstraction语义的λ-term表达一个变换
-    <-β-把这个λ-abstraction的一次作用
-    化为β-normal form的过程就是机器帮我进行一次这个变换的过程
-*** ------------------------------------------
-    extensionality:
-    (∀x,((f x) = (g x))) ⇒ (f = g)
+    5. 然后有一些定理来说明这个偏序集和这个等价类的良好性质
+    ---------------------------------------------------
+    用链表来实现λ-term就纯理论而言会对计算理论有什么影响?
+    1. 这样就能写关于procedure的更细致的谓词
+       这对我来说是重要的
+    2. 又比如我可以把一个λ-term变成另外一个λ-term
+       可能种变形很难在λ-cal中实现
+       可能两个λ-term没有β-reduces关系
+       此时我就可以利用链表处理来作这种形变 因为λ-term都是链表
+    3. 这与在λ-term的集合中添加常元与相应的推导规则不一样
+       因为那些常元所能作用于的只是closed normal form
+       即常元本身和λ-abstraction
+       而这里的链表处理可以作用于任何λ-term
+    4. >< 这会破坏理论上的某些优美的性质吗?
+*** λ-abstraction的实现方式
+    λ-abstraction想要指明代入位置
+    这种指明自然应该用一些有向连线来表示
 
-    =η= η-conversion:
-    就是=β=添加extensionality
-    + eg:
-      λx.(M x) =η= M
-** 递归
-   程序是递归定义的
-   因为它们处理的是递归定义的(或者说 归纳定义的)数据结构
+    只有当人们想限制自己而只用一维的纯文本的表达式来表示时
+    才通过λ后面所跟的变元来指明代入位置
+    这样的表示下
+    当作代入时有可能会把自由变元变成约束变元
+    在理论上可以用等价类来处理这个问题
+    这等价与使用一个约束变元的重命名系统
 
-   数据结构(或者说 数学结构)就是一个集合
-   与单纯的集合不同的是这个集合中的元素之间有各种被明确定义的关系
-   + 比如 考虑图论中的一个有限图
+    我以第一种方式而不是第二种方式来实现λ-abstraction
+    因为变元重命名会弄乱代码
+    而且当我想要处理一个procedure时也记不住里面的变元到底被重命名为了什么
+*** 极简
+    + 不用let而用λ-abstraction的作用来表示对局部名字的绑定
+      + let可不可以用ζ来实现?
+    + λ-abstraction只能是一元 且其中的body只能是一个term
+      + begin来实现body的多term
+      + 用一元来实现多元
+    + 用Y来写递归函数
+    + 注意
+      现在可能还有很多情况下
+      对错误的项的求值会造成循环等等
+*** extend
+    other kinds of application:
+    1. δ-redex
+       写在我的解释器之内的扩展
+       using δ-rule as rewrite-rule
+       求值方式与β-redex一样 都是lazy
+       + 实现这中扩展就是要在我的解释器内实现一个非线性的pmatch
+    2.
+       写在scheme中
+       求值方式是eager
+    3.
+       写在别的语言中
+* remark
+*** λ-calculus is a computation model
+***** 函数式编程利用函数来表达计算的概念
+      函数可以被理解为一个变换
+      在这种理解方式下 函数式编程就是回答下面的问题:
+      ``如何表达一个变换以使得一个机器可以帮助我进行这个变换?''
+      也就是要寻找一个语言 它要同时满足两个条件:
+      1. 它能描述变换
+      2. 机器能够根据它的描述来进行计算
+      单独回答其中的每一个都将出离计算机科学
+      而每寻找到一种这样的语言就建立了一个计算理论
+      + 比如在数学的传统中用笛卡尔积的一个特殊子集
+        即一个单值的``关系'' 来定义函数
+        - 这是在用集合论的形式语言来作定义
+          其中``关系''的单值性就是为了捕捉``变换''这一观念
+          一个语言被称为``形式的''
+          就在于它能精确地描述人们的思想 并且没有歧义
+          但是要知道``变换''才是要紧的
+        这种定义强调了人的几何直觉
+        但是机器显然不能根据这中描述来进行计算
+***** λ-cal是这样来回答上面的问题的
+      想法简单又朴素
+      即设计一种语言
+      形成一种语义 能够描述函数之间复合之时所进行的代入
+      就机器而言这就是输出端与输入端之间的电线的连接
 
-   说``一个数据结构是归纳定义的''是什么意思?
-   这就要想一想应该如何明确的定义的集合的元素之间的关系
-   我们常常不能通过去穷举一个集合中的所有元素之间的关系来定义这些关系
-   因为集合的元素可能有可数无穷多个(不可数者且不论)
-   需要明确定义的集合的元素之间的关系更可能有可数无穷多个(不可数者且不论)
-   因此人们发明了一种定义关系的方法在这时使用
-   就是``归纳定义 或者说 递归定义''
-   这在于人们发现集合的那可数无穷多个元素本身其实应该用关系来定义
-   ``a是(a b)的sub-sexp''这是一个关系
-   但是其实(a b)这个元素 是a和b在sub-sexp这个关系下生成的
-   关系与集合的元素本身必须被同时定义
-   这就是归纳定义的特点
-   + 这也是倾向于使用归纳定义这个术语的原因
-     因为递归有时显然有不同的意义
-   + 我想也许强调递归地定义关系的时候应该叫数学结构
-     而强调归纳定义元素的时候应该叫数据结构
-     不同之处也许在于归纳定义了一些元素之后
-     (已经有了一些与归纳定义对应的关系了)
-     可以再在这些元素的基础上递归定义新的关系
-     + 比如 考虑以0为基础递归地定义偶数
-       (注意谓词是特殊的关系 特殊之处在于它是一元的)
-   这样我定义那可数无穷多个元素的方式就是
-   去定义如何从有限多个基础元素生成它们
-   而生成它们的方式就定义了它们之间的关系本身
+      那么如果复杂的函数都是由简单的函数复合而成的
+      而我拥有一些基本的简单函数 又能描述函数的复合 那么我就拥有了复杂的函数
+      + 就数学结构而言
+        由了这种语义之后
+        我能用展示性关系来构造多少其他的关系?
+        这就是``可计算性问题''
 
-   这样一切就清楚了
+      时间证明了这是非常好的设计
+      语义很强 甚至超过了数学中传统的函数概念
+      人们甚至在这种计算理论中用函数来作某些数学结构的模型
 
-   想要递归定义一个谓词去判断一个递归定义的数据结构
-   或者 想要递归定义的一个程序(procedure)去处理递归定义的数据结构
-   首先就要明白这个数据结构是如何被递归定义的
+      就像电线一样 我最好能用一些有向连线来描述代入的方式 这样既准确又直观
+      那样我就进入了图论 所需要的有向图可以用链表来实现
 
-   如何用归纳法证明一个定理也就明白了
-   这在于自然数本身就是归纳定义的
+      但是如果我希望我的描述是一维的文本 (可能是为了方便机器对它的处理)
+      那么我就需要一些技巧去处理自由变元与约束变元所引发的奇异 等等
 
-   最朴素的递归定义的procedure要求
-   处理问题与子问题的方式是相同的
-   当不同时就需要增加辅助变元等等
-   ---------------------------------------------------------
-   具体到我要写的解释器上来说 它就是一个递归程序
-   它接受一个表达式 递归的调用它自己来处理各个子表达式
-   然后把各个递归的结果组合在一起 形成最后的结果
-   ><
-** >< 新数
-   可计算性的等价定义:
-   1. godle-herbrand recursiveness
-   2. λ-definalbeability
-   3. turning computable
+      具体的实现方式:
+      1) 下面在有向图的意义下讨论 因为这样就可以避免一些枯燥的技巧
+      2) notation:
+         下面的term会被<init-surgery>转化为对应的post-term
+         post-term是一个有向图
+         #+begin_src scheme
+         var ::= <*symbol*>
+         term ::= var | (λ (var) term) | (term term)
+         #+end_src
+         <-*- denote reduction
+         =*= denote conversion
+      3) 一个需要进行代入的位置被称作β-redex或λ-application
+         其中有两项 前一项被称作λ-abstraction用有向连线来指明代入的位置
+         后一项是被代入的东西
+      4) β-reduces one step
+         对一个β-redex的变换
+         形成了post-term的集合上的一个一一映射(就像自然数集上的后继关系)
+      5) β-reduces
+         是给β-reduces in one step添加自反性与传递性
+         以形成一个偏序关系
+         β-normal form是这个偏序集的极小元
+      6) β-convertible
+         是给β-reduces添加对称性与传递性
+         以形成一个等价关系
+         这个等价关系可以用来判断两个post-term是否会被reduce为相同的β-normal form
+         即 等价关系β-convertible给了所有post-term的集合一个划分
+         划分中每个子集中的post-term如果可能的话将被reduce为相同的β-normal form
+         β-convertible与application和abstraction这两个操作相容
+         同一等价者被这两个操作作用后还在某一个相同的等价类中
+         因此在等价类中的变换可以忽略周围的语境
+      7) 给一个二元关系添加性质形成新的二元关系
+         就是先声明新的二元关系被原二元关系蕴含
+         添加的性质是描述于新的二元关系的
+         用来指明新的二元关系到底变的多弱
+      8) 然后有一些定理来说明这个偏序集和这个等价类的良好性质
+      9) 如果一个post-term中只有一个β-redex
+         ``β-reduces one step''作为一一映射只能形成平凡的关系
+         但是如果post-term中有多个β-redex
+         即 这些β-redex可以作为β-redex的``被代入项''
+         或者作为β-redex的λ-abstraction中的``代入项''
+         (``被代入项''被代入``代入项'')
+         那么由``β-reduces in one step''添加自反性与传递性
+         就形成了一个复杂的偏序关系
+      10) <-β-是一个机器
+          它尝试(可能不成功)把一个作为β-redex的post-term化为β-normal form
+          + 人们可以从数学的角度抽象这一特点说:
+            偏序集给了``计算''以方向
+            使得当输入一个集合中的元素时
+            一个``进行计算的机器''可以把这个元素化为
+            偏序集中的极值
+            + galois理论中的代数计算
+          + 或者从另一个角度人们可以从数学的角度抽象这一特点说:
+            一个集合被划分了
+            划分中的每个子集中有特殊的``代表元''可以给``计算''指明方向
+            使得当输入一个集合中的元素时
+            一个``进行计算的机器''可以把这个元素化为
+            这个元素所在的划分中的子集的``代表元''
+            + 代表元的存在性 让人想到选择公理:
+              ``每个集合族 可以同时选出它们每个中的一个代表元''
+            + 代表元的存在性 和 存在时的唯一性 与下面的因素有关:
+              1. 所使用的表达式集合
+              2. 集合的划分
+              3. 指定代表元的方式
+              4. 寻找代表元的方式
+              5. 比如当赋予每个等价类的偏序关系然后指定最小元为代表元时又有下面的因素:
+                 1) 赋予每个等价类的偏序关系如何
+                 2) 求偏序集最小元(或极小元)的方式
+***** 回到原来的问题
+      ``如何表达一个变换以使得一个机器可以帮助我进行这个变换?''
+      λ-cal回答:
+      一个有λ-abstraction语义的λ-term表达一个变换
+      <-β-把这个λ-abstraction的一次作用
+      化为β-normal form的过程就是机器帮我进行一次这个变换的过程
+***** ------------------------------------------
+      extensionality:
+      (∀x,((f x) = (g x))) ⇒ (f = g)
 
-   递归和归纳与可计算性的关系如此紧密
-   难怪我想要发明新数的时候会遇到问题
-   然而如果我以λ-cal为基础我是否就被传统的``可计算性''所限制了呢?
-   既然我已经用有向图来实现λ-cal了 这种实现对与新数有什么启示呢?
-** >< 静态分析
-   如果我的show函数可以探测到loop
-   那么一定可以用show函数构造一个不是loop的不停机的procedure
-   那么这种procedure是什么呢?
-   这里将给不停机的procedure用层次结构分一次类吗?
-** >< 类型系统与数学结构
-*** 数学结构族
-    是用集合论公理定义的数学结构的集合
-    数学结构是一个集合
-    这个集合中的元素之间有各种关系
-*** 数据结构
-    是特殊的数学结构
-    这个数学结构所在的数学结构族中只有这一个数学结构
-    这中数学结构族或者数学结构被称为是确定性的
-    + 比如归纳定义的数学结构就是如此
-      + 只有归纳定义的东西才能被机器处理吗?
-    + 比如一个群是一个数学结构 但是不是一个数据结构
-      因此用机器来处理群的时候就要研究表示论
-      表示论就是用一个确定性的数学结构(复矩阵)
-      来表示非确定性的数学结构族(群)
-    + 也许要加上机器的可实现性
-    + 接口的抽象性就是
-      数学结构的各种模型在同构的意义下相同这个性质
-*** 类型系统
-    处理数据结构的集合
-    因为一个数据结构可以看做一种类型的数据
-    因此是弱化了的范畴论
-    + 也许要加上机器的可实现性
-    + 要知道范畴论本身也可以被看作是一个数学结构
-      因此范畴论的理论有封闭性
-** λI-calculus
-   a consistent theory gave church
-   subtheory of his original system
-   in which the eager evaluation strategy is normalizing
-   illative
-** λK-calculus
-   the `ordinary' λ-calculus
-** (λx.M)N =β= M[x:=N]
-   左边是作用 右边是代换
-   - 代换并不一定被作用而引进
-     而是另一种独立的对形式表达式的操作
-     代换只作用于自由变元
-     为了避免代换之后 N中的自由变元 被 M中的λ-abstraction约束
-     需要设计对 M中的λ-abstraction中的约束变元的重命名策略
-     (毕竟约束变元拥有可数无穷多个不改变语义的重命名)
-     当出现上面的情况时实行这个策略
-     即 (λy.P)[x:=N] ≡λy.(P[x:=N]) 中
-     如果y∈FV(N)就重命名y
-     >< 最好对y的重命名能够指明需要它被重命名的地方
-     >< 同时有能尽量保持程序员对约束变元命名的命名风格
-     + ``the free variables of one expression substituted into another
-       are assumed not to be captured by bindings in the other
-       unless such capture is explicitly required''
-       变元的重命名应按个对约束变元还是自由变元
-       是不是对约束变元的重命名可以处理上面的状况?
-       而对自由变元的重命名可以实现lexical scope?
-   等号指在计算中 λ-abstraction的作用的结果是代换
-   这是λ-calculus的唯一公理
-   - 这个公理指形式表达式之间的等价关系
-     形式表达式就是归纳定义好的字符串集合
-     这就把λ-calculus考虑为数学结构了
-     而word的集合也是字符串的集合
-     注意word的集合在``字并''这个运算下形成幺半群
-     λ-term类似于word
-     λ-term的application不同于``字并''因为不结合
-** church-rosser theorem
-   if two terms are convertible
-   then there is a term to which they both reduce
+      =η= η-conversion:
+      就是=β=添加extensionality
+      + eg:
+        λx.(M x) =η= M
+*** 递归
+    程序是递归定义的
+    因为它们处理的是递归定义的(或者说 归纳定义的)数据结构
 
-   in many cases
-   the inconvertibility of two terms
-   can be proved by showing that they do not reduce to a common term
+    数据结构(或者说 数学结构)就是一个集合
+    与单纯的集合不同的是这个集合中的元素之间有各种被明确定义的关系
+    + 比如 考虑图论中的一个有向图
 
-   因为β-normal-form的唯一性
-   所以term之间的等词可以利用这以点来写出
-   但是效率可能很低
-** 多元λ-abstraction的处理
-   记 λx(λy.f(x,y)) == λxy.f(x,y)
-   记 ((F)M)N == FMN
-   设 F == λxy.f(x,y)
-   则 Fxy == (λxy.f(x,y))xy == f(x,y)
-   因此对于多元λ-abstraction只要约定结合方式就简化了记法
-   + 从上面还可以看出括号有的时候可以用``点''代替
-   + 可以说所约定的这种结合方式只是为了处理这种多元λ-abstraction而使用的
-     别的地方这种结合方式反而不能简化记法
-     比如说λ-term的迭代的就可以有相反的结合方式
-** 表示类型时如果省略括号
-   A->B->C
-   结合方向是从右到左
-   看来没有明确的规则 这也要看上下文
+    说``一个数据结构是归纳定义的''是什么意思?
+    这就要想一想应该如何明确的定义的集合的元素之间的关系
+    我们常常不能通过去穷举一个集合中的所有元素之间的关系来定义这些关系
+    因为集合的元素可能有可数无穷多个(不可数者且不论)
+    需要明确定义的集合的元素之间的关系更可能有可数无穷多个(不可数者且不论)
+    因此人们发明了一种定义关系的方法在这时使用
+    就是``归纳定义 或者说 递归定义''
+    这在于人们发现集合的那可数无穷多个元素本身其实应该用关系来定义
+    ``a是(a b)的sub-sexp''这是一个关系
+    但是其实(a b)这个元素 是a和b在sub-sexp这个关系下生成的
+    关系与集合的元素本身必须被同时定义
+    这就是归纳定义的特点
+    + 这也是倾向于使用归纳定义这个术语的原因
+      因为递归有时显然有不同的意义
+    + 我想也许强调递归地定义关系的时候应该叫数学结构
+      而强调归纳定义元素的时候应该叫数据结构
+      不同之处也许在于归纳定义了一些元素之后
+      (已经有了一些与归纳定义对应的关系了)
+      可以再在这些元素的基础上递归定义新的关系
+      + 比如 考虑以0为基础递归地定义偶数
+        (注意谓词是特殊的关系 特殊之处在于它是一元的)
+    这样我定义那可数无穷多个元素的方式就是
+    去定义如何从有限多个基础元素生成它们
+    而生成它们的方式就定义了它们之间的关系本身
+
+    这样一切就清楚了
+
+    想要递归定义一个谓词去判断一个递归定义的数据结构
+    或者 想要递归定义的一个程序(procedure)去处理递归定义的数据结构
+    首先就要明白这个数据结构是如何被递归定义的
+
+    如何用归纳法证明一个定理也就明白了
+    这在于自然数本身就是归纳定义的
+
+    最朴素的递归定义的procedure要求
+    处理问题与子问题的方式是相同的
+    当不同时就需要增加辅助变元等等
+    ---------------------------------------------------------
+    具体到我要写的解释器上来说 它就是一个递归程序
+    它接受一个表达式 递归的调用它自己来处理各个子表达式
+    然后把各个递归的结果组合在一起 形成最后的结果
+    ><
+*** >< 新数
+    可计算性的等价定义:
+    1. godle-herbrand recursiveness
+    2. λ-definalbeability
+    3. turning computable
+
+    递归和归纳与可计算性的关系如此紧密
+    难怪我想要发明新数的时候会遇到问题
+    然而如果我以λ-cal为基础我是否就被传统的``可计算性''所限制了呢?
+    既然我已经用有向图来实现λ-cal了 这种实现对与新数有什么启示呢?
+*** >< 静态分析
+    如果我的show函数可以探测到loop
+    那么一定可以用show函数构造一个不是loop的不停机的procedure
+    那么这种procedure是什么呢?
+    这里将给不停机的procedure用层次结构分一次类吗?
+*** >< 类型系统与数学结构
+***** 数学结构族
+      是用集合论公理定义的数学结构的集合
+      数学结构是一个集合
+      这个集合中的元素之间有各种关系
+***** 数据结构
+      是特殊的数学结构
+      这个数学结构所在的数学结构族中只有这一个数学结构
+      这中数学结构族或者数学结构被称为是确定性的
+      + 比如归纳定义的数学结构就是如此
+        + 只有归纳定义的东西才能被机器处理吗?
+      + 比如一个群是一个数学结构 但是不是一个数据结构
+        因此用机器来处理群的时候就要研究表示论
+        表示论就是用一个确定性的数学结构(复矩阵)
+        来表示非确定性的数学结构族(群)
+      + 也许要加上机器的可实现性
+      + 接口的抽象性就是
+        数学结构的各种模型在同构的意义下相同这个性质
+***** 类型系统
+      处理数据结构的集合
+      因为一个数据结构可以看做一种类型的数据
+      因此是弱化了的范畴论
+      + 也许要加上机器的可实现性
+      + 要知道范畴论本身也可以被看作是一个数学结构
+        因此范畴论的理论有封闭性
+*** λI-calculus
+    a consistent theory gave church
+    subtheory of his original system
+    in which the eager evaluation strategy is normalizing
+    illative
+*** λK-calculus
+    the `ordinary' λ-calculus
+*** (λx.M)N =β= M[x:=N]
+    左边是作用 右边是代换
+    - 代换并不一定被作用而引进
+      而是另一种独立的对形式表达式的操作
+      代换只作用于自由变元
+      为了避免代换之后 N中的自由变元 被 M中的λ-abstraction约束
+      需要设计对 M中的λ-abstraction中的约束变元的重命名策略
+      (毕竟约束变元拥有可数无穷多个不改变语义的重命名)
+      当出现上面的情况时实行这个策略
+      即 (λy.P)[x:=N] ≡λy.(P[x:=N]) 中
+      如果y∈FV(N)就重命名y
+      >< 最好对y的重命名能够指明需要它被重命名的地方
+      >< 同时有能尽量保持程序员对约束变元命名的命名风格
+      + ``the free variables of one expression substituted into another
+        are assumed not to be captured by bindings in the other
+        unless such capture is explicitly required''
+        变元的重命名应按个对约束变元还是自由变元
+        是不是对约束变元的重命名可以处理上面的状况?
+        而对自由变元的重命名可以实现lexical scope?
+    等号指在计算中 λ-abstraction的作用的结果是代换
+    这是λ-calculus的唯一公理
+    - 这个公理指形式表达式之间的等价关系
+      形式表达式就是归纳定义好的字符串集合
+      这就把λ-calculus考虑为数学结构了
+      而word的集合也是字符串的集合
+      注意word的集合在``字并''这个运算下形成幺半群
+      λ-term类似于word
+      λ-term的application不同于``字并''因为不结合
+*** church-rosser theorem
+    if two terms are convertible
+    then there is a term to which they both reduce
+
+    in many cases
+    the inconvertibility of two terms
+    can be proved by showing that they do not reduce to a common term
+
+    因为β-normal-form的唯一性
+    所以term之间的等词可以利用这以点来写出
+    但是效率可能很低
+*** 多元λ-abstraction的处理
+    记 λx(λy.f(x,y)) == λxy.f(x,y)
+    记 ((F)M)N == FMN
+    设 F == λxy.f(x,y)
+    则 Fxy == (λxy.f(x,y))xy == f(x,y)
+    因此对于多元λ-abstraction只要约定结合方式就简化了记法
+    + 从上面还可以看出括号有的时候可以用``点''代替
+    + 可以说所约定的这种结合方式只是为了处理这种多元λ-abstraction而使用的
+      别的地方这种结合方式反而不能简化记法
+      比如说λ-term的迭代的就可以有相反的结合方式
+*** 表示类型时如果省略括号
+    A->B->C
+    结合方向是从右到左
+    看来没有明确的规则 这也要看上下文
 * -----------------------------------
 * daedalus-interpreter
-** note
-   #+begin_src scheme
-   var ::= <*symbol*>
-   term ::= var | (λ (var) term) | (term term)
-   #+end_src
-   上面归纳定义的字符串的集合在机器中是作为链表sexp来存储的
-   而链表是一个边有向的二叉树
-   因而所定义的集合是一个归纳定义的有向树的集合的模型:
-   1. 所有的边的定向可以看成是
-      因根是固定的而诱导出来的
-   2. 其中var者为叶
-      (λ (var) term)者一叉
-      (term term)者二叉
-   3. 每个树只有叶节点是被var命名的
-      非叶节点 可以被视为是无名的
-      对这个节点的表达就是以这个节点为根的子树本身
-   表达式容易被机器处理 而树容易为人所理解
+*** note
+    #+begin_src scheme
+    var ::= <*symbol*>
+    term ::= var | (λ (var) term) | (term term)
+    #+end_src
+    上面归纳定义的字符串的集合在机器中是作为链表sexp来存储的
+    而链表是一个边有向的二叉树
+    因而所定义的集合是一个归纳定义的有向树的集合的模型:
+    1. 所有的边的定向可以看成是
+       因根是固定的而诱导出来的
+    2. 其中var者为叶
+       (λ (var) term)者一叉
+       (term term)者二叉
+    3. 每个树只有叶节点是被var命名的
+       非叶节点 可以被视为是无名的
+       对这个节点的表达就是以这个节点为根的子树本身
+    表达式容易被机器处理 而树容易为人所理解
 
-   post-term是图的集合
-   它由term以如下的方式变化而来
-   1. 注意:
-      作为链表的sexp可以表示任意的图
-      但是不是图的良好模型
-      比如不容易写出图之间的等词
-      但是就这里的目的而言这种表示是足够用的
-      因为这里的图指定了原来的树的根来诱导出所有的边的定向
-   2. 就term是图而言:
-      把一个term中
-      每个(λ (var) term)所对应的子树下
-      var的scope内
-      所有以var为名的叶节点用有向边连回这个(λ (var) term)
-   3. 就sexp而言:
-      把var的scope内的所有var变为(var)
-      然后(set-cdr! (var) (λ (var) term))
-      + 具体实践时需要考虑所使用的LISP方言与所使用的这个方言的实现
-        例如在ikarus中
-        (λ (x) (x (u x)))
-        被求值为
-        #0=(λ (x) ((x . #0#) ((u) (x . #0#))))
+    post-term是图的集合
+    它由term以如下的方式变化而来
+    1. 注意:
+       作为链表的sexp可以表示任意的图
+       但是不是图的良好模型
+       比如不容易写出图之间的等词
+       但是就这里的目的而言这种表示是足够用的
+       因为这里的图指定了原来的树的根来诱导出所有的边的定向
+    2. 就term是图而言:
+       把一个term中
+       每个(λ (var) term)所对应的子树下
+       var的scope内
+       所有以var为名的叶节点用有向边连回这个(λ (var) term)
+    3. 就sexp而言:
+       把var的scope内的所有var变为(var)
+       然后(set-cdr! (var) (λ (var) term))
+       + 具体实践时需要考虑所使用的LISP方言与所使用的这个方言的实现
+         例如在ikarus中
+         (λ (x) (x (u x)))
+         被求值为
+         #0=(λ (x) ((x . #0#) ((u) (x . #0#))))
 
-   lexical scope:
-   一个λ-term被求值时
-   其中所有的λ-abstraction会找到自己的scope
-** the old-version <init-surgery>
-   #+begin_src scheme
-   (define <λ-surgery>
-     (lambda (term)
-       (pmatch-who '<λ-surgery> term
-         [`(,x1 λ (,x2) . ,body)
-          term]
-         [`,var
-          (guard (symbol? var))
-          var]
-         [`(λ (,x) ,sub-term)
+    lexical scope:
+    一个λ-term被求值时
+    其中所有的λ-abstraction会找到自己的scope
+*** the old-version <init-surgery>
+    #+begin_src scheme
+    (define <λ-surgery>
+      (lambda (term)
+        (pmatch-who '<λ-surgery> term
+          [`(,x1 λ (,x2) . ,body)
+           term]
+          [`,var
+           (guard (symbol? var))
+           var]
+          [`(λ (,x) ,sub-term)
+           (letrec
+               ([linking-list '()]
+                [to-link (lambda (linking-list)
+                           (if (not (null? linking-list))
+                               (let ()
+                                 (apply (car linking-list) '())
+                                 (to-link (cdr linking-list)))))]
+                ;; 下面的赋值只有在右边返回值之后才发生
+                ;; 因此需要用(to-link linking-list)来处理链接
+                [λ-head `(λ (,x) ,(<link-up!> sub-term))]
+                [<link-up!>
+                 (lambda (sub-term)
+                   (pmatch-who '<link-up!> sub-term
+                     [`(,x1 λ (,x2) . ,body)
+                      sub-term]
+                     [`,var
+                      (guard (symbol? var))
+                      (cond [(eq? x var)
+                             (let ([x* (list x)])
+                               (set! linking-list (cons (lambda () (set-cdr! x* λ-head))
+                                                        linking-list))
+                               x*)]
+                            [else
+                             var])]
+                     [`(λ (,u) ,sub-term1)
+                      (cond [(eq? x u)
+                             `(λ (,u) ,sub-term1)]
+                            [else
+                             `(λ (,u) ,(<link-up!> sub-term1))])]
+                     [`(,sub-term1 ,sub-term2)
+                      `(,(<link-up!> sub-term1) ,(<link-up!> sub-term2))]))])
+             (to-link linking-list)
+             (set-car! (cdr (cdr λ-head)) (<λ-surgery> (car (cdr (cdr λ-head)))))
+             λ-head)]
+          [`(,sub-term1 ,sub-term2)
+           `(,(<λ-surgery> sub-term1) ,(<λ-surgery> sub-term2))])))
+    #+end_src
+*** <init-surgery>
+***** note
+      1. <init-surgery>由两层递归
+         因此算法的复杂度是N^2 很不好的算法
+         内层的递归函数链接一个λ-abstraction的scope下的所有的变元
+         外层的递归函数跑遍所有的λ-abstraction
+         #+begin_src scheme
+         kkk
+         ==
+         #0=(λ (x) (λ (u) (u (x . #0#))))
+         --------------------------------
+         (car (cdr (cdr kkk)))
+         ==
+         #0=(λ (u) (u (x λ (x) #0#)))
+         #+end_src
+         因此x后面跟λ就是被处理过的λ-abstraction的标志
+         内层和外层递归都要首先就要处理这种情况以避免循环
+         #+begin_src scheme
+         (pmatch term
+           [`(,x1 λ (,x2) . ,body)
+            term])
+         #+end_src
+      2. 基本的作用必须都是一元的
+         非一元作用不处理 直接由pmatch-who报错
+      3. 最小立异原则:
+         scheme中的一个λ-abstraction被<init-surgery>处理后
+         变化了所有约束变元 这些变化是必要的
+         在其他的处理中也尽量不改变λ-term的表示方式
+         + 但是可以看出用图来表示λ-term时约束变元完全是多余的
+           但是最小立异原则是正确的
+      4. 使用`<'与`>'来命名某些变量
+         设置文本编辑器使这种字符串获得特殊的语法高亮
+         就可以强调一些重要的函数与变量
+      5. 出了很多错之后
+         我才明确我要在收集side-effect然后一起作用
+         ``if you want to record something without read and write a global var
+         you have to carry it as an arg
+         bacause a local var can't do that''
+         但是前提是 被记录的东西是递归调用这个被增加了参数的函数时获得的才行
+      6. 使用letcc实现的控制就是``the seasoned schemer''的`try'
+         使用它的原因在于找到一个代入点之后
+         需要退回到上一步才能用set-car!进行代入
+         + 当然这个做代入的副作用将被收集起来
+         为了程序的行为获得一致的理解
+         而只使用set-car!而不用set-cdr!来进行这个副作用
+
+      下面是等待手术者
+      手术发生在所有λ-abstraction出现的地方
+      #+begin_src scheme
+      var ∊ <*symbol*>
+      λ == ``λ''
+
+      term ::= var | λ-abstraction | application | sexp
+
+      λ-abstraction ::= (λ (var) term)
+      ;; β-redex ::= ((λ (var) term1) term2)
+      ;; β-redex == λ-application
+      ;; 虽然假设了λ-abstraction都是一元的
+      ;; λ-application也因此变得特殊
+      ;; 但是λ-application与extend-application还是不应该分开处理
+
+
+      application ::= (fun arg ...)
+                    | (application arg ...)
+                    这里假设了application的返回值的类型是fun
+                    所以需要一个报错
+      arg ::= term
+      fun ::= name-of-fun
+            | λ-abstraction
+      name-of-fun ::= var
+                    这里假设了var的值的类型是extend-rewrite-rule
+                    或者是name-of-λ-abstraction
+                    因此需要一个报错
+
+      sexp ::= (quote term)
+             | (quasiquote term^)
+       这里其实不对 不能用term来定义sexp
+       因为sexp中可能出现(1 . 2)
+      term^ ::= term^ | term | (unquote term)
+      #+end_src
+      λ-application只是(term term)
+      考虑一般的list是为了
+      语法扩展来把一元的λ-abstraction扩展到多元
+      同时也是为了使用在命名空间中找到的扩展rewrite-rule
+***** <init-surgery>
+      observing that
+      <init-surgery> handle all kinds of loop may occur
+      to avoid future bug
+      #+begin_src scheme :tangle daedalus-interpreter.scm
+      (define <*silent*>)
+
+      (define <init-surgery>
+        (lambda (term)
           (letrec
-              ([linking-list '()]
-               [to-link (lambda (linking-list)
-                          (if (not (null? linking-list))
-                              (let ()
-                                (apply (car linking-list) '())
-                                (to-link (cdr linking-list)))))]
-               ;; 下面的赋值只有在右边返回值之后才发生
-               ;; 因此需要用(to-link linking-list)来处理链接
-               [λ-head `(λ (,x) ,(<link-up!> sub-term))]
-               [<link-up!>
-                (lambda (sub-term)
-                  (pmatch-who '<link-up!> sub-term
-                    [`(,x1 λ (,x2) . ,body)
-                     sub-term]
+              ([<find-next-λ-abstraction>
+                (lambda (pointer)
+                  (pmatch-who '<init-surgery>:<find-next-λ-abstraction> pointer
+                    [`(,x λ (,x) . ,M)
+                     <*silent*>]
+                    [`(,x ζ (,N) . ,M)
+                     <*silent*>]
+                    [`(,x ζ* (,N) . ,M)
+                     <*silent*>]
                     [`,var
                      (guard (symbol? var))
-                     (cond [(eq? x var)
-                            (let ([x* (list x)])
-                              (set! linking-list (cons (lambda () (set-cdr! x* λ-head))
-                                                       linking-list))
-                              x*)]
-                           [else
-                            var])]
-                    [`(λ (,u) ,sub-term1)
-                     (cond [(eq? x u)
-                            `(λ (,u) ,sub-term1)]
-                           [else
-                            `(λ (,u) ,(<link-up!> sub-term1))])]
-                    [`(,sub-term1 ,sub-term2)
-                     `(,(<link-up!> sub-term1) ,(<link-up!> sub-term2))]))])
-            (to-link linking-list)
-            (set-car! (cdr (cdr λ-head)) (<λ-surgery> (car (cdr (cdr λ-head)))))
-            λ-head)]
-         [`(,sub-term1 ,sub-term2)
-          `(,(<λ-surgery> sub-term1) ,(<λ-surgery> sub-term2))])))
-   #+end_src
-** <init-surgery>
-*** note
-    1. <init-surgery>由两层递归
-       因此算法的复杂度是N^2 很不好的算法
-       内层的递归函数链接一个λ-abstraction的scope下的所有的变元
-       外层的递归函数跑遍所有的λ-abstraction
-       #+begin_src scheme
-       kkk
-       ==
-       #0=(λ (x) (λ (u) (u (x . #0#))))
-       --------------------------------
-       (car (cdr (cdr kkk)))
-       ==
-       #0=(λ (u) (u (x λ (x) #0#)))
-       #+end_src
-       因此x后面跟λ就是被处理过的λ-abstraction的标志
-       内层和外层递归都要首先就要处理这种情况以避免循环
-       #+begin_src scheme
-       (pmatch term
-         [`(,x1 λ (,x2) . ,body)
-          term])
-       #+end_src
-    2. 基本的作用必须都是一元的
-       非一元作用不处理 直接由pmatch-who报错
-    3. 最小立异原则:
-       scheme中的一个λ-abstraction被<init-surgery>处理后
-       变化了所有约束变元 这些变化是必要的
-       在其他的处理中也尽量不改变λ-term的表示方式
-       + 但是可以看出用图来表示λ-term时约束变元完全是多余的
-         但是最小立异原则是正确的
-    4. 使用`<'与`>'来命名某些变量
-       设置文本编辑器使这种字符串获得特殊的语法高亮
-       就可以强调一些重要的函数与变量
-    5. 出了很多错之后
-       我才明确我要在收集side-effect然后一起作用
-       ``if you want to record something without read and write a global var
-       you have to carry it as an arg
-       bacause a local var can't do that''
-       但是前提是 被记录的东西是递归调用这个被增加了参数的函数时获得的才行
-    6. 使用letcc实现的控制就是``the seasoned schemer''的`try'
-       使用它的原因在于找到一个代入点之后
-       需要退回到上一步才能用set-car!进行代入
-       + 当然这个做代入的副作用将被收集起来
-       为了程序的行为获得一致的理解
-       而只使用set-car!而不用set-cdr!来进行这个副作用
-
-    下面是等待手术者
-    手术发生在所有λ-abstraction出现的地方
-    #+begin_src scheme
-    var ∊ <*symbol*>
-    λ == ``λ''
-
-    term ::= var | λ-abstraction | application | sexp
-
-    λ-abstraction ::= (λ (var) term)
-    ;; β-redex ::= ((λ (var) term1) term2)
-    ;; β-redex == λ-application
-    ;; 虽然假设了λ-abstraction都是一元的
-    ;; λ-application也因此变得特殊
-    ;; 但是λ-application与extend-application还是不应该分开处理
-
-
-    application ::= (fun arg ...)
-                  | (application arg ...)
-                  这里假设了application的返回值的类型是fun
-                  所以需要一个报错
-    arg ::= term
-    fun ::= name-of-fun
-          | λ-abstraction
-    name-of-fun ::= var
-                  这里假设了var的值的类型是extend-rewrite-rule
-                  或者是name-of-λ-abstraction
-                  因此需要一个报错
-
-    sexp ::= (quote term)
-           | (quasiquote term^)
-     这里其实不对 不能用term来定义sexp
-     因为sexp中可能出现(1 . 2)
-    term^ ::= term^ | term | (unquote term)
-    #+end_src
-    λ-application只是(term term)
-    考虑一般的list是为了
-    语法扩展来把一元的λ-abstraction扩展到多元
-    同时也是为了使用在命名空间中找到的扩展rewrite-rule
-*** <init-surgery>
-    observing that
-    <init-surgery> handle all kinds of loop may occur
-    to avoid future bug
-    #+begin_src scheme :tangle daedalus-interpreter.scm
-    (define <*silent*>)
-
-    (define <init-surgery>
-      (lambda (term)
-        (letrec
-            ([<find-next-λ-abstraction>
-              (lambda (pointer)
-                (pmatch-who '<init-surgery>:<find-next-λ-abstraction> pointer
-                  [`(,x λ (,x) . ,M)
-                   <*silent*>]
-                  [`(,x ζ (,N) . ,M)
-                   <*silent*>]
-                  [`(,x ζ* (,N) . ,M)
-                   <*silent*>]
-                  [`,var
-                   (guard (symbol? var))
-                   <*silent*>]
-                  ;; atom in scheme will be return directly
-                  [`,one-atom
-                   (guard (atom? one-atom))
-                   <*silent*>]
-                  [`,empty-list-which-is-not-quoted
-                   (guard (null? empty-list-which-is-not-quoted))
-                   (printf "<init-surgery> :speaking:\n")
-                   (printf "an empty-list-which-is-not-quoted is inputed to me\n")
-                   (printf "i will return it as it is\n")]
-                  [`(λ (,x) ,sub-term)
-                   (let ()
-                     (letcc forget-the-second-sexp-temporarily
-                       (letcc back
-                         (forget-the-second-sexp-temporarily
-                          (<collect-side-effict> x sub-term pointer back)))
-                       (set! <collection-of-side-effect>
-                             (cons (lambda ()
-                                     (set-car! (cdr (cdr pointer)) (list x))
-                                     (set-cdr! (car (cdr (cdr pointer))) pointer))
-                                   <collection-of-side-effect>)))
-                     (<find-next-λ-abstraction> sub-term))]
-                  [`(quote __)
-                   <*silent*>]
-                  [`(quasiquote ,sexp)
-                   (letrec
-                       ([R* (lambda (sexp)
-                              (cond [(or (null? sexp) (atom? sexp))
-                                     <*silent*>]
-                                    [(eq? (car sexp) 'unquote)
-                                     (<find-next-λ-abstraction> (car (cdr sexp)))]
-                                    [else
-                                     (let ()
-                                       (R* (car sexp))
-                                       (R* (cdr sexp)))]
-                                    ))] )
-                     (R* sexp))]
-                  [`(,sub-term . ,sub-term-list)
-                   (letrec
-                       ([R (lambda (pointer)
-                             (cond [(null? pointer) <*silent*>]
-                                   [else
-                                    (let ()
-                                      (<find-next-λ-abstraction> (car pointer))
-                                      (R (cdr pointer)))]
-                                   ))] )
-                     (R pointer))]))]
-             [<collection-of-side-effect> '()]
-             [<do-side-effect>
-              (lambda (lis)
-                (if (not (null? lis))
-                    (let ()
-                      (apply (car lis) '())
-                      (<do-side-effect> (cdr lis)))))]
-             [<collect-side-effict>
-              (lambda (x sub-term pointer one-step-back)
-                (pmatch-who '<init-surgery>:<collect-side-effict> sub-term
-                  [`(,x λ (,x) . ,M)
-                   <*silent*>]
-                  [`(,x ζ (,N) . ,M)
-                   <*silent*>]
-                  [`(,x ζ* (,N) . ,M)
-                   <*silent*>]
-                  [`,var
-                   (guard (symbol? var))
-                   (if (eq? x var)
-                     (one-step-back <*silent*>))]
-                  [`,one-atom
-                   (guard (atom? one-atom))
-                   <*silent*>]
-                  [`,empty-list-which-is-not-quoted
-                   (guard (null? empty-list-which-is-not-quoted))
-                   (printf "<init-surgery> :speaking:\n")
-                   (printf "an empty-list-which-is-not-quoted is inputed to me\n")
-                   (printf "i will return it as it is\n")]
-                  [`(λ (,u) ,sub-term*)
-                   (if (not (eq? x u))
+                     <*silent*>]
+                    ;; atom in scheme will be return directly
+                    [`,one-atom
+                     (guard (atom? one-atom))
+                     <*silent*>]
+                    [`,empty-list-which-is-not-quoted
+                     (guard (null? empty-list-which-is-not-quoted))
+                     (printf "<init-surgery> :speaking:\n")
+                     (printf "an empty-list-which-is-not-quoted is inputed to me\n")
+                     (printf "i will return it as it is\n")]
+                    [`(λ (,x) ,sub-term)
+                     (let ()
                        (letcc forget-the-second-sexp-temporarily
                          (letcc back
                            (forget-the-second-sexp-temporarily
-                            (<collect-side-effict> x sub-term* pointer back)))
+                            (<collect-side-effict> x sub-term pointer back)))
                          (set! <collection-of-side-effect>
                                (cons (lambda ()
-                                       (set-car! (cdr (cdr sub-term)) (list x))
-                                       (set-cdr! (car (cdr (cdr sub-term))) pointer))
-                                     <collection-of-side-effect>))))]
-                  [`(quote __)
-                   <*silent*>]
-                  [`(quasiquote ,sexp)
-                   (letrec
-                       ([R* (lambda (sexp)
-                              (cond [(or (null? sexp) (atom? sexp))
-                                     <*silent*>]
-                                    [(eq? (car sexp) 'unquote)
-                                     (letcc forget-the-second-sexp-temporarily
-                                       (letcc back
-                                         (forget-the-second-sexp-temporarily
-                                          (<collect-side-effict> x (car (cdr sexp)) pointer back)))
-                                       (set! <collection-of-side-effect>
-                                             (cons (lambda ()
-                                                     (set-car! (cdr sexp) (list x))
-                                                     (set-cdr! (car (cdr sexp)) pointer))
-                                                   <collection-of-side-effect>)))]
-                                    [else
-                                     (let ()
-                                       (R* (car sexp))
-                                       (R* (cdr sexp)))]
-                                    ))] )
-                     (R* sexp))]
-                  [`(,sub-term* . ,sub-term-list)
-                   (letrec
-                       ([R (lambda (sub-term)
-                             (cond [(null? sub-term) <*silent*>]
-                                   [else
-                                    (let ()
-                                      (letcc forget-the-second-sexp-temporarily
-                                        (letcc back
-                                          (forget-the-second-sexp-temporarily
-                                           (<collect-side-effict> x (car sub-term) pointer back)))
-                                        (set! <collection-of-side-effect>
-                                              (cons (lambda ()
-                                                      (set-car! sub-term (list x))
-                                                      (set-cdr! (car sub-term) pointer))
-                                                    <collection-of-side-effect>)))
-                                      (R (cdr sub-term)))]
-                                   ))] )
-                     (R sub-term))]
-                  ))] )
-          (<find-next-λ-abstraction> term)
-          (<do-side-effect> <collection-of-side-effect>)
-          term)))
-    #+end_src
-*** test: <init-surgery>
-    #+begin_src scheme
-    (begin
-      (newline)
-      (display "test: <init-surgery>")
-      (newline)
-      (display (<init-surgery> '(λ (x) x)))
-      (newline)
-      (display (<init-surgery> '(λ (x) (λ (u) (u x)))))
-      (newline)
-      (display (<init-surgery> '(λ (x) (x (u x)))))
-      (newline)
-      (display (<init-surgery> '(λ (x) (λ (x) (x x)))))
-      (newline)
-      (display (<init-surgery> '(λ (x) (((x x) x) z))))
-      (newline)
-      (display (<init-surgery> '(λ (x) ((λ (x) (x x)) (x k)))))
-      (newline)
-      (display (<init-surgery> '(λ (x) ((λ (x) (λ (x) ((x x) (x x)))) ((x x) (x k))))))
-      (newline)
-      (display (<init-surgery> '((λ (x) ((λ (x) (x x)) (x k))) (λ (x) ((λ (x) (x x)) (x k))))))
-      (newline)
-      (display (<init-surgery> '((λ (x) ((λ (x) (x x)) (x k))) a)))
-      (newline)
-      (display (<init-surgery> '((λ (x)
-                                   (x
-                                    ((λ (y)
-                                       (y k))
-                                     x)))
-                                 (λ (z)
-                                   z))))
-      (newline)
-      (let ([kkk (<init-surgery> '(λ (x) x))])
-        (display "test: 等词")
+                                       (set-car! (cdr (cdr pointer)) (list x))
+                                       (set-cdr! (car (cdr (cdr pointer))) pointer))
+                                     <collection-of-side-effect>)))
+                       (<find-next-λ-abstraction> sub-term))]
+                    [`(quote __)
+                     <*silent*>]
+                    [`(quasiquote ,sexp)
+                     (letrec
+                         ([R* (lambda (sexp)
+                                (cond [(or (null? sexp) (atom? sexp))
+                                       <*silent*>]
+                                      [(eq? (car sexp) 'unquote)
+                                       (<find-next-λ-abstraction> (car (cdr sexp)))]
+                                      [else
+                                       (let ()
+                                         (R* (car sexp))
+                                         (R* (cdr sexp)))]
+                                      ))] )
+                       (R* sexp))]
+                    [`(,sub-term . ,sub-term-list)
+                     (letrec
+                         ([R (lambda (pointer)
+                               (cond [(null? pointer) <*silent*>]
+                                     [else
+                                      (let ()
+                                        (<find-next-λ-abstraction> (car pointer))
+                                        (R (cdr pointer)))]
+                                     ))] )
+                       (R pointer))]))]
+               [<collection-of-side-effect> '()]
+               [<do-side-effect>
+                (lambda (lis)
+                  (if (not (null? lis))
+                      (let ()
+                        (apply (car lis) '())
+                        (<do-side-effect> (cdr lis)))))]
+               [<collect-side-effict>
+                (lambda (x sub-term pointer one-step-back)
+                  (pmatch-who '<init-surgery>:<collect-side-effict> sub-term
+                    [`(,x λ (,x) . ,M)
+                     <*silent*>]
+                    [`(,x ζ (,N) . ,M)
+                     <*silent*>]
+                    [`(,x ζ* (,N) . ,M)
+                     <*silent*>]
+                    [`,var
+                     (guard (symbol? var))
+                     (if (eq? x var)
+                       (one-step-back <*silent*>))]
+                    [`,one-atom
+                     (guard (atom? one-atom))
+                     <*silent*>]
+                    [`,empty-list-which-is-not-quoted
+                     (guard (null? empty-list-which-is-not-quoted))
+                     (printf "<init-surgery> :speaking:\n")
+                     (printf "an empty-list-which-is-not-quoted is inputed to me\n")
+                     (printf "i will return it as it is\n")]
+                    [`(λ (,u) ,sub-term*)
+                     (if (not (eq? x u))
+                         (letcc forget-the-second-sexp-temporarily
+                           (letcc back
+                             (forget-the-second-sexp-temporarily
+                              (<collect-side-effict> x sub-term* pointer back)))
+                           (set! <collection-of-side-effect>
+                                 (cons (lambda ()
+                                         (set-car! (cdr (cdr sub-term)) (list x))
+                                         (set-cdr! (car (cdr (cdr sub-term))) pointer))
+                                       <collection-of-side-effect>))))]
+                    [`(quote __)
+                     <*silent*>]
+                    [`(quasiquote ,sexp)
+                     (letrec
+                         ([R* (lambda (sexp)
+                                (cond [(or (null? sexp) (atom? sexp))
+                                       <*silent*>]
+                                      [(eq? (car sexp) 'unquote)
+                                       (letcc forget-the-second-sexp-temporarily
+                                         (letcc back
+                                           (forget-the-second-sexp-temporarily
+                                            (<collect-side-effict> x (car (cdr sexp)) pointer back)))
+                                         (set! <collection-of-side-effect>
+                                               (cons (lambda ()
+                                                       (set-car! (cdr sexp) (list x))
+                                                       (set-cdr! (car (cdr sexp)) pointer))
+                                                     <collection-of-side-effect>)))]
+                                      [else
+                                       (let ()
+                                         (R* (car sexp))
+                                         (R* (cdr sexp)))]
+                                      ))] )
+                       (R* sexp))]
+                    [`(,sub-term* . ,sub-term-list)
+                     (letrec
+                         ([R (lambda (sub-term)
+                               (cond [(null? sub-term) <*silent*>]
+                                     [else
+                                      (let ()
+                                        (letcc forget-the-second-sexp-temporarily
+                                          (letcc back
+                                            (forget-the-second-sexp-temporarily
+                                             (<collect-side-effict> x (car sub-term) pointer back)))
+                                          (set! <collection-of-side-effect>
+                                                (cons (lambda ()
+                                                        (set-car! sub-term (list x))
+                                                        (set-cdr! (car sub-term) pointer))
+                                                      <collection-of-side-effect>)))
+                                        (R (cdr sub-term)))]
+                                     ))] )
+                       (R sub-term))]
+                    ))] )
+            (<find-next-λ-abstraction> term)
+            (<do-side-effect> <collection-of-side-effect>)
+            term)))
+      #+end_src
+***** test: <init-surgery>
+      #+begin_src scheme
+      (begin
         (newline)
-        (display "should be #t: ")
-        (display (eq? (cdr (car (cdr (cdr kkk)))) kkk))
+        (display "test: <init-surgery>")
         (newline)
-        (display "should be #t: ")
-        (display (equal? (cdr (car (cdr (cdr (<init-surgery> '(λ (x) x)))))) (<init-surgery> '(λ (x) x))))
+        (display (<init-surgery> '(λ (x) x)))
         (newline)
-        (display "should be #f: ")
-        (display (eq? (cdr (car (cdr (cdr (<init-surgery> '(λ (x) x)))))) (<init-surgery> '(λ (x) x))))
-        (newline))
-      (display "test: 非一元作用")
-      (newline)
-      (display (<init-surgery> '(λ (x) (x x x))))
-      (newline)
-      (display (<init-surgery> '(λ (x) (x))))
-      (newline)
-      (display "test: sexp")
-      (newline)
-      (display (<init-surgery>
-                '(λ (x) `(x x x))))
-      (display (<init-surgery>
-                '(λ (x) '(x x x))))
-      (newline)
-      (display (<init-surgery>
-                '(λ (x) `,x)))
-      (newline)
-      (display (<init-surgery>
-                '(λ (x) (quasiquote (unquote x)))))
-      (newline)
-      (display "test: improper-list")
-      (newline)
-      (display "not good looking but still should be:")
-      (newline)
-      (display "(λ (a) (λ (d) `(,a unquote d)))")
-      (newline)
-      (display '(λ (a)
-                  (λ (d)
-                    `(,a . ,d))))
-      (newline)
-      (display "not good looking but still should be:")
-      (newline)
-      (display "#0=(λ (a) #1=(λ (d) `(,(a . #0#) unquote (d . #1#))))")
-      (newline)
-      (display (<init-surgery>
-                '(λ (a)
-                   (λ (d)
-                     `(,a . ,d)))))
-      (newline)
-      (display "should be:")
-      (newline)
-      (display "#0=(λ (a) #1=(λ (d) `(,(a . #0#) ,(d . #1#))))")
-      (newline)
-      (display (<init-surgery>
-                '(λ (a)
-                   (λ (d)
-                     `(,a  ,d)))))
-      (newline)
-      (newline)
-      (printf "non-pair in scheme will be return directly:\n")
-      (printf
-       "(<init-surgery>
-        '())\n==>\n~s\n"
-       (<init-surgery>
-        '()))
-      (printf
-       "(<init-surgery>
-        car)\n==>\n~s\n"
-       (<init-surgery>
-        car))
+        (display (<init-surgery> '(λ (x) (λ (u) (u x)))))
+        (newline)
+        (display (<init-surgery> '(λ (x) (x (u x)))))
+        (newline)
+        (display (<init-surgery> '(λ (x) (λ (x) (x x)))))
+        (newline)
+        (display (<init-surgery> '(λ (x) (((x x) x) z))))
+        (newline)
+        (display (<init-surgery> '(λ (x) ((λ (x) (x x)) (x k)))))
+        (newline)
+        (display (<init-surgery> '(λ (x) ((λ (x) (λ (x) ((x x) (x x)))) ((x x) (x k))))))
+        (newline)
+        (display (<init-surgery> '((λ (x) ((λ (x) (x x)) (x k))) (λ (x) ((λ (x) (x x)) (x k))))))
+        (newline)
+        (display (<init-surgery> '((λ (x) ((λ (x) (x x)) (x k))) a)))
+        (newline)
+        (display (<init-surgery> '((λ (x)
+                                     (x
+                                      ((λ (y)
+                                         (y k))
+                                       x)))
+                                   (λ (z)
+                                     z))))
+        (newline)
+        (let ([kkk (<init-surgery> '(λ (x) x))])
+          (display "test: 等词")
+          (newline)
+          (display "should be #t: ")
+          (display (eq? (cdr (car (cdr (cdr kkk)))) kkk))
+          (newline)
+          (display "should be #t: ")
+          (display (equal? (cdr (car (cdr (cdr (<init-surgery> '(λ (x) x)))))) (<init-surgery> '(λ (x) x))))
+          (newline)
+          (display "should be #f: ")
+          (display (eq? (cdr (car (cdr (cdr (<init-surgery> '(λ (x) x)))))) (<init-surgery> '(λ (x) x))))
+          (newline))
+        (display "test: 非一元作用")
+        (newline)
+        (display (<init-surgery> '(λ (x) (x x x))))
+        (newline)
+        (display (<init-surgery> '(λ (x) (x))))
+        (newline)
+        (display "test: sexp")
+        (newline)
+        (display (<init-surgery>
+                  '(λ (x) `(x x x))))
+        (display (<init-surgery>
+                  '(λ (x) '(x x x))))
+        (newline)
+        (display (<init-surgery>
+                  '(λ (x) `,x)))
+        (newline)
+        (display (<init-surgery>
+                  '(λ (x) (quasiquote (unquote x)))))
+        (newline)
+        (display "test: improper-list")
+        (newline)
+        (display "not good looking but still should be:")
+        (newline)
+        (display "(λ (a) (λ (d) `(,a unquote d)))")
+        (newline)
+        (display '(λ (a)
+                    (λ (d)
+                      `(,a . ,d))))
+        (newline)
+        (display "not good looking but still should be:")
+        (newline)
+        (display "#0=(λ (a) #1=(λ (d) `(,(a . #0#) unquote (d . #1#))))")
+        (newline)
+        (display (<init-surgery>
+                  '(λ (a)
+                     (λ (d)
+                       `(,a . ,d)))))
+        (newline)
+        (display "should be:")
+        (newline)
+        (display "#0=(λ (a) #1=(λ (d) `(,(a . #0#) ,(d . #1#))))")
+        (newline)
+        (display (<init-surgery>
+                  '(λ (a)
+                     (λ (d)
+                       `(,a  ,d)))))
+        (newline)
+        (newline)
+        (printf "non-pair in scheme will be return directly:\n")
+        (printf
+         "(<init-surgery>
+          '())\n==>\n~s\n"
+         (<init-surgery>
+          '()))
+        (printf
+         "(<init-surgery>
+          car)\n==>\n~s\n"
+         (<init-surgery>
+          car))
 
-      (printf
-       "(<init-surgery>
-        `(λ (a)
-           (λ (d)
-             ,(<init-surgery>
-               '(λ (a)
-                  (λ (d)
-                    `(,a  ,d)))))))\n==>\n~s\n"
-       (<init-surgery>
-        `(λ (a)
-           (λ (d)
-             ,(<init-surgery>
-               '(λ (a)
-                  (λ (d)
-                    `(,a  ,d))))))))
-      )
-    #+end_src
-** <-β-
-*** >< surgery-lib
-    必须设计出对post-term的基本的surgery操作是什么
-    因为我不可能每次都具体对单个的post-term进行surgery
-*** >< 能推导λ-abstracion的类型
-    这些信息可以帮助理解代码
-    因为只有某些类型的参数才能使λ-abstracion的行为符合预期
-    这些信息可以用来来追踪bug
-    但不用类型系统来限制λ-term的使用
-    (λ-term的类型呢?)
-*** >< anti object system
-    如果是一个单纯的类型系统而不处理数据结构的具体实现
-    那么有很多小段代码将会重复
-    但是为这种代码重复问题提供一个标准的解法
-    会增加理解的负担
-    并且常常不能满足需要
-    既然由足够强大的syntax-rules了
-    每个遇到特殊的代码重复问题的人就应该自己用syntax-rules去解决问题
-    比如pmatch-who
-*** >< module system
-    既然由sexp
-    就可以用树结构来表示export目录
-    可以用类似org-mode的headline表明依赖关系
-    要知道org-mode的headline的数据结构就是用elisp中的sexp实现的
-    headline下有文字 文字下面才是sub-headline
-    文字就对应于隶属于这个headline的procedure
-    而sub-headline除了能表明procedure之间的依赖关系
-    还可以从意义上对procedure分类
-    这样用户就可以精确的import单个的procedure而依赖关系会被module system妥善处理
-*** >< 一个机制可以探测出无限循以环防止它们被求值
-*** >< 需要的时候可以用show函数来用图形展示λ-term的几何结构
-    各种几何结构
-*** >< 最后别忘了设计exception mechanism
-    1) ''the goal of a program is not so much to avoid committing errors
-       but rather to fulfil its duty''
-    2) 有些时候要脱离scheme
-       而有些时候要利用scheme的强大的能力
-       既然scheme的call/cc有如此强大的控制能力
-       那么最好能够将出错的地点精确地指出来
-       + 比如pmatch-who就很值得学习
-       + 比如ikarus就没有明确的指出出错的位置在整体的什么部分
-       + 比如虽然<-β-能够告诉用户是在使用<-β-的时候遇到()
-         但是它不能告诉用户在表达式的什么地方遇到了()
-         我想需要一个机制能够在出错时回溯<-β-的计算过程
-         在β-redex中加printf-term是一种方法
-         >< 所以应该由这样一种特性:
-         使得出错的时候让用户选择是不是在拿刚才输入的sexp再进行一次计算
-         这次计算到错误的位置的时候用户可以选择去一步一步地退回
-         看上一次计算的输入与输出
-         也就是说
-         第二次计算的时候使用的是<-β-的一个变体
-         它可以用letcc一步步退回的上一次的计算
-    3) 错误处理系统可以和repl系统相结合
-       出大错时可以退回到ikarus的repl中
-*** >< set set-car! set-cdr! how to do better?
-*** note
-    + the way to eval β-redex: (F must be eval to a λ-abstraction)
-      1. call-by-name:
-         ②(①F N)
-      2. call-by-need:
-         ⓶(①F N)
-         where ⓶ is returning ζ-term
-      3. call-by-value:
-         ③(①F ②N)
-
-    + 只有sexp的第一个位置会被求值
-      其他位置需要被求值一定是因为使用了扩展procedure
-      observing that
-      here are no ``eval'' and ``apply'' anymore
-      here is only ``<-β-''
-
-    + scheme中λ-cal可以控制列表处理
-      列表处理想要控制λ-cal就必须用eval
-      而在我的解释器中
-      因为procedure的透明性
-      列表处理对λ-cal的控制不需要eval
-
-    + quote quasiquote unquote:
-      1. 首先quote的意义在区分作为list的sexp和作为procedure的sexp
-      2. 可以说quasiquote和unquote一起是在控制λ-abstraction中的var的scope
-      3. 以递归的方式处理的quasiquote和unquote自然地允许嵌套
-
-    + 局部变元与全局变元的处理方式是不一致的
-      全局的绑定是dynamic scope
-      局部的绑定是lexical scope
-
-    + def是可以出现在表达式的任何位置作为副作用来更改全局命名空间的
-      需要语法关键词begin的帮助来在我的解释器中实现副作用
-
-    + 注意:
-      不要用lambda维持的顺序结构
-      因为这只能在eager-eval中实现
-      也就是说实现let与begin的方式完全不同了
-
-
-    where to call <-β- recursively?
-    1. local-var:
-       `(,x ζ (,N) . ,M)
-       occur during ⓶ in ⓶(①F N)
-       M is the body of F (λ-abstraction)
-       + for efficiency
-         <-β- N and remark ζ to ζ*
-         then <-β- `(,x ζ* (,post-N) . ,M) again
-       + 注意: 为了提高效率而作优化的时候
-         不用在乎算法复杂度的渐进展开式的低阶项
-         我想这是避免把一次优化变得过于复杂的重要原则
-    2. post-local-var:
-       `(,x ζ* (,post-N) . ,M)
-       list-copy post-N to this occurrence of x
-    3. global-var:
-       `,var
-    4. β-redex:
-       `((λ (,x) ,M) ,N)
-       return
-       `(,x ζ (,N) . ,M)
-       and <-β- M
-    5. δ-redex:
-       ><
-    6. `(,fun . ,arg-list)
-       this is (F N) in ⓶(①F N)
-       fun might be: β-redex δ-redex local-var post-local-var global-var
-       fun must be eval to a λ-abstraction or an extend-fun
-
-    还需要
-    1. syntax-rules来作扩展
-       syntax-rules必须在上面的核心部分中被写出来
-    2. 尾递归优化
-    3. call/cc
-    4. 需要一个不被鼓励使用的与scheme的接口
-       因为scheme的procedure的作用方式与我的解释器不同
-    5. 如何实现与别的语言的接口?
-
+        (printf
+         "(<init-surgery>
+          `(λ (a)
+             (λ (d)
+               ,(<init-surgery>
+                 '(λ (a)
+                    (λ (d)
+                      `(,a  ,d)))))))\n==>\n~s\n"
+         (<init-surgery>
+          `(λ (a)
+             (λ (d)
+               ,(<init-surgery>
+                 '(λ (a)
+                    (λ (d)
+                      `(,a  ,d))))))))
+        )
+      #+end_src
 *** <-β-
-    #+begin_src scheme :tangle daedalus-interpreter.scm
-    (define <empty-env>
-      (lambda (var)
-        (<abort> (begin
-                   (newline)
-                   (printf "<empty-env> :speaking:\n")
-                   (printf "con't find the value of name:~s\n" var)
-                   (printf "i have stoped the computation\n")
-                   (printf "i wish to store a cc for you in the feature\n")
-                   (newline)))))
+***** >< surgery-lib
+      必须设计出对post-term的基本的surgery操作是什么
+      因为我不可能每次都具体对单个的post-term进行surgery
+***** >< 能推导λ-abstracion的类型
+      这些信息可以帮助理解代码
+      因为只有某些类型的参数才能使λ-abstracion的行为符合预期
+      这些信息可以用来来追踪bug
+      但不用类型系统来限制λ-term的使用
+      (λ-term的类型呢?)
+***** >< anti object system
+      如果是一个单纯的类型系统而不处理数据结构的具体实现
+      那么有很多小段代码将会重复
+      但是为这种代码重复问题提供一个标准的解法
+      会增加理解的负担
+      并且常常不能满足需要
+      既然由足够强大的syntax-rules了
+      每个遇到特殊的代码重复问题的人就应该自己用syntax-rules去解决问题
+      比如pmatch-who
+***** >< module system
+      既然由sexp
+      就可以用树结构来表示export目录
+      可以用类似org-mode的headline表明依赖关系
+      要知道org-mode的headline的数据结构就是用elisp中的sexp实现的
+      headline下有文字 文字下面才是sub-headline
+      文字就对应于隶属于这个headline的procedure
+      而sub-headline除了能表明procedure之间的依赖关系
+      还可以从意义上对procedure分类
+      这样用户就可以精确的import单个的procedure而依赖关系会被module system妥善处理
+***** >< 一个机制可以探测出无限循以环防止它们被求值
+***** >< 需要的时候可以用show函数来用图形展示λ-term的几何结构
+      各种几何结构
+***** >< 最后别忘了设计exception mechanism
+      1) ''the goal of a program is not so much to avoid committing errors
+         but rather to fulfil its duty''
+      2) 有些时候要脱离scheme
+         而有些时候要利用scheme的强大的能力
+         既然scheme的call/cc有如此强大的控制能力
+         那么最好能够将出错的地点精确地指出来
+         + 比如pmatch-who就很值得学习
+         + 比如ikarus就没有明确的指出出错的位置在整体的什么部分
+         + 比如虽然<-β-能够告诉用户是在使用<-β-的时候遇到()
+           但是它不能告诉用户在表达式的什么地方遇到了()
+           我想需要一个机制能够在出错时回溯<-β-的计算过程
+           在β-redex中加printf-term是一种方法
+           >< 所以应该由这样一种特性:
+           使得出错的时候让用户选择是不是在拿刚才输入的sexp再进行一次计算
+           这次计算到错误的位置的时候用户可以选择去一步一步地退回
+           看上一次计算的输入与输出
+           也就是说
+           第二次计算的时候使用的是<-β-的一个变体
+           它可以用letcc一步步退回的上一次的计算
+      3) 错误处理系统可以和repl系统相结合
+         出大错时可以退回到ikarus的repl中
+***** >< set set-car! set-cdr! how to do better?
+***** note
+      + the way to eval β-redex: (F must be eval to a λ-abstraction)
+        1. call-by-name:
+           ②(①F N)
+        2. call-by-need:
+           ⓶(①F N)
+           where ⓶ is returning ζ-term
+        3. call-by-value:
+           ③(①F ②N)
 
-    (define extend
-      (lambda (var-1 boxed-val env)
-        (lambda (var-2)
-          (cond [(symbol? var-2)
-                 (if (eq? var-2 var-1)
-                   boxed-val
-                   (env var-2))]
-                [(eq? (car var-2) 'show-env)
-                 (if (eq? (cdr var-2) var-1)
-                   (begin
-                     (printf ":name:\n~s\n" var-1)
-                     (printf ":value:\n~s\n" (boxed-val (lambda (val
-                                                            to-set-val
-                                                            doc
-                                                            to-set-doc)
-                                                          val)))
-                     (printf ":document:\n~s\n\n" (boxed-val (lambda (val
-                                                                 to-set-val
-                                                                 doc
-                                                                 to-set-doc)
-                                                               doc)))
-                     (printf "the end of a <env> show\n"))
-                   (begin
-                     (printf ":name:\n~s\n" var-1)
-                     (printf ":value:\n~s\n" (boxed-val (lambda (val
-                                                            to-set-val
-                                                            doc
-                                                            to-set-doc)
-                                                          val)))
-                     (printf ":document:\n~s\n\n" (boxed-val (lambda (val
-                                                                 to-set-val
-                                                                 doc
-                                                                 to-set-doc)
-                                                               doc)))
+      + 只有sexp的第一个位置会被求值
+        其他位置需要被求值一定是因为使用了扩展procedure
+        observing that
+        here are no ``eval'' and ``apply'' anymore
+        here is only ``<-β-''
 
-                     (env var-2)))]))))
-    ;; box: val -> boxed-val
-    ;; and doc-string is in the box now!
-    ;; boxed-val: selector -> let-selector-to-select-in-the-box
-    (define box
-      (lambda (val doc)
-        (lambda (selector)
-          (selector val
-                    (lambda (new-val) (set! val new-val))
-                    doc
-                    (lambda (new-doc) (set! doc new-doc))))))
-    ;; <non-empty-env>: var -> boxed-val
-    (define <env> <empty-env>)
+      + scheme中λ-cal可以控制列表处理
+        列表处理想要控制λ-cal就必须用eval
+        而在我的解释器中
+        因为procedure的透明性
+        列表处理对λ-cal的控制不需要eval
 
-    ;; (define show-env-before-an-end-var
-    ;;   (lambda (an-end-var)
-    ;;     (newline)
-    ;;     (<env> (cons 'show-env an-end-var))))
+      + quote quasiquote unquote:
+        1. 首先quote的意义在区分作为list的sexp和作为procedure的sexp
+        2. 可以说quasiquote和unquote一起是在控制λ-abstraction中的var的scope
+        3. 以递归的方式处理的quasiquote和unquote自然地允许嵌套
+
+      + 局部变元与全局变元的处理方式是不一致的
+        全局的绑定是dynamic scope
+        局部的绑定是lexical scope
+
+      + def是可以出现在表达式的任何位置作为副作用来更改全局命名空间的
+        需要语法关键词begin的帮助来在我的解释器中实现副作用
+
+      + 注意:
+        不要用lambda维持的顺序结构
+        因为这只能在eager-eval中实现
+        也就是说实现let与begin的方式完全不同了
 
 
-    (define <-β-
-      ;; after added many abilities to handle non-λ-terms
-      ;; <-β- lost it's purity as a math obj (a partial-order-relation)
-      (lambda (term-or-post-term)
-        (letcc when-meet-<abort>-stop-computation-and-come-back-here
-          (set! <abort> when-meet-<abort>-stop-computation-and-come-back-here)
-          (pmatch-who '<-β- term-or-post-term
+      where to call <-β- recursively?
+      1. local-var:
+         `(,x ζ (,N) . ,M)
+         occur during ⓶ in ⓶(①F N)
+         M is the body of F (λ-abstraction)
+         + for efficiency
+           <-β- N and remark ζ to ζ*
+           then <-β- `(,x ζ* (,post-N) . ,M) again
+         + 注意: 为了提高效率而作优化的时候
+           不用在乎算法复杂度的渐进展开式的低阶项
+           我想这是避免把一次优化变得过于复杂的重要原则
+      2. post-local-var:
+         `(,x ζ* (,post-N) . ,M)
+         list-copy post-N to this occurrence of x
+      3. global-var:
+         `,var
+      4. β-redex:
+         `((λ (,x) ,M) ,N)
+         return
+         `(,x ζ (,N) . ,M)
+         and <-β- M
+      5. δ-redex:
+         ><
+      6. `(,fun . ,arg-list)
+         this is (F N) in ⓶(①F N)
+         fun might be: β-redex δ-redex local-var post-local-var global-var
+         fun must be eval to a λ-abstraction or an extend-fun
 
-            ;; -----------------------------------------------
-            ;; <env> is a global name-table
-            ;; learned from friedman's ``the seasond schemer''
-            [`(def ,var)
-             (set! <env>
-                   (extend var
-                           (box "my-void--what-should-my-void-be?"
-                                "this var has no doc")
-                           <env>))]
-            [`(def ,var ,val)
-             (set! <env>
-                   (extend var
-                           (box (<-β- val)
-                                "this var has no doc")
-                           <env>))]
-            [`(def ,var ,val ,doc)
-             (set! <env>
-                   (extend var
-                           (box (<-β- val)
-                                doc)
-                           <env>))]
-            ;; (<env> var) is boxed-val
-            ;; boxed-val: selector -> let-selector-to-select-in-the-box
-            [`,var
-             (guard (symbol? var))
-             (list-copy
-              ((<env> var) (lambda (val
-                               to-set-val
-                               doc
-                               to-set-doc)
-                             val)))]
-            [`(set! ,var ,new-val)
-             ((<env> var) (lambda (val
-                              to-set-val
-                              doc
-                              to-set-doc)
-                            (to-set-val new-val)))]
-            [`(doc ,var)
-             ((<env> var) (lambda (val
-                              to-set-val
-                              doc
-                              to-set-doc)
-                            doc))]
-            [`(rewrite-doc ,var ,new-doc)
-             ((<env> var) (lambda (val
-                              to-set-val
-                              doc
-                              to-set-doc)
-                            (to-set-doc new-doc)))]
-            [`(show-env-before-an-end-var ,an-end-var)
-             (begin
-               (newline)
-               (<env> (cons 'show-env an-end-var)))]
+      还需要
+      1. syntax-rules来作扩展
+         syntax-rules必须在上面的核心部分中被写出来
+      2. 尾递归优化
+      3. call/cc
+      4. 需要一个不被鼓励使用的与scheme的接口
+         因为scheme的procedure的作用方式与我的解释器不同
+      5. 如何实现与别的语言的接口?
 
-            ;; --------------------------------------------------
-            ;; to be consistent with some part of scheme (minimum-dissimilarity)
-            [`,empty-list-which-is-not-quoted
-             (guard (null? empty-list-which-is-not-quoted))
-             (<abort> (begin
-                        (newline)
-                        (printf "<-β- :speaking:\n")
-                        (printf "an empty-list must be quoted to input to me\n")
-                        (printf "i have stoped the computation\n")
-                        (printf "i wish to store a cc for you in the feature\n")
-                        (newline)))]
-            ;; atom in scheme will be return directly
-            [`,an-atom
-             (guard (atom? an-atom))
-             an-atom]
-            [`(begin . ,term-list)
-             (letrec
-                 ([empty-begin
-                   "my-empty-begin"]
-                  [progn
-                   (lambda (term-list)
-                     (cond [(null? term-list)
-                            empty-begin]
-                           [(null? (cdr term-list))
-                            (<-β- (car term-list))]
-                           [else
-                            (begin (<-β- (car term-list))
-                                   (progn (cdr term-list)))]
-                           ))] )
-               (progn term-list))]
-            ;; scm-redex
-            ;; by (def a-name (scm name))
-            ;; one can push anything in scheme to this interpreter
-            ;; while in my interpreter
-            ;; these things must use <env> as name-space
-            ;; and be careful of the eager-eval
-            ;; and observing that according to the following code
-            ;; post-body will be ``<-β-'' and ``eval''
-            ;; this repeated eval is not right
-            ;; but what can i do?
-            [`((scm ,name) . ,post-body)
-             (letrec ([eager-evlis
-                       (lambda (post-body)
-                         (cond [(null? post-body) '()]
-                               [else
-                                (cons (<-β- (car post-body))
-                                      (eager-evlis (cdr post-body)))]))])
-               (eval `(,name . ,(eager-evlis post-body))
-                     (interaction-environment)))]
-            ;; and it is cool that different interpreter can work together!!
+***** <-β-
+      #+begin_src scheme :tangle daedalus-interpreter.scm
+      (define <empty-env>
+        (lambda (var)
+          (<abort> (begin
+                     (newline)
+                     (printf "<empty-env> :speaking:\n")
+                     (printf "con't find the value of name:~s\n" var)
+                     (printf "i have stoped the computation\n")
+                     (printf "i wish to store a cc for you in the feature\n")
+                     (newline)))))
 
-            ;; ---------------------------------------------------
-            ;; core:
-            [`(,x λ (,x) . ,M)
-             term-or-post-term]
-            [`(,x ζ (,N) . ,M)
-             ;; (set! ζ ζ*)
-             (set-car! (cdr term-or-post-term) 'ζ*)
-             ;; (set! N (<-β- N))
-             (set-car! (caddr term-or-post-term) (<-β- N))
-             (<-β- term-or-post-term)]
-            [`(,x ζ* (,post-N) . ,M)
-             (list-copy post-N)]
-            [`(quote ,sexp)
-             sexp]
-            [`(quasiquote ,sexp)
-             (letrec
-                 ([R
-                   (lambda (sexp)
-                     (pmatch-who '<-β-:*quasiquote sexp
-                       ;; ``unquote'' is key word to pmatch-who
-                       [`(,the-unquote ,d)
-                        (guard (eq? the-unquote 'unquote))
-                        (pmatch-who '<-β-:*quasiquote:unquote d
-                          [`(,x λ (,x) . ,M)
-                           sexp]
-                          [else
-                           (<-β- d)])]
-                       [`,non-pair
-                        (guard (not (pair? non-pair)))
-                        non-pair]
-                       [`(,a . ,d)
-                        `(,(R a) . ,(R d))] ))] )
-               ;; ``quasiquote'' is key word to scheme
-               (R sexp))]
-            [`(λ (,x) ,M)
-             (<init-surgery> term-or-post-term)]
-            ;; β-redex
-            [`((λ (,x) ,M) ,N)
-             (begin
-               ;; here are some printf for debug
-               ;; you can add new printf-terms as you need
-               ;; (printf ":β-redex-----------------------------------\n")
-               ;; (printf ":term-or-post-term:β-redex:\n~s\n" term-or-post-term)
-               ;; (printf ":N:\n~s\n" N)
-               ;; (printf ":M:\n~s\n" M)
-               ;; ;; (set! λ-abstracion λ-post-abstraction)
-               (set-car! term-or-post-term
-                         (<init-surgery> (car term-or-post-term)))
-               ;; (printf ":post-term-or-post-term:β-redex:\n~s\n" term-or-post-term)
-               ;; (printf ":N:\n~s\n" N)
-               ;; (printf ":M:\n~s\n" M)
-               ;; ;; (set! 'λ 'ζ)
-               (set-car! (car term-or-post-term) 'ζ)
-               ;; ;; (set! x N)
-               (set-car! (cadar term-or-post-term) N)
-               ;; (printf ":post-M-to<-β-again:\n~s\n\n" M)
-               ;; ;; (<-β- M)
-               (<-β- (caddar term-or-post-term)))]
-            [`((λ (,x) ,M) . ,N)
-             (<abort> (begin
-                        (newline)
-                        (printf "<-β- :speaking:\n")
-                        (printf "application of λ-abstracion must be unary!\n")
-                        (printf "term-or-post-term:~s\n" term-or-post-term)
-                        (printf "matched by:`((λ (,x) ,M) . ,N) is not unary\n")
-                        (printf "i have stoped the computation\n")
-                        (printf "i wish to handle it better in the feature\n")
-                        (newline)))]
-            ;; δ-redex
-            ;; [`((δ ,key-word) . ,body)
-            ;;  ]
-            [`(,fun . ,arg-list)
-             (guard (pmatch-who '<-β-:application fun
-                      [`(,x ζ (,N) . ,M) #t]
-                      [`(,x ζ* (,N) . ,M) #t]
-                      [`(,x λ (,x) . ,M) #f]
-                      [`,var (guard (symbol? var)) #t]
-                      [`((δ ,><) . ,arg-list) #t]
-                      [`((λ (,x) ,term*) ,term^) #t]
-                      [`(,fun . ,arg-list) #t] ))
-             (let ([<-β-ed-fun (<-β- fun)])
-               (if (not (equal? <-β-ed-fun fun))
-                 (<-β- `(,<-β-ed-fun . ,arg-list))
-                 (<abort> (begin
-                            (newline)
-                            (printf "<-β- :speaking:\n")
-                            (printf "small loop occur!\n")
-                            (printf "term-or-post-term:~s\n" term-or-post-term)
-                            (printf "matched by:`(,fun . ,arg-list) will be <-β- looply\n")
-                            (printf "i have stoped the computation\n")
-                            (printf "i wish to handle it better in the feature\n")
-                            (newline)))))]
-            ))))
-    #+end_src
-** <-β-:old-style test
-*** <-β- test:general
-    直接把代码块送进babel的*scheme* buffer
-    将会在当前buffer中插入带有非unicode编码的result
-    编码方式的变化将会影响buffer的保存
-    #+begin_src scheme
-    (time
-     (begin
-       (newline)
-       (printf "<-β- test:general:\n")
-       (printf
-        "(<-β-
-        '((λ (z)
-            z)
-          'ls))\n==>\n~s\n\n"
-        (<-β-
-         '((λ (z)
-             z)
-           'ls)))
+      (define extend
+        (lambda (var-1 boxed-val env)
+          (lambda (var-2)
+            (cond [(symbol? var-2)
+                   (if (eq? var-2 var-1)
+                     boxed-val
+                     (env var-2))]
+                  [(eq? (car var-2) 'show-env)
+                   (if (eq? (cdr var-2) var-1)
+                     (begin
+                       (printf ":name:\n~s\n" var-1)
+                       (printf ":value:\n~s\n" (boxed-val (lambda (val
+                                                              to-set-val
+                                                              doc
+                                                              to-set-doc)
+                                                            val)))
+                       (printf ":document:\n~s\n\n" (boxed-val (lambda (val
+                                                                   to-set-val
+                                                                   doc
+                                                                   to-set-doc)
+                                                                 doc)))
+                       (printf "the end of a <env> show\n"))
+                     (begin
+                       (printf ":name:\n~s\n" var-1)
+                       (printf ":value:\n~s\n" (boxed-val (lambda (val
+                                                              to-set-val
+                                                              doc
+                                                              to-set-doc)
+                                                            val)))
+                       (printf ":document:\n~s\n\n" (boxed-val (lambda (val
+                                                                   to-set-val
+                                                                   doc
+                                                                   to-set-doc)
+                                                                 doc)))
 
-       (printf
-        "(<-β-
-        '((λ (x)
-            (x 'a))
-          (λ (z)
-            's)))\n==>\n~s\n\n"
-        (<-β-
-         '((λ (x)
-             (x 'a))
-           (λ (z)
-             's))))
+                       (env var-2)))]))))
+      ;; box: val -> boxed-val
+      ;; and doc-string is in the box now!
+      ;; boxed-val: selector -> let-selector-to-select-in-the-box
+      (define box
+        (lambda (val doc)
+          (lambda (selector)
+            (selector val
+                      (lambda (new-val) (set! val new-val))
+                      doc
+                      (lambda (new-doc) (set! doc new-doc))))))
+      ;; <non-empty-env>: var -> boxed-val
+      (define <env> <empty-env>)
 
-       (printf
-        "(<-β-
-        '(λ (y)
-           y))\n==>\n~s\n\n"
-        (<-β-
-         '(λ (y)
-            y)))
+      ;; (define show-env-before-an-end-var
+      ;;   (lambda (an-end-var)
+      ;;     (newline)
+      ;;     (<env> (cons 'show-env an-end-var))))
 
-       (printf
-        "(<-β-
-        '((λ (x)
-            (x
-             ((λ (y)
-                (y k))
-              x)))
-          (λ (z)
-            's)))\n==>\n~s\n\n"
-        (<-β-
-         '((λ (x)
-             (x
-              ((λ (y)
-                 (y k))
-               x)))
-           (λ (z)
-             's))))
 
-       (printf
-        "(<-β-
-        '((λ (z)
-            z)
-          'k))\n==>\n~s\n\n"
-        (<-β-
-         '((λ (z)
-             z)
-           'k)))
+      (define <-β-
+        ;; after added many abilities to handle non-λ-terms
+        ;; <-β- lost it's purity as a math obj (a partial-order-relation)
+        (lambda (term-or-post-term)
+          (letcc when-meet-<abort>-stop-computation-and-come-back-here
+            (set! <abort> when-meet-<abort>-stop-computation-and-come-back-here)
+            (pmatch-who '<-β- term-or-post-term
 
-       (printf
-        "(<-β-
-        '((λ (y)
-            (y 'k))
-          (λ (z)
-            z)))\n==>\n~s\n\n"
-        (<-β-
-         '((λ (y)
-             (y 'k))
-           (λ (z)
-             z))))
+              ;; -----------------------------------------------
+              ;; <env> is a global name-table
+              ;; learned from friedman's ``the seasond schemer''
+              [`(def ,var)
+               (set! <env>
+                     (extend var
+                             (box "my-void--what-should-my-void-be?"
+                                  "this var has no doc")
+                             <env>))]
+              [`(def ,var ,val)
+               (set! <env>
+                     (extend var
+                             (box (<-β- val)
+                                  "this var has no doc")
+                             <env>))]
+              [`(def ,var ,val ,doc)
+               (set! <env>
+                     (extend var
+                             (box (<-β- val)
+                                  doc)
+                             <env>))]
+              ;; (<env> var) is boxed-val
+              ;; boxed-val: selector -> let-selector-to-select-in-the-box
+              [`,var
+               (guard (symbol? var))
+               (list-copy
+                ((<env> var) (lambda (val
+                                 to-set-val
+                                 doc
+                                 to-set-doc)
+                               val)))]
+              [`(set! ,var ,new-val)
+               ((<env> var) (lambda (val
+                                to-set-val
+                                doc
+                                to-set-doc)
+                              (to-set-val new-val)))]
+              [`(doc ,var)
+               ((<env> var) (lambda (val
+                                to-set-val
+                                doc
+                                to-set-doc)
+                              doc))]
+              [`(rewrite-doc ,var ,new-doc)
+               ((<env> var) (lambda (val
+                                to-set-val
+                                doc
+                                to-set-doc)
+                              (to-set-doc new-doc)))]
+              [`(show-env-before-an-end-var ,an-end-var)
+               (begin
+                 (newline)
+                 (<env> (cons 'show-env an-end-var)))]
 
-       (printf
-        "(<-β-
-        '((λ (z)
-            z)
-          ((λ (y)
-             (y 'k))
-           (λ (z)
-             z))))\n==>\n~s\n\n"
-        (<-β-
-         '((λ (z)
-             z)
-           ((λ (y)
+              ;; --------------------------------------------------
+              ;; to be consistent with some part of scheme (minimum-dissimilarity)
+              [`,empty-list-which-is-not-quoted
+               (guard (null? empty-list-which-is-not-quoted))
+               (<abort> (begin
+                          (newline)
+                          (printf "<-β- :speaking:\n")
+                          (printf "an empty-list must be quoted to input to me\n")
+                          (printf "i have stoped the computation\n")
+                          (printf "i wish to store a cc for you in the feature\n")
+                          (newline)))]
+              ;; atom in scheme will be return directly
+              [`,an-atom
+               (guard (atom? an-atom))
+               an-atom]
+              [`(begin . ,term-list)
+               (letrec
+                   ([empty-begin
+                     "my-empty-begin"]
+                    [progn
+                     (lambda (term-list)
+                       (cond [(null? term-list)
+                              empty-begin]
+                             [(null? (cdr term-list))
+                              (<-β- (car term-list))]
+                             [else
+                              (begin (<-β- (car term-list))
+                                     (progn (cdr term-list)))]
+                             ))] )
+                 (progn term-list))]
+              ;; scm-redex
+              ;; by (def a-name (scm name))
+              ;; one can push anything in scheme to this interpreter
+              ;; while in my interpreter
+              ;; these things must use <env> as name-space
+              ;; and be careful of the eager-eval
+              ;; and observing that according to the following code
+              ;; post-body will be ``<-β-'' and ``eval''
+              ;; this repeated eval is not right
+              ;; but what can i do?
+              [`((scm ,name) . ,post-body)
+               (letrec ([eager-evlis
+                         (lambda (post-body)
+                           (cond [(null? post-body) '()]
+                                 [else
+                                  (cons (<-β- (car post-body))
+                                        (eager-evlis (cdr post-body)))]))])
+                 (eval `(,name . ,(eager-evlis post-body))
+                       (interaction-environment)))]
+              ;; and it is cool that different interpreter can work together!!
+
+              ;; ---------------------------------------------------
+              ;; core:
+              [`(,x λ (,x) . ,M)
+               term-or-post-term]
+              [`(,x ζ (,N) . ,M)
+               ;; (set! ζ ζ*)
+               (set-car! (cdr term-or-post-term) 'ζ*)
+               ;; (set! N (<-β- N))
+               (set-car! (caddr term-or-post-term) (<-β- N))
+               (<-β- term-or-post-term)]
+              [`(,x ζ* (,post-N) . ,M)
+               (list-copy post-N)]
+              [`(quote ,sexp)
+               sexp]
+              [`(quasiquote ,sexp)
+               (letrec
+                   ([R
+                     (lambda (sexp)
+                       (pmatch-who '<-β-:*quasiquote sexp
+                         ;; ``unquote'' is key word to pmatch-who
+                         [`(,the-unquote ,d)
+                          (guard (eq? the-unquote 'unquote))
+                          (pmatch-who '<-β-:*quasiquote:unquote d
+                            [`(,x λ (,x) . ,M)
+                             sexp]
+                            [else
+                             (<-β- d)])]
+                         [`,non-pair
+                          (guard (not (pair? non-pair)))
+                          non-pair]
+                         [`(,a . ,d)
+                          `(,(R a) . ,(R d))] ))] )
+                 ;; ``quasiquote'' is key word to scheme
+                 (R sexp))]
+              [`(λ (,x) ,M)
+               (<init-surgery> term-or-post-term)]
+              ;; β-redex
+              [`((λ (,x) ,M) ,N)
+               (begin
+                 ;; here are some printf for debug
+                 ;; you can add new printf-terms as you need
+                 ;; (printf ":β-redex-----------------------------------\n")
+                 ;; (printf ":term-or-post-term:β-redex:\n~s\n" term-or-post-term)
+                 ;; (printf ":N:\n~s\n" N)
+                 ;; (printf ":M:\n~s\n" M)
+                 ;; ;; (set! λ-abstracion λ-post-abstraction)
+                 (set-car! term-or-post-term
+                           (<init-surgery> (car term-or-post-term)))
+                 ;; (printf ":post-term-or-post-term:β-redex:\n~s\n" term-or-post-term)
+                 ;; (printf ":N:\n~s\n" N)
+                 ;; (printf ":M:\n~s\n" M)
+                 ;; ;; (set! 'λ 'ζ)
+                 (set-car! (car term-or-post-term) 'ζ)
+                 ;; ;; (set! x N)
+                 (set-car! (cadar term-or-post-term) N)
+                 ;; (printf ":post-M-to<-β-again:\n~s\n\n" M)
+                 ;; ;; (<-β- M)
+                 (<-β- (caddar term-or-post-term)))]
+              [`((λ (,x) ,M) . ,N)
+               (<abort> (begin
+                          (newline)
+                          (printf "<-β- :speaking:\n")
+                          (printf "application of λ-abstracion must be unary!\n")
+                          (printf "term-or-post-term:~s\n" term-or-post-term)
+                          (printf "matched by:`((λ (,x) ,M) . ,N) is not unary\n")
+                          (printf "i have stoped the computation\n")
+                          (printf "i wish to handle it better in the feature\n")
+                          (newline)))]
+              ;; δ-redex
+              ;; [`((δ ,key-word) . ,body)
+              ;;  ]
+              [`(,fun . ,arg-list)
+               (guard (pmatch-who '<-β-:application fun
+                        [`(,x ζ (,N) . ,M) #t]
+                        [`(,x ζ* (,N) . ,M) #t]
+                        [`(,x λ (,x) . ,M) #f]
+                        [`,var (guard (symbol? var)) #t]
+                        [`((δ ,><) . ,arg-list) #t]
+                        [`((λ (,x) ,term*) ,term^) #t]
+                        [`(,fun . ,arg-list) #t] ))
+               (let ([<-β-ed-fun (<-β- fun)])
+                 (if (not (equal? <-β-ed-fun fun))
+                   (<-β- `(,<-β-ed-fun . ,arg-list))
+                   (<abort> (begin
+                              (newline)
+                              (printf "<-β- :speaking:\n")
+                              (printf "small loop occur!\n")
+                              (printf "term-or-post-term:~s\n" term-or-post-term)
+                              (printf "matched by:`(,fun . ,arg-list) will be <-β- looply\n")
+                              (printf "i have stoped the computation\n")
+                              (printf "i wish to handle it better in the feature\n")
+                              (newline)))))]
+              ))))
+      #+end_src
+*** <-β-:old-style test
+***** <-β- test:general
+      直接把代码块送进babel的*scheme* buffer
+      将会在当前buffer中插入带有非unicode编码的result
+      编码方式的变化将会影响buffer的保存
+      #+begin_src scheme
+      (time
+       (begin
+         (newline)
+         (printf "<-β- test:general:\n")
+         (printf
+          "(<-β-
+          '((λ (z)
+              z)
+            'ls))\n==>\n~s\n\n"
+          (<-β-
+           '((λ (z)
+               z)
+             'ls)))
+
+         (printf
+          "(<-β-
+          '((λ (x)
+              (x 'a))
+            (λ (z)
+              's)))\n==>\n~s\n\n"
+          (<-β-
+           '((λ (x)
+               (x 'a))
+             (λ (z)
+               's))))
+
+         (printf
+          "(<-β-
+          '(λ (y)
+             y))\n==>\n~s\n\n"
+          (<-β-
+           '(λ (y)
+              y)))
+
+         (printf
+          "(<-β-
+          '((λ (x)
+              (x
+               ((λ (y)
+                  (y k))
+                x)))
+            (λ (z)
+              's)))\n==>\n~s\n\n"
+          (<-β-
+           '((λ (x)
+               (x
+                ((λ (y)
+                   (y k))
+                 x)))
+             (λ (z)
+               's))))
+
+         (printf
+          "(<-β-
+          '((λ (z)
+              z)
+            'k))\n==>\n~s\n\n"
+          (<-β-
+           '((λ (z)
+               z)
+             'k)))
+
+         (printf
+          "(<-β-
+          '((λ (y)
               (y 'k))
             (λ (z)
-              z)))))
+              z)))\n==>\n~s\n\n"
+          (<-β-
+           '((λ (y)
+               (y 'k))
+             (λ (z)
+               z))))
 
-       (printf
-        "(<-β-
-        '((λ (x)
-            (x
+         (printf
+          "(<-β-
+          '((λ (z)
+              z)
+            ((λ (y)
+               (y 'k))
+             (λ (z)
+               z))))\n==>\n~s\n\n"
+          (<-β-
+           '((λ (z)
+               z)
              ((λ (y)
                 (y 'k))
-              x)))
-          (λ (z)
-            z)))\n==>\n~s\n\n"
-        (<-β-
-         '((λ (x)
-             (x
-              ((λ (y)
-                 (y 'k))
-               x)))
-           (λ (z)
-             z))))
-       (printf
-        "(<-β-
-        '())\n==>\n~s\n\n"
-        (<-β-
-         '()))
-       (printf
-        "(<-β-
-        1)\n==>\n~s\n\n"
-        (<-β-
-         1))
+              (λ (z)
+                z)))))
 
-       (printf
-        "(<-β-
-        '((λ (a)
-            ((λ (b)
-               `(,a ,b))
-             `(,a)))
-          1))\n==>\n~s\n\n"
-        (<-β-
-         '((λ (a)
-             ((λ (b)
-                `(,a ,b))
-              `(,a)))
-           1)))
+         (printf
+          "(<-β-
+          '((λ (x)
+              (x
+               ((λ (y)
+                  (y 'k))
+                x)))
+            (λ (z)
+              z)))\n==>\n~s\n\n"
+          (<-β-
+           '((λ (x)
+               (x
+                ((λ (y)
+                   (y 'k))
+                 x)))
+             (λ (z)
+               z))))
+         (printf
+          "(<-β-
+          '())\n==>\n~s\n\n"
+          (<-β-
+           '()))
+         (printf
+          "(<-β-
+          1)\n==>\n~s\n\n"
+          (<-β-
+           1))
 
-       (printf
-        "(<-β-
-        '(((λ (a)
-             (λ (b)
-               `(,a ,b)))
-           1)
-          2))\n==>\n~s\n\n"
-        (<-β-
-         '(((λ (a)
-              (λ (b)
-                `(,a ,b)))
-            1)
-           2)))
+         (printf
+          "(<-β-
+          '((λ (a)
+              ((λ (b)
+                 `(,a ,b))
+               `(,a)))
+            1))\n==>\n~s\n\n"
+          (<-β-
+           '((λ (a)
+               ((λ (b)
+                  `(,a ,b))
+                `(,a)))
+             1)))
 
-       (printf
-        "(<-β-
-        '((λ (a)
-            (((λ (a)
+         (printf
+          "(<-β-
+          '(((λ (a)
+               (λ (b)
+                 `(,a ,b)))
+             1)
+            2))\n==>\n~s\n\n"
+          (<-β-
+           '(((λ (a)
                 (λ (b)
                   `(,a ,b)))
-              2)
-             3))
-          1))\n==>\n~s\n\n"
-        (<-β-
-         '((λ (a)
-             (((λ (a)
-                 (λ (b)
-                   `(,a ,b)))
-               2)
-              3))
-           1)))
+              1)
+             2)))
 
-       (printf
-        "(<-β-
-        '(λ (a)
-           (a (λ (a)
-                (a a)))))\n==>\n~s\n\n"
-        (<-β-
-         '(λ (a)
-            (a (λ (a)
-                 (a a))))))
+         (printf
+          "(<-β-
+          '((λ (a)
+              (((λ (a)
+                  (λ (b)
+                    `(,a ,b)))
+                2)
+               3))
+            1))\n==>\n~s\n\n"
+          (<-β-
+           '((λ (a)
+               (((λ (a)
+                   (λ (b)
+                     `(,a ,b)))
+                 2)
+                3))
+             1)))
 
-       (printf
-        "(<-β-
-        '(λ (a)
-           (b
-            (λ (a)
-              (a a))
-            a)))\n==>\n~s\n\n"
-        (<-β-
-         '(λ (a)
-            (b
-             (λ (a)
-               (a a))
-             a))))
+         (printf
+          "(<-β-
+          '(λ (a)
+             (a (λ (a)
+                  (a a)))))\n==>\n~s\n\n"
+          (<-β-
+           '(λ (a)
+              (a (λ (a)
+                   (a a))))))
 
-       (printf
-        "(<-β-
-        '((λ (a)
-            a)
-          ((λ (a)
-             a)
-           ((λ (a)
-              a)
-            ((λ (a)
-               a)
-             (λ (a)
-               a))))))\n==>\n~s\n\n"
-        (<-β-
-         '((λ (a)
-             a)
-           ((λ (a)
+         (printf
+          "(<-β-
+          '(λ (a)
+             (b
+              (λ (a)
+                (a a))
+              a)))\n==>\n~s\n\n"
+          (<-β-
+           '(λ (a)
+              (b
+               (λ (a)
+                 (a a))
+               a))))
+
+         (printf
+          "(<-β-
+          '((λ (a)
               a)
             ((λ (a)
                a)
              ((λ (a)
                 a)
-              (λ (a)
-                a)))))))
-       ))
-    #+end_src
-*** <-β- test:quasiquote
-    #+begin_src scheme
-    (begin
-      (newline)
-      (printf "<-β- test:quasiquote:\n")
-      (printf ":general:\n")
-      (printf
-       "(<-β-
-        (<init-surgery>
-         '(λ (a)
+              ((λ (a)
+                 a)
+               (λ (a)
+                 a))))))\n==>\n~s\n\n"
+          (<-β-
+           '((λ (a)
+               a)
+             ((λ (a)
+                a)
+              ((λ (a)
+                 a)
+               ((λ (a)
+                  a)
+                (λ (a)
+                  a)))))))
+         ))
+      #+end_src
+***** <-β- test:quasiquote
+      #+begin_src scheme
+      (begin
+        (newline)
+        (printf "<-β- test:quasiquote:\n")
+        (printf ":general:\n")
+        (printf
+         "(<-β-
+          (<init-surgery>
+           '(λ (a)
+              (λ (d)
+                `(,a ,d)))))\n==>\n~s\n\n"
+         (<-β-
+          (<init-surgery>
+           '(λ (a)
+              (λ (d)
+                `(,a ,d))))))
+
+        (printf
+         "(<-β-
+          (<init-surgery>
+           '((λ (a)
+               (λ (d)
+                 `(,a ,d)))
+             'car)))\n==>\n~s\n\n"
+         (<-β-
+          (<init-surgery>
+           '((λ (a)
+               (λ (d)
+                 `(,a ,d)))
+             'car))))
+
+        (printf
+         "(<-β-
+          (<init-surgery>
+           '(((λ (a)
+                (λ (d)
+                  `(,a ,d)))
+              'car)
+             'cdr)))\n==>\n~s\n\n"
+         (<-β-
+          (<init-surgery>
+           '(((λ (a)
+                (λ (d)
+                  `(,a ,d)))
+              'car)
+             'cdr))))
+
+        (printf ":cons:\n")
+        (printf
+         "(<-β-
+          (<init-surgery>
+           '(λ (a)
+              (λ (d)
+                `(,a . ,d)))))\n==>\n~s\n\n"
+         (<-β-
+          (<init-surgery>
+           '(λ (a)
+              (λ (d)
+                `(,a . ,d))))))
+
+        (printf
+         "(<-β-
+          (<init-surgery>
+           '((λ (a)
+               (λ (d)
+                 `(,a . ,d)))
+             'car)))\n==>\n~s\n\n"
+         (<-β-
+          (<init-surgery>
+           '((λ (a)
+               (λ (d)
+                 `(,a . ,d)))
+             'car))))
+
+        (printf
+         "(<-β-
+          (<init-surgery>
+           '(((λ (a)
+                (λ (d)
+                  `(,a . ,d)))
+              'car)
+             'cdr)))\n==>\n~s\n\n"
+         (<-β-
+          (<init-surgery>
+           '(((λ (a)
+                (λ (d)
+                  `(,a . ,d)))
+              'car)
+             'cdr))))
+
+        (printf ":nest:\n")
+        (printf
+         "(<-β-
+          (<init-surgery>
+           '(((λ (a)
+                (λ (d)
+                  `(,((λ (d)
+                        `(,a  ,d))
+                      'cdr)
+                    ,d)))
+              'car)
+             'cdr)))\n==>\n~s\n\n"
+         (<-β-
+          (<init-surgery>
+           '(((λ (a)
+                (λ (d)
+                  `(,((λ (d)
+                        `(,a  ,d))
+                      'cdr)
+                    ,d)))
+              'car)
+             'cdr))))
+        )
+      #+end_src
+***** <-β- test:quote violate church-rosser property!
+      ``quote'' as function will violate church-rosser property
+      because one may not reduce in LISP within the scope of a ``quote''
+      ``quote''的解释方式不能是procedure
+      因为这会违反church-rosser性质:reduce的最终结果与reduce的顺序无关
+      (church-rosser性质就是λ-cal的consistent)
+      例如下面:
+      先reduce(I a)会得到不可约项
+      不先reduce(I a)会得到可约项
+      实际上这种东西不能在scheme中被求值
+      因为scheme检查到quote不是一个procedure就不会apply它
+      #+begin_src scheme
+      (define I (lambda (x) x))
+      (define a 'kkk)
+      ((lambda (x)
+         (x (I a)))
+       'quote)
+      #+end_src
+      但是在我的解释里可以实验如下
+      我忍受这中性质以简化我的解释器
+      #+begin_src scheme
+      (begin
+        (newline)
+        (printf "<-β- test:quote violate church-rosser property:\n")
+        (printf
+         "(<-β-
+          '((λ (x) x) 'a))\n==>\n~s\n\n"
+         (<-β-
+          '((λ (x) x) 'a)))
+        (printf
+         "(<-β-
+          '((λ (x)
+              (x ((λ (x) x) 'a)))
+            'quote))\n==>\n~s\n\n"
+         (<-β-
+          '((λ (x)
+              (x ((λ (x) x) 'a)))
+            'quote)))
+
+        (newline)
+
+        (printf
+         "(<-β-
+          '((λ (a)
+              (a kkk))
+            'quote))\n==>\n~s\n\n"
+         (<-β-
+          '((λ (a)
+              (a kkk))
+            'quote)))
+        (printf
+         "(<-β-
+          '((λ (a)
+              (a ((λ (a)
+                    (a kkk))
+                  'quote)))
+            'quote))\n==>\n~s\n\n"
+         (<-β-
+          '((λ (a)
+              (a ((λ (a)
+                    (a kkk))
+                  'quote)))
+            'quote)))
+        (printf
+         "(<-β-
+          '((λ (a)
+              (a ((λ (a)
+                    (a kkk))
+                  'quote)))
+            'quote))\n==>\n~s\n\n"
+         (<-β-
+          '((λ (a)
+              (a ((λ (a)
+                    (a kkk))
+                  'quote)))
+            'quote)))
+        )
+      #+end_src
+***** <-β- test:def
+      #+begin_src scheme
+      (<-β-
+       `(def cons
+          (λ (a)
             (λ (d)
-              `(,a ,d)))))\n==>\n~s\n\n"
-       (<-β-
-        (<init-surgery>
-         '(λ (a)
-            (λ (d)
-              `(,a ,d))))))
+              `(,a . ,d)))
+          "cons doesn't eval it's args"))
+      (<-β-
+       'cons)
+      (<-β-
+       '((cons 1) 2))
+      (<-β-
+       '(cons 1 2))
+      (<-β-
+       '(doc cons))
 
-      (printf
-       "(<-β-
-        (<init-surgery>
-         '((λ (a)
-             (λ (d)
-               `(,a ,d)))
-           'car)))\n==>\n~s\n\n"
-       (<-β-
-        (<init-surgery>
-         '((λ (a)
-             (λ (d)
-               `(,a ,d)))
-           'car))))
-
-      (printf
-       "(<-β-
-        (<init-surgery>
-         '(((λ (a)
-              (λ (d)
-                `(,a ,d)))
-            'car)
-           'cdr)))\n==>\n~s\n\n"
-       (<-β-
-        (<init-surgery>
-         '(((λ (a)
-              (λ (d)
-                `(,a ,d)))
-            'car)
-           'cdr))))
-
-      (printf ":cons:\n")
-      (printf
-       "(<-β-
-        (<init-surgery>
-         '(λ (a)
-            (λ (d)
-              `(,a . ,d)))))\n==>\n~s\n\n"
-       (<-β-
-        (<init-surgery>
-         '(λ (a)
-            (λ (d)
-              `(,a . ,d))))))
-
-      (printf
-       "(<-β-
-        (<init-surgery>
-         '((λ (a)
-             (λ (d)
-               `(,a . ,d)))
-           'car)))\n==>\n~s\n\n"
-       (<-β-
-        (<init-surgery>
-         '((λ (a)
-             (λ (d)
-               `(,a . ,d)))
-           'car))))
-
-      (printf
-       "(<-β-
-        (<init-surgery>
-         '(((λ (a)
-              (λ (d)
-                `(,a . ,d)))
-            'car)
-           'cdr)))\n==>\n~s\n\n"
-       (<-β-
-        (<init-surgery>
-         '(((λ (a)
-              (λ (d)
-                `(,a . ,d)))
-            'car)
-           'cdr))))
-
-      (printf ":nest:\n")
-      (printf
-       "(<-β-
-        (<init-surgery>
-         '(((λ (a)
-              (λ (d)
-                `(,((λ (d)
-                      `(,a  ,d))
-                    'cdr)
-                  ,d)))
-            'car)
-           'cdr)))\n==>\n~s\n\n"
-       (<-β-
-        (<init-surgery>
-         '(((λ (a)
-              (λ (d)
-                `(,((λ (d)
-                      `(,a  ,d))
-                    'cdr)
-                  ,d)))
-            'car)
-           'cdr))))
-      )
-    #+end_src
-*** <-β- test:quote violate church-rosser property!
-    ``quote'' as function will violate church-rosser property
-    because one may not reduce in LISP within the scope of a ``quote''
-    ``quote''的解释方式不能是procedure
-    因为这会违反church-rosser性质:reduce的最终结果与reduce的顺序无关
-    (church-rosser性质就是λ-cal的consistent)
-    例如下面:
-    先reduce(I a)会得到不可约项
-    不先reduce(I a)会得到可约项
-    实际上这种东西不能在scheme中被求值
-    因为scheme检查到quote不是一个procedure就不会apply它
+      (<-β-
+       '(def kkk 1))
+      (<-β-
+       'kkk)
+      (<-β-
+       '(def aaa))
+      (<-β-
+       'aaa)
+      (<-β-
+       'kk)
+      (show-env-before-an-end-var 'cons)
+      #+end_src
+      #+begin_src scheme
+      (define prepare-for-start-repl
+        (lambda (interpreter name-string info-string)
+          (list interpreter name-string info-string)))
+      #+end_src
+*** <start-repl>
+    repl literally is read-eval-print-loop
+    pseudocode:
     #+begin_src scheme
-    (define I (lambda (x) x))
-    (define a 'kkk)
-    ((lambda (x)
-       (x (I a)))
-     'quote)
+    (while #t
+      (print (eval (read))))
     #+end_src
-    但是在我的解释里可以实验如下
-    我忍受这中性质以简化我的解释器
-    #+begin_src scheme
-    (begin
-      (newline)
-      (printf "<-β- test:quote violate church-rosser property:\n")
-      (printf
-       "(<-β-
-        '((λ (x) x) 'a))\n==>\n~s\n\n"
-       (<-β-
-        '((λ (x) x) 'a)))
-      (printf
-       "(<-β-
-        '((λ (x)
-            (x ((λ (x) x) 'a)))
-          'quote))\n==>\n~s\n\n"
-       (<-β-
-        '((λ (x)
-            (x ((λ (x) x) 'a)))
-          'quote)))
+    from here i may build a lib in scheme
+    for playing with self-wrote interpreters
 
-      (newline)
-
-      (printf
-       "(<-β-
-        '((λ (a)
-            (a kkk))
-          'quote))\n==>\n~s\n\n"
-       (<-β-
-        '((λ (a)
-            (a kkk))
-          'quote)))
-      (printf
-       "(<-β-
-        '((λ (a)
-            (a ((λ (a)
-                  (a kkk))
-                'quote)))
-          'quote))\n==>\n~s\n\n"
-       (<-β-
-        '((λ (a)
-            (a ((λ (a)
-                  (a kkk))
-                'quote)))
-          'quote)))
-      (printf
-       "(<-β-
-        '((λ (a)
-            (a ((λ (a)
-                  (a kkk))
-                'quote)))
-          'quote))\n==>\n~s\n\n"
-       (<-β-
-        '((λ (a)
-            (a ((λ (a)
-                  (a kkk))
-                'quote)))
-          'quote)))
-      )
-    #+end_src
-*** <-β- test:def
-    #+begin_src scheme
-    (<-β-
-     `(def cons
-        (λ (a)
-          (λ (d)
-            `(,a . ,d)))
-        "cons doesn't eval it's args"))
-    (<-β-
-     'cons)
-    (<-β-
-     '((cons 1) 2))
-    (<-β-
-     '(cons 1 2))
-    (<-β-
-     '(doc cons))
-
-    (<-β-
-     '(def kkk 1))
-    (<-β-
-     'kkk)
-    (<-β-
-     '(def aaa))
-    (<-β-
-     'aaa)
-    (<-β-
-     'kk)
-    (show-env-before-an-end-var 'cons)
-    #+end_src
-    #+begin_src scheme
+    输入到下面的<start-repl>制作的repl中sexp就是sexp不用被quote
+    *bug:下面的代码块带有<start-repl>作用时直接用C-c C-c执行会让emacs失去反应*
+    #+begin_src scheme :tangle daedalus-interpreter.scm
+    (define <start-repl>
+      (lambda (prepared-interpreter)
+        (letcc door
+          (letrec
+              ([exit (lambda (x) x)]
+               [repl
+                (lambda (interpreter)
+                  ;; name the output
+                  ;; to handle the void
+                  (let ([output (interpreter
+                                 ;; name the input
+                                 ;; to handle the <exit>
+                                 (let ([input (read)])
+                                   (cond
+                                    [(eq? input '<exit>)
+                                     (door (begin
+                                             (newline)
+                                             (printf " now! out of the repl started by <start-repl>\n")
+                                             ))]
+                                    [else
+                                     input]
+                                    )))])
+                    (if (eq? output (void))
+                      (printf "\n: ")
+                      (printf "~s\n: " output))
+                    (repl interpreter)))])
+            (pmatch-who '<start-repl>:initial prepared-interpreter
+              [`(,interpreter ,name-string ,info-string)
+               (begin
+                 (newline)
+                 (printf
+                  "<start-repl> using interpreter: ~s\n~s\n: "
+                  name-string info-string)
+                 (repl interpreter))])))))
     (define prepare-for-start-repl
       (lambda (interpreter name-string info-string)
         (list interpreter name-string info-string)))
+    (define daedalus-interpreter
+      (prepare-for-start-repl
+       <-β-
+       "<-β-"
+       "a lazy playful LISP-interpreter, have fun!"))
+    ;; test:
+    ;; (define a-prepared-interpreter
+    ;;   (prepare-for-start-repl
+    ;;    list?
+    ;;    "name"
+    ;;    "info"))
+    ;; (<start-repl> a-prepared-interpreter)
     #+end_src
-** <start-repl>
-   repl literally is read-eval-print-loop
-   pseudocode:
-   #+begin_src scheme
-   (while #t
-     (print (eval (read))))
-   #+end_src
-   from here i may build a lib in scheme
-   for playing with self-wrote interpreters
+*** test <-β- in a selfmade-repl
+    *下面的代码块不能直接送入babel的scheme-buffer*
+    *会让emcas失去反应*
+    *必须在scheme中用更稳定的传送方式*
+    #+begin_src scheme
+    (<start-repl> daedalus-interpreter)
+    ;; ---------------------------------------------------------
+    ;; general
 
-   输入到下面的<start-repl>制作的repl中sexp就是sexp不用被quote
-   *bug:下面的代码块带有<start-repl>作用时直接用C-c C-c执行会让emacs失去反应*
-   #+begin_src scheme :tangle daedalus-interpreter.scm
-   (define <start-repl>
-     (lambda (prepared-interpreter)
-       (letcc door
-         (letrec
-             ([exit (lambda (x) x)]
-              [repl
-               (lambda (interpreter)
-                 ;; name the output
-                 ;; to handle the void
-                 (let ([output (interpreter
-                                ;; name the input
-                                ;; to handle the <exit>
-                                (let ([input (read)])
-                                  (cond
-                                   [(eq? input '<exit>)
-                                    (door (begin
-                                            (newline)
-                                            (printf " now! out of the repl started by <start-repl>\n")
-                                            ))]
-                                   [else
-                                    input]
-                                   )))])
-                   (if (eq? output (void))
-                     (printf "\n: ")
-                     (printf "~s\n: " output))
-                   (repl interpreter)))])
-           (pmatch-who '<start-repl>:initial prepared-interpreter
-             [`(,interpreter ,name-string ,info-string)
-              (begin
-                (newline)
-                (printf
-                 "<start-repl> using interpreter: ~s\n~s\n: "
-                 name-string info-string)
-                (repl interpreter))])))))
-   (define prepare-for-start-repl
-     (lambda (interpreter name-string info-string)
-       (list interpreter name-string info-string)))
-   (define daedalus-interpreter
-     (prepare-for-start-repl
-      <-β-
-      "<-β-"
-      "a lazy playful LISP-interpreter, have fun!"))
-   ;; test:
-   ;; (define a-prepared-interpreter
-   ;;   (prepare-for-start-repl
-   ;;    list?
-   ;;    "name"
-   ;;    "info"))
-   ;; (<start-repl> a-prepared-interpreter)
-   #+end_src
-** test <-β- in a selfmade-repl
-   *下面的代码块不能直接送入babel的scheme-buffer*
-   *会让emcas失去反应*
-   *必须在scheme中用更稳定的传送方式*
-   #+begin_src scheme
-   (<start-repl> daedalus-interpreter)
-   ;; ---------------------------------------------------------
-   ;; general
+    1
 
-   1
+    '()
 
-   '()
+    ()
 
-   ()
-
-   ((λ (y)
-      y) 1)
+    ((λ (y)
+       y) 1)
 
 
 
 
-   ((λ (a)
-      ((λ (b)
-         `(,a ,b))
-       `(,a)))
-    1)
-
-   (((λ (a)
-       (λ (b)
-         `(,a ,b)))
+    ((λ (a)
+       ((λ (b)
+          `(,a ,b))
+        `(,a)))
      1)
-    2)
 
-   ((λ (a)
-      (((λ (a)
-          (λ (b)
-            `(,a ,b)))
-        2)
-       3))
-    1)
+    (((λ (a)
+        (λ (b)
+          `(,a ,b)))
+      1)
+     2)
 
-   (λ (a)
-     (a (λ (a)
-          (a a))))
+    ((λ (a)
+       (((λ (a)
+           (λ (b)
+             `(,a ,b)))
+         2)
+        3))
+     1)
 
-   (λ (a)
-     (b
-      (λ (a)
-        (a a))
-      a))
+    (λ (a)
+      (a (λ (a)
+           (a a))))
 
-   ((λ (a)
-      a)
+    (λ (a)
+      (b
+       (λ (a)
+         (a a))
+       a))
+
     ((λ (a)
        a)
      ((λ (a)
         a)
       ((λ (a)
          a)
-       (λ (a)
-         a)))))
+       ((λ (a)
+          a)
+        (λ (a)
+          a)))))
 
-   ;; ----------------------------------------------
-   ;; quasiquote
+    ;; ----------------------------------------------
+    ;; quasiquote
 
-   (λ (a)
-     (λ (d)
-       `(,a ,d)))
-
-
-   ((λ (a)
+    (λ (a)
       (λ (d)
         `(,a ,d)))
-    'car)
 
-   (((λ (a)
+
+    ((λ (a)
        (λ (d)
          `(,a ,d)))
      'car)
-    'cdr)
 
-   (λ (a)
-     (λ (d)
-       `(,a . ,d)))
+    (((λ (a)
+        (λ (d)
+          `(,a ,d)))
+      'car)
+     'cdr)
 
-   ((λ (a)
+    (λ (a)
       (λ (d)
         `(,a . ,d)))
-    'car)
 
-   (((λ (a)
+    ((λ (a)
        (λ (d)
          `(,a . ,d)))
      'car)
-    'cdr)
 
-   (((λ (a)
-       (λ (d)
-         `(,((λ (d)
-               `(,a  ,d))
-             'cdr)
-           ,d)))
-     'car)
-    'cdr)
+    (((λ (a)
+        (λ (d)
+          `(,a . ,d)))
+      'car)
+     'cdr)
 
-   ;; ------------------------------------------------------
-   ;; quote violate church-rosser property!
+    (((λ (a)
+        (λ (d)
+          `(,((λ (d)
+                `(,a  ,d))
+              'cdr)
+            ,d)))
+      'car)
+     'cdr)
 
-   ((λ (x) x) 'a)
+    ;; ------------------------------------------------------
+    ;; quote violate church-rosser property!
 
-   ((λ (x)
-      (x ((λ (x) x) 'a)))
-    'quote)
+    ((λ (x) x) 'a)
 
-   ((λ (a)
-       (a kkk))
+    ((λ (x)
+       (x ((λ (x) x) 'a)))
      'quote)
 
-   ((λ (a)
-      (a ((λ (a)
-            (a kkk))
-          'quote)))
-    'quote)
+    ((λ (a)
+        (a kkk))
+      'quote)
 
-   ((λ (a)
-      (a ((λ (a)
-            (a kkk))
-          'quote)))
-    'quote)
+    ((λ (a)
+       (a ((λ (a)
+             (a kkk))
+           'quote)))
+     'quote)
 
-   ;; -------------------------------------------------------
-   ;; def
+    ((λ (a)
+       (a ((λ (a)
+             (a kkk))
+           'quote)))
+     'quote)
 
-   cons
+    ;; -------------------------------------------------------
+    ;; def
 
-   ((cons 1) 2)
+    cons
 
-   (cons 1 2)
+    ((cons 1) 2)
 
-   (doc cons)
+    (cons 1 2)
 
-
-   (def kkk 1)
-
-   kkk
-
-   (def aaa)
-
-   aaa
-
-   kk
-
-   ;; don't need to quote cons
-   (show-env-before-an-end-var cons)
-   (show-env-before-an-end-var kkk)
+    (doc cons)
 
 
-   (scm-printf "123~s" ''dsfa)
-   #+end_src
+    (def kkk 1)
+
+    kkk
+
+    (def aaa)
+
+    aaa
+
+    kk
+
+    ;; don't need to quote cons
+    (show-env-before-an-end-var cons)
+    (show-env-before-an-end-var kkk)
+
+
+    (scm-printf "123~s" ''dsfa)
+    #+end_src
 * play and extend
-** <-β- itself
-   #+begin_src scheme :tangle daedalus-interpreter.scm
-   (<-β-
-    '(def <-β-
-       '(scm <-β-)
-       "<-β- itself"))
-   #+end_src
-** list processing
-   #+begin_src scheme :tangle daedalus-interpreter.scm
-   (<-β-
-    '(def cons
-       (λ (a)
-         (λ (d)
-           `(,a . ,d)))
-       "cons doesn't eval it's args"))
-   (<-β-
-    '(def car
-       '(scm car)
-       "car in scheme"))
-   (<-β-
-    '(def cdr
-       '(scm cdr)
-       "cdr in scheme"))
-   #+end_src
-** basic λ-term
-   #+begin_src scheme :tangle daedalus-interpreter.scm
-   (<-β-
-    '(def I
-       (λ (x) x)
-       "identity:λx.x"))
-   (<-β-
-    '(def K
-       (λ (x) (λ (y) x))
-       "λxy.x"))
-   (<-β-
-    '(def K*
-       (λ (x) (λ (y) y))
-       "λxy.y"))
-   (<-β-
-    '(def S
-       (λ (x)
-         (λ (y)
-           (λ (z)
-             ((x z)
-              (y z)))))
-       "λxyz.xz(yz)"))
-   #+end_src
-** side-effect
-   #+begin_src scheme :tangle daedalus-interpreter.scm
-   (<-β-
-    '(def void
-       '(scm void)
-       "void in scheme"))
-   (<-β-
-    '(def scm-printf
-       '(scm printf)
-       "printf in scheme"))
-   #+end_src
-** predicate
-   #+begin_src scheme :tangle daedalus-interpreter.scm
-   (<-β-
-    '(def eq?
-       '(scm eq?)
-       "eq? of scheme"))
-   (<-β-
-    '(def equal?
-       '(scm equal?)
-       "equal? of scheme"))
-   #+end_src
-** number
-   #+begin_src scheme :tangle daedalus-interpreter.scm
-   (<-β-
-    '(def add1
-       '(scm add1)
-       "add1 of scheme"))
-   (<-β-
-    '(def sub1
-       '(scm sub1)
-       "sub1 of scheme"))
-   (<-β-
-    '(def =
-       '(scm =)
-       "= of scheme"))
-   (<-β-
-    '(def +
-       '(scm +)
-       "+ of scheme"))
-   (<-β-
-    '(def -
-       '(scm -)
-       "- of scheme"))
-   (<-β-
-    '(def *
-       '(scm *)
-       "* of scheme"))
-   (<-β-
-    '(def /
-       '(scm /)
-       "/ of scheme"))
-   (<-β-
-    '(def exp
-       '(scm exp)
-       "exp of scheme"))
-   (<-β-
-    '(def log
-       '(scm log)
-       "log of scheme"))
-   #+end_src
-** Y (unary)
-   fixed point theorem:
-   every function (λ-abstraction) have a fixed point
-   ∀F∃X:FX=X
-   X≡WW where W≡λf.F(ff)
-   then:
-   X=WW=(λf.F(ff))W=F(WW)=FX
-   #+begin_src scheme
-   ;; ((λf.F(ff))
-   ;;  (λf.F(ff)))
-
-   ;; (<-β-
-   ;;  '(def Y
-   ;;     (λ (F)
-   ;;       ((λ (F*) (F* F*))
-   ;;        (λ (f) (F (f f)))))))
-   (<-β-
-    '(def Y
-       (λ (F)
-         ((λ (f) (F (f f)))
-          (λ (f) (F (f f)))))))
-   #+end_src
-*** heuristic about how Y works
+*** <-β- itself
+    #+begin_src scheme :tangle daedalus-interpreter.scm
+    (<-β-
+     '(def <-β-
+        '(scm <-β-)
+        "<-β- itself"))
+    #+end_src
+*** list processing
+    #+begin_src scheme :tangle daedalus-interpreter.scm
+    (<-β-
+     '(def cons
+        (λ (a)
+          (λ (d)
+            `(,a . ,d)))
+        "cons doesn't eval it's args"))
+    (<-β-
+     '(def car
+        '(scm car)
+        "car in scheme"))
+    (<-β-
+     '(def cdr
+        '(scm cdr)
+        "cdr in scheme"))
+    #+end_src
+*** basic λ-term
+    #+begin_src scheme :tangle daedalus-interpreter.scm
+    (<-β-
+     '(def I
+        (λ (x) x)
+        "identity:λx.x"))
+    (<-β-
+     '(def K
+        (λ (x) (λ (y) x))
+        "λxy.x"))
+    (<-β-
+     '(def K*
+        (λ (x) (λ (y) y))
+        "λxy.y"))
+    (<-β-
+     '(def S
+        (λ (x)
+          (λ (y)
+            (λ (z)
+              ((x z)
+               (y z)))))
+        "λxyz.xz(yz)"))
+    #+end_src
+*** side-effect
+    #+begin_src scheme :tangle daedalus-interpreter.scm
+    (<-β-
+     '(def void
+        '(scm void)
+        "void in scheme"))
+    (<-β-
+     '(def scm-printf
+        '(scm printf)
+        "printf in scheme"))
+    #+end_src
+*** predicate
+    #+begin_src scheme :tangle daedalus-interpreter.scm
+    (<-β-
+     '(def eq?
+        '(scm eq?)
+        "eq? of scheme"))
+    (<-β-
+     '(def equal?
+        '(scm equal?)
+        "equal? of scheme"))
+    #+end_src
+*** number
+    #+begin_src scheme :tangle daedalus-interpreter.scm
+    (<-β-
+     '(def add1
+        '(scm add1)
+        "add1 of scheme"))
+    (<-β-
+     '(def sub1
+        '(scm sub1)
+        "sub1 of scheme"))
+    (<-β-
+     '(def =
+        '(scm =)
+        "= of scheme"))
+    (<-β-
+     '(def +
+        '(scm +)
+        "+ of scheme"))
+    (<-β-
+     '(def -
+        '(scm -)
+        "- of scheme"))
+    (<-β-
+     '(def *
+        '(scm *)
+        "* of scheme"))
+    (<-β-
+     '(def /
+        '(scm /)
+        "/ of scheme"))
+    (<-β-
+     '(def exp
+        '(scm exp)
+        "exp of scheme"))
+    (<-β-
+     '(def log
+        '(scm log)
+        "log of scheme"))
+    #+end_src
+*** Y (unary)
+    fixed point theorem:
+    every function (λ-abstraction) have a fixed point
+    ∀F∃X:FX=X
+    X≡WW where W≡λf.F(ff)
+    then:
+    X=WW=(λf.F(ff))W=F(WW)=FX
     #+begin_src scheme
-    (def eternity "anything")
-    -------------------------------------
-    (λ (n<-pn)
-       (λ (pn)
-         (((:pn:0? pn)
-           0)
-          (add1 [n<-pn (:pn:1- pn)]))))
-    --------------------------------------
-    ((λ (n<-pn)
-       (λ (pn)
-         (((:pn:0? pn)
-           0)
-          (add1 [n<-pn (:pn:1- pn)]))))
-     eternity)
-    --------------------------------------
-    (((λ (n<-pn)
-        (λ (pn)
-          (((:pn:0? pn)
-            0)
-           (add1 [n<-pn (:pn:1- pn)]))))
-      eternity)
-     I)
-    (((λ (n<-pn)
-        (λ (pn)
-          (((:pn:0? pn)
-            0)
-           (add1 [n<-pn (:pn:1- pn)]))))
+    ;; ((λf.F(ff))
+    ;;  (λf.F(ff)))
+
+    ;; (<-β-
+    ;;  '(def Y
+    ;;     (λ (F)
+    ;;       ((λ (F*) (F* F*))
+    ;;        (λ (f) (F (f f)))))))
+    (<-β-
+     '(def Y
+        (λ (F)
+          ((λ (f) (F (f f)))
+           (λ (f) (F (f f)))))))
+    #+end_src
+***** heuristic about how Y works
+      #+begin_src scheme
+      (def eternity "anything")
+      -------------------------------------
+      (λ (n<-pn)
+         (λ (pn)
+           (((:pn:0? pn)
+             0)
+            (add1 [n<-pn (:pn:1- pn)]))))
+      --------------------------------------
       ((λ (n<-pn)
          (λ (pn)
            (((:pn:0? pn)
              0)
             (add1 [n<-pn (:pn:1- pn)]))))
-       eternity))
-     [pn<-n 1])
-    (((λ (n<-pn)
-        (λ (pn)
-          (((:pn:0? pn)
-            0)
-           (add1 [n<-pn (:pn:1- pn)]))))
-      ((λ (n<-pn)
-         (λ (pn)
-           (((:pn:0? pn)
-             0)
-            (add1 [n<-pn (:pn:1- pn)]))))
-       ((λ (n<-pn)
+       eternity)
+      --------------------------------------
+      (((λ (n<-pn)
           (λ (pn)
             (((:pn:0? pn)
               0)
              (add1 [n<-pn (:pn:1- pn)]))))
-        eternity)))
-     [pn<-n 2])
-    -----------------------------------------
-    (((λ (F)
-        (F eternity))
-      (λ (n<-pn)
-        (λ (pn)
-          (((:pn:0? pn)
-            0)
-           (add1 [n<-pn (:pn:1- pn)])))))
-     I)
-    (((λ (F)
-        (F (F eternity)))
-      (λ (n<-pn)
-        (λ (pn)
-          (((:pn:0? pn)
-            0)
-           (add1 [n<-pn (:pn:1- pn)])))))
-     [pn<-n 1])
-    (((λ (F)
-        (F (F (F eternity))))
-      (λ (n<-pn)
-        (λ (pn)
-          (((:pn:0? pn)
-            0)
-           (add1 [n<-pn (:pn:1- pn)])))))
-     [pn<-n 2])
+        eternity)
+       I)
+      (((λ (n<-pn)
+          (λ (pn)
+            (((:pn:0? pn)
+              0)
+             (add1 [n<-pn (:pn:1- pn)]))))
+        ((λ (n<-pn)
+           (λ (pn)
+             (((:pn:0? pn)
+               0)
+              (add1 [n<-pn (:pn:1- pn)]))))
+         eternity))
+       [pn<-n 1])
+      (((λ (n<-pn)
+          (λ (pn)
+            (((:pn:0? pn)
+              0)
+             (add1 [n<-pn (:pn:1- pn)]))))
+        ((λ (n<-pn)
+           (λ (pn)
+             (((:pn:0? pn)
+               0)
+              (add1 [n<-pn (:pn:1- pn)]))))
+         ((λ (n<-pn)
+            (λ (pn)
+              (((:pn:0? pn)
+                0)
+               (add1 [n<-pn (:pn:1- pn)]))))
+          eternity)))
+       [pn<-n 2])
+      -----------------------------------------
+      (((λ (F)
+          (F eternity))
+        (λ (n<-pn)
+          (λ (pn)
+            (((:pn:0? pn)
+              0)
+             (add1 [n<-pn (:pn:1- pn)])))))
+       I)
+      (((λ (F)
+          (F (F eternity)))
+        (λ (n<-pn)
+          (λ (pn)
+            (((:pn:0? pn)
+              0)
+             (add1 [n<-pn (:pn:1- pn)])))))
+       [pn<-n 1])
+      (((λ (F)
+          (F (F (F eternity))))
+        (λ (n<-pn)
+          (λ (pn)
+            (((:pn:0? pn)
+              0)
+             (add1 [n<-pn (:pn:1- pn)])))))
+       [pn<-n 2])
+      ;; ((([cn<-n 10]
+      ;;    (λ (n<-pn)
+      ;;      (λ (pn)
+      ;;        (((:pn:0? pn)
+      ;;          0)
+      ;;         (add1 [n<-pn (:pn:1- pn)])))))
+      ;;   eternity)
+      ;;  [pn<-n 8])
+      ---------------------------------------------
+      (((λ (F*)
+          (F* F*))
+        (λ (n<-pn)
+          (λ (pn)
+            (((:pn:0? pn)
+              0)
+             (add1 [(n<-pn n<-pn) (:pn:1- pn)])))))
+       [pn<-n 10])
+      (def Y
+        (λ (F)
+          ((λ (F*) (F* F*))
+           [F*<-F F])))
+      (def F*<-F
+        (λ (F)
+          (λ (f)
+            (F (f f)))))
+      (def F
+        (λ (n<-pn)
+          (λ (pn)
+            (((:pn:0? pn)
+              0)
+             (add1 [n<-pn (:pn:1- pn)])))))
+      ((Y F)
+       [pn<-n 10])
+      (def Y
+          (λ (F)
+            ((λ (F*) (F* F*))
+             (λ (f) (F (f f))))))
+      #+end_src
+*** :cn: church-numeral
+    while try to define subtraction
+    one can find that one should model integer but not natural-number
+    but is it right?
+    because if it is so
+    one should model fraction but not integer
+    for he want to define division
+
+    church-numeral:
+    use a unary-function-iterator to model the natural-number
+    complex model might simplify the definition of some operations
+    the inductive definition of iteration:
+    F^0(M) == M
+    F^(n+1)(M) == F(F^n(M))
+
+    *加法是函数方程的解 如何体现在这里?*
+    如果用λ-term作为一个数学结构的模型
+    那么这个数学结构中的一个函数方程的解就是一个λ-term而已
+
+    可否通过把这些与逻辑编程范式联系起来?
+    逻辑编程范式是否能增进某些计算效率?
+    #+begin_src scheme :tangle daedalus-interpreter.scm
+    (define my-zero?
+      (lambda(n)
+        (if (zero? n)
+          (<-β- 'K)
+          (<-β- 'K*))))
+    (<-β-
+     '(def zero?
+        '(scm my-zero?)
+        "my-zero? which defined in scheme"))
+    ;; (<-β-
+    ;;  '(zero? 0))
+    ;; (<-β-
+    ;;  '(zero? 1))
+
+    ;; 下面是种自然数的模型之间的同构变换 约定同构变换的作用用方括号表示
+    (define scm:cn<-n
+      (lambda (n)
+        (letcc stop-the-computation-when-input-something-wrong
+          (letrec
+              ([f^
+                (lambda (n)
+                  (cond [(or (not (integer? n))
+                             (< n 0))
+                         (stop-the-computation-when-input-something-wrong
+                          (begin (printf "input: ~s\nwhich is not a natural-number\n" n)))]
+                        [(zero? n) 'a]
+                        [else
+                         `(f ,(f^ (sub1 n)))]
+                        ))])
+            (list-copy
+             ;; why i have to list-copy the following term?
+             ;; what is the rigth commandment about using surgery and list-copy
+             (<init-surgery>
+              `(λ (f)
+                 (λ (a)
+                   ,(f^ n)))))))))
+    ;; if not using list-copy
+    ;; the following [cn<-n 10] will be messed
     ;; ((([cn<-n 10]
     ;;    (λ (n<-pn)
     ;;      (λ (pn)
@@ -2222,1068 +2320,970 @@
     ;;          0)
     ;;         (add1 [n<-pn (:pn:1- pn)])))))
     ;;   eternity)
-    ;;  [pn<-n 8])
-    ---------------------------------------------
-    (((λ (F*)
-        (F* F*))
-      (λ (n<-pn)
-        (λ (pn)
-          (((:pn:0? pn)
-            0)
-           (add1 [(n<-pn n<-pn) (:pn:1- pn)])))))
-     [pn<-n 10])
-    (def Y
-      (λ (F)
-        ((λ (F*) (F* F*))
-         [F*<-F F])))
-    (def F*<-F
-      (λ (F)
-        (λ (f)
-          (F (f f)))))
-    (def F
-      (λ (n<-pn)
-        (λ (pn)
-          (((:pn:0? pn)
-            0)
-           (add1 [n<-pn (:pn:1- pn)])))))
-    ((Y F)
-     [pn<-n 10])
-    (def Y
-        (λ (F)
-          ((λ (F*) (F* F*))
-           (λ (f) (F (f f))))))
-    #+end_src
-** :cn: church-numeral
-   while try to define subtraction
-   one can find that one should model integer but not natural-number
-   but is it right?
-   because if it is so
-   one should model fraction but not integer
-   for he want to define division
-
-   church-numeral:
-   use a unary-function-iterator to model the natural-number
-   complex model might simplify the definition of some operations
-   the inductive definition of iteration:
-   F^0(M) == M
-   F^(n+1)(M) == F(F^n(M))
-
-   *加法是函数方程的解 如何体现在这里?*
-   如果用λ-term作为一个数学结构的模型
-   那么这个数学结构中的一个函数方程的解就是一个λ-term而已
-
-   可否通过把这些与逻辑编程范式联系起来?
-   逻辑编程范式是否能增进某些计算效率?
-   #+begin_src scheme :tangle daedalus-interpreter.scm
-   (define my-zero?
-     (lambda(n)
-       (if (zero? n)
-         (<-β- 'K)
-         (<-β- 'K*))))
-   (<-β-
-    '(def zero?
-       '(scm my-zero?)
-       "my-zero? which defined in scheme"))
-   ;; (<-β-
-   ;;  '(zero? 0))
-   ;; (<-β-
-   ;;  '(zero? 1))
-
-   ;; 下面是种自然数的模型之间的同构变换 约定同构变换的作用用方括号表示
-   (define scm:cn<-n
-     (lambda (n)
-       (letcc stop-the-computation-when-input-something-wrong
-         (letrec
-             ([f^
-               (lambda (n)
-                 (cond [(or (not (integer? n))
-                            (< n 0))
-                        (stop-the-computation-when-input-something-wrong
-                         (begin (printf "input: ~s\nwhich is not a natural-number\n" n)))]
-                       [(zero? n) 'a]
-                       [else
-                        `(f ,(f^ (sub1 n)))]
-                       ))])
-           (list-copy
-            ;; why i have to list-copy the following term?
-            ;; what is the rigth commandment about using surgery and list-copy
-            (<init-surgery>
-             `(λ (f)
-                (λ (a)
-                  ,(f^ n)))))))))
-   ;; if not using list-copy
-   ;; the following [cn<-n 10] will be messed
-   ;; ((([cn<-n 10]
-   ;;    (λ (n<-pn)
-   ;;      (λ (pn)
-   ;;        (((:pn:0? pn)
-   ;;          0)
-   ;;         (add1 [n<-pn (:pn:1- pn)])))))
-   ;;   eternity)
-   ;;  [pn<-n 1])
-   ;; [cn<-n 10]
-   (<-β-
-    '(def cn<-n
-       '(scm scm:cn<-n)
-       "scm:cn<-n which defined in scheme"))
+    ;;  [pn<-n 1])
+    ;; [cn<-n 10]
+    (<-β-
+     '(def cn<-n
+        '(scm scm:cn<-n)
+        "scm:cn<-n which defined in scheme"))
 
 
-   (<-β-
-    '(def n<-cn
-       (λ (cn)
-         ((cn
-           add1)
-          0))))
-   ;; (<-β-
-   ;;  '[n<-cn (cn<-n 10)])
+    (<-β-
+     '(def n<-cn
+        (λ (cn)
+          ((cn
+            add1)
+           0))))
+    ;; (<-β-
+    ;;  '[n<-cn (cn<-n 10)])
 
-   ;; the following code was wrote in scheme originally
-   ;; i find that i just need to do some replace-string
-   ;; and then they work in daedalus-interpreter
-   ;; so happy!
+    ;; the following code was wrote in scheme originally
+    ;; i find that i just need to do some replace-string
+    ;; and then they work in daedalus-interpreter
+    ;; so happy!
 
-   ;; notation:
-   ;; ;; natural-number:
-   ;; (def n 2)
-   ;; (def m 3)
-   ;; ;; natural-number modeled by church-numeral:
-   ;; (def x [cn<-n n])
-   ;; (def y [cn<-n m])
-   ;; ;; the unary function to be iterated:
-   ;; (def f add1)
-   ;; ;; an element serve as basic input to the function f:
-   ;; (def a 0)
-
-
-   ;; 迭代器作用于一个一元函数f返回这个一元函数的迭代函数
-   ;; 下面重要的就是弄清迭代器作用于什么东西
-   ;; 这个迭代函数还是一元函数
-   ;; ;; 它被被另一个迭代器作用就得到了两个迭代器的``乘法''
-   ;; (y
-   ;;  (x f))
-   ;; ;; test:
-   ;; ((y
-   ;;   (x f))
-   ;;  a)
-   ;; ;; λ-abstraction:
-   ;; (λ (x)
-   ;;   (λ (y)
-   ;;     (λ (f)
-   ;;       (y
-   ;;        (x f)))))
-   (<-β-
-    '(def :cn:*
-       (λ (x)
-         (λ (y)
-           (λ (f)
-             (y (x f)))))))
-   ;; test:
-   ;; [n<-cn ((:cn:*
-   ;;          [cn<-n 2])
-   ;;         [cn<-n 3])]
+    ;; notation:
+    ;; ;; natural-number:
+    ;; (def n 2)
+    ;; (def m 3)
+    ;; ;; natural-number modeled by church-numeral:
+    ;; (def x [cn<-n n])
+    ;; (def y [cn<-n m])
+    ;; ;; the unary function to be iterated:
+    ;; (def f add1)
+    ;; ;; an element serve as basic input to the function f:
+    ;; (def a 0)
 
 
-   ;; 注意多元的λ-term都是用一元函数处理的 因此一个迭代器本身也是一元函数
-   ;; 它被被另一个迭代器作用之后所得到的迭代器在作用于f时就不是迭代n次
-   ;; 而是迭代n次再迭代n次再迭代n次...一共这样作m次
-   ;; 这样就得到了两个迭代器的``乘方''
-   ;; 这里就体现了currying的好处
-   ;; curring是用纵向的层数来代替横向的元数
-   ;; 因为上面正是在两个不同的currying的层次使用迭代器
-   ;; 而分别得到``乘法''和``乘方''的
-   ;; (y x)
-   ;; ;; test:
-   ;; [n<-cn (y x)]
-   ;; ;; λ-abstraction:
-   ;; (λ (x)
-   ;;   (λ (y)
-   ;;     (y x)))
-   (<-β-
-    '(def :cn:^
-       (λ (x)
-         (λ (y)
-           (y x)))))
-   ;; test:
-   ;; except for y = 0
-   ;; [n<-cn ((:cn:^
-   ;;          [cn<-n 2])
-   ;;         [cn<-n 3])]
+    ;; 迭代器作用于一个一元函数f返回这个一元函数的迭代函数
+    ;; 下面重要的就是弄清迭代器作用于什么东西
+    ;; 这个迭代函数还是一元函数
+    ;; ;; 它被被另一个迭代器作用就得到了两个迭代器的``乘法''
+    ;; (y
+    ;;  (x f))
+    ;; ;; test:
+    ;; ((y
+    ;;   (x f))
+    ;;  a)
+    ;; ;; λ-abstraction:
+    ;; (λ (x)
+    ;;   (λ (y)
+    ;;     (λ (f)
+    ;;       (y
+    ;;        (x f)))))
+    (<-β-
+     '(def :cn:*
+        (λ (x)
+          (λ (y)
+            (λ (f)
+              (y (x f)))))))
+    ;; test:
+    ;; [n<-cn ((:cn:*
+    ;;          [cn<-n 2])
+    ;;         [cn<-n 3])]
 
-   ;; ``加法''就是要把f的两个被迭代器作用之后的函数进行复合
-   ;; ((y f)
-   ;;  ((x f)
-   ;;   a))
-   ;; ;; λ-abstraction:
-   ;; (λ (x)
-   ;;   (λ (y)
-   ;;     (λ (f)
-   ;;       (λ (a)
-   ;;         ((y f)
-   ;;          ((x f)
-   ;;           a))))))
-   (<-β-
-    '(def :cn:+
-       (λ (x)
-         (λ (y)
-           (λ (f)
-             (λ (a)
-               ((y f)
-                ((x f)
-                 a))))))))
-   ;; test:
-   ;; [n<-cn ((:cn:+
-   ;;          [cn<-n 2])
-   ;;         [cn<-n 3])]
 
-   ;; ``加一''
-   ;; 把上面的(y f)复合到(x f)上换成f复合到(x f)上
-   ;; (f
-   ;;  ((x f)
-   ;;   a))
-   ;; λ-abstraction:
-   ;; (λ (x)
-   ;;   (λ (f)
-   ;;     (λ (a)
-   ;;       (f
-   ;;        ((x f)
-   ;;         a)))))
-   (<-β-
-    '(def :cn:1+
-       (λ (x)
-         (λ (f)
-           (λ (a)
-             (f
-              ((x f)
-               a)))))))
-   ;; test:
-   ;; [n<-cn (:cn:1+ [cn<-n 10])]
+    ;; 注意多元的λ-term都是用一元函数处理的 因此一个迭代器本身也是一元函数
+    ;; 它被被另一个迭代器作用之后所得到的迭代器在作用于f时就不是迭代n次
+    ;; 而是迭代n次再迭代n次再迭代n次...一共这样作m次
+    ;; 这样就得到了两个迭代器的``乘方''
+    ;; 这里就体现了currying的好处
+    ;; curring是用纵向的层数来代替横向的元数
+    ;; 因为上面正是在两个不同的currying的层次使用迭代器
+    ;; 而分别得到``乘法''和``乘方''的
+    ;; (y x)
+    ;; ;; test:
+    ;; [n<-cn (y x)]
+    ;; ;; λ-abstraction:
+    ;; (λ (x)
+    ;;   (λ (y)
+    ;;     (y x)))
+    (<-β-
+     '(def :cn:^
+        (λ (x)
+          (λ (y)
+            (y x)))))
+    ;; test:
+    ;; except for y = 0
+    ;; [n<-cn ((:cn:^
+    ;;          [cn<-n 2])
+    ;;         [cn<-n 3])]
 
-   ;; ``减一''
-   (<-β-
-    '(def :cn:1-
-       (λ (x)
-         (λ (f)
-           (λ (a)
-             (((x (λ (p)
-                    (λ (q)
-                      (q (p f)))))
-               (K a))
-              I))))))
-   ;; test:
-   ;; do not test :cn:1- with big number
-   ;; 13 is painful in my machine
-   ;; for daedalus-interpreter is very slow
-   ;; and for :cn:1- is right only theoretically
-   ;; [n<-cn (:cn:1- [cn<-n 13])]
-   ;; is it allocated that wasting time?
-   ;; bytes-allocated的增长是指数级的
-   ;; 实现β-redex的算法有问题?
-   ;; (:cn:1- [cn<-n 13])
-   ;; [n<-cn (:cn:1- [cn<-n 0])]
+    ;; ``加法''就是要把f的两个被迭代器作用之后的函数进行复合
+    ;; ((y f)
+    ;;  ((x f)
+    ;;   a))
+    ;; ;; λ-abstraction:
+    ;; (λ (x)
+    ;;   (λ (y)
+    ;;     (λ (f)
+    ;;       (λ (a)
+    ;;         ((y f)
+    ;;          ((x f)
+    ;;           a))))))
+    (<-β-
+     '(def :cn:+
+        (λ (x)
+          (λ (y)
+            (λ (f)
+              (λ (a)
+                ((y f)
+                 ((x f)
+                  a))))))))
+    ;; test:
+    ;; [n<-cn ((:cn:+
+    ;;          [cn<-n 2])
+    ;;         [cn<-n 3])]
 
-   ;; ``零词''
-   ;; :cn:0 == K*
-   ;; again do not test :cn:0? with big number
-   (<-β-
-    '(def :cn:0?
-       (λ (cn)
-         ((cn (K K*)) K))))
-   ;; test:
-   ;; (:cn:0? [cn<-n 0])
-   ;; (:cn:0? [cn<-n 10])
+    ;; ``加一''
+    ;; 把上面的(y f)复合到(x f)上换成f复合到(x f)上
+    ;; (f
+    ;;  ((x f)
+    ;;   a))
+    ;; λ-abstraction:
+    ;; (λ (x)
+    ;;   (λ (f)
+    ;;     (λ (a)
+    ;;       (f
+    ;;        ((x f)
+    ;;         a)))))
+    (<-β-
+     '(def :cn:1+
+        (λ (x)
+          (λ (f)
+            (λ (a)
+              (f
+               ((x f)
+                a)))))))
+    ;; test:
+    ;; [n<-cn (:cn:1+ [cn<-n 10])]
 
-   ;; ``等词''内蕴的
-   ;; 条件控制结构中的条件谓词也用[]来写
-   ;; again do not test with big number
-   ;; 4 is too big
-   (<-β-
-    '(def :cn:=
-       (λ (x)
-         (λ (y)
-           (([:cn:0? x]
-             (([:cn:0? y]
-               K)
-              K*))
-            (([:cn:0? y]
-              K*)
-             ((:cn:=
-               (:cn:1- x))
-              (:cn:1- y))))
-           ))))
-   ;; test:
-   ;; ((:cn:= [cn<-n 2]) [cn<-n 1])
-   ;; ((:cn:= [cn<-n 2]) [cn<-n 2])
-   #+end_src
-*** heuristic of :cn:1-
-    #+begin_src scheme
-    ;; 我可不可以利用它的技巧来写:pn:1-呢?
-    ;; 我下面的推导都应该用我将写成的解释器来完成才对
-    ;; 解释器应该能把这个推到过程正确无误地以适合我阅读的方式展示给我
-    ;; 那么我hack谁的程序不都不成问题了!!!
-    要减少一次迭代器x的迭代次数
-    用x把奇怪的
-    (λ (p)
-      (λ (q)
-        (q (p f))))
-    给迭代了
+    ;; ``减一''
+    (<-β-
+     '(def :cn:1-
+        (λ (x)
+          (λ (f)
+            (λ (a)
+              (((x (λ (p)
+                     (λ (q)
+                       (q (p f)))))
+                (K a))
+               I))))))
+    ;; test:
+    ;; do not test :cn:1- with big number
+    ;; 13 is painful in my machine
+    ;; for daedalus-interpreter is very slow
+    ;; and for :cn:1- is right only theoretically
+    ;; [n<-cn (:cn:1- [cn<-n 13])]
+    ;; is it allocated that wasting time?
+    ;; bytes-allocated的增长是指数级的
+    ;; 实现β-redex的算法有问题?
+    ;; (:cn:1- [cn<-n 13])
+    ;; [n<-cn (:cn:1- [cn<-n 0])]
 
-    推导的准备工作:
+    ;; ``零词''
     ;; :cn:0 == K*
-    (λ (f)
-      (λ (a)
-        a))
-    ;; :cn:1
-    (λ (f)
-      (λ (a)
-        (f a)))
-    ;; :cn:2
-    (λ (f)
-      (λ (a)
-        (f (f a))))
-    ;; :cn:3
-    (λ (f)
-      (λ (a)
-        (f (f (f a)))))
+    ;; again do not test :cn:0? with big number
+    (<-β-
+     '(def :cn:0?
+        (λ (cn)
+          ((cn (K K*)) K))))
+    ;; test:
+    ;; (:cn:0? [cn<-n 0])
+    ;; (:cn:0? [cn<-n 10])
 
-    (def K
-      (λ (x)
-        (λ (y)
-          x)))
-    (K a)是个返回a的常λ-abstraction
-    (K M)是个返回M的常λ-abstraction
-    ==
-    (λ (y)
-      a)
+    ;; ``等词''内蕴的
+    ;; 条件控制结构中的条件谓词也用[]来写
+    ;; again do not test with big number
+    ;; 4 is too big
+    (<-β-
+     '(def :cn:=
+        (λ (x)
+          (λ (y)
+            (([:cn:0? x]
+              (([:cn:0? y]
+                K)
+               K*))
+             (([:cn:0? y]
+               K*)
+              ((:cn:=
+                (:cn:1- x))
+               (:cn:1- y))))
+            ))))
+    ;; test:
+    ;; ((:cn:= [cn<-n 2]) [cn<-n 1])
+    ;; ((:cn:= [cn<-n 2]) [cn<-n 2])
+    #+end_src
+***** heuristic of :cn:1-
+      #+begin_src scheme
+      ;; 我可不可以利用它的技巧来写:pn:1-呢?
+      ;; 我下面的推导都应该用我将写成的解释器来完成才对
+      ;; 解释器应该能把这个推到过程正确无误地以适合我阅读的方式展示给我
+      ;; 那么我hack谁的程序不都不成问题了!!!
+      要减少一次迭代器x的迭代次数
+      用x把奇怪的
+      (λ (p)
+        (λ (q)
+          (q (p f))))
+      给迭代了
+
+      推导的准备工作:
+      ;; :cn:0 == K*
+      (λ (f)
+        (λ (a)
+          a))
+      ;; :cn:1
+      (λ (f)
+        (λ (a)
+          (f a)))
+      ;; :cn:2
+      (λ (f)
+        (λ (a)
+          (f (f a))))
+      ;; :cn:3
+      (λ (f)
+        (λ (a)
+          (f (f (f a)))))
+
+      (def K
+        (λ (x)
+          (λ (y)
+            x)))
+      (K a)是个返回a的常λ-abstraction
+      (K M)是个返回M的常λ-abstraction
+      ==
+      (λ (y)
+        a)
 
 
-    首先当输入值是:cn:0 的时候是怎么返回:cn:0 的?
-    我只需要看这个二元函数的函数体
-    首先看函数体内部的主要部分
-    (x (λ (p)
+      首先当输入值是:cn:0 的时候是怎么返回:cn:0 的?
+      我只需要看这个二元函数的函数体
+      首先看函数体内部的主要部分
+      (x (λ (p)
+           (λ (q)
+             (q (p f)))))
+      :cn:0 迭代任何函数f 都得到恒等函数I
+      所以
+      ==
+      (λ (a)
+        a)
+      == I
+      然后整个函数体
+      ((I (K a)) I)
+      ==
+      ((K a) I)
+      (K a)是个返回a的λ-abstraction
+      所以结果最后结果是a 就等于:cn:0
+
+
+      但是完全没有用到
+      (λ (p)
+        (λ (q)
+          (q (p f))))
+      所以看:cn:1
+      首先看函数体内部的主要部分
+      (x (λ (p)
+           (λ (q)
+             (q (p f)))))
+      ==
+      ((λ (f)
+         (λ (a)
+           (f a)))
+       (λ (p)
          (λ (q)
            (q (p f)))))
-    :cn:0 迭代任何函数f 都得到恒等函数I
-    所以
-    ==
-    (λ (a)
-      a)
-    == I
-    然后整个函数体
-    ((I (K a)) I)
-    ==
-    ((K a) I)
-    (K a)是个返回a的λ-abstraction
-    所以结果最后结果是a 就等于:cn:0
-
-
-    但是完全没有用到
-    (λ (p)
-      (λ (q)
-        (q (p f))))
-    所以看:cn:1
-    首先看函数体内部的主要部分
-    (x (λ (p)
-         (λ (q)
-           (q (p f)))))
-    ==
-    ((λ (f)
-       (λ (a)
-         (f a)))
-     (λ (p)
-       (λ (q)
-         (q (p f)))))
-    ==
-    (λ (a)
-      ((λ (p)
-         (λ (q)
-           (q (p f))))
-       a)) ;; 注意这个地方p代入的是a所以也许因该用与a有关的变量名
-    ==
-    (λ (a)
-      (λ (q)
-        (q (a f))))
-    然后整个函数体
-    (((λ (a)
+      ==
+      (λ (a)
+        ((λ (p)
+           (λ (q)
+             (q (p f))))
+         a)) ;; 注意这个地方p代入的是a所以也许因该用与a有关的变量名
+      ==
+      (λ (a)
         (λ (q)
           (q (a f))))
-      (K a))
-     I) ;; 注意此时本身应该作用于基础元素a的东西 现在作用于(K a)了
-    ==
-    ((λ (q)
-       (q ((K a) f)))
-     I)
-    ==;; 注意q是被I代入的
-    (I ((K a) f))
-    ==
-    ((K a) f) ;; 而(K a)是一个返回a的常λ-abstraction
-    ==
-    a
-    函数体是a整个就是:cn:0了!
+      然后整个函数体
+      (((λ (a)
+          (λ (q)
+            (q (a f))))
+        (K a))
+       I) ;; 注意此时本身应该作用于基础元素a的东西 现在作用于(K a)了
+      ==
+      ((λ (q)
+         (q ((K a) f)))
+       I)
+      ==;; 注意q是被I代入的
+      (I ((K a) f))
+      ==
+      ((K a) f) ;; 而(K a)是一个返回a的常λ-abstraction
+      ==
+      a
+      函数体是a整个就是:cn:0了!
 
 
-    x是:cn:2的时候
-    x
-    ==
-    (λ (f)
-      (λ (a)
-        (f (f a))))
-    首先看函数体内部的主要部分
-    (x (λ (p)
+      x是:cn:2的时候
+      x
+      ==
+      (λ (f)
+        (λ (a)
+          (f (f a))))
+      首先看函数体内部的主要部分
+      (x (λ (p)
+           (λ (q)
+             (q (p f)))))
+      ==
+      ((λ (f)
+         (λ (a)
+           (f (f a))))
+       (λ (p)
          (λ (q)
            (q (p f)))))
-    ==
-    ((λ (f)
-       (λ (a)
-         (f (f a))))
-     (λ (p)
-       (λ (q)
-         (q (p f)))))
-    ==
-    (λ (a)
-      ((λ (p)
-         (λ (q)
-           (q (p f))))
-       ((λ (p)
-          (λ (q)
-            (q (p f))))
-        a)))
-    此时里面那个作用将得到
-    (λ (q)
-      (q (a f)))
-    这个在上一个推导已经看到过了
-    所以
-    ==
-    (λ (a)
-      ((λ (p)  ;; p这回代入的可以说是类a的东西吗
-         (λ (q)
-           (q (p f))))
-       (λ (q)
-         (q (a f)))))
-    ==
-    (λ (a)
+      ==
+      (λ (a)
+        ((λ (p)
+           (λ (q)
+             (q (p f))))
+         ((λ (p)
+            (λ (q)
+              (q (p f))))
+          a)))
+      此时里面那个作用将得到
       (λ (q)
-        (q ((λ (q) ;; 这里q该代入f了 而之前q代入的是I
-              (q (a f)))
-            f))))
-    ==
-    (λ (a)
-      (λ (q)
-        (q (f (a f)))))
-    然后整个函数体
-    ;; 与之前的对比一下:
-    ;; (((λ (a)
-    ;;     (λ (q)
-    ;;       (q (a f))))
-    ;;   (K a))
-    ;;  I)
-    ;; 看懂技巧在哪了吗?
-    ;; 我发现重点总在于弄清每次被代入值的类型
-    (((λ (a) ;; a代入的又是(K a)
+        (q (a f)))
+      这个在上一个推导已经看到过了
+      所以
+      ==
+      (λ (a)
+        ((λ (p)  ;; p这回代入的可以说是类a的东西吗
+           (λ (q)
+             (q (p f))))
+         (λ (q)
+           (q (a f)))))
+      ==
+      (λ (a)
+        (λ (q)
+          (q ((λ (q) ;; 这里q该代入f了 而之前q代入的是I
+                (q (a f)))
+              f))))
+      ==
+      (λ (a)
         (λ (q)
           (q (f (a f)))))
-      (K a))
-     I)
-    ==
-    ((λ (q)
-       (q (f ((K a) f))))
-     I)
-    ==
-    (I (f ((K a) f)))
-    ==
-    (f ((K a) f))
-    ;; 看懂技巧在哪了吗?
-    ;; 技巧就在于把λ-term最里面的(f a)变成((K a) f)
-    ;; (K a)作用于f会得到a 这样就减少了一次f的迭代
-    ;; 重点在于如何把整个λ-term剥开到最里层 然后才能看见最里面的东西
-    ;; 然后还要把弄好了的东西合回来
-    ;; 那么这种技巧对:cn:0的意义何在呢?
-    ;; 我本可不必写这么多的
-    ;; 之在于我没有以数学的方式理解解释过程 而用了scheme的方式
-    ;; 从这也看出了我的新解释器的必要性
-    ;; 现在以更好的方式来看:cn:3
-    函数体主要部分
-    下面作用
-    (λ (a)
-      ...
-      (K a))
-    用a的var-scoping来理解
-    以简化文本
-    (f (f (f a))) [f :=
-                     (λ (p) (λ (q) (q (p f))))]
-    ==
-    ((λ (p) (λ (q) (q (p f))))
-     ((λ (p) (λ (q) (q (p f))))
+      然后整个函数体
+      ;; 与之前的对比一下:
+      ;; (((λ (a)
+      ;;     (λ (q)
+      ;;       (q (a f))))
+      ;;   (K a))
+      ;;  I)
+      ;; 看懂技巧在哪了吗?
+      ;; 我发现重点总在于弄清每次被代入值的类型
+      (((λ (a) ;; a代入的又是(K a)
+          (λ (q)
+            (q (f (a f)))))
+        (K a))
+       I)
+      ==
+      ((λ (q)
+         (q (f ((K a) f))))
+       I)
+      ==
+      (I (f ((K a) f)))
+      ==
+      (f ((K a) f))
+      ;; 看懂技巧在哪了吗?
+      ;; 技巧就在于把λ-term最里面的(f a)变成((K a) f)
+      ;; (K a)作用于f会得到a 这样就减少了一次f的迭代
+      ;; 重点在于如何把整个λ-term剥开到最里层 然后才能看见最里面的东西
+      ;; 然后还要把弄好了的东西合回来
+      ;; 那么这种技巧对:cn:0的意义何在呢?
+      ;; 我本可不必写这么多的
+      ;; 之在于我没有以数学的方式理解解释过程 而用了scheme的方式
+      ;; 从这也看出了我的新解释器的必要性
+      ;; 现在以更好的方式来看:cn:3
+      函数体主要部分
+      下面作用
+      (λ (a)
+        ...
+        (K a))
+      用a的var-scoping来理解
+      以简化文本
+      (f (f (f a))) [f :=
+                       (λ (p) (λ (q) (q (p f))))]
+      ==
       ((λ (p) (λ (q) (q (p f))))
-       a)))
-    ;; 从内到外依次作用
-    ((λ (p) (λ (q) (q (p f))))
-     a)
-    ==
-    (λ (q) (q (a f)))
-    然后
-    ((λ (p) (λ (q) (q (p f))))
-     (λ (q) (q (a f))))
-    ==
-    (λ (q) (q ((λ (q) (q (a f)))
-                f)))
-    新生成的作用
-    ((λ (q) (q (a f)))
-     f)
-    ==
-    (f (a f));; 只待a被带入(K a)了
-    然后新生成的作用所属于的整体
-    (λ (q) (q (f (a f))))
-    这与
-    (λ (q) (q (a f)))
-    有相同的形式了
-    因此可以知道最后的结果将是
-    (λ (q) (q (f (f (a f)))))
-    a会var-scoping到(K a)
-    这样再把q代为I就行了
+       ((λ (p) (λ (q) (q (p f))))
+        ((λ (p) (λ (q) (q (p f))))
+         a)))
+      ;; 从内到外依次作用
+      ((λ (p) (λ (q) (q (p f))))
+       a)
+      ==
+      (λ (q) (q (a f)))
+      然后
+      ((λ (p) (λ (q) (q (p f))))
+       (λ (q) (q (a f))))
+      ==
+      (λ (q) (q ((λ (q) (q (a f)))
+                  f)))
+      新生成的作用
+      ((λ (q) (q (a f)))
+       f)
+      ==
+      (f (a f));; 只待a被带入(K a)了
+      然后新生成的作用所属于的整体
+      (λ (q) (q (f (a f))))
+      这与
+      (λ (q) (q (a f)))
+      有相同的形式了
+      因此可以知道最后的结果将是
+      (λ (q) (q (f (f (a f)))))
+      a会var-scoping到(K a)
+      这样再把q代为I就行了
 
 
-    技巧就是
-    (λ (p) (λ (q) (q (p f))))
-    这个东西
+      技巧就是
+      (λ (p) (λ (q) (q (p f))))
+      这个东西
 
-    它作用于a
-    会给出
-    (λ (q) (q (a f)))
+      它作用于a
+      会给出
+      (λ (q) (q (a f)))
 
-    而作用于
-    (λ (q) (q (f (f ... (a f)))))
-    会在内部新生成一个作用
-    (λ (q) (q ((λ (q) (q (f (f ... (a f)))))
-                f)))
-    这个作用进行完之后就会在f的外层在增加一个f的作用
-    而得到
-    (λ (q) (q (f (f (f ... (a f))))))
-    是这个东西没用利用条件控制结构却完成了分类作用?
-    还是它本质上就是条件控制结构?
+      而作用于
+      (λ (q) (q (f (f ... (a f)))))
+      会在内部新生成一个作用
+      (λ (q) (q ((λ (q) (q (f (f ... (a f)))))
+                  f)))
+      这个作用进行完之后就会在f的外层在增加一个f的作用
+      而得到
+      (λ (q) (q (f (f (f ... (a f))))))
+      是这个东西没用利用条件控制结构却完成了分类作用?
+      还是它本质上就是条件控制结构?
 
-    写出来这种东西的过程可能是这样的:
-    首先我知道了(K a)的作用然后计划把(f (f (f a)))
-    中的每个f都代为一个λ-term(r)以完成任务
-    得到(r (r (r a)))
-    我知道(r a)必须为(a f)然后让a在外面var-soping到(K a)
-    因此我写
-    r
-    ==
-    (λ (p) (p f))
-    这个r作用于a是对的(a f)
-    但是再作用于这个结果就不对了
-    我怎么以它为基础做更改呢?
-    我可以在外层增加相当任意的λ-abstraction来把这个(a f)保护起来
-    让r的返回值变成外层相当任意的λ-abstraction
-    然后再在外面通过把这个λ-abstraction作用于一些东西来找回我想要的东西
-    于是我写(这只用到一层保护而已 更可以用多层)
-    r
-    ==
-    (λ (p) (λ (<x>) (<a>  (p f) <b>)))
-    我把这些省略的东西当作``未知数''代入``条件''以得到``方程''去求解
-    这个r作用于a是
-    (λ (<x1>) (<a1>  (a f) <b1>))
-    再作用于这个结果是
-    (λ (<x2>) (<a2>  ((λ (<x1>) (<a1>  (a f) <b1>))
-                       f) <b2>))
-    ==
-    (λ (<x2>) (<a2> (<a1>  (a f) <b1>)[<x1> := f]
-                     <b2>))
-    我需使出现(f (a f))
-    所以我省略 <b> 并且解得 <x> == <a>
-    如果用q给<x>这个变量命名 就得到
-    (λ (p) (λ (q) (q (p f) f)))
-    其实这个问题就是在求解一个函数方程
-    只不过函数都是用λ-term来表达的
-    >< 我的新解释器能怎样帮助这种探索过程呢?
-    通过边推导边以极端适合阅读的方式展示?
-    如何支持我上面所设的这种未知数?
+      写出来这种东西的过程可能是这样的:
+      首先我知道了(K a)的作用然后计划把(f (f (f a)))
+      中的每个f都代为一个λ-term(r)以完成任务
+      得到(r (r (r a)))
+      我知道(r a)必须为(a f)然后让a在外面var-soping到(K a)
+      因此我写
+      r
+      ==
+      (λ (p) (p f))
+      这个r作用于a是对的(a f)
+      但是再作用于这个结果就不对了
+      我怎么以它为基础做更改呢?
+      我可以在外层增加相当任意的λ-abstraction来把这个(a f)保护起来
+      让r的返回值变成外层相当任意的λ-abstraction
+      然后再在外面通过把这个λ-abstraction作用于一些东西来找回我想要的东西
+      于是我写(这只用到一层保护而已 更可以用多层)
+      r
+      ==
+      (λ (p) (λ (<x>) (<a>  (p f) <b>)))
+      我把这些省略的东西当作``未知数''代入``条件''以得到``方程''去求解
+      这个r作用于a是
+      (λ (<x1>) (<a1>  (a f) <b1>))
+      再作用于这个结果是
+      (λ (<x2>) (<a2>  ((λ (<x1>) (<a1>  (a f) <b1>))
+                         f) <b2>))
+      ==
+      (λ (<x2>) (<a2> (<a1>  (a f) <b1>)[<x1> := f]
+                       <b2>))
+      我需使出现(f (a f))
+      所以我省略 <b> 并且解得 <x> == <a>
+      如果用q给<x>这个变量命名 就得到
+      (λ (p) (λ (q) (q (p f) f)))
+      其实这个问题就是在求解一个函数方程
+      只不过函数都是用λ-term来表达的
+      >< 我的新解释器能怎样帮助这种探索过程呢?
+      通过边推导边以极端适合阅读的方式展示?
+      如何支持我上面所设的这种未知数?
 
 
-    回到原来的问题看看对:cn:0 的处理是怎样完成的
-    这也相当于不用条件控制结构实现了条件控制
-    这个控制是如何完成的?
-    这在于(K a)是一个常λ-abstraction
-    所以它个一完成多对一
-    ((K a) I)与((K a) f)都等于a
-    #+end_src
+      回到原来的问题看看对:cn:0 的处理是怎样完成的
+      这也相当于不用条件控制结构实现了条件控制
+      这个控制是如何完成的?
+      这在于(K a)是一个常λ-abstraction
+      所以它个一完成多对一
+      ((K a) I)与((K a) f)都等于a
+      #+end_src
 
-** :pn: use pair to model natural-number
-   #+begin_src scheme :tangle daedalus-interpreter.scm
-   ;; 0
-   ;; ==
-   ;; I
-
-   ;; 1
-   ;; ==
-   ;; ((pair K*)
-   ;;  I)
-
-   ;; 2
-   ;; ==
-   ;; ((pair K*)
-   ;;  ((pair K*)
-   ;;   I))
-
-   ;; 3
-   ;; ==
-   ;; ((pair K*)
-   ;;  ((pair K*)
-   ;;   ((pair K*)
-   ;;    I)))
-
-   ;; boolean == K(as ture) | K*(as false)
-   (<-β-
-    '(def pair
-       (λ (M)
-         (λ (N)
-           (λ (boolean)
-             ((boolean M) N))))
-       "use λ-term to model pair structure"))
-   ;; test:
-   ;; (((pair 'first) 'second)
-   ;;  K)
-   ;; (((pair 'first) 'second)
-   ;;  K*)
-
-   (define scm:pn<-n
-     (lambda (n)
-       (cond [(zero? n) 'I]
-             [else
-              `((pair K*)
-                ,(scm:pn<-n (sub1 n)))]
-             )))
-   (<-β-
-    '(def pn<-n
-       '(scm scm:pn<-n)
-       "scm:pn<-n which defined in scheme"))
-
-   (<-β-
-    '(def :pn:1+
-       (λ (pn)
-         ((pair K*) pn))))
-
-   (<-β-
-    '(def :pn:1-
-       (λ (pn)
-         (pn K*))))
-   ;; observing that:
-   ;; (:pn:1- [pn<-n 0])
-   ;; ==>
-   ;; K*
-
-   ;; for we have put K* in :pn:
-   ;; :pn:0? is easy to define
-   (<-β-
-    '(def :pn:0?
-       (λ (pn)
-         (pn K))))
-
-   ;; (<-β-
-   ;;  '(def n<-pn
-   ;;     (Y (λ (n<-pn)
-   ;;          (λ (pn)
-   ;;            (((:pn:0? pn)
-   ;;              0)
-   ;;             (add1 [n<-pn (:pn:1- pn)])))))))
-   (<-β-
-    '(def n<-pn
-       (λ (pn)
-         (((:pn:0? pn)
-        0)
-          (add1 [n<-pn (:pn:1- pn)])))))
-
-   ;; (<-β-
-   ;;  '(def :pn:+
-   ;;     (Y (λ (:pn:+)
-   ;;       (λ (k)
-   ;;         (λ (n)
-   ;;           (((:pn:0? k)
-   ;;             n)
-   ;;            (:pn:1+ ((:pn:+
-   ;;                      (:pn:1- k))
-   ;;                     n)))))))))
-   (<-β-
-    '(def :pn:+
-       (λ (k)
-         (λ (n)
-           (((:pn:0? k)
-             n)
-            (:pn:1+ ((:pn:+
-                      (:pn:1- k))
-                     n)))))))
-   #+end_src
-** isomorphism between :cn: and :pn:
-   #+begin_src scheme :tangle daedalus-interpreter.scm
-   (<-β-
-    '(def pn<-cn
-       (λ (cn)
-         ((cn :pn:1+) [pn<-n 0]))))
-   ;; test:
-   ;; [n<-pn [pn<-cn [cn<-n 5]]]
-   (<-β-
-    '(def cn<-pn
-       (λ (pn)
-         (((:pn:0? pn)
-           [cn<-n 0])
-          (:cn:1+ [cn<-pn (:pn:1- pn)])))))
-   ;; test:
-   ;; [n<-cn [cn<-pn [pn<-n 10]]]
-   #+end_src
-** use :pn: to proof all rec-functions are λ-definalbe
-   *DEFINITION* λ-definalbe:
-   p-ary-function φ of natural-number (numeric function)
-   is called λ-definalbe
-   if ∃ combinator f
-   and ∀ n_1 ... n_p ∈ natural-number:
-   f[pn<-n n_1]...[pn<-n n_p] == [pn<-n (φ n_1 ... n_p)]
-
-   *DEFINITION* recursive function:
-   the smallest class of numeric functions
-   that contains all initial functions
-   and is closed under composition and primitive recursion and minimalization
-   i.e.
-   generated by all initial functions
-   under composition and primitive recursion and minimalization
-
-   *DEFINITION* initial functions:
-   there are three of them:
-   U^n_i: (U^n_i x_1 ... x_n) == x_i :(1 <= i <= n)
-   S+: (S+ n) == n + 1
-   Z: (Z n) == 0
-
-   *DEFINITION* minimalization:
-   P is unary-predicate of natural-number
-   μn.(P n) == the least number k such that (P k) holds
-   if there in no such a number μn.(P n) is undefined
-
-   *EXAMPLE* primitive recursion:
-   1-ary:φ and 3-ary:ψ ==> 2-ary:φ*
-   (φ* 0 n) == (φ n)
-   (φ* (add1 k) n) == (ψ (φ* k n) k n)
-
-   here we have an inductively defined class
-   so the proof of what we have asserted will be typical
-*** the initial functions are λ-definable:
-    while the proof is trivial
-    to write a procedure which generate U^n_i
-    in a particular interpreter is still interesting
-    #+begin_src scheme
-    ;; U^2_1 == K
+*** :pn: use pair to model natural-number
+    #+begin_src scheme :tangle daedalus-interpreter.scm
+    ;; 0
     ;; ==
-    ;; ((K 'x_1) 'x_2)
+    ;; I
 
-    ;; U^2_2 == K*
+    ;; 1
     ;; ==
-    ;; ((K* 'x_1) 'x_2)
+    ;; ((pair K*)
+    ;;  I)
 
-    ;; U^3_2
+    ;; 2
     ;; ==
-    ;; ((((K K) 'x_1) 'x_2) 'x_3)
+    ;; ((pair K*)
+    ;;  ((pair K*)
+    ;;   I))
 
-    (define scm:U^n_i
-      (lambda (n i)
-        (letrec
-            ([R (lambda (k)
-                  (cond [(= k 1)
-                         `(λ (,[string->symbol
-                                 (string-append
-                                  "x_" (number->string (+ 1 n (- k))))])
-                            ,[string->symbol
-                              (string-append
-                               "x_" (number->string i))])]
-                        [else
-                         `(λ (,[string->symbol
-                                 (string-append
-                                  "x_" (number->string (+ 1 n (- k))))])
-                            ,(R (sub1 k)))]
-                        ))])
-          (R n))))
-    ;; ((scm:U^n_i 3) 2)
-    ;; (<-β-
-    ;;  `(((,((scm:U^n_i 3) 2)
-    ;;      1)
-    ;;     2)
-    ;;    3))
+    ;; 3
+    ;; ==
+    ;; ((pair K*)
+    ;;  ((pair K*)
+    ;;   ((pair K*)
+    ;;    I)))
 
-    ;; i need to implement a way to do rec in daedalus
-    ;; for to not always use scheme to do that
+    ;; boolean == K(as ture) | K*(as false)
     (<-β-
-     '(def U^n_i
-        '(scm scm:U^n_i)
-        "scm:U^n_i defined in scheme"))
-
+     '(def pair
+        (λ (M)
+          (λ (N)
+            (λ (boolean)
+              ((boolean M) N))))
+        "use λ-term to model pair structure"))
     ;; test:
-    ;; (<-β-
-    ;;  '(U^n_i 3 2))
-    ;; (<-β-
-    ;;  `((((U^n_i 3 2)
-    ;;      1)
-    ;;     2)
-    ;;    3))
-    #+end_src
-*** the λ-definable functions are closed under composition:
-    this is also trivial
-    #+begin_src scheme
-    (<start-repl> daedalus-interpreter)
+    ;; (((pair 'first) 'second)
+    ;;  K)
+    ;; (((pair 'first) 'second)
+    ;;  K*)
+
+    (define scm:pn<-n
+      (lambda (n)
+        (cond [(zero? n) 'I]
+              [else
+               `((pair K*)
+                 ,(scm:pn<-n (sub1 n)))]
+              )))
+    (<-β-
+     '(def pn<-n
+        '(scm scm:pn<-n)
+        "scm:pn<-n which defined in scheme"))
+
+    (<-β-
+     '(def :pn:1+
+        (λ (pn)
+          ((pair K*) pn))))
+
+    (<-β-
+     '(def :pn:1-
+        (λ (pn)
+          (pn K*))))
     ;; observing that:
-    ;; H1 H2 F have common local-vars
-    (def H1
-      (λ (x1)
-        (λ (x2)
-          (λ (x3)
-            x1))))
-    (def H2
-      (λ (x1)
-        (λ (x2)
-          (λ (x3)
-            x2))))
-    (def G
-      (λ (y1)
-        (λ (y2)
-          ((cons y1) y2))))
-    (def F
-      (λ (x1)
-        (λ (x2)
-          (λ (x3)
-            ((G
-              (((H1 x1) x2) x3))
-             (((H2 x1) x2) x3))))))
-    (((F 'a) 'b) 'c)
-    #+end_src
-*** the λ-definable functions are closed under primitive recursion:
-    #+begin_src scheme
-    ;; 1-ary:φ and 3-ary:ψ ==> 2-ary:φ*
-    ;; (φ* 0 n) == (φ n)
-    ;; (φ* (1+ k) n) == (ψ (φ* k n) k n)
-    ;; <==>
-    ;; (φ* k n) == (ψ (φ* (1- k) n) (1- k) n)
+    ;; (:pn:1- [pn<-n 0])
+    ;; ==>
+    ;; K*
 
-    ;; the following two both work!!!
-    ;; buth slow but the first one is faster
-    (def :pn:+
-      (λ (k)
+    ;; for we have put K* in :pn:
+    ;; :pn:0? is easy to define
+    (<-β-
+     '(def :pn:0?
+        (λ (pn)
+          (pn K))))
+
+    ;; (<-β-
+    ;;  '(def n<-pn
+    ;;     (Y (λ (n<-pn)
+    ;;          (λ (pn)
+    ;;            (((:pn:0? pn)
+    ;;              0)
+    ;;             (add1 [n<-pn (:pn:1- pn)])))))))
+    (<-β-
+     '(def n<-pn
+        (λ (pn)
+          (((:pn:0? pn)
+         0)
+           (add1 [n<-pn (:pn:1- pn)])))))
+
+    ;; (<-β-
+    ;;  '(def :pn:+
+    ;;     (Y (λ (:pn:+)
+    ;;       (λ (k)
+    ;;         (λ (n)
+    ;;           (((:pn:0? k)
+    ;;             n)
+    ;;            (:pn:1+ ((:pn:+
+    ;;                      (:pn:1- k))
+    ;;                     n)))))))))
+    (<-β-
+     '(def :pn:+
+        (λ (k)
+          (λ (n)
+            (((:pn:0? k)
+              n)
+             (:pn:1+ ((:pn:+
+                       (:pn:1- k))
+                      n)))))))
+    #+end_src
+*** isomorphism between :cn: and      :pn:
+    #+begin_src scheme :tangle daedalus-interpreter.scm
+    (<-β-
+     '(def pn<-cn
+        (λ (cn)
+          ((cn :pn:1+) [pn<-n 0]))))
+    ;; test:
+    ;; [n<-pn [pn<-cn [cn<-n 5]]]
+    (<-β-
+     '(def cn<-pn
+        (λ (pn)
+          (((:pn:0? pn)
+            [cn<-n 0])
+           (:cn:1+ [cn<-pn (:pn:1- pn)])))))
+    ;; test:
+    ;; [n<-cn [cn<-pn [pn<-n 10]]]
+    #+end_src
+*** use :pn: to proof all rec-functions are λ-definalbe
+    *DEFINITION* λ-definalbe:
+    p-ary-function φ of natural-number (numeric function)
+    is called λ-definalbe
+    if ∃ combinator f
+    and ∀ n_1 ... n_p ∈ natural-number:
+    f[pn<-n n_1]...[pn<-n n_p] == [pn<-n (φ n_1 ... n_p)]
+
+    *DEFINITION* recursive function:
+    the smallest class of numeric functions
+    that contains all initial functions
+    and is closed under composition and primitive recursion and minimalization
+    i.e.
+    generated by all initial functions
+    under composition and primitive recursion and minimalization
+
+    *DEFINITION* initial functions:
+    there are three of them:
+    U^n_i: (U^n_i x_1 ... x_n) == x_i :(1 <= i <= n)
+    S+: (S+ n) == n + 1
+    Z: (Z n) == 0
+
+    *DEFINITION* minimalization:
+    P is unary-predicate of natural-number
+    μn.(P n) == the least number k such that (P k) holds
+    if there in no such a number μn.(P n) is undefined
+
+    *EXAMPLE* primitive recursion:
+    1-ary:φ and 3-ary:ψ ==> 2-ary:φ*
+    (φ* 0 n) == (φ n)
+    (φ* (add1 k) n) == (ψ (φ* k n) k n)
+
+    here we have an inductively defined class
+    so the proof of what we have asserted will be typical
+***** the initial functions are λ-definable:
+      while the proof is trivial
+      to write a procedure which generate U^n_i
+      in a particular interpreter is still interesting
+      #+begin_src scheme
+      ;; U^2_1 == K
+      ;; ==
+      ;; ((K 'x_1) 'x_2)
+
+      ;; U^2_2 == K*
+      ;; ==
+      ;; ((K* 'x_1) 'x_2)
+
+      ;; U^3_2
+      ;; ==
+      ;; ((((K K) 'x_1) 'x_2) 'x_3)
+
+      (define scm:U^n_i
+        (lambda (n i)
+          (letrec
+              ([R (lambda (k)
+                    (cond [(= k 1)
+                           `(λ (,[string->symbol
+                                   (string-append
+                                    "x_" (number->string (+ 1 n (- k))))])
+                              ,[string->symbol
+                                (string-append
+                                 "x_" (number->string i))])]
+                          [else
+                           `(λ (,[string->symbol
+                                   (string-append
+                                    "x_" (number->string (+ 1 n (- k))))])
+                              ,(R (sub1 k)))]
+                          ))])
+            (R n))))
+      ;; ((scm:U^n_i 3) 2)
+      ;; (<-β-
+      ;;  `(((,((scm:U^n_i 3) 2)
+      ;;      1)
+      ;;     2)
+      ;;    3))
+
+      ;; i need to implement a way to do rec in daedalus
+      ;; for to not always use scheme to do that
+      (<-β-
+       '(def U^n_i
+          '(scm scm:U^n_i)
+          "scm:U^n_i defined in scheme"))
+
+      ;; test:
+      ;; (<-β-
+      ;;  '(U^n_i 3 2))
+      ;; (<-β-
+      ;;  `((((U^n_i 3 2)
+      ;;      1)
+      ;;     2)
+      ;;    3))
+      #+end_src
+***** the λ-definable functions are closed under composition:
+      this is also trivial
+      #+begin_src scheme
+      (<start-repl> daedalus-interpreter)
+      ;; observing that:
+      ;; H1 H2 F have common local-vars
+      (def H1
+        (λ (x1)
+          (λ (x2)
+            (λ (x3)
+              x1))))
+      (def H2
+        (λ (x1)
+          (λ (x2)
+            (λ (x3)
+              x2))))
+      (def G
+        (λ (y1)
+          (λ (y2)
+            ((cons y1) y2))))
+      (def F
+        (λ (x1)
+          (λ (x2)
+            (λ (x3)
+              ((G
+                (((H1 x1) x2) x3))
+               (((H2 x1) x2) x3))))))
+      (((F 'a) 'b) 'c)
+      #+end_src
+***** the λ-definable functions are closed under primitive recursion:
+      #+begin_src scheme
+      ;; 1-ary:φ and 3-ary:ψ ==> 2-ary:φ*
+      ;; (φ* 0 n) == (φ n)
+      ;; (φ* (1+ k) n) == (ψ (φ* k n) k n)
+      ;; <==>
+      ;; (φ* k n) == (ψ (φ* (1- k) n) (1- k) n)
+
+      ;; the following two both work!!!
+      ;; buth slow but the first one is faster
+      (def :pn:+
+        (λ (k)
+          (λ (n)
+            (((:pn:0? k)
+              n)
+             (:pn:1+ ((:pn:+
+                       (:pn:1- k))
+                      n))))))
+      (def :pn:+
+        (Y (λ (:pn:+)
+             (λ (k)
+               (λ (n)
+                 (((:pn:0? k)
+                   n)
+                  (:pn:1+ ((:pn:+
+                            (:pn:1- k))
+                           n))))))))
+      (n<-pn ((:pn:+ [pn<-n 3]) [pn<-n 5]))
+      (<start-repl> daedalus-interpreter)
+      #+end_src
+***** the λ-definable functions are closed under minimalization:
+      #+begin_src scheme
+      φ ==μn.(P n)
+      (def P
         (λ (n)
-          (((:pn:0? k)
+          (:pn:0? (X n))))
+      ;; (def X
+      ;;   (λ (n)
+      ;;     [pn<-n 0]))
+      (def φ
+        (φ-help [pn<-n 0]))
+      (def φ-help
+        (λ (n)
+          (((P n)
             n)
-           (:pn:1+ ((:pn:+
-                     (:pn:1- k))
-                    n))))))
-    (def :pn:+
-      (Y (λ (:pn:+)
-           (λ (k)
-             (λ (n)
-               (((:pn:0? k)
-                 n)
-                (:pn:1+ ((:pn:+
-                          (:pn:1- k))
-                         n))))))))
-    (n<-pn ((:pn:+ [pn<-n 3]) [pn<-n 5]))
-    (<start-repl> daedalus-interpreter)
-    #+end_src
-*** the λ-definable functions are closed under minimalization:
+           (φ-help (:pn:1+ n)))))
+      -----------------------------
+      (φ m) == μn.((P m)n)
+      (def P
+        (λ (m)
+          (λ (n)
+            (:pn:0? ((X m) n)))))
+      ;; (def X
+      ;;   (λ (m)
+      ;;     (λ (n)
+      ;;       [pn<-n 0])))
+      (def φ
+        (λ (m)
+          ((φ-help m) [pn<-n 0])))
+      (def φ-help
+        (λ (m)
+          (λ (n)
+            ((((P m) n)
+              n)
+             ((φ-help m) (:pn:1+ n))))))
+      #+end_src
+*** multiple fixedpoint equations
+    use the representation of pairs in λ-cal
+    to construct X and Z simultaneously, as a pair
+    to solve multiple fixedpoint equations
+    ∀F1 F2∃X1 X2:
+    X1=(F1 X1)X2
+    X2=(F2 X1)X2
+    find X:
+    X=[F1 (XK)(XK*), F2 (XK)(XK*)]
+    i.e.
+    F=(λ (X)
+    ((pair
+    (F1 (X K) (X K*)))
+    (F2 (X K) (X K*))))
+    X=FX
+    then:
+    X1=XK
+    X2=XK*
+
+    *EXAMPLE*
+    to find G H:
+    Gxy = Hy(Kx)
+    Hx = G(xx)(S(H(xx)))
+    :
+    G = λxy.Hy(Kx)
+    H = λx.G(xx)(S(H(xx)))
+    :
+    F1 ≡ λghxy.hy(Kx)
+    F2 ≡ λghx.g(xx)(S(h(xx)))
+
+    so the solvability of equations in the λ-cal theory is fine
+    >< are there any equations can't solve by Y?
+
+*** using λ-term to computing on data type
+    基础元素是'()还有自然数
+    运算cons用来归纳定义2branchtree这个结构中的其他元素
+    运算car与cdr可以被视为展示性运算
+    有算法可以找出一个结构的以λ-term为基础的模型吗?
     #+begin_src scheme
-    φ ==μn.(P n)
-    (def P
-      (λ (n)
-        (:pn:0? (X n))))
-    ;; (def X
-    ;;   (λ (n)
-    ;;     [pn<-n 0]))
-    (def φ
-      (φ-help [pn<-n 0]))
-    (def φ-help
-      (λ (n)
-        (((P n)
-          n)
-         (φ-help (:pn:1+ n)))))
-    -----------------------------
-    (φ m) == μn.((P m)n)
-    (def P
-      (λ (m)
-        (λ (n)
-          (:pn:0? ((X m) n)))))
-    ;; (def X
-    ;;   (λ (m)
-    ;;     (λ (n)
-    ;;       [pn<-n 0])))
-    (def φ
-      (λ (m)
-        ((φ-help m) [pn<-n 0])))
-    (def φ-help
-      (λ (m)
-        (λ (n)
-          ((((P m) n)
-            n)
-           ((φ-help m) (:pn:1+ n))))))
+    (define bud '())
+    (define bud? null?)
+    (define plus cons)
+
+    (plus 3 (plus 5 bud))
+    (plus (plus bud 5) 3)
+    (define mirror-of-2branchtree
+      (lambda (tree)
+        (cond [(bud? tree) tree]
+              [(leaf? tree) tree]
+              [else
+               (plus (mirror-of-2branchtree (cdr tree))
+                      (mirror-of-2branchtree (car tree)))]
+              )))
+    (mirror-of-2branchtree (plus 3 (plus 5 bud)))
+    (mirror-of-2branchtree (plus (plus bud 5) 3))
     #+end_src
-** multiple fixedpoint equations
-   use the representation of pairs in λ-cal
-   to construct X and Z simultaneously, as a pair
-   to solve multiple fixedpoint equations
-   ∀F1 F2∃X1 X2:
-   X1=(F1 X1)X2
-   X2=(F2 X1)X2
-   find X:
-   X=[F1 (XK)(XK*), F2 (XK)(XK*)]
-   i.e.
-   F=(λ (X)
-   ((pair
-   (F1 (X K) (X K*)))
-   (F2 (X K) (X K*))))
-   X=FX
-   then:
-   X1=XK
-   X2=XK*
+    到此为止只不过是在使用递归来处理这个数据结构
+    下面就是用λ-term来表示这个数据结构本身
+    --------------------------------------------------
+    首先natural-number2lambda-term
+    输入n返回一个可以二元函数
+    这个二元函数被认为是自数n的利用lambda-term构建的模型
+    这个二元函数的
+    第一个参数是一个一元函数f
+    第二个参数是初始被作用值x
+    这个二元函数的返回值
+    是将f迭代n次然后作用与x
+    但是注意解释器实际的解释过程与下面简单的代入是不同的
+    >< 最好能总结一下理解解释器行为方式的数学性质
+    以后就可以不利用解释来思考计算过程了
+    或者问用scheme的解释器来作lambda-calculus中的实验的时候需要注意什么?
+    #+begin_src scheme
+    (define natural-number->lambdaxp
+      (lambda (n)
+        (cond [(zero? n)
+               (lambda (f x)
+                 x)]
+              [else
+               (lambda (f x)
+                 (f
+                  ((natural-number->lambdaxp (sub1 n))
+                   f x)))]
+              )))
+    ;; 测试:
+    ((natural-number->lambdaxp 0)
+     add1 0)
+    ((natural-number->lambdaxp 10)
+     add1 0)
+    ((natural-number->lambdaxp 10)
+     add1 10)
+    ;; 可以说这就定义了加法
+    (define add
+      (lambda (a b)
+        ((natural-number->lambdaxp a)
+         add1 b)))
+    ;; 测试:
+    (add 123 321)
+    #+end_src
+    之后是tree->lambdaxp
+    #+begin_src scheme
+    (define lambdaxp-as-leaf
+      (lambda (n)
+        (lambda (b l p)
+          (l n))))
+    (define lambdaxp-as-bud
+      (lambda (b l p)
+        b))
+    (define lambdaxp->tree
+      (lambda (lambdaxp-as-tree)
+        (lambdaxp-as-tree bud
+                          natural-number->lambdaxp
+                          plus)))
+    (define plus
+      (lambda (t1 t2 cc-plus)
+        (lambda (p)
+          (p (cc-plus t1) (cc-plus t2) cc-p))))
 
-   *EXAMPLE*
-   to find G H:
-   Gxy = Hy(Kx)
-   Hx = G(xx)(S(H(xx)))
-   :
-   G = λxy.Hy(Kx)
-   H = λx.G(xx)(S(H(xx)))
-   :
-   F1 ≡ λghxy.hy(Kx)
-   F2 ≡ λghx.g(xx)(S(h(xx)))
-
-   so the solvability of equations in the λ-cal theory is fine
-   >< are there any equations can't solve by Y?
-
-** using λ-term to computing on data type
-   基础元素是'()还有自然数
-   运算cons用来归纳定义2branchtree这个结构中的其他元素
-   运算car与cdr可以被视为展示性运算
-   有算法可以找出一个结构的以λ-term为基础的模型吗?
-   #+begin_src scheme
-   (define bud '())
-   (define bud? null?)
-   (define plus cons)
-
-   (plus 3 (plus 5 bud))
-   (plus (plus bud 5) 3)
-   (define mirror-of-2branchtree
-     (lambda (tree)
-       (cond [(bud? tree) tree]
-             [(leaf? tree) tree]
-             [else
-              (plus (mirror-of-2branchtree (cdr tree))
-                     (mirror-of-2branchtree (car tree)))]
-             )))
-   (mirror-of-2branchtree (plus 3 (plus 5 bud)))
-   (mirror-of-2branchtree (plus (plus bud 5) 3))
-   #+end_src
-   到此为止只不过是在使用递归来处理这个数据结构
-   下面就是用λ-term来表示这个数据结构本身
-   --------------------------------------------------
-   首先natural-number2lambda-term
-   输入n返回一个可以二元函数
-   这个二元函数被认为是自数n的利用lambda-term构建的模型
-   这个二元函数的
-   第一个参数是一个一元函数f
-   第二个参数是初始被作用值x
-   这个二元函数的返回值
-   是将f迭代n次然后作用与x
-   但是注意解释器实际的解释过程与下面简单的代入是不同的
-   >< 最好能总结一下理解解释器行为方式的数学性质
-   以后就可以不利用解释来思考计算过程了
-   或者问用scheme的解释器来作lambda-calculus中的实验的时候需要注意什么?
-   #+begin_src scheme
-   (define natural-number->lambdaxp
-     (lambda (n)
-       (cond [(zero? n)
-              (lambda (f x)
-                x)]
-             [else
-              (lambda (f x)
-                (f
-                 ((natural-number->lambdaxp (sub1 n))
-                  f x)))]
-             )))
-   ;; 测试:
-   ((natural-number->lambdaxp 0)
-    add1 0)
-   ((natural-number->lambdaxp 10)
-    add1 0)
-   ((natural-number->lambdaxp 10)
-    add1 10)
-   ;; 可以说这就定义了加法
-   (define add
-     (lambda (a b)
-       ((natural-number->lambdaxp a)
-        add1 b)))
-   ;; 测试:
-   (add 123 321)
-   #+end_src
-   之后是tree->lambdaxp
-   #+begin_src scheme
-   (define lambdaxp-as-leaf
-     (lambda (n)
-       (lambda (b l p)
-         (l n))))
-   (define lambdaxp-as-bud
-     (lambda (b l p)
-       b))
-   (define lambdaxp->tree
-     (lambda (lambdaxp-as-tree)
-       (lambdaxp-as-tree bud
-                         natural-number->lambdaxp
-                         plus)))
-   (define plus
-     (lambda (t1 t2 cc-plus)
-       (lambda (p)
-         (p (cc-plus t1) (cc-plus t2) cc-p))))
-
-   (define leaf? (lambda (x)
-                   (cond [(null? x) #f]
-                         [(list? x)
-                          (eq? (car x) 'leaf)]
-                         [else #f])))
-   '(leaf 1)
-   (define tree->lambdaxp-help
-     (lambda (tree)
-       (cond [(bud? tree)
-              (lambda (b)
-                b)]
-             [(leaf? tree)
-              (lambda (l)
-                (l (natural-number->lambdaxp (cadr tree))))]
-             [else
-              (lambda )]
-             )))
-   (define tree->lambdaxp
-     (lambda (tree)
-       (lambda (b l p)
-         (tree->lambdaxp-help ))))
+    (define leaf? (lambda (x)
+                    (cond [(null? x) #f]
+                          [(list? x)
+                           (eq? (car x) 'leaf)]
+                          [else #f])))
+    '(leaf 1)
+    (define tree->lambdaxp-help
+      (lambda (tree)
+        (cond [(bud? tree)
+               (lambda (b)
+                 b)]
+              [(leaf? tree)
+               (lambda (l)
+                 (l (natural-number->lambdaxp (cadr tree))))]
+              [else
+               (lambda )]
+              )))
+    (define tree->lambdaxp
+      (lambda (tree)
+        (lambda (b l p)
+          (tree->lambdaxp-help ))))
 
 
-   (define tree->lambdaxp
-     (lambda (tree)
-       (lambda (b l p)
-         (cond [(bud? tree) b]
-               [(leaf? tree)
-                (let ([n tree])
-                  (l n))]
-               ;; 重点是下面这种情况
-               [else
-                #f]
-               ))))
-   (tree->lambdaxp bud)
-   (lambdaxp->tree (tree->lambdaxp bud))
+    (define tree->lambdaxp
+      (lambda (tree)
+        (lambda (b l p)
+          (cond [(bud? tree) b]
+                [(leaf? tree)
+                 (let ([n tree])
+                   (l n))]
+                ;; 重点是下面这种情况
+                [else
+                 #f]
+                ))))
+    (tree->lambdaxp bud)
+    (lambdaxp->tree (tree->lambdaxp bud))
 
-   (tree->lambdaxp 10)
-   (lambdaxp->tree (tree->lambdaxp 10))
-   ((lambdaxp->tree (tree->lambdaxp 10))
-    add1 0)
+    (tree->lambdaxp 10)
+    (lambdaxp->tree (tree->lambdaxp 10))
+    ((lambdaxp->tree (tree->lambdaxp 10))
+     add1 0)
 
 
-   LHS
-   K{t1 + t2}
-   λ blp . p k{t1} k{t2}
-   RHS
-   {λ t1t2blp . p {t1blp} {t2blp}} K{t1} k{t2}
-   λ blp . p {K{t1}blp} {K{t2}blp}
-   λ blp . p {{λ blp . k{t1}} blp} {{λ blp . k{t2}} blp}
-   λ blp . p k{t1} k{t2}
-   #+end_src
+    LHS
+    K{t1 + t2}
+    λ blp . p k{t1} k{t2}
+    RHS
+    {λ t1t2blp . p {t1blp} {t2blp}} K{t1} k{t2}
+    λ blp . p {K{t1}blp} {K{t2}blp}
+    λ blp . p {{λ blp . k{t1}} blp} {{λ blp . k{t2}} blp}
+    λ blp . p k{t1} k{t2}
+    #+end_src
 * ===================================
