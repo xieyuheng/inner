@@ -24,8 +24,9 @@
   - when I am designing my new language here,
     I hope to capture some phenomena we observed
     when we think about continuum,
-    and I am motivated by realizing those phenomena are hard to be expressed
-    by any languages have invented.
+    and I am motivated by realizing that
+    those phenomena are hard to be expressed
+    by any languages which have been invented by people.
 
   - but I am so aware of the limitation of any languages,
     so, you will see me criticizing myself along the way,
@@ -49,7 +50,6 @@
     the underlying-space itself
     can be viewed as the combinatorial representation of the group
     [by generators and relations]
-
 
 *** cayley-graph [covering-space]
 

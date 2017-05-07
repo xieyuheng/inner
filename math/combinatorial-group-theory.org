@@ -56,25 +56,25 @@
       in a simple combinatorial manner,
       and topology originally developed on this basis.
 
-*** chapter 0 introduction and foundations
+*** 0 introduction and foundations
 
-*** chapter 1 complex analysis and surface topology
+*** 1 complex analysis and surface topology
 
-*** chapter 2 graphs and free groups
+*** 2 graphs and free groups
 
-*** chapter 3 foundations for the fundamental group
+*** 3 foundations for the fundamental group
 
-*** chapter 4 fundamental groups of complexes
+*** 4 fundamental groups of complexes
 
-*** chapter 5 homology theory and abelianization
+*** 5 homology theory and abelianization
 
-*** chapter 6 curves on surfaces
+*** 6 curves on surfaces
 
-*** chapter 7 knots and braids
+*** 7 knots and braids
 
-*** chapter 8 three-dimensional manifolds
+*** 8 three-dimensional manifolds
 
-*** chapter 9 unsolvable problems
+*** 9 unsolvable problems
 
 * (1982) (bruce chandler and wilhelm magnus) the history of combinatorial group theory: a case study in the history of ideas
 
@@ -329,6 +329,21 @@ x
 
 ***** 2 Free Groups and Their Automorphisms
 
+      - Nielsen
+        Hopf
+        McCool
+
+      - [bib]
+
+        - McCool, J., 1974,
+          A presentation of the automorphism group of a free group of finite rank
+
+        - McCool, J. 1975a,
+          On Nielsen's presentation of the automorphism group of a free group
+
+        - McCool, J., 1975b,
+          Some finitely presented subgroups of the automorphism group of a freegroup
+
 ***** 3 The Reidemeister-Schreier Method
 
 ***** 4 Free Products and Free Products with Amalgamations
@@ -342,6 +357,15 @@ x
 ***** 8 Varieties of Groups
 
 ***** 9 Topological Properties of Groups and Group Extensions
+
+      - this may be described as
+        a method of associating a topological cell complex
+        with the group and deriving results about the group from this association.
+
+      - it was shown that
+        the association of cell complexes and groups
+        leads to a purely algebraicde finition of homology and cohomology groups
+        belonging to any given group G which are invariants of G.
 
 ***** 10 Notes on Special Groups
 

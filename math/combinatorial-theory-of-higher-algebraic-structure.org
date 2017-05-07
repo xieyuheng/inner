@@ -1060,3 +1060,8 @@
   - x -
     如何檢查一個組合是否爲 Sn ?
     [因而可以成爲某個高階生成子的邊界]
+
+* homology as abelianization
+
+  - x -
+    maybe I can view higher homology as abelianization of higher algebraic structure.

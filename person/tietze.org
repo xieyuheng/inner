@@ -6,4 +6,121 @@
 
     - some parts of this paper may be read as a clarifying commentary on those by Poincare.
 
-* famous problems of mathematics (1959)
+*** intro
+
+    - while we have known, for a long time,
+      a set of necessary and sufficient conditions
+      for the existence of a one-to-one continuous map
+      between two two-dimensional manifolds,
+      at present such a system of conditions for three
+      and higher dimensional manifolds is not known.
+
+    - it should be remarked that
+      the presentation of a manifold as a cell system in Section I,
+      is of particular theoretical interest in that
+      it permits the construction of analysis situs
+      free of the introduction of infinite point sets
+      or function theoretic methods.
+      This depends on the fact that
+      a cell system is determined by
+      a finite number of elements
+      and a finite number of relations between them.
+
+*** I. The schemata of multidimensional manifolds
+
+***** 1 Demarcation of the point manifolds to be considered
+
+      - a couple of general remarks on the different ways
+        of presenting manifolds.
+        1. The principal, and simplest, way
+           to determine point sets
+           and hence all point manifolds
+           is to give a collection of points (x1, x2, ..., xn)
+           in the space of n rectangular coordinates.
+           where each point is represented by a single n-tuple,
+           and each n-tuple appearing corresponds to a point of the manifold.
+        2. Another way to determine a manifold
+           is to view different n-tuples
+           as representing the same point of the manifold. [quotient-space]
+        3. cell system [viewed as quotient-space]
+
+***** 2 The schemata of two-dimensional manifolds
+
+      - in two-dimensional,
+        schema = cell system = system of surface pieces
+
+      - [homeomorphism of schemata]
+        elementary subdivisions ->
+        successive elementary subdivisions ->
+        derived schema ->
+        common derived schema ->
+        homeomorphism of schemata
+
+      - homeomorphic manifolds
+        can never be defined by nonhomeomorphic schemata ?
+
+***** 3 The schemata of three-dimensional manifolds
+
+***** 4 Schemata of arbitrary dimension. The meaning of cells and two-sided manifolds
+
+      - a geometric figure must always yield
+        a definite arrangement of its boundary elements.
+
+*** II. The Betti numbers
+
+***** 5 Homologies, the Poincaré relation system of a manifold
+
+      - ><
+
+***** 6 Definition of the Betti numbers
+
+***** 7 On the assumptions used in (6)
+
+***** 8 On the topological invariants Pm
+
+*** III. One-sided closed manifolds in a manifold
+
+***** 9 The invariants Qm analogous to the Betti numbers Pm
+
+***** 10 The Poincaré torsion numbers. Determination of Qm
+
+*** IV. The fundamental group
+
+***** 11 The Poincaré numbers of a discrete group
+
+      - One observes immediately that
+        two different systems of generators and defining relations
+        can define groups that are isomorphic.
+        However we have neither solved the general problem
+        of theoretically surveying all the possible ways in which
+        the same group may be defined, nor found a means for deciding
+        in particular cases whether two groups
+        given by different systems of generators and defining relations are the same.
+
+***** 12 Introduction of the fundamental group
+
+***** 13 Proof that the fundamental group is a topological invariant
+
+***** 14 Determination of P1 and the first order torsion numbers from the fundamental group
+
+*** V. Theorems and problems on developability and transformations
+
+***** 15 Developable manifolds
+
+***** 16 Self-transformations and deformations of manifolds
+
+*** VI. Special ways of representing closed multidimensional manifolds
+
+***** 17 Closed manifolds are obtained: 1. by identification of boundary manifolds, 2. by double covering of a "ground form"
+
+***** 18 Riemann spaces
+
+*** VII. Some supplementary material
+
+***** 19 On a theorem from the foundations of combinatorial analysis situs
+
+***** 20 An example
+
+***** 21 A definition of Betti numbers different from Poincaré's
+
+***** 22 Manifolds that agree with respect to the topological invariants previously considered
