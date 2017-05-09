@@ -1,0 +1,68 @@
+#+title: hatcher
+
+* AT
+
+*** Chapter 0. Some Underlying Geometric Notions
+
+*** Chapter 1. The Fundamental Group
+
+***** 1.1. Basic Constructions
+
+***** 1.2. Van Kampen's Theorem
+
+***** 1.3. Covering Spaces
+
+      - covering spaces can be used to calculate fundamental groups of spaces.
+
+        the fundamental group and covering spaces
+        can be regarded as two viewpoints toward the same thing.
+        Algebraic aspects of the fundamental group
+        can often be translated into the geometric language of covering spaces.
+
+        connected covering spaces of a given space X corresponds to
+        subgroups of π1 (X).
+
+        as a Galois theory, where
+        field extensions corresponds to
+        subgroups of the Galois group.
+
+      - onto-map (: c (-> A B)) is covering-map,
+
+      - examples about S1 ><><>< S1 :
+        #+begin_src scheme
+
+        #+end_src
+
+***** Additional Topics
+
+*** Chapter 2. Homology
+
+***** 2.1. Simplicial and Singular Homology
+
+***** 2.2. Computations and Applications
+
+***** 2.3. The Formal Viewpoint
+
+***** Additional Topics
+
+*** Chapter 3. Cohomology
+
+***** 3.1. Cohomology Groups
+
+***** 3.2. Cup Product
+
+***** 3.3. Poincaré Duality
+
+***** Additional Topics
+
+*** Chapter 4. Homotopy Theory
+
+***** 4.1. Homotopy Groups
+
+***** 4.2. Elementary Methods of Calculation
+
+***** 4.3. Connections with Cohomology
+
+***** Additional Topics
+
+*** Appendix
