@@ -600,8 +600,6 @@
     = C dim A dim add B dim sub
     = (-> B (* A C)) dim
 
-  -
-
 * erlangen program
 
   - x -
@@ -862,9 +860,9 @@
     空間之間的等價
     (: (~~ A B) (and (-> (* A I) A) (-> (* B I) B)))
     (c)
-    空間之間的等價 <=> 所有同論羣的等價
+    空間之間的等價 <=> 所有同倫羣的等價
     (d)
-    利用 所有同論羣的等價 來把空間之間的等價關係從 simple-space
+    利用 所有同倫羣的等價 來把空間之間的等價關係從 simple-space
     擴展到 任意 mapping-space
 
   - k -
@@ -903,7 +901,7 @@
     然後再推廣回 groupoid
     algebraic-topology 中的概念有
     - 同倫等價
-    - 同論羣
+    - 同倫羣
     - 同調羣
     - 映射類羣
     等等
@@ -2262,6 +2260,7 @@
 
   - x -
     maybe I can view higher homology as abelianization of higher algebraic structure.
+
 * note 關於高階代數 與 knot 所引發的難題
 
   - x -
@@ -2492,5 +2491,42 @@
     我們可以利用例子來檢驗我們的理論的良好性
 
 * normalization
-  
-  - normalization = simplify with certain direction
+
+  - normalization = simplify with certain direction.
+
+* 計算同倫羣
+
+  - x -
+    計算同倫羣的時候
+    (1) 先找生成子
+    (2) 再找生成子之間的關係
+    [證明 von kampen 定理的時候也是如此]
+
+* 選取例子
+
+  - x -
+    我們應該如何選取例子來測試我們的二階代數理論 ?
+
+  - k -
+    先選取簡單的例子
+
+  - x -
+    我們可以問 Dehn 爲什麼選取了他的那些簡單的例子
+    我們可以構擬一下歷史
+    Dehn 選取的都是簡單的置換羣中的例子
+
+  - k -
+    我們也可以嘗試簡單的有限羣
+    還有簡單的有限生成羣
+
+  - x -
+    我們的 normalization 可能能夠讓我們來計算 二階同倫羣
+    但是我們的目的是要說明
+    我們的代數結構比二階同倫羣更豐富
+
+    我們還可以說
+    二階圖形的分類問題
+    遠遠沒有結束
+    其複雜性正如有限羣的分類問題
+    甚至比有限羣的分類問題更複雜
+    因爲我們所討論的是有限生成羣的分類問題

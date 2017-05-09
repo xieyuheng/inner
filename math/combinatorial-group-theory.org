@@ -469,6 +469,43 @@
 
 ***** 3.2 The Fundamental Group of the Circle
 
+******* 3.2.2 Tightening a Path
+
+        - x -
+          證明某些生成子能過生成整個函數空間
+          要證明函數空間中的任意元素都能化爲生成子所生成的正規形式
+
+        - k -
+          但是這與我們理解基本羣的方式並不相同
+          計算基本羣的方式也不同
+          我們計算同倫羣的方式是
+          把一個 groupoid 化爲 group
+
+        - x -
+          groupoid 化爲 group 的過程
+          可以看作是收縮那些沒有自交的 path
+          最終得到的全是 circle
+
+          二維圖形也可以如此
+          最終得到的卻不全是 sphere
+          而是什麼 ?
+
+        - k -
+          我們必須找一些例子來觀察
+
+        - x -
+          在這個正規化的過程中
+          我們也可以先處理點
+          即 用一個支撐樹
+          把所有的點收縮成一個點
+
+        - k -
+          這樣我們就會得到一個高階 group 了
+
+******* 3.2.3 Brouwer Degree
+
+******* 3.2.4 Invariance of the Brouwer Degree under Homotopy
+
 ***** 3.3 Deformation Retracts
 
 ***** 3.4 The Seifert-Van Kampen Theorem
