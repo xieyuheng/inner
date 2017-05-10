@@ -6,6 +6,8 @@
 
     - presentations of groups in terms of generators and relations
 
+* (1967) (maurice frechet and kt fan) initiation combinatorial to topology
+
 * (1977) (roger lyndon and paul schupp) combinatorial group theory
 
 * (1980 1992) (john stillwell) classical topology and combinatorial group theory
@@ -552,7 +554,37 @@
 
 ***** 8.2 Polyhedral Schemata
 
+******* 8.2.4 Remarks
+
+        - Polyhedral schemata
+          have never been used in a systematic way
+          for the construction of 3-manifolds,
+          even though some interesting manifolds
+          originally arose in this way
+          (for example lens spaces, cf. 4.2.8.
+           See also Threlfall and Seifert 1930, 1932
+           and Weber and Seifert 1933
+           for manifolds obtainedfrom the Platonic solids).
+
+          Apparently polyhedral schemata
+          do not admit anything like the reductions applicable to polygon schemata,
+          but it is not clear that anyone has worked very hard on the problem.
+
+          Only recently, Thurston 1977 has found
+          polyhedral forms of many 3-manifolds
+          which can be used to tesselate hyperbolic 3-space,
+          yielding a theory like the classical theory of 2-manifolds.
+
 ***** 8.3 Heegaard Splittings
+
+******* 8.3.1 Existence
+
+******* 8.3.2 Heegaard Diagrams
+
+        - A manifold which splits into handlebodies H1 H2
+          is determined up to homeomorphism
+          by the map (: h (-> [H1 boundary] [H2 boundary]))
+          [which is determined by the images of the canonical meridians.]
 
 ***** 8.4 Surgery
 
@@ -967,3 +999,95 @@ x
 ***** 10.2 other topics
 
 * (1993) two-dimensional homotopy and combinatorial group theory
+
+* (2008) (dmitry kozlov) combinatorial topolog
+
+* (2009) (jean gallier) notes on convex sets, polytopes, polyhedra, combinatorial topology, voronoi diagrams and delaunay triangulations
+
+*** 1 Introduction
+
+***** 1.1 Motivations and Goals
+
+      - A recurring theme in these notes
+        is the process of “conification” (algebraically, “homogenization”),
+        that is, forming a cone from some geometric object.
+
+        Indeed, “conification” turns an object into a set of lines,
+        and since lines play the role of points in projective geometry,
+        “conification” (“homogenization”)
+        is the way to “projectivize” geometric affine objects.
+
+        Then, these (affine) objects
+        appear as “conic sections” of cones by hyperplanes,
+        just the way the classical conics (ellipse, hyperbola, parabola)
+        appear as conic sections.
+
+*** 2 Basic Properties of Convex Sets
+
+***** 2.1 Convex Sets
+
+***** 2.2 Carathéodory’s Theorem
+
+***** 2.3 Vertices, Extremal Points and Krein and Milman’s Theorem
+
+***** 2.4 Radon’s and Helly’s Theorems and Centerpoints
+
+*** 3 Separation and Supporting Hyperplanes
+
+***** 3.1 Separation Theorems and Farkas Lemma
+
+***** 3.2 Supporting Hyperplanes and Minkowski’s Proposition
+
+***** 3.3 Polarity and Duality
+
+*** 4 Polyhedra and Polytopes
+
+***** 4.1 Polyhedra, H-Polytopes and V-Polytopes
+
+***** 4.2 The Equivalence of H-Polytopes and V-Polytopes
+
+***** 4.3 The Equivalence of H-Polyhedra and V-Polyhedra
+
+***** 4.4 Fourier-Motzkin Elimination and Cones
+
+*** 5 Projective Spaces and Polyhedra, Polar Duality
+
+***** 5.1 Projective Spaces
+
+***** 5.2 Projective Polyhedra
+
+***** 5.3 Tangent Spaces of Hypersurfaces
+
+***** 5.4 Quadrics (Affine, Projective) and Polar Duality
+
+*** 6 Basics of Combinatorial Topology
+
+***** 6.1 Simplicial and Polyhedral Complexes
+
+***** 6.2 Combinatorial and Topological Manifolds
+
+*** 7 Shellings and the Euler-Poincaré Formula
+
+***** 7.1 Shellings
+
+***** 7.2 The Euler-Poincaré Formula for Polytopes
+
+***** 7.3 Dehn-Sommerville Equations for Simplicial Polytopes
+
+***** 7.4 The Upper Bound Theorem
+
+*** 8 Dirichlet–Voronoi Diagrams
+
+***** 8.1 Dirichlet–Voronoi Diagrams
+
+***** 8.2 Triangulations
+
+***** 8.3 Delaunay Triangulations
+
+***** 8.4 Delaunay Triangulations and Convex Hulls
+
+***** 8.5 Stereographic Projection and the Space of Spheres
+
+***** 8.6 Stereographic Projection and Delaunay Polytopes
+
+***** 8.7 Applications

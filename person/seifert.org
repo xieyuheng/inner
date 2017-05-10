@@ -1,0 +1,5 @@
+#+title: seifert
+
+* (1934) (seifert and threlfall) Lehrbuchder Topologie [a textbook of topology]
+
+* [topology of 3-dimensional fibered spaces]

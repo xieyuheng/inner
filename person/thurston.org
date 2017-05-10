@@ -1,0 +1,5 @@
+#+title: thurston
+
+* (1980) The Geometry and Topology of Three-Manifolds
+
+* (1997) Three-Dimensional Geometry and Topology VOLUME 1

@@ -2,11 +2,12 @@
 
 * todo
 
+  - 可以先設計語言與語法以處理 有限生成羣 與 二維連續體
+
   - 整理關於各種由羣獲得的空間的理論
     判斷目前獲得的認識是否可靠
     [尤其是有關 dual-cayley-graph 的]
-
-  - 整理之前的筆記
+    [covering-space 與 '賦以流形幾何' 密切相關 [thurston]]
 
   - [hopf-fibration]
     I need mapping-class-group of type (-> torus torus)
@@ -2256,11 +2257,6 @@
     如何檢查一個組合是否爲 Sn ?
     [因而可以成爲某個高階生成子的邊界]
 
-* homology as abelianization
-
-  - x -
-    maybe I can view higher homology as abelianization of higher algebraic structure.
-
 * note 關於高階代數 與 knot 所引發的難題
 
   - x -
@@ -2530,3 +2526,43 @@
     其複雜性正如有限羣的分類問題
     甚至比有限羣的分類問題更複雜
     因爲我們所討論的是有限生成羣的分類問題
+
+* homology as abelianization
+
+  - x -
+    maybe I can view higher homology as abelianization of higher algebraic structure.
+    就高維代數結構而言
+    homology 忽略了類型信息
+    因爲忽略了太多信息
+
+    主要問題就是
+    如何在信息不減的同時
+    簡化代數結構
+
+* normal form of higher algebraic structure
+
+  - x -
+    可能很難找到 不帶有類型的高階代數的 類似 group 的 normal form
+    但是可能能夠找到帶有類型的高階代數的 類似 groupoid 的 normal form
+
+    但是就二維空間的分類而言 groupoid 的 normal form 是什麼 ?
+
+  - k -
+    也就是說
+    雖然能夠通過消去類型來簡化 groupoid 到 group
+    從而分類二維流行
+    但是我們想想別的簡化方式
+    使得這種簡化方式能夠推廣到高維
+
+* manifold 的條件
+
+  - x -
+    manifold 的條件
+    可以以代數的[組合的]方式表述
+    但是可能沒有判別算法
+
+* 用 cell 來構造 complex
+
+  - x -
+    可能 用 cell 來構造 complex
+    才能很容易地賦 complex 以幾何
