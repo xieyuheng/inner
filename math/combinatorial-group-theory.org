@@ -8,6 +8,14 @@
 
 * (1967) (maurice frechet and kt fan) initiation combinatorial to topology
 
+*** chapter three topological classification of closed surfaces
+
+***** 23 use of normal forms of polyhedra
+
+***** 24 Reduction to Normal Form: I
+
+***** 25 Reduction to Normal Form: II
+
 * (1977) (roger lyndon and paul schupp) combinatorial group theory
 
 * (1980 1992) (john stillwell) classical topology and combinatorial group theory
@@ -1000,7 +1008,7 @@ x
 
 * (1993) two-dimensional homotopy and combinatorial group theory
 
-* (2008) (dmitry kozlov) combinatorial topolog
+* (2008) (dmitry kozlov) combinatorial algebraic topology
 
 * (2009) (jean gallier) notes on convex sets, polytopes, polyhedra, combinatorial topology, voronoi diagrams and delaunay triangulations
 
@@ -1008,19 +1016,41 @@ x
 
 ***** 1.1 Motivations and Goals
 
+      - Chapter 6 on combinatorial topology is hardly original.
+        However, most texts covering this material
+        are either old fashion or too advanced.
+        Yet, this material is used extensively in meshing and geometric modeling.
+        We tried to give a rather intuitive yet rigorous exposition.
+        We decided to introduce the terminology combinatorial manifold,
+        a notion usually referred to as triangulated manifold.
+
       - A recurring theme in these notes
-        is the process of “conification” (algebraically, “homogenization”),
+        is the process of "conification" (algebraically, "homogenization"),
         that is, forming a cone from some geometric object.
 
-        Indeed, “conification” turns an object into a set of lines,
+        Indeed, "conification" turns an object into a set of lines,
         and since lines play the role of points in projective geometry,
-        “conification” (“homogenization”)
-        is the way to “projectivize” geometric affine objects.
+        "conification" ("homogenization")
+        is the way to "projectivize" geometric affine objects.
 
         Then, these (affine) objects
-        appear as “conic sections” of cones by hyperplanes,
+        appear as "conic sections" of cones by hyperplanes,
         just the way the classical conics (ellipse, hyperbola, parabola)
         appear as conic sections.
+
+      - [bib]
+
+        - [43]
+          Gunter Ziegler.
+          Lectures on Polytopes.
+          GTM No. 152. Springer Verlag, first edition,
+          1997
+
+        - [38]
+          Rekha R. Thomas.
+          Lectures in Geometric Combinatorics.
+          STML, Vol. 33. AMS, first edition,
+          2006
 
 *** 2 Basic Properties of Convex Sets
 
@@ -1062,7 +1092,45 @@ x
 
 *** 6 Basics of Combinatorial Topology
 
+***** note 幾何與拓撲
+
+      - x -
+        在這本書的處理方式下
+        幾何與拓撲是沒有分離的
+        當考慮的是嵌入在歐氏空間中的圖形的時候
+        沒有考慮過還能給這些圖形以別樣的幾何
+
 ***** 6.1 Simplicial and Polyhedral Complexes
+
+      - Recall that
+        a simplex is just the convex hull of a finite number of affinely independent points.
+        We also need to define faces, the boundary, and the interior of a simplex.
+
+      - x -
+        在一般的處理代數拓撲的方式中
+        把 simplex 定義成這樣看似是沒有必要的
+        但是
+        可能只有這種定義才能讓人把 simplicial complex 展示出來
+
+      - k -
+        但是重點是不要把這些圖形化出來不是嗎
+        是要在不畫出來它們的條件下研究它們的性質
+
+      - x -
+        在這種構造方式中
+        不能假設各個 simplex 的內點是不交的
+
+      - k -
+        但是這些以代數方式[組合方式]定義的圖形[尤其是流形]
+        都可以被嵌入在高維的歐式空間中 [geometric realization]
+        因此可以假定內點不交
+        因此這種定義方式是具有一般性的
+
+      - x -
+        但是如此嵌入在高維空間中的圖形
+        並不能被人所直觀
+        如果說算數化的構造方式是爲了展示給人的化
+        這種構造就也沒有什麼用處
 
 ***** 6.2 Combinatorial and Topological Manifolds
 
