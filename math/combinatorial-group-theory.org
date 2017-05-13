@@ -1,20 +1,363 @@
 #+title: combinatorial group theory
 
-* (1966 1976) (wilhelm magnus) combinatorial group theory
+* (1946 1967) (maurice frechet and kt fan) initiation combinatorial to topology
 
-*** info
+*** preface
 
-    - presentations of groups in terms of generators and relations
+    - x -
+      開篇引用 poincare 對 topology theory 的定義
+      以 Elementary Geometry, Projective Geometry, Topology 之間的對比爲例子
+      強調 質 與 量 之間的對立
 
-* (1967) (maurice frechet and kt fan) initiation combinatorial to topology
+*** chapter one. topological generalities
 
-*** chapter three topological classification of closed surfaces
+***** 1 Qualitative Geometric Properties
+
+      - x -
+        追隨 poincare 的描述
+        來強調 質 與 量 之間的對立
+
+***** 2 Coloring Geographical Maps
+
+      - x -
+        染色問題在三維中是平凡的
+        即 沒有染色數的上限
+        因爲對三維空間的分割可能形成非常複雜的相鄰狀態
+        或者說在三維空間中 有很靈活的方式來形成多種相鄰狀態
+
+      - k -
+        這種因爲維數增加 而使得理論不能類比的情形
+        還真是令人擔心呢
+
+      - x -
+        這些都是事實
+        我們只要描述它就行了
+
+        這裏需要問的是
+        這種複雜的相鄰情況
+        是否會使得我們很難形成三階代數
+
+      - k -
+        knot 所帶來的複雜性 就有些類似
+
+      - x -
+        沒錯
+        並且這裏還要注意染色問題是就流形而言的
+        對於一階流形 只要兩個顏色就夠了
+        當不限於流形的時候 染色問題也是平凡的
+
+      - k -
+        人們在考慮一階圖形的時候
+        不把自己限制於流形 而是考慮有向圖
+        但是在二階的時候 一般的 complex 就過於複雜了
+        因而人們把自己限制於流形
+
+      - x -
+        我想限制與流形還有一個原因
+        那就是要給 complex 以幾何
+        但是其實不限制與流形可能也可以給其以幾何
+
+        在之後討論 complex 到流形的限制時
+        我們也應該從一階流形開始
+
+***** 3 The Problem of Neighboring Regions
+
+***** 4 Topology, India-Rubber Geometry
+
+      - India-Rubber,
+        which we are able to distort as we wish in a continuous fashion without tearing.
+
+      - x -
+        這種想法可以給拓撲不變量一個直觀的解釋
+
+***** 5 Homeomorphism
+
+      - x -
+        可逆的連續雙射 homeomorphism
+        可以用來捕捉之前的
+        "to distort as we wish in a continuous fashion without tearing."
+        這在於
+        想要描述的空間 A 的所有性質
+        都是利用連續映射建立的
+        比如 (: f (-> X A)) 或者 (: g (-> A Y))
+        因此當有 homeomorphism 的時候
+        這些 描述已然有效
+        並且 所描述的性質之間的關係已然被保持
+
+      - k -
+        可以發現
+        我們是先發現了很多有趣的不變量
+        之後在慢慢得到這個等價關係[同胚]的正確定義的
+        但是在講述的時候
+        我們會先定義等價關係
+        然後再定義這些不變量
+        其實對定價關係的定義正是爲了使得這些不變量成爲不變量
+
+      - x -
+        用德里達的話來說
+        某個具體的 等價關係 並不是研究的中心
+        不變量並不附屬於等價關係
+        而是正相反
+        等價關係起源於所發現的不變量
+
+        當想要描述的不變量不適用於某種等價關係了
+        就要修改這個等價關係的定義
+        使得這些不變量重新變爲不變量
+        [比如 homeomorphism 到 ambient-isotopy]
+
+      ------
+
+      - x -
+        在定義連續映射的時候
+        作者強調了這裏描述的映射是點到點的
+        而不是寫 polar reciprocation 那種點到線的
+        但是後者也可以是連續映射
+        當把空間看作是線組成的時[而不是點組成的]
+        topology 公理可能就是必要的了
+        也就是說 topology 公理可能不能被理解爲分析算數化的產物
+        而應該被理解爲有效的推廣
+
+      - k -
+        但是我們所使用的 uncurry 原則
+        則是說
+        所有的這種 level-up 映射都應該被 uncurry 爲 level-same 映射
+
+      - x -
+        很難想象這種處理方式能夠描述 polar reciprocation
+        一種離散的 polar reciprocation ?
+
+      - k -
+        我想這是因爲 polar reciprocation 並非純粹的 topology 變換
+
+      - x -
+        什麼是純粹的 topology 變換 ?
+
+      - k -
+        首先
+        當以組合的方式來描述空間時
+        我們能夠定義很多空間之間的變換
+        這樣
+        我們就可以把純 '粹連 topology 變換'
+        定義爲 與我們能夠定義的變換同倫的變換
+
+      - x -
+        何以見得 polar reciprocation 不能與這種變換同倫呢 ?
+
+      - k -
+        我們可以嘗試找 polar reciprocation 的同倫
+        正如我們找 dehn twist 的同倫一樣
+        映射可要被降階
+
+      - x -
+        我想我們需要先找到空間的合適劃分
+        然後看看這個描述與點的變換限制於這些劃分的時候的樣子
+        這個問題應該先放一放
+        因爲我們對 polar reciprocation 與圓錐曲線的理解還不夠
+        [注意 圓錐曲線可以被推廣到一般空間所形成的 cone]
+
+        ><><><
+        一般描述於點的連續變換的組合化
+        以及 polar reciprocation 的組合化
+
+      ------
+
+      - x -
+        這裏還指出了
+        "to distort as we wish in a continuous fashion without tearing."
+        必須用 ambient-isotopy 這個概念來捕捉
+        而不能用 homeomorphism 來捕捉
+        因爲 homeomorphism 還可以是 cut and re-glue
+
+        同時這裏還指出了 一個線段和一個三角形之間可以有 homeomorphism
+        但是這些都是集合論語言的問題
+        當我們以組合的方式處理拓撲學時
+        這些病態的現象並不會出現
+
+***** 6 Topology, Continuous Geometry
+
+      - It is important to note that
+        a topological property of a set
+        is not necessarily a topological invariant,
+
+        in which case the property is said to be relative.
+        In other words, two homeomorphic sets Ε and F
+        can have certain different topological properties,
+        as when it is a matter not of properties of Ε and F alone,
+        but of properties concerning Ε and F and the spaces which contain them.
+
+      - x -
+        也就是說 relative topological properties 起源於拓撲不變量的細化
+        而不是 直接起源與 空間與其子空間
+        畢竟 子空間 與 空間 之間的關係
+        並不直接涉及到 relative 這個詞
+
+***** 7 Comparison of Elementary Geometry, Projective Geometry, and Topology
+
+      - x -
+        這裏跟隨開篇對 poincare 的引用
+
+      - "projected from a center onto a figure."
+        understood as "make a cone and make a section."
+
+        from the point of view of projective geometry,
+        one does not distinguish the three types of conies.
+
+      - x -
+        攝影變換下的等價
+        可以利用 cone 來理解
+        注意
+        使用 cone 的時候
+        就是增加了一個維度
+
+        類似的
+        uncurry 也是通過增加一個維度
+        來理解變換之間的等價
+
+      - k -
+        但是
+        當用變換之間的同倫
+        來定義空間之間的同倫等價時
+        情況就有些複雜了
+        但是也許還是可以通過增加維度來理解
+
+      - x -
+        比如 mapping cylinder
+        看來我們需要好好總結一下 mapping cylinder
+
+        ><><><
+        總結 mapping cylinder
+        總結 空間之間同倫等價之判別的簡化
+
+***** note about erlangen program
+
+      - to form a geometry theory
+        1. first, the fundamental element of the geometry (point, line,circle, etc.);
+        2. next, the manifold or space of these elements
+           plane of points, ordinary space of points,
+           spherical surface of points, plane of lines,
+           pencil of circles, etc.;
+        3. and finally, the group of transformations
+           to which the manifold of fundamental elements is to be subjected.
+
+***** 8 Relative Topological Properties
+
+      - x -
+        這裏所說的是 ambient-isotopy
+        所說的相對性是指 sub-space 相對於 ambient-space
+        [而不是相對同倫羣中的相對性]
+
+***** 9 Set Topology and Combinatorial Topology
+
+      - Since the figures studied in set topology are extremely general sets,
+        it is natural that the results obtained in this way
+        are frequently far from intuitive
+        and even sometimes in contradiction with intuition.
+
+      - [bib]
+
+        - [28]
+          R. L. Wilder,
+          "Point sets in three and higher dimensions
+          and their investigation by means of a unified analysis situs,"
+          Bull. Amer.Math. Soc, 38 (1932), 649-692.
+
+      - Our book, as indicated by its title,
+        is directed principally to combinatorial topology,
+        accordingly, to the topology of complexes.
+
+        Since complexes are generalizations of surfaces,
+        we shall limit ourselves, in the other two chapters of this book,
+        to the topology of surfaces.
+
+        - In connection with the topology of surfaces,
+          one can also consult: H.Seifert and W. Threlfall,
+          "a textbook of topology",
+          chapter six, surface topology.
+
+***** 10 The Development of Topology
+
+      - Poincare's combinatorial topology v.s. Cantor's set topology
+
+*** chapter two. topological notions about surfaces
+
+***** 11 Descartes'Theorem
+
+      - A polyhedron is a system of a finite number of polygons
+        which are situated in a mutual relationship
+        such that the following four conditions are verified:
+
+        1. each pair of polygons of the system
+           have no common interior points.
+
+        2. for each side of a polygon,
+           there exist two and only two polygons having this sidein common.
+
+        3. each pair of polygons of the system
+           can be joined by a sequence of polygons of the system
+           in the sense that each of these
+           has a side in common with the following one.
+
+           i.e.
+           there exist joining sequence of faces, for every pair of two faces.
+           thus connectivity is ensured in a non-degenerate way.
+
+        4. the polygons about any vertex
+           can be placed in a cyclic order
+           so that each consecutive pair
+           have a common side passing through the vertex.
+
+           thus exclude some kind of singularity.
+
+        According to this definition,
+        when we speak of a polyhedron,
+        we always mean the surface of the polyhedron.
+
+      - A polyhedron is said to be simple
+        if one can continuously deform it into the surface of a sphere.
+
+***** 12 An Application of Descartes'Theorem
+
+***** 13 Characteristic of a Surface
+
+***** 14 Unilateral Surfaces
+
+***** 15 Orientability and Nonorientability
+
+***** 16 Topological Polygons
+
+***** 17 Construction of Closed Orientable Surfaces from Polygons by Identifying Their Sides
+
+***** 18 Construction of Closed Nonorientable Surfaces from Polygons by Identifying Their Sides
+
+***** 19 Topological Definition of a Closed Surface
+
+*** chapter three. topological classification of closed surfaces
+
+***** 20 The Principal Problem in the Topology of Surfaces
+
+***** 21 Planar Polygonal Schema and Symbolic Representation of a Polyhedron
+
+***** 22 Elementary Operations
 
 ***** 23 use of normal forms of polyhedra
 
 ***** 24 Reduction to Normal Form: I
 
 ***** 25 Reduction to Normal Form: II
+
+***** 26 Characteristic and Orientability
+
+***** 27 The Principal Theorem of the Topology of Closed Surfaces
+
+***** 28 Application to the Geometric Theory of Functions
+
+***** 29 Genus and Connection Number of Closed Orientable Surfaces
+
+* (1966 1976) (wilhelm magnus) combinatorial group theory
+
+*** info
+
+    - presentations of groups in terms of generators and relations
 
 * (1977) (roger lyndon and paul schupp) combinatorial group theory
 
@@ -1010,6 +1353,83 @@ x
 
 * (2008) (dmitry kozlov) combinatorial algebraic topology
 
+* (2005) The Geometry of the Word Problem for Finitely Generated Groups
+
+*** (Noel Brady) Dehn Functions and Non-Positive Curvature
+
+*** (Tim Riley) Filling Functions
+
+***** Introduction
+
+      - Group action
+      - word metric
+      - Cayley graph
+      - Cayley 2-complex
+      - Asymptotic cones
+      - Filling functions
+
+***** 1 Filling Functions
+
+******* 1.1 Van Kampen diagrams
+
+        - (cayley-2-complex x) :=
+          (universal-covering presentation-2-complex x)
+
+        - van Kampen diagram of (= w identity)
+
+******* 1.2 Filling functions via van Kampen diagrams
+
+        - for a van Kampen diagram we can define :
+          area
+          intrinsic diameter
+          extrinsic diameter
+          gallery length
+          filling length
+          DGL
+
+        - A shelling of ∆
+          is a combinatorial null-homotopy of ∆
+          down to its base vertex.
+          [note about the concept of "combinatorial homotopy"]
+
+******* 1.3 Example: combable groups
+
+******* 1.4 Filling functions interpreted algebraically
+
+******* 1.5 Filling functions interpreted computationally
+
+******* 1.6 Filling functions for Riemannian manifolds
+
+******* 1.7 Quasi-isometry invariance
+
+***** 2 Relationships Between Filling Functions
+
+******* 2.1 The Double Exponential Theorem
+
+******* 2.2 Filling length and duality of spanning trees in planar graphs
+
+******* 2.3 Extrinsic diameter versus intrinsic diameter
+
+******* 2.4 Free filling length
+
+***** 3 Example: Nilpotent Groups
+
+******* 3.1 The Dehn and filling length functions
+
+******* 3.2 Open questions
+
+***** 4 Asymptotic Cones
+
+******* 4.1 The definition
+
+******* 4.2 Hyperbolic groups
+
+******* 4.3 Groups with simply connected asymptotic cones
+
+******* 4.4 Higher dimensions
+
+*** (Hamish Short) Diagrams and Groups
+
 * (2009) (jean gallier) notes on convex sets, polytopes, polyhedra, combinatorial topology, voronoi diagrams and delaunay triangulations
 
 *** 1 Introduction
@@ -1098,7 +1518,19 @@ x
         在這本書的處理方式下
         幾何與拓撲是沒有分離的
         當考慮的是嵌入在歐氏空間中的圖形的時候
+        [当强调 complex 有一种几何实现的时候]
         沒有考慮過還能給這些圖形以別樣的幾何
+
+***** note 細節
+
+      - x -
+        可以發現這本書中對理論的處理非常細緻
+        但是我覺得例子還是不夠
+
+      - k -
+        也許你可以仔細讀這本書
+        然後自己補充例子
+        也可以形成自己的理解方式與描述方式
 
 ***** 6.1 Simplicial and Polyhedral Complexes
 
@@ -1132,11 +1564,36 @@ x
         如果說算數化的構造方式是爲了展示給人的化
         這種構造就也沒有什麼用處
 
+      - A polytope is the geometric realization of some simplicial complex.
+
 ***** 6.2 Combinatorial and Topological Manifolds
+
+      - A combinatorial d-manifold is any space, X,
+        homeomorphic to the geometric realization, |K| ⊆ En,
+        of some pure (simplicial or polyhedral) complex, K,
+        of dimension d, whose faces are all nonsingular.
+
+      - x -
+        因此有關 manifold 的終點就在於 singularity 的定義
+        但是當考慮 homotopy 的時候
+        singularity 可以被化解掉
+
+      - k -
+        可能我們需要把這種化解 singularity 的想法構建到我們的語言中來
+
+      - x -
+        可能不光是要化解 singularity
+        我們還要能夠在不同維度之間自由的變換
+        利用 refl
+        我們要能夠把點視爲線
+        把線視爲面 等等
 
 *** 7 Shellings and the Euler-Poincaré Formula
 
 ***** 7.1 Shellings
+
+      - the aim is to proof Euler-Poincaré Formula inductively.
+        but also can be viewed as finding the normal form.
 
 ***** 7.2 The Euler-Poincaré Formula for Polytopes
 

@@ -2584,3 +2584,46 @@
     然後在試着處理三階 complex
 
   - k -
+
+* von kampen theory
+
+  - x -
+    可以說這個定理是平凡的
+    因爲
+    ><><><
+
+    也可以說它是不平凡的
+    比如下面的例子
+    ><><><
+
+    但是這個定理是很有限的
+    因爲它不能用來計算 circle 的 fundamental-group
+    這在於
+    ><><><
+
+  - k -
+    如果說 groupoid 可以被接受爲代數不變量
+    那麼 高階的代數結構也可以被接受
+    但是 groupoid 與 group 的區別在於什麼呢 ?
+    二者之間如何轉化 ?
+    那些典型的空間的 fundamental-groupoid 都是什麼呢 ?
+
+* Postnikov system
+
+  - Postnikov, Mikhail M. (1951).
+    "[Determination of the homology groups of a space by means of the homotopy invariants]".
+    Doklady Akademii Nauk SSSR. 76: 359–362.
+
+* ><><>< manifold condition of complex
+
+  - x -
+    我們試着描述一下在我們的語言中
+    一個 complex 成爲一個 manifold 的條件是什麼
+
+  - k -
+    我們從前三維開始
+    我們可以先總結一下之前看到的類似描述
+    我們還可以利用到 homology 與 cohomology
+
+  - x -
+    ><><><
