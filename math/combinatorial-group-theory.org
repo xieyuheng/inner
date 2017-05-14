@@ -290,7 +290,10 @@
            have no common interior points.
 
         2. for each side of a polygon,
-           there exist two and only two polygons having this sidein common.
+           there exist two and only two polygons having this side in common.
+
+           the two polygons can be the same one,
+           thus, two coinciding sides can belong to the same polygon.
 
         3. each pair of polygons of the system
            can be joined by a sequence of polygons of the system
@@ -317,25 +320,114 @@
 
 ***** 12 An Application of Descartes'Theorem
 
+      - all regular polyhedra
+        the tetra-hedron
+        the octa-hedron
+        the icosa-hedron
+        the cube
+        the dodeca-hedron
+
 ***** 13 Characteristic of a Surface
 
-***** 14 Unilateral Surfaces
+      - euler characteristic
 
+***** 14 Unilateral Surfaces
 ***** 15 Orientability and Nonorientability
+
+      - orientability can be defined by
+        1. a oriented circle travelling on the surface.
+        2. a subdivision of the surface
+           and observing the orientation of the faces limited on the boundaries.
+
+        the 2nd definition is easier to be applied,
+        and we can check that heptahedron is nonorientable.
 
 ***** 16 Topological Polygons
 
-***** 17 Construction of Closed Orientable Surfaces from Polygons by Identifying Their Sides
+***** note the thread
 
-***** 18 Construction of Closed Nonorientable Surfaces from Polygons by Identifying Their Sides
+      1. define cell-complex
+      2. as example, construct the normal form
+      3. manifold-checker
+      4. manifold-normalizer
 
-***** 19 Topological Definition of a Closed Surface
+***** 17 construction of closed orientable surfaces from polygons by identifying their sides
+
+***** 18 construction of closed nonorientable surfaces from polygons by identifying their sides
+
+      - mobius band = cross cap
+
+        the curve of penetration on the cross cap
+        corresponds to the mediancurve on the M6bius band.
+
+      - 2 mobius band = klein bottle
+
+      - thus
+        2 cross cap = klein bottle
+
+***** 19 topological definition of a closed surface
+
+      - x -
+        this chapter is golden,
+        I will analysis of the heuristic of the author :
+
+        In the last two sections,
+        we have constructed some closed surfaces from polygons by identifying their sides.
+
+        This shows us the possibility, by operating in the reverse order,
+        of decomposing any one of these surfaces into one or more polygons
+        satisfying certain conditions.
+
+        - "decomposing any one of these surfaces"
+          means that surfaces is going to be defined this way.
+
+        These surfaces are so varied from the point of view of their metrical form
+        that their very generality allows us in the following
+        to limit the consideration of surfaces
+        to those that can be cut up into polygons
+        subjected to certain conditions that we are going to make precise.
+
+        - refrain.
+
+        It is quite natural to choose these conditions
+        so as to generalize the conditions
+        imposed on the polyhedra defined before.
+
+        We have given a definition of the word polyhedron
+        that gives us a more general interpretation
+        than is meant by this word in elementary geometry.
+
+        - not a generalization of the definition,
+          but a generalization of the interpretation.
+
+      - x -
+        consider a surface defined in set topology theory,
+        one can divide it in many different ways to different polyhedra.
+
+        we replace "the surface to be divided"
+        by an equivalent relation between polyhedra,
+        to be pure combinatorial.
 
 *** chapter three. topological classification of closed surfaces
 
 ***** 20 The Principal Problem in the Topology of Surfaces
 
+      - The principal problem in the topology of closed surfaces
+        is the search for the topological invariants of each closed surface
+        so that we can tell if two arbitrarily given closed surfaces
+        are or are not homeomorphic.
+
+      - We shall see in this chapter that
+        the characteristic and the property of being orientable or not
+        are two topological invariants that suffice to characterize each class.
+        In other words,
+        two closed surfaces are homeomorphic
+        if and only if they have the same characteristic
+        and they are both orientable or both nonorientable.
+
 ***** 21 Planar Polygonal Schema and Symbolic Representation of a Polyhedron
+
+      - 
 
 ***** 22 Elementary Operations
 
@@ -1616,3 +1708,25 @@ x
 ***** 8.6 Stereographic Projection and Delaunay Polytopes
 
 ***** 8.7 Applications
+
+* (1994) (ziegler) lectures on polytopes
+
+*** 0 Introduction and Examples
+
+*** 1 Polytopes, Polyhedra, and Cones
+
+*** 2 Faces of Polytopes
+
+*** 3 Graphs of Polytopes
+
+*** 4 Steinitz' Theorem for 3-Polytopes
+
+*** 5 Schlegel Diagrams for 4-Polytopes
+
+*** 6 Duality, Gale Diagrams, and Applications
+
+*** 7 Fans, Arrangements, Zonotopes, and Tilings
+
+*** 8 Shellability and the Upper Bound Theorem
+
+*** 9 Fiber Polytopes, and Beyond
