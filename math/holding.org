@@ -1536,7 +1536,7 @@
 
     Our principle here is 'construction by attaching boundary'.
 
-  - As an example, let us construct a tetrahedron.
+  - As an example, let us construct a [solid] tetrahedron.
 
     - [advice for reader]
       Draw a picture by yourself, when trying to follow
