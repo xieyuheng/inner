@@ -2,6 +2,26 @@
 
 * (1914) normal forms for one- and two-sided surfaces
 
+*** 1
+
+    - In view of the difficulties that are still to be overcome
+      before normal forms can be obtained for manifolds
+      of more than two dimensions,
+      a simplified treatment of the analogous problem
+      for closed surfaces may be worth mentioning.
+
+    - connectivity, k, is defined as
+      (k = 3 - x)
+      thus, the k of sphere is 1.
+
+*** 2
+
+    - S -> S' -> S''
+
+*** 3
+
+    - ><
+
 * (1916) on the factorization of cremona plane transformations
 
 * (1919) note on two three-dimensional manifolds with the same group

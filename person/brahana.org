@@ -1,0 +1,9 @@
+#+title: brahana
+
+* (1921) systems of circuits on two-dimensional manifolds
+
+*** note
+
+    - this paper is one of the root of the normal form of 2-dim manifold.
+
+*** 1

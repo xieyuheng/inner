@@ -660,6 +660,31 @@
       - x -
         此時 groupoid 已經被化爲了 group
 
+      - fourth stage :
+
+        non-adjacent equivalent sides with like signs ->
+        adjacent equivalent sides with like signs
+
+      - fifth stage :
+
+        - x -
+          這一步 在說
+          (~~~~ c+ ~~~~ c- ~~~~) ->
+          (~~~~ c+ ~~~~ d+ ~~~~ c- ~~~~ d- ~~~~)
+          的時候 好像由漏洞
+
+      - sixth stage :
+
+        當有 cross-cap 的時候
+        一個 handle 可以化爲 兩個 cross-cap
+
+***** note bib about the proof
+
+      - The proof,
+        in Sections 24 and 25, of the classification theorem
+        is based upon the proof given by H. R. Brahana,
+        "Systemsof circuits on two-dimensional manifolds".
+
 ***** note 形式化的難點
 
       - x -
@@ -690,13 +715,76 @@
         跨過可逆與不可逆的邊界
         跨過 intrinsic-type 與 extrinsic-type 的邊界
 
+***** note 組合拓撲學的目的
+
+      - x -
+        我們要先確定學科的目的
+        然後才能判斷我們所採用的方式的優劣
+
+        組合拓撲學的目的是
+        給空間分類
+
+        類比別的 已經發展完備的 簡單數學理論 比如分數的理論
+
+        (1)
+        給出一種語言使得我們能夠描述拓撲空間
+        ><><>< 語言其實是手段 其優劣應該由其目的判斷
+
+        (2)
+        ><><><
+
+        引入代數
+        引入各種構造新空間的方法也是手段 而不是目的
+
 ***** 26 Characteristic and Orientability
+
+      - A polyhedron is said to be orientable
+        if we can determine a cyclic sense of direction
+        for the perimeter of each polygon of its planar polygonal schema
+        so that, in the corresponding symbolic representation,
+        each letter representing two equivalent sides
+        appears twice with opposite signs.
+
+        In particular,
+        for a polyhedron having only one face to be orientable,
+        it is necessary and sufficient that
+        each letter representing two equivalent sides appear twice
+        with opposite signs in every possible symbolic representation of this polyhedron.
+
+      - x -
+        利用 euler characteristic 與 可定向性 這兩個簡單的不變量
+        可以證明上面所獲得的 normal form 是相互不等價的
+
+      - In order that two polyhedra be elementarily associated,
+        it is necessary and sufficient that
+        they have the same characteristic
+        and be simultaneously orientable or simultaneously nonorientable.
+
+      - can it be, then, that two polyhedra obtained from the same closed surface
+        have distinct characteristics
+        or be such that one is orientable and the other not ?
+
+        we accept this fact, that it can not be,
+        without proving it.
 
 ***** 27 The Principal Theorem of the Topology of Closed Surfaces
 
 ***** 28 Application to the Geometric Theory of Functions
 
 ***** 29 Genus and Connection Number of Closed Orientable Surfaces
+
+      - We shall call the maximum number of pairwise disjoint closed Jordan curves
+        that can be drawn on a closed orientable surface
+        without dividing the surface, the genus of the surface.
+
+      - If we do not insist that the closed Jordan curves be disjoint,
+        We call the maximum number of closed Jordan curves (disjoint or not)
+        that can be drawn on a closed orientable surface
+        without dividing the surface, the connection number of the surface.
+
+      - Thus,
+        for closed orientable surfaces,
+        the genus is equal to exactly half the connection number.
 
 * (1966 1976) (wilhelm magnus) combinatorial group theory
 
@@ -1145,25 +1233,25 @@
 
 ***** 3.1 The Fundamental Group
 
-******* 3.1.1 IntroductionThe fundamental group
+******* 3.1.1 introductionthe fundamental group
 
-        - Such a definition
+        - such a definition
           makes the computation of generators and relations routine,
           but it is open to the objection that
           the group is not obviously a topological invariant.
 
-          Since the topologists of the time
-          pinned their hopes on the Hauptvermutung,
+          since the topologists of the time
+          pinned their hopes on the hauptvermutung,
           they could be satisfied with a proof that
           the fundamental group was invariant under combinatorial homeomorphisms,
-          which was supplied by Tietze 1908.
+          which was supplied by tietze 1908.
 
-        - The only group which has to be derived from first principles
+        - the only group which has to be derived from first principles
           is that of the circle;
           all the other fundamental groups we need
           are then obtained by combining the simple technique of
           deformation retraction
-          with the Seifert-Van Kampen theorem.
+          with the seifert-van kampen theorem.
 
 ***** 3.2 The Fundamental Group of the Circle
 
@@ -1230,6 +1318,8 @@
 
 ***** 6.1 Dehn's Algorithm
 
+      - ><
+
 ***** 6.2 Simple Curves on Surfaces
 
 ***** 6.3 Simplification of Simple Curves by Homeomorphisms
@@ -1248,7 +1338,164 @@
 
 ***** 8.1 Open Problems in Three-Dimensional Topology
 
+******* 8.1.2 Methods of Constructing 3-manifolds
+
+        - [simplicial decomposition]
+          A 3-manifold is a union of solid tetrahedra
+          with disjoint interiors,
+          with at most two tetrahedra meeting at each face
+          (exactly two for a closed manifold),
+          and finitely many at each edge and vertex.
+
+          Furthermore, the neighbourhood surface of each vertex
+          must be a 2-sphere,
+          so that each point in the complex
+          has a neighbourhood homeomorphic to the 3-ball
+          (see also 8.2).
+
+          If the complex is finite,
+          then all the above properties are decidable,
+          so we have an algorithm for deciding
+          whether a finite 3-complex is a manifold
+          (and of course, for distinguishing
+          between closed and bounded manifolds).
+
+          As in dimension 2,
+          we can amalgamate simplexes
+          until we have a single polyhedron,
+          homeomorphic to a ball,
+          with faces identified in pairs.
+          This cell decomposition method of constructing 3-manifolds
+          is therefore completely general
+          and could serve as an alternate definition
+          provided we include the statement that
+          the neighbourhood surface of each vertex is a sphere.
+
+        - the remaining three methods of construction
+          we shall mention yield only the orientable 3-manifolds.
+
+        - [heegaard splitting]
+          decomposes the manifold into two handlebodies.
+          two handlebodies can produce infinitely many different manifolds
+          via different homeomorphisms between their boundary surfaces.
+
+          by starting with a simplicial decomposition.
+          It is fairly easy to show that
+          every finite orientable 3-manifold has a Heegaard splitting (8.3.1).
+
+        - [dehn surgery]
+          One removes some solid tori from an S3
+          and sews them back differently.
+          To obtain all orientable 3-manifolds
+          the tori have to be knotted or linked in most cases.
+
+          In 8.4 we shall follow Lickorish 1962 in
+          deriving the surgery construction from a Heegaard splitting.
+
+        - [branched coverings of S3]
+          the 3-dimensional analogue of Riemann surfaces.
+          Like surgery, it is generally based on knots or links,
+          and can in fact be derived from the surgery construction
+          (Lickorish 1973, see 8.5).
+
+        - Each of the above methods
+          yields a finite description of the 3-manifold
+          which can be effectively translated into a simplicial decomposition.
+
+          and different forms of description are intertranslatable.
+          [which is often useful for showing that two manifolds are the same.]
+
+          The problem is that
+          the same manifold has infinitely many descriptions,
+          so we cannot always be sure
+          whether different descriptions
+          actually represent different manifolds.
+
+        - thus we have algorithm
+          for effectively enumerating all finite 3-manifolds
+          (with repetitions).
+
+******* 8.1.3 The Homeomorphism Problem
+
+        - Since we do not yet know how to recognize the simplest 3-manifold S3
+          (see 8.1.4)
+          it must be admitted that
+          the homeomorphism problem is far frombeing solved.
+          The principal obstacles seem to be
+          1. absence of plausible normal forms,
+          2. lack of bounds on the length of constructions
+             which convert one desscription of a manifold to another.
+             - to know when to stop looking for a description
+               among the infinitely many descriptions equivalent to it.
+               thus, bounding the length of the search.
+               thus, we can solve the problem
+               even when we do not have a normal form.
+
+        - The homeomorphism problem has been solved
+          for the subcase of lensspaces (Reidemeister 1935).
+          We shall see in 8.3
+          that the lens spaces are the 3-manifolds of Heegaard genus 1.
+
+******* 8.1.4 Recognizing the 3-sphere
+
+******* 8.1.5 An Unshellable Triangulation of the 3-ball
+
+******* 8.1.6 The Poincare Conjecture
+
+******* 8.1.7 The Word Problem for 3-manifold Groups
+
+        - The Word Problem of fundamental group of 3-manifold,
+          might be solvable,
+          because many groups can not be fundamental group of 3-manifold.
+          [for example, (Z x Z x Z x Z) (Stallings 1962)]
+
+        - to solve the word problem in fundamental group of M,
+          we only need to construct the universal covering space of M.
+          The trouble is that we do not know
+          what the potential covering spaces might be in general.
+
+        - x -
+          what is the relations between
+          universal covering space
+          and geometric of space.
+
+******* 8.1.8 Above Dimension 3
+
+        - It is not yet known whether all 4-manifolds can be triangulated.
+
+        - any finitely presented group can be realized as fundamental group of a 4-manifold.
+
+        - for dimensions >= 5,
+          The Hauptvermutung is false (Milnor 1961).
+
 ***** 8.2 Polyhedral Schemata
+
+******* 8.2.1 manifolds and pseudomanifolds
+
+        - Poincare 1895 introduces the construction of 3-manifolds
+          by identifying faces of simply-connected polyhedra :
+          (1) a finite set of polyhedra (topological 3-balls) called cells, with disjoint interiors,
+          (2) faces of cells identified in pairs, with vertices corresponding to vertices,
+          (3) resulting in a connected complex.
+
+        - However,
+          Poincare observes that
+          these conditions do not guarantee that
+          the outcome will be a manifold.
+          [thus, the concept of pseudomanifolds.]
+
+          to get manifold,
+          we need :
+          (4) The neighbourhood surface of each vertex is a 2-sphere.
+
+******* 8.2.2 The Euler Characteristic of a Pseudomanifold
+
+        - 3-manifolds have Euler characteristic 0.
+          [but pseudomanifold do not.]
+
+******* 8.2.3 An Example
+
+        - ><
 
 ******* 8.2.4 Remarks
 
@@ -1275,12 +1522,57 @@
 
 ******* 8.3.1 Existence
 
+        - x -
+          when getting heegaard-splitting from a polyhedral-schema,
+          it seems more complex then polyhedral-schema.
+
+          but we can also get heegaard-splitting from other picture of 3-manifold.
+
+          we have :
+          (polyhedral-schema -> heegaard-splitting)
+
 ******* 8.3.2 Heegaard Diagrams
 
         - A manifold which splits into handlebodies H1 H2
           is determined up to homeomorphism
           by the map (: h (-> [H1 boundary] [H2 boundary]))
           [which is determined by the images of the canonical meridians.]
+
+          when a set of n disjoint simple closed curves
+          on a handlebody of genus n is a Heegaard diagram ?
+
+******* note
+
+        - x -
+          Heegaard Diagram 可以給 3-manifold 一個非常簡單的表示
+          但是 我們缺很難判斷兩個 表示是否等價
+
+          how about
+          (heegaard-splitting -> polyhedral-schema) ?
+
+******* 8.3.3 Reading a Presentation of the Fundamental Group
+
+******* 8.3.4 Lens Spaces
+
+        - x -
+          do not use the simple algorithm of
+          (polyhedral-schema -> heegaard-splitting)
+          to get the heegaard-splitting,
+
+          but to use the core dissection
+          to get a heegaard-splitting of genus 1.
+          (lens-space -> heegaard-splitting of genus 1)
+
+          after add (0, 1) lens space,
+          all heegaard-splitting of genus can be pictured as lens space.
+
+******* 8.3.5 Alexander's Proof that the (5, 1) Lens Space and the(5, 2) Lens Space Are not Homeomorphic
+
+******* 8.3.6 Heegaard Diagrams of Bounded 3-manifolds
+
+******* 8.3.7 Fundamental Groups of Bounded 3-manifolds
+
+******* 8.3.8 Heegaard Diagrams of Knot and Link Complements
 
 ***** 8.4 Surgery
 
@@ -1962,24 +2254,8 @@ x
 
 ***** 8.7 Applications
 
-* (1994) (ziegler) lectures on polytopes
+* (1955) (robert c. james) combinatorial topology of surfaces
 
-*** 0 Introduction and Examples
+*** note
 
-*** 1 Polytopes, Polyhedra, and Cones
-
-*** 2 Faces of Polytopes
-
-*** 3 Graphs of Polytopes
-
-*** 4 Steinitz' Theorem for 3-Polytopes
-
-*** 5 Schlegel Diagrams for 4-Polytopes
-
-*** 6 Duality, Gale Diagrams, and Applications
-
-*** 7 Fans, Arrangements, Zonotopes, and Tilings
-
-*** 8 Shellability and the Upper Bound Theorem
-
-*** 9 Fiber Polytopes, and Beyond
+    - also about normal form.

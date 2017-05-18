@@ -2633,3 +2633,76 @@
   - x -
     考慮 knot 的補空間的時候
     可以想象成是 空間的所有 singularity 都擁擠到一個 circle 上了
+
+* manifold-checker
+
+  - x -
+    檢查二階流形的時候
+    其一階骨架可能是任意的有向圖
+    檢查三階流形的時候
+    其二階骨架可能是任意的有限生成羣
+
+  - k -
+    也可能不是任意的
+    但是即使不是任意的
+    其限制也非常少
+
+* 爲什麼把幾何限制於流形
+
+  - x -
+    爲什麼把幾何限制於流形
+    而不是就一般的 complex 定義幾何
+
+  - k -
+    可能是因爲測地線不唯一
+
+  - x -
+    如果具有唯一性的測地線
+    可以解釋經典力學中的現象
+    那麼
+    不唯一的測地線
+    不正是能夠解釋量子力學中的現象嗎
+
+* shelling
+
+  - x -
+    shell 這個術語的意思取自其 '剝落外殼' 的意思
+    在 2-dim manifold complex 的 normalization 中
+
+    one removesany simplex,
+    then tries to remove a sequence of free simplexes
+    until only one simplex is left.
+
+    用的是與之相反的意思 即 union
+    在 complex 的 manifold 條件下
+    通過 union 來把許多 polygon 化爲一個 polygon
+
+    所謂 shelling 之失敗 導致我們不能獲得 normalization
+    是不成立的
+
+* homeomorphism v.s. homotopy equivalent
+
+  - x -
+    如何在我們的語言中區分這兩種等價關係
+
+* homotopy theory 的解釋
+
+  - x -
+    如果想要獲得高維的代數
+    就必須要考慮 homotopy
+    同時 homotopy 可能有 homomorphism 解釋
+    [在 complex 的 category 中]
+
+* fundamental-polyhedron
+
+  - x -
+    the first step of normalization
+    gives us fundamental-polyhedron.
+
+* Geometrization conjecture
+
+  - x -
+    既然二階的時候
+    流形的正規化代表了對幾何的分類
+    那麼三階的時候
+    對幾何的分類也代表了代數結構的正規化
