@@ -2608,11 +2608,11 @@
     二者之間如何轉化 ?
     那些典型的空間的 fundamental-groupoid 都是什麼呢 ?
 
-* Postnikov system
+* postnikov system
 
-  - Postnikov, Mikhail M. (1951).
-    "[Determination of the homology groups of a space by means of the homotopy invariants]".
-    Doklady Akademii Nauk SSSR. 76: 359–362.
+  - postnikov, mikhail m. (1951).
+    "[determination of the homology groups of a space by means of the homotopy invariants]".
+    doklady akademii nauk sssr. 76: 359–362.
 
 * ><><>< manifold condition of complex
 
@@ -2699,10 +2699,70 @@
     the first step of normalization
     gives us fundamental-polyhedron.
 
-* Geometrization conjecture
+* geometrization conjecture
 
   - x -
     既然二階的時候
     流形的正規化代表了對幾何的分類
     那麼三階的時候
     對幾何的分類也代表了代數結構的正規化
+
+* 利用視覺來想象三維空間
+
+  - x -
+    當使用 polyhedron schema 構造了一個三維空間的時候
+    可以想象自己在其中運動
+    同時也可以想象光在其中運動
+    可以想象在這個空間中的視覺體驗
+    而視覺所體驗到的就是這個空間中的幾何
+    因爲光所走的是空間的 '測地線'
+
+    同一道光可以沿着不同的路徑到達一點
+    因此就會看見重影
+
+    還可以想象聲音
+    還可以想象熱量在空間中的擴散
+    等等
+
+  - k -
+    有趣的是
+    儘管我們永遠不可能[或者說很難]
+    在實際生活中經驗到這種空間
+    [除非是在視頻[或者虛擬現實]遊戲中]
+    但是我們能夠想象這種空間
+    [否則我們也設計不出來這樣的視頻遊戲了]
+
+  - x -
+    link and knot 与 fundamental-polyhedron 之间的关系
+    可以通过把 link and knot 镶嵌在 fundamental-polyhedron 的面上来体会
+
+    注意
+    这些 link 与 knot
+    是 fundamental-polyhedron 所形成的空间的真正边界
+
+    其实
+    没有必要把这些 边界理解为嵌入在面上
+    可以还是把它们理解为边
+    因为在面上嵌入边 可以理解为对 fundamental-polyhedron 的细分
+    只要还是把这些边理解为边界就可以了
+
+  - k -
+    镶嵌的条件是什么 ?
+
+  - x -
+    我想
+    条件就像 带有边界的 fundamental-polygon
+
+    也许 只所以 knot 与 link 如此重要
+    就是因为 fundamental-polyhedron 的所有二维边界都可以同伦成一维的线
+
+    但是为什么要用 knot 来得到 hyperbolic-geometry ?
+    爲什麼不直接適用 fundamental-polyhedron ?
+
+  - k -
+    如果從激勵我們的工作的角度講
+    我們可以說 這是因爲人們還不瞭解二階的代數
+
+  - x -
+    我還體會到人們不僅不沒有合適的語言來表達這些具體數學
+    人們還沒有合適的語言來表達他們在實踐中所積累的形而上的想法[方法]

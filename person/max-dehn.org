@@ -146,9 +146,9 @@
       which was pointed out in a letter dated April 22, 1929 from H. Kneser to Dehn.
       The lemma, however, is true and was proved by Papakyriakopoulos in 1957, five years after Dehn's death.
 
-* (1911) Über unendliche diskontinuierliche Gruppen [paper 4 : on infinite discontinuous groups]
+* (1912a) Über unendliche diskontinuierliche Gruppen [paper 4 : on infinite discontinuous groups]
 
-* (1912) Transformation der Kurven auf zweiseitigen Flachen [paper 5 : transformation of curves on two-sided surfaces]
+* (1912b) Transformation der Kurven auf zweiseitigen Flachen [paper 5 : transformation of curves on two-sided surfaces]
 
 * (1914) Die beiden Kleeblattschlingen [paper 6 : the two trefoil knots]
 

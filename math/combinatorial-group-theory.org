@@ -1318,13 +1318,103 @@
 
 ***** 6.1 Dehn's Algorithm
 
-      - ><
+******* 6.1.1 Introduction
+
+        - The fundamental problem
+          in the topological classification of curves on surfaces
+          is to decide whether a given closed curve contracts to a point.
+          We shall call this the contractibility problem.
+
+        - The problem was solved,
+          at least from a geometric point of view,
+          with the introduction of the universal covering surface in the 1880s.
+
+          If a curve p on the surface F
+          is lifted to a curve p' in the universal covering surface F',
+          then p contracts to a point on F if and only if p' is closed in F'.
+
+          - x -
+            note that,
+            the covering-space of a closed surface
+            can only be [hyperbolic] plane or sphere.
+            plane and sphere both are simple-connected
+            [with trivial fundamental-group].
+
+          It is admittedly not very convenient
+          because of the very dense packing of polygons required
+          even for genus 2 (see Figure 111).
+
+        - Dehn observed that
+          the labelled net of polygons on the universal covering surface
+          was in fact the Cayley diagram of the fundamental-group of F,
+          and that the contractibility problem was therefore
+          the same as the word problem for the fundamental-group of F.
+
+          thus,
+          Dehn's algorithm solves the problem.
+          His first proof depended on the metric in the hyperbolic plane (Dehn 1912a),
+          but he then saw how the algorithm could be justified
+          by purely topological properties of the net (Dehn 1912b).
+
+          - Dehn, M. (a):
+            Uber unendliche diskontinuierliche Gruppen,
+            Math. Ann. 71 (1912), 116-144.
+            Dehn's algorithm for solution of the word problem for surface groups,
+            proved using hyperbolic geometry.
+
+          - Dehn, H. (b):
+            Transformation der Kurven auf zweiseitigen Flachen,
+            Math. Ann. 72 (1912), 413-421.
+            Topological proof of Dehn's algorithm.
+
+******* 6.1.2 Some Special Cases
+******* note 二階元素指導 一階元素之間等價的證明
+
+        - x -
+          否則代入方式可能是不明確的
+
+******* 6.1.3 The Subpath Property
+
+        - Then if p is any closed path in the net,
+          p contains
+          1. either a spur
+          2. or a subpath consisting
+             of more than half the edges
+             in the boundary of a polygon in succession.
+
+******* 6.1.4 Dehn's Algorithm
 
 ***** 6.2 Simple Curves on Surfaces
 
 ***** 6.3 Simplification of Simple Curves by Homeomorphisms
 
+******* 6.3.1 Introduction
+
+******* 6.3.2 Twist Homeomorphisms
+
+******* 6.3.3 Curves Which Meet at a Single Point and Cross
+
+******* 6.3.4 Removal of Intersections
+
+******* 6.3.5 Taking a Curve off the Handles
+
+******* 6.3.6 Mapping onto a Canonical Curve
+
 ***** 6.4 The Mapping Class Group of the Torus
+
+******* 6.4.1 Introduction
+
+******* 6.4.2 Canonical Curve Pairs on the Torus
+
+******* 6.4.3 Classification of Canonical Curve Pairs
+
+******* 6.4.4 Generating Homeomorphisms for Transformations of Canonical Curves
+
+******* 6.4.5 Homeomorphisms Are Determined up to Isotopy by the Transformation of the Canonical Curves
+
+******* 6.4.6 The Mapping Class Group
+
+******* 6.4.7 Automorphisms of H1(F) when F Is Orientable of Genus > 1
 
 *** 7 knots and braids
 
