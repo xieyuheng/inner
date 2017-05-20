@@ -2766,3 +2766,206 @@
   - x -
     我還體會到人們不僅不沒有合適的語言來表達這些具體數學
     人們還沒有合適的語言來表達他們在實踐中所積累的形而上的想法[方法]
+
+
+  ------
+
+  - x -
+    一個 fundamental-polyhedron 就決定了一個幾何
+    但是帶有邊界的 [由 not knot 確定的] 流形
+    其幾何可以不一樣
+    因爲一個 knot 能夠對應多種 fundamental-polyhedron 嗎 ?
+
+  - k -
+    但是 第一個例子裏考慮 平面除去一點的時候
+    其 fundamental-domain 是確定的
+    但是其 幾何不同
+
+  - x -
+    其幾何真的不同嗎 ?
+    不是都是 歐幾里得幾何嗎 ?
+    只是 covering-space 不一樣而已吧
+    對於找個 fundamental-domain 不論如何 cover
+    都不能得到 simple-connected 的 universal-covering-space
+
+  ------
+
+  - x -
+    根據 Kneser 的分解定理 [prime 3-manifolds]
+    connected-sum 可以用來正規化三維流形
+
+    可定向的 n 流形在 connected-sum 下是
+    交換的 以 Sn 爲單位元的 semigroup
+
+    當用 connected-sum 來正規化二維流形的時候
+    所對應的代數操作是什麼 ?
+
+    分解定理是如何證明的 ?
+    如此一來二階的代數結構的 'prime'
+    類比於 有限單羣 嗎 ?
+    類比於 groupoid 又是什麼分解呢 ?
+
+    就三維流形而言
+    分解的方式是找
+    不能收縮的 S2
+    [即 不 bound D3 的 S2]
+    [即 essentially embedded S2]
+    然後沿着找個 S2 切開
+
+    但是別的可定向二維流形好像也可以用來做切割
+    比如用 torus 的话 就能把 knot 切割出来了
+
+    我能想象在 fundamental-polyhedron 中
+    这些可以在边界[线]所構成的網絡上找
+
+* not-knot
+
+  - x -
+    not-knot 是否被認爲是沒有邊界的 ?
+    因爲 三維有邊界的流形的邊界 應該是二維流形 ?
+    [對於 同倫理論 來說 退化的邊界也可以]
+
+* 實心的 torus
+
+  - x -
+    實心的 torus = S3 - S1
+
+* thurston 利用羣作用來給出幾何的定義
+
+  - x -
+    說穩定子是 ><><><
+    就一定有黎曼度量
+
+* torus surgery 於代數處理
+
+  - x -
+    可以先考慮在邊界上做文章
+    還可以考慮可以用 dehn surgery 生成的簡單空間
+    比如 lens-space
+
+  - k -
+    但是
+    如果有代數處理的話
+    knot 的 link 所帶有的信息
+    如何被體現於其中 ?
+
+  - x -
+    thurston 如何從 knot 和 link 獲得三維幾何 ?
+    我們可否模仿他的方法 ?
+
+* 用正多面體來形成簡單的[對稱性很高的]例子
+
+* thurston 給出了 (knot-and-link -> polyhedral-schema)
+
+  - x -
+    但是
+    爲什麼除去邊可以等價於除去點 ?
+    #+begin_src scheme
+    因爲在扭動之後
+    在局部 knot 的部分
+    就成了 (* X I) 中的
+    形如 (: (* x0 i01) (* (-1 X) (0 i0 i1))) 的邊
+    它們對應於點
+    #+end_src
+
+  - 一個複數 決定一個雙曲空間中的四面體
+
+  - x -
+    可以看到 雙曲幾何的各種模型非常重要
+
+    如果 四面體可以有如此良好的數值表達
+    那麼多面體所形成的代數是否也能獲得類似的表達呢 ?
+
+  - 還有這些複數於 dehn surgery 之間的關係
+
+  - 以 hyperbolic-geometry 的 volume 爲拓撲不變量
+
+* covering-space
+
+  - x -
+    covering-space 被某些人當作羣
+    並且 一個 polyhedron 按照其對稱性
+    而平鋪空間
+    被看作是 羣的生成子在生成羣
+
+  - k -
+    看來這些關於各種空間的描述是非常重要
+    非常緊急的
+
+  - x -
+    但是我們必須先處理好二維的情況
+
+* research program
+
+  - x -
+    what is the core of our research program ?
+
+  - k -
+    高維代數 與 語言設計
+    因爲當想要處理和描述高維代數的時候
+    機器的幫助是必要的
+    因此設計程序語言就是必要的
+
+  - x -
+    在真正寫論文之前
+    我還有很多東西需要看
+    比如 dehn 和 whitehead 的論文
+    還有 對 fiber-space 和 mapping-class-group 的良好理解
+
+* limitation of language
+
+  - as an art or a science been developed by people along the history,
+    new phenomena been observed,
+    then, new languages must be invented
+    to merely let people be able to talk about these new phenomena.
+
+  - a new concept, such as combinatorial group theory and category theory,
+    been an indication of certain math structures,
+    meanwhile can also be an indication of a researching program.
+
+  - a new researching program while seemingly only helping people
+    understanding the phenomena in a better viewpoint,
+    will inevitably masking certain other viewpoints.
+
+  - when a new language is invented,
+    certain features of the phenomena are made speakable,
+    but we must do not forget the limitation of any languages,
+    as a single language, it will inevitably made certain other features
+    of the phenomena hard to be expressed.
+
+  - when I am designing my new language here,
+    I hope to capture some phenomena we observed
+    when we think about continuum,
+    and I am motivated by realizing that
+    those phenomena are hard to be expressed
+    by any languages which have been invented by people.
+
+  - but I am so aware of the limitation of any languages,
+    so, you will see me criticizing myself along the way,
+    I wish my readers do so too.
+
+* orbifold
+
+* fundamental-domain might not be polyhedron
+
+  - x -
+    以帶有洞的圓 與 其分形平鋪 爲例子
+
+* oneness
+
+  - x -
+    do not view them as two fighting,
+    but view them as one changing.
+
+    summer is not fighting with winter,
+    the relation between sun and earth is changing.
+
+    when play weiqi with a friend,
+    do not go against him to win,
+    view it as one game playing and enjoy it.
+
+    when running a interpreter of a language,
+    the system is one, and the system is changing.
+
+    to allow the state of soul changing from one to another,
+    to allow the state of body changing from one to another.

@@ -1,37 +1,5 @@
 #+title: combinatorial homotopy
 
-* intro
-
-  - as an art or a science been developed by people along the history,
-    new phenomena been observed,
-    then, new languages must be invented
-    to merely let people be able to talk about these new phenomena.
-
-  - a new concept, such as combinatorial group theory and category theory,
-    been an indication of certain math structures,
-    meanwhile can also be an indication of a researching program.
-
-  - a new researching program while seemingly only helping people
-    understanding the phenomena in a better viewpoint,
-    will inevitably masking certain other viewpoints.
-
-  - when a new language is invented,
-    certain features of the phenomena are made speakable,
-    but we must do not forget the limitation of any languages,
-    as a single language, it will inevitably made certain other features
-    of the phenomena hard to be expressed.
-
-  - when I am designing my new language here,
-    I hope to capture some phenomena we observed
-    when we think about continuum,
-    and I am motivated by realizing that
-    those phenomena are hard to be expressed
-    by any languages which have been invented by people.
-
-  - but I am so aware of the limitation of any languages,
-    so, you will see me criticizing myself along the way,
-    I wish my readers do so too.
-
 * combinatorial group theory
 
 *** motivation
