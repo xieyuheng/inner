@@ -1,5 +1,264 @@
 #+title: seifert
 
-* (1934) (seifert and threlfall) Lehrbuchder Topologie [a textbook of topology]
+* (1934) (seifert and threlfall) lehrbuchder topologie [a textbook of topology]
+
+*** 1 illustrative material
+
+***** 1 the principal problem of topology
+
+      - from now on, then,
+        we will make a distinction
+        between the intrinsic topological properties of a figure,
+        that is, those properties which are preserved
+        under all topological mappings of the figure,
+        and the remaining [extrinsic] properties,
+        which depend upon the figure's placement in space,
+        and which are preserved
+        only under topological mappings of the whole space.
+
+      - the property which distinguishes a complex
+        from an arbitrary point set of a space is its triangulability :
+
+        as a consequence of the triangulability property,
+        most so-called pathological point sets will be excluded from our considerations.
+
+      - for the time being, however,
+        we will try to see how far we can take the principal problem
+        without using these aids [homology and homotopy groups].
+
+***** 2 closed surfaces
+
+      - ><
+
+***** 3 isotopy, homotopy, homology
+
+***** 4 higher dimensional manifolds
+
+*** 2 simplicial complexes
+
+***** 5 neighborhood spaces
+
+***** 6 mappings
+
+***** 7 point sets in euclidean spaces
+
+***** 8 identification spaces
+
+***** 9 n-simplexes
+
+***** 10 simplicial complexes
+
+***** 11 the schema of a simplicial complex
+
+***** 12 finite, pure, homogeneous complexes
+
+***** 13 normal subdivision
+
+***** 14 examples of complexes
+
+*** 3 homology groups
+
+***** 15 chains
+
+***** 16 boundary, closed chains
+
+***** 17 homologous chains
+
+***** 18 homology groups
+
+***** 19 computation of the homology groups in simple cases
+
+***** 20 homologies with division
+
+***** 21 computation of homology groups from the incidence matrices
+
+***** 22 block chains
+
+***** 23 chains mod 2, connectivity numbers, euler's formula
+
+***** 24 pseudomanifolds and orientability
+
+*** 4 simplicial approximations
+
+***** 25 singular simplexes
+
+***** 26 singular chains
+
+***** 27 singular homology groups
+
+***** 28 the approximation theorem, invariance of simplicial homology groups
+
+***** 29 prisms in euclidean spaces
+
+***** 30 proof of the approximation theorem
+
+***** 31 deformation and simplicial approximation of mappings
+
+*** 5 local properties
+
+***** 32 homology groups of a complex at a point
+
+***** 33 invariance of dimension
+
+***** 34 invariance of the purity of a complex
+
+***** 35 invariance of boundary
+
+***** 36 invariance of pseudomanifolds and of orientability
+
+*** 6 surface topology
+
+***** 37 closed surfaces
+
+      - We can then recognize the following classes of equivalent points
+        in a system of polygons :
+        - an inner point of a polygon is equivalent only to itself;
+        - an innerpoint of a polygonal side
+          is equivalent to exactly one other point;
+        - a vertex may be equivalent to one, several, or even no other points.
+
+***** 38 transformation to normal form
+
+***** 39 types of normal form: the principal theorem
+
+***** 40 surfaces with boundary
+
+***** 41 homology groups of surfaces
+
+*** 7 the fundamental group
+
+***** 42 the fundamental group
+
+***** 43 examples
+
+***** 44 the edge path group of a simplicial complex
+
+***** 45 the edge path group of a surface complex
+
+***** 46 generators and relations
+
+***** 47 edge complexes and closed surfaces
+
+***** 48 the fundamental and homology groups
+
+***** 49 free deformation of closed paths
+
+***** 50 fundamental group and deformation of mappings
+
+***** 51 the fundamental group at a point
+
+***** 52 the fundamental group of a composite complex
+
+*** 8 covering complexes
+
+***** 53 unbranched covering complexes
+
+***** 54 base path and covering path
+
+***** 55 coverings and subgroups of the fundamental group
+
+***** 56 universal coverings
+
+***** 57 regular coverings
+
+***** 58 the monodromy group
+
+*** 9 3-dimensional manifolds
+
+***** 59 general principles
+
+***** 60 representation by a polyhedron
+
+***** 61 homology groups
+
+***** 62 the fundamental group
+
+***** 63 the heegaard diagram
+
+***** 64 3-dimensional manifolds with boundary
+
+***** 65 construction of 3-dimensional manifolds out of knots
+
+*** 10 n-dimensional manifolds
+
+***** 66 star complexes
+
+***** 67 cell complexes
+
+***** 68 manifolds
+
+***** 69 the poincare duality theorem
+
+***** 70 intersection numbers of cell chains
+
+***** 71 dual bases
+
+***** 72 cellular approximations
+
+***** 73 intersection numbers of singular chains
+
+***** 74 invariance of intersection numbers
+
+***** 75 examples
+
+***** 76 orientability and two-sidedness
+
+***** 77 linking numbers
+
+*** 11 continuous mappings
+
+***** 78 the degree of a mappings
+
+***** 79 a trace formula
+
+***** 80 a fixed point formula
+
+***** 81 applications
+
+*** 12 auxiliary theorems from the theory of groups
+
+***** 82 generators and relations
+
+***** 83 homomorphic mappings and factor groups
+
+***** 84 abelianization of groups
+
+***** 85 free and direct products
+
+***** 86 abelian groups
+
+***** 87 the normal form of integer matrices
 
 * [topology of 3-dimensional fibered spaces]
+
+*** fibered spaces
+
+*** orbit surface
+
+*** fiberings of s3
+
+*** triangulations of fibered spaces
+
+*** drilling and filling (surgery)
+
+*** classes of fibered spaces
+
+*** the orientable fibered spaces
+
+*** the nonorientable fibered spaces
+
+*** covering spaces
+
+*** fundamental groups of fibered spaces
+
+*** fiberings of the 3-sphere (complete list)
+
+*** the fibered poincare spaces
+
+*** constructing poincare spaces from torus knots
+
+*** translation groups of fibered spaces
+
+*** spaces which cannot be fibered
+
+*** appendix: branched coverings

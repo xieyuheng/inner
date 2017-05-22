@@ -2969,3 +2969,99 @@
 
     to allow the state of soul changing from one to another,
     to allow the state of body changing from one to another.
+
+* group action
+
+  - group acting on covering-space -> quotient-space as surface
+
+  - groupoid acting on covering-space -> quotient-space as the same surface
+    but quotient-space must be expressed with type system.
+
+  - this type system is also what needed by 2-algebra.
+    2-algebra acting on the path-space of the covering-space.
+
+  - we care about path-space,
+    because it is about fundamental-group.
+
+  - but when we say
+    "covering-space solves the word problem
+    of the fundamental-group of the underlying-space"
+    what do we mean ?
+    should we already use 2-algebra to express this ?
+
+  - classically, we mean the following :
+
+    each path of the underlying-space
+    can be lifted to many paths in the covering-space.
+
+    and if we fix a base point in the covering-space,
+    each path of the underlying-space
+    can be lifted to one path in the covering-space.
+
+    a path returns to its initial point in the underlying-space,
+    after lifted to the covering-space,
+    will not returns to its initial point in the covering-space,
+    if the path is not contractible to a point in the underlying-space.
+
+    a path returns to its initial point in the underlying-space,
+    after lifted to the covering-space,
+    will returns to its initial point in the covering-space,
+    if the path is contractible to a point in the underlying-space.
+
+    thus,
+    to see if a loop in the fundamental-group is equal to identity,
+    we lift it to the covering-space,
+    and see if it returns to its initial point.
+    i.e. if its end point is equal to its initial point.
+
+    thus,
+    different elements in the fundamental-group,
+    correspond to different points in the covering-space.
+    and
+    production of fundamental-group
+    induces a production of points in the covering-space,
+    i.e. gives the points in the covering-space a group structure.
+
+    for example,
+    elements of the fundamental-group of torus,
+    correspond to integer points in the 2-dim plane.
+    and
+    production of the fundamental-group of torus,
+    corresponds to vector addition.
+
+    thus,
+    we can say,
+    different elements of the underlying-space are different,
+    but sometimes it is hard to see they are different.
+    after lifting them to the covering-space,
+    it is easy to see they are different.
+
+  - different points of the covering-space
+    might be the viewed as equal point in the quotient-space [underlying-space].
+    but it is the relation between points of the covering-space
+    and paths of the underlying-space, that is important.
+
+  - x -
+    what is the meaning of our 2-algebra then ?
+
+* covering-space and normalization
+
+  - x -
+    we can build the covering-space of a surface,
+    after we normalize it.
+
+    can we just build the covering-space,
+    without normalizing it ?
+
+  - k -
+    根據古典定義
+    covering-space 是 fiber-space 的特殊情況
+    如何在我們的語言中形式化這些定義呢 ?
+
+* normalization of surface
+
+*** ><
+
+    #+begin_src scheme
+
+    #+end_src

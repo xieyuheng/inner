@@ -1,0 +1,42 @@
+#+title: drawing
+
+* (1987) (george k. francis) a topological picturebook
+
+*** intro
+
+    - "calculating" how to draw a picture
+
+    - line pattern + shading
+
+    - picture topological story
+
+    - pictures without formulas mislead,
+      formulas without pictures confuse.
+
+*** 1 descriptive topology
+
+***** 1 saddle in a box
+
+      - 
+
+***** 2 saddle in a drum
+
+***** 3 whitney umbrella
+
+***** 4 cayley cusp
+
+***** 5 pinch point / branch point
+
+*** 2 methods and media
+
+*** 3 pictures in perspective
+
+*** 4 the impossible tribar
+
+*** 5 shadows from higher dimension
+
+*** 6 sphere eversions
+
+*** 7 group pictures
+
+*** 8 the figure eight knot
