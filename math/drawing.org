@@ -13,11 +13,22 @@
     - pictures without formulas mislead,
       formulas without pictures confuse.
 
+    - x -
+      關於人體結構的正確知識 只有通過解剖人體 才能獲得
+      只有瞭解了人體的結構 才能理解其性質與功能
+
 *** 1 descriptive topology
 
-***** 1 saddle in a box
+***** intro
 
-      - 
+      - The task of descriptive topology is to unfold the visual secrets
+        so often compressed into algebraic shorthand.
+
+      - [stable mapping]
+        Golubistky, Martin and Victor Guillemin: Stable Mappings and Their Singularities.
+        1973
+
+***** 1 saddle in a box
 
 ***** 2 saddle in a drum
 
@@ -29,7 +40,47 @@
 
 *** 2 methods and media
 
+***** intro
+
+      - Boyer, Carl:
+        The History of the Calculus and its Conceptual Development.
+        1949
+
+***** 1 cubic metaphor
+***** 2 basic surface patterns
+***** 3 triprong
+
+      - smooth a piecewise flat and cornered version of the surface.
+
+      - contour edges v.s. face edges
+
+***** 4 rounding a polyhedral saddle
+***** 5 dunce hat
+***** 6 duns ego
+***** 7 mobius bands
+***** 8 function graphs
+***** 9 cancelling pinch points: wire frames
+***** 10 cancelling pinch points: hidden lines
+***** 11 cancelling pinch points: elaborations
+***** 12 spinning a pair of pants
+***** 13 lamination and eight knot
+***** 14 cable knot and companion
+***** 15 cabling template
+***** 16 octahedral hyperbolic manifold
+***** 17 tetrahedral hyperbolic manifold
+***** 18 borromean orbifold
+
 *** 3 pictures in perspective
+
+***** 1 linear perspective
+***** 2 horizon and zenith
+***** 3 recipe for a cube
+***** 4 cube in 3-2-1 point perspective
+***** 5 looking for a cube
+***** 6 diagonals
+***** 7 wheel and axle
+***** 8 axonometrics
+***** 9 chiaroscuro
 
 *** 4 the impossible tribar
 

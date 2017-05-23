@@ -1499,6 +1499,7 @@
      - 描述粘合方式的語言必定是線性的
        線性的描述方式自然給出指明粘合體中所有位置的方法
 
+* --------------------
 * simple-space
 
   - In a language, we always have primitive elements,
@@ -3060,8 +3061,21 @@
 
 * normalization of surface
 
+*** 目標
+
+    - x -
+      我們現在的目標是
+      用我們的形式化語言來描述 normalization of surface
+
+*** 回顧當前的語法和語義
+
+    - x -
+      首先我們來回顧一下當前的語法和語義
+
 *** ><
 
     #+begin_src scheme
-
+    (define normalizer-2
+      (lambda (-> (space manifold) (space manifold normal))
+        ...))
     #+end_src

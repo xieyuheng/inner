@@ -410,14 +410,14 @@
 
 *** chapter three. topological classification of closed surfaces
 
-***** 20 The Principal Problem in the Topology of Surfaces
+***** 20 the principal problem in the topology of surfaces
 
-      - The principal problem in the topology of closed surfaces
+      - the principal problem in the topology of closed surfaces
         is the search for the topological invariants of each closed surface
         so that we can tell if two arbitrarily given closed surfaces
         are or are not homeomorphic.
 
-      - We shall see in this chapter that
+      - we shall see in this chapter that
         the characteristic and the property of being orientable or not
         are two topological invariants that suffice to characterize each class.
         In other words,
@@ -425,7 +425,7 @@
         if and only if they have the same characteristic
         and they are both orientable or both nonorientable.
 
-***** 21 Planar Polygonal Schema and Symbolic Representation of a Polyhedron
+***** 21 planar polygonal schema and symbolic representation of a polyhedron
 
       - x -
         這一章講 如何利用 polygon 構造 polyhedron
@@ -477,6 +477,7 @@
         [immersion 即一個一般映射]
 
         這個 immersion 中非單值的地方 就包含着 glue 的信息
+        [非單值的地方 就是邊界的部分名稱重複的地方]
 
         給 immersion 時所使用的 circle 以定向
         就能看出 兩種 glue 同一個邊的方式

@@ -108,14 +108,82 @@
 
 *** 6 surface topology
 
+***** intro
+
+      - The principal problem of topology,
+        the homeomorphism problem,
+        can be solved in dimension 2,
+        using methods which cannot be generalized to higher dimensions.
+
+        For this reason we shall develop surface topology
+        independently of our previous results,
+        which were valid for arbitrary dimension.
+
+        We shall start with polygons,
+        instead of with a simplicial complex,
+        and we shall construct closed polyhedral surfaces
+        by identifying sides of polygons.
+
 ***** 37 closed surfaces
 
-      - We can then recognize the following classes of equivalent points
+      - [manifold-checker]
+        We first devote our attention only to systems of polygons
+        for which the total number of sides is even
+        and each side is paired with exactly one otherside
+        by the topological mapping.
+
+      - [topological feeling [neighborhood space]]
+        In the system of polygons,
+        points which map into one another
+        are to be considered equivalent
+        in the sense that
+        points in a neighborhood space are equivalent.
+
+      - [combinatorial natural of a system of polygons]
+        We can then recognize the following classes of equivalent points
         in a system of polygons :
         - an inner point of a polygon is equivalent only to itself;
         - an innerpoint of a polygonal side
           is equivalent to exactly one other point;
         - a vertex may be equivalent to one, several, or even no other points.
+
+      - [connectedness condition]
+
+      - system of polygons -> closed surfaces
+
+      - In the treatment which follows,
+        our interest shall be not in the particular system of polygons
+        but, rather, in the surface which it determines.
+
+        We now set ourselves the task of discovering
+        when two systems of polygons determine the same surface,
+        that is, finding when the polyhedral surfaces
+        produced by the identification of equivalent points
+        are different polygonal decompositions of the same surface.
+
+        [we solve this by normalization]
+
+      - [orientation]
+        We now orient the polygonal sides.
+        That is, we choose one of the two boundary points of each side
+        as initial point
+        and the other as endpoint of the side.
+
+        - x -
+          such orientation is nothing but maintain the information
+          of different positions in the boundary of a n-disk.
+
+        - k -
+          but a polygon only has two orientations.
+
+          while so much information are maintained,
+          are they really the information about orientation ?
+
+      - The orientation of the polygon
+        will determine a sense of traversal of the boundary,
+        that is, a cyclic ordering of the sides.
+
+        [is this the same for polyhedron ?]
 
 ***** 38 transformation to normal form
 
@@ -168,6 +236,43 @@
 ***** 59 general principles
 
 ***** 60 representation by a polyhedron
+
+      - [full polyhedron]
+        full (solid) polyhedron is defined as the following,
+        a closed 3-ball (or a topological image of a closed 3-ball)
+        whose boundary been divided into polygons
+        so that the following conditions are satisfied :
+        1. each polygon is at least a 2-gon.
+        2. each point of boundary belongs to at least one polygon.
+        3. two polygons are either disjoint
+           or have certain common edges or vertices.
+
+        for example :
+        - solid dodecahedron.
+        - a closed 3-ball
+          whose boundary sphere has been decomposed into two hemispheres
+          by a great circle also becomes a full polyhedron
+          when one subdivides the great circle by two or more vertices.
+
+      - x -
+        使用三角形
+        也許可以大大簡化描述二階代數時 所需語言的語法之複雜度
+
+        當考慮 polyhedron 所構造的三維流形時
+        manifold-checker 很簡單
+        就是 euler number 爲 0
+
+        現在要問的是
+        這個 manifold-checker 對 manifold 的 2-skeleton
+        有什麼限制
+        [我們已經知道找個 2-skeleton 不能是任意的有限生成羣了]
+
+        知道這些限制之後
+        我們就可以試着模仿二階的情形來設計 normalization 算法
+
+        同時也可以試着模仿 Dehn 的算法
+        來設計相似的算法
+        以判斷二階代數中任意兩個元素是否相等
 
 ***** 61 homology groups
 
