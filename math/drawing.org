@@ -90,4 +90,48 @@
 
 *** 7 group pictures
 
+***** intro
+
+      - about mapping-class-group
+
+      - isotopy is the equivalent relation of mappings in mapping-class-group
+        [ambient-isotopy where the ambient-space is the surface itself]
+
+***** zipping up a double torus
+
+      - a superposition of two copies of the same surface defines a self-map.
+
+      - x -
+        兩個曲面上的曲線系統
+        外加鏈接兩個曲面的 braid 系統
+        就能描述 帶洞曲面 的 self-map
+
+        [問題]
+        這與曲面本身的代數表示有什麼關係 ?
+
+      - k -
+        我們之所以關心 mapping-class-group
+        是因爲定義 fiber-space 的時候需要它們
+
+        [問題]
+        fiber-space 的代數是什麼呢 ?
+
+***** braiding homeomorphisms
+
+***** artin swap
+
+***** spherical braids
+
+***** plate trick
+
+***** whorl and chimney
+
+***** swapping handle cores
+
+***** swap diagram
+
+***** lickorish twists
+
+***** king solomon seal
+
 *** 8 the figure eight knot

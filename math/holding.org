@@ -3216,6 +3216,12 @@
       毕竟 就这个二维空间的分类定理而言
       对同伦进行叙述 也是有效的
 
+*** 動態
+
+    - x -
+      如何描述 normalization 的動態效果呢 ?
+      一系列的同倫等價可否被演示成動態效果 ?
+
 *** ><
 
     #+begin_src scheme
@@ -3224,3 +3230,17 @@
                   (complex %:y :y is-two-dimensional-manifold :y is-normalized))
         ...))
     #+end_src
+
+* fiber-space
+
+  - x -
+    fiber-space 的定義
+    E -> B
+    可以被轉化爲
+    B -> (F -> F)
+
+    把變換的信息記錄在點中
+    是切開再粘合
+
+    把變換的信息記錄在邊中
+    是 ><><>< [是 切開再粘合 的對偶]

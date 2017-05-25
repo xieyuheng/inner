@@ -1,0 +1,791 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2017-05-26 Fri 05:48 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>seifert</title>
+<meta name="generator" content="Org-mode" />
+<meta name="author" content="XIE Yuheng" />
+<link rel="stylesheet" href="../asset/css/page.css" type="text/css" media="screen" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+近死之心 莫使復陽也
+</div>
+<div id="content">
+<h1 class="title">seifert</h1>
+<div id="table-of-contents">
+<h2>overview</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orga2a7da5">(1934) (seifert and threlfall) lehrbuchder topologie [a textbook of topology]</a>
+<ul>
+<li><a href="#org438948">1 例子 / illustrative material</a>
+<ul>
+<li><a href="#orgf5e95a3">1 拓扑学的首要目标 / the principal problem of topology</a></li>
+<li><a href="#org670655d">2 closed surfaces</a></li>
+<li><a href="#orgb0d41c8">3 isotopy, homotopy, homology</a></li>
+<li><a href="#orged731ae">4 higher dimensional manifolds</a></li>
+</ul>
+</li>
+<li><a href="#orgf2e5e4a">2 simplicial complexes</a>
+<ul>
+<li><a href="#orgabeefb">5 neighborhood spaces</a></li>
+<li><a href="#org2ef8d70">6 mappings</a></li>
+<li><a href="#org6ed7d53">7 point sets in euclidean spaces</a></li>
+<li><a href="#org7fd1cb5">8 identification spaces</a></li>
+<li><a href="#orgc7d70f0">9 n-simplexes</a></li>
+<li><a href="#org6d669e9">10 simplicial complexes</a></li>
+<li><a href="#orga55a548">11 the schema of a simplicial complex</a></li>
+<li><a href="#orga09f199">12 finite, pure, homogeneous complexes</a></li>
+<li><a href="#org54bcd84">13 normal subdivision</a></li>
+<li><a href="#orgdb75f4e">14 examples of complexes</a></li>
+</ul>
+</li>
+<li><a href="#org8459a4">3 homology groups</a>
+<ul>
+<li><a href="#orga7bcf8a">15 chains</a></li>
+<li><a href="#orgcda0178">16 boundary, closed chains</a></li>
+<li><a href="#org918e3a0">17 homologous chains</a></li>
+<li><a href="#org1149142">18 homology groups</a></li>
+<li><a href="#orgf5374cc">19 computation of the homology groups in simple cases</a></li>
+<li><a href="#orgbb1e9b3">20 homologies with division</a></li>
+<li><a href="#org7a36e26">21 computation of homology groups from the incidence matrices</a></li>
+<li><a href="#orgb7ea9c0">22 block chains</a></li>
+<li><a href="#orgcedc042">23 chains mod 2, connectivity numbers, euler's formula</a></li>
+<li><a href="#org72d238e">24 pseudomanifolds and orientability</a></li>
+</ul>
+</li>
+<li><a href="#org8a775ee">4 simplicial approximations</a>
+<ul>
+<li><a href="#org3b1f8b1">25 singular simplexes</a></li>
+<li><a href="#orgb58d308">26 singular chains</a></li>
+<li><a href="#org6c174c1">27 singular homology groups</a></li>
+<li><a href="#orgfd49c3f">28 the approximation theorem, invariance of simplicial homology groups</a></li>
+<li><a href="#orgf68ab5c">29 prisms in euclidean spaces</a></li>
+<li><a href="#orgec33d09">30 proof of the approximation theorem</a></li>
+<li><a href="#org4e5d9f7">31 deformation and simplicial approximation of mappings</a></li>
+</ul>
+</li>
+<li><a href="#org96ec2cf">5 local properties</a>
+<ul>
+<li><a href="#orgdd6733">32 homology groups of a complex at a point</a></li>
+<li><a href="#org2f4a38e">33 invariance of dimension</a></li>
+<li><a href="#orgeee17f">34 invariance of the purity of a complex</a></li>
+<li><a href="#org9a4b76d">35 invariance of boundary</a></li>
+<li><a href="#org6c9f2a">36 invariance of pseudomanifolds and of orientability</a></li>
+</ul>
+</li>
+<li><a href="#org58470f6">6 surface topology</a>
+<ul>
+<li><a href="#orgc650599">intro</a></li>
+<li><a href="#org354da7">37 closed surfaces</a></li>
+<li><a href="#orgacc5f0b">38 transformation to normal form</a></li>
+<li><a href="#orgc5a5b19">39 types of normal form: the principal theorem</a></li>
+<li><a href="#orgc9d1597">40 surfaces with boundary</a></li>
+<li><a href="#orgc7a0f6">41 homology groups of surfaces</a></li>
+</ul>
+</li>
+<li><a href="#org12ff7e6">7 the fundamental group</a>
+<ul>
+<li><a href="#org63e2f51">42 the fundamental group</a></li>
+<li><a href="#orgf63d723">43 examples</a></li>
+<li><a href="#org8ced92f">44 the edge path group of a simplicial complex</a></li>
+<li><a href="#org1519bbd">45 the edge path group of a surface complex</a></li>
+<li><a href="#orgb1b9c60">46 generators and relations</a></li>
+<li><a href="#org2df2eeb">47 edge complexes and closed surfaces</a></li>
+<li><a href="#org9569ee3">48 the fundamental and homology groups</a></li>
+<li><a href="#orgc5d4bc8">49 free deformation of closed paths</a></li>
+<li><a href="#org7f72b87">50 fundamental group and deformation of mappings</a></li>
+<li><a href="#org3493e69">51 the fundamental group at a point</a></li>
+<li><a href="#org62eaaa9">52 the fundamental group of a composite complex</a></li>
+</ul>
+</li>
+<li><a href="#orgc9e9ca9">8 covering complexes</a>
+<ul>
+<li><a href="#org6ae15b2">intro</a></li>
+<li><a href="#org46ebd39">53 unbranched covering complexes</a></li>
+<li><a href="#org99c29a9">54 base path and covering path</a></li>
+<li><a href="#orge770e42">55 coverings and subgroups of the fundamental group</a></li>
+<li><a href="#orgb36d7f5">56 universal coverings</a></li>
+<li><a href="#org5c6ae8c">57 regular coverings</a></li>
+<li><a href="#org5f5a59a">58 the monodromy group</a></li>
+</ul>
+</li>
+<li><a href="#org659eff">9 3-dimensional manifolds</a>
+<ul>
+<li><a href="#orgb9c2221">59 general principles</a></li>
+<li><a href="#orge084759">60 representation by a polyhedron</a></li>
+<li><a href="#org91f91b4">61 homology groups</a></li>
+<li><a href="#org81cc1d">62 the fundamental group</a></li>
+<li><a href="#org94e2de3">63 the heegaard diagram</a></li>
+<li><a href="#org59ddae4">64 3-dimensional manifolds with boundary</a></li>
+<li><a href="#org7b1477">65 construction of 3-dimensional manifolds out of knots</a></li>
+</ul>
+</li>
+<li><a href="#orgba5d234">10 n-dimensional manifolds</a>
+<ul>
+<li><a href="#orgac420ee">66 star complexes</a></li>
+<li><a href="#org6e047e8">67 cell complexes</a></li>
+<li><a href="#orgd572073">68 manifolds</a></li>
+<li><a href="#orgfc2503b">69 the poincare duality theorem</a></li>
+<li><a href="#org567fe4f">70 intersection numbers of cell chains</a></li>
+<li><a href="#orgff74e16">71 dual bases</a></li>
+<li><a href="#orgd0af5aa">72 cellular approximations</a></li>
+<li><a href="#org166d7d9">73 intersection numbers of singular chains</a></li>
+<li><a href="#org3db30e2">74 invariance of intersection numbers</a></li>
+<li><a href="#org7342cc9">75 examples</a></li>
+<li><a href="#orgb213ac5">76 orientability and two-sidedness</a></li>
+<li><a href="#org9a1db4c">77 linking numbers</a></li>
+</ul>
+</li>
+<li><a href="#org29d88dc">11 continuous mappings</a>
+<ul>
+<li><a href="#orgf8b3da8">78 the degree of a mappings</a></li>
+<li><a href="#org68976a9">79 a trace formula</a></li>
+<li><a href="#org3ef5964">80 a fixed point formula</a></li>
+<li><a href="#orgb18bd5d">81 applications</a></li>
+</ul>
+</li>
+<li><a href="#orgb32d383">12 auxiliary theorems from the theory of groups</a>
+<ul>
+<li><a href="#org392d917">82 generators and relations</a></li>
+<li><a href="#org4398451">83 homomorphic mappings and factor groups</a></li>
+<li><a href="#orgc6f85f0">84 abelianization of groups</a></li>
+<li><a href="#org6a28b02">85 free and direct products</a></li>
+<li><a href="#orgc439d8b">86 abelian groups</a></li>
+<li><a href="#org3261c4d">87 the normal form of integer matrices</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orga69d257">[topology of 3-dimensional fibered spaces]</a>
+<ul>
+<li><a href="#orgf4d03dc">fibered spaces</a></li>
+<li><a href="#org20d80a2">orbit surface</a></li>
+<li><a href="#org8a20ff1">fiberings of s3</a></li>
+<li><a href="#org653912d">triangulations of fibered spaces</a></li>
+<li><a href="#orgc91ddad">drilling and filling (surgery)</a></li>
+<li><a href="#orga79564d">classes of fibered spaces</a></li>
+<li><a href="#org42d640e">the orientable fibered spaces</a></li>
+<li><a href="#org59b33cf">the nonorientable fibered spaces</a></li>
+<li><a href="#org2291a7">covering spaces</a></li>
+<li><a href="#org86e0842">fundamental groups of fibered spaces</a></li>
+<li><a href="#org267d52c">fiberings of the 3-sphere (complete list)</a></li>
+<li><a href="#org44743f7">the fibered poincare spaces</a></li>
+<li><a href="#orgc947812">constructing poincare spaces from torus knots</a></li>
+<li><a href="#org9935478">translation groups of fibered spaces</a></li>
+<li><a href="#org7f3a3da">spaces which cannot be fibered</a></li>
+<li><a href="#org2d015ed">appendix: branched coverings</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orga2a7da5" class="outline-2">
+<h2 id="orga2a7da5">(1934) (seifert and threlfall) lehrbuchder topologie [a textbook of topology]</h2>
+<div class="outline-text-2" id="text-orga2a7da5">
+</div><div id="outline-container-org438948" class="outline-3">
+<h3 id="org438948">1 例子 / illustrative material</h3>
+<div class="outline-text-3" id="text-org438948">
+</div><div id="outline-container-orgf5e95a3" class="outline-4">
+<h4 id="orgf5e95a3">1 拓扑学的首要目标 / the principal problem of topology</h4>
+<div class="outline-text-4" id="text-orgf5e95a3">
+<ul class="org-ul">
+<li><p><p></p><p>拓扑学的研究对象是几何图形</p><p>所研究的几何图形的性质 是其在拓扑映射下不变的性质</p><p></p></p><p></p><p><p></p><p>所谓 拓扑映射</p><p>就是 连续的一一映射 并且其逆映射也是连续的</p><p></p></p><p></p><p><p></p><p>所谓 几何图形</p><p>是三维或者更高维空间之中的点集</p><p></p></p><p></p><p><ul class="org-ul"></p><p><li><p>x -</p><p>在描述点集时</p><p>我们可以局限于如下的方法</p><p>几何图形 被分为一片一片的</p><p>对其中的每一片</p><p>我们给以其参数表示</p><p>片与片之间的关系需要被加以限定</p><p>但是具体如何限定</p><p>先暂且不谈</p></li></ul></p></li>
+
+<li><p>连续函数只需要定义于几何图形之中的点</p><p>而不需要定义于几何图形所在的整个空间中的所有点</p></li>
+
+<li><p>在拓扑映射下不变的性质</p><p>称为拓扑性质</p></li>
+
+<li><p>两个图形</p><p>如果可以被某个拓扑映射变换为另一个</p><p>就称这两个图形同胚</p></li>
+
+<li><p>如果在直觉上</p><p>一个图形经过扭曲和形变可以变为另一个</p><p>那么二者就是同胚的</p></li>
+
+<li><p>想要发现很多很多同胚的图形很容易</p><p>然是想要证明两个图形不同胚则很难</p></li>
+
+<li><p><p></p><p>正如全等的图形在欧式几何中被认为是没有本质上的区别的</p><p>同胚的图形在拓扑学中也被认为是没有本质上的区别的</p><p></p></p><p></p><p><p></p><p>两个全等的图形总是可以通过一个整个空间的叠合变换而被重叠</p><p>但是 可能没有整个空间的同胚变换来重叠两个同胚的图形</p><p></p></p><p></p><p><p></p><p>比如</p><p>在三维空间中</p><p>结 与 圈 同胚</p><p>不经扭曲的闭合的带 与 莫比乌斯带 同胚</p><p>但是这些同胚都不能扩展到整个空间到自身的拓扑映射</p><p></p></p><p></p><p><p></p><p>然而</p><p>当把这些图形嵌入在四维空间中时</p><p>这些同胚却又可以扩展到整个空间到自身的拓扑映射了</p><p></p></p><p></p><p><p></p><p>如此更可以看出 同胚 这个等价关系</p><p>是就图形的点而言的</p><p>而不是就图形所在的空间而言的</p><p></p></p></li>
+
+<li><p><p></p><p>因此我们必须区分两种拓扑性质</p><p>一种是内蕴于图形本身的拓扑性质</p><p>另一种拓扑性质 是关于图形如何被放置于外在的空间之中的</p><p>后一种拓扑性质 在外在空间的拓扑映射下不变</p><p></p></p><p></p><p><p></p><p>在观察图形与外在空间的关系时</p><p>所得到的一些差异</p><p>在考虑内蕴的拓扑时</p><p>可能就不复存在了</p><p></p></p></li>
+
+<li><p>这里所区分的 内蕴性质与外在性质</p><p>在微分几何中同样也会出现</p><p>三维空间中曲面的内蕴度量性质由其第一基本形式决定 [first fundamental form]</p><p>而外在的度量性质由其第二基本形式决定 [second fundamental form]</p></li>
+
+<li><p><p></p><p>拓扑学的基本问题是</p><p>判断两个图形是否同胚</p><p>并且分类列举所有不同胚的图形</p><p></p></p><p></p><p><p></p><p>尽管人们发展出了很多理论来处理欧式空间的任意子空间</p><p>但是我们将限制我们讨论的对象</p><p>以避免集合论所带来的困难</p><p></p></p><p></p><p><p></p><p>我们首先限制我们的研究对象于</p><p>布劳威尔[Brouwer] 所引入的 复形[complex]</p><p>然后进一步局限于 流形[manifold]</p><p></p></p></li>
+
+<li><p><p></p><p>复形之有别于任意点集所构成的图形</p><p>在于它们可以被 三角化 [或者说单形化]</p><p></p></p><p></p><p><p></p><p>与其说对一个已有的空间进行三角化</p><p>也可以说是利用单形来构造复形</p><p>这后一种构造是不依赖于外在空间而内蕴的</p><p></p></p><p></p><p><ul class="org-ul"></p><p><li><p>x -</p><p>因此 作者在这里考虑的是 单纯复形[simplicial complex]</p></li></ul></p></li>
+
+<li><p><p></p><p>可三角化 这个性质</p><p>将为我们排除点集拓扑中的很多病态情形</p><p></p></p><p></p><p><p></p><p>尽管复形的拓扑学被戏称为 '橡皮糖拓扑学'</p><p>但是其实经过这样的限制之后</p><p>我们恰恰可以把精力集中于具有更强几何意义的研究对象</p><p></p></p></li>
+
+<li><p>for the time being, however,</p><p>we will try to see how far we can take the principal problem</p><p>without using these aids [homology and homotopy groups].</p></li></ul>
+</div>
+</div>
+
+<div id="outline-container-org670655d" class="outline-4">
+<h4 id="org670655d">2 closed surfaces</h4>
+<div class="outline-text-4" id="text-org670655d">
+<ul class="org-ul">
+<li><p>&gt;&lt;</p></li></ul>
+</div>
+</div>
+
+<div id="outline-container-orgb0d41c8" class="outline-4">
+<h4 id="orgb0d41c8">3 isotopy, homotopy, homology</h4>
+</div>
+
+<div id="outline-container-orged731ae" class="outline-4">
+<h4 id="orged731ae">4 higher dimensional manifolds</h4>
+</div>
+</div>
+
+<div id="outline-container-orgf2e5e4a" class="outline-3">
+<h3 id="orgf2e5e4a">2 simplicial complexes</h3>
+<div class="outline-text-3" id="text-orgf2e5e4a">
+</div><div id="outline-container-orgabeefb" class="outline-4">
+<h4 id="orgabeefb">5 neighborhood spaces</h4>
+</div>
+
+<div id="outline-container-org2ef8d70" class="outline-4">
+<h4 id="org2ef8d70">6 mappings</h4>
+</div>
+
+<div id="outline-container-org6ed7d53" class="outline-4">
+<h4 id="org6ed7d53">7 point sets in euclidean spaces</h4>
+</div>
+
+<div id="outline-container-org7fd1cb5" class="outline-4">
+<h4 id="org7fd1cb5">8 identification spaces</h4>
+</div>
+
+<div id="outline-container-orgc7d70f0" class="outline-4">
+<h4 id="orgc7d70f0">9 n-simplexes</h4>
+</div>
+
+<div id="outline-container-org6d669e9" class="outline-4">
+<h4 id="org6d669e9">10 simplicial complexes</h4>
+</div>
+
+<div id="outline-container-orga55a548" class="outline-4">
+<h4 id="orga55a548">11 the schema of a simplicial complex</h4>
+</div>
+
+<div id="outline-container-orga09f199" class="outline-4">
+<h4 id="orga09f199">12 finite, pure, homogeneous complexes</h4>
+</div>
+
+<div id="outline-container-org54bcd84" class="outline-4">
+<h4 id="org54bcd84">13 normal subdivision</h4>
+</div>
+
+<div id="outline-container-orgdb75f4e" class="outline-4">
+<h4 id="orgdb75f4e">14 examples of complexes</h4>
+</div>
+</div>
+
+<div id="outline-container-org8459a4" class="outline-3">
+<h3 id="org8459a4">3 homology groups</h3>
+<div class="outline-text-3" id="text-org8459a4">
+</div><div id="outline-container-orga7bcf8a" class="outline-4">
+<h4 id="orga7bcf8a">15 chains</h4>
+</div>
+
+<div id="outline-container-orgcda0178" class="outline-4">
+<h4 id="orgcda0178">16 boundary, closed chains</h4>
+</div>
+
+<div id="outline-container-org918e3a0" class="outline-4">
+<h4 id="org918e3a0">17 homologous chains</h4>
+</div>
+
+<div id="outline-container-org1149142" class="outline-4">
+<h4 id="org1149142">18 homology groups</h4>
+</div>
+
+<div id="outline-container-orgf5374cc" class="outline-4">
+<h4 id="orgf5374cc">19 computation of the homology groups in simple cases</h4>
+</div>
+
+<div id="outline-container-orgbb1e9b3" class="outline-4">
+<h4 id="orgbb1e9b3">20 homologies with division</h4>
+</div>
+
+<div id="outline-container-org7a36e26" class="outline-4">
+<h4 id="org7a36e26">21 computation of homology groups from the incidence matrices</h4>
+</div>
+
+<div id="outline-container-orgb7ea9c0" class="outline-4">
+<h4 id="orgb7ea9c0">22 block chains</h4>
+</div>
+
+<div id="outline-container-orgcedc042" class="outline-4">
+<h4 id="orgcedc042">23 chains mod 2, connectivity numbers, euler's formula</h4>
+</div>
+
+<div id="outline-container-org72d238e" class="outline-4">
+<h4 id="org72d238e">24 pseudomanifolds and orientability</h4>
+</div>
+</div>
+
+<div id="outline-container-org8a775ee" class="outline-3">
+<h3 id="org8a775ee">4 simplicial approximations</h3>
+<div class="outline-text-3" id="text-org8a775ee">
+</div><div id="outline-container-org3b1f8b1" class="outline-4">
+<h4 id="org3b1f8b1">25 singular simplexes</h4>
+</div>
+
+<div id="outline-container-orgb58d308" class="outline-4">
+<h4 id="orgb58d308">26 singular chains</h4>
+</div>
+
+<div id="outline-container-org6c174c1" class="outline-4">
+<h4 id="org6c174c1">27 singular homology groups</h4>
+</div>
+
+<div id="outline-container-orgfd49c3f" class="outline-4">
+<h4 id="orgfd49c3f">28 the approximation theorem, invariance of simplicial homology groups</h4>
+</div>
+
+<div id="outline-container-orgf68ab5c" class="outline-4">
+<h4 id="orgf68ab5c">29 prisms in euclidean spaces</h4>
+</div>
+
+<div id="outline-container-orgec33d09" class="outline-4">
+<h4 id="orgec33d09">30 proof of the approximation theorem</h4>
+</div>
+
+<div id="outline-container-org4e5d9f7" class="outline-4">
+<h4 id="org4e5d9f7">31 deformation and simplicial approximation of mappings</h4>
+</div>
+</div>
+
+<div id="outline-container-org96ec2cf" class="outline-3">
+<h3 id="org96ec2cf">5 local properties</h3>
+<div class="outline-text-3" id="text-org96ec2cf">
+</div><div id="outline-container-orgdd6733" class="outline-4">
+<h4 id="orgdd6733">32 homology groups of a complex at a point</h4>
+</div>
+
+<div id="outline-container-org2f4a38e" class="outline-4">
+<h4 id="org2f4a38e">33 invariance of dimension</h4>
+</div>
+
+<div id="outline-container-orgeee17f" class="outline-4">
+<h4 id="orgeee17f">34 invariance of the purity of a complex</h4>
+</div>
+
+<div id="outline-container-org9a4b76d" class="outline-4">
+<h4 id="org9a4b76d">35 invariance of boundary</h4>
+</div>
+
+<div id="outline-container-org6c9f2a" class="outline-4">
+<h4 id="org6c9f2a">36 invariance of pseudomanifolds and of orientability</h4>
+</div>
+</div>
+
+<div id="outline-container-org58470f6" class="outline-3">
+<h3 id="org58470f6">6 surface topology</h3>
+<div class="outline-text-3" id="text-org58470f6">
+</div><div id="outline-container-orgc650599" class="outline-4">
+<h4 id="orgc650599">intro</h4>
+<div class="outline-text-4" id="text-orgc650599">
+<ul class="org-ul">
+<li><p><p></p><p>The principal problem of topology,</p><p>the homeomorphism problem,</p><p>can be solved in dimension 2,</p><p>using methods which cannot be generalized to higher dimensions.</p><p></p></p><p></p><p><p></p><p>For this reason we shall develop surface topology</p><p>independently of our previous results,</p><p>which were valid for arbitrary dimension.</p><p></p></p><p></p><p><p></p><p>We shall start with polygons,</p><p>instead of with a simplicial complex,</p><p>and we shall construct closed polyhedral surfaces</p><p>by identifying sides of polygons.</p><p></p></p></li></ul>
+</div>
+</div>
+
+<div id="outline-container-org354da7" class="outline-4">
+<h4 id="org354da7">37 closed surfaces</h4>
+<div class="outline-text-4" id="text-org354da7">
+<ul class="org-ul">
+<li><p>[manifold-checker]</p><p>We first devote our attention only to systems of polygons</p><p>for which the total number of sides is even</p><p>and each side is paired with exactly one otherside</p><p>by the topological mapping.</p></li>
+
+<li><p>[topological feeling [neighborhood space]]</p><p>In the system of polygons,</p><p>points which map into one another</p><p>are to be considered equivalent</p><p>in the sense that</p><p>points in a neighborhood space are equivalent.</p></li>
+
+<li><p>[combinatorial natural of a system of polygons]</p><p>We can then recognize the following classes of equivalent points</p><p>in a system of polygons :</p><p><ul class="org-ul"></p><p><li><p>an inner point of a polygon is equivalent only to itself;</p></li></p><p><li><p>an innerpoint of a polygonal side</p><p>is equivalent to exactly one other point;</p></li></p><p><li><p>a vertex may be equivalent to one, several, or even no other points.</p></li></ul></p></li>
+
+<li><p>[connectedness condition]</p></li>
+
+<li><p>system of polygons -&gt; closed surfaces</p></li>
+
+<li><p><p></p><p>In the treatment which follows,</p><p>our interest shall be not in the particular system of polygons</p><p>but, rather, in the surface which it determines.</p><p></p></p><p></p><p><p></p><p>We now set ourselves the task of discovering</p><p>when two systems of polygons determine the same surface,</p><p>that is, finding when the polyhedral surfaces</p><p>produced by the identification of equivalent points</p><p>are different polygonal decompositions of the same surface.</p><p></p></p><p></p><p><p></p><p>[we solve this by normalization]</p><p></p></p></li>
+
+<li><p>[orientation]</p><p>We now orient the polygonal sides.</p><p>That is, we choose one of the two boundary points of each side</p><p>as initial point</p><p>and the other as endpoint of the side.</p><p></p><p><ul class="org-ul"></p><p><li><p>x -</p><p>such orientation is nothing but maintain the information</p><p>of different positions in the boundary of a n-disk.</p></li></p><p></p><p><li><p><p></p><p>k -</p><p>but a polygon only has two orientations.</p><p></p></p><p></p><p><p></p><p>while so much information are maintained,</p><p>are they really the information about orientation ?</p><p></p></p></li></ul></p></li>
+
+<li><p><p></p><p>The orientation of the polygon</p><p>will determine a sense of traversal of the boundary,</p><p>that is, a cyclic ordering of the sides.</p><p></p></p><p></p><p><p></p><p>[is this the same for polyhedron ?]</p><p></p></p></li></ul>
+</div>
+</div>
+
+<div id="outline-container-orgacc5f0b" class="outline-4">
+<h4 id="orgacc5f0b">38 transformation to normal form</h4>
+<div class="outline-text-4" id="text-orgacc5f0b">
+</div><ul class="org-ul"><li><a id="org27363e3"></a>Step 1<br  /></li>
+
+<li><a id="org4ae967"></a>Step 2: Side Cancellation<br  /></li>
+
+<li><a id="org32d7bb"></a>Step 3: Transformation to a Polyhedral Surface Having a Single Vertex<br  /></li>
+
+<li><a id="orga6eeffa"></a>Step 4: Cross-Cap Normalization<br  /></li>
+
+<li><a id="orgf256db9"></a>Step 5: Handle Normalization<br  /></li>
+
+<li><a id="org10f8d07"></a>Step 6: Transformation of the Handles into Cross-Caps<br  /></li></ul>
+</div>
+
+<div id="outline-container-orgc5a5b19" class="outline-4">
+<h4 id="orgc5a5b19">39 types of normal form: the principal theorem</h4>
+</div>
+
+<div id="outline-container-orgc9d1597" class="outline-4">
+<h4 id="orgc9d1597">40 surfaces with boundary</h4>
+</div>
+
+<div id="outline-container-orgc7a0f6" class="outline-4">
+<h4 id="orgc7a0f6">41 homology groups of surfaces</h4>
+</div>
+</div>
+
+<div id="outline-container-org12ff7e6" class="outline-3">
+<h3 id="org12ff7e6">7 the fundamental group</h3>
+<div class="outline-text-3" id="text-org12ff7e6">
+</div><div id="outline-container-org63e2f51" class="outline-4">
+<h4 id="org63e2f51">42 the fundamental group</h4>
+</div>
+
+<div id="outline-container-orgf63d723" class="outline-4">
+<h4 id="orgf63d723">43 examples</h4>
+</div>
+
+<div id="outline-container-org8ced92f" class="outline-4">
+<h4 id="org8ced92f">44 the edge path group of a simplicial complex</h4>
+</div>
+
+<div id="outline-container-org1519bbd" class="outline-4">
+<h4 id="org1519bbd">45 the edge path group of a surface complex</h4>
+</div>
+
+<div id="outline-container-orgb1b9c60" class="outline-4">
+<h4 id="orgb1b9c60">46 generators and relations</h4>
+</div>
+
+<div id="outline-container-org2df2eeb" class="outline-4">
+<h4 id="org2df2eeb">47 edge complexes and closed surfaces</h4>
+</div>
+
+<div id="outline-container-org9569ee3" class="outline-4">
+<h4 id="org9569ee3">48 the fundamental and homology groups</h4>
+</div>
+
+<div id="outline-container-orgc5d4bc8" class="outline-4">
+<h4 id="orgc5d4bc8">49 free deformation of closed paths</h4>
+</div>
+
+<div id="outline-container-org7f72b87" class="outline-4">
+<h4 id="org7f72b87">50 fundamental group and deformation of mappings</h4>
+</div>
+
+<div id="outline-container-org3493e69" class="outline-4">
+<h4 id="org3493e69">51 the fundamental group at a point</h4>
+</div>
+
+<div id="outline-container-org62eaaa9" class="outline-4">
+<h4 id="org62eaaa9">52 the fundamental group of a composite complex</h4>
+</div>
+</div>
+
+<div id="outline-container-orgc9e9ca9" class="outline-3">
+<h3 id="orgc9e9ca9">8 covering complexes</h3>
+<div class="outline-text-3" id="text-orgc9e9ca9">
+</div><div id="outline-container-org6ae15b2" class="outline-4">
+<h4 id="org6ae15b2">intro</h4>
+<div class="outline-text-4" id="text-org6ae15b2">
+<ul class="org-ul">
+<li><p>&gt;&lt;</p></li></ul>
+</div>
+</div>
+
+<div id="outline-container-org46ebd39" class="outline-4">
+<h4 id="org46ebd39">53 unbranched covering complexes</h4>
+</div>
+
+<div id="outline-container-org99c29a9" class="outline-4">
+<h4 id="org99c29a9">54 base path and covering path</h4>
+</div>
+
+<div id="outline-container-orge770e42" class="outline-4">
+<h4 id="orge770e42">55 coverings and subgroups of the fundamental group</h4>
+</div>
+
+<div id="outline-container-orgb36d7f5" class="outline-4">
+<h4 id="orgb36d7f5">56 universal coverings</h4>
+</div>
+
+<div id="outline-container-org5c6ae8c" class="outline-4">
+<h4 id="org5c6ae8c">57 regular coverings</h4>
+</div>
+
+<div id="outline-container-org5f5a59a" class="outline-4">
+<h4 id="org5f5a59a">58 the monodromy group</h4>
+</div>
+</div>
+
+<div id="outline-container-org659eff" class="outline-3">
+<h3 id="org659eff">9 3-dimensional manifolds</h3>
+<div class="outline-text-3" id="text-org659eff">
+</div><div id="outline-container-orgb9c2221" class="outline-4">
+<h4 id="orgb9c2221">59 general principles</h4>
+</div>
+
+<div id="outline-container-orge084759" class="outline-4">
+<h4 id="orge084759">60 representation by a polyhedron</h4>
+<div class="outline-text-4" id="text-orge084759">
+<ul class="org-ul">
+<li><p><p></p><p>[full polyhedron]</p><p>full (solid) polyhedron is defined as the following,</p><p>a closed 3-ball (or a topological image of a closed 3-ball)</p><p>whose boundary been divided into polygons</p><p>so that the following conditions are satisfied :</p><p></p></p><p><ol class="org-ol"></p><p><li>each polygon is at least a 2-gon.</li></p><p><li>each point of boundary belongs to at least one polygon.</li></p><p><li>two polygons are either disjoint</p><p>or have certain common edges or vertices.</li></ol></p><p><p></p><p>for example :</p><p></p></p><p><ul class="org-ul"></p><p><li><p>solid dodecahedron.</p></li></p><p><li><p>a closed 3-ball</p><p>whose boundary sphere has been decomposed into two hemispheres</p><p>by a great circle also becomes a full polyhedron</p><p>when one subdivides the great circle by two or more vertices.</p></li></ul></p></li>
+
+<li><p><p></p><p>x -</p><p>使用三角形</p><p>也許可以大大簡化描述二階代數時 所需語言的語法之複雜度</p><p></p></p><p></p><p><p></p><p>當考慮 polyhedron 所構造的三維流形時</p><p>manifold-checker 很簡單</p><p>就是 euler number 爲 0</p><p></p></p><p></p><p><p></p><p>現在要問的是</p><p>這個 manifold-checker 對 manifold 的 2-skeleton</p><p>有什麼限制</p><p>[我們已經知道找個 2-skeleton 不能是任意的有限生成羣了]</p><p></p></p><p></p><p><p></p><p>知道這些限制之後</p><p>我們就可以試着模仿二階的情形來設計 normalization 算法</p><p></p></p><p></p><p><p></p><p>同時也可以試着模仿 Dehn 的算法</p><p>來設計相似的算法</p><p>以判斷二階代數中任意兩個元素是否相等</p><p></p></p></li></ul>
+</div>
+</div>
+
+<div id="outline-container-org91f91b4" class="outline-4">
+<h4 id="org91f91b4">61 homology groups</h4>
+</div>
+
+<div id="outline-container-org81cc1d" class="outline-4">
+<h4 id="org81cc1d">62 the fundamental group</h4>
+</div>
+
+<div id="outline-container-org94e2de3" class="outline-4">
+<h4 id="org94e2de3">63 the heegaard diagram</h4>
+</div>
+
+<div id="outline-container-org59ddae4" class="outline-4">
+<h4 id="org59ddae4">64 3-dimensional manifolds with boundary</h4>
+</div>
+
+<div id="outline-container-org7b1477" class="outline-4">
+<h4 id="org7b1477">65 construction of 3-dimensional manifolds out of knots</h4>
+</div>
+</div>
+
+<div id="outline-container-orgba5d234" class="outline-3">
+<h3 id="orgba5d234">10 n-dimensional manifolds</h3>
+<div class="outline-text-3" id="text-orgba5d234">
+</div><div id="outline-container-orgac420ee" class="outline-4">
+<h4 id="orgac420ee">66 star complexes</h4>
+</div>
+
+<div id="outline-container-org6e047e8" class="outline-4">
+<h4 id="org6e047e8">67 cell complexes</h4>
+</div>
+
+<div id="outline-container-orgd572073" class="outline-4">
+<h4 id="orgd572073">68 manifolds</h4>
+</div>
+
+<div id="outline-container-orgfc2503b" class="outline-4">
+<h4 id="orgfc2503b">69 the poincare duality theorem</h4>
+</div>
+
+<div id="outline-container-org567fe4f" class="outline-4">
+<h4 id="org567fe4f">70 intersection numbers of cell chains</h4>
+</div>
+
+<div id="outline-container-orgff74e16" class="outline-4">
+<h4 id="orgff74e16">71 dual bases</h4>
+</div>
+
+<div id="outline-container-orgd0af5aa" class="outline-4">
+<h4 id="orgd0af5aa">72 cellular approximations</h4>
+</div>
+
+<div id="outline-container-org166d7d9" class="outline-4">
+<h4 id="org166d7d9">73 intersection numbers of singular chains</h4>
+</div>
+
+<div id="outline-container-org3db30e2" class="outline-4">
+<h4 id="org3db30e2">74 invariance of intersection numbers</h4>
+</div>
+
+<div id="outline-container-org7342cc9" class="outline-4">
+<h4 id="org7342cc9">75 examples</h4>
+</div>
+
+<div id="outline-container-orgb213ac5" class="outline-4">
+<h4 id="orgb213ac5">76 orientability and two-sidedness</h4>
+</div>
+
+<div id="outline-container-org9a1db4c" class="outline-4">
+<h4 id="org9a1db4c">77 linking numbers</h4>
+</div>
+</div>
+
+<div id="outline-container-org29d88dc" class="outline-3">
+<h3 id="org29d88dc">11 continuous mappings</h3>
+<div class="outline-text-3" id="text-org29d88dc">
+</div><div id="outline-container-orgf8b3da8" class="outline-4">
+<h4 id="orgf8b3da8">78 the degree of a mappings</h4>
+</div>
+
+<div id="outline-container-org68976a9" class="outline-4">
+<h4 id="org68976a9">79 a trace formula</h4>
+</div>
+
+<div id="outline-container-org3ef5964" class="outline-4">
+<h4 id="org3ef5964">80 a fixed point formula</h4>
+</div>
+
+<div id="outline-container-orgb18bd5d" class="outline-4">
+<h4 id="orgb18bd5d">81 applications</h4>
+</div>
+</div>
+
+<div id="outline-container-orgb32d383" class="outline-3">
+<h3 id="orgb32d383">12 auxiliary theorems from the theory of groups</h3>
+<div class="outline-text-3" id="text-orgb32d383">
+</div><div id="outline-container-org392d917" class="outline-4">
+<h4 id="org392d917">82 generators and relations</h4>
+</div>
+
+<div id="outline-container-org4398451" class="outline-4">
+<h4 id="org4398451">83 homomorphic mappings and factor groups</h4>
+</div>
+
+<div id="outline-container-orgc6f85f0" class="outline-4">
+<h4 id="orgc6f85f0">84 abelianization of groups</h4>
+</div>
+
+<div id="outline-container-org6a28b02" class="outline-4">
+<h4 id="org6a28b02">85 free and direct products</h4>
+</div>
+
+<div id="outline-container-orgc439d8b" class="outline-4">
+<h4 id="orgc439d8b">86 abelian groups</h4>
+</div>
+
+<div id="outline-container-org3261c4d" class="outline-4">
+<h4 id="org3261c4d">87 the normal form of integer matrices</h4>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga69d257" class="outline-2">
+<h2 id="orga69d257">[topology of 3-dimensional fibered spaces]</h2>
+<div class="outline-text-2" id="text-orga69d257">
+</div><div id="outline-container-orgf4d03dc" class="outline-3">
+<h3 id="orgf4d03dc">fibered spaces</h3>
+</div>
+
+<div id="outline-container-org20d80a2" class="outline-3">
+<h3 id="org20d80a2">orbit surface</h3>
+</div>
+
+<div id="outline-container-org8a20ff1" class="outline-3">
+<h3 id="org8a20ff1">fiberings of s3</h3>
+</div>
+
+<div id="outline-container-org653912d" class="outline-3">
+<h3 id="org653912d">triangulations of fibered spaces</h3>
+</div>
+
+<div id="outline-container-orgc91ddad" class="outline-3">
+<h3 id="orgc91ddad">drilling and filling (surgery)</h3>
+</div>
+
+<div id="outline-container-orga79564d" class="outline-3">
+<h3 id="orga79564d">classes of fibered spaces</h3>
+</div>
+
+<div id="outline-container-org42d640e" class="outline-3">
+<h3 id="org42d640e">the orientable fibered spaces</h3>
+</div>
+
+<div id="outline-container-org59b33cf" class="outline-3">
+<h3 id="org59b33cf">the nonorientable fibered spaces</h3>
+</div>
+
+<div id="outline-container-org2291a7" class="outline-3">
+<h3 id="org2291a7">covering spaces</h3>
+</div>
+
+<div id="outline-container-org86e0842" class="outline-3">
+<h3 id="org86e0842">fundamental groups of fibered spaces</h3>
+</div>
+
+<div id="outline-container-org267d52c" class="outline-3">
+<h3 id="org267d52c">fiberings of the 3-sphere (complete list)</h3>
+</div>
+
+<div id="outline-container-org44743f7" class="outline-3">
+<h3 id="org44743f7">the fibered poincare spaces</h3>
+</div>
+
+<div id="outline-container-orgc947812" class="outline-3">
+<h3 id="orgc947812">constructing poincare spaces from torus knots</h3>
+</div>
+
+<div id="outline-container-org9935478" class="outline-3">
+<h3 id="org9935478">translation groups of fibered spaces</h3>
+</div>
+
+<div id="outline-container-org7f3a3da" class="outline-3">
+<h3 id="org7f3a3da">spaces which cannot be fibered</h3>
+</div>
+
+<div id="outline-container-org2d015ed" class="outline-3">
+<h3 id="org2d015ed">appendix: branched coverings</h3>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+近死之心 莫使復陽也
+</div>
+</body>
+</html>
