@@ -187,6 +187,18 @@
 
 ***** 38 transformation to normal form
 
+******* Step 1
+
+******* Step 2: Side Cancellation
+
+******* Step 3: Transformation to a Polyhedral Surface Having a Single Vertex
+
+******* Step 4: Cross-Cap Normalization
+
+******* Step 5: Handle Normalization
+
+******* Step 6: Transformation of the Handles into Cross-Caps
+
 ***** 39 types of normal form: the principal theorem
 
 ***** 40 surfaces with boundary
@@ -218,6 +230,10 @@
 ***** 52 the fundamental group of a composite complex
 
 *** 8 covering complexes
+
+***** intro
+
+      - ><
 
 ***** 53 unbranched covering complexes
 

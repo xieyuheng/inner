@@ -3059,6 +3059,45 @@
     covering-space 是 fiber-space 的特殊情況
     如何在我們的語言中形式化這些定義呢 ?
 
+* group action
+
+  - x -
+    只有當 covering-space 有 ><><>< 的性質時
+    underlying-space 才能作用在上面
+
+  - "covering transformations"
+
+  - x -
+    underlying-space 的邊
+    (1) 可以作用於 covering-space 的點
+    (2) 也可以作用於 covering-space 的邊
+
+    underlying-space 的面
+    (1) 可以作用於 covering-space 的邊
+    (2) 也可以作用於 covering-space 的面
+
+    我想 (1) 這種作用纔是 underlying-space
+    對 covering-space 的作用
+
+    整個的 quotient-space 要用
+    covering-space 模去
+    underlying-space 以 (1) 的方式對 covering-space 的作用
+    來定義
+
+  - k -
+    但是 quotient-space 應該說是一個 onto-map
+    而 acting 只是理解找個 onto-map 的一種方式
+
+* 1 2 3
+
+  - x -
+    1 平凡
+    2 简单
+    3 困难
+    这是在 manifold 中出现的情况
+    同时这也是在算数的级数中出现的情况
+    [需要借助素数才能进行分类]
+
 * normalization of surface
 
 *** 目標
@@ -3072,10 +3111,116 @@
     - x -
       首先我們來回顧一下當前的語法和語義
 
+*** 形成形式化的表達
+
+    - x -
+      函數可以被理解爲證明
+      當強調 函數 時
+      想的是其可用於轉寫
+      當強調 證明 時
+      想的是其可用於記錄
+
+      我们现在来讨论如何形成形式化的表达
+
+      在形成形式化的表达的时候
+      用于表达 normalization 过程的
+      是一个函数
+
+      而这个函数的参数是空间本身
+      即 two-dimensional manifold
+      这是 complex 的子类型
+      [难点 1] 我们可能需要子类型的概念了
+
+      其输出的是一个 normal two-dimensional manifold
+      还有一个证明 证明记录了 两个 manifold 之间的等价
+
+    - k -
+      我们可以把 [难点 1] 分解
+      我们可以说 输入给 two-dimensional-manifold-normalizer 的
+      不单单是一个 complex
+      还有一个 找个 complex 是 two-dimensional-manifold 的证明
+      找个证明本身所包含的信息也是处理过程中可以使用的
+
+    - x -
+      假设这后一个命题是
+      [:x is-two-dimensional-manifold]
+      这个命题是否有归纳的定义呢 ?
+
+      我想这就涉及到可证明理论了
+
+      但是
+      我们是否要把这个命题归纳定义为类型呢 ?
+      我们可否写一个谓词来检验其性质呢 ?
+
+    - k -
+      归纳的定义可能是不可能的
+      而检验 是简单的
+      检验的过程本身是否就是生成证明的过程呢 ?
+      谓词可否被视为一个 证明生成器 ?
+
+    - x -
+      设想 一个数是偶数 这个命题 [这个类型]
+      它显然是有归纳的定义的
+      #+begin_src scheme
+      (define is-even
+        (type (-> nat type)
+          (: zero-is-even [zero is-even])
+          (: even-add-two-is-even (-> [:n is-even] [:n two add is-even]))))
+      #+end_src
+      此时
+      想要证明 six is-even 是很繁琐的
+      #+begin_src scheme
+      (lambda [six is-even]
+        [zero-is-even
+         even-add-two-is-even
+         even-add-two-is-even
+         even-add-two-is-even])
+      #+end_src
+
+    - k -
+      此时是否应该使用谓词呢 ?
+      或者应该写一个证明生成子
+
+      证明生成子 在检验一个数是否 is-even 的同时
+      还生成一个证明 ?
+
+      如果如此
+      那么不就也是允许谓词了吗 ?
+      只是谓词都必须以证明生成子这种很强的形式出现
+
+    - x -
+      先不管这些
+      我们从简单的开始
+      谓词比证明生成子简单
+      谓词可能很容易被改进为一个证明生成子
+
+      假设我们允许使用谓词
+      那么 应该如何实现 manifold-checker ?
+
+*** manifold-checker
+
+    - x -
+      先看这个函数的类型
+      (-> complex bool)
+
+    - k -
+      我们关心一个 complex 是否是 manifold
+      因为 我们用的等价关系是 同胚 而不是 同伦
+      但是 我们目前所使用的证明空间等价的方式
+      是 同伦
+      我们需要明白我们所使用的等价关系
+
+    - x -
+      在一个形式化的语言中 应该如何区分同伦与同胚 ?
+      我想第一个问题应该是 我们是否应该考虑同胚而不考虑同伦
+      毕竟 就这个二维空间的分类定理而言
+      对同伦进行叙述 也是有效的
+
 *** ><
 
     #+begin_src scheme
-    (define normalizer-2
-      (lambda (-> (space manifold) (space manifold normal))
+    (define two-dimensional-manifold-normalizer
+      (lambda (-> [complex %:x :x is-two-dimensional-manifold]
+                  (complex %:y :y is-two-dimensional-manifold :y is-normalized))
         ...))
     #+end_src
