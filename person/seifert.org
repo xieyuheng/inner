@@ -5,7 +5,7 @@
 
 *** 1 例子 / illustrative material
 
-***** 1 拓扑学的首要目标 / the principal problem of topology
+***** 1 拓扑学的基本问题 / the principal problem of topology
 
       - 拓扑学的研究对象是几何图形
         所研究的几何图形的性质 是其在拓扑映射下不变的性质
@@ -107,11 +107,25 @@
         但是其实经过这样的限制之后
         我们恰恰可以把精力集中于具有更强几何意义的研究对象
 
-      - for the time being, however,
-        we will try to see how far we can take the principal problem
-        without using these aids [homology and homotopy groups].
+      - 在尝试研究拓扑学的基本问题的过程中
+        人们找到了很多关于复形的拓扑不变量
+        利用这些不变量 我们可以区分不同胚的复形
 
-***** 2 closed surfaces
+        其中最重要的两个不变量
+        是复形的同调群与基本群
+        这将是我们研究的核心
+
+      - 然而我们现在却要试试
+        在不利用这两个不变量的情形下
+        来研究研究拓扑学的基本问题
+
+        - x -
+          因此我们目前的主要工具就是直觉与想象
+
+        首先我们问
+        不同胚的闭曲面都由哪些 ?
+
+***** 2 闭曲面 / closed surfaces
 
       - ><
 
