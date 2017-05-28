@@ -2053,3 +2053,17 @@
          我們要再堅定我們的知識
          使得我們能夠明確地判斷出
          某個命題或定義只構造性到底有多少
+
+* 重新考虑难点
+
+  - x -
+    之前想清楚了如何利用 data-stack 与 return-stack 做计算 [forth]
+    以及如何利用 goal-stack 与 bind-stack 做 unify
+    unify 是由 type-check 引起的
+    type-check 如何引起各种 unify 也想清楚了
+
+    但是没有想清楚的是 unify 各种数据类型的过程
+    尤其是有关 trunk 的 unify
+
+    现在 还需要想想 at1 的设计过程中
+    对新性状的要求

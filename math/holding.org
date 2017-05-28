@@ -3229,6 +3229,12 @@
       (lambda (-> [complex %:x :x is-two-dimensional-manifold]
                   (complex %:y :y is-two-dimensional-manifold :y is-normalized))
         ...))
+
+    side-cancellation
+    unify-vertex
+    cross-cap-normalization
+    handle-normalization
+    handle-to-cross-cap
     #+end_src
 
 * fiber-space
@@ -3244,3 +3250,91 @@
 
     把變換的信息記錄在邊中
     是 ><><>< [是 切開再粘合 的對偶]
+
+* 联系于古典理论
+
+  - x -
+    如果想要给 at1 以古典的拓扑学的理论基础
+    就需要给这些空间以实现
+    即把它们嵌入高维欧氏空间
+    然后证明同伦等价对于二者来说是一致的
+
+* 空间之间的同伦等价 与 高维代数结构
+
+  - x -
+    空间之间的同伦等价 对于 高维代数结构 而言
+    由什么意义 ?
+    既然它已经远离代数结构的同构了
+
+  - k -
+    也许这在于
+    n 阶代数结构 只需要 n+1 阶代数结构作为其证明
+
+  - x -
+    那么 如何理解 二阶图形的三阶同伦群是非平凡的 ?
+
+  - k -
+    首先需要证明的是 S3 可以以本质地嵌入 S2
+    这在我们的形式语言中也并不是不可能的
+
+  - x -
+    但是 如果说
+    只有找到 S3 的一个等价的 fiber-space 表示
+    然后我们才能表达 S3 到 S2 的本质嵌入
+
+    既然这个嵌入 依赖于等价的图形的 不同表示方式
+    那不是有悖于基本等价关系吗 ?
+
+* 交换化
+
+  - x -
+    homology group 显然是我所要定义的高阶代数的交换化
+    而 我所要定义的高阶代数
+    将给出 三维拓扑空间在同伦等价意义下的完整分类
+
+* 關於細分
+
+  - x -
+    細分顯然形成同倫
+    並且 其實所形成的是同胚
+    但是在形式語言中
+    爲了證明一個細分是同倫
+    需要補充很多信息
+    這是否說明 在形式語言中定義同倫的方式有問題呢 ?
+    或者只是說明我們 要在給出細分的時候 自動生成同倫
+    哪種看待問題的方式是正確的 ?
+
+    - 形式語言中 函數 (: f (-> A B))
+      可以被看作是 A 細分 B 的條件是什麼 ?
+
+  - k -
+    前一種看待問題的方式要求我們尋找更好的空間同倫的定義
+    更好的定義可能根本是不存在的
+    並且要知道
+    前一種方式並不能包含所有的同倫等價
+    在 whitehead 所發展的 simple homotopy theory 中
+    就可以明白這一點
+
+* 形成例子的方式
+
+  - x -
+    對於用 polygon 和 polyhedron 構造流形
+    我想到了一種形成例子的方式
+    就是列舉出邊數很少的 polygon
+    和面數很少的 polyhedron
+    的所有可能
+    然後以它們爲基礎看各種算法作用於它們的效果
+
+  - k -
+    那麼這首先將引出一個計數問題
+    通過計數我們可以估計問題的複雜性
+    首先我們要確定
+    有多少由 n-gon 或 n-hedron 構造 manifold 的方式
+
+* decomposition
+
+  - x -
+    different decompositions of a function
+    are different decompositions of an element in the mapping-space,
+    just like an element in a [simple] space
+    can have different decompositions.

@@ -1,0 +1,6 @@
+#+title: veblen
+
+* analysis situs (chapter 2 of modern geometry)
+
+  - x -
+    作者在这里把 manifold 称为 regular topological space
