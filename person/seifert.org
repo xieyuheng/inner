@@ -167,19 +167,23 @@
 
 *** 2 simplicial complexes
 
-***** 5 neighborhood spaces
+***** 5 鄰域空間 / neighborhood spaces
 
-***** 6 mappings
+***** 6 映射 / mappings
 
-***** 7 point sets in euclidean spaces
+***** 7 歐氏空間中的點集 / point sets in euclidean spaces
 
-***** 8 identification spaces
+***** 8 等價空間 / identification spaces
 
-***** 9 n-simplexes
+***** 9 n-單形 / n-simplexes
 
-***** 10 simplicial complexes
+***** 10 單純複形 / simplicial complexes
 
-***** 11 the schema of a simplicial complex
+***** 11 單純複形的型式 / the schema of a simplicial complex
+
+      - [strict combinatorial topology]
+        element of set as vertex,
+        distinguished subset as simplex.
 
 ***** 12 finite, pure, homogeneous complexes
 
@@ -189,13 +193,18 @@
 
 *** 3 homology groups
 
-***** 15 chains
+***** intro
 
-***** 16 boundary, closed chains
+      - The considerations in this chapter are purely combinatorial.
+        No use is made of the concepts of neighborhood or continuity.
 
-***** 17 homologous chains
+***** 15 鏈 / chains
 
-***** 18 homology groups
+***** 16 邊界 閉鏈 / boundary, closed chains
+
+***** 17 同調鏈 / homologous chains
+
+***** 18 同調羣 / homology groups
 
 ***** 19 computation of the homology groups in simple cases
 
@@ -274,7 +283,7 @@
         We can then recognize the following classes of equivalent points
         in a system of polygons :
         - an inner point of a polygon is equivalent only to itself;
-        - an innerpoint of a polygonal side
+        - an inner point of a polygonal side
           is equivalent to exactly one other point;
         - a vertex may be equivalent to one, several, or even no other points.
 
