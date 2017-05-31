@@ -369,7 +369,7 @@
 
 ***** 52 the fundamental group of a composite complex
 
-*** 8 covering complexes
+*** 8 覆蓋複形 / covering complexes
 
 ***** intro
 

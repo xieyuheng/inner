@@ -106,3 +106,5 @@
 
     - x -
       just like a rewriting system.
+
+* (1932) some problems in topology

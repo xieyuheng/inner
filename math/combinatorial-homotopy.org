@@ -32,3 +32,17 @@
 * groupoid
 
 * combinatorial homotopy
+
+* ><
+
+  - 當使用很強的等價關係時
+    對圖形的研究就可以被代數化
+    這就是代數拓撲
+
+  - 當用多邊形[polygonal schema]構造曲面時
+    這種構造就是曲面基本羣的展示[presentation]
+
+  ------
+
+  - 曲面的基本羣的同構問題
+    是如何解決的 ?

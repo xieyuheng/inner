@@ -3460,7 +3460,7 @@
     根據 hauptvermutung
     我們可以用 common-subdivision 來定義低維流形之間的同胚
     所以
-    也許我們根本沒有必要用現在在語言中所實用的同倫等價
+    也許我們根本沒有必要用現在在語言中所使用的同倫等價
 
   - k -
     但是要知道 simple homotopy theory 與 homotopy theory 不同
@@ -3657,10 +3657,16 @@
     我們有代數的方法來做這樣的證明
     [問題 具體是如何做的 ?]
 
+    - 是通過交換化而形成 homology group 來證明基本羣不同構的
+
     但是當有了高階代數的展示之後
     如何證明不同的代數結構是不同的呢 ?
 
     我想這就是我們需要發展一個代數結構的原因
+
+    - 可以用類似交換化的方式找到簡單的不變量
+      方法沒必要侷限於交換化
+      只要能形成簡單的不變量就行
 
 * ><
 
@@ -3755,3 +3761,56 @@
 
     好像這個性質可以作爲一個定理被證明
     而不需要一個檢查器來保證這個性質
+
+  - x -
+    反物質 也許是正確的解法
+    考慮不可定向曲面的邊界試試
+
+  - k -
+    但是如果使用反物質這個概念的話
+    如何解釋一階的情形 ?
+    如何解釋 first homology group 是 fundamental-group 的 abelianization ?
+
+* 關於 universal-covering-space
+
+  - x -
+    sphere 的 universal-covering-space 是 sphere 本身
+    而 sphere 還帶有一個二階的洞
+    [二階同倫羣不是平凡的]
+
+    - 爲什麼我們只要求 universal-covering-space 的一階同倫羣是平凡的
+      而不要求其他 ?
+
+    我們只考慮了 可定向的閉曲面
+    而沒有考慮 不可定向的閉曲面 和 sphere
+
+  - k -
+    我想一個 universal-covering-space
+    的各階 homotopy group 都應該是平凡的
+
+  - x -
+    universal-covering-space 到底如何定義 ?
+    在 universal-covering-space 中
+    underlying-space 中的每一點是不是都以同樣的方式被 cover ?
+
+  - k -
+    covering-space 的條件是
+    每一點的被 lift 之後
+    其鄰域要相互同胚
+    正是這個條件使得我們不能用不帶有二階洞的曲面
+    來 cover sphere
+
+  - x -
+    我們可不可以忽略這個要求
+    即 使用 branching-cover
+    以消除二階洞
+    這會影響 cover 的什麼性質嗎 ?
+    爲什麼大家都不考慮 branching-cover ?
+
+  - k -
+    我們可以看一下 cover 是如何被使用的
+    然後希望這種 cover 不會影響 cover 的使用
+
+    還可以看看黎曼幾何中 branching-cover 是如何使用的
+
+    既然我們的目的是消除各個階的洞
