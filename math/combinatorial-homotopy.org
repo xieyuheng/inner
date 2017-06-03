@@ -192,3 +192,27 @@
   - x -
     我們可以試試找一個 branched-covering of torus
     看看這個 branched-covering 能否解決 torus 的字問題
+
+* 同倫時維數變化的代數解釋
+
+  - 每個元素本身都蘊含着一個平凡的等式
+    那就是 其與自身相等
+
+* reduction
+
+  - x -
+    topology, or at least combinatorial topology,
+    give raise to algebraic topology,
+    the aim of which is to find
+    algebraic structures as invariants of topology space.
+
+    my argument is that combinatorial topology it self
+    can be viewed as an higher algebraic structure,
+    finding different algebraic invariants
+    of a combinatorially defined topology space
+    is to simplify the higher algebraic structure in different ways.
+
+    am i to reduce topology to algebra ?
+    by no means, since topology, as and reduction of geometry,
+    relies on geometry;
+    so will my higher algebraic structure relies on geometry.

@@ -373,3 +373,51 @@
 ***** 3 the general character of sensations
 
 *** appendices
+
+* immanent realism -- an introduction to brentano (by liliana albertazzi)
+
+*** introduction
+
+    - psychology, in so far as it is descriptive, is far in advance of physics.
+
+    - Brentano’s immanentist realism
+      is a framework able to establish the
+      scientific legitimacy of metaphysics.
+
+*** chapter 1. a life, a novel
+
+*** chapter 2. brentano and aristotle
+
+*** chapter 3. psychology from an empirical standpoint
+
+*** chapter 4. metaphysics and the science of the soul
+
+*** chapter 5. a woodworm in the intentional relation
+
+*** chapter 6. ficciones
+
+*** chapter 7. continua
+
+***** 1 the continuum and inner perception
+
+      - grounding of continua in the world of perception.
+
+        synthetic geometric (v.s. algebraic or analytical)
+
+        It was a geometry
+        which we may call empirical
+        and intrinsically subjective
+        because it was based on
+        the perception of forms by an observer.
+
+***** 2 roots
+
+***** 3 the intuition of the continuum
+
+*** chapter 8. reverse aristotelianism: metaphysics of accidents
+
+*** chapter 9. other writings: ethics, aesthetics and history of philosophy
+
+*** chapter 10. a history of brentano criticism
+
+*** chapter 11. a wager on the future

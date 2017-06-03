@@ -57,3 +57,33 @@
 *** 放棄爲 jojo 引入類型系統
 
     - 因爲這講破壞 jojo 的簡單性
+
+* syntax
+
+  - x -
+    首先這個語言的特點有
+    1. 底層
+       數據是簡單的
+       沒有 overhead
+       就像 c 一樣
+       因此可以用 c 來擴展
+    2. 語法明顯
+       因爲解釋其非常簡單
+       解釋其本身不能理解複雜的語法
+
+  - k -
+    我們使用 sexp
+    但是語言本身又是 後綴表達式爲主的
+    如何協調呢 ?
+
+* oo
+
+  - x -
+    [<object> <class-name> data]
+    a <class-name> maintains a message list
+    thus we can add new message to it
+
+  - x -
+    data field of object
+    array or list ?
+    or both ?
