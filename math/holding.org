@@ -3814,3 +3814,141 @@
     還可以看看黎曼幾何中 branching-cover 是如何使用的
 
     既然我們的目的是消除各個階的洞
+
+* branching-cover and riemann-surface
+
+*** intro
+
+    - x -
+      我發現我們需要 branching-cover
+      才有可能將 universal-covering-space 的概念推廣到高維
+
+    - k -
+      branching-cover 在 riemann-surface 理論中是如何使用的 ?
+
+*** neighborhood and continuity
+
+    - x -
+      在形式語言中
+      我們可以用 neighborhood 這個構造
+      來判斷 branching 點 或 branching 線
+
+*** note
+
+    - x -
+      當用 polygonal schema 構造曲面時
+      這種構造就是曲面基本羣的展示[presentation]
+
+      如此由曲面引出的羣的元素個數是無窮多的
+
+      當獲得拓撲圖形的代數不變量之後
+      我們還要發展理論以處理所得到的代數結構
+
+      - 與其說是用代數來研究拓撲學
+        不如說 只是利用了代數的語言而已
+        沒有這種語言
+        就很難精確表達拓撲學中的現象
+
+      此處代數結構與曲面之間的聯繫在於
+      group 的 cayley-graph 就是 曲面的 covering-space
+
+      羣中的元素是 surface 中的 path
+      path 可以看成是 一階的 未經交換化的 chain
+      也可以看成是 I 嵌入在 surface 中
+
+      [嘗試類比]
+      二階代數中的元素是 3-manifold 中的 cloth
+      cloth 可以看成是 二階的 未經交換化的 chain
+      也可以看成是 (* I I) [或者 2-disk] 嵌入在 3-manifold 中
+
+      cayley-graph 與 covering-space
+      是否也能在二階代數中得到類比 ?
+      就二階代數結構 是否可以構造 'cayley-graph'
+
+      首先 3-manifold 的 universal-covering-space 是可以定義的
+      [可以嗎 ?]
+
+      對於 group 而言
+      兩個元素是否相等
+      只要看其在 universal-covering-space 中的 '邊界' 是否相等就可以了
+      此時的邊界是 path 的起點和終點
+
+      同樣
+      對於高階代數而言
+      兩個元素是否相等
+      只要看其在 universal-covering-space 中的 '邊界' 是否相等就可以了
+      此時的邊界是 disk 的邊界 circle
+      [universal-covering-space 中 disk 的邊界 circle 不是 knot]
+
+      考慮一般拓撲學的話
+      可以說 X [二階空間] 的 universal-covering-space 就是 X 的 path-space
+      但是這裏所看到的 X [三階空間] 的 universal-covering-space
+      好像是 X 的 disk-space
+
+      [問題]
+      path-space 與 disk-space 這兩個空間是等價的嗎 ?
+
+    - k -
+      二者的關係是什麼 ?
+      二者都是函數空間
+      前者是 (-> I X) 後者是 (-> (* I I) X)
+      因此後者也是 (-> I (-> I X))
+      這兩個空間顯然不是等價的
+
+      說 path-space 就是 universal-covering-space
+      是不是只是對曲面而言的 ?
+
+    - x -
+      曲面中的 path 對應與 universal-covering-space 中的兩個點
+      曲面中的 loop 是特殊的 path
+      因此 它也對應於 universal-covering-space 中的兩個點
+      當這兩個點重合的時候
+      這個 loop 就可以在曲面中被收縮到一點
+
+      類似的
+      3-manifold 中的 cloth 對應與 universal-covering-space 中的一個 circle
+      曲面中的 sphere 是特殊的 cloth
+      因此 它也對應於 universal-covering-space 中的一個 circle
+      當這個 circle 有重合的邊時
+      這個 sphere 就是特殊的
+      - 儘管 這個 circle 所界的 disk 不能有自交
+        但是這個 circle 作爲其邊界卻可以有重合的邊
+      當這個 circle 的所有邊退化並重合於一點時
+      這個 sphere 就可以在 3-manifold 中被收縮到一點
+
+      如上的是我的猜想
+
+      - 這個猜想是錯誤的
+        考慮 (* S1 I) 的 universal-covering-space
+        我所想象的這個 covering-space 是不是 universal ?
+        如果是的話
+        原來空間中不能收縮到一點的 sphere
+        在 covering-space 中還是 sphere
+        並且還是不能收縮到一點
+
+    - k -
+      我們要發展理論與技術來證明這個猜想
+
+    - x -
+      我可以提出一個問題
+      首先我們知道
+      想要構造曲面的 universal-covering-space
+      人們先對曲面進行 normalization
+
+      [問題 1]
+      可否對 3-manifold 進行 normalization ?
+
+      [問題 2]
+      可否在不進行 normalization 的條件下
+      構造 [曲面 和 3-manifold 的] universal-covering-space ?
+
+      [問題 3]
+      simplicial-complex 所提供的視角
+      是不是不利於構造 universal-covering-space ?
+
+    ------
+
+    - x -
+      group 的 universal-covering-space
+      groupoid 的 universal-covering-space
+      高階代數 的 universal-covering-space

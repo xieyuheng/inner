@@ -1,5 +1,16 @@
 #+title: combinatorial homotopy
 
+* todo
+
+  - 找到一個合適的講解 simplicial-complex 的 homology theory 的方法
+    從古典的作者入手
+    max newman
+    james alexander
+    j h c whitehead
+
+  - to generalize homology theory
+    from simplicial-complex to polyhedron-complex
+
 * combinatorial group theory
 
 *** motivation
@@ -46,3 +57,138 @@
 
   - 曲面的基本羣的同構問題
     是如何解決的 ?
+
+* >< homology
+
+  - 形式化二維流形的分類定理
+
+  - 例子 與 組合學 與 normalization
+
+  - 嘗試以形式化的方式描述 covering-space 與 universal-covering-space
+
+  - neighborhood 與 連續性 的關係
+
+  ------
+
+  - 如果能形成一個高階代數理論的話
+    universal-covering-space 推廣到 branching-cover
+    可能能夠讓我們解決高階代數的基本問題
+
+    這就需要明白 universal-covering-space 是如何解決曲面的基本羣的基本問題的
+
+  - homology 與反物質
+    是否能夠就非 simplicial-complex 形成 homology theory
+
+    不可定向的閉曲面是有邊界的
+    只是這個邊界是反物質
+    我們看不出來
+
+    所謂 反物質 是不自然的
+    因爲在一階情形 並沒有這種現象
+    在 一階 情形 定向很容易表示
+    定向與逆是相同的概念
+
+  - 如果想要使得 homology 的 chain 是 at1 的 chain 忘記 glue 細節
+    那麼 at1 的 chain 就必須能夠區分 (1 a b c) 與 (1 c b a) 之間的差別
+    我想這與 '直接就 polyhedron-complex 形成 homology theory' 這個問題是一樣的
+    因爲如果能的話
+    我們就一定能給 polyhedron-complex 以定向
+
+    也就是說 給以定向
+    就是 '直接就 polyhedron-complex 形成 homology theory' 的關鍵
+    [對於 polygon 形成定向的方式很簡單]
+
+    polygon glue 的時候 要通過代入來消除公共邊界
+    代入的時候 可以變換某個邊界表達式
+    比如 (1 a b c) 可以變爲 (1 b c a)
+    但是變換方式是要受到限制的
+    比如 (1 a b c) 不能變爲 (1 c b a)
+
+    我們必須給以明確的規則來描述 代入以消去的方式
+    並且 還要描述 所允許的[代入之間的]變換
+
+    一階邊界的等式理論 對應與 二階元素的 glue
+    二階邊界的等式理論 對應與 三階元素的 glue
+    如何描述 二階邊界的等式 ?
+
+    是否也可以說
+    零階邊界的等式理論 對應與 一階元素的 glue
+    零階邊界是點對 (0 a b)
+    定向之相反 (0 a b) 到 (0 b a)
+
+  - x -
+    當使用 simplicial-complex 的時候
+    是以一致的方式來描述各個階元素的性質的
+
+    但是當考慮我們所謂的高階代數的時候
+    零階元素和一階元素是特殊的
+
+  - k -
+    如此一來一切都說的通了
+    但是可能要重新設計語法了
+
+  - x -
+    並且我們現在的目標很明確
+    那就是 要發展 polyhedron-complex 的 homology 理論
+    並且說明 homology 是我們的高階代數忘記 glue 信息而得到的交換代數
+
+* ><
+
+  - x -
+    fundamental-group of surface =
+    group of covering-transformation of universal-covering-space of surface
+    這個等價如何推廣到高維代數 ?
+
+  - k -
+    首先我們看到推廣的可能的時候
+    並不是從這個角度考慮的
+    這在於 path 的邊界 形成一個點到點的[可逆]映射
+    而 disk 的邊界 不能形成點到點的映射
+    它所形成的是 很多邊之間的[可逆]關係
+
+    我們想的其實還不是 點到點的可逆變換
+    而是 給定 起點的時候 path 與終點對應 [降維]
+
+  - x -
+    groupoid 也可以 acting on covering-space
+    只不過 covering-transformation 要加上類型
+
+    branched-covering 使得 path lifting 不唯一
+
+    帶有 一階洞 的 covering
+    不同的 loop 經過 lifting
+    可能給出 covering-space 中的同一個終點
+    [因爲 covering-space 中可能有不可收縮的 loop]
+
+    也就是說
+    一個使得點變多
+    一個使得點變少
+    只有 universal-covering-space 的點是與 path 一一對應的
+
+* neighborhood 與 幾何
+
+  - x -
+    如果想要引入 neighborhood 的概念
+    那麼是否也要同時引入 幾何 呢 ?
+    如果要的話
+    那麼所有的線都應該理解爲空間中的直線[測地線]
+    而所有的面都應該理解爲空間中的什麼 ?
+
+  - k -
+    使用 neighborhood 的意義在於有限覆蓋定理
+    但是我們所定義 neighborhood 的方式
+    目前只是爲了把它聯繫於 用邊界所定義的連續性
+
+  - x -
+    我想我們必須引入幾何了
+
+  - k -
+    我想你之所以這樣說
+    是因爲當考慮到有限覆蓋的時候
+    就像是給了圖形以座標系
+
+* ><
+
+  - x -
+    我們可以試試找一個 branched-covering of torus
+    看看這個 branched-covering 能否解決 torus 的字問題

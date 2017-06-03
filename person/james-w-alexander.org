@@ -1,4 +1,4 @@
-#+title: james-w-alexander
+#+title: james waddell alexander ii
 
 * (1914) normal forms for one- and two-sided surfaces
 

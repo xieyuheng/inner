@@ -373,23 +373,165 @@
 
 ***** intro
 
+      - fundamental-group of surface
+        對應於 group of covering-transformation of universal-covering-space of surface
+        其他的 unbranched-covering 對應與 fundamental-group 的 subgroup
+        這樣找到了所有的 subgroup 就能找到所有的 unbranched-covering
+
+        - x -
+          但是找到了所有的 unbranched-covering 又有什麼用呢 ?
+          這裏的敘述 好像顯得 topology 空間的基本羣 這個代數不變量
+          可以用來解決有關 covering 的問題
+          但是其實 covering 的問題本身就沒什麼用
+
+          相反
+          max dehn 的觀點是
+          這裏我們是在用 covering
+          來解決 空間的基本羣 這類特殊的羣 之中 兩個元素的相等問題
+          並且獲得一種代數語言來描述 某些拓撲顯現
+
+          我覺得 dehn 的觀點更爲可取
+
+***** 53 無分支的覆蓋複形 / unbranched covering complexes
+
+      - (: g (-> E B)) is unbranched-covering :
+
+        [條件 1] g 是滿射
+
+        [條件 2] [nonbranching condition]
+        g is locally topological
+        #+begin_src scheme
+        (-> [(: :b B) (: :e E) (= [:e g] :b)]
+            [g is (homeomorphic (neighborhood :e) (neighborhood :b))])
+        #+end_src
+
+        [條件 3] [nonbounding condition]
+        如果 E 中的一點 x 被映到 b 的鄰域中的一點
+        那麼 x 一定在 b 的某個逆像 e 的鄰域中
+        #+begin_src scheme
+        (-> [(: :x E) (: :b B) (: [:x g] (neighborhood :b))]
+            [(: :e E) (= [:b g] :e) (: :x (neighborhood :e))])
+        #+end_src
+
+        - x -
+          說 [條件 3] 是爲了 path lifting property
+          我覺得也可以直接以 path lifting property 作爲公理
+          [這樣將更弱]
+          或者說 neighborhood lifting property ?
+
+          我們可以總爲
+          [條件 2] 說 neighborhood mapped to neighborhood topologically.
+          [條件 3] 說 path can be lifted to path respecting the covering map.
+
       - ><
+        這裏的例子可以用來實驗 normalization 算法
 
-***** 53 unbranched covering complexes
+***** 54 基本路徑 與 覆蓋路徑 / base path and covering path
 
-***** 54 base path and covering path
+      - path lifting property
+        #+begin_src scheme
+        (: g (-> E B))
+        (-> [(: :w (0 :a :b)) (: [:a, :b] B) (: :a~ E) (= [:a~ g] :a)]
+            [(: :w~ (0 :a~ :b~)) (: :b~ E) (= [:w~ g] :w)])
+        ;; uniqueness of the output path :w~ is naturally not required
+        #+end_src
 
-***** 55 coverings and subgroups of the fundamental group
+      - x -
+        這裏敘述並根據上面的定義證明了
+        path lifting property 與
+        homotopy lifting property
+        我想 [條件 2] 並不會影響這裏的證明
+        也就是說 沒有必要要求 unbranch
 
-***** 56 universal coverings
+        branch 會導致 lifting 不唯一
+        但是這可能並不影響我們對 covering 的使用
 
-***** 57 regular coverings
+        對 unbranch 的要求可能出現在下一節
+        尋找 fundamental-group 的 subgroup 與 covering-space 的對應關係的時候
+
+      - k -
+        我們還應該看一下這裏對 neighborhood 的使用方式
+        能否被容納到我們的形式語言中
+
+      - x -
+        我發現 neighborhood 的概念非常重要
+        我們需要仔細把它形式化
+
+***** 55 覆蓋 與 基本羣的子羣 / coverings and subgroups of the fundamental group
+
+      - induce
+        #+begin_src scheme
+        (: g (-> E B))
+        ;; induce
+        (: [g homotopy-induce] (-> [E fundamental-group] [B fundamental-group]))
+        ;; [g homotopy-induce] is group homomorphism
+        #+end_src
+
+      - homotopy lifting property 保證了這個 [g homotopy-induce] 是單的
+        即 兩條不同倫的 path 不會被映射爲兩條同倫的 path
+        因爲是 單的
+        所以 [E fundamental-group] 可以被看成是 [B fundamental-group] 的 subgroups
+
+        注意
+        只有選定了 B 中的一點 還有這一點在 E 中 lifted 的一點時
+        才能有上面的 induce
+
+      - 有了 subgroup 之後
+        我們可以把 [B fundamental-group] 分解爲陪集的並
+        然後給這些分解以拓撲解釋
+        [B fundamental-group] 中的元素可以看成是選定了某個點作爲起點和終點之後
+        所有 loop 的集合
+        loop 之間的等價 取 同倫等價
+
+        [E fundamental-group] 所對應的 [B fundamental-group] 的子羣
+        是那些被 lift 成 E 中閉曲線 [即 loop] 的 B 中的 loop
+        這個子羣的陪集是那些 被 lift 成 E 中有相同終點的 path 的 B 中的 loop
+
+      - ><
+        注意
+        covering 所對應的是 a class of conjugate subgroup
+        而不是一個 subgroup
+
+      - x -
+        既然這裏的敘述都是對 subgroup 而言的
+        那麼 高階代數 的 sub-代數是什麼呢 ?
+
+        就羣的展示而言
+        重新選取生成子 [關係的變化可以 reduce 出來]
+        就算是一個子羣了
+
+        對於高階代數的展示
+        是否也有類似的理論 ?
+        重新選取生成子 就得到子代數 ?
+
+***** 56 通用覆蓋 / universal coverings
+
+      - 任意 complex 都有 universal-covering-space
+        其構造
+        可以看成是把 path-space 化爲 simple-space
+        化爲 simple-space 可以看成是找一個編碼的過程
+        化爲 simple-space 本身還不算是一個編碼
+        要使得同倫的 loop 有相同的編碼
+        才算是找到了編碼
+
+      - 那麼對應於 subgroup 的中間 covering-space 應該如何構造呢 ?
+
+***** 57 正規覆蓋 / regular coverings
+
+      - ><
 
 ***** 58 the monodromy group
 
-*** 9 3-dimensional manifolds
+      - ><
 
-***** 59 general principles
+*** 9 三維流形 / 3-dimensional manifolds
+
+***** 59 一般準則 / general principles
+
+      - complex 成爲 manifold 的條件是 homogeneous
+
+        A 3-dimensional closed manifold,
+        is a 3-dimensional connected finite homogeneous complex.
 
 ***** 60 representation by a polyhedron
 

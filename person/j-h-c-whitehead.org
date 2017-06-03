@@ -56,7 +56,7 @@
       - set up an algebraic mechanism for deciding whether or not
         the higher homotopy groups of a region in the 3-sphere are zero.
 
-* simple homotopy theory  cw-complex  combinatorial homotopy
+* combinatorial homotopy
 
 *** (1939) simplicial spaces, nuclei, and m-groups
 
