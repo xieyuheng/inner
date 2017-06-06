@@ -412,7 +412,85 @@
 
 ***** 2 roots
 
+      - a simple non-extended spatial element
+        like the mathematical point,
+        which instead can only be fictionally ‘assumed’ in the imagination.
+        Empirical and descriptive analysis only recognises
+        ‘the indefinitely small space’,
+        that is, the progression of the division.
+
+      - continuum as physical thing,
+        continuum as perceptual imagination.
+
+        what is the nature and the laws of psychophysics
+        that provided the basis for the notion of continuum.
+
+        perceptual phenomena is not to be reduced to quantitative metric,
+        [thinking of euclid]
+        riemann's metric is arithmeticalization of geometry.
+
+      - topology = analysis of position = our observation of objects in space
+        thus topology is a study of perceptual phenomena
+
+        an empirical theory of continua is
+        a descriptive theory of phenomenal continua
+        as they appear in the various perceptual fields.
+
+        descriptive,
+        to describe, we need a language.
+
+        given a language,
+        different people's different descriptions of a continuum,
+        can thus be expressed by the language.
+        maybe how they divide the continuum differently,
+        maybe something else.
+
+        but, what is a language ?
+        two people can draw pictures to each other,
+        they can even make films to each other,
+        they can even develop different VR worlds to each other.
+        so, what is a language ?
+
+        programming language is much easier to define,
+        because it is not about people to people,
+        but people to machine.
+
+      - Mathematical theories of continua,
+        in fact, make use of a preliminary series of operations
+        of abstraction and idealisation through symbols
+        which do not pertain as such to a foundational analysis
+        of the primitives of perception.
+
 ***** 3 the intuition of the continuum
+
+      - by the axioms of general topology,
+        we can define a predicate of points in a continuum
+        which answers whether a point belongs to the boundary of the continuum.
+        #+begin_src scheme
+        (: boundary-point? (-> [points in continuum] [true or false]))
+        #+end_src
+
+        after then, in general topology theory,
+        we sey we have a boundary function
+        #+begin_src scheme
+        (: boundary (-> [all the continua] [some continua]))
+        #+end_src
+
+        but actually,
+        this function only has type, but not function body.
+        for each kinds of concrete topology spaces,
+        we have to supply an algorithm [the function body].
+
+        in the language of haskell,
+        axioms of general topology defines a type class,
+        while a concrete topology space will be its instance.
+
+        but note that,
+        when thinking in terms of construction and algorithm,
+        we can not generate a boundary function from the boundary predicate [or from the axioms].
+        thus the boundary function must be added to the definition of the type class,
+        i.e. in the list of interface functions of the type class,
+        we must add a function called boundary of the type above.
 
 *** chapter 8. reverse aristotelianism: metaphysics of accidents
 
