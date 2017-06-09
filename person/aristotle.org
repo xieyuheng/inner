@@ -1,1 +1,7 @@
 #+title: aristotle
+
+* posterior analytics (translated by jonathan barnes)
+
+*** book i
+
+***** 1
