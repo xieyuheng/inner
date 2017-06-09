@@ -98,7 +98,7 @@
         這後一種構造是不依賴於外在空間而內蘊的
 
         - x -
-          因此 作者在這裏考慮的是 單純復形[simplicial complex]
+          因此 作者在這裏考慮的是 简单復形[simplicial complex]
 
       - 可三角化 這個性質
         將爲我們排除點集拓撲中的很多病態情形
@@ -165,7 +165,7 @@
 
       - ><
 
-*** 2 simplicial complexes
+*** 2 简单複形 / simplicial complexes
 
 ***** 5 鄰域空間 / neighborhood spaces
 
@@ -175,38 +175,168 @@
 
 ***** 8 等價空間 / identification spaces
 
-***** 9 n-單形 / n-simplexes
+***** 9 n 階單形 / n-simplexes
 
-***** 10 單純複形 / simplicial complexes
+      - 歐氏空間中的標準單形 [仿射幾何]
 
-***** 11 單純複形的型式 / the schema of a simplicial complex
+      - 拓撲意義上的單形 被理解爲 嵌入任意拓撲空間中的 歐氏空間中的標準單形
 
-      - [strict combinatorial topology]
-        element of set as vertex,
-        distinguished subset as simplex.
+      - 當指定單形的頂點列表之順序時
+        就給出了單形的定向[orientation]
+        頂點的偶置換[even permutation] 給出相同的定向
 
-***** 12 finite, pure, homogeneous complexes
+        這中定義可以解釋爲
+        單形頂點的置換確定一個單形到自身的線性映射
+        這個線性映射的行列式是正或負的 取決於置換是偶或奇
 
-***** 13 normal subdivision
+        進一步可以解釋爲
+        | 一維定向 | 由兩點確定 | 行進的方向 |
+        | 二維定向 | 由三點確定 | 旋轉的方向 |
+        | 三維定向 | 由四點確定 | 螺旋的方向 |
 
-***** 14 examples of complexes
+***** 10 简单複形 / simplicial complexes
 
-*** 3 homology groups
+      - 简单複形是由單形構造的鄰域空間
+        在之後我們只討論這種空間
+        2 3 4 5 7 8 11 章討論一般的複形
+        6 9 10 章 討論流形[特殊的複形]
 
-***** intro
+      - 說簡單複形是由蛋形構造的鄰域空間
+        也可以說 簡單複形是能夠被細分爲單形的鄰域空間
+        這樣的細分定義如下 :
 
-      - The considerations in this chapter are purely combinatorial.
-        No use is made of the concepts of neighborhood or continuity.
+        設一個單形的列表
+        其基數爲 有限 或 可數無窮
+        並且這個列表就 取單形的面 而言封閉
+
+        (k1) 每一點至少在一個單形中
+        (k2) 每一點只在有限個個單形中
+        (k3) 兩個單形的關係只有三種 : 不交 一個是另一個的面 二者相交於一個[且只能是一個]公共的面
+        (k4) [如何簡化這個條件 ? 這與就點取鄰域有關 它可以排除某些無窮複形 這些無窮複形中點的組合鄰域是點自身]
+
+      - [關於術語]
+        複形[complex] 是能夠被細分爲簡單複形的空間
+        簡單複形[simplicial-complex] 是複形與某個具體的細分
+
+        (k2) 和 (k4) 與下面的條件等價
+        (k4') 任意一點都有鄰域 這個鄰域只與有限個單形相交
+
+***** 11 简单複形的概形 / the schema of a simplicial complex
+
+      - 一個簡單複形中的兩個單形的頂點不能完全等同
+        因爲 (k3) 對兩個單形相交的情形有很強的限制
+
+        根據這一性質
+        在簡單複形中
+        我們可以用 一個單形的頂點的列表 來表示這個單形 而沒有歧義
+        從而整個複形就也可以用一些頂點的列表的列表來表示了
+
+        這就是簡單複形的概形[schema]
+
+        另外一種 概形 ><><>< [incidence matrices]
+        將在之後定義
+
+      - 反過來我們觀察 頂點的列表的列表
+        我們稱頂點的列表爲單形 [也就是說術語要重載了]
+        所以也可以說是觀察 單形的列表
+        只要滿足簡單的條件 它們就能被看成是 簡單複形的概形
+        (sch1) 單形的列表就取子列表而言封閉 [取子列表 就是 取單形的面]
+        (sch2) 單形中的頂點不重複
+        (sch3) 每個頂點只出現在有限個單形中
+
+      - 概形可以幫助我們編碼簡單複形
+        我們也可以利用概形的抽象性來推廣簡單複形的概念
+
+        純粹的組合拓撲學直接以概形爲研究對象
+        並且用一些組合變換來定義概形之間的等價關係
+
+***** 12 有限 純 均一 複形 / finite, pure, homogeneous complexes
+
+***** 13 正規細分 / normal subdivision
+
+***** 14 複形的例子 / examples of complexes
+
+*** 3 同調羣 / homology groups
+
+***** 引 / intro
+
+      - 這一章是純粹組合學的
+        也就是說 我們不使用 鄰域 和 [用鄰域定義的]連續性 這些概念
+        也就是說 我們可以把簡單複形看成是純粹形式化的概形
+
+        這一章中我們定義簡單複形的同調羣
+        下一章中我們證明
+        一個空間的任意兩個單形劃分 所給出的同調羣 是同構的
 
 ***** 15 鏈 / chains
 
+      - n 維簡單複形中的 k 階鏈[k-chain]
+        是 k 單形 的形式線性和 其係數爲整數
+        整數的正負可以被解釋爲定向[orientation]
+        整數的大小可以被解釋爲重複出現的次數[multiplicity]
+
+        這樣形成的代數結構是一個 abel 羣
+        其生成子爲 k 階單形
+        且每個生成子都是無限階的
+        (m * U = 0) -> (U = 0) or (m = 0)
+
 ***** 16 邊界 閉鏈 / boundary, closed chains
+
+      - 一個帶有定向的 k 階單形
+        可以誘導出其個階面的定向
+        利用這裏誘導出來的定向
+        我們可以定義 k 階單形 的邊界爲 其 (k-1) 階面的和
+        並且每個面的係數爲這個誘導出來的定向
+
+      - '取邊界' 是 abel 羣之間的線性算子[羣同態]
+
+      - 邊界爲零的鏈稱 閉鏈[closed-chain]
+        閉鏈形成子羣
+
+      - 可以簡單地證明 k 階鏈 的邊界 總是 閉的 k-1 階鏈
+        或者說 邊界算子的平方是零
+        或者說 邊界鍊 是 閉鍊 的子羣
 
 ***** 17 同調鏈 / homologous chains
 
+      - 每個邊界鏈都是閉鏈
+        但是一個閉鏈不一定是邊界鏈
+
+        考慮 k 階閉鏈 所形成的 abel 羣
+        其中爲 k+1 階鏈的邊界者
+        也就是之前我們所說的邊界鏈
+        稱爲零同調的[null homologous]
+        記爲 (U ~ 0)
+
+        兩個閉的或非閉的鏈稱爲同調的[homologous]
+        如果它們的差是零同調的
+        記爲 (U ~ V) := (U - V ~ 0)
+
+      - 鏈之間的同調[homology]關係 是一個等價關係
+        同調的閉鏈 屬於同一個同調類[homology class]
+        m 與 U 不等於 0 的時候 也可能有 (m * U ~ 0)
+
 ***** 18 同調羣 / homology groups
 
-***** 19 computation of the homology groups in simple cases
+      - 羣論的語言中
+        同調類是 閉鏈模零同調鏈 的剩餘類[residue class]
+        剩餘類 形成商羣
+        這個商羣就稱爲同調羣
+
+      - 當考慮某個具體的單形細分時
+        取這樣的商羣看似多此一舉
+        看似 不如直接考慮所有的鏈所形成的代數結構
+        但是 之後我們將要證明 這個商羣是不依賴與劃分的
+        即 同調羣是拓撲不變量
+
+      - It is important that
+        the k-th homology group is not only an abstract group
+        determined by its Betti number and torsion coefficients,
+        but also that it is realizable by a homology basis.
+
+***** 19 計算同倫羣的簡單例子 / computation of the homology groups in simple cases
+
+      - ><
 
 ***** 20 homologies with division
 

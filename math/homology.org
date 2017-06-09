@@ -4,16 +4,6 @@
 
 *** >< homology
 
-    - 形式化二維流形的分類定理
-
-    - 例子 與 組合學 與 normalization
-
-    - 嘗試以形式化的方式描述 covering-space 與 universal-covering-space
-
-    - neighborhood 與 連續性 的關係
-
-    ------
-
     - 如果能形成一個高階代數理論的話
       universal-covering-space 推廣到 branching-cover
       可能能夠讓我們解決高階代數的基本問題

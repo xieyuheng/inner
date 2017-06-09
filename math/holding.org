@@ -2486,35 +2486,6 @@
     (2) 再找生成子之間的關係
     [證明 von kampen 定理的時候也是如此]
 
-* 選取例子
-
-  - x -
-    我們應該如何選取例子來測試我們的二階代數理論 ?
-
-  - k -
-    先選取簡單的例子
-
-  - x -
-    我們可以問 Dehn 爲什麼選取了他的那些簡單的例子
-    我們可以構擬一下歷史
-    Dehn 選取的都是簡單的置換羣中的例子
-
-  - k -
-    我們也可以嘗試簡單的有限羣
-    還有簡單的有限生成羣
-
-  - x -
-    我們的 normalization 可能能夠讓我們來計算 二階同倫羣
-    但是我們的目的是要說明
-    我們的代數結構比二階同倫羣更豐富
-
-    我們還可以說
-    二階圖形的分類問題
-    遠遠沒有結束
-    其複雜性正如有限羣的分類問題
-    甚至比有限羣的分類問題更複雜
-    因爲我們所討論的是有限生成羣的分類問題
-
 * normal form of higher algebraic structure
 
   - x -
@@ -2814,8 +2785,6 @@
   - x -
     thurston 如何從 knot 和 link 獲得三維幾何 ?
     我們可否模仿他的方法 ?
-
-* 用正多面體來形成簡單的[對稱性很高的]例子
 
 * thurston 給出了 (knot-and-link -> polyhedral-schema)
 
@@ -3269,22 +3238,6 @@
     在 whitehead 所發展的 simple homotopy theory 中
     就可以明白這一點
 
-* 形成例子的方式
-
-  - x -
-    對於用 polygon 和 polyhedron 構造流形
-    我想到了一種形成例子的方式
-    就是列舉出邊數很少的 polygon
-    和面數很少的 polyhedron
-    的所有可能
-    然後以它們爲基礎看各種算法作用於它們的效果
-
-  - k -
-    那麼這首先將引出一個計數問題
-    通過計數我們可以估計問題的複雜性
-    首先我們要確定
-    有多少由 n-gon 或 n-hedron 構造 manifold 的方式
-
 * decomposition
 
   - x -
@@ -3416,13 +3369,6 @@
     space looks [from a point] the same in all directions.
 
     manifold 的條件是如何保證這種直觀效果的 ?
-
-* 公共細分 [Hauptvermutung]
-
-  - x -
-    利用公共細分來定義 manifold 或者 complex 之間的等價
-    爲什麼是不夠的 ?
-    這種定義不能捕捉同胚嗎 ?
 
 * different kinds of complex
 
