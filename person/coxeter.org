@@ -16,21 +16,108 @@
 
 ***** 1.1 regular polygons
 
+      - A plane p-gon is said to be regular
+        if it is both equilateral and equiangular.
+        It is then denoted by {p}.
+
+      - x -
+        along the way, a language for polytope is designed by coxeter.
+        call it coxeter1 and sexp-lize it ?
+        #+begin_src scheme
+        (gon p)
+        #+end_src
+
+      - A regular polygon is easily seen to have a centre,
+        from which all the vertices are at the same distance 0R,
+        while all the sides areat the same distance 1R.
+        #+begin_src scheme
+        (0-distance (gon p))
+        (1-distance (gon p))
+        #+end_src
+
 ***** 1.2 polyhedra
+
+      - for polyhedron,
+        1. every side of each polygon belongs also to just one other polygon,
+        2. the polygons surrounding each vertex form a single circuit
+           (to exclude anomalies such as two pyramids with a common apex).
+
+      - x -
+        by this definition, polyhedron can be partition of torus,
+        i.e. not simple-connected.
+
+      - examples of polyhedra
+        - pyramid
+        - prism
+        - anti-prism
 
 ***** 1.3 the five platonic solids
 
+      - A convex polyhedron is said to be regular
+        if its faces are regular and equal,
+        while its vertices are all surrounded alike.
+
+      - If its faces are {p}'s,
+        q surrounding each vertex,
+        the polyhedron is denoted by {p, q}.
+        |        | name         | points | edges | faces |
+        |--------+--------------+--------+-------+-------|
+        | {3, 3} | tetrahedron  |      4 |     6 |     4 |
+        | {3, 4} | octahedron   |      6 |    12 |     8 |
+        | {4, 3} | cube         |      8 |    12 |     6 |
+        | {3, 5} | icosahedron  |     12 |    30 |    20 |
+        | {5, 3} | dodecahedron |     20 |    30 |    12 |
+
 ***** 1.4 graphs and maps
 
+      - a polyhedron may be regarded as a map,
+        i.e. as the partition of an unbounded surface into polygonal regions.
+        the surface might be sphere, torus, etc.
+
+        - x -
+          thus the 'map' can be viewed as polytopelization of space.
+
+      - a map has a dual map on the surface.
+        Corresponding to a p-gonal face of the given map,
+        the dual map will have a vertex where p faces (and p edges) come together.
+        - x -
+          dual map can not reduce dimension.
+
+      - x -
+        different partition of the same surface have the same topology,
+
+        but different partition of the same surface
+        have different 2 dimensional algebraic structure,
+
+        and different ways of identify parts of the partitions
+        give different 3 spaces.
+
 ***** 1.5 "a voyage round the world"
+
+      - hamilton path
 
 ***** 1.6 euler's formula
 
 ***** 1.7 regular maps
 
+      - A map is said to be regular,
+      of type {p, q},
+      if there are ρ vertices and ρ edges for each face,
+      q edges and q faces at each vertex.
+
+      for example, {4, 4} on torus.
+
 ***** 1.8 configurations
 
+      - x -
+        a notation to record regularity of complex.
+        in a 2-complex, to allow more then two faces passing one line,
+        is like allowing more then two points lying on one line ?
+        this is what the notation is suggesting.
+
 ***** 1.9 historical remarks
+
+      - Schlafli symbol
 
 *** ii. regular and quasi-regular solids
 
@@ -466,3 +553,5 @@
     - Projective geometry may be described as
       the study of geometrical properties
       that are unchanged by "central projection".
+
+* (1974) regular complex polytopes
