@@ -1,6 +1,57 @@
-#+title: 等式的语言 / a language for equation
+- title :
+  a language for equation
+  a generalization of fundamental group
+
+- author :
+  XIE Yuheng
 
 * todo
+
+*** 計算幾何
+
+    - x -
+      計算幾何 與 其在三維建模中的應用
+      這將涉及到對度量性質的建模
+
+*** 非交換的代數結構
+
+    - x -
+      whitehead 已經知道的那些空間的非交換的高階代數結構是什麼 ?
+      [cross-module]
+
+*** local-to-global
+
+    - x -
+      一個 local-to-global theorem 可以給我們靈活的計算方式
+      是否可以對高階代數結構形成 local-to-global theorem ?
+
+*** 語言的有效性
+
+    - 語言的有效性 還需要檢驗
+      1. 無窮空間
+      2. 三階空間
+         非自由二階代數結構
+         和自由三階代數結構
+      3. 要能夠表達二階曲面的分類定理
+      4. 要能夠表達 product-space 的 boundary-rule
+
+*** 一階的例子 與 covering-space
+
+    - x -
+      如果想給出非平凡的一階圖形的例子
+      那就一定要考慮無窮圖
+      此時無窮個點的生成子就類似於邊
+      無窮個邊的生成子就類似於面 [但是可能是不可逆的]
+      等等
+
+    - k -
+      我想對這些東西的表達很重要
+      在考慮這些之前去實現語言
+      就是 '過早優化' 了
+
+    - x -
+      還要考慮到 我們之前說過
+      covering-space 的編碼 能夠解決代數結構中元素的等價問題
 
 *** 之前的語言中對空間的同倫等價的證明
 
@@ -400,6 +451,53 @@
       我放棄這種想法
       爲它將使得語法變得非常複雜
 
+*** 等價
+
+    - x -
+      an equation is the boundary of a chain
+      a chain is the record of the formation of an equation
+
+      用等式進行 rewrite = chain 之間的同倫
+      等式可能是 (refl ...) 經過移項得到的
+      這樣
+      這種等式稱作是非本質的 它們所給出的變換也稱作是非本質的
+
+      一個 n+1 階 chain 是一個 n 階等式
+      這個等式本身也可以給以移項變換
+
+*** fiber
+
+    - x -
+      高於維數階的同倫羣
+      也許只能被理解爲 fiber-space
+      而不能被理解爲 chain group
+
+*** function as chain group
+
+    - x -
+      此時 function 的同倫變換就按古典的定義
+      (-> (* X I) Y)
+      但是如何把它 與 chain 的同倫變換相容呢 ?
+      後者是 用等式進行轉寫
+
+*** 同倫類
+
+    - x -
+      mobius-band 與 cylinder 有相同的同倫類型
+      但是 它們的二階代數結構不同
+
+      mobius-band 的非平凡二階元素只有一個
+      cylinder 的非平凡二階元素於整數對應
+
+    - k -
+      但是 我們如何定義代數結構之間的等價來形成空間的代數不變量呢 ?
+
+    - x -
+      對於上面兩個例子
+      首先我們發現 相乘方式是固定的
+      這就類似於古典的代數結構
+      我們需要更多的例子
+
 * 一維自由代數結構 / 1 dimensional free algebraic structure
 
   - 首先我們有很多點
@@ -588,21 +686,45 @@
     這些恆等變形 當然就是 (refl c0) 之類的平凡等式 經過移項獲得的
     我們需要設計語法來描述這些信息
 
-* ><><>< 選取例子以驗證語言的有效性
+* 選取例子以驗證語言的有效性
 
-  - 邊數很少的 polygon
-    面數很少的 polyhedron
-    的所有可能
-    然後以它們爲基礎看各種算法作用於它們的效果
+*** intro
 
-  - 用正多面體來形成簡單的例子
-    對稱性越強的圖形
-    編碼所用的信息就越少
+    - 邊數很少的 polygon
+      面數很少的 polyhedron
+      的所有可能
+      然後以它們爲基礎看各種算法作用於它們的效果
 
-  - 那麼這首先將引出一個計數問題
-    通過計數我們可以估計問題的複雜性
-    首先我們要確定
-    有多少由 n-gon 或 n-hedron 構造 manifold 的方式
+    - 用正多面體來形成簡單的例子
+      對稱性越強的圖形
+      編碼所用的信息就越少
+
+    - 那麼這首先將引出一個計數問題
+      通過計數我們可以估計問題的複雜性
+      首先我們要確定
+      有多少由 n-gon 或 n-hedron 構造 manifold 的方式
+
+*** 2-complex formed by gluing the edges of one n-gon together
+
+***** ><
+
+      #+begin_src scheme
+      (type space
+        ()
+        )
+      #+end_src
+
+*** 3-complex formed by gluing the faces of one n-hedron together
+
+***** how to enumerate n-hedron
+
+***** ><
+
+      #+begin_src scheme
+      (type space
+        ()
+        )
+      #+end_src
 
 * 二維空間的例子
 
@@ -661,6 +783,56 @@
     (: (+ c0 (=< b2)
           c0 (>= b1))
        (= (+ (- b2) b0 b1) (+ b2 b0 (- b1))))
+
+    (define dehn-twist
+      (lambda (-> cylinder cylinder)
+        (-> a0 a0)
+        (-> a1 a1)
+        (-> b1 b1)
+        (-> b2 b2)
+        (-> b0 (+ b0 b1))
+        (-> c0 (:> (= (+ b0 b1) (+ b2 b0)))
+            (+ (+ c0 (=< b2) (=< b0) (:> (= (+ (- b0) (- b2) b0 b1) (+)))
+                  (refl b1) (>= b1) (:> (= (+) (+ b1 (- b1)))))
+               (:> (= (+ (- b0) (- b2) b0 b1)
+                      (+ b1 (- b1))))
+               (<= (- b0)) (<= (- b2)) (=> (- b1))
+               (:> (= (+ b0 b1 b1) (+ b2 b0 b1)))))))
+
+    (define dehn-twist
+      (lambda (-> cylinder cylinder)
+        (-> a0 a0)
+        (-> a1 a1)
+        (-> b1 b1)
+        (-> b2 b2)
+        (-> b0 (+ b0 b1))
+        (-> c0 (+ (+ c0 (=< b2) (=< b0) (refl b1) (>= b1))
+                  (<= (- b0)) (<= (- b2)) (=> (- b1))))))
+
+    (note 可以發現這種嚴格的移項語法太複雜了
+          對於代入以融合等式而言
+          我們只需要指出
+          (1 就那個元素代入)
+          (2 就那個位置代入))
+
+    (note 但是我們至少有了一種有效的底層語法
+          也許這些高層的語法可以被實現爲二元函數
+          [移項都是一元函數])
+
+    (note 我們是否已經得到了最細的底層語法 ?)
+
+    (note (+ c0 (refl b1)) 與 c0 是否是相等的 ?
+          我想應該是不相等的
+          因爲它們是 2 階 chain
+          而沒有三階 等式能夠把其中的一個轉化爲另一個
+          因爲這裏有的只是三階的非本質等式
+          比如 (: (refl (refl b1)) (= (refl b1) (refl b1)))
+          它是不能消去 (refl b1) 的
+          假設有消去 (refl b1) 的等式 x
+          那麼它的就是 (: x (= (refl b1) (+)))
+
+          沒有等式來轉寫它們
+          它們就不同倫等價)
     #+end_src
 
 *** sphere
@@ -756,6 +928,9 @@
 
 *** 規則
 
+    - 說 homology group 是 高階代數的 abelianization
+      首先要取 高階代數的 close chain
+
     - 經過 abelianization 之後
       邊界爲 0 的 k 階生成子是 k 階同調羣的元素
       k+1 階生成子給出 k 階同調羣中元素之間的等式
@@ -825,6 +1000,7 @@
     只有 universal-covering-space 的點是與 path 一一對應的
 
 * >< 用沒有一階洞的一階無窮複形覆蓋一般一階複形
+
 * >< 用沒有二階洞的二階無窮複形覆蓋一般二階複形
 
   - 此時有必要使用 branched-covering

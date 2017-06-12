@@ -681,7 +681,7 @@
 
 ***** 2.1 Homotopy groups and relative homotopy groups
 
-      - 
+      -
 
 *** chapter 2 homotopy theory and crossed modules
 
@@ -708,3 +708,13 @@
 *** appendix c closed categories
 
 * modelling and computing homotopy types: i (2016)
+
+* (2009) crossed complexes and higher homotopy groupoids as non commutative tools for higher dimensional local-to-global problems
+
+*** Introduction
+
+    - to use crossed complexes, rather than chain complexes.
+
+    - to get classical results such as
+      the Brouwer degree
+      and the relative Hurewicz theorem.

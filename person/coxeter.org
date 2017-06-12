@@ -123,7 +123,29 @@
 
 ***** regular polyhedra
 
+      - [bib] sommerville
+        1. Division of space by congruent triangles and tetrahedra.
+           Proceedings of the Royal Society of Edinburgh, 43 (1923), pp.85-116.
+        2. The regular divisions of space of n dimensions and their metrical constants.
+           Rendiconti del Circolo Matematico di Palermo, 48(1924), pp. 9-22.
+        3. An Introduction to the Geometry of η Dimensions. London,1929.
+
+      - x -
+        vertex figure is just like the combinatorial neighborhood at a vertex.
+        note that there is a dimension-down here,
+        the vertex figure at a vertex of a polygon is a segment.
+        the vertex figure at a vertex of a polyhedron is a polygon.
+
+      - a polyhedron is regular
+        if its faces and vertex figures are all regular.
+
+        regular polyhedron {p, q}
+        Its face is a {p},
+        and its vertex figure is a {q}.
+
 ***** reciprocation
+
+      - reciprocation also is the topology dual.
 
 ***** quasi-regular polyhedra
 
@@ -143,9 +165,21 @@
 
 ***** congruent transformations
 
+      - congruent transformations
+        can be derived from three " primitive " transformations :
+        1. translation [rigid motion]
+        2. rotation [rigid motion]
+        3. reflection [reverse orientation]
+
 ***** transformations in general
 
+      - x -
+        這一節有對 group theory 中 "Τ transformed by S" 的幾何解釋
+
 ***** groups
+
+      - [bib] Levi
+        Levi 1. Algebra. Vol. 1. Calcutta, 1942.
 
 ***** symmetry operations
 

@@ -1,1 +1,35 @@
 #+title: marcuse
+
+* note
+
+*** the frankfurt school
+
+* (1964) one-dimensional man -- studies in the ideology of advanced industrial society
+
+*** part i one - dimensional society
+
+***** 1 the new forms of control
+
+      - suppression of individu
+
+***** 2 the closing of the political universe
+
+***** 3 the conquest of the unhappy consciousness: repressive desublimation
+
+***** 4 the closing of the universe of discourse
+
+*** part ii one - dimensional thought
+
+***** 5 negative thinking: the defeated logic of protest
+
+***** 6 from negative to positive thinking: technological rationality and the logic of domination
+
+***** 7 the triumph of positive thinking: one-dimensional philosophy
+
+*** part iii the chance of the alternatives
+
+***** 8 the historical commitment of philosophy
+
+***** 9 the catastrophe of liberation
+
+***** 10 conclusion
