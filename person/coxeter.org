@@ -183,6 +183,15 @@
 
 ***** symmetry operations
 
+      - a symmetry of a figure is a congruent transformation
+        which leaves it unchanged as a whole,
+        merely permuting its component elements.
+
+      - Every finite group of congruent transformations
+        leaves atleast one point [the centroid] invariant.
+
+        thus, the transforms of any point by such a group lie on a sphere.
+
 ***** the polyhedral groups
 
 ***** the five regular compounds

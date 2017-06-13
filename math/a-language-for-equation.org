@@ -7,11 +7,12 @@
 
 * todo
 
-*** 計算幾何
+*** 编码问题
 
     - x -
-      計算幾何 與 其在三維建模中的應用
-      這將涉及到對度量性質的建模
+      在考虑粘合 polyhedron 的時候
+      可能就已經出現 編碼問題了
+      因爲此時 邊和面太多了
 
 *** 非交換的代數結構
 
@@ -93,8 +94,6 @@
       其中一個函數是不降階的
       也許這正是區分 同倫 和 同胚 的關鍵
 
-*** 需要一個形式語言來描述 abelianization
-
 *** refl
 
     - x -
@@ -118,9 +117,6 @@
 
       給這些列舉以細分
       使得能夠得到 simplicial-complex 而計算 homology group
-
-      不用 simplicial-complex 而直接計算 homology group
-      觀察 homology 可否作爲高階代數的 abelianization
 
       對於 2-man 觀察 normalization
       對於 3-man 嘗試 normalization
@@ -175,28 +171,6 @@
       by no means, since topology, as and reduction of geometry,
       relies on geometry;
       so will my higher algebraic structure relies on geometry.
-
-*** neighborhood 與 幾何 [recover geometry]
-
-    - x -
-      如果想要引入 neighborhood 的概念
-      那麼是否也要同時引入 幾何 呢 ?
-      如果要的話
-      那麼所有的線都應該理解爲空間中的直線[測地線]
-      而所有的面都應該理解爲空間中的什麼 ?
-
-    - k -
-      使用 neighborhood 的意義在於有限覆蓋定理
-      但是我們所定義 neighborhood 的方式
-      目前只是爲了把它聯繫於 用邊界所定義的連續性
-
-    - x -
-      我想我們必須引入幾何了
-
-    - k -
-      我想你之所以這樣說
-      是因爲當考慮到有限覆蓋的時候
-      就像是給了圖形以座標系
 
 *** 之前的錯誤在於沒有考慮定向 [現在知道定向就是等式的方向]
 
@@ -398,58 +372,6 @@
       因此 '語義' 一詞
       就機器實現而言
       也就人的想象而言
-
-*** 閉鏈
-
-    - x -
-      如果考慮 閉鏈 所形成的自代數結構
-      是不是 相加 就可以不用考慮邊界的粘合方式了 ?
-      如果是的話 這樣得到的高階代數不就是交換的了嗎 ?
-
-      鏈 也可以像等式一樣 有定向
-      這樣可能就能解釋不交換的現象了
-
-    - k -
-      你考慮閉鏈的相乘的時候
-      沒有考慮讓兩個等式融合爲一個等式
-      而只是將兩個等式放在那裏形成一個等式組
-      這在 homology theory 中當然是可以的
-      但是在我們的高階代數中不行
-      #+begin_src scheme
-      (: b0 (= a0 a0))
-      (: b1 (= a0 a0))
-      (: (+ b0 b1) (= a0 a0))
-      (: (+ b1 b0) (= a0 a0))
-      #+end_src
-
-    - x -
-      如果 等式組 e0 可以融合爲等式 e1
-      並且 等式組 e0 可以融合爲等式 e2
-      那麼 e0 = e1
-      並且 e0 = e2
-      這樣 e1 = e2
-      這是不合理的
-      除非我們說 在 (+ ...) 中 不允許形成等式組
-      不能有 (: (+ ...) (equation-group (= ... ...) (= ... ...)))
-
-      但是要知道
-      不能形成等式組的後果是
-      高階代數中的 chain 經過 abelianization
-      不能給出 homology theory 中的所有 chain
-
-    - k -
-      如果想要形成 homology theory 中的所有 chain
-      就必須允許等式組
-      但是如果想要避免上面的悖論
-      就要禁止等式組之間的等式相互融合
-      或者允許融合
-      但是這對等式組的形變 並不被認爲是恆等形變
-      因此 並不帶來等價關係
-
-    - x -
-      或者說 是需要用明顯的語法來記錄的形變
-      我放棄這種想法
-      爲它將使得語法變得非常複雜
 
 *** 等價
 
@@ -704,19 +626,97 @@
       首先我們要確定
       有多少由 n-gon 或 n-hedron 構造 manifold 的方式
 
+*** >< how to enumerate n-gon and n-hedron ?
+
+    - ><
+
 *** 2-complex formed by gluing the edges of one n-gon together
 
-***** ><
+***** 2-gon
 
       #+begin_src scheme
       (type space
-        ()
-        )
+        (: a0 a1 <>)
+        (: b0 b1 (= a0 a1))
+        (: c0 (= b0 b1)))
+
+      (note glue b1 to b0)
+
+      (type space (note S2)
+        (: a0 a1 <>)
+        (: b0 (= a0 a1))
+        (: c0 (= b0 b0)))
+
+      (note glue a1 to a0)
+
+      (type space (note pseudo-manifold)
+        (: a0 <>)
+        (: b0 (= a0 a0))
+        (: c0 (= b0 b0)))
+
+      (note cut b0 to b0 and b1)
+
+      (type space
+        (: a0 <>)
+        (: b0 b1 (= a0 a0))
+        (: c0 (= b0 b1)))
+
+      (note glue b1 to (- b0))
+
+      (type space (note projective space)
+        (: a0 <>)
+        (: b0 (= a0 a0))
+        (: c0 (= b0 (- b0))))
+      #+end_src
+
+***** cut 和 glue
+
+      - x -
+        施行上面這個 cut 和 glue 操作的條件是什麼 ?
+        雖然這些操作是不同胚的
+        但是也應該把它們加到語言中來
+
+      - k -
+        在窮舉 n-gon 所形成的 complex 的時候
+        cut 與 glue 這兩個操作可以形成一個 complex 之間的有向圖
+
+***** the neighborhood function
+
+      #+begin_src scheme
+      (define S2
+        (type space
+          (: a0 a1 <>)
+          (: b0 (= a0 a1))
+          (: c0 (= b0 b0))))
+
+      (topological-equivalent
+       (neighborhood S2/a0)
+       (type neighborhood-space
+         (: b0 <>)
+         (: c0 (= b0 b0))))
+
+      (define PS2
+        (type space
+          (: a0 <>)
+          (: b0 (= a0 a0))
+          (: c0 (= b0 b0))))
+
+      (topological-equivalent
+       (neighborhood PS2/a0)
+       (type neighborhood-space
+         (: b0 <>)
+         (: (- b0) <>)
+         (: c0 (= b0 b0))
+         (: (+ c0 (=< b0) (>= b0)) (= (- b0) (- b0)))))
+      #+end_src
+
+***** >< 4-gon
+
+      #+begin_src scheme
+
       #+end_src
 
 *** 3-complex formed by gluing the faces of one n-hedron together
-
-***** how to enumerate n-hedron
 
 ***** ><
 
@@ -917,6 +917,36 @@
 
 * 三維空間之間的映射
 
+* neighborhood 與 幾何 [recover geometry]
+
+  - x -
+    如果想要引入 neighborhood 的概念
+    那麼是否也要同時引入 幾何 呢 ?
+    如果要的話
+    那麼所有的線都應該理解爲空間中的直線[測地線]
+    而所有的面都應該理解爲空間中的什麼 ?
+
+  - k -
+    使用 neighborhood 的意義在於有限覆蓋定理
+    但是我們所定義 neighborhood 的方式
+    目前只是爲了把它聯繫於 用邊界所定義的連續性
+
+  - x -
+    我想我們必須引入幾何了
+
+  - k -
+    我想你之所以這樣說
+    是因爲當考慮到有限覆蓋的時候
+    就像是給了圖形以座標系
+
+  ------
+
+  - 假設使用降維的 neighborhood
+    在取點的 neighborhood 的時候
+    這一點在邊中的所有出現都將稱爲新的點
+
+    具體的規則與語法是什麼 ?
+
 * >< 忘記高階代數結構中的某些信息就得到同調理論
 
 *** 引
@@ -934,6 +964,87 @@
     - 經過 abelianization 之後
       邊界爲 0 的 k 階生成子是 k 階同調羣的元素
       k+1 階生成子給出 k 階同調羣中元素之間的等式
+
+      - 只取生成子是不夠的
+        因爲不閉的生成子 可能複合爲閉的元素
+
+    - 高階代數中的 chain 經過 abelianization
+      不能給出 homology theory 中的所有 chain
+
+    - 也可以在簡化的時候不打散所有的碎片
+      保持其中部分相連
+
+*** 例子
+
+    #+begin_src scheme
+    (: abelianization (-> space homology-space))
+
+    (note homology-space reuse syntax such as (: ...) and (+ ...))
+
+    (define S2
+      (type space
+        (: a0 a1 <>)
+        (: b0 (= a0 a1))
+        (: b1 (= a1 a0))
+        (: c0 (= (+ b0 b1) (+ b0 b1)))))
+
+    (homological-equivalent
+     (abelianization S2)
+     (type homology-space
+       (: a0 a1 <>)
+       (: b0 (+ a0 (- a1)))
+       (: b1 (+ a1 (- a0)))
+       (: c0 (+))))
+
+    (note S2 :: Z 0 Z)
+
+    (define P2
+      (type space
+        (: a0 a1 <>)
+        (: b0 (= a0 a1))
+        (: b1 (= a1 a0))
+        (: c0 (= (+ b0 b1) (+ (- b1) (- b0))))))
+
+    (homological-equivalent
+     (abelianization P2)
+     (type homology-space
+       (: a0 a1 <>)
+       (: b0 (+ a0 (- a1)))
+       (: b1 (+ a1 (- a0)))
+       (: c0 (+ b0 b1 b1 b0))))
+
+    (note P2 :: Z Z/2 0)
+
+    (define T2
+      (type space
+        (: a0 <>)
+        (: b0 b1 (= a0 a0))
+        (: c0 (= (+ b0 b1) (+ b1 b0)))))
+
+    (homological-equivalent
+     (abelianization T2)
+     (type homology-space
+       (: a0 <>)
+       (: b0 b1 (+))
+       (: c0 (+))))
+
+    (note T2 :: Z Z+Z Z)
+
+    (define K2
+      (type space
+        (: a0 <>)
+        (: b0 b1 (= a0 a0))
+        (: c0 (= (+ b0 b1) (+ b1 (- b0))))))
+
+    (homological-equivalent
+     (abelianization K2)
+     (type homology-space
+       (: a0 <>)
+       (: b0 b1 (+))
+       (: c0 (+ b0 b0))))
+
+    (note K2 :: Z Z+Z/2 0)
+    #+end_src
 
 * 獲得拓撲不變量
 
