@@ -5,6 +5,132 @@
 - author :
   XIE Yuheng
 
+* todo
+
+*** combinatorial topology
+
+    - 我們需要更經濟的語言來描述空間之間因爲公共細分而形成的同胚等價
+      而不能用兩個函數所給出的同倫等價
+
+*** 编码问题
+
+    - x -
+      在考虑粘合 polyhedron 的時候
+      可能就已經出現 編碼問題了
+      因爲此時 邊和面太多了
+
+*** 非交換的代數結構
+
+    - x -
+      whitehead 已經知道的那些空間的非交換的高階代數結構是什麼 ?
+      [cross-module]
+
+*** local-to-global
+
+    - x -
+      一個 local-to-global theorem 可以給我們靈活的計算方式
+      是否可以對高階代數結構形成 local-to-global theorem ?
+
+*** 語言的有效性
+
+    - 語言的有效性 還需要檢驗
+      1. 無窮空間
+      2. 三階空間
+         非自由二階代數結構
+         和自由三階代數結構
+      3. 要能夠表達二階曲面的分類定理
+      4. 要能夠表達 product-space 的 boundary-rule
+
+*** 一階的例子 與 covering-space
+
+    - x -
+      如果想給出非平凡的一階圖形的例子
+      那就一定要考慮無窮圖
+      此時無窮個點的生成子就類似於邊
+      無窮個邊的生成子就類似於面 [但是可能是不可逆的]
+      等等
+
+    - k -
+      我想對這些東西的表達很重要
+      在考慮這些之前去實現語言
+      就是 '過早優化' 了
+
+    - x -
+      還要考慮到 我們之前說過
+      covering-space 的編碼 能夠解決代數結構中元素的等價問題
+
+*** 之前的語言中對空間的同倫等價的證明
+
+    - x -
+      之前的設計中
+      爲了證明一些 subdivision 之間的等價
+      我們花費了很大篇幅的代碼
+      現在我們知道
+      這種等價關係也許不應該用空間之間的同倫等價的古典定義來處理
+
+    - k -
+      事實上 我們還是不知道應該如何處理空間之間的等價
+      subdivision 可以有代數解釋
+      它也可以看成是代數結構的細化
+
+    - x -
+      combinatorial topology 中用一些基本變換來定義空間之間的同倫等價
+      我們是否也應該採取這種定義方式呢 ?
+
+    - k -
+      首先來看 subdivision
+      我們知道
+      用一對函數來定義的倫等價
+      可以用來解釋 subdivision 所得到的空間之間的等價
+      這甚至不是同倫而是同胚
+
+    - x -
+      既然 subdivision 有代數解釋
+      函數所定義的等價 對 subdivision 的解釋
+      是否也有代數解釋呢 ?
+      即 用代數的觀點 來解釋之前的解釋
+
+    ------
+
+    - x -
+      我們不能迴避古典的用兩個函數定義空間之間的等價的方法
+      我們要試着給出解釋
+      subdivision 所給出的 空間之間的兩個函數是特殊的
+      其中一個函數是不降階的
+      也許這正是區分 同倫 和 同胚 的關鍵
+
+*** refl
+
+    - x -
+      我們還沒有考慮 (refl ...) 與一般元素的相乘問題
+
+    - k -
+      但是我們現在有了一個指導原則
+      那就是 chain 的語法 == 等式組變換的忠實記錄
+      在這個指導原則下
+      語法的設計應該輕鬆多了
+      在需要做決策的時候 我們可以使用這個原則
+
+*** 現在的語法是否已經足夠描述 product-space 的 boundary rule 了 ?
+
+    - fiber-space = dependent product-space
+
+*** 從低維低組合數開始
+
+    - 從低維低組合數開始
+      列舉 complex 與 manifold
+
+      給這些列舉以細分
+      使得能夠得到 simplicial-complex 而計算 homology group
+
+      對於 2-man 觀察 normalization
+      對於 3-man 嘗試 normalization
+
+      對於 2-man 觀察沒有 normalization 的條件下 獲得 universal-covering-space
+      對於 3-man 嘗試獲得 universal-covering-space
+
+*** 嘗試以形式化的方式描述 covering-space 與 universal-covering-space
+
 * old
 
 *** simple-space
@@ -312,127 +438,6 @@
       我們可以考慮 在低維的情形
       mapping-space 的代數結構如何獲得生成元與關係
       然後再推廣到高維
-
-* todo
-
-*** 编码问题
-
-    - x -
-      在考虑粘合 polyhedron 的時候
-      可能就已經出現 編碼問題了
-      因爲此時 邊和面太多了
-
-*** 非交換的代數結構
-
-    - x -
-      whitehead 已經知道的那些空間的非交換的高階代數結構是什麼 ?
-      [cross-module]
-
-*** local-to-global
-
-    - x -
-      一個 local-to-global theorem 可以給我們靈活的計算方式
-      是否可以對高階代數結構形成 local-to-global theorem ?
-
-*** 語言的有效性
-
-    - 語言的有效性 還需要檢驗
-      1. 無窮空間
-      2. 三階空間
-         非自由二階代數結構
-         和自由三階代數結構
-      3. 要能夠表達二階曲面的分類定理
-      4. 要能夠表達 product-space 的 boundary-rule
-
-*** 一階的例子 與 covering-space
-
-    - x -
-      如果想給出非平凡的一階圖形的例子
-      那就一定要考慮無窮圖
-      此時無窮個點的生成子就類似於邊
-      無窮個邊的生成子就類似於面 [但是可能是不可逆的]
-      等等
-
-    - k -
-      我想對這些東西的表達很重要
-      在考慮這些之前去實現語言
-      就是 '過早優化' 了
-
-    - x -
-      還要考慮到 我們之前說過
-      covering-space 的編碼 能夠解決代數結構中元素的等價問題
-
-*** 之前的語言中對空間的同倫等價的證明
-
-    - x -
-      之前的設計中
-      爲了證明一些 subdivision 之間的等價
-      我們花費了很大篇幅的代碼
-      現在我們知道
-      這種等價關係也許不應該用空間之間的同倫等價的古典定義來處理
-
-    - k -
-      事實上 我們還是不知道應該如何處理空間之間的等價
-      subdivision 可以有代數解釋
-      它也可以看成是代數結構的細化
-
-    - x -
-      combinatorial topology 中用一些基本變換來定義空間之間的同倫等價
-      我們是否也應該採取這種定義方式呢 ?
-
-    - k -
-      首先來看 subdivision
-      我們知道
-      用一對函數來定義的倫等價
-      可以用來解釋 subdivision 所得到的空間之間的等價
-      這甚至不是同倫而是同胚
-
-    - x -
-      既然 subdivision 有代數解釋
-      函數所定義的等價 對 subdivision 的解釋
-      是否也有代數解釋呢 ?
-      即 用代數的觀點 來解釋之前的解釋
-
-    ------
-
-    - x -
-      我們不能迴避古典的用兩個函數定義空間之間的等價的方法
-      我們要試着給出解釋
-      subdivision 所給出的 空間之間的兩個函數是特殊的
-      其中一個函數是不降階的
-      也許這正是區分 同倫 和 同胚 的關鍵
-
-*** refl
-
-    - x -
-      我們還沒有考慮 (refl ...) 與一般元素的相乘問題
-
-    - k -
-      但是我們現在有了一個指導原則
-      那就是 chain 的語法 == 等式組變換的忠實記錄
-      在這個指導原則下
-      語法的設計應該輕鬆多了
-      在需要做決策的時候 我們可以使用這個原則
-
-*** 現在的語法是否已經足夠描述 product-space 的 boundary rule 了 ?
-
-    - fiber-space = dependent product-space
-
-*** 從低維低組合數開始
-
-    - 從低維低組合數開始
-      列舉 complex 與 manifold
-
-      給這些列舉以細分
-      使得能夠得到 simplicial-complex 而計算 homology group
-
-      對於 2-man 觀察 normalization
-      對於 3-man 嘗試 normalization
-
-      對於 2-man 觀察沒有 normalization 的條件下 獲得 universal-covering-space
-      對於 3-man 嘗試獲得 universal-covering-space
-
-*** 嘗試以形式化的方式描述 covering-space 與 universal-covering-space
 
 * note
 
@@ -1181,20 +1186,6 @@
 
 *** map and continuity-check
 
-    - A map between space 'A' and 'B', is of type '(-> A B)'.
-      The simplest kind of map,
-      will map n-dim parts of 'A' to n-dim parts of 'B',
-      I call this kind of map 'level-same' map.
-
-    - Thus, we must distinguish following different kinds of maps :
-      - level-same
-      - level-diff
-        - level-up
-        - level-down
-
-    - I do not know what rules should be established
-      to handle level-diff map properly yet.
-
     - For level-same maps, the rule for continuity-check is simple.
       Suppose we have map (: f (-> A B)),
       and 'p' is a n-dim part of 'A'.
@@ -1240,72 +1231,177 @@
 
 *** product-space
 
-    - The first kind of primitive space is simple-space defined above,
-      while the first kind of compound space is product-space.
+    #+begin_src scheme
+    (note There can be many ways by which we can compose new spaces,
+          each of such way must shows
+          1. what are the parts of the space ?
+          2. what are the boundarys of the parts ?)
 
-    - There can be many ways by which we can compose new spaces,
-      each of such way must shows
-      1. what are the parts of the space ?
-      2. what are the boundarys of the parts ?
+    ;; the rule of product-space
+    (: (* a b) (= (* a boundary b) (* a b boundary)))
 
-    - The rule of product-space
+    (define I
+      (type space
+        (: i0 i1 <>)
+        (: i01 (= i0 i1))))
+
+    (: (* i01 i0)
+       (+ (* i01 boundary i0)
+          (* i01 i0 boundary))
+       (:>
+        (+ (* (= i0 i1) i0))
+        (+ (= (* i0 i0) (* i1 i0)))))
+
+    (: (* i01 i01)
+       (+ (* i01 boundary i01)
+          (* i01 i01 boundary))
+       (:>
+        (+ (* (= i0 i1) i01)
+           (* i01 (= i0 i1)))
+        (+ (= (* i0 i01) (* i1 i01))
+           (= (* i01 i0) (* i01 i1)))
+        (= (+ (* i0 i01) (* i01 i1))
+           (+ (* i01 i0) (* i1 i01)))))
+
+
+    (: (* i01 i0) (= (* i0 i0) (* i1 i0)))
+    (: (* i1 i01) (= (* i1 i0) (* i1 i1)))
+    (: (* i01 i1) (= (* i0 i1) (* i1 i1)))
+    (: (* i0 i01) (= (* i0 i0) (* i0 i1)))
+    (: (* i01 i01) (= (+ (* i01 i0) (* i1 i01))
+                      (+ (* i01 i1) (* i0 i01))))
+
+
+    (note A function of type (-> (* I I) X)
+          can be defined as follow)
+
+    (define f
+      (lambda (-> (* I I) X)
+        (with (-> (* (-1 I) (-1 I)) (-1 X))
+          (-> (* i0 i0) ...)
+          (-> (* i0 i1) ...)
+          (-> (* i1 i0) ...)
+          (-> (* i1 i1) ...))
+        (with (-> (* (0 i0 i1) (-1 I) %:i)
+                  (0 (* i0 :i) <>
+                     (* i1 :i) <>))
+          (-> (* (1 i01) i0) ...)
+          (-> (* (1 i01) i1) ...))
+        (with (-> (* (-1 I) %:i (0 i0 i1))
+                  (0 (* :i i0) <>
+                     (* :i i1) <>))
+          (-> (* i0 (1 i01)) ...)
+          (-> (* i1 (1 i01)) ...))
+        (with (-> (* (0 i0 i1) %:p0
+                     (0 i0 i1) %:p1)
+                  (1 (* (1 :p0) i0) <>
+                     (* i1 (1 :p1)) <>
+                     (* (1 :p0) i1) <> rev
+                     (* i0 (1 :p1)) <> rev))
+          (-> (* (1 i01) (1 i01)) ...))))
+
+    (define f
+      (lambda (-> (* I I) X)
+        (with (-> (* (-1 I) (-1 I)) (-1 X))
+          (-> (* i0 i0) ...)
+          (-> (* i0 i1) ...)
+          (-> (* i1 i0) ...)
+          (-> (* i1 i1) ...))
+        (with (-> (* (= i0 i1) (-1 I) %:i)
+                  (= (+ (* i0 :i) <>)
+                     (+ (* i1 :i) <>)))
+          (-> (* i01 i0) ...)
+          (-> (* i01 i1) ...))
+        (with (-> (* (-1 I) %:i (= i0 i1))
+                  (= (+ (* :i i0) <>)
+                     (+ (* :i i1) <>)))
+          (-> (* i0 i01) ...)
+          (-> (* i1 i01) ...))
+        (with (-> (* (= i0 i1) %:p0
+                     (= i0 i1) %:p1)
+                  (= (+ (* :p0 i0) <>
+                        (* i1 :p1) <>)
+                     (+ (* :p0 i1) <>
+                        (* i0 :p1) <>)))
+          (-> (* i01 i01) ...))))
+    #+end_src
+
+*** note
+
+    - x -
+      1. 元素和元素的乘積 記以 (* a b)
+      2. 乘積的邊界公式爲 (+ (* [a boundary] b) (* a [b boundary]))
+      3. [a boundary] 是一個等式 而 b 是一個 chain
+
+      因此我們需要 等式 與 chain 相 product
+      但是如果簡單地把 (* ...) 分配給等式的兩邊
+      所得到的等式就不滿足等式的條件了
+
+    - k -
+      所以邊界公式是錯誤的
+      正確的格式應該是 (: (* a b) (= (+ ...) (+ ...)))
+      但是我們不能直接用 [a boundary]
+      而應該有函數[或語法]來取 [a boundary] 的等式的左右兩邊
+
+    - x -
       #+begin_src scheme
-      (= [(* a b) boundary] (+ (* a boundary b) (* a b boundary)))
-      ;; or
-      (: (* a b) (+ (* a boundary b) (* a b boundary)))
+      (: (* a b) (= (+ (* (lhs a) b) (* a (rhs b)))
+                    (+ (* a (lhs b)) (* (rhs a) b))))
+      ;; thus
+      (: (* i01 i01)
+         (= (+ (* (lhs i01) i01) (* i01 (rhs i01)))
+            (+ (* i01 (lhs i01)) (* (rhs i01) i01)))
+         (= (+ (* i0 i01) (* i01 i1))
+            (+ (* i01 i0) (* i1 i01))))
       #+end_src
 
-    - Note that, in the rule above,
-      (+ ...) is implicit about how to view the resulting shape.
-      I do not know the general explict rule yet.
+      但是
+      與其說這是一個一般的邊界公式
+      不如說這是專門描述 (* i01 i01) 的邊界的
 
-    - The interval is defined as follow
+    - k -
       #+begin_src scheme
-      (define I
-        (type space
-          (: [i0, i1] (-1 <>))
-          (: i01 (0 i0 i1))))
+      (: (* (* i01 i01) i01)
+         (= (+ (* (lhs (* i01 i01)) i01) (* (* i01 i01) (rhs i01)))
+            (+ (* (* i01 i01) (lhs i01)) (* (rhs (* i01 i01)) i01)))
+         (= (+ (* (+ (* i0 i01) (* i01 i1)) i01) (* (* i01 i01) i1))
+            (+ (* (* i01 i01) i0) (* (+ (* i01 i0) (* i1 i01)) i01)))
+         (= (+ (* i0 i01 i01) (* i01 i1 i01) (* i01 i01 i1))
+            (+ (* i01 i01 i0) (* i01 i0 i01) (* i1 i01 i01))))
+
+      (: (* i01 (* i01 i01))
+         (= (+ (* (lhs i01) (* i01 i01)) (* i01 (rhs (* i01 i01))))
+            (+ (* i01 (lhs (* i01 i01))) (* (rhs i01) (* i01 i01))))
+         (= (+ (* i0 (* i01 i01)) (* i01 (+ (* i01 i0) (* i1 i01))))
+            (+ (* i01 (+ (* i0 i01) (* i01 i1))) (* i1 (* i01 i01))))
+         (= (+ (* i0 i01 i01) (* i01 i01 i0) (* i01 i1 i01))
+            (+ (* i01 i0 i01) (* i01 i01 i1) (* i1 i01 i01)))
+         ;; different from
+         (= (+ (* i0 i01 i01) (* i01 i1 i01) (* i01 i01 i1))
+            (+ (* i01 i01 i0) (* i01 i0 i01) (* i1 i01 i01))))
+      ;; thus (* ...) is not associative
       #+end_src
 
-      Taking the interval as an example,
-      the rule for construction are
-      #+begin_src scheme
-      (: (* i01 i0) (0 (* i0 i0) (* i1 i0)))
-      (: (* i1 i01) (0 (* i1 i0) (* i1 i1)))
-      (: (* i01 i1) (0 (* i0 i1) (* i1 i1)))
-      (: (* i0 i01) (0 (* i0 i0) (* i0 i1)))
-      (: (* i01 i01) (1 (* i01 i0) (* i1 i01)
-                        (* i01 i1) rev  (* i0 i01) rev))
-      #+end_src
+    - x -
+      我們需要仔細對比 (* (* I I) I) 與 (* I (* I I))
+      因爲上面的二階 (+ ...) 中沒有二階元素相乘細節
 
-    - A function of type (-> (* I I) X)
-      can be defined as follow
-      #+begin_src scheme
-      (define f
-        (lambda (-> (* I I) X)
-          (with (-> (* (-1 I) (-1 I)) (-1 X))
-            (-> (* i0 i0) ...)
-            (-> (* i0 i1) ...)
-            (-> (* i1 i0) ...)
-            (-> (* i1 i1) ...))
-          (with (-> (* (0 i0 i1) (-1 I) %:i)
-                    (0 (* i0 :i) <>
-                       (* i1 :i) <>))
-            (-> (* (1 i01) i0) ...)
-            (-> (* (1 i01) i1) ...))
-          (with (-> (* (-1 I) %:i (0 i0 i1))
-                    (0 (* :i i0) <>
-                       (* :i i1) <>))
-            (-> (* i0 (1 i01)) ...)
-            (-> (* i1 (1 i01)) ...))
-          (with (-> (* (0 i0 i1) %:p0
-                       (0 i0 i1) %:p1)
-                    (1 (* (1 :p0) i0) <>
-                       (* i1 (1 :p1)) <>
-                       (* (1 :p0) i1) <> rev
-                       (* i0 (1 :p1)) <> rev))
-            (-> (* (1 i01) (1 i01)) ...))))
-      #+end_src
+      也許這種語法是不對的
+      也許我的想法錯了
+
+      但是
+      想象一下這樣一個語言
+      它可以用來描述拓撲空間
+      可以把這些空間當成數據來處理
+      可以把這些空間當成類型而取其中的元素
+      等等
+      我不可能放棄這樣一個語言
+
+    - k -
+      但是沒有 (+ ...) 的細節是不行的
+      對於一階元素可以 但是對於二階元素不行
+      想要得到一個一般的乘積元素的邊界規則
+      我們就要生成 (+ ...) 的細節
 
 *** extension-problem
 
@@ -1373,7 +1469,7 @@
         ...)
       #+end_src
 
-* 二維空間之間的映射的例子
+* (old) 二維空間之間的映射的例子
 
 *** (~~ bool-suspend sphere-1)
 
@@ -1407,6 +1503,234 @@
           (-> b n))
         (with (-> (0 b b) (0 n n))
           (-> (1 loop) (1 #f m #t m rev)))))
+
+    (note
+      [g f] is already id of sphere-1)
+
+    (define [g f]
+      (lambda (-> sphere-1 sphere-1)
+        (with (-> (-1 sphere-1) (-1 sphere-1))
+          (-> b b))
+        (with (-> (0 b b) (0 b b))
+          (-> (1 loop) (1 loop)))))
+
+    (define [f g]
+      (lambda (-> bool-suspend bool-suspend)
+        (with (-> (-1 bool-suspend) (-1 bool-suspend))
+          (-> n n)
+          (-> s n))
+        (with (-> (0 n s) (0 n n))
+          (-> (1 #f m) (1 #f m #t m rev))
+          (-> (1 #t m) (1 n refl)))))
+
+    (note
+      'h' is to proof (~ [f g] [bool-suspend id]))
+
+    (define h
+      (lambda (-> (* bool-suspend I) bool-suspend)
+        (extend-from
+          (lambda  (-> (* bool-suspend (-1 I)) bool-suspend)
+            (-> (* :x i0) [:x f g])
+            (-> (* :x i1) :x)))
+        (with (-> (* (-1 bool-suspend) %:a (0 i0 i1))
+                  (0 (* :a i0) <> (* :a i1) <>))
+          (-> (* n (1 i01)) (1 n refl)
+              (:> (0 n n)))
+          (-> (* s (1 i01)) (1 #t m)
+              (:> (0 n s))))
+        (with (-> (* (0 n s) %:b (0 i0 i1) %:i)
+                  (1 (* :b i0) <> (* s :i) <>
+                     (* :b i1) <> rev (* n :i) <> rev))
+          (-> (* (1 #f m) (1 i01)) (2)
+              (:> (1 (1 #f m #t m rev) (1 #t m)
+                     (1 #f m) rev (1 n refl) rev)))
+          (-> (* (1 #t m) (1 i01)) (2)
+              (:> (1 (1 n refl) (1 #t m)
+                     (1 #t m) rev (1 n refl) rev))))))
+    #+end_src
+
+*** (~~ bool-suspend-suspend sphere-2)
+
+    #+begin_src scheme
+    (define sphere-2
+      (type space
+        (: b2 (-1 <>))
+        (: surf (1 b2 refl))))
+
+    (define bool-suspend-suspend
+      (type space
+        (: [n2, s2] (-1 <>))
+        (: m2 (-> bool-suspend (0 n2 s2)))))
+
+    (: [n m2] (0 n2 s2))
+    (: [s m2] (0 n2 s2))
+    (: [#f m m2] (1 n m2 s m2 rev))
+    (: [#t m m2] (1 n m2 s m2 rev))
+
+    (define f
+      (lambda (-> bool-suspend-suspend sphere-2)
+        (with (-> (-1 bool-suspend-suspend) (-1 sphere-2))
+          (-> n2 b2)
+          (-> s2 b2))
+        (with (-> (0 n2 s2) (0 b2 b2))
+          (-> (1 n m2) (1 b2 refl))
+          (-> (1 s m2) (1 b2 refl)))
+        (with (-> (1 n m2 s m2 rev) (1 b2 refl))
+          (-> (2 #f m m2) (2 surf))
+          (-> (2 #t m m2) (2 b2 refl refl)))))
+
+    (define g
+      (lambda (-> sphere-2 bool-suspend-suspend)
+        (with (-> (-1 sphere-2) (-1 bool-suspend-suspend))
+          (-> b2 n2))
+        (with (-> (1 b2 refl) (1 n2 refl))
+          (-> (2 surf) (2 #f m m2 (1 n m2 s m2 rev) as-remained-boundary
+                          #t m m2 (1) as-remained-boundary)))))
+
+    (define [g f]
+      (lambda (-> sphere-2 sphere-2)
+        (with (-> (-1 sphere-2) (-1 sphere-2))
+          (-> b2 b2))
+        (with (-> (1 b2 refl) (1 b2 refl))
+          (-> (2 surf) (2 surf)))))
+
+    (note
+      (2 surf)
+      g =>
+      (2 #f m m2 (1 n m2 s m2 rev) as-remained-boundary
+         #t m m2 (1) as-remained-boundary)
+      f =>
+      (2 (2 surf) (1 (1 b2 refl) (1 b2 refl) rev) as-remained-boundary
+         (2 b2 refl refl) (1) as-remained-boundary)
+      ==
+      (2 surf))
+
+    (define [f g]
+      (lambda (-> bool-suspend-suspend bool-suspend-suspend)
+        (with (-> (-1 bool-suspend-suspend) (-1 bool-suspend-suspend))
+          (-> n2 n2)
+          (-> s2 n2))
+        (with (-> (0 n2 s2) (0 n2 n2))
+          (-> (1 n m2) (1 n2 refl))
+          (-> (1 s m2) (1 n2 refl)))
+        (with (-> (1 n m2 s m2 rev) (1 n2 refl))
+          (-> (2 #f m m2) (2 #f m m2 (1 n m2 s m2 rev) as-remained-boundary
+                             #t m m2 (1) as-remained-boundary))
+          (-> (2 #t m m2) (2 n2 refl refl)))))
+
+    (note
+      'h' is to proof (~ [f g] [bool-suspend-suspend id]))
+
+    (define h
+      (lambda (-> (* bool-suspend-suspend I) bool-suspend-suspend)
+        (extend-from
+          (lambda (-> (* bool-suspend-suspend (-1 I)) bool-suspend-suspend)
+            (-> (* :x i0) (* [:x f g]))
+            (-> (* :x i1) (* :x))))
+        (with (-> (* (-1 bool-suspend-suspend) %:a (0 i0 i1))
+                  (0 (* :a i0) <> (* :a i1) <>))
+          (-> (* n2 (1 i01)) (1 n2 refl)
+              (:> (0 n2 n2))
+              (note
+                an alternative might be :: (1 n m2 s m2 rev)))
+          (-> (* s2 (1 i01)) (1 s m2)
+              (:> (0 n2 s2))
+              (note
+                an alternative might be :: (1 n m2))))
+        (with (-> (* (0 n2 s2) %:b (0 i0 i1) %:i)
+                  (1 (* (1 :b) i0) <> (* s2 (1 :i)) <>
+                     (* (1 :b) i1) <> rev (* n2 (1 :i)) <> rev))
+          (-> (* (1 n m2) (1 i01)) (2 #t m m2)
+              (:> (1 (1 n2 refl) (1 s m2)
+                     (1 n m2) rev (1 n2 refl) rev)
+                  (1 (1 s m2) (1 n m2) rev)))
+          (-> (* (1 s m2) (1 i01)) (2)
+              (:> (1 (1 n2 refl) (1 s m2)
+                     (1 s m2) rev (1 n2 refl) rev)
+                  (1 (1 s m2)
+                     (1 s m2) rev)
+                  (1)))      )
+        (with (-> (* (1 n m2 s m2 rev) %:c (0 i0 i1) %:i)
+                  (2 (* (1 n m2) (1 :i)) <>
+                     (1 (* n2 (1 i01)) <>
+                        (* (1 n m2) i1) <>
+                        (* s2 (1 i01)) <> rev
+                        (* (1 n m2) i0) <> rev)
+                     as-remained-boundary
+                     (* (1 s m2) (1 :i)) <>
+                     (1 (* (1 n m2) i1) <>
+                        (* (1 n m2) i0) <> rev
+                        (* (1 s m2) i1) <> rev
+                        (* (1 s m2) i0) <>)
+                     as-remained-boundary
+                     (* (2 :c) i0) <>
+                     (1 (* (1 n m2) i1) <>
+                        (* (1 s m2) i1) <> rev)
+                     as-remained-boundary
+                     (* (2 :c) i1) <>
+                     (1) as-remained-boundary))
+          (-> (* (2 #f m m2) (1 i01)) (3)
+              (:> (2 (2 #t m m2)
+                     (1 (1 n2 refl)
+                        (1 n m2)
+                        (1 s m2) rev
+                        (1 n2 refl) rev)
+                     as-remained-boundary
+                     (2)
+                     (1 (1 n m2)
+                        (1 n2 refl) rev
+                        (1 s m2) rev
+                        (1 n2 refl) rev)
+                     as-remained-boundary
+                     (2 #f m m2 (1 n m2 s m2 rev)
+                        #t m m2 (1))
+                     (1 (1 n m2)
+                        (1 s m2) rev)
+                     as-remained-boundary
+                     (2 #f m m2)
+                     (1) as-remained-boundary)))
+          (-> (* (2 #t m m2) (1 i01)) (3)
+              (:> (2 (2 #t m m2)
+                     (2)
+                     (2 n2 refl refl)
+                     (2 #t m m2)
+                     (1) as-final-boundary))))))
+    #+end_src
+
+* 二維空間之間的映射的例子
+
+*** (~~ bool-suspend sphere-1)
+
+    #+begin_src scheme
+    (define sphere-1
+      (type space
+        (: b <>)
+        (: loop (= b b))))
+
+    (define bool
+      (type space
+        (: #f #t <>)))
+
+    (define bool-suspend
+      (type space
+        (: n s <>)
+        (: m (-> bool (= n s)))))
+
+    (define f
+      (lambda (-> bool-suspend sphere-1)
+        (with (-> (-1 bool-suspend) (-1 sphere-1))
+          (-> n b)
+          (-> s b))
+        (with (-> (= n s) (= b b))
+          (-> (+ #f m) loop)
+          (-> (+ #t m) (+ b refl)))))
+
+    (define g
+      (lambda (-> sphere-1 bool-suspend)
+        (with (-> (-1 sphere-1) (-1 bool-suspend))
+          (-> b n))
+        (with (-> (= b b) (= n n))
+          (-> loop (+ #f m (- #t m))))))
 
     (note
       [g f] is already id of sphere-1)
