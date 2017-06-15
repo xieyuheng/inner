@@ -5,6 +5,314 @@
 - author :
   XIE Yuheng
 
+* old
+
+*** simple-space
+
+    - In a language, we always have primitive elements,
+      and many ways to compose elements to new compound element,
+      also many ways to derive new element from old one.
+
+    - Here, I describe a simple way to construct spaces,
+      so constructed spaces will be called simple-spaces,
+      which constitute the first kind of primitive space in my language.
+
+      Before having other ways to construct spaces,
+      I will simply call them 'space' instead of 'simple-space'.
+
+      - In algebraic topology,
+        our simple-space is called
+        CW-complex, cell-complex or cellular polytopes.
+
+    - A space is constructed part by part.
+
+    - A part is of certain dimension.
+
+      | dim | name     |
+      |-----+----------|
+      |   0 | point    |
+      |   1 | interval |
+      |   2 | disk     |
+      |   3 | ball     |
+      |   4 | 4-cell   |
+      |   n | n-cell   |
+
+    - The way to construct a space from parts,
+      goes from low dimension to high dimension,
+      by attaching the boundary of a n-cell,
+      to a (n-1)-sphere in the space.
+
+      Our principle here is 'construction by attaching boundary'.
+
+    - As an example, let us construct a [solid] tetrahedron.
+
+      - [advice for reader]
+        Draw a picture by yourself, when trying to follow
+        my formal description.
+
+        And imagining how such picture can be dynamicly
+        and automaticly drawn by a drawer that
+        accompanies the main interpreter of the language.
+
+      - In 0 dimension,
+
+        we name all the points of the space.
+
+        #+begin_src scheme
+        (type space
+          (: [a1, a2, a3, a4] (-1 <>)))
+        #+end_src
+
+      - In 1 dimension,
+
+        we name all the intervals of the space,
+
+        and for each interval,
+        we attach its two end points to two points of the space
+        [the two points of the space might be the same point],
+
+        so that the boundary of the interval
+        can be viewed as two points of the space.
+
+        #+begin_src scheme
+        (type space
+          (: [a1, a2, a3, a4] (-1 <>))
+          (: b12 (0 a1 a2))
+          (: b13 (0 a1 a3))
+          (: b14 (0 a1 a4))
+          (: b23 (0 a2 a3))
+          (: b24 (0 a2 a4))
+          (: b34 (0 a3 a4)))
+        #+end_src
+
+        For example, the boundary of 'b12' are 'a1' and 'a2',
+        the boundary of 'b13' are 'a1' and 'a3'.
+
+        One can view 'b12' as a directed path pointing from 'a1' to 'a2',
+        and 'b13' as a directed path pointing form 'a1' to 'a3'.
+
+        We write the two points in the keyword '(0 ...)',
+        and the order matters.
+
+        Since, 'b12' and 'b13' have a common boundary -- 'a1',
+        we view 'b12' and 'b13' as glued together by the common boundary.
+
+        Our principle here is 'gluing by named common boundary'.
+
+      - In 2 dimension,
+
+        we name all the disk of the space,
+
+        and for each disk,
+        we attach its boundary circle to a circle in the space.
+
+        #+begin_src scheme
+        (type space
+          (: [a1, a2, a3, a4] (-1 <>))
+          (: b12 (0 a1 a2))
+          (: b13 (0 a1 a3))
+          (: b14 (0 a1 a4))
+          (: b23 (0 a2 a3))
+          (: b24 (0 a2 a4))
+          (: b34 (0 a3 a4))
+          (: c123 (1 b12 b23 b13 rev))
+          (: c124 (1 b12 b24 b14 rev))
+          (: c134 (1 b13 b34 b14 rev))
+          (: c234 (1 b23 b34 b24 rev)))
+        #+end_src
+
+        I use the keyword '(1 ...)' to specify path in the space.
+
+        For example, '(1 b12 b23)' denotes
+        the path which goes through 'b12' forwardly and 'b23' forwardly.
+
+        In the keyword '(1 ...)',
+        the right end point of one interval must matches
+        the left end point of the next interval.
+
+        And '(1 b12 b23 b13 rev)' denotes the path which
+        goes through 'b12' forwardly, 'b23' forwardly, and 'b13' backwardly.
+
+        The boundary of 'c123' is attached to the circle '(1 b12 b23 b13 rev)'.
+
+        We check whether a path is a circle,
+        by checking whether the left end point of the first interval,
+        is equal to the right end point of the last interval,
+        i.e. whether the path is closed.
+
+      - In 3 dimension,
+
+        we name all the ball of the space,
+
+        and for each ball,
+        we attach its boundary sphere to a sphere in the space.
+
+        #+begin_src scheme
+        (type space
+          (: [a1, a2, a3, a4] (-1 <>))
+          (: b12 (0 a1 a2))
+          (: b13 (0 a1 a3))
+          (: b14 (0 a1 a4))
+          (: b23 (0 a2 a3))
+          (: b24 (0 a2 a4))
+          (: b34 (0 a3 a4))
+          (: c123 (1 b12 b23 b13 rev))
+          (: c124 (1 b12 b24 b14 rev))
+          (: c134 (1 b13 b34 b14 rev))
+          (: c234 (1 b23 b34 b24 rev))
+          (: d1234 (2 c123
+                      c124 (1 b14 b24 rev b23 b13 rev) as-remained-boundary
+                      c134 (1 b34 b24 rev b23) as-remained-boundary
+                      c234 (1) as-remained-boundary)))
+        #+end_src
+
+        I use the keyword '(2 ...)' to specify polygons in the space.
+        Note that, a polygon might be obtained by gluing many polygons together.
+
+        For example :
+        #+begin_src scheme
+        (2 c123)
+        ;; a polygon in a stack
+
+        (2 c123
+           c124)
+        ;; two polygons in the stack
+
+        (2 c123
+           c124 (1 b14 b24 rev b23 b13 rev))
+        ;; two polygons and a circle in the stack
+
+        (2 c123
+           c124 (1 b14 b24 rev b23 b13 rev) as-remained-boundary)
+        ;; 'as-remained-boundary' is a function,
+        ;;   which takes two polygons and a circle out from the stack,
+        ;;   try cancel out part of the common boundary of 'c123' and 'c124',
+        ;;   so that the remained boundary can be '(1 b14 b24 rev b23 b13 rev)'.
+        ;; if there are no way or more then one way to do this,
+        ;;   it reports to the user.
+        ;; if there is only one way to do this,
+        ;;   it puts a polygon back to the stack,
+        ;;   whose boundary is '(1 b14 b24 rev b23 b13 rev)'.
+        #+end_src
+
+        The boundary of 'd1234' is attached to the sphere :
+        #+begin_src scheme
+        (2 c123
+           c124 (1 b14 b24 rev b23 b13 rev) as-remained-boundary
+           c134 (1 b34 b24 rev b23) as-remained-boundary
+           c234 (1) as-remained-boundary)
+        #+end_src
+
+        We check whether a polygon is sphere [closed polygon],
+        by checking whether the polygon is
+        2-dimensional, closed, connected and orientable.
+
+        Note that, we can implement more functions like 'as-remained-boundary',
+        to help us get 2-dimensional polygons.
+
+    - Note that, syntax in (0 ...) (1 ...) (2 ...) are different,
+      but syntax in (2 ...) (3 ...) (4 ...) ... are similar.
+
+      - (0 ...) is special, in the sense that,
+        only two 0-dimensional points can occur in it.
+
+      - (1 ...) is special, in the sense that,
+        there is not explict functions, like 'as-remained-boundary' in it.
+
+      - [hesitation about syntax]
+        Should these three distinctions be unified ?
+        If these distinctions are really meaningful,
+        and ought not to be unified,
+        Should we design distinct syntaxes for them,
+        to maintain the distinctions,
+        instead of using the seemingly unified syntax ?
+
+    - Note that, 'as-remained-boundary' involves searching,
+      which makes the specification of part of the space implict,
+      such implicitness is need, for when the dimension gets higher,
+      the detail of high dimension information might be too complex
+      to use an explict method.
+
+    - [hesitation about cobordism]
+      Note that, not all closed spaces
+      can be boundary of a 1-dim higher space.
+      if two disjoint closed spaces, B1 and B2, are boundary of
+      1-dim higher space C, then C is the cobordism of B1 and B2,
+      classically expressed as (C; B1, B2),
+      where B1 and B2 are called cobordant.
+
+      Under what conditions, a closed space can be
+      the boundary of a 1-dim higher space ?
+      This question should be thoroughly understood,
+      before developing the formal semantics of the language.
+
+    - [summary of principles]
+      - [principle 1] construction by attaching boundary
+      - [principle 2] gluing by named common boundary
+
+*** >< indexed-space
+
+    - When defining a space, parts of it can be indexed
+      by parts of another space.
+      Such a named indexing of parts is called an index,
+      which is also a subspace of the larger space.
+
+    - Note that,
+      if the indexing is to be viewed as a map,
+      it would be a level-up map.
+
+    - rule for indexed space [? cellular]
+
+    - 'I' indexed by a space,
+      is the suspension of the space.
+
+    - While 'I' is 1-cell,
+      how about 2-cell 3-cell and n-cell ?
+      how about continuum other then n-cell ?
+      note that, n-cell indexed by a space 'A',
+      is specified by (-> A [n-cell boundary])
+
+*** >< fiber-space
+
+    - To view product-space as special fiber-space,
+      for which a gluing pattern is given.
+
+    - After a construction of a fiber-bundle,
+      we can proof the total-space is equal to another space,
+      and by doing so, we get a level-down map from the space to the base-space.
+
+    - A level-down map can only be achieved by means of fiber-bundle.
+
+*** >< lifting-problem
+
+    - A lifting-problem is expressed for a [?] on a fiber-space.
+
+    - [lifting-problem and cross-section-problem]
+      cross-section-problem can be viewed as
+      lifting a subspace [instead of function] of the base-space,
+      or just lifting the base-space itself [i.e. global cross-section].
+
+*** >< homotopy theory
+
+    - x -
+      homotopy group 被定義爲帶有代數結構的 mapping-space
+      但是 對我們來說
+      我們可以直接說它是 combinatorial group theory
+
+    - k -
+      也許 mapping-space 是必要的
+      考慮高維的情形就知道了
+
+    - x -
+      不想用 mapping-space
+      是因爲與 combinatorial theory 相比
+      這種空間的生成元和關係不明顯
+
+    - k -
+      我們可以考慮 在低維的情形
+      mapping-space 的代數結構如何獲得生成元與關係
+      然後再推廣到高維
+
 * todo
 
 *** 编码问题
@@ -126,16 +434,6 @@
 
 *** 嘗試以形式化的方式描述 covering-space 與 universal-covering-space
 
-*** 找到一個合適的講解 simplicial-complex 的 homology theory 的方法
-
-    - 從古典的作者入手
-      max newman
-      james alexander
-      j h c whitehead
-
-    - to generalize homology theory
-      from simplicial-complex to polyhedron-complex
-
 * note
 
 *** intro
@@ -213,12 +511,6 @@
     - [generator 的複合 就是 等式的融合]
       disk 與 ball 在 glue 下形成 二階或者三階 chain
       這種 glue 記錄了 一階或二階等式之間的融合 [或者形成等式組]
-      - 在爲這種記錄設計語法時
-        需要能夠表達 移項 這種對等式的變換
-        移項 可以把等式化爲更好看的形式
-      - 更重要的是
-        還要有語法來表達 兩個等式之間 就某個元素的代入
-        代入之後 兩個等式將被融合爲一個等式
 
     - [語法難點]
       假設我們的語法是線性的
@@ -253,7 +545,7 @@
       每個元素本身都蘊含着一個平凡的等式
       那就是 其與自身相等
 
-*** 高階代數結構的同臺定理
+*** 高階代數結構
 
     - x -
       不用過多地考慮古典的 hauptvermutung
@@ -306,20 +598,6 @@
 
     - k -
       我們還需要考慮如何定義函數空間之間的等價關係
-
-    - x -
-      某個函數空間可以看成是
-      限制對 chain 所施行的代數操作
-      這類似於羣的同態定理
-
-      考慮羣同態 (: f (-> G1 G2))
-      (~~ (/ G1 (ker f)) (img f))
-
-      考慮連續函數 (: f (-> A B))
-      它被理解爲 B 中的 chain
-      但是 A 的形式限制了 chain 的性質
-      並且 (ker f) 是 A 中那些被放棄不用的 對 chain 的限制
-      [有很多的限制方式 但是我放棄使用其中一些]
 
     - x -
       如果我能找到一個高階代數結構之間的等價關係
@@ -899,19 +1177,429 @@
                        (= (+ b02 b23) (+ b01 b13)))))))))
     #+end_src
 
-* 映射
+* ><><>< map, product-space, equivalent between maps
 
-  - 兩個空間 A B 之間的映射可以被理解爲
-    B 中的一組 chain
-    其中每個 chain 被 A 中的生成子命名
-    並且生成子的邊界給 B 中的這一組 chain 的選取加以了限制
+*** map and continuity-check
 
-  - 也可以被理解 aristotle 對連續體的解釋
+    - A map between space 'A' and 'B', is of type '(-> A B)'.
+      The simplest kind of map,
+      will map n-dim parts of 'A' to n-dim parts of 'B',
+      I call this kind of map 'level-same' map.
 
-  - 映射的複合
-    ><><><
+    - Thus, we must distinguish following different kinds of maps :
+      - level-same
+      - level-diff
+        - level-up
+        - level-down
+
+    - I do not know what rules should be established
+      to handle level-diff map properly yet.
+
+    - For level-same maps, the rule for continuity-check is simple.
+      Suppose we have map (: f (-> A B)),
+      and 'p' is a n-dim part of 'A'.
+
+      continuity-check is simply
+      #+begin_src scheme
+      (= [p f boundary] [p boundary f])
+      ;; or
+      (: [p f] [p boundary f])
+      #+end_src
+
+      i.e. how the boundary of 'p' is mapped to 'B' by 'f',
+      will constrain how 'p' can be mapped to 'B' by 'f'.
+
+    - Since a map has many levels.
+
+    - 兩個空間 A B 之間的映射可以被理解爲
+      B 中的一組 chain
+      其中每個 chain 被 A 中的生成子命名
+      並且生成子的邊界給 B 中的這一組 chain 的選取加以了限制
+
+    - 也可以被理解 aristotle 對連續體的解釋
+
+    - 映射的複合
+      ><><><
+
+    - 映射是一个 limited chain
+      映射之間的同倫是 等式對 limited chain 的轉寫
+
+    - x -
+      某個函數可以看成是
+      限制對 chain 所施行的代數操作
+      這類似於羣的同態定理
+
+      考慮羣同態 (: f (-> G1 G2))
+      (~~ (/ G1 (ker f)) (img f))
+
+      考慮連續函數 (: f (-> A B))
+      它被理解爲 B 中的 chain
+      但是 A 的形式限制了 chain 的性質
+      並且 (ker f) 是 A 中那些被放棄不用的 對 chain 的限制
+      [有很多的限制方式 但是我放棄使用其中一些]
+
+*** product-space
+
+    - The first kind of primitive space is simple-space defined above,
+      while the first kind of compound space is product-space.
+
+    - There can be many ways by which we can compose new spaces,
+      each of such way must shows
+      1. what are the parts of the space ?
+      2. what are the boundarys of the parts ?
+
+    - The rule of product-space
+      #+begin_src scheme
+      (= [(* a b) boundary] (+ (* a boundary b) (* a b boundary)))
+      ;; or
+      (: (* a b) (+ (* a boundary b) (* a b boundary)))
+      #+end_src
+
+    - Note that, in the rule above,
+      (+ ...) is implicit about how to view the resulting shape.
+      I do not know the general explict rule yet.
+
+    - The interval is defined as follow
+      #+begin_src scheme
+      (define I
+        (type space
+          (: [i0, i1] (-1 <>))
+          (: i01 (0 i0 i1))))
+      #+end_src
+
+      Taking the interval as an example,
+      the rule for construction are
+      #+begin_src scheme
+      (: (* i01 i0) (0 (* i0 i0) (* i1 i0)))
+      (: (* i1 i01) (0 (* i1 i0) (* i1 i1)))
+      (: (* i01 i1) (0 (* i0 i1) (* i1 i1)))
+      (: (* i0 i01) (0 (* i0 i0) (* i0 i1)))
+      (: (* i01 i01) (1 (* i01 i0) (* i1 i01)
+                        (* i01 i1) rev  (* i0 i01) rev))
+      #+end_src
+
+    - A function of type (-> (* I I) X)
+      can be defined as follow
+      #+begin_src scheme
+      (define f
+        (lambda (-> (* I I) X)
+          (with (-> (* (-1 I) (-1 I)) (-1 X))
+            (-> (* i0 i0) ...)
+            (-> (* i0 i1) ...)
+            (-> (* i1 i0) ...)
+            (-> (* i1 i1) ...))
+          (with (-> (* (0 i0 i1) (-1 I) %:i)
+                    (0 (* i0 :i) <>
+                       (* i1 :i) <>))
+            (-> (* (1 i01) i0) ...)
+            (-> (* (1 i01) i1) ...))
+          (with (-> (* (-1 I) %:i (0 i0 i1))
+                    (0 (* :i i0) <>
+                       (* :i i1) <>))
+            (-> (* i0 (1 i01)) ...)
+            (-> (* i1 (1 i01)) ...))
+          (with (-> (* (0 i0 i1) %:p0
+                       (0 i0 i1) %:p1)
+                    (1 (* (1 :p0) i0) <>
+                       (* i1 (1 :p1)) <>
+                       (* (1 :p0) i1) <> rev
+                       (* i0 (1 :p1)) <> rev))
+            (-> (* (1 i01) (1 i01)) ...))))
+      #+end_src
+
+*** extension-problem
+
+    - An extension-problem is expressed for a partial-map on a subspace.
+
+    - To solve an extension-problem
+      is to extend a partial map to a total-map step by step,
+      while maintain the continuity of the map.
+
+    - A partial-map is a map defined on subspace of a space.
+
+    - The subspace relation between spaces is encoded by parts.
+
+    - Suppose 'A' is a subspace of 'X'
+      the following is to extend a partial-map 'g'
+      to a total-map 'f'
+      #+begin_src scheme
+      (let ([g (lambda (-> A Y) ...)])
+        (define f
+          (lambda (-> X Y)
+            (extend-from g)
+            ...)))
+      #+end_src
+
+*** equality
+
+    - With product-space and extension-problem,
+      we can define equality between two functions
+      as the extension-problem for certain kind of product-space.
+
+    - Suppose (: [f0, f1] (-> A B)),
+      to proof (~ f0 f1),
+      we need to extend a partial-map of type (-> (* A I) B)
+      #+begin_src scheme
+      (let ([f0 (lambda (-> A B) ...)]
+            [f1 (lambda (-> A B) ...)])
+        (lambda (-> (* A I) B)
+          (extend-from
+            (lambda (-> (* A (list i0 i1)) B)
+              (-> (* :a i0) [:a f0])
+              (-> (* :a i1) [:a f1])))
+          ...))
+      #+end_src
+
+    - With the equality between functions,
+      we can define the equality between space.
+
+    - Suppose 'A' and 'B' are two spaces,
+      to proof (~~ A B),
+      is to find (: f (-> A B)) and (: g (-> B A))
+      and to proof (~ [f g] [A id]) and (~ [g f] [B id])
+      #+begin_src scheme
+      (lambda (-> (* A I) A)
+        (extend-from
+          (lambda (-> (* A (list i0 i1)) A)
+            (-> (* :a i0) [:a f g])
+            (-> (* :a i1) :a)))
+        ...)
+
+      (lambda (-> (* B I) B)
+        (extend-from
+          (lambda (-> (* B (list i0 i1)) B)
+            (-> (* :b i0) [:b g f])
+            (-> (* :b i1) :b)))
+        ...)
+      #+end_src
 
 * 二維空間之間的映射的例子
+
+*** (~~ bool-suspend sphere-1)
+
+    #+begin_src scheme
+    (define sphere-1
+      (type space
+        (: b (-1 <>))
+        (: loop (0 b b))))
+
+    (define bool
+      (type space
+        (: [#f, #t] (-1 <>))))
+
+    (define bool-suspend
+      (type space
+        (: [n, s] (-1 <>))
+        (: m (-> bool (0 n s)))))
+
+    (define f
+      (lambda (-> bool-suspend sphere-1)
+        (with (-> (-1 bool-suspend) (-1 sphere-1))
+          (-> n b)
+          (-> s b))
+        (with (-> (0 n s) (0 b b))
+          (-> (1 #f m) (1 loop))
+          (-> (1 #t m) (1 b refl)))))
+
+    (define g
+      (lambda (-> sphere-1 bool-suspend)
+        (with (-> (-1 sphere-1) (-1 bool-suspend))
+          (-> b n))
+        (with (-> (0 b b) (0 n n))
+          (-> (1 loop) (1 #f m #t m rev)))))
+
+    (note
+      [g f] is already id of sphere-1)
+
+    (define [g f]
+      (lambda (-> sphere-1 sphere-1)
+        (with (-> (-1 sphere-1) (-1 sphere-1))
+          (-> b b))
+        (with (-> (0 b b) (0 b b))
+          (-> (1 loop) (1 loop)))))
+
+    (define [f g]
+      (lambda (-> bool-suspend bool-suspend)
+        (with (-> (-1 bool-suspend) (-1 bool-suspend))
+          (-> n n)
+          (-> s n))
+        (with (-> (0 n s) (0 n n))
+          (-> (1 #f m) (1 #f m #t m rev))
+          (-> (1 #t m) (1 n refl)))))
+
+    (note
+      'h' is to proof (~ [f g] [bool-suspend id]))
+
+    (define h
+      (lambda (-> (* bool-suspend I) bool-suspend)
+        (extend-from
+          (lambda  (-> (* bool-suspend (-1 I)) bool-suspend)
+            (-> (* :x i0) [:x f g])
+            (-> (* :x i1) :x)))
+        (with (-> (* (-1 bool-suspend) %:a (0 i0 i1))
+                  (0 (* :a i0) <> (* :a i1) <>))
+          (-> (* n (1 i01)) (1 n refl)
+              (:> (0 n n)))
+          (-> (* s (1 i01)) (1 #t m)
+              (:> (0 n s))))
+        (with (-> (* (0 n s) %:b (0 i0 i1) %:i)
+                  (1 (* :b i0) <> (* s :i) <>
+                     (* :b i1) <> rev (* n :i) <> rev))
+          (-> (* (1 #f m) (1 i01)) (2)
+              (:> (1 (1 #f m #t m rev) (1 #t m)
+                     (1 #f m) rev (1 n refl) rev)))
+          (-> (* (1 #t m) (1 i01)) (2)
+              (:> (1 (1 n refl) (1 #t m)
+                     (1 #t m) rev (1 n refl) rev))))))
+    #+end_src
+
+*** (~~ bool-suspend-suspend sphere-2)
+
+    #+begin_src scheme
+    (define sphere-2
+      (type space
+        (: b2 (-1 <>))
+        (: surf (1 b2 refl))))
+
+    (define bool-suspend-suspend
+      (type space
+        (: [n2, s2] (-1 <>))
+        (: m2 (-> bool-suspend (0 n2 s2)))))
+
+    (: [n m2] (0 n2 s2))
+    (: [s m2] (0 n2 s2))
+    (: [#f m m2] (1 n m2 s m2 rev))
+    (: [#t m m2] (1 n m2 s m2 rev))
+
+    (define f
+      (lambda (-> bool-suspend-suspend sphere-2)
+        (with (-> (-1 bool-suspend-suspend) (-1 sphere-2))
+          (-> n2 b2)
+          (-> s2 b2))
+        (with (-> (0 n2 s2) (0 b2 b2))
+          (-> (1 n m2) (1 b2 refl))
+          (-> (1 s m2) (1 b2 refl)))
+        (with (-> (1 n m2 s m2 rev) (1 b2 refl))
+          (-> (2 #f m m2) (2 surf))
+          (-> (2 #t m m2) (2 b2 refl refl)))))
+
+    (define g
+      (lambda (-> sphere-2 bool-suspend-suspend)
+        (with (-> (-1 sphere-2) (-1 bool-suspend-suspend))
+          (-> b2 n2))
+        (with (-> (1 b2 refl) (1 n2 refl))
+          (-> (2 surf) (2 #f m m2 (1 n m2 s m2 rev) as-remained-boundary
+                          #t m m2 (1) as-remained-boundary)))))
+
+    (define [g f]
+      (lambda (-> sphere-2 sphere-2)
+        (with (-> (-1 sphere-2) (-1 sphere-2))
+          (-> b2 b2))
+        (with (-> (1 b2 refl) (1 b2 refl))
+          (-> (2 surf) (2 surf)))))
+
+    (note
+      (2 surf)
+      g =>
+      (2 #f m m2 (1 n m2 s m2 rev) as-remained-boundary
+         #t m m2 (1) as-remained-boundary)
+      f =>
+      (2 (2 surf) (1 (1 b2 refl) (1 b2 refl) rev) as-remained-boundary
+         (2 b2 refl refl) (1) as-remained-boundary)
+      ==
+      (2 surf))
+
+    (define [f g]
+      (lambda (-> bool-suspend-suspend bool-suspend-suspend)
+        (with (-> (-1 bool-suspend-suspend) (-1 bool-suspend-suspend))
+          (-> n2 n2)
+          (-> s2 n2))
+        (with (-> (0 n2 s2) (0 n2 n2))
+          (-> (1 n m2) (1 n2 refl))
+          (-> (1 s m2) (1 n2 refl)))
+        (with (-> (1 n m2 s m2 rev) (1 n2 refl))
+          (-> (2 #f m m2) (2 #f m m2 (1 n m2 s m2 rev) as-remained-boundary
+                             #t m m2 (1) as-remained-boundary))
+          (-> (2 #t m m2) (2 n2 refl refl)))))
+
+    (note
+      'h' is to proof (~ [f g] [bool-suspend-suspend id]))
+
+    (define h
+      (lambda (-> (* bool-suspend-suspend I) bool-suspend-suspend)
+        (extend-from
+          (lambda (-> (* bool-suspend-suspend (-1 I)) bool-suspend-suspend)
+            (-> (* :x i0) (* [:x f g]))
+            (-> (* :x i1) (* :x))))
+        (with (-> (* (-1 bool-suspend-suspend) %:a (0 i0 i1))
+                  (0 (* :a i0) <> (* :a i1) <>))
+          (-> (* n2 (1 i01)) (1 n2 refl)
+              (:> (0 n2 n2))
+              (note
+                an alternative might be :: (1 n m2 s m2 rev)))
+          (-> (* s2 (1 i01)) (1 s m2)
+              (:> (0 n2 s2))
+              (note
+                an alternative might be :: (1 n m2))))
+        (with (-> (* (0 n2 s2) %:b (0 i0 i1) %:i)
+                  (1 (* (1 :b) i0) <> (* s2 (1 :i)) <>
+                     (* (1 :b) i1) <> rev (* n2 (1 :i)) <> rev))
+          (-> (* (1 n m2) (1 i01)) (2 #t m m2)
+              (:> (1 (1 n2 refl) (1 s m2)
+                     (1 n m2) rev (1 n2 refl) rev)
+                  (1 (1 s m2) (1 n m2) rev)))
+          (-> (* (1 s m2) (1 i01)) (2)
+              (:> (1 (1 n2 refl) (1 s m2)
+                     (1 s m2) rev (1 n2 refl) rev)
+                  (1 (1 s m2)
+                     (1 s m2) rev)
+                  (1)))      )
+        (with (-> (* (1 n m2 s m2 rev) %:c (0 i0 i1) %:i)
+                  (2 (* (1 n m2) (1 :i)) <>
+                     (1 (* n2 (1 i01)) <>
+                        (* (1 n m2) i1) <>
+                        (* s2 (1 i01)) <> rev
+                        (* (1 n m2) i0) <> rev)
+                     as-remained-boundary
+                     (* (1 s m2) (1 :i)) <>
+                     (1 (* (1 n m2) i1) <>
+                        (* (1 n m2) i0) <> rev
+                        (* (1 s m2) i1) <> rev
+                        (* (1 s m2) i0) <>)
+                     as-remained-boundary
+                     (* (2 :c) i0) <>
+                     (1 (* (1 n m2) i1) <>
+                        (* (1 s m2) i1) <> rev)
+                     as-remained-boundary
+                     (* (2 :c) i1) <>
+                     (1) as-remained-boundary))
+          (-> (* (2 #f m m2) (1 i01)) (3)
+              (:> (2 (2 #t m m2)
+                     (1 (1 n2 refl)
+                        (1 n m2)
+                        (1 s m2) rev
+                        (1 n2 refl) rev)
+                     as-remained-boundary
+                     (2)
+                     (1 (1 n m2)
+                        (1 n2 refl) rev
+                        (1 s m2) rev
+                        (1 n2 refl) rev)
+                     as-remained-boundary
+                     (2 #f m m2 (1 n m2 s m2 rev)
+                        #t m m2 (1))
+                     (1 (1 n m2)
+                        (1 s m2) rev)
+                     as-remained-boundary
+                     (2 #f m m2)
+                     (1) as-remained-boundary)))
+          (-> (* (2 #t m m2) (1 i01)) (3)
+              (:> (2 (2 #t m m2)
+                     (2)
+                     (2 n2 refl refl)
+                     (2 #t m m2)
+                     (1) as-final-boundary))))))
+    #+end_src
 
 * 三維空間的例子
 
