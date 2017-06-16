@@ -131,3 +131,7 @@
 ***** 7.5 particle collisions
 
 *** appendix computational complexity
+
+* (1997) (joseph o'rourke) computational geometry in с
+
+  
