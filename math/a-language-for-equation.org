@@ -1,218 +1,17 @@
 - title :
   a language for equation
-  a generalization of fundamental group
-
-- author :
-  XIE Yuheng
+  a higher dimensional generalization of fundamental group
+  with homology group as its abelianization
 
 * todo
 
-*** combinatorial topology
+  - 總結 chain 之間的等價
+    chain 之間的等價關係在 continuity-check 中用到
+  - 總結化學類比
+  - 爲空間之間的等價設計語言
+    能夠描述 normalization theory
 
-    - x -
-      我們需要更經濟的語言來描述空間之間因爲公共細分而形成的同胚等價
-      而不能用兩個函數所給出的同倫等價
-
-      一個函數就足以建立空間之間的細分關係
-
-    ------
-
-    - x -
-      改变之前的观点
-      主要把空間視爲數據結構而非類型
-      這樣我們主要考慮的就是如何設計這些數據結構
-      還有圖形之間的各種等價關係
-      這樣我們就可以用語義來引導我們的設計
-
-    - k -
-      那么那些构造新空间的方式怎麼辦呢 ?
-      product-space 和 fiber-space
-
-*** 编码问题
-
-    - x -
-      在考虑粘合 polyhedron 的時候
-      可能就已經出現 編碼問題了
-      因爲此時 邊和面太多了
-
-*** 非交換的代數結構
-
-    - x -
-      whitehead 已經知道的那些空間的非交換的高階代數結構是什麼 ?
-      [cross-module]
-
-*** local-to-global
-
-    - x -
-      一個 local-to-global theorem 可以給我們靈活的計算方式
-      是否可以對高階代數結構形成 local-to-global theorem ?
-
-*** 語言的有效性
-
-    - 語言的有效性 還需要檢驗
-      1. 無窮空間
-      2. 三階空間
-         非自由二階代數結構
-         和自由三階代數結構
-      3. 要能夠表達二階曲面的分類定理
-      4. 要能夠表達 product-space 的 boundary-rule
-
-*** 一階的例子 與 covering-space
-
-    - x -
-      如果想給出非平凡的一階圖形的例子
-      那就一定要考慮無窮圖
-      此時無窮個點的生成子就類似於邊
-      無窮個邊的生成子就類似於面 [但是可能是不可逆的]
-      等等
-
-    - k -
-      我想對這些東西的表達很重要
-      在考慮這些之前去實現語言
-      就是 '過早優化' 了
-
-    - x -
-      還要考慮到 我們之前說過
-      covering-space 的編碼 能夠解決代數結構中元素的等價問題
-
-*** 之前的語言中對空間的同倫等價的證明
-
-    - x -
-      之前的設計中
-      爲了證明一些 subdivision 之間的等價
-      我們花費了很大篇幅的代碼
-      現在我們知道
-      這種等價關係也許不應該用空間之間的同倫等價的古典定義來處理
-
-    - k -
-      事實上 我們還是不知道應該如何處理空間之間的等價
-      subdivision 可以有代數解釋
-      它也可以看成是代數結構的細化
-
-    - x -
-      combinatorial topology 中用一些基本變換來定義空間之間的同倫等價
-      我們是否也應該採取這種定義方式呢 ?
-
-    - k -
-      首先來看 subdivision
-      我們知道
-      用一對函數來定義的倫等價
-      可以用來解釋 subdivision 所得到的空間之間的等價
-      這甚至不是同倫而是同胚
-
-    - x -
-      既然 subdivision 有代數解釋
-      函數所定義的等價 對 subdivision 的解釋
-      是否也有代數解釋呢 ?
-      即 用代數的觀點 來解釋之前的解釋
-
-    ------
-
-    - x -
-      我們不能迴避古典的用兩個函數定義空間之間的等價的方法
-      我們要試着給出解釋
-      subdivision 所給出的 空間之間的兩個函數是特殊的
-      其中一個函數是不降階的
-      也許這正是區分 同倫 和 同胚 的關鍵
-
-*** refl
-
-    - x -
-      我們還沒有考慮 (refl ...) 與一般元素的相乘問題
-
-    - k -
-      但是我們現在有了一個指導原則
-      那就是 chain 的語法 == 等式組變換的忠實記錄
-      在這個指導原則下
-      語法的設計應該輕鬆多了
-      在需要做決策的時候 我們可以使用這個原則
-
-*** 現在的語法是否已經足夠描述 product-space 的 boundary rule 了 ?
-
-    - fiber-space = dependent product-space
-
-*** 從低維低組合數開始
-
-    - 從低維低組合數開始
-      列舉 complex 與 manifold
-
-      給這些列舉以細分
-      使得能夠得到 simplicial-complex 而計算 homology group
-
-      對於 2-man 觀察 normalization
-      對於 3-man 嘗試 normalization
-
-      對於 2-man 觀察沒有 normalization 的條件下 獲得 universal-covering-space
-      對於 3-man 嘗試獲得 universal-covering-space
-
-*** 嘗試以形式化的方式描述 covering-space 與 universal-covering-space
-
-* old
-
-*** >< indexed-space
-
-    - When defining a space, parts of it can be indexed
-      by parts of another space.
-      Such a named indexing of parts is called an index,
-      which is also a subspace of the larger space.
-
-    - Note that,
-      if the indexing is to be viewed as a map,
-      it would be a level-up map.
-
-    - rule for indexed space [? cellular]
-
-    - 'I' indexed by a space,
-      is the suspension of the space.
-
-    - While 'I' is 1-cell,
-      how about 2-cell 3-cell and n-cell ?
-      how about continuum other then n-cell ?
-      note that, n-cell indexed by a space 'A',
-      is specified by (-> A [n-cell boundary])
-
-*** >< fiber-space
-
-    - To view product-space as special fiber-space,
-      for which a gluing pattern is given.
-
-    - After a construction of a fiber-bundle,
-      we can proof the total-space is equal to another space,
-      and by doing so, we get a level-down map from the space to the base-space.
-
-    - A level-down map can only be achieved by means of fiber-bundle.
-
-*** >< lifting-problem
-
-    - A lifting-problem is expressed for a [?] on a fiber-space.
-
-    - [lifting-problem and cross-section-problem]
-      cross-section-problem can be viewed as
-      lifting a subspace [instead of function] of the base-space,
-      or just lifting the base-space itself [i.e. global cross-section].
-
-*** >< homotopy theory
-
-    - x -
-      homotopy group 被定義爲帶有代數結構的 mapping-space
-      但是 對我們來說
-      我們可以直接說它是 combinatorial group theory
-
-    - k -
-      也許 mapping-space 是必要的
-      考慮高維的情形就知道了
-
-    - x -
-      不想用 mapping-space
-      是因爲與 combinatorial theory 相比
-      這種空間的生成元和關係不明顯
-
-    - k -
-      我們可以考慮 在低維的情形
-      mapping-space 的代數結構如何獲得生成元與關係
-      然後再推廣到高維
-
-* note
+* combinatorial topology
 
 *** intro
 
@@ -248,6 +47,343 @@
       relies on geometry;
       so will my higher algebraic structure relies on geometry.
 
+*** combinatorial topology
+
+    - x -
+      我們需要更經濟的語言來描述空間之間因爲公共細分而形成的同胚等價
+      而不能用兩個函數所給出的同倫等價
+
+      一個函數就足以建立空間之間的細分關係
+
+*** 語義 [三種等價變換]
+
+    - x -
+      改变之前的观点
+      主要把空間視爲數據結構而非類型
+
+      也許我們能更好地處理 product-space 和 fiber-space
+      這些構造新空間的方式
+
+      這樣我們主要考慮的就是如何設計這些數據結構
+      還有圖形之間的各種等價關係
+      這樣我們就可以用語義來引導我們的設計
+
+    - k -
+      可能只有考慮了數據結構如何設計之後
+      才能考慮等價關係
+
+    - 數據結構
+
+      - space
+        生成子的列表 和 生成子之間的邊界關係
+        實現 space
+        - 0 維 儲存點的名字
+        - 1 維 邊和邊的類型 (: b (= a0 a1))
+        - 2 維 面和面的邊界圓 (: c (= (+ ...) (+ ...)))
+        - 3 維 體和體的邊界球面 (: d (= (+ ...) (+ ...)))
+        其中 (+ ...) 都是 chain
+        因此空間之間的等價涉及到 chain 之間的等價
+
+        - subdivision 也用到 chain 之間的等價 ?
+
+      - chain
+        chain 的邊界是 equation
+        chain 本身詳細記錄獲得最終 equation 的等價變形過程
+        chain 中有一列元素 [生成子 或者 嵌套的 chain]
+
+        爲了 相鄰的兩個元素 類型相符 而複合
+        chain 中的每個元素還要輔以移項信息
+
+      - chain 的等價
+        模仿 combinatorial topology 中定義等價的方式
+        即 指定一系列變換
+        並聲明 能夠被這些變換相互轉化的 chain 被認爲是等價的
+
+        1. 高階元素對 chain 的轉寫
+           轉寫可以作用在 chain 的任何位置
+           轉寫並不改變 chain 的類型[chain 所記錄的最終等式]
+           - 高階元素包括了 由 refl 生成的平凡高階元素
+             這些高階元素對 chain 的轉寫是相鄰的互逆項的消去
+        2. 移項
+           移項會改變最終的等式
+           這與轉寫不同
+
+        如果這就是所有的變換
+        那麼 (+ c0 b1 refl) 與 c0 就是不相等的
+
+      - k -
+        這些變換所定義的等價 能夠被實現爲函數嗎 ?
+        (chain-equivalent ...)
+
+      - x -
+        這是高階代數中元素的字問題
+        需要用對 covering-space 的編碼來解決
+
+      ------
+
+      - x -
+        一個問題是
+        如果 在定義 chain 的等價關係的變換中
+        不加上 對 [b1 refl] 之類的元素 的任意添加與消去
+        而視 (+ c0 b1 refl) 與 c0 爲不等價
+        那麼 S1 就有非平凡的二階代數結構了
+
+      - k -
+        如果在變換中加上這點
+        那麼就獲得一種新的改變 chain 的類型的 chain 之間的等價變換
+        即 等式兩邊同時添加或消去相同的元素
+        - 這樣解釋 dehn-twist 與 恆等變換不同的方式
+          就不是看 chain 組中的二階元素了
+          而是看 chain 組中的一階元素
+          即 需要解釋 (+ b0 b1) 與 b0 之不等價
+
+      - x -
+        直覺上這也是合理的
+        考慮 '化學類比'
+        chain 是一個複合物
+        其中的每個元素 都能用來促成某種化學變化
+        chain 之爲複合物就是化學變化的複合
+
+        對 chain 的等價變換
+        1. 用高階元做轉寫
+           這是聲明的等價關係
+        2. 移項
+           這代表了化學反映可以沿着各個方向進行
+           只要改變催化物的角度就行了
+        3. 等式兩邊同時添加相同的元素
+           催化物不影響這些元素
+           反映前後這些元素都存在
+
+*** 化學類比
+
+    - x -
+      上面對 chain 之間的等價 進行了化學語言的類比
+      其他有待類比的概念 :
+      空間
+      映射
+      空間的細分
+
+    - k -
+      空間中的所有生成子都是物質
+      一階物質能夠催化零階物質的變化
+      二階物質能夠催化一階物質的變化 等等
+
+    - x -
+      空間的細分
+      就是這個空間所代表的物質的進一步分解
+
+      利用空間之間的細分來說明空間之間的等價
+      就是說 這兩類物質之間的關係是相同的
+
+      說空間 B 可以被看成是空間 A 的細分
+      這是用一個函數類描述的
+      (: f (subdivision (-> A B)))
+
+      也就是說
+      空間之間的函數和函數的性質
+      是用來描述空間之間的關係的
+
+      空間之間的關係
+      不在乎空間之中物質的名字
+      而在乎它們之間的反映關係
+
+*** 化學類比 continuity-check
+
+    - x -
+      此時尤其能夠看出 所謂 continuity-check
+      其實是數學結構之間的同態
+
+      使用化學類比的優點是
+      可以不考慮維數增加帶來的想象困難
+
+      維數增加所帶來的語法困難
+      可以解釋爲
+
+      比如
+      三階物質的使用方式很多
+      是因爲 二階物質的複合方式很多
+
+      開始的時候物質是不能用於反映的點
+
+*** 化學類比 product-space 與 fiber-space
+
+    - x -
+      product-space
+      物質組 (* A B)
+      其中的物質爲 (* a b)
+      a 作用時 b 必須出現 (* ... b)
+      b 作用時 a 必須出現 (* a ...)
+      [並且 b 的作用方向是相反的]
+      因此如果想要 (* a b) 作用
+      那麼反應物就一定是 (* (lhs a) b) 與 (* a (rhs b)) 的複合物
+      生成物是 (* a (lhs b)) 與 (* (rhs a) b) 的複合物
+      等等
+
+      fiber-space is dependent product-space
+      類似物質組 (* A B)
+      但是物質之間的反映關係被一個函數 (: f (-> B B)) 扭曲了
+
+*** 等價
+
+    - chain = 對 equation 之變形的忠實記錄
+      an equation is the boundary of a chain
+      a chain is the record of the formation of an equation
+      (+ ...)
+      (: (+ ...) (= ... ...))
+
+      用等式進行 rewrite = chain 之間的同倫
+      對 chain 的 rewrite =
+      (+ ...) (apply (+ ...))
+      - 一個 n+1 階 chain 是一個 n 階等式
+        這個等式本身也可以給以移項變換
+      - 等式可能是 (refl ...) 經過移項得到的
+        這種等式稱作是非本質的 它們所給出的變換也稱作是非本質的
+
+      space 之間的等價 = subdivision
+      (~~ A B)
+      (~> A B) (subdivision A B)
+
+    - 函數 被 chain 代替
+      同倫 被 rewrite 代替
+
+    - x -
+      有兩種理解 (+ ...) 的方式
+      (1) 先生成一個 list 然後複合它們
+      (2) 直接在棧中構造複合的數據
+      我們用 (1) 這種理解方式
+
+    - x -
+      chain 有類型
+      當用 高階的 chain 來轉寫 chain 的時候
+      chain 的類型如何變化 ?
+      chain 的類型就是 chain 的 boundary
+      當進行 rewrite 的時候 boundary 不變
+
+    - x -
+      唯一可以被機器處理的等價就是相鄰的相逆項的消除
+
+*** 生成子 與 鏈
+
+    - x -
+      定義於生成子的函數
+      要能夠作用於任何 chain
+
+*** 编码问题
+
+    - x -
+      在考虑粘合 polyhedron 的時候
+      可能就已經出現 編碼問題了
+      因爲此時 邊和面太多了
+
+*** 語言的侷限性 與 實驗的重點
+
+    - x -
+      由於語法會隨着維數的增加而變得非常複雜
+      所以我們應該把實驗的重點限制在低維拓撲中
+      我們主要考慮三階流形的二階代數結構
+
+*** 語言的有效性
+
+    - 語言的有效性 還需要檢驗
+      1. 無窮空間
+      2. 三階空間
+         非自由二階代數結構
+         和自由三階代數結構
+      3. 要能夠表達二階曲面的分類定理
+      4. 要能夠表達 product-space 的 boundary-rule
+
+    - 語言的有效性是對比而得的
+      需要對比別的編碼和描述圖形的方式
+
+*** 一階的例子 與 covering-space
+
+    - x -
+      如果想給出非平凡的一階圖形的例子
+      那就一定要考慮無窮圖
+      此時無窮個點的生成子就類似於邊
+      無窮個邊的生成子就類似於面 [但是可能是不可逆的]
+      等等
+
+    - k -
+      我想對這些東西的表達很重要
+      在考慮這些之前去實現語言
+      就是 '過早優化' 了
+
+    - x -
+      還要考慮到 我們之前說過
+      covering-space 的編碼 能夠解決代數結構中元素的等價問題
+
+*** >< indexed-space
+
+    - When defining a space, parts of it can be indexed
+      by parts of another space.
+      Such a named indexing of parts is called an index,
+      which is also a subspace of the larger space.
+
+    - Note that,
+      if the indexing is to be viewed as a map,
+      it would be a level-up map.
+
+    - rule for indexed space [? cellular]
+
+    - 'I' indexed by a space,
+      is the suspension of the space.
+
+    - While 'I' is 1-cell,
+      how about 2-cell 3-cell and n-cell ?
+      how about continuum other then n-cell ?
+      note that, n-cell indexed by a space 'A',
+      is specified by (-> A [n-cell boundary])
+
+*** >< fiber-space
+
+    - fiber-space = dependent product-space ?
+
+    - To view product-space as special fiber-space,
+      for which a gluing pattern is given.
+
+    - After a construction of a fiber-bundle,
+      we can proof the total-space is equal to another space,
+      and by doing so, we get a level-down map from the space to the base-space.
+
+    - A level-down map can only be achieved by means of fiber-bundle.
+
+    - x -
+      高於維數階的同倫羣
+      也許只能被理解爲 fiber-space
+      而不能被理解爲 chain group
+
+*** >< lifting-problem
+
+    - A lifting-problem is expressed for a [?] on a fiber-space.
+
+    - [lifting-problem and cross-section-problem]
+      cross-section-problem can be viewed as
+      lifting a subspace [instead of function] of the base-space,
+      or just lifting the base-space itself [i.e. global cross-section].
+
+*** >< homotopy theory
+
+    - x -
+      homotopy group 被定義爲帶有代數結構的 mapping-space
+      但是 對我們來說
+      我們可以直接說它是 combinatorial group theory
+
+    - k -
+      也許 mapping-space 是必要的
+      考慮高維的情形就知道了
+
+    - x -
+      不想用 mapping-space
+      是因爲與 combinatorial theory 相比
+      這種空間的生成元和關係不明顯
+
+    - k -
+      我們可以考慮 在低維的情形
+      mapping-space 的代數結構如何獲得生成元與關係
+      然後再推廣到高維
+
+* 代數結構
 *** 之前的錯誤在於沒有考慮定向 [現在知道定向就是等式的方向]
 
     - 一個 disk 或 ball 的邊界多種表示方式
@@ -404,60 +540,6 @@
       我們應該能自己構造出很多這種空間
       不用 knot 而用 polyhedron
 
-*** 計數
-
-    - x -
-      語法和語義之間的關係在於
-      多種語法可以描述同樣的數據
-
-      [問題 1]
-      當以一種語法描述出數據之後
-      根據數據本身 可以生成出
-      所有可能的描述這個數據的語法
-      試着做一些窮舉
-      然後看看有沒有正規形式
-
-      [問題 2]
-      如果要用有向圖來實現這些數據
-      那麼如何判斷兩個數據是否相等呢 ?
-
-    - k -
-      我發現
-      只要能想象出圖形
-      就是能在程序語言中用數據結構實現它們
-      因此 '語義' 一詞
-      就機器實現而言
-      也就人的想象而言
-
-*** 等價
-
-    - x -
-      an equation is the boundary of a chain
-      a chain is the record of the formation of an equation
-
-      用等式進行 rewrite = chain 之間的同倫
-      等式可能是 (refl ...) 經過移項得到的
-      這樣
-      這種等式稱作是非本質的 它們所給出的變換也稱作是非本質的
-
-      一個 n+1 階 chain 是一個 n 階等式
-      這個等式本身也可以給以移項變換
-
-*** fiber
-
-    - x -
-      高於維數階的同倫羣
-      也許只能被理解爲 fiber-space
-      而不能被理解爲 chain group
-
-*** function as chain group
-
-    - x -
-      此時 function 的同倫變換就按古典的定義
-      (-> (* X I) Y)
-      但是如何把它 與 chain 的同倫變換相容呢 ?
-      後者是 用等式進行轉寫
-
 *** 同倫類
 
     - x -
@@ -475,6 +557,91 @@
       首先我們發現 相乘方式是固定的
       這就類似於古典的代數結構
       我們需要更多的例子
+
+*** local-to-global
+
+    - x -
+      一個 local-to-global theorem 可以給我們靈活的計算方式
+      是否可以對高階代數結構形成 local-to-global theorem ?
+
+*** 非交換的代數結構
+
+    - x -
+      whitehead 已經知道的那些空間的非交換的高階代數結構是什麼 ?
+      [cross-module]
+
+*** subdivision
+
+    - subdivision 有代數解釋
+      從代數結構總結出代數不變量的時候
+      必須保證所定義的不變量在 subdivision 下不變
+      homology group 就是典型的例子
+
+*** 二階代數的交換性
+
+    - x -
+      #+begin_src scheme
+      (type space
+        (: a0 (@ <>))
+        (: b0 b1 (= a0 a0)))
+
+      (: (+ b0 b1) (= a0 a0))
+      (: (+ b1 b0) (= a0 a0))
+
+
+      (type space
+        (: a0 a1 (@ <>))
+        (: b0 (= a0 a1))
+        (: c0 c1 (= b0 b0)))
+
+      (: (+ c0 c1) (= b0 b0))
+      (: (+ c1 c0) (= b0 b0))
+
+      (: [c0 (=< b0)] (= (+ (- b0) b0) (+)))
+      (: [c1 (<= b0)] (= (+) (+ (- b0) b0)))
+
+      (: (+ c0 (=< b0) c1 (<= b0))
+         (= (+ (- b0) b0) (+ (- b0) b0)))
+
+      (: ? (= (+ c0 c1) (+ c1 c0)))
+
+
+      (type space
+        (: a0 (@ <>))
+        (: c0 c1 (= [a0 refl] [a0 refl])))
+
+      (: (+ c0 c1) [a0 refl])
+      (: (+ c1 c0) [a0 refl])
+
+      (: ? (= (+ c0 c1) (+ c1 c0)))
+
+      (type space
+        (: a0 a1 (@ <>))
+        (: b0 b1 b2 b3 (= a0 a1))
+        (: c0 (= b0 b1))
+        (: c1 (= b1 b2))
+        (: c2 (= b2 b3))
+        (: c3 (= b3 b0)))
+
+      (: (+ c0 c1) (= b0 b2))
+      (: (+ c2 c3) (= b2 b0))
+      (: (+ (+ c0 c1) (+ c2 c3)) (= b0 b0))
+
+      (: (+ c3 c0) (= b3 b1))
+      (: (+ c1 c2) (= b1 b3))
+      (: (+ (+ c3 c0) (+ c1 c2)) (= b3 b3))
+      #+end_src
+
+    - k -
+      關於 chain 的等價
+      我們看來得到了一個悖論
+      按照古典的說法 我們必須有交換性
+      但是我們卻沒法證明這一點
+
+      我想
+      既然你說 對 covering-space 的編碼能解決高階代數的字問題
+      那麼就解決一下試試
+      看看二者的編碼是否相等
 
 * 一維自由代數結構 / 1 dimensional free algebraic structure
 
@@ -688,6 +855,14 @@
 
 *** 2-complex formed by gluing the edges of one n-gon together
 
+***** 0-gon
+
+      #+begin_src scheme
+      (type space (note S2)
+        (: a0 (@ <>))
+        (: c0 (= [a0 refl] [a0 refl])))
+      #+end_src
+
 ***** 2-gon
 
       #+begin_src scheme
@@ -812,9 +987,13 @@
        (= (+ c0 (=< b2)
              (- c0) (<= b2))
           (+)))
+
+    (chain-equivalent
+     [(+ b0 b1) (apply c0)]
+     (+ b2 (- b0)))
     #+end_src
 
-*** cylinder
+*** cylinder and dehn-twist
 
     #+begin_src scheme
     (define cylinder
@@ -847,48 +1026,14 @@
         (-> b1 b1)
         (-> b2 b2)
         (-> b0 (+ b0 b1))
-        (-> c0 (:> (= (+ b0 b1) (+ b2 b0)))
-            (+ (+ c0 (=< b2) (=< b0) (:> (= (+ (- b0) (- b2) b0 b1) (+)))
-                  (refl b1) (>= b1) (:> (= (+) (+ b1 (- b1)))))
-               (:> (= (+ (- b0) (- b2) b0 b1)
-                      (+ b1 (- b1))))
-               (<= (- b0)) (<= (- b2)) (=> (- b1))
-               (:> (= (+ b0 b1 b1) (+ b2 b0 b1)))))))
+        (-> c0 (+ c0))))
 
-    (define dehn-twist
-      (lambda (-> cylinder cylinder)
-        (-> a0 a0)
-        (-> a1 a1)
-        (-> b1 b1)
-        (-> b2 b2)
-        (-> b0 (+ b0 b1))
-        (-> c0 (+ (+ c0 (=< b2) (=< b0) (refl b1) (>= b1))
-                  (<= (- b0)) (<= (- b2)) (=> (- b1))))))
-
-    (note 可以發現這種嚴格的移項語法太複雜了
-          對於代入以融合等式而言
-          我們只需要指出
-          (1 就那個元素代入)
-          (2 就那個位置代入))
-
-    (note 但是我們至少有了一種有效的底層語法
-          也許這些高層的語法可以被實現爲二元函數
-          [移項都是一元函數])
-
-    (note 我們是否已經得到了最細的底層語法 ?)
-
-    (note (+ c0 (refl b1)) 與 c0 是否是相等的 ?
-          我想應該是不相等的
-          因爲它們是 2 階 chain
-          而沒有三階 等式能夠把其中的一個轉化爲另一個
-          因爲這裏有的只是三階的非本質等式
-          比如 (: (refl (refl b1)) (= (refl b1) (refl b1)))
-          它是不能消去 (refl b1) 的
-          假設有消去 (refl b1) 的等式 x
-          那麼它的就是 (: x (= (refl b1) (+)))
-
-          沒有等式來轉寫它們
-          它們就不同倫等價)
+    (: [c0 dehn-twist]
+       [(= (+ b0 b1) (+ b2 b0)) dehn-twist]
+       (= (+ b0 dehn-twist b1 dehn-twist) (+ b2 dehn-twist b0 dehn-twist))
+       (= (+ b0 b1 b1) (+ b2 b0 b1))
+       == [c0 boundary]
+       (= (+ b0 b1) (+ b2 b0)))
     #+end_src
 
 *** sphere
@@ -1005,7 +1150,7 @@
 *** product-space
 
     #+begin_src scheme
-    (note There can be many ways by which we can compose new spaces,
+    (note there can be many ways by which we can compose new spaces,
           each of such way must shows
           1. what are the parts of the space ?
           2. what are the boundarys of the parts ?)
@@ -1018,32 +1163,12 @@
         (: i0 i1 (@ <>))
         (: i01 (= i0 i1))))
 
-    (: (* i01 i0)
-       (+ (* i01 boundary i0)
-          (* i01 i0 boundary))
-       (:>
-        (+ (* (= i0 i1) i0))
-        (+ (= (* i0 i0) (* i1 i0)))))
-
-    (: (* i01 i01)
-       (+ (* i01 boundary i01)
-          (* i01 i01 boundary))
-       (:>
-        (+ (* (= i0 i1) i01)
-           (* i01 (= i0 i1)))
-        (+ (= (* i0 i01) (* i1 i01))
-           (= (* i01 i0) (* i01 i1)))
-        (= (+ (* i0 i01) (* i01 i1))
-           (+ (* i01 i0) (* i1 i01)))))
-
-
     (: (* i01 i0) (= (* i0 i0) (* i1 i0)))
     (: (* i1 i01) (= (* i1 i0) (* i1 i1)))
     (: (* i01 i1) (= (* i0 i1) (* i1 i1)))
     (: (* i0 i01) (= (* i0 i0) (* i0 i1)))
     (: (* i01 i01) (= (+ (* i01 i0) (* i1 i01))
                       (+ (* i01 i1) (* i0 i01))))
-
 
     (note A function of type (-> (* I I) X)
           can be defined as follow)
@@ -1099,7 +1224,7 @@
           (-> (* i01 i01) ...))))
     #+end_src
 
-*** note
+*** note product-space
 
     - x -
       1. 元素和元素的乘積 記以 (* a b)
@@ -1118,8 +1243,11 @@
 
     - x -
       #+begin_src scheme
-      (: (* a b) (= (+ (* (lhs a) b) (* a (rhs b)))
-                    (+ (* a (lhs b)) (* (rhs a) b))))
+      (: a (= (lhs a) (rhs a)))
+      (: b (= (lhs b) (rhs b)))
+      (: (* a b)
+         (= (+ (* (lhs a) b) (* a (rhs b)))
+            (+ (* a (lhs b)) (* (rhs a) b))))
       ;; thus
       (: (* i01 i01)
          (= (+ (* (lhs i01) i01) (* i01 (rhs i01)))
@@ -1244,50 +1372,178 @@
 
 * subdivision
 
-  #+begin_src scheme
-  (define sphere-1
-    (type space
-      (: b (@ <>))
-      (: loop (= b b))))
+*** sphere and bool suspend
 
-  (define bool
-    (type space
-      (: #f #t (@ <>))))
+    #+begin_src scheme
+    (define sphere-1
+      (type space
+        (: b (@ <>))
+        (: loop (= b b))))
 
-  (define bool-suspend
-    (type space
-      (: n s (@ <>))
-      (: m (-> bool (= n s)))))
+    (define bool
+      (type space
+        (: #f #t (@ <>))))
 
-  (lambda (subdivision sphere-1 bool-suspend)
-    (with (-> (@ sphere-1) (@ bool-suspend))
-      (-> b n))
-    (with (-> (= b b) (= n n))
-      (-> loop (+ #f m (- #t m)))))
+    (define bool-suspend
+      (type space
+        (: n s (@ <>))
+        (: m (-> bool (= n s)))))
 
-  (define sphere-2
-    (type space
-      (: b2 (@ <>))
-      (: surf (1 b2 refl))))
+    (: (+ #f m) (= n s))
+    (: (+ #t m) (= n s))
 
-  (define bool-suspend-suspend
-    (type space
-      (: n2 s2 (@ <>))
-      (: m2 (-> bool-suspend (= n2 s2)))))
+    (lambda (subdivision sphere-1 bool-suspend)
+      (with (-> (@ sphere-1) (@ bool-suspend))
+        (-> b n))
+      (with (-> (= b b) (= n n))
+        (-> loop (+ #f m (- #t m)))))
 
-  (: (+ n m2) (= n2 s2))
-  (: (+ s m2) (= n2 s2))
-  (: (+ #f m m2) (= (+ n m2) (+ s m2)))
-  (: (+ #t m m2) (= (+ n m2) (+ s m2)))
+    (define sphere-2
+      (type space
+        (: b2 (@ <>))
+        (: surf (= [b2 refl] [b2 refl]))))
 
-  (lambda (subdivision sphere-2 bool-suspend-suspend)
-    (with (-> (@ sphere-2) (@ bool-suspend-suspend))
-      (-> b2 n2))
-    (with (-> (1 b2 refl) (1 n2 refl))
-      (-> surf
-          (+ #f m m2 (1 n m2 s m2 rev)
-             #t m m2 (1)))))
-  #+end_src
+    (define bool-suspend-suspend
+      (type space
+        (: n2 s2 (@ <>))
+        (: m2 (-> bool-suspend (= n2 s2)))))
+
+    (: (+ n m2) (= n2 s2))
+    (: (+ s m2) (= n2 s2))
+    (: (+ #f m m2) (= (+ n m2) (+ s m2)))
+    (: (+ #t m m2) (= (+ n m2) (+ s m2)))
+
+    (lambda (subdivision sphere-2 bool-suspend-suspend)
+      (with (-> (@ sphere-2) (@ bool-suspend-suspend))
+        (-> b2 n2))
+      (with (-> (= (+ b2 refl) (+ b2 refl))
+                (= (+ n2 refl) (+ n2 refl)))
+        (-> surf
+            (+ (+ #f m m2 (<= (+ n m2))
+                  (- #t m m2) (=< (+ n m2))
+                  (+ n2 refl refl) (<= (+ n2 refl)))
+               (>= (+ n2 refl))))))
+    #+end_src
+
+*** ><
+
+    #+begin_src scheme
+    (define sphere-1
+      (type space
+        (0
+         (: b (@ <>)))
+        (1
+         (: loop (= b b)))
+        (2
+         (: [loop refl] (= loop loop)))))
+
+    (define sphere-2
+      (type space
+        (0
+         (: b2 (@ <>)))
+        (1
+         (: [b2 refl] (= b2 b2)))
+        (2
+         (: surf (= [b2 refl] [b2 refl])))
+        (3
+         (: [surf refl] (= surf surf)))))
+
+    (define f
+      (lambda (-> sphere-2 sphere-1)
+        (0
+         (-> b2 b))
+        (2
+         (-> surf (+ loop refl
+                     loop refl)))))
+
+    (: [loop refl]             (= (+ loop) (+ loop)))
+    (: [loop refl (<= loop)]   (= (+) (+ (- loop) loop)))
+    (: [loop refl (=< loop)]   (= (+ (- loop) loop) (+)))
+
+
+    (: c               (= (+ loop) (+ loop)))
+    (: [c (<= loop)]   (= (+) (+ (- loop) loop)))
+    (: [c (=< loop)]   (= (+ (- loop) loop) (+)))
+
+    (: [surf f]
+       (= [b2 refl f] [b2 refl f])
+       (= [b2 f refl] [b2 f refl])
+       (= [b refl] [b refl]))
+
+
+    (define sphere-3
+      (type space
+        (0
+         (: b3 (@ <>)))
+        (1
+         (: [b3 refl] (= b3 b3)))
+        (2
+         (: [b3 refl refl] (= [b3 refl] [b3 refl])))
+        (3
+         (: cell (= [b3 refl refl] [b3 refl refl])))))
+
+    (define non-continuous-map
+      (lambda (-> sphere-3 sphere-2)
+        (0
+         (-> b3 b2))
+        (3
+         (-> cell (+ surf refl)))))
+
+    (: [cell f]
+       (= [b3 refl refl f] [b3 refl refl f])
+       ==>
+       (= [b3 f refl refl] [b3 f refl refl])
+       (= [b2 refl refl] [b2 refl refl])
+       =/=
+       [surf refl boundary]
+       ==>
+       (= surf surf))
+
+    (define non-essential-map
+      (lambda (-> sphere-3 sphere-2)
+        (0
+         (-> b3 b2))
+        (3
+         (-> cell (+ surf refl (<= surf)
+                     (- surf refl) (=< surf)
+                     (><><>< b2 refl refl refl)
+                     (note (add-to-both-sides-of-the-equation-to-the-left
+                            b2 refl refl)))))))
+
+    (note
+      (: [surf refl (<= surf)]     (= (+) (+ (- surf) surf)))
+      (: [(- surf refl) (=< surf)] (= (+ (- surf) surf) (+))))
+
+    (note non-essential
+          because ???
+          (equivalent
+           (+ (><><>< b2 refl refl refl))
+           (+ surf refl (<= surf)
+              (- surf refl) (=< surf)
+              (apply surf refl refl (<= ...))
+              (><><>< b2 refl refl refl))))
+
+    (define essential-map
+      (lambda (-> sphere-3 sphere-2)
+        (0
+         (-> b3 b2))
+        (3
+         (-> cell (+ surf refl (<= surf)
+                     surf refl (=< surf)
+                     (><><>< b2 refl refl refl))))))
+
+    (note how to define essentialness ?
+          the definition must explain both dehn-twist
+          and the essentialness of the essential-map above
+
+          if we define essentialness
+          to allow the above map be viewed as essential
+          then not only (-> sphere-3 sphere-2)
+          there will also be (-> sphere-2 sphere-1)
+
+          if it is something at all
+          it is not hopf-map)
+    #+end_src
 
 * 三維空間的例子
 
@@ -1488,6 +1744,11 @@
 
 * >< 用沒有一階洞的一階無窮複形覆蓋一般一階複形
 
+*** covering-space 與 universal-covering-space
+
+    - 對於 2-man 觀察沒有 normalization 的條件下 獲得 universal-covering-space
+      對於 3-man 嘗試獲得 universal-covering-space
+
 * >< 用沒有二階洞的二階無窮複形覆蓋一般二階複形
 
   - 此時有必要使用 branched-covering
@@ -1495,3 +1756,8 @@
     看看這個 branched-covering 能否解決 torus 的字問題
 
 * >< 曲面分類定理的形式化
+
+*** normalization
+
+    - normalization 減少元素的數量
+      這與遞歸計數剛好相反
