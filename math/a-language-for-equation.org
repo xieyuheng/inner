@@ -1,6 +1,6 @@
-- title :
-  a language for equation
-  a higher dimensional generalization of fundamental group
+#+title: a language for equation
+
+- a higher dimensional generalization of fundamental group
   with homology group as its abelianization
 
 * todo
@@ -10,8 +10,41 @@
   - 總結化學類比
   - 爲空間之間的等價設計語言
     能夠描述 normalization theory
+  - 說明高階代數結構可以經過忘記信息而得到 homology group
 
 * combinatorial topology
+
+*** 等式中缺少的信息
+
+    - 等式 (= a b) 中缺少 a b 的边界信息
+      对于 (= a (+)) 这种等式 尤其如此
+      只有加上边界信息 才能描述形成 chain 的条件
+
+      否则 如果允许等式 (= a []) 与 (= [] c)
+      被融合爲 (= a c)
+      就可能形成不联通的 chain
+
+    - x -
+      因此 我們應該重新考慮 chain 之等價的定義
+
+*** subdivision
+
+    - when one combinatorial space is a subdivision of another,
+      the proof, by two functions, of homotopy equivalent between the two spaces
+      are very special.
+
+      viewed in one direction [by one of the functions],
+      it seems like describing the subdivision,
+
+      while viewed in the other direction [by the other function],
+      it seems like describing the potential subdivision implied by [x refl].
+
+    - x -
+      按照我們的計劃
+      我們應該用 subdivision 來理解代數結構生成子的變化
+      因爲 normalization 就是生成子的變化
+      這可以理解爲代數結構的座標系的轉換
+      注意 我們所考慮的代數結構中的元素一定要是閉合的
 
 *** intro
 
@@ -384,6 +417,7 @@
       然後再推廣到高維
 
 * 代數結構
+
 *** 之前的錯誤在於沒有考慮定向 [現在知道定向就是等式的方向]
 
     - 一個 disk 或 ball 的邊界多種表示方式
