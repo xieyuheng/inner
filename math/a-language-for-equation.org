@@ -14,19 +14,6 @@
 
 * combinatorial topology
 
-*** 等式中缺少的信息
-
-    - 等式 (= a b) 中缺少 a b 的边界信息
-      对于 (= a (+)) 这种等式 尤其如此
-      只有加上边界信息 才能描述形成 chain 的条件
-
-      否则 如果允许等式 (= a []) 与 (= [] c)
-      被融合爲 (= a c)
-      就可能形成不联通的 chain
-
-    - x -
-      因此 我們應該重新考慮 chain 之等價的定義
-
 *** subdivision
 
     - when one combinatorial space is a subdivision of another,
@@ -87,219 +74,6 @@
       而不能用兩個函數所給出的同倫等價
 
       一個函數就足以建立空間之間的細分關係
-
-*** 語義 [三種等價變換]
-
-    - x -
-      改变之前的观点
-      主要把空間視爲數據結構而非類型
-
-      也許我們能更好地處理 product-space 和 fiber-space
-      這些構造新空間的方式
-
-      這樣我們主要考慮的就是如何設計這些數據結構
-      還有圖形之間的各種等價關係
-      這樣我們就可以用語義來引導我們的設計
-
-    - k -
-      可能只有考慮了數據結構如何設計之後
-      才能考慮等價關係
-
-    - 數據結構
-
-      - space
-        生成子的列表 和 生成子之間的邊界關係
-        實現 space
-        - 0 維 儲存點的名字
-        - 1 維 邊和邊的類型 (: b (= a0 a1))
-        - 2 維 面和面的邊界圓 (: c (= (+ ...) (+ ...)))
-        - 3 維 體和體的邊界球面 (: d (= (+ ...) (+ ...)))
-        其中 (+ ...) 都是 chain
-        因此空間之間的等價涉及到 chain 之間的等價
-
-        - subdivision 也用到 chain 之間的等價 ?
-
-      - chain
-        chain 的邊界是 equation
-        chain 本身詳細記錄獲得最終 equation 的等價變形過程
-        chain 中有一列元素 [生成子 或者 嵌套的 chain]
-
-        爲了 相鄰的兩個元素 類型相符 而複合
-        chain 中的每個元素還要輔以移項信息
-
-      - chain 的等價
-        模仿 combinatorial topology 中定義等價的方式
-        即 指定一系列變換
-        並聲明 能夠被這些變換相互轉化的 chain 被認爲是等價的
-
-        1. 高階元素對 chain 的轉寫
-           轉寫可以作用在 chain 的任何位置
-           轉寫並不改變 chain 的類型[chain 所記錄的最終等式]
-           - 高階元素包括了 由 refl 生成的平凡高階元素
-             這些高階元素對 chain 的轉寫是相鄰的互逆項的消去
-        2. 移項
-           移項會改變最終的等式
-           這與轉寫不同
-
-        如果這就是所有的變換
-        那麼 (+ c0 b1 refl) 與 c0 就是不相等的
-
-      - k -
-        這些變換所定義的等價 能夠被實現爲函數嗎 ?
-        (chain-equivalent ...)
-
-      - x -
-        這是高階代數中元素的字問題
-        需要用對 covering-space 的編碼來解決
-
-      ------
-
-      - x -
-        一個問題是
-        如果 在定義 chain 的等價關係的變換中
-        不加上 對 [b1 refl] 之類的元素 的任意添加與消去
-        而視 (+ c0 b1 refl) 與 c0 爲不等價
-        那麼 S1 就有非平凡的二階代數結構了
-
-      - k -
-        如果在變換中加上這點
-        那麼就獲得一種新的改變 chain 的類型的 chain 之間的等價變換
-        即 等式兩邊同時添加或消去相同的元素
-        - 這樣解釋 dehn-twist 與 恆等變換不同的方式
-          就不是看 chain 組中的二階元素了
-          而是看 chain 組中的一階元素
-          即 需要解釋 (+ b0 b1) 與 b0 之不等價
-
-      - x -
-        直覺上這也是合理的
-        考慮 '化學類比'
-        chain 是一個複合物
-        其中的每個元素 都能用來促成某種化學變化
-        chain 之爲複合物就是化學變化的複合
-
-        對 chain 的等價變換
-        1. 用高階元做轉寫
-           這是聲明的等價關係
-        2. 移項
-           這代表了化學反映可以沿着各個方向進行
-           只要改變催化物的角度就行了
-        3. 等式兩邊同時添加相同的元素
-           催化物不影響這些元素
-           反映前後這些元素都存在
-
-*** 化學類比
-
-    - x -
-      上面對 chain 之間的等價 進行了化學語言的類比
-      其他有待類比的概念 :
-      空間
-      映射
-      空間的細分
-
-    - k -
-      空間中的所有生成子都是物質
-      一階物質能夠催化零階物質的變化
-      二階物質能夠催化一階物質的變化 等等
-
-    - x -
-      空間的細分
-      就是這個空間所代表的物質的進一步分解
-
-      利用空間之間的細分來說明空間之間的等價
-      就是說 這兩類物質之間的關係是相同的
-
-      說空間 B 可以被看成是空間 A 的細分
-      這是用一個函數類描述的
-      (: f (subdivision (-> A B)))
-
-      也就是說
-      空間之間的函數和函數的性質
-      是用來描述空間之間的關係的
-
-      空間之間的關係
-      不在乎空間之中物質的名字
-      而在乎它們之間的反映關係
-
-*** 化學類比 continuity-check
-
-    - x -
-      此時尤其能夠看出 所謂 continuity-check
-      其實是數學結構之間的同態
-
-      使用化學類比的優點是
-      可以不考慮維數增加帶來的想象困難
-
-      維數增加所帶來的語法困難
-      可以解釋爲
-
-      比如
-      三階物質的使用方式很多
-      是因爲 二階物質的複合方式很多
-
-      開始的時候物質是不能用於反映的點
-
-*** 化學類比 product-space 與 fiber-space
-
-    - x -
-      product-space
-      物質組 (* A B)
-      其中的物質爲 (* a b)
-      a 作用時 b 必須出現 (* ... b)
-      b 作用時 a 必須出現 (* a ...)
-      [並且 b 的作用方向是相反的]
-      因此如果想要 (* a b) 作用
-      那麼反應物就一定是 (* (lhs a) b) 與 (* a (rhs b)) 的複合物
-      生成物是 (* a (lhs b)) 與 (* (rhs a) b) 的複合物
-      等等
-
-      fiber-space is dependent product-space
-      類似物質組 (* A B)
-      但是物質之間的反映關係被一個函數 (: f (-> B B)) 扭曲了
-
-*** 等價
-
-    - chain = 對 equation 之變形的忠實記錄
-      an equation is the boundary of a chain
-      a chain is the record of the formation of an equation
-      (+ ...)
-      (: (+ ...) (= ... ...))
-
-      用等式進行 rewrite = chain 之間的同倫
-      對 chain 的 rewrite =
-      (+ ...) (apply (+ ...))
-      - 一個 n+1 階 chain 是一個 n 階等式
-        這個等式本身也可以給以移項變換
-      - 等式可能是 (refl ...) 經過移項得到的
-        這種等式稱作是非本質的 它們所給出的變換也稱作是非本質的
-
-      space 之間的等價 = subdivision
-      (~~ A B)
-      (~> A B) (subdivision A B)
-
-    - 函數 被 chain 代替
-      同倫 被 rewrite 代替
-
-    - x -
-      有兩種理解 (+ ...) 的方式
-      (1) 先生成一個 list 然後複合它們
-      (2) 直接在棧中構造複合的數據
-      我們用 (1) 這種理解方式
-
-    - x -
-      chain 有類型
-      當用 高階的 chain 來轉寫 chain 的時候
-      chain 的類型如何變化 ?
-      chain 的類型就是 chain 的 boundary
-      當進行 rewrite 的時候 boundary 不變
-
-    - x -
-      唯一可以被機器處理的等價就是相鄰的相逆項的消除
-
-*** 生成子 與 鏈
-
-    - x -
-      定義於生成子的函數
-      要能夠作用於任何 chain
 
 *** 编码问题
 
@@ -677,6 +451,53 @@
       那麼就解決一下試試
       看看二者的編碼是否相等
 
+* encoding a space by its generators
+
+  - a space is encoded by a list of its generators.
+
+    #+begin_src scheme
+    (define cylinder
+      (type space
+        (: a0 a1 (@ <>))
+        (: b0 (= a0 a1))
+        (: b1 (= a1 a1))
+        (: b2 (= a0 a0))
+        (: c0 (= (+ b0 b1) (+ b2 b0)))))
+
+    (define mobius-band
+      (type space
+        (: a0 a1 (@ <>))
+        (: b0 (= a0 a1))
+        (: b1 (= a1 a0))
+        (: b2 (= a0 a1))
+        (: c0 (= (+ b0 b1) (+ b2 (- b0))))))
+    #+end_src
+
+  - a generator has a dimension.
+    a generator of n-dimension is called a n-generator.
+
+  - a n-generator records an equation between two
+    (n-1)-chain formed by gluing (n-1)-generators.
+
+  - an equation has a direction.
+    we inverse a generator
+    to record the reversing of the direction of an equation.
+
+    #+begin_src scheme
+    (: b0 (= a0 a1))
+    (: (- b0) (= a1 a0))
+    #+end_src
+
+* chains
+
+  - the boundary of a n-chain is an equation of (n-1)-chain.
+
+    chain 本身詳細記錄獲得最終 equation 的等價變形過程
+    chain 中有一列元素 [生成子 或者 嵌套的 chain]
+
+    爲了 相鄰的兩個元素 類型相符 而複合
+    chain 中的每個元素還要輔以移項信息
+
 * 一維自由代數結構 / 1 dimensional free algebraic structure
 
   - 首先我們有很多點
@@ -836,16 +657,238 @@
     我們要設計語法來記錄等式的融合
     並且 融合兩個等式之後再作用 與 相繼的作用兩個等式 必須是等價的
 
+* 語義 [三種等價變換]
+
+  - x -
+    改变之前的观点
+    主要把空間視爲數據結構而非類型
+
+    也許我們能更好地處理 product-space 和 fiber-space
+    這些構造新空間的方式
+
+    這樣我們主要考慮的就是如何設計這些數據結構
+    還有圖形之間的各種等價關係
+    這樣我們就可以用語義來引導我們的設計
+
+  - k -
+    可能只有考慮了數據結構如何設計之後
+    才能考慮等價關係
+
+  - 數據結構
+
+    - space
+      生成子的列表 和 生成子之間的邊界關係
+      實現 space
+      - 0 維 儲存點的名字
+      - 1 維 邊和邊的類型 (: b (= a0 a1))
+      - 2 維 面和面的邊界圓 (: c (= (+ ...) (+ ...)))
+      - 3 維 體和體的邊界球面 (: d (= (+ ...) (+ ...)))
+      其中 (+ ...) 都是 chain
+      因此空間之間的等價涉及到 chain 之間的等價
+
+      - subdivision 也用到 chain 之間的等價 ?
+
+* 等價
+
+  - chain = 對 equation 之變形的忠實記錄
+    an equation is the boundary of a chain
+    a chain is the record of the formation of an equation
+    (+ ...)
+    (: (+ ...) (= ... ...))
+
+    用等式進行 rewrite = chain 之間的同倫
+    對 chain 的 rewrite =
+    (+ ...) (apply (+ ...))
+    - 一個 n+1 階 chain 是一個 n 階等式
+      這個等式本身也可以給以移項變換
+    - 等式可能是 (refl ...) 經過移項得到的
+      這種等式稱作是非本質的 它們所給出的變換也稱作是非本質的
+
+    space 之間的等價 = subdivision
+    (~~ A B)
+    (~> A B) (subdivision A B)
+
+  - 函數 被 chain 代替
+    同倫 被 rewrite 代替
+
+  - x -
+    有兩種理解 (+ ...) 的方式
+    (1) 先生成一個 list 然後複合它們
+    (2) 直接在棧中構造複合的數據
+    我們用 (1) 這種理解方式
+
+  - x -
+    chain 有類型
+    當用 高階的 chain 來轉寫 chain 的時候
+    chain 的類型如何變化 ?
+    chain 的類型就是 chain 的 boundary
+    當進行 rewrite 的時候 boundary 不變
+
+  - x -
+    唯一可以被機器處理的等價就是相鄰的相逆項的消除
+
+* >< 等式中缺少信息
+
+  - 等式 (= a b) 中缺少 a b 的边界信息
+    对于 (= a (+)) 这种等式 尤其如此
+    只有加上边界信息 才能描述形成 chain 的条件
+
+    否则 如果允许等式 (= a []) 与 (= [] c)
+    被融合爲 (= a c)
+    就可能形成不联通的 chain
+
+  - x -
+    因此 我們應該重新考慮 chain 之等價的定義
+
+* equivalent relation between chains
+
+  - the equivalent relation between chains
+    are defined by three kinds of transformations.
+    chains that can be transformed to each other by such transformations
+    are defined as equivalent.
+
+    this equivalent relation will be implemented
+    by predicate (chain-equivalent ...).
+
+    1. rewriting
+
+       more precisely
+       rewriting a n-chain by a (n+1)-chain.
+
+       rewriting can be applied to any part in the n-chain,
+       as long as the type of the (n+1)-chain
+       matches the part of the n-chain.
+
+       such rewriting will not change the type of the n-chain.
+
+       trivial (n+1)-chain are those given by of reflection n-chain.
+       if in a n-chain there occurs a n-generator
+       glued to its inverse by the same position,
+       then this part of the n-chain can be eliminated
+       by applying the reflection of the n-generator.
+
+    2. shifting
+
+       more precisely
+       shifting an element from one side of the equation
+       recorded by a n-chain,
+       to the other side of the equation.
+
+       shifting changes the equation recorded by the n-chain,
+       thus changes the boundary of the n-chain.
+
+    3. trivial adding or subtracting
+
+       more precisely
+       adding or subtracting a trivial n-chain
+       given by reflection of (n-1)-chain,
+       to any position in the n-chain where it fits.
+
+       such transformation changes the equation recorded by the n-chain,
+       by adding or subtracting the same (n-1)-chain occurs
+       in both side of the equation recorded by the n-chain,
+       or by eliminating (n-1)-chain followed by its inverse
+       that occurs on one side of the equation recorded by the n-chain.
+
+
 * 類比化學語言
 
-  - 我們可以把上面的類比加以系統發展
-    用以理解高階代數中的現象
+*** intro
 
-    物質
-    物質之間的轉化
-    轉化是利用高階的物質完成的
-    反物質
-    等等
+    - 我們可以把上面的類比加以系統發展
+      用以理解高階代數中的現象
+
+      物質
+      物質之間的轉化
+      轉化是利用高階的物質完成的
+      反物質
+      等等
+
+*** 對 chain 的等價變換
+
+    - chain 是一個複合物
+      其中的每個元素 都能用來促成某種化學變化
+      chain 之爲複合物就是化學變化的複合
+
+      1. 用高階元做轉寫
+         這是聲明的等價關係
+
+      2. 移項
+         這代表了化學反映可以沿着各個方向進行
+         只要改變催化物的角度就行了
+
+      3. 等式兩邊同時添加相同的元素
+         催化物不影響這些元素
+         反映前後這些元素都存在
+
+*** 化學類比
+
+    - x -
+      上面對 chain 之間的等價 進行了化學語言的類比
+      其他有待類比的概念 :
+      空間
+      映射
+      空間的細分
+
+    - k -
+      空間中的所有生成子都是物質
+      一階物質能夠催化零階物質的變化
+      二階物質能夠催化一階物質的變化 等等
+
+    - x -
+      空間的細分
+      就是這個空間所代表的物質的進一步分解
+
+      利用空間之間的細分來說明空間之間的等價
+      就是說 這兩類物質之間的關係是相同的
+
+      說空間 B 可以被看成是空間 A 的細分
+      這是用一個函數類描述的
+      (: f (subdivision (-> A B)))
+
+      也就是說
+      空間之間的函數和函數的性質
+      是用來描述空間之間的關係的
+
+      空間之間的關係
+      不在乎空間之中物質的名字
+      而在乎它們之間的反映關係
+
+*** 化學類比 continuity-check
+
+    - x -
+      此時尤其能夠看出 所謂 continuity-check
+      其實是數學結構之間的同態
+
+      使用化學類比的優點是
+      可以不考慮維數增加帶來的想象困難
+
+      維數增加所帶來的語法困難
+      可以解釋爲
+
+      比如
+      三階物質的使用方式很多
+      是因爲 二階物質的複合方式很多
+
+      開始的時候物質是不能用於反映的點
+
+*** 化學類比 product-space 與 fiber-space
+
+    - x -
+      product-space
+      物質組 (* A B)
+      其中的物質爲 (* a b)
+      a 作用時 b 必須出現 (* ... b)
+      b 作用時 a 必須出現 (* a ...)
+      [並且 b 的作用方向是相反的]
+      因此如果想要 (* a b) 作用
+      那麼反應物就一定是 (* (lhs a) b) 與 (* a (rhs b)) 的複合物
+      生成物是 (* a (lhs b)) 與 (* (rhs a) b) 的複合物
+      等等
+
+      fiber-space is dependent product-space
+      類似物質組 (* A B)
+      但是物質之間的反映關係被一個函數 (: f (-> B B)) 扭曲了
 
 * 二階空間
 

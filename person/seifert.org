@@ -762,7 +762,7 @@
 
 ***** 87 the normal form of integer matrices
 
-* [topology of 3-dimensional fibered spaces]
+* (1933) Topologie dreidi-mensionales gefaserter Raum [topology of 3-dimensional fibered spaces] [三維纖維空間的拓撲]
 
 *** intro
 
@@ -794,7 +794,8 @@
 
 *** fibered spaces
 
-    - with the definition of manifold [topological space] by the axioms of neighborhood system,
+    - with the definition of manifold [topological space]
+      by the axioms of neighborhood system,
       [thus include manifold with boundaries]
       we can define fibered space as following :
 
@@ -819,7 +820,7 @@
 
     - a fibered solid torus can be classified by a rational number ((v / u) <= 1)
       which represent a twist
-      [note that, the middle-fiber is twisted.]
+      [note that, the middle-fiber is not twisted.]
 
       thus we can add the following limitations
       (v and u are coprime) (u > 0) (0 <= v <= u/2)
@@ -853,7 +854,7 @@
 
       thus
       the boundaries of any two fibered solid tori
-      can be mapped ontoeach other under a fiber preserving homeomorphism.
+      can be mapped onto each other under a fiber preserving homeomorphism.
 
       - x -
         why fibered solid torus is classified by ((v / u) <= 1)
@@ -881,12 +882,13 @@
       Every fibered space F has an orbit surface f.
 
       Now f is not a subset of the space F
-      and can in general not be embedded in F,
+      and can in general *not* be embedded in F,
       but is defined as follows :
 
       there is a one-to-one correspondence
       between the fibers of F and the points of f.
-      the orbit surface thus indicates how the manifold is "decomposed" into fibers.
+      - the orbit surface thus indicates
+        how the manifold is "decomposed" into fibers.
 
     - f is a manifold,
       this is ensured by 'fiber neighborhood of a fiber is a solid torus',
@@ -908,22 +910,32 @@
     - ordinary fiber -- (u = 1)
       exceptional fiber -- (u > 1)
 
-      If a fiber in the neighborhood of an exceptional fiber H of order u approaches H,
+      in the neighborhood of an exceptional fiber H of order u,
+      If a fiber approaches H,
       its limit runs u times around H,
       and (u * H) is homologous to an ordinary fiber.
 
       In a fibered solid torus all the fibers are ordinary fibers,
       except possibly for the middle fiber.
 
-      The points of the orbit surface
+      but the points of the orbit surface
       that are images of exceptional fibers are exceptional points;
       as points of the orbit surface,
       they cannot be distinguished from ordinary points.
 
+      - then, when constructing the fiber-space
+        by its base-space [orbit surface],
+        how should we encode this information about exceptional points
+        into the construction ?
+
     - Theorem 1.
-      A closed fibered space contains at most finitely many exceptional fibers.
+      A closed fibered space
+      contains at most finitely many exceptional fibers.
 
 *** fiberings of s3
+
+    - Before studying fiberings in general,
+      we construct examples of fiberings of S3 with exceptional fibers.
 
 *** triangulations of fibered spaces
 
