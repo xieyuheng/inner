@@ -1,4 +1,4 @@
-#+title: norman-steenrod
+#+title: norman steenrod
 
 * how-to-write-mathematics
 

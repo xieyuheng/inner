@@ -1,4 +1,4 @@
-#+title: 赫伯特 塞弗特 / Herbert Seifert
+#+title: herbert seifert
 
 * (1934) lehrbuchder topologie [a textbook of topology] [拓撲學教程]
 

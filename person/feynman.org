@@ -1,6 +1,6 @@
-#+title: feynman-lecture
+#+title: feynman
 
-* ><
+* feynman-lecture
 
   - x ::
        這些底層的知識可能會讓我們重新想要寫 os
