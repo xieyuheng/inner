@@ -1,0 +1,141 @@
+#+title: os
+
+* (2010) (michael kerrisk) the linux programming interface
+
+*** background and concepts
+
+***** 1: history and standards
+
+      - Unlike most commercial UNIX implementations,
+        Linux separates implementation from distribution.
+        - x - one more level of market.
+
+***** 2: fundamental concepts
+
+***** 3: system programming concepts
+
+*** fundamental features of the system programming interface
+
+***** 4: file i/o: the universal i/o model
+***** 5: file i/o: further details
+***** 6: processes
+***** 7: memory allocation
+***** 8: users and groups
+***** 9: process credentials
+***** 10: time
+***** 11: system limits and options
+***** 12: system and process information
+
+*** more advanced features of the system programming interface
+
+***** 13: file i/o buffering
+***** 14: file systems
+***** 15: file attributes
+***** 16: extended attributes
+***** 17: access control lists
+***** 18: directories and links
+***** 19: monitoring file events
+***** 20: signals: fundamental concepts
+***** 21: signals: signal handlers
+***** 22: signals: advanced features
+***** 23: timers and sleeping
+
+*** processes, programs, and threads
+
+***** 24: process creation
+***** 25: process termination
+***** 26: monitoring child processes
+***** 27: program execution
+***** 28: process creation and program execution in more detail
+***** 29: threads: introduction
+***** 30: threads: thread synchronization
+***** 31: threads: thread safety and per-thread storage
+***** 32: threads: thread cancellation
+***** 33: threads: further details
+
+*** advanced process and program topics
+
+***** 34: process groups, sessions, and job control
+***** 35: process priorities and scheduling
+***** 36: process resources
+***** 37: daemons
+***** 38: writing secure privileged programs
+***** 39: capabilities
+***** 40: login accounting
+***** 41: fundamentals of shared libraries
+***** 42: advanced features of shared libraries
+
+*** interprocess communication (ipc)
+
+***** 43: interprocess communication overview
+***** 44: pipes and fifos
+***** 45: introduction to system v ipc
+***** 46: system v message queues
+***** 47: system v semaphores
+***** 48: system v shared memory
+***** 49: memory mappings
+***** 50: virtual memory operations
+***** 51: introduction to posix ipc
+***** 52: posix message queues
+***** 53: posix semaphores
+***** 54: posix shared memory
+***** 55: file locking
+
+*** sockets and network programming
+
+***** 56: sockets: introduction
+***** 57: sockets: unix domain
+***** 58: sockets: fundamentals of tcp/ip networks
+***** 59: sockets: internet domains
+***** 60: sockets: server design
+***** 61: sockets: advanced topics
+
+*** advanced i/o topics
+
+***** 62: terminals
+***** 63: alternative i/o models
+***** 64: pseudoterminals
+
+*** appendix
+
+***** a: tracing system calls
+***** b: parsing command-line options
+***** c: casting the null pointer
+***** d: kernel configuration
+***** e: further sources of information
+***** f: solutions to selected exercises
+
+* (2015) the design and implementation of the freebsd operating system
+
+*** intro
+
+    - (1993)
+      The NetBSD group emphasized portability and the minimalist approach,
+      porting the systems to nearly 60 platforms and they were determined to keep the system lean
+      to aid embedded applications.
+
+      The FreeBSD group emphasized maximal support for the PC architecture
+      and pushed to ease installation for, and market their system to, as wide an audience as possible.
+
+    - (1995)
+      the OpenBSD group split from the NetBSD group
+      to develop a distribution that emphasized security.
+
+    - (2003)
+      the Dragonfly group split from the FreeBSD group
+      to develop a distribution that used a significantly lighter-weight mechanism to support multiprocessing.
+
+    - The licensing terms of FreeBSD do not require the distribution of changes
+      and enhancements to the system.
+
+      The licensing terms of Linux require that
+      all changes and enhancements to the kernel be made available in source form at minimal cost.
+      Thus, companies that need to control the distribution of their intellectual property
+      build their products using FreeBSD.
+
+    - Because of the intense peer review
+      and insistence on well-defined coding standards throughout its 35-year lifetime,
+      the FreeBSD kernel is considerably cleaner, more modular,
+      and thus easier to understand and modify
+      than most software projects of its size and age.
+      Sample course material is available at www.teachbsd.com.

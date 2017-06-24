@@ -1,1 +1,45 @@
 #+title: john mccarthy
+
+* (1963) a basis for a mathematical theory of computation
+
+*** 1 introduction
+
+    - the limitations on what we have been able to make computers do
+      come far more from our weakness as programmers
+      than from the intrinsic limitations of the machines.
+      we hope that these limitations can be greatly reduced
+      by developing a mathematical science of computation.
+
+    - there are three established directions of mathematical research
+      relevant to a science of computation :
+
+      1. numerical analysis :
+         too narrow to be of much help in forming a general theory.
+
+      2. the theory of computability, as a branch of recursive function theory :
+         focus on unsolvability instead of positive results.
+
+      3. the theory of finite automata :
+         finiteness is not practical.
+
+    - first we discuss briefly what practical results can be hoped for
+      from a suitable mathematical theory.
+
+      1. to develop a universal programming language.
+         the formalism for describing computations in this paper
+         is not presented as a candidate for a universal programming language
+         because it lacks a number of features, mainly syntactic,
+         which are necessary for convenient use.
+
+      2. to define a theory of the equivalence of computation processes.
+         with such a theory we can define equivalence preserving transformations.
+
+      3. ><
+
+*** 2 formalisms for describing computable functions and related entities
+
+*** 3 properties of computable functions
+
+*** 4 relation to other formalisms
+
+*** 5 conclusion: mathematical theory of computation
