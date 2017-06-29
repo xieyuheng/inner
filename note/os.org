@@ -6,17 +6,33 @@
 
 ***** 1: history and standards
 
-      - Unlike most commercial UNIX implementations,
-        Linux separates implementation from distribution.
+      - unlike most commercial unix implementations,
+        linux separates implementation from distribution.
         - x - one more level of market.
 
 ***** 2: fundamental concepts
 
 ***** 3: system programming concepts
 
+      - system calls and c library.
+
+      - Whenever we make a system call or call a library function,
+        we should always check the return status of the call
+        in order to determine if it was successful.
+
 *** fundamental features of the system programming interface
 
 ***** 4: file i/o: the universal i/o model
+
+      - all system calls for performing i/o
+        refer to open files using a file descriptor,
+        a (usually small) nonnegative integer.
+
+        file descriptors are used to refer to all types of open files,
+        including pipes, fifos, sockets, terminals, devices, and regular files.
+
+        each process has its own set of file descriptors.
+
 ***** 5: file i/o: further details
 ***** 6: processes
 ***** 7: memory allocation
