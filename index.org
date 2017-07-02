@@ -1,12 +1,6 @@
 #+HTML_HEAD: <link rel="stylesheet" href="asset/css/index.css" type="text/css" media="screen" />
 #+title: xieyuheng / 謝宇恆
 
-@@html:
-<div phide='true'; style="float: right; margin-left: 5px; padding: 5px;">
-<img src="asset/image/yin-yang.png" width=250 />
-</div>
-@@
-
 * about
 
   - xieyuheng is a language designer,

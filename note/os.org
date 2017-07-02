@@ -110,12 +110,133 @@
 
 ***** 56: sockets: introduction
 
-      - ><
-        
-        
+******* overview
+
+        - client and server
+
+          - each application creates a socket.
+            A socket is the thing” that allows communication,
+            and both client and server require one.
+
+          - the server binds its socket to a well-known address (name)
+            so that clients can locate it.
+
+        - A socket is created using the socket() system call,
+          fd = socket(domain, type, protocol);
+
+        - in the internet domain :
+
+          | internet domain stream socket   | SOCK_STREAM |
+          | Transmission Control Protocol   | TCP         |
+          |---------------------------------+-------------|
+          | internet domain datagram socket | SOCK_DGRAM  |
+          | User Datagram Protocol          | UDP         |
+
+        - socket system calls :
+          #include <sys/socket.h>
+
+******* socket
+
+        - int socket(int domain, int type, int protocol);
+          Returns file descriptor on success, or –1 on error.
+
+          creates a new socket.
+
+          domain := AF_UNIX | AF_INET | AF_INET6
+          type := SOCK_STREAM | SOCK_DGRAM
+          protocol := 0 [for now]
+
+          for example,
+          protocol = IPPROTO_RAW for raw sockets (SOCK_RAW)
+          but protocol = 0 for now
+
+******* bind
+
+        - int bind(int sockfd, const struct sockaddr *addr, socklen_t addrlen);
+
+          Returns 0 on success, or –1 on error
+
+          binds a socket to an address.
+          usually, a server employs this call
+          to bind its socket to a well-known address
+          so that clients can locate the socket.
+
+        - struct sockaddr
+          #+begin_src c
+          struct sockaddr {
+            // Address family (AF_* constant)
+            sa_family_t sa_family;
+
+            // Socket address
+            // (size varies according to socket domain)
+            char sa_data[14];
+          };
+          #+end_src
+
+        - UNIX domain sockets use pathnames.
+        - Internet domain sockets use IP address + port number.
+
+******* stream sockets
+
+********* phone analog of stream sockets
+
+          | socket(domain, type, protocol); | setup phone        |
+          | bind(sockfd, addr, addrlen);    | to have a number   |
+          | listen(sockfd, backlog);        | ready to be called |
+          |---------------------------------+--------------------|
+          | connect(sockfd, addr, addrlen); | dialing number     |
+          | accept(sockfd, addr, addrlen);  | pick up the phone  |
+
+          server : socket -- bind -- listen -- accept -- (send and recv) -- close
+          client : socket -- connect -- (send and recv) -- close
+
+********* listen
+
+          - int listen(int sockfd, int backlog);
+
+            Returns 0 on success, or –1 on error
+
+            allows a stream socket to accept
+            incoming connections from other sockets.
+
+********* accept
+
+          - int accept(int sockfd, struct sockaddr *addr, socklen_t *addrlen);
+
+            Returns file descriptor on success, or –1 on error
+
+            accepts a connection from a peer application
+            on a listening stream socket,
+            and optionally returns the address of the peer socket.
+
+            If there are no pending connections when accept() is called,
+            the call blocks until a connection request arrives.
+
+            accept(sockfd, addr, addrlen) creates a new socket,
+            and it is this new socket
+            that is connected to the peer socket
+            that performed the connect(sockfd, addr, addrlen).
+
+            the listening socket remains open,
+            and can be used to accept further connections.
+            [phone analog breaks]
+
+            accept(sockfd, addr, addrlen);
+            set the addr to the addr of the peer socket.
+
+          - connect()
+            establishes a connection with another socket.
+
+******* datagram sockets
+
+        - ><
+
 ***** 57: sockets: unix domain
 ***** 58: sockets: fundamentals of tcp/ip networks
 ***** 59: sockets: internet domains
+
+******* 59.15 further information
+
 ***** 60: sockets: server design
 ***** 61: sockets: advanced topics
 
