@@ -122,8 +122,8 @@
 
     - note that,
       in the following examples
-      "~" can be readed as "define-function",
-      "+" can be readed as "define-type".
+      "~" can be read as "define-function",
+      "+" can be read as "define-type".
 
     - << composition-language >>
       #+begin_src scheme
@@ -433,7 +433,7 @@
 
     - have-equal-human-rights
       - in the following example
-        "*" can be readed as "define-hypothesis"
+        "*" can be read as "define-hypothesis"
       #+begin_src scheme
       (* rich-human (:x is-rich -> :x is-human))
       (* poor-human (:x is-poor -> :x is-human))

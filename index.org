@@ -20,7 +20,7 @@
 
 * writing
 
-  - [[./output/function-compose-type-cut.html][function compose, type cut, and the algebra of logic]] ([[http://xieyuheng.github.io/paper/function-compose-type-cut.pdf][paper]]) ([[http://xieyuheng.github.io/paper/function-compose-type-cut--demo.html][demo]])
+  - [[./output/function-compose-type-cut.html][function compose, type cut, and the algebra of logic]] ([[http://xieyuheng.github.io/paper/function-compose-type-cut.pdf][paper]]) ([[./output/function-compose-type-cut--demo.html][demo]])
     -- for the ICFP 2016 at Nara
 
 * language design
