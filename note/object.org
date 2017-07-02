@@ -1,14 +1,5 @@
 #+title: object
 
-* bib
-
-  - 1995
-    Design Patterns: Elements of Reusable Object-Oriented Software
-    Erich Gamma
-    Richard Helm
-    Ralph Johnson
-    John Vlissides
-
 * subtype
 
 *** 對子類型的處理方式 分類靜態類型系統
