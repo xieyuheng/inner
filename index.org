@@ -1,4 +1,4 @@
-#+HTML_HEAD: <link rel="stylesheet" href="asset/css/index.css" type="text/css" media="screen" />
+#+html_head: <link rel="stylesheet" href="asset/css/index.css" type="text/css" media="screen" />
 #+title: xieyuheng / 謝宇恆
 
 * about

@@ -189,3 +189,9 @@
     [但是函數式的類型之間沒有繼承關係 [不考慮 type class 的條件下]]
 
   - 考慮 type class 的條件下 又如何呢 ?
+
+* forgetful functor and subtype
+
+  - <vector> is subtype of <list>
+    because functions return <list>
+    are more then functions return <vector>

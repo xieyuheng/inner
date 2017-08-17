@@ -1,5 +1,17 @@
 #+title: net
 
+* (2012) the tangled web -- a guide to securing modern web applications
+
+*** [note]
+
+    - the protocols (加密)
+
+    - document formats (嚴格)
+      - DSSSL
+
+    - programming languages (靜態類型)
+      - dependent-type
+      - function as proof
 * unix network programming -- volume 1 -- the sockets networking api
 * the tangled web -- a guide to securing modern web applications
 * tcp/ip illustrated, volume 1: the protocols

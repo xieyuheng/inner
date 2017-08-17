@@ -983,7 +983,7 @@
         - client and server
 
           - each application creates a socket.
-            A socket is the thing” that allows communication,
+            A socket is the thing that allows communication,
             and both client and server require one.
 
           - the server binds its socket to a well-known address (name)
