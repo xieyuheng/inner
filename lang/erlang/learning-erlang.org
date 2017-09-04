@@ -1,9 +1,4 @@
-#+TITLE:  learning erlang
-#+AUTHOR: 謝宇恆 / XIE Yuheng
-
-* 記
-
-  - 接受其語法設計
+#+title:  learning erlang
 
 * 下載於安裝
 
