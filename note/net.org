@@ -1,5 +1,26 @@
 #+title: net
 
+* *links*
+
+  - standard library
+    http://docs.python.org/3/library/
+
+  - tutorial
+    https://docs.python.org/3/tutorial/
+
+  - full stack python
+    https://www.fullstackpython.com/
+
+  - sicp in pyhton
+    http://www-inst.eecs.berkeley.edu/~cs61a/sp12/book/
+    https://wizardforcel.gitbooks.io/sicp-in-python/content/1.html
+
+  - python 3 module of the week
+    https://pymotw.com/3/
+
+  - python package index
+    https://pypi.python.org/
+
 * (2012) the tangled web -- a guide to securing modern web applications
 
 *** [note]
@@ -28,7 +49,6 @@
 *** chapter 8: content rendering with browser plug-ins
 
 * unix network programming -- volume 1 -- the sockets networking api
-* the tangled web -- a guide to securing modern web applications
 * tcp/ip illustrated, volume 1: the protocols
 * beej's guide to network programming -- using internet sockets
 
@@ -277,3 +297,41 @@
 ***** 5.10. getpeername()—Who are you?
 
 ***** 5.11. gethostname()—Who am I?
+
+* foundations of python network programming
+
+*** Chapter 1: Introduction to Client-Server Networking
+
+*** Chapter 2: UDP
+
+*** Chapter 3: TCP
+
+*** Chapter 4: Socket Names and DNS
+
+*** Chapter 5: Network Data and Network Errors
+
+*** Chapter 6: TLS/SSL
+
+*** Chapter 7: Server Architecture
+
+*** Chapter 8: Caches and Message Queues
+
+*** Chapter 9: HTTP Clients
+
+*** Chapter 10: HTTP Servers
+
+*** Chapter 11: The World Wide Web
+
+*** Chapter 12: Building and Parsing E-Mail
+
+*** Chapter 13: SMTP
+
+*** Chapter 14: POP
+
+*** Chapter 15: IMAP
+
+*** Chapter 16: Telnet and SSH
+
+*** Chapter 17: FTP
+
+*** Chapter 18: RPC
