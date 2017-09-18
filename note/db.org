@@ -1,0 +1,27 @@
+#+title: db
+
+* seven-databases
+
+*** intro
+
+***** type of datastore
+
+      - relational -- Postgres
+      - key-value -- Riak, Redis
+      - columnar -- HBase
+      - document-oriented -- MongoDB, CouchDB
+      - graph -- Neo4J
+
+*** PostgreSQL
+
+*** Riak
+
+*** HBase
+
+*** MongoDB
+
+*** CouchDB
+
+*** Neo4J
+
+*** Redis

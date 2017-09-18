@@ -1,5 +1,3 @@
-#+TITLE:  numerical analysis node
-#+AUTHOR: 謝宇恆 / XIE Yuheng
+#+TITLE:  numerical analysis note
 
 * ><
-  

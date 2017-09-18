@@ -1,10 +1,12 @@
 #+TITLE:  程序語言 / programming language note
-#+AUTHOR: 謝宇恆 / XIE Yuheng
 
 * 名與無名
+
   名之 而名以稱之
   不名之 而述以察之
+
 * 程與行
+
   程以述機之行 而非機之行
   機之行必可述之於程 無不程之行
   新行現 必求新程以述之

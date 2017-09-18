@@ -1,5 +1,4 @@
 #+TITLE:  note on graph-grammar
-#+AUTHOR: 謝宇恆 / XIE Yuheng
 
 * readings
   1. [[shell:xpdf ~/learning/digrap/graph-grammar/graph-grammars--an-introduction-to-the-double-pushout-approach.pdf &][ graph-grammars--an-introduction-to-the-double-pushout-approach]]

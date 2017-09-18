@@ -1,5 +1,4 @@
-#+TITLE:  算法學記 / learning algorithm
-#+AUTHOR: 謝宇恆 / XIE Yuheng
+#+title: 算法學記 / learning algorithm
 
 * 算法分析
 

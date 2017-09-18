@@ -1,5 +1,4 @@
-#+TITLE:  組合子記 / note on combinator
-#+AUTHOR: 謝宇恆 / XIE Yuheng
+#+title: 組合子記 / note on combinator
 
 * todo
   * 文日進 而常改

@@ -1,5 +1,4 @@
-#+TITLE:  格模型 / lattice model
-#+AUTHOR: 謝宇恆 / XIE Yuheng
+#+title: 格模型 / lattice model
 
 * 動機
 

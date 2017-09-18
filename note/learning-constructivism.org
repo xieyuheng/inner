@@ -1,5 +1,4 @@
-#+TITLE:  learning constructivism
-#+AUTHOR: 謝宇恆 / XIE Yuheng
+#+title:  learning constructivism
 
 * history of constructivism in the 20th century [troelstra]
 

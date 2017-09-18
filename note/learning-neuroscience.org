@@ -1,5 +1,4 @@
 #+TITLE:  神經學記 / learning neuroscience
-#+AUTHOR: 謝宇恆 / XIE Yuheng
 
 * stomatogastric nervous system
 

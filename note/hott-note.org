@@ -1,5 +1,4 @@
 #+TITLE:  homotopy type theory note
-#+AUTHOR: 謝宇恆 / XIE Yuheng
 
 * intro
 
