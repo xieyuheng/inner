@@ -28,6 +28,9 @@
 
 ***** future and promise
 
+      - x -
+        promise 類似於 sequent 中的不定元
+
 *** the clojure way
 
 ***** atom and STM -- software transactional memory
@@ -60,7 +63,10 @@
 
 ***** 2: error handling and resilience
 
-      - ><
+      - separating error handling out
+        into a separate supervisor process.
+
+      - linking processes
 
 *** communicating sequential processes
 

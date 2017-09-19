@@ -233,7 +233,7 @@
     pre {
         margin-left: 1em;
         margin-right: 1em;
-        font-family: "Mono Mono", Input, Monaco, monofur, Consolas, "Lucida Console", monospace;
+        font-family: "Mono Mono", Hack, Input, Monaco, monofur, Consolas, "Lucida Console", monospace;
         font-size: 14px;
         line-height: 1em;
         color: #f8f8f0;
