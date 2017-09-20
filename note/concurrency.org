@@ -70,6 +70,229 @@
 
 *** communicating sequential processes
 
+***** process algebra
+
+      - Primitives
+        - Events
+        - Primitive processes
+      - Algebraic operators
+        - Prefix
+        - Deterministic Choice
+        - Nondeterministic Choice
+        - Interleaving
+        - Interface Parallel
+        - Hiding
+
 *** data parallelism
 
 *** the lambda architecture
+
+* [note]
+
+*** imp
+
+    - x -
+      必須知道如何實現 才能想像語義
+
+* (1985) (c-a-r-hoare) communicating-sequential-processes
+
+* (1980) (robin milner) a calculus of communicating systems
+
+* (1989) (robin milner) communication and concurrency
+
+*** intro
+
+    - The work arose from an earlier experiment.
+      I tried to apply semantic ideas
+      (known from work on sequential programming)
+      to a concurrent programming language
+      and I found them insufficient.
+
+    - the 'functional' theory is no longer pertinent.
+
+    - in the presence of concurrency or interference
+      the memory is no longer under the control of a single program,
+      but instead it interacts with programs.
+      from beinga slave, the memory has become an independent agent;
+      he who servestwo masters, serves none.
+
+*** modelling communication
+
+***** intro
+
+      - complex dynamic system
+        communication
+        concurrency
+
+      - x -
+        to understand and describe a complex dynamic system
+        we view the system as been composed by parts
+        and say events happen among parts
+
+      - each action of an agent is either an interaction
+        with its neighbouring agents, and then it is a communication,
+        or it occurs independently of them and then it may occur concurrently with their actions.
+
+        but often these independent actions of an agent are
+        themselves nothing but communications among the components of that agent.
+
+        - x -
+          to use the communicating net itself,
+          to encode information and program.
+
+      - it is even plausible to imagine that
+        all independent actions are internal communications.
+
+      - an essential part of a theory of complex systems
+        is a precise and tractable notion of behaviour.
+
+***** 1.1 communication media
+
+******* intro
+
+        - sender -> medium -> receiver
+
+        - ether as medium
+          an ether is just that which contains an unordered set of messages
+          and enables them to move from source to destination.
+
+******* type of medium
+
+********* ETHER
+
+          - The Sender may always send a message.
+          - The Receiver may always receive a message,
+            provided the mediumis not empty.
+          - The order of receiving messages
+            may differ from the order of sending messages.
+
+********* BOUNDED ETHER
+
+          - The Sender may always send a message, provided the medium isnot full.
+          - (as for ETHER)
+            The Receiver may always receive a message,
+            provided the medium is not empty.
+          - (as for ETHER)
+            The order of receiving messages
+            may differ from the order of sending messages.
+
+********* BUFFER
+
+          - (as for ETHER)
+            The Sender may always send a message.
+          - (as for ETHER)
+            The Receiver may always receive a message,
+            provided the medium is not empty.
+          - The order of receiving messages
+            is equal to the order of sending messages.
+
+********* BOUNDED BUFFER
+
+          - (as for BOUNDED ETHER)
+            The Sender may always send a message,
+            provided the medium is not full.
+          - (as for ETHER)
+            The Receiver may always receive a message,
+            provided the medium is not empty.
+          - (as for BUFFER)
+            The order of receiving messages
+            is equal to the order of sending messages.
+
+********* SHARED MEMORY
+
+          - The Sender may always write an item to a register.
+          - The Receiver may always read an item from a register.
+          - Writing and reading may occur in any order.
+
+          - here an item which is sent (written) once
+            may be received (read) many times,
+            so messages have no identity.
+
+          - a buffer, for example,
+            is often implemented in terms of a shared memory.
+
+******* to eliminate the concept of medium
+
+        - medium only occurs when we view them as so
+
+        - sender ----> receiver
+          can be break into :
+          sender --> medium --> receiver
+          can be break again into :
+          sender -> m -> medium -> m -> receiver
+
+          thus, let's not break the first one at all.
+
+        - by refusing to admit channels as entities
+          distinct from agents
+          we hope to keep the primitive notions of our theory
+          as few as possible.
+
+          - x -
+            but how about
+            "meaningful distinctions deserve to be maintained."
+
+        - let's view communication between agents as indivisible,
+          and experienced simultaneously by both participants.
+
+          let's only say
+          sender -> receiver
+          and not to break it again
+
+***** 1.2 simple examples
+
+******* intro
+
+        - agent expressions
+
+******* prefix
+
+        - C := input(x).output^(x).C
+
+        - x -
+          language language language
+
+          - C := input(x).output^(x).C
+            #+begin_src jojo
+            input x C x output
+            (input :x) C (:x output)
+            (input :x) (:x output)
+            input :x! :x output
+            input-> :x! :x ->output
+            #+end_src
+
+          - A := input(x).input(y).output^(x).output^(y).A
+            #+begin_src jojo
+            input x input y A x output y output
+            (input :x) (input :y) A (:x output) (:y output)
+            (input :x) (input :y) (:x output) (:y output)
+            input :x! input :y! :x output :y output
+            input-> :x! input-> :y! :x ->output :y ->output
+            #+end_src
+
+        - We may loosely think of agent expressions like C and C'(x)
+          as standing for the different possible states of an agent;
+          in general there will be many states which an agent may traverse.
+
+          both 'agent' and 'state' will always
+          be understood to mean an agent in some state.
+
+******* summation
+
+        - (+)
+
+******* composition
+
+        - (|)
+
+******* restriction
+
+        - (\)
+
+******* relabelling
+
+        - (/)
+
+***** 1.3 a larger example: the jobshop
+
+***** 1.4 equality of agents

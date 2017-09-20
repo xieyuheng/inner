@@ -30,3 +30,19 @@
 * seven web frameworks
 
 *** intro
+
+    - ><
+
+*** Sinatra
+
+*** CanJS
+
+*** AngularJS
+
+*** Ring
+
+*** Webmachine
+
+*** Yesod
+
+*** Immutant
