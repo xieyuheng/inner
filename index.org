@@ -1,24 +1,48 @@
 #+include: use-org-page.org
 #+title: xieyuheng / 謝宇恆
 
-- welcome to the home page of xieyuheng ^-^/
+- welcome to my home page ^-^/
 
-* about me
+* me
 
-  - I view myself as a programming language designer
+  - Hi I am xieyuheng, I was born at 1992 in China.
+    I like mathematics, philosophy and traditional Chinese.
 
-  - 
-    I am trying to design programming languages
+  - I view myself as a programming language designer.
+    I am always trying to design programming languages.
 
-  - my aim of programming language design
+  - My aim of programming language design
     is to explore the usage of
     'proposition as type' and 'program as proof'
-    for algebraic topological purpose
+    for algebraic topological purpose.
 
-* contact
+*** experiences
 
-  - github : https://github.com/xieyuheng
-  - email : xyheme (at) gmail (dot) com
+***** [2015]
+
+      - Graduated from SYSU, GuangZhou, China, with bachelor's degree.
+        My major was pure and applied mathematics.
+
+***** [2015 -- 2016]
+
+      - I hang around at SZDIY's hacherspace at BaiShiZhou, unemployed.
+
+***** [2016 -- now]
+
+      - Still unemployed.
+
+      - I have no working experiences.
+        I am actively trying find a job.
+
+      - I am competent programmer and fast learner.
+        I can learn your fields and tool chains,
+        and help you solving programming problems.
+        Contact me by email if you have an offer.
+
+*** contact
+
+    - github : https://github.com/xieyuheng
+    - email : xyheme (at) gmail (dot) com
 
 * language design
 
@@ -26,10 +50,6 @@
 
   - [[http://xieyuheng.github.io/sequent1][sequent1]] -- a prototype functional language
     which uses sequent calculus as its dependent type system
-
-  - [[https://github.com/xieyuheng/recursive-combinator][recursive-combinator]] -- dsl embedded in js
-    inspired by joy (the language)
-    implemented by an interpreter of js array
 
   - [[http://xieyuheng.github.io/cicada-nymph][cicada-nymph]] -- a forth-like language
 
