@@ -6,6 +6,8 @@
 * about me
 
   - I view myself as a programming language designer
+
+  - 
     I am trying to design programming languages
 
   - my aim of programming language design
@@ -34,7 +36,7 @@
 * writing
 
   - [[./output/function-compose-type-cut.html][function compose, type cut, and the algebra of logic]] ([[http://xieyuheng.github.io/paper/function-compose-type-cut.pdf][paper]]) ([[./output/function-compose-type-cut--demo.html][demo]])
-    -- for the ICFP 2016 at Nara
+    for the ICFP 2016 at Nara
 
 * translation
 
@@ -49,4 +51,5 @@
 
 * lecture
 
-  - [[http://the-little-language-designer.github.io/cicada-nymph/course/contents.html][experimental assembly programming experiment]], SYSU, GuangZhou, 2015
+  - [[http://the-little-language-designer.github.io/cicada-nymph/course/contents.html][experimental assembly programming experiment]]
+    at SYSU, GuangZhou, 2015
