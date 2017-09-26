@@ -1,6 +1,6 @@
-#+HTML_HEAD: <link rel="stylesheet" href="../asset/css/page.css" type="text/css" media="screen" />
-#+TITLE:  is god a taoist / 上帝是道家的嗎
-#+AUTHOR: Raymond Smullyan
+#+include: use-org-page.org
+#+title:  is god a taoist / 上帝是道家的嗎
+#+author: Raymond Smullyan
 
 * 題解
 

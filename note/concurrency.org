@@ -1,122 +1,296 @@
 #+title: concurrency
 
-* seven-concurrency-models
-
-*** intro
-
-    - shared-memory (clojure) vs distributed-memory (erlang)
-
-*** threads and locks
-
-***** 1: mutual exclusion and memory models
-
-***** 2: beyond intrinsic locks
-
-***** 3: on the shoulders of giants
-
-*** functional programming
-
-***** [note]
-
-      - 之前說過 一個常識是
-        在電子計算機裏
-        所有的計算都是由 改變計算機內存的狀態 來完成的
-
-      - 現在看來
-        如果想要 concurrency 與 parallelism
-        就要抽象掉個常識
-
-***** future and promise
-
-      - x -
-        promise 類似於 sequent 中的不定元
-
-*** the clojure way
-
-***** atom and STM -- software transactional memory
-
-*** actors
-
-***** intro
-
-      - functional programming, avoids mutable state and share states
-        actor programming, retains mutable state but avoids sharing states
-
-***** [note]
-
-      - x -
-        傳遞信息的時候 symbol 這個數據結構如何處理 ?
-        注意我們的 module system 是依賴這個數據結構的
-
-***** 1: messages and mailboxes
-
-      - a station handle messages sequentially.
-
-      - when receiving messages,
-        processes act asynchronously.
-
-      - The video of
-        Erik Meijer and Clemens Szyperski
-        talking to Carl Hewitt
-        about the actor model
-        at Lang.NEXT 2012
-
-***** 2: error handling and resilience
-
-      - separating error handling out
-        into a separate supervisor process.
-
-      - linking processes
-
-*** communicating sequential processes
-
-***** process algebra
-
-      - Primitives
-        - Events
-        - Primitive processes
-      - Algebraic operators
-        - Prefix
-        - Deterministic Choice
-        - Nondeterministic Choice
-        - Interleaving
-        - Interface Parallel
-        - Hiding
-
-*** data parallelism
-
-*** the lambda architecture
-
-* [note]
-
-*** imp
-
-    - x -
-      必須知道如何實現 才能想像語義
-
 * (1985) (c-a-r-hoare) communicating-sequential-processes
 
+*** 1 Processes
+
+***** 1.1  Introduction
+
+      - the word 'process' stand for
+        the behaviour pattern of an object,
+        insofar as it can be described
+        in terms of the limited set of events
+        selected as its alphabet.
+
+      - prefix -
+        (x : event) (P : process)
+        (x -> P) -- pronounced "x then P"
+
+        - x -
+          #+begin_src jojo
+          (+process CLOCK (- tick CLOCK))
+          (+process VMS (- coin choc VMS))
+          #+end_src
+
+      - choice -
+        (x -> P | y -> Q)
+        The bar | should be pronounced "choice"
+        "x then P choice y then Q"
+
+        - x -
+          #+begin_src jojo
+          (+process CH5C
+            (- in5p
+               (| out1p [out1p out1p out2p CH5C]
+                  out2p [out1p out2p CH5C])))
+
+          (+process VMCT
+            (- coin
+               (| choc VMCT
+                  toffee VMCT)))
+
+          (+process VMC
+            (note WARNING: do not insert three pennies in a row.)
+            (| in2p (| large VMC
+                       small [out1p VMC])
+               in1p (| small VMC
+                       in1p (| large VMC
+                               in1p STOP))))
+
+          (+process COPYBIT
+            (| in.0 [out.0 COPYBIT]
+               in.1 [out.1 COPYBIT]))
+
+          (note (process (|)) == STOP)
+
+          (+jojo CT (-> :n <nat> -- <process>)
+            (cond [:n 0 eq?]
+                  (| up [1 CT]
+                     around [0 CT])
+                  else
+                  (| up [:n inc CT]
+                     down [:n dec CT])))
+          #+end_src
+
+***** 1.2  Pictures
+
+***** 1.3  Laws
+
+***** 1.4  Implementation of processes
+
+***** 1.5  Traces
+
+***** 1.6  Operations on traces
+
+***** 1.7  Implementation of traces
+
+***** 1.8  Traces of a process
+
+***** 1.9  More operations on traces
+
+***** 1.10 Specifications
+
+*** 2 concurrency
+
+***** 2.1  introduction
+
+      - composition of processes.
+
+***** 2.2  intersection
+
+      -
+
+***** 2.3  Concurrency
+
+***** 2.4  Pictures
+
+***** 2.5  Example: The Dining Philosophers
+
+***** 2.6  Change of symbol
+
+***** 2.7  Specifications
+
+***** 2.8  Mathematical theory of deterministic processes
+
+*** 3 Nondeterminism
+
+***** 3.1  Introduction
+
+***** 3.2  Nondeterministic or
+
+***** 3.3  General choice
+
+***** 3.4  Refusals
+
+***** 3.5  Concealment
+
+***** 3.6  Interleaving
+
+***** 3.7  Specifications
+
+***** 3.8  Divergence
+
+***** 3.9  Mathematical theory of non-deterministic processes
+
+*** 4 Communication
+
+***** 4.1  Introduction
+
+***** 4.2  Input and output
+
+***** 4.3  Communications
+
+***** 4.4  Pipes
+
+***** 4.5  Subordination
+
+*** 5 Sequential Processes
+
+***** 5.1  Introduction
+
+***** 5.2  Laws
+
+***** 5.3  Mathematical treatment
+
+***** 5.4  Interrupts
+
+***** 5.5  Assignment
+
+*** 6 Shared Resources
+
+***** 6.1  Introduction
+
+***** 6.2  Sharing by interleaving
+
+***** 6.3  Shared storage
+
+***** 6.4  Multiple resources
+
+***** 6.5  Operating systems
+
+***** 6.6  Scheduling
+
+*** 7 Discussion
+
+***** 7.1  Introduction
+
+***** 7.2  Shared storage
+
+***** 7.3  Communication
+
+***** 7.4  Mathematical models
+
 * (1980) (robin milner) a calculus of communicating systems
+
+*** >< intro
 
 * (1989) (robin milner) communication and concurrency
 
 *** intro
 
-    - The work arose from an earlier experiment.
-      I tried to apply semantic ideas
-      (known from work on sequential programming)
-      to a concurrent programming language
-      and I found them insufficient.
+***** a theory of communicating systems
 
-    - the 'functional' theory is no longer pertinent.
+      - built from a few primitive ideas.
 
-    - in the presence of concurrency or interference
-      the memory is no longer under the control of a single program,
-      but instead it interacts with programs.
-      from beinga slave, the memory has become an independent agent;
-      he who servestwo masters, serves none.
+      - a general mathematical model,
+        representing real systems by the expressions of the model,
+        and manipulating them in order to analyse
+        the behaviour of the systems.
 
-*** modelling communication
+      - The work arose from an earlier experiment.
+        Where I tried to apply semantic ideas
+        [known from work on sequential programming]
+        to a concurrent programming language
+        and I found them insufficient.
+
+      - the 'functional' theory is no longer pertinent.
+
+      - in the presence of concurrency or interference
+        the memory is no longer under the control of a single program,
+        but instead it interacts with programs.
+        from being a slave, the memory has become an independent agent;
+        he who serves two masters, serves none.
+
+***** indivisible interaction
+
+      - Around 1977 I learned that
+        Tony Hoare had chosen the same primitive notion
+        [the idea of indivisible interaction]
+        for a strikingly different reason.
+
+        from this single programming primitive
+        one can derive many others,
+        such as semaphores and monitors,
+        which had previously been taken as
+        primitive constructions themselves.
+
+      - Hoare's Communicating Sequential Processes [CSP]
+        published in the Communications of the ACM in 1978
+        describes aprogramming language [CSP]
+        beautifully designed around the primitive
+        of indivisible interaction.
+
+***** observation equivalence of processes
+
+      - the notion of observation equivalence of processes,
+        whose behaviour is described by transition rules,
+        has pleasant algebraic characteristics;
+
+        moreover, it expresses the equivalence of processes
+        whose external communications follow the same pattern
+        but whose internal behaviour may differ widely.
+
+        This abstraction from internal differences
+        is essential for any tractable theory of processes.
+
+      - The theory of observation equivalence was recorded
+        in 'A Calculus of Communicating Systems' [CCS]
+        published by Springer-Verlag in 1980.
+
+      - David Park addressed a serious shortcoming
+        in my formulation of observation equivalence.
+
+        and I had missed a notion and a proof technique
+        which, thanks to Park's discovery,
+        now form a cornerstone of the theory.
+
+***** bisimulation
+
+      - The notion is bisimulation.
+        a kind of invariant holding between a pair ofdynamic systems,
+        and the technique is to prove two systems equivalent
+        by establishing such an invariant,
+
+        much as one can prove correctness
+        of a single sequential program
+        by finding an invariant property.
+
+***** Carl Petri's Net theory
+
+      - Carl Petri's Net theory
+        was the first general theory of concurrency,
+        and dates from the early 1960s.
+        Net theory is a generalisation of the theory of automata,
+        to allow for the occurrence of several actions
+        (state-transitions) independently.
+
+      - the structural properties of systems
+        composed from many interacting parts,
+        is not treated well in Net theory.
+
+      - Net theorists pay particularly close attention
+        to causality among actions.
+        the present theory is by contrast observational [extensional].
+        and does not deal with causality because it is not observable,
+        at least in the way we conceive observation in this book.
+
+***** the term 'process calculus'
+
+      - the term 'process calculus' is coined
+        because I want to be more abstract than
+        a concrete programming language.
+
+      - The Dutch researchers
+        J.A.Bergstra and J.W.Klop
+        use the term 'process algebra'
+        for a closely related approach.
+
+      - the more generous term 'calculus' is used
+        to include the use of logic
+        and other mathematical disciplines.
+        [for example, temporal or tense logic]
+
+*** 1 modelling communication
 
 ***** intro
 
@@ -254,20 +428,12 @@
 
           - C := input(x).output^(x).C
             #+begin_src jojo
-            input x C x output
-            (input :x) C (:x output)
-            (input :x) (:x output)
-            input :x! :x output
-            input-> :x! :x ->output
+            C := input :x! :x !output C
             #+end_src
 
           - A := input(x).input(y).output^(x).output^(y).A
             #+begin_src jojo
-            input x input y A x output y output
-            (input :x) (input :y) A (:x output) (:y output)
-            (input :x) (input :y) (:x output) (:y output)
-            input :x! input :y! :x output :y output
-            input-> :x! input-> :y! :x ->output :y ->output
+            A := input :x! input :y! :x !output :y !output A
             #+end_src
 
         - We may loosely think of agent expressions like C and C'(x)
@@ -296,3 +462,265 @@
 ***** 1.3 a larger example: the jobshop
 
 ***** 1.4 equality of agents
+
+*** 2 Basic Definitions
+
+***** 2.1 Synchronisation
+
+      - if no value passes in either direction,
+        There is no directionality in such communications,
+        it is therefore appropriate to call them synchronisations.
+
+      - in our calculus that synchronisation and Summation,
+        working together,
+        give the power to express
+        the communication of values of anykind!
+
+      - It means that
+        for the purposes of precise definition
+        and theoretical development
+        we may restrict ourselves to a basic calculus
+        of pure synchronisations,
+        in which value variables and expressions are entirely absent.
+
+***** 2.2 Action and transition
+
+***** 2.3 The pre-emptive power of internal action
+
+***** 2.4 The basic language
+
+***** 2.5 Transitional semantics
+
+      - ><
+
+***** 2.6 Derivatives and derivation trees
+
+***** 2.7 Sorts
+
+***** 2.8 The value-passing calculus
+
+***** 2.9 Recursion expressions
+
+***** 2.10 Transition induction
+
+*** 3 Equational Laws and Their Application
+
+***** 3.1 Classification of combinators and laws
+
+***** 3.2 The dynamic laws
+
+***** 3.3 The expansion law
+
+***** 3.4 The static laws
+
+*** 4 Strong Bisimulation and Strong Equivalence
+
+***** 4.1 Experimenting upon agents
+
+***** 4.2 Strong bisimulation
+
+***** 4.3 Some properties of strong equivalence
+
+***** 4.4 Strong congruence
+
+***** 4.5 Unique solution of equations
+
+***** 4.6 Strong bisimulation as a fixed-point
+
+*** 5 Bisimulation and Observation Equivalence
+
+***** 5.1 The definition of bisimulation
+
+***** 5.2 Basic properties of bisimilarity
+
+***** 5.3 Further properties of bisimilarity
+
+***** 5.4 Specifying a simple scheduler
+
+***** 5.5 Implementing the scheduler
+
+***** 5.6 Proving the jobshop correct
+
+***** 5.7 A further technique for bisimulation
+
+*** 6 Further Examples
+
+***** 6.1 Systems with evolving structure
+
+***** 6.2 Systems with inductive structure
+
+***** 6.3 The alternating-bit protocol
+
+***** 6.4 Proof of the protocol
+
+*** 7 The Theory of Observation Congruence
+
+***** 7.1 Experiments and substitutivity
+
+***** 7.2 Equality and its basic properties
+
+***** 7.3 Unique solutions of equations
+
+***** 7.4 Axioms for finite agents
+
+***** 7.5 Axioms for finite-state agents
+
+*** 8 Defining a Programming Language
+
+***** 8.1 Introduction
+
+***** 8.2 Some derived operators
+
+***** 8.3 The language M0 and its translation
+
+***** 8.4 Adding concurrent procedures to M0
+
+*** 9 Operators and Calculi
+
+***** 9.1 Definition by equations
+
+***** 9.2 Definition by inference
+
+***** 9.3 A synchronous calculus
+
+***** 9.4 Equivalence relations
+
+*** 10 Specifications and Logic
+
+***** 10.1 Examples of specifications
+
+***** 10.2 Logic for specifications
+
+***** 10.3 Logic for imperative programs
+
+***** 10.4 Stratification of bisimilarity
+
+***** 10.5 Stratification of process logic
+
+*** 11 Determinacy and Confluence
+
+***** 11.1 Determinacy
+
+***** 11.2 Preserving determinacy
+
+***** 11.3 Confluence
+
+***** 11.4 Preserving confluence
+
+*** 12 Sources and Related Work
+
+* (1983) (stephen d. brookes) a model for communicating sequential processes
+
+*** Chapter 1: A Domain of Processes
+
+*** Chapter 2: Process operations
+
+*** Chapter 3: Implementations
+
+*** Chapter 4: Relationship with Milner's CCS
+
+*** Chapter 5: A proof system for CSP
+
+*** Chapter 6: Testing processes
+
+*** Chapter 7: Some examples
+
+*** Chapter 8: Operational semantics
+
+*** Conclusions
+
+* (1999) (robin milner) communicating and mobile systems -- the pi calculus
+* (1997) (a.w. roscoe) the theory and practice of concurrency
+
+* (2008) (allen b. downey) the little book of semaphores
+
+* (2009) (robin milner) the space and motion of communicating agents
+
+* (2014) (paul butcher) seven concurrency models in seven weeks
+
+*** intro
+
+    - shared-memory (clojure) vs distributed-memory (erlang)
+
+*** threads and locks
+
+***** 1: mutual exclusion and memory models
+
+***** 2: beyond intrinsic locks
+
+***** 3: on the shoulders of giants
+
+*** functional programming
+
+***** [note]
+
+      - 之前說過 一個常識是
+        在電子計算機裏
+        所有的計算都是由 改變計算機內存的狀態 來完成的
+
+      - 現在看來
+        如果想要 concurrency 與 parallelism
+        就要抽象掉個常識
+
+***** future and promise
+
+      - x -
+        promise 類似於 sequent 中的不定元
+
+*** the clojure way
+
+***** atom and STM -- software transactional memory
+
+*** actors
+
+***** intro
+
+      - functional programming, avoids mutable state and share states
+        actor programming, retains mutable state but avoids sharing states
+
+***** [note]
+
+      - x -
+        傳遞信息的時候 symbol 這個數據結構如何處理 ?
+        注意我們的 module system 是依賴這個數據結構的
+
+***** 1: messages and mailboxes
+
+      - a station handle messages sequentially.
+
+      - when receiving messages,
+        processes act asynchronously.
+
+      - The video of
+        Erik Meijer and Clemens Szyperski
+        talking to Carl Hewitt
+        about the actor model
+        at Lang.NEXT 2012
+
+***** 2: error handling and resilience
+
+      - separating error handling out
+        into a separate supervisor process.
+
+      - linking processes
+
+*** communicating sequential processes
+
+***** process algebra
+
+      - Primitives
+        - Events
+        - Primitive processes
+      - Algebraic operators
+        - Prefix
+        - Deterministic Choice
+        - Nondeterministic Choice
+        - Interleaving
+        - Interface Parallel
+        - Hiding
+
+*** data parallelism
+
+*** the lambda architecture
+
+* (2005) (howard bowman and rodolfo gomez) concurrency theory -- calculi and automata for modelling untimed and timed concurrent systems

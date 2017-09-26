@@ -1,6 +1,6 @@
-#+HTML_HEAD: <link rel="stylesheet" href="../asset/css/page.css" type="text/css" media="screen" />
-#+TITLE: schizophrenia in contemporary mathematics / 當代數學之精神分裂症
-#+AUTHOR: Errett Bishop
+#+include: use-org-page.org
+#+title: schizophrenia in contemporary mathematics / 當代數學之精神分裂症
+#+author: Errett Bishop
 
 * 題解
 

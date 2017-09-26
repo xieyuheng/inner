@@ -1,6 +1,6 @@
-#+HTML_HEAD: <link rel="stylesheet" href="../asset/css/page.css" type="text/css" media="screen" />
-#+TITLE:  elements of algebra / 代數原本
-#+AUTHOR: Leonard Euler
+#+include: use-org-page.org
+#+title:  elements of algebra / 代數原本
+#+author: Leonard Euler
 
 * 題解
 

@@ -1,30 +1,26 @@
-#+html_head: <link rel="stylesheet" href="asset/css/index.css" type="text/css" media="screen" />
+#+include: use-org-page.org
 #+title: xieyuheng / 謝宇恆
 
-* about
+- welcome to the home page of xieyuheng ^-^/
 
-  - xieyuheng is a language designer,
-    designing cicada-language.
+* about me
+
+  - I view myself as a programming language designer
+    I am trying to design programming languages
+
+  - my aim of programming language design
+    is to explore the usage of
+    'proposition as type' and 'program as proof'
+    for algebraic topological purpose
 
 * contact
 
   - github : https://github.com/xieyuheng
   - email : xyheme (at) gmail (dot) com
-  - irc : #cicada-language at freenode
-
-* writing
-
-  - [[./output/function-compose-type-cut.html][function compose, type cut, and the algebra of logic]] ([[http://xieyuheng.github.io/paper/function-compose-type-cut.pdf][paper]]) ([[./output/function-compose-type-cut--demo.html][demo]])
-    -- for the ICFP 2016 at Nara
 
 * language design
 
-  - at1 -- a language for algebraic topology
-    [[./lang/at1/at1.html][design note]]
-
-  - (todo) [[http://xieyuheng.github.io/logic1][logic1]] -- a prototype logic language with type system
-
-  - [[http://xieyuheng.github.io/jojo][jojo]] -- a low-level untyped language
+  - [[http://xieyuheng.github.io/jojo][jojo]] -- jojo's programming adventure
 
   - [[http://xieyuheng.github.io/sequent1][sequent1]] -- a prototype functional language
     which uses sequent calculus as its dependent type system
@@ -35,12 +31,22 @@
 
   - [[http://xieyuheng.github.io/cicada-nymph][cicada-nymph]] -- a forth-like language
 
-* lecture
+* writing
 
-  - [[http://the-little-language-designer.github.io/cicada-nymph/course/contents.html][experimental assembly programming experiment]], SYSU, GuangZhou, 2015
+  - [[./output/function-compose-type-cut.html][function compose, type cut, and the algebra of logic]] ([[http://xieyuheng.github.io/paper/function-compose-type-cut.pdf][paper]]) ([[./output/function-compose-type-cut--demo.html][demo]])
+    -- for the ICFP 2016 at Nara
 
 * translation
 
-  - [[./translation/is-god-a-taoist.html][is god a taoist / 上帝是道家的嗎]], by Raymond Smullyan, 1977
-  - [[./translation/schizophrenia-in-contemporary-mathematics.html][schizophrenia in contemporary mathematics / 當代數學之精神分裂症]], by Errett Bishop, 1973
-  - [[./translation/a-constructivist-manifesto.html][a constructivist manifesto / 一個構造主義者的宣言]], by Errett Bishop, 1967
+  - [[./translation/is-god-a-taoist.html][is god a taoist / 上帝是道家的嗎]]
+    by Raymond Smullyan, 1977
+
+  - [[./translation/schizophrenia-in-contemporary-mathematics.html][schizophrenia in contemporary mathematics / 當代數學之精神分裂症]]
+    by Errett Bishop, 1973
+
+  - [[./translation/a-constructivist-manifesto.html][a constructivist manifesto / 一個構造主義者的宣言]]
+    by Errett Bishop, 1967
+
+* lecture
+
+  - [[http://the-little-language-designer.github.io/cicada-nymph/course/contents.html][experimental assembly programming experiment]], SYSU, GuangZhou, 2015

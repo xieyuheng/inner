@@ -1,5 +1,0 @@
-#+HTML_HEAD: <link rel="stylesheet" href="../asset/css/page.css" type="text/css" media="screen" />
-#+TITLE:  the little schemer / 小小策略家
-#+AUTHOR: Dan
-
-* 題解
