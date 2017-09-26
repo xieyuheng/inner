@@ -35,9 +35,11 @@
         I am actively trying find a job.
 
       - I am competent programmer and fast learner.
-        I can learn your fields and tool chains,
+        Given an opportunity,
+        I can learn your fields and tool chains in time,
         and help you solving programming problems.
-        Contact me by email if you have an offer.
+
+      - Contact me by email if you have an offer.
 
 *** contact
 
