@@ -5,15 +5,14 @@
 
 * me
 
-  - Hi I am xieyuheng, I was born at 1992 in China.
+  - Hi I am xieyuheng.
     I like mathematics, philosophy and traditional Chinese.
 
   - I view myself as a programming language designer.
     I am always trying to design programming languages.
 
   - My aim of programming language design
-    is to explore the usage of
-    'proposition as type' and 'program as proof'
+    is to explore the usage of 'proposition as type'
     for algebraic topological purpose.
 
 *** experiences
@@ -25,7 +24,7 @@
 
 ***** [2015 -- 2016]
 
-      - I hanged around at [[http://szdiy.org][SZDIY hacherspace]] at BaiShiZhou, unemployed.
+      - I hanged around at [[http://szdiy.github.io][SZDIY hacherspace]] at BaiShiZhou, unemployed.
 
 ***** [2016 -- now]
 
