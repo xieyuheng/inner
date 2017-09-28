@@ -3,13 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-07-02 Sun 14:15 -->
+<!-- 2017-09-28 Thu 21:49 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>function compose, type cut, and the algebra of logic</title>
 <meta name="generator" content="Org-mode" />
-<meta name="author" content="XIE Yuheng" />
-<link rel="stylesheet" href="../asset/css/page.css" type="text/css" media="screen" />
+<meta name="author" content="xieyuheng" />
+<link rel="stylesheet" href="../css/org-page.css"/>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -58,98 +58,90 @@ for the JavaScript code in this tag.
 </script>
 </head>
 <body>
-<div id="preamble" class="status">
-.
-</div>
 <div id="content">
 <h1 class="title">function compose, type cut, and the algebra of logic</h1>
 <div id="table-of-contents">
 <h2>overview</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgdf74d46">abstract</a></li>
-<li><a href="#orge2bcddc">background</a>
+<li><a href="#org3c9c970">abstract</a></li>
+<li><a href="#org640ca82">background</a>
 <ul>
-<li><a href="#orgd262b45">how the idea was conceived</a></li>
-<li><a href="#org6b6269e">related works</a></li>
+<li><a href="#org402bd3e">how the idea was conceived</a></li>
+<li><a href="#org5115535">related works</a></li>
 </ul>
 </li>
-<li><a href="#org5e176c7">the change of syntax</a>
+<li><a href="#org941e33e">the change of syntax</a>
 <ul>
-<li><a href="#orgd9368e9">natural number</a></li>
-<li><a href="#org8b0640f">detailed explanation of above example</a></li>
-<li><a href="#org96ea6f6">currying must also be explicit</a></li>
-<li><a href="#orgc09d0fc">vector</a></li>
-<li><a href="#orgf2eea67">unified syntax</a></li>
-<li><a href="#org6e5f101">different optimization of syntax</a>
+<li><a href="#org1f4f081">natural number</a></li>
+<li><a href="#org61a23b0">detailed explanation of above example</a></li>
+<li><a href="#org3e6e3fc">currying must also be explicit</a></li>
+<li><a href="#orgf8c0a2a">vector</a></li>
+<li><a href="#org9d76d07">unified syntax</a></li>
+<li><a href="#orgea4d036">different optimization of syntax</a>
 <ul>
-<li><a href="#orge47d7fa">for function composition</a></li>
-<li><a href="#orgd403706">for function application</a></li>
+<li><a href="#org7c93cbd">for function composition</a></li>
+<li><a href="#org1693ef7">for function application</a></li>
 </ul>
 </li>
-<li><a href="#org92e52e7">stack processing</a></li>
+<li><a href="#org1d9c27b">stack processing</a></li>
 </ul>
 </li>
-<li><a href="#org1896c1">the correspondence</a>
+<li><a href="#orgb3766cb">the correspondence</a>
 <ul>
-<li><a href="#orgc71123b">type as theorem</a></li>
-<li><a href="#org3d3f40e">function as proof</a>
+<li><a href="#orgd2c4793">type as theorem</a></li>
+<li><a href="#org102327f">function as proof</a>
 <ul>
-<li><a href="#orgbea5ba8">cut</a></li>
-<li><a href="#org20ee74d">structural</a></li>
-<li><a href="#orgbd1d665">and</a></li>
-<li><a href="#org11a0572">or</a></li>
-<li><a href="#org4eafb5a">implies</a></li>
+<li><a href="#orgf79c674">cut</a></li>
+<li><a href="#org3133d3c">structural</a></li>
+<li><a href="#org3f995e8">and</a></li>
+<li><a href="#org34c271c">or</a></li>
+<li><a href="#orgdf2edc6">implies</a></li>
 </ul>
 </li>
-<li><a href="#orgeebe799">examples</a></li>
+<li><a href="#orgdfa6d3c">examples</a></li>
 </ul>
 </li>
-<li><a href="#org74b17d8">algebra of logic</a>
+<li><a href="#org66b05f5">algebra of logic</a>
 <ul>
-<li><a href="#org57ad654">to mimic fraction of natural number</a></li>
-<li><a href="#orga0c86da">multiplication</a></li>
-<li><a href="#org1a399d1">two definitions of addition</a>
+<li><a href="#org1553202">to mimic fraction of natural number</a></li>
+<li><a href="#org1019486">multiplication</a></li>
+<li><a href="#orga9958ef">two definitions of addition</a>
 <ul>
-<li><a href="#org7b4088b">first definition</a></li>
-<li><a href="#org2172bdc">second definition</a></li>
+<li><a href="#orgc4b1647">first definition</a></li>
+<li><a href="#orgd0a353d">second definition</a></li>
 </ul>
 </li>
-<li><a href="#orga2de985">term-lattice, and cut as weaken</a></li>
-<li><a href="#org6f59bd5">equality of theorem</a></li>
-<li><a href="#org4031116">constructiveness</a></li>
-<li><a href="#org43120b5">algebraic extension</a></li>
+<li><a href="#orgbd1496d">term-lattice, and cut as weaken</a></li>
+<li><a href="#orgd38b2f2">equality of theorem</a></li>
+<li><a href="#org93e5608">constructiveness</a></li>
+<li><a href="#orgb586086">algebraic extension</a></li>
 </ul>
 </li>
-<li><a href="#org80a68e5">implementation</a>
+<li><a href="#orgcd3b37">implementation</a>
 <ul>
-<li><a href="#orgb300e8e">implementation-tech</a></li>
-<li><a href="#org7355559">mistakes in my implementation</a></li>
+<li><a href="#orge609de3">implementation-tech</a></li>
+<li><a href="#org38289c5">mistakes in my implementation</a></li>
 </ul>
 </li>
-<li><a href="#org86aacfd">further work</a></li>
-<li><a href="#org988b1b9">appendixes</a>
+<li><a href="#orgaf9f621">further work</a></li>
+<li><a href="#org6d1764f">appendixes</a>
 <ul>
-<li><a href="#org4d45f65">rationale of using postfix notation</a></li>
-<li><a href="#orgcce079a">remark on deduction and inference</a></li>
+<li><a href="#orgee7dd0b">rationale of using postfix notation</a></li>
+<li><a href="#orgbc511e3">remark on deduction and inference</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<hr  />
-<p>
+<ul class="org-ul">
+<li><p>author : XIE Yuheng, a math student</p></li>
+<li><p>date : 2016/06/14</p></li>
+<li><p>keywords : language design, dependent type, deduction system, sequent calculus, algebraic structure</p></li></ul>
 
-<p> author : XIE Yuheng, a math student </p>
-<p> date: 2016/06/14 </p>
-<p> keywords : language design, dependent type, deduction system, sequent calculus, algebraic structure </p>
-
-</p>
-<hr  />
-
-<div id="outline-container-orgdf74d46" class="outline-2">
-<h2 id="orgdf74d46">abstract</h2>
-<div class="outline-text-2" id="text-orgdf74d46">
+<div id="outline-container-org3c9c970" class="outline-2">
+<h2 id="org3c9c970">abstract</h2>
+<div class="outline-text-2" id="text-org3c9c970">
 <ul class="org-ul">
 <li><p>some said,</p><p>[for example, see the wikipedia page of "Curry–Howard correspondence", at the time when this paper is written]</p><p>in the framework of Curry–Howard correspondence,</p><p>Gentzen's sequent calculus does not correspond with</p><p>a well-defined pre-existing model of computation,</p><p>as it was for Hilbert-style and natural deduction.</p><p></p><p><ul class="org-ul"></p><p><li><p>in this paper, I will show that</p><p>we can get what sequent calculus corresponds to,</p><p>not by designing a new model of computation,</p><p>but by changing the syntax of well known model.</p></li></p><p></p><p><li><p>I will show that</p><p>sequent calculus corresponds to a functional programming language,</p><p>the syntax of which is optimized for function composition</p><p>instead of function application.</p></li></p><p></p><p><li><p>I will also show the trade-off of this syntax design.</p><p><ol class="org-ol"></p><p><li>the syntax of type and function-body are unified.</li></p><p><li>we lose the implicit syntax for currying.</li></p><p><li>we gain the algebraic associative law.</li></ol></p></li></ul></p></li>
 
@@ -159,12 +151,12 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orge2bcddc" class="outline-2">
-<h2 id="orge2bcddc">background</h2>
-<div class="outline-text-2" id="text-orge2bcddc">
-</div><div id="outline-container-orgd262b45" class="outline-3">
-<h3 id="orgd262b45">how the idea was conceived</h3>
-<div class="outline-text-3" id="text-orgd262b45">
+<div id="outline-container-org640ca82" class="outline-2">
+<h2 id="org640ca82">background</h2>
+<div class="outline-text-2" id="text-org640ca82">
+</div><div id="outline-container-org402bd3e" class="outline-3">
+<h3 id="org402bd3e">how the idea was conceived</h3>
+<div class="outline-text-3" id="text-org402bd3e">
 <ul class="org-ul">
 <li><p>two years ago,</p><p>for some reason, I learned the design of the stack-based language &#x2013; forth.</p><p>I began to write my own forth-like language,</p><p>and tried to add various features to it.</p><p>soon I found another forth-like language &#x2013; joy.</p><p>from joy I learned the composition v.s. application trade-off in syntax.</p></li>
 
@@ -178,9 +170,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org6b6269e" class="outline-3">
-<h3 id="org6b6269e">related works</h3>
-<div class="outline-text-3" id="text-org6b6269e">
+<div id="outline-container-org5115535" class="outline-3">
+<h3 id="org5115535">related works</h3>
+<div class="outline-text-3" id="text-org5115535">
 <ul class="org-ul">
 <li><p><p></p><p>there are many other works</p><p>that assign computational models to sequent-calculus-like logics.</p><p>for example :</p><p></p></p><p><table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"></p><p></p><p></p><p><colgroup></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></colgroup></p><p><thead></p><p><tr></p><p><th scope="col" class="org-left">people</th></p><p><th scope="col" class="org-left">logic</th></p><p><th scope="col" class="org-left">model</th></p><p></tr></p><p></thead></p><p><tbody></p><p><tr></p><p><td class="org-left">Frank Pfenning</td></p><p><td class="org-left">linear logic</td></p><p><td class="org-left">concurrent programming</td></p><p></tr></p><p></tbody></p><p></table></p></li>
 
@@ -189,16 +181,16 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org5e176c7" class="outline-2">
-<h2 id="org5e176c7">the change of syntax</h2>
-<div class="outline-text-2" id="text-org5e176c7">
+<div id="outline-container-org941e33e" class="outline-2">
+<h2 id="org941e33e">the change of syntax</h2>
+<div class="outline-text-2" id="text-org941e33e">
 <ul class="org-ul">
 <li><p>I will introduce my syntax by comparing it with</p><p>the syntax of an imaginary agda-like (or idris-like) language.</p><p>I will mark its syntax by &lt;&lt; application-language &gt;&gt;,</p><p>and I will mark my syntax by &lt;&lt; composition-language &gt;&gt;.</p></li></ul>
 </div>
 
-<div id="outline-container-orgd9368e9" class="outline-3">
-<h3 id="orgd9368e9">natural number</h3>
-<div class="outline-text-3" id="text-orgd9368e9">
+<div id="outline-container-org1f4f081" class="outline-3">
+<h3 id="org1f4f081">natural number</h3>
+<div class="outline-text-3" id="text-org1f4f081">
 <ul class="org-ul">
 <li><p><p></p><p>&lt;&lt; application-language &gt;&gt;</p><p></p></p><p><div class="org-src-container"></p><p></p><p><pre class="src src-idris"><span style="color: #f92672; font-weight: bold;">data</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">natural</span> <span style="color: #fd971f;">:</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">type</span> <span style="color: #f92672; font-weight: bold;">where</span></p><p>  <span style="color: #f8f8f0; background-color: #1b1d1e;">zero</span> <span style="color: #fd971f;">:</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">natural</span></p><p>  <span style="color: #f8f8f0; background-color: #1b1d1e;">succ</span> <span style="color: #fd971f;">:</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">natural</span> <span style="color: #fd971f;">-&gt;</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">natural</span></p><p></p><p><span style="color: #f8f8f0; background-color: #1b1d1e;">add</span> <span style="color: #fd971f;">:</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">natural</span> <span style="color: #fd971f;">-&gt;</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">natural</span> <span style="color: #fd971f;">-&gt;</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">natural</span></p><p><span style="color: #f8f8f0; background-color: #1b1d1e;">add</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">zero</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">n</span> <span style="color: #fd971f;">=</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">n</span></p><p><span style="color: #f8f8f0; background-color: #1b1d1e;">add</span> (<span style="color: #f8f8f0; background-color: #1b1d1e;">succ</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">m</span>) <span style="color: #f8f8f0; background-color: #1b1d1e;">n</span> <span style="color: #fd971f;">=</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">succ</span> (<span style="color: #f8f8f0; background-color: #1b1d1e;">add</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">m</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">n</span>)</p><p></p><p><span style="color: #f8f8f0; background-color: #1b1d1e;">mul</span> <span style="color: #fd971f;">:</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">natural</span> <span style="color: #fd971f;">-&gt;</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">natural</span> <span style="color: #fd971f;">-&gt;</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">natural</span></p><p><span style="color: #f8f8f0; background-color: #1b1d1e;">mul</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">zero</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">n</span> <span style="color: #fd971f;">=</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">zero</span></p><p><span style="color: #f8f8f0; background-color: #1b1d1e;">mul</span> (<span style="color: #f8f8f0; background-color: #1b1d1e;">succ</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">m</span>) <span style="color: #f8f8f0; background-color: #1b1d1e;">n</span> <span style="color: #fd971f;">=</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">add</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">n</span> (<span style="color: #f8f8f0; background-color: #1b1d1e;">mul</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">m</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">n</span>)</p><p></pre></p><p></div></p></li>
 
@@ -208,17 +200,17 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org8b0640f" class="outline-3">
-<h3 id="org8b0640f">detailed explanation of above example</h3>
-<div class="outline-text-3" id="text-org8b0640f">
+<div id="outline-container-org61a23b0" class="outline-3">
+<h3 id="org61a23b0">detailed explanation of above example</h3>
+<div class="outline-text-3" id="text-org61a23b0">
 <ul class="org-ul">
 <li><p><p></p><p>explanation</p><p></p></p><p><div class="org-src-container"></p><p></p><p><pre class="src src-scheme"><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">note</span></p><p>  the second arrow of the function body of</p><p>  <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">~</span> mul <span style="color: #696969;">(</span>natural natural <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> natural<span style="color: #696969;">)</span></p><p>     <span style="color: #696969;">(</span><span style="color: #a6e22e;">:m</span> zero <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> zero<span style="color: #696969;">)</span></p><p>     <span style="color: #696969;">(</span><span style="color: #a6e22e;">:m</span> <span style="color: #a6e22e;">:n</span> succ <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:m</span> <span style="color: #a6e22e;">:n</span> mul <span style="color: #a6e22e;">:m</span> add<span style="color: #696969;">))</span></p><p>  which is</p><p>  <span style="color: #696969;">(</span><span style="color: #a6e22e;">:m</span> <span style="color: #a6e22e;">:n</span> succ <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:m</span> <span style="color: #a6e22e;">:n</span> mul <span style="color: #a6e22e;">:m</span> add<span style="color: #696969;">)</span></p><p>  <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">note</span></p><p>    the antecedent of <span style="color: #696969;">(</span><span style="color: #a6e22e;">:m</span> <span style="color: #a6e22e;">:n</span> succ <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:m</span> <span style="color: #a6e22e;">:n</span> mul <span style="color: #a6e22e;">:m</span> add<span style="color: #696969;">)</span></p><p>    is <span style="color: #696969;">(</span><span style="color: #a6e22e;">:m</span> <span style="color: #a6e22e;">:n</span> succ<span style="color: #696969;">)</span></p><p>    it can be viewed as <span style="color: #66d9ef; font-weight: bold;">3</span> functions composed together</p><p>    the type of each of them are showed by the following <span style="color: #66d9ef; font-weight: bold;">list</span></p><p>    <span style="color: #696969;">((</span><span style="color: #a6e22e;">:m</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> natural<span style="color: #696969;">))</span></p><p>     <span style="color: #696969;">(</span><span style="color: #a6e22e;">:n</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> natural<span style="color: #696969;">))</span></p><p>     <span style="color: #696969;">(</span>succ <span style="color: #696969;">(</span>natural <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> natural<span style="color: #696969;">)))</span></p><p>    the resulting type is</p><p>    <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> natural natural<span style="color: #696969;">))</span></p><p>  <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">note</span></p><p>    the succedent of <span style="color: #696969;">(</span><span style="color: #a6e22e;">:m</span> <span style="color: #a6e22e;">:n</span> succ <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:m</span> <span style="color: #a6e22e;">:n</span> mul <span style="color: #a6e22e;">:m</span> add<span style="color: #696969;">)</span></p><p>    is <span style="color: #696969;">(</span><span style="color: #a6e22e;">:m</span> <span style="color: #a6e22e;">:n</span> mul <span style="color: #a6e22e;">:m</span> add<span style="color: #696969;">)</span></p><p>    it can be viewed as <span style="color: #66d9ef; font-weight: bold;">4</span> functions composed together</p><p>    the type of each of them are showed by the following <span style="color: #66d9ef; font-weight: bold;">list</span></p><p>    <span style="color: #696969;">((</span><span style="color: #a6e22e;">:m</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> natural<span style="color: #696969;">))</span></p><p>     <span style="color: #696969;">(</span><span style="color: #a6e22e;">:n</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> natural<span style="color: #696969;">))</span></p><p>     <span style="color: #696969;">(</span>mul <span style="color: #696969;">(</span>natural natural <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> natural<span style="color: #696969;">))</span></p><p>     <span style="color: #696969;">(</span><span style="color: #a6e22e;">:m</span> <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> natural<span style="color: #696969;">))</span></p><p>     <span style="color: #696969;">(</span>add <span style="color: #696969;">(</span>natural natural <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> natural<span style="color: #696969;">)))</span></p><p>    the resulting type is</p><p>    <span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> natural<span style="color: #696969;">)))</span></p><p></pre></p><p></div></p></li></ul>
 </div>
 </div>
 
-<div id="outline-container-org96ea6f6" class="outline-3">
-<h3 id="org96ea6f6">currying must also be explicit</h3>
-<div class="outline-text-3" id="text-org96ea6f6">
+<div id="outline-container-org3e6e3fc" class="outline-3">
+<h3 id="org3e6e3fc">currying must also be explicit</h3>
+<div class="outline-text-3" id="text-org3e6e3fc">
 <ul class="org-ul">
 <li><p>in type, input arguments and return values are made explicit.</p><p>instead of (natural -&gt; natural -&gt; natural),</p><p>we write (natural natural -&gt; natural).</p></li>
 
@@ -226,9 +218,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgc09d0fc" class="outline-3">
-<h3 id="orgc09d0fc">vector</h3>
-<div class="outline-text-3" id="text-orgc09d0fc">
+<div id="outline-container-orgf8c0a2a" class="outline-3">
+<h3 id="orgf8c0a2a">vector</h3>
+<div class="outline-text-3" id="text-orgf8c0a2a">
 <ul class="org-ul">
 <li><p><p></p><p>&lt;&lt; application-language &gt;&gt;</p><p></p></p><p><div class="org-src-container"></p><p></p><p><pre class="src src-idris"><span style="color: #f92672; font-weight: bold;">data</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">vector</span> <span style="color: #fd971f;">:</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">natural</span> <span style="color: #fd971f;">-&gt;</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">type</span> <span style="color: #fd971f;">-&gt;</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">type</span> <span style="color: #f92672; font-weight: bold;">where</span></p><p>  <span style="color: #f8f8f0; background-color: #1b1d1e;">null</span> <span style="color: #fd971f;">:</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">vector</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">zero</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">t</span></p><p>  <span style="color: #f8f8f0; background-color: #1b1d1e;">cons</span> <span style="color: #fd971f;">:</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">t</span> <span style="color: #fd971f;">-&gt;</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">vector</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">n</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">t</span> <span style="color: #fd971f;">-&gt;</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">vector</span> (<span style="color: #f8f8f0; background-color: #1b1d1e;">succ</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">n</span>) <span style="color: #f8f8f0; background-color: #1b1d1e;">t</span></p><p></p><p><span style="color: #f8f8f0; background-color: #1b1d1e;">append</span> <span style="color: #fd971f;">:</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">vector</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">m</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">t</span> <span style="color: #fd971f;">-&gt;</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">vector</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">n</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">t</span> <span style="color: #fd971f;">-&gt;</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">vector</span> (<span style="color: #f8f8f0; background-color: #1b1d1e;">add</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">m</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">n</span>) <span style="color: #f8f8f0; background-color: #1b1d1e;">t</span></p><p><span style="color: #f8f8f0; background-color: #1b1d1e;">append</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">null</span>       <span style="color: #f8f8f0; background-color: #1b1d1e;">l</span> <span style="color: #fd971f;">=</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">l</span></p><p><span style="color: #f8f8f0; background-color: #1b1d1e;">append</span> (<span style="color: #f8f8f0; background-color: #1b1d1e;">cons</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">e</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">r</span>) <span style="color: #f8f8f0; background-color: #1b1d1e;">l</span> <span style="color: #fd971f;">=</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">cons</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">e</span> (<span style="color: #f8f8f0; background-color: #1b1d1e;">append</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">r</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">l</span>)</p><p></p><p><span style="color: #f8f8f0; background-color: #1b1d1e;">map</span> <span style="color: #fd971f;">:</span> (<span style="color: #f8f8f0; background-color: #1b1d1e;">m</span> <span style="color: #fd971f;">:</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">a</span> <span style="color: #fd971f;">-&gt;</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">b</span>) <span style="color: #fd971f;">-&gt;</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">f</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">a</span> <span style="color: #fd971f;">-&gt;</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">f</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">b</span></p><p><span style="color: #f8f8f0; background-color: #1b1d1e;">map</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">f</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">null</span>       <span style="color: #fd971f;">=</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">null</span></p><p><span style="color: #f8f8f0; background-color: #1b1d1e;">map</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">f</span> (<span style="color: #f8f8f0; background-color: #1b1d1e;">cons</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">e</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">l</span>) <span style="color: #fd971f;">=</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">cons</span> (<span style="color: #f8f8f0; background-color: #1b1d1e;">f</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">e</span>) (<span style="color: #f8f8f0; background-color: #1b1d1e;">map</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">f</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">l</span>)</p><p></pre></p><p></div></p></li>
 
@@ -236,20 +228,20 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgf2eea67" class="outline-3">
-<h3 id="orgf2eea67">unified syntax</h3>
-<div class="outline-text-3" id="text-orgf2eea67">
+<div id="outline-container-org9d76d07" class="outline-3">
+<h3 id="org9d76d07">unified syntax</h3>
+<div class="outline-text-3" id="text-org9d76d07">
 <ul class="org-ul">
 <li><p>the syntax of type and function-body are unified.</p><p>a type is an arrow, a function-body is a list of arrows.</p></li></ul>
 </div>
 </div>
 
-<div id="outline-container-org6e5f101" class="outline-3">
-<h3 id="org6e5f101">different optimization of syntax</h3>
-<div class="outline-text-3" id="text-org6e5f101">
-</div><div id="outline-container-orge47d7fa" class="outline-4">
-<h4 id="orge47d7fa">for function composition</h4>
-<div class="outline-text-4" id="text-orge47d7fa">
+<div id="outline-container-orgea4d036" class="outline-3">
+<h3 id="orgea4d036">different optimization of syntax</h3>
+<div class="outline-text-3" id="text-orgea4d036">
+</div><div id="outline-container-org7c93cbd" class="outline-4">
+<h4 id="org7c93cbd">for function composition</h4>
+<div class="outline-text-4" id="text-org7c93cbd">
 <ul class="org-ul">
 <li><p><p></p><p>&lt;&lt; application-language &gt;&gt;</p><p></p></p><p><div class="org-src-container"></p><p></p><p><pre class="src src-idris"><span style="color: #f8f8f0; background-color: #1b1d1e;">compose</span> <span style="color: #fd971f;">:</span> {<span style="color: #f8f8f0; background-color: #1b1d1e;">A</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">B</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">C</span> <span style="color: #fd971f;">:</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">type</span>} (<span style="color: #f8f8f0; background-color: #1b1d1e;">A</span> <span style="color: #fd971f;">-&gt;</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">B</span>) <span style="color: #fd971f;">-&gt;</span> (<span style="color: #f8f8f0; background-color: #1b1d1e;">B</span> <span style="color: #fd971f;">-&gt;</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">C</span>) <span style="color: #fd971f;">-&gt;</span> (<span style="color: #f8f8f0; background-color: #1b1d1e;">A</span> <span style="color: #fd971f;">-&gt;</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">C</span>)</p><p><span style="color: #f8f8f0; background-color: #1b1d1e;">compose</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">f</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">g</span> <span style="color: #fd971f;">=</span> &#955; <span style="color: #f8f8f0; background-color: #1b1d1e;">x</span> <span style="color: #fd971f;">-&gt;</span> (<span style="color: #f8f8f0; background-color: #1b1d1e;">f</span> (<span style="color: #f8f8f0; background-color: #1b1d1e;">g</span> <span style="color: #f8f8f0; background-color: #1b1d1e;">x</span>))</p><p></pre></p><p></div></p></li>
 
@@ -257,9 +249,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgd403706" class="outline-4">
-<h4 id="orgd403706">for function application</h4>
-<div class="outline-text-4" id="text-orgd403706">
+<div id="outline-container-org1693ef7" class="outline-4">
+<h4 id="org1693ef7">for function application</h4>
+<div class="outline-text-4" id="text-org1693ef7">
 <ul class="org-ul">
 <li><p>&lt;&lt; application-language &gt;&gt;</p><p>the syntax is optimized for function application.</p><p>function application is expressed by term concatenation.</p></li>
 
@@ -268,9 +260,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org92e52e7" class="outline-3">
-<h3 id="org92e52e7">stack processing</h3>
-<div class="outline-text-3" id="text-org92e52e7">
+<div id="outline-container-org1d9c27b" class="outline-3">
+<h3 id="org1d9c27b">stack processing</h3>
+<div class="outline-text-3" id="text-org1d9c27b">
 <ul class="org-ul">
 <li><p>multiple return values are easily handled,</p><p>and stack-processing functions can be used to help to</p><p>re-order return values (without naming them) for function composition.</p><p>(just like in forth &amp; joy)</p></li>
 
@@ -279,16 +271,16 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org1896c1" class="outline-2">
-<h2 id="org1896c1">the correspondence</h2>
-<div class="outline-text-2" id="text-org1896c1">
+<div id="outline-container-orgb3766cb" class="outline-2">
+<h2 id="orgb3766cb">the correspondence</h2>
+<div class="outline-text-2" id="text-orgb3766cb">
 <ul class="org-ul">
 <li><p>to show Curry–Howard correspondence under this syntax</p><p>is to show,</p><p><ol class="org-ol"></p><p><li>how to view type as theorem ?</li></p><p><li>how to view function as proof ?</li></ol></p></li></ul>
 </div>
 
-<div id="outline-container-orgc71123b" class="outline-3">
-<h3 id="orgc71123b">type as theorem</h3>
-<div class="outline-text-3" id="text-orgc71123b">
+<div id="outline-container-orgd2c4793" class="outline-3">
+<h3 id="orgd2c4793">type as theorem</h3>
+<div class="outline-text-3" id="text-orgd2c4793">
 <ul class="org-ul">
 <li><p><p></p><p>with the ability to handle multiple return values,</p><p>we can express "and" easily.</p><p></p></p><p><div class="org-src-container"></p><p></p><p><pre class="src src-scheme"><span style="color: #696969;">(</span>A B <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> C D<span style="color: #696969;">)</span> -- <span style="color: #e6db74;">"(A and B) implies (C and D)"</span></p><p></pre></p><p></div></p><p><p></p><p>we can express "for all" and "there exist" in an unified way.</p><p></p></p><p><div class="org-src-container"></p><p></p><p><pre class="src src-scheme"><span style="color: #696969;">((</span><span style="color: #a6e22e;">:x</span><span style="color: #FFA23D;"> : </span>A<span style="color: #696969;">)</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:x</span> P<span style="color: #696969;">)</span> -- <span style="color: #e6db74;">"for all x belong to A, we have P(x)"</span></p><p><span style="color: #696969;">(</span><span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #696969;">(</span><span style="color: #a6e22e;">:x</span><span style="color: #FFA23D;"> : </span>A<span style="color: #696969;">)</span> <span style="color: #a6e22e;">:x</span> P<span style="color: #696969;">)</span> -- <span style="color: #e6db74;">"there exist x belong to A, such that P(x)"</span></p><p></pre></p><p></div></p></li>
 
@@ -296,26 +288,26 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org3d3f40e" class="outline-3">
-<h3 id="org3d3f40e">function as proof</h3>
-<div class="outline-text-3" id="text-org3d3f40e">
+<div id="outline-container-org102327f" class="outline-3">
+<h3 id="org102327f">function as proof</h3>
+<div class="outline-text-3" id="text-org102327f">
 <ul class="org-ul">
 <li><p>"function as proof" means,</p><p>the way we write function body forms a language to record deduction.</p><p>a record of many steps of deduction is called a proof.</p></li>
 
 <li><p>let us summarize deductive rules in sequent calculus in our language.</p><p>I will omit some explicit contexts variables in the deductive rules,</p><p>because in our language contexts can be implicit.</p></li></ul>
 </div>
 
-<div id="outline-container-orgbea5ba8" class="outline-4">
-<h4 id="orgbea5ba8">cut</h4>
-<div class="outline-text-4" id="text-orgbea5ba8">
+<div id="outline-container-orgf79c674" class="outline-4">
+<h4 id="orgf79c674">cut</h4>
+<div class="outline-text-4" id="text-orgf79c674">
 <ul class="org-ul">
 <li><p><p></p><p>cut</p><p></p></p><p><div class="org-src-container"></p><p></p><p><pre class="src src-scheme">f<span style="color: #FFA23D;"> : </span><span style="color: #696969;">(</span>A <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> B<span style="color: #696969;">)</span></p><p>g<span style="color: #FFA23D;"> : </span><span style="color: #696969;">(</span>B <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> C<span style="color: #696969;">)</span></p><p>--------------</p><p>f g<span style="color: #FFA23D;"> : </span><span style="color: #696969;">(</span>A <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> C<span style="color: #696969;">)</span></p><p></pre></p><p></div></p></li></ul>
 </div>
 </div>
 
-<div id="outline-container-org20ee74d" class="outline-4">
-<h4 id="org20ee74d">structural</h4>
-<div class="outline-text-4" id="text-org20ee74d">
+<div id="outline-container-org3133d3c" class="outline-4">
+<h4 id="org3133d3c">structural</h4>
+<div class="outline-text-4" id="text-org3133d3c">
 <ul class="org-ul">
 <li><p><p></p><p>left-weakening</p><p></p></p><p><div class="org-src-container"></p><p></p><p><pre class="src src-scheme">f<span style="color: #FFA23D;"> : </span><span style="color: #696969;">(</span>A <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> C<span style="color: #696969;">)</span></p><p>-------------------</p><p>drop f<span style="color: #FFA23D;"> : </span><span style="color: #696969;">(</span>A B <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> C<span style="color: #696969;">)</span></p><p></pre></p><p></div></p></li>
 
@@ -329,9 +321,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgbd1d665" class="outline-4">
-<h4 id="orgbd1d665">and</h4>
-<div class="outline-text-4" id="text-orgbd1d665">
+<div id="outline-container-org3f995e8" class="outline-4">
+<h4 id="org3f995e8">and</h4>
+<div class="outline-text-4" id="text-org3f995e8">
 <ul class="org-ul">
 <li><p><p></p><p>left-and-1</p><p></p></p><p><div class="org-src-container"></p><p></p><p><pre class="src src-scheme">f<span style="color: #FFA23D;"> : </span><span style="color: #696969;">(</span>A <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> C<span style="color: #696969;">)</span></p><p>-------------------</p><p>drop f<span style="color: #FFA23D;"> : </span><span style="color: #696969;">(</span>A B <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> C<span style="color: #696969;">)</span></p><p></pre></p><p></div></p></li>
 
@@ -341,9 +333,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org11a0572" class="outline-4">
-<h4 id="org11a0572">or</h4>
-<div class="outline-text-4" id="text-org11a0572">
+<div id="outline-container-org34c271c" class="outline-4">
+<h4 id="org34c271c">or</h4>
+<div class="outline-text-4" id="text-org34c271c">
 <ul class="org-ul">
 <li><p><p></p><p>right-or-1</p><p></p></p><p><div class="org-src-container"></p><p></p><p><pre class="src src-scheme">f<span style="color: #FFA23D;"> : </span><span style="color: #696969;">(</span>A <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> B<span style="color: #696969;">)</span></p><p>-------------------</p><p>f<span style="color: #FFA23D;"> : </span><span style="color: #696969;">(</span>A <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #696969;">(</span>B or C<span style="color: #696969;">))</span></p><p></pre></p><p></div></p></li>
 
@@ -353,9 +345,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org4eafb5a" class="outline-4">
-<h4 id="org4eafb5a">implies</h4>
-<div class="outline-text-4" id="text-org4eafb5a">
+<div id="outline-container-orgdf2edc6" class="outline-4">
+<h4 id="orgdf2edc6">implies</h4>
+<div class="outline-text-4" id="text-orgdf2edc6">
 <ul class="org-ul">
 <li><p><p></p><p>left-implies</p><p></p></p><p><div class="org-src-container"></p><p></p><p><pre class="src src-scheme">f<span style="color: #FFA23D;"> : </span><span style="color: #696969;">(</span>A <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> B<span style="color: #696969;">)</span></p><p>g<span style="color: #FFA23D;"> : </span><span style="color: #696969;">(</span>C <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> D<span style="color: #696969;">)</span></p><p>--------------------------</p><p><span style="color: #696969;">(</span><span style="color: #a6e22e;">:a</span> <span style="color: #a6e22e;">:h</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:a</span> f <span style="color: #a6e22e;">:h</span> apply g<span style="color: #696969;">)</span></p><p>: <span style="color: #696969;">(</span>A <span style="color: #696969;">(</span>B <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> C<span style="color: #696969;">)</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> D<span style="color: #696969;">)</span></p><p></pre></p><p></div></p></li>
 
@@ -364,9 +356,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgeebe799" class="outline-3">
-<h3 id="orgeebe799">examples</h3>
-<div class="outline-text-3" id="text-orgeebe799">
+<div id="outline-container-orgdfa6d3c" class="outline-3">
+<h3 id="orgdfa6d3c">examples</h3>
+<div class="outline-text-3" id="text-orgdfa6d3c">
 <ul class="org-ul">
 <li><p><p></p><p>have-equal-human-rights</p><p></p></p><p><ul class="org-ul"></p><p><li><p>in the following example</p><p>"*" can be read as "define-hypothesis"</p></li></ul></p><p><div class="org-src-container"></p><p></p><p><pre class="src src-scheme"><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> rich-human <span style="color: #696969;">(</span><span style="color: #a6e22e;">:x</span> is-rich <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:x</span> is-human<span style="color: #696969;">))</span></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> poor-human <span style="color: #696969;">(</span><span style="color: #a6e22e;">:x</span> is-poor <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:x</span> is-human<span style="color: #696969;">))</span></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> human-have-equal-human-rights</p><p>   <span style="color: #696969;">(</span><span style="color: #a6e22e;">:x</span> is-human <span style="color: #a6e22e;">:y</span> is-human <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:x</span> <span style="color: #a6e22e;">:y</span> have-equal-human-rights<span style="color: #696969;">))</span></p><p></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">~</span> rich-and-poor-have-equal-human-rights</p><p>   <span style="color: #696969;">(</span><span style="color: #a6e22e;">:x</span> is-rich <span style="color: #a6e22e;">:y</span> is-poor <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:x</span> <span style="color: #a6e22e;">:y</span> have-equal-human-rights<span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span><span style="color: #a6e22e;">:ri</span> <span style="color: #a6e22e;">:po</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:ri</span> rich-human</p><p>               <span style="color: #a6e22e;">:po</span> poor-human</p><p>               human-have-equal-human-rights<span style="color: #696969;">))</span></p><p></pre></p><p></div></p></li>
 
@@ -377,9 +369,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org74b17d8" class="outline-2">
-<h2 id="org74b17d8">algebra of logic</h2>
-<div class="outline-text-2" id="text-org74b17d8">
+<div id="outline-container-org66b05f5" class="outline-2">
+<h2 id="org66b05f5">algebra of logic</h2>
+<div class="outline-text-2" id="text-org66b05f5">
 <ul class="org-ul">
 <li><p>a concrete (not abstract) algebraic structure is rich when</p><p><ol class="org-ol"></p><p><li>its elements have practical meaning.</li></p><p><li>it is equipped with many algebraic laws,</p><p>which you can use to transform equations.</li></ol></p></li>
 
@@ -390,17 +382,17 @@ for the JavaScript code in this tag.
 <li><p>we will try to define those algebraic operations that are closed in the set of derivable theorems.</p><p>hopefully we will be able to capture all deductions by algebraic operations.</p></li></ul>
 </div>
 
-<div id="outline-container-org57ad654" class="outline-3">
-<h3 id="org57ad654">to mimic fraction of natural number</h3>
-<div class="outline-text-3" id="text-org57ad654">
+<div id="outline-container-org1553202" class="outline-3">
+<h3 id="org1553202">to mimic fraction of natural number</h3>
+<div class="outline-text-3" id="text-org1553202">
 <ul class="org-ul">
 <li><p>let us view theorem (A -&gt; B) as fraction,</p><p>A as denominator,</p><p>B as numerator.</p><p><ul class="org-ul"></p><p><li><p>just like (A \ B).</p><p>note that,</p><p>we are using reverse-slash instead of slash,</p><p>to maintain the order of A B in (A -&gt; B).</p></li></ul></p></li></ul>
 </div>
 </div>
 
-<div id="outline-container-orga0c86da" class="outline-3">
-<h3 id="orga0c86da">multiplication</h3>
-<div class="outline-text-3" id="text-orga0c86da">
+<div id="outline-container-org1019486" class="outline-3">
+<h3 id="org1019486">multiplication</h3>
+<div class="outline-text-3" id="text-org1019486">
 <ul class="org-ul">
 <li><p><p></p><p>to multiply two theorems (A -&gt; B) and (C -&gt; D),</p><p>we get (A C -&gt; B D).</p><p></p></p><p><ul class="org-ul"></p><p><li><p>just like (A \ B) (C \ D) = (A C \ B D).</p></li></ul></p><p><div class="org-src-container"></p><p></p><p><pre class="src src-scheme"><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> r <span style="color: #696969;">(</span>A <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> B<span style="color: #696969;">))</span></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">*</span> s <span style="color: #696969;">(</span>C <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> D<span style="color: #696969;">))</span></p><p></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">~</span> r/s/mul <span style="color: #696969;">(</span>A C <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> B D<span style="color: #696969;">)</span></p><p>   <span style="color: #696969;">(</span><span style="color: #a6e22e;">:x</span> <span style="color: #a6e22e;">:y</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:x</span> r <span style="color: #a6e22e;">:y</span> s<span style="color: #696969;">))</span></p><p></p><p><span style="color: #FF8888;">;; </span><span style="color: #FF8888;">abstract it to a combinator</span></p><p><span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">~</span> general/mul</p><p>   <span style="color: #696969;">((</span><span style="color: #a6e22e;">:a</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:b</span><span style="color: #696969;">)</span> <span style="color: #696969;">(</span><span style="color: #a6e22e;">:c</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:d</span><span style="color: #696969;">)</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #696969;">(</span><span style="color: #a6e22e;">:a</span> <span style="color: #a6e22e;">:c</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:b</span> <span style="color: #a6e22e;">:d</span><span style="color: #696969;">))</span></p><p>   <span style="color: #696969;">(</span><span style="color: #a6e22e;">:r</span> <span style="color: #a6e22e;">:s</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #696969;">(</span><span style="color: #f92672; font-weight: bold;">lambda</span> <span style="color: #696969;">(</span><span style="color: #a6e22e;">:a</span> <span style="color: #a6e22e;">:c</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:b</span> <span style="color: #a6e22e;">:d</span><span style="color: #696969;">)</span></p><p>               <span style="color: #696969;">(</span><span style="color: #a6e22e;">:x</span> <span style="color: #a6e22e;">:y</span> <span style="color: #66d9ef; font-weight: bold;">-&gt;</span> <span style="color: #a6e22e;">:x</span> <span style="color: #a6e22e;">:r</span> apply <span style="color: #a6e22e;">:y</span> <span style="color: #a6e22e;">:s</span> apply<span style="color: #696969;">))))</span></p><p></pre></p><p></div></p></li>
 
@@ -408,12 +400,12 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org1a399d1" class="outline-3">
-<h3 id="org1a399d1">two definitions of addition</h3>
-<div class="outline-text-3" id="text-org1a399d1">
-</div><div id="outline-container-org7b4088b" class="outline-4">
-<h4 id="org7b4088b">first definition</h4>
-<div class="outline-text-4" id="text-org7b4088b">
+<div id="outline-container-orga9958ef" class="outline-3">
+<h3 id="orga9958ef">two definitions of addition</h3>
+<div class="outline-text-3" id="text-orga9958ef">
+</div><div id="outline-container-orgc4b1647" class="outline-4">
+<h4 id="orgc4b1647">first definition</h4>
+<div class="outline-text-4" id="text-orgc4b1647">
 <ul class="org-ul">
 <li><p>this definition recalls the fraction of natural number,</p><p>but it seems not natural when written as function in our language.</p></li>
 
@@ -427,9 +419,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org2172bdc" class="outline-4">
-<h4 id="org2172bdc">second definition</h4>
-<div class="outline-text-4" id="text-org2172bdc">
+<div id="outline-container-orgd0a353d" class="outline-4">
+<h4 id="orgd0a353d">second definition</h4>
+<div class="outline-text-4" id="text-orgd0a353d">
 <ul class="org-ul">
 <li><p>this definition seems more natural in our language.</p></li>
 
@@ -442,9 +434,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orga2de985" class="outline-3">
-<h3 id="orga2de985">term-lattice, and cut as weaken</h3>
-<div class="outline-text-3" id="text-orga2de985">
+<div id="outline-container-orgbd1496d" class="outline-3">
+<h3 id="orgbd1496d">term-lattice, and cut as weaken</h3>
+<div class="outline-text-3" id="text-orgbd1496d">
 <ul class="org-ul">
 <li><p><p></p><p>this is where we must take term-lattice into account.</p><p></p></p><p></p><p><table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"></p><p></p><p></p><p><colgroup></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></colgroup></p><p><thead></p><p><tr></p><p><th scope="col" class="org-left">term</th></p><p><th scope="col" class="org-left">lattice</th></p><p></tr></p><p></thead></p><p><tbody></p><p><tr></p><p><td class="org-left">unification (uni)</td></p><p><td class="org-left">meet</td></p><p></tr></p><p></p><p><tr></p><p><td class="org-left">anti-unification (ani)</td></p><p><td class="org-left">join</td></p><p></tr></p><p></p><p><tr></p><p><td class="org-left">cover (or match)</td></p><p><td class="org-left">greater-or-equal</td></p><p></tr></p><p></tbody></p><p></table></p><p></p><p><ul class="org-ul"></p><p><li><p>note that,</p><p>"equal" can be defined by "greater-or-equal".</p></li></ul></p></li>
 
@@ -458,17 +450,17 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org6f59bd5" class="outline-3">
-<h3 id="org6f59bd5">equality of theorem</h3>
-<div class="outline-text-3" id="text-org6f59bd5">
+<div id="outline-container-orgd38b2f2" class="outline-3">
+<h3 id="orgd38b2f2">equality of theorem</h3>
+<div class="outline-text-3" id="text-orgd38b2f2">
 <ul class="org-ul">
 <li><p>we can define A == B, as (A -&gt; B) and (B -&gt; A).</p></li></ul>
 </div>
 </div>
 
-<div id="outline-container-org4031116" class="outline-3">
-<h3 id="org4031116">constructiveness</h3>
-<div class="outline-text-3" id="text-org4031116">
+<div id="outline-container-org93e5608" class="outline-3">
+<h3 id="org93e5608">constructiveness</h3>
+<div class="outline-text-3" id="text-org93e5608">
 <ul class="org-ul">
 <li><p><p></p><p>in our language, we have the following keywords to do definitions :</p><p></p></p><p><table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"></p><p></p><p></p><p><colgroup></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></colgroup></p><p><thead></p><p><tr></p><p><th scope="col" class="org-left">keyword</th></p><p><th scope="col" class="org-left">read as</th></p><p><th scope="col" class="org-left">function-body</th></p><p></tr></p><p></thead></p><p><tbody></p><p><tr></p><p><td class="org-left">"+"</td></p><p><td class="org-left">define-type, define-data</td></p><p><td class="org-left">trivial</td></p><p></tr></p><p></p><p><tr></p><p><td class="org-left">"~"</td></p><p><td class="org-left">proof, define-theorem, define-function</td></p><p><td class="org-left">non-trivial</td></p><p></tr></p><p></p><p><tr></p><p><td class="org-left">"*"</td></p><p><td class="org-left">assume, define-hypothesis</td></p><p><td class="org-left">no</td></p><p></tr></p><p></tbody></p><p></table></p></li>
 
@@ -478,9 +470,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org43120b5" class="outline-3">
-<h3 id="org43120b5">algebraic extension</h3>
-<div class="outline-text-3" id="text-org43120b5">
+<div id="outline-container-orgb586086" class="outline-3">
+<h3 id="orgb586086">algebraic extension</h3>
+<div class="outline-text-3" id="text-orgb586086">
 <ul class="org-ul">
 <li><p>then defining a new types by "+",</p><p>we provide a type-constructor,</p><p>and a list of data-constructors.</p></li>
 
@@ -489,16 +481,16 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org80a68e5" class="outline-2">
-<h2 id="org80a68e5">implementation</h2>
-<div class="outline-text-2" id="text-org80a68e5">
+<div id="outline-container-orgcd3b37" class="outline-2">
+<h2 id="orgcd3b37">implementation</h2>
+<div class="outline-text-2" id="text-orgcd3b37">
 <ul class="org-ul">
 <li><p>I made an attempt to implement a prototype of the language,</p><p>project page at <a href="http://xieyuheng.github.io/sequent1">http://xieyuheng.github.io/sequent1</a></p></li></ul>
 </div>
 
-<div id="outline-container-orgb300e8e" class="outline-3">
-<h3 id="orgb300e8e">implementation-tech</h3>
-<div class="outline-text-3" id="text-orgb300e8e">
+<div id="outline-container-orge609de3" class="outline-3">
+<h3 id="orge609de3">implementation-tech</h3>
+<div class="outline-text-3" id="text-orge609de3">
 <ul class="org-ul">
 <li><p><p></p><p>during writing the prototype language,</p><p>I noticed the language is not necessarily stack-based.</p><p>and we have the following relations :</p><p></p></p><p></p><p><table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"></p><p></p><p></p><p><colgroup></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></colgroup></p><p><thead></p><p><tr></p><p><th scope="col" class="org-left">implementation-tech</th></p><p><th scope="col" class="org-left">the natural of language</th></p><p></tr></p><p></thead></p><p><tbody></p><p><tr></p><p><td class="org-left">stack-based computation</td></p><p><td class="org-left">call-by-value (non-lazy-eval)</td></p><p></tr></p><p></p><p><tr></p><p><td class="org-left">term-rewriting-system</td></p><p><td class="org-left">call-by-name (lazy-eval)</td></p><p></tr></p><p></p><p><tr></p><p><td class="org-left">graph-rewriting-system</td></p><p><td class="org-left">call-by-need (lazy-eval)</td></p><p></tr></p><p></tbody></p><p></table></p></li>
 
@@ -506,9 +498,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org7355559" class="outline-3">
-<h3 id="org7355559">mistakes in my implementation</h3>
-<div class="outline-text-3" id="text-org7355559">
+<div id="outline-container-org38289c5" class="outline-3">
+<h3 id="org38289c5">mistakes in my implementation</h3>
+<div class="outline-text-3" id="text-org38289c5">
 <ul class="org-ul">
 <li><p>(1) I fail to far see that</p><p>the structure of reports, which returned by various checkers,</p><p>must be highly structured data, instead of string.</p><p>thus, I fail to print useful reports when checkers find mistakes in code.</p></li>
 
@@ -527,9 +519,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org86aacfd" class="outline-2">
-<h2 id="org86aacfd">further work</h2>
-<div class="outline-text-2" id="text-org86aacfd">
+<div id="outline-container-orgaf9f621" class="outline-2">
+<h2 id="orgaf9f621">further work</h2>
+<div class="outline-text-2" id="text-orgaf9f621">
 <ul class="org-ul">
 <li><p>(1) I planed to do develop the algebra of logic further.</p></li>
 
@@ -537,12 +529,12 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org988b1b9" class="outline-2">
-<h2 id="org988b1b9">appendixes</h2>
-<div class="outline-text-2" id="text-org988b1b9">
-</div><div id="outline-container-org4d45f65" class="outline-3">
-<h3 id="org4d45f65">rationale of using postfix notation</h3>
-<div class="outline-text-3" id="text-org4d45f65">
+<div id="outline-container-org6d1764f" class="outline-2">
+<h2 id="org6d1764f">appendixes</h2>
+<div class="outline-text-2" id="text-org6d1764f">
+</div><div id="outline-container-orgee7dd0b" class="outline-3">
+<h3 id="orgee7dd0b">rationale of using postfix notation</h3>
+<div class="outline-text-3" id="text-orgee7dd0b">
 <ul class="org-ul">
 <li><p><p></p><p>in the linear writing system of our language,</p><p>we can roughly distinguish four kinds of notations for function or predicate :</p><p></p></p><p><table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"></p><p></p><p></p><p><colgroup></p><p><col  class="org-left" /></p><p></p><p><col  class="org-left" /></p><p></colgroup></p><p><tbody></p><p><tr></p><p><td class="org-left">infix</td></p><p><td class="org-left">((1 + 2) + 3)</td></p><p></tr></p><p></p><p><tr></p><p><td class="org-left">prefix</td></p><p><td class="org-left">+ + 1 2 3</td></p><p></tr></p><p></p><p><tr></p><p><td class="org-left">postfix</td></p><p><td class="org-left">3 2 1 + +</td></p><p></tr></p><p></p><p><tr></p><p><td class="org-left">borderfix</td></p><p><td class="org-left">(+ 1 2 3)</td></p><p></tr></p><p></tbody></p><p></table></p><p><ul class="org-ul"></p><p><li><p>infix is especially good for associative binary function.</p></li></p><p><li><p>prefix and postfix are not ambiguous without bracket.</p></li></p><p><li><p>borderfix can be used for functions</p><p>that can apply to different numbers of arguments.</p></li></ul></p></li>
 
@@ -554,9 +546,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgcce079a" class="outline-3">
-<h3 id="orgcce079a">remark on deduction and inference</h3>
-<div class="outline-text-3" id="text-orgcce079a">
+<div id="outline-container-orgbc511e3" class="outline-3">
+<h3 id="orgbc511e3">remark on deduction and inference</h3>
+<div class="outline-text-3" id="text-orgbc511e3">
 <ul class="org-ul">
 <li><p>one might ask, what is a deduction or a inference ?</p><p>my answer is,</p><p>a deduction or a inference is a way to express a change of theorem.</p><p>("a change" means "one step of change")</p></li>
 
@@ -566,7 +558,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 <div id="postamble" class="status">
-.
+<p class="author">Author: xieyuheng</p>
+<p class="date">Created: 2017-09-28 Thu 21:49</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
 </html>

@@ -1,13 +1,9 @@
-#+HTML_HEAD: <link rel="stylesheet" href="../asset/css/page.css" type="text/css" media="screen" />
+#+html_head: <link rel="stylesheet" href="../css/org-page.css"/>
 #+title: function compose, type cut, and the algebra of logic
 
-------
-@@html:
-<p> author : XIE Yuheng, a math student </p>
-<p> date: 2016/06/14 </p>
-<p> keywords : language design, dependent type, deduction system, sequent calculus, algebraic structure </p>
-@@
-------
+- author : XIE Yuheng, a math student
+- date : 2016/06/14
+- keywords : language design, dependent type, deduction system, sequent calculus, algebraic structure
 
 * abstract
 

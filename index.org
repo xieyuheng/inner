@@ -1,4 +1,4 @@
-#+include: use-org-page.org
+#+html_head: <link rel="stylesheet" href="css/org-page.css"/>
 #+title: xieyuheng / 謝宇恆
 
 - welcome to my home page ^-^/

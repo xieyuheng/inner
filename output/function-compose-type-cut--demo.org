@@ -1,4 +1,4 @@
-#+HTML_HEAD: <link rel="stylesheet" href="../asset/css/page.css" type="text/css" media="screen" />
+#+html_head: <link rel="stylesheet" href="../css/org-page-no-toc.css"/>
 #+title: function compose, type cut, and the algebra of logic
 #+author: 谢宇恒 / XIE Yuheng
 

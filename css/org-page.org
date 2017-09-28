@@ -388,29 +388,32 @@
 *** Basic example
 
     #+begin_src css
-    table{
-        border-collapse:collapse;
-        border-spacing:0;
-        empty-cells:show;
-        margin-bottom:24px;
-        border-bottom:1px solid #e1e4e5;
+    table {
+        border: 1px solid #585850;
+        margin: none;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
 
-    td{
-        vertical-align:top}
-
-    table td,table th{
-        font-size:90%;
-        margin:0;
-        overflow:visible;
-        padding:8px 16px;
-        border:1px solid #e1e4e5;
+    tbody {
+        border: 1px solid #585850;
     }
 
-    table thead th{
-        font-weight:bold;
-        border-top:3px solid #e1e4e5;
-        border-bottom:1px solid #e1e4e5;
+    td {
+        border: 1px solid #585850;
+    }
+
+    th {
+        border: 1px solid #585850;
+    }
+
+    table.full {
+        border: 1px solid #585850;
+    }
+
+    table.full td {
+        border: 1px solid #585850;
+        padding: 5px;
     }
     #+end_src
 
@@ -435,6 +438,16 @@
         /* background-color:white; */
     }
     #+end_src
+
+* section line
+
+  #+begin_src css
+  hr {
+      border: 0;
+      height: 1px;
+      background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(233, 233, 233, 0.75), rgba(0, 0, 0, 0));
+  }
+  #+end_src
 
 * images
 
