@@ -24,21 +24,12 @@
 
 ***** [2015 -- 2016]
 
-      - I hanged around at [[http://szdiy.github.io][SZDIY hacherspace]] at BaiShiZhou, unemployed.
+      - I hanged around at [[http://szdiy.github.io][SZDIY hacherspace]] at BaiShiZhou.
 
 ***** [2016 -- now]
 
-      - Still unemployed.
-
       - I have no working experiences.
-        I am actively trying find a job.
-
-      - I am competent programmer and fast learner.
-        Given an opportunity,
-        I can learn your fields and tool chains in time,
-        and help you solving programming problems.
-
-      - Contact me by email if you have an offer.
+        I am actively trying to find a job.
 
 *** contact
 
