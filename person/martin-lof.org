@@ -1,4 +1,4 @@
-#+TITLE:  martin lof
+#+title:  martin lof
 
 * (1972) in intuitionistic theory of types
 * (1979) constructive math and computer programming
