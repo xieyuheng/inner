@@ -36,6 +36,12 @@
     - github : https://github.com/xieyuheng
     - email : xyheme (at) gmail (dot) com
 
+* blog
+
+  - [[./blog-zh/index.org][中文博客 / Chinese blog]]
+
+  - [[./blog-en/index.org][English blog / 英文博客]]
+
 * language design
 
   - [[http://xieyuheng.github.io/jojo][jojo]] -- jojo's programming adventure
