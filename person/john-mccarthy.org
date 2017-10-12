@@ -26,21 +26,75 @@
       3. the theory of finite automata :
          finiteness is not practical.
 
-    - first we discuss briefly what practical results can be hoped for
+    - The present paper is an attempt to create
+      a basis for a mathematical theory of computation.
+      Before mentioning what is in the paper,
+      we shall discuss briefly what practical results can be hoped for
       from a suitable mathematical theory.
 
+    - This paper contains direct contributions
+      towards only a few of the goals to be mentioned,
+      but we list additional goals in order
+      to encourage a gold rush.
+
       1. to develop a universal programming language.
+
          the formalism for describing computations in this paper
          is not presented as a candidate for a universal programming language
-         because it lacks a number of features, mainly syntactic,
-         which are necessary for convenient use.
+         because it lacks a number of features,
+         *mainly syntactic*, which are necessary for convenient use.
+
+         - x -
+           this in lack of syntax is one of the great features of lisp.
 
       2. to define a theory of the equivalence of computation processes.
+
          with such a theory we can define equivalence preserving transformations.
 
-      3. ><
+         Such transformations can be used to take an algorithm
+         from a form in which it is easily seen to give the right answers
+         to an equivalent form guaranteed to give the same answers
+         but which has other advantages such as speed, economy of storage,
+         or the incorporation of auxiliary processes.
+
+      3. To represent algorithms by symbolic expressions in such a way that
+         significant changes in the behavior represented by the algorithms
+         are represented by simple changes in the symbolic expressions.
+
+         Programs that are supposed to learn from experience
+         change their behavior by changing the contents of the registers
+         that represent the modifiable aspects of their behavior.
+
+         From a certain point of view,
+         having a convenient representation
+         of one’s behavior available for modification
+         is what is meant by consciousness.
+
+      4. To represent computers as well as computations
+         in a formalism that permits a treatment of the relation
+         between a computation and the computer that carries out the computation.
+
+      5. To give a quantitative theory of computation.
+
+         There might be a quantitative measure of the size of a computation
+         analogous to Shannon’s measure of information.
+
+         The present paper contains no information about this.
+
+*** [note] type system
+
+    - x -
+      in this paper,
+      when trying to form a mathematical theory of computation,
+      a type system is hidden in the context.
+
+      we should try to reveal it and observe its features.
 
 *** 2 formalisms for describing computable functions and related entities
+
+***** 2.1 functions computable in terms of given base functions
+
+      - ><
 
 *** 3 properties of computable functions
 

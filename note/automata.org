@@ -1,0 +1,3 @@
+#+title: automata
+
+* (1971) (john conway) regular algebra and finite machines
