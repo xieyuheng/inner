@@ -1,7 +1,7 @@
 #+html_head: <link rel="stylesheet" href="css/org-page.css"/>
 #+title: 謝宇恆 // xieyuheng
 
-- welcome to my home page ^-^/
+- welcome ^-^/
 
 * me
 
