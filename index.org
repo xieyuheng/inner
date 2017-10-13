@@ -28,8 +28,8 @@
 
 ***** [2016 -- now]
 
-      - I have no working experiences.
-        I am actively trying to find a job.
+      - Currently I am working at [[https://www.ricequant.com][RiceQuant]], as a junior python programmer,
+        learning quantitative trading! great!
 
 *** contact
 
