@@ -17,16 +17,20 @@
 
 *** experiences
 
-***** [2015]
+***** 2015
 
       - Graduated from SYSU, GuangZhou, China, with bachelor's degree.
         My major was pure and applied mathematics.
 
-***** [2015 -- 2016]
+***** 2015 -- 2016
 
       - I hanged around at [[http://szdiy.github.io][SZDIY hacherspace]] at BaiShiZhou.
 
-***** [2016 -- now]
+***** 2016 -- 2017
+
+      - blank
+
+***** 2017 -- now
 
       - Currently I am working at [[https://www.ricequant.com][RiceQuant]], as a junior python programmer,
         learning quantitative trading! great!
