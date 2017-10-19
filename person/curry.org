@@ -1,5 +1,4 @@
-#+TITLE:  learning curry
-#+AUTHOR: 謝宇恆 / XIE Yuheng
+#+title: learning curry
 
 * functionality-in-combinatory-logic  :1934:
 * the-combinatory-foundations-of-mathematical-logic :1942:

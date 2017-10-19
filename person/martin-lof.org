@@ -1,6 +1,7 @@
-#+title:  martin lof
+#+title: martin lof
 
 * (1972) in intuitionistic theory of types
+
 * (1979) constructive math and computer programming
 
   - 列舉一些當時的程序語言發展

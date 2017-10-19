@@ -1,4 +1,4 @@
-#+TITLE:  herbrand
+#+title: herbrand
 
 * note source
   * JACQUES HERBRAND LOGICAL WRITINGS

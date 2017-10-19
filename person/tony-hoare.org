@@ -1,6 +1,6 @@
 #+title: tony hoare
 
-* unifying theories of programming
+* (1998) unifying theories of programming
 
 * (2006) why ever CSP ?
 
@@ -8,8 +8,12 @@
 
 *** The basic judgement
 
+    - equivalence
+
 *** Variations
+
+    - proof theory
 
 *** Unification of theories
 
-* CSP is a retract of CCS
+* (2010) CSP is a retract of CCS

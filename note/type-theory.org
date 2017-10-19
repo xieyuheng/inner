@@ -1,0 +1,13 @@
+#+title: type theory
+
+* predicate vs type-constructor
+
+*** predicate
+
+    - ><
+
+*** type-constructor
+
+*** difference
+
+*** similarity

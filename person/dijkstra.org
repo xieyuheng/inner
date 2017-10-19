@@ -1,5 +1,4 @@
-#+TITLE:  learning dijkstra
-#+AUTHOR: 謝宇恆 / XIE Yuheng
+#+title: dijkstra
 
 * ===================================
 * note

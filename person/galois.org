@@ -1,4 +1,4 @@
-#+TITLE:  Galois
+#+title: galois
 
 * 書籍
   * 最有價值的科學書籍

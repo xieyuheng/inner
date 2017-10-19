@@ -1,4 +1,4 @@
-#+TITLE:  n-j-wildberger
+#+title:  n-j-wildberger
 
 * *幾何*
 

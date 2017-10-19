@@ -1,4 +1,4 @@
-#+TITLE: tadashi-tokieda
+#+title: tadashi-tokieda
 
 * topology-geometry-lecture-note
 

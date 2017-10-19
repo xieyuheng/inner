@@ -85,10 +85,12 @@
 ***** metamathematics of intuitionistic logic and arithmetic after 1940
 
 ***** formulas-as-types
-      * 我瞭解 formulas-as-types
+
+      - 我瞭解 formulas-as-types
         按我的知識來看 作者的歷史回顧質量並不高
         這篇文章並不值得一讀
-      * 讀某些相對後輩作者的文章
+
+      - 讀某些相對後輩作者的文章
         可以感受到 從始創者到發展者 作者才能的衰落
 
 *** intuitionistic analysis and stronger theories
@@ -113,34 +115,38 @@
 
 *** concluding remarks
 
-
-
 * note intuitionistic
 
 *** 直覺主義關於數學的基本哲學觀點
-    * 數學家在思維中構建數學結論的證明
+
+    - 數學家在思維中構建數學結論的證明
       依此法
       數學結論之真得以確信
-    * 數學家之間的交流
+
+    - 數學家之間的交流
       使得思維過程之想像得以分享
       而人只知子自己之思
       所以交流的效果爲不可知
-    * 數學的整體就是集體的思維
+
+    - 數學的整體就是集體的思維
       隨着我們構造出更多定理的證明
       數學在時間中演變
-    * 某種意義上
+
+    - 某種意義上
       排中律 先驗地假設了
       數學中每個問題都是可解的
       直覺主義不認同這樣的先驗假設
 
 *** informal Brouwer-Heyting-Kolmogorov explanation of intuitionistic truth
-    The constructive independence of the logical operations &, ∨, →, ¬, ∀, ∃
-    contrasts with the classical situation,
-    where e.g., (A ∨ B) is equivalent to ¬ (¬A & ¬B),
-    and ∃xA(x) is equivalent to ¬ ∀x ¬A(x).
+
+    - The constructive independence of the logical operations &, ∨, →, ¬, ∀, ∃
+      contrasts with the classical situation,
+      where e.g., (A ∨ B) is equivalent to ¬ (¬A & ¬B),
+      and ∃xA(x) is equivalent to ¬ ∀x ¬A(x).
 
 *** The aim
-    * The aim is to establish general rules
+
+    - The aim is to establish general rules
       operating on statements about mathematical constructions
       such that,
       if the original statements (the premises) convey a mathematical truth,

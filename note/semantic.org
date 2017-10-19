@@ -1,0 +1,9 @@
+#+title: semantic
+
+* operational semantics
+
+* algebraic semantics
+
+* axiomatic semantics
+
+* denotational semantics
