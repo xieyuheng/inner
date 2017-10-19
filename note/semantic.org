@@ -1,9 +1,113 @@
 #+title: semantic
 
-* operational semantics
+* [note]
 
-* algebraic semantics
+  - semantics describes the how a computer executes a program
+    in a programming language.
 
-* axiomatic semantics
+    1. by describing the relationship
+       between the input and output of a program
 
-* denotational semantics
+    2. or explain how the program will be executed
+       on a certain platform
+
+* classification
+
+*** major
+
+***** denotational semantics
+
+      - each phrase in the language is interpreted as a denotation,
+        i.e. a conceptual meaning that can be thought of abstractly.
+
+      - such denotations are often mathematical objects
+        inhabiting a mathematical space.
+
+***** operational semantics
+
+      - the execution of the language is described directly
+        (rather than by translation).
+
+      - operational semantics loosely corresponds to interpretation,
+        although again the "implementation language" of the interpreter
+        is generally a mathematical formalism.
+
+      - operational semantics may define an abstract machine
+        (such as the secd machine),
+        and give meaning to phrases by describing
+        the transitions they induce on states of the machine.
+
+      - alternatively, as with the pure lambda calculus,
+        operational semantics can be defined
+        via syntactic transformations
+        on phrases of the language itself.
+
+***** axiomatic semantics
+
+      - one gives meaning to phrases
+        by describing the logical axioms that apply to them.
+
+      - axiomatic semantics makes no distinction
+        between a phrase's meaning
+        and the logical formulas that describe it.
+
+      - its meaning is exactly
+        what can be proven about it in some logic.
+
+      - the canonical example of axiomatic semantics is hoare logic.
+
+*** minor
+
+***** algebraic semantics
+
+      - is a form of axiomatic semantics
+        based on algebraic laws.
+
+***** attribute grammars
+
+      - define systems that systematically compute "metadata"
+        (called attributes)
+        for the various cases of the language's syntax.
+
+      - which can be understood as a denotational semantics
+        where the target language
+        is simply the original language
+        enriched with attribute annotations.
+
+      - aside from formal semantics,
+        attribute grammars have also been used
+        for code generation in compilers,
+        and to augment regular or context-free grammars
+        with context-sensitive conditions.
+
+***** categorical (or "functorial") semantics
+
+      - uses category theory as the core mathematical formalism.
+
+***** concurrency semantics
+
+      - is a catch-all term for any formal semantics
+        that describes concurrent computations.
+
+      - historically important concurrent formalisms
+        have included the actor model and process calculi.
+
+***** game semantics
+
+      - uses a metaphor inspired by game theory.
+
+***** predicate transformer semantics
+
+      - developed by edsger w. dijkstra,
+        describes the meaning of a program fragment
+        as the function transforming a postcondition
+        to the precondition needed to establish it.
+
+***** action semantics
+
+      - is an approach that tries to modularize denotational semantics,
+        splitting the formalization process in two layers
+        (macro and microsemantics)
+        and predefining three semantic entities
+        (actions, data and yielders)
+        to simplify the specification.

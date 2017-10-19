@@ -1,11 +1,343 @@
 #+title: martin lof
 
-* (1972) in intuitionistic theory of types
+* (1972) infinite terms and a system of natural deduction
 
-* (1979) constructive math and computer programming
+* (1972) an intuitionistic theory of types
+
+* (1973) an intuitionistic theory of types: predicative part
+
+* (1975) about models for intuitionistic type theories and the notion of definitional equality
+
+* (1975) syntax and semantics of the language of primitive recursive functions
+
+* (1976) a note to michael dummett
+
+* (1979) constructive mathematics and computer programming (tech report)
 
   - 列舉一些當時的程序語言發展
 
   - 溫和地批評一下古典數學
 
+* (1982) constructive mathematics and computer programming
+
+* (1983) on the meanings of the logical constants and the justification of logical laws
+
+* (1983) notes on the domain interpretation of type theory
+
 * (1984) intuitionistic type theory
+
+* (1987) the logic of judgements
+
+* (1987) truth of a proposition, evidence of a judgment, validity of a proof
+
+* (1990) mathematics of infinity
+
+* (1990) a path from logic to metaphysics
+
+* (1992) substitution calculus (notes from a lecture given in göteborg)
+
+* (1994) analytic and synthetic judgements in type theory
+
+* (1998) truth and knowability: on the principles c and k of michael dummett
+
+* (2003) are the objects of propositional attitudes propositions in the sense of propositional and predicate logic?
+
+* (2008) hilbert brouwer controversy resolved?
+
+* (2009) one hundred years of zermelo's axiom of choice. what was the problem with it?
+
+* (2013) verificationism then and now
+
+* (2014) making sense of normalization by evaluation
+
+* others
+
+*** [note] predicate vs type-constructor
+
+***** observation 1
+
+      - 'even?' can be defined as a predicate on type <nat>
+        (: even? (-> <nat> -- <bool>))
+
+      - while it can also be defined as a type-constructor
+        #+begin_src jojo
+        (+type <even> (-> (. .num <nat>) -- <<type>>)
+          zero (-> -- zero <even>)
+          plus-two (-> (. .pre :m <even>)
+                    -- :m succ succ <even>))
+
+        (proof (-> -- zero succ succ <even>)
+          zero plus-two)
+        #+end_src
+
+      - <nat> is so simple,
+        we do not really have to define <even>
+        we can simply write 'even?'
+
+      - we can view 'even?' as generating a proof for each {:n <even>}
+        or even better, it can generate a negation of {:n <even>}
+
+        - although in normal implementation of 'even?'
+          it output a <bool> instead of a proof.
+
+***** observation 2
+
+      - 'add-associative' is defined as
+        #+begin_src jojo
+        (+proof add-associative
+          (-> (: :x :y :z <nat>)
+           -- :x :y add :z add
+              :x :y :z add add <eq>)
+          (match :z
+            zero refl
+            succ [:x :y :z.pre recur {succ} eq-apply]))
+        #+end_src
+
+      - it can be viewed as equivalence between two functions
+        {2-1-sawp add add} == {add add}
+
+      - while 'add-commutative' can be viewed as
+        {sawp add} == {add}
+
+      - the space of functions like (-> <nat> <nat> -- <nat>)
+        is so complicated,
+
+        we do not have a basic predicate for equivalence
+        between functions in such space.
+
+        we have to prove each instance of equivalence.
+        for example, 'add-commutative' proves {swap add} == {add}
+
+***** observation 3
+
+      - computation can happen during type-checking.
+        applying a predicate is a computation.
+
+        is it meaningful to use predicate in type ?
+
+*** programming in martin lof's type theory
+
+*** intuitionistic type theory
+
+***** info
+
+      - at https://plato.stanford.edu/entries/type-theory-intuitionistic/
+
+      - by Peter Dybjer
+        and Erik Palmgren
+
+***** intro
+
+      - an overview of the most important aspects of intuitionistic type theory
+        a kind of “extended abstract”
+        It is meant for a reader who is already somewhat familiar with the theory
+
+      - Section 2 on the other hand,
+        is meant for a reader who is new to intuitionistic type theory
+        but familiar with traditional logic,
+        including propositional and predicate logic,
+        arithmetic, and set theory.
+        Here we informally introduce several aspects
+        which distinguishes intuitionistic type theory
+        from these traditional theories.
+
+      - In Section 3 we present a basic version of the theory,
+        close to Martin-Löf’s first published version from 1972.
+        The reader who was intrigued by the informality of Section 2
+        will now see in detail how the theory is built up.
+
+      - Section 4 then presents a number of important extensions of the basic theory.
+        In particular, it emphasizes the central role of
+        inductive (and inductive-recursive) definitions.
+
+      - Section 5 introduces the underlying philosophical ideas
+        including the theory of meaning developed by Martin-Löf.
+
+      - While Section 5 is about philosophy and foundations,
+        Section 6 gives an overview of mathematical models of the theory.
+
+      - In Section 7 finally,
+        we describe several important variations
+        of the core Martin-Löf “intensional” theory described in Section 3 and 4.
+
+***** 1. Overview
+
+      - not only about how should we play [by constructive proof]
+        but also about what should we play with [constructive mathematical objects]
+        thus it is more than math
+        it is philosophy
+
+***** 2. Propositions as Types
+
+******* 2.1 Intuitionistic Type Theory: a New Way of Looking at Logic?
+
+        - Intuitionistic type theory
+          offers a new way of analyzing logic,
+          mainly through its introduction of
+          *explicit proof objects*.
+
+********* 2.1.1 A Type Theory
+
+          - This provides
+            a direct computational interpretation of logic,
+            since there are computation rules for proof objects.
+
+********* 2.1.2 An intuitionstic logic with proof-objects
+
+          - example :
+            #+begin_src jojo
+            (-> (: :m :n <nat>) :m zero <gt>
+             -- (: :q :r <nat>) :m :q mul :r add :n <eq>)
+
+            (-> (: :m :n N) :m zero GT
+             -- (: :q :r N) :m :q mul :r add :n I)
+
+            (note
+              where GT is defined as type alias :
+              (: :x :y GT)
+              (: :y :z add inc :x I))
+            #+end_src
+
+********* 2.1.3 An extension of first-order predicate logic
+
+          - x -
+            in predicate logic (first-order or higher)
+            the domain of predicate can be viewed as set.
+
+            [suppose we use set theory
+            to specify the denotational semantics
+            of the logic system.]
+
+            cartesian product will be the main way
+            of constructing new sets.
+            (new domain of predicate)
+
+            function is defined as special relation (predicate)
+            equivalence is defined special relation
+            - which is wrong, because
+              "meaningful distinctions deserve to be maintained."
+
+          - difference from predicate logic :
+            in intuitionistic type theory
+            we can introduce unspecified family symbols.
+            [type-constructor]
+
+********* 2.1.4 A logic with several forms of judgment
+
+          - the type system of intuitionistic type theory is very expressive.
+            1. well-formedness of a type
+            2. well-typedness of a term with respect to a type
+            3. equality judgments for types and terms
+
+          - while predicate logic focus on the sole judgment
+            expressing the truth of a proposition.
+
+********* 2.1.5 Semantics
+
+          - Semantics of predicate logic
+            can be established by Tarski's model theory.
+
+          - In intuitionistic type theory,
+            Semantics is BHK-interpretation of logic.
+
+          - Tarski semantics is usually presented meta-mathematically,
+            and assumes set theory.
+
+          - Martin-Löf’s meaning theory of intuitionistic type theory
+            should be understood directly and "pre-mathematically",
+            that is, without assuming a meta-language such as set theory.
+
+********* 2.1.6 A functional programming language
+
+          - different from normal functional programming language :
+            1. it has dependent types
+            2. all typable programs terminate
+
+******* 2.2 The Curry-Howard Correspondence
+
+******* 2.3 Sets of Proof-Objects
+
+        - x -
+          proof theory.
+          program is record of deduction steps i.e. proof.
+
+******* 2.4 Dependent Types
+
+******* 2.4 Propositions as Types in Intuitionistic Type Theory
+
+        - With propositions as types,
+          predicates become dependent types.
+          For example, the predicate Prime(x)
+          becomes the type of proofs that x is prime.
+
+        - example :
+          #+begin_src jojo
+          (-> (: :m N) -- (: :n N) :m :n LT, :n Prime)
+          #+end_src
+
+        - x -
+          in my sequent calculus :
+          #+begin_src jojo
+          (note
+
+            [∀ m : N, ∃ n : N ...]
+            (-> (: :m N)
+             -- (: :n N) ...)
+
+            [∃ n : N ...]
+            (->
+             -- (: :n N) ...)
+
+            [∀ m : N, ∃ n : N, ∀ p : N ...]
+            (-> (: :m N)
+             -- (: :n N)
+                (-> (: :p N)
+                 -- ...))
+
+            [∀ m : N, ∃ n : N, ∀ p : N, ∃ q : N ...]
+            (-> (: :m N)
+             -- (: :n N)
+                (-> (: :p N)
+                 -- (: :q N) ...)))
+          #+end_src
+
+***** 3. Basic Intuitionistic Type Theory
+
+******* 3.1 Judgments
+******* 3.2 Judgment Forms
+******* 3.3 Inference Rules
+******* 3.4 Intuitionistic Predicate Logic
+******* 3.5 Natural Numbers
+******* 3.6 The Universe of Small Types
+******* 3.7 Propositional Identity
+******* 3.8 The Axiom of Choice is a Theorem
+
+***** 4. Extensions
+
+******* 4.1 The Logical Framework
+******* 4.2 A General Identity Type Former
+******* 4.3 Well-Founded Trees
+******* 4.4 Iterative Sets and CZF
+******* 4.5 Inductive Definitions
+******* 4.6 Inductive-Recursive Definitions
+
+***** 5. Meaning Explanations
+
+******* 5.1 Computation to Canonical Form
+******* 5.2 The Meaning of Categorical Judgments
+******* 5.3 The Meaning of Hypothetical Judgments
+
+***** 6. Mathematical Models
+
+******* 6.1 Categorical Models
+******* 6.2 Set-Theoretic Model
+******* 6.3 Realizability Models
+******* 6.4 Model of Normal Forms and Type-Checking
+
+***** 7. Variants of the Theory
+
+******* 7.1 Extensional Type Theory
+******* 7.2 Univalent Foundations and Homotopy Type Theory
+******* 7.3 Partial and Non-Standard Type Theory
+******* 7.4 Impredicative Type Theory
+******* 7.5 Proof Assistants

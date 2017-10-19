@@ -3,20 +3,24 @@
 * history of constructivism in the 20th century [troelstra]
 
 *** 縮寫
-    * 一個術語使用不出三次
+
+    - 一個術語使用不出三次
       也要那個定義一個首字母縮寫
       只爲 掩飾作者的無知 並迷惑讀者
 
 *** introduction
-    * constructivism may be regarded as a reaction
+
+    - constructivism may be regarded as a reaction
       to the rapidly increasing use
       of highly abstract concepts and methods
       of proof in mathematics
       a trend exemplified by the works of dedekind and cantor
-    * 在仔細瞭解構造主義的論點之前
+
+    - 在仔細瞭解構造主義的論點之前
       我覺得 kronecker 對 cantor 的態度是反動的
       但是其實不然
-    * notation
+
+    - notation
       |-----+-------------------------------------------------------|
       | IPC | intuitionistic propositional logic                    |
       | IQC | intuitionistic predicate logic                        |
@@ -139,7 +143,9 @@
 
 *** informal Brouwer-Heyting-Kolmogorov explanation of intuitionistic truth
 
-    - The constructive independence of the logical operations &, ∨, →, ¬, ∀, ∃
+    - The constructive independence of the logical operations
+      &, ∨, →, ¬, ∀, ∃
+
       contrasts with the classical situation,
       where e.g., (A ∨ B) is equivalent to ¬ (¬A & ¬B),
       and ∃xA(x) is equivalent to ¬ ∀x ¬A(x).
