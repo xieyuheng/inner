@@ -1,0 +1,15 @@
+#+title: tony hoare
+
+* unifying theories of programming
+
+* (2006) why ever CSP ?
+
+*** Primitive processes and operators
+
+*** The basic judgement
+
+*** Variations
+
+*** Unification of theories
+
+* CSP is a retract of CCS
