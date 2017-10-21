@@ -2,9 +2,86 @@
 
 * (1972) infinite terms and a system of natural deduction
 
-* (1972) an intuitionistic theory of types
+* (1972) [MLTT72] an intuitionistic theory of types
 
-* (1973) an intuitionistic theory of types: predicative part
+*** 1. informal explanation of the basic concepts
+
+***** 1.1 mathematical objects and their types
+
+      - objects are always with their types
+
+***** 1.2 propositions and proofs
+
+      - type as proposition
+
+***** 1.3 cartesian product of a family of types
+
+      #+begin_src jojo
+      (: B (-> A -- Type))
+      (-> (: :x A) -- :x B)
+
+      (+fun b (-> (: :x A) -- :x B)
+        :x ...)
+
+      (: a A)
+      (: a b a B)
+      #+end_src
+
+***** 1.4 disjoint union of a family of types
+
+      #+begin_src jojo
+      (* (: :x A) :x B)
+      (: C (-> (* (: :x A) :x B) -- Type))
+      (: d (-> (: :x A) (: :y :x B) -- :x :y C))
+      (+fun f (-> (* (: :x A) (: :y :x B)) -- :x :y C)
+        tuple-spread d)
+
+      (:= R [(: :x (-> Z -- Q))
+             (-> (: :m :n Z)
+              -- :m :n add :x apply :m :x apply sub abs
+                 2 :m neg power LT)])
+      #+end_src
+
+***** 1.5 disjoint union of two types
+
+      #+begin_src jojo
+      (+ A B)
+      (: C (-> (: :z (+ A B)) -- Type))
+      (: d (-> (: :z A) -- :z C))
+      (: e (-> (: :z B) -- :z C))
+      (+fun f (-> (: :z (+ A B)) -- :z C)
+        (case :z
+          A [:z d]
+          B [:z e]))
+      #+end_src
+
+***** [note] about schema
+
+      - combinator and pattern match
+
+***** >< 1.6 Finite types
+
+***** 1.7 Natural numbers
+
+      #+begin_src jojo
+      (+type N : Type
+        zero : N
+        succ : (-> (. .pre N) -- N))
+
+      (: C (-> N -- Type))
+      (: d zero C)
+      (: e (-> (: :x N) :x C -- :x succ C))
+      (+fun f (-> (: :x N) -- :x C)
+        (match :x
+          zero d
+          succ [:x :x .pre f e]))
+      #+end_src
+
+***** >< 1.8 Reflection principle
+
+*** >< 2 formalization of intuitionistic theory of types
+
+* (1973) [MLTT73] an intuitionistic theory of types: predicative part
 
 * (1975) about models for intuitionistic type theories and the notion of definitional equality
 
@@ -18,13 +95,13 @@
 
   - 溫和地批評一下古典數學
 
-* (1982) constructive mathematics and computer programming
+* (1982) [MLTT79] constructive mathematics and computer programming
 
 * (1983) on the meanings of the logical constants and the justification of logical laws
 
 * (1983) notes on the domain interpretation of type theory
 
-* (1984) intuitionistic type theory
+* (1984) [Bibliopolis] intuitionistic type theory
 
 * (1987) the logic of judgements
 
@@ -37,6 +114,8 @@
 * (1992) substitution calculus (notes from a lecture given in göteborg)
 
 * (1994) analytic and synthetic judgements in type theory
+
+* >< (1996) on the meanings of the logical constants and the justifications of the logical laws
 
 * (1998) truth and knowability: on the principles c and k of michael dummett
 
@@ -115,9 +194,27 @@
 
         is it meaningful to use predicate in type ?
 
+***** >< LTEQ
+
+      - just like EVEN
+
+***** >< LT
+
+      - x -
+        基本等词 与 unification 不同
+        基本等词 是唯一允许的 predicate
+        基本等词 可以用来做否定
+
+      - k -
+        如果基本等词是 predicate
+        那么为何不允许别的 predicate 呢 ?
+
+      - x -
+        在 coq 中找例子
+
 *** programming in martin lof's type theory
 
-*** intuitionistic type theory
+*** intuitionistic type theory -- from plato.stanford.edu
 
 ***** info
 
@@ -278,35 +375,79 @@
         - x -
           in my sequent calculus :
           #+begin_src jojo
-          (note
+          [∀ m : N, ∃ n : N ...]
+          (-> (: :m N)
+              -- (: :n N) ...)
 
-            [∀ m : N, ∃ n : N ...]
-            (-> (: :m N)
-             -- (: :n N) ...)
+          [∃ n : N ...]
+          (->
+           -- (: :n N) ...)
 
-            [∃ n : N ...]
-            (->
-             -- (: :n N) ...)
+          [∀ m : N, ∃ n : N, ∀ p : N ...]
+          (-> (: :m N)
+              -- (: :n N)
+              (-> (: :p N)
+                  -- ...))
 
-            [∀ m : N, ∃ n : N, ∀ p : N ...]
-            (-> (: :m N)
-             -- (: :n N)
-                (-> (: :p N)
-                 -- ...))
-
-            [∀ m : N, ∃ n : N, ∀ p : N, ∃ q : N ...]
-            (-> (: :m N)
-             -- (: :n N)
-                (-> (: :p N)
-                 -- (: :q N) ...)))
+          [∀ m : N, ∃ n : N, ∀ p : N, ∃ q : N ...]
+          (-> (: :m N)
+              -- (: :n N)
+              (-> (: :p N)
+                  -- (: :q N) ...))
           #+end_src
 
 ***** 3. Basic Intuitionistic Type Theory
 
 ******* 3.1 Judgments
+
+        - In Martin-Löf (1996)
+          a general philosophy of logic is presented
+          where the traditional notion of judgment
+          is expanded and given a central position.
+          A judgment is no longer just an affirmation
+          or denial of a proposition,
+          but a general act of knowledge.
+
 ******* 3.2 Judgment Forms
+
+        - four forms of judgment :
+          1. A : type   -- A is a well-formed type
+          2. a : A      -- a has type A
+          3. A = A'     -- A and A' are equal types
+          4. a = a' : A -- a and a' are equal elements of type A
+
 ******* 3.3 Inference Rules
+
+        - rules about type formers [type-constructors]
+          are classified as :
+          1. formation
+          2. introduction
+          3. elimination
+          4. equality
+
 ******* 3.4 Intuitionistic Predicate Logic
+
+        - take Π as an example :
+
+          - formation
+
+          - introduction
+
+          - elimination
+            #+begin_src jojo
+            (: f (-> (: x A) -- B)) (: a A)
+            ----------------------------------------
+            (: a f B [x := a])
+            #+end_src
+
+            - x -
+              in (: f (-> (: x A) -- B))
+              B is not a type but only a syntactic form
+              x might occurs in B
+              this is why those rules are not good
+
+          - equality
+
 ******* 3.5 Natural Numbers
 ******* 3.6 The Universe of Small Types
 ******* 3.7 Propositional Identity
@@ -341,3 +482,115 @@
 ******* 7.3 Partial and Non-Standard Type Theory
 ******* 7.4 Impredicative Type Theory
 ******* 7.5 Proof Assistants
+
+*** intuitionistic type theory -- from wikipedia
+
+***** MLTT71
+
+      - was the first of type theories created by Per Martin-Löf.
+        It appeared in a preprint in 1971.
+        It had one universe but this universe had a name in itself,
+        i.e. it was a type theory with,
+        as it is called today, "Type in Type".
+
+      - Jean-Yves Girard has shown that
+        this system was inconsistent
+        and the preprint was never published.
+
+***** MLTT72
+
+      - was presented in a 1972 preprint
+        that has now been published.
+
+        - Per Martin-Löf,
+          An intuitionistic theory of types,
+          Twenty-five years of constructive type theory
+          (Venice,1995),
+          Oxford Logic Guides, v. 36, pp. 127--172,
+          Oxford Univ. Press, New York, 1998
+
+      - That theory had one universe V and no identity types.
+        The universe was "predicative" in the sense that
+        the dependent product of a family of objects
+        from V over an object that was not in V
+        such as, for example, V itself,
+        was not assumed to be in V.
+
+      - The universe was a-la Russell,
+        i.e., one would write directly "T∈V" and "t∈T"
+        (Martin-Löf uses the sign "∈" instead of modern ":")
+        without the additional constructor such as "El".
+
+***** MLTT73
+
+      - It was the first definition of a type theory
+        that Per Martin-Löf published.
+
+        - Per Martin-Löf,
+          An intuitionistic theory of types: predicative part,
+          Logic Colloquium '73 (Bristol, 1973), 73--118.
+          Studies in Logic and the Foundations of Mathematics,
+          Vol. 80, North-Holland, Amsterdam,1975
+
+      - There are identity types which he calls "propositions"
+        but since no real distinction between propositions
+        and the rest of the types is introduced
+        the meaning of this is unclear.
+
+      - There is what later acquires the name of J-eliminator
+        but yet without a name (see pp. 94–95).
+
+      - There is in this theory an infinite sequence of universes
+        V0, ..., Vn, ...
+        The universes are predicative, a-la Russell
+        and non-cumulative!
+        In fact, Corollary 3.10 on p. 115 says that
+        if A ∈ Vm and B ∈ Vn are such that
+        A and B are convertible then m = n.
+        This means, for example, that
+        it would be difficult to formulate univalence in this theory,
+        there are contractible types in each of the Vi
+        but it is unclear how to declare them to be equal
+        since there are no identity types
+        connecting Vi and Vj for i≠j.
+
+***** MLTT79
+
+      - It was presented in 1979 and published in 1982.
+
+        - Per Martin-Löf,
+          Constructive mathematics and computer programming,
+          Logic, methodology and philosophy of science, VI
+          (Hannover, 1979), Stud.
+          Logic Found. Math., v. 104, pp. 153--175, North-Holland,
+          Amsterdam, 1982
+
+      - This is a very important and interesting paper.
+        In it Martin-Löf introduced the four basic types of judgement
+        for the dependent type theory
+        that has since became fundamental
+        in the study of the meta-theory of such systems.
+
+      - He also introduced contexts as a separate concept in it
+        (see p. 161).
+        There are identity types with the J-eliminator
+        (which already appeared in MLTT73
+        but did not have this name there)
+        but also with the rule that makes the theory "extensional"
+        (p. 169).
+        There are W-types.
+        There is an infinite sequence of predicative universes
+        that are cumulative.
+
+***** Bibliopolis
+
+      - There is a discussion of a type theory
+        in the Bibliopolis book from 1984
+
+        - Per Martin-Löf,
+          Intuitionistic type theory, Studies in Proof Theory.
+          Lecture Notes, v. 1, Notes by Giovanni Sambin, pp. iv+91, 1984
+
+      - but it is somewhat open-ended
+        and does not seem to represent a particular set of choices
+        and so there is no specific type theory associated with it.
