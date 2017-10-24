@@ -16,6 +16,8 @@
 
 ***** 1.3 cartesian product of a family of types
 
+      - dependent arrow
+
       #+begin_src jojo
       (: B (-> A -- Type))
       (-> (: :x A) -- :x B)
@@ -27,57 +29,163 @@
       (: a b a B)
       #+end_src
 
+***** [note] schema
+
+      - the author use the term schema to specify definition,
+        which may be understood as
+        general patterns of function body.
+
+      - whenever there are multiple equations in the schema,
+        branching in the function body must be used
+        for example : (case) (cond) (match)
+
 ***** 1.4 disjoint union of a family of types
+
+      - dependent pair
 
       #+begin_src jojo
       (* (: :x A) :x B)
       (: C (-> (* (: :x A) :x B) -- Type))
-      (: d (-> (: :x A) (: :y :x B) -- :x :y C))
-      (+fun f (-> (* (: :x A) (: :y :x B)) -- :x :y C)
+
+      (note
+        this C is to demonstrate
+        how should we construct the elements of a type
+        which dependents on (* (: :x A) :x B))
+
+      (: d (-> (: :x A) (: :y :x B) -- (* :x :y) C))
+      (+fun f (-> (* (: :x A) (: :y :x B)) -- (* :x :y) C)
+        tuple-spread d)
+      (+fun f (-> (: (* :x :y) (* A :x B)) -- (* :x :y) C)
         tuple-spread d)
 
-      (:= R [(: :x (-> Z -- Q))
-             (-> (: :m :n Z)
-              -- :m :n add :x apply :m :x apply sub abs
-                 2 :m neg power LT)])
+      (+fun f (-> (* (: :x A) (: :y :x B)) -- (* :x :y) C)
+        (* :x :y) {d} E)
+
+      (+fun E (-> (suppose (: :A Type) (: :B (-> :A -- Type)))
+                  (* (: :x :A) (: :y :x :B))
+                  (: :f (-> (: :x :A) (: :y :x :B) -- (* :x :y) :C))
+               -- (* :x :y) :C)
+        tuple-spread :f)
+
+      (+fun p (note left projection)
+        (-> (^ (: :A Type) (: :B (-> :A -- Type)))
+            (* (: :x :A) (: :y :x :B))
+         -- (: :x :A)))
+
+      (+fun q (note right projection)
+        (-> (^ (: :A Type) (: :B (-> :A -- Type)))
+            (* (: :x :A) (: :y :x :B))
+         -- (: :y :x :B)))
+
+      (note example
+        R for real number
+        (= R [(: :x (-> Z -- Q))
+              (-> (: :m :n Z)
+                  -- :m :n add :x :m :x sub abs
+                  2 :m neg power LT)]))
       #+end_src
 
 ***** 1.5 disjoint union of two types
 
+      - disjoint
+        thus can not be dependent
+
       #+begin_src jojo
       (+ A B)
-      (: C (-> (: :z (+ A B)) -- Type))
-      (: d (-> (: :z A) -- :z C))
-      (: e (-> (: :z B) -- :z C))
+      (: C (-> (+ A B) -- Type))
+
+      (: d (-> (: :x A) -- :x C))
+      (: e (-> (: :y B) -- :y C))
       (+fun f (-> (: :z (+ A B)) -- :z C)
         (case :z
           A [:z d]
           B [:z e]))
+
+      (+fun f (-> (: :z (+ A B)) -- :z C)
+        :z {d} {e} D)
+
+      (+fun D (-> (: :z (+ A B))
+                  (: :d (-> (: :x A) -- :x C))
+                  (: :e (-> (: :y B) -- :y C))
+               -- :z C)
+        (case :z
+          A [:z :d]
+          B [:z :e]))
       #+end_src
 
-***** [note] about schema
+***** 1.6 Finite types
 
-      - combinator and pattern match
+      #+begin_src jojo
+      :n Finite
+      3  Finite
+      (: C (-> 3 Finite -- Type))
 
-***** >< 1.6 Finite types
+      (: c1 1 C)
+      (: c2 2 C)
+      (: c3 3 C)
+      (+fun f (-> (: :x 3 Finite) -- :x C)
+        (cond [:x 1 eq?] c1
+              [:x 2 eq?] c2
+              [:x 3 eq?] c3))
+
+      (note
+        (= [0 Finite] Falsehood)
+        (= [1 Finite] Truth))
+      #+end_src
 
 ***** 1.7 Natural numbers
 
       #+begin_src jojo
       (+type N : Type
         zero : N
-        succ : (-> (. .pre N) -- N))
+        succ : (-> (. .ante N) -- N))
 
       (: C (-> N -- Type))
+
       (: d zero C)
-      (: e (-> (: :x N) :x C -- :x succ C))
+      (: e (-> (: :n N) :n C -- :n succ C))
+
       (+fun f (-> (: :x N) -- :x C)
         (match :x
           zero d
-          succ [:x :x .pre f e]))
+          succ [:x :x .ante f e]))
+
+      (+fun f (-> (: :x N) -- :x C)
+        :x d {e} R)
+
+      (+fun R (-> (: :x N)
+                  (: :d zero C)
+                  (: :e (-> (: :n N) :n C -- :n succ N))
+               -- :x C)
+        (match :x
+          zero :d
+          succ [:x .ante, :x .ante :d {:e} R, :e]))
+
+      (+fun R (-> zero C
+                  (-> (: :n N) :n C -- :n succ N)
+                  (: :x N)
+                  -- :x C)
+        (match :x
+          zero [drop]
+          succ [tuck :x .ante R swap :x .ante swap apply]))
       #+end_src
 
+***** [note] type constructor
+
+      - x -
+        when defining a type-constructor,
+        this type-constructor can be used to form dependent arrow,
+        the author also shows carefully
+        how to construct functions
+        whose type is this dependent arrow.
+
 ***** >< 1.8 Reflection principle
+
+      - ><
+
+***** >< 1.9 Girard's paradox
+
+      - ><
 
 *** >< 2 formalization of intuitionistic theory of types
 
@@ -377,7 +485,7 @@
           #+begin_src jojo
           [∀ m : N, ∃ n : N ...]
           (-> (: :m N)
-              -- (: :n N) ...)
+           -- (: :n N) ...)
 
           [∃ n : N ...]
           (->
@@ -385,15 +493,15 @@
 
           [∀ m : N, ∃ n : N, ∀ p : N ...]
           (-> (: :m N)
-              -- (: :n N)
+           -- (: :n N)
               (-> (: :p N)
-                  -- ...))
+               -- ...))
 
           [∀ m : N, ∃ n : N, ∀ p : N, ∃ q : N ...]
           (-> (: :m N)
-              -- (: :n N)
+           -- (: :n N)
               (-> (: :p N)
-                  -- (: :q N) ...))
+               -- (: :q N) ...))
           #+end_src
 
 ***** 3. Basic Intuitionistic Type Theory

@@ -1,0 +1,5 @@
+#+title: intuitionistic logic
+
+* intuitionistic number theory
+
+* (heyting) intuitionism an introduction
