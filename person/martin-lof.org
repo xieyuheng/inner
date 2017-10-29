@@ -4,15 +4,32 @@
 
 * (1972) [MLTT72] an intuitionistic theory of types
 
+*** intro
+
 *** 1. informal explanation of the basic concepts
 
 ***** 1.1 mathematical objects and their types
 
       - objects are always with their types
 
+      - a type is defined by prescribing
+        what we have to do
+        in order to construct an object of that type.
+        [as Bishop's set]
+
+        - x -
+          not necessarily be able to write a predicate
+          to decide whether an arbitrary object
+          is of that type ?
+
 ***** 1.2 propositions and proofs
 
-      - type as proposition
+      - proposition is type
+        thus,
+        a proposition is defined by prescribing
+        how we are allowed to prove it.
+        a proposition is true intuitionistically
+        if there is a proof of it.
 
 ***** 1.3 cartesian product of a family of types
 
@@ -179,7 +196,7 @@
         how to construct functions
         whose type is this dependent arrow.
 
-***** >< 1.8 Reflection principle
+***** 1.8 Reflection principle
 
       - ><
 
@@ -187,9 +204,74 @@
 
       - ><
 
-*** >< 2 formalization of intuitionistic theory of types
+*** >< 2 formalization of an intuitionistic theory of types
 
 * (1973) [MLTT73] an intuitionistic theory of types: predicative part
+
+*** intro
+
+*** 1. informal explanation of the primitive notions
+
+***** 1.1 mathematical objects and their types
+
+***** 1.2 propositions and proofs
+
+      - proposition and datatype
+        are two view of the same construction
+
+        - when view a type as proposition
+          we only care whether it is non empty
+
+        - when view a type as datatype
+          we also care about what its objects are
+
+***** 1.3 properties
+
+      - a proposition valued function
+        is called a property,
+        or, in intuitionistic terminology, a species.
+
+      - thus, we also call
+        a type valued function
+        a species.
+
+      - if (: B (-> A -- Type))
+        then [a B] is the proposition that
+        a belongs to the species B.
+
+      - the term 'belongs to' is used here,
+        but it is different from ':'.
+
+      - examples :
+        3 : N   -- 3 is a natural number
+        3 Prime -- 3 is a prime number
+
+      - x -
+        classcally 'natural number' and 'prime number'
+        seems both are set.
+        but, in type theory,
+        the different notions of 'belongs to' are explicit.
+
+        - Bishop -
+          meaningful distinctions deserve to be maintained.
+
+***** 1.4 cartesian product of a family of types
+
+***** 1.5 disjoint union of a family of types
+
+***** 1.6 disjoint union of two types
+
+***** 1.7 identity
+
+***** 1.8 Finite types
+
+***** 1.9 Natural numbers
+
+***** 1.10 Universes
+
+***** 1.11 definitional equality
+
+*** >< 2 formalization of an intuitionistic theory of types
 
 * (1975) about models for intuitionistic type theories and the notion of definitional equality
 
@@ -597,7 +679,8 @@
 
       - was the first of type theories created by Per Martin-Löf.
         It appeared in a preprint in 1971.
-        It had one universe but this universe had a name in itself,
+        It had one universe
+        but this universe had a name in itself,
         i.e. it was a type theory with,
         as it is called today, "Type in Type".
 
@@ -641,8 +724,8 @@
           Vol. 80, North-Holland, Amsterdam,1975
 
       - There are identity types which he calls "propositions"
-        but since no real distinction between propositions
-        and the rest of the types is introduced
+        but since no real distinction
+        between propositions and the rest of the types is introduced
         the meaning of this is unclear.
 
       - There is what later acquires the name of J-eliminator
