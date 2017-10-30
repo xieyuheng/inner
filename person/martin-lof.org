@@ -198,17 +198,33 @@
 
         why ?
 
-***** >< 1.8 Reflection principle
+***** 1.8 Reflection principle
 
-      - x-
+      - x -
         this section is very important,
         for it shows what the author intend to achieve.
 
         and it shows that the use of type valued function
         is really flexible.
 
-      #+begin_src jojo
+        and the so called Reflection principle
+        is simply a closure principle.
 
+      #+begin_src jojo
+      (note
+        equality between natural numbers)
+
+      (+fun E (-> [:m :n : N] -- Universe)
+        (match [:m :n]
+          [zero zero] Truth
+          [zero succ] Falsehood
+          [succ zero] Falsehood
+          [succ succ] [:m .ante :n .ante E]))
+
+      (note
+        the Universe seems specially ad hoc here
+        because this equality is treated in a better way
+        in the published paper)
       #+end_src
 
 ***** >< 1.9 Girard's paradox
@@ -218,6 +234,10 @@
       #+end_src
 
 *** >< 2 formalization of an intuitionistic theory of types
+
+*** >< 3 reduction of some other formal theories to the theory of type
+
+*** >< 4 the normalization theorem and its consequences
 
 * (1973) [MLTT73] an intuitionistic theory of types: predicative part
 
@@ -237,38 +257,6 @@
 
         - when view a type as datatype
           we also care about what its objects are
-
-***** 1.3 properties
-
-      - a proposition valued function
-        is called a property,
-        or, in intuitionistic terminology, a species.
-
-      - thus, we also call
-        a type valued function
-        a species.
-
-      - if (: B (-> A -- Type))
-        then [a B] is the proposition that
-        a belongs to the species B.
-
-        we call B 'a species of objects of A'
-
-      - the term 'belongs to' is used here,
-        but it is different from ':'.
-
-      - examples :
-        3 : N   -- 3 is a natural number
-        3 Prime -- 3 is a prime number
-
-      - x -
-        classcally 'natural number' and 'prime number'
-        seems both are set.
-        but, in type theory,
-        the different notions of 'belongs to' are explicit.
-
-        - Bishop -
-          meaningful distinctions deserve to be maintained.
 
 ***** 1.4 cartesian product of a family of types
 
@@ -348,6 +336,38 @@
         Bishop's constructive analysis.)
       #+end_src
 
+***** 1.3 properties
+
+      - a proposition valued function
+        is called a property,
+        or, in intuitionistic terminology, a species.
+
+      - thus, we also call
+        a type valued function
+        a species.
+
+      - if (: B (-> A -- Type))
+        then [a B] is the proposition that
+        a belongs to the species B.
+
+        we call B 'a species of objects of A'
+
+      - the term 'belongs to' is used here,
+        but it is different from ':'.
+
+      - examples :
+        3 : N   -- 3 is a natural number
+        3 Prime -- 3 is a prime number
+
+      - x -
+        classcally 'natural number' and 'prime number'
+        seems both are set.
+        but, in type theory,
+        the different notions of 'belongs to' are explicit.
+
+        - Bishop -
+          meaningful distinctions deserve to be maintained.
+
 ***** 1.6 disjoint union of two types
 
       #+begin_src jojo
@@ -361,6 +381,53 @@
           A [:z d]
           B [:z e]))
       #+end_src
+
+***** [note] disjoint union of two types -- broken symmetry
+
+      - x -
+        (* ...) is a type-constructor
+        and it is also a data-constructor
+        if (: a A) (: b B)
+        then (: (* a b) (* A B))
+
+        (+ A B) is a type-constructor
+        but it is not a data-constructor
+        [at least not in current semantic]
+
+        we want to say
+        if (: a A) (: b B)
+        then (: (+ a b) (+ A B))
+
+        but if we view (+ a b) as one value [object]
+        we must introduce non-deterministic
+
+      - k -
+        There are several ways
+        an algorithm may behave differently
+        from run to run.
+        1. A concurrent algorithm
+           can perform differently on different runs
+           due to a race condition.
+        2. A probabilistic algorithm's behaviors
+           depends on a random number generator.
+
+      - and the nondeterministic algorithms
+        are often used to find an approximation to a solution,
+        when the exact solution would be too costly
+        to obtain using a deterministic one.
+
+      - in nondeterministic programming
+        at certain points in the program (called "choice points"),
+        various alternatives for program flow.
+        Unlike an if-then statement,
+        the method of choice between these alternatives
+        is not directly specified by the programmer;
+        the program must decide at run time
+        between the alternatives,
+        via some general method applied to all choice points.
+
+      - some alternatives may "fail,"
+        backtracking might be used.
 
 ***** 1.7 identity
 
@@ -394,9 +461,27 @@
         'for all objects of such type, property C holds'
         (-> :x : [...] -- :x C)
 
-        this is a implicit specification [or implicit aim]
+        this is an implicit specification [or implicit aim]
         of the design of any prover,
         i.e. be able to capture mathematical induction.
+
+      - k -
+        and such type-constructors
+        can be introduced un-conditionally.
+
+        why ?
+
+        and what is the meaning of those data-constructors
+        of a type-constructor ?
+
+      - x -
+        can we reduce such user defined type-constructors
+        to other fixed type-constructors ?
+
+        I sense broken symmetry here.
+
+        if we view (-> ... -- ...) as type-constructor
+        it will be so special.
 
       #+begin_src jojo
       (+type N : Type
@@ -414,21 +499,111 @@
           succ [:x .ante dup f g]))
       #+end_src
 
-***** >< 1.10 Universes
+***** 1.10 Universes
 
-      - ><
-
-      #+begin_src jojo
-
-      #+end_src
-
-***** >< 1.11 definitional equality
+      - the abstractions described so far
+        still do not allow us to types and type valued functions.
 
       #+begin_src jojo
+      (note
+        the type of finie sequence of natural numbers)
 
+      (* :x : N, :x F)
+
+      (+fun F (-> :x : N -- Universe)
+        (match :x
+          zero N1
+          succ (* :x .ante F, N)))
+
+      (note
+        transfinite type)
+
+      (-> :x : N -- :x G)
+
+      (+fun G (-> :x : N -- Universe)
+        (match :x
+          zero N
+          succ (-> :x .ante G -- N)))
+
+      (note
+        if we use Universe to type
+        the return value of above functions
+        Universe must be close under type-constructors
+        such as (* ...) and (-> ... -- ...))
+
+      (note
+        although Universe is closed under many type-constructors
+        but we can not have (: Universe Universe))
       #+end_src
 
-*** >< 2 formalization of an intuitionistic theory of types
+***** [note] the use of Universe
+
+      - x -
+        the use of Universe seems un-natural to me.
+        because the function body here contain so much informations
+        but all these informations are lost.
+
+      - k -
+        the goal is 'every type is also an object of some type'
+
+      - x -
+        we should get rid of those type valued function
+        the type of whose return value is Universe.
+
+        because all informations are sunk into this Universe.
+
+***** 1.11 definitional equality
+
+      - x -
+        this means during unification
+        we can and should do function call.
+
+        or before pure unification
+        we must try to reduce the term.
+
+      - k -
+        although it is called 'definitional equality'
+        the basic relation is actually directed.
+
+      - principle -
+
+      #+begin_src jojo
+      a : A, A = B
+      --------------
+      a : B
+      #+end_src
+
+***** [note] lambda of type
+
+      - x -
+        we do not have lambda of type
+        we can not do definition inductively without naming.
+
+*** 2 formalization of an intuitionistic theory of types
+
+***** 2.1 terms and type symbols
+
+***** 2.2 variables
+
+***** 2.3 constants
+
+***** 2.4 rules for Pi -- dependent arrow
+
+***** 2.5 rules for Sigma -- dependent product
+
+***** 2.6 rules for Plus -- sum type
+
+***** 2.7 rules for I
+
+***** 2.8 rules for Nn
+
+***** 2.9 rules for N
+
+***** ><
+
+*** >< 3 the model of closed normal terms
+
+    - the normalization theorem (for closed terms) and its consequences
 
 * (1975) about models for intuitionistic type theories and the notion of definitional equality
 

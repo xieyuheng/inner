@@ -1,0 +1,3 @@
+#+title: proof theory
+
+* (1975) (gaisi takeuti) proof theory
