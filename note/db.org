@@ -20,6 +20,15 @@
 
 *** MongoDB
 
+    - db -> collection -> document
+
+    - query as a filer of type :
+      #+begin_src jojo
+      (-> :document-list
+          :pred : (-> Document -- Bool)
+       -- Document List)
+      #+end_src
+
 *** CouchDB
 
 *** Neo4J

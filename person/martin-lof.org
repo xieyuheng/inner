@@ -583,6 +583,18 @@
 
 ***** 2.1 terms and type symbols
 
+      - the formal system we shell setup
+        consists of a certain number of mechanical rules
+        for deriving symbolic expressions of forms :
+        1. a : A
+        2. a conv b -- 'conv' denotes 'converts to'
+           i.e. term reduce, computation.
+
+      - thus we also have two kinds of rules,
+        classified by conclusion type :
+        1. term formation
+        2. c
+
 ***** 2.2 variables
 
 ***** 2.3 constants
@@ -613,9 +625,16 @@
 
 * (1979) constructive mathematics and computer programming (tech report)
 
-  - 列舉一些當時的程序語言發展
-
-  - 溫和地批評一下古典數學
+  - the whole conceptual apparatus of programming
+    mirrors that of modern mathematics
+    (set theory, that is, not geometry)
+    and yet is supposed to be different from it.
+    How come?
+    The reason for this curious situation is, I think,
+    that the mathematical notions have
+    gradually received an interpretation,
+    the interpretation which we refer to as classical,
+    which makes them unusable for programming.
 
 * (1982) [MLTT79] constructive mathematics and computer programming
 
