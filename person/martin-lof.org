@@ -623,7 +623,7 @@
 
 * (1976) a note to michael dummett
 
-* (1979) constructive mathematics and computer programming (tech report)
+* (1979) [MLTT79] constructive mathematics and computer programming
 
   - the whole conceptual apparatus of programming
     mirrors that of modern mathematics
@@ -636,7 +636,133 @@
     the interpretation which we refer to as classical,
     which makes them unusable for programming.
 
-* (1982) [MLTT79] constructive mathematics and computer programming
+  - it is clear that
+
+    if a function is defined as a binary relation
+    satisfying the usual existence and unicity conditions,
+    whereby classical reasoning is allowed in the existence proof,
+    or a set of ordered pairs
+    satisfying the corresponding conditions,
+    then a function cannot be the same kind of thing
+    as a computer program.
+
+    similarly,
+    if a set is understood in Zermelo’s way
+    as a member of the cumulative hierarchy,
+    then a set cannot be the same kind of thing as a data type.
+
+* [note] unification and equality
+
+*** not-yet-determined object
+
+    - in sequent1,
+      I allowed unification between
+      not yet reducible non-canonical types and terms [objects].
+      thus the semantics is more rich then martin lof's type theory.
+
+    - I call the property of been not yet reducible and non-canonical,
+      not-yet-determined object.
+
+*** variable
+
+    - variable is the basic not-yet-determined object,
+      and there are two kinds of them :
+      1. both value and type is not bound
+      2. type is bound, but value is not bound
+
+    - when implementing not-yet-determined variable,
+      one needs to take care of :
+      1. unique-id of variable
+         the kinds of object bound under global name
+         is different from
+         the kinds of object in stack.
+      2. backtracking [i.e. undo]
+      3. multiple return values
+         - committing changes to variables
+           might help implementing this.
+           not yet committed bindings in the context
+           can be undone.
+           [maybe use binding-stack to implement context]
+
+*** function application
+
+    - when a function is applied to not-yet-determined object,
+      and based on the partial informations in the object,
+      the function can not decide which branch to go.
+
+      a new not-yet-determined object will be returned.
+
+    - note that
+
+      1. based on the partial informations in the object
+         the function might be able to decide which branch to go.
+         - examples :
+           1. 'swap' and 'drop' can applied to
+              not-yet-determined objects.
+           2. apply 'map' to null list gives null list,
+              the information of the mapped function is not needed.
+
+      2. if a function goes into one branch,
+         whether the final result is not-yet-determined or not,
+         is totally up to that branch.
+
+      3. data-constructors can always apply to
+         not-yet-determined objects.
+
+* [note] un-name
+
+  - x -
+    if lambda can be un-named
+    so is dependent type.
+
+    (-> (: :x N) -- :x C)
+    (-> N dep -- C)
+
+    (-> ... -- ...) is the syntax we used
+    to build arrow type
+
+  - k -
+    if we can compile function with local name
+    to function without local name.
+
+  - x -
+    this would lead the syntax to be too explicit
+    for example :
+    #+begin_src jojo
+    (+fun append (-> (: :l0 :m :<t> <vector>)
+                     (: :l1 :n :<t> <vector>)
+                  -- :m :n add :<t> <vector>)
+      (match :l1
+        null :l0
+        cons [:l0 :l1.cdr recur :l1.car cons]))
+
+    (+fun append (-> :l0 : :m :<t> <vector>
+                     :l1 : :n :<t> <vector>
+                  -- :m :n add :<t> <vector>)
+      (match :l1
+        null :l0
+        cons [:l0 :l1.cdr recur :l1.car cons]))
+
+    (-> N new :m!
+        N new :n!
+        Type new :<t>!
+        :m :<t> <vector> dup new :l0!
+        :n :<t> <vector> dup new :l1!
+     -- :m :n add :<t> <vector>)
+    #+end_src
+
+  - x -
+    type of :m :n :<t> can be inferred
+    by the application of <vector>,
+    but we are asserting them explicitly above.
+
+* [note] arrow type
+
+  - arrow type can not occurs in stack.
+
+* [note] to program in a formal language for constructive mathematics
+
+  - not only martin lof's type theory.
 
 * (1983) on the meanings of the logical constants and the justification of logical laws
 
