@@ -305,7 +305,7 @@
       A set exists only when it has been defined.
       To define a set we prescribe, at least implicitly,
       1. what we (the constructing intelligence) must do
-         in order to constructan element of the set,
+         in order to construct an element of the set,
       2. and what we must do to show that
          two elements of the set are equal.
 

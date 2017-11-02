@@ -20,14 +20,28 @@
 
 *** MongoDB
 
-    - db -> collection -> document
+***** [note]
 
-    - query as a filer of type :
-      #+begin_src jojo
-      (-> :document-list
-          :pred : (-> Document -- Bool)
-       -- Document List)
-      #+end_src
+      - db -> collection -> document
+
+      - query as a filer of type :
+        #+begin_src jojo
+        (-> :document-list
+            :pred : (-> Document -- Bool)
+         -- Document List)
+        #+end_src
+
+***** 5.1 Hu(mongo)us
+
+***** 5.2 Day 1: CRUD and Nesting
+
+      - ><
+
+***** 5.3 Day 2: Indexing, Grouping, Mapreduce
+
+***** 5.4 Day 3: Replica Sets, Sharding, GeoSpatial, and GridFS
+
+***** 5.5 Wrap-Up
 
 *** CouchDB
 

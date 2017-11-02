@@ -1,4 +1,5 @@
 #+title: martin lof
+Importance: high
 
 * (1972) infinite terms and a system of natural deduction
 
@@ -682,6 +683,126 @@
       is to capture
       the notion of data and program form [code].
 
+    - x -
+      the author uses lazy-eval,
+      and outside-first eval order.
+
+      while in sequent1,
+      I used eager-eval,
+      and postfix notation.
+
+      the notion of 'not-yet-determined object'
+      made lazy-eval not necessary.
+
+    - x -
+      to define the theory of type,
+      we must specify
+      what canonical and non-canonical expressions
+      we already have.
+
+    - table of the primitive forms of expression :
+
+      | canonical type     |               | non-canonical      |
+      |--------------------+---------------+--------------------|
+      | type               | intro         | elim               |
+      |--------------------+---------------+--------------------|
+      | (Pi (: :x A) B)    | (Lambda :x B) | (c a)              |
+      | (Sigma (: :x A) B) | (* a b)       | (E [:x :y] c d)    |
+      | (+ A B)            | (i a) (j b)   | (D [:x :y] c d e)  |
+      | (I A a b)          | refl          | (J c d)            |
+      | N0                 |               | (R0 c)             |
+      | N1 0_1             |               | (R1 c c0)          |
+      | N2 0_2 1_2         |               | (R2 c c0 c1)       |
+      | ...                |               | ...                |
+      | N 0 a'             |               | (R [:x :y] c d e)  |
+      | (W (: :x A) B)     | (sup a b)     | (T [:x :y :z] c d) |
+      | Universe0          |               |                    |
+      | Universe1          |               |                    |
+      | ...                |               |                    |
+
+*** judgements
+
+    - four forms of judgements in type theory :
+      1. A is a type -- (: A Type)
+      2. A and B are equal types -- (= A B)
+      3. a is an object of type A -- (: a A)
+      4. a and b are equal objects of type A -- (= a b : A)
+
+    - three forms of judgements in predicate logic :
+      [whether classical or intuitionistic]
+      1. A is a formula.
+      2. A is true.
+      3. a is an individual term.
+
+    - A canonical type A is defined by prescribing :
+      1. how a canonical object of type A is formed.
+      2. how two equal canonical objects of type A are formed.
+
+      For noncanonical A,
+      a judgment of the form (: A Type)
+      means A has a canonical type as value.
+
+      There is no limitation on this prescription
+      except that the relation of equality
+      which it defines between canonical objects of type A
+      must be reflexive, symmetricand transitive.
+
+    - Bishop -
+      A set is not an entity which has an ideal existence.
+      A set exists only when it has been defined.
+      To define a set we prescribe, at least implicitly,
+      1. what we (the constructing intelligence) must do
+         in order to construct an element of the set,
+      2. and what we must do to show that
+         two elements of the set are equal.
+
+    - If the rules for forming canonical objects
+      as well as equal canonical objects of a certain type
+      are called the introduction rules for that type,
+      we may thus say with Gentzen that
+      a canonical type (proposition)
+      is defined by its introduction rules.
+
+    - Two canonical types A and B are equal
+      if a canonical object of type A
+      is also a canonical object of type B
+      and, moreover, equal canonical objects of type A
+      are also equal canonical objects of type B,
+      and vice versa.
+
+      - x -
+        very strong [hard to prove] property.
+
+      For arbitrary types A and B,
+      [not necessarily canonical]
+      a judgment of the form (= A B) means that
+      A and B have equal canonical types as values.
+
+    - x -
+      about implementation of type and equality.
+      1. we use induction to define type,
+         which provides us data-constructors
+         to construct elements of the type.
+      2. we use structural equality as basic equality,
+         we can derive from this basic equality by quotiet
+         to form quotiet-type.
+
+    - x -
+      by the definition of type
+      we must be able to implement predicates for judgments :
+      (3) a is an object of type A -- (: a A)
+      (4) a and b are equal objects of type A -- (= a b : A)
+
+      - note how the use of not-yet-determined objects
+        will impact the semantics of (3) and (4)
+
+      - and not how unification is different from equality.
+
+*** >< inference
+
+    - natural deduction :
+      ><><><
+
 * (1983) on the meanings of the logical constants and the justification of logical laws
 
 * (1983) notes on the domain interpretation of type theory
@@ -1231,63 +1352,117 @@
 
 * [note] semantics of sequent
 
-*** unification and equality
+*** not-yet-determined object
 
-***** not-yet-determined object
+    - in sequent1,
+      I allowed unification between
+      not yet reducible non-canonical types and terms [objects].
+      thus the semantics is more rich then martin lof's type theory.
 
-      - in sequent1,
-        I allowed unification between
-        not yet reducible non-canonical types and terms [objects].
-        thus the semantics is more rich then martin lof's type theory.
+    - I call the property of been not yet reducible and non-canonical,
+      not-yet-determined object.
 
-      - I call the property of been not yet reducible and non-canonical,
-        not-yet-determined object.
+***** variable
 
-******* variable
+      - variable is the basic not-yet-determined object,
+        and there are two kinds of them :
+        1. both value and type is not bound
+        2. type is bound, but value is not bound
 
-        - variable is the basic not-yet-determined object,
-          and there are two kinds of them :
-          1. both value and type is not bound
-          2. type is bound, but value is not bound
+      - when implementing not-yet-determined variable,
+        one needs to take care of :
+        1. unique-id of variable
+           the kinds of object bound under global name
+           is different from
+           the kinds of object in stack.
+        2. backtracking [i.e. undo]
+        3. multiple return values
+           - committing changes to variables
+             might help implementing this.
+             not yet committed bindings in the context
+             can be undone.
+             [maybe use binding-stack to implement context]
 
-        - when implementing not-yet-determined variable,
-          one needs to take care of :
-          1. unique-id of variable
-             the kinds of object bound under global name
-             is different from
-             the kinds of object in stack.
-          2. backtracking [i.e. undo]
-          3. multiple return values
-             - committing changes to variables
-               might help implementing this.
-               not yet committed bindings in the context
-               can be undone.
-               [maybe use binding-stack to implement context]
+***** function application
 
-******* function application
+      - when a function is applied to not-yet-determined object,
+        and based on the partial informations in the object,
+        the function can not decide which branch to go.
 
-        - when a function is applied to not-yet-determined object,
-          and based on the partial informations in the object,
-          the function can not decide which branch to go.
+        a new not-yet-determined object will be returned.
 
-          a new not-yet-determined object will be returned.
+      - note that
 
-        - note that
+        1. based on the partial informations in the object
+           the function might be able to decide which branch to go.
+           - examples :
+             1. 'swap' and 'drop' can applied to
+                not-yet-determined objects.
+             2. apply 'map' to null list gives null list,
+                the information of the mapped function is not needed.
 
-          1. based on the partial informations in the object
-             the function might be able to decide which branch to go.
-             - examples :
-               1. 'swap' and 'drop' can applied to
-                  not-yet-determined objects.
-               2. apply 'map' to null list gives null list,
-                  the information of the mapped function is not needed.
+        2. if a function goes into one branch,
+           whether the final result is not-yet-determined or not,
+           is totally up to that branch.
 
-          2. if a function goes into one branch,
-             whether the final result is not-yet-determined or not,
-             is totally up to that branch.
+        3. data-constructors can always apply to
+           not-yet-determined objects.
 
-          3. data-constructors can always apply to
-             not-yet-determined objects.
+***** more about not-yet-determined objects
+
+      - when you want to get a new object of a class,
+        the init function of the class is used
+        to form a object of that class.
+        [the init function might takes arguments]
+
+      - when you want to get a new object of a type,
+        1. the type might has many data-constructors,
+           we do not know which data-constructors should be used,
+           thus a not-yet-determined object is created.
+        2. the type might has only one data-constructor.
+           but it takes arguments,
+           the arguments of this data-constructor
+           is not known yet,
+           thus a not-yet-determined object is created.
+
+***** unification during application
+
+      - when you apply a function to objects in the data-stack,
+        the antecedent of the type of the function is used
+        to do an unification with the objects in the data-stack.
+
+      - the antecedent might creates some
+        not-yet-determined objects.
+
+      - this unification can let us write less types.
+        for example, if we know 'add' is going to be applied
+        to :x, we do not need to assert (: :x N)
+
+      - this unification might be part of the type-check,
+        because function application
+        can happen during type-checking.
+        if it fails, type-check fails.
+
+      - data-constructors are special functions.
+        thus they also do such unification.
+
+      - if the function is applied successfully,
+        [i.e. the function returns objects.]
+        we do not need to do unification
+        for the returned objects
+        and the succedent of the type of the function.
+
+        this is because
+        the function is type-checked,
+        and type-checking ensures
+        this kind of unifications will success.
+
+      - if the function returns not-yet-determined objects,
+        the succedent of the type of the function
+        might be useful for further function application.
+        i.e. further function application might
+        do unification for the succedent
+        and new antecedent.
 
 *** un-name
 
