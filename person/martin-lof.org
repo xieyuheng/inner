@@ -803,6 +803,9 @@ Importance: high
     - natural deduction :
       ><><><
 
+    - x -
+      can we make variable substitution better in the rules ?
+
 * (1983) on the meanings of the logical constants and the justification of logical laws
 
 * (1983) notes on the domain interpretation of type theory
