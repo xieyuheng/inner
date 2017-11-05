@@ -1,5 +1,4 @@
 #+title: martin lof
-Importance: high
 
 * (1972) infinite terms and a system of natural deduction
 
@@ -665,7 +664,7 @@ Importance: high
     - a expression can be evaluated to get a value.
 
     - I shall call an expression, in whatever notation,
-      canonical or normal
+      canonical [or normal]
       if it is already fully evaluated,
       which is the same as to say that
       it has itself as value.
@@ -805,6 +804,10 @@ Importance: high
 
     - x -
       can we make variable substitution better in the rules ?
+
+    - x -
+      in sequent1
+      inference rule should also be expressed by arrow type.
 
 * (1983) on the meanings of the logical constants and the justification of logical laws
 
@@ -1352,181 +1355,3 @@ Importance: high
       - but it is somewhat open-ended
         and does not seem to represent a particular set of choices
         and so there is no specific type theory associated with it.
-
-* [note] semantics of sequent
-
-*** not-yet-determined object
-
-    - in sequent1,
-      I allowed unification between
-      not yet reducible non-canonical types and terms [objects].
-      thus the semantics is more rich then martin lof's type theory.
-
-    - I call the property of been not yet reducible and non-canonical,
-      not-yet-determined object.
-
-***** variable
-
-      - variable is the basic not-yet-determined object,
-        and there are two kinds of them :
-        1. both value and type is not bound
-        2. type is bound, but value is not bound
-
-      - when implementing not-yet-determined variable,
-        one needs to take care of :
-        1. unique-id of variable
-           the kinds of object bound under global name
-           is different from
-           the kinds of object in stack.
-        2. backtracking [i.e. undo]
-        3. multiple return values
-           - committing changes to variables
-             might help implementing this.
-             not yet committed bindings in the context
-             can be undone.
-             [maybe use binding-stack to implement context]
-
-***** function application
-
-      - when a function is applied to not-yet-determined object,
-        and based on the partial informations in the object,
-        the function can not decide which branch to go.
-
-        a new not-yet-determined object will be returned.
-
-      - note that
-
-        1. based on the partial informations in the object
-           the function might be able to decide which branch to go.
-           - examples :
-             1. 'swap' and 'drop' can applied to
-                not-yet-determined objects.
-             2. apply 'map' to null list gives null list,
-                the information of the mapped function is not needed.
-
-        2. if a function goes into one branch,
-           whether the final result is not-yet-determined or not,
-           is totally up to that branch.
-
-        3. data-constructors can always apply to
-           not-yet-determined objects.
-
-***** more about not-yet-determined objects
-
-      - when you want to get a new object of a class,
-        the init function of the class is used
-        to form a object of that class.
-        [the init function might takes arguments]
-
-      - when you want to get a new object of a type,
-        1. the type might has many data-constructors,
-           we do not know which data-constructors should be used,
-           thus a not-yet-determined object is created.
-        2. the type might has only one data-constructor.
-           but it takes arguments,
-           the arguments of this data-constructor
-           is not known yet,
-           thus a not-yet-determined object is created.
-
-***** unification during application
-
-      - when you apply a function to objects in the data-stack,
-        the antecedent of the type of the function is used
-        to do an unification with the objects in the data-stack.
-
-      - the antecedent might creates some
-        not-yet-determined objects.
-
-      - this unification can let us write less types.
-        for example, if we know 'add' is going to be applied
-        to :x, we do not need to assert (: :x N)
-
-      - this unification might be part of the type-check,
-        because function application
-        can happen during type-checking.
-        if it fails, type-check fails.
-
-      - data-constructors are special functions.
-        thus they also do such unification.
-
-      - if the function is applied successfully,
-        [i.e. the function returns objects.]
-        we do not need to do unification
-        for the returned objects
-        and the succedent of the type of the function.
-
-        this is because
-        the function is type-checked,
-        and type-checking ensures
-        this kind of unifications will success.
-
-      - if the function returns not-yet-determined objects,
-        the succedent of the type of the function
-        might be useful for further function application.
-        i.e. further function application might
-        do unification for the succedent
-        and new antecedent.
-
-*** un-name
-
-    - x -
-      if lambda can be un-named
-      so is dependent type.
-
-      (-> (: :x N) -- :x C)
-      (-> N dep -- C)
-
-      (-> ... -- ...) is the syntax we used
-      to build arrow type
-
-    - k -
-      if we can compile function with local name
-      to function without local name.
-
-    - x -
-      this would lead the syntax to be too explicit
-      for example :
-      #+begin_src jojo
-      (+fun append (-> (: :l0 :m :<t> <vector>)
-                       (: :l1 :n :<t> <vector>)
-                    -- :m :n add :<t> <vector>)
-        (match :l1
-          null :l0
-          cons [:l0 :l1.cdr recur :l1.car cons]))
-
-      (+fun append (-> :l0 : :m :<t> <vector>
-                       :l1 : :n :<t> <vector>
-                    -- :m :n add :<t> <vector>)
-        (match :l1
-          null :l0
-          cons [:l0 :l1.cdr recur :l1.car cons]))
-
-      (-> N new :m!
-          N new :n!
-          Type new :<t>!
-          :m :<t> <vector> dup new :l0!
-          :n :<t> <vector> dup new :l1!
-       -- :m :n add :<t> <vector>)
-      #+end_src
-
-    - x -
-      where [N new] will return a not-yet-determined object
-      of whose type is bound to N,
-      but whose value is not-yet-determined.
-
-    - x -
-      type of :m :n :<t> can be inferred
-      by the application of <vector>,
-      but we are asserting them explicitly above.
-
-    - k -
-      a version without type inference might be designed first,
-      and type inference can be compiled to the simple language.
-
-*** arrow type
-
-    - arrow type can not occurs in stack.
-
-*** to program in a formal language for constructive mathematics
-
-    - not only martin lof's type theory.

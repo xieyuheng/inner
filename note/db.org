@@ -35,7 +35,27 @@
 
 ***** 5.2 Day 1: CRUD and Nesting
 
-      - ><
+      - object id consists of :
+        time mid pid inc
+
+        thus distributed
+
+      - db.collection.interface
+        - insert(document)
+        - find(pattern, field_flag)
+        - update(pattern, operation)
+        - remove(pattern)
+
+        - js function
+
+          #+begin_src js
+          db.towns.find( {
+            $where : function() {
+              return this.population > 6000 && this.population < 600000;
+            },
+            famous_for : /groundhog/,
+          })
+          #+end_src
 
 ***** 5.3 Day 2: Indexing, Grouping, Mapreduce
 

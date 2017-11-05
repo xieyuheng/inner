@@ -1,6 +1,4 @@
-#+TITLE:  learning-coq
-#+AUTHOR: 謝宇恆 / XIE Yuheng
-
+#+title:  learning-coq
 
 * 記
 
