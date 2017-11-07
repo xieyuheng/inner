@@ -49,7 +49,7 @@
 
 * flask
 
-*** docs
+*** getting start
 
 ***** route
 
@@ -107,6 +107,13 @@
            and convert that into a response object.
 
 ***** Session -- wraped cookie
+
+*** API
+
+***** Application object
+
+      - such an object is used to register all informations,
+        the name of which must be module or package name.
 
 *** (2014) flask-web-development
 
