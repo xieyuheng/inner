@@ -1,5 +1,14 @@
 #+title: proof theory
 
+* [todo-stack]
+
+  - one language can use different type systems,
+    just as one proof style can be applied to different logics.
+
+  - classical logic and logic programming
+
+  - how different proof styles are correspond to each other ?
+
 * (1975) (gaisi takeuti) proof theory
 
 *** chapter 1 first order predicate logic
