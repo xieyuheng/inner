@@ -20,6 +20,7 @@
 *** chapter 4 infinitary logic
 
 *** chapter 5 consistency proofs
+
 * (1998) (buss) an introduction to proof theory
 
 *** proof theory of propositional logic
@@ -44,7 +45,7 @@
 
 ***** first-order logic and resolution refutations
 
-*** proof theory of other logics
+*** proof theory of other logics  /home/xyh
 
 ***** intuitionistic logic
 
