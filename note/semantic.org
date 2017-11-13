@@ -1,6 +1,17 @@
 #+title: semantic
 
-* [note]
+* aim
+
+  - the aim of the study of language semantic,
+    is to guide the design and implementation
+    of programming languages.
+
+  - my first opinion is to use operational semantic,
+    and to criticize all other approaches.
+
+    I will adjust my opinion alone the way.
+
+* intro
 
   - semantics describes the how a computer executes a program
     in a programming language.
