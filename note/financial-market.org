@@ -1,0 +1,32 @@
+#+title: financial market
+
+* financial market
+
+*** links
+
+    - https://www.youtube.com/watch?v=6OoMQiClXCs
+      An introduction to financial markets
+      -- MoneyWeek Investment Tutorials
+
+    - https://www.investopedia.com/walkthrough/corporate-finance/1/financial-markets.aspx
+
+*** intro
+
+    - investors <-[return]- financial market <-[cost]- borrowers
+
+    - borrowers can be governments and companies
+
+    - financial market can be investment banks
+
+*** money market -- short term
+
+*** capital market -- long term
+
+    - equity
+      - shares
+        bring in new owners
+        and give out dividends
+
+    - debts
+      - bonds
+        tradable debts

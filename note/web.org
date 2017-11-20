@@ -33,19 +33,21 @@
 
     - ><
 
-*** Sinatra
+*** Sinatra -- ruby
 
 *** CanJS
 
 *** AngularJS
 
-*** Ring
+*** Ring -- clojure
 
-*** Webmachine
+*** >< Webmachine -- erlang
 
-*** Yesod
+    - ><
 
-*** Immutant
+*** Yesod -- haskell
+
+*** Immutant -- clojure
 
 * flask
 
