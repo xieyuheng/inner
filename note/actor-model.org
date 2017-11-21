@@ -51,4 +51,18 @@
       in existing actor model based languages
       such as io and erlang.
 
+    - interface :
+      - send
+      - recv
+
+
+c(roulette). c(coroner).
+Revolver=spawn(fun roulette:loop/0).
+Coroner=spawn(fun coroner:loop/0).
+Coroner ! {monitor, Revolver}. 
+Revolver ! 1.
+Revolver ! 3.
+bang.
+3
+
 * (2016) (tony garnock-jones) history of actors
