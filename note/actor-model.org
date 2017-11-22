@@ -55,14 +55,17 @@
       - send
       - recv
 
+    - one mail station which maintains a process pool.
+      [should be thread pool, but python has no proper thread]
+      each process [sub-station] in the pool maintains many actors.
+      each actor has data-stack, return-stack and message-queue.
 
-c(roulette). c(coroner).
-Revolver=spawn(fun roulette:loop/0).
-Coroner=spawn(fun coroner:loop/0).
-Coroner ! {monitor, Revolver}. 
-Revolver ! 1.
-Revolver ! 3.
-bang.
-3
+      when a actor needs to send message to other actors
+      or create new actors,
+      it send message to its sub-station
+      which in turn send message to the station.
+
+      a sub-station schedules its actors,
+      and catches exceptions.
 
 * (2016) (tony garnock-jones) history of actors
