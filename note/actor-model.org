@@ -57,15 +57,21 @@
 
     - one mail station which maintains a process pool.
       [should be thread pool, but python has no proper thread]
-      each process [sub-station] in the pool maintains many actors.
+      each process [scheduler] in the pool maintains many actors.
       each actor has data-stack, return-stack and message-queue.
 
       when a actor needs to send message to other actors
       or create new actors,
-      it send message to its sub-station
+      it send message to its scheduler
       which in turn send message to the station.
 
-      a sub-station schedules its actors,
+      a scheduler schedules its actors,
       and catches exceptions.
+
+    - address and mailing :
+      actor-id
+      bind actor to address
+      is an address a channel ?
+      a channel can be implemented a another actor.
 
 * (2016) (tony garnock-jones) history of actors
