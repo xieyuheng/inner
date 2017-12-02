@@ -1,3 +1,3 @@
-#+TITLE:  numerical analysis note
+#+title: numerical analysis note
 
 * ><

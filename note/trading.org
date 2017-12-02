@@ -1,5 +1,3 @@
-#+title: trading 
+#+title: trading
 
-* algorithmic trading -- 
-
-  
+* algorithmic trading
