@@ -1,0 +1,15 @@
+#+title: lukasiewicz
+
+* aristotle's syllogistic
+
+*** chapter 1 elements of the system
+
+    - ><
+
+*** chapter 2 theses of the system
+
+*** chapter 3 the system
+
+*** chapter 4 aristotle's system in symbolic form
+
+* studies-in-logic-and-the-foundations-of-mathematics
