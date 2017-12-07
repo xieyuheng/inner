@@ -2,38 +2,23 @@
 
 * 記
 
-*** 自我勸告
-    * 使用語法的完全形式
-      而儘量不使用語法糖
-    * 不要過分在乎函數的命名了
-      語言的設計和慣例已經形成
-      沒法再重新規範化
-      混亂的命名現狀了
-    * 也不要在意語法的設計了
-      只學其好的部分
-    * 不要過分地厭煩和鄙視語言設計的不好的地方
-      否則這種消極情緒
-      就會影響對語言的使用
-      進而影響對其設計的好的地方的學習
-
 *** to use coq and ProofGeneral
 
-***** ProofGeneral
-      * 看 ProofGeneral 爲 coq 所提供的 ide
-        就可以發現
-        coq 的代碼也有被以線性的方式解釋的特點
-
 ***** in org-mode
-      * M-n
+
+      - M-n
         (C-c C-n)
         proof-assert-next-command-interactive
-      * M-p
+
+      - M-p
         (C-c C-u)
         proof-undo-last-successful-command
-      * C-c <C-return>
+
+      - C-c <C-return>
         proof-goto-point
 
 ***** about unicode
+
       #+begin_src coq
       Notation "∀ x .. y , P" :=
         (forall x, .. (forall y, P) ..)
@@ -61,11 +46,10 @@
       Check (λ x:nat , x = 3).
       #+end_src
 
-* tutorial from the home site of coq
-
 * coq in a hurry
 
 *** command : Check
+
     to check whether a formula is well-formed
     the conditions for terms to be well-formed have two origins:
     1. the syntax must be respected
@@ -1578,6 +1562,7 @@
     #+end_src
 
 *** bin
+
     * 就是反過來的二進制編碼
       | 0 |   0 | Z       |
       | 1 |   1 | i Z     |
@@ -1596,6 +1581,7 @@
     #+end_src
 
 *** 關於什麼是證明
+
     * 作者對證明的認識
       強調了證明的主觀性
       但是
@@ -1614,4 +1600,26 @@
       只要能夠在形式證明中以靈活的方式引入等詞
       那麼就能改變形式證明不易讀的狀況
 
-* oberwolfach tutorial
+* coq art
+
+* (adam chlipala) certified programming with dependent types
+
+* inria tutorial
+
+* oberwolfach hott tutorial
+
+* oplss 2011
+
+*** link
+
+    - https://www.cs.uoregon.edu/research/summerschool/summer11/curriculum.
+
+*** (hugo herbelin) the calculus of inductive constructions
+
+*** (benjamin pierce) proof theory in coq
+
+*** (dana scott) what is a proof?
+
+*** (john harrison) formal verification in industry
+
+*** (robert constable) design issues for implemented type theories
