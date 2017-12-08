@@ -1608,18 +1608,88 @@
 
 * oberwolfach hott tutorial
 
-* oplss 2011
+* (oplss 2011) (hugo herbelin) the calculus of inductive constructions
 
-*** link
+*** intro
 
-    - https://www.cs.uoregon.edu/research/summerschool/summer11/curriculum.
+    - Coq is based on the formalism
+      of the Calculus of Inductive Constructions (CIC)
+      which is both a logic and a programming language.
 
-*** (hugo herbelin) the calculus of inductive constructions
+    - As is emphasized in previous lectures,
+      the CIC builds on a pure type system
+      with higher-order polymorphism
+      and stratified type universes
+      by incorporating the inductive types
+      from Martin-Lof's type theory
+      and their coinductive variants.
 
-*** (benjamin pierce) proof theory in coq
+    - The lectures will first focus on
+      a reconstruction of CIC
+      from its syntactic components
 
-*** (dana scott) what is a proof?
+      - lambda-calculus,
+        recursion and corecursion,
+        weak and strong dependent pattern-matching,
+        types,
+        sorts,
+        conversion rule
 
-*** (john harrison) formal verification in industry
+    - and their expressivity
 
-*** (robert constable) design issues for implemented type theories
+      - higher-order logic,
+        Leibniz equality,
+        Pi-types,
+        base types,
+        W-types
+        and set-theoretic universes.
+
+    - They will then focus on CIC's models
+
+      - logical relations for justifying normalization,
+        set-theoretic models
+        for justifying the consistency of extra axioms
+
+    - The lectures will conclude with an investigation
+      of advanced issues for CIC
+
+      - classical logic,
+        proof-irrelevance,
+        axiom of choice and extensional equality.
+
+*** ><
+
+* (oplss 2011) (paul-andré melliès) programming languages in string diagrams
+
+* (oplss 2011) (dana scott) semilattices, domains, and computability
+
+* (oplss 2011) (dana scott) what is a proof?
+
+  - to proof a theorem,
+    we might have to add more structures to it.
+
+  - and, what structures to add,
+    will be the most difficult part of the proof.
+
+  - for examples :
+
+    1. adding dimensions to the problem,
+       to imagine the problem in higher dimensions,
+       and view the original problem as a problem
+       been projected down from higher dimensions.
+
+    2. auxiliary line in plane geometry.
+
+    3. adding structures can get us :
+       - polynomial algebra
+       - vector algebra
+       and by these algebras, we can manipulate
+       the semantices of the problem more easily.
+
+    4. adding dynamic structures,
+       to imagine the problem moving.
+       - to imagine might be simple,
+         but to express them in proper formal language
+         might be very hard.
+
+* (oplss 2011) (benjamin pierce) proof theory in coq
