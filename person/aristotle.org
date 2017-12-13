@@ -1,13 +1,13 @@
 #+title: aristotle
 
-* prior analytics (translated by octavius freire owen)
+* prior analytics
 
-*** book i
+*** book 1
 
-***** 1
+***** chapter 1
 
-* posterior analytics (translated by jonathan barnes)
+* posterior analytics
 
-*** book i
+*** book 1
 
-***** 1
+***** chapter 1

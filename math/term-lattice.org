@@ -1,2 +1,180 @@
-#+HTML_HEAD: <link rel="stylesheet" href="http://xieyuheng.github.io/asset/css/page.css" type="text/css" media="screen" />
-#+title: term lattice -- the meaning of equality
+#+title: term lattice
+
+* lattice
+
+  - a cover b
+    b under a
+
+* example of lattice
+
+  - natural number
+    with gcd as meet
+    number better viewed as been fully factorized to prime
+
+  - convex figure in space
+    [topological space]
+
+  - linear term lattice
+
+  - term lattice
+
+* ><
+
+  - 在引入具體的 項格 時
+    需要用 棧傳遞函數來實現其中的基本關係與基本運算
+    還需要 env passing
+
+  - 注意對等詞的處理
+
+  - 當考慮分解好的自然數時
+    數就類似 term 了
+    而 求 gcd 的過程 就類似 unification
+
+* [EWD1240a] a little bit of lattice theory
+
+  - *type-constructor*
+    (<lattice> = <lattice>)
+    (<lattice> under <lattice>)
+  - *axiom*
+    reflexive of under
+    (x : <lattice> -> (x under x))
+  - the following proposition is equal to reflexive
+    (x y : <lattice> (x = y) -> (x under y) (y under x))
+    one-point-rule
+    (x x : <lattice> (x = x) -> (x under x) (x under x))
+    drop
+    (x : <lattice> -> (x under x))
+  - *axiom*
+    antisymmetric of under
+    (x y : <lattice> (x under y) (y under x) -> (x = y))
+  - by reflexive of under
+    we can proof indirect under
+    1. ((x y z : <lattice> (z under x) -> (z under y)) -> (x under y))
+    2. ((x y z : <lattice> (y under z) -> (x under z)) -> (x under y))
+    proof 1
+    (x y z : <lattice> (z under x) -> (z under y))
+    instantiate
+    (x y x : <lattice> (x under x) -> (x under y))
+    reflexive of under
+    (x y x : <lattice> true -> (x under y))
+    drop
+    (x y : <lattice> -> (x under y))
+    end proof
+  - by antisymmetric of under
+    we can proof indirect equal
+    1. ((x y z : <lattice> (z under x) <-> (z under y)) -> (x = y))
+    2. ((x y z : <lattice> (y under z) <-> (x under z)) -> (x = y))
+    proof 1
+    (x y z : <lattice> (z under x) <-> (z under y))
+    instantiate 2 times
+    (x y : <lattice>  ((x under x) <-> (x under y))  ((y under x) <-> (y under y)))
+    reflexive of under
+    (x y : <lattice>  (true <-> (x under y))  ((y under x) <-> true))
+    drop
+    (x y : <lattice>  (x under y)  (y under x))
+    antisymmetric of under
+    (x y : <lattice>  (x = y))
+    end proof
+  - *axiom*
+    the existence of w
+    use under to define join [up] [lowest upper bound] [superemum]
+    (x y : <lattice> -> w : <lattice> (z : <lattice> -> ((w under z) <-> (x under z) (y under z))))
+    define
+    (x y : <lattice> -> (x join y))
+    or
+    (x y : <lattice> -> w : (x join y))
+    a new type constructor is defined
+    need to proof w is unique
+    to view this type constructor as function
+  - join
+    1. idempotent
+       (x join x) = x
+    2. symmetry
+       (x join y) = (y join x)
+    3. associative
+       ((x join y) join z) = (x join (y join z))
+    proof associative
+    ><><><
+    end proof
+  - wish to proof
+    (x y : <lattice> ((x join y) = y) <-> (x under y))
+    and use it to proof the transitive of under
+    (x y z : <lattice> (x under y) (y under z) -> (x under z))
+    thus under is partial-order
+    1. reflexive
+    2. antisymmetric
+    3. transitive
+
+* ><
+
+  #+begin_src scheme
+  (* lattice (-> type)
+     cover (lattice lattice -> type)
+     reflexive ((:x : lattice) -> :x :x cover)
+     antisymmetry
+     ((:x :y : lattice)
+      :x :y cover :y :x cover
+      ------------------->
+      :x :y equal)
+     ;; maybe it is the very definition of equal
+     ;; that maintaining this proposition
+     indirect-cover
+     (((:z : lattice) :z :x cover -> :z :y cover)
+      ---------------->
+      :x :y cover)
+     indirect-cover'
+     (((:z : lattice) :y :z cover -> :x :z cover)
+      ---------------->
+      :x :y cover)
+
+     meet (lattice lattice -> lattice)
+     join (lattice lattice -> lattice)
+     idempotent
+     ((:x : lattice) -> :x :x meet :x equal)
+     symmetry
+     ((:x :y : lattice) -> :x :y meet :y :x meet equal)
+     associative
+     (-> :x :y meet :z meet
+         :x :y :z meet meet
+         equal))
+
+  ((:x : lattice) -> :x :x cover)
+
+  ;; use the follow theorem reflexive2 to proof reflexive
+
+  (~ reflexive2
+     ((:x :y : lattice) :x :y equal -> :y :x cover :x :y cover)
+     ><><><)
+
+  ((:x :y : lattice)
+   :x :y cover :y :x cover
+   <------------------->
+   :x :y equal)
+
+  (~ same-equal-same
+     (:x :x -> :x :x equal)
+     ><><><)
+
+  (~ reflexive ((:x : lattice) -> :x :x cover)
+     (:d -> dup dup2 same-equal-same reflexive2 drop))
+  #+end_src
+
+* equality
+
+  - term lattice
+    refl
+    judgmental equality
+    equal by definition
+    equal by rewrite
+    constant path
+
+  - hott
+    introduced equality
+    path
+    high-level path
+    propositional equality
+    equality to be proved by induction
+
+  - bishop set theory
+    interface predicate required by set
+    等詞的相對性

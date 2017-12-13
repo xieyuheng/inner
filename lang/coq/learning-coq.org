@@ -1657,8 +1657,6 @@
         proof-irrelevance,
         axiom of choice and extensional equality.
 
-*** ><
-
 * (oplss 2011) (paul-andré melliès) programming languages in string diagrams
 
 * (oplss 2011) (dana scott) semilattices, domains, and computability
