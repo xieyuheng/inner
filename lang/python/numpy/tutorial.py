@@ -16,6 +16,13 @@ a.data
 b = np.array([6, 7, 8])
 type(b)
 
+def rolling_window(a, window):
+    # http://stackoverflow.com/questions/6811183/rolling-window-for-1d-arrays-in-numpy
+    shape = a.shape[:-1] + (a.shape[-1] - window + 1, window)
+    strides = a.strides + (a.strides[-1], )
+    return np.lib.stride_tricks.as_strided(
+        a, shape=shape, strides=strides)
+
 
 # create #
 
@@ -26,11 +33,11 @@ b = np.array([1.2, 3.5, 5.1])
 assert b.dtype == np.dtype('float64')
 
 np.array( [ (1.5, 2, 3), (4, 5, 6) ] )
-np.array( [ [1,2], [3,4] ], dtype=complex )
+np.array( [ [1, 2], [3, 4] ], dtype=complex )
 
 np.zeros( (3, 4) )
 np.ones( (2, 3, 4), dtype=np.int16 )
-np.empty( (2,3) )
+np.empty( (2, 3) )
 
 np.arange( 10 )
 np.arange( 10, 30 )
@@ -139,7 +146,7 @@ for element in b.flat:
 a = np.floor(10 * np.random.random((3, 4)))
 a.shape
 a.ravel() # flatten
-assert a.ravel().shape == (12,)
+assert a.ravel().shape == (12, )
 
 a.reshape(6, 2)
 a.T
