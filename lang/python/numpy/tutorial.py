@@ -165,6 +165,7 @@ assert a.shape == tuple_reverse(a.T.shape)
 
 ><><><
 
+
 # splitting one array into several smaller ones
 
 
