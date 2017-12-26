@@ -132,8 +132,80 @@
 
 *** chapter 2 theses of the system
 
+***** 8. Theses and rules of inference
+
+      - THE Aristotelian theory of the syllogism
+        is a system of true propositions
+        concerning the constants A, E, I, and O.
+
+        - 'true propositions' means
+          true for all values of the variables.
+
+      - True propositions of a deductive system I call *theses*.
+
+      - types of theses :
+
+        - implications :
+          begin with 'if :a then :b'
+
+          1. laws ofconversion
+             - and laws of the square of opposition
+               not mentionedin the Prior Analytics
+             for example :
+             'If all B is A, then some A is B.'
+
+          2. syllogisms
+             of form 'if :a and :b, then :c'
+             for example :
+             'If all B is A,
+             and all C is B,
+             then all C is A.'
+
+        - laws of identity :
+
+          1. 'A belongsto all A' or 'All A is A'
+
+          2. 'A belongs to some A' or 'Some A is A'
+
+        - It must be said emphatically that
+          no syllogism is formulated by Aristotle
+          as an inference with the word 'therefore' (apa),
+          as is done in the traditional logic.
+          Syllogisms of the form :
+          'All B is A; all C is B;
+          therefore all C is A'
+          are not Aristotelian.
+
+***** 9. The syllogistic figures
+
+***** 10. The major, middle, and minor terms
+
+***** 11. The history of an error
+
+***** 12. The order of the premisses
+
+***** 13. Errors of some modern commentators
+
+***** 14. The four Galenian figures
+
 *** chapter 3 the system
 
+***** 15. Perfect and imperfect syllogisms
+
+***** 16. The logic of terms and the logic of propositions
+
+***** 17. The proofs by conversion
+
+***** 18. The proofs by reductio ad impossibile
+
+***** 19. The proofs by ecthesis
+
+***** 20. The rejected forms
+
+***** 21. Some unsolved problems
+
 *** chapter 4 aristotle's system in symbolic form
+
+***** ><
 
 * studies-in-logic-and-the-foundations-of-mathematics
