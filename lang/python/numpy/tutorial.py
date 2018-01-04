@@ -335,3 +335,22 @@ temp = array.argsort()
 ranks = np.arange(len(array))[temp.argsort()]
 
 a.sort()
+
+
+
+shape = (10, )
+a = np.sin(shape_arange(shape))
+r = rolling_window(a, 3)
+s = r.argsort(axis=-1).argsort(axis=-1)
+s[:,-1]
+i = a.argmax(axis=0)
+
+
+# nan #
+
+a = np.array([np.NaN, np.NaN, np.NaN])
+np.isnan(a)
+for x in a:
+    print()
+
+b = a == np.NaN

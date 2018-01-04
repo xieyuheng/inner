@@ -95,7 +95,6 @@ df.max() - df.min()
 np.cumsum(df)
 df.apply(np.cumsum)
 
-
 dates = pd.date_range('2000-01-01', periods=10)
 
 s = pd.Series(np.random.randn(10), index=dates)
@@ -108,3 +107,5 @@ s.cumsum()
 r = s.rolling(window=3)
 r.mean()
 r.max()
+
+# merge, join, and concatenate #

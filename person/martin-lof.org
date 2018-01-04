@@ -809,7 +809,7 @@
       in sequent1
       inference rule should also be expressed by arrow type.
 
-* (1983) on the meanings of the logical constants and the justification of logical laws
+* >< (1983) on the meanings of the logical constants and the justification of logical laws
 
 * (1983) notes on the domain interpretation of type theory
 
@@ -1022,13 +1022,9 @@
 
 * (1994) analytic and synthetic judgements in type theory
 
-* >< (1996) on the meanings of the logical constants and the justifications of the logical laws
-
 * (1998) truth and knowability: on the principles c and k of michael dummett
 
-* (2003) are the objects of propositional attitudes propositions in the sense of propositional and predicate logic?
-
-* (2008) hilbert brouwer controversy resolved?
+* >< (2008) hilbert brouwer controversy resolved ?
 
 * (2009) one hundred years of zermelo's axiom of choice. what was the problem with it?
 

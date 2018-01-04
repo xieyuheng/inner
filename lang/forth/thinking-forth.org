@@ -1,0 +1,67 @@
+#+title: thinking forth
+
+* intro
+
+* the philosophy of forth
+
+*** intro
+
+    - to compare and contrast Forth
+      with these state-of-the-art programming principles.
+
+*** an armchair history of software elegance
+
+    - to outline a history of the tools and techniques
+      for writing more elegant programs.
+
+    - from assembly-language to "high-level-language",
+      linear correspondence between source code
+      and the resulting machine instructions,
+      is changed to nonlinear syntax-dependent correspondence.
+
+      this is widely considered to be an invaluable step
+      in the progress of programming methodology.
+
+      But as we’ll see, the approach ultimately
+      offers more restriction than freedom.
+
+    - the idea of modules [function] having "one-entry, one-exit"
+      is that you can unplug them,
+      change their innards, and plug them back in,
+      without screwing up the connections with the rest of the program.
+
+*** the superficiality of structure
+
+*** looking back, and forth
+
+*** component programming
+
+*** hide from whom ?
+
+*** hiding the construction of data structures
+
+*** but is it a high-level language ?
+
+*** the language of design
+
+*** the language of performance
+
+*** summary
+
+*** references
+
+* analysis
+
+* preliminary design / decomposition
+
+* detailed design / problem solving
+
+* implementation : elements of forth style
+
+* factoring
+
+* handling data : stacks and states
+
+* minimizing control structures
+
+* forth's effect on thinking
