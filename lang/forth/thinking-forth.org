@@ -2,7 +2,7 @@
 
 * intro
 
-* the philosophy of forth
+* the philosophy of forth -- component
 
 *** intro
 
@@ -50,9 +50,43 @@
 
 *** references
 
-* analysis
+* analysis -- specification -- prototype
+
+  - functional specification
+  - design specification
+
+  - x -
+    we can do specification and go top down,
+    but for other kinds of problems,
+    we should design the bottom interfaces first,
+    and go bottom up.
+
+  - k -
+    so there are different types of problems.
+    how many different types are there ?
+    sequent2 is of which type ?
+
+  - x -
+    in sequent2, we should go top down,
+    with the help of a set of rules.
+
+  - three techniques
+    for defining and documenting the conceptual model :
+    1. defining the interfaces
+    2. defining the rules
+    3. defining the data structures
+
+  - ><
 
 * preliminary design / decomposition
+
+  - to refactor, thinking about :
+    1. reusing
+    2. changing
+
+  - x -
+    I had always thought about reusing,
+    but not about changing.
 
 * detailed design / problem solving
 
