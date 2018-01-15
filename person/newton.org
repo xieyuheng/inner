@@ -1,7 +1,54 @@
 #+title: newton
 
-* never at rest
+* (1968) (i bernard cohen) principia
 
-* (s. chandrasekhar) newton's principia for the common reader
+*** volum i
+
+*** volum ii
+
+* (1729) (andrew motte) principia
+
+* (1934) (florian cajori) principia
+
+* (i bernard cohen) introduction to newton’s principia
+
+* (s chandrasekhar) newton's principia for the common reader
 
 * (wikipedia) principia
+
+*** 1 Contents
+
+***** 1.1 Expressed aim and topics covered
+
+      - In the preface of the Principia, Newton wrote :
+        Rational Mechanics will be the science of motions
+        resulting from any forces whatsoever,
+        and of the forces required to produce any motions,
+        accurately proposed and demonstrated.
+
+        And therefore we offer this work
+        as mathematical principles of philosophy.
+        For all the difficulty of philosophy
+        seems to consist in this --
+        from the phenomena of motions
+        to investigate the forces of Nature,
+        and then from these forces
+        to demonstrate the other phenomena.
+
+***** 1.2 Book 1, De motu corporum
+
+***** 1.3 Book 2
+
+***** 1.4 Book 3, De mundi systemate
+
+***** 1.5 Commentary on the Principia
+
+***** 1.6 Rules of Reasoning in Philosophy
+
+***** 1.7 General Scholium
+
+*** 4 Location of early-edition copies
+
+*** 5 Later editions
+
+* (richard s westfall) never at rest
