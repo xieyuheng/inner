@@ -1,0 +1,21 @@
+#+title: heyting
+
+* (1947) formal logic and mathematics
+
+* (1956) intuitionism an introduction
+
+* (1974) intuitionistic views on the nature of mathematics
+
+*** 1 introduction
+
+*** 2 arithmetic
+
+*** 3 the continuum
+
+*** 4 set theory
+
+*** 5 logic
+
+*** 6 mathematics and language
+
+*** 7 applied mathematics
