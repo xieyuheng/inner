@@ -26,10 +26,15 @@
 
       - Rest -- like an interval of silence in a piece of music.
 
-***** 2017 -- now
+***** 2017 -- 2018
 
-      - Currently I am working at [[https://www.ricequant.com][RiceQuant]], as a junior python programmer,
-        learning quantitative trading! great!
+      - Three months as a python programmer,
+        at a Chinese company which builds online quantitative trading system,
+        just like Quantopian.
+
+***** 2018 -- now
+
+      - Writing a prover.
 
 *** contact
 

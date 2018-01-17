@@ -8,7 +8,36 @@
 
 *** 1 introduction
 
+    - logic is complicated and therefore
+      unsuitable as a basis for mathematics.
+
 *** 2 arithmetic
+
+    - We have now constructed each number individually
+      We are not yet able to make statements
+      about every natural number.
+
+      - Such a statement is usually formulated
+        by means of a generalizing  quantifier:
+        For every natural number n A(n) holds.
+
+      - But a better formulation is:
+        Let n be a natural number, then A(n) holds.
+
+      - More explicitly:
+        suppose that we have constructed a natural number n,
+        then we can prove A(n).
+
+    - We see that it contains
+      the notion of a hypothetical construction.
+      This notion is fundamental in mathematics.
+
+      Almost every theorem can be brought in the form:
+      Suppose that construction A has been performed,
+      then we can also perform construction B.
+      The proof of such a theorem consists in a construction
+      which, joined to the construction A,
+      yields the construction B.
 
 *** 3 the continuum
 
@@ -18,4 +47,24 @@
 
 *** 6 mathematics and language
 
+    - how mathematics can be communicated ?
+
+    - We use language to influence
+      the thoughts and actions of other people.
+
+      When a mathematician writes a paper or a book,
+      he intends to suggest mathematical  constructions to other people;
+
+      when he makes notes to aid his memory,
+      his future self plays the part of another person.
+
+      Like any other use of language, the communication of mathematics
+      is not immune for misunderstanding.
+
 *** 7 applied mathematics
+
+    - all conscious thinkings are applied mathematics.
+
+    - Every science goes far beyond what is directly perceived.
+      It constructs a mathematical  system
+      into which the facts and their relations can be fitted.
