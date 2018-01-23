@@ -43,10 +43,11 @@
 
 * language design
 
-  - [[http://xieyuheng.github.io/jojo][jojo]] -- jojo's programming adventure
+  - [[https://github.com/xieyuheng/continua][continua]] -- about algebraic topology
 
-  - [[http://xieyuheng.github.io/sequent1][sequent1]] -- a prototype functional language
-    which uses sequent calculus as its dependent type system
+  - [[https://github.com/xieyuheng/sequent][sequent]] -- a prover
+
+  - [[http://xieyuheng.github.io/jojo][jojo]] -- jojo's programming adventure
 
   - [[http://xieyuheng.github.io/cicada-nymph][cicada-nymph]] -- a forth-like language
 

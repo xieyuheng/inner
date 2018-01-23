@@ -225,6 +225,19 @@
         the Universe seems specially ad hoc here
         because this equality is treated in a better way
         in the published paper)
+
+      :x : N -> :x F
+
+      (+fun F
+        : (-> :x : N -- Type)
+        (match :x
+          zero N
+          succ (-> :x.pre F -- N)))
+
+      zero F == N
+      zero succ F == (-> N -- N)
+      zero succ succ F == (-> (-> N -- N) -- N)
+      ...
       #+end_src
 
 ***** >< 1.9 Girard's paradox
@@ -1498,3 +1511,9 @@
       - but it is somewhat open-ended
         and does not seem to represent a particular set of choices
         and so there is no specific type theory associated with it.
+
+*** Girard's paradox
+
+    #+begin_src jojo
+
+    #+end_src
