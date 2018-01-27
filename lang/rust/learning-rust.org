@@ -165,9 +165,3 @@
 
       - if you can *writing* something,
         no one else can be *reading* or *writing* it.
-
-* Generic Types, Traits, and Lifetimes
-
-*** intro
-
-*** ><
