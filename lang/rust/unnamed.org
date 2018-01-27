@@ -1,5 +1,49 @@
 #+title: unnamed
 
+* lifetime is not only about borrow or not
+
+  - when a function ends
+
+    data bound in its local variables
+    will be auto freed,
+
+    data returned into data-stack by this function
+    will not be auto freed.
+
+    thus the same data can not be both in local variable
+    and returned in stack.
+
+  - it is not enough to know
+    whether we should free a argument or not
+
+    #+begin_src rust
+    struct Bar;
+
+    fn g<'a, 'b>(a: &'a Bar, b: &'b Bar) -> &'a Bar {
+        a
+    }
+
+    // fn g<'a, 'b>(a: &'a Bar, b: &'b Bar) -> &'a Bar {
+    //     b
+    // }
+
+    fn f(a: &Bar) -> &Bar {
+        let b = Bar;
+        g(a, &b)
+        // without the information
+        //   about lifetime of g's arguments
+        // we can not know whether it is safe
+        //   to free b at the end of f
+        // if g returns a, it is safe to free b
+        // if g returns b, it is not safe to free b
+    }
+
+    fn main() {
+        let a = Bar;
+        f(&a);
+    }
+    #+end_src
+
 * ownership of resources -- in an unnamed way
 
   - in the following code,
@@ -62,7 +106,7 @@
 * unnamed ownership rules
 
   1. one value one reference
-     'been on the stack' counts as one reference
+     "been on the stack" counts as one reference
 
   2. :local! take value on the stack
      :local  put value back to the stack
@@ -79,7 +123,7 @@
   --
 
   - x -
-    with 'no dup refs' principle,
+    with "no dup refs" principle,
     we can use 'copy' to copy structured data,
     but how about destruction ?
     when to destructe a string ?
@@ -91,7 +135,7 @@
 
   - x -
     how about cons car cdr ?
-    if 'no dup refs' principle is used,
+    if "no dup refs" principle is used,
     cons can not be shared anymore.
 
   - k -
@@ -101,19 +145,36 @@
     'cons' will claim ownership of its two arguments,
     and deep copy is needed to copy a structured data.
 
-  #+begin_src jojo
-  (+jojo list-append (-> :ante :succ -> List)
-    (cond
-      [:ante null?] [:succ]
-      [:ante cons?] [:ante.cdr :succ list-append
-                     :ante.car swap cons]))
+* examples
 
-  (note we must be explicit about immutable borrow
-    in body of list-length
-    no 'cons' is used on fields of :list
-    thus no ownership taken)
+*** list-append
 
-  (+jojo list-length (-> & :list -- Int)
-    (cond [:list null?] 0
-          else [:list.cdr list-length inc]))
-  #+end_src
+    #+begin_src jojo
+    (+jojo list-append (-> :ante :succ -> List)
+      (cond
+        [:ante null?] [:succ]
+        [:ante cons?] [:ante.cdr :succ list-append
+                       :ante.car swap cons]))
+
+    (+jojo list-append
+      (-> & :ante : List
+          & :succ : List
+       -- List)
+      (cond
+        [:ante null?] [:succ list-copy]
+        [:ante cons?] [:ante.cdr :succ list-append
+                       :ante.car copy swap cons]))
+    #+end_src
+
+*** list-length
+
+    #+begin_src jojo
+    (note we must be explicit about immutable borrow
+      in body of list-length
+      no 'cons' is used on fields of :list
+      thus no ownership taken)
+
+    (+jojo list-length (-> &:list -- Int)
+      (cond [:list null?] 0
+            else [:list.cdr list-length inc]))
+    #+end_src
