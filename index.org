@@ -45,8 +45,6 @@
 
   - [[https://github.com/xieyuheng/continua][continua]] -- about algebraic topology
 
-  - [[https://github.com/xieyuheng/sequent][sequent]] -- a prover
-
   - [[http://xieyuheng.github.io/jojo][jojo]] -- jojo's programming adventure
 
   - [[http://xieyuheng.github.io/cicada-nymph][cicada-nymph]] -- a forth-like language
