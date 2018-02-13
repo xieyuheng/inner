@@ -1,0 +1,973 @@
+#+title:  learning scheme
+
+* r5rs
+
+*** output
+
+    當想要把數據輸出到已經存在的文件時就會報錯
+
+    #+begin_src scheme
+    (output-port? <obj>)
+
+    (current-output-port)
+
+    (open-output-file <file-name>)
+    ;; 這個表達式幾乎只有被賦予給一個名字時纔有意義
+    ;; 而下面的東西卻是這個表達式的匿名版本
+    ;; 也就是直接把這個表達式所返回port作爲別的函數的參數
+
+    (call-with-output-file <file-name> (lambda (x) <body>))
+    ;; 如果被call的函數不返回
+    ;; 這裏所創建的port就不關閉
+    ;; 這樣就可以用call/cc在不同io之間跳來跳去
+
+    (with-output-to-file <file-name> (lambda () <body>))
+    ;; 在<body>內 (current-output-port)將被臨時改變爲這裏所指定的port
+    ;; 例如下面的測試:
+    ;; (with-output-to-file "sss.scm"
+    ;;   (lambda () (current-output-port)))
+    ;; 這樣在<body>內就將(read <port>)與(write <obj> <port>)的使用
+    ;; 簡化爲了:(read)與(write <obj>)
+
+    (close-output-port <port>)
+    #+end_src
+
+*** input
+
+    #+begin_src scheme
+    (input-port? <obj>)
+    (current-input-port)
+    (open-input-file <file-name>)
+    (close-input-port <port>)
+
+    (call-with-input-file <file-name> (lambda (x) <body>))
+    (with-input-to-file <file-name> (lambda () <body>))
+
+    ;; 兩個例子
+    (define (read-file file-name)
+      (let ([p (open-input-file file-name)])
+        (let loop ([ls1 '()]
+                   [c (read-char p)])
+          (if (eof-object? c)
+            (begin
+              (close-input-port p)
+              (list->string (reverse ls1)))
+            (loop (cons c ls1) (read-char p))))))
+
+    (define (read-file file-name)
+      (with-input-from-file file-name
+        (lambda ()
+          (let loop ([ls1 '()]
+                     [c (read-char)])
+            (if (eof-object? c)
+              (list->string (reverse ls1))
+              (loop (cons c ls1) (read-char)))))))
+
+    (read-file "io-of-scheme.org")
+    (define kkk (open-input-file "io-of-scheme.org"))
+    (read-char kkk)
+
+
+    ;; 下面的read讀到的是sexp
+    (read kkk)
+    (define (s-read file-name)
+      (with-input-from-file file-name
+        (lambda ()
+          (let loop ((ls1 '()) (s (read)))
+            (if (eof-object? s)
+              (reverse ls1)
+              (loop (cons s ls1) (read)))))))
+    #+end_src
+
+*** play with io
+
+    read與write特別適合用來處理包含scheme代碼的文件
+
+    #+begin_src scheme
+    (read)
+    (read-char)
+    (peek-char)
+
+
+    (define lll (open-input-file "lll.scm"))
+
+
+    (read lll)
+    (read-char lll)
+    (peek-char lll)
+
+
+    (close-input-port lll)
+
+    ;; 下面的r5rs中的東西是ikarus中沒有的
+    ;; (char-ready?)
+    ;; (char-ready? lll)
+
+    ;; --------------------------------------------
+    ;; (write obj port)
+    ;; It outputs the obj to the port
+    ;; Strings are enclosed in double quotes
+    ;; and characters are combined with the #\
+
+    ;; (display obj port)
+    ;; It outputs the obj to the port
+    ;; Strings are not enclosed in double quotes
+    ;; nd characters are not combined with the #\
+
+    ;; (newline port)
+    ;; It begins a new line
+
+    ;; (write-char char port)
+    ;; It outputs the char to the port
+
+    (define ooo (open-output-file "ooo.scm"))
+    (define iii (open-input-file "ooo.scm"))
+
+    (write '(1 2 3))
+    (newline)
+
+    (write "123")
+    (display "123")
+
+    (write '(1 2 3) ooo)
+    (read iii)
+
+    (newline ooo)
+
+    (write-char #\1)
+    (write-char #\1 ooo)
+    #+end_src
+
+*** system interface
+
+    #+begin_src scheme
+    (load "k1.scm")
+    (transcript-on "fff")
+    (transcript-off)
+    #+end_src
+
+* r6rs
+
+*** condition type
+
+    &i/o              condition type
+    (make-i/o-error)      procedure
+    (i/o-error? obj)     procedure
+
+    #+begin_src scheme
+    (make-i/o-error)
+    (i/o-error? 1)
+    (i/o-error? (make-i/o-error))
+
+    (define-condition-type &i/o &error
+      kkk kkk?)
+    (kkk)
+    (kkk? 1)
+    (kkk? (kkk))
+    #+end_src
+
+
+    &i/o-read              condition type
+    (make-i/o-read-error)      procedure
+    (i/o-read-error? obj)     procedure
+    #+begin_src scheme
+    (make-i/o-read-error)
+    (i/o-read-error? 1)
+    (i/o-read-error? (make-i/o-read-error))
+
+    ;; 注意這裏的定義是在形成一個錯誤類型的等級系統
+    ;; 這一節的所有內容都是如此 沒啥意思
+    ;; 這樣設計是爲了更好的報錯
+    (define-condition-type &i/o-read &i/o
+      kkk kkk?)
+    (kkk)
+    (kkk? 1)
+    (kkk? (kkk))
+    #+end_src
+
+*** buffer modes
+
+    #+begin_src scheme
+    (buffer-mode none)
+    (buffer-mode line)
+    (buffer-mode block)
+    #+end_src
+
+*** >< port (funny)
+
+    file name :: string
+    file option :: (file-options <symbol>)
+
+    #+begin_src scheme
+    (file-options no-create)
+    (open-file-input-port "kkk" (file-options no-create))
+    (open-file-input-port "kkk")
+    (input-port? (open-file-input-port "kkk"))
+    (standard-input-port)
+    (get-u8 (open-file-input-port "kkk"))
+    (get-bytevector-n (open-file-input-port "kkk") 10)
+    (get-bytevector-n (standard-input-port) 10)
+    (get-bytevector-some (open-file-input-port "/home/xyh/.xinitrc"))
+    (get-bytevector-n (open-file-input-port "/home/xyh/.xinitrc") 100)
+
+    (open-string-input-port "string")
+    (current-input-port)
+    (get-char (current-input-port))
+    (get-char (open-string-input-port "string"))
+    (get-string-n (open-string-input-port "string") 6)
+    (get-string-n (current-input-port) 10)
+    #+end_src
+
+*** simple i/o
+
+    #+begin_src scheme
+    (eof-object)
+    (eof-object? obj)
+
+    (call-with-output-file file-name proc)
+    (call-with-input-file "kkk" (lambda (x) 1))
+    (call-with-input-file "kkk" (lambda (x) x))
+
+    (current-input-port)
+    (current-output-port)
+    (current-error-port)
+
+    (with-input-from-file file-name thunk)
+    (with-output-to-file file-name thunk)
+
+    (input-port? obj)
+    (output-port? obj)
+
+    (open-output-file "kkk") ;; 準備從scheme向外寫入一個文件
+    (open-input-file "kkk") ;; 準本讀取一個文件到scheme內
+
+    (read-char)
+    (read-char (open-input-file "kkk"))
+    (read-char (current-input-port))
+    (read-char (open-input-file "schemer.org"))
+
+    (read)
+    (read (open-input-file "schemer.org"))
+
+    (write-char #\1)
+    (write-char #\1 (open-output-file "l"))
+
+    (display 1)
+    (set! kkk (open-output-file "kkk"))
+    (display '() kkk)
+    (display (lambda (x) x) kkk)
+
+    (write 1)
+    (write 1 kkk)
+    (write (lambda (x) x) kkk)
+
+    (close-output-port kkk)
+
+
+    (close-input-port (open-input-file "llll"))
+    (close-output-port (open-output-file "lllll"))
+    #+end_src
+
+*** file system
+
+    #+begin_src scheme
+    (file-exists? <file-name-string>)
+    (delete-file <file-name-string>)
+    #+end_src
+
+*** command-line access and exit values
+
+    #+begin_src scheme
+    (command-line)
+
+    (exit)
+    (exit <obj>)
+    #+end_src
+
+* r7rs
+
+*** record-type
+
+    #+begin_src scheme
+    (define-record-type <pare>
+      (kons x y)
+      pare?
+      (x kar set-kar!)
+      (y kdr))
+
+    (pare? (kons 1 2))
+    (pare? (cons 1 2))
+    (kar (kons 1 2))
+    (kdr (kons 1 2))
+    (let ((k (kons 1 2)))
+      (set-kar! k 3)
+      (kar k))
+    #+end_src
+
+*** libraries
+
+    #+begin_src scheme
+    (define-library (example grid)
+      (export make rows cols ref each
+              (rename put! set!))
+      (import (scheme base))
+      (begin
+
+        ;; Create an NxM grid.
+        (define (make n m)
+          (let ((grid (make-vector n)))
+            (do ((i 0 (+ i 1)))
+                ((= i n) grid)
+              (let ((v (make-vector m #false)))
+                (vector-set! grid i v)))))
+
+        (define (rows grid)
+          (vector-length grid))
+
+        (define (cols grid)
+          (vector-length (vector-ref grid 0)))
+
+        ;; Return #false if out of range.
+        (define (ref grid n m)
+          (and (< -1 n (rows grid))
+               (< -1 m (cols grid))
+               (vector-ref (vector-ref grid n) m)))
+
+        (define (put! grid n m v)
+          (vector-set! (vector-ref grid n) m v))
+
+        (define (each grid proc)
+          (do ((j 0 (+ j 1)))
+              ((= j (rows grid)))
+            (do ((k 0 (+ k 1)))
+                ((= k (cols grid)))
+              (proc j k (ref grid j k)))))
+
+        ))
+
+    (define-library (example life)
+      (export life)
+      (import (except (scheme base) set!)
+              (scheme write)
+              (example grid))
+      (begin
+
+        (define (life-count grid i j)
+          (define (count i j)
+            (if (ref grid i j) 1 0))
+          (+ (count (- i 1) (- j 1))
+             (count (- i 1) j)
+             (count (- i 1) (+ j 1))
+             (count i (- j 1))
+             (count i (+ j 1))
+             (count (+ i 1) (- j 1))
+             (count (+ i 1) j)
+             (count (+ i 1) (+ j 1))))
+
+        (define (life-alive? grid i j)
+          (case (life-count grid i j)
+            ((3) #true)
+            ((2) (ref grid i j))
+            (else #false)))
+
+        (define (life-print grid)
+          (display "\x1B;[1H\x1B;[J") ; clear vt100
+          (each grid
+                (lambda (i j v)
+                  (display (if v "*" " "))
+                  (when (= j (- (cols grid) 1))
+                    (newline)))))
+
+        (define (life grid iterations)
+          (do ((i 0 (+ i 1))
+               (grid0 grid grid1)
+               (grid1 (make (rows grid) (cols grid))
+                      grid0))
+              ((= i iterations))
+            (each grid0
+                  (lambda (j k v)
+                    (let ((a (life-alive? grid0 j k)))
+                      (set! grid1 j k a))))
+            (life-print grid1)))
+
+        ))
+
+
+    ;; Main program.
+    (import (scheme base)
+            (only (example life) life)
+            (rename (prefix (example grid) grid-)
+                    (grid-make make-grid)))
+
+    ;; Initialize a grid with a glider.
+    (define grid (make-grid 24 24))
+    (grid-set! grid 1 1 #true)
+    (grid-set! grid 2 2 #true)
+    (grid-set! grid 3 0 #true)
+    (grid-set! grid 3 1 #true)
+    (grid-set! grid 3 2 #true)
+    ;; Run for 80 iterations.
+    (life grid 80)
+    #+end_src
+
+* ikarus
+
+*** The (ikarus) library
+
+***** port-mode
+
+      #+begin_src scheme
+      (define kkk-port (open-output-file "kkk.scm"))
+
+      (port-mode kkk-port)
+
+      (set-port-mode! kkk-port 'r6rs-mode)
+      (set-port-mode! kkk-port 'ikarus-mode)
+      #+end_src
+
+***** #!eof in ikarus-mode
+
+      #+begin_src scheme
+      (eof-object)
+
+      (eof-object? '#!eof)
+      (eof-object? #!eof)
+      #+end_src
+
+      :tangle kkk.scm
+      #+begin_src scheme
+      #!/usr/bin/env scheme-script
+      (import (ikarus))
+      (display "kkk\n")
+      (display "goodbye\n")
+      #!eof
+
+      <some junk>
+      #+end_src
+
+***** parameters
+
+      #+begin_src scheme
+      (define *screen-width* 72)
+      (define screen-width
+        (case-lambda
+          [() *screen-width*]
+          [(x) (set! *screen-width* x)]))
+
+      (make-parameter <val> <filter>)
+
+      (define kkk (make-parameter x f))
+      (kkk <val>)
+      ==
+      (define kkk (make-parameter x))
+      (kkk (f <val>))
+
+
+      (define screen-width
+        (make-parameter 72))
+
+      (define screen-width
+        (make-parameter 72
+          (lambda (w)
+            (assert (and (integer? w) (exact? w)))
+            (max w 1))))
+      (screen-width)
+      (screen-width -10)
+      (screen-width 0.1)
+      (screen-width "1")
+
+      (parameterize ([<parameter1> <val1>]
+                     ...)
+        body body* ...)
+      ;; whenever control exits the body of a parameterize expression
+      ;; the value of the parameter is reset back to
+      ;; what it was before the body expressions were entered
+
+      (define terminal-property
+        (make-parameter "0"
+          (lambda (x)
+            (display "\x1b;[")
+            (display x)
+            (display "m")
+            x)))
+
+      (begin
+        (display "Normal and ")
+        (parameterize ([terminal-property "41;37"])
+          (display "RED!"))
+        (newline))
+
+      (terminal-property)
+      #+end_src
+
+***** >< local library imports
+
+      By locally importing a library into the appropriate scope
+      we gain the ability to delete the import form
+      when the procedure that was using it is deleted
+
+      The syntax of the local import form
+      is similar to the import
+      that appears at the top of a library or a script form
+
+      and carries with it the same restrictions:
+      1. no identifier name may be imported twice unless it denotes the same identifier
+      2. no identifier may be both imported and defined
+      3. and imported identifiers are immutable (這個限制尤其r6rs是設計上的失敗)
+
+      Local import forms are useful for two reasons:
+      1) they minimize the namespace clutter
+         that usually occurs when many libraries are imported at the top level
+      2) they limit the scope of the import
+         and thus help modularize a library's dependencies
+
+      模塊系統的目的是爲了管理命名空間
+      我想模塊系統就可以是簡單的對代碼的動態處理
+      這樣就給了模塊行系統無限的靈活性
+      當我加載一個模塊的時候
+      就是簡單的載入那個模塊的代碼
+      同時加上一些明顯的對命名空間的管理就行了
+      但是爲什麼人們不這樣去實現模塊系統呢?因爲效率的問題嗎??
+      如何用有向圖來實現模塊系統???
+
+***** >< gensyms
+
+      這個東西可以用來處理約束變元
+      然而有向圖的使用可以繞過對約束變元的處理
+
+      #+begin_src scheme
+      (define kkk (gensym "kkk"))
+      (symbol->string kkk)
+      (gensym? kkk)
+      (define kkk (gensym 'kkk))
+      (gensym->unique-string kkk)
+
+      '#{unique-name}
+      '#{pretty-name unique-unique-name}
+      '#:pretty-name
+      #+end_src
+
+***** printing
+
+******* pretty-print
+
+        The procedure pretty-print is intended for printing Scheme data
+        typically Scheme programs
+        in a format close to how a Scheme programmer would write it
+        Unlike write, which writes its input all in one line
+        pretty-print inserts spaces and newlines in order to produce more pleasant output
+
+        #+begin_src scheme
+        ;; (pretty-print datum)
+        ;; (pretty-print datum output-port)
+
+        (pretty-print 1)
+
+        (define compile-port
+          (make-parameter
+           (current-output-port)
+           (lambda (p)
+             (unless (output-port? p)
+               (error 'compile-port "not an output port ~s" p))
+             p)))
+        (pretty-print 1 (compile-port))
+
+
+        (define fact-code
+          '(letrec ([fact (lambda (n) (if (zero? n) 1 (* n (fact (- n 1)))))])
+             (fact 5)))
+        (pretty-print fact-code)
+
+        ;; (letrec ((fact
+        ;;           (lambda (n) (if (zero? n) 1 (* n (fact (- n 1)))))))
+        ;;   (fact 5))
+
+        ;; Limitations: As shown in the output above
+        ;; the current implementation of pretty-print
+        ;; does not handle printing of square brackets properly
+        #+end_src
+
+******* pretty-width
+
+        一個控制pretty-print的輸出寬度的參數
+
+        Note that pretty-width does not guarantee that
+        the output will not extend beyond the specified number
+        Very long symbols, for examples, cannot be split into multiple lines
+        and may force the printer to go beyond the value of pretty-width
+
+        #+begin_src scheme
+        ;; (pretty-width)
+        ;; (pretty-width n)
+
+        (pretty-width 60)
+
+        (parameterize ([pretty-width 40])
+          (pretty-print fact-code))
+        ;; (letrec ((fact
+        ;;           (lambda (n)
+        ;;             (if (zero? n)
+        ;;                 1
+        ;;                 (* n (fact (- n 1)))))))
+        ;;   (fact 5))
+        #+end_src
+
+******* format & printf & fprintf
+
+        1. format
+           #+begin_src scheme
+           ;; (format fmt-string args ...)
+
+           ;; ~s -- (write)
+           (format "kkk~skkk" "lll")
+           ;; "kkk\"lll\"kkk"
+           (format "kkk~skkk" #\l)
+           ;; "kkk#\\lkkk"
+
+           ;; ~a -- (display)
+           (format "kkk~akkk" "lll")
+           ;; "kkklllkkk"
+           (format "kkk~akkk" #\l)
+           ;; "kkklkkk"
+
+
+           ;; ~b -- binary representation (of exact number)
+           ;; Note that the #b numeric prefix is not produced in the output
+           (format "kkk~bkkk" #b1000)
+           (format "kkk~bkkk" 8)
+           ;; "kkk1000kkk"
+
+           ;; ~o 8進制
+           ;; ~x 16進制
+           ;; ~d 10進制
+           ;; Note that the #b, #o, and #x numeric prefixes
+           ;; are not added to the output when ~b, ~o, and ~x are used
+
+           ;; ~~ -- ~
+           (format "kkk~~kkk")
+
+
+           (format "message: ~s, ~s, and ~s\n" 'symbol "string" #\c)
+           ;; "message: symbol, \"string\", and #\\c\n"
+           (format "message: ~a, ~a, and ~a\n" 'symbol "string" #\c)
+           ;; "message: symbol, string, and c\n"
+           #+end_src
+        2. printf
+           The procedure printf is similar to format except that the output is sent to the
+           current-output-port instead of being collected in a string
+           #+begin_src scheme
+           ;; (printf fmt-string args ...)
+           (define kkk (format "message: ~a, ~a, and ~a\n" 'symbol "string" #\c))
+           (define kkk (printf "message: ~a, ~a, and ~a\n" 'symbol "string" #\c))
+           #+end_src
+        3. fprintf
+           The procedure fprintf is similar to printf
+           except that the output port to which the output is sent is specified as the first argument
+           #+begin_src scheme
+           ;; (fprintf output-port fmt-string args ...)
+
+           (define compile-port
+             (make-parameter
+              (current-output-port)
+              (lambda (p)
+                (unless (output-port? p)
+                  (error 'compile-port "not an output port ~s" p))
+                p)))
+
+           (fprintf (compile-port) "message: ~a, ~a, and ~a\n" 'symbol "string" #\c)
+           #+end_src
+
+******* print-graph
+        The graph notation is a way of marking and referencing parts of a data structure
+        and, consequently
+        creating shared and cyclic data structures at read time
+        instead of resorting to explicit mutation at run time
+        + 即 '(#0=(1 2) #0# #0# #0#)和'#0=(1 #0# #0# #0#)
+          這種東西也能被ikarus讀到
+          並且按我的意圖處理
+          但是輸入#0=(1 . #0#)會讓內存溢出
+        + 這也是digrap希望作的
+          digrap希望的正是把這一點做到極致
+
+        The #n= marks the following data structure with mark n
+        where n is a nonnegative integer
+        The #n# references the data structure marked n
+        Marks can be assigned and referenced in any order
+        but each mark must be assigned to exactly once in an expression
+        + 對#0=的讀取總是能成功的
+          並不受下面的print-graph parameter的影響
+          這個參數影響的是打印方式
+
+
+        The print-graph parameter controls how the writers
+        + e.g. pretty-print and write
+        handle shared and cyclic data structures
+        In Ikarus, all writers detect cyclic data structures
+        and they all terminate on all input, cyclic or otherwise
+
+        這些writers (即寫入函數)
+        名字叫`打印'或者`顯示'
+        而其實是一個讀程序員所指示的數據
+        然後把這些數據寫入port (即端口)
+        #+begin_src scheme
+        (print-graph)
+        (print-graph #f)
+        (print-graph #t)
+
+        (parameterize ([print-graph #f])
+          (let ([x (list 1 2 3 4)])
+            (pretty-print (list x x x))))
+        ;; ((1 2 3 4) (1 2 3 4) (1 2 3 4))
+        (parameterize ([print-graph #t])
+          (let ([x (list 1 2 3 4)])
+            (pretty-print (list x x x))))
+        ;; (#0=(1 2 3 4) #0# #0#)
+
+
+        (print-graph #f)
+        (print-graph #t)
+        '(#0=(1 2 3 4) #0# #0#)
+        '((1 2 3 4) (1 2 3 4) (1 2 3 4))
+
+        (last-pair '(1 2 1 2 1 2))
+        (last-pair '(1 2 1 2 1 2 . 12))
+
+        ;; 下面的結果是bug嗎???
+        (parameterize ([print-graph #f])
+          (let ([x (list 1 2)])
+            (let ([y (list x x x x)])
+              (set-car! (last-pair y) y)
+              (pretty-print (list y y)))))
+        ;; (#0=((1 2) (1 2) (1 2) #0#) #0#)
+        (parameterize ([print-graph #t])
+          (let ([x (list 1 2)])
+            (let ([y (list x x x x)])
+              (set-car! (last-pair y) y)
+              (pretty-print (list y y)))))
+        ;; (#0=(#1=(1 2) #1# #1# #0#) #0#)
+
+        ;; 僅僅是打印上的區別??
+        ;; 還是整個複製過程的行爲都改變了???
+        (parameterize ([print-graph #f])
+          (let ([x (list 1 2)])
+            (let ([y (list x x x x)])
+              (pretty-print y)
+              (pretty-print (car y))
+              (pretty-print (cadr y))
+              (eq? (car y) (cadr y)))))
+
+        (parameterize ([print-graph #t])
+          (let ([x (list 1 2)])
+            (let ([y (list x x x x)])
+              (pretty-print y)
+              (pretty-print (car y))
+              (pretty-print (cadr y))
+              (eq? (car y) (cadr y)))))
+
+
+        ;; 不論如何'(#0=(1 2) #0# #0# #0#)這種東西
+        ;; 都能直接被ikarus讀到 並且正確處理
+        ;; 我需要學習的就是ikarus處理這些marked表達式的方式
+        (parameterize ([print-graph #t])
+          (let ([y '(#0=(1 2) #0# #0# #0#)])
+            (pretty-print y)
+            (eq? (car y) (cadr y))
+            y))
+        (parameterize ([print-graph #f])
+          (let ([y '(#0=(1 2) #0# #0# #0#)])
+            (pretty-print y)
+            (eq? (car y) (cadr y))
+            y))
+        #+end_src
+
+******* >< print-gensym
+
+******* >< gensym-prefix
+
+******* >< gensym-count
+
+***** >< tracing
+
+***** >< timing
+
+*** >< The (ikarus ipc) library
+
+***** environment variables
+
+      when the operating system starts a process
+      it starts the process in some environment
+      that maps environment variables to values
+
+      #+begin_src scheme
+      (import (ikarus ipc))
+
+      ;; (getenv key)
+
+      (getenv "HOME")
+      (getenv "PATH")
+      (getenv "KKK")
+      (getenv "IKARUS_LIBRARY_PATH")
+
+      ;; (setenv key value)
+      ;; (setenv key value overwrite?)
+
+      (setenv "KKK" "123")
+      (setenv "KKK" "12" #f)
+
+
+      ;; (unsetenv key)
+
+      (unsetenv "KKK")
+      #+end_src
+
+***** >< subprocess communication
+
+      starting subprocesses
+      sending and receiving data through
+      the subprocesses' standard input, output, and error ports
+
+      #+begin_src scheme
+
+      #+end_src
+
+***** >< TCP and UDP sockets
+
+      #+begin_src scheme
+
+      #+end_src
+
+*** The (ikarus foreign) library
+
+***** note
+
+      (import (rnrs))
+      (import (ikarus))
+      上面兩個是ikarus自帶的
+      不用去系統裏搜索就能夠被加載
+
+      #+begin_src scheme
+      (import (ikarus foreign))
+      #+end_src
+
+***** Memory operations
+
+      #+begin_src scheme
+      (import (ikarus foreign))
+
+      ;; memory allocate
+      (define kkk (malloc 1))
+      ;; #<pointer #x000000000161F170>
+      ;; 我的系統的地址是2bytes(16位)16進制數 因此是64-bit系統
+
+      ;; 對內存的收回當然也要自己管理
+      (free kkk)
+      ;; 兩次free一個指針就會讓系統崩潰
+      ;; 所以應該加上一層來保護對free的使用
+
+      (pointer->integer kkk)
+
+      (integer->pointer (pointer->integer kkk))
+
+      (pointer? kkk)
+
+      (pointer-set-c-char! kkk 1 10)
+
+      (pointer-ref-c-signed-char kkk 1)
+
+      #b10
+      #o10
+      #x10
+
+      (let ([p (malloc 3)])
+        (pointer-set-c-char! p 0 #b01111111)
+        (pointer-set-c-char! p 1 #b10000000)
+        (pointer-set-c-char! p 2 #b11111111)
+        (let ([result
+               (list (pointer-ref-c-signed-char p  0)
+                     (pointer-ref-c-signed-char p 1)
+                     (pointer-ref-c-signed-char p 2)
+                     (pointer-ref-c-unsigned-char p 0)
+                     (pointer-ref-c-unsigned-char p 1)
+                     (pointer-ref-c-unsigned-char p 2))])
+          (free p)
+          result))
+      (127 -128 -1 127 128 255)
+      #+end_src
+
+***** accessing foreign objects from scheme
+
+      echo $LD_LIBRARY_PATH
+      man dlopen
+      man dlclose
+      man dlerror
+      man dlsym
+
+      #+begin_src scheme
+      (import (ikarus foreign))
+
+
+      (dlopen) ;; dynamically load
+
+      (dlopen library-name)
+      (dlopen library-name lazy? global?)
+
+
+      (dlclose library-pointer)
+
+
+      (dlerror)
+
+
+      (dlsym library-pointer string)
+      #+end_src
+      dlclose之後在引用被輸出的名字就可能讓程序崩潰
+      所以應該加上一層來保護這些對dlclose的使用
+
+***** calling out to foreign procedures
+
+      #+begin_src scheme
+      (import (ikarus foreign))
+
+
+      ((make-c-callout return-type parameter-types) native-pointer)
+
+
+      (define libm (dlopen "/lib/libm.so"))
+      libm
+      ;; #<pointer #x00007FE9413F19B0>
+      (define libm-atan-ptr (dlsym libc "atan"))
+      libc-atan-ptr
+      ;; #<pointer #x00007FE940A6A730>
+      (define libm-atan
+        ((make-c-callout 'double '(double)) libm-atan-ptr))
+      libm-atan
+
+      (libm-atan 1.0)
+      ;; 0.7853981633974483
+      (libm-atan 1)
+      ;; Unhandled exception
+      ;;  Condition components:
+      ;;     1. &assertion
+      ;;     2. &who: callout-procedure
+      ;;     3. &message: "argument does not match type double"
+      ;;     4. &irritants: (1)
+      #+end_src
+
+***** calling back to scheme
+
+      #+begin_src scheme
+      (import (ikarus foreign))
+
+
+      ((make-c-callback return-type parameter-types) scheme-procedure)
+
+
+      ;; The following segment illustrates a very inefficient way of
+      ;; extracting the lowermost 32 bits from an exact integer
+      (format "~x"
+              (((make-c-callout 'unsigned-int '(unsigned-int))
+                ((make-c-callback 'unsigned-int '(unsigned-int))
+                 values))
+               #xfedcba09876543210fedcba09876543210))
+      ;; "76543210"
+      #+end_src
