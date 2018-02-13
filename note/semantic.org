@@ -3,13 +3,12 @@
 * aim
 
   - the aim of the study of language semantic,
-    is to guide the design and implementation
-    of programming languages.
 
-  - my first opinion is to use operational semantic,
-    and to criticize all other approaches.
+    1. is to guide the design and implementation
+       of programming languages.
 
-    I will adjust my opinion alone the way.
+    2. beside implementing a language,
+       we also need to prove theorems about the language.
 
 * intro
 
@@ -122,3 +121,73 @@
         and predefining three semantic entities
         (actions, data and yielders)
         to simplify the specification.
+
+* [note]
+
+*** semantic
+
+    - the semantic of a programming language is its implementation.
+
+    - the meta language used to implement it,
+      must be able to *prove theorems about it*.
+
+    - the semantic of a language
+      will be formalized in its meta language.
+
+* (1990) (r. d. tennent) semantics of programming languages
+
+*** I Introduction
+
+***** 1 Semantics
+
+***** 2 Mathematical Preliminaries
+
+*** II Basic Concepts
+
+***** 3 A Simple Imperative Language
+
+***** 4 A Simple Applicative Language
+
+***** 5 Recursion and Domain Theory
+
+*** III An Algol-Like Language
+
+***** 6 An Algol-Like Language I
+
+***** 7 An Algol-Like Language II
+
+*** IV Advanced Techniques
+
+***** 8 An Introduction to Category Theory
+
+***** 9 Possible Worlds
+
+***** 10 Recursively-Defined Domains
+
+* (1992) (carl a. gunter) semantics of programming languages -- structures and techniques
+
+*** 1 Introduction
+
+*** 2 The Simply-Typed lambda-Calculus
+
+*** 3 Categorical Models of Simple Types
+
+*** 4 Recursive Definitions of Functions
+
+*** 5 Two Theories of Finite Approximation
+
+*** 6 Relating Interpretations
+
+*** 7 Types and Evaluation
+
+*** 8 Universal Domains
+
+*** 9 Subtype Polymorphism
+
+*** 10 Domain Theory
+
+*** 11 Parametric Polymorphism
+
+* (1994) (glynn winskel) the formal semantics of programming languages -- an introduction
+
+* (2004) (gordon d. plotkin) a structural approach to operational semantics
