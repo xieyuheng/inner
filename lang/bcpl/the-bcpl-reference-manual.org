@@ -1,0 +1,126 @@
+#+title: the bcpl reference manual
+
+- by Martin Richards
+
+* abstract
+
+  - BCPL is a simple recursive programming language
+    designed for compiler writing and system programming:
+    it was derived from true CPL (Combined Programming Language)
+    by removing those features of the full language
+    which make compilation difficult,
+    namely, the type and mode matching rules
+    and the variety of definition structures
+    with their associated scope rules.
+
+* 1.0 Introduction
+
+* 2.0 BCPL Syntax
+
+*** 2.1 Hardware Syntax
+
+***** 2.1:1 BCPL Canonical Symbols
+
+***** 2.1.2 Hardware Conventions and Preprocessor Rules
+
+*** 2.2 Canonical Syntax
+
+* 3.0 Data Items
+
+*** 3.1 Rvalues, Lvalues and Data Items
+
+*** 3.2 Types
+
+* 4.0 Primary Expressions
+
+*** 4.1 Names
+
+*** 4.2 String Constants
+
+*** 4.3 Numerical Constants
+
+*** 4.4 True and False
+
+*** 4.5 Bracketted Expressions
+
+*** 4.6 Result Blocks
+
+*** 4.7 Vector Applications
+
+*** 4.8 Function Applications
+
+*** 4.9 Lv Expressions
+
+*** 4.10 Rv Expressions
+
+* 5.0 Compound Expressions
+
+*** 5.1 Arithmetic Expressions
+
+*** 5.2 Relational Expressions
+
+*** 5.3 Shift Expressions
+
+*** 5.4 Logical Expressions
+
+*** 5.5 Conditional Expressions
+
+* 6.0 Commands
+
+*** 6.1 Assignment Commands
+
+*** 6.2 Simple Assignment Commands
+
+*** 6.3 Routine Commands
+
+*** 6.4 Labelled Commands
+
+*** 6.5 Goto Commands
+
+*** 6.6 If Commands
+
+*** 6.7 Unless Commands
+
+*** 6.8 While Commands
+
+*** 6.9 Until Commands
+
+*** 6.10 Test Commands
+
+*** 6.11 Repeated Commands
+
+*** 6.12 For Commands
+
+*** 6.13 Break Commands
+
+*** 6.14 Finish Commands
+
+*** 6.15 Return Commands
+
+*** 6.16 Resultis Commands
+
+*** 6.17 Switchon Commands
+
+*** 6.18 Blocks
+
+* 7.0 Definitions
+
+*** 7.1 Scope Rules
+
+*** 7.2 Space Allocation and Extent of Data Items
+
+*** 7.3 Global Declarations
+
+*** 7.4 Manifest Declarations
+
+*** 7.5 Simple Definitions
+
+*** 7.6 Vector Definitions
+
+*** 7.7 Function Definitions
+
+*** 7.8 Routine Definitions
+
+*** 7.9 Simultaneous Definitions
+
+* 8.0 Example Program

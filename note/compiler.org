@@ -1,3 +1,11 @@
 #+title: compiler
 
-* ><
+* (1997) (steven s. muchnick) (a.k.a. whale book) advanced compiler design and implementation
+
+* (1992) (andrew w. appel) compiling with continuations
+
+* (2012) (helmut seidl) compiler design
+
+* (1985) (tremblay) the theory and practice of compiler writing
+
+* (2011) (mogensen) introduction to compiler design

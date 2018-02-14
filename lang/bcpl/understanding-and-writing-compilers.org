@@ -1,0 +1,57 @@
+#+title: understanding and writing compilers
+
+- by Richard Bornat
+
+* I Modular Organisation of Compilers
+
+*** 1 Phases and Passes
+
+*** 2 Introduction to Translation
+
+*** 3 Introduction to Syntax Analysis
+
+*** 4 Lexical Analysis and Loading
+
+* II Translation and Crucial Code Fragments
+
+*** 5 Translating Arithmetic Expressions
+
+*** 6 Translating Boolean Expressions
+
+*** 7 Translating Statements and Declarations
+
+*** 8 Creating and Using the Symbol Table
+
+*** 9 Accessing an Element of a Data Structure
+
+*** 10 Code Optimisation
+
+* III Run-time Support
+
+*** 11 Procedure Call and Return
+
+*** 12 Arguments and Parameters
+
+*** 13 Environments and Closures
+
+*** 14 Efficiency, Heaps and Lifetimes
+
+* IV Parsing Algorithms
+
+*** 15 Notation and Formal Language Theory
+
+*** 16 Top-down Syntax Analysis
+
+*** 17 Operator-Precedence Analysis of Expressions
+
+*** 18 LR(1) Syntax Analysis
+
+* V Interpreting and Debugging
+
+*** 19 Interpreters and Interpretation
+
+*** 20 Run-time Debugging Aids
+
+* A The BCPL language
+
+* B Assembly code used in examples
