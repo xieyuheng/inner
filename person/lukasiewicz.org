@@ -77,7 +77,7 @@
         1. (-> B -- A) -- function type
         2. B < A -- subtype [subset]
         3. B : A -- belonging
-        4. quotiet type
+        4. quotient type
 
       - x -
         ><><><

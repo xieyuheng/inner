@@ -796,8 +796,8 @@
          which provides us data-constructors
          to construct elements of the type.
       2. we use structural equality as basic equality,
-         we can derive from this basic equality by quotiet
-         to form quotiet-type.
+         we can derive from this basic equality by quotient
+         to form quotient-type.
 
     - x -
       by the definition of type
