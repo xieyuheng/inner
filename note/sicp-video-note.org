@@ -283,7 +283,7 @@
 
 * 6A
 
-  引入 assignment 之後,一切變得複雜多了,很多概都進入討論了
+  引入 assignment 之後,一切變得複雜多了,很多概念都進入討論了
 
   It's a technically harder way of looking at things
   because we have to think more mechanistically about our programming language
@@ -293,7 +293,7 @@
   And also, it's programming harder, because as Gerry showed last time
   there are all these bugs having to do with bad sequencing and aliasing
   that just don't exist in a language where we don't worry about objects
-  + 老師的文體不錯～
+  + 老師的文體不錯
 
   但是
   之所以要引入這些概念是因爲

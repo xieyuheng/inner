@@ -1,6 +1,6 @@
 #+title: feynman
 
-* feynman lecture on computation
+* feynman lectures on computation
 
 *** 1 Introduction to Computers
 
@@ -101,3 +101,5 @@
 ***** 7.3 VLSI Circuit Construction
 
 ***** 7.4 Further Limitations on Machine Design
+
+* feynman lectures on physics

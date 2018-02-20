@@ -122,17 +122,21 @@
         (actions, data and yielders)
         to simplify the specification.
 
-* [note]
+* >< physics like semantic framework
 
-*** semantic
+  - position, velocity, field.
 
-    - the semantic of a programming language is its implementation.
+  - env, next exp, what ?
 
-    - the meta language used to implement it,
-      must be able to *prove theorems about it*.
+* implementation as semantic
 
-    - the semantic of a language
-      will be formalized in its meta language.
+  - the semantic of a programming language is its implementation.
+
+  - the meta language used to implement it,
+    must be able to *prove theorems about it*.
+
+  - the semantic of a language
+    will be formalized in its meta language.
 
 * (1990) (r. d. tennent) semantics of programming languages
 

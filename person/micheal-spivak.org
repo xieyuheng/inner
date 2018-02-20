@@ -1,6 +1,9 @@
 #+title: micheal spivak
 
 * physics-for-mathematicians--1--mechanics
+
+*** ><
+
 * a-comprehensive-introduction-to-differential-geometry
 * answer-book-for-calculus
 * (1965) calculus-on-manifolds
