@@ -1,18 +1,6 @@
-#+HTML_HEAD: <link rel="stylesheet" href="asset/css/page.css" type="text/css" media="screen" />
-#+TITLE:  to be the reasoned schemer
+#+title:  to be the reasoned schemer
 
--------
-
-+ note of the reasoned schemer
-  code taken from :: https://github.com/miniKanren/TheReasonedSchemer
-
-+ I add un-checked type to functions
-
-+ XIE Yuheng created
-
--------
-
-* note
+* [note]
 
   - try to name some discussions
     to learn how to teach
@@ -568,7 +556,7 @@
 
 * 1 playthings
 
-*** note
+*** [note]
 
     - the law of fresh
       if x is fresh
@@ -1482,7 +1470,7 @@
     ;;     (swappendo x y z)))
     #+end_src
 
-*** note 思想模型
+*** [note] 思想模型
 
     - 在對例子的觀察中
       獨立建立起自己的思想模型
@@ -1914,7 +1902,7 @@
 
 * 9 under the hood
 
-*** note unification
+*** [note] unification
 
     - 變元之間的融合關係有向圖
       首先想到的有兩種實現方式
@@ -1993,7 +1981,7 @@
       (==-check x (list x)))
     #+end_src
 
-*** note 表達方式
+*** [note] 表達方式
 
     - 當你把觀察後的理解成果 表達地特別機械化時
       你大概就知道如何實現這些想法了

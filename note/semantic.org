@@ -172,6 +172,20 @@
 
 *** 1 Introduction
 
+    #+begin_src cicada
+    ;; int-t ?
+    ;; mod-u ?
+    (+union gcd-u
+      : (-> x : int-t
+            y : int-t
+            d : int-t
+         -- type-tt)
+      (-> -- x zero-c x zero-gcd-t)
+      (-> gcd : x y d gcd-u
+          mod : x y z mod-u
+       -- y z d mod-gcd-t))
+    #+end_src
+
 *** 2 The Simply-Typed lambda-Calculus
 
 *** 3 Categorical Models of Simple Types
@@ -195,3 +209,5 @@
 * (1994) (glynn winskel) the formal semantics of programming languages -- an introduction
 
 * (2004) (gordon d. plotkin) a structural approach to operational semantics
+
+* (mitchell) foundations for programming languages
