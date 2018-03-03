@@ -1,4 +1,3 @@
-#+HTML_HEAD: <link rel="stylesheet" href="../asset/css/page.css" type="text/css" media="screen" />
 #+title: constructivism, computer and programming language
 
 - by XIE Yuheng, 2017

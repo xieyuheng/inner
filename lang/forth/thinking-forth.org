@@ -94,6 +94,27 @@
 
 * factoring
 
+  - Factoring means organizing code into useful fragments.
+    To make a fragment useful,
+    you often must separate reusable parts from non-reusable parts.
+    The reusable parts become new definitions.
+    The non-reusable parts become arguments or parameters to the definitions.
+
+  - Factor at the point where you feel unsure about your code.
+
+  - Factor at the point where a comment seems necessary.
+
+  - separating the computation of something from
+    the operation to be performed on it.
+
+  - Be sure you can name what you factor.
+
+  - Factor definitions to hide details that may change.
+
+  - Factor functions out of definitions that display results.
+
+  - Don’t factor for the sake of factoring.
+
 * handling data : stacks and states
 
 * minimizing control structures

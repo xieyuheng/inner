@@ -1,4 +1,4 @@
-#+title: 組合子記 / note on combinator
+#+title: to mocking a bird
 
 * todo
   * 文日進 而常改
