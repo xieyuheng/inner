@@ -45,9 +45,11 @@
 
   - [[https://github.com/xieyuheng/continua][continua]] -- about algebraic topology
 
-  - [[http://xieyuheng.github.io/jojo][jojo]] -- jojo's programming adventure
+  - [[https://github.com/xieyuheng/cicada][cicada language]] -- cicada language
 
-  - [[http://xieyuheng.github.io/cicada-nymph][cicada-nymph]] -- a forth-like language
+  - [[https://github.com/xieyuheng/jojo-in-js][jojo]] -- jojo's programming adventure
+
+  - [[https://github.com/xieyuheng/cicada-nymph][cicada-nymph]] -- a forth-like language
 
 * paper
 
