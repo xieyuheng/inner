@@ -2,7 +2,50 @@
 
 * (1947) formal logic and mathematics
 
-* (1956) intuitionism an introduction
+* (1956) intuitionism an introduction -- how to spot a non-constructive proof
+
+*** [note] 關於實數
+
+    - 很大的篇幅都被用來討論具有構造性的實數理論了
+      這樣做的錯誤有三
+
+    - 第一
+      所發展的實數理論與主流的實數理論很接近
+      之所以需要這種實數理論
+      是因爲 想要以算數化的方式處理 無窮小分析 [即 微積分]
+      錯誤在於 作者沒有想到
+      這種處理方式本身就是有可能用構造主義的方法來避免的
+
+    - 第二
+      作者意識到了構造主義理論於物理無用
+      錯誤在於 此時作者不知反省
+      作者也沒有意識到 古典的算數化處理也於物理無用
+
+    - 第三
+      如此發展下去的理論 完全失去了 數學的美感
+      錯誤在於 此時作者不知反省
+
+*** 2 arithmetic
+
+***** 2.1 natural numbers
+
+***** 2.2 real number-generators
+
+***** 2.3 respectable real numbers
+
+***** 2.4 limits of sequences of real number-generators
+
+*** 3 spreads and species
+
+*** 4 algebra
+
+*** 5 plane pointspecies
+
+*** 6 measure and integration
+
+*** 7 logic
+
+*** 8 controversial subjects
 
 * (1974) intuitionistic views on the nature of mathematics
 

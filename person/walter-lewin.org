@@ -1,0 +1,182 @@
+#+title: walter lewin
+
+* [todo-stack]
+
+  - 如何測量出帶有誤差的 瞬時 velocity ?
+    how to measure instant velocity with uncertainties ?
+
+* classical mechanics
+
+*** 1 - Powers of 10, Units, Dimensions, Uncertainties, Scaling Argumen
+
+    - 爲了度量 我們需要引入 單位 [unit]
+
+    - 物理中的三個基本量 及其單位如下
+      | quantity | length | time   | mass     |
+      |----------+--------+--------+----------|
+      | unit     | m      | sec    | kg       |
+      |          | meter  | second | kilogram |
+
+    - 同時還有 衍生單位 [derived unit]
+      比如 千米 小時 等等
+
+    - 同時還有 衍生量
+      比如
+      [speed] = [length] / [time]
+      [volume] = [length]^3
+      [density] = [mass] / [volume]
+      [acceleration] = [length] / ([time]^2)
+
+    - 所有其他的量都由這三個基本量衍生出來
+
+    - 有了單位我們就能進行度量
+      度量的時候最重要的就是
+      測量的不確定性 即 誤差
+
+    - 要記住下面這個重要的準則
+      *任何不帶有誤差信息的測量 都是無意義的*
+      [a measurement without knowledge of the uncertainty is meaningless]
+
+    - 單位維度分析
+      我們要測量平果落地的時間
+      我們猜想 t ~ h^a * m^b * g^c
+      其中 h 爲高度 g 爲重力加速度 其單位爲 [acceleration]
+
+    - 我們可以很簡單地得出
+      平果的落地時間與 與 平果的質量無關 這個結論
+      這裏的重點是我們取了 [acceleration] 來做分析
+      這是亞里士多德想不到的
+      爲什麼 亞里士多德想不到 呢 ?
+
+    - 那麼
+      [time] = [length]^a * [mass]^b * ([length] / ([time]^2))^c
+      那麼
+      0 = a + c
+      0 = b
+      1 = - (2 * c)
+      那麼
+      c = - (1 / 2)
+      b = 0
+      a = (1 / 2)
+      那麼
+      t ~ h^(1 / 2) / g^(1 / 2)
+      如果 g 是常數 那麼
+      t ~ h^(1 / 2)
+
+    - 也就是說
+      當高度增加 4 倍時
+      時間只增加 2 倍
+      這樣我們就可以做一個小實現
+      比如我們可以 在固定的高度扔下平果 然後測量時間
+      然後分析測量到的結果和我們的預測是否一致
+      *注意測量的時候要帶有誤差信息*
+
+    - 在計算的時候誤差信息也會變
+      爲了確定計算之後的誤差
+      [在沒有發展出關於誤差的理論時]
+      我們可以做一些計算實驗
+      比如 h1 = 3.000 誤差 0.003
+      比如 h2 = 1.500 誤差 0.003
+      那麼 h1 / h2 = 2 誤差 0.006
+      因爲
+      (3.000 + 0.003) / (1.500 - 0.003) = 2.006
+      (3.000 - 0.003) / (1.500 + 0.003) = 1.994
+      那麼 (h1 / h2)^(1 / 2) = 2 誤差 0.002
+      因爲
+      (2.000 + 0.006)^(1 / 2) = 1.4163
+      (2.000        )^(1 / 2) = 1.4142
+      (2.000 - 0.006)^(1 / 2) = 1.4121
+      等等
+
+*** 2 - 1D Kinematics - Speed, Velocity, Acceleration
+
+    - 我們測量不同情況下物體的運動狀況裏分析
+      首先分析一維的運動
+      選取座標軸然後測量位置隨着時間的變化情況
+      這樣我們就能測量出某段時間 t1 t2 之間的平均速度
+
+    - average-velocity : time-t time-t -> velocity-t
+      (let t1 t2)
+      t2 position t1 position sub
+      t2 t1 sub div
+
+      注意 average-velocity 與座標系原點的選取無關
+      但是確與座標軸的方向有關
+
+    - average-speed : time-t time-t -> speed-t
+      (let t1 t2)
+      t1 t2 distance
+      t2 t1 sub div
+
+      但是 distance : time-t time-t -> distance-t
+      很難定義
+
+    - 之後教授用 average-velocity 的極限來定義 瞬時 velocity
+      但是這樣定義出來的 瞬時 velocity 應該如何測量呢 ?
+      通過測量 average-velocity 能夠給出帶有誤差的 瞬時 velocity 嗎 ?
+
+    - 如下的定義看來是不實際的
+      average-acceleration : time-t time-t -> acceleration-t
+      應該是
+      average-acceleration : time-t time-t time-t -> acceleration-t
+      (let t1 t2 t3)
+      t2 t3 average-velocity
+      t1 t2 average-velocity sub
+      t3 t1 sub div
+      = inline average-velocity =>
+      (let t1 t2 t3)
+      t3 position t2 position sub
+      t2 position t1 position sub sub
+      t3 t1 sub div
+      ==>
+      (let t1 t2 t3)
+      t3 position
+      t2 position sub
+      t2 position sub
+      t1 position sub
+      t3 t1 sub div
+
+*** 3 - Vectors - Dot Products - Cross Products - 3D Kinematics
+
+*** 4 - 3D Kinematics, Free Falling Reference Frames
+
+*** 5 - Circular Motion, Centripetal Forces, Perceived Gravity
+
+*** 6 - Newton's Laws
+
+    - 在寫下 F = m * a 之前
+      我們可以利用實驗來體會到 m1 * a1 = m2 * a2 是一個常數
+      - 比如利用彈簧來測試
+        比如彈簧秤
+        或者反思自己的經驗
+
+    - 與其說 F = m * a 是方程
+      不如說是力的定義
+
+      [force] = [mass] * [length] / [time]^2
+      1 newton = 1 kg * 1 m / 1 sec^2
+
+*** 7 - Weight, Weightlessness in  Free Fall,  Weight in Orbit
+
+*** 8 - Friction
+
+*** 9 - First Exam Review
+
+*** 10 - Hooke's Law, Springs, Pendulums, Simple Harmonic Motion
+
+*** 11 - Work, Kinetic & Potential Energy, Gravitation, Conservative Fo
+
+    - work = 力沿着路徑的積分
+
+    - [work] = [force] * [length]
+      1 joule = 1 newton * 1 m
+
+    - 如果一個力之做功 與路徑無關
+      而只與起末點相關
+      這個力就屬於 保守力
+
+*** 12 - Air Drag, Resistive Forces, Conservative Forces, Terminal Velo
+
+* electricity and magnetism
+
+* vibrations and waves

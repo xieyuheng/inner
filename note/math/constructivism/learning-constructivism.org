@@ -2,12 +2,6 @@
 
 * history of constructivism in the 20th century [troelstra]
 
-*** 縮寫
-
-    - 一個術語使用不出三次
-      也要那個定義一個首字母縮寫
-      只爲 掩飾作者的無知 並迷惑讀者
-
 *** introduction
 
     - constructivism may be regarded as a reaction
@@ -33,13 +27,14 @@
 *** finitism
 
 ***** finitist mathematics
-      * 存在 x 滿足 A(x)
+
+      - 存在 x 滿足 A(x)
         爲了使用我的語法必須給 x 以類型
         因爲要以基礎數論爲例子來檢驗語法的實用性
         所以以 <number> 爲類型的例子
         而得到
         (-> x : <number> (A :x:))
-      * 否定 任意 x 滿足 A(x)
+      - 否定 任意 x 滿足 A(x)
         首先
         任意 x 滿足 A(x)
         爲
@@ -52,7 +47,7 @@
         所以
         x : <number>
         的語義其實也是一個匹配 它可以出現在 (A :x:) 之後
-      * 這裏
+      - 這裏
         某些術語縮寫 不經解釋
         並且某些術語定義也被省略了
 
@@ -89,13 +84,6 @@
 ***** metamathematics of intuitionistic logic and arithmetic after 1940
 
 ***** formulas-as-types
-
-      - 我瞭解 formulas-as-types
-        按我的知識來看 作者的歷史回顧質量並不高
-        這篇文章並不值得一讀
-
-      - 讀某些相對後輩作者的文章
-        可以感受到 從始創者到發展者 作者才能的衰落
 
 *** intuitionistic analysis and stronger theories
 
