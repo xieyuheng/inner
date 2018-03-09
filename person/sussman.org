@@ -75,17 +75,69 @@
 
 * (2000) structure and interpretation of classical mechanics
 
-*** intro
+*** reference
 
     - Hans Freudenthal,
-      Didactical Phenomenology of MathematicalStructures,
+      Didactical Phenomenology of Mathematical Structures,
       Kluwer Publishing Co., Boston, 1983.
+
+    - P. E. B. Jourdain,
+      The Principle of Least Action,
+      The Open CourtPublishing Company, Chicago, 1913.
+
+*** intro
 
     - good mathematics must be precise, clear and computationally effective.
 
+    - functional notation -- without irrelevant letters.
+
 *** 1 lagrangian mechanics
 
-    - ><
+***** intro
+
+      - newtonian formulation v.s. variational formulation
+
+***** 1.1 The Principle of Stationary Action
+
+      - Let us suppose that for each physical system
+        there is a path-distinguishing function
+        that is stationary on realizable paths.
+
+      - 路徑積分 與 變分問題
+
+      - 分解被積函數
+
+***** 1.2 Configuration Spaces
+
+      - 狀態空間
+        狀態空間的維度
+        狀態軌跡 狀態路徑
+
+***** 1.3 Generalized Coordinates
+
+      - In order to be able to talk about specific configurations
+        we need to have a set of parameters
+        that label the configurations.
+
+        - x -
+          這種對座標系的直覺理解
+          也指明了推廣座標系這個概念的方向
+
+        - x -
+          上面這句話也可以拆解成如下
+          - In order to be able to talk about something
+            we need to have name them.
+          - In order to be able to talk about specific configurations
+            we need to label the configurations.
+          - we use a set of numerical parameters
+            to label the configurations.
+
+        - x -
+          這裏很多篇幅是用來作 座標系無關 討論的
+          我想如果加入一個限制的話會更好
+          比如 限制流形 爲 代數方程的零點
+
+***** 1.4 Computing Actions
 
 *** 2 rigid bodies
 
