@@ -1,0 +1,31 @@
+* the week-table
+
+  |    | 零 | 一 | 二 | 三 | 四 | 五 | 六 |
+  |----+----+----+----+----+----+----+----|
+  | 早 |    |    |    |    |    |    |    |
+  | 午 |    |    |    |    |    |    |    |
+  | 晚 |    |    |    |    |    |    |    |
+
+* 2018-03-04
+
+  (1) 經典力學
+
+  - 爲了理解無窮小分析在物理學中的應用
+
+  - 兩組視頻
+    walter lewin
+    leonard susskind
+
+  - 兩本書
+    micheal spivak -- physics-for-mathematicians--1--mechanics
+    structure-and-interpretation-of-classical-mechanics
+
+  (2) 完善 cicada-script
+
+  (3) 測試 cicada-language
+
+  |    | 零 | 一 | 二 | 三 | 四  | 五 | 六 |
+  |----+----+----+----+----+-----+----+----|
+  | 早 |    |    |    |    |     |    |    |
+  | 午 |    |    |    |    |     |    |    |
+  | 晚 |    |    |    |    | (1) |    |    |

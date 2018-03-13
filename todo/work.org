@@ -1,0 +1,23 @@
+* wiki-system for translation
+
+  - comparing text
+  - write notes
+  - different versions of the same text
+
+* online interpreters with rich UI
+
+  - online symbolic math
+  - online prover
+
+* online presentation frameworks
+
+  - wiki-like system
+    to share presentation
+
+* demand vs command
+
+  - a system to let programmers to work for demands,
+    instead of work on commands.
+
+  - by making the demanding problems open
+    to programmers who can solve them.
