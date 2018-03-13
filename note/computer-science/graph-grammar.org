@@ -1,4 +1,4 @@
-#+TITLE:  note on graph-grammar
+#+title: note on graph-grammar
 
 * readings
   1. [[shell:xpdf ~/learning/digrap/graph-grammar/graph-grammars--an-introduction-to-the-double-pushout-approach.pdf &][ graph-grammars--an-introduction-to-the-double-pushout-approach]]

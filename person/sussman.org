@@ -139,6 +139,18 @@
 
 ***** 1.4 Computing Actions
 
+***** 1.5 The Euler-Lagrange Equations
+
+***** 1.6 How to Find Lagrangians
+
+***** 1.7 Evolution of Dynamical State
+
+***** 1.8 Conserved Quantities
+
+***** 1.9 Abstraction of Path Functions
+
+***** 1.10 Constrained Motion
+
 *** 2 rigid bodies
 
 *** 3 hamiltonian mechanics
