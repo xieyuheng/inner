@@ -1,9 +1,0 @@
-* 題解
-
-  - swi-prolog
-
-* note
-
-  - .swiplrc
-
-* ><

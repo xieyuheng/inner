@@ -1,32 +1,6 @@
-#+TITLE:  tutorial of prolog
-#+AUTHOR: 謝宇恆 / XIE Yuheng
+#+title: tutorial of prolog
 
-* note type check
-
-*** note
-    - dependent type 也使用 variable 的 unification
-      來做 type check
-      所以也許可以在這裏學到實現類型檢查器的技術
-
-    - 之後可以總結一下
-      我所設計的類型檢查算法
-      對 variable unification 的使用
-      與 prolog 有什麼區別
-      讓我們來討論一下吧
-
-** 討論
-
-   - x ::
-        都是 declarative
-        類型檢查的時候
-        類型鍵擦通過與否
-        正如 prolog 中一個 query 的結果 爲 true 還是 false
-
-   - k ::
-        感覺上 你所設計的 type check 實現方式
-        像是 prolog 的特殊情況
-
-* note learn prolog now
+* learn prolog now
 
   - fact rule query
 
@@ -50,7 +24,7 @@
     and variable unification
     is the source of much of Prolog’s power.
 
-* note interface
+* [note] interface
 
   - fact and rule in file
   - query in interpreter
@@ -58,26 +32,28 @@
 * k1
 
   #+begin_src prolog
-  loves(vincent,mia).
-  loves(marsellus,mia).
-  loves(pumpkin,honey_bunny).
-  loves(honey_bunny,pumpkin).
+  loves(vincent, mia).
+  loves(marsellus, mia).
+  loves(pumpkin, honey_bunny).
+  loves(honey_bunny, pumpkin).
 
-  jealous(X,Y):-
-    loves(X,Z),
-    loves(Y,Z).
+  jealous(X, Y):-
+    loves(X, Z),
+    loves(Y, Z).
   #+end_src
 
 * unification
 
 *** 簡要敘述
 
-    - Two terms unify
-      if
+    - two terms unify if :
+
       1. they are the same term
+
       2. or if they contain variables
          that can be uniformly instantiated with terms
          in such a way that the resulting terms are equal
+
          - 這裏所說的 'uniformly instantiated with terms'
            就是可能給兩個變元共同鏈接到一個新的變元
            這樣就能保持有向圖無圈
@@ -158,17 +134,17 @@
     來實現這種效果
     - 也就是需要 undo binding
 
-* note 以 謂詞的處理方式 分類語言
+* [note] 以 謂詞的處理方式 分類語言
 
-  - x ::
-       之前說過 謂詞的處理方式 可用以 分類語言
-       prolog 就是一個極端的例子
-       因爲裏面所有的函數都是謂詞
-       根本沒有正常意義上的函數
+  - x -
+    之前說過 謂詞的處理方式 可用以 分類語言
+    prolog 就是一個極端的例子
+    因爲裏面所有的函數都是謂詞
+    根本沒有正常意義上的函數
 
 * recursive definition
 
-*** note
+*** [note]
 
     - recursive definition is different from recursive unification
       how ?
@@ -562,7 +538,7 @@
       :x :x#1)
     #+end_src
 
-*** note
+*** [note]
 
     - 只有當所有的指針都到盡頭了都沒有匹配到
       才算是失敗了
@@ -641,46 +617,42 @@
 
 * 討論 <2015-12-24>
 
-  - x ::
-       上面的 :tail2 不能代換成值 的原因是
-       unify 的時候 它沒有匹配到確定的值
-       匹配的方式是
-       :x = (cons a :tail2)
-       :tail2 的不確定性來源於 :x
-       但是 完整的信息卻是保存在 :x 中的
-       當看 :tail2 的時候 是不能知道爲什麼這個元素是不確定的
+  - x -
+    上面的 :tail2 不能代換成值 的原因是
+    unify 的時候 它沒有匹配到確定的值
+    匹配的方式是
+    :x = (cons a :tail2)
+    :tail2 的不確定性來源於 :x
+    但是 完整的信息卻是保存在 :x 中的
+    當看 :tail2 的時候 是不能知道爲什麼這個元素是不確定的
 
-  - k ::
-       那麼能不能反過來編碼
-       把 unify 的方式
-       :x = (cons a :tail2)
-       轉化爲
-       :tail2 = (equal :x (cons a ::))
-       這樣當 :tail2 確定了的時候
-       就能順次去確定 :x
+  - k -
+    那麼能不能反過來編碼
+    把 unify 的方式
+    :x = (cons a :tail2)
+    轉化爲
+    :tail2 = (equal :x (cons a -))
+    這樣當 :tail2 確定了的時候
+    就能順次去確定 :x
 
-  - x ::
-       總之在編碼這些信息的時候
-       如果使用一些技巧 看來就是可能有利於垃圾回收器的
-       又比如 我們可以通過生成共同引用
-       使得 從 :x 開始 也能獲得獲得全部的信息
-       需要 編碼的 unify 是
-       :x = (cons a :tail2)
-       此時可以生成公共引用點 (= :x (cons a :tail2))
-       然後
-       (:x
-         (= :x (cons a :tail2)))
-       (:tail2
-         (= :x (cons a :tail2)))
-       比如
-       :x = :y
-       (:x
-         (= :x :y))
-       (:y
-         (= :x :y))
-       注意
-       只有在做 unify 的時候
-       才有機會生成這種相互引用的編碼
+  - x -
+    總之在編碼這些信息的時候
+    如果使用一些技巧 看來就是可能有利於垃圾回收器的
+    又比如 我們可以通過生成共同引用
+    使得 從 :x 開始 也能獲得獲得全部的信息
+    需要 編碼的 unify 是
+    :x = (cons a :tail2)
+    此時可以生成公共引用點 (= :x (cons a :tail2))
+    然後
+    (:x (= :x (cons a :tail2)))
+    (:tail2 (= :x (cons a :tail2)))
+    比如
+    :x = :y
+    (:x (= :x :y))
+    (:y (= :x :y))
+    注意
+    只有在做 unify 的時候
+    才有機會生成這種相互引用的編碼
 
 * lispy
 
@@ -732,7 +704,7 @@
 
 * 回收內存的時機
 
-*** note
+*** [note]
 
     - 起初我想 回收內存應該激進 每次函數退除的時候都應該回收
 
@@ -878,136 +850,136 @@
 
 * 實現 <2015-12-25>
 
-  - x ::
-       感覺最大的題已經解決了
-       我們再來細化一下實現方式
+  - x -
+    感覺最大的題已經解決了
+    我們再來細化一下實現方式
 
-  - k ::
-       我們回到我們以前的 jojo 術語吧
-       因爲這裏已經不是 函數體 而是 謂詞體 了
+  - k -
+    我們回到我們以前的 jojo 術語吧
+    因爲這裏已經不是 函數體 而是 謂詞體 了
 
-  - x ::
-       那麼 jojo 中的每個 jo 都是一個等待 unify 的謂詞 term
-       在 prolog 教程的指導下 已經知道如何實現 unify 了
-       看來難點在於 這裏的運算流程需要 undo
-       此次的優勢是 我們直接使用 scheme 中的 vector
-       而不使用底層的 byte-vector [byte-array] 了
+  - x -
+    那麼 jojo 中的每個 jo 都是一個等待 unify 的謂詞 term
+    在 prolog 教程的指導下 已經知道如何實現 unify 了
+    看來難點在於 這裏的運算流程需要 undo
+    此次的優勢是 我們直接使用 scheme 中的 vector
+    而不使用底層的 byte-vector [byte-array] 了
 
 * unification
 
-  - x ::
-       其實
-       不光是在 back 的時候
-       需要記錄信息以 undo variable-instantiation
-       [variable-substitution]
-       用 variable-stack 來實現 unification 算法的時候
-       在失敗一般的 unification 失敗的時候
-       都要做 undo
-       以使得某個 term 之後還能被用於下次的 unification
-       我還發現
-       在分類 unification 的時候所說的
-       higher-order unification
-       syntactical unification
-       semantical unification
-       其中 higher-order unification
-       是 semantical unification 的特殊情況
-       此時 關於 semantical 的就是 函數作用
+  - x -
+    其實
+    不光是在 back 的時候
+    需要記錄信息以 undo variable-instantiation
+    [variable-substitution]
+    用 variable-stack 來實現 unification 算法的時候
+    在失敗一般的 unification 失敗的時候
+    都要做 undo
+    以使得某個 term 之後還能被用於下次的 unification
+    我還發現
+    在分類 unification 的時候所說的
+    higher-order unification
+    syntactical unification
+    semantical unification
+    其中 higher-order unification
+    是 semantical unification 的特殊情況
+    此時 關於 semantical 的就是 函數作用
 
 * predicate-term & predicate-formal-term
 
-  - x ::
-       注意 predicate-formal-term 是純粹靜態的 [純粹語法的]
-       計算的時候 goal-stack 的一個 and-list 中
-       所保存的不是這種 predicate-formal-term
-       而是 predicate-term
-       需要把其中的 formal-variable [比如 :formal-variable]
-       變成 variable-stack 中的地址 [就是 真正的 variable]
+  - x -
+    注意 predicate-formal-term 是純粹靜態的 [純粹語法的]
+    計算的時候 goal-stack 的一個 and-list 中
+    所保存的不是這種 predicate-formal-term
+    而是 predicate-term
+    需要把其中的 formal-variable [比如 :formal-variable]
+    變成 variable-stack 中的地址 [就是 真正的 variable]
 
-  - k ::
-       如果 undo 是 predicate-term by predicate-term
-       那麼只要在 predicate-term 中記錄信息
-       就知道如何擦除之前的 variable-instantiation 了
+  - k -
+    如果 undo 是 predicate-term by predicate-term
+    那麼只要在 predicate-term 中記錄信息
+    就知道如何擦除之前的 variable-instantiation 了
 
-  - x ::
-       不過看來不是 predicate-term by predicate-term
-       undo 信息應該保存在 or-list 裏面
-       每個分支之間 應該又 undo-info
-       或者說
-       只是在每次 or-pointer 的位置保存 undo-info
+  - x -
+    不過看來不是 predicate-term by predicate-term
+    undo 信息應該保存在 or-list 裏面
+    每個分支之間 應該又 undo-info
+    或者說
+    只是在每次 or-pointer 的位置保存 undo-info
 
 * 模塊系統
 
-  - x ::
-       當我們之前爲一個純粹的解釋器做模塊系統的時候
-       我們當時的設計是
-       不斷修改 hash-table 中 無前綴的名字所對應的函數體
-       這些沒有前綴的名字 代表了當前我們能夠引到的東西
-       那時 使用的是靜態函數體
-       然而現在使用動態函數體了
+  - x -
+    當我們之前爲一個純粹的解釋器做模塊系統的時候
+    我們當時的設計是
+    不斷修改 hash-table 中 無前綴的名字所對應的函數體
+    這些沒有前綴的名字 代表了當前我們能夠引到的東西
+    那時 使用的是靜態函數體
+    然而現在使用動態函數體了
 
-  - k ::
-       並且
-       因爲是在很高級的動態語言中實現這些
-       所以我們可以利用編譯時期的轉換了
-       在轉換的時候
-       我們需要一個全局變量來告訴我們
-       應該如何補全 不帶前綴的名字的模塊前綴
-       補全 的時候有兩個位置
-       一個是被定義的位置
-       一個是作爲定義內容的函數體
+  - k -
+    並且
+    因爲是在很高級的動態語言中實現這些
+    所以我們可以利用編譯時期的轉換了
+    在轉換的時候
+    我們需要一個全局變量來告訴我們
+    應該如何補全 不帶前綴的名字的模塊前綴
+    補全 的時候有兩個位置
+    一個是被定義的位置
+    一個是作爲定義內容的函數體
 
-  - x ::
-       我們嘗試在這裏實驗一下我們之前設計的 tag-group
-       並且這次就直接用 org-mode
-       畢竟這是一個非純粹縮進的語言
+  - x -
+    我們嘗試在這裏實驗一下我們之前設計的 tag-group
+    並且這次就直接用 org-mode
+    畢竟這是一個非純粹縮進的語言
 
-  - k ::
-       也就是說在一個文件之內
-       又很多默認的 import
+  - k -
+    也就是說在一個文件之內
+    又很多默認的 import
 
-  - x ::
-       沒錯
-       並且用明顯的語法來聲明 helper-function
-       使得它們不被 export
-       其他的不帶明顯聲明的都是默認的 export
+  - x -
+    沒錯
+    並且用明顯的語法來聲明 helper-function
+    使得它們不被 export
+    其他的不帶明顯聲明的都是默認的 export
 
-  - k ::
-       隱藏的搜索 tag-group 機制可能不易於推理程序行爲
-       也不利於調整代碼結構順序
+  - k -
+    隱藏的搜索 tag-group 機制可能不易於推理程序行爲
+    也不利於調整代碼結構順序
 
-  - x ::
-       import
-       import all with prefix
-       use
-       import local with prefix
-       import other without prefix
-       同一個文件中
-       默認 import 之前的所有 module
+  - x -
+    import
+    import all with prefix
+    use
+    import local with prefix
+    import other without prefix
+    同一個文件中
+    默認 import 之前的所有 module
 
 * 結構化的數據中的命名
 
-  - x ::
-       在設計一個數據結構時
-       發現有時可以命名
-       有時可以匿名
-       如何取捨
+  - x -
+    在設計一個數據結構時
+    發現有時可以命名
+    有時可以匿名
+    如何取捨
 
-  - k ::
-       在 racket 中
-       我們可以約定一下
-       名的結構化數據
-       [需要用 'keyword:' 處理的]
-       就用 list 的 pattern 來實現
-       無的結構化數據
-       就用單純的 vector 來實現
-       這還沒有解決具體設計數據結構的時候應該如何選擇的問題
-       但是 可以維持我們代碼的一致性
+  - k -
+    在 racket 中
+    我們可以約定一下
+    名的結構化數據
+    [需要用 'keyword:' 處理的]
+    就用 list 的 pattern 來實現
+    無的結構化數據
+    就用單純的 vector 來實現
+    這還沒有解決具體設計數據結構的時候應該如何選擇的問題
+    但是 可以維持我們代碼的一致性
 
 * query 的回答 <2016-01-03>
 
-  - x ::
-       所收集到的信息可能還需要整理之後
-       才能 report
+  - x -
+    所收集到的信息可能還需要整理之後
+    才能 report
 
 * backtracking
 
@@ -1040,7 +1012,7 @@
 
 * learn prolog again
 
-*** note
+*** [note]
 
     - 限制 由 primitive 構成複雜函數的方式
       以保證

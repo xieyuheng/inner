@@ -2,4 +2,8 @@
 
 * the society of mind
 
-*** prologue
+*** 1 prologue
+
+***** intro
+
+***** 1.1 the agents of the mind
