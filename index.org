@@ -34,7 +34,7 @@
 
 ***** 2018 -- now
 
-      - Writing a prover.
+      - Writing cicada and jojo.
 
 *** contact
 
@@ -43,11 +43,9 @@
 
 * language design
 
-  - [[https://github.com/xieyuheng/continua][continua]] -- about algebraic topology
+  - [[https://github.com/xieyuheng/cicada][cicada]] -- cicada language series
 
-  - [[https://github.com/xieyuheng/cicada][cicada language]] -- cicada language
-
-  - [[https://github.com/xieyuheng/jojo-in-js][jojo]] -- jojo's programming adventure
+  - [[https://github.com/xieyuheng/jojo][jojo]] -- jojo's programming adventure
 
   - [[https://github.com/xieyuheng/cicada-nymph][cicada-nymph]] -- a forth-like language
 
