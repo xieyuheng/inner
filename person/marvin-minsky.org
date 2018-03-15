@@ -7,3 +7,24 @@
 ***** intro
 
 ***** 1.1 the agents of the mind
+
+***** 1.4 the world of blocks
+
+      - 看似是常識的事情其實是我們在幼年習得的
+        只是我們如今已經忘記了學習的過程
+
+      - 如此看來
+        在 reid 和 hume 之間
+        我們更應該學習 hume 的觀點
+
+      - 利用 hume 的觀點
+        我們也許可以建立理論和模型來模擬人腦工作
+        就這種目的而言 reid 的觀點可能完全沒有用
+
+***** 1.5 common sense
+
+      - common sense is not a simple thing.
+        Insteod, it is an immense society
+        of hard-earned practical ideas
+        of multitudes of life-learned rules and exceptions,
+        dispositions and tendencies, balances and checks.

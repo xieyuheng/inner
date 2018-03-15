@@ -1,5 +1,4 @@
 #+TITLE:  to be the little schemer
-#+AUTHOR: 謝宇恆 / XIE Yuheng
 
 * >< recursion
 * 8 lambda the ultimate

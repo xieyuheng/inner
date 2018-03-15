@@ -1,9 +1,6 @@
-+ to be the little prover
+#+title: the little prover
 
-+ 謝宇恆 / XIE Yuheng
-
-* note
-
+* [note]
 
 * j-bob-lang
 

@@ -17,6 +17,50 @@
     1. to know
     2. to feel working [progressing]
 
+* more notes to make sure about usefulness
+
+*** more notes about prolog
+
+*** more notes about monad
+
+*** more notes about idris
+
+*** more notes about agda
+
+*** more notes about coq
+
+* many things at once
+
+  - I think I can
+    implement jojo
+    - in erlang
+    - in front-end js
+    - in prolog
+    - in node
+    implement cicada-language
+    design cicada-prover
+    - prolog
+    - agda
+    - idris
+    - coq
+    design cicada-continua
+    - algebraic-topology
+    - constructive mathematics
+
+  - I can and I must
+
+  - because I can extend the power of my soul
+    - 同時使用 emacs 和 vim
+    - 學會用左手寫字
+    - 戒菸
+
+  - something I do for earning money
+    I think I can earning money
+    by publishing an online prover with rich UI.
+    - prover
+    - online
+    - rich UI
+
 * ><
 
   - 完成對 fiber-space 的理解 並寫好 at1 的綱領

@@ -1,4 +1,4 @@
-#+title:  to be the reasoned schemer
+#+title: the reasoned schemer
 
 * [note]
 

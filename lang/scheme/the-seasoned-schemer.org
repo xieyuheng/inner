@@ -1,5 +1,4 @@
-#+TITLE:  to be the seasoned schemer
-#+AUTHOR: 謝宇恆 / XIE Yuheng
+#+title: to be the seasoned schemer
 
 * >< lost
 * >< 14 let there be names
