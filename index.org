@@ -43,11 +43,15 @@
 
 * language design
 
-  - [[https://github.com/xieyuheng/cicada][cicada]] -- cicada language series
+*** now
 
-  - [[https://github.com/xieyuheng/jojo][jojo]] -- jojo's programming adventure
+    - [[https://github.com/xieyuheng/cicada][cicada]] -- cicada language series
 
-  - [[https://github.com/xieyuheng/cicada-nymph][cicada-nymph]] -- a forth-like language
+    - [[https://github.com/xieyuheng/jojo][jojo]] -- jojo's programming adventure
+
+*** old
+
+    - [[https://github.com/xieyuheng/cicada-nymph][cicada-nymph]] -- a forth-like language
 
 * paper
 
