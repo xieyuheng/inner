@@ -1,5 +1,14 @@
 #+title: heyting
 
+* [note]
+
+  - 直覺主義應該被批評
+    因爲在談論存在的時候
+    他們發現好像數學的研究對象並不真的存在於物理世界
+    因此就強調這些對象是思想中的構造
+    但是其實這些思想中的構造也是信息
+    這些信息可以充分地用形式語言來表達
+
 * (1947) formal logic and mathematics
 
 * (1956) intuitionism an introduction -- how to spot a non-constructive proof

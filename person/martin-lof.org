@@ -1025,6 +1025,8 @@
 
 * (1987) the logic of judgements
 
+  - [the hand writing is too hard to read]
+
 * (1987) truth of a proposition, evidence of a judgment, validity of a proof
 
 * (1990) mathematics of infinity
@@ -1034,6 +1036,8 @@
 * (1992) substitution calculus (notes from a lecture given in göteborg)
 
 * (1994) analytic and synthetic judgements in type theory
+
+  - 指出 brouwer 受 kant 影響
 
 * (1998) truth and knowability: on the principles c and k of michael dummett
 
