@@ -66,18 +66,6 @@
   - [[./translation/schizophrenia-in-contemporary-mathematics.html][schizophrenia in contemporary mathematics / 當代數學之精神分裂症]]
     by Errett Bishop, 1973
 
-    - four basic principles for constructivism / 構造主義基本四原則
-
-      - (A) Mathematics is common sense.
-        (B) Do not ask whether a statement is true until you know what it means.
-        (C) A proof is any completely convincing argument.
-        (D) Meaningful distinctions deserve to be maintained.
-
-      - (A) 數學即常識
-        (B) 別問一個論斷是否真實 除非你明瞭論斷的意思
-        (C) 使你信服的論證皆爲證明
-        (D) 有意義的區別值得保留
-
   - [[./translation/a-constructivist-manifesto.html][a constructivist manifesto / 一個構造主義者的宣言]]
     by Errett Bishop, 1967
 
