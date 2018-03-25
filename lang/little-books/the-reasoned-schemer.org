@@ -2,8 +2,21 @@
 
 * [note]
 
-  - try to name some discussions
-    to learn how to teach
+*** to learn how to teach
+
+    - to learn how to teach
+      by naming some discussions
+
+*** in lack of algebraic data type
+
+    - minikanren 中 既有 cons 又有 conso
+
+      而 在 prolog 中 類似 cons 的構造子是沒有對應的 goal 的
+      直接用 unification 處理
+
+      不論是 minikanren 還是 prolog
+      都沒有 algebraic data type
+      也就沒有 judgment 和 inference rule
 
 * minikanren implementation
 
@@ -2031,58 +2044,4 @@
       (conda
        [(not-pastao x ) fail]
        [else (== 'spaghetti x)]))
-    #+end_src
-
-* depentent type
-
-*** append
-
-    #+begin_src scheme
-    (define appendo
-      (lambda (l s out)
-        (oro (ando
-               (nullo l)
-               (== out s))
-             (ando+ (a d rec)
-               (conso a d l)
-               (conso a rec out)
-               (appendo d s rec)))))
-
-    ;; 數據[algebraic data type] 與函數之間 看來有明顯的區別
-    ;; Meaningful distinctions deserve to be maintained. -- Bishop
-
-    ;; 但是數據的構造子是需要有類型聲明的
-    ;; 類型構造子是 平凡的可逆函數
-    ;; 將其實現爲函數都嫌多 更別說將其實現爲關係了
-
-    ;; Meaningful distinctions deserve to be maintained
-    ;; 所以在類型中應該能夠聲明某些關係其實是函數
-    ;; 也就是說其返回值只有一種可能
-    ;; 並且提供相關的語法來把它作爲函數使用
-
-    ;; minikanren 中 既有 cons 又有 conso
-    ;; 在 prolog 中 類似 cons 的構造子是沒有對應的 goal 的
-    ;; 直接用 unification 處理
-
-    ;; minikanren 對應於 lambda calculus
-    ;; prolog 對應於 term re-writing
-
-    (number: type)
-    (zero: number)
-    (succ: number -> number)
-
-    (add:
-      number number number)
-    (add zero :x :x)
-    (add (succ :y) :x (succ :z) <-
-         (add :y :x :z))
-
-    (append:
-      {number :m :n} {type :t}
-      (vector :m :t) (vector :n :t)
-      {add :m :n :p}
-      (vector :p :t))
-    (append [] :l2 :l2)
-    (append [:h1 . :t1] :l2 [:h1 . :t2]
-            <- (append :t1 :l2 :t2))
     #+end_src
