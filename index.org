@@ -1,19 +1,16 @@
 #+html_head: <link rel="stylesheet" href="css/org-page.css"/>
-#+title: 謝宇恆 // xieyuheng
-
-- welcome ^-^/
+#+title: THE STUDY OF REVENGE
 
 * me
 
-  - Hi I am xieyuheng.
-    I like mathematics, philosophy and traditional Chinese.
+  - I am xieyuheng.
+    I am about mathematics, philosophy and traditional Chinese.
+    I am a language designer.
+    I am always designing new languages.
 
-  - I view myself as a programming language designer.
-    I am always trying to design programming languages.
-
-  - My aim of programming language design
-    is to explore the usage of 'proposition as type'
-    for algebraic topological purpose.
+    - Currently my aim of language design
+      is to explore the usage of 'proposition as type'
+      for algebraic topological purpose.
 
 *** experiences
 

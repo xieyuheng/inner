@@ -22,12 +22,11 @@
 
 *** typing about unification
 
-    - term
+    - term =
       - var :: term
       - non-var :: term
 
-    - substitution
-      var term pair list
+    - substitution = var term dict
 
     - walk ::
          (term substitution -> term)
@@ -60,7 +59,7 @@
 
 *** unification
 
-    - substitution = var term pair list
+    - substitution = var term dict
 
     #+begin_src scheme :tangle the-reasoned-schemer.scm
     (define walk
@@ -161,6 +160,7 @@
     (define reify-name
       (lambda (n)
         (string->symbol
+         ;; (string-append "_." (number->string n))
          (string-append ":" (number->string n)))))
 
     (define empty-s '())
@@ -583,8 +583,6 @@
       pretend that the successful conde line has failed
       refreshing all variables that got an association from that line
 
-    - 多解就來源於
-
 *** run*
 
     #+begin_src scheme
@@ -647,13 +645,10 @@
           (== (list y y) r))))
     #+end_src
 
-*** 等詞的困惑
+*** 底層等詞
 
-    - == 看似是等詞
-      而又有等詞 eq?
-
-    - 也許是 herbrand 最先提出
-      始終要有更底層的等詞以區分他們
+    - unification [==] 與 等詞 [eq?] 有別
+      eq? 是用以實現 unification 的底層等詞
 
     #+begin_src scheme
     (run* (q)
@@ -665,39 +660,36 @@
         (fresh (q)
           (== (eq? x q) x))))
 
-    ;; 也就是說 等詞 eq? 和 == 有別
-    ;; 但是注意
     (let ([q 1])
       (let ([x q])
         (eq? x q)))
-    ;; 也就是說 即使不定元被 unify 了
+
+    ;; 不定元都被 unify 到了相同的值
     ;; 等詞 eq? 還是要能夠區分它們
     (run* (q)
       (fresh (x)
         (== x #f)
         (== q #f)
         (== (eq? x q) q)))
-    ;; 也就是說 即使不定元都被 unify 到了相同的值
-    ;; 等詞 eq? 還是要能夠區分它們
+
+    (run* (q)
+      (fresh (z)
+        (fresh (x)
+          (== x z)
+          (== q z)
+          (== (eq? x q) q))))
+
     (run* (z)
       (fresh (q)
-       (fresh (x)
-         (== x z)
-         (== q z)
-         (== (eq? x q) q))))
+        (fresh (x)
+          (== x z)
+          (== q z)
+          (== (eq? x q) q))))
     #+end_src
 
 *** conde
 
     - e for every line
-
-    - 形成分支的方式是以 unification 的結果[goal 的結果]爲等詞
-      而分配到別的 unification[別的 goal]
-      而不是 prolog 一樣 隱式的 pattern match 了
-      但是
-      其實 unification 就是 pattern match
-      所以這裏是又匿名的 pattern match
-      看來要比 prolog 靈活
 
     - undo[refreshes][backtracing] happens here
 
@@ -713,19 +705,7 @@
         [(== 'kk x) succeed]
         [(== 'k x) succeed]))
 
-    (run 1 (x)
-      (conde
-        [(== 'kkk x) succeed]
-        [(== 'kk x) succeed]
-        [(== 'k x) succeed]))
-
-    (run 2 (x)
-      (conde
-        [(== 'kkk x) succeed]
-        [(== 'kk x) succeed]
-        [(== 'k x) succeed]))
-
-    (run #f (x)
+    (run* (x)
       (conde
         [(== 'kkk x) succeed]
         [(== 'kk x) succeed]
@@ -733,10 +713,10 @@
 
     (run* (x)
       (conde
-        [(== 'kkk x) fail]
+        [(== 'kkk x) succeed]
         [(== 'kk x) succeed]
-        [succeed succeed]
-        [(== 'k x) succeed fail]))
+        [(== 'k x) succeed]
+        [succeed succeed]))
 
     ;; 這裏第一次體現出來了 backtracing
     (run* (r)
@@ -809,14 +789,19 @@
 *** define
 
     - 用 == 和 數據構造子 cons [任何可逆函數都可以]
-      來定義新的 類 == 謂詞 [稱 融合子]
+      來定義新的關係 [== 是最基礎的關係]
       這就是組合方式之一
 
     - 另外的組合方式是
-      1. 融合子 在 conde 的複合在 形成帶有分支結構 新融合子
+      1. 關係在 conde 內複合在 形成帶有分支結構新關係
          conde 內的的語義是 or
       2. 用 fresh 構造新的 scope 引入新的 變元
          fresh 內的語義是 and
+
+    - x -
+      後面會講到各種 function 如何被轉化爲 relation
+      這裏首先考慮的就是 數據構造子 [cons]
+      和 數據域提取子 [car cdr]
 
     #+begin_src scheme
     (define caro
@@ -871,19 +856,19 @@
         (conso x `(1 ,x 3) l)
         (== `(0 1 ,x 3) l)))
 
+    ;; 函數式的謂詞本身也可轉化爲關係
+    ;; 並且不用添加新的參數
     (define nullo
       (lambda (x)
         (== x '())))
     (run* (x)
       (nullo x))
 
-    ;; 用 unification 的時候
-    ;; 也可以有謂詞性質的 融合子
     (define pairo
       (lambda (p)
         (fresh (a d)
           (conso a d p))))
-    ;; 但是它包含的信息少的多
+
     ;; 用 conso 可以定義 caro cdro 和 pairo
     #+end_src
 
@@ -1078,7 +1063,7 @@
     ;; Whenever a conde line is guaranteed to fail
     ;; it is unnecessary
     ;; 不必用謂詞檢查 以保證參數在函數的定義域內
-    ;; 因爲施行計算的不是函數 而是融合子[謂詞]
+    ;; 因爲施行計算的不是函數 而是關係
     (define membero
       (lambda (x l)
         (oro (caro l x)
@@ -1225,12 +1210,12 @@
           (== k 2))
         (== k 3)))
 
-    (define list-reverse-copy
+    (define list-reverse
       (lambda (l)
         (run* (y)
           (memberrevo y l))))
 
-    (list-reverse-copy'(1 2 3))
+    (list-reverse '(1 2 3))
     #+end_src
 
 * 4 members only
@@ -1634,7 +1619,7 @@
       還有 or-cursor and-cursor
       還有 undo-info
       來考慮
-      儘管這是 prolog VM 的實現方式
+      [儘管這是 prolog VM 的實現方式]
 
     - the law of condi
       condi behaves like conde
@@ -1931,8 +1916,6 @@
       設想要給三維拓撲圖形編碼
       那麼可能以最高維的幾何體作爲實現實體
       實現起來最簡單
-      此時
-      某先操作要通過查找來完成
 
 *** circular
 
@@ -2009,6 +1992,8 @@
       If the question of a conda line succeeds
       pretend that the remaining conda lines
       have been not there
+
+      - like the cut of prolog
 
     - only if the question of a conda line fails
       do we consider the remaining conda lines
