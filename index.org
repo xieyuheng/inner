@@ -10,7 +10,7 @@
 
     - Currently my aim of language design
       is to explore the usage of 'proposition as type'
-      for algebraic topological purpose.
+      in algebraic topology.
 
 *** experiences
 
