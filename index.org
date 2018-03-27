@@ -1,5 +1,5 @@
 #+html_head: <link rel="stylesheet" href="css/org-page.css"/>
-#+title: 謝宇恆 // XIEYUHENG
+#+title: 謝宇恆 // xieyuheng
 
 * me
 
