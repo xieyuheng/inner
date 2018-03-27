@@ -1,4 +1,8 @@
-谢宇恒 : https://xieyuheng.github.io
+謝宇恆
+
+* 主頁 : https://xieyuheng.github.io
+  github : https://github.com/xieyuheng
+  郵箱 : xyheme@gmail.com
 
 * 學歷
 
@@ -7,21 +11,27 @@
 * 經驗
 
   - [2015 - 2017] 無工作
+  - [2017 - 2018] python 後端, 量化交易策略, ricequant
+  - [2018 - 現在] 無工作
 
 * 技能
 
   - 程序語言
-    scheme, forth, common-lisp, clojure,
+    scheme, forth, minikanren, racket, common-lisp, clojure,
     fasm, c, ocaml, prolog, js, haskell, python.
 
 * 當前項目
 
-  - jojo : https://github.com/xieyuheng/jojo
-  - aeqea : https://github.com/xieyuheng/aeqea
+  - cicada language series :
+    https://github.com/xieyuheng/cicada
+
+  - jojo's programming adventure :
+    https://github.com/xieyuheng/jojo
 
 * 過往項目
 
-  - cicada-nymph : https://github.com/xieyuheng/cicada-nymph
+  - cicada-nymph :
+    https://github.com/xieyuheng/cicada-nymph
 
 * 論文
 
