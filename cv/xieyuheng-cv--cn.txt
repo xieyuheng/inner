@@ -1,8 +1,8 @@
-謝宇恆
+* 謝宇恆
 
-* 主頁 : https://xieyuheng.github.io
-  github : https://github.com/xieyuheng
-  郵箱 : xyheme@gmail.com
+  - 主頁 : https://xieyuheng.github.io
+  - github : https://github.com/xieyuheng
+  - 郵箱 : xyheme@gmail.com
 
 * 學歷
 

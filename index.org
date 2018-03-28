@@ -60,7 +60,7 @@
   - [[./translation/is-god-a-taoist.html][is god a taoist / 上帝是道家的嗎]]
     by Raymond Smullyan, 1977
 
-  - [[./translation/schizophrenia-in-contemporary-mathematics.html][schizophrenia in contemporary mathematics / 當代數學之精神分裂症]]
+  - [[./translation/schizophrenia-in-contemporary-mathematics.html][schizophrenia in contemporary mathematics / 當代數學之精神分裂症 (未完)]]
     by Errett Bishop, 1973
 
   - [[./translation/a-constructivist-manifesto.html][a constructivist manifesto / 一個構造主義者的宣言]]
