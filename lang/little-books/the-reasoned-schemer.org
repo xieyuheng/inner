@@ -160,8 +160,7 @@
     (define reify-name
       (lambda (n)
         (string->symbol
-         ;; (string-append "_." (number->string n))
-         (string-append ":" (number->string n)))))
+         (string-append "_." (number->string n)))))
 
     (define empty-s '())
 
@@ -483,35 +482,6 @@
 
 * minikanren library
 
-*** oro & ando
-
-    #+begin_src scheme :tangle the-reasoned-schemer.scm
-    (define-syntax ando+
-      (syntax-rules ()
-        [(_ name-list . body)
-         (fresh name-list . body)]))
-
-    (define-syntax oro+
-      (syntax-rules ()
-        [(_ name-list
-            a
-            ...)
-         (fresh name-list
-           (conde
-             [a]
-             ...))]))
-
-    (define-syntax ando
-      (syntax-rules ()
-        [(_ . body)
-         (ando+ () . body)]))
-
-    (define-syntax oro
-      (syntax-rules ()
-        [(_ . body)
-         (oro+ () . body)]))
-    #+end_src
-
 *** list processing
 
     #+begin_src scheme :tangle the-reasoned-schemer.scm
@@ -540,31 +510,30 @@
 
     (define listo
       (lambda (l)
-        (oro
-          (nullo l)
-          (ando+ (d)
-            (pairo l)
-            (cdro l d)
-            (listo d)))))
+        (conde
+          [(nullo l)]
+          [(fresh (d)
+             (pairo l)
+             (cdro l d)
+             (listo d))])))
 
     (define appendo
       (lambda (l s out)
-        (oro (ando
-               (nullo l)
-               (== out s))
-             (ando+ (a d rec)
-               (conso a d l)
-               (appendo d s rec)
-               (conso a rec out)))))
+        (conde [(nullo l)
+                (== out s)]
+               [(fresh (a d rec)
+                  (conso a d l)
+                  (appendo d s rec)
+                  (conso a rec out))])))
 
     (define unwarpo
       (lambda (x out)
-        (oro
-          (== x out)
-          (ando+ (a)
-            (pairo x)
-            (caro x a)
-            (unwarpo a out)))))
+        (conde
+          [(== x out)]
+          [(fresh (a)
+             (pairo x)
+             (caro x a)
+             (unwarpo a out))])))
     #+end_src
 
 * 1 playthings
@@ -935,30 +904,30 @@
 
     (define lolo
       (lambda (l)
-        (oro
-          (nullo l)
-          (ando+ (a)
+        (conde
+          [(nullo l)]
+          [(fresh (a)
             (caro l a)
-            (listo a))
-          (ando+ (d)
+            (listo a))]
+          [(fresh (d)
             (cdro l d)
-            (lolo d)))))
+            (lolo d))])))
 
     (define lolo
       (lambda (l)
-        (oro
-          (nullo l)
-          (ando+ (a d)
+        (conde
+          [(nullo l)]
+          [(fresh (a d)
             (caro l a)
             (listo a)
             (cdro l d)
-            (lolo d)))))
+            (lolo d))])))
 
     (run 10 (l)
       (lolo l))
 
     (run 1 (q)
-      (ando+ (x y)
+      (fresh (x y)
         (lolo `((1 2) (,x 3) (4 ,y)))
         (== 'ok q)))
 
@@ -971,7 +940,7 @@
     #+begin_src scheme
     (define twinso
       (lambda (s)
-        (ando+ (x y)
+        (fresh (x y)
           (conso x y s)
           (conso x '() y))))
 
@@ -1002,13 +971,13 @@
     (define loto
       ;; list-of-twins
       (lambda (l)
-        (oro
-          (nullo l)
-          (ando+ (a d)
+        (conde
+          [(nullo l)]
+          [(fresh (a d)
             (caro l a)
             (twinso a)
             (cdro l d)
-            (loto d)))))
+            (loto d))])))
 
     (run 10 (z)
       (loto `((1 1) . ,z)))
@@ -1020,12 +989,13 @@
     (define listofo
       (lambda (predo l)
         ;; pred denote predicate
-        (oro (nullo l)
-             (ando+ (a d)
-               (caro l a)
-               (predo a)
-               (cdro l d)
-               (listofo predo d)))))
+        (conde
+          [(nullo l)]
+          [(fresh (a d)
+             (caro l a)
+             (predo a)
+             (cdro l d)
+             (listofo predo d))])))
 
     (run 10 (out)
       (fresh (w x y z)
@@ -1066,10 +1036,11 @@
     ;; 因爲施行計算的不是函數 而是關係
     (define membero
       (lambda (x l)
-        (oro (caro l x)
-             (ando+ (d)
-               (cdro l d)
-               (membero x d)))))
+        (conde
+          [(caro l x)]
+          [(fresh (d)
+             (cdro l d)
+             (membero x d))])))
 
     (run 10 (l)
       (membero 1 (cons l 1)))
@@ -1113,10 +1084,11 @@
     (define pmembero
       ;; p denotes proper-list
       (lambda (x l)
-        (oro (ando (caro l x) (cdro l '()))
-             (ando+ (d)
-               (cdro l d)
-               (pmembero x d)))))
+        (conde
+          [(caro l x) (cdro l '())]
+          [(fresh (d)
+             (cdro l d)
+             (pmembero x d))])))
 
     (run 10 (l)
       (pmembero 'k l))
@@ -1132,11 +1104,12 @@
 
     (define pmembero
       (lambda (x l)
-        (oro (ando (caro l x) (cdro l '()))
-             (caro l x)
-             (ando+ (d)
-               (cdro l d)
-               (pmembero x d)))))
+        (conde
+          [(caro l x) (cdro l '())]
+          [(caro l x)]
+          [(fresh (d)
+             (cdro l d)
+             (pmembero x d))])))
 
     ;; mistake
     (run* (out)
@@ -1145,13 +1118,14 @@
 
     (define pmembero
       (lambda (x l)
-        (oro (ando (caro l x) (cdro l '()))
-             (ando (caro l x)
-                   (ando+ (a d)
-                     (cdro l (cons a d))))
-             (ando+ (d)
-               (cdro l d)
-               (pmembero x d)))))
+        (conde
+          [(caro l x) (cdro l '())]
+          [(caro l x)
+           (fresh (a d)
+             (cdro l (cons a d)))]
+          [(fresh (d)
+             (cdro l d)
+             (pmembero x d))])))
 
     (run* (out)
       (pmembero 1 '(a b 1 c d 1))
@@ -1162,20 +1136,21 @@
 
     (define pmembero
       (lambda (x l)
-        (oro (ando (caro l x)
-                   (ando+ (a d)
-                     (cdro l (cons a d))))
-             (ando (caro l x) (cdro l '()))
-             (ando+ (d)
-               (cdro l d)
-               (pmembero x d)))))
+        (conde
+          [(caro l x)
+           (fresh (a d)
+             (cdro l (cons a d)))]
+          [(caro l x) (cdro l '())]
+          [(fresh (d)
+             (cdro l d)
+             (pmembero x d))])))
 
     (run 10 (l)
       (pmembero 'k l))
 
     (define pmembero
       (lambda (x l)
-        (ando (membero x l)
+        (fresh () (membero x l)
               (listo l))))
 
     (run 10 (l)
@@ -1194,21 +1169,22 @@
     (define memberrevo
       ;; rev denotes reverse
       (lambda (x l)
-        (oro (ando+ (d)
-               (cdro l d)
-               (memberrevo x d))
-             (caro l x))))
+        (conde
+          [(fresh (d)
+             (cdro l d)
+             (memberrevo x d))]
+          [(caro l x)])))
 
     (run* (x)
       (memberrevo x '(1 2 3 4 5)))
 
     ;; 嵌套在 oro 裏順序當然也被保持
     (run 3 (k)
-      (oro
-        (== k 1)
-        (oro
-          (== k 2))
-        (== k 3)))
+         (conde
+           [(== k 1)]
+           [(conde
+              [(== k 2)])]
+           [(== k 3)]))
 
     (define list-reverse
       (lambda (l)
@@ -1236,11 +1212,11 @@
     #+begin_src scheme
     (define memo
       (lambda (x l out)
-        (oro
-          (ando (caro l x) (== l out))
-          (ando+ (d)
+        (conde
+          [(caro l x) (== l out)]
+          [(fresh (d)
             (cdro l d)
-            (memo x d out)))))
+            (memo x d out))])))
 
     (run 1 (out)
       (memo 1 '(0 0 1 2 3) out))
@@ -1279,16 +1255,14 @@
     #+begin_src scheme
     (define rembero
       (lambda (x l out)
-        (oro
-          (ando
-            (nullo l)
-            (== '() out))
-          (ando
-            (conso x out l))
-          (ando+ (res a d)
+        (conde
+          [(nullo l)
+           (== '() out)]
+          [(conso x out l)]
+          [(fresh (res a d)
             (conso a d l)
             (rembero x d res)
-            (conso a res out)))))
+            (conso a res out))])))
 
     (run* (out)
       (rembero 1 '(1 2 3) out))
@@ -1343,38 +1317,37 @@
     ;; 這種東西在 一般的函數式編程中是表達不出來的
     (define rembero
       (lambda (x l out)
-        (oro
+        (conde
           ;; without the following
           ;; it can not succeed by remove nothing
-          ;; (ando
+          ;; (fresh ()
           ;;   (nullo l)
           ;;   (== '() out))
-          (ando
-            (conso x out l))
-          (ando+ (res a d)
+          [(conso x out l)]
+          [(fresh (res a d)
             (conso a d l)
             (rembero x d res)
-            (conso a res out)))))
+            (conso a res out))])))
     #+end_src
 
 * 5 double your fun
 
 *** appendo
 
-    - order of ando
+    - order of fresh ()
       make recursive call as late as possible
       thus recursive call is not on fresh variables
 
     #+begin_src scheme
     (define appendo
       (lambda (l s out)
-        (oro (ando
-               (nullo l)
-               (== out s))
-             (ando+ (a d rec)
-               (conso a d l)
-               (appendo d s rec)
-               (conso a rec out)))))
+        (conde
+          [(nullo l)
+           (== out s)]
+          [(fresh (a d rec)
+            (conso a d l)
+            (appendo d s rec)
+            (conso a rec out))])))
 
     (run* (out)
       (appendo `(1 2 3) `(a b c) out))
@@ -1411,13 +1384,13 @@
 
     (define appendo
       (lambda (l s out)
-        (oro (ando
-               (nullo l)
-               (== out s))
-             (ando+ (a d rec)
-               (conso a d l)
-               (conso a rec out)
-               (appendo d s rec)))))
+        (conde
+          [(nullo l)
+           (== out s)]
+          [(fresh (a d rec)
+             (conso a d l)
+             (conso a rec out)
+             (appendo d s rec))])))
 
     ;; can run 12
     (run 12 (x)
@@ -1453,14 +1426,15 @@
 
     (define swappendo
       (lambda (l s out)
-        (oro (ando+ (a d rec)
-               (conso a d l)
-               (conso a rec out)
-               ;; on recursive unification
-               ;; all variables are fresh
-               (swappendo d s rec))
-             (and (nullo l)
-                  (== out s)))))
+        (conde
+          [(fresh (a d rec)
+            (conso a d l)
+            (conso a rec out)
+            ;; on recursive unification
+            ;; all variables are fresh
+            (swappendo d s rec))]
+          [(and (nullo l)
+               (== out s))])))
 
     ;; forever
     ;; (run 1 (z)
@@ -1481,12 +1455,12 @@
     #+begin_src scheme
     (define unwarpo
       (lambda (x out)
-        (oro
-          (ando+ (a)
+        (conde
+          [(fresh (a)
             (pairo x)
             (caro x a)
-            (unwarpo a out))
-          (== x out))))
+            (unwarpo a out))]
+          [(== x out)])))
 
     (run* (x)
       (unwarpo '((((((1)))))) x))
@@ -1502,12 +1476,12 @@
 
     (define unwarpo
       (lambda (x out)
-        (oro
-          (== x out)
-          (ando+ (a)
+        (conde
+          [(== x out)]
+          [(fresh (a)
             (pairo x)
             (caro x a)
-            (unwarpo a out)))))
+            (unwarpo a out))])))
 
     (run* (x)
       (unwarpo '((((((1)))))) x))
@@ -1540,13 +1514,14 @@
 
     (define flatteno
       (lambda (s out)
-        (oro (ando (nullo s) (== '() out))
-             (ando+ (a d res-a res-d)
-               (conso a d s)
-               (flatteno a res-a)
-               (flatteno d res-d)
-               (appendo res-a res-d out))
-             (conso s '() out))))
+        (conde
+          [(nullo s) (== '() out)]
+          [(fresh (a d res-a res-d)
+             (conso a d s)
+             (flatteno a res-a)
+             (flatteno d res-d)
+             (appendo res-a res-d out))]
+          [(conso s '() out)])))
 
     (run* (out)
       (flatteno '((1 (2)) 3) out))
@@ -1564,13 +1539,14 @@
 
     (define flattenrevo
       (lambda (s out)
-        (oro (ando (nullo s) (== '() out))
-             (conso s '() out)
-             (ando+ (a d res-a res-d)
-               (conso a d s)
-               (flattenrevo a res-a)
-               (flattenrevo d res-d)
-               (appendo res-a res-d out)))))
+        (conde
+          [(nullo s) (== '() out)]
+          [(conso s '() out)]
+          [(fresh (a d res-a res-d)
+             (conso a d s)
+             (flattenrevo a res-a)
+             (flattenrevo d res-d)
+             (appendo res-a res-d out))])))
 
     (run 2 (x)
       (flattenrevo x '(1)))
@@ -1591,13 +1567,14 @@
 
     (define flattenrevo
       (lambda (s out)
-        (oro (conso s '() out)
-             (ando (nullo s) (== '() out))
-             (ando+ (a d res-a res-d)
-               (conso a d s)
-               (flattenrevo a res-a)
-               (flattenrevo d res-d)
-               (appendo res-a res-d out)))))
+        (conde
+          [(conso s '() out)]
+          [(nullo s) (== '() out)]
+          [(fresh (a d res-a res-d)
+             (conso a d s)
+             (flattenrevo a res-a)
+             (flattenrevo d res-d)
+             (appendo res-a res-d out))])))
 
     ;; can not run 3
     (run 2 (x)
@@ -1628,8 +1605,9 @@
     #+begin_src scheme
     (define anyo
       (lambda (g)
-        (oro g
-             (anyo g))))
+        (conde
+          [g]
+          [(anyo g)])))
 
     (run 3 (x)
       (anyo succeed))
@@ -1671,8 +1649,9 @@
     (define salo
       ;; succeeds at least onec
       (lambda (g)
-        (oro succeed
-             g)))
+        (conde
+          [succeed]
+          [g])))
 
     (run 3 (g)
       (salo alwayso)
@@ -1701,9 +1680,9 @@
 
     ;; loop
     ;; (run 1 (g)
-    ;;   (oro (ando (== #f g) alwayso)
-    ;;        (== #t g))
-    ;;   (== #t g))
+    ;;      (conde [(== #f g) alwayso]
+    ;;             [(== #t g)])
+    ;;      (== #t g))
 
     ;; no loop
     ;; because after the first failure
@@ -1728,9 +1707,9 @@
 
     (define teacupo
       (lambda (x)
-        (oro
-          (== 'tea x)
-          (== 'cup x))))
+        (conde
+          [(== 'tea x)]
+          [(== 'cup x)])))
 
     (run 5 (r)
       (condi [(teacupo r)]
@@ -1830,37 +1809,37 @@
     #+begin_src scheme
     (define bit-xoro
       (lambda (x y r)
-        (oro
-          (ando (== 0 x) (== 0 y) (== 0 r))
-          (ando (== 1 x) (== 0 y) (== 1 r))
-          (ando (== 0 x) (== 1 y) (== 1 r))
-          (ando (== 1 x) (== 1 y) (== 0 r)))))
+        (conde
+          [(== 0 x) (== 0 y) (== 0 r)]
+          [(== 1 x) (== 0 y) (== 1 r)]
+          [(== 0 x) (== 1 y) (== 1 r)]
+          [(== 1 x) (== 1 y) (== 0 r)])))
 
     (run* (s)
-      (ando+ (x y)
+      (fresh (x y)
         (bit-xoro x y 0)
         (== (list x y) s)))
 
     (run* (s)
-      (ando+ (x y)
+      (fresh (x y)
         (bit-xoro x y 1)
         (== (list x y) s)))
 
     (run* (s)
-      (ando+ (x y r)
+      (fresh (x y r)
         (bit-xoro x y r)
         (== (list x y r) s)))
 
     (define bit-ando
       (lambda (x y r)
-        (oro
-          (ando (== 0 x) (== 0 y) (== 0 r))
-          (ando (== 1 x) (== 0 y) (== 0 r))
-          (ando (== 0 x) (== 1 y) (== 0 r))
-          (ando (== 1 x) (== 1 y) (== 1 r)))))
+        (conde
+          [(== 0 x) (== 0 y) (== 0 r)]
+          [(== 1 x) (== 0 y) (== 0 r)]
+          [(== 0 x) (== 1 y) (== 0 r)]
+          [(== 1 x) (== 1 y) (== 1 r)])))
 
     (run* (s)
-      (ando+ (x y)
+      (fresh (x y)
         (bit-ando x y 1)
         (== (list x y) s)))
 
@@ -1889,7 +1868,7 @@
 
     (define poso
       (lambda (n)
-        (ando+ (a d)
+        (fresh (a d)
           (== (cons a d) n))))
 
     (run* (r)
@@ -1997,10 +1976,6 @@
 
     - only if the question of a conda line fails
       do we consider the remaining conda lines
-
-    - 注意此時 oro 的設計已經失效了
-      cond 的 [] 中第一項語義特殊
-      在這裏體現出來了
 
     - THE THIRD COMMANDMENT
       If prior to determining the question of a conda line

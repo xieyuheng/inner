@@ -96,7 +96,7 @@
 (define reify-name
   (lambda (n)
     (string->symbol
-     (string-append ":" (number->string n)))))
+     (string-append "_." (number->string n)))))
 
 (define empty-s '())
 
@@ -355,31 +355,6 @@
        (let ((x (walk* x s)) ...)
          ((all g ...) s)))]))
 
-(define-syntax ando+
-  (syntax-rules ()
-    [(_ name-list . body)
-     (fresh name-list . body)]))
-
-(define-syntax oro+
-  (syntax-rules ()
-    [(_ name-list
-        a
-        ...)
-     (fresh name-list
-       (conde
-         [a]
-         ...))]))
-
-(define-syntax ando
-  (syntax-rules ()
-    [(_ . body)
-     (ando+ () . body)]))
-
-(define-syntax oro
-  (syntax-rules ()
-    [(_ . body)
-     (oro+ () . body)]))
-
 (define conso
   (lambda (a d p)
     (== (cons a d) p)))
@@ -405,28 +380,27 @@
 
 (define listo
   (lambda (l)
-    (oro
-      (nullo l)
-      (ando+ (d)
-        (pairo l)
-        (cdro l d)
-        (listo d)))))
+    (conde
+      [(nullo l)]
+      [(fresh (d)
+         (pairo l)
+         (cdro l d)
+         (listo d))])))
 
 (define appendo
   (lambda (l s out)
-    (oro (ando
-           (nullo l)
-           (== out s))
-         (ando+ (a d rec)
-           (conso a d l)
-           (appendo d s rec)
-           (conso a rec out)))))
+    (conde [(nullo l)
+            (== out s)]
+           [(fresh (a d rec)
+              (conso a d l)
+              (appendo d s rec)
+              (conso a rec out))])))
 
 (define unwarpo
   (lambda (x out)
-    (oro
-      (== x out)
-      (ando+ (a)
-        (pairo x)
-        (caro x a)
-        (unwarpo a out)))))
+    (conde
+      [(== x out)]
+      [(fresh (a)
+         (pairo x)
+         (caro x a)
+         (unwarpo a out))])))
