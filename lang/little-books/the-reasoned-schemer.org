@@ -188,7 +188,7 @@
 
 *** stream constructor
 
-    - the depentent type 'substitution _ stream' can be
+    - the dependent type 'substitution _ stream' can be
       substitution 0 stream
       substitution 1 stream
       substitution more stream

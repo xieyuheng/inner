@@ -1,6 +1,6 @@
-* depentent type
+* dependent type
 
-  - depentent type system 模糊了計算於類型檢查的界限
+  - dependent type system 模糊了計算於類型檢查的界限
     比如
     給 joy 加類型系統
     類型檢查如計算
