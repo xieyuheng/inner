@@ -1,0 +1,25 @@
+#+title: learn prolog now
+
+* intro
+
+  - fact rule query
+
+  - variable unification
+
+  - The business of unifying variables
+    with information in the knowledge base
+    is the heart of Prolog
+
+  - As we’ll learn
+    there are many interesting ideas in Prolog
+    but when you get right down to it,
+    it’s Prolog’s ability to perform unification
+    and return the values of the variable bindings to us
+    that is crucial
+
+  - As we shall see,
+    such nested (or recursively structured) terms
+    enable us to represent many problems naturally.
+    In fact the interplay between recursive term structure
+    and variable unification
+    is the source of much of Prolog’s power.
