@@ -9,6 +9,10 @@ append([], List2, List2).
 append([Head1|Tail1], List2, [Head1|Tail2]):-
   append(Tail1, List2, Tail2).
 
+list_length([], zero).
+list_length([ELEMENT|LIST], succ(LENGTH)):-
+  list_length(LIST, LENGTH).
+
 prefix(P, L):-
   append(P, _, L).
 

@@ -698,9 +698,8 @@
     (define teacupo
       (lambda (x)
         (conde
-          ((== 'tea x) succeed)
-          ((== 'cup x) succeed)
-          (else fail))))
+          ((== 'tea x))
+          ((== 'cup x)))))
 
     (run* (x)
       (teacupo x))
@@ -870,6 +869,9 @@
 
     (run* (x)
       (listo (cons 1 2)))
+
+    (run* (x)
+      (conso 1 x (cons 1 2)))
 
     (run* (x)
       (listo (list 'a 'b x 'd)))
