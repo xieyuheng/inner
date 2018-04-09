@@ -324,10 +324,6 @@
     https://medium.com/crypto-currently/lets-make-the-tiniest-blockchain-bigger-ac360a328f4d
     https://medium.com/@lhartikk/a-blockchain-in-200-lines-of-code-963cc1cc0e54
 
-* bitcoin
-
-*** ><
-
 * >< journey into information theory
 
 *** links
