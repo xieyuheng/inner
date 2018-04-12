@@ -13,3 +13,13 @@
       structure-and-interpretation-of-classical-mechanics
 
   - 測試 cicada-language
+
+* 2018-04-12
+
+  - 对 logic programming 的很好理解
+    是实现 prover 的前提
+
+  - elixir 和 erlang 提供了很好的机会
+    让我重新了解 logic programming
+
+  - 同时 cicada-continua 是一切的动力

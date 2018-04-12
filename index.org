@@ -31,7 +31,7 @@
 
 ***** 2018 -- now
 
-      - Writing cicada and jojo.
+      - At INBlockChain, writing elixir, putting cryptography into use.
 
 *** contact
 
