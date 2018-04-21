@@ -1,0 +1,51 @@
+#+title: phoenix
+
+* intro
+
+  - router : (Connection -> Controller, Action)
+
+    - a controller is module in /controllers
+      an action in the controller is a function of the module
+
+  - action : (Connection, Params -> Respond)
+
+    - a respond is a html or json
+
+    - to create a respond `render` is called
+      render : (Connection, Template -> Respond)
+
+    - the function render dependents on view
+      a view is a module in /views
+
+    - a templates is a dir in /templates
+
+* >< routing
+
+  - scope
+    scopes are a way to group routes under a common path prefix
+    and scoped set of plug middleware.
+    we might want to do this for admin functionality,
+
+  - pipeline -- define pipeline by plugs
+    pipe_through -- use pipeline
+
+  - resources
+
+* plug
+
+  - A specification for composable modules between web applications
+
+  - Connection adapters for different web servers in the Erlang VM
+
+  - use Connection to unifiy Request and Response
+
+  - function plugs
+    (Plug.Conn.t, options -> Plug.Conn.t)
+
+  - module plugs
+
+* endpoint
+
+  - the Endpoint is a supervised process.
+
+  - Each request begins and ends its lifecycle in an endpoint.

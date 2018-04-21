@@ -6,7 +6,7 @@
 
 *** redefine primitive
 
-    #+begin_src scheme :tangle play.scm
+    #+begin_src scheme :tangle the-little-prover.scm
     ;; preserve scheme primitive before redefinition
     ;; prefix "s." means function of scheme
     (define s.car car)
@@ -26,7 +26,7 @@
     (define (cdr x) (if (pair? x) (s.cdr x) '()))
 
     (define (natp x)
-      (if (integer? x) (if (< x 0) 'nil 't) 'nil))
+      (if (integer? x) (if (s.< x 0) 'nil 't) 'nil))
     (define (+ x y) (s.+ (num x) (num y)))
     (define (< x y)
       (if (s.< (num x) (num y)) 't 'nil))
@@ -34,7 +34,7 @@
 
 *** redefine syntax
 
-    #+begin_src scheme :tangle play.scm
+    #+begin_src scheme :tangle the-little-prover.scm
     (define-syntax if
       (syntax-rules ()
         ((_ Q A E)
@@ -53,7 +53,7 @@
 
 *** utility
 
-    #+begin_src scheme :tangle play.scm
+    #+begin_src scheme :tangle the-little-prover.scm
     (defun size (x)
       (if (atom x)
         '0
@@ -62,7 +62,7 @@
 
 * j-bob
 
-  #+begin_src scheme :tangle play.scm
+  #+begin_src scheme :tangle the-little-prover.scm
   (defun list0 () '())
   (defun list0? (x) (equal x '()))
 
@@ -947,7 +947,7 @@
 
 *** 1
 
-    #+begin_src scheme :tangle play.scm
+    #+begin_src scheme :tangle the-little-prover.scm
     (defun chapter1.example1 ()
       (J-Bob/step (prelude)
         '(car (cons 'ham '(eggs)))
@@ -2120,8 +2120,11 @@
            (() (if-same (atom x) 't))))))
     #+end_src
 
+* (Foreword ix)
 
-* old game, new rules
+* (Preface xi)
+
+* (((1. Old Games, New Rules) 2) (Examples 181))
 
 *** ><
 
@@ -2134,29 +2137,32 @@
       (equal (cdr (cons x y)) y))
     #+end_src
 
-* >< even older games
+* (((2. Even Older Games) 14) (Examples 182))
 
-* >< what's in a name ?
+* (((3. What’s in a Name?) 32) (Proofs 183))
 
-* >< part of this total breakfast
+* (((4. Part of This Total Breakfast) 42) (Proofs 184))
 
-* >< think it over, and over, and over
+* (((5. Think It Over, and Over, and Over) 58) (Proofs 185))
 
-* >< think it through
+* (((6. Think It Through) 76) (Proofs 187))
 
-* >< oh my, stars !
+* (((7. Oh My, Stars!) 88) (Proofs 188))
 
-* >< learning the rules
+* (((8. Learning the Rules) 106) (Proofs 192))
 
-* >< changing the rules
+* (((9. Changing the Rules) 114) (Proofs 193))
 
-* >< the stars are aligned
+* (((10. The Stars Are Aligned) 138) (Proofs 196))
 
+* ((A. Recess) 164)
 
-* >< recess
+* ((B. The Proof of the Pudding) 180)
 
-* >< the proof of the pudding
+* ((C. The Little Assistant) 202)
 
-* >< the little assistant
+* ((D. Restless for More?) 216)
 
-* >< restless for more ?
+* (Afterword 221)
+
+* (Index 222)
