@@ -141,6 +141,44 @@
 
     - x -
       how to make sense of the rules about (if) ?
+      how to use it in postfix language ?
+
+*** The Axioms of Cons (final)
+
+    #+begin_src scheme
+    (dethm atom/cons (x y)
+      (equal (atom (cons x y)) 'nil))
+
+    (dethm car/cons (x y)
+      (equal (car (cons x y)) x))
+
+    (dethm cdr/cons (x y)
+      (equal (cdr (cons x y)) y))
+
+    (dethm cons/car+cdr (x)
+      (if (atom x)
+        't
+        (equal (cons (car x) (cdr x)) x)))
+    #+end_src
+
+*** The Axioms of If (final)
+
+    #+begin_src scheme
+    (dethm if-true (x y)
+      (equal (if 't x y) x))
+
+    (dethm if-false (x y)
+      (equal (if 't x y) y))
+
+    (dethm if-same (x y)
+      (equal (if x y y) y))
+
+    (dethm if-nest-A (x y z)
+      (if x (equal (if x y z) y) 't))
+
+    (dethm if-nest-E (x y z)
+      (if x 't (equal (if x y z) z)))
+    #+end_src
 
 * (3. What’s in a Name?)
 
