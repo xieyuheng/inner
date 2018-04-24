@@ -1,0 +1,15 @@
+#+title: graphQL
+
+* links
+
+  - https://github.com/facebook/graphql
+  - https://www.howtographql.com
+
+* why graphQL is better than REST
+
+  - if only one field of information is required,
+    then only one field of information will be downloaded.
+
+  - if many fields of one json is required,
+    two downloadings will be combined,
+    and only one request will be issued.

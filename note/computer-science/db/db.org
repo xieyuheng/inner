@@ -70,3 +70,13 @@
 *** Neo4J
 
 *** Redis
+
+* postgresql links
+
+  - https://www.tutorialspoint.com/postgresql/index.htm
+
+* (2001) postgresql introduction and concepts
+
+*** psql
+
+    - psql -l

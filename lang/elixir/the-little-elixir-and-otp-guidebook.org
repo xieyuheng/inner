@@ -1,0 +1,27 @@
+#+title: The Little Elixir & OTP Guidebook
+
+- by Benjamin Tan Wei Hao, 2017
+
+* 1 introduction
+
+  - ><
+
+* 2 a whirlwind tour
+
+* 3 processes 101
+
+* 4 writing server applications with genserver
+
+* 5 concurrent error-handling and fault tolerance with links, monitors, and processes
+
+* 6 fault tolerance with supervisors
+
+* 7 completing the worker-pool application
+
+* 8 distribution and load balancing
+
+* 9 distribution and fault tolerance
+
+* 10 dialyzer and type specifications
+
+* 11 property-based and concurrency testing
