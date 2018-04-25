@@ -4,4 +4,6 @@
 
   - a shallow embedding of in graphql elixir
 
+  - absinthe helps you write elixir graphql server
+
 * ><

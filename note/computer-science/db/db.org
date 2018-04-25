@@ -79,4 +79,4 @@
 
 *** psql
 
-    - psql -l
+    psql -l # list db

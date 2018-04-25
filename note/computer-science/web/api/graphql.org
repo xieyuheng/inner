@@ -13,3 +13,41 @@
   - if many fields of one json is required,
     two downloadings will be combined,
     and only one request will be issued.
+
+* schema
+
+  - a schema is a file of types
+    with root interfaces [imp-ed as types] like
+    Query, Mutation, Subscription
+
+* schema definition language
+
+  - use simple type system as contract
+    between client and server.
+
+    - x -
+      can we add dependent type to it ?
+      can we add full-featured contract system to it ?
+
+  - the concept of relation
+    is modeled by links in both objects.
+
+    #+begin_src graphql
+    type Person {
+      name: String!
+      age: Int!
+      posts: [Post!]!
+    }
+
+    type Post {
+      title: String!
+      author: Person!
+    }
+    #+end_src
+
+* problems
+
+*** server-side caching
+
+    - x -
+      can we use Exo here ?

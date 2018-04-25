@@ -237,6 +237,7 @@
     (if (equal n from)
       (car args)
       (get-arg-from n (cdr args) (+ from '1)))))
+
 (defun get-arg (n args)
   (get-arg-from n args '1))
 
