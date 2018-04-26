@@ -1,31 +1,40 @@
-;; preserve scheme primitive before redefinition
-;; prefix "s." means function of scheme
 (define s.car car)
 (define s.cdr cdr)
 (define s.+ +)
 (define s.< <)
 
-;; helper functions
-(define (num x) (if (number? x) x 0))
-(define (if/nil Q A E)
-  (if (equal? Q 'nil) (E) (A)))
-
 (define (equal x y) (if (equal? x y) 't 'nil))
 
 (define (atom x) (if (pair? x) 'nil 't))
+
 (define (car x) (if (pair? x) (s.car x) '()))
+
 (define (cdr x) (if (pair? x) (s.cdr x) '()))
 
 (define (natp x)
   (if (integer? x) (if (s.< x 0) 'nil 't) 'nil))
+
+(define (num x) (if (number? x) x 0))
+
 (define (+ x y) (s.+ (num x) (num y)))
+
 (define (< x y)
   (if (s.< (num x) (num y)) 't 'nil))
+
+;; new if for 't and 'nil
+(define (if/nil Q A E)
+  (if (equal? Q 'nil) (E) (A)))
 
 (define-syntax if
   (syntax-rules ()
     ((_ Q A E)
      (if/nil Q (lambda () A) (lambda () E)))))
+
+;; size must defined after new (if)
+(define (size x)
+  (if (atom x)
+    '0
+    (s.+ '1 (size (car x)) (size (cdr x)))))
 
 (define-syntax defun
   (syntax-rules ()
@@ -36,11 +45,6 @@
   (syntax-rules ()
     ((_ name (arg ...) body)
      (define (name arg ...) body))))
-
-(defun size (x)
-  (if (atom x)
-    '0
-    (+ '1 (size (car x)) (size (cdr x)))))
 
 (defun list0 () '())
 (defun list0? (x) (equal x '()))
@@ -228,38 +232,9 @@
                 'nil)
               'nil)
             'nil))))))
+
 (defun expr? (defs vars e)
   (exprs? defs vars (list1 e)))
-
-(defun get-arg-from (n args from)
-  (if (atom args)
-    'nil
-    (if (equal n from)
-      (car args)
-      (get-arg-from n (cdr args) (+ from '1)))))
-
-(defun get-arg (n args)
-  (get-arg-from n args '1))
-
-(defun set-arg-from (n args y from)
-  (if (atom args)
-    '()
-    (if (equal n from)
-      (cons y (cdr args))
-      (cons (car args)
-        (set-arg-from n (cdr args) y
-          (+ from '1))))))
-(defun set-arg (n args y)
-  (set-arg-from n args y '1))
-
-(defun <=len-from (n args from)
-  (if (atom args)
-    'nil
-    (if (equal n from)
-      't
-      (<=len-from n (cdr args) (+ from '1)))))
-(defun <=len (n args)
-  (if (< '0 n) (<=len-from n args '1) 'nil))
 
 (defun subset? (xs ys)
   (if (atom xs)
@@ -281,6 +256,38 @@
     xs
     (list-union (list-extend xs (car ys))
       (cdr ys))))
+
+(defun get-arg-from (n args from)
+  (if (atom args)
+    'nil
+    (if (equal n from)
+      (car args)
+      (get-arg-from n (cdr args) (+ from '1)))))
+
+(defun get-arg (n args)
+  (get-arg-from n args '1))
+
+(defun set-arg-from (n args y from)
+  (if (atom args)
+    '()
+    (if (equal n from)
+      (cons y (cdr args))
+      (cons (car args)
+        (set-arg-from n (cdr args) y
+          (+ from '1))))))
+
+(defun set-arg (n args y)
+  (set-arg-from n args y '1))
+
+(defun <=len-from (n args from)
+  (if (atom args)
+    'nil
+    (if (equal n from)
+      't
+      (<=len-from n (cdr args) (+ from '1)))))
+
+(defun <=len (n args)
+  (if (< '0 n) (<=len-from n args '1) 'nil))
 
 (defun formals? (vars)
   (if (atom vars)
