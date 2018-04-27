@@ -1,0 +1,55 @@
+#+title: elixir behaviors
+
+* [todo-stack]
+
+* [note]
+
+*** behavior mechanism
+
+    - a module can implement a behavior
+      a behavior specify its interface functions
+      [just like type-class in haskell]
+
+    - a behavior specification is a special module
+      [just like elixir's struct module]
+
+    - then, in a behavior module,
+      we can define generic functions.
+
+      but we have to pass the implementation module
+      as an additional argument.
+
+* otp
+
+*** GenServer
+
+    - The goal of a GenServer
+      is to abstract the "receive" loop.
+
+      Therefore, you should never call your own "receive"
+      inside the GenServer callbacks
+
+*** Supervisor
+
+    - Supervisors are used to build a hierarchical process structure
+      called a supervision tree.
+
+      Supervision trees provide fault-tolerance
+      and encapsulate how our applications start and shutdown.
+
+*** Application
+
+    - an application is a component
+      implementing some specific functionality,
+      that can be started and stopped as a unit,
+      and which can be re-used in other systems.
+
+    - Applications also provide an "application environment",
+      which provides one mechanism
+      for configuring long running applications.
+
+* web
+
+*** Plug
+
+*** Phoenix.Channel
