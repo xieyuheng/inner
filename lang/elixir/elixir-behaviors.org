@@ -53,3 +53,11 @@
 *** Plug
 
 *** Phoenix.Channel
+
+    - Channels are based on a simple idea
+      -- sending and receiving messages.
+      Senders broadcast messages about topics.
+
+    - With Channels, neither senders nor receivers have to be Elixir processes.
+      They can be anything that we can teach to communicate over a Channel.
+      [a JavaScript client]
