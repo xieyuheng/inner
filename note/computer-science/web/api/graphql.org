@@ -2,8 +2,8 @@
 
 * links
 
-  - https://github.com/facebook/graphql
-  - https://www.howtographql.com
+  - repo :: https://github.com/facebook/graphql
+  - tut :: https://www.howtographql.com
 
 * why graphQL is better than REST
 
@@ -51,3 +51,25 @@
 
     - x -
       can we use Exo here ?
+
+* graphql specification
+
+*** link
+
+    - http://facebook.github.io/graphql
+
+*** 1 overview
+
+    - ><
+
+*** 2 language
+
+*** 3 type system
+
+*** 4 introspection
+
+*** 5 validation
+
+*** 6 execution
+
+*** 7 response
