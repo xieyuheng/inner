@@ -52,6 +52,80 @@
     - x -
       can we use Exo here ?
 
+* object fields
+
+  - object fields are conceptually functions which yield values.
+
+* sexp
+
+*** (enum)
+
+    #+begin_src cicada
+    (+enum Episode NEWHOPE EMPIRE JEDI)
+
+    (+interface Character
+      id : String!
+      name : String
+      friends : [Character]
+      appearsIn : [Episode])
+
+    (+type Human implements Character
+      id : String!
+      name : String
+      friends : [Character]
+      appearsIn : [Episode]
+      homePlanet : String)
+
+    (+type Droid implements Character
+      id : String!
+      name : String
+      friends : [Character]
+      appearsIn : [Episode]
+      primaryFunction: String)
+
+    (+query-fun
+      (hero episode: Episode) : Character
+      (human id: String!) : Human
+      (droid id: String!) : Droid)
+
+    (+query FetchLukeQuery
+      {(human id: 1000)
+       {name}})
+
+    (+query HeroNameQuery
+      {hero {name}})
+
+    {hero: {name: R2-D2}}
+
+    (+query HeroNameAndFriendsQuery
+      {hero
+       {id
+        name
+        friends
+        {id
+         name}}})
+
+    {hero:
+     {id: 2001
+      name: "R2-D2"
+      friends: [{id: 1000
+                 name: "Luke Skywalker"}
+                {id: 1002
+                 name: "Han Solo"}
+                {id: 1003
+                 name: "Leia Organa"}]}}
+
+    (+query NestedQuery
+      {hero {name
+             friends {name
+                      appearsIn
+                      friends {name}}}})
+    #+end_src
+
+*** (interfaces)
+
+*** (type)
+
 * graphql specification
 
 *** link

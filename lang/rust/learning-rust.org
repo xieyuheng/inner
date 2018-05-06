@@ -6,7 +6,7 @@
 
     #+begin_src rust
     fn string_lifetime() {
-        let s = String:: from("hi!");
+        let s = String::from("hi!");
         // do something with s ...
     } // s's memory is freed here
 
