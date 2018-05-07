@@ -1,22 +1,24 @@
-#+TITLE:  tutorial of adga
-#+AUTHOR: 謝宇恆 / XIE Yuheng
+#+title: tutorial of adga
 
 * constructor
 
 *** type parameter v.s. type indice
-    * type constructor
+
+    - type constructor
       can not change type parameter
       but can change type indice
       while
       function can always change both
 
 *** constructor
-    * 用 data 這個語法關鍵詞定義的 新類型 本身
+
+    - 用 data 這個語法關鍵詞定義的 新類型 本身
       也像是 constructor
       它卡以從 別的 type 和 value 構建新的 type
       用 data 定義一個新的 type 時
       需要給出這個類型的元素的 constructor
-      * 這種 constructor 類似函數
+
+      - 這種 constructor 類似函數
         但是可以重名
         而函數不可以重名
 
