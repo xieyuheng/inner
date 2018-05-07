@@ -117,7 +117,6 @@
 *** basic
 
 * dependently-typed-programming-in-agda [ulf & james]
-
 * an-intro-to-dependent-types-and-agda [abel]
 
 *** 定義新類型

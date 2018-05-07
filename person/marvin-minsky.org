@@ -121,3 +121,74 @@
 *** RESOURCEFULNESS
 
 *** THE SELF
+
+* (2011 fall) mit-6-868j-the-society-of-mind
+
+*** 1. Introduction
+
+***** k-line
+
+      - minsky -
+        how higher knowledge is represented in brain ?
+        maybe k-line ?
+
+        biologists do not think in this way, but :
+
+        - you can not look for something,
+          until you have the idea of it.
+
+        - x -
+          maybe the idea of k-line can be used in proof search
+
+      - why programming is a good medium
+        for expressing poorly understood
+        and sloppily-formulated ideas ?
+
+      - There is a popular, widespread belief
+        that computers can do only what they are programmed to do.
+        This false belief is based on
+        a confusion between form and content.
+
+        A rigid grammar need not make
+        for precision in describing processes.
+        The programmer must be very precise
+        in following the computer grammar,
+        but the content he wants to be expressed remains free.
+
+        The grammar is rigid
+        because of the programmer who uses it,
+        not because of the computer.
+        The programmer does not even have to
+        be exact in his own ideas
+        - he may have a range of
+          acceptable computer answers in mind
+          and may be content if the computer's answers
+          do not step out of this range.
+
+        The programmer does not have to fixate the computer
+        with particular processes.
+        In a range of uncertainty
+        he may ask the computer to generate new procedures,
+        or he may recommend rules of selection
+        and give the computer advice
+        about which choices to make.
+        - x -
+          this is specially true
+          when thinking about proof search
+
+        Thus, computers do not have to be
+        programmed with extremely clear and precise formulations
+        of what is to be executed, or how to do it.
+
+*** 2. Falling In Love-6AS48fTXBBs.mkv
+*** 3. Cognitive Architectures-2KbvJ3iapbc.mkv
+*** 4. Question and Answer Session 1-LuJFPVY1Nzo.mp4
+*** 5. From Panic to Suffering-AO7F0n2Dclc.mp4
+*** 6. Layers of Mental Activities.mp4
+*** 7. Layered Knowledge Representations.mp4
+*** 8. Question and Answer Session 2.mp4
+*** 9. Common Sense.mp4
+*** 10. Question and Answer Session 3.mp4
+*** 11. Mind vs. Brain: Confessions of a Defector.mp4
+*** 12. Question and Answer Session 4.mp4
+*** 13. Closing Thoughts.mp4
