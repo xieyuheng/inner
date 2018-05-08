@@ -2,9 +2,15 @@
 
 * [note]
 
-  - 對 conscious 一詞的使用需要分類
-    正如 aristotle 在 category 中分類 be 一詞的使用一樣
-    類型系統可以幫助我們避免犯錯
+*** conscious
+
+    - 對 conscious 一詞的使用需要分類
+      正如 aristotle 在 category 中分類 be 一詞的使用一樣
+      類型系統可以幫助我們避免犯錯
+
+*** AI
+
+    - AI is about developing the theory of thinking
 
 * the society of mind
 
@@ -180,15 +186,37 @@
         programmed with extremely clear and precise formulations
         of what is to be executed, or how to do it.
 
-*** 2. Falling In Love-6AS48fTXBBs.mkv
-*** 3. Cognitive Architectures-2KbvJ3iapbc.mkv
-*** 4. Question and Answer Session 1-LuJFPVY1Nzo.mp4
-*** 5. From Panic to Suffering-AO7F0n2Dclc.mp4
-*** 6. Layers of Mental Activities.mp4
-*** 7. Layered Knowledge Representations.mp4
-*** 8. Question and Answer Session 2.mp4
-*** 9. Common Sense.mp4
-*** 10. Question and Answer Session 3.mp4
-*** 11. Mind vs. Brain: Confessions of a Defector.mp4
-*** 12. Question and Answer Session 4.mp4
-*** 13. Closing Thoughts.mp4
+      - x -
+        I remember daniel dennett said that
+        brain is like a vm
+        which downloading byte code to execute
+        while, the idea of k-line
+        is picturing a computing model
+        much like the actor model
+
+        even if we find a way
+        to help our prover to do proof search
+        maybe the way we help it is as linear as k-line
+
+      - k -
+        I think the first question to ask is
+        what is k-point ?
+        only then
+        can we ask about how to compose them to a k-line
+
+      - x -
+        maybe there are not points
+        only little k-lines compose to big k-lines
+
+*** 2. Falling In Love
+*** 3. Cognitive Architectures
+*** 4. Question and Answer Session 1
+*** 5. From Panic to Suffering
+*** 6. Layers of Mental Activities
+*** 7. Layered Knowledge Representations
+*** 8. Question and Answer Session 2
+*** 9. Common Sense
+*** 10. Question and Answer Session 3
+*** 11. Mind vs. Brain: Confessions of a Defector
+*** 12. Question and Answer Session 4
+*** 13. Closing Thoughts
