@@ -4,6 +4,7 @@
 
   - repo :: https://github.com/facebook/graphql
   - tut :: https://www.howtographql.com
+  - cheat-sheet :: https://raw.githubusercontent.com/sogko/graphql-shorthand-notation-cheat-sheet/master/graphql-shorthand-notation-cheat-sheet.png
 
 * [note]
 
@@ -11,6 +12,9 @@
     we can not write [ [ Object ] ]
     only [ Object ] can occur
     thus query syntax of Object is overloaded to [ Object ]
+
+  - it is funny how constraints
+    on the usage of type constructors can be used
 
 * why graphQL is better than REST
 

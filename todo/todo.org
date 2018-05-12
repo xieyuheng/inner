@@ -1,25 +1,23 @@
-* 2018-03-04
+* cicada-continua
 
-  - 經典力學
+  - cicada-continua 是一切的动力
 
-    - 爲了理解無窮小分析在物理學中的應用
+* 經典力學
 
-    - 兩組視頻
-      walter lewin
-      leonard susskind
+  - 爲了理解無窮小分析在物理學中的應用
 
-    - 兩本書
-      micheal spivak -- physics-for-mathematicians--1--mechanics
-      structure-and-interpretation-of-classical-mechanics
+  - 兩組視頻
+    walter lewin
+    leonard susskind
 
-  - 測試 cicada-language
+  - 兩本書
+    micheal spivak -- physics-for-mathematicians--1--mechanics
+    structure-and-interpretation-of-classical-mechanics
 
-* 2018-04-12
+* cicada-language
 
-  - 对 logic programming 的很好理解
-    是实现 prover 的前提
+  - 用 idris 重新实现 cicada-language
 
-  - elixir 和 erlang 提供了很好的机会
-    让我重新了解 logic programming
+* jojo
 
-  - 同时 cicada-continua 是一切的动力
+  - 用 haskell 重新实现 jojo
