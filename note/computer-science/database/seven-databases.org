@@ -67,4 +67,10 @@
 
 * Neo4J
 
-* Redis
+* Redis -- REmote DIctionary Service
+
+*** command line tools
+
+    - redis-server
+
+    - redis-cli -- client

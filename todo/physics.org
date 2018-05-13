@@ -1,7 +1,3 @@
-* cicada-continua
-
-  - cicada-continua 是一切的动力
-
 * 經典力學
 
   - 爲了理解無窮小分析在物理學中的應用
@@ -13,11 +9,3 @@
   - 兩本書
     micheal spivak -- physics-for-mathematicians--1--mechanics
     structure-and-interpretation-of-classical-mechanics
-
-* cicada-language
-
-  - 用 idris 重新实现 cicada-language
-
-* jojo
-
-  - 用 haskell 重新实现 jojo
