@@ -8,64 +8,64 @@
 
 * [note]
 
-  - graphQL does not have list of list
-    we can not write [ [ Object ] ]
-    only [ Object ] can occur
-    thus query syntax of Object is overloaded to [ Object ]
+*** constraints on type constructors
 
-  - it is funny how constraints
-    on the usage of type constructors can be used
+    - graphQL does not have list of list
+      we can not write [ [ Object ] ]
+      only [ Object ] can occur
+      thus query syntax of Object is overloaded to [ Object ]
 
-* why graphQL is better than REST
+    - it is funny how constraints
+      on the usage of type constructors can be used
 
-  - if only one field of information is required,
-    then only one field of information will be downloaded.
+*** why graphQL is better than REST
 
-  - if many fields of one json is required,
-    two downloadings will be combined,
-    and only one request will be issued.
+    - if only one field of information is required,
+      then only one field of information will be downloaded.
 
-* schema
+    - if many fields of one json is required,
+      two downloadings will be combined,
+      and only one request will be issued.
 
-  - a schema is a file of types
-    with root interfaces [imp-ed as types] like
-    Query, Mutation, Subscription
+*** schema
 
-* schema definition language
+    - a schema is a file of types
+      with root interfaces [imp-ed as types] like
+      Query, Mutation, Subscription
 
-  - use simple type system as contract
-    between client and server.
+*** schema definition language
 
-    - x -
-      can we add dependent type to it ?
-      can we add full-featured contract system to it ?
+    - use simple type system as contract
+      between client and server.
 
-  - the concept of relation
-    is modeled by links in both objects.
+      - x -
+        can we add dependent type to it ?
+        can we add full-featured contract system to it ?
 
-    #+begin_src graphql
-    type Person {
-      name: String!
-      age: Int!
-      posts: [Post!]!
-    }
+    - the concept of relation
+      is modeled by links in both objects.
 
-    type Post {
-      title: String!
-      author: Person!
-    }
-    #+end_src
+      #+begin_src graphql
+      type Person {
+        name: String!
+        age: Int!
+        posts: [Post!]!
+      }
 
-* problems
+      type Post {
+        title: String!
+        author: Person!
+      }
+      #+end_src
 
 *** server-side caching
 
     - x -
       can we use Exo here ?
 
-* object fields
+*** object fields
 
-  - object fields are conceptually functions which yield values.
+    - object fields are conceptually functions which yield values.
 
 * sexp
 

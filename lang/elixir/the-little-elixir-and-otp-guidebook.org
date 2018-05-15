@@ -2,9 +2,7 @@
 
 - by Benjamin Tan Wei Hao, 2017
 
-* 1 introduction
-
-  - ><
+* 1 intro
 
 * 2 a whirlwind tour
 
