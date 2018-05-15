@@ -1,5 +1,4 @@
-#+TITLE:  tutorial of haskell
-#+AUTHOR: 謝宇恆 / XIE Yuheng
+#+title: haskell
 
 * haskell 98
 

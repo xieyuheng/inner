@@ -8,9 +8,9 @@
 
 * repos
 
-  | absinthe         | provides the core GraphQL functionality |
-  | absinthe_plug    | supports handling requests over HTTP/S  |
+  | absinthe         | provides the core graphql functionality |
+  | absinthe_plug    | supports handling requests over http/s  |
   | absinthe_ecto    | adds handy shortcuts when               |
-  |                  | working with databases via Ecto2        |
-  | absinthe_phoenix | adds support for GraphQL subscriptions  |
-  |                  | over Phoenix channels                   |
+  |                  | working with databases via ecto2        |
+  | absinthe_phoenix | adds support for graphql subscriptions  |
+  |                  | over phoenix channels                   |
