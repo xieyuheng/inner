@@ -36,10 +36,30 @@
       {path} gamma {lagrangian} 2 partial-derivative compose derivative
       {path} gamma {lagrangian} 1 partial-derivative compose fun/sub)
 
+    @note prefix-syntax
+    (+fun lagrange-value
+      : (-> (% (-> time-t -- position-t) path)
+            (% (-> time-t position-t velocity-t -- number-t)
+               lagrangian)
+         -- (-> time-t -- number-t))
+      (fun/sub
+       (derivative
+        (compose (gamma path)
+                 (partial-derivative 2 lagrangian)))
+       (compose (gamma path)
+                (partial-derivative 1 lagrangian))))
+
     (+fun gamma
       : (-> (-> time-t -- position-t) % path
-         -- (-> time-t -- time-t position-t velocity-t) % state)
+         -- (-> time-t -- time-t position-t velocity-t))
       {(let time) time, time path, time {path} derivative apply})
+
+    @note prefix-syntax
+    (+fun gamma
+      : (-> (-> time-t -- position-t) % path
+         -- (-> time-t -- time-t position-t velocity-t))
+      (lambda (time)
+       (* time (path time) ((derivative path) time))))
 
     (+fun derivative
       : (-> (-> number-t -- number-t)

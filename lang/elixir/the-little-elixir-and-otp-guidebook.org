@@ -8,7 +8,83 @@
 
 * 3 processes 101
 
+  - 用人與人之間寫信來理解 actor model
+
+    - 有的信件是有回執的 而有的信件是匿名的
+      回執就是在信件中包含寄信人的地址
+      當然也可以是別人的地址
+
+    - 有些人只接受特定種類的信件
+
+    - 收信人可能是工人
+      他接到的信件描述了他需要完成的任務
+      完成任務之後
+      他需要把工作成果返回給給他分配任務的人
+      或者之後需要加工他工作成果的人
+
+    - 收信人也可能是專門收集別人工作成果的工人
+      當收集的成果滿足條件時 他把成果展示出來 等等
+
+  - 在利用 actor model 寫程序時
+    首先需要明確 收信人之間的關係
+    其次要明確 他們接受信件的種類 [如函數的參數類型]
+    最後還要明確 他所發出的信件的種類 [如函數的返回類型]
+    [就像寫函數之前 需要先明確函數的類型]
+
+  - module 所封裝的只是函數的集合
+    如果想要封裝 actor 的集合
+    就要用到 application 這個概念
+
 * 4 writing server applications with genserver
+
+  - x -
+    application 這個概念
+    是作爲一個 behavior 被實現的
+    module 是否也能如此呢 ?
+
+  - GenServer callbacks and their expected return values
+
+    |--------------------------------------+------------------------------------|
+    | callback                             | expected return value              |
+    |--------------------------------------+------------------------------------|
+    | init(args)                           | {:ok, state}                       |
+    |                                      | {:ok, state, timeout}              |
+    |                                      | :ignore                            |
+    |                                      | {:stop, reason}                    |
+    |--------------------------------------+------------------------------------|
+    | handle_call(msg, {from, ref}, state) | {:reply, reply, state}             |
+    |                                      | {:reply, reply, state, timeout}    |
+    |                                      | {:reply, reply, state, :hibernate} |
+    |                                      | {:noreply, state}                  |
+    |                                      | {:noreply, state, timeout}         |
+    |                                      | {:noreply, state, hibernate}       |
+    |                                      | {:stop, reason, reply, state}      |
+    |                                      | {:stop, reason, state}             |
+    |--------------------------------------+------------------------------------|
+    | handle_cast(msg, state)              | {:noreply, state}                  |
+    |                                      | {:noreply, state, timeout}         |
+    |                                      | {:noreply, state, :hibernate}      |
+    |                                      | {:stop, reason, state}             |
+    |--------------------------------------+------------------------------------|
+    | handle_info(msg, state)              | {:noreply, state}                  |
+    |                                      | {:noreply, state, timeout}         |
+    |                                      | {:stop, reason, state}             |
+    |--------------------------------------+------------------------------------|
+    | terminate(reason, state)             | :ok                                |
+    |--------------------------------------+------------------------------------|
+    | code_change(old_vsn, state, extra)   | {:ok, new_state}                   |
+    |                                      | {:error, reason}                   |
+    |--------------------------------------+------------------------------------|
+
+  - Callback functions defined in Metex.Worker that are called by GenServer functions
+
+    |------------------------+-----------------------------------------------|
+    | GenServer module calls | Callback module (Implemented in Metex.Worker) |
+    |------------------------+-----------------------------------------------|
+    | GenServer.start_link/3 | Metex.init/1                                  |
+    | GenServer.call/3       | Metex.handle_call/3                           |
+    | GenServer.cast/2       | Metex.handle_cast/2                           |
+    |------------------------+-----------------------------------------------|
 
 * 5 concurrent error-handling and fault tolerance with links, monitors, and processes
 
