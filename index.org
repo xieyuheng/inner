@@ -29,9 +29,9 @@
         at a Chinese company which builds online quantitative trading system,
         just like Quantopian.
 
-***** 2018 -- now
+***** 2018 -- 2018-05
 
-      - At INBlockChain, writing elixir, putting cryptography into use.
+      - one month writing elixir learning cryptography.
 
 *** contact
 

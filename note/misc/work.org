@@ -15,3 +15,7 @@
     5. 反覆有趣的變異
 
     6. 遊戲本身即是目的
+
+* how github works
+
+  - https://vimeo.com/43684882
