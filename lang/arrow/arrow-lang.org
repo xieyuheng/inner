@@ -1,0 +1,11 @@
+#+title: arrow
+
+* [todo-list]
+
+  - how can simple typed lambda calculus model branching (if else then) ?
+
+* [note]
+
+  - (... -> ...) as closure
+    as the only data in the language
+    just like using lambda to encoding other structures.
