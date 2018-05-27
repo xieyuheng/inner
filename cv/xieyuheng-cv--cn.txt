@@ -12,7 +12,7 @@
 
   - [2015 - 2017] 無工作
   - [2017 - 2018] python 後端, 量化交易策略, ricequant
-  - [2018 - 現在] 無工作
+  - [2018-03 - 2018-05] elixir 後端
 
 * 技能
 
@@ -24,9 +24,6 @@
 
   - cicada language series :
     https://github.com/xieyuheng/cicada
-
-  - jojo's programming adventure :
-    https://github.com/xieyuheng/jojo
 
 * 過往項目
 
