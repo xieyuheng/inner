@@ -1,22 +1,10 @@
 * actor
 
-  - actor model elixr 7cur
-    actor model in jojo
-
   - read more from erlang
     armstrong_thesis_2003.pdf
-
-  - implement address
-    and do a ping pong example
 
 * 神經元 as actor
 
   - 神經網絡 閥值 no timeout
     the state of an actor encode informations
     the whole network encode informations
-
-* no WSGI
-
-  - what questions should I ask to understand WSGI ?
-    form bottom up we can use fopnp.
-    but how networking related io should be handled ?

@@ -85,22 +85,68 @@
 
     [describe properties only by interface functions]
 
+* 2.1: Functions, epimorphisms
+
+  - a function is pure if you can
+    memorize it and turning it into a lookup table.
+
+  - the basic building blocks of programming
+    are types and functions
+    they form a category
+
+  - take example properties from set theory
+    and limit the language to arrow equations
+    to translate such properties to category theory
+
+* [note]
+
+  - x -
+    之前我們批評過
+    category theory 中所定義的 property
+    是沒法被寫成謂詞
+    用來判斷這個 property 是否成立的
+
+    現在我們知道了
+    這些 property 是在 implement 時被保證的
+    而不是需要被判斷的
+
+* 2.2: Monomorphisms, simple types
+
 * [note] how to define a category ?
 
-  - Set
-    Group
-    Cat
-    Cat-2
-    VectorSpace
+*** Set
+
+*** Group
+
+*** Cat
+
+*** Cat-2
+
+*** VectorSpace
 
 * [note] how to define a functor ?
 
-  - Stack
-    Dual
+*** Stack
 
-* 2.1: Functions, epimorphisms
-* 2.2: Monomorphisms, simple types
+    - x -
+      object 具有 list 的結構
+      但是 在 category theory 不能 探查 object 的內部結構
+      那麼 應該如何表達這個 list 結構呢 ?
+
+      之前還是說過 object 的存在只是爲了給 arrow 加類型而用的
+      然而 這裏的 一個 arrow 可以作用於多種 object
+      object 的這種 '類型標識' 的意義 就喪失了
+
+    - k -
+      要明白 我們想要定義這樣一個 functor
+      是爲了使用 category theory 的語言
+
+*** Dual
+
 * 3.1: Examples of categories, orders, monoids
+
+  - ><
+
 * 3.2: Kleisli category
 * 4.1: Terminal and initial objects-zer1aFgj4aU
 * 4.2: Products-Bsdl_NKbNnU
@@ -116,3 +162,21 @@
 * 9.2: bicategories
 * 10.1: Monads
 * 10.2: Monoid in the category of endofunctors
+* II 1.1: Declarative vs Imperative Approach
+* II 1.2: Limits
+* II 2.1: Limits, Higher order functors
+* II 2.2: Limits, Naturality
+* II 3.1: Examples of Limits and Colimits
+* II 3.2: Free Monoids
+* II 4.1: Representable Functors
+* II 4.2: The Yoneda Lemma
+* II 5.1: Yoneda Embedding
+* II 5.2: Adjunctions
+* II 6.1: Examples of Adjunctions
+* II 6.2: Free-Forgetful Adjunction, Monads from Adjunctions
+* II 7.1: Comonads
+* II 8.1: F-Algebras, Lambek's lemma
+* II 8.2: Catamorphisms and Anamorphisms
+* II 9.1: Lenses
+* II 9.2: Lenses categorically
+* II 7.2: Comonads Categorically and Examples
