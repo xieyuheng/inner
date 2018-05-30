@@ -11,8 +11,8 @@
 * 經驗
 
   - [2015 - 2017] 無工作
-  - [2017-10 - 2018-01] python 後端, 量化交易策略, ricequant.com
-  - [2018-03 - 2018-05] elixir 後端, inblockchain, pxn.one
+  - [2017-10 - 2018-01] python 後端, 量化交易策略, ricequant.com, 深圳
+  - [2018-03 - 2018-05] elixir 後端, inblockchain, pxn.one, 北京
 
 * 技能
 
