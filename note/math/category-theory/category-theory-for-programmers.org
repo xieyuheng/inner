@@ -7,7 +7,7 @@
 *** category theory for stack runtime
 
     - x -
-      I thinkg to be happy learning this,
+      I think to be happy learning this,
       we have to develop a category theory
       for our stack machine runtime.
 
@@ -141,6 +141,15 @@
       要明白 我們想要定義這樣一個 functor
       是爲了使用 category theory 的語言
 
+    ------
+
+    - x -
+      其實在考慮 Kleisli category 的時候
+      給出了一個一般的方法
+      來用已有的 category implement 新的 category
+      此時 新的 category 中的 arrow 和 object 雖然還被看作是 不可分解的
+      但是其實在 implementation 中 它們是可以分解的
+
 *** Dual
 
 * 3.1: Examples of categories, orders, monoids
@@ -148,8 +157,24 @@
   - ><
 
 * 3.2: Kleisli category
-* 4.1: Terminal and initial objects-zer1aFgj4aU
-* 4.2: Products-Bsdl_NKbNnU
+
+  - objects of a cat can be types
+    while arrows between a, b
+    can not only be functions of type (a -> b)
+    but also be functions of type (a -> (b, String))
+    where String can be replaced by any Monoid
+
+  - x -
+    function composition is re-defined
+    in postfix notation
+    syntax of function composition is optimized
+    can we also include this kind of re-defined function composition ?
+
+* 4.1: Terminal and initial objects
+
+  - universal construction
+
+* 4.2: Products-Bsdl
 * 5.1: Coproducts, sum types
 * 5.2: Algebraic data types
 * 6.1: Functors
