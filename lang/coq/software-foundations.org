@@ -132,10 +132,10 @@
            (m : nat) : bool
     :=
       match n, m with
-        | O   , O    => true
-        | O   , S m' => false
-        | S n', O    => false
-        | S n', S m' => beq_nat n' m'
+      | O   , O    => true
+      | O   , S m' => false
+      | S n', O    => false
+      | S n', S m' => beq_nat n' m'
       end.
 
   Fixpoint ble_nat
@@ -143,9 +143,9 @@
            (m : nat) : bool
     :=
       match n, m with
-        | O   , _    => true
-        | S n', O    => false
-        | S n', S m' => ble_nat n' m'
+      | O   , _    => true
+      | S n', O    => false
+      | S n', S m' => ble_nat n' m'
       end.
 
 
@@ -153,9 +153,9 @@
            (n : nat) : bool
     :=
       match n with
-        | O           =>  true
-        | (S O)       =>  false
-        | (S (S n'))  =>  (evenb n')
+      | O           =>  true
+      | (S O)       =>  false
+      | (S (S n'))  =>  (evenb n')
       end.
 
 
@@ -169,8 +169,8 @@
              (n : nat) : nat
     :=
       match n with
-        | O  =>  O
-        | (S n')  =>  n'
+      | O  =>  O
+      | (S n')  =>  n'
       end.
 
 
@@ -179,8 +179,8 @@
            (m : nat) : nat
     :=
       match n with
-        | O       =>  m
-        | (S n')  =>  (S (plus n' m))
+      | O       =>  m
+      | (S n')  =>  (S (plus n' m))
       end.
 
 
@@ -189,8 +189,8 @@
            (m : nat) : nat
     :=
       match n with
-        | O       =>  O
-        | (S n')  =>  (plus m (mult n' m))
+      | O       =>  O
+      | (S n')  =>  (plus m (mult n' m))
       end.
 
 
@@ -199,9 +199,9 @@
            (m : nat) : nat
     :=
       match n, m with
-        | O , _   =>  O
-        | _ , O   =>  n
-        | (S n'), (S m')  =>  (minus n' m')
+      | O , _   =>  O
+      | _ , O   =>  n
+      | (S n'), (S m')  =>  (minus n' m')
       end.
 
 
@@ -210,8 +210,8 @@
            (power : nat) : nat
     :=
       match power with
-        | O      =>  (S O)
-        | (S p)  =>  (mult base (exp base p))
+      | O      =>  (S O)
+      | (S p)  =>  (mult base (exp base p))
       end.
 
 
@@ -219,9 +219,9 @@
            (n : nat) : nat
     :=
       match n with
-        | O  =>  O
-        | (S O)  =>  (S O)
-        | (S n')  =>  (mult n (factorial n'))
+      | O  =>  O
+      | (S O)  =>  (S O)
+      | (S n')  =>  (mult n (factorial n'))
       end.
   #+end_src
 
@@ -550,8 +550,8 @@
            (n : nat) : nat
     :=
       match n with
-        | O => O
-        | S n' => S (S (double n'))
+      | O => O
+      | S n' => S (S (double n'))
       end.
 
 
@@ -623,7 +623,7 @@
 
     assert (h: (plus n m) = (plus m n)).
     (* lemma *)
-      rewrite -> plus_comm. reflexivity.
+    rewrite -> plus_comm. reflexivity.
 
     rewrite -> h. reflexivity.
   Qed.

@@ -1,16 +1,3 @@
-* in org-mode
-
-  - M-n
-    (C-c C-n)
-    proof-assert-next-command-interactive
-
-  - M-p
-    (C-c C-u)
-    proof-undo-last-successful-command
-
-  - C-c <C-return>
-    proof-goto-point
-
 * about unicode
 
   #+begin_src coq
