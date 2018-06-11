@@ -116,10 +116,10 @@
 
 *** basic
 
-* dependently-typed-programming-in-agda [ulf & james]
 * an-intro-to-dependent-types-and-agda [abel]
 
 *** 定義新類型
+
     * 參數化的類型
       輸入 類型 或者 值
       返回 類型
@@ -142,7 +142,8 @@
       可以在構造子中出現
 
 *** >< 交換律
-    * 對加法的遞歸定義本身不蘊含交換律
+
+    - 對加法的遞歸定義本身不蘊含交換律
       交換律需要額外證明
       否則 agda 不能處理
       ><><><
@@ -150,18 +151,14 @@
       找個例子試試
 
 *** cicada v.s. agda
-    * table
-      |                    | cicada | agda |
-      |--------------------+--------+------|
-      | dependent pair     | in     | no   |
-      | dependent function | in     | in   |
-      | compose            | in     | no   |
-      | apply              | no     | in   |
-      | equality           | in     | in   |
 
-*** lambda
-    * lambda is a way you can use to build new term
-      lambda is a way you can use to build new type
+    |                    | cicada | agda |
+    |--------------------+--------+------|
+    | dependent pair     | in     | no   |
+    | dependent function | in     | in   |
+    | compose            | in     | no   |
+    | apply              | no     | in   |
+    | equality           | in     | in   |
 
 * towards-a-practical-programming-language-based-on-dependent-type-theory [ulf]
 
