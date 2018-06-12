@@ -6,11 +6,7 @@
   - I am xieyuheng.
     I am about mathematics, philosophy and traditional Chinese.
     I am a language designer.
-    I am always designing new languages.
-
-    - Currently my aim of language design
-      is to explore the usage of 'proposition as type'
-      in algebraic topology.
+    Currently I am designing language to formalize algebraic topology.
 
 *** experiences
 
