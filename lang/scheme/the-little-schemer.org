@@ -1,4 +1,4 @@
-#+TITLE:  to be the little schemer
+#+title: to be the little schemer
 
 * >< recursion
 * 8 lambda the ultimate

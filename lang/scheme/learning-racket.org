@@ -1,7 +1,6 @@
-#+TITLE:  learning racket ^-^
-#+AUTHOR: 謝宇恆 / XIE Yuheng
+#+title: learning racket
 
-* 古典 scheme                         :old:
+* [old] 古典 scheme
 
 ** 遞歸函數就在於能夠高效地捕捉正規性
    - 正規性 -- 結構

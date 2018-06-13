@@ -181,4 +181,45 @@
 
 *** 6 canonical perturbation theory
 
+* [old] learning-sicm
+
+*** 經典力學的產生
+
+    - 數世紀的對星體運動的觀察中
+      人們積累了相當多的關於星體運動的規律的經驗性知識
+      這使得人們有能力預測很多天文現象
+    - 爲了理解運動
+      而把這些知識表達地符合人類對事物的理性的認識方式
+      人們就創造出了一種描述運動的一般規律的數學語言
+      即經典力學
+    - 初步的觀察
+      使人們區分出空間與空間中的物體
+      並用一種幾何[度量關係等抽象數學結構]去描述空間
+      而物體被抽象爲空間中的點集
+    - 人們觀察到物體在運動
+      人們通過引入參考系來描述點在空間中的位置
+      而運動就被描述爲點在空間中的位置的變化
+      需要引入時間這個參數才能描述變化這個概念
+    - 人們觀察到物體之間有相互作用
+      這被描述爲力 它以物體爲作用對象
+    - 人們觀察到的相同的力對不同物體的作用效果不同
+      人們引入質量這個物體萬有的參數來度量這種不同的作用效果
+
+*** sicm 的目的
+
+    利用函數式編程中的嚴格的符號系統來介紹
+    經典力學 和 微分幾何
+
+*** 術語
+
+    - configuration path
+      相曲線 相空間中的時間參數化曲線
+    - invent some mathematical function
+      that allows us to distinguish realizable motions
+      from among all conceivable motions
+    - a path-distinguishing function
+      that has a minimum on the realizable paths
+    - on nearby unrealizable paths the value of the function
+      is higher than it is on the realizable path
+
 * (2012) functional differential geometry
