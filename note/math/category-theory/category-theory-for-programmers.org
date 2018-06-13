@@ -197,6 +197,11 @@
 * 9.2: bicategories
 * 10.1: Monads
 * 10.2: Monoid in the category of endofunctors
+
+  - a monad is just a monoid-object in the monoidal-category of endofunctors,
+    where in the monoidal-category tensor-product is functor composition,
+    thus a special endofunctor, with two morphisms `join` and `pure`.
+
 * II 1.1: Declarative vs Imperative Approach
 * II 1.2: Limits
 * II 2.1: Limits, Higher order functors
@@ -210,8 +215,8 @@
 * II 6.1: Examples of Adjunctions
 * II 6.2: Free-Forgetful Adjunction, Monads from Adjunctions
 * II 7.1: Comonads
+* II 7.2: Comonads Categorically and Examples
 * II 8.1: F-Algebras, Lambek's lemma
 * II 8.2: Catamorphisms and Anamorphisms
 * II 9.1: Lenses
 * II 9.2: Lenses categorically
-* II 7.2: Comonads Categorically and Examples
