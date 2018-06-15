@@ -4,9 +4,8 @@
 * me
 
   - I am xieyuheng.
-    I am about mathematics, philosophy and traditional Chinese.
     I am a language designer.
-    Currently I am designing language to formalize algebraic topology.
+    [but we never truly are what we claim to be.]
 
 *** experiences
 
