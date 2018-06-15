@@ -22,7 +22,7 @@
 
 * 當前項目
 
-  - cicada language series :
+  - cicada-language :
     https://github.com/xieyuheng/cicada
 
 * 過往項目

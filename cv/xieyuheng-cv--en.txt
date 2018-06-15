@@ -1,0 +1,49 @@
+* xieyuheng
+
+  - home page : https://xieyuheng.github.io
+  - github : https://github.com/xieyuheng
+  - email : xyheme@gmail.com
+
+* experiences
+
+*** 2015
+
+    - Graduated from SYSU, GuangZhou, China, with bachelor's degree.
+      My major was pure and applied mathematics.
+
+*** 2015 -- 2017
+
+    - Recessing.
+
+*** 2017 -- 2018
+
+    - Three months as a python programmer,
+      at a Chinese company which builds online quantitative trading system,
+      just like Quantopian.
+
+*** 2018 -- 2018-05
+
+    - one month writing elixir learning cryptography.
+
+* projects
+
+*** now
+
+    - cicada language :
+      https://github.com/xieyuheng/cicada
+
+*** old
+
+    - cicada-nymph :
+      https://github.com/xieyuheng/cicada-nymph
+
+* paper
+
+  - function compose, type cut, and the algebra of logic, ICFP Nara, 2016.
+    http://xieyuheng.github.io/paper/function-compose-type-cut.pdf
+
+* lecture
+
+  - experimental assembly programming experiment
+    at SYSU, GuangZhou, 2015
+    http://the-little-language-designer.github.io/cicada-nymph/course/contents.html

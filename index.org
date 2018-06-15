@@ -37,7 +37,7 @@
 
 *** now
 
-    - [[https://github.com/xieyuheng/cicada][cicada]] -- cicada language series
+    - [[https://github.com/xieyuheng/cicada][cicada]] -- cicada language
 
 *** old
 
