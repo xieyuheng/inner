@@ -1,0 +1,3 @@
+#+title: william lawvere
+
+* functorial semantics of algebraic theories

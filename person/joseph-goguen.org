@@ -1,0 +1,19 @@
+#+title: joseph goguen
+
+* what is unification ?
+
+*** 1 introduction
+
+*** 2 substitutions and categories
+
+*** 3 equations and solutions
+
+*** 4 types, variables and products
+
+*** 5 classical term substitution
+
+*** 6 what is unification ?
+
+*** 7 further explorations
+
+*** 8 summary
