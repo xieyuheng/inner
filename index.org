@@ -18,15 +18,19 @@
 
       - Recessing.
 
-***** 2017 -- 2018
+***** 2017-11 -- 2018-02
 
       - Three months as a python programmer,
         at a Chinese company which builds online quantitative trading system,
         just like Quantopian.
 
-***** 2018 -- 2018-05
+***** 2018-03 -- 2018-05
 
-      - one month writing elixir learning cryptography.
+      - One month writing elixir learning cryptography.
+
+***** 2018-05 -- now
+
+      - Unemployed.
 
 *** contact
 
