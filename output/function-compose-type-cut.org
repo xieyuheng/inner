@@ -2,7 +2,7 @@
 #+title: function compose, type cut, and the algebra of logic
 
 - author : XIE Yuheng, a math student
-- date : 2016/06/14
+- date : 2016-06-14
 - keywords : language design, dependent type, deduction system, sequent calculus, algebraic structure
 
 * abstract

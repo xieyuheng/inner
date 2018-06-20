@@ -211,6 +211,16 @@
 *** II 3.1: Examples of Limits and Colimits
 *** II 3.2: Free Monoids
 *** II 4.1: Representable Functors
+
+    - ><
+      #+begin_src cicada
+      category-ct % (@ objects-t arrow-t arrow-eqv-t)
+      a : objects-t
+      set-t : (-> type-tt -- type-tt)
+      hom-set : (-> [a b] : objects-t -- a b arrow-t set-t)
+      (-> x : objects-t -- a x hom-set)
+      #+end_src
+
 *** II 4.2: The Yoneda Lemma
 *** II 5.1: Yoneda Embedding
 *** II 5.2: Adjunctions

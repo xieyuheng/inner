@@ -1,3 +1,3 @@
 #+title: categorical intuitions
 
-* ><
+* natural-transformation

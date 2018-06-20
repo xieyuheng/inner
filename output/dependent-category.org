@@ -1,0 +1,51 @@
+#+html_head: <link rel="stylesheet" href="../css/org-page.css"/>
+#+title: dependent category
+
+- author : XIE Yuheng
+- date : 2018-06-20
+- keywords : language design, dependent type, categorical model, sequent calculus
+
+* [todo-stack]
+
+*** a categorical model for dependent type system
+
+*** a categorical model for stack based concatenative programming language
+
+* [old]
+
+*** links
+
+    - my question :
+      https://groups.google.com/forum/#!topic/homotopytypetheory/IU5bsqSNuiM
+
+*** fibrations
+
+    - https://ncatlab.org/nlab/show/categorical+model+of+dependent+types
+
+*** operad
+
+    - morphisms that have multiple sources
+      (multiple targets are easy to encode using products).
+      It’s called an operad.
+
+    - https://bartoszmilewski.com/2015/10/07/operads-type-level-nats-and-tic-tac-toe/
+
+*** monoidal category
+
+    - This looks more like a combination of composition and tensoring,
+      in a monoidal category.
+      Based on some stuff in a blog post :
+
+      - https://golem.ph.utexas.edu/category/2017/11/the_polycategory_of_multivaria.html
+
+    - the cut rule is instead composition in a polycategory,
+      and you can only cut out one type at a time.
+
+* [note]
+
+* plan
+
+  - a category U where we can to unification on objects
+
+  - and a generalization of category
+    based on the categorical structure of U

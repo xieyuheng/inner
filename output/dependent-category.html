@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2018-06-20 Wed 15:49 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>dependent category</title>
+<meta name="generator" content="Org-mode" />
+<link rel="stylesheet" href="../css/org-page.css"/>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">dependent category</h1>
+<div id="table-of-contents">
+<h2>overview</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org115be24"><span class="done _todo_stack_">[todo-stack]</span> </a>
+<ul>
+<li><a href="#org7db74e">a categorical model for dependent type system</a></li>
+<li><a href="#orge3c88b5">a categorical model for stack based concatenative programming language</a></li>
+</ul>
+</li>
+<li><a href="#org19a09d4">[old]</a>
+<ul>
+<li><a href="#orgf64da12">links</a></li>
+<li><a href="#orgafbaee9">fibrations</a></li>
+<li><a href="#orge49d39f">operad</a></li>
+<li><a href="#org767a508">monoidal category</a></li>
+</ul>
+</li>
+<li><a href="#org2effe0b"><span class="todo _note_">[note]</span> </a></li>
+<li><a href="#orgd3b13ba">plan</a></li>
+</ul>
+</div>
+</div>
+<ul class="org-ul">
+<li><p>author : XIE Yuheng</p></li>
+<li><p>date : 2018-06-20</p></li>
+<li><p>keywords : language design, dependent type, categorical model, sequent calculus</p></li></ul>
+
+<div id="outline-container-org115be24" class="outline-2">
+<h2 id="org115be24"><span class="done _todo_stack_">[todo-stack]</span> </h2>
+<div class="outline-text-2" id="text-org115be24">
+</div><div id="outline-container-org7db74e" class="outline-3">
+<h3 id="org7db74e">a categorical model for dependent type system</h3>
+</div>
+
+<div id="outline-container-orge3c88b5" class="outline-3">
+<h3 id="orge3c88b5">a categorical model for stack based concatenative programming language</h3>
+</div>
+</div>
+
+<div id="outline-container-org19a09d4" class="outline-2">
+<h2 id="org19a09d4">[old]</h2>
+<div class="outline-text-2" id="text-org19a09d4">
+</div><div id="outline-container-orgf64da12" class="outline-3">
+<h3 id="orgf64da12">links</h3>
+<div class="outline-text-3" id="text-orgf64da12">
+<ul class="org-ul">
+<li><p>my question :</p><p><a href="https://groups.google.com/forum/#!topic/homotopytypetheory/IU5bsqSNuiM">https://groups.google.com/forum/#!topic/homotopytypetheory/IU5bsqSNuiM</a></p></li></ul>
+</div>
+</div>
+
+<div id="outline-container-orgafbaee9" class="outline-3">
+<h3 id="orgafbaee9">fibrations</h3>
+<div class="outline-text-3" id="text-orgafbaee9">
+<ul class="org-ul">
+<li><p><a href="https://ncatlab.org/nlab/show/categorical+model+of+dependent+types">https://ncatlab.org/nlab/show/categorical+model+of+dependent+types</a></p></li></ul>
+</div>
+</div>
+
+<div id="outline-container-orge49d39f" class="outline-3">
+<h3 id="orge49d39f">operad</h3>
+<div class="outline-text-3" id="text-orge49d39f">
+<ul class="org-ul">
+<li><p>morphisms that have multiple sources</p><p>(multiple targets are easy to encode using products).</p><p>It’s called an operad.</p></li>
+
+<li><p><a href="https://bartoszmilewski.com/2015/10/07/operads-type-level-nats-and-tic-tac-toe/">https://bartoszmilewski.com/2015/10/07/operads-type-level-nats-and-tic-tac-toe/</a></p></li></ul>
+</div>
+</div>
+
+<div id="outline-container-org767a508" class="outline-3">
+<h3 id="org767a508">monoidal category</h3>
+<div class="outline-text-3" id="text-org767a508">
+<ul class="org-ul">
+<li><p>This looks more like a combination of composition and tensoring,</p><p>in a monoidal category.</p><p>Based on some stuff in a blog post :</p><p></p><p><ul class="org-ul"></p><p><li><p><a href="https://golem.ph.utexas.edu/category/2017/11/the_polycategory_of_multivaria.html">https://golem.ph.utexas.edu/category/2017/11/the_polycategory_of_multivaria.html</a></p></li></ul></p></li>
+
+<li><p>the cut rule is instead composition in a polycategory,</p><p>and you can only cut out one type at a time.</p></li></ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2effe0b" class="outline-2">
+<h2 id="org2effe0b"><span class="todo _note_">[note]</span> </h2>
+</div>
+
+<div id="outline-container-orgd3b13ba" class="outline-2">
+<h2 id="orgd3b13ba">plan</h2>
+<div class="outline-text-2" id="text-orgd3b13ba">
+<ul class="org-ul">
+<li><p>a category U where we can to unification on objects</p></li>
+
+<li><p>and a generalization of category</p><p>based on the categorical structure of U</p></li></ul>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2018-06-20 Wed 15:49</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
