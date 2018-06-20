@@ -1,3 +1,80 @@
 #+title: categorical intuitions
 
+* category
+
+  - to each species of mathematical structure,
+    there corresponds a category whose objects have that structure,
+    and whose morphisms preserve it.
+
+* isomorphism
+
+  - two objects have the same structure iff they are isomorphic,
+    and an 'abstract object' is an isomorphism class of objects.
+
+* functor
+
+  - to any natural construction on structures of one species,
+    yielding structures of another species,
+    there corresponds a functor
+    from the category of the first species
+    to the category of the second.
+
+  - for example, in the category of types in a programming language,
+    type constructors are endo-functors,
+    and endo-functors are often containers.
+
+  - functor can also be called natural-construction,
+    which will let the term `natural-transformation` make sense.
+
 * natural-transformation
+
+  - to each natural translation
+    from a construction F : A -> B
+    to a construction G : A -> B
+    there corresponds a natural transformation F => G.
+
+    this captures the concept of 'natural translation'.
+
+  - the naturality condition of natural-transformation
+    state squares commute.
+
+    which can be viewed as stating that
+    the arrows in the two embeddings
+    are `orthogonal` to the transforming arrows.
+
+  - this concept was the historical origin of category theory,
+    since Eilenberg and MacLane (1945) used it to formalise
+    the notion of an equivalence of homology theories,
+
+    and then found that for this definition to make sense,
+    they had to define functors,
+
+    - a homology theory is a functor.
+
+    and for functors to make sense,
+    they had to define categories.
+
+    - a homology theory is a functor,
+      from the category of topology spaces
+      to the category of abelian-groups.
+
+* limit
+
+  - a diagram D in a category C can be seen as a system of constraints,
+    and then a limit of D represents all possible solutions of the system.
+
+* adjoint
+
+  - to any canonical construction from one species of structure to another
+    corresponds an adjunction between the corresponding categories.
+
+    this captures the concept of 'canonical construction'.
+
+* >< colimit
+
+* >< comma category
+
+  - comma categories are another basic construction that
+    first appeared in lawvere's thesis.
+
+    they tend to arise when morphisms are used as objects.
