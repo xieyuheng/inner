@@ -16,9 +16,23 @@
 
 * 技能
 
-  - 程序語言
-    scheme, forth, minikanren, racket, common-lisp, clojure,
-    fasm, c, ocaml, prolog, js, haskell, python.
+  - 熟悉的語言
+    scheme, forth.
+
+  - 想用的語言
+    haskell, idris.
+
+  - 可以用的語言
+    typed/racket, racket,
+    common-lisp, clojure,
+    c [in scalable-c style],
+    ocaml, prolog,
+    elixir, erlang,
+    python,
+    js.
+
+  - 拒絕用的語言
+    C++, Java.
 
 * 當前項目
 

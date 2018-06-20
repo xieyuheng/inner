@@ -20,6 +20,11 @@
         we have to generalize them too.
         the responsibilities goes to our side.
 
+***** postfix notation
+
+      - to make the syntax more close to natural usage,
+        I translate the paper to postfix notation.
+
 *** 1 introduction
 
 *** 2 substitutions and categories
