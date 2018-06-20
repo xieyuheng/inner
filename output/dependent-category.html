@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2018-06-20 Wed 15:49 -->
+<!-- 2018-06-20 Wed 15:51 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>dependent category</title>
@@ -63,22 +63,25 @@ for the JavaScript code in this tag.
 <h2>overview</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org115be24"><span class="done _todo_stack_">[todo-stack]</span> </a>
+<li><a href="#orge549c9e"><span class="done _todo_stack_">[todo-stack]</span> </a>
 <ul>
-<li><a href="#org7db74e">a categorical model for dependent type system</a></li>
-<li><a href="#orge3c88b5">a categorical model for stack based concatenative programming language</a></li>
+<li><a href="#org360daac">a categorical model for dependent type system</a></li>
+<li><a href="#orgbca73f5">a categorical model for stack based concatenative programming language</a></li>
 </ul>
 </li>
-<li><a href="#org19a09d4">[old]</a>
+<li><a href="#org2ddf5a2">[old]</a>
 <ul>
-<li><a href="#orgf64da12">links</a></li>
-<li><a href="#orgafbaee9">fibrations</a></li>
-<li><a href="#orge49d39f">operad</a></li>
-<li><a href="#org767a508">monoidal category</a></li>
+<li><a href="#orgaba853b">links</a></li>
+<li><a href="#orgf781534">fibrations</a></li>
+<li><a href="#org3cb34d">operad</a></li>
+<li><a href="#orgeb6cffb">monoidal category</a></li>
 </ul>
 </li>
-<li><a href="#org2effe0b"><span class="todo _note_">[note]</span> </a></li>
-<li><a href="#orgd3b13ba">plan</a></li>
+<li><a href="#orgf59fefe"><span class="todo _note_">[note]</span> </a></li>
+<li><a href="#org51f7b05">abstract</a></li>
+<li><a href="#org57b127c">background</a></li>
+<li><a href="#org5e4750d">further work</a></li>
+<li><a href="#org4d13ff0">appendixes</a></li>
 </ul>
 </div>
 </div>
@@ -87,40 +90,40 @@ for the JavaScript code in this tag.
 <li><p>date : 2018-06-20</p></li>
 <li><p>keywords : language design, dependent type, categorical model, sequent calculus</p></li></ul>
 
-<div id="outline-container-org115be24" class="outline-2">
-<h2 id="org115be24"><span class="done _todo_stack_">[todo-stack]</span> </h2>
-<div class="outline-text-2" id="text-org115be24">
-</div><div id="outline-container-org7db74e" class="outline-3">
-<h3 id="org7db74e">a categorical model for dependent type system</h3>
+<div id="outline-container-orge549c9e" class="outline-2">
+<h2 id="orge549c9e"><span class="done _todo_stack_">[todo-stack]</span> </h2>
+<div class="outline-text-2" id="text-orge549c9e">
+</div><div id="outline-container-org360daac" class="outline-3">
+<h3 id="org360daac">a categorical model for dependent type system</h3>
 </div>
 
-<div id="outline-container-orge3c88b5" class="outline-3">
-<h3 id="orge3c88b5">a categorical model for stack based concatenative programming language</h3>
+<div id="outline-container-orgbca73f5" class="outline-3">
+<h3 id="orgbca73f5">a categorical model for stack based concatenative programming language</h3>
 </div>
 </div>
 
-<div id="outline-container-org19a09d4" class="outline-2">
-<h2 id="org19a09d4">[old]</h2>
-<div class="outline-text-2" id="text-org19a09d4">
-</div><div id="outline-container-orgf64da12" class="outline-3">
-<h3 id="orgf64da12">links</h3>
-<div class="outline-text-3" id="text-orgf64da12">
+<div id="outline-container-org2ddf5a2" class="outline-2">
+<h2 id="org2ddf5a2">[old]</h2>
+<div class="outline-text-2" id="text-org2ddf5a2">
+</div><div id="outline-container-orgaba853b" class="outline-3">
+<h3 id="orgaba853b">links</h3>
+<div class="outline-text-3" id="text-orgaba853b">
 <ul class="org-ul">
 <li><p>my question :</p><p><a href="https://groups.google.com/forum/#!topic/homotopytypetheory/IU5bsqSNuiM">https://groups.google.com/forum/#!topic/homotopytypetheory/IU5bsqSNuiM</a></p></li></ul>
 </div>
 </div>
 
-<div id="outline-container-orgafbaee9" class="outline-3">
-<h3 id="orgafbaee9">fibrations</h3>
-<div class="outline-text-3" id="text-orgafbaee9">
+<div id="outline-container-orgf781534" class="outline-3">
+<h3 id="orgf781534">fibrations</h3>
+<div class="outline-text-3" id="text-orgf781534">
 <ul class="org-ul">
 <li><p><a href="https://ncatlab.org/nlab/show/categorical+model+of+dependent+types">https://ncatlab.org/nlab/show/categorical+model+of+dependent+types</a></p></li></ul>
 </div>
 </div>
 
-<div id="outline-container-orge49d39f" class="outline-3">
-<h3 id="orge49d39f">operad</h3>
-<div class="outline-text-3" id="text-orge49d39f">
+<div id="outline-container-org3cb34d" class="outline-3">
+<h3 id="org3cb34d">operad</h3>
+<div class="outline-text-3" id="text-org3cb34d">
 <ul class="org-ul">
 <li><p>morphisms that have multiple sources</p><p>(multiple targets are easy to encode using products).</p><p>It’s called an operad.</p></li>
 
@@ -128,9 +131,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org767a508" class="outline-3">
-<h3 id="org767a508">monoidal category</h3>
-<div class="outline-text-3" id="text-org767a508">
+<div id="outline-container-orgeb6cffb" class="outline-3">
+<h3 id="orgeb6cffb">monoidal category</h3>
+<div class="outline-text-3" id="text-orgeb6cffb">
 <ul class="org-ul">
 <li><p>This looks more like a combination of composition and tensoring,</p><p>in a monoidal category.</p><p>Based on some stuff in a blog post :</p><p></p><p><ul class="org-ul"></p><p><li><p><a href="https://golem.ph.utexas.edu/category/2017/11/the_polycategory_of_multivaria.html">https://golem.ph.utexas.edu/category/2017/11/the_polycategory_of_multivaria.html</a></p></li></ul></p></li>
 
@@ -139,22 +142,34 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org2effe0b" class="outline-2">
-<h2 id="org2effe0b"><span class="todo _note_">[note]</span> </h2>
+<div id="outline-container-orgf59fefe" class="outline-2">
+<h2 id="orgf59fefe"><span class="todo _note_">[note]</span> </h2>
 </div>
 
-<div id="outline-container-orgd3b13ba" class="outline-2">
-<h2 id="orgd3b13ba">plan</h2>
-<div class="outline-text-2" id="text-orgd3b13ba">
+<div id="outline-container-org51f7b05" class="outline-2">
+<h2 id="org51f7b05">abstract</h2>
+<div class="outline-text-2" id="text-org51f7b05">
 <ul class="org-ul">
 <li><p>a category U where we can to unification on objects</p></li>
 
 <li><p>and a generalization of category</p><p>based on the categorical structure of U</p></li></ul>
 </div>
 </div>
+
+<div id="outline-container-org57b127c" class="outline-2">
+<h2 id="org57b127c">background</h2>
+</div>
+
+<div id="outline-container-org5e4750d" class="outline-2">
+<h2 id="org5e4750d">further work</h2>
+</div>
+
+<div id="outline-container-org4d13ff0" class="outline-2">
+<h2 id="org4d13ff0">appendixes</h2>
+</div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2018-06-20 Wed 15:49</p>
+<p class="date">Created: 2018-06-20 Wed 15:51</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

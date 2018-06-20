@@ -43,9 +43,15 @@
 
 * [note]
 
-* plan
+* abstract
 
   - a category U where we can to unification on objects
 
   - and a generalization of category
     based on the categorical structure of U
+
+* background
+
+* further work
+
+* appendixes
