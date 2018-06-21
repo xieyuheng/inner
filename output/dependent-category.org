@@ -7,51 +7,40 @@
 
 * [todo-stack]
 
-*** a categorical model for dependent type system
-
-*** a categorical model for stack based concatenative programming language
-
-* [old]
-
-*** links
-
-    - my question :
-      https://groups.google.com/forum/#!topic/homotopytypetheory/IU5bsqSNuiM
-
-*** fibrations
-
-    - https://ncatlab.org/nlab/show/categorical+model+of+dependent+types
-
-*** operad
-
-    - morphisms that have multiple sources
-      (multiple targets are easy to encode using products).
-      It’s called an operad.
-
-    - https://bartoszmilewski.com/2015/10/07/operads-type-level-nats-and-tic-tac-toe/
-
-*** monoidal category
-
-    - This looks more like a combination of composition and tensoring,
-      in a monoidal category.
-      Based on some stuff in a blog post :
-
-      - https://golem.ph.utexas.edu/category/2017/11/the_polycategory_of_multivaria.html
-
-    - the cut rule is instead composition in a polycategory,
-      and you can only cut out one type at a time.
-
 * [note]
+
+*** a concern
+
+    - if we generalize category,
+      then we can not directly reuse the mathematical constructions
+      that have been developed based on category.
+
+      we have to re-develop all those constructions all over again.
 
 * abstract
 
-  - a category U where we can to unification on objects
+  - In this paper I provide a generalization of category,
+    I call it dependent category,
+    because the motivation of defining it
+    is to use it to model the semantic of dependent type systems.
 
-  - and a generalization of category
-    based on the categorical structure of U
+  - I will outline the axioms of my so called dependent category,
+    and provide examples as its instances alone the way.
 
-* background
+* >< background
 
-* further work
+* motivating examples
 
-* appendixes
+*** >< composition of dependently typed functions
+
+*** >< composition in stack based concatenative language
+
+* the structure
+
+  - objects
+    arrows
+    equvlant relations
+
+* >< further work
+
+* >< appendixes
