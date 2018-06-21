@@ -60,6 +60,7 @@
         leaving data of type (T6, T7) on the stack.
 
     - The about semantics can also be explained by unification :
+      [Thanks to Matt Oliveri, at HoTT group, for teaching me this.]
       - Adding extra type variable to each function :
         f   : (a, T1, T2) -> (a, T3, T4)
         g   : (b, T, T3, T4) -> (b, T6, T7)

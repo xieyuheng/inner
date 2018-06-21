@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2018-06-22 Fri 03:01 -->
+<!-- 2018-06-22 Fri 03:16 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Dependent category</title>
@@ -63,26 +63,26 @@ for the JavaScript code in this tag.
 <h2>overview</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orga678b0">Abstract</a></li>
-<li><a href="#orgfc9ff65">Background</a></li>
-<li><a href="#org9d3fb38">Motivating examples</a>
+<li><a href="#orgd8a1beb">Abstract</a></li>
+<li><a href="#org5d0c334">Background</a></li>
+<li><a href="#org1804a0c">Motivating examples</a>
 <ul>
-<li><a href="#orgdebeec9">Composition of dependently typed functions</a></li>
-<li><a href="#orgd0d706">Composition in stack based concatenative language</a></li>
+<li><a href="#org11e3ee2">Composition of dependently typed functions</a></li>
+<li><a href="#orge2948d3">Composition in stack based concatenative language</a></li>
 </ul>
 </li>
-<li><a href="#org3549b3a">The structure of category</a>
+<li><a href="#orgeb78fe1">The structure of category</a>
 <ul>
-<li><a href="#orgea8bfee">Objects and Arrows</a></li>
-<li><a href="#org3c85d9d">Identity and Compose</a></li>
+<li><a href="#orgcee7d79">Objects and Arrows</a></li>
+<li><a href="#orgc1d46fb">Identity and Compose</a></li>
 </ul>
 </li>
-<li><a href="#org7d2f790">The structure of dependent category</a>
+<li><a href="#orgf2d91d4">The structure of dependent category</a>
 <ul>
-<li><a href="#org9d0926a">Objects and Arrows</a></li>
-<li><a href="#orgfcb9b63">A monoid of substitutions</a></li>
-<li><a href="#org8cc6783">Unification of Objects</a></li>
-<li><a href="#org6bd3336">Identity and Cut</a></li>
+<li><a href="#org4830422">Objects and Arrows</a></li>
+<li><a href="#org2427248">A monoid of substitutions</a></li>
+<li><a href="#org4e47f6f">Unification of Objects</a></li>
+<li><a href="#orga44f1f7">Identity and Cut</a></li>
 </ul>
 </li>
 </ul>
@@ -93,17 +93,17 @@ for the JavaScript code in this tag.
 <li><p>Date : 2018-06-20</p></li>
 <li><p>Keywords : Dependent type, Categorical model, Sequent calculus.</p></li></ul>
 
-<div id="outline-container-orga678b0" class="outline-2">
-<h2 id="orga678b0">Abstract</h2>
-<div class="outline-text-2" id="text-orga678b0">
+<div id="outline-container-orgd8a1beb" class="outline-2">
+<h2 id="orgd8a1beb">Abstract</h2>
+<div class="outline-text-2" id="text-orgd8a1beb">
 <ul class="org-ul">
 <li><p>In this paper I show a generalization of the structure of category,</p><p>I call it `dependent category`,</p><p>because the motivation of defining it</p><p>is to use it to model the semantic of dependent type systems.</p></li></ul>
 </div>
 </div>
 
-<div id="outline-container-orgfc9ff65" class="outline-2">
-<h2 id="orgfc9ff65">Background</h2>
-<div class="outline-text-2" id="text-orgfc9ff65">
+<div id="outline-container-org5d0c334" class="outline-2">
+<h2 id="org5d0c334">Background</h2>
+<div class="outline-text-2" id="text-org5d0c334">
 <ul class="org-ul">
 <li><p>Currently, people often use the concept of fibration</p><p>to provide categorical model for dependent type systems.</p></li>
 
@@ -117,12 +117,12 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org9d3fb38" class="outline-2">
-<h2 id="org9d3fb38">Motivating examples</h2>
-<div class="outline-text-2" id="text-org9d3fb38">
-</div><div id="outline-container-orgdebeec9" class="outline-3">
-<h3 id="orgdebeec9">Composition of dependently typed functions</h3>
-<div class="outline-text-3" id="text-orgdebeec9">
+<div id="outline-container-org1804a0c" class="outline-2">
+<h2 id="org1804a0c">Motivating examples</h2>
+<div class="outline-text-2" id="text-org1804a0c">
+</div><div id="outline-container-org11e3ee2" class="outline-3">
+<h3 id="org11e3ee2">Composition of dependently typed functions</h3>
+<div class="outline-text-3" id="text-org11e3ee2">
 <ul class="org-ul">
 <li><p>Given two dependently typed functions :</p><p>f : (A x -&gt; B x)</p><p>g : (B n -&gt; C z)</p></li>
 
@@ -130,31 +130,31 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgd0d706" class="outline-3">
-<h3 id="orgd0d706">Composition in stack based concatenative language</h3>
-<div class="outline-text-3" id="text-orgd0d706">
+<div id="outline-container-orge2948d3" class="outline-3">
+<h3 id="orge2948d3">Composition in stack based concatenative language</h3>
+<div class="outline-text-3" id="text-orge2948d3">
 <ul class="org-ul">
 <li><p>In a stack based concatenative language,</p><p>the following generalized function composition is natural :</p><p>f   : (T1, T2) -&gt; (T3, T4)</p><p>g   : (T, T3, T4) -&gt; (T6, T7)</p><p>f g : (T, T1, T2) -&gt; (T6, T7)</p></li>
 
 <li><p>The semantics of the generalized composition are as following :</p><p><ul class="org-ul"></p><p><li><p>Suppose there are data of type (T, T1, T2) on the stack;</p></li></p><p><li><p>`f` takes data of type (T1, T2)</p><p>and transform them to (T3, T4),</p><p>leaving data of type (T, T3, T4) on the stack;</p></li></p><p><li><p>`g` takes data of type (T, T3, T4)</p><p>and transform them to (T6, T7),</p><p>leaving data of type (T6, T7) on the stack.</p></li></ul></p></li>
 
-<li><p>The about semantics can also be explained by unification :</p><p><ul class="org-ul"></p><p><li><p>Adding extra type variable to each function :</p><p>f   : (a, T1, T2) -&gt; (a, T3, T4)</p><p>g   : (b, T, T3, T4) -&gt; (b, T6, T7)</p></li></p><p><li><p>Unify `a` with `(b, T)` we get :</p><p>f   : (b, T, T1, T2) -&gt; (b, T, T3, T4)</p><p>g   : (b, T, T3, T4) -&gt; (b, T6, T7)</p></li></p><p><li><p>Compose `f` and `g` :</p><p>f g : (b, T, T1, T2) -&gt; (b, T6, T7)</p></li></p><p><li><p>Drop the extra type variable :</p><p>f g : (T, T1, T2) -&gt; (T6, T7)</p></li></ul></p></li>
+<li><p>The about semantics can also be explained by unification :</p><p>[Thanks to Matt Oliveri, at HoTT group, for teaching me this.]</p><p><ul class="org-ul"></p><p><li><p>Adding extra type variable to each function :</p><p>f   : (a, T1, T2) -&gt; (a, T3, T4)</p><p>g   : (b, T, T3, T4) -&gt; (b, T6, T7)</p></li></p><p><li><p>Unify `a` with `(b, T)` we get :</p><p>f   : (b, T, T1, T2) -&gt; (b, T, T3, T4)</p><p>g   : (b, T, T3, T4) -&gt; (b, T6, T7)</p></li></p><p><li><p>Compose `f` and `g` :</p><p>f g : (b, T, T1, T2) -&gt; (b, T6, T7)</p></li></p><p><li><p>Drop the extra type variable :</p><p>f g : (T, T1, T2) -&gt; (T6, T7)</p></li></ul></p></li>
 
 <li><p>Another example is :</p><p>f   : (T1, T2) -&gt; (T, T3, T4)</p><p>g   : (T3, T4) -&gt; (T6, T7)</p><p>f g : (T1, T2) -&gt; (T, T6, T7)</p><p></p><p><ul class="org-ul"></p><p><li><p>Similar treatment for this example</p><p>is left to reader as exercise.</p></li></ul></p></li></ul>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org3549b3a" class="outline-2">
-<h2 id="org3549b3a">The structure of category</h2>
-<div class="outline-text-2" id="text-org3549b3a">
+<div id="outline-container-orgeb78fe1" class="outline-2">
+<h2 id="orgeb78fe1">The structure of category</h2>
+<div class="outline-text-2" id="text-orgeb78fe1">
 <ul class="org-ul">
 <li><p>First we show the structure of category,</p><p>to let readers be familiar with the notations I used here.</p></li></ul>
 </div>
 
-<div id="outline-container-orgea8bfee" class="outline-3">
-<h3 id="orgea8bfee">Objects and Arrows</h3>
-<div class="outline-text-3" id="text-orgea8bfee">
+<div id="outline-container-orgcee7d79" class="outline-3">
+<h3 id="orgcee7d79">Objects and Arrows</h3>
+<div class="outline-text-3" id="text-orgcee7d79">
 <ul class="org-ul">
 <li><p>To specify the structure of category,</p><p>we need objects and arrows.</p></li>
 
@@ -200,9 +200,9 @@ f<span style="color: #FFA23D;"> : </span><span style="color: #7CB8BB;">A</span> 
 </div>
 </div>
 
-<div id="outline-container-org3c85d9d" class="outline-3">
-<h3 id="org3c85d9d">Identity and Compose</h3>
-<div class="outline-text-3" id="text-org3c85d9d">
+<div id="outline-container-orgc1d46fb" class="outline-3">
+<h3 id="orgc1d46fb">Identity and Compose</h3>
+<div class="outline-text-3" id="text-orgc1d46fb">
 <ul class="org-ul">
 <li><p>For every object we have a unique identity arrow.</p></li></ul>
 
@@ -247,16 +247,16 @@ compose-associative
 </div>
 </div>
 
-<div id="outline-container-org7d2f790" class="outline-2">
-<h2 id="org7d2f790">The structure of dependent category</h2>
-<div class="outline-text-2" id="text-org7d2f790">
+<div id="outline-container-orgf2d91d4" class="outline-2">
+<h2 id="orgf2d91d4">The structure of dependent category</h2>
+<div class="outline-text-2" id="text-orgf2d91d4">
 <ul class="org-ul">
 <li><p>From category to dependent category,</p><p>I change the name `compose` to `cut`,</p><p>in remembrance of Gentzen</p><p>and the `cut rule` of his sequence calculus.</p></li></ul>
 </div>
 
-<div id="outline-container-org9d0926a" class="outline-3">
-<h3 id="org9d0926a">Objects and Arrows</h3>
-<div class="outline-text-3" id="text-org9d0926a">
+<div id="outline-container-org4830422" class="outline-3">
+<h3 id="org4830422">Objects and Arrows</h3>
+<div class="outline-text-3" id="text-org4830422">
 <ul class="org-ul">
 <li><p><p></p><p>To specify the structure of dependent category,</p><p>we need objects and arrows as for category.</p><p></p></p><p></p><p><p></p><p>We repeat basic constructions :</p><p></p></p></li></ul>
 
@@ -277,9 +277,9 @@ f<span style="color: #FFA23D;"> : </span><span style="color: #7CB8BB;">A</span> 
 </div>
 </div>
 
-<div id="outline-container-orgfcb9b63" class="outline-3">
-<h3 id="orgfcb9b63">A monoid of substitutions</h3>
-<div class="outline-text-3" id="text-orgfcb9b63">
+<div id="outline-container-org2427248" class="outline-3">
+<h3 id="org2427248">A monoid of substitutions</h3>
+<div class="outline-text-3" id="text-org2427248">
 <ul class="org-ul">
 <li><p>We also need a monoid of substitutions,</p><p>we use `substitution-t` to name the type of substitutions.</p></li>
 
@@ -317,9 +317,9 @@ f<span style="color: #FFA23D;"> : </span><span style="color: #7CB8BB;">A</span> 
 </div>
 </div>
 
-<div id="outline-container-org8cc6783" class="outline-3">
-<h3 id="org8cc6783">Unification of Objects</h3>
-<div class="outline-text-3" id="text-org8cc6783">
+<div id="outline-container-org4e47f6f" class="outline-3">
+<h3 id="org4e47f6f">Unification of Objects</h3>
+<div class="outline-text-3" id="text-org4e47f6f">
 <ul class="org-ul">
 <li><p>Given two objects,</p><p>we need to be able to prove they are unifiable,</p><p>we use `unifiable-t` to name this type constructor.</p></li></ul>
 
@@ -378,9 +378,9 @@ unify-respect-substitute
 </div>
 </div>
 
-<div id="outline-container-org6bd3336" class="outline-3">
-<h3 id="org6bd3336">Identity and Cut</h3>
-<div class="outline-text-3" id="text-org6bd3336">
+<div id="outline-container-orga44f1f7" class="outline-3">
+<h3 id="orga44f1f7">Identity and Cut</h3>
+<div class="outline-text-3" id="text-orga44f1f7">
 <ul class="org-ul">
 <li><p>For every object we have a unique identity arrow.</p></li></ul>
 
@@ -440,7 +440,7 @@ identity-right
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2018-06-22 Fri 03:01</p>
+<p class="date">Created: 2018-06-22 Fri 03:16</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
