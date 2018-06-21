@@ -1,0 +1,34 @@
+#+title: agile
+
+* agile videos
+
+  - The death of Agile - Allen Holub
+    https://www.youtube.com/watch?v=vSnCeJEka_s
+
+  - #NoEstimates (Allen Holub)
+    https://www.youtube.com/watch?v=QVBlnCTu9Ms
+
+    - story map [with three levels]
+      story counting v.s. story points [which require estimation]
+
+  - Jim Coplien and Bob Martin Debate TDD
+    https://www.youtube.com/watch?v=KtHQGs3zFAM
+
+    - first do not write code
+      design the interfaces
+      and document domain knowledge
+
+    - type system allows one to design by contracts
+      you have pre-condition, post-condition
+      and invariant [in dependent type system]
+
+  - GOTO 2017 • The Dehumanisation of Agile and Objects • James Coplien
+    https://www.youtube.com/watch?v=ZrBQmIDdls4
+
+    - oo is about mapping user's mental model to program.
+
+    - regression test is to not re-produce old bugs
+      when changing the code.
+
+  - One Hacker Way Rational alternative of Agile - Erik Meijer
+    https://www.youtube.com/watch?v=2u0sNRO-QKQ
