@@ -49,11 +49,10 @@
 
 * paper
 
-  - (2018-06-20) dependent category (paper in progress)
-    A generalization of category
-    to provide categorical model for dependent type system.
+  - (2018-06-20) [[./output/dependent-category.html][dependent category]]
+    A generalization of category to model dependent type system.
 
-  - (2016-06-14) [[./output/function-compose-type-cut.html][function compose, type cut, and the algebra of logic]] ([[http://xieyuheng.github.io/paper/function-compose-type-cut.pdf][paper]]) ([[./output/function-compose-type-cut--demo.html][demo]])
+  - (2016-06-14) [[./output/function-compose-type-cut.html][function compose, type cut, and the algebra of logic]] ([[http://xieyuheng.github.io/paper/function-compose-type-cut.pdf][pdf]]) ([[./output/function-compose-type-cut--demo.html][demo]])
     for the ICFP 2016 at Nara
 
 * translation

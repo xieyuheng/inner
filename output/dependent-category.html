@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2018-06-20 Wed 15:51 -->
+<!-- 2018-06-22 Fri 03:01 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>dependent category</title>
+<title>Dependent category</title>
 <meta name="generator" content="Org-mode" />
 <link rel="stylesheet" href="../css/org-page.css"/>
 <script type="text/javascript">
@@ -58,118 +58,389 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">dependent category</h1>
+<h1 class="title">Dependent category</h1>
 <div id="table-of-contents">
 <h2>overview</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orge549c9e"><span class="done _todo_stack_">[todo-stack]</span> </a>
+<li><a href="#orga678b0">Abstract</a></li>
+<li><a href="#orgfc9ff65">Background</a></li>
+<li><a href="#org9d3fb38">Motivating examples</a>
 <ul>
-<li><a href="#org360daac">a categorical model for dependent type system</a></li>
-<li><a href="#orgbca73f5">a categorical model for stack based concatenative programming language</a></li>
+<li><a href="#orgdebeec9">Composition of dependently typed functions</a></li>
+<li><a href="#orgd0d706">Composition in stack based concatenative language</a></li>
 </ul>
 </li>
-<li><a href="#org2ddf5a2">[old]</a>
+<li><a href="#org3549b3a">The structure of category</a>
 <ul>
-<li><a href="#orgaba853b">links</a></li>
-<li><a href="#orgf781534">fibrations</a></li>
-<li><a href="#org3cb34d">operad</a></li>
-<li><a href="#orgeb6cffb">monoidal category</a></li>
+<li><a href="#orgea8bfee">Objects and Arrows</a></li>
+<li><a href="#org3c85d9d">Identity and Compose</a></li>
 </ul>
 </li>
-<li><a href="#orgf59fefe"><span class="todo _note_">[note]</span> </a></li>
-<li><a href="#org51f7b05">abstract</a></li>
-<li><a href="#org57b127c">background</a></li>
-<li><a href="#org5e4750d">further work</a></li>
-<li><a href="#org4d13ff0">appendixes</a></li>
+<li><a href="#org7d2f790">The structure of dependent category</a>
+<ul>
+<li><a href="#org9d0926a">Objects and Arrows</a></li>
+<li><a href="#orgfcb9b63">A monoid of substitutions</a></li>
+<li><a href="#org8cc6783">Unification of Objects</a></li>
+<li><a href="#org6bd3336">Identity and Cut</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
 <ul class="org-ul">
-<li><p>author : XIE Yuheng</p></li>
-<li><p>date : 2018-06-20</p></li>
-<li><p>keywords : language design, dependent type, categorical model, sequent calculus</p></li></ul>
+<li><p>Author : Xie Yuheng</p></li>
+<li><p>Date : 2018-06-20</p></li>
+<li><p>Keywords : Dependent type, Categorical model, Sequent calculus.</p></li></ul>
 
-<div id="outline-container-orge549c9e" class="outline-2">
-<h2 id="orge549c9e"><span class="done _todo_stack_">[todo-stack]</span> </h2>
-<div class="outline-text-2" id="text-orge549c9e">
-</div><div id="outline-container-org360daac" class="outline-3">
-<h3 id="org360daac">a categorical model for dependent type system</h3>
-</div>
-
-<div id="outline-container-orgbca73f5" class="outline-3">
-<h3 id="orgbca73f5">a categorical model for stack based concatenative programming language</h3>
-</div>
-</div>
-
-<div id="outline-container-org2ddf5a2" class="outline-2">
-<h2 id="org2ddf5a2">[old]</h2>
-<div class="outline-text-2" id="text-org2ddf5a2">
-</div><div id="outline-container-orgaba853b" class="outline-3">
-<h3 id="orgaba853b">links</h3>
-<div class="outline-text-3" id="text-orgaba853b">
+<div id="outline-container-orga678b0" class="outline-2">
+<h2 id="orga678b0">Abstract</h2>
+<div class="outline-text-2" id="text-orga678b0">
 <ul class="org-ul">
-<li><p>my question :</p><p><a href="https://groups.google.com/forum/#!topic/homotopytypetheory/IU5bsqSNuiM">https://groups.google.com/forum/#!topic/homotopytypetheory/IU5bsqSNuiM</a></p></li></ul>
+<li><p>In this paper I show a generalization of the structure of category,</p><p>I call it `dependent category`,</p><p>because the motivation of defining it</p><p>is to use it to model the semantic of dependent type systems.</p></li></ul>
 </div>
 </div>
 
-<div id="outline-container-orgf781534" class="outline-3">
-<h3 id="orgf781534">fibrations</h3>
-<div class="outline-text-3" id="text-orgf781534">
+<div id="outline-container-orgfc9ff65" class="outline-2">
+<h2 id="orgfc9ff65">Background</h2>
+<div class="outline-text-2" id="text-orgfc9ff65">
 <ul class="org-ul">
-<li><p><a href="https://ncatlab.org/nlab/show/categorical+model+of+dependent+types">https://ncatlab.org/nlab/show/categorical+model+of+dependent+types</a></p></li></ul>
+<li><p>Currently, people often use the concept of fibration</p><p>to provide categorical model for dependent type systems.</p></li>
+
+<li><p>I wish to use a more direct approach to do the modeling,</p><p>to guide language design and implementation.</p></li>
+
+<li><p>A generalization of the structure of category seems natural to me.</p></li>
+
+<li><p>My concern is, If we generalize the structure of category,</p><p>then we can not directly reuse all the mathematical constructions</p><p>that have been developed based on the structure of category.</p></li>
+
+<li><p>It seems,</p><p>we have to re-develop all those constructions all over again,</p><p>but I am willing to try.</p></li></ul>
 </div>
 </div>
 
-<div id="outline-container-org3cb34d" class="outline-3">
-<h3 id="org3cb34d">operad</h3>
-<div class="outline-text-3" id="text-org3cb34d">
+<div id="outline-container-org9d3fb38" class="outline-2">
+<h2 id="org9d3fb38">Motivating examples</h2>
+<div class="outline-text-2" id="text-org9d3fb38">
+</div><div id="outline-container-orgdebeec9" class="outline-3">
+<h3 id="orgdebeec9">Composition of dependently typed functions</h3>
+<div class="outline-text-3" id="text-orgdebeec9">
 <ul class="org-ul">
-<li><p>morphisms that have multiple sources</p><p>(multiple targets are easy to encode using products).</p><p>It’s called an operad.</p></li>
+<li><p>Given two dependently typed functions :</p><p>f : (A x -&gt; B x)</p><p>g : (B n -&gt; C z)</p></li>
 
-<li><p><a href="https://bartoszmilewski.com/2015/10/07/operads-type-level-nats-and-tic-tac-toe/">https://bartoszmilewski.com/2015/10/07/operads-type-level-nats-and-tic-tac-toe/</a></p></li></ul>
+<li><p>It is natural to unify `x` with `n',</p><p>and to compose the two functions</p><p>to get a function of type (A n -&gt; C z).</p></li></ul>
 </div>
 </div>
 
-<div id="outline-container-orgeb6cffb" class="outline-3">
-<h3 id="orgeb6cffb">monoidal category</h3>
-<div class="outline-text-3" id="text-orgeb6cffb">
+<div id="outline-container-orgd0d706" class="outline-3">
+<h3 id="orgd0d706">Composition in stack based concatenative language</h3>
+<div class="outline-text-3" id="text-orgd0d706">
 <ul class="org-ul">
-<li><p>This looks more like a combination of composition and tensoring,</p><p>in a monoidal category.</p><p>Based on some stuff in a blog post :</p><p></p><p><ul class="org-ul"></p><p><li><p><a href="https://golem.ph.utexas.edu/category/2017/11/the_polycategory_of_multivaria.html">https://golem.ph.utexas.edu/category/2017/11/the_polycategory_of_multivaria.html</a></p></li></ul></p></li>
+<li><p>In a stack based concatenative language,</p><p>the following generalized function composition is natural :</p><p>f   : (T1, T2) -&gt; (T3, T4)</p><p>g   : (T, T3, T4) -&gt; (T6, T7)</p><p>f g : (T, T1, T2) -&gt; (T6, T7)</p></li>
 
-<li><p>the cut rule is instead composition in a polycategory,</p><p>and you can only cut out one type at a time.</p></li></ul>
+<li><p>The semantics of the generalized composition are as following :</p><p><ul class="org-ul"></p><p><li><p>Suppose there are data of type (T, T1, T2) on the stack;</p></li></p><p><li><p>`f` takes data of type (T1, T2)</p><p>and transform them to (T3, T4),</p><p>leaving data of type (T, T3, T4) on the stack;</p></li></p><p><li><p>`g` takes data of type (T, T3, T4)</p><p>and transform them to (T6, T7),</p><p>leaving data of type (T6, T7) on the stack.</p></li></ul></p></li>
+
+<li><p>The about semantics can also be explained by unification :</p><p><ul class="org-ul"></p><p><li><p>Adding extra type variable to each function :</p><p>f   : (a, T1, T2) -&gt; (a, T3, T4)</p><p>g   : (b, T, T3, T4) -&gt; (b, T6, T7)</p></li></p><p><li><p>Unify `a` with `(b, T)` we get :</p><p>f   : (b, T, T1, T2) -&gt; (b, T, T3, T4)</p><p>g   : (b, T, T3, T4) -&gt; (b, T6, T7)</p></li></p><p><li><p>Compose `f` and `g` :</p><p>f g : (b, T, T1, T2) -&gt; (b, T6, T7)</p></li></p><p><li><p>Drop the extra type variable :</p><p>f g : (T, T1, T2) -&gt; (T6, T7)</p></li></ul></p></li>
+
+<li><p>Another example is :</p><p>f   : (T1, T2) -&gt; (T, T3, T4)</p><p>g   : (T3, T4) -&gt; (T6, T7)</p><p>f g : (T1, T2) -&gt; (T, T6, T7)</p><p></p><p><ul class="org-ul"></p><p><li><p>Similar treatment for this example</p><p>is left to reader as exercise.</p></li></ul></p></li></ul>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgf59fefe" class="outline-2">
-<h2 id="orgf59fefe"><span class="todo _note_">[note]</span> </h2>
-</div>
-
-<div id="outline-container-org51f7b05" class="outline-2">
-<h2 id="org51f7b05">abstract</h2>
-<div class="outline-text-2" id="text-org51f7b05">
+<div id="outline-container-org3549b3a" class="outline-2">
+<h2 id="org3549b3a">The structure of category</h2>
+<div class="outline-text-2" id="text-org3549b3a">
 <ul class="org-ul">
-<li><p>a category U where we can to unification on objects</p></li>
+<li><p>First we show the structure of category,</p><p>to let readers be familiar with the notations I used here.</p></li></ul>
+</div>
 
-<li><p>and a generalization of category</p><p>based on the categorical structure of U</p></li></ul>
+<div id="outline-container-orgea8bfee" class="outline-3">
+<h3 id="orgea8bfee">Objects and Arrows</h3>
+<div class="outline-text-3" id="text-orgea8bfee">
+<ul class="org-ul">
+<li><p>To specify the structure of category,</p><p>we need objects and arrows.</p></li>
+
+<li><p>And objects are used to type arrows,</p><p>We use `object-t` to name the type of objects,</p><p>And we often capitalize a name of an object.</p></li></ul>
+
+<div class="org-src-container">
+
+<pre class="src src-cicada"><span style="color: #7CB8BB;">A</span><span style="color: #FFA23D;"> : </span><span style="color: #7CB8BB;">object-t</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li><p><p></p><p>We use `=&gt;` to name the type constructor for arrows,</p><p>and use it as an infix notation.</p><p>[We leave `-&gt;` to be used in meta language.]</p><p></p></p><p></p><p><p></p><p>We use `type-tt` to name the type of type.</p><p></p></p></li></ul>
+
+<div class="org-src-container">
+
+<pre class="src src-cicada"><span style="color: #696969;">(</span><span style="color: #7CB8BB;">=&gt;</span><span style="color: #696969;">)</span><span style="color: #FFA23D;"> : </span><span style="color: #7CB8BB;">object-t</span><span style="color: #F0DFAF; font-weight: bold;">,</span> <span style="color: #7CB8BB;">object-t</span> <span style="color: #7CB8BB;">-&gt;</span> <span style="color: #7CB8BB;">type-tt</span>
+
+<span style="color: #7CB8BB;">A</span><span style="color: #FFA23D;"> : </span><span style="color: #7CB8BB;">object-t</span>
+<span style="color: #7CB8BB;">B</span><span style="color: #FFA23D;"> : </span><span style="color: #7CB8BB;">object-t</span>
+
+f<span style="color: #FFA23D;"> : </span><span style="color: #7CB8BB;">A</span> <span style="color: #7CB8BB;">=&gt;</span> <span style="color: #7CB8BB;">B</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li><p><p></p><p>We need to be able to prove two objects are equivalent,</p><p>thus, we need a proposition constructor to do this.</p><p></p></p><p></p><p><p></p><p>Since proposition is type,</p><p>a proposition constructor is also a type constructor,</p><p>we use `object-eqv-t` to name this type constructor.</p><p></p></p></li></ul>
+
+<div class="org-src-container">
+
+<pre class="src src-cicada"><span style="color: #7CB8BB;">object-eqv-t</span><span style="color: #FFA23D;"> : </span><span style="color: #7CB8BB;">object-t</span><span style="color: #F0DFAF; font-weight: bold;">,</span> <span style="color: #7CB8BB;">object-t</span> <span style="color: #7CB8BB;">-&gt;</span> <span style="color: #7CB8BB;">type-tt</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li><p>We also need to be able to prove two arrows are equivalent,</p><p>we use `arrow-eqv-t` to name this type constructor.</p></li></ul>
+
+<div class="org-src-container">
+
+<pre class="src src-cicada"><span style="color: #7CB8BB;">arrow-eqv-t</span><span style="color: #FFA23D;"> : </span><span style="color: #696969;">(</span><span style="color: #7CB8BB;">A</span> <span style="color: #7CB8BB;">=&gt;</span> <span style="color: #7CB8BB;">B</span><span style="color: #696969;">)</span><span style="color: #F0DFAF; font-weight: bold;">,</span> <span style="color: #696969;">(</span><span style="color: #7CB8BB;">A</span> <span style="color: #7CB8BB;">=&gt;</span> <span style="color: #7CB8BB;">B</span><span style="color: #696969;">)</span> <span style="color: #7CB8BB;">-&gt;</span> <span style="color: #7CB8BB;">type-tt</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3c85d9d" class="outline-3">
+<h3 id="org3c85d9d">Identity and Compose</h3>
+<div class="outline-text-3" id="text-org3c85d9d">
+<ul class="org-ul">
+<li><p>For every object we have a unique identity arrow.</p></li></ul>
+
+<div class="org-src-container">
+
+<pre class="src src-cicada">identity<span style="color: #FFA23D;"> : </span><span style="color: #696969;">(</span><span style="color: #7CB8BB;">A</span><span style="color: #FFA23D;"> : </span><span style="color: #7CB8BB;">object-t</span><span style="color: #696969;">)</span> <span style="color: #7CB8BB;">-&gt;</span> <span style="color: #696969;">(</span><span style="color: #7CB8BB;">A</span> <span style="color: #7CB8BB;">=&gt;</span> <span style="color: #7CB8BB;">A</span><span style="color: #696969;">)</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li><p>We can compose two arrows.</p></li></ul>
+
+<div class="org-src-container">
+
+<pre class="src src-cicada">compose<span style="color: #FFA23D;"> : </span><span style="color: #696969;">(</span><span style="color: #7CB8BB;">A</span> <span style="color: #7CB8BB;">=&gt;</span> <span style="color: #7CB8BB;">B</span><span style="color: #696969;">)</span><span style="color: #F0DFAF; font-weight: bold;">,</span> <span style="color: #696969;">(</span><span style="color: #7CB8BB;">B</span> <span style="color: #7CB8BB;">=&gt;</span> <span style="color: #7CB8BB;">C</span><span style="color: #696969;">)</span> <span style="color: #7CB8BB;">-&gt;</span> <span style="color: #696969;">(</span><span style="color: #7CB8BB;">A</span> <span style="color: #7CB8BB;">=&gt;</span> <span style="color: #7CB8BB;">C</span><span style="color: #696969;">)</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li><p>Axioms of `identity` and `compose`</p></li></ul>
+
+<div class="org-src-container">
+
+<pre class="src src-cicada">identity-left
+<span style="color: #DFAF8F;">:</span> <span style="color: #696969;">(</span>f<span style="color: #FFA23D;"> : </span><span style="color: #696969;">(</span><span style="color: #7CB8BB;">A</span> <span style="color: #7CB8BB;">=&gt;</span> <span style="color: #7CB8BB;">B</span><span style="color: #696969;">))</span> <span style="color: #7CB8BB;">-&gt;</span>
+  <span style="color: #696969;">(</span><span style="color: #7CB8BB;">arrow-eqv-t</span> f <span style="color: #696969;">(</span>compose <span style="color: #696969;">(</span>identity <span style="color: #7CB8BB;">A</span><span style="color: #696969;">)</span> f<span style="color: #696969;">))</span>
+
+identity-right
+<span style="color: #DFAF8F;">:</span> <span style="color: #696969;">(</span>f<span style="color: #FFA23D;"> : </span><span style="color: #696969;">(</span><span style="color: #7CB8BB;">A</span> <span style="color: #7CB8BB;">=&gt;</span> <span style="color: #7CB8BB;">B</span><span style="color: #696969;">))</span> <span style="color: #7CB8BB;">-&gt;</span>
+  <span style="color: #696969;">(</span><span style="color: #7CB8BB;">arrow-eqv-t</span> f <span style="color: #696969;">(</span>compose f <span style="color: #696969;">(</span>identity B<span style="color: #696969;">)))</span>
+
+compose-associative
+<span style="color: #DFAF8F;">:</span> <span style="color: #696969;">(</span>f<span style="color: #FFA23D;"> : </span><span style="color: #696969;">(</span><span style="color: #7CB8BB;">A</span> <span style="color: #7CB8BB;">=&gt;</span> <span style="color: #7CB8BB;">B</span><span style="color: #696969;">))</span>
+  <span style="color: #696969;">(</span>g<span style="color: #FFA23D;"> : </span><span style="color: #696969;">(</span><span style="color: #7CB8BB;">B</span> <span style="color: #7CB8BB;">=&gt;</span> <span style="color: #7CB8BB;">C</span><span style="color: #696969;">))</span>
+  <span style="color: #696969;">(</span>h<span style="color: #FFA23D;"> : </span><span style="color: #696969;">(</span><span style="color: #7CB8BB;">C</span> <span style="color: #7CB8BB;">=&gt;</span> <span style="color: #7CB8BB;">D</span><span style="color: #696969;">))</span> <span style="color: #7CB8BB;">-&gt;</span>
+  <span style="color: #696969;">(</span><span style="color: #7CB8BB;">arrow-eqv-t</span>
+    <span style="color: #696969;">(</span>compose f <span style="color: #696969;">(</span>compose g h<span style="color: #696969;">))</span>
+    <span style="color: #696969;">(</span>compose <span style="color: #696969;">(</span>compose f g<span style="color: #696969;">)</span> h<span style="color: #696969;">))</span>
+</pre>
+</div>
+</div>
 </div>
 </div>
 
-<div id="outline-container-org57b127c" class="outline-2">
-<h2 id="org57b127c">background</h2>
+<div id="outline-container-org7d2f790" class="outline-2">
+<h2 id="org7d2f790">The structure of dependent category</h2>
+<div class="outline-text-2" id="text-org7d2f790">
+<ul class="org-ul">
+<li><p>From category to dependent category,</p><p>I change the name `compose` to `cut`,</p><p>in remembrance of Gentzen</p><p>and the `cut rule` of his sequence calculus.</p></li></ul>
 </div>
 
-<div id="outline-container-org5e4750d" class="outline-2">
-<h2 id="org5e4750d">further work</h2>
+<div id="outline-container-org9d0926a" class="outline-3">
+<h3 id="org9d0926a">Objects and Arrows</h3>
+<div class="outline-text-3" id="text-org9d0926a">
+<ul class="org-ul">
+<li><p><p></p><p>To specify the structure of dependent category,</p><p>we need objects and arrows as for category.</p><p></p></p><p></p><p><p></p><p>We repeat basic constructions :</p><p></p></p></li></ul>
+
+<div class="org-src-container">
+
+<pre class="src src-cicada"><span style="color: #7CB8BB;">A</span><span style="color: #FFA23D;"> : </span><span style="color: #7CB8BB;">object-t</span>
+<span style="color: #7CB8BB;">B</span><span style="color: #FFA23D;"> : </span><span style="color: #7CB8BB;">object-t</span>
+
+<span style="color: #696969;">(</span><span style="color: #7CB8BB;">=&gt;</span><span style="color: #696969;">)</span><span style="color: #FFA23D;"> : </span><span style="color: #7CB8BB;">object-t</span><span style="color: #F0DFAF; font-weight: bold;">,</span> <span style="color: #7CB8BB;">object-t</span> <span style="color: #7CB8BB;">-&gt;</span> <span style="color: #7CB8BB;">type-tt</span>
+
+f<span style="color: #FFA23D;"> : </span><span style="color: #7CB8BB;">A</span> <span style="color: #7CB8BB;">=&gt;</span> <span style="color: #7CB8BB;">B</span>
+
+<span style="color: #7CB8BB;">object-eqv-t</span><span style="color: #FFA23D;"> : </span><span style="color: #7CB8BB;">object-t</span><span style="color: #F0DFAF; font-weight: bold;">,</span> <span style="color: #7CB8BB;">object-t</span> <span style="color: #7CB8BB;">-&gt;</span> <span style="color: #7CB8BB;">type-tt</span>
+
+<span style="color: #7CB8BB;">arrow-eqv-t</span><span style="color: #FFA23D;"> : </span><span style="color: #696969;">(</span><span style="color: #7CB8BB;">A</span> <span style="color: #7CB8BB;">=&gt;</span> <span style="color: #7CB8BB;">B</span><span style="color: #696969;">)</span><span style="color: #F0DFAF; font-weight: bold;">,</span> <span style="color: #696969;">(</span><span style="color: #7CB8BB;">A</span> <span style="color: #7CB8BB;">=&gt;</span> <span style="color: #7CB8BB;">B</span><span style="color: #696969;">)</span> <span style="color: #7CB8BB;">-&gt;</span> <span style="color: #7CB8BB;">type-tt</span>
+</pre>
+</div>
+</div>
 </div>
 
-<div id="outline-container-org4d13ff0" class="outline-2">
-<h2 id="org4d13ff0">appendixes</h2>
+<div id="outline-container-orgfcb9b63" class="outline-3">
+<h3 id="orgfcb9b63">A monoid of substitutions</h3>
+<div class="outline-text-3" id="text-orgfcb9b63">
+<ul class="org-ul">
+<li><p>We also need a monoid of substitutions,</p><p>we use `substitution-t` to name the type of substitutions.</p></li>
+
+<li><p>We need to be able to prove two substitutions are equivalent,</p><p>we use `substitution-eqv-t` to name this type constructor.</p></li></ul>
+
+<div class="org-src-container">
+
+<pre class="src src-cicada"><span style="color: #7CB8BB;">substitution-eqv-t</span><span style="color: #FFA23D;"> : </span><span style="color: #7CB8BB;">substitution-t</span><span style="color: #F0DFAF; font-weight: bold;">,</span> <span style="color: #7CB8BB;">substitution-t</span> <span style="color: #7CB8BB;">-&gt;</span> <span style="color: #7CB8BB;">type-tt</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li><p>The monoid can act on objects,</p><p>we use `substitute` to name the action.</p></li></ul>
+
+<div class="org-src-container">
+
+<pre class="src src-cicada">substitute<span style="color: #FFA23D;"> : </span><span style="color: #7CB8BB;">substitution-t</span><span style="color: #F0DFAF; font-weight: bold;">,</span> <span style="color: #7CB8BB;">object-t</span> <span style="color: #7CB8BB;">-&gt;</span> <span style="color: #7CB8BB;">object-t</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li><p>Axiom of `substitute`</p><p>[suppose we use `(*)` to name the product in a monoid.]</p></li></ul>
+
+<div class="org-src-container">
+
+<pre class="src src-cicada">substitute-is-monoid-action
+<span style="color: #DFAF8F;">:</span> s1<span style="color: #FFA23D;"> : </span><span style="color: #7CB8BB;">substitution-t</span>
+  s2<span style="color: #FFA23D;"> : </span><span style="color: #7CB8BB;">substitution-t</span> <span style="color: #7CB8BB;">-&gt;</span>
+  <span style="color: #696969;">(</span><span style="color: #7CB8BB;">A</span><span style="color: #FFA23D;"> : </span><span style="color: #7CB8BB;">object-t</span> <span style="color: #7CB8BB;">-&gt;</span>
+    <span style="color: #696969;">(</span><span style="color: #7CB8BB;">object-eqv-t</span>
+       <span style="color: #696969;">(</span>substitute <span style="color: #696969;">(</span><span style="color: #F0DFAF; font-weight: bold;">*</span> s1 s2<span style="color: #696969;">)</span> <span style="color: #7CB8BB;">A</span><span style="color: #696969;">)</span>
+       <span style="color: #696969;">(</span>substitute s2 <span style="color: #696969;">(</span>substitute s2 <span style="color: #7CB8BB;">A</span><span style="color: #696969;">))))</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8cc6783" class="outline-3">
+<h3 id="org8cc6783">Unification of Objects</h3>
+<div class="outline-text-3" id="text-org8cc6783">
+<ul class="org-ul">
+<li><p>Given two objects,</p><p>we need to be able to prove they are unifiable,</p><p>we use `unifiable-t` to name this type constructor.</p></li></ul>
+
+<div class="org-src-container">
+
+<pre class="src src-cicada"><span style="color: #7CB8BB;">unifiable-t</span><span style="color: #FFA23D;"> : </span><span style="color: #7CB8BB;">object-t</span><span style="color: #F0DFAF; font-weight: bold;">,</span> <span style="color: #7CB8BB;">object-t</span> <span style="color: #7CB8BB;">-&gt;</span> <span style="color: #7CB8BB;">type-tt</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li><p>Axioms of `unifiable-t`</p></li></ul>
+
+<div class="org-src-container">
+
+<pre class="src src-cicada">unifiable-reflex<span style="color: #FFA23D;"> : </span><span style="color: #696969;">(</span><span style="color: #7CB8BB;">A</span><span style="color: #FFA23D;"> : </span><span style="color: #7CB8BB;">object-t</span><span style="color: #696969;">)</span> <span style="color: #7CB8BB;">-&gt;</span> <span style="color: #696969;">(</span><span style="color: #7CB8BB;">unifiable-t</span> <span style="color: #7CB8BB;">A</span> A<span style="color: #696969;">)</span>
+
+unifiable-commute<span style="color: #FFA23D;"> : </span><span style="color: #696969;">(</span><span style="color: #7CB8BB;">unifiable-t</span> <span style="color: #7CB8BB;">A</span> <span style="color: #7CB8BB;">B</span><span style="color: #696969;">)</span> <span style="color: #7CB8BB;">-&gt;</span> <span style="color: #696969;">(</span><span style="color: #7CB8BB;">unifiable-t</span> <span style="color: #7CB8BB;">B</span> <span style="color: #7CB8BB;">A</span><span style="color: #696969;">)</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li><p>Given two unifiable objects,</p><p>we can unify them to get a substitution.</p></li></ul>
+
+<div class="org-src-container">
+
+<pre class="src src-cicada">unify
+<span style="color: #DFAF8F;">:</span> <span style="color: #696969;">(</span><span style="color: #7CB8BB;">A</span><span style="color: #FFA23D;"> : </span><span style="color: #7CB8BB;">object-t</span><span style="color: #696969;">)</span>
+  <span style="color: #696969;">(</span><span style="color: #7CB8BB;">B</span><span style="color: #FFA23D;"> : </span><span style="color: #7CB8BB;">object-t</span><span style="color: #696969;">)</span>
+  <span style="color: #696969;">(</span><span style="color: #7CB8BB;">unifiable-t</span> <span style="color: #7CB8BB;">A</span> <span style="color: #7CB8BB;">B</span><span style="color: #696969;">)</span> <span style="color: #7CB8BB;">-&gt;</span>
+  <span style="color: #7CB8BB;">substitution-t</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li><p>Axioms of `unify`</p></li></ul>
+
+<div class="org-src-container">
+
+<pre class="src src-cicada">unify-commute
+<span style="color: #DFAF8F;">:</span> <span style="color: #696969;">(</span><span style="color: #7CB8BB;">A</span><span style="color: #FFA23D;"> : </span><span style="color: #7CB8BB;">object-t</span><span style="color: #696969;">)</span>
+  <span style="color: #696969;">(</span><span style="color: #7CB8BB;">B</span><span style="color: #FFA23D;"> : </span><span style="color: #7CB8BB;">object-t</span><span style="color: #696969;">)</span>
+  <span style="color: #696969;">(</span><span style="color: #7CB8BB;">unifiable-t</span> <span style="color: #7CB8BB;">A</span> <span style="color: #7CB8BB;">B</span><span style="color: #696969;">)</span> <span style="color: #7CB8BB;">-&gt;</span>
+  <span style="color: #696969;">(</span><span style="color: #7CB8BB;">substitution-eqv-t</span>
+    <span style="color: #696969;">(</span>unify <span style="color: #7CB8BB;">A</span> <span style="color: #7CB8BB;">B</span><span style="color: #696969;">)</span>
+    <span style="color: #696969;">(</span>unify <span style="color: #7CB8BB;">B</span> A<span style="color: #696969;">))</span>
+
+unify-respect-substitute
+<span style="color: #DFAF8F;">:</span> <span style="color: #696969;">(</span><span style="color: #7CB8BB;">A</span><span style="color: #FFA23D;"> : </span><span style="color: #7CB8BB;">object-t</span><span style="color: #696969;">)</span>
+  <span style="color: #696969;">(</span><span style="color: #7CB8BB;">B</span><span style="color: #FFA23D;"> : </span><span style="color: #7CB8BB;">object-t</span><span style="color: #696969;">)</span>
+  <span style="color: #696969;">(</span><span style="color: #7CB8BB;">unifiable-t</span> <span style="color: #7CB8BB;">A</span> <span style="color: #7CB8BB;">B</span><span style="color: #696969;">)</span> <span style="color: #7CB8BB;">-&gt;</span>
+  <span style="color: #696969;">(</span><span style="color: #7CB8BB;">object-eqv-t</span>
+    <span style="color: #696969;">(</span>substitute <span style="color: #696969;">(</span>unify <span style="color: #7CB8BB;">A</span> <span style="color: #7CB8BB;">B</span><span style="color: #696969;">)</span> <span style="color: #7CB8BB;">A</span><span style="color: #696969;">)</span>
+    <span style="color: #696969;">(</span>substitute <span style="color: #696969;">(</span>unify <span style="color: #7CB8BB;">A</span> <span style="color: #7CB8BB;">B</span><span style="color: #696969;">)</span> <span style="color: #7CB8BB;">B</span><span style="color: #696969;">))</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6bd3336" class="outline-3">
+<h3 id="org6bd3336">Identity and Cut</h3>
+<div class="outline-text-3" id="text-org6bd3336">
+<ul class="org-ul">
+<li><p>For every object we have a unique identity arrow.</p></li></ul>
+
+<div class="org-src-container">
+
+<pre class="src src-cicada">identity<span style="color: #FFA23D;"> : </span><span style="color: #696969;">(</span><span style="color: #7CB8BB;">A</span><span style="color: #FFA23D;"> : </span><span style="color: #7CB8BB;">object-t</span><span style="color: #696969;">)</span> <span style="color: #7CB8BB;">-&gt;</span> <span style="color: #696969;">(</span><span style="color: #7CB8BB;">A</span> <span style="color: #7CB8BB;">=&gt;</span> <span style="color: #7CB8BB;">A</span><span style="color: #696969;">)</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li><p>We can cut two arrows,</p><p>provide that,</p><p>the codomain of the first arrow is unifiable with</p><p>the domain of the second arrow.</p></li></ul>
+
+<div class="org-src-container">
+
+<pre class="src src-cicada">cut
+<span style="color: #DFAF8F;">:</span> <span style="color: #696969;">(</span><span style="color: #7CB8BB;">A</span> <span style="color: #7CB8BB;">=&gt;</span> <span style="color: #7CB8BB;">B</span><span style="color: #696969;">)</span>
+  <span style="color: #696969;">(</span><span style="color: #7CB8BB;">C</span> <span style="color: #7CB8BB;">=&gt;</span> <span style="color: #7CB8BB;">D</span><span style="color: #696969;">)</span>
+  <span style="color: #696969;">(</span><span style="color: #7CB8BB;">unifiable-t</span> <span style="color: #7CB8BB;">B</span> <span style="color: #7CB8BB;">C</span><span style="color: #696969;">)</span> <span style="color: #7CB8BB;">-&gt;</span>
+  <span style="color: #696969;">((</span>substitute <span style="color: #696969;">(</span>unify <span style="color: #7CB8BB;">B</span> <span style="color: #7CB8BB;">C</span><span style="color: #696969;">)</span> <span style="color: #7CB8BB;">A</span><span style="color: #696969;">)</span> <span style="color: #7CB8BB;">=&gt;</span>
+   <span style="color: #696969;">(</span>substitute <span style="color: #696969;">(</span>unify <span style="color: #7CB8BB;">B</span> <span style="color: #7CB8BB;">C</span><span style="color: #696969;">)</span> <span style="color: #7CB8BB;">D</span><span style="color: #696969;">))</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li><p>Axioms of `identity`</p></li></ul>
+
+<div class="org-src-container">
+
+<pre class="src src-cicada">identity-left
+<span style="color: #DFAF8F;">:</span> <span style="color: #696969;">(</span>f<span style="color: #FFA23D;"> : </span><span style="color: #696969;">(</span><span style="color: #7CB8BB;">A</span> <span style="color: #7CB8BB;">=&gt;</span> <span style="color: #7CB8BB;">B</span><span style="color: #696969;">))</span> <span style="color: #7CB8BB;">-&gt;</span>
+  <span style="color: #696969;">(</span><span style="color: #7CB8BB;">arrow-eqv-t</span> f <span style="color: #696969;">(</span>cut <span style="color: #696969;">(</span>identity <span style="color: #7CB8BB;">A</span><span style="color: #696969;">)</span> f<span style="color: #696969;">))</span>
+
+identity-right
+<span style="color: #DFAF8F;">:</span> <span style="color: #696969;">(</span>f<span style="color: #FFA23D;"> : </span><span style="color: #696969;">(</span><span style="color: #7CB8BB;">A</span> <span style="color: #7CB8BB;">=&gt;</span> <span style="color: #7CB8BB;">B</span><span style="color: #696969;">))</span> <span style="color: #7CB8BB;">-&gt;</span>
+  <span style="color: #696969;">(</span><span style="color: #7CB8BB;">arrow-eqv-t</span> f <span style="color: #696969;">(</span>cut f <span style="color: #696969;">(</span>identity <span style="color: #7CB8BB;">B</span><span style="color: #696969;">)))</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li><p>Axioms of `cut`</p></li></ul>
+
+<div class="org-src-container">
+
+<pre class="src src-cicada">cut-associative
+<span style="color: #DFAF8F;">:</span> <span style="color: #696969;">(</span>f<span style="color: #FFA23D;"> : </span><span style="color: #696969;">(</span><span style="color: #7CB8BB;">A</span> <span style="color: #7CB8BB;">=&gt;</span> <span style="color: #7CB8BB;">B</span><span style="color: #696969;">))</span>
+  <span style="color: #696969;">(</span>g<span style="color: #FFA23D;"> : </span><span style="color: #696969;">(</span><span style="color: #7CB8BB;">C</span> <span style="color: #7CB8BB;">=&gt;</span> <span style="color: #7CB8BB;">D</span><span style="color: #696969;">))</span>
+  <span style="color: #696969;">(</span>h<span style="color: #FFA23D;"> : </span><span style="color: #696969;">(</span><span style="color: #7CB8BB;">E</span> <span style="color: #7CB8BB;">=&gt;</span> <span style="color: #7CB8BB;">F</span><span style="color: #696969;">))</span>
+  <span style="color: #696969;">(</span><span style="color: #7CB8BB;">unifiable-t</span> <span style="color: #7CB8BB;">B</span> <span style="color: #7CB8BB;">C</span><span style="color: #696969;">)</span>
+  <span style="color: #696969;">(</span><span style="color: #7CB8BB;">unifiable-t</span> <span style="color: #7CB8BB;">D</span> <span style="color: #7CB8BB;">F</span><span style="color: #696969;">)</span> <span style="color: #7CB8BB;">-&gt;</span>
+  <span style="color: #696969;">(</span><span style="color: #7CB8BB;">arrow-eqv-t</span>
+    <span style="color: #696969;">(</span>cut f <span style="color: #696969;">(</span>cut g h<span style="color: #696969;">))</span>
+    <span style="color: #696969;">(</span>cut <span style="color: #696969;">(</span>cut f g<span style="color: #696969;">)</span> h<span style="color: #696969;">))</span>
+</pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2018-06-20 Wed 15:51</p>
+<p class="date">Created: 2018-06-22 Fri 03:01</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
