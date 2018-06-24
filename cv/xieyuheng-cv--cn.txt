@@ -20,19 +20,15 @@
     scheme, forth.
 
   - 想用的語言
-    haskell, idris.
+    haskell
 
   - 可以用的語言
-    typed/racket, racket,
-    common-lisp, clojure,
+    typed/racket,
+    racket, common-lisp, clojure,
     c [in scalable-c style],
     ocaml, prolog,
     elixir, erlang,
-    python,
-    js.
-
-  - 拒絕用的語言
-    C++, Java.
+    python, js.
 
 * 當前項目
 

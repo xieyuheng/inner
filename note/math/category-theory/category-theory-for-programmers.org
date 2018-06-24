@@ -2,6 +2,14 @@
 
 - by Bartosz Milewski
 
+* [todo-stack]
+
+*** agda
+
+    - agda and its module system and record type
+      is actually better then type-class [and interface]
+      to model math structure
+
 * lecture video
 
 *** 1.2: What is a category?
