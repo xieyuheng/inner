@@ -21,12 +21,12 @@
 ***** 2017-11 -- 2018-02
 
       - Three months as a python programmer,
-        at a Chinese company which builds online quantitative trading system,
-        just like Quantopian.
+        at a company which builds online quantitative trading system,
 
 ***** 2018-03 -- 2018-05
 
-      - One month writing elixir learning cryptography.
+      - One month writing elixir learning cryptography,
+        at a company which builds crypto currency exchange network.
 
 ***** 2018-05 -- now
 
