@@ -1,3 +1,7 @@
 #+title: william lawvere
 
 * functorial semantics of algebraic theories
+
+* conceptual mathematics: a first introduction to categories
+
+* sets for mathematics

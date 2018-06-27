@@ -102,10 +102,10 @@
       and use it as an infix notation.
       [We leave `->` to be used in meta language.]
 
-      We use `type-tt` to name the type of type.
+      We use `type-t` to name the type of type.
 
     #+begin_src cicada
-    (=>) : object-t, object-t -> type-tt
+    (=>) : object-t, object-t -> type-t
 
     A : object-t
     B : object-t
@@ -121,14 +121,14 @@
       we use `object-eqv-t` to name this type constructor.
 
     #+begin_src cicada
-    object-eqv-t : object-t, object-t -> type-tt
+    object-eqv-t : object-t, object-t -> type-t
     #+end_src
 
     - We also need to be able to prove two arrows are equivalent,
       we use `arrow-eqv-t` to name this type constructor.
 
     #+begin_src cicada
-    arrow-eqv-t : (A => B), (A => B) -> type-tt
+    arrow-eqv-t : (A => B), (A => B) -> type-t
     #+end_src
 
 *** Identity and Compose
@@ -148,16 +148,16 @@
     - Axioms of `identity` and `compose`
 
     #+begin_src cicada
-    identity-left
-    : (f : (A => B)) ->
+    identity-left :
+      (f : (A => B)) ->
       (arrow-eqv-t f (compose (identity A) f))
 
-    identity-right
-    : (f : (A => B)) ->
+    identity-right :
+      (f : (A => B)) ->
       (arrow-eqv-t f (compose f (identity B)))
 
-    compose-associative
-    : (f : (A => B))
+    compose-associative :
+      (f : (A => B))
       (g : (B => C))
       (h : (C => D)) ->
       (arrow-eqv-t
@@ -183,13 +183,13 @@
     A : object-t
     B : object-t
 
-    (=>) : object-t, object-t -> type-tt
+    (=>) : object-t, object-t -> type-t
 
     f : A => B
 
-    object-eqv-t : object-t, object-t -> type-tt
+    object-eqv-t : object-t, object-t -> type-t
 
-    arrow-eqv-t : (A => B), (A => B) -> type-tt
+    arrow-eqv-t : (A => B), (A => B) -> type-t
     #+end_src
 
 *** A monoid of substitutions
@@ -201,7 +201,7 @@
       we use `substitution-eqv-t` to name this type constructor.
 
     #+begin_src cicada
-    substitution-eqv-t : substitution-t, substitution-t -> type-tt
+    substitution-eqv-t : substitution-t, substitution-t -> type-t
     #+end_src
 
     - The monoid can act on objects,
@@ -215,8 +215,8 @@
       [suppose we use `(*)` to name the product in a monoid.]
 
     #+begin_src cicada
-    substitute-is-monoid-action
-    : s1 : substitution-t
+    substitute-is-monoid-action :
+      s1 : substitution-t
       s2 : substitution-t ->
       (A : object-t ->
         (object-eqv-t
@@ -231,7 +231,7 @@
       we use `unifiable-t` to name this type constructor.
 
     #+begin_src cicada
-    unifiable-t : object-t, object-t -> type-tt
+    unifiable-t : object-t, object-t -> type-t
     #+end_src
 
     - Axioms of `unifiable-t`
@@ -246,8 +246,8 @@
       we can unify them to get a substitution.
 
     #+begin_src cicada
-    unify
-    : (A : object-t)
+    unify :
+      (A : object-t)
       (B : object-t)
       (unifiable-t A B) ->
       substitution-t
@@ -256,8 +256,8 @@
     - Axioms of `unify`
 
     #+begin_src cicada
-    unify-commute
-    : (A : object-t)
+    unify-commute :
+      (A : object-t)
       (B : object-t)
       (unifiable-t A B) ->
       (substitution-eqv-t
@@ -287,8 +287,8 @@
       the domain of the second arrow.
 
     #+begin_src cicada
-    cut
-    : (A => B)
+    cut :
+      (A => B)
       (C => D)
       (unifiable-t B C) ->
       ((substitute (unify B C) A) =>
@@ -298,20 +298,20 @@
     - Axioms of `identity`
 
     #+begin_src cicada
-    identity-left
-    : (f : (A => B)) ->
+    identity-left :
+      (f : (A => B)) ->
       (arrow-eqv-t f (cut (identity A) f))
 
-    identity-right
-    : (f : (A => B)) ->
+    identity-right :
+      (f : (A => B)) ->
       (arrow-eqv-t f (cut f (identity B)))
     #+end_src
 
     - Axioms of `cut`
 
     #+begin_src cicada
-    cut-associative
-    : (f : (A => B))
+    cut-associative :
+      (f : (A => B))
       (g : (C => D))
       (h : (E => F))
       (unifiable-t B C)
