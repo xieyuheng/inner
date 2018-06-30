@@ -1,1 +1,3 @@
 #+title: datalog
+
+* what you always wanted to know about datalog

@@ -1,5 +1,21 @@
 #+title: agile
 
+* [note]
+
+*** fail-log
+
+    - the aim of fail-log is to let us fail quickly
+      
+
+*** story-map
+
+    - the aim of story-map is to keep us aiming at our direction
+
+*** scrum
+
+    - scrum uses story map as this main tool
+      the aim of scrum is to estimate time
+
 * agile videos
 
   - The death of Agile - Allen Holub
@@ -32,3 +48,8 @@
 
   - One Hacker Way Rational alternative of Agile - Erik Meijer
     https://www.youtube.com/watch?v=2u0sNRO-QKQ
+
+  - Agile Product Ownership in a Nutshell
+    https://www.youtube.com/watch?v=502ILHjX9EE&list=PLsVPinNyc_hr1bAjgM6IzAfmWTZVttEFe&index=4
+
+  - Spotify Engineering Culture
