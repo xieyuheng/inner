@@ -16,13 +16,13 @@
 
 * 技能
 
-  - 熟悉的語言
+  - 熟悉各种程序語言的實現技術
+    設計形式語言[DSL]
+    實現解釋器
+
+  - 程序語言
     scheme, forth.
-
-  - 想用的語言
     haskell
-
-  - 可以用的語言
     typed/racket,
     racket, common-lisp, clojure,
     c [in scalable-c style],
