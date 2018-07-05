@@ -25,7 +25,7 @@
     haskell
     typed/racket,
     racket, common-lisp, clojure,
-    c [in scalable-c style],
+    c, scalable-c style, c++,
     ocaml, prolog,
     elixir, erlang,
     python, js.
