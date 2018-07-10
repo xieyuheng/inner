@@ -25,7 +25,7 @@
 
 ***** 2018-03 -- 2018-05
 
-      - One month writing elixir learning cryptography,
+      - One month writing elixir and learning cryptography,
         at a company which builds crypto currency exchange network.
 
 ***** 2018-05 -- now
@@ -43,7 +43,7 @@
 
     - [[https://github.com/xieyuheng/jojo][jojo]] -- jojo's programming adventure
 
-    - [[https://github.com/xieyuheng/cicada][cicada]] -- object oriented dependently typed language
+    - [[https://github.com/xieyuheng/cicada][cicada]] -- category oriented dependently typed language
 
     - [[https://github.com/xieyuheng/continua][continua]] -- a language to capture the concept of continuum
 

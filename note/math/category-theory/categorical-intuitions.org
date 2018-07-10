@@ -4,7 +4,7 @@
 
   - to each species of mathematical structure,
     there corresponds a category whose objects have that structure,
-    and whose morphisms preserve it.
+    and whose morphisms respect [preserve] it.
 
 * isomorphism
 
