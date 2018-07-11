@@ -1,0 +1,7 @@
+#+title: quotes
+
+- The code pretty much writes itself. -- Bartosz Milewski
+  in "category theory for programmers".
+
+- Mathematics is a beautiful dream world where progress can begin. -- Eugenia Cheng
+  in her 2015 TEDx talk.
