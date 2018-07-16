@@ -1,9 +1,9 @@
 #+html_head: <link rel="stylesheet" href="css/org-page.css"/>
-#+title: 謝宇恆 // xieyuheng
+#+title: 謝宇恆 // Xie Yuheng
 
 * me
 
-  - I am xieyuheng.
+  - I am Xie Yuheng.
     I am a language designer.
     [but we never truly are what we claim to be.]
 
