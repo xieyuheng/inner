@@ -53,33 +53,33 @@
 
 * paper
 
-  - (2018-06-20) [[./output/dependent-category][Dependent category]]
+  - (2018-06-20) [[./output/dependent-category.html][Dependent category]]
     A generalization of category to model dependent type system.
 
-  - (2016-06-14) [[./output/function-compose-type-cut][Function compose, Type cut, and The algebra of logic]] ([[http://xieyuheng.github.io/paper/function-compose-type-cut.pdf][pdf]]) ([[./output/function-compose-type-cut--demo][demo]])
+  - (2016-06-14) [[./output/function-compose-type-cut.html][Function compose, Type cut, and The algebra of logic]] ([[http://xieyuheng.github.io/paper/function-compose-type-cut.pdf][pdf]]) ([[./output/function-compose-type-cut--demo][demo]])
     for the ICFP 2016 at Nara
 
 * translation
 
 *** constructive mathematics
 
-    - [[./translation/schizophrenia-in-contemporary-mathematics][schizophrenia in contemporary mathematics / 當代數學之精神分裂症 (未完)]]
+    - [[./translation/schizophrenia-in-contemporary-mathematics.html][schizophrenia in contemporary mathematics / 當代數學之精神分裂症 (未完)]]
       by Errett Bishop, 1973
 
-    - [[./translation/a-constructivist-manifesto][a constructivist manifesto / 一個構造主義者的宣言]]
+    - [[./translation/a-constructivist-manifesto.html][a constructivist manifesto / 一個構造主義者的宣言]]
       by Errett Bishop, 1967
 
 *** taoist
 
-    - [[./translation/is-god-a-taoist][is god a taoist / 上帝是道家的嗎]]
+    - [[./translation/is-god-a-taoist.html][is god a taoist / 上帝是道家的嗎]]
       by Raymond Smullyan, 1977
 
 *** anarchist
 
-    - [[./translation/are-you-an-anarchist][are you an anarchist / 你是無政府主義者嗎]]
+    - [[./translation/are-you-an-anarchist.html][are you an anarchist / 你是無政府主義者嗎]]
       by David Graeber, 2009
 
 * lecture
 
-  - [[http://the-little-language-designer.github.io/cicada-nymph/course/contents][experimental assembly programming experiment]]
+  - [[http://the-little-language-designer.github.io/cicada-nymph/course/contents.html][experimental assembly programming experiment]]
     at SYSU, GuangZhou, 2015
