@@ -41,8 +41,6 @@
 
 *** now
 
-    - [[https://github.com/xieyuheng/jojo][jojo]] -- jojo's programming adventure
-
     - [[https://github.com/xieyuheng/cicada][cicada]] -- category oriented dependently typed language
 
     - [[https://github.com/xieyuheng/continua][continua]] -- a language to capture the concept of continuum
