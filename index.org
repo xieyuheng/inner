@@ -16,3 +16,8 @@
   - [[./translation.html][Translation]]
   - [[./lecture.html][Lecture]]
   - [[./quote.html][Quote]]
+
+- Receiving
+
+  - btc address -- 1Kknd4B5WtgTSXWvWYUyvfscV8WhnHiyk3
+  - bch address -- qqt5usgacpy3est8kjx426sdlzn0hdg9qv2mr2wdue
