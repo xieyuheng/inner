@@ -2,8 +2,8 @@
 #+title: CV
 
 - NAME -- Xie Yuheng
-  - Family Name -- Xie
-  - Given Name -- Yuheng
+  - FAMILY NAME -- Xie
+  - GIVEN NAME -- Yuheng
 
 - BORN -- January 15, 1992 in YinChuan, China
 

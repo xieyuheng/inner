@@ -11,7 +11,8 @@
 * John McCarthy
 
   - From John McCarthy's works, my enlightenment begun.
-    After I read his "Recursive Functions of Symbolic Expressions and Their Computation by Machine, Part I",
+    After I read his "Recursive Functions of Symbolic Expressions
+    and Their Computation by Machine, Part I",
     My programming story begun.
 
   - His home page is still hosted by Stanford,
