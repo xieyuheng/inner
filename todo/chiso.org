@@ -1,5 +1,0 @@
-* classical logic
-
-* cat
-
-  - lambek

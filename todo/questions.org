@@ -1,4 +1,0 @@
-#+title: questions
-
--> what is the meaning of X ?
--- what is the use of X ?
