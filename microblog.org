@@ -61,3 +61,13 @@
 *** (1973) Schizophrenia in Contemporary Mathematics
 
 * Max Dehn
+
+* Joseph Goguen
+
+  - https://en.wikipedia.org/wiki/Joseph_Goguen
+
+*** ‎(1989) What is Unification ?
+
+    - A Categorical View of Substitution, Equation and Solution
+
+*** (1991) A Categorical Manifesto
