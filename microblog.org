@@ -17,4 +17,46 @@
   - His home page is still hosted by Stanford,
     with great honor, at http://www-formal.stanford.edu/jmc
 
-*** ELABORATION TOLERANCE
+*** (2003) Elaboration Tolerance
+
+    - http://www-formal.stanford.edu/jmc/elaboration
+
+    #+begin_quote
+    A formalism is elaboration tolerant to the extent that
+    it is convenient to modify a set of facts expressed in the formalism
+    to take into account new phenomena or changed circumstances.
+    Representations of information in natural language have good elaboration tolerance
+    when used with human background knowledge.
+    Human-level AI will require representations with much more elaboration tolerance
+    than those used by present AI programs, because human-level AI
+    needs to be able to take new phenomena into account.
+
+    The simplest kind of elaboration is the addition of new formulas.
+    We'll call these additive elaborations.
+    Next comes changing the values of parameters.
+    Adding new arguments to functions and predicates represents more of a change.
+    However, elaborations not expressible as additions to the object language representation
+    may be treatable as additions at a meta-level expression of the facts.
+
+    Elaboration tolerance requires nonmonotonic reasoning.
+    The elaborations that are tolerated depend on
+    what aspects of the phenomenon are treated nonmonotonically.
+    Representing contexts as objects in a logical formalism
+    that can express relations among contexts should also help.
+
+    We use the missionaries and cannibals problem
+    and about 20 variants as our Drosophila
+    in studying elaboration tolerance in logical AI.
+
+    The present version has only some parts of a situation calculus formalization.
+    However, the English language elaborations listed
+    are enough to serve as a challenge to logical AI formalisms claiming elaboration tolerance.
+    #+end_quote
+
+* Errett Bishop
+
+*** (1967) A Constructivist Manifesto
+
+*** (1973) Schizophrenia in Contemporary Mathematics
+
+* Max Dehn
