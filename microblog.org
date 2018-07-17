@@ -1,10 +1,20 @@
 #+html_head: <link rel="stylesheet" href="css/org-page.css"/>
 #+title: Paper reading Microblog
 
-- Notes and reviews on papers, books and learning materials.
+* Intro
 
-* Mathematics
+  - Notes and reviews on papers, books and learning materials.
 
-*** Category Theory
+  - "Paper reading Microblog", I learned this term
+    from Mark J. Nelson and his http://www.kmjn.org/paperlog
 
-* Programming Language
+* John McCarthy
+
+  - From John McCarthy's works, my enlightenment begun.
+    After I read his "Recursive Functions of Symbolic Expressions and Their Computation by Machine, Part I",
+    My programming story begun.
+
+  - His home page is still hosted by Stanford,
+    with great honor, at http://www-formal.stanford.edu/jmc
+
+*** ELABORATION TOLERANCE
