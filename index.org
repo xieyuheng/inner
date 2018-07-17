@@ -1,5 +1,5 @@
 #+html_head: <link rel="stylesheet" href="css/org-page-no-toc.css"/>
-#+title: Xie Yuheng // 謝宇恆
+#+title: Xie Yuheng
 
 - I am Xie Yuheng. I am a ...
   (we never truly are what we claim to be.)

@@ -1,14 +1,18 @@
-#+html_head: <link rel="stylesheet" href="css/org-page-no-toc.css"/>
+#+html_head: <link rel="stylesheet" href="css/org-page.css"/>
 #+title: Quote
 
-- The code pretty much writes itself. -- Bartosz Milewski
-  in "category theory for programmers".
+* Mathematics
 
-- Mathematics is a beautiful dream world where progress can begin. -- Eugenia Cheng
-  in her 2015 TEDx talk.
+  - The code pretty much writes itself. -- Bartosz Milewski
+    in "category theory for programmers".
 
-- There is always a chance to start asking "Why?" again. -- James Portnow
-  In "The Martian Chronicles - The New Martians - Extra Sci Fi - #13"
+  - Mathematics is a beautiful dream world where progress can begin. -- Eugenia Cheng
+    in her 2015 TEDx talk.
 
-- You will level up as a player, even if you do not feel any progress in the game. -- James Portnow
-  In "Dark Souls - #7 - Dan Masters the Crossbow - Side Quest"
+* Game
+
+  - There is always a chance to start asking "Why?" again. -- James Portnow
+    In "The Martian Chronicles - The New Martians - Extra Sci Fi - #13"
+
+  - You will level up as a player, even if you do not feel any progress in the game. -- James Portnow
+    In "Dark Souls - #7 - Dan Masters the Crossbow - Side Quest"
