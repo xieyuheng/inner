@@ -15,3 +15,4 @@
   - [[./writing.html][Writing]]
   - [[./translation.html][Translation]]
   - [[./lecture.html][Lecture]]
+  - [[./quote.html][Quote]]

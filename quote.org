@@ -1,4 +1,5 @@
-#+title: quotes
+#+html_head: <link rel="stylesheet" href="css/org-page-no-toc.css"/>
+#+title: Quote
 
 - The code pretty much writes itself. -- Bartosz Milewski
   in "category theory for programmers".
