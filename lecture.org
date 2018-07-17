@@ -1,0 +1,7 @@
+#+html_head: <link rel="stylesheet" href="css/org-page.css"/>
+#+title: Lecture
+
+* Past
+
+  - [[http://the-little-language-designer.github.io/cicada-nymph/course/contents.html][experimental assembly programming experiment]]
+    at SYSU, GuangZhou, 2015

@@ -1,0 +1,12 @@
+#+html_head: <link rel="stylesheet" href="css/org-page.css"/>
+#+title: Language Design
+
+* New
+
+  - [[https://github.com/xieyuheng/cicada][cicada]] -- category oriented dependently typed language
+
+  - [[https://github.com/xieyuheng/continua][continua]] -- a language to capture the concept of continuum
+
+* Old
+
+  - [[https://github.com/xieyuheng/cicada-nymph][cicada-nymph]] -- a forth-like language

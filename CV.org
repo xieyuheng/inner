@@ -1,0 +1,35 @@
+#+html_head: <link rel="stylesheet" href="css/org-page.css"/>
+#+title: CV
+
+- Name -- Xie Yuheng
+  - Family Name -- Xie
+  - Given Name -- Yuheng
+- Citizenship -- China
+- Date of birth -- 1992/01/15
+- Email -- xyheme@gmail.com
+- Github -- https://github.com/xieyuheng
+
+* Experiences
+
+*** 2015
+
+    - Graduated from SYSU, GuangZhou, China, with bachelor's degree.
+      My major was pure and applied mathematics.
+
+*** 2015 -- 2017
+
+    - Learning programming languages and language design.
+
+*** 2017-11 -- 2018-02
+
+    - Three months as a python programmer,
+      at a company which builds online quantitative trading system,
+
+*** 2018-03 -- 2018-05
+
+    - One month writing elixir and learning cryptography,
+      at a company which builds crypto currency exchange network.
+
+*** 2018-05 -- now
+
+    - Unemployed.

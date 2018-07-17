@@ -1,0 +1,20 @@
+#+html_head: <link rel="stylesheet" href="css/org-page.css"/>
+#+title: Translation
+
+* Constructive Mathematics
+
+  - [[./translation/schizophrenia-in-contemporary-mathematics.html][schizophrenia in contemporary mathematics / 當代數學之精神分裂症 (未完)]]
+    by Errett Bishop, 1973
+
+  - [[./translation/a-constructivist-manifesto.html][a constructivist manifesto / 一個構造主義者的宣言]]
+    by Errett Bishop, 1967
+
+* Taoist
+
+  - [[./translation/is-god-a-taoist.html][is god a taoist / 上帝是道家的嗎]]
+    by Raymond Smullyan, 1977
+
+* Anarchist
+
+  - [[./translation/are-you-an-anarchist.html][are you an anarchist / 你是無政府主義者嗎]]
+    by David Graeber, 2009

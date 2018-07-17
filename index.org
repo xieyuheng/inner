@@ -1,82 +1,17 @@
-#+html_head: <link rel="stylesheet" href="css/org-page.css"/>
-#+title: 謝宇恆 // Xie Yuheng
+#+html_head: <link rel="stylesheet" href="css/org-page-no-toc.css"/>
+#+title: Xie Yuheng // 謝宇恆
 
-* me
+- I am Xie Yuheng. I am a ...
+  (we never truly are what we claim to be.)
 
-  - I am Xie Yuheng.
-    I am a ... [we never truly are what we claim to be.]
+  - Email -- xyheme@gmail.com
+  - Github -- [[https://github.com/xieyuheng][github.com/xieyuheng]]
+  - [[./CV.html][My CV]] -- I am actively applying for jobs.
 
-*** experiences
+- Collection
 
-***** 2015
-
-      - Graduated from SYSU, GuangZhou, China, with bachelor's degree.
-        My major was pure and applied mathematics.
-
-***** 2015 -- 2017
-
-      - Recessing.
-
-***** 2017-11 -- 2018-02
-
-      - Three months as a python programmer,
-        at a company which builds online quantitative trading system,
-
-***** 2018-03 -- 2018-05
-
-      - One month writing elixir and learning cryptography,
-        at a company which builds crypto currency exchange network.
-
-***** 2018-05 -- now
-
-      - Unemployed.
-
-*** contact
-
-    - github : https://github.com/xieyuheng
-    - email : xyheme (at) gmail (dot) com
-
-* language design
-
-*** now
-
-    - [[https://github.com/xieyuheng/cicada][cicada]] -- category oriented dependently typed language
-
-    - [[https://github.com/xieyuheng/continua][continua]] -- a language to capture the concept of continuum
-
-*** old
-
-    - [[https://github.com/xieyuheng/cicada-nymph][cicada-nymph]] -- a forth-like language
-
-* paper
-
-  - (2018-06-20) [[./output/dependent-category.html][Dependent category]]
-    A generalization of category to model dependent type system.
-
-  - (2016-06-14) [[./output/function-compose-type-cut.html][Function compose, Type cut, and The algebra of logic]] ([[http://xieyuheng.github.io/paper/function-compose-type-cut.pdf][pdf]]) ([[./output/function-compose-type-cut--demo][demo]])
-    for the ICFP 2016 at Nara
-
-* translation
-
-*** constructive mathematics
-
-    - [[./translation/schizophrenia-in-contemporary-mathematics.html][schizophrenia in contemporary mathematics / 當代數學之精神分裂症 (未完)]]
-      by Errett Bishop, 1973
-
-    - [[./translation/a-constructivist-manifesto.html][a constructivist manifesto / 一個構造主義者的宣言]]
-      by Errett Bishop, 1967
-
-*** taoist
-
-    - [[./translation/is-god-a-taoist.html][is god a taoist / 上帝是道家的嗎]]
-      by Raymond Smullyan, 1977
-
-*** anarchist
-
-    - [[./translation/are-you-an-anarchist.html][are you an anarchist / 你是無政府主義者嗎]]
-      by David Graeber, 2009
-
-* lecture
-
-  - [[http://the-little-language-designer.github.io/cicada-nymph/course/contents.html][experimental assembly programming experiment]]
-    at SYSU, GuangZhou, 2015
+  - [[./language-design.html][Language Design]]
+  - [[./microblog.html][Paper reading Microblog]]
+  - [[./writing.html][Writing]]
+  - [[./translation.html][Translation]]
+  - [[./lecture.html][Lecture]]
