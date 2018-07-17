@@ -2,7 +2,8 @@
 #+title: Xie Yuheng
 
 - I am Xie Yuheng. I am a ...
-  (we never truly are what we claim to be.)
+  Oh ~ nevermind ~ nevermind ~
+  for we never truly are what we claim to be.
 
   - Email -- xyheme@gmail.com
   - Github -- [[https://github.com/xieyuheng][github.com/xieyuheng]]
