@@ -1,15 +1,12 @@
 #+html_head: <link rel="stylesheet" href="css/org-page-no-toc.css"/>
 #+title: Xie Yuheng
 
-- I am Xie Yuheng. I am a ...
-  Oh ~ nevermind ~ nevermind ~
+- I am Xie Yuheng. I am a ... Oh ~ nevermind ~
   for we never truly are what we claim to be.
 
   - Email -- xyheme@gmail.com
   - Github -- [[https://github.com/xieyuheng][github.com/xieyuheng]]
   - [[./CV.html][My CV]] -- I am actively applying for jobs.
-    Go to the CV, but please do not hire me.
-    I'm more than meets the eye.
 
 - Collection
 
