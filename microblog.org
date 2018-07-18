@@ -120,3 +120,17 @@
     - A Categorical View of Substitution, Equation and Solution
 
 *** (1991) A Categorical Manifesto
+
+* MIT AI Lab
+
+*** (1988) How to do Research At the MIT AI Lab
+
+    - by a whole bunch of current, former, and honorary MIT AI Lab graduate students
+
+    #+begin_quote
+    This document presumptuously purports to explain how to do research.
+    We give heuristics that may be useful in picking up the
+    specific skills needed for research (reading, writing, programming)
+    and for understanding and enjoying the process itself
+    (methodology, topic and advisor selection, and emotional factors).
+    #+end_quote
