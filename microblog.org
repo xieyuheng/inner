@@ -18,6 +18,55 @@
   - His home page is still hosted by Stanford,
     with great honor, at http://www-formal.stanford.edu/jmc
 
+*** (1980) Circumscription -- A Form of Nonmonotonic Reasoning
+
+    - http://www-formal.stanford.edu/jmc/circumscription/circumscription.html
+
+    #+begin_quote
+    Humans and intelligent computer programs
+    must often jump to the conclusion that
+    the objects they can determine to have certain properties or relations
+    are the only objects that do.
+    Circumscription formalizes such conjectural reasoning.
+    #+end_quote
+
+*** (1986) Applications of Circumscription to Formalizing Common Sense Knowledge
+
+    - http://www-formal.stanford.edu/jmc/applications/applications.html
+
+    #+begin_quote
+    We present a new and more symmetric version
+    of the circumscription method of nonmonotonic reasoning
+    first described in (McCarthy 1980)
+    and some applications to formalizing common sense knowledge.
+    The applications in this paper are mostly based on
+    minimizing the abnormality of different aspects of various entities.
+    Included are nonmonotonic treatments of is-a hierarchies,
+    the unique names hypothesis, and the frame problem.
+    The new circumscription may be called formula circumscription
+    to distinguish it from the previously defined domain circumscription and predicate circumscription.
+    A still more general formalism called prioritized circumscription is briefly explored.
+    #+end_quote
+
+*** (1988) Mathematical logic in artificial intelligence
+
+*** (1989) Artificial Intelligence, Logic and Formalizing Common Sense
+
+    - http://www-formal.stanford.edu/jmc/ailogic/ailogic.html
+
+    #+begin_quote
+    This is a position paper about the relations among
+    artificial intelligence (AI), mathematical logic
+    and the formalization of common-sense knowledge and reasoning.
+    It also treats other problems of concern to both AI and philosophy.
+    I thank the editor for inviting it.
+    The position advocated is that philosophy can contribute to AI
+    if it treats some of its traditional subject matter in more detail
+    and that this will advance the philosophical goals also.
+    Actual formalisms (mostly first order languages)
+    for expressing common-sense facts are described in the references.
+    #+end_quote
+
 *** (2003) Elaboration Tolerance
 
     - http://www-formal.stanford.edu/jmc/elaboration
