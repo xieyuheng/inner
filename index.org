@@ -17,6 +17,7 @@
   - [[./translation.html][Translation]]
   - [[./lecture.html][Lecture]]
   - [[./quote.html][Quote]]
+  - [[./future.html][Future]]
 
 - Receiving
 

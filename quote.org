@@ -21,6 +21,16 @@
     -- James Portnow
     -- In "Dark Souls - #7 - Dan Masters the Crossbow - Side Quest"
 
+* Research
+
+  - All research involves risk.
+    If your project can't fail, it's development, not research.
+    What's hard is dealing with project failures.
+    It's easy to interpret your project failing as your failing;
+    in fact, it proves that you had the courage to do something difficult.
+    -- MIT AI Lab graduate students
+    -- In "How to do Research At the MIT AI Lab"
+
 * Life
 
   - (The miniature plan)

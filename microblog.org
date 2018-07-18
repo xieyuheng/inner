@@ -30,8 +30,6 @@
     Circumscription formalizes such conjectural reasoning.
     #+end_quote
 
-    - [todo]
-
 *** (1986) Applications of Circumscription to Formalizing Common Sense Knowledge
 
     - http://www-formal.stanford.edu/jmc/applications/applications.html
@@ -104,6 +102,10 @@
     However, the English language elaborations listed
     are enough to serve as a challenge to logical AI formalisms claiming elaboration tolerance.
     #+end_quote
+
+*** (2004) The Robot and The Baby -- (A science fiction story)
+
+    - http://www-formal.stanford.edu/jmc/robotandbaby/robotandbaby.html
 
 * Errett Bishop
 
