@@ -30,6 +30,8 @@
     Circumscription formalizes such conjectural reasoning.
     #+end_quote
 
+    - [todo]
+
 *** (1986) Applications of Circumscription to Formalizing Common Sense Knowledge
 
     - http://www-formal.stanford.edu/jmc/applications/applications.html

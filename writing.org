@@ -3,6 +3,10 @@
 
 * Paper
 
+  - (2018-07-18) [[https://xieyuheng.github.io/cicada][Fulfilling Type System]]
+    In which I use partly inhabited typed-record as type,
+    and fully inhabited typed-record to inhabits such type.
+
   - (2018-06-20) [[./writing/dependent-category.html][Dependent category]]
     A generalization of category to model dependent type system.
 
