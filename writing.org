@@ -3,6 +3,9 @@
 
 * Paper
 
+  - (2018-07-22) [[https://xieyuheng.github.io/jojo][Semantic of De Bruijn Notation and Bizarre Syntax Adventure]]
+    Discussions about Language syntax design.
+
   - (2018-07-18) [[https://xieyuheng.github.io/cicada][Fulfilling Type System]]
     In which I use partly inhabited typed-record as type,
     and fully inhabited typed-record to inhabits such type.
