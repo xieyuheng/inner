@@ -3,10 +3,12 @@
 
 * New
 
+  - [[https://github.com/xieyuheng/jojo][jojo]] -- jojo's bizarre programming adventure
+
   - [[https://github.com/xieyuheng/cicada][cicada]] -- a language with fulfilling type system to model category theory
 
   - [[https://github.com/xieyuheng/continua][continua]] -- a language to capture the concept of continuum
 
-h* Old
+* Old
 
   - [[https://github.com/xieyuheng/cicada-nymph][cicada-nymph]] -- a forth-like language
