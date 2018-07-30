@@ -1,8 +1,7 @@
 #+html_head: <link rel="stylesheet" href="css/org-page-no-toc.css"/>
 #+title: Xie Yuheng
 
-- I am Xie Yuheng. I am a ... oh nevermind ~
-  for we never truly are what we claim to be.
+- I am Xie Yuheng.
 
   - Email -- xyheme@gmail.com
   - Github -- [[https://github.com/xieyuheng][github.com/xieyuheng]]

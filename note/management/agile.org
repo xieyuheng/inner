@@ -5,7 +5,7 @@
 *** fail-log
 
     - the aim of fail-log is to let us fail quickly
-      
+
 
 *** story-map
 

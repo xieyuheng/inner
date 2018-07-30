@@ -88,7 +88,7 @@
 
     - universal construction
 
-*** 4.2: Products-Bsdl
+*** 4.2: Products
 *** 5.1: Coproducts, sum types
 *** 5.2: Algebraic data types
 *** 6.1: Functors
