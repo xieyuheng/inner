@@ -71,4 +71,11 @@
 
 * separation logic
 
-  - an extension of hoare logic for
+  - about the naming :
+    virtual separation (modular reasoning) between concurrent modules.
+
+  - applications :
+    1. automated program verification
+    2. automated parallelization
+
+  - an extension of hoare logic for ><><><

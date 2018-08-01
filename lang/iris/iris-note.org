@@ -1,8 +1,9 @@
 #+title: iris note
 
-* link
+* links
 
-  - http://iris-project.org/
+  http://iris-project.org/
+  https://gitlab.mpi-sws.org/FP/iris-coq/
 
 * intro
 
@@ -67,12 +68,55 @@
 
 * operational semantics of lambda-ref-conc
 
-* my review of iris
+* First glance at Iris
 
-  - I know a little about hoare logic and separation logic.
+  - I already know a little about hoare logic and separation logic.
 
-  - iris is designed as a tool (a framework)
-    to help users use separation logic to proof correctness
+  - I will review the lecture notes more closely soon.
+
+  - While at first glance,
+    Iris is designed as a tool (a framework)
+    to help users use separation logic to prove correctness
     about their code written in imperative programming languages.
+    - Specially to prove correctness
+      about the code related to resource and concurrence.
 
-  - separation logic
+  - About my role for the position :
+
+    - Since I am a good programmer, I certainly can help Iris,
+      1. to improve its design and syntax;
+      2. to embed it in c or c++ (in comment);
+      3. to design better examples for teaching and to improve docs.
+
+    - But my main interest is my own approach of language design,
+      1. for functional language instead of imperative language;
+      2. using categorical semantics instead of operational semantics;
+      3. to emphasize curry–howard correspondence
+         instead of using hoare logic (or is successor);
+      4. and the application domain I am interested in
+         is formalization of algebraic topology
+         instead of verification of existing imperative code base.
+         - my goal is to develop new methodology
+           to capture higher dimensional algebraic structure.
+           (I know a way to extend the notion of n-homotopy-groupoid)
+         - my secret goal is to prove Poincaré conjecture (or Poincaré theorem)
+           by pure algebraic topology methods.
+
+    - Also recent I watched a talk by the founder of OpenBSD :
+      https://www.youtube.com/watch?v=F_7S1eqKsFk
+
+      OpenBSD have a simple mitigation mechanism called "pledge",
+      which is like the contract system of racket.
+
+      Just like racket contract system,
+      it is also handled at runtime (by the kernel!)
+      thus it feels like "kernel-contract".
+
+      Theo de Raadt also talked about
+      how the use of "pledge" helped openbsd developers
+      refactoring existing code and found bugs.
+
+      And its interface uses just like hoare logic.
+
+      - An example of tmux using it is here :
+        https://github.com/tmux/tmux/blob/master/tmux.c#L265
