@@ -1,0 +1,78 @@
+#+title: iris note
+
+* link
+
+  - http://iris-project.org/
+
+* intro
+
+  - iris is a logic framework
+    for proving partial functional correctness
+    of concurrent higher-order imperative programs.
+
+* partial correctness
+
+  - when a program is proved correct
+    with respect to some specification
+    this only guarantees that
+    if the program terminates
+    then its result will satisfy the stated property.
+
+  - If a program does not terminate
+    then the specification says nothing about its behaviour,
+    apart from that it does not get stuck.
+
+    - x -
+      about it does not get stuck :
+      Hoare 1969 paper used a narrower notion of termination
+      which also entailed absence of any run-time errors:
+      "Failure to terminate may be due to an infinite loop;
+      or it may be due to violation of an implementation-defined limit,
+      for example, the range of numeric operands,
+      the size of storage, or an operating system time limit."
+
+  - x -
+    about partial correctness :
+    just like standard hoare logic
+
+* verification of concurrent programs
+
+  - invariants
+    a mechanism that allows different program threads
+    to access shared resources,
+    e.g., read and write to the same location,
+    provided they do not invalidate properties
+    other threads depend on,
+    i.e., provided they maintain invariants.
+
+  - ghost state
+    a mechanism which allows the invariants to evolve over time.
+    It allows the logic to keep track of additional information
+    that is not present in the program code being verified,
+    but is nonetheless essential to proving its correctness,
+    such as relationships between values
+    of different program variables.
+
+* about examples
+
+  - examples used to introduce and explain the rules of the logic
+    are minimal contrived one or larger case studies.
+
+  - both are not suitable for teaching.
+
+* lambda-ref-conc
+
+  - untyped higher-order ML-like language
+    with general references and concurrency.
+
+* operational semantics of lambda-ref-conc
+
+* my review of iris
+
+  - I know a little about hoare logic and separation logic.
+
+  - iris is designed as a tool (a framework)
+    to help users use separation logic to proof correctness
+    about their code written in imperative programming languages.
+
+  - separation logic
