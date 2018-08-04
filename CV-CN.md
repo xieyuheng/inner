@@ -2,17 +2,17 @@
 
 ### 简
 
-  - 名 : 謝宇恆
+  - 名 : 谢宇恒
   - 生 : 宁夏银川 九二年一月十五日
   - 籍 : 安徽定远
   - 开 : [github.com/xieyuheng](https://github.com/xieyuheng)
-  - 郵 : xyheme@gmail.com
+  - 邮 : xyheme@gmail.com
 
 ------
 
-### 學
+### 学
 
-  - 2015 : 學士 數學與應用數學 中山大學
+  - 2015 : 学士 数学与应用数学 中山大学
 
 ------
 
@@ -20,14 +20,19 @@
 
   - 2015 - 2017 :
     - 自由 : 研究 类型论 范畴论 形式语言设计 代数拓扑
+    - 学记 :
+      ([人](https://github.com/xieyuheng/xieyuheng.github.io/tree/master/person))
+      ([题](https://github.com/xieyuheng/xieyuheng.github.io/tree/master/note))
+      ([语](https://github.com/xieyuheng/xieyuheng.github.io/tree/master/lang))
+
 
   - 2017-10 - 2018-01 :
     - 公司 : ricequant.com, 深圳
-    - 贡献 : python 後端, 量化交易策略
+    - 贡献 : python 后端, 量化交易策略
 
   - 2018-03 - 2018-05 :
     - 公司 : inblockchain -- pxn.one, 北京
-    - 贡献 : elixir 後端, graphql API
+    - 贡献 : elixir 后端, graphql API
 
 ------
 
@@ -36,7 +41,7 @@
   - 语言设计 :
     - (形式语言设计) (DSL)
     - (类型系统)
-    - (程序語言實現技術) (解釋器) (编译器)
+    - (程序语言实现技术) (解释器) (编译器)
 
   - 程序语言 :
     - 精 :
@@ -95,7 +100,7 @@
 
 ### 授
 
-  - 實驗性的彙編語言實驗 中山大學 2015
+  - 实验性的汇编语言实验 中山大学 2015
     ([页](http://the-little-language-designer.github.io/cicada-nymph/course/contents.html))
     ([组](https://github.com/the-little-language-designer))
 
