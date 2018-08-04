@@ -4,6 +4,7 @@
 
   - 名 : 謝宇恆
   - 生 : 九二年一月十五日宁夏银川
+  - 籍 : 安徽定远县
   - 开 : https://github.com/xieyuheng
   - 郵 : xyheme@gmail.com
 
@@ -11,16 +12,19 @@
 
 ### 學
 
-  - 2015 : 年畢業於廣州中山大學 數學與應用數學專業 學士學位
+  - 2015 : 學士 數學與應用數學 中山大學
 
 ------
 
 ### 历
 
-  - 2015 - 2017 : 無工作
+  - 2015 - 2017 :
+    - 自由 : 研究 类型论 范畴论 形式语言设计 代数拓扑
+
   - 2017-10 - 2018-01 :
     - 公司 : ricequant.com, 深圳
     - 贡献 : python 後端, 量化交易策略
+
   - 2018-03 - 2018-05 :
     - 公司 : inblockchain -- pxn.one, 北京
     - 贡献 : elixir 後端, graphql API
@@ -29,26 +33,24 @@
 
 ### 技
 
-  - 形式语言设计, DSL, 程序語言實現技術, 解釋器, 编译器
+  - 语言设计 :
+    - (形式语言设计) (DSL)
+    - (类型系统)
+    - (程序語言實現技術) (解釋器) (编译器)
 
   - 程序语言 :
     - 精 :
-      - (scheme)
+      - (scheme) (racket) (common-lisp)
       - (forth)
     - 熟 :
       - 静 :
         - (haskell)
-        - (c)
-        - (scalable-c style)
-        - (c++)
+        - (c) (scalable-c style) (c++)
       - 动 :
-        - (common-lisp)
         - (clojure)
-        - (elixir)
-        - (erlang)
+        - (elixir) (erlang)
         - (python)
-        - (nodejs)
-        - (javascript)
+        - (nodejs) (javascript)
 
 ------
 
