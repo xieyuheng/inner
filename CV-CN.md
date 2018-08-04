@@ -3,7 +3,7 @@
 ### 简
 
   - 名 : 謝宇恆
-  - 生 : 九二年一月十五日 宁夏银川
+  - 生 : 宁夏银川 九二年一月十五日
   - 籍 : 安徽定远
   - 开 : https://github.com/xieyuheng
   - 郵 : xyheme@gmail.com
