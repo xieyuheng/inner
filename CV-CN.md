@@ -4,7 +4,6 @@
 
   - 名 : 謝宇恆
   - 生 : 九二年一月十五日宁夏银川
-  - 頁 : https://xieyuheng.github.io
   - 开 : https://github.com/xieyuheng
   - 郵 : xyheme@gmail.com
 
