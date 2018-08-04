@@ -45,7 +45,7 @@
 
   - 程序语言 :
     - 精 :
-      - (scheme) (racket) (common-lisp)
+      - (scheme) (racket) (lisp)
       - (forth)
     - 熟 :
       - 静 :
