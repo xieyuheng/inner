@@ -1,0 +1,51 @@
+# 謝宇恆
+
+  - 主頁 : https://xieyuheng.github.io
+  - github : https://github.com/xieyuheng
+  - 郵箱 : xyheme@gmail.com
+
+## 學歷
+
+  - 2015 年畢業於廣州中山大學 數學與應用數學專業 學士學位
+
+## 經驗
+
+  - [2015 - 2017] 無工作
+  - [2017-10 - 2018-01] python 後端, 量化交易策略, ricequant.com, 深圳
+  - [2018-03 - 2018-05] elixir 後端, inblockchain, pxn.one, 北京
+
+## 技能
+
+  - 熟悉各种程序語言的實現技術,
+    設計形式語言[DSL],
+    實現解釋器.
+
+  - 程序語言
+    scheme, forth.
+    haskell
+    typed/racket,
+    racket, common-lisp, clojure,
+    c, scalable-c style, c++,
+    ocaml, prolog,
+    elixir, erlang,
+    python, js.
+
+## 當前項目
+
+  - cicada-language :
+    https://github.com/xieyuheng/cicada
+
+## 過往項目
+
+  - cicada-nymph :
+    https://github.com/xieyuheng/cicada-nymph
+
+## 論文
+
+  - function compose, type cut, and the algebra of logic, ICFP Nara, 2016.
+    http://xieyuheng.github.io/paper/function-compose-type-cut.pdf
+
+## 授課
+
+  - 實驗性的彙編語言實驗, 中山大學, 2015.
+    http://the-little-language-designer.github.io/cicada-nymph/course/contents.html
