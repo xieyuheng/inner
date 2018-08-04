@@ -6,7 +6,8 @@
   - Email -- xyheme@gmail.com
   - Github -- [[https://github.com/xieyuheng][github.com/xieyuheng]]
   - [[https://github.com/xieyuheng/xieyuheng.github.io][Source repo]] of this site.
-  - [[./CV.html][CV]] ([[./CV-CN][中文]])
+  - [[./CV.html][CV]]
+  - [[./CV-CN][中文简历]] ([[https://github.com/xieyuheng/paper/blob/master/CV-CN.pdf][PDF]])
 
 - Collection
 
