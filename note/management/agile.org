@@ -6,7 +6,6 @@
 
     - the aim of fail-log is to let us fail quickly
 
-
 *** story-map
 
     - the aim of story-map is to keep us aiming at our direction
