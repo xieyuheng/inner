@@ -52,3 +52,10 @@
     and so overestimate what we can achieve in a day.
     -- Conor Neill
     -- In "The Discipline of Finishing: Conor Neill at TEDxUniversidaddeNavarra"
+
+* Technology
+
+  - I care about what the security and efficiency properties
+    of a technology are, not what it's called.
+    -- Radia Perlman
+    -- In "Blockchain: Hype or Hope?"

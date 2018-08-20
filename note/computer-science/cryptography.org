@@ -317,6 +317,38 @@
 
 * blockchain
 
+*** integrity proof of blockchain
+
+    - in traditional cryptography
+      there is trusted entities who has the secret private key
+      to digitally sign the data,
+      integrity proof is easy with secret private key.
+
+    - in blockchain,
+      there are no known trusted entities,
+      thus there are no secrets,
+      by design it is very expensive to create integrity proof.
+
+    - in traditional cryptography
+      there is a designed computational gap
+      between good guy -- with the secret private key
+      and bad guy -- want to forge an integrity proof
+
+    - in blockchain,
+      there is no computation for good guy and bad guy are equal.
+
+      - the security assumption of blockchain is that
+        computational power are with good guy,
+        the computational power are distributed among them.
+        the ledger was so difficult to compute,
+        when one block is computed,
+        it is broadcasted to all others
+        who trying to compute it but not yet success.
+
+    - in blockchain, 
+      An integrity proof using no secrets, 
+      no known trusted entities.
+
 *** simple imps
 
     https://hackernoon.com/learn-blockchains-by-building-one-117428612f46
