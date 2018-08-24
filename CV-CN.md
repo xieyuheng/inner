@@ -62,13 +62,13 @@
 ### 语
 
   - jojo's bizarre programming adventure
-    ([repo](https://github.com/xieyuheng/jojo))
+    (not public yet)
 
   - a language with fulfilling type system to model category theory
-    ([repo](https://github.com/xieyuheng/cicada))
+    (not public yet)
 
   - a language to capture the concept of continuum
-    ([repo](https://github.com/xieyuheng/continuum))
+    (not public yet)
 
   - a forth-like language
     ([repo](https://github.com/xieyuheng/cicada-nymph))
@@ -78,11 +78,11 @@
 ### 文
 
   - (2018-07-22) Semantic of De Bruijn Notation and Bizarre Syntax Adventure
-    ([paper](https://xieyuheng.github.io/jojo))
+    (not public yet)
     - Discussions about syntax design of programming language.
 
   - (2018-07-18) Fulfilling Type System
-    ([paper](https://xieyuheng.github.io/cicada))
+    (not public yet)
     - In which I use partly inhabited typed-record as type,
       and fully inhabited typed-record to inhabits such type.
 

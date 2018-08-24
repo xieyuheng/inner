@@ -11,6 +11,7 @@
 - Collection
 
   - [[./microblog.html][Paper reading Microblog]]
+  - [[./language-design.html][Language Design]]
   - [[./writing.html][Writing]]
   - [[./translation.html][Translation]]
   - [[./lecture.html][Lecture]]
