@@ -1,0 +1,9 @@
+#+title: security
+
+* Threat Models
+
+*** how to think about security
+
+    - policy -- what good guys want to achieve
+    - Threat Models -- what bad guys can do
+    - mechanism -- how to protect good guys

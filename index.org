@@ -10,7 +10,6 @@
 
 - Collection
 
-  - [[./language-design.html][Language Design]]
   - [[./microblog.html][Paper reading Microblog]]
   - [[./writing.html][Writing]]
   - [[./translation.html][Translation]]
