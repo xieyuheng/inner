@@ -1,0 +1,61 @@
+#+title: parsing techniques
+
+- A Practical Guide
+  - Second Edition
+
+* links
+
+  https://en.wikipedia.org/wiki/L-system
+
+  http://algorithmicbotany.org/papers/
+
+* [note]
+
+*** goal
+
+    - x -
+      our goal of this reading
+      is to learn about the classification of parsing algorithms.
+      we will still write parser by hand (not generate them from grammar)
+      but we will use a fromal language to document the grammar
+      and to guide the design of our parsing program.
+
+* intro
+
+  - parsing is the process of structuring a linear representation
+    in accordance with a given grammar.
+
+    - x -
+      the above statement seems is the reverse of the action of a parser.
+      because a parser construct AST from linear representation.
+      but actually, if given grammar,
+      we can generate the linear pattern
+      and match it against the concrete linear representation,
+      then we can get the AST,
+      because the grammar is the type of a AST node,
+      and the matched pattern give us the body of the node.
+
+  - The reverse problem -- given a (large) set of sentences,
+    find the/a grammar which produces them
+    -- is called grammatical inference.
+
+    - https://en.wikipedia.org/wiki/Grammar_induction
+
+    - x -
+      this seems is the true art.
+
+* grammars as a generating device
+
+  - "grammar describe language"
+
+  - "language" -
+    to a formal-linguist,
+    "language" does not have the usual meaning of the word "language",
+    but instead means a set of sentences.
+    which means given a sentence, we can decide
+    whether it is in the set -- the language.
+
+  - "grammar describe" -
+    grammar rules enumerate all sentences of a language,
+    i.e. generative grammar.
+    - x - it is  constructive!
