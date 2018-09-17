@@ -62,7 +62,7 @@
 ### 语
 
   - jojo's bizarre programming adventure
-    ([repo]([https://github.com/xieyuheng/jojo]))
+    ([repo](https://github.com/xieyuheng/jojo))
 
   - a language with fulfilling type system to model category theory
     (not public yet)
