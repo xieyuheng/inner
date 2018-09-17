@@ -62,7 +62,7 @@
 ### 语
 
   - jojo's bizarre programming adventure
-    (not public yet)
+    ([repo]([https://github.com/xieyuheng/jojo]))
 
   - a language with fulfilling type system to model category theory
     (not public yet)
@@ -78,7 +78,7 @@
 ### 文
 
   - (2018-07-22) Semantic of De Bruijn Notation and Bizarre Syntax Adventure
-    (not public yet)
+    ([paper](https://xieyuheng.github.io/jojo/de-bruijn-notation))
     - Discussions about syntax design of programming language.
 
   - (2018-07-18) Fulfilling Type System

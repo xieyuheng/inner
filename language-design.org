@@ -3,8 +3,7 @@
 
 * New
 
-  - jojo -- jojo's bizarre programming adventure
-    (not public yet)
+  - [[https://github.com/xieyuheng/jojo][jojo]] -- jojo's bizarre programming adventure
 
   - cicada -- a language with fulfilling type system to model category theory
     (not public yet)

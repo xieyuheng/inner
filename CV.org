@@ -33,17 +33,3 @@
 
     - One month writing elixir and learning cryptography,
       at a company which builds crypto currency exchange network.
-
-* REMARK
-
-  - Ideally one would put all the information
-    that one considers public about oneself on a page like this.
-    When asked to fill out a form,
-    one would simply put down the URL
-    in place of any information that is on the page
-    and tell the recipient of the form to just look it up.
-
-  - More precisely, here's a proposed new civil right.
-    No Government agency, educational institution or business
-    should ever be able to require anyone to supply anew information
-    that the institution already has or is publicly available.
