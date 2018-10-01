@@ -39,23 +39,20 @@
 ### 技
 
   - 语言设计 :
+    - (类型系统) (语法解析器) (解释器) (编译器)
     - (形式语言设计) (DSL)
-    - (类型系统)
-    - (程序语言实现技术) (解释器) (编译器)
 
   - 程序语言 :
-    - 精 :
-      - (scheme) (racket) (lisp)
+    - 静 :
+      - (rust) (haskell)
+      - (c) (scalable-c style) (c++)
+    - 动 :
+      - (scheme) (racket) (lisp) (clojure)
+      - (elixir) (erlang)
+      - (python)
+      - (nodejs) (javascript)
+    - 无 :
       - (forth)
-    - 熟 :
-      - 静 :
-        - (haskell)
-        - (c) (scalable-c style) (c++)
-      - 动 :
-        - (clojure)
-        - (elixir) (erlang)
-        - (python)
-        - (nodejs) (javascript)
 
 ------
 
