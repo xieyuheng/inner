@@ -1,0 +1,54 @@
+#+title: classical chinese
+
+* type
+
+  - noun-t -- name, person, place, thing
+    日 本 畢 楚
+
+  - verb-t -- action, state
+    變 產 望
+
+  - type of word is only clear in context
+
+* combine
+
+  - we have primitive noun-t verb-t data
+    we can also combine them in the following ways
+
+  清廉     -- V V -> V
+  來客     -- V N -> V
+  父母     -- N N -> N
+  心酸     -- N V -> V
+  心口如一 -- N N V N -> N V -> V
+
+  #+begin_src rust
+  grammar! {
+      N -> N N;
+      V -> V V | V N | N V;
+  }
+  #+end_src
+
+* weighting
+
+  清談 -- (V) V -> V
+  來客 -- (V) N -> N
+  唐音 -- (N) N -> N
+  自知 -- (N) V -> V
+
+  #+begin_src rust
+  grammar! {
+      N -> N N | (N) N | (V) N;
+      V -> V V | V N | N V | (V) V | (N) V|;
+  }
+  #+end_src
+
+* disambiguation -- 虛詞
+
+  人心 -- N N
+  人之心 -- (N) N
+
+  時祭 -- N N
+  以時祭 -- (N) V
+
+  日出於東 -- N V V N -- N V
+  不日成之 -- V V V N -- (V) V
