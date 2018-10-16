@@ -37,6 +37,18 @@
       - which is not an SGML application
         but which could profit from becoming one
 
+** 1.1 A brief history of SGML
+
+    - To get a feeling for what markup is,
+      consider the traditional processing of texts
+      arriving at a publisher, ready to be printed.
+
+    - The copy-editor annotates manuscripts with instructions
+      to the type-setter concerning layout, fonts, spacing,
+      indentation and so on.
+      These hand written instructions
+      are traditionally called *markup*.
+
 * (1998) (1988) (peter flynn) understanding-sgml-and-xml-tools
 
 *** [note]
