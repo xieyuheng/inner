@@ -20,44 +20,142 @@
       but they hide rely on lambda
       (which is not easy to use in rust)
 
-    - ukanren is the following
-      but how to do it without lambda ?
-      #+begin_src cicada
-      var-t = uuid-t
-      term-t = + (var-t ...)
-      world-t = dict-t (var-t term-t)
-      walk : -- var-t world-t -- term-t
-      extend : -- var-t term-t world-t -- world-t
-      goal-t = -- world-t -> stream-t (world-t)
-      // but I do not use the above alias
-      //   to be clear about the use of lambda
-      // also note that
-      //   if the language is not lazy
-      //   to use infinite stream
-      //   special lambda tricks are needed
-      unify : -- world-t term-t term-t -> world-t
-      == : -- term-t term-t -> -- world-t -> stream-t (world-t)
-      // and the stream-t returned by ==
-      //   can either has 1 or 0 world
-      //   == is the primitive goal constructor
-      disj : // logic or
-        -- world-t -> stream-t (world-t)
-           world-t -> stream-t (world-t)
-        -> world-t -> stream-t (world-t)
-      conj : // logic and
-        -- world-t -> stream-t (world-t)
-           world-t -> stream-t (world-t)
-        -> world-t -> stream-t (world-t)
-      mplus : // stream append
-        // not really appending
-        //   because we need to interleaving the stream
-        //   to avoid depth first searching
-        -- stream-t (world-t) stream-t (world-t)
-        -> stream-t (world-t)
-      bind : // stream map
-        -- stream-t (world-t)
-           -- world-t -> stream-t (world-t)
-        -> stream-t (world-t)
-      #+end_src
+    - how to do it without lambda ?
+      will we inevitably re-implement
+      all that lambda did for us with no gain
+      and make things more complicated than them need to be ?
 
-* ><
+*** ukanren
+
+    #+begin_src cicada
+    var-t = uuid-t
+    term-t = + (var-t ...)
+    subst-t = dict-t (var-t term-t)
+    walk : -- var-t subst-t -- term-t
+    deep-walk : -- term-t subst-t -- term-t
+    // acting subst-t on term-t
+    //   subst-t is compose-able
+    /    -- a category -- a preorder
+    extend : -- var-t term-t subst-t -- subst-t
+    goal-t = -- subst-t -> stream-t (subst-t)
+    // but I do not use the above alias
+    //   to be clear about the use of lambda
+    // note that we have a monad here
+    // also note that
+    //   if the language is not lazy
+    //   to use infinite stream
+    //   special lambda tricks are needed
+    unify : -- subst-t term-t term-t -> subst-t
+    == : -- term-t term-t -> -- subst-t -> stream-t (subst-t)
+    // and the stream-t returned by ==
+    //   can either has 1 or 0 subst
+    //   == is the primitive goal constructor
+    disj : // logic or
+      -- subst-t -> stream-t (subst-t)
+         subst-t -> stream-t (subst-t)
+      -> subst-t -> stream-t (subst-t)
+    conj : // logic and
+      -- subst-t -> stream-t (subst-t)
+         subst-t -> stream-t (subst-t)
+      -> subst-t -> stream-t (subst-t)
+    mplus : // stream append
+      // not really appending
+      //   because we need to interleaving the stream
+      //   to avoid depth first searching
+      -- stream-t (subst-t) stream-t (subst-t)
+      -> stream-t (subst-t)
+    bind : // stream map
+      -- stream-t (subst-t)
+         -- subst-t -> stream-t (subst-t)
+      -> stream-t (subst-t)
+    #+end_src
+
+* 1 Introduction
+
+* 2 Unification - Pure and Simple
+
+* 3 Flat Resolution - without backtracking
+
+* 4 Prolog
+
+* 5 Optimizing the Design
+
+* A Prolog in a Nutshell
+
+*** terms and substitutions
+
+    - in the most general form, a substitution is
+
+    #+begin_src cicada
+    subst-t : -- term-t -> term-t
+    #+end_src
+
+    - subst-t is obviously compose-able as function
+
+    - we can see that
+      it is indeed good to use function types
+      to model our semantics
+      maybe the problem is that they are hard to use in rust
+
+    - preorder struct of subst-t can be defined by
+      a is more general than b
+      if there exist x
+      such that a; x = b
+      there `;` is infix notation for function composition
+      note that eqv between functions is used
+      to define this relation
+
+    - the relation might be important
+      - for defining most general unifier (MGU)
+        as result of unification algorithm
+      - and if we only want to show
+        the most general subst-t to user
+        as search results
+
+    - for simple function type like subst-t
+      it is easy to see how to struct-lize it
+      to dict-t (var-t term-t)
+      and use deep-walk as subst-t apply to term-t
+
+    - but for complicated function type like goal-t above
+      the solution is not obvious
+
+*** unification algorithm
+
+    - with the abstract definition of subst-t and unify
+      we can formalize other semantics of our language
+      such as sub-type and type-check more easily
+
+    #+begin_src cicada
+    unify : -- u : term-t v : term-t -> s : subst-t
+    such-that {
+      check-same (term-t) (s (u) s (v))
+    }
+    #+end_src
+
+    - u and v in `unify` is called equation
+      or we can say :
+
+    #+begin_src cicada
+    equation-t = * (term-t term-t)
+    #+end_src
+
+    - solution preserving translation on equations
+      - decomposition
+      - variable elimination
+
+    - unification algorithm
+      is based on solution preserving translation
+      most general unifier (MGU) should be the result
+
+*** [note] unify in searching v.s. unify in checking
+
+    #+begin_src cicada
+    // unify in searching
+    unify : -- term-t term-t -> subst-t
+    // unify in checking
+    unify : -- term-t term-t -> result-t (subst-t, error-t)
+    // because we need to do error report to user
+    #+end_src
+
+* B The WAM at a glance
