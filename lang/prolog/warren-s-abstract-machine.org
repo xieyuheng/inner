@@ -1,0 +1,63 @@
+#+title: Warren's Abstract Machine
+
+* [note]
+
+*** motivation
+
+    - I am reading this because I want to implement cicada
+      and the new implementation strategy
+      is to use the type system as a logic programming first
+
+    - I have the following understanding :
+      - a [typical] dependent type system
+        in lack of reification and logic programming interfaces
+      - a [typical] logic programming
+        in lack of the informations
+        about the names of inference rules
+        and type system
+
+    - minikanren and ukanren are cool
+      but they hide rely on lambda
+      (which is not easy to use in rust)
+
+    - ukanren is the following
+      but how to do it without lambda ?
+      #+begin_src cicada
+      var-t = uuid-t
+      term-t = + (var-t ...)
+      world-t = dict-t (var-t term-t)
+      walk : -- var-t world-t -- term-t
+      extend : -- var-t term-t world-t -- world-t
+      goal-t = -- world-t -> stream-t (world-t)
+      // but I do not use the above alias
+      //   to be clear about the use of lambda
+      // also note that
+      //   if the language is not lazy
+      //   to use infinite stream
+      //   special lambda tricks are needed
+      unify : -- world-t term-t term-t -> world-t
+      == : -- term-t term-t -> -- world-t -> stream-t (world-t)
+      // and the stream-t returned by ==
+      //   can either has 1 or 0 world
+      //   == is the primitive goal constructor
+      disj : // logic or
+        -- world-t -> stream-t (world-t)
+           world-t -> stream-t (world-t)
+        -> world-t -> stream-t (world-t)
+      conj : // logic and
+        -- world-t -> stream-t (world-t)
+           world-t -> stream-t (world-t)
+        -> world-t -> stream-t (world-t)
+      mplus : // stream append
+        // not really appending
+        //   because we need to interleaving the stream
+        //   to avoid depth first searching
+        -- stream-t (world-t) stream-t (world-t)
+        -> stream-t (world-t)
+      bind : // stream map
+        -- stream-t (world-t)
+           -- world-t -> stream-t (world-t)
+        -> stream-t (world-t)
+      #+end_src
+
+* ><
