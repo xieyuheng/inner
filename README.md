@@ -1,3 +1,3 @@
-- [person](./person)
-- [note](./note)
-- [lang](./lang)
+- [person](person)
+- [note](note)
+- [lang](lang)

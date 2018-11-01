@@ -96,12 +96,12 @@
       to model our semantics
 
     - preorder struct of subst-t can be defined by
-      a is more general than b
-      if there exist x
-      such that a; x = b
-      there `;` is infix notation for function composition
-      note that eqv between functions is used
-      to define this relation
+      - a is more general than b
+        if there exist x
+        such that a; x = b
+      - there `;` is infix notation for function composition
+      - note that eqv between functions is used
+        to define this relation
 
     - the relation might be important
       - for defining most general unifier (MGU)
@@ -152,10 +152,66 @@
     // unify in searching
     unify : -- term-t term-t -> subst-t
     // unify in checking
-    unify : -- term-t term-t -> result-t (subst-t, error-t)
+    unify : -- term-t term-t -> result-t (subst-t error-t)
     // because we need to do error report to user
     #+end_src
 
 *** prolog
+
+***** [todo] datatype
+
+      #+begin_src cicada
+      relation-t = ?
+
+      // in a mexp syntax
+      list-append-t:zero (null-c succ succ)
+      list-append-t:succ (
+        cons-c (car cdr)
+        succ
+        cons-c (car result-cdr)
+      ) {
+        list-append-t (cdr succ result-cdr)
+      }
+      #+end_src
+
+***** interface
+
+      #+begin_src cicada
+      query : -- list-t (relation-t) -> stream-t (subst-t)
+
+      query ([
+        list-append-t (x y z)
+      ])
+      #+end_src
+
+***** low level semantics
+
+      - when try to implement prolog by a machine
+        the machinery meens much like that of a parsing machine
+
+      - without backtracking
+        during a query
+        the car relation-t of list-t (relation-t)
+        can be stepped to
+        tuple (list-t (relation-t) subst-t)
+        where the list-t (relation-t) comes from
+        the car relation-t's choices
+        query ([A, B, C]) => query ([A1, A2, ..., B, C])
+
+      - backtracking is needed
+        when choices are made
+        - x -
+          so called "non-deterministic choices" which means
+          choices will make the machine
+          a non-deterministic automaton
+          where non-deterministic means that the automaton
+          does not need to do choices
+          (beautiful tautology)
+
+      - two non-deterministic choices are made
+        in the process of querying
+        1. one of an relation to rewrite
+        2. among the potentially many rules
+           whose head to unify with this relation
 
 * B The WAM at a glance
