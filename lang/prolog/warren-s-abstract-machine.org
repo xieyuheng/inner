@@ -5,7 +5,7 @@
 *** motivation
 
     - I am reading this because I want to implement cicada
-      and the new implementation strategy
+      and the new implementing strategy
       is to use the type system as a logic programming first
 
     - I have the following understanding :
@@ -14,11 +14,10 @@
       - a [typical] logic programming
         in lack of the informations
         about the names of inference rules
-        and type system
+        and in lack of the type system
 
     - minikanren and ukanren are cool
-      but they hide rely on lambda
-      (which is not easy to use in rust)
+      but they rely on lambda
 
     - how to do it without lambda ?
       will we inevitably re-implement
@@ -95,7 +94,6 @@
     - we can see that
       it is indeed good to use function types
       to model our semantics
-      maybe the problem is that they are hard to use in rust
 
     - preorder struct of subst-t can be defined by
       a is more general than b
