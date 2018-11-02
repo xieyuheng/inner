@@ -1,4 +1,4 @@
-#+title: About Work
+#+title: idea
 
 * wiki-system for translation
 

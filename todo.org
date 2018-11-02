@@ -1,12 +1,6 @@
 #+title: todo
 
-* generate better html from org-mode source
-
-  - instead of fixing css for Paper reading Microblog
-
-  - maybe we should just use elisp to to this
-
-* re-org notes in /lang/cicada
+* re-org notes in lang/cicada
 
 * actor model
 
