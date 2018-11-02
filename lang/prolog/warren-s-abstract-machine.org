@@ -214,4 +214,9 @@
         2. among the potentially many rules
            whose head to unify with this relation
 
+***** problem
+
+      - prolog uses depth first searching
+        which we should avoid
+
 * B The WAM at a glance
