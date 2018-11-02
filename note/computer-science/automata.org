@@ -1,5 +1,24 @@
 #+title: automata
 
+* [note]
+
+*** typing
+
+    - transition is a partial function
+
+    #+begin_src cicada
+    // deterministic finite state machine
+    transition : -- state-t input-t -> state-t
+    // non-deterministic finite state machine
+    transition : -- state-t input-t -> set-t (state-t)
+
+    // finite-state transducer
+    // for mealy model
+    emit : -- state-t input-t -> output-t
+    // for moore model
+    emit : -- state-t -> output-t
+    #+end_src
+
 * (1971) (john conway) regular algebra and finite machines
 
 *** 0. Preliminaries to the Moore Theory
