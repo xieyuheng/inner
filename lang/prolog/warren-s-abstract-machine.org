@@ -71,7 +71,39 @@
 
 * 1 Introduction
 
+  - the author wish to use
+    a gradual presentation of partial Prolog machines
+    as shown by the titles of the chapters
+    - unification
+    - resolution (without backtracking)
+    - backtracking
+
+  - this approach is common sense for a good programmer
+
 * 2 Unification - Pure and Simple
+
+*** intro
+
+    - L0 -- lang-0 of term and query
+
+    - M0 -- machine-0 consist of
+      - data representation
+      - machine instruction
+
+    - having defined a program term p
+      one can submit any query ?-q
+      and execution either
+      1. fails if p and q do not unify
+      2. or succeeds with a binding of the variables in q
+         obtained by unifying it with p
+
+*** 2.1 Term representation
+
+*** 2.2 Compiling L0 queries
+
+    - x -
+      a query is not compiled to a term
+      but to a sequence of instructions which will build the term
 
 * 3 Flat Resolution - without backtracking
 
