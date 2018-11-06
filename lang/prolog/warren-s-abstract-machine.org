@@ -45,10 +45,10 @@
     //   to use infinite stream
     //   special lambda tricks are needed
     unify : -- subst-t term-t term-t -> subst-t
-    == : -- term-t term-t -> -- subst-t -> stream-t (subst-t)
-    // and the stream-t returned by ==
+    eqo : -- term-t term-t -> -- subst-t -> stream-t (subst-t)
+    // and the stream-t returned by eqo
     //   can either has 1 or 0 subst
-    //   == is the primitive goal constructor
+    //   eqo is the primitive goal constructor
     disj : // logic or
       -- subst-t -> stream-t (subst-t)
          subst-t -> stream-t (subst-t)
@@ -64,6 +64,33 @@
       -- stream-t (subst-t) stream-t (subst-t)
       -> stream-t (subst-t)
     bind : // stream map
+      -- stream-t (subst-t)
+         -- subst-t -> stream-t (subst-t)
+      -> stream-t (subst-t)
+    #+end_src
+
+*** ukanren - yoneda
+
+    #+begin_src cicada
+    var-t = uuid-t
+    term-t = + (var-t ...)
+    subst-t = dict-t (var-t term-t)
+    walk : -- var-t subst-t -- term-t
+    deep-walk : -- term-t subst-t -- term-t
+    extend : -- var-t term-t subst-t -- subst-t
+    unify : -- subst-t term-t term-t -> subst-t
+
+    goal-t = type {
+       eqo-goal-t  : -- term-t term-t -> goal-t
+       disj-goal-t : -- goal-t goal-t -> goal-t
+       conj-goal-t : -- goal-t goal-t -> goal-t
+    }
+    goal-apply : -- goal-t subst-t -> stream-t (subst-t)
+
+    mplus :
+      -- stream-t (subst-t) stream-t (subst-t)
+      -> stream-t (subst-t)
+    bind :
       -- stream-t (subst-t)
          -- subst-t -> stream-t (subst-t)
       -> stream-t (subst-t)
@@ -214,6 +241,12 @@
       query ([
         list-append-t (x y z)
       ])
+
+      relation-t : ?
+
+      query : -- relation-t list-t (term-t) -> stream-t (subst-t)
+
+      relation-t = -- list-t (term-t) -> goal-t
       #+end_src
 
 ***** low level semantics
