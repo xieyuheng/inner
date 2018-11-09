@@ -4,6 +4,10 @@
 
   - http://www-formal.stanford.edu/jmc/
 
+* (1959) programs with common sense
+
+*** ><
+
 * (1963) a basis for a mathematical theory of computation
 
 *** 1 introduction
@@ -206,3 +210,20 @@
 *** 3 CBCL and natural language
 
 *** 4 1998: Advice for XML, W3 and ICE
+
+* Oral History of John McCarthy
+
+*** the virtues of logic
+
+    - although a lot of ways people draw conclusions is not logical
+      but people recognize the correctness of logical arguments,
+      quite apart from anything having to do with computers,
+      if ones argument is not logically complete
+      people can see it is wrong.
+
+    - so after all logic was invented in terms of
+      communications among humans
+      not specifically for the use of computers.
+
+    - for AI logic is inevitable in the same sense that
+      for physical systems calculus is inevitable.
