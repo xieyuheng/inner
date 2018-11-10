@@ -1,4 +1,4 @@
-## Welcome to my inner universe
+welcome to my inner universe
 
 - [person](person)
 - [note](note)
