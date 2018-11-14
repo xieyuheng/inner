@@ -1,8 +1,14 @@
 #+title: to be the seasoned schemer
 
+* [todo-stack]
+
+  - how to change two mutual recursive functions
+    to one (non-mutual) recursive function ?
+
 * >< lost
+
 * >< 14 let there be names
-  [[shell:evince -p 95 ~/learning-lisp/scheme/the-seasoned-schemer.pdf &]]
+
   #+begin_src scheme
   (define-syntax try
     (syntax-rules ()
@@ -36,12 +42,18 @@
   就返回<sexp1>的值
 
   #+end_src
-* >< 15 the difference between men and boys...
+
+* >< 15 the difference between men and boys ..
+
 * 16 ready, set, bang!
+
   use (set! ...) to remember valuable things between
   two distinct uses of a function
+
 *** from deep to deepM
+
     first write deep simply
+
     #+begin_src scheme
     (define deep
       (lambda (m)
@@ -50,8 +62,10 @@
                           '())))))
     (deep 3)
     #+end_src
+
     then write deepR
     which calls deep after a side effect remembered all input and output
+
     #+begin_src scheme
     (define Ns '())
     (define Rs '())
@@ -69,6 +83,7 @@
       (display Rs)
       (newline))
     #+end_src
+
     then write deepM
     which calls deepR
     and will not remember the same in&output twice
@@ -83,6 +98,7 @@
       or changing by set!
       so after define deepM
       Ns and Rs are really there in the store in this way
+
     #+begin_src scheme
     (define find
       (lambda (n Ns Rs)
@@ -105,10 +121,12 @@
                 (deepR n))))))
     (deepM 10)
     #+end_src
+
     and to add the side effects casused by deepM
     to every self calling of the function deep
     by changing the recursion in deep
     from (deep (sub1 m)) to (deepM (sub1 m))
+
     #+begin_src scheme
     (define deep
       (lambda (m)
@@ -116,8 +134,10 @@
               (else (cons (deepM (sub1 m))
                           '())))))
     #+end_src
+
     after every functions was correct
     we should simplify them by merging
+
     #+begin_src scheme
     (define deepM
       (let ((Ns '())
@@ -135,7 +155,9 @@
                   result))))))
     (deepM 1000)
     #+end_src
+
 *** define recursive function length in a new way
+
     #+begin_src scheme
     (define length
       (let ((f (lambda (l) 0)))
@@ -156,12 +178,15 @@
 
     (length '(1 2 3 4))
     #+end_src
+
     use (set! <var> <obj*>) for (let ((<var> <obj>)) ...)
     if there is at least one (lambda ... between them
     or if the new <obj*> for <var> is a function that refers to <var>
     + in this way we can define recursive function
     + 畢竟set!和define的實現方式是類似的
+
 *** bang!
+
     下面當procedure F需要被傳入參數
     而在傳入參數時必須不被立刻求值時
     會出現與Y中同樣的
@@ -170,6 +195,7 @@
     但是這裏爲什麼需要這種技巧
 
     to extract a value and give it a name
+
     #+begin_src scheme
     (define length
       (let ([f (lambda (l) 0)])
@@ -187,11 +213,14 @@
         (letrec ((f (F (lambda (x) (f x)))))
           f)))
     #+end_src
+
 *** >< biz
+
     對於L這類通過Y或Y!生產遞歸函數的算子來說
     Y與Y!作用於它們的結果是完全相同的
     但是對於其他形狀的東西作用結果就可能不同了
     爲什麼?
+
     #+begin_src scheme
     (define biz
       (let ((x 0))
@@ -201,8 +230,11 @@
                       0
                       (f a))))))
     #+end_src
+
 * 17 we change, therefore we are (consC and why deepM is better than deep)
+
 *** deepM again
+
     #+begin_src scheme
     (define deepM
       (let ((Ns '())
@@ -219,11 +251,14 @@
                   (set! Rs (cons result Rs))
                   result))))))
     #+end_src
+
 *** consC
+
     in the following
     set! procedure conter and set-conter inside the consC
     enable us to open the box called N
     outside the consC's application
+
     #+begin_src scheme
     (define conter)
     (define set-conter)
@@ -240,8 +275,11 @@
     (conter)
     (set-conter 0)
     #+end_src
+
 *** why deepM is better then deep
+
     let deep and deepM using consC in the recursion first
+
     #+begin_src scheme
     (define deep
       (lambda (m)
@@ -263,7 +301,9 @@
                   (set! Rs (cons result Rs))
                   result))))))
     #+end_src
+
     >< any better way to use consC, rather than copy the code of them?
+
     #+begin_src scheme
     (define test-function-with-lots-of-numbers
       (lambda (f n)
@@ -294,28 +334,38 @@
     (test-function-with-lots-of-numbers deep 1000)
     (test-function-with-lots-of-numbers deepM 1000)
     #+end_src
+
     test deepM one time the result is 1000
     test deepM another time the result will be 0
 
-    ``a LISP programmer knows the value of everything
-    but the cost of nothing''
+    "a LISP programmer knows the value of everything
+    but the cost of nothing"
     --alan j.perlis
+
 *** >< rember1* again
+
 * 18 we change, therefore we are the same! (kkk)
+
 *** ccc
-    sexp is constructed by ``cons''
-    and changed by ``car cdr''
-    theoretically, ``car cdr cons'' are just functions
+
+    sexp is constructed by "cons"
+    and changed by "car cdr"
+    theoretically, "car cdr cons" are just functions
     that satisfy the following axioms:
+
     #+begin_src scheme
     (car (cons <obj1> <obj2>)) == <obj1>
     (cdr (cons <obj1> <obj2>)) == <obj2>
     #+end_src
+
     it is way we have this chapter
+
 *** add-at-end
+
     we don't handle the '() here
     so the second `add-at-end' of the following source-block is taken
     though the `add-at-end' in the next source-block is much cooler
+
     #+begin_src scheme
     (define add-at-end
       (lambda (l)
@@ -332,6 +382,7 @@
                (cons (car l) (add-at-end (cdr l)))))))
     (add-at-end '(egg1 egg2))
     #+end_src
+
     #+begin_src scheme
     (define add-at-end-too
       (lambda (l)
@@ -344,13 +395,16 @@
           l)))
     (add-at-end-too '(egg1 egg2))
     #+end_src
+
 *** kkk
-    use ``lambda'' to make ``kar kdr kons''
+
+    use "lambda" to make "kar kdr kons"
     由下面的實現看出'()並沒有什麼特殊性
     + 比如說如果我本身沒有'()
       我可以挑<atom>類型中的任意一個出來當作'()
     然後把這個東西從<atom>類型中排除 加入到<list>類型
     如何給scheme解釋器加一個說明性的類型系統
+
     #+begin_src scheme
     :kons: (<kist> . <kist>) -> (<selector> -> <selected-obj>)
     <kist> ::= <atom> | (<selector> -> <selected-obj>)
@@ -369,7 +423,9 @@
       (lambda (c)
         (c (lambda (a d) d))))
     #+end_src
+
 *** note
+
     1. 這裏明顯地需要從比數學中的函數更廣義的角度來理解lambda表達式
        lexical scope中對lambda表達式被求值爲closure
        closure的action 首先是一個對sexp的代換過程
@@ -377,10 +433,12 @@
        只有在最後apply的時候 sexp的fun和args才被區分 sexp中的項纔是不平等的
        這樣lambda表達式 能比數學中傳統意義上的函數表達更多的東西
        就在於做代換的時候fun位置也可以被代換
+
     2. 設想現在要設計一種函數式編程範式的新語法
        因爲我並不滿足scheme中的apply
        因爲apply的語義很侷限
        它總把sexp的頭一個位置的項理解爲fun 然後其他的項被它作用
+
     3. 要設計一個函數式編程範式的編程語言
        首先要找一個表示方式
        * LISP ::
@@ -391,6 +449,7 @@
             這種代換方式指明瞭lambda表達式被化爲closure後作用於參數的方式
             然後用apply去指明procedure（primitive或non-primitive的closure）
             在明確了的方式下作用於參數將得到什麼
+
     4. 想像一下
        我的新語言用一般的圖來做爲表達方式
        同樣有類似lambda表達式的東西來指明作用方式
@@ -398,6 +457,7 @@
        要求它不能提前特殊化圖中的某些位置
        那麼它應該如何完成一次作用呢？
        如果它去檢測元素的類型的話 procedure就不能作用於procedure了！
+
     5. 回過頭來想一下
        想要追求的語義是什麼？
        可以說在數學中 並不是把作用死板地理解爲一個函數在作用 一些參在被作用
@@ -408,10 +468,13 @@
        我寫出它們的同時還指定了當這兩個空位被填上時我應該以什麼方式
        從這兩個信息得到計算的結果 即(*,*) == f(*,*)
        所以LISP的能力其實是不被我的“新語言”所超越的
+
     6. (*,#) (*,*) f(*,*) 不同的表達方式可能代表了不同的計算方式
+
     7. 這真是狂想
        把一個作用方式結構化
        那麼這個結構所給出的豐富信息如何影響作用方式呢？
+
     8. 回憶一下friedman想要在這本書中教導人們計算的本質
        計算是有複雜性的
        這在於
@@ -423,14 +486,17 @@
        就是在這樣惡劣的條件下 我要利用計算機來幫助我的某些數學思考
        可以說 那些控制對人的理解而言的複雜性的技術
        正是我爲了獲得計算機對我的幫助而學習的
+
 *** kkk with set!
-    爲了定義set-kdr 而利用下面的bons 重新定義``kar kdr kons''
+
+    爲了定義set-kdr 而利用下面的bons 重新定義"kar kdr kons"
     + why bons and kons are separated?
       because we need to bind kdr to set! it letter
       but when closure is constructed
       no name will be bound to any loaction
       it is in the first step of the apply
       where the binding should happen temporarily
+
     #+begin_src scheme
     :kons: <kist> -> (<selector> -> <selected-obj>)
     (define bons
@@ -464,18 +530,23 @@
     (kar (kons 1 2))
     (kdr (kons 1 2))
     #+end_src
+
     + 嘗試描述類型的過程中來看
       好像要想實現完備的類型系統就要對語言作很多限制
+
     + what the visual model of our kkk may looks like
       (*,*) is not a good one
       there are something more basic that is not in our define of kkk
+
 *** >< play with kkk with set!
-    when we use ``add-at-end''
+
+    when we use "add-at-end"
     we will make a new list
-    but when we change to use ``add-at-end-too''
+    but when we change to use "add-at-end-too"
     the konses are the same except fot the last one
-    and the value of the <arg> of ``add-at-end-too'' is change
-    ``we change, therefore we are the same!''
+    and the value of the <arg> of "add-at-end-too" is change
+    "we change, therefore we are the same!"
+
     #+begin_src scheme
     (define kounter)
     (define set-kounter)
@@ -507,7 +578,9 @@
           (A l)
           l)))
     #+end_src
+
 *** >< same?
+
     #+begin_src scheme
     (define eklist?
       (lambda (ls1 ls2)
@@ -517,11 +590,12 @@
                ()))))
     #+end_src
 
-    there is a new idea of ``sameness'' once we introduce (set! ...)
-    ``two konses are the same if changing one changes the other''
-    by ``changing'' it means we are using the ``set-kdr''
-    by ``two konses'' it means two different names
+    there is a new idea of "sameness" once we introduce (set! ...)
+    "two konses are the same if changing one changes the other"
+    by "changing" it means we are using the "set-kdr"
+    by "two konses" it means two different names
     + notice `c1 c2' must be non-empty kons-list
+
     #+begin_src scheme
     (define same?
       (lambda (c1 c2)
@@ -534,9 +608,13 @@
             (set-kdr c2 2)
             v))))
     #+end_src
+
 *** >< play with same?
+
 *** >< play with set-kdr
+
 *** finite-lenkth
+
     循環者返回#f
     不循環者計數其長度
     + because we are doing recursion
@@ -565,6 +643,7 @@
       ><還有一個問題就是一般的有向圖怎麼辦？
       ><無窮的圖又怎麼辦？
       ><有限狀態機可以用來寫謂詞 但是很不理想
+
     #+begin_src scheme
     (define finite-lenkth
       (lambda (p)
@@ -584,8 +663,11 @@
                        (else
                         (add1 (C p (kdr p)))))))))
     #+end_src
+
 * 19 absconding with the jewels
+
 *** deep again
+
     #+begin_src scheme
     (define deep
       (lambda (m)
@@ -631,7 +713,9 @@
                 (cons (toppings 'c)
                       '())))
     #+end_src
+
 *** kill-the-orc-hero
+
     ><letcc到底是如何實現的？
 
     雖然我知道它是的幾種使用方式
@@ -652,6 +736,7 @@
     戰士也可以用(set! <var> <marker>)把卷軸通過<var>帶出當前的戰場
     然後在別的地方以(<var> <sexp*>)之名使用卷軸
     把使用者與使用者面前的<sexp*>傳送回製作卷軸的地方
+
     #+begin_src scheme
     (define kill-the-orc-hero
       (lambda (battle-field)
@@ -677,7 +762,9 @@
     (kill-the-orc-hero
      '((((1(331(3((3(1()31)4))132) 412414() 43241() ()) () 1344((43(((124())3413) ('orc-hero)))143))423)134)324))
     #+end_src
+
 *** >< two-in-a-row*?
+
     #+begin_src scheme
     (define two-in-a-row?
       (lambda (lat)
@@ -697,13 +784,14 @@
     then two-in-a-row*? will do the same, regardless of parentheses
     but it is long way to go
 
-    walk is like ``leftmost'' if we put the rigth kind of value into leave
+    walk is like "leftmost" if we put the rigth kind of value into leave
     其實是把leftmost分解成幾部分 因爲需要分別命名 以在別處靈活使用
     + 使用letcc的另一種典型方式
       更好的方法
       因爲更靈活
       因爲這樣就可以把函數分開來寫
-    下面的函數名``walk'' ``waddle''是說你只不過是在蹣跚學步呢 所以不要牛逼
+    下面的函數名"walk" "waddle"是說你只不過是在蹣跚學步呢 所以不要牛逼
+
     #+begin_src scheme
     (define leave)
     (define walk
@@ -758,24 +846,28 @@
     (get-first '(((((((((((((!)))))132)3)12)3)213)))))
     (get-first '())
     #+end_src
+
     上面因爲使用了很多set!而使get-next完全處離了數學函數的範圍
 
     then it is easy to define two-in-a-row*?
+
     #+begin_src scheme
 
     #+end_src
+
 *** note
-    ``during the evaluation of a scheme expression
+
+    "during the evaluation of a scheme expression
     the implementation must keep track of two things:
     1) what to evaluate
-    2) what to do with the value.''
+    2) what to do with the value."
 
-    ``we call `what to do with the value'
-    the continuation of a computation''
+    "we call `what to do with the value'
+    the continuation of a computation"
 
     --kent dybvig
 
-    原來call/cc中的``cc''就是指展開遞歸函數的過程中遇到call/cc時的``當前狀態''
+    原來call/cc中的"cc"就是指展開遞歸函數的過程中遇到call/cc時的"當前狀態"
     而(set! fill rest)將把(letcc rest ...)位置處的狀態保存起來
     在外面出現作用fill的時候將回到這個位置所對應的計算狀態
     + 因此把(letcc <marker> <sexp>)使用在最外面
@@ -786,6 +878,7 @@
       一些用來副作用
       最後一個用來返回值
       如果<body>中前面的<sexp>中有<marker>的action出現 後面的當然會被忽略
+
       #+begin_src scheme
       (define test-cc
         (lambda ()
@@ -796,6 +889,7 @@
                  (kkk "bad"))))
       (test-cc)
       #+end_src
+
     <marker>是一個單參數的procedure的name
     這個procedure的action：(<marker> <sexp*>)
     將把<sexp*>代入到在展開遞歸函數的過程中遇到(letcc ...)的那個位置
@@ -809,7 +903,7 @@
     + 當然 對fun部分和args部分的求值是按順序一個一個求的
       要想形成一個一元的procedure
       就必須要記住那些還在等待中的位置應該如何被求值
-    這個一元的procedure就是``call/cc''中的``cc''
+    這個一元的procedure就是"call/cc"中的"cc"
     如果一個需要被等待求值結果的位置原本是<sexp>
     那麼只要把它替換爲(letcc <marker> <sexp>)
     就可以把上面所說的一元的procedure保存到
@@ -821,17 +915,20 @@
       的話
       那麼letcc的出現是沒有意義的
       其實也可以是有意義的 比如下面這個例子
+
       #+begin_src scheme
       ((lambda (x)
          (x (lambda (ignore) "hi")))
        (letcc k k))
       #+end_src
+
     這樣一切就都明白了
     + 而letcc給出了這種語義的最清晰的語法
       又爲什麼有call/cc這種不清晰的語法?
       因爲它揭示了call/cc的實現方式嗎?
     + 一個問題是可不可以嵌套？
       即 代入之後是不是得(letcc <marker> <sexp*>)
+
       #+begin_src scheme
       (define test-cc
         (lambda ()
@@ -840,8 +937,11 @@
                   (kkk "good")))))
       (test-cc)
       #+end_src
+
       結果確實是如此<marker>在<sexp>中的出現是可以嵌套的
+
 *** play with call/cc
+
     #+begin_src scheme
     (let ([x (call/cc (lambda (k) k))])
       (x (lambda (ignore) "hi")))
@@ -866,6 +966,7 @@
     the continuation of the breakpoint is saved
     so that the computation may be restarted from the breakpoint
     more than once if desired
+
     #+begin_src scheme
     (define retry)
     (define factorial
@@ -879,11 +980,12 @@
 
     如何使用lwp? 什麼是multitasking
     就是函數們在返回值之前相互商量?
-    ``the simple "light-weight process" mechanism
+    "the simple "light-weight process" mechanism
     defined below allows multiple computations to be interleaved
     since it is nonpreemptive
     it requires that each process voluntarily "pause" from time to time
-    in order to allow the others to run''
+    in order to allow the others to run"
+
     #+begin_src scheme
     (define lwp-list '())
     (define lwp;; denote light-weight process
@@ -900,9 +1002,11 @@
                (lwp (lambda () (k #f)))
                (start))))
     #+end_src
+
 * CPS
-  ``把任意一個需要被等待求值結果的位置空出來
-  就會形成一個一元的procedure''
+
+  "把任意一個需要被等待求值結果的位置空出來
+  就會形成一個一元的procedure"
   但是這種想法只能作出一元procedure
   CPS可以實現作爲多元procedure的continuation
 
@@ -911,24 +1015,29 @@
      先形成一個自己的認識
      對所形成的這種認識的態度當然是
      只要有更清晰更有力的方式 我就一定讓它代替我的舊認識
+
   2. h被調用的位置的改變
      h被一個cons的作用調用(這個調用所形成的cc被明顯的寫了出來)
      置爲
      h的作用 其中h是在後面增加了一個參數位置的
      那個cc被明顯地寫出來並且被放入那個新的參數位置
+
   3. h的定義位置的改變 h的定義調用了g 因此這也是g的被調用的位置的改變
      因爲直接是g的作用
      所以幾乎沒什麼改變只是繼續把這個cc傳給被h調用的g
      不用改變cc
+
   4. g的定義位置的改變 也是f的調用位置的改變
      cons的作用調用f
      這個作用形成一個一元cc (調用f的作用的cc可以被記爲cc-f(denote cc of f))
      原來的cc要被 這個作用所形成的cc來擴充
      之後才能被傳入f的新參數位置
      這個擴充簡單地說就是把原來的cc作用在這個cc-f上形成一個新的cc
+
   5. f的定義位置的改變
      f不再調用任何non-primitive了
      所以這裏簡單的就是這裏的表達式要被傳入f的新參數位置的cc作用
+
   #+begin_src scheme
   (cons 'd
         (cons 'b
@@ -948,7 +1057,9 @@
     (h '()
        (lambda (v) (cons 'd v))))
   #+end_src
+
   not-CPS and CPS
+
   #+begin_src scheme
   (define f (x)
     <sexp>)
@@ -963,6 +1074,7 @@
   CPS可以實現一個函數作用在不同的條件下獲得不同的cc的效果
   下面的函數接受cc參數的參數位置是後兩個
   integer-divide成功時返回商與餘數的list
+
   #+begin_src scheme
   (define integer-divide
     (lambda (x y success failure)
@@ -973,19 +1085,21 @@
   (integer-divide 10 3 list (lambda (x) x))
   (integer-divide 10 0 list (lambda (x) x))
   #+end_src
-  ``explicit success and failure continuations
+
+  "explicit success and failure continuations
   can sometimes help to avoid the extra communication necessary
   to separate successful execution of a procedure
   from unsuccessful execution
   furthermore
   it is possible to have multiple success or failure continuations
   for different flavors of success or failure
-  each possibly taking different numbers and types of arguments''
+  each possibly taking different numbers and types of arguments"
 
-  ``any program that uses call/cc can be rewritten in cps without call/cc
+  "any program that uses call/cc can be rewritten in cps without call/cc
   but a total rewrite of the program
   (sometimes including even system-defined primitives)
-  might be necessary''
+  might be necessary"
+
   #+begin_src scheme
   (define product
     (lambda (ls)
@@ -1038,11 +1152,14 @@
   #+end_src
   CPS中recursion在於改變cc
   其實這種技巧在the little schemer的第8章已經學過了
+
 * internal definitions
+
   *internal definitions can appear only at the front of a body*
   *syntax definitions may appear among the internal definitions*
   怎麼能有這種東西?
   它不影響代碼清晰性的用法如下
+
   #+begin_src scheme
   (let ()
     (define-syntax <key>
@@ -1060,31 +1177,35 @@
     (define <var2> <sexp2>)
     (<sexp3>))
   #+end_src
+
   如同emacs-lisp中的progn
   可以在大的環境中分出來獨立的區域
+
   #+begin_src emacs-lisp
   (progn
     (defun <var1> <sexp1>)
     (defun <var2> <sexp2>)
     (<sexp3>))
   #+end_src
-  在scheme中 可能需要用這種表示方法的 就是下面的情況
-  ``variable definitions are guaranteed
-  to be evaluated from left to right
-  while the bindings of a letrec may be evaluated in any order''
-  ``however, use letrec*, which, like let*, guarantees
-  left-to-right evaluation order''
 
-  ``internal definitions may be used in conjunction with
+  在scheme中 可能需要用這種表示方法的 就是下面的情況
+  "variable definitions are guaranteed
+  to be evaluated from left to right
+  while the bindings of a letrec may be evaluated in any order"
+  "however, use letrec*, which, like let*, guarantees
+  left-to-right evaluation order"
+
+  "internal definitions may be used in conjunction with
   top-level definitions and assignments to help modularize programs
   each module of a program should make visible only those bindings
   that are needed by other modules
   while hiding other bindings
   that would otherwise clutter the top-level namespace
   and possibly result in unintended use
-  or redefinition of those bindings''
-  ``it does not support the publication of keyword bindings
-  since there is no analogue to set! for keywords''
+  or redefinition of those bindings"
+  "it does not support the publication of keyword bindings
+  since there is no analogue to set! for keywords"
+
   #+begin_src scheme
   (define export-var #f)
   (let ()
@@ -1094,7 +1215,9 @@
     <sexp3>
     )
   #+end_src
+
 * libraries
+
   #+begin_src scheme
   (library (grades)
            (export gpa->grade gpa)
@@ -1138,13 +1261,17 @@
                 (let ([ls (map letter->number '(g1 g2 ...))])
                   (/ (apply + ls) (length ls)))])))
   #+end_src
+
   #+begin_src scheme
   (import (grades))
   (gpa c a c b b)
   (gpa->grade 2.8)
   #+end_src
+
 * 20 what's in the store? (interpreter-with-define-and-set!)
+
 *** note
+
     1. 這一章寫一個新的有define和set!的解釋器
        有一個全局的命名空間global-table
        以元解釋器中的procedure爲新的table(of environment)的數據結構
@@ -1165,7 +1292,9 @@
        而增加這個*letcc就使得
        在我的這個解釋器中可是實現一個相同的
        可以在找不到name時報錯的解釋器
+
 *** >< hack
+
     1. 既然已經會使用letcc和set!了 那麼我能和這個解釋器玩的花樣就有趣多了
     2. 試着在這個解釋器中使用apply
     3. 試着補全<formals>的形式：
@@ -1175,7 +1304,9 @@
     4. 用元解釋器創造一箇中文的解釋器
        以這個中文的解釋器爲元解釋器再寫出純中文的解釋器就是可以解釋自身的了
        有趣之處在於這會完全改變寫代碼和讀代碼時的感受
+
 *** table as procedures and value and the-meaning and meaning
+
     #+begin_src scheme
     (define the-empty-table
       (lambda (name)
@@ -1222,7 +1353,9 @@
     ;; 正是這種技巧使得利用define來定義遞歸函數成爲可能
     ;; 這樣也就明白了Y!和letrec
     #+end_src
+
 *** classification
+
     #+begin_src scheme
     (define expression-to-action
       (lambda (e)
@@ -1261,7 +1394,9 @@
                      [else *application])]
               [else *application])))
     #+end_src
+
 *** *define and box
+
     #+begin_src scheme
     (define define?
       (lambda (e)
@@ -1290,19 +1425,25 @@
       (lambda (box)
         (box (lambda (it set) it))))
     #+end_src
+
 *** *null
+
     #+begin_src scheme
     (define *null
       (lambda (e table)
         '()))
     #+end_src
+
 *** *quote
+
     #+begin_src scheme
     (define *quote
       (lambda (e table)
         (text-of e)))
     #+end_src
+
 *** *identifer and *set
+
     #+begin_src scheme
     (define *identifer
       (lambda (e table)
@@ -1312,7 +1453,9 @@
         (setbox (lookup table (name-of e))
                 (meaning (rigth-side-of e) table))))
     #+end_src
+
 *** *lambda
+
     1. 這裏實現了在<body>中可以包含多個<sexp>這一特性
        *lambda作用於e與table將形成一個元解釋器中的closure
        這個closure作用時beglis將在擴展的table中對<body>求值
@@ -1363,7 +1506,9 @@
                                      (cdr values)
                                      table))))))
     #+end_src
+
 *** *application
+
     #+begin_src scheme
     (define *application
       (lambda (e table)
@@ -1382,7 +1527,9 @@
                         (evlis (cdr args) table)))
                 (meaning (car args) table))))))
     #+end_src
+
 *** *const
+
     #+begin_src scheme
     ;; 因爲evlis返回的參數值會被處理爲list
     ;; 所以用下面的兩個東西把參數從args-in-a-list中拿出來
@@ -1429,7 +1576,9 @@
        (a-prim number?)
        ))
     #+end_src
+
 *** *cond
+
     #+begin_src scheme
     (define *cond
       (lambda (e table)
@@ -1442,7 +1591,9 @@
                (meaning (answer-of (car lines)) table))
               (else (evcon (cdr lines) table)))))
     #+end_src
+
 *** *letcc
+
     #+begin_src scheme
     ;; 其實寫解釋器學的就是closure的使用方式
     ;; 比如下面這個把letcc直接加入我的解釋器中的過程就根本不觸及letcc的本質
@@ -1454,7 +1605,9 @@
                                (box (a-prim skip))
                                table)))))
     #+end_src
+
 *** auxiliary functions
+
     #+begin_src scheme
     (define text-of
       (lambda (x) (car (cdr x))))
@@ -1486,19 +1639,25 @@
     (define arguments-of
       (lambda (x) (cdr x)))
     #+end_src
+
     use (let ...) to name the values of repeated expressions
     in a function definition if they may be evaluated twice
     for one and the same use of the function
     and use (let ...) to name the values of expressions (without set!)
     that are re-evaluated every time a function is used
+
 *** 測試於下面的中文元解釋器
+
 * 中文解釋器零
+
   除了把所有的語法詞與基礎函數名翻譯成中文以外
   這個解釋器同上面的解釋器完全一樣
   是寫在元解釋器中的
   而之所以又稱之爲 零
   是因爲 就下面的中文解釋器而言它是元解釋器
+
 *** table as procedures and value and the-meaning and meaning
+
     #+begin_src scheme
     (define the-empty-table
       (lambda (name)
@@ -1532,7 +1691,9 @@
       (lambda (name)
         (lookup global-table name)))
     #+end_src
+
 *** classification
+
     #+begin_src scheme
     (define expression-to-action
       (lambda (e)
@@ -1573,7 +1734,9 @@
               [else *application]
               )))
     #+end_src
+
 *** *define and box
+
     #+begin_src scheme
     (define define?
       (lambda (e)
@@ -1601,19 +1764,25 @@
       (lambda (box)
         (box (lambda (it set) it))))
     #+end_src
+
 *** *null
+
     #+begin_src scheme
     (define *null
       (lambda (e table)
         '()))
     #+end_src
+
 *** *quote
+
     #+begin_src scheme
     (define *quote
       (lambda (e table)
         (text-of e)))
     #+end_src
+
 *** *identifer and *set
+
     #+begin_src scheme
     (define *identifer
       (lambda (e table)
@@ -1623,7 +1792,9 @@
         (setbox (lookup table (name-of e))
                 (meaning (rigth-side-of e) table))))
     #+end_src
+
 *** *lambda
+
     #+begin_src scheme
     (define *lambda
       (lambda (e table)
@@ -1657,7 +1828,9 @@
                                      (cdr values)
                                      table))))))
     #+end_src
+
 *** *application
+
     #+begin_src scheme
     (define *application
       (lambda (e table)
@@ -1672,7 +1845,9 @@
                         (evlis (cdr args) table)))
                 (meaning (car args) table))))))
     #+end_src
+
 *** *const
+
     #+begin_src scheme
     (define a-prim
       (lambda (p)
@@ -1712,7 +1887,9 @@
        (a-prim number?)
        ))
     #+end_src
+
 *** *cond
+
     #+begin_src scheme
     (define *cond
       (lambda (e table)
@@ -1725,7 +1902,9 @@
                (meaning (answer-of (car lines)) table))
               (else (evcon (cdr lines) table)))))
     #+end_src
+
 *** *letcc
+
     #+begin_src scheme
     (define *letcc
       (lambda (e table)
@@ -1735,7 +1914,9 @@
                                (box (a-prim skip))
                                table)))))
     #+end_src
+
 *** auxiliary functions
+
     #+begin_src scheme
     (define text-of
       (lambda (x) (car (cdr x))))
@@ -1766,7 +1947,9 @@
     (define arguments-of
       (lambda (x) (cdr x)))
     #+end_src
+
 * 中文解釋器一
+
 *** >< 記
     1. [X] 用kkk而不用ccc
     2. [ ] 加入apply
@@ -1785,7 +1968,9 @@
        保持所編譯處理的東西能編譯自身
        並且生成的目標代碼質量相同
        那就是實現了編譯器的層進開發
+
 *** 表 求 其意 意
+
     #+begin_src scheme
     (定 空表
         (λ (名)
@@ -1819,7 +2004,9 @@
         (λ (名)
             (查 總表 名)))
     #+end_src
+
 *** 分類
+
     #+begin_src scheme
     (定 式之作用
         (λ (e)
@@ -1858,7 +2045,9 @@
                      [否則 *作用])]
                 [否則 *作用])))
     #+end_src
+
 *** *定 盒
+
     #+begin_src scheme
     (定 定?
         (λ (e)
@@ -1886,19 +2075,25 @@
         (λ (盒)
             (盒 (λ (之物 之置) 之物))))
     #+end_src
+
 *** *空
+
     #+begin_src scheme
     (定 *空
         (λ (e 表)
             (引 ())))
     #+end_src
+
 *** *引
+
     #+begin_src scheme
     (定 *引
       (λ (e 表)
         (文部 e)))
     #+end_src
+
 *** *變元 *置
+
     #+begin_src scheme
     (定 *變元
         (λ (e 表)
@@ -1908,7 +2103,9 @@
             (重置盒 (查 表 (名部 e))
                     (意 (值部 e) 表))))
     #+end_src
+
 *** *λ
+
     #+begin_src scheme
     (定 *λ
         (λ (e 表)
@@ -1942,7 +2139,9 @@
                              (址 值鏈)
                              表))])))
     #+end_src
+
 *** *作用
+
     #+begin_src scheme
     (定 *作用
         (λ (e 表)
@@ -1958,7 +2157,9 @@
                   (意 (容 式鏈) 表))]
                 )))
     #+end_src
+
 *** *常元
+
     #+begin_src scheme
     (定 準備一元函數
         (λ (一元函數)
@@ -2027,7 +2228,9 @@
         (λ (鏈)
             (鏈 (λ (之置 之容 之址) 之址))))
     #+end_src
+
 *** *控
+
     #+begin_src scheme
     (定 *控
         (λ (e 表)
@@ -2041,7 +2244,9 @@
                 [否則 (求於控 (址 問答鏈) 表)]
                 )))
     #+end_src
+
 *** *捕
+
     #+begin_src scheme
     (定 *捕
         (λ (e 表)
@@ -2051,7 +2256,9 @@
                             (盒 (準備一元函數 捕之標))
                             表)))))
     #+end_src
+
 *** 輔
+
     #+begin_src scheme
     (定 文部
         (λ (x) (容 (址 x))))
@@ -2084,8 +2291,11 @@
     (定 參數鏈部
         (λ (x) (址 x)))
     #+end_src
+
 * 測試
+
 *** load one
+
     #+name: 在元解釋器中加載value一層
     #+begin_src scheme
     ;; (load "dependence.scm")
@@ -2412,8 +2622,11 @@
      '(define arguments-of
         (lambda (x) (cdr x))))
     #+end_src
+
 *** >< load two
+
     爲什麼需要list之後才能正常測試?
+
     #+name: 在value中加載value二層
     #+begin_src scheme
     ;; (define value-one
@@ -2744,7 +2957,9 @@
      '(define arguments-of
         (lambda (x) (cdr x))))
     #+end_src
+
 *** 加載 零
+
     #+name: 在中文解釋器零中加載中文解釋器一
     #+begin_src scheme
     (load "dependence.scm")
@@ -3030,9 +3245,12 @@
     (求 '(定 參數鏈部
          (λ (x) (址 x))))
     #+end_src
+
 *** >< 加載 一
+
     爲什麼需要把參數列表之後才能作中文解釋器中的求值?
     從錯誤信息看出一開始就在作用(car x)
+
     #+name: 在中文解釋器一中加載自身第一層
     #+begin_src scheme
     (define 中文解釋器一
@@ -3365,8 +3583,11 @@
           (λ (x) (址 x))))
 
     #+end_src
+
 *** 加載 二
+
     爲什麼每增加一層都要給參數增加一次list
+
     #+name: 在中文解釋器一中加載自身第二層
     #+begin_src scheme
     (define 中文解釋器二
@@ -3705,9 +3926,12 @@
      '(定 參數鏈部
           (λ (x) (址 x))))
     #+end_src
+
 *** 加載 三
+
     ikarus的速度很快
-    但是``三''在我的機器上此時已經需要十秒的時間了
+    但是"三"在我的機器上此時已經需要十秒的時間了
+
     #+name: 在中文解釋器一中加載自身第三層
     #+begin_src scheme
     (define 中文解釋器三
