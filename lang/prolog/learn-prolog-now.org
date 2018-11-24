@@ -1,5 +1,0 @@
-#+title: learn prolog now
-
-* intro
-
-  - fact rule query
