@@ -200,11 +200,15 @@
     FROM events
     WHERE starts >= '2012-04-01';
 
+    -- Write a query that
+    --   finds the country name of the LARP Club event.
+
     -- SELECT country.country_name
     -- FROM events event
     -- JOIN countries country
     -- JOIN venues venue
-    -- WHERE event.venue_id = venue.venue_id
+    -- WHERE event.title = 'LARP Club'
+    -- AND event.venue_id = venue.venue_id
     -- AND venue.country_code = country.country_code;
     #+end_src
 
