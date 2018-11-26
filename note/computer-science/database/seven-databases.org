@@ -212,6 +212,12 @@
     -- AND venue.country_code = country.country_code;
     #+end_src
 
+*** Day 2: Advanced Queries, Code, and Rules
+
+    #+begin_src sql
+
+    #+end_src
+
 * Riak
 
 * HBase
