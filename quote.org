@@ -11,6 +11,11 @@
     -- Eugenia Cheng
     -- In her 2015 TEDx talk.
 
+  - Equality does not means they are the same,
+    equality studies in what context they should be treated the same.
+    -- Eugenia Cheng
+    -- In her 2017 Lambda World talk.
+
 * Game
 
   - There is always a chance to start asking "Why?" again.
