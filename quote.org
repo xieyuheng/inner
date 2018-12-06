@@ -58,6 +58,19 @@
     -- Conor Neill
     -- In "The Discipline of Finishing: Conor Neill at TEDxUniversidaddeNavarra"
 
+* World
+
+  - I want to divide human understanding into two kinds
+    -- classical understanding and romantic understanding.
+    In terms of ultimate truth a dichotomy of this sort has little meaning
+    but it is quite legitimate when one is operating
+    within the classic mode used to discover or create a world of underlying form.
+    The terms classic and romantic, as Phaedrus used them, mean the following:
+    A classical understanding sees the world primarily as underlying form itself.
+    A romantic understanding sees it primarily in terms of immediate appearance.
+    -- Robert Pirsig
+    -- in "zen and the art of motorcycle maintenance"
+
 * Technology
 
   - I care about what the security and efficiency properties
