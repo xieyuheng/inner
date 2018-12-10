@@ -202,13 +202,3 @@
 ***** cs
 
       - feynman/lectures-on-computation.pdf
-
-*** philosophy reading list
-
-***** aristotle
-
-      - topic
-
-***** language
-
-      - wittgenstein/><
