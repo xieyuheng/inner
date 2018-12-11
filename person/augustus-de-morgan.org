@@ -1,0 +1,11 @@
+#+title: augustus de morgan
+
+* augustus-de-morgan-and-the-logic-of-relations
+
+*** intro
+
+    - de morgan's motive
+      an analysis of propositions which turned all
+      categorical propositions into relational propositions;
+      and the resulting attempt to work out syllogistic logic
+      within the framework of the logic of relations
