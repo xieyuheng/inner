@@ -1,5 +1,17 @@
 #+title: augustus de morgan
 
+* relational algebra
+
+  - composition of functions
+    is a special case of composition of relations
+
+  - conj is relation composition
+
+  - beginning with Augustus De Morgan,
+    the traditional form of reasoning with by syllogism
+    has been subsumed by relational logical expressions
+    and their composition.
+
 * augustus-de-morgan-and-the-logic-of-relations
 
 *** intro
