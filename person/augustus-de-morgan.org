@@ -21,3 +21,7 @@
       categorical propositions into relational propositions;
       and the resulting attempt to work out syllogistic logic
       within the framework of the logic of relations
+
+* (1860) On the Syllogism: IV, and on the Logic of Relations
+
+* (Vaughan Pratt) Origins of the Calculus of Binary Relations

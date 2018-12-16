@@ -286,5 +286,26 @@
 *** command line tools
 
     - redis-server
+      with dump.rdb file in current dir
 
     - redis-cli -- client
+
+*** Day 1: CRUD and Datatypes
+
+    - for a url-shorten app
+
+    #+begin_src
+    SET 7wks http://www.sevenweeks.org/
+    GET 7wks
+
+    MSET gog http://www.google.com yah http://www.yahoo.com
+    MGET gog yah
+
+    SET count 2
+    INCR count
+    GET count
+
+    HMSET user:eric name "Eric Redmond" password s3cret
+    HMGET user:eric name password
+    HVALS user:eric
+    #+end_src

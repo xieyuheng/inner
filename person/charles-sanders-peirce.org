@@ -1,0 +1,37 @@
+#+title: charles sanders peirce
+Collected Papers of Charles Sanders
+Peirce. III. Exact Logic. Harvard University
+Press, 1933.
+* (1868) Some Consequences of Four Incapacities
+
+* (1868) Questions Concerning Certain Faculties Claimed for Man
+
+* (1868) On a New List of Categories
+
+* (1869) Grounds of Validity of the Laws of Logic
+
+  - Further Consequences of Four Incapacities
+
+* (1877) the fixation of belief
+
+* (1878) how to make our ideas clear
+
+* (2000) (geraldine brady) from peirce to skolem
+
+*** 1 The Early Work of Charles S. Peirce
+
+*** 2 Peirce's Calculus of Relatives: 1870
+
+*** 3 Peirce on the Algebra of Logic: 1880
+
+*** 4 Mitchell on a New Algebra of Logic: 1883
+
+*** 5 Peirce on the Algebra or Relatives: 1883
+
+*** 6 Peirce's Logic of Quantifiers: 1885
+
+*** 7 Schroder's Calculus of Relatives
+
+*** 8 Lowenheim's Contribution
+
+*** 9 Skolem's Recasting

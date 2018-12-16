@@ -1,6 +1,4 @@
-#+TITLE:  the inspiration from joy
-#+AUTHOR: Manfred von Thun
-#+AUTHOR: 謝宇恆 \ XIE Yuheng
+#+title: the inspiration from joy
 
 * note
 
