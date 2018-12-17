@@ -312,7 +312,7 @@
     就像把粉筆掰斷了之後得到的是掰斷了的之前的那個粉筆
 
     雖然 Assignment statement 讓我們覺得
-    那裏好像有一個物體的存在被聲明瞭
+    那裏好像有一個物體的存在被聲明了
     但是當我們越深入細節
     這一點就可能看起來越不真實
 
@@ -333,6 +333,7 @@
   然後那些門上的線連接到小球上
 
   這樣每個做出來的電路就是一個以某些小球爲接口的東西
+
   #+begin_src scheme
   (define a (make-wire))
   (define b (make-wire))
@@ -341,67 +342,71 @@
   (define e (make-wire))
   (define s (make-wire))
 
-  (inverter )
-  (and-gate )
-  (or-gate )
+  (or-gate a b d)
+  (and-gate a b c)
+  (inverter c e)
+  (and-gate d e s)
   #+end_src
 
-  說一個語言中的複合物看起來要像基本物一樣
-  + 以同樣的方式使用和處理 等等
+  一個語言中的複合物看起來要像基本物一樣
+  以同樣的方式使用和處理 等等
   儘管複合物與基本物之本質不同
-  如果 digrap 能夠形成編程範式 那麼這個準則如何呢???
-  算法越複雜 用來表達算法的圖就越複雜
-  需要惰性求值才能避免每個算法本身都是一個複雜的圖
-  而需要的效果是:
-  當需要的時候可以惰性求值出這個用來表達算法的複雜的圖
-  當然上面的準則說的其實是複合物的錄入和打印方式
-  這些 reader 和 writer 只不過是處理這些數據結構的另外一些函數而已
 
 * 6A Streams-Part 1
 
-  引入 assignment 之後,一切變得複雜多了,很多概念都進入討論了
+  引入 assignment 之後
+  一切變得複雜多了
+  很多概念都進入討論了 比如 狀態 時間 和 id
 
   It's a technically harder way of looking at things
-  because we have to think more mechanistically about our programming language
+  because we have to think more mechanistically
+  about our programming language
   We can't just think about it as mathematics
-  It's philosophically harder, because suddenly there are all these funny issues
-  about what does it mean that something changes or that two things are the same
-  And also, it's programming harder, because as Gerry showed last time
-  there are all these bugs having to do with bad sequencing and aliasing
-  that just don't exist in a language where we don't worry about objects
-  + 老師的文體不錯
+  It's philosophically harder, because suddenly
+  there are all these funny issues
+  about what does it mean that something changes
+  or that two things are the same
+  And also, it's programming harder,
+  because as Gerry showed last time
+  there are all these bugs
+  having to do with bad sequencing and aliasing
+  that just don't exist in a language where
+  we don't worry about objects
 
   但是
   之所以要引入這些概念是因爲
-  We wanted to build systems that fall apart into chunks that seem natural
+  We wanted to build systems that
+  fall apart into chunks that seem natural
 
   又但是
-  See, maybe the real reason that we pay such a price to write programs
-  that mirror our view of reality is that we have the wrong view of reality
-  See, maybe time is just an illusion, and nothing ever changes
+  See, maybe the real reason that
+  we pay such a price to write programs
+  that mirror our view of reality is that
+  we have the wrong view of reality
+  See, maybe time is just an illusion,
+  and nothing ever changes
 
   又但是
   我們畢竟得到了一種來把模塊分得更細的能力
   只要不隨意的把這種能力用到沒有必要的地方就行了
 
   here comes stream processing: (as conventional interfaces)
-  another way to decompose systems
-  that's more like the signal processing engineer's view of the world
-  than it is like thinking about objects that communicate sending messages
+  another way to decompose systems that's
+  more like the signal processing engineer's view of the world
+  than it is like thinking about objects
+  that communicate sending messages
 
-
-  + 寫 lisp(也許尤其是 scheme)程序
-    就像是在直接用非常接近自然語言(但是又極其嚴整)的語言
-    大體上描述自己解決某個問題的方法
-    然後在把去逐級實現細節
-
-  + 當你有興趣學的東西,和老師有興趣講的東西完全一致時,奇蹟就發生了
+  - 當你有興趣學的東西
+    和老師有興趣講的東西完全一致時
+    奇蹟就發生了
 
 * [todo] 6B Streams-Part 2
 
 * [todo] 7A
 
-  把程序視爲機器,將要展示的是 universal machine (考慮圖靈 和 他的 通用圖靈機)
+  把程序視爲機器
+  將要展示的是 universal machine
+  (考慮圖靈 和 他的 通用圖靈機)
 
 * 9A 一個可以作爲編譯器的中間語言的低級語言
 
