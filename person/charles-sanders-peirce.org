@@ -1,7 +1,5 @@
 #+title: charles sanders peirce
-Collected Papers of Charles Sanders
-Peirce. III. Exact Logic. Harvard University
-Press, 1933.
+
 * (1868) Some Consequences of Four Incapacities
 
 * (1868) Questions Concerning Certain Faculties Claimed for Man
