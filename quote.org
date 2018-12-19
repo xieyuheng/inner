@@ -5,26 +5,26 @@
 
   - The code pretty much writes itself.
     -- Bartosz Milewski
-    -- In "category theory for programmers".
+    -- "category theory for programmers".
 
   - Mathematics is a beautiful dream world where progress can begin.
     -- Eugenia Cheng
-    -- In her 2015 TEDx talk.
+    -- 2015 TEDx talk.
 
   - Equality does not means they are the same,
     equality studies in what context they should be treated the same.
     -- Eugenia Cheng
-    -- In her 2017 Lambda World talk.
+    -- 2017 Lambda World talk.
 
 * Game
 
   - There is always a chance to start asking "Why?" again.
     -- James Portnow
-    In "The Martian Chronicles - The New Martians - Extra Sci Fi - #13"
+    -- "The Martian Chronicles - The New Martians - Extra Sci Fi - #13"
 
   - You will level up as a player, even if you do not feel any progress in the game.
     -- James Portnow
-    -- In "Dark Souls - #7 - Dan Masters the Crossbow - Side Quest"
+    -- "Dark Souls - #7 - Dan Masters the Crossbow - Side Quest"
 
 * Research
 
@@ -34,7 +34,7 @@
     It's easy to interpret your project failing as your failing;
     in fact, it proves that you had the courage to do something difficult.
     -- MIT AI Lab graduate students
-    -- In "How to do Research At the MIT AI Lab"
+    -- "How to do Research At the MIT AI Lab"
 
 * Life
 
@@ -56,7 +56,14 @@
   - We so underestimate what we can achieve in a year,
     and so overestimate what we can achieve in a day.
     -- Conor Neill
-    -- In "The Discipline of Finishing: Conor Neill at TEDxUniversidaddeNavarra"
+    -- "The Discipline of Finishing: Conor Neill at TEDxUniversidaddeNavarra"
+
+  - The great discoveries, in math and CS,
+    are not make by doing complicated things.
+    They are the discoveries that tell you very very simple things
+    that people haven't really noticed.
+    -- John Horton Conway
+    -- "On His LOVE-HATE Relationship with LIFE" - Talks at Google
 
 * World
 
@@ -76,4 +83,4 @@
   - I care about what the security and efficiency properties
     of a technology are, not what it's called.
     -- Radia Perlman
-    -- In "Blockchain: Hype or Hope?"
+    -- "Blockchain: Hype or Hope?"
