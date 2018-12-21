@@ -1,0 +1,15 @@
+#+title: model theory
+
+* [note]
+
+  - model theory is the study of classes of mathematical structures
+    (e.g. groups, fields, graphs, universes of set theory)
+    from the perspective of mathematical logic.
+
+  - model theory recognises
+    and is intimately concerned with a duality:
+    it examines semantical elements (meaning and truth)
+    by means of syntactical elements (formulas and proofs)
+    of a corresponding language.
+
+  - non-standard analysis is an example of model theory
