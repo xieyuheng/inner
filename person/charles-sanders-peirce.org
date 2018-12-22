@@ -10,6 +10,30 @@
 
   - Further Consequences of Four Incapacities
 
+* (1870) Description of a Notation for the Logic of Relatives
+
+  - Resulting from an Amplification
+    of the Conceptions of Boole's Calculus of Logic
+
+*** [note] from-peirce-to-skolem
+
+    - Peirce's belief that
+      this was the most important advance since Boole
+      was certainly based on the fact that
+      the algebra ofrelations is far more expressive
+      than the algebra of propositions,
+      and reflects a great deal more of everyday logical inference
+      than does Boole'stheory of sets,
+      since relations, not just sets,
+      are the bread and butter ofreasoning.
+
+    - In this early work on the calculus of relatives,
+      Peirce shows more concern with
+      maintaining the analogies between
+      the notation he is setting forth
+      and ordinary algebraic notation
+      than with giving a direct account of the problem at hand.
+
 * (1877) the fixation of belief
 
 * (1878) how to make our ideas clear
