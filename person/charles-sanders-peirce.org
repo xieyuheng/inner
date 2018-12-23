@@ -134,6 +134,44 @@
       can all relations be reduced to
       composition of relations with arity less or equal than 3 ?
 
+    - x -
+      the author uses single letter variable name
+      and uses different fonts
+      to distinguish different classes of terms,
+      I can not afford to do the same,
+      I will give variable longer names.
+
+    - absolute terms :
+      a. animal
+      b. black
+      f. Frenchman
+      h. horse
+      m. man
+      p. President of the United States Senate
+      r. rich person
+      u. violinist
+      v. Vice-President of the United States
+      w. woman
+
+    - simple relative terms :
+      a. enemy
+      b. benefactor
+      c. conqueror
+      e. emperor
+      h. husband
+      I. lover
+      m. mother
+      n. not
+      o. owner
+      s. servant
+      w. wife
+
+    - conjugative terms :
+      g. giver to -- of --
+      b. betrayer to -- of --
+      w. winner over of -- to -- from --
+      t. transferrer from -- to --
+
 *** Numbers corresponding to Letters
 
 *** The Signs of Inclusion, Equality, etc.
