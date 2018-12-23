@@ -10,12 +10,63 @@
 
   - Further Consequences of Four Incapacities
 
-* (1870) Description of a Notation for the Logic of Relatives
+* [todo] (1870) Description of a Notation for the Logic of Relatives
 
   - Resulting from an Amplification
     of the Conceptions of Boole's Calculus of Logic
 
-*** [note] from-peirce-to-skolem
+*** General Definitions of the Algebraic Signs
+
+    - *Inclusion in* or *being as small as* is a *transitive* relation.
+      The consequence holds that
+
+      If    x -< y
+      and   y -< z
+      then  x -< z
+
+    - *Equality* is the conjunction of being as small as and its converse.
+      To say x = y is to say that x -< y and y -< x.
+
+    - *Being less than* is being as small as with the exclusion of its converse.
+      To say that x < y is to say that x -< y, and that it is not true that y -< x.
+
+    - *Being greater than* is the converse of being less than.
+      To say that x > y is say that y < x.
+
+    - *Addition* is an associative operation.
+      That is to say,
+
+      (x +, y) +, z == x +, (y +, z)
+
+      - I write a comma below the sign of addition,
+        except when (as is the case in ordinary algebra)
+        inverse operation (subtraction) is determinative.
+
+    - Addition is a commutative operation.
+      That is,
+
+      x +, y == y +, x
+
+    - *Invertible addition* is addition the corresponding inverse of which is determinative,
+      The last two formulae hold good for it, and also the consequence that
+
+      If    x + y == z
+      and   x + y' == z
+      then  y == y'
+
+* (1877) the fixation of belief
+
+* (1878) how to make our ideas clear
+
+* [todo] (1880) On the algebra of logic
+
+* (2000) (geraldine brady) from peirce to skolem
+
+*** 1 The Early Work of Charles S. Peirce
+
+*** 2 Peirce's Calculus of Relatives: 1870
+
+    - (1870) Description of a Notation for the Logic of Relatives
 
     - Peirce's belief that
       this was the most important advance since Boole
@@ -34,17 +85,9 @@
       and ordinary algebraic notation
       than with giving a direct account of the problem at hand.
 
-* (1877) the fixation of belief
-
-* (1878) how to make our ideas clear
-
-* (2000) (geraldine brady) from peirce to skolem
-
-*** 1 The Early Work of Charles S. Peirce
-
-*** 2 Peirce's Calculus of Relatives: 1870
-
 *** 3 Peirce on the Algebra of Logic: 1880
+
+    - (1880) On the algebra of logic
 
 *** 4 Mitchell on a New Algebra of Logic: 1883
 
