@@ -202,3 +202,15 @@
 ***** cs
 
       - feynman/lectures-on-computation.pdf
+aristotle (lukasiewicz) -> de morgan -> peirce
+boole
+
+use babeljs to study js syntax and parsing
+Semiotic theory of C. S. Peirce
+
+roger-lyndon
+jean-gallier
+
+sd0/book/math/algebra/relational-algebra
+sd0/book/math/logic/algebraic-logic
+sd0/lang/prolog/reading/constraint-logic-programming
