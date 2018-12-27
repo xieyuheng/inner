@@ -1,6 +1,11 @@
 #+title: entropy
 
-* definitions
+* etymology
+
+  - energy  -- ἐν (en, "in") + ἔργον (érgon, "work").
+  - entropy -- ἐν (en, "in") + τροπή (tropḗ, "transformation")
+
+* thermodynamics
 
   - hot thing is only useful for turning wheels
     when it is spreading its energy to cold thing.
@@ -21,3 +26,11 @@
 
   - entropy can be used to define direction of time.
     https://en.wikipedia.org/wiki/Entropy_(arrow_of_time)
+
+* information theory
+
+  - to specify (describe) low-entropy, low-probability states,
+    we need more information for encoding.
+
+    to specify high-entropy, normal, high-probability states,
+    we do not need to say much.
