@@ -1,0 +1,23 @@
+#+title: entropy
+
+* definitions
+
+  - hot thing is only useful for turning wheels
+    when it is spreading its energy to cold thing.
+    (thinking about Sterling engine)
+
+    once the hot and cold are evenly distributed,
+    (once the energy is used)
+    one can not use it anymore.
+
+    thus, entropy is a measure of how spread out your energy is.
+
+    using energy is making hot and cold even.
+
+  - why non-evenly distributed states tend to spreading out evenly ?
+    because statistically non-evenly distributed states are so rare.
+
+  - entropy always increase, the universal will be evenly cold in the end.
+
+  - entropy can be used to define direction of time.
+    https://en.wikipedia.org/wiki/Entropy_(arrow_of_time)
