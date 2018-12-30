@@ -1,16 +1,69 @@
 #+title: charles sanders peirce
 
-* (1868) Some Consequences of Four Incapacities
+* links
 
-* (1868) Questions Concerning Certain Faculties Claimed for Man
+  - https://en.wikipedia.org/wiki/Charles_Sanders_Peirce
+  - https://en.wikipedia.org/wiki/Charles_Sanders_Peirce_bibliography
 
-* (1868) On a New List of Categories
+  - https://plato.stanford.edu/entries/peirce/
+  - https://plato.stanford.edu/entries/peirce-logic/
 
-* (1869) Grounds of Validity of the Laws of Logic
+  - http://www.iupui.edu/~arisbe/
+    A philosophical website,
+    providing access to resources for
+    the life, work, and continuing interest in
+    the American philosopher, scientist, and humanist
+    Charles Sanders Peirce
+
+  - http://www.peirce.org/
+
+  - http://www.pragmaticism.net/
+
+  - http://peirce.iupui.edu/index.html
+
+  - https://academic.oup.com/monist
+
+* (1868) some consequences of four incapacities
+
+* (1868) questions concerning certain faculties claimed for man
+
+  - x -
+    about semiotics
+
+* (1868) on a new list of categories
+
+  - http://www.iupui.edu/~arisbe/menu/library/bycsp/newlist/nl-frame.htm
+
+  - https://en.wikipedia.org/wiki/Categories_(Peirce)
+    In Aristotle's logic, categories are adjuncts to reasoning
+    that are designed to resolve equivocations, ambiguities
+    that make expressions or signs recalcitrant to being ruled by logic.
+    Categories help the reasoner to render signs
+    ready for the application of logical laws.
+    An equivocation is a variation in meaning
+    -- a manifold of sign senses -- such that,
+    as Aristotle put it about names in the opening of Categories
+    "Things are said to be named 'equivocally' when,
+    though they have a common name,
+    the definition corresponding with the name differs for each".
+    So Peirce's claim that three categories are sufficient amounts
+    to an assertion that all manifolds of meaning
+    can be unified in just three steps.
+
+  - the act of lifting as argument of relation and increasing arity
+
+  - classification of relations
+
+  - analysis of dependence between relations
+    prescind <-> depend
+
+  - analysis relations of arity 0 1 2 3
+
+* (1869) grounds of validity of the laws of logic
 
   - Further Consequences of Four Incapacities
 
-* [todo] (1870) Description of a Notation for the Logic of Relatives
+* [todo] (1870) description of a notation for the logic of relatives
 
   - Resulting from an Amplification
     of the Conceptions of Boole's Calculus of Logic
@@ -189,7 +242,7 @@
 
 * (1878) how to make our ideas clear
 
-* [todo] (1880) On the algebra of logic
+* [todo] (1880) on the algebra of logic
 
 * (2000) (geraldine brady) from peirce to skolem
 
@@ -297,3 +350,12 @@
       such as reactions.
 
     - [[https://en.wikipedia.org/wiki/Indexicality][Indexicality]]
+
+* [todo] (1902) the simplest mathematics
+
+  - [[https://en.wikipedia.org/wiki/Hypostatic_abstraction][Hypostatic_abstraction]]
+    to convert an adjective or predicate into an extra subject,
+    thus increasing by one the number of "subject" slots,
+    called the arity or adicity, of the main predicate.
+    - for example "Honey is sweet"
+      is transformed into "Honey has sweetness"
