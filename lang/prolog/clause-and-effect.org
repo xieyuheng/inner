@@ -17,6 +17,13 @@
 
 * 5 Difference Structures
 
+  - x -
+    using difference structures is like factoring space.
+    i.e. to vue the space as quotient space of richer space
+
+    int-t == (x : nat-t, y : nat-t) / x1 + y2 == x2 + y1
+    list-t == (x : list-t, y : list-t) / append
+
 * 6 Case Study: Term Rewriting
 
 * 7 Case Study: Manipulation of Combinational Circuits

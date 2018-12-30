@@ -121,12 +121,17 @@
 
     - [todo]
 
-    - x -
-      The categorical understanding of the art of abstraction
+*** [note] motive for category theory
+
+    - The categorical understanding of the art of abstraction
       is not achieved at the author's time.
 
       This kinds of pre category theory striving for abstraction
       can be used as a motivation to introduce category theory.
+
+    - in the following sections,
+      Peirce provides interpretation of the abstract algebraic system,
+      starting from Letters.
 
 *** Use of the Letters
 
@@ -176,7 +181,9 @@
 
 *** The Signs of Inclusion, Equality, etc.
 
-*** [todo]
+*** The Signs for Addition
+
+*** The Signs for Multiplication
 
 * (1877) the fixation of belief
 
@@ -224,3 +231,69 @@
 *** 8 Lowenheim's Contribution
 
 *** 9 Skolem's Recasting
+
+* [note] semiotics (semeiotics)
+
+*** etymology
+
+    - semiotics
+      Coined by John Locke
+      from σημειωτικός (sēmeiōtikós, "fitted for marking, portending")
+      from σημειοῦν (sēmeioûn, "to mark, interpret as a portend")
+      from σημεῖον (sēmeîon, "a mark, sign, token")
+      from σῆμα (sêma, "mark, sign")
+
+    - portend
+      Borrowed from Latin portendere ("to foretell")
+      from por- ("forward") + tendere ("to stretch"),
+      present active infinitive of tendo
+
+*** triadic definition
+
+    - [[https://en.wikipedia.org/wiki/Semiotic_theory_of_Charles_Sanders_Peirce][Semiotic_theory_of_Charles_Sanders_Peirce]]
+
+    - Peirce adopted the term semiosis (or semeiosis)
+      and defined it to mean an "action, or influence,
+      which is, or involves, a cooperation of three subjects,
+      such as a sign, its object, and its interpretant,
+      this trirelative influence
+      *not being in any way resolvable*
+      into actions between pairs".
+
+      - x -
+        in my view, the three means,
+        1. formal syntax and abstract syntax
+        2. objects
+        3. interpretation -- operations on objects
+           note that,
+           interpretation might happens in context (or in environment)
+
+      - one might say my view is wrong,
+        because many formal syntax can denote the same system of objects,
+        so objects are independent from syntax,
+        but it is also true that there must at least one syntax,
+        and different syntax might make us think differently.
+        thus the three are intertwined.
+
+    - his semiotics is not contained
+      in a mathematical or deductive system
+      and does not proceed chiefly by drawing necessary conclusions
+      about purely hypothetical objects or cases.
+
+    - [[https://en.wikipedia.org/wiki/Interpretant][Interpretant]]
+      For example, one way to approach the concept of an interpretant
+      is to think of a psycholinguistic process.
+      In this context, an interpretant can be understood as
+      a sign's effect on the mind, or on anything that acts like a mind,
+      what Peirce calls a quasi-mind.
+      An interpretant is what results from a process of interpretation,
+      one of the types of activity
+      that falls under the heading of semiosis.
+
+    - Peirce argued that logic is the formal study of signs
+      in the broadest sense, not only signs that are
+      artificial, linguistic, or symbolic,
+      but also signs that are semblances or are indexical
+      such as reactions.
+
+    - [[https://en.wikipedia.org/wiki/Indexicality][Indexicality]]
