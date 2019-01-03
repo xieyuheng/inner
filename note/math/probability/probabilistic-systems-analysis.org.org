@@ -1,0 +1,61 @@
+#+title: probabilistic systems analysis
+
+* links
+
+  https://www.youtube.com/playlist?list=PLUl4u3cNGP61MdtwGTqZA0MreSaDybji8
+
+* intro
+
+  - probability as a mathematical framework
+    for reasoning about uncertainty
+
+* probabilistic models
+
+  - sample space -- set of outcomes
+    we record which outcome is more likely to occur compare to others
+    by assigning probability to outcome.
+
+    but to deal with continuous sample space
+    we must adjust our method by assigning probability to events
+    where an event is a subset of sample space
+
+    this definition also handles discrete sample space well
+    by viewing assigning probability to sets of one element
+
+  - probability axioms
+
+    - nonnegative -
+      -- A : sample-space -> P (A) >= 0
+
+    - normalization -
+      P (sample-space) = 1
+
+    - additivity -
+      -- intersection (A B) = empty-set
+      -> P (union (A B)) = add (P (A) P (B))
+
+    - countable additivity -
+      the additivity axiom need to be generalized to sequence of subsets
+      instead of just two subsets
+      (where sequence implies countable)
+
+    the axioms looks like integration of some function over sample-space
+
+  - extra notes about subsets of sample-space
+    ignore ugly and weird subsets
+    because for some weird subsets we can not both
+    assigning probability to them and maintain probability axioms
+    - x -
+      this also revealed set theory's inconvenience,
+      but why we are not using type theory yet ?
+      will type theory be even more inconvenient ?
+
+  - x -
+    dealing with subsets remembers me of relational programming
+
+  - discrete uniform distribution
+    all outcomes be equally likely
+    compute probability = counting
+
+  - continuous uniform distribution
+    probability = area
