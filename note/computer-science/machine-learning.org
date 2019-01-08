@@ -1,0 +1,98 @@
+#+title: machine learning
+
+* refs
+
+  https://www.youtube.com/playlist?list=PLA89DCFA6ADACE599
+  20 lectures
+
+  https://www.youtube.com/playlist?list=PLLssT5z_DsK-h9vYZkQkYNWcItqhlRJLN
+  100+ small lectures
+
+  https://en.wikipedia.org/wiki/Machine_learning
+  https://en.wikipedia.org/wiki/Computational_learning_theory
+
+* definition
+
+  - Arthur Samuel (1959)
+    Machine learning study how to give computers the ability to learn
+    without being explicitly programmed
+
+  - Tom Mitchell (1998)
+    well posed learning problem:
+    A programm is said to *learn* from experience E
+    with respect to some tesk T
+    and performance measure P,
+    if its performance on T as measured by P
+    improves with more and more E
+
+* supervised learning
+
+  - right answers are given
+    data are labeled
+
+  - curve fitting problem
+    https://en.wikipedia.org/wiki/Curve_fitting
+
+  - regression problem -- predict continuous function
+    https://en.wikipedia.org/wiki/Regression_analysis
+
+  - classification problem -- predict discrete function
+
+  - examples
+    - image classification
+
+* unsupervised learning
+
+  - data are not labeled
+
+  - find structures and relations in data
+
+  - clustering problem
+    https://en.wikipedia.org/wiki/Cluster_analysis
+
+  - examples
+    - google news clustering
+    - language model -- learn to predict next word in a sentence
+    - clustering people by genes
+    - market segmentation for sells
+    - cocktail part problem -- separate people's voices
+    - image processing -- clustering pixels
+
+* learning theory
+
+  - theorems about when learning algorithm will work
+
+* reinforcement learning
+
+  - sequence of decisions
+
+  - reward function -- train dogs
+
+  - game play (game tree)
+
+  - self driving car and robotic
+
+* linear regression
+
+  - learning-algorithm :
+    -- training-set
+    -> h : -- x : feature -> y : target
+    where h is hypothesizes function
+
+  - representation of hypothesizes
+    h is represented by a linear function
+    the linear function is represented by a list of parameter -- theta
+    theta -- parameter of the model
+    -- yoneda embedding of (single return value) linear function
+
+  - cost function -- squared error function
+    find theta by we minimizing cost function
+
+  - gradient descent
+    - batch gradient descent
+    - stochastic gradient descent -- incremental gradient descent
+      in one step, updating theta only using some (one) training data
+      but in many steps, all the data will be made use of
+
+  - normal equations -- solve theta in close form
+    https://en.wikipedia.org/wiki/Linear_least_squares

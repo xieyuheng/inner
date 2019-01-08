@@ -1,6 +1,7 @@
 #+title: coxeter
 
 * (1938) the fifty-nine icosahedra
+
 * (1942) non-euclidean-geometry
 
   - According to Klein,

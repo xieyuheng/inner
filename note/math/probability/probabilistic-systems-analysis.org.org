@@ -59,3 +59,17 @@
 
   - continuous uniform distribution
     probability = area
+
+* zero probability
+
+  - if we define probability by volume in n dimension unit space
+    zero probability does not mean impossible
+    zero probability only means n dimensional volume is zero
+
+* conditional probability
+
+  - partial informations about random experiments
+
+  - conditional-P (A B) := the probability of A, given that B occurred
+    conditional-P (A B) := div (P (union (A B)) P (B))
+    if not P (B) = 0
