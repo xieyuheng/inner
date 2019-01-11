@@ -265,5 +265,8 @@
   - neural network architectures
     different ways to compose functions
 
+    - x -
+      can we use algebraic topology to do architecture ?
+
   - loss (theta) = mean (one_loss (theta, x, y))
     one_loss = [todo]
