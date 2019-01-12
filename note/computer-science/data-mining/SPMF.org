@@ -1,4 +1,4 @@
-#+title: data mining
+#+title: SPMF
 
 * SPMF
 
