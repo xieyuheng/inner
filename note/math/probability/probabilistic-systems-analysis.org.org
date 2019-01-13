@@ -30,9 +30,15 @@
     - normalization -
       P (sample-space) = 1
 
+    - notations about set :
+      | ^  | set intersection |
+      | +  | set union        |
+      | =< | sub set          |
+      | >= | super set        |
+
     - additivity -
-      -- intersection (A B) = empty-set
-      -> P (union (A B)) = add (P (A) P (B))
+      -- A ^ B = empty-set
+      -> P (A + B) = P (A) + P (B)
 
     - countable additivity -
       the additivity axiom need to be generalized to sequence of subsets
@@ -68,8 +74,64 @@
 
 * conditional probability
 
-  - partial informations about random experiments
+  - the story goes like this,
+    you know something about this uncertain world,
+    and based on what you know, you build a probability model,
+    by write down probabilities for different outcomes.
+    then something happened, you get some new informations,
+    you know more about the world,
+    these new informations should change your beliefs
+    about what may happen and what may not happen.
 
-  - conditional-P (A B) := the probability of A, given that B occurred
-    conditional-P (A B) := div (P (union (A B)) P (B))
-    if not P (B) = 0
+  - partial informations about random experiments and revise beliefs
+
+  - P (A | B) := the probability of A, given that B occurred
+    P (A | B) := P (A ^ B) / P (B)
+    - given P (B) != 0
+    - if P (B) = 0, P (A | B) is undefined
+
+  - P (A ^ B) = P (B) * P (A | B)
+    P (A ^ B) = P (A) * P (B | A)
+
+  - with the above definition
+    the proportion of probabilities in B is maintained
+    suppose A1 =< B and A2 =< B
+    P (A1 | B) / P (A2 | B) =
+    P (A1 ^ B) / P (A2 ^ B) =
+    P (A1) / P (A2)
+
+  - we specify the probability model by a conditional probability tree
+    instead of calculate conditional probability of a given model
+
+  - P (A ^ B) = P (A) * P (B | A)
+
+    P (A ^ B ^ C) =
+    P ((A ^ B) ^ C) =
+    P (A ^ B) * P ((A ^ B) | C) =
+    P (A) * P (B | A) * P ((A ^ B) | C)
+
+  - P (B) =
+    P (B ^ (A + ~A)) =
+    P (B ^ A) + P (B ^ ~A) =
+    P (A) * P (B | A) + P (~A) * P (B | ~A)
+
+    P (B) =
+    P (B ^ (A1 + A2 + A3)) =
+    P (B ^ A1) + P (B ^ A2) + P (B ^ A3) =
+    P (A1) * P (B | A1) +
+    P (A2) * P (B | A2) +
+    P (A3) * P (B | A3)
+
+  - P (A | B) = P (A ^ B) / P (B)
+    can be interpreted as an inference problem
+    suppose B, what is the probability of A
+
+    - where P (A ^ B) and P (B) can be calculated
+      by the above two sections
+      which goes from P (B | Ai) to P (Ai | B)
+
+    - Bayes rule :
+      we know
+      Ai -> B -- P (B | Ai)
+      we observe B, and we infer
+      B -> Ai -- P (Ai | B)

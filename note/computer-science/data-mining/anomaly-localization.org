@@ -41,3 +41,20 @@
     we need to find out which of its itemset is the cause
   - a cuboid's anomaly
     might have many itemsets as its root cause
+
+  the measure of potential root cause
+  - root_cause_score measures the potential
+    of a subset of elements in a cuboid
+    been the root cause of a anomaly
+  - the score of elements are non-additive
+    score ({e1, e2}) != score ({e1}) + score ({e2})
+  - thus we need to calculate and compare
+    all subsets for each cuboid in principle.
+
+* hotspot
+
+  - detect anomaly
+  - forecast value of itemset
+  - score
+  - MCTS
+  - hierarchical pruning
