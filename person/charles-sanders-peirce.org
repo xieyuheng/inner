@@ -242,6 +242,60 @@
 
 * (1878) how to make our ideas clear
 
+  - x -
+    like aristotle, Peirce summaries
+    historical approaches to the same inquiry.
+
+  - We have there found. that the action of thought
+    is excited by the irritation of doubt,
+    and ceases when belief is attained;
+    so that the production of belief is the sole function of thought.
+
+  - x -
+    when trying to define thought,
+    Peirce observe its effect on us.
+
+  - Some elements (the sensations) are completely present
+    at every instant so long as they last,
+    while others (like thought) are actions
+    having beginning, middle, and end,
+    and consist in a congruence in the succession of sensations
+    which flow through the mind.
+
+    They cannot be immediately present to us,
+    but must cover some portion of the past or future.
+
+    Thought is a thread of melody
+    running through the succession of our sensations.
+
+  - Thought in action has for its only possible motive
+    the attainment of thought at rest;
+    and whatever does not refer to belief
+    is no part of the thought itself.
+
+  - And what, then, is belief?
+    It is the demi-cadence which closes a musical phrase
+    in the symphony of our intellectual life.
+
+    We have seen that it has just three properties:
+    First, it is something that we are aware of;
+    second, it appeases the irritation of doubt;
+    and, third, it involves the establishment
+    in our nature of a rule of action, or, say for short, a habit.
+
+  - But, since belief is a rule for action,
+    the application of which involves further doubt and further thought,
+    at the same time that it is a stopping-place,
+    it is also a new starting-place for thought.
+
+  - It appears, then, that the rule for attaining
+    the third grade of clearness of apprehension is as follows:
+    Consider what effects,
+    which might conceivably have practical bearings,
+    we conceive the object of our conception to have.
+    Then, our conception of these effects
+    is the whole of our conception of the object.
+
 * [todo] (1880) on the algebra of logic
 
 * (2000) (geraldine brady) from peirce to skolem
