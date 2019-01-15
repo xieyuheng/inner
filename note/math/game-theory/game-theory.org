@@ -1,0 +1,122 @@
+#+title: game theory
+
+* refs
+
+  - https://www.youtube.com/playlist?list=PLxjwC9b4YxZ4geaCLwrIUONYdRKXJo9XJ
+
+* definition
+
+  - game is about players and decision making
+
+* model
+
+  - to model game, we need to model
+    actions of players
+    and payoffs (or utility)
+
+* normal form
+
+  - https://en.wikipedia.org/wiki/Normal-form_game
+
+  - players move simultaneously
+
+  - table of payoffs of actions
+
+    - x - tensor ?
+
+  - strategies can encode many things
+
+    - x - game semantic of logic ?
+
+  - 2-player game is a matrix
+    we have row-player and col-player
+    row is indexed by actions of row-player
+    col is indexed by actions of col-player
+    each element of in matrix is a payoff-map
+    from the players to its payoff
+
+    - for n-player game
+      each player is a dimension
+
+  - x -
+    the payoff in the model is just a number
+    while in real life the payoff might can not be reduce to a number
+
+    the payoff might be in a structure whose elements are not order-able
+
+  - structure
+    #+begin_src cicada
+    player-t : type
+    payoff-t : type
+    action-t : (player-t) -> type
+
+    game-t : conj {
+      player-vect : vect-t (player-t, :n)
+      nof-players = :n
+      utility : (
+        strategy-profile : vect-t (sigma-t (player-t, action-t), :n)
+      ) -> vect-t (sigma-t (player-t, lambda (_) payoff-t), :n)
+    }
+
+    sigma-t : conj {
+      car-t : type
+      cdr-dep-t : (car-t) -> type
+      cdr-t = cdr-dep-t (car)
+      car : car-t
+      cdr : cdr-t
+    }
+    #+end_src
+
+  - x -
+    can two players in the same game be the same person ?
+
+  - game of pure competition -- zero sum game
+    #+begin_src cicada
+    payoff-map.range.sum () = 0
+    #+end_src
+
+  - game of pure cooperation
+    - the structure can be simplified
+      payoff-map is just one payoff
+    #+begin_src cicada
+    for x in payoff-map.range {
+        x = :the-same-payoff
+    }
+    #+end_src
+
+* nash equilibrium
+
+  - https://en.wikipedia.org/wiki/Nash_equilibrium
+
+  - strategic reasoning
+
+  - opponent action
+    bast respond
+    nash equilibrium
+
+  - strategy = choosing an action
+    dominant strategy
+
+  - for example,
+    in prisoner's dilemma
+    defect is the dominant strategy
+    and both defect is the nash equilibrium
+
+* pareto optimality
+
+  - https://en.wikipedia.org/wiki/Pareto_efficiency
+
+  - an outsider (non player) is judging the outcome
+    think some outcome is better than the other
+
+  - the sum of payoffs might be used as the value
+
+* [todo] extensive form
+
+  - https://en.wikipedia.org/wiki/Extensive-form_game
+
+  - includes timing of moves
+
+  - players move sequentially -- game tree
+
+  - keep track of decisions

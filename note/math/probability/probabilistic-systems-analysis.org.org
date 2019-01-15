@@ -135,3 +135,7 @@
       Ai -> B -- P (B | Ai)
       we observe B, and we infer
       B -> Ai -- P (Ai | B)
+
+* independence
+
+  - ><
