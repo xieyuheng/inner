@@ -14,15 +14,13 @@
     actions of players
     and payoffs (or utility)
 
-* normal form
+* normal-form
 
   - https://en.wikipedia.org/wiki/Normal-form_game
 
   - players move simultaneously
 
-  - table of payoffs of actions
-
-    - x - tensor ?
+  - table of payoffs of actions -- tensors
 
   - strategies can encode many things
 
@@ -44,45 +42,71 @@
 
     the payoff might be in a structure whose elements are not order-able
 
-  - structure
-    #+begin_src cicada
-    player-t : type
-    payoff-t : type
-    action-t : (player-t) -> type
+* game.nf
 
-    game-t : conj {
-      player-vect : vect-t (player-t, :n)
-      nof-players = :n
-      utility : (
-        strategy-profile : vect-t (sigma-t (player-t, action-t), :n)
-      ) -> vect-t (sigma-t (player-t, lambda (_) payoff-t), :n)
-    }
+  #+begin_src cicada
+  player-t : type
+  payoff-t : type
+  action-t : (player-t) -> type
 
-    sigma-t : conj {
-      car-t : type
-      cdr-dep-t : (car-t) -> type
-      cdr-t = cdr-dep-t (car)
-      car : car-t
-      cdr : cdr-t
-    }
-    #+end_src
+  game-t : conj {
+    player-vect : vect-t (player-t, :n)
+    nof-players = :n
+    utility : (
+      strategy-profile : vect-t (sigma-t (player-t, action-t), :n)
+    ) -> vect-t (sigma-t (player-t, lambda (_) payoff-t), :n)
+  }
+
+  sigma-t : conj {
+    car-t : type
+    cdr-dep-t : (car-t) -> type
+    cdr-t = cdr-dep-t (car)
+    car : car-t
+    cdr : cdr-t
+  }
+  #+end_src
 
   - x -
     can two players in the same game be the same person ?
 
   - game of pure competition -- zero sum game
-    #+begin_src cicada
-    payoff-map.range.sum () = 0
-    #+end_src
+
+  #+begin_src cicada
+  payoff-map.range.sum () = 0
+  #+end_src
 
   - game of pure cooperation
     - the structure can be simplified
       payoff-map is just one payoff
-    #+begin_src cicada
-    for x in payoff-map.range {
-        x = :the-same-payoff
-    }
-    #+end_src
+
+  #+begin_src cicada
+  for x in payoff-map.range {
+      x = :the-same-payoff
+  }
+  #+end_src
+
+* game.nf -- simple action
+
+  #+begin_src cicada
+  player-t : type
+  payoff-t : type
+  action-t : type
+
+  game-t : conj {
+    player-vect : vect-t (player-t, :n)
+    nof-players = :n
+    utility : (
+      strategy-profile : vect-t (pair-t (player-t, action-t), :n)
+    ) -> vect-t (pair-t (player-t, payoff-t), :n)
+  }
+
+  pair-t : conj {
+    car-t : type
+    cdr-t = type
+    car : car-t
+    cdr : cdr-t
+  }
+  #+end_src
 
 * nash equilibrium
 
@@ -91,11 +115,27 @@
   - strategic reasoning
 
   - opponent action
-    bast respond
+    best response
     nash equilibrium
+
+* dominant strategy
 
   - strategy = choosing an action
     dominant strategy
+
+  - strictly dominant and weak dominant
+
+  - if a strategy is strictly dominanted by another strategy
+    it is not rational to choose the dominanted strategy
+
+  - iterative removal of strictly dominated strategies
+    - assuming the player is rational
+    to simplify the game
+
+  - we do not remove weak dominated strategies
+    because a weak dominated strategies might be best response
+
+* prisoner's dilemma
 
   - for example,
     in prisoner's dilemma
@@ -111,12 +151,98 @@
 
   - the sum of payoffs might be used as the value
 
-* [todo] extensive form
+* mixed strategies
+
+  - suppose a normal-form game will be played repeatedly.
+    the space of strategy is changed
+    from one (player-t, action-t)
+    to (player-t, list-t (action-t))
+
+  - but to implement it,
+    we do not really assign payoffs to such huge space.
+
+    instead we simplify the model a step further
+    by supposing the list-t (action-t) is a random variable
+    respecting some distribution
+
+  - we need a new data type -- action-profile-t
+    and a new interface function -- expected-utility
+
+  - in this model,
+    the strategy of a player
+    is not (player-t, action-t)
+    also not (player-t, list-t (action-t))
+    but is (player-t, action-profile-t)
+
+    the player is not choicing one action,
+    but give all actions a probability of choice
+
+    to calculate expected-utility,
+    we calculate linear combination of actions
+    using probability as coefficient
+
+  - note that in this model
+    there are not coordinations between players
+
+    after a player decided a action profile -- a mixed strategy
+    he must execute the strategy
+    no matter what his opponent choice to do
+
+* computing nash equilibrium of mixed strategy game
+
+  - https://en.wikipedia.org/wiki/Linear_complementarity_problem
+
+  - Linear programming
+    https://en.wikipedia.org/wiki/Linear_programming
+    - 此英文术语 翻译为 线性规划
+      与编程无关
+
+* game theory solution concept
+
+  - nash equilibrium is an example of game theory solution concept
+
+  - another example of game theory solution concept is
+    correlated equilibrium intuition
+
+    in which the model of mixed strategy is changed
+    coordinations is allowed
+
+    - an example of such correlated equilibrium
+      is traffic light
+
+* maxmin strategy
+
+  - a player maximize his worst case payoff
+    - assuming opponents are trying to hurting him
+
+  - the payoff of a player's maxmin strategy
+    is called his safety value
+
+  - minmax strategy
+    a player minimize other opponents' best payoff
+    - assuming opponents are trying to gain the most for themselves
+
+  - minmax theorem -- by von neumann
+    https://en.wikipedia.org/wiki/Min-max_theorem
+
+* extensive-form -- game tree
 
   - https://en.wikipedia.org/wiki/Extensive-form_game
 
   - includes timing of moves
 
-  - players move sequentially -- game tree
+    - even only a single action will be made
+      reasoning about the future still need the concept of time
+
+  - players move sequentially
 
   - keep track of decisions
+
+* perfect-information game
+
+  - example of extensive-form model
+
+  - x -
+    during the study of extensive-form model
+    people try to reuse concepts learned
+    from the study of normal-form model
