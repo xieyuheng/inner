@@ -264,8 +264,9 @@
 
 * backward induction algorithm
 
-  - aim 
-    - calculate utility at root 
-    - find calculate subgame perfection nash equilibrium
+  - aim
+    - calculate utility at root
+    - find subgame perfection nash equilibrium
 
   - minmax algorithm
+ul
