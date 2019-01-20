@@ -246,3 +246,26 @@
     during the study of extensive-form model
     people try to reuse concepts learned
     from the study of normal-form model
+
+    the following definitions are reused
+    - pure strategy
+    - pure best response
+    - pure nash equilibrium
+    - mixed strategy
+    - mixed best response
+    - mixed nash equilibrium
+
+* subgame perfection nash equilibrium
+
+  - if the nash equilibrium is sitll nash equilibrium
+    in every subgame
+
+  - this definition rules out non-credible threats
+
+* backward induction algorithm
+
+  - aim 
+    - calculate utility at root 
+    - find calculate subgame perfection nash equilibrium
+
+  - minmax algorithm
