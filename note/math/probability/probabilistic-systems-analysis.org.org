@@ -25,7 +25,7 @@
   - probability axioms
 
     - nonnegative -
-      -- A : sample-space -> P (A) >= 0
+      (A : sample-space) -> P (A) >= 0
 
     - normalization -
       P (sample-space) = 1
@@ -37,8 +37,7 @@
       | >= | super set        |
 
     - additivity -
-      -- A ^ B = empty-set
-      -> P (A + B) = P (A) + P (B)
+      (A ^ B = empty-set) -> P (A + B) = P (A) + P (B)
 
     - countable additivity -
       the additivity axiom need to be generalized to sequence of subsets
@@ -130,12 +129,41 @@
       by the above two sections
       which goes from P (B | Ai) to P (Ai | B)
 
-    - Bayes rule :
+    - bayes-rule :
       we know
-      Ai -> B -- P (B | Ai)
+      Ai => B -- P (B | Ai)
       we observe B, and we infer
-      B -> Ai -- P (Ai | B)
+      B => Ai -- P (Ai | B)
+
+    - the => above can be viewed as
+      causal relation in the sense of hume
 
 * independence
 
-  - ><
+  - P (B | A) = P (B)
+
+  - P (A ^ B) =
+    P (A) * P (B | A) =
+    P (A) * P (B)
+
+  - do not confuse independence with disjointness
+    disjoint means
+    P (A + B) = P (A) + P (B)
+
+  - A and B are independent means
+    the fact that A happens conveys no information about B
+
+  - since conditional probability is probability
+    independence can be generalized to conditional independence
+
+    - x -
+      conditional under B :
+      (probabilistic-model-t) -> probabilistic-model-t
+      conditional :
+      (event-t, probabilistic-model-t) -> probabilistic-model-t
+
+      - where a probabilistic-model is like one of our belief
+
+  - for many events, independence is a very strong conditional
+    we can also define pairwise independence
+    - a weaker version of independence
