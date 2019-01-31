@@ -177,7 +177,9 @@
     - without introducing probabilistic-model
 
   - a random variable is a function from sample to number
-    random-variable-t = forall (sample-t) -> number-t
+    #+begin_src cicada
+    random-variable-t = (sample-t) -> number-t
+    #+end_src
 
   - random variable is used to specify subset of sample space
     on which we can calculate probability
@@ -191,13 +193,11 @@
 
   - probability mass function
     #+begin_src cicada
-    mass-function : (
-      var : random-variable-t,
-      num : codomain-of (var),
-    ) -> probability-t
-    mass-function = (var, num) => {
-      subset = reverse (var, num)
-      probability (subset)
+    random-variable-t
+    .mass : (codomain-of (self)) -> probability-t
+    .mass = (num) => {
+      samples = self.reverse (num)
+      probability (samples)
     }
     #+end_src
 
@@ -207,10 +207,11 @@
 
   - expected value -- center of mass
     #+begin_src cicada
-    expected-value : (var : random-variable-t) -> probability-t
-    expected-value = (var) => {
-      domain-of (var) .sum-up ((x) => {
-        x * mass-function (var, x)
+    random-variable-t
+    .mean : () -> probability-t
+    .mean = () => {
+        self.domain.sum-up ((x) => {
+        x * mass-function (self, x)
       })
     }
     #+end_src
