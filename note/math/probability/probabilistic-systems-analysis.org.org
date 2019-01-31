@@ -22,6 +22,9 @@
     this definition also handles discrete sample space well
     by viewing assigning probability to sets of one element
 
+  - outcome : sample space
+    event = set of outcomes = subset of sample space
+
   - probability axioms
 
     - nonnegative -
@@ -167,3 +170,51 @@
   - for many events, independence is a very strong conditional
     we can also define pairwise independence
     - a weaker version of independence
+
+* random variable
+
+  - random variable can be viewed statistically first
+    - without introducing probabilistic-model
+
+  - a random variable is a function from sample to number
+    random-variable-t = forall (sample-t) -> number-t
+
+  - random variable is used to specify subset of sample space
+    on which we can calculate probability
+
+    - x -
+      the concept of function give us a handle
+      to discuss more about probabilistic-model
+      to express properties of what we are interested in
+
+      - categorical pushout ?
+
+  - probability mass function
+    #+begin_src cicada
+    mass-function : (
+      var : random-variable-t,
+      num : codomain-of (var),
+    ) -> probability-t
+    mass-function = (var, num) => {
+      subset = reverse (var, num)
+      probability (subset)
+    }
+    #+end_src
+
+  - x -
+    the above formalization is rough
+    we need to formalize probabilistic-model first
+
+  - expected value -- center of mass
+    #+begin_src cicada
+    expected-value : (var : random-variable-t) -> probability-t
+    expected-value = (var) => {
+      domain-of (var) .sum-up ((x) => {
+        x * mass-function (var, x)
+      })
+    }
+    #+end_src
+
+  - expected value of function composition
+
+  - variance

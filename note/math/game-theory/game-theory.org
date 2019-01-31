@@ -47,22 +47,14 @@
   #+begin_src cicada
   player-t : type
   payoff-t : type
-  action-t : (player-t) -> type
+  action-t = (player-t) -> type
 
-  game-t : conj {
+  game-t = conj {
     player-vect : vect-t (player-t, :n)
     nof-players = :n
     utility : (
-      strategy-profile : vect-t (sigma-t (player-t, action-t), :n)
-    ) -> vect-t (sigma-t (player-t, lambda (_) payoff-t), :n)
-  }
-
-  sigma-t : conj {
-    car-t : type
-    cdr-dep-t : (car-t) -> type
-    cdr-t = cdr-dep-t (car)
-    car : car-t
-    cdr : cdr-t
+      strategy-profile : vect-t ([p : player-t, action-t (p)], :n)
+    ) -> vect-t ([player-t, payoff-t], :n)
   }
   #+end_src
 
@@ -92,19 +84,12 @@
   payoff-t : type
   action-t : type
 
-  game-t : conj {
+  game-t = conj {
     player-vect : vect-t (player-t, :n)
     nof-players = :n
     utility : (
-      strategy-profile : vect-t (pair-t (player-t, action-t), :n)
-    ) -> vect-t (pair-t (player-t, payoff-t), :n)
-  }
-
-  pair-t : conj {
-    car-t : type
-    cdr-t = type
-    car : car-t
-    cdr : cdr-t
+      strategy-profile : vect-t ([player-t, action-t], :n)
+    ) -> vect-t ([player-t, payoff-t], :n)
   }
   #+end_src
 
