@@ -195,10 +195,7 @@
     #+begin_src cicada
     random-variable-t
     .mass : (codomain-of (self)) -> probability-t
-    .mass = (num) => {
-      samples = self.reverse (num)
-      probability (samples)
-    }
+    .mass = (num) => probability (self.reverse (num))
     #+end_src
 
   - x -
@@ -209,11 +206,9 @@
     #+begin_src cicada
     random-variable-t
     .mean : () -> probability-t
-    .mean = () => {
-        self.domain.sum-up ((x) => {
-        x * self.mass (x)
-      })
-    }
+    .mean = () => self.domain.sum-up ((x) => {
+      x * self.mass (x)
+    })
     #+end_src
 
   - expected value of function composition
