@@ -1,0 +1,17 @@
+#+title: combinatorial game theory
+
+* Chapter I. Combinatorial Games
+
+* Chapter II. Short Games
+
+* Chapter III. The Structure of G
+
+* Chapter IV. Impartial Games
+
+* Chapter V. Misere Play
+
+* Chapter VI. Loopy Games
+
+* Chapter VII. Temperature Theory
+
+* Chapter VIII. Transfinite Games

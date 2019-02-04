@@ -68,6 +68,27 @@
   - continuous uniform distribution
     probability = area
 
+* formal model
+
+  #+begin_src cicada
+  probabilistic-t = conj {
+    sample-t : type
+    event-t = set-t (sample-t)
+    P : (event-t) -> unit-interval-t
+    nonnegative : (A : event-t) -> P (A) >= 0
+    normalization : P (sample-t) == 1
+    additivity : (
+      A : event-t
+      B : event-t
+      A ^ B == empty-set
+    ) -> P (A + B) == P (A) + P (B)
+    countable-additivity : (
+      f : (nat-t -> event-t)
+      ><><><
+    ) -> ><><><
+  }
+  #+end_src
+
 * zero probability
 
   - if we define probability by volume in n dimension unit space
@@ -179,6 +200,11 @@
   - a random variable is a function from sample to number
     #+begin_src cicada
     random-variable-t = (sample-t) -> number-t
+
+    random-variable-t = heir {
+      [ probabilistic-t ]
+      var : (sample-t) -> number-t
+    }
     #+end_src
 
   - random variable is used to specify subset of sample space
@@ -194,8 +220,8 @@
   - probability mass function
     #+begin_src cicada
     random-variable-t
-    .mass : (codomain-of (self)) -> probability-t
-    .mass = (num) => probability (self.reverse (num))
+    .mass : (codomain-of (self.var)) -> unit-interval-t
+    .mass = (num) => self.P (self.var.reverse (num))
     #+end_src
 
   - x -
@@ -205,9 +231,9 @@
   - expected value -- center of mass
     #+begin_src cicada
     random-variable-t
-    .mean : () -> probability-t
-    .mean = () => self.domain.sum-up ((x) => {
-      x * self.mass (x)
+    .mean : () -> unit-interval-t
+    .mean = () => self.var.domain.sum-up ((x) => {
+      x * self.var.mass (x)
     })
     #+end_src
 
