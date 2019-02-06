@@ -199,8 +199,6 @@
 
   - a random variable is a function from sample to number
     #+begin_src cicada
-    random-variable-t = (sample-t) -> number-t
-
     random-variable-t = heir {
       [ probabilistic-t ]
       var : (sample-t) -> number-t
