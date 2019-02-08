@@ -71,6 +71,62 @@
       注意 surreal number 中
       同时包含了 left 先手 和 right 先手 的情况
 
+* [note] formalization
+
+*** game-t
+
+    #+begin_src cicada
+    game-t = conj {
+      position-t : type
+      choice-t : type
+      init-position : position-t
+      left-choices  : (position-t) -> list-t (choice-t)
+      right-choices : (position-t) -> list-t (choice-t)
+      left-move  : (choice-t, position-t) -> position-t
+      right-move : (choice-t, position-t) -> position-t
+    }
+    #+end_src
+
+*** game-t.sum
+
+    #+begin_src cicada
+    game-t
+    .sum : (game-t) -> game-t
+    .sum = (that) => {
+      game-c {
+        position-t = [this.position-t, that.position-t]
+        choice-t = either-t (this.choice-t, that.choice-t)
+        init-position = [this.init-position, that.init-position]
+        left-choices = (position) => list-append (
+          left-t (this.left-choices (position.0))
+          right-t (that.left-choices (position.1)))
+        right-choices = (position) => list-append (
+          left-t (this.right-choices (position.0))
+          right-t (that.right-choices (position.1)))
+        left-move = (choice, position) => case choice {
+          left-t -- [
+            this.left-move (choice.value, position.0)
+            position.1
+          ]
+          right-t -- [
+            position.0
+            that.left-move (choice.value, position.1)
+          ]
+        }
+        right-move = (choice, position) => case choice {
+          left-t -- [
+            this.right-move (choice.value, position.0)
+            position.1
+          ]
+          right-t -- [
+            position.0
+            that.right-move (choice.value, position.1)
+          ]
+        }
+      }
+    }
+    #+end_src
+
 * Chapter II. Short Games
 
 * Chapter III. The Structure of G

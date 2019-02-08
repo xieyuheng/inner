@@ -1,0 +1,3 @@
+#+title: game semantic
+
+* (walter felscher) dialogues as a foundation for intuitionistic logic
