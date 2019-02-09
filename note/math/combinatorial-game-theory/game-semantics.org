@@ -1,3 +1,42 @@
 #+title: game semantic
 
+* [note]
+
+  - type == proposition == game of argument between defender and prosecutor
+
+  - object [or function] == proof == winning strategy of defender
+    - the prosecutor is allowed to replay the game
+      and attack in all the ways
+    - true proposition can endure all attacks
+
+  - for propositional logic
+    we reduce cards on both side
+    and at the end, compare cards of both side
+
+    this is a game
+    because it involves choices of both players
+    when dealing with disjunction
+
+  - if we view disjunction as sum of game
+    we can say
+    proof == a winning play of defender
+
+    - x -
+      the "sum of game" is not disjunctive sum of normal play game
+      because we are using cards to calculate winning
+
+* kuno lorenz
+
+* paul lorenzen
+
+* jaakko hintikka
+
+*** language-games for quantifiers
+
+*** the principles of mathematics revisited
+
+*** anaphora and definite descriptions
+
+* shahid rahman
+
 * (walter felscher) dialogues as a foundation for intuitionistic logic
