@@ -203,6 +203,11 @@
       [ probabilistic-t ]
       var : (sample-t) -> number-t
     }
+
+    random-variable-t = heir {
+      [ probabilistic-t ]
+      var : (super.sample-t) -> number-t
+    }
     #+end_src
 
   - random variable is used to specify subset of sample space
@@ -218,20 +223,20 @@
   - probability mass function
     #+begin_src cicada
     random-variable-t
-    .mass : (codomain-of (self.var)) -> unit-interval-t
-    .mass = (num) => self.P (self.var.reverse (num))
+    .mass : (this.var.codomain) -> unit-interval-t
+    .mass = (num) => this.P (this.var.reverse (num))
     #+end_src
 
   - x -
     the above formalization is rough
-    we need to formalize probabilistic-model first
+    we need to formalize set theory first
 
   - expected value -- center of mass
     #+begin_src cicada
     random-variable-t
     .mean : () -> unit-interval-t
-    .mean = () => self.var.domain.sum-up ((x) => {
-      x * self.var.mass (x)
+    .mean = () => this.var.domain.sum-up ((x) => {
+      x * this.var.mass (x)
     })
     #+end_src
 
