@@ -2,41 +2,99 @@
 
 * [note]
 
-  - type == proposition == game of argument between defender and prosecutor
+*** type as game
 
-  - object [or function] == proof == winning strategy of defender
-    - the prosecutor is allowed to replay the game
-      and attack in all the ways
-    - true proposition can endure all attacks
+    - type == proposition == game of argument between defender and prosecutor
 
-  - for propositional logic
-    we reduce cards on both side
-    and at the end, compare cards of both side
+    - object [or function] == proof == winning strategy of defender
+      - the prosecutor is allowed to replay the game
+        and attack in all the ways
+      - true proposition can endure all attacks
 
-    this is a game
-    because it involves choices of both players
-    when dealing with disjunction
+    - for propositional logic
+      we reduce cards on both side
+      and at the end, compare cards of both side
 
-  - if we view disjunction as sum of game
-    we can say
-    proof == a winning play of defender
+      this is a game
+      because it involves choices of both players
+      when dealing with disjunction
 
-    - x -
-      the "sum of game" is not disjunctive sum of normal play game
-      because we are using cards to calculate winning
+    - if we view disjunction as sum of game
+      we can say
+      proof == a winning play of defender
 
-* kuno lorenz
+      - x -
+        the "sum of game" is not disjunctive sum of normal play game
+        because we are using cards to calculate winning
 
-* paul lorenzen
+*** 遊戲語義
 
-* jaakko hintikka
+    - 這段學習的目的是要探究
+      一個邏輯命題如何被視爲一個遊戲
 
-*** language-games for quantifiers
+    - 正如在嘗試證明一個命題的時候
+      需要先仔細地研究其前提
+      爲了回答這個問題我們首先要明確 什麼是邏輯命題
 
-*** the principles of mathematics revisited
+    - 這裏的 邏輯命題 指的是數學中的邏輯命題
+      邏輯命題是表述數學領域的成果的形式
+      數學領域所研究的是計算
+      - 計算 包括 分類處理 轉寫 以及遞歸
+      而其研究成果所描述的是人們關於計算的 信念 [belief]
+      這些 信念 使得我們可以預測計算的結果的各種性質
 
-*** anaphora and definite descriptions
+    - 或者說
+      數學領域所研究的是函數
+      表達數學領域研究成果的是類型
+      - 蝉语为伪码 [cicada as pseudocode]
 
-* shahid rahman
+    - 也就是說
+      一個邏輯命題如何被視爲一個遊戲
+      這個問題
+      被轉化爲
+      如何利用遊戲來實現一個程序語言的類型系統
+      利用遊戲的術語來豐富 人們對 類型系統 的理解
+
+*** 等詞
+
+    - 等詞有三類
+
+      - 基本等詞
+        帶有不定元的物之間的融合 [unification]
+
+      - 函數等詞
+        兩函數相等 被定義對相同的輸入 有相同的輸出
+        需要分解輸入類型之後 利用基本等詞來完成證明
+
+      - 高階等詞
+        複形中的高階元素
+
+*** 子類型關係
+
+    - 一個函數若可接受某個子類型關係中的父類型
+      這個函數就也可接受這個子類型關係中的子類型
+
+    - 子類型關係有兩種
+
+      - disj
+        拿到 disj 式的父類型爲輸入時 可以分類處理
+
+      - heir
+        一個 heir 式的父類型並不知道自己有哪些子類型
+
+* (kuno lorenz)
+
+* (1965) (paul lorenzen) formal logic
+
+* (1985) (jaakko hintikka) anaphora and definite descriptions
+
+* (1996) (jaakko hintikka) the principles of mathematics revisited
+
+* (shahid rahman)
 
 * (walter felscher) dialogues as a foundation for intuitionistic logic
+
+  - x -
+    作者把邏輯命題視爲遊戲的方式我並不滿意
+    其遊戲規則模擬了對話體論戰
+    而我想要用類似二人撲克的遊戲規則
