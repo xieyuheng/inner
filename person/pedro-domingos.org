@@ -1,0 +1,5 @@
+#+title: pedro domingos
+
+* (2015) the master algorithm
+
+* (2006) (matthew richardson) (pedro domingos) markov logic networks
