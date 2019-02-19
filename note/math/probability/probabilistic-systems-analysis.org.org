@@ -1,5 +1,7 @@
 #+title: probabilistic systems analysis
 
+* [todo]
+  - sigma-algebra
 * links
 
   https://www.youtube.com/playlist?list=PLUl4u3cNGP61MdtwGTqZA0MreSaDybji8
@@ -9,7 +11,7 @@
   - probability as a mathematical framework
     for reasoning about uncertainty
 
-* probabilistic models
+* probability space
 
   - sample space -- set of outcomes
     we record which outcome is more likely to occur compare to others
@@ -68,13 +70,14 @@
   - continuous uniform distribution
     probability = area
 
-* formal model
+* probability-space-t
 
   #+begin_src cicada
-  probabilistic-t = conj {
+  probability-space-t = conj {
     sample-t : type
     event-t = set-t (sample-t)
     P : (event-t) -> unit-interval-t
+    prob = P
     nonnegative : (A : event-t) -> P (A) >= 0
     normalization : P (sample-t) == 1
     additivity : (
@@ -84,8 +87,8 @@
     ) -> P (A + B) == P (A) + P (B)
     countable-additivity : (
       f : (nat-t -> event-t)
-      ><><><
-    ) -> ><><><
+      [todo]
+    ) -> [todo]
   }
   #+end_src
 
@@ -182,9 +185,9 @@
 
     - x -
       conditional under B :
-      (probabilistic-model-t) -> probabilistic-model-t
+      (probability-space-t) -> probability-space-t
       conditional :
-      (event-t, probabilistic-model-t) -> probabilistic-model-t
+      (event-t, probability-space-t) -> probability-space-t
 
       - where a probabilistic-model is like one of our belief
 
@@ -192,23 +195,20 @@
     we can also define pairwise independence
     - a weaker version of independence
 
-* random variable
+* random-variable-t
 
   - random variable can be viewed statistically first
     - without introducing probabilistic-model
 
   - a random variable is a function from sample to number
-    #+begin_src cicada
-    random-variable-t = heir {
-      [ probabilistic-t ]
-      var : (sample-t) -> number-t
-    }
 
-    random-variable-t = heir {
-      [ probabilistic-t ]
-      var : (super.sample-t) -> number-t
-    }
-    #+end_src
+  #+begin_src cicada
+  random-variable-t = conj {
+    state-t : type
+    space : probability-space-t
+    var : (space.sample-t) -> state-t
+  }
+  #+end_src
 
   - random variable is used to specify subset of sample space
     on which we can calculate probability
@@ -221,25 +221,43 @@
       - categorical pushout ?
 
   - probability mass function
-    #+begin_src cicada
-    random-variable-t
-    .mass : (this.var.codomain) -> unit-interval-t
-    .mass = (num) => this.P (this.var.reverse (num))
-    #+end_src
+
+  #+begin_src cicada
+  random-variable-t
+  .mass : (this.state-t) -> unit-interval-t
+  .mass = (num) => this.prob (this.var.reverse (num))
+  #+end_src
 
   - x -
     the above formalization is rough
     we need to formalize set theory first
 
   - expected value -- center of mass
-    #+begin_src cicada
-    random-variable-t
-    .mean : () -> unit-interval-t
-    .mean = () => this.var.domain.sum-up ((x) => {
-      x * this.var.mass (x)
-    })
-    #+end_src
+
+  #+begin_src cicada
+  random-variable-t
+  .mean : () -> unit-interval-t
+  .mean = () => this.state-t.sum-up ((x) => {
+    x * this.var.mass (x)
+  })
+  #+end_src
 
   - expected value of function composition
 
   - variance
+
+* random-field-t
+
+  #+begin_src cicada
+  random-field-t = conj {
+    index-t : type
+    state-t : type
+    idx : (index-t) -> random-variable-t (state-t)
+  }
+
+  random-field-t <: random-variable-t {
+    state-t = (index-t) -> super.state-t
+    space = [todo]
+    var = [todo]
+  }
+  #+end_src

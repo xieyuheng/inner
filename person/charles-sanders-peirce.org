@@ -196,6 +196,67 @@
     who are always seeking for beliefs
     if its beliefs are broken, it trys its best to form new beliefs.
 
+* [note] pragmaticism and scientific method
+
+  - For Peirce, the entire universe and everything in it
+    is an evolutionary product. Indeed, he conceived that
+    even the most firmly entrenched of nature's habits
+    - for example, even those habits
+      that are typically called "natural laws"
+    have themselves evolved, and accordingly can and should be
+    subjects of philosophical and scientific inquiry.
+
+    One can sensibly seek evolutionary explanations
+    of the existence of particular natural laws.
+
+  - both Hegel and Peirce make the whole evolutionary interpretation
+    of the evolving phaneron to be a process that is said to be logical,
+    the "action" of logic itself.
+
+  - Hegel's logic is vague
+
+    but Peirce's logic is clear and is the whole logical apparatus
+    of the physical and social sciences.
+
+  - scientific method is
+    - essentially public
+    - reproducible in its activities
+    - self-correcting in the following sense:
+      No matter where different researchers may begin,
+      as long as they follow the scientific method,
+      their results will eventually converge toward the same outcome.
+
+      - the equivalence between theories
+        are defined by pragmatic principle
+
+      - x -
+        how about diverging theories in mathematics ?
+
+  - optimistic
+    Peirce tends to hold that every genuine question
+    - that is, every question whose possible answers
+      have empirical content (or pragmatic content)
+    can be answered in principle, or at least
+    should not be assumed to be unanswerable.
+
+    For this reason, one his most important dicta,
+    which he called his first principle of reason,
+    is "Do not block the way of inquiry!"
+
+  - the scientific method involves three phases or stages:
+    - abduction -- making conjectures or creating hypotheses
+    - deduction -- inferring what should be the case
+      if the hypotheses are the case
+    - induction -- the testing of hypotheses
+
+    The process of going through the stages
+    should also be carried out with concern for the economy of research.
+
+  - economy of research
+    science is essentially a human and social enterprise
+    and that it always operates in some given historical,
+    social, and economic context.
+
 * (1868) some consequences of four incapacities
 
 * (1868) questions concerning certain faculties claimed for man
@@ -412,6 +473,14 @@
 *** The Signs for Multiplication
 
 * (1877) the fixation of belief
+
+  - x -
+    practicing physical scientist
+    the whole meaning of a physical concept
+    is determined by an exact method of measuring it
+
+    practicing data scientist
+    making inferences from data, without absolute certainty
 
 * (1878) how to make our ideas clear
 
