@@ -204,8 +204,8 @@
 
   #+begin_src cicada
   random-variable-t = conj {
-    state-t : type
     space : probability-space-t
+    state-t : type
     var : (space.sample-t) -> state-t
   }
   #+end_src
@@ -250,14 +250,20 @@
 
   #+begin_src cicada
   random-field-t = conj {
-    index-t : type
+    space : probability-space-t
     state-t : type
-    idx : (index-t) -> random-variable-t (state-t)
+    index-t : type
+    idx : (index-t) -> random-variable-t (space, state-t)
   }
 
   random-field-t <: random-variable-t {
-    state-t = (index-t) -> super.state-t
     space = [todo]
+    state-t = (index-t) -> super.state-t
     var = [todo]
   }
   #+end_src
+
+  - note the increasing number of sets here
+    | sample-t | probability-space-t |
+    | state-t  | random-variable-t   |
+    | index-t  | random-field-t      |
