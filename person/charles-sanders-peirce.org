@@ -257,6 +257,15 @@
     and that it always operates in some given historical,
     social, and economic context.
 
+* [note] continuum
+
+  - if a line is cut into two portions,
+    the point at which the cut takes place actually becomes two points.
+
+  - x -
+    to develop a good theory of continuum
+    we need a theory of boundary
+
 * (1868) some consequences of four incapacities
 
 * (1868) questions concerning certain faculties claimed for man

@@ -1,7 +1,14 @@
 #+title: probabilistic systems analysis
 
-* [todo]
-  - sigma-algebra
+* [note]
+
+*** formalize set theory
+
+    - x -
+      we found that to formalize mathematical structures
+      the must important basic structure to be formalize
+      is the structure of type -- or to formalize set theory
+
 * links
 
   https://www.youtube.com/playlist?list=PLUl4u3cNGP61MdtwGTqZA0MreSaDybji8
@@ -11,7 +18,7 @@
   - probability as a mathematical framework
     for reasoning about uncertainty
 
-* probability space
+* probability-space-t
 
   - sample space -- set of outcomes
     we record which outcome is more likely to occur compare to others
@@ -69,8 +76,6 @@
 
   - continuous uniform distribution
     probability = area
-
-* probability-space-t
 
   #+begin_src cicada
   probability-space-t = conj {
@@ -225,7 +230,7 @@
   #+begin_src cicada
   random-variable-t
   .mass : (this.state-t) -> unit-interval-t
-  .mass = (num) => this.prob (this.var.reverse (num))
+  .mass = (state) => this.prob (this.var.reverse (state))
   #+end_src
 
   - x -
@@ -236,15 +241,26 @@
 
   #+begin_src cicada
   random-variable-t
-  .mean : () -> unit-interval-t
-  .mean = () => this.state-t.sum-up ((x) => {
-    x * this.var.mass (x)
-  })
+  .mean : () -> this.state-t
+  .mean = () => this.state-t.sum-up ((x) => x * this.var.mass (x))
+
+  // it assumed that this.state-t has `sum-up` API
+  //   and element in this.state-t
+  //   can be product with number in unit-interval-t
   #+end_src
 
   - expected value of function composition
 
   - variance
+
+  #+begin_src cicada
+  random-variable-t
+  .variance : () -> this.state-t
+  .variance = this.sub (this.mean ()) .power (2) .mean
+
+  // it assumed that
+  //   one can product two elements in this.state-t
+  #+end_src
 
 * random-field-t
 
@@ -257,10 +273,19 @@
   }
 
   random-field-t <: random-variable-t {
-    space = [todo]
+    space = super.space
     state-t = (index-t) -> super.state-t
-    var = [todo]
+    var : (space.sample-t) -> (index-t) -> super.state-t
+    var = (sample) => (index) => this.idx (index) .var (sample)
   }
+
+  // note the use of function type here
+  //   we might need yoneda embedding
+  //   to develop measure of function space
+
+  random-field-t
+  .law : (this.state-t) -> unit-interval-t
+  .law = this.as (random-variable-t) .mass
   #+end_src
 
   - note the increasing number of sets here
