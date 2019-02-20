@@ -73,6 +73,9 @@
       the proportion of a trait found in the sample
       is attributed also to the population
 
+    - x -
+      like constant conjunction of hume
+
   - abduction -- syllogism AAA-2
 
     - a.k.a. hypotheses, retroduction and "educated guess"
@@ -117,6 +120,14 @@
     | A      |
     |--------|
     | A -> B |
+
+    - induction in application form mirrors
+      abduction in composition form
+
+    | M -> P |
+    | S -> P |
+    |--------|
+    | S -> M |
 
     - abduction
 
@@ -265,6 +276,70 @@
   - x -
     to develop a good theory of continuum
     we need a theory of boundary
+
+* [note] probability
+
+  - statistical information is often the best information
+    that we can have about phenomena
+
+  - there are three distinct and
+    mutually incommensurable measures of uncertainty
+    (of imperfection of certitude)
+
+    only one was probability
+
+    | probability                 | deduction |
+    | verisimilitude (likelihood) | induction |
+    | plausibility                | abduction |
+
+    - for plausibility :
+      seeking hypothesis for some actual fact that is surprising,
+      the hypothesis must be plausible in order to taken seriously.
+
+      - for example, using god or UFO
+        to explain some surprising phenomena
+        is not plausibility (is not to taken seriously)
+
+      - x -
+        plausibility is said to be hard to be formalized,
+        how about using markov logic networks ?
+
+  - two interpretations of probability
+
+    - subjectivists -- conceptualists
+      these believed that probability was
+      a measure of the strength of belief
+      actually accorded to a proposition
+      or a measure of the degree of rational belief
+      that ought to be accorded to a proposition
+
+    - objectivists -- materialists
+      these believed that probability was
+      a measure of the relative frequency
+      with which an event of some specific sort repeatedly happened
+
+  - peirce adopted an objectivist notion of probability
+
+    - probability is a notion with clear empirical content
+      and that there are clear empirical procedures
+      for ascertaining that content
+
+    - probability is not just a measure of events
+      rather, is an argument,
+      an argument having premisses and a conclusion
+
+      - just like the view of Kolmogoroff that
+        all probabilities are conditional probabilities
+
+  - peirce rejects Bayesianism and the method of inverse probabilities
+
+    in fact no probability at all can be assigned to inductive arguments.
+    Instead of probability,
+    a different measure of imperfection of certitude
+    must be assigned to inductive arguments:
+    verisimilitude or likelihood.
+
+    - about hypothesis-testing
 
 * (1868) some consequences of four incapacities
 

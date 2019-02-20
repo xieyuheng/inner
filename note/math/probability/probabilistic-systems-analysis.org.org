@@ -20,6 +20,11 @@
 
 * probability-space-t
 
+  - x -
+    note that
+    modern theory of probability
+    is limited by the mathematical structure of probability-space-t
+
   - sample space -- set of outcomes
     we record which outcome is more likely to occur compare to others
     by assigning probability to outcome.
@@ -205,6 +210,10 @@
   - random variable can be viewed statistically first
     - without introducing probabilistic-model
 
+  - after we developed the theory of random variable
+    we want to push probability space to the background
+    only go back to it when really necessary
+
   - a random variable is a function from sample to number
 
   #+begin_src cicada
@@ -225,7 +234,12 @@
 
       - categorical pushout ?
 
-  - probability mass function
+  - probability mass function -- for discrete random variables
+
+    for discrete random variables
+    we need probability density function
+
+    where `sum-up` is changed to `integral`
 
   #+begin_src cicada
   random-variable-t
