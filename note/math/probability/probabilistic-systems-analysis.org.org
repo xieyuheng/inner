@@ -236,7 +236,7 @@
 
   - probability mass function -- for discrete random variables
 
-    for discrete random variables
+    for continuous random variables
     we need probability density function
 
     where `sum-up` is changed to `integral`
@@ -306,3 +306,30 @@
     | sample-t | probability-space-t |
     | state-t  | random-variable-t   |
     | index-t  | random-field-t      |
+
+* continuous random variables
+
+  - instead of using probability mass function (PMF)
+    we need probability density function (PDF)
+    for continuous random variables
+
+  - density is no probability,
+    density is rate at which probabilities accumulate.
+
+  - to keep the over all probability equal to one,
+    density at one point does not have to be less than one.
+
+  - x -
+    how to formalize continuous random variables ?
+    we may need to formalize integral first
+
+  - cumulative distribution function (CDF)
+    is well defined for both continuous and discrete random variables
+
+  - PMF of discrete random variables
+    can be viewed as impulse function (Dirac delta function)
+    https://en.wikipedia.org/wiki/Dirac_delta_function
+
+  - if a CDF is useful (such as normal distribution)
+    we do not calculate it in close form
+    we just tabulate it and use it
