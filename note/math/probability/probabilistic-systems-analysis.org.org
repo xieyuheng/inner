@@ -314,7 +314,7 @@
     for continuous random variables
 
   - density is no probability,
-    density is rate at which probabilities accumulate.
+    density is rate at which probabilities accumulate
 
   - to keep the over all probability equal to one,
     density at one point does not have to be less than one.
@@ -333,3 +333,7 @@
   - if a CDF is useful (such as normal distribution)
     we do not calculate it in close form
     we just tabulate it and use it
+
+  - conditional PDF is normalized sections of PDF
+    - normalized with infinitesimal as the dominator
+      re-distribute over infinitesimal
