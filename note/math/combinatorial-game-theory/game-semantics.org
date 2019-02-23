@@ -90,6 +90,54 @@
 
 * (1996) (jaakko hintikka) the principles of mathematics revisited
 
+*** 1 The Functions of Logic and the Problem of Truth Definition
+
+    - Uninterpreted nonlogical axiom systems may be thought of as
+      pertaining to certain structures as such,
+      while the corresponding interpreted systems
+      deal with the actual instantiations of these structures.
+
+      - interpreted :
+        thermodynamics
+        geometry
+
+      - uninterpreted
+        group theory
+        field theory
+        lattice theory
+
+    - x -
+      this is the difference between class and object
+
+      but is Hilbert's "Foundations of Geometry" a class or an object ?
+      - it is said to be a nonlogical axiom system by the author.
+
+      maybe we should think of it as being
+      directly constructing an object without abstracting it to a class
+
+    - two functions of logic
+
+      - descriptive function
+        -- an unambiguous language
+        -- model theory or logical semantics
+
+      - deductive function
+        -- fixation of beliefs
+        -- proof theory
+
+    - x -
+      Tarski's model theory dependents on set theory
+      how about game semantics ?
+
+    - x -
+      what is an interpretation ?
+      - an object instantiating a class ?
+      - or an morphism from one class to another ?
+
+*** 2 The Game of Logic
+
+    - ><
+
 * (shahid rahman)
 
 * (walter felscher) dialogues as a foundation for intuitionistic logic
