@@ -82,6 +82,26 @@
       - heir
         一個 heir 式的父類型並不知道自己有哪些子類型
 
+* (2019) (Xie Yuheng) Game Semantics of Logic
+
+  - proposition as game, proof as winning strategy
+
+<*** a formal language for designing games
+
+*** disjunction and conjunction
+
+*** dependency, forall and exists
+
+*** note about curry-howard correspondence (chiso)
+
+    - type as proposition, object and function as proof
+
+*** higher order logic games
+
+    - topological interpretation of type system
+
+    - boundary as type, topological space as object or function
+
 * (kuno lorenz)
 
 * (1965) (paul lorenzen) formal logic
@@ -137,6 +157,8 @@
 *** 2 The Game of Logic
 
     - ><
+
+*** 3 Frege's Fallacy Foiled: Independence-Friendly Logic
 
 * (shahid rahman)
 
