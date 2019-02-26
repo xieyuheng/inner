@@ -88,6 +88,27 @@
 
 * Chapter 2: The Logic of Atomic Sentences
 
+  - What does it mean when we say that sentence S
+    is a logical consequence of sentence T ?
+
+    S is a logical consequence of T if
+    whenever T is true, S must be true as well
+
+    it is impossibile for T to be true and S false
+
+    - x -
+      left player can play in both S and T
+      (two games are dependent on each other)
+      whenever she loss in S, she have winning strategy to win in T.
+
+  - an argument is a chain of consequence
+
+    an argument is valid if its consequences
+    must follow from its premises
+
+    an argument is sound (in some model) if it is valid
+    and its premises are true
+
 * Chapter 3: The Boolean Connectives
 
 * Chapter 4: The Logic of Boolean Connectives
