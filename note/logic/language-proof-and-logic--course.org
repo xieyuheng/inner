@@ -109,6 +109,57 @@
     an argument is sound (in some model) if it is valid
     and its premises are true
 
+  - In everyday life, we rarely construct
+    long chains of inference
+    but think, for example, of mathematics
+    and related disciplines.
+    In these situations we often build large theories
+    by proving results, and then using
+    these results in later proofs, and then using
+    those results yet later.
+
+    - x -
+      this is where we need to make use the knowledge
+      we learned from developing software
+
+  - Fitch notation
+    https://en.wikipedia.org/wiki/Fitch_notation
+
+    - example :
+
+    #+begin_src cicada
+    #1 Cube (c)
+    #2 c = b
+    ------
+    #3 Cube (b) -- =-elim (#1 #2)
+    #+end_src
+
+  - x -
+    comparing to game semantics,
+    inference rules are highly non-symmetric
+
+  - x -
+    basic equivalent relation is part of every FOL model
+    this means for a class to be used as a model of FOL
+    it must have a basic equivalent relation with
+
+  - x -
+    substitution principle is closely related with
+    unification in our implementation
+
+  - x -
+    in our interpretation
+    we need to give every inference rule
+    a constructive meaning
+
+    what is the meaning of `=-elim` ?
+    maybe :
+    by c = b
+    we can view Cube (b) as Cube (c)
+
+    or we can view an element of Cube (b)
+    as an element of Cube (c)
+
 * Chapter 3: The Boolean Connectives
 
 * Chapter 4: The Logic of Boolean Connectives

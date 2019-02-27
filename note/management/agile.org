@@ -12,7 +12,7 @@
 
 *** scrum
 
-    - scrum uses story map as this main tool
+    - scrum uses story map as its main tool
       the aim of scrum is to estimate time
 
 * agile videos

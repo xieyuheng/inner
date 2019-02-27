@@ -86,7 +86,7 @@
 
   - proposition as game, proof as winning strategy
 
-<*** a formal language for designing games
+*** a formal language for designing games
 
 *** disjunction and conjunction
 
