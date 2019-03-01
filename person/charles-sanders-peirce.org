@@ -622,7 +622,7 @@
     Then, our conception of these effects
     is the whole of our conception of the object.
 
-* [todo] (1880) on the algebra of logic
+* (1880) on the algebra of logic
 
 * (2000) (geraldine brady) from peirce to skolem
 

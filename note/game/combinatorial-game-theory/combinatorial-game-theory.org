@@ -142,19 +142,19 @@
         right-choices = (position) => list-append (
           either-this-c (this.right-choices (position.this))
           either-that-c (that.right-choices (position.that)))
-        left-move = (choice, position) => case choice {
-          either-this-t -- pair-c (
+        left-move = (choice, position) => choice case {
+          either-this-t => pair-c (
             this.left-move (choice.value, position.this)
             position.that)
-          either-that-t -- pair-c (
+          either-that-t => pair-c (
             position.this
             that.left-move (choice.value, position.that))
         }
-        right-move = (choice, position) => case choice {
-          either-this-t -- pair-c (
+        right-move = (choice, position) => choice case {
+          either-this-t => pair-c (
             this.right-move (choice.value, position.this)
             position.that)
-          either-that-t -- pair-c (
+          either-that-t => pair-c (
             position.this
             that.right-move (choice.value, position.that))
         }

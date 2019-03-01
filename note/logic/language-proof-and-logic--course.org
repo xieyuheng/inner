@@ -86,6 +86,8 @@
 
     thus in FOL we can only handle functions by axioms about them
 
+  - ><
+
 * Chapter 2: The Logic of Atomic Sentences
 
   - What does it mean when we say that sentence S
