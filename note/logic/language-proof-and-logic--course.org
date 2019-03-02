@@ -162,6 +162,9 @@
     or we can view an element of Cube (b)
     as an element of Cube (c)
 
+  - x -
+    models can be used to provide counterexamples of sentence
+
 * Chapter 3: The Boolean Connectives
 
 * Chapter 4: The Logic of Boolean Connectives

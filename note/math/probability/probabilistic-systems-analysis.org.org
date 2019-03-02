@@ -83,7 +83,7 @@
     probability = area
 
   #+begin_src cicada
-  probability-space-t = conj {
+  class probability-space-t (
     sample-t : type
     event-t = set-t (sample-t)
     P : (event-t) -> unit-interval-t
@@ -99,7 +99,7 @@
       f : (nat-t -> event-t)
       [todo]
     ) -> [todo]
-  }
+  )
   #+end_src
 
 * zero probability
@@ -217,10 +217,29 @@
   - a random variable is a function from sample to number
 
   #+begin_src cicada
-  random-variable-t = conj {
+  class random-variable-t (
     space : probability-space-t
     state-t : type
     var : (space.sample-t) -> state-t
+  ) {
+    .mass : (state-t) -> unit-interval-t
+    .mass = (state) => space.prob (var.reverse (state))
+
+    .mean : () -> state-t
+    .mean = () => state-t.sum-up ((x) => x * this.mass (x))
+
+    // it assumed that state-t has `sum-up` API
+    //   and element in state-t
+    //   can be product with number in unit-interval-t
+
+    .variance : () -> state-t
+    .variance = this.sub (this.mean ()) .power (2) .mean
+
+    // it assumed that
+    //   one can product two elements in state-t
+
+    // .sub
+    // .power
   }
   #+end_src
 
@@ -241,65 +260,39 @@
 
     where `sum-up` is changed to `integral`
 
-  #+begin_src cicada
-  random-variable-t
-  .mass : (this.state-t) -> unit-interval-t
-  .mass = (state) => this.prob (this.var.reverse (state))
-  #+end_src
-
   - x -
     the above formalization is rough
     we need to formalize set theory first
 
   - expected value -- center of mass
 
-  #+begin_src cicada
-  random-variable-t
-  .mean : () -> this.state-t
-  .mean = () => this.state-t.sum-up ((x) => x * this.var.mass (x))
-
-  // it assumed that this.state-t has `sum-up` API
-  //   and element in this.state-t
-  //   can be product with number in unit-interval-t
-  #+end_src
-
   - expected value of function composition
 
   - variance
 
-  #+begin_src cicada
-  random-variable-t
-  .variance : () -> this.state-t
-  .variance = this.sub (this.mean ()) .power (2) .mean
-
-  // it assumed that
-  //   one can product two elements in this.state-t
-  #+end_src
-
 * random-field-t
 
   #+begin_src cicada
-  random-field-t = conj {
+  class random-field-t (
     space : probability-space-t
     state-t : type
     index-t : type
     idx : (index-t) -> random-variable-t (space, state-t)
+  ) {
+    .law : (state-t) -> unit-interval-t
+    .law = this.as (random-variable-t) .mass
   }
 
-  random-field-t <: random-variable-t {
-    space = super.space
-    state-t = (index-t) -> super.state-t
-    var : (space.sample-t) -> (index-t) -> super.state-t
+  random-field-t as random-variable-t (
+    space = this.space
+    state-t = (this.index-t) -> this.state-t
+    var : (this.space.sample-t) -> (this.index-t) -> this.state-t
     var = (sample) => (index) => this.idx (index) .var (sample)
-  }
+  )
 
   // note the use of function type here
   //   we might need yoneda embedding
   //   to develop measure of function space
-
-  random-field-t
-  .law : (this.state-t) -> unit-interval-t
-  .law = this.as (random-variable-t) .mass
   #+end_src
 
   - note the increasing number of sets here
