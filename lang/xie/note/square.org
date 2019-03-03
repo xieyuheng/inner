@@ -38,6 +38,14 @@
       i (1 a b)))
   #+end_src
 
+  #+begin_src cicada
+  space torus_2_t (
+    v : torus_2_t
+    a b : v == v
+    m : a b == b a 
+  )
+  #+end_src
+
 * k-2
 
   #+begin_src scheme
