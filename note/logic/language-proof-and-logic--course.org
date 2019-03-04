@@ -86,8 +86,6 @@
 
     thus in FOL we can only handle functions by axioms about them
 
-  - ><
-
 * Chapter 2: The Logic of Atomic Sentences
 
   - What does it mean when we say that sentence S
@@ -195,6 +193,25 @@
     logical consequence -> provable
 
 * Chapter 9: Introduction to Quantification
+
+  - x -
+    inference rules of propositional connectives
+    are simple functions of its direct parts
+
+    inference rules of predicative quantifiers are simple
+    are not functions of its direct parts
+
+    to define inference rules of predicative quantifiers
+    FOL uses the concept of "satisfiable"
+
+    but in our formal language
+    a predicate is just a named conj or disj
+
+    we still need the concept of "satisfiable"
+    and it will be based on
+    the basic equivalent relation of expressions
+
+    the concept of "satisfiable" dependents on model
 
 * Chapter 10: The Logic of Quantifiers
 
