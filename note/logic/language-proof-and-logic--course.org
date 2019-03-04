@@ -177,6 +177,23 @@
 
 * Chapter 8: The Logic of Conditionals
 
+  - logical consequence
+    if premises are true, the conclusion also must be true.
+
+  - tautology consequence -- propositional logic
+  - logical consequence -- predicate logic
+  - analytical consequences -- with a specific model
+
+  - soundness of deductive system :
+    provable -> logical consequence
+
+    - x -
+      if we define "true" as provable (constructable)
+      we get soundness for free
+
+  - completeness of deductive system :
+    logical consequence -> provable
+
 * Chapter 9: Introduction to Quantification
 
 * Chapter 10: The Logic of Quantifiers
