@@ -127,12 +127,12 @@
 
     - example :
 
-    #+begin_src cicada
-    #1 Cube (c)
-    #2 c = b
-    ------
-    #3 Cube (b) -- =-elim (#1 #2)
-    #+end_src
+      #+begin_src cicada
+      #1 Cube (c)
+      #2 c = b
+      ------
+      #3 Cube (b) -- =-elim (#1 #2)
+      #+end_src
 
   - x -
     comparing to game semantics,
@@ -213,29 +213,63 @@
 
     the concept of "satisfiable" dependents on model
 
-  #+begin_src cicada
-  // All P's are Q's
-  (x : P) -> Q (x)
+    #+begin_src cicada
+    // All P's are Q's
+    (x : P) -> Q (x)
 
-  // Some P's are Q's
-  ((x : P), Q (x))
+    // Some P's are Q's
+    ((x : P), Q (x))
 
-  // No P's are Q's
-  (x : P) -> not Q (x)
-  not (x : P, Q (x))
+    // No P's are Q's
+    (x : P) -> not Q (x)
+    not (x : P, Q (x))
 
-  (x : P) -> (Q (x) -> absurd-t)
-  (x : P, Q (x)) -> absurd-t
+    (x : P) -> (Q (x) -> absurd_t)
+    (x : P, Q (x)) -> absurd_t
 
-  // Some P's are not Q's
-  (x : P, not Q (x))
-  not ((x : P) -> Q (x))
+    // Some P's are not Q's
+    (x : P, not Q (x))
+    not ((x : P) -> Q (x))
 
-  (x : P, (Q (x) -> absurd-t))
-  ((x : P) -> Q (x)) -> absurd-t
-  #+end_src
+    (x : P, (Q (x) -> absurd_t))
+    ((x : P) -> Q (x)) -> absurd_t
+    #+end_src
 
 * Chapter 10: The Logic of Quantifiers
+
+  - no general procedure to decide first-order validity
+
+    - x -
+      is this contradicts "be able to enumerate function space" ?
+      no, because the enumeration might not stop
+      but it generates no functions
+
+  - contrapositive
+    #+begin_src cicada
+    A -> B
+    not B -> not A
+    (B -> C) -> (A -> C)
+
+    A -> B -> C
+    #+end_src
+
+  - De Morgan's laws For Quantifiers
+    #+begin_src cicada
+    not ((x : P) -> Q (x))
+    f : ((x : P) -> Q (x)) -> absurd_t
+    f = (h) => g.right (h (g.left))
+
+    ((x : P), not Q (x))
+    g : ((x : P), (Q (x) -> absurd_t))
+    g = (p, (q) => f ((_) => q))
+
+
+    ((x : P) -> not Q (x))
+    f : (x : P) -> Q (x) -> absurd_t
+
+    not ((x : P), Q (x))
+    g : (x : P, Q (x)) -> absurd_t
+    #+end_src
 
 * Chapter 11: Multiple Quantifiers
 
