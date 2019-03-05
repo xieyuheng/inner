@@ -33,6 +33,10 @@
     we are more interested in
     deduction from true sentence to true sentence
 
+  - a sentence is a type
+    a set of sentences can define a class
+    thus model theory study subclass relation between classes
+
 * about constructive-ness
 
   - in constructive propositional logic

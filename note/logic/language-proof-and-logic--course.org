@@ -213,6 +213,28 @@
 
     the concept of "satisfiable" dependents on model
 
+  #+begin_src cicada
+  // All P's are Q's
+  (x : P) -> Q (x)
+
+  // Some P's are Q's
+  ((x : P), Q (x))
+
+  // No P's are Q's
+  (x : P) -> not Q (x)
+  not (x : P, Q (x))
+
+  (x : P) -> (Q (x) -> absurd-t)
+  (x : P, Q (x)) -> absurd-t
+
+  // Some P's are not Q's
+  (x : P, not Q (x))
+  not ((x : P) -> Q (x))
+
+  (x : P, (Q (x) -> absurd-t))
+  ((x : P) -> Q (x)) -> absurd-t
+  #+end_src
+
 * Chapter 10: The Logic of Quantifiers
 
 * Chapter 11: Multiple Quantifiers
