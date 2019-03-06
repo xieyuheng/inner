@@ -185,7 +185,7 @@
   - soundness of deductive system :
     provable -> logical consequence
 
-    - x - 
+    - x -
       the definition of logical consequence depends on model
       in the case of propositional logic
       the model is boolean algebra
@@ -418,3 +418,12 @@
     | (x) => f (x)     | lambda (x : N) f (x)       |
     | exists unique    | unique (x : N) P (x)       |
     | in general       | <quantifier> (x : N) P (x) |
+
+* Summary
+
+  - modal logic -- about possible worlds
+
+  - linear logic -- about the using up resource (premises)
+
+  - the information we based on to do inference are sentences,
+    this might be generalized to any information (any object).
