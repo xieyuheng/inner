@@ -106,6 +106,13 @@
 
 * (1965) (paul lorenzen) formal logic
 
+* (1979) (jaakko hintikka) game-theoretical semantics
+
+*** [note]
+
+    - more on the use of game-theoretical semantics
+      on natural language
+
 * (1985) (jaakko hintikka) anaphora and definite descriptions
 
 * (1996) (jaakko hintikka) the principles of mathematics revisited
@@ -173,37 +180,42 @@
 
       - with quantifier with typed domains
 
+      - instead of explicit semantics mapping
+        I simply view a sentence as a game
+
+      - L is verifier, R is falsifier
+
+***** or
+
       #+begin_src cicada
-      // - instead of explicit semantics mapping
-      //   I simply view a sentence as a game
-      // - L is verifier, R is falsifier
-
-      // disjunction
-
       S1 or S2
 
       L_choices (S1 or S2) = [
-        "first of disjunction",
-        "second of disjunction",
+        "first of or",
+        "second of or",
       ]
 
-      L_move ("first of disjunction", S1 or S2) = S1
-      L_move ("second of disjunction", S1 or S2) = S2
+      L_move ("first of or", S1 or S2) = S1
+      L_move ("second of or", S1 or S2) = S2
+      #+end_src
 
-      // conjunction
+***** and
 
+      #+begin_src cicada
       S1 and S2
 
       R_choices (S1 and S2) = [
-        "first of conjunction",
-        "second of conjunction",
+        "first of and",
+        "second of and",
       ]
 
-      R_move ("first of conjunction", S1 and S2) = S1
-      R_move ("second of conjunction", S1 and S2) = S2
+      R_move ("first of and", S1 and S2) = S1
+      R_move ("second of and", S1 and S2) = S2
+      #+end_src
 
-      // exists
+***** exists
 
+      #+begin_src cicada
       exists (x : N) S (x)
 
       L_choices (exists (x : N) S (x)) = [
@@ -211,9 +223,11 @@
       ]
 
       L_move (b, exists (x : N) S (x)) = S (b)
+      #+end_src
 
-      // forall
+***** forall
 
+      #+begin_src cicada
       forall (x : N) S (x)
 
       R_choices (forall (x : N) S (x)) = [
@@ -221,26 +235,31 @@
       ]
 
       R_move (b, forall (x : N) S (x)) = S (b)
+      #+end_src
 
-      // not
+***** not
 
       not S is a new game
       S -- where the role of verifier and falsifier are switched
 
-      // - if we were to allow interpreting negation like this
-      //   it means a sentences or a type must be modeled as a game
-      //   instead of a position of a game
-      //   for we a position does not contain
-      //   the information about players
+      - if we were to allow interpreting negation like this
+        it means a sentences or a type must be modeled as a game
+        instead of a position of a game
+        for we a position does not contain
+        the information about players
 
-      // atomic sentence
+      - we might also add a sign to position
+        and use this sign and the game type
+        to decide which player is to make move
+
+***** atomic sentence
 
       A is true -- verifier win
       A is false -- falsifier win
-      #+end_src
 
-    - x -
-      how should we understand the following:
+*** object introduced by falsifier can be used by the verifier
+
+    - how should we understand the following:
 
       in game semantics of FOL
       once the game moves beyond a "forall"
@@ -258,8 +277,9 @@
       and the object can be used by the verifier
       to construct a return value of the succedent type
 
-    - x -
-      it might be clear that
+*** falsifier indeed has meaningful choices
+
+    - it might be clear that
       falsifier indeed has meaningful choices
       in conjunctions
 
@@ -276,6 +296,65 @@
       #+begin_src cicada
       exists (x : N) even_t (x) and odd_t (x)
       #+end_src
+
+      it means, to view a conjunctions as a game,
+      further analysis of the conjunction,
+      by means of quantifiers like "exists", is needed
+
+      #+begin_src cicada
+      conj {
+        x : N
+        even : even_t (x)
+        odd : odd_t (x)
+      }
+      #+end_src
+
+    - x -
+      it seems game semantics is specially applicable
+      for defining the semantics of quantifiers
+
+*** about logic variables
+
+    - a logic variable is an implicit argument
+
+    - is it true that
+      every implicit argument can be made explicit ?
+
+      - even in the case of antecedent subgame of arrow ?
+
+*** about truth
+
+    - x -
+      the author worries about that
+      game semantics did not capture the concept of truth
+
+      this can be released by viewing "truth" as "to be sure"
+      i.e. winning strategy
+
+      a player is sure about herself when playing a game
+      if she has a winning strategy
+
+*** about constructive-ness
+
+    - if game semantics can handle negation
+      is game semantics constructive ?
+      what is constructive-ness ?
+
+    - or why in game semantics,
+      we can simply handle negation by switching players ?
+
+      maybe this do not hurt constructive-ness
+      because if falsifier indeed has a winning strategy
+      it will can be viewed a function of type (P) -> void_t
+
+    - also note that
+      excluded middle does not hold in game semantics
+      because not all game has winning strategy
+      for one of its player
+
+    - x -
+      example of combinatorial games
+      that do not have winning strategy for one of its player
 
 *** 3 Frege's Fallacy Foiled: Independence-Friendly Logic
 
