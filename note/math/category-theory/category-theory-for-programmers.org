@@ -115,12 +115,12 @@
 *** II 4.1: Representable Functors
 
     - ><
+
       #+begin_src cicada
-      category-ct % (@ objects-t arrow-t arrow-eqv-t)
-      a : objects-t
-      set-t : (-> type-tt -- type-tt)
-      hom-set : (-> [a b] : objects-t -- a b arrow-t set-t)
-      (-> x : objects-t -- a x hom-set)
+      category_t (t arrow_t arrow_eqv_t)
+      set_t : (type) -> type
+      hom_set : ([a b] : t) -> set_t (arrow_t (a b))
+      (x : t) -> hom_set (a x)
       #+end_src
 
 *** II 4.2: The Yoneda Lemma

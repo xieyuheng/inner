@@ -1,6 +1,6 @@
 #+title: n-cat
 
-* note
+* [note]
 
   - why weak associative is more easier in infi-groupoid than in infi-cat ?
 

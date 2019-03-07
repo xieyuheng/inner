@@ -70,9 +70,9 @@
 
     this captures the concept of 'canonical construction'.
 
-* >< colimit
+* [todo] colimit
 
-* >< comma category
+* [todo] comma category
 
   - comma categories are another basic construction that
     first appeared in lawvere's thesis.
