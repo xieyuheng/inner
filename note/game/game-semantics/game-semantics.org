@@ -356,6 +356,12 @@
       example of combinatorial games
       that do not have winning strategy for one of its player
 
+*** fool's paradise
+
+    - ordinary first-order logic is a fool's paradise in that
+      it offers a poor and indeed misleading sample of
+      the variety of things that can happen in logic in general.
+
 *** 3 Frege's Fallacy Foiled: Independence-Friendly Logic
 
 * (shahid rahman)
