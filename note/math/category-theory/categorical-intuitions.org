@@ -9,7 +9,7 @@
 * isomorphism
 
   - two objects have the same structure iff they are isomorphic,
-    and an 'abstract object' is an isomorphism class of objects.
+    and an "abstract object" is an isomorphism class of objects.
 
 * functor
 
@@ -33,7 +33,7 @@
     to a construction G : A -> B
     there corresponds a natural transformation F => G.
 
-    this captures the concept of 'natural translation'.
+    this captures the concept of "natural translation".
 
   - the naturality condition of natural-transformation
     state squares commute.
@@ -68,7 +68,7 @@
   - to any canonical construction from one species of structure to another
     corresponds an adjunction between the corresponding categories.
 
-    this captures the concept of 'canonical construction'.
+    this captures the concept of "canonical construction".
 
 * [todo] colimit
 

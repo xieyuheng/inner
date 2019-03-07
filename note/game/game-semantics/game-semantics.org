@@ -82,7 +82,7 @@
       - heir
         一個 heir 式的父類型並不知道自己有哪些子類型
 
-* (2019) (Xie Yuheng) Game Semantics of Logic
+* (2019) (xie yuheng) game semantics of logic
 
   - proposition as game, proof as winning strategy
 
@@ -112,16 +112,16 @@
 
 *** 1 The Functions of Logic and the Problem of Truth Definition
 
-    - Uninterpreted nonlogical axiom systems may be thought of as
+    - Uninterpreted nonlogical axiom systems might be thought of as
       pertaining to certain structures as such,
       while the corresponding interpreted systems
       deal with the actual instantiations of these structures.
 
-      - interpreted :
+      - interpreted:
         thermodynamics
         geometry
 
-      - uninterpreted
+      - uninterpreted:
         group theory
         field theory
         lattice theory
@@ -154,9 +154,128 @@
       - an object instantiating a class ?
       - or an morphism from one class to another ?
 
+    - critics of Tarski's truth-conditional semantics
+      https://plato.stanford.edu/entries/tarski-truth/
+      in favor of verificationist semantics
+      https://en.wikipedia.org/wiki/Verificationism
+
 *** 2 The Game of Logic
 
-    - ><
+    - x -
+      the choice of falsifier lies in "forall"
+      which is a dependent arrow type in our language
+
+    - game rule of FOL
+
+      - with a model
+        this means
+        atomic sentences are interpreted to true or false
+
+      - with quantifier with typed domains
+
+      #+begin_src cicada
+      // - instead of explicit semantics mapping
+      //   I simply view a sentence as a game
+      // - L is verifier, R is falsifier
+
+      // disjunction
+
+      S1 or S2
+
+      L_choices (S1 or S2) = [
+        "first of disjunction",
+        "second of disjunction",
+      ]
+
+      L_move ("first of disjunction", S1 or S2) = S1
+      L_move ("second of disjunction", S1 or S2) = S2
+
+      // conjunction
+
+      S1 and S2
+
+      R_choices (S1 and S2) = [
+        "first of conjunction",
+        "second of conjunction",
+      ]
+
+      R_move ("first of conjunction", S1 and S2) = S1
+      R_move ("second of conjunction", S1 and S2) = S2
+
+      // exists
+
+      exists (x : N) S (x)
+
+      L_choices (exists (x : N) S (x)) = [
+        // list of all elements of N
+      ]
+
+      L_move (b, exists (x : N) S (x)) = S (b)
+
+      // forall
+
+      forall (x : N) S (x)
+
+      R_choices (forall (x : N) S (x)) = [
+        // list of all elements of N
+      ]
+
+      R_move (b, forall (x : N) S (x)) = S (b)
+
+      // not
+
+      not S is a new game
+      S -- where the role of verifier and falsifier are switched
+
+      // - if we were to allow interpreting negation like this
+      //   it means a sentences or a type must be modeled as a game
+      //   instead of a position of a game
+      //   for we a position does not contain
+      //   the information about players
+
+      // atomic sentence
+
+      A is true -- verifier win
+      A is false -- falsifier win
+      #+end_src
+
+    - x -
+      how should we understand the following:
+
+      in game semantics of FOL
+      once the game moves beyond a "forall"
+      substitution happens to the succedent type
+
+      it is also the case in our language
+      but it happens in the type
+
+      but what happens in the function body
+      is different from FOL
+
+      in the function body
+      once the falsifier made his choose on a "forall"
+      this is recorded by an object of the antecedent type
+      and the object can be used by the verifier
+      to construct a return value of the succedent type
+
+    - x -
+      it might be clear that
+      falsifier indeed has meaningful choices
+      in conjunctions
+
+      if we write all "exists" explicitly
+      hence enforcing an order on how the game ought to be played
+
+      - which means before the argument-subgame
+        in "exists" is played out
+        we can not play the body-subgame of "exists"
+
+      in this view, in the following game
+      there will no longer be any seemingly contradictory
+
+      #+begin_src cicada
+      exists (x : N) even_t (x) and odd_t (x)
+      #+end_src
 
 *** 3 Frege's Fallacy Foiled: Independence-Friendly Logic
 
