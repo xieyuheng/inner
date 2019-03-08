@@ -260,3 +260,13 @@
   - conditional PDF is normalized sections of PDF
     - normalized with infinitesimal as the dominator
       re-distribute over infinitesimal
+
+* Iterated Expectations
+* Bernoulli Process
+* Poisson Process
+* Markov Chains
+* Weak Law of Large Numbers
+* Central Limit Theorem
+* Bayesian Statistical Inference
+* Classical Statistical Inference
+* Classical Inference
