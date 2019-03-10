@@ -82,7 +82,7 @@
       - heir
         一個 heir 式的父類型並不知道自己有哪些子類型
 
-* (2019) (xie yuheng) game semantics of logic
+* (2019) (xie yuheng) investigations into game semantics of logic
 
   - proposition as game, proof as winning strategy
 
@@ -372,3 +372,8 @@
     作者把邏輯命題視爲遊戲的方式我並不滿意
     其遊戲規則模擬了對話體論戰
     而我想要用類似二人撲克的遊戲規則
+
+    想用撲克是因爲 player 的多種 choices
+    並不來源於一個 quantifier
+
+    但是實用一般的 quantifier theory 之後應該可以免除這種情況
