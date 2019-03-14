@@ -1,0 +1,9 @@
+#+title: computer graphics
+
+* vector space and affine space
+
+* curves in the plane
+
+  - corner cutting algorithm
+    https://en.wikipedia.org/wiki/Subdivision_surface
+    an-algorithm-for-high-speed-curve-generation--chaikin.pdf
