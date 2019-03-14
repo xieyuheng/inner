@@ -1,5 +1,18 @@
 #+title: computer graphics
 
+* links
+
+  https://math.hws.edu/graphicsbook
+
+* [note]
+
+*** for cell complex
+
+    - a cell complex only contains topological information
+      to visualize it, we need to
+      1. add geometrical information to it
+      2. and project it to 2-dim with visual effects
+
 * vector space and affine space
 
 * curves in the plane
@@ -7,3 +20,23 @@
   - corner cutting algorithm
     https://en.wikipedia.org/wiki/Subdivision_surface
     an-algorithm-for-high-speed-curve-generation--chaikin.pdf
+
+* two-dimensional graphics
+
+  - setting up coordinate system
+  - setting up color model
+  - primitive shapes -- lines, rectangles
+    API:
+    #+begin_src js
+    .path (point_array: Array <point_t>)
+    .line (start: point_t, end: point_t)
+    .cubic_bezier (
+      start: point_t,
+      end: point_t,
+      start_control: point_t,
+      end_control: point_t)
+    .quadratic_bezier (
+      start: point_t,
+      end: point_t,
+      control: point_t)
+    #+end_src
