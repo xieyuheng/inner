@@ -598,4 +598,6 @@
       the study of geometrical properties
       that are unchanged by "central projection".
 
+* (1967) geometry revisited
+
 * (1974) regular complex polytopes

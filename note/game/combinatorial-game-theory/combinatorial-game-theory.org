@@ -1,5 +1,12 @@
 #+title: combinatorial game theory
 
+* [note] affine space
+
+  - the structure of combinatorial game is like affine space
+    https://en.wikipedia.org/wiki/Affine_space
+    point -- position
+    translation -- choice
+
 * Chapter I. Combinatorial Games
 
 *** intro

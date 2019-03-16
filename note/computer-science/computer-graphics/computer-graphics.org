@@ -23,8 +23,10 @@
 
 * two-dimensional graphics
 
-  - setting up coordinate system
-  - setting up color model
+  - setting up
+    coordinate system
+    color model
+
   - primitive shapes -- lines, rectangles
     API:
     #+begin_src js
@@ -40,3 +42,7 @@
       end: point_t,
       control: point_t)
     #+end_src
+
+  - transforms
+    translate (4, 0)
+    rotate (90)
