@@ -1,10 +1,10 @@
 #+title: lefschetz
 
-* algebraic topology (1941)
+* (1941) algebraic topology
 
-* topics in topology (1942)
+* (1942) topics in topology
 
-* introduction to topology (1949)
+* (1949) introduction to topology
 
 *** introduction, a survey of some topological concepts
 
@@ -15,10 +15,6 @@
         enabling one to define continuity.
         The sets are then called topological spaces.
         Thus topology is a branch of general set theory.
-
-      - x -
-        既然質疑集合論的語言的有效性
-        這些隨之而來的定義也就都要受到質疑了
 
       - [homotopy equivalent between mappings]
         The guiding purpose is to obtain properties
