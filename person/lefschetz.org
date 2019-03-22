@@ -1,5 +1,10 @@
 #+title: lefschetz
 
+* [note] about complex
+
+  - lefschetz always use simplicial complex
+    instead of cell complex
+
 * (1941) algebraic topology
 
 * (1942) topics in topology

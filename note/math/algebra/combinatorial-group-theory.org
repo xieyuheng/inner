@@ -1882,7 +1882,7 @@
         | finite simple group     | prime number      |
         | direct product of group | product of number |
         but for infinite group, we do not have such.
-x
+
       - The object on which a group of transformations acts
         has disappeared completely
         if we define a group through a presentation by generators and relations.
@@ -2163,3 +2163,7 @@ x
 *** note
 
     - also about normal form.
+
+* (1982) intuitive combinatorial topology
+
+  - Translated from the Russian, Naglyadnaya topologiya (§) 1982 Nauka.

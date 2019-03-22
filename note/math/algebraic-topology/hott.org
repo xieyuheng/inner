@@ -1,4 +1,4 @@
-#+TITLE:  homotopy type theory note
+#+title: homotopy type theory note
 
 * history
 
@@ -28,8 +28,7 @@
     - The concept of a univalent fibration was introduced by Voevodsky in early 2006
 
       - Notes on homotopy lambda calculus, March 2006
-* ===================================
-* *the book*
+
 * intro
 
 *** type theory
@@ -323,7 +322,7 @@
       比如
       quotient (? set -> set)
       如果這樣聲明類型發現根本就沒法定義 quotient 的函數體
-      #+begin_src cicada-language
+      #+begin_src cicada
       set
       ({(term -> bool) #predicate}
        {(term #term1 term #term2
@@ -368,7 +367,7 @@
       如果要求所有的集合都帶有等詞
       我們又需要給出這個高階集合的等詞
       那將是
-      #+begin_src cicada-language
+      #+begin_src cicada
       cicada:equal2?
       ({cicada #cicada1 #cicada2}
        :cicada1 :cicada2 cicada:equal?
@@ -495,7 +494,7 @@
       * computation [reduction]
       * uniqueness principle [expansion]
     * cicada
-      #+begin_src cicada-language
+      #+begin_src cicada
       * list
         (type -> type)
         * null
@@ -581,12 +580,10 @@
 * 5 induction
 * 6 higher inductive types
 * 7 homotopy n-types
-* -----------------------------------
 * 8 homotopy theory
 * 9 category theory
 * 10 set theory
 * 11 real numbers
-* ===================================
 * 新記
 *** 引
     1. 所有 lambda-term 所構成的有向圖中
@@ -908,8 +905,6 @@
      可能是因爲
      這種東西的 syntax 沒有良好對應的 semantics
      - 比如類型論剛產生時候的處境
-     - 而我關於運算的等級的理論是已經擁有了 semantics
-       但是缺少一種有良好語法的語言來討論這些東西
 * syntax
   t ::= x | c | f | λx.t | t(t')
 
@@ -1201,4 +1196,3 @@
 
   沒有範疇論的基礎weak factorization system我還沒法理解
   只知道weak factorization system與上面的四個推理規則完全契合
-* ===================================
