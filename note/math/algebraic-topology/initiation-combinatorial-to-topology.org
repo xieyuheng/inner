@@ -1,23 +1,13 @@
-#+title: initiation combinatorial to topology
+#+title: 组合拓扑入门 / initiation combinatorial to topology
 
 - by maurice frechet and kt fan, 1946, 1967
+  translated from the french, by howard w. eves
 
-* preface
+* 拓扑一般性 / topological generalities
 
-  - x -
-    開篇引用 poincare 對 topology theory 的定義
-    以 Elementary Geometry, Projective Geometry, Topology 之間的對比爲例子
-    強調 質 與 量 之間的對立
+*** 1 定性的 [非定量的] 几何性质 / Qualitative Geometric Properties
 
-* chapter one. topological generalities
-
-*** 1 Qualitative Geometric Properties
-
-    - x -
-      追隨 poincare 的描述
-      來強調 質 與 量 之間的對立
-
-*** 2 Coloring Geographical Maps
+*** 2 地图着色 / Coloring Geographical Maps
 
     - x -
       染色問題在三維中是平凡的
@@ -60,29 +50,28 @@
       在之後討論 complex 到流形的限制時
       我們也應該從一階流形開始
 
-*** 3 The Problem of Neighboring Regions
+*** 3 邻域问题 / The Problem of Neighboring Regions
 
-*** 4 Topology, India-Rubber Geometry
+*** 4 拓扑, 橡皮几何 / Topology, India-Rubber Geometry
 
     - India-Rubber,
-      which we are able to distort as we wish in a continuous fashion without tearing.
+      which we are able to distort as we wish
+      in a continuous fashion without tearing.
 
     - x -
       這種想法可以給拓撲不變量一個直觀的解釋
 
-*** 5 Homeomorphism
+*** 5 同胚 / Homeomorphism
 
     - x -
       可逆的連續雙射 homeomorphism
       可以用來捕捉之前的
       "to distort as we wish in a continuous fashion without tearing."
-      這在於
-      想要描述的空間 A 的所有性質
-      都是利用連續映射建立的
-      比如 (: f (-> X A)) 或者 (: g (-> A Y))
+      這在於 空間 A 的各种性質 都是利用連續映射来描述的
+      比如 f : X -> A 或者 g : A -> Y
       因此當有 homeomorphism 的時候
-      這些 描述已然有效
-      並且 所描述的性質之間的關係已然被保持
+      這些 描述依然有效
+      並且 所描述的性質之間的關係依然被保持
 
     - k -
       可以發現
@@ -173,7 +162,7 @@
       當我們以組合的方式處理拓撲學時
       這些病態的現象並不會出現
 
-*** 6 Topology, Continuous Geometry
+*** 6 拓扑, 连续几何 / Topology, Continuous Geometry
 
     - It is important to note that
       a topological property of a set
@@ -191,7 +180,7 @@
       畢竟 子空間 與 空間 之間的關係
       並不直接涉及到 relative 這個詞
 
-*** 7 Comparison of Elementary Geometry, Projective Geometry, and Topology
+*** 7 初等几何, 摄影几何 与 拓扑学 之对比 / Comparison of Elementary Geometry, Projective Geometry, and Topology
 
     - x -
       這裏跟隨開篇對 poincare 的引用
@@ -239,14 +228,14 @@
       3. and finally, the group of transformations
          to which the manifold of fundamental elements is to be subjected.
 
-*** 8 Relative Topological Properties
+*** 8 相对的拓扑性质 / Relative Topological Properties
 
     - x -
       這裏所說的是 ambient-isotopy
       所說的相對性是指 sub-space 相對於 ambient-space
       [而不是相對同倫羣中的相對性]
 
-*** 9 Set Topology and Combinatorial Topology
+*** 9 点集拓扑 与 组合拓扑 / Set Topology and Combinatorial Topology
 
     - Since the figures studied in set topology are extremely general sets,
       it is natural that the results obtained in this way
@@ -274,11 +263,11 @@
         "a textbook of topology",
         chapter six, surface topology.
 
-*** 10 The Development of Topology
+*** 10 拓扑学的发展 / The Development of Topology
 
     - Poincare's combinatorial topology v.s. Cantor's set topology
 
-* chapter two. topological notions about surfaces
+* 曲面的拓扑概念 / topological notions about surfaces
 
 *** 11 Descartes'Theorem
 
@@ -408,7 +397,7 @@
       by an equivalent relation between polyhedra,
       to be pure combinatorial.
 
-* chapter three. topological classification of closed surfaces
+* 闭合曲面的拓扑分类 / topological classification of closed surfaces
 
 *** 20 the principal problem in the topology of surfaces
 
