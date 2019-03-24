@@ -1,0 +1,126 @@
+#+title: lectures on polytopes
+
+- by ziegler, 1994, 2007
+
+* [note]
+
+  - x -
+    should we use polytopal-complex instead of cell-complex ?
+
+* 0 Introduction and Examples
+
+  - part of the work (and fun) consists in seeing how intuition from life in
+    three dimensions can lead one (i.e., everyone, but not us) astray: there are
+    many theorems about 3-dimensional polytopes whose analogues in higher
+    dimensions fail badly. Thus, one of the main tasks for polytope theory is
+    to develop tools to analyze and, if possible, “visualize” the geometry of
+    higher-dimensional polytopes.
+
+    - schlegel diagrams
+    - gale diagrams
+    - lawrence construction
+
+  - x -
+    in this book,
+    vector in vector space are represented as column vector,
+    and linear functions (e dual vector) as row vector.
+
+    this is not convenient for programming language.
+
+    I will use row vector to represent vector.
+
+  - [bib]
+    for [algebraic] topology
+
+    - [179]
+      Robert J. Daverman:
+      Decompositions of Manifolds,
+      Academic Press, Orlando 1986. (232)
+
+    - [89]
+      Anders Björner:
+      Topological methods, in: “Handbook of Combinatorics”
+      (R. Graham, M. Grötschel, and L. Lovász, eds.),
+      NorthHolland/Elsevier, Amsterdam 1995, pp. 1819–1872. (59, 232)
+
+* 1 Polytopes, Polyhedra, and Cones
+* 2 Faces of Polytopes
+* 3 Graphs of Polytopes
+* 4 Steinitz' Theorem for 3-Polytopes
+* 5 Schlegel Diagrams for 4-Polytopes
+* 6 Duality, Gale Diagrams, and Applications
+* 7 Fans, Arrangements, Zonotopes, and Tilings
+* 8 Shellability and the Upper Bound Theorem
+
+*** 8.1 Shellable and Nonshellable Complexes
+
+    - [polytopal complex]
+      A polytopal complex (see Definition 5.1) is a finite, nonempty collection C
+      of polytopes (called the faces of C) in Rd that contains all the faces of its
+      polytopes, and such that the intersection of two of its polytopes is a face
+      of each of them.
+
+    - [pure complex]
+      A polytopal complex is pure if each of its faces is contained
+      in a face of dimension dim(C),
+      that is, if all the inclusion-maximal faces of C,
+      called the facets of C, have the same dimension.
+
+    - [simplicial complex]
+      A complex is simplicial if all its faces (equivalently, all its facets) are simplices.
+
+    - [underlying set of complex]
+      The underlying set of C is the union a of its faces.
+
+    - [bib]
+
+      for different definition of shellablitiy
+
+      - [172]
+        Gopal Danaraj & Victor Klee:
+        Which spheres are shellable?
+        in: “Algorithmic Aspects of Combinatorics”
+        (B. Alspach et al., eds.),
+        Annals of Discrete Math. 2, 1978, pp. 33–52. (235, 275, 277)
+
+    - x -
+      the spanning tree algorithm gives the begining shelling of any graph.
+      but shelling can have more edges than edges in the tree.
+
+      the first stage of normalization of 2-dim manifold complex,
+      is a shelling of the 2-manifold.
+
+    - [shellable]
+      A polytopal complex is shellable if it is pure and has a shelling.
+
+    - when adding a new element to the existing shelling,
+      then the intersection with what is already there must be
+      1. connected
+      2. pure (d - 1) dimensional
+
+    - x [about normalization of 3-dim manifold complex] -
+      first we try to union all the 3-cells into one 3-cell,
+      pick one, adding others one by one,
+      but we must ensure that,
+      at each step,
+      the unioned 3-cell
+      can be views as a 3-cell,
+      whose boundary sphere is attached to 2-skeleton of the space.
+
+      what is preventing us from doing this for 3-dim manifold complex ?
+
+    - [star and link of vertex in a polytopal complex]
+      ><><><
+      (star v C)
+      (link v C)
+
+    - [nonshellable example]
+      a tetrahedron and the 3-cube have nonshellable triangulations.
+
+      Whitehead's completion lemma
+      - [560]
+        John Henry Constantine Whitehead:
+        On subdivisions of complexes,
+        Proc. Cambridge Phil. Soc. 31 (1935), 69–75. (144, 238)
+
+* 9 Fiber Polytopes, and Beyond
