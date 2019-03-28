@@ -2,13 +2,7 @@
 
 - by Albert T. Lundell and Stephen Weingram, 1969
 
-* questions
-
-  - since the use of cell-complex in my view is to get rid of topology structure,
-    how the established topology structure of cell-complex is ?
-    and how is it not good for implementation and construction ?
-
-* 1 combinatorial cell complexes
+* combinatorial cell complexes
 
 *** 1 definitions
 
@@ -19,7 +13,7 @@
     - the cell-structure of a space X,
       is depicted by a family of attaching-maps
       [characteristic-map] [adjunction]
-      of type (-> n-cell X)
+      of type `n-cell -> X`
 
     - the three axioms of cell-structure
       are expressed in the language of set theory,
@@ -114,3 +108,9 @@
 
     - under such topology, a map is continuous iff
       it is continuous on each cells.
+
+* regular and semisimplicial cw complexes
+
+* homotopy type of cw complexes
+
+* the singular homology of cw complexes
