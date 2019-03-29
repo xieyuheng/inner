@@ -1,0 +1,6 @@
+#+title: understanding geometric algebra
+
+- hamilton, grassmann, and clifford for computer vision and graphics
+- by kenichi kanatani, 2011
+
+* ><
