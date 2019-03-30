@@ -3,4 +3,31 @@
 - hamilton, grassmann, and clifford for computer vision and graphics
 - by kenichi kanatani, 2011
 
-* ><
+* 1 Introduction
+
+* 2 3D Euclidean Geometry
+
+*** intro
+
+    - In this chapter,
+      a vector is a geometric object
+      equipped with direction and magnitude,
+      not an array of numbers.
+
+      Here, we present an “algebraic” description
+      of 3D Euclidean geometry, representing objects by “symbols”
+      and defining “operations” on them.
+
+* 3 Oblique Coordinate Systems
+
+* 4 Hamilton’s Quaternion Algebra
+
+* 5 Grassmann’s Outer Product Algebra
+
+* 6 Geometric Product and Clifford Algebra
+
+* 7 Homogeneous Space and Grassmann–Cayley Algebra
+
+* 8 Conformal Space and Conformal Geometry: Geometric Algebra
+
+* 9 Camera Imaging and Conformal Transformations

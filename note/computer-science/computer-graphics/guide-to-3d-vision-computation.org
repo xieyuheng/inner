@@ -1,0 +1,5 @@
+#+title: Guide to 3D Vision Computation
+
+- by Kenichi Kanatani, Yasuyuki Sugaya, Yasushi Kanazawa, 2016
+
+* ><
