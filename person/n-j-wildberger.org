@@ -5,27 +5,33 @@
 * intro-to-rational-trigonometry
 
 *** an invitation to geometry
+
     - 圖形用於啓發
       但論證不依賴圖形
       若依賴 則易有誤
 
 *** why trigonometry is hard
+
     - 角度這個值[弧長制 或 360 度] 不適合直接度量
       實際應用中 角度都是算出來的[利用三點]
       而 實際的計算中
       如果直接利用用以計算角度的數據 效果就更好了
       因此 整個三角學理論也應該更改
       不應該以角度爲基礎
+
     - 如果三角學這樣改了
       分析學也得跟着改
 
 *** quadrance via Pythagoras and Archimedes
+
     - 距離之平方 [距離的距離函數]
       稱 方[quadrance]
       以代替 距離
 
 *** spread, angles and astronomy
+
     - 角度起源於球面幾何 而不適用於平面幾何
+
     - 對方 比 斜方 [角度的單調函數] [值爲 0 到 1]
       稱 延[spread]
       以代替 角度
@@ -262,10 +268,13 @@
 *** 四點和諧[harmonic conjugates]
 
 *** Pappus' theorem and the cross ratio
+
     - Pappus' theorem
       兩組共線三點 給出 第三組共線三點
+
     - 交比 是攝影幾何中的計算 不涉及圓
       且爲攝影不變量 這樣共線四點算得的值 實爲共點四線之值
+
     - chasles theorem 又說明瞭額外的不變性
       即 共圓錐曲線的五點
       以其中一點爲基 作共點四線
@@ -387,13 +396,32 @@
         vector field
       - fundamental group
       - three dimensional manifold
-        quaternion
+        three sphere & quaternion
       - homology
         application
 
-*** note 因想像而有趣 因想像而難交流
+    - x -
+      假如問 考慮到整個的歷史 最重要的數學對象是什麼 ?
+      教授的回答是 球面 與 正多面體 -- 歐幾里得的第十三章
+      - 球面 其推廣包含了 高維球面
+        並且用來定義基本羣
+      - 正多面可以看成是對球面的離散近似
+        正多面中 正四面體的推廣就是是 單純形
+        單純復形對於發展代數拓撲來說也很重要
+        看看如下頁面中的插圖就知道其理論之有趣與豐富了
+        https://en.wikipedia.org/wiki/Regular_polyhedron
+        https://en.wikipedia.org/wiki/Regular_polytope
+        古希臘人對其着迷也容易理解
 
-    - 找不變量 由各種等價關係指引
+    - x -
+      正二十面體 比 正十二面體 的面數多
+      但是 正十二面體 更圓
+      之後我們可以計算離散曲率 來量化這個直覺
+
+*** [note] 因想像而有趣 因想像而難交流
+
+    - 找不變量
+      由各種等價關係指引 [比如同胚 與 同倫]
       相等由各種連續形變定義
       但是其構造性很弱
       [很難寫一個程序 幫你形變幾何體]
@@ -576,8 +604,6 @@
     - 攝影空間的同調羣是第一個出現非 Z 的例子
       其二階同調羣是 Z (mod 2)
 
-*** -review*
-
 *** An informal introduction to abstract algebra
 
 *** Introduction to group theory
@@ -653,6 +679,7 @@
 * math-history
 
 *** pythagoras' theorem
+
     - 現在的數學中 勾股定理 被用來定義 兩點之間的距離
 
 *** greek geometry
@@ -666,8 +693,10 @@
 *** ><
 
 *** projective geometry
+
     - 給文藝復興時期的畫家的實用定理
       平行線 相交與 畫布中的地平線
+
     - 利用攝影平面的齊次座標
       來分類三次曲線 [把曲線投影到圓上]
 
