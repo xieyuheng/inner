@@ -606,6 +606,43 @@
 
 *** An informal introduction to abstract algebra
 
+    - abstract algebraic structures
+      are best understood with examples.
+
+      for each abstract structures,
+      there are some motivating examples,
+      understand them is the key to understand general theory.
+
+      for examples
+      - ring -- integer
+        - commutative ring allows polynomial
+        - noncommutative ring has matrix as main example
+      - field -- rational number (the lecturer's favorite)
+        - 爲典型例子 爲 代數擴張域 以及有限素數域
+
+    - x -
+      wikipedia pages is the best place to lookup such examples
+      https://en.wikipedia.org/wiki/Ring_(mathematics)
+
+    - x -
+      when formalizing abstract algebraic structures,
+      do not forget we need the `eq` predicate,
+      because each algebraic structures extends `set`.
+      and `set` have `eq` as its abstract interface.
+
+    - 這裏 nj 給出了 finite prime field 的有理表示
+      用有理數來作爲基本元素 (對有理數域做商)
+      而不是用整數
+      a / b : Q (p) (b mod p != 0, 正如有理數的分母不可爲 0)
+      a / b == c / d 定義爲 a * c - b * d mod p == 0
+
+    - x -
+      這裏作者提到了 common theme 例如
+      (其實更一般地說就是 category theory 中的構造)
+      - subobject
+      - morphism
+      - quotient objects
+
 *** Introduction to group theory
 
 *** More on commutative groups---isomorphisms, homomorphisms, cosets and quotient groups
