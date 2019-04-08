@@ -645,9 +645,38 @@
 
 *** Introduction to group theory
 
+    - 有限交換羣的分類定理
+
 *** More on commutative groups---isomorphisms, homomorphisms, cosets and quotient groups
 
+    - order (G: Group, x: G): number
+      可以用來證明某些羣之間不存在 iso
+
+    - Auto (G) 描述 G 的對稱性
+
+    - 羣的同態定理
+      f: G -> H
+      im (f) < H
+      ker (f) < G
+      ker (f) = { g: G | f (g) == id (G) }
+
+    - H <| G -- 正規子羣 (左右 coset 相同)
+      coset (H) 構成商羣
+
+      - coset 类似仿射空间
+
 *** Free abelian groups and non-commutative groups
+
+    - 考慮 presentation of a group
+      "free" 就是缺少 relation
+
+    - 有限生成交換羣 -- 存在一組 base
+      有限生成交換羣的基本定理
+      有限生成交換羣 可以被分解爲無限部分和有限部分的直和
+      無限部分是 Z 的直和
+      有限部分是 Z/n 的直和 -- torsion
+
+    - 自由交換羣的子羣還是自由交換羣
 
 * differential-geometry
 
