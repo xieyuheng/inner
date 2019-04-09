@@ -559,12 +559,16 @@
 *** An introduction to homology
 
     - 重要的是能在無法想象出高維幾何體的情況下計算不變量
+
+    - 
+
     - 利用 點的 free group 和 邊的 free group
       還有邊界算子
       描述有向圖中的圈
       - 以此爲例子來介紹
         與先介紹 simplices 相比
         這種教學方式更好
+
     - 定向來源於具體的邊界算子
       而 邊界算子 由圖的編碼給出
 
@@ -572,7 +576,9 @@
 
     - 面可用點編碼
       對於點所編碼的面 需要約定定向
+
     - 編碼給出計算邊界算子的一般公式
+
     - 不論階級定向方式只有兩種
 
 *** Computing homology groups
@@ -594,6 +600,7 @@
     - 用更簡單的同倫空間來簡化計算
       但是空間必須有三角形
       否則就成 cell-complex 而沒有邊可以用來計算了
+
     - 0 階 同調羣 度量聯通部分的數量
 
 *** Delta complexes, Betti numbers and torsion
@@ -601,6 +608,7 @@
     - 以 torus 爲例
       其 cell complex 表示 加一邊而的三角
       之後就能獲得在原圖上無法使用的函子
+
     - 攝影空間的同調羣是第一個出現非 Z 的例子
       其二階同調羣是 Z (mod 2)
 
@@ -662,7 +670,6 @@
 
     - H <| G -- 正規子羣 (左右 coset 相同)
       coset (H) 構成商羣
-
       - coset 类似仿射空间
 
 *** Free abelian groups and non-commutative groups
