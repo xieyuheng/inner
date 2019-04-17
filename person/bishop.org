@@ -1,4 +1,4 @@
-#+title:  bishop
+#+title: bishop
 
 * foundations-of-constructivean-analysis
 
