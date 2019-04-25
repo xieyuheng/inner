@@ -1,0 +1,5 @@
+#+title: computational science and engineering
+
+- by gilbert strang, 2007
+
+* ><
