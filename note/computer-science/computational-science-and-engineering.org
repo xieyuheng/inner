@@ -2,4 +2,6 @@
 
 - by gilbert strang, 2007
 
-* ><
+* 1 applied linear algebra
+
+* 2 a framework for applied mathematics
