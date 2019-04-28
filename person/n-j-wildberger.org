@@ -575,9 +575,11 @@
 *** Simplices and simplicial complexes
 
     - 面可用點編碼
-      對於點所編碼的面 需要約定定向
+      對於點所編碼的面 需要約定定向 [用偶置换约定]
 
     - 編碼給出計算邊界算子的一般公式
+      例如 boundary ([0, 1, 2]) == [0, 1] - [0, 2] + [1, 2]
+      - sign 由系数 index 的奇偶性决定
 
     - 不論階級定向方式只有兩種
 
@@ -595,13 +597,32 @@
         商羣 Z (mod n) 並非 Z 的子羣
         Z 的所有子羣是 n Z
 
+    - sending the divisor (the submodule) of the quotient to zero
+
+    - R / (col-space of M)
+
+      - R might be a subspace represented by cols
+
+      - (change of bases)
+        suppose matrix A represents cols of M by cols of R
+        R * A = M
+
+      - (cokernel)
+        sending cols of A to zero
+        y * A == 0
+        y.trans (A.transpose ()) == 0
+        cokernel of A
+
+    - cokernel of f : X -> Y
+      is Y / image (f)
+
 *** More homology computations
 
     - 用更簡單的同倫空間來簡化計算
       但是空間必須有三角形
       否則就成 cell-complex 而沒有邊可以用來計算了
 
-    - 0 階 同調羣 度量聯通部分的數量
+    - 0 階 同調羣 度量聯通分支的數量
 
 *** Delta complexes, Betti numbers and torsion
 
