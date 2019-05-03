@@ -21,20 +21,9 @@
         if it is both equilateral and equiangular.
         It is then denoted by {p}.
 
-      - x -
-        along the way, a language for polytope is designed by coxeter.
-        call it coxeter1 and sexp-lize it ?
-        #+begin_src scheme
-        (gon p)
-        #+end_src
-
       - A regular polygon is easily seen to have a centre,
         from which all the vertices are at the same distance 0R,
-        while all the sides areat the same distance 1R.
-        #+begin_src scheme
-        (0-distance (gon p))
-        (1-distance (gon p))
-        #+end_src
+        while all the sides are at the same distance 1R.
 
 ***** 1.2 polyhedra
 
@@ -61,6 +50,7 @@
       - If its faces are {p}'s,
         q surrounding each vertex,
         the polyhedron is denoted by {p, q}.
+
         |        | name         | points | edges | faces |
         |--------+--------------+--------+-------+-------|
         | {3, 3} | tetrahedron  |      4 |     6 |     4 |
@@ -102,11 +92,11 @@
 ***** 1.7 regular maps
 
       - A map is said to be regular,
-      of type {p, q},
-      if there are ρ vertices and ρ edges for each face,
-      q edges and q faces at each vertex.
+        of type {p, q},
+        if there are p vertices and p edges for each face,
+        q edges and q faces at each vertex.
 
-      for example, {4, 4} on torus.
+        for example, {4, 4} on torus.
 
 ***** 1.8 configurations
 

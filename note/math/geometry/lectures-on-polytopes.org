@@ -25,10 +25,6 @@
     vector in vector space are represented as column vector,
     and linear functions (e dual vector) as row vector.
 
-    this is not convenient for programming language.
-
-    I will use row vector to represent vector.
-
   - [bib]
     for [algebraic] topology
 
