@@ -40,7 +40,48 @@
       NorthHolland/Elsevier, Amsterdam 1995, pp. 1819–1872. (59, 232)
 
 * 1 Polytopes, Polyhedra, and Cones
+
 * 2 Faces of Polytopes
+
+  - x -
+    a face of a polytope, is defined as
+    a valid inequality of polytope.
+
+    this feels good for facet,
+    a facet corresponds to one valid inequality.
+
+    but not for edge.
+    because an edge might corresponds to
+    infinitely many valid inequality.
+
+  - x -
+    the author uses valid inequality of vertex,
+    to construct the vertex figure of a polytope,
+    by moving the valid inequality toward the polytope a little bit.
+
+    even my treatment of vertex figure for cell complex
+    is more elegant than this.
+
+  - Why is all this (poset order structure) interesting for us?
+    Because we want to study the set of faces
+    of a convex polytope, ordered by inclusion.
+
+    - x -
+      example poset order structure is set ordered by inclusion.
+
+  - the face lattice is the proper framework to define
+    combinatorial equivalence of polytopes.
+
+    we define two polytopes P, Q
+    to be combinatorially equivalent
+    if there is a bijection
+    (piecewise linear homeomorphism)
+    between their faces
+    that preserves the inclusion relation.
+
+    i.e. P and Q are combinatorially equivalent,
+    if and only if their face lattices are isomorphic.
+
 * 3 Graphs of Polytopes
 * 4 Steinitz' Theorem for 3-Polytopes
 * 5 Schlegel Diagrams for 4-Polytopes
