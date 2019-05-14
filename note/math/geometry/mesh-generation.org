@@ -119,6 +119,9 @@
 
 * 2 Basic Structures and Algorithms
 
+  - x -
+    not worth reading for a computer scientist.
+
 * 3 A Comprehensive Survey of Mesh Generation Methods
 
 * 16 Meshing Implicit Curves and Surfaces

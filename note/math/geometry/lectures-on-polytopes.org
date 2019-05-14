@@ -135,7 +135,8 @@
       1. connected
       2. pure (d - 1) dimensional
 
-    - x [about normalization of 3-dim manifold complex] -
+    - x -
+      [about normalization of 3-dim manifold complex]
       first we try to union all the 3-cells into one 3-cell,
       pick one, adding others one by one,
       but we must ensure that,
