@@ -565,9 +565,94 @@
 
 * (1878) how to make our ideas clear
 
-  - x -
-    like aristotle, Peirce summaries
-    historical approaches to the same inquiry.
+  - [I]
+    (CP5.388, W3.257)
+    Whoever has looked into a modern treatise on logic of the common sort,
+    will doubtless remember the two distinctions
+    between clear and obscure conceptions,
+    and between distinct and confused conceptions.
+
+    They have lain in the books now for nigh two centuries,
+    unimproved and unmodified,
+    and are generally reckoned by logicians as among the gems of their doctrine.
+
+    - x -
+      Like aristotle, Peirce summaries historical approaches to the same inquiry.
+
+      By "a modern treatise on logic of the common sort",
+      Peirce might mean Descartes' treatise, or Descartes influenced treatise.
+      (See the following sections about Descartes)
+
+  - (CP5.389)
+    [...]
+
+  - [...]
+
+  - (CP5.390)
+    A distinct idea is defined as one which contains nothing which is not clear.
+    This is technical language; by the contents of an idea
+    logicians understand whatever is contained in its definition.
+
+    So that an idea is distinctly apprehended, according to them,
+    when we can give a precise definition of it, in abstract terms.
+
+    Here the professional logicians leave the subject;
+    and I would not have troubled the reader with what they have to say,
+    if it were not such a striking example of how they have been
+    slumbering through ages of intellectual activity,
+    listlessly disregarding the enginery of modern thought,
+    and never dreaming of applying its lessons to the improvement of logic.
+
+    It is easy to show that the doctrine that
+    *familiar use* and *abstract distinctness* make the perfection of apprehension
+    has its only true place in philosophies which have long been extinct;
+    and it is now time *to formulate the method of attaining to a more perfect clearness of thought*,
+    such as we see and admire in the thinkers of our own time.
+
+    - x -
+      Peirce changes the question from "what" to "how".
+
+  - (CP5.391)
+    When Descartes set about the reconstruction of philosophy,
+    his first step was to (theoretically) permit scepticism
+    and to discard the practice of the schoolmen
+    of looking to authority as the ultimate source of truth.
+
+    That done, he sought a more natural fountain of true principles,
+    and thought he found it in the human mind;
+    thus passing, in the directest way,
+    from the method of authority to that of apriority,
+    as described in my first paper.
+
+    Self-consciousness was to furnish us with our fundamental truths,
+    and to decide what was agreeable to reason.
+    But since, evidently, not all ideas are true, he was led to note,
+    as the first condition of infallibility, that they must be clear.
+    The distinction between an idea seeming clear and really being so,
+    never occurred to him.
+
+    Trusting to introspection, as he did, even for a knowledge of external things,
+    why should he question its testimony in respect to the contents of our own minds?
+
+    But then, I suppose, seeing men, who seemed to be quite clear and positive,
+    holding opposite opinions upon fundamental principles,
+    he was further led to say that clearness of ideas is not sufficient,
+    but that they need also to be distinct,
+    i.e., to have nothing unclear about them.
+
+    What he probably meant by this (for he did not explain himself with precision) was,
+    that they must sustain the test of dialectical examination;
+    that they must not only seem clear at the outset,
+    but that discussion must never be able to bring to light
+    points of obscurity connected with them.
+
+    - x -
+      Peirce understand Descartes by reconstructing Descartes' thread of thoughts.
+
+  - (CP5.392)
+    TODO
+
+  ------
 
   - We have there found. that the action of thought
     is excited by the irritation of doubt,
