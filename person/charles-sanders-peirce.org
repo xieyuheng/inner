@@ -805,11 +805,13 @@
     and what not, may not be told
     in the old German story?
 
-*** [todo] [II] (CP5.394)
+*** [II] (CP5.394)
 
-*** [todo] OLD NOTES
+    The principles set forth in the first part of these papers
+    lead, at once, to a method of reaching a clearness of thought
+    of a far higher grade than the "distinctness" of the logicians.
 
-  - We have there found. that the action of thought
+    We have there found. that the action of thought
     is excited by the irritation of doubt,
     and ceases when belief is attained;
     so that the production of belief is the sole function of thought.
@@ -837,6 +839,50 @@
 
       The problem is to formalize logics, believes and observations,
       so that we can write thinking programs.
+
+    All these words, however, are too strong for my purpose.
+    It is as if I had described the phenomena
+    as they appear under a mental microscope.
+
+    Doubt and Belief, as the words are commonly employed,
+    relate to religious or other grave discussions.
+
+    But here I use them to designate the starting of any question,
+    no matter how small or how great, and the resolution of it.
+
+    If, for instance, in a horse-car,
+    I pull out my purse and find a five-cent nickel and five coppers,
+    I decide, while my hand is going to the purse,
+    in which way I will pay my fare.
+
+    To call such a question Doubt, and my decision Belief,
+    is certainly to use words very disproportionate to the occasion.
+
+    To speak of such a doubt as causing an irritation which needs to be appeased,
+    suggests a temper which is uncomfortable to the verge of insanity.
+
+    Yet, looking at the matter minutely, it must be admitted that,
+    if there is the least hesitation as to whether
+    I shall pay the five coppers or the nickel
+    (as there will be sure to be, unless I act
+    from some previously contracted habit in the matter),
+    though irritation is too strong a word,
+    yet I am excited to such small mental activity
+    as may be necessary to deciding how I shall act.
+
+    Most frequently doubts arise from some indecision, 
+    however momentary, in our action. 
+    Sometimes it is not so. 
+    I have, for example, to wait in a railway-station, 
+    and to pass the time I read the advertisements on the walls. 
+    I compare the advantages of different trains and different routes
+    which I never expect to take, 
+    merely fancying myself to be in a state of hesitancy, 
+    because I am bored with having nothing to trouble me. 
+
+    Feigned hesitancy, whether feigned for mere amusement or with a lofty purpose, plays a great part in the production of scientific inquiry. However the doubt may originate, it stimulates the mind to an activity which may be slight or energetic, calm or turbulent. Images pass rapidly through consciousness, one incessantly melting into another, until at last, when all is over -- it may be in a fraction of a second, in an hour, or after long years -- we find ourselves decided as to how we should act under such circumstances as those which occasioned our hesitation. In other words, we have attained belief.
+
+*** [todo] OLD NOTES
 
   - Some elements (the sensations) are completely present
     at every instant so long as they last,
