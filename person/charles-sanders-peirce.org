@@ -565,8 +565,8 @@
 
 * (1878) how to make our ideas clear
 
-  - [I]
-    (CP5.388, W3.257)
+*** [I] (CP5.388, W3.257)
+
     Whoever has looked into a modern treatise on logic of the common sort,
     will doubtless remember the two distinctions
     between clear and obscure conceptions,
@@ -583,13 +583,14 @@
       Peirce might mean Descartes' treatise, or Descartes influenced treatise.
       (See the following sections about Descartes)
 
-  - (CP5.389)
+*** (CP5.389)
+
     A clear idea is defined as one which is so apprehended that
     it will be recognized wherever it is met with,
     and so that no other will be mistaken for it.
     If it fails of this clearness, it is said to be obscure.
 
-  - This is rather a neat bit of philosophical terminology;
+    This is rather a neat bit of philosophical terminology;
     yet, since it is clearness that they were defining,
     I wish the logicians had made their definition a little more plain.
 
@@ -612,7 +613,8 @@
     which needs to be supplemented by another,
     which they call distinctness.
 
-  - (CP5.390)
+*** (CP5.390)
+
     A distinct idea is defined as one which contains nothing which is not clear.
     This is technical language; by the contents of an idea
     logicians understand whatever is contained in its definition.
@@ -636,7 +638,8 @@
     - x -
       Peirce changes the question from "what" to "how".
 
-  - (CP5.391)
+*** (CP5.391)
+
     When Descartes set about the reconstruction of philosophy,
     his first step was to (theoretically) permit scepticism
     and to discard the practice of the schoolmen
@@ -673,10 +676,138 @@
     - x -
       Peirce understand Descartes by reconstructing Descartes' thread of thoughts.
 
-  - (CP5.392)
-    TODO
+*** (CP5.392)
 
-  ------
+    Such was the distinction of Descartes,
+    and one sees that it was precisely on the level of his philosophy.
+    It was somewhat developed by Leibnitz.
+    This great and singular genius was as remarkable
+    for what he failed to see as for what he saw.
+    That a piece of mechanism could not do work perpetually
+    without being fed with power in some form,
+    was a thing perfectly apparent to him;
+    yet he did not understand that
+    the machinery of the mind can only transform knowledge,
+    but never originate it,
+    unless it be fed with facts of observation.
+
+    He thus missed the most essential point of the Cartesian philosophy,
+    which is, that to accept propositions which seem perfectly evident to us
+    is a thing which, whether it be logical or illogical, we cannot help doing.
+
+    Instead of regarding the matter in this way,
+    he sought to reduce the first principles of science to two classes,
+    those which cannot be denied without self-contradiction,
+    and those which result from the principle of sufficient reason (of which more anon),
+    and was apparently unaware of the great difference
+    between his position and that of Descartes.
+    So he reverted to the old trivialities of logic;
+    and, above all, abstract definitions played a great part in his philosophy.
+
+    It was quite natural, therefore, that
+    on observing that the method of Descartes
+    labored under the difficulty that we may seem to ourselves
+    to have clear apprehensions of ideas
+    which in truth are very hazy,
+    no better remedy occurred to him
+    than to require an abstract definition of every important term.
+
+    Accordingly, in adopting the distinction of clear and distinct notions,
+    he described the latter quality as
+    the clear apprehension of everything contained in the definition;
+    and the books have ever since copied his words.
+
+    There is no danger that his chimerical scheme
+    will ever again be over-valued.
+    Nothing new can ever be learned by analyzing definitions.
+    Nevertheless, our existing beliefs can be set in order by this process,
+    and order is an essential element of intellectual economy, as of every other.
+
+    It may be acknowledged, therefore, that
+    the books are right in making familiarity with a notion the first step
+    toward clearness of apprehension, and the defining of it the second.
+
+    But in omitting all mention of any higher perspicuity of thought,
+    they simply mirror a philosophy which was exploded a hundred years ago.
+    That much-admired "ornament of logic"
+    -- the doctrine of clearness and distinctness
+    -- may be pretty enough,
+    but it is high time to relegate to our cabinet of curiosities the antique bijou,
+    and to wear about us something better adapted to modern uses.
+
+*** (CP5.393)
+
+    The very first lesson that we have a right to demand that logic shall teach us is,
+    how to make our ideas clear; and a most important one it is,
+    depreciated only by minds who stand in need of it.
+
+    To know what we think, to be masters of our own meaning,
+    will make a solid foundation for great and weighty thought.
+
+    It is most easily learned by those whose ideas are meagre and restricted;
+    and far happier they than such as wallow helplessly in a rich mud of conceptions.
+
+    A nation, it is true, may, in the course of generations,
+    overcome the disadvantage of an excessive wealth of language
+    and its natural concomitant, a vast, unfathomable deep of ideas.
+
+    We may see it in history, slowly perfecting its literary forms,
+    sloughing at length its metaphysics,
+    and, by virtue of the untirable patience
+    which is often a compensation, attaining great excellence
+    in every branch of mental acquirement.
+
+    The page of history is not yet unrolled that is to tell us
+    whether such a people will or will not in the long run prevail over
+    one whose ideas (like the words of their language) are few,
+    but which possesses a wonderful mastery over those which it has.
+
+    For an individual, however, there can be no question that
+    a few clear ideas are worth more than many confused ones.
+
+    A young man would hardly be persuaded
+    to sacrifice the greater part of his thoughts to save the rest;
+    and the muddled head is the least apt to see the necessity of such a sacrifice.
+    Him we can usually only commiserate, as a person with a congenital defect.
+    Time will help him, but intellectual maturity with regard to clearness comes rather late,
+    an unfortunate arrangement of Nature,
+    inasmuch as clearness is of less use to a man settled in life,
+    whose errors have in great measure had their effect,
+    than it would be to one whose path lay before him.
+
+    It is terrible to see how a single unclear idea,
+    a single formula without meaning, lurking in a young man's head,
+    will sometimes act like an obstruction of inert matter in an artery,
+    hindering the nutrition of the brain,
+    and condemning its victim to pine away
+    in the fullness of his intellectual vigor
+    and in the midst of intellectual plenty.
+
+    Many a man has cherished for years as his hobby
+    some vague shadow of an idea,
+    too meaningless to be positively false;
+    he has, nevertheless, passionately loved it,
+    has made it his companion by day and by night,
+    and has given to it his strength and his life,
+    leaving all other occupations for its sake,
+    and in short has lived with it and for it,
+    until it has become, as it were,
+    flesh of his flesh and bone of his bone;
+    and then he has waked up some bright morning to find it gone,
+    clean vanished away like the beautiful Melusina of the fable,
+    and the essence of his life gone with it.
+
+    I have myself known such a man;
+    and who can tell how many histories of
+    circle-squarers,
+    metaphysicians,
+    astrologers,
+    and what not, may not be told
+    in the old German story?
+
+*** [todo] [II] (CP5.394)
+
+*** [todo] OLD NOTES
 
   - We have there found. that the action of thought
     is excited by the irritation of doubt,
