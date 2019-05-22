@@ -584,9 +584,33 @@
       (See the following sections about Descartes)
 
   - (CP5.389)
-    [...]
+    A clear idea is defined as one which is so apprehended that
+    it will be recognized wherever it is met with,
+    and so that no other will be mistaken for it.
+    If it fails of this clearness, it is said to be obscure.
 
-  - [...]
+  - This is rather a neat bit of philosophical terminology;
+    yet, since it is clearness that they were defining,
+    I wish the logicians had made their definition a little more plain.
+
+    Never to fail to recognize an idea,
+    and under no circumstances to mistake another for it,
+    let it come in how recondite a form it may,
+    would indeed imply such prodigious force and clearness of intellect
+    as is seldom met with in this world.
+
+    On the other hand, merely to have such an acquaintance with the idea
+    as to have become familiar with it,
+    and to have lost all hesitancy in recognizing it in ordinary cases,
+    hardly seems to deserve the name of clearness of apprehension,
+    since after all it only amounts to a subjective feeling of mastery
+    which may be entirely mistaken.
+
+    I take it, however, that when the logicians speak of "clearness,"
+    they mean nothing more than such a familiarity with an idea,
+    since they regard the quality as but a small merit,
+    which needs to be supplemented by another,
+    which they call distinctness.
 
   - (CP5.390)
     A distinct idea is defined as one which contains nothing which is not clear.
