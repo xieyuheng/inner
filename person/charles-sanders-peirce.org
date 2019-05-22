@@ -840,6 +840,12 @@
       The problem is to formalize logics, believes and observations,
       so that we can write thinking programs.
 
+      And to adjust contradiction,
+      the program must search for new believes without contradiction.
+
+      Before designing a program which can search for believes,
+      we must also ask how to use those believes ?
+
     All these words, however, are too strong for my purpose.
     It is as if I had described the phenomena
     as they appear under a mental microscope.
@@ -870,17 +876,144 @@
     yet I am excited to such small mental activity
     as may be necessary to deciding how I shall act.
 
-    Most frequently doubts arise from some indecision, 
-    however momentary, in our action. 
-    Sometimes it is not so. 
-    I have, for example, to wait in a railway-station, 
-    and to pass the time I read the advertisements on the walls. 
+    Most frequently doubts arise from some indecision,
+    however momentary, in our action.
+    Sometimes it is not so.
+    I have, for example, to wait in a railway-station,
+    and to pass the time I read the advertisements on the walls.
     I compare the advantages of different trains and different routes
-    which I never expect to take, 
-    merely fancying myself to be in a state of hesitancy, 
-    because I am bored with having nothing to trouble me. 
+    which I never expect to take,
+    merely fancying myself to be in a state of hesitancy,
+    because I am bored with having nothing to trouble me.
 
-    Feigned hesitancy, whether feigned for mere amusement or with a lofty purpose, plays a great part in the production of scientific inquiry. However the doubt may originate, it stimulates the mind to an activity which may be slight or energetic, calm or turbulent. Images pass rapidly through consciousness, one incessantly melting into another, until at last, when all is over -- it may be in a fraction of a second, in an hour, or after long years -- we find ourselves decided as to how we should act under such circumstances as those which occasioned our hesitation. In other words, we have attained belief.
+    Feigned hesitancy,
+    whether feigned for mere amusement
+    or with a lofty purpose,
+    plays a great part in the production of scientific inquiry.
+
+    However the doubt may originate,
+    it stimulates the mind to an activity
+    which may be slight or energetic,
+    calm or turbulent.
+
+    Images pass rapidly through consciousness,
+    one incessantly melting into another,
+    until at last, when all is over
+    -- it may be in a fraction of a second,
+    in an hour, or after long years --
+    we find ourselves decided
+    as to how we should act under such circumstances
+    as those which occasioned our hesitation.
+
+    In other words, we have attained belief.
+
+*** (CP5.395)
+
+    In this process we observe two sorts of elements of consciousness,
+    the distinction between which may best be made clear by means of an illustration.
+
+    In a piece of music there are the separate notes, and there is the air.
+
+    A single tone may be prolonged for an hour or a day,
+    and it exists as perfectly in each second of that time as in the whole taken together;
+    so that, as long as it is sounding,
+    it might be present to a sense from which
+    everything in the past was as completely absent as the future itself.
+
+    But it is different with the air,
+    the performance of which occupies a certain time,
+    during the portions of which only portions of it are played.
+    It consists in an orderliness in the succession of sounds
+    which strike the ear at different times;
+    and to perceive it there must be some continuity of consciousness
+    which makes the events of a lapse of time present to us.
+
+    We certainly only perceive the air by hearing the separate notes;
+    yet we cannot be said to directly hear it,
+    for we hear only what is present at the instant,
+    and an orderliness of succession cannot exist in an instant.
+
+    These two sorts of objects,
+    what we are immediately conscious of
+    and what we are mediately conscious of,
+    are found in all consciousness.
+
+    Some elements (the sensations) are completely present at every instant so long as they last,
+    while others (like thought) are actions having beginning, middle, and end,
+    and consist in a congruence in the succession of sensations which flow through the mind.
+
+    They cannot be immediately present to us,
+    but must cover some portion of the past or future.
+
+    Thought is a thread of melody running through the succession of our sensations.
+
+*** (CP5.396)
+
+    We may add that just as a piece of music may be written in parts,
+    each part having its own air,
+    so various systems of relationship of succession
+    subsist together between the same sensations.
+
+    These different systems are distinguished
+    by having different motives, ideas, or functions.
+
+    Thought is only one such system,
+    for its sole motive, idea, and function is to produce belief,
+    and whatever does not concern that purpose
+    belongs to some other system of relations.
+
+    The action of thinking may incidentally have other results;
+    it may serve to amuse us,
+    for example, and among dilettanti it is not rare to find those
+    who have so perverted thought to the purposes of pleasure
+    that it seems to vex them to think that
+    the questions upon which they delight to exercise it
+    may ever get finally settled;
+    and a positive discovery which takes a favorite subject out of the arena of literary debate
+    is met with ill-concealed dislike.
+    This disposition is the very debauchery of thought.
+
+    But the soul and meaning of thought,
+    abstracted from the other elements which accompany it,
+    though it may be voluntarily thwarted,
+    can never be made to direct itself toward anything but the production of belief.
+
+    Thought in action has for its only possible motive the attainment of thought at rest;
+    and whatever does not refer to belief is no part of the thought itself.
+
+*** (CP5.397)
+
+    And what, then, is belief?
+
+    It is the demi-cadence
+    which closes a musical phrase
+    in the symphony of our intellectual life.
+
+    We have seen that it has just three properties:
+    First, it is something that we are aware of;
+    second, it appeases the irritation of doubt;
+    and, third, it involves the establishment in our nature
+    of a rule of action, or, say for short, a habit.
+
+    As it appeases the irritation of doubt,
+    which is the motive for thinking,
+    thought relaxes, and comes to rest for a moment when belief is reached.
+
+    But, since belief is a rule for action,
+    the application of which involves further doubt and further thought,
+    at the same time that it is a stopping-place,
+    it is also a new starting-place for thought.
+
+    That is why I have permitted myself to call it thought at rest,
+    although thought is essentially an action.
+
+    The final upshot of thinking is the exercise of volition,
+    and of this thought no longer forms a part;
+    but belief is only a stadium of mental action,
+    an effect upon our nature due to thought,
+    which will influence future thinking.
+
+*** (CP5.398)
 
 *** [todo] OLD NOTES
 
