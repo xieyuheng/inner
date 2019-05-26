@@ -39,13 +39,6 @@
 
     Given a type, every expression described by that type hasa normal form.
 
-    - x -
-      we used a stronger way to define a type,
-      instead of asking for a equivalent relation,
-      we are asking for a normal form.
-      thus a program to eval expressions of a type to normal form,
-      give us a predicate for equivalent relation.
-
   #+begin_src racket
   0 1
   (the Nat 0)
@@ -55,6 +48,41 @@
   (the Nat zero)
   (the Nat (add1 zero))
   #+end_src
+
+  - x -
+    Remember Bishop's set
+    "To define a set we prescribe, at least implicitly,
+    1. what we (the constructing intelligence) must do
+       in order to construct an element of the set,
+    2. and what we must do to show that
+       two elements of the set are equal."
+
+    We used a stronger way to define a type,
+    instead of asking for a equivalent relation,
+    we are asking for a normal form.
+    Thus a program to eval expressions of a type to normal form,
+    give us a predicate for equivalent relation.
+
+    We are also explicit about constructing.
+    To define a type, we explicit specify its constructors.
+    - `Nat` has `zero` and `add1` as constructors
+    - primitive type `Atom` has infinitely many constructors
+
+  - In Pie,
+    expressions do not refer to some external notion of meaning,
+    there is nothing but expressions
+    and what we judge about them.
+
+    While in Lisp, values are distinct from expressions,
+    and the result of evaluation is a value.
+
+  - expression > value (top is constructor) > normal form
+
+    - x -
+      I should do the same in my design.
+      - Note that,
+        "expression" is about semantics,
+        and not about concrete syntax.
 
 * 2. Doin' What Comes Naturally
 * Recess: A Forkful of Pie

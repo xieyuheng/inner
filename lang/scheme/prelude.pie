@@ -3,4 +3,7 @@
 (claim one Nat)
 (define one (add1 zero))
 
-one
+(claim two Nat)
+(define two (add1 one))
+
+two
