@@ -1,4 +1,4 @@
-#+title:  learning scheme
+#+title: learning scheme
 
 * r5rs
 
