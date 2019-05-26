@@ -1,0 +1,6 @@
+#lang pie
+
+(claim one Nat)
+(define one (add1 zero))
+
+one

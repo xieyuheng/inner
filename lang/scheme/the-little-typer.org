@@ -16,6 +16,46 @@
       (same <data>)
 
 * 1. The More Things Change, the More They Stay the Same
+
+  #+begin_src racket
+  'ratatouille
+  (the Atom 'ratatouille)
+  (the Atom (the Atom 'ratatouille))
+
+  (the (Pair Atom Atom)
+       (cons 'ratatouille 'baguette))
+  #+end_src
+
+  - The Four Forms of Judgment
+    1. ___ is a ___.
+    2. ___ is the same ___ as ___.
+    3. ___ is a type.
+    4. ___ and ___ are the same type.
+
+  - The normal form of an expression
+    is the most direct way of writing it.
+    Any two expressions that are the same have identical normal forms,
+    and any two expressions with identical normal forms are the same.
+
+    Given a type, every expression described by that type hasa normal form.
+
+    - x -
+      we used a stronger way to define a type,
+      instead of asking for a equivalent relation,
+      we are asking for a normal form.
+      thus a program to eval expressions of a type to normal form,
+      give us a predicate for equivalent relation.
+
+  #+begin_src racket
+  0 1
+  (the Nat 0)
+  (the Nat 1)
+  (the Nat 1729)
+
+  (the Nat zero)
+  (the Nat (add1 zero))
+  #+end_src
+
 * 2. Doin' What Comes Naturally
 * Recess: A Forkful of Pie
 * 3. Eliminate All Natural Numbers!
