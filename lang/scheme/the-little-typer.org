@@ -177,13 +177,20 @@
       (lambda (n) 'more)))
   #+end_src
 
+  - cicada-like:
+
   #+begin_src cicada
   which-Nat: (
     {{ X: type }}
     target: Nat,
     base: X,
-    step: (Nat) -> X,
-  ) -> X
+    step: (prev: Nat) -> X,
+  ) -> X {
+    case (target) {
+      zero => base
+      succ => step (target.prev)
+    }
+  }
   #+end_src
 
   - RECURSION IS NOT AN OPTION
@@ -232,6 +239,56 @@
   #+end_src
 
 * 3. Eliminate All Natural Numbers!
+
+  - "same as" chart
+    - x -
+      base of the format of the game of equivalent
+
+  #+begin_src scheme
+  | (gauss (add1 zero))
+  | (add1 (gauss zero))
+  | (add1 zero)
+  #+end_src
+
+  - *Total Function*
+    A function that always assigns a value
+    to every possible argument is called a total function.
+
+  - x -
+    | strategy | winning strategy |
+    | function | total function   |
+
+  - cicada-like:
+
+  #+begin_src cicada
+  iter-Nat: (
+    {{ X: type }}
+    target: Nat,
+    base: X,
+    step: (almost: X) -> X,
+  ) -> X {
+    case (target) {
+      zero => base
+      succ => step (iter-Nat (target.prev, base, step))
+    }
+  }
+
+  rec-Nat: (
+    {{ X: type }}
+    target: Nat,
+    base: X,
+    step: (prev: Nat, almost: X) -> X,
+  ) -> X {
+    case (target) {
+      zero => base
+      succ => step (
+        prev = target.prev,
+        almost = rec-Nat (target.prev, base, step),
+      )
+    }
+  }
+  #+end_src
+
 * 4. Easy as Pie
 * 5. Lists, Lists, and More Lists
 * 6. Precisely How Many?

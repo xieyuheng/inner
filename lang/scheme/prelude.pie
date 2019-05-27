@@ -28,11 +28,61 @@
 (claim elim-Pear (-> Pear Pear-maker Pear))
 (define elim-Pear
   (lambda (pear maker)
-    (maker (car pear) (cdr pear))))
+  (maker (car pear) (cdr pear))))
 
-(the Pear
-  (elim-Pear
-   (the Pear (cons 1 2))
-   (the Pear-maker
-     (lambda (a d)
-       (cons d a)))))
+(check-same (Pair Nat Nat)
+  (the Pear
+    (elim-Pear
+     (the Pear (cons 1 2))
+     (the Pear-maker
+       (lambda (a d)
+         (cons d a)))))
+  (cons 2 1))
+
+(claim step-+ (-> Nat Nat))
+(define step-+ (lambda (almost) (add1 almost)))
+
+(claim + (-> Nat Nat Nat))
+(define + (lambda (x y) (iter-Nat x y step-+)))
+
+(claim step-gauss (-> Nat Nat Nat))
+(define step-gauss (lambda (prev almost) (+ (add1 prev) almost)))
+
+(claim gauss (-> Nat Nat))
+(define gauss (lambda (n) (rec-Nat n zero step-gauss)))
+
+(check-same Nat (gauss 0) 0)
+(check-same Nat (gauss 1) 1)
+(check-same Nat (gauss 2) 3)
+(check-same Nat (gauss 3) 6)
+(check-same Nat (gauss 4) 10)
+(check-same Nat (gauss 5) 15)
+
+;; (claim make-step-* (-> Nat (-> Nat Nat)))
+;; (define make-step-* (lambda (y) (lambda (almost) (+ y almost))))
+
+;; pie has currying
+
+(claim make-step-* (-> Nat Nat Nat))
+(define make-step-* (lambda (y almost) (+ y almost)))
+
+(claim * (-> Nat Nat Nat))
+(define * (lambda (x y) (iter-Nat x zero (make-step-* y))))
+
+(check-same Nat (* 2 2) 4)
+(check-same Nat (* 2 3) 6)
+(check-same Nat (* 3 2) 6)
+(check-same Nat (* 3 4) 12)
+(check-same Nat (* 4 3) 12)
+
+(claim step-factorial (-> Nat Nat Nat))
+(define step-factorial (lambda (prev almost) (* (add1 prev) almost)))
+
+(claim factorial (-> Nat Nat))
+(define factorial (lambda (x) (rec-Nat x one step-factorial)))
+
+(check-same Nat (factorial 0) 1)
+(check-same Nat (factorial 1) 1)
+(check-same Nat (factorial 2) 2)
+(check-same Nat (factorial 3) 6)
+(check-same Nat (factorial 4) 24)
