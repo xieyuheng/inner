@@ -202,6 +202,35 @@
     - such as U and (Pair U U)
 
 * Recess: A Forkful of Pie
+
+  - Using Pie is very much like a conversation:
+    it accepts claims, definitions, and expressions
+    and it replies with feedback.
+
+  - For claims and definitions,
+    the feedback is whether they are meaningful.
+
+    For expressions,
+    the feedback is also the expression's type and normal form.
+
+  - When an expression is a type, but does not have a type,
+    Pie replies with just its normal form.
+    - such as 
+
+  #+begin_src scheme
+  (the (Pair Atom (Pair Atom Atom))
+    (cons 'spinach
+          (the (Pair Atom Atom)
+            (cons 'kale 'cauliflower))))
+
+  (the (Pair Atom (Pair Atom Atom))
+    (cons 'spinach
+          (cons 'kale 'cauliflower)))
+
+  (car (the (Pair Atom Nat)
+         (cons 'brussels-sprout 4)))
+  #+end_src
+
 * 3. Eliminate All Natural Numbers!
 * 4. Easy as Pie
 * 5. Lists, Lists, and More Lists
