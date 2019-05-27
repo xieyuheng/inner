@@ -5,25 +5,29 @@
 *** syntax examples
 
     - (the <type> <data>)
-    - (same-check <type> <data> <data>)
+
+    - (check-same <type> <data> <data>)
+
     - (claim <name> <type>)
-    - (define <name> <data>)
+      (define <name> <data>)
+
     - (which-<type>)
       (rec-<type>)
       (iter-<type>)
       (ind-<type>)
+
     - (= <type> <data> <data>)
       (same <data>)
 
 * 1. The More Things Change, the More They Stay the Same
 
-  #+begin_src racket
+  #+begin_src scheme
   'ratatouille
   (the Atom 'ratatouille)
   (the Atom (the Atom 'ratatouille))
 
   (the (Pair Atom Atom)
-       (cons 'ratatouille 'baguette))
+    (cons 'ratatouille 'baguette))
   #+end_src
 
   - The Four Forms of Judgment
@@ -39,7 +43,7 @@
 
     Given a type, every expression described by that type hasa normal form.
 
-  #+begin_src racket
+  #+begin_src scheme
   0 1
   (the Nat 0)
   (the Nat 1)
@@ -78,13 +82,125 @@
 
   - expression > value (top is constructor) > normal form
 
-    - x -
-      I should do the same in my design.
-      - Note that,
-        "expression" is about semantics,
-        and not about concrete syntax.
+  - x -
+    I should do the same in my design.
+    - Note that,
+      "expression" is about semantics,
+      and not about concrete syntax.
 
 * 2. Doin' What Comes Naturally
+
+  - Constructors build values,
+    and eliminators takeapart values built by constructors.
+
+  - `lambda` is a constructor,
+    because every expression that looks like
+    `(lambda (x0 x ...) <body>)` is a value.
+
+    Applying a function to arguments
+    is the eliminator for functions.
+
+  - x -
+    "Applying a function" seems not like eliminators like
+    `car` and `cdr`, which are functions.
+
+    "Applying a function" is builtin to the language.
+    `car` and `cdr` can also be builtin as
+    "taking fields of record".
+
+  #+begin_src scheme
+  (check-same (-> Atom Atom (Pair Atom Atom))
+    (lambda (a d) (cons a d))
+    (lambda (d a) (cons d a)))
+
+  (check-same (-> Nat Nat)
+    (lambda (y) (car (the (Pair Nat Nat) (cons y y))))
+    (lambda (x) x))
+  #+end_src
+
+  - x -
+    expression >
+    value (top is constructor) >
+    normal form
+
+    strategy >
+    strategy with explicit next step >
+    strategy with every steps
+
+  - Expressions that are not values
+    and cannot yet be evaluated due to a variable
+    are called neutral.
+
+    if `x` is a variable,
+    which we only know its type is `(Pair Nat Nat)`,
+    but not know its value.
+    then `(car x)` or `(cdr x)` are neutral
+
+  - Neutral expressions make it necessary to expand our view on
+    what it means to be the same.
+    Each variable is the same as itself,
+    no matter what type it has.
+
+    This is because variables are only replaced consistently,
+    so two occurrences of a variable
+    cannot be replaced by values that are not the same.
+
+  - If two expressions have identical eliminators at the top
+    and all arguments to the eliminators are the same,
+    then the expressions are the same.
+
+    such as `(car x)` and `(car x)`
+
+  - Neutral expressions that are written identically
+    are the same, no matter their type.
+
+  - *The Second Commandment of cons*
+    If p is a (Pair A D),
+    then it is the same (Pair A D)
+    as (cons (car p) (cdr p)).
+
+  #+begin_src scheme
+  (which-Nat zero
+    'naught
+    (lambda (n) 'more))
+
+  (check-same Atom
+    (the Atom 'naught)
+    (which-Nat zero
+      'naught
+      (lambda (n) 'mor)))
+
+  (check-same Atom
+    (the Atom 'more)
+    (which-Nat (add1 (add1 (add1 zero)))
+      'naught
+      (lambda (n) 'more)))
+  #+end_src
+
+  #+begin_src cicada
+  which-Nat: (
+    {{ X: type }}
+    target: Nat,
+    base: X,
+    step: (Nat) -> X,
+  ) -> X
+  #+end_src
+
+  - RECURSION IS NOT AN OPTION
+  - RECURSION IS NOT AN OPTION
+  - RECURSION IS NOT AN OPTION
+
+  - Recursion is not an option
+    because every expression must have a value.
+
+    Some recursive definitions make it possible
+    to write expressions that do not have values.
+
+  - *Every U Is a Type*
+    Every expression described by U is a type,
+    but not every type is described by U.
+    - such as U and (Pair U U)
+
 * Recess: A Forkful of Pie
 * 3. Eliminate All Natural Numbers!
 * 4. Easy as Pie

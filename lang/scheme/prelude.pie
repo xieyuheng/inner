@@ -6,4 +6,33 @@
 (claim two Nat)
 (define two (add1 one))
 
-two
+(claim vegetables (Pair Atom Atom))
+(define vegetables (cons 'celery 'carrot))
+
+;; RECURSION IS NOT AN OPTION!
+
+;; (claim gauss (-> Nat Nat))
+;; (define gauss
+;;   (lambda (n)
+;;     (which-Nat n
+;;       zero
+;;       (lambda (prev)
+;;         (add n (gauss prev))))))
+
+(claim Pear U)
+(define Pear (Pair Nat Nat))
+
+(claim Pear-maker U)
+(define Pear-maker (-> Nat Nat Pear))
+
+(claim elim-Pear (-> Pear Pear-maker Pear))
+(define elim-Pear
+  (lambda (pear maker)
+    (maker (car pear) (cdr pear))))
+
+(the Pear
+  (elim-Pear
+   (the Pear (cons 1 2))
+   (the Pear-maker
+     (lambda (a d)
+       (cons d a)))))
