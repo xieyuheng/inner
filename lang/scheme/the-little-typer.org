@@ -215,7 +215,7 @@
 
   - When an expression is a type, but does not have a type,
     Pie replies with just its normal form.
-    - such as 
+    - such as U, (Pair U U), (Pair Atom U), (-> U U)
 
   #+begin_src scheme
   (the (Pair Atom (Pair Atom Atom))
