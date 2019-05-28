@@ -297,7 +297,36 @@
 
 * 4. Easy as Pie
 
+  #+begin_src typescript
+  elim_Pair: (
+    A: type,
+    D: type,
+    X: type,
+    p: Pair (A, D),
+    f: (A, D) -> X,
+  ) -> X = f (p.car, p.cdr)
+  #+end_src
+
 * 5. Lists, Lists, and More Lists
+
+  #+begin_src typescript
+  rec_List: (
+    {{ E: type, X: type }}
+    target: List (E),
+    base: X,
+    step: (car: E, cdr: List (E), almost: X) -> X,
+  ) -> X = {
+    case (target) {
+      null => base
+      cons => step (
+        car = target.car,
+        cdr = target.cdr,
+        almost = rec_List (target.cdr, base, step),
+      )
+    }
+  }
+  #+end_src
+
 * 6. Precisely How Many?
 * 7. It All Depends On the Motive
 * Recess: One Piece at a Time
@@ -312,3 +341,51 @@
 * 16. If It's All the Same to You
 * A. The Way Forward
 * B. Rules Are Made to Be Spoken
+
+  #+begin_src scheme
+  ;; reusing `step-append`
+  (claim snoc
+    (Pi ([E U])
+      (-> (List E) E
+        (List E))))
+  (define snoc
+    (lambda (E es e)
+      (rec-List es
+        (:: e nil)
+        (step-append E))))
+
+  ;; test `snoc`
+  (check-same (List Nat)
+    (snoc Nat (:: 1 (:: 2 nil)) 3)
+    (:: 1 (:: 2 (:: 3 nil))))
+
+  (claim step-reverse
+    (Pi ([E U])
+      (-> E (List E) (List E) 
+        (List E))))
+  (define step-reverse (lambda (E e es almost) (snoc E almost e)))
+
+  (claim reverse (Pi ([E U]) (-> (List E) (List E))))
+  (define reverse
+    (lambda (E x)
+      (rec-List x
+        (the (List E) nil)
+        (step-reverse E))))
+
+  ;; test `reverse`
+  (check-same (List Nat)
+    (reverse Nat (:: 1 (:: 2 (:: 3 (:: 4 nil)))))
+    (:: 4 (:: 3 (:: 2 (:: 1 nil)))))
+
+  ;; reusing `step-reverse`
+  (claim concat (Pi ([E U]) (-> (List E) (List E) (List E))))
+  (define concat
+    (lambda (E x y)
+      (rec-List (reverse E y)
+        x (step-reverse E))))
+
+  ;; test `concat`
+  (check-same (List Nat)
+    (concat Nat (:: 1 (:: 2 nil)) (:: 3 (:: 4 nil)))
+    (:: 1 (:: 2 (:: 3 (:: 4 nil)))))
+  #+end_src

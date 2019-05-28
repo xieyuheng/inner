@@ -58,16 +58,13 @@
 (check-same Nat (gauss 4) 10)
 (check-same Nat (gauss 5) 15)
 
-;; (claim make-step-* (-> Nat (-> Nat Nat)))
-;; (define make-step-* (lambda (y) (lambda (almost) (+ y almost))))
-
 ;; pie has currying
 
-(claim make-step-* (-> Nat Nat Nat))
-(define make-step-* (lambda (y almost) (+ y almost)))
+(claim step-* (-> Nat Nat Nat))
+(define step-* (lambda (y almost) (+ y almost)))
 
 (claim * (-> Nat Nat Nat))
-(define * (lambda (x y) (iter-Nat x zero (make-step-* y))))
+(define * (lambda (x y) (iter-Nat x zero (step-* y))))
 
 (check-same Nat (* 2 2) 4)
 (check-same Nat (* 2 3) 6)
@@ -86,6 +83,8 @@
 (check-same Nat (factorial 2) 2)
 (check-same Nat (factorial 3) 6)
 (check-same Nat (factorial 4) 24)
+
+;; 4. Easy as Pie
 
 (claim filp (Pi ([A U] [D U]) (-> (Pair A D) (Pair D A))))
 (define filp (lambda (A D p) (cons (cdr p) (car p))))
@@ -141,3 +140,74 @@
 
 (check-same (-> Nat (Pair Nat Nat))
   (twin Nat) twin-Nat)
+
+;; 5. Lists, Lists, and More Lists
+
+(claim expectations (List Atom))
+(define expectations
+  (:: 'cooked
+    (:: 'eaten
+      (:: 'tried-cleaning
+        (:: 'understood
+          (:: 'slept nil))))))
+
+(claim toppings (List Atom))
+(define toppings (:: 'potato (:: 'butter nil)))
+
+(claim condiments (List Atom))
+(define condiments (:: 'chives (:: 'mayonnaise nil)))
+
+(claim step-length (Pi ([E U]) (-> E (List E) Nat Nat)))
+(define step-length (lambda (E e es almost) (add1 almost)))
+
+(claim length (Pi ([E U]) (-> (List E) Nat)))
+(define length (lambda (E l) (rec-List l zero (step-length E))))
+
+(check-same Nat (length Atom expectations) 5)
+
+(check-same (-> (List Atom) Nat)
+  (length Atom)
+  (lambda (l) (rec-List l zero (step-length Atom))))
+
+(claim step-append (Pi ([E U]) (-> E (List E) (List E) (List E))))
+(define step-append (lambda (E e es almost) (:: e almost)))
+
+(claim append (Pi ([E U]) (-> (List E) (List E) (List E))))
+(define append (lambda (E x y) (rec-List x y (step-append E))))
+
+(check-same (List Nat)
+  (append Nat (:: 1 (:: 2 nil)) (:: 3 (:: 4 nil)))
+  (:: 1 (:: 2 (:: 3 (:: 4 nil)))))
+
+;; reusing `step-append`
+(claim snoc (Pi ([E U]) (-> (List E) E (List E))))
+(define snoc (lambda (E es e) (rec-List es (:: e nil) (step-append E))))
+
+(check-same (List Nat)
+  (snoc Nat (:: 1 (:: 2 nil)) 3)
+  (:: 1 (:: 2 (:: 3 nil))))
+
+(claim step-reverse (Pi ([E U]) (-> E (List E) (List E) (List E))))
+(define step-reverse (lambda (E e es almost) (snoc E almost e)))
+
+(claim reverse (Pi ([E U]) (-> (List E) (List E))))
+(define reverse
+  (lambda (E x)
+    (rec-List x
+      (the (List E) nil)
+      (step-reverse E))))
+
+(check-same (List Nat)
+  (reverse Nat (:: 1 (:: 2 (:: 3 (:: 4 nil)))))
+  (:: 4 (:: 3 (:: 2 (:: 1 nil)))))
+
+;; reusing `step-reverse`
+(claim concat (Pi ([E U]) (-> (List E) (List E) (List E))))
+(define concat
+  (lambda (E x y)
+    (rec-List (reverse E y)
+      x (step-reverse E))))
+
+(check-same (List Nat)
+  (concat Nat (:: 1 (:: 2 nil)) (:: 3 (:: 4 nil)))
+  (:: 1 (:: 2 (:: 3 (:: 4 nil)))))
