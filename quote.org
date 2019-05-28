@@ -1,4 +1,3 @@
-#+html_head: <link rel="stylesheet" href="css/org-page.css"/>
 #+title: Quote
 
 * Mathematics
@@ -84,3 +83,10 @@
     of a technology are, not what it's called.
     -- Radia Perlman
     -- "Blockchain: Hype or Hope?"
+
+* Software Architecture
+
+  - Programmers are abstractors and detail managers,
+    as detail managers we separate details from the generals.
+    -- Bob Martin
+    -- The Principles of Clean Architecture by Uncle Bob Martin
