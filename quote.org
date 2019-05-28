@@ -90,3 +90,8 @@
     as detail managers we separate details from the generals.
     -- Bob Martin
     -- The Principles of Clean Architecture by Uncle Bob Martin
+
+  - Good architectures allows major decisions to be deferred,
+    so that decisions can made later with the most possible information.
+    -- Bob Martin
+    -- The Principles of Clean Architecture by Uncle Bob Martin
