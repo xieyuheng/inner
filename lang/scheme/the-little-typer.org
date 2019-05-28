@@ -179,13 +179,13 @@
 
   - cicada-like:
 
-  #+begin_src cicada
+  #+begin_src typescript
   which-Nat: (
     {{ X: type }}
     target: Nat,
     base: X,
     step: (prev: Nat) -> X,
-  ) -> X {
+  ) -> X = {
     case (target) {
       zero => base
       succ => step (target.prev)
@@ -260,36 +260,43 @@
 
   - cicada-like:
 
-  #+begin_src cicada
-  iter-Nat: (
+  #+begin_src typescript
+  iter_Nat: (
     {{ X: type }}
     target: Nat,
     base: X,
     step: (almost: X) -> X,
-  ) -> X {
+  ) -> X = {
     case (target) {
       zero => base
-      succ => step (iter-Nat (target.prev, base, step))
+      succ => step (iter_Nat (target.prev, base, step))
     }
   }
 
-  rec-Nat: (
+  rec_Nat: (
     {{ X: type }}
     target: Nat,
     base: X,
     step: (prev: Nat, almost: X) -> X,
-  ) -> X {
+  ) -> X = {
     case (target) {
       zero => base
       succ => step (
         prev = target.prev,
-        almost = rec-Nat (target.prev, base, step),
+        almost = rec_Nat (target.prev, base, step),
       )
     }
   }
+
+  step_add: (almost: Nat) -> Nat = succ (almost)
+  add: (x: Nat, y: Nat) -> Nat = iter_Nat (x, y, step_add)
+
+  step_gauss: (prev: Nat, almost: Nat) -> Nat = add (succ (prev), almost)
+  gauss: (n: Nat) -> Nat = rec_Nat (n, zero, step_gauss)
   #+end_src
 
 * 4. Easy as Pie
+
 * 5. Lists, Lists, and More Lists
 * 6. Precisely How Many?
 * 7. It All Depends On the Motive

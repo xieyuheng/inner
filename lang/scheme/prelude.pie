@@ -86,3 +86,58 @@
 (check-same Nat (factorial 2) 2)
 (check-same Nat (factorial 3) 6)
 (check-same Nat (factorial 4) 24)
+
+(claim filp (Pi ([A U] [D U]) (-> (Pair A D) (Pair D A))))
+(define filp (lambda (A D p) (cons (cdr p) (car p))))
+
+(check-same (Pair Atom Nat)
+  (filp Nat Atom (cons 123 'abc))
+  (cons 'abc 123))
+
+(check-same (-> (Pair Nat Atom) (Pair Atom Nat))
+  (filp Nat Atom)
+  (lambda (p) (cons (cdr p) (car p))))
+
+(claim elim-Pair (Pi ([A U] [D U] [X U]) (-> (Pair A D) (-> A D X) X)))
+(define elim-Pair (lambda (A D X p f) (f (car p) (cdr p))))
+
+(claim kar (-> (Pair Nat Nat) Nat))
+(define kar
+  (lambda (p)
+    (elim-Pair Nat Nat Nat p (lambda (a d) a))))
+
+(claim kdr (-> (Pair Nat Nat) Nat))
+(define kdr
+  (lambda (p)
+    (elim-Pair Nat Nat Nat p (lambda (a d) d))))
+
+(check-same Nat (kar (cons 1 2)) 1)
+(check-same Nat (kdr (cons 1 2)) 2)
+
+(claim swap (-> (Pair Nat Atom) (Pair Atom Nat)))
+(define swap
+  (lambda (p)
+    (elim-Pair
+     Nat Atom (Pair Atom Nat)
+     p (lambda (a d) (cons d a)))))
+
+(check-same (Pair Atom Nat)
+  (swap (cons 123 'abc)) (cons 'abc 123))
+
+(claim twin (Pi ([A U]) (-> A (Pair A A))))
+(define twin (lambda (A a) (cons a a)))
+
+(check-same (Pair Nat Nat)
+  (twin Nat 123) (cons 123 123))
+
+(check-same (Pair Atom Atom)
+  (twin Atom 'abc) (cons 'abc 'abc))
+
+(claim twin-Nat (-> Nat (Pair Nat Nat)))
+(define twin-Nat (lambda (a) (cons a a)))
+
+(check-same (Pair Nat Nat)
+  (twin Nat 123) (twin-Nat 123))
+
+(check-same (-> Nat (Pair Nat Nat))
+  (twin Nat) twin-Nat)
