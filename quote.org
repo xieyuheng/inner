@@ -95,3 +95,11 @@
     so that decisions can made later with the most possible information.
     -- Bob Martin
     -- The Principles of Clean Architecture by Uncle Bob Martin
+
+  - Object oriented programming
+    is about managing dependencies by
+    selectively inverse certain key dependencies in your architecture
+    so that you can prevent fragility and non-reusability.
+    (absolute control over the dependency structure)
+    -- Bob Martin
+    -- SOLID Principles of Object Oriented and Agile Design
