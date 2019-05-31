@@ -41,7 +41,7 @@
     Any two expressions that are the same have identical normal forms,
     and any two expressions with identical normal forms are the same.
 
-    Given a type, every expression described by that type hasa normal form.
+    Given a type, every expression described by that type has a normal form.
 
   #+begin_src scheme
   0 1
@@ -180,7 +180,7 @@
   - cicada-like:
 
   #+begin_src typescript
-  which-Nat: (
+  which_Nat: (
     {{ X: type }}
     target: Nat,
     base: X,
@@ -328,6 +328,29 @@
   #+end_src
 
 * 6. Precisely How Many?
+
+  #+begin_src scheme
+  (the (Vec Atom 0) vecnil)
+  (the (Vec Atom 1) (vec:: 'oyster vecnil))
+
+  (the Atom
+    (head (the (Vec Atom 1) (vec:: 'oyster vecnil))))
+  (the (Vec Atom 0)
+    (tail (the (Vec Atom 1) (vec:: 'oyster vecnil))))
+  #+end_src
+
+  - We avoid attempting to define a non-total function
+    by using a more specific type
+    to rule out unwanted arguments.
+
+  - *Use a More Specific Type*
+    Make a function total
+    by using a more specific type
+    to rule out unwanted arguments.
+
+  - (-> Y X) is sugar for (Pi ([y Y]) X)
+    when `y` does not occur in `Y`
+
 * 7. It All Depends On the Motive
 * Recess: One Piece at a Time
 * 8. Pick a Number, Any Number

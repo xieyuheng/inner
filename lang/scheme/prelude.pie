@@ -15,7 +15,9 @@
 
 ;; RECURSION IS NOT AN OPTION!
 
-;; (claim gauss (-> Nat Nat))
+;; (claim gauss
+;;   (-> Nat
+;;       Nat))
 ;; (define gauss
 ;;   (lambda (n)
 ;;     (which-Nat n
@@ -27,12 +29,16 @@
 (define Pear (Pair Nat Nat))
 
 (claim Pear-maker U)
-(define Pear-maker (-> Nat Nat Pear))
+(define Pear-maker
+  (-> Nat Nat
+      Pear))
 
-(claim elim-Pear (-> Pear Pear-maker Pear))
+(claim elim-Pear
+  (-> Pear Pear-maker
+      Pear))
 (define elim-Pear
   (lambda (pear maker)
-  (maker (car pear) (cdr pear))))
+    (maker (car pear) (cdr pear))))
 
 (check-same (Pair Nat Nat)
   (the Pear
@@ -45,17 +51,33 @@
 
 ;; 3. Eliminate All Natural Numbers!
 
-(claim step-+ (-> Nat Nat))
-(define step-+ (lambda (almost) (add1 almost)))
+(claim step-+
+  (-> Nat
+      Nat))
+(define step-+
+  (lambda (almost)
+    (add1 almost)))
 
-(claim + (-> Nat Nat Nat))
-(define + (lambda (x y) (iter-Nat x y step-+)))
+(claim +
+  (-> Nat Nat
+      Nat))
+(define +
+  (lambda (x y)
+    (iter-Nat x y step-+)))
 
-(claim step-gauss (-> Nat Nat Nat))
-(define step-gauss (lambda (prev almost) (+ (add1 prev) almost)))
+(claim step-gauss
+  (-> Nat Nat
+      Nat))
+(define step-gauss
+  (lambda (prev almost)
+    (+ (add1 prev) almost)))
 
-(claim gauss (-> Nat Nat))
-(define gauss (lambda (n) (rec-Nat n zero step-gauss)))
+(claim gauss
+  (-> Nat
+      Nat))
+(define gauss
+  (lambda (n)
+    (rec-Nat n zero step-gauss)))
 
 (check-same Nat (gauss 0) 0)
 (check-same Nat (gauss 1) 1)
@@ -66,11 +88,19 @@
 
 ;; pie has currying
 
-(claim step-* (-> Nat Nat Nat))
-(define step-* (lambda (y almost) (+ y almost)))
+(claim step-*
+  (-> Nat Nat
+      Nat))
+(define step-*
+  (lambda (y almost)
+    (+ y almost)))
 
-(claim * (-> Nat Nat Nat))
-(define * (lambda (x y) (iter-Nat x zero (step-* y))))
+(claim *
+  (-> Nat Nat
+      Nat))
+(define *
+  (lambda (x y)
+    (iter-Nat x zero (step-* y))))
 
 (check-same Nat (* 2 2) 4)
 (check-same Nat (* 2 3) 6)
@@ -78,11 +108,19 @@
 (check-same Nat (* 3 4) 12)
 (check-same Nat (* 4 3) 12)
 
-(claim step-factorial (-> Nat Nat Nat))
-(define step-factorial (lambda (prev almost) (* (add1 prev) almost)))
+(claim step-factorial
+  (-> Nat Nat
+      Nat))
+(define step-factorial
+  (lambda (prev almost)
+    (* (add1 prev) almost)))
 
-(claim factorial (-> Nat Nat))
-(define factorial (lambda (x) (rec-Nat x one step-factorial)))
+(claim factorial
+  (-> Nat
+      Nat))
+(define factorial
+  (lambda (x)
+    (rec-Nat x one step-factorial)))
 
 (check-same Nat (factorial 0) 1)
 (check-same Nat (factorial 1) 1)
@@ -92,8 +130,14 @@
 
 ;; 4. Easy as Pie
 
-(claim filp (Pi ([A U] [D U]) (-> (Pair A D) (Pair D A))))
-(define filp (lambda (A D p) (cons (cdr p) (car p))))
+(claim filp
+  (Pi ([A U] [D U])
+    (-> (Pair A D)
+        (Pair D A))))
+(define filp
+  (lambda (A D)
+    (lambda (p)
+      (cons (cdr p) (car p)))))
 
 (check-same (Pair Atom Nat)
   (filp Nat Atom (cons 123 'abc))
@@ -103,15 +147,25 @@
   (filp Nat Atom)
   (lambda (p) (cons (cdr p) (car p))))
 
-(claim elim-Pair (Pi ([A U] [D U] [X U]) (-> (Pair A D) (-> A D X) X)))
-(define elim-Pair (lambda (A D X p f) (f (car p) (cdr p))))
+(claim elim-Pair
+  (Pi ([A U] [D U] [X U])
+    (-> (Pair A D) (-> A D X)
+        X)))
+(define elim-Pair
+  (lambda (A D X)
+    (lambda (p f)
+      (f (car p) (cdr p)))))
 
-(claim kar (-> (Pair Nat Nat) Nat))
+(claim kar
+  (-> (Pair Nat Nat)
+      Nat))
 (define kar
   (lambda (p)
     (elim-Pair Nat Nat Nat p (lambda (a d) a))))
 
-(claim kdr (-> (Pair Nat Nat) Nat))
+(claim kdr
+  (-> (Pair Nat Nat)
+      Nat))
 (define kdr
   (lambda (p)
     (elim-Pair Nat Nat Nat p (lambda (a d) d))))
@@ -119,7 +173,9 @@
 (check-same Nat (kar (cons 1 2)) 1)
 (check-same Nat (kdr (cons 1 2)) 2)
 
-(claim swap (-> (Pair Nat Atom) (Pair Atom Nat)))
+(claim swap
+  (-> (Pair Nat Atom)
+      (Pair Atom Nat)))
 (define swap
   (lambda (p)
     (elim-Pair
@@ -129,8 +185,14 @@
 (check-same (Pair Atom Nat)
   (swap (cons 123 'abc)) (cons 'abc 123))
 
-(claim twin (Pi ([A U]) (-> A (Pair A A))))
-(define twin (lambda (A a) (cons a a)))
+(claim twin
+  (Pi ([A U])
+    (-> A
+        (Pair A A))))
+(define twin
+  (lambda (A)
+    (lambda (a)
+      (cons a a))))
 
 (check-same (Pair Nat Nat)
   (twin Nat 123) (cons 123 123))
@@ -138,8 +200,12 @@
 (check-same (Pair Atom Atom)
   (twin Atom 'abc) (cons 'abc 'abc))
 
-(claim twin-Nat (-> Nat (Pair Nat Nat)))
-(define twin-Nat (lambda (a) (cons a a)))
+(claim twin-Nat
+  (-> Nat
+      (Pair Nat Nat)))
+(define twin-Nat
+  (lambda (a)
+    (cons a a)))
 
 (check-same (Pair Nat Nat)
   (twin Nat 123) (twin-Nat 123))
@@ -163,11 +229,23 @@
 (claim condiments (List Atom))
 (define condiments (:: 'chives (:: 'mayonnaise nil)))
 
-(claim step-length (Pi ([E U]) (-> E (List E) Nat Nat)))
-(define step-length (lambda (E e es almost) (add1 almost)))
+(claim step-length
+  (Pi ([E U])
+    (-> E (List E) Nat
+        Nat)))
+(define step-length
+  (lambda (E)
+    (lambda (e es almost)
+      (add1 almost))))
 
-(claim length (Pi ([E U]) (-> (List E) Nat)))
-(define length (lambda (E l) (rec-List l zero (step-length E))))
+(claim length
+  (Pi ([E U])
+    (-> (List E)
+        Nat)))
+(define length
+  (lambda (E)
+    (lambda (l)
+      (rec-List l zero (step-length E)))))
 
 (check-same Nat (length Atom expectations) 5)
 
@@ -175,47 +253,139 @@
   (length Atom)
   (lambda (l) (rec-List l zero (step-length Atom))))
 
-(claim step-append (Pi ([E U]) (-> E (List E) (List E) (List E))))
-(define step-append (lambda (E e es almost) (:: e almost)))
+(claim step-append
+  (Pi ([E U])
+    (-> E (List E) (List E)
+        (List E))))
+(define step-append
+  (lambda (E)
+    (lambda (e es almost)
+      (:: e almost))))
 
-(claim append (Pi ([E U]) (-> (List E) (List E) (List E))))
-(define append (lambda (E x y) (rec-List x y (step-append E))))
+(claim append
+  (Pi ([E U])
+    (-> (List E) (List E)
+        (List E))))
+(define append
+  (lambda (E)
+    (lambda (x y)
+      (rec-List x y (step-append E)))))
 
 (check-same (List Nat)
   (append Nat (:: 1 (:: 2 nil)) (:: 3 (:: 4 nil)))
   (:: 1 (:: 2 (:: 3 (:: 4 nil)))))
 
 ;; reusing `step-append`
-(claim snoc (Pi ([E U]) (-> (List E) E (List E))))
-(define snoc (lambda (E es e) (rec-List es (:: e nil) (step-append E))))
+(claim snoc
+  (Pi ([E U])
+    (-> (List E) E
+        (List E))))
+(define snoc
+  (lambda (E)
+    (lambda (es e)
+      (rec-List es (:: e nil) (step-append E)))))
 
 (check-same (List Nat)
   (snoc Nat (:: 1 (:: 2 nil)) 3)
   (:: 1 (:: 2 (:: 3 nil))))
 
-(claim step-reverse (Pi ([E U]) (-> E (List E) (List E) (List E))))
-(define step-reverse (lambda (E e es almost) (snoc E almost e)))
+(claim step-reverse
+  (Pi ([E U])
+    (-> E (List E) (List E)
+        (List E))))
+(define step-reverse
+  (lambda (E)
+    (lambda (e es almost)
+      (snoc E almost e))))
 
-(claim reverse (Pi ([E U]) (-> (List E) (List E))))
+(claim reverse
+  (Pi ([E U])
+    (-> (List E)
+        (List E))))
 (define reverse
-  (lambda (E x)
-    (rec-List x
-      (the (List E) nil)
-      (step-reverse E))))
+  (lambda (E)
+    (lambda (x)
+      (rec-List x
+        (the (List E) nil)
+        (step-reverse E)))))
 
 (check-same (List Nat)
   (reverse Nat (:: 1 (:: 2 (:: 3 (:: 4 nil)))))
   (:: 4 (:: 3 (:: 2 (:: 1 nil)))))
 
 ;; reusing `step-reverse`
-(claim concat (Pi ([E U]) (-> (List E) (List E) (List E))))
+(claim concat
+  (Pi ([E U])
+    (-> (List E) (List E)
+        (List E))))
 (define concat
-  (lambda (E x y)
-    (rec-List (reverse E y)
-      x (step-reverse E))))
+  (lambda (E)
+    (lambda (x y)
+      (rec-List (reverse E y)
+        x (step-reverse E)))))
 
 (check-same (List Nat)
   (concat Nat (:: 1 (:: 2 nil)) (:: 3 (:: 4 nil)))
   (:: 1 (:: 2 (:: 3 (:: 4 nil)))))
 
 ;; 6. Precisely How Many?
+
+(claim first-of-one
+  (Pi ([E U])
+    (-> (Vec E (add1 zero))
+        E)))
+(define first-of-one
+  (lambda (E)
+    (lambda (vec)
+      (head vec))))
+
+(check-same Nat
+  (first-of-one Nat (vec:: 1 vecnil))
+  1)
+
+(claim first-of-two
+  (Pi ([E U])
+    (-> (Vec E (add1 (add1 zero)))
+        E)))
+(define first-of-two
+  (lambda (E)
+    (lambda (vec)
+      (head vec))))
+
+(check-same Nat
+  (first-of-two Nat (vec:: 2 (vec:: 1 vecnil)))
+  2)
+
+(claim first
+  (Pi ([E U]
+       [prev Nat])
+    (-> (Vec E (add1 prev))
+        E)))
+(define first
+  (lambda (E prev)
+    (lambda (vec)
+      (head vec))))
+
+(check-same Nat
+  (first Nat 0 (vec:: 1 vecnil))
+  1)
+(check-same Nat
+  (first Nat 1 (vec:: 2 (vec:: 1 vecnil)))
+  2)
+
+(claim rest
+  (Pi ([E U]
+       [prev Nat])
+    (-> (Vec E (add1 prev))
+        (Vec E prev))))
+(define rest
+  (lambda (E prev)
+    (lambda (vec)
+      (tail vec))))
+
+(check-same (Vec Nat 0)
+  (rest Nat 0 (vec:: 1 vecnil))
+  vecnil)
+(check-same (Vec Nat 1)
+  (rest Nat 1 (vec:: 2 (vec:: 1 vecnil)))
+  (vec:: 1 vecnil))
