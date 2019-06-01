@@ -529,3 +529,73 @@
     (vec:: (head vec)
       (vec:: (head (tail vec))
         vecnil))))
+
+;; 8. Pick a Number, Any Number
+
+(claim incr
+  (-> Nat
+      Nat))
+(define incr
+  (lambda (n)
+    (iter-Nat n
+      1
+      (+ 1))))
+
+(check-same Nat (incr 0) ((+ 1) 0))
+(check-same Nat (incr 1) ((+ 1) 1))
+(check-same Nat (incr 2) ((+ 1) 2))
+(check-same Nat (incr 3) ((+ 1) 3))
+
+(check-same (-> Nat Nat)
+  incr
+  (λ (n)
+    (iter-Nat n
+      (the Nat 1)
+      (lambda (y)
+        (add1 y)))))
+
+(check-same (-> Nat Nat)
+  (+ 1)
+  (lambda (y)
+    (add1 y)))
+
+;; (check-same (-> Nat Nat) incr (+ 1))
+
+;; - They are the same if they have the same normal form.
+;; - Since they have different normal form, check-same will fail.
+;; - Even though they are not the same,
+;;   the fact that they always find the same answer
+;;   can be written as a type.
+
+(claim +1=add1
+  (Pi ([n Nat])
+    (= Nat (+ 1 n) (add1 n))))
+(define +1=add1
+  (lambda (n)
+    (same (add1 n))))
+
+(claim base-incr=add1
+  (= Nat (incr zero) (add1 zero)))
+(define base-incr=add1
+  (same (add1 zero)))
+
+(claim step-incr=add1
+  (Pi ([prev Nat])
+    (-> (= Nat (incr prev) (add1 prev))
+        (= Nat (add1 (incr prev)) (add1 (add1 prev))))))
+(define step-incr=add1
+  (lambda (prev)
+    (lambda (prev-incr=add1)
+      (cong prev-incr=add1
+            (the (-> Nat Nat)
+              (lambda (n) (add1 n)))))))
+
+(claim incr=add1
+  (Pi ([n Nat])
+    (= Nat (incr n) (add1 n))))
+(define incr=add1
+  (lambda (n)
+    (ind-Nat n
+      (lambda (n) (= Nat (incr n) (add1 n)))
+      base-incr=add1
+      step-incr=add1)))

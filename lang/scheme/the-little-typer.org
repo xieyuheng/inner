@@ -80,7 +80,9 @@
     While in Lisp, values are distinct from expressions,
     and the result of evaluation is a value.
 
-  - expression > value (top is constructor) > normal form
+  - expression
+    value (top is constructor)
+    normal form (might be neutral)
 
   - x -
     I should do the same in my design.
@@ -119,15 +121,16 @@
   #+end_src
 
   - x -
-    expression >
-    value (top is constructor) >
-    normal form
+  - expression
+    value (top is constructor)
+    normal form (might be neutral)
 
-    strategy >
-    strategy with explicit next step >
-    strategy with every steps
+    strategy
+    strategy with explicit next step
+    strategy with every steps (might be neutral)
 
-  - Expressions that are not values
+  - *Neutral Expressions*
+    Expressions that are not values
     and cannot yet be evaluated due to a variable
     are called neutral.
 
@@ -404,6 +407,48 @@
   #+end_src
 
 * 8. Pick a Number, Any Number
+
+  - Sameness is indeed a judgment.
+    But, with a new type constructor,
+    types can express a new idea called equality.
+
+    - to write
+      "incr and (+ 1) always find the same answer."
+      as a type.
+
+  - Creating expressions that capture the ideas
+    behind a form of judgment is sometimes called
+    internalizing the form of judgment.
+
+  #+begin_src scheme
+  (= Atom 'kale 'blackberries)
+  #+end_src
+
+  - A more precise way to define neutral expressions
+    is to start with the simplest neutral expressions
+    and build from there.
+
+  - *Neutral Expressions*
+    Variables are neutral,
+    unless they refer to definitions,
+    because a defined name is the same as its definition.
+
+    Also, if the target of an eliminator expression is neutral,
+    then the entire expression is neutral.
+
+  #+begin_src typescript
+  cong: (
+    {{ X: type, Y: type
+       from: X, to: X }}
+    target: eqv_t (X, from, to),
+    f: (X) -> Y,
+  ) -> eqv_t (Y, f (from), f (to)) = {
+    case (target) {
+      same => same (f (target.value))
+    }
+  }
+  #+end_src
+
 * 9. Double Your Money, Get Twice as Much
 * 10. It Also Depends On the List
 * 11. All Lists Are Created Equal
@@ -430,3 +475,54 @@
 *** Proof Tactics
 
 * B. Rules Are Made to Be Spoken
+
+  - When implementing dependent types,
+    there are two questions to be answered:
+    when to check for sameness,
+    and how to check for sameness.
+
+  - Our implementation of Pie
+    uses bidirectional type checking
+    (described in the section "Forms of Judgment")
+    to decide when,
+    and normalization by evaluation
+    (described in the section "Normalization")
+    as the technique for checking sameness.
+
+*** Forms of Judgment
+
+    - When reading the rules as an algorithm,
+      each form of judgment should be implemented as a function.
+
+      |            | Input        | Output       |
+      |------------+--------------+--------------|
+      | Conclusion | Pattern      | Construction |
+      | Premise    | Construction | Pattern      |
+
+      - When an expression occurs in input position
+        in the conclusion of an inference rule,
+        it should be read as a pattern to be matched against the input.
+
+      - When it is in output position,
+        it should be read as
+        constructing the result of the algorithm.
+
+      - When an expression occurs in an input position in a premise,
+        it represents input being constructed for a recursive call,
+
+      - and when it occurs in the output position in a premise,
+        it represents a pattern to be matched
+        against the result returned from the recursive call.
+
+    - When matching against a concrete expression in a rule,
+      the algorithm must reducethe expression enough
+      so that if it doesn't match,
+      further reduction cannot make it match.
+
+      - Finding a neutral expression
+        or a value that is the same as
+        the expression being examined is sufficient.
+
+*** Normalization
+
+*** [todo] The Rules
