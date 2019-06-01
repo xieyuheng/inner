@@ -402,6 +402,7 @@
         TODO
         TODO)))
   #+end_src
+
 * 8. Pick a Number, Any Number
 * 9. Double Your Money, Get Twice as Much
 * 10. It Also Depends On the List
@@ -412,4 +413,20 @@
 * 15. Imagine That ...
 * 16. If It's All the Same to You
 * A. The Way Forward
+
+*** A Universe Hierarchy
+
+*** Inductive Datatypes
+
+*** Recursive Functions with Pattern Matching
+
+    - The basic principle of eliminators is that
+      for each constructor, we need to explain
+      what must be done to satisfy the motive
+      using the information inside the constructor.
+
+*** Implicit Arguments
+
+*** Proof Tactics
+
 * B. Rules Are Made to Be Spoken
