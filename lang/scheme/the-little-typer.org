@@ -389,6 +389,19 @@
     as important as having the correct answer.
 
 * Recess: One Piece at a Time
+
+  #+begin_src scheme
+  (claim peas
+    (Pi ([n Nat])
+      (Vec Atom n)))
+  (define peas
+    (lambda (n)
+      (ind-Nat n
+        (lambda (k)
+          (Vec Atom k))
+        TODO
+        TODO)))
+  #+end_src
 * 8. Pick a Number, Any Number
 * 9. Double Your Money, Get Twice as Much
 * 10. It Also Depends On the List
