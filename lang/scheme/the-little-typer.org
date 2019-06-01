@@ -288,11 +288,15 @@
     }
   }
 
-  step_add: (almost: Nat) -> Nat = succ (almost)
-  add: (x: Nat, y: Nat) -> Nat = iter_Nat (x, y, step_add)
+  step_add: (almost: Nat) -> Nat =
+    succ (almost)
+  add: (x: Nat, y: Nat) -> Nat =
+    iter_Nat (x, y, step_add)
 
-  step_gauss: (prev: Nat, almost: Nat) -> Nat = add (succ (prev), almost)
-  gauss: (n: Nat) -> Nat = rec_Nat (n, zero, step_gauss)
+  step_gauss: (prev: Nat, almost: Nat) -> Nat =
+    add (succ (prev), almost)
+  gauss: (n: Nat) -> Nat =
+    rec_Nat (n, zero, step_gauss)
   #+end_src
 
 * 4. Easy as Pie
@@ -352,6 +356,32 @@
     when `y` does not occur in `Y`
 
 * 7. It All Depends On the Motive
+
+  #+begin_src typescript
+  ind_Nat: (
+    target: Nat,
+    motive: (target: Nat) -> type
+    base: motive (zero),
+    step: (
+      prev: Nat,
+      almost: motive (prev),
+    ) -> motive (add1 (prev)),
+  ) -> motive (target) = {
+    case (target) {
+      zero => base
+      succ => step (
+        prev = target.prev,
+        almost = ind_Nat (
+          target.prev,
+          motive,
+          base,
+          step,
+        ),
+      )
+    }
+  }
+  #+end_src
+
 * Recess: One Piece at a Time
 * 8. Pick a Number, Any Number
 * 9. Double Your Money, Get Twice as Much

@@ -389,3 +389,81 @@
 (check-same (Vec Nat 1)
   (rest Nat 1 (vec:: 2 (vec:: 1 vecnil)))
   (vec:: 1 vecnil))
+
+;; 7. It All Depends On the Motive
+
+(claim mot-peas
+  (-> Nat
+      U))
+(define mot-peas
+  (lambda (n)
+    (Vec Atom n)))
+
+(claim step-peas
+  (Pi ([prev Nat])
+    (-> (mot-peas prev)
+        (mot-peas (add1 prev)))))
+(define step-peas
+  (lambda (prev)
+    (lambda (almost)
+      (vec:: 'pea almost))))
+
+(claim peas
+  (Pi ([n Nat])
+    (Vec Atom n)))
+(define peas
+  (lambda (n)
+    (ind-Nat n
+      mot-peas
+      vecnil
+      step-peas)))
+
+(check-same (Vec Atom 3)
+  (peas 3)
+  (vec:: 'pea
+    (vec:: 'pea
+      (vec:: 'pea
+        vecnil))))
+
+(claim base-last
+  (Pi ([E U])
+    (-> (Vec E (add1 zero))
+        E)))
+(define base-last
+  (lambda (E)
+    (lambda (vec)
+      (head vec))))
+
+(claim mot-last
+  (-> U Nat U))
+(define mot-last
+  (lambda (E k)
+    (-> (Vec E (add1 k))
+        E)))
+
+(claim step-last
+  (Pi ([E U]
+       [prev Nat])
+    (-> (mot-last E prev)
+        (mot-last E (add1 prev)))))
+(define step-last
+  (lambda (E prev)
+    (lambda (prev-last)
+      (lambda (vec)
+        (prev-last (tail vec))))))
+
+(claim last
+  (Pi ([E U]
+       [prev Nat])
+    (-> (Vec E (add1 prev))
+        E)))
+(define last
+  (lambda (E prev)
+    (ind-Nat prev
+      (mot-last E)
+      (base-last E)
+      (step-last E))))
+
+(check-same Nat
+  (last Nat 2 (vec:: 1 (vec:: 2 (vec:: 3 vecnil))))
+  3)
