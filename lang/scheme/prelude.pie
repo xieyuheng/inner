@@ -467,3 +467,65 @@
 (check-same Nat
   (last Nat 2 (vec:: 1 (vec:: 2 (vec:: 3 vecnil))))
   3)
+
+(claim mot-drop-last
+  (-> U Nat
+      U))
+(define mot-drop-last
+  (lambda (E prev)
+    (-> (Vec E (add1 prev))
+        (Vec E prev))))
+
+(claim base-drop-last
+  (Pi ([E U])
+    (-> (Vec E (add1 zero))
+        (Vec E zero))))
+(define base-drop-last
+  (lambda (E)
+    (lambda (vec)
+      vecnil)))
+
+;; (claim step-drop-last
+;;   (Pi ([E U]
+;;        [prev Nat])
+;;     (-> (-> (Vec E (add1 prev))
+;;             (Vec E prev))
+;;         (-> (Vec E (add1 (add1 prev)))
+;;             (Vec E (add1 prev))))))
+(claim step-drop-last
+  (Pi ([E U]
+       [prev Nat])
+    (-> (mot-drop-last E prev)
+        (mot-drop-last E (add1 prev)))))
+(define step-drop-last
+  (lambda (E prev)
+    (lambda (prev-drop-last)
+      (lambda (vec)
+        (vec::
+          (head vec)
+          (prev-drop-last (tail vec)))))))
+
+(claim drop-last
+  (Pi ([E U]
+       [prev Nat])
+    (-> (Vec E (add1 prev))
+        (Vec E prev))))
+(define drop-last
+  (lambda (E prev)
+    (ind-Nat prev
+      (mot-drop-last E)
+      (base-drop-last E)
+      (step-drop-last E))))
+
+(check-same (Vec Nat 2)
+  (drop-last Nat 2 (vec:: 1 (vec:: 2 (vec:: 3 vecnil))))
+  (vec:: 1 (vec:: 2 vecnil)))
+
+(check-same
+    (-> (Vec Nat 3)
+        (Vec Nat 2))
+  (drop-last Nat 2)
+  (lambda (vec)
+    (vec:: (head vec)
+      (vec:: (head (tail vec))
+        vecnil))))

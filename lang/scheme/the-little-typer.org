@@ -382,6 +382,12 @@
   }
   #+end_src
 
+  - *Readable Expressions*
+    Getting the right answer is worthless
+    if we do not know that it is correct.
+    Understanding the answer is at least
+    as important as having the correct answer.
+
 * Recess: One Piece at a Time
 * 8. Pick a Number, Any Number
 * 9. Double Your Money, Get Twice as Much
