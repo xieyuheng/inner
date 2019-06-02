@@ -1,5 +1,117 @@
-ones inner universe
+# ones inner universe
+
+- Do extra work each time,  
+  and get down to fundamentals,  
+  and study things until you understand them.
+
+## Contents
 
 - [person](person)
 - [note](note)
 - [lang](lang)
+
+## Quotes
+
+### Mathematics
+
+- The code pretty much writes itself.  
+  - Bartosz Milewski
+  - "category theory for programmers".
+
+- Mathematics is a beautiful dream world where progress can begin.  
+  - Eugenia Cheng
+  - 2015 TEDx talk.
+
+- Equality does not means they are the same,  
+  equality studies in what context they should be treated the same.  
+  - Eugenia Cheng
+  - 2017 Lambda World talk.
+
+### Game
+
+- There is always a chance to start asking "Why?" again.  
+  - James Portnow
+  - "The Martian Chronicles - The New Martians - Extra Sci Fi - #13"
+
+- You will level up as a player, even if you do not feel any progress in the game.  
+  - James Portnow
+  - "Dark Souls - #7 - Dan Masters the Crossbow - Side Quest"
+
+### Research
+
+- All research involves risk.  
+  If your project can't fail, it's development, not research.  
+  What's hard is dealing with project failures.  
+  It's easy to interpret your project failing as your failing;  
+  in fact, it proves that you had the courage to do something difficult.  
+  - MIT AI Lab graduate students
+  - "How to do Research At the MIT AI Lab"
+
+### Life
+
+- (The miniature plan)  
+  If he maps out important work for himself on great lines,  
+  a glance at this miniature plan  
+  of his life will, more than anything else  
+  stimulate, rouse and ennoble him,  
+  urge him on to action and keep him from false paths.  
+  - Arthur Schopenhauer
+
+- (A day)  
+  We are apt to forget that every day is an integral,  
+  and therefore irreplaceable portion of life,  
+  and to look upon life as though it were a collective idea or name  
+  which does not suffer if one of the individuals it covers is destroyed.  
+  - Arthur Schopenhauer
+
+- We so underestimate what we can achieve in a year,  
+  and so overestimate what we can achieve in a day.  
+  - Conor Neill
+  - "The Discipline of Finishing: Conor Neill at TEDxUniversidaddeNavarra"
+
+- The great discoveries, in math and CS,  
+  are not make by doing complicated things.  
+  They are the discoveries that tell you very very simple things  
+  that people haven't really noticed.  
+  - John Horton Conway
+  - "On His LOVE-HATE Relationship with LIFE" - Talks at Google
+
+### World
+
+- I want to divide human understanding into two kinds  
+  -- classical understanding and romantic understanding.  
+  In terms of ultimate truth a dichotomy of this sort has little meaning  
+  but it is quite legitimate when one is operating  
+  within the classic mode used to discover or create a world of underlying form.  
+  The terms classic and romantic, as Phaedrus used them, mean the following:  
+  A classical understanding sees the world primarily as underlying form itself.  
+  A romantic understanding sees it primarily in terms of immediate appearance.  
+  - Robert Pirsig
+  - in "zen and the art of motorcycle maintenance"
+
+### Technology
+
+- I care about what the security and efficiency properties  
+  of a technology are, not what it's called.  
+  - Radia Perlman
+  - "Blockchain: Hype or Hope?"
+
+### Software Architecture
+
+- Programmers are abstractors and detail managers,  
+  as detail managers we separate details from the generals.  
+  - Bob Martin
+  - The Principles of Clean Architecture by Uncle Bob Martin
+
+- Good architectures allows major decisions to be deferred,  
+  so that decisions can made later with the most possible information.  
+  - Bob Martin
+  - The Principles of Clean Architecture by Uncle Bob Martin
+
+- Object oriented programming  
+  is about managing dependencies by  
+  selectively inverse certain key dependencies in your architecture  
+  so that you can prevent fragility and non-reusability.  
+  (absolute control over the dependency structure)  
+  - Bob Martin
+  - SOLID Principles of Object Oriented and Agile Design
