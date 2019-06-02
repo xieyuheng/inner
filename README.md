@@ -1,9 +1,5 @@
 # ones inner universe
 
-- Do extra work each time,  
-  and get down to fundamentals,  
-  and study things until you understand them.
-
 ## Contents
 
 - [person](person)
@@ -11,6 +7,14 @@
 - [lang](lang)
 
 ## Quotes
+
+### Learning to Learn
+
+- Do extra work each time,  
+  and get down to fundamentals,  
+  and study things until you understand them.  
+  - Richard Hamming
+  - Lecture "Digital Filters, Part I" (April 27, 1995)
 
 ### Mathematics
 
