@@ -587,8 +587,8 @@
   (lambda (prev)
     (lambda (prev-incr=add1)
       (cong prev-incr=add1
-            (the (-> Nat Nat)
-              (lambda (n) (add1 n)))))))
+        (the (-> Nat Nat)
+          (lambda (n) (add1 n)))))))
 
 (claim incr=add1
   (Pi ([n Nat])
@@ -599,3 +599,37 @@
       (lambda (n) (= Nat (incr n) (add1 n)))
       base-incr=add1
       step-incr=add1)))
+
+;; 9. Double Your Money, Get Twice as Much
+
+;; (claim step-incr=add1--with-replace
+;;   (Pi ([prev Nat])
+;;     (-> (= Nat (incr prev) (add1 prev))
+;;         (= Nat (add1 (incr prev)) (add1 (add1 prev))))))
+;; (define step-incr=add1--with-replace
+;;   (lambda (prev)
+;;     (lambda (prev-incr=add1)
+;;       (replace prev-incr=add1
+;;         (the (Pi ([n Nat])
+;;                U)
+;;           (lambda (n)
+;;             (= Nat (add1 (incr prev)) (add1 n))))
+;;         (the (= Nat (add1 (incr prev)) (add1 (incr prev)))
+;;           (same (add1 (incr prev))))))))
+
+(claim mot-incr=add1--with-replace
+  (-> Nat Nat U))
+(define mot-incr=add1--with-replace
+  (lambda (prev n)
+    (= Nat (add1 (incr prev)) (add1 n))))
+
+(claim step-incr=add1--with-replace
+  (Pi ([prev Nat])
+    (-> (= Nat (incr prev) (add1 prev))
+        (= Nat (add1 (incr prev)) (add1 (add1 prev))))))
+(define step-incr=add1--with-replace
+  (lambda (prev)
+    (lambda (prev-incr=add1)
+      (replace prev-incr=add1
+        (mot-incr=add1--with-replace prev)
+        (same (add1 (incr prev)))))))

@@ -454,6 +454,22 @@
   #+end_src
 
 * 9. Double Your Money, Get Twice as Much
+
+  #+begin_src typescript
+  replace: (
+    [implicit]: {
+      X: type,
+      from: X,
+      to: X,
+    }
+    target: eqv_t (X, from, to),
+    motive: (X) -> U,
+    base: motive (from),
+  ) -> motive (to) = {
+    // TODO
+  }
+  #+end_src
+
 * 10. It Also Depends On the List
 * 11. All Lists Are Created Equal
 * 12. Even Numbers Can Be Odd
