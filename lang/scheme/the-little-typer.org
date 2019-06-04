@@ -184,7 +184,7 @@
 
   #+begin_src typescript
   which_Nat: (
-    {{ X: type }}
+    [implicit]: { X: type }
     target: Nat,
     base: X,
     step: (prev: Nat) -> X,
@@ -265,7 +265,7 @@
 
   #+begin_src typescript
   iter_Nat: (
-    {{ X: type }}
+    [implicit]: { X: type }
     target: Nat,
     base: X,
     step: (almost: X) -> X,
@@ -277,7 +277,7 @@
   }
 
   rec_Nat: (
-    {{ X: type }}
+    [implicit]: { X: type }
     target: Nat,
     base: X,
     step: (prev: Nat, almost: X) -> X,
@@ -318,7 +318,7 @@
 
   #+begin_src typescript
   rec_List: (
-    {{ E: type, X: type }}
+    [implicit]: { E: type, X: type }
     target: List (E),
     base: X,
     step: (car: E, cdr: List (E), almost: X) -> X,
@@ -438,8 +438,12 @@
 
   #+begin_src typescript
   cong: (
-    {{ X: type, Y: type
-       from: X, to: X }}
+    [implicit]: {
+      X: type,
+      Y: type,
+      from: X,
+      to: X,
+    }
     target: eqv_t (X, from, to),
     f: (X) -> Y,
   ) -> eqv_t (Y, f (from), f (to)) = {
