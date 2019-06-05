@@ -855,7 +855,8 @@
   (lambda (E es)
     (ind-List es
       (the (-> (List E) U)
-        (lambda (es) (Vec E (length E es))))
+        (lambda (es)
+          (Vec E (length E es))))
       vecnil
       (step-list->vec E))))
 
@@ -909,3 +910,63 @@
    (vec:: 1 (vec:: 2 vecnil))
    (vec:: 3 (vec:: 4 vecnil)))
   (vec:: 1 (vec:: 2 (vec:: 3 (vec:: 4 vecnil)))))
+
+(claim vec->list
+  (Pi ([E U]
+       [l Nat])
+    (-> (Vec E l)
+        (List E))))
+(define vec->list
+  (lambda (E l)
+    (lambda (vec)
+      (ind-Vec l vec
+        (lambda (l vec)
+          (List E))
+        nil
+        (lambda (k h t almost)
+          (:: h almost))))))
+
+(check-same (List Nat)
+  (vec->list Nat 3 (vec:: 1 (vec:: 2 (vec:: 3 vecnil))))
+  (:: 1 (:: 2 (:: 3 nil))))
+
+(claim step-list->vec->list=
+  (Pi ([E U]
+       [e E]
+       [es (List E)])
+    (-> (= (List E)
+          es
+          (vec->list
+           E
+           (length E es)
+           (list->vec E es)))
+        (= (List E)
+          (:: e es)
+          (vec->list
+           E
+           (add1 (length E es))
+           (vec:: e (list->vec E es)))))))
+(define step-list->vec->list=
+  (lambda (E e es)
+    (lambda (prev-list->vec->list=)
+      (cong prev-list->vec->list=
+        (the (-> (List E)
+                 (List E))
+          (lambda (es)
+            (:: e es)))))))
+
+(claim list->vec->list=
+  (Pi ([E U]
+       [es (List E)])
+    (= (List E)
+      es
+      (vec->list E (length E es) (list->vec E es)))))
+(define list->vec->list=
+  (lambda (E es)
+    (ind-List es
+      (lambda (es)
+        (= (List E)
+          es
+          (vec->list E (length E es) (list->vec E es))))
+      (same nil)
+      (step-list->vec->list= E))))

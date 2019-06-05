@@ -585,10 +585,64 @@
       using a more specific type is called an *intrinsic* proof.
       Similarly, using a separate proof is called *extrinsic*.
 
+  - x -
+    when proving things like `step-list->vec->list=`
+    the insight lies in the `same-as` chart of equivalence,
+    (such as, "observation about `+`"
+    and "observation about `list->vec`")
+    while the prover often does not provide such features.
+
+    - although a prover can be interactive,
+      but since the interaction is not recorded,
+      the whole point of formalization is missed.
+
+    - in a better prover, we must
+      not mimic the obscure variable names that mathematician use,
+      but capture the essence of reasoning of mathematician.
+
+    - for example,
+      when proving equivalence, we could make it more intuitive
+      to reduce the equivalent to smaller one.
+
+  #+begin_src scheme
+  (-> (= (List E)
+        es
+        (vec->list E (length E es) (list->vec E es)))
+      (= (List E)
+        (:: e es)
+        (vec->list E (length E (:: e es)) (list->vec E (:: e es)))))
+
+  ;; working from the succedent of the step
+  (= (List E)
+    (:: e es)
+    (vec->list E (length E (:: e es)) (list->vec E (:: e es))))
+  ;; ==>
+  (= (List E)
+    (:: e es)
+    (vec->list E (add1 (length E es)) (vec:: e (list->vec E es))))
+  ;; ==>
+  (= (List E)
+    (:: e es)
+    (vec->list E (add1 (length E es)) (vec:: e (list->vec E es))))
+
+  ;; we will need the above to equal
+  (= (List E)
+    (:: e es)
+    (:: e (vec->list E (length E es) (list->vec E es))))
+  #+end_src
+
+  - *When in Doubt, Evaluate*
+    Gain insight by finding the values of expressions in types
+    and working out examples in "same-as" charts.
+
+  - Note that,
+    `step-list->vec->list=` does not uniquely determine
+    the definitions of `list->vec` and `vec->list`.
+
 * 12. Even Numbers Can Be Odd
 * 13. Even Haf a Baker's Dozen
 * 14. There's Safety in Numbers
-* 15. Imagine That ...
+* 15. Imagine That ..
 * 16. If It's All the Same to You
 * A. The Way Forward
 
