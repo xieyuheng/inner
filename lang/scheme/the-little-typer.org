@@ -467,8 +467,22 @@
     base: motive (from),
   ) -> motive (to) = {
     // TODO
+    // what is the Commandment of `replace` ?
   }
   #+end_src
+
+  - `replace` is used when the type of something nearly fits,
+    and the part that doesn't is equal to something
+    that would make it fit.
+
+  - `replace` is useful because
+    by writing an appropriate motive,
+    it can have any type.
+
+  - *Solve Easy Problems First*
+    If two functions produce equal results,
+    then use the easier one when defining a dependent function,
+    and then use `replace` to give it the desired type.
 
 * 10. It Also Depends On the List
 * 11. All Lists Are Created Equal

@@ -633,3 +633,174 @@
       (replace prev-incr=add1
         (mot-incr=add1--with-replace prev)
         (same (add1 (incr prev)))))))
+
+(claim double
+  (-> Nat
+      Nat))
+(define double
+  (lambda (n)
+    (iter-Nat n
+      zero
+      (lambda (prev)
+        (add1 (add1 prev))))))
+
+(check-same Nat (double 0) 0)
+(check-same Nat (double 1) 2)
+(check-same Nat (double 2) 4)
+(check-same Nat (double 3) 6)
+
+(claim twice
+  (-> Nat
+      Nat))
+(define twice
+  (lambda (n)
+    (+ n n)))
+
+(check-same Nat (twice 0) 0)
+(check-same Nat (twice 1) 2)
+(check-same Nat (twice 2) 4)
+(check-same Nat (twice 3) 6)
+
+(claim add1+=+add1
+  (Pi ([n Nat]
+       [j Nat])
+    (= Nat (add1 (+ n j)) (+ n (add1 j)))))
+(define add1+=+add1
+  (lambda (n j)
+    (ind-Nat n
+      (lambda (n)
+        (= Nat (add1 (+ n j)) (+ n (add1 j))))
+      (the (= Nat (add1 (+ zero j)) (+ zero (add1 j)))
+        (same (add1 j)))
+      (the (Pi ([prev Nat])
+             (-> (= Nat
+                   (add1 (+ prev j))
+                   (+ prev (add1 j)))
+                 (= Nat
+                   (add1 (+ (add1 prev) j))
+                   (+ (add1 prev) (add1 j)))))
+        (lambda (prev)
+          (lambda (prev-add1+=+add1)
+            (cong prev-add1+=+add1 (+ 1))))))))
+
+(claim step-twice=double
+  (Pi ([prev Nat])
+    (-> (= Nat
+          (+ prev prev)
+          (double prev))
+        (= Nat
+          (add1 (+ prev (add1 prev)))
+          (add1 (add1 (double prev)))))))
+;; (define step-twice=double
+;;   (lambda (prev)
+;;     (lambda (prev-twice=double)
+;;       (replace (the (= Nat
+;;                       (add1 (+ prev prev))
+;;                       (+ prev (add1 prev)))
+;;                  (add1+=+add1 prev prev))
+;;         (lambda (n)
+;;           (= Nat
+;;             (add1 n)
+;;             (add1 (add1 (double prev)))))
+;;         (the (= Nat
+;;                (add1 (add1 (+ prev prev)))
+;;                (add1 (add1 (double prev))))
+;;           (cong prev-twice=double (+ 2)))))))
+(define step-twice=double
+  (lambda (prev)
+    (lambda (prev-twice=double)
+      (replace (add1+=+add1 prev prev)
+        (lambda (n)
+          (= Nat
+            (add1 n)
+            (add1 (add1 (double prev)))))
+        (cong prev-twice=double (+ 2))))))
+
+(claim twice=double
+  (Pi ([n Nat])
+    (= Nat (twice n) (double n))))
+(define twice=double
+  (lambda (n)
+    (ind-Nat n
+      (lambda (n) (= Nat (twice n) (double n)))
+      (same zero)
+      step-twice=double)))
+
+(claim base-double-Vec
+  (Pi ([E U])
+    (-> (Vec E zero) (Vec E zero))))
+(define base-double-Vec
+  (lambda (E)
+    (lambda (vec)
+      vecnil)))
+
+(claim step-double-Vec
+  (Pi ([E U]
+       [prev Nat])
+    (-> (-> (Vec E prev)
+            (Vec E (double prev)))
+        (-> (Vec E (add1 prev))
+            (Vec E (add1 (add1 (double prev))))))))
+(define step-double-Vec
+  (lambda (E prev)
+    (lambda (prev-double-Vec)
+      (lambda (vec)
+        (vec:: (head vec)
+          (vec:: (head vec)
+            (prev-double-Vec (tail vec))))))))
+
+(claim double-Vec
+  (Pi ([E U]
+       [l Nat])
+    (-> (Vec E l)
+        (Vec E (double l)))))
+(define double-Vec
+  (lambda (E l)
+    (ind-Nat l
+      (lambda (l) (-> (Vec E l) (Vec E (double l))))
+      (base-double-Vec E)
+      (step-double-Vec E))))
+
+(check-same (Vec Nat 6)
+  (double-Vec
+   Nat 3
+   (vec:: 1
+     (vec:: 2
+       (vec:: 3
+         vecnil))))
+  (vec:: 1
+    (vec:: 1
+      (vec:: 2
+        (vec:: 2
+          (vec:: 3
+            (vec:: 3
+              vecnil)))))))
+
+(claim twice-Vec
+  (Pi ([E U]
+       [l Nat])
+    (-> (Vec E l) (Vec E (twice l)))))
+(define twice-Vec
+  (lambda (E l)
+    (lambda (vec)
+      (replace (the (= Nat (double l) (twice l))
+                 (symm (twice=double l)))
+        (lambda (n)
+          (Vec E n))
+        (double-Vec E l vec)))))
+
+
+(check-same (Vec Nat 6)
+  (twice-Vec
+   Nat 3
+   (vec:: 1
+     (vec:: 2
+       (vec:: 3
+         vecnil))))
+  (vec:: 1
+    (vec:: 1
+      (vec:: 2
+        (vec:: 2
+          (vec:: 3
+            (vec:: 3
+              vecnil)))))))
