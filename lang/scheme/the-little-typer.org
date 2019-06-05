@@ -467,7 +467,7 @@
     base: motive (from),
   ) -> motive (to) = {
     // TODO
-    // what is the Commandment of `replace` ?
+    // What is the Commandment of `replace` ?
   }
   #+end_src
 
@@ -485,6 +485,13 @@
     and then use `replace` to give it the desired type.
 
 * 10. It Also Depends On the List
+
+  - *Use a Specific Type for Correctness*
+    Specific types can rule out foolish definitions.
+
+    - x -
+      while specific type express intention
+
 * 11. All Lists Are Created Equal
 * 12. Even Numbers Can Be Odd
 * 13. Even Haf a Baker's Dozen
