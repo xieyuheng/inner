@@ -324,7 +324,7 @@
     step: (car: E, cdr: List (E), almost: X) -> X,
   ) -> X = {
     case (target) {
-      null => base
+      nil => base
       cons => step (
         car = target.car,
         cdr = target.cdr,
@@ -363,7 +363,7 @@
   #+begin_src typescript
   ind_Nat: (
     target: Nat,
-    motive: (target: Nat) -> type
+    motive: (target: Nat) -> type,
     base: motive (zero),
     step: (
       prev: Nat,
@@ -492,7 +492,99 @@
     - x -
       while specific type express intention
 
+  #+begin_src typescript
+  ind_List: (
+    [implicit]: { E: type },
+    target: List (E),
+    motive: (target: List (E)) -> type,
+    base: motive (nil),
+    step: (
+      e: E,
+      es: List (E)
+      almost: motive (es),
+    ) -> motive (list_cons (e, es)),
+  ) -> motive (target) = {
+    case (target) {
+      nil => base
+      list_cons => step (
+        e = target.e,
+        es = target.es,
+        almost = ind_List (
+          target.es,
+          motive,
+          base,
+          step,
+        ),
+      )
+    }
+  }
+  #+end_src
+
 * 11. All Lists Are Created Equal
+
+  - These two varieties of arguments to a type constructor,
+    that either vary or do not vary, have special names.
+
+    - Those that do not vary,
+      such as the entry type in Vec and List,
+      are called *parameters*,
+
+    - and those that do vary are called *indices*.
+
+  - Whenever a type constructor has an index,
+    the index shows up in the motive for its eliminator,
+    and therefore also inthe step.
+
+    - A family of types whose argument is an index
+      is sometimes called "an indexed family."
+
+  #+begin_src typescript
+  ind_Vec: (
+    [implicit]: { E: type },
+    n: Nat,
+    target: Vec (E, n),
+    motive: (
+      k: Nat,
+      target: Vec (E, k),
+    ) -> type,
+    base: motive (zero, vec_nil),
+    step: (
+      k: Nat,
+      head: E,
+      tail: Vec (E, k),
+      almost: motive (k, tail),
+    ) -> motive (succ (k), vec_cons (head, tail)),
+  ) -> motive (n, target) = {
+    case (target) {
+      vec_nil => base
+      vec_cons => step (
+        k = n.prev,
+        head = target.head,
+        tail = target.tail,
+        almost = ind_Vec (
+          n.prev,
+          target.tail,
+          motive,
+          base,
+          step,
+        ),
+      )
+    }
+  }
+  #+end_src
+
+  - When writing a Curried motive, base, or step,
+    it pays to carefully consider the order of arguments.
+
+  - Thus far, we have used more specific types
+    to rule out foolish definitions.
+    Another way to rule out foolish definitions
+    is to prove that they are not foolish.
+
+    - Sometimes,
+      using a more specific type is called an *intrinsic* proof.
+      Similarly, using a separate proof is called *extrinsic*.
+
 * 12. Even Numbers Can Be Odd
 * 13. Even Haf a Baker's Dozen
 * 14. There's Safety in Numbers

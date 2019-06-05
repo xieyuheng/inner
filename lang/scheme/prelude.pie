@@ -862,3 +862,50 @@
 (check-same (Vec Nat 3)
   (list->vec Nat (:: 1 (:: 2 (:: 3 nil))))
   (vec:: 1 (vec:: 2 (vec:: 3 vecnil))))
+
+;; 11. All Lists Are Created Equal
+
+(claim mot-vec-append
+  (Pi ([E U]
+       [j Nat])
+    (Pi ([l Nat]
+         [vec (Vec E l)])
+      U)))
+(define mot-vec-append
+  (lambda (E j)
+    (lambda (l vec)
+      (Vec E (+ l j)))))
+
+(claim step-vec-append
+  (Pi ([E U]
+       [j Nat])
+    (Pi ([k Nat]
+         [h E]
+         [t (Vec E k)])
+      (-> (Vec E (+ k j))
+          (Vec E (+ (add1 k) j))))))
+(define step-vec-append
+  (lambda (E j)
+    (lambda (k h t almost)
+      (vec:: h almost))))
+
+(claim vec-append
+  (Pi ([E U]
+       [l Nat]
+       [j Nat])
+    (-> (Vec E l) (Vec E j)
+        (Vec E (+ l j)))))
+(define vec-append
+  (lambda (E l j)
+    (lambda (vec end)
+      (ind-Vec l vec
+        (mot-vec-append E j)
+        end
+        (step-vec-append E j)))))
+
+(check-same (Vec Nat 4)
+  (vec-append
+   Nat 2 2
+   (vec:: 1 (vec:: 2 vecnil))
+   (vec:: 3 (vec:: 4 vecnil)))
+  (vec:: 1 (vec:: 2 (vec:: 3 (vec:: 4 vecnil)))))
