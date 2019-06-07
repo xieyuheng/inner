@@ -640,6 +640,18 @@
     the definitions of `list->vec` and `vec->list`.
 
 * 12. Even Numbers Can Be Odd
+
+  - Although two functions always return the same answer,
+    sometimes one of them is easier to use
+    because it more quickly becomes a value.
+
+    In particular, `+` and thus `twice`
+    leave an `add1` on the second argument,
+    while `double` puts both `add1`s at the top immediately.
+
+  - *Carefully Choose Definitions*
+    Carefully-chosen definitions can greatly simplify later proofs.
+
 * 13. Even Haf a Baker's Dozen
 * 14. There's Safety in Numbers
 * 15. Imagine That ..

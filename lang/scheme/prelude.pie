@@ -970,3 +970,65 @@
           (vec->list E (length E es) (list->vec E es))))
       (same nil)
       (step-list->vec->list= E))))
+
+;; 12. Even Numbers Can Be Odd
+
+(claim Even
+  (-> Nat U))
+(define Even
+  (lambda (n)
+    (Sigma ([half Nat])
+      (= Nat n (double half)))))
+
+(claim zero-is-even
+  (Even 0))
+(define zero-is-even
+  (cons 0 (same 0)))
+
+(claim +two-even
+  (Pi ([n Nat])
+    (-> (Even n)
+        (Even (+ 2 n)))))
+(define +two-even
+  (lambda (n)
+    (lambda (prev-even)
+      (cons (add1 (car prev-even))
+            (cong (cdr prev-even) (+ 2))))))
+
+(claim two-is-even
+  (Even 2))
+(define two-is-even
+  (+two-even 0 zero-is-even))
+
+(claim Odd
+  (-> Nat U))
+(define Odd
+  (lambda (n)
+    (Sigma ([haf Nat])
+      (= Nat n (add1 (double haf))))))
+
+(claim one-is-even
+  (Odd 1))
+(define one-is-even
+  (cons 0 (same 1)))
+
+
+(claim add1-even->odd
+  (Pi ([n Nat])
+    (-> (Even n)
+        (Odd (add1 n)))))
+(define add1-even->odd
+  (lambda (n)
+    (lambda (even)
+      (cons (car even)
+            (cong (cdr even) (+ 1))))))
+
+(claim add1-odd->even
+  (Pi ([n Nat])
+    (-> (Odd n)
+        (Even (add1 n)))))
+(define add1-odd->even
+  (lambda (n)
+    (lambda (odd)
+      (cons (add1 (car odd))
+            (cong (cdr odd) (+ 1))))))
