@@ -663,20 +663,43 @@
 
 * B. Rules Are Made to Be Spoken
 
-  - When implementing dependent types,
-    there are two questions to be answered:
-    when to check for sameness,
-    and how to check for sameness.
+*** Intro
 
-  - Our implementation of Pie
-    uses bidirectional type checking
-    (described in the section "Forms of Judgment")
-    to decide when,
-    and normalization by evaluation
-    (described in the section "Normalization")
-    as the technique for checking sameness.
+    - When implementing dependent types,
+      there are two questions to be answered:
+      when to check for sameness,
+      and how to check for sameness.
+
+    - Our implementation of Pie
+      uses bidirectional type checking
+      (described in the section "Forms of Judgment")
+      to decide when,
+      and normalization by evaluation
+      (described in the section "Normalization")
+      as the technique for checking sameness.
 
 *** Forms of Judgment
+
+    - x -
+      "Forms of Judgment (with output after `~>`)"
+      are implemented as functions.
+
+      Forms specify the type of functions,
+      and inference rules specify the body of functions.
+
+      an inference rule is
+      a piece of function body written reversely,
+
+      which might be viewed as
+      an abstract method of an abstract class
+      implemented by many concrete methods of concrete classes.
+
+    - x -
+      "Forms of Judgment (without output)"
+      are implemented as predicates which can success or fail.
+
+      in a practical implementation,
+      we must return error report when fail.
 
     - When reading the rules as an algorithm,
       each form of judgment should be implemented as a function.
@@ -702,14 +725,38 @@
         against the result returned from the recursive call.
 
     - When matching against a concrete expression in a rule,
-      the algorithm must reducethe expression enough
+      the algorithm must reduce the expression enough
       so that if it doesn't match,
       further reduction cannot make it match.
 
-      - Finding a neutral expression
-        or a value that is the same as
-        the expression being examined is sufficient.
+      Finding a neutral expression
+      or a value that is the same as
+      the expression being examined is sufficient.
+
+      - x -
+        by "the same as" we mean definitional equality.
 
 *** Normalization
+
+    - The process of checking whether the judgments
+      ctx :- c1 = c2 type
+      ctx :- c1 = c2 : ct
+      are believable, is called *conversion checking*.
+
+    - To check for conversion,
+      the Pie implementation uses a technique called
+      normalization by evaluation or NbE for short.
+
+    - The essence of NbE is to define a notion of value
+      that represents only the normal forms of the language,
+      and then write an interpreter
+      from Core Pie syntax into these values.
+
+    - Then, the value's type is analyzed to determine
+      what the normal form should look like,
+      and the value itself is converted back into syntax.
+
+      Converting a value into its normal form
+      is called *reading back* the normal form from the value.
 
 *** [todo] The Rules
