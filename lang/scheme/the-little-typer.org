@@ -1,24 +1,7 @@
 #+title: the little typer
 
-* [note]
-
-*** syntax examples
-
-    - (the <type> <data>)
-
-    - (check-same <type> <data> <data>)
-
-    - (claim <name> <type>)
-      (define <name> <data>)
-
-    - (which-<type>)
-      (rec-<type>)
-      (iter-<type>)
-      (ind-<type>)
-
-    - (= <type> <data> <data>)
-      (same <data>)
-
+* [todo]
+- docs inference rules in the little typer
 * 1. The More Things Change, the More They Stay the Same
 
   #+begin_src scheme
@@ -653,6 +636,7 @@
     Carefully-chosen definitions can greatly simplify later proofs.
 
 * 13. Even Haf a Baker's Dozen
+
 * 14. There's Safety in Numbers
 * 15. Imagine That ..
 * 16. If It's All the Same to You
