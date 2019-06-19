@@ -1,0 +1,28 @@
+#+title: akka
+
+- easy to use object oriented actor model API
+
+* info
+
+  https://doc.akka.io/docs/akka/current/index.html
+
+* axiom of actor model
+
+  - create actor
+
+  - send
+
+  - receive
+
+* akka -- toppings on the cake
+
+  - life
+
+* error handling
+
+* tree of actors
+
+  - use unix file system path
+    to refer to actors in the tree
+
+* ><
