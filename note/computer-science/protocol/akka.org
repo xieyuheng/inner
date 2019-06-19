@@ -8,7 +8,9 @@
 
 * actor model metaphor
 
-  - people communicating with each other
+  - people cooperating with each other,
+    by sending messages to each other,
+    and performing ones own duty.
 
 * axiom of actor model
 
@@ -17,6 +19,12 @@
   - send
 
   - receive
+
+  - features
+    - no return-stack
+    - can reply messages to many other actors
+      - thus a type system of such model must be very expressive
+      - the logic of the type system would be very different
 
 * supervision & error handling
 
