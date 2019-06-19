@@ -1,11 +1,8 @@
-#+title: Normalization by Evaluation
+#+title: Checking Dependent Types with Normalization by Evaluation: A Tutorial
+
+- by David Thrane Christiansen
 
 * [note] info
-
-  - Checking Dependent Types
-    with Normalization by Evaluation: A Tutorial
-
-  - by David Thrane Christiansen
 
   - http://davidchristiansen.dk/tutorials/nbe
 
