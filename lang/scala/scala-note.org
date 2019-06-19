@@ -1,3 +1,17 @@
 #+title: scala note
 
+* [todo] scala again
+- self and this
+- the use of [] -- such as Props[Printer]
+  - which is like Props(new Printer)
+    it seems function can take type as argument by `[]`
+- the use of override and final before method
+- [about monad] scala's type class and for notation
+* [todo] cat in scala
+- << category theory for programmers >>
+- Kleisli category
+- monad
+- practical monad usages in web app, such as log, error, latency ..
+- two types of functors
+
 * ><
