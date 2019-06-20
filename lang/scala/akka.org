@@ -1,0 +1,117 @@
+#+title: akka
+
+- easy to use object oriented actor model API
+
+* info
+
+  https://doc.akka.io/docs/akka/current/index.html
+
+* actor model metaphor
+
+  - people cooperating with each other,
+    by sending messages to each other,
+    and performing ones own duty.
+
+* actor model as computation model
+
+  - processing
+  - storage
+  - communication
+
+* axiom of actor model
+
+  - when an actor receive a message, it can:
+
+    1. create more actors
+    2. send message to addresses
+    3. decide what to do with the next message it receives
+
+  - *Indeterminacy*
+    Turing machine is state base model of computation
+    while, the configuration of actor model includes communication
+    which can not be expressed in state base model.
+
+  - x -
+    the axiom 3 is the reason
+    why some actor model users
+    do not use side-effect on actors storage
+
+    - without side-effect
+      the state of an actor is explicitly expressed
+      by the different receive functions
+      (different ways of handling received messages)
+
+    - with side-effect
+      the state of an actor is encode by its storage
+
+  - relation between address and actor
+    - "one actor many addresses"
+      if other actors forward their message to this actor
+    - "one address many actors"
+      if the implementation replicates the actor behind the scene
+      or if one actor forward its message to many actors
+
+    so we roughly have "one actor one address" relationship,
+    because:
+    - "one address many actors" is behind the scene or explicit
+    - and "one actor many addresses" is explicit
+
+  - address can express capability
+    the only thing you can do to an address
+    is to send it messages
+
+    if you have the address of a powerful actor
+    the actor behind it can do many things for you
+
+  - features
+    - no return-stack
+    - can reply messages to many other actors
+      - thus a type system of such model must be very expressive
+      - the logic of the type system would be very different
+
+* supervision & error handling
+
+* tree of actors
+
+  - use unix file system path
+    to refer to actors in the tree
+
+* akka -- toppings on the cake
+
+  - <person> ! <message>
+    the use of `!` is like getting person's attention
+
+  - the use of "companion object" design pattern
+    https://docs.scala-lang.org/tour/singleton-objects.html
+
+  - system of actors
+    /<name>/system/
+    /<name>/user/
+    /<name>/user/<supervisor>/
+
+  - lifecycle
+    preStart
+    postStop
+
+  - default behavior
+    restart child on child's exception
+
+  - messaging
+    - at-most-once delivery, that is, no guaranteed delivery
+    - message ordering is maintained per sender, receiver pair
+
+  - testing
+    TestProbe
+
+* protocol
+
+  - a.k.a. frequently used message patterns
+    (abstract class in object oriented language)
+
+*** request-respond
+
+*** delegate-respond
+
+*** create-watch-terminate
+
+*** scatter-gather

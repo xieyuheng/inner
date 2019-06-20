@@ -72,8 +72,6 @@
     is an address a channel ?
     a channel can be implemented a another actor.
 
-* (wikipedia) indeterminism
-
 * (2016) (tony garnock-jones) history of actors
 
 * (1975) (irene gloria greif) semantics of communicating parallel processes

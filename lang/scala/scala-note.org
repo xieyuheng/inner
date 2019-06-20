@@ -1,6 +1,7 @@
 #+title: scala note
 
 * [todo] scala again
+- implicit
 - self and this
   - this is this object
   - self is self actor
