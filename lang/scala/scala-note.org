@@ -19,5 +19,4 @@
 - monad
 - practical monad usages in web app, such as log, error, latency ..
 - two types of functors
-
 * ><

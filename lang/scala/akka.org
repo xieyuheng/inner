@@ -20,7 +20,8 @@
 
 * axiom of actor model
 
-  - when an actor receive a message, it can:
+  - an actor handles one message at a time,
+    when an actor receive a message, it can:
 
     1. create more actors
     2. send message to addresses
@@ -43,6 +44,7 @@
 
     - with side-effect
       the state of an actor is encode by its storage
+      (such as flags)
 
   - relation between address and actor
     - "one actor many addresses"
@@ -102,6 +104,15 @@
 
   - testing
     TestProbe
+
+* akke stream
+
+  - API for stream processing
+
+  - *back-pressure*
+    to be able to limit the buffering that actors employ,
+    they need to be able to slow down producers
+    if the consumers cannot keep up.
 
 * protocol
 
