@@ -137,7 +137,7 @@
     It lives in the akka-http-core module
     and forms the basis for most of Akka HTTP’s APIs.
 
-* back pressure
+* backpressure
 
   - https://medium.com/@jayphelps/backpressure-explained-the-flow-of-data-through-software-2350b3e77ce7
 
