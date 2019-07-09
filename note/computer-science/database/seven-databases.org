@@ -12,9 +12,9 @@
 
 * PostgreSQL
 
-*** [note]
+*** [note] mysql
 
-    - ><
+    - CREATE book;
 
 *** intro
 
