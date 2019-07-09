@@ -218,3 +218,14 @@
     #+end_src
 
 * operations on relations
+
+  - permutation of column
+
+    we do not care much about this operation,
+    if we always used named columns (fields).
+    - but actually
+      we would like to use unnamed fields from time to time
+
+  - projection from column to field
+
+  - join (generalization of function composition)
