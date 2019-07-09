@@ -1,0 +1,220 @@
+#+title: A Relational Model of Data for Large Shared Data Banks
+
+- by Edgar Frank Codd, 1970
+
+* access path dependence
+
+  - the problem of tree-structured data model:
+    many ways to model the same data,
+    if the model changed, API must change.
+
+  - Structure 1. Projects Subordinate to Parts
+    #+begin_src scala
+    part: {
+      part id
+      part name
+      part description
+      quantity-on-hand
+      quantity-on-order
+      project: {
+        project id
+        project name
+        project description
+        quantity committed
+      }
+    }
+    #+end_src
+
+  - Structure 2. Parts Subordinate to Projects
+    #+begin_src scala
+    project: {
+      project id
+      project name
+      project description
+      quantity committed
+      part: {
+        part id
+        part name
+        part description
+        quantity-on-hand
+        quantity-on-order
+
+      }
+    }
+    #+end_src
+
+  - Structure 3. Parts and Projects as Peers
+    Commitment Relationship Subordinate to Projects
+    #+begin_src scala
+    part: {
+      part id
+      part name
+      part description
+      quantity-on-hand
+      quantity-on-order
+    }
+
+    project: {
+      project id
+      project name
+      project description
+      part: {
+        part id
+        quantity committed
+      }
+    }
+    #+end_src
+
+  - Structure 4. Parts and Projects as Peers
+    Commitment Relationship Subordinate to Parts
+    #+begin_src scala
+    part: {
+      part id
+      part name
+      part description
+      quantity-on-hand
+      quantity-on-order
+      project: {
+        project id
+        quantity committed
+      }
+    }
+
+    project: {
+      project id
+      project name
+      project description
+    }
+    #+end_src
+
+  - Structure 5. Parts, Projects, and
+    Commitment Relationship as Peers
+    #+begin_src scala
+    part: {
+      part id
+      part name
+      part description
+      quantity-on-hand
+      quantity-on-order
+    }
+
+    project: {
+      project id
+      project name
+      project description
+    }
+
+    commit: {
+      part id
+      project id
+      quantity committed
+    }
+    #+end_src
+
+* relational model
+
+  - most users should interact with
+    a relational model of the data
+    consisting of a collection of time-varying relationships
+    (rather than relations).
+
+  - x -
+    "relationships" v.s. "relations"
+    means "record" (with named fields) vs "tuple" (with unnamed fields)
+
+    I do not use the term "relationships"
+
+  - terms:
+    - active domain
+      the type depends on users activities
+      which depends on time
+
+    - primary key
+
+    - foreign key
+
+    - non-simple domain
+
+* non-simple domain & normal form
+
+  - a relation with simple domain
+    can be expressed as a (2-dim) table
+
+  - non-simple domain means
+    an entry of a table can be a little table
+
+  - simple example:
+    #+begin_src scala
+    Employee: {
+      name: String
+      birthDate: Date
+      salaryHistory: Table {
+        data: Date
+        salary: Salary
+      }
+    }
+
+    // normalization =>
+
+    Employee: {
+      PK employeeId: Id
+      name: String
+      birthDate: Date
+    }
+
+    SalaryHistory: {
+      PK recordId: Id
+      FK employeeId: Id
+      date: Data
+      salary: Salary
+    }
+    #+end_src
+
+  - complex example:
+    #+begin_src scala
+    Employee: {
+      name: String
+      birthDate: Date
+      children: Table {
+        name: String
+        birthDate: Date
+      }
+      jobHistory: Table {
+        jobTitle: String
+        salaryHistory: Table {
+          data: Date
+          salary: Salary
+        }
+      }
+    }
+
+    // normalization =>
+
+    Employee: {
+      PK employeeId: Id
+      name: String
+      birthDate: Date
+    }
+
+    Children: {
+      PK childrenId: Id
+      FK employeeId: Id
+      name: String
+      birthDate: Date
+    }
+
+    JobHistory: {
+      PK jobHistoryId: Id
+      FK employeeId: Id
+      jobTitle: String
+    }
+
+    SalaryHistory: {
+      PK salaryHistoryId: Id
+      FK jobHistoryId: Id
+      data: Date
+      salary: Salary
+    }
+    #+end_src
+
+* operations on relations
