@@ -124,5 +124,5 @@
 
 - The universality of the data sublanguage  
   lies in its descriptive ability (not its computing ability).  
-  - E. F. CODD
+  - Edgar Frank Codd
   - A Relational Model of Data for Large Shared Data Banks, 1970
