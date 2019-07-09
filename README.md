@@ -119,3 +119,10 @@
   (absolute control over the dependency structure)  
   - Bob Martin
   - SOLID Principles of Object Oriented and Agile Design
+
+### Database 
+
+- The universality of the data sublanguage  
+  lies in its descriptive ability (not its computing ability).  
+  - E. F. CODD
+  - A Relational Model of Data for Large Shared Data Banks, 1970
