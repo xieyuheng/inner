@@ -143,13 +143,28 @@
 
     - in scala:
       #+begin_src scala
-      f: (A => B)
-      g: (B => C)
-      g after f: (A => C)
+      f: A => B
+      g: B => C
+      g after f: A => C
       // we might wish to use infix notation here,
       // because composition is associative.
       #+end_src
 
 *** 2 Types and Functions
+
+***** 2.3 What Are Types?
+
+      - we can make use of the set theoretical interpretation of type.
+        but the problem is polymorphic functions that involve circular definitions.
+
+      - x -
+        what is the problem ?
+        list: List[T]
+        f: List[T] => List[T]
+
+        they seems ok to be interpreted as set.
+
+        even viewing a relation (or function) as a subset of product
+        is useful in relational database
 
 *** 3 Categories Great and Small

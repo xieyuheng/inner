@@ -36,8 +36,8 @@
 
     #+begin_src sql
     CREATE TABLE countries (
-        country_code CHAR (2) PRIMARY KEY,
-        country_name TEXT UNIQUE
+      country_code CHAR (2) PRIMARY KEY,
+      country_name TEXT UNIQUE
     );
 
     -- PRIMARY KEY and UNIQUE are constraints
@@ -46,16 +46,16 @@
 
     INSERT INTO countries (country_code, country_name)
     VALUES
-        ('us', 'United States'),
-        ('mx', 'Mexico'),
-        ('au', 'Australia'),
-        ('gb', 'United Kingdom'),
-        ('de', 'Germany'),
-        ('ll', 'Loompaland');
+      ('us', 'United States'),
+      ('mx', 'Mexico'),
+      ('au', 'Australia'),
+      ('gb', 'United Kingdom'),
+      ('de', 'Germany'),
+      ('ll', 'Loompaland');
 
     INSERT INTO countries
     VALUES
-        ('cn', 'China');
+      ('cn', 'China');
 
     SELECT *
     FROM countries;
@@ -67,10 +67,10 @@
     FROM countries;
 
     CREATE TABLE cities (
-        name TEXT NOT NULL,
-        postal_code VARCHAR (9) CHECK (postal_code <> ''),
-        country_code CHAR (2) REFERENCES countries,
-        PRIMARY KEY (country_code, postal_code)
+      name TEXT NOT NULL,
+      postal_code VARCHAR (9) CHECK (postal_code <> ''),
+      country_code CHAR (2) REFERENCES countries,
+      PRIMARY KEY (country_code, postal_code)
     );
 
     -- REFERENCES is foreign key constraint
@@ -106,16 +106,16 @@
     ON cities.country_code = countries.country_code;
 
     CREATE TABLE venues (
-        venue_id SERIAL PRIMARY KEY,
-        name VARCHAR (255),
-        street_address TEXT,
-        type CHAR (7)
-          CHECK ( TYPE IN ('public', 'private') )
-          DEFAULT 'public',
-        postal_code VARCHAR (9),
-        country_code CHAR (2),
-        FOREIGN KEY (country_code, postal_code)
-          REFERENCES cities (country_code, postal_code) MATCH FULL
+      venue_id SERIAL PRIMARY KEY,
+      name VARCHAR (255),
+      street_address TEXT,
+      type CHAR (7)
+        CHECK ( TYPE IN ('public', 'private') )
+        DEFAULT 'public',
+      postal_code VARCHAR (9),
+      country_code CHAR (2),
+      FOREIGN KEY (country_code, postal_code)
+        REFERENCES cities (country_code, postal_code) MATCH FULL
     );
 
     INSERT INTO venues (name, postal_code, country_code)
@@ -123,7 +123,7 @@
 
     -- compound INNER JOIN
 
-    SELECT venue.venue_id, venue.name, city
+    SELECT venue.venue_id, venue.name, city.name
     FROM venues venue INNER JOIN cities city
     ON venue.postal_code = city.postal_code
     AND venue.country_code = city.country_code;
@@ -140,11 +140,11 @@
     -- The Outer Limits
 
     CREATE TABLE events (
-        event_id SERIAL PRIMARY KEY,
-        title TEXT,
-        starts TIMESTAMP,
-        ends TIMESTAMP,
-        venue_id SERIAL REFERENCES venues
+      event_id SERIAL PRIMARY KEY,
+      title TEXT,
+      starts TIMESTAMP,
+      ends TIMESTAMP,
+      venue_id SERIAL REFERENCES venues
     );
 
     INSERT INTO events (title, starts, ends, venue_id)
