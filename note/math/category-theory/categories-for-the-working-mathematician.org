@@ -1,0 +1,3 @@
+#+title: categories for the working mathematician
+
+* intro
