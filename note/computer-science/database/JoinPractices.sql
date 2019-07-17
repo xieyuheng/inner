@@ -96,8 +96,8 @@ ON employee.DepartmentID = department.DepartmentID;
 -- self join
 -- joining a table to itself.
 
-SELECT F.EmployeeID, F.LastName, S.EmployeeID, S.LastName, F.Country
-FROM employee F INNER JOIN employee S
-ON F.Country = S.Country
-WHERE F.EmployeeID < S.EmployeeID
-ORDER BY F.EmployeeID, S.EmployeeID;
+SELECT A.EmployeeID, A.LastName, B.EmployeeID, B.LastName, A.Country
+FROM employee A INNER JOIN employee B
+ON A.Country = B.Country
+WHERE A.EmployeeID < B.EmployeeID
+ORDER BY A.EmployeeID, B.EmployeeID;
