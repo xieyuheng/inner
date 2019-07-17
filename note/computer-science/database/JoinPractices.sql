@@ -1,21 +1,21 @@
 CREATE TABLE Department(
-  DepartmentID INT PRIMARY KEY,
+  DepartmentId INT PRIMARY KEY,
   DepartmentName VARCHAR(20));
 
 CREATE TABLE Employee(
-  EmployeeID INT PRIMARY KEY,
+  EmployeeId INT PRIMARY KEY,
   LastName VARCHAR(20),
   Country VARCHAR(20),
-  DepartmentID INT REFERENCES Department);
+  DepartmentId INT REFERENCES Department);
 
-INSERT INTO Department (DepartmentID, DepartmentName)
+INSERT INTO Department (DepartmentId, DepartmentName)
 VALUES
   (31, 'Sales'),
   (33, 'Engineering'),
   (34, 'Clerical'),
   (35, 'Marketing');
 
-INSERT INTO Employee (EmployeeID, LastName, Country, DepartmentID)
+INSERT INTO Employee (EmployeeId, LastName, Country, DepartmentId)
 VALUES
   (123, 'Rafferty', 'Australia', 31),
   (124, 'Jones', 'Australia', 33),
@@ -37,29 +37,29 @@ FROM Employee, Department;
 -- inner join
 -- requires each row in the two joined tables to satisfy join-predicate
 
-SELECT Employee.LastName, Employee.DepartmentID, Department.DepartmentName
+SELECT Employee.LastName, Employee.DepartmentId, Department.DepartmentName
 FROM Employee INNER JOIN Department
-ON Employee.DepartmentID = Department.DepartmentID;
+ON Employee.DepartmentId = Department.DepartmentId;
 
-SELECT Employee.LastName, Employee.DepartmentID, Department.DepartmentName
+SELECT Employee.LastName, Employee.DepartmentId, Department.DepartmentName
 FROM Employee, Department
-WHERE Employee.DepartmentID = Department.DepartmentID;
+WHERE Employee.DepartmentId = Department.DepartmentId;
 
 -- equi join
 -- special inner join
 -- where join-predicate is limited to eq
 
-SELECT Employee.LastName, Employee.DepartmentID, Department.DepartmentName
+SELECT Employee.LastName, Employee.DepartmentId, Department.DepartmentName
 FROM Employee JOIN Department
-ON Employee.DepartmentID = Department.DepartmentID;
+ON Employee.DepartmentId = Department.DepartmentId;
 
-SELECT Employee.LastName, Employee.DepartmentID, Department.DepartmentName
+SELECT Employee.LastName, Employee.DepartmentId, Department.DepartmentName
 FROM Employee, Department
-WHERE Employee.DepartmentID = Department.DepartmentID;
+WHERE Employee.DepartmentId = Department.DepartmentId;
 
 SELECT *
 FROM Employee INNER JOIN Department
-USING (DepartmentID);
+USING (DepartmentId);
 
 -- natural join
 -- The result of the natural join
@@ -83,21 +83,21 @@ FROM Employee NATURAL JOIN Department;
 
 SELECT *
 FROM Employee LEFT OUTER JOIN Department
-ON Employee.DepartmentID = Department.DepartmentID;
+ON Employee.DepartmentId = Department.DepartmentId;
 
 SELECT *
 FROM Employee RIGHT OUTER JOIN Department
-ON Employee.DepartmentID = Department.DepartmentID;
+ON Employee.DepartmentId = Department.DepartmentId;
 
 SELECT *
 FROM Employee FULL OUTER JOIN Department
-ON Employee.DepartmentID = Department.DepartmentID;
+ON Employee.DepartmentId = Department.DepartmentId;
 
 -- self join
 -- joining a table to itself.
 
-SELECT A.EmployeeID, A.LastName, B.EmployeeID, B.LastName, A.Country
+SELECT A.EmployeeId, A.LastName, B.EmployeeId, B.LastName, A.Country
 FROM Employee A INNER JOIN Employee B
 ON A.Country = B.Country
-WHERE A.EmployeeID < B.EmployeeID
-ORDER BY A.EmployeeID, B.EmployeeID;
+WHERE A.EmployeeId < B.EmployeeId
+ORDER BY A.EmployeeId, B.EmployeeId;
