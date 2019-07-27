@@ -31,3 +31,13 @@
       - variables: model parameters
       - constraints: prior information, parameter limits
       - objective: measure of misfit or prediction error
+
+* linear programming
+
+  - f0 and f(i) must be linear functions
+
+* convex optimization
+
+  - f0 and f(i) must be convex functions
+
+  - convex means positive curvature
