@@ -84,10 +84,11 @@
       we can view category as generalized preorder,
       in which homset can have more elements.
 
-    - monoid is category with only one object.
+    - monoid is category with only one object,
+      thus every two arrows are composable.
 
       we can view category as generalized monoid,
-      in which there can be more object
+      in which there can be more objects.
 
 *** 3.2: Kleisli category
 
