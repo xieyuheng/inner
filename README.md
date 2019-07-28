@@ -104,6 +104,12 @@
   we could fix the way kids' minds are getting manipulated into sending empty messages back and forth.  
   - Tristan Harris
   - How a handful of tech companies control billions of minds every day
+  
+- And what we need to recognize is that the human architecture is limited  
+  and that we have certain boundaries or dimensions of our lives  
+  that we want to be honored and respected.  
+  - Tristan Harris
+  - How a handful of tech companies control billions of minds every day
 
 ### Software Architecture
 
