@@ -99,6 +99,11 @@
   of a technology are, not what it's called.  
   - Radia Perlman
   - "Blockchain: Hype or Hope?"
+  
+- Maybe instead of getting excited about the most exciting new cool fancy education apps,  
+  we could fix the way kids' minds are getting manipulated into sending empty messages back and forth.  
+  - Tristan Harris
+  - How a handful of tech companies control billions of minds every day
 
 ### Software Architecture
 
