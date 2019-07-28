@@ -77,6 +77,18 @@
 
 *** 3.1: Examples of categories, orders, monoids
 
+    - in preorder as category, an arrow is not a function, but a relation.
+
+    - preorder is thin category, homset have 0 or 1 elements.
+
+      we can view category as generalized preorder,
+      in which homset can have more elements.
+
+    - monoid is category with only one object.
+
+      we can view category as generalized monoid,
+      in which there can be more object
+
 *** 3.2: Kleisli category
 
     - objects of a cat can be types
