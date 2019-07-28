@@ -84,11 +84,21 @@
       we can view category as generalized preorder,
       in which homset can have more elements.
 
+      like we can have different proofs of the relation `<=`.
+
+    - monoid is like pre-group.
+
     - monoid is category with only one object,
       thus every two arrows are composable.
 
       we can view category as generalized monoid,
       in which there can be more objects.
+
+    - we can view preorder as category,
+      or monoid as category.
+
+      we can also view category as generalization of preorder,
+      or generalization of monoid.
 
 *** 3.2: Kleisli category
 
