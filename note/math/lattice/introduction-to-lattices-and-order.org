@@ -56,6 +56,30 @@
     - for data, >= can be defined as
       "is at least as informative as"
 
+*** programs
+
+    - The term state is used to denote an assignment,
+      to the variables used by a program,
+      of values drawn from the appropriate datatypes.
+
+      The program terminates if it transforms any given state
+      before its execution to a state afterwards;
+      the initial and final states may be regarded as
+      incorporating the input and output data.
+
+      Frequently, the result of a computation
+      will be generated step by step,
+      with additional information being gained at each stage.
+
+    - Non-termination of a program naturally arises where
+      only partial information towards the solution is output in finite time.
+
+      A program is deterministic if, starting from a given initial state,
+      it will terminate in the same final state each time it is run.
+
+      Non-determinism can occur where the program’s specification
+      allows for more than one valid solution.
+
 * 2 lattices and complete lattices
 
 * 3 formal concept analysis
