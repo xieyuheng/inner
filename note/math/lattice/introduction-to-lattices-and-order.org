@@ -80,6 +80,36 @@
       Non-determinism can occur where the program’s specification
       allows for more than one valid solution.
 
+*** partial maps
+
+    - f, g: PartialMap(A, B)
+      f <= g
+      :== dom(f) <= dom(g)
+      and forall x: dom(f) => f(x) == g(x)
+
+    - function of type A => B might be viewed as
+      been built up from elements of PartialMap(A, B)
+
+    - two partial maps are consistent if we can merge them.
+
+      if f and g are consistent,
+      but f does not terminate for some input where g does,
+      we can run both f and g in parallel, and kill f when g terminates.
+
+      if f and g are consistent,
+      but f runs slower for some input where g runs faster,
+      we can run both f and g in parallel, and kill f when g terminates.
+
+      in these cases, we say g refines f.
+
+    - refinement of PartialMap is commutative, associative, and idempotent.
+
+*** semantics and semantic domains
+
+    - a semantic domain is a mathematical structure
+      through which one can describe, analyse and reason about
+      the behaviour of entities such as datatypes, programs and specifications.
+
 * 2 lattices and complete lattices
 
 * 3 formal concept analysis
