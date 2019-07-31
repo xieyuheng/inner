@@ -1,3 +1,61 @@
 #+title: introduction to lattices and order
 
-* ><
+* 1 ordered sets
+
+*** terms
+
+    - (order) (partial order)
+      reflexivity, antisymmetry and transitivity
+
+      A set P equipped with an order relation
+      is said to be an ordered set
+      (or partially ordered set) (or poset)
+
+    - (discrete order)
+      on any set, == is an order
+
+    - (quasi-order) (pre-order)
+      reflexivity and transitivity
+
+    - (strict inequality)
+      x <= y and x != y
+
+    - (comparable)
+      x <= y or x >= y
+
+    - (incomparable)
+      not x <= y and not x >= y
+
+    - (induced order)
+      the order that subset inherited from superset
+
+    - (chain) (linearly ordered set) (totally ordered set)
+      either x <= y or x >= y
+
+    - (antichain)
+      x <= y then x == y
+
+      when using the term chain and antichain, we are often considering subsets
+
+      A chain is a subset in which each pair of elements is comparable;
+      that is, C is totally ordered.
+
+      An antichain is a subset in which each pair of different elements is incomparable;
+      that is, there is no order relation between any two different elements.
+
+    - (order-isomorphism)
+      necessarily bijective
+      using reflexivity and antisymmetry
+      f(x) == f(y)
+      <=> f(x) <= f(y) and f(x) =< f(y)
+      <=> x <= y and x =< y
+      <=> x == y
+
+*** informative
+
+    - for data, >= can be defined as
+      "is at least as informative as"
+
+* 2 lattices and complete lattices
+
+* 3 formal concept analysis
