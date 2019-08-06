@@ -8,6 +8,15 @@
 
 ## Quotes
 
+### Love
+
+- In general when you feel in life, not necessarily when your heart broken,  
+  but when you feel, when you let to go into the intense, and deeply into the senses,  
+  then you are touched by melancholy however it is expressed.  
+  And I am very much touched by melancholy, because it's something very vivid,  
+  it's something let's you disassociate and understand the true moments of joy and happiness.  
+  - Keren Ann on melancholy, love and loss
+
 ### Learning to Learn
 
 - Do extra work each time,  
