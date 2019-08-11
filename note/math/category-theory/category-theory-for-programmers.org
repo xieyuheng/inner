@@ -107,12 +107,7 @@
       can not only be functions of type (a -> b)
       but also be functions of type (a -> (b, String))
       where String can be replaced by any Monoid
-
-    - x -
-      function composition is re-defined
-      in postfix notation
-      syntax of function composition is optimized
-      can we also include this kind of re-defined function composition ?
+      and function composition is redefined
 
 *** 4.1: Terminal and initial objects
 

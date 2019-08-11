@@ -1,0 +1,13 @@
+#+title: Architecture with Ashi Krishnan
+
+* ><
+
+  - everything we do must either solve a problem or create a problem.
+    creating problem is the domain of art,
+    solving problem is the domain of engineering.
+
+  - solving problem is all about the questions you ask.
+    what problem am I trying to solve?
+    what is my input?
+    what is my output?
+    what is my test?
