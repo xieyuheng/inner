@@ -25,6 +25,12 @@
   - Richard Hamming
   - Lecture "Digital Filters, Part I" (April 27, 1995)
 
+### Engineering
+
+- Remember, a engineer doesn't want just a religion about how to solve a problem.
+  - by Gerry Sussman
+  - "We Really Don't Know How to Compute!"
+  
 ### Mathematics
 
 - The code pretty much writes itself.  
