@@ -103,3 +103,13 @@
 ***** 7.4 Further Limitations on Machine Design
 
 * feynman lectures on physics
+
+* feynman lectures on QED
+
+*** 1 photons--corpuscles-of-light
+
+*** 2 fits-of-reflection-and-transmission--quantum-behaviour
+
+*** 3 electrons-and-their-interactions
+
+*** 4 new-queries
