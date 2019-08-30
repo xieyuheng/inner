@@ -6,16 +6,6 @@
 
 * [note]
 
-*** initial goal
-
-    - x -
-      our goal of this reading
-      is to learn about the classification of parsing algorithms.
-      we will still write parser by hand
-      -- not generate them from grammar
-      but we will use a fromal language to document the grammar
-      and to guide the design of our parsing program.
-
 *** rich mathematical structure of parser theory
 
     - the mathematical structure of grammar is very rich
@@ -111,7 +101,7 @@
     - rules
       a rule can rewrite symbol-pattern to symbol-pattern
       where left-hand side must be non-empty
-      which right-hand side might be empty
+      while right-hand side might be empty
 
     - a non-terminal symbol as starting-symbol
 
@@ -474,9 +464,10 @@
 
       - x -
         - the grammar rules in a context free grammar
-          can be viewed as named by its antecedent
-        - the grammar rules in a context free grammar
-          can be viewed as named by the focus in antecedent
+          can be viewed as named by its left hand side
+        - the grammar rules in a context sensitive grammar
+          can be viewed as named by the focus and context
+          in its left hand side
         - the grammar rules in a phrase structure grammar
           and monotonic grammar
           are generally unnamed
