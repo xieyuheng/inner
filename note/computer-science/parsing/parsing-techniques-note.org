@@ -577,7 +577,8 @@
       there is always a substituting and record-keeping machine,
       and a guiding control mechanism.
 
-    - The substituting machine is called a non-deterministic automaton or NDA.
+    - The substituting machine
+      is called a non-deterministic automaton or NDA.
 
     - Every move of the NDA
       transfers some information
@@ -886,7 +887,8 @@
 
 * [todo] 7 General Directional Bottom-Up Parsing
 
-  - This view clearly exposes the idea that parsing is nothing but structuring the input.
+  - This view clearly exposes the idea that
+    parsing is nothing but structuring the input.
 
 * [todo] 8 Deterministic Top-Down Parsing
 

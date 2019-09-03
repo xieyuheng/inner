@@ -143,11 +143,11 @@ ab:head-a = { "a" b }
 ab:head-b = { "b" a }
 
 a:one = { "a" }
-a:more = { "a" s }
+a:more = { "a" ab }
 a:after-b = { "b" a a }
 
 b:one = { "b" }
-b:more = { "b" s }
+b:more = { "b" ab }
 b:after-a = { "a" b b }
 ```
 
