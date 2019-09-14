@@ -887,9 +887,6 @@
 
 * [todo] 7 General Directional Bottom-Up Parsing
 
-  - This view clearly exposes the idea that
-    parsing is nothing but structuring the input.
-
 * [todo] 8 Deterministic Top-Down Parsing
 
 * [todo] 9 Deterministic Bottom-Up Parsing
