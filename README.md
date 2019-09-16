@@ -28,7 +28,7 @@
 ### Engineering
 
 - Remember, a engineer doesn't want just a religion about how to solve a problem.
-  - by Gerry Sussman
+  - Gerry Sussman
   - "We Really Don't Know How to Compute!"
 
 - It is through restriction that we gain power.  
