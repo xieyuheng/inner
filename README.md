@@ -30,7 +30,13 @@
 - Remember, a engineer doesn't want just a religion about how to solve a problem.
   - by Gerry Sussman
   - "We Really Don't Know How to Compute!"
-  
+
+- It is through restriction that we gain power.  
+  The less that we can do, the more we can do with what we did.  
+  The less that we can do, the more that we can optimize.  
+  - Paul Phillips
+  - We're Doing It All Wrong, at Pacific Northwest Scala 2013
+
 ### Mathematics
 
 - The code pretty much writes itself.  
