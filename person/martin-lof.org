@@ -35,15 +35,15 @@
 
       - dependent arrow
 
-      #+begin_src jojo
-      (: B (-> A -- Type))
-      (-> (: :x A) -- :x B)
+      #+begin_src scala
+      B: (A) -> type_t
+      (x: A) -> B(x)
 
-      (+fun b (-> (: :x A) -- :x B)
-        :x ...)
+      fn b(x: A): B(x) = ...
 
-      (: a A)
-      (: a b a B)
+      a: A
+      --------
+      b(a): B(a)
       #+end_src
 
 ***** [note] schema
@@ -1394,7 +1394,7 @@
 ******* 6.2 Set-Theoretic Model
 ******* 6.3 Realizability Models
 ******* 6.4 Model of Normal Forms and Type-Checking
-
+        
 ***** 7. Variants of the Theory
 
 ******* 7.1 Extensional Type Theory
