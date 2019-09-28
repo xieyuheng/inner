@@ -1,0 +1,54 @@
+#+title: lambda calculus with types
+
+* preface
+
+  The emphasis of the book is on syntax. Models are introduced only in so far they give
+  useful information about terms and types or if the theory can be applied to them.
+
+  One of the recurring distinctions made in the book is the difference between the implicit
+  typing due to Curry versus the explicit typing due to Church. In the latter case the terms
+  are an enhanced version of the untyped terms, whereas in the Curry theory to some of
+  the untyped terms a collection of types is being assigned. The book is mainly about
+  Curry typing, although some chapters treat the equivalent Church variant.
+
+* introduction
+
+*** What this book is and is not about
+
+    This monograph focuses on mathematical properties of three classes of typing for lambda terms.
+
+    Simple types, constructed freely from type atoms, cause strong normalization, subject
+    reduction, decidability of typability and inhabitation, undecidability of lambda definabil-
+    ity. There turn out to be five canonical term models based on closed terms. Powerful
+    extensions with respectively a discriminator, surjective pairing, operators for primitive
+    recursion, bar recursion, and a fixed point operator are being studied. Some of these
+    extensions remain constructive, other ones are utterly non-constructive, and some will
+    be at the edge between these two realms.
+
+    Recursive types allow functions to fit as input for themselves, losing strong normaliza-
+    tion (restored by allowing only positive recursive types). Typability remains decidable.
+    Unexpectedly α-conversion, dealing with a hygienic treatment of free and bound vari-
+    ables among recursive types has interesting mathematical properties.
+
+    Intersection types allow functions to take arguments of different types simultaneously.
+    Under certain mild conditions this leads to subject conversion, turning the filters of
+    types of a given term into a lambda model. Classical lattice models can be described
+    as intersection type theories. Typability and inhabitation now become undecidable, the
+    latter being equivalent to undecidability of lambda definability for models of simple
+    types.
+
+*** What this book could have been about
+
+    This book could have been also about dependent types, higher order types and inductive
+    types, all used in some of the mathematical assistants. Originally we had planned a
+    second volume to do so. But given the effort needed to write this book, we will probably
+    not do so. Higher order types are treated in Girard, Lafont, and Taylor [1989], and
+    Sørensen and Urzyczyn [2006]. Research monographs on dependent and inductive types
+    are lacking. This is an invitation to the community of next generations of researchers.
+    Some notational conventions
+
+* part 1. simple types
+
+* part 2. recursive types
+
+* part 3. intersection types
