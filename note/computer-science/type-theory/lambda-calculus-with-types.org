@@ -47,7 +47,14 @@
     are lacking. This is an invitation to the community of next generations of researchers.
     Some notational conventions
 
+    - x -
+      "Research monographs on dependent and inductive types are lacking."
+      what the authors meant by a good "Research monographs"
+
 * part 1. simple types
+
+  exp := var | (var) => exp | exp(exp)
+  type := atom | (type) -> type
 
 * part 2. recursive types
 
