@@ -61,6 +61,16 @@
 
     exp := var | (var) => exp | exp(exp)
 
+*** [todo] concrete syntax in meta language
+
+    currently we are use concrete syntax of the target language
+    in meta language.
+
+    this is convenient but can be very ambiguous.
+
+    - we might use [] to denote parse
+    - or use abstract syntax
+
 *** conversion relation
 
     equational theory of lambda-beta-eta
@@ -127,7 +137,7 @@
 
     we can extends the judgment of conversion by axioms,
 
-    axioms: list_t(exp_t)
+    axioms: set_t([exp_t, exp_t])
 
     axioms |- M == N
 
@@ -207,9 +217,9 @@
 
     examples:
 
-    empty_ctx |- I : (A) -> A
-    empty_ctx |- K : (A) -> (B) -> A
-    empty_ctx |- S : ((A) -> (B) -> C) -> ((A) -> B) -> (A) -> C
+    ctx_empty |- I : (A) -> A
+    ctx_empty |- K : (A) -> (B) -> A
+    ctx_empty |- S : ((A) -> (B) -> C) -> ((A) -> B) -> (A) -> C
 
     x: A |- I(x) : A
     x: A, y: B |- K(x, y) : A
@@ -219,7 +229,55 @@
     because only expressions have normal-form can have type assignment
     but Y and Omega have no normal-form
 
-    TODO
+    (x) => x(x) is in nf but does not have a type either.
+
+    example proof:
+    to make it easy to write (top-down writing direction)
+    we trun inference rule upside down
+
+    (I will not provide syntax to distinguish them, only context)
+
+    ctx_empty |- (x) => (y) => x : (A) -> (B) -> A
+    ------ (arrow introduction)
+    x: A |- (y) => x : (B) -> A
+    ------ (arrow introduction)
+    x: A, y: B |- x: A
+    ------ (lookup type of variable)
+    QED
+
+    a simpler one:
+
+    ctx_empty |- (x) => x : (A) -> A
+    ----- (arrow introduction)
+    x: A |- x: A
+    ------ (lookup type of variable)
+    QED
+
+    a example with non ctx_empty at beginning:
+
+    y: A |- { (x) => x } (y) : A
+    ----- (arrow elimination)
+    y: A |- (x) => x : (A) -> A
+    y: A |- y: A
+
+    this is where writing become hard,
+    no metter top-down or bottom-up writing direction we use
+
+    we can define the following:
+
+    infer(ctx: ctx_t, t: ty_t): set_t(exp_t)
+    check(ctx: ctx_t, exp: exp_t, t: ty_t): bool_t
+
+    for example
+    check(ctx_empty, K, (A) -> (B) -> A) == true
+    check(ctx_empty, K(x), (A) -> (B) -> A) == true
+
+    we can define the following predicates on type (and on context):
+    - type_depth
+    - type_rank
+    - type_order
+
+    TODO note about "first order logic"
 
 * part 2. recursive types
 
