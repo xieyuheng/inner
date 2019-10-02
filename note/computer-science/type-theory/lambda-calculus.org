@@ -1,763 +1,765 @@
-+ note on lambda
+#+title: lambda calculus
 
-+ XIE Yuheng
+* [the-lambda-calculus--its-syntax-and-semantics]
 
-* todo
-  1. 用從 EDW 那裏學到的風格
-     形成一次 lambda-calculus 的理論
-* 舊記
+  - 好的講授方式是先在非形式化的語言下試着描述
+    以發現對理論的哪部分作嚴格的形式化是有必要的
+    這正是數學研究的典型過程
+    數學家正是要在觀察中發現結構
+    然後通過形式化的描述來增進對問題的認識
 
-*** [the-lambda-calculus--its-syntax-and-semantics]
-    1. 好的講授方式是先在非形式化的語言下試着描述
-       以發現對理論的哪部分作嚴格的形式化是有必要的
-       這正是數學研究的典型過程
-       數學家正是要在觀察中發現結構
-       然後通過形式化的描述來增進對問題的認識
-    2. scott 限制函數與某個拓撲空間上的連續函數集
-       然後 λ-cal 的理論就有了拓撲[幾何]解釋
-       那麼根遞歸函數有關的不動點概唸的幾何意義是什麼呢?
-    3. pure λ-calculus
-       models of λ-calculus are objects in category [of course]
-       and these categories are cartesian closed
-       [then non-unary functions can reduced to unary functions]
-    4. λ-calculus studies functions as rules
-       [but not geometry object]
-    5. no matter use λ-term as expression defined by grammars
-       or λ-post-term as directed graph
-       one can always captures the concept of
-       "terms modulo convertibility"
-       which is the principle object of the study
-       the following questions need to be studied
-       1) λ-definability
-          λ-可定義的函數的集合等於遞歸函數的集合
-       2) the relations between non-convertible terms
-          定義一個λ-可定義函數的term要麼是一個要麼有無窮多個
-       3) the limit of λ-calculus to captures the notion of function
-          term 的集合上有一個自然的拓撲結構 :tree-topology
-          term -> Bohm-tree -> scott-topology
-          所有的λ-可定義函數都是就這個拓撲而言的連續函數
-    6. conversion
-       all about "terms modulo convertibility"
-       use λ-terms to introduce "terms modulo convertibility"
-       the set of λ-terms is a set of strings
-       defined inductively by grammars
-       the theories on this string-level is called syntax
-       ≡ denotes the syntactic equality
-    7. [x:=N] is an function act on λ-terms
-       which is used with rules to define =b=
-       [or just =][b-convertibility]
-       this equivalence relation define the theory λ [or λ-calculus]
-       [when there is rules there is theory]
-       provability in the theory λ of equation is denoted by λ⊦(M=b=N)
-       - 其實說 =b= 是一個等詞 而 M =b= N 爲真就行了
-         這是兩種形成理論的風格嗎 ?
-         一種來源於證明論 ?
-         證明論 中 層次結構好像格外的多
-       one can say M and N is convertible when λ⊦(M=b=N)
-       this seems a loop-define
-       bacause the notion: provability of proof-theory is used
-       to define the equivalence relation
-       rules give a partial-order on the set of λ-terms
-    8. connectives and quantifiers which can describe propositions
-       will be used in the discussion about λ-cal
-       - 這裏的敘述有問題
-    9. what is equation?
-       equation in λ-cal is proposition with many quantifiers
+  - scott 限制函數與某個拓撲空間上的連續函數集
+    然後 λ-cal 的理論就有了拓撲[幾何]解釋
+    那麼根遞歸函數有關的不動點概唸的幾何意義是什麼呢?
 
-*** an enlighten [hott]
-    1. 關於類型論
-       因爲每引入一個新的類型
-       就可以引入一些相應的 referece-rules
-    2. 所以一次啓蒙在於
-       類型論讓人認識到
-       referece-rules 並不必以一階邏輯爲中心
-       而是可以相當任意的創造的
-    3. 比如
-       我可以以字符串或者有向圖爲基本數據結構
-       來實現一個形式理論
-       那麼對於字符串或者有向圖我都自然有一些基本的 "等詞"
-       對推理規則的引入的自由性就在於:
-       推理規則中對這些等詞的引入不能違背
-       這些等詞在基本數據結構中本來的語義
-       此限之外別無它限
-    4. 更常見的是
-       推理規則 需要引入
-       以基本等詞爲基礎在基本數據結構中實現的
-       其它關係
-       對其它關係的實現本身並不會違背基本等詞
-       但是引入這些關係的推理規則可能會違背基本等詞
-       所以需要加上上面的限制
-    5. ><><>< 是不是
-       有了基本等詞之後就沒有必要使用 推理規則了 ?
-    6. 因此首先我要一個直覺性的並且具有可構造性的數學結構
-       當我用計算機來實現一個數據結構時
-       很自然地我就得到上面的良好性質
-       然後我引入一些針對這種數學結構的推理規則
-       之後我就得到了一個形式語言
-       用這個語言我可以推導出一些描述這個數學結構的一般性質的命題
-       這些命題的正確性由推理規則和數學結構的相容性保證
-       - 推理規則 和 數學結構 之間的關係就是證明論 ??
-       這些命題是具有實在意義的因爲我是一個純粹的形式主義者
-    7. 關於術語
-       這裏 爲了描述上面的形式語言於數學結構之間的關係
-       我通過創造新的術語
-       並且把對這些術語的使用只侷限在我在上面所描述的這種關係
-       來避免歧義
-       稱上面的關係爲
-       形式語言 捕捉到 數學結構
-       既然我是在創造一個語言來描述我的幻想
-       那麼這個動詞是很生動的
-       一組推理規則可能能於一個數學結構相容
-       而又於另一個數學結構不容
-       即這組推理規則所形成的形式語言
-       能夠捕捉到某些數學結構
-       而捕捉不到其它數學結構
-    8. >< 考慮完備性時
-       我是不是應該更改我的術語
-       - 上面只考慮了相容性
-       當形式語言就某個數學結構而言具有完備性的時候
-       應該怎麼說??
+  - pure λ-calculus
+    models of λ-calculus are objects in category [of course]
+    and these categories are cartesian closed
+    [then non-unary functions can reduced to unary functions]
 
-* 新記
+  - λ-calculus studies functions as rules
+    [but not geometry object]
 
-*** 關於等詞
-    1. 基本等詞的存在性
-       計算機利用它[0和1]來做計算[保存信息][傳遞信息]
+  - no matter use λ-term as expression defined by grammars
+    or λ-post-term as directed graph
+    one can always captures the concept of
+    "terms modulo convertibility"
+    which is the principle object of the study
+    the following questions need to be studied
+    1. λ-definability
+       λ-可定義的函數的集合等於遞歸函數的集合
+    2. the relations between non-convertible terms
+       定義一個λ-可定義函數的term要麼是一個要麼有無窮多個
+    3. the limit of λ-calculus to captures the notion of function
+       term 的集合上有一個自然的拓撲結構 :tree-topology
+       term -> Bohm-tree -> scott-topology
+       所有的λ-可定義函數都是就這個拓撲而言的連續函數
 
-* lecture-by-henk
+  - conversion
+    all about "terms modulo convertibility"
+    use λ-terms to introduce "terms modulo convertibility"
+    the set of λ-terms is a set of strings
+    defined inductively by grammars
+    the theories on this string-level is called syntax
+    ≡ denotes the syntactic equality
 
-*** type-free-λ-cal
+  - [x:=N] is an function act on λ-terms
+    which is used with rules to define =b=
+    [or just =][b-convertibility]
+    this equivalence relation define the theory λ [or λ-calculus]
+    [when there is rules there is theory]
+    provability in the theory λ of equation is denoted by λ⊦(M=b=N)
+    - 其實說 =b= 是一個等詞 而 M =b= N 爲真就行了
+      這是兩種形成理論的風格嗎 ?
+      一種來源於證明論 ?
+      證明論 中 層次結構好像格外的多
+    one can say M and N is convertible when λ⊦(M=b=N)
+    this seems a loop-define
+    bacause the notion: provability of proof-theory is used
+    to define the equivalence relation
+    rules give a partial-order on the set of λ-terms
 
-***** symbol
-      1. 給出兩個 symbol
-         人們可以區分它們是相等還是不相等
-         這是一個先驗的假設
-      2. 在我看來
-         這也就是
-         形式邏輯作爲一個數學結構的基本等詞
-      3. 我想形式主義沒有認識到的一點是
-         基本等詞的任意性
+  - connectives and quantifiers which can describe propositions
+    will be used in the discussion about λ-cal
+    - 這裏的敘述有問題
+
+  - what is equation?
+    equation in λ-cal is proposition with many quantifiers
+
+* hott enlightenment
+
+  - 關於類型論
+    因爲每引入一個新的類型
+    就可以引入一些相應的 referece-rules
+
+  - 所以一次啓蒙在於
+    類型論讓人認識到
+    referece-rules 並不必以一階邏輯爲中心
+    而是可以相當任意的創造的
+
+  - 比如
+    我可以以字符串或者有向圖爲基本數據結構
+    來實現一個形式理論
+    那麼對於字符串或者有向圖我都自然有一些基本的 "等詞"
+    對推理規則的引入的自由性就在於:
+    推理規則中對這些等詞的引入不能違背
+    這些等詞在基本數據結構中本來的語義
+    此限之外別無它限
+
+  - 更常見的是
+    推理規則 需要引入
+    以基本等詞爲基礎在基本數據結構中實現的
+    其它關係
+    對其它關係的實現本身並不會違背基本等詞
+    但是引入這些關係的推理規則可能會違背基本等詞
+    所以需要加上上面的限制
+
+  - ><><>< 是不是
+    有了基本等詞之後就沒有必要使用 推理規則了 ?
+
+  - 因此首先我要一個直覺性的並且具有可構造性的數學結構
+    當我用計算機來實現一個數據結構時
+    很自然地我就得到上面的良好性質
+    然後我引入一些針對這種數學結構的推理規則
+    之後我就得到了一個形式語言
+    用這個語言我可以推導出一些描述這個數學結構的一般性質的命題
+    這些命題的正確性由推理規則和數學結構的相容性保證
+    - 推理規則 和 數學結構 之間的關係就是證明論 ??
+    這些命題是具有實在意義的因爲我是一個純粹的形式主義者
+
+  - 關於術語
+    這裏 爲了描述上面的形式語言於數學結構之間的關係
+    我通過創造新的術語
+    並且把對這些術語的使用只侷限在我在上面所描述的這種關係
+    來避免歧義
+    稱上面的關係爲
+    形式語言 捕捉到 數學結構
+    既然我是在創造一個語言來描述我的幻想
+    那麼這個動詞是很生動的
+    一組推理規則可能能於一個數學結構相容
+    而又於另一個數學結構不容
+    即這組推理規則所形成的形式語言
+    能夠捕捉到某些數學結構
+    而捕捉不到其它數學結構
+
+  - >< 考慮完備性時
+    我是不是應該更改我的術語
+    - 上面只考慮了相容性
+    當形式語言就某個數學結構而言具有完備性的時候
+    應該怎麼說??
+
+* (henk barendregt) type free lambda calculus
+
+*** symbol
+    1. 給出兩個 symbol
+       人們可以區分它們是相等還是不相等
+       這是一個先驗的假設
+    2. 在我看來
+       這也就是
+       形式邏輯作爲一個數學結構的基本等詞
+    3. 我想形式主義沒有認識到的一點是
+       基本等詞的任意性
+
+*** alphabet
+    1. 一個 symbol 的有限集合
+
+*** word
+    1. 只與 alphabet 有關
+
+*** language
+    1. 歸納定義一個 word 組成的集合
+       然後稱這個集閤中的元素爲 formula 或 expression
+       formula 于歸納定義的方式有關
+       常用的進行歸納定義的方法是 grammar
+    2. 而我的 expression 的集合可以是有向圖
+
+*** theory
+    1. language的子集
+       根語義有關
+
+*** combinatory logic [CL] 作爲一個形式理論
 
 ***** alphabet
-      1. 一個 symbol 的有限集合
-
-***** word
-      1. 只與 alphabet 有關
+      ΣCL = {I, K, S, x, ', ), (, =}
 
 ***** language
-      1. 歸納定義一個 word 組成的集合
-         然後稱這個集閤中的元素爲 formula 或 expression
-         formula 于歸納定義的方式有關
-         常用的進行歸納定義的方法是 grammar
-      2. 而我的 expression 的集合可以是有向圖
-
-***** theory
-      1. language的子集
-         根語義有關
-
-***** combinatory logic [CL] 作爲一個形式理論
-
-******* alphabet
-        ΣCL = {I, K, S, x, ', ), (, =}
-
-******* language
-        constant := I | K | S
-        variable := x | variable'
-        term := constant | variable | (term term)
-        formula := term =b= term
-        + 上面這個應該不出現在這裏
-          因爲就我的理解而言它們應該屬於第二層次的exp
-
-******* 模式匹配對=b=的引入
-
-********* note
-    沒有(λx.M)N =b= M[x:= N]
-    就是說這個形式理論中
-    有λ-application
-    但是沒有λ-abstraction
-
-********* 於ISK有關的
-    即把第二層次的exp的作爲節點引入一個有向圖(一個推理場景)
-    + >< 這個課程想把所有λ-term都編譯到ISK嗎???
-
-    in the following P,Q,R are pattern-vars
-
-    ----------(I-axiom)
-    IP =b= P
-
-    -----------(K-axiom)
-    KPQ =b= P
-
-    ----------------(S-axiom)
-    SPQR =b= PR(QR)
-
-
-********* 其它引入=b=的推理規則
-
-    in the following P,Q,R are pattern-vars
-
-    --------------(axiom)
-    P =b= P
-
-    P =b= Q
-    --------(交換性)
-    Q =b= P
-
-    P =b= Q
-    Q =b= R
-    ------------(傳遞性)
-    P =b= R
-
-    下面的兩個在一起就等價於
-    =b=與集合language的遞歸定義的相容性
-
-    P =b= Q
-    -----------
-    PR =b= QR
-
-    P =b= Q
-    -----------
-    RP =b= RQ
-
-
-******* >< cool examples
-
-********* >< doubling
-    下面的等號代表命名
-    D :== SII
-
-    ------------
-    Dx =b= xx
-
-********* >< composition
-
-********* >< self-doubling, life!
-
-***** >< representing algebraic functions in CL
-
-***** λ-cal作爲一個形式理論
-
-******* alphabet
-   Σ = {x, ', (, ), λ, =}
-
-******* language
-   variable := x | variable'
-   term := variable | (term term) | (λ variable term)
-   formula := term =b= term
-
-********* 主要的引入=b=的模式匹配
-    模式匹配用下面的等式來表達
-    DEFINE:
-    (λx.M)N =b= M[x:= N]
-
-    如果M,N在上面的公式所表達的模式匹配下匹配成功
-    ---------------------------------------------
-    M =b= N
-
-********* 其它引入=b=的推理規則
-    in the following M,N,L are pattern-vars
-
-    --------------(axiom)
-    M =b= M
-
-    M =b= N
-    --------(交換性)
-    N =b= M
-
-    M =b= N
-    N =b= L
-    ------------(傳遞性)
-    M =b= L
-
-    下面的兩個在一起就等價於
-    =b=與集合language的遞歸定義的相容性
-
-    M =b= N
-    -----------
-    ML =b= NL
-    LM =b= LN
-
-    M =b= N
-    --------------
-    λx.M =b= λx.N
-
-******* bureaucracy
-
-********* substitution
-    | M       | M[x:=N]            |
-    |---------+--------------------|
-    | x       | N                  |
-    | y(=/=x) | y                  |
-    | PQ      | (P[x:=N])(Q[x:=N]) |
-    | λx.P    | λx.P               |
-    | λy.P    | λy.(P[x:=N])       |
-
-********* variable convention
-    assume that the bound and free variables in a situation differ
-
-    在用字符串來實現λ-cal這個形式語言時
-    在一個term中如果需要的話總是重命名約束變元
-    使得它們不與term中出現的其它任何自由變元相同
-    這樣在進行substitution的時候就不用考慮那麼多了
-
-
-********* The set of free (bound) variables of M , notation FV(M ) (resp. BV(M ))
-
-*********** FV
-     FV(x) = {x}
-     FV(MN) = FV(M)∪FV(N)
-     FV(λx.M) = FV(M)\{x}
-
-*********** BV
-     BV(x) = ∅
-     BV(MN) = BV(M)∪BV(N)
-     BV(λx.M) = BV(M)∪{x}
-
-******* =η=
-   λx.Mx -sη-> M
-
-***** exercises
-
-******* in-class problems
-
-********* PROBLEM3:
-
-*********** (a)
-     π :== λxyf.fxy
-     <M, N> :== π MN
-     + it "packages" two λ-terms in one single λ-term
-       這是一個笛卡爾積的模型
-     show that there are π1, π2 ∈ λ such that:
-     π1 <M, N> -b-> M
-     π2 <M, N> -b-> N
-
-     SHOW:
-
-     + 下面出現的那些外在定義的的東西
-       應該和理論中的term用=a=相連嗎?
-     <M, N> =a= λxyf.fxy M N -ssb-> λf.fMN
-     有:
-     (λf.fMN)L -sb-> LMN
-     所以:
-     L :== λxy.x
-     LMN -ssb-> M
-
-     L :== λxy.y
-     LMN -ssb-> N
-
-     所以:
-     π1 :== (λpl.pl)(λxy.x)
-     π1 <M, N> -sb-> (λl.(λf.fMN)l)(λxy.x)
-     -sb-> (λf.fMN)(λxy.x) -sb-> (λxy.x)MN -ssb-> M
-
-     π2 :== λpl.lp(λxy.y)
-     π2 <M, N> -sb-> (λl.(λf.fMN)l)(λxy.y)
-     -sb-> (λf.fMN)(λxy.y) -sb-> (λxy.y)MN -ssb-> N
-
-     END-OF-THE-SHOW.
-
-
-*********** (b)
-     show that for F,G∈Λ there exists F^,G*∈Λ such that
-     F^ <x, y> -b-> F xy
-     G* xy -b-> G <x, y>
-
-     show that there are T-curry,T-uncurry∈Λ such that
-     + 即求一個同構變換
-     T-uncurry F -b-> F^
-     T-curry G -b-> G*
-
-     SHOW:
-
-     F xy
-     <-sb- (λf.fxy)F
-     =a= <x, y> F
-     <-sb- (λp.pF) <x, y>
-     so:
-     F^ :== (λp.pF)
-     so:
-     T-uncurry :== (λf.(λp.pf)) =sugar= (λfp.pf)
-
-     G <x, y>
-     =a= G(λf.fxy)
-     <-sb- (λxy.G(λf.fxy)) xy
-     so:
-     G* :== (λxy.G(λf.fxy))
-     so:
-     T-curry :== (λg.(λxy.g(λf.fxy))) =sugar= (λgxy.g(λf.fxy))
-
-     END-OF-THE-SHOW.
-
-
-*********** (c)
-     check whether
-     + 即驗證同構變換的性質
-     T-uncurry (T-curry f) -b-> f
-     T-curry (T-uncurry f) -b-> f
-
-     SHOW:
-
-     T-curry (T-uncurry f)
-     =a= (λgxy.g(λf.fxy)) ((λfp.pf) f)
-     -sb-> (λgxy.g(λf.fxy)) (λp.pf)
-     -sb-> λxy.(λp.pf)(λf'.f'xy)
-     -sb-> λxy.(λf'.f'xy)f
-     -sb-> λxy.fxy
-     就作用於MN而言f與λxy.fxy相同
-     =η= f
-     但是T-uncurry (T-curry f) -b-> f其實是不成立的
-
-     T-uncurry (T-curry f)
-     =a= (λfp.pf) ((λg.(λxy.g(λf.fxy))) f)
-     -sb-> λp.p((λgxy.g(λf.fxy)) f)
-     -sb-> λp.p(λxy.f(λf'.f'xy))
-     就作用與<M,N>而言f與λp.p(λxy.f(λf'.f'xy))相同
-     因爲:
-     λp.p(λxy.f(λf'.f'xy)) <M,N>
-     -sb-> (λc.cMN) (λxy.f(λf'.f'xy))
-     -sb-> (λxy.f(λf'.f'xy))MN
-     -sb-> f(λf'.f'MN)
-     =a= f <M,N>
-     但是T-curry (T-uncurry f) -b-> f其實是不成立的
-
-     END-OF-THE-SHOW.
-
-     從這個習題可以看出類型系統的必要性
-     沒有類型系統就不能良好地去描述同構於同態
-
-
-******* >< take-home problems
-
-*** type-λ-cal
-
-***** church-style
-
-******* grammars
-   type:
-   A ::= a | (A -> A)
-
-   term:
-   M ::= x | (M M) | (λ x:A . M)
-
-   contexts:
-   Γ ::= <empty> | Γ, x:A
-   + 就是一個list而已
-
+      constant := I | K | S
+      variable := x | variable'
+      term := constant | variable | (term term)
+      formula := term =b= term
+      + 上面這個應該不出現在這裏
+        因爲就我的理解而言它們應該屬於第二層次的exp
+
+***** 模式匹配對=b=的引入
 
 ******* note
-   在形成λ-abstraction的時候
-   有向圖中不止是要指定帶入點的位置
-   還需要指出允許被帶入數據的類型
+  沒有(λx.M)N =b= M[x:= N]
+  就是說這個形式理論中
+  有λ-application
+  但是沒有λ-abstraction
 
-   相同的untype λ-abstraction
-   在指定了不同的類型之後就是相互不同的term了
-   這些term的類型當然也是不同的
+******* 於ISK有關的
+  即把第二層次的exp的作爲節點引入一個有向圖(一個推理場景)
+  + >< 這個課程想把所有λ-term都編譯到ISK嗎???
 
-   因此用有向圖來實現type λ-cal時
-   對於λ-abstraction就需要
-   1. 把需要被帶入的自由變元出現的位置挑出來
-      鏈接到λ上
-   2. 指定一個這種帶入所允許的輸入類型
-      並且知道在這些自由變元屬於這個類型的條件下
-      整個項的類型是什麼
-      即 x:A ͱ M:B 的語義
-      然後就可以得到
-      ͱ (λ x:A . M) : A->B
-      整個這第二點就是推理規則的語義
+  in the following P,Q,R are pattern-vars
 
+  ----------(I-axiom)
+  IP =b= P
 
-***** minimal logic
+  -----------(K-axiom)
+  KPQ =b= P
 
-******* note
-   1. implicational logic
-      i.e. only connective is ->
-
-   2. intuitionistic
-      not classical
-      即 推導不出下面的節點
-      ͱ ((a->b)->a)->a
-      + 它的語義是什麼?
-        爲什麼推到不出來它就是非經典邏輯
+  ----------------(S-axiom)
+  SPQR =b= PR(QR)
 
 
-******* grammar of formulas
-   A ::= a | (A -> A)
-   + 與"類型"的集合的歸納定義完全相同
+******* 其它引入=b=的推理規則
+
+  in the following P,Q,R are pattern-vars
+
+  --------------(axiom)
+  P =b= P
+
+  P =b= Q
+  --------(交換性)
+  Q =b= P
+
+  P =b= Q
+  Q =b= R
+  ------------(傳遞性)
+  P =b= R
+
+  下面的兩個在一起就等價於
+  =b=與集合language的遞歸定義的相容性
+
+  P =b= Q
+  -----------
+  PR =b= QR
+
+  P =b= Q
+  -----------
+  RP =b= RQ
+
+
+***** >< cool examples
+
+******* >< doubling
+  下面的等號代表命名
+  D :== SII
+
+  ------------
+  Dx =b= xx
+
+******* >< composition
+
+******* >< self-doubling, life!
+
+*** >< representing algebraic functions in CL
+
+*** λ-cal作爲一個形式理論
+
+***** alphabet
+ Σ = {x, ', (, ), λ, =}
+
+***** language
+ variable := x | variable'
+ term := variable | (term term) | (λ variable term)
+ formula := term =b= term
+
+******* 主要的引入=b=的模式匹配
+  模式匹配用下面的等式來表達
+  DEFINE:
+  (λx.M)N =b= M[x:= N]
+
+  如果M,N在上面的公式所表達的模式匹配下匹配成功
+  ---------------------------------------------
+  M =b= N
+
+******* 其它引入=b=的推理規則
+  in the following M,N,L are pattern-vars
+
+  --------------(axiom)
+  M =b= M
+
+  M =b= N
+  --------(交換性)
+  N =b= M
+
+  M =b= N
+  N =b= L
+  ------------(傳遞性)
+  M =b= L
+
+  下面的兩個在一起就等價於
+  =b=與集合language的遞歸定義的相容性
+
+  M =b= N
+  -----------
+  ML =b= NL
+  LM =b= LN
+
+  M =b= N
+  --------------
+  λx.M =b= λx.N
+
+***** bureaucracy
+
+******* substitution
+  | M       | M[x:=N]            |
+  |---------+--------------------|
+  | x       | N                  |
+  | y(=/=x) | y                  |
+  | PQ      | (P[x:=N])(Q[x:=N]) |
+  | λx.P    | λx.P               |
+  | λy.P    | λy.(P[x:=N])       |
+
+******* variable convention
+  assume that the bound and free variables in a situation differ
+
+  在用字符串來實現λ-cal這個形式語言時
+  在一個term中如果需要的話總是重命名約束變元
+  使得它們不與term中出現的其它任何自由變元相同
+  這樣在進行substitution的時候就不用考慮那麼多了
+
+
+******* The set of free (bound) variables of M , notation FV(M ) (resp. BV(M ))
+
+********* FV
+   FV(x) = {x}
+   FV(MN) = FV(M)∪FV(N)
+   FV(λx.M) = FV(M)\{x}
+
+********* BV
+   BV(x) = ∅
+   BV(MN) = BV(M)∪BV(N)
+   BV(λx.M) = BV(M)∪{x}
+
+***** =η=
+ λx.Mx -sη-> M
+
+*** exercises
+
+***** in-class problems
+
+******* PROBLEM3:
+
+********* (a)
+   π :== λxyf.fxy
+   <M, N> :== π MN
+   + it "packages" two λ-terms in one single λ-term
+     這是一個笛卡爾積的模型
+   show that there are π1, π2 ∈ λ such that:
+   π1 <M, N> -b-> M
+   π2 <M, N> -b-> N
+
+   SHOW:
+
+   + 下面出現的那些外在定義的的東西
+     應該和理論中的term用=a=相連嗎?
+   <M, N> =a= λxyf.fxy M N -ssb-> λf.fMN
+   有:
+   (λf.fMN)L -sb-> LMN
+   所以:
+   L :== λxy.x
+   LMN -ssb-> M
+
+   L :== λxy.y
+   LMN -ssb-> N
+
+   所以:
+   π1 :== (λpl.pl)(λxy.x)
+   π1 <M, N> -sb-> (λl.(λf.fMN)l)(λxy.x)
+   -sb-> (λf.fMN)(λxy.x) -sb-> (λxy.x)MN -ssb-> M
+
+   π2 :== λpl.lp(λxy.y)
+   π2 <M, N> -sb-> (λl.(λf.fMN)l)(λxy.y)
+   -sb-> (λf.fMN)(λxy.y) -sb-> (λxy.y)MN -ssb-> N
+
+   END-OF-THE-SHOW.
+
+
+********* (b)
+   show that for F,G∈Λ there exists F^,G*∈Λ such that
+   F^ <x, y> -b-> F xy
+   G* xy -b-> G <x, y>
+
+   show that there are T-curry,T-uncurry∈Λ such that
+   + 即求一個同構變換
+   T-uncurry F -b-> F^
+   T-curry G -b-> G*
+
+   SHOW:
+
+   F xy
+   <-sb- (λf.fxy)F
+   =a= <x, y> F
+   <-sb- (λp.pF) <x, y>
+   so:
+   F^ :== (λp.pF)
+   so:
+   T-uncurry :== (λf.(λp.pf)) =sugar= (λfp.pf)
+
+   G <x, y>
+   =a= G(λf.fxy)
+   <-sb- (λxy.G(λf.fxy)) xy
+   so:
+   G* :== (λxy.G(λf.fxy))
+   so:
+   T-curry :== (λg.(λxy.g(λf.fxy))) =sugar= (λgxy.g(λf.fxy))
+
+   END-OF-THE-SHOW.
+
+
+********* (c)
+   check whether
+   + 即驗證同構變換的性質
+   T-uncurry (T-curry f) -b-> f
+   T-curry (T-uncurry f) -b-> f
+
+   SHOW:
+
+   T-curry (T-uncurry f)
+   =a= (λgxy.g(λf.fxy)) ((λfp.pf) f)
+   -sb-> (λgxy.g(λf.fxy)) (λp.pf)
+   -sb-> λxy.(λp.pf)(λf'.f'xy)
+   -sb-> λxy.(λf'.f'xy)f
+   -sb-> λxy.fxy
+   就作用於MN而言f與λxy.fxy相同
+   =η= f
+   但是T-uncurry (T-curry f) -b-> f其實是不成立的
+
+   T-uncurry (T-curry f)
+   =a= (λfp.pf) ((λg.(λxy.g(λf.fxy))) f)
+   -sb-> λp.p((λgxy.g(λf.fxy)) f)
+   -sb-> λp.p(λxy.f(λf'.f'xy))
+   就作用與<M,N>而言f與λp.p(λxy.f(λf'.f'xy))相同
+   因爲:
+   λp.p(λxy.f(λf'.f'xy)) <M,N>
+   -sb-> (λc.cMN) (λxy.f(λf'.f'xy))
+   -sb-> (λxy.f(λf'.f'xy))MN
+   -sb-> f(λf'.f'MN)
+   =a= f <M,N>
+   但是T-curry (T-uncurry f) -b-> f其實是不成立的
+
+   END-OF-THE-SHOW.
+
+   從這個習題可以看出類型系統的必要性
+   沒有類型系統就不能良好地去描述同構於同態
+
+
+***** >< take-home problems
+
+* (henk barendregt) typed lambda calculus
+
+*** church-style
+
+***** grammars
+ type:
+ A ::= a | (A -> A)
+
+ term:
+ M ::= x | (M M) | (λ x:A . M)
+
+ contexts:
+ Γ ::= <empty> | Γ, x:A
+ + 就是一個list而已
+
+
+***** note
+ 在形成λ-abstraction的時候
+ 有向圖中不止是要指定帶入點的位置
+ 還需要指出允許被帶入數據的類型
+
+ 相同的untype λ-abstraction
+ 在指定了不同的類型之後就是相互不同的term了
+ 這些term的類型當然也是不同的
+
+ 因此用有向圖來實現type λ-cal時
+ 對於λ-abstraction就需要
+ 1. 把需要被帶入的自由變元出現的位置挑出來
+    鏈接到λ上
+ 2. 指定一個這種帶入所允許的輸入類型
+    並且知道在這些自由變元屬於這個類型的條件下
+    整個項的類型是什麼
+    即 x:A ͱ M:B 的語義
+    然後就可以得到
+    ͱ (λ x:A . M) : A->B
+    整個這第二點就是推理規則的語義
+
+
+*** minimal logic
+
+***** note
+ 1. implicational logic
+    i.e. only connective is ->
+
+ 2. intuitionistic
+    not classical
+    即 推導不出下面的節點
+    ͱ ((a->b)->a)->a
+    + 它的語義是什麼?
+      爲什麼推到不出來它就是非經典邏輯
+
+
+***** grammar of formulas
+ A ::= a | (A -> A)
+ + 與"類型"的集合的歸納定義完全相同
+
+
+***** rewrite-rules
+
+******* implication introduction
+  Γ, A ͱ B
+  ----------
+  Γ ͱ A -> B
+
+
+******* implication elimination (modus ponens)
+  Γ ͱ A
+  Γ ͱ A -> B
+  ----------
+  Γ ͱ B
+
+
+******* example
+  "if a then it holds that if b then a"
+  "a implies that b implies a"
+  a -> b -> a
+  == a -> (b -> a)
+
+  a, b ͱ a
+  ------------
+  a ͱ b -> a
+  -----------------
+  ͱ a -> (b -> a)
+
+
+  in type theory:
+
+  x:a, y:b ͱ x:a
+  ----------------------------
+  x:a ͱ (λ y:b . x) : b -> a
+  -----------------------------------------
+  ͱ (λ x:a . (λ y:b . x)) : a -> b -> a
+
+
+******* BHK interpretation
+  Luitzen Egbertus Jan Brouwer
+  Arend Heyting
+  Andrey Kolmogorov
+
+  intuitionistic interpretation of logical connectives:
+  |-----------------+---------------------------------------|
+  | proof of A ∧ B  | pair of a proof of A and a proof of B |
+  | proof of A ∨ B  | either a proof of A or a proof of B   |
+  | proof of A -> B | mapping of proofs of A to proofs of B |
+  | proof of ¬A     | proof of A -> 上                      |
+  | proof of 上     | <does not exist>                      |
+  | proof of 下     | the unique proof of 下                |
+  |-----------------+---------------------------------------|
+
+*** styles of logic
+
+***** note
+ 所有這些所謂邏輯風格都應該能簡潔地在grap中實現
+ 因爲它們都是不過是對無窮有向圖的惰性求值而已
+
+
+***** logic style 1: Hilbert system
+
+******* just one proof rule: modus ponens (MP)
+  Γ ͱ A
+  Γ ͱ A -> B
+  ----------
+  Γ ͱ B
+
+
+******* axiom schemes
+  K : A -> B -> A
+  S : (A -> B -> C) -> (A -> B) -> A -> C
+
+  example: proof of a -> a
+  |---+-------------------------------------------------+--------|
+  | 1 | (a -> (b -> a) -> a) -> (a -> b -> a) -> a -> a | S      |
+  | 2 | a -> (b -> a) -> a                              | K      |
+  | 3 | (a -> b -> a) -> a -> a                         | MP 1,2 |
+  | 4 | a->b->a                                         | K      |
+  | 5 | a->a                                            | MP 3,4 |
+  |---+-------------------------------------------------+--------|
+  所以I也是可以被推到出來的:SKK =b= I
+
+
+******* Curry-Howard for Hilbert system
+  |-------------------+------+---------------------------|
+  | logic             | <==> | type theory               |
+  |-------------------+------+---------------------------|
+  | *Hilbert system*  | <==> | *typed combinatory logic* |
+  |-------------------+------+---------------------------|
+  | proof of a -> a   | <==> | SKK =b= I                 |
+  |-------------------+------+---------------------------|
+  | deduction theorem | <==> | converting lambda terms   |
+  |                   |      | to combinatory logic      |
+  |-------------------+------+---------------------------|
+
+
+***** logic style 2: sequent calculus
+
+******* notations
+  sequents:
+  A1, ..., An ͱ B1, ..., Bm
+
+  to be read as:
+  A1 ∧ ... ∧ An ͱ B1 ∨ ... ∨ Bm
+
+  A1, ..., An and B1, ..., Bn are sets, not lists
+
+
+******* intro/elim versus left/right
+  for each logical connective *:
+  - natural deduction:
+    intro rules *I (introduction)
+    elim rules  *E (elimination)
+  - sequent calculus:
+    left rules  *L
+    right rules *R
 
 
 ******* rewrite-rules
+  1. assumption rule
 
-********* implication introduction
-    Γ, A ͱ B
-    ----------
-    Γ ͱ A -> B
+     ------------- ass
+     Γ, A ͱ A, Δ
 
+  2. left rule for implication
 
-********* implication elimination (modus ponens)
-    Γ ͱ A
-    Γ ͱ A -> B
-    ----------
-    Γ ͱ B
+     Γ ͱ A, Δ
+     Γ, B ͱ Δ
+     ---------------- ->L
+     Γ, A -> B ͱ Δ
 
+  3. right rule for implication
 
-********* example
-    "if a then it holds that if b then a"
-    "a implies that b implies a"
-    a -> b -> a
-    == a -> (b -> a)
+     Γ, A ͱ B, Δ
+     ---------------- ->R
+     Γ ͱ A -> B, Δ
 
-    a, b ͱ a
-    ------------
-    a ͱ b -> a
-    -----------------
-    ͱ a -> (b -> a)
 
+******* example: proof of a -> b -> a
+  ---------- ass
+  a, b ͱ a
+  ---------- ->R
+  a ͱ b -> a
+  ---------- ->R
+  ͱ a -> b -> a
 
-    in type theory:
 
-    x:a, y:b ͱ x:a
-    ----------------------------
-    x:a ͱ (λ y:b . x) : b -> a
-    -----------------------------------------
-    ͱ (λ x:a . (λ y:b . x)) : a -> b -> a
+******* cuts
+  cut rule
+  Γ ͱ Δ, A    A, Γ ͱ Δ
+  --------------------- cut
+  Γ ͱ Δ
 
+  但是語義上不是Γ ͱ Δ, A要強過Γ ͱ Δ嗎
+  這是因爲
+  如果沒有cut就沒有消去規則了
+  所以這樣的話
+  在證明過程中就只能是讓節點的大小遞增
+  也就是一種不能回頭的證明
+  而下面的定理說明這種不能回頭的證明總存在
 
-********* BHK interpretation
-    Luitzen Egbertus Jan Brouwer
-    Arend Heyting
-    Andrey Kolmogorov
+  cut elimination theorem:
+  all provable statements can also be proved with a cut-free proof
 
-    intuitionistic interpretation of logical connectives:
-    |-----------------+---------------------------------------|
-    | proof of A ∧ B  | pair of a proof of A and a proof of B |
-    | proof of A ∨ B  | either a proof of A or a proof of B   |
-    | proof of A -> B | mapping of proofs of A to proofs of B |
-    | proof of ¬A     | proof of A -> 上                      |
-    | proof of 上     | <does not exist>                      |
-    | proof of 下     | the unique proof of 下                |
-    |-----------------+---------------------------------------|
 
-***** styles of logic
+******* >< Curry-Howard for sequent calculus
 
-******* note
-   所有這些所謂邏輯風格都應該能簡潔地在grap中實現
-   因爲它們都是不過是對無窮有向圖的惰性求值而已
+***** logic style 3a: natural deduction, Gentzen-style
 
+******* rewrite-rules
+  1. assumption rule
+     A ∈ Γ
+     --------- ass
+     Γ ͱ A
 
-******* logic style 1: Hilbert system
+  2. implication introduction
 
-********* just one proof rule: modus ponens (MP)
-    Γ ͱ A
-    Γ ͱ A -> B
-    ----------
-    Γ ͱ B
+     Γ, A ͱ B
+     ---------------- ->I
+     Γ ͱ A -> B
 
+  3. implication elimination
 
-********* axiom schemes
-    K : A -> B -> A
-    S : (A -> B -> C) -> (A -> B) -> A -> C
+     Γ ͱ A -> B
+     Γ ͱ A
+     ----------------- ->E
+     Γ ͱ B
 
-    example: proof of a -> a
-    |---+-------------------------------------------------+--------|
-    | 1 | (a -> (b -> a) -> a) -> (a -> b -> a) -> a -> a | S      |
-    | 2 | a -> (b -> a) -> a                              | K      |
-    | 3 | (a -> b -> a) -> a -> a                         | MP 1,2 |
-    | 4 | a->b->a                                         | K      |
-    | 5 | a->a                                            | MP 3,4 |
-    |---+-------------------------------------------------+--------|
-    所以I也是可以被推到出來的:SKK =b= I
 
+******* example: proof of a -> b -> a
+  ---------- ass
+  a, b ͱ a
+  ------------- ->I
+  a ͱ b -> a
+  --------------- ->I
+  ͱ a -> b -> a
 
-********* Curry-Howard for Hilbert system
-    |-------------------+------+---------------------------|
-    | logic             | <==> | type theory               |
-    |-------------------+------+---------------------------|
-    | *Hilbert system*  | <==> | *typed combinatory logic* |
-    |-------------------+------+---------------------------|
-    | proof of a -> a   | <==> | SKK =b= I                 |
-    |-------------------+------+---------------------------|
-    | deduction theorem | <==> | converting lambda terms   |
-    |                   |      | to combinatory logic      |
-    |-------------------+------+---------------------------|
+  與前面的minimal logic完全相同
 
 
-******* logic style 2: sequent calculus
+******* intro/elim versus left/right, revisited
+  1. natural deduction: introduction and elimination rules
+     ... ͱ ...
+     ----------------- *I
+     ... ͱ  ... * ...
 
-********* notations
-    sequents:
-    A1, ..., An ͱ B1, ..., Bm
+     ... ͱ ... * ...
+     ----------------- *E
+     ... ͱ ...
 
-    to be read as:
-    A1 ∧ ... ∧ An ͱ B1 ∨ ... ∨ Bm
+  2. sequent calculus: left and right rules
+     ... ͱ ...
+     --------------- *L
+     ... * ... ͱ ...
 
-    A1, ..., An and B1, ..., Bn are sets, not lists
+     ... ͱ ...
+     ---------------- *R
+     ... ͱ ... * ...
 
+  3. 反正都是要把東西弄到右下角
+     "ͱ" 與 "------------"
+     其實在兩個不同的語法層次
+     提供着相似的語義
+     所以在那種語法層次中推進證明都是沒有關係的
 
-********* intro/elim versus left/right
-    for each logical connective *:
-    - natural deduction:
-      intro rules *I (introduction)
-      elim rules  *E (elimination)
-    - sequent calculus:
-      left rules  *L
-      right rules *R
+  4. >< 這帶來了什麼啓示呢?
+     我可不可以設計形式語言把不同的語法層次對稱化 ???
 
 
-********* rewrite-rules
-    1. assumption rule
+******* >< 是否可以列舉出分別易於在intro/elim和left/right中理解的推理的例子
+  畢竟這些風格被某些人採用正是因爲它們可以方便的用來表達出易於理解的推理過程
 
-       ------------- ass
-       Γ, A ͱ A, Δ
+******* Curry-Howard for natural deduction
+  在例子中體會:
 
-    2. left rule for implication
+  ---------- ass
+  a, b ͱ a
+  ------------- ->I
+  a ͱ b -> a
+  --------------- ->I
+  ͱ a -> b -> a
 
-       Γ ͱ A, Δ
-       Γ, B ͱ Δ
-       ---------------- ->L
-       Γ, A -> B ͱ Δ
+  ----------------
+  x:a, y:b ͱ x:a
+  ----------------------------
+  x:a ͱ (λ y:b . x) : b -> a
+  ----------------------------------------
+  ͱ (λ x:a . (λ y:b . x)) : a -> b -> a
 
-    3. right rule for implication
+  與前面的minimal logic中所作的對比完全相同
 
-       Γ, A ͱ B, Δ
-       ---------------- ->R
-       Γ ͱ A -> B, Δ
 
+***** >< logic style 3b: natural deduction, Jaskowsky/Fitch-style
+ 這種推理風格的發明
+ 是爲了探索"ͱ"的語義
 
-********* example: proof of a -> b -> a
-    ---------- ass
-    a, b ͱ a
-    ---------- ->R
-    a ͱ b -> a
-    ---------- ->R
-    ͱ a -> b -> a
+ >< 即當以以"ͱ"爲核心的表達式爲有向圖的節點時
+ 對那些推理規則所形成的節點之間的關係的直觀理解是什麼???
 
+ 這裏使用了更高維數的模型來理解這一切
+ 太酷了
 
-********* cuts
-    cut rule
-    Γ ͱ Δ, A    A, Γ ͱ Δ
-    --------------------- cut
-    Γ ͱ Δ
+ 不過本質上還是樹結構
+ 因爲下面的模型是等價的:
+ 1. tree
+ 2. sexp
+ 3. 圈圈
+ 4. 泡泡
 
-    但是語義上不是Γ ͱ Δ, A要強過Γ ͱ Δ嗎
-    這是因爲
-    如果沒有cut就沒有消去規則了
-    所以這樣的話
-    在證明過程中就只能是讓節點的大小遞增
-    也就是一種不能回頭的證明
-    而下面的定理說明這種不能回頭的證明總存在
 
-    cut elimination theorem:
-    all provable statements can also be proved with a cut-free proof
+*** >< detour elimination
 
-
-********* >< Curry-Howard for sequent calculus
-
-******* logic style 3a: natural deduction, Gentzen-style
-
-********* rewrite-rules
-    1. assumption rule
-       A ∈ Γ
-       --------- ass
-       Γ ͱ A
-
-    2. implication introduction
-
-       Γ, A ͱ B
-       ---------------- ->I
-       Γ ͱ A -> B
-
-    3. implication elimination
-
-       Γ ͱ A -> B
-       Γ ͱ A
-       ----------------- ->E
-       Γ ͱ B
-
-
-********* example: proof of a -> b -> a
-    ---------- ass
-    a, b ͱ a
-    ------------- ->I
-    a ͱ b -> a
-    --------------- ->I
-    ͱ a -> b -> a
-
-    與前面的minimal logic完全相同
-
-
-********* intro/elim versus left/right, revisited
-    1. natural deduction: introduction and elimination rules
-       ... ͱ ...
-       ----------------- *I
-       ... ͱ  ... * ...
-
-       ... ͱ ... * ...
-       ----------------- *E
-       ... ͱ ...
-
-    2. sequent calculus: left and right rules
-       ... ͱ ...
-       --------------- *L
-       ... * ... ͱ ...
-
-       ... ͱ ...
-       ---------------- *R
-       ... ͱ ... * ...
-
-    3. 反正都是要把東西弄到右下角
-       "ͱ" 與 "------------"
-       其實在兩個不同的語法層次
-       提供着相似的語義
-       所以在那種語法層次中推進證明都是沒有關係的
-
-    4. >< 這帶來了什麼啓示呢?
-       我可不可以設計形式語言把不同的語法層次對稱化 ???
-
-
-********* >< 是否可以列舉出分別易於在intro/elim和left/right中理解的推理的例子
-    畢竟這些風格被某些人採用正是因爲它們可以方便的用來表達出易於理解的推理過程
-
-********* Curry-Howard for natural deduction
-    在例子中體會:
-
-    ---------- ass
-    a, b ͱ a
-    ------------- ->I
-    a ͱ b -> a
-    --------------- ->I
-    ͱ a -> b -> a
-
-    ----------------
-    x:a, y:b ͱ x:a
-    ----------------------------
-    x:a ͱ (λ y:b . x) : b -> a
-    ----------------------------------------
-    ͱ (λ x:a . (λ y:b . x)) : a -> b -> a
-
-    與前面的minimal logic中所作的對比完全相同
-
-
-******* >< logic style 3b: natural deduction, Jaskowsky/Fitch-style
-   這種推理風格的發明
-   是爲了探索"ͱ"的語義
-
-   >< 即當以以"ͱ"爲核心的表達式爲有向圖的節點時
-   對那些推理規則所形成的節點之間的關係的直觀理解是什麼???
-
-   這裏使用了更高維數的模型來理解這一切
-   太酷了
-
-   不過本質上還是樹結構
-   因爲下面的模型是等價的:
-   1. tree
-   2. sexp
-   3. 圈圈
-   4. 泡泡
-
-
-***** >< detour elimination
-
-***** >< consistency
+*** >< consistency
 
 * 無類型的 λ
 
@@ -2435,11 +2437,6 @@
 
 *** >< λ-cube
 
-* >< 用一個遺忘函子來把church轉化成curry (即從範疇論的角度來理解)
-
-  遺忘函子就是簡單地把所有對約束變元的類型聲明都刪除
-
-
 * >< classical logic formal language
 
 *** note
@@ -2473,6 +2470,7 @@
  在類型論中重新實現 ???
 
 * ><
+
   `if ... then ...'
   is different form
   `thus' `therefore' `so' `hence' `since'
