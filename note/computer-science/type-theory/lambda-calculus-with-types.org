@@ -58,6 +58,59 @@
   type := atom | (type) -> type
   #+end_src
 
+  equational theory of lambda-beta-eta
+  - reflexivity
+  - symmetry
+  - transitivity
+  - congruence with respect to abstraction:
+    M == N
+    -------
+    (x) => M == (x) => N
+  - beta
+    { (x) => M } (N) == M [ x := N ]
+  - eta
+    (x) => M(x) == M
+    if x not in free_variables(M)
+
+  two terms M and N are equivalent, is defined by conversion relations
+  (beta_conversion, eta_conversion or beta_eta_conversion)
+  i.e. we can convert M to N by the above rules.
+
+  note that, alpha_equivalence is not explicitly handled
+
+  conversion relations are non-directed,
+  we can view them as adding non-directed edges to the space of terms
+
+  the equational theory can be analyzed by
+  giving beta and eta direction
+  and viewing them as reduction relation
+
+  - beta_step((x) => M) ==> M [ x := N ]
+
+  - eta_step((x) => M(x)) ==> M
+    if x not in free_variables(M)
+
+  we can also define reduction relations:
+  - beta_reduction
+  - eta_reduction
+  - beta_eta_reduction
+
+  church-rosser theorem seys, we can check M and N are equal
+  by normalize to normal-form
+
+  reduction relations (beta_reduction, eta_reduction or beta_eta_reduction)
+  are confluent:
+
+  (M: Term, N1: Term, N2: Term) ->
+  (reduction(M, N1), reduction(M, N2)) ->
+  (Z: Term, reduction(N1, Z), reduction(N2, Z))
+
+  thus it is easy to prove:
+
+  (M: Term, N: Term) ->
+  conversion(M, N) ->
+  (Z: Term, reduction(M, Z), reduction(N, Z))
+
 * part 2. recursive types
 
 * part 3. intersection types
