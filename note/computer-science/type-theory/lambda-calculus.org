@@ -8,8 +8,8 @@
 
 * [note] 语法
 
-  - (x: arg_t) => body
-  - (x: arg_t) -> ret_t
+  (x: arg_t) => body
+  (x: arg_t) -> ret_t
 
 * the lambda calculus, its syntax and semantics
 
@@ -439,338 +439,270 @@
    沒有類型系統就不能良好地去描述同構於同態
 
 
-***** >< take-home problems
+* minimal logic
 
-* (henk barendregt) typed lambda calculus
+*** note
 
-*** church-style
+    - implicational logic
+      i.e. only connective is ->
 
-***** grammars
- type:
- A ::= a | (A -> A)
+    - intuitionistic
+      not classical
+      即 推導不出下面的節點
+      ͱ ((a->b)->a)->a
+      + 它的語義是什麼?
+        爲什麼推到不出來它就是非經典邏輯
 
- term:
- M ::= x | (M M) | (λ x:A . M)
+*** grammar of formulas
 
- contexts:
- Γ ::= <empty> | Γ, x:A
- + 就是一個list而已
+    A ::= a | (A -> A)
 
+    - 與"類型"的集合的歸納定義完全相同
 
-***** note
- 在形成λ-abstraction的時候
- 有向圖中不止是要指定帶入點的位置
- 還需要指出允許被帶入數據的類型
+*** rewrite-rules
 
- 相同的untype λ-abstraction
- 在指定了不同的類型之後就是相互不同的term了
- 這些term的類型當然也是不同的
+***** implication introduction
 
- 因此用有向圖來實現type λ-cal時
- 對於λ-abstraction就需要
- 1. 把需要被帶入的自由變元出現的位置挑出來
-    鏈接到λ上
- 2. 指定一個這種帶入所允許的輸入類型
-    並且知道在這些自由變元屬於這個類型的條件下
-    整個項的類型是什麼
-    即 x:A ͱ M:B 的語義
-    然後就可以得到
-    ͱ (λ x:A . M) : A->B
-    整個這第二點就是推理規則的語義
+      Γ, A ͱ B
+      ----------
+      Γ ͱ A -> B
 
+***** implication elimination (modus ponens)
 
-*** minimal logic
+      Γ ͱ A
+      Γ ͱ A -> B
+      ----------
+      Γ ͱ B
 
-***** note
- 1. implicational logic
-    i.e. only connective is ->
+***** example
 
- 2. intuitionistic
-    not classical
-    即 推導不出下面的節點
-    ͱ ((a->b)->a)->a
-    + 它的語義是什麼?
-      爲什麼推到不出來它就是非經典邏輯
+      "if a then it holds that if b then a"
+      "a implies that b implies a"
+      a -> b -> a
+      == a -> (b -> a)
 
+      a, b ͱ a
+      ------------
+      a ͱ b -> a
+      -----------------
+      ͱ a -> (b -> a)
 
-***** grammar of formulas
- A ::= a | (A -> A)
- + 與"類型"的集合的歸納定義完全相同
+      in type theory:
 
+      x:a, y:b ͱ x:a
+      ----------------------------
+      x:a ͱ (λ y:b . x) : b -> a
+      -----------------------------------------
+      ͱ (λ x:a . (λ y:b . x)) : a -> b -> a
+
+* styles of logic
+
+*** note
+
+    所有這些所謂邏輯風格都應該能簡潔地在grap中實現
+    因爲它們都是不過是對無窮有向圖的惰性求值而已
+
+*** logic style 1: Hilbert system
+
+***** just one proof rule: modus ponens (MP)
+
+      Γ ͱ A
+      Γ ͱ A -> B
+      ----------
+      Γ ͱ B
+
+***** axiom schemes
+
+      K : A -> B -> A
+      S : (A -> B -> C) -> (A -> B) -> A -> C
+
+      example: proof of a -> a
+      |---+-------------------------------------------------+--------|
+      | 1 | (a -> (b -> a) -> a) -> (a -> b -> a) -> a -> a | S      |
+      | 2 | a -> (b -> a) -> a                              | K      |
+      | 3 | (a -> b -> a) -> a -> a                         | MP 1,2 |
+      | 4 | a->b->a                                         | K      |
+      | 5 | a->a                                            | MP 3,4 |
+      |---+-------------------------------------------------+--------|
+      所以I也是可以被推到出來的:SKK =b= I
+
+***** Curry-Howard for Hilbert system
+
+      |-------------------+------+---------------------------|
+      | logic             | <==> | type theory               |
+      |-------------------+------+---------------------------|
+      | *Hilbert system*  | <==> | *typed combinatory logic* |
+      |-------------------+------+---------------------------|
+      | proof of a -> a   | <==> | SKK =b= I                 |
+      |-------------------+------+---------------------------|
+      | deduction theorem | <==> | converting lambda terms   |
+      |                   |      | to combinatory logic      |
+      |-------------------+------+---------------------------|
+
+*** logic style 2: sequent calculus
+
+***** notations
+
+      sequents:
+      A1, ..., An ͱ B1, ..., Bm
+
+      to be read as:
+      A1 ∧ ... ∧ An ͱ B1 ∨ ... ∨ Bm
+
+      A1, ..., An and B1, ..., Bn are sets, not lists
+
+***** intro/elim versus left/right
+
+      for each logical connective *:
+      - natural deduction:
+        intro rules *I (introduction)
+        elim rules  *E (elimination)
+      - sequent calculus:
+        left rules  *L
+        right rules *R
 
 ***** rewrite-rules
 
-******* implication introduction
-  Γ, A ͱ B
-  ----------
-  Γ ͱ A -> B
+      - assumption rule
 
+        ------------- ass
+        Γ, A ͱ A, Δ
 
-******* implication elimination (modus ponens)
-  Γ ͱ A
-  Γ ͱ A -> B
-  ----------
-  Γ ͱ B
+      - left rule for implication
 
+        Γ ͱ A, Δ
+        Γ, B ͱ Δ
+        ---------------- ->L
+        Γ, A -> B ͱ Δ
 
-******* example
-  "if a then it holds that if b then a"
-  "a implies that b implies a"
-  a -> b -> a
-  == a -> (b -> a)
+      - right rule for implication
 
-  a, b ͱ a
-  ------------
-  a ͱ b -> a
-  -----------------
-  ͱ a -> (b -> a)
+        Γ, A ͱ B, Δ
+        ---------------- ->R
+        Γ ͱ A -> B, Δ
 
+***** example: proof of a -> b -> a
 
-  in type theory:
+      ---------- ass
+      a, b ͱ a
+      ---------- ->R
+      a ͱ b -> a
+      ---------- ->R
+      ͱ a -> b -> a
 
-  x:a, y:b ͱ x:a
-  ----------------------------
-  x:a ͱ (λ y:b . x) : b -> a
-  -----------------------------------------
-  ͱ (λ x:a . (λ y:b . x)) : a -> b -> a
+***** cuts
 
+      cut rule
+      Γ ͱ Δ, A    A, Γ ͱ Δ
+      --------------------- cut
+      Γ ͱ Δ
 
-******* BHK interpretation
-  Luitzen Egbertus Jan Brouwer
-  Arend Heyting
-  Andrey Kolmogorov
+      但是語義上不是Γ ͱ Δ, A要強過Γ ͱ Δ嗎
+      這是因爲
+      如果沒有cut就沒有消去規則了
+      所以這樣的話
+      在證明過程中就只能是讓節點的大小遞增
+      也就是一種不能回頭的證明
+      而下面的定理說明這種不能回頭的證明總存在
 
-  intuitionistic interpretation of logical connectives:
-  |-----------------+---------------------------------------|
-  | proof of A ∧ B  | pair of a proof of A and a proof of B |
-  | proof of A ∨ B  | either a proof of A or a proof of B   |
-  | proof of A -> B | mapping of proofs of A to proofs of B |
-  | proof of ¬A     | proof of A -> 上                      |
-  | proof of 上     | <does not exist>                      |
-  | proof of 下     | the unique proof of 下                |
-  |-----------------+---------------------------------------|
+      cut elimination theorem:
+      all provable statements can also be proved with a cut-free proof
 
-*** styles of logic
+*** logic style 3a: natural deduction, Gentzen-style
 
-***** note
- 所有這些所謂邏輯風格都應該能簡潔地在grap中實現
- 因爲它們都是不過是對無窮有向圖的惰性求值而已
+***** rewrite-rules
 
+      - assumption rule
+        A ∈ Γ
+        --------- ass
+        Γ ͱ A
 
-***** logic style 1: Hilbert system
+      - implication introduction
 
-******* just one proof rule: modus ponens (MP)
-  Γ ͱ A
-  Γ ͱ A -> B
-  ----------
-  Γ ͱ B
+        Γ, A ͱ B
+        ---------------- ->I
+        Γ ͱ A -> B
 
+      - implication elimination
 
-******* axiom schemes
-  K : A -> B -> A
-  S : (A -> B -> C) -> (A -> B) -> A -> C
+        Γ ͱ A -> B
+        Γ ͱ A
+        ----------------- ->E
+        Γ ͱ B
 
-  example: proof of a -> a
-  |---+-------------------------------------------------+--------|
-  | 1 | (a -> (b -> a) -> a) -> (a -> b -> a) -> a -> a | S      |
-  | 2 | a -> (b -> a) -> a                              | K      |
-  | 3 | (a -> b -> a) -> a -> a                         | MP 1,2 |
-  | 4 | a->b->a                                         | K      |
-  | 5 | a->a                                            | MP 3,4 |
-  |---+-------------------------------------------------+--------|
-  所以I也是可以被推到出來的:SKK =b= I
+***** example: proof of a -> b -> a
 
+      ---------- ass
+      a, b ͱ a
+      ------------- ->I
+      a ͱ b -> a
+      --------------- ->I
+      ͱ a -> b -> a
 
-******* Curry-Howard for Hilbert system
-  |-------------------+------+---------------------------|
-  | logic             | <==> | type theory               |
-  |-------------------+------+---------------------------|
-  | *Hilbert system*  | <==> | *typed combinatory logic* |
-  |-------------------+------+---------------------------|
-  | proof of a -> a   | <==> | SKK =b= I                 |
-  |-------------------+------+---------------------------|
-  | deduction theorem | <==> | converting lambda terms   |
-  |                   |      | to combinatory logic      |
-  |-------------------+------+---------------------------|
+      與前面的minimal logic完全相同
 
+***** intro/elim versus left/right, revisited
 
-***** logic style 2: sequent calculus
+      - natural deduction: introduction and elimination rules
+        ... ͱ ...
+        ----------------- *I
+        ... ͱ  ... * ...
 
-******* notations
-  sequents:
-  A1, ..., An ͱ B1, ..., Bm
+        ... ͱ ... * ...
+        ----------------- *E
+        ... ͱ ...
 
-  to be read as:
-  A1 ∧ ... ∧ An ͱ B1 ∨ ... ∨ Bm
+      - sequent calculus: left and right rules
+        ... ͱ ...
+        --------------- *L
+        ... * ... ͱ ...
 
-  A1, ..., An and B1, ..., Bn are sets, not lists
+        ... ͱ ...
+        ---------------- *R
+        ... ͱ ... * ...
 
+      - 反正都是要把東西弄到右下角
+        "ͱ" 與 "------------"
+        其實在兩個不同的語法層次
+        提供着相似的語義
+        所以在那種語法層次中推進證明都是沒有關係的
 
-******* intro/elim versus left/right
-  for each logical connective *:
-  - natural deduction:
-    intro rules *I (introduction)
-    elim rules  *E (elimination)
-  - sequent calculus:
-    left rules  *L
-    right rules *R
+      - >< 這帶來了什麼啓示呢?
+        我可不可以設計形式語言把不同的語法層次對稱化 ???
 
+***** >< 是否可以列舉出分別易於在intro/elim和left/right中理解的推理的例子
 
-******* rewrite-rules
-  1. assumption rule
+      畢竟這些風格被某些人採用正是因爲它們可以方便的用來表達出易於理解的推理過程
 
-     ------------- ass
-     Γ, A ͱ A, Δ
+***** Curry-Howard for natural deduction
 
-  2. left rule for implication
+      在例子中體會:
 
-     Γ ͱ A, Δ
-     Γ, B ͱ Δ
-     ---------------- ->L
-     Γ, A -> B ͱ Δ
+      ---------- ass
+      a, b ͱ a
+      ------------- ->I
+      a ͱ b -> a
+      --------------- ->I
+      ͱ a -> b -> a
 
-  3. right rule for implication
+      ----------------
+      x:a, y:b ͱ x:a
+      ----------------------------
+      x:a ͱ (λ y:b . x) : b -> a
+      ----------------------------------------
+      ͱ (λ x:a . (λ y:b . x)) : a -> b -> a
 
-     Γ, A ͱ B, Δ
-     ---------------- ->R
-     Γ ͱ A -> B, Δ
+      與前面的minimal logic中所作的對比完全相同
 
+*** >< logic style 3b: natural deduction, Jaskowsky/Fitch-style
 
-******* example: proof of a -> b -> a
-  ---------- ass
-  a, b ͱ a
-  ---------- ->R
-  a ͱ b -> a
-  ---------- ->R
-  ͱ a -> b -> a
+    這種推理風格的發明
+    是爲了探索"ͱ"的語義
 
+    >< 即當以以"ͱ"爲核心的表達式爲有向圖的節點時
+    對那些推理規則所形成的節點之間的關係的直觀理解是什麼???
 
-******* cuts
-  cut rule
-  Γ ͱ Δ, A    A, Γ ͱ Δ
-  --------------------- cut
-  Γ ͱ Δ
-
-  但是語義上不是Γ ͱ Δ, A要強過Γ ͱ Δ嗎
-  這是因爲
-  如果沒有cut就沒有消去規則了
-  所以這樣的話
-  在證明過程中就只能是讓節點的大小遞增
-  也就是一種不能回頭的證明
-  而下面的定理說明這種不能回頭的證明總存在
-
-  cut elimination theorem:
-  all provable statements can also be proved with a cut-free proof
-
-
-******* >< Curry-Howard for sequent calculus
-
-***** logic style 3a: natural deduction, Gentzen-style
-
-******* rewrite-rules
-  1. assumption rule
-     A ∈ Γ
-     --------- ass
-     Γ ͱ A
-
-  2. implication introduction
-
-     Γ, A ͱ B
-     ---------------- ->I
-     Γ ͱ A -> B
-
-  3. implication elimination
-
-     Γ ͱ A -> B
-     Γ ͱ A
-     ----------------- ->E
-     Γ ͱ B
-
-
-******* example: proof of a -> b -> a
-  ---------- ass
-  a, b ͱ a
-  ------------- ->I
-  a ͱ b -> a
-  --------------- ->I
-  ͱ a -> b -> a
-
-  與前面的minimal logic完全相同
-
-
-******* intro/elim versus left/right, revisited
-  1. natural deduction: introduction and elimination rules
-     ... ͱ ...
-     ----------------- *I
-     ... ͱ  ... * ...
-
-     ... ͱ ... * ...
-     ----------------- *E
-     ... ͱ ...
-
-  2. sequent calculus: left and right rules
-     ... ͱ ...
-     --------------- *L
-     ... * ... ͱ ...
-
-     ... ͱ ...
-     ---------------- *R
-     ... ͱ ... * ...
-
-  3. 反正都是要把東西弄到右下角
-     "ͱ" 與 "------------"
-     其實在兩個不同的語法層次
-     提供着相似的語義
-     所以在那種語法層次中推進證明都是沒有關係的
-
-  4. >< 這帶來了什麼啓示呢?
-     我可不可以設計形式語言把不同的語法層次對稱化 ???
-
-
-******* >< 是否可以列舉出分別易於在intro/elim和left/right中理解的推理的例子
-  畢竟這些風格被某些人採用正是因爲它們可以方便的用來表達出易於理解的推理過程
-
-******* Curry-Howard for natural deduction
-  在例子中體會:
-
-  ---------- ass
-  a, b ͱ a
-  ------------- ->I
-  a ͱ b -> a
-  --------------- ->I
-  ͱ a -> b -> a
-
-  ----------------
-  x:a, y:b ͱ x:a
-  ----------------------------
-  x:a ͱ (λ y:b . x) : b -> a
-  ----------------------------------------
-  ͱ (λ x:a . (λ y:b . x)) : a -> b -> a
-
-  與前面的minimal logic中所作的對比完全相同
-
-
-***** >< logic style 3b: natural deduction, Jaskowsky/Fitch-style
- 這種推理風格的發明
- 是爲了探索"ͱ"的語義
-
- >< 即當以以"ͱ"爲核心的表達式爲有向圖的節點時
- 對那些推理規則所形成的節點之間的關係的直觀理解是什麼???
-
- 這裏使用了更高維數的模型來理解這一切
- 太酷了
-
- 不過本質上還是樹結構
- 因爲下面的模型是等價的:
- 1. tree
- 2. sexp
- 3. 圈圈
- 4. 泡泡
-
-
-*** >< detour elimination
-
-*** >< consistency
+    這裏使用了更高維數的模型來理解這一切
 
 * 無類型的 λ
 

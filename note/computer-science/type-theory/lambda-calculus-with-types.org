@@ -53,8 +53,10 @@
 
 * part 1. simple types
 
+  #+begin_src
   exp := var | (var) => exp | exp(exp)
   type := atom | (type) -> type
+  #+end_src
 
 * part 2. recursive types
 
