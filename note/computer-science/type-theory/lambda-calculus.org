@@ -1,6 +1,17 @@
 #+title: lambda calculus
 
-* [the-lambda-calculus--its-syntax-and-semantics]
+* [note] 用图论来想象项所形成的空间
+
+  - 在考虑 term 与 reduction 所定义的 term 之间的 equivalence relation 时
+    把 term 所形成的空间想想成了 graph
+    confluent (Church-Rosser theorem) 之类的定理很容易在这种 graph 中想象
+
+* [note] 语法
+
+  - (x: arg_t) => body
+  - (x: arg_t) -> ret_t
+
+* the lambda calculus, its syntax and semantics
 
   - 好的講授方式是先在非形式化的語言下試着描述
     以發現對理論的哪部分作嚴格的形式化是有必要的
