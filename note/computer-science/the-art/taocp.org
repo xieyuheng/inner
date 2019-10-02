@@ -1,5 +1,4 @@
 #+TITLE:  note of taocp
-#+AUTHOR: 謝宇恆 / XIE Yuheng
 
 * basic concepts
 
@@ -63,14 +62,14 @@
 
 * information structures
 
-*** >< introduction 
-    
-    - 
+*** >< introduction
+
+    -
 
 *** >< linear lists
 
 *** >< trees
 
-*** >< multilinked structures 
+*** >< multilinked structures
 
 *** >< dynamic storage allocation

@@ -5,10 +5,6 @@
 * todo
   1. 用從 EDW 那裏學到的風格
      形成一次 lambda-calculus 的理論
-  2. 需要重寫筆記啊~~~
-     現在筆記太亂了
-     需要好好分類整理一下
-
 * 舊記
 
 *** [the-lambda-calculus--its-syntax-and-semantics]
