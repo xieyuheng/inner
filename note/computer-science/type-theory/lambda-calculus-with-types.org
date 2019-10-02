@@ -272,12 +272,74 @@
     check(ctx_empty, K, (A) -> (B) -> A) == true
     check(ctx_empty, K(x), (A) -> (B) -> A) == true
 
-    we can define the following predicates on type (and on context):
-    - type_depth
-    - type_rank
-    - type_order
+    we can define the following predicates on type:
 
-    TODO note about "first order logic"
+    type_depth(ty_t): nat_t
+    type_depth(atom) = 1
+    type_depth((A) -> B) = max(type_depth(A), type_depth(B)) + 1
+
+    type_rank(ty_t): nat_t
+    type_rank(atom) = 0
+    type_rank((A) -> B) = max(type_rank(A) + 1, type_rank(B))
+
+    type_order(ty_t): nat_t
+    type_order(atom) = 1
+    type_order((A) -> B) = max(type_order(A) + 1, type_order(B))
+    // type_order(x) = type_rank(x) + 1
+
+    the definitions can be extended to context,
+    by map over the context and compute the max of the resulting list.
+
+    the notion of "order" comes from logic,
+    where dealing with elements of type 0 is done in "first order" predicate logic.
+    The reason is that in first-order logic one deals with domains and their elements.
+    In second order logic one deals with functions between first-order objects.
+    In this terminology 0-th order logic can be identified with propositional logic.
+    The notion of "rank" comes from computer science (which count from 0).
+
+    type_depth is defined to do induction proofs on type.
+
+    The asymmetry in the definition of rank is intended
+    because the meaning of a type like ((0) -> 0) -> 0
+    is more complex than that of (0) -> (0) -> 0
+
+    as can be seen by looking to the inhabitants of these types:
+    functionals with functions as arguments versus binary functions.
+
+    we can define the following function to generate type of the same tank:
+    type_iter(ty_t, ty_t, nat_t): ty_t
+    type_iter(A, B, 0) = B
+    type_iter(A, B, 1) = (A) -> B
+    type_iter(A, B, 2) = (A) -> (A) -> B
+    type_iter(A, B, x + 1) = (type_iter(A, B, x)) -> B
+
+*** the size of the set of type atoms
+
+    infinite size and one size are main focus.
+
+    if the set of atoms only contains c, we can define
+    type_gen_rank(nat_t): ty_t
+    type_gen_rank(0) = c
+    type_gen_rank(x + 1) = (type_gen_rank(x)) -> type_gen_rank(0)
+
+    for example:
+    type_gen_rank(0) = c
+    type_gen_rank(1) = (c) -> c
+    type_gen_rank(2) = ((c) -> c) -> c
+    type_gen_rank(3) = (((c) -> c) -> c) -> c
+
+    type_gen_rank_iter(nat_t, nat_t): ty_t
+    type_gen_rank_iter(0, k) = type_gen_rank(0)
+    type_gen_rank_iter(n + 1, k) = type_iter(type_gen_rank(n), type_gen_rank(0), k)
+
+    we also define the following functions on type:
+    arity(ty_t): nat_t
+    type_arg(ty_t, nat_t): ty_t
+    type_ret(ty_t): ty_t
+
+*** church style
+
+*** de bruijn style
 
 * part 2. recursive types
 
