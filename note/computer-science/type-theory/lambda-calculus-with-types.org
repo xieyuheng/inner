@@ -170,7 +170,56 @@
     (in which bound variables are introduced)
     we do not have to worry about free variable v.s. bound variable
 
-*** [todo] assigning simple types
+*** assigning simple types
+
+    type assignment statement (or judgment)
+
+    M: A
+
+    A is called predicate of the statement
+    M is called subject of the statement
+
+    A declaration is a type assignment with variable as subject
+
+    A basis (or typing context) is a set of declarations
+    with distinct variables as subjects
+    (like axioms for equational theory)
+
+    we can define a judgment
+    for proving (deriving) type assignment in context:
+
+    ctx |- M: A
+
+    inference rules for this judgment are:
+
+    lookup_type(ctx, x) == A
+    ------------------------ lookup type of variable
+    ctx |- x: A
+
+    ctx |- f: (A) -> B
+    ctx |- a: A
+    ------------------------ arrow elimination
+    ctx |- f(a): B
+
+    ctx.ext(x, A) |- body : B
+    --------------------------- arrow introduction
+    ctx |- (x) => body : (A) -> B
+
+    examples:
+
+    empty_ctx |- I : (A) -> A
+    empty_ctx |- K : (A) -> (B) -> A
+    empty_ctx |- S : ((A) -> (B) -> C) -> ((A) -> B) -> (A) -> C
+
+    x: A |- I(x) : A
+    x: A, y: B |- K(x, y) : A
+    x: (A) -> (B) -> C, y: (A) -> B, x: A |- S(x, y, z) : C
+
+    Y and Omega do not have type assignment
+    because only expressions have normal-form can have type assignment
+    but Y and Omega have no normal-form
+
+    TODO
 
 * part 2. recursive types
 
