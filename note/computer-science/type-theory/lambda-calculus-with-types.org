@@ -396,6 +396,47 @@
 
 *** simple properties and comparisons
 
+    in curry style
+
+    ctx |- M: A
+
+    has unique proof (or the system is is "syntax directed")
+
+    because, for a proof of:
+
+    ctx |- f: (A) -> B
+    ctx |- x: A
+    ---------------------
+    ctx |- f(x): B
+
+    although A is searched (infered),
+    but it must just be a simple lookup in ctx,
+    and variable is unique in ctx.
+
+    without ctx, up to substitution this typing is still unique
+
+    there are three styles of simple type lambda calculus
+    but in practice, we use optional type annotation
+    in which all three styles might occur
+
+    in church styles
+
+    todo unicity of types
+
+    in de bruijn
+
+    todo unicity of types
+
+*** [todo] comparing church style and curry style
+
+    todo about neutral term
+
+*** [todo] comparing church style and de bruijn style
+
+*** [todo] comparing curry style and de bruijn style
+
+*** [todo] the three systems compared
+
 * part 2. recursive types
 
 * part 3. intersection types

@@ -1,0 +1,6 @@
+#+title: de bruijn
+
+* (1972) lambda calculus notation with nameless dummies
+
+  - a tool for automatic formula manipulation
+    with application to the church-rosser theorem
