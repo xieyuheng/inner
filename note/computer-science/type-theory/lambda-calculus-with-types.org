@@ -174,7 +174,7 @@
     (such as conversion relations)
 
     we can view atom as variable and define:
-    type_subst(A, a, B)
+    type_subst(A: ty_t, a: atom_t, B: ty_t)
 
     since we do not have abstraction over types
     (in which bound variables are introduced)
@@ -265,7 +265,7 @@
 
     we can define the following:
 
-    infer(ctx: ctx_t, t: ty_t): set_t(exp_t)
+    synth(ctx: ctx_t, t: ty_t): set_t(exp_t)
     check(ctx: ctx_t, exp: exp_t, t: ty_t): bool_t
 
     for example
@@ -339,7 +339,62 @@
 
 *** church style
 
+    so far we are developing the theory in curry style,
+    namely assigning types to untyped expressions.
+
+    in church style,
+    the set of term variables is different:
+    each such variable is coupled with a unique type.
+    in such a way that every type has
+    infinitely many variables coupled to it.
+
+    type := atom | (type) -> type
+    exp := var: type | (var: type) => exp | exp(exp)
+
+    exp can contain type
+
+    - x -
+      not about lambda abstraction,
+      but about variables!
+
+      not
+      exp := var | (var: type) => exp | exp(exp)
+
+      but
+      exp := var: type | (var: type) => exp | exp(exp)
+
+    we have
+    synth(ctx: ctx_t, t: ty_t): exp_t
+    instead of
+    synth(ctx: ctx_t, t: ty_t): set_t(exp_t)
+
+    for example:
+
+    { y: (B) -> A } (x: B) : A
+    (x: A) => y: (B) => A : (A) => (B) => A
+    (x: A) => x: A : (A) => A
+
+    type substitution
+    type_subst(A: ty_t, a: atom_t, B: ty_t)
+    can be extended to expression,
+    because expression can contain type.
+    type_subst(M: exp_t, a: atom_t, B: ty_t)
+
 *** de bruijn style
+
+    it turn out to be this is the style where
+    only lambda abstraction is annotated
+
+    type := atom | (type) -> type
+    exp := var | (var: type) => exp | exp(exp)
+
+    as the occurrence of bound variable in body
+    is implicitly typed with the same type as the bound variable
+    the intended meaning is correct
+
+    for closed terms the church and the de bruijn notation are isomorphic
+
+*** simple properties and comparisons
 
 * part 2. recursive types
 
