@@ -53,63 +53,100 @@
 
 * part 1. simple types
 
-  #+begin_src
-  exp := var | (var) => exp | exp(exp)
-  type := atom | (type) -> type
-  #+end_src
+*** space of expressions
 
-  equational theory of lambda-beta-eta
-  - reflexivity
-  - symmetry
-  - transitivity
-  - congruence with respect to abstraction:
-    M == N
-    -------
-    (x) => M == (x) => N
-  - beta
-    { (x) => M } (N) == M [ x := N ]
-  - eta
-    (x) => M(x) == M
-    if x not in free_variables(M)
+    #+begin_src
+    exp := var | (var) => exp | exp(exp)
+    type := atom | (type) -> type
+    #+end_src
 
-  two terms M and N are equivalent, is defined by conversion relations
-  (beta_conversion, eta_conversion or beta_eta_conversion)
-  i.e. we can convert M to N by the above rules.
+*** conversion relation
 
-  note that, alpha_equivalence is not explicitly handled
+    equational theory of lambda-beta-eta
+    - reflexivity
+    - symmetry
+    - transitivity
+    - congruence with respect to abstraction:
+      M == N
+      -------
+      (x) => M == (x) => N
+    - beta
+      { (x) => M } (N) == subst(M, x, N)
+    - eta
+      (x) => M(x) == M
+      if x not in free_variables(M)
 
-  conversion relations are non-directed,
-  we can view them as adding non-directed edges to the space of terms
+    two terms M and N are equivalent, is defined by conversion relations
+    (beta_conversion, eta_conversion or beta_eta_conversion)
+    i.e. we can convert M to N by the above rules.
 
-  the equational theory can be analyzed by
-  giving beta and eta direction
-  and viewing them as reduction relation
+    note that, alpha_equivalence is not explicitly handled
 
-  - beta_step((x) => M) ==> M [ x := N ]
+*** reduction relation
 
-  - eta_step((x) => M(x)) ==> M
-    if x not in free_variables(M)
+    conversion relations are non-directed,
+    we can view them as adding non-directed edges to the space of terms
 
-  we can also define reduction relations:
-  - beta_reduction
-  - eta_reduction
-  - beta_eta_reduction
+    the equational theory can be analyzed by
+    giving beta and eta direction
+    and viewing them as reduction relation
 
-  church-rosser theorem seys, we can check M and N are equal
-  by normalize to normal-form
+    - beta_step((x) => M) ==> subst(M, x, N)
 
-  reduction relations (beta_reduction, eta_reduction or beta_eta_reduction)
-  are confluent:
+    - eta_step((x) => M(x)) ==> M
+      if x not in free_variables(M)
 
-  (M: Term, N1: Term, N2: Term) ->
-  (reduction(M, N1), reduction(M, N2)) ->
-  (Z: Term, reduction(N1, Z), reduction(N2, Z))
+    we can also define reduction relations:
+    - beta_reduction
+    - eta_reduction
+    - beta_eta_reduction
 
-  thus it is easy to prove:
+    church-rosser theorem seys, we can check M and N are equal
+    by normalize to normal-form
 
-  (M: Term, N: Term) ->
-  conversion(M, N) ->
-  (Z: Term, reduction(M, Z), reduction(N, Z))
+    reduction relations (beta_reduction, eta_reduction or beta_eta_reduction)
+    are confluent:
+
+    (M: exp_t, N1: exp_t, N2: exp_t) ->
+    (reduction(M, N1), reduction(M, N2)) ->
+    (Z: exp_t, reduction(N1, Z), reduction(N2, Z))
+
+    thus it is easy to prove:
+
+    (M: exp_t, N: exp_t) ->
+    conversion(M, N) ->
+    (Z: exp_t, reduction(M, Z), reduction(N, Z))
+
+    - give a algorithm to check equivalence,
+      means the equivalence problem is decidable,
+      but we still need to analyze the complexity of the algorithm,
+      and design better ones.
+
+*** equational theory with axioms
+
+    we can extends the judgment of conversion by axioms,
+
+    axioms: list_t(exp_t)
+
+    axioms |- M == N
+
+    which means we can prove M == N by conversion plus equations in the set of axioms
+
+    axioms are called inconsistent (otherwise consistent),
+    if we can use  they to prove any equation.
+
+    inconsistent(axioms) :=
+
+    forall M: exp_t, N: exp_t ->
+    axioms |- M == N
+
+    (M: exp_t, N: exp_t) -> conversion_with_axioms(axioms, M, N)
+
+    for example:
+    consistent(set![])
+    inconsistent(set![K == I])
+    inconsistent(set![I == S])
+    consistent(set![I == Omega])
 
 * part 2. recursive types
 
