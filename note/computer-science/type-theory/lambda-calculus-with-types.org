@@ -55,10 +55,11 @@
 
 *** space of expressions
 
-    #+begin_src
+    first we consider curry style lambda calculus,
+    it assign types to untyped lambda expressions,
+    we can reuse our knowledge about untyped lambda calculus.
+
     exp := var | (var) => exp | exp(exp)
-    type := atom | (type) -> type
-    #+end_src
 
 *** conversion relation
 
@@ -76,7 +77,7 @@
       (x) => M(x) == M
       if x not in free_variables(M)
 
-    two terms M and N are equivalent, is defined by conversion relations
+    two expressions M and N are equivalent, is defined by conversion relations
     (beta_conversion, eta_conversion or beta_eta_conversion)
     i.e. we can convert M to N by the above rules.
 
@@ -85,7 +86,7 @@
 *** reduction relation
 
     conversion relations are non-directed,
-    we can view them as adding non-directed edges to the space of terms
+    we can view them as adding non-directed edges to the space of expressions
 
     the equational theory can be analyzed by
     giving beta and eta direction
@@ -147,6 +148,29 @@
     inconsistent(set![K == I])
     inconsistent(set![I == S])
     consistent(set![I == Omega])
+
+*** simple types
+
+    type := atom | (type) -> type
+
+    the set of atom
+    can only have one element,
+    can have finitely many elements,
+    can have infinitely many elements,
+    but it can not be empty.
+
+    we assume that types are freely generated,
+    i.e. there are no equations between types.
+    (such as conversion relations)
+
+    we can view atom as variable and define:
+    type_subst(A, a, B)
+
+    since we do not have abstraction over types
+    (in which bound variables are introduced)
+    we do not have to worry about free variable v.s. bound variable
+
+*** [todo] assigning simple types
 
 * part 2. recursive types
 
