@@ -4,3 +4,5 @@
 
   - a tool for automatic formula manipulation
     with application to the church-rosser theorem
+
+  - this paper is about about de bruijn index

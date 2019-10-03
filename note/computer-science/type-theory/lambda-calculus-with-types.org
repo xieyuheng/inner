@@ -364,9 +364,12 @@
       exp := var: type | (var: type) => exp | exp(exp)
 
     we have
-    synth(ctx: ctx_t, t: ty_t): exp_t
-    instead of
-    synth(ctx: ctx_t, t: ty_t): set_t(exp_t)
+
+    synth(t: ty_t): exp_t
+    check(exp: exp_t, t: ty_t): bool_t
+
+    synth return only one unique exp_t instead of set_t(exp_t)
+    and typing context is not needed
 
     for example:
 
@@ -400,7 +403,7 @@
 
     ctx |- M: A
 
-    has unique proof (or the system is is "syntax directed")
+    has unique proof (or say the system is "syntax directed")
 
     because, for a proof of:
 
@@ -421,11 +424,19 @@
 
     in church styles
 
-    todo unicity of types
+    we have unicity of types
+
+    (A: ty_t, B: ty_t) ->
+    (M: exp_t, check(M, A), check(M, B)) ->
+    A == B
 
     in de bruijn
 
-    todo unicity of types
+    we have unicity of types
+
+    (ctx: ctx_t, A: ty_t, B: ty_t) ->
+    (M: exp_t, check(ctx, M, A), check(ctx, M, B)) ->
+    A == B
 
 *** [todo] comparing church style and curry style
 
