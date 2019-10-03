@@ -443,14 +443,14 @@
     (M: exp_t, check(ctx, M, A), check(ctx, M, B)) ->
     A == B
 
-*** [todo] comparing church style and curry style
+*** comparing church style and curry style
 
     terms in the church style
     "project" to legal terms in the curry style
     conversely, legal terms in curry style
     can be "lifted" to terms in church style
 
-    the following is about beta-normal-form
+*** beta-normal-form
 
     in the book
     NF means normal-form
@@ -464,11 +464,21 @@
     neu := var | neu(norm)
     norm := neu | (x) => norm
 
-*** [todo] comparing church style and de bruijn style
+*** [todo] normal inhabitants
 
-*** [todo] comparing curry style and de bruijn style
+    a implementation of the synth function
+    which return long-normal-form
 
-*** [todo] the three systems compared
+    todo
+    two generator is given
+    one for long-normal-form
+    one for normal-form
+    but I can not understand the difference between the two
+    because they look like the same
+
+*** representing data types
+
+    
 
 * part 2. recursive types
 
