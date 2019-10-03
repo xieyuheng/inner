@@ -397,6 +397,11 @@
 
     for closed terms the church and the de bruijn notation are isomorphic
 
+    we have
+
+    synth(ctx: ctx_t, t: ty_t): exp_t
+    check(ctx: ctx_t, exp: exp_t, t: ty_t): bool_t
+
 *** simple properties and comparisons
 
     in curry style
@@ -440,7 +445,24 @@
 
 *** [todo] comparing church style and curry style
 
-    todo about neutral term
+    terms in the church style
+    "project" to legal terms in the curry style
+    conversely, legal terms in curry style
+    can be "lifted" to terms in church style
+
+    the following is about beta-normal-form
+
+    in the book
+    NF means normal-form
+    vNF means normal-form start with a variable
+
+    vNF := var | vNF(NF)
+    NF := vNF | (x) => NF
+
+    we use neutral instead of vNF
+
+    neu := var | neu(norm)
+    norm := neu | (x) => norm
 
 *** [todo] comparing church style and de bruijn style
 
