@@ -174,7 +174,7 @@
     (such as conversion relations)
 
     we can view atom as variable and define:
-    type_subst(A: ty_t, a: atom_t, B: ty_t)
+    type_subst(A: type_t, a: atom_t, B: type_t)
 
     since we do not have abstraction over types
     (in which bound variables are introduced)
@@ -271,8 +271,8 @@
 
     we can define the following:
 
-    synth(ctx: ctx_t, t: ty_t): set_t(exp_t)
-    check(ctx: ctx_t, exp: exp_t, t: ty_t): bool_t
+    synth(ctx: ctx_t, t: type_t): set_t(exp_t)
+    check(ctx: ctx_t, exp: exp_t, t: type_t): bool_t
 
     for example
     check(ctx_empty, K, (A) -> (B) -> A) == true
@@ -280,15 +280,15 @@
 
     we can define the following predicates on type:
 
-    type_depth(ty_t): nat_t
+    type_depth(type_t): nat_t
     type_depth(atom) = 1
     type_depth((A) -> B) = max(type_depth(A), type_depth(B)) + 1
 
-    type_rank(ty_t): nat_t
+    type_rank(type_t): nat_t
     type_rank(atom) = 0
     type_rank((A) -> B) = max(type_rank(A) + 1, type_rank(B))
 
-    type_order(ty_t): nat_t
+    type_order(type_t): nat_t
     type_order(atom) = 1
     type_order((A) -> B) = max(type_order(A) + 1, type_order(B))
     // type_order(x) = type_rank(x) + 1
@@ -313,7 +313,7 @@
     functionals with functions as arguments versus binary functions.
 
     we can define the following function to generate type of the same tank:
-    type_iter(ty_t, ty_t, nat_t): ty_t
+    type_iter(type_t, type_t, nat_t): type_t
     type_iter(A, B, 0) = B
     type_iter(A, B, 1) = (A) -> B
     type_iter(A, B, 2) = (A) -> (A) -> B
@@ -324,7 +324,7 @@
     infinite size and one size are main focus.
 
     if the set of atoms only contains c, we can define
-    type_gen_rank(nat_t): ty_t
+    type_gen_rank(nat_t): type_t
     type_gen_rank(0) = c
     type_gen_rank(x + 1) = (type_gen_rank(x)) -> type_gen_rank(0)
 
@@ -334,14 +334,14 @@
     type_gen_rank(2) = ((c) -> c) -> c
     type_gen_rank(3) = (((c) -> c) -> c) -> c
 
-    type_gen_rank_iter(nat_t, nat_t): ty_t
+    type_gen_rank_iter(nat_t, nat_t): type_t
     type_gen_rank_iter(0, k) = type_gen_rank(0)
     type_gen_rank_iter(n + 1, k) = type_iter(type_gen_rank(n), type_gen_rank(0), k)
 
     we also define the following functions on type:
-    arity(ty_t): nat_t
-    type_arg(ty_t, nat_t): ty_t
-    type_ret(ty_t): ty_t
+    arity(type_t): nat_t
+    type_arg(type_t, nat_t): type_t
+    type_ret(type_t): type_t
 
 *** church style
 
@@ -371,8 +371,8 @@
 
     we have
 
-    synth(t: ty_t): exp_t
-    check(exp: exp_t, t: ty_t): bool_t
+    synth(t: type_t): exp_t
+    check(exp: exp_t, t: type_t): bool_t
 
     synth return only one unique exp_t instead of set_t(exp_t)
     and typing context is not needed
@@ -384,10 +384,10 @@
     (x: A) => x: A : (A) => A
 
     type substitution
-    type_subst(A: ty_t, a: atom_t, B: ty_t)
+    type_subst(A: type_t, a: atom_t, B: type_t)
     can be extended to expression,
     because expression can contain type.
-    type_subst(M: exp_t, a: atom_t, B: ty_t)
+    type_subst(M: exp_t, a: atom_t, B: type_t)
 
 *** de bruijn style
 
@@ -405,8 +405,8 @@
 
     we have
 
-    synth(ctx: ctx_t, t: ty_t): exp_t
-    check(ctx: ctx_t, exp: exp_t, t: ty_t): bool_t
+    synth(ctx: ctx_t, t: type_t): exp_t
+    check(ctx: ctx_t, exp: exp_t, t: type_t): bool_t
 
 *** simple properties and comparisons
 
@@ -437,7 +437,7 @@
 
     we have unicity of types
 
-    (A: ty_t, B: ty_t) ->
+    (A: type_t, B: type_t) ->
     (M: exp_t, check(M, A), check(M, B)) ->
     A == B
 
@@ -445,7 +445,7 @@
 
     we have unicity of types
 
-    (ctx: ctx_t, A: ty_t, B: ty_t) ->
+    (ctx: ctx_t, A: type_t, B: type_t) ->
     (M: exp_t, check(ctx, M, A), check(ctx, M, B)) ->
     A == B
 
