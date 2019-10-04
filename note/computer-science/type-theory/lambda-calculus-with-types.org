@@ -102,7 +102,7 @@
     giving beta and eta direction
     and viewing them as reduction relation
 
-    - beta_step((x) => M) ==> subst(M, x, N)
+    - beta_step({ (x) => M } (N)) ==> subst(M, x, N)
 
     - eta_step((x) => M(x)) ==> M
       if x not in free_variables(M)
