@@ -257,11 +257,17 @@
 
     y: A |- { (x) => x } (y) : A
     ----- (arrow elimination)
-    y: A |- (x) => x : (A) -> A
-    y: A |- y: A
+    { y: A |- (x) => x : (A) -> A
+      ------ (arrow elimination)
+      y: A, x: A |- x : A
+      ------ (lookup type of variable)
+      QED }
+    { y: A |- y: A
+      ------ (lookup type of variable)
+      QED }
+    QED
 
-    this is where writing become hard,
-    no metter top-down or bottom-up writing direction we use
+    we use { } to denote sub-proof
 
     we can define the following:
 
@@ -476,9 +482,10 @@
     but I can not understand the difference between the two
     because they look like the same
 
-*** representing data types
+*** [todo] representing data types
 
-    
+    todo
+    we need implementation to play with this
 
 * part 2. recursive types
 
