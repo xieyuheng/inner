@@ -1,4 +1,8 @@
-#+title: sicp-video-note
+#+title: sicp
+
+* [note]
+
+  - this is note about video lectures
 
 * 1A
 

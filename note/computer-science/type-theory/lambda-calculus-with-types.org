@@ -319,6 +319,12 @@
     type_iter(A, B, 2) = (A) -> (A) -> B
     type_iter(A, B, x + 1) = (type_iter(A, B, x)) -> B
 
+*** [note] practical type checking
+
+    - we can not use curry style
+      because we need to implement infer to implement check
+      and we can not infer type of curry style lambda abstraction
+
 *** the size of the set of type atoms
 
     infinite size and one size are main focus.
@@ -428,10 +434,6 @@
     and variable is unique in ctx.
 
     without ctx, up to substitution this typing is still unique
-
-    there are three styles of simple type lambda calculus
-    but in practice, we use optional type annotation
-    in which all three styles might occur
 
     in church styles
 
