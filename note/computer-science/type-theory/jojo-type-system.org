@@ -70,35 +70,35 @@
 
 * disambiguate (x: A)
 
-  `$` reads `match`
+  `-` reads `match`
 
-  ctx |- f : ($ A) B X
-  ctx |- g : ($ X) C
+  ctx |- f : (- A) B X
+  ctx |- g : (- X) C
   ----------------------------- (cut)
-  ctx |- f g : ($ A) B C
+  ctx |- f g : (- A) B C
 
-  ctx |- f : ($ A) X
-  ctx |- g : ($ X) ($ B) C
+  ctx |- f : (- A) X
+  ctx |- g : (- X) (- B) C
   ----------------------------- (cut-deep)
-  ctx |- f g : ($ A) ($ B) C
+  ctx |- f g : (- A) (- B) C
 
-  ctx, x: A |- f : ($ B) C
+  ctx, x: A |- f : (- B) C
   ----------------------------------- (let)
-  ctx |- (let x: A) f : ($ A) ($ B) C
+  ctx |- (let x: A) f : (- A) (- B) C
 
   ctx, x: A |- f : C
   ----------------------------------- (let-simple)
-  ctx |- (let x: A) f : ($ A) C
+  ctx |- (let x: A) f : (- A) C
 
-  so we have (let x: A) : ($ A)
+  so we have (let x: A) : (- A)
 
-  how about ($ A) : ???
+  how about (- A) : ???
 
   maybe
 
   ctx |- A : A2
   ------------------------------
-  ctx |- ($ A) : ($ A2)
+  ctx |- (- A) : (- A2)
 
 * [todo] operational semantic of eval
 
