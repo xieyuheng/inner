@@ -2,35 +2,50 @@
 
 * forth type system
 
-  ctx_lookup(ctx, f) == [A, ...] -> [B, ...]
-  ------------------------------------------- (variable lookup)
-  ctx |- f : [A, ...] -> [B, ...]
+  ctx_lookup(ctx, f) == [A] -> [B]
+  ---------------------------------- (variable lookup)
+  ctx |- f : [A] -> [B]
 
-  ctx |- f : [A, ...] -> [B, ..., C, ...]
-  ctx |- g : [C, ...] -> [D, ...]
-  ------------------------------------------ (cut)
-  ctx |- f g : [A, ...] -> [B, ..., D, ...]
+  ctx |- f : [A] -> [B, X]
+  ctx |- g : [X] -> [C]
+  ----------------------------- (cut)
+  ctx |- f g : [A] -> [B, C]
 
-  ctx.ext(x: A, ...) |- f : [B, ...] -> [C, ...]
-  -------------------------------------------------------- (let)
-  ctx |- (x: A, ...) f : [A, ..., B, ...] -> [C, ...]
+  ctx |- f : [A] -> [X]
+  ctx |- g : [B, X] -> [C]
+  ----------------------------- (cut-deep)
+  ctx |- f g : [B, A] -> [C]
 
-  ctx |- f : [A, ...] -> [B, ...]
-  ---------------------------------------------------- (quote)
-  ctx |- { f } : [] -> [[A, ...] -> [B, ...]]
+  ctx.ext(x: A) |- f : [B] -> [C]
+  ----------------------------------- (let)
+  ctx |- (x: A) f : [A, B] -> [C]
 
-  ctx |- f : [] -> [[A, ...] -> [B, ...]]
-  ------------------------------------------- (exe)
-  ctx |- f exe : [A, ...] -> [B, ...]
+  ctx |- f : [A] -> [B]
+  ------------------------------------- (quote)
+  ctx |- { f } : [] -> [[A] -> [B]]
 
-  problem of the above rule is that
-  (x: A, ...) is meaningful even without a `f` after it
-  `exe` is meaningful even without a `f` before it
+  about exe (nullary-apply):
 
-* [todo] specify rules by stack
+  ctx |- f : [] -> [[A] -> [B]]
+  ------------------------------- (exe)
+  ctx |- f exe : [A] -> [B]
 
-  problem of specify rules by stack is that
-  the operational semantic will be call-by-value
+  ctx |- f : [] -> [[A] -> [B]]
+  ------------------------------- (exe by let)
+  ctx |- f (x: [A] -> [B]) x : [A] -> [B]
+
+  ------------------------------- (exe alone)
+  ctx |- exe : [A, [A] -> [B]] -> [B]
+
+  ------------------------------- (exe alone by let)
+  ctx |- (x: [A] -> [B]) x : [A, [A] -> [B]] -> [B]
+
+* [todo] operational semantic of eval
+
+  by using a stack, we have call-by-value operational semantic
+
+  can we also have call-by-name
+  and call-by-need operational semantic ?
 
 * [todo] encoding simple type system in forth type system
 
