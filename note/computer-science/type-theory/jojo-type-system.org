@@ -1,6 +1,6 @@
-#+title: forth type system
+#+title: jojo type system
 
-* forth type system
+* jojo type system
 
   ctx_lookup(ctx, f) == [A] -> [B]
   ---------------------------------- (variable lookup)
@@ -107,10 +107,10 @@
   can we also have call-by-name
   and call-by-need operational semantic ?
 
-* [todo] encoding simple type system in forth type system
+* [todo] encoding simple type system in jojo type system
 
   encoding application by composition
 
-* [todo] forth type system framework
+* [todo] jojo type system framework
 
   like pure type system framework
