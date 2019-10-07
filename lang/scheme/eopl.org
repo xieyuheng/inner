@@ -73,29 +73,6 @@
       The most important part of an implementation
       is the specification of how the data is represented.
 
-      We use the notation [^ v ^] for
-      "the representation of data v."
-
-      - x -
-        - in concrete implementation,
-          if v is language A,
-          B is the language we want to implement in A,
-
-        - then,
-          [^ v ^] can be viewed as,
-          "build a value [^ v ^] on top of v"
-
-        - if x is a value in B,
-          [_ x _] can be viewed as,
-          "push a value x down to A"
-
-        - and we have,
-          1. [_ [^ v ^] _] == v
-          2. [^ [_ x _] ^] == x
-
-    - x -
-      we do not need type class to be abstract about data type.
-
     - Most interfaces will contain
 
       1. some *constructors*
@@ -141,11 +118,11 @@
 
     - specification will consist of assertions of the form :
 
-      (value-of exp ρ) = val
+      (value-of exp env) = val
 
       meaning that
       the value of expression exp
-      in environment ρ
+      in environment env
       should be val.
 
     - We write down rules of inference and equations,
