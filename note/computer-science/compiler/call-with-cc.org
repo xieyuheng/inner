@@ -1,0 +1,702 @@
+#+title: continuation passing style
+
+* [note]
+
+  - 給函數中打了個洞
+    用這個洞來遞東西
+    而所傳遞的東西就是返回棧
+    如果返回棧用被 GC 管理的鏈表來實現
+    那麼在蟬語中實現 一等公民的延續 就不難了
+    還剩下的難點在於 參數棧
+    也就是說參數棧和返回棧都需要用 被 GC 管理起來的 鏈表來實現
+    但是這中方式在效率上有些令人難以接受
+
+* 轉寫
+
+  #+begin_src scheme
+  ;; 在轉寫的時候
+  ;; 所有的函數都必須被轉換
+  ;; 不存在混用的可能
+  ;; [其實可以混用 但是語義很不好而已]
+
+  (cons 'd
+        ((lambda (x)
+           ((lambda (x)
+              (cons 'b
+                    ((lambda (x)
+                       (cons 'a x))
+                     x)))
+            (cons 'c x)))
+         '()))
+
+  (letrec ([f (lambda (x) (cons 'a x))]
+           [g (lambda (x) (cons 'b (f x)))]
+           [h (lambda (x) (g (cons 'c x)))])
+    (cons 'd (h '())))
+
+  ;; => (d b a c)
+
+  ;; 1. 所有有函數調用的地方都必須被更改
+  ;;    尤其是最外層的對一個 CPS 函數的調用
+  ;;    因爲所有的函數都增加了一個參數
+  ;; 2. 所有返回值的地方都要改
+  ;;    因爲返回必須被cc作用才行
+  ;; 3. 另外一轉寫中的要點是
+  ;;    所有的函數都不能有直接的返回值
+  ;;    返回值必須作爲函數被 cc 作用
+  ;; 4. 函數的複合在於
+  ;;    去更改那個被作爲 額外參數 傳給一個函數的 cc
+  ;;    把這個 cc 變大 就算是函數的複合了
+  ;;    而 TCO 就是 不變這個 cc
+  ;;    即 傳遞進來什麼 cc 就用什麼 cc 去作用於返回值
+
+  ;; 啓示在於 蟬語 中的 "next"
+  ;; 也許把這個 next 實現地更豐富 就得到 CPS 了
+  ;; 早就看 "next" 不爽了
+
+  ;; 既然 已經使用虛擬機了
+  ;; 那麼也許應該把垃圾回收的工作給虛擬機去做
+  ;; 虛擬機的目的 說大了 是爲了把底層工作和上層工作分離開
+  ;; 而說小了
+  ;;   其實是爲了[在一個編譯器的幫助下]讓我能把系統的更多核心部分用我的語言本身來編寫
+  ;;   要知道 在沒有虛擬機和編譯器的情況下 我只能在彙編中處理好輸入輸出並實現一個解釋器
+  ;; 同時有趣的是 有虛擬機之後 我就能自己設計更多的東西了[一種病態的慾望]
+
+  ;; 注意
+
+  (letrec ([f (lambda (x k) (k (cons 'a x)))]
+           [g (lambda (x k) (f x (lambda (v) (k (cons 'b v)))))]
+           [h (lambda (x k) (g (cons 'c x) k))])
+    (h '() (lambda (v) (cons 'd v))))
+
+  ;; => (d b a c)
+  #+end_src
+
+* 應用
+
+  #+begin_src scheme
+  (define car&cdr
+     (lambda (p k)
+        (k (car p) (cdr p))))
+
+  (car&cdr '(a b c)
+           (lambda (x y)
+             (list y x)))
+  ;; => ((b c) a)
+
+  (car&cdr '(a b c) cons)
+  ;; => (a b c)
+
+  (car&cdr '(a b c a d) memv)
+  ;; => (a d)
+  #+end_src
+
+* 簡單的例子
+
+  #+begin_src scheme
+  (define the-continuation #f)
+
+  (define (test)
+    (let ((i 0))
+      (call/cc (lambda (k) (set! the-continuation k)))
+      (set! i (+ i 1))
+      i))
+
+  (test)
+  (the-continuation)
+  #+end_src
+
+* return
+
+  #+begin_src scheme
+  (define (f return)
+    (return 2)
+    3)
+
+  (display (f (lambda (x) x)))
+  ;; displays 3
+
+  (display (call/cc f))
+  ;; displays 2
+
+
+  (define (generate-one-element-at-a-time lst)
+    (define (control-state return)
+      (for-each
+       (lambda (element)
+         (set! return (call/cc
+                       (lambda (resume-here)
+                         (set! control-state resume-here)
+                         (return element)))))
+       lst)
+      (return 'you-fell-off-the-end))
+    (lambda () (call/cc control-state)))
+
+  (define generate-one-element-at-a-time
+    (lambda (lst)
+      (letrec
+          ((control-state
+            (lambda (return)
+              (for-each
+               (lambda (element)
+                 ;; update return-stack
+                 (set! return (call/cc
+                               (lambda (resume-here)
+                                 (set! control-state resume-here)
+                                 (return element)))))
+               lst)
+              (return 'you-fell-off-the-end))))
+        ;; init return-stack
+        (lambda () (call/cc control-state)))))
+
+  ;; you can see why explicit return-stack is good
+
+  (define generate-digit
+    (generate-one-element-at-a-time '(0 1 2)))
+
+  (generate-digit)
+  #+end_src
+
+* cooperative multitasking
+
+  #+begin_src scheme
+  ;; Cooperative multitasking using call-with-current-continuation
+  ;; in 25 lines of scheme
+
+  ;; The list of threads waiting to run. This is a list of one
+  ;; argument non-returning functions (continuations, mostly)
+  ;; A continuation is a non-returning function, just like (exit),
+  ;; in that it never gives up control to whoever called it.
+
+  (define readyList '())
+
+
+  ;; A non-returning function. If there is any other thread
+  ;; waiting to be run, it causes the next thread to run if there
+  ;; is any left to run, otherwise it calls the original exit
+  ;; which exits the whole environment.
+  (define exit
+    ;; The original exit which we override.
+    (let ((exit exit))
+      ;; The overriding function.
+      (lambda ()
+        (if (not (null? readyList))
+            ;; There is another thread waiting to be run.
+            ;; So we run it.
+            (let ((cont (car readyList)))
+              (set! readyList (cdr readyList))
+              ;; Since the readyList is only non-returning
+              ;; functions, this will not return.
+              (cont '()))
+            ;; Nothing left to run.
+            ;; The original (exit) is a non returning function,
+            ;; so this is a non-returning function.
+            (exit)))))
+
+  ;; Takes a one argument function with a given
+  ;; argument and forks it off.  The forked function's new
+  ;; thread will exit if/when the function ever exits.
+  (define (fork fn arg)
+    (set! readyList
+          (append readyList
+                  ;; This function added to the
+                  ;; readyList is non-returning,
+                  ;; since exit is non returning.
+                  (cons
+                   (lambda (x)
+                     (fn arg)
+                     (exit)) '()))))
+
+  ;; Gives up control for the next thread waiting to be run.
+  ;; Although it will eventually return, it gives up control
+  ;; and will only regain it when the continuation is called.
+  (define (yield)
+    (call-with-current-continuation
+     ;; Capture the continuation representing THIS call to yield
+     (lambda (thisCont)
+       ;; Stick it on the ready list
+       (set! readyList
+             (append readyList
+                     (cons thisCont '())))
+       ;; Get the next thread, and start it running.
+       (let ((cont (car readyList)))
+         (set! readyList (cdr readyList))
+         ;; Run it.
+         (cont '())))))
+  #+end_src
+
+* a naive queue for thread scheduling
+
+  #+begin_src scheme
+  ;; A naive queue for thread scheduling.
+  ;; It holds a list of continuations "waiting to run".
+
+  (define *queue* '())
+
+  (define (empty-queue?)
+    (null? *queue*))
+
+  (define (enqueue x)
+    (set! *queue* (append *queue* (list x))))
+
+  (define (dequeue)
+    (let ((x (car *queue*)))
+      (set! *queue* (cdr *queue*))
+      x))
+
+  ;; This starts a new thread running (proc).
+
+  (define (fork proc)
+    (call/cc
+     (lambda (k)
+       (enqueue k)
+       (proc))))
+
+  ;; This yields the processor to another thread, if there is one.
+
+  (define (yield)
+    (call/cc
+     (lambda (k)
+       (enqueue k)
+       ((dequeue)))))
+
+  ;; This terminates the current thread, or the entire program
+  ;; if there are no other threads left.
+
+  (define (thread-exit)
+    (if (empty-queue?)
+      (exit)
+      ((dequeue))))
+
+
+
+
+
+  ;; The body of some typical Scheme thread that does stuff:
+  (define (do-stuff-n-print str)
+    (lambda ()
+      (let loop ((n 0))
+        (format #t "~A ~A\n" str n)
+        (yield)
+        (loop (1+ n)))))
+
+  ;; Create two threads, and start them running.
+  (fork (do-stuff-n-print "This is AAA"))
+  (fork (do-stuff-n-print "Hello from BBB"))
+  (thread-exit)
+
+  ;; The previous code will produce this output:
+
+  ;;  This is AAA 0
+  ;;  Hello from BBB 0
+  ;;  This is AAA 1
+  ;;  Hello from BBB 1
+  ;;  This is AAA 2
+  ;;  Hello from BBB 2
+  ;;  ...
+
+  #+end_src
+
+* 陰陽
+
+  yin wang "understanding the yin-yang puzzle"
+
+  #+begin_src scheme
+  ;; it prints out the infinite string @*@**@***@****@*****@****** ...
+  (let* ;; the orders of function applications matter
+      ((yin ((lambda (cc)
+               (display #\@)
+               cc)
+             (call/cc (lambda (c) c))))
+       (yang ((lambda (cc)
+                (display #\*)
+                cc)
+              (call/cc (lambda (c) c)))))
+    (yin yang))
+
+  ;;@*
+  [(yin 1 ())
+   (yang 2 (yin 1 ()))]
+  ;;@*
+  [(yin 2 (yin 1 ()))
+   (yang 2 (yin 2 (yin 1 ())))]
+  ;;*
+  [(yin 1 ())
+   (yang 2 (yin 2 (yin 1 ())))]
+  ;;@*
+  [(yin 2 (yin 2 (yin 1 ())))
+   (yang 2 (yin 2 (yin 2 (yin 1 ()))))]
+  ;;*
+  [(yin 2 (yin 1 ()))
+   (yang 2 (yin 2 (yin 2 (yin 1 ()))))]
+  ;;*
+  [(yin 1 ())
+   (yang 2 (yin 2 (yin 2 (yin 1 ()))))]
+  ;;@*
+  [(yin 2 (yin 2 (yin 2 (yin 1 ()))))
+   (yang 2 (yin 2 (yin 2 (yin 2 (yin 1 ())))))]
+  ;;...
+  ;;...
+
+
+
+  ;; 所謂的 陰陽 問題
+  ;; 只不過展示了 在 scheme 中 continuation 的語義曖昧不明而已
+
+  ;; 和 以明顯地使用棧的時 的情形比較一下就明白了
+
+  ;; in call-by-value arguments are evaled before function
+
+  ((lambda (yin)
+
+     ((lambda (yang)
+
+        (yin yang))
+
+      ((lambda (cc)
+         (display #\*)
+         cc)
+       (call/cc (lambda (c) c)))))
+
+   ((lambda (cc)
+      (display #\@)
+      cc)
+    (call/cc (lambda (c) c))))
+
+
+
+
+  ;; @ will be displayed
+  ;; the following c1 will be binded to yin
+  ;; and it is going to apply on yang
+
+  (lambda (k)
+
+    ((lambda (yin)
+
+       ((lambda (yang)
+
+          (yin yang))
+
+        ((lambda (cc)
+           (display #\*)
+           cc)
+         (call/cc (lambda (c) c)))))
+
+     ((lambda (cc)
+        (display #\@)
+        cc)
+      k)))
+
+
+  ;; ==
+
+  (lambda (k)
+
+    ;; the following side-effect can be move to here
+    (display #\@)
+
+    ((lambda (yin)
+
+       ((lambda (yang)
+
+          (yin yang))
+
+        ((lambda (cc)
+           (display #\*)
+           cc)
+         (call/cc (lambda (c) c)))))
+
+     ((lambda (cc) cc)
+      k)))
+
+  ;; ==
+
+  (lambda (k)
+
+    (display #\@)
+
+    ((lambda (yin)
+
+       ((lambda (yang)
+
+          (yin yang))
+
+        ((lambda (cc)
+           (display #\*)
+           cc)
+         (call/cc (lambda (c) c)))))
+
+     k))
+
+  ;; ==
+
+  (lambda (k)
+
+    (display #\@)
+
+    ((lambda (yang)
+
+       (k yang))
+
+     ((lambda (cc)
+        (display #\*)
+        cc)
+      (call/cc (lambda (c) c)))))
+
+  ;; when we need to figure out what will be binded to yang
+  ;; by remove the 2nd call/cc
+  ;; only the following part of the function-body matters
+  ;; (the semantics is clear when one thinks about forth-like language)
+  ((lambda (yang)
+
+     (k yang))
+
+   ((lambda (cc)
+      (display #\*)
+      cc)
+    (call/cc (lambda (c) c))))
+  ;; yang will be binded to
+  ;; (and when do this binding a * will be displayed)
+  (lambda (j)
+    ((lambda (yang)
+
+       (k yang))
+
+     ((lambda (cc)
+        (display #\*)
+        cc)
+      j)))
+  ;; ==
+  (lambda (j)
+    (display #\*)
+    ((lambda (yang)
+
+       (k yang))
+
+     ((lambda (cc) cc)
+      j)))
+  ;; ==
+  (lambda (j)
+    (display #\*)
+    (k j))
+
+  ;; put it in to yin :
+
+  (lambda (k)
+
+    (display #\@)
+
+    ((lambda (yang)
+
+       (k yang))
+
+     ((lambda (cc)
+        (display #\*)
+        cc)
+      (call/cc (lambda (c) c)))))
+
+  ;; 因爲已經知道返回棧的根部在哪裏了
+  ;; 所以 可以用綁定到 全局變量 的 函數 來代表 call/cc 所在位置的 continuation
+  ;; 但是其實局部變量也是可以被消除的
+
+  (define c1
+    (lambda (k)
+      (display #\@)
+      (display #\*)
+      (k (lambda (j)
+           (display #\*)
+           (k j)))))
+
+  (begin
+    (display #\@)
+    (display #\*)
+    (c1 (lambda (k)
+          (display #\*)
+          (c1 k))))
+
+
+  ;; 其複雜性可能並不是 類蟬語中的顯式的返回棧所能描述的
+  ;; 比如 partial evaluation 對 lambda-term 的變形與簡化
+  ;; 在蟬語的基本語義中可能根本是不能實現的
+
+  ;; 如果去實現編譯器的話
+  ;; 在編譯過程中 去進行這些變換將是很有趣的
+
+  ;; 有點像是Y的作用
+  ;; 但是又不同
+  (begin
+
+    (display #\@)
+    (display #\*)
+
+    ((lambda (k)
+       (display #\@)
+       (display #\*)
+       (k (lambda (j)
+            (display #\*)
+            (k j))))
+
+     (lambda (k)
+       (display #\*)
+       ((lambda (k)
+          (display #\@)
+          (display #\*)
+          (k (lambda (j)
+               (display #\*)
+               (k j))))
+        k))))
+  #+end_src
+
+* peirce's law
+
+  與 這個邏輯 公理對等 ???
+
+* 野
+
+  1. 我想要創造的不光是以個程序語言
+     還是一個新的計算模型
+  2. 也不光是一個新的計算模型
+     還是一個新的數學學派
+
+* threaded-code
+
+  #+begin_src scheme
+  (write (+ 1 (* 2 3)))
+
+  ===>
+
+  (*-> 2 3 (lambda (r1)
+             (+-> 1 r1 (lambda (r2)
+                         (write r2)))))
+
+  ===>
+
+  *-> 2 3
+  *+> 1 r1
+  write
+
+  ===>
+
+  2 3 *
+  1 +
+  write
+  #+end_src
+
+* CPS is very Forth
+
+  #+begin_src scheme
+  (define I (lambda (x) x))
+
+  (define (pyth x y)
+    (sqrt (+ (* x x) (* y y))))
+
+  (pyth 2 3)
+
+
+  (define *&
+    (lambda (a b k)
+      (k (* a b))))
+
+  (define (cps-prim f)
+    (lambda args
+      (let ((r (reverse args)))
+        ((car r) (apply f
+                   (reverse (cdr r)))))))
+
+  (define *& (cps-prim *))
+  (define +& (cps-prim +))
+
+  (*& 2 3 (lambda (x) x))
+
+  (define +&
+    (lambda (a b k)
+      (k (+ a b))))
+
+  (define sqrt&
+    (lambda (a k)
+      (k (sqrt a))))
+
+  (define pyth&
+    (lambda (x y k)
+      (*& x x (lambda (x2)
+                (*& y y (lambda (y2)
+                          (+& x2 y2 (lambda (x2py2)
+                                      (sqrt& x2py2 k)))))))))
+
+  (pyth& 2 3 (lambda (x) x))
+
+
+
+
+  (define (factorial n)
+    (if (= n 0)
+      1     ; NOT tail-recursive
+      (* n (factorial (- n 1)))))
+
+  (define (factorial& n k)
+    (=& n 0 (lambda (b)
+              (if b                    ; growing continuation
+                (k 1)                  ; in the recursive call
+                (-& n 1 (lambda (nm1)
+                          (factorial& nm1 (lambda (f)
+                                            (*& n f k)))))))))
+
+  (define =&
+    (lambda (a b k)
+      (k (= a b))))
+
+  (define -&
+    (lambda (a b k)
+      (k (- a b))))
+
+  (factorial& 3 I)
+
+
+
+
+
+  (define (factorial n)
+    (f-aux n 1))
+  (define (f-aux n a)
+    (if (= n 0)
+      a        ; tail-recursive
+      (f-aux (- n 1) (* n a))))
+
+
+
+  (define (factorial& n k) (f-aux& n 1 k))
+  (define (f-aux& n a k)
+    (=& n 0 (lambda (b)
+              (if b                    ; unmodified continuation
+                (k a)                ; in the recursive call
+                (-& n 1 (lambda (nm1)
+                          (*& n a (lambda (nta)
+                                    (f-aux& nm1 nta k)))))))))
+
+  (factorial& 3 I)
+  #+end_src
+
+* GC
+
+  1. 重點在於如果實現 GC
+     沒有 GC 的情況下
+     即使有了 call/cc 其效果也跟 goto 一樣
+     只會減弱代碼的可讀性而已
+  2. 其實不管是用 marking-gc 還是 swaping-gc 都一樣
+     返回棧和參數必須被 gc 動態的管理起來
+  3. 甚至對於 蟬語 來說
+     marking-gc 也不是必須的
+     此時需要被 gc 管理的有 return-stack 和 argument-stack
+     甚至可以 把二者都用 dali 來實現也可以接受
+  4. 如果從最開始 在 VM 中就系統地使用 GC
+     那真可謂是一種解放
+     別在考慮因 list 的使用而產生的 overhead 了
+     因爲 它所帶來的靈活性 是線性的數據結構沒法比擬的
+     比如在語法的設計上
+     很多新的東西可以實驗
+  5. 新語法實驗的例子
+     1) 可以在一開始就使用被明顯命名地參數
+        每個函數之不光有確定的數據類型[通過註冊]
+        而且其參數還有固定的名字
+     2) 而了實現 局部變量 而想出的所謂 "多棧" 之必要性也消失了
