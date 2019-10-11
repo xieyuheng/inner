@@ -32,3 +32,5 @@
 *** automath
 
     automath is dependently typed forth
+
+* the mathematical language automath
