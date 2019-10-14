@@ -61,15 +61,20 @@
 
     exp := var | (var) => exp | exp(exp)
 
-*** [todo] concrete syntax in meta language
+*** [note] concrete syntax in meta language
 
-    currently we are use concrete syntax of the target language
-    in meta language.
+    it is convenient to use the concrete syntax
+    of the target language in meta language.
 
-    this is convenient but can be very ambiguous.
+    but it can be ambiguous,
+    to disambiguate some usages of concrete syntax,
+    I use <c> </c> to mark the concrete syntax,
+    where "c" denotes "concrete"
 
-    - we might use [] to denote parse
-    - or use abstract syntax
+*** [note] equational theory
+
+    equivalent relation is defined by convention relation
+    convention relation is studied by reduction relation
 
 *** conversion relation
 
@@ -82,7 +87,7 @@
       -------
       (x) => M == (x) => N
     - beta
-      { (x) => M } (N) == subst(M, x, N)
+      {(x) => M}(N) == subst(M, x, N)
     - eta
       (x) => M(x) == M
       if x not in free_variables(M)
@@ -102,9 +107,9 @@
     giving beta and eta direction
     and viewing them as reduction relation
 
-    - beta_step({ (x) => M } (N)) ==> subst(M, x, N)
+    - beta_step(<c> {(x) => M}(N) </c>) ==> subst(M, x, N)
 
-    - eta_step((x) => M(x)) ==> M
+    - eta_step(<c> (x) => M(x) </c>) ==> M
       if x not in free_variables(M)
 
     we can also define reduction relations:
@@ -159,14 +164,16 @@
     inconsistent(set![I == S])
     consistent(set![I == Omega])
 
+    - Omega is infinite loop
+
 *** simple types
 
     type := atom | (type) -> type
 
     the set of atom
-    can only have one element,
-    can have finitely many elements,
-    can have infinitely many elements,
+    might only have one element,
+    might have finitely many elements,
+    might have infinitely many elements,
     but it can not be empty.
 
     we assume that types are freely generated,
@@ -175,6 +182,9 @@
 
     we can view atom as variable and define:
     type_subst(A: type_t, a: atom_t, B: type_t)
+
+    - we also need to view atom as logic variable
+      when implementing type inference
 
     since we do not have abstraction over types
     (in which bound variables are introduced)
@@ -255,7 +265,7 @@
 
     a example with non ctx_empty at beginning:
 
-    y: A |- { (x) => x } (y) : A
+    y: A |- {(x) => x}(y) : A
     ----- (arrow elimination)
     { y: A |- (x) => x : (A) -> A
       ------ (arrow elimination)
@@ -274,23 +284,29 @@
     synth(ctx: ctx_t, t: type_t): set_t(exp_t)
     check(ctx: ctx_t, exp: exp_t, t: type_t): bool_t
 
-    for example
-    check(ctx_empty, K, (A) -> (B) -> A) == true
-    check(ctx_empty, K(x), (A) -> (B) -> A) == true
+    for example:
+    check(ctx_empty, K, <c> (A) -> (B) -> A </c>) == true
+    check(ctx_empty,
+      <c> K(x) </c>,
+      <c> (A) -> (B) -> A </c>,
+    ) == true
 
     we can define the following predicates on type:
 
     type_depth(type_t): nat_t
     type_depth(atom) = 1
-    type_depth((A) -> B) = max(type_depth(A), type_depth(B)) + 1
+    type_depth(<c> (A) -> B </c>) =
+      max(type_depth(A), type_depth(B)) + 1
 
     type_rank(type_t): nat_t
     type_rank(atom) = 0
-    type_rank((A) -> B) = max(type_rank(A) + 1, type_rank(B))
+    type_rank(<c> (A) -> B </c>) =
+      max(type_rank(A) + 1, type_rank(B))
 
     type_order(type_t): nat_t
     type_order(atom) = 1
-    type_order((A) -> B) = max(type_order(A) + 1, type_order(B))
+    type_order(<c> (A) ->  B </c>) =
+      max(type_order(A) + 1, type_order(B))
     // type_order(x) = type_rank(x) + 1
 
     the definitions can be extended to context,
@@ -385,7 +401,7 @@
 
     for example:
 
-    { y: (B) -> A } (x: B) : A
+    {y: (B) -> A}(x: B) : A
     (x: A) => y: (B) => A : (A) => (B) => A
     (x: A) => x: A : (A) => A
 
