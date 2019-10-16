@@ -1,0 +1,12 @@
+#+title: church turing thesis
+
+* [note] why lambda
+
+  - 为什么 lambda 只是表达 substitution 确能用来编码所有计算?
+    - "表达 substitution" 也可被视为是 "building up environment and context"
+
+  - 带有副作用的形式就更适合表达所有计算吗?
+
+  - 什么是计算? 图零 模仿数学计算者 所设计的机器?
+
+  - 有方向的变化

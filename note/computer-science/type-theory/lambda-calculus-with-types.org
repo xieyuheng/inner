@@ -488,21 +488,23 @@
     neu := var | neu(norm)
     norm := neu | (x) => norm
 
-*** [todo] normal inhabitants
+*** normal inhabitants
 
-    a implementation of the synth function
+    an implementation of the synth function
     which return long-normal-form
 
-    todo
+    TODO
+
     two generator is given
     one for long-normal-form
     one for normal-form
     but I can not understand the difference between the two
     because they look like the same
 
-*** [todo] representing data types
+*** representing data types
 
-    todo
+    TODO
+
     we need implementation to play with this
 
 * part 2. recursive types
