@@ -1,12 +1,33 @@
 #+title: church turing thesis
 
-* [note] why lambda
+* intuition of computation
 
-  - 为什么 lambda 只是表达 substitution 确能用来编码所有计算?
-    - "表达 substitution" 也可被视为是 "building up environment and context"
+  - what is computation ?
 
-  - 带有副作用的形式就更适合表达所有计算吗?
+  - paper-and-pencil computation performed by human
 
-  - 什么是计算? 图零 模仿数学计算者 所设计的机器?
+  - directed change
 
-  - 有方向的变化
+* formalization of computation
+
+  - limit the scope to function on the natural numbers
+
+* recursive function
+
+*** (1933) (kurt gödel, jacques herbrand) general recursive function
+
+*** (1963) (mccarthy) mccarthy formalism
+
+    - use IF-THEN-ELSE instead of primitive recursion and the mu-operator
+
+* lambda calculus
+
+*** (1936) (alonzo church) lambda calculus
+
+    - lambda expression
+      can express "substitution"
+      which can also be viewed as "building up environment and context"
+
+* machine
+
+*** (1936) (alan turing) turing machine
