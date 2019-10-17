@@ -27,6 +27,9 @@
 
 ### Engineering
 
+- Anything complex in the world can be improved.
+  - Donald Knuth
+
 - Remember, an engineer doesn't want just a religion about how to solve a problem.
   - Gerry Sussman
   - "We Really Don't Know How to Compute!"
