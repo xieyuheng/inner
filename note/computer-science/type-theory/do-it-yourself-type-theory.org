@@ -1,0 +1,3 @@
+#+title: do it yourself type theory
+
+* ><
