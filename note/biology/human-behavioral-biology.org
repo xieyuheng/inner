@@ -1,0 +1,14 @@
+#+title: Human Behavioral Biology
+
+* [note]
+
+  - https://www.youtube.com/playlist?list=PL848F2368C90DDC3D
+
+* about categorical thinking
+
+  When you think in categories, you underestimate how different two facts are when they fall in the same category.
+  When you think in categories, you overestimate how different two facts are when there happens to be a boundary in between them.
+  And when you pay too much attention to categorical boundaries, you don't see big pictures.
+  Our goal in this class is to study behavior without falling into thinking in categories.
+
+  We resist the pull to think categorically.

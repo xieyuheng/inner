@@ -1,4 +1,4 @@
-#+TITLE:  神經學記 / learning neuroscience
+#+title: 神經學記 // Learning Neuroscience
 
 * stomatogastric nervous system
 

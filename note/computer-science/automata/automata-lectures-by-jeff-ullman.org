@@ -1,3 +1,5 @@
 #+title: automata lectures by jeff Ullman
 
-* ><
+* [note]
+
+  - https://www.youtube.com/playlist?list=PLEAYkSg4uSQ33jY4raAXvUT7Bm_S_EGu0
