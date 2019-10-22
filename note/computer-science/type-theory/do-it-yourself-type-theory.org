@@ -1,3 +1,11 @@
 #+title: do it yourself type theory
-sole and trv
+
+* [note]
+
+  - by Roland Backhouse, Paul Chisholm, Erik Saaman and Grant Malcolm, 1988
+
 * ><
+
+
+<< do it yourself type theory >>
+  - by Roland Backhouse, Paul Chisholm, Erik Saaman and Grant Malcolm, 1988

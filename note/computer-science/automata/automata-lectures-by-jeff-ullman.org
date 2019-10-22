@@ -1,4 +1,4 @@
-#+title: automata lectures by jeff Ullman
+#+title: automata lectures by jeff ullman
 
 * [note]
 
