@@ -25,10 +25,10 @@ A type
 
 { x : A --- f(x) : B }
 ------------------------ // lambda-introduction
-[x] f(x) : A -> B
+[x] f(x) : (A) -> B
 
 a : A
-f : A -> B
+f : (A) -> B
 -------------- // arrow-elimination
 f(x) : B
 
@@ -75,27 +75,26 @@ structure considerably reduces the burden of understanding. The aim of this sect
 to convey that structure to you.
 
 The rules defining individual type constructors can be divided into five sets.
-1. A formation rule.
-2. The introduction rules.
-3. An elimination rule.
-4. The computation rules.
-5. The congruence rules.
+- A formation rule.
+- The introduction rules.
+- An elimination rule.
+- The computation rules.
+- The congruence rules.
 
 The main contribution that we make here is to describe a scheme for inferring the elimination
 rule and computation rules for a newly introduced type constructor. In other words, we show that
 it suffices to provide the type formation rule and the introduction rules for a new type constructor;
 together these provide sufficient information from which the remaining details can be deduced.
 
-We have divided the discussion into three parts:
-- free types
-  "free" of additional equalities
-- congruence types
-  - quotient type
-- types with information loss
+We have divided the discussion into three parts
+- Free types -- "free" of additional equalities.
+- Congruence types.
+  - Quotient type.
+- Types with information loss,
   in which some information about proof objects is not recorded
   in the process of constructing the type or its elements.
-  - equality type
-  - subtype
+  - Equality type.
+  - Subtype.
 
 - [Xie]
   The classification of types is all about equational theory.
