@@ -64,3 +64,50 @@
   are defined by formation, introduction, elimination and computation rules. Once recognised, this
   structure considerably reduces the burden of understanding. The aim of this section is, therefore,
   to convey that structure to you.
+
+  The rules defining individual type constructors can be divided into five sets.
+
+  1. A formation rule.
+  2. The introduction rules.
+  3. An elimination rule.
+  4. The computation rules.
+  5. The congruence rules.
+
+  The main contribution that we make here is to describe a scheme for inferring the elimination
+  rule and computation rules for a newly introduced type constructor. In other words, we show that
+  it suffices to provide the type formation rule and the introduction rules for a new type constructor;
+  together these provide sufficient information from which the remaining details can be deduced.
+
+  We have divided the discussion into three parts --
+
+  - free types
+    "free" of additional equalities
+
+  - congruence types
+    - quotient type
+
+  - types with information loss
+    in which some information about proof objects is not recorded
+    in the process of constructing the type or its elements.
+    - equality type
+    - subtype
+
+  - x -
+    the classification of types is all about equational theory.
+
+* 3.1 Free Type Structures
+
+  In a "free" type two canonical objects are equal
+  if they have the same constructor and they have equal components.
+
+* 3.1.1 Lists
+
+  TODO
+
+* 3.2 More on Equality and Type Judgements
+
+* 3.3 Congruence Types
+
+* 3.4 Computational Redundancy and Types with Information Loss
+
+* 4 Algorithm Design in Type Theory
