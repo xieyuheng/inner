@@ -4,8 +4,46 @@
 
   - by Roland Backhouse, Paul Chisholm, Erik Saaman and Grant Malcolm, 1988
 
-* ><
+* 2.2 An Example Derivation
 
+  A type
+  ------------------
+  { x : A -- x : A }
 
-<< do it yourself type theory >>
-  - by Roland Backhouse, Paul Chisholm, Erik Saaman and Grant Malcolm, 1988
+  { x : A -- f(x) : B }
+  ------------------------
+  (x) => f(x) : A -> B
+
+  a : A
+  f : A -> B
+  --------------
+  f(x) : B
+
+  a : A
+  ----------------
+  inl(a) : A + B
+
+  b : B
+  ----------------
+  inr(b) : A + B
+
+  example proof:
+
+  (f) => f(inr((x) => f(inl(x)))) : ((A + ((A) -> B)) -> B) -> B
+
+  example steps:
+
+  #+begin_src js
+  { f : (A + ((A) -> B)) -> B
+    ----------
+    { x : A
+      -----------
+      inl(x) : A + ((A) -> B)
+      f(inl(x)) : B
+    }
+    (x) => f(inl(x)) : (A) -> B
+    inr((x) => f(inl(x))) : A + ((A) -> B)
+    f(inr((x) => f(inl(x)))) : B
+  }
+  (f) => f(inr((x) => f(inl(x)))) : ((A + ((A) -> B)) -> B) -> B
+  #+end_src
