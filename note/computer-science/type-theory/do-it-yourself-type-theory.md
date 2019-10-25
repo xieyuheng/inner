@@ -1,7 +1,7 @@
 # Do-it-yourself Type Theory
 
 ------
-- Author: Roland Backhouse, Paul Chisholm, Erik Saaman and Grant Malcolm
+- Authors: Roland Backhouse, Paul Chisholm, Erik Saaman and Grant Malcolm
 - Date: 1988
 ------
 
@@ -20,31 +20,31 @@ P == Q as type
 
 ``` js
 A type
------------------- assumption
+------------------ // assumption
 { x : A --- x : A }
 
 { x : A --- f(x) : B }
------------------------- lambda-introduction
-(x) => f(x) : A -> B
+------------------------ // lambda-introduction
+[x] f(x) : A -> B
 
 a : A
 f : A -> B
--------------- arrow-elimination
+-------------- // arrow-elimination
 f(x) : B
 
 a : A
----------------- inl-introduction
+---------------- // inl-introduction
 inl(a) : A + B
 
 b : B
----------------- inr-introduction
+---------------- // inr-introduction
 inr(b) : A + B
 ```
 
 example proof:
 
 ``` js
-(f) => f(inr((x) => f(inl(x)))) : ((A + ((A) -> B)) -> B) -> B
+[f] f(inr([x] f(inl(x)))) : ((A + ((A) -> B)) -> B) -> B
 ```
 
 example steps:
@@ -57,11 +57,11 @@ example steps:
     inl(x) : A + ((A) -> B)
     f(inl(x)) : B
   }
-  (x) => f(inl(x)) : (A) -> B
-  inr((x) => f(inl(x))) : A + ((A) -> B)
-  f(inr((x) => f(inl(x)))) : B
+  [x] f(inl(x)) : (A) -> B
+  inr([x] f(inl(x))) : A + ((A) -> B)
+  f(inr([x] f(inl(x)))) : B
 }
-(f) => f(inr((x) => f(inl(x)))) : ((A + ((A) -> B)) -> B) -> B
+[f] f(inr([x] f(inl(x)))) : ((A + ((A) -> B)) -> B) -> B
 ```
 
 # 3 The Structure of the Rules
@@ -111,17 +111,17 @@ if they have the same constructor and they have equal components.
 
 ``` js
 A type
----------------- list-formation
+---------------- // list-formation
 list_t(A) type
 
 A type
----------------- nil-introduction
+---------------- // nil-introduction
 nil : list_t(A)
 
 A type
 a : A
 l : list_t(A)
----------------------- cons-introduction
+---------------------- // cons-introduction
 cons(a, l) : list_t(A)
 ```
 
@@ -140,8 +140,41 @@ y : C(nil)
 { a : A, l : list_t(A), h : C(l)
   ---------------------
   z(a, l, h) : C(cons(a, l)) }
---------------------------- list-elimination
+--------------------------- // list-elimination
 list_elim(x, y, z) : C(x)
+```
+
+``` js
+list_append(l, m) = list_elim(l, m, [x, _, h] cons(x, h))
+
+list_append : (list_t(A), list_t(A)) -> list_t(A)
+list_append = [l, m] list_elim(l, m, [x, _, h] cons(x, h))
+
+proof {
+  { l : list_t(A)
+    m : list_t(A)
+    ---------------
+    { x : A
+      _ : list_t(A)
+      h : list_t(A)
+      ---------------
+      cons(x, h) : list_t(A)
+    }
+    [x, _, h] cons(x, h) : list_t(A)
+    list_elim(l, m, [x, _, h] cons(x, h)) : list_t(A)
+  }
+  ------------------------------------------
+  list_append : (list_t(A), list_t(A)) -> list_t(A)
+}
+
+// jojo
+
+list_append : { (- A list_t) (- A list_t) A list_t }
+list_append = {
+  [l, m]
+  l m { [x, _, h] x h cons }
+  list_elim
+}
 ```
 
 *Computation Rules*
