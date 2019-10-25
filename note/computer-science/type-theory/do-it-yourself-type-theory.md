@@ -12,13 +12,13 @@ Let us demystify Martin-Löf's theory.
 # 2 Propositions As Types
 
 - **[Xie]** Some preliminary remarks about the notation.
-  - Abstraction -- `[x] f(x)`
-  - Application -- `f(x)`
-  - Product type -- `A * B`
-  - Sum type -- `A + B`
-  - Arrow type -- `(A) -> B`
-  - Dependent function type -- `forall (P, [x] Q(x))`
-  - Dependent product type  -- `exists (P, [x] Q(x))`
+  | Abstraction             | `[x] f(x)`             |
+  | Application             | `f(x)`                 |
+  | Product type            | `A * B`                |
+  | Sum type                | `A + B`                |
+  | Arrow type              | `(A) -> B`             |
+  | Dependent function type | `forall (P, [x] Q(x))` |
+  | Dependent product type  | `exists (P, [x] Q(x))` |
 
 ## 2.1 The Membership Judgement Form
 
