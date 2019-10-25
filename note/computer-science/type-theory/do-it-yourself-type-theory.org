@@ -14,24 +14,24 @@
 * 2.2 An Example Derivation
 
   A type
-  ------------------
-  { x : A -- x : A }
+  ------------------ assumption
+  { x : A --- x : A }
 
-  { x : A -- f(x) : B }
-  ------------------------
+  { x : A --- f(x) : B }
+  ------------------------ lambda-introduction
   (x) => f(x) : A -> B
 
   a : A
   f : A -> B
-  --------------
+  -------------- arrow-elimination
   f(x) : B
 
   a : A
-  ----------------
+  ---------------- inl-introduction
   inl(a) : A + B
 
   b : B
-  ----------------
+  ---------------- inr-introduction
   inr(b) : A + B
 
   example proof:
@@ -102,7 +102,42 @@
 
 * 3.1.1 Lists
 
-  TODO
+  *Formation and Introduction Rules*
+
+  A type
+  ---------------- list-formation
+  list_t(A) type
+
+  A type
+  ---------------- nil-introduction
+  nil : list_t(A)
+
+  A type
+  a : A
+  l : list_t(A)
+  ---------------------- cons-introduction
+  cons(a, l) : list_t(A)
+
+  It is normal to omit the premises of the formation rule from the premises of the introduction
+  rules. Thus the premise "A type" would normally be omitted from the nil- and cons-introduction
+  rules above. We shall follow this practice in the remainder of this discussion.
+
+  *Elimination Rule*
+
+  #+begin_src js
+  { w : list_t(A)
+    ---------
+    C(w) type }
+  x : list_t(A)
+  y : C(nil)
+  { a : A, l : list_t(A), h : C(l)
+    ---------------------
+    z(a, l, h) : C(cons(a, l)) }
+  --------------------------- list-elimination
+  list_elim(x, y, z) : C(x)
+  #+end_src
+
+  *Computation Rules*
 
 * 3.2 More on Equality and Type Judgements
 
