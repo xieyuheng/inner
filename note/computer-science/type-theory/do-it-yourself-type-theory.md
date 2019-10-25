@@ -12,8 +12,8 @@
 ``` js
 P type
 p : P
-p == q in P
-P == Q as type
+p == q : P
+P == Q
 ```
 
 ## 2.2 An Example Derivation
@@ -97,8 +97,8 @@ We have divided the discussion into three parts:
   - equality type
   - subtype
 
-- x -
-  the classification of types is all about equational theory.
+- [Xie]
+  The classification of types is all about equational theory.
 
 ## 3.1 Free Type Structures
 
@@ -126,10 +126,24 @@ cons(a, l) : list_t(A)
 ```
 
 It is normal to omit the premises of the formation rule from the premises of the introduction
-rules. Thus the premise "A type" would normally be omitted from the nil- and cons-introduction
+rules. Thus the premise `A type` would normally be omitted from the nil- and cons-introduction
 rules above. We shall follow this practice in the remainder of this discussion.
 
 *Elimination Rule*
+
+The arguments of the eliminator consist of a target to eliminate,
+and one function for each case of the introduction rule of the type.
+
+There are three kinds of premises in elimination rule,
+- The type premises.
+- A major premise, that correspond to the target.
+- The minor premises, that correspond to each induction case.
+
+The premises of an introduction rule become assumptions in the corresponding premise of the elimination rule.
+
+For each recursive introduction variable (such as the `l` in `cons(a, l)`),
+we need to add an induction hypothesis (such as `h : C(l)`)
+to the assumptions of the corresponding minor premise.
 
 ``` js
 { w : list_t(A)
@@ -178,6 +192,57 @@ list_append = {
 ```
 
 *Computation Rules*
+
+To express the computation rules we need to make use of
+the third judgement form in the theory -- that is, the form
+
+``` js
+p == q : P
+```
+
+- [Xie]
+  When analysing or implementing the computation rules,
+  sometimes we need to add direction to the equality judgement,
+  and to view it as reduction.
+
+The `nil-computation` rule is like the `list-elimination` rule.
+Since `x` is replaced by `nil` in `list_elim(nil, y, z)`,
+we replace `x : list_t(A)` in `list-elimination`
+by the list of premises in `nil-introduction`.
+
+The list of premises in `nil-introduction` is empty,
+thus we simply delete `x : list_t(A)` from the `list-elimination` rule.
+
+``` js
+{ w : list_t(A) --- C(w) type }
+y : C(nil)
+{ a : A, l : list_t(A), h : C(l)
+  ---------------------
+  z(a, l, h) : C(cons(a, l)) }
+---------------------------------- // nil-computation
+list_elim(nil, y, z) == y : C(nil)
+```
+
+The `cons-computation` rule is like the `list-elimination` rule.
+Since `x` is replaced by `cons(a, l)` in `list_elim(cons(a, l), y, z)`,
+we replace `x : list_t(A)` in `list-elimination`
+by the list of premises in `cons-introduction`.
+
+The list of premises in `cons-introduction` is `{ a : A, l : list_t(A) }`.
+
+``` js
+{ w : list_t(A) --- C(w) type }
+a : A
+l : list_t(A)
+y : C(nil)
+{ a : A, l : list_t(A), h : C(l)
+  ---------------------
+  z(a, l, h) : C(cons(a, l)) }
+----------------------------------- // cons-computation
+list_elim(cons(a, l), y, z)
+== z(a, l, list_elim(l, y, z))
+: C(cons(a, l))
+```
 
 ## 3.2 More on Equality and Type Judgements
 
