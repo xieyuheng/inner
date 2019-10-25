@@ -230,6 +230,8 @@ by the list of premises in `cons-introduction`.
 
 The list of premises in `cons-introduction` is `{ a : A, l : list_t(A) }`.
 
+We can just follow the type to get the right right hand side of the equality.
+
 ``` js
 { w : list_t(A) --- C(w) type }
 a : A
@@ -243,6 +245,14 @@ list_elim(cons(a, l), y, z)
 == z(a, l, list_elim(l, y, z))
 : C(cons(a, l))
 ```
+
+### 3.1.2 Natural Numbers
+
+### 3.1.3 Disjoint Sums
+
+- [Xie] We can just say "Sum" instead of "Disjoint Sum", and say "Sum" is "Disjoint Union".
+
+### 3.1.4 The Empty Type
 
 ## 3.2 More on Equality and Type Judgements
 
