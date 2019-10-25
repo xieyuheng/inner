@@ -86,7 +86,7 @@ rule and computation rules for a newly introduced type constructor. In other wor
 it suffices to provide the type formation rule and the introduction rules for a new type constructor;
 together these provide sufficient information from which the remaining details can be deduced.
 
-We have divided the discussion into three parts
+We have divided the discussion into three parts.
 - Free types -- "free" of additional equalities.
 - Congruence types.
   - Quotient type.
@@ -96,7 +96,7 @@ We have divided the discussion into three parts
   - Equality type.
   - Subtype.
 
-- [Xie]
+- **[Xie]**
   The classification of types is all about equational theory.
 
 ## 3.1 Free Type Structures
@@ -199,7 +199,7 @@ the third judgement form in the theory -- that is, the form
 p == q : P
 ```
 
-- [Xie]
+- **[Xie]**
   When analysing or implementing the computation rules,
   sometimes we need to add direction to the equality judgement,
   and to view it as reduction.
@@ -249,7 +249,7 @@ list_elim(cons(a, l), y, z)
 
 ### 3.1.3 Disjoint Sums
 
-- [Xie] We can just say "Sum" instead of "Disjoint Sum", and say "Sum" is "Disjoint Union".
+- **[Xie]** We can just say "Sum" instead of "Disjoint Sum", and say "Sum" is "Disjoint Union".
 
 ### 3.1.4 The Empty Type
 
