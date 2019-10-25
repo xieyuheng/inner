@@ -1,8 +1,15 @@
-#+title: do it yourself type theory
+#+title: Do-it-yourself Type Theory
 
-* [note]
+- by Roland Backhouse, Paul Chisholm, Erik Saaman and Grant Malcolm, 1988
 
-  - by Roland Backhouse, Paul Chisholm, Erik Saaman and Grant Malcolm, 1988
+* 2 Propositions As Types
+
+* 2.1 The Membership Judgement Form
+
+  P type
+  p : P
+  p == q in P
+  P == Q as type
 
 * 2.2 An Example Derivation
 
@@ -47,3 +54,13 @@
   }
   (f) => f(inr((x) => f(inl(x)))) : ((A + ((A) -> B)) -> B) -> B
   #+end_src
+
+* 3 The Structure of the Rules
+
+  On first encounter, however, the universal reaction among computing scientists appears to
+  be that the theory is formidable. Indeed, several have specifically referred to the overwhelming
+  number of rules in the theory. On closer examination, however, the theory betrays a rich structure
+  -- a structure that is much deeper than is suggested by the superficial observation that types
+  are defined by formation, introduction, elimination and computation rules. Once recognised, this
+  structure considerably reduces the burden of understanding. The aim of this section is, therefore,
+  to convey that structure to you.
