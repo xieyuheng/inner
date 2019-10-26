@@ -429,7 +429,8 @@ a == b : A
 same : eqv_t(A, a, b)
 ```
 
-- **[Xie]** The `eqv-elimination` rule should be replaced by `replace`:
+- **[Xie]** The `eqv-elimination` rule in the paper should be replaced by `replace`,
+
   ``` js
   { w : A --- C(w) type }
   eqv : eqv_t(A, x, y)
