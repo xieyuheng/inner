@@ -344,6 +344,16 @@ sum_elim(inr(b), e, f) == f(b) : C(inr(b))
 
 ### 3.1.4 The Empty Type
 
+``` js
+----------------- // absurd-formation
+absurd_t : type
+
+{ w : absurd_t --- C(w) type }
+r : absurd_t
+--------------------------- // absurd-elimination
+absurd_elim(r) : C(r)
+```
+
 ## 3.2 More on Equality and Type Judgements
 
 ### 3.2.1 Families of Types
