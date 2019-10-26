@@ -22,8 +22,7 @@ thus reduce the rules to remember when study the theory.
   - How define new from existing? (How to do abstraction?)
 
   Martin-Löf had not answer the third question in his type theory.
-  He did not specify a way to define new type from existing types
-  (to do abstraction over type).
+  He did not specify a way to define new type from existing types (abstraction over types).
 
   When implementing type theory,
   one starts from Martin-Löf's type theory,
