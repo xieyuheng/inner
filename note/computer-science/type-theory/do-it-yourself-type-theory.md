@@ -13,6 +13,7 @@ Let us demystify Martin-Löf's theory.
 
 - **[Xie]** Some preliminary remarks about the notation.
 
+| Expression type         | Example                |
 |-------------------------|------------------------|
 | Abstraction             | `[x] f(x)`             |
 | Application             | `f(x)`                 |
@@ -21,7 +22,6 @@ Let us demystify Martin-Löf's theory.
 | Arrow type              | `(A) -> B`             |
 | Dependent function type | `forall (P, [x] Q(x))` |
 | Dependent product type  | `exists (P, [x] Q(x))` |
-|-------------------------|------------------------|
 
 ## 2.1 The Membership Judgement Form
 
