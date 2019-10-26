@@ -173,6 +173,18 @@ rules above. We shall follow this practice in the remainder of this discussion.
 
 *Elimination Rule*
 
+The return type of the eliminator for a type constructor `A`
+involves a family of types indexed by objects of `A`.
+
+``` js
+w : A
+-----------
+C(w) type
+```
+
+Given a type `A`, suppose we want prove a theorem about elements of `A`,
+the elimination rule of `A` help us achieve this.
+
 The arguments of the eliminator consist of a target to eliminate,
 and one function for each case of the introduction rule of the type.
 
@@ -383,6 +395,7 @@ is different from that of `list_t` or `nat_t`,
 for the premise `{ x : A --- f(x) : B }` has a hypothesis (`x : A`).
 
 - **[Xie]** How to generalize this?
+  Would it be easier to generalize this in jojo?
 
 ## 3.2 More on Equality and Type Judgements
 
