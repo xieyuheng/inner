@@ -7,7 +7,35 @@
 
 # 1 Introduction
 
-Let us demystify Martin-Löf's theory.
+Let us demystify Martin-Löf's type theory.
+
+We achieve this by observing the pattern of inference rules,
+and deriving *elimination rule* and *computation rule*
+from *formation rule* and *introduction rule*,
+thus reduce the rules to remember when study the theory.
+
+- **[Xie]**
+  When designing or studying a formal language,
+  one has to answer three questions,
+  - What are the primitives?
+  - How to do composition?
+  - How define new from existing? (How to do abstraction?)
+
+  Martin-Löf had not answer the third question in his type theory.
+  He did not specify a way to define new type from existing types
+  (to do abstraction over type).
+
+  When implementing type theory,
+  one starts from Martin-Löf's type theory,
+  and extends it by adding new types.
+
+  To add a new type into the theory,
+  one has to specify its inference rules,
+  and use the inference rules to implement the type checker.
+
+  We can abstract over this process and answer the third question for Martin-Löf's type theory.
+
+  This paper provide some good answers.
 
 # 2 Propositions As Types
 
@@ -278,6 +306,8 @@ succ(n) : nat_t
 ### 3.1.3 Disjoint Sums
 
 - **[Xie]** We can just say "Sum" instead of "Disjoint Sum", and say "Sum" is "Disjoint Union".
+
+TODO
 
 ### 3.1.4 The Empty Type
 
