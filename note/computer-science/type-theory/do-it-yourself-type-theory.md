@@ -174,7 +174,7 @@ rules above. We shall follow this practice in the remainder of this discussion.
 *Elimination Rule*
 
 The return type of the eliminator for a type constructor `A`
-involves a family of types indexed by objects of `A`.
+involves a family of types -- `C`, indexed by objects of `A`.
 
 ``` js
 w : A
