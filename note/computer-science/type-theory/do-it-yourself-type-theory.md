@@ -98,7 +98,7 @@ Example proof:
 [f] f(inr([x] f(inl(x)))) : ((A + ((A) -> B)) -> B) -> B
 ```
 
-Example steps:
+Example deduction steps:
 
 ``` js
 { f : (A + ((A) -> B)) -> B
@@ -114,6 +114,26 @@ Example steps:
 }
 [f] f(inr([x] f(inl(x)))) : ((A + ((A) -> B)) -> B) -> B
 ```
+
+If we replace `B` by `absurd_t`,
+we get a proof of `not not (A + not A)`,
+because `not P` is defined to be `(P) -> absurd_t` in constructive mathematics.
+
+This means although the law of the excluded middle
+is not valid in constructive mathematics,
+but it can never be refuted in constructive mathematics.
+
+Other examples of propositions that are classically valid but cannot be generally established in constructive mathematics are the following:
+
+``` js
+((A) -> B) + ((B) -> A)
+((A) -> (B + C)) -> (((A) -> B) + ((A) -> C))
+((not B) -> not A) -> (A) -> B
+```
+
+Indeed it is a theorem attributed by Kleene to Glivenko that
+if `P` is any tautology of the classical propositional calculus
+then the proposition `not not P` is always constructively valid.
 
 # 3 The Structure of the Rules
 
@@ -427,16 +447,17 @@ a == b : A
 same : eqv_t(A, a, b)
 ```
 
-- **[Xie]** The `eqv-elimination` rule in the paper should be replaced by `replace`,
+- **[Xie]** The `replace` rule,
 
   ``` js
   { w : A |- C(w) type }
   eqv : eqv_t(A, x, y)
   base : C(x)
-  -------------------------- // eqv-elimination
+  --------------------------
   replace(eqv, base) : C(y)
   ```
-  This rule clearly does not follow the pattern of "Free Type Structures", `C` does not apply on the eliminator `replace` 's first argument `eqv`, but apply on values `x` and `y` in `eqv`'s type.
+
+  This rule clearly does not follow the pattern of elimination rule of "Free Type Structures", `C` does not apply on the eliminator `replace` 's first argument `eqv`, but apply on values `x` and `y` in `eqv`'s type.
 
 ### 3.2.4 Closure and Individuality Properties
 
@@ -516,6 +537,28 @@ Examples are
 - `A -> absurd_t` only has element `[x] x`.
 
 ### 3.4.2 Information Loss: The Subset Type
+
+``` js
+A type
+{ x : A |- B(x) type }
+------------------------- // subset-formation
+subset_t(A, B)
+
+a : A
+b : B(a)
+------------------------- // subset-introduction
+a : subset_t(A, B)
+
+{ w : subset_t(A, B) |- C(w) }
+a : subset_t(A, B)
+{ x : A, y : B(x) |- c(x) : C(x) }
+----------------------------------- // subset-elimination
+c(a) : C(a)
+```
+
+Since `subset_t` has no canonical constants,
+it is unnecessary to have an elimination constant.
+Likewise, there are no computation rules.
 
 ### 3.4.3 Information Loss: The Polymorphic Function Type
 
