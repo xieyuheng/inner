@@ -394,8 +394,9 @@ The introduction rule of arrow type (`lambda-introduction`)
 is different from that of `list_t` or `nat_t`,
 for the premise `{ x : A --- f(x) : B }` has a hypothesis (`x : A`).
 
-- **[Xie]** How to generalize this?
-  Would it be easier to generalize this in jojo?
+- **[Xie]**
+  *F-algebra* and *F-coalgebra* generalize this.
+  Would it be easier to describe them in jojo?
 
 ## 3.2 More on Equality and Type Judgements
 
