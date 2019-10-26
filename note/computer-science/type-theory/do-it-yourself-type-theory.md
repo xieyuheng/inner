@@ -517,8 +517,7 @@ Examples are
 
 ### 3.4.2 Information Loss: The Subset Type
 
-
-
+### 3.4.3 Information Loss: The Polymorphic Function Type
 
 # 4 Algorithm Design in Type Theory
 
@@ -541,5 +540,5 @@ Examples are
 ## 6.2 CFGs and Mutually Recursive Types
 
 ## 6.3 An Application: Games Playing
-# & Conclusion
-The world of programmin
+
+# 7 Conclusion
