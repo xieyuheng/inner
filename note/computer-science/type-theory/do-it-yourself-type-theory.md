@@ -73,7 +73,7 @@ A type
 a : A
 f : (A) -> B
 -------------- // arrow-elimination
-f(x) : B
+f(a) : B
 
 a : A
 ---------------- // inl-introduction
@@ -84,13 +84,13 @@ b : B
 inr(b) : A + B
 ```
 
-example proof:
+Example proof:
 
 ``` js
 [f] f(inr([x] f(inl(x)))) : ((A + ((A) -> B)) -> B) -> B
 ```
 
-example steps:
+Example steps:
 
 ``` js
 { f : (A + ((A) -> B)) -> B
@@ -147,7 +147,7 @@ We have divided the discussion into three parts.
 In a "free" type two canonical objects are equal
 if they have the same constructor and they have equal components.
 
-#### 3.1.1 Lists
+### 3.1.1 Lists
 
 *Formation and Introduction Rules*
 
@@ -353,6 +353,39 @@ r : absurd_t
 --------------------------- // absurd-elimination
 absurd_elim(r) : C(r)
 ```
+
+### 3.1.5 Arrow Type
+
+``` js
+A type
+B type
+--------------- // arrow-formation
+(A) -> B type
+
+{ x : A --- f(x) : B }
+------------------------ // lambda-introduction
+[x] f(x) : (A) -> B
+
+a : A
+f : (A) -> B
+-------------- // arrow-elimination
+f(a) : B
+
+a : A
+{ x : A --- f(x) : B }
+---------------------------- // lambda-computation (beta-reduction)
+{ [x] f(x) } (a) == f(a) : B
+```
+
+We observe that we can not follow the pattern of "Free Type Structures" any more.
+The `lambda-introduction` is different from that of
+`list_t` or `nat_t`,
+for the premise `{ x : A --- f(x) : B }` is hypothetical.
+
+- **[Xie]**
+  The "Free Type Structures" is about induction type,
+  while the arrow type involves *co-inductive type*
+  -- dual of *inductive type*.
 
 ## 3.2 More on Equality and Type Judgements
 
