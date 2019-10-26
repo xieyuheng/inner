@@ -306,7 +306,41 @@ succ(n) : nat_t
 
 - **[Xie]** We can just say "Sum" instead of "Disjoint Sum", and say "Sum" is "Disjoint Union".
 
-TODO
+``` js
+A type
+B type
+-------------- // sum-formation
+A + B type
+
+a : A
+----------------- // inl-introduction
+inl(a) : A + B
+
+b : B
+----------------- // inr-introduction
+inl(b) : A + B
+
+{ w : A + B --- C(w) type }
+d : A + B
+{ a : A --- e(a) : C(inl(a)) }
+{ b : B --- f(b) : C(inr(b)) }
+------------------------------- // sum-elimination
+sum_elim(d, e, f) : C(d)
+
+{ w : A + B --- C(w) type }
+a : A
+{ a : A --- e(a) : C(inl(a)) }
+{ b : B --- f(b) : C(inr(b)) }
+--------------------------------------------- // inl-computation
+sum_elim(inl(a), e, f) == e(a) : C(inl(a))
+
+{ w : A + B --- C(w) type }
+b : B
+{ a : A --- e(a) : C(inl(a)) }
+{ b : B --- f(b) : C(inr(b)) }
+--------------------------------------------- // inr-computation
+sum_elim(inr(b), e, f) == f(b) : C(inr(b))
+```
 
 ### 3.1.4 The Empty Type
 
