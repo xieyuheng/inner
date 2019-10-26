@@ -503,4 +503,43 @@ bag_elim(t, c, d) : C(t)
 
 ### 3.4.1 Computational Redundancy
 
+We shall say that a type `A` *exhibits computational redundancy*
+if there exists `a0` in `A` such that forall `a` in `A`
+we have `a == a0 : A`.
+
+This means such types either has one element, or has no element.
+We are interested only in whether they are inhabited.
+
+Examples are
+- `eqv_t(A, x, y)` only has element `same`.
+- `absurd_t` has no element.
+- `A -> absurd_t` only has element `[x] x`.
+
+### 3.4.2 Information Loss: The Subset Type
+
+
+
+
 # 4 Algorithm Design in Type Theory
+
+## 4.1 Solution Strategy
+
+## 4.2 Invariants Versus Inductive Hypotheses
+
+## 4.3 Program Development
+
+# 5 Binary Numerals
+
+## 5.1 Binary Numerals as a Congruence Type
+
+## 5.2 Binary Numerals Via Information Loss
+
+# 6 Mutually Recursive Types
+
+## 6.1 Trees and Forests
+
+## 6.2 CFGs and Mutually Recursive Types
+
+## 6.3 An Application: Games Playing
+# & Conclusion
+The world of programmin
