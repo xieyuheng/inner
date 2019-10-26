@@ -384,7 +384,7 @@ sum_elim(inr(b), e, f) == f(b) : C(inr(b))
 
 ``` js
 ----------------- // absurd-formation
-absurd_t : type
+absurd_t type
 
 { w : absurd_t |- C(w) type }
 r : absurd_t
@@ -538,6 +538,20 @@ Examples are
 
 ### 3.4.2 Information Loss: The Subset Type
 
+Information loss from an existential type (dependent product type) to a subset type.
+
+``` js
+A type
+{ x : A |- B(x) type }
+------------------------- // exists-formation
+exists(A, B)
+
+a : A
+b : B(a)
+------------------------- // exists-introduction
+pair(a, b) : exists(A, B)
+```
+
 ``` js
 A type
 { x : A |- B(x) type }
@@ -560,7 +574,84 @@ Since `subset_t` has no canonical constants,
 it is unnecessary to have an elimination constant.
 Likewise, there are no computation rules.
 
+Instead of discarding the second component
+we might choose to discard the first component.
+This would give objects of a union type.
+
+``` js
+a : A
+b : B(a)
+------------------  // union-introduction
+b : union_t(A, B)
+```
+
+An object of `union_t(A, B)` is an object of some member `B(a)`
+of a family of types `B(x)`, indexed by `x` in `A`,
+but the information about the index has been lost.
+
 ### 3.4.3 Information Loss: The Polymorphic Function Type
+
+We know arrow type -- `(A) -> B` can be viewed as special case of
+dependent function type -- `forall (P, [x] Q(x))`,
+where `Q` does not dependent on `x`.
+
+This can also be viewed as information loss.
+
+The examples above suggest that
+we can play a syntactic game with the type constructors we have seen so far
+whereby we choose to discard individual items of information.
+
+Two forms of polymorphism arise naturally in this way.
+
+The first, and more general form, we shall refer to as the intersection type constructor.
+
+``` js
+A type
+{ x : A |- B(x) type }
+--------------------------- // intersection-formation
+intersection_t(A, B) type
+```
+
+The polymorphic function type may be viewed as a special case of dependent function type,
+whose objects are constant functions.
+
+``` js
+{ x : A |- b(x) : B(x) }
+--------------------------- // forall-introduction
+[x] b(x) : forall (A, B)
+
+{ x : A |- b : B(x) }
+--------------------------- // intersection-introduction
+b : intersection_t(A, B)
+```
+
+The `intersection-introduction` rule imposes the restriction that
+`x` may not appear free in the expression `b`.
+(It may, on the other hand,
+appear free in the type expression `B(x)`.)
+
+Thus `b` is an element of `intersection_t(A, B)`
+if it is an element of each type in the family `B(x)`
+where `x` ranges over elements of `A`.
+
+If some element a of type `A` is exhibited
+then `b` is an element of `B(a)`.
+This is expressed by the `intersection-elimination` rule.
+
+``` js
+b : intersection_t(A, B)
+a : A
+------------- // intersection-elimination
+b : B(a)
+```
+
+The polymorphic identity function is an example.
+
+``` js
+[x] x : intersection_t(univ(1), [A] A => A)
+```
+
+TODO
 
 # 4 Algorithm Design in Type Theory
 
