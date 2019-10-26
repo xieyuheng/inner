@@ -13,7 +13,7 @@ Let us demystify Martin-Löf's theory.
 
 - **[Xie]** Some preliminary remarks about the notation.
 
-  | Expression type         | Example                |
+  | Expression type         | Example expression     |
   |-------------------------|------------------------|
   | Abstraction             | `[x] f(x)`             |
   | Application             | `f(x)`                 |
@@ -262,6 +262,18 @@ list_elim(cons(a, l), y, z)
 ```
 
 ### 3.1.2 Natural Numbers
+
+``` js
+------------ // nat-formation
+nat_t type
+
+------------ // zero-introduction
+zero : nat_t
+
+n : nat_t
+------------ // succ-introduction
+succ(n) : nat_t
+```
 
 ### 3.1.3 Disjoint Sums
 
