@@ -283,6 +283,14 @@ succ(n) : nat_t
 
 ## 3.2 More on Equality and Type Judgements
 
+### 3.2.1 Families of Types
+
+### 3.2.2 The Equality Type
+
+### 3.2.3 General Rules
+
+### 3.2.4 Closure and Individuality Properties
+
 ## 3.3 Congruence Types
 
 ## 3.4 Computational Redundancy and Types with Information Loss
