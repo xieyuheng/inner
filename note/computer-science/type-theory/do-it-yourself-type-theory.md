@@ -22,7 +22,15 @@ thus reduce the rules to remember when study the theory.
   - How define new from existing? (How to do abstraction?)
 
   Martin-Löf had not answer the third question in his type theory.
-  He did not specify a way to define new type from existing types (abstraction over types).
+  He did not specify a way to define new type from existing types
+  (abstraction over types).
+
+  For normal programming language,
+  the answer of the third question
+  can be as simple as be able to define functions.
+  But for type theory to be used as logic,
+  we need to maintain consistent of the logic
+  when introducing new definitions.
 
   When implementing type theory,
   one starts from Martin-Löf's type theory,
@@ -404,7 +412,33 @@ for the premise `{ x : A --- f(x) : B }` has a hypothesis (`x : A`).
 
 ### 3.2.2 The Equality Type
 
+``` js
+A type
+a : A
+b : A
+--------------------- // eqv-formation
+eqv_t(A, a, b) type
+```
+
 ### 3.2.3 General Rules
+
+``` js
+
+a == b : A
+----------------------- // eqv-introduction
+same : eqv_t(A, a, b)
+```
+
+- **[Xie]** The `eqv-elimination` rule should be replaced by `replace`:
+  ``` js
+  { w : A --- C(w) type }
+  eqv : eqv_t(A, x, y)
+  base : C(x)
+  ---------------------------------- // eqv-elimination
+  replace(eqv, base) : C(y)
+  ```
+  This rule clearly does not follow the pattern of "Free Type Structures", `C` does not apply on the eliminator `replace` 's first argument `eqv`, but apply on values `x` and `y` in `eqv`'s type.
+
 
 ### 3.2.4 Closure and Individuality Properties
 
