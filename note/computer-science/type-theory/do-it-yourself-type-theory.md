@@ -378,9 +378,9 @@ a : A
 ```
 
 We observe that we can not follow the pattern of "Free Type Structures" any more.
-The `lambda-introduction` is different from that of
-`list_t` or `nat_t`,
-for the premise `{ x : A --- f(x) : B }` is hypothetical.
+The introduction rule of arrow type (`lambda-introduction`)
+is different from that of `list_t` or `nat_t`,
+for the premise `{ x : A --- f(x) : B }` has a hypothesis (`x : A`).
 
 - **[Xie]**
   The "Free Type Structures" is about induction type,
