@@ -382,10 +382,7 @@ The introduction rule of arrow type (`lambda-introduction`)
 is different from that of `list_t` or `nat_t`,
 for the premise `{ x : A --- f(x) : B }` has a hypothesis (`x : A`).
 
-- **[Xie]**
-  The "Free Type Structures" is about induction type,
-  while the arrow type involves *co-inductive type*
-  -- dual of *inductive type*.
+- **[Xie]** How to generalize this?
 
 ## 3.2 More on Equality and Type Judgements
 
