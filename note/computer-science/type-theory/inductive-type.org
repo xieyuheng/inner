@@ -69,8 +69,6 @@
        and not_occur_p(X, K)
        and strictly_positive_p(G)
 
-* (1994) (dybjer) inductive families
-
 * (1999) (dybjer, setzer) a finite axiomatization of inductive recursive definitions
 
 * (2000) (dybjer) a general formulation of simultaneous inductive-recursive definitions in type theory
