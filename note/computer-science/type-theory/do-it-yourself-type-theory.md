@@ -441,23 +441,44 @@ eqv_t(A, a, b) type
 ### 3.2.3 General Rules
 
 ``` js
-
 a == b : A
 ----------------------- // eqv-introduction
 same : eqv_t(A, a, b)
+
+a == b : A
+----------------------- // eqv-introduction
+refl(a) : eqv_t(A, a, b)
 ```
 
 - **[Xie]** The `replace` rule,
 
   ``` js
   { w : A |- C(w) type }
-  eqv : eqv_t(A, x, y)
+  p : eqv_t(A, x, y)
   base : C(x)
   --------------------------
-  replace(eqv, base) : C(y)
+  replace(p, base) : C(y)
   ```
 
-  This rule clearly does not follow the pattern of elimination rule of "Free Type Structures", `C` does not apply on the eliminator `replace` 's first argument `eqv`, but apply on values `x` and `y` in `eqv`'s type.
+  This rule clearly does not follow
+  the pattern of elimination rule of "Free Type Structures",
+  `C` does not apply on the eliminator `replace` 's first argument `p`,
+  but applies on values `x` and `y` in `p`'s type.
+
+- **[Xie]** Another elimination rule for `eqv_t`,
+
+  ``` js
+  { x : A, y : A, p : eqv_t(A, x, y) |- C(x, y, p) }
+  { x : A |- s(x) : C(x, x, refl(x)) }
+  ------------------------------------------- // eqv-elimination
+  eqv_ind(x, y, p, s) : C(x, y, p)
+
+  { x : A, y : A, p : eqv_t(A, x, y) |- C(x, y, p) }
+  { x : A |- s(x) : C(x, x, refl(x)) }
+  ------------------------------------------- // eqv-computation
+  eqv_ind(x, x, refl(x), s) ==
+  s(x, x, refl(x)) : C(x, x, refl(x))
+  ```
 
 ### 3.2.4 Closure and Individuality Properties
 
