@@ -19,7 +19,7 @@ And how the lecturer will use them.
   Modal logic is an example of pushing judgement level expression down to proposition level expression,
   For example, the judgement "A is necessary."
   is used as a proposition in "A is necessary is true."
-  where "_ is necessary" denotes a logical operation.
+  where "... is necessary" denotes a logical operation.
 
 - **[Xie]** The following definition of judgement is famous.
 
@@ -46,7 +46,7 @@ and that what is judged is the object of knowledge.
   | extensional | act of judging       | an act of knowing      |
   | intensional | that which is judged | an object of knowledge |
 
-  Then, what is "knowing" ? Which is a even deeper question.
+- **[Xie]** Then, what is "knowing" ? Which is a even deeper question.
   Maybe just the intuitions like "I am sure that ...",
   "I am sure that possibly ...",
   "I am sure that necessarily ...",
@@ -60,3 +60,7 @@ And, when the relation between judgement, or assertion, if you prefer,
 and knowledge is understood in this way,
 logic itself is naturally understood as the theory of knowledge,
 that is, of demonstrative knowledge.
+Thus logic studies, from an objective point of view, our pieces of knowledge
+as they are organized in demonstrative science,
+or, if you think about it from the act point of view,
+it studies our acts of judging, or knowing, and how they are interrelated.
