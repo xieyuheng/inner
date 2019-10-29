@@ -5,6 +5,7 @@
   * Martin-Löf
     * [Constructive Mathematics and Computer Programming](/person/martin-löf/constructive-mathematics-and-computer-programming)
     * [Intuitionistic Type Theory](/person/martin-löf/intuitionistic-type-theory)
+    * [On the meanings of the logical constants and the justification of logical laws](/person/martin-löf/on-the-meanings-of-the-logical-constants-and-the-justification-of-logical-laws)
   * Roland Backhouse
     * [Do-it-yourself Type Theory](/person/roland-backhouse/do-it-yourself-type-theory)
   * Peter Dybjer

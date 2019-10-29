@@ -1,4 +1,4 @@
-#+title: martin lof
+#+title: Martin-Löf
 
 * (1972) infinite terms and a system of natural deduction
 
