@@ -36,9 +36,18 @@ And the definition would simply be that,
 **when understood as an act of judging, a judgement is nothing but an act of knowing,
 and, when understood as that which is judged, it is a piece or, more solemnly, an object of knowledge**.
 
+The act of judging is the same as the act of knowing,
+and that what is judged is the object of knowledge.
+
 - **[Xie]**
 
   | context     | judgement            | definition             |
   |-------------|----------------------|------------------------|
   | extensional | act of judging       | an act of knowing      |
   | intensional | that which is judged | an object of knowledge |
+
+  Then, what is "knowing" ? Which is a even deeper question.
+  Maybe just the intuitions like "I am sure that ...",
+  "I am sure that possibly ...",
+  "I am sure that necessarily ...",
+  and so on.
