@@ -2,6 +2,8 @@
 * [Contents](/contents)
 * [Quotes](/quotes)
 * Person
+  * Errett Bishop
+    * [Bishop's Four Principles of Constructivism](/person/errett-bishop/bishop-s-four-principles-of-constructivism)
   * Martin-Löf
     * [Constructive Mathematics and Computer Programming](/person/martin-löf/constructive-mathematics-and-computer-programming)
     * [Intuitionistic Type Theory](/person/martin-löf/intuitionistic-type-theory)

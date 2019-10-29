@@ -7,10 +7,12 @@
 
 ## First lecture
 
-History of the use of the word "proposition" and the word "judgement" in logic and philosophy.
-And how the lecturer will use them.
-
 - **[Xie]**
+  A study of the history of the use of the word "proposition"
+  and the word "judgement" in logic and philosophy.
+
+  And demonstrating how the lecturer will use them.
+
   The study and development of the author's theory
   is heavily based on etymology, i.e. the study of the origin of words.
   How would the development be different
@@ -44,7 +46,6 @@ and, when understood as that which is judged, it is a piece or, more solemnly, a
 
 The act of judging is the same as the act of knowing,
 and that what is judged is the object of knowledge.
-
 
 - **[Xie]**
 
@@ -88,7 +89,20 @@ before it has been judged, that is, has become known?
 
 ## Second lecture
 
-TODO
+So the condition for it to be right of me to affirm a proposition A,
+that is, to say that A is true, is not that A is true, but that I know that A is true.
+
+When you are forced into answering a yes or no question,
+although you do not know the answer, and happen to give the right answer,
+right as seen by someone else, or by you yourself when you go home and look it up,
+then you make a blind judgement. Thus you err, although the teacher does not discover your error.
+Not to speak of the fact that the teacher erred more greatly
+by not giving you the option of giving the only the answer
+which would have been honest, namely, that you did not know.
+
+- **[Xie]**
+  Reader can compare the above passage with Errett Bishop's "Second Principle of Constructivism".
+  > Do not ask whether a statement is true until you know what it means.
 
 ## Third lecture
 

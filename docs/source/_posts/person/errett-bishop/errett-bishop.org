@@ -1,4 +1,4 @@
-#+title: bishop
+#+title: Errett Bishop
 
 * foundations-of-constructivean-analysis
 
@@ -177,59 +177,3 @@
       所以需要檢驗所定義的函數是否滿足這個基本性質
 
 * techniques-of-constructive-analysis [Douglas S. Bridges and Luminiţa Simona Vîţă]
-
-* bishop's four principles of constructivism
-
-  (1) mathematics is common sense.
-
-  (2) do not ask whether a statement is true until you know what it means.
-
-  (3) a proof is any completely convincing argument.
-
-  (4) meaningful distinctions deserve to be maintained.
-
-* [note] bishop's four principles of constructivism
-
-  (1) mathematics is common sense.
-
-  (2) do not ask whether a statement is true until you know what it means.
-
-  - after knowing the meaning of the statement,
-    one still needs an argument to be convinced.
-
-  (3) a proof is any completely convincing argument.
-
-  - a proof is to prove a statement is true,
-    thus there is no objective truth.
-
-  - 這裏強調了數學證明的主觀性
-    但是 用程序語言來實現數學推演
-    就是說推演規則與數學定理的真理性是絕對客觀的
-    如何調和這裏的主觀與客觀
-
-    - 我承認主觀性
-      可能是因爲
-      不認同目前的客觀化策略
-      想要給出新的客觀化策略
-      就要強調主觀性 以說明新的策略的可能
-
-    - 但是上面的 '說服'
-      顯然可以用更好的方式完成
-      只要說明有多樣的策略就行了
-
-    如若如此
-    我其實想要強調的是客觀性
-    畢竟我是在用機器來形式化數學
-
-  - (2) seems saying the meaning of a statement can be more objective.
-
-  - machinallized proof system seems giving truth objectivity, but it is not.
-    actually, the truth of a statement proved by a proof system,
-    is based on the fact that, he, who uses the proof system,
-    is convinced by the design and implementation
-    of the proof system [in some programming language].
-
-  (4) meaningful distinctions deserve to be maintained.
-
-  - to maintain meaningful distinctions between ><><><, we use type
-    to maintain meaningful distinctions between ><><><, we use different syntax
