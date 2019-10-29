@@ -97,6 +97,8 @@ A == A
 p : A
 ---------
 p == p : A
+
+TODO
 ```
 
 # 3 A Scheme for Inductive Definitions
