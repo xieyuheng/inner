@@ -101,8 +101,8 @@ by not giving you the option of giving the only the answer
 which would have been honest, namely, that you did not know.
 
 - **[Xie]**
-  Reader can compare the above passage with Errett Bishop's "Second Principle of Constructivism".
-  > Do not ask whether a statement is true until you know what it means.
+  Reader can compare the above passage with Errett Bishop's Second Principle of Constructivism:
+  "Do not ask whether a statement is true until you know what it means."
 
 ## Third lecture
 
