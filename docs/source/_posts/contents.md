@@ -1,4 +1,6 @@
 * [Home](/home)
+* [Contents](/contents)
+* [Quotes](/quotes)
 * Person
   * Martin-Löf
     * [Constructive Mathematics and Computer Programming](/person/martin-löf/constructive-mathematics-and-computer-programming)

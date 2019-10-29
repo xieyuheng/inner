@@ -1,3 +1,0 @@
-### Lang
-
-About programming languages.
