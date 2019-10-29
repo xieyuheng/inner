@@ -2,12 +2,6 @@
 
 - Source: https://github.com/xieyuheng/inner
 
-## Contents
-
-- [person](person)
-- [note](note)
-- [lang](lang)
-
 ## Quotes
 
 ### Love
