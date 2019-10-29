@@ -1,9 +1,10 @@
-* review
-- [review] [finish] Inductive Families
-- [review] [finish] Do-it-yourself Type Theory
-- [review] [finish] Intuitionistic Type Theory
-- [review] [first part] lambda-calculus-with-types
-- [review] Constructive Mathematics and Computer Programming
+* person
+- [person] On the meanings of the logical constants and the justification of logical laws
+- [person] Inductive Families
+- [person] Do-it-yourself Type Theory
+- [person] Intuitionistic Type Theory
+- [person] lambda-calculus-with-types
+- [person] Constructive Mathematics and Computer Programming
 * paper
 - [deduction] try to use the syntax for natural deduction we learned from DIYTT
   to formalize deduction of JoJo Calculus
