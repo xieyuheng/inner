@@ -1,3 +1,13 @@
+* review
+- [review] [finish] Inductive Families
+- [review] [finish] Do-it-yourself Type Theory
+- [review] [finish] Intuitionistic Type Theory
+- [review] [first part] lambda-calculus-with-types
+- [review] Constructive Mathematics and Computer Programming
+* paper
+- [deduction] try to use the syntax for natural deduction we learned from DIYTT
+  to formalize deduction of JoJo Calculus
+- [paper] Simply Typed JoJo Calculus
 * actor model
 - armstrong_thesis_2003.pdf
 - 神經元 as actor
