@@ -126,7 +126,7 @@
 
   - position, velocity, field.
 
-  - env, next exp, what ?
+  - env, next exp, what?
 
 * implementation as semantic
 

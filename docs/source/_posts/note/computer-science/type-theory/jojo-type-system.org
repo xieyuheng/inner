@@ -96,7 +96,7 @@
 
   so we have (let x: A) : (- A)
 
-  how about (- A) : ???
+  how about (- A) :???
 
   maybe
 
@@ -120,9 +120,9 @@
     by using a stack, we have call-by-value operational semantic
 
     can we also have call-by-name
-    and call-by-need operational semantic ?
+    and call-by-need operational semantic?
 
-  - what is a redex in jojo ?
+  - what is a redex in jojo?
 
     { X (- X) } => { }
 
@@ -138,7 +138,7 @@
 
 * norm-by-eval
 
-  can we use norm-by-eval to check equivalence of jojo ?
+  can we use norm-by-eval to check equivalence of jojo?
 
   maybe not
 
@@ -162,9 +162,9 @@
 
 * [todo] term-rewriting
 
-  how to check equivalence of jojo ?
+  how to check equivalence of jojo?
 
-  try term-rewriting ?
+  try term-rewriting?
 
   maybe not
 

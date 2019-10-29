@@ -73,7 +73,7 @@
 
 *** [todo] searching
 
-    - the space we are searching is ?
+    - the space we are searching is?
 
 * (2015) (Joerg Schoenfisch) Using Abduction in Markov Logic Networks for Root Cause Analysis
 

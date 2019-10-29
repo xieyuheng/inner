@@ -46,7 +46,7 @@
   - x -
     application 這個概念
     是作爲一個 behavior 被實現的
-    module 是否也能如此呢 ?
+    module 是否也能如此呢?
 
   ------
 
@@ -124,7 +124,7 @@
     這章實現一個簡單的 Supervisor
     Supervisor 的概念是爲 error-handling 而設計的
     如果說 不同的 error-handling 分類了不同的程序語言
-    那麼 OTP 的 error-handling 屬於哪一類呢 ?
+    那麼 OTP 的 error-handling 屬於哪一類呢?
 
   - k -
     我想就是簡單的動態語言一類

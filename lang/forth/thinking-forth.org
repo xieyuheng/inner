@@ -36,11 +36,11 @@
 
 *** component programming
 
-*** hide from whom ?
+*** hide from whom?
 
 *** hiding the construction of data structures
 
-*** but is it a high-level language ?
+*** but is it a high-level language?
 
 *** the language of design
 
@@ -63,8 +63,8 @@
 
   - k -
     so there are different types of problems.
-    how many different types are there ?
-    sequent2 is of which type ?
+    how many different types are there?
+    sequent2 is of which type?
 
   - x -
     in sequent2, we should go top down,

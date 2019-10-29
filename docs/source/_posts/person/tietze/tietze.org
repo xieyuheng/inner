@@ -57,7 +57,7 @@
         homeomorphism of schemata
 
       - homeomorphic manifolds
-        can never be defined by nonhomeomorphic schemata ?
+        can never be defined by nonhomeomorphic schemata?
 
 ***** 3 The schemata of three-dimensional manifolds
 

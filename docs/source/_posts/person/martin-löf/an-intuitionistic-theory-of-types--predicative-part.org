@@ -47,9 +47,9 @@
       how should we construct the elements of a type
       which dependents on (* (: :x A) :x B)
       (note
-        why this is important ?
+        why this is important?
         because [:x C] is the general form
-        of non trivial propositions ?
+        of non trivial propositions?
 
         thus C is to demonstrate
         how to prove a proposition
@@ -60,7 +60,7 @@
         it is not sufficent to only prescribe
         how to construct its elements !
 
-        because type constructor is not a type ?))
+        because type constructor is not a type?))
 
     (note
       in this version of the paper
@@ -230,14 +230,14 @@
       and such type-constructors
       can be introduced un-conditionally.
 
-      why ?
+      why?
 
       and what is the meaning of those data-constructors
-      of a type-constructor ?
+      of a type-constructor?
 
     - x -
       can we reduce such user defined type-constructors
-      to other fixed type-constructors ?
+      to other fixed type-constructors?
 
       I sense broken symmetry here.
 

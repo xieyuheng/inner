@@ -2,7 +2,7 @@
 
 * [todo-list]
 
-  - how can simple typed lambda calculus model branching (if else then) ?
+  - how can simple typed lambda calculus model branching (if else then)?
 
 * [note]
 

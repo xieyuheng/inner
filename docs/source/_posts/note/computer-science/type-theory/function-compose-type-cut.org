@@ -304,8 +304,8 @@
 
   - the next question is
     when we use this kind of syntax to write function body
-    what actions upon types we are recording ?
-    (what deduction rules we are recording ?)
+    what actions upon types we are recording?
+    (what deduction rules we are recording?)
 
 *** concatenation, composition and cut
 
@@ -376,7 +376,7 @@
     - we have the advantage to observe
       the concrete meaning of "proof" within our concrete model
 
-    - concretely, how proof (type) is checked by the language ?
+    - concretely, how proof (type) is checked by the language?
       I have the following summarization
 
       | arrow list in function body |                            |
@@ -815,7 +815,7 @@
       because for simplicity we have the following two features
       - the arity of all functions must be fixed
       - we want our expressions to be not ambiguous without bracket
-      then, how do we decide to use postfix instead of prefix ?
+      then, how do we decide to use postfix instead of prefix?
       seemingly, prefix and postfix are symmetric
       while we still can distinguish them
       because we write in special order (from left to right in most western language)
@@ -860,7 +860,7 @@
 
 *** remark on deduction and inference
 
-    - one might ask, what is a deduction or a inference ?
+    - one might ask, what is a deduction or a inference?
       my answer is a deduction or a inference
       is a way to express a change of theorem
       "a change" means "one step of change"

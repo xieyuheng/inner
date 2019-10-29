@@ -1,6 +1,6 @@
 #+title: joseph goguen
 
-* what is unification ?
+* what is unification?
 
 *** [note]
 
@@ -35,7 +35,7 @@
 
 *** 5 classical term substitution
 
-*** 6 what is unification ?
+*** 6 what is unification?
 
 *** 7 further explorations
 

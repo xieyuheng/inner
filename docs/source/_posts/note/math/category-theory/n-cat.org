@@ -2,7 +2,7 @@
 
 * [note]
 
-  - why weak associative is more easier in infi-groupoid than in infi-cat ?
+  - why weak associative is more easier in infi-groupoid than in infi-cat?
 
     | groupoid              | cat              |
     |-----------------------+------------------|
@@ -21,18 +21,18 @@
     我們要明確這些理論的細節
     然後利用 model category 的公理來討論它們的差異
 
-  - what it means to have a simplicial homotopy theory ?
-    what it means to have a homotopy theory for a math construction ?
+  - what it means to have a simplicial homotopy theory?
+    what it means to have a homotopy theory for a math construction?
 
-  - why we need to weaken the composition ?
-    is there any natural models of weak n-cat ?
+  - why we need to weaken the composition?
+    is there any natural models of weak n-cat?
 
   - the fundamental 3-groupoid of the 2-sphere S2
     cannot be described using the language of strict 3-categories.
-    how ? why ?
+    how? why?
 
-    - 爲什麼強調說是 language ?
-      是不是因爲語法的問題 ?
+    - 爲什麼強調說是 language?
+      是不是因爲語法的問題?
       可能是语法原因
       可能是因为 'same-position-self-gluing as reverse'
 
@@ -115,7 +115,7 @@
           other shapes of cells are needed
           if they are to be used for, say, giving composition.
 
-******* weak n-categories or n-weak categories ?
+******* weak n-categories or n-weak categories?
 
         - weaken the structure first, and then increase dimensions.
 
@@ -169,8 +169,8 @@
         which is defined by strict w-category,
         maintains the information about the order of composition.
 
-      - why we need this information ?
-        for syntax reason or semantic reason ?
+      - why we need this information?
+        for syntax reason or semantic reason?
 
 ***** 2.4 a crash course on monads and their algebras
 
@@ -189,7 +189,7 @@
       'weak' means 'composition is weak',
       while another meaning of 'weak' can be 'equality is weak'.
 
-    - is these two meanings of 'weak' equal ?
+    - is these two meanings of 'weak' equal?
 
 *** 4 opetopic
 

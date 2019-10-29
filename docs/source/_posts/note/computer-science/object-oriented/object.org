@@ -149,8 +149,8 @@
     因此當想要增加 sum-type 的一項的時候
     就要修改所有的函數
 
-  - 在這種情況下 如何保持動態性 ?
-    做動態的 dispatching ?
+  - 在這種情況下 如何保持動態性?
+    做動態的 dispatching?
 
     所有需要就類型來做 branch 的地方
     都可以用 dynamic dispatching
@@ -181,14 +181,14 @@
     函數就不單單要 multiple-dispatch by type-tag
     同時還要 multiple-dispatch by value
 
-    - 如何實現這中性狀呢 ?
+    - 如何實現這中性狀呢?
 
   - 函數式的 pattern-matching
     如果能把分支拆開來寫
     就算是做到了這一點
     [但是函數式的類型之間沒有繼承關係 [不考慮 type class 的條件下]]
 
-  - 考慮 type class 的條件下 又如何呢 ?
+  - 考慮 type class 的條件下 又如何呢?
 
 * forgetful functor and subtype
 

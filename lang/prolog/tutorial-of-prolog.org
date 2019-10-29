@@ -123,7 +123,7 @@
 *** [note]
 
     - recursive definition is different from recursive unification
-      how ?
+      how?
 
 * ffi and instantiation_error
 
@@ -303,7 +303,7 @@
     (goal: (k :y))
 
     (variable-stack:
-      :y ?)
+      :y?)
     (unify: #1#
       (k :x <-
          (f :x)
@@ -314,7 +314,7 @@
       ------
       #1#
       :y :y:x
-      :y:x ?)
+      :y:x?)
 
     (goal: #1#
       (f :x)
@@ -381,7 +381,7 @@
       ------
       #1#
       :x :y:x
-      :y:x ?)
+      :y:x?)
     #+end_src
 
 *** #1#
@@ -547,7 +547,7 @@
     (goal:
       (append (list a b c) (list 1 2 3) :x))
     (variable-stack:
-      :x -- ?)
+      :x --?)
 
     (unify:
       (append (cons :head1 :tail1) :list2 (cons :head1 :tail2)))
@@ -556,7 +556,7 @@
       :head1 -- a
       :tail1 -- (list b c)
       :list2 -- (list 1 2 3)
-      :tail2 -- ?)
+      :tail2 --?)
 
     (note:
       此時需要複製壓縮了
@@ -570,7 +570,7 @@
       (append (list b c) (list 1 2 3) :tail2))
     (variable-stack:
       :x -- (cons a :tail2)
-      :tail2 -- ?)
+      :tail2 --?)
 
     (unify:
       (append (cons :head1 :tail1) :list2 (cons :head1 :tail2)))
@@ -581,7 +581,7 @@
       :head1 -- b
       :tail1 -- (list c)
       :list2 -- (list 1 2 3)
-      :tail2 -- ?)
+      :tail2 --?)
 
     (goal:
       (append (list c) (list 1 2 3) :tail2))
@@ -589,7 +589,7 @@
       :x -- (cons a :tail2)
       :tail2 -- (cons b :tail2)
       ------
-      :tail2 -- ?)
+      :tail2 --?)
     #+end_src
 
 * 討論 <2015-12-24>
@@ -643,7 +643,7 @@
   (goal:
     (append (list a b c) (list 1 2 3) :x))
   (variable-stack:
-    :x ?)
+    :x?)
   (unify:
     (append (cons :head1 :tail1) :list2 (cons :head1 :tail2) <-
             (append :tail1 :list2 :tail2)))
@@ -723,7 +723,7 @@
       :head1 a
       :tail1 (list b c)
       :list2 (list 1 2 3)
-      :tail2 ?)
+      :tail2?)
     #+end_src
 
 *** #1#
@@ -751,7 +751,7 @@
       :head1 b
       :tail1 (list c)
       :list2 (list 1 2 3)
-      :tail2 ?)
+      :tail2?)
     #+end_src
 
 *** #2#
@@ -785,7 +785,7 @@
       :head1 c
       :tail1 ()
       :list2 (list 1 2 3)
-      :tail2 ?)
+      :tail2?)
     #+end_src
 
 *** #3#

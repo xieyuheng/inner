@@ -39,8 +39,8 @@
       between client and server.
 
       - x -
-        can we add dependent type to it ?
-        can we add full-featured contract system to it ?
+        can we add dependent type to it?
+        can we add full-featured contract system to it?
 
     - the concept of relation
       is modeled by links in both objects.
@@ -61,7 +61,7 @@
 *** server-side caching
 
     - x -
-      can we use Exo here ?
+      can we use Exo here?
 
 *** object fields
 

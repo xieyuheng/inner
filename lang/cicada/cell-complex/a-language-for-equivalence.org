@@ -51,7 +51,7 @@
       因構造而存在
 
       我發現這是我所遵循的理解方式
-      但是它是否正確 ?
+      但是它是否正確?
 
       在這種理解方式下
       我們不能定義某一個對象
@@ -60,12 +60,12 @@
       然後再證明這個對象是滿足這個性質的唯一對象
 
       這種證明中就需要用到對象之間的等價關係
-      如何定義等價關係呢 ?
-      把它定義成就兩個對象而做的判斷 ?
+      如何定義等價關係呢?
+      把它定義成就兩個對象而做的判斷?
 
       是否某些時候
       因爲我們不能寫出某個程序來做自動地判斷
-      所以需要手動地證明某兩個對象之間的等價關係 ?
+      所以需要手動地證明某兩個對象之間的等價關係?
 
       比如在證明函數之間的相等時
       比如證明代數結構中元素的相等時 [有限生成羣的字問題]
@@ -86,8 +86,8 @@
       - 所谓语义引导
         很多不同的描述 obj 的語法
         所描述出的 obj 之等價很容易判斷
-      定向的位置何在 ?
-      等式的位置何在 ?
+      定向的位置何在?
+      等式的位置何在?
 
     - k -
       語義可能要求當兩個元素相 glue 時
@@ -126,7 +126,7 @@
         (0 (: p0 (0 <>)))
         (1 (: a0 (= p0 p0)))
         (2 (: b0 (= (+ a0 a0) (- a0)))))
-      (+ b0 b0) ;; 有幾種方式 ?
+      (+ b0 b0) ;; 有幾種方式?
       ;; 用等式來理解定向的話
       ;; 應該只有兩種本質不同的方式
       #+end_src
@@ -162,7 +162,7 @@
       是難以想象的
 
     - [recover geometry]
-      am i to reduce topology to algebra ?
+      am i to reduce topology to algebra?
       by no means, since topology, as and reduction of geometry,
       relies on geometry;
       so will my higher algebraic structure relies on geometry.
@@ -283,14 +283,14 @@
       is the suspension of the space.
 
     - While 'I' is 1-cell,
-      how about 2-cell 3-cell and n-cell ?
-      how about continuum other then n-cell ?
+      how about 2-cell 3-cell and n-cell?
+      how about continuum other then n-cell?
       note that, n-cell indexed by a space 'A',
       is specified by (-> A [n-cell boundary])
 
 *** >< fiber-space
 
-    - fiber-space = dependent product-space ?
+    - fiber-space = dependent product-space?
 
     - To view product-space as special fiber-space,
       for which a gluing pattern is given.
@@ -406,7 +406,7 @@
       二者之間應該有嚴格的對應
 
       有了函數之間的同倫等價
-      那麼空間之間的同倫等價如何呢 ?
+      那麼空間之間的同倫等價如何呢?
       [即 hauptvermutung 問題]
 
     - [同倫時維數變化的代數解釋]
@@ -441,11 +441,11 @@
       如果這樣說的話 我們其實是在用 hauptvermutung
       但是我們不知道古典意義上的 hauptvermutung 的意義是什麼
       我們不知道 爲什麼 hauptvermutung 是需要證明的
-      低維時這個定理是如何被證明的 ?
-      高維是這個定理爲什麼會被否定 ?
-      四維時爲什麼還沒有結果 ?
-      當證明 hauptvermutung 的時候 我們證明的是什麼 ?
-      其構造性如何 ?
+      低維時這個定理是如何被證明的?
+      高維是這個定理爲什麼會被否定?
+      四維時爲什麼還沒有結果?
+      當證明 hauptvermutung 的時候 我們證明的是什麼?
+      其構造性如何?
       - 既然在高維這個定理可以被否定
         那麼就是說 有另外一種定義空間之間的等價的方式
         並且在高維的時候
@@ -478,7 +478,7 @@
       首先我們已經有代數結構的細分了
       如果想要定義更強的等價
       就要允許更多的對代數結構的變換
-      還有什麼可以允許的呢 ?
+      還有什麼可以允許的呢?
 
     - x -
       可能這種想法太刻意了
@@ -504,7 +504,7 @@
       cylinder 的非平凡二階元素於整數對應
 
     - k -
-      但是 我們如何定義代數結構之間的等價來形成空間的代數不變量呢 ?
+      但是 我們如何定義代數結構之間的等價來形成空間的代數不變量呢?
 
     - x -
       對於上面兩個例子
@@ -516,12 +516,12 @@
 
     - x -
       一個 local-to-global theorem 可以給我們靈活的計算方式
-      是否可以對高階代數結構形成 local-to-global theorem ?
+      是否可以對高階代數結構形成 local-to-global theorem?
 
 *** 非交換的代數結構
 
     - x -
-      whitehead 已經知道的那些空間的非交換的高階代數結構是什麼 ?
+      whitehead 已經知道的那些空間的非交換的高階代數結構是什麼?
       [cross-module]
 
 *** subdivision
@@ -557,7 +557,7 @@
       (: (+ c0 (=< b0) c1 (<= b0))
          (= (+ (- b0) b0) (+ (- b0) b0)))
 
-      (: ? (= (+ c0 c1) (+ c1 c0)))
+      (:? (= (+ c0 c1) (+ c1 c0)))
 
 
       (type space
@@ -567,7 +567,7 @@
       (: (+ c0 c1) [a0 refl])
       (: (+ c1 c0) [a0 refl])
 
-      (: ? (= (+ c0 c1) (+ c1 c0)))
+      (:? (= (+ c0 c1) (+ c1 c0)))
 
       (type space
         (: a0 a1 <>)
@@ -836,7 +836,7 @@
       其中 (+ ...) 都是 chain
       因此空間之間的等價涉及到 chain 之間的等價
 
-      - subdivision 也用到 chain 之間的等價 ?
+      - subdivision 也用到 chain 之間的等價?
 
 * 等價
 
@@ -870,7 +870,7 @@
   - x -
     chain 有類型
     當用 高階的 chain 來轉寫 chain 的時候
-    chain 的類型如何變化 ?
+    chain 的類型如何變化?
     chain 的類型就是 chain 的 boundary
     當進行 rewrite 的時候 boundary 不變
 
@@ -901,13 +901,13 @@
     但是邊界就是兩個 chain
 
   - k -
-    what is type of type ?
+    what is type of type?
 
   - x -
     always empty
 
   - k -
-    then what is the information needed ?
+    then what is the information needed?
 
 * equivalent relation between chains
 
@@ -963,8 +963,8 @@
 
   - 在檢查函數的連續性時
     需要判斷 boundary 的等價
-    因此 boundary 即 equation 之間的等價關係纔是重要的 ?
-    而 chain 之間的等價不重要 ?
+    因此 boundary 即 equation 之間的等價關係纔是重要的?
+    而 chain 之間的等價不重要?
 
   - chain 本身就是對 equation 的等價變形的記錄
 
@@ -1103,7 +1103,7 @@
       首先我們要確定
       有多少由 n-gon 或 n-hedron 構造 manifold 的方式
 
-*** >< how to enumerate n-gon and n-hedron ?
+*** >< how to enumerate n-gon and n-hedron?
 
     - ><
 
@@ -1157,7 +1157,7 @@
 ***** cut 和 glue
 
       - x -
-        施行上面這個 cut 和 glue 操作的條件是什麼 ?
+        施行上面這個 cut 和 glue 操作的條件是什麼?
         雖然這些操作是不同胚的
         但是也應該把它們加到語言中來
 
@@ -1430,8 +1430,8 @@
     #+begin_src scheme
     (note there can be many ways by which we can compose new spaces,
           each of such way must shows
-          1. what are the parts of the space ?
-          2. what are the boundarys of the parts ?)
+          1. what are the parts of the space?
+          2. what are the boundarys of the parts?)
 
     ;; the rule of product-space
     (: (* a b) (= (* a boundary b) (* a b boundary)))
@@ -1809,7 +1809,7 @@
       (: [(- surf refl) (=< surf)] (= (+ (- surf) surf) (+))))
 
     (note non-essential
-          because ???
+          because???
           (equivalent
            (+ (><><>< b2 refl refl refl))
            (+ surf refl (<= surf)
@@ -1826,7 +1826,7 @@
                           surf refl (=< surf)
                           (><><>< b2 refl refl refl)))))))
 
-    (note how to define essentialness ?
+    (note how to define essentialness?
           the definition must explain both dehn-twist
           and the essentialness of the essential-map above
 
@@ -1991,9 +1991,9 @@
     然後找找語法來揭示其等價
 
   - k -
-    語義能夠解決等價問題嗎 ?
-    二者在語義上爲什麼是等價的 ?
-    爲什麼前二者又是不等價的 ?
+    語義能夠解決等價問題嗎?
+    二者在語義上爲什麼是等價的?
+    爲什麼前二者又是不等價的?
 
   ------
 
@@ -2007,8 +2007,8 @@
 * covering-space
 
   - x -
-    用 covering-space 來解釋二階鏈之間的等價關係 ?
-    其 2-skeleton 的 covering-space 是什麼 ?
+    用 covering-space 來解釋二階鏈之間的等價關係?
+    其 2-skeleton 的 covering-space 是什麼?
 
     先試試 covering-space of circle
     這是我能想到的最簡單的例子了
@@ -2107,10 +2107,10 @@
 
   - x -
     如果想要引入 neighborhood 的概念
-    那麼是否也要同時引入 幾何 呢 ?
+    那麼是否也要同時引入 幾何 呢?
     如果要的話
     那麼所有的線都應該理解爲空間中的直線[測地線]
-    而所有的面都應該理解爲空間中的什麼 ?
+    而所有的面都應該理解爲空間中的什麼?
 
   - k -
     使用 neighborhood 的意義在於有限覆蓋定理
@@ -2131,14 +2131,14 @@
     在取點的 neighborhood 的時候
     這一點在邊中的所有出現都將稱爲新的點
 
-    具體的規則與語法是什麼 ?
+    具體的規則與語法是什麼?
 
 * >< 忘記高階代數結構中的某些信息就得到同調理論
 
 *** 引
 
-    - 如何解釋 S2 的三階同倫羣爲非平凡羣 ?
-      一個非平凡羣的 abelianization 可以是平凡羣嗎 ?
+    - 如何解釋 S2 的三階同倫羣爲非平凡羣?
+      一個非平凡羣的 abelianization 可以是平凡羣嗎?
 
     - 只能解釋爲 兩個平凡等式 可能不等價
 
@@ -2237,14 +2237,14 @@
 *** 引
 
     - 取閉合的鏈
-      是否就能簡化代數結構而得到能力更強的拓撲不變量呢 ?
+      是否就能簡化代數結構而得到能力更強的拓撲不變量呢?
 
       我想問題應該劃歸爲
       當限制 代數中的元素爲 閉合的鏈時
-      可否得到對這些元素的更高效的編碼 ?
-      能否把這個代數結構化簡到正規形式 ?
+      可否得到對這些元素的更高效的編碼?
+      能否把這個代數結構化簡到正規形式?
 
-      曲面的分類定理 可否被表達爲 對這個代數結構的化簡 ?
+      曲面的分類定理 可否被表達爲 對這個代數結構的化簡?
       一維的時候 我們可以把這個代數結構化簡成基本羣
       [我們要形成等價的定理 但是表達方式已經不一樣了]
       二維的時候 二階同倫羣是不夠的
@@ -2268,7 +2268,7 @@
   - x -
     fundamental-group of surface =
     group of covering-transformation of universal-covering-space of surface
-    這個等價如何推廣到高維代數 ?
+    這個等價如何推廣到高維代數?
 
   - k -
     首先我們看到推廣的可能的時候

@@ -7,7 +7,7 @@
 
   - classical logic and logic programming
 
-  - how different proof styles are correspond to each other ?
+  - how different proof styles are correspond to each other?
 
 * plan
 

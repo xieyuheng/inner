@@ -18,7 +18,7 @@
     - A mechanical system is described by a Lagrangian function
       of the system state (time, coordinates, and velocities).
 
-      - what is the type of return value of Lagrangian function ?
+      - what is the type of return value of Lagrangian function?
 
     - A motion of the system is described by a path
       that gives the coordinate for each moment of time.

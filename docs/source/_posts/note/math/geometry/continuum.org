@@ -10,13 +10,13 @@
     we might first ask what is the basic intuition newton used.
 
   - in our construction,
-    should we separate counting from measuring ?
+    should we separate counting from measuring?
 
 * motions and forces
 
   - x -
-    how should we model motions and forces in our geometry ?
-    motions and forces happen in geometry right ?
+    how should we model motions and forces in our geometry?
+    motions and forces happen in geometry right?
 
   - k -
     let's say forces are used to form theories to explain motions.
@@ -29,4 +29,4 @@
 * measure
 
   - x -
-    how can we bring measuring back into the model ?
+    how can we bring measuring back into the model?

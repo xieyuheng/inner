@@ -88,7 +88,7 @@
   - To define property of object
     by the solvability of problem fromed around the object.
 
-* same-position-self-gluing, cancel or not cancel ?
+* same-position-self-gluing, cancel or not cancel?
 
   - same-position-self-gluing
     [for example: p * p^{-1}]
@@ -98,7 +98,7 @@
     when there is at least one part of the boundary is repeating.
     [for example: p * p]
 
-  - [cancel or not cancel ?]
+  - [cancel or not cancel?]
     when building a cylinder,
     the boundary of the surface must be a circle,
     thus part of the same-position-self-gluing of a path
@@ -106,26 +106,26 @@
 
 * geometry
 
-  - How to intro geometry back to a language for AT ?
-    by giving path a length ? surface an area ?
-    or by a general structure for all the measurement ?
+  - How to intro geometry back to a language for AT?
+    by giving path a length? surface an area?
+    or by a general structure for all the measurement?
 
 * classical mechanics
 
   - 引入幾何的同時
     可否像利用微分流形來處理經典力學一樣
-    利用 cell-complex-structure 來處理經典力學 ?
+    利用 cell-complex-structure 來處理經典力學?
     利用 cell-complex-structure 描述空間的同時
     還要描述空間中的運動
 
-  - 如何在 cell-complex-structure 上引入座標系 ?
-    是否應該引入座標系 ?
+  - 如何在 cell-complex-structure 上引入座標系?
+    是否應該引入座標系?
     這對描述運動而言是否是必要的
 
 * adjunction-space
 
-  - 是否在 at1 中引入 adjunction-space ?
-    作爲一種構造新空間的方式 ?
+  - 是否在 at1 中引入 adjunction-space?
+    作爲一種構造新空間的方式?
 
   - 注意
     cell-complex 中的 characteristic-map 就是 adjunction-space
@@ -135,7 +135,7 @@
   - With the syntax for local-subdivision,
     maybe we can prove the mapping-class-group of cell is trivial.
 
-  - 可以利用 local-subdivision 來恢復 topology structure 嗎 ?
+  - 可以利用 local-subdivision 來恢復 topology structure 嗎?
 
   - continuum 的一個直觀特徵是
     可以被潛在無限地細分
@@ -158,7 +158,7 @@
   - x -
     disk[cell] is special,
     for its mapping-class-group is trivial.
-    is this the reason why cell-complex is built by cells ?
+    is this the reason why cell-complex is built by cells?
 
   - k -
     首先我們需要知道如何在 at1 中定義映射類羣
@@ -232,7 +232,7 @@
     因爲在 homotopy equivalent 下
     固定邊界後 cell 之間的映射只能有一種情況
 
-* >< how to define function in synthetic geometry ?
+* >< how to define function in synthetic geometry?
 
 * a new plan
 
@@ -257,9 +257,9 @@
     甚至在用無窮小分析來研究物理現象的時候
     我也能感受到這一點
     但是爲什麼在學習現代數學的時候
-    我確恰恰有相反的印象呢 ?
+    我確恰恰有相反的印象呢?
     爲什麼我總覺得所學到的前人的著述如此晦澀
-    以至學來無樂呢 ?
+    以至學來無樂呢?
 
   - k -
     欲究其因
@@ -281,7 +281,7 @@
 
   - k -
     對於想要設計的 AT1 來說
-    我們能給出良好的類似歐式幾何的 '原本' 嗎 ?
+    我們能給出良好的類似歐式幾何的 '原本' 嗎?
 
   - x -
     首先 我們有簡單的圖形 即 cell-complex
@@ -359,13 +359,13 @@
     #+end_src
 
   - but how about equality between two mapping-spaces
-    (~~ (-> A X) (-> B Y)) ?
+    (~~ (-> A X) (-> B Y))?
 
   - the algebraic structure of (-> I X) is given by a function of type
     #+begin_src scheme
     (-> [(-> I X) (-> I X)] (-> I X))
     #+end_src
-    what is the equality between algebraic structures ?
+    what is the equality between algebraic structures?
 
   - first, we know that the definition of (~~ A B)
     is to make sure that
@@ -518,7 +518,7 @@
                      (0 a0 f g
                         a0)))
              ;; how can an element of the above type
-             ;; be given by 'h' and 'k' ?
+             ;; be given by 'h' and 'k'?
              (-> (* i1 (1 i01))
                  [(* [i1 x] (1 i01)) h] (=> [(* a0 (1 i01)) h])
                  (:> (0 i1 x f g
@@ -599,7 +599,7 @@
     連續映射的類型爲 (-> X X) 並且要是滿射
     而空間自身的連續變化 甚至可以改變其部分的維度
     高維元素可以映射到低維元素
-    反過來 低維元素是不是也應該可以映射到高維元素 ?
+    反過來 低維元素是不是也應該可以映射到高維元素?
 
 * sad fact
 
@@ -628,8 +628,8 @@
     而只在乎這個問題已經被給以了否定或肯定的答案
 
   - k -
-    那麼 AT1 的目的是什麼呢 ?
-    不是爲了解決代數拓撲中的問題嗎 ?
+    那麼 AT1 的目的是什麼呢?
+    不是爲了解決代數拓撲中的問題嗎?
 
   - x -
     我要提供一種新的語言來解釋這些問題
@@ -775,7 +775,7 @@
   - x -
     我們現在想要明瞭的是
     目前定義空間同倫等價的方式是否 '正確'
-    這個定義是否是 infi-groupoid 之間的同構 ?
+    這個定義是否是 infi-groupoid 之間的同構?
 
   - k -
     whitehead 的定理是說
@@ -808,7 +808,7 @@
     那我們先看看 infi-groupoid 之間的自然的等價應該如何定義
 
   - x -
-    就是推廣一下 group 的表示 之間的同構的定義 不是嗎 ?
+    就是推廣一下 group 的表示 之間的同構的定義 不是嗎?
 
   - k -
     一個連續函數就是一個同態
@@ -907,7 +907,7 @@
 
 * lens-space
 
-  - what lens-space are equal to ?
+  - what lens-space are equal to?
 
   - different ways to construct lens-space
     - dehn-surgery
@@ -935,7 +935,7 @@
       might be useful for the construction of hopf-fibration of S3
       by Dehn surgery.
 
-    - Can I construct the solid torus first by half S2 ?
+    - Can I construct the solid torus first by half S2?
 
     - I must be able to express the facts above in my language.
 
@@ -1098,13 +1098,13 @@
     即問 表達能力是否過於豐富了
     比如
     考慮同調論中單一的乘法
-    這種從豐富到單一的簡化 爲什麼是有效的 ?
+    這種從豐富到單一的簡化 爲什麼是有效的?
 
 * refl
 
   - x -
     if 'refl' can be used to define dim-down map,
-    can it be used to define dim-up map ?
+    can it be used to define dim-up map?
 
   - x -
     可以想象 refl 所生成的空間不在原空間內
@@ -1130,7 +1130,7 @@
 * relative homotopy group
 
   - x -
-    爲什麼人們會考慮 relative homotopy 這個概念 ?
+    爲什麼人們會考慮 relative homotopy 這個概念?
 
   - k -
     可能是定義 homotopy group 自然要用到這個概念
@@ -1285,7 +1285,7 @@
       - x -
         when developing n-groupoid theory,
         we can mimic the development of group theory.
-        then what is the development of group theory ?
+        then what is the development of group theory?
 
       - k -
         先看表面的現象
@@ -1313,7 +1313,7 @@
 
       - k -
         羣論本身可以用來描述空間的對稱性
-        高維的代數可以用來描述什麼呢 ?
+        高維的代數可以用來描述什麼呢?
 
       - x -
         group 描述對稱性
@@ -1354,7 +1354,7 @@
         通過增加 relation 可以得到已有的 g.r.group 的正規子羣
         正規子羣 與 羣同態 之間 有一一對應關係
         對於 combinatorial infi-groupoid theory
-        我們可以形成類似的理論嗎 ?
+        我們可以形成類似的理論嗎?
 
       - k -
         這種現象稱爲 第一同態定理
@@ -1374,7 +1374,7 @@
 
       - x -
         by the definition of homotopy group I showed in AT1,
-        can I prove higher homotopy groups are always commutative ?
+        can I prove higher homotopy groups are always commutative?
 
 ***** 高維代數結構中的乘法
 
@@ -1508,7 +1508,7 @@
 * ><
 
   - x -
-    如何檢查一個組合是否爲 Sn ?
+    如何檢查一個組合是否爲 Sn?
     [因而可以成爲某個高階生成子的邊界]
 
 * note 關於高階代數 與 knot 所引發的難題
@@ -1527,8 +1527,8 @@
     但是 underlying-space 就是羣表示
     而我們能夠用這個羣表示來研究空間的性質
 
-    但是對於 高階情形如何呢 ?
-    高階的空間 是什麼代數結構的 underlying-space 呢 ?
+    但是對於 高階情形如何呢?
+    高階的空間 是什麼代數結構的 underlying-space 呢?
     在研究 combinatorial group theory 的時候
     代數方面的理論的重要意義是 它能超越人的直覺
     所以這裏我們也要先發展一個高階的代數理論
@@ -1541,7 +1541,7 @@
     那麼
     我們是否能把 我們所假象的高階代數
     劃歸到更簡單的有同態定理的高階代數呢
-    [是否有聯通性的時候就有 groupoid 的同態基本定理了 ?]
+    [是否有聯通性的時候就有 groupoid 的同態基本定理了?]
 
     通過找一個節點的支撐樹
     就能把 groupoid 轉化爲 group
@@ -1587,7 +1587,7 @@
     邊的邊界可以統一到點
     但是面的邊界不可以統一到點
 
-    那麼面的邊界是否可以統一到 一個別的[不要求其總是可收縮到點的]圖形呢 ?
+    那麼面的邊界是否可以統一到 一個別的[不要求其總是可收縮到點的]圖形呢?
     比如一個圓 [S1]
 
     所謂統一面邊界
@@ -1625,7 +1625,7 @@
 
   - x -
     沒有二維以上元素的空間對應於自由羣
-    沒有三維以上元素的空間是否也能對應與自由的二階代數結構 ?
+    沒有三維以上元素的空間是否也能對應與自由的二階代數結構?
 
 * note covering-space of surface
 
@@ -1649,7 +1649,7 @@
     這是因爲在 covering-space 中回到自身的 path
     在 base-space 中可能回到自身很多次了
 
-    但是這個現象如何推廣到二階呢 ?
+    但是這個現象如何推廣到二階呢?
 
   - k -
     我們還可以發現
@@ -1663,7 +1663,7 @@
 
   - x -
     這才只是二維的 covering-space
-    高維情形又是怎樣呢 ?
+    高維情形又是怎樣呢?
 
   ------
 
@@ -1672,22 +1672,22 @@
     其實就是一個帶有類型的代數結構的同態
     只有當有一種代數結構的去類型化[一種簡化]時
     這種同態才對應於子羣[子羣關係就是特殊的同態[即嵌入]]
-    [如何說這是一種 galois 理論呢 ?]
+    [如何說這是一種 galois 理論呢?]
 
     二維空間額 covering-space
-    可否有類似的理論呢 ?
+    可否有類似的理論呢?
 
   - x -
     注意
     G acting on (covering-space (underlying-space G))
-    二階[高階]是否也可以這樣 ?
+    二階[高階]是否也可以這樣?
 
     注意
     上面的 acting 是 acting on all points
     可能二階的是 acting on all edges
 
     或者
-    我們應該放棄這種 acting 的可能 ?
+    我們應該放棄這種 acting 的可能?
 
 * note normalization of underlying-space
 
@@ -1698,7 +1698,7 @@
     normalization of g.r.representation of group
 
   - k -
-    but what is the initial groupoid to be normalized ?
+    but what is the initial groupoid to be normalized?
     ><><><
 
   - x -
@@ -1758,7 +1758,7 @@
     可能很難找到 不帶有類型的高階代數的 類似 group 的 normal form
     但是可能能夠找到帶有類型的高階代數的 類似 groupoid 的 normal form
 
-    但是就二維空間的分類而言 groupoid 的 normal form 是什麼 ?
+    但是就二維空間的分類而言 groupoid 的 normal form 是什麼?
 
   - k -
     也就是說
@@ -1817,9 +1817,9 @@
   - k -
     如果說 groupoid 可以被接受爲代數不變量
     那麼 高階的代數結構也可以被接受
-    但是 groupoid 與 group 的區別在於什麼呢 ?
-    二者之間如何轉化 ?
-    那些典型的空間的 fundamental-groupoid 都是什麼呢 ?
+    但是 groupoid 與 group 的區別在於什麼呢?
+    二者之間如何轉化?
+    那些典型的空間的 fundamental-groupoid 都是什麼呢?
 
 * postnikov system
 
@@ -1946,7 +1946,7 @@
     只要还是把这些边理解为边界就可以了
 
   - k -
-    镶嵌的条件是什么 ?
+    镶嵌的条件是什么?
 
   - x -
     我想
@@ -1955,8 +1955,8 @@
     也许 只所以 knot 与 link 如此重要
     就是因为 fundamental-polyhedron 的所有二维边界都可以同伦成一维的线
 
-    但是为什么要用 knot 来得到 hyperbolic-geometry ?
-    爲什麼不直接適用 fundamental-polyhedron ?
+    但是为什么要用 knot 来得到 hyperbolic-geometry?
+    爲什麼不直接適用 fundamental-polyhedron?
 
   - k -
     如果從激勵我們的工作的角度講
@@ -1973,7 +1973,7 @@
     一個 fundamental-polyhedron 就決定了一個幾何
     但是帶有邊界的 [由 not knot 確定的] 流形
     其幾何可以不一樣
-    因爲一個 knot 能夠對應多種 fundamental-polyhedron 嗎 ?
+    因爲一個 knot 能夠對應多種 fundamental-polyhedron 嗎?
 
   - k -
     但是 第一個例子裏考慮 平面除去一點的時候
@@ -1981,8 +1981,8 @@
     但是其 幾何不同
 
   - x -
-    其幾何真的不同嗎 ?
-    不是都是 歐幾里得幾何嗎 ?
+    其幾何真的不同嗎?
+    不是都是 歐幾里得幾何嗎?
     只是 covering-space 不一樣而已吧
     對於找個 fundamental-domain 不論如何 cover
     都不能得到 simple-connected 的 universal-covering-space
@@ -1997,12 +1997,12 @@
     交換的 以 Sn 爲單位元的 semigroup
 
     當用 connected-sum 來正規化二維流形的時候
-    所對應的代數操作是什麼 ?
+    所對應的代數操作是什麼?
 
-    分解定理是如何證明的 ?
+    分解定理是如何證明的?
     如此一來二階的代數結構的 'prime'
-    類比於 有限單羣 嗎 ?
-    類比於 groupoid 又是什麼分解呢 ?
+    類比於 有限單羣 嗎?
+    類比於 groupoid 又是什麼分解呢?
 
     就三維流形而言
     分解的方式是找
@@ -2020,8 +2020,8 @@
 * not-knot
 
   - x -
-    not-knot 是否被認爲是沒有邊界的 ?
-    因爲 三維有邊界的流形的邊界 應該是二維流形 ?
+    not-knot 是否被認爲是沒有邊界的?
+    因爲 三維有邊界的流形的邊界 應該是二維流形?
     [對於 同倫理論 來說 退化的邊界也可以]
 
 * 實心的 torus
@@ -2046,17 +2046,17 @@
     但是
     如果有代數處理的話
     knot 的 link 所帶有的信息
-    如何被體現於其中 ?
+    如何被體現於其中?
 
   - x -
-    thurston 如何從 knot 和 link 獲得三維幾何 ?
-    我們可否模仿他的方法 ?
+    thurston 如何從 knot 和 link 獲得三維幾何?
+    我們可否模仿他的方法?
 
 * thurston 給出了 (knot-and-link -> polyhedral-schema)
 
   - x -
     但是
-    爲什麼除去邊可以等價於除去點 ?
+    爲什麼除去邊可以等價於除去點?
     #+begin_src scheme
     因爲在扭動之後
     在局部 knot 的部分
@@ -2071,7 +2071,7 @@
     可以看到 雙曲幾何的各種模型非常重要
 
     如果 四面體可以有如此良好的數值表達
-    那麼多面體所形成的代數是否也能獲得類似的表達呢 ?
+    那麼多面體所形成的代數是否也能獲得類似的表達呢?
 
   - 還有這些複數於 dehn surgery 之間的關係
 
@@ -2095,7 +2095,7 @@
 * research program
 
   - x -
-    what is the core of our research program ?
+    what is the core of our research program?
 
   - k -
     高維代數 與 語言設計
@@ -2183,8 +2183,8 @@
   - but when we say
     "covering-space solves the word problem
     of the fundamental-group of the underlying-space"
-    what do we mean ?
-    should we already use 2-algebra to express this ?
+    what do we mean?
+    should we already use 2-algebra to express this?
 
   - classically, we mean the following :
 
@@ -2239,7 +2239,7 @@
     and paths of the underlying-space, that is important.
 
   - x -
-    what is the meaning of our 2-algebra then ?
+    what is the meaning of our 2-algebra then?
 
 * covering-space and normalization
 
@@ -2248,12 +2248,12 @@
     after we normalize it.
 
     can we just build the covering-space,
-    without normalizing it ?
+    without normalizing it?
 
   - k -
     根據古典定義
     covering-space 是 fiber-space 的特殊情況
-    如何在我們的語言中形式化這些定義呢 ?
+    如何在我們的語言中形式化這些定義呢?
 
 * group action
 
@@ -2340,19 +2340,19 @@
     - x -
       假设这后一个命题是
       [:x is-two-dimensional-manifold]
-      这个命题是否有归纳的定义呢 ?
+      这个命题是否有归纳的定义呢?
 
       我想这就涉及到可证明理论了
 
       但是
-      我们是否要把这个命题归纳定义为类型呢 ?
-      我们可否写一个谓词来检验其性质呢 ?
+      我们是否要把这个命题归纳定义为类型呢?
+      我们可否写一个谓词来检验其性质呢?
 
     - k -
       归纳的定义可能是不可能的
       而检验 是简单的
-      检验的过程本身是否就是生成证明的过程呢 ?
-      谓词可否被视为一个 证明生成器 ?
+      检验的过程本身是否就是生成证明的过程呢?
+      谓词可否被视为一个 证明生成器?
 
     - x -
       设想 一个数是偶数 这个命题 [这个类型]
@@ -2374,14 +2374,14 @@
       #+end_src
 
     - k -
-      此时是否应该使用谓词呢 ?
+      此时是否应该使用谓词呢?
       或者应该写一个证明生成子
 
       证明生成子 在检验一个数是否 is-even 的同时
-      还生成一个证明 ?
+      还生成一个证明?
 
       如果如此
-      那么不就也是允许谓词了吗 ?
+      那么不就也是允许谓词了吗?
       只是谓词都必须以证明生成子这种很强的形式出现
 
     - x -
@@ -2391,7 +2391,7 @@
       谓词可能很容易被改进为一个证明生成子
 
       假设我们允许使用谓词
-      那么 应该如何实现 manifold-checker ?
+      那么 应该如何实现 manifold-checker?
 
 *** manifold-checker
 
@@ -2407,7 +2407,7 @@
       我们需要明白我们所使用的等价关系
 
     - x -
-      在一个形式化的语言中 应该如何区分同伦与同胚 ?
+      在一个形式化的语言中 应该如何区分同伦与同胚?
       我想第一个问题应该是 我们是否应该考虑同胚而不考虑同伦
       毕竟 就这个二维空间的分类定理而言
       对同伦进行叙述 也是有效的
@@ -2415,8 +2415,8 @@
 *** 動態
 
     - x -
-      如何描述 normalization 的動態效果呢 ?
-      一系列的同倫等價可否被演示成動態效果 ?
+      如何描述 normalization 的動態效果呢?
+      一系列的同倫等價可否被演示成動態效果?
 
 *** ><
 
@@ -2459,7 +2459,7 @@
 
   - x -
     空间之间的同伦等价 对于 高维代数结构 而言
-    由什么意义 ?
+    由什么意义?
     既然它已经远离代数结构的同构了
 
   - k -
@@ -2467,7 +2467,7 @@
     n 阶代数结构 只需要 n+1 阶代数结构作为其证明
 
   - x -
-    那么 如何理解 二阶图形的三阶同伦群是非平凡的 ?
+    那么 如何理解 二阶图形的三阶同伦群是非平凡的?
 
   - k -
     首先需要证明的是 S3 可以以本质地嵌入 S2
@@ -2479,7 +2479,7 @@
     然后我们才能表达 S3 到 S2 的本质嵌入
 
     既然这个嵌入 依赖于等价的图形的 不同表示方式
-    那不是有悖于基本等价关系吗 ?
+    那不是有悖于基本等价关系吗?
 
 * 關於細分
 
@@ -2489,12 +2489,12 @@
     但是在形式語言中
     爲了證明一個細分是同倫
     需要補充很多信息
-    這是否說明 在形式語言中定義同倫的方式有問題呢 ?
+    這是否說明 在形式語言中定義同倫的方式有問題呢?
     或者只是說明我們 要在給出細分的時候 自動生成同倫
-    哪種看待問題的方式是正確的 ?
+    哪種看待問題的方式是正確的?
 
     - 形式語言中 函數 (: f (-> A B))
-      可以被看作是 A 細分 B 的條件是什麼 ?
+      可以被看作是 A 細分 B 的條件是什麼?
 
   - k -
     前一種看待問題的方式要求我們尋找更好的空間同倫的定義
@@ -2523,13 +2523,13 @@
 
   - x -
     對於 complex 中的點 我們可以給出 neighborhood 的概念
-    是否可以用 這種 neighborhood 的概念定義連續性 ?
-    是否需要 subdivision 的幫助 ?
+    是否可以用 這種 neighborhood 的概念定義連續性?
+    是否需要 subdivision 的幫助?
     [subdivision 意味着 潛在的點集拓撲]
 
     就邊界而定義的連續性 與 就 neighborhood 定義的連續性
-    之間有什麼關係 ?
-    二者是否等價 或者 其中一個比另一個強 ?
+    之間有什麼關係?
+    二者是否等價 或者 其中一個比另一個強?
 
     [猜想] 這兩個定義是等價的
 
@@ -2542,7 +2542,7 @@
     我發現我幾乎會排斥所有不能融入到我們語言中來的概念
 
   - k -
-    這就是波利亞所說的獵人的直覺嗎 ?
+    這就是波利亞所說的獵人的直覺嗎?
 
   - x -
     說 complex 作爲 manifold
@@ -2603,15 +2603,15 @@
   - x -
     當考慮 polygon 定義 manifold 時
     增加邊的個數 使得 polygon 變成了 circle
-    此時所獲得的代數和幾何是什麼樣的 ?
+    此時所獲得的代數和幾何是什麼樣的?
 
     首先可以看出我們確實能有一個代數結構
 
   - k -
-    一個有無窮多虧格的曲面 ?
-    這個曲面是否有古典意義上的拓撲結構呢 ?
-    如何描述這個曲面中的點呢 ?
-    用離散的座標系 ?
+    一個有無窮多虧格的曲面?
+    這個曲面是否有古典意義上的拓撲結構呢?
+    如何描述這個曲面中的點呢?
+    用離散的座標系?
 
   - x -
     我覺得
@@ -2634,7 +2634,7 @@
     manifold 區別於一般的 complex 在於
     space looks [from a point] the same in all directions.
 
-    manifold 的條件是如何保證這種直觀效果的 ?
+    manifold 的條件是如何保證這種直觀效果的?
 
 * different kinds of complex
 
@@ -2686,7 +2686,7 @@
     [二階同倫羣不是平凡的]
 
     - 爲什麼我們只要求 universal-covering-space 的一階同倫羣是平凡的
-      而不要求其他 ?
+      而不要求其他?
 
     我們只考慮了 可定向的閉曲面
     而沒有考慮 不可定向的閉曲面 和 sphere
@@ -2696,9 +2696,9 @@
     的各階 homotopy group 都應該是平凡的
 
   - x -
-    universal-covering-space 到底如何定義 ?
+    universal-covering-space 到底如何定義?
     在 universal-covering-space 中
-    underlying-space 中的每一點是不是都以同樣的方式被 cover ?
+    underlying-space 中的每一點是不是都以同樣的方式被 cover?
 
   - k -
     covering-space 的條件是
@@ -2711,8 +2711,8 @@
     我們可不可以忽略這個要求
     即 使用 branching-cover
     以消除二階洞
-    這會影響 cover 的什麼性質嗎 ?
-    爲什麼大家都不考慮 branching-cover ?
+    這會影響 cover 的什麼性質嗎?
+    爲什麼大家都不考慮 branching-cover?
 
   - k -
     我們可以看一下 cover 是如何被使用的
@@ -2731,7 +2731,7 @@
       才有可能將 universal-covering-space 的概念推廣到高維
 
     - k -
-      branching-cover 在 riemann-surface 理論中是如何使用的 ?
+      branching-cover 在 riemann-surface 理論中是如何使用的?
 
 *** neighborhood and continuity
 
@@ -2769,11 +2769,11 @@
       也可以看成是 (* I I) [或者 2-disk] 嵌入在 3-manifold 中
 
       cayley-graph 與 covering-space
-      是否也能在二階代數中得到類比 ?
+      是否也能在二階代數中得到類比?
       就二階代數結構 是否可以構造 'cayley-graph'
 
       首先 3-manifold 的 universal-covering-space 是可以定義的
-      [可以嗎 ?]
+      [可以嗎?]
 
       對於 group 而言
       兩個元素是否相等
@@ -2793,17 +2793,17 @@
       好像是 X 的 disk-space
 
       [問題]
-      path-space 與 disk-space 這兩個空間是等價的嗎 ?
+      path-space 與 disk-space 這兩個空間是等價的嗎?
 
     - k -
-      二者的關係是什麼 ?
+      二者的關係是什麼?
       二者都是函數空間
       前者是 (-> I X) 後者是 (-> (* I I) X)
       因此後者也是 (-> I (-> I X))
       這兩個空間顯然不是等價的
 
       說 path-space 就是 universal-covering-space
-      是不是只是對曲面而言的 ?
+      是不是只是對曲面而言的?
 
     - x -
       曲面中的 path 對應與 universal-covering-space 中的兩個點
@@ -2827,7 +2827,7 @@
 
       - 這個猜想是錯誤的
         考慮 (* S1 I) 的 universal-covering-space
-        我所想象的這個 covering-space 是不是 universal ?
+        我所想象的這個 covering-space 是不是 universal?
         如果是的話
         原來空間中不能收縮到一點的 sphere
         在 covering-space 中還是 sphere
@@ -2843,15 +2843,15 @@
       人們先對曲面進行 normalization
 
       [問題 1]
-      可否對 3-manifold 進行 normalization ?
+      可否對 3-manifold 進行 normalization?
 
       [問題 2]
       可否在不進行 normalization 的條件下
-      構造 [曲面 和 3-manifold 的] universal-covering-space ?
+      構造 [曲面 和 3-manifold 的] universal-covering-space?
 
       [問題 3]
       simplicial-complex 所提供的視角
-      是不是不利於構造 universal-covering-space ?
+      是不是不利於構造 universal-covering-space?
 
     ------
 

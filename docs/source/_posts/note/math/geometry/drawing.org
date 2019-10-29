@@ -107,14 +107,14 @@
         就能描述 帶洞曲面 的 self-map
 
         [問題]
-        這與曲面本身的代數表示有什麼關係 ?
+        這與曲面本身的代數表示有什麼關係?
 
       - k -
         我們之所以關心 mapping-class-group
         是因爲定義 fiber-space 的時候需要它們
 
         [問題]
-        fiber-space 的代數是什麼呢 ?
+        fiber-space 的代數是什麼呢?
 
 ***** braiding homeomorphisms
 

@@ -83,7 +83,7 @@
       或者說 觀察觀察行爲本身
       可以使得形成概念時有更豐富的材料
 
-  - 這樣就算解決了連續體這個概念的起源問題了嗎 ?
+  - 這樣就算解決了連續體這個概念的起源問題了嗎?
 
   - 我們可以在需要的時候細分一個連續體
     細分是潛在無窮的 但是總是有限的
@@ -445,11 +445,11 @@
         maybe how they divide the continuum differently,
         maybe something else.
 
-        but, what is a language ?
+        but, what is a language?
         two people can draw pictures to each other,
         they can even make films to each other,
         they can even develop different VR worlds to each other.
-        so, what is a language ?
+        so, what is a language?
 
         programming language is much easier to define,
         because it is not about people to people,

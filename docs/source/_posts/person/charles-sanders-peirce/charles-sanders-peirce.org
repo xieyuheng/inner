@@ -241,7 +241,7 @@
         are defined by pragmatic principle
 
       - x -
-        how about diverging theories in mathematics ?
+        how about diverging theories in mathematics?
 
   - optimistic
     Peirce tends to hold that every genuine question
@@ -302,7 +302,7 @@
 
       - x -
         plausibility is said to be hard to be formalized,
-        how about using markov logic networks ?
+        how about using markov logic networks?
 
   - two interpretations of probability
 
@@ -508,7 +508,7 @@
 
     - x -
       can all relations be reduced to
-      composition of relations with arity less or equal than 3 ?
+      composition of relations with arity less or equal than 3?
 
     - x -
       the author uses single letter variable name
@@ -844,7 +844,7 @@
       the program must search for new believes without contradiction.
 
       Before designing a program which can search for believes,
-      we must also ask how to use those believes ?
+      we must also ask how to use those believes?
 
     All these words, however, are too strong for my purpose.
     It is as if I had described the phenomena
@@ -1098,7 +1098,7 @@
 
     - x -
       If we were to program a thinking machine,
-      what kinds of "habits of action" should we aiming for ?
+      what kinds of "habits of action" should we aiming for?
 
     If there be a unity among our sensations
     which has no reference to how we shall act on a given occasion,

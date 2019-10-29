@@ -19,10 +19,10 @@
     - minikanren and ukanren are cool
       but they rely on lambda
 
-    - how to do it without lambda ?
+    - how to do it without lambda?
       will we inevitably re-implement
       all that lambda did for us with no gain
-      and make things more complicated than them need to be ?
+      and make things more complicated than them need to be?
 
 *** ukanren
 
@@ -118,7 +118,7 @@
       - machine instruction
 
     - having defined a program term p
-      one can submit any query ?-q
+      one can submit any query?-q
       and execution either
       1. fails if p and q do not unify
       2. or succeeds with a binding of the variables in q
@@ -220,7 +220,7 @@
 ***** [todo] datatype
 
       #+begin_src cicada
-      relation-t = ?
+      relation-t =?
 
       // in a mexp syntax
       list-append-t:zero (null-c succ succ)
@@ -242,7 +242,7 @@
         list-append-t (x y z)
       ])
 
-      relation-t : ?
+      relation-t :?
 
       query : -- relation-t list-t (term-t) -> stream-t (subst-t)
 

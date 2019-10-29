@@ -81,7 +81,7 @@
       of networks with complex active conductances
       it is so only for
       network activity with perfect compensation
-      >< 什麼意思 ???
+      >< 什麼意思???
       * 都要責怪生物學家的奇怪術語
         所以
         我發現語言設計在各個領域都是有需求的

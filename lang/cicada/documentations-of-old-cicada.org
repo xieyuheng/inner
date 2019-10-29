@@ -11,8 +11,8 @@
 
 * TODO words and the dictionary metaphor
 * TODO some maybe-bad design decisions
-* TODO what do you mean by dynamic-type ?
-* TODO how function is defined and calld ?
+* TODO what do you mean by dynamic-type?
+* TODO how function is defined and calld?
 * TODO strings
 * TODO the DNA of this language
 ** [Forth] explicit control

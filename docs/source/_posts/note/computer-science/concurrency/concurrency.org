@@ -112,7 +112,7 @@
 ***** [note]
 
       - x -
-        傳遞信息的時候 symbol 這個數據結構如何處理 ?
+        傳遞信息的時候 symbol 這個數據結構如何處理?
         注意我們的 module system 是依賴這個數據結構的
 
 ***** 1: messages and mailboxes

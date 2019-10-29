@@ -69,8 +69,8 @@
     assigning probability to them and maintain probability axioms
     - x -
       this also revealed set theory's inconvenience,
-      but why we are not using type theory yet ?
-      will type theory be even more inconvenient ?
+      but why we are not using type theory yet?
+      will type theory be even more inconvenient?
 
   - x -
     dealing with subsets remembers me of relational programming
@@ -204,7 +204,7 @@
       to discuss more about probabilistic-model
       to express properties of what we are interested in
 
-      - categorical pushout ?
+      - categorical pushout?
 
   - probability mass function -- for discrete random variables
 
@@ -243,7 +243,7 @@
     density at one point does not have to be less than one.
 
   - x -
-    how to formalize continuous random variables ?
+    how to formalize continuous random variables?
     we may need to formalize integral first
 
   - cumulative distribution function (CDF)

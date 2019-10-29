@@ -5,7 +5,7 @@
 * [note]
 
   - x -
-    should we use polytopal-complex instead of cell-complex ?
+    should we use polytopal-complex instead of cell-complex?
 
 * 0 Introduction and Examples
 
@@ -145,7 +145,7 @@
       can be views as a 3-cell,
       whose boundary sphere is attached to 2-skeleton of the space.
 
-      what is preventing us from doing this for 3-dim manifold complex ?
+      what is preventing us from doing this for 3-dim manifold complex?
 
     - [star and link of vertex in a polytopal complex]
       ><><><

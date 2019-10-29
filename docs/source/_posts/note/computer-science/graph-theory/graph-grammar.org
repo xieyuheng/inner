@@ -19,7 +19,7 @@
 * note
   考慮同倫論中的粘貼方法
   比如 cell-complexes 的定就很像是遞歸定義
-  根這裏提供的語法有些類似嗎 ?
+  根這裏提供的語法有些類似嗎?
 * >< handbook-of-graph-grammars
 *** note
     [[shell:xpdf ~/learning/digrap/graph-grammar/handbook-of-graph-grammars-and-computing-by-graph-transformation.pdf &][handbook-of-graph-grammars]]
@@ -41,8 +41,8 @@
          在 replacement-rules 的作用下
          可以爆炸開來形成一個子圖
          這個子圖的中的點會被用新的邊與原來的圖中的節點連接起來
-         + >< 這與對無窮有向圖的惰性求值有什麼關係 ??
-           這給出了一種方式來惰性求值一個無窮有向圖嗎 ???
+         + >< 這與對無窮有向圖的惰性求值有什麼關係??
+           這給出了一種方式來惰性求值一個無窮有向圖嗎???
 ***** production
       a production is (M,D,E)
       M : mather

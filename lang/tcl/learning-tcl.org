@@ -227,7 +227,7 @@
     3. error-handling
     4. miscellaneous (non-local exit)
   #+begin_src tcl
-  # if boolean ?then? body1 ?else? ?body2?
+  # if boolean?then? body1?else??body2?
   if { $last_visit != "" } {
       # this is a return visitor
       append page "welcome back"

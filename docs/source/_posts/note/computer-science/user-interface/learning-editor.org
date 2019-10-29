@@ -80,8 +80,8 @@ SUB  (0x1A,^Z)    两者都表示中断转义序列
 ESC  (0x1B,^[)    开始一个新的转义序列
 DEL  (0x7F)       忽略
 * >< teco
-can we build videoteco on top of teco ?
-can we make a version, suit to build videoteco on top of it ?
+can we build videoteco on top of teco?
+can we make a version, suit to build videoteco on top of it?
 * videoteco
 ** note
    1. functions are case-insensitive

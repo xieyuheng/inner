@@ -1,4 +1,4 @@
-(define ?
+(define?
   (lambda (x)
     (and (list x)
          (not (null? x))

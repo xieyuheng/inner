@@ -18,7 +18,7 @@
       - x -
         not necessarily be able to write a predicate
         to decide whether an arbitrary object
-        is of that type ?
+        is of that type?
 
 *** 1.2 propositions and proofs
 
@@ -195,7 +195,7 @@
       how to construct functions
       whose type is this dependent arrow.
 
-      why ?
+      why?
 
 *** 1.8 Reflection principle
 

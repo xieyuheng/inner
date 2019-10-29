@@ -16,7 +16,7 @@
   The study and development of the author's theory
   is heavily based on etymology, i.e. the study of the origin of words.
   How would the development be different
-  if we follow the etymology of Chinese instead of western language ?
+  if we follow the etymology of Chinese instead of western language?
 
 - **[Xie]** A proposition is an expression that is used as operand of logical operations.
   A judgement is a higher level expression that is used as premises or conclusion in inference rules.
@@ -54,7 +54,7 @@ and that what is judged is the object of knowledge.
   | extensional | act of judging       | an act of knowing      |
   | intensional | that which is judged | an object of knowledge |
 
-- **[Xie]** Then, what is "knowing" ? Which is even a deeper question.
+- **[Xie]** Then, what is "knowing"? Which is even a deeper question.
   Maybe just the intuitions like
   "I am sure that ...",
   "I am sure that possibly ...",

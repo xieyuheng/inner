@@ -55,10 +55,10 @@
       describe -- constructive generating
       grammar -- generative grammar
 
-*** can all languages be described by finite descriptions ?
+*** can all languages be described by finite descriptions?
 
     - The dis-proof of
-      > Can all languages be described by finite descriptions ?
+      > Can all languages be described by finite descriptions?
       by diagonalization, is wrong.
 
     - For descriptions can not be Enumerated,
@@ -413,7 +413,7 @@
     - regular expression operators
       - * -- zero-or-more
       - + -- one-or-more
-      - ? -- zero-or-one
+      -? -- zero-or-one
       - () -- group
       - [] -- choice
 
@@ -529,7 +529,7 @@
         - For example,
           from messenger RNA -- linear string
           to structured protein,
-          what is the grammar ?
+          what is the grammar?
 
     - There are only two techniques to do parsing,
       all the rest is technical detail and embellishment.
@@ -612,20 +612,20 @@
 
 *** 3.5 An Overview of Context-Free Parsing Methods
 
-    - how to construct the parse-tree ?
+    - how to construct the parse-tree?
       top-down -- bottom-up
 
-    - how to accessing the input string ?
+    - how to accessing the input string?
       directional -- non-directional
 
-    - how to search in the space introduced by non-deterministic ?
+    - how to search in the space introduced by non-deterministic?
       depth-first -- breadth-first
 
     - x -
       it seems different methods are not symmetry,
       just like prefix notation and postfix notation
       are not symmetry, because of the external factor of writing.
-      but what is the external factor of the parsing methods ?
+      but what is the external factor of the parsing methods?
 
 *** 3.5.4 Linear Methods
 
@@ -651,10 +651,10 @@
       our output is parsing automaton.
       thus, we must report to the user,
       about the natural of the grammar
-      - is the grammar unambiguous ?
+      - is the grammar unambiguous?
       and the feature of the automaton
-      - is the automaton deterministic ?
-        thus we have linear parsing method ?
+      - is the automaton deterministic?
+        thus we have linear parsing method?
       - maybe give hint to the user
         about how to adapt grammar to get linear parsing.
 

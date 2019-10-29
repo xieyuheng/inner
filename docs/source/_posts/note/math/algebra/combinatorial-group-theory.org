@@ -88,7 +88,7 @@
 
           之前問
           what are the underlying-space and covering-space
-          of low order finite groups ?
+          of low order finite groups?
           現在知道這些就是不是 manifold 的空間了
 
           之前關於有限生成羣的分類的問題
@@ -154,7 +154,7 @@
           在 AT1 中
           應該如何定義上面兩個概念
           如果要求 證明等價時所用的 (-> (* A I) B) 不能有自交
-          是否就有了 ambient-isotopy ?
+          是否就有了 ambient-isotopy?
 
           有可能不行
           因爲 ambient-isotopy 是用 (-> (* B I) B) 定義的
@@ -269,7 +269,7 @@
         - x -
           how about the fact that
           the fundamental group of a covering space of (underlying-space G)
-          is a subgroup of G ?
+          is a subgroup of G?
 
 ******* 0.5.5 Quotient Groups and Homomorphisms
 
@@ -286,9 +286,9 @@
           is equivalent to the construction of Cayley diagram of G.
 
         - x -
-          如何等同呢 ?
-          用有向圖實現這個 [有可能是無限的] cayley diagram 嗎 ?
-          path 到 vertex 的 hash function 嗎 ?
+          如何等同呢?
+          用有向圖實現這個 [有可能是無限的] cayley diagram 嗎?
+          path 到 vertex 的 hash function 嗎?
 
 ******* 0.5.8 Tietze Transformations
 
@@ -488,7 +488,7 @@
 
           二維圖形也可以如此
           最終得到的卻不全是 sphere
-          而是什麼 ?
+          而是什麼?
 
         - k -
           我們必須找一些例子來觀察
@@ -843,7 +843,7 @@
           [which is determined by the images of the canonical meridians.]
 
           when a set of n disjoint simple closed curves
-          on a handlebody of genus n is a Heegaard diagram ?
+          on a handlebody of genus n is a Heegaard diagram?
 
 ******* note
 
@@ -852,7 +852,7 @@
           但是 我們缺很難判斷兩個 表示是否等價
 
           how about
-          (heegaard-splitting -> polyhedral-schema) ?
+          (heegaard-splitting -> polyhedral-schema)?
 
 ******* 8.3.3 Reading a Presentation of the Fundamental Group
 
@@ -1030,7 +1030,7 @@
         - x -
           這章節值得仔細分析
           既然 羣論 可以用於描述諸多現象
-          那麼 推廣而得到的 高階代數 是否也能描述這些現象的推廣呢 ?
+          那麼 推廣而得到的 高階代數 是否也能描述這些現象的推廣呢?
 
         - k -
           如果可以的話
@@ -1141,7 +1141,7 @@
         of the fundamental group of the surface.
 
         - x -
-          how about mapping-class-group with fixed boundary ?
+          how about mapping-class-group with fixed boundary?
 
 ***** 2 Free Groups and Their Automorphisms
 

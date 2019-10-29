@@ -2,8 +2,8 @@
 
 * [todo-stack]
 
-  - 如何測量出帶有誤差的 瞬時 velocity ?
-    how to measure instant velocity with uncertainties ?
+  - 如何測量出帶有誤差的 瞬時 velocity?
+    how to measure instant velocity with uncertainties?
 
 * classical mechanics
 
@@ -46,7 +46,7 @@
       平果的落地時間與 與 平果的質量無關 這個結論
       這裏的重點是我們取了 [acceleration] 來做分析
       這是亞里士多德想不到的
-      爲什麼 亞里士多德想不到 呢 ?
+      爲什麼 亞里士多德想不到 呢?
 
     - 那麼
       [time] = [length]^a * [mass]^b * ([length] / ([time]^2))^c
@@ -112,8 +112,8 @@
       很難定義
 
     - 之後教授用 average-velocity 的極限來定義 瞬時 velocity
-      但是這樣定義出來的 瞬時 velocity 應該如何測量呢 ?
-      通過測量 average-velocity 能夠給出帶有誤差的 瞬時 velocity 嗎 ?
+      但是這樣定義出來的 瞬時 velocity 應該如何測量呢?
+      通過測量 average-velocity 能夠給出帶有誤差的 瞬時 velocity 嗎?
 
     - 如下的定義看來是不實際的
       average-acceleration : time-t time-t -> acceleration-t

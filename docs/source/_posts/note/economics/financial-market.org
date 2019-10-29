@@ -49,14 +49,14 @@
       of the performance of financial instruments.
 
     - [question]
-      what are the presumptions of the concept of alpha ?
+      what are the presumptions of the concept of alpha?
 
     - [question]
       by alpha, we are not predicting the exact <price> of a instrument,
-      so, what are predicting ?
+      so, what are predicting?
 
     - [question]
-      what is the type of alpha ?
+      what is the type of alpha?
       by [define-1], an alpha is a function of type :
       (-> <instrument-data> -- <prediction>)
       - in the most simple case <prediction> is simply a real number
@@ -75,9 +75,9 @@
       #+begin_src python
       daily_pnl(instrument_list) = sum for instrument in instrument_list: (position * daily_return(instrument))
       daily_return(instrument) = (today_s_close(instrument) / yesterday_s_close(instrument)) - 1
-      # yesterday_s_close == today_s_open ?
+      # yesterday_s_close == today_s_open?
       #   what can a stock exchange company do to the stocks
-      #   during yesterday_s_close and today_s_open ?
+      #   during yesterday_s_close and today_s_open?
       #+end_src
 
 ***** active return

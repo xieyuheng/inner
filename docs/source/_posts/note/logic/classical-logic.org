@@ -50,11 +50,11 @@
 
 ***** 1.4. Restriction to FOL
 
-*** 2. philosophisches: is first-order logic a 'natural unity' ?
+*** 2. philosophisches: is first-order logic a 'natural unity'?
 
 ***** 2.1. Purported definitions
 
-***** 2.2. Is sentential logic all there is ?
+***** 2.2. Is sentential logic all there is?
 
 *** 3. Determination by tradition: exemplars
 

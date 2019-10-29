@@ -30,7 +30,7 @@
 
 * (1998) truth and knowability: on the principles c and k of michael dummett
 
-* >< (2008) hilbert brouwer controversy resolved ?
+* >< (2008) hilbert brouwer controversy resolved?
 
 * (2009) one hundred years of zermelo's axiom of choice. what was the problem with it?
 
@@ -101,7 +101,7 @@
       - computation can happen during type-checking.
         applying a predicate is a computation.
 
-        is it meaningful to use predicate in type ?
+        is it meaningful to use predicate in type?
 
 ***** >< LTEQ
 
@@ -116,7 +116,7 @@
 
       - k -
         如果基本等词是 predicate
-        那么为何不允许别的 predicate 呢 ?
+        那么为何不允许别的 predicate 呢?
 
       - x -
         在 coq 中找例子

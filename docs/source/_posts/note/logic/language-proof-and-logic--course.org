@@ -89,7 +89,7 @@
 * Chapter 2: The Logic of Atomic Sentences
 
   - What does it mean when we say that sentence S
-    is a logical consequence of sentence T ?
+    is a logical consequence of sentence T?
 
     S is a logical consequence of T if
     whenever T is true, S must be true as well
@@ -152,7 +152,7 @@
     we need to give every inference rule
     a constructive meaning
 
-    what is the meaning of `=-elim` ?
+    what is the meaning of `=-elim`?
     maybe :
     by c = b
     we can view Cube (b) as Cube (c)
@@ -245,7 +245,7 @@
   - no general procedure to decide first-order validity
 
     - x -
-      is this contradicts "be able to enumerate function space" ?
+      is this contradicts "be able to enumerate function space"?
       no, because the enumeration might not stop
       but it generates no functions
 

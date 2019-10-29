@@ -45,8 +45,8 @@
   zero = sup(1, b: (F(0)) -> nat_t)
   where
     b(_) = zero
-    // does this definition make sense ???
-    //   what is elements of F(0) ???
+    // does this definition make sense???
+    //   what is elements of F(0)???
 
 
   one : nat_t

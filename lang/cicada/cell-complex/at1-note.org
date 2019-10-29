@@ -211,12 +211,12 @@
       there is not explict functions, like 'as-remained-boundary' in it.
 
     - [hesitation about syntax]
-      Should these three distinctions be unified ?
+      Should these three distinctions be unified?
       If these distinctions are really meaningful,
       and ought not to be unified,
       Should we design distinct syntaxes for them,
       to maintain the distinctions,
-      instead of using the seemingly unified syntax ?
+      instead of using the seemingly unified syntax?
 
   - Note that, 'as-remained-boundary' involves searching,
     which makes the specification of part of the space implict,
@@ -233,7 +233,7 @@
     where B1 and B2 are called cobordant.
 
     Under what conditions, a closed space can be
-    the boundary of a 1-dim higher space ?
+    the boundary of a 1-dim higher space?
     This question should be thoroughly understood,
     before developing the formal semantics of the language.
 

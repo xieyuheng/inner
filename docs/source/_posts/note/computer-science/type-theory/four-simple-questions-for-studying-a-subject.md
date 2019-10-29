@@ -7,7 +7,7 @@
 
 ## Case study: set-, type- and category- theory
 
-What is the difference between set, type and cat ?
+What is the difference between set, type and cat?
 
 Comparing Interfaces:
 - set  --  equal, member relation, subset relation

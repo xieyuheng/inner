@@ -61,8 +61,8 @@
     [when there is rules there is theory]
     provability in the theory λ of equation is denoted by λ⊦(M=b=N)
     - 其實說 =b= 是一個等詞 而 M =b= N 爲真就行了
-      這是兩種形成理論的風格嗎 ?
-      一種來源於證明論 ?
+      這是兩種形成理論的風格嗎?
+      一種來源於證明論?
       證明論 中 層次結構好像格外的多
     one can say M and N is convertible when λ⊦(M=b=N)
     this seems a loop-define
@@ -106,7 +106,7 @@
     所以需要加上上面的限制
 
   - ><><>< 是不是
-    有了基本等詞之後就沒有必要使用 推理規則了 ?
+    有了基本等詞之後就沒有必要使用 推理規則了?
 
   - 因此首先我要一個直覺性的並且具有可構造性的數學結構
     當我用計算機來實現一個數據結構時
@@ -115,7 +115,7 @@
     之後我就得到了一個形式語言
     用這個語言我可以推導出一些描述這個數學結構的一般性質的命題
     這些命題的正確性由推理規則和數學結構的相容性保證
-    - 推理規則 和 數學結構 之間的關係就是證明論 ??
+    - 推理規則 和 數學結構 之間的關係就是證明論??
     這些命題是具有實在意義的因爲我是一個純粹的形式主義者
 
   - 關於術語
@@ -667,7 +667,7 @@
         所以在那種語法層次中推進證明都是沒有關係的
 
       - >< 這帶來了什麼啓示呢?
-        我可不可以設計形式語言把不同的語法層次對稱化 ???
+        我可不可以設計形式語言把不同的語法層次對稱化???
 
 ***** >< 是否可以列舉出分別易於在intro/elim和left/right中理解的推理的例子
 
@@ -1215,7 +1215,7 @@
        等價關係自然地被定義爲歸納定義有向樹中的無向路
     5. >< 在 hott 中有的數學結構被稱爲是高階歸納定義的
        比如同倫類
-       這是什麼意思 ???
+       這是什麼意思???
     6. 以-b->爲基礎:
        M -b-> N
        -----------
@@ -2364,9 +2364,9 @@
  λx:σ.x:τ
  λx:σ.x:τ : σ->τ
  那麼:
- (λx:σ.x:τ)N:σ -sb-> ???
- N:σ ???
- N:τ ???
+ (λx:σ.x:τ)N:σ -sb->???
+ N:σ???
+ N:τ???
  都不對
 
  實際上所使用的是:
@@ -2409,7 +2409,7 @@
 
 *** >< logic of statements recovered via curry-howard
  傳統的謂詞演算由curry-howard
- 在類型論中重新實現 ???
+ 在類型論中重新實現???
 
 * ><
 
@@ -2430,7 +2430,7 @@
 
   quantifiers:
   if is there is no set theory at first
-  how can there be quantifiers ?
+  how can there be quantifiers?
   by inference-rules of course
   and by the following sugar
   ∃x∈A(...) :=sugar= ∃x(Ax∧...)
@@ -2455,8 +2455,8 @@
 
   rewrite-rules are about computation
   but inference-rules are not
-  >< do not have a computational nature ??
-  >< yes ???
+  >< do not have a computational nature??
+  >< yes???
 
   "the quantiers usually range over
   an infinite set and therefore one loses decidability"
@@ -2470,7 +2470,7 @@
   and is called the propositions-as-types
   which maps propositions into types
   and proofs into the corresponding inhabitants
-  >< how about axioms ?
+  >< how about axioms?
 
 * curry-howard-correspondence
 
@@ -2487,7 +2487,7 @@
        也就是說我還是不想引入新的理論
        而想直接把它理解爲布爾代數的性質
     2. 對邏輯演算[推理規則]的需要
-       是因爲無窮集的出現嗎 ?
+       是因爲無窮集的出現嗎?
 
 *** formulae as types
     1. 對一個形式命題[formulae]的證明

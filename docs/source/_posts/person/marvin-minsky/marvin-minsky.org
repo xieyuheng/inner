@@ -135,8 +135,8 @@
 ***** k-line
 
       - minsky -
-        how higher knowledge is represented in brain ?
-        maybe k-line ?
+        how higher knowledge is represented in brain?
+        maybe k-line?
 
         biologists do not think in this way, but :
 
@@ -148,7 +148,7 @@
 
       - why programming is a good medium
         for expressing poorly understood
-        and sloppily-formulated ideas ?
+        and sloppily-formulated ideas?
 
       - There is a popular, widespread belief
         that computers can do only what they are programmed to do.
@@ -200,7 +200,7 @@
 
       - k -
         I think the first question to ask is
-        what is k-point ?
+        what is k-point?
         only then
         can we ask about how to compose them to a k-line
 

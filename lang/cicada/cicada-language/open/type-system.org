@@ -2084,7 +2084,7 @@
 
       - local-stack:
         #function
-        . ???
+        .???
         = .function^2
         #car
         . :type^1
@@ -2154,7 +2154,7 @@
 
       - local-stack:
         #function
-        . ???
+        .???
         = .function^2
         #car
         . :type^1
@@ -3372,8 +3372,8 @@
   - integer
     in stack : ['type, 'integer]
     the information about 'integer as a primitive-type
-    should be stored at where ?
-    the tag-group-hash-table ?
+    should be stored at where?
+    the tag-group-hash-table?
     maybe a type should be implemented as a sequent
     integer should not be a tag or tag-group
     but a function address

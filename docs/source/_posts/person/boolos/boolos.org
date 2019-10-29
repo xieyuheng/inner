@@ -9,19 +9,19 @@
 ***** nominalist platonism
 ***** Iteration Again
 ***** introductory note to kurt godel's "some basic theoremson the foundations of mathematics and their implications"
-***** must we believe in set theory ?
+***** must we believe in set theory?
 *** frege studies
 ***** Gottlob Frege and the foundations of arithmetic
 ***** reading the Begriffsschrift
 ***** Saving Frege from Contradiction
 ***** The Consistency of Frege's Foundations of Arithmetic
 ***** The Standard of Equality of Numbers
-***** Whence the Contradiction ?
-***** 1879 ?
+***** Whence the Contradiction?
+***** 1879?
 ***** The Advantages of Honest Toil over Theft
 ***** On the Proof of Frege's Theorem
 ***** Frege's Theorem and the Peano Postulates
-***** Is Hume's Principle Analytic ?
+***** Is Hume's Principle Analytic?
 ***** Die Grundlagen der Arzthmetik (with Richard Heck)
 ***** Constructing Cantorian Counterexamples
 *** various logical studies and lighter papers

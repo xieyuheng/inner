@@ -17,7 +17,7 @@
       然而 邏輯式編程中的 unnest 與 unification
       引入了大量的 functional 中不需要的名字
 
-      函數複合 對這種 命名激增 有何影響呢 ?
+      函數複合 對這種 命名激增 有何影響呢?
 
 *** play with prolog examples
 
@@ -31,19 +31,19 @@
       as well as in scheme
 
     - k -
-      why ?
+      why?
 
     - x -
       because it need meta programming
 
     - k -
-      what's wrong about meta programming ?
+      what's wrong about meta programming?
 
     - x -
       because meta programming is hard to understand
 
     - k -
-      what should we do then ?
+      what should we do then?
 
     - x -
       we use strict ffi
@@ -65,8 +65,8 @@
 
     - k -
       and you want to make them explicit
-      by using stack ?
-      why ?
+      by using stack?
+      why?
 
     - x -
       because the reason of using native closure
@@ -76,10 +76,10 @@
       instead of meta programming
 
     - k -
-      but why native closure is not good for strict ffi ?
-      what's really wrong about native closure ?
-      what is the interface you want ?
-      how will things really be used ?
+      but why native closure is not good for strict ffi?
+      what's really wrong about native closure?
+      what is the interface you want?
+      how will things really be used?
 
     ------
 
@@ -93,7 +93,7 @@
       當嘗試解釋 disj 和 conj
       並且描述如何用 mplus 和 bind 來實現它們時
       就感覺 type class 所提供的抽象視角是很重要的
-      爲什麼會有這種感覺呢 ?
+      爲什麼會有這種感覺呢?
 
     - k -
       ><
@@ -374,8 +374,8 @@
       中的運算
 
     - k -
-      運算律是什麼 ?
-      或者說此代數結構的公理是什麼 ?
+      運算律是什麼?
+      或者說此代數結構的公理是什麼?
 
     - x -
       我們先來看 forgetful functor 作用於這個代數結構的效果

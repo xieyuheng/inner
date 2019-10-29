@@ -14,9 +14,9 @@
 * design the language with the UI in mind
 
   - should I design the language with the UI in mind,
-    or separate the language and the UI ?
+    or separate the language and the UI?
 
-  - what kind of UI do I want ?
+  - what kind of UI do I want?
 
 * on the type of syntax
 
@@ -43,7 +43,7 @@
     the syntaxes of programming languages are very simple.
     this single fact makes it very important to learn general linguistics.
 
-* what is good syntax ?
+* what is good syntax?
 
   - good syntax make meaning explicit to reader.
     meaning is use.
@@ -234,7 +234,7 @@
     I think this might be where we really need infix notation.)
   #+end_src
 
-* should we free the use of '[]' or using ',' as clojure ?
+* should we free the use of '[]' or using ',' as clojure?
 
   - x -
     首先我們總結一下現象
@@ -389,7 +389,7 @@
     並且我覺得 我們還發展出了一些關於語法的一般理論
     或者不能說是 '理論'
     因爲我們並不遵循生成語法的傳統
-    我們是否接機給生成語法一個批判呢 ?
+    我們是否接機給生成語法一個批判呢?
 
   - k -
     啊 還是算了

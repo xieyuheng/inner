@@ -87,9 +87,9 @@
   we propagate the property "we need to check instead of infer"
   to all rules about constructor.
 
-  why we have this propagation ?
+  why we have this propagation?
 
-- why we sometimes need infer, when we only want to implementation check ?
+- why we sometimes need infer, when we only want to implementation check?
   because we need to infer the type of target of elimination rules.
 
   for elimination rules the pattern is
@@ -114,9 +114,9 @@
   ```
 
 - can we just provide enough information in the syntax.
-  for example, use church's typed lambda calculus instead of curry's typed lambda calculus ?
-  in church's typed lambda calculus, can we infer all the way down ?
-  is this true for all the rules about constructor ?
+  for example, use church's typed lambda calculus instead of curry's typed lambda calculus?
+  in church's typed lambda calculus, can we infer all the way down?
+  is this true for all the rules about constructor?
 
   ``` js
   [infer] ctx, x: A |- e: B

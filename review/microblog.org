@@ -118,7 +118,7 @@
 
   - https://en.wikipedia.org/wiki/Joseph_Goguen
 
-*** ‎(1989) What is Unification ?
+*** ‎(1989) What is Unification?
 
     - A Categorical View of Substitution, Equation and Solution
 

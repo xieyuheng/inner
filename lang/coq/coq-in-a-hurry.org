@@ -27,7 +27,7 @@
 
 * keyword : fun
   replaces the λ symbol of λ calculus
-  + why do not jusu use the the λ symbol of λ calculus ???
+  + why do not jusu use the the λ symbol of λ calculus???
     i can configure emacs to change the way
     it display keywords
   #+begin_src coq
@@ -192,7 +192,7 @@
 
 * command : Fixpoint
   is it means that the recursion is implemented by ``Y''???
-  >< but way one can't use ``Fixpoint'' as ``Definition'' ???
+  >< but way one can't use ``Fixpoint'' as ``Definition''???
   #+begin_src coq
   Fixpoint sum_n n :=
     match n with
@@ -378,7 +378,7 @@
       <context>
       =======================
       <conclusion>
-      + >< 其中<context>是前面证明过的定理和局部的假设 ???
+      + >< 其中<context>是前面证明过的定理和局部的假设???
 
       and initially it is:
       <>
@@ -398,7 +398,7 @@
 ***** 被处理的context&conclusion作为数据结构是什么样的?
       即是问context&conclusion和context&conclusion之间的关系是什么
       这些关系是如何实现的
-      有向图吗 ???
+      有向图吗???
       其实就是被隐蔽起来的有向图处理
       onescontext&conclusion是有向图的节点
       tactics用来指明在回溯过程中下一步往那个方向走
@@ -600,7 +600,7 @@
           rewrite <- plus_assoc with (n := x * x).
 
           (* next : commutativity for multiplication *)
-          SearchPattern (?x * ?y = ?y * ?x).
+          SearchPattern (?x *?y =?y *?x).
           (* mult_comm: forall n m : nat, n * m = m * n *)
           rewrite mult_comm with (n:= y) (m:=x).
 

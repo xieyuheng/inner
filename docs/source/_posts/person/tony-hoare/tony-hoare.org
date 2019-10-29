@@ -2,7 +2,7 @@
 
 * (1998) unifying theories of programming
 
-* (2006) why ever CSP ?
+* (2006) why ever CSP?
 
 *** Primitive processes and operators
 

@@ -24,7 +24,7 @@
 
   - strategies can encode many things
 
-    - x - game semantic of logic ?
+    - x - game semantic of logic?
 
   - 2-player game is a matrix
     we have row-player and col-player
@@ -59,7 +59,7 @@
   #+end_src
 
   - x -
-    can two players in the same game be the same person ?
+    can two players in the same game be the same person?
 
   - game of pure competition -- zero sum game
 

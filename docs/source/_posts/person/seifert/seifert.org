@@ -123,7 +123,7 @@
           因此我們目前的主要工具就是直覺與想象
 
         首先我們問
-        不同胚的閉曲面都由哪些 ?
+        不同胚的閉曲面都由哪些?
 
 ***** 2 閉曲面 / closed surfaces
 
@@ -457,13 +457,13 @@
           but a polygon only has two orientations.
 
           while so much information are maintained,
-          are they really the information about orientation ?
+          are they really the information about orientation?
 
       - The orientation of the polygon
         will determine a sense of traversal of the boundary,
         that is, a cyclic ordering of the sides.
 
-        [is this the same for polyhedron ?]
+        [is this the same for polyhedron?]
 
 ***** 38 transformation to normal form
 
@@ -519,7 +519,7 @@
         這樣找到了所有的 subgroup 就能找到所有的 unbranched-covering
 
         - x -
-          但是找到了所有的 unbranched-covering 又有什麼用呢 ?
+          但是找到了所有的 unbranched-covering 又有什麼用呢?
           這裏的敘述 好像顯得 topology 空間的基本羣 這個代數不變量
           可以用來解決有關 covering 的問題
           但是其實 covering 的問題本身就沒什麼用
@@ -557,7 +557,7 @@
           說 [條件 3] 是爲了 path lifting property
           我覺得也可以直接以 path lifting property 作爲公理
           [這樣將更弱]
-          或者說 neighborhood lifting property ?
+          或者說 neighborhood lifting property?
 
           我們可以總爲
           [條件 2] 說 neighborhood mapped to neighborhood topologically.
@@ -634,15 +634,15 @@
 
       - x -
         既然這裏的敘述都是對 subgroup 而言的
-        那麼 高階代數 的 sub-代數是什麼呢 ?
+        那麼 高階代數 的 sub-代數是什麼呢?
 
         就羣的展示而言
         重新選取生成子 [關係的變化可以 reduce 出來]
         就算是一個子羣了
 
         對於高階代數的展示
-        是否也有類似的理論 ?
-        重新選取生成子 就得到子代數 ?
+        是否也有類似的理論?
+        重新選取生成子 就得到子代數?
 
 ***** 56 通用覆蓋 / universal coverings
 
@@ -654,7 +654,7 @@
         要使得同倫的 loop 有相同的編碼
         才算是找到了編碼
 
-      - 那麼對應於 subgroup 的中間 covering-space 應該如何構造呢 ?
+      - 那麼對應於 subgroup 的中間 covering-space 應該如何構造呢?
 
 ***** 57 正規覆蓋 / regular coverings
 
@@ -845,8 +845,8 @@
       [thus] cannot be obtained by a deformation of the identity.
 
       - x -
-        what is meant by 'homologous of topological map of a space to itself' ?
-        a map as a group of chains ?
+        what is meant by 'homologous of topological map of a space to itself'?
+        a map as a group of chains?
 
     - two fibered solid tori
       can be mapped onto each other by a fiber preserving map
@@ -860,7 +860,7 @@
       can be mapped ontoeach other under a fiber preserving homeomorphism.
 
       - x -
-        how to understand is fact by subdivision of topological space ?
+        how to understand is fact by subdivision of topological space?
 
       thus
       the boundaries of any two fibered solid tori
@@ -868,9 +868,9 @@
 
       - x -
         why fibered solid torus is classified by ((v / u) <= 1)
-        while fibered torus are all fiber homeomorphic ?
-        because fibered solid torus have a middle-fiber ?
-        how to understand this fact by subdivision of topological space ?
+        while fibered torus are all fiber homeomorphic?
+        because fibered solid torus have a middle-fiber?
+        how to understand this fact by subdivision of topological space?
 
         maybe,
         torus fibered by circle can only have circle as base-space,
@@ -880,7 +880,7 @@
         because when cutting the solid torus by a disk,
         the disk must cross non-middle-fiber many times.
 
-        is this how seifert manifold is discovered ?
+        is this how seifert manifold is discovered?
 
 *** orbit surface
 
@@ -936,7 +936,7 @@
       - then, when constructing the fiber-space
         by its base-space [orbit surface],
         how should we encode this information about exceptional points
-        into the construction ?
+        into the construction?
 
     - Theorem 1.
       A closed fibered space

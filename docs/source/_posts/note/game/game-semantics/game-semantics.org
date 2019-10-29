@@ -136,7 +136,7 @@
     - x -
       this is the difference between class and object
 
-      but is Hilbert's "Foundations of Geometry" a class or an object ?
+      but is Hilbert's "Foundations of Geometry" a class or an object?
       - it is said to be a nonlogical axiom system by the author.
 
       maybe we should think of it as being
@@ -154,12 +154,12 @@
 
     - x -
       Tarski's model theory dependents on set theory
-      how about game semantics ?
+      how about game semantics?
 
     - x -
-      what is an interpretation ?
-      - an object instantiating a class ?
-      - or an morphism from one class to another ?
+      what is an interpretation?
+      - an object instantiating a class?
+      - or an morphism from one class to another?
 
     - critics of Tarski's truth-conditional semantics
       https://plato.stanford.edu/entries/tarski-truth/
@@ -318,9 +318,9 @@
     - a logic variable is an implicit argument
 
     - is it true that
-      every implicit argument can be made explicit ?
+      every implicit argument can be made explicit?
 
-      - even in the case of antecedent subgame of arrow ?
+      - even in the case of antecedent subgame of arrow?
 
 *** about truth
 
@@ -337,11 +337,11 @@
 *** about constructive-ness
 
     - if game semantics can handle negation
-      is game semantics constructive ?
-      what is constructive-ness ?
+      is game semantics constructive?
+      what is constructive-ness?
 
     - or why in game semantics,
-      we can simply handle negation by switching players ?
+      we can simply handle negation by switching players?
 
       maybe this do not hurt constructive-ness
       because if falsifier indeed has a winning strategy

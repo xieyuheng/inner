@@ -24,7 +24,7 @@
   - [question]
     when sending a message to an address,
     will it be received by all actors bound to the address
-    or only one of them ?
+    or only one of them?
 
     - x -
       we can event broadcast a message
@@ -35,8 +35,8 @@
     how does the actor model relates to python distributed system solutions like celery.
 
   - [question]
-    use thread or process to implement actor ?
-    or something more light weight ?
+    use thread or process to implement actor?
+    or something more light weight?
 
   - x -
     the purpose of implementing actor model
@@ -69,7 +69,7 @@
   - address and mailing :
     actor-id
     bind actor to address
-    is an address a channel ?
+    is an address a channel?
     a channel can be implemented a another actor.
 
 * (2016) (tony garnock-jones) history of actors

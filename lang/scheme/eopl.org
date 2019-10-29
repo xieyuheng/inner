@@ -21,7 +21,7 @@
 
     - x -
       we can view this as a handbook for
-      a list of "how to implement ___ ?" questions.
+      a list of "how to implement ___?" questions.
 
 * 1 Inductive Sets of Data
 

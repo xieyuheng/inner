@@ -6,12 +6,12 @@
 
 *** [question]
 
-    - What is DTD (Document Type Definition) ?
-      Is it formal grammar of the parse-tree ?
+    - What is DTD (Document Type Definition)?
+      Is it formal grammar of the parse-tree?
 
-    - people used SGML to write books in the past ?
+    - people used SGML to write books in the past?
       how are text processing
-      and book publishing done nowadays ?
+      and book publishing done nowadays?
 
 *** intro
 

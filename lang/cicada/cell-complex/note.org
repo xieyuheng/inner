@@ -43,19 +43,19 @@
     when you want to find a function of certain type,
     such as (A -> B), (x:A -> B(x)),
     it must satisfy some constrains to be continuous.
-    what are such constrains ?
+    what are such constrains?
 
     - a fibration is a type family,
       a type family can be used as a function.
       to be able to describe the constraint of continuous function,
-      what constrains a type family must satisfy ?
+      what constrains a type family must satisfy?
 
   - a type is a proposition,
     a function body of such type is its proof.
     a proof is a record of deduction steps
     that finally would arrive the proposition.
 
-  - what is the meaning of being constructive ?
+  - what is the meaning of being constructive?
 
 * the meaning of being constructive
 
@@ -323,7 +323,7 @@
 
    - ><><><
      the gluing of adjunction is the same as
-     that of the gluing of fibers ?
+     that of the gluing of fibers?
 
 * the extension problem
 
@@ -592,7 +592,7 @@
 *** [note] set theory vs type theory
 
     - ><
-      what is this vs ?
+      what is this vs?
 
     - class (in oo) is encoded by a list of interface functions
       type-class (in haskell) is encoded by a list of abstract interface functions
@@ -655,7 +655,7 @@
       must be with detailed info about the the gluing is done
       if i view union as gluing
       the info will be denoted by the global-naming-as-mark
-      two types with the same constructor can still be seprated or not ?)
+      two types with the same constructor can still be seprated or not?)
 
     (note
       to define a named type
@@ -754,13 +754,13 @@
 
 * [todo-list]
 
-  - why design at1 ?
-    what is the use of at ?
-    why lisp was designed ?
-    why riemman did his study ?
+  - why design at1?
+    what is the use of at?
+    why lisp was designed?
+    why riemman did his study?
     can we use n-level to model things
-    which are not in the kingdom of at theory ?
-    what I want to do with at1 ?
+    which are not in the kingdom of at theory?
+    what I want to do with at1?
 
   - eq must be able to be used as a rewriter
     and not like arrow
@@ -836,8 +836,8 @@
       (:a :b -> :c {:c : border-condition})
       the border-condition must be generated from
       the value
-      on  ((border :a) :b -> ?)
-      and (:a (border :b) -> ?)
+      on  ((border :a) :b ->?)
+      and (:a (border :b) ->?)
 
     - ><><><
       this is where the dependent-type come into play

@@ -190,8 +190,8 @@
         指明了邊界 就算是定義了一個 compositor 了
 
       - x -
-        我們是否保證了 boundary boundary 爲 0 呢 ?
-        我們是如何保證這一點的呢 ?
+        我們是否保證了 boundary boundary 爲 0 呢?
+        我們是如何保證這一點的呢?
         首先對於 生成子
         我們已經小心檢查了它們的邊界
         使得對於生成子而言有 boundary boundary 爲 0

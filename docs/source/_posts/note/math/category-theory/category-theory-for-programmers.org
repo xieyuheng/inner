@@ -39,17 +39,17 @@
       [describe properties only by interface functions]
 
     - equality between arrows:
-      what are equality introductions ?
+      what are equality introductions?
       equations (axioms) of specific category are equality introductions.
 
 *** [note] mathematical model of type system
 
-    - what should we use to model type system ?
-      set theory or category theory ?
+    - what should we use to model type system?
+      set theory or category theory?
 
     - if we use category theory,
-      how to model `list_t(t: type)` ?
-      and dependent type `vect_t(t: type, length: nat_t)` ?
+      how to model `list_t(t: type)`?
+      and dependent type `vect_t(t: type, length: nat_t)`?
 
 *** 2.1: Functions, epimorphisms
 
@@ -191,7 +191,7 @@
         but the problem is polymorphic functions that involve circular definitions.
 
       - x -
-        what is the problem ?
+        what is the problem?
         list: List[T]
         f: List[T] => List[T]
 

@@ -103,7 +103,7 @@
       - x -
         a notation to record regularity of complex.
         in a 2-complex, to allow more then two faces passing one line,
-        is like allowing more then two points lying on one line ?
+        is like allowing more then two points lying on one line?
         this is what the notation is suggesting.
 
 ***** 1.9 historical remarks
@@ -307,9 +307,9 @@
                   (2 c)))))
 
         (note
-          is this the end of the proof of the iso between the two space ?
+          is this the end of the proof of the iso between the two space?
           do not need to prove
-          (~ [f g] (identity-map-of R)) and (~ [g f] (identity-map-of S)) ?)
+          (~ [f g] (identity-map-of R)) and (~ [g f] (identity-map-of S))?)
 
         (= [f g]
            (lambda (-> R R)
@@ -354,7 +354,7 @@
 ***** note equality of group
 
       - x -
-        equality of group is simpler than equality of space ?
+        equality of group is simpler than equality of space?
 
       - k -
         要知道
@@ -371,7 +371,7 @@
         這樣遞歸定義就有了基礎步驟
 
       - k -
-        有可能只是二維的空間之間的等價比較特殊 ?
+        有可能只是二維的空間之間的等價比較特殊?
 
       - x -
         不一定
@@ -472,7 +472,7 @@
         比如說 三階元素對於判斷一階元素之間的相等是沒有用的
 
       - k -
-        這不就是 n-cat 中的 weak structure ?
+        這不就是 n-cat 中的 weak structure?
 
       - x -
         先擱置 n-cat 中的 weak structure 不談

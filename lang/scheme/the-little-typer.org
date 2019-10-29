@@ -450,7 +450,7 @@
     base: motive (from),
   ) -> motive (to) = {
     // TODO
-    // What is the Commandment of `replace` ?
+    // What is the Commandment of `replace`?
   }
   #+end_src
 

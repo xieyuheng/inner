@@ -19,7 +19,7 @@
 
     using energy is making hot and cold even.
 
-  - why non-evenly distributed states tend to spreading out evenly ?
+  - why non-evenly distributed states tend to spreading out evenly?
     because statistically non-evenly distributed states are so rare.
 
   - entropy always increase, the universal will be evenly cold in the end.

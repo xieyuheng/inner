@@ -247,8 +247,8 @@
       :right :high black-high?
       ----------------------->
       :left :right red ##key-value balance :high add1 black-high?)
-     * ?
-     | ?
+     *?
+     |?
 
    * black-high?balance,black
      ({tree #left #right key value ##key-value natural #high}
@@ -256,8 +256,8 @@
       :right :high black-high?
       ----------------------->
       :left :right black ##key-value balance :high add1 black-high?)
-     * ?
-     | ?
+     *?
+     |?
 
    * black-high?insert,help
      ({tree #tree key value ##key-value natural #high}

@@ -3,7 +3,7 @@
 * [todo-stack]
 
   - how to change two mutual recursive functions
-    to one (non-mutual) recursive function ?
+    to one (non-mutual) recursive function?
 
 * >< lost
 

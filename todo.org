@@ -43,7 +43,7 @@
     micheal spivak -- physics-for-mathematicians--1--mechanics
     structure-and-interpretation-of-classical-mechanics
 * bishop
-- 如何明確地敘述 bishop 的計劃 ?
+- 如何明確地敘述 bishop 的計劃?
 - 對算法複雜度的形式化描述與機械化推導
   就是向 bishop 的計劃 更買進了一步
 * cover space and galois theory

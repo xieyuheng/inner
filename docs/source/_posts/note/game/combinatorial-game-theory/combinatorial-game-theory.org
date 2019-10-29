@@ -81,7 +81,7 @@
 * [note] number of players
 
   - x -
-    why only two players ?
+    why only two players?
 
 * Chapter II. Short Games
 

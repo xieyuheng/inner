@@ -113,13 +113,13 @@
 
     - x -
       很難想象這種處理方式能夠描述 polar reciprocation
-      一種離散的 polar reciprocation ?
+      一種離散的 polar reciprocation?
 
     - k -
       我想這是因爲 polar reciprocation 並非純粹的 topology 變換
 
     - x -
-      什麼是純粹的 topology 變換 ?
+      什麼是純粹的 topology 變換?
 
     - k -
       首先
@@ -130,7 +130,7 @@
       定義爲 與我們能夠定義的變換同倫的變換
 
     - x -
-      何以見得 polar reciprocation 不能與這種變換同倫呢 ?
+      何以見得 polar reciprocation 不能與這種變換同倫呢?
 
     - k -
       我們可以嘗試找 polar reciprocation 的同倫
@@ -454,8 +454,8 @@
       作者說 glue 的時候單單標出名稱是不夠的
       還要標出方向
 
-      這一點在我們的構造方式中如何體現 ?
-      在構造三階幾何體的時候又如何 ?
+      這一點在我們的構造方式中如何體現?
+      在構造三階幾何體的時候又如何?
 
     - k -
       後一種想法的特點在於
@@ -512,7 +512,7 @@
     - Given two polyhedra
       [two symbolic representations of two polyhedra],
       what are the conditions that must be satisfied
-      in order that the two closed surfaces determined by them be homeomorphic ?
+      in order that the two closed surfaces determined by them be homeomorphic?
 
     - solve this by a set of operations, on symbolic representation,
       that change a polyhedron to a polyhedron which is homeomorphic to it.
@@ -752,7 +752,7 @@
 
     - can it be, then, that two polyhedra obtained from the same closed surface
       have distinct characteristics
-      or be such that one is orientable and the other not ?
+      or be such that one is orientable and the other not?
 
       we accept this fact, that it can not be,
       without proving it.

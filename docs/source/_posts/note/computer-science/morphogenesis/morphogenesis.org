@@ -6,19 +6,19 @@
 
 * [note]
 
-  - how to aford to exist ?
+  - how to aford to exist?
 
-  - how to respond to env ?
+  - how to respond to env?
 
-  - how to encode informations about env into an organ ?
+  - how to encode informations about env into an organ?
     - taking early animal as examples
     - the principle of life, by tibor ganti
-    - what is information ?
-      how is it different from matter and energy ?
+    - what is information?
+      how is it different from matter and energy?
       theory about information should not only focus on transform.
       - informations about
         1. we can not do some dangerous things -- type system
         2. how to do some useful things -- procedural knowledge
 
-  - how to hunt for solutions to survive better ?
+  - how to hunt for solutions to survive better?
     - with recorded informations

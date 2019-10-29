@@ -437,7 +437,7 @@
 
 ;; 发现如果可以自由的改变参数的顺序 那将很有利于可读性
 ;; 在wordy-lisp中就可以做到这一点
-;; 我可以直接用macro把wordy-lisp嵌入到scheme中吗 ???
+;; 我可以直接用macro把wordy-lisp嵌入到scheme中吗???
 ;; 如果能自动实现动态的curry 就更好了 !!!
 ;; 甚至可以自动变换求值顺序形成不同的curry
 (define to-a-field-of-a-wlist--let-us-insert-a-val!

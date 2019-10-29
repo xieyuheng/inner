@@ -2,7 +2,7 @@
 
 * intuition of computation
 
-  - what is computation ?
+  - what is computation?
 
   - paper-and-pencil computation performed by human
 

@@ -580,7 +580,7 @@
   |            |            | 超越載體之可能性             |
 
   - 作爲一個運行着程序的載體
-    如何才能獲得有關程序本身的知識 ?
+    如何才能獲得有關程序本身的知識?
     by transcendental argument
 
 * >< critique of arithmeticalization of infinit analysis
@@ -593,8 +593,8 @@
   - analysis is arithmeticalization of calculus,
     which goes for rigorous ><><>< power.
 
-    - why we have the arithmeticalization of calculus ?
-      how avoid it ?
+    - why we have the arithmeticalization of calculus?
+      how avoid it?
 
   - many ideas of analysis could be understood completely
     without need for the concept of a distance function.

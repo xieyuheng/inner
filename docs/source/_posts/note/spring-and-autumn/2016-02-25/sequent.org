@@ -42,7 +42,7 @@
   for example
   ["sequent", "arrow", [...], [...]]
   那麼
-  ["type", ???, ???]
+  ["type",???,???]
   要知道 type 這個類型是沒有 constructor 的
   可是
   一個 type 保存在 name_hash_table 中的時候
@@ -61,7 +61,7 @@
   即 ["type-name", "constructor-name", ...] 的 type
   是 ["type", "type-name", ...]
   問題是
-  ["type", ???, ???] 的 type
+  ["type",???,???] 的 type
 
 - 一個具體的例子
   #+begin_src cicada-language
@@ -139,8 +139,8 @@
      但是可以在實現過程中思考這個問題
 
 - k ::
-     [sequent ??? ???]
-     [sequent ??? ???]
+     [sequent??????]
+     [sequent??????]
      lit sequent 的 type 的計算 是特殊的
 
 - x ::

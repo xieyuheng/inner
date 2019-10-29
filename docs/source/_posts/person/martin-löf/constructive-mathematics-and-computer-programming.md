@@ -181,7 +181,7 @@
   ><><><
 
 - x -
-  can we make variable substitution better in the rules ?
+  can we make variable substitution better in the rules?
 
 - x -
   in sequent1

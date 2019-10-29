@@ -56,15 +56,15 @@
 
     - x -
       hull, but possibly non convex,
-      how to represent such structures ?
-      alpha shape ?
+      how to represent such structures?
+      alpha shape?
 
   - *structured mesh*
     A mesh is called structured,
     if its connectivityis of the finite difference type.
 
     - x -
-      mesh with a coordinate system ?
+      mesh with a coordinate system?
 
     - note that,
       quad or hex unstructured meshes are such that

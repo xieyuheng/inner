@@ -64,7 +64,7 @@
 ***** [note] premiss
 
       - x -
-        how should we understand premiss ?
+        how should we understand premiss?
 
       - k -
         natural language is so vague,
@@ -126,9 +126,9 @@
 
 ***** 5. Syllogistic necessity
 
-***** 6. What is formal logic ?
+***** 6. What is formal logic?
 
-***** 7. What is formalism ?
+***** 7. What is formalism?
 
 *** chapter 2 theses of the system
 

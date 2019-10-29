@@ -3,7 +3,7 @@
 * intro
 
   - 如果問 aaron sloman
-    what's your main project ?
+    what's your main project?
     他會回答
     作爲一個數學家和哲學家
     在學會了編程之後

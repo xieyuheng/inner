@@ -207,7 +207,7 @@
     https://en.wikipedia.org/wiki/Bias–variance_tradeoff
 
     - x -
-      how to measure bias and variance ?
+      how to measure bias and variance?
 
     - we can keep degree of hypothesizes function small
       by penalizing coefficient of high degree terms
@@ -266,7 +266,7 @@
     different ways to compose functions
 
     - x -
-      can we use algebraic topology to do architecture ?
+      can we use algebraic topology to do architecture?
 
   - loss (theta) = mean (one_loss (theta, x, y))
     one_loss = [todo]

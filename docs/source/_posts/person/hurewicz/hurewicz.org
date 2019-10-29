@@ -11,7 +11,7 @@
       It is this proposition that we are about to consider,
       and we shall put the question in these terms:
       when we say that space has three dimensions,
-      what do we mean ?"
+      what do we mean?"
 
     - and :
       "if to divide a continuum
@@ -21,7 +21,7 @@
       it is necessary to consider as cuts a system of elements themselves forming one or several continua,
       we shall say that this continuum is of several dimensions."
 
-    - why not quoting aristotle ?
+    - why not quoting aristotle?
       "A line, on the other hand, is a continuous quantity, for it is possible
       to find a common boundary at which its parts join. In the case of
       the line, this common boundary is the point; in the case of the plane,
@@ -31,7 +31,7 @@
 
     - because the devoid philosophy of
 
-    - firstly, why not ask "does space real has three dimensions ?" ?
+    - firstly, why not ask "does space real has three dimensions?"?
 
 *** 2 dimension 0
 

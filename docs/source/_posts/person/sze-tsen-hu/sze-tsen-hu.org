@@ -27,7 +27,7 @@
       we observed homotopy-lifting-property of fibration (p : (E -> B)),
       we use it as the axiom of fibration,
       we express it as a family of lifting-problems
-      solved by solving one [><><>< cross-section ?]
+      solved by solving one [><><>< cross-section?]
       ><><><
 
 * homotopy theory (1959)
@@ -494,7 +494,7 @@
         which leaves s0 fixed.
 
       - ><><><
-        but how should I argue the above fact more clearly ?
+        but how should I argue the above fact more clearly?
 
 ***** 3 relative homotору groups
 

@@ -147,7 +147,7 @@
   ale, ali       NL al(le)
   anpa   FR-NB en bas
   ante   NL ander
-  anu    KA ?
+  anu    KA?
   awen   NL houden
 
   e      a priori
@@ -181,7 +181,7 @@
   la     EO la
   lape   NL slapen
   laso   CY glas
-  lawa   ?
+  lawa  ?
   len    FR-NB linge
   lete   FR-NB frette
   li     EO li
@@ -225,7 +225,7 @@
   pakala         TPI bagarap (EN bugger up)
   pali   EO fari
   palisa         HR pàlica
-  pana   ?
+  pana  ?
   pi     TPI bilong (EN belong)
   pilin  TPI pilim (EN feel him), EN feeling
   pimeja         FI pimeä
@@ -244,7 +244,7 @@
   sike   EN circle
   sin    ZH 新 xīn
   sina   FI sinä
-  sinpin         ZH ?
+  sinpin         ZH?
   sitelen        NL schilderen
   sona   KA ცოდნა /tsodna/
   soweli         KA ცხოკელი /tsxoveli/
@@ -253,7 +253,7 @@
   supa   FR-NB surface, EO surfaco, EN surface
   suwi   TPI swit (EN sweet)
 
-  tan    ?
+  tan   ?
   taso   TPI tasol (EN that's all)
   tawa   EN towards
   telo   FR-NB de l'eau

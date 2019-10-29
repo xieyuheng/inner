@@ -535,7 +535,7 @@ K*xy =β= y
 ****** 有趣的问题是可不可以形成更高等级的运算
 由λ-cal的性质我知道
 函数方程的解总是在term的集合Λ中的 !!!
->< 因此没法就函数方程的解扩充Λ吗 ???
+>< 因此没法就函数方程的解扩充Λ吗???
 
 >< 问题是生么样的函数方程的解才是有意义的呢?
 不动点方程显然是一个
@@ -1943,9 +1943,9 @@ let Γ be a basis
 λx:σ.x:τ
 λx:σ.x:τ : σ->τ
 那么:
-(λx:σ.x:τ)N:σ -sβ-> ???
-N:σ ???
-N:τ ???
+(λx:σ.x:τ)N:σ -sβ->???
+N:σ???
+N:τ???
 都不对
 
 实际上所使用的是:
@@ -1986,7 +1986,7 @@ x:σ ͱ x:σ
 这样整个形式体系就是以集合论为中心的
 *** >< logic of statements recovered via curry-howard
 传统的谓词演算由curry-howard
-在类型论中重新实现 ???
+在类型论中重新实现???
 
 ** lecture-by-henk
 *** readings
@@ -2643,7 +2643,7 @@ a ͱ b -> a
    所以在那种语法层次中推进证明都是没有关系的
 
 4. >< 这带来了什么启示呢?
-   我可不可以设计形式语言把不同的语法层次对称化 ???
+   我可不可以设计形式语言把不同的语法层次对称化???
 
 ****** >< 是否可以列举出分别易于在intro/elim和left/right中理解的推理的例子
 毕竟这些风格被某些人采用正是因为它们可以方便的用来表达出易于理解的推理过程
@@ -2737,8 +2737,8 @@ x:a ͱ (λ y:b . x) : b -> a
         形式理论中的其它命题长什么样
         即如何由基础命题引入复合命题
 
->< 在这中思路中类型论的位置又在哪 ???
->< 同伦论和范畴论呢 ???
+>< 在这中思路中类型论的位置又在哪???
+>< 同伦论和范畴论呢???
 
 ** 如果我希望把有向图作为描述其它形式理论的万有基础
 那么如果我把有向图当做数学结构
@@ -3008,7 +3008,7 @@ x1:A1 , ..., xn:An ͱ xi:Ai
   两个形式语言之间的关系是通过模型法而被探索出的吗??
   当同时为同一个模型构造两种形式语言的时候就会出现这种问题了
 
->< 每次补充定义类型都会增加新的推演规则 ??
+>< 每次补充定义类型都会增加新的推演规则??
 这使得这种语言更加灵活
 
 *** formation rule
@@ -3425,7 +3425,7 @@ less-open proposition
 
 quantifiers:
 if is there is no set theory at first
-how can there be quantifiers ?
+how can there be quantifiers?
 by inference-rules of course
 and by the following sugar
 ∃x∈A(...) :=sugar= ∃x(Ax∧...)
@@ -3450,8 +3450,8 @@ A(x)→C ==> ∃xA(x)→C
 
 rewrite-rules are about computation
 but inference-rules are not
->< do not have a computational nature ??
->< yes ???
+>< do not have a computational nature??
+>< yes???
 
 ``the quantiers usually range over
 an infinite set and therefore one loses decidability''
@@ -3465,7 +3465,7 @@ A more eficient way to represent proofs employs typed lambda terms
 and is called the propositions-as-types
 which maps propositions into types
 and proofs into the corresponding inhabitants
->< how about axioms ?
+>< how about axioms?
 
 * hacking
 ** 关于无穷有向图的惰性求值
@@ -3930,7 +3930,7 @@ a.1.b.
        只有当(zar (zons (λi.i λi.i) (λi.i λi.i))) => λi.i
        的时候才会对它的第一个参数求值 等等
 - k :: 那么
-       是不是任何结构化数据的构造子都能变得懒惰 ???
+       是不是任何结构化数据的构造子都能变得懒惰???
 - x :: 其实我也不知道
        你可以尝试去找找反例
        如果找不到反例
@@ -3947,7 +3947,7 @@ a.1.b.
        我们正是在这种理解方式下来解释懒惰的构造子的
        函数也可以被理解为构造子
        函数的惰性求值也有类似的解释 我就懒得说了
-- k :: 但是至少说一说函数为什么是构造子 ???
+- k :: 但是至少说一说函数为什么是构造子???
        这并不显然
        最好能给我举一些例子
 - x :: 好的
@@ -4022,7 +4022,7 @@ a.1.b.
 - x :: 没错
        更重要的是这种求值方式在λ-cal的理论中具有优越性
        这里我就需要引用一些别人的书来给你看了!
-- k :: 那么digrap中的惰性求值应该如何实现呢 ???
+- k :: 那么digrap中的惰性求值应该如何实现呢???
 - x :: 这个留到下次讨论吧!
 ---------------------------------------------
 ** wordy-lisp (wlist)
@@ -4197,7 +4197,7 @@ x :: how about wordy-lisp!
    然后返回的还是原来的值的地址 只不过原来的值被修改过了
    甚至有时可以不返回值 因为在别的地方还能引用到原来的数据
    注意这种风格是如何与上面那个重要的假设完全相反的
-5. 如何理解这些呢 ???
+5. 如何理解这些呢???
    这种新的风格
    可能需要我能自由地在函数中引用cons的car和cdr的地址
    scheme并不支持这样的操作
@@ -4634,7 +4634,7 @@ x :: how about wordy-lisp!
 
 ;; 发现如果可以自由的改变参数的顺序 那将是极好的
 ;; 在wordy-lisp中就可以做到这一点
-;; 我可以直接用macro把wordy-lisp嵌入到scheme中吗 ???
+;; 我可以直接用macro把wordy-lisp嵌入到scheme中吗???
 ;; 如果能自动实现动态的curry 就更好了 !!!
 ;; 太酷了
 ;; 甚至可以自动变换求值顺序形成不同的curry
@@ -5905,8 +5905,8 @@ x :: how about wordy-lisp!
 ;;    ([:v λ]
 ;;       ([:v :can <-- λ])
 ;;       ([:v :can <-- <-- λ])))
-;; 返回一个制作好的图 ???
-;; 还是返回编译好的生成图的代码 ???
+;; 返回一个制作好的图???
+;; 还是返回编译好的生成图的代码???
 ;; 因为那些节点是无名的 或者是重名的
 ;; 所以就算有通过描述两个点的 对边的简单添加
 ;; 我还是没办法写出下面的初始化
@@ -5969,9 +5969,9 @@ scheme中所有的复杂数据结构都是用向量与链表来实现的
 
 当scheme成为很多不同高级语言的编译器的后端时
 这些编译器所实现的语言中的函数应该能自由的互相调用
->< 如何实现这一点 ???
+>< 如何实现这一点???
 着当然就是要统一各个编译器与scheme的接口
-如何设计这些接口 ???
+如何设计这些接口???
 
 下面约定一些在scheme中用list来定义新的数据结构的方式
 这些标准可能随时需要修改
