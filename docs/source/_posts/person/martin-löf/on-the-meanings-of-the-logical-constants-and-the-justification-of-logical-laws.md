@@ -51,3 +51,12 @@ and that what is judged is the object of knowledge.
   "I am sure that possibly ...",
   "I am sure that necessarily ...",
   and so on.
+
+The important thing to realize is
+of course that to judge and to know,
+and, correlatively, judgement and knowledge,
+are essentially the same.
+And, when the relation between judgement, or assertion, if you prefer,
+and knowledge is understood in this way,
+logic itself is naturally understood as the theory of knowledge,
+that is, of demonstrative knowledge.
