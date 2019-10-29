@@ -2,6 +2,10 @@
 
 ------
 
+![](https://github.com/xieyuheng/image-link/raw/master/ghost-in-the-shell/cute-small.png)
+
+------
+
 - https://inner.xieyuheng.now.sh
 - http://inner-universe.surge.sh
 
