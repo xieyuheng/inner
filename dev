@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+function docs {
+    pushd docs && \
+        rm -rf public && \
+        hexo generate && \
+        now switch xieyuheng; now -n inner deploy public --target production && \
+        popd
+}
+
+function main {
+    for TASK in $@
+    do
+        $TASK
+    done
+}
+
+main $@
