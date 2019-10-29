@@ -53,7 +53,7 @@ and that what is judged is the object of knowledge.
   | extensional | act of judging       | an act of knowing      |
   | intensional | that which is judged | an object of knowledge |
 
-- **[Xie]** Then, what is "knowing" ? Which is a even deeper question.
+- **[Xie]** Then, what is "knowing" ? Which is even a deeper question.
   Maybe just the intuitions like
   "I am sure that ...",
   "I am sure that possibly ...",
@@ -87,5 +87,9 @@ before it has been judged, that is, has become known?
   I would suggest the word "claim".
 
 ## Second lecture
+
+TODO
+
+## Third lecture
 
 TODO

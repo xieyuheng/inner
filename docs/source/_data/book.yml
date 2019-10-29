@@ -8,7 +8,7 @@ comments:
   utterances:
     enable: true
     user: xieyuheng
-    repo: study
+    repo: inner
   disqus:
     enable: false
     shortname: #
