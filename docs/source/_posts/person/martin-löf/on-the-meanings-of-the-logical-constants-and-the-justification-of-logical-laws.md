@@ -47,7 +47,8 @@ and that what is judged is the object of knowledge.
   | intensional | that which is judged | an object of knowledge |
 
 - **[Xie]** Then, what is "knowing" ? Which is a even deeper question.
-  Maybe just the intuitions like "I am sure that ...",
+  Maybe just the intuitions like
+  "I am sure that ...",
   "I am sure that possibly ...",
   "I am sure that necessarily ...",
   and so on.
