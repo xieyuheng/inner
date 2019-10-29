@@ -4,6 +4,7 @@ function docs {
     pushd docs && \
         rm -rf public && \
         hexo generate && \
+        surge public inner-universe.surge.sh && \
         now switch xieyuheng; now -n inner deploy public --target production && \
         popd
 }
