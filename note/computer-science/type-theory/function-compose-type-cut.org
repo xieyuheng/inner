@@ -1,4 +1,3 @@
-#+HTML_HEAD: <link rel="stylesheet" href="../asset/css/page.css" type="text/css" media="screen" />
 #+title: function compose, type cut, and the algebra of logic
 
 * intuitionistic logic
