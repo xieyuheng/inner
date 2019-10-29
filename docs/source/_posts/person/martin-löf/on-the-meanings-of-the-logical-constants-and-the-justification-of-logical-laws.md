@@ -5,10 +5,16 @@
 - Date: 1996
 ------
 
-# First lecture
+## First lecture
 
 History of the use of the word "proposition" and the word "judgement" in logic and philosophy.
 And how the lecturer will use them.
+
+- **[Xie]**
+  The study and development of the author's theory
+  is heavily based on etymology, i.e. the study of the origin of words.
+  How would the development be different
+  if we follow the etymology of Chinese instead of western language ?
 
 - **[Xie]** A proposition is an expression that is used as operand of logical operations.
   A judgement is a higher level expression that is used as premises or conclusion in inference rules.
@@ -39,6 +45,7 @@ and, when understood as that which is judged, it is a piece or, more solemnly, a
 The act of judging is the same as the act of knowing,
 and that what is judged is the object of knowledge.
 
+
 - **[Xie]**
 
   | context     | judgement            | definition             |
@@ -65,3 +72,20 @@ Thus logic studies, from an objective point of view, our pieces of knowledge
 as they are organized in demonstrative science,
 or, if you think about it from the act point of view,
 it studies our acts of judging, or knowing, and how they are interrelated.
+
+Is a judgement a judgement already before it is grasped, that is, becomes known,
+or does it become a judgement only through our act of judging?
+And, in the latter case, what should we call a judgement
+before it has been judged, that is, has become known?
+
+| before prove | after prove       |
+|--------------|-------------------|
+| judgement    | evident judgement |
+| proposition  | true proposition  |
+
+- **[Xie]** The author is cornered and come up with the word "enunciation",
+  I would suggest the word "claim".
+
+## Second lecture
+
+TODO
