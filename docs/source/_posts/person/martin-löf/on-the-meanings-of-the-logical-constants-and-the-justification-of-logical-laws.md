@@ -33,7 +33,12 @@ I shall start by giving a very simple answer,
 which is essentially right: after some elaboration, at least,
 I hope that we shall have a sufficiently clear understanding of it.
 And the definition would simply be that,
-**when understood as an act of judging,
-a judgement is nothing but an act of knowing,
-and, when understood as that which is judged,
-it is a piece or, more solemnly, an object of knowledge**.
+**when understood as an act of judging, a judgement is nothing but an act of knowing,
+and, when understood as that which is judged, it is a piece or, more solemnly, an object of knowledge**.
+
+- **[Xie]**
+
+  | context     | judgement            | definition             |
+  |-------------|----------------------|------------------------|
+  | extensional | act of judging       | an act of knowing      |
+  | intensional | that which is judged | an object of knowledge |

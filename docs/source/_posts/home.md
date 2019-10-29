@@ -1,3 +1,7 @@
+---
+title: Ones inner universe
+---
+
 # Ones inner universe
 
 - Source: https://github.com/xieyuheng/inner
