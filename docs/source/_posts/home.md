@@ -1,6 +1,6 @@
-# ones inner universe
+# Ones inner universe
 
-- https://github.com/xieyuheng/inner
+- Source: https://github.com/xieyuheng/inner
 
 ## Contents
 
