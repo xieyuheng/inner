@@ -5,6 +5,7 @@
 * constructive-analysis
 
 *** note
+
     - foundations-of-constructivean-alysis 的修訂版
       由 bishop 和 bridges 共同完成
 
