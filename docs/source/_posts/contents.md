@@ -8,6 +8,8 @@
     * [我沒有時間了](/person/galois/我沒有時間了)
   * Poincaré
     * [觀念論](/person/poincaré/觀念論)
+  * Charles Sanders Peirce
+    * [How to Make Our Ideas Clear?](/person/charles-sanders-peirce/how-to-make-our-ideas-clear)
   * Errett Bishop
     * [Bishop's Four Principles of Constructivism](/person/errett-bishop/bishop-s-four-principles-of-constructivism)
   * Martin-Löf
