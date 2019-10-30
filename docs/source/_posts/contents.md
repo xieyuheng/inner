@@ -26,4 +26,5 @@
       * [Language Implementation Tricks](/note/computer-science/type-theory/language-implementation-tricks)
       * [Four Simple Questions for Studying a Subject](/note/computer-science/type-theory/four-simple-questions-for-studying-a-subject)
 * Paper
+  * [A Recursive Combinatorial Description of Cell-complex](/paper/a-recursive-combinatorial-description-of-cell-complex)
   * [Simply Typed JoJo Calculus](/paper/simply-typed-jojo-calculus)
