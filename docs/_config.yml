@@ -95,6 +95,7 @@ markdown:
     xhtmlOut: false # Parser will not produce XHTML compliant code.
     breaks: true # Parser produces `<br>` tags every time there is a line break in the source document.
     linkify: true # Returns text links as text.
+    typographer: false
 
   plugins:
     - markdown-it-abbr
