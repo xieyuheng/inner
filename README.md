@@ -4,7 +4,8 @@
 
 ---
 
-[View](https://inner.xieyuheng.now.sh) ([Backup View](http://inner-universe.surge.sh))
+- [View](https://inner.xieyuheng.now.sh)
+  - [Backup View](http://inner-universe.surge.sh)
 
 ---
 
