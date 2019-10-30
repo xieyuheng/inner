@@ -104,6 +104,32 @@ which would have been honest, namely, that you did not know.
   Reader can compare the above passage with Errett Bishop's Second Principle of Constructivism:
   "Do not ask whether a statement is true until you know what it means."
 
+There is absolutely no question of a judgement being evident in itself,
+independently of us and our cognitive activity.
+That would be just as absurd as to speak of a judgement as being known,
+not by somebody, you or me, but in itself.
+To be evident is to be evident to somebody,
+as inevitably as to be known is to be known by somebody.
+That is what Brouwer meant by saying, in *Consciousness, Philosophy, and Mathematics*, that
+**there are no nonexperienced truths**, a basic intuitionistic tenet.
+
+
+The judgement "A is true." means "I know that A is true.",
+the act of knowing is implicit in the judgement.
+
+Thus the predicate "know" indicates the modality of the act,
+that is, the way in which the subject relates to the object.
+And "A is true" is the judgement or, in general, the object of the act,
+which in this case is an object of knowledge,
+but might have been an object of conjecture, doubt, wish, fear, etc.
+
+The closest possible correspondence between the analysis that I am giving
+and Frege’s notation for a judgement "|- A", is obtained by
+thinking of the vertical, judgement stroke as carrying the epistemic force "I know ...".
+
+- **[Xie]** The word "force" is used, interpreter implementers 
+  can think of "expression acting upon context and environment".
+
 ## Third lecture
 
 TODO
