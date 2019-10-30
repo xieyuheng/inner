@@ -1,7 +1,7 @@
-* person
 - [person] On the meanings of the logical constants and the justification of logical laws
 - [person] Inductive Families
 - [person] Do-it-yourself Type Theory
+* person
 - [person] Intuitionistic Type Theory
 - [person] lambda-calculus-with-types
 - [person] Constructive Mathematics and Computer Programming

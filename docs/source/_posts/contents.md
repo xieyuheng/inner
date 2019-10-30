@@ -12,6 +12,7 @@
     * [How to Make Our Ideas Clear?](/person/charles-sanders-peirce/how-to-make-our-ideas-clear)
   * Errett Bishop
     * [Bishop's Four Principles of Constructivism](/person/errett-bishop/bishop-s-four-principles-of-constructivism)
+  * Max Dehn
   * Martin-Löf
     * [Constructive Mathematics and Computer Programming](/person/martin-löf/constructive-mathematics-and-computer-programming)
     * [Intuitionistic Type Theory](/person/martin-löf/intuitionistic-type-theory)
