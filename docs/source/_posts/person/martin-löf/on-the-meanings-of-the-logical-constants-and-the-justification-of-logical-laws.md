@@ -127,7 +127,7 @@ The closest possible correspondence between the analysis that I am giving
 and Frege’s notation for a judgement "|- A", is obtained by
 thinking of the vertical, judgement stroke as carrying the epistemic force "I know ...".
 
-- **[Xie]** The word "force" is used, interpreter implementers 
+- **[Xie]** The word "force" is used, interpreter implementers
   can think of "expression acting upon context and environment".
 
 ## Third lecture
