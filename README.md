@@ -4,8 +4,8 @@
 
 ------
 
-- View: http://inner-universe.surge.sh
-  - Backup View: https://inner.xieyuheng.now.sh
+- View: https://inner.xieyuheng.now.sh
+  - Backup View: http://inner-universe.surge.sh
 
 ---
 
