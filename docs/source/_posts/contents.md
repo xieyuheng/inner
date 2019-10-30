@@ -7,7 +7,7 @@
   * Galois
     * [我沒有時間了](/person/galois/我沒有時間了)
   * Poincaré
-    * [觀念論](/person/poincare/觀念論)
+    * [觀念論](/person/poincaré/觀念論)
   * Errett Bishop
     * [Bishop's Four Principles of Constructivism](/person/errett-bishop/bishop-s-four-principles-of-constructivism)
   * Martin-Löf
