@@ -4,6 +4,8 @@
 * Person
   * Arthur Rimbaud
     * [煉獄](/person/arthur-rimbaud/煉獄)
+  * Galois
+    * [我煉獄](/person/galois/我沒有時間)
   * Errett Bishop
     * [Bishop's Four Principles of Constructivism](/person/errett-bishop/bishop-s-four-principles-of-constructivism)
   * Martin-Löf
