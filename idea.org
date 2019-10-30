@@ -1,5 +1,3 @@
-#+title: idea
-
 * wiki-system for translation
 
   - comparing text
