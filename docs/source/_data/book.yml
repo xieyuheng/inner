@@ -1,23 +1,10 @@
-home_page: home.md # filename under /source/_posts/
-menu_page: contents.md # filename under /source/_posts/
+home_page: home.md
+menu_page: contents.md
 
 favicon_url: favicon.ico
 google_analytics: # UA-XXXXX-Y
 
 comments:
   utterances:
-    enable: true
     user: xieyuheng
     repo: inner
-  disqus:
-    enable: false
-    shortname: #
-  gitalk:
-    enable: false
-    githubID: # your github id
-    repo: # GitHub repository e.g. kaiiiz.github.io
-    ClientID: # GitHub Application Client ID
-    ClientSecret: # GitHub Application Client Secret
-    adminUser: # GitHub repository owner and collaborators
-    labels: 'gitalk' # GitHub issue labels
-    distractionFreeMode: true
