@@ -608,7 +608,7 @@
           By default, this signal terminates the process with a core dump.
 
         - SIGBUS
-          This signal (“bus error”) is generated
+          This signal ("bus error") is generated
           to indicate certain kinds of memory access errors.
           One such error can occur when using memory mappings
           created with mmap(),
@@ -694,7 +694,7 @@
           thus, it always stops a process.
 
         - SIGSYS
-          This signal is generated if a process makes a “bad” system call.
+          This signal is generated if a process makes a "bad" system call.
           This means that the process executed an instruction
           that was interpreted as a system call trap,
           but the associated system call number was not valid.
@@ -721,7 +721,7 @@
           when the user types the suspend character
           (usually Control-Z) on the keyboard.
 
-          The name of this signal derives from “terminal stop.”
+          The name of this signal derives from "terminal stop."
 
         - SIGTTIN
           When running under a job-control shell,

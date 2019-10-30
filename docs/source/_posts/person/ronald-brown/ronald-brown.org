@@ -631,7 +631,7 @@
 
         - [Whi46]
           Whitehead, J. H. C.,
-          Note on a previous paper entitled “On adding relations to homotopy groups.”.
+          Note on a previous paper entitled "On adding relations to homotopy groups.".
           Ann. of Math. (2) 47 (1946) 806–810.
           28, 32, 42, 60, 255
 

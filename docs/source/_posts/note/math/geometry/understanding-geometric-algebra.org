@@ -14,9 +14,9 @@
       equipped with direction and magnitude,
       not an array of numbers.
 
-      Here, we present an “algebraic” description
-      of 3D Euclidean geometry, representing objects by “symbols”
-      and defining “operations” on them.
+      Here, we present an "algebraic" description
+      of 3D Euclidean geometry, representing objects by "symbols"
+      and defining "operations" on them.
 
 * 3 Oblique Coordinate Systems
 

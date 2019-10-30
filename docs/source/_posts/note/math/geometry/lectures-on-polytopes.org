@@ -13,7 +13,7 @@
     three dimensions can lead one (i.e., everyone, but not us) astray: there are
     many theorems about 3-dimensional polytopes whose analogues in higher
     dimensions fail badly. Thus, one of the main tasks for polytope theory is
-    to develop tools to analyze and, if possible, “visualize” the geometry of
+    to develop tools to analyze and, if possible, "visualize" the geometry of
     higher-dimensional polytopes.
 
     - schlegel diagrams
@@ -35,7 +35,7 @@
 
     - [89]
       Anders Björner:
-      Topological methods, in: “Handbook of Combinatorics”
+      Topological methods, in: "Handbook of Combinatorics"
       (R. Graham, M. Grötschel, and L. Lovász, eds.),
       NorthHolland/Elsevier, Amsterdam 1995, pp. 1819–1872. (59, 232)
 
@@ -116,7 +116,7 @@
       - [172]
         Gopal Danaraj & Victor Klee:
         Which spheres are shellable?
-        in: “Algorithmic Aspects of Combinatorics”
+        in: "Algorithmic Aspects of Combinatorics"
         (B. Alspach et al., eds.),
         Annals of Discrete Math. 2, 1978, pp. 33–52. (235, 275, 277)
 

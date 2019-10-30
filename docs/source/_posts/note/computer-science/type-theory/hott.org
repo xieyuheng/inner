@@ -877,7 +877,7 @@
     ¬¬A == (A->0)->0
     =/= A
 
-    the propositions-as-types versions of “or” and “there exists”
+    the propositions-as-types versions of "or" and "there exists"
     can include more information than
     just the fact that the proposition is true
 *** >< 類型之間的依賴性爲什麼是重要的?

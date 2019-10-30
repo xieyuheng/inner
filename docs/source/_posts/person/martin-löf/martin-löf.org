@@ -135,7 +135,7 @@
 ***** intro
 
       - an overview of the most important aspects of intuitionistic type theory
-        a kind of “extended abstract”
+        a kind of "extended abstract"
         It is meant for a reader who is already somewhat familiar with the theory
 
       - Section 2 on the other hand,
@@ -164,7 +164,7 @@
 
       - In Section 7 finally,
         we describe several important variations
-        of the core Martin-Löf “intensional” theory described in Section 3 and 4.
+        of the core Martin-Löf "intensional" theory described in Section 3 and 4.
 
 ***** 1. Overview
 
