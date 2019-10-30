@@ -18,6 +18,8 @@
     * [Do-it-yourself Type Theory](/person/roland-backhouse/do-it-yourself-type-theory)
   * Peter Dybjer
     * [Inductive Families](/person/peter-dybjer/inductive-families)
+  * Zhuang Zi / 莊子
+    * [齊物論](/person/zhuang-zi/齊物論)
 * Note
   * Computer Science
     * Type Theory
