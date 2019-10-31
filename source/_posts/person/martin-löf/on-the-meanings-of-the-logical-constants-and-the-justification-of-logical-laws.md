@@ -207,6 +207,82 @@ then proof theory is the same as theory of knowledge,
 which, in turn, is the same as logic in the original sense of the word,
 as the study of reasoning, or proof, not as metamathematics.
 
+Remember that the proof of a judgement is the very act of knowing it.
+If this act is atomic, or indivisible, then the proof is said to be immediate.
+Otherwise, that is, if the proof consists of
+a whole sequence, or chain, of atomic actions, it is mediate.
+
+We also speak of a judgement being immediately and mediately evident, respectively.
+And an immediately evident judgement is what we call an axiom.
+Thus an axiom is a judgement which is evident by itself,
+not by virtue of some previously proved judgements, but by itself,
+that is, a self-evident judgement, as one has always said.
+And a mediately evident judgement is what we call a theorem, as opposed to an axiom.
+
+Instead of applying the attributes immediate and mediate to proof, or knowledge,
+I might have chosen to speak of intuitive and discursive proof, or knowledge, respectively.
+
+The proof of an axiom can only be intuitive, which is to say
+that an axiom has to be grasped immediately, in a single act.
+Thus a discursive proof is one which
+runs, from premises to conclusion, in several steps.
+It is the opposite of an intuitive proof,
+which brings you to the conclusion immediately, in a single step.
+When one says that the immediate propositions in the old sense of the word proposition,
+that is, the immediately evident judgements in my terminology,
+are unprovable, what is meant is of course only that they cannot be proved discursively.
+Their proofs have to rest intuitive.
+
+This seems to be all that I have to say about the notion of proof at the moment,
+so let me pass on to the next item on the agenda,
+the forms of judgement and their semantical explanations.
+
+I have to say what my forms of judgement are, and, for each one of those forms,
+I have to explain (semantical explanations) what you must know
+in order to have the right to make a judgement of that form.
+
+Let us now consider the first form of judgement,
+
+> A is a proposition,
+
+or, as I shall continue to abbreviate it,
+
+> A prop.
+
+What I have just displayed to you is a linguistic form,
+and I hope that you can recognize it.
+What you cannot see from the form,
+and which I therefore proceed to explain to you, is of course its meaning,
+that is, what knowledge is expressed by, or embodied in, a judgement of this form.
+The question that I am going to answer is, in ontological terms,
+
+> What is a proposition?
+
+This is the usual Socratic way of formulating questions of this sort.
+Or I could ask, in more knowledge theoretical terminology,
+
+> What is it to know a proposition?
+
+or, if you prefer,
+
+> What knowledge is expressed by a judgement
+> of the form A is a proposition?
+
+or, this may be varied endlessly,
+
+> What does a judgement of the form A is a proposition mean?
+
+- **[Xie]** From ontological mode of speaching to more practical mode of speaching,
+  the above questions went not far enough.
+  I my view the above questions can only be answered meaninglessly,
+  unless one take a practical step to ask about the usage.
+  In the sense of the "Meaning is use." slogan of Wittgenstein,
+  or in aline with Peirce's Principle of Pragmatism .
+
+  > Consider what effects that might conceivably have practical bearings
+  >   you conceive the objects of your conception to have.
+  > Then, your conception of those effects is the whole of your conception of the object.
+
 ## Third lecture
 
 TODO
