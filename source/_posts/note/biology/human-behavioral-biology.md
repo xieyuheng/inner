@@ -21,7 +21,7 @@
   - There are different ways in which traits can occur.
   - Some version of these traits are more adoptive.
     (Adoptive about reproduction instead of survival.)
-    
+
   There are random introduction of new type of traits.
   (There are mutations.)
 
@@ -38,3 +38,19 @@ Evolution will sculpture behaviors.
 - **[Xie]**
   Although "to remain" is the a priority goal of existing,
   only things tend to remain will remain.
+
+## Molecular Genetics
+## Behavioral Genetics
+## Recognizing Relatives
+## Ethology
+## Introduction to Neuroscience
+## Endocrinology
+## Advanced Neurology and Endocrinology
+## Limbic System
+## Human Sexual Behavior
+## Aggression
+## Chaos and Reductionism
+## Emergence and Complexity
+## Language
+## Schizophrenia
+## Individual Differences
