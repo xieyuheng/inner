@@ -16,4 +16,13 @@
 ## Behavioral Evolution
 
 - (Principles of Evolution)
-  1. There is Evolution. Traits in populations change over time.
+  - There is Evolution. Frequency of traits in populations change over time.
+    - There are traits that are inheritable. (Traits that are genetic.)
+    - There are different ways in which traits can occur.
+    - Some version of these traits are more adoptive.
+      (Adoptive about reproduction instead of survival.)
+  - There are random introduction of new type of traits.
+    (There are mutations.)
+
+Principles of Evolution applies to behavior.
+(Certain behaviors are inheritable, and so on.)
