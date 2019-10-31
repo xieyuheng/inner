@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
 function docs {
-    hexo clean && \
-        hexo generate && \
+    hexo clean && hexo generate && \
         surge public inner-universe.surge.sh && \
         now switch xieyuheng; now -n inner deploy public --target production
 }
