@@ -370,6 +370,34 @@ you must know what counts as a verification, solution, fulfillment, or realizati
   > 1. what we (the constructing intelligence) must do in order to construct an element of the set,
   > 2. and what we must do to show that two elements of the set are equal.
 
+Coupled with the preceding explanation of what a proposition is,
+is the following explanation of what a truth is,
+that is, of what it means for a proposition to be true.
+Assume first that
+
+> A is a proposition,
+
+I shall explain to you what a judgement of the form
+
+> A is true,
+
+or, briefly,
+
+> A true,
+
+means, that is, what you must know
+in order to have the right to make a judgement of this form.
+And the explanation would be that,
+to know that a proposition is true, a problem is solvable,
+an expectation is fulfillable, or an intention is realizable,
+you must know how to verify, solve, fulfill, or realize it, respectively.
+
+Comparing with `A true`, what is expressed in `A prop`
+really has the modal character of possibility.
+
+The knowledge of a judgement of form `A true` is about **"How"**.
+The knowledge of a judgement of form `A prop` is about **"What"**.
+
 ## Third lecture
 
 TODO
