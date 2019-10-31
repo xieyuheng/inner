@@ -27,7 +27,7 @@
   Modal logic is an example of pushing judgement level expression down to proposition level expression,
   For example, the judgement "A is necessary."
   is used as a proposition in "A is necessary is true."
-  where "... is necessary" denotes a logical operation.
+  where "_ is necessary" denotes a logical operation.
 
 - **[Xie]** The following definition of judgement is famous.
 
@@ -56,9 +56,9 @@ and that what is judged is the object of knowledge.
 
 - **[Xie]** Then, what is "knowing"? Which is even a deeper question.
   Maybe just the intuitions like
-  "I am sure that ...",
-  "I am sure that possibly ...",
-  "I am sure that necessarily ...",
+  "I am sure that _",
+  "I am sure that possibly _",
+  "I am sure that necessarily _",
   and so on.
 
 The important thing to realize is
@@ -113,7 +113,6 @@ as inevitably as to be known is to be known by somebody.
 That is what Brouwer meant by saying, in *Consciousness, Philosophy, and Mathematics*, that
 **there are no nonexperienced truths**, a basic intuitionistic tenet.
 
-
 The judgement "A is true." means "I know that A is true.",
 the act of knowing is implicit in the judgement.
 
@@ -125,10 +124,53 @@ but might have been an object of conjecture, doubt, wish, fear, etc.
 
 The closest possible correspondence between the analysis that I am giving
 and Frege’s notation for a judgement "|- A", is obtained by
-thinking of the vertical, judgement stroke as carrying the epistemic force "I know ...".
+thinking of the vertical, judgement stroke as carrying the epistemic force "I know _".
 
 - **[Xie]** The word "force" is used, interpreter implementers
   can think of "expression acting upon context and environment".
+
+To specify a form of judgement, one has to lay down, what you must know
+in order to have the right to make a judgement of that form.
+
+I think that I may make things a bit clearer
+by showing again in a picture what is involved here.
+
+```
+       A                  : expression
+       _ is a proposition : form of judgement
+       A is a proposition : judgement
+I know A is a proposition : evident judgement
+
+```
+
+Here is involved, first, an expression `A`, which should be a complete expression.
+Second, we have the form "_ is a proposition", which is the form of judgement.
+Composing these two, we arrive at A is a proposition, which is a judgement.
+And then, third, we have the act in which I grasp this judgement,
+and through which it becomes evident.
+Thus it is my act of grasping which is the source of the evidence.
+These two together, that is, the judgement
+and my act of grasping it, become the evident judgement.
+
+```
+       A           : proposition
+       _ is a true : form of judgement
+       A is a true : judgement
+I know A is a true : evident judgement
+```
+
+Such a judgement has the form "_ is true", but what fills the open place,
+or hole, in the form is not an expression any longer, but a proposition.
+And what is a proposition? A proposition is an expression
+for which the previous judgement has already been grasped,
+because there is no question of something being true
+unless you have previously grasped it as a proposition.
+But otherwise the picture remains the same here.
+
+Now I must consider the discussion of the notion of judgement finished
+and pass on to the notion of proof.
+
+
 
 ## Third lecture
 

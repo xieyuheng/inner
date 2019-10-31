@@ -1,13 +1,11 @@
 #!/usr/bin/env bash
 
 function docs {
-    pushd docs && \
-        rm -rf public && \
+    rm -rf public && \
         rm db.json && \
         hexo generate && \
         surge public inner-universe.surge.sh && \
-        now switch xieyuheng; now -n inner deploy public --target production && \
-        popd
+        now switch xieyuheng; now -n inner deploy public --target production
 }
 
 function main {

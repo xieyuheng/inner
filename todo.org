@@ -1,10 +1,11 @@
 - [person] On the meanings of the logical constants and the justification of logical laws
 - [person] Inductive Families
 - [person] Do-it-yourself Type Theory
-* person
+  use function as proof, instead of new syntax for deduction
+  is there and problem doing this?
+- [person] Constructive Mathematics and Computer Programming
 - [person] Intuitionistic Type Theory
 - [person] lambda-calculus-with-types
-- [person] Constructive Mathematics and Computer Programming
 * paper
 - [deduction] try to use the syntax for natural deduction we learned from DIYTT
   to formalize deduction of JoJo Calculus

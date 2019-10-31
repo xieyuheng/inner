@@ -1,3 +1,16 @@
+# hexo
+
+.DS_Store
+Thumbs.db
+db.json
+*.log
+themes/
+node_modules/
+public/
+.deploy*/
+
+# emacs
+
 *~
 \#*
 .#*
