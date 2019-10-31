@@ -277,7 +277,7 @@ or, this may be varied endlessly,
   I my view the above questions can only be answered meaninglessly,
   unless one take a practical step to ask about the usage.
   In the sense of the "Meaning is use." slogan of Wittgenstein,
-  or in aline with Peirce's Principle of Pragmatism .
+  or in aline with Peirce's recipe for pragmatic thinking,
 
   > Consider what effects that might conceivably have practical bearings
   >   you conceive the objects of your conception to have.
