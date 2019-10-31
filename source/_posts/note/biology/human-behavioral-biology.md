@@ -39,6 +39,17 @@ Evolution will sculpture behaviors.
   Although "to remain" is the a priority goal of existing,
   only things tend to remain will remain.
 
+  We observed the above selections in the world,
+  and use "to optimize reproduction" to explain.
+
+  The other way around is to searching for behaviors (strategies)
+  that optimize reproduction, and test them in the world.
+
+Game theory, to optimize behaviors,
+(for example, when to cooperate and when to cheat).
+
+One strategy can drive other strategies to extinction.
+
 ## Molecular Genetics
 ## Behavioral Genetics
 ## Recognizing Relatives
