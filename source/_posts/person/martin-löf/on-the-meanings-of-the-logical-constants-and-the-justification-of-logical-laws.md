@@ -13,12 +13,18 @@
 
   And demonstrating how the lecturer will use them.
 
+- **[Xie]**
+  The study not only can be applied to the development on formal language,
+  but also has a much broader philosophy view.
+
+- **[Xie]**
   The study and development of the author's theory
   is heavily based on etymology, i.e. the study of the origin of words.
   How would the development be different
   if we follow the etymology of Chinese instead of western language?
 
-- **[Xie]** A proposition is an expression that is used as operand of logical operations.
+- **[Xie]**
+  A proposition is an expression that is used as operand of logical operations.
   A judgement is a higher level expression that is used as premises or conclusion in inference rules.
 
   One deduction system might have many form of judgements.
