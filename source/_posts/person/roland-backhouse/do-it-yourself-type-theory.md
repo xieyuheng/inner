@@ -114,6 +114,26 @@ Example deduction steps:
 (f) => f(inr((x) => f(inl(x)))) : ((A + ((A) -> B)) -> B) -> B
 ```
 
+- **[Xie]** (Proof as function)
+  Maybe we can use the syntax of deduction `{ ... |- ... }`
+  as definition of function, with fully annotated type.
+
+  ``` js
+  h = {
+    f : (A + ((A) -> B)) -> B
+    |-----------
+    g = {
+      x : A
+      |------------
+      inl(x) : A + ((A) -> B)
+      f(inl(x)) : B
+    }
+    g : (A) -> B
+    f(inr(g)) : B
+  }
+  h : ((A + ((A) -> B)) -> B) -> B
+  ```
+
 If we replace `B` by `absurd_t`,
 we get a proof of `not not (A + not A)`,
 because `not P` is defined to be `(P) -> absurd_t` in constructive mathematics.
