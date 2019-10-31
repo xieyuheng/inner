@@ -9,5 +9,5 @@
 
 ---
 
-- [note](/docs/source/_posts/note)
-- [person](/docs/source/_posts/person)
+- [Note](/docs/source/_posts/note)
+- [Person](/docs/source/_posts/person)
