@@ -114,24 +114,22 @@ Example deduction steps:
 (f) => f(inr((x) => f(inl(x)))) : ((A + ((A) -> B)) -> B) -> B
 ```
 
-- **[Xie]** (Proof as function)
+- **[Xie]**
   Maybe we can use the syntax of deduction `{ ... |- ... }`
   as definition of function, with fully annotated type.
 
   ``` js
-  h = {
+  h : ((A + ((A) -> B)) -> B) -> B = {
     f : (A + ((A) -> B)) -> B
     |-----------
-    g = {
+    g : (A) -> B = {
       x : A
       |------------
       inl(x) : A + ((A) -> B)
       f(inl(x)) : B
     }
-    g : (A) -> B
     f(inr(g)) : B
   }
-  h : ((A + ((A) -> B)) -> B) -> B
   ```
 
 If we replace `B` by `absurd_t`,
