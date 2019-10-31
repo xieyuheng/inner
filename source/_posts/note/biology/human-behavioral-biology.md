@@ -27,11 +27,11 @@
 Principles of Evolution applies to behavior.
 (Certain behaviors are inheritable, and so on.)
 
+- **[Xie]**
+  Although "to remain" is the a priority goal of existing,
+  only things tend to remain will remain.
+
 We study how behaviors optimize reproduction.
 - Individual selection, (a.k.a. natural selection).
 - Sexual selection.
 - Kin selection.
-
-- **[Xie]**
-  Although "to remain" is the a priority goal of existing,
-  only things tend to remain will remain.
