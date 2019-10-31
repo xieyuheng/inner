@@ -1,6 +1,6 @@
 # Human Behavioral Biology
 
-- Lecture by Robert Sapolsky
+- Lectures by Robert Sapolsky
 
 ## Introduction to Human Behavioral Biology
 
@@ -26,3 +26,9 @@
 
 Principles of Evolution applies to behavior.
 (Certain behaviors are inheritable, and so on.)
+
+We study how behaviors optimize reproduction.
+
+- **[Xie]**
+  Although "to remain" is the a priority goal of existing,
+  only things tend to remain will remain.
