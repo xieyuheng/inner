@@ -15,7 +15,7 @@
 
 - **[Xie]**
   The study not only can be applied to the development on formal language,
-  but also has a much broader philosophy view.
+  but also has a much broader philosophical view.
 
 - **[Xie]**
   The study and development of the author's theory
@@ -176,6 +176,15 @@ But otherwise the picture remains the same here.
 Now I must consider the discussion of the notion of judgement finished
 and pass on to the notion of proof.
 
+> A proof is what makes a judgement evident.
+
+- **[Xie]**
+  Maybe we want to say that evident's type is judgement -- `evident : judgement`,
+  but membership itself is a judgement in Martin-Löf's theory.
+
+- **[Xie]**
+  Reader can compare the above definition with Errett Bishop's Third Principle of Constructivism:
+  "A proof is any completely convincing argument."
 
 
 ## Third lecture
