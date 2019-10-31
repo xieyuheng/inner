@@ -279,16 +279,18 @@ proof {
   }
   list_append : (list_t(A), list_t(A)) -> list_t(A)
 }
-
-// jojo
-
-list_append : { (- A list_t) (- A list_t) A list_t }
-list_append = {
-  [l, m]
-  l m { [x, _, h] x h cons }
-  list_elim
-}
 ```
+
+- **[Xie]** In JoJo,
+
+  ``` js
+  list_append : { (- A list_t) (- A list_t) A list_t }
+  list_append = {
+    [l, m]
+    l m { [x, _, h] x h cons }
+    list_elim
+  }
+  ```
 
 *Computation Rules*
 
