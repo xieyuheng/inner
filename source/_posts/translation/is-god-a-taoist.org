@@ -1,4 +1,3 @@
-#+html_head: <link rel="stylesheet" href="../css/org-page.css"/>
 #+title:  is god a taoist / 上帝是道家的嗎
 #+author: Raymond Smullyan
 

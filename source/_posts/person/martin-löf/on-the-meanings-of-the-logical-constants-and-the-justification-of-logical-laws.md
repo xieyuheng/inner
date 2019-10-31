@@ -356,7 +356,19 @@ with the notion of solvability of a problem.
 He merely proposed the interpretation of propositions as problems, or tasks,
 as an alternative interpretation, validating the laws of the intuitionistic propositional calculus.
 
+Returning now to the form of judgement
 
+> A is a proposition,
+
+our semantical explanation is that **to know a proposition,
+which may be replaced, if you want, by problem, expectation, or intention,
+you must know what counts as a verification, solution, fulfillment, or realization of it**.
+
+- **[Xie]** Again comparing with Bishop's definition of set,
+
+  > To define a set we prescribe, at least implicitly,
+  > 1. what we (the constructing intelligence) must do in order to construct an element of the set,
+  > 2. and what we must do to show that two elements of the set are equal.
 
 ## Third lecture
 

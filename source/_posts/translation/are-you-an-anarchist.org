@@ -1,4 +1,3 @@
-#+html_head: <link rel="stylesheet" href="../css/org-page.css"/>
 #+title: are you an anarchist / 你是無政府主義者嗎
 #+author: David Graeber
 

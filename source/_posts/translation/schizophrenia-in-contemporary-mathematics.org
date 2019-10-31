@@ -1,4 +1,3 @@
-#+html_head: <link rel="stylesheet" href="../css/org-page.css"/>
 #+title: schizophrenia in contemporary mathematics / 當代數學之精神分裂症
 #+author: Errett Bishop
 
