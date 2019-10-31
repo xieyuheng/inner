@@ -274,14 +274,89 @@ or, this may be varied endlessly,
 
 - **[Xie]** From ontological mode of speaching to more practical mode of speaching,
   the above questions went not far enough.
-  I my view the above questions can only be answered meaninglessly,
-  unless one take a practical step to ask about the usage.
+  We can go further by taking a pragmatic step to ask about the usage.
   In the sense of the "Meaning is use." slogan of Wittgenstein,
   or in aline with Peirce's recipe for pragmatic thinking,
 
   > Consider what effects that might conceivably have practical bearings
   >   you conceive the objects of your conception to have.
   > Then, your conception of those effects is the whole of your conception of the object.
+
+Now, one particular answer to this question, however it be formulated,
+is that a proposition is something that is true or false.
+
+An elaboration of the definition of a proposition as something that
+is true or false is to say that a proposition is a truth value, the true or the false,
+and hence that a declarative sentence is an expression
+which denotes a truth value, or is the name of a truth value.
+This was the explanation adopted by Frege in his later writings.
+If a proposition is conceived in this way, that is, simply as a truth value,
+then there is no difficulty in justifying the laws of the classical propositional calculus
+and the laws of quantification over finite, explicitly listed, domains.
+The trouble arises when you come to the laws for forming quantified propositions,
+the quantifiers not being restricted to finite domains.
+That is, the trouble is to make the two laws evident
+when propositions are conceived as nothing but truth values.
+
+``` js
+A(x) prop
+----------------------
+(forall x) A(x) prop
+
+
+A(x) prop
+----------------------
+(exists x) A(x) prop
+```
+
+To my mind, at least, they simply fail to be evident.
+And I need not be ashamed of the reference to myself in this connection:
+as I said in my discussion of the notion of evidence,
+it is by its very nature subject related.
+Others must make up their minds whether these laws are really evident to them
+when they conceive of propositions simply as truth values.
+
+It does not help to restrict the quantifiers,
+that is, to consider instead the laws
+
+``` js
+(x in A)
+B(x) prop
+----------------------
+(forall x in A) B(x) prop
+
+(x in A)
+B(x) prop
+----------------------
+(exists x in A) B(x) prop
+```
+
+unless we restrict the quantifiers so severely
+as to take the set A here to be a finite set,
+that is, to be given by a list of its elements.
+
+Then, of course, there is no trouble with these rules.
+But, as soon as A is the set of natural numbers, say, you have the full trouble already.
+
+Since, as I said earlier, the law of the excluded middle,
+indeed, all the laws of the classical propositional calculus,
+are doubtlessly valid on this conception of the notion of proposition,
+this means that the rejection of the law of excluded middle
+is implicitly also a rejection of the conception of
+a proposition as something which is true or false.
+
+After the formal laws of intuitionistic logic were formulated,
+Kolmogorov observed that the laws of the intuitionistic propositional calculus
+become evident upon thinking of the propositional variables as ranging over problems, or tasks.
+
+On the other hand, he explicitly said that  he did not want to
+equate the notion of proposition with the notion of problem
+and, correlatively, the notion of truth of a proposition
+with the notion of solvability of a problem.
+He merely proposed the interpretation of propositions as problems, or tasks,
+as an alternative interpretation, validating the laws of the intuitionistic propositional calculus.
+
+
 
 ## Third lecture
 
