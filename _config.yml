@@ -89,6 +89,10 @@ theme: note
 deploy:
   type:
 
+# Markdown
+## https://github.com/kaiiiz/hexo-theme-book/wiki/Change-markdown-renderer
+## `hexo-renderer-markdown-it`
+
 markdown:
   render:
     html: true # Doesn't escape HTML content so the tags will appear as html.
