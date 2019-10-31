@@ -13,7 +13,7 @@
   * Errett Bishop / 毕少普
     * [Bishop's Four Principles of Constructivism](/person/errett-bishop/bishop-s-four-principles-of-constructivism)
   * Max Dehn / 马克斯 戴恩
-  * Martin-Löf / 马丁 洛夫
+  * Martin-Löf / 马丁-洛夫
     * [Constructive Mathematics and Computer Programming](/person/martin-löf/constructive-mathematics-and-computer-programming)
     * [Intuitionistic Type Theory](/person/martin-löf/intuitionistic-type-theory)
     * [On the meanings of the logical constants and the justification of logical laws](/person/martin-löf/on-the-meanings-of-the-logical-constants-and-the-justification-of-logical-laws)

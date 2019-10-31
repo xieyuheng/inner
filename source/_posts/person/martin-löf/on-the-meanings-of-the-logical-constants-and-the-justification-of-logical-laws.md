@@ -433,3 +433,67 @@ under the assumptions that A1, ..., An are all true.
 Here I am using the vertical bar for the relation of logical consequence,
 that is, for what Gentzen expressed by means of the arrow `->` in his sequence calculus,
 and for which the double arrow `=>` is also a common notation.
+
+It is the relation of logical consequence,
+which must be carefully distinguished from implication.
+
+``` js
+   hypothetical judgement
+   ((logical) consequence) (sequent)
+  |-----------------------------|
+  A1 true, ..., An true | A prop
+  A1 true, ..., An true | A true
+  |--------------------| |-------|
+   antecedents            consequent
+   (hypotheses)
+```
+
+Unlike in Gentzen’s sequence calculus,
+the order of the assumptions is important here.
+This is because of the generalization that
+something being a proposition may depend on other things being true.
+Thus, for the assumptions `A1 true, ..., An true` to make sense,
+we must presuppose
+
+``` js
+A1 prop
+A1 true | A2 prop
+...
+A1 true, ..., A[n-1] true | An prop
+```
+
+We must explain what constitutes knowledge, or proof, of such a hypothetical judgement.
+
+A proof of a hypothetical judgement, or logical consequence,
+is nothing but a hypothetical proof of the thesis, or consequent,
+from the hypotheses, or antecedents.
+
+The notion of hypothetical proof, in turn, which is a primitive notion,
+is explained by saying that it is a proof which,
+when supplemented by proofs of the hypotheses, or antecedents,
+becomes a proof of the thesis, or consequent.
+
+I need to generalize the two forms of hypothetical judgement
+so as to allow generality in them. Thus I need judgements which are,
+not only hypothetical, but also general, which means that the first form is turned into
+
+``` js
+A1(x1, ..., xm) true, ..., An(x1, ..., xm) true | A(x1, ..., xm) prop
+A1(x1, ..., xm) true, ..., An(x1, ..., xm) true | A(x1, ..., xm) true
+```
+
+To have the right to make such a judgement, you must possess
+a **free variable proof** of the thesis, or consequent,
+from the hypotheses, or antecedents.
+
+And what is a free variable proof?
+It is a proof which remains a proof
+when you substitute anything you want for its free variables,
+that is, any expressions you want, of the same arities as those variables.
+
+Let us now pass on to the rules of inference, or proof rules,
+and their semantical explanations.
+
+I shall begin with the rules of implication.
+
+TODO

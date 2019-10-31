@@ -119,16 +119,31 @@ Example deduction steps:
   as definition of function, with fully annotated type.
 
   ``` js
-  h : ((A + ((A) -> B)) -> B) -> B = {
+  h : ((A + ((A) -> B)) -> B) -> B
+  h = {
     f : (A + ((A) -> B)) -> B
     |-----------
-    g : (A) -> B = {
+    g : (A) -> B
+    g = {
       x : A
       |------------
       inl(x) : A + ((A) -> B)
       f(inl(x)) : B
     }
     f(inr(g)) : B
+  }
+  ```
+
+- **[Xie]**
+  The about means we can use `f = { ... }`
+  to define new function from existing functions.
+
+  We may view introduction rules in the same spirit.
+
+  ``` js
+  inl : (A) -> (A + B)
+  inl = {
+    // primitive introducing rule
   }
   ```
 
