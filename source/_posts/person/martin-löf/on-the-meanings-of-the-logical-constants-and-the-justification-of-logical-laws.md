@@ -179,7 +179,7 @@ and pass on to the notion of proof.
 > A proof is what makes a judgement evident.
 
 - **[Xie]**
-  Maybe we want to say that evident's type is judgement -- `evident : judgement`,
+  Maybe we want to say that evidence's type is judgement -- `evidence : judgement`,
   but membership itself is a judgement in Martin-Löf's theory.
 
 - **[Xie]**
