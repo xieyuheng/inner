@@ -186,6 +186,26 @@ and pass on to the notion of proof.
   Reader can compare the above definition with Errett Bishop's Third Principle of Constructivism:
   "A proof is any completely convincing argument."
 
+A proof is, not an object, but an act.
+Brouwer wanted to stress by saying that a proof is a mental construction,
+because what is mental, or psychic, is precisely our acts,
+and the word construction, as used by Brouwer, is but a synonym for proof.
+
+> to prove = to get to know = to understand,
+> comprehend, grasp, or see.
+
+This means that prove is but another synonym for understand,
+comprehend, grasp, or see. And, passing to the perfect tense,
+
+> to have proved = to know = to have understood,
+> comprehended, grasped, or seen.
+
+It is now manifest, from these equations, that proof and knowledge are the same.
+Thus, if proof theory is construed, not in Hilbert’s sense, as metamathematics,
+but simply as the study of proofs in the original sense of the word,
+then proof theory is the same as theory of knowledge,
+which, in turn, is the same as logic in the original sense of the word,
+as the study of reasoning, or proof, not as metamathematics.
 
 ## Third lecture
 

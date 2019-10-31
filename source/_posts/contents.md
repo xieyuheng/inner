@@ -27,7 +27,8 @@
   * Computer Science / 计算机科学
     * Type Theory / 类型论
       * [Language Implementation Tricks](/note/computer-science/type-theory/language-implementation-tricks)
-      * [Four Simple Questions for Studying a Subject](/note/computer-science/type-theory/four-simple-questions-for-studying-a-subject)
+  * Biology / 生物学
+    * [Neuroscience Note / 神經學記](/note/biology/neuroscience-note)
 * Paper / 论文
   * [A Recursive Combinatorial Description of Cell-complex](/paper/a-recursive-combinatorial-description-of-cell-complex)
   * [Simply Typed JoJo Calculus](/paper/simply-typed-jojo-calculus)

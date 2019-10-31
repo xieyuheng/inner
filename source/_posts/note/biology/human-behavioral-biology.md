@@ -1,10 +1,10 @@
-#+title: Human Behavioral Biology
+# Human Behavioral Biology
 
-* [note]
+- Lecture by Robert Sapolsky
 
-  - https://www.youtube.com/playlist?list=PL848F2368C90DDC3D
+## Introduction to Human Behavioral Biology
 
-* about categorical thinking
+- [About categorical thinking]
 
   When you think in categories, you underestimate how different two facts are when they fall in the same category.
   When you think in categories, you overestimate how different two facts are when there happens to be a boundary in between them.
@@ -12,3 +12,5 @@
   Our goal in this class is to study behavior without falling into thinking in categories.
 
   We resist the pull to think categorically.
+
+## Behavioral Evolution
