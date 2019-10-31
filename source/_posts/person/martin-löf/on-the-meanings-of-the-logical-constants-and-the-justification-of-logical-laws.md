@@ -400,4 +400,36 @@ The knowledge of a judgement of form `A prop` is about **"What"**.
 
 ## Third lecture
 
-TODO
+Next I have to say something about hypothetical judgements,
+before I proceed to the final piece, which consists of
+the explanations of the meanings of the logical constants
+and the justifications of the logical laws.
+
+So far, I have only introduced the two forms of categorical judgement
+"A is a proposition" and "A is true".
+The only forms of judgement that I need to introduce, besides these,
+are forms of hypothetical judgement.
+
+The rule for making assumptions is simply this:
+**whenever you have a judgement,
+in the sense of an instance of a form of judgement,
+you may assume it**.
+That gives rise to the notion of hypothetical judgement
+and the notion of hypothetical proof, or proof under hypotheses.
+
+The forms of hypothetical judgement that I shall need are not so many.
+What is absolutely necessary for me is to have access to the form
+
+> A1 true, ..., An true | A prop,
+
+which says that A is a proposition under the assumptions that
+A1, ..., An are all true, and, on the other hand, the form
+
+> A1 true, ..., An true | A true,
+
+which says that the proposition A is true
+under the assumptions that A1, ..., An are all true.
+
+Here I am using the vertical bar for the relation of logical consequence,
+that is, for what Gentzen expressed by means of the arrow `->` in his sequence calculus,
+and for which the double arrow `=>` is also a common notation.

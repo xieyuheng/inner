@@ -2,7 +2,7 @@
   - to specify logic deduction system, we use inference rules.
     to specify algebraic system, we use algebraic equations.
     to specify a machine, we use procedures.
-    how to understand the second and the third in the framework of martin-löf
+    how to understand the second and the third in the framework of martin-löf?
 - [person] Inductive Families
 - [person] Do-it-yourself Type Theory
 - [person] Constructive Mathematics and Computer Programming
