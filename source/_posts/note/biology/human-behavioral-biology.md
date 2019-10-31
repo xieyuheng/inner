@@ -4,7 +4,7 @@
 
 ## Introduction to Human Behavioral Biology
 
-- [About categorical thinking]
+- (About categorical thinking)
 
   When you think in categories, you underestimate how different two facts are when they fall in the same category.
   When you think in categories, you overestimate how different two facts are when there happens to be a boundary in between them.
@@ -14,3 +14,6 @@
   We resist the pull to think categorically.
 
 ## Behavioral Evolution
+
+- (Principles of Evolution)
+  1. There is Evolution. Traits in populations change over time.
