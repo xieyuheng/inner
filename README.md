@@ -1,6 +1,6 @@
 # Ones inner universe
 
-[![](https://image-link.xieyuheng.now.sh/ghost-in-the-shell/cute-small.png)](https://inner.xieyuheng.now.sh)
+[![](https://image-link.xieyuheng.now.sh/inner/cover.png)](https://inner.xieyuheng.now.sh)
 
 ---
 
