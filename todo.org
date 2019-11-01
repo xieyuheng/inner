@@ -31,6 +31,10 @@
         K(x, y) = x
         S(x, y, z) = x(z, (y(z)))
 - [paper] Simply Typed JoJo Calculus
+  - symbolic dynamics as semantics -- the step function
+  - cut as continuous map (respect composition) from the exp-space to type-space
+  - shift operator & ergodic theory
+  - automata and factor
 * report
 - report on wiki product
 * actor model
