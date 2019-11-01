@@ -8,11 +8,28 @@
 - [person] [de-bruijn]
 - [person] [schroeder-heister]
 - [person] [dag-prawitz]
+- [person] [haskell-curry] combinatory logic
 * paper
 - to specify logic deduction system, we use inference rules.
   to specify algebraic system, we use algebraic equations.
   to specify a machine, we use procedures.
-  how to understand the second and the third in the framework of martin-löf?
+- how to understand the second and the third in the framework of martin-löf?
+  - how to translate judgement?
+  - how to translate hypothetical judgement?
+  - how to translate the judgement form `_ prop`?
+  - how to translate the judgement form `_ true`?
+  - how to translate rules of martin-löf's type theory?
+- specification of algebraic structure
+  - use category theory?
+    - substitution is hard to handle
+  - https://en.wikipedia.org/wiki/Presentation_of_a_group
+    - there are no substitution?
+      - relation in presentation is about computation rule (equation)
+      maybe abstraction and application of a lambda term
+      can be expressed by defining (naming) new term and specify its computation rule.
+      - combinatory logic
+        K(x, y) = x
+        S(x, y, z) = x(z, (y(z)))
 - [paper] Simply Typed JoJo Calculus
 * report
 - report on wiki product
