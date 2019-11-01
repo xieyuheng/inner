@@ -677,6 +677,10 @@ and the kind of generality which a judgement may have comes before universal qua
 
 **Forall formation.**
 
+- **[Xie]**
+  In the following it is obvious in context that which use of `x` is free variable,
+  and when a free variable proof is needed.
+
 ``` js
 A(x) prop
 ---------------
@@ -691,11 +695,65 @@ A(x) true
 (forall x) A(x) true
 ```
 
+If something has been done, then it can be done.
+
 **Forall elimination.**
 
+``` js
+(forall x) A(x) true
+---------------
+A(a) true
+```
 
 **Exists formation.**
 
+``` js
+A(x) prop
+---------------
+(exists x) A(x) prop
+```
+
 **Exists introduction.**
 
+``` js
+A(a) true
+---------------
+(exists x) A(x) true
+```
+
 **Exists elimination.**
+
+``` js
+(exists x) A(x) true
+{ A(x) true |- C }
+----------------
+C true
+```
+
+The promise of the title of these lectures,
+On the Meanings of the Logical Constants
+and the Justifications of the Logical Laws,
+has now been fulfilled.
+
+As you have seen, the explanations of the meanings of the logical constants
+are precisely the explanations belonging to the formation rules.
+And the justifications of the logical laws
+are the explanations belonging to the introduction and elimination rules,
+which are the rules that we normally call rules of inference.
+
+- **[Xie]** Formation rules are actually explained by its introduction rules.
+
+For lack of time, I have only been able to deal with the pure logic in my semantical explanations.
+To develop some interesting parts of mathematics,
+you also need axioms for ordinary inductive definitions,
+in particular, axioms of computation and axioms for the natural numbers.
+And, if you need predicates defined by transfinite, or generalized, induction,
+then you will have to add the appropriate formation, introduction, and elimination rules for them.
+
+No longer do we need to prove metamathematically that the proof figures,
+divested of sense, reduce to introductory form.
+Instead of proving it, we endow the proof figures with sense, and then we see it!
+Thus the definition of convertibility, or computability,
+and the proof of normalization have been transposed into genuine semantical explanations
+which allow you to see this, just as you can see consistency semantically.
+And this is the point that I had intended to reach in these lectures.
