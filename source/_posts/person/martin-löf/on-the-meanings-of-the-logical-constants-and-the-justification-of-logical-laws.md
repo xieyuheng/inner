@@ -534,3 +534,20 @@ which means that you must make the conclusion immediately evident to yourself
 granted that you know the premises,
 that is, granted that you possess a hypothetical proof that
 B is true from the hypothesis that A is true.
+
+Next we come to the elimination rule for implication,
+which I shall formulate in the standard way, as modus ponens,
+although, if you want all elimination rules to follow the same pattern,
+that is, the pattern exhibited by the rules of falsehood, disjunction,
+and existence elimination, there is another formulation that you should consider,
+and which has been considered by Schroeder-Heister.
+But I shall have to content myself with the standard formulation in these lectures.
+
+**Implication elimination.**
+
+``` js
+A -> B true
+A true
+--------------
+B true
+```
