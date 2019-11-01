@@ -677,7 +677,19 @@ and the kind of generality which a judgement may have comes before universal qua
 
 **Forall formation.**
 
+``` js
+A(x) prop
+---------------
+(forall x) A(x) prop
+```
+
 **Forall introduction.**
+
+``` js
+A(x) true
+---------------
+(forall x) A(x) true
+```
 
 **Forall elimination.**
 

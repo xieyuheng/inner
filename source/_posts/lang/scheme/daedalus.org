@@ -2828,7 +2828,7 @@
     ;;   ((pair K*)
     ;;    I)))
 
-    ;; boolean == K(as ture) | K*(as false)
+    ;; boolean == K(as true) | K*(as false)
     (<-β-
      '(def pair
         (λ (M)
