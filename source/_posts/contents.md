@@ -17,6 +17,7 @@
     * [Constructive Mathematics and Computer Programming](/person/martin-löf/constructive-mathematics-and-computer-programming)
     * [Intuitionistic Type Theory](/person/martin-löf/intuitionistic-type-theory)
     * [On the meanings of the logical constants and the justification of logical laws](/person/martin-löf/on-the-meanings-of-the-logical-constants-and-the-justification-of-logical-laws)
+  * Schroeder-Heister / 施罗德-海斯特
   * de Bruijn / 德 布赖恩
   * Henk Barendregt / 亨克 巴伦德雷格
   * Roland Backhouse / 罗兰 拜克豪斯
