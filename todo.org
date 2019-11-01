@@ -1,16 +1,18 @@
+* person
 - [person] On the meanings of the logical constants and the justification of logical laws
-  - to specify logic deduction system, we use inference rules.
-    to specify algebraic system, we use algebraic equations.
-    to specify a machine, we use procedures.
-    how to understand the second and the third in the framework of martin-löf?
 - [person] Inductive Families
 - [person] Do-it-yourself Type Theory
 - [person] Constructive Mathematics and Computer Programming
 - [person] Intuitionistic Type Theory
-- [person] lambda-calculus-with-types
+- [person] [henk-barendregt] Lambda Calculus With Types
+- [person] [de-bruijn]
+- [person] [schroeder-heister]
+- [person] [dag-prawitz]
 * paper
-- [deduction] try to use the syntax for natural deduction we learned from DIYTT
-  to formalize deduction of JoJo Calculus
+- to specify logic deduction system, we use inference rules.
+  to specify algebraic system, we use algebraic equations.
+  to specify a machine, we use procedures.
+  how to understand the second and the third in the framework of martin-löf?
 - [paper] Simply Typed JoJo Calculus
 * report
 - report on wiki product

@@ -496,4 +496,41 @@ and their semantical explanations.
 
 I shall begin with the rules of implication.
 
-TODO
+- **[Xie]** I will use `|-` instead of vertical bar for the relation of logical consequence.
+
+**Implication formation.**
+
+``` js
+A prop
+{ A prop |- B prop }
+---------------------
+A -> B prop
+```
+
+The rule of implication formation is a rule of immediate inference,
+which means that you must make the conclusion evident to yourself immediately,
+without any intervening steps, on the assumption that you know the premises.
+
+**Implication introduction.**
+
+``` js
+{ A true |- B true }
+---------------------
+A -> B true
+```
+
+**Explanation.** Introduction rule is the explanation saying that
+what counts as a verification of `A -> B` is a hypothetical proof `{ A true |- B true }`,
+that B is true under the assumption that A is true.
+
+In the Kolmogorov interpretation,
+such a hypothetical proof appears as a method of solving the problem B
+provided that the problem A can be solved,
+that is, a method which together with a method of solving the problem A
+becomes a method of solving the problem B.
+
+**Explanation.** Again, the rule of implication introduction is a rule of immediate inference,
+which means that you must make the conclusion immediately evident to yourself
+granted that you know the premises,
+that is, granted that you possess a hypothetical proof that
+B is true from the hypothesis that A is true.

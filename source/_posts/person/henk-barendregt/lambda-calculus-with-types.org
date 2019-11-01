@@ -1,4 +1,4 @@
-#+title: lambda calculus with types
+#+title: Lambda calculus with types
 
 * preface
 
