@@ -7,6 +7,10 @@
 - [person] [henk-barendregt] Lambda Calculus With Types
 - [person] [de-bruijn]
 - [person] [schroeder-heister]
+  standard formulation of elimination rule for implication
+  v.s. another elimination rules to follow the same pattern,
+  that is, the pattern exhibited by the rules of falsehood, disjunction, and existence elimination,
+  has been considered by Schroeder-Heister.
 - [person] [dag-prawitz]
 - [person] [haskell-curry] combinatory logic
 * paper
@@ -30,11 +34,14 @@
       - combinatory logic
         K(x, y) = x
         S(x, y, z) = x(z, (y(z)))
+  - in jojo cut is the only inference rule that requires two premises
+    - inference rule with one premise can be viewed as equation ?
 - [paper] Simply Typed JoJo Calculus
   - symbolic dynamics as semantics -- the step function
   - cut as continuous map (respect composition) from the exp-space to type-space
   - shift operator & ergodic theory
-  - automata and factor
+  - automata and forbidden factor (substring) of infinite word
+  - combinatorics on words
 * report
 - report on wiki product
 * actor model

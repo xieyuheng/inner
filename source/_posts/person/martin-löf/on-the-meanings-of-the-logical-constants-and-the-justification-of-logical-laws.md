@@ -551,3 +551,139 @@ A true
 --------------
 B true
 ```
+
+- **[Xie]** We need notations from type theory to express computation rule.
+  But this paper is not about type theory, but about proof theory of intuitionistic logic.
+
+  **Implication computation (implication reduction).**
+
+  ``` js
+  f : A -> B true
+  a : A true
+  ----------------------------------------------------
+  { (x) => f(x) } (a) == f(a) : B true
+
+  // or using `{ |- }` as syntax of function
+
+  f : A -> B true
+  a : A true
+  ----------------------------------------------------
+  { x : A true |- f(x) : B } (a) == f(a) : B true
+  ```
+
+**And formation.**
+
+``` js
+A prop
+B prop
+---------------
+A and B prop
+```
+
+**And introduction.**
+
+``` js
+A true
+B true
+---------------
+A and B true
+```
+
+**And elimination.**
+
+``` js
+A and B true
+------------
+A true
+
+A and B true
+------------
+B true
+```
+
+**Or formation.**
+
+``` js
+A prop
+B prop
+---------------
+A or B prop
+```
+
+**Or introduction.**
+
+``` js
+A true
+---------------
+A or B true
+
+B true
+---------------
+A or B true
+```
+
+**Or elimination.**
+
+``` js
+A or B true
+{ A true |- C true }
+{ B true |- C true }
+------------
+C true
+```
+
+**Absurd formation.**
+
+``` js
+-----------------
+absurd prop
+```
+
+**Absurd elimination.**
+
+``` js
+absurd true
+-------------
+C true
+```
+
+The undertaking that you make
+when you infer by the rule of falsehood elimination
+is therefore like saying,
+
+> I shall eat up my hat if you do such and such,
+
+where such and such is something of which you know,
+that is, are certain, that it cannot be done.
+
+We define `not A` as `A -> absurd`.
+However, the fact that A is false if and only if not A is true
+should not tempt one to define the notion of denial by saying that
+
+> A is false
+
+means that
+
+> A is true.
+
+That the proposition A is false still means that it is impossible to verify A,
+and this is a notion which cannot be reduced to the notions of negation.
+Denial comes before negation in the order of conceptual priority,
+just as logical consequence comes before implication,
+and the kind of generality which a judgement may have comes before universal quantification.
+
+> A is false = A is not true = A is not verifiable
+> = A cannot be verified.
+
+**Forall formation.**
+
+**Forall introduction.**
+
+**Forall elimination.**
+
+
+**Exists formation.**
+
+**Exists introduction.**
+
+**Exists elimination.**
