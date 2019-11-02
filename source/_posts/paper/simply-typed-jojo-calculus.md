@@ -52,10 +52,10 @@ For examples,
 
 ``` js
 // Example abstraction
-(x) => (y) => x(y) --> [x][y]{y}x
+(x) => (y) => x(y)       --- [x][y]{y}x
 
 // Example application
-{(x) => (y) => x(y)}(z) --> {z}[x][y]{y}x
+{(x) => (y) => x(y)}(z)  --- {z}[x][y]{y}x
 
 // Example reduction steps
 {(x) => {(y) => {(z) => z(d)}}(c)}(b)(a) --- {a}{b}[x]{c}[y][z]{d}z
