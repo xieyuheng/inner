@@ -185,3 +185,59 @@ universe_introduction : (a : U) -> (b : (x : T(a)) -> U) -> U
 ```
 
 # 3 A Scheme for Inductive Definitions
+
+In this section I shall present the scheme for introducing a new set former.
+Firstly, there is the general form of formation and introduction rules.
+Secondly, there is the inversion principle for deriving
+elimination and equality rules from the formation and introduction rules.
+
+## 3.1 Formation Rule
+
+### 3.1.1 Scheme
+
+There is one formation rule (unless we have simultaneous induction, see section 6).
+It has the form
+
+- **[Xie]** The notation `(A :: T)` means `(A : T, ...)`.
+
+``` js
+P : (A :: T) -> (a :: f[A]) -> set
+```
+
+The arguments `A` are called "parameters",
+and the arguments `a` (whoes types might be dependent) are called "indexes".
+
+### 3.1.2 Examples
+
+``` js
+N : set
+List : (A : set) -> set
+Vec : (A : set) -> (a : N) -> set
+```
+
+## 3.2 Introduction Rules
+
+### 3.2.1 Scheme
+
+There are finitely many introduction rules for each set former.
+Each introduction rule has the form
+
+``` js
+intro : (A :: T) -> (b :: f[A]) -> (u :: g[A, b]) -> P(A)(p[A, b])
+```
+
+- **[Xie]** The notion of **s-type** (set-like type) is introduced here,
+   An s-type is either a set,
+   or a type of functions from an s-type to an s-type.
+
+TODO
+
+### 3.2.2 Examples
+
+## 3.3 Elimination Rule
+
+### 3.3.1 Scheme
+
+### 3.3.2 Examples
+
+# 4 A Scheme for Recursive Definitions
