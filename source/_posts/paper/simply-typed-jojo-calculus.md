@@ -12,7 +12,7 @@
 
 ## Introduction
 
-## A Review of Lambda Calculus
+## A review of lambda calculus
 
 We assume the reader has a basic familiarity with the lambda calculus
 and the concepts of bound variables, alpha-, beta- and eta-reduction.
@@ -32,7 +32,7 @@ In lambda expression,
 I use `{}` to brackets to dis-ambiguity
 direct application of abstraction to argument.
 
-## A Review of The de Bruijn notation
+## A review of de Bruijn notation
 
 The de Bruijn notation is a useful translation of lambda expression,
 after which the name of a variable binding is placed near to the argument it binds.
@@ -93,22 +93,19 @@ When postfix notation occur we can use stack machine to provide semantics.
 
 ## The algebraic structure of the space of simple type
 
-- **[Claim]** The algebraic structure of the space of simple type is freely generated group with quotation.
-- **[Demonstration]** We can claim this, because we break the arrow type `(A) -> B` into two `(- A)` and `B`.
-  By "quotation", I mean `{ A }`.
+What is the algebraic structure of the space of simple types?
 
-TODO
-Not group, but groupoid, because we can not compose freely,
+We have quotation `{ A }`.
+
+Not freely generated group, but groupoid, because we can not compose freely,
 for example, `B (- A)` is not valid.
 
-TODO For example, ...
+The element `(- A)` is right invers of `A`, but not left inverse of `A`,
+`{ A (- A) } == { }` but `{ (- A) A } != { }`.
 
-- **[Note]** We can also say,
-  by "simple" we means the space is freely generated,
-  which means there are no equations between types,
-  such as conversion relations in the case of lambda expressions.
+## The algebraic structure of the space of dependent type
 
-## Specification of algebraic structure
+What is the algebraic structure of the space of dependent types?
 
 To specify logic deduction system, we use inference rules,
 which is studied in details in Martin-Löf's type theory.
@@ -120,7 +117,8 @@ is the presentation of group.
 - Another technique is universe construction in category theory,
   in which substitution is hard to model.
 
-- The question is how to translate notions in Martin-Löf's type theory to notions of algebraic structure.
+- The question is how to translate notions in Martin-Löf's type theory
+  to notions of algebraic structure.
   - How to translate judgement?
   - How to translate hypothetical judgement?
   - How to translate the judgement form `_ prop`?
