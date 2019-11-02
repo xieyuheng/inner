@@ -5,11 +5,10 @@
 - What are the Main methodologies?
 - What are the history and the philosophy?
 
-## Case study: set-, type- and category- theory
+## Case study: Set, Type, Category
 
-What is the difference between set, type and cat?
-
-Comparing Interfaces:
-- set  --  equal, member relation, subset relation
-- type --  equal, member relation, subtype relation
-- cat  --  equal, compose arrow
+| Theory   | Interface functions   |
+|----------|-----------------------|
+| Category | equal, composition    |
+| Type     | equal, member         |
+| Set      | equal, member, subset |
