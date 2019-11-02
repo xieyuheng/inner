@@ -31,7 +31,6 @@ we use non-symmetrical syntax to avoid ambiguity.
 In lambda expression,
 I use `{}` to brackets to dis-ambiguity
 direct application of abstraction to argument.
-(Thus `()` only occurs for argument of application.)
 
 ## A Review of The de Bruijn notation
 
