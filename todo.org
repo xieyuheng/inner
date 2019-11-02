@@ -13,6 +13,9 @@
     has been considered by Schroeder-Heister.
 - [person] [dag-prawitz]
 - [person] [haskell-curry] combinatory logic
+* jojo
+- in jojo cut is the only inference rule that requires two premises
+  - inference rule with one premise can be viewed as equation?
 * report
 - report on wiki product
 * actor model

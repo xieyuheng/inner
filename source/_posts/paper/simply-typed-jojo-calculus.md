@@ -6,11 +6,6 @@
 - Keywords: Type system.
 ------
 
-## TODO
-
-- in jojo cut is the only inference rule that requires two premises
-  - inference rule with one premise can be viewed as equation?
-
 ## Abstract
 
 ### Contains
@@ -46,9 +41,9 @@ after which the name of a variable binding is placed near to the argument it bin
 The translation, denoted by `I( ... )`,
 
 ``` js
-I[ x ] = x
-I[ (x) => body ] = [x] I( body )
-I[ f(x) ] = {I( x )} I( f )
+I( x ) = x
+I( (x) => body ) = [x] I( body )
+I( f(x) ) = {I( x )} I( f )
 ```
 
 The effect of this translation is that function application
