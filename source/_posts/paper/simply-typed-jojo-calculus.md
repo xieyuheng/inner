@@ -114,16 +114,16 @@ To specify algebraic system, we use algebraic equations.
 
 The prototypical technique for specifying algebraic structure,
 is the presentation of group.
-- Another technique is universe construction in category theory,
-  in which substitution is hard to model.
+Another technique is universe construction in category theory,
+in which substitution is hard to model.
 
-- The question is how to translate notions in Martin-Löf's type theory
-  to notions of algebraic structure.
-  - How to translate judgement?
-  - How to translate hypothetical judgement?
-  - How to translate the judgement form `_ prop`?
-  - How to translate the judgement form `_ true`?
-  - How to translate rules of martin-löf's type theory?
+The question is how to translate notions in Martin-Löf's type theory
+to notions of algebraic structure.
+- How to translate judgement?
+- How to translate hypothetical judgement?
+- How to translate the judgement form `_ prop`?
+- How to translate the judgement form `_ true`?
+- How to translate rules of martin-löf's type theory?
 
 In presentation of algebraic theory, we use equation to specify relation between elements.
 Equation (relation) in presentation is about computation rule (reduction, substitution, rewriting),
