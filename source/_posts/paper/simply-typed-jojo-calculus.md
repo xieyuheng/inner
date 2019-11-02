@@ -77,8 +77,8 @@ a(d)                                     --- {d}a
 (g)       --- {(x) => (y) => N}(P)(Q)   --- {Q}{P}[x][y]N
           --> {(x) => {(y) => N}(Q)}(P) --- {P}[x]{Q}[y]N
 
-(beta-e)  --- <no equivalent>           --- {Q}...[y]N
-          --> <no equivalent>           --- ...{Q}[y]N
+(beta-e)  --- /* no equivalent */       --- {Q}...[y]N
+          --> /* no equivalent */       --- ...{Q}[y]N
                where `...` is well balanced.
 ```
 
