@@ -94,7 +94,7 @@ When postfix notation occur we can use stack machine to provide semantics.
 ## The algebraic structure of the space of simple type
 
 - **[Claim]** The algebraic structure of the space of simple type is freely generated group with quotation.
-- **[Demonstration]** We can claim this, because we break the arrow type `A -> B` into two `(- A)` and `B`.
+- **[Demonstration]** We can claim this, because we break the arrow type `(A) -> B` into two `(- A)` and `B`.
   By "quotation", I mean `{ A }`.
 
 For example,
@@ -124,11 +124,8 @@ is the presentation of group.
   - How to translate the judgement form `_ true`?
   - How to translate rules of martin-löf's type theory?
 
-In presentation of algebraic theory,
-we use equation to specify relation between elements.
-
-Relation (equation) in presentation
-is about computation rule (reduction, substitution, rewriting),
+In presentation of algebraic theory, we use equation to specify relation between elements.
+Equation (relation) in presentation is about computation rule (reduction, substitution, rewriting),
 
 We can view lambda abstraction as **partial equation**,
 and partial equation is first class element in the algebra.
