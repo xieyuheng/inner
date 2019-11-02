@@ -1,10 +1,8 @@
 # Simply Typed JoJo Calculus
 
-**WORK IN PROGRESS**
-
 ------
 - Author: Xie Yuheng
-- Date: 2019-10-14
+- Date: 2019-10-14, **WORK IN PROGRESS**
 - Keywords: Type system.
 ------
 
