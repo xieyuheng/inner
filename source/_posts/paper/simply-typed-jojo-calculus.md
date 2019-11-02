@@ -95,13 +95,20 @@ When postfix notation occur we can use stack machine to provide semantics.
 
 What is the algebraic structure of the space of simple types?
 
-We have quotation `{ A }`.
+We have quotation `{ A }`, and unquote `{ A } exe == A`.
 
-Not freely generated group, but groupoid, because we can not compose freely,
+Not freely generated group, but groupoid (typed algebraic structure),
+because we can not compose freely,
 for example, `B (- A)` is not valid.
 
+Thus not groupoid, because not every element has inverse, but every element has right inverse.
 The element `(- A)` is right invers of `A`, but not left inverse of `A`,
 `{ A (- A) } == { }` but `{ (- A) A } != { }`.
+
+Thus we must use category theory.
+
+Not cartesian closed category but finer,
+for exponential object `(A) -> B` is farther factored into `(- A) B`.
 
 ## The algebraic structure of the space of dependent type
 
@@ -114,8 +121,6 @@ To specify algebraic system, we use algebraic equations.
 
 The prototypical technique for specifying algebraic structure,
 is the presentation of group.
-Another technique is universe construction in category theory,
-in which substitution is hard to model.
 
 The question is how to translate notions in Martin-Löf's type theory
 to notions of algebraic structure.
