@@ -1,7 +1,7 @@
 * [Home / 首页](/home)
 * [Contents / 目录](/contents)
-* [Quotes / 名言](/quotes)
-* Person / 名人
+* [Quotes / 迷言](/quotes)
+* Person / 人物
   * Rimbaud / 兰波
     * [煉獄](/person/rimbaud/煉獄)
   * Galois / 伽羅瓦
