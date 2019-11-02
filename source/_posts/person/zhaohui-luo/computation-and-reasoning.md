@@ -1,3 +1,7 @@
+---
+title: Computation and Reasoning
+---
+
 # Computation and Reasoning
 
 - A Type Theory for Computer Science
