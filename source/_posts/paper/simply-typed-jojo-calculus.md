@@ -161,6 +161,9 @@ Thus we study type theory by,
   - introducing lambda (first class partial equation),
   - introducing new inductive types.
 
+Permutation group is simple to construct,
+by defining functions that permute elements on top of the stack.
+
 ``` js
 { a | a a == id }
 
