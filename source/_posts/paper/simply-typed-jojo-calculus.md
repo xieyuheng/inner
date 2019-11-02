@@ -2,7 +2,7 @@
 
 ------
 - Author: Xie Yuheng
-- Date: 2019-10-14, **WORK IN PROGRESS**
+- Date: **WORK IN PROGRESS**
 - Keywords: Type system.
 ------
 
@@ -109,10 +109,6 @@ Thus we must use category theory.
 
 Not cartesian closed category but finer,
 for exponential object `(A) -> B` is farther factored into `(- A) B`.
-
-## The algebraic structure of the space of dependent type
-
-What is the algebraic structure of the space of dependent types?
 
 To specify logic deduction system, we use inference rules,
 which is studied in details in Martin-Löf's type theory.
