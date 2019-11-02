@@ -20,6 +20,7 @@
   * Schroeder-Heister / 施罗德-海斯特
   * de Bruijn / 德 布赖恩
   * Henk Barendregt / 亨克 巴伦德雷格
+    * [Lambda Calculus with Types](/person/henk-barendregt/lambda-calculus-with-types)
   * Roland Backhouse / 罗兰 拜克豪斯
     * [Do-it-yourself Type Theory](/person/roland-backhouse/do-it-yourself-type-theory)
   * Peter Dybjer / 彼得 迪比尔
