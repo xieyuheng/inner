@@ -1,10 +1,17 @@
 # Simply Typed JoJo Calculus
 
+**WORK IN PROGRESS**
+
 ------
 - Author: Xie Yuheng
 - Date: 2019-10-14
 - Keywords: Type system.
 ------
+
+## TODO
+
+- in jojo cut is the only inference rule that requires two premises
+  - inference rule with one premise can be viewed as equation?
 
 ## Abstract
 
@@ -23,24 +30,71 @@ to let the reader be familiar with our notations.
 Since lambda application is not associative,
 we use non-symmetrical syntax to avoid ambiguity.
 
-- **[Definition]** lambda expression
-  - variable: `x`
-  - lambda application: `f(x)`
-  - lambda abstraction: `(x) => body`
+- **[Definition]** Lambda expression contains,
+  - Variable: `x`
+  - Lambda application: `f(x)`
+  - Lambda abstraction: `(x) => body`
 
-## A Review of De Bruijn notation
+In lambda expression,
+I use `{}` to brackets to dis-ambiguity
+direct application of abstraction to argument.
+(Thus `()` only occurs for argument of application.)
 
-De Bruijn notation is a useful translation of lambda expression,
+## A Review of The de Bruijn notation
+
+The de Bruijn notation is a useful translation of lambda expression,
 after which the name of a variable binding is placed near to the argument it binds.
 
-- **[Example]** TODO
+The translation, denoted by `I( ... )`,
 
-TODO The effect of this translation postfix.
+``` js
+I[ x ] = x
+I[ (x) => body ] = [x] I( body )
+I[ f(x) ] = {I( x )} I( f )
+```
 
-## Adding function composition into De Bruijn notation
+The effect of this translation is that function application
+is translated from prefix notation to postfix notation.
 
-TODO When postfix notation occur we can use stack machine to give semantics.
-(We learned this from the programming language Forth)
+For examples,
+
+``` js
+// Example abstraction
+(x) => (y) => x(y) --> [x][y]{y}x
+
+// Example application
+{(x) => (y) => x(y)}(z) --> {z}[x][y]{y}x
+
+// Example reduction steps
+{(x) => {(y) => {(z) => z(d)}}(c)}(b)(a) --- {a}{b}[x]{c}[y][z]{d}z
+{(y) => {(z) => z(d)}}(c)(a)             --- {a}{c}[y][z]{d}z
+{(z) => z(d)}(a)                         --- {a}[z]{d}z
+a(d)                                     --- {d}a
+
+// Example reduction relations
+(theta)   --- {(x) => N}(P)(Q)          --- {Q}{P}[x]N
+          --> {(x) => N(Q)}(P)          --- {P}[x]{Q}N
+
+(gamma)   --- {(x) => (y) => N}(P)      --- {P}[x][y]N
+          --> (y) => {(x) => N}(P)      --- [y]{P}[x]N
+
+(gamma-C) --- {(x) => (y) => N}(P)(Q)   --- {Q}{P}[x][y]N
+          --> {(y) => {(x) => N}(P)}(Q) --- {Q}[y]{P}[x]N
+
+(g)       --- {(x) => (y) => N}(P)(Q)   --- {Q}{P}[x][y]N
+          --> {(x) => {(y) => N}(Q)}(P) --- {P}[x]{Q}[y]N
+
+(beta-e)  --- <no equivalent>           --- {Q}...[y]N
+          --> <no equivalent>           --- ...{Q}[y]N
+               where `...` is well balanced.
+```
+
+## Specification of stack machine
+
+When postfix notation occur we can use stack machine to provide semantics.
+(We learned this from the programming language Forth.)
+
+## Adding function composition into de Bruijn notation
 
 - **[Claim]** When translating lambda expressions to De Bruijn notation, function composition does not occur.
 - **[Proof]** TODO
@@ -50,11 +104,81 @@ TODO When postfix notation occur we can use stack machine to give semantics.
 - **[Claim]** The algebraic structure of the space of simple type is freely generated group with quotation.
 - **[Demonstration]** We can claim this, because we break the arrow type `A -> B` into two `(- A)` and `B`.
   By "quotation", I mean `{ A }`.
-- **[Example]** TODO
+
+For example,
+TODO
+
 - **[Note]** We can also say,
   by "simple" we means the space is freely generated,
   which means there are no equations between types,
   such as conversion relations in the case of lambda expressions.
+
+## Specification of algebraic structure
+
+To specify logic deduction system, we use inference rules,
+which is studied in details in Martin-Löf's type theory.
+
+To specify algebraic system, we use algebraic equations.
+
+The prototypical technique for specifying algebraic structure,
+is the presentation of group.
+- Another technique is universe construction in category theory,
+  in which substitution is hard to model.
+
+- The question is how to translate notions in Martin-Löf's type theory to notions of algebraic structure.
+  - How to translate judgement?
+  - How to translate hypothetical judgement?
+  - How to translate the judgement form `_ prop`?
+  - How to translate the judgement form `_ true`?
+  - How to translate rules of martin-löf's type theory?
+
+In presentation of algebraic theory,
+we use equation to specify relation between elements.
+
+Relation (equation) in presentation
+is about computation rule (reduction, substitution, rewriting),
+
+We can view lambda abstraction as **partial equation**,
+and partial equation is first class element in the algebra.
+
+To introduce a new element to the algebra structure,
+we need to give it a name and specify its computation rule.
+Take combinatory logic as a example (although it is not algebra structure), in which we can define
+
+``` js
+K(x, y) = x
+S(x, y, z) = x(z, (y(z)))
+```
+
+If we are not allowed to use first class partial equation in our algebra structure, we will get a system like combinatory logic.
+
+By using first class partial equation,
+we can construct anonymous element,
+just like in lambda calculus,
+lambda abstraction construct anonymous function.
+
+We need "arguments in stack" and "multiple return value"
+to make the algebra close under composition.
+- `1 2 cons` denotes one element in the stack, and one element in the algebra
+- `1 2` denotes two elements in the stack, and one element in the algebra
+  this kind of composition is "free".
+
+Thus we study type theory by,
+- firstly view it as algebra (maybe start from group theory),
+- then extend the algebra by introducing new elements and equations
+  For examples,
+  - introducing lambda (first class partial equation),
+  - introducing new inductive types.
+
+## Symbolic dynamics
+
+We can use symbolic dynamics as semantics,
+because we have a simple step function.
+
+The `cut` operator can be viewed as continuous map (respecting composition) from the `exp-space` to `type-space`.
+- The shift operator and ergodic theory.
+- Combinatorics on words.
+  - Automata and forbidden factor (substring) of infinite word.
 
 ## Appendixes
 
