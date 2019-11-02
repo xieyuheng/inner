@@ -79,7 +79,7 @@ a(d)                                     --- {d}a
 
 (beta-e)  --- /* no equivalent */       --- {Q}...[y]N
           --> /* no equivalent */       --- ...{Q}[y]N
-               where `...` is well balanced.
+          // where `...` is well balanced.
 ```
 
 ## Specification of stack machine
