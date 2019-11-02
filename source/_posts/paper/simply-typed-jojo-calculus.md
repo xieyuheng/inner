@@ -97,8 +97,11 @@ When postfix notation occur we can use stack machine to provide semantics.
 - **[Demonstration]** We can claim this, because we break the arrow type `(A) -> B` into two `(- A)` and `B`.
   By "quotation", I mean `{ A }`.
 
-For example,
 TODO
+Not group, but groupoid, because we can not compose freely,
+for example, `B (- A)` is not valid.
+
+TODO For example, ...
 
 - **[Note]** We can also say,
   by "simple" we means the space is freely generated,
@@ -141,16 +144,15 @@ S(x, y, z) = x(z, (y(z)))
 
 If we are not allowed to use first class partial equation in our algebra structure, we will get a system like combinatory logic.
 
-By using first class partial equation,
-we can construct anonymous element,
-just like in lambda calculus,
-lambda abstraction construct anonymous function.
+By using first class partial equation, we can construct anonymous element,
+just like in lambda calculus, lambda abstraction construct anonymous function.
 
 We need "arguments in stack" and "multiple return value"
 to make the algebra close under composition.
-- `1 2 cons` denotes one element in the stack, and one element in the algebra
-- `1 2` denotes two elements in the stack, and one element in the algebra
-  this kind of composition is "free".
+- `1 2 cons` denotes one element in the stack,
+  and one element in the algebra.
+- `1 2` denotes two elements in the stack,
+  and one element in the algebra (this kind of composition is "free").
 
 Thus we study type theory by,
 - firstly view it as algebra (maybe start from group theory),
@@ -158,6 +160,14 @@ Thus we study type theory by,
   For examples,
   - introducing lambda (first class partial equation),
   - introducing new inductive types.
+
+``` js
+{ a | a a == id }
+
+swap : { (- A) (- A) A A }
+swap = { [x] [y] x y }
+swap swap == id
+```
 
 ## Symbolic dynamics
 
