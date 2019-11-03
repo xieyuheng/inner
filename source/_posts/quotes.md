@@ -9,7 +9,9 @@
   it's something let's you disassociate and understand the true moments of joy and happiness.
   - Keren Ann on melancholy, love and loss
 
-### Learning to Learn
+### Education
+
+*Learning to learn.*
 
 - Do extra work each time,
   and get down to fundamentals,
@@ -116,6 +118,11 @@
   - Robert Pirsig
   - in "zen and the art of motorcycle maintenance"
 
+### Religion
+
+- Believers are in groups, seekers are alone.
+  - Jaggi Vasudev
+
 ### Technology
 
 - I care about what the security and efficiency properties
@@ -134,7 +141,7 @@
   - Tristan Harris
   - How a handful of tech companies control billions of minds every day
 
-### Software Architecture
+#### Software Architecture
 
 - Programmers are abstractors and detail managers,
   as detail managers we separate details from the generals.
@@ -154,7 +161,7 @@
   - Bob Martin
   - SOLID Principles of Object Oriented and Agile Design
 
-### Database
+#### Database
 
 - The universality of the data sublanguage
   lies in its descriptive ability (not its computing ability).
