@@ -31,6 +31,7 @@
     - [Do-it-yourself Type Theory](/person/roland-backhouse/do-it-yourself-type-theory)
   - Peter Dybjer / 彼得 迪比尔
     - [Inductive Families](/person/peter-dybjer/inductive-families)
+  - William Lawvere / 威廉 劳维尔
   - Zhaohui Luo
     - [Computation and Reasoning](/person/zhaohui-luo/computation-and-reasoning)
   - Zhuang Zi / 莊子
