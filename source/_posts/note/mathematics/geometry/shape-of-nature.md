@@ -485,13 +485,13 @@ knot和link的離散版本是
 嵌入3維歐氏空間中的1維子空間的bending chains
 同樣也可給出嵌入3維歐氏空間中的2維子空間的folding origami
 
-# **TODO** 18 Cauchy's rigidity and Connelly's flexibity
+# 18 Cauchy's rigidity and Connelly's flexibity
 
-# **TODO** 19 mountain terrains and surface reconstruction
+# 19 mountain terrains and surface reconstruction
 
-# **TODO** 20 Voronoi's regions of influence
+# 20 Voronoi's regions of influence
 
-# **TODO** 21 convex hulls and computational complexity
+# 21 convex hulls and computational complexity
 
 # 22 patterns and colors
 
@@ -507,9 +507,9 @@ knot和link的離散版本是
 這單純的是平面的一個拓撲性質 很容易經反證發證明由Euler公式
 由這個命題經反證法就得到6色定理
 
-# **TODO** 23 Orange Stackings and Bubble Partitions
+# 23 Orange Stackings and Bubble Partitions
 
-# **TODO** 24 The Topology of the Universe
+# 24 The Topology of the Universe
 
 Universe 有界但是沒有邊 如球面
 
@@ -529,14 +529,14 @@ Universe 有界但是沒有邊 如球面
 
 - Dehn surgery
 
-# **TODO** 26 The Fundamental Group
-# **TODO** 27 Poincaré's Question and Perelman's Answer
-# **TODO** 28 The Geometry of the Universe
-# **TODO** 29 Visualizing in Higher Dimensions
-# **TODO** 30 Polyhedra in Higher Dimensions
-# **TODO** 31 Particle Motions
-# **TODO** 32 Particle Collisions
-# **TODO** 33 Evolutionary Trees
-# **TODO** 34 Chaos and Fractals
-# **TODO** 35 Reclaiming Leonardo da Vinci
-# **TODO** 36 Pushing the Forefront
+# 26 The Fundamental Group
+# 27 Poincaré's Question and Perelman's Answer
+# 28 The Geometry of the Universe
+# 29 Visualizing in Higher Dimensions
+# 30 Polyhedra in Higher Dimensions
+# 31 Particle Motions
+# 32 Particle Collisions
+# 33 Evolutionary Trees
+# 34 Chaos and Fractals
+# 35 Reclaiming Leonardo da Vinci
+# 36 Pushing the Forefront
