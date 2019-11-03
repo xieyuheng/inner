@@ -31,6 +31,8 @@
     - [齊物論](/person/zhuang-zi/齊物論)
 - Note / 笔记
   - Mathematics / 数学
+    - Geometry / 几何
+      * [自然之形 / Shape of Nature](/note/mathematics/geometry/shape-of-nature)
     - Category Theory / 范畴论
       - [Categorical Intuitions](/note/mathematics/category-theory/categorical-intuitions)
       - [Category Theory For Programmers]
