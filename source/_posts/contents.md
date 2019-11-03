@@ -46,9 +46,6 @@
   * [Simply Typed JoJo Calculus](/paper/simply-typed-jojo-calculus)
   * [Dependently Typed JoJo Calculus](/paper/dependently-typed-jojo-calculus)
 * Translation / 译文
-  * [上帝是道家的嗎 / Is God A Taoist](/translation/is-god-a-taoist)
-    - by Raymond Smullyan
-  * [一個構造主義者的宣言 / A Constructivist Manifesto](/translation/a-constructivist-manifesto)
-    - by Errett Bishop
-  * [當代數學之精神分裂症 / Schizophrenia in Contemporary Mathematics](/translation/schizophrenia-in-contemporary-mathematics)
-    - by Errett Bishop
+  * [上帝是道家的嗎 / Is God A Taoist, by Raymond Smullyan](/translation/is-god-a-taoist)
+  * [一個構造主義者的宣言 / A Constructivist Manifesto, by Errett Bishop](/translation/a-constructivist-manifesto)
+  * [當代數學之精神分裂症 / Schizophrenia in Contemporary Mathematics, by Errett Bishop](/translation/schizophrenia-in-contemporary-mathematics)
