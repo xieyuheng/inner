@@ -41,9 +41,9 @@
       * [自然之形 / Shape of Nature](/note/mathematics/geometry/shape-of-nature)
     - Category Theory / 范畴论
       - [Categorical Intuitions](/note/mathematics/category-theory/categorical-intuitions)
-      - [Category Theory For Programmers]
-      - [Categories For The Working Mathematician]
-      - [Categorical Semantics]
+      - [Category Theory For Programmers](/note/mathematics/category-theory/category-theory-for-programmers)
+      - [Categories For The Working Mathematician](/note/mathematics/category-theory/categories-for-the-working-mathematician)
+      - [Categorical Semantics](/note/mathematics/category-theory/categorical-semantics)
   - Computer Science / 计算机科学
     - Type Theory / 类型论
       - [Language Implementation Tricks](/note/computer-science/type-theory/language-implementation-tricks)
