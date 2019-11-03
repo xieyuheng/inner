@@ -116,12 +116,7 @@
   A classical understanding sees the world primarily as underlying form itself.
   A romantic understanding sees it primarily in terms of immediate appearance.
   - Robert Pirsig
-  - in "zen and the art of motorcycle maintenance"
-
-### Religion
-
-- Believers are in groups, seekers are alone.
-  - Jaggi Vasudev
+  - in "Zen and the Art of Motorcycle Maintenance"
 
 ### Technology
 
