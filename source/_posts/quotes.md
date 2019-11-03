@@ -17,6 +17,9 @@
   - Richard Hamming
   - Lecture "Digital Filters, Part I" (April 27, 1995)
 
+- You need both theory to guide you, and skill and technique to do.
+  - Richard Hamming
+
 ### Engineering
 
 - Anything complex in the world can be improved.
