@@ -2,198 +2,198 @@
 
 ## Closure and lexical scope
 
-- we need lexical scope for lambda
+We need lexical scope for lambda.
 
-- the closure trick says:
-  closure = lambda expression + env
+The closure trick says,
 
-- this is the most basic trick for writing
-  simple call-by-value eval function
+> Closure = Lambda expression + Environment
 
-- whenever lexical scope is need,
-  the trick of closure must be used.
+this is the most basic trick for writing simple call-by-value eval function.
+
+Whenever lexical scope is need, the trick of closure must be used.
 
 ## Keep the model of expression and value simple
 
-- the expression is already simple
+The expression is already simple.
 
-- value is also simple if
-  the only difference between exp and value is the env closure
+Value is also simple, if the only difference
+between expression and value is the closure of environment.
 
-- the keep it simple trick says: keep it simple
+The "keep it simple trick" says,
+
+> Keep it simple.
 
 ## Implementation of inference rules
 
-- type system is specified by logic inference rules
+Type system is specified by logic inference rules.
 
-- such specification make it possible to prove e: T
-  but might not provide algorithm for checking e: T
-  i.e. might not generating a proof of e: T for you
+Such specification make it possible to prove `e: T`,
+but might not provide algorithm for checking `e: T`,
+that is, it might not generating a proof of `e: T` for you.
 
-  why not?
-  just because we are not providing enough information in the syntax.
+Why not?
+Just because we are not providing enough information in the syntax.
 
-  for example,
-  curry's typed lambda calculus has less information in syntax
-  compare to church's typed lambda calculus.
+For example,
+Curry's typed lambda calculus has less information in syntax
+than de Bruijn's typed lambda calculus.
 
-- the bidirectional trick says:
-  we can turn a set of inference rules to a type checking algorithm,
-  by sometimes view a rule as infer sometimes as check.
+The "bidirectional trick" says,
 
-  for example, the rule of function application:
+> We can turn a set of inference rules to a type checking algorithm,
+>   by sometimes view a rule as infer sometimes as check.
 
-  ``` js
-  ctx |- f: A -> B
-  ctx |- x: A
-  ------------
-  ctx |- f(x): B
-  ```
+For example, the rule of function application,
 
-  we need infer to check function application,
-  and if we have infer, we can also infer the type of function application.
-  thus for rule of function application we use infer.
+``` js
+ctx |- f: A -> B
+ctx |- x: A
+------------
+ctx |- f(x): B
+```
 
-  ``` js
-  [infer] ctx |- f: A -> B
-  [check] ctx |- x: A
-  ------------
-  [infer] ctx |- f(x): B
-  ```
+We need infer to check function application,
+and if we have infer, we can also infer the type of function application.
+Thus for rule of function application we use infer.
 
-  we examine our rules recursively and do infer as far as possible.
-  and for those left we do check.
+``` js
+[infer] ctx |- f: A -> B
+[check] ctx |- x: A
+------------
+[infer] ctx |- f(x): B
+```
 
-  but the rule of (curry's) function abstraction:
+We examine our rules recursively and do infer as far as possible.
+For those left we do check.
 
-  ``` js
-  ctx, x: A |- e: B
-  ------------
-  ctx |- (x) => e: A -> B
-  ```
+Take the rule of (Curry's) function abstraction for example,
 
-  we can not possibly infer the type of a bound variable x.
-  thus we do check for the rule of function abstraction.
+``` js
+ctx, x: A |- e: B
+------------
+ctx |- (x) => e: A -> B
+```
 
-  ``` js
-  [check] ctx, x: A |- e: B
-  ------------
-  [check] ctx |- (x) => e: A -> B
-  ```
+we can not possibly infer the type of a bound variable `x`.
+thus we do check for the rule of function abstraction.
 
-  function abstraction is the constructor of function type,
-  function application is the eliminator of function type,
-  and since the rules about function are core of type systems,
-  we propagate the property "we need to check instead of infer"
-  to all rules about constructor.
+``` js
+[check] ctx, x: A |- e: B
+------------
+[check] ctx |- (x) => e: A -> B
+```
 
-  why we have this propagation?
+Function abstraction is the constructor of function type.
+Function application is the eliminator of function type.
+Since the rules about function are core of type systems,
+we propagate the property "we need to check instead of infer"
+to all rules about constructor.
 
-- why we sometimes need infer, when we only want to implementation check?
-  because we need to infer the type of target of elimination rules.
+Why we have this propagation?
 
-  for elimination rules the pattern is
+Why we sometimes need infer, when we only want to implementation check?
+because we need to infer the type of target of elimination rules.
 
-  ``` js
-  [infer] premise about target
-  [check] premise
-  [check] premise
-  [check] ...
-  ----------
-  [infer] conclusion
-  ```
+For elimination rules the pattern is,
 
-  for construction rules the pattern is
+``` js
+[infer] premise about target
+[check] premise
+[check] premise
+[check] ...
+----------
+[infer] conclusion
+```
 
-  ``` js
-  [check] premise
-  [check] premise
-  [check] ...
-  ----------
-  [check] conclusion
-  ```
+for construction rules the pattern is,
 
-- can we just provide enough information in the syntax.
-  for example, use church's typed lambda calculus instead of curry's typed lambda calculus?
-  in church's typed lambda calculus, can we infer all the way down?
-  is this true for all the rules about constructor?
+``` js
+[check] premise
+[check] premise
+[check] ...
+----------
+[check] conclusion
+```
 
-  ``` js
-  [infer] ctx, x: A |- e: B
-  ------------
-  [infer] ctx |- (x: A) => e: A -> B
-  ```
+Can we just provide enough information in the syntax.
+for example, use de Bruijn's typed lambda calculus instead of Curry's typed lambda calculus?
+In de Bruijn's typed lambda calculus, can we infer all the way down?
+Is this true for all the rules about constructor?
 
-  we do not need to annotate the return type of function
+``` js
+[infer] ctx, x: A |- e: B
+------------
+[infer] ctx |- (x: A) => e: A -> B
+```
 
-- a sub-trick is that,
-  the argument type of type check function
-  should be (e: Exp, T: Val)
-  instead of (e: Exp, T: Exp)
+Note that, we do not need to annotate the return type of function.
 
-  the dependent version of the rule of function application
+A sub-trick is that, the argument type of type check function
+should be `(e: Exp, T: Val)` instead of `(e: Exp, T: Exp)`.
 
-  ``` js
-  ctx |- f: A -> B
-  ctx |- x: A
-  val_eq(val_apply(B, x), T)
-  // B is a value that can apply to x
-  //   thus it must be value (with closure)
-  //   to maintain lexical scope
-  ------------
-  ctx |- f(x): T
+The dependent version of the rule of function application
 
-  [infer] ctx |- f: A -> B
-  [check] ctx |- x: A
-  [assert] val_eq(val_apply(B, x), T)
-  // B is a value that can apply to x
-  //   thus it must be value (with closure)
-  //   to maintain lexical scope
-  ------------
-  [infer] ctx |- f(x): T
-  ```
+``` js
+ctx |- f: A -> B
+ctx |- x: A
+val_eq(val_apply(B, x), T)
+// B is a value that can apply to x
+//   thus it must be value (with closure)
+//   to maintain lexical scope
+------------
+ctx |- f(x): T
 
-- note about the duality (or variance) between
-  premise and conclusion in inference rule
+[infer] ctx |- f: A -> B
+[check] ctx |- x: A
+[assert] val_eq(val_apply(B, x), T)
+// B is a value that can apply to x
+//   thus it must be value (with closure)
+//   to maintain lexical scope
+------------
+[infer] ctx |- f(x): T
+```
 
-  ``` js 
-  premise
-  ----------
-  conclusion
-  ```
+About the duality (or variance) between premise and conclusion in inference rule
 
-  is like function of type premise -> conclusion
+``` js
+premise
+----------
+conclusion
+```
 
-  ``` js 
-  [check] premise
-  ----------
-  [infer] conclusion
-  ```
+is like function of type `premise -> conclusion`
 
-  can be read as,
-  if we can implement check for premise,
-  we can implement infer for conclusion.
+``` js
+[check] premise
+----------
+[infer] conclusion
+```
 
-  if we only need to implement check for premise to implement infer for conclusion,
-  the rule will be useful in more places,
-  for it is usable even if we can not implement infer premise.
+which can be read as,
+if we can implement check for premise,
+we can implement infer for conclusion.
+
+And if we only need to implement check for premise to implement infer for conclusion,
+the rule will be useful in more places,
+for it is usable even if we can not implement infer premise.
 
 ## Comparing equivalence between expressions
 
-- we can comparing equivalence if we can normalize
+We can comparing equivalence between expressions, if we can normalize expressions.
 
-- the normalization by evaluation (aka. nbe, or norm-by-eval) trick says:
-  eval the expressions to values,
-  can read them back to normal form.
+The "normalization by evaluation trick" says
 
-  because there will be undefined free variables,
-  during the evaluation of nbe,
-  we need neutral form for each eliminator to handle this,
-  because eliminator might be applied to variable.
+> Evaluate the expressions to values, then read them back to normal form.
 
-- we can also make comparing equivalence faster,
-  by nbe the two expressions together,
-  and know that they are not equal as soon as
-  they start to appear to be not equal.
+That is to say, `exp_eq` can be factored into `normalize` and `alpha_eq`,
+and `normalize` can be factored into `eval` and `readback`.
 
-  comparing weak head normal form step by step.
+Because there will be undefined free variables during the evaluation,
+we need to define **neutral form** to handle this,
+- Undefined free variable is neutral,
+- Each application of eliminator to neutral is neutral.
+
+We can also make `exp_eq` faster,
+by comparing weak head normal form step by step,
+and know that two expressions are not equal
+as soon as they start to appear to be not equal.
