@@ -14,9 +14,6 @@
 - [person] [dag-prawitz]
 - [person] [haskell-curry] combinatory logic
 * category theory
-- category theory for programmers
-- categories for the working mathematician
-- categorical semantics
 - inversion principle of inference rule is special case of adjoint functor
 - is it make sences to introduce (- A) and { A } to factor A -> B ?
 - what is categorical semantics of inductive type ? -- F-algebra, and initial algebra
