@@ -21,9 +21,14 @@
 * algebraic data type
 - maybe before implementing inductive type
   we should study algebraic data type first
+* inductive type
+- inductive type is not yet easy to implement,
+  because I do not understand the categorical model of the calculus well enough
 * jojo
 - in jojo cut is the only inference rule that requires two premises
   - inference rule with one premise can be viewed as equation?
+- Monoidal category, should we understand element in language as object instead of arrow,
+  and use the bifunctor of Monoidal category to model composition? (instead of composition of arrow.)
 * report
 - report on wiki product
 * actor model
