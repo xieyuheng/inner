@@ -46,3 +46,5 @@
   * [Simply Typed JoJo Calculus](/paper/simply-typed-jojo-calculus)
   * [Dependently Typed JoJo Calculus](/paper/dependently-typed-jojo-calculus)
 * Translation / 译文
+  * [一個構造主義者的宣言 / A Constructivist Manifesto](/translation/a-constructivist-manifesto)
+    - By Errett Bishop
