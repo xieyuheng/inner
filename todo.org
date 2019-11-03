@@ -14,6 +14,10 @@
 - [dag-prawitz] proof theory and natural deduction
 - [haskell-curry] combinatory logic
 * category theory
+- remember that, the design of cicada is to provide a language
+  to study category theory more formally,
+  maybe we can not implement cicada yet,
+  but it still worth using it.
 - inversion principle of inference rule is special case of adjoint functor
 - is it make sences to introduce (- A) and { A } to factor A -> B ?
 - what is categorical semantics of inductive type ? -- F-algebra, and initial algebra
