@@ -1,4 +1,3 @@
-- Max Dehn
 * person
 - [person] [zhaohui-luo] Computation and Reasoning
 - [person] Inductive Families

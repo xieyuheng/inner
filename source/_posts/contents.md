@@ -15,6 +15,9 @@
   - Max Dehn / 马克斯 戴恩
     * [Lectures on group theory](/person/max-dehn/lectures-on-group-theory)
     * [Lectures on surface topology](/person/max-dehn/lectures-on-surface-topology)
+    * [On the topology of three-dimensional space](/person/max-dehn/on-the-topology-of-three-dimensional-space)
+    * [On infinite discontinuous groups](/person/max-dehn/on-infinite-discontinuous-groups)
+    * [The group of mapping classes](/person/max-dehn/the-group-of-mapping-classes)
   - Martin-Löf / 马丁-洛夫
     - [Constructive Mathematics and Computer Programming](/person/martin-löf/constructive-mathematics-and-computer-programming)
     - [Intuitionistic Type Theory](/person/martin-löf/intuitionistic-type-theory)
