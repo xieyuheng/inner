@@ -33,6 +33,8 @@
   * Computer Science / 计算机科学
     * Type Theory / 类型论
       * [Language Implementation Tricks](/note/computer-science/type-theory/language-implementation-tricks)
+    * Database / 数据库
+      * [A Relational Model of Data for Large Shared Data Banks](/note/computer-science/database/a-relational-model-of-data-for-large-shared-data-banks)
   * Biology / 生物学
     * [Neuroscience Note / 神經學記](/note/biology/neuroscience-note)
     * [Human Behavioral Biology](/note/biology/human-behavioral-biology)
