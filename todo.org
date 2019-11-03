@@ -1,3 +1,12 @@
+- lang imp tricks
+- codd database paper
+- cmu database course
+- Lambda Calculus With Types, fix code block
+- category theory for programmers
+- categories for the working mathematician
+- categorical intuitions
+- categorical semantics
+- translations
 * person
 - [person] [zhaohui-luo] Computation and Reasoning
 - [person] Inductive Families
