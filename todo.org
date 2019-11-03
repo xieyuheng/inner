@@ -1,4 +1,3 @@
-- lang imp tricks
 - codd database paper
 - cmu database course
 - Lambda Calculus With Types, fix code block
