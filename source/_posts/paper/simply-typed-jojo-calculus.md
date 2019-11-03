@@ -110,6 +110,18 @@ Thus we must use category theory.
 Not cartesian closed category but finer,
 for exponential object `(A) -> B` is farther factored into `(- A) B`.
 
+No, it is not even category theory.
+Because in category theory, to judgement whether two arrows `f` and `g` are composable,
+we compare the codomain of `f` and the domain of `g`,
+if these two objects are equal, we know these two arrows are composable.
+
+In category theory, type of an arrow is its domain and codomain.
+
+While, in jojo calculus, type of a jojo is jojo.
+This way of encoding type information is scalable to higher dimensions.
+
+## To specify algebraic system
+
 To specify logic deduction system, we use inference rules,
 which is studied in details in Martin-Löf's type theory.
 
