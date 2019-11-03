@@ -1,7 +1,6 @@
 {
-  "name": "inner",
-  "version": "0.0.0",
-  "private": true,
+  "name": "inner-universe",
+  "version": "0.0.1",
   "hexo": {
     "version": "4.0.0"
   },
