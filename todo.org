@@ -1,5 +1,3 @@
-* database
-- cmu database course
 * person
 - [person] [zhaohui-luo] Computation and Reasoning
 - [person] Inductive Families
@@ -94,3 +92,5 @@
   - a-comprehensive-introduction-to-differential-geometry
 - cs
   - feynman/lectures-on-computation.pdf
+* database
+- cmu database course
