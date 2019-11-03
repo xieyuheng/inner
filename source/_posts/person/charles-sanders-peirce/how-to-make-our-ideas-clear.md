@@ -1,4 +1,4 @@
-## How to Make Our Ideas Clear?
+# How to Make Our Ideas Clear?
 
 ------
 - Author: Charles Sanders Peirce

@@ -9,7 +9,10 @@
   - Poincaré / 庞加莱
     - [觀念論](/person/poincaré/觀念論)
   - Charles Sanders Peirce / 皮尔士
+    - [Description of a notation for the logic of relatives](/person/charles-sanders-peirce/description-of-a-notation-for-the-logic-of-relatives)
+    - [The Fixation of Belief](/person/charles-sanders-peirce/the-fixation-of-belief)
     - [How to Make Our Ideas Clear?](/person/charles-sanders-peirce/how-to-make-our-ideas-clear)
+    - [On the algebra of logic](/person/charles-sanders-peirce/on-the-algebra-of-logic)
   - Errett Bishop / 毕少普
     - [Bishop's Four Principles of Constructivism](/person/errett-bishop/bishop-s-four-principles-of-constructivism)
   - Max Dehn / 马克斯 戴恩
