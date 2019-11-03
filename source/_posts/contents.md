@@ -14,6 +14,7 @@
     - [Bishop's Four Principles of Constructivism](/person/errett-bishop/bishop-s-four-principles-of-constructivism)
   - Max Dehn / 马克斯 戴恩
     * [Lectures on group theory](/person/max-dehn/lectures-on-group-theory)
+    * [Lectures on surface topology](/person/max-dehn/lectures-on-surface-topology)
   - Martin-Löf / 马丁-洛夫
     - [Constructive Mathematics and Computer Programming](/person/martin-löf/constructive-mathematics-and-computer-programming)
     - [Intuitionistic Type Theory](/person/martin-löf/intuitionistic-type-theory)

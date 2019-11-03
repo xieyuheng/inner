@@ -6,6 +6,7 @@ title: Lectures on group theory
 
 ------
 - Auther: Max Dehn
+- English translator: John Stillwell
 ------
 
 # 1 generation and geometric representation of (S 3!)
