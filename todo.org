@@ -1,9 +1,8 @@
-- codd database paper
-- cmu database course
 - Lambda Calculus With Types, fix code block
+- categorical intuitions
+- cmu database course
 - category theory for programmers
 - categories for the working mathematician
-- categorical intuitions
 - categorical semantics
 - translations
 * person
