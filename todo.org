@@ -1,18 +1,18 @@
 * person
-- [person] [zhaohui-luo] Computation and Reasoning
-- [person] Inductive Families
-- [person] Do-it-yourself Type Theory
-- [person] Constructive Mathematics and Computer Programming
-- [person] Intuitionistic Type Theory
-- [person] [henk-barendregt] Lambda Calculus With Types
-- [person] [de-bruijn]
-- [person] [schroeder-heister]
+- [zhaohui-luo] Computation and Reasoning
+- [peter Dybjer] Inductive Families
+- [Roland Backhouse] Do-it-yourself Type Theory
+- [martin-löf] Constructive Mathematics and Computer Programming
+- [martin-löf] Intuitionistic Type Theory
+- [henk-barendregt] Lambda Calculus With Types
+- [de-bruijn] automath
+- [schroeder-heister]
   - standard formulation of elimination rule for implication
     v.s. another elimination rules to follow the same pattern,
     that is, the pattern exhibited by the rules of falsehood, disjunction, and existence elimination,
     has been considered by Schroeder-Heister.
-- [person] [dag-prawitz]
-- [person] [haskell-curry] combinatory logic
+- [dag-prawitz] proof theory and natural deduction
+- [haskell-curry] combinatory logic
 * category theory
 - inversion principle of inference rule is special case of adjoint functor
 - is it make sences to introduce (- A) and { A } to factor A -> B ?
