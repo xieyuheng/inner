@@ -1,4 +1,3 @@
-* translation
 * database
 - cmu database course
 * person

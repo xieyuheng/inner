@@ -30,8 +30,8 @@
   * Zhuang Zi / 莊子
     * [齊物論](/person/zhuang-zi/齊物論)
 * Note / 笔记
-  * Mathematics / 数学 
-    * Category Theory / 范畴论 
+  * Mathematics / 数学
+    * Category Theory / 范畴论
       * [Categorical Intuitions](/note/mathematics/category-theory/categorical-intuitions)
   * Computer Science / 计算机科学
     * Type Theory / 类型论
@@ -45,3 +45,4 @@
   * [A Recursive Combinatorial Description of Cell-complex](/paper/a-recursive-combinatorial-description-of-cell-complex)
   * [Simply Typed JoJo Calculus](/paper/simply-typed-jojo-calculus)
   * [Dependently Typed JoJo Calculus](/paper/dependently-typed-jojo-calculus)
+* Translation / 译文
