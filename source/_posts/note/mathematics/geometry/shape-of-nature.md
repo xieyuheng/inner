@@ -66,7 +66,7 @@ shapes particularly in nature對於我們來說是相當有趣的
 unkont
 trefoil
 
-- >< isotopy:
+- isotopy:
   兩個嵌入的子流形之間的同胚
   並且在保持嵌入性的條件下與恆同映射同倫則稱爲isotopy?
 
