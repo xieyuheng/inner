@@ -1,34 +1,43 @@
-* person
-- [zhaohui-luo] Computation and Reasoning
-- [peter Dybjer] Inductive Families
-- [Roland Backhouse] Do-it-yourself Type Theory
+* type theory
 - [martin-löf] Constructive Mathematics and Computer Programming
 - [martin-löf] Intuitionistic Type Theory
 - [henk-barendregt] Lambda Calculus With Types
 - [de-bruijn] automath
+* logic
+- [note] we study a logic by its
+  - proof theory
+  - and categorical semantics
+- modal logic
+- linear logic
+- relevance logic
+- framework for substructural logics
+* proof theory
 - [schroeder-heister]
   - standard formulation of elimination rule for implication
     v.s. another elimination rules to follow the same pattern,
     that is, the pattern exhibited by the rules of falsehood, disjunction, and existence elimination,
     has been considered by Schroeder-Heister.
 - [dag-prawitz] proof theory and natural deduction
-- [haskell-curry] combinatory logic
 * algebraic data type
 - maybe before implementing inductive type
   we should study algebraic data type first
 * category theory
+* categorical semantics
 - inversion principle of inference rule is special case of adjoint functor
 - is it make sences to introduce (- A) and { A } to factor A -> B ?
 - what is categorical semantics of inductive type ? -- F-algebra, and initial algebra
 - what is categorical semantics of dependent type ? -- also adjoint functor
 * inductive type
-- inductive type is not yet easy to implement,
-  because I do not understand the categorical model of the calculus well enough
+- [zhaohui-luo] Computation and Reasoning
+- [peter Dybjer] Inductive Families
+- [Roland Backhouse] Do-it-yourself Type Theory
 * jojo
 - in jojo cut is the only inference rule that requires two premises
   - inference rule with one premise can be viewed as equation?
 - Monoidal category, should we understand element in language as object instead of arrow,
   and use the bifunctor of Monoidal category to model composition? (instead of composition of arrow.)
+* combinatory logic
+- [haskell-curry] combinatory logic
 * report
 - report on wiki product
 * actor model

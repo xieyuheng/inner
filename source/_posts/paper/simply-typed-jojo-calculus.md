@@ -120,6 +120,10 @@ In category theory, type of an arrow is its domain and codomain.
 While, in jojo calculus, type of a jojo is jojo.
 This way of encoding type information is scalable to higher dimensions.
 
+Can this view enable us to understand something new?
+- Cell-complex?
+- Algebraic theory of two dimensional objects?
+
 ## To specify algebraic system
 
 To specify logic deduction system, we use inference rules,
