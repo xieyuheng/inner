@@ -4,20 +4,47 @@ title: Categorical Semantics
 
 # Categorical Semantics
 
-> Represents both syntax and semantics by a category,
-> and an interpretation by a functor.
+## The Plan
 
-We need categorical semantics to be able to prove
-things about the languages we designed.
+First, we implement category theory in a programming language with dependent type and record type.
+- Dependent type will be used to express equivalent relations.
+- Record type will be used to express abstract class.
 
-If we implement category theory in our language,
-then the denotational semantics is just
-a interpreter implemented by the category theory.
+Where an abstract mathematical structure can be implemented as an abstract class.
+Specially, category can be implemented as an abstract class, `category_t`.
 
-It was found that the connectives of pre-categorical logic
-were more clearly understood using the concept of adjoint functor,
-and that the quantifiers were also best understood using adjoint functors.
+``` js
+class category_t {
+  object_t: type
+  morphism_t(object_t, object_t): type
+  ...
+}
+```
 
-# Categorical logic
+Second, when we want to implement a type theory,
+we define the `type_t` as a concrete datatype.
 
-Categorical Semantics of logic.
+Each formation rule is a data constructor of the `type_t`.
+
+``` js
+datatype type_t {
+  case pi_type(...): type_t
+  case sigma_type(...): type_t
+  ...
+}
+```
+
+Then we provide categorical semantics to our type theory,
+by implement an instance of the abstract class `category_t`,
+of which the `object_t` is `type_t`.
+
+``` js
+type_category = new category_t {
+  object_t = type_t
+  ...
+}
+```
+
+We need to give semantics to inference rules of the type theory.
+
+The validity of a group of introduction rules and elimination rule will be ensured by adjoint functors.

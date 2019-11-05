@@ -8,64 +8,42 @@ title: Category Theory for Programmers
 
 # 1 Category: The Essence of Composition
 
-category is about object and arrow and composition of arrows,
+Category is about object and arrow (morphism) and composition of arrows,
 think of them as type and function and composition of functions.
 
-in haskell:
-
-``` haskell
-f :: A -> B
-g :: B -> C
-g . f :: A -> C
-```
-
-in scala:
-
-``` scala
-f: A => B
-g: B => C
-g after f: A => C
-// we might wish to use infix notation here,
-// because composition is associative.
+``` js
+f(A): B
+g(B): C
+(x) => g(f(x)) : (A) -> C
 ```
 
 # 1.2: What is a category?
 
-- three concepts
-  - abstraction -- type-class
-  - composition -- function
-  - identity    -- quotient
+Category theory is about composition.
+Category theory is also about identity.
 
-- category theory is about composition and identity
+The reason for having object is so you can type arrows.
 
-- two concepts
-  - object
-  - arrow [or morphism]
+Objects do not serve any propose other than identifying ends of arrows.
 
-  the reason for having object is so you can type arrows
+From category theory's view object has no structure.
 
-- objects do not serve any propose other than identifying ends of arrows
+We have mathematical structures like `set_t`, `group_t`, `vector_space_t`,
+to define them in the language of category theory,
+we must not reach for the concrete structure of their objects.
 
-- from category theory's view
-  object has no structure
+We must define mathematical structures by describing the relations between their objects.
 
-  we have Set, Group, VectorSpace, ...
-  to define them in the language of category theory
-  we must not reach for the concrete structure of their objects
+and the relations we can describe
+are all equations about arrows
 
-  we must define them by
-  describing the relations between their objects
-
-  and the relations we can describe
-  are all equations about arrows
-
-  [describe properties only by interface functions]
+[describe properties only by interface functions]
 
 - equality between arrows:
   what are equality introductions?
   equations (axioms) of specific category are equality introductions.
 
-# [note] mathematical model of type system
+# [note] Mathematical model of type system
 
 - what should we use to model type system?
   set theory or category theory?
@@ -87,7 +65,7 @@ g after f: A => C
   and limit the language to arrow equations
   to translate such properties to category theory
 
-# [note] properties in category theory
+# [note] Properties in category theory
 
 - category theory 中所定義的 property
   是沒法被寫成謂詞
@@ -159,7 +137,7 @@ g after f: A => C
 
 # 4.1: Terminal and initial objects
 
-- universal construction
+Universal construction.
 
 # 4.2: Products
 # 5.1: Coproducts, sum types
@@ -187,8 +165,7 @@ g after f: A => C
 # II 3.2: Free Monoids
 # II 4.1: Representable Functors
 
-
-``` cicada
+``` js
 category_t (t arrow_t arrow_eqv_t)
 set_t : (type) -> type
 hom_set : ([a b] : t) -> set_t (arrow_t (a b))
