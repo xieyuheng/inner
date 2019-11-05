@@ -45,10 +45,13 @@ Evolution will sculpture behaviors.
   The other way around is to searching for behaviors (strategies)
   that optimize reproduction, and test them in the world.
 
-Game theory, to optimize behaviors,
+Game theory, to optimize behaviors (behavior strategies),
 (for example, when to cooperate and when to cheat).
 
 One strategy can drive other strategies to extinction.
+
+We can infer infer behaviors of species from Principles of Evolution
+and the traits of species.
 
 ## Molecular Genetics
 ## Behavioral Genetics
