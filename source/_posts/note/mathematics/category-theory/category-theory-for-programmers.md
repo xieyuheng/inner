@@ -120,7 +120,11 @@ but can also be functions of type `(a) -> (b, string_t)` by redefining compositi
 
 - The `string_t` can be replaced by any `monoid_t`.
 
-TODO
+This technique can be used to implement logger.
+- We can also use global variable to implement logger,
+  but using global variable will increase complexity of the code base in a hidden way.
+  Also when we need to use multiple core,
+  we would have to add global lock to the global variable.
 
 ## I 4.1 Terminal and initial objects
 
