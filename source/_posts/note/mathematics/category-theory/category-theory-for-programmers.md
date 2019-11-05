@@ -93,7 +93,9 @@ We can view category as generalization of preorder, or generalization of monoid.
   impl preorder_t {
     elem_t: type
     ...
+  }
 
+  develop preorder_t {
     as_category = new category_t {
       object_t = elem_t
       ...
@@ -104,7 +106,7 @@ We can view category as generalization of preorder, or generalization of monoid.
   is different from study the category of all preorders,
 
   ``` js
-  preorder_category = new category_t {
+  preorder_category: category_t = new category_t {
     object_t = preorder_t
     ...
   }
@@ -149,6 +151,8 @@ thus a special endofunctor, with two morphisms `join` and `pure`.
 ## II 3.1: Examples of Limits and Colimits
 ## II 3.2: Free Monoids
 ## II 4.1: Representable Functors
+
+TODO
 
 ``` js
 category_t (t, arrow_t, arrow_eqv_t)
