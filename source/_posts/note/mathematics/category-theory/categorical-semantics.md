@@ -7,10 +7,12 @@ title: Categorical Semantics
 ## The Plan
 
 First, we implement category theory in a programming language with dependent type and record type.
-- Dependent type will be used to express equivalent relations.
-- Record type will be used to express abstract class.
+Where an abstract mathematical structure can be implemented as an abstract class (record type).
+- Dependent type will be used to express
+  axioms of the abstract mathematical structure,
+  which involves equivalent relations.
 
-Where an abstract mathematical structure can be implemented as an abstract class.
+
 Specially, category can be implemented as an abstract class, `category_t`.
 
 ``` js
