@@ -12,7 +12,6 @@ Where an abstract mathematical structure can be implemented as an abstract class
   axioms of the abstract mathematical structure,
   which involves equivalent relations.
 
-
 Specially, category can be implemented as an abstract class, `category_t`.
 
 ``` js
