@@ -43,14 +43,14 @@
   - Mathematics / 数学
     - Geometry / 几何
       * [自然之形 / Shape of Nature](/note/mathematics/geometry/shape-of-nature)
-    - Category Theory / 范畴论
-      - [Categorical Intuitions](/note/mathematics/category-theory/categorical-intuitions)
-      - [Category Theory For Programmers](/note/mathematics/category-theory/category-theory-for-programmers)
-      - [Categories For The Working Mathematician](/note/mathematics/category-theory/categories-for-the-working-mathematician)
-      - [Categorical Semantics](/note/mathematics/category-theory/categorical-semantics)
+  - Category Theory / 范畴论
+    - [Categorical Intuitions](/note/category-theory/categorical-intuitions)
+    - [Category Theory For Programmers](/note/category-theory/category-theory-for-programmers)
+    - [Categories For The Working Mathematician](/note/category-theory/categories-for-the-working-mathematician)
+    - [Categorical Semantics](/note/category-theory/categorical-semantics)
+  - Type Theory / 类型论
+    - [Language Implementation Tricks](/note/type-theory/language-implementation-tricks)
   - Computer Science / 计算机科学
-    - Type Theory / 类型论
-      - [Language Implementation Tricks](/note/computer-science/type-theory/language-implementation-tricks)
     - Database / 数据库
       - [A Relational Model of Data for Large Shared Data Banks](/note/computer-science/database/a-relational-model-of-data-for-large-shared-data-banks)
   - Biology / 生物学
