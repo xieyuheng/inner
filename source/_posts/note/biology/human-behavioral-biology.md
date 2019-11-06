@@ -53,6 +53,8 @@ One strategy can drive other strategies to extinction.
 We can infer infer behaviors of species from Principles of Evolution
 and the traits of species.
 
+Social political implications.
+
 ## Molecular Genetics
 ## Behavioral Genetics
 ## Recognizing Relatives
