@@ -140,7 +140,7 @@ Another view is to not talk about elements, but to talk about arrows.
 We can begin with study structure implemented set theory,
 then abstract the interface of the structure and forget about elements.
 
-The general method of doing this is called **Universal construction**.
+The general method of doing this is called **universal construction**.
 It is like googling a pattern (described by arrows),
 searching for all hits matching the pattern, and rank them.
 
@@ -167,10 +167,15 @@ Terminal object is not unique.
 Terminal object is unique up to unique isomorphism.
 
 Actually, to express uniqueness of terminal object,
-we need equivalent relation between objects,
-but in category we can not use this equivalent relation.
+we need equivalence relation between objects,
+but in category we can not use this equivalence relation.
 We can compare arrows for equality, but we can not compare objects for equality.
 Thus we can only ask for isomorphism between objects.
+
+The terminal object as an universal construction,
+- The pattern is single object,
+- The ranking is that `A` is better than `B`, if there is a unique arrow from `B` to `A`.
+  - Note that the ranking is not total but partial order.
 
 ## I 4.2 Products
 ## I 5.1 Coproducts, sum types
