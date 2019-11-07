@@ -44,6 +44,7 @@
     - Geometry / 几何
       * [自然之形 / Shape of Nature](/note/mathematics/geometry/shape-of-nature)
   - Logic / 逻辑学
+    * [嘲嘲不已 / How To Mock A Mockingbird](/note/logic/how-to-mock-a-mockingbird)
     * [Language, Proof and Logic (Stanford open course)](/note/logic/language-proof-and-logic--stanford-open-course)
   - Category Theory / 范畴论
     - [Categorical Intuitions](/note/category-theory/categorical-intuitions)
