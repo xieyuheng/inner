@@ -8,8 +8,14 @@ title: Category Theory for Programmers
 - Author: Bartosz Milewski
 ------
 
-Note taken from video lecture,
+Notes taken from video lectures,
 the chapter naming of which is different from the book.
+
+- Source of the book: https://github.com/hmemcpy/milewski-ctfp-pdf
+- Source of the video lectures:
+  - Part I: https://www.youtube.com/playlist?list=PLbgaMIhjbmEnaH_LTkxLI7FMa2HsnawM_
+  - Part II: https://www.youtube.com/playlist?list=PLbgaMIhjbmEn64WVX4B08B4h2rOtueWIL
+  - Part III: https://www.youtube.com/playlist?list=PLbgaMIhjbmElia1eCEZNvsVscFef9m0dm
 
 ## I 1.1 Motivation and Philosophy
 
@@ -155,6 +161,16 @@ The `unit_t` type has this property,
 but even we just add one element to it to get `bool_t`,
 the set of paths to `bool_t` will be much more completed,
 which is the set of all predicates.
+
+The next question we should ask is how many terminal objects are there?
+Terminal object is not unique.
+Terminal object is unique up to unique isomorphism.
+
+Actually, to express uniqueness of terminal object,
+we need equivalent relation between objects,
+but in category we can not use this equivalent relation.
+We can compare arrows for equality, but we can not compare objects for equality.
+Thus we can only ask for isomorphism between objects.
 
 ## I 4.2 Products
 ## I 5.1 Coproducts, sum types
