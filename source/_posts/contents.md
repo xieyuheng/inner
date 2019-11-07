@@ -52,6 +52,7 @@
     - [Categories For The Working Mathematician](/note/category-theory/categories-for-the-working-mathematician)
     - [Categorical Semantics](/note/category-theory/categorical-semantics)
   - Type Theory / 类型论
+    - [Type theory](/note/type-theory/type-theory)
     - [Language Implementation Tricks](/note/type-theory/language-implementation-tricks)
     - [Pure Type System](/note/type-theory/pure-type-system)
   - Computer Science / 计算机科学

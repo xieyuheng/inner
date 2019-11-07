@@ -146,8 +146,15 @@ But this is not enough to pin down singleton set yet,
 because set is rich in arrows, for any set `X`, as long as it is not empty,
 forall `A` there is a function of type `(A) -> X`.
 
-We need to say the arrow from `A` to `unit_t` is unique to pin down singleton set,
+We need to say the arrow from `A` to `unit_t` is unique, to pin down singleton set,
 and we call such object **terminal object**.
+
+Not metter what path you take to the terminal object, the path is always the same.
+
+The `unit_t` type has this property,
+but even we just add one element to it to get `bool_t`,
+the set of paths to `bool_t` will be much more completed,
+which is the set of all predicates.
 
 ## I 4.2 Products
 ## I 5.1 Coproducts, sum types
