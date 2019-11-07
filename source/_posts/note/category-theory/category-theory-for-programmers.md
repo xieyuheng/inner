@@ -131,9 +131,10 @@ This technique can be used to implement logger.
 One view is that a set is a thing that has elements.
 Another view is to not talk about elements, but to talk about arrows.
 
-Universal construction.
+We can begin with study structure implemented set theory,
+then abstract the interface of the structure and forget about elements.
 
-
+The general method of doing this is called **Universal construction**.
 
 ## I 4.2 Products
 ## I 5.1 Coproducts, sum types
