@@ -128,7 +128,12 @@ This technique can be used to implement logger.
 
 ## I 4.1 Terminal and initial objects
 
+One view is that a set is a thing that has elements.
+Another view is to not talk about elements, but to talk about arrows.
+
 Universal construction.
+
+
 
 ## I 4.2 Products
 ## I 5.1 Coproducts, sum types
