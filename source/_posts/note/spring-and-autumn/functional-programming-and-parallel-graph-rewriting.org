@@ -1,6 +1,0 @@
-#+AUTHOR: 謝宇恆 / XIE Yuheng
-
-* ><
-
-  - 記得在之前用 有向圖來實現 lambda 演算的時候
-    我沒有處理好 scope
