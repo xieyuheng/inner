@@ -43,6 +43,8 @@
   - Mathematics / 数学
     - Geometry / 几何
       * [自然之形 / Shape of Nature](/note/mathematics/geometry/shape-of-nature)
+  - Logic / 逻辑学
+    * [Language, Proof and Logic (Stanford open course)](/note/logic/language-proof-and-logic--stanford-open-course)
   - Category Theory / 范畴论
     - [Categorical Intuitions](/note/category-theory/categorical-intuitions)
     - [Category Theory For Programmers](/note/category-theory/category-theory-for-programmers)

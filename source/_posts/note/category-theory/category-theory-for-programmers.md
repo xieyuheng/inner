@@ -135,6 +135,8 @@ We can begin with study structure implemented set theory,
 then abstract the interface of the structure and forget about elements.
 
 The general method of doing this is called **Universal construction**.
+It is like googling a pattern (described by arrows),
+searching for all hits matching the pattern, and rank them.
 
 ## I 4.2 Products
 ## I 5.1 Coproducts, sum types
