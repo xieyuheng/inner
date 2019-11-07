@@ -138,6 +138,17 @@ The general method of doing this is called **Universal construction**.
 It is like googling a pattern (described by arrows),
 searching for all hits matching the pattern, and rank them.
 
+Take singleton set as an example,
+it is the `unit_t` type in type theory,
+from any type `A` there is a function of type `(A) -> unit_t`.
+
+But this is not enough to pin down singleton set yet,
+because set is rich in arrows, for any set `X`, as long as it is not empty,
+forall `A` there is a function of type `(A) -> X`.
+
+We need to say the arrow from `A` to `unit_t` is unique to pin down singleton set,
+and we call such object **terminal object**.
+
 ## I 4.2 Products
 ## I 5.1 Coproducts, sum types
 ## I 5.2 Algebraic data types

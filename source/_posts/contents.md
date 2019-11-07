@@ -53,6 +53,7 @@
     - [Categorical Semantics](/note/category-theory/categorical-semantics)
   - Type Theory / 类型论
     - [Language Implementation Tricks](/note/type-theory/language-implementation-tricks)
+    - [Pure Type System](/note/type-theory/pure-type-system)
   - Computer Science / 计算机科学
     - Database / 数据库
       - [A Relational Model of Data for Large Shared Data Banks](/note/computer-science/database/a-relational-model-of-data-for-large-shared-data-banks)
