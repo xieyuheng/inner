@@ -176,6 +176,10 @@ The terminal object as an universal construction,
 - The pattern is single object,
 - The ranking is that `A` is better than `B`, if there is a unique arrow from `B` to `A`.
   - Note that the ranking is not total but partial order.
+the terminal object is the best of such pattern.
+
+An arrow from the terminal object `unit_t` to another object `X`,
+can be viewed as picking up an element in `X` (if we view the object `X` as set).
 
 ## I 4.2 Products
 ## I 5.1 Coproducts, sum types
