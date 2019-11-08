@@ -4,8 +4,8 @@ title: Functorial Semantics of Algebraic Theories
 
 # Functorial Semantics of Algebraic Theories
 
-- and some algebraic problems in the context of
-  functorial semantics of algebraic theories.
+And some algebraic problems in the context of
+functorial semantics of algebraic theories.
 
 ------
 - Author: William Lawvere

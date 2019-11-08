@@ -37,6 +37,8 @@
   - William Lawvere / 威廉 劳维尔
     * [Functorial Semantics of Algebraic Theories (Short)](/person/william-lawvere/functorial-semantics-of-algebraic-theories--short)
     * [Functorial Semantics of Algebraic Theories](/person/william-lawvere/functorial-semantics-of-algebraic-theories)
+    * [Conceptual Mathematics](/person/william-lawvere/conceptual-mathematics)
+    * [Sets for Mathematics](/person/william-lawvere/sets-for-mathematics)
   - Zhaohui Luo
     - [Computation and Reasoning](/person/zhaohui-luo/computation-and-reasoning)
   - Zhuang Zi / 莊子
