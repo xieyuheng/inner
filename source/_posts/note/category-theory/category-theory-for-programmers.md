@@ -173,7 +173,7 @@ We can compare arrows for equality, but we can not compare objects for equality.
 Thus we can only ask for isomorphism between objects.
 
 The terminal object as an universal construction,
-- The pattern is single object,
+- The pattern is single object.
 - The ranking is that `A` is better than `B`, if there is a unique arrow from `B` to `A`.
   - Note that the ranking is not total but partial order.
 the terminal object is the best of such pattern.
@@ -183,7 +183,15 @@ can be viewed as picking up an element in `X` (if we view the object `X` as set)
 
 ## I 4.2 Products
 
-
+the **product** of object `A` and `B` as an universal construction,
+- The pattern is an object `C` and two arrow `p : C -> A` and `p : C -> B`.
+- The ranking is that `(C, p, q)` is better than `(C', p', q')`,
+  if there is a unique arrow `m : C' -> C` such that
+  `p' == compose m p` and `q' == compose m q`,
+  `p'` and `q'` have common factor `m`,
+  the factor `m` take our the bad part from `p'` and `q'`,
+  after which `p` and `q` will be good projections.
+the product of object `A` and `B` is the best of such pattern.
 
 ## I 5.1 Coproducts, sum types
 ## I 5.2 Algebraic data types
