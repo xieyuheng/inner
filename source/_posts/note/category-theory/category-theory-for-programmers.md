@@ -196,15 +196,19 @@ the product of object `A` and `B` is the best of such pattern.
 For example, bad candidates,
 
 ``` haskell
-C = int_t
-p = id
-q = true
+C = (int_t, bool_t)
+p (x, b) = x
+q (x, b) = b
+
+C' = int_t
+p' = id
+q' = true
 m : int_t -> (int_t, bool_t)
 m x = (x, true)
 
-C = (int_t, int_t, bool_t)
-p (x, _, _) = x
-q (_, _, b) = b
+C' = (int_t, int_t, bool_t)
+p' (x, _, _) = x
+q' (_, _, b) = b
 m : (int_t, int_t, bool_t) -> (int_t, bool_t)
 m (x, y, b) = (x, b)
 ```
