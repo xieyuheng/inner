@@ -5,7 +5,6 @@
 ---
 
 - [View](https://inner.xieyuheng.now.sh)
-
 - Inner
   - [Note](/docs/source/_posts/note)
   - [Person](/docs/source/_posts/person)
