@@ -182,6 +182,9 @@ An arrow from the terminal object `unit_t` to another object `X`,
 can be viewed as picking up an element in `X` (if we view the object `X` as set).
 
 ## I 4.2 Products
+
+
+
 ## I 5.1 Coproducts, sum types
 ## I 5.2 Algebraic data types
 ## I 6.1 Functors
