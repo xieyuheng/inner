@@ -193,6 +193,22 @@ the **product** of object `A` and `B` as an universal construction,
   after which `p` and `q` will be good projections.
 the product of object `A` and `B` is the best of such pattern.
 
+For example, bad candidates,
+
+``` haskell
+C = int_t
+p = id
+q = true
+m : int_t -> (int_t, bool_t)
+m x = (x, true)
+
+C = (int_t, int_t, bool_t)
+p (x, _, _) = x
+q (_, _, b) = b
+m : (int_t, int_t, bool_t) -> (int_t, bool_t)
+m (x, y, b) = (x, b)
+```
+
 ## I 5.1 Coproducts, sum types
 ## I 5.2 Algebraic data types
 ## I 6.1 Functors
