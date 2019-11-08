@@ -1,8 +1,8 @@
 ---
-title: Functorial Semantics of Algebraic Theories
+title: Functorial Semantics of Algebraic Theories (Short)
 ---
 
-# Functorial Semantics of Algebraic Theories
+# Functorial Semantics of Algebraic Theories (Short)
 
 ------
 - Author: William Lawvere

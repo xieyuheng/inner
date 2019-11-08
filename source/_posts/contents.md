@@ -35,6 +35,7 @@
   - Peter Dybjer / 彼得 迪比尔
     - [Inductive Families](/person/peter-dybjer/inductive-families)
   - William Lawvere / 威廉 劳维尔
+    * [Functorial Semantics of Algebraic Theories (Short)](/person/william-lawvere/functorial-semantics-of-algebraic-theories--short)
   - Zhaohui Luo
     - [Computation and Reasoning](/person/zhaohui-luo/computation-and-reasoning)
   - Zhuang Zi / 莊子
