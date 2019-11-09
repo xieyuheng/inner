@@ -326,7 +326,17 @@ Functor is about recognizing pattern of structure in another category.
 Functor is about recognizing one category in another category.
 Functor is about mapping between two categories.
 
-TODO
+We generalize function between sets to functor between categories (mappings which preserve structure).
+- Sets are structure-less, which is partly the reason why it is hard to implement set in computer.
+
+A category with no structure is a category with no arrows, which is called discrete category.
+Which can be used to model set.
+If the category is also small, it is exactly set.
+
+Since structure is expressed by arrows,
+functor between categories (mappings which preserve structure)
+must also describe how arrows are mapped,
+and "preserving structure" means respect composition of arrows and id arrow of object.
 
 ## I 6.2 Functors in programming
 
