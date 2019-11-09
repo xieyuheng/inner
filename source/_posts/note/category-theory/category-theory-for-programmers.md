@@ -293,7 +293,9 @@ data maybe_t A = nothing + (just A)
 
 data list_t A = null + (cons A * (list_t A))
 -- list_t A = 1 + A * (list_t A)
+-- list_t A = 1 + A * (1 + A * (list_t A))
 -- list_t A = 1 + A  + A * A * (list_t A)
+-- list_t A = 1 + A  + A * A * (1 + A * (list_t A))
 -- list_t A = 1 + A  + A * A + A * A * A * (list_t A)
 -- ...
 ```
