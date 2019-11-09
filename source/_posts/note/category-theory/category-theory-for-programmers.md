@@ -245,6 +245,25 @@ datatype either_t A B
   is the same as seeking for interpretation in set theory.
 
 ## I 5.2 Algebraic data types
+
+If we view datatypes as elements,
+product type as `*` operator,
+sum type as `+` operator,
+isomorphic (set theoretical) as equivalence relation between elements.
+
+- For example `A * B` is equal to `B * A` because there is a isomorphic between them
+  `swap : (A * B) -> (B * A)`.
+
+Then what is the algebraic structure of datatypes?
+Is it a ring? (Remember we use isomorphic as equivalence relation.)
+
+Let us enquiry.
+- Product is commutative `A * B == B * A`,
+  `swap` can be defined by simple pattern matching.
+- Product is associative `(A * B) * C == A * (B * C)`,
+  `product-associative` can be defined by simple pattern matching.
+- Product has unit, the `unit_t` type.
+
 ## I 6.1 Functors
 ## I 6.2 Functors in programming
 ## I 7.1 Functoriality, bifunctors
