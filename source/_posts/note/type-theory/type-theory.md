@@ -26,6 +26,6 @@ For examples,
 
 # History and Philosophy
 
-## Aristotle's type theory of beings.
+## Aristotle's type theory of beings
 
-## Kant's type theory of pure cоncepts (Categories).
+## Kant's type theory of pure cоncepts (Categories)
