@@ -255,14 +255,35 @@ isomorphic (set theoretical) as equivalence relation between elements.
   `swap : (A * B) -> (B * A)`.
 
 Then what is the algebraic structure of datatypes?
-Is it a ring? (Remember we use isomorphic as equivalence relation.)
+Is it a ring?
+(Remember we use isomorphic as equivalence relation.)
 
-Let us enquiry.
-- Product is commutative `A * B == B * A`,
-  `swap` can be defined by simple pattern matching.
-- Product is associative `(A * B) * C == A * (B * C)`,
-  `product-associative` can be defined by simple pattern matching.
-- Product has unit, the `unit_t` type.
+We will see that (datatype, product) form a monoid,
+and (datatype, sum) form a monoid,
+and product is distributive over sum.
+
+It is not a ring, because sum has no inverse.
+It is thus a semiring (or "rig", "ring" without "n" (negative)).
+- https://en.wikipedia.org/wiki/Semiring
+
+Let us take (datatype, product) for a walk,
+- product is commutative `A * B == B * A`,
+  `swap` can be defined by simple pattern matching,
+- product is associative `(A * B) * C == A * (B * C)`,
+  `product_associative` can be defined by simple pattern matching,
+- product has identity element, the `unit_t` type,
+  `unit_id_left` and `unit_id_right` can be implemented by simple pattern matching.
+
+Actually all the functions we need to define to verify the algebraic laws,
+can be implemented by simple pattern matching.
+
+The pair (datatype, sum) is the same,
+in which the identity element will be `void_t`,
+and forall `A`, we have `A + void_t == A`.
+
+We also know `A * void_t == void_t`.
+
+We also know `A * (B + C) == (A * B) + (A * C)`.
 
 ## I 6.1 Functors
 ## I 6.2 Functors in programming
