@@ -288,8 +288,14 @@ We also know `A * (B + C) == (A * B) + (A * C)`.
 Examples,
 
 ``` haskell
-data maybe_t A = nothing + (just A) -- maybe_t A = 1 + A
-data list_t A = null + (cons A * (list_t A)) -- list_t A = 1 + A * (list_t A)
+data maybe_t A = nothing + (just A)
+-- maybe_t A = 1 + A
+
+data list_t A = null + (cons A * (list_t A))
+-- list_t A = 1 + A * (list_t A)
+-- list_t A = 1 + A  + A * A * (list_t A)
+-- list_t A = 1 + A  + A * A + A * A * A * (list_t A)
+-- ...
 ```
 
 ## I 6.1 Functors
