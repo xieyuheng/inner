@@ -235,7 +235,7 @@ is the dual of the construction of product,
 the coproduct of object `A` and `B` is the best of such pattern.
 
 ``` haskell
-datatype either_t A B
+data either_t A B
   = left A
   | right B
 ```
@@ -284,6 +284,13 @@ and forall `A`, we have `A + void_t == A`.
 We also know `A * void_t == void_t`.
 
 We also know `A * (B + C) == (A * B) + (A * C)`.
+
+Examples,
+
+``` haskell
+data maybe_t A = nothing + (just A) -- maybe_t A = 1 + A
+data list_t A = null + (cons A * (list_t A)) -- list_t A = 1 + A * (list_t A)
+```
 
 ## I 6.1 Functors
 ## I 6.2 Functors in programming
