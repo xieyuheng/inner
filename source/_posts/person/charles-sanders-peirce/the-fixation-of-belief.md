@@ -23,7 +23,9 @@ Four centuries later, the more celebrated Bacon, in the first book of his Novum 
 
 ### (CP5.362)
 
-The early scientists, Copernicus, Tycho Brahe, Kepler, Galileo, and Gilbert, had methods more like those of their modern brethren. Kepler undertook to draw a curve through the places of Mars;1 and his greatest service to science was in impressing on men's minds that this was the thing to be done if they wished to improve astronomy; that they were not to content themselves with inquiring whether one system of epicycles was better than another, but that they were to sit down to the figures and find out what the curve, in truth, was. He accomplished this by his incomparable energy and courage, blundering along in the most inconceivable way (to us), from one irrational hypothesis to another, until, after trying twenty-two of these, he fell, by the mere exhaustion of his invention, upon the orbit which a mind well furnished with the weapons of modern logic would have tried almost at the outset.
+The early scientists, Copernicus, Tycho Brahe, Kepler, Galileo, and Gilbert, had methods more like those of their modern brethren. Kepler undertook to draw a curve through the places of Mars;
+- Not quite so, but as nearly so as can be told in a few words.
+and his greatest service to science was in impressing on men's minds that this was the thing to be done if they wished to improve astronomy; that they were not to content themselves with inquiring whether one system of epicycles was better than another, but that they were to sit down to the figures and find out what the curve, in truth, was. He accomplished this by his incomparable energy and courage, blundering along in the most inconceivable way (to us), from one irrational hypothesis to another, until, after trying twenty-two of these, he fell, by the mere exhaustion of his invention, upon the orbit which a mind well furnished with the weapons of modern logic would have tried almost at the outset.
 
 ### (CP5.363)
 
@@ -63,7 +65,9 @@ But this is not all which distinguishes doubt from belief. There is a practical 
 
 ### (CP5.372)
 
-Nor must we overlook a third point of difference. Doubt is an uneasy and dissatisfied state from which we struggle to free ourselves and pass into the state of belief; while the latter is a calm and satisfactory state which we do not wish to avoid, or to change to a belief in anything else.2 On the contrary, we cling tenaciously, not merely to believing, but to believing just what we do believe.
+Nor must we overlook a third point of difference. Doubt is an uneasy and dissatisfied state from which we struggle to free ourselves and pass into the state of belief; while the latter is a calm and satisfactory state which we do not wish to avoid, or to change to a belief in anything else.
+- 
+On the contrary, we cling tenaciously, not merely to believing, but to believing just what we do believe.
 
 ### (CP5.373)
 
