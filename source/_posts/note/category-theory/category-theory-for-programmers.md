@@ -183,13 +183,13 @@ can be viewed as picking up an element in `X` (if we view the object `X` as set)
 
 ## I 4.2 Products
 
-the **product** of object `A` and `B` as an universal construction,
-- The pattern is an object `C` and two arrow `p : C -> A` and `p : C -> B`.
+The **product** of object `A` and `B` as an universal construction,
+- The pattern is an object `C` and two arrow `p : C -> A` and `p : C -> B` (`p` for "projection").
 - The ranking is that `(C, p, q)` is better than `(C', p', q')`,
   if there is a unique arrow `m : C' -> C` such that
   `p' == compose m p` and `q' == compose m q`,
   `p'` and `q'` have common factor `m`,
-  the factor `m` take our the bad part from `p'` and `q'`,
+  the factor `m` take out the bad part from `p'` and `q'`,
   after which `p` and `q` will be good projections.
 the product of object `A` and `B` is the best of such pattern.
 
@@ -214,6 +214,22 @@ m (x, y, b) = (x, b)
 ```
 
 ## I 5.1 Coproducts, sum types
+
+The **coproduct** of object `A` and `B` as an universal construction,
+is the dual of the construction of product,
+- The pattern is an object `C` and two arrow `i : A -> C` and `j : B -> C` (`i` for "injection").
+- The ranking is that `(C, i, j)` is better than `(C', i', j')`,
+  if there is a unique arrow `m : C -> C'` such that
+  `i' == compose i m` and `j' == compose j m`,
+  `i'` and `j'` have common factor `m`,
+  the factor `m` take out the bad part from `i'` and `j'`,
+  after which `i` and `j` will be good injection.
+the coproduct of object `A` and `B` is the best of such pattern.
+
+- **[Xie]** Remember that,
+  seeking for interpretation of universal construction in programming language,
+  is the same as seeking for interpretation in set theory.
+
 ## I 5.2 Algebraic data types
 ## I 6.1 Functors
 ## I 6.2 Functors in programming
