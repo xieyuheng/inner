@@ -172,6 +172,12 @@ but in category we can not use this equivalence relation.
 We can compare arrows for equality, but we can not compare objects for equality.
 Thus we can only ask for isomorphism between objects.
 
+- **[Xie]** Is it true that we can not use the equivalence relation between objects?
+  Maybe we can, but it is just that for universal construction,
+  uniqueness expressed by the equivalence relation between objects is too strong,
+  for example, product set `A * B` is not equal to `B * A`,
+  but `A * B` is isomorphic to `B * A`.
+
 The terminal object as an universal construction,
 - The pattern is single object.
 - The ranking is that `A` is better than `B`, if there is a unique arrow from `B` to `A`.
@@ -192,6 +198,8 @@ The **product** of object `A` and `B` as an universal construction,
   the factor `m` take out the bad part from `p'` and `q'`,
   after which `p` and `q` will be good projections.
 the product of object `A` and `B` is the best of such pattern.
+
+- **[Xie]** We need to imagine the picture of the arrows to understand a construction.
 
 For example, bad candidates,
 
@@ -225,6 +233,12 @@ is the dual of the construction of product,
   the factor `m` take out the bad part from `i'` and `j'`,
   after which `i` and `j` will be good injection.
 the coproduct of object `A` and `B` is the best of such pattern.
+
+``` haskell
+datatype either_t A B
+  = left A
+  | right B
+```
 
 - **[Xie]** Remember that,
   seeking for interpretation of universal construction in programming language,
