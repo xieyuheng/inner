@@ -23,6 +23,13 @@
 
   - https://academic.oup.com/monist
 
+* [note]
+
+- **[Xie]**
+  When practicing physical science,
+  the whole meaning of a physical concept
+  is determined by an exact method of measuring it.
+
 * [note] deduction induction abduction
 
   - https://plato.stanford.edu/entries/peirce/#dia

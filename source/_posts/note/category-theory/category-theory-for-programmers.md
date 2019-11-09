@@ -322,11 +322,15 @@ data list_t A = null + (cons A * (list_t A))
 
 ## I 6.1 Functors
 
+Functor is about recognizing pattern of structure in another category.
+Functor is about recognizing one category in another category.
+Functor is about mapping between two categories.
 
+TODO
 
 ## I 6.2 Functors in programming
 
-
+TODO
 
 ## I 7.1 Functoriality, bifunctors
 ## I 7.2 Monoidal Categories, Functoriality of ADTs, Profunctors
