@@ -37,7 +37,10 @@ The Darwinian controversy is, in large part, a question of logic. Mr. Darwin pro
 
 ### II (CP5.365)
 
-The object of reasoning is to find out, from the consideration of what we already know, something else which we do not know. Consequently, reasoning is good if it be such as to give a true conclusion from true premises, and not otherwise. Thus, the question of its validity is purely one of fact and not of thinking. A being the premises and B the conclusion, the question is, whether these facts are really so related that if A is B is. If so, the inference is valid; if not, not. It is not in the least the question whether, when the premisses are accepted by the mind, we feel an impulse to accept the conclusion also. It is true that we do generally reason correctly by nature. But that is an accident; the true conclusion would remain true if we had no impulse to accept it; and the false one would remain false, though we could not resist the tendency to believe in it.
+The object of reasoning is to find out, from the consideration of what we already know, something else which we do not know.
+Consequently, reasoning is good if it be such as to give a true conclusion from true premises, and not otherwise.
+Thus, the question of its validity is purely one of fact and not of thinking.
+A being the premises and B the conclusion, the question is, whether these facts are really so related that if A is B is. If so, the inference is valid; if not, not. It is not in the least the question whether, when the premisses are accepted by the mind, we feel an impulse to accept the conclusion also. It is true that we do generally reason correctly by nature. But that is an accident; the true conclusion would remain true if we had no impulse to accept it; and the false one would remain false, though we could not resist the tendency to believe in it.
 
 ### (CP5.366)
 
@@ -66,7 +69,7 @@ But this is not all which distinguishes doubt from belief. There is a practical 
 ### (CP5.372)
 
 Nor must we overlook a third point of difference. Doubt is an uneasy and dissatisfied state from which we struggle to free ourselves and pass into the state of belief; while the latter is a calm and satisfactory state which we do not wish to avoid, or to change to a belief in anything else.
-- 
+- I am not speaking of secondary effects occasionally produced by the interference of other impulses.
 On the contrary, we cling tenaciously, not merely to believing, but to believing just what we do believe.
 
 ### (CP5.373)
