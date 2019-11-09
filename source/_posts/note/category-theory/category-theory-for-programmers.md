@@ -17,6 +17,14 @@ the chapter naming of which is different from the book.
   - Part II: https://www.youtube.com/playlist?list=PLbgaMIhjbmEn64WVX4B08B4h2rOtueWIL
   - Part III: https://www.youtube.com/playlist?list=PLbgaMIhjbmElia1eCEZNvsVscFef9m0dm
 
+## Note
+
+- **[Xie]** One interesting feature of the teaching of the lecturer is that
+  we do not emphasize the historical notes too much,
+  but always re-construct the process of development from basic principles.
+  By teaching in this way, student starts to think independently
+  instead of appealing to authorities.
+
 ## I 1.1 Motivation and Philosophy
 
 ## I 1.2 What is a category?
