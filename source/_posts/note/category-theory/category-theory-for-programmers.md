@@ -300,8 +300,26 @@ data list_t A = null + (cons A * (list_t A))
 -- ...
 ```
 
+- **[Xie]** During transformation of equations,
+  the lecturer also used subtraction and division,
+  the transformation seems still valid,
+  as long as the resulting equation does not contain subtraction and division.
+
+  This feels like using neutral expression in normalization by evaluation.
+
+  We know that the validity of such transformation can be used to extend the algebraic structure,
+  maybe the validity of neutral expression can also be used to extend the structure of type theory.
+
+  In the extended theory the neutral expressions will be first class object.
+
 ## I 6.1 Functors
+
+
+
 ## I 6.2 Functors in programming
+
+
+
 ## I 7.1 Functoriality, bifunctors
 ## I 7.2 Monoidal Categories, Functoriality of ADTs, Profunctors
 ## I 8.1 Function objects, exponentials
