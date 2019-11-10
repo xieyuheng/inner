@@ -1,4 +1,4 @@
-# Ones inner universe
+# Ones Inner Universe
 
 Ангелы и демоны кружили надо мной
 Разбивали тернии и звёздные пути.
