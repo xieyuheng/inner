@@ -1,6 +1,9 @@
 # Ones inner universe
 
-[![](https://image-link.xieyuheng.now.sh/inner/cover.png)](https://inner.xieyuheng.now.sh)
+Ангелы и демоны кружили надо мной
+Разбивали тернии и звёздные пути.
+Не знает счастья только тот.
+Кто его зова понять не смог...
 
 ---
 
