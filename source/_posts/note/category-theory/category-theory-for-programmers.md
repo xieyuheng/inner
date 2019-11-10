@@ -338,6 +338,22 @@ functor between categories (mappings which preserve structure)
 must also describe how arrows are mapped,
 and "preserving structure" means respect composition of arrows and id arrow of object.
 
+Category formalize the concept of structure.
+Functor formalize the concept of construction that preserving structure.
+Functor is like continuous map, connected construction is still mapped to connected construction.
+
+Faithful functor is defined as been injective on all homsets.
+Full functor is defined as been surjective on all homsets.
+(The mapping behavior on object does not need to be injective or surjective.)
+We can also define fully faithful functor as both faithful and full.
+
+Functor of type `functor_t(singleton_category, C)` can be used to pick up object in `C`.
+Functor of type `functor_t(C, singleton_category)` is called constant functor.
+
+We define `endo_functor_t(C) = functor_t(C, C)`.
+
+In programming language, a unary type constructor is endofunctor of the category of datatypes.
+
 ## I 6.2 Functors in programming
 
 TODO
