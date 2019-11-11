@@ -371,6 +371,20 @@ type reader_t R A = R -> A
 when fix `R`, `reader_t R` is a `Functor`.
 
 ## I 7.1 Functoriality, bifunctors
+
+In the category of category, an object is a category, a morphism is a functor.
+
+Example of composition of functors,
+
+``` haskell
+tail : list_t(A) -> maybe_t(list_t(A))
+tail null = nothing_t
+tail cons(x, xs) = just_t(xs)
+```
+
+All algebraic datatypes are functors,
+in categorical semantics functors (initial algebra) can be used to model algebraic datatype.
+
 ## I 7.2 Monoidal Categories, Functoriality of ADTs, Profunctors
 ## I 8.1 Function objects, exponentials
 ## I 8.2 Type algebra, Curry-Howard-Lambek isomorphism
