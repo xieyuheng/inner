@@ -209,6 +209,10 @@ the product of object `A` and `B` is the best of such pattern.
 
 - **[Xie]** We need to imagine the picture of the arrows to understand a construction.
 
+- **[Xie]** Is it true that when factoring our programs,
+  we have `p'` and `q'`, and we want to factor them into `compose m p` and `compose m q`.
+  after which all functions (of type `C -> X`) we developed of `C` can be used for `C'`.
+
 For example, bad candidates,
 
 ``` haskell
