@@ -233,6 +233,12 @@ m : (int_t, int_t, bool_t) -> (int_t, bool_t)
 m (x, y, b) = (x, b)
 ```
 
+- **[Xie]** The uniqueness of arrow `m : C' -> C` will help us to define operators in category,
+  such as cross of two morphisms, for `f : A -> B` and `g : C -> D`,
+  we can define `f * g : (A * C) -> (B * D)`,
+  we needed the uniqueness, because to define functions (operators)
+  the relation between arguments and return value must be univalent.
+
 ## I 5.1 Coproducts, sum types
 
 The **coproduct** of object `A` and `B` as an universal construction,
@@ -384,6 +390,18 @@ tail cons(x, xs) = just_t(xs)
 
 All algebraic datatypes are functors,
 in categorical semantics functors (initial algebra) can be used to model algebraic datatype.
+
+The product `(a, b)` is called bifunctor, which means when fix one argument, it is a functor.
+Bifunctor can also be defined as functor from product of two categories to a category `(A * B) -> C`.
+
+``` haskell
+bimap : [f : (type, type) -> type] ->
+  (A -> A1) -> (B -> B1) -> f(A, B) -> f(A1, B1)
+```
+
+Note that, the canonical sum type `either_t(A, B)` (co-product in category) is still bifunctor,
+we do not need sum of two categories to view it (co-product in category of category),
+we only need product of two categories (product in category of category).
 
 ## I 7.2 Monoidal Categories, Functoriality of ADTs, Profunctors
 ## I 8.1 Function objects, exponentials
