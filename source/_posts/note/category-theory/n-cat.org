@@ -2,6 +2,13 @@
 
 * [note]
 
+  - category theory is like saying
+    the study of algebraic structure is topological.
+    associative of arrow means arrow can form path.
+    diagram commute means there is surface.
+
+* [note]
+
   - why weak associative is more easier in infi-groupoid than in infi-cat?
 
     | groupoid              | cat              |

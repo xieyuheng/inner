@@ -354,13 +354,21 @@ We can also define fully faithful functor as both faithful and full.
 Functor of type `functor_t(singleton_category, C)` can be used to pick up object in `C`.
 Functor of type `functor_t(C, singleton_category)` is called constant functor.
 
-We define `endo_functor_t(C) = functor_t(C, C)`.
+We define `endofunctor_t(C) = functor_t(C, C)`.
 
 In programming language, a unary type constructor is endofunctor of the category of datatypes.
 
 ## I 6.2 Functors in programming
 
-TODO
+In haskell `Functor` is endofunctor of types.
+
+For example, array-like collections (or say, containers) are instances `Functor`.
+
+``` haskell
+type reader_t R A = R -> A
+```
+
+when fix `R`, `reader_t R` is a `Functor`.
 
 ## I 7.1 Functoriality, bifunctors
 ## I 7.2 Monoidal Categories, Functoriality of ADTs, Profunctors
