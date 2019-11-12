@@ -437,6 +437,9 @@ where in the monoidal-category tensor-product is functor composition,
 thus a special endofunctor, with two morphisms `join` and `pure`.
 
 ## II 1.1 Declarative vs Imperative Approach
+
+We have to know why we study category theory.
+
 ## II 1.2 Limits
 ## II 2.1 Limits, Higher order functors
 ## II 2.2 Limits, Naturality

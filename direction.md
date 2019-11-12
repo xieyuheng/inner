@@ -1,3 +1,0 @@
-- the direction, the focus
-- the focus, the now
-- the now, the joy
