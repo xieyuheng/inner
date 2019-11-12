@@ -1,5 +1,10 @@
 ## Quotes
 
+### Business
+
+- If you're good at something, never do it for free.
+  - The Joker
+
 ### Love
 
 - In general when you feel in life, not necessarily when your heart broken,
