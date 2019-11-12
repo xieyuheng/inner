@@ -416,6 +416,15 @@ For the function type `A -> B`,
 fixing `A` we get `A -> _`, which is covariant functor (normal functor),
 fixing `B` ww get `_ -> B`, which is contravariant functor.
 
+``` haskell
+function_space : (op(C) * C) -> C
+
+dimap : [f : (type, type) -> type] ->
+  (A1 -> A) -> (B -> B1) -> f(A, B) -> f(A1, B1)
+```
+
+The `function_space` above is called profunctor.
+
 ## I 8.1 Function objects, exponentials
 ## I 8.2 Type algebra, Curry-Howard-Lambek isomorphism
 ## I 9.1 Natural transformations
