@@ -404,6 +404,18 @@ we do not need sum of two categories to view it (co-product in category of categ
 we only need product of two categories (product in category of category).
 
 ## I 7.2 Monoidal Categories, Functoriality of ADTs, Profunctors
+
+In monoidal categories, we would like to multiply two object (to return an object),
+bifunctor is what we need.
+
+In monoidal categories, we can define tensor product, which has unit and associative.
+
+The ADTs without type arguments can be viewed as constant functor.
+
+For the function type `A -> B`,
+fixing `A` we get `A -> _`, which is covariant functor (normal functor),
+fixing `B` ww get `_ -> B`, which is contravariant functor.
+
 ## I 8.1 Function objects, exponentials
 ## I 8.2 Type algebra, Curry-Howard-Lambek isomorphism
 ## I 9.1 Natural transformations
