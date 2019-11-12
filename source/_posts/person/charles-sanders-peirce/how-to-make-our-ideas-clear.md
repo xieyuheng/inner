@@ -632,7 +632,7 @@ Consider what effects, which might conceivably have practical bearings, we conce
 
 Then, our conception of these effects is the whole of our conception of the object.
 
-III (CP5.403)
+### III (CP5.403)
 
 Let us illustrate this rule by some examples;
 and, to begin with the simplest one possible,
