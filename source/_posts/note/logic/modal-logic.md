@@ -210,3 +210,34 @@ h2 = {
   return : possible P in w
 }
 ```
+
+It seems we can prove them, as lone as we have the following primitive function,
+
+``` js
+access_self : (w: world_t) -> accessible(w, w)
+```
+
+## Truth trees for invalid arguments in K
+
+## Logical consequence in K
+
+In the History, modal logic is developed to avoid irrelevant `A -> B` like,
+"If pigs can fly, then the moon is made of cheese."
+
+Semantic / model theoretic consequence (Tarski) `premises |= conclusion` means that,
+for all interpretation that makes premises true,
+the interpretation also makes the conclusion true.
+
+We can also say, `premises |= conclusion` is true,
+when there is no counter example.
+
+Syntactic / proof theoretic consequence (Gentzen) `premises |- conclusion` means that,
+conclusion can be derived from premises by inference rules.
+
+## The systems M, B, S4 & S5
+
+## The modal scope fallacy
+
+## [Note] Relational semantics (a.k.a. frame semantics)
+
+## [Note] Intuitionistic logic as a modal logic
