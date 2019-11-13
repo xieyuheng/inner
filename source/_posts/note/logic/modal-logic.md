@@ -51,6 +51,14 @@ contingency -> possibility
 analyticity -> impossibility or necessity
 impossibility -> analyticity
 
-possibility contradicts with impossibility
-analyticity contradicts with contingency
+not possibility == impossibility
+not analyticity == contingency
+```
+
+But necessity does not contradict with impossibility,
+
+``` js
+not impossible P == not necessary not P == possible P
+not impossible P == not necessary not P != necessary P
+                        necessary not P != not necessary P
 ```
