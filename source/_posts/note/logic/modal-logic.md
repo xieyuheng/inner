@@ -146,8 +146,8 @@ necessary P true in w0
 Example proof,
 
 ``` js
-h : (w : world_t) -> (necessary (P -> Q)) -> (necessary P -> necessary Q) in w
-h = {
+distribution : (w : world_t) -> (necessary (P -> Q)) -> (necessary P -> necessary Q) in w
+distribution = {
   w : world_t
   |------------------
   return : (necessary (P -> Q)) -> (necessary P -> necessary Q) in w
@@ -172,5 +172,41 @@ h = {
       y : necessary Q
     }
   }
+}
+```
+
+## A strange property of K
+
+According to the lecturer, the following propositions are can not be proven.
+
+``` js
+necessary P -> P
+necessary P -> possible P
+```
+
+Let's try our inference rules.
+
+``` js
+// necessary P -> P
+h1 : (w: world_t) -> necessary P -> P in w
+h1 = {
+  w : world_t
+  x : necessary P in w
+  x : (w1 : world_t, accessible(w, w1)) -> P in w
+  |----------------
+  x(w, access_self(w)) : P in w
+}
+
+// necessary P -> possible P
+h2 : (w: world_t) -> necessary P -> possible P in w
+h2 = {
+  w : world_t
+  x : necessary P in w
+  x : (w1 : world_t, accessible(w, w1)) -> P in w
+  |----------------
+  x(w, access_self(w)) : P in w
+  return : exists(w: world_t, accessible(w, w), P) in w
+  return = tuple(w, access_self(w), x(w, access_self(w)))
+  return : possible P in w
 }
 ```
