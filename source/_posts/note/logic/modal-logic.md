@@ -212,6 +212,7 @@ h2 = {
 ```
 
 It seems we can prove them, as lone as we have the following primitive function,
+making accessibility relation reflexive.
 
 ``` js
 access_self : (w: world_t) -> accessible(w, w)
@@ -265,7 +266,68 @@ premises |- conclusion
 
 ## The systems M, B, S4 & S5
 
+System K is one memmber of a familiy of systems called "normal modal logic".
+
+Accessibility relation can be enhanced,
+
+``` js
+M = K + reflexive {
+  # P -> P
+}
+
+B = K + reflexive + symmetric {
+  P -> # $ P
+}
+
+S4 = K + reflexive + transitive {
+  # P -> # # P
+}
+
+S5 = K + reflexive + symmetric + transitive {
+  $ P -> # $ P
+}
+```
+
+## More on the accessibility relation
+
+## Two important truth tree rules, and a space saving method
+
+## A trick for trees in S5
+
 ## The modal scope fallacy
+
+Example of scope fallacy is "All that glitter is not gold."
+which should be "Not all that glitter is gold."
+
+The modal scope fallacy,
+"If P is true, then it cannot be false."
+"If P cannot be false, then it is necessarily true."
+Thus "If P is true, then it is necessarily true."
+
+``` js
+P -> ~ $ ~ P
+~ $ ~ P -> # P
+--------------
+P -> # P
+```
+
+or
+
+``` js
+P -> # ~ ~ P
+# ~ ~ P -> # P
+--------------
+P -> # P
+```
+
+The fallacy is that `P -> # ~ ~ P` is wrong,
+only `# (P -> ~ ~ P)` is right.
+
+"If P is true, then it cannot be false."
+which is equivalent to
+"If P is true, then it necessarily not be false."
+should be
+"Necessarily, if P is true, then it not be false."
 
 ## [Note] Relational semantics (a.k.a. frame semantics)
 
