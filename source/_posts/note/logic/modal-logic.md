@@ -17,13 +17,13 @@ We have `~ # P == $ ~ P` and `~ $ P == # ~ P` (`~` as `not`).
 
 Different interpretation of the modal operators `#` and `$`.
 
-| Logic     | Modality                |
-|-----------|-------------------------|
-| alethic   | necessary, possible     |
-| deontic   | obligatory, permissible |
-| temporal  | always, eventually      |
-| epistemic | known                   |
-| doxastic  | believed                |
+| Logic     | Modality                           |
+|-----------|------------------------------------|
+| alethic   | necessary, possible, impossible    |
+| deontic   | obligatory, permissible, forbidden |
+| temporal  | always, sometimes, never           |
+| epistemic | known                              |
+| doxastic  | believed                           |
 
 ## Introduction modal logic
 
