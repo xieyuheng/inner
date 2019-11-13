@@ -441,15 +441,19 @@ thus a special endofunctor, with two morphisms `join` and `pure`.
 We have to know why we study category theory.
 
 - **[Xie]**
-  The answer is to use category theory to model
+  From the perspective of programming language,
+  the answer is to use category theory to model
   concepts in programming language and type system (categorical semantics).
   When talk about "semantics" I mean both intuition and implementation
   (but nothing more than intuition and implementation).
 
+  From the perspective of mathematics, logic or other knowledge domain,
+  the answer would be different.
+
 Can we always implement declarative language in imperative language?
 Can we do all that we can do in imperative language in declarative language?
 
-Imperative vs Declarative, like local vs global physics laws?
+Imperative vs Declarative, like local vs global physics laws.
 
 ## II 1.2 Limits
 ## II 2.1 Limits, Higher order functors
