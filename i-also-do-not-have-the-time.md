@@ -1,4 +1,4 @@
-# I also do not have time
+# I also do not have the time
 
 ## [Thesis 1] Fulfilling type system
 
