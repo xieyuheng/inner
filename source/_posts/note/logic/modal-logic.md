@@ -43,6 +43,9 @@ We also have,
 
 ``` js
 necessity -> possibility
+// this does not hold because of propositional logic,
+//   but because of intuition of meaning the modal operators.
+
 necessity -> analyticity
 
 possibility -> necessity or contingency
