@@ -48,6 +48,9 @@ necessity -> analyticity
 possibility -> necessity or contingency
 contingency -> possibility
 
-analyticity -> impossible or necessity
-impossible -> analyticity
+analyticity -> impossibility or necessity
+impossibility -> analyticity
+
+possibility contradicts with impossibility
+analyticity contradicts with contingency
 ```
