@@ -113,6 +113,16 @@ model_t = {
 Different kinds of possibility corresponding to definitions of relation `accessible`.
 Note that, the relation is not necessarily transitive.
 
+## Truth trees of system K
+
+We are going to use the tree method in "Modal Logic for Philosophers", by James W. Garson,
+which captures the concepts of modal logic in a clear and common sense way.
+
+- **[Xie]**
+  I use judgment and inference rules instead.
+  Also I use intuitionistic logic intead of classical logic,
+  specially `A -> B` can not be reduced to `(not A) or B`.
+
 The basic judgment in the logic is `<proposition> true in <world>`.
 
 ``` js
@@ -120,7 +130,7 @@ exists (w1: world_t) {
   accessible(w0, w1)
   P true in w1
 }
---------------------
+------------------------ // possible intro
 possible P true in w0
 ```
 
@@ -129,8 +139,38 @@ forall (w1: world_t) {
   accessible(w0, w1)
   P true in w1
 }
---------------------
+------------------------- // necessary intro
 necessary P true in w0
 ```
 
-## Truth trees of system K
+Example proof,
+
+``` js
+h : (w : world_t) -> (necessary (P -> Q)) -> (necessary P -> necessary Q) in w
+h = {
+  w : world_t
+  |------------------
+  return : (necessary (P -> Q)) -> (necessary P -> necessary Q) in w
+  return = {
+    g : necessary (P -> Q) in w
+    g : (w1 : world_t, accessible(w, w1)) -> (P -> Q) in w
+    |---------------
+    return : necessary P -> necessary Q in w
+    return = {
+      x : necessary P in w
+      x : (w1 : world_t, accessible(w, w1)) -> P in w
+      |----------------
+      y : (w1 : world_t, accessible(w, w1)) -> Q in w
+      y = {
+        w1 : world_t
+        ac : accessible(w, w1)
+        |-------------------------
+        g(w1, ac) : (P -> Q) in w
+        x(w1, ac) : P in w
+        g(w1, ac)(x(w1, ac)) : Q in w
+      }
+      y : necessary Q
+    }
+  }
+}
+```

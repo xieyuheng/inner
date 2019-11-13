@@ -451,15 +451,37 @@ We have to know why we study category theory.
   the answer would be different.
 
 Can we always implement declarative language in imperative language?
+
+- **[Xie]** The might be fail when the declarative language is so high level.
+
 Can we do all that we can do in imperative language in declarative language?
+
+- **[Xie]** Even if we can, is it always worth doing so?
 
 Imperative vs Declarative, like local vs global physics laws.
 
+The universal construction of category theory is an example of global approach.
+
 ## II 1.2 Limits
+
+
+
 ## II 2.1 Limits, Higher order functors
+
+
+
 ## II 2.2 Limits, Naturality
+
+
+
 ## II 3.1 Examples of Limits and Colimits
+
+
+
 ## II 3.2 Free Monoids
+
+
+
 ## II 4.1 Representable Functors
 
 TODO

@@ -1,3 +1,6 @@
+# gentzen
+- we design a language to honor gentzen
+# bebop
 # psychology
 - ideas and cognitive dissonance
   - ideas that is good to survive

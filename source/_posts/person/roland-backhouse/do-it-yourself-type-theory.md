@@ -115,8 +115,10 @@ Example deduction steps:
 ```
 
 - **[Xie]**
-  Maybe we can use the syntax of deduction `{ ... |- ... }`
-  as definition of function, with fully annotated type.
+  Maybe we can use the syntax of deduction `{ ... |- ... }` as definition of function,
+  whose argument types are fully annotated (de Bruijn style typed lambda calculus).
+  The last element in conclusion is return value.
+  (Let's call this syntax **Gentzen**.)
 
   ``` js
   h : ((A + ((A) -> B)) -> B) -> B
@@ -135,16 +137,14 @@ Example deduction steps:
   ```
 
 - **[Xie]**
-  The about means we can use `f = { ... }`
+  The above means we can use `f = { ... }`
   to define new function from existing functions.
 
-  We may view introduction rules in the same spirit.
+  In the same spirit, we may view introduction rules as primitive functions.
 
   ``` js
   inl : (A) -> (A + B)
-  inl = {
-    // primitive introducing rule
-  }
+  inl = { /* primitive */ }
   ```
 
 If we replace `B` by `absurd_t`,
@@ -287,7 +287,7 @@ proof {
       |----------------
       cons(x, h) : list_t(A)
     }
-    (x, _, h) => cons(x, h) : list_t(A)
+    (x, _, h) => cons(x, h) : (A, list_t(A), list_t(A)) -> list_t(A)
     list_elim(l, m, (x, _, h) => cons(x, h)) : list_t(A)
   }
   list_append : (list_t(A), list_t(A)) -> list_t(A)
@@ -302,6 +302,26 @@ proof {
     [l, m]
     l m { [x, _, h] x h cons }
     list_elim
+  }
+  ```
+
+- **[Xie]** In Gentzen,
+
+  ``` js
+  list_append : (list_t(A), list_t(A)) -> list_t(A)
+  list_append = {
+    l : list_t(A)
+    m : list_t(A)
+    |---------------------
+    g : (A, list_t(A), list_t(A)) -> list_t(A)
+    g = {
+      x : A
+      _ : list_t(A)
+      h : list_t(A)
+      |----------------
+      cons(x, h) : list_t(A)
+    }
+    list_elim(l, m, g) : list_t(A)
   }
   ```
 
