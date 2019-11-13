@@ -1,3 +1,7 @@
+---
+title: Modal Logic
+---
+
 # Modal Logic
 
 ## Links
