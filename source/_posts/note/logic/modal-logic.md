@@ -234,6 +234,35 @@ when there is no counter example.
 Syntactic / proof theoretic consequence (Gentzen) `premises |- conclusion` means that,
 conclusion can be derived from premises by inference rules.
 
+- **[Xie]**
+  Terminology used by other authors,
+  - tautology consequence -- propositional logic
+  - logical consequence -- predicate logic
+  - analytical consequences -- with a specific model
+
+## Soundness & Completeness
+
+A group of inference rules specifies a deduction system.
+
+We can say a deduction system is sound (or complete)
+respect to a specific model theory.
+
+Soundness,
+
+``` js
+premises |- conclusion
+----------------------
+premises |= conclusion
+```
+
+Completeness,
+
+``` js
+premises |= conclusion
+----------------------
+premises |- conclusion
+```
+
 ## The systems M, B, S4 & S5
 
 ## The modal scope fallacy
