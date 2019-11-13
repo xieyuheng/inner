@@ -17,7 +17,7 @@ Different interpretation of the modal operators `#` and `$`.
 |-----------|-------------------------|
 | alethic   | necessary, possible     |
 | deontic   | obligatory, permissible |
-| temporal  | always                  |
+| temporal  | always, eventually      |
 | epistemic | known                   |
 | doxastic  | believed                |
 
@@ -72,4 +72,61 @@ The semantics of alethic modal logic **possible worlds**,
 `possible P` means "there exists a world in which P is true",
 `necessary P` means "in all worlds, P is true".
 
-- **[Xie]** When talking about "semantics", think about intuition and implementation
+- **[Xie]** When talking about "semantics", think about intuition and implementation.
+
+Kinds of possibility,
+- Logical, fixed given the laws of logic, rules out contradictions.
+- Nomological, fixed given the laws of nature.
+- Temporal, fixed given the actual history of the world.
+
+## System K
+
+The `K` from [Saul Kripke](https://en.wikipedia.org/wiki/Saul_Kripke).
+
+Formation rules (for well-formed formula).
+
+``` js
+<exp> = <var> // propositional variable
+  | not <exp>
+  | <exp> and <exp>
+  | <exp> or <exp>
+  | # <exp> // necessary <exp>
+  | $ <exp> // possible <exp>
+```
+
+Interpretation is defined as a function that assign truth value to each propositional variable.
+
+We use model theory to provide semantics for logic.
+
+``` js
+model_t = {
+  world : world_t
+  accessible : (w0: world_t, w1: world_t) -> bool_t // w1 is accessible from w0
+  assign : (world_t, var_t) -> bool_t
+}
+```
+
+Different kinds of possibility corresponding to definitions of relation `accessible`.
+Note that, the relation is not necessarily transitive.
+
+The basic judgment in the logic is `<proposition> true in <world>`.
+
+``` js
+exists (w1: world_t) {
+  accessible(w0, w1)
+  P true in w1
+}
+--------------------
+possible P true in w0
+```
+
+``` js
+forall (w1: world_t) {
+  accessible(w0, w1)
+  P true in w1
+}
+--------------------
+necessary P true in w0
+```
+
+## Truth trees of system K
