@@ -50,7 +50,7 @@
   - Logic / 逻辑学
     * [嘲嘲不已 / How To Mock A Mockingbird](/note/logic/how-to-mock-a-mockingbird)
     * [Language, Proof and Logic (Stanford open course)](/note/logic/language-proof-and-logic--stanford-open-course)
-    * [Modal logic](/note/logic/modal-logic.md)
+    * [Modal logic](/note/logic/modal-logic)
   - Category Theory / 范畴论
     - [Categorical Intuitions](/note/category-theory/categorical-intuitions)
     - [Category Theory For Programmers](/note/category-theory/category-theory-for-programmers)
