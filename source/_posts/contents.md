@@ -52,7 +52,7 @@
     * [Language, Proof and Logic (Stanford open course)](/note/logic/language-proof-and-logic--stanford-open-course)
     * [Modal logic](/note/logic/modal-logic)
   - Philosophy / 哲学
-    * [獨然覺醒 / independence awake](/note/philosophy/independence-awake)
+    * [獨然覺醒 / Independence awake](/note/philosophy/independence-awake)
   - Category Theory / 范畴论
     - [Categorical Intuitions](/note/category-theory/categorical-intuitions)
     - [Category Theory For Programmers](/note/category-theory/category-theory-for-programmers)
