@@ -1,5 +1,7 @@
 # psychology
 - ideas and cognitive dissonance
+  - ideas that is good to survive
+  - ideas that lower cognitive dissonance
 # type theory
 - [martin-löf] Constructive Mathematics and Computer Programming
 - [martin-löf] Intuitionistic Type Theory
