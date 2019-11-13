@@ -21,7 +21,9 @@ Different interpretation of the modal operators `#` and `$`.
 | epistemic | known                   |
 | doxastic  | believed                |
 
-## Alethic modal logic
+## Introduction modal logic
+
+Alethic modal logic is the main modal logic.
 
 ``` js
 necessity      --  # P                 --  necessary P
@@ -65,3 +67,9 @@ not impossible P == not necessary not P == possible P
 not impossible P == not necessary not P != necessary P
                         necessary not P != not necessary P
 ```
+
+The semantics of alethic modal logic **possible worlds**,
+`possible P` means "there exists a world in which P is true",
+`necessary P` means "in all worlds, P is true".
+
+- **[Xie]** When talking about "semantics", think about intuition and implementation
