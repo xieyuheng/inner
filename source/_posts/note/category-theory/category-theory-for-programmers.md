@@ -426,6 +426,43 @@ dimap : [f : (type, type) -> type] ->
 The `function_space` above is called profunctor.
 
 ## I 8.1 Function objects, exponentials
+
+In programming, we work with category of sets,
+objects are sets, and for two objects `A` an `B`, we have `homset(A, B)`,
+since a `homset(A, B)` is also a set, it is also an object of our category.
+
+This means our category has function objects (or say exponentials).
+(Not every category have this good property.)
+
+We can define exponential objects by universal construction
+(thus generalize the concept to arbitrary category).
+
+We need product to define exponential.
+
+- **[Xie]**
+  The exponential object can not be defined as limit of shape,
+  but should be defined using adjoint.
+
+The **exponential object** from `A` to `B` as an universal construction,
+- The pattern is an object `C` and an arrow `g: (C, A) -> B`.
+- The ranking says, `C` is better than `C'` and `g': (C', A) -> B`,
+  if there is a unique `m: C' -> C` such that
+  `compose (m * id(A)) g == g' : (C', A) -> B`,
+  where `(m * id(A))` is a cross of two morphism `m: C' -> C` and `id(A): A -> A`.
+the exponential object from `A` to `B` is the best of such pattern.
+
+We can also view `m: C' -> C` as `m: C' -> (A -> B)`,
+then from `g': (C', A) -> B` to `m: C' -> (A -> B)`
+is called currying in programming.
+
+A programming language can has currying built-in (such as Haskell).
+
+**Cartesian closed category** is defined as
+category with terminal object, product object and exponential object.
+
+**Bi-Cartesian closed category** is defined as
+Cartesian closed category with initial object and sum object.
+
 ## I 8.2 Type algebra, Curry-Howard-Lambek isomorphism
 ## I 9.1 Natural transformations
 ## I 9.2 Bicategories
