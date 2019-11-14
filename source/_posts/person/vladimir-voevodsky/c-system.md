@@ -40,6 +40,7 @@ We call such semantics **algebraic semantics**.
 
 Intuitively, an algebraic semantics for a syntactic theory is "right",
 if it is minimal and most general.
+(or say, free from unnecessary codification.)
 
 This intuitive concept can be captured by
 categorical equivalence between
