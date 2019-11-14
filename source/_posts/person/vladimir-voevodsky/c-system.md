@@ -53,7 +53,7 @@ provide us with the algebraic semantics of generalised algebraic theories.
   The term "generalised algebraic theories" can be viewed as
   using abstract class of programming languages to formalize algebraic structures.
 
-  For example,
+  An algebraic structure can be single sorted, such as `semigroup_t`, `group_t` and `ring_t` (the sort is elements), for example,
 
   ``` js
   class semigroup_t {
@@ -63,12 +63,8 @@ provide us with the algebraic semantics of generalised algebraic theories.
   }
   ```
 
-  An algebraic structure can be single sorted, such as `semigroup_t`, `group_t` and `ring_t` (the sort is elements),
-  it can also be many sorted, such as `category_t` (the sorts are objects and arrows),
-
-  Note that,
-  the formalization of category theory (the definition of abstract class `category_t`),
-  involves **dependent record type**,
+  An algebraic structure can can also be many sorted,
+  such as `category_t` (the sorts are objects and arrows),
 
   ``` js
   class category_t {
@@ -89,7 +85,10 @@ provide us with the algebraic semantics of generalised algebraic theories.
   }
   ```
 
-  The type `morphism_t` is indexed by elements of `(object_t, object_t)`.
+  Note that,
+  the formalization of category theory (the definition of abstract class `category_t`),
+  involves **dependent record type**,
+  for the type `morphism_t` is indexed by elements of `(object_t, object_t)`.
 
   When thinking about providing semantics for type theory,
   the type theory we wish to talk about is a type theory
@@ -97,3 +96,10 @@ provide us with the algebraic semantics of generalised algebraic theories.
 
   Such a type theory include Martin-Löf's type theory,
   thus this paper can also be viewed as providing algebraic semantics to Martin-Löf's type theory.
+
+  In my view,
+  to formalize mathematical practice in a natural way,
+  we also need the following features,
+  - Subtype (inheritance) -- to avoid re-implementation,
+  - Quotient types -- which occurs very often in mathematical constructions,
+  - Fulfilling type system -- to use type constructors in a flexible way.
