@@ -329,6 +329,10 @@ which is equivalent to
 should be
 "Necessarily, if P is true, then it not be false."
 
+- **[Xie]** More about fallacy,
+  https://en.wikipedia.org/wiki/Modal_fallacy
+  https://en.wikipedia.org/wiki/Formal_fallacy
+
 ## [Note] Relational semantics (a.k.a. frame semantics)
 
 ## [Note] Intuitionistic logic as a modal logic

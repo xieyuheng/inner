@@ -39,6 +39,8 @@
     * [Functorial Semantics of Algebraic Theories](/person/william-lawvere/functorial-semantics-of-algebraic-theories)
     * [Conceptual Mathematics](/person/william-lawvere/conceptual-mathematics)
     * [Sets for Mathematics](/person/william-lawvere/sets-for-mathematics)
+  - Vladimir Voevodsky / 弗拉基米尔 沃沃斯基
+    * [C System](/person/vladimir-voevodsky/c-system)
   - Zhaohui Luo
     - [Computation and Reasoning](/person/zhaohui-luo/computation-and-reasoning)
   - Zhuang Zi / 莊子
