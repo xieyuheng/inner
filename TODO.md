@@ -2,6 +2,7 @@
 - C System
 # gentzen
 - we design a language to honor gentzen
+- also use `{ }` as syntax of pi type
 # bebop
 # psychology
 - ideas and cognitive dissonance

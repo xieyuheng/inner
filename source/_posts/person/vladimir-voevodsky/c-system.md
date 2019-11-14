@@ -73,7 +73,7 @@ Thus, a generalised algebraic theory consists of
 
 - **[Xie]**
   The term "generalised algebraic theories" can be viewed as
-  using abstract class of programming languages to formalize algebraic structures.
+  using **abstract class** of programming languages to formalize algebraic structures.
 
   An algebraic structure can be single sorted, such as `semigroup_t`, `group_t` and `ring_t` (the sort is elements), for example,
 
@@ -105,7 +105,7 @@ Thus, a generalised algebraic theory consists of
     // (iii) a set of axioms
     id_left[a: object_t, b: object_t](f: morphism_t(a, b)): eqv_t(compose(id(a), f), f)
     id_right[a: object_t, b: object_t](f: morphism_t(a, b)): eqv_t(compose(f, id(b)), f)
-    associative[a: object_t, b: object_t, c: object_t, d: object_t](
+    compose_associative[a: object_t, b: object_t, c: object_t, d: object_t](
       f: morphism_t(a, b),
       g: morphism_t(b, c),
       h: morphism_t(c, d),
