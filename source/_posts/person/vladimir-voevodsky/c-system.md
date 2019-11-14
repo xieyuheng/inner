@@ -50,6 +50,27 @@ and the categories of the algebraic structure.
 The claim of this paper is that the contextual categories (that will be developed)
 provide us with the algebraic semantics of generalised algebraic theories.
 
+## 2. Generalised algebraic theories
+
+The notion of a generalised algebraic theory is a generalisation
+of the notion of a many-sorted algebraic theory in just the following manner.
+
+Whereas the sorts of a many-sorted algebraic theory are constant types
+in the sense that they are to be interpreted as sets,
+the sorts of a generalised algebraic theory need not all be constant types
+some of them being nominated as variable types (dependent types),
+in which case they are to be interpreted as families of sets.
+
+The type or types over which the variation of a variable ranges must always be specified.
+
+Thus, a generalised algebraic theory consists of
+- (i) a set of sorts, each with a specified role either as a constant type
+  or else as a variable type varying in some way,
+- (ii) a set of operator symbols, each one with its argument types
+  and its value type specified (the value type may vary as the argument varies),
+- (iii) a set of axioms. Each axiom must be an identity between similar well-formed expressions,
+  either between terms of the same possibly varying type or else between type expressions.
+
 - **[Xie]**
   The term "generalised algebraic theories" can be viewed as
   using abstract class of programming languages to formalize algebraic structures.
@@ -58,8 +79,11 @@ provide us with the algebraic semantics of generalised algebraic theories.
 
   ``` js
   class semigroup_t {
+    // (i) a set of sorts
     elem_t: type
+    // (ii) a set of operator symbols
     mul(x: elem_t, y: elem_t): elem_t
+    // (iii) a set of axioms
     mul_associative(x: elem_t, y: elem_t, z: elem_t): eqv_t(mul(x, mul(y, z)), mul(mul(x, y), z))
   }
   ```
@@ -69,13 +93,16 @@ provide us with the algebraic semantics of generalised algebraic theories.
 
   ``` js
   class category_t {
+    // (i) a set of sorts
     object_t: type
     morphism_t(object_t, object_t): type
+    // (ii) a set of operator symbols
     id(a: object_t): morphism_t(a, a)
     compose[a: object_t, b: object_t, c: object_t](
       f: morphism_t(a, b),
       g: morphism_t(b, c),
     ): morphism_t(a, c)
+    // (iii) a set of axioms
     id_left[a: object_t, b: object_t](f: morphism_t(a, b)): eqv_t(compose(id(a), f), f)
     id_right[a: object_t, b: object_t](f: morphism_t(a, b)): eqv_t(compose(f, id(b)), f)
     associative[a: object_t, b: object_t, c: object_t, d: object_t](
