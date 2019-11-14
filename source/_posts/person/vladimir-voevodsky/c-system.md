@@ -146,10 +146,11 @@ and so on.
 ## 3. Examples
 
 The first example is a theory which can be called
-the theory of families of elements `b(x)` of families of sets `B(x)`:
+the theory of families of elements `b(x: A)`
+of families of sets `B(x: A)`:
 
 ``` js
-class U {
+class U1 {
   A: type
   B(x: A): type
   b(x: A): B(x)
@@ -159,24 +160,123 @@ class U {
 A model `M` of the theory, is an instance of the class,
 
 ``` js
-M : U
+M : U1
 
 M.A : type
 M.B : (x: M.A) -> type
 M.b : (x: M.A) -> M.B(x)
 ```
 
-TODO
+Given two instances `M` and `M1` of `U1`,
+then a homomorphism `f` between `M` and `M1` contains `fA`, `fB` and `fB_eqv`,
 
 ``` js
-fA : (M: U, M1: U) -> M.A -> M1.A
-fB : (M: U, M1: U) -> (a: M.A) -> M.B (a) -> M1.B (fA (M, M1) (a))
-fB_eqv : (M: U, M1: U) -> (a: M.A) ->
+fA(M: U1, M1: U1): M.A -> M1.A
+fB(M: U1, M1: U1): (a: M.A) -> M.B(a) -> M1.B(fA(M, M1)(a))
+fB_eqv(M: U1, M1: U1): (a: M.A) ->
   the_eqv_t(
     M1.B (a),
-    fB (M, M1) (a) (M.b (a)),
-    M1.b (fA (a)))
+    fB(M, M1)(a)(M.b(a)),
+    M1.b(fA(a)))
 ```
+
+This means that there is a generalised algebraic theory (generalised class)
+whose models (instances) are just homomorphisms between the models of the given theory,
+
+``` js
+class U1F {
+  M: U1
+  M1: U1
+  fA(M: U1, M1: U1): M.A -> M1.A
+  fB(M: U1, M1: U1): (a: M.A) -> M.B(a) -> M1.B(fA(M, M1)(a))
+  fB_eqv(M: U1, M1: U1): (a: M.A) ->
+    the_eqv_t(
+      M1.B (a),
+      fB(M, M1)(a)(M.b(a)),
+      M1.b(fA(a)))
+}
+```
+
+An example similar to the first example
+we call the theory of families of families of elements `c(x: A, y: B(x))`
+of families of families of sets `C(x: A, y: B(x))`:
+
+``` js
+class U2 {
+  A: type
+  B(x: A): type
+  C(x: A, y: B(x)): type
+  c(x: A, y: B(x)): C(x, y)
+}
+```
+
+Note that in the presentation of this theory
+no harm is done if we replace the introductory rule for `C`
+by the rule `C[x: A](y: B(x)): type`,
+
+``` js
+class U2 {
+  A: type
+  B(x: A): type
+  C[x: A](y: B(x)): type
+  c[x: A](y: B(x)): C(y)
+}
+```
+
+this rule has the same meaning as the given rule.
+The expression `C(x, y)` in the given rule depends explicitly on `x` and `y`.
+We say that the expression `C(y)` in the alternative rule
+depends implicitly on `x` by virtue of the explicit dependence of `y` on `x`.
+In the alternative version of the theory we say that a variable has been omitted.
+This is one method by which a theory may be informally presented.
+This method and another can be used in an informal presentation of the theory of trees.
+
+The theory of trees has countably many sort symbols,
+no operator symbols and no axioms.
+However, we chose to write the theory informally with just first few sort symbols,
+one of these symbols doing the work that in a formal presentation
+would be shared among countably many distinct symbols.
+(`S1`, `S2`, ... would be replaced by `S(n)`)
+
+``` js
+class tree_t {
+  S1: type
+  S2(x1: S1): type
+  S3[x1: S1](x2: S2(x1)): type
+  S4[x1: S1, x2: S2(x1)](x3: S3(x2)): type
+  ...
+}
+```
+
+`S1`, then, is a symbol denoting the set of nodes at the base of the tree,
+If `x` is any node of the tree,
+then `S2(x)` is the set of successor nodes to `x`, and so on.
+
+The same methods can be used in presenting the theory of functors informally.
+
+``` js
+class functor_t {
+  dom: category_t
+  cod: category_t
+  map(a: dom.object_t): cod.object_t
+  fmap(f: dom.morphism_t(a, b)): cod.morphism_t(map(a), map(b))
+  fmap_respect_then(
+    f: dom.morphism_t(a, b),
+    g: dom.morphism_t(b, c),
+  ): the_eqv_t(
+    cod.morphism_t(map(a), map(c)),
+    fmap(dom.compose(f, g)),
+    cod.compose(fmap(f), fmap(g)))
+  fmap_respect_id(a: dom.object_t): the_eqv_t(
+    cod.morphism_t(map(a), map(a)),
+    fmap(dom.id(a)),
+    cod.id(map(a)))
+}
+```
+
+The next example shows how to axiomatise the disjoint union of a family of types.
+
+TODO
 
 ## 4. Predicates as types
 
