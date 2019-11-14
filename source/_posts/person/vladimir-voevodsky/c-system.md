@@ -276,7 +276,68 @@ class functor_t {
 
 The next example shows how to axiomatise the disjoint union of a family of types.
 
-TODO
+If `U` is a theory which includes a type symbol `A`
+and a symbol `B` for an `A`-indexed family of types,
+then `U` can be extended by three operator symbols, three axioms
+and one type symbol `sigma_t(A, B)` in such a way that
+- (i) every model `M` of `U` uniquely extends to a model of the extended theory
+- (ii) every model `M` of the extended theory interprets the symbol `sigma_t(A, B)`
+  by a set isomorphic to the set `{ (a, b) | a: M.A and b: M.B(a) }`,
+  that is to say as a set isomorphic to the disjoint union of the family of sets interpreting `B`.
+The extended theory is taken to be `U+`.
+
+- **[Xie]** I will define `sigma_t` as a datatype as the following.
+
+``` js
+datatype sigma_t(A: type, B: A -> type) {
+  pair(x: A, y: B(x)): sigma_t(x, y)
+}
+
+fst[x: A, y: B(x)](z: sigma_t(x, y)): A
+fst(pair(x, y)) = x
+
+snd[x: A, y: B(x)](z: sigma_t(x, y)): B(x)
+snd(pair(x, y)) = y
+
+pair(fst(z), snd(z)) == z
+fst(pair(x, y)) == x
+snd(pair(x, y)) == y
+```
+
+Finally an example based upon program language semantics.
+Morris [13] and others have noted how context free grammars give rise to many sorted signatures.
+In Mosses [14] this leads to a way of expressing the semantics of a programming language
+by means of equations between well-formed terms of the corresponding signature.
+This kind of semantics is an algebraic semantics in the sense used in this paper.
+It is initial (in the category theory sense) among notions of semantics.
+
+The example is of a very simple typed programming language.
+It has typed variables and expressions and assignment and sequencing.
+It demonstrates how sort structures of the general kind
+can be used to express the constraints of typing.
+
+It should be noted that `ty_t` in the programming language
+and `type` in the metalanguage mean different things.
+
+``` js
+class simple_typed_language_t {
+  program_t: type
+  ty_t: type
+  exp_t(t: ty_t): type
+  var_t(t: ty_t): type
+
+  seq(p1: program_t, p2: program_t): program_t
+  write[t: ty_t](v: var_t(t), e: exp_t(t)): program_t
+  read[t: ty_t](v: var_t(t)): program_t
+  bool_ty: ty_t
+  true: exp_t(bool_ty)
+  false: exp_t(bool_ty)
+  and(b1: exp_t(bool_ty), b2: exp_t(bool_ty)): exp_t(bool_ty)
+  if(b: exp_t(bool_ty), p1: program_t, p2: program_t): program_t
+
+  // and so on
+}
+```
 
 ## 4. Predicates as types
 
