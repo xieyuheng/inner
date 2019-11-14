@@ -73,7 +73,7 @@ Thus, a generalised algebraic theory consists of
 
 - **[Xie]**
   The term "generalised algebraic theories" can be viewed as
-  using **abstract class** of programming languages to formalize algebraic structures.
+  using **class** of programming languages to formalize algebraic structures.
 
   An algebraic structure can be single sorted, such as `semigroup_t`, `group_t` and `ring_t` (the sort is elements), for example,
 
@@ -114,7 +114,7 @@ Thus, a generalised algebraic theory consists of
   ```
 
   Note that,
-  the formalization of category theory (the definition of abstract class `category_t`),
+  the formalization of category theory (the definition of class `category_t`),
   involves **dependent record type**,
   for the type `morphism_t` is indexed by elements of `(object_t, object_t)`.
 
@@ -131,3 +131,14 @@ Thus, a generalised algebraic theory consists of
   - Subtype (inheritance) -- to avoid re-implementation,
   - Quotient types -- which occurs very often in mathematical constructions,
   - Fulfilling type system -- to use type constructors in a flexible way.
+
+Whenever we speak of a model of a theory `U`, without qualification,
+then we shall mean a model in the usual sense, that is where
+type symbols are interpreted as sets,
+symbols for families of types are interpreted as families of sets,
+operator symbols are interpreted as operators,
+and so on.
+
+- **[Xie]**
+  If the theory `U` is a class,
+  a model of `U` is an instance of the class.
