@@ -145,7 +145,38 @@ and so on.
 
 ## 3. Examples
 
+The first example is a theory which can be called
+the theory of families of elements `b(x)` of families of sets `B(x)`:
 
+``` js
+class U {
+  A: type
+  B(x: A): type
+  b(x: A): B(x)
+}
+```
+
+A model `M` of the theory, is an instance of the class,
+
+``` js
+M : U
+
+M.A : type
+M.B : (x: M.A) -> type
+M.b : (x: M.A) -> M.B(x)
+```
+
+TODO
+
+``` js
+fA : (M: U, M1: U) -> M.A -> M1.A
+fB : (M: U, M1: U) -> (a: M.A) -> M.B (a) -> M1.B (fA (M, M1) (a))
+fB_eqv : (M: U, M1: U) -> (a: M.A) ->
+  the_eqv_t(
+    M1.B (a),
+    fB (M, M1) (a) (M.b (a)),
+    M1.b (fA (a)))
+```
 
 ## 4. Predicates as types
 
