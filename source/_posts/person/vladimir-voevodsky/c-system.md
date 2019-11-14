@@ -142,3 +142,33 @@ and so on.
 - **[Xie]**
   If the theory `U` is a class,
   a model of `U` is an instance of the class.
+
+## 3. Examples
+
+
+
+## 4. Predicates as types
+
+## 5. Context diagrams
+
+## 6. Essentially algebraic theories and categories with finite limits
+
+## 7. The generality of the algebraic semantics
+
+## 8. The formal definition
+
+## 9. The substitution lemma
+
+## 10. Informal syntax
+
+## 11. Models and homomorphisms
+
+## 12. The category GAT
+
+## 13. Contexts and realisations
+
+## 14. Contextual categories
+
+## 15. Fundorial semantics
+
+## 16. Universal algebra
