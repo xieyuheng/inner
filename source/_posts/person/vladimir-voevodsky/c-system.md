@@ -341,6 +341,8 @@ class simple_typed_language_t {
 
 ## 4. Predicates as types
 
+
+
 ## 5. Context diagrams
 
 ## 6. Essentially algebraic theories and categories with finite limits

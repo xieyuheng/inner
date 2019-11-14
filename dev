@@ -2,8 +2,8 @@
 
 function up {
     hexo clean && hexo generate && \
-        now switch xieyuheng && \
-        now -n inner deploy public --prod
+        surge public inner-universe.surge.sh
+        # now switch xieyuheng && now -n inner deploy public --prod
 }
 
 function main {

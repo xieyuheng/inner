@@ -7,7 +7,7 @@
 
 ---
 
-- [View](https://inner.xieyuheng.now.sh)
+- [View](http://inner-universe.surge.sh)
 - Inner
   - [Note](/docs/source/_posts/note)
   - [Person](/docs/source/_posts/person)
