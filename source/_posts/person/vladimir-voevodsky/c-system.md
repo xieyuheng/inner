@@ -139,9 +139,16 @@ symbols for families of types are interpreted as families of sets,
 operator symbols are interpreted as operators,
 and so on.
 
-- **[Xie]**
-  If the theory `U` is a class,
-  a model of `U` is an instance of the class.
+## [Xie] Note about model theory
+
+If the theory `U` is a class,
+a model of `U` is an instance of the class.
+
+| Programming    | Model theory | Proof theory    | Category theory |
+|----------------|--------------|-----------------|-----------------|
+| class          | theory       |                 |                 |
+| instance       | model        |                 |                 |
+| inductive type |              | inference rules | limit, adjoin   |
 
 ## 3. Examples
 
