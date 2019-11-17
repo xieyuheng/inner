@@ -118,7 +118,6 @@ Example deduction steps:
   Maybe we can use the syntax of deduction `{ ... |- ... }` as definition of function,
   whose argument types are fully annotated (de Bruijn style typed lambda calculus).
   The last element in conclusion is return value.
-  (Let's call this syntax **Gentzen**.)
 
   ``` js
   h : ((A + ((A) -> B)) -> B) -> B
@@ -305,14 +304,34 @@ proof {
   }
   ```
 
-- **[Xie]** In Gentzen,
+- **[Xie]** In cicada,
 
   ``` js
-  list_append : (list_t(A), list_t(A)) -> list_t(A)
+  list_append : {
+    l, m : list_t(A)
+    ---------
+    list_t(A)
+  }
   list_append = {
     l : list_t(A)
     m : list_t(A)
     |---------------------
+    g : (A, list_t(A), list_t(A)) -> list_t(A)
+    g = {
+      x : A
+      _ : list_t(A)
+      h : list_t(A)
+      |----------------
+      cons(x, h) : list_t(A)
+    }
+    list_elim(l, m, g) : list_t(A)
+  }
+
+  list_append : {
+    l, m : list_t(A)
+    ---------
+    list_t(A)
+  } = {
     g : (A, list_t(A), list_t(A)) -> list_t(A)
     g = {
       x : A

@@ -1,17 +1,13 @@
 # type theory
-- [roland-backhouse] fix the syntax of cicada?
-  pi type and lambda should be the same?
+- [roland-backhouse] fix the syntax
+- [C System] [John Cartmell] [1985] Generalised algebraic theories and contextual categories
 - [martin-löf] Constructive Mathematics and Computer Programming
 - [martin-löf] Intuitionistic Type Theory
-- [C System] [John Cartmell] [1985] Generalised algebraic theories and contextual categories
 - [henk-barendregt] Lambda Calculus With Types
 - [de-bruijn] automath
 # a theory of object
 # vladimir voevodsky
 - more about C System
-# gentzen
-- we design a language to honor gentzen
-- also use `{ }` as syntax of pi type
 # bebop
 # psychology
 - ideas and cognitive dissonance
