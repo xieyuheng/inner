@@ -1,0 +1,28 @@
+#+title: dependent category links
+
+* ><
+
+  - my question :
+    https://groups.google.com/forum/#!topic/homotopytypetheory/IU5bsqSNuiM
+
+  - fibrations :
+    https://ncatlab.org/nlab/show/categorical+model+of+dependent+types
+
+  - operad :
+
+    morphisms that have multiple sources
+    (multiple targets are easy to encode using products).
+    It’s called an operad.
+
+    https://bartoszmilewski.com/2015/10/07/operads-type-level-nats-and-tic-tac-toe/
+
+  - monoidal category
+
+    This looks more like a combination of composition and tensoring,
+    in a monoidal category.
+    Based on some stuff in a blog post :
+
+    - https://golem.ph.utexas.edu/category/2017/11/the_polycategory_of_multivaria.html
+
+    the cut rule is instead composition in a polycategory,
+    and you can only cut out one type at a time.

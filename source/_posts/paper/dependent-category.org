@@ -1,0 +1,322 @@
+#+html_head: <link rel="stylesheet" href="../css/org-page.css"/>
+#+title: Dependent category
+
+- Author : Xie Yuheng
+- Date : 2018-06-20
+- Keywords : Dependent type, Categorical model, Sequent calculus.
+
+* Abstract
+
+  - In this paper I show a generalization of the structure of category,
+    I call it `dependent category`,
+    because the motivation of defining it
+    is to use it to model the semantic of dependent type systems.
+
+* Background
+
+  - Currently, people often use the concept of fibration
+    to provide categorical model for dependent type systems.
+
+  - I wish to use a more direct approach to do the modeling,
+    to guide language design and implementation.
+
+  - A generalization of the structure of category seems natural to me.
+
+  - My concern is, If we generalize the structure of category,
+    then we can not directly reuse all the mathematical constructions
+    that have been developed based on the structure of category.
+
+  - It seems,
+    we have to re-develop all those constructions all over again,
+    but I am willing to try.
+
+* Motivating examples
+
+*** Composition of dependently typed functions
+
+    - Given two dependently typed functions :
+      f : (A x -> B x)
+      g : (B n -> C z)
+
+    - It is natural to unify `x` with `n',
+      and to compose the two functions
+      to get a function of type (A n -> C z).
+
+*** Composition in stack based concatenative language
+
+    - In a stack based concatenative language,
+      the following generalized function composition is natural :
+      f   : (T1, T2) -> (T3, T4)
+      g   : (T, T3, T4) -> (T6, T7)
+      f g : (T, T1, T2) -> (T6, T7)
+
+    - The semantics of the generalized composition are as following :
+      - Suppose there are data of type (T, T1, T2) on the stack;
+      - `f` takes data of type (T1, T2)
+        and transform them to (T3, T4),
+        leaving data of type (T, T3, T4) on the stack;
+      - `g` takes data of type (T, T3, T4)
+        and transform them to (T6, T7),
+        leaving data of type (T6, T7) on the stack.
+
+    - The about semantics can also be explained by unification :
+      [Thanks to Matt Oliveri, at HoTT group, for teaching me this.]
+      - Adding extra type variable to each function :
+        f   : (a, T1, T2) -> (a, T3, T4)
+        g   : (b, T, T3, T4) -> (b, T6, T7)
+      - Unify `a` with `(b, T)` we get :
+        f   : (b, T, T1, T2) -> (b, T, T3, T4)
+        g   : (b, T, T3, T4) -> (b, T6, T7)
+      - Compose `f` and `g` :
+        f g : (b, T, T1, T2) -> (b, T6, T7)
+      - Drop the extra type variable :
+        f g : (T, T1, T2) -> (T6, T7)
+
+    - Another example is :
+      f   : (T1, T2) -> (T, T3, T4)
+      g   : (T3, T4) -> (T6, T7)
+      f g : (T1, T2) -> (T, T6, T7)
+
+      - Similar treatment for this example
+        is left to reader as exercise.
+
+* The structure of category
+
+  - First we show the structure of category,
+    to let readers be familiar with the notations I used here.
+
+*** Objects and Arrows
+
+    - To specify the structure of category,
+      we need objects and arrows.
+
+    - And objects are used to type arrows,
+      We use `object-t` to name the type of objects,
+      And we often capitalize a name of an object.
+
+    #+begin_src cicada
+    A : object-t
+    #+end_src
+
+    - We use `=>` to name the type constructor for arrows,
+      and use it as an infix notation.
+      [We leave `->` to be used in meta language.]
+
+      We use `type-t` to name the type of type.
+
+    #+begin_src cicada
+    (=>) : object-t, object-t -> type-t
+
+    A : object-t
+    B : object-t
+
+    f : A => B
+    #+end_src
+
+    - We need to be able to prove two objects are equivalent,
+      thus, we need a proposition constructor to do this.
+
+      Since proposition is type,
+      a proposition constructor is also a type constructor,
+      we use `object-eqv-t` to name this type constructor.
+
+    #+begin_src cicada
+    object-eqv-t : object-t, object-t -> type-t
+    #+end_src
+
+    - We also need to be able to prove two arrows are equivalent,
+      we use `arrow-eqv-t` to name this type constructor.
+
+    #+begin_src cicada
+    arrow-eqv-t : (A => B), (A => B) -> type-t
+    #+end_src
+
+*** Identity and Compose
+
+    - For every object we have a unique identity arrow.
+
+    #+begin_src cicada
+    identity : (A : object-t) -> (A => A)
+    #+end_src
+
+    - We can compose two arrows.
+
+    #+begin_src cicada
+    compose : (A => B), (B => C) -> (A => C)
+    #+end_src
+
+    - Axioms of `identity` and `compose`
+
+    #+begin_src cicada
+    identity-left :
+      (f : (A => B)) ->
+      (arrow-eqv-t f (compose (identity A) f))
+
+    identity-right :
+      (f : (A => B)) ->
+      (arrow-eqv-t f (compose f (identity B)))
+
+    compose-associative :
+      (f : (A => B))
+      (g : (B => C))
+      (h : (C => D)) ->
+      (arrow-eqv-t
+        (compose f (compose g h))
+        (compose (compose f g) h))
+    #+end_src
+
+* The structure of dependent category
+
+  - From category to dependent category,
+    I change the name `compose` to `cut`,
+    in remembrance of Gentzen
+    and the `cut rule` of his sequence calculus.
+
+*** Objects and Arrows
+
+    - To specify the structure of dependent category,
+      we need objects and arrows as for category.
+
+      We repeat basic constructions :
+
+    #+begin_src cicada
+    A : object-t
+    B : object-t
+
+    (=>) : object-t, object-t -> type-t
+
+    f : A => B
+
+    object-eqv-t : object-t, object-t -> type-t
+
+    arrow-eqv-t : (A => B), (A => B) -> type-t
+    #+end_src
+
+*** A monoid of substitutions
+
+    - We also need a monoid of substitutions,
+      we use `substitution-t` to name the type of substitutions.
+
+    - We need to be able to prove two substitutions are equivalent,
+      we use `substitution-eqv-t` to name this type constructor.
+
+    #+begin_src cicada
+    substitution-eqv-t : substitution-t, substitution-t -> type-t
+    #+end_src
+
+    - The monoid can act on objects,
+      we use `substitute` to name the action.
+
+    #+begin_src cicada
+    substitute : substitution-t, object-t -> object-t
+    #+end_src
+
+    - Axiom of `substitute`
+      [suppose we use `(*)` to name the product in a monoid.]
+
+    #+begin_src cicada
+    substitute-is-monoid-action :
+      s1 : substitution-t
+      s2 : substitution-t ->
+      (A : object-t ->
+        (object-eqv-t
+           (substitute (* s1 s2) A)
+           (substitute s2 (substitute s2 A))))
+    #+end_src
+
+*** Unification of Objects
+
+    - Given two objects,
+      we need to be able to prove they are unifiable,
+      we use `unifiable-t` to name this type constructor.
+
+    #+begin_src cicada
+    unifiable-t : object-t, object-t -> type-t
+    #+end_src
+
+    - Axioms of `unifiable-t`
+
+    #+begin_src cicada
+    unifiable-reflex : (A : object-t) -> (unifiable-t A A)
+
+    unifiable-commute : (unifiable-t A B) -> (unifiable-t B A)
+    #+end_src
+
+    - Given two unifiable objects,
+      we can unify them to get a substitution.
+
+    #+begin_src cicada
+    unify :
+      (A : object-t)
+      (B : object-t)
+      (unifiable-t A B) ->
+      substitution-t
+    #+end_src
+
+    - Axioms of `unify`
+
+    #+begin_src cicada
+    unify-commute :
+      (A : object-t)
+      (B : object-t)
+      (unifiable-t A B) ->
+      (substitution-eqv-t
+        (unify A B)
+        (unify B A))
+
+    unify-respect-substitute
+    : (A : object-t)
+      (B : object-t)
+      (unifiable-t A B) ->
+      (object-eqv-t
+        (substitute (unify A B) A)
+        (substitute (unify A B) B))
+    #+end_src
+
+*** Identity and Cut
+
+    - For every object we have a unique identity arrow.
+
+    #+begin_src cicada
+    identity : (A : object-t) -> (A => A)
+    #+end_src
+
+    - We can cut two arrows,
+      provide that,
+      the codomain of the first arrow is unifiable with
+      the domain of the second arrow.
+
+    #+begin_src cicada
+    cut :
+      (A => B)
+      (C => D)
+      (unifiable-t B C) ->
+      ((substitute (unify B C) A) =>
+       (substitute (unify B C) D))
+    #+end_src
+
+    - Axioms of `identity`
+
+    #+begin_src cicada
+    identity-left :
+      (f : (A => B)) ->
+      (arrow-eqv-t f (cut (identity A) f))
+
+    identity-right :
+      (f : (A => B)) ->
+      (arrow-eqv-t f (cut f (identity B)))
+    #+end_src
+
+    - Axioms of `cut`
+
+    #+begin_src cicada
+    cut-associative :
+      (f : (A => B))
+      (g : (C => D))
+      (h : (E => F))
+      (unifiable-t B C)
+      (unifiable-t D F) ->
+      (arrow-eqv-t
+        (cut f (cut g h))
+        (cut (cut f g) h))
+    #+end_src
