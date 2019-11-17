@@ -13,6 +13,7 @@
     - [The Fixation of Belief](/person/charles-sanders-peirce/the-fixation-of-belief)
     - [How to Make Our Ideas Clear?](/person/charles-sanders-peirce/how-to-make-our-ideas-clear)
     - [On the algebra of logic](/person/charles-sanders-peirce/on-the-algebra-of-logic)
+  - Gottlob Frege / 戈特洛布 弗雷格
   - Errett Bishop / 毕少普
     - [Bishop's Four Principles of Constructivism](/person/errett-bishop/bishop-s-four-principles-of-constructivism)
   - Max Dehn / 马克斯 戴恩
