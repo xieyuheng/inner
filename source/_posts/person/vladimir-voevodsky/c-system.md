@@ -293,10 +293,10 @@ and one type symbol `sigma_t(A, B)` in such a way that
   that is to say as a set isomorphic to the disjoint union of the family of sets interpreting `B`.
 The extended theory is taken to be `U+`.
 
-- **[Xie]** I will define `sigma_t` as a datatype as the following.
+- **[Xie]** I will define `sigma_t` as a type as the following.
 
 ``` js
-datatype sigma_t(A: type, B: A -> type) {
+type sigma_t(A: type, B: A -> type) {
   pair(x: A, y: B(x)): sigma_t(x, y)
 }
 
@@ -348,9 +348,115 @@ class simple_typed_language_t {
 
 ## 4. Predicates as types
 
-TODO
+It is possible to introduce sort symbols into a generalised algebraic theory
+and then to axiomatise them in such a way as they are effectively predicate symbols.
+
+We do not work with relations directly
+but rather with their characteristic families.
+
+- **[Xie]** Which means that we define relations by predicates on tuple.
+
+- **[Xie]**
+  This chapter is about types that has either only one or none instance.
+
+  Such types are called "prop" or "proposition" by some authors,
+  because "a type has either only one or none instance"
+  is like "a proposition is either true or false".
+
+  The only information conveyed by a element (the only element) of a proposition-like type
+  is its existence, other than its existence no extra information is conveyed.
+
+  It is irrelevant how we proved a proposition-like type,
+  all that matters is that we proved it.
+
+  The `eqv_t` type is an important example of such types.
+
+The following theory (class) has as models (instances)
+just characteristic families of n-ary relations on a set.
+
+``` js
+class _ {
+  A: type
+  P(x1: A, x2: A, ..., xn: A): type
+
+  P_prop[x1: A, x2: A, ..., xn: A](
+    y1: P(x1: A, x2: A, ..., xn: A),
+    y2: P(x1: A, x2: A, ..., xn: A),
+  ): eqv_t(y1, y2)
+}
+
+// We may have this `prop` built-in the language.
+
+class _ {
+  A: type
+  P(x1: A, x2: A, ..., xn: A): prop
+}
+```
+
+- **[Xie]** The term **universal conditionals** is introduced by the author,
+  which might be understood as those axioms of predicates calculus
+  such as `A1 & A2 & ... & An -> P`,
+  that we plan to formalize by means of `prop`.
+
+Three kinds of universal conditionals -- `A1 & A2 & ... & An -> P`,
+
+- (1) Where `A1, A2, ..., An, P: prop`,
+  for example the transitivity of a binary predicate `P`
+  is expressed by the introduction of a new `transitive_t`,
+
+  ``` js
+  A: type
+  P(x1: A, x2: A): prop
+  transitive_t[x1: A, x2: A, x3: A](
+    y1: P(x1, x2),
+    y2: P(x2, x3),
+  ): P(x1, x3)
+  ```
+
+  The point is that once `P` is interpreted,
+  then `transitive_t` is interpretable in at most one way
+  and then only in case the interpretation of `P` is transitive.
+
+  - **[Xie]** The above remark about model theory
+    is always ensured by the relation between a class and its instances in our language.
+    Is it so?
+
+- (2) Where `A1, A2, ..., An: prop` and `P: eqv_t`,
+  for example the anti-symmetry of a binary predicate `P`,
+
+  ``` js
+  A: type
+  P(x1: A, x2: A): prop
+  anti_symmetric_t[x1: A, x2: A](
+    y1: P(x1, x2),
+    y2: P(x2, x1),
+  ): eqv_t(x1, x2)
+  ```
+
+- (3) Where one of `A` is of type `eqv_t`,
+  the definition of `eqv_t` captures the notion of built-in equivalence,
+  because of the same variable occurred twice.
+
+  ``` js
+  prop eqv_t[A: type](p: A, A) {
+    refl: eqv_t(p, p)
+  }
+  ```
+
+  for example the theory of a one-to-one function `f: A -> B`,
+
+  ``` js
+  A: type
+  B: type
+  f(x: A): B
+  one_to_one[x1: A, x2: A](
+    y: eqv_t(f(x1), f(x2))
+  ): eqv_t(x1, x2)
+  ```
 
 ## 5. Context diagrams
+
+TODO
 
 ## 6. Essentially algebraic theories and categories with finite limits
 

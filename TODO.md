@@ -1,6 +1,14 @@
+# type theory
+- [roland-backhouse] fix the syntax of cicada?
+  pi type and lambda should be the same?
+- [martin-löf] Constructive Mathematics and Computer Programming
+- [martin-löf] Intuitionistic Type Theory
+- [C System] [John Cartmell] [1985] Generalised algebraic theories and contextual categories
+- [henk-barendregt] Lambda Calculus With Types
+- [de-bruijn] automath
 # a theory of object
 # vladimir voevodsky
-- C System
+- more about C System
 # gentzen
 - we design a language to honor gentzen
 - also use `{ }` as syntax of pi type
@@ -9,11 +17,6 @@
 - ideas and cognitive dissonance
   - ideas that is good to survive
   - ideas that lower cognitive dissonance
-# type theory
-- [martin-löf] Constructive Mathematics and Computer Programming
-- [martin-löf] Intuitionistic Type Theory
-- [henk-barendregt] Lambda Calculus With Types
-- [de-bruijn] automath
 # logic
 - [note] we study a logic by its
   - proof theory
