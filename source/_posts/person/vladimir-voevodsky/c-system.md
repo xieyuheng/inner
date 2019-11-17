@@ -10,6 +10,9 @@ The C System was introduced by John Cartmell under the name "contextual categori
 but since the algebraic structure so introduced is not invariant under equivalences of categories.
 The Terminology "pre-category" and "C System" was suggested by Vladimir Voevodsky.
 
+- **[Xie]** We can call C System, **subtype pre-category**,
+  there are other kinds of pre-categories, such as action **substitution pre-category**.
+
 ## [John Cartmell] [1985] Generalised algebraic theories and contextual categories
 
 - **[Xie]**
@@ -82,9 +85,13 @@ Thus, a generalised algebraic theory consists of
     // (i) a set of sorts
     elem_t : type
     // (ii) a set of operator symbols
-    mul(x : elem_t, y : elem_t) : elem_t
+    mul : { x, y : elem_t --- elem_t }
     // (iii) a set of axioms
-    mul_associative(x : elem_t, y : elem_t, z : elem_t) : eqv_t(mul(x, mul(y, z)), mul(mul(x, y), z))
+    mul_associative : {
+      x, y, z : elem_t
+      ---------
+      eqv_t(mul(x, mul(y, z)), mul(mul(x, y), z))
+    }
   }
   ```
 
@@ -95,21 +102,37 @@ Thus, a generalised algebraic theory consists of
   class category_t {
     // (i) a set of sorts
     object_t : type
-    morphism_t(object_t, object_t) : type
+    morphism_t : { dom, cod : object_t --- type }
     // (ii) a set of operator symbols
-    id(a : object_t) : morphism_t(a, a)
-    compose[a : object_t, b : object_t, c : object_t](
-      f : morphism_t(a, b),
-      g : morphism_t(b, c),
-    ) : morphism_t(a, c)
+    id : { a : object_t --- morphism_t(a, a) }
+    compose : {
+      [ a, b, c : object_t ]
+      f : morphism_t(a, b)
+      g : morphism_t(b, c)
+      ---------
+      morphism_t(a, c)
+    }
     // (iii) a set of axioms
-    id_left[a : object_t, b : object_t](f : morphism_t(a, b)) : eqv_t(compose(id(a), f), f)
-    id_right[a : object_t, b : object_t](f : morphism_t(a, b)) : eqv_t(compose(f, id(b)), f)
-    compose_associative[a : object_t, b : object_t, c : object_t, d : object_t](
-      f : morphism_t(a, b),
-      g : morphism_t(b, c),
-      h : morphism_t(c, d),
-    ) : eqv_t(compose(f, compose(g, h)), compose(compose(f, g), h))
+    id_left : {
+      [ a, b : object_t ]
+      f : morphism_t(a, b)
+      ---------
+      eqv_t(compose(id(a), f), f)
+    }
+    id_right : {
+      [ a, b : object_t ]
+      f : morphism_t(a, b)
+      ---------
+      eqv_t(compose(f, id(b)), f)
+    }
+    compose_associative : {
+      [ a, b, c, d : object_t ]
+      f : morphism_t(a, b)
+      g : morphism_t(b, c)
+      h : morphism_t(c, d)
+      ---------
+      eqv_t(compose(f, compose(g, h)), compose(compose(f, g), h))
+    }
   }
   ```
 
@@ -159,8 +182,8 @@ of families of sets `B(x : A)`:
 ``` js
 class U1 {
   A : type
-  B(x : A) : type
-  b(x : A) : B(x)
+  B : { x : A --- type }
+  b : { x : A --- B(x) }
 }
 ```
 
@@ -170,21 +193,36 @@ A model `M` of the theory, is an instance of the class,
 M : U1
 
 M.A : type
-M.B : (x : M.A) -> type
-M.b : (x : M.A) -> M.B(x)
+M.B : { x : M.A --- type }
+M.b : { x : M.A --- M.B(x) }
 ```
 
 Given two instances `M` and `M1` of `U1`,
 then a homomorphism `f` between `M` and `M1` contains `fA`, `fB` and `fB_eqv`,
 
 ``` js
-fA(M : U1, M1 : U1) : M.A -> M1.A
-fB(M : U1, M1 : U1) : (a : M.A) -> M.B(a) -> M1.B(fA(M, M1)(a))
-fB_eqv(M : U1, M1 : U1) : (a : M.A) ->
+fA : {
+  M, M1 : U1
+  a : M.A
+  ---------
+  M1.A
+}
+fB : {
+  M, M1 : U1
+  a : M.A
+  b : M.B(a)
+  ---------
+  M1.B(fA(M, M1)(a))
+}
+fB_eqv : {
+  M, M1 : U1
+  a : M.A
+  ---------
   the_eqv_t(
     M1.B (a),
     fB(M, M1)(a)(M.b(a)),
     M1.b(fA(a)))
+}
 ```
 
 This means that there is a generalised algebraic theory (generalised class)
@@ -194,13 +232,28 @@ whose models (instances) are just homomorphisms between the models of the given 
 class U1F {
   M : U1
   M1 : U1
-  fA(M : U1, M1 : U1) : M.A -> M1.A
-  fB(M : U1, M1 : U1) : (a : M.A) -> M.B(a) -> M1.B(fA(M, M1)(a))
-  fB_eqv(M : U1, M1 : U1) : (a : M.A) ->
+  fA : {
+    M, M1 : U1
+    a : M.A
+    ---------
+    M1.A
+  }
+  fB : {
+    M, M1 : U1
+    a : M.A
+    b : M.B(a)
+    ---------
+    M1.B(fA(M, M1)(a))
+  }
+  fB_eqv : {
+    M, M1 : U1
+    a : M.A
+    ---------
     the_eqv_t(
       M1.B (a),
       fB(M, M1)(a)(M.b(a)),
       M1.b(fA(a)))
+  }
 }
 ```
 
@@ -211,9 +264,9 @@ of families of families of sets `C(x : A, y : B(x))`:
 ``` js
 class U2 {
   A : type
-  B(x : A) : type
-  C(x : A, y : B(x)) : type
-  c(x : A, y : B(x)) : C(x, y)
+  B : { x : A --- type }
+  C : { x : A; y : B(x) --- type }
+  c : { x : A; y : B(x) --- C(x, y) }
 }
 ```
 
@@ -225,8 +278,9 @@ by the rule `C[x : A](y : B(x)) : type`,
 class U2 {
   A : type
   B(x : A) : type
-  C[x : A](y : B(x)) : type
-  c[x : A](y : B(x)) : C(y)
+  B : { x : A --- type }
+  C : { [x : A] y : B(x) --- type }
+  c : { [x : A] y : B(x) --- C(x) }
 }
 ```
 
@@ -248,9 +302,9 @@ would be shared among countably many distinct symbols.
 ``` js
 class tree_t {
   S1 : type
-  S2(x1 : S1) : type
-  S3[x1 : S1](x2 : S2(x1)) : type
-  S4[x1 : S1, x2 : S2(x1)](x3 : S3(x2)) : type
+  S2 : { x1 : S1 --- type }
+  S3 : { [x1 : S1] x2 : S2(x1) --- type }
+  S4 : { [x1 : S1; x2 : S2(x1)] x3 : S3(x2) --- type }
   ...
 }
 ```
@@ -265,19 +319,25 @@ The same methods can be used in presenting the theory of functors informally.
 class functor_t {
   dom : category_t
   cod : category_t
-  map(a : dom.object_t) : cod.object_t
-  fmap(f : dom.morphism_t(a, b)) : cod.morphism_t(map(a), map(b))
-  fmap_respect_then(
-    f : dom.morphism_t(a, b),
-    g : dom.morphism_t(b, c),
-  ) : the_eqv_t(
-    cod.morphism_t(map(a), map(c)),
-    fmap(dom.compose(f, g)),
-    cod.compose(fmap(f), fmap(g)))
-  fmap_respect_id(a : dom.object_t) : the_eqv_t(
-    cod.morphism_t(map(a), map(a)),
-    fmap(dom.id(a)),
-    cod.id(map(a)))
+  map : { a : dom.object_t --- cod.object_t }
+  fmap : { f : dom.morphism_t(a, b) --- cod.morphism_t(map(a), map(b)) }
+  fmap_respect_compose : {
+    f : dom.morphism_t(a, b)
+    g : dom.morphism_t(b, c)
+    ---------
+    the_eqv_t(
+      cod.morphism_t(map(a), map(c)),
+      fmap(dom.compose(f, g)),
+      cod.compose(fmap(f), fmap(g)))
+  }
+  fmap_respect_id : {
+    a : dom.object_t
+    ---------
+    the_eqv_t(
+      cod.morphism_t(map(a), map(a)),
+      fmap(dom.id(a)),
+      cod.id(map(a)))
+  }
 }
 ```
 
@@ -296,14 +356,25 @@ The extended theory is taken to be `U+`.
 - **[Xie]** I will define `sigma_t` as a type as the following.
 
 ``` js
-type sigma_t(A : type, B : A -> type) {
-  pair(x : A, y : B(x)) : sigma_t(x, y)
+sigma_t : {
+  A : type
+  B : { A --- type }
+  ---------
+  type
+}
+sigma_t = datacons {
+  pair : {
+    x : A
+    y : B(x)
+    ---------
+    sigma_t(x, y)
+  }
 }
 
-fst[x : A, y : B(x)](z : sigma_t(x, y)) : A
+fst : { [x : A, y : B(x)] z : sigma_t(x, y) --- A }
 fst(pair(x, y)) = x
 
-snd[x : A, y : B(x)](z : sigma_t(x, y)) : B(x)
+snd : { [x : A, y : B(x)] z : sigma_t(x, y) --- B(x) }
 snd(pair(x, y)) = y
 
 pair(fst(z), snd(z)) == z
@@ -330,17 +401,37 @@ and `type` in the metalanguage mean different things.
 class simple_typed_language_t {
   program_t : type
   ty_t : type
-  exp_t(t : ty_t) : type
-  var_t(t : ty_t) : type
+  exp_t : { t : ty_t --- type }
+  var_t : { t : ty_t --- type }
 
-  seq(p1 : program_t, p2 : program_t) : program_t
-  write[t : ty_t](v : var_t(t), e : exp_t(t)) : program_t
-  read[t : ty_t](v : var_t(t)) : program_t
+  seq : { p1, p2 : program_t --- program_t }
+  write : {
+    [ t : ty_t ]
+    v : var_t(t)
+    e : exp_t(t)
+    ---------
+    program_t
+  }
+  read : {
+    [ t : ty_t ]
+    v : var_t(t)
+    ---------
+    program_t
+  }
   bool_ty : ty_t
   true : exp_t(bool_ty)
   false : exp_t(bool_ty)
-  and(b1 : exp_t(bool_ty), b2 : exp_t(bool_ty)) : exp_t(bool_ty)
-  if(b : exp_t(bool_ty), p1 : program_t, p2 : program_t) : program_t
+  and : {
+    b1, b2 : exp_t(bool_ty)
+    ---------
+    exp_t(bool_ty)
+  }
+  if : {
+    b : exp_t(bool_ty)
+    p1, p2 : program_t
+    ---------
+    program_t
+  }
 
   // and so on
 }
@@ -377,19 +468,22 @@ just characteristic families of n-ary relations on a set.
 ``` js
 class _ {
   A : type
-  P(x1 : A, x2 : A, ..., xn : A) : type
+  P : { x1, x2, ..., xn : A --- type }
 
-  P_prop[x1 : A, x2 : A, ..., xn : A](
-    y1 : P(x1 : A, x2 : A, ..., xn : A),
-    y2 : P(x1 : A, x2 : A, ..., xn : A),
-  ) : eqv_t(y1, y2)
+  P_prop : {
+    [ x1, x2, ..., xn : A ]
+    y1 : P(x1, x2, ..., xn)
+    y2 : P(x1, x2, ..., xn)
+    ---------
+    eqv_t(y1, y2)
+  }
 }
 
 // We may have this `prop` built-in the language.
 
 class _ {
   A : type
-  P(x1 : A, x2 : A, ..., xn : A) : prop
+  P : { x1, x2, ..., xn : A --- prop }
 }
 ```
 
@@ -406,11 +500,14 @@ Three kinds of universal conditionals -- `A1 & A2 & ... & An -> P`,
 
   ``` js
   A : type
-  P(x1 : A, x2 : A) : prop
-  transitive_t[x1 : A, x2 : A, x3 : A](
-    y1 : P(x1, x2),
-    y2 : P(x2, x3),
-  ) : P(x1, x3)
+  P : { x1, x2 : A --- prop }
+  transitive_t : {
+    [ x1, x2, x3 : A ]
+    y1 : P(x1, x2)
+    y2 : P(x2, x3)
+    ---------
+    P(x1, x3)
+  }
   ```
 
   The point is that once `P` is interpreted,
@@ -426,11 +523,14 @@ Three kinds of universal conditionals -- `A1 & A2 & ... & An -> P`,
 
   ``` js
   A : type
-  P(x1 : A, x2 : A) : prop
-  anti_symmetric_t[x1 : A, x2 : A](
-    y1 : P(x1, x2),
-    y2 : P(x2, x1),
-  ) : eqv_t(x1, x2)
+  P : { x1, x2 : A --- prop }
+  anti_symmetric_t : {
+    [ x1, x2 : A ]
+    y1 : P(x1, x2)
+    y2 : P(x2, x1)
+    ---------
+    eqv_t(x1, x2)
+  }
   ```
 
 - (3) Where one of `A` is of type `eqv_t`,
@@ -438,20 +538,29 @@ Three kinds of universal conditionals -- `A1 & A2 & ... & An -> P`,
   because of the same variable occurred twice.
 
   ``` js
-  prop eqv_t[A : type](p : A, A) {
+  eqv_t : {
+    [ A : type ]
+    p : A
+    q : A
+    ---
+    prop
+  } = datacons {
     refl : eqv_t(p, p)
   }
   ```
 
-  for example the theory of a one-to-one function `f : A -> B`,
+  for example the theory of a one-to-one function `f : A --- B`,
 
   ``` js
   A : type
   B : type
-  f(x : A) : B
-  one_to_one[x1 : A, x2 : A](
+  f : { x : A --- B }
+  one_to_one : {
+    [ x1, x2 : A ]
     y : eqv_t(f(x1), f(x2))
-  ) : eqv_t(x1, x2)
+    ---------
+    eqv_t(x1, x2)
+  }
   ```
 
 ## 5. Context diagrams
