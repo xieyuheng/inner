@@ -34,6 +34,7 @@
     - [Do-it-yourself Type Theory](/person/roland-backhouse/do-it-yourself-type-theory)
   - Peter Dybjer / 彼得 迪比尔
     - [Inductive Families](/person/peter-dybjer/inductive-families)
+  - Alexander Grothendieck / 亚历山大 格罗滕迪克
   - William Lawvere / 威廉 劳维尔
     * [Functorial Semantics of Algebraic Theories (Short)](/person/william-lawvere/functorial-semantics-of-algebraic-theories--short)
     * [Functorial Semantics of Algebraic Theories](/person/william-lawvere/functorial-semantics-of-algebraic-theories)

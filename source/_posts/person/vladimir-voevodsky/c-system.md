@@ -348,7 +348,7 @@ class simple_typed_language_t {
 
 ## 4. Predicates as types
 
-
+TODO
 
 ## 5. Context diagrams
 
