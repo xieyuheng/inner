@@ -1,4 +1,5 @@
 # type theory
+- [alexander-grothendieck]
 - [roland-backhouse] DIYTT, finish
 - [C System] [John Cartmell] [1985] Generalised algebraic theories and contextual categories
 - [martin-löf] Constructive Mathematics and Computer Programming
