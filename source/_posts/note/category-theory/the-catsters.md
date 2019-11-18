@@ -17,7 +17,9 @@ A functor is a morphism between categories (in the category of categories).
 A natural transformation is a morphism between functors (in the category of functors),
 where the `dom` and `cod` of the functors must be the same.
 
-Natural transformation is like homotopy `h : X * I -> Y` between two functions `f, g : X -> Y`,
+Natural transformation is like homotopy,
+given two functions `f, g : X -> Y`,
+and homotopy `h : X * I -> Y` between `f` and `g`,
 `(i) => h(x, i) : I -> Y` is a path from `f(x)` to `g(x)`.
 
 Natural transformation == functor of type `C * I -> D`,
