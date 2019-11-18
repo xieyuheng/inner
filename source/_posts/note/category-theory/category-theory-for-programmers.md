@@ -505,7 +505,26 @@ Every time we see mappings or arrows, we ask can we compose them.
 
 - **[Xie]** We try hard to observe pattern of structures.
 
-We enriched the structure of category to bicategory.
+- **[Xie]** Composing commuting squares is composing equation of morphisms.
+  `a b == c d` and `d e == f g` compose to `a b e == c f g`.
+
+We can extends `category_t` to `strict_two_category_t`
+by enrich the structure of homset with category.
+
+The `functor_category_t` is defined,
+and they are exponential objects in category of categories,
+which means `strict_two_category_t` is Cartesian closed.
+
+From `strict_two_category_t` we can define `bicategory_t`,
+by not to use equality between morphisms,
+but to use isomorphism between morphisms in `functor_category_t`
+to describe laws like associativity.
+
+Because of complicated coherent laws occured in n-category,
+we study n-groupoid where such coherent laws are simple.
+
+- **[Xie]** We need an example to demonstrate
+  how coherent laws of n-category are complicated.
 
 ## I 10.1 Monads
 

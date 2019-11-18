@@ -11,7 +11,7 @@ but since the algebraic structure so introduced is not invariant under equivalen
 The Terminology "pre-category" and "C System" was suggested by Vladimir Voevodsky.
 
 - **[Xie]** We can call C System, **contextual pre-category**,
-  there are other kinds of pre-categories, such as action **substitution pre-category**.
+  there are other kinds of pre-categories, such as action **substitutional pre-category**.
 
   Unlike [enriched category](https://en.wikipedia.org/wiki/Enriched_category), which add structure to homsets,
   pre-category add structure to objects.
