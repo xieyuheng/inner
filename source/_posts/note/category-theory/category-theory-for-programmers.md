@@ -501,7 +501,11 @@ Such polymorphic function defined in Haskell is automatically natural.
 Let's talk about category theory in a really wild area,
 push the view of category theory to as far as we can.
 
-Enriched the structure of category to bicategory.
+Every time we see mappings or arrows, we ask can we compose them.
+
+- **[Xie]** We try hard to observe pattern of structures.
+
+We enriched the structure of category to bicategory.
 
 ## I 10.1 Monads
 
