@@ -464,6 +464,9 @@ category with terminal object, product object and exponential object.
 Cartesian closed category with initial object and sum object.
 
 ## I 8.2 Type algebra, Curry-Howard-Lambek isomorphism
+
+The "-Lambek" in "Curry-Howard-Lambek" means extends Curry-Howard isomorphism to category theory.
+
 ## I 9.1 Natural transformations
 ## I 9.2 Bicategories
 ## I 10.1 Monads
