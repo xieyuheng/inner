@@ -86,13 +86,13 @@ About variable,
 ``` js
 A type
 ------------------ // assumption
-{ x : A --- x : A }
+{ x : A -> x : A }
 ```
 
 About arrow,
 
 ``` js
-{ x : A --- f(x) : B }
+{ x : A -> f(x) : B }
 ------------------------ // lambda-introduction
 (x) => f(x) : (A) -> B
 
@@ -140,7 +140,7 @@ example = {
 ```
 
 - **[Xie]**
-  We use the syntax of deduction `{ ... --- ... }` as definition of function,
+  We use the syntax of deduction `{ ... -> ... }` as definition of function,
   whose argument types are fully annotated (de Bruijn style typed lambda calculus).
   The last element in conclusion is return value.
 
@@ -250,13 +250,13 @@ list_t : {
   A : type
   ---------
   type
-} = datacons {
-  nil : {
+} = {
+  case nil : {
     [ A : type ]
     ---------
     list_t(A)
   }
-  cons : {
+  case cons : {
     [ A : type ]
     a : A
     l : list_t(A)
@@ -316,7 +316,7 @@ Or,
 ``` js
 list_elim : {
   [ A : type
-    C : { w : list_t(A) --- type } ]
+    C : { w : list_t(A) -> type } ]
   x : list_t(A)
   y : C(nil)
   z : {
@@ -428,7 +428,7 @@ The list of premises in `nil-introduction` is empty,
 thus we simply delete `x : list_t(A)` from the `list-elimination` rule.
 
 ``` js
-{ w : list_t(A) --- C(w) type }
+{ w : list_t(A) -> C(w) type }
 y : C(nil)
 { a : A, l : list_t(A), h : C(l)
   ------------------------
@@ -447,7 +447,7 @@ The list of premises in `cons-introduction` is `{ a : A, l : list_t(A) }`.
 We can just follow the type to get the right right hand side of the equality.
 
 ``` js
-{ w : list_t(A) --- C(w) type }
+{ w : list_t(A) -> C(w) type }
 a : A
 l : list_t(A)
 y : C(nil)
@@ -492,24 +492,24 @@ b : B
 ----------------- // inr-introduction
 inl(b) : A + B
 
-{ w : A + B --- C(w) type }
+{ w : A + B -> C(w) type }
 d : A + B
-{ a : A --- e(a) : C(inl(a)) }
-{ b : B --- f(b) : C(inr(b)) }
+{ a : A -> e(a) : C(inl(a)) }
+{ b : B -> f(b) : C(inr(b)) }
 ------------------------------- // sum-elimination
 sum_elim(d, e, f) : C(d)
 
-{ w : A + B --- C(w) type }
+{ w : A + B -> C(w) type }
 a : A
-{ a : A --- e(a) : C(inl(a)) }
-{ b : B --- f(b) : C(inr(b)) }
+{ a : A -> e(a) : C(inl(a)) }
+{ b : B -> f(b) : C(inr(b)) }
 --------------------------------------------- // inl-computation
 sum_elim(inl(a), e, f) == e(a) : C(inl(a))
 
-{ w : A + B --- C(w) type }
+{ w : A + B -> C(w) type }
 b : B
-{ a : A --- e(a) : C(inl(a)) }
-{ b : B --- f(b) : C(inr(b)) }
+{ a : A -> e(a) : C(inl(a)) }
+{ b : B -> f(b) : C(inr(b)) }
 --------------------------------------------- // inr-computation
 sum_elim(inr(b), e, f) == f(b) : C(inr(b))
 ```
@@ -520,7 +520,7 @@ sum_elim(inr(b), e, f) == f(b) : C(inr(b))
 ----------------- // absurd-formation
 absurd_t type
 
-{ w : absurd_t --- C(w) type }
+{ w : absurd_t -> C(w) type }
 r : absurd_t
 --------------------------- // absurd-elimination
 absurd_elim(r) : C(r)
@@ -534,7 +534,7 @@ B type
 --------------- // arrow-formation
 (A) -> B type
 
-{ x : A --- f(x) : B }
+{ x : A -> f(x) : B }
 ------------------------ // lambda-introduction
 (x) => f(x) : (A) -> B
 
@@ -544,7 +544,7 @@ f : (A) -> B
 f(a) : B
 
 a : A
-{ x : A --- f(x) : B }
+{ x : A -> f(x) : B }
 ---------------------------- // lambda-computation (beta-reduction)
 { (x) => f(x) } (a) == f(a) : B
 ```
@@ -552,7 +552,7 @@ a : A
 We observe that we can not follow the pattern of "Free Type Structures" any more.
 The introduction rule of arrow type (`lambda-introduction`)
 is different from that of `list_t` or `nat_t`,
-for the premise `{ x : A --- f(x) : B }` has a hypothesis (`x : A`).
+for the premise `{ x : A -> f(x) : B }` has a hypothesis (`x : A`).
 
 - **[Xie]** *F-algebra* and *F-coalgebra* generalize this.
   Would it be easier to describe them in jojo?
@@ -589,7 +589,7 @@ refl(a) : eqv_t(A, a, b)
 - **[Xie]** The `replace` rule,
 
   ``` js
-  { w : A --- C(w) type }
+  { w : A -> C(w) type }
   p : eqv_t(A, x, y)
   base : C(x)
   --------------------------
@@ -604,13 +604,13 @@ refl(a) : eqv_t(A, a, b)
 - **[Xie]** Another elimination rule for `eqv_t`,
 
   ``` js
-  { x : A, y : A, p : eqv_t(A, x, y) --- C(x, y, p) }
-  { x : A --- s(x) : C(x, x, refl(x)) }
+  { x : A, y : A, p : eqv_t(A, x, y) -> C(x, y, p) }
+  { x : A -> s(x) : C(x, x, refl(x)) }
   ------------------------------------------- // eqv-elimination
   eqv_ind(x, y, p, s) : C(x, y, p)
 
-  { x : A, y : A, p : eqv_t(A, x, y) --- C(x, y, p) }
-  { x : A --- s(x) : C(x, x, refl(x)) }
+  { x : A, y : A, p : eqv_t(A, x, y) -> C(x, y, p) }
+  { x : A -> s(x) : C(x, x, refl(x)) }
   ------------------------------------------- // eqv-computation
   eqv_ind(x, x, refl(x), s) ==
   s(x, x, refl(x)) : C(x, x, refl(x))
@@ -658,7 +658,7 @@ note that a function must give equal values
 when applied to equal objects.
 
 ``` js
-{ w : bag_t(A) --- C(w) type }
+{ w : bag_t(A) -> C(w) type }
 t : A
 c : C(bag_empty)
 { a : A, s : bag_t(A), h : C(s)
@@ -699,7 +699,7 @@ Information loss from an existential type (dependent product type) to a subset t
 
 ``` js
 A type
-{ x : A --- B(x) type }
+{ x : A -> B(x) type }
 ------------------------- // exists-formation
 exists(A, B)
 
@@ -711,7 +711,7 @@ pair(a, b) : exists(A, B)
 
 ``` js
 A type
-{ x : A --- B(x) type }
+{ x : A -> B(x) type }
 ------------------------- // subset-formation
 subset_t(A, B)
 
@@ -720,9 +720,9 @@ b : B(a)
 ------------------------- // subset-introduction
 a : subset_t(A, B)
 
-{ w : subset_t(A, B) --- C(w) }
+{ w : subset_t(A, B) -> C(w) }
 a : subset_t(A, B)
-{ x : A, y : B(x) --- c(x) : C(x) }
+{ x : A, y : B(x) -> c(x) : C(x) }
 ----------------------------------- // subset-elimination
 c(a) : C(a)
 ```
@@ -764,7 +764,7 @@ The first, and more general form, we shall refer to as the intersection type con
 
 ``` js
 A type
-{ x : A --- B(x) type }
+{ x : A -> B(x) type }
 --------------------------- // intersection-formation
 intersection_t(A, B) type
 ```
@@ -773,11 +773,11 @@ The polymorphic function type may be viewed as a special case of dependent funct
 whose objects are constant functions.
 
 ``` js
-{ x : A --- b(x) : B(x) }
+{ x : A -> b(x) : B(x) }
 --------------------------- // forall-introduction
 (x) => b(x) : forall (A, B)
 
-{ x : A --- b : B(x) }
+{ x : A -> b : B(x) }
 --------------------------- // intersection-introduction
 b : intersection_t(A, B)
 ```

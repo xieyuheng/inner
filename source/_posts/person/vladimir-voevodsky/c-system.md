@@ -85,7 +85,7 @@ Thus, a generalised algebraic theory consists of
     // (i) a set of sorts
     elem_t : type
     // (ii) a set of operator symbols
-    mul : { x, y : elem_t --- elem_t }
+    mul : { x, y : elem_t -> elem_t }
     // (iii) a set of axioms
     mul_associative : {
       x, y, z : elem_t
@@ -102,9 +102,9 @@ Thus, a generalised algebraic theory consists of
   class category_t {
     // (i) a set of sorts
     object_t : type
-    morphism_t : { dom, cod : object_t --- type }
+    morphism_t : { dom, cod : object_t -> type }
     // (ii) a set of operator symbols
-    id : { a : object_t --- morphism_t(a, a) }
+    id : { a : object_t -> morphism_t(a, a) }
     compose : {
       [ a, b, c : object_t ]
       f : morphism_t(a, b)
@@ -182,8 +182,8 @@ of families of sets `B(x : A)`:
 ``` js
 class U1 {
   A : type
-  B : { x : A --- type }
-  b : { x : A --- B(x) }
+  B : { x : A -> type }
+  b : { x : A -> B(x) }
 }
 ```
 
@@ -193,8 +193,8 @@ A model `M` of the theory, is an instance of the class,
 M : U1
 
 M.A : type
-M.B : { x : M.A --- type }
-M.b : { x : M.A --- M.B(x) }
+M.B : { x : M.A -> type }
+M.b : { x : M.A -> M.B(x) }
 ```
 
 Given two instances `M` and `M1` of `U1`,
@@ -264,9 +264,9 @@ of families of families of sets `C(x : A, y : B(x))`:
 ``` js
 class U2 {
   A : type
-  B : { x : A --- type }
-  C : { x : A; y : B(x) --- type }
-  c : { x : A; y : B(x) --- C(x, y) }
+  B : { x : A -> type }
+  C : { x : A; y : B(x) -> type }
+  c : { x : A; y : B(x) -> C(x, y) }
 }
 ```
 
@@ -278,9 +278,9 @@ by the rule `C[x : A](y : B(x)) : type`,
 class U2 {
   A : type
   B(x : A) : type
-  B : { x : A --- type }
-  C : { [x : A] y : B(x) --- type }
-  c : { [x : A] y : B(x) --- C(x) }
+  B : { x : A -> type }
+  C : { [x : A] y : B(x) -> type }
+  c : { [x : A] y : B(x) -> C(x) }
 }
 ```
 
@@ -302,9 +302,9 @@ would be shared among countably many distinct symbols.
 ``` js
 class tree_t {
   S1 : type
-  S2 : { x1 : S1 --- type }
-  S3 : { [x1 : S1] x2 : S2(x1) --- type }
-  S4 : { [x1 : S1; x2 : S2(x1)] x3 : S3(x2) --- type }
+  S2 : { x1 : S1 -> type }
+  S3 : { [x1 : S1] x2 : S2(x1) -> type }
+  S4 : { [x1 : S1; x2 : S2(x1)] x3 : S3(x2) -> type }
   ...
 }
 ```
@@ -319,8 +319,8 @@ The same methods can be used in presenting the theory of functors informally.
 class functor_t {
   dom : category_t
   cod : category_t
-  map : { a : dom.object_t --- cod.object_t }
-  fmap : { f : dom.morphism_t(a, b) --- cod.morphism_t(map(a), map(b)) }
+  map : { a : dom.object_t -> cod.object_t }
+  fmap : { f : dom.morphism_t(a, b) -> cod.morphism_t(map(a), map(b)) }
   fmap_respect_compose : {
     f : dom.morphism_t(a, b)
     g : dom.morphism_t(b, c)
@@ -358,12 +358,12 @@ The extended theory is taken to be `U+`.
 ``` js
 sigma_t : {
   A : type
-  B : { A --- type }
+  B : { A -> type }
   ---------
   type
 }
-sigma_t = datacons {
-  pair : {
+sigma_t = {
+  case pair : {
     x : A
     y : B(x)
     ---------
@@ -371,10 +371,10 @@ sigma_t = datacons {
   }
 }
 
-fst : { [x : A, y : B(x)] z : sigma_t(x, y) --- A }
+fst : { [x : A, y : B(x)] z : sigma_t(x, y) -> A }
 fst(pair(x, y)) = x
 
-snd : { [x : A, y : B(x)] z : sigma_t(x, y) --- B(x) }
+snd : { [x : A, y : B(x)] z : sigma_t(x, y) -> B(x) }
 snd(pair(x, y)) = y
 
 pair(fst(z), snd(z)) == z
@@ -401,10 +401,10 @@ and `type` in the metalanguage mean different things.
 class simple_typed_language_t {
   program_t : type
   ty_t : type
-  exp_t : { t : ty_t --- type }
-  var_t : { t : ty_t --- type }
+  exp_t : { t : ty_t -> type }
+  var_t : { t : ty_t -> type }
 
-  seq : { p1, p2 : program_t --- program_t }
+  seq : { p1, p2 : program_t -> program_t }
   write : {
     [ t : ty_t ]
     v : var_t(t)
@@ -468,7 +468,7 @@ just characteristic families of n-ary relations on a set.
 ``` js
 class _ {
   A : type
-  P : { x1, x2, ..., xn : A --- type }
+  P : { x1, x2, ..., xn : A -> type }
 
   P_prop : {
     [ x1, x2, ..., xn : A ]
@@ -483,7 +483,7 @@ class _ {
 
 class _ {
   A : type
-  P : { x1, x2, ..., xn : A --- prop }
+  P : { x1, x2, ..., xn : A -> prop }
 }
 ```
 
@@ -500,7 +500,7 @@ Three kinds of universal conditionals -- `A1 & A2 & ... & An -> P`,
 
   ``` js
   A : type
-  P : { x1, x2 : A --- prop }
+  P : { x1, x2 : A -> prop }
   transitive_t : {
     [ x1, x2, x3 : A ]
     y1 : P(x1, x2)
@@ -523,7 +523,7 @@ Three kinds of universal conditionals -- `A1 & A2 & ... & An -> P`,
 
   ``` js
   A : type
-  P : { x1, x2 : A --- prop }
+  P : { x1, x2 : A -> prop }
   anti_symmetric_t : {
     [ x1, x2 : A ]
     y1 : P(x1, x2)
@@ -542,19 +542,19 @@ Three kinds of universal conditionals -- `A1 & A2 & ... & An -> P`,
     [ A : type ]
     p : A
     q : A
-    ---
+    ---------
     prop
-  } = datacons {
-    refl : eqv_t(p, p)
+  } = {
+    case refl : eqv_t(p, p)
   }
   ```
 
-  for example the theory of a one-to-one function `f : A --- B`,
+  for example the theory of a one-to-one function `f : A -> B`,
 
   ``` js
   A : type
   B : type
-  f : { x : A --- B }
+  f : { x : A -> B }
   one_to_one : {
     [ x1, x2 : A ]
     y : eqv_t(f(x1), f(x2))
