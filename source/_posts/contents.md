@@ -59,6 +59,7 @@
     * [獨然覺醒 / Independence awake](/note/philosophy/independence-awake)
   - Category Theory / 范畴论
     - [Categorical Intuitions](/note/category-theory/categorical-intuitions)
+    - [The Catsters](/note/category-theory/the-catsters)
     - [Category Theory For Programmers](/note/category-theory/category-theory-for-programmers)
     - [Categories For The Working Mathematician](/note/category-theory/categories-for-the-working-mathematician)
     - [Categorical Semantics](/note/category-theory/categorical-semantics)
