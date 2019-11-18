@@ -497,7 +497,16 @@ Such polymorphic function defined in Haskell is automatically natural.
 (All algebraic datatypes are functors.)
 
 ## I 9.2 Bicategories
+
+Let's talk about category theory in a really wild area,
+push the view of category theory to as far as we can.
+
+Enriched the structure of category to bicategory.
+
 ## I 10.1 Monads
+
+
+
 ## I 10.2 Monoid in the category of endofunctors
 
 A monad is just a monoid-object in the monoidal-category of endofunctors,
