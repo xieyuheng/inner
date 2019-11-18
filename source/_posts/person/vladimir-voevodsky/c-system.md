@@ -10,7 +10,7 @@ The C System was introduced by John Cartmell under the name "contextual categori
 but since the algebraic structure so introduced is not invariant under equivalences of categories.
 The Terminology "pre-category" and "C System" was suggested by Vladimir Voevodsky.
 
-- **[Xie]** We can call C System, **subtype pre-category**,
+- **[Xie]** We can call C System, **contextual pre-category**,
   there are other kinds of pre-categories, such as action **substitution pre-category**.
 
 ## [John Cartmell] [1985] Generalised algebraic theories and contextual categories
@@ -201,18 +201,17 @@ Given two instances `M` and `M1` of `U1`,
 then a homomorphism `f` between `M` and `M1` contains `fA`, `fB` and `fB_eqv`,
 
 ``` js
+M, M1 : U1
 fA : {
-  M, M1 : U1
   a : M.A
   ---------
   M1.A
 }
 fB : {
-  M, M1 : U1
   a : M.A
   b : M.B(a)
   ---------
-  M1.B(fA(M, M1)(a))
+  M1.B(fA(a))
 }
 fB_eqv : {
   M, M1 : U1
@@ -220,7 +219,7 @@ fB_eqv : {
   ---------
   the_eqv_t(
     M1.B (a),
-    fB(M, M1)(a)(M.b(a)),
+    fB(a)(M.b(a)),
     M1.b(fA(a)))
 }
 ```
@@ -230,20 +229,17 @@ whose models (instances) are just homomorphisms between the models of the given 
 
 ``` js
 class U1F {
-  M : U1
-  M1 : U1
+  M, M1 : U1
   fA : {
-    M, M1 : U1
     a : M.A
     ---------
     M1.A
   }
   fB : {
-    M, M1 : U1
     a : M.A
     b : M.B(a)
     ---------
-    M1.B(fA(M, M1)(a))
+    M1.B(fA(a))
   }
   fB_eqv : {
     M, M1 : U1
@@ -251,7 +247,7 @@ class U1F {
     ---------
     the_eqv_t(
       M1.B (a),
-      fB(M, M1)(a)(M.b(a)),
+      fB(a)(M.b(a)),
       M1.b(fA(a)))
   }
 }
@@ -466,7 +462,7 @@ The following theory (class) has as models (instances)
 just characteristic families of n-ary relations on a set.
 
 ``` js
-class _ {
+class {
   A : type
   P : { x1, x2, ..., xn : A -> type }
 
@@ -481,7 +477,7 @@ class _ {
 
 // We may have this `prop` built-in the language.
 
-class _ {
+class {
   A : type
   P : { x1, x2, ..., xn : A -> prop }
 }
@@ -565,7 +561,98 @@ Three kinds of universal conditionals -- `A1 & A2 & ... & An -> P`,
 
 ## 5. Context diagrams
 
-TODO
+A method of diagrams is introduced informally in this section
+as an alternative way of expressing the signature of a theory.
+In this way we hope to motivate an understanding
+of the algebraic semantics of our theories.
+
+- **[Xie]** A new notation is introduced (like the arrow of category theory).
+  I will use `-:>` for this new kind of arrow,
+  `X -:> Y` can be read as
+  "definition of the type `X` depends on elements of type `Y`".
+
+`X -:> Y` in a diagram means variously,
+- (1) Notion `X` is relative to notion `Y`.
+  Mention of `X` only makes sense in the context of a mention of `Y`.
+- (2) Data in `X` is organised (or indexed) by data in `Y`.
+- (3) `X` is a type that varies over `Y`.
+  What it means to be an `X` depends on which `Y`.
+
+Arrows of both kinds represent functional relationships.
+In the case of the `-:>` arrow the relationship is **analytical**
+(a term introduced by Kant in his "Critique of Pure Reason").
+
+An example theory of language, looks like this.
+
+``` js
+class {
+  notion_of_language_t : type
+  natural : notion_of_language_t
+  language_t : {
+    x : notion_of_language_t
+    ---------
+    type
+  }
+  sentence_t : {
+    [ x : notion_of_language_t ]
+    l : language_t
+    ---------
+    type
+  }
+  dialect_t : {
+    x : language_t(natural)
+    ---------
+    type
+  }
+  country_t : type
+  otficial_tongue : {
+    c : country_t
+    ---------
+    language_t(natural)
+  }
+  english : language_t(natural)
+  q : sentence_t(english)
+}
+```
+
+We have the following `-:>` relations,
+
+``` js
+sentence_t -:> language_t -:> notion_of_language_t
+dialect_t -:> language_t(natural)
+```
+
+We use `*` notation to represent particular cases of notions,
+`a * B` is defined when `a` is a particular instance of some `A`
+and `B` is a notion dependent on `A`.
+`a * B` is the particular case of `B`
+determined by particular instance `a` of `A`.
+
+For example,
+
+``` js
+// English is a natural language
+english : language_t(natural)
+// the author writes
+english : natural * language_t
+
+// `q` is a sentence of the English natural language
+q : sentence_t(english)
+// the author writes
+q : natural * language_t * sentence_t
+// we might also write
+q : english * sentence_t
+```
+
+The homomorphism example `U1F` from Section 3,
+can be expressed by the following diagram,
+
+``` js
+fB : M.B -> M1.B
+  M.B -:> M.A
+  M1.B -:> M1.A
+fA : M.A -> M1.A
+```
 
 ## 6. Essentially algebraic theories and categories with finite limits
 
