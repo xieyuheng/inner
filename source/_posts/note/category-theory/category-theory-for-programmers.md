@@ -17,6 +17,8 @@ the chapter naming of which is different from the book.
   - Part II: https://www.youtube.com/playlist?list=PLbgaMIhjbmEn64WVX4B08B4h2rOtueWIL
   - Part III: https://www.youtube.com/playlist?list=PLbgaMIhjbmElia1eCEZNvsVscFef9m0dm
 
+And notes taken from TheCatsters' lectures: http://www.simonwillerton.staff.shef.ac.uk/TheCatsters
+
 ## Note
 
 - **[Xie]** One interesting feature of the teaching of the lecturer is that
@@ -468,6 +470,39 @@ Cartesian closed category with initial object and sum object.
 The "-Lambek" in "Curry-Howard-Lambek" means extends Curry-Howard isomorphism to category theory.
 
 ## I 9.1 Natural transformations
+
+- **[The Catsters]**
+  A functor is a morphism between categories (in the category of categories).
+
+  A natural transformation is a morphism between functors (in the category of functors),
+  where the `dom` and `cod` of the functors must be the same.
+
+  Natural transformation is like homotopy `h : X * I -> Y` between two functions `f, g : X -> Y`,
+  `(i) => h(x, i) : I -> Y` is a path from `f(x)` to `g(x)`.
+
+  Natural transformation == functor of type `C * I -> D`,
+  where `I` is the categorical interval (a little shape category).
+
+- **[The Catsters]**
+  **[Exercise]** How the naturality of natural transformation
+  can be derived from the above definition?
+
+- **[The Catsters]**
+  Since natural transformation is morphism in some category, we can compose them.
+  We have functor category, `C, D : category_t`,
+  `functor_category_t(C, D)` is a category,
+  where `object_t = functor_t(C, D)`
+  and `morphism_t(f, g) = transformation_t(C, D, f, g)`.
+
+- **[The Catsters]**
+  The above definition functor category compose natural transformations vertically,
+  We can alos compose natural transformations horizontally.
+
+  Middle four interchange law says,
+  when composing four natural transformations the order does not matter.
+
+  - **[Xie]** This law just the scratch the surface of higher dimensional algebra.
+
 ## I 9.2 Bicategories
 ## I 10.1 Monads
 ## I 10.2 Monoid in the category of endofunctors
