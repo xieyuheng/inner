@@ -1,3 +1,5 @@
+- [vv] How I became interested in foundations of mathematics
+- [frege] Begriffsschrift
 # type theory
 - [alexander-grothendieck]
 - [roland-backhouse] DIYTT, finish

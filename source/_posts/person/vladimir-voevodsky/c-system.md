@@ -656,6 +656,8 @@ fA : M.A -> M1.A
 
 ## 6. Essentially algebraic theories and categories with finite limits
 
+TODO
+
 ## 7. The generality of the algebraic semantics
 
 ## 8. The formal definition
