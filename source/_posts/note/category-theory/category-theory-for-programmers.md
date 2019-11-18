@@ -469,6 +469,33 @@ The "-Lambek" in "Curry-Howard-Lambek" means extends Curry-Howard isomorphism to
 
 ## I 9.1 Natural transformations
 
+Natural transformation is mapping (morphism) between functors,
+which enable us to describe relations (universal constructions) between functors,
+just like morphism enable us to describe relations between objects.
+
+A lot of specifications of commuting diagram,
+can be expressed by natural transformation.
+
+If functor `F` can be transformed to functor `G`,
+we can say `F` has higher resolution than `G`.
+
+Natural isomorphism is like natural transformation,
+but the components are isomorphisms.
+(Natural isomorphism will be used to define adjunctions.)
+
+In programming, we think about endofunctor of the category of types.
+The component function of a natural transformation between such endofunctors
+will be functions of type `F a -> G a`.
+
+When functor is a container,
+natural transformation re-package content of container.
+
+Such polymorphic function defined in Haskell is automatically natural.
+`head :: [a] -> Maybe a` is such an example,
+`unit_list :: a -> [a]` is a more simple example (id functor),
+`length :: [a] -> Nat` is a special simple example (const functor).
+(All algebraic datatypes are functors.)
+
 ## I 9.2 Bicategories
 ## I 10.1 Monads
 ## I 10.2 Monoid in the category of endofunctors

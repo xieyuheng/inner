@@ -1,5 +1,12 @@
 - [vv] How I became interested in foundations of mathematics
 - [frege] Begriffsschrift
+# category theory
+# categorical semantics
+- inversion principle of inference rule is special case of adjoint functor
+- is it make sences to introduce (- A) and { A } to factor A -> B ?
+- some questions for luo
+  - what is categorical semantics of inductive type ? -- F-algebra, and initial algebra
+  - what is categorical semantics of dependent type ? -- also adjoint functor
 # type theory
 - [alexander-grothendieck]
 - [roland-backhouse] DIYTT, finish
@@ -34,12 +41,6 @@
 # algebraic data type
 - maybe before implementing inductive type
   we should study algebraic data type first
-# category theory
-# categorical semantics
-- inversion principle of inference rule is special case of adjoint functor
-- is it make sences to introduce (- A) and { A } to factor A -> B ?
-- what is categorical semantics of inductive type ? -- F-algebra, and initial algebra
-- what is categorical semantics of dependent type ? -- also adjoint functor
 # inductive type
 - [zhaohui-luo] Computation and Reasoning
 - [peter Dybjer] Inductive Families
