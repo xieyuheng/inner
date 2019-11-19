@@ -12,7 +12,9 @@ which dependent record type is understood as "dependent type + structural subtyp
 Contextual pre-category is also called C System.
 
 The contextual pre-category was introduced by John Cartmell under the name "contextual category",
-but since the algebraic structure so introduced is not invariant under equivalences of categories.
+but since the algebraic structure so introduced is not invariant under equivalences of categories
+(because contextual functor need to preserve more structures).
+
 The Terminology "pre-category" and "C System" was suggested by Vladimir Voevodsky.
 
 - **[Xie]** I use the term **contextual pre-category**,
@@ -932,9 +934,17 @@ This motivates the next definition.
 
 ## 14. Contextual categories
 
+The structural subtyping `A <: B` can be defined as `B -:> A`,
+
 TODO
 
 ## 15. Fundorial semantics
+
+- **[Xie]**
+  Given a type theory `T` and an algebraic structure (a class) `C`,
+  the algebraic semantics is using `T` to build an instance of `C`.
+
+  I do not think the above statement is enough?
 
 TODO
 
