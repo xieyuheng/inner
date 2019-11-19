@@ -662,7 +662,56 @@ fA : M.A -> M1.A
 
 ## 6. Essentially algebraic theories and categories with finite limits
 
-TODO
+The essentially algebraic theories of Freyd can be seen to have
+the same descriptive power as generalised algebraic theories,
+at least as far as the usual set valued models are concerned.
+
+- "Aspects of topoi", by Peter Freyd, 1972.
+
+The essentially algebraic theories are many sorted **partial** algebraic theories.
+
+- **[Xie]** When try to formalize category theory
+  in a programming language without dependent type,
+  one often come up with such **partial** theories
+  (class with partial functions).
+
+  ``` js
+  class category_t {
+    object_t : type
+    morphism_t : type
+    id : { object_t -> morphism_t }
+    dom, cod : { morphism_t -> object_t }
+    compose : {
+      f, g : morphism_t
+      ensure { cod(f) == dom(g) }
+      ---------
+      morphism_t
+    }
+  }
+  ```
+
+  the above use of `ensure` can be viewed as
+  contract system of some language.
+
+- **[Xie]** In a mainstream programming language,
+  one can use the following trick to handle the assertion.
+
+  ``` js
+  class category_t {
+    object_t : type
+    morphism_t : type
+    id : object_t -> morphism_t
+    dom, cod : morphism_t -> object_t
+    compose_pure : (f, g : morphism_t) -> morphism_t
+    compose : (f, g : morphism_t) -> morphism_t = {
+      assert(cod(f) == dom(g))
+      compose_pure(f, g)
+    }
+  }
+  ```
+
+  an instance of `category_t` would have to provide an implementation of `compose_pure`,
+  the `compose` function with assertion will be generated for the instance.
 
 ## 7. The generality of the algebraic semantics
 
