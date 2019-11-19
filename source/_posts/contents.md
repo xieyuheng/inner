@@ -74,6 +74,7 @@
     - [Neuroscience Note / 神經學記](/note/biology/neuroscience-note)
     - [Human Behavioral Biology](/note/biology/human-behavioral-biology)
 - Paper / 论文
+  - [Substitutional pre-category](/paper/substitutional-pre-category)
   - [A Recursive Combinatorial Description of Cell-complex](/paper/a-recursive-combinatorial-description-of-cell-complex)
   - [Simply Typed JoJo Calculus](/paper/simply-typed-jojo-calculus)
   - [Dependently Typed JoJo Calculus](/paper/dependently-typed-jojo-calculus)
