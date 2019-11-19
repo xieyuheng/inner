@@ -1,7 +1,9 @@
+# foundations of mathematics
 - [vv] How I became interested in foundations of mathematics
 - [frege] Begriffsschrift
 # category theory
 # categorical semantics
+- https://ncatlab.org/nlab/show/categorical+model+of+dependent+types
 - inversion principle of inference rule is special case of adjoint functor
 - is it make sences to introduce (- A) and { A } to factor A -> B ?
 - some questions for luo
