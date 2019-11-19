@@ -360,28 +360,40 @@ The extended theory is taken to be `U+`.
 ``` js
 sigma_t : {
   A : type
-  B : { A -> type }
+  D : { A -> type }
   ---------
   type
 }
 sigma_t = {
-  case pair : {
+  case sigma : {
     x : A
-    y : B(x)
+    y : D(x)
     ---------
     sigma_t(x, y)
   }
 }
 
-fst : { [x : A, y : B(x)] z : sigma_t(x, y) -> A }
-fst(pair(x, y)) = x
+sigma_fst : {
+  [ A : type
+    D : { A -> type } ]
+  sigma_t(A, D)
+  ---------
+  A
+}
+sigma_fst(sigma(x, _)) = x
 
-snd : { [x : A, y : B(x)] z : sigma_t(x, y) -> B(x) }
-snd(pair(x, y)) = y
+sigma_snd : {
+  [ A : type
+    D : { A -> type } ]
+  si : sigma_t(A, D)
+  ---------
+  D(sigma_fst(si))
+}
+sigma_snd(sigma(_, y)) = y
 
-pair(fst(z), snd(z)) == z
-fst(pair(x, y)) == x
-snd(pair(x, y)) == y
+sigma(sigma_fst(z), sigma_snd(z)) == z
+sigma_fst(sigma(x, y)) == x
+sigma_snd(sigma(x, y)) == y
 ```
 
 Finally an example based upon program language semantics.
@@ -712,6 +724,50 @@ The essentially algebraic theories are many sorted **partial** algebraic theorie
 
   an instance of `category_t` would have to provide an implementation of `compose_pure`,
   the `compose` function with assertion will be generated for the instance.
+
+In order to write an essentially algebraic theory as generalised algebraic,
+all the equality predicates used in defining domains of partial operations must be introduced.
+
+- **[Xie]** The above definition of `category_t` uses the equality predicate over `object_t`.
+
+Every essentially algebraic theory can be rewritten as generalised algebraic,
+and the converse is also the case.
+
+Because indexed family of sets can be viewed as
+inverse image (let's say "coimage") of function.
+
+Given a function `f`, 
+its coimage is an indexed family of sets,
+
+``` js
+// given
+A, C : type
+f : { C -> A }
+// we have
+coimage(f) : { a : A -> type }
+// `coimage(f)` this is an indexed family of sets
+coimage(f, a) <: C
+// where `<:` is the subtype relation
+```
+
+Given an indexed family of sets, 
+it is the coimage of some function `f`,
+
+``` js
+A : type
+D : { a : A -> type }
+
+sigma_fst : {
+  [ A : type
+    D : { A -> type } ]
+  sigma_t(A, D)
+  ---------
+  A
+}
+
+// `sigma_fst` is the function,
+// whose coimage on `a` is the set `D(a)`
+```
 
 ## 7. The generality of the algebraic semantics
 
