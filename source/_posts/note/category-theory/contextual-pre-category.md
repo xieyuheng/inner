@@ -782,6 +782,24 @@ sigma_fst : {
   the coimage of `domcod` is the original dependent type,
   and `domcod` is factored into `dom, cod : morphism_t -> object_t`.
 
+The notion of an essentially algebraic theory can be seen as a notion of type theory
+in which the only type forming principles are for the formation of product types
+and for the formation of types of the form `{x : A | t1 == t2}`,
+where A is a type and `t1` and `t2` are terms of the same type.
+Now, if we think of the objects of an arbitrary category as types,
+then to have these two type forming principles is
+just to have finite products and equalisers of pairs.
+Since a category with finite products and equalisers of pairs
+is precisely a category with finite limits,
+the notions of essentially algebraic theory
+and category with finite limits are closely connected.
+
+In fact for every essentially algebraic theory `U`
+there is a category with finite limits `C(U)`
+such that the category of models of `U`
+is equivalent to the category `LEX(C(U), Set)`
+of all finite limit preserving functors from `C(U)` to `Set`.
+
 ## 7. The generality of the algebraic semantics
 
 ## 8. The formal definition
