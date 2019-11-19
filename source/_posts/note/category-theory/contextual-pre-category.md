@@ -14,7 +14,7 @@ The Terminology "pre-category" and "C System" was suggested by Vladimir Voevodsk
 
 - **[Xie]** I use the term **contextual pre-category**,
   to suggest that there are other kinds of pre-categories,
-  such as action **substitutional pre-category**.
+  such as **substitutional pre-category**.
 
   Unlike [enriched category](https://en.wikipedia.org/wiki/Enriched_category), which add structure to homsets,
   pre-category add structure to objects.
@@ -322,7 +322,12 @@ class functor_t {
   dom : category_t
   cod : category_t
   map : { a : dom.object_t -> cod.object_t }
-  fmap : { f : dom.morphism_t(a, b) -> cod.morphism_t(map(a), map(b)) }
+  fmap : {
+    [ a, b : dom.object_t ]
+    f : dom.morphism_t(a, b)
+    ---------
+    cod.morphism_t(map(a), map(b))
+  }
   fmap_respect_compose : {
     f : dom.morphism_t(a, b)
     g : dom.morphism_t(b, c)
@@ -736,7 +741,7 @@ and the converse is also the case.
 Because indexed family of sets can be viewed as
 inverse image (let's say "coimage") of function.
 
-Given a function `f`, 
+Given a function `f`,
 its coimage is an indexed family of sets,
 
 ``` js
@@ -750,7 +755,7 @@ coimage(f, a) <: C
 // where `<:` is the subtype relation
 ```
 
-Given an indexed family of sets, 
+Given an indexed family of sets,
 it is the coimage of some function `f`,
 
 ``` js
@@ -768,6 +773,14 @@ sigma_fst : {
 // `sigma_fst` is the function,
 // whose coimage on `a` is the set `D(a)`
 ```
+
+- **[Xie]** Let's take `category_t` as a concrete example,
+  in so called essentially algebraic theory,
+  the dependent type `morphism_t : { dom, cod : object_t -> type }`
+  is replaced by `morphism_t : type`
+  and `domcod : { morphism_t -> (object_t, object_t) }`
+  the coimage of `domcod` is the original dependent type,
+  and `domcod` is factored into `dom, cod : morphism_t -> object_t`.
 
 ## 7. The generality of the algebraic semantics
 
