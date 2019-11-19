@@ -1,17 +1,20 @@
 ---
-title: C System
+title: Contextual pre-category
 ---
 
-# C System
+# Contextual pre-category
 
 ## Terminology
 
-The C System was introduced by John Cartmell under the name "contextual categories",
+Contextual pre-category is also called C System.
+
+The contextual pre-category was introduced by John Cartmell under the name "contextual category",
 but since the algebraic structure so introduced is not invariant under equivalences of categories.
 The Terminology "pre-category" and "C System" was suggested by Vladimir Voevodsky.
 
-- **[Xie]** We can call C System, **contextual pre-category**,
-  there are other kinds of pre-categories, such as action **substitutional pre-category**.
+- **[Xie]** I use the term **contextual pre-category**,
+  to suggest that there are other kinds of pre-categories,
+  such as action **substitutional pre-category**.
 
   Unlike [enriched category](https://en.wikipedia.org/wiki/Enriched_category), which add structure to homsets,
   pre-category add structure to objects.

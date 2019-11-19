@@ -42,7 +42,6 @@
     * [Conceptual Mathematics](/person/william-lawvere/conceptual-mathematics)
     * [Sets for Mathematics](/person/william-lawvere/sets-for-mathematics)
   - Vladimir Voevodsky / 弗拉基米尔 沃沃斯基
-    * [C System](/person/vladimir-voevodsky/c-system)
   - Zhaohui Luo
     - [Computation and Reasoning](/person/zhaohui-luo/computation-and-reasoning)
   - Zhuang Zi / 莊子
@@ -63,6 +62,7 @@
     - [Category Theory For Programmers](/note/category-theory/category-theory-for-programmers)
     - [Categories For The Working Mathematician](/note/category-theory/categories-for-the-working-mathematician)
     - [Categorical Semantics](/note/category-theory/categorical-semantics)
+    - [Contextual pre-category](/note/category-theory/contextual-pre-category)
   - Type Theory / 类型论
     - [Type theory](/note/type-theory/type-theory)
     - [Language Implementation Tricks](/note/type-theory/language-implementation-tricks)
