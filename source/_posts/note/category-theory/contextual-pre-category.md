@@ -4,6 +4,9 @@ title: Contextual pre-category
 
 # Contextual pre-category
 
+Contextual pre-category can be used to provide algebraic semantics **dependent record type**,
+which dependent record type is understood as "dependent type + structural subtyping (of record type)".
+
 ## Terminology
 
 Contextual pre-category is also called C System.
@@ -293,6 +296,11 @@ depends implicitly on `x` by virtue of the explicit dependence of `y` on `x`.
 In the alternative version of the theory we say that a variable has been omitted.
 This is one method by which a theory may be informally presented.
 This method and another can be used in an informal presentation of the theory of trees.
+
+- **[Xie]** The so called "theory of trees" will be used to define contextual category,
+  to formalize the relation "definition of the type `X` depends on elements of type `Y`".
+  It is actually the theory of dependent record type,
+  or say, dependent type + structural subtyping.
 
 The theory of trees has countably many sort symbols,
 no operator symbols and no axioms.
@@ -797,25 +805,139 @@ and category with finite limits are closely connected.
 In fact for every essentially algebraic theory `U`
 there is a category with finite limits `C(U)`
 such that the category of models of `U`
-is equivalent to the category `LEX(C(U), Set)`
-of all finite limit preserving functors from `C(U)` to `Set`.
+is equivalent to the category `LEX(C(U), set)`
+of all finite limit preserving functors from `C(U)` to `set`.
 
 ## 7. The generality of the algebraic semantics
 
+One of the advantages of generalised algebraic over essentially algebraic
+is to be found in the syntax particularly with regard to the presentation of theories.
+In presenting theories as essentially algebraic there is a coding process in that,
+in general, families of sets indexed by a set
+are represented by functions with codomain that set.
+On the other hand, in presenting a theory as generalised algebraic
+there need be no such coding.
+
+The notion of type is adequately captured by the notion of object of category.
+
+Suppose `cat_t` is the category of all small categories,
+if `A` is a small category, a functor `B : A -> cat_t`
+is an `A`-indexed family of categories.
+(Note that `B` is not a morphism in `cat_t`.)
+
+A homomorphism from `B : A -> cat_t` to `B' : A' -> cat_t`
+is describable just as a pair `(F, eta)`,
+where `F : A -> A'` is a functor
+and `eta : B -> F o B'` is a natural transformation.
+
+- **[Xie]** Above structure need examples.
+
 ## 8. The formal definition
+
+- **[Xie]** The formal definition starts from low level,
+  thus "well-formed" expression is hard to define.
+
+  We can avoid this by define well-formed expression as abstract syntax (`exp_t`),
+  and handle concrete syntax separately.
 
 ## 9. The substitution lemma
 
+The substitution lemma states that the set of derived rules of a theory is closed
+under the operation of substitution of correctly typed terms for variables.
+
 ## 10. Informal syntax
+
+There is a discrepancy between the syntax adopted in the formal definition of Section 8
+and the syntax used in informally presenting theories in other sections.
+
+- **[Xie]** We do not have this problem.
 
 ## 11. Models and homomorphisms
 
+The theory of trees was presented in Section 3
+but from now on we want all our trees to be trees with a unique least element.
+
+- **[Xie]** Preparing for the definition of contextual category.
+
+Given a theory (class) `C`,
+models (instances) of `C` and homomorphisms of `C`,
+forms a category (can be used to define an instance of `category_t`).
+
 ## 12. The category GAT
+
+The category GAT of generalised algebraic theories
+is a category which has theories as objects
+and equivalence classes of interpretations as morphisms.
+
+- **[Xie]** We can define `class_category` as an instance of `category_t`,
+  where `object_t = class`, and `morphism_t(A, B) = { A -> B }`.
+  The morphisms (interpretations) is defined as functions in the meta-language,
+  it is ensured that they preserve the structure of class,
+  because axioms of structure is part of the definition of class.
 
 ## 13. Contexts and realisations
 
+- **[Xie]** A class is defined as a dependent record,
+  thus a dependent record can be viewed as a class.
+
+  The realisation between two record types `(A, B)` described in this section,
+  can be viewed as the `functor_category_t(A, B)`.
+
+``` js
+class A {
+  x1 : X1
+  ...
+  xn : Xn
+}
+
+class A* {
+  y1 : Y1
+  ...
+  ym : Ym
+}
+
+class B extends A* {
+  y1 : Y1
+  ...
+  ym : Ym
+  ym+1 : Ym+1
+  ...
+  ym+w : Ym+w
+}
+
+f : { (x1, ..., xn) : A -> A* } = new A* {
+  y1 : Y1 = f1(x1, ..., xn)
+  ...
+  ym : Ym = fm(x1, ..., xn)
+}
+
+// then we have pullback
+class f*B extends A {
+  x1 : X1
+  ...
+  xn : Xn
+  let (y1, ..., ym) = f(x1, ..., xn)
+  ym+1 : Ym+1[y1, ..., ym]
+  ...
+  ym+w : Ym+w[y1, ..., ym]
+}
+
+q(f, B) : { (x1, ..., xn, ym+1, ..., ym+w) : f*B -> B } = new B {
+  (y1, ..., ym) = f(x1, ..., xn)
+  (ym+1, ..., ym+w) = (ym+1, ..., ym+w)
+}
+```
+
+This motivates the next definition.
+
 ## 14. Contextual categories
+
+TODO
 
 ## 15. Fundorial semantics
 
+TODO
+
 ## 16. Universal algebra
+
+TODO
