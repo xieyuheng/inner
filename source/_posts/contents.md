@@ -70,6 +70,7 @@
   - Computer Science / 计算机科学
     - Database / 数据库
       - [A Relational Model of Data for Large Shared Data Banks](/note/computer-science/database/a-relational-model-of-data-for-large-shared-data-banks)
+      - [PostgreSQL Note](/note/computer-science/database/postgresql-note)
   - Biology / 生物学
     - [Neuroscience Note / 神經學記](/note/biology/neuroscience-note)
     - [Human Behavioral Biology](/note/biology/human-behavioral-biology)
