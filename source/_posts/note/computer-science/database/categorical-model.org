@@ -1,3 +1,0 @@
-#+title: categorical model
-
-* seven sketches in compositionality: an invitation to applied category theory
