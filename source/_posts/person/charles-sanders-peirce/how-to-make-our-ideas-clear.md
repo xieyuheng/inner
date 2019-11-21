@@ -566,11 +566,11 @@ as to consist in anything but a possible difference of practice.
 - **[Xie]**
   We get a pragmatism thought distinguisher of the following type.
 
-  #+begin_src cicada
-  pragmatism.thought_not_eqv (x: thought_t, y: thought_t): boolean_t {
+  ``` js
+  pragmatism.thought_not_eqv(x: thought_t, y: thought_t): boolean_t {
     // TODO
   }
-  #+end_src
+  ```
 
   Maybe, we can formalize the pragmatism philosophy itself.
 
