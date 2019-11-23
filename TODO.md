@@ -1,6 +1,4 @@
 # type theory
-- [Roland Backhouse] Do-it-yourself Type Theory
-  - how to understand `prop`
 - [martin-löf] Constructive Mathematics and Computer Programming
   - can we use `<:` and `:` for all judgements?
 - [martin-löf] Intuitionistic Type Theory
@@ -10,9 +8,6 @@
 # inductive type
 - [zhaohui-luo] Computation and Reasoning
 - [peter Dybjer] Inductive Families
-# foundations of mathematics
-- [vv] How I became interested in foundations of mathematics
-- [frege] Begriffsschrift
 # category theory
 # topos theory
 - we are interested in topos theory
