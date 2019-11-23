@@ -697,6 +697,10 @@ at least as far as the usual set valued models are concerned.
 
 The essentially algebraic theories are many sorted **partial** algebraic theories.
 
+- **[Xie]** This "essentially algebraic theory" and the use of partial function,
+  is further developed in Vladimir Voevodsky's paper,
+  "Subsystems and regular quotients of C-systems".
+
 - **[Xie]** When try to formalize category theory
   in a programming language without dependent type,
   one often come up with such **partial** theories

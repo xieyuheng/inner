@@ -3,6 +3,16 @@
 - [frege] Begriffsschrift
 # category theory
 # categorical semantics
+- use partial function to specify algebraic structure
+  - essentially algebraic theories
+  - C-system
+  - "Aspects of topoi", by Peter Freyd, 1972.
+  - what is the main idea of topos theory?
+    capture membership relation the relation between topos and partial function?  
+  - what is the relation between topos and partial function?
+  - this might be very useful to
+    - use algebraic structure in language without dependent type
+    - capture composition of pi type in the dependent type theory
 - https://ncatlab.org/nlab/show/categorical+model+of+dependent+types
 - inversion principle of inference rule is special case of adjoint functor
 - is it make sences to introduce (- A) and { A } to factor A -> B ?
@@ -10,11 +20,10 @@
   - what is categorical semantics of inductive type ? -- F-algebra, and initial algebra
   - what is categorical semantics of dependent type ? -- also adjoint functor
 # type theory
-- [alexander-grothendieck]
 - [roland-backhouse] DIYTT, finish
-- [C System] [John Cartmell] [1985] Generalised algebraic theories and contextual categories
 - [martin-löf] Constructive Mathematics and Computer Programming
 - [martin-löf] Intuitionistic Type Theory
+- [alexander-grothendieck]
 - [henk-barendregt] Lambda Calculus With Types
 - [de-bruijn] automath
 # a theory of object
