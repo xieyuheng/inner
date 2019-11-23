@@ -1,31 +1,41 @@
+# type theory
+- [Roland Backhouse] Do-it-yourself Type Theory
+  - how to understand `prop`
+- [martin-löf] Constructive Mathematics and Computer Programming
+  - can we use `<:` and `:` for all judgements?
+- [martin-löf] Intuitionistic Type Theory
+- [alexander-grothendieck]
+- [henk-barendregt] Lambda Calculus With Types
+- [de-bruijn] automath
+# inductive type
+- [zhaohui-luo] Computation and Reasoning
+- [peter Dybjer] Inductive Families
 # foundations of mathematics
 - [vv] How I became interested in foundations of mathematics
 - [frege] Begriffsschrift
 # category theory
-# categorical semantics
+# topos theory
+- we are interested in topos theory
+  because we want to know
+  is topos theory the algebraic semantics
+  behind the use of partial function?
 - use partial function to specify algebraic structure
   - essentially algebraic theories
   - C-system
   - "Aspects of topoi", by Peter Freyd, 1972.
   - what is the main idea of topos theory?
-    capture membership relation the relation between topos and partial function?  
+    capture membership relation?
   - what is the relation between topos and partial function?
   - this might be very useful to
     - use algebraic structure in language without dependent type
     - capture composition of pi type in the dependent type theory
+# categorical semantics
 - https://ncatlab.org/nlab/show/categorical+model+of+dependent+types
 - inversion principle of inference rule is special case of adjoint functor
 - is it make sences to introduce (- A) and { A } to factor A -> B ?
 - some questions for luo
   - what is categorical semantics of inductive type ? -- F-algebra, and initial algebra
   - what is categorical semantics of dependent type ? -- also adjoint functor
-# type theory
-- [roland-backhouse] DIYTT, finish
-- [martin-löf] Constructive Mathematics and Computer Programming
-- [martin-löf] Intuitionistic Type Theory
-- [alexander-grothendieck]
-- [henk-barendregt] Lambda Calculus With Types
-- [de-bruijn] automath
 # a theory of object
 # vladimir voevodsky
 - more about C System
@@ -52,10 +62,6 @@
 # algebraic data type
 - maybe before implementing inductive type
   we should study algebraic data type first
-# inductive type
-- [zhaohui-luo] Computation and Reasoning
-- [peter Dybjer] Inductive Families
-- [Roland Backhouse] Do-it-yourself Type Theory
 # jojo
 - in jojo cut is the only inference rule that requires two premises
   - inference rule with one premise can be viewed as equation?

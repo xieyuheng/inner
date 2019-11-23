@@ -934,6 +934,9 @@ q(f, B) : { (x1, ..., xn, ym+1, ..., ym+w) : f*B -> B } = new B {
 }
 ```
 
+- **[Xie]** Maybe we can intuitive `q(f, B) : f*B -> B` as
+  substitute `(x1, ..., xn)` in `f*B` with `(y1, ..., ym) = f(x1, ..., xn)`.
+
 This motivates the next definition.
 
 ## 14. Contextual categories
