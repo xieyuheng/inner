@@ -17,11 +17,11 @@
   - Errett Bishop / 毕少普
     - [Bishop's Four Principles of Constructivism](/person/errett-bishop/bishop-s-four-principles-of-constructivism)
   - Max Dehn / 马克斯 戴恩
-    * [Lectures on group theory](/person/max-dehn/lectures-on-group-theory)
-    * [Lectures on surface topology](/person/max-dehn/lectures-on-surface-topology)
-    * [On the topology of three-dimensional space](/person/max-dehn/on-the-topology-of-three-dimensional-space)
-    * [On infinite discontinuous groups](/person/max-dehn/on-infinite-discontinuous-groups)
-    * [The group of mapping classes](/person/max-dehn/the-group-of-mapping-classes)
+    - [Lectures on group theory](/person/max-dehn/lectures-on-group-theory)
+    - [Lectures on surface topology](/person/max-dehn/lectures-on-surface-topology)
+    - [On the topology of three-dimensional space](/person/max-dehn/on-the-topology-of-three-dimensional-space)
+    - [On infinite discontinuous groups](/person/max-dehn/on-infinite-discontinuous-groups)
+    - [The group of mapping classes](/person/max-dehn/the-group-of-mapping-classes)
   - Martin-Löf / 马丁-洛夫
     - [Constructive Mathematics and Computer Programming](/person/martin-löf/constructive-mathematics-and-computer-programming)
     - [Intuitionistic Type Theory](/person/martin-löf/intuitionistic-type-theory)
@@ -37,10 +37,13 @@
     - [Inductive Families](/person/peter-dybjer/inductive-families)
   - Alexander Grothendieck / 亚历山大 格罗滕迪克
   - William Lawvere / 威廉 劳维尔
-    * [Functorial Semantics of Algebraic Theories (Short)](/person/william-lawvere/functorial-semantics-of-algebraic-theories--short)
-    * [Functorial Semantics of Algebraic Theories](/person/william-lawvere/functorial-semantics-of-algebraic-theories)
-    * [Conceptual Mathematics](/person/william-lawvere/conceptual-mathematics)
-    * [Sets for Mathematics](/person/william-lawvere/sets-for-mathematics)
+    - [Functorial Semantics of Algebraic Theories (Short)](/person/william-lawvere/functorial-semantics-of-algebraic-theories--short)
+    - [Functorial Semantics of Algebraic Theories](/person/william-lawvere/functorial-semantics-of-algebraic-theories)
+    - [Conceptual Mathematics](/person/william-lawvere/conceptual-mathematics)
+    - [Sets for Mathematics](/person/william-lawvere/sets-for-mathematics)
+  - Joseph Goguen / 约瑟夫 高根
+    - [A categorical manifesto](/person/joseph-goguen/a-categorical-manifesto)
+    - [What is unification?](/person/joseph-goguen/what-is-unification-p)
   - Vladimir Voevodsky / 弗拉基米尔 沃沃斯基
   - Zhaohui Luo
     - [Computation and Reasoning](/person/zhaohui-luo/computation-and-reasoning)
@@ -49,15 +52,14 @@
 - Note / 笔记
   - Mathematics / 数学
     - Geometry / 几何
-      * [自然之形 / Shape of Nature](/note/mathematics/geometry/shape-of-nature)
+      - [自然之形 / Shape of Nature](/note/mathematics/geometry/shape-of-nature)
   - Logic / 逻辑学
-    * [嘲嘲不已 / How To Mock A Mockingbird](/note/logic/how-to-mock-a-mockingbird)
-    * [Language, Proof and Logic (Stanford open course)](/note/logic/language-proof-and-logic--stanford-open-course)
-    * [Modal logic](/note/logic/modal-logic)
+    - [嘲嘲不已 / How To Mock A Mockingbird](/note/logic/how-to-mock-a-mockingbird)
+    - [Language, Proof and Logic (Stanford open course)](/note/logic/language-proof-and-logic--stanford-open-course)
+    - [Modal logic](/note/logic/modal-logic)
   - Philosophy / 哲学
-    * [獨然覺醒 / Independence awake](/note/philosophy/independence-awake)
+    - [獨然覺醒 / Independence awake](/note/philosophy/independence-awake)
   - Category Theory / 范畴论
-    - [Categorical Intuitions](/note/category-theory/categorical-intuitions)
     - [The Catsters](/note/category-theory/the-catsters)
     - [Category Theory For Programmers](/note/category-theory/category-theory-for-programmers)
     - [Categories For The Working Mathematician](/note/category-theory/categories-for-the-working-mathematician)
