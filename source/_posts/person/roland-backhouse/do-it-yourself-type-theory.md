@@ -28,8 +28,8 @@ thus reduce the rules to remember when study the theory.
   the answer of the third question
   can be as simple as be able to define functions.
   But for type theory to be used as logic,
-  we need to maintain consistent of the logic
-  when introducing new definitions.
+  when introducing new definitions,
+  we need to maintain consistent of the logic.
 
   When implementing type theory,
   one starts from Martin-Löf's type theory,
@@ -66,7 +66,7 @@ p == q : P
 P == Q
 ```
 
-- **[Xie]** I also use the following notations,
+- **[Xie]** I also use the following notations for judgement,
 
   ``` js
   P : type
@@ -140,15 +140,31 @@ example = {
 ```
 
 - **[Xie]**
-  We use the syntax of deduction `{ ... -> ... }` as definition of function,
+  We use the syntax of deduction `{ ... -> ... }` for both function and pi type,
   whose argument types are fully annotated (de Bruijn style typed lambda calculus).
   The last element in conclusion is return value.
+
+  We call this style of syntax "cicada".
 
 - **[Xie]**
   The above means we can use `f = { ... }`
   to define new function from existing functions.
 
   In the same spirit, we may view introduction rules as primitive functions.
+
+  We can write
+
+  ``` js
+  a : A
+  ---------------- // inl-introduction
+  inl(a) : A + B
+
+  b : B
+  ---------------- // inr-introduction
+  inr(b) : A + B
+  ```
+
+  In cicada,
 
   ``` js
   inl : {
@@ -243,7 +259,7 @@ l : list_t(A)
 cons(a, l) : list_t(A)
 ```
 
-Or say,
+In cicada,
 
 ``` js
 list_t : {
@@ -265,6 +281,8 @@ list_t : {
   }
 }
 ```
+
+- **[Xie]** We use `{ case <name> : { ... } ... }` to specify a list of data constructors.
 
 It is normal to omit the premises of the formation rule from the premises of the introduction
 rules. Thus the premise `A type` would normally be omitted from the nil- and cons-introduction
@@ -311,7 +329,7 @@ y : C(nil)
 list_elim(x, y, z) : C(x)
 ```
 
-Or,
+In cicada,
 
 ``` js
 list_elim : {
@@ -376,7 +394,7 @@ proof {
     l : list_t(A)
     m : list_t(A)
     -----------------------
-    g : (A, list_t(A), list_t(A)) -> list_t(A)
+    g : { A; list_t(A); list_t(A); -> list_t(A) }
     g = {
       x : A
       _ : list_t(A)
@@ -394,12 +412,13 @@ proof {
     ---------
     list_t(A)
   } = {
-    g : (A, list_t(A), list_t(A)) -> list_t(A)
-    g = {
+    g : {
       x : A
       _ : list_t(A)
       h : list_t(A)
-      ------------------
+      ---------
+      list_t(A)
+    } = {
       cons(x, h) : list_t(A)
     }
     list_elim(l, m, g) : list_t(A)
@@ -471,6 +490,16 @@ zero : nat_t
 n : nat_t
 ------------ // succ-introduction
 succ(n) : nat_t
+```
+
+In cicada,
+
+``` js
+nat_t : type
+nat_t = {
+  case zero : nat_t
+  case succ : { nat_t -> nat_t }
+}
 ```
 
 ### 3.1.3 Disjoint Sums
