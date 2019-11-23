@@ -55,3 +55,47 @@ two_morphism_t(f, g) = transformation_t(C, D, f, g)
 ```
 
 - **[Xie]** Higher category theory is just special case of the theory of cell-complex.
+
+## Representable Functors and Yoneda
+
+``` js
+class contravariant_representable_functor_t {
+  cat : category_t
+  a : cat.object_t
+  // functor from `opposite(cat)` to `set_category`
+  map : { x : cat.object_t -> homset(x, a) }
+  fmap : {
+    [ x, y : cat.object_t ]
+    f : cat.morphism_t(y, x)
+    g : homset(x, a)
+    ---------
+    homset(y, a)
+  } = {
+    compose(f, g)
+  }
+}
+
+class covariant_representable_functor_t {
+  cat : category_t
+  a : cat.object_t
+  // functor from `cat` to `set_category`
+  map : { x : cat.object_t -> homset(a, x) }
+  fmap : {
+    f : cat.morphism_t(x, y)
+    g : homset(a, x)
+    ---------
+    homset(a, y)
+  } = {
+    compose(g, f)
+  }
+}
+
+yoneda_embedding : {
+  cat : category_t
+  a : cat.object_t
+  ---------
+  functor_category_t(opposite(cat), set_category)
+}
+```
+
+## Adjunctions
