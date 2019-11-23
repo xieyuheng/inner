@@ -6,10 +6,11 @@ function up {
 }
 
 function main {
-    for TASK in $@
+    for TASK in "$@"
     do
-        $TASK
+        "$TASK"
     done
+    exit
 }
 
-main $@
+main "$@"
