@@ -13,8 +13,6 @@ A first introduction to categories.
 
 ## SESSION 1 Galileo and multiplication of objects
 
-
-
 # Part I The category of sets
 
 ## ARTICLE I Sets, maps, compositionA first example of a category
