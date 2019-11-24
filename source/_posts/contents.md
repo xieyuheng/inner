@@ -45,6 +45,7 @@
     - [A categorical manifesto](/person/joseph-goguen/a-categorical-manifesto)
     - [What is unification?](/person/joseph-goguen/what-is-unification-p)
   - Vladimir Voevodsky / 弗拉基米尔 沃沃斯基
+    - [Reading Vladimir Voevodsky](/person/vladimir-voevodsky/reading-vladimir-voevodsky)
     - [Lecture about Univalent Foundations at the Institut Henri Poincaré](/person/vladimir-voevodsky/lecture-about-univalent-foundations-at-the-institut-henri-poincaré)
     - [How I became interested in foundations of mathematics](/person/vladimir-voevodsky/how-i-became-interested-in-foundations-of-mathematics)
   - Zhaohui Luo
