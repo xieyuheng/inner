@@ -282,7 +282,17 @@ list_t : {
 }
 ```
 
-- **[Xie]** We use `{ case <name> : { ... } ... }` to specify a list of data constructors.
+- **[Xie]** We use
+
+  ``` js
+  {
+    case <name> : { ... -> ... }
+    case <name> : { ... -> ... }
+    ...
+  }
+  ```
+
+  to specify a list of data constructors.
 
 It is normal to omit the premises of the formation rule from the premises of the introduction
 rules. Thus the premise `A type` would normally be omitted from the nil- and cons-introduction

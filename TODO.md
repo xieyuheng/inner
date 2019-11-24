@@ -1,9 +1,12 @@
 # type theory
+homotopy invariant
 - [martin-löf] Constructive Mathematics and Computer Programming
   - can we use `<:` and `:` for all judgements?
 - [martin-löf] Intuitionistic Type Theory
 - [alexander-grothendieck]
 - [henk-barendregt] Lambda Calculus With Types
+  - recursive type
+  - intersection type
 - [de-bruijn] automath
 # inductive type
 - [zhaohui-luo] Computation and Reasoning
