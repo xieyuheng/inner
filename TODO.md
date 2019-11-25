@@ -1,5 +1,4 @@
 # type theory
-homotopy invariant
 - [martin-löf] Constructive Mathematics and Computer Programming
   - can we use `<:` and `:` for all judgements?
 - [martin-löf] Intuitionistic Type Theory
