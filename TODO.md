@@ -1,5 +1,3 @@
-# adventure
-- can we use universal property in adventure?
 # foundations
 - [vv] How I became interested in foundations of mathematics
 - [vv] Lecture about Univalent Foundations at the Institut Henri Poincaré
