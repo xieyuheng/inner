@@ -99,5 +99,3 @@
 *** concluding remarks
 
 * (1968) first order logic
-
-* (1996) set theory and the continuum problem

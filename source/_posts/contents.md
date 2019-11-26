@@ -36,6 +36,8 @@
   - Peter Dybjer / 彼得 迪比尔
     - [Inductive Families](/person/peter-dybjer/inductive-families)
   - Alexander Grothendieck / 亚历山大 格罗滕迪克
+  - Raymond Smullyan / 雷蒙德 萨缪里安
+    - [Set Theory and the Continuum Problem](/person/raymond-smullyan/set-theory-and-the-continuum-problem)
   - William Lawvere / 威廉 劳维尔
     - [Functorial Semantics of Algebraic Theories (Short)](/person/william-lawvere/functorial-semantics-of-algebraic-theories--short)
     - [Functorial Semantics of Algebraic Theories](/person/william-lawvere/functorial-semantics-of-algebraic-theories)
