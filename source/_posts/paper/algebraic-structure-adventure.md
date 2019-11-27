@@ -45,6 +45,26 @@ In category theory composability between `f` and `g` is defined as `cod(f) == do
 
 In my `adventure_t`, I use the `error` element to define non-composability.
 
+## About `(- A)`
+
+Note that `{ (- A) B (- C) D }` will always be `error`,
+only `{ (- A) (- C) B D }` make sense,
+thus maybe we should not break up `{ C A -> B D }` into `{ (- A) (- C) B D }`.
+
+- The comment above makes the new algebraic structure not necessary,
+  the new structure might also be not necessary in higher dimension,
+  because in higher dimension we can introduce new shape of types other than arrows.
+
+  And the new shape of types (such as polygon)
+  might be composed in more than one ways (not like arrows).
+
+- **[TODO]** We should study the theory of 2-groupoid first,
+  which is a simple generalization of [Presentation of a group](https://en.wikipedia.org/wiki/Presentation_of_a_group).
+
+- **[TODO]** Can we say that infinity-groupoid is the study of **non-directed** topological object,
+  while infinity-category is the study of **directed** topological object (arrow is directed line).
+  Specially, 2-category is the study of composition of **directed polygons**.
+
 ## Comparing to category theory
 
 - can we use universal property in adventure?
