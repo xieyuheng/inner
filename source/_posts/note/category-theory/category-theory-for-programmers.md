@@ -528,7 +528,39 @@ we study n-groupoid where such coherent laws are simple.
 
 ## I 10.1 Monads
 
+Monad is about specifying new ways to do composition,
+i.e. composing `A -> M B` with `B -> M C` to get `A -> M C`,
+i.e. `(>=>) : (A -> M B) -> (B -> M C) -> (A -> M C)`,
+i.e. composition of Kleisli arrows.
 
+But just like in normal programming,
+always using composition is not convenient,
+it is also not convenient in monad programming.
+
+This is why we re-factor composition to `bind` a.k.a. `(>>=)` (a.k.a. `flatMap` in Scala.),
+i.e. `(>=>) : (A -> M B) -> (B -> M C) -> (A -> M C)`,
+can be defined by `(>>=) : M B -> (B -> M C) -> M C`.
+
+`(>>=)` can be defined by `fmap : M A -> (A -> B) -> M B`,
+and `join : M (M A) -> M A`. (`join` is called `flatten` in Scala.)
+
+If we already have a functor we can extend it to a moand,
+by defining `join : M (M A) -> M A`
+and `return : A -> M A`.
+
+- And `join` and `return` are the interface functions used in category theory,
+  when we talk about monad.
+  `join` is called `mu`, which is a natural transformation from `M M` functor to `M`,
+  `return` is called `eta`, which is a natural transformation from the `Id` to `M`.
+  Thus a monad is a functor `M` and two natural transformations,
+  plus associativity of the endo-functor composition of `M`,
+  `(M M) M == M (M M)`.
+
+Monad can be used to model side-effect to keep the language pure.
+
+Non-pure function can be translated to pure function
+by making the return type more complex.
+Moand comes in, when we need to compose pure functions.
 
 ## I 10.2 Monoid in the category of endofunctors
 
