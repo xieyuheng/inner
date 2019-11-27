@@ -87,6 +87,7 @@
   - [Simply Typed JoJo Calculus](/paper/simply-typed-jojo-calculus)
   - [Dependently Typed JoJo Calculus](/paper/dependently-typed-jojo-calculus)
   - [I also do not have the time](/paper/i-also-do-not-have-the-time)
+  - [Algebraic structure adventure](/paper/algebraic-structure-adventure)
 - Translation / 译文
   - [上帝是道家的嗎 / Is God A Taoist, by Raymond Smullyan](/translation/is-god-a-taoist)
   - [一個構造主義者的宣言 / A Constructivist Manifesto, by Errett Bishop](/translation/a-constructivist-manifesto)

@@ -1,4 +1,4 @@
-# Adventure
+# Algebraic structure adventure
 
 ------
 - Author: Xie Yuheng
@@ -17,18 +17,20 @@ because when using category theory as a model of dependent type theory,
 one have to use complicated tricks to overcome the fact that
 a category has a clear distinction between function (morphism) and type (object).
 
-The structure as a universe of elements denoted as `elem_t`,
+The structure has a universe of elements denoted as `elem_t`,
 and an associative binary function on `elem_t` called `mul`,
-but simply denoted as juxtaposition, for example `mul(x, y)` is denoted as `x y`.
+and `mul` is simply denoted as juxtaposition (a special infix notation),
+for example `mul(x, y)` is denoted as `x y`.
+
 I use a special `error` element to overcome the partial-ness of `mul`,
-the `error` element is an analog of zero in the algebraic structure of number (ring).
+the `error` element is an analog of `0` in the algebraic structure of number (ring).
 
 In category theory there are two functions on `morphism_t`,
 domain -- `dom : morphism_t -> object_t`,
 and codomain -- `cod : morphism_t -> object_t`.
 
 The above `dom` and `cod` is called `∂0` and `∂1` by some authors.
-which remember the readers an analog between `dom` and `cod`
+to help the readers to remember an analog between the pair of `(dom, cod)`
 and the boundary operator of algebraic topology.
 
 In my `adventure_t`, I use a single boundary operator `cut` to replace the two.
