@@ -1,9 +1,15 @@
 # Adventure
 
-# Abstract
+------
+- Author: Xie Yuheng
+- Date: 2019-11-27
+- Keywords: Categorical model, Dependent types.
+------
 
-When design the algebraic structure of `adventure_t`,
-my aim is to provide a model for dependent type theory,
+## Abstract
+
+When designing the algebraic structure of `adventure_t`,
+my aim is to provide a model for dependent types,
 where there is no distinction between function and type.
 
 I designed this new algebraic structure,
@@ -22,7 +28,8 @@ domain -- `dom : morphism_t -> object_t`,
 and codomain -- `cod : morphism_t -> object_t`.
 
 The above `dom` and `cod` is called `∂0` and `∂1` by some authors.
-which serve as an analog of boundary operator in algebraic topology.
+which remember the readers an analog between `dom` and `cod`
+and the boundary operator of algebraic topology.
 
 In my `adventure_t`, I use a single boundary operator `cut` to replace the two.
 
@@ -30,7 +37,7 @@ In category theory composability between `f` and `g` is defined as `cod(f) == do
 
 In my `adventure_t`, I use the `error` element to define non-composability.
 
-# Compare to category theory
+## Comparing to category theory
 
 - can we use universal property in adventure?
   - "universal" is about "uniqueness" and "forall"
@@ -94,22 +101,21 @@ In my `adventure_t`, I use the `error` element to define non-composability.
     id : {} = {}
     // to express "do nothing" more generally without a type parameter
     ```
-# Implementation
+## Implementation
 
 - Implementation can be viewed as
   - evaluation (interpretation) of expression (syntax object)
   - model of theory
 
-## env and ctx
-
-- exp-t can form a adventure-t
-- val-t can form a adventure-t only in ctx
-  - mul : elem-t -> elem-t -> elem-t
-  - val-mul : (ctx-t) -> (val-t, val-t) -> (val-t, ctx-t)
-    state monad where the state is ctx-t
-- eval is a functor from `exp-adventure` to `val-adventure in ctx`
-  - how categorical semantics handles ctx?
-- syntax `exp-adventure` is amost the abstract class itself
-  this is why abstract class is called syntax or language
-- so we have theory and model, just as in c-system
-  and the model must be understand in ctx
+- env and ctx
+  - exp-t can form a adventure-t
+  - val-t can form a adventure-t only in ctx
+    - mul : elem-t -> elem-t -> elem-t
+    - val-mul : (ctx-t) -> (val-t, val-t) -> (val-t, ctx-t)
+      state monad where the state is ctx-t
+  - eval is a functor from `exp-adventure` to `val-adventure in ctx`
+    - how categorical semantics handles ctx?
+  - syntax `exp-adventure` is amost the abstract class itself
+    this is why abstract class is called syntax or language
+  - so we have theory and model, just as in c-system
+    and the model must be understand in ctx
