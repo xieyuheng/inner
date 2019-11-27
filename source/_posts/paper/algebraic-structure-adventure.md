@@ -35,6 +35,12 @@ and the boundary operator of algebraic topology.
 
 In my `adventure_t`, I use a single boundary operator `cut` to replace the two.
 
+- Note that,
+  before adding `cut` to `adventure_t`, it is a more simple ring-like structure,
+  `cut` is a homomorphism from `elem_t` to `elem_t`.
+  after adding `cut` to `adventure_t`,
+  the morphism of the structure must also preserve `cut`.
+
 In category theory composability between `f` and `g` is defined as `cod(f) == dom(g)`.
 
 In my `adventure_t`, I use the `error` element to define non-composability.

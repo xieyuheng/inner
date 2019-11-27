@@ -19,7 +19,8 @@ title: Sets for Mathematics
   - **[AXIOM]** `set_t` is a `category_t`, with sets as objects and maps as morphisms.
 
   - **[AXIOM]** `set_t` has terminal object, say `unit_t`,
-    which can be used to recover the notion of set membership.
+    which can be used to recover the notion of set membership,
+    which is called indexing.
 
   - **[AXIOM]** the terminal object `unit_t` is a separator.
 

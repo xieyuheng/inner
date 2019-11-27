@@ -566,7 +566,7 @@ Moand comes in, when we need to compose pure functions.
 
 A monad is just a monoid-object in the monoidal-category of endofunctors,
 where in the monoidal-category tensor-product is functor composition,
-thus a special endofunctor, with two morphisms `join` and `pure`.
+thus a special endofunctor, with two morphisms `join` and `return`.
 
 ## II 1.1 Declarative vs Imperative Approach
 
