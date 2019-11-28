@@ -46,7 +46,7 @@ If we are interested in the set `A`,
     ``` js
     unit_separate_map : {
       f1, f2 : { X -> Y }
-      {
+      eqv : {
         x : { unit_t -> X }
         ---------
         eqv_t(compose(x, f1), compose(x, f2))
@@ -60,6 +60,8 @@ If we are interested in the set `A`,
 
   - **[AXIOM]** `set_t` has initial object, say `void_t`.
 
+  - **[AXIOM]** `set_t` is non-degenerate, `unit_t` is not isomorphic to `void_t`.
+
 ## 1.6 Generalized Elements
 
 To view `unit_t -> A` as element of `A`,
@@ -70,3 +72,12 @@ In this chapter we are emphasizing the category
 in which the sets themselves are constant,
 but later we will explicitly describe and construct examples of categories
 in which the sets are (even continuously) variable.
+
+- **[Xie]** The category of variable sets might be useful in implementation type system,
+  because a type is different in different context.
+
+## 1.7 Mappings as Properties
+
+The term "property" is being used in such a general sense that
+it means just an arbitrary mapping
+but from the dual point of view to that of generalized elements.
