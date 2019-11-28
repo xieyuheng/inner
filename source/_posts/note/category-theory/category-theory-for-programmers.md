@@ -511,6 +511,13 @@ Every time we see mappings or arrows, we ask can we compose them.
 We can extends `category_t` to `strict_two_category_t`
 by enrich the structure of homset with category.
 
+- **[From The Catsters]**
+  Since natural transformation is morphism in some category, we can compose them.
+  We have functor category, `C, D : category_t`,
+  `functor_category_t(C, D)` is a category,
+  where `object_t = functor_t(C, D)`
+  and `morphism_t(f, g) = transformation_t(C, D, f, g)`.
+
 The `functor_category_t` is defined,
 and they are exponential objects in category of categories,
 which means `strict_two_category_t` is Cartesian closed.
@@ -564,9 +571,48 @@ Moand comes in, when we need to compose pure functions.
 
 ## I 10.2 Monoid in the category of endofunctors
 
-A monad is just a monoid-object in the monoidal-category of endofunctors,
-where in the monoidal-category tensor-product is functor composition,
-thus a special endofunctor, with two morphisms `join` and `return`.
+> A monad is just a monoid-object in the monoidal-category of endofunctors,
+> where in the monoidal-category tensor-product is functor composition,
+> thus a special endofunctor, with two morphisms `join` and `return`.
+
+How to define monoid without talking about sets?
+
+A monoid can be viewed as a special category with only one object ,
+elements of monoid are endo-morphisms,
+but this is not enough, because we are still taking about set of endo-morphisms.
+
+If we think about what is monoid in the category of sets,
+we can generalize the monoid to **monoid-object** of any category.
+
+First we have `mu : (A, A) -> A` and `eta : () -> A`,
+we can replace Cartesian product `(A, A)` by categorical product `A * A`,
+and replace `()` by the terminal object.
+
+That is suppose for some object `A` (the monad) in some a category,
+we have morphisms `mu` and `eta`.
+
+To express that `mu` analog to the associative binary function of monoid,
+we first need `(A * A) * A ~~ A * (A * A)`,
+which is not an equivalent but an isomorphism.
+
+A monoidal category means generalize categorical product to a bifunctor,
+thus we can define monad in monoidal category.
+
+- For a bifunctor associative can be strict,
+  `(A * A) * A ~~ A * (A * A)` can be `(A * A) * A == A * (A * A)`.
+
+Given a category `C`, its endofunctors form a category,
+the `functor_category_t(C, C)` (or write as `[C, C]`),
+where `object_t = functor_t(C, C)`
+and `morphism_t(f, g) = transformation_t(C, C, f, g)`.
+
+Elements in `[C, C]` are functors from `C` to `C`,
+so we can compose them, and this functor composition
+can be viewed as form bifunctor (tensor-product) of category `[C, C]`,
+thus `[C, C]` is a monoidal category.
+
+A monad is just a monoid-object in the (strict) monoidal-category of endofunctors,
+where in the monoidal-category tensor-product is functor composition.
 
 ## II 1.1 Declarative vs Imperative Approach
 

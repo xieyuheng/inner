@@ -81,3 +81,5 @@ in which the sets are (even continuously) variable.
 The term "property" is being used in such a general sense that
 it means just an arbitrary mapping
 but from the dual point of view to that of generalized elements.
+
+# 2 Sums, Monomorphisms, and Parts
