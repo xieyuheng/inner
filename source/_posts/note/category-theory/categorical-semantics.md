@@ -55,7 +55,7 @@ The validity of a group of introduction rules and elimination rule will be ensur
 Context is the same as telescope (of de Bruijn).
 
 Context is also the same as dependent record
-(a dependent record is a chain of dependent sum with named),
+(a dependent record is a chain of dependent product with named),
 thus **a context should be viewed as an object of the category**
 (the category we are trying to build, to provide semantics to type theory).
 
@@ -90,8 +90,17 @@ the concept of context and variable in the category.
   first in terms of sets.
 
   since we know that categorical product is the limit of two points,
-  should we guess that dependent product is the limit of an morphism `A -> B`?
-  or maybe `unit_t -> A -> B`?
+  we should guess that dependent product is the limit of an morphism `unit_t -> A -> B`,
+  and the diagram of dependent record is a chain whose root is `unit_t` like `unit_t -> A -> B -> C`,
+  or more general the diagram is a tree whose root is `unit_t`.
 
 - **TODO**
   can we capture all set theoretic properties of context by universal properties?
+
+## How to use categorical semantics in a language without dependent type?
+
+First we need to model category theory in the language.
+
+We call the language in which we are trying to model category theory the hosting language.
+
+We can not relay on the type system of the hosting language.
