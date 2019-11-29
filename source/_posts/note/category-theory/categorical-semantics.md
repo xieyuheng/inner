@@ -85,4 +85,13 @@ From the example above, we know that
 We task is to design the universal constructions of
 the concept of context and variable in the category.
 
-TODO pullback and substitution of context
+- **TODO**
+  describe what we want to do with context (pullback and substitution),
+  first in terms of sets.
+
+  since we know that categorical product is the limit of two points,
+  should we guess that dependent product is the limit of an morphism `A -> B`?
+  or maybe `unit_t -> A -> B`?
+
+- **TODO**
+  can we capture all set theoretic properties of context by universal properties?

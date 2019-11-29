@@ -642,7 +642,20 @@ The universal construction of category theory is an example of global approach.
 
 ## II 1.2 Limits
 
+Limit captures the genereal idea about universal constructions,
+we need to go one level up for abstraction here.
 
+- [Kan extension](https://en.wikipedia.org/wiki/Kan_extension) would be even more genereal.
+
+we start from the concrete example -- categorical product.
+
+We can use functor to pick up pattern from a category.
+
+Cone can be describe as a natural transformation
+from  constant functor to the pattern picking functor.
+
+To go from cone to limit, we talk about "universal", 
+which means "uniqueness" and "for all".
 
 ## II 2.1 Limits, Higher order functors
 
