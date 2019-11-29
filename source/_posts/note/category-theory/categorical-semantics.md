@@ -85,14 +85,14 @@ From the example above, we know that
 We task is to design the universal constructions of
 the concept of context and variable in the category.
 
+Since we know that categorical product is the limit of two points,
+we should guess that dependent product is the limit of an morphism `unit_t -> A -> B`,
+and the diagram of dependent record is a chain whose root is `unit_t` like `unit_t -> A -> B -> C`,
+or more general the diagram is a tree whose root is `unit_t`.
+
 - **TODO**
   describe what we want to do with context (pullback and substitution),
   first in terms of sets.
-
-  since we know that categorical product is the limit of two points,
-  we should guess that dependent product is the limit of an morphism `unit_t -> A -> B`,
-  and the diagram of dependent record is a chain whose root is `unit_t` like `unit_t -> A -> B -> C`,
-  or more general the diagram is a tree whose root is `unit_t`.
 
 - **TODO**
   can we capture all set theoretic properties of context by universal properties?
