@@ -101,6 +101,8 @@ or more general the diagram is a tree whose root is `unit_t`.
 
 First we need to model category theory in the language.
 
-We call the language in which we are trying to model category theory the hosting language.
+We call the language in which we are trying to model category theory **the host**.
 
-We can not relay on the type system of the hosting language.
+We can not relay on the type system of the host.
+
+My plan is that we first implement constructive set theory in the host.
