@@ -82,4 +82,15 @@ The term "property" is being used in such a general sense that
 it means just an arbitrary mapping
 but from the dual point of view to that of generalized elements.
 
+# [Note] Intuitions form Set theory
+
+- **[Xie]** It is important to use the category of sets to gain intuitions
+  about universal constructions in category in general,
+  just like in programming, it is important to understand concrete examples
+  before designing an abstract class.
+
+- **[Xie]**
+  Is it true that every universal constructions can be understand in the category of sets?
+  Is it right that every universal constructions should be understand in the category of sets first?
+
 # 2 Sums, Monomorphisms, and Parts

@@ -50,16 +50,6 @@ We need to give semantics to inference rules of the type theory.
 
 The validity of a group of introduction rules and elimination rule will be ensured by adjoint functors.
 
-## Set theory
-
-It is important to use the category of sets to gain intuitions
-about universal constructions in category in general,
-just like in programming, it is important to understand concrete examples
-before designing an abstract class.
-
-It it true that every universal constructions can be understand in the category of sets?
-It it right that every universal constructions should be understand in the category of sets first?
-
 ## Context
 
 Context is the same as telescope (of de Bruijn).
