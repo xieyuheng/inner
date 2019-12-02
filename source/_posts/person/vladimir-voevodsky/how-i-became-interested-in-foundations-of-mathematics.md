@@ -10,7 +10,7 @@ title: How I became interested in foundations of mathematics
 
 ------
 
-- When I was studying in Moscow university,
+- When I was studying in Moscow University,
   foundations of mathematics is a subject is extremely unfashionable.
 
   There were different groups,
@@ -104,7 +104,7 @@ But it was only the beginning of the story of my proof of Milnor's Conjecture.
 
 ------
 
-The proof That I found depend on another conjecture.
+The proof that I found depend on another conjecture.
 That conjecture was in itself very cool and connected two areas of mathematics
 which were at that time very far apart.
 
@@ -120,5 +120,31 @@ but many details were left out.
 
 And then it took me 7 years to work out these details
 and to publish a paper with a complete proof ...
+
+------
+
+And I was lucky!
+
+The ideas which the proof was based on turned out to be solid
+and the results of other people which I relied on turned out to be correct.
+
+This is not always the case.
+
+Let me tell you the story of another of my proofs which turned out very differently.
+
+------
+
+In 1987, I was introduced to Mikhail Kapranov.
+I was an undergrad at Moscow University and he was a graduate student.
+
+We immediately discovered that we are both dreaming of
+developing new "higher dimensional" mathematics
+inspired by the concepts of higher category theory.
+
+We started to work together.
+It was great fun.
+Doing mathematics with someone from whom you can learn,
+while discovering together things which are new both for you and for the world
+is an amazing and powerful experience.
 
 ------
