@@ -4,8 +4,6 @@ title: Ones Inner Universe
 
 # Ones Inner Universe
 
-------
-
 I am Xie Yuheng, an independent Chinese researcher in Foundations of Mathematics.
 
 The area of my inquiry is beautifully formulated by [Vladimir Voevodsky](https://en.wikipedia.org/wiki/Vladimir_Voevodsky) as following,
