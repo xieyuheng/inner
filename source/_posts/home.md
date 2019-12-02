@@ -30,7 +30,7 @@ and its applications in the design of programming languages' type systems.
 This kind of applications are called [Categorical semantics](https://ncatlab.org/nlab/show/categorical+semantics) or [Categorical logic](https://en.wikipedia.org/wiki/Categorical_logic).
 (It is called "Categorical logic" because type systems are equivalent to logic deduction systems.)
 
-I am also interested [Lattice theory](https://en.wikipedia.org/wiki/Lattice_(order)),
+I am also interested in formalization of [Lattice theory](https://en.wikipedia.org/wiki/Lattice_(order)),
 and its applications in [formal concept analysis](https://en.wikipedia.org/wiki/Formal_concept_analysis).
 
 ------
