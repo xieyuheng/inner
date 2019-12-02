@@ -19,9 +19,11 @@ I design programming languages
 and use them as formal deduction systems
 to formalize areas of mathematics which I am interested in.
 
-I am specially interested in formalization of [Algebraic topology](https://en.wikipedia.org/wiki/Algebraic_topology), and its applications in [Geometric modeling](https://en.wikipedia.org/wiki/Geometric_modeling).
+I am specially interested in formalization of [Algebraic topology](https://en.wikipedia.org/wiki/Algebraic_topology),
+and its applications in [Geometric modeling](https://en.wikipedia.org/wiki/Geometric_modeling).
 
-I am also interested [Lattice theory](https://en.wikipedia.org/wiki/Lattice_(order)), its applications in [formal concept analysis](https://en.wikipedia.org/wiki/Formal_concept_analysis).
+I am also interested [Lattice theory](https://en.wikipedia.org/wiki/Lattice_(order)),
+its applications in [formal concept analysis](https://en.wikipedia.org/wiki/Formal_concept_analysis).
 
 ------
 
