@@ -97,4 +97,28 @@ I had the first preprint available in June of 1995.
 
 But it was only the beginning of the story of my proof of Milnor's Conjecture.
 
+- You can see how the dynamic of the work of real mathematics unfold in time.
+  Ideally a mathematician prove theorems, but you will see how it really goes.
+
+  Remember that I got the proof at 1995, but got my Fields Medal in 2002.
+
+------
+
+The proof That I found depend on another conjecture.
+That conjecture was in itself very cool and connected two areas of mathematics
+which were at that time very far apart.
+
+I was also sure that I know how to prove this conjecture,
+but I know it will take long time.
+
+Then I started to look for a modification of the first proof,
+to make it not depend on the new conjecture.
+About a year later I found it.
+I wrote preprint with the new proof in December 1996.
+The proof in the preprint contained all the main ideas
+but many details were left out.
+
+And then it took me 7 years to work out these details
+and to publish a paper with a complete proof ...
+
 ------
