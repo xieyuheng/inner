@@ -205,3 +205,192 @@ and that the proof which Kapranov and I published in 1991 is wrong.
 Not only the proof was wrong but the main theorem of that paper was false!.
 
 ------
+
+In this story I got lucky again.
+
+The theorem was false with the particular definition of infinity groupoids
+which Kapranov and I have used.
+There were by now various other definitions
+with which the statement of the theorem became correct.
+
+The use of the Grothendieck correspondence,
+as it became known, in the Univalent Foundations
+was not endangered.
+
+But belief in the correctness of our false theorem
+played an important and negative role
+in how I perceived, for all these years, the subject area of multidimensional category theory.
+
+- Because I believed in something which was false,
+  I could not believe other things which were true,
+  because they contradict each other.
+
+  So I could not understand the work of others in this area.
+
+------
+
+When I recognized that the theorem of the paper is false
+I contacted Kapranov to tell him that
+we need to do something about the paper
+and to tell Carlos Simpson that his preprint from 2003 is correct.
+
+An interesting feature of this story is that
+Carlos Simpson did point out where in the proof, which was about 10 pages long, the mistake was.
+He only showed that it can not be correct by building a counter-example to the final statement.
+
+It took me several weeks to find which particular lemma in the paper is incorrect
+and to find counterexamples to that lemma.
+
+There no ending to this story yet.
+The question that we originally wanted to answer
+-- how to find an algebraic definition of infinity groupoids
+that would satisfy the Grothendieck correspondence,
+remains open...
+
+------
+Now let us look at this story again.
+Kapranov and I have found a solution to the problem which we worked on
+-- the proof of the theorem.
+
+If the problem was to solve an equation
+and we would have found a solution
+we would have checked that it is a solution before publishing it, right?
+
+And if it were a complex equation
+we would probably have checked it on a computer.
+
+So why can not we check a solution which is a proof of a theorem?
+
+------
+
+I started to ask myself this question more than 10 years ago
+when the solutions, proofs, which I was inventing
+were becoming more and more complex
+and I was getting more and more worried that they may contain mistakes.
+
+And trying to answer this question
+led me to my current interest in Foundations of Mathematics.
+
+Let me explain how.
+
+------
+
+A solution to an equation would probably be a number or a collection of numbers.
+
+Verification in this case would consist in performing some computations with these numbers
+and comparing the result of these computations with some other numbers.
+
+But what should we do when the solution is a proof of a statement?
+
+------
+
+A hint can be seen from looking at the case
+when the problem was to solve an equation in symbolic form.
+For example, to find a formula for solving
+a general equation of the form `x^3+a*x+b=0`.
+
+How would we check the solution in this case?
+We would probably use some software for symbolic computation
+which can compute not only with numbers
+but also with expressions which have variables in them.
+
+So in order to check a solution which is a proof of a statement
+we need to write both the statement and the proof as some kind of symbolic expressions
+let's say `T` for the statement, and `A` for the proof,
+and then use some software which can compute with these
+expressions in such a way as to check that `A` is indeed a proof of `T`.
+
+------
+
+Encoding of statements and proofs
+which exist in our thoughts
+into symbolic expressions
+is called **formalization**.
+
+Formalization is, just like programming, first of all a tool
+that we can use to pass on to computers
+some of the mental tasks which we need to perform.
+
+But at the moment it is much less developed than programming
+and when I started to search, in 2003, for a formalization system
+that I could use to help me check my proofs I could not find any.
+
+I decided that I need to create such a system.
+
+The first question to answer was
+what was it that prevented the creation of such a system earlier?
+
+------
+
+What is involved in the creation of a formalization systems
+for use in mathematics?
+
+First of all we need to have a some knowledge
+about how to design formal deduction systems
+which are for formalization what programming languages are for programming.
+
+The theory of formal deduction systems originated, as far as I could find, with
+an amazing paper by Gottlob Frege from 1879 which is called
+"A formula language, modeled upon that of arithmetic, for pure thought".
+
+Today it is studied mainly in Computer Science "Theory B".
+
+BTW -- it is "Theory B"
+not because it is less important than "Theory A"
+but because of a Handbook of Theoretical Computer Science
+which was published in two volumes "A" and "B"
+and the theory of formal deduction systems was discussed in the second volume.
+
+- The "Theory A", is much better known
+  in many country of Asia, and in America, and in Israel.
+  It is mostly concerned with complexity and algorithms.
+
+  The "Theory B" is concerned with the theory and design of programming languages.
+
+  The "B" here actually means it is more difficult,
+  because more simple things are discussed in the first volume,
+  and more complex things are discussed in the second volume.
+
+------
+
+But the theory of formal deduction systems
+is only one part of what we need
+to formalize mathematical statements and proofs.
+
+This theory studies all possible formal deduction and computation systems.
+Whether a given system formally represents some actual system of reasoning
+which is used in the world of thought
+is of no concern to this theory.
+
+- It is like the theory of general differential equations,
+  so it studies all differential equations,
+  and does not care whether some differential equations
+  describe some actual process in real world or not.
+
+For proof verification we need to construct a **particular** formal deduction system
+and explain how it corresponds with the mathematical objects
+and forms of reasoning which exist in our thoughts.
+
+------
+
+Constructing such systems and correspondences between their formal components
+and objects and actions in the world of our mathematical thoughts
+is the main task of the field which is called Foundations of Mathematics.
+
+- This is what Foundations of Mathematics is about,
+  it is about connecting the world of our thoughts to objects in formal systems,
+  which will help us to manipulate our thoughts.
+
+A formal deduction system together with a correspondence
+between its components and objects and actions in the world of mathematical thoughts
+which can be used to formalize all subject areas of mathematics
+is called a foundational system for mathematics or "Foundations of Mathematics".
+
+- Of course this is not how "Foundations of Mathematics" is formulated
+  back when I was in Moscow University.
+  If it was formulated like this,
+  I will think it would be very very cool, but it was not.
+
+  And this is how we look at it now.
+
+------
