@@ -6,10 +6,9 @@ title: Ones Inner Universe
 
 ------
 
-I am Xie Yuheng.
+I am Xie Yuheng, an independent researcher in Foundations of Mathematics.
 
-Currently, I am an independent researcher in Foundations of Mathematics.
-This area of inquiry is beautifully defined by Vladimir Voevodsky as following,
+The area of my inquiry is beautifully formulated by [Vladimir Voevodsky](https://en.wikipedia.org/wiki/Vladimir_Voevodsky) as following,
 
 > A formal deduction system together with a correspondence
 > between its components and objects and actions in the world of mathematical thoughts
