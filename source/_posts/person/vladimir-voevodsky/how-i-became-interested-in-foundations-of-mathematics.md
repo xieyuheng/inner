@@ -45,3 +45,56 @@ title: How I became interested in foundations of mathematics
   (I said "again", became it was a very cool subject during 1910s and 1920s.)
 
 ------
+
+Many of us do mathematics that is a little like the Rubik Cube.
+
+There is a problem.
+And there is the search for a solution.
+And when the solution is found, it is certain that it is a solution.
+
+But the mathematics which earned me the Fields Medal of 2002 in Beijing is very different.
+
+There is a problem.
+And there is the search for a solution.
+But when the solution is found, it is not certain at all that it is a solution.
+
+(The Fields Medal was awarded to me for the proof of Milnor's Conjecture.)
+
+------
+
+- Suppose you want to solve a special algebraic equation of degree 5.
+  You found the solution by some means,
+  then you can substitution the root into the equation to check that it is a solution.
+
+  But if you want to solve a group of 20 equations of degree 20
+  or something as complicated like that.
+  You found the solution by some means,
+  then you have to do a lot of calculation to check your solution.
+
+  Nowaday no one will do it by hand,
+  you will use some software to help you verify your solution is a solution.
+
+  Now imagine your problem is to prove some theorem.
+  And your solution is a proof.
+  How do you verify the proof is really a solution?
+
+  There are some conventions you learned from your teachers or professors,
+  about what constitutes a rigorous proof,
+  but you can not feed it to a computer to let the computer check it yet.
+
+------
+
+Back to the Milnor's Conjecture.
+
+The problem is to find a proof of the conjecture.
+
+The search for a solution took me about two years, from 1993 to 1995.
+
+The solution was a proof.
+
+In 1995 I started to work on "writing the proof down".
+I had the first preprint available in June of 1995.
+
+But it was only the beginning of the story of my proof of Milnor's Conjecture.
+
+------
