@@ -148,3 +148,60 @@ while discovering together things which are new both for you and for the world
 is an amazing and powerful experience.
 
 ------
+
+In the summer of 1990, by recommendation of Kapranov,
+I was accepted to the graduate school of Harvard without having to apply.
+In the Fall of 1990 I left the Soviet Union and the american period of my life began ...
+
+------
+
+Kapranov and I wrote a paper about the key conjecture of the new "higher dimensional" mathematics
+that was due to Alexander Grothendieck,
+
+> the intuition appeared that infinity-groupoids should constitute particularly adequate models for homotopy types,
+> the n-groupoids corresponding to truncated homotopy types (with `pi(i) = 0` for `i > n`).
+> -- Esquisse d'un Programme 1984
+
+------
+
+The conjecture was not a precise one
+since what should be the definition of an infinity-groupoid remained open.
+
+Kapranov and I decided that we know what the definition should be
+and how to prove the conjecture with this definition.
+
+We wrote a paper with a sketch of the proof
+and published it in one of the best Russian mathematical journals
+and the paper with the complete proof was published
+in the proceedings of a conference that we have been invited to.
+
+------
+
+We felt that the issue with this conjecture is closed
+and that this important element of "higher dimensional" mathematics had been understood.
+
+Then in 2003, twelve years after our proof was published in English,
+a preprint appeared on the web in which Carlos Simpson,
+very politely, claimed that he has constructed a counter-example to our theorem.
+
+I was busy with the work on the motivic program
+and very sure that our proof is correct
+and ignored the preprint.
+
+------
+
+Then the motivic period of my life was completed
+and I started to work on computer proof verification
+and new foundations of mathematics.
+
+The correspondence between the infinity-groupoids and homotopy types
+re-emerged as the cornerstone of the Univalent Foundations.
+
+And then in the Fall of 2013,
+some sort of a block in my mind collapsed
+and I suddenly understood that Carlos Simpson was correct
+and that the proof which Kapranov and I published in 1991 is wrong.
+
+Not only the proof was wrong but the main theorem of that paper was false!.
+
+------
