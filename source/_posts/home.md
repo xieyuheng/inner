@@ -6,7 +6,7 @@ title: Ones Inner Universe
 
 ------
 
-I am Xie Yuheng (谢宇恒).
+I am Xie Yuheng.
 
 Currently, I am an independent researcher in Foundations of Mathematics.
 This area of inquiry is beautifully defined by Vladimir Voevodsky as following,
