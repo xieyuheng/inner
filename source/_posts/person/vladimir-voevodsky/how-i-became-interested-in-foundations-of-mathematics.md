@@ -388,9 +388,152 @@ is called a foundational system for mathematics or "Foundations of Mathematics".
 
 - Of course this is not how "Foundations of Mathematics" is formulated
   back when I was in Moscow University.
-  If it was formulated like this,
-  I will think it would be very very cool, but it was not.
+  It was formulated very differently,
+  if it was formulated like this,
+  I will think it would be very very cool,
+  but it was not.
 
   And this is how we look at it now.
+
+------
+
+- I you have a system which can give you formulae
+  corresponding to your thoughts about numbers,
+  that would be a numbers system.
+
+  The earliest things like Foundations of Mathematics were the number systems,
+  these were the systems which allow people to write numbers,
+  which were objects of their simple mathematical thoughts.
+
+  They write numbers as symbols and to manipulate symbols
+  to compute practical things about numbers in the world.
+
+  For example, How to compute "How many bricks is needed to build a wall of some size".
+
+  That was mathematics at that time,
+  and the Foundations of Mathematics at that time is number systems.
+
+  Today mathematics is much wider.
+
+  And the Foundations of Mathematics,
+  is supposed to be some analog of number systems,
+  but for the mathematical objects which are much more abstract that we are dealing with today.
+
+------
+
+The mainstream foundation of classical pure mathematics
+is called Zermelo-Fraenkel Set Theory with the Axiom of Choice or ZFC,
+by the name of the axiomatic system of predicate logic which it uses.
+
+- ZFC is a formal deduction system,
+  In which the way to establish the correspondence between mathematical objects and our thoughts
+  is called set theoretical mathematics.
+
+  That is what the Bourbaki group did for many years in some areas of mathematics.
+
+  It is a very beautiful foundation when you understand it.
+
+It was created in the first decades of the 20th century before computers came into existence
+and before the problem of formalization of actual complex proofs became relevant.
+
+- Before there were computers, no one thought about actually formalizing complex proofs,
+  because it was too difficult to do without computers.
+
+In part because of it was designed to be used with mathematics of that time
+it is not well adapted to the mathematics of the 21st century.
+It is not well adapted to the task of computer proof verification.
+
+To be able to check my proofs
+as one can check solutions to equations
+I needed new foundations of mathematics.
+
+And this is how I became interested in foundations of mathematics ...
+
+------
+
+## Developments
+
+------
+
+Since then the story developed as follows.
+
+I came up with the main ideas of Univalent Foundations in 2006.
+Only one element was missing and it took me three years to find it.
+
+In the Fall of 2009 I gave the first public lecture about the "univalent model"
+-- a mathematical construction which connects Martin-Löf's Type Theory to ZFC
+in a new, unexpected, way.
+
+By the Spring of 2010 I have recognized that
+I had a working version of a new formalization system
+based on a new foundational system that I called Univalent Foundations.
+
+In the academic year 2012/13, Thierry Coquand, Steve Awodey and myself
+organized a special program at the Institute for Advanced Study in Princeton where I work.
+
+------
+
+During that year the participants of the program wrote, together, a book
+called "Homotopy Type Theory".
+
+Type these words in Google
+and you will be directed to a website
+where you can learn more about this new subject
+and also download the book for free.
+
+
+The book is a truly collective effort
+and as such it does not have an author.
+The person who did most to make this book happen
+and who continues to shape the content and the style of the book
+is Michael Schulman.
+
+------
+
+On June 21, 2014 Univalent Foundations passed another important milestone.
+Thierry Coquand gave a talk about Univalent Foundations at the Bourbaki Seminar in Paris.
+Being chosen for a presentation on this seminar
+is widely considered to be an important symbol of recognition
+in the world of pure mathematics.
+
+Thierry and his colleagues are also the authors of the most important advance
+in the mathematics of Univalent Foundations since their invention.
+They have constructed another model,
+similar to the original "univalent model" of 2009
+but based on constructive mathematics.
+
+This model opens up the way
+for wider Univalent Synthesis of classical
+and constructive mathematics ...
+
+------
+
+## After Notes
+
+------
+
+Such amazing stories as this one do not happen often.
+But little boring stories of small mistakes happen all the time.
+
+They were happening in my life
+
+------
+
+These small mistakes waste our time
+and embarrass us when discovered by others.
+
+As we get older and more established the fear of mistakes grows.
+We spend more time re-checking our results and become less daring in trying new things.
+
+------
+
+As I said, I am lucky that I don’t have in my mathematical life
+a story of a mistake which destroyed an important part of my work.
+
+I know people who are not so lucky.
+
+And as mathematics becomes more complex
+the weight of mistakes of the fear of making a mistake
+is slowing the development of mathematics more.
 
 ------
