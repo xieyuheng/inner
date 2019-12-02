@@ -20,6 +20,8 @@ and use them as formal deduction systems
 to formalize areas of mathematics which I am interested in.
 
 I am specially interested in formalization of [Algebraic topology](https://en.wikipedia.org/wiki/Algebraic_topology),
+(I am trying to find an algebraic definition of infinity groupoids
+that would satisfy the Grothendieck correspondence.)
 and its applications in [Geometric modeling](https://en.wikipedia.org/wiki/Geometric_modeling).
 
 I am also specially interested in formalization of [Category theory](https://en.wikipedia.org/wiki/Category_theory),

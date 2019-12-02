@@ -537,3 +537,38 @@ the weight of mistakes of the fear of making a mistake
 is slowing the development of mathematics more.
 
 ------
+
+## Q&A
+
+------
+
+Questioner asked about the used of proof assistants.
+
+Voevodsky: Proof assistants can be extremely useful,
+just like musical instrument,
+you can use it to practise,
+in the circumstance where you do not have a teacher.
+
+------
+
+Questioner asked about how to improve "mathematical sense".
+
+Voevodsky: By doing a lots and lots and lots detailed proofs and computations,
+for hours and hours, and days and days, and month and month, and years.
+trying to examine different areas of mathematics,
+then it all some how connected in your head in some general view.
+
+To use such "mathematical sense" to find new proofs,
+When I was younger I would spending lots and lots of hours
+writing things on paper, thinking and writing again,
+and drinking a lot of strong tea,
+walking around and rotating these things in my head over and over again.
+
+As I become older I do not do this much, or at least I try not to.
+And I usually try to just formulate a question very precisely,
+to make sure it only has one meaning,
+to place it in my head, to have it there firmly for sometime,
+then I forget about it and do other things,
+and I wait for the answer to come.
+
+------
