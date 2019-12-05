@@ -131,7 +131,7 @@ class cell_t {
 When attaching a `cell` to a `cell_complex`, the `dom` must be a spherical cell-complex.
 And the `cod` is the `n`-dimensional skeleton of the `cell_complex`, where `n` is the dimension of the `dom`.
 
-Here the `dic` is a surjective map from id of `dom` to id to `cod`,
+Here the `dic` is a map from id of `dom` to id to `cod`,
 which serves as a record of how the `cell`s in `dom` are mapped to the `cell`s in `cod`.
 
 - Here we can not simply use: `dic: dic_t <id_t, id_t>`
