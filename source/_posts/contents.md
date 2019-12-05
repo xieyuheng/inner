@@ -73,7 +73,6 @@
   - Type Theory / 类型论
     - [Type theory](/note/type-theory/type-theory)
     - [Language Implementation Tricks](/note/type-theory/language-implementation-tricks)
-    - [Pure Type System](/note/type-theory/pure-type-system)
   - Computer Science / 计算机科学
     - Database / 数据库
       - [A Relational Model of Data for Large Shared Data Banks](/note/computer-science/database/a-relational-model-of-data-for-large-shared-data-banks)
@@ -86,6 +85,7 @@
   - [A Recursive Combinatorial Description of Cell-complex](/paper/a-recursive-combinatorial-description-of-cell-complex)
   - [Simply Typed JoJo Calculus](/paper/simply-typed-jojo-calculus)
   - [Dependently Typed JoJo Calculus](/paper/dependently-typed-jojo-calculus)
+  - [Why Pure Type System?](/paper/why-pure-type-system-p)
   - [I also do not have the time](/paper/i-also-do-not-have-the-time)
 - Translation / 译文
   - [上帝是道家的嗎 / Is God A Taoist, by Raymond Smullyan](/translation/is-god-a-taoist)
