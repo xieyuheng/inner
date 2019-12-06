@@ -33,6 +33,11 @@ and its applications in [formal concept analysis](https://en.wikipedia.org/wiki/
 
 ------
 
+## Contains
+
+- Table of Contain of this site: https://inner.xieyuheng.now.sh/contents
+- Source of this web: https://github.com/xieyuheng/inner
+
 ## Connects
 
 - My github: https://github.com/xieyuheng
@@ -40,11 +45,6 @@ and its applications in [formal concept analysis](https://en.wikipedia.org/wiki/
   sometimes you can find my in the archlinux-cn community: http://fars.ee/~readme.html
 - I am also a long time [Emacs](https://en.wikipedia.org/wiki/Emacs) user and I do not use IDE.
 - I like the cultural of free software and I do not use MacOS or Windows.
-
-## Contains
-
-- Table of Contain of this site: https://inner.xieyuheng.now.sh/contents
-- Source of this web: https://github.com/xieyuheng/inner
 
 ## 友人 / Friends
 
