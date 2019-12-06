@@ -52,32 +52,27 @@ and its applications in [formal concept analysis](https://en.wikipedia.org/wiki/
 有的正在相互鼓励中
 
 友人 (按相识顺序)
-- fc: https://farseerfc.me
-  - https://github.com/farseerfc
-- 百合: https://blog.lilydjwg.me
-  - https://github.com/lilydjwg
-- 肥猫: http://felixc.at
-  - https://github.com/felixonmars
-- quininer: https://quininer.github.io
-  - https://github.com/quininer
-- condy: https://condy0919.github.io
-  - https://github.com/condy0919
-- atommann:
-  - https://github.com/atommann
-- myf:
-  - https://github.com/myf
-- zaoqi:
-  - https://github.com/zaoqi
-- Neo_Chen: http://ucbvax.nerdpol.ovh:65420
-  - https://github.com/NeoChen1024
+- fc: https://github.com/farseerfc
+  - https://farseerfc.me
+- 百合: https://github.com/lilydjwg
+  - https://blog.lilydjwg.me
+- 肥猫: https://github.com/felixonmars
+  - http://felixc.at
+- quininer: https://github.com/quininer
+  - https://quininer.github.io
+- condy: https://github.com/condy0919
+  - https://condy0919.github.io
+- atommann: https://github.com/atommann
+- myf: https://github.com/myf
+- zaoqi: https://github.com/zaoqi
+- Neo_Chen: https://github.com/NeoChen1024
+  - http://ucbvax.nerdpol.ovh:65420
   - https://gitlab.com/Neo_Chen
-- 开源哥: https://gilgamesh.me
-  - https://github.com/Z-Shang
-- 阿怪:
-  - https://github.com/aguai
+- 开源哥: https://github.com/Z-Shang
+  - https://gilgamesh.me
+- 阿怪: https://github.com/aguai
 
 Friends (Sorted by the day we know each other.)
-- Jason Hemann:
-  - https://github.com/jasonhemann
-- William Byrd: http://webyrd.net
-  - https://github.com/webyrd
+- Jason Hemann: https://github.com/jasonhemann
+- William Byrd: https://github.com/webyrd
+  - http://webyrd.net
