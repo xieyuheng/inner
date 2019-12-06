@@ -45,3 +45,39 @@ and its applications in [formal concept analysis](https://en.wikipedia.org/wiki/
 
 - Table of Contain of this site: https://inner.xieyuheng.now.sh/contents
 - Source of this web: https://github.com/xieyuheng/inner
+
+## 友人 / Friends
+
+有的曾经相互鼓励过
+有的正在相互鼓励中
+
+友人 (按相识顺序)
+- fc: https://farseerfc.me
+  - https://github.com/farseerfc
+- 百合: https://blog.lilydjwg.me
+  - https://github.com/lilydjwg
+- 肥猫: http://felixc.at
+  - https://github.com/felixonmars
+- quininer: https://quininer.github.io
+  - https://github.com/quininer
+- condy: https://condy0919.github.io
+  - https://github.com/condy0919
+- atommann:
+  - https://github.com/atommann
+- myf:
+  - https://github.com/myf
+- zaoqi:
+  - https://github.com/zaoqi
+- Neo_Chen: http://ucbvax.nerdpol.ovh:65420
+  - https://github.com/NeoChen1024
+  - https://gitlab.com/Neo_Chen
+- 开源哥: https://gilgamesh.me
+  - https://github.com/Z-Shang
+- 阿怪:
+  - https://github.com/aguai
+
+Friends (Sorted by the day we know each other.)
+- Jason Hemann:
+  - https://github.com/jasonhemann
+- William Byrd: http://webyrd.net
+  - https://github.com/webyrd
