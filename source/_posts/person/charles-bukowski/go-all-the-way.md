@@ -9,7 +9,7 @@ It could mean not eating for three or four days.
 It could mean freezing on a park bench.
 It could mean jail.
 It could mean derision.
-It could mean mockery — isolation.
+It could mean mockery -- isolation.
 Isolation is the gift.
 All the others are a test of your endurance, of how much you really want to do it.
 And, you'll do it, despite rejection and the worst odds.
