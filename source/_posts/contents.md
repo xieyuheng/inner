@@ -51,6 +51,8 @@
     - [How I became interested in foundations of mathematics](/person/vladimir-voevodsky/how-i-became-interested-in-foundations-of-mathematics)
   - Zhaohui Luo
     - [Computation and Reasoning](/person/zhaohui-luo/computation-and-reasoning)
+  - Charles Bukowski / 查尔斯 布考斯基
+    - [Go All The Way](/person/charles-bukowski/go-all-the-way)
   - Zhuang Zi / 莊子
     - [齊物論](/person/zhuang-zi/齊物論)
 - Note / 笔记

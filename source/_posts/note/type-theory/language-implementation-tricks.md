@@ -33,7 +33,7 @@ Type system is specified by logic inference rules.
 
 Such specification make it possible to prove `e: T`,
 but might not provide algorithm for checking `e: T`,
-that is, it might not generating a proof of `e: T` for you.
+that is, it might not generate a proof of `e: T` for you.
 
 Why not?
 Just because we are not providing enough information in the syntax.
