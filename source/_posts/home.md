@@ -51,30 +51,91 @@ and its applications in [formal concept analysis](https://en.wikipedia.org/wiki/
 有的曾经相互鼓励过
 有的正在相互鼓励中
 
-友人 (按相识顺序)
-- fc: https://github.com/farseerfc
-  - https://farseerfc.me
-- 百合: https://github.com/lilydjwg
-  - https://blog.lilydjwg.me
-- 肥猫: https://github.com/felixonmars
-  - http://felixc.at
-- quininer: https://github.com/quininer
-  - https://quininer.github.io
-- condy: https://github.com/condy0919
-  - https://condy0919.github.io
-- Dixing (Dex) Xu: https://github.com/dexhunter
-  - https://blog.dex.moe/about
-- atommann: https://github.com/atommann
-- myf: https://github.com/myf
-- zaoqi: https://github.com/zaoqi
-- Neo_Chen: https://github.com/NeoChen1024
-  - http://ucbvax.nerdpol.ovh:65420
-  - https://gitlab.com/Neo_Chen
-- 开源哥: https://github.com/Z-Shang
-  - https://gilgamesh.me
-- 阿怪: https://github.com/aguai
+<details>
+<summary>友人 (按相识顺序)</summary>
+<ul>
+<li>fc: <a href="https://github.com/farseerfc" target="_blank" rel="noopener">https://github.com/farseerfc</a>
+<ul>
+<li><a href="https://farseerfc.me" target="_blank" rel="noopener">https://farseerfc.me</a></li>
+</ul>
+</li>
+<li>百合: <a href="https://github.com/lilydjwg" target="_blank" rel="noopener">https://github.com/lilydjwg</a>
+<ul>
+<li><a href="https://blog.lilydjwg.me" target="_blank" rel="noopener">https://blog.lilydjwg.me</a></li>
+</ul>
+</li>
+<li>肥猫: <a href="https://github.com/felixonmars" target="_blank" rel="noopener">https://github.com/felixonmars</a>
+<ul>
+<li><a href="http://felixc.at" target="_blank" rel="noopener">http://felixc.at</a></li>
+</ul>
+</li>
+<li>quininer: <a href="https://github.com/quininer" target="_blank" rel="noopener">https://github.com/quininer</a>
+<ul>
+<li><a href="https://quininer.github.io" target="_blank" rel="noopener">https://quininer.github.io</a></li>
+</ul>
+</li>
+<li>condy: <a href="https://github.com/condy0919" target="_blank" rel="noopener">https://github.com/condy0919</a>
+<ul>
+<li><a href="https://condy0919.github.io" target="_blank" rel="noopener">https://condy0919.github.io</a></li>
+</ul>
+</li>
+<li>Dixing (Dex) Xu: <a href="https://github.com/dexhunter" target="_blank" rel="noopener">https://github.com/dexhunter</a>
+<ul>
+<li><a href="https://blog.dex.moe/about" target="_blank" rel="noopener">https://blog.dex.moe/about</a></li>
+</ul>
+</li>
+<li>atommann: <a href="https://github.com/atommann" target="_blank" rel="noopener">https://github.com/atommann</a></li>
+<li>myf: <a href="https://github.com/myf" target="_blank" rel="noopener">https://github.com/myf</a></li>
+<li>zaoqi: <a href="https://github.com/zaoqi" target="_blank" rel="noopener">https://github.com/zaoqi</a></li>
+<li>Neo_Chen: <a href="https://github.com/NeoChen1024" target="_blank" rel="noopener">https://github.com/NeoChen1024</a>
+<ul>
+<li><a href="http://ucbvax.nerdpol.ovh:65420" target="_blank" rel="noopener">http://ucbvax.nerdpol.ovh:65420</a></li>
+<li><a href="https://gitlab.com/Neo_Chen" target="_blank" rel="noopener">https://gitlab.com/Neo_Chen</a></li>
+</ul>
+</li>
+<li>开源哥: <a href="https://github.com/Z-Shang" target="_blank" rel="noopener">https://github.com/Z-Shang</a>
+<ul>
+<li><a href="https://gilgamesh.me" target="_blank" rel="noopener">https://gilgamesh.me</a></li>
+</ul>
+</li>
+<li>阿怪: <a href="https://github.com/aguai" target="_blank" rel="noopener">https://github.com/aguai</a></li>
+</ul>
+</details>
 
-Friends (Sorted by the day we know each other.)
-- Jason Hemann: https://github.com/jasonhemann
-- William Byrd: https://github.com/webyrd
-  - http://webyrd.net
+<!-- - fc: https://github.com/farseerfc
+ !--   - https://farseerfc.me
+ !-- - 百合: https://github.com/lilydjwg
+ !--   - https://blog.lilydjwg.me
+ !-- - 肥猫: https://github.com/felixonmars
+ !--   - http://felixc.at
+ !-- - quininer: https://github.com/quininer
+ !--   - https://quininer.github.io
+ !-- - condy: https://github.com/condy0919
+ !--   - https://condy0919.github.io
+ !-- - Dixing (Dex) Xu: https://github.com/dexhunter
+ !--   - https://blog.dex.moe/about
+ !-- - atommann: https://github.com/atommann
+ !-- - myf: https://github.com/myf
+ !-- - zaoqi: https://github.com/zaoqi
+ !-- - Neo_Chen: https://github.com/NeoChen1024
+ !--   - http://ucbvax.nerdpol.ovh:65420
+ !--   - https://gitlab.com/Neo_Chen
+ !-- - 开源哥: https://github.com/Z-Shang
+ !--   - https://gilgamesh.me
+ !-- - 阿怪: https://github.com/aguai -->
+
+<details>
+<summary>Friends (Sorted by the day we know each other.)</summary>
+<ul>
+<li>Jason Hemann: <a href="https://github.com/jasonhemann" target="_blank" rel="noopener">https://github.com/jasonhemann</a></li>
+<li>William Byrd: <a href="https://github.com/webyrd" target="_blank" rel="noopener">https://github.com/webyrd</a>
+<ul>
+<li><a href="http://webyrd.net" target="_blank" rel="noopener">http://webyrd.net</a></li>
+</ul>
+</li>
+</ul>
+</details>
+
+<!-- - Jason Hemann: https://github.com/jasonhemann
+ !-- - William Byrd: https://github.com/webyrd
+ !--   - http://webyrd.net -->
