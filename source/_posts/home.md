@@ -98,7 +98,7 @@ and its applications in [formal concept analysis](https://en.wikipedia.org/wiki/
 <li><a href="https://gilgamesh.me" target="_blank" rel="noopener">https://gilgamesh.me</a></li>
 </ul>
 </li>
-<li>阿怪 †: <a href="https://github.com/aguai" target="_blank" rel="noopener">https://github.com/aguai</a></li>
+<li>阿怪†: <a href="https://github.com/aguai" target="_blank" rel="noopener">https://github.com/aguai</a></li>
 </ul>
 </details>
 
