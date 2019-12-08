@@ -62,6 +62,8 @@ and its applications in [formal concept analysis](https://en.wikipedia.org/wiki/
   - https://quininer.github.io
 - condy: https://github.com/condy0919
   - https://condy0919.github.io
+- Dixing (Dex) Xu: https://github.com/dexhunter
+  - https://blog.dex.moe/about
 - atommann: https://github.com/atommann
 - myf: https://github.com/myf
 - zaoqi: https://github.com/zaoqi
