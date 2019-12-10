@@ -132,8 +132,9 @@ Is this true for all the rules about constructor?
 
 Note that, we do not need to annotate the return type of function.
 
-A sub-trick is that, the argument type of type check function
-should be `(e: Exp, T: Val)` instead of `(e: Exp, T: Exp)`.
+Sometimes we use `(e: Exp, T: Val)` as the argument type
+of type check function instead of `(e: Exp, T: Exp)`.
+(It is not essential to use `T: Val`, and using it might cause inconvenience in some cases.)
 
 The dependent version of the rule of function application
 
