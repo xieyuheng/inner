@@ -51,7 +51,7 @@ Note that `{ (- A) B (- C) D }` will always be `error`,
 only `{ (- A) (- C) B D }` make sense,
 thus maybe we should not break up `{ C A -> B D }` into `{ (- A) (- C) B D }`.
 
-- The comment above makes the new algebraic structure not necessary,
+- **[Note]** The comment above makes the new algebraic structure not necessary,
   the new structure might also be not necessary in higher dimension,
   because in higher dimension we can introduce new shape of types other than arrows.
 
