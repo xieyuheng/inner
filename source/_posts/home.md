@@ -6,7 +6,7 @@ title: Ones Inner Universe
 
 I am <ruby>谢<rp>(</rp><rt>xiè</rt><rp>)</rp> 宇<rp>(</rp><rt>yǔ</rt><rp>)</rp>恒<rp>(</rp><rt>héng</rt><rp>)</rp></ruby>, an independent Chinese researcher in Foundations of Mathematics.
 
-The area of my inquiry is beautifully formulated by [Vladimir Voevodsky](https://en.wikipedia.org/wiki/Vladimir_Voevodsky) as following,
+The area of my inquiry is beautifully formulated by [Vladimir Voevodsky](https://en.wikipedia.org/wiki/Vladimir_Voevodsky) as the following,
 
 > A formal deduction system together with a correspondence
 > between its components and objects and actions in the world of mathematical thoughts

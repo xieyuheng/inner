@@ -46,6 +46,9 @@
   - Joseph Goguen / 约瑟夫 高根
     - [A categorical manifesto](/person/joseph-goguen/a-categorical-manifesto)
     - [What is unification?](/person/joseph-goguen/what-is-unification-p)
+  - John Cartmell
+    - [Generalised algebraic theories and contextual categories (thesis)](/person/john-cartmell/generalised-algebraic-theories-and-contextual-categories--1978-thesis)
+    - [Generalised algebraic theories and contextual categories](/person/john-cartmell/generalised-algebraic-theories-and-contextual-categories--1985)
   - Vladimir Voevodsky / 弗拉基米尔 沃沃斯基
     - [Lecture about Univalent Foundations at the Institut Henri Poincaré](/person/vladimir-voevodsky/lecture-about-univalent-foundations-at-the-institut-henri-poincaré)
     - [How I became interested in foundations of mathematics](/person/vladimir-voevodsky/how-i-became-interested-in-foundations-of-mathematics)
@@ -72,7 +75,6 @@
     - [Category Theory For Programmers](/note/category-theory/category-theory-for-programmers)
     - [Categories For The Working Mathematician](/note/category-theory/categories-for-the-working-mathematician)
     - [Categorical Semantics](/note/category-theory/categorical-semantics)
-    - [Contextual pre-category](/note/category-theory/contextual-pre-category)
   - Topos Theory / 主题论
   - Type Theory / 类型论
     - [Type theory](/note/type-theory/type-theory)
