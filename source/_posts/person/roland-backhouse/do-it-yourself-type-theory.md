@@ -618,11 +618,11 @@ eqv_t(A, a, b) type
 ``` js
 a == b : A
 ----------------------- // eqv-introduction
-same : eqv_t(A, a, b)
+refl : eqv_t(A, a, b)
 
 a == b : A
 ----------------------- // eqv-introduction
-refl(a) : eqv_t(A, a, b)
+same(a) : eqv_t(A, a, b)
 ```
 
 - **[Xie]** The `replace` rule,
@@ -644,15 +644,79 @@ refl(a) : eqv_t(A, a, b)
 
   ``` js
   { x : A, y : A, p : eqv_t(A, x, y) -> C(x, y, p) }
-  { x : A -> s(x) : C(x, x, refl(x)) }
+  { x : A -> s(x) : C(x, x, same(x)) }
   ------------------------------------------- // eqv-elimination
   eqv_ind(x, y, p, s) : C(x, y, p)
 
   { x : A, y : A, p : eqv_t(A, x, y) -> C(x, y, p) }
-  { x : A -> s(x) : C(x, x, refl(x)) }
+  { x : A -> s(x) : C(x, x, same(x)) }
   ------------------------------------------- // eqv-computation
-  eqv_ind(x, x, refl(x), s) ==
-  s(x, x, refl(x)) : C(x, x, refl(x))
+  eqv_ind(x, x, same(x), s) ==
+  s(x, x, same(x)) : C(x, x, same(x))
+  ```
+
+  ``` js
+  eqv_ind : {
+    [ C : {
+        x, y : A
+        p : eqv_t(A, x, y)
+        ------
+        type } ]
+    x, y : A
+    p : eqv_t(A, x, y)
+    s : { x : A -> C(x, x, same(x)) }
+    ------
+    C(x, y, p)
+  } = {
+    J(x, s, p)
+  }
+
+  J : {
+    [ C : {
+        x, y : A
+        p : eqv_t(A, x, y)
+        ------
+        type } ]
+    x : A
+    [ y : A ]
+    s : { x : A -> C(x, x, same(x)) }
+    p : eqv_t(A, x, y)
+    ------
+    C(x, y, p)
+  } = {
+    let same(t) = p
+    d(t)
+  }
+  ```
+
+  ``` cicada
+  function eqv_ind : {
+    suppose C : {
+      given x, y : A
+      given p : eqv_t(A, x, y)
+      conclude type }
+    given x, y : A
+    given p : eqv_t(A, x, y)
+    given s : { given x : A conclude C(x, x, same(x)) }
+    conclude C(x, y, p)
+  } = {
+    return J(x, s, p)
+  }
+
+  function J : {
+    suppose C : {
+      given x, y : A
+      given p : eqv_t(A, x, y)
+      conclude type }
+    given x : A
+    suppose y : A
+    given s : { given x : A conclude C(x, x, same(x)) }
+    given p : eqv_t(A, x, y)
+    conclude C(x, y, p)
+  } = {
+    let same(t) = p
+    return d(t)
+  }
   ```
 
 ### 3.2.4 Closure and Individuality Properties
@@ -728,7 +792,7 @@ This means such types either has one element, or has no element.
 We are interested only in whether they are inhabited.
 
 Examples are
-- `eqv_t(A, x, y)` only has element `same`.
+- `eqv_t(A, x, y)` only has element `refl`.
 - `absurd_t` has no element.
 - `A -> absurd_t` only has element `(x) => x`.
 
