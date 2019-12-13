@@ -181,7 +181,7 @@ and its applications in [formal concept analysis](https://en.wikipedia.org/wiki/
       <li> 荒城 <br />
         鲍鴻然 <br />
         稻粱亦盡人安在 <br />
-        也入秦川舊笛聲 <br />
+        夜入秦川舊笛聲 <br />
         秋水不眠吞落月 <br />
         孤墳難入嘆荒城 <br />
         <audio controls src="https://xieyuheng.github.io/music-diary/2016-11-16-初犯/荒城.mp3?raw=true"></audio>
