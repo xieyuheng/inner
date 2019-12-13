@@ -79,6 +79,8 @@ and its applications in [formal concept analysis](https://en.wikipedia.org/wiki/
 <li><a href="https://condy0919.github.io" target="_blank" rel="noopener">https://condy0919.github.io</a></li>
 </ul>
 </li>
+<li>oldherl: <a href="https://github.com/oldherl" target="_blank" rel="noopener">https://github.com/oldherl</a>
+</li>
 <li>Dixing (Dex) Xu: <a href="https://github.com/dexhunter" target="_blank" rel="noopener">https://github.com/dexhunter</a>
 <ul>
 <li><a href="https://blog.dex.moe/about" target="_blank" rel="noopener">https://blog.dex.moe/about</a></li>
