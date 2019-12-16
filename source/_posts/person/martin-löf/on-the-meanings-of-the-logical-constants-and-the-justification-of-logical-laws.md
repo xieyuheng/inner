@@ -17,6 +17,17 @@
   The study not only can be applied to the development on formal language,
   but also has a much broader philosophical view.
 
+  In my reading I will focus on the study's effects on
+  the practice of implementing type systems.
+
+  In my view "to implement" is an ethical obligation,
+  which means "we should implement to believe",
+  just as during the Enlightenment "we should reason to believe"
+  replaced "we should appeal to authority to believe".
+
+  By "to believe" I mean "to understand",
+  in the sense that knowledge is the fixation of belief.
+
 - **[Xie]**
   The study and development of the author's theory
   is heavily based on etymology, i.e. the study of the origin of words.
@@ -437,7 +448,11 @@ So far, I have only introduced the two forms of categorical judgement
 The only forms of judgement that I need to introduce, besides these,
 are forms of hypothetical judgement.
 
-- **[Xie]** In the terminology "categorical" v.s. "hypothetical",
+- **[Xie]**
+  The judgements is called "categorical" in the sense that
+  they are made without assumption or generality.
+
+  Thus, in the terminology "categorical" v.s. "hypothetical",
   "categorical" can be understood as "non-hypothetical",
   just like in the terminology "extensional type theory" v.s. "intensional type theory",
   "intensional type theory" can be understood as "non-extensional type theory",
