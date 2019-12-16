@@ -30,7 +30,8 @@
   One deduction system might have many form of judgements.
   For example, in bidirectional type checking, we have "checking mode" and "infering mode".
 
-  Modal logic is an example of pushing judgement level expression down to proposition level expression,
+  In this frame of thought, modal logic can be viewed as an example of
+  pushing judgement level expression down to proposition level expression,
   For example, the judgement "A is necessary."
   is used as a proposition in "A is necessary is true."
   where "_ is necessary" denotes a logical operation.
@@ -47,11 +48,28 @@ I shall start by giving a very simple answer,
 which is essentially right: after some elaboration, at least,
 I hope that we shall have a sufficiently clear understanding of it.
 And the definition would simply be that,
-**when understood as an act of judging, a judgement is nothing but an act of knowing,
-and, when understood as that which is judged, it is a piece or, more solemnly, an object of knowledge**.
+**when understood as an act of judging,
+a judgement is nothing but an act of knowing,
+and, when understood as that which is judged,
+it is a piece or, more solemnly, an object of knowledge**.
 
 The act of judging is the same as the act of knowing,
 and that what is judged is the object of knowledge.
+
+- **[Xie]**
+  When talking about an "object of knowledge",
+  we are expressing the principle of constructivism,
+  while when talking about "an act of knowing",
+  a person's experience and consciousness is emphasised.
+
+  Thus the author's frame of thought can be summarized as
+  the principle of constructivism with an emphasis on phenomenology.
+
+  Maybe we can say that `intuitionism = constructivism + phenomenology`.
+
+- **[Xie]**
+  We can view a person's understanding as semantics (phenomenology),
+  we can also view a computer's understanding as semantics (the implementation).
 
 - **[Xie]**
 
@@ -60,7 +78,8 @@ and that what is judged is the object of knowledge.
   | extensional | act of judging       | an act of knowing      |
   | intensional | that which is judged | an object of knowledge |
 
-- **[Xie]** Then, what is "knowing"? Which is even a deeper question.
+- **[Xie]** Then, what is "knowing"?
+  (Which is even a deeper question.)
   Maybe just the intuitions like
   "I am sure that _",
   "I am sure that possibly _",
@@ -90,7 +109,9 @@ before it has been judged, that is, has become known?
 | judgement    | evident judgement |
 | proposition  | true proposition  |
 
-- **[Xie]** The author is cornered and come up with the word "enunciation",
+- **[Xie]**
+  In the paper, when choosing terminology,
+  the author is cornered and come up with the word "enunciation",
   I would suggest the word "claim".
 
 ## Second lecture
@@ -146,7 +167,6 @@ by showing again in a picture what is involved here.
        _ is a proposition : form of judgement
        A is a proposition : judgement
 I know A is a proposition : evident judgement
-
 ```
 
 Here is involved, first, an expression `A`, which should be a complete expression.
@@ -179,7 +199,8 @@ and pass on to the notion of proof.
 > A proof is what makes a judgement evident.
 
 - **[Xie]**
-  Maybe we want to say that evidence's type is judgement -- `evidence : judgement`,
+  Maybe we want to say that evidence's type is judgement
+  `evidence : judgement`,
   but membership itself is a judgement in Martin-Löf's theory.
 
 - **[Xie]**
@@ -309,6 +330,11 @@ A(x) prop
 (exists x) A(x) prop
 ```
 
+- **[Xie]**
+  The lecturer will consider his mission fulfilled
+  after explained the meaning of quantified propositions at the third lecture.
+  And the concept of **free variable proof** will be the essence of the explanation.
+
 To my mind, at least, they simply fail to be evident.
 And I need not be ashamed of the reference to myself in this connection:
 as I said in my discussion of the notion of evidence,
@@ -367,8 +393,9 @@ you must know what counts as a verification, solution, fulfillment, or realizati
 - **[Xie]** Again comparing with Bishop's definition of set,
 
   > To define a set we prescribe, at least implicitly,
-  > 1. what we (the constructing intelligence) must do in order to construct an element of the set,
-  > 2. and what we must do to show that two elements of the set are equal.
+  > - (1) what we (the constructing intelligence) must do
+  >   in order to construct an element of the set,
+  > - (2) and what we must do to show that two elements of the set are equal.
 
 Coupled with the preceding explanation of what a proposition is,
 is the following explanation of what a truth is,
@@ -490,6 +517,9 @@ And what is a free variable proof?
 It is a proof which remains a proof
 when you substitute anything you want for its free variables,
 that is, any expressions you want, of the same arities as those variables.
+
+- **[Xie]** The remark above is important to understand
+  the use of neutral expressions in implementations of type systems.
 
 Let us now pass on to the rules of inference, or proof rules,
 and their semantical explanations.
@@ -680,6 +710,9 @@ and the kind of generality which a judgement may have comes before universal qua
 - **[Xie]**
   In the following it is obvious in context that which use of `x` is free variable,
   and when a free variable proof is needed.
+
+- **[Xie]**
+  The propositions about "forall" and "exists" express the idea of **free variable proof**.
 
 ``` js
 A(x) prop
