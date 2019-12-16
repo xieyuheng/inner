@@ -437,6 +437,18 @@ So far, I have only introduced the two forms of categorical judgement
 The only forms of judgement that I need to introduce, besides these,
 are forms of hypothetical judgement.
 
+- **[Xie]** In the terminology "categorical" v.s. "hypothetical",
+  "categorical" can be understood as "non-hypothetical",
+  just like in the terminology "extensional type theory" v.s. "intensional type theory",
+  "intensional type theory" can be understood as "non-extensional type theory",
+  where "extensional type theory" means equality between functions are "extensional",
+  "extensional equality" means that two functions are considered equal,
+  if given the same arguments, they will return the same results.
+
+  And note that,
+  "extensional" v.s. "intensional" has broader philosophical meaning,
+  such as "extensional context" v.s. "intensional context" in philosophy of language.
+
 The rule for making assumptions is simply this:
 **whenever you have a judgement,
 in the sense of an instance of a form of judgement,
