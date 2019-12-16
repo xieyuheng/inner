@@ -5,10 +5,6 @@
 - Date: 2016
 ------
 
-# [Note] About cicada language
-
-
-
 # Chapter 1. Logical Theories
 
 ## 1. Judgements of a logical theory
