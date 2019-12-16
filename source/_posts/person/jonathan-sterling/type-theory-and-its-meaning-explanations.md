@@ -5,6 +5,11 @@
 - Date: 2016
 ------
 
+# [Note] Terminology
+
+The "meaning explanation" is called "semantical explanations" in Martin-Löf's paper
+"On the meanings of the logical constants and the justification of logical laws".
+
 # Chapter 1. Logical Theories
 
 ## 1. Judgements of a logical theory
