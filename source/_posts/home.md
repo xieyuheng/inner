@@ -42,7 +42,7 @@ and its applications in [formal concept analysis](https://en.wikipedia.org/wiki/
 
 - My github: https://github.com/xieyuheng
 - I am a long time archlinux user,
-  sometimes you can find my in the archlinux-cn community: http://fars.ee/~readme.html
+  sometimes you can find me in the archlinux-cn community: http://fars.ee/~readme.html
 - I am also a long time [Emacs](https://en.wikipedia.org/wiki/Emacs) user and I do not use IDE.
 - I like the cultural of free software and I do not use MacOS or Windows.
 
