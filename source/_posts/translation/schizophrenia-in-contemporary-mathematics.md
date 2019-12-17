@@ -195,8 +195,8 @@ title: 當代數學之精神分裂症 / Schizophrenia in Contemporary Mathematic
      - 另外一些人覺得 有某些內容是重要的
        但是並不在意找到它們
      - 還有一些人
-       (Godel 看來是其代言人 參考例如
-        [Godel, K., "What is Cantor's Continuum Problem?"
+       (Gödel 看來是其代言人 參考例如
+        [Gödel, K., "What is Cantor's Continuum Problem?"
         Amer. Math. Monthly, 54 (1947), 515-525.])
        他們盡力發展內容
        但是只在廣爲接受的柏拉圖理想主義的框架之內
@@ -459,9 +459,9 @@ title: 當代數學之精神分裂症 / Schizophrenia in Contemporary Mathematic
     For them content is a means rather than the end.
   - Others feel that it is important to have some content,
     but don't especially care to find out what it is.
-  - Still others, for whom Godel seems to be a leading spokesman,
+  - Still others, for whom Gödel seems to be a leading spokesman,
     (see for example
-     [Godel, K., "What is Cantor's Continuum Problem?"
+     [Gödel, K., "What is Cantor's Continuum Problem?"
       Amer. Math. Monthly, 54 (1947), 515-525.])
     do their best to develop content
     within the accepted framework of platonic idealism.
@@ -941,6 +941,6 @@ title: 當代數學之精神分裂症 / Schizophrenia in Contemporary Mathematic
 - To sum up, the first task is to constructivize as much of existingclassical mathematics as is suitable for constructivization. As this is being
   done, we should increasingly turn our attention to questions of the efficiency ofour algorithms, and bridge the gap between constructive mathematics on theone hand and numerical analysis and the theory of computation on the other.Since constructive mathematics is the study of what is theoreticallycomputable, it should afford a sound philosophical basis for the theory ofcomputation.
 
-- Our terminology and technical devices need constant re-examination asto whether they are the most appropriate tools for extracting the full meaningfrom our material. It seems to me that the meaning of implication, inparticular, should be thoroughly studied, and other possible candidatesinvestigated. Such statements as "(A -* B) -* C" have a rather tenuous meaning, andin many instances of proofs of such statements, something more is actuallybeing proved. Work of Godel [17] raises some interesting possibilities aboutpossible re-definitions of implication, which seem to be very difficult toimplement in usable generality, and which also seem to run counter to naturalmodes of thought. There seems to be no reason in principle that we shouldnot be able to develop a viable terminology that incorporates more than onemeaning for some or all of the quantifiers and connectives.
+- Our terminology and technical devices need constant re-examination asto whether they are the most appropriate tools for extracting the full meaningfrom our material. It seems to me that the meaning of implication, inparticular, should be thoroughly studied, and other possible candidatesinvestigated. Such statements as "(A -* B) -* C" have a rather tenuous meaning, andin many instances of proofs of such statements, something more is actuallybeing proved. Work of Gödel [17] raises some interesting possibilities aboutpossible re-definitions of implication, which seem to be very difficult toimplement in usable generality, and which also seem to run counter to naturalmodes of thought. There seems to be no reason in principle that we shouldnot be able to develop a viable terminology that incorporates more than onemeaning for some or all of the quantifiers and connectives.
 
 - More important than any of these technical problems is the broaderproblem of involving ourselves more deeply with the meaning of mathematicsat all levels. This is the simplest and most general statement of the con-structivist program, and the technical developments are intended as a meansto that end.

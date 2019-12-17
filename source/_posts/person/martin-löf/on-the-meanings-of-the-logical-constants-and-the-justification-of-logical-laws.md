@@ -28,6 +28,11 @@
   By "to believe" I mean "to understand",
   in the sense that knowledge is the fixation of belief.
 
+  Just as during the Enlightenment, the realm of obedience
+  and the realm of the use of reason must be clearly distinguished.
+
+  We also must know where and when "to implement" should be prefered.
+
 - **[Xie]**
   The study and development of the author's theory
   is heavily based on etymology, i.e. the study of the origin of words.

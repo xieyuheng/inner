@@ -7,7 +7,7 @@
 ## to be is to be a value of a variable (or to be some values of some variables)
 ## nominalist platonism
 ## Iteration Again
-## introductory note to kurt godel's "some basic theoremson the foundations of mathematics and their implications"
+## introductory note to kurt Gödel's "some basic theoremson the foundations of mathematics and their implications"
 ## must we believe in set theory?
 # frege studies
 ## Gottlob Frege and the foundations of arithmetic
@@ -28,8 +28,8 @@
 ## don't eliminate cut
 ## the justification of mathematical induction
 ## a curious inference
-## a new proof of the godel incompleteness theorem
-## on "seeing" the truth of the godel sentence
+## a new proof of the Gödel incompleteness theorem
+## on "seeing" the truth of the Gödel sentence
 ## quotational ambiguity
 ## the hardest logical puzzle ever
-## godel's second incompleteness theorem explained in words of one syllable
+## Gödel's second incompleteness theorem explained in words of one syllable
