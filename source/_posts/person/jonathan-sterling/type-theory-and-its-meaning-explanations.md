@@ -10,6 +10,9 @@
 The "meaning explanation" is called "semantical explanations" in Martin-Löf's paper
 "On the meanings of the logical constants and the justification of logical laws".
 
+This kind of semantics is almost a description summarize of a particularly implementation,
+It is "almost", because in an implementation one also need to handle error report.
+
 # Chapter 1. Logical Theories
 
 ## 1. Judgements of a logical theory
