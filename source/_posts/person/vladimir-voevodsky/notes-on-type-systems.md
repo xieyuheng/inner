@@ -17,5 +17,5 @@ title: Notes on type systems
 # 5 Universes in the category of simplicial sets
 
 # 6 Type systems
+
 # 7 The system of Coq
- 

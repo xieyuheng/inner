@@ -1,3 +1,7 @@
+---
+title: Type Systems Lecture Series
+---
+
 # Type Systems Lecture Series
 
 ## 2012-08-10 -- Type Systems and Proof Assistant (Type Systems 3)
