@@ -4,8 +4,9 @@ title: Computer Science and Homotopy Theory
 
 # Computer Science and Homotopy Theory
 
-- Place: IAS
+- Place: Institute for Advanced Study
 - Date: 2011
+- Video: https://www.youtube.com/watch?v=UvDeVqzcw4k
 
 ------
 
