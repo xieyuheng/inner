@@ -6,7 +6,7 @@ title: Lecture about Univalent Foundations at the Institut Henri Poincaré
 
 - Place: Institut Henri Poincaré
 - Date: 2014-04-22
-- Video: [5 - Kick-off afternoon : Vladimir Voevodsky, Univalent Foundations](https://www.youtube.com/watch?v=CJugQ8AGCUo)
+- Video: https://www.youtube.com/watch?v=CJugQ8AGCUo
 
 ------
 

@@ -570,5 +570,3 @@ to make sure it only has one meaning,
 to place it in my head, to have it there firmly for sometime,
 then I forget about it and do other things,
 and I wait for the answer to come.
-
-------
