@@ -50,6 +50,7 @@
     - [Generalised algebraic theories and contextual categories (thesis)](/person/john-cartmell/generalised-algebraic-theories-and-contextual-categories--1978-thesis)
     - [Generalised algebraic theories and contextual categories](/person/john-cartmell/generalised-algebraic-theories-and-contextual-categories--1985)
   - Vladimir Voevodsky / 弗拉基米尔 沃沃斯基
+    - [What is Constructive Mathematics and Why it is Important](/person/vladimir-voevodsky/what-is-constructive-mathematics-and-why-it-is-important)
     - [Computer Science and Homotopy Theory](/person/vladimir-voevodsky/computer-science-and-homotopy-theory)
     - [Lecture about Univalent Foundations at the Institut Henri Poincaré](/person/vladimir-voevodsky/lecture-about-univalent-foundations-at-the-institut-henri-poincaré)
     - [How I became interested in foundations of mathematics](/person/vladimir-voevodsky/how-i-became-interested-in-foundations-of-mathematics)
