@@ -52,4 +52,88 @@ assertions about these constructions and proofs of these assertions.
 
 ------
 
-TODO
+There is no real distinction between constructive and non-constructive assertions (statements).
+
+The difference exists only between constructive and non-constructive constructions of proofs.
+
+- It is funny to talk about "non-constructive constructions".
+
+By the way, "non-constructive" is also called "classical",
+and I will use this terminology as well.
+
+------
+
+Before we can approach the question about the importance of constructive mathematics,
+that is, the importance of doing constructions and proofs in a certain way,
+we might ask, since the audience consist mostly of non-mathematicians,
+what is the importance of constructions and proofs in general?
+
+------
+
+Suppose we have a proof that the square root of 2 is not a rational number.
+Why it is important?
+
+- Mathematics touches the deep strings of human mind, of human motivation and behavior.
+
+In fact it is so important that according to the legend
+the person who have disclosed the proof
+was thrown into the ocean from a ship.
+
+- **[Xie]**
+  If we understand knowledge as fixation of belief,
+  than belief with proof can be considered as firmly fixed.
+
+  Disclosing the proof, destroy people's deep belief that
+  every number (every measure) can be represented by ratio.
+
+------
+
+The belief in mathematics as the basis of the structure of our world,
+from simple one of Pythagoreans to string theory.
+
+- There was always this dream of building up physics from mathematics.
+  I had it when I was at high school age.
+
+------
+
+- When building up physics from mathematics,
+  many models might be developed.
+
+  The situation is even more interesting,
+  because there are many mathematical realities.
+
+Different methods of proof and construction that are
+permitted by classical and constructive mathematics
+lead to different mathematical realities.
+Which one is the ultimate one behind our world?
+
+- Some theorems can be proved in classical mathematics
+  but can not be proved in constructive mathematics.
+
+  In modern mathematics we often want to proof that
+  two different definitions lead to the equivalent object.
+
+  The reality of constructive mathematics is more complex
+  than the reality of classical mathematics,
+  because constructive mathematics can distinguish
+  classically proved equivalence.
+
+  Classical mathematics can be embedded in constructive mathematics.
+  Classical mathematics can be viewed as an interesting subset of constructive mathematics.
+
+  Proving in classical version can simplify things,
+  one can first prototype one's proof in classical mathematics.
+
+------
+
+- It is important to use computer to verify correctness of proof.
+  (Note that, we are interested in using computer to verify not to prove.)
+
+  It is more convenient for a computer to verify constructive proof than classical proof.
+
+  This is why constructive mathematics is important.
+
+- This connection with proof verification,
+  is different from the philosophical motivation
+  in the history of the development of constructive mathematics
+  which dates before the development of modern computer.
