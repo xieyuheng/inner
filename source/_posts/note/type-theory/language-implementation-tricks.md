@@ -100,7 +100,7 @@ for example, using typed bound variable,
 we can infer function abstraction.
 
 ``` js
-[infer] ctx + (x : A) |- e: B
+[infer] ctx + (x : A) |- e : B
 ------------
 [infer] ctx |- { x : A => e } : { A -> B }
 ```
@@ -110,7 +110,7 @@ Note that, we do not need to annotate the return type of function.
 The rule of dependent function application
 
 ``` js
-[infer] ctx |- f : { x : A -> B }, env
+[infer] ctx |- f : { x : A @ env -> B }
 [check] ctx |- a : A
 [equal] eval(env + (x = a), B) = T
 ------------
