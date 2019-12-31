@@ -5,6 +5,11 @@
 - If you're good at something, never do it for free.
   - The Joker
 
+### Lie
+
+- A lie is as simple as the hardest art.
+  - A frient of Nina Gierasimczuk
+
 ### Love
 
 - In general when you feel in life, not necessarily when your heart broken,
