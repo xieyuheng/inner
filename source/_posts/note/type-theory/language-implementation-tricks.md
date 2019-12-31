@@ -39,10 +39,10 @@ The "bidirectional trick" says,
 For example, the rule of function application,
 
 ``` js
-[infer] ctx |- f : { A -> B }
-[check] ctx |- x : A
+[infer] env |- f : { A -> B }
+[check] env |- x : A
 ------------
-[infer] ctx |- f(x) : B
+[infer] env |- f(x) : B
 ```
 
 We wish to check `f(x)`,
@@ -56,9 +56,9 @@ For those left we do check.
 Take the rule of (Curry's) function abstraction for example,
 
 ``` js
-[check] ctx + (x : A) |- e : B
+[check] env + (x : A) |- e : B
 ------------
-[check] ctx |- { x => e } : { A -> B }
+[check] env |- { x => e } : { A -> B }
 ```
 
 we can not possibly infer the type of a bound variable `x`.
@@ -100,9 +100,9 @@ for example, using typed bound variable,
 we can infer function abstraction.
 
 ``` js
-[infer] ctx + (x : A) |- e : B
+[infer] env + (x : A) |- e : B
 ------------
-[infer] ctx |- { x : A => e } : { A -> B }
+[infer] env |- { x : A => e } : { A -> B }
 ```
 
 Note that, we do not need to annotate the return type of function.
@@ -110,11 +110,11 @@ Note that, we do not need to annotate the return type of function.
 The rule of dependent function application
 
 ``` js
-[infer] ctx |- f : { x : A @ env -> B }
-[check] ctx |- a : A
-[equal] eval(env + (x = a), B) = T
+[infer] env |- f : { x : A -> B } @ env1
+[check] env |- a : A
+[meta] eval(env1 + (x = a), B) == T
 ------------
-[infer] ctx |- f(a) : T
+[infer] env |- f(a) : T
 ```
 
 About the variance between premise and conclusion in inference rule
