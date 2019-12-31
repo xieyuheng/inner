@@ -1,14 +1,14 @@
 ## Quotes
 
+### Lie
+
+- A lie is as simple as the hardest art.
+  - Ryszard Peryt to Nina Gierasimczuk
+
 ### Business
 
 - If you're good at something, never do it for free.
   - The Joker
-
-### Lie
-
-- A lie is as simple as the hardest art.
-  - A frient of Nina Gierasimczuk
 
 ### Love
 
