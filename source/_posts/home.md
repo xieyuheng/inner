@@ -148,12 +148,12 @@ and its applications in [formal concept analysis](https://en.wikipedia.org/wiki/
 <summary>Music Diary / 何必惋惜永恒的阳光</summary>
 <ul>
 
-  <li>
-    2019-08-16 你就要死了但我可以带你一起去那里
-    <br />
-    <audio controls src="https://xieyuheng.github.io/music-diary/2019-08-16-你就要死了但我可以带你一起去那里.mp3?raw=true"></audio>
-    <br />
-  </li>
+<!--   <li> -->
+<!--     2019-08-16 你就要死了但我可以带你一起去那里 -->
+<!--     <br /> -->
+<!--     <audio controls src="https://xieyuheng.github.io/music-diary/2019-08-16-你就要死了但我可以带你一起去那里.mp3?raw=true"></audio> -->
+<!--     <br /> -->
+<!--   </li> -->
 
   <li>
     2019-07-14 正在死去的美丽的会跳舞的天使和稻草人
