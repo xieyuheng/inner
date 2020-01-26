@@ -13,6 +13,9 @@ The area of my inquiry is beautifully formulated by [Vladimir Voevodsky](https:/
 > which can be used to formalize all subject areas of mathematics
 > is called a foundational system for mathematics or "Foundations of Mathematics".
 
+<div class="row">
+  <div class="column">
+
 I design programming languages
 and use them as formal deduction systems
 to formalize areas of mathematics which I am interested in.
@@ -31,7 +34,11 @@ This kind of applications are called [Categorical semantics](https://ncatlab.org
 I am also interested in the formalization of [Lattice theory](https://en.wikipedia.org/wiki/Lattice_(order)),
 and its applications in [formal concept analysis](https://en.wikipedia.org/wiki/Formal_concept_analysis).
 
-------
+  </div>
+  <div class="column">
+<img src="https://github.com/xieyuheng/xieyuheng.github.io/raw/master/asset/image/xieyuheng-0.jpg">
+  </div>
+</div>
 
 ## Contains
 
