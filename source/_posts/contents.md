@@ -81,6 +81,8 @@
   - Type Theory / 类型论
     - [Type theory](/note/type-theory/type-theory)
     - [Language Implementation Tricks](/note/type-theory/language-implementation-tricks)
+  - Lattice Theory / 格论
+    - [Introduction to Lattices and Order](/note/lattice-theory/introduction-to-lattices-and-order)
   - Computer Science / 计算机科学
     - Database / 数据库
       - [A Relational Model of Data for Large Shared Data Banks](/note/computer-science/database/a-relational-model-of-data-for-large-shared-data-banks)
