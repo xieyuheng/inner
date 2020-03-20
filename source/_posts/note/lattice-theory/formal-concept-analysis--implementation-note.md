@@ -39,7 +39,7 @@ or for embedding it into another structure which is easier to interpret.
 class context_t {
   objects: Array<string>
   attributes: Array<string>
-  private incidence: Set<string>
+  incidence: Set<string>
 }
 
 // function context_rander_concept_lattice
