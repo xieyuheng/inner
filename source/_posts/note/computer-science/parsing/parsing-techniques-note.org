@@ -413,7 +413,7 @@
     - regular expression operators
       - * -- zero-or-more
       - + -- one-or-more
-      -? -- zero-or-one
+      - ? -- zero-or-one
       - () -- group
       - [] -- choice
 
