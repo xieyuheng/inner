@@ -419,6 +419,9 @@
 
     #+begin_src rust
     S = ((["tdh"]",")* ["tdh"]"&")? ["tdh"];
+
+    // NOTE if not at character level
+    S = ((["t" "d" "h"] ",")* ["t" "d" "h"] "&")? ["t" "d" "h"];
     #+end_src
 
 *** 2.3.4 Type 4 Grammars
