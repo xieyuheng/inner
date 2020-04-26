@@ -2,7 +2,7 @@
 
 ## 情报
 
-- <https://www.bilibili.com/video/BV1kx411S7ZU?p=7>
+- <https://www.bilibili.com/video/BV1kx411S7ZU>
 
 ## Lecture 7
 
@@ -19,3 +19,6 @@ Three M's about bad evaluation:
   - for example, by emotional reasoning
 
 TODO about focus
+
+https://www.bilibili.com/video/BV1kx411S7ZU?p=7
+47:26
