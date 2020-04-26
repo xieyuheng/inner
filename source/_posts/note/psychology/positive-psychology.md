@@ -17,3 +17,5 @@ Three M's about bad evaluation:
 - (2) Minimizing
 - (3) Making up (or fabricating)
   - for example, by emotional reasoning
+
+TODO about focus
