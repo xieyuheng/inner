@@ -18,7 +18,5 @@ Three M's about bad evaluation:
 - (3) Making up (or fabricating)
   - for example, by emotional reasoning
 
-TODO about focus
-
-https://www.bilibili.com/video/BV1kx411S7ZU?p=7
-47:26
+## Lecture 8
+43:56
