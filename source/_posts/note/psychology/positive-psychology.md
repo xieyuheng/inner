@@ -19,4 +19,7 @@ Three M's about bad evaluation:
   - for example, by emotional reasoning
 
 ## Lecture 8
-43:56
+
+## Lecture 9
+
+33:33
