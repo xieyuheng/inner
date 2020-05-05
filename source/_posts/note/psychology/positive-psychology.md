@@ -22,4 +22,6 @@ Three M's about bad evaluation:
 
 ## Lecture 9
 
-33:33
+## Lecture 10
+
+46:57
