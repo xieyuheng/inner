@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
 function up {
-    hexo clean && hexo generate && \
-        now switch xieyuheng && now -n inner deploy public --prod
+    npx hexo clean && \
+        npx hexo generate && \
+        npx vercel switch xieyuheng && \
+        npx vercel -n inner deploy public --prod
 }
 
 function main {

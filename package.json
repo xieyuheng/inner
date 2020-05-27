@@ -2,16 +2,16 @@
   "name": "inner-universe",
   "version": "0.0.1",
   "hexo": {
-    "version": "4.0.0"
+    "version": "4.2.1"
   },
   "dependencies": {
-    "hexo": "^4.0.0",
+    "hexo": "^4.2.1",
     "hexo-generator-archive": "^1.0.0",
     "hexo-generator-category": "^1.0.0",
     "hexo-generator-index": "^1.0.0",
     "hexo-generator-tag": "^1.0.0",
     "hexo-renderer-ejs": "^1.0.0",
-    "hexo-renderer-markdown-it": "^3.4.1",
+    "hexo-renderer-markdown-it": "^4.1.0",
     "hexo-renderer-scss": "^1.2.0",
     "hexo-renderer-stylus": "^1.1.0",
     "hexo-server": "^1.0.0",
@@ -27,5 +27,9 @@
     "markdown-it-regexp": "^0.4.0",
     "markdown-it-sub": "^1.0.0",
     "markdown-it-sup": "^1.0.0"
+  },
+  "devDependencies": {
+    "hexo-cli": "^3.1.0",
+    "vercel": "^19.0.1"
   }
 }

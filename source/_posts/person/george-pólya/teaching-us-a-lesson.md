@@ -1,5 +1,7 @@
 # Teaching Us a Lesson
 
+------
+
 - Video: <https://www.youtube.com/watch?v=h0gbw-Ur_do>
 
 ------
