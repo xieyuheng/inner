@@ -31,3 +31,20 @@ we can use constructors to construct things,
 but we can not use functions to transform things (counterexample?).
 
 Question: What is a construction?
+Answer (Adele Goldberg): A construction is a generalization of similarities (that the speakers have made).
+
+If there is anything to the whole that
+can not be figured out if the a speaker knows the parts,
+the whole is a construction.
+
+A construction has non-predicable meaning.
+
+A construction need to be remembered.
+
+Xie: This meaning of construction (construction of idiom) is more strict
+than the meaning of construction in programming language.
+
+A construct is an instance of a construction.
+
+Xie: In Chinese, we often remember more than what we need,
+and forget about the structure of a character or a word.
