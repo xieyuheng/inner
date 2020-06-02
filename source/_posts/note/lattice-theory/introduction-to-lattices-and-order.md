@@ -1,4 +1,4 @@
-# Introduction to Lattices and
+# Introduction to lattices and order
 
 ## 1. Ordered sets
 ## 2. Lattices and complete lattices
