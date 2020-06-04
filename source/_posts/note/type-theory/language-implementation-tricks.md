@@ -12,7 +12,7 @@ The closure trick says,
 
 > Closure = Lambda expression + Environment
 
-this is the most basic trick for writing simple call-by-value eval function.
+this is the most basic trick for writing simple call-by-value interpreter.
 
 Whenever lexical scope is need, the trick of closure must be used.
 
@@ -48,7 +48,7 @@ For example, the rule of function application,
 We wish to check `f(x)`,
 we need to infer `f` to check `f(x)`,
 and if we can infer `f`, we can also infer `f(x)`.
-Thus we can do infro for the rule of function application.
+Thus we can do infer for the rule of function application.
 
 We examine our rules recursively and do infer as far as possible.
 For those left we do check.
@@ -66,13 +66,15 @@ Thus we do check for the rule of function abstraction.
 
 Function abstraction is the constructor of function type.
 Function application is the eliminator of function type.
+
 Since the rules about function are core of type systems,
 we might propagate the property "we need to check instead of infer"
 to all rules about constructor.
 
 We only want to implementation check,
 but we sometimes need infer,
-because we need to infer the type of target of elimination rules.
+because we need to infer the type of target of elimination rules,
+because the target might variable.
 
 For elimination rules the pattern is,
 
