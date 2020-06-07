@@ -383,19 +383,40 @@
       這種約束變元所能表達的東西更豐富
       考慮多元函數就知道了
       對於多元函數 map 是很不好用的
+    - 我们可以用
+      <set> := { <exp> | ... <entry> }
+      <entry> := <var>: <set> | <predicate>
+      其中 <predicate> 可能是
+      - forall x: A such that ...
+      - exists x: A such that ...
+      - forall x: A -> ...
+      - exists x: A & ...
+      例如：
+      { i^n | n: Nat, i < n }
+      { i^n | i: Nat, i < n }
+      { i^n | i: Nat, n: Nat, i < n }
+      改传统的 {} 为 <> 并且改变 <exp> 出现的顺序，
+      没有大的好处，只是让表达方式在大家看来更陌生而已。
 *** 證明的格式
     - 把論證的中間步驟寫出
       並用 hint 來說明推導過程
       #+begin_src
         A
-      --> { hint why A --> B }
-        B
-      --> { hint why B --> C }
+      -> { hint why A -> B }
+       B
+      -> { hint why B -> C }
         C
       #+end_src
-      上面的 "-->" 其實可以是偏序關係中的箭頭
+      上面的 "->" 其實可以是偏序關係中的箭頭
       也可以是 對等式的變換 等等
       只要記住其意義靈活就可以了
+      #+begin_src
+        A
+      = { hint why A = B }
+       B
+      = { hint why B = C }
+        C
+      #+end_src
     - 把某些對變元的類型聲明放在全局的語境[context]中
       所謂的 "embeddng calculation in context"
       這種有助於明確語義的優良技術
@@ -409,15 +430,16 @@
       則 (x * y = y) (y * z = z) -> (x * z = z)
       leibniz-principle : (p = q) (F p) -> (F q)
       associative : ((x * y) * z) -> (x * (y * z))
+      假设 -- 是无意义的 nop 函数
       證明
       (x * y = y) (y * z = z)
-        tuck
+      -- tuck
       (y * z = z) (x * y = y) (y * z = z)
-        leibniz-principle [for y]
+      -- leibniz-principle [for y]
       (y * z = z) ((x * y) * z = z)
-        associative
+      -- associative
       (y * z = z) (x * (y * z) = z)
-        leibniz-principle [for y * z]
+      -- leibniz-principle [for y * z]
       (x * z = z)
       證完
     - 再證明一次
@@ -425,13 +447,13 @@
       leibniz-principle : F (p = q) -> ((F q) = (F p))
       並且直接對等式變形
       x * z
-        (y * z = z) leibniz-principle
+      -- (y * z = z) leibniz-principle
       x * (y * z)
-        apply associative
+      -- apply associative
       (x * y) * z
-        (x * y = y) leibniz-principle
+      -- (x * y = y) leibniz-principle
       y * z
-        (y * z = z) leibniz-principle
+      -- (y * z = z) leibniz-principle
       z
       證完
       EWD 認爲 後者的優點在於 使用了更豐富的 "context"
@@ -460,6 +482,7 @@
       那麼我就不再排斥類型系統
     - 我可能沒法實現
       嚴格的類型推導
+    - <2020-06-07 Sun> 我现在已经会实现 嚴格的類型推導 了
 *** 符號重載
     - 函數要作爲信息傳遞給數據
       只有當信息和數據類型都明瞭的時候
@@ -503,7 +526,7 @@
         作用時的明顯的參數名[三角名]
         可以被看成是函數名的輔名
         所以
-        其實蟬語是在使用不同的名字來命名這連個函數
+        其實蟬語是在使用不同的名字來命名這两個函數
       - 這裏 "明顯的參數名" 這種行爲
         可以被理解爲
         當函數作用時
