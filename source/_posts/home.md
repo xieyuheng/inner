@@ -36,7 +36,7 @@ and its applications in [formal concept analysis](https://en.wikipedia.org/wiki/
 
   </div>
   <div class="column">
-<img src="https://github.com/xieyuheng/xieyuheng.github.io/raw/master/asset/image/xieyuheng-0.jpg">
+<img src="https://xyheme.gitee.io/image-link/xieyuheng/xieyuheng-0.jpg">
   </div>
 </div>
 
