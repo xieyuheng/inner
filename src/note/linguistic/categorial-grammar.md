@@ -7,6 +7,11 @@ composition
 compare to construction grammar,
 categorial grammar is more about surface structure.
 
+## chiso
+
+an example of chiso where the calculus is concat with bracket.
+and the types are formed by / and \
+
 ## Forth with types
 
 postfix and composition

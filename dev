@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
 
-function up {
-    npx hexo clean && \
-        npx hexo generate && \
-        npx vercel switch xieyuheng && \
-        npx vercel -n inner deploy public --prod
+function update {
+    echo "TODO"
 }
 
 function main {

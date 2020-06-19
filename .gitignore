@@ -1,13 +1,10 @@
-# hexo
+# my tool
 
-.DS_Store
-Thumbs.db
-db.json
-*.log
-themes/
+output/
+
+# npm
+
 node_modules/
-public/
-.deploy*/
 
 # emacs
 
