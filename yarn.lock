@@ -163,10 +163,10 @@ path-is-absolute@^1.0.0:
   resolved "https://nexus.forchange.cn/repository/npm-group/path-is-absolute/-/path-is-absolute-1.0.1.tgz#174b9268735534ffbc7ace6bf53a5a9e1b5c5f5f"
   integrity sha1-F0uSaHNVNP+8es5r9TpanhtcX18=
 
-plaintextlife@^0.0.1:
+plaintext@^0.0.1:
   version "0.0.1"
-  resolved "https://nexus.forchange.cn/repository/npm-group/plaintextlife/-/plaintextlife-0.0.1.tgz#a5bca4916c134ba99a3465e2acd3594fc5d902d6"
-  integrity sha512-SUoTt9CM2EPXDnUa9tFrHeTZ6j6nGeZPGOBMjUUgrJRcjV20ILm7Loolg0aPe2lJApMdvnwkxiFHNFluEdzjuA==
+  resolved "https://nexus.forchange.cn/repository/npm-group/plaintext/-/plaintext-0.0.1.tgz#a0041bb2de14fe949c08da0c0542117077d2cc70"
+  integrity sha512-ewFBLD1kUph+MtQSjs4lIBoReS2jISjwflGnPKm3kTJBJbo4/0gBaWwmm0UXVttAaLjYHS445Z7KSZJ314zoeg==
   dependencies:
     chalk "^4.1.0"
     commander "^5.1.0"
