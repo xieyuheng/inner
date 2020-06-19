@@ -1503,7 +1503,7 @@
        看來還有很多需要觀察的地方
   - k ::
        我們來總結一下之前的 模塊系統 吧
-       然後和 agad 和 idris 的 模塊系統 對比一下
+       然後和 agda 和 idris 的 模塊系統 對比一下
   - x ::
        我們之前發現
        agda 的 module system 很難和 org-mode 一起使用
