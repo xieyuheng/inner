@@ -4,6 +4,9 @@ The mathematics of sentence structure -- joachim lambek
 
 composition
 
+compare to construction grammar,
+categorial grammar is more about surface structure.
+
 ## Forth with types
 
 postfix and composition
@@ -48,4 +51,5 @@ n ((n\s)/(n\s) n\s)
 
 ## Formal systems
 
-TODO
+like theory of data constructor,
+in which constructor can be applied from both left and right.
