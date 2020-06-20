@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>lang/note/the-use-of-prefix-notation.org</title>
+</head>
+<body>
+<pre>* the use of prefix notation &lt;2016-11-01 Tue&gt;
+
+  - use prefix notation for syntax keyword
+    &apos;-&gt;&apos; &apos;:&apos; &apos;=&apos;
+    just as &apos;~&apos; &apos;+&apos;
+
+  - replace () by {} change explicate to implicate
+    thus a keyword
+    1. has side-effect -- can use {}
+       and has return value -- can use ()
+    2. has side-effect -- can use {}
+       does not have return value -- can not use ()
+
+  - [] for a list of (any kind of) things
+    [x] can be written as x
+
+  - example about the change
+
+    #+begin_src scheme
+    (~ H : ((:X : space) (:A &lt; :X) int -&gt; abelian-group))
+    (~ H/induce : ((:X :A -&gt; :Y :B) (:q : int) -&gt;
+                   (:X :A :q H -&gt; :Y :B :q H)))
+    (~ boundary : (:X :A :q H -&gt; :X empty-space :q 1 sub H))
+
+    (~ co-H : ((:X : space) (:A &lt; :X) int -&gt; abelian-group))
+    (~ co-H/induce : ((:X :A -&gt; :Y :B) (:q : int) -&gt;
+                      (:Y :B q co-H -&gt; :X :A q co-H)))
+    (~ co-boundary : (:X empty-space :q 1 sub co-H -&gt; :X :A :q co-H))
+
+
+    (~ H (-&gt; [(: :X space) (&lt; :A :X) int]
+             abelian-group))
+    (~ H/induce (-&gt; [(-&gt; [:X :A] [:Y :B]) (: :q int)]
+                    (-&gt; [:X :A :q H] [:Y :B :q H])))
+    (~ boundary (-&gt; [:X :A :q H]
+                    [:X empty-space :q 1 sub H]))
+
+    (~ co-H (-&gt; [(: :X space) (&lt; :A :X) int]
+                abelian-group))
+    (~ co-H/induce (-&gt; [(-&gt; [:X :A] [:Y :B]) (: :q int)]
+                       (-&gt; [:Y :B q co-H] [:X :A q co-H])))
+    (~ co-boundary (-&gt; [:X empty-space :q 1 sub co-H]
+                       [:X :A :q co-H]))
+    #+end_src
+
+  - 如是
+    就區分了 中綴表達式中的 (-&gt; nat) 與 nat
+    即 (-&gt; [] [nat]) 與 [nat]
+    只不過爲 (-&gt; [] [nat nat]) 與 [nat nat]
+    否則 (-&gt; nat nat) 與 nat nat
+    這後面的 nat nat 在語境中可能有歧義
+
+  - more example
+
+    #+begin_src scheme
+    (+ (~ natural type)
+       (~ zero natural)
+       (~ succ (-&gt; natural natural)))
+
+    (~ add
+       (-&gt; [natural natural]
+           natural)
+       [(-&gt; [:m zero]
+            :m)
+        (-&gt; [:m :n succ]
+            [:m :n add succ])])
+
+    (~ quotient/natural-projection
+       (-&gt; [{: :y type}
+            (: :x type) (-&gt; :x :y)]
+           [(: :z type)])
+       [(-&gt; [:x :p]
+            [{= :z (derive :x)}
+             {= :z.== (-&gt; [:a :b]
+                          [:a :p @ :b :p @ :y.== @])}
+             :z])])
+    #+end_src
+
+  - rationale
+    在設計語法過程中
+    經常需要 border-fix notation
+    用中綴表達式 (* -&gt; *) 來實現 border-fix notation
+    固然簡介
+    但是 如此就佔用了 () 這個 structural lexicon
+    解放出這個 ()
+    模仿古典 lisp
+    以靈活處理 border-fix notation
+
+  - 注意
+    如此產生的 keyword 之 返回值後置
+    比如 &apos;:&apos; 與 &apos;&lt;&apos;
+    (: :x type) 是說 此位返回值 類型爲 type 名爲 :x
+    (&lt; :a :x) 是說 此位返回值 類型爲 :x 的 subtype 名爲 :a
+</pre>
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>lang/cicada/cicada-language/syntax-testing/red-black-tree.cl</title>
+</head>
+<body>
+<pre>+ author
+  謝宇恆 / XIE Yuheng
+
+* order
+  (-&gt; type)
+
+  * less
+    (-&gt; order)
+
+  * equal
+    (-&gt; order)
+
+  * greater
+    (-&gt; order)
+
+* red-black-tree
+
+    + assume
+
+      * key
+        (-&gt; type)
+
+      * compare
+        (key key -&gt; order)
+
+      * value
+        (-&gt; type)
+
+    * color
+      (-&gt; type)
+
+      * red
+        (-&gt; color)
+
+      * black
+        (-&gt; color)
+
+    * tree
+      (-&gt; type)
+
+      * empty
+        (-&gt; tree)
+
+      * node
+        (tree tree color key value -&gt; tree)
+
+    * balance
+      (tree -&gt; tree)
+      + :a
+        :b red ::x node
+                     :c red ::y node
+                                  :d black ::z node
+      | :a
+        :b black ::x node
+        :c
+        :d black ::z node red ::y node
+      +              :a
+        :b
+        :c red ::y node red ::x node
+                                  :d black ::z node
+      | :a
+        :b black ::x node
+        :c
+        :d black ::z node red ::y node
+      +                           :a
+        :b
+        :c red ::y node
+                     :d red ::z node black ::x node
+      | :a
+        :b black ::x node
+        :c
+        :d black ::z node red ::y node
+      +                           :a
+                     :b
+        :c
+        :d red ::z node red ::y node black ::x node
+        | :a
+          :b black ::x node
+          :c
+          :d black ::z node red ::y node
+      + :already-balanced-tree
+      | :already-balanced-tree
+
+
+    * insert,help
+      (tree key value -&gt; tree)
+      + empty :key :value
+      | empty empty
+        red :key :value node
+      + :left :right
+        :color :key :value node
+        :key&apos; :value&apos;
+      | :key :key&apos; compare
+        + equal
+        | :left
+          :right
+          :color :key&apos; :value&apos; node
+        + less
+        | :left :key&apos; :value&apos; insert,help
+          :right
+          :color :key :value node balance
+        + greater
+        | :left
+          :right :key&apos; :value&apos; insert,help
+          :color :key :value node balance
+
+    * blacken-root
+      (tree -&gt; tree)
+      + empty
+      | empty
+      + :left :right :color ::key-value node
+      | :left :right black ::key-value node
+
+    * insert
+      (tree key value -&gt; tree)
+      insert,help
+      blacken-root
+
+    * black-high?
+      (tree natural -&gt; type)
+
+      * black-high?empty
+        (---------------&gt;
+         empty 1 black-high?)
+
+      * black-high?red
+        ({natural #high tree #left #right key value ##key-value}
+         :left :high black-high?
+         :right :high black-high?
+         -----------------------&gt;
+         :right :high red ::key-value node :high black-high?)
+
+      * black-high?black
+        ({natural #high tree #left #right key value ##key-value}
+         :left :high black-high?
+         :right :high black-high?
+         -----------------------&gt;
+         :right :high black ::key-value node :high succ black-high?)
+
+    * black-high?blacken-root
+      ({tree #tree natural #high}
+       :tree :high black-high?
+       ----------------------&gt;
+       natural #high&apos;
+       :tree blacken-root :high&apos; black-high?)
+      + black-high?empty
+      | 1 black-high?empty
+      + :black-high?left :black-high?right black-high?red
+      | _ :black-high?left :black-high?right black-high?black
+      + :black-high?left :black-high?right black-high?black
+      | _ :black-high?left :black-high?right black-high?black
+
+    * black-high?example
+      assume
+        k1 (-&gt; key)
+        k2 (-&gt; key)
+        v1 (-&gt; value)
+        v2 (-&gt; value)
+      * t (-&gt; tree)
+        empty empty red k1 v1 node
+                             empty black k2 v2 node
+
+      * black-high?t
+        (--------------&gt;
+         t 2 black-high?)
+        black-high?empty
+        black-high?empty
+        black-high?red
+        black-high?empty
+        black-high?black
+
+      * black-high?balance,red
+        ({tree #left #right key value ##key-value natural #high}
+         :left :high black-high?
+         :right :high black-high?
+         -----------------------&gt;
+         :left :right red ##key-value balance :high succ black-high?)
+        +
+        |
+
+      * black-high?balance,black
+        ({tree #left #right key value ##key-value natural #high}
+         :left :high black-high?
+         :right :high black-high?
+         -----------------------&gt;
+         :left :right black ##key-value balance :high succ black-high?)
+        +
+        |
+
+      * black-high?insert,help
+        ({tree #tree key value ##key-value natural #high}
+         :tree :high black-high?
+         ----------------------&gt;
+         :tree ::key-value insert,help :high black-high?)
+        + black-high?empty
+        |
+        +
+        |
+
+      * black-high?insert
+        ({tree #tree key value ##key-value natural #high}
+         :tree :high black-high?
+         ----------------------&gt;
+         natural #high&apos;
+         :tree ::key-value insert :high&apos; black-high?)
+        black-high?insert,help
+        black-high?blacken-root
+</pre>
+</body>
+</html>

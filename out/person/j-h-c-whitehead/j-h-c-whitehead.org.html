@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>person/j-h-c-whitehead/j-h-c-whitehead.org</title>
+</head>
+<body>
+<pre>#+title: john henry constantine whitehead
+
+* geometry
+
+*** (1931) (with o. veblen) a set of axioms for differential geometry
+*** (1932) (with o. veblen) the foundations of differential geometry
+*** (1952) on normalizators of transformation groups
+*** (1952) elie cartan
+
+* topology
+
+*** (1932) on duality and intersection chains in combinatorial analysis situs
+
+***** info
+
+      - a complement to Lefschetz&apos;s colloquium volume.
+
+*** (1933) (with s. lefschetz) on analytical complexes
+
+***** info
+
+      - a fuller exposition of Lefschetz&apos;s proof that
+        real analytic sets can be triangulated.
+
+*** (1935) on subdivisions of complexes
+
+***** info
+
+      - a complement to the Alexander-Newman theory of combinatorial equivalence;
+        relating Newman&apos;s formal moves with rectilinear subdivisions.
+
+*** an incorrect proof of this Poincare conjecture and its corrigendum
+
+***** (1934) certain theorems about three-dimensional manifolds (i)
+
+***** (1935) three-dimensional manifolds (corrigendum)
+
+*** an example shows that the open 3-cell cannot be characterized by homotopy invariants
+
+***** (1935) a certain region in euclidean 3-space
+
+***** (1936) on the decomposition of an infinitesimal group
+
+***** (1937) (with m. h. a. newman) on the group of a certain linkage
+
+*** (1937) on doubled knots
+
+*** (1936) on certain sets of elements in a free group
+
+*** (1936) on equivalent sets of elements in a free group
+
+*** (1939) on the asphericity of regions in a 3-sphere
+
+***** info
+
+      - set up an algebraic mechanism for deciding whether or not
+        the higher homotopy groups of a region in the 3-sphere are zero.
+
+* combinatorial homotopy
+
+*** (1939) simplicial spaces, nuclei, and m-groups
+
+***** 1. introductory.
+
+      - That is to say, a geometric, or set-theoretic, representation
+        of an abstract group by a complex
+        may be regarded as equivalent to an algebraic representation
+        by a set of elements with a multiplication table.
+        From this point of view an m-group is seen to be
+        an automatic generalization of an abstract group.
+
+      - x -
+        whitehead 認爲所提出的理論是 group 這個概念的推廣
+        因爲 每個 group 都可以對應一個空間
+        而空間可以被推廣
+
+***** 2. nuclei and m-groups.
+
+      - [vertices]
+        sets of undefined vertices {a, b, c, ...}
+
+      - [n-simplex]
+        Any set of n + 1 vertices (n &gt;= — 1)
+        will be called an (symbolic) n-simplex
+
+      - [(symbolic) complex]
+        a (symbolic) complex is any closed set of simplexes
+
+      - [the algebra of complexex]
+        we can define the following for complexes
+        #+begin_src scheme
+        (:= (+ X1 X2)
+            (set/union X1 X2)
+            (note looks like gluing))
+
+        (:= (- X1 X2)
+            (set/subtraction X1 X2))
+
+        (:= (^ X1 X2)
+            (set/intersection X1 X2))
+
+        (note we have [idempotent]
+              (= X (+ X X))
+              (= X (^ X X)))
+
+        (:= (: x (* X1 X2))
+            (and (: x1 X1)
+                 (: x2 X2)
+                 (= x (set/union x1 x2))))
+
+        (note we have [idempotent]
+              (= X (* X X)))
+        #+end_src
+
+      - [idempotent]
+        idempotent has set theoretical semantic,
+        but the boundary operator seems not well defined in this semantic,
+        and since a closed set of sets is determined by its top level elements,
+        other informations are not needed at all.
+
+      - [nilpotent]
+        the semantic of nilpotent is without orientation.
+
+      - x [production] -
+        no matter nilpotent or idempotent,
+        the production of simplexes is not the (* ...) of AT1
+        but the a new kind of compositor called homotopy-join
+        - (homotopy-join A B)
+          for every two points in each A B,
+          join them by a path, space form by such pathes is (homotopy-join A B).
+
+      - [empty simplex]
+        the set of an empty simplex is unique
+        call it #1
+        we have
+        #+begin_src scheme
+        (= (^ X #1) #1)
+        (= (* X #1) X)
+        #+end_src
+
+      - [boundary of complexex]
+        The boundaries which appear in this paper
+        are calculated with residue classes mod 2 as coefficients
+        #+begin_src scheme
+        (:= [X boundary]
+            [&gt;&lt;&gt;&lt;&gt;&lt;])
+
+        (:= #0 [#1 boundary])
+
+        (note we have
+              (= (+ X #0) X)
+              (= (- X #0) X)
+              (= (^ X #0) #0)
+              (= (* X #0) #0))
+        #+end_src
+
+      - three equivalent classes
+        defined by combinatorial [formal] transformations
+
+        | simplicial space | sub-division                                  |
+        | nuclei           | formal deformation (expansion or contraction) |
+        | m-group          | filling or perforation                        |
+
+        - note that,
+          only (+ ...) and (* ...) are used in these definitions.
+
+***** note about boundary operator
+
+      - x -
+        不論是 simplex 的定向
+        還是這裏使用的 (mod 2)
+        都是爲了使得 boundary boundary 等於 0
+
+        這些理論都是給定了一些數據
+        然後給定了一個確定的能夠從這些數據上算出邊界的算子
+
+        然而在 AT1 中 我要做的是
+        在把幾何元素實現爲數據的時候
+        讓每個數據本身帶有完整的邊界信息
+        這樣 對邊界的 &apos;計算&apos; 就稱不上是計算了
+
+        在 (2 ...) 之類的語法關鍵詞中做複合的時候
+        每一步都要指明複合所得的元素的邊界
+        這個邊界信息在數據中被小心維護着
+
+      - k -
+        沒錯
+        在定義 compositor 的時候
+        也是需要指明所得的 compound 元素的邊界
+        指明了邊界 就算是定義了一個 compositor 了
+
+      - x -
+        我們是否保證了 boundary boundary 爲 0 呢?
+        我們是如何保證這一點的呢?
+        首先對於 生成子
+        我們已經小心檢查了它們的邊界
+        使得對於生成子而言有 boundary boundary 爲 0
+        甚至我們檢查的是更強的條件
+        我們要求 n 階 生成子的邊界必須與 S-(n-1) 同倫等價
+        這意味這 不光有這些邊界的 boundary 爲 0
+        而且 (1) 它們是可定向的
+        (2) 其 mapping-class-group 爲平凡的
+        等等很多額外的條件
+
+      - k -
+        我們甚至還不知道那些條件能夠保證
+        檢查的有效性
+        即 能夠保證所合成的元素一定與 S-(n-1) 同倫等價
+
+***** 3. Formal deformations.
+
+***** 4. Sub-division.
+
+***** 5. Geometrical deformation.
+
+***** 6. Maps and homotopy.
+
+***** 7. m-Groups.
+
+***** 8. Retracts by deformation.
+
+***** 9. Homotopy types.
+
+***** 10. Certain questions: a ring.
+
+***** 11. A special class of groups.
+
+***** 12. Regular neighbourhoods in manifolds.
+
+***** 13. Newman&apos;s moves.
+
+***** 14. Infinite complexes.
+
+***** 15. The topology of infinite polyhedra.
+
+***** 16. Extension of previous results.
+
+*** (1940) on c1-complexes
+*** (1941) on adding relations to homotopy groups
+*** (1941) on incidence matrices, nuclei and homotopy types
+*** (1946) note on a previous paper entitled &quot;on adding relations to homotopy groups.&quot;
+*** (1948) on operators in relative homotopy groups
+*** (1949) combinatorial homotopy i
+*** (1949) combinatorial homotopy ii
+*** (1949) on the realizability of homotopy groups
+*** (1950) a certain exact sequence
+*** (1950) simple homotopy types
+*** (1950) on the 3-type of a complex
+*** (1950) on group extensions with operators
+*** (1957) on involutions of spheres
+*** (1958) (with arnold shapiro) a proof and extension of dehn&apos;s lemma
+*** (1961) manifolds with transverse fields in euclidean space
+*** (1961) (with r . penrose and e. c . zeeman) imbedding of manifolds in euclidean
+</pre>
+</body>
+</html>

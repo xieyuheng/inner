@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>note/computer-science/concurrency/actor-model.org</title>
+</head>
+<body>
+<pre>#+title: actor model
+
+* [note] implementation of actor model
+
+  - components of an actor :
+    1. process -- return-stack
+    2. store -- data-stack
+       and local binding
+    3. communication -- message-queue
+
+  - axioms [interface] :
+    1. send message to address
+    2. create new actors
+    3. specify how to handle next message
+
+  - address binding
+    - address is not assigned by system,
+      and can not be controlled by programmers.
+    - the local store of a actor
+      can only includes addresses,
+      that are provided when it was created,
+      or that have been recived in messages.
+
+  - [question]
+    when sending a message to an address,
+    will it be received by all actors bound to the address
+    or only one of them?
+
+    - x -
+      we can event broadcast a message
+      maybe the message also contains meta informations
+      about how they should be sent.
+
+  - [question]
+    how does the actor model relates to python distributed system solutions like celery.
+
+  - [question]
+    use thread or process to implement actor?
+    or something more light weight?
+
+  - x -
+    the purpose of implementing actor model
+    is to write web app in jojo,
+    in which strong concurrency is needed.
+
+  - k -
+    if so,
+    we need to learn how web apps are written
+    in existing actor model based languages
+    such as io and erlang.
+
+  - interface :
+    - send
+    - recv
+
+  - one mail station which maintains a process pool.
+    [should be thread pool, but python has no proper thread]
+    each process [scheduler] in the pool maintains many actors.
+    each actor has data-stack, return-stack and message-queue.
+
+    when a actor needs to send message to other actors
+    or create new actors,
+    it send message to its scheduler
+    which in turn send message to the station.
+
+    a scheduler schedules its actors,
+    and catches exceptions.
+
+  - address and mailing :
+    actor-id
+    bind actor to address
+    is an address a channel?
+    a channel can be implemented a another actor.
+
+* (2016) (tony garnock-jones) history of actors
+
+* (1975) (irene gloria greif) semantics of communicating parallel processes
+
+* (1985) (gul agha) actor a model of concurrent computation in distributed system
+
+*** 1 introduction
+
+*** 2 general dsign decisions
+
+***** intro
+
+      - the nature of the computing elements
+      - global synchrony versus asynchronous elements
+      - the mode of interaction between&apos;computing elements
+      - degree of fairness
+      - reconfigurability and extensibility
+
+*** 3 computation in actor systems
+
+***** 3.1 defining an actor system
+
+      - computation in a system of actors
+        is in response to communications sent to the system.
+
+      - communications are contained in tasks.
+
+      - as computation proceeds,
+        an actor system evolves to include new actors
+        that are created as a result
+        of processing tasks already in the system.
+
+      - the configuration of an actor system is defined
+        by the actors it contains
+        as well as the set of unprocessed tasks.
+
+***** SAL -- algol-like syntax
+
+***** ACT -- lisp-like syntax
+
+*** 4 a more expressive language
+
+*** 5 a model for actor systems -- operational semantics
+
+*** 6 concurrency issues
+
+*** 7 abstraction and compositionality
+
+*** 8 conclusions
+
+* (2003) (joe armstrong) making reliable distributed systems in the presence of software errors
+
+*** 1 intro
+
+    - &gt;&lt;
+
+*** 2 the architectural model
+
+*** 3 erlang
+
+*** 4 programming techniques
+
+*** 5 programming fault-tolerant systems
+
+*** 6 building an application
+
+*** 7 OTP
+
+*** 8 case studies
+
+*** 9 APIs and protocols
+
+*** 10 conclusions
+</pre>
+</body>
+</html>

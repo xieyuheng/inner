@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>person/coxeter/coxeter.org</title>
+</head>
+<body>
+<pre>#+title: coxeter
+
+* (1938) the fifty-nine icosahedra
+
+* (1942) non-euclidean-geometry
+
+  - According to Klein,
+    the character of any geometry is deterdetermined
+    by the type of correspondence under which
+    its relations are invariant.
+    - euclidean geometry is invariant under similarity transformations.
+    - algebraic topology is invariant under homotopy deformations.
+
+* (1948) regular-polytopes
+
+*** i. polygons and polyhedra
+
+***** 1.1 regular polygons
+
+      - A plane p-gon is said to be regular
+        if it is both equilateral and equiangular.
+        It is then denoted by {p}.
+
+      - A regular polygon is easily seen to have a centre,
+        from which all the vertices are at the same distance 0R,
+        while all the sides are at the same distance 1R.
+
+***** 1.2 polyhedra
+
+      - for polyhedron,
+        1. every side of each polygon belongs also to just one other polygon,
+        2. the polygons surrounding each vertex form a single circuit
+           (to exclude anomalies such as two pyramids with a common apex).
+
+      - x -
+        by this definition, polyhedron can be partition of torus,
+        i.e. not simple-connected.
+
+      - examples of polyhedra
+        - pyramid
+        - prism
+        - anti-prism
+
+***** 1.3 the five platonic solids
+
+      - A convex polyhedron is said to be regular
+        if its faces are regular and equal,
+        while its vertices are all surrounded alike.
+
+      - If its faces are {p}&apos;s,
+        q surrounding each vertex,
+        the polyhedron is denoted by {p, q}.
+
+        |        | name         | points | edges | faces |
+        |--------+--------------+--------+-------+-------|
+        | {3, 3} | tetrahedron  |      4 |     6 |     4 |
+        | {3, 4} | octahedron   |      6 |    12 |     8 |
+        | {4, 3} | cube         |      8 |    12 |     6 |
+        | {3, 5} | icosahedron  |     12 |    30 |    20 |
+        | {5, 3} | dodecahedron |     20 |    30 |    12 |
+
+***** 1.4 graphs and maps
+
+      - a polyhedron may be regarded as a map,
+        i.e. as the partition of an unbounded surface into polygonal regions.
+        the surface might be sphere, torus, etc.
+
+        - x -
+          thus the &apos;map&apos; can be viewed as polytopelization of space.
+
+      - a map has a dual map on the surface.
+        Corresponding to a p-gonal face of the given map,
+        the dual map will have a vertex where p faces (and p edges) come together.
+        - x -
+          dual map can not reduce dimension.
+
+      - x -
+        different partition of the same surface have the same topology,
+
+        but different partition of the same surface
+        have different 2 dimensional algebraic structure,
+
+        and different ways of identify parts of the partitions
+        give different 3 spaces.
+
+***** 1.5 &quot;a voyage round the world&quot;
+
+      - hamilton path
+
+***** 1.6 euler&apos;s formula
+
+***** 1.7 regular maps
+
+      - A map is said to be regular,
+        of type {p, q},
+        if there are p vertices and p edges for each face,
+        q edges and q faces at each vertex.
+
+        for example, {4, 4} on torus.
+
+***** 1.8 configurations
+
+      - x -
+        a notation to record regularity of complex.
+        in a 2-complex, to allow more then two faces passing one line,
+        is like allowing more then two points lying on one line?
+        this is what the notation is suggesting.
+
+***** 1.9 historical remarks
+
+      - Schlafli symbol
+
+*** ii. regular and quasi-regular solids
+
+***** regular polyhedra
+
+      - [bib] sommerville
+        1. Division of space by congruent triangles and tetrahedra.
+           Proceedings of the Royal Society of Edinburgh, 43 (1923), pp.85-116.
+        2. The regular divisions of space of n dimensions and their metrical constants.
+           Rendiconti del Circolo Matematico di Palermo, 48(1924), pp. 9-22.
+        3. An Introduction to the Geometry of η Dimensions. London,1929.
+
+      - x -
+        vertex figure is just like the combinatorial neighborhood at a vertex.
+        note that there is a dimension-down here,
+        the vertex figure at a vertex of a polygon is a segment.
+        the vertex figure at a vertex of a polyhedron is a polygon.
+
+      - a polyhedron is regular
+        if its faces and vertex figures are all regular.
+
+        regular polyhedron {p, q}
+        Its face is a {p},
+        and its vertex figure is a {q}.
+
+***** reciprocation
+
+      - reciprocation also is the topology dual.
+
+***** quasi-regular polyhedra
+
+***** radii and angles
+
+***** descartes&apos; formula
+
+***** petrie polygons
+
+***** the rhombic dodecahedron and triacontahedron
+
+***** zonohedra
+
+***** historical remarks
+
+*** iii. rotation groups
+
+***** congruent transformations
+
+      - congruent transformations
+        can be derived from three &quot; primitive &quot; transformations :
+        1. translation [rigid motion]
+        2. rotation [rigid motion]
+        3. reflection [reverse orientation]
+
+***** transformations in general
+
+      - x -
+        這一節有對 group theory 中 &quot;Τ transformed by S&quot; 的幾何解釋
+
+***** groups
+
+      - [bib] Levi
+        Levi 1. Algebra. Vol. 1. Calcutta, 1942.
+
+***** symmetry operations
+
+      - a symmetry of a figure is a congruent transformation
+        which leaves it unchanged as a whole,
+        merely permuting its component elements.
+
+      - Every finite group of congruent transformations
+        leaves atleast one point [the centroid] invariant.
+
+        thus, the transforms of any point by such a group lie on a sphere.
+
+***** the polyhedral groups
+
+***** the five regular compounds
+
+***** coordinates for the vertices of the regular and quasi-regular solids
+
+***** the complete enumeration of finite rotation groups
+
+***** historical remarks
+
+*** iv. tessellations and honeycombs
+
+***** 4.1 the three regular tessellations
+
+***** 4.2 the quasi-regular and rhombic tessellations
+
+***** 4.3 rotation groups in two dimensions
+
+***** 4.4 coordinates for the vertices
+
+***** 4.5 lines of symmetry
+
+***** 4.6 space filled with cubes
+
+***** 4.7 other honeycombs
+
+***** 4.8 proportional numbers of elements
+
+***** 4.9 historical remarks
+
+*** v. the kaleidoscope
+
+***** 5.1 reflections in one or two planes, or lines, or points
+
+***** 5.2 reflections in three or four lines
+
+***** 5.3 the fundamental region and generating relations
+
+***** 5.4 reflections in three concurrent planes
+
+***** 5.5 reflections in four, five, or six planes
+
+***** 5.6 representation by graphs
+
+***** 5.7 wythoff&apos;s construction
+
+***** 5.8 pappus&apos;s observation concerning reciprocal regular polyhedra
+
+***** 5.9 the petrie polygon and central symmetry
+
+***** 5.x historical remarks
+
+* (1957) generators and relations for discrete groups
+
+*** 1 cyclic, dicydic and metacyclic groups
+
+***** cyclic group
+
+      - 用 AT1 的語言
+        #+begin_src scheme
+        (type space
+          (: a (-1 &lt;&gt;))
+          (: b (0 a a))
+          (: c (1 b b b ... b)))
+        #+end_src
+
+***** isomorphic
+
+      - example of isomorphic
+        #+begin_src scheme
+        (define R
+          (type space
+            (: a (-1 &lt;&gt;))
+            (: r (0 a a))
+            (: c (1 {r} 6 times))))
+
+        (define S
+          (type space
+            (: a (-1 &lt;&gt;))
+            (: [s, t] (0 a a))
+            (: d0 (1 s s s))
+            (: d1 (1 t t))
+            (: d2 (1 s rev t s t))))
+
+        (define f
+          (lambda (-&gt; R S)
+            (with (-&gt; (-1 R) (-1 S))
+              (-&gt; R/a S/a))
+            (with (-&gt; (0 R/a R/a) (0 S/a S/a))
+              (-&gt; (1 r) (1 s t)))
+            (with (-&gt; (1 {r} 6 times)
+                      (1 {s t} 6 times))
+              (-&gt; (2 c)
+                  (2 d0
+                     d0 (1 s s s s s s) as-remained-boundary
+                     d2 (1 s t s t s s s s) as-remained-boundary
+                     d2 (1 s t s t s t s t s s) as-remained-boundary
+                     d2 (1 s t s t s t s t s t s t) as-remained-boundary)))))
+
+        (define g
+          (lambda (-&gt; S R)
+            (with (-&gt; (-1 S) (-1 R))
+              (-&gt; S/a R/a))
+            (with (-&gt; (0 S/a S/a) (0 R/a R/a))
+              (-&gt; (1 s) (1 {r} 4 times))
+              (-&gt; (1 t) (1 {r} 3 times)))
+            (with (-&gt; (1 {s} 3 times)
+                      (1 {r} {4 times} 3 times))
+              (-&gt; (2 d0)
+                  (2 c
+                     c (1 {r} {4 times} 3 times) as-remained-boundary)))
+            (with (-&gt; (1 t t)
+                      (1 {r} {3 times} 2 times))
+              (-&gt; (2 d1)
+                  (2 c)))
+            (with (-&gt; (1 s rev t s t)
+                      (1 {r} -4 times
+                         {r} 3 times
+                         {r} 4 times
+                         {r} 3 times))
+              (-&gt; (2 d2)
+                  (2 c)))))
+
+        (note
+          is this the end of the proof of the iso between the two space?
+          do not need to prove
+          (~ [f g] (identity-map-of R)) and (~ [g f] (identity-map-of S))?)
+
+        (= [f g]
+           (lambda (-&gt; R R)
+             (with (-&gt; (-1 R) (-1 R))
+               (-&gt; a a))
+             (with (-&gt; (0 a a) (0 a a))
+               (-&gt; (1 r) (1 {r} 7 times)))
+             (with (-&gt; (1 {r} 6 times)
+                       (1 {{r} 4 times {r} 3 times} 6 times))
+               (-&gt; (2 c)
+                   (2 {c} 7 times)))))
+
+        (note
+          each rewriting by relation
+          must be recorded by homotopy)
+
+        (= [g f]
+           (lambda (-&gt; S S)
+             (with (-&gt; (-1 S) (-1 S))
+               (-&gt; a a))
+             (with (-&gt; (0 a a) (0 a a))
+               (-&gt; (1 s) (1 {s t} 4 times))
+               (-&gt; (1 t) (1 {s t} 3 times)))
+             (with (-&gt; (1 {s} 3 times)
+                       (1 {s t} {4 times} 3 times))
+               (-&gt; (2 d0)
+                   (2 c
+                      c (1 {r} {4 times} 3 times) as-remained-boundary)))
+             (with (-&gt; (1 t t)
+                       (1 {r} {3 times} 2 times))
+               (-&gt; (2 d1)
+                   (2 c)))
+             (with (-&gt; (1 s rev t s t)
+                       (1 {r} -4 times
+                          {r} 3 times
+                          {r} 4 times
+                          {r} 3 times))
+               (-&gt; (2 d2)
+                   (2 c)))))
+        #+end_src
+
+***** note equality of group
+
+      - x -
+        equality of group is simpler than equality of space?
+
+      - k -
+        要知道
+        就算 &apos;空間的同倫&apos;
+        被劃歸到了 &apos;空間的所有同倫羣同構&apos;
+        我們還是沒有給出有效的 判別 simple-space 與 mapping-space 等價的方式
+        因爲 我們還沒有 判別同倫羣同構的方式
+
+      - x -
+        可能
+        &apos;計算&apos; 空間的同倫羣
+        就不是 證明兩個空間同倫[這需要用一個遞歸函數來證明]
+        而是 給出兩個滿足條件的函數
+        這樣遞歸定義就有了基礎步驟
+
+      - k -
+        有可能只是二維的空間之間的等價比較特殊?
+
+      - x -
+        不一定
+        因爲與 AT1 中的空間相比
+        羣的結構要簡單很多
+        因爲
+        我們已經知道了
+        用 generators 和 relations 定義的羣
+        能給出 AT1 中的空間
+        而 這個羣就是這個空間的基本羣
+        我們在上面的嘗試中 是想要通過證明 空間等價 來證明 羣同構
+        但是 空間等價 比 羣同構 更強
+        不同的空間 可能有相互同構的基本羣
+        但是空間並不等價
+
+      - k -
+        就此 你能給出具體的例子嗎
+        兩個 用 generators 和 relations 定義的羣 G1 G2
+        它們對應 AT1 中的 A1 A2 兩個空間
+        並且我們知道 G1 G2 作爲羣 是同構的
+        但是 A1 與 A2 作爲空間不同倫等價
+
+      - x -
+        (1) 嘗試直接在 AT1 中給以論證
+        (2) 嘗試在古典的語言中論證
+        我想先試試 (2)
+
+      ------
+
+      - x -
+        AT1 中 generators and relations 表述的羣
+        是二維空間的基本羣
+        基本羣之間的等價 並非空間的等價
+        觀察羣同構的定義
+        可以發現它忽略了空間的高維結構
+        也就是說
+        在證明羣同構時
+        我們不需要證明 (~ [f g] (identity-map-of R))
+        而是可以忽略 [f g] 的二階映射
+        而只考慮其一階映射
+        #+begin_src scheme
+        (= [f g]
+           (lambda (-&gt; R R)
+             (with (-&gt; (-1 R) (-1 R))
+               (-&gt; a a))
+             (with (-&gt; (0 a a) (0 a a))
+               (-&gt; (1 r) (1 {r} 7 times)))
+             (with (-&gt; (1 {r} 6 times)
+                       (1 {{r} 4 times {r} 3 times} 6 times))
+               (-&gt; (2 c)
+                   (2 {c} 7 times)))))
+        #+end_src
+        要知道 R 與 S 的基本羣同構
+        並非是說 (~~ R S)
+        也並非是說 (~~ (-&gt; I R) (-&gt; I S))
+        而是說 (-&gt; I R) (-&gt; I S) 作爲羣 是同構的
+
+      - k -
+        也就是說
+        不用考慮
+        #+begin_src scheme
+        (= [f g]
+           (lambda (-&gt; R R)
+             (with (-&gt; (-1 R) (-1 R))
+               (-&gt; a a))
+             (with (-&gt; (0 a a) (0 a a))
+               (-&gt; (1 r) (1 {r} 7 times)))
+             (with (-&gt; (1 {r} 6 times)
+                       (1 {{r} 4 times {r} 3 times} 6 times))
+               (-&gt; (2 c)
+                   (2 {c} 7 times)))))
+        #+end_src
+        而只用考慮
+        #+begin_src scheme
+        (= [f g]
+           (lambda (-&gt; R R)
+             (with (-&gt; (-1 R) (-1 R))
+               (-&gt; a a))
+             (with (-&gt; (0 a a) (0 a a))
+               (-&gt; (1 r) (1 {r} 7 times)))))
+        #+end_src
+
+      - x -
+        如何論證這一點呢
+        如何描述 (-&gt; I R) (-&gt; I S) 作爲羣的同構呢
+
+      - k -
+        函數空間並非比空間本身更難
+        比如 (-&gt; I R)
+        其實就是 R 的一階元素生成的
+        而以二階元素爲關係的[以二階元素來定義等詞的]
+        更簡單的結構
+
+      - x -
+        也就是說
+        對於空間而言
+        只有相鄰的兩個階級的元素之間的相互影響才重要
+        比如說 三階元素對於判斷一階元素之間的相等是沒有用的
+
+      - k -
+        這不就是 n-cat 中的 weak structure?
+
+      - x -
+        先擱置 n-cat 中的 weak structure 不談
+        看來爲了定義羣同構
+        (a) 我們需要能定義空間之間 忽略某級以上之高維的 映射
+        (b) 然後我們要能定義這些映射之間的等價關係
+        #+begin_src scheme
+        (define R
+          (type space
+            (: a (-1 &lt;&gt;))
+            (: r (0 a a))
+            (: c (1 {r} 6 times))))
+
+        (define S
+          (type space
+            (: a (-1 &lt;&gt;))
+            (: [s, t] (0 a a))
+            (: d0 (1 s s s))
+            (: d1 (1 t t))
+            (: d2 (1 s rev t s t))))
+
+        (define f
+          (lambda (-&gt; R S)
+            (with (-&gt; (-1 R) (-1 S))
+              (-&gt; R/a S/a))
+            (with (-&gt; (0 R/a R/a) (0 S/a S/a))
+              (-&gt; (1 r) (1 s t)))))
+
+        (define g
+          (lambda (-&gt; S R)
+            (with (-&gt; (-1 S) (-1 R))
+              (-&gt; S/a R/a))
+            (with (-&gt; (0 S/a S/a) (0 R/a R/a))
+              (-&gt; (1 s) (1 {r} 4 times))
+              (-&gt; (1 t) (1 {r} 3 times)))))
+
+        (= [f g]
+           (lambda (-&gt; R R)
+             (with (-&gt; (-1 R) (-1 R))
+               (-&gt; a a))
+             (with (-&gt; (0 a a) (0 a a))
+               (-&gt; (1 r) (1 {r} 7 times)))))
+
+        (= [g f]
+           (lambda (-&gt; S S)
+             (with (-&gt; (-1 S) (-1 S))
+               (-&gt; a a))
+             (with (-&gt; (0 a a) (0 a a))
+               (-&gt; (1 s) (1 {s t} 4 times))
+               (-&gt; (1 t) (1 {s t} 3 times)))))
+        #+end_src
+
+***** factor groups
+
+      - In other words,
+        the effect of adding new relations
+        to the abstract definition of a group G,
+        is to form a new group G&apos; which is a factor groupof G.
+
+***** direct products
+
+      - every finite Abelian group
+        is a direct product of cyclic groups.
+
+***** automorphisms
+
+*** 2 systematic enumeration of cosets
+
+*** 3 graphs, maps and cayley diagrams
+
+    - the diagram that shows us how to get a torus by gluing a square,
+      is the no a cayley diagram,
+      because its points are not regular.
+
+    - the cayley is the universal covering space of torus.
+
+    - in the construction of universal covering space of a space,
+      different pathes are distinct as different points.
+
+    - a group defined by generators and relations,
+      is the fundamental group of the corresponding space in AT1,
+      since an element of the group is a loop in the space with fixed base point.
+
+*** 4 abstract crystallography
+
+*** 5 hyperbolic tessellations and fundamental groups
+
+*** 6 the symmetric, alternating, and other special groups
+
+*** 7 modular and linear fractional groups
+
+*** 8 regular maps
+
+*** 9 groups generated by reflections
+
+* (1961) introduction-to-geometry
+
+* (1963) projective-geometry
+
+*** intro
+
+    - point
+      line
+      plane
+
+    - incidence
+
+    - collinear
+      concurrent
+      coplanar
+
+    - Projective geometry may be described as
+      the study of geometrical properties
+      that are unchanged by &quot;central projection&quot;.
+
+* (1967) geometry revisited
+
+* (1974) regular complex polytopes
+</pre>
+</body>
+</html>

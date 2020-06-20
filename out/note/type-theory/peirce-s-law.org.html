@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>note/type-theory/peirce-s-law.org</title>
+</head>
+<body>
+<pre>#+title: peirce&apos;s law
+
+(((x) -&gt; y) -&gt; x) -&gt; x
+is always true
+
+because for it to be false
+its consequent must be false
+and its antecedent must be true
+
+- if `(p) -&gt; q == false`
+  we know `p == true` and `q == false`
+
+x == false
+(((x) -&gt; y) -&gt; x) == true
+
+because its antecedent is true, we know
+
+((x) -&gt; y) == false
+or
+x == true
+
+- if `(p) -&gt; q == true`
+  we know `p == false` or `q == true`
+
+since we already know `x == false`
+we know `(x -&gt; y) == false`
+which means `x == true` and `y == false`
+
+this is a contradiction
+because we know `x == false`
+</pre>
+</body>
+</html>

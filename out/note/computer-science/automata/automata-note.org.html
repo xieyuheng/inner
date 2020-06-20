@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>note/computer-science/automata/automata-note.org</title>
+</head>
+<body>
+<pre>#+title: automata note
+
+* typing
+
+  - transition is a partial function
+
+  #+begin_src cicada
+  // deterministic finite state machine
+  transition : (state_t, input_t) -&gt; state_t
+  // non-deterministic finite state machine
+  transition : (state_t, input_t) -&gt; set_t(state_t)
+
+  // finite-state transducer
+  // for mealy model
+  emit : (state_t, input_t) -&gt; output_t
+  // for moore model
+  emit : (state_t, input_t) -&gt; output_t
+  #+end_src
+</pre>
+</body>
+</html>

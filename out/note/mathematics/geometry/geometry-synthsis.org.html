@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>note/mathematics/geometry/geometry-synthsis.org</title>
+</head>
+<body>
+<pre>* note
+
+  - &apos;:&apos; for subset (transitive)
+
+  - algebraic geometry
+
+  - construction might be more fine than hott
+    function might be less fine than hott
+
+  - 每個幾個中 equality 都是關鍵
+    證明函數定義良好 證明運算律 都要用到
+
+* affine
+
+  - straight line
+    parallel line
+    similar triangles
+    rational number
+
+  #+begin_src scheme
+  l : {line} universe
+  o : {point} l
+
+  (* point/gen-line (point -&gt; line {new}))
+  (* line/gen-point (line -&gt; point {new}))
+  (* draw-line (point point -&gt; line))
+  (* cross-point (line line -&gt; point))
+
+  (~ add (l l -&gt; l)
+     (:a :b -&gt;
+      {:r = o point/gen-line}
+      {:a0 = :r line/gen-point}
+      {:r0 = :r :a parallel}
+      {:l0 = :l :a0 parallel}
+      {:o0 = :r0 :l0 cross-point}
+      {:rb = :a0 :b draw-line}
+      {:rab = :rb :o0 parallel}
+      :rab l cross-point))
+  #+end_src
+
+* projective
+
+  - half plane
+    infinite far line
+    infinite far point
+    projective parallel line
+
+* euclid
+
+  - circle
+    trans line segment from line to line
+    perpendicular line
+</pre>
+</body>
+</html>

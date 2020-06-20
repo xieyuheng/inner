@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>lang/erlang/learning-erlang.org</title>
+</head>
+<body>
+<pre>#+title:  learning erlang
+
+* 下載於安裝
+
+  - 下載
+    <a href="https://github.com/erlang/otp">https://github.com/erlang/otp</a>
+
+  - 安裝
+    export ERL_TOP=`pwd`
+    echo $ERL_TOP
+    ./otp_build autoconf
+    ./configure
+    make
+    sudo make install
+
+* 特點
+
+  - 不寫 REPL
+    而寫一個獨立的進程
+
+  - 不寫 GC
+    而寫一個獨立的進程
+
+* 串行程序
+
+*** 據類型
+
+    #+begin_src erlang
+    %% Integers
+    10
+    -234
+    16#AB10F
+    2#110111010
+    $A
+
+
+    %% Floats
+    17.368
+    -56.654
+    12.34E-10
+
+
+    %% symbol [so called Atoms]
+    abcef
+    start_with_a_lower_case_letter
+    &apos;Blanks can be quoted&apos;
+    &apos;Anything inside quotes \n\012&apos;
+
+
+    %% Tuples
+    {123, bcd}
+    {123, def, abc}
+    {person, &apos;Joe&apos;, &apos;Armstrong&apos;}
+    {abc, {def, 123}, jkl}
+    {}
+
+
+    %% Lists
+    [123, xyz]
+    [123, def, abc]
+    [{person, &apos;Joe&apos;, &apos;Armstrong&apos;},
+     {person, &apos;Robert&apos;, &apos;Virding&apos;},
+     {person, &apos;Mike&apos;, &apos;Williams&apos;}
+    ]
+
+    [97,98,99,100,101,102,103,104,105]
+    %% ==&gt;
+    &quot;abcdefghi&quot;
+    %% 即字符串是用鏈表來實現的
+
+    &quot;&quot;
+    %% ==&gt;
+    []
+    #+end_src
+
+*** 變元
+    #+begin_src erlang
+    Abc
+    A_long_variable_name
+    AnObjectOrientatedVariableName
+
+    %% Start with an Upper Case Letter.
+    %% No &quot;funny characters&quot;.
+    %% Variables are used to store values of data structures.
+    %% Variables can only be bound once!
+    %% once it has been set (bound).
+    %% The value of a variable can never be changed
+    #+end_src
+
+*** 模式匹配
+    #+begin_src erlang
+    %% 模式匹配 在兩個地方有用
+    %% 一是 對結構化數據的賦值
+    %% 一是 在定義函數時 對局部變量賦值
+
+    %% 一旦某個變元名被賦值之後
+    %% 它在表達式中的出現就會和那個值等同
+
+    A1 = 10
+
+    {B2, C2, D2} = {10, foo, bar}
+
+    {A3, A3, B3} = {abc, abc, foo}
+
+    [A4,B4,C4] = [1,2,3]
+
+    [H|T] = [1,2,3,4]
+    %% Succeeds - binds H = 1, T = [2,3,4]
+    #+end_src
+
+*** 函數調用
+    #+begin_src erlang
+    module:function(Arg1, Arg2, ... ArgN)
+
+    function(Arg1, Arg2, .. ArgN)
+
+    function()
+
+    %% 即 symbol 後面跟一個參數列表
+
+    %% 可以說
+    %% 這種語法設計是最 中規中矩 [值得讚賞的]
+    %% 最貼近數學中的書寫的
+    #+end_src
+
+*** 模塊系統
+    #+begin_src erlang
+    %% 每個 模塊 對應一個 文件
+    %% 這種性質是相當好的
+    %% 比如
+    %% 當我說
+    %%   每一個函數
+    %%   必須被從它所在的模塊被暴露出來之後
+    %%   才能被使用
+    %% 在 erlang 的語義下 理解起來就很好
+
+    %% 而 因爲函數定義必須尋在於需要被編譯的模塊[文件]中
+    %% REPL 的使用方式受到了限制
+    %% 這並不影響測試週期
+    %%   更改代碼
+    %%   然後重新在 REPL 中加載所指定的模塊就行了
+    %% 我想這種設計方式大大降低了實現的難度
+    %% 並且也方便的理解
+
+    %% 可見 erlang 確實是個設計的非常良好的語言
+    %% 目前對它的好感還是在
+    %%   使用它的 大量的庫函數 之前
+    %%   使用它的 從經驗中總結的對項目構架的約定 之前
+    %% 所獲得的
+    %% 所以對它的好感可能還會變高
+
+    %% 設計的優良之處於
+    %% 其複合人們的直觀理解
+
+    -module(demo).
+    -export([double/1]).
+
+    double(X) -&gt;
+        times(X, 2).
+
+    times(X, N) -&gt;
+        X * N.
+
+    %% usage
+    %%   c(demo).
+    %%   demo:double(100).
+
+    %% double can be called from outside the module,
+    %% times is local to the module.
+
+    %% double/1 means the function double with one argument
+    %% (Note that double/1 and double/2 are two different functions).
+    #+end_src
+
+*** 內置函數
+    #+begin_src erlang
+    %% so called BIF :: Built In Function
+    %% 即使用的時候不用加模塊名前綴的
+
+    date().
+    time().
+
+    length([1,2,3,4,5]).
+    size({a,b,c}).
+
+    atom_to_list    (an_atom).
+    list_to_tuple   ([1,2,3,4]).
+    integer_to_list (2234).
+    tuple_to_list   ({}).
+    #+end_src
+
+*** 函數定義
+    #+begin_src erlang
+    %% 模式匹配 在兩個地方有用
+    %% 一是 對結構化數據的賦值
+    %% 一是 在定義函數時 對局部變量賦值
+
+    func(Pattern1, Pattern2, ...) -&gt;
+        ... ;
+    func(Pattern1, Pattern2, ...) -&gt;
+        ... ;
+
+        ...
+
+    func(Pattern1, Pattern2, ...) -&gt;
+        ... .
+
+    %% when apply function to arguments
+    %% clauses are scanned sequentially until a match is found
+    %% when a match is found
+    %% all variables occurring in the head become bound
+    %% variables are local to each clause
+    %% the body is evaluated sequentially
+
+    -module(mathStuff).
+    -export([factorial/1, area/1]).
+
+    factorial(0) -&gt; 1;
+    factorial(N) -&gt; N * factorial(N-1).
+
+    %% 函數名必須出現在每個從句中
+    %% 這一點是可以優化的
+    %% 但是這種明顯地出現讀起來很方便
+
+    area({square, Side}) -&gt;
+        Side * Side;
+    area({circle, Radius}) -&gt;
+        %% almost :-)
+        3 * Radius * Radius;
+    area({triangle, A, B, C}) -&gt;
+        S = (A + B + C)/2,
+        math:sqrt(S*(S-A)*(S-B)*(S-C));
+    area(Other) -&gt;
+        {invalid_object, Other}.
+    #+end_src
+
+*** 給被匹配的模式增加一個謂詞
+    #+begin_src erlang
+    %% 如果[加上謂詞之後]每個模式從句 所指的集合之間是分離
+    %% 那麼從句的順序就無關緊要了
+    factorial(0) -&gt; 1;
+    factorial(N) when N &gt; 0 -&gt;
+        N * factorial(N - 1).
+
+    %% 下面從句中所能使用的謂詞的例子
+
+    number(X)       - X is a number
+    integer(X)      - X is an integer
+    float(X)        - X is a float
+    atom(X)         - X is an atom
+    tuple(X)        - X is a tuple
+    list(X)         - X is a list
+
+    length(X) == 3  - X is a list of length 3
+    size(X) == 2    - X is a tuple of size 2.
+
+    X &gt; Y + Z       - X is &gt; Y + Z
+    X == Y          - X is equal to Y
+    X =:= Y         - X is exactly equal to Y
+    1 == 1.0         succeeds
+    1 =:= 1.0        fails
+
+    %% All variables in a guard must be bound.
+    %% 謂詞都是作用於 被模式匹配綁定好的變元的
+    #+end_src
+
+*** 用模式匹配定義的遞歸函數看起來非常簡潔清晰
+    #+begin_src erlang
+    average(X) -&gt; sum(X) / len(X).
+
+    sum([H|T]) -&gt; H + sum(T);
+    sum([]) -&gt; 0.
+
+    len([_|T]) -&gt; 1 + len(T);
+    len([]) -&gt; 0.
+    %% Note the pattern of recursion is the same in both cases.
+    %% This pattern is very common.
+
+    double([H|T]) -&gt; [2*H|double(T)];
+    double([]) -&gt; [].
+
+    member(H, [H|_]) -&gt; true;
+    member(H, [_|T]) -&gt; member(H, T);
+    member(_, []) -&gt; false.
+    #+end_src
+
+*** 有趣的例子
+    #+begin_src erlang
+    %% 下面的定義
+    %% 也許說明了
+    %% 爲什麼參數個數不同的函數 被當作了不同的函數
+
+    %% 下面的例子
+    %% 以 &quot;增加參數&quot; 這一技巧
+    %% 用尾遞歸函數來寫循環
+    average(X) -&gt; average(X, 0, 0).
+
+    average([H|T], Length, Sum) -&gt;
+        average(T, Length + 1, Sum + H);
+
+    average([], Length, Sum) -&gt;
+        Sum / Length.
+
+    %% 被增加的參數就像是累加器[accumulator]
+    %% 注意
+    %% average([]) is not defined - (you cannot have the average of zero elements)
+    %% evaluating average([]) would cause a run-time error
+    #+end_src
+
+*** REPL 中的特殊函數
+    #+begin_src erlang
+    h() - history .
+    %% Print the last 20 commands.
+
+    b() - bindings.
+    %% See all variable bindings.
+
+    f() - forget.
+    %% Forget all variable bindings.
+
+    f(Var) - forget.
+    %% Forget the binding of variable X.
+    %% This can ONLY be used as a command to the shell
+    %% NOT in the body of a function!
+
+    e(n) - evaluate.
+    %% Evaluate the n:th command in history.
+    e(-1)
+    %% Evaluate the previous command.
+    #+end_src
+
+*** apply
+    #+begin_src erlang
+    apply(&lt;mod&gt;, &lt;func&gt;, &lt;arg_list&gt;)
+
+    apply(lists1,min_max,[[4,1,7,3,9,10]]).
+    %% ==&gt; {1, 10}
+
+    %% apply the function &lt;func&gt; in the module &lt;mod&gt; to the arguments in the list &lt;args&gt;.
+    %% &lt;mod&gt; and &lt;func&gt; must be symbols [so called atoms]
+    %% (or expressions which evaluate to symbols).
+    %% any erlang expression can be used in the arguments to apply.
+    #+end_src
+
+* 並行編程
+
+*** 正名
+    1. Process
+       A concurrent activity.
+       A complete virtual machine.
+       The system may have many concurrent processes executing at the same time.
+    2. 當把棧用鏈表來實現的時候
+       我在蟬語中也很容易實現這種語義
+       [如果能夠用來實現並行計算 那麼就給 overhead 找到了理由]
+       [注意如果要實現並行計算 那麼 數據分配器[GC]的接口可能就需要變複雜了]
+       [? 支持並行計算語義的 虛擬機 有什麼特殊之處]
+    3. Message
+       A method of communication between processes.
+    4. Timeout
+       Mechanism for waiting for a given time period.
+    5. Registered Process
+       Process which has been registered under a name.
+    6. Client/Server Model
+       Standard model used in building concurrent systems.
+
+*** 不記
+    * 後面的文檔用到了很多圖像來做輔助說明
+      所以我就做詳細的記錄了
+      <a href="http://www.erlang.org/course/concurrent_programming.html">http://www.erlang.org/course/concurrent_programming.html</a>
+
+*** 進程
+    1. 每個新的進程
+       都是在別的進程中
+       通過使用系統的關於進程的接口
+       而產生的
+       所以進程之間會形成一個 有向樹
+       這個有向樹中的有向邊表明了
+       每個進程所能看到的進程有哪些
+       每個進程能夠給它所能夠看到的進程發送消息
+       [也就是說 用來使用進程的接口[方式] 具有局部性]
+    2. 一個問題是
+       [消息傳遞模型中 消息的線性性]
+       即如果我的堆中有一個有向圖
+       而我要把這個有向圖傳遞給別的機器
+       那麼我不能只是傳遞地址而已
+       我必須要傳遞一個
+       編碼了整個圖的結構的線性信息
+       並且
+       接受這個信息的機器還要解析這個線性的信息
+       以在其堆上恢復非線性的圖的結構
+       [這是否表明了我用目前來實現有向圖的方式並不適合並行計算]
+       [但是除非共用一塊內存 否則這個問題就是沒法解決的]
+    3. 來解決上面問題的一個辦法是
+       模仿 複製-壓縮型 數據分配器的工作方式
+       在傳遞鏈表之前
+       先把需要被傳遞的鏈表 複製-壓縮 到一個數組當中
+       然後在傳遞這個數組
+
+*** 簡單的例子 echo process
+    #+begin_src erlang
+    -module(echo).
+    -export([go/0, loop/0]).
+
+    %% 可以看出 優化對 symbol 的使用
+    %% 就可以在參數傳遞中方便地使用 symbol 而不使用字符串了
+    %%   但是如何實現這一點呢?
+    %%   實際傳遞的還是字符串
+    %%   因爲不可能要求所有的 進程都使用同一個 hash-table
+    %% 可以看出 重要而有趣 的一點
+    %% 即當考慮到並行計算和消息傳遞的時候
+    %%   設計數據結構的思路 就發生了很大的變化
+    %%   此時
+    %%     線性性
+    %%     上下文無關性[或稱獨立性][即與機器的其他狀態無關]
+    %%   變得很重要了
+
+
+    go() -&gt;
+        %% 關於並行計算的接口函數是 spawn
+        %% 它的三個參數是 &lt;mod&gt;, &lt;func&gt;, &lt;arg_list&gt;
+        Pid2 = spawn(echo, loop, []),
+        %% 逗號列表了以列需要被按順序執行的運算
+        Pid2 ! {self(), &apos;kkk took my baby away!&apos;},
+        receive
+            {Pid2, Msg} -&gt;
+                io:format(&quot;P1 ~w~n&quot;,[Msg])
+        end,
+        Pid2 ! stop.
+
+    loop() -&gt;
+        receive
+            {From, Msg} -&gt;
+                From ! {self(), Msg},
+                loop();
+            stop -&gt;
+                true
+                %% 沒有尾部的遞歸調用進程就結束了
+        end.
+
+
+    %% echo:go().
+    %% echo:loop().
+    #+end_src
+
+*** 消息
+    1. 算法必須被設計成
+       與
+       消息[參數]到達的順序
+       無關
+       的形式
+    2. 蟬語中的一個市場般的主要參數棧
+       並不容易被用來使用實現消息傳遞的語義
+       但是也許可以 !
+       消息必須被搜索
+       匹配到的消息會被挑出來
+       只要把參數棧實現爲雙向鏈接的鏈表
+       那麼
+       匹配 和 挑出
+       這兩個操作就都很容易實現了
+       [這個[這些]雙向鏈接的鏈表]作爲傳遞參數的數據結構
+       可以在需要的時候
+       分別被視爲是 棧 或 隊列
+       並且刪除和插入操作的時間複雜度都是很低的
+    3. 那麼主要的參數棧還有沒有必要呢?
+       也許沒有了
+       注意
+       在 erlang 中
+       有兩種函數作用的方式
+       一是 傳統的方式
+       一是 參數傳遞
+       在蟬語中可不可以統一這兩種東西?
+       如果能形成統一
+       那麼[也許]就可以做到
+       用一個算法去分配CPU資源
+       [用戶並不必要時時都以明顯方式手動分配CPU資源]
+       並且提供語法
+       使得用戶在需要的時候
+       可以去聲明對某個CPU資源的長期佔用
+
+*** 跟電話有關的例子
+    #+begin_src erlang
+    ringing_a(A, B) -&gt;
+        receive
+            {A, on_hook} -&gt;
+                A ! {stop_tone, ring},
+                B ! terminate,
+                idle(A);
+            {B, answered} -&gt;
+                A ! {stop_tone, ring},
+                switch ! {connect, A, B},
+                conversation_a(A, B)
+        end.
+    #+end_src
+
+*** Pids can be sent in messages
+    1. 有點類似與 函數是一等公民
+       這裏是 進程是 一等公民
+    2. 這樣的語義的效果是
+       在理論上
+       進程所形成的 有向圖 中
+       如果兩個點之間有一條無向路
+       那麼這兩個點之間就能彼此看見
+       [如果這個性質是個好性質]
+       [那麼就應該設計更方便的語法來實現這種性質]
+    3. 也就是說
+       在實現的時候
+       [不應該]讓有向變的有向性
+       限制圖的聯通性
+       [其實有的時候是需要限制的]
+
+*** Registered Processes
+    #+begin_src erlang
+    %% 這些進程可以被全局的看到
+    %% Any process can send a message to a registered process.
+
+    %% 既然是全局的
+    %% 那麼就有一些需要被同步的數據
+    %% 必須有額外的進程來維護這些數據的同步
+
+    register(Alias, Pid)
+    %% Registers the process Pid with the name Alias.
+
+    start() -&gt;
+        Pid = spawn(num_anal, server, [])
+            register(analyser, Pid).
+
+    analyse(Seq) -&gt;
+        analyser ! {self(),{analyse,Seq}},
+        receive
+            {analysis_result,R} -&gt;
+                R
+        end.
+    #+end_src
+
+* 錯誤處理
+
+*** 利用進程所組成的網
+
+    - 顯然
+      相對於
+      函數-參數
+      這個模型
+      進程-消息
+      這個模型更利於實現良好的 錯誤處理
+      此時 一個錯誤只不過是一個[特殊的]消息而已
+      將這個消息在 進程所組成的網中傳遞就行了
+      erlang 中的錯誤處理就是利用這種語義的
+
+* 數據庫
+
+  - 數據分配器[垃圾回收器]
+    應該具有類似 數據庫 的接口
+
+* play
+
+  code:get_path().
+
+* 解釋器
+
+  - erlang 的解釋器也是限制解釋語義的例子
+
+  - 並且由於模塊系統的存在
+    解釋器與編譯器之間的行爲差異更加難以調和
+
+  - 但是這並不妨礙解釋器成爲方便的開發工具
+</pre>
+</body>
+</html>

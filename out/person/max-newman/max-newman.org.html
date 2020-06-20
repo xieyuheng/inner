@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>person/max-newman/max-newman.org</title>
+</head>
+<body>
+<pre>#+title: maxwell herman alexander (a.k.a max newman)
+
+* combinatory algebraic topology
+
+*** (1926) 位置分析中的組合方法 / the combinatory method in analysis situs
+
+***** 1
+
+      - 位置分析 或者說 拓撲學
+        研究的是曲面和空間的在形變下不變的性狀
+        形變就是彎曲和拉伸 但是不能撕裂
+
+        拓撲學的基本問題[當前還是未解決的]是
+        找到曲面或者空間 A 可以被形變成曲面或空間 B 的充分必要條件
+
+      - 研究的第一步當然就是給 &apos;空間&apos; 和 &apos;形變&apos; 以精確定義
+        或者以構造的方式 用我們更熟悉之物來定義它們
+        或者以公理的方式 描述能夠刻畫它們的性質
+
+      - 第一中定義方式
+        是把空間視爲無窮點集
+        這可能對現代數學家來說是最自然的
+
+        與無結構的無窮集合不同
+        空間中的每個點有鄰域[neighbourhood]
+
+        - 一個鄰域是空間的包含這個點的子集
+          一個點可以有很多鄰域
+          當以鄰域來定義空間時
+          我們必須給出謂詞以判斷空間的某個子集是否是某點的鄰域
+
+        如果 E 是空間 S 的子集
+        而 P 是空間 S 中的一點
+        P 被稱作 E 的極限點[limit-point]
+        如果 P 的每個鄰域都至少包含 E 中的一個點 並且這個點不能是 P
+
+        定義了極限點之後
+        定義形變就很容易了
+        空間 A 可以形變到 B
+        或者說 A 與 B 同胚[homeomorphic]
+        如果可以在它們的點之間建立連續的一一映射 u
+        即 (: P A) 對應唯一一點 (: [P u] B)
+        (: Q B) 對應唯一一點 (: [Q {u} rev] A)
+        並且
+        如果 X 是 A 中的子集 E 的極限點
+        那麼 [X u] 是 B 中的子集 [E u] 的極限點
+        如果 Y 是 B 中的子集 F 的極限點
+        那麼 [Y {u} rev] 是 A 中的子集 [F {u} rev] 的極限點
+
+        - 或者簡單地說 這是保持極限點關係的一一映射
+
+***** 2
+
+      - 還有第二種全然不同的解釋 &apos;形變&apos; 合 &apos;n 維空間&apos; 的方式
+        拓撲學的基本問題在二維的解法 引出這種解釋方式
+        假設 &apos;曲面&apos; 和 &apos;部分&apos; 等詞已有定義
+        那麼 兩個曲面[或者兩個曲面的部分]可以形變爲另一個
+        的充要條件可以敘述如下 :
+
+        假設 A 與 B 都被劃分爲多邊形部分
+        任意兩條邊 或者不相交 或者在一個端點相交
+        [因此這裏考慮的是單純複形]
+        顯然任意一邊 或者屬於兩個多邊形 或者屬於一個多邊形
+        [邊不必是 &apos;直&apos; 的 雖然 &apos;直&apos; &apos;曲&apos; 二詞還沒有定義]
+        設 a0 爲曲面的劃分中點的數量
+        a1 爲邊的數量 a2 爲面的數量
+        那麼 a0 - a1 + a2 稱爲曲面的特徵數[characteristic]
+
+        A 與 B 同胚的充要條件是
+        (1) 特徵數相等
+        (2) 邊界圓圈的數量相等
+        (3) 都是單面 或 都是雙面
+
+        第三個條件將在稍後解釋
+
+      - 第一個和第三個條件
+        顯然不在乎 多邊形部分與它們的邊界
+        是如何由點組成的
+        所在乎的只是這些部分拼接起來的方式
+
+        因此 我們可以用純粹形式的概形[scheme]
+        來描述曲面的劃分
+        曲面的特徵數是概形的性質
+
+        邊界圓圈 與 單雙面性 也可以由概形給出
+        在邊界上的那些邊 只出現在一個多邊形中
+
+        如果可以給每個多邊形部分以定向
+        使得所有的定向相協調 就說曲面是有雙面的
+        否則就說曲面是點單面的
+
+***** 3
+
+      - 既然對於二維而言 基本問題的解法 可以敘述如此
+        那麼 自然要嘗試把 基本問題本身 也敘述於有限的結構
+        這就是要就概形來定義 &apos;二維空間&apos; 與 &apos;形變&apos;
+        而不使用無窮集合論
+        並且 如果在二維有這樣的定義
+        很可能 我們就也能對高維給出類似的定義
+
+      - 在這樣的定義下所獲得的 n 維流形理論
+        首先爲 Dehn 與 Heegaard 所系統發展
+
+        最重要的是 &apos;形變&apos; 的定義
+        在組合拓撲學中 我們稱之爲 拓撲等價[topologically equivalent]
+
+      - 如果兩個概形有公共細分
+        就稱它們等價[拓撲等價]
+
+        一維時 有 一個一維細分
+        一階元素 等價於 ab
+        一階球面 等價於 ab bc ca [或者記爲 abc]
+
+        二維時 有一個 一維細分 和 一個二維細分
+
+        三維與高維也類似
+
+***** 4
+
+      - Dehn 與 Heegaard 的定義
+        展示了組合方法是可能的
+        但是求證基本定理還是很困難
+        因爲證明中的要點通常是有關交換細分操作的順序
+        所得到的圖形很複雜 需要有更強的語言才能表達它們
+        並且 在用歸納法來做證明的時候 歸納假設就會交織在一起
+
+      - 用組合的方式來定義 &apos;等價&apos;
+        其特點就在於
+        如果 用有限步指定類型的操作 能把一個變成另一個
+        就說二者等價
+
+        並不必把操作侷限於 細分一個單元
+        我們還可以加上 添加一個單元 與 刪除一個單元
+        我們還可以侷限於使用單形
+        以避免一般理論所帶來的難點
+
+      - a n-simplex is a list of n+1 vertices.
+        1-simplex is triangle.
+        2-simplex is tetrahedron.
+
+        a sub-list of a n-simplex, has k+1 vertices,
+        is called k-component.
+
+        a n-complex [n-simplicial-complex]
+        is a list of n-simplexes.
+        [a list of lists of n+1 vertices.]
+
+        &gt;&lt;
+
+***** 5
+
+      - &gt;&lt;
+
+*** (1942) on theories with a combinatorial definition of &quot;equivalence&quot;
+
+*** geometrical topology
+
+* topology
+
+*** (1930) combinatory topology of convex regions
+
+*** (1948) boundaries of ulc sets in euclidean n-space
+
+*** (1950) local connection in locally compact spaces
+
+*** (1960) on the division of euclidean n-space by topological (n - 1)-spheres
+
+*** (1966) the engulfing theorem for topological manifolds
+
+* edu
+
+*** (1937) the course as seen from the university
+
+*** (1958) the teaching of algebra in sixth forms
+
+*** (1959) what is mathematics? new answers to an old question
+
+*** (1961) modern mathematics and the school curriculum
+
+* logic and computer
+
+*** (1941) relatively complemented algebras
+
+*** (1949) a note on electric automatic computing machines
+
+*** (1942) a formal theorem in church&apos;s theory of types
+
+*** (1948) a discussion on computing machines
+
+* untyped
+
+*** (1927) a gauge-invariant tensor calculus
+
+*** (1928) mr. russell&apos;s &quot;causal theory of perception&quot;
+
+* memoir
+
+*** (1957) hermann weyl 1885-1955
+
+*** (1961) john henry constantine whitehead 1904-1960
+
+***** Reidemeister theory of homotopy
+
+      - the group-ring for a complex
+        (33) 1941. On adding relations to homotopy groups. Ann. Math. 42, 409-428.
+        (34) 1941. On incidence matrices, nuclei and homotopy types. Ann. Math. 42, 1197-1239.
+
+***** the strictly combinatorial kind of topology
+
+      - max newman, james alexander, whitehead
+
+      - It is now known that
+        a polyhedron which is not a manifold
+        can have two triangulations
+        which a combinatorially inequivalent,
+        under the moves now generally adopted.
+
+        - x -
+          the &apos;moves&apos; are not powerful enough
+          to change two triangulations of the same complex
+          to each other.
+
+      - instead of homeomorphic-equivalence, we study homotopy-equivalence,
+        still using the combinatorial method.
+        - (28) 1939. Simplicial spaces, nuclei and m-groups. Proc. Lond. Math. Soc. (2), 45
+        - (34) 1941. On incidence matrices, nuclei and homotopy types. Ann. Math. 42, 1197-1239.
+
+        - x -
+          說 whitehead 給出了 兩個空間 homotopy-equivalence 的充要條件
+          但是其實 在形式化的語言中考察這個斷言
+          就發現它其實是平凡的
+          因爲 根據定義 證明兩個空間同倫等價
+          就是要逐階證明其骨架等價
+
+***** CW-complex
+
+      - A CW-complex may be thought of as built up
+        by the addition of successive cells,
+        with singular boundaries, but disjoint and non-singular interiors,
+        the cells of lower dimension comming first.
+
+*** (1969) luitzen egbertus jan brouwer 1881-1966
+
+*** (1955) alan mathison turing 1912-1954
+</pre>
+</body>
+</html>

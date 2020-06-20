@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>note/computer-science/machine-learning/machine-learning.org</title>
+</head>
+<body>
+<pre>#+title: machine learning
+
+* refs
+
+  <a href="https://www.youtube.com/playlist?list=PLA89DCFA6ADACE599">https://www.youtube.com/playlist?list=PLA89DCFA6ADACE599</a>
+  20 lectures
+
+  <a href="https://www.youtube.com/playlist?list=PLLssT5z_DsK-h9vYZkQkYNWcItqhlRJLN">https://www.youtube.com/playlist?list=PLLssT5z_DsK-h9vYZkQkYNWcItqhlRJLN</a>
+  100+ small lectures
+
+  <a href="https://en.wikipedia.org/wiki/Machine_learning">https://en.wikipedia.org/wiki/Machine_learning</a>
+  <a href="https://en.wikipedia.org/wiki/Computational_learning_theory">https://en.wikipedia.org/wiki/Computational_learning_theory</a>
+
+* definition
+
+  - Arthur Samuel (1959)
+    Machine learning study how to give computers the ability to learn
+    without being explicitly programmed
+
+  - Tom Mitchell (1998)
+    well posed learning problem:
+    A programm is said to *learn* from experience E
+    with respect to some tesk T
+    and performance measure P,
+    if its performance on T as measured by P
+    improves with more and more E
+
+* supervised learning
+
+  - right answers are given
+    data are labeled
+
+  - curve fitting problem
+    <a href="https://en.wikipedia.org/wiki/Curve_fitting">https://en.wikipedia.org/wiki/Curve_fitting</a>
+
+  - regression problem -- predict continuous function
+    <a href="https://en.wikipedia.org/wiki/Regression_analysis">https://en.wikipedia.org/wiki/Regression_analysis</a>
+
+  - classification problem -- predict discrete function
+
+  - examples
+    - image classification
+
+* unsupervised learning
+
+  - data are not labeled
+
+  - find structures and relations in data
+
+  - clustering problem
+    <a href="https://en.wikipedia.org/wiki/Cluster_analysis">https://en.wikipedia.org/wiki/Cluster_analysis</a>
+
+  - examples
+    - google news clustering
+    - language model -- learn to predict next word in a sentence
+    - clustering people by genes
+    - market segmentation for sells
+    - cocktail part problem -- separate people&apos;s voices
+    - image processing -- clustering pixels
+
+* learning theory
+
+  - theorems about when learning algorithm will work
+
+* reinforcement learning
+
+  - sequence of decisions
+
+  - reward function -- train dogs
+
+  - game play (game tree)
+
+  - self driving car and robotic
+
+* linear regression
+
+  - learning-algorithm :
+    -- training-set
+    -&gt; h : -- x : feature -&gt; y : target
+    where h is hypothesizes function
+
+  - representation of hypothesizes
+    h is represented by a linear function
+    the linear function is represented by a list of parameter -- theta
+    theta -- parameter of the model
+    -- yoneda embedding of (single return value) linear function
+
+  - cost function -- squared error function
+    to fit a curve
+    is to find out parameters
+    so that cost function is minimal
+
+  - gradient descent
+    - batch gradient descent
+    - stochastic gradient descent -- incremental gradient descent
+      in one step, updating theta only using some (one) training data
+      but in many steps, all the data will be made use of
+
+  - normal equations -- solve theta in close form
+    <a href="https://en.wikipedia.org/wiki/Linear_least_squares">https://en.wikipedia.org/wiki/Linear_least_squares</a>
+
+  - feature scaling
+    make sure features are on a similar scale
+    to make gradient descent converge more quickly
+    this is obvious to see on the contour map
+
+    - mean normalization
+      shift by mean
+      scale by something like (1 / (max - min)) or (1 / standard-deviation)
+
+  - debug gradient descent algorithm
+    by ploting cost function where the x axis is the number of iterations
+
+    - test learning rates from small one
+      0.001 0.003 0.01 0.03 0.1 0.3 1
+      roughly time 3
+
+  - polynomial regression
+    polynomial regression can be reduced to linear regression
+    by choicing polynomials as features
+
+    - feature scaling to 1 is important here
+
+    and this method is not limited to polynomial terms
+    any function can be used as a term
+
+* logistic regression
+
+  - to solve classification problem
+    linear regression of course can not handle this well
+
+  - in logistic regression we try to find hypothesizes
+    with range in between 0 and 1
+
+  - we use sigmoid function composed with linear function
+    as new hypothesizes function
+    <a href="https://en.wikipedia.org/wiki/Sigmoid_function">https://en.wikipedia.org/wiki/Sigmoid_function</a>
+    logistic function is the most common sigmoid function
+    there are also other kinds of sigmoid functions
+
+  - hypothesizes value can be interpreted as conditional probability
+
+  - decision boundary -
+    we make classification decisions by probability 0.5
+    since we are composing logistic function to linear function
+    decisions tranlate to positive or negative
+    of the inner linear function
+    the decision boundary is still a linear line (hyperplane)
+    <a href="https://en.wikipedia.org/wiki/Hyperplane">https://en.wikipedia.org/wiki/Hyperplane</a>
+
+  - non-linear decision boundary
+    we can use non-linear inner function
+    to get non-linear decision boundary
+    for examples,
+    hypothesizes with term x^2 can give us circle decision boundary
+
+    - thus knowledge about algebraic geometry is useful here
+
+  - we need a new loss function to fit the training data
+    loss (theta) = mean (one_loss (theta, x, y))
+    in linear regression
+    one_loss (theta, x, y) = half (hypothesizes (theta, x) - y)
+
+    we can not use this one_loss function for logistic regression
+    because it will not be convex
+
+    new one_loss should be
+    one_loss (theta, x, y) =
+    if y == 1 {
+    - (log (hypothesizes (theta, x)))
+    } else if y == 0 {
+    - (log (1 - hypothesizes (theta, x)))
+    }
+    or
+    one_loss (theta, x, y) =
+    - y * (log (hypothesizes (theta, x)))
+    - (1 - y) * (log (1 - hypothesizes (theta, x)))
+
+    - the one_loss function can be found
+      by the principle of maximum likelihood estimation
+      <a href="https://en.wikipedia.org/wiki/Maximum_likelihood_estimation">https://en.wikipedia.org/wiki/Maximum_likelihood_estimation</a>
+
+  - alternative to gradient descent
+    - conjugate gradient
+    - BFGS
+    - L-BFGS
+
+  - reduce one classification problems with n classes
+    to n classification problems with 2 classes
+    this is called one-vs-all method
+
+* regularization
+
+  - we use regularization to avoid over-fitting
+
+  - the problem of fitting
+
+    - under-fitting -- high bias
+      model ignoring data
+
+    - over-fitting -- high variance
+      the space of hypothesizes is too large
+      fail to generalize to new examples
+      for example, using polynomial of high degree
+
+    <a href="https://en.wikipedia.org/wiki/Overfitting">https://en.wikipedia.org/wiki/Overfitting</a>
+    <a href="https://en.wikipedia.org/wiki/Bias–variance_tradeoff">https://en.wikipedia.org/wiki/Bias–variance_tradeoff</a>
+
+    - x -
+      how to measure bias and variance?
+
+    - we can keep degree of hypothesizes function small
+      by penalizing coefficient of high degree terms
+
+    - the idea of regularization
+      is to add a square sum of all parameters to the hypothesizes
+
+      which will make &quot;all parameters are small&quot; as a goal
+      &quot;all parameters are small&quot; can be interpreted as
+      &quot;the model is simple&quot;
+
+    - we do the calculus and try to interpret the updating function again
+
+    - for normal equation
+      regularization can make non-invertible invertible
+
+* neural network
+
+  - for complicated non-linear hypothesizes
+
+  - x -
+    maybe good knowledge about algebraic geometry
+    can also helps complicated non-linear hypothesizes
+
+  - the problem is not only about non-linear
+    it is also about really high dimension
+    take image data as an example,
+    the dimension of data is number of pixels
+    which easily goes to 1000 * 1000
+
+  - neuron -- logistic unit -- with logistic activation function
+    parameters are also called weights
+
+  - hypothesizes function
+    layers of multi return value linear functions
+    thus a layer is represented by a matrix
+    - instead of a list of parameters
+      which only represent a linear combination
+    the output layer is still a linear combination
+
+    computation of the final hypothesizes function value
+    is called forward propagation
+
+  - intuitions -
+
+    - a neural network is like many logistic regressions composed together
+      one logistic regression has explicit sets of features
+      - by &quot;explicit&quot; I mean &quot;meaningful&quot; and &quot;interpretable&quot;
+      while hidden layers of a neural network
+      are like *neural network&apos;s own features*
+
+    - the hypothesizes space is huge
+      but still kept simple
+
+  - neural network architectures
+    different ways to compose functions
+
+    - x -
+      can we use algebraic topology to do architecture?
+
+  - loss (theta) = mean (one_loss (theta, x, y))
+    one_loss = [todo]
+</pre>
+</body>
+</html>

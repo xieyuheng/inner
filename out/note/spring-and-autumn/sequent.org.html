@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>note/spring-and-autumn/sequent.org</title>
+</head>
+<body>
+<pre>- 感覺 類型爲 type 的數據是特殊的
+  至少 它需要保存一個 constructor-list
+
+- 是否區別 type 和 (-&gt; type)
+  既然 1 和 (-&gt; 1) 有別
+  那麼 前者是否也有別呢
+  應該如何處理呢
+  1 : number
+  (-&gt; 1) : (-&gt; number)
+  當被 sequent-interpreter 解釋的時候
+  儘管 sequent 也是數據 但是 他是被特殊處理的
+
+- type 和 constructor-list 之間的關係
+  不應該反映在 name entry 中所保存的數據上
+
+- 但是可能不行
+  因爲之後還要做完全性檢查呢
+  還要考慮實現子類型關係
+
+- 把 name_hash_table 考慮爲一個數據庫
+  它只實現一個功能
+  當需要實現
+  1. 完全性檢查
+  2. 子類型關係
+  時 再考慮擴展
+  可能是統一給 name 增加域
+  但是不論如何現在都不用考慮
+  而可以直接實現核心思想
+
+- 如何處理
+  1. scope
+     substitution passing
+  2. dispatching
+     no dispatching
+  3. compile-time vs runtime
+     no compile-time
+  4. cut of sequent
+  5. type of literal can be computed
+
+- 如果數據的模樣都是
+  [&quot;type-name&quot;, &quot;constructor-name&quot;, ...]
+  for example
+  [&quot;sequent&quot;, &quot;arrow&quot;, [...], [...]]
+  那麼
+  [&quot;type&quot;,???,???]
+  要知道 type 這個類型是沒有 constructor 的
+  可是
+  一個 type 保存在 name_hash_table 中的時候
+  type 也像是 sequent 一樣如何
+  它的構造子可以有 arrow
+  這樣就可以有
+  [&quot;type&quot;, &quot;arrow&quot;, [...], [...]]
+
+- 開始的時候 沒有 algebraic data type
+  只有 sequent
+  正如開始的時候只處理 lambda
+
+- 先別多想
+  要知道 我們需要回答的問題是
+  我們已經有了一個從 literal data 得到 type 的方式
+  即 [&quot;type-name&quot;, &quot;constructor-name&quot;, ...] 的 type
+  是 [&quot;type&quot;, &quot;type-name&quot;, ...]
+  問題是
+  [&quot;type&quot;,???,???] 的 type
+
+- 一個具體的例子
+  #+begin_src cicada-language
+  * list
+
+    type-constructor: list
+      type:
+        + { type #type }
+          :type
+        | type
+
+      element-constructor: null
+        type:
+          + { type #type }
+          | :type list
+
+      element-constructor: cons
+        type:
+          + { type #type }
+            :type :type list
+          | :type list
+  #+end_src
+  那麼
+  #+begin_src clojure
+  ;; 一個 list 的例子是
+  [list cons [number 1]
+   [list cons [number 2]
+    [list cons [number 3]
+     [list null]]]]
+  ;; 其類型應該是
+  [type list [type number]]
+  ;; 按照我們的方式計算的話
+  ;; 其類型是
+  [type list [type number]
+   [type list [type number]
+    [type list [type number]
+     [type list [type :type]]]]]
+  #+end_src
+  也就是說
+  計算 literal 的 type 的方式應該明確給出 邪
+  不對
+  應該是 利用 cons 和 null 這兩個構造子的類型
+  來遞歸地計算
+
+- x ::
+     還說過 不應該有 type
+     type 就是 sequent
+     那是就 保存在 name_hash_table 中的數據而言的
+     而不是就 literal 而言的
+
+- k ::
+     那麼如何實現這些
+     如何開始
+
+- x ::
+     首先
+     我們知道了基本的語義函數
+     typeof cut check [可能是相互遞歸調用的]
+     我們還知道了 literal 於 sequent 的區別
+     我們還知道了如何在 cut 中處理 scope
+     首先要實現的就是 type 這個 type
+     它的構造子是可以在運行時動態添加的
+     假設它的值和類型都是 [type type type]
+     類型是 type 構造子是 type 值是 type
+
+- k ::
+     具體如何在 js 中實現
+     還是需要討論的
+
+- x ::
+     沒錯
+     需要有個能夠構建 各種 literal 的通用函數
+     需要有能定義東西到 name_hash_table 裏的一般函數
+     其實處理 variable 和 scope 的方式我們還是不清楚
+     但是可以在實現過程中思考這個問題
+
+- k ::
+     [sequent??????]
+     [sequent??????]
+     lit sequent 的 type 的計算 是特殊的
+
+- x ::
+     例子
+     #+begin_src cicada-language
+     - cut
+       (-&gt; 1 2)
+       (:a :b -&gt; :a :b (:a :b -&gt; :b :a))
+       {}
+       得
+       (-&gt; 2 1)
+       {}
+
+       因爲
+
+       - 融 sequent1 的後項
+         與 sequent2 的前項
+         得
+         (-&gt;)
+         { :a 1
+           :b 2 }
+
+       - cut
+         (-&gt;)
+         :a
+         { :a 1
+           :b 2 }
+         得
+         (-&gt; 1)
+         { :a 1
+           :b 2 }
+
+       - cut
+         (-&gt; 1)
+         :b
+         { :a 1
+           :b 2 }
+         得
+         (-&gt; 1 2)
+         { :a 1
+           :b 2 }
+
+       - cut
+         (-&gt; 1 2)
+         (:a :b -&gt; :b :a)
+         { :a 1
+           :b 2 }
+         得
+         (-&gt; 2 1)
+         { :a 1
+           :b 2 }
+
+         因爲
+
+         - 融 sequent1 的後項
+           與 sequent2 的前項
+           得
+           (-&gt;)
+           { :a 1
+             :b 2
+             :a 1
+             :b 2 }
+     #+end_src
+</pre>
+</body>
+</html>

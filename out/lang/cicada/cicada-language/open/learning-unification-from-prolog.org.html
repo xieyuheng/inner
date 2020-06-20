@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>lang/cicada/cicada-language/open/learning-unification-from-prolog.org</title>
+</head>
+<body>
+<pre>* 再來例子
+
+*** note
+
+    - 我發現函數作用於不定元時
+      所產生的 local-memory 中的數據
+      其名字最好揭示出來它自己來源於哪個函數的哪次作用
+      - 這樣 就不用之前使用的 &apos;^&apos; 的標記語言了
+      - 這樣 報錯信息中 就不會出現一些不知由來的函數名字了
+
+*** list
+
+    #+begin_src cicada-language
+    type-constructor: list
+      type:
+        + { type #type }
+          :type
+        | type
+
+      element-constructor: null
+        type:
+          + { type #type }
+          | :type list
+
+      element-constructor: cons
+        type:
+          + { type #type }
+            :type :type list
+          | :type list
+
+    function: map
+      type:
+        + { type #type #type&apos; }
+          :type list
+          ( :type -- :type&apos; )
+        | :type&apos; list
+      match:
+        + null :function
+        | null
+        + :car :cdr cons :function
+        | :car :function apply
+          :cdr :function recur cons
+    #+end_src
+
+*** has-length
+
+    #+begin_src cicada-language
+    type-constructor: has-length
+      type:
+        + { type #type }
+          :type list natural
+        | type
+
+      element-constructor: null
+        type:
+          +
+          | null
+            zero
+            has-length
+
+      element-constructor: cons
+        type:
+          + { type #type
+              natural #length
+              :type #car
+              :type list #cdr }
+            :cdr
+            :length
+            has-length
+          | :car :cdr cons
+            :length succ
+            has-length
+
+    function: map
+      type:
+        + { type #type #type&apos;
+            ( :type -- :type&apos; ) #function
+            :type list #list
+            natural #length }
+          :list
+          :length
+          has-length
+        | :list :function map
+          :length
+          has-length
+      match:
+        + has-length:null
+        | has-length:null
+        + :inductive-hypothesis
+          has-length:cons
+        | :inductive-hypothesis recur
+          has-length:cons
+    #+end_src
+
+*** note
+
+    - scope-stack 中
+      &apos;#&apos; 代表一個 local-variable
+      &apos;.&apos; 取這個 local-variable 的 type
+      &apos;:&apos; 取 data
+
+    - 在 scope-stack 中可以直接找到
+      在 local-memory 中需要用 &apos;^&apos; 後綴
+
+*** note declaration
+
+    - declaration after computation
+      計算之後 再把 declaration 的 antecedent 作用到結果上
+
+*** note type-apply
+
+    - when type-checking
+      all local-variable
+      and function
+      get type-apply-ed
+
+    - local-variable
+      #name
+      .name give
+      insteaded of :name
+
+    - function
+      use type-body
+      insteaded of function-body
+
+*** antecedent computed
+
+***** .inductive-hypothesis
+
+      #+begin_src cicada-language
+      local-stack:
+        #inductive-hypothesis
+
+      argument-stack:
+        .inductive-hypothesis
+      #+end_src
+
+***** [has-length:cons] type-apply
+
+      - 在這次 type-apply 之後
+        不能馬上以複製壓縮的方式
+        回收 scope-stack 中
+        由 has-length:cons 所引入的
+        local-variable 所佔用的內存
+
+      - 在這裏看似也不需要回收
+        因爲所有的變元都還能引用到
+
+      - 而一般情形並非如此
+        可能又某些變元所佔用的內存是可以回收的
+        但是由於 匹配不定元時
+        會形成複雜的相互引用
+        所以並不是每個 type-apply 退除時
+        都應該回收內存
+
+      - 回收內存的時機應該延遲
+
+      #+begin_src cicada-language
+      local-memory^has-length:cons:
+        #type^has-length:cons
+        . type
+        #length^has-length:cons
+        . natural
+        #car^has-length:cons
+        . :type^has-length:cons
+        #cdr^has-length:cons
+        . :type^has-length:cons list
+
+      local-stack:
+        #inductive-hypothesis
+        . :cdr^has-length:cons
+          :length^has-length:cons
+          has-length
+
+      argument-stack:
+        :car^has-length:cons
+        :cdr^has-length:cons cons
+        :length^has-length:cons succ
+        has-length
+      #+end_src
+
+*** succedent computed
+
+***** .inductive-hypothesis
+
+      #+begin_src cicada-language
+      local-memory^has-length:cons:
+        #type^has-length:cons
+        . type
+        #length^has-length:cons
+        . natural
+        #car^has-length:cons
+        . :type^has-length:cons
+        #cdr^has-length:cons
+        . :type^has-length:cons list
+
+      local-stack:
+        #inductive-hypothesis
+        . :cdr^has-length:cons
+          :length^has-length:cons
+          has-length
+
+      argument-stack:
+        :cdr^has-length:cons
+        :length^has-length:cons
+        has-length
+      #+end_src
+
+***** [recur] type-apply
+
+      #+begin_src cicada-language
+      local-memory^has-length:cons:
+        #type^has-length:cons
+        . type
+        #length^has-length:cons
+        . natural
+        #car^has-length:cons
+        . :type^has-length:cons
+        #cdr^has-length:cons
+        . :type^has-length:cons list
+
+      local-stack:
+        #inductive-hypothesis
+        . :cdr^has-length:cons
+          :length^has-length:cons
+          has-length
+
+      local-memory^recur:
+        #type^recur
+        . type
+        #type&apos;^recur
+        . type
+        #function^recur
+        . ( :type^recur -&gt; :type&apos;^recur )
+        #list^recur
+        . :type^recur list
+        #length^recur
+        . natural
+
+      unify:
+        antecedent: [of recur]
+          :list^recur
+          :length^recur
+          has-length
+        with: [argument in stack]
+          :cdr^has-length:cons
+          :length^has-length:cons
+          has-length
+        get:
+          = :length^recur
+            :length^has-length:cons
+          = :list^recur
+            :cdr^has-length:cons
+        return:
+          :list^recur :function^recur map
+          :length^recur
+          has-length
+        simplify: [remove ^recur as possible]
+          :cdr^has-length:cons :function^recur map
+          :length^has-length:cons
+          has-length
+
+      argument-stack:
+        :cdr^has-length:cons :function^recur map
+        :length^has-length:cons
+        has-length
+
+      note: &gt;&lt;&gt;&lt;&gt;&lt;
+        some unifications are omited here
+        add them back when needed at the end
+      #+end_src
+
+***** [has-length:cons] type-apply
+
+      #+begin_src cicada-language
+      local-memory^has-length:cons:
+        #type^has-length:cons
+        . type
+        #length^has-length:cons
+        . natural
+        #car^has-length:cons
+        . :type^has-length:cons
+        #cdr^has-length:cons
+        . :type^has-length:cons list
+
+      local-stack:
+        #inductive-hypothesis
+        . :cdr^has-length:cons
+          :length^has-length:cons
+          has-length
+
+      local-memory^recur:
+        #type^recur
+        . type
+        #type&apos;^recur
+        . type
+        #function^recur
+        . ( :type^recur -&gt; :type&apos;^recur )
+        #list^recur
+        . :type^recur list
+        #length^recur
+        . natural
+
+      local-memory^has-length:cons^2:
+        #type^has-length:cons^2
+        . type
+        #length^has-length:cons^2
+        . natural
+        #car^has-length:cons^2
+        . :type^has-length:cons^2
+        #cdr^has-length:cons^2
+        . :type^has-length:cons^2 list
+
+      argument-stack:
+        :cdr^has-length:cons :function^recur map
+        :length^has-length:cons
+        has-length
+
+      unify:
+        antecedent: [of has-length:cons^2]
+          :cdr^has-length:cons^2
+          :length^has-length:cons^2
+          has-length
+        with: [argument in stack]
+          :cdr^has-length:cons :function^recur map
+          :length^has-length:cons
+          has-length
+        get:
+          = :cdr^has-length:cons^2
+            :cdr^has-length:cons :function^recur map
+          = :length^has-length:cons^2
+            :length^has-length:cons
+        return:
+          :car^has-length:cons^2
+          :cdr^has-length:cons^2 cons
+          :length^has-length:cons^2 succ
+          has-length
+        simplify: [remove ^has-length:cons^2 as possible]
+          :car^has-length:cons^2
+          :cdr^has-length:cons :function^recur map cons
+          :length^has-length:cons succ
+          has-length
+
+      argument-stack:
+        :car^has-length:cons^2
+        :cdr^has-length:cons :function^recur map cons
+        :length^has-length:cons succ
+        has-length
+      #+end_src
+
+*** note check
+
+    - check 就是
+      把 computed antecedent 入棧
+      用 declared antecedent 匹配它 [unify 它]
+
+    - 然後看
+      computed succedent 是否可以和
+      declared succedent unify
+
+*** check
+
+    #+begin_src cicada-language
+    scope-stack:
+      #type
+      . type
+      #type&apos;
+      . type
+      #function
+      . ( :type -&gt; :type&apos; )
+      #list
+      . :type list
+      #length
+      . natural
+
+    unify:
+      antecedent: [of declaration]
+        :list
+        :length
+        has-length
+      with: [computed antecedent]
+        :car^has-length:cons
+        :cdr^has-length:cons cons
+        :length^has-length:cons succ
+        has-length
+      get:
+        = :list
+          :car^has-length:cons
+          :cdr^has-length:cons cons
+        = :length
+          :length^has-length:cons succ
+      return:
+        :list :function map
+        :length
+        has-length
+      simplify:
+        :car^has-length:cons
+        :cdr^has-length:cons cons
+        :function map
+        :length^has-length:cons succ
+        has-length
+
+    check: [last unify]
+      right-above:
+        :car^has-length:cons
+        :cdr^has-length:cons cons
+        :function map
+        :length^has-length:cons succ
+        has-length
+      note: &gt;&lt;&gt;&lt;&gt;&lt;
+        computation during type checking
+        the first &apos;map&apos; must be computed
+        to unify the two
+      compute-to:
+        :car^has-length:cons :function apply
+        :cdr^has-length:cons :function map cons
+        :length^has-length:cons succ
+        has-length
+      with: [computed]
+        :car^has-length:cons^2
+        :cdr^has-length:cons :function^recur map cons
+        :length^has-length:cons succ
+        has-length
+    #+end_src
+
+* 再來
+
+*** list
+
+    #+begin_src cicada-language
+    type-constructor: list
+      : { type #type }
+        :type
+      | type
+
+      element-constructor: null
+        : { type #type }
+        | :type list
+
+      element-constructor: cons
+        : { type #type }
+          :type :type list
+        | :type list
+
+    function: map
+      : { type #type #type&apos; }
+        :type list
+        ( :type -- :type&apos; )
+      | :type&apos; list
+      + null :function
+      | null
+      + :car :cdr cons :function
+      | :car :function apply
+        :cdr :function recur cons
+    #+end_src
+
+*** has-length
+
+    #+begin_src cicada-language
+    type-constructor: has-length
+      : { type #type }
+        :type list natural
+      | type
+
+      element-constructor: null
+        :
+        | null
+          zero
+          has-length
+
+      element-constructor: cons
+        : { type #type
+            natural #length
+            :type #car
+            :type list #cdr }
+          :cdr
+          :length
+          has-length
+        | :car :cdr cons
+          :length succ
+          has-length
+
+    function: map
+      : { type #type #type&apos;
+          ( :type -&gt; :type&apos; ) #function
+          :type list #list
+          natural #length }
+        :list
+        :length
+        has-length
+      | :list :function map
+        :length
+        has-length
+      + has-length:null
+      | has-length:null
+      + :inductive-hypothesis
+        has-length:cons
+      | :inductive-hypothesis recur
+        has-length:cons
+    #+end_src
+
+*** &gt;&lt;
+
+    #+begin_src cicada-language
+    typeof
+    + :inductive-hypothesis
+      has-length:cons
+    | :inductive-hypothesis recur
+      has-length:cons
+
+    #+end_src
+
+*** &gt;&lt;
+</pre>
+</body>
+</html>

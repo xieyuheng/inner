@@ -1,0 +1,6054 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>lang/digrap/digrap.org</title>
+</head>
+<body>
+<pre>#+TITLE: digrap -- a learning of formal-language &amp; λ-cal &amp; hott
+#+AUTHOR: XYH(谢宇恒)
+#+EMAIL: xyheme@gmail.com
+
+
+* ---------------------------------------
+* prologue
+晨祷:
+智慧是对于根本事物 现在存在的事物的了解能力
+而所谓教育 便是在自己以及别人身上唤醒这项能力
+
+如果我们相信某些东西是不可能实现的
+那么我们就以这样的方式行为而使它不可能实现
+就我个人而言 我拒绝这样的生活
+在怀疑中
+也许正是因为在怀疑中
+我们拒绝虚无 而坚持着信仰
+对自己的未来 也对彼此
+
+the world we live in is so often too complicated
+for the rules we make to keep it orderly
+
+我曾经仰慕米开朗基罗
+仰慕他高超的技艺与他的天才和热情
+现在我开始慢慢地理解他
+我明白了他在开始的时候也一定只是单纯地
+被那些建筑的和谐的美所吸引
+直到他逐渐懂得光与影与结构的奥秘
+直到他在观察与练习中掌握操纵石块的技术
+直到他领悟到与自然交谈的方式与态度
+然后他自然地去创造新的美与和谐
+然后专注于这个严肃的事业
+
+
+关于语言的力量:
+巴别塔的故事暗示着语言的强大力量
+这在程序语言方面的启发是
+如果你能设计一个好的程序语言 那么你就能改变世界
+当我们能更好的交流时 我们就能创造繁荣
+
+程序语言在于与机器交流
+
+程序语言(语言)还在于相互学习
+学习别人认识问题的方式
+我们就能快速的对问题形成更好的自己的认识
+两难局面是:
+正是因为我们能用语言交流 并相互学习
+我可以只付出少于别人所付出的时间与精力 就或特与他相当的智慧与知识
+因此人们也趋于隐藏自己的想法以免被人偷走
+着就是为什么有些数学书籍(尤其是现代的数学书籍)晦涩难懂的进化论解释
+因为数学中总有新的观察与想法产生 所以这种现象在数学中最为明显
+但是作为一个以另一种方式理解进化论的傻子
+我毫无保留的表述我的观察与想法
+
+设计一个程序语言其实是我在描述一种我对我感兴趣的某些问题的理解
+但是这种描述又具有特殊性
+因为我感兴趣的问题正是语言本身
+当你必须使用语言来描述语言的时候就体会到这种迷人的循环
+
+当我们掌握了语言
+我们还把它用于我们作为动物的其他本性
+语言分化了
+我们用它们来划分疆界与文化
+用它们来宣誓领地
+就像野狗在树边尿尿一样
+语言的分化减缓了交流与合作
+这种现象在程序语言方面尤为突出
+
+* ---------------------------------------
+* digrap
+以有向图为基本数据结构的语言:
+DIGRAP :== DIrected GRAph Processing
+
+
+实现对有向图而言的各种等词:
+1. 在以图为数据结构编程时
+   这些这些等词是基本工具
+2. 在实现数学形式语言时
+   这些等词是形成命题的基础
+
+
+说对λ-cal还有对rewrite-rules的实现就是对图(图的图)的惰性求值
+这里这些图的特点是什么
+反过来问: 是什么使得对它们的惰性求值可以用λ-cal或rewrite-rules来描述?
+
+是对节点和边的标记系统吗?(约束变元)
+每个站在一个节点上看看这个节点的标记
+再看看某一条有向边的标记
+就能知道从这个节点沿着这个有向边走过去的节点的标记
+
+这对cayley-graph的使用有什么启示
+
+
+note about λ-cal:
+我把对λ-cal的实现理解为对有向图的惰性求值
+但是这样作好像并不自然
+不管是在理解方面还是在实现方面都是在倒退
+因为
+当人对一个有向图的惰性求值形成了λ-cal这样的编码
+他就获得了更特殊化的语义
+
+我把一次-sβ-&gt;理解为添加一个节点再删去一个节点
+而他把一次-sβ-&gt;理解为把一个编码转化为另一个编码
+
+* &gt;&lt; λ-cal
+** sey
+*总是在实践了最基本的例子之后人才能理解一个理论*
+
+** readings
+[[shell:xpdf /media/math/person/barendregt.henk/lambda-calculi-with-types.pdf &amp;]]
+[[shell:xpdf ~/math/person/barendregt.henk/the-lambda-calculus:its-syntax-and-semantics.pdf &amp;]]
+[[shell:xpdf ~/math/person/barendregt.henk/introduction-to-lambda-calculus--barendregt-barendsen--2000.pdf &amp;]]
+[[shell:xpdf ~/math/person/barendregt.henk/church.pdf &amp;]]
+
+[[shell:xpdf ~/learning-lambda-cal/Lambda-Calculus_and_Combinators.pdf &amp;]]
+
+[[shell:xpdf ~/learning/lambda-cal/readings/abstract-computing-machines--the-lambda-calculus-perspective--2005.pdf &amp;]]
+
+** old notes
+
+好的讲授方式是先在非形式化的语言下试着描述
+以发现对理论的哪部分作严格的形式化是有必要的
+这正是数学研究的典型过程
+数学家正是要在观察中发现结构 然后通过形式化的描述来增进对问题的认识
+
+
+scott限制函数与某个拓扑空间上的连续函数集
+然后λ-cal的理论就有了拓扑(几何)解释
+那么根递归函数有关的不动点概念的几何意义是什么呢?
+
+
+pure λ-calculus
+
+models of λ-calculus are objects in category (of course)
+and these categories are cartesian closed
+(then non-unary functions can reduced to unary functions)
+
+*λ-calculus studies functions as rules (but not geometry object)*
+
+no matter use λ-term as expression defined by grammars
+or λ-post-term as directed graph
+one can always captures the concept of ``terms modulo convertibility&apos;&apos;
+which is the principle object of the study
+the following questions need to be studied:
+1. λ-definability
+   λ-可定义的函数的集合等于递归函数的集合
+2. the relations between non-convertible terms
+   定义一个λ-可定义函数的term要么是一个要么有无穷多个
+3. the limit of λ-calculus to captures the notion of function
+   term的集合上有一个自然的拓扑结构:tree-topology
+   term -&gt; Bohm-tree -&gt; scott-topology
+   所有的λ-可定义函数都是就这个拓扑而言的连续函数
+
+
+conversion
+
+all about ``terms modulo convertibility&apos;&apos;
+
+use λ-terms to introduce ``terms modulo convertibility&apos;&apos;
+the set of λ-terms is a set of strings defined inductively by grammars
+the theories on this string-level is called syntax
+≡ denotes the syntactic equality
+
+[x:=N] is an function act on λ-terms
+which is used with rules to define =β=(or just =)(β-convertibility)
+this equivalence relation define the theory λ (or λ-calculus)
+(when there is rules there is theory)
+provability in the theory λ of equation is denoted by λ⊦(M=β=N)
+one can say M and N is convertible when λ⊦(M=β=N)
+this seems a loop-define
+bacause the notion: provability of proof-theory is used
+to define the equivalence relation
+rules give a partial-order on the set of λ-terms
+
+connectives and quantifiers which can describe propositions
+will be used in the discussion about λ-cal
+
+what is equation?
+equation in λ-cal is proposition with many quantifiers
+
+** an enlighten
+关于类型论
+因为每引入一个新的类型
+就可以引入一些相应的referece-rules
+
+所以一次启蒙在于
+类型论让人认识到
+referece-rules并不必以一阶逻辑为中心
+而是可以相当任意的创造的
+
+比如
+我可以以字符串或者有向图为基本数据结构
+来实现一个形式理论
+那么对于字符串或者有向图我都自然有一些基本的``等词&apos;&apos;
+对推理规则的引入的自由性就在于:
+推理规则中对这些等词的引入不能违背
+这些等词在基本数据结构中本来的语义
+此限之外别无它限
+
+更常见的是
+推理规则需要引入
+以基本等词为基础在基本数据结构中实现的其它关系
+对其它关系的实现本身并不会违背基本等词
+但是引入这些关系的推理规则可能会违背基本等词
+所以需要加上上面的限制
+
+因此首先我要一个直觉性的并且具有可构造性的数学结构
+当我用计算机来实现一个数据结构时
+很自然地我就得到上面的良好性质
+然后我引入一些针对这种数学结构的推理规则
+之后我就得到了一个形式语言
+用这个语言我可以推导出一些描述这个数学结构的一般性质的命题
+这些命题的正确性由推理规则和数学结构的相容性保证
+这些命题是具有实在意义的因为我是一个纯粹的形式主义者
++ 关于术语:
+  这里 为了描述上面的形式语言于数学结构之间的关系
+  我通过创造新的术语
+  并且把对这些术语的使用只局限在我在上面所描述的这种关系
+  来避免歧义
+  称上面的关系为
+  形式语言捕捉到数学结构
+  既然我是在创造一个语言来描述我的幻想
+  那么这个动词是很生动的
+  一组推理规则可能能于一个数学结构相容
+  而又于另一个数学结构不容
+  即这组推理规则所形成的形式语言
+  能够捕捉到某些数学结构
+  而捕捉不到其它数学结构
+  + &gt;&lt; 考虑完备性
+    我是不是应该更改我的术语
+    当形式语言就某个数学结构而言具有完备性的时候
+    应该怎么说??
+** &gt;&lt; type-free λ-cal
+*** notations
+formal-language
+== 形式语言 == 形式理论
+
+exp == expression == formula
+== 表达式
+
+grammar == grammar-formula == BNF
+== 形式语法 == 形式语法公式
++ 用来归纳定义一个字符串的子集
+
+等词
+每个等词都应该与某个类型的数据相联系
+否则会引起很多歧义
++ 这里可以看出类型论的一些合理性
+  因为在类型论中对等号的使用正是如此
+
+等号
+等号是被滥用最多的数学符号
+在定义形式语言的时候一定要小心使用
+等号的基本语义:
+1. 赋值
+3. 基本等词
+2. 等价关系
+
+priori == 先验的
+*** inductive definition of the set of exp
+var ::= v | var&apos;
+term ::= var | (term term) | (λ var . term)
+the set of all terms is denoted by Λ
+
+其中括号的使用是为了形成树的语义
+由递归定义
+一个term被理解为一个有根的树
++ 树可因根的选取而获得一个定向
+这个有向树中只有叶节点是被标记了的
+用来标记叶节点的是var或者是字符&quot;λ&quot;或&quot;.&quot;
+
+用字符串来实现一个形式语言时
+字符串之间的相等就是基本等词
+给出两个字符串时
+人们可以区分它们是相同还是不同
++ 这是一个先验的假设
+  但是在计算机上的可实现性增强了这个假设的合理性
+  先验假设的合理性 == 假设中的概念在机器上的可实现性
+这样就得到了就字符串而言的基本的等词
+这个等词记为``==&apos;&apos;
+
+等词永远根所使用的模型有关
+*** indude-tree(Λ; ∈term-intro1, ∈term-intro2)
+term于term之间有引入关系
+比如M,N引入(M N)
+所以也许可以用推理规则来描述这个归纳定义
+用推理规则来描述归纳定义也许具有更大的普遍性
+
++ 也就是说我统一把这种``类后继关系&apos;&apos;用inference-rules来描述
+  这样在用图论对整个理论的想像之中
+  因为形成了统一的理解方式
+  所以一切都变得简单了
+
+----- (∈var axiom)
+v∈var
+这里v是真正的字符
+
+x∈var
+------------ (∈var introduction)
+x&apos;∈var
+这里x是字符串的模式匹配中的pattern-variable
+&apos;是真正的字符
+
+x∈var
+----------- (∈term axiom)
+x∈term
+
+M∈term
+N∈term
+------------- (∈term introduction1)
+(M N) ∈term
+
+x∈var
+M∈term
+------------------- (∈term introduction2)
+(λ x . M) ∈term
+
+此时就显然可以看出term和term之间的引入关系
+可以形成一个以Λ中的元素为节点
+以(∈term introduction1)于(∈term introduction2)为有向边
+的无穷有向树
+记为:
+inductive-definition-tree(Λ;(∈term introduction1),(∈term introduction2))
+ID-Tree(Λ; ∈term-intro1, ∈term-intro2)
+indude-tree(Λ; ∈term-intro1, ∈term-intro2)
+
+*** substitution
+这是一个基本的对表达式的集合Λ
+中的元素的处理(被参数化的函数)
+| M       | M[x:=N]            |
+|---------+--------------------|
+| x       | N                  |
+| y(=/=x) | y                  |
+| PQ      | (P[x:=N])(Q[x:=N]) |
+| λx.P    | λx.P               |
+| λy.P    | λy.(P[x:=N])       |
+*** the set of free(resp. bound) variables of M, notation FV(M)(resp. BV(M))
+**** note
+FV与BV都是基本的表达式的集合Λ上的函数
++ 当把集合理解为
+  比如说表达式的有限时
+  上面这些集合论中的概念是很容易实现的
+  当然这里又需要一些先验的假设
+  然而同样因为在机器上的可实现性
+  这些假设是合理的
++ &gt;&lt; 如何理解这里对等号的使用??
+**** FV
+FV(x) := {x}
+FV(MN) := FV(M)∪FV(N)
+FV(λx.M) := FV(M)\{x}
+**** BV
+BV(x) := ∅
+BV(MN) := BV(M)∪BV(N)
+BV(λx.M) := BV(M)∪{x}
+*** =α=
+**** =α= introduction
+α-conversion
+
+公式 λx.M =α= λy.M[y:=x]
++ y不在M中自由出现
+其实是在描述一个pattern-matching
+而我用下面的对实现而言更直接的定义
+
+N == M[y:=x]
+M == N[x:=y]
+-------------------- =α= introduction
+λx.M =α= λy.N
+
+**** an example
+an affirmation(allegation)(assertion) of the following proposition
+λt.tzt =α= λs.szs
+
+1. λx.M pattern-matching λt.tzt
+   1) λ == λ, so
+      the pattern is matched successfully
+   2) pattern-vars binding:
+      x -- t
+      M -- tzt
+2. λy.N pattern-matching λs.szs
+   1) λ == λ, so
+      the pattern is matched successfully
+   2) pattern-vars binding:
+      y -- s
+      N -- szs
+3. performing M[x:=y]
+   where:
+   M -- tzt
+   x -- t
+   y -- s
+   so performing tzt[t:=s]
+   we get: szs
+   so N == M[y:=x]
+4. performing N[x:=y]
+   where:
+   N -- szs
+   x -- t
+   y -- s
+   so performing szs[s:=t]
+   we get: tzt
+   so M == N[x:=y]
+5. so λt.tzt =α= λs.szs
+
+**** compatibility
+就与Λ的归纳定义的相容性扩展
+
+M =α= N
+------------
+ML =α= NL
+LM =α= LN
+λv.M =α= λv.N
+
+**** note
+变元只是语法对象 它们的意义只在于
+人们想要利用这些语法对象来说明一些语义
+*语言是为了表达*
+
+这个等价关系使得表达式的集合Λ获得了有向图的语义
+也就是说等价关系的引入可以被看成是对语义的引入
+或者在这里我可以进行一次模型的转换
+去直接用有向图来实现我想要定义的形式语言
+这时Λ就是有向图的集合而不是字符串的集合
+逃离``线性的字符串&apos;&apos;这种概念的限制而使用图论
++ 然而要明白
+  ``线性的字符串&apos;&apos;的概念的重要价值是
+  作为输入需要被解释的表达式的工具
+  即 作为人控制机器的方式
+  ``线性的字符串&apos;&apos;与机器对形式理论的实现之间是有区别的
+
+用有向图来实现一个形式语言时
+有向图之间的某种相等就是基本等词
++ 可以想象有向图之间可以定义各种的相等
+给出两个有向图时
+人们可以区分它们是相同还是不同
++ 同样这也是一个先验的假设
+  但是在计算机上的可实现性增强了这个假设的合理性
+  先验假设的合理性 == 假设中的概念在机器上的可实现性
+这样就得到了就有向图而言的基本的等词
+这个等词记为``==&apos;&apos;或``=α=&apos;&apos;
+但是要知道此时``=α=&apos;&apos;的意义已经完全变了
+它不再作为一个等价关系而被别的基本等词来引入
+而是它本身就是一个基本等词
+
+对于所有在我希望定义的形式语言里要使用到的exp
+我也可以形成归纳定义
+需要更改的是上面的term ::= (λ var . term)这一项
+但是因为所定义的表达式的几何性质
+此时已经不能用一般的形式语法公式来作归纳定义了
+因为这些定义之中还设计到对有向图的操作
+而不是只涉及到对字符串的简单操作
+
+但是我可以尝试用推理规则对term的集合作归纳定义如下:
+
+----- (∈var axiom)
+v∈var
++ 这里v是真正的字符
+
+x∈var
+------------ (∈var introduction)
+x&apos;∈var
++ 这里x是字符串的模式匹配中的pattern-variable
+  &apos;是真正的字符
+
+x∈var
+----------- (∈term axiom)
+x∈term
+
+M∈term
+N∈term
+------------- (∈term introduction1)
+(M N) ∈term
+
+x∈var
+M∈term
+------------------- (∈term introduction2)
+(λ . M[free:x := (* --&gt; λ)]) ∈term
++ 这里M已经是有向图了
+  而它后面的方括号中描述了一个对它的操作
+  把x在M中的所有自由出现换成无名节点
+  然后把这些无名节点全部都连接到最前面的λ点
+
+*** variable convention
++ 当我把有向图作为公式来实现我的形式语言的时候
+  我其实根本不需要这个技术性处理
+
+assume that the bound and free variables in a situation differ
+
+在用字符串来实现λ-cal这个形式语言时
+在一个term中如果需要的话总是重命名约束变元
+使得它们不与term中出现的其它任何自由变元相同
+这样在进行substitution的时候就不用考虑那么多了
+
+*** closed λ-term (combinator)
+M is called closed λ-term (combinator)
+if FV(M) == ∅
+the set of closed λ-terms is denoted by Λ°
+
+*** &gt;&lt; ``λ-cal as a formal theory of equations between λ-terms&apos;&apos;
+**** note
+``λ-cal as a formal theory of equations between λ-terms&apos;&apos;
+这句话是什么意思?
+首先提到equation的时候就应该想到代数结构
+代数结构总是最丰富而有趣的
+
+**** &gt;&lt; λ-cal as algebra-structure
+***** note
+我可以试着用我理解代数结构的方式来理解λ-cal
+=η=于-sη-&gt;的性质我还不熟悉
+这也许会让下面的讨论成问题
+
+***** 关于运算律
+λ-term的集合
+显然就λ-application构成代数结构
++ λ-abstraction在代数结构中的意义是什么呢?
+  单纯地把它作为对term的递归定义吗?
+与群作为代数结构的区别在于
+这里的可计算性(或者说可构造性)
+
+****** 在=β=的意义下
+******* 没有交换律:
+MN =/β= NM
+
+******* 没有没有结合律:
+(MN)L =/β= M(NL)
+
+******* 没有消去律:
+LM =β= LN
+----&gt;&lt;-----
+M =β= N
+
+反例是:
+L :== K*
+K*xy =β= y
+
+****** &gt;&lt; 在添加=η=的意义下
+****** 有趣的问题是可不可以形成更高等级的运算
+由λ-cal的性质我知道
+函数方程的解总是在term的集合Λ中的 !!!
+&gt;&lt; 因此没法就函数方程的解扩充Λ吗???
+
+&gt;&lt; 问题是生么样的函数方程的解才是有意义的呢?
+不动点方程显然是一个
+FX =β= X
+这个方程描述了
+λ-term之间的``X是F的不动点&apos;&apos;这种二元关系
+
+****** &gt;&lt; 解方程的重点就是熟悉恒等变换
+*** -sβ-&gt;
+**** -sβ-&gt; introduction
+β-step-reduction
++ 共轭的有&lt;-sβ-
+
+也就是说公式(λx.M)N -sβ-&gt; M[x:=N]
+其实是在描述一个pattern-matching
+而我用下面的对实现而言更直接的定义
+
+M* =α= M[x:=N]
+-------------------- -sβ-&gt; introduction
+(λx.M)N -sβ-&gt; M*
+
+**** an example
+an affirmation(allegation)(assertion) of the following proposition
+λx.F(xx) λx.F(xx) -sβ-&gt; F(λx.F(xx) λx.F(xx))
+
+1. (λx.M)N pattern-matching λx.F(xx) λx.F(xx)
+   1) λ == λ, so
+      the pattern is matched successfully
+   2) pattern-vars binding:
+      x -- x
+      M -- F(xx)
+      N -- λx.F(xx)
+2. performing M[x:=N]
+   where:
+   x -- x
+   M -- F(xx)
+   N -- λx.F(xx)
+   we get F(λx.F(xx) λx.F(xx))
+3. F(λx.F(xx) λx.F(xx)) =α= F(λx.F(xx) λx.F(xx))
+   so
+   λx.F(xx) λx.F(xx) =β= F(λx.F(xx) λx.F(xx))
+
+**** compatibility
+就与Λ的归纳定义的相容性扩展
+
+M -sβ-&gt; N
+------------
+ML -sβ-&gt; NL
+LM -sβ-&gt; LN
+λv.M -sβ-&gt; λv.N
+
+*** graph(Λ;-sβ-&gt;)
+如果使用字符串来是实现形式语言的话
+一切都是字符串
+``(λx.M)N -sβ-&gt; M*&apos;&apos;其实也只不过是字符串
+只不过比表达式的集合作为字符串的集合高了一个层次
+并且对这个更高层次的字符串的集合的归纳定义也变得复杂了
+
+然而更好的理解方式是于形成更高层次的语义
++ 比如上面对=α=所作的
+-sβ-&gt;是一个类似于后继关系的二元关系
+这里以-sβ-&gt;为有向边
+显然能形成以Λ中的元素为节点的有向图
+记为graph(Λ;-sβ-&gt;)
+
+在计算机中实现一个能作λ-cal的语言
+其实就是实现graph(Λ;-sβ-&gt;)的lazy-eval
++ graph(Λ;-sβ-&gt;)是一个无穷图所以需要lazy-eval
+每次计算其实就是给出求出局部的graph(Λ;-sβ-&gt;)
+只不过这里的局部是极端的
+即只有图中的一个点
+可以说λ-cal的理论就可以理解为对这个无穷有向图的局部lazy-eval
+
+而证明λ-cal中的定理就是去证明这个无穷有向图的性质
+比如下面的church-rosser theorem所作的
+
+另外
+在机器辅助证明系统中
+比如在coq中
+tactics就可以被看作是对无穷有向图的惰性求值
+
+*** -β-&gt;
+β-reduction
+
+-sβ-&gt;类似于后继关系
+-β-&gt;是一个偏序关系
+
+-sβ-&gt;就传递性生成-β-&gt;
+这种生成即是用有向路来代替有向边
+因此-β-&gt;这个二元关系定义为:
+graph(Λ;-sβ-&gt;)中的两个节点之间是存在有向路
+
+1. 以-sβ-&gt;为基础
+   M -sβ-&gt; N
+   ----------
+   M -β-&gt; N
+2. 添加自反性
+   M -β-&gt; M
+3. 添加传递性
+   M -β-&gt; N
+   N -β-&gt; L
+   ----------
+   M -β-&gt; L
+*** =β=
+β-conversion
+
+-β-&gt;是一个偏序关系
+=β=是等价关系
+
+-β-&gt;就对称性生成=β=
+这种生成即是用无向路来代替有向路
+因此=β=这个二元关系定义为:
+graph(Λ;-sβ-&gt;)中的两个节点之间是存在无向路
++ path is equality
+  -sβ-&gt;: 有向边
+  -β-&gt;: 有向路
+  =β=: 无向路
+  构造性的数学中
+  数学结构都是归纳定义的
+  等价关系自然地被定义为归纳定义有向树中的无向路
+  + &gt;&lt; 在hott中有的数学结构被称为是高阶归纳定义的
+    比如同伦类
+    这是什么意思???
+
+1. 以-β-&gt;为基础:
+   M -β-&gt; N
+   -----------
+   M =β= N
+2. 添加对称性
+   M =β= N
+   ---------
+   N =β= M
+3. 还要再添加一次传递性
+   M =β= N
+   N =β= L
+   ----------
+   M =β= L
+
+   + 为什么还要多添加一次传递性???
+     下面错误的定义2说明了
+     再次添加传递性的必要
+
+   + DEFINE2(错误的定义):
+     M -β-&gt; N
+     -----------
+     M =β= N
+
+     M &lt;-β- N
+     -----------
+     M =β= N
+
+     上面这两个推理规则代替了``或&apos;&apos;这个词
+     这样会有些不好吗?
+     这样的定义能成吗?
+     能证明对称性与传递性吗?
+     试验如下:
+     因为
+     首先
+     M &lt;-β- N
+     -----------
+     M =β= N
+     等价于
+     M -β-&gt; N
+     -----------
+     N =β= M
+     所以对称性的事实是显然的
+     + 我都不想说是证明了
+     其次
+     M =β= N
+     N =β= L
+     ----------
+     - 有四种引入上面两个节点的可能性
+       我必须说明每种都能推出M =β= L
+       1) M -β-&gt; N
+          N -β-&gt; L
+          ---------
+          M -β-&gt; L
+          ---------
+          M =β= L
+
+       2) N -β-&gt; M
+          N -β-&gt; L
+          ---------
+          此时已经不能推出
+          M -β-&gt; L或L -β-&gt; M了
+          因此不能推出M =β= L了
+          所以这种定义是错误的
+
+*** belated definitions
+**** compatible
+集合Λ上的关系-R-被称为是与对集合Λ的归纳定义相容的
+如果:
+1.
+   M1 -R- N1    M2 -R- N2
+   -----------------------
+   (M1 M2) -R- (N1 N2)
+   或
+   M -R- N
+   -----------------
+   (M Z) -R- (N Z)
+   (Z M) -R- (Z N)
+
+2.
+   M -R- N
+   -------------------
+   (λv.M) -R- (λv.N)
+
+如果用字符串来实现形式理论
+那么-R-可以被实现为对第二层次的字符串的集合的归纳定义
+也就是说对于形式理论来说
+引入一个关系其实是在归纳定义一个集合
+
+**** congruence relation
+Λ上与Λ的归纳定义相容的关系-R-
+如果是等价关系
++ 即 对称 自反 传递
+则称其为全等关系:congruence
+记为=R=
+**** reduction relation
+Λ上与Λ的归纳定义相容的关系
+如果是偏序关系
++ 即 自反 传递
+则称其为约化关系:reduction
+记为&lt;-R-
+因为没有对称性
+所以共轭的有-R-&gt;
++ 尽管&lt;-sβ-使用了类似的记号
+  但是它并不是reduction relation
+  但是考虑有向图就知道使用&lt;-sβ-这种记号是合理的
+  + &gt;&lt; 或者我应该设计更好的记号来区分传递性???
+**** β-redex
+(λx.M)N
+就是表达式中模式匹配到的λ-abstraction的application
+**** β-normal form (β-nf)
+λ-term which dose not have any β-redex
+as subexpression
+这显然可以通过用模式匹配来写一个
+表达式的集合上的谓词来实现
+**** M has a β-normal form
+if ∃N : M =β= N ∧ N is β-normal form
+*** &gt;&lt; church-rosser theorem
+**** aim
+实现了 &lt;-β- =β= =α= x:A x∈A 这些关系以后
+就可以用谓词演算所提供连接词与量词来形成
+关于形式理论的一般性质的命题
+比如这里的这个命题就是如此
+
+&gt;&lt; 这个命题所依赖的推理规则属于什么形式语言??
+不论如何这个命题都不像某些命题那样迂腐
+而是真正给了我们一些关于形式理论的知识
+
+THEOREM:
+∀M,N∈Λ s.t. M =β= N
+∃L∈Λ : L &lt;-β- M ∧ L &lt;-β- N
+
+这个定理并没有它看起来的那么不平凡
+因为
+用公式(λx.M)N :== M[x:=N]去定义-sβ-&gt;
+
+=β=其实被定义为&lt;-β-的交换化
+即&lt;-β-然后忽略方向
+即&lt;-β-添加对称性
+而&lt;-β-被定义为&lt;-sβ-从有向边到有向路的生成
+
+对这个定理的证明就是对
+关系-sβ-&gt;所形成的有向图graph(Λ;-sβ-&gt;)的性质的观察
+
+**** lemmas
+1. if: M is β-nf
+   then:
+   M -β-&gt; N
+   ---------
+   N =α= M
+   β-nf 作为有向图的叶节点当然有这种性质
+
+2. M -sβ-&gt; M&apos;
+   ------------
+   M[x:=N] -sβ-&gt; M&apos;[x:=N]
+   就引入-sβ-&gt;的推理规则作归纳证明即可
+
+**** 回到church-rosser theorem
+∀M,N∈Λ s.t. M =β= N
+∃L∈Λ : L &lt;-β- M ∧ L &lt;-β- N
+
+即
+
+M =β= N
+----------
+∃L :
+L &lt;-β- M
+L &lt;-β- N
+
+这样写还是没能脱离谓词演算
+不过好多了
+因为更接近实现方式了
+
+加强其条件如下:
+M &lt;-β- Z
+N &lt;-β- Z
+----------
+∃L :
+L &lt;-β- M
+L &lt;-β- N
+或者按书上的说法:
+M -β-&gt; N1
+M -β-&gt; N2
+--------------
+∃N3 :
+N1 -β-&gt; N3
+N2 -β-&gt; N3
+
+加强的条件中排除了=β=
++ 可以看出这是
+  为了证明命题
+  而去在等价变换的前提下加强命题的条件
++ 因为
+  M &lt;-β- Z
+  N &lt;-β- Z
+  ----------
+  M =β= N
+  所以
+  等价变换只需要考虑一个方向
+  即是需要在假设:
+  M &lt;-β- Z
+  N &lt;-β- Z
+  ----------
+  ∃L :
+  L &lt;-β- M
+  L &lt;-β- N
+  的正确性的前提下
+  按引入=β=的推理规则来分类用归纳法证明:
+  M =β= N
+  ----------
+  ∃L :
+  L &lt;-β- M
+  L &lt;-β- N
+
+  PROOF:
+  1. M -β-&gt; N
+     -----------
+     M =β= N
+
+     此时引入节点M =β= N的父节点是M -β-&gt; N
+     而M -β-&gt; N中不包含``=β=&apos;&apos;
+     所以这个推理规则被认为是一个``基础步骤&apos;&apos;
+     此时没有归纳假设
+     需要证明:
+     ∃L :
+     L &lt;-β- M
+     L &lt;-β- N
+     并且已经有假设成立的定理:
+     M &lt;-β- Z
+     N &lt;-β- Z
+     ----------
+     ∃L :
+     L &lt;-β- M
+     L &lt;-β- N
+     了
+     显然此时只要取Z为M就行了
+
+  2. N =β= M
+     ---------
+     M =β= N
+
+     此时引入节点M =β= N的父节点是N =β= M
+     而N =β= M中包含了``=β=&apos;&apos;
+     所以这个推理规则被认为是一个``归纳推步&apos;&apos;
+     此时有归纳假设:
+     N =β= M
+     ----------
+     ∃L :
+     L &lt;-β- N
+     L &lt;-β- M
+     需要证明:
+     ∃L :
+     L &lt;-β- M
+     L &lt;-β- N
+     然后由量词下面那两项的交换性这是显然的
+     这并没有用到已经假设成立了的定理:
+     M &lt;-β- Z
+     N &lt;-β- Z
+     ----------
+     ∃L :
+     L &lt;-β- M
+     L &lt;-β- N
+
+  3. M =β= L
+     L =β= N
+     ----------
+     M =β= N
+
+     此时引入节点M =β= N的父节点是
+     M =β= L和L =β= N
+     而它们中都包含了``=β=&apos;&apos;
+     所以这个推理规则被认为是一个``归纳推步&apos;&apos;
+     此时有归纳假设:
+     1) M =β= L
+        ----------
+        ∃P1 :
+        P1 &lt;-β- M
+        P1 &lt;-β- L
+
+     2) L =β= N
+        ----------
+        ∃P2 :
+        P2 &lt;-β- L
+        P2 &lt;-β- N
+
+        这两个约束变元被下面当成
+        对所取的一个元素的命名了
+     需要证明:
+     ∃P :
+     P &lt;-β- M
+     P &lt;-β- N
+     使用已经假设成立了的定理:
+     P1 &lt;-β- L
+     P2 &lt;-β- L
+     ----------
+     ∃P :
+     P &lt;-β- P1
+     P &lt;-β- P2
+     由&lt;-β-的性质就知道此时存在的P
+     就是
+     ∃P :
+     P &lt;-β- M
+     P &lt;-β- N
+     中所需要找的P
+
+     EDN-OF-PROOF.
+
+**** 系
+1. if: M has N a β-normal form
+   i.e. M =β= N ∧ N is β-normal form
+   then:
+   M -β-&gt; N
+
+   这是非常好的性质
+   它说明如果一个λ-term有β-nf
+   按一定的方式rewrite下去就一定能得到这个β-nf
+   + 按坏的方式rewrite下去可能无限循环
+
+   PROOF:
+
+   M =β= N
+   ---------
+   ∃L :
+   L &lt;-β- M
+   L &lt;-β- N
+
+   N is β-nf
+   L &lt;-β- N
+   -----------
+   L =α= N
+
+   L &lt;-β- M
+   L =α= N
+   ------------
+   N &lt;-β- M
+
+   END-OF-PROOF.
+
+2. a λ-term has at most one β-nf
+
+   PROOF:
+
+   N1 &lt;-β- M
+   N2 &lt;-β- M
+   -------------------------
+   ∃L :
+   L &lt;-β- N1
+   L &lt;-β- N2
+
+   L &lt;-β- N1
+   L &lt;-β- N2
+   N1 is β-nf
+   N2 is β-nf
+   --------------
+   N1 =α= N2
+
+   END-OF-PROOF.
+
+   这也是很好的性质
+   它说明β-nf的唯一性
+
+**** 例子
+1. syntactical consistency
+   这是推理规则们的性质
+
+   按照上面所引入的这些推理规则
+   没有=α=关系的一对β-nf
+   + 比如常量ture和false
+   不可能被推出=β=关系
+   即不可能证明
+   true =β= false
+
+   因此``语法一致性&apos;&apos;在这里就是=α=于=β=之间的关系 !!!
+   后引入的等价关系不伤害之前的等价关系
+   即是一致性(或者说相容性)
+   但是为什么后引入的等价关系有可能伤害之前的等价关系呢?
+   首先要知道
+   如果用有向图来实现形式理论的话
+   这里的=α=根本就是不需要被作为等价关系而引入的
+   有向图之间的本源``等词&apos;&apos;就够了
+   所以在这里
+   这个``之前引入的等价关系&apos;&apos;可以被理解为是本源等词
+   + 毕竟模型轮中的模型关系是相对的
+   这样推理规则不与本源``等词&apos;&apos;相冲突
+   就被认为是一致性
+   + 就数学结构而言
+     + 数学结构即指 以集合论为中心的形式语言系统
+     与本源``等词&apos;&apos;有关的实现是一个结构的模型
+     而形式理论是这个结构的形式理论
+   现在再问``为什么会产生冲突?&apos;&apos;
+   因为:
+   1) 对推理规则的引入是任意的
+      推理规则是要去形成有向图
+      而
+      反而
+      要求被引入的以``等词&apos;&apos;为语义的节点
+      + ``等词&apos;&apos;的语义其实就是命题的语义
+        而命题在命题演算中的语义就是布尔代数
+        在这个模型的约束下
+        推理规则不能同时既推出一个命题真也推出这个命题假
+        这才是数理逻辑中的一致性啊
+        我在别的文本中讨论的是什么呢?
+        也许问题在于这种一致性对一阶逻辑的依赖
+        如果同伦类型论于一阶逻辑是完全不同的形式语言的话
+        那么同伦类型论中一致性也一定有不同的意义
+        两种一致性之间有什么关系呢?
+        它们都是因为语义的需要而给推理规则作的限制
+        + 不光推理规则是可以自由引入的
+          那些产生一致性概念的``限制&apos;&apos;也是可以自由引入的
+          到这里就太形而上了
+          因为追问一个语言的语义
+          一个人可以永不停止
+      不与本源``等词&apos;&apos;冲突才是一个附加条件
+      + 一个启蒙也许在于
+        可以去想办法具体地度量这种不一致性
+        对不一致性的系统度量一定也能给我们很多知识
+   2) 推理规则所能形成的有向图是复杂的
+      + 就这里的-sβ-&gt;而言
+        -sβ-&gt;有向边所代表的关系
+        -β-&gt;是有向路所代表的关系
+        =β=是无向路所代表的关系
+
+
+
+2. (λx.xx)(λx.xx) has no β-nf
+
+   otherwise:
+   (λx.xx)(λx.xx) -β-&gt; N
+   N is  β-nf
+
+   but:
+   (λx.xx)(λx.xx) -β-&gt; (λx.xx)(λx.xx)
+   while
+   (λx.xx)(λx.xx) is not β-nf
+
+**** 再次回到church-rosser theorem
+现在就可以集中精力证下面的东西了
+
+M &lt;-β- Z
+N &lt;-β- Z
+----------
+∃L :
+L &lt;-β- M
+L &lt;-β- N
+
+这是关系&lt;-sβ-所形成的有向图的良好性质
+它说分开的东西一定有可能被重新融合
+
+***** main lemma
+
+M &lt;-sβ- Z
+N &lt;-β- Z
+----------
+∃L :
+L &lt;-β- M
+L &lt;-β- N
+
+the way to proof this is similar to
+``radioactive tracing isotopes&apos;&apos;
+in experimental biology
+
+PROOF:
+
+已知 M &lt;-sβ- Z 具体rewrite了那个 β-redex
+又已知 N &lt;-β- Z
+通过 N &lt;-β- Z 求的 其对边 L &lt;-β- M
++ 如果在模仿 N &lt;-β- Z 求的 其对边 L &lt;-β- M 的过程中
+  那个β-redex被消除了
+  那么我作模仿的时候就省略这步消除继续模仿后面的
+然后就发现能自然得到
+M &lt;-sβ- Z 的对边: L &lt;-β- N
+
+END-OF-PROOF.
+
+这个证明其实是给出了寻找
+L &lt;-β- M
+L &lt;-β- N
+的算法
+
+***** after the main lemma
+在已知:
+M &lt;-sβ- Z
+N &lt;-β- Z
+----------
+∃L :
+L &lt;-β- M
+L &lt;-β- N
+成立的条件下
+证明:
+M &lt;-β- Z
+N &lt;-β- Z
+----------
+∃L :
+L &lt;-β- M
+L &lt;-β- N
+
+PROOF:
+
+把M &lt;-β- Z拆开成一步一步的&lt;-sβ-
+就发现一个算法是显然的
+
+END-OF-PROOF.
+
+这就证明完了church-rosser theorem
+感觉生么都没证明
+其实是给出了一个算法而已
+当然这个结果确实描述着整个形式理论的性质
+**** &gt;&lt;&gt;&lt;&gt;&lt; remark
+church-rosser theorem
+所归结到的那个有向图的性质很像
+
+``我先定义自由的代数结构
+然后给出代数结构的图论表示
+然后说明这个代数结构中的运算律如何对应于
+它的图论表示的图的性质
+也就是说这个性质很像是运算律&apos;&apos;
+
+&gt;&lt; 现在一件很明了的事就是
+我必须倾尽自己的全力写一个有向图处理语言
+这简直太重要了
+
+*** &gt;&lt; see and acting
+**** fixed point theorem
+∀F∈Λ ∃X∈Λ : FX == X
+``对每一个函数F都可以构造出它的不动点X&apos;&apos;
+这当然可以被理解成一个方程了
+这样的对这个方程的可解性的叙述
+形成了传统数学形式语言中的一个命题
+但是理解这些需要记号``ͱ&apos;&apos;吗?
+先看下面对这个命题的证明再说:
+HEURSITIC:
+X == FFFFF...(无穷个F作用于自身)
+这种东西显然满足所给出的方程
+F(X) == F(FFFFF...)
+== FFFFF... == X
+但是这种东西在语法上是不合法的
+因此我们定义F*
+而F*是那种作用于自身一次就能额外的在外面获得一个F的那种term
+也就是说:F*F* == F(F*F*)
+可以说F*对自身的作用就是在形成潜在的FFFFF...
+DEFINE:
++ 如何理解这种定义呢?
+  这种定义是在另一个变量名的空间找一些名字
+  来帮助我们描述我们想描述的东西
+F* :== λx.F(xx)
+X :== F*F*
+然后验证X就是所求的term:
+X == F*F* == λx.F(xx) λx.F(xx)
+== F(λx.F(xx) λx.F(xx))
+== F(F*F*)
+== FX
+**** Y combinator
+对上面的定理的解法(给出F而构造X的方法)
+的抽象(λ-abstraction)
+就让我们得到了Y combinator
+∀F∈Λ : F(YF) == YF
+只要把term: λx.F(xx) λx.F(xx)中的F
+用λ-abstraction抽象出来就行了:
+Y == λf.(λx.f(xx) λx.f(xx))
+== λfx.f(xx)(λx.f(xx))
+**** 关于方程
+``λ-cal as a formal theory of equations between λ-terms&apos;&apos;
+如果我接受∀F∈Λ ∃X∈Λ : FX == X
+这种描述方程的方式
+那么我就理解了那句话中的``方程&apos;&apos;这个词的意思
+
+∀F∈Λ ∃X∈Λ : FX == X是谓词逻辑中的一个逻辑命题
+对这个命题的陈述同时还使用了集合论中的概念
+这个命题的语义是方程的可解性
+其中量词所引入的F与X都是约束变元
+
+那么是不是量词以某种方式给出一些约束变元
+然后我用等词形成这些约束变元之间的等式
+这样所形成的谓词演算中的逻辑命题就是
+一个关于这个等式所对应的方程的可解性的命题
++ 代数就在于方程
+  而方程就在于变元的使用
+  所以这是当然的
++ 因此我想反过来说更好:
+  我先用一些自由变元与等词形成一个等式
+  + 但是这里变元的类型与等词的类型都是有待明确的
+  然后我在这个等式前面添加量词
+  量词是扩展了的量词 即 集合论的语法糖
+  当添加适当的量词 而形成了一个命题时
+  我就得到了一个关于
+  开始的那个等式的一个方程的可解性的命题
+
+我是通过构造一个解来证明这个命题的
+这种构造之所以能形成对这个命题的证明
+是因为我隐含地使用了谓词演算中的推理规则
+现在我试图把我隐含使用的东西明显地写出来
+首先∀F∈Λ ∃X∈Λ : FX == X
+是(∀F (F∈Λ → ∃X (X∈Λ ∧ (FX == X))))
+的语法糖
+然后我就不想往下写了
+因为从这里就可以看出
+一阶逻辑与集合论所组成的混杂语
+是很不好的 几乎没有可用性的形式语言
+语法和语义是脱节的
+可以用一些抽象层次把这种脱节的现象消除
++ &gt;&lt; 也许在实际对形式语言的应用中
+  一个人可以总结出来这样的一种
+  用来弥补脱节现象的形式语言塔
+
+现在我就理解了那句话了
+因为任何一个数学理论
+都是一个关于方程的形式理论
+只不过 形成方程不一定是等词而已
+
+并且我还知道了对于任何一个关于方程的理论
+重要的是要能``熟练的对等式作恒等形变&apos;&apos;
+比如``移项&apos;&apos;之类的操作
+也就是说要``熟悉这种语言的语义&apos;&apos;
+**** corollary
+∀C == C[f,x] ∈Λ
++ 这个等式是对可能存在的依赖关系的明确声明
+  可见等号这个东西是被相当可怕地滥用了的
+∃F∈Λ ∀X∈Λ : FX == C[F,X]
++ where C[F,X] == C[f:=F][x:=X]
+现在为了证明这里给出的方程的可解性
+需要构造的是F了 下面给出典型的解法:
++ 根据F所需要满足的性质来向后计算
++ 熟练的对等式作恒等形变
++ 首先这个解法是以不动点方程的求解公式为基础的
+  就像解某些代数方程时
+  人们可以以二次方程的求根公式为基础
+  将需要求解的方程转化为二次方程
+∀X∈Λ : FX == C[F,X]
+&lt;== Fx == C[F,x]
+&lt;== F == λx.C[F,x]
+&lt;== F == (λf.λx.C[f,x])F
++ 上面这步已经化归成功了
+&lt;== F == Y(λf.λx.C[f,x])
+
+APPLICATION:
+1. 求F 使得对任意X 有:
+   FX == XF
+   + 存在和任意X都交换的term T
+   此时: C[F,X] == XF
+   再写一遍求解过程作为练习:
+   ∀X : FX == XF
+   &lt;== Fx == xF
+   &lt;== F == λx.xF
+   &lt;== F == (λf.λx.xf)F
+   &lt;== F == Y(λf.λx.xf)
+2. 求G 使得对任意X,Z 有:
+   GXZ == ZG(ZXG)
+   + 类似于前面那个一元的交换性
+   此时: C[G,X,Z] == ZG(ZXG)
+   再写一遍求解过程作为练习:
+   ∀X,Z : (GX)Z == ZG(ZXG)
+   &lt;== (Gx)z == zG(zxG)
+   &lt;== G == λx.λz.zG(zxG)
+   &lt;== G == (λx.λz.zg(zxg))G
+   &lt;== G == Y(λx.λz.zg(zxg))
+
+*** &gt;&lt; normalization
+一个λ-term可以形成这样一个边标记的有向图
+用来标记有向边的是β-redex
+如何形成这个有向图是显然的
++ λ-term M 对应的有向图被记为DG-β(M)
+  被称为reduction graph
+church-rosser theorem的证明就被归结为
+对这种单个λ-term所形成的有向图的性质的证明
+
+**** strongly normalizing
+如果DG-β(M)是有穷的
+then M is called strongly normalizing
+
+1. DG-β(M)中的两条路就是
+   对M的两种rewrite方式
+   如church-rosser theorem的证明过程所展示的那样
+   两条路可以用来交织成一个网
+   所以每条路就像是有限图的一个``维度&apos;&apos;
+   但是两条路所交织成的一个网
+   的几何结构
+   又比平面上整数形成的晶格复杂的多
+2. 有可能沿一个维度图DG-β(M)是有限的
+   + M以这种方式rewrite可以找到β-nf
+   而沿另一个维度DG-β(M)是无穷的
+   所以M是strongly normalizing
+   它就一定有β-nf
+   但是就算它有β-nf
+   它也不一定是strongly normalizing
+**** &gt;&lt; leftmost reduction strategy is normalizing
+for a proof see:
+barendregt[1984],THEOREM:13.2.2
+*** &gt;&lt; bohm trees and approximation
+``bohm trees  is a kind of infinite normal form&apos;&apos;
+**** lemma
+every term in Λ
+matchs one of the following two patterns
+or another:
+1. λx1...xn.yN1...Nm
+   + where n,m&gt;=0
+     pattern-var y matchs var
+     + free or non-free both matched by y
+     pattern-var Ni matchs term
+2. λx1...xn.(λy.N0)N1...Nm
+   + where n&gt;=0, m&gt;=1
+就集合Λ的归纳定义证明
+**** 一些辅助定义
+***** head normal form (hnf)
+M is called a head normal form
+if M matchs
+λx1...xn.yN1...Nm
++ where n,m&gt;=0
+which must be an λ-abstraction
+例:
+ac(bc) is a hnf
+bc is a hnf
+λabc.ac(bc) is a hnf
+
+and the variable matched by y
+is called the head variable of M
+***** M has a hnf if M =β= N ∧ N is a hnf
+***** head redex
+if M matchs
+λx1...xn.(λy.N0)N1...Nm
++ where n&gt;=0, m&gt;=1
+then (λy.N0)N1 is called the head redex of M
+**** some property of tree
+1. as partially ordered set
+2. there is a root
+3. each node(point,joint) has
+   finitely many direct successors
+4. the set of predecessors of a node
+   is finite and is linearly ordered
+**** &gt;&lt; bohm tree of term M
+notation BT(M)
+***** &gt;&lt; lemma
+***** BT(M) is well defined and
+M =β= N
+--------
+BT(M) = BT(N)
+** &gt;&lt; the system λ-&gt;curry (systems of type assigment)
+*** note about ``ͱ&apos;&apos;
+推理规则定义表达式的集合
+并且给出以这些表达式为节点
+以推理规则为有向边的无穷有向图
+
+上面的type-free λ-cal中的推理规则并不包含``ͱ&apos;&apos;
+而下面的推理规则包含``ͱ&apos;&apos;
+
+此时为了好的理解还是要去形成图论的语义
+首先要知道
+在逐层地构建一个形式语言时
+图的节点一次次地在变化
+每次图的节点都是上次的图
+
+下面的推理规则所给出的图的节点是包含``ͱ&apos;&apos;的表达式
+type-free λ-cal中的推理规则
+可以用来处理下面的表达式的``ͱ&apos;&apos;的前半部分或后半部分
+但是不触及``ͱ&apos;&apos;本身
+
+设计一个以``ͱ&apos;&apos;为核心的语法层次
+是为了做局部的(临时的)假设
++ 语法上
+  假设写在``ͱ&apos;&apos;的前面
+  作为context的内容
+也就是为了在证明的过程中使用``反证法&apos;&apos;和``归纳法&apos;&apos;等技术
+
+有一些推理规则只不过是在给命题作``恒等变形&apos;&apos;
+也许是在为另一些推理规则的使用做准本
++ type-free λ-cal中不触及``ͱ&apos;&apos;的推理规则都是如此
+  除此之外还有一些触及``ͱ&apos;&apos;的推理规则也是如此
+而另一些推理规则才真正是在``推理&apos;&apos;
+这里``恒等变形&apos;&apos;值得深入讨论
+首先这个概念在代数化的看待问题上很有帮助
+因为恒等变形是解任何方程的手段
+并且在这里这个概念就更有意思
+因为有时恒等变形类的推理规则提供的是
+同一个语义在不同语法层面上的转化
+明显地提出这种转化是否能为理解这一切提供一个代数的视角??
+
+增加假设 减少结论 会让ͱ节点变弱
+减少假设 增加结论 会让ͱ节点变强
+把ͱ写成横线``--------&apos;&apos;或者``========&apos;&apos;时
+ͱ节点就像是分数一样
+可以形成一个正比例函数和一个反比例函数
+从代数的角度看
+数学论证就是在对这种ͱ节点作恒等变形
+如果统一用有向图来理解代数
+那么这种相似性就是自然的了
+
+*** inductive definition of the set of exp
+tvar ::= α | tvar&apos;
+type ::= tvar | (tvar -&gt; tvar)
+the set of all types is denoted by T
+
+var ::= v | var&apos;
+term ::= var | (term term) | (λ var . term)
+the set of all terms is denoted by Λ
+*** notations
+one writes
+ͱ M:σ
+to assign type σ∈T to term M∈Λ
+
+1. M is called a *subject*
+2. M:σ is called a *statement*
+3. as a special statement
+   x:σ is called a *declaration*
+4. a *basis* is a set of declaration
+   with distinct variables as subject
+
+``ͱ&apos;&apos; pronounced ``yields&apos;&apos;
+the thing on the left-side of ͱ
+is called *context*
+the thing on the right-side of ͱ
+is called *conclusion*
+*** type assigment
+**** inference-rules
+a statement M:σ is derivable from a basis Γ
+denoted: Γ ͱ M:σ
+if Γ ͱ M:σ can be inferenced by the following inference-rules:
+
++ where the basis Γ is locally presupposed
+
+(x:σ)∈Γ
+--------- (axiom)
+Γ ͱ x:σ
++ 这个引入表明了类型指定可以在局部任意引进
+  而下面的``-&gt;introduction&apos;&apos;
+  会把context中临时引入的类型指定消除
+
+Γ,x:σ ͱ M:τ
+------------------- (-&gt;introduction)
+Γ ͱ (λx.M):(σ-&gt;τ)
++ 假设(context)中的类型指定x:σ
+  会在这个引入规则中被消除
+
+Γ ͱ M:(σ-&gt;τ)
+Γ ͱ N:σ
+--------------- (-&gt;elimination)
+Γ ͱ (MN):τ
+
+**** 如果从图论的角度来理解这种类型系统
+那么节点是带有``ͱ&apos;&apos;的表达式更高一层次的表达式
++ 前面的type-free λ-cal中图graph(Λ;-sβ-&gt;)的节点
+  可以看做是省略了``ͱ&apos;&apos;的表达式
+  因为在那里对推理规则的描述还不需要``ͱ&apos;&apos;这个记号
+基本的``类后继关系&apos;&apos;就来源于上面的两个推理规则
+这就像是在indude-tree(Λ; ∈term-intro1, ∈term-intro2)中的
+所有变元节点上释放一些相同或不同小精灵
+沿着有向树的有向边旅行时
+这些小精灵会按它们路过的有向边的类型
+而在道路的交汇之处于其它的小精灵按规则结成伙伴
++ 上面的推理规则并不能给所有的term附上类型
+  比如x:σ,y:τ并不能给出xy的类型
+  这是因为作者简化了推理规则吗?
+
+**** 如果我强调λ-abstraction中的约束变元的非本质性
+即如果我用有向图来描述λ-abstraction
+那么
+Γ,x:σ ͱ M:τ
+------------------- (-&gt;introduction)
+Γ ͱ (λx.M):(σ-&gt;τ)
+
+就需要被改写为:
+Γ ͱ M:τ
+x∈var
+σ∈tvar
+------------------------------------------ (-&gt;introduction)
+Γ ͱ (λ:σ.M[free:x := (* --&gt; λ)]) : (σ-&gt;τ)
++ 也就是说释放小精灵的过程也是非本质的
+  或者说type assigment的性质基本上就是
+  indude-tree(Λ;(∈term introduction1),(∈term introduction2))
+  的性质
+上面的改写其实是不对的
+因为它丢失了ͱ的语义
+
+**** examples
+1. ͱ (λx.x):(σ-&gt;σ)
+
+   ----------- (axiom)
+   x:σ ͱ x:σ
+   ---------------- (-&gt;introduction)
+   ͱ (λx.x):(σ-&gt;σ)
+
+2. y:σ ͱ (λx.x)y:σ
+
+   ----------- (axiom)
+   x:σ ͱ x:σ
+   ---------------- (-&gt;introduction)
+   ͱ (λx.x):(σ-&gt;σ)
+
+
+   --------------------------------- (axiom)
+   y:σ ͱ y:σ
+
+   y:σ ͱ (λx.x):(σ-&gt;σ)
+   y:σ ͱ y:σ
+   --------------------------------- (-&gt;elimination)
+   y:σ ͱ (λx.x)y:σ
+
+**** 这里我就是在手动实现一个机器辅助证明系统了
+都是关于推导规则的
+推导规则使用就相当于是在惰性求值一个有向图
+而且 特殊地 这里的有向图是一棵有向树(推理树)
+
+在实现一个机器辅助证明系统时
+在需要的时候一个人可以用show函数之类的东西
+打印出易于阅读的现在的树是什么
+人机的交流过程 就是单纯的对这个树的操作
+推理树以及其它的底层东西的存储就是实现者需要设计的了
+
+**** 用对又向图的操作来理解我使用这个辅助证明系统的方式过程
+***** 首先要知道节点是什么
+节点是被``ͱ&apos;&apos;连接的东西
+``ͱ&apos;&apos;的前面是第二层次的若干个表达式的列表
+``ͱ&apos;&apos;的后面是一个第二层次的表达式
+
+因此节点是第三层次的表达式
+
+要知道``ͱ&apos;&apos;的使用是为了使用复杂的证明技术
+
+***** 基本操作有两个
+1. 引入新节点
+
+2. 根据推理规则i
+   从已有的若干个节点:x1,x2,...(在任何位置都行)
+   构造一个新的节点:y
+   在图中增添有向边:
+   x1--&gt;y, x2--&gt;y, ...
+   也许所有这些有向边还应该用
+   推理规则i的这次使用标记
+   + 标记 即是 边到推理规则的某此使用的映射
+   + 注意:
+     同一个推理规则的每次使用都是需要被区分的
+
+3. 其实是
+   一个无穷的有向图已经在哪里了
+   我只需要去惰性求值出它的一部分
+
+***** 这样对每个形式理论的学习就是
+1. 对每个具体的推理规则的实现方式的学习
+2. 对每个具体的引入节点的规则的实现方式的学习
+   比如按规则对
+   λx.F(xx) λx.F(xx) =β= F(λx.F(xx) λx.F(xx))
+   的肯定
+   就是一次对节点的引入
+
+3. 还有对更底层的东西学习
+   比如是用:
+   + 线性的字符串
+   + 有限有向图
+   + 其它的更复杂的数据结构
+   来作为最基本的(或者是某个层次的)表达式
+
+***** 一些哲学话题
+1. 什么数据结构是被形式主义所允许的呢?
+   如果只是``线性的字符串&apos;&apos;那就太狭隘了
+   我想``有限有向图&apos;&apos;是不错的基础
+   就用机器来实现形式理论而言
+   它们二者的基本性是相当的
+   对它们的使用
+   都可以被理解为是一个小孩在拿一些积木
+   自顾自地做游戏
+
+2. 应该如何认识一个人可以在这里所作的选择呢?
+   对于人机的互动而言
+   ``线性的字符串&apos;&apos;是不可避免的
+   或者说只有``线性的字符串&apos;&apos;才是方便的
+   但是就人类的理解而言它们又是不方便的
+
+3. 可能对于人了理解来说三维的连续模型是最容易理解的
+   对于四维模型人类就无法形成恰当的想像了
+   而在一二三维中维数越高越好
+   而对于机器来说一维的离散模型是最容易实现的
+
+*** &gt;&lt; pragmatics of constants
+这个标题让人想到关于命名系统的问题
+除了单纯地用λ-abstraction写出函数然后进行作用之外
+一个良好的命名系统对于实现具有可用性的
+机器辅助证明系统来说是非常重要的
+因此对形式理论来说也是重要的
++ 这里可以发现一个要点
+  那就是
+  对于一个逻辑学的研究者或者学习者而言
+  时刻把实现一个机器辅助证明系统
+  当做目标
+  是非常有宜的
+  这个机器辅助证明系统也许并不是研究的终极目的
+  但是对``实现&apos;&apos;的热切渴望
+  使得人对理论的理解上容不得半点儿的马虎
+  这当然是好的
+  一个明确的目标把人变勤奋了
+但是作者想要在这个标题下介绍的是这个问题吗?
+
+其实
+constants的使用在于在不违背形式主义精神的前提下
+增加第一层次表达式的可读性
+否则的话
+var只能是:
+v
+v&apos;
+v&apos;&apos;
+v&apos;&apos;&apos;
+v&apos;&apos;&apos;&apos;
+这些东西被当做基本的``字符&apos;&apos;了
+但是显然用这些字符构造起来的表达式没有什么可读性
+constants的使用就是说
+人可以随时以具有较强可读性的方式引入新的基本``字符&apos;&apos;
+比如:
++ type-constant:
+  nat
++ term-constant:
+  0:nat
+  suc:(nat-&gt;nat)
+这些常量不能作为约束变元在推理规则中使用
+使用了其实也没关系
+因为反正它们都变成约束变元了 只有局部意义
+但是这样会减弱可读性 这就与引入常量的初衷相悖了
+
+``ML is essentially λ-&gt;curry
+extended with a constant Y
+and type-assignment Y:((σ-&gt;σ)-&gt;σ) for all σ&apos;&apos;
+*** &gt;&lt; λ-&gt;curry的性质
+**** 首先定义一个作用于basis的函数:dom
+let basis Γ :== {x1:σ1,x2:σ2,...,xn:σn}
++ 也就是说使用记号:==来做命名
+  关于命名系统还需要更细致地讨论
+DEFINE:
+dom(Γ) == {x1,x2,...,xn}
++ 上面这个定义被理解为对字符串
+  (更好地应该说 字符串的列表)的操作
+  就像substitution这种东西差不多
+  但是这里显然是在滥用等号了
+DEFINE:
+Γ(xi) == σi
+Γ as a partial function
+这里类型已经乱了
+应该定义
+proj(Γ xi) == σi
+而把Γ(xi)当做proj(Γ xi)的语法糖
++ 但是不理论如何
+  这里都和上面的函数一样涉及到了滥用等号的问题
+let V0 be a set of variables
+DEFINE:
+Γ↾V0 == {x:σ | x∈V0 ∧ σ == Γ(x)}
+这个东西类似于proj(Γ xi)在
+第二个自变元的集合上的重载
+但是又有区别
++ 如何形式化地理解这里这些乱七八杂的定义
+DEFINE:
+σ[α:=τ]
+也就是把文本中出现的类型也定义substitution
+这就又真真正正是一个字符串的操作了
+**** basis lemma for λ-&gt;curry
+let Γ be a basis
+1. if:
+   Γ&apos;⊃Γ
+   then:
+   Γ ͱ M:σ
+   --------
+   Γ&apos; ͱ M:σ
+
+   这是推理规则吗?
+   如果是 那么推理规则就不光可以被先验地引进
+   并且还可以被证明 !!!
+   所以这一定不是推理规则吧 !!!
+   一定不是
+   因为这里涉及到了集合论里的东西
+   如何排除这些东西呢?
+   排除了它们之后还能作证明吗?
+   不排除它们的时候证明是如何被完成的呢?
+   我想纯粹的形式主义所构建的形式体系
+   至少一定是在集合论的语法之外的
+   因为集合论的语法是
+   一阶逻辑这种形式语言中的一个形式理论
+   既然那里(构建集合论的形式理论时)可以排除集合论的语法
+   那么这里为什么不行呢?
+   毕竟如果不排除它们的话类型就又乱了
+   即 我所使用的各种形式语言就交织在一起了
+   这也许是合法的
+   但是这对于理解而言是不宜的
+
+   也许排除集合论的概念的方式就是把这里的集合
+   理解为表达式的有序列表(或许应该遗忘列表的有序性)
+   这个列表被维持成其中的表达式不相互重复的状态
+
+2. Γ ͱ M:σ
+   --------
+   FV(M)⊂dom(Γ)
+
+   这个引理是关于
+   对自由变元的类型指定的引入的
+
+3. Γ ͱ M:σ
+   --------
+   Γ↾FV(M) ͱ M:σ
+
+   这个引理是关于
+   在context中消除对
+   引入自由变元的类型声明没有贡献的项的
+
+PROOF:
+by induction on the derivation of M:σ
+也就是就推理规则对Γ ͱ x:σ之类的断言的引入方式
++ 即 引入这第三层次表达式的方式
+  或推理规则对这第三层次的表达式的归纳定义
+
+(x:σ)∈Γ
+--------- (axiom)
+Γ ͱ x:σ
+
+Γ,x:σ ͱ M:τ
+------------------- (-&gt;introduction)
+Γ ͱ (λx.M):(σ-&gt;τ)
+
+Γ ͱ M:(σ-&gt;τ)    Γ ͱ N:σ
+-------------------------- (-&gt;elimination)
+Γ ͱ (MN):τ
+
+1. 下面的分类是按Γ ͱ M:σ被推理规则生成的方式来分的
+   Γ ͱ M:σ作为有向图中的一个节点
+   它被添加入有向图中的方式只有三种
+   1) (axiom)
+      这是显然的
+      具体的实现设计到对列表Γ的处理
+   2) (-&gt;introduction)
+      已知Γ ͱ M:σ形如Γ ͱ (λx.M):(σ-&gt;τ)
+      + 这个``已知&apos;&apos;显然是通过一个模式匹配来实现的
+      是被Γ,x:σ ͱ M:τ引入的
+      在Γ&apos;⊃Γ的前提下
+      引入节点Γ&apos;,x:σ ͱ M:τ
+      + 这里需要Γ&apos;,x:σ还是一个basis
+        即它还表示着一个集合
+        即作为列表的表达式其中的表达式不重复
+        即需要x:σ不在Γ&apos;中
+        (或者是x不在dom(Γ&apos;)中???)
+      然后就可以引入节点Γ&apos; ͱ (λx.M):(σ-&gt;τ)
+   3) (-&gt;elimination)
+      已知Γ ͱ M:σ形如Γ ͱ (MN):τ
+      是被Γ ͱ M:(σ-&gt;τ)    Γ ͱ N:σ引入的
+      在Γ&apos;⊃Γ的前提下
+      用集合论中的推理规则(在这里被实现为列表处理)
+      引入节点Γ&apos; ͱ M:(σ-&gt;τ)    Γ&apos; ͱ N:σ
+      然后就可以引入节点Γ&apos; ͱ (MN):τ
+
+      现在总结一下这上面的证明是在作什么
+      首先术语上这些命题被某些作者称为是``元语言&apos;&apos;中的命题
+      ``元语言&apos;&apos;是就人的理解方式而言
+      具有根本性的东西
+      我想这里的:
+      ``字符串处理&apos;&apos;
+      ``列表处理&apos;&apos;
+      ``有穷有向图处理&apos;&apos;
+      其根本性就在于它们能够用机器来方便的实现
+      或者说其中的基本关系能够用机器来方便的实现
+      比如说对``字符串处理&apos;&apos;而言的等词``==&apos;&apos;
+      对``列表处理&apos;&apos;而言的``∈&apos;&apos;
+      &gt;&lt; 对``有穷有向图处理&apos;&apos;而言有什么呢???
+2. 类似于1.
+3. 类似于1.
+
+我需要这些元语言中的命题
+这在于
+数学的特点就在于
+我去用``证明&apos;&apos;的形式对我所观察与思考的东西
+形成一些``一般性的&apos;&apos;论断
++ 这里就用机器实现而言
+  论断的一般性就在于模式匹配
+即 数学是一种想要尽可能一般地描述
+人们通过观察所总结到的规律的语言(或行为)
+而 这种对一般性的追求
+可能是人们为了使人们自己能对所观察到的东西
+形成更``经济的&apos;&apos;理解
+或者说``更好的&apos;&apos;理解
+
+**** generation lemma for λ-&gt;curry
+1. Γ ͱ x:σ
+   ----------
+   (x:σ)∈Γ
+
+2. Γ ͱ MN:τ
+   ---------------
+   ∃σ(Γ ͱ M:(σ-&gt;τ) ∧ Γ ͱ N:σ)
+
+   这个命题其实是说
+   有向图中的每个可以模式匹配到Γ ͱ MN:τ的节点
+   在图中都有模式匹配到Γ ͱ M:(σ-&gt;τ)与Γ ͱ N:σ的
+   直接父节点
+   这就像我说:``我坐在地上玩积木
+   我一个一个地把积木摞起来
+   那么要么最上面的积木的下面一定存在一个积木
+   要么最上面的积木的下面就是地面&apos;&apos;
+   难道我需要形成一个一阶逻辑中的命题来描述这个事实吗?
+   用谓词演算中的命题来描述这个事实
+   反而模糊了这个事实
+   这就是有穷有向图的``本源性&apos;&apos;
+
+   这里用到了谓词演算
+   而且连词是写在``ͱ&apos;&apos;类的表达式之间的
+   这下又不清楚了
+   &gt;&lt; 可能我必须先重新构造起来一阶逻辑的形式体系
+   然后才能作我希望作的讨论???
+   这是不可能的!!!
+   因为这些讨论的目的就是为了脱离一阶逻辑的形式体系
+   而建立新的形式体系
+
+3. Γ ͱ λx.M:ρ
+   ---------------
+   ∃σ,τ(Γ,x:σ ͱ M:τ ∧ ρ == (σ-&gt;τ))
+
+   这个迂腐的命题和上面的命题一样值得被批判
+**** &gt;&lt; typability of subterms in λ-&gt;curry
+
+**** &gt;&lt; substitution lemma for λ-&gt;curry
+1.
+2.
+**** &gt;&lt; subject reduction theorem for λ-&gt;curry
+the subset of Λ that
+having a certain type in λ→
+is closed under reduction
+** &gt;&lt; the system λ-&gt;church
+*** inductive definition of the set of exp
+tvar ::= α | tvar&apos;
+type ::= tvar | (tvar -&gt; tvar)
+var ::= v | var&apos;
+term ::= var | (term term) | (λ var:type . term)
+
+church system与curry system的区别就是
+对于church system来说所有的term的集合
+的归纳定义变了
+
+*** inference-rules
+(x:σ)∈Γ
+--------- axiom
+Γ ͱ x:σ
++ 集合可以看成是有序列表
+
+Γ,x:σ ͱ M:τ
+---------------------- -&gt;introduction
+Γ ͱ (λx:σ.M):(σ-&gt;τ)
++ 这里是唯一与curry system不同的地方
+
+Γ ͱ M:(σ-&gt;τ)
+Γ ͱ N:σ
+-------------------------- -&gt;elimination
+Γ ͱ (MN):τ
+
+*** &gt;&lt;&gt;&lt; 从图论的角度理解上面的推理规则所形成的形式理论
+*** &gt;&lt; 类型的加入
+把类型作为term的组成部分之后
+理论如何变得复杂了?
+首先
+约束变元是带类型的
+这样变元的数量就成了一个笛卡尔积吗?
+
+*** &gt;&lt; -sβ-&gt;
+DEFINE:
+(λx:σ.M)N -sβ-&gt; M[x:=N]
+如果这里对N:σ没有要求
+那么对于-sβ-&gt;来说
+``(λx:σ.M)&apos;&apos;中的``:σ&apos;&apos;就成了虚置的部分
+因为在实际用对字符串的操作实现-sβ-&gt;时
+根本用不到``:σ&apos;&apos;
+如果``:σ&apos;&apos;不是用来限制N:σ的
+那么它还有什么用呢?
+
+*** &gt;&lt; basis lemma for λ-&gt;church
+let Γ be a basis
++ 即一些先验的变元对类型的属于关系的列表
+
+1. if:
+   Γ&apos;⊃Γ
+   then:
+   Γ ͱ M:σ
+   --------
+   Γ&apos; ͱ M:σ
+
+2. Γ ͱ M:σ
+   --------
+   FV(M)⊂dom(Γ)
+
+3. &gt;&lt; Γ ͱ M:σ
+   --------
+
+*** &gt;&lt; original version of λ-&gt;
+如果写成:
+λx:σ.x:τ
+λx:σ.x:τ : σ-&gt;τ
+那么:
+(λx:σ.x:τ)N:σ -sβ-&gt;???
+N:σ???
+N:τ???
+都不对
+
+实际上所使用的是:
+x:σ ͱ x:σ
+----------
+ͱ (λx:σ.x):(σ-&gt;σ)
+
+(λx:σ.x:τ)这种项是不会被引入的
+
+*** &gt;&lt; λ-cube
+
+** &gt;&lt; 用一个遗忘函子来把church转化成curry (即从范畴论的角度来理解)
+遗忘函子就是简单地把所有对约束变元的类型声明都删除
+
+** &gt;&lt; classical logic formal language
+*** note
+在学习了这么多形式语言之后
+也许改回顾最初所学习的形式语言
+既然我已经有了去对比各种语言之间的差异的能力
+那么我对classical logic formal language的理解一定也可以变得更深刻了
+
+而且对于理解propositions as types来说
+经典数理逻辑的知识是必要的
+
+*** 回到&lt;&lt;元数学导论&gt;&gt;
+模型的方法起初是为了证明公理的无矛盾性
+而且模型的概念具有相对性
+这在我想要使用有向图为基础来建立其它形式语言的过程中也可以看出来
+因为我必须还要有一个语言能够描述有向图的一般性质
+这种对一般性质的描述必然又用到一个形式语言
+
+*** 在传统的以集合论为中心的数学的形式化基础中
+人们把某些命题当做证明的目的 即结论
+来探索对这些结论的论证
+人们希望论证的作为结论的命题有什么样的形式?
+我想共同点在于它们都是对一些关系的判断
+而关系是定义于集合的
+这样整个形式体系就是以集合论为中心的
+*** &gt;&lt; logic of statements recovered via curry-howard
+传统的谓词演算由curry-howard
+在类型论中重新实现???
+
+** lecture-by-henk
+*** readings
+#+begin_src emacs-lisp
+(eshell-command &quot;ranger ~/learning/lambda-cal/lecture-by-henk/&quot;)
+#+end_src
+[[shell:xpdf ~/learning/lambda-cal/lecture-by-henk/typed-lambda-calculus/readings/introduction-to-type-theory.pdf &amp;][introduction-to-type-theory]]
+[[shell:xpdf ~/learning/lambda-cal/lecture-by-henk/typed-lambda-calculus/readings/logical-verification-course-notes.pdf &amp;][logical-verification-course-notes]]
+[[shell:xpdf ~/learning/lambda-cal/lecture-by-henk/typed-lambda-calculus/readings/lambda-calculus-with-types.pdf &amp;][lambda-calculus-with-types]]
+
+*** type-free-λ-cal
+**** symbol
+给出两个symbol
+人们可以区分它们是相等还是不相等
+这是一个先验的假设
+**** alphabet
+一个symbol的有限集合
+**** word
+只与alphabet有关
+**** language
+归纳定义一个word组成的集合
+然后称这个集合中的元素为formula或expression
+formula于归纳定义的方式有关
+常用的进行归纳定义的方法是grammar
+
+&gt;&lt; 我想expression的集合可以是有向图
+**** theory
+language的子集
+根语义有关
+**** combinatory logic(CL)作为一个形式理论
+***** alphabet
+ΣCL = {I, K, S, x, &apos;, ), (, =}
+***** language
+constant := I | K | S
+
+variable := x | variable&apos;
+
+term := constant | variable | (term term)
+
+formula := term =β= term
++ 上面这个应该不出现在这里
+  因为就我的理解而言它们应该属于第二层次的exp
+***** 模式匹配对=β=的引入
+****** note
+没有(λx.M)N =β= M[x:= N]
+就是说这个形式理论中
+有λ-application
+但是没有λ-abstraction
+****** 于ISK有关的
+即把第二层次的exp的作为节点引入一个有向图(一个推理场景)
++ &gt;&lt; 这个课程想把所有λ-term都编译到ISK吗???
+
+in the following P,Q,R are pattern-vars
+
+----------(I-axiom)
+IP =β= P
+
+-----------(K-axiom)
+KPQ =β= P
+
+----------------(S-axiom)
+SPQR =β= PR(QR)
+
+****** 其它引入=β=的推理规则
+
+in the following P,Q,R are pattern-vars
+
+--------------(axiom)
+P =β= P
+
+P =β= Q
+--------(交换性)
+Q =β= P
+
+P =β= Q
+Q =β= R
+------------(传递性)
+P =β= R
+
+下面的两个在一起就等价于
+=β=与集合language的递归定义的相容性
+
+P =β= Q
+-----------
+PR =β= QR
+
+P =β= Q
+-----------
+RP =β= RQ
+
+***** &gt;&lt; cool examples
+****** &gt;&lt; doubling
+下面的等号代表命名
+D :== SII
+
+------------
+Dx =β= xx
+****** &gt;&lt; composition
+****** &gt;&lt; self-doubling, life!
+**** &gt;&lt; representing algebraic functions in CL
+**** λ-cal作为一个形式理论
+***** alphabet
+Σ = {x, &apos;, (, ), λ, =}
+***** language
+variable := x | variable&apos;
+term := variable | (term term) | (λ variable term)
+formula := term =β= term
+****** 主要的引入=β=的模式匹配
+模式匹配用下面的等式来表达
+DEFINE:
+(λx.M)N =β= M[x:= N]
+
+如果M,N在上面的公式所表达的模式匹配下匹配成功
+---------------------------------------------
+M =β= N
+****** 其它引入=β=的推理规则
+in the following M,N,L are pattern-vars
+
+--------------(axiom)
+M =β= M
+
+M =β= N
+--------(交换性)
+N =β= M
+
+M =β= N
+N =β= L
+------------(传递性)
+M =β= L
+
+下面的两个在一起就等价于
+=β=与集合language的递归定义的相容性
+
+M =β= N
+-----------
+ML =β= NL
+LM =β= LN
+
+M =β= N
+--------------
+λx.M =β= λx.N
+***** bureaucracy
+****** substitution
+| M       | M[x:=N]            |
+|---------+--------------------|
+| x       | N                  |
+| y(=/=x) | y                  |
+| PQ      | (P[x:=N])(Q[x:=N]) |
+| λx.P    | λx.P               |
+| λy.P    | λy.(P[x:=N])       |
+****** variable convention
+assume that the bound and free variables in a situation differ
+
+在用字符串来实现λ-cal这个形式语言时
+在一个term中如果需要的话总是重命名约束变元
+使得它们不与term中出现的其它任何自由变元相同
+这样在进行substitution的时候就不用考虑那么多了
+
+****** The set of free (bound) variables of M , notation FV(M ) (resp. BV(M ))
+******* FV
+FV(x) = {x}
+FV(MN) = FV(M)∪FV(N)
+FV(λx.M) = FV(M)\{x}
+******* BV
+BV(x) = ∅
+BV(MN) = BV(M)∪BV(N)
+BV(λx.M) = BV(M)∪{x}
+***** =η=
+λx.Mx -sη-&gt; M
+**** exercises
+***** in-class problems
+****** PROBLEM3:
+******* (a)
+π :== λxyf.fxy
+&lt;M, N&gt; :== π MN
++ it ``packages&apos;&apos; two λ-terms in one single λ-term
+  这是一个笛卡尔积的模型
+show that there are π1, π2 ∈ λ such that:
+π1 &lt;M, N&gt; -β-&gt; M
+π2 &lt;M, N&gt; -β-&gt; N
+
+SHOW:
+
++ 下面出现的那些外在定义的的东西
+  应该和理论中的term用=α=相连吗?
+&lt;M, N&gt; =α= λxyf.fxy M N -ssβ-&gt; λf.fMN
+有:
+(λf.fMN)L -sβ-&gt; LMN
+所以:
+L :== λxy.x
+LMN -ssβ-&gt; M
+
+L :== λxy.y
+LMN -ssβ-&gt; N
+
+所以:
+π1 :== (λpl.pl)(λxy.x)
+π1 &lt;M, N&gt; -sβ-&gt; (λl.(λf.fMN)l)(λxy.x)
+-sβ-&gt; (λf.fMN)(λxy.x) -sβ-&gt; (λxy.x)MN -ssβ-&gt; M
+
+π2 :== λpl.lp(λxy.y)
+π2 &lt;M, N&gt; -sβ-&gt; (λl.(λf.fMN)l)(λxy.y)
+-sβ-&gt; (λf.fMN)(λxy.y) -sβ-&gt; (λxy.y)MN -ssβ-&gt; N
+
+END-OF-THE-SHOW.
+
+******* (b)
+show that for F,G∈Λ there exists F^,G*∈Λ such that
+F^ &lt;x, y&gt; -β-&gt; F xy
+G* xy -β-&gt; G &lt;x, y&gt;
+
+show that there are T-curry,T-uncurry∈Λ such that
++ 即求一个同构变换
+T-uncurry F -β-&gt; F^
+T-curry G -β-&gt; G*
+
+SHOW:
+
+F xy
+&lt;-sβ- (λf.fxy)F
+=α= &lt;x, y&gt; F
+&lt;-sβ- (λp.pF) &lt;x, y&gt;
+so:
+F^ :== (λp.pF)
+so:
+T-uncurry :== (λf.(λp.pf)) =sugar= (λfp.pf)
+
+G &lt;x, y&gt;
+=α= G(λf.fxy)
+&lt;-sβ- (λxy.G(λf.fxy)) xy
+so:
+G* :== (λxy.G(λf.fxy))
+so:
+T-curry :== (λg.(λxy.g(λf.fxy))) =sugar= (λgxy.g(λf.fxy))
+
+END-OF-THE-SHOW.
+
+******* (c)
+check whether
++ 即验证同构变换的性质
+T-uncurry (T-curry f) -β-&gt; f
+T-curry (T-uncurry f) -β-&gt; f
+
+SHOW:
+
+T-curry (T-uncurry f)
+=α= (λgxy.g(λf.fxy)) ((λfp.pf) f)
+-sβ-&gt; (λgxy.g(λf.fxy)) (λp.pf)
+-sβ-&gt; λxy.(λp.pf)(λf&apos;.f&apos;xy)
+-sβ-&gt; λxy.(λf&apos;.f&apos;xy)f
+-sβ-&gt; λxy.fxy
+就作用于MN而言f与λxy.fxy相同
+=η= f
+但是T-uncurry (T-curry f) -β-&gt; f其实是不成立的
+
+T-uncurry (T-curry f)
+=α= (λfp.pf) ((λg.(λxy.g(λf.fxy))) f)
+-sβ-&gt; λp.p((λgxy.g(λf.fxy)) f)
+-sβ-&gt; λp.p(λxy.f(λf&apos;.f&apos;xy))
+就作用与&lt;M,N&gt;而言f与λp.p(λxy.f(λf&apos;.f&apos;xy))相同
+因为:
+λp.p(λxy.f(λf&apos;.f&apos;xy)) &lt;M,N&gt;
+-sβ-&gt; (λc.cMN) (λxy.f(λf&apos;.f&apos;xy))
+-sβ-&gt; (λxy.f(λf&apos;.f&apos;xy))MN
+-sβ-&gt; f(λf&apos;.f&apos;MN)
+=α= f &lt;M,N&gt;
+但是T-curry (T-uncurry f) -β-&gt; f其实是不成立的
+
+END-OF-THE-SHOW.
+
+从这个习题可以看出类型系统的必要性
+没有类型系统就不能良好地去描述同构于同态
+
+***** &gt;&lt; take-home problems
+**** &gt;&lt; lazy-ski (compiler from lambda calculus to ``lazy-combinators&apos;&apos;)
+*need pmatch.scm*
+#+begin_src scheme :result value :session *scheme* :scheme ikarus
+(define occur-free?
+  (lambda (y exp)
+    (pmatch exp
+      [`,x
+       (guard (symbol? x))
+       (eq? y x)]
+      [`(lambda (,x) ,e) (and (not (eq? y x)) (occur-free? y e))]
+      [`(,rator ,rand) (or (occur-free? y rator) (occur-free? y rand))])))
+
+(define value?
+  (lambda (exp)
+    (pmatch exp
+      [`,x (guard (symbol? x)) #t]
+      [`(lambda (,x) ,e) #t]
+      [`(,rator ,rand) #f])))
+
+(define app? (lambda (x) (not (value? x))))
+
+(define term-length
+  (lambda (exp)
+    (pmatch exp
+      [`,x (guard (symbol? x)) 0]
+      [`(lambda (,x) ,e) (+ 1 (term-length e))]
+      [`(,rator ,rand) (+ 1 (term-length rator) (term-length rand))])))
+
+;; call-by-name compiler to S, K, I
+(define compile
+  (lambda (exp)
+    (pmatch exp
+      [`,x (guard (symbol? x)) x]
+      [`(,M ,N) `(,(compile M) ,(compile N))]
+      [`(lambda (,x) (,M ,y))
+       (guard (eq? x y) (not (occur-free? x M))) (compile M)]
+      [`(lambda (,x) ,y) (guard (eq? x y)) `I]
+      [`(lambda (,x) (,M ,N)) (guard (or (occur-free? x M) (occur-free? x N)))
+       `((S ,(compile `(lambda (,x) ,M))) ,(compile `(lambda (,x) ,N)))]
+      [`(lambda (,x) ,M) (guard (not (occur-free? x M))) `(K ,(compile M))]
+      [`(lambda (,x) ,M) (guard (occur-free? x M))
+       (compile `(lambda (,x) ,(compile M)))])))
+
+;; call-by-name compiler to S, K, I, B, C
+(define compile-bc
+  (lambda (exp)
+    (pmatch exp
+      [`,x (guard (symbol? x)) x]
+      [`(,M ,N) `(,(compile-bc M) ,(compile-bc N))]
+      [`(lambda (,x) ,y) (guard (eq? x y)) `I]
+      [`(lambda (,x) (,M ,y))
+       (guard (eq? x y) (not (occur-free? x M))) (compile-bc M)]
+      [`(lambda (,x) (,M ,N)) (guard (and (not (occur-free? x M)) (occur-free? x N)))
+       `((B ,(compile-bc M)) ,(compile-bc `(lambda (,x) ,N)))]
+      [`(lambda (,x) (,M ,N)) (guard (and (occur-free? x M) (not (occur-free? x N))))
+       `((C ,(compile-bc `(lambda (,x) ,M))) ,(compile-bc N))]
+      [`(lambda (,x) (,M ,N)) (guard (or (occur-free? x M) (occur-free? x N)))
+       `((S ,(compile-bc `(lambda (,x) ,M))) ,(compile-bc `(lambda (,x) ,N)))]
+      [`(lambda (,x) ,M) (guard (not (occur-free? x M))) `(K ,(compile-bc M))]
+      [`(lambda (,x) ,M) (guard (occur-free? x M))
+       (compile-bc `(lambda (,x) ,(compile-bc M)))])))
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ski-&gt;lanbda converter
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; create gensyms
+(define fv
+  (let ((n -1))
+    (lambda (x)
+      (set! n (+ 1 n))
+      (string-&gt;symbol
+       (string-append (symbol-&gt;string x) &quot;.&quot; (number-&gt;string n))))))
+
+;; substitution with free variable capturing avoiding
+(define subst
+  (lambda (x y exp)
+    (pmatch exp
+      [`,u (guard (symbol? u)) (if (eq? u x) y u)]
+      [`(lambda (,u) ,e)
+       (cond
+        [(eq? u x) exp]
+        [(occur-free? u y)              ; possible capture, switch names
+         (let* ([u* (fv u)]
+                [e* (subst u u* e)])
+           `(lambda (,u*) ,(subst x y e*)))]
+        [else
+         `(lambda (,u) ,(subst x y e))])]
+      [`(,e1 ,e2) `(,(subst x y e1) ,(subst x y e2))]
+      [`,exp exp])))
+
+
+;; combinator definitions
+(define com-table
+  &apos;((S . (lambda (f) (lambda (g) (lambda (x) ((f x) (g x))))))
+    (K . (lambda (x) (lambda (y) x)))
+    (I . (lambda (x) x))
+    (B . (lambda (f) (lambda (g) (lambda (x) (f (g x))))))
+    (C . (lambda (a) (lambda (b) (lambda (c) ((a c) b)))))))
+
+;; substitute combinator with their lambda term definitions
+(define sub-com
+  (lambda (exp defs)
+    (cond
+     [(null? defs) exp]
+     [else (sub-com (subst (caar defs) (cdar defs) exp) (cdr defs))])))
+
+(define ski-&gt;lambda
+  (lambda (exp)
+    (sub-com exp com-table)))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; tests
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(define to-number `(lambda (n) ((n (lambda (x) (,add1 x))) 0)))
+
+(interp `(,to-number ,(ski-&gt;lambda (compile-bc `(,!-n ,lfive)))))
+;; =&gt; 120
+(term-length `(,! ,lfive))
+;; =&gt; 93
+(term-length (compile `(,! ,lfive)))
+;; =&gt; 144
+(term-length (compile-bc `(,! ,lfive)))
+;; =&gt; 73
+#+end_src
+*** type-λ-cal
+**** church-style
+***** grammars
+type:
+A ::= a | (A -&gt; A)
+
+term:
+M ::= x | (M M) | (λ x:A . M)
+
+contexts:
+Γ ::= &lt;empty&gt; | Γ, x:A
++ 就是一个list而已
+
+***** note
+在形成λ-abstraction的时候
+有向图中不止是要指定带入点的位置
+还需要指出允许被带入数据的类型
+
+相同的untype λ-abstraction
+在指定了不同的类型之后就是相互不同的term了
+这些term的类型当然也是不同的
+
+因此用有向图来实现type λ-cal时
+对于λ-abstraction就需要
+1. 把需要被带入的自由变元出现的位置挑出来
+   链接到λ上
+2. 指定一个这种带入所允许的输入类型
+   并且知道在这些自由变元属于这个类型的条件下
+   整个项的类型是什么
+   即 x:A ͱ M:B 的语义
+   然后就可以得到
+   ͱ (λ x:A . M) : A-&gt;B
+   整个这第二点就是推理规则的语义
+
+**** minimal logic
+***** note
+1. implicational logic
+   i.e. only connective is -&gt;
+
+2. intuitionistic
+   not classical
+   即 推导不出下面的节点
+   ͱ ((a-&gt;b)-&gt;a)-&gt;a
+   + 它的语义是什么?
+     为什么推到不出来它就是非经典逻辑
+
+***** grammar of formulas
+A ::= a | (A -&gt; A)
++ 与``类型&apos;&apos;的集合的归纳定义完全相同
+
+***** rewrite-rules
+****** implication introduction
+Γ, A ͱ B
+----------
+Γ ͱ A -&gt; B
+
+****** implication elimination (modus ponens)
+Γ ͱ A
+Γ ͱ A -&gt; B
+----------
+Γ ͱ B
+
+****** example
+``if a then it holds that if b then a&apos;&apos;
+``a implies that b implies a&apos;&apos;
+a -&gt; b -&gt; a
+== a -&gt; (b -&gt; a)
+
+a, b ͱ a
+------------
+a ͱ b -&gt; a
+-----------------
+ͱ a -&gt; (b -&gt; a)
+
+
+in type theory:
+
+x:a, y:b ͱ x:a
+----------------------------
+x:a ͱ (λ y:b . x) : b -&gt; a
+-----------------------------------------
+ͱ (λ x:a . (λ y:b . x)) : a -&gt; b -&gt; a
+
+****** BHK interpretation
+Luitzen Egbertus Jan Brouwer
+Arend Heyting
+Andrey Kolmogorov
+
+intuitionistic interpretation of logical connectives:
+|-----------------+---------------------------------------|
+| proof of A ∧ B  | pair of a proof of A and a proof of B |
+| proof of A ∨ B  | either a proof of A or a proof of B   |
+| proof of A -&gt; B | mapping of proofs of A to proofs of B |
+| proof of ¬A     | proof of A -&gt; 上                      |
+| proof of 上     | &lt;does not exist&gt;                      |
+| proof of 下     | the unique proof of 下                |
+|-----------------+---------------------------------------|
+**** styles of logic
+***** note
+所有这些所谓逻辑风格都应该能简洁地在grap中实现
+因为它们都是不过是对无穷有向图的惰性求值而已
+
+***** logic style 1: Hilbert system
+****** just one proof rule: modus ponens (MP)
+Γ ͱ A
+Γ ͱ A -&gt; B
+----------
+Γ ͱ B
+
+****** axiom schemes
+K : A -&gt; B -&gt; A
+S : (A -&gt; B -&gt; C) -&gt; (A -&gt; B) -&gt; A -&gt; C
+
+example: proof of a -&gt; a
+|---+-------------------------------------------------+--------|
+| 1 | (a -&gt; (b -&gt; a) -&gt; a) -&gt; (a -&gt; b -&gt; a) -&gt; a -&gt; a | S      |
+| 2 | a -&gt; (b -&gt; a) -&gt; a                              | K      |
+| 3 | (a -&gt; b -&gt; a) -&gt; a -&gt; a                         | MP 1,2 |
+| 4 | a-&gt;b-&gt;a                                         | K      |
+| 5 | a-&gt;a                                            | MP 3,4 |
+|---+-------------------------------------------------+--------|
+所以I也是可以被推到出来的:SKK =β= I
+
+****** Curry-Howard for Hilbert system
+|-------------------+------+---------------------------|
+| logic             | &lt;==&gt; | type theory               |
+|-------------------+------+---------------------------|
+| *Hilbert system*  | &lt;==&gt; | *typed combinatory logic* |
+|-------------------+------+---------------------------|
+| proof of a -&gt; a   | &lt;==&gt; | SKK =β= I                 |
+|-------------------+------+---------------------------|
+| deduction theorem | &lt;==&gt; | converting lambda terms   |
+|                   |      | to combinatory logic      |
+|-------------------+------+---------------------------|
+
+***** logic style 2: sequent calculus
+****** notations
+sequents:
+A1, ..., An ͱ B1, ..., Bm
+
+to be read as:
+A1 ∧ ... ∧ An ͱ B1 ∨ ... ∨ Bm
+
+A1, ..., An and B1, ..., Bn are sets, not lists
+
+****** intro/elim versus left/right
+for each logical connective *:
+- natural deduction:
+  intro rules *I (introduction)
+  elim rules  *E (elimination)
+- sequent calculus:
+  left rules  *L
+  right rules *R
+
+****** rewrite-rules
+1. assumption rule
+
+   ------------- ass
+   Γ, A ͱ A, Δ
+
+2. left rule for implication
+
+   Γ ͱ A, Δ
+   Γ, B ͱ Δ
+   ---------------- -&gt;L
+   Γ, A -&gt; B ͱ Δ
+
+3. right rule for implication
+
+   Γ, A ͱ B, Δ
+   ---------------- -&gt;R
+   Γ ͱ A -&gt; B, Δ
+
+****** example: proof of a -&gt; b -&gt; a
+---------- ass
+a, b ͱ a
+---------- -&gt;R
+a ͱ b -&gt; a
+---------- -&gt;R
+ͱ a -&gt; b -&gt; a
+
+****** cuts
+cut rule
+Γ ͱ Δ, A    A, Γ ͱ Δ
+--------------------- cut
+Γ ͱ Δ
+
+但是语义上不是Γ ͱ Δ, A要强过Γ ͱ Δ吗
+这是因为
+如果没有cut就没有消去规则了
+所以这样的话
+在证明过程中就只能是让节点的大小递增
+也就是一种不能回头的证明
+而下面的定理说明这种不能回头的证明总存在
+
+cut elimination theorem:
+all provable statements can also be proved with a cut-free proof
+
+****** &gt;&lt; Curry-Howard for sequent calculus
+***** logic style 3a: natural deduction, Gentzen-style
+****** rewrite-rules
+1. assumption rule
+   A ∈ Γ
+   --------- ass
+   Γ ͱ A
+
+2. implication introduction
+
+   Γ, A ͱ B
+   ---------------- -&gt;I
+   Γ ͱ A -&gt; B
+
+3. implication elimination
+
+   Γ ͱ A -&gt; B
+   Γ ͱ A
+   ----------------- -&gt;E
+   Γ ͱ B
+
+****** example: proof of a -&gt; b -&gt; a
+---------- ass
+a, b ͱ a
+------------- -&gt;I
+a ͱ b -&gt; a
+--------------- -&gt;I
+ͱ a -&gt; b -&gt; a
+
+与前面的minimal logic完全相同
+
+****** intro/elim versus left/right, revisited
+1. natural deduction: introduction and elimination rules
+   ... ͱ ...
+   ----------------- *I
+   ... ͱ  ... * ...
+
+   ... ͱ ... * ...
+   ----------------- *E
+   ... ͱ ...
+
+2. sequent calculus: left and right rules
+   ... ͱ ...
+   --------------- *L
+   ... * ... ͱ ...
+
+   ... ͱ ...
+   ---------------- *R
+   ... ͱ ... * ...
+
+3. 反正都是要把东西弄到右下角
+   ``ͱ&apos;&apos; 与 ``------------&apos;&apos;
+   其实在两个不同的语法层次
+   提供着相似的语义
+   所以在那种语法层次中推进证明都是没有关系的
+
+4. &gt;&lt; 这带来了什么启示呢?
+   我可不可以设计形式语言把不同的语法层次对称化???
+
+****** &gt;&lt; 是否可以列举出分别易于在intro/elim和left/right中理解的推理的例子
+毕竟这些风格被某些人采用正是因为它们可以方便的用来表达出易于理解的推理过程
+****** Curry-Howard for natural deduction
+在例子中体会:
+
+---------- ass
+a, b ͱ a
+------------- -&gt;I
+a ͱ b -&gt; a
+--------------- -&gt;I
+ͱ a -&gt; b -&gt; a
+
+----------------
+x:a, y:b ͱ x:a
+----------------------------
+x:a ͱ (λ y:b . x) : b -&gt; a
+----------------------------------------
+ͱ (λ x:a . (λ y:b . x)) : a -&gt; b -&gt; a
+
+与前面的minimal logic中所作的对比完全相同
+
+***** &gt;&lt; logic style 3b: natural deduction, Jaskowsky/Fitch-style
+这种推理风格的发明
+是为了探索``ͱ&apos;&apos;的语义
+
+&gt;&lt; 即当以以``ͱ&apos;&apos;为核心的表达式为有向图的节点时
+对那些推理规则所形成的节点之间的关系的直观理解是什么???
+
+这里使用了更高维数的模型来理解这一切
+太酷了
+
+不过本质上还是树结构
+因为下面的模型是等价的:
+1. tree
+2. sexp
+3. 圈圈
+4. 泡泡
+
+**** &gt;&lt; detour elimination
+**** &gt;&lt; consistency
+* &gt;&lt; hott
+** readings
+[[shell:evince ~/learning/hott/readings/hott-online-323-g28e4374.pdf &amp;]]
+
+** 动机
+去以构建一个机器辅助证明系统为目的
+也许能帮助人理解这里的工作
+
+想要提供一个更好的对数学基础的形式化的动机是
+希望能够设计出可用性更强的机器辅助证明系统
+
+** 关于推理规则
+在构造性的数学中
+如果我有一个数学结构
++ 按经典的集合论语义来理解
+  我所使用的基本集合是我用归纳定义来得到的
+然后如果我定义等价关系
+作为归纳定义有向树中的无向路
+对于基本集中的两个具体元素
+我已经有一种方法来判断它们之间是否具有某个等价关系了
+
+那么如果我在这里引入一些推理规则
+这些推理规则的应该是什么样子的呢?
+它们的恰当的地位是什么?
+首先
+当引入一些推理规则的时候
+我就得到形式理论
+这时在这个形式理论和我的数学结构之间
+可以问
+1. 一致性(协调性,相容性)
+2. 完备性
+这两个主要问题
+形式理论与数学结构之间的关系
+就是形式理论的推理规则与数学结构的基本集中的基本等词之间的关系
++ 基本等词(或者其它基本关系)提供了形式理论中的基本命题
+当我把形式理论与数学结构之间的一般关系明确了
+我就可以
+1. 自由地引入推理规则对某个数学结构形成形式理论
+2. 把所能形成的各种形式理论
+   作为描述我的数学结构中的那些一般性质的语言
+   + 要知道
+     能形成什么样的命题都是和形式理论有关的
+   + 甚至如果我说``形式理论为我提供了证明的工具&apos;&apos;
+     那都是不恰当的
+     因为
+     1. ``证明&apos;&apos;的意义包含于是形式理论本身
+        因为是推理规则在构建以命题为节点的有向图
+     2. ``去证明什么样的东西&apos;&apos;也包含于形式理论本身
+        因为是推理规则在决定以基本命题为基础
+        形式理论中的其它命题长什么样
+        即如何由基础命题引入复合命题
+
+&gt;&lt; 在这中思路中类型论的位置又在哪???
+&gt;&lt; 同伦论和范畴论呢???
+
+** 如果我希望把有向图作为描述其它形式理论的万有基础
+那么如果我把有向图当做数学结构
+有限有向图作为数学结构已经是具有可构造性的了
+此时我就必须提供关于这个数学结构的一些推理规则
+这些推理规则对于我所描述的其它形式理论来说
+就像公理一样
+我不可能说我排除了一切的先验性
+因为我是在用一个形式理论来作为万有的基础去描述其它形式理论
+那么我的这个形式理论就没基础了
+它就是先验的了
+
+&gt;&lt; 但是也许这里的先验性更容易被接受
+因为有限有向图对于人们来说是很直观的
+
+** 等词的意义
+说两个集合等势时
+它们之间的双射可以是多种多样的
+
+说两个拓扑空间对同伦等价时
+它们之间的同伦变换可能是多种多样的
+
+当我说等词 M =β= N 成立的时候
+在graph(Λ;-sβ-&gt;)中
+我可能能以很多的方式找到
+来对这个等词形成判定的无向路
+
+除了我的形式语言的基本等词的判定方式可能是单一的之外
+对其它的等词的判定都是不单一的
+
+重要的是要理解到
+对非基本等词的判定是要找一条路
+
+** formalization (观点来自俄国人V.V.的演讲)
+好的形式体化
+应该使得各种层次的``等价&apos;&apos;都成为可能
+
+用同伦理论来编码数学对象就可以实现这一点
++ 这在于证明:
+  formalism of higher equivalences
+  (theory of higher groupoids)(范畴论)
+  ==
+  homoptopy theory
+但是这种编码是不可用的
+因为同伦理论本身就是复杂的数学理论
+
+类型论可以在这里起到它的作用
+用来帮助同伦理论对其它数学对象的编码
+
+因为类型论提供了直接面向同伦理论的形式语言
+
+关于``不接受&apos;&apos;:
+用编程界的术语来打比方:
+数学家的社区不接受某种东西
+可能是因为
+这种东西的syntax没有良好对应的semantics
++ 比如类型论刚产生时候的处境
++ 而我关于运算的等级的理论是已经拥有了semantics
+  但是缺少一种有良好语法的语言来讨论这些东西
+
+** type theory
+*** 动机
+类型论内 每个变元都被指定类型
+作下面的考虑就知道这是自然的:
+集合论构建在一阶逻辑的形式理论的基础上
+而在实际的数学事件中
+人们却直接使用集合论和一阶逻辑所构成的
+一种混杂形式语言
+也就是在用量词引入约束变元的同时规定约束变元所在的集合
+也就是说量词不是被单独使用的 而总是与集合一同使用的
+这种扩展了的量词的使用可以被看成是
+之使用单纯量词的一阶逻辑语言的``语法糖&apos;&apos;
++ &gt;&lt; 类型论处理了这个问题吗?
+  也就是要给这种混杂语言一个理论基础?
+
+*** 类型有两种语义:
+1. 集合
+2. 命题
+   (a:A是a对A所代表的命题的可证性的见证)
+
+``一个变元对一个类型的属于&apos;&apos;
+与``一个元素对一个集合的属于不同&apos;&apos;
+后者是一个一阶逻辑中的命题
+前者是一个证明论层次上的元命题
+
+*** as languages
+一阶逻辑与集合论
+类型论
+它们都作为数学基础的两种形式语言
+它们之间的关系是什么?
++ 就像德语与中文之间的关系一样
+  一种语言可以用来介绍另一种语言吗?
+
+*** functions not are as relations
+but are a primary concept in type-theory
+
+*** 推理规则 v.s. 公理
+- 类型论:
+  动态的推理规则
+- 一阶逻辑 + 集合论:
+  一阶逻辑的推理规则 + 集合论的静态公理
+
+*** polymorphic identity function:
+id :== λ(A:U).λ(x:A).x
+
+也就是说表达式中类型所在位置也可以用来作符号代入
+但是问题也跟着来了:
+后面的λ(x:A)对前面代入的A有依赖性
+即只有代入A之后才知道后面的东西的类型是什么
+使得没法用正常的记号写出这个λ-abstraction的类型
+
+只能引入记号∏:
+id : ∏(A:U).A -&gt; A
+
+∏(A:U).A is just like λ(A:U).A
+it is ∏-abstraction,
+the type of a ∏-abstraction is not important,
+∏-abstraction is for to help people to describe
+the type of λ-terms like λ(A:U).λ(x:A).x
+
+所作出来的函数的 前面所需要带入的类型可以被看做是
+对后面所输入的函数的类型的要求
+
+*** universes and families
+同集合论中一样
+这里需要用类型的universes的层次结构来避免
+U∞:U∞所能引起的悖论
+1. 每一层次的universes对于cartesian-product封闭
+   observing that:
+   ordered pairs are a primitive concept,
+   as are functions.
+2. 每一层次的universes包含前一层次
+   这样规定的不好之处在于
+   一个变元所属的类型不再是唯一的了
+
+同样也有families的概念
+但是既然families是函数那就也应该可以用
+类似λ-abstraction的东西来把它们写出来
+这样就产生了∏-abstraction和上面的
+对λ(A:U).λ(x:A).x的类型的记法
+
+*** &gt;&lt; 语言
+对比 人类交流语言 程序语言 数学语言 的基本功能
+
+要创造一个人造人类交流语言
+我需更要实现的核心功能有那些?
+
+要设计一个新的(一般目的的)程序语言
+我需要实现的核心语义有那些?
+
+要给数学基础设计一个新的形式语言
+我需要获得的核心语义有那些?
+
+这三种语言之间有什么区别?
+首先原料不同
+比如语音的需要不同
+普通的人类交流语言需要语音
+而数学语言完全不需要语音
+一个数学家在家安静地看书 然后给朋友写信就行了
+程序语言也不需要语音
+
+数学语言的基本语义在于能够声明我证明了某个东西是真理
+也就是说其核心语义在于证明
+在于让将思想概念之间的关系完全形式化
+不管是
+一阶逻辑+集合论
+范畴论
+类型论
+都有推理规则来作证明
+
+发明一种新的推理规则之后
+这种推理规则所产生的理论的整体性质是什么?
+那种有向图的结构所能形成的几何的几何性质是什么?
++ &gt;&lt; 这是我感兴趣的
+  也许第四级运算的不可能性就是一个整体性质呢?!!!
+
+与类型论相比
+一阶逻辑与集合论所构成的数学的基础语言就像一种混杂语
+因为此时公理是在集合论中的
+而推演规则是在一阶逻辑中的
+
+*** dependent pair types
+∑(x:A).B(x)
+这个式子作为类似λ-abstraction的东西
+带入a:A后 在类型公式中的得到的类型是:
+A×B(a)
+
+而∏(x:A).B(x)
+被带入a:A后 在类型公式中的得到的类型是:
+B(a)
+
+*** how to define functions
+to define a function
+is to construct elements of A-&gt;B
+
+to define a function
+is to show the rewrite-rule of it
+by some equations
+*** natural numbers
+the essential property of the natural numbers
+is that we can
+define functions by recursion
+and perform proofs by induction
+
+*** propositions as types
+*translation of logical connectives into
+type-forming operations*
+
+The basic principle of the logic of type theory
+is that a proposition is not merely true or false
+but rather can be seen as the collection of
+all possible witnesses of its truth
+
+since types classify the available mathematical objects
+and govern how they interact
+propositions are nothing but special types
+namely, types whose elements are proofs
+
+这里反证法的语义是``直觉主义&apos;&apos;的 或 ``构造性的&apos;&apos;
+¬¬A == (A-&gt;0)-&gt;0
+=/= A
+
+the propositions-as-types versions of “or” and “there exists”
+can include more information than
+just the fact that the proposition is true
+
+*** &gt;&lt; 类型之间的依赖性为什么是重要的?
+据说这还是各种形式理论中一直以来所确实的
+
+*** &gt;&lt; 关于应用
+机器证明被用来作为对代码进行静态分析的工具
+并且已经形成了相关的产业
+
+** syntax
+t ::= x | c | f | λx.t | t(t&apos;)
+
+f as defined constant
+each defined constant has zero, one or more *defining equations*
+
+f(x1,...,xn) :== t
+where t does not involve f
+
+f就是rewrite-rule
+或者说f用来微观地定义一个代数结构
++ 比如SKI就是f的代表
+
+** contexts
+A context is a list
+x1:A1, x2:A2, ..., xn:An
+which indicates that the distinct variables
+x1, ..., xn are assumed to have types
+A1, ..., An, respectively
+
+the context holds assumptions
+
+(x1:A1, ..., xn:An) ctx
+------------------------------------Vble
+x1:A1 , ..., xn:An ͱ xi:Ai
+
+** methodology
+每个基本的东西:
+笛卡尔积,等词,不交并 等等
+都是通过给出一个类型而给出的
++ propositions as types是什么?
+  是两个形式语言之间的关系吗?
+  一阶逻辑与类型论??
+  两个形式语言之间的关系是通过模型法而被探索出的吗??
+  当同时为同一个模型构造两种形式语言的时候就会出现这种问题了
+
+&gt;&lt; 每次补充定义类型都会增加新的推演规则??
+这使得这种语言更加灵活
+
+*** formation rule
+stating when the type former can be applied
+
+Γ ͱ A:Ui    Γ, x:A ͱ B:Ui
+---------------------------Π-FORM
+Γ ͱ ∏(x:A).B:Ui
+
+每个证明论意义下的论断
+都必须用``ͱ&apos;&apos;来明确其语境(条件)
+因此推演规则就是在``ͱ&apos;&apos;语句之间的作推演
+
+∏(x:A).B
+是这种语言提供的描述类型之间依赖关系的方法之一
+比如Γ, x:A ͱ B:Ui
+就是包含了对一种对类似的依赖性的描述
+也可以理解为B:A-&gt;U
+
+*** introduction rules
+stating how to inhabit the type
+
+Γ, x:A ͱ b:B
+----------------------Π-INTRO
+Γ ͱ λ(x:A).b:∏(x:A).B
+
+*** elimination rules
+or an induction principle
+stating how to use an element of the type
+
+Γ ͱ f:∏(x:A).B    Γ ͱ a:A
+---------------------------Π-ELIM
+Γ ͱ f(a):B[a/x]
+
+*** computation rules
+which are judgmental equalities
+explaining what happens
+when elimination rules are applied to results of introduction rules
+
+Γ, x:A ͱ b:B    Γ ͱ a:A
+-----------------------------------Π-COMP
+Γ ͱ (λ(x:A).b)(a) == b[a/x] : B[a/x]
+
+*** uniqueness principles
+(optional)
+which are judgmental equalities
+explaining how every element of the type
+is uniquely determined by the results of
+elimination rules applied to it
+
+Γ ͱ f:∏(x:A).B
+------------------------------Π-UNIQ
+Γ ͱ f == (λx.f(x)) : ∏(x:A).B
+
+** from-video
+*** &gt;&lt;
+**** note
+types are ∞-groupoids
+∞-groupoid is a algebra-structure of category theory
+
+workflow:
+数学给类型论提供新想法
+类型论给数学提供新形式证明方式
+
+type的两个基本语义:
+1. spaces as types
+2. propositions as types
+
+同伦不变性对这个形式语言来说是内蕴的
+空间的同伦类就是这个语言的基本元素
+**** π...1(S^1) = Z(Zahl)
+Circle is inductively generated by:
+(point) base : Circle.
+(path) loop : base = base.
+
+we get free ∞-groupoid with these generators
+id
+loop^[-1]
+loop o loop
+inv : loop o loop^[-1] = id
+...
+
+***** Circle recursion
+function:
+f : Circle -&gt;  X
+is determined by:
+base&apos; : X
+loop&apos; : base&apos; = base&apos;
+***** Circle induction
+to prove ∀x:Circle,P(x)
+suffices to prove
+1. prove P(base)
+2. the proof you give is continuously in the loop
+***** π_1(S^1)
+π_1(S^1) == 0-truncation of Ω(S^1)
+== set of connected componets of Ω(S^1)
+
+to prove:
+Ω(S^1) = Z(Zahl)
+
+is to define:
++ 即找同构映射
+winding : Ω(S^1) -&gt; Z(Zahl)
+
+is to represent the universal cover in type theory
+the universal cover is fibration
+in type theory fibration is familiy of types
+对fibration的经典定义是保持道路的连续映射
++ path-lifting
+  proj : E -&gt; B
+  B中的path:
+  path-of-B : p(e) =B= y
+  的逆像是E中的path:
+  proj^[-1](path-of-B) : e =E= p^[-1](y)
+  主意这里通过固定一个E中的e点来简化说明
+
+语义上映射的像集被映射的定义域纤维化
+实际上是一个空间被令一个空间参数化
+这就自然得到了fibration在type-theory中的表示
+
+fibration = familiy of types
++ 也就是说fibration是familiy of types的语义之一
+  familiy of types还有逻辑学上的语义
+notation:
+(E(x))_x:B
++ 语义上 即B对空间E的参数化
+  给出一个参数b:B后E(b)是E的子空间
+  因此E(x)所描述的依赖关系就是上面的proj^[-1]
+Π x:B . E(x)
+((Π x:B . E(x)) b) --&gt; E(b) == proj^[-1](b)
+where E(b) is a type (a fiber)
+
+语义中对path的保持性由下面的式子捕捉:(transport)
+∀ path : b1 =B= b2
+gives equivalence E(b1) == E(b2)
+什么意思?
+B中的道路给出高维度的道路吗?
+
+so here we have the universal cover:
+(Cover(x))_x:S1
+DEFINE:
+Cover(base) :== Z(Zahl)
+transport_Cover(loop) :== successor
+即定义纤维化就是去
+定义纤维
++ 这里是:Cover(base) :== Z(Zahl)
+然后定义lifting the path的时候所给出的纤维上的变换是什么
++ 这里是:transport_Cover(loop) :== successor
+  transport_Cover(loop o loop) :== successor o successor
+  等等
+DEFINE:
+winding : Ω(S^1) -&gt; Z(Zahl)
+(winding path) :== ((transport_Cover path) 0)
++ 我用lisp的语法了要不然歧义太大
+
+<a href="https://video.ias.edu/sites/video/files/ams/2012.restore/2012/MembersSeminar/Licata-2012-11-26.hi.mp4">https://video.ias.edu/sites/video/files/ams/2012.restore/2012/MembersSeminar/Licata-2012-11-26.hi.mp4</a>
+and about group
+<a href="https://video.ias.edu/members/rivin">https://video.ias.edu/members/rivin</a>
+
+**** &gt;&lt; the hopf fibration
+*** constructive-type-theory-and-homotopy
+**** about equivalence
+在我对λ-cal的理解中
+t:Λ这样一个类型声明甚至都是构造性的
+它说明t是无穷有向图graph(Λ;-sβ-&gt;)中的一个节点
+而p:Id_Λ(a,b)说明
+p是graph(Λ;-sβ-&gt;)中的两点a,b间的一条有向路
++ 或者写成p:a =β= b这样写的话就更明确了``Id_Λ&apos;&apos;的意义
+  因为对每个类型(比如这里的Λ)可能可以定义不同的等词
+  比如我可以写α:Id_(Id_Λ)(p,q)
+  但是这里我需要知道类型(或空间)Id_Λ中的等词是什么
+  当Λ是一个拓扑空间时α:Id_(Id_Λ)(p,q)就是
+  道路p,q之间的homotopy
+  但是当Λ是λ-term的集合时上面的类型(Id_Λ)(p,q)中的等词又是什么呢?
+  考虑这样一个有向图:N
+  它的节点是二维平面上的所有整数点
+  有向边是横坐标或者纵坐标上的后继关系
+  这样的图中显然(Id_N)(p,q)中的等词是有自然定义的
+  因为我可以相像一条无向边在这个图中的``连续移动&apos;&apos;
+  对于图graph(Λ;-sβ-&gt;)来说当然也可以有这样的理解
+  太棒了
+
+但是问题是在类型论中对t:Λ这样的声明是如何理解的?
+是先验的吗?
+是随意引入的吗?
+是构造性的吗?
+来形式化Id概念的推理规则是下面这样的:
+
+A:type
+----------------------- Id formation
+x,y:A ͱ Id_A(x,y):type
++ 那么对应于Id_A的等词只能是单一的了???
+  这样的情况是可以接受的吗??
+
+a:A
+---------------- Id introduction
+r(a):Id_A(a,a)
++ r denotes reflexivity
+
+x,y:A, z:Id_A(x,y) ͱ B(x,y,z):type
+x:A ͱ b(x):B(x,x,r(x))
+---------------------------------------- Id elimination
+x,y:A, z:Id_A(x,y) ͱ J(b,x,y,z):B(x,y,z)
++ heuristic:
+  x = y
+  B(x,x)
+  -------
+  B(x,y)
+
+a:A
+----------------------------------- Id computation
+J(b,a,a,r(a)) = b(a) : B(a,a,r(a))
++ ``bookkeeping of witness-terms&apos;&apos;
+  什么意思???
+
+**** about dependent
+dependent types are fivrations
+so x:A ͱ B(x) has the following lifting-property
+
+x:A ͱ B(x)
+---------------------
+x:A y:B(x) ͱ y:B(x)
+-------------------------------
+x:A ͱ (λ y.y) : (B(x) -&gt; B(x))
+
+p:Id_A(a,b), x:A ͱ (λ y.y) : (B(x) -&gt; B(x))
+----------------------------------------------??用到Id-elim吗??
+p*:B(a)-&gt;B(b)
+
+A中的路p:Id_A(a,b)
+被举到B空间族里
+就成了两个纤维B(a),B(b)之间的映射
+
+p*:B(a)-&gt;B(b)
+a^:B(a)
+-----------------
+p*(a^):B(b)
+
+**** homotopy interpretation of type theory
+concrete:
+|-------------------+------+-----------------------------|
+| type              | &lt;==&gt; | space (homotopy type)       |
+|-------------------+------+-----------------------------|
+| term              | &lt;==&gt; | map                         |
+|-------------------+------+-----------------------------|
+| a:A               | &lt;==&gt; | point a:1-&gt;A (a map)        |
+|-------------------+------+-----------------------------|
+| p:Id_A(a,b)       | &lt;==&gt; | path p from a to b in A     |
+|-------------------+------+-----------------------------|
+| h:Id_(Id_A)(p,q)  | &lt;==&gt; | homotopy h from p to q in A |
+|-------------------+------+-----------------------------|
+| dependent type    | &lt;==&gt; | fibration                   |
+| x:A ͱ B(x)        |      | map:B -&gt; A                  |
+|-------------------+------+-----------------------------|
+| identity type     | &lt;==&gt; | fibration                   |
+| x,y:A ͱ Id_A(x,y) |      | map:Id_A -&gt; (A x A)         |
+|-------------------+------+-----------------------------|
+
+&gt;&lt; abstract:
+even better
+we have abstract axiomatic description
+via Quillen model categories
+only need weak factorization system of it
+
+没有范畴论的基础weak factorization system我还没法理解
+只知道weak factorization system与上面的四个推理规则完全契合
+
+* &gt;&lt; graph-grammar
+** readings
+[[shell:xpdf ~/learning/digrap/graph-grammar/graph-grammars--an-introduction-to-the-double-pushout-approach.pdf &amp;][graph-grammars--an-introduction-to-the-double-pushout-approach]]
+基本而比较系统的介绍 内容丰富
+
+[[shell:xpdf ~/learning/digrap/graph-grammar/hyperedge-replacement-graph-grammars.pdf &amp;][hyperedge-replacement-graph-grammars]]
+一般介绍
+
+[[shell:xpdf ~/learning/digrap/graph-grammar/graph-grammars-and-operations-on-graphs.pdf &amp;][graph-grammars-and-operations-on-graphs]]
+非graph-grammar之一般介绍
+而描述把字符串解释成对图的操作的解释器
+
+[[shell:xpdf ~/learning/digrap/graph-grammar/concept-formation-using-graph-grammars.pdf &amp;][concept-formation-using-graph-grammars]]
+根机器学习有关的:
+从一些图中学习出一种对这类图的graph-grammar
+
+[[shell:xpdf ~/learning/digrap/graph-grammar/a-graph-grammar-methodology-for-generative-systems.pdf &amp;][a-graph-grammar-methodology-for-generative-systems]]
+关于:
+graph transformations
+自动机的设计 于 人工智能
+
+[[shell:xpdf ~/learning/digrap/graph-grammar/context-free-graph-grammar.pdf &amp;][context-free-graph-grammar]]
+
+** note
+考虑同伦论中的粘贴方法
+比如cell-complexes的定就很像是递归定义
+根这里提供的语法有些类似吗?
+
+** &gt;&lt; handbook-of-graph-grammars
+[[shell:xpdf ~/learning/digrap/graph-grammar/handbook-of-graph-grammars-and-computing-by-graph-transformation.pdf &amp;][handbook-of-graph-grammars]]
+*** node replacement graph grammars
+**** note
+首先要明白这里想做的是用一种形式语言
+来归纳定义一个有向图的集合
+而不是用一种形式语言描述对有向图的操作
+
+就像用有限状态机可以写出一个谓词来代表一个字符串的集合一样
+这里在好的条件下也可以写出一个谓词来代表一个有限图的集合
++ so called recognizing string-language and graph-language
+
+但是与考虑字符串的时候一样
+对有限图的处理就是另一回事了
+
+图中的每一点在replacement-rules的作用下可以爆炸开来形成一个子图
+这个子图的中的点会被用新的边与原来的图中的节点连接起来
++ &gt;&lt; 这与对无穷有向图的惰性求值有什么关系??
+  这给出了一种方式来惰性求值一个无穷有向图吗???
+
+**** production
+a production is (M,D,E)
+M : mather
+D : daughter
+E : embedding mechanism
+
+a production can be applied to H
+H : host graph
+
+to apply is (M,D,E) on H
+is to replace M in H by D
+and attach D to H/M by E
+
+two main type of embedding:
+1. gluing
+   定义是显然的
+2. connecting
+   定义是显然的
+   + note that
+     there are old edges between M and H/M
+     has been removed during the application
+
+two main approaches of graph-grammars
+1. the gluing approach
+   (the algebraic approach)
+2. the connecting approach
+   (the algorithmic approach)
+   (the set approach)
+
+&gt;&lt; -β-&gt;显然可以用上面的方法来描述
+
+**** NLC and edNCE
+NLE : note ladel controlled
+NCE : neighbourhood controlled embedding
+
+**** NLC
+此时被操作的对象是无向点标记图
+M : 单个的节点
+E : connecting embedding
+
+production形如X-&gt;D
+其中X是一个对H中node的标记
+
+connecting instructions:
+E == ((μ1 . δ1) (μ2 . δ2) ...)
++ the so called connection relation
+当(M,D,E)中的M是单点m时
+a-list中的项(μ,δ)表示需要连接
+m的neighbourhood中被标记为μ的点
+与D中被标记为δ的点
+
+&gt;&lt; 当我写下一个MN时
+对application的理解有两种方式
+一个是M作用于N 一个是N作用于M
+
+an NLC graph grammar is
+notation:
+G == (Σ, Δ, P, C, S)
+L(G) : 归纳定义的有向图的集合
+
+**** edNCE
+C-edNCE:
+C- denote confluent
+d denote directed
+e denote edge ladels in addition to node ladels
+
+** &gt;&lt; deterministic graph grammars
+用图语法来生成正规无穷有向图
+*** notations
+deterministic graph grammar =generate=&gt; regular graphs
+
+** &gt;&lt;&gt;&lt; about
+看前人写的论文越看越觉得它们愚蠢
+没几个人在论文里用他们所创造的语言画出多少有意义的图来
+
+* misc &amp; remarks
+** PLATONISM
+*the world of mathematics exists independently of the mind of the mathematician*
+*every statement that makes mathematical sense is either true or false*
+statement that makes mathematical sense are called proposition
+** BROUWER
+*the foundation of mathematics is in the intuition of the mathematical intellect*
+*proof by contradiction is not an acceptable proof rule*
+** &gt;&lt;
+`if ... then ...&apos;
+is different form
+`thus&apos; `therefore&apos; `so&apos; `hence&apos; `since&apos;
+in mathematical reasoning (about the rules of inference)
+
+converse and contraposition
+
+bi-tree of proposition
+=connectives=&gt;
+proposition
+
+open proposition
+=quantifiers=&gt;
+less-open proposition
+
+quantifiers:
+if is there is no set theory at first
+how can there be quantifiers?
+by inference-rules of course
+and by the following sugar
+∃x∈A(...) :=sugar= ∃x(Ax∧...)
+∀x∈A(...) :=sugar= ∀x(Ax∧...)
+and there are matter of scope
+just as in the case of λ-abstraction
+
+function:
+f: X -&gt; Y
+∀x∈X∃!y∈Y(xfy)
+here comes another kind of scope problem
+about dependence
+∀x∈X∃!y=y(x)∈Y(xfy(x))
+
+scope problem should always solved by graph theory
+
+inference-rules:
+(A A→B) ==&gt; B
+C→A(x) ==&gt; C→∀xA(x)
+A(x)→C ==&gt; ∃xA(x)→C
+
+
+rewrite-rules are about computation
+but inference-rules are not
+&gt;&lt; do not have a computational nature??
+&gt;&lt; yes???
+
+``the quantiers usually range over
+an infinite set and therefore one loses decidability&apos;&apos;
+
+``Aristotle had already remarked that it is often hard to find proofs
+but the verification of a putative one can be done in a relatively easy way&apos;&apos;
+
+so i should write something to help to show a math proof
+
+A more eficient way to represent proofs employs typed lambda terms
+and is called the propositions-as-types
+which maps propositions into types
+and proofs into the corresponding inhabitants
+&gt;&lt; how about axioms?
+
+* hacking
+** 关于无穷有向图的惰性求值
+1. 对无穷有向图的处理只能是惰性的
+   机器需要知道的是如何在需要的时候到达这个图中的任何一个节点
+   当机器已经有这样的知识之后
+   既然关于这个图的一切已经蕴含于这些知识当中了
+   我如何能表达关于这个图的一般性质
+   我现在只知道对这些性质的表达一定是在一个更高层次的语言中进行的
+
+2. 既然实现一个形式语言被我理解为
+   实现对一个无穷有向图的惰性求值
+   我想最适合用我的语言实现的语言应该是
+   一些制作形式语言的工具
+   + 首先hott中各种关于语言的实验在我的语言中就方便多了
+
+3. 更广泛的
+   当我能方便的处理有向图时
+   因为使用了一个性质更丰富的基础数据结构
+   在使用这个语言的时候对于很多事情都能产生新的想法
+   尤其是关于计算的理论
+   还有关于数学
+
+** 关于范畴论于运算级
+既然我已经给出来了自由代数结构这个基础
+&gt;&lt; 那么我关于运算级的想法是否可以用范畴论的语言来表达??
++ 不可以因为范畴论不适合用来描述具体的(构造性的)数学结构
+  要知道在最开始发展等级理论的时候我就是要发展弥补范畴论的这种弱点的方法
+
+&gt;&lt; 级数的升高恶化着级数升高的条件
+使得级数的继续升高成为不可能???
+
+** as language
+最沮丧的时候
+也要知道
+hott是关于语言的学问
+
+因为我已经发现
+在回到更传统的数学活动当中时
+我的思考方式和表达方式
+已经被λ-cal与类型论完全改变了
+我想更深刻的
+改变我的认识与方法的是
+1. 对形式语言的学习
+   增强了我对数学概念的表达能力之外
+   还让我形成了排斥形而上学的习惯
+2. 对计算理论的学习
+   现在在方法上面我更注重可构造性和可实现性
+
+** 关于极简主义
+我已经知道该如何去推广λ-cal以形成一个数学背景
+来设计我的语言的语法了
+只是还有一两个问题没有想通
+
+除此之外对于理论的创造而言有一个重要的哲学观点需要被我认同
+那就是极简主义
+``programming languages should be designed not by piling feature on top of feature
+but by removing the weaknesses and restrictions that make additional features appear necessary&apos;&apos;
+-- R5RS
+
+但是我很难遵循极简主义
+因为我处理的问题本身的复杂性
+但是这只不过是一个借口而已
+``有很多方式可以建立几何学
+但是是欧几里得说明我们只需要五个公理&apos;&apos;
+古代的人也许也认为那种几何是复杂的呢
+
+那么我需要作的就是看到有向图处理的本质
+
+但是也许我的整个计划就是在违背极简主义
+
+* ---------------------------------------
+* ζ-cal
+** note
+也许最后我会发现我所寻找的解决办法极其简单
+只不过我一直没能认清一直就在我眼前的事实而已
+abstraction与application的意义本来就是相当广的
+比如λ-abstraction对rewrite的抽象可以是就有向图而言的
+我称这种广义的λ-cal为ζ-cal
+ζ-cal == basic-directed-graph-processing
+       + ζ-abstraction
+       + ζ-application
+       + ζ-lazy-eval
+** my understanding of λ-cal
+λ-cal是对叶节点被自由变元标号了的
+分叉数为2或1的树(有向图)的遍历
+其中每次遍历到λ-ap的时候树就会按&lt;-β-所描述的规则变化
+1) λ-ab的局部性:
+   对一个叶节点对的处理并不会影响这个叶节点对之外的图的其他部分
+2) λ-ab的形成的任意性:
+   以任意一个term为基础
+   然后指定一个自由变元
+   就可以形成一个λ-ab
+   之后这个自由变元就变成约束变元了
+** 类比
+1) 用链表来实现λ-cal
+   之后写出复杂的列表处理的函数就全在于λ-cal了
+   此时还需要对rewrite(比如-β-&gt;)的实现
+   即一个解释器
+   + 此时需要对约束变元作技术性的处理
+     要么用重命名的方法
+     要么用用有向图来处理
+   + 反过来λ-cal可以完成对链表的处理
+2) 用有向图处理来实现ζ-cal
+   反过来这种ζ-cal可以完成对有向图的处理
+   之后写出复杂的有向图处理函数就全在于ζ-cal了
+   + 有了这层语义
+     就算是对有向图这种复杂数据结构的处理
+     也能使用函数式编程范式了
+3) 类比还在于 我能把λ-cal包含在ζ-cal之内
+** ζ-cal作为λ-cal的推广
+下面的理解最重要:
+应该把λ-cal也理解为一个对二叉树的惰性求值系统
++ 用树来考虑下面的东西
+尤其是考虑到绝对的自由变元时更应该如此
+那么这种惰性求值系统的特点是什么呢???
+有所谓的惰性求值之后就能用有限的元素来表达无穷的结构
+那是因为对与这种图人们规定了一种特殊的遍历方式 即-β-&gt;
+并且要知道 一个term是不是λ-abstraction都没有关系
+对λ-abstraction内部的东西也是可以进行求值的
+λ-abstraction并没有特殊性
++ 难点在于当遍历到一个λ-application时
+  它本身与周围的图的链接方式是平凡的
+  它求值之后所得的东西与周围的图的链接方式也是平凡的
+  但是对与一般的有向图这一点并不成立
+  这里的复杂性可能是本质的
+  也就是说ζ-cal必须描述两种链接方式
+  + 但是如果有局部性的话 如何呢?
+    整个式子((ζ &lt;body&gt;) &lt;arg&gt;)是以某种方式嵌在一个被遍历的大的图中的
+    &lt;body&gt;的外围与外面的大图的链接方式是已知的
+    而&lt;arg&gt;被代入&lt;body&gt;所改变的边并不影响&lt;body&gt;的外围与大图的链接
+    这就是局部性
+    但是问题又回来了
+    即 这样就没法把(ζ &lt;body&gt;)当作一个独立的东西了
+    只有当指明了&lt;body&gt;与大图的链接方式的时候(ζ &lt;body&gt;)才有意义
+    或者(ζ &lt;body&gt;)可以被当作独立的东西
+    但是每次被放入大图中的时候都必须说明&lt;body&gt;中
+    没有被ζ的抽象所影响的部分如何与大图相链接
+    没错
+    这是合理的
+    因为在有向图处理中扩大一个图就是去说明一些复杂的链接方式
+    这样一个重大的问题就解决了
+    + 可以说就几何直觉而言现在已经没有任何难点了
+    还有一个重要的问题就是形成递归
+    这将是要在下面提到的
+    即 形成具有无穷性的结构(比如递归)的本质不在于巧妙的term
+    而在于自我引用
+在有向图处理中
+在一个需要惰性求值的点处对原图的其他部分的引用也是可以想像的
++ 毕竟λx.F(xx) λx.F(xx)之所以能形成递归对递归函数的定义
+  是因为前面的λ-abstraction作用于与自身相同的λ-abstraction
+  或者说前面的λ-abstraction在作用于自身
+类似于分形的图是经过无穷次的递归得来的
+因此就与fixed-point有关
+因此也与递归有关
++ 考虑Y所生成的递归函数作为无穷二叉树的性质
+  那也是分形
+  因为那是在-β-&gt;的特殊指引下自身在引用自身
+  这就是分形的本质
+  也是那些正规的无穷图的本质
+** 对图的基本处理
+有以下基本操作:(其实ζ-cal本身就也是被基本的有向图处理实现的)
+1. 利用树来初始化一个图
+2. 将两个图用一些新的有向边相连
+3. 删除某些节点
+4. 删除某些边
+5. 改变某个点或边中所存放的东西
+   点和边里是可以存放东西的
+   而且没有类型的限制想存放什么就存放什么
+   就像lisp的list能够保存任何类型的数据一样
+   我需要我的有向图也有能力保存任何东西在里面
+** ζ-abstraction (ζ-ab)
+对于一个图 指定其中的一个基点
+1. 以这个基点为基础用一棵树来指明一个有序节点列
+   这个有序节点列是为之后的&quot;扩大&quot;所准备的接口
+   当这些接口被拼接时这个图会被扩大
+2. 以这个基点为基础用一棵树来指明一些将被删除的节点
+   这样会使这个图缩小
+3. 可以变大可以变小我就掌控了所有的变化
+4. 所列出来的两个点列中
+   哪些点会被删除或者哪些点会被链接
+   都是要等到ζ-application的时候才会被明确的
+5. 整个ζ-abstraction也是一个特殊的图而已
+   只要使用从一点出发的一些有向边来指明一次抽象中的
+   接口节点列和所能删除的节点列 就行了
+   这样我就可以利用ζ-abstraction把某一类型处理抽象出来
+6. 一个ζ-ab作为一个gexp
+   就像一个小机器一样
+   在ζ-cal的语义中它以其中被抽象了的点为接口
+   对于一个ζ-ab(as gexp)我可以实现一些基本的函数来查看它作为机器的性质
+   比如:
+   1) 询问这个ζ-ab中所有被抽象了的点
+   2) 询问一个点的接口点列和可删除点列
+   3) 等等
+   4) 这些询问所返回到的信息应该能直接被ζ-ap中的ζ-con利用
+** ζ-application (ζ-ap)
+这时候我手上有两个ζ-ab
+就像我知道一个函数(λ-abstraction)的性质一样
++ 函数的:参数个数与类型 返回值个数与类型
+  其中个数不是本质的类型才是本质的
+在这里我也知道ζ-ab的性质:
+1. 它所能删除的点列
+2. 它的接口点列
+一次ζ-ap就是:(注意只有两个ζ-ab才能被作用)
+ζ-ap == (ζ-ab ζ-con ζ-ab)
+其中ζ-connection是对连接方式的描述
++ 注意这看起来是对称的
+ζ-ap也是用一个图来表述的
+这样一个ζ-ap的结果就可能是一个新的ζ-ap
++ 对ζ-ab的处理就是一个需要类似于解释器的东西的地方!!
++ 虽然不是类型系统
+  对接口与连接方式的匹配的要求
+  同样也是对函数的输入与输出的限制
+  也许引入适当的语义
+  我就能以这种方式给出一个类型系统的模型
+** ζ-lazy-eval
+1. 这是很朴素的想法
+   即上面的ζ-ap是真正被遍历到的时候才会被进行的
+   因为ζ-abstraction也是用一个图来实现的
+   所以这种lazy-eval很容易实现
+2. 对于lazy-eval这个词
+   其实还可以有不同的理解
+   因为这里所描述的惰性
+   并不是primitive的惰性
+** 关于嵌套与自我引用
+1. 其实也很简单
+   ζ-ap的嵌套是自然的
+   一个ζ-ap的结果就可能是一个新的ζ-ap
+   它使得对某个图的遍历方式变得复杂
+2. 而自我引用就是沿着新的边走却又走回了原来的节点
+   这些一起使得可以形成复杂的无穷图
+** 关于透明性
+所谓透明性就是把ζ-abstraction于ζ-application都表示成有向图
+这样我可以完全剔除约束变元
+而解释器对ζ-cal的实现就是有向图处理
+** 再次回到基本操作
+1. 显然只要基本操作不改变ζ-ab中的接口点列中的点
+   那么任何操作都是合法的
+   也就是说ζ-ab是可以被基本操作来作用的 它们跟一般的图没什么区别
+2. 基本操作甚至可以形成手术
+   来改变描述ζ-ab中的接口点列和可以被删除的节点列的有向边
+   这就是透明性所带来的好处
+   任意一个用图描述的图的算法
+   都是一个图而已
+   可以很容易的拿出来修改与考察
+** &gt;&lt; 关于代数
+如果我希望作类比
+那么就应该有更完整的类比
+即 λ-cal的代数的一面也应该被类比到
+这看似异想天开
+因为一般的代数结构自然的会形成二叉树
+但是这其实并不是不可能
+考虑一下高维同论群就知道了 !!!
+
+考虑跟λ-cal有关的丰富的数学理论:
+范畴论 代数拓扑 等等
+可想而知ζ-cal这种计算模型的背后所隐含的数学理论是非常新而丰富的
+
+比如我可以尝试先在λ-cal的图论意义和λ-cal的代数意义之间建立一种关系
+然后再利用这种关系从ζ-cal的图论找到ζ-cal的代数意义
+
+但是这几乎是不可能的
+因为在进行一个ζ-ap的时候
+我不光只需要那两个ζ-ab而已
+我还需要一个额外的东西来指明这两个ζ-ab如何相链接
+这已经出离一般的代数结构之外了
+
+但是也没有出离的太远
+毕竟这是不过是:
+(ζ-ab ζ-con ζ-ab) -&gt; ζ-graph
++ ζ-graph == gexp
+
+既然如此
+其实代数意义就已经丧失了
+
+如果只是在遍历图的时候其中的一些部分被惰性求值
+那么如何触发一次ζ-ap的进行??
+这一点还没想清楚
+完全的惰性求值就没有这种显式的触发
+也许增加一个可以控制ζ-ap的触发的机制
+我就能实现对求值时间的控制
+
+如果我固定一种(或某些)ζ-con
+并且将ζ-ab一一定那个的方式封装起来
+我就很容易回到一种代数语义
+比如利用上面的方法我可以回到λ-cal
+** &gt;&lt; 例子(需要更多的例子)
+对那个无穷五星图
+遍历到中点的邻点时需要把中点代换为一个五星
+然后把代入的五星与原图相连
+这就是用惰性求值的ζ-ap来实现的
+但是完全自我引用就会形成循环
+所以对自我引用应该至少提供两种处理方式
+1. 一种会形成真正的新的节点
+2. 而另一种不会
+对于形成真正的新节点者
+自我引用是假的
+自我引用只是提供了一个和自己相同的模板来扩大这个图
+** &gt;&lt; 打印
+我需要对文件的结构化读写 这里有是一个新的设计领域
+&gt;&lt; 打印可以用支撑树来作吗?
+图中也许必须包含一些额外的信息来建议如何把一个图打印出来
+** 何谓用图来表示对图的操作?
+即对图的遍历方式有两类
+一类是按语法遍历
+一类是按语义遍历
+
+按语义遍历就是说 像((λ ***) ***)节点对一样被&lt;-β-处理一样
+这样我就能够把ζ-abstraction在图中利用其它ζ-abstraction的作用来代来代去
+然后形成ζ-ap
+ζ-ap的返回值可能还是ζ-ap
++ 有一步的-ζ-&gt;和多步的-ζ-&gt;
+  即我能控制求值的方式
+我的图的表达式中也要有匹配到某种模式的图被按语义处理
+这需要一些设计 但是简单的
+重点是所有这些必须都用有向图处理来实现
+** 关于编程范式的形成
+纯粹的(只有变量没有常量)λ-cal是用list来表示处理list的算法
++ 或者说 是用λ-term来表示处理λ-term的算法
+  其实只是代入而已 所以说成是list更确切
+增添上常量之后就形成了函数式编程系统
+lisp中list的一个特点是 list中可以包含任何其他类型的数据
+这些常量就是用来处理这些数据用的
++ 在scheme中:
+  atom: 非list类型的数据
+  primitive: 处理这类数据的函数
+
+这样就给了digrap以启发:
+ζ-cal是用directed-graph来表示处理directed-graph的算法
+directed-graph的点和边中可以包含其他类型的数据
+对其他类型的数据的处理用primitive来完成
+
+&gt;&lt; 问题是这两种类型的函数如何相互协调???
+在lisp中primitive的作用方式与λ-ab的作用方式是一致的
+但是在初步的设计中digrap中ζ-ab的作用方式并不与primitive的作用方式一致
+只要解决了这个问题
+我就形成了一种新的编程范式
+** &gt;&lt; 关于对函数式编程范式的维持
+看看一个ζ-ap的样子:(ζ-ab ζ-con ζ-ab)
+就知道我能得到的是比以λ-cal为核心的函数式编程范式更丰富的一种编程范式
+
+而每个对于gexp的操作(比如一个基本操作或者一个ζ-ab)都可以有两个版本
+一个使用被处理的图本身(通过地址)
+一个使用新复制的一个被处理的图
+这样一个第二个版本的ζ-ab就可以像数学中的函数一样
+在多次的作用中维持一致的行为
+这就是我所继承的函数式编程范式的基因
+
+要想形成新的编程范式在于用我所设计的模型来形成各种基本的计算语义
+
+比如:
+1. 利用ζ-cal来实现λ-cal
+2. 利用ζ-cal来实现递归函数
+3. 利用ζ-cal来实现类型系统
+在作这些工作的时候我一定能发现更多的
+对我应该如何设计ζ-cal的启示
+
+首先既然λ-cal被理解为是用有向二叉树表达的对有向二叉树的操作
+那么用ζ-cal来实现λ-cal是非常简单的
+也就是说ζ-cal的抽象能力显然比λ-cal更大 但是也更复杂
+因为使用了结构更丰富的数据结构
+所以我的计算模型一定可以以更简单的方式表达一些
+利用λ-cal和其他计算模型表达起来更复杂的计算
+** &gt;&lt;&gt;&lt;&gt;&lt; 什么是计算???
+在我的语言内
+计算竟被理解为用图表达的对图的操作
+把这个问题追问下去很可能令人陷入疯狂
+** 关于高阶函数
+在digrap中函数的阶的样子很不一样
+可以把一个gexp中的被抽象了的点的个数定义为方程的阶
+但是这些点之间是平行的关系
+所以阶这个词所暗示的序关系其实是错误的
+* ---------------------------------------
+* implementation
+** note &amp; rationale
+- h :: 获得关于一个理论的坚固知识的方式就是去实现它
+       这同时也帮一个人考察了他所观察的理论的可实现性
+
+digrap是嵌入scheme的
+嵌入scheme是正确的选择
+并且需要自己写一个有digrap要求的某些特殊性状的scheme实现
+
+设计了多个语言层次
+每一层次的语言都需要被设计的:
+1) 方便编译器工作
+2) 方便人阅读
+用wordy-list来实现每个层次的语法
+也许这样的实现效率不高
+但是在我看来处理wordy-list的代码更可读
+并且所实现的语法也更容易处理
+并且注意
+在上面的基础上尝试优化语法很容易
+因为很容易把字符串解析成用wordy-list表示的语法分析树
+
+语言层次的描述如下
+1. 在scheme中实现一个有向图的数据结构
+   即 设计有向图的表示
+   并 写出处理以这种表示的有向图的基本函数
+2. 但是之后并不使直接用scheme中所提供的
+   closure这种抽象方法来进行对有向图的处理(尽管不限制你这样做)
+   + 上面的这句话隐含地认同了sicp中对
+     primitive-function与the-way-to-make-abstraction之间的关系的理解方式
+   而是实现一个新的语法
+   然后用一个编译器把这种语法转换到scheme中对有向图的基本操作
+3. 然后利用所实现的数据结构与编译器来实验ζ-cal这种新的计算模型
+4. 研究这种计算模型的数学性质
+5. 尝试以这种计算模型为中心 设计一个新的编程范式
+** draft &amp; misc
+#+begin_src scheme
+;; 下面这些单个的symbol都可以被当作变量名在设计语法的时候使用
+$
+@
+%
+^
+&amp;
+a.1.b.
+#+end_src
+
+#+begin_src scheme
+&apos;#0=((vertex-1 #0# ()))
+
+(print-graph #f)
+
+(let ([v &apos;((vertex-1 () ()))])
+  (set-car! (cdr (car v)) v)
+  v)
+
+
+;; 下面的两段测试可以发现ikarus的局部变量的行为是错的
+(let ([v &apos;((vertex-1 &lt;address&gt; ()))])
+  (set-car! (cdar v) v)
+  (eq? v (cadar v))
+  ;; v
+  ;; (cadar v)
+  )
+
+(define v
+  (let ([v &apos;((vertex-1 &lt;address&gt; ()))])
+    (set-car! (cdar v) v)
+    v))
+(eq? v (cadar v))
+#+end_src
+** &gt;&lt; 关于lazy-eval
+- k :: 什么是lazy-eval 惰性求值?
+- x :: 就是懒得去求值的意思
+       比如构造子在构造一个数据结构的时候
+       构造子它就像一个函数一样 它的参数是一些表达式
+       这些表达式可以是解释器能够解释的任何复杂的嵌套的东西
+       比如一个表达式里面又有很多构造子对参数的作用等等
+       构造子如果是懒惰的
+       你让它构造东西的时候
+       它就只作最基本的工作
+       它把这些表达式放到该放的地方之后就不管了
+       当你之后要需要知道构造子所构造的部分的值的时候
+       你会用与构造子对应的询问子来询问
+       这时候询问子才会完成求值的工作
+       也就是说构造子是懒惰的
+       把活都交给询问子来干了
+       比如LISP中的的懒惰版本的cons可以叫做zons
+       (zons (λi.i λi.i) (λi.i λi.i))
+       根本就不会对它的两个参数求值
+       只有当(zar (zons (λi.i λi.i) (λi.i λi.i))) =&gt; λi.i
+       的时候才会对它的第一个参数求值 等等
+- k :: 那么
+       是不是任何结构化数据的构造子都能变得懒惰???
+- x :: 其实我也不知道
+       你可以尝试去找找反例
+       如果找不到反例
+       你可以尝试形成一个小理论(也许需要补充一些假设什么的)
+       去证明对你的问题的肯定是一个真命题
+       但是我懒得这么作了
+- k :: 看来根那些构造子一样
+       你也是懒惰的
+- x :: 懒惰也没什么不好
+       另外我想指出
+       对于惰性求值这个术语还能有别的理解方式
+       那就是函数的惰性求值
+       构造子可以被理解为函数
+       我们正是在这种理解方式下来解释懒惰的构造子的
+       函数也可以被理解为构造子
+       函数的惰性求值也有类似的解释 我就懒得说了
+- k :: 但是至少说一说函数为什么是构造子???
+       这并不显然
+       最好能给我举一些例子
+- x :: 好的
+       让我们来考虑纯粹的理论性的λ-cal
+       说它是理论性的是因为
+       虽然它能够用来编码你能想像到的所有数据结构
+       并且它能够用来表达所有可计算的函数
+       但是使用起来并不方便 计算起来也不高效
+       但是我们就先来考虑这种简单的东西 因为我们想要理解到问题的本质
+       首先是它的表达式的集合的归纳定义(或者说递归定义):
+       #+begin_src bnf
+       简单得写就是:
+       &lt;λ-term&gt; ::= &lt;var&gt; | (&lt;λ-term&gt; &lt;λ-term&gt;) | (λ&lt;var&gt;.&lt;λ-term&gt; &lt;λ-term&gt;)
+
+       分开来可以写成:
+       &lt;λ-term&gt; ::= &lt;var&gt; | &lt;λ-application&gt; | &lt;λ-abstraction&gt;
+       &lt;λ-application&gt; ::= (&lt;λ-term&gt; &lt;λ-term&gt;)
+       &lt;λ-abstraction&gt; ::= λ&lt;var&gt;.&lt;λ-term&gt;
+       &lt;var&gt; :: {一个先验定义的符号集 与自然数集等势}
+       #+end_src
+       先不考虑懒惰不懒惰的问题
+       这种表达式其实是二叉树 你能看出来吗??
+       比如:
+       (a (b (λx.[c (x ((x m) n))] (λi.i λi.i))))
+       我用[]表示了那个直接跟在λ面的特殊的&lt;λ-term&gt;
+- k :: 上面的例子真是构复杂的了
+       但是我能理解
+       毕竟想要存储表达式就必须有一个数据结构
+       而这里的数据结构就是二叉树
+       并且我知道
+       这个二叉树只有叶节点是有内容的
+       只要使用括号就能用线性的字符串来表达这些二叉树
+       并且我还知道
+       是&lt;λ-term&gt; ::= (&lt;λ-term&gt; &lt;λ-term&gt;)这一个归纳定义项在是形成着二叉树
+       但是λ&lt;var&gt;.&lt;λ-term&gt;这个东西我有点不理解
+       它好像是二叉树的简单语义之外的东西??
+- x :: 没错
+       有了它其实我们得到的就不是单纯的二叉树了
+       而是一个有向图
+       这个有向图的支撑树是一个二叉树
+       这个支撑树就是上面你所指出的那个归纳定义项所形成的
+       而支撑树之外的有向边就是令你迷惑的那个λ&lt;var&gt;.&lt;λ-term&gt;形成的
+       只要把λ&lt;var&gt;.&lt;λ-term&gt;中
+       &lt;λ-term&gt;里面与λ后面的&lt;var&gt;相等的&lt;var&gt;链接到λ后面的&lt;var&gt;
+       你就得到整个有向图了
+       如果我能在黑板上给你画一下的话
+       那么不用言说你也会明白我的意思
+- k :: 我明白了
+       我能想像出你所希望描述的有向图了
+       现在给我解释什么是函数的惰性求值吧!
+- x :: 这样来想
+       在LISP中用构造子cons来构造列表(LISP中的这个构造子是勤快的)
+       (cons 1 (cons 2 (cons 3 &apos;())))
+       这与直接写出表达式&apos;(1 2 3)是一样的
+       而在上面我写出表达式 也与我用构造子来构造这个表达式是一样的
+       这里我需要懒惰处理的是(λx.[c (x ((x m) n))] (λi.i λi.i))
+       因为这一项就是需要被求值的项
+       它求值之后应该得到(c (m n))
+       这就是构造子懒得干的事
+       构造子和函数可以以差不多的方式来理解
+       也就是说函数也可以是懒惰的
+       构造子以参数为基础进行构造 就类似于 函数拿到参数然后进行代入
+       当函数懒得对参数求值而直接进行代入的时候就是惰性求值
+       但是要注意一个参数可能被代入到多个点 就像上面一样
+       这时候如果对一个点的参数求值了 那么其他的点就都应该知道这个被求值的结果了
+       这一点是对惰性求值的实现方面的问题 想要实现这种东西并不困难
+- k :: 惰性求值有什么好处呢??
+       哦! 我看到了一种好处
+       比如在上面(car (λx.[c (x ((x m) n))] (λi.i λi.i))) =&gt; c
+       当使用惰性求值的时候询问子car没有询问到的地方就不需要被求值
+       因此(λi.i λi.i)根本就没有被求值
+- x :: 没错
+       更重要的是这种求值方式在λ-cal的理论中具有优越性
+       这里我就需要引用一些别人的书来给你看了!
+- k :: 那么digrap中的惰性求值应该如何实现呢???
+- x :: 这个留到下次讨论吧!
+---------------------------------------------
+** wordy-lisp (wlist)
+*** primer
+- lisp ::
+  + list processing
+  + sexp (or list)
+  + λ-cal
+- digrap ::
+  + directed graph processing
+  + gexp
+  + ζ-cal
+*** k :: Good idea, x!
+x :: how about wordy-lisp!
+1. associated list processing (or wordy list processing)
+2. we can call a exp of it a wexp (or a wlist)
+3. &lt;body&gt;中表达式的求值顺序可以用显示规定
+   这样表达式的排版就是自由的
+4. 函数的形式参数名称之外再加一个明显的说明性标记(或者不加)
+   这样参数的代入顺序就可以是自由的
+   不用记忆顺序(那是死记硬背的)
+   只用记住参数的说明性标记(这是理解记忆的)
+   可以想像如何可以用很多的说明性标记来标记同一点
+   这样记不住这个还能记住其他的
+5. 函数的作用顺序也可以是自由的
+   当参数不齐全时就形成curry
+   这样就使得对一个函数(尤其是多参数的)的使用变得极为灵活
+6. 类型系统不是问题
+   可以保留一个:type关键词
+7. OO也不是问题
+   通过元素之间的相互克隆
+   就可以达到OO的效果
+8. 错误处理也不是问题
+   可以保留一个:error关键词
+9. 每个保留的关键词都可以用来形成这种语法的新语义
+   对语言的动态扩展也不是问题
+   我将得到比scheme更强大的macro系统
+   因为我可以有(至少)两个层次的macro
+   一个是用户增加一个:key-word中的key-word
+   并定义这个key-word影响它所在的表达式的方式
+   一个是(更高级的)用户增加&lt;key&gt;
+   并定义对增加的&lt;key&gt;的处理方式
+10. 很容易作为编译器或语法解析器的目标语言
+11. &gt;&lt; 难点是
+    编译或解释这种语法以形成所需要的语义
+    就需要很多的查找和排序工作
+    不过那不正是电子计算机擅长的工作吗!!
+*** inductive definition
+#+begin_src bnf
+&lt;wordy-list&gt;
+   ::= &apos;() | &lt;field&gt; | (append &lt;wordy-list&gt; &lt;wordy-list&gt;)
+
+# 下面这个版本的可以保留&lt;wordy-list&gt;内的所有loop
+&lt;wordy-list&gt;
+   ::= &apos;() | &lt;field&gt; | (append! &lt;wordy-list&gt;[non-null] &lt;wordy-list&gt;)
+
+
+&lt;field&gt;
+   ::= (&lt;key&gt; &lt;non-key-val&gt; ...)
+       {这里的list必须是proper-list}
+
+&lt;key&gt; == &lt;field-name&gt;
+
+&lt;key&gt;
+   ::= {所有的以冒号开头的symbol}
+
+&lt;non-key-val&gt;
+   ::= {不是&lt;key&gt;的任何类型的值,特别地可以是一个&lt;wordy-list&gt;}
+
+&lt;atom-relative-to-wordy-list&gt; {简称&lt;atom-to-wlist&gt;}
+   ::= {所有不是&lt;wordy-list&gt;的东西都是相对于&lt;wordy-list&gt;来说的原子}
+# 上面这种相对原子的概念对每种归纳定义的结构化的数据都适用
+# 因为这些原子将被作为递归函数的基本步骤
+#+end_src
+这里对于这个数据类型需要一些分析与解释
+1. 这样设计数据类型是为了尽量减少人类认知上的负担
+2. 可以发现这个归纳定义的形式是相当良好的
+   有了这样典型的归纳定义 就可以很方便地写递归函数了
+*** some helper-functions
+#+begin_src scheme :tangle ./lib/wordy-lisp.scm
+(define string&lt;-symbol symbol-&gt;string)
+(define list&lt;-string string-&gt;list)
+
+(define not-proper-list?
+  (lambda (x)
+    (and (pair? x)
+         (not (list? x)))))
+#+end_src
+*** predicates
+#+begin_src scheme :tangle ./lib/wordy-lisp.scm
+(define key?
+  (lambda (x)
+    (and (symbol? x)
+         (eq? #\: (car (list&lt;-string
+                        (string&lt;-symbol x)))))))
+;; test:
+;; (key? 1)
+;; (key? &apos;:kkk)
+;; (key? &apos;::kkk)
+;; (key? &apos;卡夫卡)
+
+
+(define wordy-list?
+  (lambda (x)
+    (and (list? x)
+         (or (null? x);; can be &apos;() 因为要作为递归函数的基本步骤
+             (key? (car x))))))
+;; (wordy-list? &apos;())
+;; (wordy-list? &apos;(:k1 1 :k2 2 2 2 :k3 3 (3) () :k4 . 1))
+
+
+
+(define field?
+  (lambda (x)
+    (and (list x)
+         (not (null? x))
+         (key? (car x))
+         (not (wordy-list? (cdr x))))))
+#+end_src
+*** note about wlist-processing
+这里有一个很重要的说明:
+在scheme中用副作用来构造带有loop的list这件事困扰了我很久
+我现在明白这是因为我对我写的代码所表达的东西的理解
+和机器实际上对我代码的处理方式之间有一个偏差
+这可以说成是一种语义的错乱
+对这一点的解释如下:
+1. 首先要明白当结构化的数据被作为参数来传递的时候自然而然传递的是地址
+2. 其次要熟悉scheme中的一种编程风格
+   这种风格是用递归函数处理归纳定义的数据的标准方式
+   + 这种标准处理方式在ml这种具有更强类型限制的语言中体现的最为明显
+   这种风格是:
+   1) 函数以输入的结构化数据为原材料
+      因为所使用的结构化的数据有良好的递归定义
+      所以很容易形成递归函数去解构这个结构
+   2) 然后在这个拆解原料的过程中
+      函数会利用拆解所得到部分原料
+      并添加一些新的物质
+      去构建一个需要被输出的结构化数据
+   3) 重要是 当一个东西被当成原料而传给某个函数的时候
+      做了这样的重要假设:
+      这些原料是以后不需要的了 并且这些原料没有同时在别的地方被用到
+      即 这些原料中的任何部分的地址别人都不知道
+      只有当下这个原料所服务于的那个函数知道
+   4) 在函数构造需要被输出的新的结构化数据的时候
+      原料的一些部分被用到
+      同时原料的另一些部分没有被用到
+      那些没有被用到的原料的部分当然就是需要被垃圾回收器回收的废料了
+3. scheme中的列表处理函数基本上都是以这种风格写成的
+   这是一种很好的风格
+   它使得编程变得清晰简单而明了
+4. 但是
+   当我需要用副作用来构造带有loop的list的时候 问题就来了
+   因为上面的那个重要的假设不再被满足了
+   并且
+   略微形而上地说
+   这里所处理的东西(至少从表面上来看)不再具有良好的归纳定义了
+   这就决定了这种东西不容易使用递归函数来处理
+   但是这只是表面
+   其实我们所定义的数据结构总不是杂乱无章的
+   否则就无``结构&apos;&apos;可言了
+   其实我们所定义的数据结构总是有一定的正规性的
+   总是可以使用递归函数来处理的
+   这种可被递归函数处理的性质从某种意义上来说就是``结构&apos;&apos;的本质
+   这样
+   此时我们就需要新的理解方式与处理风格
+   这时递归函数的行为
+   不是解构的同时构造
+   而是遍历的同时修改
+   或者遍历的同时记录需要做修改的地方的信息
+   然后遍历之后一起作修改
+   就是用很多副作用去修改原来的值
+   然后返回的还是原来的值的地址 只不过原来的值被修改过了
+   甚至有时可以不返回值 因为在别的地方还能引用到原来的数据
+   注意这种风格是如何与上面那个重要的假设完全相反的
+5. 如何理解这些呢???
+   这种新的风格
+   可能需要我能自由地在函数中引用cons的car和cdr的地址
+   scheme并不支持这样的操作
+   这与垃圾回收有冲突吗???
+   不冲突
+   因为在我获取一个明显的地址之后这一个cons就被着重标记为不能被回收的了
+   当我进行完对这个地址的副作用之后我可以取消这个着重标记表示允许回收
+   也就是说使用两bits
+   一个表示``回收--不回收&apos;&apos;
+   一个表示``允许回收--不允许回收&apos;&apos;
+6. 这里如此多的副作用显然违背了函数式编程
+   但是为了能更方便的写出比如digrap这种程序
+   语言的这样的性状是有利的
+   当我发现scheme给digrap的实现造成极大的困难的时候
+   我就会自己写一个类似scheme的LISP
+7. 还发现scheme中失误的一点
+   为了实现digrap中的那个有向图的数据结构
+   wlist中的某些位置需要记录wlist中其他位置的地址
+   但是在scheme中列表与列表的地址是没有区别的
+   &gt;&lt; 也许我可以用一个闭包来记录这个地址
+   这样就可以有一个伪地址数据类型 并且打印起来也好看
+   &gt;&lt; 但是我不这样作
+   因为这并不是正确的实现方式
+   这样作只是在scheme错误的设计上修补而已
+   应该更改编译器本身的设计以实现我的目标
+8. 你马上就发现两种处理风格并不冲突
+   并且常常需要同时使用这两种处理
+   那么重要的就是
+   我应该用上面的两种风格来规范化自己写的函数
+   并且用上面所指出的揭示函数行为的特征来描述函数的行为
+*** wlist-processing
+#+begin_src scheme :tangle ./lib/wordy-lisp.scm
+;; 就接口而言 curry总是可以增加使用上的灵活性
+;; 并且简化对使用方式的理解: 因为所有的作用都是一元的了
+
+;; (take n) =&gt; &lt;taker&gt;
+;; (&lt;taker&gt; &lt;field&gt;) =&gt; &lt;val&gt;
+;;   例如 (take n) will take the key of &lt;field&gt;
+(define take
+  (lambda (n)
+    (lambda (field)
+      (letrec ([R (lambda (n lis)
+                    (cond [(= n 0)
+                           (car lis)]
+                          [else
+                           (R (sub1 n) (cdr lis))]))])
+        (if (&gt;= n (length field))
+          (error &apos;take
+            &quot;taker too far!&quot; n (sub1 (length field)) field)
+          (R n field))))))
+;; ((take 1) &apos;(:kkk))
+;; ((take 3) &apos;(:kkk 1 2 3))
+;; ((take 4) &apos;(:kkk 1 2 3))
+
+
+;; (find &lt;key&gt;) =&gt; &lt;finder&gt;
+;; (&lt;finder&gt; &lt;wordy-list&gt;) =&gt; &lt;field&gt; | #f
+;;    上面当失败的时候是否不应该简单地返回#f
+;;    而去返回更多的信息 比如找什么key的时候失败了
+;;    其实用#f也行 因为返回值正常的时候返回的都是列表
+;;    但是其他的函数的错误处理可能就不能这么草率了
+;; 注意:
+;;   所返回的是一个新构建的列表
+;;   但是列表里的元素还是老元素
+;;   因此对于finder所返回的值要小心地使用副作用
+;; 又注意:
+;;   所返回的新列表会丧失``在列表内引用列表头&apos;&apos;的性质
+;;   所返回的:
+;; (:0-dimension-geometry-object-list
+;;      #2=[:v vertex-2 :address #2#
+;;          :can (:value 222)
+;;          :abut-edge-list
+;;             (:e edge:2--&gt;3 :address #4#)
+;;             (:e edge:3--&gt;2 :address #6#)])
+;; 对其中#2#的引用不会丧失``在列表内引用列表头&apos;&apos;的性质
+;; 但是如果是(:kkk 1 2 . #0=(:tree 7 8 9 #0#) 4 5 6)
+;; 那么
+;; ((find &apos;:tree)
+;;  &apos;(:kkk 1 2 . #0=(:tree 7 8 9 #0#)))
+;; =&gt;
+;; (:tree 7 8 9 #0=(:tree 7 8 9 #0#))
+;; 而不是#0=(:tree 7 8 9 #0#)
+;; 也就是说返回值丧失了``在列表内引用列表头&apos;&apos;的性质
+;; 但是从某种语义上来说
+;; (:kkk 1 2 . #0=(:tree 7 8 9 #0#) 4 5 6)中的#0#并不是对列表头的引用不是吗?
+;; 看你从什么角度去理解了
+;; 但是一定要小心而仔细地分析find这类函数的性质
+(define find
+  (lambda (key)
+    (lambda (wordy-list)
+      (letrec ([find-the-key
+                (lambda (wordy-list)
+                  (cond [(null? wordy-list)
+                         #f]
+                        [(eq? key (car wordy-list))
+                         (cons (car wordy-list)
+                               (find-2nd-key (cdr wordy-list)))]
+                        [else
+                         (find-the-key (cdr wordy-list))]))]
+               [find-2nd-key
+                (lambda (wordy-list)
+                  (cond [(null? wordy-list)
+                         wordy-list]
+                        [(atom? wordy-list)
+                         wordy-list]
+                        [(not (key? (car wordy-list)))
+                         (cons (car wordy-list)
+                               (find-2nd-key (cdr wordy-list)))]
+                        [(key? (car wordy-list))
+                         &apos;()]
+                        ))])
+        (cond [(not (key? key))
+               (error &apos;find &quot;inupt must be a key&quot; key)]
+              [(null? wordy-list)
+               #f]
+              [else
+               (find-the-key wordy-list)])
+        ))))
+;; test:
+
+;; ((find &apos;:k0) &apos;(:k1 1 :k2 2 2 2 :k3 3 (3) () :k4))
+;; ((find &apos;:k1) &apos;(:k1 1 :k2 2 2 2 :k3 3 (3) () :k4))
+;; ((find &apos;:k2) &apos;(:k1 1 :k2 2 2 2 :k3 3 (3) () :k4))
+;; ((find &apos;:k4) &apos;(:k1 1 :k2 2 2 2 :k3 3 (3) () :k4))
+
+;; 尽管下面的测试看似正确
+;; 但是非proper-list不被看作是wordy-list
+;; wordy-list?这个谓词会帮助判断
+;; 所以需要一个例外处理来处理下面的东西
+;; 否则这种形式被(有意或无意地)滥用后 将会带来麻烦
+;; ((find &apos;:k4) &apos;(:k1 1 :k2 2 2 2 :k3 3 (3) () :k4 . 1))
+
+;; ((find &apos;:k3) &apos;(:k1 1
+;;              :k2 2 2 2
+;;              :k3 3 (3) ()
+;;              :k4))
+;; ((find &apos;:can) &apos;[:v :can &lt;-- &lt;-- λ])
+;; ((find &apos;:can) &apos;[:v :can (:v-type black :kkk kkk)])
+
+
+
+;; ((find &apos;:type)
+;; &apos;(:type &lt;&lt;graph&gt;&gt;
+
+;;   :0-dimension-geometry-object-list
+;;      #2=[:v vertex-2 :address #2#
+;;          :can (:value 222)
+;;          :abut-edge-list
+;;             (:e edge:2--&gt;3 :address #4#)
+;;             (:e edge:3--&gt;2 :address #6#)]
+
+;;      #3=[:v vertex-3 :address #3#
+;;          :can (:value 333)
+;;          :abut-edge-list
+;;             (:e edge:2--&gt;3 :address #4#)
+;;             (:e edge:3--&gt;2 :address #6#)]
+
+;;   :1-dimension-geometry-object-list
+;;      #4=[:e edge:2--&gt;3 :address #4#
+;;          :can (:edge-type black-arrow)
+;;          :abut-vertex-list
+;;             (:v vertex-2 :address #2#)
+;;             (:v vertex-3 :address #3#)]
+
+;;      #6=[:e edge:3--&gt;2 :address #6#
+;;          :can (:edge-type black-arrow)
+;;          :abut-vertex-list
+;;             (:v vertex-3 :address #3#)
+;;             (:v vertex-2 :address #2#)]
+;;      ))
+
+
+
+
+;; (let ([first-edge-fo-first-vertex-finder
+;;        (lambda (a-graph)
+;;          ((find &apos;:e)
+;;           ((take 1)
+;;            ((find &apos;:abut-edge-list)
+;;             ((take 1)
+;;              ((find &apos;:0-dimension-geometry-object-list) a-graph))))))])
+;;   (first-edge-fo-first-vertex-finder
+;;    &apos;(:type &lt;&lt;graph&gt;&gt;
+
+;;      :0-dimension-geometry-object-list
+;;         #2=[:v vertex-2 :address #2#
+;;             :can (:value 222)
+;;             :abut-edge-list
+;;                (:e edge:2--&gt;3 :address #4#)
+;;                (:e edge:3--&gt;2 :address #6#)]
+
+;;         #3=[:v vertex-3 :address #3#
+;;             :can (:value 333)
+;;             :abut-edge-list
+;;                (:e edge:2--&gt;3 :address #4#)
+;;                (:e edge:3--&gt;2 :address #6#)]
+
+;;      :1-dimension-geometry-object-list
+;;         #4=[:e edge:2--&gt;3 :address #4#
+;;             :can (:edge-type black-arrow)
+;;             :abut-vertex-list
+;;                (:v vertex-2 :address #2#)
+;;                (:v vertex-3 :address #3#)]
+
+;;         #6=[:e edge:3--&gt;2 :address #6#
+;;             :can (:edge-type black-arrow)
+;;             :abut-vertex-list
+;;                (:v vertex-3 :address #3#)
+;;                (:v vertex-2 :address #2#)]
+;;         )
+;;    ))
+
+
+
+;; (let ([can-of-first-edge-fo-first-vertex-finder
+;;        (lambda (a-graph)
+;;          ((find &apos;:can)
+;;           ((take 1)
+;;            ((find &apos;:address)
+;;             ((take 1)
+;;              ((find &apos;:abut-edge-list)
+;;               ((take 1)
+;;                ((find &apos;:0-dimension-geometry-object-list) a-graph))))))))])
+;;   (can-of-first-edge-fo-first-vertex-finder
+;;    &apos;(:type &lt;&lt;graph&gt;&gt;
+
+;;      :0-dimension-geometry-object-list
+;;         #2=[:v vertex-2 :address #2#
+;;             :can (:value 222)
+;;             :abut-edge-list
+;;                (:e edge:2--&gt;3 :address #4#)
+;;                (:e edge:3--&gt;2 :address #6#)]
+
+;;         #3=[:v vertex-3 :address #3#
+;;             :can (:value 333)
+;;             :abut-edge-list
+;;                (:e edge:2--&gt;3 :address #4#)
+;;                (:e edge:3--&gt;2 :address #6#)]
+
+;;      :1-dimension-geometry-object-list
+;;         #4=[:e edge:2--&gt;3 :address #4#
+;;             :can (:edge-type black-arrow)
+;;             :abut-vertex-list
+;;                (:v vertex-2 :address #2#)
+;;                (:v vertex-3 :address #3#)]
+
+;;         #6=[:e edge:3--&gt;2 :address #6#
+;;             :can (:edge-type black-arrow)
+;;             :abut-vertex-list
+;;                (:v vertex-3 :address #3#)
+;;                (:v vertex-2 :address #2#)]
+;;         )
+
+;;    ))
+
+
+;; (address-find &lt;key&gt;) =&gt; &lt;address-finder&gt;
+;; (&lt;address-finder&gt; &lt;wordy-list&gt;) =&gt; &lt;wordy-list&gt;
+;; 不构建新列表而直接返回找到的列表的地址
+;; 有点像又两个参数的cdr
+;; 第一个参数是&lt;field-name&gt; (即&lt;key&gt;)
+;; 第二个参数是&lt;wordy-list&gt;
+(define address-find
+  (lambda (key)
+    (lambda (wordy-list)
+      (letrec ([find-the-key
+                (lambda (wordy-list)
+                  (cond [(null? wordy-list)
+                         #f]
+                        [(eq? key (car wordy-list))
+                         wordy-list]
+                        [else
+                         (find-the-key (cdr wordy-list))]))])
+        (cond [(not (key? key))
+               (error &apos;find &quot;inupt must be a key&quot; key)]
+              [(null? wordy-list)
+               #f]
+              [(eq? key (car wordy-list))
+               wordy-list]
+              [else
+               (find-the-key wordy-list)])
+        ))))
+;; test:
+;; ((address-find &apos;:k0) &apos;(:k1 1 :k2 2 2 2 :k3 3 (3) () :k4))
+;; ((address-find &apos;:k1) &apos;(:k1 1 :k2 2 2 2 :k3 3 (3) () :k4))
+;; ((address-find &apos;:k2) &apos;(:k1 1 :k2 2 2 2 :k3 3 (3) () :k4))
+;; ((address-find &apos;:k3) &apos;(:k1 1 :k2 2 2 2 :k3 3 (3) () :k4))
+;; ((address-find &apos;:k4) &apos;(:k1 1 :k2 2 2 2 :k3 3 (3) () :k4))
+
+
+
+
+(define append-two!
+  ;; SIDE-EFFECT on wlist-1, 所以append-two!的第一个参数不能是&apos;()
+  ;; RETURN-VAL wlist-1
+  (lambda (wlist-1 wlist-2)
+    (letrec ([R! (lambda (wlist-1)
+                   (cond [(null? (cdr wlist-1)) ;; (= 1 (length wlist-1))
+                          (set-cdr! wlist-1 wlist-2)]
+                         [else
+                          (R! (cdr wlist-1))]))])
+      (cond [(null? wlist-1)
+             (error &apos;append-two!
+               &quot;append-two!&apos;s 1th-arg can not be &apos;()&quot; wlist-1 wlist-2)]
+            [(not-proper-list? wlist-1)
+             (error &apos;append-two!
+               &quot;append-two!&apos;s 1th-arg can not be a not proper-list&quot;
+               wlist-1 wlist-2)]
+            ;; [(not (list? wlist-2))
+            ;;  (error &apos;append-two!
+            ;;    &quot;append-two!&apos;s 2th-arg must be a list&quot; wlist-1 wlist-2)]
+            ;; 上面的一句对类型的控制比较严格一点
+            [(and (not (pair? wlist-2))
+                  (not (null? wlist-2)))
+             (error &apos;append-two!
+               &quot;append-two!&apos;s 2th-arg must be a pair or &apos;()&quot; wlist-1 wlist-2)]
+            [else
+             ;; SIDE-EFFECT
+             (R! wlist-1)
+             ;; RETURN-VAL
+             wlist-1]))))
+;; test:
+;; (append-two! &apos;(1 2 3) &apos;(kkk))
+;; (append-two! &apos;() &apos;(kkk))
+;; (append-two! &apos;(1 2 . 3) &apos;(kkk))
+;; (let ([kkk &apos;(1 2 3)])
+;;   (append-two! kkk &apos;(kkk))
+;;   (append-two! kkk &apos;(kkk))
+;;   (append-two! kkk &apos;(kkk))
+;;   kkk)
+;; (let ([kkk &apos;(1 2 3)])
+;;   (append kkk &apos;(kkk))
+;;   (append kkk &apos;(kkk))
+;;   (append kkk &apos;(kkk))
+;;   kkk)
+
+(define-syntax append!
+  (syntax-rules ()
+    [(_)
+     (error &apos;append!
+       &quot;append! is a syntax with at least 2 args, not 0 arg !&quot;)]
+    [(_ anthing)
+     (error &apos;append!
+       &quot;append! is a syntax with at least 2 args, not 1 arg !&quot; anthing)]
+    [(_ wlist-1 wlist-2)
+     (append-two! wlist-1 wlist-2)]
+    [(_ wlist-1 wlist-2 wlist-3 ...)
+     (append!
+      (append-two! wlist-1 wlist-2) wlist-3 ...)]
+    ))
+;; test:
+;; (append! &apos;(1 2 3) &apos;(1 2 3) &apos;(kkk))
+;; (append! &apos;(kkk) &apos;() &apos;(kkk))
+;; (append! &apos;(0 0 0) &apos;(kkk) &apos;(1 2 . 3))
+;; (append! &apos;(0 0 0) &apos;(1 2 . 3) &apos;(kkk))
+;; (let ([kkk &apos;(1 2 3)])
+;;   (append! kkk &apos;(kkk))
+;;   (append! kkk &apos;(kkk))
+;;   (append! kkk &apos;(kkk))
+;;   kkk)
+;; (let ([kkk &apos;(1 2 3)])
+;;   (append kkk &apos;(kkk))
+;;   kkk)
+
+
+;; 一个同构变换:
+;; 主要的区别是
+;; alist中递增一下就能找到下一个field
+;;   而wlist中可能需要很多对key?判断才能找到下一个field
+;; wlist的样子看起来很简单括号很少并且更容易理解
+;;   而alist看起来很复杂
+;; alist在视觉上的的劣势很容易用一个语法解析器来弥补
+;; wlist理解起来还是更简单
+
+;; 为了获得alist的优势 并不必作同构变换
+;; 只要跑一遍wlist 然后增加一个key.address-alist就行了
+;; 真正的同构变换会破坏原来的结构化数据的结构
+;; 即 第一个field的尾部被一个&apos;()截断了
+;; 但是更重要的是注意这种截断并不影响wlist中的loop
+;; 也就是说不会影响wlist中的某些位置对其他位置的地址的记录
+
+;; 注意只有当使用同构所节省的时间超过
+;; 同构变换所浪费的时间
+;; (define alist&lt;-wlist
+;;   (lambda (wlist)
+;;     ()))
+
+;; (define wlist&lt;-alist
+;;   (lambda (alist)
+;;     ()))
+
+
+;; 用副作用删除和增加field
+;; (delete! &lt;key&gt;) =&gt; &lt;deleter!&gt;
+;; (&lt;deleter!&gt; &lt;wordy-list&gt;) =&gt; {WITH-SIDE-EFFECT} &lt;wordy-list&gt; | #f
+;; (define delete!
+;;   (lambda (key)
+;;     (lambda (wordy-list)
+;;       需要定义find-next-field
+;;       )))
+
+;; (substitute! &lt;field&gt;) =&gt; &lt;substituent!&gt;
+;; ((&lt;substituent!&gt; &lt;key&gt;) )
+;; (define substitute!
+;;   (lambda (key)
+;;     (lambda (wordy-list)
+;;
+;;       )))
+
+
+;; 用副作用删除和增加field中的值
+;; 用副作用更改field的名字
+
+
+
+
+(define insert-val-to-the-2nd-position-of-a-list!
+  (lambda (val lis)
+    (if (null? lis)
+      (error &apos;insert-val-to-the-2nd-position-of-a-list!
+        &quot;input list can not be &apos;() !&quot;)
+      (set-cdr! lis (append!
+                      (list val)
+                      (cdr lis))))))
+
+
+(define insert-a-val-to-a-field-of-a-wlist!
+  (lambda (val field-name wlist)
+    (insert-val-to-the-2nd-position-of-a-list!
+     val ((address-find field-name) wlist))))
+;; test:
+;; (define kkk &apos;(:kkk))
+;; (insert-a-val-to-a-field-of-a-wlist! 1 &apos;:kkk kkk)
+
+;; 发现如果可以自由的改变参数的顺序 那将是极好的
+;; 在wordy-lisp中就可以做到这一点
+;; 我可以直接用macro把wordy-lisp嵌入到scheme中吗???
+;; 如果能自动实现动态的curry 就更好了 !!!
+;; 太酷了
+;; 甚至可以自动变换求值顺序形成不同的curry
+;; 太酷了 太酷了
+(define to-a-field-of-a-wlist--let-us-insert-a-val!
+  (lambda (field-name wlist val)
+    (insert-val-to-the-2nd-position-of-a-list!
+     val ((address-find field-name) wlist))))
+#+end_src
+*** note about constructor
+如果使用wordy-list的明显的标签
+那么这些标签就可以看作是每个结构化对象(数据)的构造子
+那么模式匹配和类型推到当然就不成问题
+
+!!! 上面的两项其实是错的
+因为这里的明显的标签虽然用来命名了对象中的一部分
+但是并没有形成对一个集合的归纳定义
+而模式匹配是为了写递归函数处理归纳定义的集合(数据类型)
+
+但是仔细一想其实又是可以的
+因为不论如何它们确实能够担当构造子的角色
+** representation-of-graph
+*** 0.01
+ :tangle ./lib/representation-of-graph.scm
+#+begin_src scheme
+(define &lt;&lt;graph&gt;&gt;?
+  (lambda (x)
+    (and (list x)
+         (not (null? x))
+         (eq? (car x) &apos;&lt;&lt;graph&gt;&gt;))))
+
+;; 希望给出比较不平凡的例子作为测试
+;; 以使所有的递归在基本的测试中都能被跑到
+(define example-graph
+  ;; memory == O(|V|+|E|)
+  &apos;(&lt;&lt;graph&gt;&gt;
+    ;; 约定: 在下面的表示中 每一个点边元素都用方括号
+
+    ;; vertex-list (0-dimension-geometry-object-list)
+    ;; 点中有一个列表 保存着与自己相邻的所有边的地址
+    ;; 这样从点出发能够找到与它相邻的所有边
+    ;; 这种对地址的保存就实现着点和边的相邻关系
+    (#2=[(vertex-2 #2# (:value 222))
+         (edge:2--&gt;3 #4#) (edge:3--&gt;2 #6#)]
+     #3=[(vertex-3 #3# (:value 333))
+         (edge:2--&gt;3 #4#) (edge:3--&gt;2 #6#)])
+
+    ;; edge-list (1-dimension-geometry-object-list)
+    ;; 边中有一个列表 保存这与自己相邻的所有点的地址
+    ;; 这样从边出发能够找到与它相邻的所有点
+    ;; 这种对地址的保存就实现着点和边的相邻关系
+    (#4=[(edge:2--&gt;3 #4# (:edge-type black-arrow))
+         ;; 两个点在下面的列表中储存的顺序
+         ;; 体现着这条边连接它们的方式
+         (vertex-2 #2#) (vertex-3 #3#)]
+     #6=[(edge:3--&gt;2 #6# (:edge-type black-arrow))
+         (vertex-3 #3#) (vertex-2 #2#)])
+
+    ;; 可以发现图的几何语义限制了上面的列表的样子
+    ;; 在图的语义下:
+    ;;   2-dim几何体 能且只能 与两个1-dim几何体相连
+    ;;        并且其邻接列表是有序的
+    ;;   1-dim几何体 能 与0个或1个或多个2-dim几何体相连
+    ;;        并且遗忘了其邻接列表的顺序
+
+    ;; 显然在这里我们可以进行推广
+    ;; 在这种实现方式下所能得到的最广泛的推广是:
+    ;;   可以有n-dim几何体列表
+    ;;   几何体都可以和任意维数的几何体相连接
+    ;; 显然利用这种实现的推广
+    ;; 只要再向上面一样添加某先限制条件
+    ;; 就能够形成代数拓扑中的某些复形的语义
+
+    ;; 但是要注意的是限制条件对语义的影响可能是相当微妙的
+    ;; 几何语义的建立 可以帮助我们决定应该实现什么样的 基本处理函数
+    ;; 基本的观察 与 基本的几何想像 总能把人们引向有趣而丰富的理论
+    ))
+#+end_src
+*** 0.02
+下面的数据结构可以被视为是图论型数据库的实现
+只要
+1. 把:0-dimension-geometry-object-list
+   替换为:data
+2. 把:1-dimension-geometry-object-list
+   替换为:relation
+   并且取消与edge的语义有关的限制
+   使得:relation与:data完全对称
+   + 并且 :can of :relation 中
+     可以保存对关系的额外描述等等
+3. 上面的东西显然能够胜任一个数据库
+   它的特点是保存的很简洁
+   插入和删除还有查询比较复杂
+
+ :tangle ./lib/representation-of-graph.scm
+#+begin_src scheme
+(define &lt;&lt;graph&gt;&gt;?
+  (lambda (x)
+    (and (wordy-list? x)
+         (not (null? x))
+         (eq? ((take 1)
+               ((find &apos;:type)
+                x))
+              &apos;&lt;&lt;graph&gt;&gt;))))
+
+;; (&lt;&lt;graph&gt;&gt;? example-graph)
+
+;; 下面希望给出比较不平凡的例子作为测试
+;; 以使所有的递归在基本的测试中都能被跑到
+(define example-graph
+  ;; memory == O(|V|+|E|)
+  &apos;(:type &lt;&lt;graph&gt;&gt;
+    ;; 约定: 在下面的表示中 每一个点边元素都用方括号
+
+    :0-dimension-geometry-object-list
+    ;; 每个点中有一个列表:abut-edge-list
+    ;; 保存着与自己相邻的所有边的地址
+    ;; 这样从点出发能够找到与它相邻的所有边
+    ;; 这种对地址的保存就实现着点和边的相邻关系
+
+    #2=[:v vertex-2 :address #2#
+        :can (:value 222)
+        :abut-edge-list
+        ;; 如果一个key的名字说明这一项是list
+        ;; 那么它后面根的常常就是一个list的wordy-list
+        ;; 要知道基本的元素在这里都是用wordy-list来表达的
+           (:e edge:2--&gt;3 :address #4#)
+           (:e edge:3--&gt;2 :address #6#)]
+
+    #3=[:v vertex-3 :address #3#
+        :can (:value 333)
+        :abut-edge-list
+           (:e edge:2--&gt;3 :address #4#)
+           (:e edge:3--&gt;2 :address #6#)]
+
+
+    :1-dimension-geometry-object-list
+    ;; 每个边中有一个列表:abut-vertex-list
+    ;; 保存着与自己相邻的所有点的地址
+    ;; 这样从边出发能够找到与它相邻的所有点
+    ;; 这种对地址的保存就实现着点和边的相邻关系
+
+    #4=[:e edge:2--&gt;3 :address #4#
+        :can (:edge-type black-arrow)
+        :abut-vertex-list
+           ;; 两个点在这个列表中储存的顺序
+           ;; 体现着这条边连接它们的方式
+           (:v vertex-2 :address #2#)
+           (:v vertex-3 :address #3#)]
+
+    #6=[:e edge:3--&gt;2 :address #6#
+        :can (:edge-type black-arrow)
+        :abut-vertex-list
+           (:v vertex-3 :address #3#)
+           (:v vertex-2 :address #2#)]
+
+
+
+    ;; 可以发现图的几何语义限制了上面的列表的样子
+    ;; 在图的语义下:
+    ;;   1-dim几何体 能且只能 与两个0-dim几何体相连
+    ;;        并且其邻接列表是有序的
+    ;;   0-dim几何体 能 与0个或1个或多个1-dim几何体相连
+    ;;        并且遗忘了其邻接列表的顺序
+
+    ;; 显然在这里我们可以进行推广
+    ;; 在这种实现方式下所能得到的最广泛的推广是:
+    ;;   可以有n-dim几何体列表
+    ;;   几何体都可以和任意维数的几何体相连接
+    ;; 显然利用这种实现的推广
+    ;; 只要再向上面一样添加某先限制条件
+    ;; 就能够形成代数拓扑中的某些复形的语义
+
+    ;; 但是要注意的是限制条件对语义的影响可能是相当微妙的
+    ;; 几何语义的建立 可以帮助我们决定应该实现什么样的 基本处理函数
+    ;; 基本的观察 与 基本的几何想像 总能把人们引向有趣而丰富的理论
+
+
+    ))
+#+end_src
+** basic-functions-for-graph
+*** note
+删除和添加节点并不是简单在这个集合中增加元素
+而需要修改图的各部分 让图的各部分对图的描述保持一致
+- add-vertex
+- add-edge
+- delete-vertex
+- delete-edge
+其他操作显然都能用这4个基本操作的复合来完成
+*** some helper-functions (not using)
+也许这里的函数应该被作为另外的lib分离出去
+**** 0.01
+ :tangle ./lib/basic-functions-for-graph.scm
+#+begin_src scheme
+;; 下面的add-to-list-end!把x添加到list的末尾
+;; 由于scheme的限制 这样的实现方式最简单
+;; 因为add-to-list-end!是一个副作用
+;; 所以只有有名字能引用到它的参数lis的时候这个函数才有意义
+(define add-to-list-end!
+  (lambda (x lis)
+    (letrec ([R (lambda (x lis)
+                  (cond [(null? (cdr lis))
+                         (set-cdr! lis (list x))]
+                        [else
+                         (R x (cdr lis))]))])
+      (if (null? lis)
+        (error &apos;add-to-list-end! &quot;can not add ~s to null list&quot; x)
+        (R x lis)))))
+
+;; 非副作用的版本更简单 但是现在还用不到
+;; (define add-to-list
+;;   (lambda (x lis)
+;;     ))
+
+
+(define find-address-in-vertex-list-by-name
+  (lambda (name vertex-list)
+    (cond [(null? vertex-list)
+           (error &apos;find-address-in-vertex-list-by-name &quot;can not find name: ~s in list&quot; name)]
+          ;; 想要说出是那个list就要使用call/cc
+          [else
+           (if (equal? name (caaar vertex-list))
+             ;; 使用equal?这样vertex-name就可以是list或vector了
+             (cadaar vertex-list)
+             (find-address-in-vertex-list-by-name name (cdr vertex-list)))])))
+;; (letrec
+;;     ([v &apos;(v v)]
+;;      [g &apos;(g g)])
+;;   ;; 想要把g中的地址mark到v中
+;;   (cons
+;;    (let ()
+;;      ;; 直接用car与cdr找到需要被mark的g中的地址就可以了
+;;      (set-cdr! v (cdr g))
+;;      v)
+;;    (cons
+;;     (let ()
+;;       g)
+;;     &apos;())))
+#+end_src
+**** 0.02
+ :tangle ./lib/basic-functions-for-graph.scm
+#+begin_src scheme
+;; 下面的add-to-list-end!把x添加到list的末尾
+;; 由于scheme的限制 这样的实现方式最简单
+;; 因为add-to-list-end!是一个副作用
+;; 所以只有有名字能引用到它的参数lis的时候这个函数才有意义
+(define add-to-list-end!
+  (lambda (x lis)
+    (letrec ([R (lambda (x lis)
+                  (cond [(null? (cdr lis))
+                         (set-cdr! lis (list x))]
+                        [else
+                         (R x (cdr lis))]))])
+      (if (null? lis)
+        (error &apos;add-to-list-end! &quot;can not add ~s to null list&quot; x)
+        (R x lis)))))
+
+;; 非副作用的版本更简单 但是现在还用不到
+;; (define add-to-list
+;;   (lambda (x lis)
+;;     ))
+
+
+(define find-address-in-vertex-list-by-name
+  (lambda (name vertex-list)
+    (cond [(null? vertex-list)
+           (error &apos;find-address-in-vertex-list-by-name &quot;can not find name: ~s in list&quot; name)]
+          ;; 想要说出是那个list就要使用call/cc
+          [else
+           (if (equal? name (caaar vertex-list))
+             ;; 使用equal?这样vertex-name就可以是list或vector了
+             (cadaar vertex-list)
+             (find-address-in-vertex-list-by-name name (cdr vertex-list)))])))
+;; (letrec
+;;     ([v &apos;(v v)]
+;;      [g &apos;(g g)])
+;;   ;; 想要把g中的地址mark到v中
+;;   (cons
+;;    (let ()
+;;      ;; 直接用car与cdr找到需要被mark的g中的地址就可以了
+;;      (set-cdr! v (cdr g))
+;;      v)
+;;    (cons
+;;     (let ()
+;;       g)
+;;     &apos;())))
+
+;; 下面这个语法关键词不是拿来用的
+;; 而是想用来说明 如果能自由的安排&lt;body&gt;中表达式的执行顺序
+;; 那么将很有利于提高代码的可读性
+;; 因为这样&lt;body&gt;中代码的排列顺序就可以和执行顺序不一样
+;; 这就使得更好的排版方式成为可能
+(define-syntax one-sexp-RETURNED--after-SIDE-EFFECTS-performed
+  (syntax-rules ()
+    [(_ one-sexp-RETURNED SIDE-EFFECT ...)
+     (begin
+       SIDE-EFFECT
+       ...
+       one-sexp-RETURNED)]))
+#+end_src
+*** add-vertex
+**** 0.01
+ :tangle ./lib/basic-functions-for-graph.scm
+#+begin_src scheme
+;; 下面两个东西给出比较不平凡的例子作为测试
+;; 以使所有的递归在基本的测试中都能被跑到
+(define syntax-example-of-add-vertex
+  &apos;((vertex-1 (:value 111))
+    [(edge:1--&gt;2 (:edge-type black-arrow))
+     (vertex-2)]
+    [(edge:1--&gt;3 (:edge-type black-arrow))
+     (vertex-3)]
+    [(edge:1--&gt;2 (:edge-type red-arrow))
+     (vertex-2)]
+    [(edge:1--&gt;3 (:edge-type red-arrow))
+     (vertex-3)]
+    ))
+
+(define example-graph
+  &apos;(&lt;&lt;graph&gt;&gt;
+
+    (#2=[(vertex-2 #2# (:value 222))
+         (edge:2--&gt;3 #4#) (edge:3--&gt;2 #6#)]
+     #3=[(vertex-3 #3# (:value 333))
+         (edge:2--&gt;3 #4#) (edge:3--&gt;2 #6#)])
+
+    (#4=[(edge:2--&gt;3 #4# (:edge-type black-arrow))
+         (vertex-2 #2#) (vertex-3 #3#)]
+     #6=[(edge:3--&gt;2 #6# (:edge-type black-arrow))
+         (vertex-3 #3#) (vertex-2 #2#)])
+    ))
+
+
+(define add-vertex
+  (lambda (v g)
+    (add-vertex! v (list-copy g))))
+
+(define add-vertex!
+  (lambda (v g)
+    ;; g = graph
+    ;; v = out of graph representation of a vertex for add-vertex
+    (let* ([g-vertex-list (cadr g)]
+           [g-edge-list (caddr g)]
+
+           ;; 下面生成processed-vertex-head的同时需要:
+           ;; 1. 扩充g-vertex-list中的其他点的相邻边列表
+           ;; 2. 扩充g-edge-list
+           [processed-vertex-head
+            (letrec ([vertex-head (car v)]
+                     [subvertex-list (cdr v)]
+                     [processed-vertex-head (fun-to-handle-vertex-head
+                                             vertex-head)]
+
+                     [fun-to-handle-vertex-head
+                      ;;     (vertex-name . treasury-of-vertex) ==&gt;
+                      ;; #0=[(vertex-name #0# treasury-of-vertex) ...]
+                      (lambda (vertex-head)
+                        (pmatch-who &apos;add-vertex!:fun-to-handle-vertex-head  vertex-head
+                          [`(,vertex-name . ,treasury-of-vertex)
+                           (let ([x `[(,vertex-name &lt;address-of-this-vertex&gt; . ,treasury-of-vertex)]])
+                             (set-car! (cdar x) x)
+                             x)]))]
+
+                     [fun-to-handle-edge-head
+                      ;; 除了约束变元的名字以外 与fun-to-handle-vertex-head完全相同
+                      ;;     (edge-name . treasury-of-edge) ==&gt;
+                      ;; #0=[(edge-name #0# . treasury-of-edge) ...]
+                      (lambda (edge-head)
+                        (pmatch-who &apos;add-vertex!:fun-to-handle-edge-head  edge-head
+                          [`(,edge-name . ,treasury-of-edge)
+                           (let ([x `[(,edge-name &lt;address-of-this-edge&gt; . ,treasury-of-edge)]])
+                             (set-car! (cdar x) x)
+                             x)]))]
+
+                     [rec-fun-to-run-through-subvertex-list
+                      ;; return a processed-subvertex-list
+                      (lambda (subvertex-list)
+                        (cond [(null? subvertex-list) subvertex-list]
+                              [else
+                               (cons (pmatch-who &apos;add-vertex!:rec-fun-to-run-through-subvertex-list
+                                         (car subvertex-list)
+                                       [`[(,edge-name . ,&lt;treasury-of-edge&gt;)
+                                          (,subvertex-name)]
+                                        (let ([processed-edge-head (fun-to-handle-edge-head `(,edge-name . ,&lt;treasury-of-edge&gt;))])
+                                          (set-cdr! processed-edge-head
+                                                    ;; 下面是与这个edge相邻的两个vertex的列表
+                                                    `((,(caar processed-vertex-head) ,(cadar processed-vertex-head))
+                                                      ;; 下面用到了一次对图的vertex-list的查找
+                                                      (,subvertex-name ,(find-address-in-vertex-list-by-name subvertex-name g-vertex-list))))
+                                          (add-to-list-end! processed-edge-head g-edge-list)
+                                          ;; 在返回值之前还需要把上面安插好的edge添加到与这个边相邻的vertex的edge-list中
+                                          (add-to-list-end! `(,(caar processed-edge-head) ,(cadar processed-edge-head))
+                                                        (cdr (find-address-in-vertex-list-by-name subvertex-name g-vertex-list)))
+                                          ;; 下面是这个let的返回值:
+                                          ;; 需要返回一个将被添加到processed-vertex-head的相邻边列表中的项
+                                          ;; (cadar processed-edge-head)是这个edge的地址
+                                          `(,edge-name ,(cadar processed-edge-head)))])
+                                     (rec-fun-to-run-through-subvertex-list (cdr subvertex-list)))]))])
+              (set-cdr! processed-vertex-head
+                        (rec-fun-to-run-through-subvertex-list
+                         subvertex-list))
+              ;; 下面是这个letrec的返回值:
+              processed-vertex-head)])
+
+      (add-to-list-end! processed-vertex-head g-vertex-list)
+      ;; now! g-vertex-list and g-edge-list are processed
+      ;; 下面是let*的返回值 也是这个函数的返回值:
+      (list &apos;&lt;&lt;graph&gt;&gt; g-vertex-list g-edge-list)
+      )))
+
+
+;; test:
+;; (add-vertex syntax-example-of-add-vertex
+;;             example-graph)
+
+;; (define example-graph &apos;(&lt;&lt;graph&gt;&gt; (1) ()))
+;; (add-vertex &apos;((vertex-1 (:value 111)))
+;;          example-graph)
+;; 下面的错误来自于add-to-list-end! 它表明在这种实现方式下空图是没有意义的
+;; 图的点列表和边列表都不能是空集
+;; 要知道在scheme中add-to-list-end!这种局限性是本质的
+;; (define example-graph &apos;(&lt;&lt;graph&gt;&gt; () ()))
+;; (add-vertex &apos;((vertex-1 (:value 111)))
+;;             example-graph)
+;; (define example-graph &apos;(&lt;&lt;graph&gt;&gt;
+;;                   (#2=[(vertex-2 #2# (:value 222))])
+;;                   ([(1 2 3)])))
+;; (add-vertex &apos;((vertex-1 (:value 111))
+;;               [(edge:1--&gt;2 (:edge-type black-arrow))
+;;                (vertex-2)])
+;;             example-graph)
+;; 如果希望以最简单的方式使用空图那么就必须作特殊约定(比如约定每个图有一个不可见的基础点)
+;; 可以这样来做:
+;; 约定每个图中至少有两点以及链接这两点的一边
+;; 这三个几何元素不是浪费了 而是可以保存一些这个图的基本信息
+;; 但是下面的eval不能正常工作太让人震惊了
+;; 而使用define-syntax又将造成无限循环
+;; (define give-me-a-base-graph
+;;   (lambda ()
+;;     (define kkk
+;;       &apos;(&lt;&lt;graph&gt;&gt;
+;;         (#1=[(base-vertex-1 #1# (:value 111))
+;;              (base-edge:1--&gt;2 #3#)]
+;;             #2=[(base-vertex-2 #2# (:value 222))
+;;                 (base-edge:1--&gt;2 #3#)])
+;;         (#3=[(base-edge:1--&gt;2 #3# (:edge-type base-arrow))
+;;              (base-vertex-1 #1#) (base-vertex-2 #2#)])))
+;;     kkk))
+;; (add-vertex &apos;((vertex-1 (:value 111)))
+;;             (give-me-a-base-graph))
+#+end_src
+**** 0.02
+ :tangle ./lib/basic-functions-for-graph.scm
+#+begin_src scheme
+(define syntax-example-of-add-vertex
+  &apos;(:type vertex-representation-for-add-vertex
+
+    :v vertex-1
+    :can (:value 111)
+
+    :abut-edge-list-representation-for-add-vertex
+       (:e edge:1--&gt;2
+        :can (:edge-type black-arrow)
+        :abut-vertex-of-this-edge vertex-2)
+
+       (:e edge:1--&gt;3
+        :can (:edge-type black-arrow)
+        :abut-vertex-of-this-edge vertex-3)
+
+       (:e edge:1--&gt;2
+        :can (:edge-type red-arrow)
+        :abut-vertex-of-this-edge vertex-2)
+
+       (:e edge:1--&gt;3
+        :can (:edge-type red-arrow)
+        :abut-vertex-of-this-edge vertex-3)
+
+       ))
+
+(define example-graph
+  &apos;(:type &lt;&lt;graph&gt;&gt;
+
+
+    :0-dimension-geometry-object-list
+
+    #2=[:v vertex-2 :address #2#
+        :can (:value 222)
+        :abut-edge-list
+           (:e edge:2--&gt;3 :address #4#)
+           (:e edge:3--&gt;2 :address #6#)]
+
+    #3=[:v vertex-3 :address #3#
+        :can (:value 333)
+        :abut-edge-list
+           (:e edge:2--&gt;3 :address #4#)
+           (:e edge:3--&gt;2 :address #6#)]
+
+
+    :1-dimension-geometry-object-list
+
+    #4=[:e edge:2--&gt;3 :address #4#
+        :can (:edge-type black-arrow)
+        :abut-vertex-list
+           (:v vertex-2 :address #2#)
+           (:v vertex-3 :address #3#)]
+
+    #6=[:e edge:3--&gt;2 :address #6#
+        :can (:edge-type black-arrow)
+        :abut-vertex-list
+           (:v vertex-3 :address #3#)
+           (:v vertex-2 :address #2#)]
+
+
+    ))
+
+
+(define add-vertex
+  (lambda (vertex-to-be-processed the-graph)
+    (add-vertex! vertex-to-be-processed (list-copy the-graph))))
+
+
+;; add-vertex!它不是一个递归函数
+;; add-vertex!完全是一个副作用
+;; 返回的是副作用之后的输入的图的地址
+;; 需要控制求值顺序
+;; 先作出这个新的点 再把新的点加进图里
+;; 在制作这个新的点的同时需要:
+;; 用递归的副作用扩充1-dimension-geometry-object-list
+;;           同时扩充0-dimension-geometry-object-list
+;; 程序不应该写成下面这样
+;; 这简直太可怕了 !!!
+(define add-vertex!
+  (lambda (vertex-to-be-processed the-graph)
+    (let ([processed-vertex
+           (let* ([head-of-processed-vertex ((find &apos;:v) vertex-to-be-processed)]
+                  [address-of-processed-vertex  head-of-processed-vertex]
+                  [list-of-abut-edge-to-be-processed
+                   (cdr ((find &apos;:abut-edge-list-representation-for-add-vertex)
+                         vertex-to-be-processed))]
+                  [insert-a-new-maked-edge-to-the-graph-and-return-it-as-abut-edge
+                   ;; 注意: 插入一个边的同时还需要调整这个边指向的点
+                   (lambda (abut-edge-to-be-processed)
+                     (let* ([head-of-new-maked-edge ((find &apos;:e) abut-edge-to-be-processed)]
+                            [address-of-new-maked-edge head-of-new-maked-edge])
+                       (insert-val-to-a-field-of-a-wlist!
+                         (append!
+                           head-of-new-maked-edge
+                           `(:address ,address-of-new-maked-edge)
+                           ((find &apos;:can) abut-edge-to-be-processed)
+                           `(:abut-vertex-list
+                             (:v ,((take 1) ((find &apos;:v) address-of-processed-vertex))
+                                 :address ,address-of-processed-vertex)
+                             (:v ,((take 1) ((find &apos;:abut-vertex-of-this-edge) abut-edge-to-be-processed))
+                                 :address
+                                 ,(let* ;; 去找到地址
+                                      ([name-of-this-vertex
+                                        ((take 1)
+                                         ((find &apos;:abut-vertex-of-this-edge)
+                                          abut-edge-to-be-processed))]
+                                       [address-of-this-vertex
+                                        (letrec
+                                            ([R (lambda (vertex-list-of-the-graph)
+                                                  (cond [(null? vertex-list-of-the-graph)
+                                                         (error &apos;add-vertex!
+                                                           &quot;can not find a vertex in graph&quot; name-of-this-vertex)]
+                                                        [(eq? ((take 1)
+                                                               ((find &apos;:v)
+                                                                (car vertex-list-of-the-graph)))
+                                                              name-of-this-vertex)
+                                                         ((take 1)
+                                                          ((find &apos;:address)
+                                                           (car vertex-list-of-the-graph)))]
+                                                        [else
+                                                         (R (cdr vertex-list-of-the-graph))]))])
+                                          (R (cdr ((find &apos;:0-dimension-geometry-object-list)
+                                                   the-graph))))])
+                                    ;; 在找到的地址里作副作用
+                                    (insert-val-to-a-field-of-a-wlist!
+                                      (append
+                                       ((find &apos;:e) abut-edge-to-be-processed)
+                                       `(:address ,address-of-new-maked-edge))
+                                      &apos;:abut-edge-list address-of-this-vertex)
+                                    ;; 返回地址
+                                    address-of-this-vertex))))
+                         &apos;:1-dimension-geometry-object-list the-graph)
+                       (append
+                        ((find &apos;:e) abut-edge-to-be-processed)
+                        `(:address ,address-of-new-maked-edge))))])
+             ;; make-a-vertex
+             (append!
+               head-of-processed-vertex
+               `(:address ,address-of-processed-vertex)
+               ((find &apos;:can) vertex-to-be-processed)
+               `(:abut-edge-list
+                 ,(map insert-a-new-maked-edge-to-the-graph-and-return-it-as-abut-edge
+                       list-of-abut-edge-to-be-processed))))])
+      (insert-val-to-a-field-of-a-wlist!
+        processed-vertex &apos;:0-dimension-geometry-object-list the-graph)
+      the-graph)))
+;; test:
+;; (add-vertex syntax-example-of-add-vertex
+;;             example-graph)
+
+;; (:type &lt;&lt;graph&gt;&gt;
+;;        :0-dimension-geometry-object-list
+;;   #0=(:v vertex-1 :address #0# :can (:value 111)
+;;        :abut-edge-list
+;;        ((:e edge:1--&gt;2 :address
+;;           #1=(:e edge:1--&gt;2 :address #1# :can
+;;                  (:edge-type black-arrow) :abut-vertex-list
+;;                  (:v vertex-1 :address #0#)
+;;                  (:v vertex-2 :address
+;;                  #2=(:v vertex-2 :address #2# :can
+;;                       (:value 222) :abut-edge-list
+;;                       (:e edge:1--&gt;2 :address
+;;                         #3=(:e edge:1--&gt;2 :address #3# :can
+;;                              (:edge-type red-arrow)
+;;                              :abut-vertex-list
+;;                              (:v vertex-1 :address #0#)
+;;                              (:v vertex-2 :address #2#)))
+;;                       (:e edge:1--&gt;2 :address #1#)
+;;                       (:e edge:2--&gt;3 :address
+;;                         #4=(:e edge:2--&gt;3 :address #4# :can
+;;                              (:edge-type black-arrow)
+;;                              :abut-vertex-list
+;;                              (:v vertex-2 :address #2#)
+;;                              (:v vertex-3 :address
+;;                                #5=(:v vertex-3 :address #5#
+;;                                     :can (:value 333)
+;;                                     :abut-edge-list
+;;                                     (:e edge:1--&gt;3 :address
+;;                                       #6=(:e edge:1--&gt;3
+;;                                            :address #6# :can
+;;                                            (:edge-type
+;;                                              red-arrow)
+;;                                            :abut-vertex-list
+;;                                            (:v vertex-1
+;;                                              :address #0#)
+;;                                            (:v vertex-3
+;;                                              :address #5#)))
+;;                                     (:e edge:1--&gt;3 :address
+;;                                       #7=(:e edge:1--&gt;3
+;;                                            :address #7# :can
+;;                                            (:edge-type
+;;                                              black-arrow)
+;;                                            :abut-vertex-list
+;;                                            (:v vertex-1
+;;                                              :address #0#)
+;;                                            (:v vertex-3
+;;                                              :address #5#)))
+;;                                     (:e edge:2--&gt;3 :address
+;;                                       #4#)
+;;                                     (:e edge:3--&gt;2 :address
+;;                                       #8=(:e edge:3--&gt;2
+;;                                            :address #8# :can
+;;                                            (:edge-type
+;;                                              black-arrow)
+;;                                            :abut-vertex-list
+;;                                            (:v vertex-3
+;;                                              :address #5#)
+;;                                            (:v vertex-2
+;;                                              :address #2#)))))))
+;;                       (:e edge:3--&gt;2 :address #8#)))))
+;;          (:e edge:1--&gt;3 :address #7#)
+;;          (:e edge:1--&gt;2 :address #3#)
+;;          (:e edge:1--&gt;3 :address #6#)))
+;;   #2# #5# :1-dimension-geometry-object-list #6# #3# #7# #1#
+;;   #4# #8#)
+
+#+end_src
+**** 0.03
+#+begin_src scheme :tangle ./lib/basic-functions-for-graph.scm
+;; (define syntax-example-of-add-vertex
+;;   &apos;(:type vertex-representation-for-add-vertex
+
+;;     :v vertex-1
+;;     :can (:value 111)
+
+;;     :abut-edge-list-representation-for-add-vertex
+;;        (:e edge:1--&gt;2
+;;         :can (:edge-type black-arrow)
+;;         :abut-vertex-of-this-edge vertex-2)
+
+;;        (:e edge:1--&gt;3
+;;         :can (:edge-type black-arrow)
+;;         :abut-vertex-of-this-edge vertex-3)
+
+;;        (:e edge:1--&gt;2
+;;         :can (:edge-type red-arrow)
+;;         :abut-vertex-of-this-edge vertex-2)
+
+;;        (:e edge:1--&gt;3
+;;         :can (:edge-type red-arrow)
+;;         :abut-vertex-of-this-edge vertex-3)
+
+;;        ))
+
+;; (define example-graph
+;;   &apos;(:type &lt;&lt;graph&gt;&gt;
+
+
+;;     :0-dimension-geometry-object-list
+
+;;     #2=[:v vertex-2 :address #2#
+;;         :can (:value 222)
+;;         :abut-edge-list
+;;            (:e edge:2--&gt;3 :address #4#)
+;;            (:e edge:3--&gt;2 :address #6#)]
+
+;;     #3=[:v vertex-3 :address #3#
+;;         :can (:value 333)
+;;         :abut-edge-list
+;;            (:e edge:2--&gt;3 :address #4#)
+;;            (:e edge:3--&gt;2 :address #6#)]
+
+
+;;     :1-dimension-geometry-object-list
+
+;;     #4=[:e edge:2--&gt;3 :address #4#
+;;         :can (:edge-type black-arrow)
+;;         :abut-vertex-list
+;;            (:v vertex-2 :address #2#)
+;;            (:v vertex-3 :address #3#)]
+
+;;     #6=[:e edge:3--&gt;2 :address #6#
+;;         :can (:edge-type black-arrow)
+;;         :abut-vertex-list
+;;            (:v vertex-3 :address #3#)
+;;            (:v vertex-2 :address #2#)]
+
+
+;;     ))
+
+
+(define find-vertex-address-in-vertex-list
+  (lambda (name-of-vertex vertex-list-of-the-graph)
+    (cond [(null? vertex-list-of-the-graph)
+           (error &apos;find-vertex-address
+             &quot;can not find a vertex in graph&quot; name-of-vertex)]
+          [(eq? ((take 1) ((find &apos;:v) (car vertex-list-of-the-graph)))
+                name-of-vertex)
+           ((take 1) ((find &apos;:address) (car vertex-list-of-the-graph)))]
+          [else
+           (find-vertex-address-in-vertex-list
+            name-of-vertex
+            (cdr vertex-list-of-the-graph))])))
+
+(define add-vertex
+  (lambda (vertex-to-be-processed the-graph)
+    (add-vertex! vertex-to-be-processed (list-copy the-graph))))
+
+
+;; add-vertex!它不是一个递归函数
+;; 不是递归函数就意味着我可以最明显的平铺直叙的方式把程序先写出来
+;; 也许正是在这种平铺直叙中最容易把程序先写对
+;; 也许正是在这种平铺直叙中最容易找到程序中重复的模式
+;;     把这些重复的模式抽象出来就简化了代码
+
+;; add-vertex!完全是一个副作用
+;; 返回的是副作用之后的输入的图的地址
+
+;; 需要控制求值顺序
+;; 作出这个新的点
+;; [1]把新的点加进0-dimension-geometry-object-list里
+;; 在制作这个新的点的同时需要:
+;; [2]用递归的副作用扩充1-dimension-geometry-object-list
+;; [3]          同时调整0-dimension-geometry-object-list中的其他点
+
+(define add-vertex!
+  (lambda (vertex-to-be-processed the-graph)
+    (let ([list-of-abut-edge-to-be-processed
+           (cdr ((find &apos;:abut-edge-list-representation-for-add-vertex)
+                 vertex-to-be-processed))])
+
+      ;; SIDE-EFFECT:[1]============================================
+      (let* ([head-of-processed-vertex ((find &apos;:v) vertex-to-be-processed)]
+             [address-of-processed-vertex  head-of-processed-vertex])
+        (to-a-field-of-a-wlist--let-us-insert-a-val!
+          &apos;:0-dimension-geometry-object-list the-graph
+          (append!
+            head-of-processed-vertex
+            `(:address ,address-of-processed-vertex)
+            ((find &apos;:can) vertex-to-be-processed)
+            `(:abut-edge-list
+              ,(map
+                ;; SIDE-EFFECT-by-map:[2]==========================================
+                (lambda (abut-edge-to-be-processed)
+                  (let* ([head-of-new-maked-edge ((find &apos;:e) abut-edge-to-be-processed)]
+                         [address-of-new-maked-edge head-of-new-maked-edge])
+                    ;; let*在上面的好处是 这样就又更大的scope 返回值的之后也可能引用到这些绑定
+                    (to-a-field-of-a-wlist--let-us-insert-a-val!
+                      &apos;:1-dimension-geometry-object-list the-graph
+                      (append!
+                        head-of-new-maked-edge
+                        `(:address ,address-of-new-maked-edge)
+                        ((find &apos;:can) abut-edge-to-be-processed)
+                        `(:abut-vertex-list
+                          (:v ,((take 1) ((find &apos;:v) address-of-processed-vertex))
+                              :address ,address-of-processed-vertex)
+                          (:v ,((take 1) ((find &apos;:abut-vertex-of-this-edge) abut-edge-to-be-processed))
+                              :address
+                              ;; SIDE-EFFECT:[3]==========================================
+                              ,(let* ([name-of-this-vertex
+                                       ((take 1)
+                                        ((find &apos;:abut-vertex-of-this-edge)
+                                         abut-edge-to-be-processed))]
+                                      [address-of-this-vertex
+                                       (find-vertex-address-in-vertex-list
+                                        name-of-this-vertex
+                                        (cdr ((find &apos;:0-dimension-geometry-object-list)
+                                              the-graph)))])
+                                 (to-a-field-of-a-wlist--let-us-insert-a-val!
+                                   &apos;:abut-edge-list address-of-this-vertex
+                                   (append
+                                    ((find &apos;:e) abut-edge-to-be-processed)
+                                    `(:address ,address-of-new-maked-edge)))
+                                 ;; RETURN-VAL:[3]--------------------------------
+                                 address-of-this-vertex)))))
+                    ;; RETURN-VAL-by-map:[2]--------------------------------
+                    (append
+                     ((find &apos;:e) abut-edge-to-be-processed)
+                     `(:address ,address-of-new-maked-edge))))
+                    list-of-abut-edge-to-be-processed)))))
+
+      ;; RETURN-VAL:[1]--------------------------------
+      the-graph)))
+
+
+;; test:
+;; (add-vertex syntax-example-of-add-vertex
+;;             example-graph)
+
+
+;; (:type &lt;&lt;graph&gt;&gt; :0-dimension-geometry-object-list
+;;        #0=(:v vertex-1 :address #0# :can (:value 111)
+;;               :abut-edge-list
+;;               ((:e edge:1--&gt;2 :address
+;;                    #1=(:e edge:1--&gt;2 :address #1# :can
+;;                           (:edge-type black-arrow) :abut-vertex-list
+;;                           (:v vertex-1 :address #0#)
+;;                           (:v vertex-2 :address
+;;                               #2=(:v vertex-2 :address #2# :can
+;;                                      (:value 222) :abut-edge-list
+;;                                      (:e edge:1--&gt;2 :address
+;;                                          #3=(:e edge:1--&gt;2 :address #3# :can
+;;                                                 (:edge-type red-arrow)
+;;                                                 :abut-vertex-list
+;;                                                 (:v vertex-1 :address #0#)
+;;                                                 (:v vertex-2 :address #2#)))
+;;                                      (:e edge:1--&gt;2 :address #1#)
+;;                                      (:e edge:2--&gt;3 :address
+;;                                          #4=(:e edge:2--&gt;3 :address #4# :can
+;;                                                 (:edge-type black-arrow)
+;;                                                 :abut-vertex-list
+;;                                                 (:v vertex-2 :address #2#)
+;;                                                 (:v vertex-3 :address
+;;                                                     #5=(:v vertex-3 :address #5#
+;;                                                            :can (:value 333)
+;;                                                            :abut-edge-list
+;;                                                            (:e edge:1--&gt;3 :address
+;;                                                                #6=(:e edge:1--&gt;3
+;;                                                                       :address #6# :can
+;;                                                                       (:edge-type
+;;                                                                        red-arrow)
+;;                                                                       :abut-vertex-list
+;;                                                                       (:v vertex-1
+;;                                                                           :address #0#)
+;;                                                                       (:v vertex-3
+;;                                                                           :address #5#)))
+;;                                                            (:e edge:1--&gt;3 :address
+;;                                                                #7=(:e edge:1--&gt;3
+;;                                                                       :address #7# :can
+;;                                                                       (:edge-type
+;;                                                                        black-arrow)
+;;                                                                       :abut-vertex-list
+;;                                                                       (:v vertex-1
+;;                                                                           :address #0#)
+;;                                                                       (:v vertex-3
+;;                                                                           :address #5#)))
+;;                                                            (:e edge:2--&gt;3 :address
+;;                                                                #4#)
+;;                                                            (:e edge:3--&gt;2 :address
+;;                                                                #8=(:e edge:3--&gt;2
+;;                                                                       :address #8# :can
+;;                                                                       (:edge-type
+;;                                                                        black-arrow)
+;;                                                                       :abut-vertex-list
+;;                                                                       (:v vertex-3
+;;                                                                           :address #5#)
+;;                                                                       (:v vertex-2
+;;                                                                           :address #2#)))))))
+;;                                      (:e edge:3--&gt;2 :address #8#)))))
+;;                (:e edge:1--&gt;3 :address #7#)
+;;                (:e edge:1--&gt;2 :address #3#)
+;;                (:e edge:1--&gt;3 :address #6#)))
+;;        #2# #5# :1-dimension-geometry-object-list #6# #3# #7# #1#
+;;        #4# #8#)
+
+#+end_src
+*** note about add-vertex
+- k :: 让我们来总结一下上面作副作用的方法
+       看看我们是不是能够提取出来一种更具体的代码风格
+- x :: 记得在写list-copy的时候我们发现了一个可以改进scheme的地方
+       我想问的是 这种改进能不能利用我们上面所使用的风格来实现??
+       并且 如何实现编译器才能以明显地方式使用地址
+*** add-edge
+#+begin_src scheme :tangle ./lib/basic-functions-for-graph.scm
+;; (define syntax-example-of-add-edge
+;;   &apos;(:type edge-representation-for-add-edge
+
+;;     :e kkk-edge
+;;     :can (:value kkk)
+
+;;     :abut-vertex-list-representation-for-add-edge
+;;        (:v vertex-2)
+;;        (:v vertex-3)
+
+;;        ))
+
+;; (define example-graph
+;;   &apos;(:type &lt;&lt;graph&gt;&gt;
+
+;;     :0-dimension-geometry-object-list
+
+;;     #2=[:v vertex-2 :address #2#
+;;         :can (:value 222)
+;;         :abut-edge-list
+;;            (:e edge:2--&gt;3 :address #4#)
+;;            (:e edge:3--&gt;2 :address #6#)]
+
+;;     #3=[:v vertex-3 :address #3#
+;;         :can (:value 333)
+;;         :abut-edge-list
+;;            (:e edge:2--&gt;3 :address #4#)
+;;            (:e edge:3--&gt;2 :address #6#)]
+
+
+;;     :1-dimension-geometry-object-list
+
+;;     #4=[:e edge:2--&gt;3 :address #4#
+;;         :can (:edge-type black-arrow)
+;;         :abut-vertex-list
+;;            (:v vertex-2 :address #2#)
+;;            (:v vertex-3 :address #3#)]
+
+;;     #6=[:e edge:3--&gt;2 :address #6#
+;;         :can (:edge-type black-arrow)
+;;         :abut-vertex-list
+;;            (:v vertex-3 :address #3#)
+;;            (:v vertex-2 :address #2#)]
+
+
+;;     ))
+
+(define add-edge
+  (lambda (edge-to-be-processed the-graph)
+    (add-edge! edge-to-be-processed (list-copy the-graph))))
+
+;; 比add-vertex简单多了
+;; 构造新边
+;; [1]加到:1-dimension-geometry-object-list中
+;; 构造新边的过程中需要
+;; [2]调整:0-dimension-geometry-object-list中的两个点
+(define add-edge!
+  (lambda (edge-to-be-processed the-graph)
+    (let ([list-of-abut-vertex-to-be-processed
+           (cdr ((find &apos;:abut-vertex-list-representation-for-add-edge)
+                 edge-to-be-processed))]
+          [vertex-list-of-the-graph
+           (cdr
+            ((find &apos;:0-dimension-geometry-object-list)
+             the-graph))])
+
+      ;; SIDE-EFFECT:[1]==========================================
+      (let* ([head-of-processed-edge ((find &apos;:e) edge-to-be-processed)]
+             [address-of-processed-edge head-of-processed-edge]
+             [name-of-vertex-1
+              ((take 1)
+               (car list-of-abut-vertex-to-be-processed))]
+             [address-of-vertex-1
+              (find-vertex-address-in-vertex-list
+               name-of-vertex-1
+               vertex-list-of-the-graph)]
+             [name-of-vertex-2
+              ((take 1)
+               (cadr list-of-abut-vertex-to-be-processed))]
+             [address-of-vertex-2
+              (find-vertex-address-in-vertex-list
+               name-of-vertex-2
+               vertex-list-of-the-graph)])
+        (to-a-field-of-a-wlist--let-us-insert-a-val!
+          &apos;:1-dimension-geometry-object-list the-graph
+          (append!
+            head-of-processed-edge
+            `(:address ,address-of-processed-edge)
+            ((find &apos;:can) edge-to-be-processed)
+            `(:abut-vertex-list
+              (:v ,name-of-vertex-1
+                  :address
+                  ,(let ([address-of-this-vertex address-of-vertex-1])
+                     ;; SIDE-EFFECT:[2](1)==============================
+                     (to-a-field-of-a-wlist--let-us-insert-a-val!
+                       &apos;:abut-edge-list address-of-this-vertex
+                       (append
+                        ((find &apos;:e) edge-to-be-processed)
+                        `(:address ,address-of-processed-edge)))
+                     ;; RETURN-VAL:[2](1)--------------------------------
+                     address-of-this-vertex))
+              (:v ,name-of-vertex-2
+                  :address
+                  ,(let ([address-of-this-vertex address-of-vertex-2])
+                     ;; SIDE-EFFECT:[2](2)==============================
+                     (to-a-field-of-a-wlist--let-us-insert-a-val!
+                       &apos;:abut-edge-list address-of-this-vertex
+                       (append
+                        ((find &apos;:e) edge-to-be-processed)
+                        `(:address ,address-of-processed-edge)))
+                     ;; RETURN-VAL:[2](2)--------------------------------
+                     address-of-this-vertex)))))))
+
+    ;; RETURN-VAL:[1]--------------------------------
+    the-graph))
+
+;; test:
+;; (add-edge syntax-example-of-add-edge
+;;           example-graph)
+
+;; (:type
+;;  &lt;&lt;graph&gt;&gt;
+;;  :0-dimension-geometry-object-list
+;;  #0=(:v vertex-2 :address #0# :can (:value 222)
+;;         :abut-edge-list
+;;         (:e kkk-edge :address
+;;             #1=(:e kkk-edge :address #1# :can (:value kkk)
+;;                    :abut-vertex-list (:v vertex-2 :address #0#)
+;;                    (:v vertex-3 :address
+;;                        #2=(:v vertex-3 :address #2# :can
+;;                               (:value 333) :abut-edge-list
+;;                               (:e kkk-edge :address #1#)
+;;                               (:e edge:2--&gt;3 :address
+;;                                   #3=(:e edge:2--&gt;3 :address #3# :can
+;;                                          (:edge-type black-arrow)
+;;                                          :abut-vertex-list
+;;                                          (:v vertex-2 :address #0#)
+;;                                          (:v vertex-3 :address #2#)))
+;;                               (:e edge:3--&gt;2 :address
+;;                                   #4=(:e edge:3--&gt;2 :address #4# :can
+;;                                          (:edge-type black-arrow)
+;;                                          :abut-vertex-list
+;;                                          (:v vertex-3 :address #2#)
+;;                                          (:v vertex-2 :address #0#)))))))
+;;         (:e edge:2--&gt;3 :address #3#)
+;;         (:e edge:3--&gt;2 :address #4#))
+;;  #2# :1-dimension-geometry-object-list #1# #3# #4#)
+#+end_src
+*** - x :: k
+- x :: k 我感到很疲惫
+- k :: 朋友
+       你明白我们对真理的追求
+       还有我们对自然的探索注定是一门苦差事
+       需要探索的总比已经掌握的多
+       你需要更多的勇气和信念
+       先去看看别的有趣的语言休息一下
+       再回来吧
+       请不要让你的疲倦和软弱感染digrap的设计
+*** &gt;&lt; delete-vertex
+ :tangle ./lib/basic-functions-for-graph.scm
+#+begin_src scheme
+
+#+end_src
+*** &gt;&lt; delete-edge
+ :tangle ./lib/basic-functions-for-graph.scm
+#+begin_src scheme
+
+#+end_src
+** syntax of directed-graph-processing language
+*** design the syntax
+1. 使用sexp作为基础
+   单纯的是因为这样语法分析就很方便
+2. 在语法的设计上我决定大量的利用树
+   因为树是可以方便的用sexp来表达的
+   而sexp是很容易被处理的
+*** 关于语法的递归定义
+用我的语法描述同一个图的方式显然不唯一
+所以不能用归纳定义良好地定义 然后再被递归函数处理
+对图的处理将是那些进行副作用的基本有向图操作
+还有ζ-cal
+*** what is needed?
+**** by daedalus
+1. 通过描述一个只有根节点被标记了的有向树
+   并描述这些树的节点之间的另外的有向边的连接关系
+   来让机器初始化一个连通度更高的有向图
+2. 被标记了的节点是这个图的入口
+   我可以沿着有向边或逆着有向边行走以遍历这个图
+   以这种遍历方式为基础我可以实现call-by-need
+**** &gt;&lt; by inference-rules
+1. 首先是对inference-rules的正确理解
+2. 需要不断的向一个有向图中引入节点
+   新引入的节点有可能以原图中的节点为父节点
+   或者新引入的节点是一个孤立的点
+   等等
+3. 必须有一个良好的对有向边的标记系统
+   因为每个inference-rule的一次出现都必须被独立标记
+**** by cayley-graph
+1. why not use cayley-graph to model a group?
+   人们以前为什么没有这样做过?
+2. 惰性
+   因为有趣的cayley-graph常常是无穷的
+   所以我必须实现一种对图的惰性构造
+**** category theory
+范畴论中的论证与实现都是在用一些图而已
+而代数化的理解范畴论更是能联系起来更多的问题
+**** beyond the needs
+1. 我的有向图处理语言的适用性必须足够地广泛
+   重要的是
+   在我的语言内要同时保证
+   对上面所有这些问题的解法
+   都可以用简明的语法描述给机器听
+   如果成功了那么我的语言就一定还能适用到一些我现在还没想到的地方
+2. 也许需要同时实现对有向图的各种表示
+   比如就图之间的同构这种拓扑性质而言
+   可能需要特殊的对图的表示
+3. 也许实现各种不同的表示之间的快速地同构变换
+   还要维护对一个图的多种表示同时存在的情形
+   如果同构变换的速度不够快的话
+   + 为了作出良好的判断
+     我需要算法分析的知识
+   这时可能就要接受两种表示之间的差异
+   让一个图的多种表示渐进地改变
+   如果真是这样那实现起来就相当复杂了
+**** why need?
+1. 使用有向图处理语言
+   而不是字符串或列表处理语言
+   可能速度会变慢
+   但是这使编程者对代码的理解更加清晰
+   在这方面复杂性的降低所带来的好处
+   完全可以弥补速度变慢所带来的不足
+2. 当使用=α=这种概念来处理约束变元的时候
+   实现起来出现了困难
+   其实就已经说明这种想法错了
+   而应该改用更清晰的方法来实现所希望的特性
+   即使用有向图
+3. 当被引入的关系是等价关系时
+   比如=β=
+   与其把这种引入理解为
+   对更高一层次的字符串的集合的归纳定义
+   还不如直接把等价关系理解为分类
+   然后用与分类有关的算法来实现这些东西也许会好些
+   + 算法分析的知识变地越来约迫切了
+   这里能用图论来理解吗?
+   能
+   等价关系就是以归纳定义树为基础
+   一个后继型关系所成的有向图中的无向路
+4. 当被引入的关系是由类后继关系生成的偏序关系时
+   比如-β-&gt;为-sβ-&gt;所生成
+   与其把这种引入理解为
+   对更高一层次的字符串的集合的归纳定义
+   还不如直接把后继关系理解为有向图
+   这样才是自然的
+5. 实现一个形式理论的方式如果和最自然的理解方式相一致
+   那当然是最好的
+6. 对一个字符串的集合的归纳定义
+   其实想定义的是树
+   每个被认为是元素的表达式其实都是树
+   只不过只有叶节点被标记了
+   var ::= v | var&apos;
+   term ::= var | (term term) | (λ var . term)
+   就是典型的例子
+   归纳定义的字符串的集合的时候所使用的括号``()&apos;&apos;
+   其实是为了形成树的语义
+   即 如果直接用树来定义term就没必要使用括号了
+   但是实践中
+   人必须能告诉机器应该怎么作
+   因此想要在这里省略括号而形成更适合于人类的理解
+   人就发现还是得使用括号
+   因为sexp作为语法已经很简明了
+
+*** init a graph
+**** design
+现在明白类似javascript的alist处理语言的好处了
+在我将设计的类javascript语言中
+&gt;&lt; 可以用与约定来区分key的书写方式
+大写开头的是被约定成变元好还是被约定成函数好呢???
+别的语言是如何处理这个问题的??? 区分吗???
+#+begin_src scheme
+([:v :can]
+      ([:v :can]
+            ([:e :v :can]
+                  ([:v :can])
+                  ([:e :v])))
+      ([:e :v :can]
+            ([:e :v :can])))
+
+
+λx.xx
+(&lt;graph&gt;
+ ([:v λ]
+     ([:e --&gt; :v :can &lt;-- λ])
+     ([:e --&gt; :v :can &lt;-- λ])))
+
+
+对与没有出现:v :e 的地方 或者其后是空值的地方
+当约定了默认值时就使用默认值
+如果没有规定默认值就使用无名的点或边
+:e --&gt;在这里可以被认为是默认的所以有:
+
+(&lt;graph&gt;
+ (:default (:e --&gt;))
+ ([:v λ]
+     ([:v :can &lt;-- λ])
+     ([:v :can &lt;-- λ])))
+
+
+λx.x(λx.xx)
+
+(λ (x)
+  (x (λ (x)
+       (x x))))
+(&lt;graph&gt;
+ (:default (:e --&gt;))
+ ([:v λ]
+     ([:v :can &lt;-- λ])
+     ([:v λ]
+        ([:v :can &lt;-- λ])
+        ([:v :can &lt;-- λ]))))
+
+下面这个就是另外一个图了
+λx.x(λy.yx)
+(&lt;graph&gt;
+ (:default (:e --&gt;))
+ ([:v λ]
+    ([:v :can &lt;-- λ])
+    ([:v λ]
+       ([:v :can &lt;-- λ])
+       ([:v :can &lt;-- &lt;-- λ]))))
+
+
+
+使用有向路可以以一点为基础来指出另一点的位置
+使用有向树可以以一点为基础来指出另外很多点的位置
+注意: 当允许边和点重名时 就有可能出现(语义上)完全不能区分的点或边
+比如在对称性很强的图中就是这样
+#+end_src
+**** code
+这个compiler的将以简单的方式工作
+并且其行为将符合人们的直觉
+即 先构建一个树 然后再作连接
+
+它只使用到add-vertex和add-edge
+#+begin_src scheme
+
+λx.x(λy.yx)
+(&lt;graph&gt;
+ (:default (:e --&gt;))
+ ([:v λ]
+     ([:v :can &lt;-- λ])
+     ([:v λ]
+        ([:v :can &lt;-- λ])
+        ([:v :can &lt;-- &lt;-- λ]))))
+
+;; 树代表支撑树
+;; 支撑树的叶子是递归函数的基本步骤
+;; 节点被编译成``对点的添加&apos;&apos; 此时需要子节点和边的信息
+;; :can中的数据被编译成``对边的添加&apos;&apos;
+;; ``对边的添加&apos;&apos;被作为副作用在支撑树构造完成之后进行
+;; 输入的例子:
+;; ([:v λ]
+;;    ([:v :can &lt;-- λ])
+;;    ([:v λ]
+;;       ([:v :can &lt;-- λ])
+;;       ([:v :can &lt;-- &lt;-- λ])))
+;; 返回一个制作好的图???
+;; 还是返回编译好的生成图的代码???
+;; 因为那些节点是无名的 或者是重名的
+;; 所以就算有通过描述两个点的 对边的简单添加
+;; 我还是没办法写出下面的初始化
+(define init-graph
+  (lambda (spanning-tree)
+    ;; 每次递归处理一个点和它的子节点
+    (let ([vertex (car spanning-tree)]
+          [subvertex-list (cdr spanning-tree)])
+      ()
+      ;; 下面是递归调用
+      (map init-graph subvertex-list)
+      ;; 下面是返回值
+      ()
+      )))
+#+end_src
+*** - k :: x, digrap是否适合用来实现和研究各种图论算法???
+- x :: 我也不知道
+       因为我现在还不知道digrap是什么样的呢
+*** &gt;&lt;&gt;&lt;&gt;&lt; use small graph to build biger graph
+*** &gt;&lt;&gt;&lt;&gt;&lt; tree-instruction
+to use a tree like instruction
+to tell the machine how to change the graph it stored
+** ζ-cal
+* &gt;&lt; to design a new language
+- y :: 对语言学的不断学习也许在于
+       希望我的表达能够尽量紧跟我的思想
+       因为没有什么比有一些想法而难以表达出来更令人痛苦的了
+       尤其是学习一门外语(程序语言)的时候
+       这种表达与思想之间的脱节是最痛苦的
+       同样也没有很多事情是比设计一个语言更有趣的了
+       当你有能力作出这样的设计的时候
+       你一定会产生很多新的想法
+       因为对思想的表达影响思想本身
+- x :: 但是说我们要设计一个新的语言是什么意思??
+       让我们来更细致地分析一下这个任务
+- y :: 我们可以通过让我们的所指变得狭隘来具体化我们的表达
+- x :: 但是我们不要使用传统的定义一个程序语言的方式
+       看看我们能有什么有趣的新想法
+- y :: 好的
+       我知道有很多传统的描述程序语言的性状的术语
+       比如 函数式 面向对象 模块系统 类型推到系统 等等
+       我们要暂时抛弃这些术语
+       而试图回归问题的本质对吗?
+- x :: 没错
+       并且我想最本质的地方可以没有一个中心
+       让我们以``去中心化&apos;&apos;的方式尽可能多的描述我们想要寻找的源头
+       比如 说程序语言的产生在于
+       1- 为了使用计算机来计算某些数学问题
+       &gt;&lt;&gt;&lt;&gt;&lt;
+
+-----------------------------------------------------
+scheme中没有帮助人们形成新的数据结构的机制
+scheme中所有的复杂数据结构都是用向量与链表来实现的
+这就决定了scheme不适合用来进行一般的编程工作
+而是适合作为一个虚拟机
+或者简单的说scheme适合作为编译器的后端
+
+为了让scheme真正适合作为编译器的后端
+它必须有更大的能力去操作底层的东西
+
+当scheme成为很多不同高级语言的编译器的后端时
+这些编译器所实现的语言中的函数应该能自由的互相调用
+&gt;&lt; 如何实现这一点???
+着当然就是要统一各个编译器与scheme的接口
+如何设计这些接口???
+
+下面约定一些在scheme中用list来定义新的数据结构的方式
+这些标准可能随时需要修改
+1. 把&lt;type&gt;放在列表头来表示数据类型
+2. 在形成了多个语言层次的程序中
+   不同的尖括号层数可以代表把这类数据处理到的不同阶段
+   尖括号越多就越接近底层
+   比如:
+   &lt;graph&gt;可以代表digrap中对图的表示
+   &lt;&lt;graph&gt;&gt;可以代表被digrap的编译器处理之后的 scheme中的图的表示
+3. 只要让reader和writer特殊的处理这个列表中的第一个元素
+   就可以在这个元素中储存更多的信息
+   比如可以把谓词的地址储存在这里等等
+
+更好的方式是直接利用wordy-list这个数据结构
+约定一个wordy-list中的:type这个key后面跟着对类型的描述就可以了
+这样对类型的描述就没有任何的限制了
+------------------------------------------------------
+
+- y :: 使用一个统一的数据结构(比如lisp的列表)
+       减少了理解整个系统工作方式的负担
+       但是会增加人阅读代码时的认知负担
+- x :: 没错
+       我想``认知负担&apos;&apos;这个名词很恰当地表达处理
+       在使用scheme的时候我的某些感受
+
+- 关于语法设计
+  我已经拥有的是一种计算模型
+  而这种计算模型以什么样的方式(语法)被表现出来都是没有关系的
+  当然应该设计出精简而易读而易于处理的语法
+
+- 语义的设计
+  language-kernelisation as math-formalisation
+  但是以什么方式??
+  寻找所实现的语言的本质?
+  实现一个编译器的中间语言?
+  or both?
+
+- 关于标准化
+  create a standard approach to common problems
+  like concurrency, threads and os calling
+
+- 关于对底层操作的保护
+  有人认为作为一个程序员
+  你在什么抽象层级工作 你就理解这一层次的基础结构就好
+  但是我不这么认为
+  我必须在没一层次都打开通向更低层次的通道
+  当拥有统一的调用和通信接口时
+  一段代码可以用不同的语言写成
+  用一些标记语言就可以把代码块解析出来
+  因为这些不同的mode只不过是不同的编译器或解释器而已
+
+- 关于类型系统与面向对象
+  1) 类型系统的产生在于:
+     你发现你在写一个函数的时候经常先去设计这个函数的类型
+     先把这个函数的参数与返回值的类型写出来作为注释
+     然后你想 何不把这种东西加入到编译器中呢?
+     这样编译器就会更高效
+     同时报错系统何以实现地更加完善
+  2) 如果类似的去猜想面向对象的产生的话 那么就是:
+     你发现每次你实现数据类型的时候
+     你都先去设计这个数据类型的接口
+     你把它们写成注释
+     然后你想 何不把这些东西加到编译器中呢?
+     于是以后你就同时定义数据类型与接口
+     程序的模块化更强了
+     + 节约了命名空间 程序也更好读了
+  可见一个是以函数为中心 一个是以数据结构为中心
+  去掉堂皇的部分之后发现这两个都是好主意
+  这两种东西能同时存在吗???
+</pre>
+</body>
+</html>

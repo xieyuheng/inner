@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>person/martin-löf/an-intuitionistic-theory-of-types.org</title>
+</head>
+<body>
+<pre>#+title: an intuitionistic theory of types
+
+- 1972
+
+* intro
+
+* 1. informal explanation of the basic concepts
+
+*** 1.1 mathematical objects and their types
+
+    - objects are always with their types
+
+    - a type is defined by prescribing
+      what we have to do
+      in order to construct an object of that type.
+      [as Bishop&apos;s set]
+
+      - x -
+        not necessarily be able to write a predicate
+        to decide whether an arbitrary object
+        is of that type?
+
+*** 1.2 propositions and proofs
+
+    - proposition is type
+      thus,
+      a proposition is defined by prescribing
+      how we are allowed to prove it.
+      a proposition is true intuitionistically
+      if there is a proof of it.
+
+*** 1.3 cartesian product of a family of types
+
+    - dependent arrow
+
+    #+begin_src cicada
+    B: (A) -&gt; type
+    { (x: A) -&gt; B(x) } : type
+
+    b(x: A) : B(x)
+    b(x: A) = ...
+
+    a: A
+    --------
+    b(a) : B(a)
+    #+end_src
+
+*** [note] schema
+
+    - the author use the term schema to specify definition,
+      which may be understood as
+      general patterns of function body.
+
+    - whenever there are multiple equations in the schema,
+      branching in the function body must be used
+      for example : (case) (cond) (match)
+
+*** 1.4 disjoint union of a family of types
+
+    - dependent pair
+
+    #+begin_src jojo
+    (* (: :x A) :x B)
+    (: C (-&gt; (* (: :x A) :x B) -- Type))
+
+    (note
+      this C is to demonstrate
+      how should we construct the elements of a type
+      which dependents on (* (: :x A) :x B))
+
+    (: d (-&gt; (: :x A) (: :y :x B) -- (* :x :y) C))
+    (+fun f (-&gt; (* (: :x A) (: :y :x B)) -- (* :x :y) C)
+      tuple-spread d)
+    (+fun f (-&gt; (: (* :x :y) (* A :x B)) -- (* :x :y) C)
+      tuple-spread d)
+
+    (+fun f (-&gt; (* (: :x A) (: :y :x B)) -- (* :x :y) C)
+      (* :x :y) {d} E)
+
+    (+fun E (-&gt; (suppose (: :A Type) (: :B (-&gt; :A -- Type)))
+                (* (: :x :A) (: :y :x :B))
+                (: :f (-&gt; (: :x :A) (: :y :x :B) -- (* :x :y) :C))
+             -- (* :x :y) :C)
+      tuple-spread :f)
+
+    (+fun p (note left projection)
+      (-&gt; (^ (: :A Type) (: :B (-&gt; :A -- Type)))
+          (* (: :x :A) (: :y :x :B))
+       -- (: :x :A)))
+
+    (+fun q (note right projection)
+      (-&gt; (^ (: :A Type) (: :B (-&gt; :A -- Type)))
+          (* (: :x :A) (: :y :x :B))
+       -- (: :y :x :B)))
+
+    (note example
+      R for real number
+      (= R [(: :x (-&gt; Z -- Q))
+            (-&gt; (: :m :n Z)
+                -- :m :n add :x :m :x sub abs
+                2 :m neg power LT)]))
+    #+end_src
+
+*** 1.5 disjoint union of two types
+
+    - disjoint
+      thus can not be dependent
+
+    #+begin_src jojo
+    (+ A B)
+    (: C (-&gt; (+ A B) -- Type))
+
+    (: d (-&gt; (: :x A) -- :x C))
+    (: e (-&gt; (: :y B) -- :y C))
+    (+fun f (-&gt; (: :z (+ A B)) -- :z C)
+      (case :z
+        A [:z d]
+        B [:z e]))
+
+    (+fun f (-&gt; (: :z (+ A B)) -- :z C)
+      :z {d} {e} D)
+
+    (+fun D (-&gt; (: :z (+ A B))
+                (: :d (-&gt; (: :x A) -- :x C))
+                (: :e (-&gt; (: :y B) -- :y C))
+             -- :z C)
+      (case :z
+        A [:z :d]
+        B [:z :e]))
+    #+end_src
+
+*** 1.6 Finite types
+
+    #+begin_src jojo
+    :n Finite
+    3  Finite
+    (: C (-&gt; 3 Finite -- Type))
+
+    (: c1 1 C)
+    (: c2 2 C)
+    (: c3 3 C)
+    (+fun f (-&gt; (: :x 3 Finite) -- :x C)
+      (cond [:x 1 eq?] c1
+            [:x 2 eq?] c2
+            [:x 3 eq?] c3))
+
+    (note
+      (= [0 Finite] Falsehood)
+      (= [1 Finite] Truth))
+    #+end_src
+
+*** 1.7 Natural numbers
+
+    #+begin_src jojo
+    (+type N : Type
+      zero : N
+      succ : (-&gt; (. .ante N) -- N))
+
+    (: C (-&gt; N -- Type))
+
+    (: d zero C)
+    (: e (-&gt; (: :n N) :n C -- :n succ C))
+
+    (+fun f (-&gt; (: :x N) -- :x C)
+      (match :x
+        zero d
+        succ [:x :x .ante f e]))
+
+    (+fun f (-&gt; (: :x N) -- :x C)
+      :x d {e} R)
+
+    (+fun R (-&gt; (: :x N)
+                (: :d zero C)
+                (: :e (-&gt; (: :n N) :n C -- :n succ N))
+             -- :x C)
+      (match :x
+        zero :d
+        succ [:x .ante, :x .ante :d {:e} R, :e]))
+
+    (+fun R (-&gt; zero C
+                (-&gt; (: :n N) :n C -- :n succ N)
+                (: :x N)
+                -- :x C)
+      (match :x
+        zero [drop]
+        succ [tuck :x .ante R swap :x .ante swap apply]))
+    #+end_src
+
+*** [note] type constructor
+
+    - x -
+      when defining a type-constructor,
+      this type-constructor can be used to form dependent arrow,
+      the author also shows carefully
+      how to construct functions
+      whose type is this dependent arrow.
+
+      why?
+
+*** 1.8 Reflection principle
+
+    - x -
+      this section is very important,
+      for it shows what the author intend to achieve.
+
+      and it shows that the use of type valued function
+      is really flexible.
+
+      and the so called Reflection principle
+      is simply a closure principle.
+
+    #+begin_src jojo
+    (note
+      equality between natural numbers)
+
+    (+fun E (-&gt; [:m :n : N] -- Universe)
+      (match [:m :n]
+        [zero zero] Truth
+        [zero succ] Falsehood
+        [succ zero] Falsehood
+        [succ succ] [:m .ante :n .ante E]))
+
+    (note
+      the Universe seems specially ad hoc here
+      because this equality is treated in a better way
+      in the published paper)
+
+    :x : N -&gt; :x F
+
+    (+fun F
+      : (-&gt; :x : N -- Type)
+      (match :x
+        zero N
+        succ (-&gt; :x.pre F -- N)))
+
+    zero F == N
+    zero succ F == (-&gt; N -- N)
+    zero succ succ F == (-&gt; (-&gt; N -- N) -- N)
+    ...
+    #+end_src
+
+*** &gt;&lt; 1.9 Girard&apos;s paradox
+
+    #+begin_src jojo
+
+    #+end_src
+
+* &gt;&lt; 2 formalization of an intuitionistic theory of types
+
+* &gt;&lt; 3 reduction of some other formal theories to the theory of type
+
+* &gt;&lt; 4 the normalization theorem and its consequences
+</pre>
+</body>
+</html>

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>lang/cicada/cicada-language/open/cicada-vm-in-js.org</title>
+</head>
+<body>
+<pre>* 題解
+
+  - cicada-vm-in-js
+
+* 討論 &lt;2016-02-02&gt;
+
+  - x ::
+       explainer 是否要保存在 jojo 中呢
+       形如
+       #+begin_src js
+       def (&quot;little-test-number&quot;, &quot;integer&quot;, &quot;integer&quot;, 4);
+
+       def (&quot;square&quot;, &quot;-&gt;&quot;, null,
+            [ new JO (primitive_function_explainer, name(&quot;dup&quot;)),
+              new JO (primitive_function_explainer, name(&quot;mul&quot;)),
+              new JO (primitive_function_explainer, name(&quot;end&quot;)),
+            ]
+           );
+
+       def(&quot;little-test&quot;, &quot;-&gt;&quot;, null,
+           [ new JO (variable_explainer, name(&quot;little-test-number&quot;)),
+             new JO (function_explainer, name(&quot;square&quot;)),
+             new JO (primitive_function_explainer, name(&quot;simple-wirte&quot;)),
+             new JO (primitive_function_explainer, name(&quot;bye&quot;)),
+           ]
+          );
+       #+end_src
+       特點是
+       浪費內存
+       編譯時需要把 explainer 安排好
+       不同的 explainer 可以用來解釋不同的 literal
+       這樣各種數據類型在 jojo 中的出現就解決了
+
+  - k ::
+       上面這種感覺類似 Subroutine Threaded Code (STC)
+       而還可以使用古典的 Indirect Threaded Code (ITC)
+       此時 jojo 中不保存 explainer
+       而是單純保存 name
+
+  - x ::
+       對於
+       上面的 三種簡單的 explainer 的情形
+       不保存 explainer 算是很優雅的解法了
+       但是當有 literal 的時候
+       也就是
+       不是從名字來找到數據的時候
+       就不好處理了
+
+  - k ::
+       此時可以像以前一樣去實現特殊的 primitive_function
+       這些 primitive_function 把 return_stack 後面的數據作爲 literal
+
+  - x ::
+       這次我選擇後 explainer 在 jojo 中的處理方式
+       並把這些 explainer 稱作 instruction
+
+  -----------------------------
+
+  - x ::
+       我發現
+       如果想要使用 instruction
+       那麼 每個 instruction data 所構成都 jo
+       在有 eval 的同時還要有 type-eval
+       設計底層語義 就是設計 instruction
+       這樣就是說每個底層語義 都要考慮到其 類型意義
+
+  - k ::
+       我想所謂的對 instruction 的擴展可能是虛有的性質
+       可能所設計的是一套固定的簡單的 instruction 而已
+       並不能很好地在如此底層的語義上進行擴展
+
+  - x ::
+       在這個層次上 每次擴展的時候都要考慮類型 確實是必要的
+       但是 我們先不考慮將來的擴展
+       而考慮現在的模式匹配語義
+
+  - k ::
+       首先是 eval 然後是 type-eval
+
+  - x ::
+       兩種 eval 方式
+       就是對同樣的結構化的數據的兩種處理方式
+       完全是可以想像的
+       jojo 的兩種 eval 很簡單
+       重要的是 majo
+       首先 eval
+       unify 前項與棧中值 以選擇
+       然後把選好的 jojo 入返回棧
+       其次 type-eval
+       每個分支分別處理
+       每次處理就是
+    1. 把 computed antecedent 入棧
+       用 declared antecedent 匹配它 [unify 它]
+    2. 然後看
+       computed succedent 是否可以和
+       declared succedent unify
+    3. 注意每次 處理 &apos;computed&apos; 的時候
+       都需要遞歸調用 type-eval
+    4. 最後也許需要
+       將分支情形 &apos;加&apos; 到一起
+       然後做完全性檢查
+
+* &lt;2016-02-08&gt;
+
+  - x ::
+       local_variable_map 應該是在運行時生成的
+       我想到的處理方式是
+       在 return_point 中做一個 local_variable_map field
+       這樣就能 return_point 就是運行時用 jojo 生成的
+       這樣就能達到效果了
+       但是在 pattern match 的過程中還需要 undo binds
+       而目前的這種設計是不利於 undo binds
+       我還不知道如何處理 undo binds
+       我能想到的方法之一是使用 undo record
+
+  - k ::
+       回憶之前的 little-prolog
+       undo 就是 clear-determinacy
+       用一個 undo-record 就能實現了
+       只要在 每次 unification 失敗之後
+       apply undo-record 就行了
+
+  - x ::
+       但是 這個 local_variable_map 不應該跟隨 r
+       而應該跟隨 每個 local_variable
+       這樣返回 local_variable 的時候 就能利用 native GC 來處理了
+       也就是說每個 local_variable 都帶有一個
+       local_variable_map 來告知應該在哪裏找到其值
+
+  - k ::
+       但是重要的是要能知道約束變元之間的等同關係
+       其實就是對 scope 的處理
+       我們之前使用的　一個 r 一個 scope 的方式
+       並不能滿足 unification 的需要
+
+  - x ::
+       其實一個 r 一個 scope 的方式是合理的
+       local_variable_map 跟隨 local_variable 也是合理的
+       當遇到一個 local_variable 而 determinacy 不夠的時候
+       就用當前 r 的 local_variable_map 補全 local_variable_map 這個域
+       每次看到 local_variable 的時候
+       如果見到 local_variable_map 這個域
+       就優先使用這個域
+       沒有這個域的時候 就用當前 r 的 local_variable_map
+       這樣就能返回不確定的 local_variable 了
+       而 apply undo-record 是在 unification 失敗時進行的
+       在主要的流程中不必管理此類對 binding 的回收
+  ---------------------
+  - x ::
+       我發現 primitive_function 因該被處理爲 -&gt; 的 subtype
+       但是 1 的類型是 { -&gt; integer }
+       也應該被看作是 以 -&gt; 爲 type-constructor 的
+       如何處理這一點呢
+       還有一個難點在於 jo_unify 會 dispatch on typetag
+       但是 array 的 typetag 是 -&gt;
+       而 primitive_function 的 typetag 也是 -&gt;
+
+  - k ::
+       應該區分開來
+       tag 應該細分到足以使底層的語義可以全部通過 dispatch 到 tag 來實現
+       tag 就是 type constructor
+       基本的 tag 有 prim jojo type integer pair 等等
+       基本的 語義層次的 dispatch 有
+    1. 關於執行
+       return_stack interpreter
+       在解釋 return_stack 中的 jojo 時
+       應該如何處理每個 jo
+    2. 關於檢查
+       即 check 域
+       &gt;&lt;&gt;&lt;&gt;&lt;
+    3. 關於命名
+       在解釋 jojo 時
+       遇到 name 又有一層 dispatch
+  ---------------------
+  - x ::
+       一般的 g 裏面有 type: 和 data:
+       local_variable 裏面還有 determinacy:
+       那麼作爲 type-constructor 的 g 裏面有什麼呢
+       需不需要用一個 field 區分出 type-constructor
+       或者不使用一個 field 而用所能接收的 message 來編碼它
+
+  - k ::
+       用 message 來編碼吧
+       然後我們可以通過聞訊 是否有某個 message 來實現謂詞
+
+* &lt;2016-02-10&gt;
+
+  - 我需要在每次做設計決策的時候
+    都把所考量的可選設計方案整理成可供回顧的筆記
+    否則
+    將可能在類似的問題上浪費時間
+    把稿子改了九遍 發現又改成了初稿
+
+  - 我發現在下面的某些地方我又回到了原來的設計
+    [畢竟現在有 JS 的 native GC 可以使用]
+    - 純粹的後綴表達式
+      先入棧兩個 jojo 在 match
+    - cut of sequent
+      當只考慮類型檢查的時候
+      總可以假設已經有東西在棧中了
+      所以 a -&gt; b 這種消耗 a 的 sequent 總能得以作用
+      連續作用的過程中 棧中的值都是充分的
+      這樣最後得到結果
+      但是
+      如果需要類型推導
+      或者說 如果需要計算 jojo 的類型的時候
+      並沒有參數可供作用
+      此時就需要用 cut 來計算複合函數的類型了
+      就是 sequent 的 cut
+
+  ---------------------
+
+  - x ::
+    1. 總是以 sequent 爲單位 而不是以 jojo 爲單位
+       - 但是 return_stack 的 麼個 r 中 還是保存 jojo 用以執行
+         這樣 也許 jojo 也允許出現在 定義當中
+         只不過不可以計算 jojo 的類型
+         [可以檢查 但是不能計算]
+         [也許 也可以計算 只不過需要一些技巧]
+       就可以 用 stack 來實現 對一個 sequent 的類型的計算
+       感覺像是 term rewrite 只不過是用 stack 來實現的
+       因爲
+       sequent 的前項會入棧參數
+       使得後面消耗棧中參數的 sequent 得以作用
+    2. 類型檢查 做了 cut
+       而函數複合沒有做
+       因爲
+       函數複合中包含分支
+       分支的個數在 cut 時會相乘
+
+  ---------------------
+
+  - x ::
+       不論如何都先要實現就 tag 的 dispatch
+       check 需要區分 for_name 和 for_eval
+       因爲 for_eval 必須從 literal 重新生成類型
+       而 for_name 則可以直接使用所聲明的類型
+
+  ---------------------
+
+  - x ::
+       如何實現 sequent -&gt; type 呢
+       畢竟 每個 sequent 中所出現的 local_variable 都是未分配內存的
+       只有在 運行一個 sequent 的時候 才分配內存
+
+  - k ::
+       是不是要實現某種意義上的有向圖處理
+
+  - x ::
+       我們之前說過 sequent -&gt; type 是利用棧中的實際作用來實現的
+       先作用 sequent 的 antecedent
+       然後再作用 succedent
+       利用所收集到的信息 返回一個新的 sequent
+
+  - k ::
+       這也許是可能的
+       並且 這裏提到的 &apos;利用棧&apos;
+       就需要能夠靈活地使用棧
+       僅僅是兩個全局的 argument_stack 和 return_stack 可能是不夠的
+
+  - x ::
+       但是很多 primitive_function 的接口
+       都已經是使用這些全局棧的了
+       難點在於
+       處理 sequent 語義的 是一個 primitive_function
+       如果在這個 primitive_function 內調用 return_stack.eval
+       那麼只有當 return_stack.eval 空了之後
+       才能返回到這個 primitive_function 中來了
+       這裏需要一些 exception 可以讓 return_stack.eval 提前返回
+
+  - k ::
+       這將是不錯的設計
+       這樣就能在 寄主函數中調用 cicada 函數了
+
+  - x ::
+       沒錯
+       可以通過在 return_stack 中加入 中斷 r-point
+       這個 r-point 中的 jojo 裏有 特殊的 primitive_function
+       這個 特殊的 primitive_function 會讓 return_stack.eval 提前返回
+
+* scope &lt;2016-02-11&gt;
+
+  - x ::
+       如何處理 scope
+       我們現在知道了一些實現 scope 的條件了
+    1. 使用 r-point 中的一個域來實現一個 從 name 找 value 的 map
+       r point 退出時這個 field 的引用可能就消失了
+       這樣就能利用 native gc 來回收爲 map 所分配的內存
+    2. 這個 map 必須保存在 local_variable 的一個域中
+       這樣返回一個不定元的時候
+       map 的引用就不會消失 native gc 就不會回收它
+
+  - k ::
+       我們還需要知道使用 local_variable 的時候對 scope 有什麼要求
+
+  - x ::
+       &gt;&lt;&gt;&lt;&gt;&lt;
+
+* sequent-&gt;type vs jojo-&gt;type
+
+  - x ::
+       sequent-&gt;type 可以用棧實現
+       而 jojo-&gt;type 也不是無法想象的
+       只要知道棧中有多少參數是爲 jo 準備的就行了
+       畢竟我們現在能對不定元實行計算
+</pre>
+</body>
+</html>

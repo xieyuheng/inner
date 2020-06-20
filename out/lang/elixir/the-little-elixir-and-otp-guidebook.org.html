@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>lang/elixir/the-little-elixir-and-otp-guidebook.org</title>
+</head>
+<body>
+<pre>#+title: The Little Elixir &amp; OTP Guidebook
+
+- by Benjamin Tan Wei Hao, 2017
+
+* [todo-stack]
+
+*** dialyzer
+
+*** ETS
+
+* 1 intro
+
+* 2 a whirlwind tour
+
+* 3 processes 101
+
+  - 用人與人之間寫信來理解 actor model
+
+    - 有的信件是有回執的 而有的信件是匿名的
+      回執就是在信件中包含寄信人的地址
+      當然也可以是別人的地址
+
+    - 有些人只接受特定種類的信件
+
+    - 收信人可能是工人
+      他接到的信件描述了他需要完成的任務
+      完成任務之後
+      他需要把工作成果返回給給他分配任務的人
+      或者之後需要加工他工作成果的人
+
+    - 收信人也可能是專門收集別人工作成果的工人
+      當收集的成果滿足條件時 他把成果展示出來 等等
+
+  - 在利用 actor model 寫程序時
+    首先需要明確 收信人之間的關係
+    其次要明確 他們接受信件的種類 [如函數的參數類型]
+    最後還要明確 他所發出的信件的種類 [如函數的返回類型]
+    [就像寫函數之前 需要先明確函數的類型]
+
+  - module 所封裝的只是函數的集合
+    如果想要封裝 actor 的集合
+    就要用到 application 這個概念
+
+* 4 writing server applications with genserver
+
+  - x -
+    application 這個概念
+    是作爲一個 behavior 被實現的
+    module 是否也能如此呢?
+
+  ------
+
+  - genserver 規範了三種寄信方式
+    call -- 寄信人等待回覆
+    cast -- 寄信人發出一些命令 改變收信人的狀態
+
+  - 在 handle_call 和 handle_cast 中登记的函數
+    可以用 GenServer.call(pid, msg) 和 GenServer.cast(pid, msg) 調用
+    info -- 处理未被 handle_call 和 handle_cast 处理的信件 -- unexpected
+
+  - 一個 genserver 就是一個 receive loop
+
+    - 利用 genserver 寫 application 的時候
+      需要遵守 genserver 的慣例
+      並且注意返回值
+      在設計之初就要區分好 各種 massage 哪些是 call 哪些是 cast
+
+    - 利用 GenServer.call(pid, msg) 和 GenServer.cast(pid, msg)
+      可以把 server 所提供的服務打包成 clinet function
+      但是此時還是需要帶有一個 pid 參數
+
+    - 利用 GenServer.start_link(__MODULE__, init_arg, opts ++ [name: @name])
+      [local to server 的 variable]
+      可以去掉這個 pid 參數
+      使得 clinet 看起來真的像是函數
+
+* [table] GenServer callbacks and their expected return values
+
+  |--------------------------------------+------------------------------------|
+  | callback                             | expected return value              |
+  |--------------------------------------+------------------------------------|
+  | init(args)                           | {:ok, state}                       |
+  |                                      | {:ok, state, timeout}              |
+  |                                      | :ignore                            |
+  |                                      | {:stop, reason}                    |
+  |--------------------------------------+------------------------------------|
+  | handle_call(msg, {from, ref}, state) | {:reply, reply, state}             |
+  |                                      | {:reply, reply, state, timeout}    |
+  |                                      | {:reply, reply, state, :hibernate} |
+  |                                      | {:noreply, state}                  |
+  |                                      | {:noreply, state, timeout}         |
+  |                                      | {:noreply, state, hibernate}       |
+  |                                      | {:stop, reason, reply, state}      |
+  |                                      | {:stop, reason, state}             |
+  |--------------------------------------+------------------------------------|
+  | handle_cast(msg, state)              | {:noreply, state}                  |
+  |                                      | {:noreply, state, timeout}         |
+  |                                      | {:noreply, state, :hibernate}      |
+  |                                      | {:stop, reason, state}             |
+  |--------------------------------------+------------------------------------|
+  | handle_info(msg, state)              | {:noreply, state}                  |
+  |                                      | {:noreply, state, timeout}         |
+  |                                      | {:stop, reason, state}             |
+  |--------------------------------------+------------------------------------|
+  | terminate(reason, state)             | :ok                                |
+  |--------------------------------------+------------------------------------|
+  | code_change(old_vsn, state, extra)   | {:ok, new_state}                   |
+  |                                      | {:error, reason}                   |
+  |--------------------------------------+------------------------------------|
+
+* [table] Callback functions defined in Metex.Worker that are called by GenServer functions
+
+  |------------------------+-----------------------------------------------|
+  | GenServer module calls | Callback module (Implemented in Metex.Worker) |
+  |------------------------+-----------------------------------------------|
+  | GenServer.start_link/3 | Metex.init/1                                  |
+  | GenServer.call/3       | Metex.handle_call/3                           |
+  | GenServer.cast/2       | Metex.handle_cast/2                           |
+  |------------------------+-----------------------------------------------|
+
+* 5 concurrent error-handling and fault tolerance with links, monitors, and processes
+
+  - x -
+    這章實現一個簡單的 Supervisor
+    Supervisor 的概念是爲 error-handling 而設計的
+    如果說 不同的 error-handling 分類了不同的程序語言
+    那麼 OTP 的 error-handling 屬於哪一類呢?
+
+  - k -
+    我想就是簡單的動態語言一類
+    所謂的 &quot;let it crash!&quot;
+    其實在用 slime 來跑 common-lisp 時
+    也有 &quot;let it crash!&quot; 的感覺
+    但是這只是就是開發和測試而言的
+    開發和測試之後所遇到的 error 就沒有 &quot;let it crash!&quot; 的感覺了
+
+  ------
+
+  - Process.link/1 must be called from an existing process
+    because there’s no such thing as Process.link(link_from, link_to),
+    only Process.link(pid)
+
+  - You can inspect the current link set of the shell process:
+    Process.info(self, :links)
+    Process.info(self) # for more info
+
+  - to trap exit signals
+    Process.flag(:trap_exit, true)
+    turning the process from a normal process to a system process.
+    When a system process receives an error signal,
+    instead of crashing like a normal process,
+    it can turn the signal into a regular message
+    that looks like {:EXIT, pid, reason}
+
+  - Process.exit(pid, msg)
+    send {:EXIT, sender_pid, msg} to pid
+    Process.exit(pid, :kill) can not be trapped
+
+  - if a process is trapping exits,
+    and it’s targeted to be killed using Process.exit(pid, :kill),
+    it will be killed anyway.
+    When it dies, it propagates an {:EXIT, #PID&lt;0.98.0&gt;, :killed} message
+    to the processes in its link set,
+    which can be trapped.
+
+  - spawn_link/3: spawning and linking in one atomic step
+
+  - Monitors
+    monitors set up a unidirectional link
+    between the monitoring process
+    and the process to be monitored.
+
+* 6 fault tolerance with supervisors
+
+  - The sole responsibility of a Supervisor
+    is to observe an attached child process,
+    check to see if it goes down,
+    and take some action if that happens.
+
+* 7 completing the worker-pool application
+
+* 8 distribution and load balancing
+
+* 9 distribution and fault tolerance
+
+* 10 dialyzer and type specifications
+
+  - DIscrepancy Analyze for ERlang
+
+* 11 property-based and concurrency testing
+</pre>
+</body>
+</html>

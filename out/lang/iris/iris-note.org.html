@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>lang/iris/iris-note.org</title>
+</head>
+<body>
+<pre>#+title: iris note
+
+* links
+
+  <a href="http://iris-project.org/">http://iris-project.org/</a>
+  <a href="https://gitlab.mpi-sws.org/FP/iris-coq/">https://gitlab.mpi-sws.org/FP/iris-coq/</a>
+
+* intro
+
+  - iris is a logic framework
+    for proving partial functional correctness
+    of concurrent higher-order imperative programs.
+
+* partial correctness
+
+  - when a program is proved correct
+    with respect to some specification
+    this only guarantees that
+    if the program terminates
+    then its result will satisfy the stated property.
+
+  - If a program does not terminate
+    then the specification says nothing about its behaviour,
+    apart from that it does not get stuck.
+
+    - x -
+      about it does not get stuck :
+      Hoare 1969 paper used a narrower notion of termination
+      which also entailed absence of any run-time errors:
+      &quot;Failure to terminate may be due to an infinite loop;
+      or it may be due to violation of an implementation-defined limit,
+      for example, the range of numeric operands,
+      the size of storage, or an operating system time limit.&quot;
+
+  - x -
+    about partial correctness :
+    just like standard hoare logic
+
+* verification of concurrent programs
+
+  - invariants
+    a mechanism that allows different program threads
+    to access shared resources,
+    e.g., read and write to the same location,
+    provided they do not invalidate properties
+    other threads depend on,
+    i.e., provided they maintain invariants.
+
+  - ghost state
+    a mechanism which allows the invariants to evolve over time.
+    It allows the logic to keep track of additional information
+    that is not present in the program code being verified,
+    but is nonetheless essential to proving its correctness,
+    such as relationships between values
+    of different program variables.
+
+* about examples
+
+  - examples used to introduce and explain the rules of the logic
+    are minimal contrived one or larger case studies.
+
+  - both are not suitable for teaching.
+
+* lambda-ref-conc
+
+  - untyped higher-order ML-like language
+    with general references and concurrency.
+
+* operational semantics of lambda-ref-conc
+
+* First glance at Iris
+
+  - I already know a little about hoare logic and separation logic.
+
+  - I will review the lecture notes more closely soon.
+
+  - While at first glance,
+    Iris is designed as a tool (a framework)
+    to help users use separation logic to prove correctness
+    about their code written in imperative programming languages.
+    - Specially to prove correctness
+      about the code related to resource and concurrence.
+
+  - About my role for the position :
+
+    - Since I am a good programmer, I certainly can help Iris,
+      1. to improve its design and syntax;
+      2. to embed it in c or c++ (in comment);
+      3. to design better examples for teaching and to improve docs.
+
+    - But my main interest is my own approach of language design,
+      1. for functional language instead of imperative language;
+      2. using categorical semantics instead of operational semantics;
+      3. to emphasize curry–howard correspondence
+         instead of using hoare logic (or is successor);
+      4. and the application domain I am interested in
+         is formalization of algebraic topology
+         instead of verification of existing imperative code base.
+         - my goal is to develop new methodology
+           to capture higher dimensional algebraic structure.
+           (I know a way to extend the notion of n-homotopy-groupoid)
+         - my secret goal is to prove Poincaré conjecture (or Poincaré theorem)
+           by pure algebraic topology methods.
+
+    - Also recent I watched a talk by the founder of OpenBSD :
+      <a href="https://www.youtube.com/watch?v=F_7S1eqKsFk">https://www.youtube.com/watch?v=F_7S1eqKsFk</a>
+
+      OpenBSD have a simple mitigation mechanism called &quot;pledge&quot;,
+      which is like the contract system of racket.
+
+      Just like racket contract system,
+      it is also handled at runtime (by the kernel!)
+      thus it feels like &quot;kernel-contract&quot;.
+
+      Theo de Raadt also talked about
+      how the use of &quot;pledge&quot; helped openbsd developers
+      refactoring existing code and found bugs.
+
+      And its interface uses just like hoare logic.
+
+      - An example of tmux using it is here :
+        <a href="https://github.com/tmux/tmux/blob/master/tmux.c#L265">https://github.com/tmux/tmux/blob/master/tmux.c#L265</a>
+</pre>
+</body>
+</html>

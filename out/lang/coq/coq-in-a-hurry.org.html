@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>lang/coq/coq-in-a-hurry.org</title>
+</head>
+<body>
+<pre>#+title: coq in a hurry
+
+* command : Check
+
+  to check whether a formula is well-formed
+  the conditions for terms to be well-formed have two origins:
+  1. the syntax must be respected
+     parentheses must be balanced
+     binary operators must have two arguments
+     etc
+  2. expressions must respect a type discipline
+  #+begin_src coq
+  Check True.
+  Check False.
+  Check (1+2).
+  Check ((3=5)/\True).
+  Check Prop.
+  Check nat.
+  Check (3).
+  #+end_src
+
+* to be explicit about the type of a exp
+  #+begin_src coq
+  Check True:Prop.
+  Check (3, 3=5):nat*Prop.
+  #+end_src
+
+* keyword : fun
+  replaces the λ symbol of λ calculus
+  + why do not jusu use the the λ symbol of λ calculus???
+    i can configure emacs to change the way
+    it display keywords
+  #+begin_src coq
+  Require Import Arith.
+
+  (* λx:nat.x=3 *)
+  Check (fun x:nat =&gt; x = 3).
+  Check ((fun x:nat =&gt; x = 3) 1).
+
+  (* ∀x:nat.x&lt;3 ∨ ∃y:nat.x=y+3 *)
+  Check (forall x:nat, x &lt; 3 \/ (exists y:nat, x = y + 3)).
+  #+end_src
+
+* keyword : let
+  local-binding by pattern-matching
+  + like haskell
+    or one should say
+    like math
+  + not using parentheses
+    but using syntax-keyword ``in&apos;&apos; to show
+    where is the body of the exp
+  + and in the following a type-inferacer is working
+  + overloaded notation: * as:
+    1) multiplication on numbers
+    2) cartesian product on types
+  #+begin_src coq
+  Check (let f := fun x =&gt; (x * 3,x)
+         in f 3).
+  #+end_src
+
+* command : Locate
+  to find the function hidden behind a notation
+  #+begin_src coq
+  Locate &quot;_ &lt;= _&quot;.
+  Locate &quot;_ \/ _&quot;.
+
+  Check and.
+  Check (and True False).
+  Check (and True).
+  Locate and.
+
+  Locate plus.
+  Locate sum.
+  Locate nat.
+  Locate &quot;_ + _&quot;.
+  #+end_src
+
+* command : Eval
+  some symbolic computation is performed on this formula
+  and there are several strategies to perform this symbolic computation
+  one strategy is called ``compute&apos;&apos;
+  #+begin_src coq
+  Eval compute in
+      let f := fun x =&gt; (x * 3, x)
+      in f 3.
+
+  Check fun x1:nat =&gt; fun x2:nat =&gt; (plus x1 x2).
+
+  Eval compute in
+      let f := fun x1:nat =&gt; fun x2:nat =&gt; (plus x1 x2)
+      in f 4 3.
+  #+end_src
+
+* command : Definition
+  with ``Definition&apos;&apos; one could write programs
+  programs are usually represented by functions
+
+  simple programs can be executed in the coq system itself
+  more complex coq programs can be transformed into programs
+  in more conventional languages and executed outside coq
+
+
+  #+begin_src coq
+  Definition example1 (x : nat) := x*x+2*x+1.
+  (* one can&apos;t use Definition
+     to define something more than once *)
+
+  Check example1.
+  Eval compute in
+      example1 100.
+
+
+  (* to see the free a binding of an name *)
+  Reset example1.
+
+  (* explicit version: *)
+  Definition example1 := fun x : nat =&gt; x*x+2*x+1.
+
+  (* to see the definition of an name *)
+  Print example1.
+  #+end_src
+
+* type : bool
+  observing the difference between bool and Prop
+  #+begin_src coq
+  Require Import Bool.
+
+  Eval compute in
+      if true
+      then 3
+      else 5.
+
+  Check true.
+
+  Check True.
+  #+end_src
+
+* command : Search and SearchAbout
+  knowing what functions are provided by a datatype
+  #+begin_src coq
+  Search bool.
+  SearchAbout bool.
+
+  Check false : bool.
+  Check true : bool.
+  Check xorb : bool -&gt; bool -&gt; bool.
+  Check orb : bool -&gt; bool -&gt; bool.
+  Check negb : bool -&gt; bool.
+  Check implb : bool -&gt; bool -&gt; bool.
+  Check andb : bool -&gt; bool -&gt; bool.
+
+
+  Search Prop.
+  SearchAbout Prop.
+  #+end_src
+
+* type : nat
+  #+begin_src coq
+  Require Import Arith.
+
+  Eval compute in
+      S (S (S 1)).
+
+  Definition is_zero :=
+    (fun n:nat =&gt;
+       match n with
+         | 0 =&gt; true
+         | S p =&gt; false
+       end).
+
+  Eval compute in
+      is_zero 1.
+
+  Eval compute in
+      is_zero 0.
+
+  Definition nat_sub1 :=
+    fun n:nat =&gt;
+      (match n with
+         | 0 =&gt; 0
+         | S p =&gt; p
+       end).
+
+  Eval compute in
+      nat_sub1 1.
+
+  Eval compute in
+      nat_sub1 0.
+
+  Print pred.
+  #+end_src
+
+* command : Fixpoint
+  is it means that the recursion is implemented by ``Y&apos;&apos;???
+  &gt;&lt; but way one can&apos;t use ``Fixpoint&apos;&apos; as ``Definition&apos;&apos;???
+  #+begin_src coq
+  Fixpoint sum_n n :=
+    match n with
+      | 0 =&gt; 0
+      | S p =&gt; p + sum_n p
+    end.
+
+  Fixpoint sum_n2 n s :=
+    match n with
+      | 0 =&gt; s
+      | S p =&gt; sum_n2 p (p + s)
+    end.
+
+  Eval compute in
+      sum_n2 100 0.
+
+  Eval compute in
+      sum_n2 100 0.
+
+
+  Fixpoint evenb n :=
+    match n with
+      | 0 =&gt; true
+      | 1 =&gt; false
+      | S (S p) =&gt; evenb p
+    end.
+
+  Eval compute in
+      evenb 100.
+
+  Eval compute in
+      evenb 101.
+  #+end_src
+  structural-recursion-constraint:
+  the recursive call can only be made
+  on a subterm of the initial argument
+  it can&apos;t ensure that every computation terminates at all
+  so this kind of funking constraint is always bad for user
+
+* type : list
+  list of data must be of the same type
+  #+begin_src coq
+  Require Import List.
+
+
+  Check 1::2::3::nil.
+
+  Check nil.
+  (* have no type *)
+
+  Check (nil : list nat).
+
+  Eval compute in
+      map (fun x =&gt; x + 3) (1::3::2::nil).
+
+  Eval compute in
+      map S (1::22::3::nil).
+
+  Eval compute in
+      let l := (1::2::3::nil)
+      in l ++ map (fun x =&gt; x + 3) l.
+
+
+  Fixpoint evenb n :=
+    match n with
+      | 0 =&gt; true
+      | 1 =&gt; false
+      | S (S p) =&gt; evenb p
+    end.
+
+  Definition head_evb :=
+    fun l =&gt;
+      match l with
+        | nil =&gt; false
+        | a::tl =&gt; evenb a
+      end.
+
+  Eval compute in
+      head_evb (2::1::nil).
+
+  Fixpoint sum_list l :=
+    match l with
+      | nil =&gt; 0
+      | n::tl =&gt; n + sum_list tl
+    end.
+
+  Eval compute in
+      sum_list (2::1::nil).
+
+  Fixpoint 大于等于 n1 n2 :=
+    match n1 with
+      | 0 =&gt; match n2 with
+          | 0 =&gt; true
+          | S k2 =&gt; false
+        end
+      | S k1 =&gt;
+        match n2 with
+          | 0 =&gt; true
+          | S k2 =&gt; 大于等于 k1 k2
+        end
+      end.
+
+
+  Fixpoint insert n l :=
+    match l with
+      | nil =&gt; n::nil
+      | a::tl =&gt; if 大于等于 a n
+                 then n::l
+                 else a::insert n tl
+    end.
+  Fixpoint sort l :=
+    match l with
+      | nil =&gt; nil
+      | a::tl =&gt; insert a (sort tl)
+    end.
+
+  Eval compute in
+      sort (1::4::3::22::5::16::7::nil).
+
+  Fixpoint is_sorted l :=
+    match l with
+      | nil =&gt; true
+      | a::nil =&gt; true
+      | a1::a2::nil =&gt; 大于等于 a2 a1
+      | a1::a2::tail =&gt; if 大于等于 a2 a1
+                        then
+                          match l with
+                            | nil =&gt; true
+                            | a1::tail =&gt; is_sorted tail
+                          end
+                        else false
+    end.
+  Eval compute in
+      is_sorted (1::2::3::nil).
+  Eval compute in
+      is_sorted (1::4::3::nil).
+  #+end_src
+
+* propositions and proofs
+  the semantices of x:A
+  1. x is proof of logical formula A
+  2. x is of the type A
+
+* command : Search and SearchPattern
+  to find already existing proofs of facts
+  its argument should always be an identifier
+
+  some axiom joint of the directed-graph
+  #+begin_src coq
+  Search True.
+
+  (* Search le. *)
+
+  (* SearchPattern (_ + _ &lt;= _ + _). *)
+
+  (* SearchRewrite (_ + (_ - _)). *)
+
+  SearchAbout True.
+  #+end_src
+
+* command : Theorem and Lemma
+
+*** note
+    *curry–howard isomorphism*
+    *propositions-as-types*
+
+    这是通过语法的相似性而被发现的
+    当发现语法相似的时候就是应该融合形式语言的时候
+    尽管语义不同
+
+    Qed. quod erat demonstrandum
+    w.z.b.w. was zu beweisen war
+
+    A -&gt; B == ¬A ∨ B
+
+*** tactics是写在Proof.于Qed.之间的context&amp;conclusion-processing function
+    每个tactics只能处理某些特定patten的context&amp;conclusion
+
+***** goal == context&amp;conclusion
+      so one can say ``goal-processing function&apos;&apos;
+
+      it looks like:
+      &lt;context&gt;
+      =======================
+      &lt;conclusion&gt;
+      + &gt;&lt; 其中&lt;context&gt;是前面证明过的定理和局部的假设???
+
+      and initially it is:
+      &lt;&gt;
+      =======================
+      &lt;statements&gt;
+
+      就下面的在一般数学文本中出现的对推理规则的表达而言
+      Γ,x:σ ͱ M:τ
+      ------------------- (-&gt;introduction)
+      Γ ͱ (λx.M):(σ-&gt;τ)
+      coq中的双横线``=============&apos;&apos;对应于这里的``ͱ&apos;&apos;
+      而这里的单横线``-------------&apos;&apos;对应于coq中的``tactics&apos;&apos;
+      可以看出在一般数学文本中
+      语义上``ͱ&apos;&apos;与``-------------&apos;&apos;是相似的
+      只不过它们的层次不同
+
+***** 被处理的context&amp;conclusion作为数据结构是什么样的?
+      即是问context&amp;conclusion和context&amp;conclusion之间的关系是什么
+      这些关系是如何实现的
+      有向图吗???
+      其实就是被隐蔽起来的有向图处理
+      onescontext&amp;conclusion是有向图的节点
+      tactics用来指明在回溯过程中下一步往那个方向走
+
+***** tactics for the basic logical connectives
+
+******* intros h1 h2 ...
+        introduce
+        用来处理conclusion中的
+        1) 全称量词(universal quantification)
+           + 量词后面的是约束变元 所以可以随便用什么名字
+        2) 蕴含式的假设(implication)
+        3) 否定式
+        把表达式引入context的同时消减了conclusion中的东西
+        即从conclusion中提取出可以在局部假设成立得到假设
+        intros后面跟标示符用来给提取出来的局部成立的假设命名
+        #+begin_src coq
+        Lemma example2 : forall a b : Prop, a /\ b -&gt; b /\ a.
+        Proof.
+          intros a b.
+          intros H.
+          split.
+          destruct H as [H1 H2].
+          exact H2.
+          intuition.
+          (* intuition as: *)
+          (* destruct H as [H1 H2]. *)
+          (* exact H1. *)
+        Qed.
+        #+end_src
+
+******* destruct H as [H1 H2]
+        用来处理context中的b /\ a
+        这将会在一个goal中把H分开为两句
+
+******* destruct H as [H1 | H2]
+        用来处理context中的b \/ a中的
+        这将会把一个goal分开为两个goal
+        即是分情况证明
+        #+begin_src coq
+        Lemma example3 : forall A B, A \/ B -&gt; B \/ A.
+        Proof.
+          intros A B H.
+          destruct H as [H1 | H2].
+          right.
+          assumption.
+          left.
+          assumption.
+        Qed.
+        #+end_src
+
+******* exact H
+        simply expresses that we want to prove
+        a statement that is present in the context
+
+******* assumption
+        to look for one hypothesis whose
+        statement is the same as the conclusion
+
+******* intuition
+        automatic tactic
+        让coq帮忙来完成一些步骤
+
+******* apply
+        用来处理context中的
+        universal-quantification with implication:
+        #+begin_src coq
+        Theorem kkk
+                forall x1 x2 x3 ,
+                  (P1 x1 x2 x3 -&gt;
+                   (P2 x1 x2 x3 -&gt;
+                    (P3 x1 x2 x3 -&gt;
+                     (P4 x1 x2 x3 -&gt; C x1 x2 x3)))).
+        #+end_src
+        apply try to match
+        &lt;premise&gt; -&gt; &lt;conclusion&gt;
+        with the pattern provided by a Theorem
+        and try to form new goal accordingly:
+        #+begin_src coq
+        Theorem lll C a1 a2 a3.
+        Proof.
+          apply kkk.
+          (* replaces the current goal with 4 goals *)
+          (* whose statements are: *)
+          (* A1 a1 a2 a3.  *)
+          (* A2 a1 a2 a3.  *)
+          (* A3 a1 a2 a3.  *)
+          (* A4 a1 a2 a3.  *)
+        ...
+        #+end_src
+
+        其实证明定理就像是在有向图中行走
+        看能走到哪里就算证明到了哪里
+        而当我证明了一个带有全称量词的定理的时候
+        就相当于我熟悉了这个有向图中的某种模式的道路
+        当我再次遇到这个种道路的时候
+        我就可以直接到达道路的那一头
+        而不用再一步一步地走了
+        #+begin_src coq
+        Check le_n.
+        (* le_n: forall n : nat, n &lt;= n *)
+        Check le_S.
+        (* le_S: forall n m : nat, n &lt;= m -&gt; n &lt;= S m *)
+        Lemma example4 : 3 &lt;= 5.
+        Proof.
+
+          (* 下面apply处理context中的 *)
+          (* universal-quantification with implication *)
+          apply le_S.
+          apply le_S.
+
+          (* 下面apply处理context中的 *)
+          (* universal-quantification without implication: *)
+          (* 这时就有可能完成证明了 *)
+          apply le_n.
+
+        Qed.
+        #+end_src
+
+        transitivity theorem for the order
+        ``less than or equal to&apos;&apos; on natural numbers
+        #+begin_src coq
+        Require Import Arith.
+
+        Check le_trans.
+        (* Lemma le_trans : forall n m p : nat, n &lt;= m -&gt; m &lt;= p -&gt; n &lt;= p. *)
+
+        Lemma example5_1 :  1 &lt;= 2 -&gt; 2 &lt;= 3 -&gt; 1 &lt;= 3.
+        Proof.
+          apply le_trans.
+        Qed.
+
+        Lemma example5 : forall x y, x &lt;= 10 -&gt; 10 &lt;= y -&gt; x &lt;= y.
+        Proof.
+
+          intros x y x10 y10.
+          apply le_trans with (m := 10).
+          (* 可以理解到如果没有with (m := 10)为什么就会失败 *)
+          (* 因为apply想要利用定理le_trans给出sub-goal的时候 *)
+          (* 会发现当把全称量词中的约束变元作为pattern-variable时 *)
+          (* 有的pattern-variable(这里的m)没有绑定到任何值 *)
+
+          (* 之后就简单了 *)
+
+          (* 最精确的: *)
+          (* exact x10. *)
+          (* exact y10. *)
+
+          (* 模糊一点 让coq帮忙查找: *)
+          (* assumption. *)
+          (* assumption. *)
+
+          (* 最模糊的: *)
+          intuition.
+          intuition.
+
+        Qed.
+        #+end_src
+
+******* rewrite
+        many theorems have a conclusion that is an equality
+        the most practical tactic to use these theorem is rewrite
+        即rewrite是用来给证明等式的
+        rewrite所使用的定理(rewrite-rule)
+        pattern-matching被证定理的等号左边
+        然后将被证的等式恒等变形为另一个等式
+        #+begin_src coq
+        Require Import Arith.
+
+        Lemma example6 : forall x y, (x + y) * (x + y) = x*x + 2*x*y + y*y.
+        Proof.
+
+          intros x y.
+          (* 约束变元的类型被推导出来了 *)
+          (* 下面查一下(左)分配律的重写规则 *)
+          SearchRewrite (_ * (_ + _)).
+          rewrite mult_plus_distr_l.
+          (* 下面查一下(右)分配律的重写规则 *)
+          SearchRewrite ((_ + _) * _).
+
+          (* rewrite mult_plus_distr_r. *)
+
+          (* 可以用with来指定一个上面所查找到的的定理中的 *)
+          (* 约束变元所应该在模式匹配中被绑定到的项 *)
+          (* 否则coq会选择前面的一个 *)
+          rewrite mult_plus_distr_r with (p:=y).
+          rewrite mult_plus_distr_r.
+
+          (* intuition在这里不能用 *)
+          (* 看来它是专门处理一阶逻辑中的显然步骤的 *)
+
+          (* 那么继续找加法结合律 *)
+          SearchRewrite (_ + (_ + _)).
+          (* plus_assoc: forall n m p : nat, n + (m + p) = n + m + p *)
+          rewrite plus_assoc.
+
+          (* 下面反着利用rewrite-rule *)
+          (* 而匹配的还是被证明项的等号左边 *)
+          rewrite &lt;- plus_assoc with (n := x * x).
+
+          (* next : commutativity for multiplication *)
+          SearchPattern (?x *?y =?y *?x).
+          (* mult_comm: forall n m : nat, n * m = m * n *)
+          rewrite mult_comm with (n:= y) (m:=x).
+
+          (* 找定理的时候要小部分小部分地找 *)
+          (* 汉语形成副词的方式是通过重复:小部分小部分地 *)
+          SearchRewrite ((S _) * _).
+          SearchRewrite (S _ * _).
+          (* mult_succ_l: forall n m : nat, S n * m = n * m + m *)
+          (* mult_1_l: forall n : nat, 1 * n = n *)
+
+
+          (* using a tactic called pattern *)
+          (* to limit the place where rewriting occurs *)
+          pattern (x * y) at 1.
+          rewrite &lt;- mult_1_l.
+          rewrite &lt;- mult_succ_l.
+
+          (* 然后是乘法结合律 *)
+          SearchRewrite (_ * (_ * _)).
+          rewrite mult_assoc.
+
+          reflexivity.
+          (* reflexivity用来引入基本等词 *)
+
+        Qed.
+        #+end_src
+        上面的证法很笨很笨
+        对等价关系所形成的表达式之间的无向路
+        应该有更好的处理方式
+
+        确实coq提供了ring这个函数
+        &gt;&lt; 但是如何使用呢?
+        下面的用法是不行的
+        #+begin_src coq
+        Lemma example6 : forall x y, (x + y) * (x + y) = x*x + 2*x*y + y*y.
+        Require Import Ring.
+        Proof.
+          intros.
+          ring.
+        Qed.
+        #+end_src
+        #+begin_src coq
+        Require Import Omega.
+        Lemma omega_example :
+          forall f x y, 0 &lt; x -&gt;
+                   0 &lt; f x -&gt;
+                   3 * f x &lt;= 2 * y -&gt;
+                   f x &lt;= y.
+        Proof.
+          intros.
+          omega.
+        Qed.
+        #+end_src
+
+* &gt;&lt; proving properties of programs on numbers
+
+* &gt;&lt; proving properties of programs on lists
+</pre>
+</body>
+</html>

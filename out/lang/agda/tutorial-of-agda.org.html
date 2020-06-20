@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>lang/agda/tutorial-of-agda.org</title>
+</head>
+<body>
+<pre>#+title: tutorial of adga
+
+* [note]
+
+*** type parameter v.s. type indice
+
+    - type constructor
+      can not change type parameter
+      but can change type indice
+      while
+      function can always change both
+
+*** constructor
+
+    - 用 data 這個語法關鍵詞定義的 新類型 本身
+      也像是 constructor
+      它可以從 別的 type 和 value 構建新的 type
+      用 data 定義一個新的 type 時
+      需要給出這個類型的元素的 constructor
+
+      - 這種 constructor 類似函數
+        但是可以重名
+        而函數不可以重名
+
+*** 語法慣例
+
+    - table
+      | 新定義類型時                         | 首字母大寫 |
+      | 定義用以引入這個類型的數據的構造子時 | 小寫       |
+      | 定義生成類型的函數時 [返回值爲類型]  | 首字母大寫 |
+      | 定義一般函數時                       | 小寫       |
+
+    - constructor
+      構造子有兩種
+
+      1. 定義一個類型的時候
+         要給出這個類型的數據的構造子
+         是特殊的函數
+         與函數的差異在於
+         - 引入新的類型
+         - 不失信息
+
+      2. 用已有的類型
+         定義新的類型
+
+*** 從 具體數學結構 角度看
+
+    - 首先 用 data 定義一個類型構造子
+      然後 用一系列的 constructor 引入這個類型
+
+*** 從 證明論 角度看
+
+    - 定義一個 謂詞
+      然後 給出這個謂詞的基本性質
+
+      - 不必是 簡單的 引入與消去
+        可以是 結構化的 引入與消去
+
+    - 所證明的 帶有這個 謂詞 的 命題
+      是複合命題
+
+      - 所有的邏輯連接詞
+        都被設計在下列東西中
+        1. 則式 (... -&gt; ...)
+        2. 與 則式 有關的匹配規則
+
+      - 而量詞就是
+        則式 項之間的 依賴關係
+
+*** 類型 與 謂詞
+
+    - dependent type 中
+      被 value 參數化的 類型構造子 是典型的謂詞
+      比如 等詞
+
+    - term 層次的 patthern match
+
+    - 定義一個 謂詞
+      要把 跟這個 謂詞 有關的所有東西 都寫到定義中
+      利用這些東西我們能證明跟這個謂詞有關的謂詞
+      而所定義的
+      跟這個 謂詞 有關的所有東西
+      就是用以 引入 與 消去 這個謂詞的函數
+
+    - boolean is useless 是什麼意思
+      謂詞 與 boolean 的關係什麼
+
+    - 很多在程序中需要用來做判斷的謂詞
+      被放到了類型檢查中
+      需要定義一個 謂詞 的時候
+      其實是需要定義一個類型
+
+    - 既然 等詞 可以從 做爲函數的謂詞 被轉化爲類型
+      那麼 所有的其他謂詞也可以
+
+*** 類型類型
+
+    - 有的類系 依賴於值 [像是謂詞]
+      有的類型 依賴於類型
+
+    - 類型也是 term
+      每個 term 都有 type
+      所以說
+      上面提到的類型之間的區別
+      可以被類型系統以內蘊地方式處理
+
+* &gt;&lt; proof automation
+
+*** tactics
+
+*** automation via reflection
+
+*** proof search
+
+* module system
+
+*** basic
+
+* an-intro-to-dependent-types-and-agda [abel]
+
+*** 定義新類型
+
+    * 參數化的類型
+      輸入 類型 或者 值
+      返回 類型
+      的函數
+    * 每個 類型 會有一些構造子
+      * 構造子
+        用以構造屬於這個類型的數據
+      構造子決定了類型的性質
+      構造子是特殊的函數
+      特殊在於
+      它們只是用以編碼類型的性質
+      而不是真正的計算
+    * 一個構造子作用與參數時
+      只是把這些參數包裹起來
+      構造一個結構化的數據而已
+    * 所以 做爲函數 類型構造子 只有類型 而沒有函數體
+      因爲它們根本不計算
+    * 構造子緊跟在類型定義都後面寫
+      在類型定義中出現的名字
+      可以在構造子中出現
+
+*** &gt;&lt; 交換律
+
+    - 對加法的遞歸定義本身不蘊含交換律
+      交換律需要額外證明
+      否則 agda 不能處理
+      &gt;&lt;&gt;&lt;&gt;&lt;
+      證明之後就能處理了嘛
+      找個例子試試
+
+*** cicada v.s. agda
+
+    |                    | cicada | agda |
+    |--------------------+--------+------|
+    | dependent pair     | in     | no   |
+    | dependent function | in     | in   |
+    | compose            | in     | no   |
+    | apply              | no     | in   |
+    | equality           | in     | in   |
+
+* towards-a-practical-programming-language-based-on-dependent-type-theory [ulf]
+
+*** pattern match and type checker
+
+*** metavariable and implicit argument
+
+*** module system
+</pre>
+</body>
+</html>

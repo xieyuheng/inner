@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>lang/js/tutorial-of-javascript.org</title>
+</head>
+<body>
+<pre>#+TITLE:  tutorial of javascript
+#+AUTHOR: 謝宇恆 / XIE Yuheng
+
+* note
+
+*** 題解
+    * 模仿 shen 的筆記來學習非函數式語言
+      把所觸到的各個地方的資料總結起來
+
+*** 在 js 的有點上假想一個 alist 處理語言
+    * 用祕密鏈接實現 alist 之間對 key 的繼承 (或者說借用)
+      當不存在的 key 被引用時就去借用試試
+      這就是唯一的規則
+      這樣就是實現了 alist 之間的類似克隆的過程
+      克隆之時還可以有靈活的改變
+      但是不好的一點是這種克隆在 javascript 中是動態的
+      + 注意
+        如果實現時允許動態的改變這種祕密鏈接
+        那麼就一定要保證沒有循環出現
+        如果不實現一個點對多個點的祕密鏈接
+        那麼所得到的就是有向樹
+        並且 有向邊的方向是一致的
+        如果實現一個點對多個點的祕密鏈接
+        那麼所得到的就是有向樹
+        並且 有向邊的方向可能是不一致的
+        &gt;&lt; 但是要知道樹的平行節點之間的 key 可能形成衝突
+        必須提供額外的信息來描述對這種衝突的解決
+    * 一個 alist 處理語言邪
+      與 list 處理語言相比如何
+      首先很容易用 lsit處理語言來實現 alist 處理語言
+      但是嵌套的 list 在 lisp 中可以表達代碼
+      嵌套的無序的 alist 可以表達代碼本身嗎
+      當然可以
+      並且對參數的引用都變得方便了
+      等等 等等
+    * alist 處理語言的特點是
+      帶有自我引用的 loop 的 alist
+      只要保存 key 就行了 不用保存地址
+      [想想在這裏寫出 alist-copy 是多麼簡單]
+    * 如果想讓 alist 來同時表示函數
+      那麼如何區分函數與數據
+      可以用兩種括號比如 [] () 來區分
+    * 注意
+      基本數據類型也是作爲對象的
+      但是實現方式上與用戶定義的 alist 就完全不一樣了
+    * 所以這是一種 prototyp language
+      不是用 class 來定義一類 obj
+      而是創造一個 prototyp-obj
+      然後需要創造同類的 obj 的時候克隆 prototyp-obj
+      這種克隆可以是靜態的複製
+      也可以是動態的引用
+    * 其實根本不必在意全局命名空間
+      面向對象的特性已經能把命名空間的問題處理的很好了
+      每個 obj 都有自己的命名空間
+      根本不必存在全局命名空間
+
+* function application
+  * 作用 語法 遵循數學傳統
+    即
+    1. 前綴表達式 函數名後跟參數
+    2. 多個參數 以 () 爲邊綴 逗號隔開
+  #+begin_src js
+  kkk(&quot;my baby&quot;);
+  #+end_src
+
+* lambda abstraction
+  #+begin_src js
+  setTimeout(function(){
+      // 这段代码将在5秒钟后被调用
+  }, 5000);
+  // 注意：setTimeout不是js语言的一部分
+  // 而是由浏览器和Node.js提供的
+  #+end_src
+
+* data type
+
+*** boolean
+    #+begin_src js
+    true;
+    false;
+
+    !true; // = false
+    !false; // = true
+
+    // 相等 ===
+    1 === 1; // = true
+    2 === 1; // = false
+
+    // 不等 !=
+    1 !== 1; // = false
+    2 !== 1; // = true
+
+    // 更多的比较操作符
+    1 &lt; 10; // = true
+    1 &gt; 10; // = false
+    2 &lt;= 2; // = true
+    2 &gt;= 2; // = true
+    #+end_src
+
+*** number
+    #+begin_src js
+    1 &lt;&lt; 2;
+
+    (1 + 3) * 2;
+
+    Infinity; // 1/0 的结果
+    -Infinity; // -1/0 的结果
+    NaN; // 0/0 的结果
+    #+end_src
+
+*** string
+    #+begin_src js
+    &apos;abc&apos;;
+    &quot;Hello, world&quot;;
+
+    // 字符串用+连接
+    &quot;Hello &quot; + &quot;world!&quot;; // = &quot;Hello world!&quot;
+
+    // 字符串也可以用 &lt; 、&gt; 来比较
+    &quot;a&quot; &lt; &quot;b&quot;; // = true
+
+    // 你可以用`charAt`来得到字符串中的字符
+    &quot;This is a string&quot;.charAt(0);  // = &apos;T&apos;
+
+    // ...或使用 `substring` 来获取更大的部分。
+    &quot;Hello world&quot;.substring(0, 5); // = &quot;Hello&quot;
+
+    // `length` 是一个属性，所以不要使用 ().
+    &quot;Hello&quot;.length; // = 5
+    #+end_src
+
+*** null &amp; undefined
+    #+begin_src js
+    // 还有两个特殊的值：`null`和`undefined`
+    null;      // 用来表示刻意设置的空值
+    undefined; // 用来表示还没有设置的值(尽管`undefined`自身实际是一个值)
+
+    // false, null, undefined, NaN, 0 和 &quot;&quot;
+    // 都是假的 其他的都视作逻辑真
+    // 注意 0 是逻辑假而  &quot;0&quot;是逻辑真，尽管 0 == &quot;0&quot;。
+    #+end_src
+
+*** 自動類型轉換
+    #+begin_src js
+    // 使用“==”比较时会进行类型转换...
+    &quot;5&quot; == 5; // = true
+    null == undefined; // = true
+
+    // ...除非你是用 ===
+    &quot;5&quot; === 5; // = false
+    null === undefined; // = false
+    // ...但会导致奇怪的行为
+    13 + !0; // 14
+    &quot;13&quot; + !0; // &apos;13true&apos;
+    #+end_src
+
+* name
+
+*** var &amp; assignment
+    #+begin_src js
+    // local
+    var someVar = 5;
+
+    // global
+    someOtherVar = 10;
+
+    // 没有被赋值的变量都会被设置为undefined
+    var someThirdVar; // = undefined
+
+    // 对变量进行数学运算有一些简写法：
+    someVar += 5; // 等价于 someVar = someVar + 5; someVar 现在是 10
+    someVar *= 10; // 现在 someVar 是 100
+
+    // 自增和自减也有简写
+    someVar++; // someVar 是 101
+    someVar--; // 回到 100
+    #+end_src
+
+*** function
+    #+begin_src js
+    // JavaScript 函数由`function`关键字定义
+    function my_function(thing){
+        return thing.toUpperCase();
+    }
+    my_function(&quot;foo&quot;); // = &quot;FOO&quot;
+
+    // 注意被返回的值必须开始于`return`关键字的那一行
+    // 否则由于自动的分号补齐，你将返回`undefined`
+    // 在使用 Allman 縮進风格 时候要注意
+    function my_function()
+    {
+        return // &lt;- 分号自动插在这里
+        {
+            thisIsAn: &apos;object literal&apos;
+        }
+    }
+    my_function(); // = undefined
+
+
+
+    // 函数能够赋给一个变量
+    // 并且被作为参数传递
+    function my_function(){
+        // 这段代码将在5秒钟后被调用
+    }
+    setTimeout(my_function, 5000);
+
+
+    // JavaScript 有函数作用域
+    // 函数有其自己的作用域而其他的代码块则没有
+    if (true){
+        var i = 5;
+    }
+    i; // = 5 - 并非我们在其他语言中所期望得到的undefined
+
+    // 这就导致了人们经常使用的“立即执行匿名函数”的模式，
+    // 这样可以避免一些临时变量扩散到全局作用域去。
+    (function(){
+        var temporary = 5;
+        // 我们可以访问修改全局对象（&quot;global object&quot;）来访问全局作用域，
+        // 在web浏览器中是`window`这个对象。
+        // 在其他环境如Node.js中这个对象的名字可能会不同。
+        window.permanent = 10;
+    })();
+    temporary; // 抛出引用异常ReferenceError
+    permanent; // = 10
+    #+end_src
+
+*** closure
+    #+begin_src js
+    // 如果一个函数在另一个函数中定义
+    // 那么这个内部函数就拥有外部函数的所有变量的访问权
+    // 即使在外部函数结束之后
+    function sayHelloInFiveSeconds(name){
+        var prompt = &quot;Hello, &quot; + name + &quot;!&quot;;
+        // 内部函数默认是放在局部作用域的，
+        // 就像是用`var`声明的。
+        function inner(){
+            alert(prompt);
+        }
+        setTimeout(inner, 5000);
+    }
+    sayHelloInFiveSeconds(&quot;Adam&quot;);
+    // 会在5秒后弹出 &quot;Hello, Adam!&quot;
+    #+end_src
+
+* more structured data type
+
+*** array
+    #+begin_src js
+    var myArray = [&quot;Hello&quot;, 45, true];
+    myArray[0]; // = &quot;Hello&quot;
+    myArray.length; // = 3
+    myArray.push(&quot;World&quot;);
+    myArray.length; // = 4
+    myArray[3] = &quot;hi&quot;;
+    myArray;
+    #+end_src
+
+*** associate list as object
+    * 就是 associate list 這個數據結構
+      外加一些爲這個數據結構優化的語法
+      即 create set get 這些基本操作
+      有關的語法都是優化過的
+      * get (object, key -- value)
+      * set (object, key, value -- value)
+    #+begin_src js
+    // a key is always a string
+    var my_object = {myKey: &quot;myValue&quot;, &quot;my other key&quot;: 4};
+    /*
+    (make-alist &quot;myKey&quot; &quot;myValue&quot;
+                &quot;my other key&quot; 4)
+    */
+
+    my_object[&quot;my other key&quot;];
+    // = 4
+    // (get my_object &quot;my other key&quot;)
+
+    my_object.myKey;
+    // (get my_object &quot;myKey&quot;)
+
+    my_object.myThirdKey = true;
+    my_object.myThirdKey;
+    // (set my_object &quot;myThirdKey&quot; true)
+
+    my_object.myFourthKey;
+    // = undefined
+    // (get my_object &quot;myFourthKey&quot;)
+    #+end_src
+
+*** function in associate list
+    * function in object
+      即 面向對象的術語中的 &quot;方法&quot;
+    * 再實現一些
+      與 function 和 associate list 有關的 primitive-function
+      就得到了 面向對象 範式中的其他基本語義
+    #+begin_src js
+    var my_object = {
+        my_function: function(){
+            return &quot;Hello world!&quot;;
+        }
+    };
+    /*
+    (define my_object
+       (make-alist &quot;my_function&quot; (lambda () &quot;Hello world!&quot;)))
+    */
+
+    my_object.my_function();
+    // = &quot;Hello world!&quot;
+    // ((get my_object &quot;my_function&quot;))
+    #+end_src
+
+*** this
+    #+begin_src js
+    my_object = {
+        my_string: &quot;Hello world!&quot;,
+        my_function: function(){
+            return this.my_string;
+        }
+    };
+    /*
+    (define my_object
+       (make-alist &quot;my_string&quot; &quot;Hello world!&quot;
+                   &quot;my_function&quot; (lambda () (get this &quot;my_string&quot;))))
+                   這裏的 this 並不會被求值 爲 my_object 本身
+                   而是一個標記 記錄一個 相對路徑
+                   這個 相對路徑 能夠找回到 my_object
+    */
+
+    my_object.my_function();
+    // = &quot;Hello world!&quot;
+    // ((get my_object &quot;my_function&quot;))
+
+    // 在對 alist 的嵌套所形成的有向圖中
+    // this 是通過相對路徑來標記位置的
+    var my_function = my_object.my_function;
+    // (define my_function (get my_object &quot;my_function&quot;))
+    my_function();
+    // = undefined
+    this.my_string = &quot;kkk&quot;;
+    my_function();
+    // = &quot;kkk&quot;
+
+    // 可以想像 this 是 function 的一個 key
+    // 其值 並非 嵌套的結構中 上層結構的真正地址
+    // 而是 一個相對位置值 [想像 用某種方法編碼相對位置]
+    // * 注意
+    //   因爲所處理都都是 alist
+    //   所以根本不需要知道地址之類的底層東西
+
+    // 這樣
+    // 之後定義的 method 在使用 this 的時候
+    // 也能像是跟着 object 定義的 method
+    var myOtherFunc = function(){
+        return this.my_string.toUpperCase();
+    }
+    /*
+    (define myOtherFunc
+       (lambda () (toUpperCase (get this &quot;my_string&quot;))))
+    或者
+    (define myOtherFunc
+       (lambda () ((get (get this &quot;my_string&quot;) &quot;toUpperCase&quot;))))
+    雖然 (get this &quot;my_string&quot;) 返回的是一個 string
+    但是 string 能夠被當作 alist 看待
+    儘管這些 primitive-data-type 本身的實現並不是 alist
+    */
+    my_object.myOtherFunc = myOtherFunc;
+    my_object.myOtherFunc(); // = &quot;HELLO WORLD!&quot;
+    #+end_src
+
+*** call &amp; apply
+    #+begin_src js
+    // 当我们通过 call 或者 apply 调用函数的时候
+    // 也可以为其指定一个执行上下文
+    var another_function = function(s){
+        return this.my_string + s;
+    };
+
+    another_function.call(my_object, &quot; And Hello Moon!&quot;);
+    another_function.apply(my_object, [&quot; And Hello Moon!&quot;]);
+
+    // 当一个函数接受一系列参数 而你想传入一个 array 时特别有用
+    Math.min(42, 6, 27);
+    // = 6
+    Math.min([42, 6, 27]);
+    // = NaN (uh-oh!)
+    Math.min.apply(Math, [42, 6, 27]);
+    // = 6
+    #+end_src
+
+*** bind
+    #+begin_src js
+    // bind 把 函數 another_function 內的 this 置換爲 my_object
+    // 給定義好了的函數 做手術
+    // 當然做手術之前會把函數複製一下
+    // 免得使得函數語義太過動態
+
+    this.my_string = &quot;top&quot;;
+    another_function(&quot; And Hello Saturn!&quot;);
+
+    var my_object = {my_string: &quot;kkk&quot;};
+
+    var bound_function = another_function.bind(my_object);
+    bound_function(&quot; And Hello Saturn!&quot;);
+
+    var bound_bound_function = another_function.bind(my_object);
+    bound_bound_function(&quot; And Hello Saturn!&quot;);
+
+    // curry by bind
+    var product = function(a, b){ return a * b; };
+    var doubler = product.bind(this, 2);
+    doubler(8);
+
+    // 可以設想 this 這個位置 是每個函數的 第零個參數
+    // 當然如此
+    //   要知道 obj.fun(arg1, arg2)
+    //   就     (fun obj arg1 arg2)
+    // 而在 top 調用的函數 fun(arg1, arg2) 沒有 obj
+    // 默認的 obj 就是 top
+    // 除非 bind 過
+
+    // = 16
+    var product = function(a, b){ return a * b; };
+    var doubler = product.bind(undefined, 2);
+    doubler(8);
+    // = 16
+    var product = function(a, b){ return a * b; };
+    var doubler = product.bind(123, 2);
+    doubler(8);
+    // = 16
+    //// 在 product 的函數體中 this 沒有出現
+    //// 所以 在 .bind 的時候 第一個參數怎麼寫都行
+    #+end_src
+
+*** object-constructor
+    * 構造函數 爲對象的構造子[object-constructor]
+      所以可以被理解爲類型
+    #+begin_src js
+    // 当你通过 new 关键字调用一个函数时 就会创建一个对象
+    // 而且可以通过 this 关键字访问该函数
+    // 设计为这样调用的函数就叫做构造函数
+    function Car(make, model, year) {
+        this.make = make;
+        this.model = model;
+        this.year = year;
+    }
+    /*
+    (define Car
+       (lambda (make model year)
+          (set this &quot;make&quot; make)
+          (set this &quot;model&quot; model)
+          (set this &quot;year&quot; year)))
+    */
+    var my_car = new Car(&quot;Eagle&quot;, &quot;Talon TSi&quot;, 1993);
+    my_car.make;
+
+    /*
+    this 所綁定到的值 是一個 相對路徑類型的值
+    設 origin 爲 相對路徑類型的值 中的一個動態變量
+    (define my_car
+       (let ((origin (make-alist)))
+          (Car &quot;Eagle&quot; &quot;Talon TSi&quot; 1993)
+          origin))
+    */
+
+    Car(&quot;Eagle&quot;, &quot;Talon TSi&quot;, 1993);
+    this.make;
+    #+end_src
+
+*** clone object
+    #+begin_src js
+    // 其實就是函數作用上耍花招不是嘛
+    // obj.fun(arg1, arg2)
+    // 之前是 以 obj 爲隱藏參數
+    // 現在是 找到需要調用那個函數
+    // 找的時候 看的是 obj.fun 而不但是 fun
+    // 祕密鏈接就是在這裏耍花招
+
+    var my_object = {
+        my_string: &quot;Hello world!&quot;
+    };
+    var my_prototype = {
+        meaning_of_life: 42,
+        my_function: function(){
+            return this.my_string.toLowerCase();
+        }
+    };
+
+    my_object.__proto__ = my_prototype;
+    my_object.meaning_of_life;
+    my_object.my_function();
+    // prototype 變 object 跟着變
+    // 因爲 每個域 保存的是引用 這樣就不用新增域
+    my_prototype.meaning_of_life = 43;
+    my_object.meaning_of_life;
+    // object 變 prototype 不變
+    // 因爲 發現分歧時 就把這個引用 實現爲新的域
+    my_object.meaning_of_life = 42;
+    my_prototype.meaning_of_life;
+
+    // 原型的原型
+    my_prototype.__proto__ = {
+        my_boolean: true
+    };
+    my_object.my_boolean;
+
+
+    // 不用 __proto__
+    // 則有两种方式为指定原型创建一个新的对象
+    // 其一爲 Object.create
+    var my_object2 = Object.create(my_prototype);
+    my_object2.meaning_of_life;
+
+
+    // 其二爲构造函数
+    // the &apos;prototype&apos; of object-constructor
+    // 但是它 *不是* 构造函数本身的原型
+    // 而是通过构造函数和 new 关键字创建的新对象的原型
+    MyConstructor = function(){};
+    MyConstructor.prototype = {
+        myNumber: 5,
+        getMyNumber: function(){
+            return this.myNumber;
+        }
+    };
+    var myNewObj2 = new MyConstructor();
+    myNewObj2.getMyNumber();
+
+    // 字符串和数字等内置类型也有构造函数
+    var myNumber = 12;
+    var myNumberObj = new Number(12);
+    myNumber == myNumberObj;
+    // = true
+
+    // 但是它们并非严格等价
+    typeof myNumber;
+    // = &apos;number&apos;
+    typeof myNumberObj;
+    // = &apos;object&apos;
+    myNumber === myNumberObj;
+    // = false
+
+    if (0){
+        // 这段代码不会执行，因为0代表假
+    }
+    if (Number(0)){
+        // 这段代码*会*执行，因为Number(0)代表真
+    }
+
+    // 包装类型和内置类型共享一个原型
+    // 所以你可以给内置类型增加一些功能
+    // 例如对 string
+    String.prototype.firstCharacter = function(){
+        return this.charAt(0);
+    };
+    &quot;abc&quot;.firstCharacter();
+    // = &quot;a&quot;
+
+    // 这个技巧经常用在 “代码填充” 中
+    // 来为老版本的 js 子集 增加新版本 js 特性
+    // 比如
+    // 我们知道 Object.create 并没有在所有的版本中都实现
+    // 但是我们仍然可以通过 “代码填充” 来实现兼容
+    if (Object.create === undefined){ // 如果存在则不覆盖
+        Object.create = function(proto){
+            // 用正确的原型来创建一个临时构造函数
+            var Constructor = function(){};
+            Constructor.prototype = proto;
+            // 之后用它来创建一个新的对象
+            return new Constructor();
+        };
+    };
+    #+end_src
+
+* control
+  #+begin_src js
+  // 本节介绍的语法与Java的语法几乎完全相同
+
+  // `if`语句和其他语言中一样。
+  var count = 1;
+  if (count == 3){
+      // count 是 3 时执行
+  } else if (count == 4){
+      // count 是 4 时执行
+  } else {
+      // 其他情况下执行
+  }
+
+  // while循环
+  while (true) {
+      // 无限循环
+  }
+
+  // Do-while 和 While 循环很像 ，但前者会至少执行一次
+  var input;
+  do {
+      input = getInput();
+  } while (!isValid(input))
+
+  // `for`循环和C、Java中的一样：
+  // 初始化; 继续执行的条件; 迭代。
+  for (var i = 0; i &lt; 5; i++){
+      // 遍历5次
+  }
+
+  // &amp;&amp; 是逻辑与, || 是逻辑或
+  if (house.size == &quot;big&quot; &amp;&amp; house.colour == &quot;blue&quot;){
+      house.contains = &quot;bear&quot;;
+  }
+  if (colour == &quot;red&quot; || colour == &quot;blue&quot;){
+      // colour是red或者blue时执行
+  }
+
+  // &amp;&amp; 和 || 是“短路”语句，它在设定初始化值时特别有用
+  var name = otherName || &quot;default&quot;;
+
+  // `switch`语句使用`===`检查相等性。
+  // 在每一个case结束时使用 &apos;break&apos;
+  // 否则其后的case语句也将被执行。
+  grade = &apos;B&apos;;
+  switch (grade) {
+    case &apos;A&apos;:
+      console.log(&quot;Great job&quot;);
+      break;
+    case &apos;B&apos;:
+      console.log(&quot;OK job&quot;);
+      break;
+    case &apos;C&apos;:
+      console.log(&quot;You can do better&quot;);
+      break;
+    default:
+      console.log(&quot;Oy vey&quot;);
+      break;
+  }
+  #+end_src
+
+* typed arrays
+  #+begin_src js
+  !function(){
+
+      var buffer = new ArrayBuffer(16);
+      // unit byte
+
+      var uint32View = new Uint32Array(buffer);
+
+      if (buffer.byteLength === 16) {
+          console.log(&quot;16 byte\n took my baby away&quot;);
+      } else {
+          console.log(&quot;錯了, 不是 16 byte&quot;);
+      };
+
+  }();
+  #+end_src
+</pre>
+</body>
+</html>

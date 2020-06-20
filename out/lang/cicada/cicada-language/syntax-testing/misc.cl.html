@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>lang/cicada/cicada-language/syntax-testing/misc.cl</title>
+</head>
+<body>
+<pre>+ author
+  謝宇恆 / XIE Yuheng
+
+* id
+
+  - {set #set} :set
+  | :set
+
+  + :n
+  | :n
+
+* maybe
+
+  - type
+  | type
+
+  * nothing
+
+    - {type #type}
+    | :type maybe)
+
+  * just
+
+    - {type #type} :type
+    | :type maybe
+
+  * maybe-apply
+
+    - {type #type #type&apos;}
+      :type&apos; (:type -&gt; :type&apos;) :type maybe
+    | :type&apos;
+
+    + :default :function nothing
+    | :default
+
+    + :default :function :value just
+    | :value :function apply
+</pre>
+</body>
+</html>

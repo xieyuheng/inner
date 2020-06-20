@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>lang/cicada/cicada-language/open/type-system-3.org</title>
+</head>
+<body>
+<pre>* &lt;type-constructor&gt; &amp; &lt;element-constructor&gt;
+
+  - &lt;type-constructor&gt; &amp; &lt;element-constructor&gt;
+    都是平凡的可逆函數
+    因此都可用於模式匹配
+    &lt;type-constructor&gt; 的特點是
+    其名字可以用爲 type-tag
+    一個 &lt;type-constructor&gt;
+    比如以 has-length 爲類型的值出現在棧中的時候是
+    是 [has-length, address]
+    也就是把名字做爲 type-tag
+    它的 &lt;element-constructor&gt; 比如 has-length:cons
+    作用於某個 [has-length, address]
+    之後 address 下的 data 就多了一個 has-length:cons 標籤
+
+  - has-length 本身作用的結果做爲數據出現在棧中的時候是
+    [type, address]
+    address 下是 has-length 標籤還有其域
+
+  - integer 之類的 primitive-type
+    做爲值出現在棧中的時候
+    不能是
+    [type, integer]
+    因爲這樣第二個域就有歧義了
+    也不能是
+    [primitive-type, integer]
+    因爲這樣對 type 的處理就複雜了
+    應該是
+    [type, address]
+    address 下面保存 integer
+    和它如何爲 primitive 的信息
+
+  - sequent
+    或 -&gt;
+    或 arrow
+    或 sequent-list
+    爲 structured-type
+    其類型的值 做爲值出現在棧中
+    是 [sequent, address]
+    其 做爲值出現在棧中
+    是 [type, address]
+    address 下是
+    sequent 標籤和 type 做爲 dependent type 的信息
+
+* 類型信息
+
+  - 觀察 list
+    可以發現只有 有類型信息
+    才能知道如何作用 list 這個特殊平凡可逆函數
+
+  - 平凡函數需要類型信息才能知道
+    1. 作用時分配幾個域
+    2. 匹配時如何解構
+       其實是通過 使得 函數可以作用於 local-variable 完成的
+       帶有 local-variable 的結構化數據去匹配棧中的值
+
+  - 非平凡函數需要知道類型信息才能知道
+    1. 在返回時如何複製
+
+  - 所以現在就要 類型信息 加到 function-body 中
+
+* 類型信息解釋器 &lt;2015-12-07&gt;
+
+  - x ::
+       這裏必須有各種類型信息的解釋器
+       爲了維護這些解釋器的可行性
+       函數的類型的樣式就受到限制
+       我們可以看一下這些限制是什麼
+
+  - k ::
+       首先就是函數只可能可以作用於固定個數個參數
+
+* 非平凡的可逆函數 匹配時的解構
+
+  - 解構 是由標記出的 local-variable 完成的
+    平凡的可逆函數是如此
+    非平凡的可逆函數如何
+</pre>
+</body>
+</html>

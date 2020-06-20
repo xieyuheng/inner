@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>lang/scheme/practice/little.rkt</title>
+</head>
+<body>
+<pre>#lang racket
+
+;; NOTE Helper functions.
+
+(define assert
+  (lambda (x)
+    (cond
+      ((eq? x #t) &apos;ok)
+      (else (error &quot;assertion fail&quot;)))))
+
+(define build
+  (lambda (x y)
+    (cons x (cons y &apos;()))))
+
+(define first
+  (lambda (x)
+    (car x)))
+
+(define second
+  (lambda (x)
+    (car (cdr x))))
+
+(assert (eq? (second (build &apos;loli &apos;pop)) &apos;pop))
+
+(define new-entry build)
+
+(assert (eq? (second (new-entry &apos;loli &apos;pop)) &apos;pop))
+(assert (eq? (first (new-entry &apos;loli &apos;pop)) &apos;loli))
+
+(define example-entry-1
+  (new-entry &apos;(appetizer entree beverage)
+             &apos;(food tastes good)))
+
+(define lookup-in-entry
+  (lambda (name entry entry-f)
+    (lookup-in-entry-help name
+     (first entry)
+     (second entry)
+     entry-f)))
+
+(define lookup-in-entry-help
+  (lambda (name names values entry-f)
+    (cond
+      ((null? names) (entry-f name))
+      ((eq? name (car names)) (car values))
+      (else (lookup-in-entry-help
+             name (cdr names) (cdr values) entry-f)))))
+
+(define identity (lambda (x) x))
+
+(assert (eq? (lookup-in-entry &apos;entree example-entry-1 identity) &apos;tastes))
+
+(assert (eq? (lookup-in-entry &apos;dessert example-entry-1 identity)
+             (identity &apos;dessert)))
+
+(define extend-table cons)
+
+(define lookup-in-table
+  (lambda (name table table-f)
+    (cond
+      ((null? table) (table-f name))
+      (else
+       (lookup-in-entry
+        name
+        (car table)
+        (lambda (name)
+          (lookup-in-table
+           name
+           (cdr table)
+           table-f)))))))
+
+(define example-table-1
+  &apos;(((entree dessert)
+     (cake spaghetti))
+    ((appetizer entree beverage)
+     (food tastes good))))
+
+(assert (eq? (lookup-in-table &apos;entree example-table-1 identity)
+             &apos;cake))
+
+(assert (eq? (lookup-in-table &apos;beverage example-table-1 identity)
+             &apos;good))
+
+(assert (eq? (lookup-in-table &apos;x example-table-1 identity)
+             (identity &apos;x)))
+
+;; (print (cons &apos;a (cons &apos;b (cons &apos;c &apos;()))))
+
+;; (print (cons &apos;car
+;;              (cons
+;;               (cons &apos;quote
+;;                     (cons
+;;                      (cons &apos;a (cons &apos;b (cons &apos;c &apos;())))
+;;                      &apos;()))
+;;               &apos;())))
+
+
+
+;; NOTE test interpreter.
+
+(assert
+ (eq? (value
+       &apos;(car (quote (a b c))))
+      &apos;a))
+
+(assert
+ (eq? (value
+       &apos;(quote (car (quote (a b c)))))
+      &apos;(car (quote (a b c)))))
+
+(assert
+ (eq? (value
+       &apos;(add1 6))
+      7))
+
+(assert
+ (eq? (value
+       6)
+      6))
+
+(assert
+ (eq? (value
+       &apos;(quote nothing))
+      &apos;nothing))
+
+(assert
+ (eq? (value
+       &apos;((lambda (nothing)
+           (cons nothing (quote ())))
+         (quote
+             (from nothing comes something))))
+      &apos;((from nothing comes something))))
+</pre>
+</body>
+</html>

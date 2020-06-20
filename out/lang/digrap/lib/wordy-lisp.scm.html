@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>lang/digrap/lib/wordy-lisp.scm</title>
+</head>
+<body>
+<pre>(define string&lt;-symbol symbol-&gt;string)
+(define list&lt;-string string-&gt;list)
+
+(define not-proper-list?
+  (lambda (x)
+    (and (pair? x)
+         (not (list? x)))))
+(define key?
+  (lambda (x)
+    (and (symbol? x)
+         (eq? #\: (car (list&lt;-string
+                        (string&lt;-symbol x)))))))
+;; test:
+;; (key? 1)
+;; (key? &apos;:kkk)
+;; (key? &apos;::kkk)
+;; (key? &apos;卡夫卡)
+
+
+(define wordy-list?
+  (lambda (x)
+    (and (list? x)
+         (or (null? x);; can be &apos;() 因为要作为递归函数的基本步骤
+             (key? (car x))))))
+;; (wordy-list? &apos;())
+;; (wordy-list? &apos;(:k1 1 :k2 2 2 2 :k3 3 (3) () :k4 . 1))
+
+
+
+(define field?
+  (lambda (x)
+    (and (list x)
+         (not (null? x))
+         (key? (car x))
+         (not (wordy-list? (cdr x))))))
+;; 就接口而言 curry总是可以增加使用上的灵活性
+;; 并且简化对使用方式的理解: 因为所有的作用都是一元的了
+
+;; (take n) =&gt; &lt;taker&gt;
+;; (&lt;taker&gt; &lt;field&gt;) =&gt; &lt;val&gt;
+;;   例如 (take n) will take the key of &lt;field&gt;
+(define take
+  (lambda (n)
+    (lambda (field)
+      (letrec ([R (lambda (n lis)
+                    (cond [(= n 0)
+                           (car lis)]
+                          [else
+                           (R (sub1 n) (cdr lis))]))])
+        (if (&gt;= n (length field))
+          (error &apos;take
+            &quot;taker too far!&quot; n (sub1 (length field)) field)
+          (R n field))))))
+;; ((take 1) &apos;(:kkk))
+;; ((take 3) &apos;(:kkk 1 2 3))
+;; ((take 4) &apos;(:kkk 1 2 3))
+
+
+;; (find &lt;key&gt;) =&gt; &lt;finder&gt;
+;; (&lt;finder&gt; &lt;wordy-list&gt;) =&gt; &lt;field&gt; | #f
+;;    上面当失败的时候是否不应该简单地返回#f
+;;    而去返回更多的信息 比如找什么key的时候失败了
+;;    其实用#f也行 因为返回值正常的时候返回的都是列表
+;;    但是其他的函数的错误处理可能就不能这么草率了
+;; 注意:
+;;   所返回的是一个新构建的列表
+;;   但是列表里的元素还是老元素
+;;   因此对于finder所返回的值要小心地使用副作用
+;; 又注意:
+;;   所返回的新列表会丧失``在列表内引用列表头&apos;&apos;的性质
+;;   所返回的:
+;; (:0-dimension-geometry-object-list
+;;      #2=[:v vertex-2 :address #2#
+;;          :can (:value 222)
+;;          :abut-edge-list
+;;             (:e edge:2--&gt;3 :address #4#)
+;;             (:e edge:3--&gt;2 :address #6#)])
+;; 对其中#2#的引用不会丧失``在列表内引用列表头&apos;&apos;的性质
+;; 但是如果是(:kkk 1 2 . #0=(:tree 7 8 9 #0#) 4 5 6)
+;; 那么
+;; ((find &apos;:tree)
+;;  &apos;(:kkk 1 2 . #0=(:tree 7 8 9 #0#)))
+;; =&gt;
+;; (:tree 7 8 9 #0=(:tree 7 8 9 #0#))
+;; 而不是#0=(:tree 7 8 9 #0#)
+;; 也就是说返回值丧失了``在列表内引用列表头&apos;&apos;的性质
+;; 但是从某种语义上来说
+;; (:kkk 1 2 . #0=(:tree 7 8 9 #0#) 4 5 6)中的#0#并不是对列表头的引用不是吗?
+;; 看你从什么角度去理解了
+;; 但是一定要小心而仔细地分析find这类函数的性质
+(define find
+  (lambda (key)
+    (lambda (wordy-list)
+      (letrec ([find-the-key
+                (lambda (wordy-list)
+                  (cond [(null? wordy-list)
+                         #f]
+                        [(eq? key (car wordy-list))
+                         (cons (car wordy-list)
+                               (find-2nd-key (cdr wordy-list)))]
+                        [else
+                         (find-the-key (cdr wordy-list))]))]
+               [find-2nd-key
+                (lambda (wordy-list)
+                  (cond [(null? wordy-list)
+                         wordy-list]
+                        [(atom? wordy-list)
+                         wordy-list]
+                        [(not (key? (car wordy-list)))
+                         (cons (car wordy-list)
+                               (find-2nd-key (cdr wordy-list)))]
+                        [(key? (car wordy-list))
+                         &apos;()]
+                        ))])
+        (cond [(not (key? key))
+               (error &apos;find &quot;inupt must be a key&quot; key)]
+              [(null? wordy-list)
+               #f]
+              [else
+               (find-the-key wordy-list)])
+        ))))
+;; test:
+
+;; ((find &apos;:k0) &apos;(:k1 1 :k2 2 2 2 :k3 3 (3) () :k4))
+;; ((find &apos;:k1) &apos;(:k1 1 :k2 2 2 2 :k3 3 (3) () :k4))
+;; ((find &apos;:k2) &apos;(:k1 1 :k2 2 2 2 :k3 3 (3) () :k4))
+;; ((find &apos;:k4) &apos;(:k1 1 :k2 2 2 2 :k3 3 (3) () :k4))
+
+;; 尽管下面的测试看似正确
+;; 但是非proper-list不被看作是wordy-list
+;; wordy-list?这个谓词会帮助判断
+;; 所以需要一个例外处理来处理下面的东西
+;; 否则这种形式被(有意或无意地)滥用后 将会带来麻烦
+;; ((find &apos;:k4) &apos;(:k1 1 :k2 2 2 2 :k3 3 (3) () :k4 . 1))
+
+;; ((find &apos;:k3) &apos;(:k1 1
+;;              :k2 2 2 2
+;;              :k3 3 (3) ()
+;;              :k4))
+;; ((find &apos;:can) &apos;[:v :can &lt;-- &lt;-- λ])
+;; ((find &apos;:can) &apos;[:v :can (:v-type black :kkk kkk)])
+
+
+
+;; ((find &apos;:type)
+;; &apos;(:type 
+
+;;   :0-dimension-geometry-object-list
+;;      #2=[:v vertex-2 :address #2#
+;;          :can (:value 222)
+;;          :abut-edge-list
+;;             (:e edge:2--&gt;3 :address #4#)
+;;             (:e edge:3--&gt;2 :address #6#)]
+
+;;      #3=[:v vertex-3 :address #3#
+;;          :can (:value 333)
+;;          :abut-edge-list
+;;             (:e edge:2--&gt;3 :address #4#)
+;;             (:e edge:3--&gt;2 :address #6#)]
+
+;;   :1-dimension-geometry-object-list
+;;      #4=[:e edge:2--&gt;3 :address #4#
+;;          :can (:edge-type black-arrow)
+;;          :abut-vertex-list
+;;             (:v vertex-2 :address #2#)
+;;             (:v vertex-3 :address #3#)]
+
+;;      #6=[:e edge:3--&gt;2 :address #6#
+;;          :can (:edge-type black-arrow)
+;;          :abut-vertex-list
+;;             (:v vertex-3 :address #3#)
+;;             (:v vertex-2 :address #2#)]
+;;      ))
+
+
+
+
+;; (let ([first-edge-fo-first-vertex-finder
+;;        (lambda (a-graph)
+;;          ((find &apos;:e)
+;;           ((take 1)
+;;            ((find &apos;:abut-edge-list)
+;;             ((take 1)
+;;              ((find &apos;:0-dimension-geometry-object-list) a-graph))))))])
+;;   (first-edge-fo-first-vertex-finder
+;;    &apos;(:type 
+
+;;      :0-dimension-geometry-object-list
+;;         #2=[:v vertex-2 :address #2#
+;;             :can (:value 222)
+;;             :abut-edge-list
+;;                (:e edge:2--&gt;3 :address #4#)
+;;                (:e edge:3--&gt;2 :address #6#)]
+
+;;         #3=[:v vertex-3 :address #3#
+;;             :can (:value 333)
+;;             :abut-edge-list
+;;                (:e edge:2--&gt;3 :address #4#)
+;;                (:e edge:3--&gt;2 :address #6#)]
+
+;;      :1-dimension-geometry-object-list
+;;         #4=[:e edge:2--&gt;3 :address #4#
+;;             :can (:edge-type black-arrow)
+;;             :abut-vertex-list
+;;                (:v vertex-2 :address #2#)
+;;                (:v vertex-3 :address #3#)]
+
+;;         #6=[:e edge:3--&gt;2 :address #6#
+;;             :can (:edge-type black-arrow)
+;;             :abut-vertex-list
+;;                (:v vertex-3 :address #3#)
+;;                (:v vertex-2 :address #2#)]
+;;         )
+;;    ))
+
+
+
+;; (let ([can-of-first-edge-fo-first-vertex-finder
+;;        (lambda (a-graph)
+;;          ((find &apos;:can)
+;;           ((take 1)
+;;            ((find &apos;:address)
+;;             ((take 1)
+;;              ((find &apos;:abut-edge-list)
+;;               ((take 1)
+;;                ((find &apos;:0-dimension-geometry-object-list) a-graph))))))))])
+;;   (can-of-first-edge-fo-first-vertex-finder
+;;    &apos;(:type 
+
+;;      :0-dimension-geometry-object-list
+;;         #2=[:v vertex-2 :address #2#
+;;             :can (:value 222)
+;;             :abut-edge-list
+;;                (:e edge:2--&gt;3 :address #4#)
+;;                (:e edge:3--&gt;2 :address #6#)]
+
+;;         #3=[:v vertex-3 :address #3#
+;;             :can (:value 333)
+;;             :abut-edge-list
+;;                (:e edge:2--&gt;3 :address #4#)
+;;                (:e edge:3--&gt;2 :address #6#)]
+
+;;      :1-dimension-geometry-object-list
+;;         #4=[:e edge:2--&gt;3 :address #4#
+;;             :can (:edge-type black-arrow)
+;;             :abut-vertex-list
+;;                (:v vertex-2 :address #2#)
+;;                (:v vertex-3 :address #3#)]
+
+;;         #6=[:e edge:3--&gt;2 :address #6#
+;;             :can (:edge-type black-arrow)
+;;             :abut-vertex-list
+;;                (:v vertex-3 :address #3#)
+;;                (:v vertex-2 :address #2#)]
+;;         )
+
+;;    ))
+
+
+;; (address-find &lt;key&gt;) =&gt; &lt;address-finder&gt;
+;; (&lt;address-finder&gt; &lt;wordy-list&gt;) =&gt; &lt;wordy-list&gt;
+;; 不构建新列表而直接返回找到的列表的地址
+;; 有点像又两个参数的cdr
+;; 第一个参数是&lt;field-name&gt; (即&lt;key&gt;)
+;; 第二个参数是&lt;wordy-list&gt;
+(define address-find
+  (lambda (key)
+    (lambda (wordy-list)
+      (letrec ([find-the-key
+                (lambda (wordy-list)
+                  (cond [(null? wordy-list)
+                         #f]
+                        [(eq? key (car wordy-list))
+                         wordy-list]
+                        [else
+                         (find-the-key (cdr wordy-list))]))])
+        (cond [(not (key? key))
+               (error &apos;find &quot;inupt must be a key&quot; key)]
+              [(null? wordy-list)
+               #f]
+              [(eq? key (car wordy-list))
+               wordy-list]
+              [else
+               (find-the-key wordy-list)])
+        ))))
+;; test:
+;; ((address-find &apos;:k0) &apos;(:k1 1 :k2 2 2 2 :k3 3 (3) () :k4))
+;; ((address-find &apos;:k1) &apos;(:k1 1 :k2 2 2 2 :k3 3 (3) () :k4))
+;; ((address-find &apos;:k2) &apos;(:k1 1 :k2 2 2 2 :k3 3 (3) () :k4))
+;; ((address-find &apos;:k3) &apos;(:k1 1 :k2 2 2 2 :k3 3 (3) () :k4))
+;; ((address-find &apos;:k4) &apos;(:k1 1 :k2 2 2 2 :k3 3 (3) () :k4))
+
+
+
+
+(define append-two!
+  ;; SIDE-EFFECT on wlist-1, 所以append-two!的第一个参数不能是&apos;()
+  ;; RETURN-VAL wlist-1
+  (lambda (wlist-1 wlist-2)
+    (letrec ([R! (lambda (wlist-1)
+                   (cond [(null? (cdr wlist-1)) ;; (= 1 (length wlist-1))
+                          (set-cdr! wlist-1 wlist-2)]
+                         [else
+                          (R! (cdr wlist-1))]))])
+      (cond [(null? wlist-1)
+             (error &apos;append-two!
+               &quot;append-two!&apos;s 1th-arg can not be &apos;()&quot; wlist-1 wlist-2)]
+            [(not-proper-list? wlist-1)
+             (error &apos;append-two!
+               &quot;append-two!&apos;s 1th-arg can not be a not proper-list&quot;
+               wlist-1 wlist-2)]
+            ;; [(not (list? wlist-2))
+            ;;  (error &apos;append-two!
+            ;;    &quot;append-two!&apos;s 2th-arg must be a list&quot; wlist-1 wlist-2)]
+            ;; 上面的一句对类型的控制比较严格一点
+            [(and (not (pair? wlist-2))
+                  (not (null? wlist-2)))
+             (error &apos;append-two!
+               &quot;append-two!&apos;s 2th-arg must be a pair or &apos;()&quot; wlist-1 wlist-2)]
+            [else
+             ;; SIDE-EFFECT
+             (R! wlist-1)
+             ;; RETURN-VAL
+             wlist-1]))))
+;; test:
+;; (append-two! &apos;(1 2 3) &apos;(kkk))
+;; (append-two! &apos;() &apos;(kkk))
+;; (append-two! &apos;(1 2 . 3) &apos;(kkk))
+;; (let ([kkk &apos;(1 2 3)])
+;;   (append-two! kkk &apos;(kkk))
+;;   (append-two! kkk &apos;(kkk))
+;;   (append-two! kkk &apos;(kkk))
+;;   kkk)
+;; (let ([kkk &apos;(1 2 3)])
+;;   (append kkk &apos;(kkk))
+;;   (append kkk &apos;(kkk))
+;;   (append kkk &apos;(kkk))
+;;   kkk)
+
+(define-syntax append!
+  (syntax-rules ()
+    [(_)
+     (error &apos;append!
+       &quot;append! is a syntax with at least 2 args, not 0 arg !&quot;)]
+    [(_ anthing)
+     (error &apos;append!
+       &quot;append! is a syntax with at least 2 args, not 1 arg !&quot; anthing)]
+    [(_ wlist-1 wlist-2)
+     (append-two! wlist-1 wlist-2)]
+    [(_ wlist-1 wlist-2 wlist-3 ...)
+     (append!
+      (append-two! wlist-1 wlist-2) wlist-3 ...)]
+    ))
+;; test:
+;; (append! &apos;(1 2 3) &apos;(1 2 3) &apos;(kkk))
+;; (append! &apos;(kkk) &apos;() &apos;(kkk))
+;; (append! &apos;(0 0 0) &apos;(kkk) &apos;(1 2 . 3))
+;; (append! &apos;(0 0 0) &apos;(1 2 . 3) &apos;(kkk))
+;; (let ([kkk &apos;(1 2 3)])
+;;   (append! kkk &apos;(kkk))
+;;   (append! kkk &apos;(kkk))
+;;   (append! kkk &apos;(kkk))
+;;   kkk)
+;; (let ([kkk &apos;(1 2 3)])
+;;   (append kkk &apos;(kkk))
+;;   kkk)
+
+
+;; 一个同构变换:
+;; 主要的区别是
+;; alist中递增一下就能找到下一个field
+;;   而wlist中可能需要很多对key?判断才能找到下一个field
+;; wlist的样子看起来很简单括号很少并且更容易理解
+;;   而alist看起来很复杂
+;; alist在视觉上的的劣势很容易用一个语法解析器来弥补
+;; wlist理解起来还是更简单
+
+;; 为了获得alist的优势 并不必作同构变换
+;; 只要跑一遍wlist 然后增加一个key.address-alist就行了
+;; 真正的同构变换会破坏原来的结构化数据的结构
+;; 即 第一个field的尾部被一个&apos;()截断了
+;; 但是更重要的是注意这种截断并不影响wlist中的loop
+;; 也就是说不会影响wlist中的某些位置对其他位置的地址的记录
+
+;; 注意只有当使用同构所节省的时间超过
+;; 同构变换所浪费的时间
+;; (define alist&lt;-wlist
+;;   (lambda (wlist)
+;;     ()))
+
+;; (define wlist&lt;-alist
+;;   (lambda (alist)
+;;     ()))
+
+
+;; 用副作用删除和增加field
+;; (delete! &lt;key&gt;) =&gt; &lt;deleter!&gt;
+;; (&lt;deleter!&gt; &lt;wordy-list&gt;) =&gt; {WITH-SIDE-EFFECT} &lt;wordy-list&gt; | #f
+;; (define delete!
+;;   (lambda (key)
+;;     (lambda (wordy-list)
+;;       需要定义find-next-field
+;;       )))
+
+;; (substitute! &lt;field&gt;) =&gt; &lt;substituent!&gt;
+;; ((&lt;substituent!&gt; &lt;key&gt;) )
+;; (define substitute!
+;;   (lambda (key)
+;;     (lambda (wordy-list)
+;;  
+;;       )))
+
+
+;; 用副作用删除和增加field中的值
+;; 用副作用更改field的名字
+
+
+
+
+(define insert-val-to-the-2nd-position-of-a-list!
+  (lambda (val lis)
+    (if (null? lis)
+      (error &apos;insert-val-to-the-2nd-position-of-a-list!
+        &quot;input list can not be &apos;() !&quot;)
+      (set-cdr! lis (append!
+                      (list val)
+                      (cdr lis))))))
+
+
+(define insert-a-val-to-a-field-of-a-wlist!
+  (lambda (val field-name wlist)
+    (insert-val-to-the-2nd-position-of-a-list!
+     val ((address-find field-name) wlist))))
+;; test:
+;; (define kkk &apos;(:kkk))
+;; (insert-a-val-to-a-field-of-a-wlist! 1 &apos;:kkk kkk)
+
+;; 发现如果可以自由的改变参数的顺序 那将很有利于可读性
+;; 在wordy-lisp中就可以做到这一点
+;; 我可以直接用macro把wordy-lisp嵌入到scheme中吗???
+;; 如果能自动实现动态的curry 就更好了 !!!
+;; 甚至可以自动变换求值顺序形成不同的curry
+(define to-a-field-of-a-wlist--let-us-insert-a-val!
+  (lambda (field-name wlist val)
+    (insert-val-to-the-2nd-position-of-a-list!
+     val ((address-find field-name) wlist))))
+</pre>
+</body>
+</html>

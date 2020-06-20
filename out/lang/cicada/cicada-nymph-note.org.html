@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>lang/cicada/cicada-nymph-note.org</title>
+</head>
+<body>
+<pre>#+TITLE:  cicada nymph note
+#+AUTHOR: XIE Yuheng
+
+* title explanation
+  - this note is written after
+    my experiment with several versions of cicada-language
+  - this note record
+    how I add interesting features
+    to a forth-like language
+  - this note also record
+    my view about programming language design
+
+* &gt;&lt; principle
+
+*** to relax the burden of comprehension
+
+*** to be explicit
+
+*** to know and control the order
+
+*** low level
+
+*** simple
+
+* style
+  - chinese english is proudly used in this documentation
+    chinese english is dialect of english used in china
+  - lowercase letter is prefered
+  - highly un-finished section is denoted by &quot;&gt;&lt;&quot;
+    mostly finished section is published for review
+    - all the sections [except section about type system]
+      are alreay implemented in the current version of cicada-language
+      un-finished mark only means the documentation is not finished
+
+* terminology
+
+*** mechanism &amp; feature
+    - one mechanism implements one feature
+    - a group of mechanisms can be viewed as
+      the implementation of a group of features
+
+*** jo &amp; jojo
+    - a jojo is a function body
+      a jo is the head address of the function body
+      a jojo is an array of jo
+    - the word jo is borrowed from the chinese word &quot;珠&quot;
+      which means bead
+      which reads like &quot;zhu&quot; or &quot;jo&quot;
+
+* &gt;&lt; review
+
+*** to name &amp; not to name &amp; factoring
+
+*** point on a circle
+
+
+* function
+
+*** function application
+    - push data to argument-stack
+      then call function to process data
+      naturally this is expressed by postfix notation
+    #+begin_src cicada-nymph
+    1 2 add
+    #+end_src
+
+*** function definition
+    - let us mimic the syntax of forth
+      1. call (:)
+         read a input string
+         until meet &quot;;&quot; [spaced by whitespace]
+         and push the string to argument-stack
+      2. call (define-function)
+         process the string on top of the argument-stack
+         and create a function in the memory
+    #+begin_src cicada-nymph
+    : square
+      dup mul
+      end
+    ; define-function
+    #+end_src
+
+*** argument-stack
+    - normal function take data from argument-stack as argument
+      process the data
+      return data back to argument-stack
+      to be processed by other function
+    - data in argument-stack is stored cell by cell
+
+*** return-stack
+    - at first return-stack stores only jojo
+      - to record a list return points
+        caused by nested function calls
+      but as I add more features
+      the data needed to be stored in return-stack
+      get more complicated
+      - related features are
+        1. local-named-variable
+        2. dynamic memory allocation
+      now
+      the data stored in return-stack
+      is grouped return-point by return-point
+    - return-point
+      | conjugate-local-memory |
+      | local-memory           |
+      | local-variable         |
+      | jojo                   |
+
+*** summary of basic semantic
+    - basic semantic about a programming language
+      is the following two
+      1. function application
+      2. function definition
+
+* &gt;&lt; threaded code interpreter
+
+* to name the data in argument-stack
+
+*** title explanation
+    - the simple way to pass data
+      from one function to another function
+      is to ues the argument-stack
+      but
+      when some data is used many times
+      you have to do a lot of stack operations
+      to maintain the order of the data in the stack
+      this is annoying
+      the solution is to use name
+      name the data
+      then you can use it many times
+
+*** global name &amp; local name
+    - there are two ways for naming
+    - global name
+      [global-varibale]
+      [global-named-variable]
+      [global-name-for-variable]
+      use (define-variable) to make global name
+      after then all functions can use the name
+      this is very easy to implement
+      #+begin_src cicada-nymph
+      : *example-global-varibale*
+        3
+      ; define-variable
+
+      : example
+        *example-global-varibale*
+        *example-global-varibale*
+        add
+        end
+      ; define-function
+      #+end_src
+      just globally allocate some memory
+      move data in argument-stack into it
+      and give the memory address a name
+    - local name
+      [local-variable]
+      [local-named-variable]
+      [local-name-for-variable]
+      every local name is limited to be used by one function
+      for example
+      #+begin_src cicada-nymph
+      : square
+        &gt;:n
+        :n :n mul
+        end
+      ; define-function
+      #+end_src
+      it works like the following
+      1. every time the function is applied
+         there is a block of memory called :n can be used
+         - note that
+           for every application
+           there is a new block of memory
+      2. &gt;:n
+         will move a data from the top of argument-stack
+         to the block of memory which named :n
+         - i.e.
+           saved in the local-variable :n
+      3. :n
+         copy the data in the block of memory named :n
+         back to argument-stack
+         :n appears twice
+         the data appears twice in argument-stack
+      this naming of :n
+      can only be used in the function body of (square)
+      in other function&apos;s body
+      there are their own naming
+      this is what I mean by local name
+
+*** the implementation of local name
+    - to implement local name
+      I do some trick in return-stack
+      recall return-point
+      | conjugate-local-memory |
+      | local-memory           |
+      | local-variable         |
+      | jojo                   |
+      where the local-variable field
+      is for to implement the feature local name
+    - in the threaded code interpreter
+      I allocated a big block of memory
+      called (local-variable-area)
+      there is (local-variable-area:*address*)
+      there is (local-variable-area:*current-free-address*)
+      which is initialized by (local-variable-area:*address*)
+    - every time a non-primitive function is applied
+      a return-point is added in to return-stack
+      where
+      1. jojo
+         is the head address
+         of the function body
+         of the non-primitive function
+      2. local-variable
+         is the value of
+         (local-variable-area:*current-free-address*)
+         i.e. the current-free-address of (local-variable-area)
+    - now
+      the memory in (local-variable-area)
+      - whose address is greater then the address that
+        stored in the local-variable field of the return-point
+      can be used freely in this application of the non-primitive function
+      when I want to use some of this memory
+      I just increase the variable
+      (local-variable-area:*current-free-address*)
+    - when a function finish its application
+      the return-point
+      - which is pushed into return-stack
+        when this function begin its application
+      is poped out from return-stack
+      the local-variable field of it
+      will be used to recover
+      (local-variable-area:*current-free-address*)
+      - to recover it to its old value
+        when this function begin its application
+    - here is how I compile the following function
+      #+begin_src cicada-nymph
+      : square
+        &gt;:n
+        :n :n mul
+        end
+      ; define-function
+      #+end_src
+      1. first remember that
+         when appling function
+         it get its return-point in return-stack
+         in the return-point
+         there is a field called local-variable
+         this field stores an address
+         the address is in (local-variable-area)
+         let us call it
+         the local variable address of this function application
+      2. at compile time
+         an offset will be calculated
+         for every different local name
+         for our example
+         let us call it
+         the offset of :n
+         by
+         the local variable address of this function application
+         and
+         the offset of :n
+         we can get an address in (local-variable-area)
+         let us call it
+         the address of :n
+         the idea is
+         we compile
+         the offset of :n into function
+         and we calculate
+         the address of :n at run time
+      2. meet &gt;:n
+         compile
+         - a calculation of
+           the address of :n
+           and
+           a copy-tion
+           from argument-stack
+           to the address of :n
+      3. note that
+         first time meet &gt;:n
+         we also need to compile
+         - a increase-tion of
+           (local-variable-area:*current-free-address*)
+         first time meet &gt;:n
+         will update the data in it
+      4. meet :n
+         compile
+         - a calculation of
+           the address of :n
+           and
+           a copy-tion
+           from the address of :n
+           to argument-stack
+
+*** summary
+    - by adding a field to the return-point in return-stack
+      I am able to give data in argument-stack local name
+    - I use syntax such as
+        &gt;:var :var
+      as the interface of this mechanism
+
+* dynamic memory allocation
+
+*** title explanation
+    - to dynamic allocate memory
+      is to automatically reclaim locally allocated memory
+    - thus to speak
+      the above way to do local name
+      is also dynamic
+      for
+      when function finish its application
+      the allocated memory get reclaimed
+      by recover (local-variable-area:*current-free-address*)
+    - but here
+      by dynamic memory allocation
+      I mean
+      - in the application of a function
+        allocate any size of memory as the function wish
+        and automatically reclaim the locally allocated memory
+        when function finish its application
+      as you observed
+      name is not involved here
+      as you anticipated
+      the way to implement local name and local memory
+      will be similar
+      for they both need to
+      automatically reclaim the locally allocated memory
+      - in Chinese we say 異曲同工 [yi4 qu3 tong2 gong1]
+        which means
+        different songs
+        but as beautiful as the same
+
+*** global memory &amp; local memory
+    - just as name
+      allocated memory can be global or local
+    - global memory
+      the interface is (allocate-memory)
+      the memory allocated by (allocate-memory)
+      can not be reclaimed
+      for example
+      #+begin_src cicada-nymph
+      : allocate-memory:*example-buffer*
+        1024 allocate-memory
+      ; define-variable
+      #+end_src
+    - local memory
+      the interface is (allocate-local-memory)
+      the memory allocated be (allocate-local-memory)
+      will be automatically reclaimed
+      then the function finish its application
+      for example
+      #+begin_src cicada-nymph
+      : allocate-local-memory:example
+        1024 allocate-local-memory &gt;:example-buffer
+        :example-buffer ...
+        :example-buffer ...
+        end
+      ; define-function
+      #+end_src
+
+*** return data problem
+    - assume we have a function called (son)
+      it is called be a function called (father)
+      (son) use (allocate-local-memory)
+      #+begin_src cicada-nymph
+      : son
+        1024 allocate-local-memory &gt;:buffer
+        ...
+        :buffer
+        end
+      ; define-function
+
+      : father
+        son ...
+        1024 allocate-local-memory &gt;:buffer
+        ...
+        end
+      ; define-function
+      #+end_src
+    - as you observed
+      (son) wish to return a lot of data
+      thus (son) can not push the data to argument-stack to return them
+      - because in argument-stack
+        every data is of unit cell
+      after process the the data
+      (son) stores them into the local memory that
+      allocated by (allocate-local-memory)
+    - problem is
+      these locally allocated memory
+      will be automatically reclaim
+      when function finish its application
+      thus
+      when (father) use (allocate-local-memory)
+      the memory previously used by (son) to return data
+      will be considered free to ues
+      thus
+      the data returned by (son) are destroyed
+
+*** use conjugation to solve the return data problem
+    - recall return-point
+      | conjugate-local-memory |
+      | local-memory           |
+      | local-variable         |
+      | jojo                   |
+      where
+      the field local-memory
+      and
+      the field conjugate-local-memory
+      are for to solve the return data problem
+    - recall the field local-variable
+      it stores (local-variable-area:*current-free-address*)
+      while
+      the field local-memory
+      and
+      the field conjugate-local-memory
+      store
+      (local-memory-even-area:*current-free-address*)
+      and
+      (local-memory-odd-area:*current-free-address*)
+    - the trick is
+      every time a nested function is applied
+      swap odd and even
+    - for example
+      (father) have
+      | local-memory           | even |
+      | conjugate-local-memory | odd  |
+      (father) call (son)
+      thus
+      (son) have
+      | local-memory           | odd  |
+      | conjugate-local-memory | even |
+    - when (son) need to return data to (father)
+      [or whichever function calls it]
+      (son) use (allocate-conjugate-local-memory)
+      instead of (allocate-local-memory)
+      it will allocate memory in (local-memory-even-area)
+    - when (father) use (allocate-local-memory)
+      it will also allocate memory in (local-memory-even-area)
+      #+begin_src cicada-nymph
+      : son
+        1024 allocate-conjugate-local-memory &gt;:buffer
+        ...
+        :buffer
+        end
+      ; define-function
+
+      : father
+        son &gt;:buffer-of-son
+        1024 allocate-local-memory &gt;:buffer
+        ...
+        end
+      ; define-function
+      #+end_src
+
+*** summary
+    - I use two block of conjugate memory
+      to do dynamic memory allocation
+    - conjugation is to solve the return data problem
+    - the interface are two functions
+      (allocate-local-memory)
+      (allocate-conjugate-local-memory)
+
+* &gt;&lt; naming mechanism
+
+* &gt;&lt; instruction of threaded code interpreter
+
+* &gt;&lt; basic input and out put
+
+*** reading-stack
+
+* &gt;&lt; syntax extension mechanism
+
+*** syntax-stack
+
+*** context
+
+* &gt;&lt; non-local exit
+
+*** awaiting-stack
+
+* &gt;&lt; undo mechanism
+
+*** undo-stack
+
+* &gt;&lt; module system
+
+*** module-stack
+
+*** importing-stack
+
+* &gt;&lt; test framework
+
+* &gt;&lt; type system
+</pre>
+</body>
+</html>

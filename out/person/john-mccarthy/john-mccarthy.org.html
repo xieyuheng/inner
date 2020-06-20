@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>person/john-mccarthy/john-mccarthy.org</title>
+</head>
+<body>
+<pre>#+title: john mccarthy
+
+* links
+
+  - <a href="http://www-formal.stanford.edu/jmc/">http://www-formal.stanford.edu/jmc/</a>
+
+* (1959) programs with common sense
+
+*** &gt;&lt;
+
+* (1963) a basis for a mathematical theory of computation
+
+*** 1 introduction
+
+    - the limitations on what we have been able to make computers do
+      come far more from our weakness as programmers
+      than from the intrinsic limitations of the machines.
+      we hope that these limitations can be greatly reduced
+      by developing a mathematical science of computation.
+
+    - there are three established directions of mathematical research
+      relevant to a science of computation :
+
+      1. numerical analysis :
+         too narrow to be of much help in forming a general theory.
+
+      2. the theory of computability, as a branch of recursive function theory :
+         focus on unsolvability instead of positive results.
+
+      3. the theory of finite automata :
+         finiteness is not practical.
+
+    - The present paper is an attempt to create
+      a basis for a mathematical theory of computation.
+      Before mentioning what is in the paper,
+      we shall discuss briefly what practical results can be hoped for
+      from a suitable mathematical theory.
+
+    - This paper contains direct contributions
+      towards only a few of the goals to be mentioned,
+      but we list additional goals in order
+      to encourage a gold rush.
+
+      1. to develop a universal programming language.
+
+         the formalism for describing computations in this paper
+         is not presented as a candidate for a universal programming language
+         because it lacks a number of features,
+         *mainly syntactic*, which are necessary for convenient use.
+
+         - x -
+           this in lack of syntax is one of the great features of lisp.
+
+      2. to define a theory of the equivalence of computation processes.
+
+         with such a theory we can define equivalence preserving transformations.
+
+         Such transformations can be used to take an algorithm
+         from a form in which it is easily seen to give the right answers
+         to an equivalent form guaranteed to give the same answers
+         but which has other advantages such as speed, economy of storage,
+         or the incorporation of auxiliary processes.
+
+      3. To represent algorithms by symbolic expressions in such a way that
+         significant changes in the behavior represented by the algorithms
+         are represented by simple changes in the symbolic expressions.
+
+         Programs that are supposed to learn from experience
+         change their behavior by changing the contents of the registers
+         that represent the modifiable aspects of their behavior.
+
+         From a certain point of view,
+         having a convenient representation
+         of one’s behavior available for modification
+         is what is meant by consciousness.
+
+      4. To represent computers as well as computations
+         in a formalism that permits a treatment of the relation
+         between a computation and the computer that carries out the computation.
+
+      5. To give a quantitative theory of computation.
+
+         There might be a quantitative measure of the size of a computation
+         analogous to Shannon’s measure of information.
+
+         The present paper contains no information about this.
+
+*** [note] type system
+
+    - x -
+      in this paper,
+      when trying to form a mathematical theory of computation,
+      a type system is hidden in the context.
+
+      we should try to reveal it and observe its features.
+
+*** 2 formalisms for describing computable functions and related entities
+
+***** 2.1 functions computable in terms of given base functions
+
+      - &gt;&lt;
+
+*** 3 properties of computable functions
+
+*** 4 relation to other formalisms
+
+*** 5 conclusion: mathematical theory of computation
+
+* (1995) what has ai in common with philosophy?
+
+*** 1 introduction
+
+    - &gt;&lt;
+
+*** 2 the philosophy of artifical intelligence
+
+*** 3 epistemological adequacy
+
+*** 4 free will
+
+*** 5 natural kinds
+
+*** 6 four stances
+
+*** 7 ontology and reification
+
+*** 8 counterfactuals
+
+*** 9 philosophical pitfalls
+
+*** 10 philosophers! help!
+
+* (1996) towards a mathematical science of computation
+
+* (1999) the common business communication language
+
+*** 1 the problem of inter-computer communication
+
+    - The inventory control computer of company A
+      would write on the screen of a clerk
+      in the purchasing department
+      a statement that 1000 gross of such-and-such pencils were needed
+      and that they should be purchased from company B.
+
+    - The clerk would turn to her typewriter and type out a purchase order.
+      At company B another clerk would receive the purchase order
+      and turn to her terminal and tell the computer to arrange to ship the pencils.
+
+    - Suppose we wish to eliminate the clerks
+      by having the computers speak directly to each other.
+      What are the requirements?
+
+*** 2 requirements
+
+    - Our goal -
+      1. A common language is to be adopted
+         that can express business communications.
+      2. Any organization should be able to communicate with any other
+         without pre-arrangement over ordinary dial-up telephone connections.
+         this requires authentication procedures
+         and verification of authorization procedures.
+      3. The system should be open ended so that as programs improve,
+         programs that can at first only order by stock numbers
+         can later be programmed to inquire about specifications and prices
+         and decide on the best deal.
+      4. CBCL is strictly a communication protocol.
+         It should not presuppose any data-base format
+         for the storage within machines of the information communicated,
+         and it should not presuppose anything about the programs that use the language.
+         Each business using the language
+         would have a program designed to use the particular part of CBCL
+         relevant to its business communications.
+         Thus CBCL presupposes nothing about the programs that decide
+         when to order or what orders to accept.
+      5. CBCL is not concerned with the low-level aspects of the message formats.
+
+    - We do not have a final proposal but here are some ideas :
+      1. The messages are lists of items punctuated by parentheses.
+         The lead item of each list identifies the type of message
+         and is used to determine how to interpret the rest.
+         The items may be either sublists or atoms.
+         If an item is a sublist,
+         its first element tells how to interpret it.
+         Atoms are binary numbers of say 32 bits.
+         A dictionary tells what each means.
+         Other forms of data may be used
+         provided they are demarcated by appropriate punctuation
+         and provided they are pointed at from lists
+         that tell how they are to be interpreted.
+      2. here are some examples :
+         1. (request-quote (your-stock-number a7305) (units 100))
+         2. (request-quote (pencils #2) (gross 100))
+            - the above two examples correspond directly to what has been
+              proposed for ICE apart from the names of the structures.
+         3. (request-quote (adjective (pencils #2) yellow) (gross 100))
+            - the point of adjective is that
+              a program not understanding yellow
+              could nevertheless understand that
+              #2 pencils were called for,
+              and could reply that they don’t have any pencils,
+              if that were so.
+         4. (we-quote (our-stock-number a7305) (quantity 100)
+             (delivery-date 3-10-77) (price $1.00))
+         5. (please-say (iota (x) (and (red x) (pencil x))))
+
+    - x -
+      (&lt;binder&gt; (&lt;variable&gt; ...) &lt;body&gt;)
+      (sexp sexp ...)
+
+*** 3 CBCL and natural language
+
+*** 4 1998: Advice for XML, W3 and ICE
+
+* Oral History of John McCarthy
+
+*** the virtues of logic
+
+    - although a lot of ways people draw conclusions is not logical
+      but people recognize the correctness of logical arguments,
+      quite apart from anything having to do with computers,
+      if ones argument is not logically complete
+      people can see it is wrong.
+
+    - so after all logic was invented in terms of
+      communications among humans
+      not specifically for the use of computers.
+
+    - for AI logic is inevitable in the same sense that
+      for physical systems calculus is inevitable.
+</pre>
+</body>
+</html>

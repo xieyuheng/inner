@@ -5,26 +5,16 @@ function install {
 }
 
 function build {
-    npx plaintext src \
-        --output out \
-        --title INNER \
-        --prolog "$(cat README)"
+    npx plaintext dir src -o out &&
+        plaintext toc src -o out/toc &&
+        plaintext file out/toc -o out/toc.html --title "inner | toc" &&
+        cat README out/toc > out/index &&
+        plaintext file out/index -o out/index.html --title "inner" &&
+        true
 }
 
 function t {
     echo ""
-}
-
-function upload {
-    publish=~/xyheme/inner-universe
-
-    build &&
-        copy out/* $publish &&
-        pushd $publish &&
-        git add . &&
-        git commit -m "up" &&
-        git push &&
-        popd
 }
 
 function main {

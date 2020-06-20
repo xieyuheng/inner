@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>note/category-theory/n-cat.org</title>
+</head>
+<body>
+<pre>#+title: n-cat
+
+* [note]
+
+  - category theory is like saying
+    the study of algebraic structure is topological.
+    associative of arrow means arrow can form path.
+    diagram commute means there is surface.
+
+* [note]
+
+  - why weak associative is more easier in infi-groupoid than in infi-cat?
+
+    | groupoid              | cat              |
+    |-----------------------+------------------|
+    | reversible            | irreversible     |
+    | geometry and topology | computer science |
+
+  - model category theory
+    是爲了 homotopy theory 之抽象與推廣而設計的
+    算是對具體的 homotopy theory 的結構公理化
+    因此在學習這些理論之前
+    需要先知道具體的 homotopy theory
+    1. cell
+    2. simplex
+    3. cube
+    分別是三種具體的 homotopy theory
+    我們要明確這些理論的細節
+    然後利用 model category 的公理來討論它們的差異
+
+  - what it means to have a simplicial homotopy theory?
+    what it means to have a homotopy theory for a math construction?
+
+  - why we need to weaken the composition?
+    is there any natural models of weak n-cat?
+
+  - the fundamental 3-groupoid of the 2-sphere S2
+    cannot be described using the language of strict 3-categories.
+    how? why?
+
+    - 爲什麼強調說是 language?
+      是不是因爲語法的問題?
+      可能是语法原因
+      可能是因为 &apos;same-position-self-gluing as reverse&apos;
+
+  - it turns out that major simplifications can be introduced
+    if we are willing to restrict our attention to infi-categories
+    in which most of the higher morphisms are invertible.
+    thus, the term (infi, n)-category.
+    and convention :
+    (infi, 0)-category = infi-groupoid
+    (infi, 1)-category = infi-category
+    (infi, 2)-category = infi-bicategory
+
+* higher-dimensional categories: an illustrated guide book
+
+*** info
+
+    - Eugenia Cheng and Aaron Lauda
+
+*** 1 introduction
+
+***** 1.1 starting points for generalisation
+
+******* 1.1.1 categories i: graphs with structure
+
+        - levels of sets with source and target maps.
+
+        - glob as cell.
+
+        - a higher-level graph as a world at present.
+
+        - data-structure-properties trichotomy
+
+        ------
+
+        - this might be close to AT1,
+          the higher-level graph here might be a special space in AT1.
+
+        - source and target maps form the boundary operator.
+
+******* 1.1.2 categories ii: objects and morphisms
+
+        - objects
+          hom-sets
+          composition
+          identities [identities as refl in AT1]
+
+******* 1.1.3 categories iii: nerves
+
+        - every category has an underlying simplicial set called its nerve.
+          A category is a simplicial set satisfying the &quot;nerve condition&quot;.
+
+        - the nerve condition asserts that
+          the m-cells give m-fold composition in an associative way.
+
+***** 1.2 key points of difference
+
+******* algebraic vs non-algebraic
+
+        - Some definitions specify composition and constraints uniquely,
+          where others just assert that they &quot;exist&quot;.
+          This can be thought of as the difference between
+          being algebraic (specifying things uniquely) and non-algebraic.
+
+******* note groupoid
+
+        - A groupoid is a small category
+          in which each morphism is an isomorphism.
+
+******* cell shape
+
+        - the point is that different cell shapes
+          are invoked in order that cells might play a wider role
+          than just &quot;being cells&quot;.
+          That is, differences in cell shape often belies
+          differences in the role that cells play in the structure.
+
+        - the most basic cell shape is the globular shape.
+          the rule of thumb is that
+          globular cells play no role except &quot;being cells&quot;;
+          other shapes of cells are needed
+          if they are to be used for, say, giving composition.
+
+******* weak n-categories or n-weak categories?
+
+        - weaken the structure first, and then increase dimensions.
+
+        - increase dimensions strictly, and then weaken the structure.
+
+******* beheading vs headshrinking
+
+        - some definitions include in their data k-cells for all k,
+          not just k ≤ n.
+          the idea to assert that,
+          for dimensions greater than n,
+          the structure has &quot;shrunk&quot; to being trivial, in some suitable sense.
+
+        - other definitions actually chop off the data at n dimensions.
+
+***** note forgetful functor
+
+      - forgetful functor can be used to reveal different views of cat.
+        for examples
+        - (U : Group -&gt; Set)
+          equal elements of a group
+          will be mapped to the same element in a set.
+        - (U : Cat -&gt; Graph)
+          equal arrows of a cat
+          will be mapped to the same arrow in a graph,
+          if we have (f : A -&gt; B) (g : B -&gt; C) (h : A -&gt; C) and (= h [f g])
+          &apos;h&apos; and [f g] both will be mapped to the arrow
+          represented by &apos;h&apos; in a graph.
+
+*** 2 penon
+
+***** 2.1 intro
+
+      - An n-category is an algebra for a certain monad
+        on the category RefGSet of reflexive globular sets.
+
+***** 2.2 intuition
+
+      - strict w-category
+        Given any pasting diagram
+        there is precisely one way of composing it.
+
+      - weak w-category
+        Given any pasting diagram
+        there is a whole bunch of ways of composing it in different orders,
+        but they should all be suitably related.
+
+***** note the information about the order of composition
+
+      - the concept of &apos;parallel elements&apos; in magma
+        which is defined by strict w-category,
+        maintains the information about the order of composition.
+
+      - why we need this information?
+        for syntax reason or semantic reason?
+
+***** 2.4 a crash course on monads and their algebras
+
+      - a monad is an algebraic theory
+        and an algebra for a monad is a model of that theory.
+
+*** 3 batanin and leinster
+
+***** intro
+
+      - the use of operad
+
+*** note about &apos;weak&apos;
+
+    - in the above definitions,
+      &apos;weak&apos; means &apos;composition is weak&apos;,
+      while another meaning of &apos;weak&apos; can be &apos;equality is weak&apos;.
+
+    - is these two meanings of &apos;weak&apos; equal?
+
+*** 4 opetopic
+
+***** 4.1 introduction
+
+      - opetopic cells are this shape in order to express composition.
+
+*** 5 tamsamani and simpson
+
+***** intro
+
+***** 5.1 intuitions
+
+******* 5.1.1 nerves
+
+*** 6 street
+
+***** 6.1 introduction
+
+      -
+
+*** 7 joyal
+
+***** intro
+
+      - &gt;&lt;
+
+*** 8 trimble and may
+
+***** intro
+
+      - &gt;&lt;
+
+* model category
+
+  - A model category is a category C
+    equipped with three distinguished classes of morphisms in C,
+    cofibration fibration and weak-equivalence s.t.
+    &gt;&lt;&gt;&lt;&gt;&lt;
+
+* simplicial set and simplicial homotopy theory
+
+*** note
+
+    - globular, simplex, cube are important,
+      because there are regular-polytopes,
+      while general cell-complex are not.
+
+*** definition
+
+    - The notion of a simplicial set is a generalization
+      of the notion of a complex
+      with face and degeneracy operators.
+
+    - the category of simplicial is generated by these two set of operators,
+      each arrow in the category can written as composition of them.
+
+* cell-complex and simple homotopy theory
+
+*** note
+
+    - elementary-collapse -&gt; collapse -&gt; formal-deformation -&gt;
+      simple-homotopy-equivalent between spaces -&gt;
+      whitehead-torsion
+
+    - homotopy-equivalent between spaces,
+      is defined by homotopy-equivalent between functions.
+
+      simple-homotopy-equivalent between spaces,
+      is defined by deformation retractions.
+
+      &gt;&lt;&gt;&lt;&gt;&lt;
+
+    - the method of AT,
+      is to find special family of functions,
+      which, up to homotopy-equivalent,
+      can generate the whole function-space.
+
+* space as infi-groupoid
+
+  - x -
+    we can view space as infi-groupoid.
+    | map up to level-1      | functor of level-1     |
+    | natural transformation | equality of level-1    |
+    | map up to level-infi   | functor of level-infi  |
+    | homotopy equivalent    | equality of level-infi |
+    space of 2-dim is GR-group.
+    natural transformation are group iso.
+    (I -&gt; space) extend-from (I bdry -&gt; base) = fundamental group
+    (I^n -&gt; space) extend-from (I^n bdry -&gt; base) = n homotopy group
+    group iso = equality of level-1
+
+* generators of mapping-space
+</pre>
+</body>
+</html>

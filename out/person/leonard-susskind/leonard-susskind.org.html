@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>person/leonard-susskind/leonard-susskind.org</title>
+</head>
+<body>
+<pre>#+title: leonard susskind
+
+* [todo-stack]
+
+  - 有限羣都可以表示爲 置換尋 或者 置換尋的商羣 嗎?
+  - 爲什麼如此定義勢能?
+
+* toc
+
+  1-9: classical mechanics
+  10-19: quantum mechanics
+  20-28: quantum entanglements part 1
+  29-36: quantum entanglements part 2-3
+  37-46: special relativity
+  47-58: general relativity
+  59-66: cosmology
+  67-76: statistical mechanics
+  77-86: new revolutions in particle physics: basic concepts
+  87-96: new revolutions in particle physics: standard model
+  97-106: string theory and m theory
+  107-115: topics in string theory
+  116-125: the theoretical minimum
+  126-135: advanced quantum mechanics
+  136: demystifying the higgs boson
+
+* classical mechanics
+
+*** 1 決定論
+
+    - 經典力學是物理理論的範式
+
+    - 我們想像十分簡單的宇宙中的自然法則
+
+    - 首先假設時間是離散的而不是連續的
+      我們取一個單位 然後用自然數度量時間
+
+    - 術語
+      狀態空間 -- phase space
+      狀態 -- configuration
+      狀態所包含的信息稱作 狀態參數
+
+    - 比如硬幣投擲硬幣
+      此時 系統的狀態空間只有兩個元素 正面和反面
+      - 用一個參數就能描述系統在某一時間的狀態
+
+    - 我們想像硬幣狀態隨時間的演化
+      與其演化所遵循的法則
+
+    - 假設系統是決定論的 [deterministic]
+      即 系統當前的狀態足以用來預測系統演化
+
+    - 那麼可能的演化法則就只能是
+      1. [正 -&gt; 正] [反 -&gt; 反]
+      2. [正 -&gt; 反] [反 -&gt; 正]
+
+    - 我們可以考慮更加複雜的系統
+      比如 n 個點
+      每個點可以取 n 個值
+      並且其值不重複
+      此時 一個決定論的演化規則
+      就是 n 階置換尋中的一個置換
+      上面這種系統也可以想像成是
+      有 n 個位置 和 n 個小球
+      小球在這 n 個位置之間運動
+      - 注意
+        我們有定理
+        每個置換都能被分解成不相關的循環置換之乘積
+        等等
+
+    - 考慮如下的規則
+      [1 -&gt; 2]
+      [2 -&gt; 3]
+      [3 -&gt; 2]
+      這不是置換羣的元素了
+      - 這個映射沒有單調性
+      在這個系統中
+      知道了當前的狀態
+      能預測未來
+      但是不能推演過去
+
+    - 相反 如果有如下的規則
+      我們能推演過去
+      但是不能預測未來
+      [1 &lt;- 2]
+      [2 &lt;- 3]
+      [3 &lt;- 2]
+      - 這個關係沒有單值性 因而不是映射
+
+    - 畫有向圖的話
+      決定論就是
+      每個點都有一條出邊和一條入邊
+      不多不少
+
+    - 我們可以設計如下的術語
+      deterministic
+      deterministic into the future
+      deterministic into the past
+      non deterministic
+
+    - 如果宇宙的系統是離散的 [並且是有限的]
+      並且時間也是離散的
+      那麼決定論的自然法則就是有限羣論了
+      - 不單單是置換尋
+        也可能是置換尋的商羣
+
+      - 物理中的 守恆定理
+        就是 羣論中的不變量
+        或者說 系統的對稱性
+
+    - 經典力學就是決定論的
+      但是其系統不是離散的
+
+    - 有趣的是
+      雖然經典力學的規則是決定論的
+      但是在經典力學的應用當中
+      我們確不能無限制地預測未來
+      因爲測量是有誤差的
+      而誤差在計算中會被放大
+      - 這裏正是物理理論不應該使用實數系統的原因
+        因爲使用實屬系統
+        公式不帶有與誤差有關的信息
+
+    - 考慮一個 粒子 [particle] 在一維空間的運動
+      考慮其 狀態空間
+      考慮此時的 狀態應當包括哪些信息
+      才能預測粒子的未來
+      不只是粒子的位置
+      還應包括 粒子的速度
+      - 如果 時間是離散的
+        速度其實是由當前的位置和前一時刻的位置決定的
+
+    - 好像還應包括 粒子的加速度
+      但是其實經過 F = m * a 的限制
+      - 其中 F : (-&gt; position-t -- force-t)
+      我們需要的只是 x 和 v
+
+    - F = m * a
+      F : (-&gt; position-t -- force-t)
+      x : (-&gt; time-t -- position-t)
+      v = {x} derivative : (-&gt; time-t -- velocity-t)
+      a = {v} derivative : (-&gt; time-t -- acceleration-t)
+
+    - 用後綴表達式寫就是
+      t x F = t a m mul
+      或者
+      x F = a m mul
+
+    - 假設力學方程是
+      F = m * v [而不是 F = m * a]
+      那麼 知道 position 就是知道 v 了
+      知道 position 也就足以預測 未來的 position 了
+      這樣的公式顯然是有違常識的
+
+    - 力學方程是 F = m * a
+      已知當前的位置的話
+      這個公式也不能告訴我們 當前的速度
+      這也是 狀態空間的參數是 x 於 v 的徵兆
+
+    - 我們將學習經典力學的方程的各種形態
+      核心的想法就是
+      經典物理定律是決定論的
+      給出當前的狀態之後
+      其方程能用來預測未來和推測過去
+
+*** [note] 程序語言的動力學語義
+
+    - 程序語言的語義 可以用決定論法則來描述
+
+*** [note] 二元函數所決定的演化
+
+    - 離散的依賴於歷史的系統 很有趣
+      比如
+      0 0 -&gt; 0
+      1 0 -&gt; 1
+      0 1 -&gt; 1
+      1 1 -&gt; 0
+      這樣就有
+      0 0 -&gt; 0 0
+      1 0 -&gt; 0 1 -&gt; 0 1 -&gt; 1 1 -&gt; 1 0
+
+    - 看似是
+      空間 X 上的一個運算
+      決定了 乘積空間 X * X 上的一個演化
+
+*** 2
+
+***** 能量守恆
+
+      - 能量守恆比牛頓的方程更厲害
+        新的方程可能會讓牛頓的方程失效
+        但是能量守恆還是被保持
+
+      - 在平面上運動的物體可能因爲摩擦力而停下來
+        動能並沒有轉化爲勢能 而是轉化爲了熱能
+        忽略這些熱能
+        而專門爲摩擦力建立公式也是可能的
+        - 比如 摩擦係數 之類的理論
+
+      - 能量 = 動能 + 勢能
+        定義 勢能 爲 位置的函數 [這與對力的假設一樣]
+        其公式爲
+        F n th = - U n partial-derivative
+
+        - 爲什麼如此定義勢能?
+
+        求導時 注意 函數對變量的直接依賴關係
+        函數複合導致變量之間的間接依賴關係
+
+***** 最小作用原理 / the principle of least action
+
+      - stationary point of F : (-&gt; number-t -- number-t)
+        is x where
+        x {F} derivative apply == 0
+
+        the principle of least action is actually
+        the principle of stationary action
+
+      - 經典力學的基本問題是
+        從系統的初值
+        求解系統的軌跡
+        即 系統隨時間的演化方式
+
+      - 用 q1 ... qn 來記錄系統的位置參數
+        用 q1&apos; ... qn&apos; 來記錄系統的速度參數
+        需要求解的就是 q1 ... qn 隨時間的變化函數
+        即 運動軌跡
+        牛頓的方程 是就 運動軌跡 的局部性質敘述的
+        知道 位置 根據 牛頓的方程 就知道 加速度
+        知道 速度 就知道下一步位置會變化到哪裏
+        知道 加速度 就知道下一步速度會變化到哪裏
+
+      - 最小作用原理 是就 運動軌跡 的全局性質敘述的
+        給出 運動軌跡 的起點和終點
+        還有運動時間
+        求出整個運動軌跡
+        - 分析歷史 而不分析未來
+
+      - 最短距離原理 和 最短時間原理 都是類似的原理
+        比如利用 最短時間原理 來求折射率 [光的軌跡] 等等
+
+      - 變分法 [calculus of variations]
+        最小化 一個叫做 作用 的 量
+        就能得到所求軌跡
+
+        作用 就是沿着軌跡 動能和勢能能量的積分
+
+*** [note] 理論物理中的量
+
+    - 這裏提出了很多量 [比如勢能]
+      但是如何度量它們 根本不管
+
+*** 3 求解最小作用問題
+
+*** 4
+
+*** 5
+
+*** 6
+
+*** 7
+
+*** 8
+
+*** 9
+</pre>
+</body>
+</html>

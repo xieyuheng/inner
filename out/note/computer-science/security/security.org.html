@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>note/computer-science/security/security.org</title>
+</head>
+<body>
+<pre>#+title: security
+
+* Threat Models
+
+*** how to think about security
+
+    - policy -- what good guys want to achieve
+    - Threat Models -- what bad guys can do
+    - mechanism -- how to protect good guys
+
+* Control Hijacking Attacks
+
+*** attack buffer overflow
+
+    - system softwares are often written in c
+      problem of c is that
+      c exposes raw memory addresses
+      and perform no boundary checks
+
+    - attackers know about x86 arch
+      about the stack
+      -- no data-stack and return-stack separation
+
+    - buffer is allocated on stack
+
+    - buf-128-gets-out pattern
+
+*** bound check
+
+    - buddy allocator
+
+    - bound table for pointer bound check
+      actually an array of log of bounds
+
+* Buffer Overflow Exploits and Defenses
+
+* Privilege Separation
+
+* Capabilities
+</pre>
+</body>
+</html>

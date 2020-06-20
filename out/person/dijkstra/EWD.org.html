@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>person/dijkstra/EWD.org</title>
+</head>
+<body>
+<pre>#+title: dijkstra&apos;s EWD notes
+
+* [NumerMath59] a note on two problems in connexion with graphs
+*** 術語
+    點 point node
+    邊 branch
+    路 path
+    點邊相接 connected
+    點點相鄰
+*** 前提
+    - 聯通圖
+    - 這裏的圖的模型來自於 &quot;運輸貨物&quot;
+      其中
+      邊 無向
+      邊 有一個長度值 [邊無長度者爲此處性質的退化]
+*** 選取最小支撐樹
+    - 此類算法階圖之遍歷
+    - &lt;選取之點&gt; &lt;選取之邊&gt;
+      &lt;待定之點&gt; &lt;待定之邊&gt;
+    - 以點集爲主來敘述算法
+    - 初 任取
+      得一 &lt;選取之點&gt;
+      其相鄰者爲 &lt;待定之點&gt;
+      自得 &lt;待定之邊&gt;
+      於 &lt;待定之邊&gt; 中 取最短者 入 &lt;選取之邊&gt;
+      自得 &lt;選取之點&gt;
+      其相鄰者爲 &lt;待定之點&gt;
+      然而再取 &lt;待定之邊&gt; 時
+      則短路而從
+      循環此法
+      而遍歷所有點
+      則算法完
+    - 算法是簡單直觀的
+      有趣的是
+      這個問題應該如何用程序來表達
+      這個問題的解應該如何用數據來呈現
+      是複製呢?
+      還是做副作用[以標記]呢?
+      還是複製之後又與原圖有關聯呢?
+*** 求兩點之間的最短路徑
+    - 像波的傳播一樣
+* &gt;&lt; [EWD459] the pattern matching problem
+* [EWD498] how do we tell truths that might hurt?
+  - 如何說真話 即使這些真話非常刺耳?
+    只有一個辦法
+    那就是 通過把它們說出來 來把它們說出來
+    沒有別的辦法
+  - 下面是 EWD 的血腥諷刺
+  - 編程是應用數學中最困難的分支之一
+    缺乏相應能力的數學家最好把自己留在純粹數學領域
+    不要涉足編程
+  - 跟科學計算有關的應用程序
+    都是最簡單的程序
+  - 我們所使用的工具對我們思維習慣有深刻而複雜的影響
+    對我們思維的能力而言
+    這種影響也是同樣
+  - fortran 這種幼稚之亂
+    已經 20 多年了 [到 1982 年]
+    對於當今你想要寫的任何應用程序來說
+    它都是 能力不足的 笨拙的 危險的
+  - 在實踐中我發現
+    想要把優良的編程技術
+    教授給 之前學過 basic 的學生
+    是不可能的
+    因爲作爲潛在的程序員
+    這些學生的智力已經被殘廢了
+    並且沒有任何補救的希望了
+  - 使用 cobol 會導致腦殘
+    因此教授 cobol 是一種犯罪
+  - APL 是把一個錯誤堅持到底
+    它看起來很先進很
+    其實其技術是落後的
+    它製造了新一代的沒有價值的編程
+  - 商業監管中的問題
+    尤其是數據庫管理的問題
+    是很複雜的
+    是超出商人的智力範圍的
+    也是超出 sql 這種語言的能力範圍的
+  - 關於程序語言的使用
+    要知道
+    一把很鈍的斧子是沒法削鉛筆的
+    十把也不行
+  - 除了數學能力
+    一個程序員想要勝任自己的工作
+    他還需要 熟練的掌握自己的母語
+  - 那些出賣自己靈魂
+    讓自己的產品依賴於 IBM 的公司
+    將會被它們的數據處理系統的龐大的複雜性壓垮
+  - 國防部 [一個電腦製造商]
+    所犯下的技術錯誤表明
+    其中的人們毫無科學準則可言
+  - 在計算系統中使用擬人化的術語
+    代表了這個人職業上的不成熟
+  - 聲稱自己的工作對軟件工程有所貢獻的 &quot;軟&quot; 科學家
+    更顯得滑稽可笑
+    可悲可嘆的是
+    其滑稽可笑並不減少其危險性
+    不論 &quot;軟件工程&quot; 這個名字如何
+    它都需要殘酷的 &quot;硬&quot; 科學的支持
+  - 古時候物理學家們重複彼此所做的實驗
+    正是爲了確認其正確性啊
+    而今人們重用代碼
+    而不顧代碼的錯誤
+  - 那些標榜自己用自然語言編程者註定毀滅
+* [EWD692] a review of the 1977 turing award lecture by john backus
+  - john backus 是一個好的文學家
+    儘管他的文章
+    沒有什麼可取的內容
+    但是其修辭手法很不錯
+  - 程序被機器執行 機器並不理解程序
+    程序被人類自己 人類並不執行程序
+    關於 數學語言 與 程序語言 之分離性 EWD 的觀點不對
+    但是 關於 不尋求單一的語言  EWD 之觀點正確
+  - 批判 john backus 不懂如何用 &quot;語義映射&quot; 來把理解語言的過程分成層次
+    我的蟬語是否也應該接受這個批判呢?
+    要知道
+    我確實把 參數棧 和 返回棧 都暴露給用戶了
+    而我的某些設計決策也確實是爲了減少 &quot;理解的層次&quot;
+    就這一點我的辯解有以下幾點
+    1) 爲了教學
+    2) 儘管使用了 RPN
+       但是 我並沒有失去
+       以高階的語義去理解我的代碼的能力
+    3) 考慮 CPS 之類的編譯技術
+       把 一般的代碼轉換到 CPS [RPN] 的過程
+       就是試圖重新暴露出某些被抽象掉的語義的過程
+       而直接使用 RPN 就避免了抽象泄漏
+       並且所獲得的語法其實比 lisp 還好看很多
+  - 我想 EWD 想要進行批判的主要原因是對實現效率的考量
+    但是 近40年 過去了
+    實現技術已經不可比了
+  - 但是 不論如何
+    EWD 的批判教育我們的是
+    獲 turing 獎者 不過是平庸之輩而已
+  - FP 作爲一個程序語言
+    想要用狹隘的語義來獲得數學上的良好性質
+    惘然矣
+    其之所以 惘然 EWD 看的很清除
+    [即 &quot;函數作用&quot; 作爲一個運算[二元函數] 根本沒有結合性]
+    這說明了 狹隘的語義是不可取的
+    [比如 haskell 所謂的純粹函數式 就是不可取的]
+  - EWD 之問
+    把語言設計得如此這般
+    我們獲得了什麼?
+    難不成 只獲得了一個新的進行編譯器優化的對象?
+    [本身沒有困難 創造困難也要上]
+    這種批評同樣能夠適用於 非 RPN 的任何語法
+    我並不是說所有的語法都應該是 RPN 的
+    我只是說 EWD 的批評能夠成立而已
+  - EWD 批評
+    FP 聲稱自己 不使用約束變元
+    要知道約束變元其實是爲了
+    在 代入語義 中
+    標記函數體中的位置的
+    因爲 FP 是具有代入語義的[用矩陣來完成]
+    所以 其實
+    它是在用自然數來[以隱式]標記函數體中的位置
+    其實是在用矩陣匹配函數體的形狀
+    然後通過在矩陣中標記位置
+    來達到對函數體中的位置的間接標記
+  - 其實 john backus 並不是個好的文學家
+    他行文顛三倒四 連論理都論不清
+  - EWD 批評了對 &quot;平庸程序員&quot; 這一個詞的使用
+    還批評了對 &quot;歷史的必然&quot; 這一個詞的使用
+    哦
+    其實不是批評
+    因爲 EWD 根本就不屑多慮這類詞
+  - 關於 代數系統 EWD 諷刺說
+    這裏用以支持作者論點的 &quot;數學證明&quot;
+    並不是我學過的那種數學證明
+  - 另外
+    EWD 還嘲笑了
+    作者用希臘字母來修飾自己的論文
+    的愚蠢行爲
+* &gt;&lt; [EWD878] a monotonicity argument
+  - 關於 等邊 對 等角
+    因此 等邊三角形 是 等角三角形
+    反之亦然
+* [EWD1240a] a little bit of lattice theory
+  - *type-constructor*
+    (&lt;lattice&gt; = &lt;lattice&gt;)
+    (&lt;lattice&gt; under &lt;lattice&gt;)
+  - *axiom*
+    reflexive of under
+    (x : &lt;lattice&gt; -&gt; (x under x))
+  - the following proposition is equal to reflexive
+    (x y : &lt;lattice&gt; (x = y) -&gt; (x under y) (y under x))
+    one-point-rule
+    (x x : &lt;lattice&gt; (x = x) -&gt; (x under x) (x under x))
+    drop
+    (x : &lt;lattice&gt; -&gt; (x under x))
+  - *axiom*
+    antisymmetric of under
+    (x y : &lt;lattice&gt; (x under y) (y under x) -&gt; (x = y))
+  - by reflexive of under
+    we can proof indirect under
+    1. ((x y z : &lt;lattice&gt; (z under x) -&gt; (z under y)) -&gt; (x under y))
+    2. ((x y z : &lt;lattice&gt; (y under z) -&gt; (x under z)) -&gt; (x under y))
+    proof 1
+    (x y z : &lt;lattice&gt; (z under x) -&gt; (z under y))
+    instantiate
+    (x y x : &lt;lattice&gt; (x under x) -&gt; (x under y))
+    reflexive of under
+    (x y x : &lt;lattice&gt; true -&gt; (x under y))
+    drop
+    (x y : &lt;lattice&gt; -&gt; (x under y))
+    end proof
+  - by antisymmetric of under
+    we can proof indirect equal
+    1. ((x y z : &lt;lattice&gt; (z under x) &lt;-&gt; (z under y)) -&gt; (x = y))
+    2. ((x y z : &lt;lattice&gt; (y under z) &lt;-&gt; (x under z)) -&gt; (x = y))
+    proof 1
+    (x y z : &lt;lattice&gt; (z under x) &lt;-&gt; (z under y))
+    instantiate 2 times
+    (x y : &lt;lattice&gt;  ((x under x) &lt;-&gt; (x under y))  ((y under x) &lt;-&gt; (y under y)))
+    reflexive of under
+    (x y : &lt;lattice&gt;  (true &lt;-&gt; (x under y))  ((y under x) &lt;-&gt; true))
+    drop
+    (x y : &lt;lattice&gt;  (x under y)  (y under x))
+    antisymmetric of under
+    (x y : &lt;lattice&gt;  (x = y))
+    end proof
+  - *axiom*
+    the existence of w
+    use under to define join [up] [lowest upper bound] [superemum]
+    (x y : &lt;lattice&gt; -&gt; w : &lt;lattice&gt; (z : &lt;lattice&gt; -&gt; ((w under z) &lt;-&gt; (x under z) (y under z))))
+    define
+    (x y : &lt;lattice&gt; -&gt; (x join y))
+    or
+    (x y : &lt;lattice&gt; -&gt; w : (x join y))
+    a new type constructor is defined
+    need to proof w is unique
+    to view this type constructor as function
+  - join
+    1. idempotent
+       (x join x) = x
+    2. symmetry
+       (x join y) = (y join x)
+    3. associative
+       ((x join y) join z) = (x join (y join z))
+    proof associative
+    &gt;&lt;&gt;&lt;&gt;&lt;
+    end proof
+  - wish to proof
+    (x y : &lt;lattice&gt; ((x join y) = y) &lt;-&gt; (x under y))
+    and use it to proof the transitive of under
+    (x y z : &lt;lattice&gt; (x under y) (y under z) -&gt; (x under z))
+    thus under is partial-order
+    1. reflexive
+    2. antisymmetric
+    3. transitive
+* [EWD1300] the notational conventions I adopted, and why
+*** note
+    - 首先我聲明
+      這裏的論點是相當個人化的
+      我知道這裏的論點可能有很多反對者
+      並且我認爲我的反對者都是愚蠢的
+      我瞧之不起
+    - 必須使用優良的記法以對讀者負責
+    - 必須把論點分成
+      小的 明顯的 步驟
+      以使讀者能夠在不救助於筆和紙的條件下
+      僅僅通過閱讀 就能驗證你的論點
+      - 否則的話
+        爲了理解你的論點
+        讀者其實需要 把你的表達重新組織一遍
+        這顯然是不合理的
+      - 雖然這裏主要討論的是 數學證明
+        但是 寫程序何嘗不是如此呢
+    - 有人懷疑
+      &quot;小的 明顯的 步驟&quot;
+      這個原則
+      會影響表達的简洁與優雅
+      但是其實這種懷疑是沒有根據的
+      簡潔並不是省略[省略是不好的]
+      - 漢語 中的 省略 會導致對一個文本的多種解釋的可能
+        在 使用 漢語 時
+        我是不是總在通過 &quot;省略&quot; 以達到簡潔的呢?
+        在之後使用 漢語 的過程中我會注意這一點
+    - 有一種撰寫數學文本的風格是
+      把證明組織成 一串無由頭的神奇技巧
+      這是不對的
+      正確的做法是
+      去說明論證中的每個 &quot;下一步&quot; 是如何被想到的
+      &quot;這一步&quot; 能夠引導你到所希望的結論
+      你怎麼想到要去嘗試 &quot;這一步&quot; 的呢
+      &quot;we did not want to teach proofs,
+      we wanted to teach proof design.&quot;
+    - 模擬天啓以獲尊敬者皆卑鄙小人也皆蠢貨也
+    - 如若
+      對變換的表達
+      也大部分被省略到你思想的語境中去了
+      那麼 &quot;語&quot; 就失去其交流之義
+      而退化到記錄爲己了
+      這並沒有什麼錯誤
+      但是這種文本並不適合呈現給[廣大]讀者
+    - 也就是說
+      必須讓文本能夠在最大程度上
+      在脫離你個人的思想的語境之時
+      也能精確表意
+    - 爲了達到這種效果
+      一個技巧是
+      經常[嘗試]向你的讀者描述你的思想語境
+*** 中綴表達式 [infix notation]
+    - 具有結合性[associative]的運算[二元函數]
+      適合使用 中綴表達式
+    - 如果 你使用了中綴表達式
+      你可以
+      規定 結合順序 和 運算優先級
+      以簡化表達式的書寫
+      但是不要太多 否則不好記
+      當 兩個運算對稱的時候[互逆或對偶]
+      不要 引入 運算優先級 而破壞對稱性
+    - 反思了把乘法作爲隱形的中綴符號的歷史錯誤
+    - curry 很重要
+      例如使用 &quot;.&quot; 作爲中綴的函數作用
+      &quot;:&quot; 作爲中綴的函數複合
+      並約定其向左結合那麼
+      f.x.y == f(x, y)
+      f.x == λy.f(x, y)
+      f:g.x == f.(g.x)
+*** 量詞 [quantification]
+    - 其實是關於約束變元的使用的討論
+    - 約束變元是爲了標記出它的作用域[函數體]中的某些位置
+      所以對於每個約束變元 都必須先明白它的作用範圍是什麼
+    - 使用圖的時候 可以避免歧義
+      而 利用約束變元 可以對[某類]圖的結構作出線性的表達
+    - 約束變元 在函數體中標記出一個位置
+      - 有待在函數作用時被代入
+        - 這是 lambda 的效果
+      - 這個位置的變元跑遍一個集合
+        而在函數的作用下
+        把一個集合映射成另一個集合
+        set comprehension (or list comprehension)
+      - 關於謂詞演算
+        如果函數的返回值如果是真假
+        那麼 當這個位置的變元遍一個集合時
+        在函數的作用下
+        就得到一個真假值的集合
+        對這個集合用 and 或 or
+        就得到 全稱量詞 和 存在量詞
+        - 顯然可以看出
+          有些量詞是可以消去的
+          比如被 map 的集合只有很少個元素的時候
+        - 是要注意
+          謂詞邏輯引入這兩個量詞
+          並不是爲了用它們來計算真假值
+          而是爲了給它們賦予運算律 (为了描述数学结构的公理)
+          而使得我們能夠用這些運算律來給邏輯公式做恆等變形
+    - EWD 給出的記法是
+      &lt; 約束變元列表 : 謂詞列表 : 函數體 &gt;
+      這種記法
+      相當於用
+      鏈表[集合]這個數據類型 和 約束變元
+      一起設計了一個使用這種語法的接口
+      也許應該把這個數據結構從接口中分離出來
+    - 可以發現上面的對用謂詞來限定約束變元的集合的行爲
+      就類似於給約束變元指定一個類型
+      所以說靜態的類型系統還是有一些道理的
+    - 例如
+      &lt; i : i &lt; 100 : i * 2 &gt;
+      可以看出 把 i 是自然數這個事實作爲類型聲明
+      而寫到周圍的語境中
+      就將更接近數學表達[的精神]
+    - EWD 的設計是
+      - 無名函數
+        &lt; 約束變元列表 : 函數體 &gt;
+      - 集合
+        &lt; 約束變元列表 : 謂詞列表 : 函數體 &gt;
+      - 真值
+        &lt; 帶量詞的約束變元列表 : 謂詞列表 : 函數體 &gt;
+        其實這裏的 &quot;量詞&quot;
+        被換成了一個類型爲 :: 集合 -&gt; 值
+        的函數
+        比如 sum max min sup inf 等等
+    - 上面的設計是不錯的
+      [其實 第一個是我加的]
+      尤其是對集合的表達
+      考慮我以 map 爲基礎而設計的語法
+      就知道這種融合性的語法接口是必要的了
+      [融合指 數據類型 和 函數 的融合]
+    - 其實
+      這種約束變元所能表達的東西更豐富
+      考慮多元函數就知道了
+      對於多元函數 map 是很不好用的
+    - 我们可以用
+      &lt;set&gt; := { &lt;exp&gt; | ... &lt;entry&gt; }
+      &lt;entry&gt; := &lt;var&gt;: &lt;set&gt; | &lt;predicate&gt;
+      其中 &lt;predicate&gt; 可能是
+      - forall x: A such that ...
+      - exists x: A such that ...
+      - forall x: A -&gt; ...
+      - exists x: A &amp; ...
+      例如：
+      { i^n | n: Nat, i &lt; n }
+      { i^n | i: Nat, i &lt; n }
+      { i^n | i: Nat, n: Nat, i &lt; n }
+      改传统的 {} 为 &lt;&gt; 并且改变 &lt;exp&gt; 出现的顺序，
+      没有大的好处，只是让表达方式在大家看来更陌生而已。
+*** 證明的格式
+    - 把論證的中間步驟寫出
+      並用 hint 來說明推導過程
+      #+begin_src
+        A
+      -&gt; { hint why A -&gt; B }
+       B
+      -&gt; { hint why B -&gt; C }
+        C
+      #+end_src
+      上面的 &quot;-&gt;&quot; 其實可以是偏序關係中的箭頭
+      也可以是 對等式的變換 等等
+      只要記住其意義靈活就可以了
+      #+begin_src
+        A
+      = { hint why A = B }
+       B
+      = { hint why B = C }
+        C
+      #+end_src
+    - 把某些對變元的類型聲明放在全局的語境[context]中
+      所謂的 &quot;embeddng calculation in context&quot;
+      這種有助於明確語義的優良技術
+      對於程序員來說是很好接受的
+    - 對等式的證明
+      應該用對等式的變形來描述
+      而把某些關於等式中的局部變量的聲明作爲語境
+      在語境中進行計算
+    - 例子
+      若 * 是具有結合性的二元運算
+      則 (x * y = y) (y * z = z) -&gt; (x * z = z)
+      leibniz-principle : (p = q) (F p) -&gt; (F q)
+      associative : ((x * y) * z) -&gt; (x * (y * z))
+      假设 -- 是无意义的 nop 函数
+      證明
+      (x * y = y) (y * z = z)
+      -- tuck
+      (y * z = z) (x * y = y) (y * z = z)
+      -- leibniz-principle [for y]
+      (y * z = z) ((x * y) * z = z)
+      -- associative
+      (y * z = z) (x * (y * z) = z)
+      -- leibniz-principle [for y * z]
+      (x * z = z)
+      證完
+    - 再證明一次
+      這次
+      leibniz-principle : F (p = q) -&gt; ((F q) = (F p))
+      並且直接對等式變形
+      x * z
+      -- (y * z = z) leibniz-principle
+      x * (y * z)
+      -- apply associative
+      (x * y) * z
+      -- (x * y = y) leibniz-principle
+      y * z
+      -- (y * z = z) leibniz-principle
+      z
+      證完
+      EWD 認爲 後者的優點在於 使用了更豐富的 &quot;context&quot;
+      因而 不必把某些條件在每行都重複
+      - 可以理解爲
+        有很多信息重複的時候
+        就可以通過轉換到局部的更特殊的語境當中
+        來避免這些重複
+        也就是說
+        特殊的語境捕捉重複出現的信息
+        有點像是 monad 嘛?
+    - 也就是說
+      如果想設計出實用的證明論語法
+      在證明等詞的時候
+      就必須能夠 直接對等式兩邊的公式進行恆等變形
+      而不要 總是以帶有等詞的命題爲單位進行推演
+      &quot;-&gt;&quot; 與 &quot;=&quot; 是類似的
+      對 &quot;-&gt;&quot; 使用推演規則時 已經有了記錄語法
+      對 &quot;=&quot; 使用變形規則時 也將使用類似的記錄語法
+      這就涉及到語法的局部轉換
+      也就是說 語法擴展機制 在設計之初就要被考慮到
+*** 心得
+    - 如果通過引入對變元的類型
+      我能夠讓我的語言獲得更好的性質
+      並且不破壞 sexp 和 gexp 中保存各種類型數據的能力
+      那麼我就不再排斥類型系統
+    - 我可能沒法實現
+      嚴格的類型推導
+    - &lt;2020-06-07 Sun&gt; 我现在已经会实现 嚴格的類型推導 了
+*** 符號重載
+    - 函數要作爲信息傳遞給數據
+      只有當信息和數據類型都明瞭的時候
+      才能決定應該調用哪個處理函數去作用於數據
+      這樣 在我的語言中我就能把加號重載很多次
+    - 等號所帶來的兩難境地
+      當 f, g 是函數的時候
+      首先想把 f == g 理解爲一個真值
+      其次想把 f == g 理解爲一個函數
+      (f == g).x =定義= f.x == g.x
+      假設 f, g :: A --&gt; B
+      第一次 (==) :: (A --&gt; B) --&gt; (A --&gt; B) --&gt; Bool
+      第二次 (==) :: (A --&gt; B) --&gt; (A --&gt; B) --&gt; (A --&gt; Bool)
+      - 注意 &quot;--&gt;&quot; 是向右結合的
+        也就是說 當輸入是個函數的時候需要加括號
+        當輸出是函數的時候不需要加括號
+        因爲是完全 curry 的
+      - 我現在知道爲什麼數學家喜歡 haskell 了
+    - 上面的兩難性在於
+      EWD 想要用同一個函數名 去命名兩個函數
+      這兩個函數的輸入數據的類型是一樣的
+      - 要知道當輸入的數據的類型不一樣的時候
+        我可以通過看輸入的數據的類型來決定使用那個函數
+      這兩個函數只是輸出的數據的類型不同
+      這樣在就不可能使用相同的名字來命名這兩個函數
+    - 然而蟬語能夠解決這個問題
+      [不論第一種函數到底能不能被定義出來]
+      #+begin_src cicada
+      第一次
+        f &lt;:用來返回真假值
+        g &lt;:用來返回真假值
+        (==)
+
+      第二次
+        f &lt;:用來返回謂詞
+        g &lt;:用來返回謂詞
+        (==)
+      #+end_src
+    - 可以從很多角度來看待蟬語的解法
+      - 因爲
+        作用時的明顯的參數名[三角名]
+        可以被看成是函數名的輔名
+        所以
+        其實蟬語是在使用不同的名字來命名這两個函數
+      - 這裏 &quot;明顯的參數名&quot; 這種行爲
+        可以被理解爲
+        當函數作用時
+        以明顯的形式指出
+        你想要以什麼方式來理解函數的參數
+        也就是說
+        蟬語認爲
+        參數的意義不止是類型而已
+        同樣類型的參數也可以以不同的方式去理解
+      - 但是注意
+        命名輔名的
+        其實就是返回值的類型而已
+</pre>
+</body>
+</html>

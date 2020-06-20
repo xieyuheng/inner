@@ -1,13 +1,7 @@
-# my tool
-
-out/
-
 # npm
-
 node_modules/
 
 # emacs
-
 *~
 \#*
 .#*
