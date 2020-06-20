@@ -5,7 +5,7 @@ function install {
 }
 
 function build {
-    npx plaintext build src \
+    npx plaintext src \
         --output out \
         --title INNER \
         --prolog "$(cat README)"
