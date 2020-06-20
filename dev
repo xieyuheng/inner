@@ -1,7 +1,15 @@
 #!/usr/bin/env bash
 
-function update {
-    echo "TODO"
+function install {
+    yarn install
+}
+
+function build {
+    npx plaintext build src -o out
+}
+
+function t {
+    echo ""
 }
 
 function main {

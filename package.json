@@ -2,6 +2,6 @@
   "name": "inner-universe",
   "version": "0.0.1",
   "dependencies": {
-    "plaintext": "^0.0.1"
+    "plaintext": "^0.0.5"
   }
 }
