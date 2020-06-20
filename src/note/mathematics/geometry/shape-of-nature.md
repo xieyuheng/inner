@@ -153,7 +153,7 @@ knot加法下crossing number或unknotting number的值的變化
 
 DNA的雙螺旋結構決定了它作爲分子的性質 與它與其他分子的交互方式
 
-link:knot經``加法''所作成的結構
+link: knot經``加法''所作成的結構
 例:unlink Hopf-link Whitehead-link
 Borromean rings:3環去除任何一個另兩個都unlink
 
