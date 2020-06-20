@@ -5,7 +5,9 @@ function install {
 }
 
 function build {
-    npx plaintext build src -o out
+    npx plaintext build src -o out \
+        --title INNER \
+        --prolog "$(cat README)"
 }
 
 function t {
@@ -13,12 +15,14 @@ function t {
 }
 
 function upload {
-    build && \
-        copy out/* ~/xyheme/inner-universe && \
-        pushd ~/xyheme/inner-universe && \
-        git add . && \
-        git commit -m "up" && \
-        git push && \
+    publish=~/xyheme/inner-universe
+
+    build &&
+        copy out/* $publish &&
+        pushd $publish &&
+        git add . &&
+        git commit -m "up" &&
+        git push &&
         popd
 }
 
