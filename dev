@@ -12,6 +12,16 @@ function t {
     echo ""
 }
 
+function upload {
+    build && \
+        copy out/* ~/xyheme/inner-universe && \
+        pushd ~/xyheme/inner-universe && \
+        git add . && \
+        git commit -m "up" && \
+        git push && \
+        popd
+}
+
 function main {
     for TASK in "$@"
     do
