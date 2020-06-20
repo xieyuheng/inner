@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 
 function install {
-    yarn install
+    npm install
 }
 
 function build {
-    npx plaintext build src -o out \
+    npx plaintext build src \
+        --output out \
         --title INNER \
         --prolog "$(cat README)"
 }
