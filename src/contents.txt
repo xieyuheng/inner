@@ -1,0 +1,103 @@
+首页 link:./home.md
+目录 link:./contents.md
+迷言 link:./quotes.md
+Person / 人物
+  Rimbaud / 兰波
+    煉獄 link:./person/rimbaud/煉獄.md
+  Galois / 伽羅瓦
+    我沒有時間了 link:./person/galois/我沒有時間了.md
+  Poincaré / 庞加莱
+    觀念論 link:./person/poincaré/觀念論.md
+  Charles Sanders Peirce / 皮尔士
+    Description of a notation for the logic of relatives link:./person/charles-sanders-peirce/description-of-a-notation-for-the-logic-of-relatives.md
+    The Fixation of Belief link:./person/charles-sanders-peirce/the-fixation-of-belief.md
+    How to Make Our Ideas Clear? link:./person/charles-sanders-peirce/how-to-make-our-ideas-clear.md
+    On the algebra of logic link:./person/charles-sanders-peirce/on-the-algebra-of-logic.md
+  Gottlob Frege / 戈特洛布 弗雷格
+  Errett Bishop / 毕少普
+    Bishop's Four Principles of Constructivism link:./person/errett-bishop/bishop-s-four-principles-of-constructivism.md
+  Max Dehn / 马克斯 戴恩
+    Lectures on group theory link:./person/max-dehn/lectures-on-group-theory.md
+    Lectures on surface topology link:./person/max-dehn/lectures-on-surface-topology.md
+    On the topology of three-dimensional space link:./person/max-dehn/on-the-topology-of-three-dimensional-space.md
+    On infinite discontinuous groups link:./person/max-dehn/on-infinite-discontinuous-groups.md
+    The group of mapping classes link:./person/max-dehn/the-group-of-mapping-classes.md
+  Martin-Löf / 马丁-洛夫
+    Constructive Mathematics and Computer Programming link:./person/martin-löf/constructive-mathematics-and-computer-programming.md
+    Intuitionistic Type Theory link:./person/martin-löf/intuitionistic-type-theory.md
+    On the meanings of the logical constants and the justification of logical laws link:./person/martin-löf/on-the-meanings-of-the-logical-constants-and-the-justification-of-logical-laws.md
+  de Bruijn / 德 布赖恩
+  Dag Prawitz / 达 普拉维茨
+  Schroeder-Heister / 施罗德-海斯特
+  Henk Barendregt / 亨克 巴伦德雷格
+    Lambda Calculus with Types link:./person/henk-barendregt/lambda-calculus-with-types.md
+  Roland Backhouse / 罗兰 拜克豪斯
+    Do-it-yourself Type Theory link:./person/roland-backhouse/do-it-yourself-type-theory.md
+  Peter Dybjer / 彼得 迪比尔
+    Inductive Families link:./person/peter-dybjer/inductive-families.md
+  Alexander Grothendieck / 亚历山大 格罗滕迪克
+  Raymond Smullyan / 雷蒙德 萨缪里安
+    Set Theory and the Continuum Problem link:./person/raymond-smullyan/set-theory-and-the-continuum-problem.md
+  William Lawvere / 威廉 劳维尔
+    Functorial Semantics of Algebraic Theories (Short.md link:./person/william-lawvere/functorial-semantics-of-algebraic-theories--short.md
+    Functorial Semantics of Algebraic Theories link:./person/william-lawvere/functorial-semantics-of-algebraic-theories.md
+    Conceptual Mathematics link:./person/william-lawvere/conceptual-mathematics.md
+    Sets for Mathematics link:./person/william-lawvere/sets-for-mathematics.md
+  Joseph Goguen / 约瑟夫 高根
+    A categorical manifesto link:./person/joseph-goguen/a-categorical-manifesto.md
+    What is unification? link:./person/joseph-goguen/what-is-unification-p.md
+  John Cartmell
+    Generalised algebraic theories and contextual categories (thesis.md link:./person/john-cartmell/generalised-algebraic-theories-and-contextual-categories--1978-thesis.md
+    Generalised algebraic theories and contextual categories link:./person/john-cartmell/generalised-algebraic-theories-and-contextual-categories--1985.md
+  Vladimir Voevodsky / 弗拉基米尔 沃沃斯基
+    What is Constructive Mathematics and Why it is Important link:./person/vladimir-voevodsky/what-is-constructive-mathematics-and-why-it-is-important.md
+    Computer Science and Homotopy Theory link:./person/vladimir-voevodsky/computer-science-and-homotopy-theory.md
+    Lecture about Univalent Foundations at the Institut Henri Poincaré link:./person/vladimir-voevodsky/lecture-about-univalent-foundations-at-the-institut-henri-poincaré.md
+    How I became interested in foundations of mathematics link:./person/vladimir-voevodsky/how-i-became-interested-in-foundations-of-mathematics.md
+  Zhaohui Luo
+    Computation and Reasoning link:./person/zhaohui-luo/computation-and-reasoning.md
+  Charles Bukowski / 查尔斯 布考斯基
+    Go All The Way link:./person/charles-bukowski/go-all-the-way.md
+  Emily Dickinson
+    Emily Dickinson link:./person/emily-dickinson/emily-dickinson.md
+  Zhuang Zi / 莊子
+    齊物論 link:./person/zhuang-zi/齊物論.md
+Note / 笔记
+  Mathematics / 数学
+    Geometry / 几何
+      自然之形 / Shape of Nature link:./note/mathematics/geometry/shape-of-nature.md
+  Logic / 逻辑学
+    嘲嘲不已 / How To Mock A Mockingbird link:./note/logic/how-to-mock-a-mockingbird.md
+    Language, Proof and Logic (Stanford open course.md link:./note/logic/language-proof-and-logic--stanford-open-course.md
+    Modal logic link:./note/logic/modal-logic.md
+  Philosophy / 哲学
+    獨然覺醒 / Independence awake link:./note/philosophy/independence-awake.md
+  Category Theory / 范畴论
+    The Catsters link:./note/category-theory/the-catsters.md
+    Category Theory For Programmers link:./note/category-theory/category-theory-for-programmers.md
+    Categories For The Working Mathematician link:./note/category-theory/categories-for-the-working-mathematician.md
+    Categorical Semantics link:./note/category-theory/categorical-semantics.md
+  Topos Theory / 主题论
+  Type Theory / 类型论
+    Type theory link:./note/type-theory/type-theory.md
+    Language Implementation Tricks link:./note/type-theory/language-implementation-tricks.md
+  Lattice Theory / 格论
+    Introduction to Lattices and Order link:./note/lattice-theory/introduction-to-lattices-and-order.md
+  Computer Science / 计算机科学
+    Database / 数据库
+      A Relational Model of Data for Large Shared Data Banks link:./note/computer-science/database/a-relational-model-of-data-for-large-shared-data-banks.md
+      PostgreSQL Note link:./note/computer-science/database/postgresql-note.md
+  Biology / 生物学
+    Neuroscience Note / 神經學記 link:./note/biology/neuroscience-note.md
+    Human Behavioral Biology link:./note/biology/human-behavioral-biology.md
+Paper / 论文
+  Substitutional pre-category link:./paper/substitutional-pre-category.md
+  A Recursive Combinatorial Description of Cell-complex link:./paper/a-recursive-combinatorial-description-of-cell-complex.md
+  Simply Typed JoJo Calculus link:./paper/simply-typed-jojo-calculus.md
+  Dependently Typed JoJo Calculus link:./paper/dependently-typed-jojo-calculus.md
+  Why Pure Type System? link:./paper/why-pure-type-system-p.md
+  I also do not have the time link:./paper/i-also-do-not-have-the-time.md
+Translation / 译文
+  上帝是道家的嗎 / Is God A Taoist, by Raymond Smullyan link:./translation/is-god-a-taoist.md
+  一個構造主義者的宣言 / A Constructivist Manifesto, by Errett Bishop link:./translation/a-constructivist-manifesto.md
+  當代數學之精神分裂症 / Schizophrenia in Contemporary Mathematics, by Errett Bishop link:./translation/schizophrenia-in-contemporary-mathematics.md
