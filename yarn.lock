@@ -163,10 +163,10 @@ path-is-absolute@^1.0.0:
   resolved "https://nexus.forchange.cn/repository/npm-group/path-is-absolute/-/path-is-absolute-1.0.1.tgz#174b9268735534ffbc7ace6bf53a5a9e1b5c5f5f"
   integrity sha1-F0uSaHNVNP+8es5r9TpanhtcX18=
 
-plaintext@^0.0.10:
-  version "0.0.10"
-  resolved "https://nexus.forchange.cn/repository/npm-group/plaintext/-/plaintext-0.0.10.tgz#23b30db8c861c2ccf96cc4df9a6e5c3f4ffae768"
-  integrity sha1-I7MNuMhhwsz5bMTfmm5cP0/652g=
+plaintext@^0.1.0:
+  version "0.1.0"
+  resolved "https://nexus.forchange.cn/repository/npm-group/plaintext/-/plaintext-0.1.0.tgz#4a65ed324eba44667e0861c88581521ee7f5dc0c"
+  integrity sha1-SmXtMk66RGZ+CGHIhYFSHuf13Aw=
   dependencies:
     chalk "^4.1.0"
     commander "^5.1.0"
