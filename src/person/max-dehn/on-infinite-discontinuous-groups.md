@@ -1,7 +1,3 @@
----
-title: On infinite discontinuous groups
----
-
 # On infinite discontinuous groups
 
 ------

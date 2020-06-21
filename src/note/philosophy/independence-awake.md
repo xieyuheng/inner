@@ -1,7 +1,3 @@
----
-title: 獨然覺醒 / Independence awake
----
-
 # 獨然覺醒 / Independence awake
 
 ## 題解

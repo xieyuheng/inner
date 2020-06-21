@@ -1,7 +1,3 @@
----
-title: Language implementation tricks
----
-
 # Language implementation tricks
 
 ## Closure and lexical scope

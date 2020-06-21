@@ -1,7 +1,3 @@
----
-title: Functorial Semantics of Algebraic Theories
----
-
 # Functorial Semantics of Algebraic Theories
 
 And some algebraic problems in the context of

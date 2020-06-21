@@ -1,7 +1,3 @@
----
-title: PostgreSQL Note
----
-
 # PostgreSQL Note
 
 ## Command line

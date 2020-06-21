@@ -1,7 +1,3 @@
----
-title: 一個構造主義者的宣言 / A Constructivist Manifesto
----
-
 # 一個構造主義者的宣言 / A Constructivist Manifesto
 
 ------

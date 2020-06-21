@@ -1,7 +1,3 @@
----
-title: Are you an anarchist / 你是無政府主義者嗎
----
-
 # Are you an anarchist
 
 ------

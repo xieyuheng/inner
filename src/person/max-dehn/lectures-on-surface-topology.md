@@ -1,7 +1,3 @@
----
-title: Lectures on surface topology
----
-
 # Lectures on surface topology
 
 ------

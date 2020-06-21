@@ -1,7 +1,3 @@
----
-title: Lambda calculus notation with nameless dummies
----
-
 # Lambda calculus notation with nameless dummies
 
 - 1972

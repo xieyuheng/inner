@@ -1,7 +1,3 @@
----
-title: Godel's Incompleteness Theorems
----
-
 # Godel's Incompleteness Theorems
 
 ------

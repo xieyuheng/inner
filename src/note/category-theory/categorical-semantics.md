@@ -1,7 +1,3 @@
----
-title: Categorical Semantics
----
-
 # Categorical Semantics
 
 ## The Plan

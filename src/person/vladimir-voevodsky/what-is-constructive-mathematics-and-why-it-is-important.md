@@ -1,7 +1,3 @@
----
-title: What is Constructive Mathematics and Why it is Important
----
-
 # What is Constructive Mathematics and Why it is Important
 
 - Place: the Global Young Scientists Summit (GYSS)

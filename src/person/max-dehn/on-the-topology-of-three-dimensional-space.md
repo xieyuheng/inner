@@ -1,7 +1,3 @@
----
-title: On the topology of three-dimensional space
----
-
 # On the topology of three-dimensional space
 
 ------

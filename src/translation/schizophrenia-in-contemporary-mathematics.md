@@ -1,7 +1,3 @@
----
-title: 當代數學之精神分裂症 / Schizophrenia in Contemporary Mathematics
----
-
 # 當代數學之精神分裂症 / Schizophrenia in Contemporary Mathematics
 
 ------

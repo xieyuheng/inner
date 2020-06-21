@@ -1,7 +1,3 @@
----
-title: Notes on type systems
----
-
 # Notes on type systems
 
 - Started at 2009-09-08

@@ -1,7 +1,3 @@
----
-title: Sets for Mathematics
----
-
 # Sets for Mathematics
 
 ------

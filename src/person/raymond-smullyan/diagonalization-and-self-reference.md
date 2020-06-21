@@ -1,7 +1,3 @@
----
-title: Diagonalization and self reference
----
-
 # Diagonalization and self reference
 
 ------

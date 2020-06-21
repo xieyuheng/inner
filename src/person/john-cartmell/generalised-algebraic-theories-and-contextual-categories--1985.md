@@ -1,7 +1,3 @@
----
-title: Generalised algebraic theories and contextual categories
----
-
 # Generalised algebraic theories and contextual categories
 
 ------

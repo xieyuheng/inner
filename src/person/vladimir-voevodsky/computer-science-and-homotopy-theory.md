@@ -1,7 +1,3 @@
----
-title: Computer Science and Homotopy Theory
----
-
 # Computer Science and Homotopy Theory
 
 - Place: Institute for Advanced Study

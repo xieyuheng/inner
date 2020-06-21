@@ -1,7 +1,3 @@
----
-title: Type and Light
----
-
 # Type and Light
 
 ------

@@ -1,7 +1,3 @@
----
-title: The Catsters
----
-
 # The Catsters
 
 ------

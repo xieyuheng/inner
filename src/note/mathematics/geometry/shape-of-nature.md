@@ -1,7 +1,3 @@
----
-title: 自然之形 / Shape of Nature
----
-
 # 自然之形 / Shape of Nature
 
 - 青涩时期的课程笔记

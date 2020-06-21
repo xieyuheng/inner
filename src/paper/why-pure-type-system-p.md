@@ -1,7 +1,3 @@
----
-title: Why Pure type system?
----
-
 # Why Pure type system?
 
 ------

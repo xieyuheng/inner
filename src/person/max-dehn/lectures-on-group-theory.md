@@ -1,7 +1,3 @@
----
-title: Lectures on group theory
----
-
 # Lectures on group theory
 
 ------

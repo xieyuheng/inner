@@ -1,7 +1,3 @@
----
-title: Functorial Semantics of Algebraic Theories (Short)
----
-
 # Functorial Semantics of Algebraic Theories (Short)
 
 ------

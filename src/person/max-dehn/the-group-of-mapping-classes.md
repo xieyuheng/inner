@@ -1,7 +1,3 @@
----
-title: The group of mapping classes
----
-
 # The group of mapping classes
 
 ------

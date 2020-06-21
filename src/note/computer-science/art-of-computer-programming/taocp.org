@@ -1,4 +1,4 @@
-#+TITLE:  note of taocp
+#+title: note of taocp
 
 * basic concepts
 

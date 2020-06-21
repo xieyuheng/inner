@@ -1,7 +1,3 @@
----
-title: The Topology of CW Complexes
----
-
 # The Topology of CW Complexes
 
 ------

@@ -1,7 +1,3 @@
----
-title: A Categorical Manifesto
----
-
 # A Categorical Manifesto
 
 ------

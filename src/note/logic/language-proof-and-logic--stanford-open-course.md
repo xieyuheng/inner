@@ -1,7 +1,3 @@
----
-title: Language, Proof and Logic (Stanford open course)
----
-
 # Language, Proof and Logic
 
 - Stanford open course :

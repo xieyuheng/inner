@@ -1,7 +1,3 @@
----
-title: Substitutional pre-category
----
-
 # Substitutional pre-category
 
 ------

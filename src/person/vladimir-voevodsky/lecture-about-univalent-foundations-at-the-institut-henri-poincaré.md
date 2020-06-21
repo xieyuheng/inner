@@ -1,7 +1,3 @@
----
-title: Lecture about Univalent Foundations at the Institut Henri Poincaré
----
-
 # Lecture about Univalent Foundations at the Institut Henri Poincaré
 
 - Place: Institut Henri Poincaré

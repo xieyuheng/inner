@@ -1,7 +1,3 @@
----
-title: Bishop's Four Principles of Constructivism
----
-
 # Bishop's Four Principles of Constructivism
 
 **First.** Mathematics is common sense.

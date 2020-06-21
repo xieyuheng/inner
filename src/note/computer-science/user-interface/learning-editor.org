@@ -1,4 +1,4 @@
-#+TITLE: learning text edition
+#+title: learning text edition
 
 * note
   1. 文本编辑器应该更结构化

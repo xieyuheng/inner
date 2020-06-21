@@ -1,7 +1,3 @@
----
-title: 上帝是道家的嗎 / Is God A Taoist
----
-
 # 上帝是道家的嗎 / Is God A Taoist
 
 ------

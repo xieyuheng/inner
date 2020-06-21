@@ -1,7 +1,3 @@
----
-title: How I became interested in foundations of mathematics
----
-
 # How I became interested in foundations of mathematics
 
 - Place: the 9th Asian Science Camp, Thailand

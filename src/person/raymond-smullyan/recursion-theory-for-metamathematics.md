@@ -1,7 +1,3 @@
----
-title: Recursion theory for metamathematics
----
-
 # Recursion theory for metamathematics
 
 ------

@@ -1,7 +1,3 @@
----
-title: A Relational Model of Data for Large Shared Data Banks
----
-
 # A Relational Model of Data for Large Shared Data Banks
 
 ---
