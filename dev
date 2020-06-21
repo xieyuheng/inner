@@ -4,12 +4,14 @@ function install {
     npm install
 }
 
+
 function build {
-    npx plaintext dir src -o out &&
-        plaintext toc src -o out/toc &&
-        plaintext file out/toc -o out/toc.html --title "inner | toc" &&
+    npx plaintext toc src -o src/toc &&
+        npx plaintext dir src -o out &&
+        npx plaintext file AUTHORS -o out/AUTHORS.html --title "inner | AUTHORS" &&
+        npx plaintext file LICENSE -o out/LICENSE.html --title "inner | LICENSE" &&
         cat README out/toc > out/index &&
-        plaintext file out/index -o out/index.html --title "inner" &&
+        npx plaintext file out/index -o out/index.html --title "inner" &&
         true
 }
 
