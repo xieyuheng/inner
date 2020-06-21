@@ -2,6 +2,7 @@
   "name": "inner-universe",
   "version": "0.1.0",
   "dependencies": {
+    "http-server": "^0.12.3",
     "plaintext": "^0.2.4"
   }
 }
