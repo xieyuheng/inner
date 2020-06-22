@@ -1,3 +1,7 @@
+# design
+- design 的词源
+- design 是关于选择的 笔记
+- https://xyheme.gitee.io/inner/note/computer-science/architecture/architecture-with-ashi-krishnan.md.html
 # foundations
 - [vv] How I became interested in foundations of mathematics
 - [vv] Lecture about Univalent Foundations at the Institut Henri Poincaré
