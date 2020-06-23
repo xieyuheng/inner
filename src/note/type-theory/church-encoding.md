@@ -2,6 +2,8 @@
 
 2020-06-23
 
+link:../../person/alonzo-church/alonzo-church.md
+
 https://en.wikipedia.org/wiki/Church_encoding
 
 It is not possible in general to decide if two functions are extensionally equal
