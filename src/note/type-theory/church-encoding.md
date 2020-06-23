@@ -7,12 +7,17 @@ https://en.wikipedia.org/wiki/Church_encoding
 It is not possible in general to decide if two functions are extensionally equal
 due to the undecidability of equivalence from Church's theorem.
 
+Lambda calculus is usually interpreted as using intensional equality.
+There are potential problems with the interpretation of results
+because of the difference between the intensional and extensional definition of equality.
+
+the so called "potential problems" are the following:
+https://en.wikipedia.org/wiki/Deductive_lambda_calculus#Intensional_versus_extensional_equality
+
 One way to describe this is that extensional equality describes equality of functions,
 where as intensional equality describes equality of function implementations.
 
 equality of functions vs equality of function implementations.
-
-https://en.wikipedia.org/wiki/Deductive_lambda_calculus#Intensional_versus_extensional_equality
 
 对某些 Lambda term 的子集来说（比如 Church numerals），
 并不内涵（Intensional）等价的两个函数
