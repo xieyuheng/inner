@@ -2,7 +2,7 @@
 
 ## 情报
 
-- <https://www.bilibili.com/video/BV1kx411S7ZU>
+- https://www.bilibili.com/video/BV1kx411S7ZU
 
 ## Lecture 7
 

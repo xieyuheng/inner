@@ -2,7 +2,7 @@
 
 ## Wikipedia
 
-- <https://en.wikipedia.org/wiki/Formal_concept_analysis>
+- https://en.wikipedia.org/wiki/Formal_concept_analysis
 
 The original motivation of formal concept analysis
 was the search for real-world meaning of mathematical order theory.
@@ -13,7 +13,7 @@ and that these can be utilized for data visualization and interpretation.
 
 - **[Xie]**
   We need to formalize the structure of complete lattice.
-  - <https://en.wikipedia.org/wiki/Complete_lattice>
+  - https://en.wikipedia.org/wiki/Complete_lattice
 
 A data table that represents a relation between objects and attributes,
 tabulating pairs of the form "object g has attribute m", is considered as a basic data type.
