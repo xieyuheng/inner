@@ -282,6 +282,7 @@ link:note/spring-and-autumn/sa.org
 link:note/spring-and-autumn/see-and-act.org
 link:note/spring-and-autumn/sequent.org
 link:note/type-theory/checking-dependent-types-with-normalization-by-evaluation.org
+link:note/type-theory/church-encoding.md
 link:note/type-theory/church-turing-thesis.org
 link:note/type-theory/function-compose-type-cut.org
 link:note/type-theory/game-semantics.org
@@ -464,6 +465,9 @@ link:person/zhuang-zi/zhuang-zi.org
 link:person/zhuang-zi/齊物論.md
 link:person/ziegler/ziegler.org
 link:report/wiki-products.md
+link:review/circumscriptive-reasoning.org
+link:review/elaboration-tolerance.txt
+link:review/microblog.org
 link:translation/a-constructivist-manifesto.md
 link:translation/are-you-an-anarchist.md
 link:translation/elements-of-algebra.org

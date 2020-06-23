@@ -4,27 +4,46 @@ function install {
     npm install
 }
 
-
 function build {
-    npx plaintext toc src -o src/toc &&
+    echo "[build]"
+}
+
+function publish {
+    echo "[publish]" &&
+        npx plaintext toc src -o src/toc &&
         npx plaintext dir src -o out &&
         npx plaintext file AUTHORS -o out/AUTHORS.html --title "inner | AUTHORS" &&
         npx plaintext file LICENSE -o out/LICENSE.html --title "inner | LICENSE" &&
-        cat README out/toc > out/index &&
+        cat README src/toc > out/index &&
         npx plaintext file out/index -o out/index.html --title "inner" &&
         true
 }
 
 function t {
-    echo ""
+    echo "[test]"
 }
 
-function main {
-    for TASK in "$@"
+function serve {
+    publish &&
+        echo "[serve]" &&
+        npx http-server out &&
+        true
+}
+
+function h {
+    echo "commands:"
+    for subcommand in $(declare -F | sed 's/declare -f//g')
     do
-        "$TASK"
+        echo "  $subcommand"
     done
-    exit
 }
 
-main "$@"
+if [ $# == 0 ]
+then
+    h
+else
+    for TASK in $@
+    do
+        $TASK
+    done
+fi
