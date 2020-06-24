@@ -42,3 +42,21 @@ https://en.wikipedia.org/wiki/Intension
   可能还会观察函数的运行效率等等。
 又比如狭义相对论中的相对性原理。
 - 此时观察手段是任何可能的物理实验。
+
+https://en.wikipedia.org/wiki/Extensionality
+
+The extensional definition of function equality, discussed above,
+is commonly used in mathematics.
+Sometimes additional information is attached to a function,
+such as an explicit codomain,
+in which case two functions must not only agree on all values,
+but must also have the same codomain, in order to be equal.
+
+In set theory, the axiom of extensionality states that
+two sets are equal if and only if they contain the same elements.
+
+In mathematics formalized in set theory,
+it is common to identify relations -- and, most importantly,
+functions -- with their extension as stated above,
+so that it is impossible for two relations or
+functions with the same extension to be distinguished.
