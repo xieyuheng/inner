@@ -11,11 +11,9 @@ function build {
 function publish {
     echo "[publish]" &&
         npx plaintext toc src -o src/toc &&
+        cat README src/toc > src/index &&
+        cp AUTHORS LICENSE src &&
         npx plaintext dir src -o out &&
-        npx plaintext file AUTHORS -o out/AUTHORS.html --title "inner | AUTHORS" &&
-        npx plaintext file LICENSE -o out/LICENSE.html --title "inner | LICENSE" &&
-        cat README src/toc > out/index &&
-        npx plaintext file out/index -o out/index.html --title "inner" &&
         true
 }
 
