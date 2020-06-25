@@ -70,7 +70,7 @@ to all rules about constructor.
 We only want to implementation check,
 but we sometimes need infer,
 because we need to infer the type of target of elimination rules,
-because the target might variable.
+because the target might be a variable.
 
 For elimination rules the pattern is,
 
