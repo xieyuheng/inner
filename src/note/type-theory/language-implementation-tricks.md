@@ -158,3 +158,12 @@ We can also make `exp_eq` faster,
 by comparing weak head normal form step by step,
 and know that two expressions are not equal
 as soon as they start to appear to be not equal.
+
+## Exp, Value, Neutral & Normal
+
+The terms are developed in the theory of partial evaluation.
+
+Value is about intro (constructor),
+Neutral is about elim.
+
+Neutral & Normal are viewed as Exp, instead of not really Value.
