@@ -1,11 +1,13 @@
-# Lambda Calculus with Types
+Lambda Calculus with Types
+==========================
 
 ------
 - Authors: Henk Barendregt, Wil Dekkers, Richard Statman
 - Date: 2010
 ------
 
-# Preface
+Preface
+=======
 
 The emphasis of the book is on syntax. Models are introduced only in so far they give
 useful information about terms and types or if the theory can be applied to them.
@@ -16,9 +18,11 @@ are an enhanced version of the untyped terms, whereas in the Curry theory to som
 the untyped terms a collection of types is being assigned. The book is mainly about
 Curry typing, although some chapters treat the equivalent Church variant.
 
-# Introduction
+Introduction
+============
 
-## What this book is and is not about
+What this book is and is not about
+----------------------------------
 
 This monograph focuses on mathematical properties of three classes of typing for lambda terms.
 
@@ -42,7 +46,8 @@ as intersection type theories. Typability and inhabitation now become undecidabl
 latter being equivalent to undecidability of lambda definability for models of simple
 types.
 
-## What this book could have been about
+What this book could have been about
+------------------------------------
 
 This book could have been also about dependent types, higher order types and inductive
 types, all used in some of the mathematical assistants. Originally we had planned a
@@ -56,15 +61,17 @@ Some notational conventions
   "Research monographs on dependent and inductive types are lacking."
   what the authors meant by a good "Research monographs"
 
-# Part 1. Simple types
+Part 1. Simple types
+====================
 
-## Space of expressions
+Space of expressions
+--------------------
 
 First we consider curry style lambda calculus,
 it assign types to untyped lambda expressions,
 we can reuse our knowledge about untyped lambda calculus.
 
-``` js
+```
 exp := var | (var) => exp | exp(exp)
 ```
 
@@ -83,24 +90,25 @@ where "c" denotes "concrete"
 Equivalent relation is defined by convention relation.
 Convention relation is studied by reduction relation.
 
-## Conversion relation
+Conversion relation
+-------------------
 
 Equational theory of lambda-beta-eta
 - reflexivity
 - symmetry
 - transitivity
 - congruence with respect to abstraction:
-  ``` js
+  ```
   M == N
   -------
   (x) => M == (x) => N
   ```
 - beta
-  ``` js
+  ```
   {(x) => M}(N) == subst(M, x, N)
   ```
 - eta
-  ``` js
+  ```
   (x) => M(x) == M
   // if x not in free_variables(M)
   ```
@@ -111,7 +119,8 @@ i.e. we can convert M to N by the above rules.
 
 note that, alpha_equivalence is not explicitly handled
 
-## Reduction relation
+Reduction relation
+------------------
 
 Conversion relations are non-directed,
 we can view them as adding non-directed edges to the space of expressions
@@ -120,7 +129,7 @@ The equational theory can be analyzed by
 giving beta and eta direction
 and viewing them as reduction relation
 
-``` js
+```
 beta_step(<c> {(x) => M}(N) </c>) ==> subst(M, x, N)
 
 eta_step(<c> (x) => M(x) </c>) ==> M
@@ -138,7 +147,7 @@ by normalize to normal-form
 reduction relations (beta_reduction, eta_reduction or beta_eta_reduction)
 are confluent:
 
-``` js
+```
 (M: exp_t, N1: exp_t, N2: exp_t) ->
 (reduction(M, N1), reduction(M, N2)) ->
 (Z: exp_t, reduction(N1, Z), reduction(N2, Z))
@@ -146,7 +155,7 @@ are confluent:
 
 thus it is easy to prove:
 
-``` js
+```
 (M: exp_t, N: exp_t) ->
 conversion(M, N) ->
 (Z: exp_t, reduction(M, Z), reduction(N, Z))
@@ -157,11 +166,12 @@ conversion(M, N) ->
   but we still need to analyze the complexity of the algorithm,
   and design better ones.
 
-## Equational theory with axioms
+Equational theory with axioms
+-----------------------------
 
 we can extends the judgment of conversion by axioms,
 
-``` js
+```
 axioms: set_t([exp_t, exp_t])
 
 axioms |- M == N
@@ -172,7 +182,7 @@ which means we can prove M == N by conversion plus equations in the set of axiom
 axioms are called inconsistent (otherwise consistent),
 if we can use  they to prove any equation.
 
-``` js
+```
 inconsistent(axioms) :=
 
 forall M: exp_t, N: exp_t ->
@@ -183,7 +193,7 @@ axioms |- M == N
 
 For example,
 
-``` js
+```
 consistent(set![])
 inconsistent(set![K == I])
 inconsistent(set![I == S])
@@ -192,9 +202,10 @@ consistent(set![I == Omega])
 
 - Omega is infinite loop
 
-## Simple types
+Simple types
+------------
 
-``` js
+```
 type := atom | (type) -> type
 ```
 
@@ -209,7 +220,7 @@ i.e. there are no equations between types.
 (such as conversion relations)
 
 we can view atom as variable and define:
-``` js
+```
 type_subst(A: type_t, a: atom_t, B: type_t)
 ```
 
@@ -220,11 +231,12 @@ since we do not have abstraction over types
 (in which bound variables are introduced)
 we do not have to worry about free variable v.s. bound variable
 
-## Assigning simple types
+Assigning simple types
+----------------------
 
 type assignment statement (or judgment)
 
-``` js
+```
 M: A
 ```
 
@@ -240,13 +252,13 @@ with distinct variables as subjects
 we can define a judgment
 for proving (deriving) type assignment in context:
 
-``` js
+```
 ctx |- M: A
 ```
 
 inference rules for this judgment are:
 
-``` js
+```
 lookup_type(ctx, x) == A
 ------------------------ lookup type of variable
 ctx |- x: A
@@ -263,7 +275,7 @@ ctx |- (x) => body : (A) -> B
 
 examples:
 
-``` js
+```
 ctx_empty |- I : (A) -> A
 ctx_empty |- K : (A) -> (B) -> A
 ctx_empty |- S : ((A) -> (B) -> C) -> ((A) -> B) -> (A) -> C
@@ -285,7 +297,7 @@ we trun inference rule upside down
 
 (I will not provide syntax to distinguish them, only context)
 
-``` js
+```
 ctx_empty |- (x) => (y) => x : (A) -> (B) -> A
 ------ (arrow introduction)
 x: A |- (y) => x : (B) -> A
@@ -297,7 +309,7 @@ QED
 
 a simpler one:
 
-``` js
+```
 ctx_empty |- (x) => x : (A) -> A
 ----- (arrow introduction)
 x: A |- x: A
@@ -307,7 +319,7 @@ QED
 
 a example with non ctx_empty at beginning:
 
-``` js
+```
 y: A |- {(x) => x}(y) : A
 ----- (arrow elimination)
 { y: A |- (x) => x : (A) -> A
@@ -325,14 +337,14 @@ we use `{ }` to denote sub-proof
 
 we can define the following:
 
-``` js
+```
 synth(ctx: ctx_t, t: type_t): set_t(exp_t)
 check(ctx: ctx_t, exp: exp_t, t: type_t): bool_t
 ```
 
 For example,
 
-``` js
+```
 check(ctx_empty, K, <c> (A) -> (B) -> A </c>) == true
 check(ctx_empty,
   <c> K(x) </c>,
@@ -342,7 +354,7 @@ check(ctx_empty,
 
 we can define the following predicates on type:
 
-``` js
+```
 type_depth(type_t): nat_t
 type_depth(atom) = 1
 type_depth(<c> (A) -> B </c>) =
@@ -381,7 +393,7 @@ functionals with functions as arguments versus binary functions.
 
 we can define the following function to generate type of the same tank:
 
-``` js
+```
 type_iter(type_t, type_t, nat_t): type_t
 type_iter(A, B, 0) = B
 type_iter(A, B, 1) = (A) -> B
@@ -395,13 +407,14 @@ type_iter(A, B, x + 1) = (type_iter(A, B, x)) -> B
   because we need to implement infer to implement check
   and we can not infer type of curry style lambda abstraction
 
-## The size of the set of type atoms
+The size of the set of type atoms
+---------------------------------
 
 infinite size and one size are main focus.
 
 if the set of atoms only contains `c`, we can define
 
-``` js
+```
 type_gen_rank(nat_t): type_t
 type_gen_rank(0) = c
 type_gen_rank(x + 1) = (type_gen_rank(x)) -> type_gen_rank(0)
@@ -409,7 +422,7 @@ type_gen_rank(x + 1) = (type_gen_rank(x)) -> type_gen_rank(0)
 
 for example:
 
-``` js
+```
 type_gen_rank(0) = c
 type_gen_rank(1) = (c) -> c
 type_gen_rank(2) = ((c) -> c) -> c
@@ -422,13 +435,14 @@ type_gen_rank_iter(n + 1, k) = type_iter(type_gen_rank(n), type_gen_rank(0), k)
 
 we also define the following functions on type:
 
-``` js
+```
 arity(type_t): nat_t
 type_arg(type_t, nat_t): type_t
 type_ret(type_t): type_t
 ```
 
-## Church style
+Church style
+------------
 
 so far we are developing the theory in curry style,
 namely assigning types to untyped expressions.
@@ -439,7 +453,7 @@ each such variable is coupled with a unique type.
 in such a way that every type has
 infinitely many variables coupled to it.
 
-``` js
+```
 type := atom | (type) -> type
 exp := var: type | (var: type) => exp | exp(exp)
 ```
@@ -452,19 +466,19 @@ exp := var: type | (var: type) => exp | exp(exp)
 
   not
 
-  ``` js
+  ```
   exp := var | (var: type) => exp | exp(exp)
   ```
 
   but
 
-  ``` js
+  ```
   exp := var: type | (var: type) => exp | exp(exp)
   ```
 
 we have
 
-``` js
+```
 synth(t: type_t): exp_t
 check(exp: exp_t, t: type_t): bool_t
 ```
@@ -474,7 +488,7 @@ and typing context is not needed
 
 for example:
 
-``` js
+```
 {y: (B) -> A}(x: B) : A
 (x: A) => y: (B) => A : (A) => (B) => A
 (x: A) => x: A : (A) => A
@@ -486,12 +500,13 @@ can be extended to expression,
 because expression can contain type.
 `type_subst(M: exp_t, a: atom_t, B: type_t)`
 
-## de Bruijn style
+de Bruijn style
+---------------
 
 it turn out to be this is the style where
 only lambda abstraction is annotated
 
-``` js
+```
 type := atom | (type) -> type
 exp := var | (var: type) => exp | exp(exp)
 ```
@@ -504,16 +519,17 @@ for closed terms the church and the de bruijn notation are isomorphic
 
 we have
 
-``` js
+```
 synth(ctx: ctx_t, t: type_t): exp_t
 check(ctx: ctx_t, exp: exp_t, t: type_t): bool_t
 ```
 
-## Simple properties and comparisons
+Simple properties and comparisons
+---------------------------------
 
 in curry style
 
-``` js
+```
 ctx |- M: A
 ```
 
@@ -521,7 +537,7 @@ has unique proof (or say the system is "syntax directed")
 
 because, for a proof of:
 
-``` js
+```
 ctx |- f: (A) -> B
 ctx |- x: A
 ---------------------
@@ -538,7 +554,7 @@ in church styles
 
 we have unicity of types
 
-``` js
+```
 (A: type_t, B: type_t) ->
 (M: exp_t, check(M, A), check(M, B)) ->
 A == B
@@ -548,38 +564,41 @@ in de bruijn
 
 we have unicity of types
 
-``` js
+```
 (ctx: ctx_t, A: type_t, B: type_t) ->
 (M: exp_t, check(ctx, M, A), check(ctx, M, B)) ->
 A == B
 ```
 
-## Comparing church style and curry style
+Comparing church style and curry style
+--------------------------------------
 
 terms in the church style
 "project" to legal terms in the curry style
 conversely, legal terms in curry style
 can be "lifted" to terms in church style
 
-## Beta-normal-form
+Beta-normal-form
+----------------
 
 in the book
 `NF` means normal-form
 `vNF` means normal-form start with a variable
 
-``` js
+```
 vNF := var | vNF(NF)
 NF := vNF | (x) => NF
 ```
 
 we use neutral instead of `vNF`
 
-``` js
+```
 neu := var | neu(norm)
 norm := neu | (x) => norm
 ```
 
-## Normal inhabitants
+Normal inhabitants
+------------------
 
 an implementation of the synth function
 which return long-normal-form
@@ -592,12 +611,15 @@ one for normal-form
 but I can not understand the difference between the two
 because they look like the same
 
-## Eepresenting data types
+Eepresenting data types
+-----------------------
 
 TODO
 
 We need implementation to play with this
 
-# Part 2. Recursive types
+Part 2. Recursive types
+=======================
 
-# Part 3. Intersection types
+Part 3. Intersection types
+==========================
