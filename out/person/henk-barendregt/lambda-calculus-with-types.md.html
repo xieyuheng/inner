@@ -8,13 +8,10 @@
 <pre style="white-space: pre-wrap;">Lambda Calculus with Types
 ==========================
 
-------
 - Authors: Henk Barendregt, Wil Dekkers, Richard Statman
 - Date: 2010
-------
 
-Preface
-=======
+# Preface
 
 The emphasis of the book is on syntax. Models are introduced only in so far they give
 useful information about terms and types or if the theory can be applied to them.
@@ -25,11 +22,9 @@ are an enhanced version of the untyped terms, whereas in the Curry theory to som
 the untyped terms a collection of types is being assigned. The book is mainly about
 Curry typing, although some chapters treat the equivalent Church variant.
 
-Introduction
-============
+# Introduction
 
-What this book is and is not about
-----------------------------------
+## What this book is and is not about
 
 This monograph focuses on mathematical properties of three classes of typing for lambda terms.
 
@@ -53,8 +48,7 @@ as intersection type theories. Typability and inhabitation now become undecidabl
 latter being equivalent to undecidability of lambda definability for models of simple
 types.
 
-What this book could have been about
-------------------------------------
+## What this book could have been about
 
 This book could have been also about dependent types, higher order types and inductive
 types, all used in some of the mathematical assistants. Originally we had planned a
@@ -68,11 +62,9 @@ Some notational conventions
   &quot;Research monographs on dependent and inductive types are lacking.&quot;
   what the authors meant by a good &quot;Research monographs&quot;
 
-Part 1. Simple types
-====================
+# Part 1. Simple types
 
-Space of expressions
---------------------
+## Space of expressions
 
 First we consider curry style lambda calculus,
 it assign types to untyped lambda expressions,
@@ -97,8 +89,7 @@ where &quot;c&quot; denotes &quot;concrete&quot;
 Equivalent relation is defined by convention relation.
 Convention relation is studied by reduction relation.
 
-Conversion relation
--------------------
+## Conversion relation
 
 Equational theory of lambda-beta-eta
 - reflexivity
@@ -126,8 +117,7 @@ i.e. we can convert M to N by the above rules.
 
 note that, alpha_equivalence is not explicitly handled
 
-Reduction relation
-------------------
+## Reduction relation
 
 Conversion relations are non-directed,
 we can view them as adding non-directed edges to the space of expressions
@@ -173,8 +163,7 @@ conversion(M, N) -&gt;
   but we still need to analyze the complexity of the algorithm,
   and design better ones.
 
-Equational theory with axioms
------------------------------
+## Equational theory with axioms
 
 we can extends the judgment of conversion by axioms,
 
@@ -209,8 +198,7 @@ consistent(set![I == Omega])
 
 - Omega is infinite loop
 
-Simple types
-------------
+## Simple types
 
 ```
 type := atom | (type) -&gt; type
@@ -238,8 +226,7 @@ since we do not have abstraction over types
 (in which bound variables are introduced)
 we do not have to worry about free variable v.s. bound variable
 
-Assigning simple types
-----------------------
+## Assigning simple types
 
 type assignment statement (or judgment)
 
@@ -275,7 +262,7 @@ ctx |- a: A
 ------------------------ arrow elimination
 ctx |- f(a): B
 
-ctx.ext(x, A) |- body : B
+ctx, x: A |- body : B
 --------------------------- arrow introduction
 ctx |- (x) =&gt; body : (A) -&gt; B
 ```
@@ -283,9 +270,9 @@ ctx |- (x) =&gt; body : (A) -&gt; B
 examples:
 
 ```
-ctx_empty |- I : (A) -&gt; A
-ctx_empty |- K : (A) -&gt; (B) -&gt; A
-ctx_empty |- S : ((A) -&gt; (B) -&gt; C) -&gt; ((A) -&gt; B) -&gt; (A) -&gt; C
+|- I : (A) -&gt; A
+|- K : (A) -&gt; (B) -&gt; A
+|- S : ((A) -&gt; (B) -&gt; C) -&gt; ((A) -&gt; B) -&gt; (A) -&gt; C
 
 x: A |- I(x) : A
 x: A, y: B |- K(x, y) : A
@@ -305,7 +292,7 @@ we trun inference rule upside down
 (I will not provide syntax to distinguish them, only context)
 
 ```
-ctx_empty |- (x) =&gt; (y) =&gt; x : (A) -&gt; (B) -&gt; A
+|- (x) =&gt; (y) =&gt; x : (A) -&gt; (B) -&gt; A
 ------ (arrow introduction)
 x: A |- (y) =&gt; x : (B) -&gt; A
 ------ (arrow introduction)
@@ -317,7 +304,7 @@ QED
 a simpler one:
 
 ```
-ctx_empty |- (x) =&gt; x : (A) -&gt; A
+|- (x) =&gt; x : (A) -&gt; A
 ----- (arrow introduction)
 x: A |- x: A
 ------ (lookup type of variable)
@@ -340,7 +327,9 @@ y: A |- {(x) =&gt; x}(y) : A
 QED
 ```
 
-we use `{ }` to denote sub-proof
+we use `{ }` to denote sub-proof,
+reverse the inference rule,
+and put the sub-proof in `{ }` below the line.
 
 we can define the following:
 
@@ -414,8 +403,7 @@ type_iter(A, B, x + 1) = (type_iter(A, B, x)) -&gt; B
   because we need to implement infer to implement check
   and we can not infer type of curry style lambda abstraction
 
-The size of the set of type atoms
----------------------------------
+## The size of the set of type atoms
 
 infinite size and one size are main focus.
 
@@ -448,8 +436,7 @@ type_arg(type_t, nat_t): type_t
 type_ret(type_t): type_t
 ```
 
-Church style
-------------
+## Church style
 
 so far we are developing the theory in curry style,
 namely assigning types to untyped expressions.
@@ -507,8 +494,7 @@ can be extended to expression,
 because expression can contain type.
 `type_subst(M: exp_t, a: atom_t, B: type_t)`
 
-de Bruijn style
----------------
+## de Bruijn style
 
 it turn out to be this is the style where
 only lambda abstraction is annotated
@@ -531,8 +517,7 @@ synth(ctx: ctx_t, t: type_t): exp_t
 check(ctx: ctx_t, exp: exp_t, t: type_t): bool_t
 ```
 
-Simple properties and comparisons
----------------------------------
+## Simple properties and comparisons
 
 in curry style
 
@@ -577,16 +562,14 @@ we have unicity of types
 A == B
 ```
 
-Comparing church style and curry style
---------------------------------------
+## Comparing church style and curry style
 
 terms in the church style
 &quot;project&quot; to legal terms in the curry style
 conversely, legal terms in curry style
 can be &quot;lifted&quot; to terms in church style
 
-Beta-normal-form
-----------------
+## Beta-normal-form
 
 in the book
 `NF` means normal-form
@@ -604,8 +587,7 @@ neu := var | neu(norm)
 norm := neu | (x) =&gt; norm
 ```
 
-Normal inhabitants
-------------------
+## Normal inhabitants
 
 an implementation of the synth function
 which return long-normal-form
@@ -618,18 +600,15 @@ one for normal-form
 but I can not understand the difference between the two
 because they look like the same
 
-Eepresenting data types
------------------------
+## Eepresenting data types
 
 TODO
 
 We need implementation to play with this
 
-Part 2. Recursive types
-=======================
+# Part 2. Recursive types
 
-Part 3. Intersection types
-==========================
+# Part 3. Intersection types
 </pre>
 </body>
 </html>
