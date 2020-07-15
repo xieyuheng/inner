@@ -1,8 +1,8 @@
 Lambda Calculus with Types
 ==========================
 
-- Authors: Henk Barendregt, Wil Dekkers, Richard Statman
-- Date: 2010
+Authors: Henk Barendregt, Wil Dekkers, Richard Statman
+Date: 2010
 
 # Preface
 
@@ -51,7 +51,7 @@ Sørensen and Urzyczyn [2006]. Research monographs on dependent and inductive ty
 are lacking. This is an invitation to the community of next generations of researchers.
 Some notational conventions
 
-- **[Xie]**
+- Xie:
   "Research monographs on dependent and inductive types are lacking."
   what the authors meant by a good "Research monographs"
 
@@ -138,17 +138,17 @@ reduction relations (beta_reduction, eta_reduction or beta_eta_reduction)
 are confluent:
 
 ```
-(M: exp_t, N1: exp_t, N2: exp_t) ->
+(M: Exp, N1: Exp, N2: Exp) ->
 (reduction(M, N1), reduction(M, N2)) ->
-(Z: exp_t, reduction(N1, Z), reduction(N2, Z))
+(Z: Exp, reduction(N1, Z), reduction(N2, Z))
 ```
 
 thus it is easy to prove:
 
 ```
-(M: exp_t, N: exp_t) ->
+(M: Exp, N: Exp) ->
 conversion(M, N) ->
-(Z: exp_t, reduction(M, Z), reduction(N, Z))
+(Z: Exp, reduction(M, Z), reduction(N, Z))
 ```
 
 - give a algorithm to check equivalence,
@@ -161,7 +161,7 @@ conversion(M, N) ->
 we can extends the judgment of conversion by axioms,
 
 ```
-axioms: set_t([exp_t, exp_t])
+axioms: Set([Exp, Exp])
 
 axioms |- M == N
 ```
@@ -174,10 +174,10 @@ if we can use  they to prove any equation.
 ```
 inconsistent(axioms) :=
 
-forall M: exp_t, N: exp_t ->
+forall M: Exp, N: Exp ->
 axioms |- M == N
 
-(M: exp_t, N: exp_t) -> conversion_with_axioms(axioms, M, N)
+(M: Exp, N: Exp) -> conversion_with_axioms(axioms, M, N)
 ```
 
 For example,
@@ -209,7 +209,7 @@ i.e. there are no equations between types.
 
 we can view atom as variable and define:
 ```
-type_subst(A: type_t, a: atom_t, B: type_t)
+type_subst(A: Ty, a: Atom, B: Ty)
 ```
 
 - we also need to view atom as logic variable
@@ -327,8 +327,8 @@ and put the sub-proof in `{ }` below the line.
 we can define the following:
 
 ```
-synth(ctx: ctx_t, t: type_t): set_t(exp_t)
-check(ctx: ctx_t, exp: exp_t, t: type_t): bool_t
+synth(ctx: Ctx, t: Ty): Set(Exp)
+check(ctx: Ctx, exp: Exp, t: Ty): Bool
 ```
 
 For example,
@@ -344,17 +344,17 @@ check(ctx_empty,
 we can define the following predicates on type:
 
 ```
-type_depth(type_t): nat_t
+type_depth(Ty): Nat
 type_depth(atom) = 1
 type_depth(<c> (A) -> B </c>) =
   max(type_depth(A), type_depth(B)) + 1
 
-type_rank(type_t): nat_t
+type_rank(Ty): Nat
 type_rank(atom) = 0
 type_rank(<c> (A) -> B </c>) =
   max(type_rank(A) + 1, type_rank(B))
 
-type_order(type_t): nat_t
+type_order(Ty): Nat
 type_order(atom) = 1
 type_order(<c> (A) ->  B </c>) =
   max(type_order(A) + 1, type_order(B))
@@ -383,7 +383,7 @@ functionals with functions as arguments versus binary functions.
 we can define the following function to generate type of the same tank:
 
 ```
-type_iter(type_t, type_t, nat_t): type_t
+type_iter(Ty, Ty, Nat): Ty
 type_iter(A, B, 0) = B
 type_iter(A, B, 1) = (A) -> B
 type_iter(A, B, 2) = (A) -> (A) -> B
@@ -403,7 +403,7 @@ infinite size and one size are main focus.
 if the set of atoms only contains `c`, we can define
 
 ```
-type_gen_rank(nat_t): type_t
+type_gen_rank(Nat): Ty
 type_gen_rank(0) = c
 type_gen_rank(x + 1) = (type_gen_rank(x)) -> type_gen_rank(0)
 ```
@@ -416,7 +416,7 @@ type_gen_rank(1) = (c) -> c
 type_gen_rank(2) = ((c) -> c) -> c
 type_gen_rank(3) = (((c) -> c) -> c) -> c
 
-type_gen_rank_iter(nat_t, nat_t): type_t
+type_gen_rank_iter(Nat, Nat): Ty
 type_gen_rank_iter(0, k) = type_gen_rank(0)
 type_gen_rank_iter(n + 1, k) = type_iter(type_gen_rank(n), type_gen_rank(0), k)
 ```
@@ -424,9 +424,9 @@ type_gen_rank_iter(n + 1, k) = type_iter(type_gen_rank(n), type_gen_rank(0), k)
 we also define the following functions on type:
 
 ```
-arity(type_t): nat_t
-type_arg(type_t, nat_t): type_t
-type_ret(type_t): type_t
+arity(Ty): Nat
+type_arg(Ty, Nat): Ty
+type_ret(Ty): Ty
 ```
 
 ## Church style
@@ -447,30 +447,20 @@ exp := var: type | (var: type) => exp | exp(exp)
 
 `exp` can contain type
 
-- **[Xie]**
+- Xie:
   not about lambda abstraction,
   but about variables!
-
-  not
-
-  ```
-  exp := var | (var: type) => exp | exp(exp)
-  ```
-
-  but
-
-  ```
-  exp := var: type | (var: type) => exp | exp(exp)
-  ```
+  not `exp := var | (var: type) => exp | exp(exp)`
+  but `exp := var: type | (var: type) => exp | exp(exp)`
 
 we have
 
 ```
-synth(t: type_t): exp_t
-check(exp: exp_t, t: type_t): bool_t
+synth(t: Ty): Exp
+check(exp: Exp, t: Ty): Bool
 ```
 
-synth return only one unique `exp_t` instead of `set_t(exp_t)`
+synth return only one unique `Exp` instead of `Set(Exp)`
 and typing context is not needed
 
 for example:
@@ -482,10 +472,10 @@ for example:
 ```
 
 type substitution
-`type_subst(A: type_t, a: atom_t, B: type_t)`
+`type_subst(A: Ty, a: Atom, B: Ty)`
 can be extended to expression,
 because expression can contain type.
-`type_subst(M: exp_t, a: atom_t, B: type_t)`
+`type_subst(M: Exp, a: Atom, B: Ty)`
 
 ## de Bruijn style
 
@@ -506,8 +496,8 @@ for closed terms the church and the de bruijn notation are isomorphic
 we have
 
 ```
-synth(ctx: ctx_t, t: type_t): exp_t
-check(ctx: ctx_t, exp: exp_t, t: type_t): bool_t
+synth(ctx: Ctx, t: Ty): Exp
+check(ctx: Ctx, exp: Exp, t: Ty): Bool
 ```
 
 ## Simple properties and comparisons
@@ -540,8 +530,8 @@ in church styles
 we have unicity of types
 
 ```
-(A: type_t, B: type_t) ->
-(M: exp_t, check(M, A), check(M, B)) ->
+(A: Ty, B: Ty) ->
+(M: Exp, check(M, A), check(M, B)) ->
 A == B
 ```
 
@@ -550,8 +540,8 @@ in de bruijn
 we have unicity of types
 
 ```
-(ctx: ctx_t, A: type_t, B: type_t) ->
-(M: exp_t, check(ctx, M, A), check(ctx, M, B)) ->
+(ctx: Ctx, A: Ty, B: Ty) ->
+(M: Exp, check(ctx, M, A), check(ctx, M, B)) ->
 A == B
 ```
 
@@ -593,7 +583,7 @@ one for normal-form
 but I can not understand the difference between the two
 because they look like the same
 
-## Eepresenting data types
+## Representing data types
 
 TODO
 
