@@ -286,11 +286,11 @@ we trun inference rule upside down
 
 ```
 |- (x) => (y) => x : (A) -> (B) -> A
------- (arrow introduction)
+------ arrow_intro
 x: A |- (y) => x : (B) -> A
------- (arrow introduction)
+------ arrow_intro
 x: A, y: B |- x: A
------- (lookup type of variable)
+------ lookup_var
 QED
 ```
 
@@ -298,9 +298,9 @@ a simpler one:
 
 ```
 |- (x) => x : (A) -> A
------ (arrow introduction)
+----- arrow_intro
 x: A |- x: A
------- (lookup type of variable)
+------ lookup_var
 QED
 ```
 
@@ -308,14 +308,14 @@ a example with non ctx_empty at beginning:
 
 ```
 y: A |- {(x) => x}(y) : A
------ (arrow elimination)
+----- arrow_elim
 { y: A |- (x) => x : (A) -> A
-  ------ (arrow elimination)
+  ------ arrow_intro
   y: A, x: A |- x : A
-  ------ (lookup type of variable)
+  ------ lookup_var
   QED }
 { y: A |- y: A
-  ------ (lookup type of variable)
+  ------ lookup_var
   QED }
 QED
 ```
