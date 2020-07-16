@@ -335,7 +335,7 @@ the quantifiers not being restricted to finite domains.
 That is, the trouble is to make the two laws evident
 when propositions are conceived as nothing but truth values.
 
-``` js
+```
 A(x) prop
 ----------------------
 (forall x) A(x) prop
@@ -361,7 +361,7 @@ when they conceive of propositions simply as truth values.
 It does not help to restrict the quantifiers,
 that is, to consider instead the laws
 
-``` js
+```
 (x in A)
 B(x) prop
 ----------------------
@@ -496,7 +496,7 @@ and for which the double arrow `=>` is also a common notation.
 It is the relation of logical consequence,
 which must be carefully distinguished from implication.
 
-``` js
+```
    hypothetical judgement
    ((logical) consequence) (sequent)
   |-----------------------------|
@@ -514,7 +514,7 @@ something being a proposition may depend on other things being true.
 Thus, for the assumptions `A1 true, ..., An true` to make sense,
 we must presuppose
 
-``` js
+```
 A1 prop
 A1 true | A2 prop
 ...
@@ -536,7 +536,7 @@ I need to generalize the two forms of hypothetical judgement
 so as to allow generality in them. Thus I need judgements which are,
 not only hypothetical, but also general, which means that the first form is turned into
 
-``` js
+```
 A1(x1, ..., xm) true, ..., An(x1, ..., xm) true | A(x1, ..., xm) prop
 A1(x1, ..., xm) true, ..., An(x1, ..., xm) true | A(x1, ..., xm) true
 ```
@@ -562,7 +562,7 @@ I shall begin with the rules of implication.
 
 **Implication formation.**
 
-``` js
+```
 A prop
 { A prop |- B prop }
 ---------------------
@@ -575,7 +575,7 @@ without any intervening steps, on the assumption that you know the premises.
 
 **Implication introduction.**
 
-``` js
+```
 { A true |- B true }
 ---------------------
 A -> B true
@@ -607,7 +607,7 @@ But I shall have to content myself with the standard formulation in these lectur
 
 **Implication elimination.**
 
-``` js
+```
 A -> B true
 A true
 --------------
@@ -619,7 +619,7 @@ B true
 
   **Implication computation (implication reduction).**
 
-  ``` js
+  ```
   f : A -> B true
   a : A true
   ----------------------------------------------------
@@ -635,7 +635,7 @@ B true
 
 **And formation.**
 
-``` js
+```
 A prop
 B prop
 ---------------
@@ -644,7 +644,7 @@ A and B prop
 
 **And introduction.**
 
-``` js
+```
 A true
 B true
 ---------------
@@ -653,7 +653,7 @@ A and B true
 
 **And elimination.**
 
-``` js
+```
 A and B true
 ------------
 A true
@@ -665,7 +665,7 @@ B true
 
 **Or formation.**
 
-``` js
+```
 A prop
 B prop
 ---------------
@@ -674,7 +674,7 @@ A or B prop
 
 **Or introduction.**
 
-``` js
+```
 A true
 ---------------
 A or B true
@@ -686,7 +686,7 @@ A or B true
 
 **Or elimination.**
 
-``` js
+```
 A or B true
 { A true |- C true }
 { B true |- C true }
@@ -696,14 +696,14 @@ C true
 
 **Absurd formation.**
 
-``` js
+```
 -----------------
 absurd prop
 ```
 
 **Absurd elimination.**
 
-``` js
+```
 absurd true
 -------------
 C true
@@ -746,7 +746,7 @@ and the kind of generality which a judgement may have comes before universal qua
 - Xie:
   The propositions about "forall" and "exists" express the idea of **free variable proof**.
 
-``` js
+```
 A(x) prop
 ---------------
 (forall x) A(x) prop
@@ -754,7 +754,7 @@ A(x) prop
 
 **Forall introduction.**
 
-``` js
+```
 A(x) true
 ---------------
 (forall x) A(x) true
@@ -764,7 +764,7 @@ If something has been done, then it can be done.
 
 **Forall elimination.**
 
-``` js
+```
 (forall x) A(x) true
 ---------------
 A(a) true
@@ -772,7 +772,7 @@ A(a) true
 
 **Exists formation.**
 
-``` js
+```
 A(x) prop
 ---------------
 (exists x) A(x) prop
@@ -780,7 +780,7 @@ A(x) prop
 
 **Exists introduction.**
 
-``` js
+```
 A(a) true
 ---------------
 (exists x) A(x) true
@@ -788,7 +788,7 @@ A(a) true
 
 **Exists elimination.**
 
-``` js
+```
 (exists x) A(x) true
 { A(x) true |- C }
 ----------------
