@@ -35,7 +35,7 @@ We study how behaviors optimize reproduction.
 
 Evolution will sculpture behaviors.
 
-- **[Xie]**
+- Xie:
   Although "to remain" is the a priority goal of existing,
   only things tend to remain will remain.
 

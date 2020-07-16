@@ -72,7 +72,7 @@ The semantics of alethic modal logic **possible worlds**,
 `possible P` means "there exists a world in which P is true",
 `necessary P` means "in all worlds, P is true".
 
-- **[Xie]** When talking about "semantics", think about intuition and implementation.
+- Xie: When talking about "semantics", think about intuition and implementation.
 
 Kinds of possibility,
 - Logical, fixed given the laws of logic, rules out contradictions.
@@ -114,7 +114,7 @@ Note that, the relation is not necessarily transitive.
 We are going to use the tree method in "Modal Logic for Philosophers", by James W. Garson,
 which captures the concepts of modal logic in a clear and common sense way.
 
-- **[Xie]**
+- Xie:
   I use judgment and inference rules instead.
   Also I use intuitionistic logic intead of classical logic,
   specially `A -> B` can not be reduced to `(not A) or B`.
@@ -231,7 +231,7 @@ when there is no counter example.
 Syntactic / proof theoretic consequence (Gentzen) `premises |- conclusion` means that,
 conclusion can be derived from premises by inference rules.
 
-- **[Xie]**
+- Xie:
   Terminology used by other authors,
   - tautology consequence -- propositional logic
   - logical consequence -- predicate logic
@@ -325,7 +325,7 @@ which is equivalent to
 should be
 "Necessarily, if P is true, then it not be false."
 
-- **[Xie]** More about fallacy,
+- Xie: More about fallacy,
   https://en.wikipedia.org/wiki/Modal_fallacy
   https://en.wikipedia.org/wiki/Formal_fallacy
 

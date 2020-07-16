@@ -9,7 +9,7 @@
 
 # 2 虧格爲 p 的曲面的基本羣 / fundamental group of the surface of genus p
 
-- **[Xie]**
+- Xie:
   說 surface 的 universal-covering-space
   解決了 surface 的 fundamental-group 的 word-problem
   如果想要把這種直觀的解法描述成一個算法的話
@@ -26,7 +26,7 @@
   但是對於高虧格的曲面來說
   就有賴於雙曲空間中離散點集的編碼了
 
-- **[Xie]**
+- Xie:
   這裏 dehn 的敘述中最重要的想法是
   代數問題的拓撲[或者幾何]解釋
 

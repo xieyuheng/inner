@@ -17,13 +17,13 @@ Each set former (logical constant) is defined inductively by its introduction ru
 The elimination rule expresses a principle of definition by recursion (proof by induction).
 Equality rules express how these definitions are eliminated (proofs are normalised).
 
-- **[Xie]** Elimination rule is about how to use a piece of information,
+- Xie: Elimination rule is about how to use a piece of information,
   when the information is introduced inductively, so will the elimination rule.
 
 First we specify what it means to be a correct definition of a set former
 by giving formal criteria for the formation and introduction rules.
 
-- **[Xie]** The term "set former" is called "type constructor" by some authors.
+- Xie: The term "set former" is called "type constructor" by some authors.
 
 Then we show how such a definition determines the elimination and equality rules
 by a so called **inversion principle**. We also give an alternative formulation
@@ -58,7 +58,7 @@ A : set
 A type
 ```
 
-- **[Xie]**
+- Xie:
   The rule above does not make the property that
   `one object only has one type` invalid
   because the judgement `A type` is not `A : type`.
@@ -83,7 +83,7 @@ q : A
 p(q) : T[q]
 ```
 
-- **[Xie]**
+- Xie:
   In the paper,
   `(a) => p[a]` is written as `(a)p[a]`,
   `(a : A) -> T[a]` is written as `(a : A)T[a]`,
@@ -198,7 +198,7 @@ elimination and equality rules from the formation and introduction rules.
 There is one formation rule (unless we have simultaneous induction, see section 6).
 It has the form
 
-- **[Xie]** The notation `(A :: T)` means `(A : T, ...)`.
+- Xie: The notation `(A :: T)` means `(A : T, ...)`.
 
 ``` js
 P : (A :: T) -> (a :: f[A]) -> set
@@ -226,7 +226,7 @@ Each introduction rule has the form
 intro : (A :: T) -> (b :: f[A]) -> (u :: g[A, b]) -> P(A)(p[A, b])
 ```
 
-- **[Xie]** The notion of **s-type** (set-like type) is introduced here,
+- Xie: The notion of **s-type** (set-like type) is introduced here,
    An s-type is either a set,
    or a type of functions from an s-type to an s-type.
 

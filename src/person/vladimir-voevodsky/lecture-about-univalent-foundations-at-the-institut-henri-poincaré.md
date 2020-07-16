@@ -95,7 +95,7 @@ there is such a thing as an infinity-groupoid of **all** infinity-groupoids.
 - An inconsistent system is still very valuable for creative reasoning,
   and we can always use a consistent system later in the development.
 
-- **[Xie]** This argument is like the argument against premature optimization in programming.
+- Xie: This argument is like the argument against premature optimization in programming.
 
 In a more complex system such as ZFC, which we believe to be consistent,
 the reasoning becomes more complex. Instead of talking about
@@ -240,7 +240,7 @@ and you made further suggestions which seems doubtful to me.
 **Voevodsky**: ..., Well, I don't know. I mean, ...
 Gödel teaches us we have to make compromises.
 
-- **[Xie]** Questioners totally missing the main ideas of the talk.
+- Xie: Questioners totally missing the main ideas of the talk.
 
 **Another Questioner**: ...
 

@@ -16,7 +16,7 @@ For examples,
 (A (B C D E))
 ```
 
-- **[Xie]**
+- Xie:
   This means using generic untyped expression as syntax (like S-expression of lisp),
   instead of using typed algebraic datatype as syntax (normal AST in language implementations).
   Or we can view this as a syntax framework (just like S-expression) in middle of string and AST.
@@ -38,7 +38,7 @@ A C-system -- C, is a collection of data of the following form,
 - (5) A map `previous : (X : object_t(C)) -> morphism_t(X, father(X))`
 - ...
 
-- **[Xie]**
+- Xie:
   Note that contextual pre-category will only be used to model context in type theories.
 
 ## 2012-11-21 -- Type Systems 5

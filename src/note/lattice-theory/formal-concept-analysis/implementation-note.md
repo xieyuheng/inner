@@ -11,7 +11,7 @@ One such possibility of very general nature is that
 data tables can be transformed into algebraic structures called complete lattices,
 and that these can be utilized for data visualization and interpretation.
 
-- **[Xie]**
+- Xie:
   We need to formalize the structure of complete lattice.
   - https://en.wikipedia.org/wiki/Complete_lattice
 

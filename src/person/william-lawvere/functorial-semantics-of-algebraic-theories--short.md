@@ -11,7 +11,7 @@ which involves a set of symbols denoting finitary operations
 together with a set of equations (= identities) relating composite operations,
 determines an algebraic theory, and conversely every algebraic theory has such presentations.
 
-- **[Xie]**
+- Xie:
   Examples of **algebraic theory**,
 
   ``` js
@@ -25,4 +25,4 @@ which preserves products and takes `1` into `1`.
 
 Algebraic theories and the mappings between them thus form a category.
 
-- **[Xie]** Not category of all groups, but category of all algebraic theories.
+- Xie: Not category of all groups, but category of all algebraic theories.

@@ -125,7 +125,7 @@ commit: {
 Most users should interact with a relational model of the data
 consisting of a collection of time-varying relationships (rather than relations).
 
-- **[Xie]**
+- Xie:
   By "relationships" v.s. "relations",
   the author means "record" (with named fields) vs "tuple" (with unnamed fields)
 

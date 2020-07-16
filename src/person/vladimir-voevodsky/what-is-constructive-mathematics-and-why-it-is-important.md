@@ -75,7 +75,7 @@ In fact it is so important that according to the legend
 the person who have disclosed the proof
 was thrown into the ocean from a ship.
 
-- **[Xie]**
+- Xie:
   If we understand knowledge as fixation of belief,
   than belief with proof can be considered as firmly fixed.
 

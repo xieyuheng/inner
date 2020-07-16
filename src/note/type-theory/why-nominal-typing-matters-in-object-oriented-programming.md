@@ -1,6 +1,6 @@
 # Why Nominal-Typing Matters in Object-Oriented Programming
 
-- **[Xie]**
+- Xie:
   If all nominal typing has, but structural typing hasn't, is class name,
   we can do this in structural typing with dependent types.
 
@@ -19,7 +19,7 @@ or unchecked exceptions when the stated conditions
 are violated. Promises can be enforced by assertions
 at the end of a method.
 
-- **[Xie]**
+- Xie:
   This problem can also be solved at compile time by dependent types.
 
 In practice however, the inclusion of behavioral

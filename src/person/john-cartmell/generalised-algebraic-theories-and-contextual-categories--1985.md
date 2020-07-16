@@ -18,7 +18,7 @@ but since the algebraic structure so introduced is not invariant under equivalen
 
 The Terminology "pre-category" and "C System" was suggested by Vladimir Voevodsky.
 
-- **[Xie]** I use the term **contextual pre-category**,
+- Xie: I use the term **contextual pre-category**,
   to suggest that there are other kinds of pre-categories,
   such as **substitutional pre-category**.
 
@@ -27,7 +27,7 @@ The Terminology "pre-category" and "C System" was suggested by Vladimir Voevodsk
 
 ### 1. Introduction
 
-- **[Xie]**
+- Xie:
   The aim of this paper is to provide semantics to type theories by constructing algebraic structures.
   Such semantics if developed can guide the implementation of type theories.
 
@@ -81,7 +81,7 @@ Thus, a generalised algebraic theory consists of
 - (iii) a set of axioms. Each axiom must be an identity between similar well-formed expressions,
   either between terms of the same possibly varying type or else between type expressions.
 
-- **[Xie]**
+- Xie:
   The term "generalised algebraic theories" can be viewed as
   using **class** of programming languages to formalize algebraic structures.
 
@@ -295,7 +295,7 @@ In the alternative version of the theory we say that a variable has been omitted
 This is one method by which a theory may be informally presented.
 This method and another can be used in an informal presentation of the theory of trees.
 
-- **[Xie]** The so called "theory of trees" will be used to define contextual category,
+- Xie: The so called "theory of trees" will be used to define contextual category,
   to formalize the relation "definition of the type `X` depends on elements of type `Y`".
   It is actually the theory of dependent record type,
   or say, dependent type + structural subtyping.
@@ -366,7 +366,7 @@ and one type symbol `sigma_t(A, B)` in such a way that
   that is to say as a set isomorphic to the disjoint union of the family of sets interpreting `B`.
 The extended theory is taken to be `U+`.
 
-- **[Xie]** I will define `sigma_t` as a type as the following.
+- Xie: I will define `sigma_t` as a type as the following.
 
 ``` js
 sigma_t : {
@@ -470,9 +470,9 @@ and then to axiomatise them in such a way as they are effectively predicate symb
 We do not work with relations directly
 but rather with their characteristic families.
 
-- **[Xie]** Which means that we define relations by predicates on tuple.
+- Xie: Which means that we define relations by predicates on tuple.
 
-- **[Xie]**
+- Xie:
   This chapter is about types that has either only one or none instance.
 
   Such types are called "prop" or "proposition" by some authors,
@@ -512,7 +512,7 @@ class {
 }
 ```
 
-- **[Xie]** The term **universal conditionals** is introduced by the author,
+- Xie: The term **universal conditionals** is introduced by the author,
   which might be understood as those axioms of predicates calculus
   such as `A1 & A2 & ... & An -> P`,
   that we plan to formalize by means of `prop`.
@@ -539,7 +539,7 @@ Three kinds of universal conditionals -- `A1 & A2 & ... & An -> P`,
   then `transitive_t` is interpretable in at most one way
   and then only in case the interpretation of `P` is transitive.
 
-  - **[Xie]** The above remark about model theory
+  - Xie: The above remark about model theory
     is always ensured by the relation between a class and its instances in our language.
     Is it so?
 
@@ -595,7 +595,7 @@ as an alternative way of expressing the signature of a theory.
 In this way we hope to motivate an understanding
 of the algebraic semantics of our theories.
 
-- **[Xie]** A new notation is introduced (like the arrow of category theory).
+- Xie: A new notation is introduced (like the arrow of category theory).
   I will use `-:>` for this new kind of arrow,
   `X -:> Y` can be read as
   "definition of the type `X` depends on elements of type `Y`".
@@ -693,11 +693,11 @@ at least as far as the usual set valued models are concerned.
 
 The essentially algebraic theories are many sorted **partial** algebraic theories.
 
-- **[Xie]** This "essentially algebraic theory" and the use of partial function,
+- Xie: This "essentially algebraic theory" and the use of partial function,
   is further developed in Vladimir Voevodsky's paper,
   "Subsystems and regular quotients of C-systems".
 
-- **[Xie]** When try to formalize category theory
+- Xie: When try to formalize category theory
   in a programming language without dependent type,
   one often come up with such **partial** theories
   (class with partial functions).
@@ -720,7 +720,7 @@ The essentially algebraic theories are many sorted **partial** algebraic theorie
   the above use of `ensure` can be viewed as
   contract system of some language.
 
-- **[Xie]** In a mainstream programming language,
+- Xie: In a mainstream programming language,
   one can use the following trick to handle the assertion.
 
   ``` js
@@ -743,7 +743,7 @@ The essentially algebraic theories are many sorted **partial** algebraic theorie
 In order to write an essentially algebraic theory as generalised algebraic,
 all the equality predicates used in defining domains of partial operations must be introduced.
 
-- **[Xie]** The above definition of `category_t` uses the equality predicate over `object_t`.
+- Xie: The above definition of `category_t` uses the equality predicate over `object_t`.
 
 Every essentially algebraic theory can be rewritten as generalised algebraic,
 and the converse is also the case.
@@ -784,7 +784,7 @@ sigma_fst : {
 // whose coimage on `a` is the set `D(a)`
 ```
 
-- **[Xie]** Let's take `category_t` as a concrete example,
+- Xie: Let's take `category_t` as a concrete example,
   in so called essentially algebraic theory,
   the dependent type `morphism_t : { dom, cod : object_t -> type }`
   is replaced by `morphism_t : type`
@@ -832,11 +832,11 @@ is describable just as a pair `(F, eta)`,
 where `F : A -> A'` is a functor
 and `eta : B -> F o B'` is a natural transformation.
 
-- **[Xie]** Above structure need examples.
+- Xie: Above structure need examples.
 
 ## 8. The formal definition
 
-- **[Xie]** The formal definition starts from low level,
+- Xie: The formal definition starts from low level,
   thus "well-formed" expression is hard to define.
 
   We can avoid this by define well-formed expression as abstract syntax (`exp_t`),
@@ -852,14 +852,14 @@ under the operation of substitution of correctly typed terms for variables.
 There is a discrepancy between the syntax adopted in the formal definition of Section 8
 and the syntax used in informally presenting theories in other sections.
 
-- **[Xie]** We do not have this problem.
+- Xie: We do not have this problem.
 
 ## 11. Models and homomorphisms
 
 The theory of trees was presented in Section 3
 but from now on we want all our trees to be trees with a unique least element.
 
-- **[Xie]** Preparing for the definition of contextual category.
+- Xie: Preparing for the definition of contextual category.
 
 Given a theory (class) `C`,
 models (instances) of `C` and homomorphisms of `C`,
@@ -871,7 +871,7 @@ The category GAT of generalised algebraic theories
 is a category which has theories as objects
 and equivalence classes of interpretations as morphisms.
 
-- **[Xie]** We can define `class_category` as an instance of `category_t`,
+- Xie: We can define `class_category` as an instance of `category_t`,
   where `object_t = class`, and `morphism_t(A, B) = { A -> B }`.
   The morphisms (interpretations) is defined as functions in the meta-language,
   it is ensured that they preserve the structure of class,
@@ -879,7 +879,7 @@ and equivalence classes of interpretations as morphisms.
 
 ## 13. Contexts and realisations
 
-- **[Xie]** A class is defined as a dependent record,
+- Xie: A class is defined as a dependent record,
   thus a dependent record can be viewed as a class.
 
   The realisation between two record types `(A, B)` described in this section,
@@ -930,7 +930,7 @@ q(f, B) : { (x1, ..., xn, ym+1, ..., ym+w) : f*B -> B } = new B {
 }
 ```
 
-- **[Xie]** Maybe we can intuitive `q(f, B) : f*B -> B` as
+- Xie: Maybe we can intuitive `q(f, B) : f*B -> B` as
   substitute `(x1, ..., xn)` in `f*B` with `(y1, ..., ym) = f(x1, ..., xn)`.
 
 This motivates the next definition.
@@ -943,7 +943,7 @@ TODO
 
 ## 15. Fundorial semantics
 
-- **[Xie]**
+- Xie:
   Given a type theory `T` and an algebraic structure (a class) `C`,
   the algebraic semantics is using `T` to build an instance of `C`.
 

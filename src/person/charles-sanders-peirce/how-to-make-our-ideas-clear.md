@@ -16,7 +16,7 @@ They have lain in the books now for nigh two centuries,
 unimproved and unmodified,
 and are generally reckoned by logicians as among the gems of their doctrine.
 
-- **[Xie]**
+- Xie:
   Like aristotle, Peirce summaries historical approaches to the same inquiry.
 
   By "a modern treatise on logic of the common sort",
@@ -75,7 +75,7 @@ has its only true place in philosophies which have long been extinct;
 and it is now time *to formulate the method of attaining to a more perfect clearness of thought*,
 such as we see and admire in the thinkers of our own time.
 
-- **[Xie]**
+- Xie:
   Peirce changes the question from "what" to "how".
 
 ### (CP5.391)
@@ -113,7 +113,7 @@ that they must not only seem clear at the outset,
 but that discussion must never be able to bring to light
 points of obscurity connected with them.
 
-- **[Xie]**
+- Xie:
   Peirce understand Descartes by reconstructing Descartes' thread of thoughts.
 
 ### (CP5.392)
@@ -256,11 +256,11 @@ is excited by the irritation of doubt,
 and ceases when belief is attained;
 so that the production of belief is the sole function of thought.
 
-- **[Xie]**
+- Xie:
   When trying to define thought,
   Peirce observes its effect on us.
 
-- **[Xie]**
+- Xie:
   Thus when asking "can machine think?",
   we should firstly ask "can machine doubt?".
 
@@ -435,7 +435,7 @@ second, it appeases the irritation of doubt;
 and, third, it involves the establishment in our nature
 of a rule of action, or, say for short, a habit.
 
-- **[Xie]**
+- Xie:
   If we were to program a think machine,
   to achieve "aware of", we at least need the machine
   to be able to explain why and how it formed its believes.
@@ -477,7 +477,7 @@ Imaginary distinctions are often drawn between beliefs
 which differ only in their mode of expression;
 -- the wrangling which ensues is real enough, however.
 
-- **[Xie]**
+- Xie:
   This is the way by which a pragmatism can to avoid wrangling.
   i.e. to distinguish things, one should use
   *modes of action to which they give rise*
@@ -536,7 +536,7 @@ the whole function of thought is to produce habits of action;
 and that whatever there is connected with a thought,
 but irrelevant to its purpose, is an accretion to it, but no part of it.
 
-- **[Xie]**
+- Xie:
   If we were to program a thinking machine,
   what kinds of "habits of action" should we aiming for?
 
@@ -563,7 +563,7 @@ no matter how subtile it may be;
 and there is no distinction of meaning so fine
 as to consist in anything but a possible difference of practice.
 
-- **[Xie]**
+- Xie:
   We get a pragmatism thought distinguisher of the following type.
 
   ``` js
@@ -638,7 +638,7 @@ Let us illustrate this rule by some examples;
 and, to begin with the simplest one possible,
 let us ask what we mean by calling a thing hard.
 
-- **[Xie]**
+- Xie:
   By this example, we know that by "object" in the above section,
   we can denote an expression like "calling a thing hard",
   and what we are trying to understand clearly, is the mean of such expressions.

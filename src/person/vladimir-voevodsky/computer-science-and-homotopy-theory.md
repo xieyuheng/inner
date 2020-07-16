@@ -19,7 +19,7 @@ and one for equivalent `x == y`.
 
 In set theory, a so called set is actually a tree.
 
-- **[Xie]** This remembers me of the structure of [surreal number](https://en.wikipedia.org/wiki/Surreal_number).
+- Xie: This remembers me of the structure of [surreal number](https://en.wikipedia.org/wiki/Surreal_number).
 
 Axioms of set theory,
 
@@ -97,7 +97,7 @@ The way one can work with those things is that
 there are rules (inference rules) which permit one
 to construct new legal sequents from old ones.
 
-- **[Xie]** In normal implementations of type systems,
+- Xie: In normal implementations of type systems,
   the above level of abstraction is always omitted,
   one often define expressions and implement `check` and `infer` directly.
 

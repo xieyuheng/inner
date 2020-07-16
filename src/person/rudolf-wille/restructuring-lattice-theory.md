@@ -19,7 +19,7 @@ lattice concept in nineteenth-century attempts to formalize
 logic, where a fundamental step was the reduction of a concept
 to its "extent".
 
-- **[Xie]**
+- Xie:
   The 'reduction of a concept to its "extent"' might denote set theory.
 
 We propose to make the reduction less abstract
@@ -34,7 +34,7 @@ mental gymnastics; on the other hand, the connections of the
 theory to its surroundings are getting weaker: the result is
 that the theory and even many of its parts become more isolated.
 
-- **[Xie]**
+- Xie:
   We need to restructuring other theories of mathematics.
 
 This is not only a problem of lattice theory or of mathematics.

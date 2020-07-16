@@ -15,7 +15,7 @@ the chapter naming of which is different from the book.
 
 ## Note
 
-- **[Xie]** One interesting feature of the teaching of the lecturer is that
+- Xie: One interesting feature of the teaching of the lecturer is that
   we do not emphasize the historical notes too much,
   but always re-construct the process of development from basic principles.
   By teaching in this way, student starts to think independently
@@ -51,7 +51,7 @@ we must not reach for the concrete structure of their objects.
 We must define mathematical structures by describing the relations between their objects,
 and the relations we can describe are all equations about arrows.
 
-- **[Xie]** We describe properties only by interface functions of abstract class.
+- Xie: We describe properties only by interface functions of abstract class.
 
 ## I 2.1 Functions, epimorphisms
 
@@ -85,7 +85,7 @@ Preorder is thin category, homset have 0 or 1 elements..
 
 We can view category as generalized preorder, in which homset can have more elements.
 
-- **[Xie]** We can have different proofs of the relation `pre_t`.
+- Xie: We can have different proofs of the relation `pre_t`.
 
 Monoid is like pre-group.
 
@@ -97,7 +97,7 @@ We can view category as generalized monoid, in which there can be more objects.
 We can view preorder as category, or monoid as category.
 We can view category as generalization of preorder, or generalization of monoid.
 
-- **[Xie]** Viewing preorder as category,
+- Xie: Viewing preorder as category,
 
   ``` js
   impl preorder_t {
@@ -176,7 +176,7 @@ but in category we can not use this equivalence relation.
 We can compare arrows for equality, but we can not compare objects for equality.
 Thus we can only ask for isomorphism between objects.
 
-- **[Xie]** Is it true that we can not use the equivalence relation between objects?
+- Xie: Is it true that we can not use the equivalence relation between objects?
   Maybe we can, but it is just that for universal construction,
   uniqueness expressed by the equivalence relation between objects is too strong,
   for example, product set `A * B` is not equal to `B * A`,
@@ -203,9 +203,9 @@ The **product** of object `A` and `B` as an universal construction,
   after which `p` and `q` will be good projections.
 the product of object `A` and `B` is the best of such pattern.
 
-- **[Xie]** We need to imagine the picture of the arrows to understand a construction.
+- Xie: We need to imagine the picture of the arrows to understand a construction.
 
-- **[Xie]** Is it true that when factoring our programs,
+- Xie: Is it true that when factoring our programs,
   we have `p'` and `q'`, and we want to factor them into `compose m p` and `compose m q`.
   after which all functions (of type `C -> X`) we developed of `C` can be used for `C'`.
 
@@ -229,7 +229,7 @@ m : (int_t, int_t, bool_t) -> (int_t, bool_t)
 m (x, y, b) = (x, b)
 ```
 
-- **[Xie]** The uniqueness of arrow `m : C' -> C` will help us to define operators in category,
+- Xie: The uniqueness of arrow `m : C' -> C` will help us to define operators in category,
   such as cross of two morphisms, for `f : A -> B` and `g : C -> D`,
   we can define `f * g : (A * C) -> (B * D)`,
   we needed the uniqueness, because to define functions (operators)
@@ -254,7 +254,7 @@ data either_t A B
   | right B
 ```
 
-- **[Xie]** Remember that,
+- Xie: Remember that,
   seeking for interpretation of universal construction in programming language,
   is the same as seeking for interpretation in set theory.
 
@@ -314,7 +314,7 @@ data list_t A = null + (cons A * (list_t A))
 -- ...
 ```
 
-- **[Xie]** During transformation of equations,
+- Xie: During transformation of equations,
   the lecturer also used subtraction and division,
   the transformation seems still valid,
   as long as the resulting equation does not contain subtraction and division.
@@ -435,7 +435,7 @@ We can define exponential objects by universal construction
 
 We need product to define exponential.
 
-- **[Xie]**
+- Xie:
   The exponential object can not be defined as limit of shape,
   but should be defined using adjoint.
 
@@ -499,9 +499,9 @@ push the view of category theory to as far as we can.
 
 Every time we see mappings or arrows, we ask can we compose them.
 
-- **[Xie]** We try hard to observe pattern of structures.
+- Xie: We try hard to observe pattern of structures.
 
-- **[Xie]** Composing commuting squares is composing equation of morphisms.
+- Xie: Composing commuting squares is composing equation of morphisms.
   `a b == c d` and `d e == f g` compose to `a b e == c f g`.
 
 We can extends `category_t` to `strict_two_category_t`
@@ -526,7 +526,7 @@ to describe laws like associativity.
 Because of complicated coherent laws occured in n-category,
 we study n-groupoid where such coherent laws are simple.
 
-- **[Xie]** We need an example to demonstrate
+- Xie: We need an example to demonstrate
   how coherent laws of n-category are complicated.
 
 ## I 10.1 Monads
@@ -614,7 +614,7 @@ where in the monoidal-category tensor-product is functor composition.
 
 We have to know why we study category theory.
 
-- **[Xie]**
+- Xie:
   From the perspective of programming language,
   the answer is to use category theory to model
   concepts in programming language and type system (categorical semantics).
@@ -626,11 +626,11 @@ We have to know why we study category theory.
 
 Can we always implement declarative language in imperative language?
 
-- **[Xie]** The might be fail when the declarative language is so high level.
+- Xie: The might be fail when the declarative language is so high level.
 
 Can we do all that we can do in imperative language in declarative language?
 
-- **[Xie]** Even if we can, is it always worth doing so?
+- Xie: Even if we can, is it always worth doing so?
 
 Imperative vs Declarative, like local vs global physics laws.
 

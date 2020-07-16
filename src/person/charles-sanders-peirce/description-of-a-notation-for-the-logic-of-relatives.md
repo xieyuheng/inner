@@ -57,7 +57,7 @@
 
   (x * y) * z = x * (y * z)
 
-  - **[Xie]**
+  - Xie:
     I use `x * y` instead of `x y`
 
 - Multiplication is not generally commutative.
@@ -79,14 +79,14 @@
   sin (a * b * c) * d * e * f
   log (a * b * c, d * e * f) * g * h * i
 
-  - **[Xie]**
+  - Xie:
     I use `f (x, y)` for function application
 
 - The operation of *Involution* obeys the formula
 
   (x ^ y) ^ z == x ^ (y * z)
 
-  - **[Xie]**
+  - Xie:
     I use `x [y]` instead of `x ^ y`
 
 - Involution, also, follows the *indexical principle*.
@@ -100,7 +100,7 @@
   sigma (p) ((p -< z), (x ^ (z - p)) *, (y ^ p)) +,
   (y ^ z)
 
-  - **[Xie]**
+  - Xie:
     `sigma (<var>) (<pred>, <exp>)` introduces a bound variable
 
 - *Subtraction* is the operation inverse to addition.
@@ -128,11 +128,11 @@
 
 ## Use of the Letters
 
-- **[Xie]**
+- Xie:
   can all relations be reduced to
   composition of relations with arity less or equal than 3?
 
-- **[Xie]**
+- Xie:
   the author uses single letter variable name
   and uses different fonts
   to distinguish different classes of terms,
