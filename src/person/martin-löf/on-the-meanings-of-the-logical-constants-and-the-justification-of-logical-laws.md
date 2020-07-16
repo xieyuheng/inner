@@ -603,7 +603,7 @@ although, if you want all elimination rules to follow the same pattern,
 that is, the pattern exhibited by the rules of falsehood, disjunction,
 and existence elimination, there is another formulation that you should consider,
 and which has been considered by Schroeder-Heister.
--- link:../person/schroeder-heister/a-natural-extension-of-natural-deduction.md
+-- link:../schroeder-heister/a-natural-extension-of-natural-deduction.md
 But I shall have to content myself with the standard formulation in these lectures.
 
 **Implication elimination.**
