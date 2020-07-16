@@ -4,6 +4,8 @@
 (4)      cell-complex : boundary
 (5)  winning strategy : game
 
+----------------------------------------------------------------
+
 (1) (2) (3)
 link:../../paper/investigations-of-mathematical-deduction.org
 
