@@ -21,12 +21,12 @@ link:lang/abc/the-abc-programmers-handbook.md
 link:lang/agda/tutorial-of-agda.org
 link:lang/c/pointer.org
 link:lang/cicada/arrow/arrow-lang.org
-link:lang/cicada/cell-complex/README.md
 link:lang/cicada/cell-complex/a-language-for-equivalence.org
 link:lang/cicada/cell-complex/aeqea.org
 link:lang/cicada/cell-complex/at1-note.org
 link:lang/cicada/cell-complex/fibration.org
 link:lang/cicada/cell-complex/holding.org
+link:lang/cicada/cell-complex/index.txt
 link:lang/cicada/cell-complex/main.org
 link:lang/cicada/cell-complex/meaningful-distinctions.org
 link:lang/cicada/cell-complex/note.org
@@ -302,9 +302,9 @@ link:note/type-theory/checking-dependent-types-with-normalization-by-evaluation.
 link:note/type-theory/church-encoding.md
 link:note/type-theory/church-turing-thesis.org
 link:note/type-theory/function-compose-type-cut.org
-link:note/type-theory/game-semantics.org
 link:note/type-theory/hott.org
 link:note/type-theory/how-to.org
+link:note/type-theory/index.txt
 link:note/type-theory/inductive-type.org
 link:note/type-theory/inheritance-is-not-subtyping.md
 link:note/type-theory/lambda-calculus.org
@@ -315,6 +315,7 @@ link:note/type-theory/peirce-s-law.org
 link:note/type-theory/prop-as-type.org
 link:note/type-theory/the-use-of-type.org
 link:note/type-theory/towards-a-practical-programming-language-based-on-dependent-type-theory.md
+link:note/type-theory/type-as-game.txt
 link:note/type-theory/type-theory.md
 link:note/type-theory/why-nominal-typing-matters-in-object-oriented-programming.md
 link:paper/a-recursive-combinatorial-description-of-cell-complex.md
