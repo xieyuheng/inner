@@ -300,6 +300,7 @@ link:note/type-theory/inductive-type.org
 link:note/type-theory/inheritance-is-not-subtyping.md
 link:note/type-theory/lambda-calculus.org
 link:note/type-theory/language-implementation-tricks.md
+link:note/type-theory/natural-deduction.md
 link:note/type-theory/normalization-by-evaluation.org
 link:note/type-theory/peirce-s-law.org
 link:note/type-theory/prop-as-type.org

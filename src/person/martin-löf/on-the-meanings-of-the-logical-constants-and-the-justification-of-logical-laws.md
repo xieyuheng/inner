@@ -7,13 +7,13 @@
 
 ## First lecture
 
-- **[Xie]**
+- Xie:
   A study of the history of the use of the word "proposition"
   and the word "judgement" in logic and philosophy.
 
   And demonstrating how the lecturer will use them.
 
-- **[Xie]**
+- Xie:
   The study not only can be applied to the development on formal language,
   but also has a much broader philosophical view.
 
@@ -33,13 +33,13 @@
 
   We also must know where and when "to implement" should be prefered.
 
-- **[Xie]**
+- Xie:
   The study and development of the author's theory
   is heavily based on etymology, i.e. the study of the origin of words.
   How would the development be different
   if we follow the etymology of Chinese instead of western language?
 
-- **[Xie]**
+- Xie:
   A proposition is an expression that is used as operand of logical operations.
   A judgement is a higher level expression that is used as premises or conclusion in inference rules.
 
@@ -52,7 +52,7 @@
   is used as a proposition in "A is necessary is true."
   where "_ is necessary" denotes a logical operation.
 
-- **[Xie]** The following definition of judgement is famous.
+- Xie: The following definition of judgement is famous.
 
 Now, the question, What is a judgement? is no small question,
 because the notion of judgement is just about the first of all the notions of logic,
@@ -72,7 +72,7 @@ it is a piece or, more solemnly, an object of knowledge**.
 The act of judging is the same as the act of knowing,
 and that what is judged is the object of knowledge.
 
-- **[Xie]**
+- Xie:
   When talking about an "object of knowledge",
   we are expressing the principle of constructivism,
   while when talking about "an act of knowing",
@@ -83,18 +83,18 @@ and that what is judged is the object of knowledge.
 
   Maybe we can say that `intuitionism = constructivism + phenomenology`.
 
-- **[Xie]**
+- Xie:
   We can view a person's understanding as semantics (phenomenology),
   we can also view a computer's understanding as semantics (the implementation).
 
-- **[Xie]**
+- Xie:
 
   | context     | judgement            | definition             |
   |-------------|----------------------|------------------------|
   | extensional | act of judging       | an act of knowing      |
   | intensional | that which is judged | an object of knowledge |
 
-- **[Xie]** Then, what is "knowing"?
+- Xie: Then, what is "knowing"?
   (Which is even a deeper question.)
   Maybe just the intuitions like
   "I am sure that _",
@@ -125,7 +125,7 @@ before it has been judged, that is, has become known?
 | judgement    | evident judgement |
 | proposition  | true proposition  |
 
-- **[Xie]**
+- Xie:
   In the paper, when choosing terminology,
   the author is cornered and come up with the word "enunciation",
   I would suggest the word "claim".
@@ -143,7 +143,7 @@ Not to speak of the fact that the teacher erred more greatly
 by not giving you the option of giving the only the answer
 which would have been honest, namely, that you did not know.
 
-- **[Xie]**
+- Xie:
   Reader can compare the above passage with Errett Bishop's Second Principle of Constructivism:
   "Do not ask whether a statement is true until you know what it means."
 
@@ -153,8 +153,8 @@ That would be just as absurd as to speak of a judgement as being known,
 not by somebody, you or me, but in itself.
 To be evident is to be evident to somebody,
 as inevitably as to be known is to be known by somebody.
-That is what Brouwer meant by saying, in *Consciousness, Philosophy, and Mathematics*, that
-**there are no nonexperienced truths**, a basic intuitionistic tenet.
+That is what Brouwer meant by saying, in "Consciousness, Philosophy, and Mathematics", that
+**"there are no nonexperienced truths"**, a basic intuitionistic tenet.
 
 The judgement "A is true." means "I know that A is true.",
 the act of knowing is implicit in the judgement.
@@ -169,7 +169,7 @@ The closest possible correspondence between the analysis that I am giving
 and Frege’s notation for a judgement "|- A", is obtained by
 thinking of the vertical, judgement stroke as carrying the epistemic force "I know _".
 
-- **[Xie]** The word "force" is used, interpreter implementers
+- Xie: The word "force" is used, interpreter implementers
   can think of "expression acting upon context and environment".
 
 To specify a form of judgement, one has to lay down, what you must know
@@ -214,12 +214,12 @@ and pass on to the notion of proof.
 
 > A proof is what makes a judgement evident.
 
-- **[Xie]**
+- Xie:
   Maybe we want to say that evidence's type is judgement
   `evidence : judgement`,
   but membership itself is a judgement in Martin-Löf's theory.
 
-- **[Xie]**
+- Xie:
   Reader can compare the above definition with Errett Bishop's Third Principle of Constructivism:
   "A proof is any completely convincing argument."
 
@@ -309,7 +309,7 @@ or, this may be varied endlessly,
 
 > What does a judgement of the form A is a proposition mean?
 
-- **[Xie]** From ontological mode of speaching to more practical mode of speaching,
+- Xie: From ontological mode of speaching to more practical mode of speaching,
   the above questions went not far enough.
   We can go further by taking a pragmatic step to ask about the usage.
   In the sense of the "Meaning is use." slogan of Wittgenstein,
@@ -346,7 +346,7 @@ A(x) prop
 (exists x) A(x) prop
 ```
 
-- **[Xie]**
+- Xie:
   The lecturer will consider his mission fulfilled
   after explained the meaning of quantified propositions at the third lecture.
   And the concept of **free variable proof** will be the essence of the explanation.
@@ -406,7 +406,7 @@ our semantical explanation is that **to know a proposition,
 which may be replaced, if you want, by problem, expectation, or intention,
 you must know what counts as a verification, solution, fulfillment, or realization of it**.
 
-- **[Xie]** Again comparing with Bishop's definition of set,
+- Xie: Again comparing with Bishop's definition of set,
 
   > To define a set we prescribe, at least implicitly,
   > - (1) what we (the constructing intelligence) must do
@@ -453,7 +453,7 @@ So far, I have only introduced the two forms of categorical judgement
 The only forms of judgement that I need to introduce, besides these,
 are forms of hypothetical judgement.
 
-- **[Xie]**
+- Xie:
   The judgements is called "categorical" in the sense that
   they are made without assumption or generality.
 
@@ -550,7 +550,7 @@ It is a proof which remains a proof
 when you substitute anything you want for its free variables,
 that is, any expressions you want, of the same arities as those variables.
 
-- **[Xie]** The remark above is important to understand
+- Xie: The remark above is important to understand
   the use of neutral expressions in implementations of type systems.
 
 Let us now pass on to the rules of inference, or proof rules,
@@ -558,7 +558,7 @@ and their semantical explanations.
 
 I shall begin with the rules of implication.
 
-- **[Xie]** I will use `|-` instead of vertical bar for the relation of logical consequence.
+- Xie: I will use `|-` instead of vertical bar for the relation of logical consequence.
 
 **Implication formation.**
 
@@ -614,7 +614,7 @@ A true
 B true
 ```
 
-- **[Xie]** We need notations from type theory to express computation rule.
+- Xie: We need notations from type theory to express computation rule.
   But this paper is not about type theory, but about proof theory of intuitionistic logic.
 
   **Implication computation (implication reduction).**
@@ -739,11 +739,11 @@ and the kind of generality which a judgement may have comes before universal qua
 
 **Forall formation.**
 
-- **[Xie]**
+- Xie:
   In the following it is obvious in context that which use of `x` is free variable,
   and when a free variable proof is needed.
 
-- **[Xie]**
+- Xie:
   The propositions about "forall" and "exists" express the idea of **free variable proof**.
 
 ``` js
@@ -806,7 +806,7 @@ And the justifications of the logical laws
 are the explanations belonging to the introduction and elimination rules,
 which are the rules that we normally call rules of inference.
 
-- **[Xie]** Formation rules are actually explained by its introduction rules.
+- Xie: Formation rules are actually explained by its introduction rules.
 
 For lack of time, I have only been able to deal with the pure logic in my semantical explanations.
 To develop some interesting parts of mathematics,
