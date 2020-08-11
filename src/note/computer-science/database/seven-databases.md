@@ -28,6 +28,7 @@ Seven Databases
   a set of rows
   a set of typed records
   a subset of the set of all records of a certain record-type
+  - nominal typing, because the name of the table can be viewed as tag.
 
 ## Day 1: Relations, CRUD, and Joins
 
@@ -88,7 +89,7 @@ WHERE name = 'Portland';
 
 -- INNER JOIN
 
-SELECT cities, country_name
+SELECT name, country_name
 FROM cities INNER JOIN countries
 ON cities.country_code = countries.country_code;
 
