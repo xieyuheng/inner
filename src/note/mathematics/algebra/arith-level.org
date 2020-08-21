@@ -1,5 +1,9 @@
 #+title: arith-level
 
+* INFO
+
+- https://en.wikipedia.org/wiki/Tetration
+
 * 算數的階數 [爲什麼沒有第四階運算?]
 
   - x -
