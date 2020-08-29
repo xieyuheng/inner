@@ -2,6 +2,7 @@
 
 ## info
 
+- https://en.wikipedia.org/wiki/Planner_(programming_language)
 -  planner--a-language-for-manipulating-models-and-proving-theorems-in-a-robot
 
 ## the procedural use of logic proposition
