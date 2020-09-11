@@ -1,5 +1,8 @@
 ## Quotes
 
+- Vague, but exciting.
+  - Mike Sendall
+
 ### Lie
 
 - A lie is as simple as the hardest art.
