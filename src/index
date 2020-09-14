@@ -117,6 +117,7 @@ link:lang/note/stack.org
 link:lang/note/the-use-of-prefix-notation.org
 link:lang/pie/prelude.pie
 link:lang/pie/the-little-typer.org
+link:lang/planner/planner-note.md
 link:lang/prolog/clause-and-effect.org
 link:lang/prolog/good-prolog.md
 link:lang/prolog/swi-prolog-reference-manual.org
@@ -492,6 +493,7 @@ link:person/zhaohui-luo/computation-and-reasoning.md
 link:person/zhuang-zi/zhuang-zi.org
 link:person/zhuang-zi/齊物論.md
 link:person/ziegler/ziegler.org
+link:prosa/interpreter-story.md
 link:report/wiki-products.md
 link:review/circumscriptive-reasoning.org
 link:review/elaboration-tolerance.txt
