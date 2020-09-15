@@ -1,5 +1,7 @@
 # 1. The More Things Change, the More They Stay the Same
 
+2020-09-15
+
 ## The Didactics of forwarding engaging examples
 
 To introduce a new concept, first give many engaging examples.
