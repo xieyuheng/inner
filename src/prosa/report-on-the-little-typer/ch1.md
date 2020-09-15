@@ -1,6 +1,4 @@
-# Report on The Little Typer
-
-2020-09-15
+# 1. The More Things Change, the More They Stay the Same
 
 ## The Didactics of forwarding engaging examples
 
@@ -18,7 +16,8 @@ than direct introduction of formal judgment.)
 
 ## What not obvious should be further explained.
 
-We want to ask the question "Is (cons 'ratatouille 'baguette) a (Pair Atom Atom)?",
+We want to ask the question
+"Is (cons 'ratatouille 'baguette) a (Pair Atom Atom)?",
 but we have not explained the meaning of Pair,
 thus we ask "Is it obvious that ...",
 and give reason to explain the meaning of Pair.
