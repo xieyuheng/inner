@@ -18,6 +18,17 @@ C4 provides a model to describe the static structures that make up a software sy
     - component -- module
     - class ------ function
 
+情报：
+- 4+1 architectural view model: https://en.wikipedia.org/wiki/4%2B1_architectural_view_model
+  - C4 model 的先驱
+- Risk-storming: https://riskstorming.com
+  - A visual and collaborative risk identification technique
+- Notation, notation, notation: https://c4model.com/review
+  - A software architecture diagram review checklist
+- Structurizr: https://structurizr.com
+  - a collection of tooling to create software architecture diagrams and documentation
+    based upon the C4 model
+
 ## 只用 class 来做抽象
 
 其中描述 code 这个层次的 diagram 时，
