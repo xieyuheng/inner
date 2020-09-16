@@ -71,6 +71,17 @@ C4 provides a model to describe the static structures that make up a software sy
 「属于」关系可否带有传递性，
 而被视为是特殊的「子类型」关系呢？
 
+例如 cumulative universe type 就是这种情况的例子。
+如果 U0 : U1，
+那么 U0 的元素也被认为是 U1 的元素，
+也就是说 U0 <: U1。
+
+在 fulfilling type system 中这是自然的。
+
+In fulfilling type system,
+Every partly fulfilled object is a type,
+to fulfill the object is to construct instance of the type.
+
 ## YAML and JSON based DSL for modelling
 
 读 "Diagramming vs modelling" 一节：https://c4model.com/#Modelling
