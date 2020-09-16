@@ -17,6 +17,12 @@ function publish {
         true
 }
 
+function upload {
+    echo "[upload]" &&
+        publish &&
+        surge out inner-universe.surge.sh
+}
+
 function t {
     echo "[test]"
 }
