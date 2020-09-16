@@ -11,12 +11,19 @@
 
 今天看了：https://c4model.com
 
+C4 provides a model to describe the static structures that make up a software system.
+
 它将构架分为了四个层次的 diagram 来描述，
 分别是：
 - context -- software system in context
 - container -- separately runnable/deployable unit
 - component -- major structural building blocks (of container) and their interactions
+  - 也许可以作为工作的单元，分配给团队成员。
 - code -- class or datatype and function
+  - 作者认为 object oriented programming
+    与 functional programming 之间的术语对应如下：
+    - component -- module
+    - class ------ function
 
 ## 只用 class 来做抽象
 
@@ -59,6 +66,12 @@
 
 「属于」关系可否带有传递性，
 而被视为是特殊的「子类型」关系呢？
+
+## YAML and JSON based DSL for modelling
+
+读 &quot;Diagramming vs modelling&quot; 一节：https://c4model.com/#Modelling
+我们可以设计基于 YAML 与 JSON 的更好用的 DSL。
+比如，我们可以用我们的 schema 为这里的 modelling 语言提供一个 model。
 </pre>
 </body>
 </html>
