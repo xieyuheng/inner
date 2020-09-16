@@ -13,7 +13,7 @@ function publish {
         npx plaintext toc src -o src/toc &&
         cat README src/toc > src/index &&
         cp AUTHORS LICENSE src &&
-        npx plaintext dir src -o docs &&
+        npx plaintext dir src -o out &&
         true
 }
 
@@ -24,7 +24,7 @@ function t {
 function serve {
     publish &&
         echo "[serve]" &&
-        npx http-server docs &&
+        npx http-server out &&
         true
 }
 
