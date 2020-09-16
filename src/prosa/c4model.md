@@ -18,6 +18,15 @@ C4 provides a model to describe the static structures that make up a software sy
     - component -- module
     - class ------ function
 
+我想作者所描述的方法中，很有道理的一点可以用一句话总结，即：
+想要描述复杂的构造，可以利用层次地叙述方式。
+层次可以控制复杂性。
+
+这里的复杂性指的是认知的复杂性，
+正如度量算法复杂性的，是算法所消耗的资源（时间和空间），
+度量这里所说的复杂性的，也可以称为「资源」，
+即人的认知资源。
+
 情报：
 - 4+1 architectural view model: https://en.wikipedia.org/wiki/4%2B1_architectural_view_model
   - C4 model 的先驱
