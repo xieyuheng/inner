@@ -97,6 +97,54 @@ with a leading question, it is even more natural.
 (3)                   ____ is a type.
 (4)  ____ and ____ are the same type.
 ```
+
+Judgments are acts of knowing, and believing is part of knowing.
+
+Judgments are sentence.
+
+But, Sentences get their meaning from those who understand them.
+The sentences capture thoughts that we have,
+and thoughts are more important than the words we use to express them.
+
+# Definition of Normal Forms
+
+2020-09-17
+
+Expressions that are written differently
+may nevertheless be the same,
+as seen in frames 39-41.
+One way of writing these expressions
+is more direct than the others.
+
+The normal form of an expression is the most direct way of writing it.
+
+Any two expressions that are the same have identical normal forms,
+and any two expressions with identical normal forms are the same.
+
+Sameness is always according to a type,
+so normal forms are also determined by a type.
+
+- When `equivalent` is implemented by `readback` and `alpha_equivalent`,
+  it is the `readback` that &quot;is always according to a type&quot;.
+
+Given a type, every expression described by that type has a normal form,
+which is the most direct way of writing it.
+If two expressions are the same,
+then they have identical normal forms,
+and if they have identical normal forms,
+then they are the same.
+
+- Each type can specify its own notion of equality,
+  and thus the syntax of its normal forms.
+  -- &quot;NbE Tutorial&quot;, David.
+
+但是，如果不考虑实现中 `equivalent` 与 `readback` 之类的函数，如何以 type 为参数。
+为什么 `equivalent` 总是需要给定 type 才能判断的？
+是否有这种情况，`x: A` 且 `x: B`，
+而 `x` 以 `A` 为类型时的 normal form，
+与 `x` 以 `B` 为类型时的 normal form 不同。
+
+在 `readback` 中，根据不同的 type，为不同的 value 实现了不同的 eta-expansion。
 </pre>
 </body>
 </html>
