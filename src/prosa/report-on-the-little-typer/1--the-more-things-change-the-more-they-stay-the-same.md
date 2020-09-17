@@ -61,18 +61,6 @@ And the answer is "Not at all. What does Atom mean?"
 类似于用 stack 去实现 tree 的递归处理，
 stack 相较于 tree 是更加线性的。
 
-## TODO Definition of Value and Neutral
-
-Non Value is Neutral.
-
-In the implementation the concept of Value seems not used,
-but it is used, because Non Value is Neutral.
-
-This definition of Value is different from the implementation.
-
-Not only this definition can be used to define Neutral later,
-it can also provide us a handle to talk and think about Exp.
-
 ## Definition of Type
 
 Expressions that describe other expressions are called types.
@@ -257,6 +245,74 @@ x y
 当用来形成等价判断的类型是 `T1 = { a: A }` 时，二者可能是相等的，
 但是当使用 `T2 = { a: A, b: B }` 来做判断时，二者可能就是不相等的了。
 
+## Definition of Value
+
+An expression with a constructor at the top is called a value.
+
+这种对 Value 的定义，好像很适合 lazy language。
+也就是说 Dan 的理解，可能比 David 的实现要深刻一些。
+
+## Definition of Neutral
+
+Expressions that are not values
+and cannot yet be evaluated due to a variable
+are called neutral.
+
+这个定义是出现在下一章的，
+我先写在这里做对比。
+
+## Definition of constructor
+
+Some expressions, such as Nat or (Pair Nat Atom), are types.
+
+Part of explaining a new type
+is to say what its constructors are.
+The constructor expressions are the direct ways
+of building expressions with the new type.
+
 ## Value, Neutral & Normal as predicates or subsets of Exp
 
 注意，当定义这些术语时，Dan 是通过给 Exp 的集合分类来作出定义的。
+
+首先定义的是 Normal。
+"The normal form of an expression is the most direct way of writing it."
+与实现中不同，定义用的不是 "带有 Type 的 Value"。
+
+其次是 Value。
+"An expression with a constructor at the top is called a value."
+现在我们有：Normal <: Value <: Exp
+然后我们可以定义：Neutral = Exp - Value
+或者说：Neutral = Non Value
+并且有：Neutral + Value = Exp
+
+最后是 Neutral。
+"Expressions that are not values
+and cannot yet be evaluated due to a variable
+are called neutral."
+也就是说，上面的 Neutral + Value = Exp 是错误的，
+要加上 "尝试 evaluate，但因 var 而失败" 才正确。
+
+## Definition of evaluation
+
+Finding a value that is the same as
+some starting expression is called evaluation.
+
+What about the type? Sameness, after all, requires types.
+
+From time to time, when talking about sameness,
+we do not explicitly mention a type.
+Nevertheless, a type is always intended,
+and can be discovered by reading carefully.
+
+Doesn't evaluation refer to
+finding the meaning of an expression,
+not just some simpler expression?
+
+Not here. Expressions do not refer to some external notion of meaning
+-- in Pie, there is nothing but expressions
+and what we judge about them.
+
+- In Lisp, values are distinct from expressions,
+  and the result of evaluation is a value.
+
+可以说 David 所实现的 Pie 践行了这里的描述吗？
