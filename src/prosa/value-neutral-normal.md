@@ -15,3 +15,67 @@
 除了纠正上面的错误，在再次尝试实现时，我们还要注意：
 - 用 curry 的 typed lambda 而不用 church 的。
 - 简化语言 -- 简化表达式，简化 telescope 的结构。
+
+## Normal Form in jojo
+
+也许在不同类型的语义中考虑 Normal Form，对于理解 Normal Form 有帮助。
+也许在 jojo 里考虑 Normal Form，对于理解 Normal Form 有帮助。
+
+我之前认为，其中的难点在于多返回值。
+
+也许我应该模仿 lambda 演算的定义序列，
+先处理 untyped 版本的 partial evaluation。
+- 定义有 reduction step 定义。
+- 用 reduction step 定义有方向的 (multi-step) reduction。
+- 用有方向的 reduction 定义无方向的 equivalent。
+
+``` cicada
+@datatype Jo {
+  v(name: String)
+  let(name: String)
+  jojo(list: Array(Jo))
+  exe()
+}
+
+@datatype Value {
+  jojo(list: Array(Jo), env: Env)
+}
+
+@datatype Neutral {
+  jojo(list: Array(Jo), env: Env)
+}
+```
+
+也许 equivalent relation 应该被定义于 jojo 而不是 jo。
+
+reduction step:
+```
+... [ f g h ] ! ... => ... f g h ...
+```
+
+partial evaluation:
+- 假设没有递归定义。
+- inline all definitions.
+- do all the reductions (including in-closure reductions).
+
+example of in in-closure reductions:
+```
+[ (f) [f! swap f! swap] ]
+```
+
+the only pattern of reduction is `[  ]!`.
+
+```
+@define swap [ (x) (y) x y ]
+
+[1 2] [3 4] swap
+[1 2] [3 4] [ (x) (y) x y ]!
+[1 2] [3 4] (x) (y) x y
+[1 2] (y) x y
+x y
+[3 4] y
+[3 4] [1 2]
+
+// variable bound by @define, is different from
+// variable bound by (x) and (y).
+```
