@@ -19,9 +19,8 @@ function publish {
 
 function upload {
     echo "[upload]" &&
-        publish &&
-        surge out inner-universe.surge.sh &&
-        vercel out
+        publish && vercel out
+    # surge out inner-universe.surge.sh &&
 }
 
 function t {

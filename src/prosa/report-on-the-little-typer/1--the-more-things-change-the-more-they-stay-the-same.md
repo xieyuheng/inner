@@ -1,6 +1,6 @@
 # 1. The More Things Change, the More They Stay the Same
 
-2020-09-15
+## 2020-09-15
 
 ## Didactics 1: Forwarding engaging examples
 
@@ -68,9 +68,9 @@ Expressions that describe other expressions are called types.
 This definition of type is very simple,
 with a leading question, it is even more natural.
 
-## The Four Forms of Judgment
+## 2020-09-16
 
-2020-09-16
+## The Four Forms of Judgment
 
 ```
 (1)                   ____ is a ____.
@@ -87,9 +87,9 @@ But, Sentences get their meaning from those who understand them.
 The sentences capture thoughts that we have,
 and thoughts are more important than the words we use to express them.
 
-## Definition of Normal Forms
+## 2020-09-17
 
-2020-09-17
+## Definition of Normal Forms
 
 Expressions that are written differently
 may nevertheless be the same,
@@ -128,8 +128,6 @@ then they are the same.
 在 `readback` 中，根据不同的 type，为不同的 value 实现了不同的 eta-expansion。
 
 ## Value, Neutral & Normal
-
-2020-09-17
 
 在上一个实现 cicada 的尝试中，
 尝试实现了 structural typing 与 fulfilling type system。
