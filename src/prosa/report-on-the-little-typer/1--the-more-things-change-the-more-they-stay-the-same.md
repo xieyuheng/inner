@@ -315,4 +315,17 @@ and what we judge about them.
 - In Lisp, values are distinct from expressions,
   and the result of evaluation is a value.
 
+Everything Is an Expression
+
+In Pie, values are also expressions.
+Evaluation in Pie finds an expression,
+not some other kind of thing.
+
+A normal expression has no remaining opportunities for evaluation.
+Usually, expressions that are normal are easier to understand.
+Finding a value is often enough, however,
+because the top constructor can be used to determine what must happen next.
+
 可以说 David 所实现的 Pie 践行了这里的描述吗？
+也许是 Dan 不对，因为当我们将 lambda evaluate 成 closure 时，
+没法避免不去区分 Exp 与 Value。
