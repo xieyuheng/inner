@@ -11,7 +11,7 @@ function build {
 function publish {
     echo "[publish]" &&
         npx plaintext toc src -o src/toc &&
-        cat README src/toc > src/index &&
+        cat README.md src/toc > src/index &&
         cp AUTHORS LICENSE src &&
         npx plaintext dir src -o out &&
         true
