@@ -2,4 +2,4 @@
 
 ## 2020-09-18
 
-TODO
+## Definition of eliminator
