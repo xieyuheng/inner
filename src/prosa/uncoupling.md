@@ -1,6 +1,6 @@
 # Uncoupling
 
-2020-09-18
+2020-09-17
 
 今天半夜看了 GOTO 2018 • Uncoupling • Michael Nygard
 
@@ -20,3 +20,8 @@ coupling 的定义是限制系统的自由度。
 - 记得我之前是从 pettern matching 换成了 class method，
   然后又换回了 pettern matching。
   语言实现不适合用 interface 吗？
+
+2020-09-18
+
+不行，在写解释器的时候，我们还是应该坚持以数据为中心。
+数据与处理它的函数之间的 coupling，带来了一些 API 表层的便利，但是得不偿失。
