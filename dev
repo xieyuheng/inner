@@ -5,31 +5,23 @@ function install {
 }
 
 function build {
-    echo "[build]"
-}
-
-function publish {
-    echo "[publish]" &&
+    echo "[build]" &&
         npx plaintext toc src -o src/toc &&
-        cat README.md src/toc > src/index &&
-        cp AUTHORS LICENSE src &&
+        cat README.md <(echo) src/toc > src/index &&
         npx plaintext dir src -o out &&
         true
 }
 
 function upload {
     echo "[upload]" &&
-        publish &&
-        vercel out
-}
-
-function t {
-    echo "[test]"
+        build &&
+        vercel out &&
+        true
 }
 
 function serve {
-    publish &&
-        echo "[serve]" &&
+    echo "[serve]" &&
+        build &&
         npx http-server out &&
         true
 }
