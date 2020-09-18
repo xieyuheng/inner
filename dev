@@ -9,15 +9,15 @@ function build {
 }
 
 function upload {
-    echo "[upload]" &&
-        build &&
+    build &&
+        echo "[upload]" &&
         vercel out &&
         true
 }
 
 function serve {
-    echo "[serve]" &&
-        build &&
+    build &&
+        echo "[serve]" &&
         npx sirv out &&
         true
 }
