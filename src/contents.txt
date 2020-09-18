@@ -1,4 +1,3 @@
-首页 link:./home.md
 目录 link:./contents.md
 迷言 link:./quotes.md
 Person / 人物
