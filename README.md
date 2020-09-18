@@ -67,13 +67,9 @@ and its applications in formal concept analysis.
 - 开源哥: https://github.com/Z-Shang
   - https://gilgamesh.me
 - 阿怪: https://github.com/aguai
-
 ------
-
 - Jason Hemann: https://github.com/jasonhemann
 - William Byrd: https://github.com/webyrd
   - http://webyrd.net
 
-------
-
-------
+############
