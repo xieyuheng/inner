@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-function install {
-    npm install
-}
-
 function build {
     echo "[build]" &&
         npx plaintext toc src -o src/toc &&
@@ -22,7 +18,7 @@ function upload {
 function serve {
     echo "[serve]" &&
         build &&
-        npx http-server out &&
+        npx sirv out &&
         true
 }
 
