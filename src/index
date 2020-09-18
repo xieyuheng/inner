@@ -23,7 +23,8 @@ I am also specially interested in the formalization of Category theory,
 and its applications in the design of programming language's type systems.
 (Which relates back to my language designs.)
 This kind of applications are called Categorical semantics or Categorical logic.
-(It is called "Categorical logic" because type systems are equivalent to logic deduction systems.)
+(It is called "Categorical logic" because type systems
+are equivalent to logic deduction systems.)
 
 I am also interested in the formalization of Lattice theory,
 and its applications in formal concept analysis.
