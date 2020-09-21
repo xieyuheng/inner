@@ -5,7 +5,7 @@
 A design pattern which can be used to avoid parsing.
 
 API:
-- `Target.build(present: any): Target`
-- `Target.present(target: Target): any`
+- `Target.build(present: Present): Target`
+- `Target.present(target: Target): Present`
 
-Where the `present` can be json, yaml, sexp, xml ...
+Where the `Present` can be json, yaml, sexp, xml ...
