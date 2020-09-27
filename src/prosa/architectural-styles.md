@@ -41,3 +41,8 @@ TODO
 TODO
 
 study the html standard about how to construct url from <form method="GET">
+## Case Study: The Web
+
+TODO
+
+Web 与浏览器就是最典型的 REST 构架。
