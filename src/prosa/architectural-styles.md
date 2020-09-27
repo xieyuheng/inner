@@ -12,7 +12,7 @@ TODO
 
 - `Parser` as interface vs `Parser` as function type
 
-## Reading `the REST paper` -- about API design
+## Reading the REST paper -- about API design
 
 - 我被这个主题吸引，是因为 pretty url 类似我的项目的 directory structure。
   但是 pretty url 并不是 REST 的主旨。
@@ -35,3 +35,9 @@ TODO
 - 利用我的构架，
   1. 我可以很用以用 noun 和 verb 来构架一个 application。
   2. 我可以很容易把任意 application 变成 web application。
+
+## Case Study: GET from
+
+TODO
+
+study the html standard about how to construct url from <form method="GET">
