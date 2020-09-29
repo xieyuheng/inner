@@ -2,16 +2,9 @@
 
 function build {
     echo "[build]" &&
-        npx plaintext toc src -o src/toc &&
+        npx plaintext toc src -o src/toc --verbose &&
         cat README.md <(echo) src/toc > src/index &&
-        npx plaintext dir src -o out &&
-        true
-}
-
-function upload {
-    build &&
-        echo "[upload]" &&
-        vercel out &&
+        npx plaintext dir src -o out --verbose &&
         true
 }
 
