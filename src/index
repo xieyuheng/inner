@@ -29,7 +29,7 @@ are equivalent to logic deduction systems.)
 I am also interested in the formalization of Lattice theory,
 and its applications in formal concept analysis.
 
-------------------------------------------------------------
+---------------------------------------
 
 link:contents.txt
 link:friends.md
@@ -515,8 +515,13 @@ link:person/zhaohui-luo/computation-and-reasoning.md
 link:person/zhuang-zi/zhuang-zi.org
 link:person/zhuang-zi/齊物論.md
 link:person/ziegler/ziegler.org
+link:prosa/architectural-styles.md
+link:prosa/build-from-present-pattern.md
 link:prosa/c4model.md
+link:prosa/cause-and-effect.md
+link:prosa/hypermedia.md
 link:prosa/interpreter-story.md
+link:prosa/json-vs-xml.md
 link:prosa/keywords.md
 link:prosa/report-on-the-little-typer/1--the-more-things-change-the-more-they-stay-the-same.md
 link:prosa/report-on-the-little-typer/2--doin-what-comes-naturally.md
