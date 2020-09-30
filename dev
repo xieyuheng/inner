@@ -3,7 +3,7 @@
 function build {
     echo "[build]" &&
         npx plaintext toc src -o src/toc --verbose &&
-        cat README.md <(echo) src/toc > src/index &&
+        cat src/README.txt <(echo) src/toc > src/index &&
         npx plaintext dir src -o out --verbose &&
         true
 }
