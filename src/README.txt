@@ -1,5 +1,4 @@
 Ones Inner Universe
-===================
 
 I am 谢宇恒 (xiè yǔ héng),
 an independent Chinese researcher in Foundations of Mathematics.
@@ -29,5 +28,3 @@ are equivalent to logic deduction systems.)
 
 I am also interested in the formalization of Lattice theory,
 and its applications in formal concept analysis.
-
-===================
