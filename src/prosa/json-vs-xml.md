@@ -8,6 +8,12 @@ JSON 是 structural typing，其类型为 record type 的形式，可以不包�
 
 XML 是 nominal typing，其 tag 就是「类型名」。
 
+## Self Describtive
+
+JSON 的 structural typing (record type) 是 self describtive 的，
+即，其类型中包含了 field 的名字，
+而 ADT 中的 product type 不包含 field 的名字。
+
 ## 「架构化程度」
 
 XML 的架构化程度比 JSON 更低，可以这样理解这一事实：
