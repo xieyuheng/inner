@@ -37,3 +37,24 @@ Applying a function to arguments is the eliminator for functions.
 在实现解释器时，一定有一个名字去代表这个 eliminator 的表达式（比如 `Exp.ap`）。
 
 在某些语言的设计中，也有给 apply 之类的词来代表 function 的 eliminator。
+
+## Definition of equivalent between lambda-expressions
+
+Two lambda-expressions that expect the same number of arguments
+are the same if their bodies are the same.
+
+Note that
+  (x) => cons(x, x)
+is the same
+  Nat -> (Pair(Nat, Nat))
+as
+  (y) => cons(y, y)
+
+Because two lambda-expressions are also the same
+if there is a way to consistently rename the arguments to be the same
+that makes their bodies the same.
+
+Consistently renaming variables can't change the meaning of anything.
+
+Renaming variables in a consistent way is often called alpha-conversion.
+Thank you, Alonzo Church.
