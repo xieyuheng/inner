@@ -31,7 +31,7 @@ Applying a function to arguments is the eliminator for functions.
 然而说到 function 的时候，就只能说 "Applying a function to arguments"。
 
 这并不是说在语义上 function 的 eliminator 有什么特殊，
-只是说，在语法上，我们通常用 `<f>(<arg>, ...)` 这种语法形式，
+只是说，在语法上，我们通常用 `f(x)` 这种语法形式，
 而不是用一个像 car 的词，来代表并识别这个 eliminator。
 
 在实现解释器时，一定有一个名字去代表这个 eliminator 的表达式（比如 `Exp.ap`）。
