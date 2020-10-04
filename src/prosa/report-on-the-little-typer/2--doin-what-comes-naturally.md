@@ -1,6 +1,6 @@
 # 2. Doin' What Comes Naturally
 
-2020-09-19
+2020-10-04
 
 ## Definition of eliminator
 
