@@ -59,7 +59,7 @@ Consistently renaming variables can't change the meaning of anything.
 Renaming variables in a consistent way is often called alpha-conversion.
 Thank you, Alonzo Church.
 
-The Initial First Commandment of lambda：
+## The Initial First Commandment of lambda
 
 Two lambda-expressions that expect the same number of arguments
 are the same if their bodies are the same
@@ -75,7 +75,7 @@ after consistently renaming their variables.
   (x) => (y) => cons(y, x)
 然后可以比较出二者 body 的不同。
 
-The Initial Second Commandment of lambda：
+## The Initial Second Commandment of lambda -- eta expansion rule
 
 If `f` is an
   (X) -> Y
@@ -137,8 +137,45 @@ and
   用处理 lexical scope 的机制 -- `Env`，就能处理好它，
   没必要引入 `Mod` 来让解释器变复杂。
 
-## The Second Commandment of cons
+## The Second Commandment of cons -- expansion rule
 
 If p is a (Pair A D), then it is the same (Pair A D) as (cons (car p) (cdr p)).
 
 Finding the values of (car p) and (cdr p) is not necessary.
+
+## Note About `which_Nat`
+
+In lang2, when implementing `which_Nat` by `Nat.ind`,
+we can only implement
+  which_Nat : (T: Type) -> (target: Nat) -> (base: T) -> (step: (prev: Nat) -> T) -> T
+we can not implement `which_Nat` with implicit `(T: Type)`
+  which_Nat : [T: Type] -> (target: Nat) -> (base: T) -> (step: (prev: Nat) -> T) -> T
+
+We can use `[T: Type] ->` to denote the implicit argument.
+
+## Recursion is not an option.
+
+Recursion is not an option because every expression must have a value.
+Some recursive definitions make it possible to write expressions that do not have values.
+
+回顾 Value 的定义：
+
+An expression with a constructor at the top is called a value.
+
+## Type Values
+
+An expression that is described by a type is a value
+when it has a constructor at its top.
+
+Similarly, an expression that is a type is a value
+when it has a type constructor at its top.
+
+Judging that an expression is a type requires knowing its data constructors.
+But the meaning of `Type` is not given by knowing all the type data constructors,
+because new types can be introduced.
+
+## Defined names are not value
+
+Names defined with `define` are neither type constructors nor constructors.
+
+Thus, they are not values.
