@@ -114,3 +114,31 @@ are the same, no matter their type.
 
 功能 (feature) "each variable is the same as itself" 来自
 约束 (constraint) "variables are only replaced consistently"。
+
+## The Law and Commandment of define
+
+Following
+  (claim name X) and (define name expr),
+if
+  expr is an X,
+then
+  name is an X
+and
+  name is the same X as expr.
+
+在实现某些解释器时，我区分了
+处理 lexical scope 的 `Env`，以及
+处理 module-level definition 的 `Mod`。
+
+这里的规则适用于 module-level definition。
+
+- 在实现 lang2 时，我允许了 redefinition，
+  因为 `Exp.suite` 可以理解为 function application 的 syntax sugar，
+  用处理 lexical scope 的机制 -- `Env`，就能处理好它，
+  没必要引入 `Mod` 来让解释器变复杂。
+
+## The Second Commandment of cons
+
+If p is a (Pair A D), then it is the same (Pair A D) as (cons (car p) (cdr p)).
+
+Finding the values of (car p) and (cdr p) is not necessary.
