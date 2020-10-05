@@ -58,3 +58,59 @@ Consistently renaming variables can't change the meaning of anything.
 
 Renaming variables in a consistent way is often called alpha-conversion.
 Thank you, Alonzo Church.
+
+The Initial First Commandment of lambda：
+
+Two lambda-expressions that expect the same number of arguments
+are the same if their bodies are the same
+after consistently renaming their variables.
+
+这里没有说 "rename the arguments to be the same"，
+它其实是第一步，比如要比较
+  (x) => (y) => cons(x, y)
+与
+  (y) => (x) => cons(x, y)
+后者的参数先要与前者一致，即 "rename the arguments to be the same"，
+然后才可以 "consistently renaming" 得到
+  (x) => (y) => cons(y, x)
+然后可以比较出二者 body 的不同。
+
+The Initial Second Commandment of lambda：
+
+If `f` is an
+  (X) -> Y
+then `f` is the same
+  (X) -> Y
+as
+  (x) => f(x)
+as long as x dose not occur in `f`.
+
+注意这里的规则体现着 "Everything Is an Expression" 的原则。
+
+## Definition of Neutral
+
+2020-10-05
+
+Expressions that are not values
+and cannot yet be evaluated due to a variable
+are called neutral.
+
+## The Commandment of Neutral Expressions
+
+Neutral expressions make it necessary to
+expand our view on what it means to be the same.
+
+Each variable is the same as itself, no matter what type it has.
+This is because variables are only replaced consistently,
+so two occurrences of a variable cannot be
+replaced by values that are not the same.
+
+If two expressions have identical eliminators at the top
+and all arguments to the eliminators are the same,
+then the expressions are the same.
+
+Neutral expressions that are written identically
+are the same, no matter their type.
+
+功能 (feature) "each variable is the same as itself" 来自
+约束 (constraint) "variables are only replaced consistently"。
