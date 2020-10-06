@@ -31,12 +31,25 @@
   pi(name: String, arg_t: Exp, ret_t: Exp): Exp
   fn(name: String, ret: Exp): Exp
   ap(target: Exp, arg: Exp): Exp
-  cls(tel: Array([String, Exp])): Exp
   obj(map: Array([String, Exp])): Exp
   dot(target: Exp, name: String): Exp
   the(t: Exp, exp: Exp): Exp
 }
 ```
+
+## `obj` 而非 `cls` 与 `obj`
+
+上面只写了
+  obj(map: Array([String, Exp])): Exp
+而不是
+  obj(map: Array([String, Exp])): Exp
+  cls(tel: Array([String, Exp])): Exp
+
+因为 `obj` 如果能与 `cls` 共用一种 `Value.obj`，
+就能简化 `Value.conversion` 的实现。
+
+并且 `obj` 与 `cls` 可以共用语法 `{ k: T, ... }`，
+将 `{ k = T, ... }` 留给 `suite`。
 
 ## 限制 fulfilling 的方向
 
