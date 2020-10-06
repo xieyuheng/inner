@@ -32,6 +32,7 @@
   fn(name: String, ret: Exp): Exp
   ap(target: Exp, arg: Exp): Exp
   obj(map: Array([String, Exp])): Exp
+  fill(target: Exp, arg: Exp): Exp
   dot(target: Exp, name: String): Exp
   the(t: Exp, exp: Exp): Exp
 }
@@ -78,3 +79,16 @@
 例如，`x = { a = a1, b = b1 }`，而 `y = { a = a2, b = b2, c = c2 }`，
 当用来形成等价判断的类型是 `T1 = { a: A }` 时，二者可能是相等的，
 但是当使用 `T2 = { a: A, b: B }` 来做判断时，二者可能就是不相等的了。
+
+## `Exp.fill`
+
+为 `Exp` 增加
+  fill(target: Exp, arg: Exp): Exp
+
+但是把它当作一个 type constructor 而不是 eliminator，
+- 不会增加 `Neutral.fill`。
+- 不能就 fill 形成 abstraction，
+  因为它不会应为 target 是 var 而 "can not yet be evaluated"。
+- 目前的类型信息还没法 infer `Exp.full`。
+  之后可以考虑丰富类型的表达能力（不用单纯的 `T: Type`），
+  使得我们可以 infer 这个 `Exp.full`。
