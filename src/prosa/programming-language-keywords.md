@@ -43,3 +43,22 @@
 |      |   |   | jmp | goto |       |        |   |   |
 |      |   |   |     | jump |       |        |   |   |
 |------|---|---|-----|------|-------|--------|---|---|
+
+## About `:` and reversed `:`
+
+2020-10-09
+
+We use `--` for reversed `:`.
+
+`:` might be read as
+- is an element of
+- is a member of
+- belongs to
+- is in
+
+The symbol itself is a stylized lowercase Greek letter epsilon ("ϵ"),
+the first letter of the word ἐστί, which means "is".
+
+`--` might be read as
+- contains
+- includes (also used for subset[superset] relation)
