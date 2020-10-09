@@ -62,3 +62,6 @@ the first letter of the word ἐστί, which means "is".
 `--` might be read as
 - contains
 - includes (also used for subset[superset] relation)
+
+https://en.wikipedia.org/wiki/Dash
+https://en.wikipedia.org/wiki/Hyphen
