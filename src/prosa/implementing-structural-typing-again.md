@@ -31,26 +31,31 @@
   pi(name: String, arg_t: Exp, ret_t: Exp): Exp
   fn(name: String, ret: Exp): Exp
   ap(target: Exp, arg: Exp): Exp
-  obj(map: Array([String, Exp])): Exp
+  cls(scope: Array([String, Exp])): Exp
   fill(target: Exp, arg: Exp): Exp
+  obj(properties: Array([String, Exp])): Exp
   dot(target: Exp, name: String): Exp
   the(t: Exp, exp: Exp): Exp
 }
 ```
 
-## `obj` 而非 `cls` 与 `obj`
+## 需要区分 `cls` 与 `obj`
 
-上面只写了
-  obj(map: Array([String, Exp])): Exp
-而不是
-  obj(map: Array([String, Exp])): Exp
-  cls(tel: Array([String, Exp])): Exp
-
-因为 `obj` 如果能与 `cls` 共用一种 `Value.obj`，
-就能简化 `Value.conversion` 的实现。
+假设只有 `obj`，
+那么 `obj` 能与 `cls` 共用一种 `Value.obj`，
+`Value.conversion` 的实现就能简化。
 
 并且 `obj` 与 `cls` 可以共用语法 `{ k: T, ... }`，
 将 `{ k = T, ... }` 留给 `suite`。
+
+但是这种想法是错误的，因为这样设计将没法区分 `Exp.dot` 的作用。
+`Exp.dot` 作用于 `obj` 时，需要简单的 `evaluate`，
+而作用于 `cls` 时，需要处理 `telescope`。
+
+无法将两者都化简为「处理 `telescope`」，
+因为制作 `Neutral.v` 对于 `cls` 是有意义的
+  next_value = Value.not_yet(next.t, Neutral.v(next.name))
+但是对于 `obj` 来说是没有意义的。
 
 ## 限制 fulfilling 的方向
 
