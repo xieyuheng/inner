@@ -63,5 +63,7 @@ the first letter of the word ἐστί, which means "is".
 - contains
 - includes (also used for subset[superset] relation)
 
-https://en.wikipedia.org/wiki/Dash
-https://en.wikipedia.org/wiki/Hyphen
+- We call a string of more then one dash `-` a "dashline",
+  for example `--`, `---`, `----`, ...
+  - https://en.wikipedia.org/wiki/Dash
+  - https://en.wikipedia.org/wiki/Hyphen
