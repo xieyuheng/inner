@@ -9,34 +9,31 @@
 
 *** Use and mention
 
-- 從下面的有趣例子
-  可以看出 lisp 中 symbol 的語義問題
-  1. ice is frozen water.
-  2. ice has three letters.
-     [useing a word]
-  3. "ice" has three letters.
-     [mentioning a word]
-  4. "ice" is the name of ice.
-     [mentioning and useing a word]
-  5. it takes longer to read the bible than to read "the bible".
-  6. this sentence is longer than "this sentence".
-  7. ""ice"" has two pairs of quotation marks.
-  8. ""ice"" has one pair of quotation marks.
-
-- 也就是說
-  可以看出
-  lisp 之所以對 symbol 的語義有如此的設計
-  是因爲其設計是受人類的自然語言的影響的
-  自然語言中的符號
-  在沒有被聲明是引用的情況下
-  被視爲是 symbol 的所指
-
-- 然而上面的句子在不同的語境下都可以被看作是正確的
-  因爲自然語言並沒有嚴格性
-
 *** Self-reference using diagonalization
 
-- 这其實就是 Y combinator
+use combinator logic to understand the examples here.
+
+diagonalization
+
+D (f x) = f (f x)
+
+J (D x)
+
+J (D (J (D x))) = J (J (D (J (D x))))
+
+D (D x) = D (D x)
+
+normalization
+
+N f = f f
+
+N N = N N
+
+J (N ???) -- this can not be handled by syntax where concatenation is application
+
+J (N (J N)) = J (N (J (N (J N))))
+
+N N = N N
 
 *** Normalization
 
