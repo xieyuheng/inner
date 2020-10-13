@@ -11,9 +11,19 @@
 
 *** Self-reference using diagonalization
 
-Use jojo logic to understand the examples here.
+Use jojo to understand the examples here.
 
-D s := replace [x] s
+Just that, in here we use Polish notation,
+instead of Forth's reversed Polish notation,
+thus execution goes from right to left.
+
+@define D [subst [x] [s] [s] (s)]
+
+// substitute [x] by [s] in [s]
+
+Note that, identity function is defined as:
+
+@define id [[x] (x)]
 
 [J D x]
 
@@ -25,7 +35,7 @@ D [D x] = D [D x]
 
 *** Normalization
 
-N s := [s [s]] -- we need to specify the semantic of "occur".
+@define N [s [s] (s)]
 
 [J N]
 
@@ -40,11 +50,19 @@ N [N] = [N [N]]
 
 *** One-side quotation
 
-The semantic of [One-side quotation] might viewed as the continuation of computation.
+When using jojo as semantic, "One-side quotation" can be understood as
+language with first class quotation keyword.
 
-The machine must read sentence from left to right.
+To execute a jojo, the machine read from left,
+and break the jojo by the first occur of "*",
+push the right part of "*" as quoted program on data stack,
+and execute the left part of "*"
+(starting from the left end of the left part).
 
-A x := * x * x -- how to define A?
+J A * J A = J * J A * J A
+
+@define A [s * [s] (s)] -- ??
+@define A (s) * s * [s]
 
 A * Y = * Y * Y
 
