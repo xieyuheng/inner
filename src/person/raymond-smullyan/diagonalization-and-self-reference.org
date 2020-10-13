@@ -1,17 +1,13 @@
-# Diagonalization and self reference
+#+title: Diagonalization and self reference
 
-------
-- Authors: Raymond Smullyan
+- Author: Raymond Smullyan
 - Date: 1994
-------
 
-# 引
+* 1 Introduction to self-reference
 
-- 可以想象 smullyan 在最開始是被 Gödel 的理論的難度和有趣性所吸引
-  然後在學習其理論的過程中
-  把自己對相關問題的理解方式做了總結
+** Part I Quotation and self-reference
 
-# 標記語言 與 indexical
+*** [NOTE] 標記語言 與 indexical
 
 - 一般的人類語言就以下觀點來看
   可以被稱爲是標記語言
@@ -26,7 +22,7 @@
 - 但是 傳統的 數理邏輯 中使用的形式語言
   並不提供這種 類似標記語言的 語義
 
-# use and mention
+*** Use and mention
 
 - 從下面的有趣例子
   可以看出 lisp 中 symbol 的語義問題
@@ -53,13 +49,13 @@
 - 然而上面的句子在不同的語境下都可以被看作是正確的
   因爲自然語言並沒有嚴格性
 
-# >< self-reference using diagonalization
+*** Self-reference using diagonalization
 
 - 这其實就是 Y combinator
 
-# >< normalization
+*** Normalization
 
-# one-side quotation
+*** One-side quotation
 
 - 也許在蟬語中我包含兩種引用方式
   它們只是形態上不同而已
@@ -68,3 +64,13 @@
 - 其實在這裏可以看出
   smullyan 對函數作用的語義的理解並不透徹
   這裏 quotation 被作爲了 first-class-object
+
+** Part II Self-reference in a more general setting
+
+* 2 Some classical fixed point arguments compared
+
+** Part I Five fixed point arguments
+
+** Part II A unification
+
+** Part III Quasi-diagonalization
