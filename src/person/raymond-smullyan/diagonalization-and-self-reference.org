@@ -23,6 +23,8 @@ J (D (J (D x))) = J (J (D (J (D x))))
 
 D (D x) = D (D x)
 
+*** Normalization
+
 normalization
 
 N f = f f
@@ -34,8 +36,6 @@ J (N ???) -- this can not be handled by syntax where concatenation is applicatio
 J (N (J N)) = J (N (J (N (J N))))
 
 N N = N N
-
-*** Normalization
 
 *** One-side quotation
 
