@@ -7,21 +7,6 @@
 
 ** Part I Quotation and self-reference
 
-*** [NOTE] 標記語言 與 indexical
-
-- 一般的人類語言就以下觀點來看
-  可以被稱爲是標記語言
-  "john is reading this sentence."
-  其中 this 就是一個標記 它代表了這句話本身
-
-- smullyan 稱
-  "this sentence" "I" "now" 這類
-  其語義跟語境相關的詞
-  爲 indexical
-
-- 但是 傳統的 數理邏輯 中使用的形式語言
-  並不提供這種 類似標記語言的 語義
-
 *** Use and mention
 
 - 從下面的有趣例子
