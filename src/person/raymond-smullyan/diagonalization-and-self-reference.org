@@ -11,32 +11,46 @@
 
 *** Self-reference using diagonalization
 
-use combinator logic to understand the examples here.
+Use jojo logic to understand the examples here.
 
-D (f x) = f (f x)
+D s := replace [x] s
 
-J (D x)
+[J D x]
 
-J (D (J (D x))) = J (J (D (J (D x))))
+D [J D x] = [J D [J D x]]
 
-D (D x) = D (D x)
+J D [J D x] = J [J D [J D x]]
+
+D [D x] = D [D x]
 
 *** Normalization
 
-N f = f f
+N s := [s [s]] -- we need to specify the semantic of "occur".
 
-N N = N N
+[J N]
 
-J (N ???) -- this can not be handled by syntax where concatenation is application
+N [J N] = [J N [J N]]
 
-J (N (J N)) = J (N (J (N (J N))))
+J N [J N] = J N [J N [J N]]
 
-N N = N N
+N [N] = [N [N]]
 
 - 为什么被称作 "normalization”？
   这与 lambda term 的 normalization 有关吗？
 
 *** One-side quotation
+
+The semantic of [One-side quotation] might viewed as the continuation of computation.
+
+The machine must read sentence from left to right.
+
+A x := * x * x -- how to define A?
+
+A * Y = * Y * Y
+
+A A * Y =
+A * Y * Y =
+* Y * Y * Y * Y
 
 - 也許在蟬語中我包含兩種引用方式
   它們只是形態上不同而已
