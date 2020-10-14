@@ -113,13 +113,25 @@ J R * J R * = J * J R * J R *
 
 R * R * = * R * R *
 
-
-
 ** Part II Self-reference in a more general setting
 
-这里是用 application 而不是 concatenation 来理解语言的。
+Using a language with general application syntax,
+to explain (to generalize) the instance languages above.
 
-这两种都可以作为语义吗？
+H : Predicate
+X : Sentence
+---------------
+H(X) : Sentence
+
+This can explain H [X] and H * X by viewing them as special H(X).
+
+Note that, we should not view J N [X] as J(N(X)), because that will be J [N [X]].
+To explain J N [X], we must introduce the composition syntax (denoted by concatenation).
+
+H : Predicate
+K : Predicate
+-------------
+H K : Predicate
 
 * 2 Some classical fixed point arguments compared
 
