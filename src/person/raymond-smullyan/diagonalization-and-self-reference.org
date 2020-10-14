@@ -30,9 +30,7 @@ And apply can be define as:
 apply (x) := x;
 
 [J D x]
-
-D [J D x] = J D [J D x]
-
+D [J D x] = [J D [J D x]]
 J D [J D x] = J [J D [J D x]]
 
 X = J [X]
@@ -45,9 +43,7 @@ D [D x] = [D [D x]]
 N (s) := [s [s]];
 
 [J N]
-
-N [J N] = J [N [J N]]
-
+N [J N] = [J [N [J N]]]
 J N [J N] = J [J N [J N]]
 
 X = J [X]
@@ -81,12 +77,14 @@ and execute the left part of "*"
 
 A (s) := * s * s;
 
+A * J A = * J A * J A
 J A * J A = J * J A * J A
 
 A * A = * A * A
 
 R (s) := * s s;
 
+R * J R * = * J R * J R *
 J R * J R * = J * J R * J R *
 
 R * R * = * R * R *
