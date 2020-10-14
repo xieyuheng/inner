@@ -43,7 +43,7 @@ D [D x] = [D [D x]]
 N (s) := [s [s]];
 
 [J N]
-N [J N] = [J [N [J N]]]
+N [J N] = [J N [J N]]
 J N [J N] = J [J N [J N]]
 
 X = J [X]
@@ -63,6 +63,30 @@ Exercise 2: X = N [X]
 
 X = N N [N N] = N [N N [N N]]
 N N [N N] = N [N N [N N]] = [N N [N N] [N N [N N]]]
+
+Exercise 3: X = Q [X]
+
+X = Q N [Q N] = Q [Q N [Q N]]
+
+Exercise 4: X = N Q [X]; Y = Q N [Y]
+
+X = N Q N [N Q N] = N Q [N Q N [N Q N]]
+
+Y = Q N N [Q N N] -- like Exercise 1.
+
+Exercise 5: X = J Q [X]
+
+X = J Q N [J Q N] = J Q [J Q N [J Q N]]
+
+Exercise 6: X = J N Q [X]; Y = J Q N [Y]
+
+X = J N Q N [J N Q N] = J N Q [J N Q N [J N Q N]]
+Y = J Q N N [J Q N N] = J Q N [J Q N N [J Q N N]]
+
+Exercise 7: X = Q Y; Y = [X]
+
+X = Q N [Q N] = Q [Q N [Q N]]
+Y = [Q N [Q N]]
 
 *** One-side quotation
 
@@ -88,6 +112,8 @@ R * J R * = * J R * J R *
 J R * J R * = J * J R * J R *
 
 R * R * = * R * R *
+
+
 
 ** Part II Self-reference in a more general setting
 
