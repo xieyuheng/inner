@@ -133,6 +133,14 @@ K : Predicate
 -------------
 H K : Predicate
 
+To explain J N [J N], we must also be able to view predicate J N as sentence.
+
+Note that, even after introducing composition syntax,
+the above language still can not explain quotation alone, like [X].
+
+This problem can be solved by introducing syntax for quotation,
+and view application as quotation plus composition.
+
 * 2 Some classical fixed point arguments compared
 
 ** Part I Five fixed point arguments
