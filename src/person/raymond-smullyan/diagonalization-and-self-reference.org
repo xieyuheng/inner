@@ -91,6 +91,10 @@ R * R * = * R * R *
 
 ** Part II Self-reference in a more general setting
 
+这里是用 application 而不是 concatenation 来理解语言的。
+
+这两种都可以作为语义吗？
+
 * 2 Some classical fixed point arguments compared
 
 ** Part I Five fixed point arguments
