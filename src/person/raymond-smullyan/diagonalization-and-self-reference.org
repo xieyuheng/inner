@@ -17,41 +17,61 @@ Just that, in here we use Polish notation,
 instead of Forth's reversed Polish notation,
 thus execution goes from right to left.
 
-@define D [subst [x] [s] [s] (s)]
+D (s) := subst [x] [s] [s];
 
 // substitute [x] by [s] in [s]
 
 Note that, identity function is defined as:
 
-@define id [[x] (x)]
+id (x) := [x];
+
+And apply can be define as:
+
+apply (x) := x;
 
 [J D x]
 
-D [J D x] = [J D [J D x]]
+D [J D x] = J D [J D x]
 
 J D [J D x] = J [J D [J D x]]
 
-D [D x] = D [D x]
+X = J [X]
+X = J D [J D x] = J [J D [J D x]]
+
+D [D x] = [D [D x]]
 
 *** Normalization
 
-@define N [s [s] (s)]
+N (s) := [s [s]];
 
 [J N]
 
-N [J N] = [J N [J N]]
+N [J N] = J [N [J N]]
 
-J N [J N] = J N [J N [J N]]
+J N [J N] = J [J N [J N]]
+
+X = J [X]
+X = J N [J N] = J [J N [J N]]
 
 N [N] = [N [N]]
 
 - 为什么被称作 "normalization”？
   这与 lambda term 的 normalization 有关吗？
 
+Exercise 1: X = J N [X]
+
+X = J N N [J N N] = J N [J N N [J N N]]
+J N N [J N N] = J N [J N N [J N N]] = J [J N N [J N N] [J N N [J N N]]]
+
+Exercise 2: X = N [X]
+
+X = N N [N N] = N [N N [N N]]
+N N [N N] = N [N N [N N]] = [N N [N N] [N N [N N]]]
+
 *** One-side quotation
 
 When using jojo as semantic, "One-side quotation" can be understood as
-language with first class quotation keyword.
+language with first class quotation keyword. (like LISP)
 
 To execute a jojo, the machine read from left,
 and break the jojo by the first occur of "*",
@@ -59,24 +79,17 @@ push the right part of "*" as quoted program on data stack,
 and execute the left part of "*"
 (starting from the left end of the left part).
 
+A (s) := * s * s;
+
 J A * J A = J * J A * J A
 
-@define A [s * [s] (s)] -- ??
-@define A (s) * s * [s]
+A * A = * A * A
 
-A * Y = * Y * Y
+R (s) := * s s;
 
-A A * Y =
-A * Y * Y =
-* Y * Y * Y * Y
+J R * J R * = J * J R * J R *
 
-- 也許在蟬語中我包含兩種引用方式
-  它們只是形態上不同而已
-  其本質都是邊綴表達式
-
-- 其實在這裏可以看出
-  smullyan 對函數作用的語義的理解並不透徹
-  這裏 quotation 被作爲了 first-class-object
+R * R * = * R * R *
 
 ** Part II Self-reference in a more general setting
 
