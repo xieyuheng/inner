@@ -7,7 +7,7 @@
 In chapter 1, there are constructors, which build values,
 and type constructors, which build types.
 
-car, however, is neither a constructor nora type constructor.
+car, however, is neither a constructor nor a type constructor.
 
 car is an eliminator.
 
@@ -53,6 +53,8 @@ as
 Because two lambda-expressions are also the same
 if there is a way to consistently rename the arguments to be the same
 that makes their bodies the same.
+
+- 注意这里的 "rename the arguments to be the same"。
 
 Consistently renaming variables can't change the meaning of anything.
 
@@ -133,7 +135,7 @@ and
 这里的规则适用于 module-level definition。
 
 - 在实现 lang2 时，我允许了 redefinition，
-  因为 `Exp.suite` 可以理解为 function application 的 syntax sugar，
+  因为 `Exp.begin` 可以理解为 function application 的 syntax sugar，
   用处理 lexical scope 的机制 -- `Env`，就能处理好它，
   没必要引入 `Mod` 来让解释器变复杂。
 
@@ -151,7 +153,7 @@ we can only implement
 we can not implement `which_Nat` with implicit `(T: Type)`
   which_Nat : [T: Type] -> (target: Nat) -> (base: T) -> (step: (prev: Nat) -> T) -> T
 
-We can use `[T: Type] ->` to denote the implicit argument.
+We use `[T: Type] ->` to denote the implicit argument in the type above.
 
 ## Recursion is not an option.
 
