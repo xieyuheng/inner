@@ -181,3 +181,8 @@ because new types can be introduced.
 Names defined with `define` are neither type constructors nor constructors.
 
 Thus, they are not values.
+
+## Definitions Are Unnecessary
+
+Everything can be done without definitions,
+but they do improve understanding.
