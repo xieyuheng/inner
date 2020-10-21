@@ -220,7 +220,6 @@ WHERE starts >= '2012-04-01';
 
 # MongoDB
 
-
 ## [note]
 
 - db -- namespace
