@@ -11,3 +11,8 @@ This kind of chart is called a "same as" chart.
 If a "same as" chart could show that two expressions are the same,
 then this fact can be used anywhere without further justification.
 "Same As" charts are only to help build understanding.
+
+## Total Function
+
+A function that always assigns a value to every
+possible argument is called a total function.
