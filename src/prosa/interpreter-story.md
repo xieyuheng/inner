@@ -66,3 +66,18 @@ type check 也是一个动词，
 
 在与到这种表达方式难以表达的问题之前，
 我假设它是万能的。
+
+## Currying type checking function
+
+2020-10-29
+
+上面提到了 `Exp.check` 没有被名词化为 `Check`。
+在实现 lang3 的过程中，我也体会到了类型检查相关的函数不清晰。
+
+反过来看另一个项目的架构。
+我先是实现了 `Schema.detector` 与 `Schema.translator`，
+然后很快意识到需要将他们名词化为 `Detector` 与 `Translator`，
+并且实现 `Detector.from_schema` 与 `Translator.from_schema`。
+
+对于 `Exp.check` 也许我们也应该将它名词化为 `Check`，
+并且实现 `Checker.from_type`。
