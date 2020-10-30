@@ -81,3 +81,9 @@ type check 也是一个动词，
 
 对于 `Exp.check` 也许我们也应该将它名词化为 `Check`，
 并且实现 `Checker.from_type`。
+
+2020-10-30
+
+也许不应该这么做。
+需要学习 "combine functions into class"
+以及关于 encapsulation 的 refactoring。
