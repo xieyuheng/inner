@@ -219,7 +219,7 @@
       instead of using the seemingly unified syntax?
 
   - Note that, 'as-remained-boundary' involves searching,
-    which makes the specification of part of the space implict,
+    which makes the specification of part of the space implicit,
     such implicitness is need, for when the dimension gets higher,
     the detail of high dimension information might be too complex
     to use an explict method.
