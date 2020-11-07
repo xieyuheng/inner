@@ -1,7 +1,5 @@
 #+title:  smullyan
 
-* (1961) theory of formal systems
-
 * (1965) analytic natural deduction
 
 *** nest structures

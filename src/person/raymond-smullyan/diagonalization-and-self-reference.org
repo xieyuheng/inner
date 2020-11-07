@@ -1,7 +1,6 @@
 #+title: Diagonalization and self reference
-
-- Author: Raymond Smullyan
-- Date: 1994
+#+author: Raymond Smullyan
+#+date: 1994
 
 * 1 Introduction to self-reference
 
