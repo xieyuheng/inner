@@ -4,6 +4,9 @@
 
 Reading "Implementation patterns" by Kent Beck
 
+Which teaches us to think about "why we write programs in our styles?",
+and by encouraging us to explain our styles (ways (beliefs)), let us learn from ourselves.
+
 - Should I use `class` in ts instead of my current style, which only use `interface`?
   - My constraint is that sometimes I want to separate methods in their own files.
   - Using my style, polymorphism must be done by `interface` holding functions -- like `Parser`.
@@ -13,3 +16,9 @@ Reading "Implementation patterns" by Kent Beck
 - My model of programming is data and functions, instead of object and messages.
   - object in js is simply used as record data.
   - should we use `type` instead of `interface`? -- Yes
+
+- I use polymorphism as a way of saying,
+  "Give me an object have these methods (satisfy these axioms),
+  I can have a lots of generic methods implemented for you (generic proofs proven for you)."
+  - like typeclass, but explicit.
+  - like algebraic structure (or mathematic structure).
