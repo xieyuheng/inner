@@ -9,3 +9,7 @@ Reading "Implementation patterns" by Kent Beck
   - Using my style, polymorphism must be done by `interface` holding functions -- like `Parser`.
     - subtype can not override its supertype's fields.
       - we can override supertype's fields in the data's `create` method.
+
+- My model of programming is data and functions, instead of object and messages.
+  - object in js is simply used as record data.
+  - should we use `type` instead of `interface`? -- Yes
