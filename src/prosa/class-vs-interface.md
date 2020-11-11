@@ -2,10 +2,21 @@
 
 2020-11-11
 
+## Explain our beliefs
+
 Reading "Implementation patterns" by Kent Beck
 
 Which teaches us to think about "why we write programs in our styles?",
 and by encouraging us to explain our styles (ways (beliefs)), let us learn from ourselves.
+
+The patterns of explanation of a pattern is the following:
+- "I use this pattern as a way of saying ..."
+- "This pattern is a way of saying ..."
+
+The term "a way of saying" emphasis communication (communication with my fellow programmers),
+which is the first for the three values: communication, simplicity and flexibility.
+
+## About Class vs Interface
 
 - Should I use `class` in ts instead of my current style, which only use `interface`?
   - My constraint is that sometimes I want to separate methods in their own files.
