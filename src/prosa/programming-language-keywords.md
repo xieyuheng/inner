@@ -79,3 +79,5 @@ the first letter of the word ἐστί, which means "is".
 - field -- only for non-function properties
 - method -- only for function properties
 - feature -- used in UML
+- operation -- used in UML -- only for function properties
+- association -- used in UML -- another way of drawing attributes
