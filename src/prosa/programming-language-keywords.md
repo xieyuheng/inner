@@ -67,3 +67,15 @@ the first letter of the word ἐστί, which means "is".
   for example `--`, `---`, `----`, ...
   - https://en.wikipedia.org/wiki/Dash
   - https://en.wikipedia.org/wiki/Hyphen
+
+## 关于「属性」的术语
+
+2020-11-13
+
+「对象的属性」中的「属性」
+
+- property, properties
+- attr, attribute -- used in formal concept analysis
+- field -- only for non-function properties
+- method -- only for function properties
+- feature -- used in UML
