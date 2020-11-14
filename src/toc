@@ -495,12 +495,12 @@ link:prosa/architectural-styles.md
 link:prosa/build-from-present-pattern.md
 link:prosa/c4model.md
 link:prosa/cause-and-effect.md
-link:prosa/class-vs-interface.md
 link:prosa/core-concepts-of-computer-science.md
 link:prosa/coupling-and-cohesive.md
 link:prosa/design-syntax-for-familiarity.md
 link:prosa/domain-driven-design.md
 link:prosa/hypermedia.md
+link:prosa/implementation-patterns.md
 link:prosa/implementing-pattern-matching.md
 link:prosa/implementing-structural-typing-again.md
 link:prosa/interpreter-story.md
@@ -518,6 +518,7 @@ link:prosa/report-on-the-little-typer/index.md
 link:prosa/report-on-the-little-typer/recess--a-forkful-of-pie.md
 link:prosa/type-bound.md
 link:prosa/uncoupling.md
+link:prosa/unified-modeling-language.md
 link:prosa/use-naive-set-theory-to-intuit-type-system.md
 link:review/circumscriptive-reasoning.org
 link:review/elaboration-tolerance.txt
