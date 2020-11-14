@@ -36,8 +36,18 @@ I can have a lots of generic methods implemented for you (generic proofs proven 
 
 ## Simplicity with record type
 
+2020-11-14
+
 We use record type intead of class and object,
 this greatly simplified our solutions.
 
 Because we do not have to think about all the concepts
 of object oriented programming any more.
+
+## Do not use field as implicit parameter
+
+> Helper: helper fields hold references to objects used by many of an object's methods.
+> If an object is passed as a parameter to many methods,
+> consider replacing the parameter with a helper field set in the complete constructor.
+
+The above is an anti-pattern, we should always use parameter to pass this kind of values.
