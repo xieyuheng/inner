@@ -1,18 +1,17 @@
 Ones Inner Universe
 
-I am 谢宇恒 (xiè yǔ héng),
-an independent Chinese researcher in Foundations of Mathematics.
+I am 谢宇恒 (Xiè Yǔhéng).
+I am a programmer.
 
-The area of my inquiry is beautifully formulated by Vladimir Voevodsky as the following,
+I design and implement programming languages,
+and wish to use one of them as formal deduction systems.
+
+This inquiry is beautifully formulated by Vladimir Voevodsky as the following,
 
 > A formal deduction system together with a correspondence
 > between its components and objects and actions in the world of mathematical thoughts
 > which can be used to formalize all subject areas of mathematics
 > is called a foundational system for mathematics or "Foundations of Mathematics".
-
-I design programming languages
-and use them as formal deduction systems
-to formalize areas of mathematics which I am interested in.
 
 I am specially interested in the formalization of Algebraic topology,
 (I am trying to find an algebraic definition of infinity groupoids
