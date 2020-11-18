@@ -7,8 +7,7 @@ Numbers and Brains - Numberphile:
 
 Some person's brain is partly damaged,
 so he can not understand the meaning of words, such as "give" and "take",
-but he can still understand the meaning of words about number,
-such as "two" and "eigth".
+but he can still understand the meaning of words about number, such as "two" and "eigth".
 
 He has dyslexia but not dyscalculia.
 
