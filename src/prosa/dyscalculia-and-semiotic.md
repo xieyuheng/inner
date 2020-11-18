@@ -6,9 +6,11 @@ Numbers and Brains - Numberphile:
 - https://www.youtube.com/watch?v=n3x8fIdsla4
 
 Some person's brain is partly damaged,
-so he can not understand the meaning of words (thus he has dyslexia),
+so he can not understand the meaning of words, such as "give" and "take",
 but he can still understand the meaning of words about number,
-such as "two" and "eigth" (but not non number words, such as "give" and "take").
+such as "two" and "eigth".
+
+He has dyslexia but not dyscalculia.
 
 So there must be two phrases during the cognition of words,
 - first is to recognise words as sign or symbol,
