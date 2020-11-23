@@ -8,8 +8,8 @@
 
 ``` typescript
 <Class>.<fn>(obj: <Class>..., player: {
-  role1: (...)=> ...,
-  role2: (...)=> ...,
+  role1: (...) => ...,
+  role2: (...) => ...,
   ...
 })
 ```
