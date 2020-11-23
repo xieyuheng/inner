@@ -526,6 +526,7 @@ link:prosa/coupling-and-cohesive.md
 link:prosa/design-syntax-for-familiarity.md
 link:prosa/domain-driven-design.md
 link:prosa/dyscalculia-and-semiotic.md
+link:prosa/file-finder.md
 link:prosa/hypermedia.md
 link:prosa/implementation-patterns.md
 link:prosa/implementing-pattern-matching.md
@@ -536,6 +537,7 @@ link:prosa/module-system.md
 link:prosa/mutual-recursion.md
 link:prosa/noun-and-verb-relation.md
 link:prosa/object-oriented-design-patterns.md
+link:prosa/practice-to-write.md
 link:prosa/programming-language-keywords.md
 link:prosa/report-on-the-little-typer/1--the-more-things-change-the-more-they-stay-the-same.md
 link:prosa/report-on-the-little-typer/2--doin-what-comes-naturally.md
@@ -543,6 +545,8 @@ link:prosa/report-on-the-little-typer/3--eliminate-all-natural-numbers.md
 link:prosa/report-on-the-little-typer/4--easy-as-pie.md
 link:prosa/report-on-the-little-typer/index.md
 link:prosa/report-on-the-little-typer/recess--a-forkful-of-pie.md
+link:prosa/small-object-style.md
+link:prosa/tagless-final.md
 link:prosa/type-bound.md
 link:prosa/uncoupling.md
 link:prosa/unified-modeling-language.md
