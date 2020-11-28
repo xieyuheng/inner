@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-function build {
-    echo "[build]" &&
+function publish {
+    echo "[publish]" &&
         npx plaintext toc src -o src/toc --verbose &&
         cat src/README.txt <(echo) src/toc > src/index &&
         npx plaintext dir src -o out --verbose &&
@@ -9,7 +9,7 @@ function build {
 }
 
 function serve {
-    build &&
+    publish &&
         echo "[serve]" &&
         npx sirv out &&
         true
