@@ -10,7 +10,9 @@
 ** 1.2 The Tools of Design 4
 *** 1.2.1 Design Principles 4
 
-- what are the Design Principles?
+- What are the main design principles of OOP?
+
+  TODO
 
 *** 1.2.2 Design Patterns 6
 ** 1.3 The Act of Design 6
@@ -39,6 +41,28 @@
   All the same design techniques work
   ask them questions about what they do
   and try to describe their responsibilities in a single sentence.
+
+- Describe the relation between the refactorings and the ultimate design.
+
+  Refactoring reveal design.
+
+  Do these refactorings even when you do not know the ultimate design.
+  They are needed, not because the design is clear, but because it isn't.
+  You do not have to know where you're going to use good design practices to get there.
+  Good practices reveal design.
+
+- What are the benefits of methods that have a single responsibility?
+
+  - Expose previously hidden qualities
+  - Avoid the need for comments
+  - Encourage reuse
+  - Are easy to move to another class
+
+- You found the extra responsibilities,
+  but you are not sure about creating a new class for them.
+  Why? What should you do?
+
+  TODO
 
 ** 2.4 Finally, the Real Wheel 33
 ** 2.5 Summary
