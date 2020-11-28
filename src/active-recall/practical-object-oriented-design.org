@@ -1,0 +1,57 @@
+#+title: Practical Object Oriented Design
+#+author: Sandi Marts
+#+date: 2019
+
+* 1 Object-Oriented Design 1
+** 1.1 In Praise of Design 2
+*** 1.1.1 The Problem Design Solves 2
+*** 1.1.2 Why Change Is Hard 3
+*** 1.1.3 A Practical Definition of Design 3
+** 1.2 The Tools of Design 4
+*** 1.2.1 Design Principles 4
+
+- what are the Design Principles?
+
+*** 1.2.2 Design Patterns 6
+** 1.3 The Act of Design 6
+*** 1.3.1 How Design Fails 6
+*** 1.3.2 When to Design 7
+*** 1.3.3 Judging Design 9
+*** 1.4 A Brief Introduction to Object-Oriented Programming
+**** 1.4.1 Procedural Languages 11
+**** 1.4.2 Object-Oriented Languages 11
+** 1.5 Summary 13
+* 2 Designing Classes with a Single Responsibility 15
+** 2.1 Deciding What Belongs in a Class 16
+*** 2.1.1 Grouping Methods into Classes 16
+*** 2.1.2 Organizing Code to Allow for Easy Changes 16
+** 2.2 Creating Classes That Have a Single Responsibility 17
+*** 2.2.1 An Example Application: Bicycles and Gears 17
+*** 2.2.2 Why Single Responsibility Matters 21
+*** 2.2.3 Determining If a Class Has a Single Responsibility
+*** 2.2.4 Determining When to Make Design Decisions 22
+** 2.3 Writing Code That Embraces Change 24
+*** 2.3.1 Depend on Behavior, Not Data 24
+*** 2.3.2 Enforce Single Responsibility Everywhere 29
+
+- What design techniques can be used here?
+
+  All the same design techniques work
+  ask them questions about what they do
+  and try to describe their responsibilities in a single sentence.
+
+** 2.4 Finally, the Real Wheel 33
+** 2.5 Summary
+* 3 Managing Dependencies 37
+** 3.1 Understanding Dependencies 38
+*** 3.1.1 Recognizing Dependencies 39
+*** 3.1.2 Coupling Between Objects (CBO) 39
+*** 3.1.3 Other Dependencies 40
+** 3.2 Writing Loosely Coupled Code 41
+*** 3.2.1 Inject Dependencies 41
+*** 3.2.2 Isolate Dependencies 44
+*** 3.2.3 Remove Argument-Order Dependencies
+** 3.3 Managing Dependency Direction 53
+*** 3.3.1 Reversing Dependencies 53
+*** 3.3.2 Choosing Dependency Direction 55
+** 3.4 Summary
