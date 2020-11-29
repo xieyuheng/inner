@@ -60,9 +60,33 @@
 
 - You found the extra responsibilities,
   but you are not sure about creating a new class for them.
-  Why? What should you do?
+  What should you do?
 
-  TODO
+  We can remove extra responsibilities without creating a new class.
+
+  Your goal is to preserve single responsibility in the old class
+  while making the fewest design commitments possible.
+
+  Because you are writing changeable code,
+  you are best served by postponing decisions
+  until you are absolutely forced to make them.
+
+  Any decision you make in advance of an explicit requirement is just a guess.
+  Don't decide; preserve your ability to make a decision later.
+
+  Without creating a new public class, we can create a inner private class.
+
+- What should be our attitude towards a muddled class with too many responsibilities?
+
+  If you have a muddled class with too many responsibilities,
+  separate those responsibilities into different classes.
+
+  Concentrate on the primary class.
+  Decide on its responsibilities
+  and enforce your decision fiercely.
+
+  If you identify extra responsibilities that you cannot yet remove, isolate them.
+  Do not allow extraneous responsibilities to leak into your class.
 
 ** 2.4 Finally, the Real Wheel 33
 ** 2.5 Summary
