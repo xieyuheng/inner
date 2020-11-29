@@ -215,10 +215,10 @@
 
 - Make a table of coding techniques that can be used to managing dependencies.
 
-  | technique                            | dependency   | managing |
-  |--------------------------------------+--------------+----------|
-  | dependency injection                 | class name   | remove   |
-  | isolate instance creation            | class name   | isolate  |
-  | isolate vulnerable external messages | message name | isolate  |
-  | use keyword arguments                | ?            | ?        |
-  | explicitly define defaults           | ?            | ?        |
+  | technique                            | dependency       | managing | side effect              |
+  |--------------------------------------+------------------+----------+--------------------------|
+  | dependency injection                 | class name       | remove   |                          |
+  | isolate instance creation            | class name       | isolate  |                          |
+  | isolate vulnerable external messages | message name     | isolate  |                          |
+  | use keyword arguments                | argument order   | remove   | depends on argument name |
+  | explicitly define defaults           | message argument | reduce   |                          |
