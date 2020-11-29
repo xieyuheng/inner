@@ -207,6 +207,7 @@
 
   - use keyword arguments
   - explicitly define defaults
+  - isolate multiparameter initialization
 
 - What is the disadvantage of using keyword arguments?
 
@@ -234,6 +235,19 @@
   This results in explicit documentation at both ends of the message.
   Future maintainers will be grateful for this information.
 
+- What is the principle behind "isolate multiparameter initialization"?
+
+  The classes in your application should depend on code that you own;
+  use a wrapping method to isolate external dependencies.
+
+  The above technique for replacing positional arguments with keywords
+  is perfect for cases where you are forced to depend on external interfaces
+  that you cannot change.
+
+  Do not allow these kinds of external dependencies to permeate your code;
+  protect yourself by wrapping each in a method that is owned by your own application.
+
+
 ** 3.3 Managing Dependency Direction 53
 *** 3.3.1 Reversing Dependencies 53
 *** 3.3.2 Choosing Dependency Direction 55
@@ -241,10 +255,22 @@
 
 - Make a table of coding techniques that can be used to managing dependencies.
 
-  | technique                            | dependency       | managing | side effect              |
-  |--------------------------------------+------------------+----------+--------------------------|
-  | dependency injection                 | class name       | remove   |                          |
-  | isolate instance creation            | class name       | isolate  |                          |
-  | isolate vulnerable external messages | message name     | isolate  |                          |
-  | use keyword arguments                | argument order   | remove   | depends on argument name |
-  | explicitly define defaults           | message argument | reduce   |                          |
+  |---------------------------------------+------------------+----------+--------------------------|
+  | technique                             | dependency       | managing | side effect              |
+  |---------------------------------------+------------------+----------+--------------------------|
+  | dependency injection                  | class name       | remove   |                          |
+  | (remove named class)                  |                  |          |                          |
+  |---------------------------------------+------------------+----------+--------------------------|
+  | isolate instance creation             | class name       | isolate  |                          |
+  |---------------------------------------+------------------+----------+--------------------------|
+  | isolate vulnerable external messages  | message name     | isolate  |                          |
+  |---------------------------------------+------------------+----------+--------------------------|
+  | use keyword arguments                 | argument order   | remove   | depends on argument name |
+  | (remove positional arguments)         |                  |          |                          |
+  |---------------------------------------+------------------+----------+--------------------------|
+  | explicitly define defaults            | message argument | reduce   |                          |
+  | (reduce required arguments)           |                  |          |                          |
+  |---------------------------------------+------------------+----------+--------------------------|
+  | isolate multiparameter initialization | message argument | isolate  |                          |
+  |                                       | argument order   | isolate  |                          |
+  |---------------------------------------+------------------+----------+--------------------------|
