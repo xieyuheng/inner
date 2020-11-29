@@ -158,7 +158,55 @@
 
 *** 3.2.2 Isolate Dependencies 44
 
+- What should we do if we cannot remove unnecessary dependency?
+
+  If you cannot remove unnecessary dependencies,
+  you should isolate them within your class,
+  so that they are easy to spot and reduce when circumstances permit.
+
+- What should be our attitude towards dependency?
+
+  Think of every dependency as an alien bacterium that's trying to infect your class.
+
+  Give your class a vigorous immune system; quarantine each dependency.
+
+  Dependencies are foreign invaders that represent vulnerabilities,
+  and they should be concise, explicit, and isolated.
+
+- When we can not use dependency injection, what techniques we can use to isolate dependency?
+
+  - isolate instance creation
+    - creation in constructor
+    - lazy creation in method
+  - isolate vulnerable external messages
+
+  - How "isolate instance creation" improves arrangement of code?
+
+    An application whose classes are sprinkled with
+    entangled and obscure class name references is unwieldy and inflexible,
+    while one whose class name dependencies are concise, explicit, and isolated
+    can easily adapt to new requirements.
+
+  - What is the definition of external messages?
+
+    Messages that are "sent to someone other than self."
+
+  - When to use "isolate vulnerable external messages"?
+
+    This technique becomes necessary when a class contains
+    embedded references to a message that is likely to change.
+
+    Isolating the reference provides some insurance against being affected by that change.
+
+    Although not every external method is a candidate for this preemptive isolation,
+    it's worth examining your code, looking for and wrapping the most vulnerable dependencies.
+
 *** 3.2.3 Remove Argument-Order Dependencies
+
+- What are them methods we can use to remove argument-order dependencies?
+
+  - use keyword arguments
+  - explicitly define defaults
 
 ** 3.3 Managing Dependency Direction 53
 *** 3.3.1 Reversing Dependencies 53
