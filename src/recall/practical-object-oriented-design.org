@@ -212,3 +212,13 @@
 *** 3.3.1 Reversing Dependencies 53
 *** 3.3.2 Choosing Dependency Direction 55
 ** 3.4 Summary
+
+- Make a table of coding techniques that can be used to managing dependencies.
+
+  | technique                            | dependency   | managing |
+  |--------------------------------------+--------------+----------|
+  | dependency injection                 | class name   | remove   |
+  | isolate instance creation            | class name   | isolate  |
+  | isolate vulnerable external messages | message name | isolate  |
+  | use keyword arguments                | ?            | ?        |
+  | explicitly define defaults           | ?            | ?        |
