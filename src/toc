@@ -7,7 +7,6 @@ link:quotes.md
 link:spam-cn.md
 link:think-twice.md
 link:toc
-link:active-recall/practical-object-oriented-design.org
 link:lang/abc/the-abc-programmers-handbook.md
 link:lang/agda/tutorial-of-agda.org
 link:lang/c/pointer.org
@@ -525,6 +524,7 @@ link:prosa/type-bound.md
 link:prosa/uncoupling.md
 link:prosa/unified-modeling-language.md
 link:prosa/use-naive-set-theory-to-intuit-type-system.md
+link:recall/practical-object-oriented-design.org
 link:review/circumscriptive-reasoning.org
 link:review/elaboration-tolerance.txt
 link:review/microblog.org

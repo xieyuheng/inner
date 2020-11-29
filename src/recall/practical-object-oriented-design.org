@@ -91,9 +91,48 @@
 ** 2.4 Finally, the Real Wheel 33
 ** 2.5 Summary
 * 3 Managing Dependencies 37
+
+- What are the three ways an object might fulfill a desired behavior?
+
+  For any desired behavior, an object either
+  - knows it personally,
+  - inherits it,
+  - or knows another object who knows it.
+
+  The previous chapter "Enforce Single Responsibility Everywhere",
+  is about the first way.
+
+  This chapter "Managing Dependencies",
+  is about the third way.
+
 ** 3.1 Understanding Dependencies 38
+
+- What is the definition of dependency between objects?
+
+  An object depends on another object if,
+  when one object changes,
+  the other might be forced to change in turn.
+
 *** 3.1.1 Recognizing Dependencies 39
+
+- How can an object depend on another object?
+
+  An object has a dependency when it knows:
+  - The name of another class.
+  - The name of a message that it intends to send to someone other than self.
+  - The arguments that a message requires.
+  - The order of those arguments.
+
 *** 3.1.2 Coupling Between Objects (CBO) 39
+
+- What is the definition of coupling?
+
+  A and B are coupled if changing one imply changing another.
+
+  Coupling must be defined relative to change.
+
+  coupling(A, B, d) = implication(change(A, d), change(B, d))
+
 *** 3.1.3 Other Dependencies 40
 ** 3.2 Writing Loosely Coupled Code 41
 *** 3.2.1 Inject Dependencies 41
