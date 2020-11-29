@@ -208,6 +208,32 @@
   - use keyword arguments
   - explicitly define defaults
 
+- What is the disadvantage of using keyword arguments?
+
+  - Keyword arguments is verbose.
+
+  - It remove dependency on arguments order,
+    but introduce dependency on argument names,
+    if keyword arguments API are published,
+    one can not change the names.
+
+- Beside removing dependency on arguments order, what else is good about using keyword arguments?
+
+  The keyword arguments is essentially record type data, which is self-descriptive.
+
+  About "Self-descriptive messages", recall the four uniform interface constraints RESTful:
+
+  - Resource identification in requests -- URI (Uniform Resource Identifier)
+  - Resource manipulation through representations -- I am not sure about the meaning of this.
+  - Self-descriptive messages -- record type
+  - Hypermedia as the engine of application state -- hyperlink -- like dependency injection?
+
+  As Sandi said:
+  Using keyword arguments requires the sender
+  and the receiver of a message to state the keyword names.
+  This results in explicit documentation at both ends of the message.
+  Future maintainers will be grateful for this information.
+
 ** 3.3 Managing Dependency Direction 53
 *** 3.3.1 Reversing Dependencies 53
 *** 3.3.2 Choosing Dependency Direction 55
