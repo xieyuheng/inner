@@ -247,8 +247,12 @@
   Do not allow these kinds of external dependencies to permeate your code;
   protect yourself by wrapping each in a method that is owned by your own application.
 
-
 ** 3.3 Managing Dependency Direction 53
+
+- What is the most import way of managing dependency?
+
+  Reverse the direction of the dependency.
+
 *** 3.3.1 Reversing Dependencies 53
 *** 3.3.2 Choosing Dependency Direction 55
 ** 3.4 Summary
