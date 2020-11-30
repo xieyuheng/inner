@@ -348,8 +348,31 @@
   Because it is the most effective way to do business.
 
 *** 4.2.1 Public Interfaces 64
+
+- What are the properties of public Interface?
+
+  - Reveal its primary responsibility.
+  - Are expected to be invoked by others.
+  - Will not change on a whim.
+  - Are safe for others to depend on.
+  - Are thoroughly documented in the tests.
+
 *** 4.2.2 Private Interfaces 64
+
+- What are the properties of private Interface?
+
+  - Handle implementation details.
+  - Are not expected to be sent by other objects.
+  - Can change for any reason whatsoever.
+  - Are unsafe for others to depend on.
+  - May not even be referenced in the tests.
+
 *** 4.2.3 Responsibilities, Dependencies, and Interfaces 64
+
+- What is the relation between public methods and responsibilities?
+
+  Public methods should read like a description of responsibilities.
+
 ** 4.3 Finding the Public Interface 65
 *** 4.3.1 An Example Application: Bicycle Touring Company 65
 *** 4.3.2 Constructing an Intention 65
