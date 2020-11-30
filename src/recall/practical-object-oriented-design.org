@@ -426,6 +426,17 @@
 
   Draw sequence diagram!
 
+  Suddenly, the conversation has changed!
+  It is now revolving around messages.
+  Instead of deciding on a class and then figuring out its responsibilities,
+  you are now deciding on a message and figuring out where to send it.
+
+- After emphasising messages, the fundamental design question is changed from what to what?
+
+  The fundamental design question is changed
+  from "I know I need this class, what should it do?"
+  to "I need to send this message, who should respond to it?"
+
 *** 4.3.4 Asking for "What" Instead of Telling "How" 70
 *** 4.3.5 Seeking Context Independence 72
 *** 4.3.6 Trusting Other Objects 74
