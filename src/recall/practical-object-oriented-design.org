@@ -254,7 +254,43 @@
   Reverse the direction of the dependency.
 
 *** 3.3.1 Reversing Dependencies 53
+
+- How to reverse dependency?
+
+  By moving a method from one class to its dependency class.
+
+- What is the difference between reversing dependency and dependency injection?
+
+  dependency injection remove dependency,
+  reversing dependency change direction.
+
 *** 3.3.2 Choosing Dependency Direction 55
+
+- Based on what simple truths about code, you tell your classes,
+  "depend on things that change less often than you do."
+
+  - Some classes are more likely than others to have changes in requirements.
+  - Concrete classes are more likely to change than abstract classes.
+  - Changing a class that has many dependents will result in widespread consequences.
+
+- Recall the "Likelihood of Requirements Change change versus number of dependents" chart.
+
+  | A | Abstract Zone | have little likelihood of change but contain many dependents        |
+  | B | Benign Zone   | rarely change and have few dependents                               |
+  | C | Concrete Zone | contains code that is quite likely to change but has few dependents |
+  | D | Danger Zone   | guaranteed to change and has many dependents                        |
+
+- How to gradually make an application unmaintainable?
+
+  You can guarantee that any application will gradually become unmaintainable
+  by making its Zone D classes more likely to change than their dependents.
+
+- In you own developing experience, do you have any examples about dependency direction design?
+
+  If a type system is implemented by OOP,
+  the "check" method should belong to expression instead of type,
+  because type is more abstract then expression.
+
 ** 3.4 Summary
 
 - Make a table of coding techniques that can be used to managing dependencies.
