@@ -339,7 +339,7 @@
 
 - What is the relation between interface (the first kind) and messages?
 
-  Interfaces constrain the communication pattern formed by the messages.
+  Public interfaces constrain the communication pattern formed by the messages.
 
 ** 4.2 Defining Interfaces 63
 *** 4.2.1 Public Interfaces 64
