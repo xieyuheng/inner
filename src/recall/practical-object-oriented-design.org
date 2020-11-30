@@ -316,7 +316,31 @@
   |---------------------------------------+------------------+----------+--------------------------|
 
 * 4 Creating Flexible Interfaces 61
+
 ** 4.1 Understanding Interfaces 61
+
+- Why messages is the core concept of OOP?
+
+  Because messages form the communication pattern between objects,
+  which is the dynamic structure of the running application.
+
+- What are the two kinds of interfaces?
+
+  The first kind of interface is public v.s. private method, that is,
+  methods within a class and how and what to expose to others.
+
+  The second kind of interface is the one that represents a concept
+  that is broader than a class and is defined by a set of messages.
+
+  This chapter is about the first kind of interface.
+
+  the next chapter "Reducing Costs with Duck Typing",
+  is about the second kind of interface.
+
+- What is the relation between interface (the first kind) and messages?
+
+  Interfaces constrain the communication pattern formed by the messages.
+
 ** 4.2 Defining Interfaces 63
 *** 4.2.1 Public Interfaces 64
 *** 4.2.2 Private Interfaces 64
