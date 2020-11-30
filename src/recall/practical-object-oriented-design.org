@@ -342,6 +342,11 @@
   Public interfaces constrain the communication pattern formed by the messages.
 
 ** 4.2 Defining Interfaces 63
+
+- Why this distinction between public and private exists?
+
+  Because it is the most effective way to do business.
+
 *** 4.2.1 Public Interfaces 64
 *** 4.2.2 Private Interfaces 64
 *** 4.2.3 Responsibilities, Dependencies, and Interfaces 64
