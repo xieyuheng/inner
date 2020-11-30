@@ -314,3 +314,30 @@
   | isolate multiparameter initialization | message argument | isolate  |                          |
   |                                       | argument order   | isolate  |                          |
   |---------------------------------------+------------------+----------+--------------------------|
+
+* 4 Creating Flexible Interfaces 61
+** 4.1 Understanding Interfaces 61
+** 4.2 Defining Interfaces 63
+*** 4.2.1 Public Interfaces 64
+*** 4.2.2 Private Interfaces 64
+*** 4.2.3 Responsibilities, Dependencies, and Interfaces 64
+** 4.3 Finding the Public Interface 65
+*** 4.3.1 An Example Application: Bicycle Touring Company 65
+*** 4.3.2 Constructing an Intention 65
+*** 4.3.3 Using Sequence Diagrams 66
+*** 4.3.4 Asking for “What” Instead of Telling “How” 70
+*** 4.3.5 Seeking Context Independence 72
+*** 4.3.6 Trusting Other Objects 74
+*** 4.3.7 Using Messages to Discover Objects 75
+*** 4.3.8 Creating a Message-Based Application 77
+** 4.4 Writing Code That Puts Its Best (Inter)Face Forward 77
+*** 4.4.1 Create Explicit Interfaces 77
+*** 4.4.2 Honor the Public Interfaces of Others 79
+*** 4.4.3 Exercise Caution When Depending on Private Interfaces
+*** 4.4.4 Minimize Context 80
+** 4.5 The Law of Demeter 80
+*** 4.5.1 Defining Demeter 81
+*** 4.5.2 Consequences of Violations 81
+*** 4.5.3 Avoiding Violations 82
+*** 4.5.4 Listening to Demeter 83
+** 4.6 Summary 84
