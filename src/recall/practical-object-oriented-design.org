@@ -32,8 +32,11 @@
 *** 2.2.2 Why Single Responsibility Matters 21
 *** 2.2.3 Determining If a Class Has a Single Responsibility
 *** 2.2.4 Determining When to Make Design Decisions 22
+
 ** 2.3 Writing Code That Embraces Change 24
+
 *** 2.3.1 Depend on Behavior, Not Data 24
+
 *** 2.3.2 Enforce Single Responsibility Everywhere 29
 
 - What design techniques can be used here?
@@ -89,7 +92,9 @@
   Do not allow extraneous responsibilities to leak into your class.
 
 ** 2.4 Finally, the Real Wheel 33
+
 ** 2.5 Summary
+
 * 3 Managing Dependencies 37
 
 - What are the three ways an object might fulfill a desired behavior?
@@ -374,10 +379,37 @@
   Public methods should read like a description of responsibilities.
 
 ** 4.3 Finding the Public Interface 65
+
 *** 4.3.1 An Example Application: Bicycle Touring Company 65
+
 *** 4.3.2 Constructing an Intention 65
+
+- The emphasis on messages rather than objects here,
+  reminds me of the functional style in "Architecture with Ashi Krishnan".
+
+  - If messages are more important, why should not we speak about function, input and output?
+
+    Because we wish to add new expression type easily. (The open close principle)
+
 *** 4.3.3 Using Sequence Diagrams 66
-*** 4.3.4 Asking for “What” Instead of Telling “How” 70
+
+- Compare sequence diagram with function type, what is the difference?
+
+  Function type describe:
+  - function name
+  - input type
+  - output type
+
+  We can do design be composing function types.
+
+  Sequence diagram describe:
+  - message name (function name)
+  - sender (the module that is calling the function)
+  - receiver (the module where the function is implemented)
+
+  In one sequence diagram many threads of message can be described.
+
+*** 4.3.4 Asking for "What" Instead of Telling "How" 70
 *** 4.3.5 Seeking Context Independence 72
 *** 4.3.6 Trusting Other Objects 74
 *** 4.3.7 Using Messages to Discover Objects 75
