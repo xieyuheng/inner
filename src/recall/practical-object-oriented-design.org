@@ -410,7 +410,10 @@
   In one sequence diagram many threads of message can be described.
 
   We can see that the information described are both very useful in our design!
+
   When used in static type language, adding type to each message suffice for our need.
+  - If we draw sequence diagram first, we should then attach type to the messages.
+  - If we specify function type first, we should then organize the functions of the problem domain into a sequence diagram.
 
 - What is the value of sequence diagrams?
 
