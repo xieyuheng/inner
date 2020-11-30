@@ -438,7 +438,21 @@
   to "I need to send this message, who should respond to it?"
 
 *** 4.3.4 Asking for "What" Instead of Telling "How" 70
+
+- What is the effect of switching the conversation from "How" to "What"?
+
+  The size of the public interface in receiver was drastically reduced.
+
 *** 4.3.5 Seeking Context Independence 72
+
+- What constitutes an object's context?
+
+  The things that an object knows about other objects make up its context.
+
+- What is the different between context and dependency?
+
+  TODO
+
 *** 4.3.6 Trusting Other Objects 74
 *** 4.3.7 Using Messages to Discover Objects 75
 *** 4.3.8 Creating a Message-Based Application 77
