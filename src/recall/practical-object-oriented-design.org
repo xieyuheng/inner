@@ -404,10 +404,20 @@
 
   Sequence diagram describe:
   - message name (function name)
-  - sender (the module that is calling the function)
-  - receiver (the module where the function is implemented)
+  - sender (the module (class) that is calling the function)
+  - receiver (the module (class) where the function is implemented)
 
   In one sequence diagram many threads of message can be described.
+
+  We can see that the information described are both very useful in our design!
+  When used in static type language, adding type to each message suffice for our need.
+
+- What is the value of sequence diagrams?
+
+  They explicitly specify the messages that pass between objects,
+  and because objects should only communicate using public interfaces,
+  sequence diagrams are a vehicle for exposing, experimenting with,
+  and ultimately defining those interfaces.
 
 *** 4.3.4 Asking for "What" Instead of Telling "How" 70
 *** 4.3.5 Seeking Context Independence 72
