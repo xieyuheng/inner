@@ -422,6 +422,10 @@
   sequence diagrams are a vehicle for exposing, experimenting with,
   and ultimately defining those interfaces.
 
+- If we want to invert the design conversation, to emphasis messages instead of classes, what should we do?
+
+  Draw sequence diagram!
+
 *** 4.3.4 Asking for "What" Instead of Telling "How" 70
 *** 4.3.5 Seeking Context Independence 72
 *** 4.3.6 Trusting Other Objects 74
