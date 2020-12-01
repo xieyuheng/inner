@@ -547,8 +547,43 @@
   A single message thus has many (poly) forms (morphs).
 
 ** 5.2 Writing Code That Relies on Ducks 95
+
 *** 5.2.1 Recognizing Hidden Ducks 95
+
+- What are the common coding patterns that indicate the presence of a hidden duck?
+
+  - Case statements that switch on class
+  - kind_of? and is_a? (instance of, type of)
+  - responds_to? (hasOwnProperty)
+
+- What should you think when you see case statements?
+
+  When you see this pattern, you know that
+  all of the cases must share something in common;
+  they arrive here because of that common thing.
+
+  Examine the code and ask yourself,
+  "What is it that the calling function wants from each of its cases?"
+
+  The answer to that question suggests the message you should send;
+  this message begins to define the underlying duck type.
+
 *** 5.2.2 Placing Trust in Your Ducks 97
+
+- What should you do when you see the code patterns above?
+
+  When you see these code patterns,
+  concentrate on the offending code's expectations
+  and use those expectations to find the duck type.
+
+  Once you have a duck type in mind,
+  define its interface,
+  implement that interface where necessary,
+  and then trust those implementers to behave correctly.
+
+  Flexible applications are built on objects that operate on trust;
+  it is your job to make your objects trustworthy.
+
 *** 5.2.3 Documenting Duck Types 98
 *** 5.2.4 Sharing Code between Ducks 98
 *** 5.2.5 Choosing Your Ducks Wisely 98
