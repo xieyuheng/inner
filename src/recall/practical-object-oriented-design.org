@@ -1,6 +1,14 @@
-#+title: Practical Object Oriented Design
+#+title: Practical Object-Oriented Design
 #+author: Sandi Marts
 #+date: 2019
+
+- What is Object-Oriented Design?
+
+  To understand a program, is to understand the roles its functions play.
+
+  OOD provides techniques to organize a program,
+  so that the roles its functions play are
+  explicitly and clearly expressed in the arrangement of code.
 
 * 1 Object-Oriented Design 1
 ** 1.1 In Praise of Design 2
