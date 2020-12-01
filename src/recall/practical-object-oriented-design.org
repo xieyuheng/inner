@@ -528,6 +528,16 @@
   rather than by their class,
   you enter into a new realm of expressive flexible design.
 
+- What is the definition of "polymorphism" in OOP?
+
+  Polymorphism in OOP refers to the ability of
+  many different objects to respond to the same message.
+
+  Senders of the message need not care about the class of the receiver;
+  receivers supply their own specific version of the behavior.
+
+  A single message thus has many (poly) forms (morphs).
+
 ** 5.2 Writing Code That Relies on Ducks 95
 *** 5.2.1 Recognizing Hidden Ducks 95
 *** 5.2.2 Placing Trust in Your Ducks 97
