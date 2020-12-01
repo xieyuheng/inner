@@ -118,6 +118,8 @@
   when one object changes,
   the other might be forced to change in turn.
 
+  Dependency must be defined relative to change.
+
 *** 3.1.1 Recognizing Dependencies 39
 
 - How can an object depend on another object?
@@ -137,6 +139,10 @@
   Coupling must be defined relative to change.
 
   coupling(A, B, d) = implication(change(A, d), change(B, d))
+
+- What is the difference between dependency and coupling?
+
+  Based on their definitions, they are the same.
 
 *** 3.1.3 Other Dependencies 40
 
@@ -449,9 +455,13 @@
 
   The things that an object knows about other objects make up its context.
 
-- What is the different between context and dependency?
+- What is the difference between context and dependency?
 
-  TODO
+  The techniques to deal with them are different,
+  for dependency, we can use dependency injection,
+  for context, it is not proper to use dependency injection,
+  we still need to know the receiver class name,
+  but can tell the receiver our intention and pass self to it.
 
 *** 4.3.6 Trusting Other Objects 74
 *** 4.3.7 Using Messages to Discover Objects 75
@@ -467,3 +477,65 @@
 *** 4.5.3 Avoiding Violations 82
 *** 4.5.4 Listening to Demeter 83
 ** 4.6 Summary 84
+
+* 5 Reducing Costs with Duck Typing 85
+
+- What is the purpose of object-oriented design.
+
+  The purpose of object-oriented design is to reduce the cost of change.
+
+** 5.1 Understanding Duck Typing 85
+
+- What is type in normal programmer's view?
+
+  Programming languages use the term type
+  to describe the category of the contents of a variable.
+
+- What is type in correspondent programmer's view?
+
+  Type is proposition.
+
+  By the way, programm is proof.
+
+*** 5.1.1 Overlooking the Duck 86
+
+*** 5.1.2 Compounding the Problem 88
+
+*** 5.1.3 Finding the Duck 90
+
+*** 5.1.4 Consequences of Duck Typing 94
+
+- What are the consequences of duck typing?
+
+  The use of duck typing (interface) is an act of abstraction.
+
+  This tension between
+  the costs of concretion and
+  the costs of abstraction
+  is fundamental to object-oriented design.
+
+  Concrete code is easy to understand but costly to extend.
+  Abstract code may initially seem more obscure
+  but, once understood, is far easier to change.
+
+- What is the hallmark of a confident designer?
+
+  The ability to tolerate ambiguity about the class of an object
+  is the hallmark of a confident designer.
+
+  Once you begin to treat your objects
+  as if they are defined by their behavior
+  rather than by their class,
+  you enter into a new realm of expressive flexible design.
+
+** 5.2 Writing Code That Relies on Ducks 95
+*** 5.2.1 Recognizing Hidden Ducks 95
+*** 5.2.2 Placing Trust in Your Ducks 97
+*** 5.2.3 Documenting Duck Types 98
+*** 5.2.4 Sharing Code between Ducks 98
+*** 5.2.5 Choosing Your Ducks Wisely 98
+** 5.3 Conquering a Fear of Duck Typing 100
+*** 5.3.1 Subverting Duck Types with Static Typing 100
+*** 5.3.2 Static versus Dynamic Typing 101
+*** 5.3.3 Embracing Dynamic Typing 102
+** 5.4 Summary 103
