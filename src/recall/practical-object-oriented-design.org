@@ -4,7 +4,7 @@
 
 - What is Object-Oriented Design?
 
-  To understand a program, is to understand the roles its functions play.
+  To understand a program is to understand the roles its functions play.
 
   OOD provides techniques to organize a program,
   so that the roles its functions play are
