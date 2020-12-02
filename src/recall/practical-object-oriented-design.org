@@ -674,11 +674,30 @@
 
 * 6 Acquiring Behavior through Inheritance 105
 
-- Can we can do this in the "record type + closure" style of OOP?
-
-  TODO
-
 ** 6.1 Understanding Classical Inheritance 105
+
+- What is inheritance?
+
+  Inheritance is, at its core, a mechanism for automatic message delegation.
+
+  It defines a forwarding path for not-understood messages.
+  It creates relationships such that,
+  if one object cannot respond to a received message,
+  it delegates that message to another.
+
+  You don't have to write code to explicitly delegate the message;
+  instead you define an inheritance relationship between two objects,
+  and the forwarding happens automatically.
+
+- How can we can do inheritance in the "record type + closure" style of OOP?
+
+  By explicitly delegate the messages.
+
+- What are the mathematic fields that study inheritance?
+
+  - Lattice theory -- https://en.wikipedia.org/wiki/Lattice_(order)
+  - Formal concept analysis -- https://en.wikipedia.org/wiki/Formal_concept_analysis
+
 ** 6.2 Recognizing Where to Use Inheritance 106
 *** 6.2.1 Starting with a Concrete Class 107
 *** 6.2.2 Embedding Multiple Types 109
