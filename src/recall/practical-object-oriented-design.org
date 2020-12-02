@@ -671,3 +671,86 @@
   you can still write interpreter or compiler.
 
 ** 5.4 Summary 103
+
+* 6 Acquiring Behavior through Inheritance 105
+** 6.1 Understanding Classical Inheritance 105
+** 6.2 Recognizing Where to Use Inheritance 106
+*** 6.2.1 Starting with a Concrete Class 107
+*** 6.2.2 Embedding Multiple Types 109
+*** 6.2.3 Finding the Embedded Types 111
+*** 6.2.4 Choosing Inheritance 112
+*** 6.2.5 Drawing Inheritance Relationships 114
+** 6.3 Misapplying Inheritance 114
+** 6.4 Finding the Abstraction 116
+*** 6.4.1 Creating an Abstract Superclass 117
+*** 6.4.2 Promoting Abstract Behavior 120
+*** 6.4.3 Separating Abstract from Concrete 123
+*** 6.4.4 Using the Template Method Pattern 125
+*** 6.4.5 Implementing Every Template Method 127
+** 6.5 Managing Coupling between Superclasses and Subclasses 129
+*** 6.5.1 Understanding Coupling 129
+*** 6.5.2 Decoupling Subclasses Using Hook Messages 134
+** 6.6 Summary 139
+
+* 7 Sharing Role Behavior with Modules 141
+** 7.1 Understanding Roles 142
+*** 7.1.1 Finding Roles 142
+*** 7.1.2 Organizing Responsibilities 143
+*** 7.1.3 Removing Unnecessary Dependencies 146
+*** 7.1.4 Writing the Concrete Code 147
+*** 7.1.5 Extracting the Abstraction 150
+*** 7.1.6 Looking Up Methods 153
+*** 7.1.7 Inheriting Role Behavior 157
+** 7.2 Writing Inheritable Code 158
+*** 7.2.1 Recognize the Antipatterns 158
+*** 7.2.2 Insist on the Abstraction 158
+*** 7.2.3 Honor the Contract 159
+*** 7.2.4 Use the Template Method Pattern 160
+*** 7.2.5 Preemptively Decouple Classes 160
+*** 7.2.6 Create Shallow Hierarchies 160
+** 7.3 Summary 161
+
+* 8 Combining Objects with Composition 163
+** 8.1 Composing a Bicycle of Parts 163
+*** 8.1.1 Updating the Bicycle Class 164
+*** 8.1.2 Creating a Parts Hierarchy 165
+** 8.2 Composing the Parts Object 168
+*** 8.2.1 Creating a Part 168
+*** 8.2.2 Making the Parts Object More Like an Array 172
+** 8.3 Manufacturing Parts 176
+*** 8.3.1 Creating the PartsFactory 177
+*** 8.3.2 Leveraging the PartsFactory 179
+** 8.4 The Composed Bicycle 181
+** 8.5 Deciding between Inheritance and Composition 185
+*** 8.5.1 Accepting the Consequences of Inheritance 186
+*** 8.5.2 Accepting the Consequences of Composition 188
+*** 8.5.3 Choosing Relationships 189
+** 8.6 Summary 191
+
+* 9 Designing Cost-Effective Tests 193
+** 9.1 Intentional Testing 194
+*** 9.1.1 Knowing Your Intentions 194
+*** 9.1.2 Knowing What to Test 196
+*** 9.1.3 Knowing When to Test 199
+*** 9.1.4 Knowing How to Test 200
+** 9.2 Testing Incoming Messages 202
+*** 9.2.1 Deleting Unused Interfaces 204
+*** 9.2.2 Proving the Public Interface 204
+*** 9.2.3 Isolating the Object under Test 206
+*** 9.2.4 Injecting Dependencies Using Classes 208
+*** 9.2.5 Injecting Dependencies as Roles 210
+** 9.3 Testing Private Methods 215
+*** 9.3.1 Ignoring Private Methods during Tests 216
+*** 9.3.2 Removing Private Methods from the Class under Test 216
+*** 9.3.3 Choosing to Test a Private Method 216
+** 9.4 Testing Outgoing Messages 217
+*** 9.4.1 Ignoring Query Messages 217
+*** 9.4.2 Proving Command Messages 218
+** 9.5 Testing Duck Types 221
+*** 9.5.1 Testing Roles 221
+*** 9.5.2 Using Role Tests to Validate Doubles 227
+** 9.6 Testing Inherited Code 233
+*** 9.6.1 Specifying the Inherited Interface 233
+*** 9.6.2 Specifying Subclass Responsibilities 236
+*** 9.6.3 Testing Unique Behavior 240
+** 9.7 Summary 244
