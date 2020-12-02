@@ -673,6 +673,11 @@
 ** 5.4 Summary 103
 
 * 6 Acquiring Behavior through Inheritance 105
+
+- Can we can do this in the "record type + closure" style of OOP?
+
+  TODO
+
 ** 6.1 Understanding Classical Inheritance 105
 ** 6.2 Recognizing Where to Use Inheritance 106
 *** 6.2.1 Starting with a Concrete Class 107
@@ -693,6 +698,11 @@
 ** 6.6 Summary 139
 
 * 7 Sharing Role Behavior with Modules 141
+
+- Can we can do this in the "record type + closure" style of OOP?
+
+  TODO
+
 ** 7.1 Understanding Roles 142
 *** 7.1.1 Finding Roles 142
 *** 7.1.2 Organizing Responsibilities 143
