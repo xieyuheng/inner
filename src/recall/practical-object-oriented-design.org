@@ -831,9 +831,35 @@
 
 - How to minimize the costs of creating a hierarchy?
 
-  Creating a hierarchy has costs; 
-  the best way to minimize these costs  is to maximize your chance of getting the abstraction right
+  Creating a hierarchy has costs;
+  the best way to minimize these costs  is to
+  maximize your chance of getting the abstraction right
   before allowing subclasses to depend on it.
+
+  One subclass is not good moment to create a hierarchy,
+  Two or three subclasses are better.
+
+- How should we choose between duplication and abstraction?
+
+  To make a choose, we need to be clear about our aim.
+
+  The aim is to reduce costs, thus we need
+  to identify the cost in each decision.
+
+  Your choice about whether to wait or to proceed hinges on
+  how soon you expect a third case to appear versus
+  how much you expect the duplication to cost.
+
+  If a third case is imminent,
+  it may be best to duplicate the code
+  and wait for better information.
+
+  However, if the duplicated code would need to change every day,
+  it may be cheaper to go ahead and create the hierarchy.
+
+  You should wait, if you can,
+  but don't fear to move forward
+  based on two concrete cases if this seems best.
 
 *** 6.4.2 Promoting Abstract Behavior 120
 
