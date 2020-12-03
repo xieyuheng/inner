@@ -801,7 +801,9 @@
   - Formal concept analysis -- https://en.wikipedia.org/wiki/Formal_concept_analysis
 
 ** 6.2 Recognizing Where to Use Inheritance 106
+
 *** 6.2.1 Starting with a Concrete Class 107
+
 *** 6.2.2 Embedding Multiple Types 109
 
 - What is an antipattern?
@@ -811,18 +813,42 @@
   there is a well-known alternative.
 
 *** 6.2.3 Finding the Embedded Types 111
+
 *** 6.2.4 Choosing Inheritance 112
+
 *** 6.2.5 Drawing Inheritance Relationships 114
+
 ** 6.3 Misapplying Inheritance 114
+
 ** 6.4 Finding the Abstraction 116
+
+- What is subclasse?
+
+  Subclasses are specializations of their superclasses.
+  A subclasse should be everything a superclass is, plus more.
+
 *** 6.4.1 Creating an Abstract Superclass 117
+
+- How to minimize the costs of creating a hierarchy?
+
+  Creating a hierarchy has costs; 
+  the best way to minimize these costs  is to maximize your chance of getting the abstraction right
+  before allowing subclasses to depend on it.
+
 *** 6.4.2 Promoting Abstract Behavior 120
+
 *** 6.4.3 Separating Abstract from Concrete 123
+
 *** 6.4.4 Using the Template Method Pattern 125
+
 *** 6.4.5 Implementing Every Template Method 127
+
 ** 6.5 Managing Coupling between Superclasses and Subclasses 129
+
 *** 6.5.1 Understanding Coupling 129
+
 *** 6.5.2 Decoupling Subclasses Using Hook Messages 134
+
 ** 6.6 Summary 139
 
 * 7 Sharing Role Behavior with Modules 141
