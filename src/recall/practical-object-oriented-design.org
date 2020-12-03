@@ -12,6 +12,28 @@
 
 * 1 Object-Oriented Design 1
 
+- What is the world like?
+
+  The world is procedural.
+
+- What is the world also like?
+
+  The world is also object-oriented.
+
+- What is the difference between object-oriented programming and actor model?
+
+  OOP views the world as a series of spontaneous interactions between objects.
+
+  The difference is on "spontaneous interactions".
+
+- Why some OOD failed?
+
+  They are failures of perspective.
+
+  Object-oriented design requires that you shift from
+  thinking of the world as a collection of predefined procedures
+  to modeling the world as a series of messages that pass between objects.
+
 ** 1.1 In Praise of Design 2
 
 *** 1.1.1 The Problem Design Solves 2
@@ -701,6 +723,13 @@
 ** 6.2 Recognizing Where to Use Inheritance 106
 *** 6.2.1 Starting with a Concrete Class 107
 *** 6.2.2 Embedding Multiple Types 109
+
+- What is an antipattern?
+
+  An antipattern is a common pattern that appears to be beneficial
+  but is actually detrimental, and for which
+  there is a well-known alternative.
+
 *** 6.2.3 Finding the Embedded Types 111
 *** 6.2.4 Choosing Inheritance 112
 *** 6.2.5 Drawing Inheritance Relationships 114
