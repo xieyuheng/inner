@@ -38,7 +38,51 @@
 
 *** 1.1.1 The Problem Design Solves 2
 
+- What problem does design solve?
+
+  Design makes software easy to change.
+
+- Why software need to change?
+
+  It always does.
+
+  The customers didn't know what they wanted,
+  they didn't say what they meant.
+
+  You didn't understand their needs,
+  you've learned how to do something better.
+
+  The application was a huge success, now everyone wants more.
+
+  Change is unavoidable.
+
 *** 1.1.2 Why Change Is Hard 3
+
+- Why change is hard?
+
+  To answer this question, we must explain the model of object-oriented application first.
+
+  Object-oriented applications are made up of parts that interact
+  to produce the behavior of the whole. The parts are objects;
+  interactions are embodied in the messages that pass between them.
+
+  Getting the right message to the correct target object
+  requires that the sender of the message know things about the receiver.
+
+  This knowledge creates dependencies between the two,
+  and these dependencies stand in the way of change.
+
+- Why these dependencies stand in the way of change?
+
+  Because changing one require you to change others.
+
+  Also because highly dependent parts can not be reused in different contexts.
+
+- When can poorly designed application survive?
+
+  When the application is very small.
+
+  As long as it grows, poor design kill the application
 
 *** 1.1.3 A Practical Definition of Design 3
 
