@@ -863,6 +863,19 @@
 
 *** 6.4.2 Promoting Abstract Behavior 120
 
+- What refactoring strategy should we use here?
+
+  TODO
+
+- What kinds of costs should be included in every decision you make?
+
+  Every decision you make includes two costs:
+  - one to implement it
+  - and another to change it when you discover that you were wrong.
+
+  Taking both costs into account when choosing among alternatives
+  motivates you to make conservative choices that minimize the cost of change.
+
 *** 6.4.3 Separating Abstract from Concrete 123
 
 *** 6.4.4 Using the Template Method Pattern 125
