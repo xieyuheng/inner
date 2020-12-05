@@ -888,6 +888,14 @@
 
 *** 6.5.2 Decoupling Subclasses Using Hook Messages 134
 
+- What is the possible couplings in the relation between superclass and subclass?
+
+  - Subclass depends on subclass's constructor.
+    - We can use post constructor hook to remove this in dynamic language.
+    - I do not know how to remove this in static language.
+  - When overriding a method, subclass can call superclass's method.
+    - We can try to minimize this.
+
 ** 6.6 Summary 139
 
 * 7 Sharing Role Behavior with Modules 141
