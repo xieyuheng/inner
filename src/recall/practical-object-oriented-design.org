@@ -898,6 +898,12 @@
 
 ** 6.6 Summary 139
 
+- What problem does inheritance solve?
+
+  Inheritance solves the problem of related types
+  that share a great deal of common behavior
+  but differ across some dimension.
+
 * 7 Sharing Role Behavior with Modules 141
 
 - Can we can do this in the "record type + closure" style of OOP?
