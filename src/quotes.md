@@ -3,6 +3,11 @@
 - Vague, but exciting.
   - Mike Sendall
 
+### Design
+
+- The goal of design is for you to understand the choices you are making.
+  - Sandi Marts, Defining Object-Oriented Design
+
 ### Lie
 
 - A lie is as simple as the hardest art.
