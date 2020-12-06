@@ -1015,6 +1015,14 @@
 
 *** 8.1.2 Creating a Parts Hierarchy 165
 
+- What is the relation between Bicycle hierarchy and Parts hierarchy?
+
+  The structure is the same,
+  changing Bicycle hierarchy to Parts hierarchy,
+  is like pushing sum type into property,
+  is like the distributive law of elementary algebra.
+  x * (y + z) = (x * y) + (x * z)
+
 ** 8.2 Composing the Parts Object 168
 
 *** 8.2.1 Creating a Part 168
