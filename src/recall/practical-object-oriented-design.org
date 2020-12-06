@@ -1005,6 +1005,10 @@
 
 * 8 Combining Objects with Composition 163
 
+- In composition, what is the relation between larger object and its parts?
+
+  In composition, the larger object is connected to its parts via a has-a relationship.
+
 ** 8.1 Composing a Bicycle of Parts 163
 
 *** 8.1.1 Updating the Bicycle Class 164
