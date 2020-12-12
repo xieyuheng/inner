@@ -1,0 +1,13 @@
+the cost of composable little functions
+
+* value-equal v.s. readback exp-alpha-equal
+
+x y value-equal
+
+x readback y readback exp-alpha-equal
+
+* exp-alpha-equal v.s. pretty-print string-equal
+
+x y exp-alpha-equal
+
+x pretty-print y pretty-print string-equal

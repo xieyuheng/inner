@@ -1,11 +1,11 @@
-* concat substring
+concat substring
 
-** type
+* type
 
 substring : (String, Number, Number) -> String
 concat : (String, String) -> String
 
-** prefix
+* prefix
 
 substring concat left right start end
 
@@ -13,7 +13,7 @@ concat
   substring left start end
   substring right pair-apply [ sub swap length left ] start end
 
-** postfix
+* postfix
 
 left right concat start end substring
 
