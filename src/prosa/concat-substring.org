@@ -1,0 +1,22 @@
+* concat substring
+
+** type
+
+substring : (String, Number, Number) -> String
+concat : (String, String) -> String
+
+** prefix
+
+substring concat left right start end
+
+concat
+  substring left start end
+  substring right pair-apply [ sub swap length left ] start end
+
+** postfix
+
+left right concat start end substring
+
+left start end substring
+right start end [ left length swap sub ] pair-apply substring
+concat
