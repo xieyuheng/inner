@@ -1,0 +1,47 @@
+MVC -- Model View Controller
+
+* route
+
+- What does a route do?
+
+  A route maps a request to a controller action.
+
+- How are routes implemented?
+
+  Routes are implemented by declarative rules.
+
+* controller
+
+- What does a controller do?
+
+  A controller action performs the necessary work to handle the request,
+  and prepares any data for the view.
+
+- How are controllers implemented?
+
+  Controllers are implemented as classes, and their public methods are actions.
+
+- How does a controller do its job?
+
+  A controller's job is to prepare data for view.
+  To prepare data for view, controller can use model.
+
+* view
+
+- What does a view do?
+
+  A view displays data in a desired format.
+
+- How are views implemented?
+
+  Views are templates, usually written in HTML.
+
+- How does view get data?
+
+  Controller instance variables can be accessed by the view.
+
+* model
+
+- What does a model do?
+
+  A model provide interface to the database.
