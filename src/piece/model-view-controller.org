@@ -1,47 +1,83 @@
 MVC -- Model View Controller
 
-* route
+* ruby on rails
 
-- What does a route do?
+- https://guides.rubyonrails.org/getting_started.html
+- https://rubyonrails.org/everything-you-need
+- https://rubyonrails.org/doctrine
 
-  A route maps a request to a controller action.
+** route
 
-- How are routes implemented?
+ - What does a route do?
 
-  Routes are implemented by declarative rules.
+   A route maps a request to a controller action.
 
-* controller
+ - How are routes implemented?
 
-- What does a controller do?
+   Routes are implemented by declarative rules.
 
-  A controller action performs the necessary work to handle the request,
-  and prepares any data for the view.
+** controller
 
-- How are controllers implemented?
+ - What does a controller do?
 
-  Controllers are implemented as classes, and their public methods are actions.
+   A controller action performs the necessary work to handle the request,
+   and prepares any data for the view.
 
-- How does a controller do its job?
+ - How are controllers implemented?
 
-  A controller's job is to prepare data for view.
-  To prepare data for view, controller can use model.
+   Controllers are implemented as classes, and their public methods are actions.
 
-* view
+ - How does a controller do its job?
 
-- What does a view do?
+   A controller's job is to prepare data for view.
+   To prepare data for view, controller can use model.
 
-  A view displays data in a desired format.
+** view
 
-- How are views implemented?
+ - What does a view do?
 
-  Views are templates, usually written in HTML.
+   A view displays data in a desired format.
 
-- How does view get data?
+ - How are views implemented?
 
-  Controller instance variables can be accessed by the view.
+   Views are templates, usually written in HTML.
 
-* model
+ - How does view get data?
 
-- What does a model do?
+   Controller instance variables can be accessed by the view.
 
-  A model provide interface to the database.
+** model
+
+ - What does a model do?
+
+   A model provide interface to the database.
+
+* wikipedia
+
+- https://en.wikipedia.org/wiki/Model-view-controller
+
+- Model
+
+  The central component of the pattern.
+  It is the application's dynamic data structure,
+  independent of the user interface.
+
+  It directly manages the data, logic and rules of the application.
+
+- View
+
+  Any representation of information such as a chart, diagram or table.
+  Multiple views of the same information are possible,
+  such as a bar chart for management and a tabular view for accountants.
+
+- Controller
+
+  Accepts input and converts it to commands for the model or view.
+
+- Interactions
+
+  - The model is responsible for managing the data of the application.
+    It receives user input from the controller.
+  - The view means presentation of the model in a particular format.
+  - The controller responds to the user input and performs interactions on the data model objects.
+    The controller receives the input, optionally validates it and then passes the input to the model.
