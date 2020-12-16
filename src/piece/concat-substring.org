@@ -20,3 +20,15 @@ left right concat start end substring
 left start end substring
 right start end [ left length swap sub ] pair-apply substring
 concat
+
+// with local variable
+
+left start end substring > left-substring
+right start end [ left length swap sub ] pair-apply substring > right-substring
+left-substring right-substring concat
+
+// with formater
+
+left start end substring
+right start end [ left length swap sub ] pair-apply substring
+- - concat
