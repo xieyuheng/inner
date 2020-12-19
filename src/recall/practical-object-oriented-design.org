@@ -1155,6 +1155,11 @@
 
 *** 9.1.3 Knowing When to Test 199
 
+- When to test?
+
+  You should write tests first,
+  whenever it makes sense to do so.
+
 *** 9.1.4 Knowing How to Test 200
 
 ** 9.2 Testing Incoming Messages 202
