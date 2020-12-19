@@ -1144,6 +1144,15 @@
   - Outgoing command messages should be tested to ensure they get sent.
   - Outgoing query messages should not be tested.
 
+- How should we test a language implementation, specially its type system?
+
+  We should write expected passing and failing type checkings.
+  But whether to depend on concrete syntax, there are costs and tradeoffs.
+
+  - In our design, we choose to depend on concrete syntax to make it easier to write test cases.
+    But the parser is not test independently,
+    and everytime we change the syntax, we have to change type syntax tests.
+
 *** 9.1.3 Knowing When to Test 199
 
 *** 9.1.4 Knowing How to Test 200
