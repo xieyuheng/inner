@@ -1051,6 +1051,18 @@
 
 ** 9.1 Intentional Testing 194
 
+- What are the three skills for the art of writing changeable code?
+
+  An understanding of object-oriented design,
+  good refactoring skills,
+  and the ability to write efficient tests
+
+  form a three-legged stool upon which changeable code rests.
+
+  Well-designed code is easy to change,
+  refactoring is how you change from one design to the next,
+  and tests free you to refactor with impunity.
+
 *** 9.1.1 Knowing Your Intentions 194
 
 *** 9.1.2 Knowing What to Test 196
