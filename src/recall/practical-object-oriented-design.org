@@ -1109,6 +1109,41 @@
   The more the test gets coupled to that class, the more entangled the two become and
   the more vulnerable the test is to unnecessarily being forced to change.
 
+- What to test?
+
+  Not only should you limit couplings, but the few you allow should be to stable things.
+  The most stable thing about any object is its public interface;
+
+  it logically follows that the tests you write
+  should be for messages that are defined in public interfaces.
+
+  The most costly and least useful tests are those that
+  blast holes in an object's containment walls
+  by coupling to unstable internal details.
+
+  These overeager tests prove nothing about the overall correctness of an application
+  but nonetheless raise costs because they break with every refactoring of underlying class.
+
+- How to test side effects (outgoing command messages)?
+
+  However, many outgoing messages do have side effects
+  - a file gets written,
+  - a database record is saved,
+  - an action is taken by an observer
+  upon which your application depends.
+
+  These messages are commands and it is the responsibility
+  of the sending object to prove that they are properly sent.
+
+  Proving that a message gets sent is a test of behavior, not state,
+  and involves assertions about the number of times,
+  and with what arguments, the message is sent.
+
+  Here, then, are the guidelines for what to test:
+  - Incoming messages should be tested for the state they return.
+  - Outgoing command messages should be tested to ensure they get sent.
+  - Outgoing query messages should not be tested.
+
 *** 9.1.3 Knowing When to Test 199
 
 *** 9.1.4 Knowing How to Test 200
