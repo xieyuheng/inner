@@ -1065,6 +1065,18 @@
 
 *** 9.1.1 Knowing Your Intentions 194
 
+- What are the potential benefits of testing?
+
+  - Finding Bugs
+  - Supplying Documentation
+  - Deferring Design Decisions
+  - Supporting Abstractions
+  - Exposing Design Flaws
+
+- Why we want to understand the potential benefits of testing?
+
+  Because understanding of these benefits will increase your motivation to achieve them.
+
 *** 9.1.2 Knowing What to Test 196
 
 *** 9.1.3 Knowing When to Test 199
