@@ -1101,6 +1101,14 @@
 
 *** 9.1.2 Knowing What to Test 196
 
+- What are the the design principles of testing?
+
+  The design principles you are enforcing in your application apply to your tests as well.
+  Each test is merely another application object that needs to use an existing class.
+
+  The more the test gets coupled to that class, the more entangled the two become and
+  the more vulnerable the test is to unnecessarily being forced to change.
+
 *** 9.1.3 Knowing When to Test 199
 
 *** 9.1.4 Knowing How to Test 200
