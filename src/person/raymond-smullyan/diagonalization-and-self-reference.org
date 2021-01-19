@@ -12,8 +12,7 @@
 
 Use jojo to understand the examples here.
 
-Just that, in here we use Polish notation,
-instead of Forth's reversed Polish notation,
+We use Polish notation instead of Forth's reversed Polish notation,
 thus execution goes from right to left.
 
 D (s) := subst [x] [s] [s];
