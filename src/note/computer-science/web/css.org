@@ -2,6 +2,8 @@
 
 * BEM: <block>__<element>--<modifier>
 
+Just like: object.property = value
+
 - http://getbem.com/naming
 - https://seesparkbox.com/foundry/bem_by_example
 - https://seesparkbox.com/foundry/bem_css_organization
