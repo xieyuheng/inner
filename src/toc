@@ -472,6 +472,7 @@ link:person/tietze/tietze.org
 link:person/tony-hoare/tony-hoare.org
 link:person/van-kampen/van-kampen.org
 link:person/veblen/veblen.org
+link:person/vladimir-voevodsky/an-interview.md
 link:person/vladimir-voevodsky/computer-science-and-homotopy-theory.md
 link:person/vladimir-voevodsky/how-i-became-interested-in-foundations-of-mathematics.md
 link:person/vladimir-voevodsky/lecture-about-univalent-foundations-at-the-institut-henri-poincaré.md
@@ -505,7 +506,6 @@ link:prosa/domain-driven-design.md
 link:prosa/dyscalculia-and-semiotic.md
 link:prosa/file-finder.md
 link:prosa/hypermedia.md
-link:prosa/implementation-patterns.md
 link:prosa/implementing-pattern-matching.md
 link:prosa/implementing-structural-typing-again.md
 link:prosa/interpreter-story.md
@@ -526,6 +526,7 @@ link:prosa/type-bound.md
 link:prosa/uncoupling.md
 link:prosa/unified-modeling-language.md
 link:prosa/use-naive-set-theory-to-intuit-type-system.md
+link:recall/implementation-patterns.org
 link:recall/practical-object-oriented-design.org
 link:recall/refactoring.org
 link:recall/test-driven-development-by-example.org
