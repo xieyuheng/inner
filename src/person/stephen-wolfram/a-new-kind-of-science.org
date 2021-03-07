@@ -1,6 +1,8 @@
 #+title: a new kind of science
 
-* note
+* The Foundations for a New Kind of Science
+
+** An Outline of Basic Ideas
 
 - program: setup rules for change
 
@@ -17,3 +19,6 @@
   to be able to see that it will achieve the purposes we want.
 
   when human direct change, we often want simple predictable result.
+
+- perception:
+  our own processes of perception and analysis can be thought of as computations.
