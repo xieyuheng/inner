@@ -23,8 +23,6 @@
 - perception:
   our own processes of perception and analysis can be thought of as computations.
 
-** Relations to Other Areas
-
 * 2 The Crucial Experiment
 * 3 The World of Simple Programs
 * 4 Systems Based on Numbers
