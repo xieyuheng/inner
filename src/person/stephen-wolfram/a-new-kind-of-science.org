@@ -2,14 +2,18 @@
 
 * note
 
-program: setup rules for change
-computation: change directed rules
+- program: setup rules for change
 
-nature (the dao):
-nature is a simple programs produce great complexity
+- computation: change directed rules (behavior)
 
-program written by human:
-and the reason that such complexity is not usually seen in human artifacts
-is just that in building these we tend in effect to use programs
-that are specially chosen to give only behavior simple enough for us
-to be able to see that it will achieve the purposes we want.
+- nature (the dao):
+  nature is a simple programs produce great complexity
+
+- program written by human:
+
+  and the reason that such complexity is not usually seen in human artifacts
+  is just that in building these we tend in effect to use programs
+  that are specially chosen to give only behavior simple enough for us
+  to be able to see that it will achieve the purposes we want.
+
+  when human direct change, we often want simple predictable result.
