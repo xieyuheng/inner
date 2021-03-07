@@ -1,0 +1,15 @@
+#+title: a new kind of science
+
+* note
+
+program: setup rules for change
+computation: change directed rules
+
+nature (the dao):
+nature is a simple programs produce great complexity
+
+program written by human:
+and the reason that such complexity is not usually seen in human artifacts
+is just that in building these we tend in effect to use programs
+that are specially chosen to give only behavior simple enough for us
+to be able to see that it will achieve the purposes we want.
