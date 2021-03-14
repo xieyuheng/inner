@@ -38,7 +38,7 @@
 
 - the "tag systems" will occur in some implementation of breadth-first search (by a queue).
 
-- in "register machines" the target of experiment is program of register machines,
+- in "register machines" the target of experiment is program of a specific register machines,
   while in cellular-automata the target of experiment is machine and the program is trivial (one dot).
 
 * 4 Systems Based on Numbers
