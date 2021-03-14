@@ -25,6 +25,9 @@
 
 * 2 The Crucial Experiment
 * 3 The World of Simple Programs
+
+- the "substitution systems" of this chapter is generative grammar.
+
 * 4 Systems Based on Numbers
 * 5 Two Dimensions and Beyond
 * 6 Starting from Randomness
