@@ -235,6 +235,7 @@ of building expressions with the new type.
 其次是 Value。
 "An expression with a constructor at the top is called a value."
 现在我们有：Normal <: Value <: Exp
+- Normal <: Value 是错误的
 然后我们可以定义：Neutral = Exp - Value
 或者说：Neutral = Non Value
 并且有：Neutral + Value = Exp
