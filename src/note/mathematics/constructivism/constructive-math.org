@@ -101,7 +101,7 @@
 
 *** 結構化的無窮小分析
 
-    - 比如對實屬這個類型的定義
+    - 比如對實数這個類型的定義
       (-> x : (<number> -> <fraction>)
       (m n : <number> ->
       (n x m x sub abs
