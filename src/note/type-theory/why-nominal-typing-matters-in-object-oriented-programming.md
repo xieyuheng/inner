@@ -10,8 +10,8 @@
 
 From the presented examples, it is easy to see
 that a contract is made of two parts: requirements
-upon the caller (“the client”) made by the class (“the
-provider”) and promises made by the class to the
+upon the caller ("the client") made by the class ("the
+provider") and promises made by the class to the
 caller. If the caller fulfills the requirements, then the
 class promises to deliver some well-defined service.
 Requirements may be enforced by throwing checked
