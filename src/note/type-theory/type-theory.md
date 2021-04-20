@@ -3,7 +3,7 @@
 ## The subject of type theory
 
 Type theory appear in every aspects of knowledge,
-when it appears, it always serves as a bridge between two other knowledge domains.
+when it appears, it always serves as a bridge between two knowledge domains.
 
 ## The methodology of type theory
 
