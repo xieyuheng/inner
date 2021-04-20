@@ -231,10 +231,12 @@ of building expressions with the new type.
 首先定义的是 Normal。
 "The normal form of an expression is the most direct way of writing it."
 与实现中不同，定义用的不是 "带有 Type 的 Value"。
+- 而且在实现中用到了 NotYetValue，它其实是 Neutral，但是实现中它被嵌入在了 Value 里。
 
 其次是 Value。
 "An expression with a constructor at the top is called a value."
 现在我们有：Normal <: Value <: Exp
+- Normal <: Value 是错误的
 然后我们可以定义：Neutral = Exp - Value
 或者说：Neutral = Non Value
 并且有：Neutral + Value = Exp
