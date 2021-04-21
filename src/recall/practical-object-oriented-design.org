@@ -347,7 +347,7 @@
 
 *** 3.2.3 Remove Argument-Order Dependencies
 
-- What are them methods we can use to remove argument-order dependencies?
+- What are the methods we can use to remove argument-order dependencies?
 
   - use keyword arguments
   - explicitly define defaults
@@ -359,7 +359,7 @@
 
   - It remove dependency on arguments order,
     but introduce dependency on argument names,
-    if keyword arguments API are published,
+    once the keyword arguments API are published,
     one can not change the names.
 
 - Beside removing dependency on arguments order, what else is good about using keyword arguments?
