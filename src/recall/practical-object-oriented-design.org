@@ -562,7 +562,8 @@
   sequence diagrams are a vehicle for exposing, experimenting with,
   and ultimately defining those interfaces.
 
-- If we want to invert the design conversation, to emphasis messages instead of classes, what should we do?
+- If we want to invert the design conversation,
+  to emphasis messages instead of classes, what should we do?
 
   Draw sequence diagram!
 
@@ -907,7 +908,7 @@
 
 * 7 Sharing Role Behavior with Modules 141
 
-- Can we can do this in the "record type + closure" style of OOP?
+- Can we do this in the "record type + closure" style of OOP?
 
   Yes just like inheritance.
 
