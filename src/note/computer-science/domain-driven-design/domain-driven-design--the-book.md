@@ -9,6 +9,8 @@ by Eric Evans
 
 ## Chapter 2: Communication and the Use of Language
 
+- Human language is magical.
+
 ## Chapter 3: Binding Model and Implementation
 
 - The following seems like
@@ -40,3 +42,28 @@ without explaining its actions.
 
 - We should not only implement, but also
   make the implementation explains its actions.
+
+The imperative to relate the domain model closely to the design
+adds one more criterion for choosing the more useful models out of
+the universe of possible models. It calls for hard thinking and usually
+takes multiple iterations and a lot of refactoring, but it makes the
+model relevant.
+
+Therefore:
+
+Design a portion of the software system to reflect the domain
+model in a very literal way, so that mapping is obvious. Revisit the
+model and modify it to be implemented more naturally in software,
+even as you seek to make it reflect deeper insight into the domain.
+Demand a single model that serves both purposes well, in addition
+to supporting a robust UBIQUITOUS LANGUAGE.
+
+Draw from the model the terminology used in the design and
+the basic assignment of responsibilities. The code becomes an ex-
+pression of the model, so a change to the code may be a change to
+the model. Its effect must ripple through the rest of the project’s ac-
+tivities accordingly.
+
+To tie the implementation slavishly to a model usually requires
+software development tools and languages that support a modeling
+paradigm, such as object-oriented programming.
