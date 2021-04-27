@@ -27,3 +27,16 @@ Later, a design is created that may have only a loose correspondence
 to the analysis model. The analysis model is not created with design
 issues in mind, and therefore it is likely to be quite impractical for
 those needs.
+
+... But the second time around, if the developers per-
+ceive analysis to be a separate process, modeling happens in a less
+disciplined way. If the managers perceive analysis to be a separate
+process, the development team may not be given adequate access to
+domain experts.
+
+Whatever the cause, software that lacks a concept at the founda-
+tion of its design is, at best, a mechanism that does useful things
+without explaining its actions.
+
+- We should not only implement, but also
+  make the implementation explains its actions.
