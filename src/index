@@ -199,6 +199,8 @@ link:note/computer-science/database/mysql-note.md
 link:note/computer-science/database/postgresql-note.md
 link:note/computer-science/database/relational-algebra.md
 link:note/computer-science/database/seven-databases.md
+link:note/computer-science/domain-driven-design/domain-driven-design--talks.md
+link:note/computer-science/domain-driven-design/domain-driven-design--the-book.md
 link:note/computer-science/graph-theory/graph-grammar.org
 link:note/computer-science/information-theory/entropy.org
 link:note/computer-science/machine-learning/machine-learning.org
@@ -532,7 +534,6 @@ link:prosa/cause-and-effect.md
 link:prosa/core-concepts-of-computer-science.md
 link:prosa/coupling-and-cohesive.md
 link:prosa/design-syntax-for-familiarity.md
-link:prosa/domain-driven-design.md
 link:prosa/dyscalculia-and-semiotic.md
 link:prosa/file-finder.md
 link:prosa/hypermedia.md
