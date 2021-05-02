@@ -1,8 +1,0 @@
-{
-  "name": "inner-universe",
-  "version": "0.1.0",
-  "dependencies": {
-    "plaintext": "^0.2.5",
-    "sirv-cli": "^1.0.11"
-  }
-}

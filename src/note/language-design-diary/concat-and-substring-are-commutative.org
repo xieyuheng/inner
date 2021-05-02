@@ -1,4 +1,4 @@
-concat substring
+concat and substring are commutative
 
 * type
 
