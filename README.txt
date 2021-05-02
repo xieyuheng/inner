@@ -22,4 +22,4 @@ and its applications in Geometric modeling.
 I am also specially interested in the formalization of Category theory,
 and its applications in the design of programming language's type systems.
 
-- Which relates back to my language designs.
+- Which link back to my language designs.
