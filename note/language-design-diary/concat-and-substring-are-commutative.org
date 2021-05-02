@@ -1,4 +1,4 @@
-concat and substring are commutative
+#+title: concat and substring are commutative
 
 * type
 
