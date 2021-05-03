@@ -28,4 +28,11 @@
 
     Are those design patterns clearly expressed in my OOD code?
 
+- What are the four parts of a design pattern?
+
+  1. The pattern name
+  2. The problem
+  3. The solution
+  4. The consequences
+
 * 2 A Case Study: Designing a Document Editor
