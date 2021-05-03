@@ -21,9 +21,9 @@
   - In this sense, the followings are all application domain-specific design pattern,
     where the application domain is programming language implementation.
 
-    - closure and lexical scope
-    - bidirectional type checking
-    - normalization by evaluation (NbE)
-    - elaboration during type checking
+    - closure (for lexical scope)
+    - bidirectional type checking (reading inference rule as type checking algorithm)
+    - normalization by evaluation (NbE) (partial evaluation)
+    - elaboration during type checking (clear separation of roles)
 
 * 2 A Case Study: Designing a Document Editor
