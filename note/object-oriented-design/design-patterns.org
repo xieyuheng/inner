@@ -133,10 +133,21 @@
 
 - What are the ways by which we can classify design patterns?
 
-  - Scope: Class, Object
+  - Scope:
+    - Class:
+      Deal with relationships between classes and their subclasses.
+      These relationships are established through inheritance.
+    - Object:
+      Maybe use dependency injection?
+
   - Purpose:
-    - Creational
-    - Structural: the composition of classes or objects.
-    - Behavioral: characterize the ways in which classes or objects interact and distribute responsibility.
+    - Creational:
+      In the scope of class creational patterns defer some part of object creation to subclasses,
+      in the scope of object creational patterns defer it to another object.
+    - Structural:
+      Deal with the composition of classes or objects.
+    - Behavioral:
+      Characterize the ways in which classes
+      or objects interact and distribute responsibility.
 
 * 2 A Case Study: Designing a Document Editor
