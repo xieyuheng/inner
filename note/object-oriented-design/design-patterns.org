@@ -11,4 +11,19 @@
   When they find a good solution, they use it again and again.
   Such experience is part of what makes them experts.
 
+- What is a design pattern?
+
+  Christopher Alexander says, "Each pattern describes a problem which occurs over and
+  over again in our environment, and then describes the core of the solution to that
+  problem, in such a way that you can use this solution a million times over, without ever
+  doing it the same way twice" [AIS+77, page x]
+
+  - In this sense, the followings are all application domain-specific design pattern,
+    where the application domain is programming language implementation.
+
+    - closure and lexical scope
+    - bidirectional type checking
+    - normalization by evaluation (NbE)
+    - elaboration during type checking
+
 * 2 A Case Study: Designing a Document Editor
