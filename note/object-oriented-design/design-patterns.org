@@ -61,4 +61,74 @@
   MVC is a high level design pattern, which contains
   Observer, Composite, and Strategy mid level design patterns.
 
+- What template should we use to describe design patterns?
+
+  - Pattern Name and Classification
+
+    The pattern's name conveys the essence of the pattern succinctly.
+    A good name is vital, because it will become part of your design vocabulary.
+
+  - Intent (problem)
+
+    A short statement that answers the following questions:
+    What does the design pattern do?
+    What is its rationale and intent?
+    What particular design issue or problem does it address?
+
+  - Also Known As
+
+    Other well-known names for the pattern, if any.
+
+  - Motivation (examples)
+
+    A scenario that illustrates a design problem and how the class
+    and object structures in the pattern solve the problem.
+
+  - Applicability (when to use)
+
+    What are the situations in which the design pattern can be applied?
+    What are examples of poor designs that the pattern can address?
+    How can you recognize these situations?
+
+  - Structure (class diagram and sequence diagram)
+
+    A graphical representation of the classes in the pattern
+    using a notation based on the Object Modeling Technique (OMT) [RBP+91].
+    We also use interaction diagrams [JCJO92, Boo94]
+    to illustrate sequences of requests and collaborations between objects.
+
+  - Participants
+
+    The classes and/or objects participating in the design pattern
+    and their responsibilities.
+
+  - Collaborations
+
+    How the participants collaborate to carry out their responsibilities.
+
+  - Consequences (trade-offs)
+
+    How does the pattern support its objectives?
+    What are the trade-offs and results of using the pattern?
+    What aspect of system structure does it let you vary independently?
+
+  - Implementation
+
+    What pitfalls, hints, or techniques should you be aware of
+    when implementing the pattern? Are there language-specific issues?
+
+  - Sample Code
+
+    Code fragments that illustrate how you might implement the pattern in C++ or Smalltalk.
+
+  - Known Uses (big examples)
+
+    Examples of the pattern found in real systems.
+    We include at least two examples from different domains.
+
+  - Related Patterns
+
+    What design patterns are closely related to this one?
+    What are the important differences? With which other patterns should this one be used?
+
 * 2 A Case Study: Designing a Document Editor
