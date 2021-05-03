@@ -161,7 +161,9 @@
 - How design patterns solve design problems?
 
   - Finding Appropriate Objects (roles, responsibilities)
-  - Determining Object Granularity (level of abstraction)
+  - Determining Object Granularity (level of abstractions)
+  - Specifying Object Interfaces (collaborations)
+  - Specifying Object Implementations
 
 - How to select a design pattern?
 
