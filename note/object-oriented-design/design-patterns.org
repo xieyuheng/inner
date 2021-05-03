@@ -35,4 +35,20 @@
   3. The solution
   4. The consequences
 
+- What is the "level of abstraction" of a design pattern?
+
+  Point of view affects one's interpretation of what is and isn't a pattern.
+  One person's pattern can be another person's primitive building block.
+
+  - low level:
+    such as linked lists, hash tables,
+    and Kent Beck's book "implementation patterns"
+
+  - high level:
+    domain-specific designs for an entire application or subsystem.
+
+  - mid level:
+    descriptions of communicating objects and classes that are
+    customized to solve a general design problem in a particular context.
+
 * 2 A Case Study: Designing a Document Editor
