@@ -150,4 +150,24 @@
       Characterize the ways in which classes
       or objects interact and distribute responsibility.
 
+- Why we want multiple ways of thinking about patterns?
+
+  Because having multiple ways of thinking about patterns
+  will deepen your insight into what they do, how they compare,
+  and when to apply them.
+
+  (Similar is true for a lot of other things.)
+
+- How design patterns solve design problems?
+
+  TODO
+
+- How to select a design pattern?
+
+  TODO
+
+- How to use a design pattern?
+
+  TODO
+
 * 2 A Case Study: Designing a Document Editor
