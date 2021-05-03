@@ -51,4 +51,11 @@
     descriptions of communicating objects and classes that are
     customized to solve a general design problem in a particular context.
 
+- What is a good example of design pattern?
+
+  The Model/View/Controller (MVC) triad of classes
+  is used to build user interfaces in Smalltalk-80.
+  Looking at the design patterns inside MVC
+  should help you see what we mean by the term "pattern."
+
 * 2 A Case Study: Designing a Document Editor
