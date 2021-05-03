@@ -160,7 +160,8 @@
 
 - How design patterns solve design problems?
 
-  TODO
+  - Finding Appropriate Objects (roles, responsibilities)
+  - Determining Object Granularity (level of abstraction)
 
 - How to select a design pattern?
 
