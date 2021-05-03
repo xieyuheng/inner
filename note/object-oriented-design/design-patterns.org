@@ -26,4 +26,6 @@
     - normalization by evaluation (NbE) (partial evaluation)
     - elaboration during type checking (clear separation of roles)
 
+    Are those design patterns clearly expressed in my OOD code?
+
 * 2 A Case Study: Designing a Document Editor
