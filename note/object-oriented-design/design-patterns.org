@@ -58,4 +58,7 @@
   Looking at the design patterns inside MVC
   should help you see what we mean by the term "pattern."
 
+  MVC is a high level design pattern, which contains
+  Observer, Composite, and Strategy mid level design patterns.
+
 * 2 A Case Study: Designing a Document Editor
