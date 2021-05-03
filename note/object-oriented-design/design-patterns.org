@@ -131,4 +131,9 @@
     What design patterns are closely related to this one?
     What are the important differences? With which other patterns should this one be used?
 
+- What are the ways by which we can classify design patterns?
+
+  - Scope: Class, Object
+  - Purpose: Creational, Structural, Behavioral
+
 * 2 A Case Study: Designing a Document Editor
