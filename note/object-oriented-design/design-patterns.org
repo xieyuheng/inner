@@ -195,10 +195,6 @@ TODO I do not know yet.
 
 ** How to select a design pattern?
 
-TODO
-
-** How to use a design pattern?
-
-TODO
+Match the pattern to your problem.
 
 * 2 A Case Study: Designing a Document Editor
