@@ -10,3 +10,5 @@ from the corresponding constructor
 as well as the recursive elimination of the smaller value.
 
 Eliminators expose the information in values.
+
+- From the above principle, can we generate elim rules from intro rules?
