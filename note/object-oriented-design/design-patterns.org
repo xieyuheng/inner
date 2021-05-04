@@ -174,6 +174,12 @@
   We should only use inheritance to describes when
   an object can be used in place of another.
 
+  When inheritance is used carefully (some will say properly), all classes derived from
+  an abstract class will share its interface. This implies that a subclass merely adds or
+  overrides operations and does not hide operations of the parent class. All subclasses
+  can then respond to the requests in the interface of this abstract class, making them all
+  subtypes of the abstract class.
+
 - How to select a design pattern?
 
   TODO
