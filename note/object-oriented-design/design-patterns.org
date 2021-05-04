@@ -198,3 +198,23 @@ TODO I do not know yet.
 Match the pattern to your problem.
 
 * 2 A Case Study: Designing a Document Editor
+
+** 2.2 Document Structure
+
+** 2.3 Formatting
+
+** 2.4 Embellishing the User Interface
+
+** 2.5 Supporting Multiple Look-and-Feel Standards
+
+** 2.6 Supporting Multiple Window Systems
+
+** 2.7 User Operations
+
+** 2.8 Spelling Checking and Hyphenation
+
+* 3 Creational Patterns
+
+* 4 Structural Patterns
+
+* 5 Behavioral Patterns
