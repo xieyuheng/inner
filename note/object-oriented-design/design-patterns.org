@@ -189,6 +189,10 @@ Program to an interface, not an implementation.
 
 TODO I do not know yet.
 
+** Does my use of evaluation and check function belong to one of the patterns?
+
+TODO I do not know yet.
+
 ** How to select a design pattern?
 
 TODO
