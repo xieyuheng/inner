@@ -163,7 +163,16 @@
   - Finding Appropriate Objects (roles, responsibilities)
   - Determining Object Granularity (level of abstractions)
   - Specifying Object Interfaces (collaborations)
-  - Specifying Object Implementations
+  - Specifying Object Implementations (use class instance and inheritance)
+  - Putting Reuse Mechanisms to Work
+  - Designing for Change
+
+- When to use inheritance?
+
+  We should not use inheritance for code sharing.
+
+  We should only use inheritance to describes when
+  an object can be used in place of another.
 
 - How to select a design pattern?
 
