@@ -4,192 +4,197 @@
 
 * 1 Introduction
 
-- Experienced designers evidently know something inexperienced ones don't. What is it?
+** Experienced designers evidently know something inexperienced ones don't. What is it?
 
-  One thing expert designers know not to do is solve every problem from first principles.
-  Rather, they reuse solutions that have worked for them in the past.
-  When they find a good solution, they use it again and again.
-  Such experience is part of what makes them experts.
+One thing expert designers know not to do is solve every problem from first principles.
+Rather, they reuse solutions that have worked for them in the past.
+When they find a good solution, they use it again and again.
+Such experience is part of what makes them experts.
 
-- What is a design pattern?
+** What is a design pattern?
 
-  Christopher Alexander says, "Each pattern describes a problem which occurs over and
-  over again in our environment, and then describes the core of the solution to that
-  problem, in such a way that you can use this solution a million times over, without ever
-  doing it the same way twice" [AIS+77, page x]
+Christopher Alexander says, "Each pattern describes a problem which occurs over and
+over again in our environment, and then describes the core of the solution to that
+problem, in such a way that you can use this solution a million times over, without ever
+doing it the same way twice" [AIS+77, page x]
 
-  - In this sense, the followings are all application domain-specific design pattern,
-    where the application domain is programming language implementation.
+- In this sense, the followings are all application domain-specific design pattern,
+  where the application domain is programming language implementation.
 
-    - closure (for lexical scope)
-    - bidirectional type checking (reading inference rule as type checking algorithm)
-    - normalization by evaluation (NbE) (partial evaluation)
-    - elaboration during type checking (clear separation of roles)
+  - closure (for lexical scope)
+  - bidirectional type checking (reading inference rule as type checking algorithm)
+  - normalization by evaluation (NbE) (partial evaluation)
+  - elaboration during type checking (clear separation of roles)
 
-    Are those design patterns clearly expressed in my OOD code?
+  Are those design patterns clearly expressed in my OOD code?
 
-- What are the four parts of a design pattern?
+** What are the four parts of a design pattern?
 
-  1. The pattern name
-  2. The problem
-  3. The solution
-  4. The consequences
+1. The pattern name
+2. The problem
+3. The solution
+4. The consequences
 
-- What is the "level of abstraction" of a design pattern?
+** What is the "level of abstraction" of a design pattern?
 
-  Point of view affects one's interpretation of what is and isn't a pattern.
-  One person's pattern can be another person's primitive building block.
+Point of view affects one's interpretation of what is and isn't a pattern.
+One person's pattern can be another person's primitive building block.
 
-  - low level:
-    such as linked lists, hash tables,
-    and Kent Beck's book "implementation patterns"
+- low level:
+  such as linked lists, hash tables,
+  and Kent Beck's book "implementation patterns"
 
-  - high level:
-    domain-specific designs for an entire application or subsystem.
+- high level:
+  domain-specific designs for an entire application or subsystem.
 
-  - mid level:
-    descriptions of communicating objects and classes that are
-    customized to solve a general design problem in a particular context.
+- mid level:
+  descriptions of communicating objects and classes that are
+  customized to solve a general design problem in a particular context.
 
-- What is a good example of design pattern?
+** What is a good example of design pattern?
 
-  The Model/View/Controller (MVC) triad of classes
-  is used to build user interfaces in Smalltalk-80.
-  Looking at the design patterns inside MVC
-  should help you see what we mean by the term "pattern."
+The Model/View/Controller (MVC) triad of classes
+is used to build user interfaces in Smalltalk-80.
+Looking at the design patterns inside MVC
+should help you see what we mean by the term "pattern."
 
-  MVC is a high level design pattern, which contains
-  Observer, Composite, and Strategy mid level design patterns.
+MVC is a high level design pattern, which contains
+Observer, Composite, and Strategy mid level design patterns.
 
-- What template should we use to describe design patterns?
+** What template should we use to describe design patterns?
 
-  - Pattern Name and Classification
+- Pattern Name and Classification
 
-    The pattern's name conveys the essence of the pattern succinctly.
-    A good name is vital, because it will become part of your design vocabulary.
+  The pattern's name conveys the essence of the pattern succinctly.
+  A good name is vital, because it will become part of your design vocabulary.
 
-  - Intent (problem)
+- Intent (problem)
 
-    A short statement that answers the following questions:
-    What does the design pattern do?
-    What is its rationale and intent?
-    What particular design issue or problem does it address?
+  A short statement that answers the following questions:
+  What does the design pattern do?
+  What is its rationale and intent?
+  What particular design issue or problem does it address?
 
-  - Also Known As
+- Also Known As
 
-    Other well-known names for the pattern, if any.
+  Other well-known names for the pattern, if any.
 
-  - Motivation (examples)
+- Motivation (examples)
 
-    A scenario that illustrates a design problem and how the class
-    and object structures in the pattern solve the problem.
+  A scenario that illustrates a design problem and how the class
+  and object structures in the pattern solve the problem.
 
-  - Applicability (when to use)
+- Applicability (when to use)
 
-    What are the situations in which the design pattern can be applied?
-    What are examples of poor designs that the pattern can address?
-    How can you recognize these situations?
+  What are the situations in which the design pattern can be applied?
+  What are examples of poor designs that the pattern can address?
+  How can you recognize these situations?
 
-  - Structure (class diagram and sequence diagram)
+- Structure (class diagram and sequence diagram)
 
-    A graphical representation of the classes in the pattern
-    using a notation based on the Object Modeling Technique (OMT) [RBP+91].
-    We also use interaction diagrams [JCJO92, Boo94]
-    to illustrate sequences of requests and collaborations between objects.
+  A graphical representation of the classes in the pattern
+  using a notation based on the Object Modeling Technique (OMT) [RBP+91].
+  We also use interaction diagrams [JCJO92, Boo94]
+  to illustrate sequences of requests and collaborations between objects.
 
-  - Participants
+- Participants
 
-    The classes and/or objects participating in the design pattern
-    and their responsibilities.
+  The classes and/or objects participating in the design pattern
+  and their responsibilities.
 
-  - Collaborations
+- Collaborations
 
-    How the participants collaborate to carry out their responsibilities.
+  How the participants collaborate to carry out their responsibilities.
 
-  - Consequences (trade-offs)
+- Consequences (trade-offs)
 
-    How does the pattern support its objectives?
-    What are the trade-offs and results of using the pattern?
-    What aspect of system structure does it let you vary independently?
+  How does the pattern support its objectives?
+  What are the trade-offs and results of using the pattern?
+  What aspect of system structure does it let you vary independently?
 
-  - Implementation
+- Implementation
 
-    What pitfalls, hints, or techniques should you be aware of
-    when implementing the pattern? Are there language-specific issues?
+  What pitfalls, hints, or techniques should you be aware of
+  when implementing the pattern? Are there language-specific issues?
 
-  - Sample Code
+- Sample Code
 
-    Code fragments that illustrate how you might implement the pattern in C++ or Smalltalk.
+  Code fragments that illustrate how you might implement the pattern in C++ or Smalltalk.
 
-  - Known Uses (big examples)
+- Known Uses (big examples)
 
-    Examples of the pattern found in real systems.
-    We include at least two examples from different domains.
+  Examples of the pattern found in real systems.
+  We include at least two examples from different domains.
 
-  - Related Patterns
+- Related Patterns
 
-    What design patterns are closely related to this one?
-    What are the important differences? With which other patterns should this one be used?
+  What design patterns are closely related to this one?
+  What are the important differences? With which other patterns should this one be used?
 
-- What are the ways by which we can classify design patterns?
+** What are the ways by which we can classify design patterns?
 
-  - Scope:
-    - Class:
-      Deal with relationships between classes and their subclasses.
-      These relationships are established through inheritance.
-    - Object:
-      Maybe use dependency injection?
+- Scope:
+  - Class:
+    Deal with relationships between classes and their subclasses.
+    These relationships are established through inheritance.
+  - Object:
+    Maybe use dependency injection?
 
-  - Purpose:
-    - Creational:
-      In the scope of class creational patterns defer some part of object creation to subclasses,
-      in the scope of object creational patterns defer it to another object.
-    - Structural:
-      Deal with the composition of classes or objects.
-    - Behavioral:
-      Characterize the ways in which classes
-      or objects interact and distribute responsibility.
+- Purpose:
+  - Creational:
+    In the scope of class creational patterns defer some part of object creation to subclasses,
+    in the scope of object creational patterns defer it to another object.
+  - Structural:
+    Deal with the composition of classes or objects.
+  - Behavioral:
+    Characterize the ways in which classes
+    or objects interact and distribute responsibility.
 
-- Why we want multiple ways of thinking about patterns?
+** Why we want multiple ways of thinking about patterns?
 
-  Because having multiple ways of thinking about patterns
-  will deepen your insight into what they do, how they compare,
-  and when to apply them.
+Because having multiple ways of thinking about patterns
+will deepen your insight into what they do, how they compare,
+and when to apply them.
 
-  (Similar is true for a lot of other things.)
+(Similar is true for a lot of other things.)
 
-- How design patterns solve design problems?
+** How design patterns solve design problems?
 
-  - Finding Appropriate Objects (roles, responsibilities)
-  - Determining Object Granularity (level of abstractions)
-  - Specifying Object Interfaces (collaborations)
-  - Specifying Object Implementations (use class instance and inheritance)
-  - Putting Reuse Mechanisms to Work
-  - Designing for Change
+- Finding Appropriate Objects (roles, responsibilities)
+- Determining Object Granularity (level of abstractions)
+- Specifying Object Interfaces (collaborations)
+- Specifying Object Implementations (use class instance and inheritance)
+- Putting Reuse Mechanisms to Work
+- Relating Run-Time and Compile-Time Structures
+- Designing for Change
 
-- When to use inheritance?
+** When to use inheritance?
 
-  We should not use inheritance for code sharing.
+We should not use inheritance for code sharing.
 
-  We should only use inheritance to describes when
-  an object can be used in place of another.
+We should only use inheritance to describes when
+an object can be used in place of another.
 
-  When inheritance is used carefully (some will say properly), all classes derived from
-  an abstract class will share its interface. This implies that a subclass merely adds or
-  overrides operations and does not hide operations of the parent class. All subclasses
-  can then respond to the requests in the interface of this abstract class, making them all
-  subtypes of the abstract class.
+When inheritance is used carefully (some will say properly), all classes derived from
+an abstract class will share its interface. This implies that a subclass merely adds or
+overrides operations and does not hide operations of the parent class. All subclasses
+can then respond to the requests in the interface of this abstract class, making them all
+subtypes of the abstract class.
 
-- How should we program?
+** How should we program?
 
-  Program to an interface, not an implementation.
+Program to an interface, not an implementation.
 
-- How to select a design pattern?
+** Does parser belong to one of the creational patterns?
 
-  TODO
+TODO I do not know yet.
 
-- How to use a design pattern?
+** How to select a design pattern?
 
-  TODO
+TODO
+
+** How to use a design pattern?
+
+TODO
 
 * 2 A Case Study: Designing a Document Editor
