@@ -180,6 +180,10 @@
   can then respond to the requests in the interface of this abstract class, making them all
   subtypes of the abstract class.
 
+- How should we program?
+
+  Program to an interface, not an implementation.
+
 - How to select a design pattern?
 
   TODO
