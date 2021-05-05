@@ -226,10 +226,28 @@ The main pattern is Composite.
 Compose objects into tree structures to represent part-whole hierarchies.
 Composite lets clients treat individual objects and compositions of objects uniformly.
 
-- web frontend components, programming language expresses, are all example of this pattern.
+- examples of this pattern:
+  - web frontend components
+  - parse trees
+  - programming language expresses
+
 - the teaching of SICP also said, to know a language:
   - first, we know about its primitive elements
   - then, how to compose old elements to new element
   - finally, how to do abstraction, so that a composite is like primitive again
+
+*** Motivation
+
+In simple implementation, code that uses some classes
+must treat primitive and container objects differently,
+even if most of the time the user treats them identically.
+
+Having to distinguish these objects makes the application more complex.
+The Composite pattern describes how to use recursive composition
+so that clients don't have to make this distinction.
+
+The key to the Composite pattern is an abstract class
+that represents both primitives and their containers.
+It also declares operations that all composite objects share.
 
 * 5 Behavioral Patterns
