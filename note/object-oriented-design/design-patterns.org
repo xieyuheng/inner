@@ -201,6 +201,8 @@ Match the pattern to your problem.
 
 ** 2.2 Document Structure
 
+The main pattern is Composite.
+
 ** 2.3 Formatting
 
 ** 2.4 Embellishing the User Interface
@@ -217,17 +219,17 @@ Match the pattern to your problem.
 
 * 4 Structural Patterns
 
-** COMPOSITE Object Structural
+** Composite (Object, Structural)
 
-- Intent
+*** Intent
 
-  Compose objects into tree structures to represent part-whole hierarchies.
-  Composite lets clients treat individual objects and compositions of objects uniformly.
+Compose objects into tree structures to represent part-whole hierarchies.
+Composite lets clients treat individual objects and compositions of objects uniformly.
 
-  - web frontend components, programming language expresses, are all example of this pattern.
-  - the teaching of SICP also said, to know a language:
-    - first, we know about its primitive elements
-    - then, how to compose old elements to new element
-    - finally, how to do abstraction, so that a composite is like primitive again
+- web frontend components, programming language expresses, are all example of this pattern.
+- the teaching of SICP also said, to know a language:
+  - first, we know about its primitive elements
+  - then, how to compose old elements to new element
+  - finally, how to do abstraction, so that a composite is like primitive again
 
 * 5 Behavioral Patterns
