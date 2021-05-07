@@ -19,9 +19,7 @@ is not a
   (Vec Atom 1).
 ```
 
-## no non-total function
+## Use a More Specific Type
 
-We avoid attempting to define a
-non-total function by using a more
-specific type to rule out unwanted
-arguments.
+Make a function total by using a more specific type to
+rule out unwanted arguments.
