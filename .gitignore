@@ -1,9 +1,3 @@
-# plaintext
-out
-
-# npm
-node_modules
-
 # emacs
 *~
 \#*
