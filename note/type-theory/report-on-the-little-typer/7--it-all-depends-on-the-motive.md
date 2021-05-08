@@ -10,3 +10,9 @@ is called a dependent
 ## Motive
 
 The motive explains why the target is to be eliminated
+
+## Readable Expressions
+
+Getting the right answer is worthless if we do not know
+that it is correct. Understanding the answer is at least
+as important as having the correct answer.
