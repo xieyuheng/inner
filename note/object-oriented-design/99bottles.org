@@ -5,7 +5,7 @@
 * 1. Rediscovering Simplicity
 
 Write Shameless Green code first.
-- TDD teach us how to do this.
+- TDD will teach us how to do this.
 
 ABC Metric -- Assignments, Branches and Conditions,
 is a good quantitative measure of code quality.
