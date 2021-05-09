@@ -1,0 +1,21 @@
+#+title: 99 bottles
+#+author: Sandi Marts
+#+date: 2021
+
+* 1. Rediscovering Simplicity
+
+Write Shameless Green code first.
+- TDD teach us how to do this.
+
+ABC Metric -- Assignments, Branches and Conditions,
+is a good quantitative measure of code quality.
+
+Questions about cost and value of code:
+1. How difficult was it to write? (past)
+2. How hard is it to understand? (now)
+3. How expensive will it be to change? (future)
+
+Among the above (now) is the most import question.
+
+Beside the above, domain questions is another important kind of questions.
+- Which is about understanding.
