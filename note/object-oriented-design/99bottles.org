@@ -32,3 +32,7 @@ Because we'd better achieve understandability and changeability in steps.
 To achieve understandability and changeability,
 we, little by little, separate the things that change
 from the things that remain the same.
+
+Like reversing the distribution of multiplication over addition:
+
+x * y + x * z => x * (y + z)
