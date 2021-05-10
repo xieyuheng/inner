@@ -6,6 +6,8 @@
 
 Write Shameless Green code first.
 - TDD will teach us how to do this.
+- abstraction should be guided by new requirements, keep it simple when there is no new requirements
+- new design with new abstraction should achieved by refactoring
 
 ABC Metric -- Assignments, Branches and Conditions,
 is a good quantitative measure of code quality.
