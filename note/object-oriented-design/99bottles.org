@@ -23,3 +23,8 @@ Beside the above, domain questions is another important kind of questions.
 - Which is about understanding.
 
 * 2. Test Driving Shameless Green
+
+Getting green first, Shameless Green maximum understandability
+but is generally unconcerned with changeability.
+
+Because we'd better achieve understandability and changeability in steps.
