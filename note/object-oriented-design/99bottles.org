@@ -28,3 +28,7 @@ Getting green first, Shameless Green maximum understandability
 but is generally unconcerned with changeability.
 
 Because we'd better achieve understandability and changeability in steps.
+
+To achieve understandability and changeability,
+we, little by little, separate the things that change
+from the things that remain the same.
