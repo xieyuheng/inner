@@ -60,3 +60,5 @@ Ask the following questions, before making an abstraction:
 - When should we jump over the small steps of TDD?
 
   Never.
+
+  Because you do not always know what is actually right.
