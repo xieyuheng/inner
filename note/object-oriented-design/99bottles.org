@@ -56,3 +56,7 @@ Ask the following questions, before making an abstraction:
 - And, we should not tolerate what kind of duplication?
 
   Those kind of duplication that blurs the responsibility.
+
+- When should we jump over the small steps of TDD?
+
+  Never.
