@@ -36,3 +36,19 @@ from the things that remain the same.
 Like reversing the distribution of multiplication over addition:
 
 x * y + x * z => x * (y + z)
+
+Delay abstraction, wait for more information.
+It's better to tolerate duplication
+than to anticipate the wrong abstraction.
+
+Ask the following questions, before making an abstraction:
+
+1. Does the change I’m contemplating make the code harder to understand?
+2. What is the future cost of doing nothing now?
+3. When will the future arrive, or how soon will I get more information?
+
+- During the search for Shameless Green,
+  We should tolerate what kind of duplication?
+
+  When it isolates a new independent example,
+  for which the underlying abstraction is not clear yet.
