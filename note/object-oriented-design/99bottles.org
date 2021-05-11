@@ -52,3 +52,7 @@ Ask the following questions, before making an abstraction:
 
   When it isolates a new independent example,
   for which the underlying abstraction is not clear yet.
+
+- And, we should not tolerate what kind of duplication?
+
+  Those kind of duplication that blurs the responsibility.
