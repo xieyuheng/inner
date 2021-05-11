@@ -4,15 +4,22 @@
 
 * 1. Rediscovering Simplicity
 
+** What kind of code should we write first?
+
 Write Shameless Green code first.
 - TDD will teach us how to do this.
 - abstraction should be guided by new requirements, keep it simple when there is no new requirements
 - new design with new abstraction should achieved by refactoring
 
+** How should we measure code quality? is it even possible?
+
 ABC Metric -- Assignments, Branches and Conditions,
 is a good quantitative measure of code quality.
 
+** What questions can help us understand the cost and value of code?
+
 Questions about cost and value of code:
+
 1. How difficult was it to write? (past)
 2. How hard is it to understand? (now)
 3. How expensive will it be to change? (future)
@@ -24,10 +31,14 @@ Beside the above, domain questions is another important kind of questions.
 
 * 2. Test Driving Shameless Green
 
+** Why we wish to "getting green first"?
+
 Getting green first, Shameless Green maximum understandability
 but is generally unconcerned with changeability.
 
 Because we'd better achieve understandability and changeability in steps.
+
+** How to achieve understandability and changeability
 
 To achieve understandability and changeability,
 we, little by little, separate the things that change
@@ -37,9 +48,16 @@ Like reversing the distribution of multiplication over addition:
 
 x * y + x * z => x * (y + z)
 
+** Why we wish to delay abstraction?
+
+Because we want to wait for more information.
+
 Delay abstraction, wait for more information.
+
 It's better to tolerate duplication
 than to anticipate the wrong abstraction.
+
+** What questions can help us understand the cost and value of making abstraction?
 
 Ask the following questions, before making an abstraction:
 
@@ -47,18 +65,29 @@ Ask the following questions, before making an abstraction:
 2. What is the future cost of doing nothing now?
 3. When will the future arrive, or how soon will I get more information?
 
-- During the search for Shameless Green,
-  We should tolerate what kind of duplication?
+** During the search for Shameless Green, We should tolerate what kind of duplication?
 
-  When it isolates a new independent example,
-  for which the underlying abstraction is not clear yet.
+When it isolates a new independent example,
+for which the underlying abstraction is not clear yet.
 
-- And, we should not tolerate what kind of duplication?
+** And, we should not tolerate what kind of duplication?
 
-  Those kind of duplication that blurs the responsibility.
+Those kind of duplication that blurs the responsibility.
 
-- When should we jump over the small steps of TDD?
+** When should we jump over the small steps of TDD?
 
-  Never.
+Never.
 
-  Because you do not always know what is actually right.
+Because you do not always know what is actually right.
+
+** What is Kent Beck's Triangulation? [三角测量法]
+
+Targeting multiple tests in one implementation step.
+Because you can not fake multiple tests.
+
+** How should we design public API?
+
+As method provider, we should think about message sender,
+and help them to know as less as possible.
+
+Bwtween sender and provider, to know is to depend.
