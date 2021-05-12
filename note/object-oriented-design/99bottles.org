@@ -140,6 +140,8 @@ Use the "Flocking Rules":
 2. Find the smallest difference between them.
 3. Make the simplest change that will remove that difference.
 
+DRYing out sameness has some value, but DRYing out difference has more.
+
 ** Why "Flocking"?
 
 Birds flock, fish school, and insects swarm.
