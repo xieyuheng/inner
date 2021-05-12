@@ -91,3 +91,10 @@ As method provider, we should think about message sender,
 and help them to know as less as possible.
 
 Bwtween sender and provider, to know is to depend.
+
+** What is the first step in learning the art of testing?
+
+The first step in learning the art of testing
+ is to understand how to write tests that
+confirm what your code does
+without any knowledge of how your code does it.
