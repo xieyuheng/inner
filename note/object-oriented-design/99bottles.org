@@ -110,3 +110,16 @@ The arrival of a new requirement tells you two things:
 ** What is your licence to improve some (Shameless Green) code?
 
 Someone has asked for a change.
+
+** What is the "open" principle of SOLID?
+
+O - Open-Closed
+
+Objects should be open for extension, but closed for modification.
+
+"open for extension" means extension not by editing the conditional,
+but by merely adding code.
+
+When faced with a new requirement,
+first open the code for change,
+then add the new code.
