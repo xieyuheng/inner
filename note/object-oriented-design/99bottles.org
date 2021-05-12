@@ -100,3 +100,9 @@ confirm what your code does
 without any knowledge of how your code does it.
 
 * 3. Unearthing Concepts
+
+** When a new requirement arrive, what we learned?
+
+The arrival of a new requirement tells you two things:
+- Exactly how the code should change
+- The code need to be easy to change
