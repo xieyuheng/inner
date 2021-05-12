@@ -106,3 +106,7 @@ without any knowledge of how your code does it.
 The arrival of a new requirement tells you two things:
 - Exactly how the code should change
 - The code need to be easy to change
+
+** What is your licence to improve some (Shameless Green) code?
+
+Someone has asked for a change.
