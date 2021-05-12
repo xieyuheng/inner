@@ -182,3 +182,5 @@ One is a general rule and the other is the new requirement:
   To name a concept for which you have only a few examples,
   it can help to imagine other concrete things
   that might also fall into the same category.
+
+* 4. Practicing Horizontal Refactoring
