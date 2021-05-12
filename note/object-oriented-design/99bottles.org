@@ -177,6 +177,8 @@ One is a general rule and the other is the new requirement:
   We can also use rows and columns in an imaginary spreadsheet,
   to write things down, to help find names for underlying concepts.
 
+  This naming technique is called "what would the column header be?"
+
 - Tom Stuart:
 
   To name a concept for which you have only a few examples,
@@ -184,3 +186,16 @@ One is a general rule and the other is the new requirement:
   that might also fall into the same category.
 
 * 4. Practicing Horizontal Refactoring
+
+** Should we think far ahead for creating better abstraction?
+
+You can use your common sense, but in general you should not.
+
+When creating an abstraction,
+first describe its responsibility as you understand it at this moment,
+then choose a name which reflects that responsibility.
+
+The effort you put into selecting good names right now
+pays off by making it easier to recognize perfect names later.
+
+You can learn something during these steps, do not jump.
