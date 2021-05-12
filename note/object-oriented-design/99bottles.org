@@ -168,10 +168,9 @@ There are two pieces of information that can help in the struggle for a name.
 
 One is a general rule and the other is the new requirement.
 
-The general rule is to name a thing one level of abstraction higher than the thing itself.
-While new requirement can provide new instance for the category we are trying to name.
-
-We should name the category using the language of the domain.
+- The general rule is to name a thing one level of abstraction higher than the thing itself.
+- While new requirement can provide new instance for the category we are trying to name.
+  We should name the category using the language of the domain.
 
 We can also use rows and columns in an imaginary spreadsheet,
 to write things down, to help find names for underlying concepts.
