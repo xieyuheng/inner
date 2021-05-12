@@ -9,7 +9,7 @@
 Write Shameless Green code first.
 - TDD will teach us how to do this.
 - abstraction should be guided by new requirements, keep it simple when there is no new requirements
-- new design with new abstraction should achieved by refactoring
+- new design with new abstraction should be achieved by refactoring
 
 ** How should we measure code quality? is it even possible?
 
