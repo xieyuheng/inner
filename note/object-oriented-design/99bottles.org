@@ -199,3 +199,8 @@ The effort you put into selecting good names right now
 pays off by making it easier to recognize perfect names later.
 
 You can learn something during these steps, do not jump.
+
+** How to reducing the number of dependencies imposed upon message senders?
+
+By requiring that receivers return trustworthy objects,
+which is a generalization of the Liskov Substitution Principle.
