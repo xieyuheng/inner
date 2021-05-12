@@ -98,3 +98,5 @@ The first step in learning the art of testing
  is to understand how to write tests that
 confirm what your code does
 without any knowledge of how your code does it.
+
+* 3. Unearthing Concepts
