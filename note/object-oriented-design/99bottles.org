@@ -121,5 +121,9 @@ Objects should be open for extension, but closed for modification.
 but by merely adding code.
 
 When faced with a new requirement,
-first open the code for change,
+first "open" the code for change,
 then add the new code.
+
+** If we do not know how to open the code, what should we do?
+
+We should remove the easiest to fix and best understood code smell.
