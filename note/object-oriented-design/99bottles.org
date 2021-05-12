@@ -161,3 +161,14 @@ These decisions are guided by three simple rules.
 Thus, complex behavior emerges from the repeated application of simple rules.
 In the same way that the rules in this sidebar allow birds to flock,
 the "Flocking Rules" for code allow abstractions to appear.
+
+** What can we do when we are in the struggle for a name?
+
+There are two pieces of information that can help in the struggle for a name.
+One is a general rule and the other is the new requirement.
+
+The general rule is to name a thing one level of abstraction higher than the thing itself.
+
+While new requirement can provide new instance for the category we are trying to name.
+
+We should name the category using the language of the domain.
