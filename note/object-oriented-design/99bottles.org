@@ -289,3 +289,5 @@ Look at the methods:
 The rule about naming can thus be amended:
 while you should continue to name methods after what they mean,
 classes can be named after what they are.
+
+* 6. Achieving Openness
