@@ -266,6 +266,8 @@ Don't worry, have faith, iterate, find new code smells to attack.
 
 ** What questions can help us find code smells?
 
+The following questions help separating responsibilities.
+
 Look at the class as a whole and expose common qualities of the code:
 
 1. Do any methods have the same shape?
