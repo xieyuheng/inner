@@ -162,6 +162,31 @@ Thus, complex behavior emerges from the repeated application of simple rules.
 In the same way that the rules in this sidebar allow birds to flock,
 the "Flocking Rules" for code allow abstractions to appear.
 
+------
+
+I found a correspondence of the "Flocking Rules" in algebra:
+
+The "Flocking Rules":
+
+1. Select the things that are most alike.
+2. Find the smallest difference between them.
+3. Make the simplest change that will remove that difference.
+
+Is like reversing the distribution of multiplication over addition:
+
+`x * y + x * z => x * (y + z)`
+
+1. `x * y` and `x * z` are alike.
+2. The smallest difference is `y` v.s. `z`.
+3. Extract `(y + z)` and use the distribution law, to get one product.
+
+The metaphor of "a flock of birds" is beautiful :)
+
+And algebra is also beautiful, the "Flocking Rules" in algebra means,
+by doing this steps locally we can achieve some kind of normal form in a ring.
+
+- Ring: https://en.wikipedia.org/wiki/Ring_(mathematics)
+
 ** What can we do when we are in the struggle for a name?
 
 There are two pieces of information that can help in the struggle for a name.
