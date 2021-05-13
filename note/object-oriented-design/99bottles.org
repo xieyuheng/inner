@@ -61,7 +61,7 @@ than to anticipate the wrong abstraction.
 
 Ask the following questions, before making an abstraction:
 
-1. Does the change I’m contemplating make the code harder to understand?
+1. Does the change I'm contemplating make the code harder to understand?
 2. What is the future cost of doing nothing now?
 3. When will the future arrive, or how soon will I get more information?
 
@@ -263,3 +263,19 @@ that help us to explore a problem domain safely.
 
 If after a refactoring, the code is still not open to the new requirement.
 Don't worry, have faith, iterate, find new code smells to attack.
+
+** What questions can help us find code smells?
+
+Look at the class as a whole and expose common qualities of the code:
+
+1. Do any methods have the same shape?
+2. Do any methods take an argument of the same name?
+3. Do arguments of the same name always mean the same thing?
+4. If you were going to break this class into two pieces, where's the dividing line?
+
+Look at the methods:
+
+5. Do the tests in the conditionals have anything in common?
+6. How many branches do the conditionals have?
+7. Do the methods contain any code other than the conditional?
+8. Does each method depend more on the argument that got passed, or on the class as a whole?
