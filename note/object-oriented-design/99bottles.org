@@ -254,3 +254,12 @@ in every place where it applies.
 Because it revealed and isolated a lot of useful concepts.
 
 * 5. Separating Responsibilities
+
+** What is the truth about refactoring?
+
+Sometimes some refactoring is wrong, and we need to backtrack.
+This is expected because refactoring is an idea
+that help us to explore a problem domain safely.
+
+If after a refactoring, the code is still not open to the new requirement.
+Don't worry, have faith, iterate, find new code smells to attack.
