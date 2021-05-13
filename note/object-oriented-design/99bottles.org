@@ -229,3 +229,26 @@ You can learn something during these steps, do not jump.
 
 By requiring that receivers return trustworthy objects,
 which is a generalization of the Liskov Substitution Principle.
+
+** What are the benefits of abstractions?
+
+Abstractions are beneficial in many ways.
+
+They consolidate code into a single place
+so that it can be changed with ease.
+
+They name this consolidated code,
+allowing the name to be used as a shortcut for an idea,
+independent of its current implementation.
+
+These are valuable benefits, but abstractions also help in another, more subtle, way.
+In addition to the above, abstractions tell you
+where your code relies upon an idea.
+
+But to get this last benefit,
+you must refer to an abstraction
+in every place where it applies.
+
+** Why the ABC score is worse, but we consider the code quality improved?
+
+Because it revealed and isolated a lot of useful concepts.
