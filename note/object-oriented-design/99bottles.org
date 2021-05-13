@@ -252,3 +252,5 @@ in every place where it applies.
 ** Why the ABC score is worse, but we consider the code quality improved?
 
 Because it revealed and isolated a lot of useful concepts.
+
+* 5. Separating Responsibilities
