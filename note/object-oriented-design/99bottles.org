@@ -352,3 +352,13 @@ return the right role-playing object.
 
 - This means that "Replace Conditional with Polymorphism" can not remove all conditionals,
   but can merge all conditionals into one conditional in a "factory".
+
+** With polymorphism in place what do we know about domain question about variation?
+
+Domain question about variation are questions like the following form:
+
+- Which ______ are most alike? In what way?
+- Which ______ are most different? In what way?
+
+The subtype hierarchy developed for the polymorphism,
+looks like part of a concept lattice in formal concept analysis.
