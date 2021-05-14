@@ -373,3 +373,5 @@ By temporarily allow functions that use the return value to accept both types.
 
 Factories don't know what to do;
 instead, they know how to choose who does.
+
+A conditional that selects an object v.s. A conditional that supplies behavior.
