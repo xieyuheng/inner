@@ -362,3 +362,7 @@ Domain question about variation are questions like the following form:
 
 The subtype hierarchy developed for the polymorphism,
 looks like part of a concept lattice in formal concept analysis.
+
+** How to change function return type in a step by step way?
+
+By temporarily allow functions that use the return value to accept both types.
