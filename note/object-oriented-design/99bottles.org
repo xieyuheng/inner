@@ -334,3 +334,6 @@ speculatively, try them all.
 Evaluate the results.
 Choose one and proceed,
 or revert all and try again.
+
+Practice builds intuition.
+Do it enough, and you'll seem magical too.
