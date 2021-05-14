@@ -306,3 +306,31 @@ The presence of multiple topics suggests
 the existence of multiple responsibilities,
 which makes code harder to understand when reading,
 and easier to harm when changing.
+
+** How does skilled programmers choose the best solution?
+
+For example, to fix the "Switch Statement" code smell,
+should we use the "Replace Conditional with State/Strategy"
+or the "Replace Conditional with Polymorphism"?
+
+It's the result of a lifetime of coding experiments.
+Their present-day actions are informed by
+a diverse body of knowledge gained piecemeal, over time.
+
+Their deep familiarity with many varieties of code entanglements
+allows them to unconsciously map appropriate solutions onto common problems,
+often without the necessity of first writing code.
+
+They also know that they don't know everything.
+This belief in their own fallibility lends them caution.
+Skilled programmers do what's right when they intuit the truth,
+but otherwise they engage in careful, precise,
+reproducible, and reversible coding experiments.
+You are encouraged to do the same.
+
+The best way to figure out what will happen
+if you follow competing recipes is to try it,
+speculatively, try them all.
+Evaluate the results.
+Choose one and proceed,
+or revert all and try again.
