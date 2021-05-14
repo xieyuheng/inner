@@ -363,6 +363,13 @@ Domain question about variation are questions like the following form:
 The subtype hierarchy developed for the polymorphism,
 looks like part of a concept lattice in formal concept analysis.
 
-** How to change function return type in a step by step way?
+** How to change return type of a polymorphic method in a step by step way?
 
 By temporarily allow functions that use the return value to accept both types.
+
+* 7. Manufacturing Intelligence
+
+** How factory different from other methods that use conditionals?
+
+Factories don't know what to do;
+instead, they know how to choose who does.
