@@ -291,3 +291,9 @@ while you should continue to name methods after what they mean,
 classes can be named after what they are.
 
 * 6. Achieving Openness
+
+** What is the "Data Clumps" code smell?
+
+If these two things always appear together,
+it's a signal that this pairing represents a deeper concept,
+and that concept should be named.
