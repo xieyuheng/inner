@@ -555,3 +555,41 @@ If the receiver doesn't know how to comply, teach it.
 Don't be trapped by what's currently true,
 but instead, loosen coupling by designing a conversation
 that embodies what the message sender wants.
+
+** What does well-designed object-oriented applications consist of?
+
+Well-designed object-oriented applications consist of loosely-coupled objects
+that rely on polymorphism to vary behavior.
+
+Injecting dependencies loosens coupling.
+
+Polymorphism isolates variant behavior
+into sets of interchangeable objects
+that look the same from the outside
+but behave differently on the inside.
+
+** When using dependency injection, what should we do about object creation?
+
+Object creation should be pushed more towards the edges.
+
+Applications that use dependency injection evolve,
+naturally and of necessity, into systems where
+object creation begins to separate from object use.
+
+Object creation gets pushed more towards the edges, towards the outside,
+and the objects themselves interact more towards the middle, or the inside.
+
+** What rules experienced programmers know about class name, that make applications most easily adapt to the unknown future?
+
+Experienced object-oriented programmers know that applications most easily adapt to the unknown future if they:
+
+- resist giving instance methods knowledge of concrete class names, and
+- seek opportunities to move the object creation towards the edges of the application.
+
+These are guidelines, not hard and fast rules.
+This is especially true in cases like this where the hard-coded reference is to a factory,
+so the coupling is already loose.
+
+Even so, you should be eternally alert for instance methods that reference class names
+and perpetually on the lookout for ways to remove those references,
+by pushing object creation towards the edges.
