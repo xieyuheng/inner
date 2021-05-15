@@ -375,3 +375,9 @@ Factories don't know what to do;
 instead, they know how to choose who does.
 
 A conditional that selects an object v.s. A conditional that supplies behavior.
+
+** What knowledge do factories capture?
+
+Knowledge of the class names of the variants,
+and of the logic necessary to choose the correct one,
+can be captured in factories.
