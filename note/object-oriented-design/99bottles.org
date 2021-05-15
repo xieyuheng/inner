@@ -430,3 +430,14 @@ they can be deliberately chosen with an eye towards stability.
 ** What we should do about programming aesthetic?
 
 While learning from others, it is more important to develop your own.
+
+** What is intuition?
+
+Judgement is informed by past experience.
+
+Experience accumulates into an intuition
+about how best to act in the face of uncertainty.
+
+Intuition is a form of pattern matching
+performed by your unconscious mind,
+trained throughout your career on scores of code examples.
