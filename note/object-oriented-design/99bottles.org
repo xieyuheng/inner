@@ -456,3 +456,102 @@ or the set of principles that underlie and guide your work.
 Intuition drives action,
 justified by aesthetics,
 and guided by heuristics.
+
+** What is Dependency Inversion Principle (DIP)?
+
+1. High-level modules should not depend upon low-level modules.
+   Both should depend upon abstractions.
+
+2. Abstractions should not depend upon details.
+   Details should depend upon abstractions.
+
+First, note that the word "module" in the definition above
+does not refer to a specific language feature.
+In this definition module means an encapsulated,
+named unit of functionality in a program.
+You can substitute the words "classes" or "objects" for "modules."
+
+** How to create new role and do dependency injection?
+
+Isolate the behavior you want to vary.
+
+One of the most fundamental concepts in OO is to isolate the behavior you want to vary.
+
+** When injecting collaborators, should you inject classes or instances of those classes?
+
+We should inject instances.
+
+Because we do not want to depend on how instances are created.
+
+Injecting classes will violate the Law of Demeter.
+
+The rule for injecting dependencies is that
+you should inject the thing you want to talk to.
+
+In other words, the receiver may directly send messages
+only to the injected object,
+not to it and all of its friends.
+
+The practical effect of this rule is to
+prohibit the use of injected objects in message chains
+that violate the Law of Demeter.
+
+** What is the Law of Demeter (LoD)?
+
+The Law of Demeter says that from within a method, messages should be sent only to:
+
+1. objects that are passed in as arguments to the method
+2. objects that are directly available to this
+
+------
+
+This is define in a worse way in "Object-Oriented Programming: An Objective Sense of Style":
+
+For all classes C and for all methods M attached to C,
+all objects to which M sends a message
+must be instances of classes associated with the following classes:
+
+1. The argument classes of M (including C).
+2. The instance variable classes of C.
+
+(Objects created by M, or by functions or methods which M calls,
+and objects in global variables are considered as arguments of M.)
+
+** Why the we should obey the Law of Demeter?
+
+The Law of Demeter effectively restricts the list of other objects
+to which an object may send a message.
+Its purpose is to reduce the coupling between objects.
+
+From the message-senders point of view,
+an object may talk to its neighbors but not to its neighbor's neighbors.
+
+Objects may only send messages to direct collaborators.
+
+** How to cure Demeter violations?
+
+Use message forwarding.
+
+Also to avoid encoding the names of existing objects
+into the names of the forwarding messages,
+We should think about design from the message senders point of view.
+
+** What is the difference between delegation and message forwarding?
+
+In delegation sender also pass itself to receivers.
+
+** How to get a quick handle on the consequences of a code arrangement?
+
+One way is to attempt to test it.
+
+Testing is the first form of reuse.
+
+It is all about feedback.
+
+** What does OOD teach us about when we want something?
+
+If you want something, just ask for it.
+If the receiver doesn't know how to comply, teach it.
+Don't be trapped by what's currently true,
+but instead, loosen coupling by designing a conversation
+that embodies what the message sender wants.
