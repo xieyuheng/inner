@@ -390,8 +390,22 @@ A factory's responsibility is to manufacture the right object for a given role.
 
 Factories can vary along these dimensions:
 
-1. The factory can be open (dynamic only) to new variants or closed
+1. The factory can be open to new variants or closed
 2. variant own choosing logic
    - for example, by a `can_handle` static method
 3. variant own creating logic
    - for example, by a `try_to_create` static method
+
+** What is a example use of factories in language implementation?
+
+Parser is.
+
+In which syntax will change in lockstep with expression class,
+Thus maybe factories should not own all the responsibilities.
+
+** What are ways to keep a factory open to new variants?
+
+1. Use meta programming.
+2. The factory
+   1. holds onto the registry, and
+   2. provides a way for candidates to add themselves to it.
