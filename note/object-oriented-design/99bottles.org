@@ -422,3 +422,5 @@ about how to guess well.
 
 They understand that although dependencies can't be avoided,
 they can be deliberately chosen with an eye towards stability.
+
+* 8. Developing a Programming Aesthetic
