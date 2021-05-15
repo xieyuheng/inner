@@ -409,3 +409,16 @@ Thus maybe factories should not own all the responsibilities.
 2. The factory
    1. holds onto the registry, and
    2. provides a way for candidates to add themselves to it.
+
+For example, web components use (2).
+
+Note that, in (2) variants knows the factory.
+
+** Why experienced programmers are good at writing change-tolerant code?
+
+One reason experienced programmers are good at writing change-tolerant code
+is that they've built up a set of internal guidelines
+about how to guess well.
+
+They understand that although dependencies can't be avoided,
+they can be deliberately chosen with an eye towards stability.
