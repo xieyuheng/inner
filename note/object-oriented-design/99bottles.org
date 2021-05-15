@@ -424,3 +424,7 @@ They understand that although dependencies can't be avoided,
 they can be deliberately chosen with an eye towards stability.
 
 * 8. Developing a Programming Aesthetic
+
+** What we should do about programming aesthetic?
+
+While learning from others, it is more important to develop your own.
