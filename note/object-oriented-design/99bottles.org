@@ -255,6 +255,8 @@ in every place where it applies.
 
 Because it revealed and isolated a lot of useful concepts.
 
+Maybe a better score is (ABC / number of domain concepts).
+
 * 5. Separating Responsibilities
 
 ** What is the truth about refactoring?
