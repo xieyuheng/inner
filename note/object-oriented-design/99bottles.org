@@ -124,6 +124,11 @@ When faced with a new requirement,
 first "open" the code for change,
 then add the new code.
 
+------
+
+It is important to note that, the sum type of algebra datatype, is about being close.
+Being close, we can make sure all cases are covered in a "proof by case" (function is proof).
+
 ** If we do not know how to open the code, what should we do?
 
 We should remove the easiest to fix and best understood code smell.
