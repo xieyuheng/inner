@@ -385,3 +385,13 @@ can be captured in factories.
 ** What is A factory's responsibility?
 
 A factory's responsibility is to manufacture the right object for a given role.
+
+** What dimensions factories can vary along?
+
+Factories can vary along these dimensions:
+
+1. The factory can be open (dynamic only) to new variants or closed
+2. variant own choosing logic
+   - for example, by a `can_handle` static method
+3. variant own creating logic
+   - for example, by a `try_to_create` static method
