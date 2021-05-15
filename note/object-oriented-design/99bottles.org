@@ -593,3 +593,26 @@ so the coupling is already loose.
 Even so, you should be eternally alert for instance methods that reference class names
 and perpetually on the lookout for ways to remove those references,
 by pushing object creation towards the edges.
+
+** What is a programming aesthetic?
+
+A programming aesthetic is the set of internal heuristics
+that guide your behavior in times of uncertainty.
+
+Vague feelings about the rightness of code
+become part of your aesthetic
+once you can eloquently and convincingly
+use actual words to explain your concerns and proposed improvements.
+
+A good programming aesthetic focuses attention
+on improvements that are likely to prove worthwhile.
+
+** What are some precepts that belong in everyone's object-oriented programming aesthetic?
+
+1. Put domain behavior on instances.
+2. Be averse to allowing instance methods to know the names of constants.
+3. Seek to depend on injected abstractions rather than hard-coded concretions.
+4. Push object creation to the edges, expecting objects to be created in one place and used in another.
+5. Avoid Demeter violations, using the temptation to create them as a spur to search for deeper abstractions.
+
+* 9. Reaping the Benefits of Design
