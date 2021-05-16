@@ -666,6 +666,12 @@ Private class should not be tested.
 We can also skip tests for the classes that are too simple and too small,
 to tell other programmers that they are too simple and too small.
 
+Tests should give you the freedom to improve code,
+not glue you to its current implementation.
+
+When they constrain rather than liberate,
+ask if they're worthwhile, and consider omitting them.
+
 ** How to test Exp and Core class of a type system implementation?
 
 I do not know yet, I know two choices:
