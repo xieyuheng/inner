@@ -737,3 +737,12 @@ After refactoring, some classes might still reflect the context they come from.
 It might be helpful to remove some dependencies,
 generalize some methods,
 and rename the class after a more general concept.
+
+** How should we name our classes when using design patterns?
+
+We should not include the name of a pattern in the name of a class.
+Because pattern names don't generally reflect concepts in your application.
+
+We should search for names that add semantic meaning.
+
+We should not give up too soon on the hard problem of naming.
