@@ -702,3 +702,16 @@ This makes it hard to determine the cause of an error.
 
 Integration tests are great at proving the correctness of
 the collaboration between groups of objects.
+
+** How should we write unit tests?
+
+Unit tests ought to tell an illuminating story.
+
+They should demonstrate and confirm
+the class's direct responsibilities,
+and do nothing else.
+
+You should strive to write the fastest tests possible,
+in the fewest number necessary,
+using the most intention-revealing expectations,
+and the least amount of code.
