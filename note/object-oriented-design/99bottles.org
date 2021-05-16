@@ -672,6 +672,15 @@ not glue you to its current implementation.
 When they constrain rather than liberate,
 ask if they're worthwhile, and consider omitting them.
 
+** How to justify skipped tests?
+
+In the rare case where you decide to forego giving a class its own unit test,
+you must be able to defend this decision with a clearly articulated justification.
+
+In addition to size and complexity, visibility is also an important consideration.
+
+Visibility is determined by the context in which the class is known.
+
 ** How to test Exp and Core class of a type system implementation?
 
 I do not know yet, I know two choices:
