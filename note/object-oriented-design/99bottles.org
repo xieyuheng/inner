@@ -746,3 +746,8 @@ Because pattern names don't generally reflect concepts in your application.
 We should search for names that add semantic meaning.
 
 We should not give up too soon on the hard problem of naming.
+
+** How to use interface in dynamicly typed language?
+
+Use test to test class has methods in the interface,
+maybe including number of arguments, and type of arguments.
