@@ -671,3 +671,14 @@ I do not know yet, I know two choices:
 If Exp class owns responsibilities of syntax and parsing, (1) would be simple.
 
 But (2) seems too expensive no matter how.
+
+** Why unit tests for each class is important?
+
+Because integration test involves many objects in combination,
+the code could break quite far from the origin of the problem.
+This makes it hard to determine the cause of an error.
+
+** Why integration tests are important?
+
+Integration tests are great at proving the correctness of
+the collaboration between groups of objects.
