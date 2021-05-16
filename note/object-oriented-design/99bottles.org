@@ -715,3 +715,12 @@ You should strive to write the fastest tests possible,
 in the fewest number necessary,
 using the most intention-revealing expectations,
 and the least amount of code.
+
+** Why we should write tests first?
+
+It's far better to struggle with a test that you don't understand
+than to write code that you don't understand.
+
+Tests force you to clarify your intentions because they make explicit assertions.
+
+Code has no such pressure, and can be left a confusing mess forever.
