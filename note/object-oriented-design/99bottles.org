@@ -732,6 +732,8 @@ or the interrelated conditions under which it can exist.
 
 ** How to reduce a object's (or class') context?
 
+After refactoring, some classes might still reflect the context they come from.
+
 It might be helpful to remove some dependencies,
 generalize some methods,
 and rename the class after a more general concept.
