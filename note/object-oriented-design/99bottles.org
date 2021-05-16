@@ -661,6 +661,11 @@ The allowed-to-skip-tests bar is high, but some code meets it.
 Creating a new class by following a recipe instead of by doing TDD is allowable,
 We are allowed to temporarily skip tests in this case.
 
+Private class should not be tested.
+
+We can also skip tests for the classes that are too simple and too small,
+to tell other programmers that they are too simple and too small.
+
 ** How to test Exp and Core class of a type system implementation?
 
 I do not know yet, I know two choices:
