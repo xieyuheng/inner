@@ -410,6 +410,9 @@ Parser is.
 In which syntax will change in lockstep with expression class,
 Thus maybe factories should not own all the responsibilities.
 
+But maybe we need to support multiple style of syntax,
+so the factories should own all the responsibilities.
+
 ** What are ways to keep a factory open to new variants?
 
 1. Use meta programming.
@@ -657,3 +660,14 @@ The allowed-to-skip-tests bar is high, but some code meets it.
 
 Creating a new class by following a recipe instead of by doing TDD is allowable,
 We are allowed to temporarily skip tests in this case.
+
+** How to test Exp and Core class of a type system implementation?
+
+I do not know yet, I know two choices:
+
+1. depend on the syntax
+2. do not depend on the syntax
+
+If Exp class owns responsibilities of syntax and parsing, (1) would be simple.
+
+But (2) seems too expensive no matter how.
