@@ -601,6 +601,8 @@ by pushing object creation towards the edges.
 
 ** What is a programming aesthetic?
 
+Well expressed intuition is aesthetic.
+
 A programming aesthetic is the set of internal heuristics
 that guide your behavior in times of uncertainty.
 
