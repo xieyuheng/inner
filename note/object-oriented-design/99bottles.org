@@ -751,3 +751,32 @@ We should not give up too soon on the hard problem of naming.
 
 Use test to test class has methods in the interface,
 maybe including number of arguments, and type of arguments.
+
+** After coding of refactoring, what should we do at last?
+
+Check the code for one more time,
+to obliterating obsolete context.
+
+And peruse the complete listings and glory in your accomplishments.
+
+** What features allow object-oriented to interact with unanticipated variants without having to change?
+
+When designed with the following features,
+object-oriented code can interact with new
+and unanticipated variants without having to change:
+
+1. Variants are isolated.
+
+   They're usually isolated in some kind of object, often a new class.
+
+2. Variant selection is isolated.
+
+   Selection happens in factories, which may be as simple as isolated conditionals that choose a class.
+
+3. Message senders and receivers are loosely coupled.
+
+   This is commonly accomplished by injecting dependencies.
+
+4. Variants are interchangeable.
+
+   Message senders treat injected objects as equivalent players of identical roles.
