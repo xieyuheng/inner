@@ -623,3 +623,34 @@ on improvements that are likely to prove worthwhile.
 5. Avoid Demeter violations, using the temptation to create them as a spur to search for deeper abstractions.
 
 * 9. Reaping the Benefits of Design
+
+** What can tests do?
+
+Tests help us know if something breaks.
+
+It's important to know if something breaks, but tests can do far more.
+They give you the opportunity to explain the domain to future readers.
+
+They expose design problems that make code hard to reuse.
+
+Well-designed code is easy to test; when testing is hard,
+the code's design needs attention.
+
+It should be easy to create simple, intention-revealing tests.
+When it's not, the chief problem is often too much coupling.
+In such cases the solution is not to write complicated tests that overcome tight coupling,
+but rather to loosen the coupling so that you can write simple tests.
+
+The most cost-effective time to intervene in tightly coupled code is right now,
+before new requirements cause you to to start reusing these objects.
+
+Writing tests will uncover every bit of overlooked tight coupling
+and immediately reward you for fixing it.
+
+** What should we test?
+
+Every class should have its own unit test, unless doing otherwise saves money.
+
+The allowed-to-skip-tests bar is high, but some code meets it.
+
+** When we are allowed to skip tests?
