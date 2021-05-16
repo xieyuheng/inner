@@ -654,3 +654,6 @@ Every class should have its own unit test, unless doing otherwise saves money.
 The allowed-to-skip-tests bar is high, but some code meets it.
 
 ** When we are allowed to skip tests?
+
+Creating a new class by following a recipe instead of by doing TDD is allowable,
+We are allowed to temporarily skip tests in this case.
