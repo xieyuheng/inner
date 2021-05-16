@@ -724,3 +724,14 @@ than to write code that you don't understand.
 Tests force you to clarify your intentions because they make explicit assertions.
 
 Code has no such pressure, and can be left a confusing mess forever.
+
+** What is an object's context?
+
+An object's context is its surrounding environment,
+or the interrelated conditions under which it can exist.
+
+** How to reduce a object's (or class') context?
+
+It might be helpful to remove some dependencies,
+generalize some methods,
+and rename the class after a more general concept.
