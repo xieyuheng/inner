@@ -1,0 +1,20 @@
+* info
+
+- The working Architecture of Node.js Applications, by Viktor Turskyi
+
+  https://www.youtube.com/watch?v=eVGdV53q68I
+
+* presentation layer
+
+- controller should be very thin (can be generated from service)
+- abstract away HTTP related stuff from layers under controller layer
+
+* domain layer
+
+** service layer
+
+- separate service class (use command pattern) for each endpoint
+
+** domain models
+
+- responsible for data storing and data integrity
