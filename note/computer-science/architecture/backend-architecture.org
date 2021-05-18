@@ -6,14 +6,16 @@
 
 * presentation layer
 
-- controller should be very thin (can be generated from service)
+- controller should be very thin (almost not there)
 - abstract away HTTP related stuff from layers under controller layer
 
 * domain layer
 
 ** service layer
 
+- responsible for request validation (to help domain models being typed)
 - separate service class (use command pattern) for each endpoint
+- might be able to generate controller from service
 
 ** domain models
 
