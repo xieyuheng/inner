@@ -1,0 +1,5 @@
+#+title: A Theory of Objects
+#+authors: Martin Abadi, Luca Cardelli
+#+date: 1996
+
+* 1 Object Orientation 7
