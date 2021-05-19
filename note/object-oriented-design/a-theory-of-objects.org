@@ -33,4 +33,6 @@
 - covariance and contravariance
 - method specialization
 
-* 1 Object Orientation 7
+* 1 Object Orientation
+
+* 2 Class-Based Languages
