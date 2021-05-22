@@ -21,9 +21,7 @@ New categories:
   - Decorator
   - State
   - Iterator
-  - Observer (listener and event, data binding)
-    - you'd better build debug features into patterns
-      - for example, to help checking missing dependencies
+  - Observer
   - Mediator
   - Facade
   - Proxy
@@ -35,6 +33,14 @@ New categories:
 - Peripheral (less important)
 - Compound
 - Creational
+
+Iterator: (stream, map, filter, reduce)
+
+Observer: (listener and event, data binding)
+- you'd better build debug features into patterns
+  - for example, to help checking missing dependencies
+
+Observer + Iterator = Reactive programming
 
 * 1 Introduction
 
