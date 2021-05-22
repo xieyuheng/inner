@@ -2,6 +2,40 @@
 #+author: Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides
 #+date: 1994
 
+* info
+
+** Categories of patterns
+
+Ralph Johnson - 22 Years Of Design Patterns:
+- video: https://www.youtube.com/watch?v=Lf0uHSBTKEw&ab_channel=FASTFoundation
+
+Old categories:
+- Structural
+- Behavioral
+- Creational
+
+New categories:
+- Core (important):
+  - Composite
+  - Strategy
+  - Decorator
+  - State
+  - Iterator
+  - Observer (listener and event, data binding)
+    - you'd better build debug features into patterns
+      - for example, to help checking missing dependencies
+  - Mediator
+  - Facade
+  - Proxy
+  - Command
+  - Template Method
+  - Adapter
+  - Null Object (new)
+
+- Peripheral (less important)
+- Compound
+- Creational
+
 * 1 Introduction
 
 ** Experienced designers evidently know something inexperienced ones don't. What is it?
