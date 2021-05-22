@@ -42,6 +42,10 @@ Observer: (listener and event, data binding)
 
 Observer + Iterator = Reactive programming
 
+Composite: Component :> Leaf, Composite
+- Where to put children side-effect methods? in Component or Composite?
+  - We should put them in Composite, because this way is type safe.
+
 * 1 Introduction
 
 ** Experienced designers evidently know something inexperienced ones don't. What is it?
