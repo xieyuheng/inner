@@ -106,6 +106,9 @@
         - x -
           maybe the idea of k-line can be used in proof search
 
+        - x -
+          maybe the idea of k-line is just about sequential pattern
+
       - why programming is a good medium
         for expressing poorly understood
         and sloppily-formulated ideas?
