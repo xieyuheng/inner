@@ -2,6 +2,50 @@
 #+author: Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides
 #+date: 1994
 
+* info
+
+** Categories of patterns
+
+Ralph Johnson - 22 Years Of Design Patterns:
+- video: https://www.youtube.com/watch?v=Lf0uHSBTKEw&ab_channel=FASTFoundation
+
+Old categories:
+- Structural
+- Behavioral
+- Creational
+
+New categories:
+- Core (important):
+  - Composite
+  - Strategy
+  - Decorator
+  - State
+  - Iterator
+  - Observer
+  - Mediator
+  - Facade
+  - Proxy
+  - Command
+  - Template Method
+  - Adapter
+  - Null Object (new)
+
+- Peripheral (less important)
+- Compound
+- Creational
+
+Iterator: (stream, map, filter, reduce)
+
+Observer: (listener and event, data binding)
+- you'd better build debug features into patterns
+  - for example, to help checking missing dependencies
+
+Observer + Iterator = Reactive programming
+
+Composite: Component :> Leaf, Composite
+- Where to put children side-effect methods? in Component or Composite?
+  - We should put them in Composite, because this way is type safe.
+
 * 1 Introduction
 
 ** Experienced designers evidently know something inexperienced ones don't. What is it?
