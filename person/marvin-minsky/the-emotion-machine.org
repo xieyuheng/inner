@@ -22,6 +22,11 @@ into more primitive concepts,
 to help people understand how human minds work,
 and to help people build smarter machines.
 
+First is the concept of "resources",
+then we explain mental activity (such as Anger, Love, or Embarrassment)
+by trying to show how that state of mind might result from
+the activities of a certain collection of mental resources.
+
 ** ><
 
 Ch1. We are born with many mental resources.
