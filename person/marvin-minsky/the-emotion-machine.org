@@ -4,7 +4,7 @@
 
 * INTRODUCTION
 
-x: about resourceful
+** Xie, How do you think about the "resourcefulness" discussed by the author?
 
 在寫程序解決問題的時候
 [比如 proof search 這類問題]
@@ -13,6 +13,16 @@ x: about resourceful
 並且還能根據結果和效率批判各種解法的有效性
 - reflective think 所要求的，可能不是简单的「根據結果批判」
 那麼就像是智能了
+
+** What is the author's aim in this book?
+
+Analysis common concepts about emotion,
+such as "feelings", "emotions" or "consciousness",
+into more primitive concepts,
+to help people understand how human minds work,
+and to help people build smarter machines.
+
+** ><
 
 Ch1. We are born with many mental resources.
 Ch2. We learn more from interacting with others.
