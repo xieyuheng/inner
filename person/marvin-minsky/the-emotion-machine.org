@@ -1,15 +1,18 @@
 #+title: THE EMOTION MACHINE
 #+author: Marvin Minsky
+#+date: 2006
 
 * INTRODUCTION
 
-- x -
-  在寫程序解決問題的時候
-  [比如 proof search 這類問題]
-  如果程序有多種解決同一個問題的方法
-  並且能在一個方法遇到困難時切換另一個方法
-  並且還能根據結果和效率批判各種解法的有效性
-  那麼就像是智能了
+x: about resourceful
+
+在寫程序解決問題的時候
+[比如 proof search 這類問題]
+如果程序有多種解決同一個問題的方法
+並且能在一個方法遇到困難時切換另一個方法
+並且還能根據結果和效率批判各種解法的有效性
+- reflective think 所要求的，可能不是简单的「根據結果批判」
+那麼就像是智能了
 
 Ch1. We are born with many mental resources.
 Ch2. We learn more from interacting with others.
