@@ -44,7 +44,6 @@ project: {
     part description
     quantity-on-hand
     quantity-on-order
-
   }
 }
 ```

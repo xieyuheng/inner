@@ -88,46 +88,6 @@
 
       - ><
 
-* THE EMOTION MACHINE
-
-*** INTRODUCTION
-
-    - x -
-      在寫程序解決問題的時候
-      [比如 proof search 這類問題]
-      如果程序有多種解決同一個問題的方法
-      並且能在一個方法遇到困難時切換另一個方法
-      並且還能根據結果和效率批判各種解法的有效性
-      那麼就像是智能了
-
-    - Ch1. We are born with many mental resources.
-      Ch2. We learn more from interacting with others.
-      Ch3. Emotions are different Ways to Think.
-      Ch4. We learn to think about our recent thoughts.
-      Ch5. We learn to think on multiple levels.
-      Ch6. We accumulate huge stores of commonsense knowledge.
-      Ch7. We switch among different Ways to Think.
-      Ch8. We find multiple ways to represent things.
-      Ch9. We build multiple models ofourselves.
-
-*** FALLING IN LOVE
-
-*** ATTACHMENTS AND GOALS
-
-*** FROM PAIN TO SUFFERING
-
-*** CONSCIOUSNESS
-
-*** LEVELS OF MENTAL ACTIVITIES
-
-*** COMMON SENSE
-
-*** THINKING
-
-*** RESOURCEFULNESS
-
-*** THE SELF
-
 * (2011 fall) mit-6-868j-the-society-of-mind
 
 *** 1. Introduction
@@ -145,6 +105,9 @@
 
         - x -
           maybe the idea of k-line can be used in proof search
+
+        - x -
+          maybe the idea of k-line is just about sequential pattern
 
       - why programming is a good medium
         for expressing poorly understood
