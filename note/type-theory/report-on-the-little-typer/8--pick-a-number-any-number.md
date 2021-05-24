@@ -27,3 +27,18 @@ in a implementation these concepts will be implemented as functions like:
 - `check`
 - `check_type`
 - `check_same`
+
+But "forall" and "exists" are special, they do not correspond to functions in implementation.
+
+Creating expressions that capture the ideas behind a form of judgment
+is sometimes called internalizing the form of judgment.
+
+## judging a statement to be true
+
+If a type can be read as a statement,
+then judging the statement to be true means that
+there is an expression with that type.
+
+Thus in this view,
+truth means that we have evidenced,
+and this evidence is called a proof.
