@@ -65,6 +65,9 @@ stack 相较于 tree 是更加线性的。
 
 Expressions that describe other expressions are called types.
 
+Xie: When we can say "x is P", that means "P" describe "x".
+or in our language "the P x" is the same as "x is P".
+
 This definition of type is very simple,
 with a leading question, it is even more natural.
 
