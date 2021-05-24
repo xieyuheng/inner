@@ -9,3 +9,7 @@ with a new type constructor, types can
 express a new idea called equality.
 
 We can express two functions always find the same result.
+
+This is a new perspective on types.
+
+Types can be read as statements (propositions).
