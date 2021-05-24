@@ -58,3 +58,12 @@ because a defined name is the same as its definition.
 
 Also, if the target of an eliminator expression is neutral,
 then the entire expression is neutral.
+
+## Type theory encode patterns of reasoning
+
+Judgments often can be mechanically checked using relatively simple rules.
+This is why judgments are a suitable basis for knowledge.
+
+Expressions, however, can encode interesting patterns of reasoning,
+such as using induction to try each possibility
+for the variable in a neutral expression.
