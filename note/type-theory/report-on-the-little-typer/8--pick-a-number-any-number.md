@@ -42,3 +42,19 @@ there is an expression with that type.
 Thus in this view,
 truth means that we have evidenced,
 and this evidence is called a proof.
+
+## Definition of Neutral again
+
+Expressions that are not values
+and cannot yet be evaluated due to a variable
+are called neutral.
+
+A more precise way to define neutral
+expressions is to start with the simplest
+neutral expressions and build from there.
+
+Variables are neutral, unless they refer to definitions,
+because a defined name is the same as its definition.
+
+Also, if the target of an eliminator expression is neutral,
+then the entire expression is neutral.
