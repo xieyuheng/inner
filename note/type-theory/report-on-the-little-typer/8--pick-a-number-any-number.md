@@ -67,3 +67,8 @@ This is why judgments are a suitable basis for knowledge.
 Expressions, however, can encode interesting patterns of reasoning,
 such as using induction to try each possibility
 for the variable in a neutral expression.
+
+## Total function
+
+Why it is important that all functions should be total?
+Because only total functions can be viewed as proof.
