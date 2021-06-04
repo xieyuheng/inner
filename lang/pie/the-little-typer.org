@@ -1,7 +1,5 @@
 #+title: the little typer
 
-* [todo]
-- docs inference rules in the little typer
 * 1. The More Things Change, the More They Stay the Same
 
   #+begin_src scheme
@@ -516,7 +514,7 @@
 
   - Whenever a type constructor has an index,
     the index shows up in the motive for its eliminator,
-    and therefore also inthe step.
+    and therefore also in the step.
 
     - A family of types whose argument is an index
       is sometimes called "an indexed family."
@@ -754,5 +752,3 @@
 
       Converting a value into its normal form
       is called *reading back* the normal form from the value.
-
-*** [todo] The Rules
