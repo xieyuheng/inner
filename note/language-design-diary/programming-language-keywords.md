@@ -56,7 +56,7 @@ We use `--` for reversed `:`.
 - belongs to
 - is in
 
-The symbol itself is a stylized lowercase Greek letter epsilon ("ϵ"),
+In set theory, the symbol "∈" is a stylized lowercase Greek letter epsilon ("ϵ"),
 the first letter of the word ἐστί, which means "is".
 
 `--` might be read as
