@@ -20,7 +20,7 @@ some free variable of the second expression might be bound by the first one.
 - (ii) easy to handle in metalingual discussion;
 - (iii) easy for the computer and for the computer programmer.
 
-Nameless lambda expression will be good at (ii) and (iii) but not (i).
+Nameless lambda expression will be good for (ii) and (iii) but not (i).
 
 ## How to translate lambda expression to nameless lambda expression?
 
