@@ -1,15 +1,21 @@
-# Lambda calculus notation with nameless dummies
+# Lambda calculus notation with nameless dummies, a tool for automatic formula manipulation, with application to the church-rosser theorem
 
-- 1972
+author: De Bruijn
+date: 1972
 
-# info
-
-- a tool for automatic formula manipulation
-  with application to the church-rosser theorem
+## info
 
 - this paper is about about de bruijn index
 
-# references
+## How to translate lambda expression to nameless lambda expression?
+
+TODO
+
+## How to translate theorems of lambda calculus to nameless lambda calculus?
+
+TODO
+
+## references
 
 1. BARENDREGT, H. P.,
    Some extensional  models for combinatory  logics and lambda calculi.
@@ -29,6 +35,6 @@
    Combinatory Logic.
    North-Holland Publishing Company, Amsterdam 1958.
 
-# automath
+## automath
 
 automath is dependently typed forth
