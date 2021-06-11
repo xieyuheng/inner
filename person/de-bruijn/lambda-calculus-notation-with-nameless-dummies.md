@@ -1,7 +1,7 @@
 # Lambda calculus notation with nameless dummies, a tool for automatic formula manipulation, with application to the church-rosser theorem
 
-author: De Bruijn
-date: 1972
+- author: De Bruijn
+- date: 1972
 
 ## info
 
