@@ -14,6 +14,14 @@ Manipulations in lambda calculus need to rename bound variables.
 If a free variable in an expression has to be replaced by a second expression,
 some free variable of the second expression might be bound by the first one.
 
+## What are the author's three criteria for a good notation?
+
+- (i) easy to write and easy to read for the human reader;
+- (ii) easy to handle in metalingual discussion;
+- (iii) easy for the computer and for the computer programmer.
+
+Nameless lambda expression will be good at (ii) and (iii) but not (i).
+
 ## How to translate lambda expression to nameless lambda expression?
 
 TODO
