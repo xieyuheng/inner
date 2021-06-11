@@ -22,6 +22,9 @@ some free variable of the second expression might be bound by the first one.
 
 Nameless lambda expression will be good for (ii) and (iii) but not (i).
 
+Thus, we should translate from the usual system to nameless system at the input stage,
+and backwards at the output stage.
+
 ## How to translate lambda expression to nameless lambda expression?
 
 TODO
