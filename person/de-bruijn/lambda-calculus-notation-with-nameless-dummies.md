@@ -25,6 +25,34 @@ Nameless lambda expression will be good for (ii) and (iii) but not (i).
 Thus, we should translate from the usual system to nameless system at the input stage,
 and backwards at the output stage.
 
+## What notation does the author used to handle meta language?
+
+Use `{ <Exp> }` to eval a `Exp`, view evaluation as a function,
+its type will be `Exp -> Exp` (There is no `Value` type here).
+
+When `x` denotes a value, `{ x }` is the value.
+
+Examples:
+
+```
+{ reverse(pqra) } == arqp
+```
+
+The following example, means author assume implicit string concatenation:
+
+```
+P = phi
+S = sigma
+{ P }{ S } == phisigma
+{ P }-{ S } == phi-sigma
+```
+
+Example of nested `{ }`:
+
+```
+{ reverse({ S }) } == amgis
+```
+
 ## How to translate lambda expression to nameless lambda expression?
 
 TODO
