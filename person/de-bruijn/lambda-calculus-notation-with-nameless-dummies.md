@@ -1,11 +1,18 @@
 # Lambda calculus notation with nameless dummies, a tool for automatic formula manipulation, with application to the church-rosser theorem
 
-- author: De Bruijn
-- date: 1972
+author: De Bruijn
+date: 1972
 
 ## info
 
 - this paper is about about de bruijn index
+
+## What is the problem of lambda calculus?
+
+Manipulations in lambda calculus need to rename bound variables.
+
+If a free variable in an expression has to be replaced by a second expression,
+some free variable of the second expression might be bound by the first one.
 
 ## How to translate lambda expression to nameless lambda expression?
 
@@ -18,7 +25,7 @@ TODO
 ## references
 
 1. BARENDREGT, H. P.,
-   Some extensional  models for combinatory  logics and lambda calculi.
+   Some extensional  models for combinatory logics and lambda calculi.
    Doctoral Thesis, Utrecht 1971,
 
 2. BRUIJN, N. G. DE,
