@@ -53,6 +53,23 @@ Example of nested `{ }`:
 { reverse({ S }) } == amgis
 ```
 
+## In the author's planner tree representation of lambda expression, what are depth and level?
+
+Each variable is assigned two integers,
+
+- depth:
+  the number of lambdas we encounter when running down
+  until we meet the lambda that bound this variable.
+
+- level:
+  total number of lambdas we encounter when running down
+  until we meet the root.
+
+By the author's definitions, the last lambda also counts.
+
+In the author's notation, free variables are viewed as bound by lambda beyond the root,
+thus when depth is greater than level, we know it is a free variable.
+
 ## How to translate lambda expression to nameless lambda expression?
 
 TODO
