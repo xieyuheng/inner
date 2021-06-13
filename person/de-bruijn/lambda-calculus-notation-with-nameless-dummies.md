@@ -57,7 +57,7 @@ Example of nested `{ }`:
 
 Each variable is assigned two integers,
 
-- depth:
+- depth (reference depth):
   the number of lambdas we encounter when running down
   until we meet the lambda that bound this variable.
 
@@ -70,9 +70,43 @@ By the author's definitions, the last lambda also counts.
 In the author's notation, free variables are viewed as bound by lambda beyond the root,
 thus when depth is greater than level, we know it is a free variable.
 
+## How to get the author's De Bruijn index from the planner tree?
+
+In the planner tree,
+- erase the variable names
+- erase the integers indicating the level
+- erase the bound variable names of lambda
+- only keep the reference depth
+
+no information is lost.
+
+The result is lambda expression represented by De Bruijn index.
+
 ## How to translate lambda expression to nameless lambda expression?
 
-TODO
+from: https://en.wikipedia.org/wiki/De_Bruijn_index
+
+consider the application
+
+```
+(λ λ 4 2 (λ 1 3)) (λ 5 1)
+```
+
+which might correspond to the following term written in the usual notation
+
+```
+(λx. λy. z x (λu. u x)) (λx. w x)
+```
+
+- Step 1, we obtain the term `λ 4 _ (λ 1 _)`,
+  where the variables that are destined for substitution are replaced with `_`.
+
+- Step 2 decrements the free variables, giving `λ 3 _ (λ 1 _)`.
+
+- Finally, in step 3, we replace the `_` with the argument, namely `λ 5 1`;
+  the first `_` is under one binder, so we replace it with `λ 6 1` (free variables increased by 1);
+  the second is under two binders, so we replace it with `λ 7 1` (free variables increased by 2).
+  The final result is `λ 3 (λ 6 1) (λ 1 (λ 7 1))`.
 
 ## How to translate theorems of lambda calculus to nameless lambda calculus?
 
