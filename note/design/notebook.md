@@ -1,4 +1,12 @@
-a note web app to be used both on the phone and computer
+# a note web app to be used both on the phone and computer
+
+## info
+
+How to Make a Complete Map of Every Thought You Think
+- author: Lion Kimbro
+- date: 2003
+
+## design
 
 - small note with date and tags, maybe a title
 - maybe a numbering system, like page -- surreal number -- with total order
