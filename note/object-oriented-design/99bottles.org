@@ -389,7 +389,7 @@ Knowledge of the class names of the variants,
 and of the logic necessary to choose the correct one,
 can be captured in factories.
 
-** What is A factory's responsibility?
+** What is a factory's responsibility?
 
 A factory's responsibility is to manufacture the right object for a given role.
 
