@@ -1,0 +1,4 @@
+#+title: Mathematical Discovery
+#+subtitle: On understanding, learning, and teaching problem solving
+#+author: Polya
+#+date: 1961
