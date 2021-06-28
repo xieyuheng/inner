@@ -13,4 +13,8 @@ with a new foreword by John H. Conway, 2004
 
 * PART III. SHORT DICTIONARY OF HEURISTIC
 
+** Problems to find, problems to prove.
+
+在构造主义数学中，「problems to prove」与「problems to find」相同。
+
 * PART IV. PROBLEMS, HINTS, SOLUTIONS
