@@ -8,3 +8,5 @@
 要保持一个不变量
 这个不变量可以总结为
 自由变元是神圣的
+
+entity component system 与 sussman 的 propagator model 之间的关系是什么？
