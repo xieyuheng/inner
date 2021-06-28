@@ -124,7 +124,11 @@ it is again different when we have almost obtained the solution.
 - (1) understand  -- clarity
 - (2) plan        -- connections
 - (3) carry out   -- check each steps
-- (4) look back   -- try to gain the most from our works
+- (4) look back   -- to gain the most from our works
+
+It is important to go through all the phases,
+to advance while avoiding obvious mistakes,
+and to gain the most from our works.
 
 * PART II. HOW TO SOLVE IT
 
