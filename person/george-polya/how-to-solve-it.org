@@ -82,6 +82,8 @@ Fourth. Examine the solution obtained.
 
 * PART I. IN THE CLASSROOM
 
+** 1. Helping the student.
+
 ** 2. Questions, recommendations, mental operations.
 
 It seemed to the author that it might be worth while
@@ -99,6 +101,10 @@ mental operations typically useful for the solution of problems.
 
 These operations are listed in the order
 in which they are most likely to occur.
+
+** 3. Generality
+
+** 4. Common sense.
 
 ** 5. Teacher and student. Imitation and practice.
 
