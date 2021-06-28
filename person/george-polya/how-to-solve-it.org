@@ -130,6 +130,16 @@ It is important to go through all the phases,
 to advance while avoiding obvious mistakes,
 and to gain the most from our works.
 
+** 7. Understanding the problem.
+
+The student should understand the problem.
+But he should not only understand it, he should also desire its solution.
+
+If the student is lacking in understanding or in interest,
+it is not always his fault; the problem should be well chosen,
+not too difficult and not too easy, natural and interesting,
+and some time should be allowed for natural and interesting presentation.
+
 * PART II. HOW TO SOLVE IT
 
 * PART III. SHORT DICTIONARY OF HEURISTIC
