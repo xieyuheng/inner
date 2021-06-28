@@ -130,6 +130,10 @@ It is important to go through all the phases,
 to advance while avoiding obvious mistakes,
 and to gain the most from our works.
 
+Note that:
+- (1) understand & (2) plan, is like DDD.
+- (3) carry out, is like TDD.
+
 ** 7. Understanding the problem.
 
 The student should understand the problem.
