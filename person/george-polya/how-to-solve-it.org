@@ -82,6 +82,22 @@ Fourth. Examine the solution obtained.
 
 * PART I. IN THE CLASSROOM
 
+** 6. Four phases.
+
+Trying to find the solution,
+we may repeatedly change our point of view,
+our way of looking at the problem.
+We have to shift our position again and again.
+
+Our conception of the problem is likely to be rather incomplete when we start the work;
+our outlook is different when we have made some progress;
+it is again different when we have almost obtained the solution.
+
+- (1) understand  -- clarity
+- (2) plan        -- connections
+- (3) carry out   -- check each steps
+- (4) look back   -- try to gain the most from our works
+
 * PART II. HOW TO SOLVE IT
 
 * PART III. SHORT DICTIONARY OF HEURISTIC
