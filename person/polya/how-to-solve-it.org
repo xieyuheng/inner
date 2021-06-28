@@ -7,6 +7,30 @@
 Expanded Princeton Science Library Edition,
 with a new foreword by John H. Conway, 2004
 
+* LIST
+
+** UNDERSTANDING THE PROBLEM
+
+First. You have to understand the problem.
+
+- What is the unknown?
+- What are the data?
+- What is the condition?
+- Is it possible to satisfy the condition?
+- Is the condition sufficient to determine the unknown?
+- Or is it insufficient?
+- Or redundant?
+- Or contradictory?
+
+- Draw a figure.
+- Introduce suitable notation.
+- Separate the various parts of the condition.
+- Can you write them down?
+
+** DEVISING A PLAN
+
+Second. Find the ...
+
 * PART I. IN THE CLASSROOM
 
 * PART II. HOW TO SOLVE IT
