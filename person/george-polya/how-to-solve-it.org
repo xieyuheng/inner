@@ -7,7 +7,7 @@
 Expanded Princeton Science Library Edition,
 with a new foreword by John H. Conway, 2004
 
-* LIST
+* THE LIST
 
 ** UNDERSTANDING THE PROBLEM
 
@@ -30,6 +30,24 @@ First. You have to understand the problem.
 ** DEVISING A PLAN
 
 Second. Find the ...
+
+** CARRYING OUT THE PLAN
+
+Third. Carry out your plan.
+
+- Carrying out your plan of the solution, check each step.
+- Can you see clearly that the step is correct?
+- Can you prove that it is correct?
+
+** LOOKING BACK
+
+Fourth. Examine the solution obtained.
+
+- Can you check the result?
+- Can you check the argument?
+- Can you derive the result differently?
+- Can you see it at a glance?
+- Can you use the result, or method, for some other problem?
 
 * PART I. IN THE CLASSROOM
 
