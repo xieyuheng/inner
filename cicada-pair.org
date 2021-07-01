@@ -1,5 +1,13 @@
 首先从 exp 开始说。
 
-exp 需要被 check，实现 check 的同时，还要实现 infer，这个技术叫做 bidirectional type checking。
+exp 需要被 check，
+实现 check 的同时，还要实现 infer，
+这个技术叫做 bidirectional type checking。
 
-check 与 infer 在履行其职基本责的同时，还要返回 core，core 与 exp 结构类似，差异在于，它补充了一些信息，这些信息是在编译时期 -- 即 check 和 infer 这两个函数运行的时期，就可以确定的，这个技术叫做 elaboratation。
+check 与 infer 在履行其职基本责的同时，
+还要返回 core，core 与 exp 结构类似，
+差异在于，它补充了一些信息，
+这些信息是在编译时期
+-- 即 check 和 infer 这两个函数运行的时期，
+就可以确定的，
+这个技术叫做 elaboratation。
