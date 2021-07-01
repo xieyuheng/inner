@@ -36,4 +36,5 @@ entity component system 与 sussman 的 propagator model 之间的关系是什�
 
 如果和用 ordered pair 来表示 unordered pair？
 如果元素之间有全序关系，可以通过排序来解决，
-如果元素之间没有全序关系，好像没法划归到某种 代表形式。
+如果元素之间没有全序关系，好像没法化归到某种 代表形式。
+如果没法化归到 代表形式 就只能通过实现非平凡的 等词 来处理了。
