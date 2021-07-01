@@ -30,3 +30,10 @@ entity component system 与 sussman 的 propagator model 之间的关系是什�
 也就是说，有了 形变（等价关系）之后，找到 代表形式，
 然后限制数据类型的定义，使得其只包含这种 代表形式 中的信息，
 这就是我们所观察到的「现象」。
+
+
+如何在数据结构中表示 unorder-ness？
+
+如果和用 ordered pair 来表示 unordered pair？
+如果元素之间有全序关系，可以通过排序来解决，
+如果元素之间没有全序关系，好像没法划归到某种 代表形式。
