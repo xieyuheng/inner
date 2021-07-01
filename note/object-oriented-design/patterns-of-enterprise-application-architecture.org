@@ -1,0 +1,13 @@
+#+title: Patterns of Enterprise Application Architecture
+#+author: Martin Fowler
+#+date: 2003
+
+* Chapter 10: Data Source Architectural Patterns
+
+** Table Data Gateway
+
+** Row Data Gateway
+
+** Active Record
+
+** Data Mapper
