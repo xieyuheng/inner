@@ -17,5 +17,6 @@ entity component system 与 sussman 的 propagator model 之间的关系是什�
 关于 quotient type
 
 如果结合律与 List 这个数据类型对应，
+结合律 + 交换律 与 Set 这个数据类型对应，
 那么交换律与 什么 数据类型对应？
 是否有一般的理论来描述这种对应？
