@@ -523,7 +523,7 @@ by not to use equality between morphisms,
 but to use isomorphism between morphisms in `functor_category_t`
 to describe laws like associativity.
 
-Because of complicated coherent laws occured in n-category,
+Because of complicated coherent laws occurred in n-category,
 we study n-groupoid where such coherent laws are simple.
 
 - Xie: We need an example to demonstrate

@@ -15,7 +15,7 @@
       - dependent pair
 
     - cardinality
-      - number of attribute_values occured during a time interval
+      - number of attribute_values occurred during a time interval
 
     - data_cube
       - hypercube whose coordinates are attributes
