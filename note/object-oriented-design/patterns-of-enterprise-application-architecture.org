@@ -2,6 +2,23 @@
 #+author: Martin Fowler
 #+date: 2003
 
+* Preface
+
+** What is Enterprise application?
+
+Enterprise applications are about
+the display, manipulation, and storage
+of large amounts of often complex data
+and the support or automation
+of business processes with that data.
+
+** What is iterative develop-ment?
+
+At the heart of iterative development
+is the notion that you should deliver software
+as soon as you have something useful to the user,
+ even if it's not complete.
+
 * Chapter 10: Data Source Architectural Patterns
 
 ** Table Data Gateway
