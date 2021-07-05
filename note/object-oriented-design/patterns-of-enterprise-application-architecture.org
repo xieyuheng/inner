@@ -12,36 +12,54 @@ of large amounts of often complex data
 and the support or automation
 of business processes with that data.
 
-** What is iterative develop-ment?
+** What is iterative development?
 
 At the heart of iterative development
 is the notion that you should deliver software
 as soon as you have something useful to the user,
- even if it's not complete.
+even if it's not complete.
+
+* Introduction
 
 ** What are examples of Enterprise applications?
 
-Enterprise applications include
-- payroll,
-- patient records,
-- shipping tracking,
-- cost analysis,
-- credit scoring,
-- insurance,
-- supply chain,
-- accounting,
-- customer service,
-- and foreign exchange trading.
+- payroll
+- patient records
+- shipping tracking
+- cost analysis
+- credit scoring
+- insurance
+- supply chain
+- accounting
+- customer service
+- foreign exchange trading
 
-Enterprise applications don't include
-- automobile fuel injection,
-- word processors,
-- elevator controllers,
-- chemical plant controllers,
-- telephone switches,
-- operating systems,
-- compilers,
-- and games.
+** What are NOT examples of Enterprise applications?
+
+- automobile fuel injection
+- word processors
+- elevator controllers
+- chemical plant controllers
+- telephone switches
+- operating systems
+- compilers
+- games
+
+** About Enterprise applications
+
+Enterprise applications usually involve {persistent} data.
+
+Usually many people {access} data {concurrently}.
+
+Usually they need to {integrate} with other enterprise applications scattered around the enterprise.
+
+If meanings of data are not well managed, as it changes,
+we will run into problems of {conceptual dissonance} with the data.
+
+{Differences in business process} will bring conceptual dissonance to the data.
+
+One of the best things you can do to a large system is turn it into a small one
+by {simplifying its architecture and process}.
 
 * Chapter 10: Data Source Architectural Patterns
 
