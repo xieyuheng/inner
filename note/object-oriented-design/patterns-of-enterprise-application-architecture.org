@@ -19,6 +19,30 @@ is the notion that you should deliver software
 as soon as you have something useful to the user,
  even if it's not complete.
 
+** What are examples of Enterprise applications?
+
+Enterprise applications include
+- payroll,
+- patient records,
+- shipping tracking,
+- cost analysis,
+- credit scoring,
+- insurance,
+- supply chain,
+- accounting,
+- customer service,
+- and foreign exchange trading.
+
+Enterprise applications don't include
+- automobile fuel injection,
+- word processors,
+- elevator controllers,
+- chemical plant controllers,
+- telephone switches,
+- operating systems,
+- compilers,
+- and games.
+
 * Chapter 10: Data Source Architectural Patterns
 
 ** Table Data Gateway
