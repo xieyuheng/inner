@@ -61,6 +61,29 @@ we will run into problems of {conceptual dissonance} with the data.
 One of the best things you can do to a large system is turn it into a small one
 by {simplifying its architecture and process}.
 
+* Chapter 3: Mapping to Relational Databases
+
+- Row Data Gateway
+  - to be used with [Transaction Scripts]
+  - one instance per row
+  - without domain logic
+
+- Table Data Gateway
+  - to be used with [Transaction Scripts]
+  - one instance per table
+  - without domain logic
+  - return logic-less record
+
+- Active Record
+  - [Row Data Gateway] with domain logic -- to dry or replace [Transaction Scripts]
+  - The one-to-one match of domain classes to tables starts to fail as you factor domain logic into smaller classes.
+
+- Data Mapper
+  - like [Table Data Gateway] but with only simple methods -- such as `create`, `load` and `save`
+
+- Unit of Work
+  - TODO
+
 * Chapter 10: Data Source Architectural Patterns
 
 ** Table Data Gateway
