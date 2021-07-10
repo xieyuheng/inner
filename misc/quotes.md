@@ -1,24 +1,30 @@
-## Quotes
+# Quotes
 
 - Vague, but exciting.
   - Mike Sendall
 
-### Design
+## Programming Languages
+
+- What truely drives language adoption is necessity.
+  - TechLead
+  - "Will Deno replace Node.js: Which programming language is better?"
+
+## Design
 
 - The goal of design is for you to understand the choices you are making.
   - Sandi Marts, Defining Object-Oriented Design
 
-### Lie
+## Lie
 
 - A lie is as simple as the hardest art.
   - Ryszard Peryt to Nina Gierasimczuk
 
-### Business
+## Business
 
 - If you're good at something, never do it for free.
   - The Joker
 
-### Love
+## Love
 
 - In general when you feel in life, not necessarily when your heart broken,
   but when you feel, when you let to go into the intense, and deeply into the senses,
@@ -27,7 +33,7 @@
   it's something let's you disassociate and understand the true moments of joy and happiness.
   - Keren Ann on melancholy, love and loss
 
-### Education
+## Education
 
 *Learning to learn.*
 
@@ -40,7 +46,7 @@
 - You need both theory to guide you, and skill and technique to do.
   - Richard Hamming
 
-### Engineering
+## Engineering
 
 - Anything complex in the world can be improved.
   - Donald Knuth
@@ -55,7 +61,7 @@
   - Paul Phillips
   - We're Doing It All Wrong, at Pacific Northwest Scala 2013
 
-### Mathematics
+## Mathematics
 
 - The code pretty much writes itself.
   - Bartosz Milewski
@@ -70,7 +76,7 @@
   - Eugenia Cheng
   - 2017 Lambda World talk.
 
-### Game
+## Game
 
 - There is always a chance to start asking "Why?" again.
   - James Portnow
@@ -80,7 +86,7 @@
   - James Portnow
   - "Dark Souls - #7 - Dan Masters the Crossbow - Side Quest"
 
-### Research
+## Research
 
 - All research involves risk.
   If your project can't fail, it's development, not research.
@@ -90,7 +96,7 @@
   - MIT AI Lab graduate students
   - "How to do Research At the MIT AI Lab"
 
-### Life
+## Life
 
 - If I abandoned this project I would be a man without dreams, and I don't want to live like that.
   I live my life, I end my life wish this project.
@@ -123,7 +129,7 @@
   - John Horton Conway
   - "On His LOVE-HATE Relationship with LIFE" - Talks at Google
 
-### World
+## World
 
 - I want to divide human understanding into two kinds
   -- classical understanding and romantic understanding.
@@ -136,7 +142,7 @@
   - Robert Pirsig
   - in "Zen and the Art of Motorcycle Maintenance"
 
-### Technology
+## Technology
 
 - I care about what the security and efficiency properties
   of a technology are, not what it's called.
@@ -154,7 +160,7 @@
   - Tristan Harris
   - How a handful of tech companies control billions of minds every day
 
-#### Software Architecture
+## Software Architecture
 
 - Programmers are abstractors and detail managers,
   as detail managers we separate details from the generals.
@@ -174,7 +180,7 @@
   - Bob Martin
   - SOLID Principles of Object Oriented and Agile Design
 
-#### Database
+## Database
 
 - The universality of the data sublanguage
   lies in its descriptive ability (not its computing ability).
