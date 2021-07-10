@@ -131,3 +131,7 @@ application’s response in each operation.
 
 A Service Layer defines an application’s boundary [Cockburn PloP] and its
 set of available operations from the perspective of interfacing client layers.
+
+- Service Layer is like the view-model of MVVM,
+  a view-model prepare the models for its view.
+  a service prepare the models for its interfacing clients (such as http and command line).
