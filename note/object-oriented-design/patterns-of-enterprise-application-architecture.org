@@ -106,6 +106,10 @@ Identity Map (195) also doubles as a cache for the database.
 Don’t forget, however, that the primary purpose of an Identity Map (195)
 is to maintain correct identities, not to boost performance.
 
+** Lazy Load
+
+- to bring back just enough from the database with each call.
+
 * Chapter 10: Data Source Architectural Patterns
 
 ** Table Data Gateway
