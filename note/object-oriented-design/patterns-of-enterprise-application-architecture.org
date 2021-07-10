@@ -63,26 +63,48 @@ by {simplifying its architecture and process}.
 
 * Chapter 3: Mapping to Relational Databases
 
-- Row Data Gateway
-  - to be used with [Transaction Scripts]
-  - one instance per row
-  - without domain logic
+** Row Data Gateway
 
-- Table Data Gateway
-  - to be used with [Transaction Scripts]
-  - one instance per table
-  - without domain logic
-  - return logic-less record
+- to be used with [Transaction Scripts]
+- one instance per row
+- without domain logic
 
-- Active Record
-  - [Row Data Gateway] with domain logic -- to dry or replace [Transaction Scripts]
-  - The one-to-one match of domain classes to tables starts to fail as you factor domain logic into smaller classes.
+** Table Data Gateway
 
-- Data Mapper
-  - like [Table Data Gateway] but with only simple methods -- such as `create`, `load` and `save`
+- to be used with [Transaction Scripts]
+- one instance per table
+- without domain logic
+- return logic-less record
 
-- Unit of Work
-  - TODO
+** Active Record
+
+- [Row Data Gateway] with domain logic -- to dry or replace [Transaction Scripts]
+- The one-to-one match of domain classes to tables starts to fail as you factor domain logic into smaller classes.
+
+** Data Mapper
+
+- like [Table Data Gateway] but with only simple methods -- such as `create`, `load` and `save`
+
+** Unit of Work
+
+- TODO
+
+** Identity Map
+
+As you load objects, you have to be wary about loading the same one twice.
+If you do that, you’ll have two in-memory objects that correspond to a single
+database row. Update them both, and everything gets very confusing.
+
+To deal with this you need to keep a record of every row you read in an Identity Map (195).
+Each time you read in some data, you check the Identity Map (195) first
+to make sure that you don’t already have it.
+If the data is already loaded, you can return a second reference to it.
+
+As a benefit you may also be able to avoid a database call since the
+Identity Map (195) also doubles as a cache for the database.
+
+Don’t forget, however, that the primary purpose of an Identity Map (195)
+is to maintain correct identities, not to boost performance.
 
 * Chapter 10: Data Source Architectural Patterns
 
