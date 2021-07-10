@@ -61,6 +61,10 @@ we will run into problems of {conceptual dissonance} with the data.
 One of the best things you can do to a large system is turn it into a small one
 by {simplifying its architecture and process}.
 
+* Chapter 1: Layering
+
+* Chapter 2: Organizing Domain Logic
+
 * Chapter 3: Mapping to Relational Databases
 
 ** Row Data Gateway
