@@ -135,3 +135,14 @@ set of available operations from the perspective of interfacing client layers.
 - Service Layer is like the view-model of MVVM,
   a view-model prepare the models for its view.
   a service prepare the models for its interfacing clients (such as http and command line).
+  - note that, view-model and service both have the responsibility of setting up boundary,
+    but view-model also has the responsibility of been the target of double binding,
+    and service has the responsibility of logging and so on.
+  - service use Layer Supertype, but view-model often not.
+
+Identifying the operations needed on a Service Layer boundary is pretty straightforward.
+They’re determined by the needs of Service Layer clients,
+the most significant (and first) of which is typically a user interface.
+Since a user interface is designed to support the use cases that actors want to perform with an application,
+the starting point for identifying Service Layer operations
+is the use case model and the user interface design for the application.
