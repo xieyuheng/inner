@@ -84,6 +84,7 @@ by {simplifying its architecture and process}.
 ** Data Mapper
 
 - like [Table Data Gateway] but with only simple methods -- such as `create`, `load` and `save`
+- can not return logic-less record, because it need to maintain [Identity Map]
 
 ** Unit of Work
 
