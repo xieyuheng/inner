@@ -169,6 +169,7 @@ Gateway 又可以再次分层，分为 frontend 和 backend。
 
 Gateway 与 Mapper 的区别在于，
 Mapper 要依赖被的两端，
+Mapper 更复杂，因为它的依赖更多（它的责任也更多），
 而 Gateway 只依赖外部一端。
 
 Gateway 与 Facade 的区别在于，
