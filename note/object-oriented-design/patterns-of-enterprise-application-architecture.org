@@ -150,3 +150,34 @@ the most significant (and first) of which is typically a user interface.
 Since a user interface is designed to support the use cases that actors want to perform with an application,
 the starting point for identifying Service Layer operations
 is the use case model and the user interface design for the application.
+
+* Chapter 18: Base Patterns
+
+** Gateway
+
+An object that encapsulates access to an external system or resource.
+
+Gateway 应该保持简单，负责的逻辑应该由 Gateway 的 clinet 实现
+
+Gateway 又可以再次分层，分为 frontend 和 backend。
+
+因为这里其实有两个职责：
+- backend -- wrapping of the external service
+  - 不去简化 resource 的 API
+- frontend -- adaptation to your needs，
+  - 可以简化 resource 的 API，来方便我们的应用代码使用
+
+Gateway 与 Mapper 的区别在于，
+Mapper 要依赖被的两端，
+Mapper 更复杂，因为它的依赖更多（它的责任也更多），
+而 Gateway 只依赖外部一端。
+
+Gateway 与 Facade 的区别在于，
+Facade 通常是 service 的作者简化自己 API 用的，
+而 Gateway 是 service 的 client 为自己的应用场景而做的。
+
+Gateway 与 Adapter 的区别在于，
+Adapter 是为了适应某个已经存在的 inference，
+而使用 Gateway 的时候，
+可能并不需要用 Gateway inference，
+而只实现一个 Gateway class。
