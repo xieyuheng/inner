@@ -8,6 +8,10 @@ Hypermedia is link,
 link is a way to make abstraction,
 which helps a web API handling changes gracefully.
 
+- One of my aim is to learn a way to design good API,
+  so that all the APIs designed by me are in the same style,
+  thus I can write one client library to use all APIs.
+
 * 1. Surfing the Web
 * 2. A Simple API
 * 3. Resources and Representations
