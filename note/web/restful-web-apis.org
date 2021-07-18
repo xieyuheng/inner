@@ -7,3 +7,12 @@
 Hypermedia is link,
 link is a way to make abstraction,
 which helps a web API handling changes gracefully.
+
+* 1. Surfing the Web
+* 2. A Simple API
+* 3. Resources and Representations
+* 4. Hypermedia
+* 5. Domain-Specific Designs
+* 6. The Collection Pattern
+* 7. Pure-Hypermedia Designs
+* 8. Profiles
