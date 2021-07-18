@@ -1,0 +1,9 @@
+#+title: RESTful Web APIs
+#+author: Leonard Richardson, Mike Amundsen
+#+date: 2013
+
+* Introduction
+
+Hypermedia is link,
+link is a way to make abstraction,
+which helps a web API handling changes gracefully.
