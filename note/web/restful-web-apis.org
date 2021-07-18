@@ -20,6 +20,8 @@ The document also helps you answer the question of what to do next.
 
 * 1. Surfing the Web
 
+- HTTP methods form a well designed interface for resources.
+
 * 2. A Simple API
 
 * 3. Resources and Representations
