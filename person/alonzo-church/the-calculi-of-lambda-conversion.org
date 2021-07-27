@@ -1,0 +1,3 @@
+#+title: THE CALCULI OF LAMBDA CONVERSION
+#+author: ALONZO CHURCH
+#+date: 1941
