@@ -192,3 +192,39 @@ find([?repo])
     [?r, "repo_slug", ?repo],
     missing(?r, "repo_fork"))
 -> { repo: "cicada-lang/cicadascript" }, { repo: "cicada-lang/cicada" }
+
+find fork relations:
+
+find([?orig, ?fork])
+  .where(
+    [?orig_id, "repo_slug", ?orig],
+    [?fork_id, "repo_slug", ?fork],
+    [?fork_id, "repo_fork", ?orig_id])
+-> { fork: "xie/cicadascript", orig: "cicada-lang/cicadascript" }
+
+** example: indexes
+
+| structure | index          |
+|-----------+----------------|
+| key/value | A V E          |
+| row       | E A V          |
+| colume    | A E V          |
+| document  | E A V          |
+| graph     | V A E          |
+| search    | inverted-index |
+
+** we can do meta programming by implementing attribute as entity
+
+[11, 1, "xie"]
+[1, "db_ident", "user_name"]
+[1, "db_value_type", "string"]
+[1, "db_doc", "github username"]
+[1, "db_unique", "unique_identity"]
+[1, "db_fulltext", true]
+
+** we can implement transaction by using: entity, attribute, value, tx, op
+
+- tx -- transaction -- created by the same transaction
+- op -- operation -- use true and false for model forgetting
+
+updating := forget the old one, remember the new one, in the same transaction
