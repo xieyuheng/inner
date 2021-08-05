@@ -176,3 +176,19 @@ find([?name, ?repo])
 [77, "repo_slug", "xie/cicadascript"]
 [77, "repo_owner", 11]
 [77, "repo_fork", 66]
+
+find all the repos that are forks:
+
+find([?repo])
+  .where(
+    [?r, "repo_slug", ?repo],
+    [?r, "repo_fork", _])
+-> { repo: "xie/cicadascript" }
+
+find all the repos that are not forks:
+
+find([?repo])
+  .where(
+    [?r, "repo_slug", ?repo],
+    missing(?r, "repo_fork"))
+-> { repo: "cicada-lang/cicadascript" }, { repo: "cicada-lang/cicada" }
