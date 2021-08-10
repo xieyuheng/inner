@@ -146,6 +146,11 @@ Note that:
 - (3) carry out -- like TDD
 - (4) look back -- like refactoring
 
+About looking back:
+
+When looking back a solution, we should try to shift context, think the context larger,
+like creative art showing the viewer context they had not noticed before
+
 ** 7. Understanding the problem.
 
 The student should understand the problem.
