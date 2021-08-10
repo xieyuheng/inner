@@ -16,3 +16,9 @@ which shows the change of state (content of variables).
 
 Kleene algebra and regular expression
 provide a good language for traces.
+
+** What is the classical definition of language?
+
+Subset of words in an alphabet.
+
+TODO explain
