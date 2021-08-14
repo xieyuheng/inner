@@ -123,7 +123,62 @@ then B is a **semantic consequences** of A, witten `A |= B`.
   we can implement the relation between theory and model
   by class and object, or by abstract class and class.
 
-  - For example: https://gist.github.com/xieyuheng/e6d45404a0dc8430838f976d2ae64b06
+  Take group theory for example:
+
+``` typescript
+export function imply(x: boolean, y: boolean): boolean {
+  return !x || y
+}
+
+export function equ(x: boolean, y: boolean): boolean {
+  return imply(x, y) && imply(y, x)
+}
+
+export abstract class Equivalence<T> {
+  abstract eq(a: T, b: T): boolean
+
+  reflexive(x: T): boolean {
+    return this.eq(x, x)
+  }
+
+  symmetric(a: T, b: T): boolean {
+    return equ(this.eq(a, b), this.eq(b, a))
+  }
+
+  transitive(a: T, b: T, c: T): boolean {
+    return imply(this.eq(a, b) && this.eq(b, c), this.eq(a, c))
+  }
+}
+
+export abstract class Group<G> {
+  abstract equivalence: Equivalence<G>
+
+  eq(a: G, b: G): boolean {
+    return this.equivalence.eq(a, b)
+  }
+
+  abstract mul(a: G, b: G): G
+
+  mul_associative(a: G, b: G, c: G): boolean {
+    return this.eq(this.mul(this.mul(a, b), c), this.mul(a, this.mul(b, c)))
+  }
+
+  abstract id: G
+
+  identity_of_mul(a: G): boolean {
+    return this.eq(this.mul(this.id, a), a) && this.eq(this.mul(a, this.id), a)
+  }
+
+  abstract inv(a: G): G
+
+  inverse_of_mul(a: G): boolean {
+    return (
+      this.eq(this.mul(this.inv(a), a), a) &&
+      this.eq(this.mul(a, this.inv(a)), a)
+    )
+  }
+}
+```
 
 # Horn clauses
 
