@@ -65,3 +65,7 @@ classical v.s. non-classical logic (another way to categorize logics):
   - commutativity of conjunction: (A and B) -> (B and A)
   - law of non-contradiction: (not (A and (not A)))
   - ...
+
+- Xie: The author talked about in the domain of mathematical proofs,
+  we should not use the law of excluded middle,
+  but his arguments are not as convincing as Errett Bishop's arguments.
