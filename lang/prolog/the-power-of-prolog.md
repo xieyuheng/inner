@@ -85,3 +85,14 @@ classical v.s. non-classical logic (another way to categorize logics):
 
 - we use different logic in different situations,
   logic to programmers is like mathematics for physics.
+
+prolog is a programming language based on a subset of predicate logic:
+
+- mostly first-order logic
+- few higher-order and meta-logical features
+
+prolog's execution mechanism is a specific form of theorem proving
+
+- incomplete -- not all logical consequences of a program can be derived
+  - the reason of this trade off is for efficient programming
+  - but prolog can be used to implement theorem provers
