@@ -96,3 +96,5 @@ prolog's execution mechanism is a specific form of theorem proving
 - incomplete -- not all logical consequences of a program can be derived
   - the reason of this trade off is for efficient programming
   - but prolog can be used to implement theorem provers
+
+# Predicate Logic
