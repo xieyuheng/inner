@@ -229,6 +229,23 @@ Notable properties of first-order logic:
 - **completeness** -- Goedel's completeness theorem.
   - There are many deductive systems for first-order logic which are both sound and complete.
 
+The completeness above is about semantic completeness.
+
+Goedel's incompleteness theorem is about syntactic completeness
+
+A formal system S is **syntacticly complete**
+iff for each sentence A of the system,
+either `S |- A` or `S |- not(A)`.
+
+Goedel's incompleteness theorem: a consistent formal system which can do arithmetic is incomplete.
+
+- **compactness**: A set S of first-order sentences has a model iff every finite subset of S has a model.
+  - compactness is actually equivalent to completeness
+
+TODO I do not understand well the theorems about cardinality at the end of the lecture.
+
+TODO learn about the least Herbrand model.
+
 # Horn clauses
 
 video: https://www.metalevel.at/prolog/videos/horn_clauses
