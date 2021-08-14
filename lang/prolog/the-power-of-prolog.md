@@ -7,6 +7,8 @@ The Power of Prolog
 
 # What is logic?
 
+video: https://www.youtube.com/watch?v=nlTZQ0FF2Eo&ab_channel=ThePowerofProlog
+
 Logic is one kind of study of formal languages.
 
 Logic is concerned with the properties of, and relations between:
@@ -30,3 +32,36 @@ task of logician:
   to reason about statements.
 
 - use inductive reasoning to design deductive rules.
+
+different logics:
+
+- propositional logic -- propositions are atomic
+  - can express NP-complete problems -- what does is mean?
+
+- predicate logic -- a family of logics, which can be categorized by their order:
+
+  - first-order predicate logic
+    - can (only) quantify over individuals (or over domain elements)
+    - can describe how turing machine works -- how about lambda calculus?
+      - for any given turing machine,
+        we can construct a first-order formula,
+        that describe what the machine does, in the sense that
+        every state of the machine corresponds to a semantic consequence of the description.
+      - for any given turing machine,
+        we can construct a first-order formula that is valid if and only if the turing machine halts.
+      - thus in first-order logic, validity and satisfiability are in general not decidable.
+
+  - second-order and higher-order predicate logic
+    - second-order can quantify over relations between domain elements
+    - higher-order can quantify over relations between relations
+    - propositional logic can be viewed as zero-order logic, for it does not support quantifiers
+
+  - a general principle -- increased expressiveness has a price
+
+classical v.s. non-classical logic (another way to categorize logics):
+
+- classical (found by Frege):
+  - law of excluded middle: (A or (not A))
+  - commutativity of conjunction: (A and B) -> (B and A)
+  - law of non-contradiction: (not (A and (not A)))
+  - ...
