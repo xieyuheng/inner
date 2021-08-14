@@ -82,3 +82,6 @@ classical v.s. non-classical logic (another way to categorize logics):
     - linear logic -- about resources
     - relevance logic
   - ...
+
+- we use different logic in different situations,
+  logic to programmers is like mathematics for physics.
