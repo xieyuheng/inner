@@ -69,3 +69,9 @@ classical v.s. non-classical logic (another way to categorize logics):
 - Xie: The author talked about in the domain of mathematical proofs,
   we should not use the law of excluded middle,
   but his arguments are not as convincing as Errett Bishop's arguments.
+
+- intuitionistic logic
+- modal logic
+  - temporal logic -- reason about things that change over time
+  - epistemic logic
+  - ...
