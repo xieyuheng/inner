@@ -22,3 +22,11 @@ meta properties:
 
 - strong soundness -- every theorem can be derived from inference rules is a semantic consequence of the axioms.
 - strong completeness -- every semantic consequence can be derived by syntactic inferences as a theorem.
+
+task of logician:
+
+- to devise suitable language,
+  to express sensible inference rules,
+  to reason about statements.
+
+- use inductive reasoning to design deductive rules.
