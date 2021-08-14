@@ -119,6 +119,12 @@ A formula is **valid** if it is true under all interpretations.
 If every interpretation that make A true also make B true,
 then B is a **semantic consequences** of A, witten `A |= B`.
 
+- Xie: In general programming language,
+  we can implement the relation between theory and model
+  by class and object, or by abstract class and class.
+
+  - For example: https://gist.github.com/xieyuheng/e6d45404a0dc8430838f976d2ae64b06
+
 # Horn clauses
 
 video: https://www.metalevel.at/prolog/videos/horn_clauses
