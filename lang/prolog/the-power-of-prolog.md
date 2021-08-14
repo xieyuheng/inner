@@ -17,3 +17,8 @@ Logic is concerned with the properties of, and relations between:
   - probabilistic -- about uncertainty and chance
   - inductive -- generalize what we have observed
   - deductive -- draw conclusions by virtue of the syntactic structure of statements.
+
+meta properties:
+
+- strong soundness -- every theorem can be derived from inference rules is a semantic consequence of the axioms.
+- strong completeness -- every semantic consequence can be derived by syntactic inferences as a theorem.
