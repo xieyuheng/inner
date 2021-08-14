@@ -180,6 +180,39 @@ export abstract class Group<G> {
 }
 ```
 
+If semantics is to be explained by the interpretation of theory in a model,
+how should we define a model?
+
+To define a set theory, we have to use the notation of set,
+because "the notation of set" is used in
+the definition of "the interpretation of theory in a model".
+
+Deductive system:
+
+Main goal: to prove semantic consequences only by syntactic structure.
+- without any interpretation.
+
+In this syntactic view, a **proof** of a theorem,
+is finite sequence of applications of inference rules,
+starting from a set of axioms, ending with the theorem.
+
+A is a **syntactic consequences** of a set of formulas ctx, written `ctx |- A`,
+if there is a proof of A from ctx.
+
+Deductive systems for predicate logic:
+
+- Hilbert-style systems (many axioms, few rules) -- good for comparing different logics
+- Gentzen-style systems (few axioms, many rules) -- good for understanding (maybe)
+  - natural deduction (type system of lambda calculus)
+  - sequent calculus
+- resolution -- good for automated theorem proving
+- ... any other systems? I want to know more.
+
+**Soundness**: `ctx |- A  ->  ctx |= A`
+**Completeness**: `ctx |= A  ->  ctx |- A`
+
+TODO
+
 # Horn clauses
 
 video: https://www.metalevel.at/prolog/videos/horn_clauses
