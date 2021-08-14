@@ -71,7 +71,14 @@ classical v.s. non-classical logic (another way to categorize logics):
   but his arguments are not as convincing as Errett Bishop's arguments.
 
 - intuitionistic logic
+
 - modal logic
-  - temporal logic -- reason about things that change over time
-  - epistemic logic
+  - temporal logic -- about things that change over time
+  - epistemic logic -- about knowledge (can be used in legal situation)
+  - many value logic
+    - lukasiewicz logic
+    - fuzzy logic
+  - substructural logic
+    - linear logic -- about resources
+    - relevance logic
   - ...
