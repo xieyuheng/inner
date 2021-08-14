@@ -208,10 +208,26 @@ Deductive systems for predicate logic:
 - resolution -- good for automated theorem proving
 - ... any other systems? I want to know more.
 
-**Soundness**: `ctx |- A  ->  ctx |= A`
-**Completeness**: `ctx |= A  ->  ctx |- A`
+**Soundness**:     `ctx |- A  =>  ctx |= A`
+**Completeness**:  `ctx |= A  =>  ctx |- A`
 
-TODO
+Deduction theorem (which means we can do conditional proofs):
+
+  `ctx, A |- B  =>  ctx |- A -> B`
+       `A |- B  =>      |- A -> B`
+
+- Xie: This "theorem" makes me feel bad,
+it makes me feel that we should only use `->` but not `|-`.
+
+TODO Prove validity is not decidable by constructing turing machine in predicate logic.
+
+Notable properties of first-order logic:
+
+- **monotonicity** of entailment: `P |= C  =>  P, A |= C`
+  - which means adding things to context is ok.
+
+- **completeness** -- Goedel's completeness theorem.
+  - There are many deductive systems for first-order logic which are both sound and complete.
 
 # Horn clauses
 
