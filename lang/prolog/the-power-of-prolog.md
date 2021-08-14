@@ -98,3 +98,15 @@ prolog's execution mechanism is a specific form of theorem proving
   - but prolog can be used to implement theorem provers
 
 # Predicate Logic
+
+video: https://www.metalevel.at/prolog/videos/predicate_logic
+
+
+# Horn clauses
+
+video: https://www.metalevel.at/prolog/videos/horn_clauses
+
+questions:
+
+- the resolvent of two horn clauses is itself a horn clause (meaning?)
+- and the resolvent of a goal clause and a definite clause is a goal clause (meaning?)
