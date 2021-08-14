@@ -101,6 +101,23 @@ prolog's execution mechanism is a specific form of theorem proving
 
 video: https://www.metalevel.at/prolog/videos/predicate_logic
 
+syntax: formula and statement
+
+semantics: assign truth value to statement
+
+An **interpretation**:
+
+- domain: D
+- function: (D^n) -> D
+- predicate: (D^n) -> boolean
+
+A formula is **satisfiabe** if there is an interpretation under which the formula is true,
+such interpretation is called a **model** of the formula.
+
+A formula is **valid** if it is true under all interpretations.
+
+If every interpretation that make A true also make B true,
+then B is a **semantic consequences** of A, witten `A |= B`.
 
 # Horn clauses
 
