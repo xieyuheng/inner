@@ -110,3 +110,4 @@ questions:
 
 - the resolvent of two horn clauses is itself a horn clause (meaning?)
 - and the resolvent of a goal clause and a definite clause is a goal clause (meaning?)
+- info: https://en.wikipedia.org/wiki/Resolution_(logic)
