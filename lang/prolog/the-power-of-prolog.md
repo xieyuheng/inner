@@ -255,3 +255,22 @@ questions:
 - the resolvent of two horn clauses is itself a horn clause (meaning?)
 - and the resolvent of a goal clause and a definite clause is a goal clause (meaning?)
 - info: https://en.wikipedia.org/wiki/Resolution_(logic)
+
+**literal**:
+- positive literal -- predicate
+- negative literal -- negation of predicate
+
+**clause**: disjunction of literals
+
+**horn clause**: a clause with at most one positive literal
+
+- definite clause: one positive literal, one or more negation literals
+  - one conclusion, many premises
+- unit clause: one positive literal, no negation literal
+- goal clause: no positive literal, only negation literals
+
+horn clause in prolog:
+
+- rule:   `H :- G1, G2, ..., Gn.` -- head and goals
+- fact:   `H.`
+- query:  `  ?- G1, G2, ..., Gn.`
