@@ -262,15 +262,37 @@ questions:
 
 **clause**: disjunction of literals
 
-**horn clause**: a clause with at most one positive literal
+**Horn clause**: a clause with at most one positive literal
 
 - definite clause: one positive literal, one or more negation literals
   - one conclusion, many premises
 - unit clause: one positive literal, no negation literal
 - goal clause: no positive literal, only negation literals
 
-horn clause in prolog:
+Horn clause in prolog:
 
 - rule:   `H :- G1, G2, ..., Gn.` -- head and goals
 - fact:   `H.`
 - query:  `  ?- G1, G2, ..., Gn.`
+
+We write horn clauses, and ask for their logical consequences -- programming as theory building.
+
+Horn clauses are a turing complete subset of first-order predicate logic.
+
+Construct a turing machine by Horn clauses:
+
+A turing machine can be expressed by a conjunction of definite Horn clauses,
+each definite Horn clause represent a transition,
+from one state (one premise) to next state (the conclusion).
+
+The machine reach its final state (it halts) iff `exists x, y: T(final, x, y)`,
+this is derivable from the definite calculus iff the turing machine halts.
+
+Consider its negation, we can also be express "not halts" by an unit Horn clause:
+`forall x, y: not(T(final, x, y))` -- `?- T(final, x, y)`,
+thus the entire clause is unsatisfiable iff the turing machine does halts.
+
+- unsatisfiability of first-order horn clause is only semi-decidable.
+- satisfiability of first-order horn clause is undecidable.
+
+TODO Why unsatisfiability is different from satisfiability?
