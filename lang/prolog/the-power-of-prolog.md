@@ -296,3 +296,27 @@ thus the entire clause is unsatisfiable iff the turing machine does halts.
 - satisfiability of first-order horn clause is undecidable.
 
 TODO Why unsatisfiability is different from satisfiability?
+
+## Predicates
+
+We define predicate by writing down Horn clauses.
+
+A predicate describe relation between its arguments.
+
+Predicate can be defined by function and vice versa,
+however predicate is good at expressing relations,
+because it make no distinction between input and output.
+
+We can use predicate to express computation
+by defining relation between states.
+
+## Clauses, rules and facts
+
+In logic, a clause a disjunction or a conjunction of literals.
+
+A Horn clause is a special **disjunction clause**
+where there is at most one positive literal,
+which can be written as implication
+from a body (premises) to a head (conclusion),
+where the head is an arbitrary literal of the clause
+and the body is the conjunction of the **negations** of the other literals.
