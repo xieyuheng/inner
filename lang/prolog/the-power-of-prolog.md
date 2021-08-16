@@ -314,9 +314,22 @@ by defining relation between states.
 
 In logic, a clause a disjunction or a conjunction of literals.
 
-A Horn clause is a special **disjunction clause**
+A Horn clause is a special *disjunction clause*
 where there is at most one positive literal,
-which can be written as implication
+which can be written as *implication*
 from a body (premises) to a head (conclusion),
 where the head is an arbitrary literal of the clause
-and the body is the conjunction of the **negations** of the other literals.
+and the body is the conjunction of the *negations* of the other literals,
+the body of each rule is a Prolog *goal*.
+
+A **goal** is a Prolog term that denotes a predicate and its arguments.
+
+We can also read the body as a *constraint* of the clause,
+each goal *narrows down* the set of solutions.
+
+A clause is either a rule or a fact.
+The clauses that constitute a predicate denote logical alternatives:
+If any clause is true, then the whole predicate is true.
+
+## Queries and Answers
+
