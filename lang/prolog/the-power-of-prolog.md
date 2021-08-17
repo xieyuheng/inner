@@ -297,7 +297,9 @@ thus the entire clause is unsatisfiable iff the turing machine does halts.
 
 TODO Why unsatisfiability is different from satisfiability?
 
-## Predicates
+# Predicates
+
+video: https://www.metalevel.at/prolog/videos/predicates
 
 We define predicate by writing down Horn clauses.
 
@@ -310,7 +312,9 @@ because it make no distinction between input and output.
 We can use predicate to express computation
 by defining relation between states.
 
-## Clauses, rules and facts
+# Clauses, rules and facts
+
+video: https://www.youtube.com/watch?v=x_APqarir-k&feature=youtu.be&ab_channel=ThePowerofProlog
 
 In logic, a clause a disjunction or a conjunction of literals.
 
@@ -331,7 +335,9 @@ A clause is either a rule or a fact.
 The clauses that constitute a predicate denote logical alternatives:
 If any clause is true, then the whole predicate is true.
 
-## Queries and Answers
+# Queries and Answers
+
+video: https://www.metalevel.at/prolog/videos/queries
 
 We put terms in, and we get terms out.
 
@@ -358,3 +364,21 @@ Such answers are called residual goal, for example:
 X in 12..sup,
 Y in inf..sup.
 ```
+
+# Terms
+
+video: https://www.youtube.com/watch?v=TUjQqvCTwjQ&ab_channel=ThePowerofProlog
+
+In Prolog, all data are represented by Prolog terms.
+
+# Operators
+
+video: https://www.youtube.com/watch?v=DepPPfDVSpw&ab_channel=ThePowerofProlog
+
+# Lists
+
+video: https://www.youtube.com/watch?v=9JzwUnMSCdA&ab_channel=ThePowerofProlog
+
+# Pairs
+
+video: https://www.youtube.com/watch?v=EPTad1ysIRE&ab_channel=ThePowerofProlog
