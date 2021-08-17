@@ -371,13 +371,25 @@ video: https://www.youtube.com/watch?v=TUjQqvCTwjQ&ab_channel=ThePowerofProlog
 
 In Prolog, all data are represented by Prolog terms.
 
+Each term is either a variable, an atomic term or a compound term.
+
+We do not have to declare term, we just use them.
+And they have no inherent meaning.
+
+A term is called *ground* if it contains no variables.
+A compound term is called *partially instantiated* if one of its subterms is a variable.
+
 # Operators
 
 video: https://www.youtube.com/watch?v=DepPPfDVSpw&ab_channel=ThePowerofProlog
 
+About infix notations.
+
 # Lists
 
 video: https://www.youtube.com/watch?v=9JzwUnMSCdA&ab_channel=ThePowerofProlog
+
+Prolog lists are a special case of terms.
 
 # Pairs
 
