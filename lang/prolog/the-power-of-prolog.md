@@ -343,3 +343,5 @@ Thus we can not distinguish intended failure between failure due to imcomplete d
 
 Prolog's `dif` can find the least different subterm.
 - `dif(f(g(X)), f(g(Y)))` -> `dif(X, Y)`
+
+Such answers are called residual goal. 
