@@ -342,6 +342,16 @@ Thus we can not distinguish intended failure between failure due to imcomplete d
 - `color(purple)` will fail, if we did not yet stated it as a fact.
 
 Prolog's `dif` can find the least different subterm.
-- `dif(f(g(X)), f(g(Y)))` -> `dif(X, Y)`
 
-Such answers are called residual goal. 
+``` prolog
+?- dif(f(g(X)), f(g(Y))).
+dif(Y, X).
+```
+
+Such answers are called residual goal, for example:
+
+``` prolog
+?- X + Y - 3 #> Y + 8.
+X in 12..sup,
+Y in inf..sup.
+```
