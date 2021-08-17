@@ -400,6 +400,8 @@ video: https://www.youtube.com/watch?v=9JzwUnMSCdA&ab_channel=ThePowerofProlog
 
 Prolog lists are a special case of terms.
 
+- Xie: Good old lisp cons list.
+
 # Pairs
 
 video: https://www.youtube.com/watch?v=EPTad1ysIRE&ab_channel=ThePowerofProlog
