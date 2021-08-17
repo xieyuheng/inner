@@ -338,6 +338,7 @@ We put terms in, and we get terms out.
 **Queries and Answers are semanticly equivalent.**
 
 - They are just in different forms.
+- This is a very important general principle of prolog.
 
 Horn clauses let us state what holds, but not what does not hold.
 Thus we can not distinguish intended failure between failure due to imcomplete database.
