@@ -335,7 +335,9 @@ If any clause is true, then the whole predicate is true.
 
 We put terms in, and we get terms out.
 
-Queries and Answers are semanticly equivalent (just in different forms).
+**Queries and Answers are semanticly equivalent.**
+
+- They are just in different forms.
 
 Horn clauses let us state what holds, but not what does not hold.
 Thus we can not distinguish intended failure between failure due to imcomplete database.
