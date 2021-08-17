@@ -333,3 +333,13 @@ If any clause is true, then the whole predicate is true.
 
 ## Queries and Answers
 
+We put terms in, and we get terms out.
+
+Queries and Answers are semanticly equivalent (just in different forms).
+
+Horn clauses let us state what holds, but not what does not hold.
+Thus we can not distinguish intended failure between failure due to imcomplete database.
+- `color(purple)` will fail, if we did not yet stated it as a fact.
+
+Prolog's `dif` can find the least different subterm.
+- `dif(f(g(X)), f(g(Y)))` -> `dif(X, Y)`
