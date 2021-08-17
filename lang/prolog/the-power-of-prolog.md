@@ -385,6 +385,15 @@ video: https://www.youtube.com/watch?v=DepPPfDVSpw&ab_channel=ThePowerofProlog
 
 About infix notations.
 
+Useful predicate to query about operators.
+
+``` prolog
+?- current_op(Pri, Fix, Op).
+?- write_canonical(A = B).
+```
+
+- Xie: Note that, Prolog toplevel is designed to be used as end user -- instead of programmers.
+
 # Lists
 
 video: https://www.youtube.com/watch?v=9JzwUnMSCdA&ab_channel=ThePowerofProlog
