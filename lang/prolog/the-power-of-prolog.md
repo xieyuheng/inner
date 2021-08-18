@@ -180,6 +180,10 @@ export abstract class Group<G> {
 }
 ```
 
+- Xie: Note that, we can change the underlaying logic by changing `boolean` to other algebras.
+
+  What is the relation between algebra and logic?
+
 If semantics is to be explained by the interpretation of theory in a model,
 how should we define a model?
 
