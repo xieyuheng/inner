@@ -180,9 +180,14 @@ export abstract class Group<G> {
 }
 ```
 
-- Xie: Note that, we can change the underlaying logic by changing `boolean` to other algebras.
+- Xie: We can change the underlaying logic by changing `boolean` to other algebras.
 
   What is the relation between algebra and logic?
+
+- Xie: In type theory however, we define logic within type theory.
+
+  We explain proposition by assigning type of evidence to the proposition.
+  When defining inference rules, we always have the syntax with us, to record the evidence, which will form proofs.
 
 If semantics is to be explained by the interpretation of theory in a model,
 how should we define a model?
