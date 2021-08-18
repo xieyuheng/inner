@@ -405,3 +405,8 @@ Prolog lists are a special case of terms.
 # Pairs
 
 video: https://www.youtube.com/watch?v=EPTad1ysIRE&ab_channel=ThePowerofProlog
+
+A key-value pair is written as: `K - V`
+
+Why hot using list to represent pair? -- like we do in lisp.
+- Because it is easier to read. -- nominal v.s. structural -- nominal is easier to read?
