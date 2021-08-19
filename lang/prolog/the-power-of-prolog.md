@@ -449,3 +449,21 @@ It is better to raise error then to fail (return false),
 thus we have (`atom_si/1`, `integer_si/1` etc.),
 `_si` means "sufficiently instantiated",
 which can raise instantiation errors on variable.
+
+## Clean vs. Defaulty Representations
+
+video: https://www.youtube.com/watch?v=KJ8uZiWpomg&ab_channel=ThePowerofProlog
+
+When representing data with Prolog terms, ask yourself the following question:
+
+> Can I distinguish the kind of each component from its principal functor?
+
+If this holds, your representation is called **clean**.
+If you cannot distinguish the elements by their principal functor,
+your representation is called **defaulty**,
+a wordplay combining "default" and "faulty".
+
+This is because reasoning about your data will need a "default case",
+which is applied if everything else fails.
+
+- Xie: This is like using disjoint union in algebraic data type's sum type.
