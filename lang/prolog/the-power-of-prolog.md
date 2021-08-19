@@ -419,3 +419,33 @@ A key-value pair is written as: `K - V`
 
 Why hot using list to represent pair? -- like we do in lisp.
 - Because it is easier to read. -- nominal v.s. structural -- nominal is easier to read?
+
+# Strings
+
+video: https://www.youtube.com/watch?v=plvBFNi0cVw&ab_channel=ThePowerofProlog
+
+Use list of chars to handle string.
+
+## Type tests
+
+video: https://www.youtube.com/watch?v=ZIv0G4b1xBQ&ab_channel=ThePowerofProlog
+
+The standard predicates for type testing (`atom/1`, `integer/1`, `compound/1` etc.)
+are logically flawed because they are not monotonic:
+If you use these predicates, then generalizing a query may lead to fewer solutions,
+preventing declarative debugging based on logical properties.
+
+For example, `atom/1` fails for the most general query, even though it succeeds for more specific queries:
+
+``` prolog
+?- atom(X).
+false.
+
+?- X = a, atom(X).
+X = a.
+```
+
+It is better to raise error then to fail (return false),
+thus we have (`atom_si/1`, `integer_si/1` etc.),
+`_si` means "sufficiently instantiated",
+which can raise instantiation errors on variable.
