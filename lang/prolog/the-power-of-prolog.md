@@ -478,3 +478,24 @@ video: https://www.youtube.com/watch?v=Uska9DgJEoo&ab_channel=ThePowerofProlog
 可以 enable 人们使用较简洁的命名的语言功能是：
 - 类型系统
 - record type
+
+``` prolog
+parent_child(P, C)
+author_reviewer(P1, P2)
+```
+
+``` typescript
+parent({ parent: v`p`, child: v`c` })
+review({ author: v`p1`, reviewer: v`p2` })
+```
+
+对比 minikanren 中的 naming convention，
+即直接用 function 的 name，并且在后面加 `o`。
+
+``` prolog
+list_without(L1, E, L2)
+```
+
+``` typescript
+remove({ target: v`l1`, element: v`e`, result: v`l2`})
+```
