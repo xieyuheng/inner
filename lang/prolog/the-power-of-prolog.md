@@ -426,7 +426,7 @@ video: https://www.youtube.com/watch?v=plvBFNi0cVw&ab_channel=ThePowerofProlog
 
 Use list of chars to handle string.
 
-## Type tests
+# Type tests
 
 video: https://www.youtube.com/watch?v=ZIv0G4b1xBQ&ab_channel=ThePowerofProlog
 
@@ -450,7 +450,7 @@ thus we have (`atom_si/1`, `integer_si/1` etc.),
 `_si` means "sufficiently instantiated",
 which can raise instantiation errors on variable.
 
-## Clean vs. Defaulty Representations
+# Clean vs. Defaulty Representations
 
 video: https://www.youtube.com/watch?v=KJ8uZiWpomg&ab_channel=ThePowerofProlog
 
@@ -468,7 +468,7 @@ which is applied if everything else fails.
 
 - Xie: This is like using disjoint union in algebraic data type's sum type.
 
-## Naming Prolog Predicates
+# Naming Prolog Predicates
 
 video: https://www.youtube.com/watch?v=Uska9DgJEoo&ab_channel=ThePowerofProlog
 
@@ -499,3 +499,11 @@ list_without(L1, E, L2)
 ``` typescript
 remove({ target: v`l1`, element: v`e`, result: v`l2`})
 ```
+
+# Prolog Integer Arithmetic
+
+video: https://www.youtube.com/watch?v=sHo6-hk21L8&ab_channel=ThePowerofProlog
+
+CLP -- Constraint Logic Programming
+CLP(FD) -- Constraint Logic Programming over finite domain
+CLP(Z)  -- Constraint Logic Programming over integer
