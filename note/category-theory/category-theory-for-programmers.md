@@ -57,7 +57,7 @@ and the relations we can describe are all equations about arrows.
 
 A function is pure if you can memorize it and turning it into a lookup table.
 
-The basic building blocks of programming are types and functions they form a category.
+The basic building blocks of programming are types and functions, and they form a category.
 
 Take example properties from set theory
 and limit the language to arrow equations
@@ -85,7 +85,7 @@ Preorder is thin category, homset have 0 or 1 elements..
 
 We can view category as generalized preorder, in which homset can have more elements.
 
-- Xie: We can have different proofs of the relation `pre_t`.
+- Xie: This generalization means, we can have different proofs of the relation `pre_t`.
 
 Monoid is like pre-group.
 
@@ -131,6 +131,7 @@ but can also be functions of type `(a) -> (b, string_t)` by redefining compositi
 - The `string_t` can be replaced by any `monoid_t`.
 
 This technique can be used to implement logger.
+
 - We can also use global variable to implement logger,
   but using global variable will increase complexity of the code base in a hidden way.
   Also when we need to use multiple core,
@@ -139,9 +140,9 @@ This technique can be used to implement logger.
 ## I 4.1 Terminal and initial objects
 
 One view is that a set is a thing that has elements.
-Another view is to not talk about elements, but to talk about arrows.
+Another view is to **not** talk about elements, but to talk about arrows.
 
-We can begin with study structure implemented set theory,
+We can begin with study a structure implemented in set theory,
 then abstract the interface of the structure and forget about elements.
 
 The general method of doing this is called **universal construction**.
@@ -168,7 +169,7 @@ which is the set of all predicates.
 
 The next question we should ask is how many terminal objects are there?
 Terminal object is not unique.
-Terminal object is unique up to unique isomorphism.
+Terminal object is unique up to unique isomorphism (we can prove this).
 
 Actually, to express uniqueness of terminal object,
 we need equivalence relation between objects,
@@ -188,13 +189,13 @@ The terminal object as an universal construction,
   - Note that the ranking is not total but partial order.
 the terminal object is the best of such pattern.
 
-An arrow from the terminal object `unit_t` to another object `X`,
+An arrow from the terminal object `unit_t` to another object `X` -- `unit_t -> X`,
 can be viewed as picking up an element in `X` (if we view the object `X` as set).
 
 ## I 4.2 Products
 
 The **product** of object `A` and `B` as an universal construction,
-- The pattern is an object `C` and two arrow `p : C -> A` and `p : C -> B` (`p` for "projection").
+- The pattern is an object `C` and two arrow `p : C -> A` and `q : C -> B` (`p` for "projection").
 - The ranking is that `(C, p, q)` is better than `(C', p', q')`,
   if there is a unique arrow `m : C' -> C` such that
   `p' == compose m p` and `q' == compose m q`,
@@ -701,7 +702,7 @@ hom_set : (a: t, b : t) -> set_t(arrow_t(a, b))
 ## III 4.2 Monad algebras part 3
 ## III 5.1 Eilenberg Moore and Lawvere
 ## III 5.2 Lawvere Theories
-## III 6.1 Profunctors.webm
+## III 6.1 Profunctors
 ## III 6.2 Ends
 ## III 7.1 Natural transformations as ends
 ## III 7.2 Coends
