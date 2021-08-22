@@ -78,7 +78,7 @@ morphism_t(A, B) == cat.morphism_t(A, B)
 From the example above, we know that
 **a variable should also be viewed as object of the contextual category**.
 
-We task is to design the universal constructions of
+Our task is to design the universal constructions of
 the concept of context and variable in the category.
 
 Since we know that categorical product is the limit of two points,
