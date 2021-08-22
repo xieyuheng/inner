@@ -23,3 +23,11 @@ We can borrow its syntax in higher dimensional algebra.
 
 shallow embedding of DSL in general programming language,
 we get a powerful meta-language to extend the DSL.
+
+# bidirectional type checking
+
+bidirectional type checking 在于检查一组关系就某一个位置的参数的单值性。
+
+解释 intro 与 elim 之二分，终究需要范畴论。
+因此解释 Bidirectional Type Checking 也需要范畴论。
+用关系的单值性检验来解释，可能并不充分。

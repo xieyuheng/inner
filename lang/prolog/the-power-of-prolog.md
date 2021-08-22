@@ -467,3 +467,14 @@ This is because reasoning about your data will need a "default case",
 which is applied if everything else fails.
 
 - Xie: This is like using disjoint union in algebraic data type's sum type.
+
+## Naming Prolog Predicates
+
+video: https://www.youtube.com/watch?v=Uska9DgJEoo&ab_channel=ThePowerofProlog
+
+在 Prolog 中命名 predicate 时，最好把参数相关的信息直接表达咋 predicate name 中。
+但是这其实是由于 Prolog 是 untyped language，而在 name 中所表达的信息，其实就是类型信息。
+
+可以 enable 人们使用较简洁的命名的语言功能是：
+- 类型系统
+- record type
