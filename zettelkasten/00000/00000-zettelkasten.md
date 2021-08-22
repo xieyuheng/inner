@@ -54,7 +54,8 @@ Zettelkasten 是一种记录笔记的方式，我认为它的要点在于，
 - Niklas Luhmann
 - Gottfried Wilhelm Leibniz （根据 Wikipedia 的 [Zettelkasten][] 条目）
 - Edsger Wybe Dijkstra 的 [EWD manuscripts](https://www.cs.utexas.edu/users/EWD)
-- [RFC](https://www.rfc-editor.org)
+- [Internet RFC -- Request for Comments](https://www.rfc-editor.org)
+  - 可以视为一个社区共同的笔记
 - 多产的 [Charles Sanders Peirce](https://en.wikipedia.org/wiki/Charles_Sanders_Peirce_bibliography)
   是否也再用类似的方法呢？
 
