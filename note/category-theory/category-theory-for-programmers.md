@@ -633,7 +633,7 @@ Can we do all that we can do in imperative language in declarative language?
 
 - Xie: Even if we can, is it always worth doing so?
 
-Imperative vs Declarative, like local vs global physics laws.
+Imperative vs Declarative, like local global physics vs global physics laws.
 
 The universal construction of category theory is an example of global approach.
 
@@ -649,7 +649,7 @@ we start from the concrete example -- categorical product.
 We can use functor to pick up pattern from a category.
 
 Cone can be describe as a natural transformation
-from  constant functor to the pattern picking functor.
+from constant functor to the pattern picking functor.
 
 To go from cone to limit, we talk about "universal",
 which means "uniqueness" and "for all".
