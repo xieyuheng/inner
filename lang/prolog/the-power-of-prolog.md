@@ -507,3 +507,10 @@ video: https://www.youtube.com/watch?v=sHo6-hk21L8&ab_channel=ThePowerofProlog
 CLP -- Constraint Logic Programming
 CLP(FD) -- Constraint Logic Programming over finite domain
 CLP(Z)  -- Constraint Logic Programming over integer
+
+``` prolog
+?- 1 #\= X.
+clpz:(X in inf..0\/2..sup).
+```
+
+**Constraint propagation** has remove 1 from the domain of X.
