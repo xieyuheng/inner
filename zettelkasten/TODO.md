@@ -31,3 +31,7 @@ bidirectional type checking 在于检查一组关系就某一个位置的参数�
 解释 intro 与 elim 之二分，终究需要范畴论。
 因此解释 Bidirectional Type Checking 也需要范畴论。
 用关系的单值性检验来解释，可能并不充分。
+
+# dependent type system and logic programming
+
+dependent type system 的实现中，有哪些问题是可以用 logic programming 来解决的？
