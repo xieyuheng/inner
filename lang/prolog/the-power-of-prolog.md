@@ -126,56 +126,19 @@ then B is a **semantic consequences** of A, witten `A |= B`.
   Take group theory for example:
 
 ``` typescript
-export function imply(x: boolean, y: boolean): boolean {
-  return !x || y
+export interface Group<G> {
+  eq: Equivalence<G>
+  mul(a: G, b: G): G
+  id: G
+  inv(a: G): G
 }
 
-export function equ(x: boolean, y: boolean): boolean {
-  return imply(x, y) && imply(y, x)
-}
-
-export abstract class Equivalence<T> {
-  abstract eq(a: T, b: T): boolean
-
-  reflexive(x: T): boolean {
-    return this.eq(x, x)
-  }
-
-  symmetric(a: T, b: T): boolean {
-    return equ(this.eq(a, b), this.eq(b, a))
-  }
-
-  transitive(a: T, b: T, c: T): boolean {
-    return imply(this.eq(a, b) && this.eq(b, c), this.eq(a, c))
-  }
-}
-
-export abstract class Group<G> {
-  abstract equivalence: Equivalence<G>
-
-  eq(a: G, b: G): boolean {
-    return this.equivalence.eq(a, b)
-  }
-
-  abstract mul(a: G, b: G): G
-
-  mul_associative(a: G, b: G, c: G): boolean {
-    return this.eq(this.mul(this.mul(a, b), c), this.mul(a, this.mul(b, c)))
-  }
-
-  abstract id: G
-
-  identity_of_mul(a: G): boolean {
-    return this.eq(this.mul(this.id, a), a) && this.eq(this.mul(a, this.id), a)
-  }
-
-  abstract inv(a: G): G
-
-  inverse_of_mul(a: G): boolean {
-    return (
-      this.eq(this.mul(this.inv(a), a), a) &&
-      this.eq(this.mul(a, this.inv(a)), a)
-    )
+export function GroupLaws<G>({ eq, mul, id, inv }: Group<G>) {
+  return {
+    mul_associative: (a: G, b: G, c: G) =>
+      eq(mul(mul(a, b), c), mul(a, mul(b, c))),
+    id_respect_mul: (a: G) => eq(mul(id, a), a) && eq(mul(a, id), a),
+    inv_respect_mul: (a: G) => eq(mul(inv(a), a), a) && eq(mul(a, inv(a)), a),
   }
 }
 ```
