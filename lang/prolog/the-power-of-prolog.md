@@ -126,14 +126,14 @@ then B is a **semantic consequences** of A, witten `A |= B`.
   Take group theory for example:
 
 ``` typescript
-export interface Group<G> {
+interface Group<G> {
   eq: Equivalence<G>
   mul(a: G, b: G): G
   id: G
   inv(a: G): G
 }
 
-export function GroupLaws<G>({ eq, mul, id, inv }: Group<G>) {
+function GroupLaws<G>({ eq, mul, id, inv }: Group<G>) {
   return {
     mul_associative: (a: G, b: G, c: G) =>
       eq(mul(mul(a, b), c), mul(a, mul(b, c))),
