@@ -9,7 +9,7 @@ The principle of type theory is:
 
 > Let's study **terms** and **types** together.
 
-This principle helps us be clear about scope of our type theory study.
+This principle helps me to seek for clarity in my study.
 
 # Before type theory
 
