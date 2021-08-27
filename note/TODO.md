@@ -38,3 +38,9 @@ dependent type system 的实现中，有哪些问题是可以用 logic programmi
 但是其实使用 record type 的时候，
 subtyping 和 union 还有 intersection 都不用考虑集合的元素，
 而只要考虑 record 的 fields。
+
+# conjunctive normal form
+
+conjunctive normal form (clausal normal form)
+"ands of ors" -- because (not A or B) == (if A then B)
+"ands of (if ands then ors)"
