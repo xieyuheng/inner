@@ -3,14 +3,13 @@ title: The principle of type theory
 date: 2021-08-27
 ---
 
-The principle that help making clear
-the scope of study called "type theory".
-
 # The principle
 
 The principle of type theory is:
 
 > Let's study **terms** and **types** together.
+
+This principle helps us be clear about scope of our type theory study.
 
 # Before type theory
 
