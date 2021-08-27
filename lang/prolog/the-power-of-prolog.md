@@ -120,8 +120,7 @@ If every interpretation that make A true also make B true,
 then B is a **semantic consequences** of A, witten `A |= B`.
 
 - Xie: In general programming language,
-  we can implement the relation between theory and model
-  by class and object, or by abstract class and class.
+  we can implement the relation between theory and model by class and object.
 
   Take group theory for example:
 

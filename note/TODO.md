@@ -1,17 +1,4 @@
-# The principle of logic theories
-
-"logic theories" or "formal system"?
-
-logic theory v.s. model == class v.s. object
-
-we need one abstraction level higher to get good naming.
-
-the meta theorems about logic is defined by relation between pure syntactic inference and models
-but not only between them, to define soundness and completeness,
-we also need to consider the algebra -- boolean algebra.
-
-in first-order logic, the result type of axioms is boolean.
-in type theory, the result type of axioms is category.
+For example, in type theory, the result type of axioms is the algebra of category.
 
 how does this influence our consideration of meta theorems?
 
