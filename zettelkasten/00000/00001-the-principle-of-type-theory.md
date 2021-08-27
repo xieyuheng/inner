@@ -1,0 +1,33 @@
+---
+title: The principle of type theory
+date: 2021-08-27
+---
+
+The principle that help making clear
+the scope of study called "type theory".
+
+# The principle
+
+The principle of type theory is:
+
+> Let's study **terms** and **types** together.
+
+# Before type theory
+
+In programming, we do *not* write types, we only write terms.
+In logic, we do *not* write terms, we only write types
+-- propositions and their inference rules.
+
+# After type theory
+
+In programming, we can interpret a type as a collection of values that terms might evaluate to.
+Here, we care about **evaluation**.
+
+In logic, we can interpret a term as a recording of steps of applications of inference rules (i.e. proof).
+Here, we care about **inferencing** or **deduction**.
+
+- Before type theory, logic does not have terms.
+  For example, Prolog does not use named clauses.
+  in Prolog, we only care about searching for what can be inferenced,
+  but do not care about writing down how a conclusion is inferenced,
+  and let the machine check our proof.
