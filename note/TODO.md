@@ -44,3 +44,17 @@ subtyping 和 union 还有 intersection 都不用考虑集合的元素，
 conjunctive normal form (clausal normal form)
 "ands of ors" -- because (not A or B) == (if A then B)
 "ands of (if ands then ors)"
+
+# Ancient logics
+
+- Aristotelian logic: https://en.wikipedia.org/wiki/Term_logic
+- Stoic logic: https://en.wikipedia.org/wiki/Stoic_logic
+- Anviksiki: https://en.wikipedia.org/wiki/Anviksiki
+- Mohists: https://en.wikipedia.org/wiki/Mohism
+
+# Formal semantics of natural language, also study scope and binding
+
+- https://en.wikipedia.org/wiki/Scope_(formal_semantics)
+- https://en.wikipedia.org/wiki/Binding_(linguistics)
+
+# the concept of archetype
