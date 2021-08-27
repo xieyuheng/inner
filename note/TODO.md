@@ -1,7 +1,3 @@
-For example, in type theory, the result type of axioms is the algebra of category.
-
-how does this influence our consideration of meta theorems?
-
 # relational algebra & higher dimensional algebra
 
 we can do relational algebra in prolog,
