@@ -32,6 +32,9 @@ Here, we care about **inferencing** or **deduction**.
 
   - If we use named clause, we can use the name to express choices, and write proof by hand.
 
+    If we do not have named clause, we can use order of clauses and index,
+    but the resulting proof might be hard to understand.
+
   In Prolog, we only care about searching for what can be inferenced,
   but do not care about writing down how a conclusion is inferenced,
   and let the machine check our proof.
