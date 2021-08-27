@@ -30,6 +30,8 @@ Here, we care about **inferencing** or **deduction**.
 
   For example, Prolog does not use named clauses.
 
+  - If we use named clause, we can use the name to express choices, and write proof by hand.
+
   In Prolog, we only care about searching for what can be inferenced,
   but do not care about writing down how a conclusion is inferenced,
   and let the machine check our proof.
