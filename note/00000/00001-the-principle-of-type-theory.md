@@ -14,6 +14,7 @@ This principle helps us be clear about scope of our type theory study.
 # Before type theory
 
 In programming, we do *not* write types, we only write terms.
+
 In logic, we do *not* write terms, we only write types
 -- propositions and their inference rules.
 
@@ -26,7 +27,9 @@ In logic, we can interpret a term as a recording of steps of applications of inf
 Here, we care about **inferencing** or **deduction**.
 
 - Before type theory, logic does not have terms.
+
   For example, Prolog does not use named clauses.
-  in Prolog, we only care about searching for what can be inferenced,
+
+  In Prolog, we only care about searching for what can be inferenced,
   but do not care about writing down how a conclusion is inferenced,
   and let the machine check our proof.
