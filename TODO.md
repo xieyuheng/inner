@@ -15,10 +15,6 @@
 - frontend dance
 - use lean to prove classic theorems about lambda calculus
 
-# lowdim
-
-- use `NodeId`, `NodeMap`, `EdgeId`, `EdgeMap` and so on -- to avoid copy whole graph
-
 # back to little books
 
 - `xieyuheng/list` a List library for js
