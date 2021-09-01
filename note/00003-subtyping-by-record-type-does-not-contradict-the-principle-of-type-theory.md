@@ -1,5 +1,5 @@
 ---
-title: Subtyping does not contradict the principle of type theory
+title: Subtyping by record type does not contradict the principle of type theory
 date: 2021-09-02
 ---
 
@@ -21,6 +21,5 @@ the definition is indeed purely syntactic.
 
 Thus, subtyping, when expressed by record type,
 does not contradict the principle of type theory.
-
 
 [00001]: 00001-the-principle-of-type-theory.md
