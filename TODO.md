@@ -46,3 +46,19 @@ conjunctive normal form (clausal normal form)
 - https://en.wikipedia.org/wiki/Binding_(linguistics)
 
 # the concept of archetype
+
+The archetype of categorical logic is cartesian closed category and simply typed lambda calculus.
+
+https://en.wikipedia.org/wiki/Cartesian_closed_category
+https://en.wikipedia.org/wiki/Simply_typed_lambda_calculus
+https://en.wikipedia.org/wiki/Categorical_logic
+
+# encoding computing machines in graph
+
+- use `NodeId`, `NodeMap`, `EdgeId`, `EdgeMap` and so on -- to avoid copy whole graph
+
+  - efficient computation requires efficient data structure
+
+- 在 algebra of 1-dim 中嵌入一个图灵等价的计算规则
+
+  - SKI？
