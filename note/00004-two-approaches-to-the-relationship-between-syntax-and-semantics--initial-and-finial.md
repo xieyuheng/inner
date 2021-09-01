@@ -22,8 +22,8 @@ a logic theory is the syntax, and its models are its semantics.
 Which means a *class* is the syntax, and its *objects* are its semantics.
 
 Or speaking more generally,
-abstract pattern is the syntax,
-concrete instances are the semantics.
+any abstract pattern is the syntax,
+and its concrete instances are the semantics.
 
 [00002]: 00002-model-theory-can-be-implemented-by-class-and-object.md
 
