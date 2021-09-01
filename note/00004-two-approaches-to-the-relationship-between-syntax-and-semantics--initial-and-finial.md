@@ -1,5 +1,5 @@
 ---
-title: Two approaches to the relationship between syntax and semantics: initial and finial
+title: Two approaches to the relationship between syntax and semantics -- initial and finial
 date: 2021-09-02
 ---
 
