@@ -1,3 +1,16 @@
+# What we need from a logic system?
+
+Guided by the principle of type theory,
+a logic system is a type system.
+
+The way we use it, is to:
+
+- (1) write proof in it, and let machine check the proof valid.
+- (2) let it search for proof of a given claim.
+  maybe also explain its strategy to us.
+- (3) computation of term, or normalization of term (proof).
+  maybe simplify proof, compare proof for equivalence relation.
+
 # back to little books
 
 - `xieyuheng/list` a List library for js
