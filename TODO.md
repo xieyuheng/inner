@@ -15,15 +15,6 @@ The way we use it, is to:
 
 - `xieyuheng/list` a List library for js
 
-# shallow embedding
-
-shallow embedding of DSL in general programming language,
-we get a powerful meta-language to extend the DSL.
-
-## use of scope
-
-we can use hosting language's function to implement scope of embedded DSL.
-
 # bidirectional type checking
 
 bidirectional type checking 在于检查一组关系就某一个位置的参数的单值性。
