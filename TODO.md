@@ -11,9 +11,18 @@ The way we use it, is to:
 - (3) computation of term, or normalization of term (proof).
   maybe simplify proof, compare proof for equivalence relation.
 
-# back to little books
+Also, What we need from a evaluator?
+We use evaluator to evaluate expressions.
 
-- `xieyuheng/list` a List library for js
+# terms as a recording of inference enables further inquiry
+
+the principle of type theory 给我们 term 可以让我们记录推理的过程，
+并且研究这个过程
+
+用 polya 的 logic 来记录解决 to mock a mocking bird 的过程
+用 sandi 的 logic 来记录解决 写出容易修改的程序的过程
+
+类似认知心理学的口述记录法
 
 # bidirectional type checking
 
@@ -22,6 +31,10 @@ bidirectional type checking 在于检查一组关系就某一个位置的参数�
 解释 intro 与 elim 之二分，终究需要范畴论。
 因此解释 Bidirectional Type Checking 也需要范畴论。
 用关系的单值性检验来解释，可能并不充分。
+
+# back to little books
+
+- `xieyuheng/list` a List library for js
 
 # dependent type system and logic programming
 
