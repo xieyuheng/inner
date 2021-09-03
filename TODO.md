@@ -1,19 +1,3 @@
-# What we need from a logic system?
-
-Guided by the principle of type theory,
-a logic system is a type system.
-
-The way we use it, is to:
-
-- (1) write proof in it, and let machine check the proof valid.
-- (2) let it search for proof of a given claim.
-  maybe also explain its strategy to us.
-- (3) computation of term, or normalization of term (proof).
-  maybe simplify proof, compare proof for equivalence relation.
-
-Also, What we need from a evaluator?
-We use evaluator to evaluate expressions.
-
 # terms as a recording of inference enables further inquiry
 
 the principle of type theory 给我们 term 可以让我们记录推理的过程，
