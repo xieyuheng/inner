@@ -1,13 +1,3 @@
-# terms as a recording of inference enables further inquiry
-
-the principle of type theory 给我们 term 可以让我们记录推理的过程，
-并且研究这个过程
-
-用 polya 的 logic 来记录解决 to mock a mocking bird 的过程
-用 sandi 的 logic 来记录解决 写出容易修改的程序的过程
-
-类似认知心理学的口述记录法
-
 # bidirectional type checking
 
 bidirectional type checking 在于检查一组关系就某一个位置的参数的单值性。
