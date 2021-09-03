@@ -1,7 +1,5 @@
 # Ones Inner Universe
 
-I am 谢宇恒 (Xiè Yǔhéng).
+I am Xie Yuheng, a programmer.
 
-I am a programmer.
-
-I like design and implement formal languages.
+I enjoy designing and implementing languages.
