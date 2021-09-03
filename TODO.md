@@ -49,3 +49,25 @@ https://en.wikipedia.org/wiki/Categorical_logic
 - 在 algebra of 1-dim 中嵌入一个图灵等价的计算规则
 
   - SKI？
+
+# foundations of mathematics
+
+This inquiry is beautifully formulated by Vladimir Voevodsky as the following,
+
+> A formal deduction system together with a correspondence
+> between its components and objects and actions in the world of mathematical thoughts
+> which can be used to formalize all subject areas of mathematics
+> is called a foundational system for mathematics or "Foundations of Mathematics".
+
+# formalization of algebraic topology
+
+can we use such implementation in Geometric modeling?
+
+- find an algebraic definition of infinity groupoids
+  that would satisfy the Grothendieck correspondence.
+
+  - another example of internal language?
+
+# formalization of category theory
+
+can use really use such implementation in the design of programming language's type systems?
