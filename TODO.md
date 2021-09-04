@@ -15,10 +15,10 @@
     (0 origin)
     (1 (toro origin origin)
        (polo origin origin))
-    (2 (spoke [a toro]
-              [b polo]
-              [c (inverse toro)]
-              [d (inverse polo)])))
+    (2 (spoke (a toro)
+              (b polo)
+              (c (inverse toro))
+              (d (inverse polo)))))
   ```
 
   but I can not afford to go back to lisp
