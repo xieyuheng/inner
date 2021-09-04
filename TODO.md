@@ -1,4 +1,11 @@
-# learn "software library API design" from laravel
+# learn "software library API design"
+
+- this can only be learn from examples
+
+- we should learn from laravel and rails
+
+- we will write down some notes, but what will be a form of knowledge,
+  that would be useful in day to day API design practice?
 
 # from the type theory point of view, how lowdim project different from hott?
 
