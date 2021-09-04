@@ -8,8 +8,8 @@ the difference between modern societies and early societies is that
 the main principle of differentiation is functional.
 
 Which means subsystems are formed based on their functionality,
-such as politics, economy, research, military, eduction.
-but not based on family and village and so on.
+such as politics, economy, research, military, eduction,
+but not based on family / village, aristocracy / people and so on.
 
 And because of this,
 the concept of logical truth and reasoning
