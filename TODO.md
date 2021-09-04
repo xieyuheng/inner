@@ -1,3 +1,7 @@
+# learn "software library API design" from laravel
+
+# from the type theory point of view, how lowdim project different from hott?
+
 # bidirectional type checking
 
 bidirectional type checking 在于检查一组关系就某一个位置的参数的单值性。
