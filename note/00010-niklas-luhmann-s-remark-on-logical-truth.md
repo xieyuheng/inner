@@ -9,7 +9,7 @@ the main principle of differentiation is functional.
 
 Which means subsystems are formed based on their functionality,
 such as politics, economy, research, military, eduction,
-but not based on family / village, aristocracy / people and so on.
+but not based on village / city, aristocracy / people and so on.
 
 And because of this,
 the concept of logical truth and reasoning
