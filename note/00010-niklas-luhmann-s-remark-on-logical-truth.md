@@ -22,3 +22,7 @@ and the act of using it to check (monitor and sanction) inferences (rules of rol
 
 From Niklas Luhmann's interview:
 - [Niklas Luhmann - Beobachter im Krähennest](https://www.youtube.com/watch?v=qRSCKSPMuDc&ab_channel=holgersen911)
+- Side note, "Beobachter im Krähennest" means "Observer in the crow's nest",
+  And a [crow's nest][] is a structure in the upper part of the main mast of a ship or a structure that is used as a lookout point.
+
+[crow's nest]: https://en.wikipedia.org/wiki/Crow%27s_nest
