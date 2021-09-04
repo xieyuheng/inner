@@ -109,3 +109,18 @@ entity component system 与 sussman 的 propagator model 之间的关系是什�
 如果元素之间有全序关系，可以通过排序来解决，
 如果元素之间没有全序关系，好像没法化归到某种 代表形式。
 如果没法化归到 代表形式 就只能通过实现非平凡的 等词 来处理了。
+
+# Axiomatizing Consciousness – Setting and Postulates, by Henk Barendregt
+
+part 1: https://www.youtube.com/watch?v=FebEjbkNWMA
+part 2: https://www.youtube.com/watch?v=NbSay5wTjY8
+
+在描述 turing machine 的时候，有 world 和 agent，然后有 interact
+
+(W1, A1) -> (W2, A2) -> ...
+
+对于 stack-based system 来说就是如此，
+
+但是，对于 lambda calculus 来说，只有一个 expression
+
+E1 -> E2 -> ...
