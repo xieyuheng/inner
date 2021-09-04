@@ -10,7 +10,7 @@
 - I asked this question, maybe because of I am not satisfied with shallow embedding,
   maybe I want some syntax like:
 
-  ``` scheme
+  ``` lisp
   (define-space torus
     (0 origin)
     (1 (toro origin origin)
@@ -20,6 +20,10 @@
               [c (inverse toro)]
               [d (inverse polo)])))
   ```
+
+  but I can not afford to go back to lisp
+
+  can I?
 
 # from the type theory point of view, how lowdim project different from hott?
 
