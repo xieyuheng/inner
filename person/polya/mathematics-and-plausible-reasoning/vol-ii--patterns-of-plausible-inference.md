@@ -15,6 +15,20 @@ The study of patterns of plausible reasoning is done in the manner of the natura
 
 ## 1. Verification of a consequence
 
+Take one of Euler's conjecture, and Euler's verification of it, as an example.
+
+``` cicada
+euler_s_conjecture(n: Nat): (
+  x: Nat, p: Nat, Prime(p)
+) * Equal(
+  Nat,
+  add(mul(8, n), 3),
+  add(mul(x, x), add(p, p))
+) {
+  TODO("euler_s_conjecture")
+}
+```
+
 We have a classical elementary pattern of reasoning,
 the "modus tollens" of the so-called hypothetical syllogism:
 
@@ -47,6 +61,59 @@ The verification of a consequence renders a conjecture more credible.
 With a little attention, we can observe countless reasonings in everyday life,
 in the law courts, in science, etc.,
 which appear to conform to our pattern.
+
+
+## 2. Successive verification of several consequences
+
+In the present section, I use the phrase "discussion of a theorem" in the specific meaning:
+"discussion, or survey, of some particular cases and some more immediate consequences of the theorem."
+
+I think that the discussion of the theorems presented is useful
+both in advanced and in elementary classes.
+
+"discussion of a theorem" give us a pattern of plausible reasoning
+which is closely related to, but more sophisticated than, the fundamental inductive pattern:
+
+```
+A implies B(n+1)
+B(n+1) is very different from the formerly verified consequences B(1), ... B(n) of A
+B(n+1) true
+------
+A much more credible
+```
+
+And a complementary form of it:
+
+```
+A implies B(n+1)
+B(n+1) is very similar from the formerly verified consequences B(1), ... B(n) of A
+B(n+1) true
+------
+A just a little more credible
+```
+
+The verification of a new consequence counts more or less according
+as the new consequence differs more or less from the formerly verified consequences.
+
+## 3. Verification of an improbable consequence
+
+TODO
+
+## 4. Inference from analogy
+
+TODO
+
+## 5. Deepening the analogy
+
+TODO
+
+## 6. Shaded analogical inference
+
+TODO
+
+## Examples and comments on chapter 12
+
+TODO
 
 # Chapter 13. Further Patterns and First Links
 
