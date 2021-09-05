@@ -13,13 +13,15 @@ The study of patterns of plausible reasoning is done in the manner of the natura
 
 # Chapter 12. Some Conspicuous Patterns
 
+## 1. Verification of a consequence
+
 We have a classical elementary pattern of reasoning,
 the "modus tollens" of the so-called hypothetical syllogism:
 
 ```
 A implies B
 B false
--------
+------
 A false
 ```
 
@@ -32,9 +34,19 @@ We have here a pattern of plausible inference:
 ```
 A implies B
 B true
--------
+------
 A more credible
 ```
+
+We shall call this pattern **the fundamental inductive pattern**
+or, somewhat shorter, the "inductive pattern."
+
+This inductive pattern says nothing surprising.
+On the contrary, it expresses a belief which no reasonable person seems to doubt:
+The verification of a consequence renders a conjecture more credible.
+With a little attention, we can observe countless reasonings in everyday life,
+in the law courts, in science, etc.,
+which appear to conform to our pattern.
 
 # Chapter 13. Further Patterns and First Links
 
