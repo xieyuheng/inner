@@ -2,28 +2,11 @@
 
 - this can only be learn from examples
 
-- we should learn from laravel and rails
+  - learn from laravel
+  - learn from rails
 
 - we will write down some notes, but what will be a form of knowledge,
   that would be useful in day to day API design practice?
-
-- I asked this question, maybe because of I am not satisfied with shallow embedding,
-  maybe I want some syntax like:
-
-  ``` lisp
-  (define-space torus
-    (0 origin)
-    (1 (toro origin origin)
-       (polo origin origin))
-    (2 (spoke (a toro)
-              (b polo)
-              (c (inverse toro))
-              (d (inverse polo)))))
-  ```
-
-  but I can not afford to go back to lisp
-
-  can I?
 
 # from the type theory point of view, how lowdim project different from hott?
 
