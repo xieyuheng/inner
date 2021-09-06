@@ -126,7 +126,8 @@ We can view category as generalization of preorder, or generalization of monoid.
 
 Objects of a category can be types,
 while arrows between `a`, `b` can not only be functions of type `(a) -> b`,
-but can also be functions of type `(a) -> (b, string_t)` by redefining composition.
+but can also be functions of type `(a) -> (b, string_t)`,
+we can achieve this by keeping objects the same and only redefine composition.
 
 - The `string_t` can be replaced by any `monoid_t`.
 
