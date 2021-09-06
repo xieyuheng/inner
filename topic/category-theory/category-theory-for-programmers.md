@@ -44,7 +44,7 @@ Objects do not serve any propose other than identifying ends of arrows.
 
 From category theory's view object has no structure.
 
-We have mathematical structures like `set_t`, `group_t`, `vector_space_t`,
+We have mathematical structures like `Set`, `Group`, `VectorSpace`,
 to define them in the language of category theory,
 we must not reach for the concrete structure of their objects.
 
@@ -85,7 +85,7 @@ Preorder is thin category, homset have 0 or 1 elements..
 
 We can view category as generalized preorder, in which homset can have more elements.
 
-- Xie: This generalization means, we can have different proofs of the relation `pre_t`.
+- Xie: This generalization means, we can have different proofs of the relation `Pre`.
 
 Monoid is like pre-group.
 
@@ -100,14 +100,14 @@ We can view category as generalization of preorder, or generalization of monoid.
 - Xie: Viewing preorder as category,
 
   ``` js
-  impl preorder_t {
-    elem_t: type
+  impl Preorder {
+    Element: type
     ...
   }
 
-  develop preorder_t {
-    as_category = new category_t {
-      object_t = elem_t
+  develop Preorder {
+    as_category = new Category {
+      Object = Element
       ...
     }
   }
@@ -116,8 +116,8 @@ We can view category as generalization of preorder, or generalization of monoid.
   is different from study the category of all preorders,
 
   ``` js
-  preorder_category: category_t = new category_t {
-    object_t = preorder_t
+  preorder_category: Category = new Category {
+    Object = Preorder
     ...
   }
   ```
@@ -126,10 +126,10 @@ We can view category as generalization of preorder, or generalization of monoid.
 
 Objects of a category can be types,
 while arrows between `a`, `b` can not only be functions of type `(a) -> b`,
-but can also be functions of type `(a) -> (b, string_t)`,
+but can also be functions of type `(a) -> (b, String)`,
 we can achieve this by keeping objects the same and only redefine composition.
 
-- The `string_t` can be replaced by any `monoid_t`.
+- The `String` can be replaced by any `Monoid`.
 
 This technique can be used to implement logger.
 
@@ -151,21 +151,21 @@ It is like googling a pattern (described by arrows),
 searching for all hits matching the pattern, and rank them.
 
 Take singleton set as an example,
-it is the `unit_t` type in type theory,
-from any type `A` there is a function of type `(A) -> unit_t`.
+it is the `Unit` type in type theory,
+from any type `A` there is a function of type `(A) -> Unit`.
 
 But this is not enough to pin down singleton set yet,
 because set is rich in arrows, for any set `X`, as long as it is not empty,
 forall `A` there is a function of type `(A) -> X`.
 
-We need to say the arrow from `A` to `unit_t` is unique, to pin down singleton set,
+We need to say the arrow from `A` to `Unit` is unique, to pin down singleton set,
 and we call such object **terminal object**.
 
 Not metter what path you take to the terminal object, the path is always the same.
 
-The `unit_t` type has this property,
-but even we just add one element to it to get `bool_t`,
-the set of paths to `bool_t` will be much more completed,
+The `Unit` type has this property,
+but even we just add one element to it to get `Bool`,
+the set of paths to `Bool` will be much more completed,
 which is the set of all predicates.
 
 The next question we should ask is how many terminal objects are there?
@@ -190,7 +190,7 @@ The terminal object as an universal construction,
   - Note that the ranking is not total but partial order.
 the terminal object is the best of such pattern.
 
-An arrow from the terminal object `unit_t` to another object `X` -- `unit_t -> X`,
+An arrow from the terminal object `Unit` to another object `X` -- `Unit -> X`,
 can be viewed as picking up an element in `X` (if we view the object `X` as set).
 
 ## I 4.2 Products
@@ -214,20 +214,20 @@ the product of object `A` and `B` is the best of such pattern.
 For example, bad candidates,
 
 ``` haskell
-C = (int_t, bool_t)
+C = (Int, Bool)
 p (x, b) = x
 q (x, b) = b
 
-C' = int_t
+C' = Int
 p' = id
 q' = true
-m : int_t -> (int_t, bool_t)
+m : Int -> (Int, Bool)
 m x = (x, true)
 
-C' = (int_t, int_t, bool_t)
+C' = (Int, Int, Bool)
 p' (x, _, _) = x
 q' (_, _, b) = b
-m : (int_t, int_t, bool_t) -> (int_t, bool_t)
+m : (Int, Int, Bool) -> (Int, Bool)
 m (x, y, b) = (x, b)
 ```
 
@@ -251,7 +251,7 @@ is the dual of the construction of product,
 the coproduct of object `A` and `B` is the best of such pattern.
 
 ``` haskell
-data either_t A B
+data Either A B
   = left A
   | right B
 ```
@@ -287,32 +287,32 @@ Let us take (datatype, product) for a walk,
   `swap` can be defined by simple pattern matching,
 - product is associative `(A * B) * C == A * (B * C)`,
   `product_associative` can be defined by simple pattern matching,
-- product has identity element, the `unit_t` type,
+- product has identity element, the `Unit` type,
   `unit_id_left` and `unit_id_right` can be implemented by simple pattern matching.
 
 Actually all the functions we need to define to verify the algebraic laws,
 can be implemented by simple pattern matching.
 
 The pair (datatype, sum) is the same,
-in which the identity element will be `void_t`,
-and forall `A`, we have `A + void_t == A`.
+in which the identity element will be `Void`,
+and forall `A`, we have `A + Void == A`.
 
-We also know `A * void_t == void_t`.
+We also know `A * Void == Void`.
 
 We also know `A * (B + C) == (A * B) + (A * C)`.
 
 Examples,
 
 ``` haskell
-data maybe_t A = nothing + (just A)
--- maybe_t A = 1 + A
+data Maybe A = nothing + (just A)
+-- Maybe A = 1 + A
 
-data list_t A = null + (cons A * (list_t A))
--- list_t A = 1 + A * (list_t A)
--- list_t A = 1 + A * (1 + A * (list_t A))
--- list_t A = 1 + A  + A * A * (list_t A)
--- list_t A = 1 + A  + A * A * (1 + A * (list_t A))
--- list_t A = 1 + A  + A * A + A * A * A * (list_t A)
+data List A = null + (cons A * (List A))
+-- List A = 1 + A * (List A)
+-- List A = 1 + A * (1 + A * (List A))
+-- List A = 1 + A  + A * A * (List A)
+-- List A = 1 + A  + A * A * (1 + A * (List A))
+-- List A = 1 + A  + A * A + A * A * A * (List A)
 -- ...
 ```
 
@@ -355,10 +355,10 @@ Full functor is defined as been surjective on all homsets.
 (The mapping behavior on object does not need to be injective or surjective.)
 We can also define fully faithful functor as both faithful and full.
 
-Functor of type `functor_t(singleton_category, C)` can be used to pick up object in `C`.
-Functor of type `functor_t(C, singleton_category)` is called constant functor.
+Functor of type `Functor(singleton_category, C)` can be used to pick up object in `C`.
+Functor of type `Functor(C, singleton_category)` is called constant functor.
 
-We define `endofunctor_t(C) = functor_t(C, C)`.
+We define `EndoFunctor(C) = Functor(C, C)`.
 
 In programming language, a unary type constructor is endofunctor of the category of datatypes.
 
@@ -369,10 +369,10 @@ In haskell `Functor` is endofunctor of types.
 For example, array-like collections (or say, containers) are instances `Functor`.
 
 ``` haskell
-type reader_t R A = R -> A
+type Reader R A = R -> A
 ```
 
-when fix `R`, `reader_t R` is a `Functor`.
+when fix `R`, `Reader R` is a `Functor`.
 
 ## I 7.1 Functoriality, bifunctors
 
@@ -381,9 +381,9 @@ In the category of category, an object is a category, a morphism is a functor.
 Example of composition of functors,
 
 ``` haskell
-tail : list_t(A) -> maybe_t(list_t(A))
-tail null = nothing_t
-tail cons(x, xs) = just_t(xs)
+tail : List(A) -> Maybe(List(A))
+tail null = Nothing
+tail cons(x, xs) = Just(xs)
 ```
 
 All algebraic datatypes are functors,
@@ -397,7 +397,7 @@ bimap : [f : (type, type) -> type] ->
   (A -> A1) -> (B -> B1) -> f(A, B) -> f(A1, B1)
 ```
 
-Note that, the canonical sum type `either_t(A, B)` (co-product in category) is still bifunctor,
+Note that, the canonical sum type `Either(A, B)` (co-product in category) is still bifunctor,
 we do not need sum of two categories to view it (co-product in category of category),
 we only need product of two categories (product in category of category).
 
@@ -506,23 +506,23 @@ Every time we see mappings or arrows, we ask can we compose them.
 - Xie: Composing commuting squares is composing equation of morphisms.
   `a b == c d` and `d e == f g` compose to `a b e == c f g`.
 
-We can extends `category_t` to `strict_two_category_t`
+We can extends `Category` to `StrictTwoCategory`
 by enrich the structure of homset with category.
 
 - **[From The Catsters]**
   Since natural transformation is morphism in some category, we can compose them.
-  We have functor category, `C, D : category_t`,
-  `functor_category_t(C, D)` is a category,
-  where `object_t = functor_t(C, D)`
-  and `morphism_t(f, g) = transformation_t(C, D, f, g)`.
+  We have functor category, `C, D : Category`,
+  `FunctorCategory(C, D)` is a category,
+  where `Object = Functor(C, D)`
+  and `Morphism(f, g) = Transformation(C, D, f, g)`.
 
-The `functor_category_t` is defined,
+The `FunctorCategory` is defined,
 and they are exponential objects in category of categories,
-which means `strict_two_category_t` is Cartesian closed.
+which means `StrictTwoCategory` is Cartesian closed.
 
-From `strict_two_category_t` we can define `bicategory_t`,
+From `StrictTwoCategory` we can define `Bicategory`,
 by not to use equality between morphisms,
-but to use isomorphism between morphisms in `functor_category_t`
+but to use isomorphism between morphisms in `FunctorCategory`
 to describe laws like associativity.
 
 Because of complicated coherent laws occurred in n-category,
@@ -600,9 +600,9 @@ thus we can define monad in monoidal category.
   `(A * A) * A ~~ A * (A * A)` can be `(A * A) * A == A * (A * A)`.
 
 Given a category `C`, its endofunctors form a category,
-the `functor_category_t(C, C)` (or write as `[C, C]`),
-where `object_t = functor_t(C, C)`
-and `morphism_t(f, g) = transformation_t(C, C, f, g)`.
+the `FunctorCategory(C, C)` (or write as `[C, C]`),
+where `Object = Functor(C, C)`
+and `Morphism(f, g) = Transformation(C, C, f, g)`.
 
 Elements in `[C, C]` are functors from `C` to `C`,
 so we can compose them, and this functor composition
@@ -676,9 +676,9 @@ which means "uniqueness" and "for all".
 TODO
 
 ``` js
-category_t (t, arrow_t, arrow_eqv_t)
-set_t : (type) -> type
-hom_set : (a: t, b : t) -> set_t(arrow_t(a, b))
+Category (t, Arrow, ArrowEqv)
+Set : (type) -> type
+hom_set : (a: t, b : t) -> Set(Arrow(a, b))
 (x: t) -> hom_set(a, x)
 ```
 
