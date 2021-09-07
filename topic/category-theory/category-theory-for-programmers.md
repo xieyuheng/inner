@@ -179,10 +179,14 @@ We can compare arrows for equality, but we can not compare objects for equality.
 Thus we can only ask for isomorphism between objects.
 
 - Xie: Is it true that we can not use the equivalence relation between objects?
+
   Maybe we can, but it is just that for universal construction,
   uniqueness expressed by the equivalence relation between objects is too strong,
   for example, product set `A * B` is not equal to `B * A`,
   but `A * B` is isomorphic to `B * A`.
+
+  Or say, it is stupid (or not natural) to **not** view
+  two isomorphic group as the same group.
 
 The terminal object as an universal construction,
 - The pattern is single object.
