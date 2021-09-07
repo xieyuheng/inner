@@ -96,7 +96,24 @@ entity component system 与 sussman 的 propagator model 之间的关系是什�
 
 # quotient type
 
-关于 quotient type 的现象
+quotient type 要通过改变 equivalence relation 来定义，
+只要给每个 datatype 属于它自己的 equivalence relation 就行了，
+但是，函数的单值性检查怎么办？
+
+方案 A：
+- 允许不单值的函数
+- 单值性成为 class 的 axiom 的一部分，比如：
+  - Category -- compose
+  - Group -- mul inv
+由于单值函数的复合还是单值的，
+这样对于所发展的抽象理论而言，
+就不需要证明单值性了。
+
+# quotient type and CPL (constraint logic programming)
+
+TODO
+
+# 关于 quotient type 的现象
 
 如果结合律与 List 这个数据类型对应，
 结合律 + 交换律 与 DupSet (Set With Duplication) 这个数据类型对应，
