@@ -3,6 +3,21 @@
 - Vague, but exciting.
   - Mike Sendall
 
+## Programmer
+
+- We rule the world, we write the rules,
+  that going to the machines that execute everything
+  that happens on the planet nowadays.
+
+  No law can be enacted without software.
+  No law can be enforced without software.
+  No government can act without software.
+
+  We rule the world.
+
+  - Bob Martin
+  - "Uncle" Bob Martin - "The Future of Programming"
+
 ## Programming Languages
 
 - What truely drives language adoption is necessity.
