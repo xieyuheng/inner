@@ -109,6 +109,8 @@ quotient type 要通过改变 equivalence relation 来定义，
 这样对于所发展的抽象理论而言，
 就不需要证明单值性了。
 
+我们需要设计语言使得表达这些变容易。
+
 # quotient type and CPL (constraint logic programming)
 
 TODO
