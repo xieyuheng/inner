@@ -4,7 +4,7 @@
 
 - functional programming -- no side effects
 
-- object oriented programming -- no function pointer table? a little farfetched
+- object oriented programming -- no function pointers -- about indirect transfer of control -- a little farfetched
   - use record type to pass group of high order functions as argument,
     and to return group of high order functions as result.
 
