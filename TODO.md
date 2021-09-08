@@ -5,6 +5,7 @@
 
 # software design
 
+- practice design patterns -- functional style and class style
 - laravel: https://github.com/xieyuheng/summer.php
 - tdd: ~/watching/tdd/james-shore
 
