@@ -9,8 +9,6 @@ The principle of type theory is:
 
 > Let's study **terms** and **types** together.
 
-This principle helps me to seek for clarity in my study.
-
 # Before type theory
 
 In programming, we do *not* write types, we only write terms.
