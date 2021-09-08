@@ -1,3 +1,23 @@
+# the principle of category theory
+
+当我想 category theory 的 principle 时，
+我想到的是将原本在别的 theory 里定义的，
+比如在 set theory 里定义的，概念，
+翻译成用元素的复合以及其等式来表示，
+以求将原来的概念推广到更抽象，以求适用于别的领域。
+
+但是，当 E Chen，考虑 category 时，
+她说，考虑 category 在于表明我们是在什么 context 下来考虑 等价关系。
+
+the principle is:
+
+> category theory should be viewed as a tool to help us recognize patterns.
+
+but category theory's "explanation via pattern"
+should not be viewed as the ultimate explanation.
+
+reality escapes all concepts -- alan watts.
+
 # object oriented programming and functional programming are orthogonal
 
 - structural programming -- no goto
