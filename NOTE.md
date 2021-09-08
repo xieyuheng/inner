@@ -9,6 +9,8 @@
 但是，当 E Chen，考虑 category 时，
 她说，考虑 category 在于表明我们是在什么 context 下来考虑 等价关系。
 
+which is "category theory in use", which is very useful view.
+
 the principle is:
 
 > category theory should be viewed as a tool to help us recognize patterns.
