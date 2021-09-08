@@ -1,16 +1,3 @@
-# object oriented programming and functional programming are orthogonal
-
-- structural programming -- no goto
-
-- functional programming -- no side effects
-
-- object oriented programming -- no function pointers -- about indirect transfer of control -- a little farfetched
-  - use record type to pass group of high order functions as argument,
-    and to return group of high order functions as result.
-
-Note that, bob martin get this the "dark features" (like dark matters) series,
-because his historical view starts from structural programming.
-
 # learn "software library API design"
 
 - this can only be learn from examples
