@@ -20,6 +20,11 @@ should not be viewed as the ultimate explanation.
 
 reality escapes all concepts -- alan watts.
 
+categorical semantics must also explain implementation in useful ways.
+
+which means we should not get the "categorical semantics" and stop,
+we should get the "categorical semantics" and use it.
+
 # object oriented programming and functional programming are orthogonal
 
 - structural programming -- no goto
