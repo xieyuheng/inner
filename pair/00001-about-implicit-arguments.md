@@ -1,3 +1,9 @@
+---
+title: about-implicit-arguments
+date: 2021-07-03
+tags: [cicada]
+---
+
 # 实现带有 implicit argument 的 lambda
 
 相关的论文中提到，实现 implicit argument，需要 unification。

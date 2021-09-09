@@ -1,3 +1,9 @@
+---
+title: Type system implementation patterns
+date: 2021-07-02
+tags: [cicada]
+---
+
 # 类型系统实现技术的说明
 
 每段实现技术的说明要清晰简洁，
