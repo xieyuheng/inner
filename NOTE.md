@@ -1,11 +1,3 @@
-# record type's main difference from product type
-
-record type 可以被视为 named product type
-
-record type 可以被视为 named product type，但是，
-record type 与 product type 的行为差异在于，
-record type 的 fields 之间的关系可以用来定义 subtype relation。
-
 # TDD
 
 - It is easier to ponder about working code, and refactor it to better code,
