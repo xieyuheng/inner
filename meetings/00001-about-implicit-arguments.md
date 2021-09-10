@@ -23,8 +23,8 @@ tags: [cicada]
 (4) look back
 
 look back 在于，产正了某个解决方案之后，
-讲这个解决方案抽象出来，
-去想它能如何适用与解决类似的问题。
+将这个解决方案抽象出来，
+去想它能如何适用于解决类似的问题。
 
 不止是用 unification 实现 implicit argument 会有疑惑，
 在考虑 bidirectional type checking 和 NbE 等技术的时候，
