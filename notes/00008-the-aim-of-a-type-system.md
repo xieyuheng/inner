@@ -1,5 +1,5 @@
 ---
-title: The implementation of a type system should help us check inferences
+title: The aim of a type system
 date: 2021-09-04
 ---
 
@@ -8,7 +8,9 @@ I sometimes be come unclear about how should we use it.
 
 > How should we use an implementation of such a system?
 
-I here make it clear that, the way we use it, is to:
+I here make clear about the aim (the way we use it) of a type system:
+
+> A type system interact with people by providing feedback about ones reasoning.
 
 (1) Write proof in the formal language, and let the machine check the proof is valid.
 
