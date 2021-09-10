@@ -1,12 +1,7 @@
-# learn "software library API design"
+# TDD
 
-- this can only be learn from examples
-
-  - learn from laravel
-  - learn from rails
-
-- we will write down some notes, but what will be a form of knowledge,
-  that would be useful in day to day API design practice?
+- It is easier to ponder about working code, and refactor it to better code,
+  than to conceive the perfect design at the beginning.
 
 # from the type theory point of view, how lowdim project different from hott?
 
@@ -25,12 +20,6 @@ bidirectional type checking 在于检查一组关系就某一个位置的参数�
 # dependent type system and logic programming
 
 dependent type system 的实现中，有哪些问题是可以用 logic programming 来解决的？
-
-# conjunctive normal form
-
-conjunctive normal form (clausal normal form)
-"ands of ors" -- because (not A or B) == (if A then B)
-"ands of (if ands then ors)"
 
 # Ancient logics
 
@@ -80,7 +69,7 @@ can we use such implementation in Geometric modeling?
 
   - another example of internal language?
 
-# formalization of category theory
+# formalization of category theory and categorical semantics
 
 can use really use such implementation in the design of programming language's type systems?
 
@@ -89,10 +78,6 @@ can use really use such implementation in the design of programming language's t
 当实现 record type 时，在改用 named sigma type 之后，
 我的第一次尝试没能解决 inheritance 的问题，
 这在于解决问题的能力不够，需要学习「怎样解题」
-
-# entity component system
-
-entity component system 与 sussman 的 propagator model 之间的关系是什么？
 
 # quotient type
 
