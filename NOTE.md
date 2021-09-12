@@ -1,111 +1,3 @@
-# bidirectional-type-checking-and-univalent-relation
-
-Bidirectional type checking and univalent relation
-
-Univalent relation – a binary relation R that satisfies xRy ∧ xRz ⇒ y = z.
-
-https://en.wikipedia.org/wiki/Binary_relation#Special_types_of_binary_relations
-
-bidirectional type checking 在于检查一组关系就某一个位置的参数的单值性。
-
-解释 intro 与 elim 之二分，终究需要范畴论。
-因此解释 Bidirectional Type Checking 也需要范畴论。
-用关系的单值性检验来解释，可能并不充分。
-
-# Bidirectional Type Checking
-
-2020-09-29
-
-- Examples:
-  link:../cicada/lang1/check.cic
-  link:../cicada/lang2/check.cic
-
-假设在 datatype 中定义数据构造子时，
-其类型所代表的是纯逻辑式编程。
-即所有的关系都是可逆的。
-- 但是在 dependent type system 的 judgment 中，情况不是如此，
-  因为 evaluate 不是可逆的。
-
-双向的类型检查在于，关系的单值性，即关系是否是函数。
-具体对于 Check 而言，假设第三个参数 t 为输出。
-注意「关系是函数」与「有算法计算这个函数」还差一步。
-
-关于双向类型检查与函数单值性，有一个有趣的 story。
-首先要知道 Check 对第三个参数 t 的单值性，将给出函数 infer。
-假设我想实现函数 check 来自动生成关系 Check 的证明。
-- 所有的 predicate，在把它当作返回值为 bool 的函数之外，
-  都可以阐释理解其为生成证明的函数。
-  - 当这样做时，我们需要问 predicate
-    所对应的 judgment 的 inference rules 是什么。
-  - 对于 Check 而言，我们先有的是 Check 这个 judgment 与其 inference rules，
-    然后再想办法去实现 check 这个 predicate。
-一、我发现只有当我能 infer ap 的 target，才能 check ap，
-二、而且，额外地，当我能 infer ap 的 target，我就不光能 check ap，并且也能 infer ap，
-三、为了 infer ap 的 target 我必须能够 infer fn，
-四、fn 的 Check 对其第三个参数 t 不具有单值性，因此无法实现 infer，
-五、为了 fn 而加 annotation 这个新 Exp，并且把类型检查 judgment 分为两个方向的 infer 与 check。
-
-为什么说「fn 的 Check 对其第三个参数 t 不具有单值性」？
-通过把逻辑式转写成函数式，并且用到对变量的赋值，可以自动检验一组 judgment 对某一个参数位置的单值性。
-
-we can use lower case letters as logic
-variable, because const are in namespaces.
-
-如果有检验关系就某一个参数，是否具有单值性的算法，
-我们就可以用我们的 inference rule syntax
-来表达 bidirectional type checking 相关的知识。
-
-通过把逻辑式转写成函数式，并且用到对变量的赋值，
-可以自动检验一组 judgment 对某一个参数位置的单值性。
-
-以 Check.fn 这一个 inference rule 为例，检验其就第三个参数的单值性。
-
-Check(ctx, Exp.fn(name, ret), Ty.arrow(arg_t, ret_t))
-------------------------------------------------------- fn
-ret_ck: Check(Map.extend(ctx, name, arg_t), ret, ret_t)
-
-假设 Ty.arrow(arg_t, ret_t) 是未知的，因此 arg_t 是未知的，
-因此 arg_t 不应在 ret_ck 的类型的第一个参数 Map.extend(ctx, name, arg_t) 中出现，
-因此单值性检验失败。
-
-bidirectional type checking 算法设计的问题，
-可以划归到逻辑式编程中，就某一个位置的单值性检验问题。
-
-# reversed-inference-rule style function application syntax
-
-- normal:
-  ``` cicada
-  f(a: A): T
-  g(f(a: A): T, b: B): R
-  ```
-
-- reversed-inference-rule style:
-  ``` cicada
-  T
-  ---- f
-  A
-  ---- a
-
-  R
-  ---- g
-  { T
-    ---- f
-    A
-    ---- a }
-  { B
-    ---- b }
-  ```
-
-- compare our syntax with the traditional syntax of writing inference rules:
-  - it (the traditional syntax) uses concrete syntax ambiguously.
-  - it does not use closure.
-  - it uses natural deduction instead of sequent calculus.
-  - it use declarative pattern like the `(syntax-rules)` of scheme.
-    - to express common collection like list and map.
-  - it use mutable variables.
-  - it is not purely declarative.
-  - it is like the DSL for specifying grammar by grammar rules.
-
 # TDD
 
 - It is easier to ponder about working code, and refactor it to better code,
@@ -240,3 +132,12 @@ part 2: https://www.youtube.com/watch?v=NbSay5wTjY8
 但是，对于 lambda calculus 来说，只有一个 expression
 
 E1 -> E2 -> ...
+
+# dependent type constructor is relation
+
+假设在 datatype 中定义数据构造子时，
+其类型所代表的是纯逻辑式编程。
+即所有的关系都是可逆的。
+
+- 但是在 dependent type system 的 judgment 中，情况不是如此，
+  因为 evaluate 不是可逆的。
