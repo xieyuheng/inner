@@ -1,17 +1,16 @@
-# TDD
+# categorical semantics & categorical logic
 
-- It is easier to ponder about working code, and refactor it to better code,
-  than to conceive the perfect design at the beginning.
+Take rules about product and either as examples.
+
+# the concept of archetype
+
+The archetype of categorical logic is cartesian closed category and simply typed lambda calculus.
+
+https://en.wikipedia.org/wiki/Cartesian_closed_category
+https://en.wikipedia.org/wiki/Simply_typed_lambda_calculus
+https://en.wikipedia.org/wiki/Categorical_logic
 
 # from the type theory point of view, how lowdim project different from hott?
-
-# back to little books
-
-- `xieyuheng/list` a List library for js
-
-# dependent type system and logic programming
-
-dependent type system 的实现中，有哪些问题是可以用 logic programming 来解决的？
 
 # Ancient logics
 
@@ -24,14 +23,6 @@ dependent type system 的实现中，有哪些问题是可以用 logic programmi
 
 - https://en.wikipedia.org/wiki/Scope_(formal_semantics)
 - https://en.wikipedia.org/wiki/Binding_(linguistics)
-
-# the concept of archetype
-
-The archetype of categorical logic is cartesian closed category and simply typed lambda calculus.
-
-https://en.wikipedia.org/wiki/Cartesian_closed_category
-https://en.wikipedia.org/wiki/Simply_typed_lambda_calculus
-https://en.wikipedia.org/wiki/Categorical_logic
 
 # encoding computing machines in graph
 
