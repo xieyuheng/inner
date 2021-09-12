@@ -16,7 +16,8 @@ the definition describe the single-value-ness of function,
 i.e. a value in the domain `A` determines a single value in codomain `B`.
 
 - Note that, in relation database, the column `A` is the **primary key** of `R`.
-  and if `R3: (A, B, C)` can be viewed as function `(A, B) -> C`,
+
+  If `R3: (A, B, C)` can be viewed as function of type `(A, B) -> C`,
   `(A, B)` will be the **composite key** of `R3`.
 
 For n-ary relation, we can summarize its single-value-ness,
