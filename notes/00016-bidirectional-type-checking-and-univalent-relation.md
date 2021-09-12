@@ -138,10 +138,10 @@ Check(ctx, fn(x, ret), arraw(A, B))
 
 Maybe we can do univalent check, by propagating what is unknown, like the following:
 
-- Suppose `arrow(A, B)` is unknown
-- Thus `A` is unknown
-- Thus `A` should not occur in `ctx.extend(x, A)`
-- Thus univalent check fail
+- Suppose `arrow(A, B)` is unknown.
+- Thus `A` is unknown.
+- Thus `A` should not occur in `ctx.extend(x, A)`.
+- Thus univalent check fail.
 
 # Categorical semantics of bidirectional type checking
 
