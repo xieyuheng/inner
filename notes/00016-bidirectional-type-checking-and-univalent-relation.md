@@ -5,7 +5,7 @@ date: 2021-09-12
 
 # Univalent relation
 
-A [binary relation][] `R: (A, B)` is called **univalent**, if it satisfies
+A [binary relation][] `R: (A, B)` is called **univalent**, if it satisfies:
 
 ```
 forall (x: A, y: B, z: B, R(x, y), R(x, z)) -> y == z
