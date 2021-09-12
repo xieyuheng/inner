@@ -116,7 +116,7 @@ Here is the story:
 
   > (A) translate `Check` to `check`.
 
-- We in turn solve the problem: translate
+- We in turn solve the problem: translate:
 
   > (B) `Check` to `check` & `infer`.
 
