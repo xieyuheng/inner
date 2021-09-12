@@ -3,37 +3,40 @@ title: Reversed-inference-rule style function application syntax
 date: 2021-09-12
 ---
 
-TODO
+By changing function application syntax,
+we can mimic the way people write inference rules
+(but the direction of inferencing is reversed).
 
-- normal:
-  ``` cicada
-  f(a: A): T
-  g(f(a: A): T, b: B): R
-  ```
+Standard function application syntax:
 
-- reversed-inference-rule style:
-  ``` cicada
-  T
+```
+f(a: A): T
+g(f(a: A): T, b: B): R
+```
+
+Can be translated to reversed-inference-rule style (like Horn clause of Prolog):
+
+```
+T
+---- f
+A
+---- a
+
+R
+---- g
+{ T
   ---- f
   A
-  ---- a
+  ---- a }
+{ B
+  ---- b }
+```
 
-  R
-  ---- g
-  { T
-    ---- f
-    A
-    ---- a }
-  { B
-    ---- b }
-  ```
+# Traditional syntax for writing inference rules
 
-- compare our syntax with the traditional syntax of writing inference rules:
-  - it (the traditional syntax) uses concrete syntax ambiguously.
-  - it does not use closure.
-  - it uses natural deduction instead of sequent calculus.
-  - it use declarative pattern like the `(syntax-rules)` of scheme.
-    - to express common collection like list and map.
-  - it use mutable variables.
-  - it is not purely declarative.
-  - it is like the DSL for specifying grammar by grammar rules.
+Comparing our syntax with the traditional syntax for writing inference rules:
+
+- It (the traditional syntax) uses concrete syntax ambiguously.
+- It does not use closure.
+- It uses declarative pattern, like the `(syntax-rules)` of scheme,
+  to express common collection like list and map.
