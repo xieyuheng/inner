@@ -148,4 +148,4 @@ Maybe we can do univalent check, by propagating what is unknown, like the follow
 
 Categorical semantics can help us understand
 the relationship between intro-rules and elim-rules,
-thus will also help us understand  bidirectional type checking.
+thus it might also help us to get a better understanding of bidirectional type checking.
