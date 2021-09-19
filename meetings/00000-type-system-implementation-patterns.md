@@ -14,7 +14,7 @@ tags: [cicada]
 
 首先从 Exp 开始说。
 
-Exp 需要被 check，实现 check 的同时，还要实现 infer，
+Exp 的指责是被 check，实现 check 的同时，还要实现 infer，
 这个技术叫做 bidirectional type checking。
 
 ```
@@ -22,12 +22,12 @@ check(ctx: Ctx, exp: Exp, t: Value): void
 infer(ctx: Ctx, exp: Exp): Value
 ```
 
-使用这个技术是为了把 type system 的，
-声明式的 inference rule，改写为函数，
-这在于，在无方向的 inference rule 中，
-通过明确输入与输出来指出方向，有了方向就成了函数。
-「bidirectional」一词中所说的「双向」
-就在于，在 check 时，type 是输入，在 infer 时 type 是输出。
+使用这个技术是为了把 type system 中声明式的 inference rule 改写为函数，
+这在于，在无方向的 inference rule 中，通过明确输入与输出来指出方向，有了方向就成了函数。
+
+"bidirectional" 一词中所说的「双向」就在于：
+- 在 check 时，type 是输入
+- 在 infer 时 type 是输出
 
 需要被 check 的 Exp 对应 intro rule，即 data constructor，
 需要被 infer 的 Exp 对应 elim rule。
