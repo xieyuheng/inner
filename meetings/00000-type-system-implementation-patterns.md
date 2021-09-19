@@ -125,7 +125,7 @@ NotYetValue 使得我们的 evaluate 可以进行 partial evaluation。
 
 我们也用 Value 作为 check 与 infer 中出现的 type 参数或返回值的类型。
 
-## eta-expansion during `readback`
+## eta-expansion during readback
 
 因此 Value 就有了另一个职责，即用来 eta-expansion Exp。
 这个职责也许应该被区分出来成为一个新的 Type 数据类型，
