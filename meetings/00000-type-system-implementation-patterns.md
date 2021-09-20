@@ -12,9 +12,9 @@ tags: [cicada]
 
 # Patterns
 
-我们通过描述数据类型，以及它所承担的「指责」，来描述所用到的实现技术。
+我们通过描述数据类型，以及它所承担的「职责」，来描述所用到的实现技术。
 
-> 数据类型的指责，说明着数据类型之间的关系。
+> 数据类型的职责，说明着数据类型之间的关系。
 
 > 一组相对固定的关系，用来解决某个领域中某类问题，就称作 pattern。
 
@@ -35,7 +35,7 @@ tags: [cicada]
 
 首先从 Exp 开始说。
 
-> Exp 的指责是被 check，实现 check 的同时，还要实现 infer。
+> Exp 的职责是被 check，实现 check 的同时，还要实现 infer。
 
 ```
 check(ctx: Ctx, exp: Exp, t: Value): void
@@ -58,9 +58,9 @@ infer(ctx: Ctx, exp: Exp): Value
 
 # Core
 
-我们需要修正一下 Exp 的指责：
+我们需要修正一下 Exp 的职责：
 
-> Exp 在其基本指责 check 与 infer 的同时，还要返回 Core。
+> Exp 在其基本职责 check 与 infer 的同时，还要返回 Core。
 
 ```
 check(ctx: Ctx, exp: Exp, t: Value): Core
@@ -153,7 +153,7 @@ NotYetValue 使得我们的 evaluate 可以进行 partial evaluation。
 
 因此 Value 就有了另一个职责，即用来 eta-expansion Exp。
 
-> Value 作为 type 时，可能有的指责是 引导 eta-expansion。
+> Value 作为 type 时，可能有的职责是 引导 eta-expansion。
 
 ```
 // t: Value
