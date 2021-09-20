@@ -9,6 +9,14 @@
 - laravel: https://github.com/xieyuheng/summer.php
 - tdd: ~/watching/tdd/james-shore
 
+- laravel-like cli framework
+
+  - for `@xieyuheng/test-runner`
+  - for `@cicada-lang/cicada`
+  - for `@xieyuheng/summer`
+
+- for `@xieyuheng/partech` instead of `@cicada-lang/partech`
+
 # language design
 
 - categorical-semantics: ~/watching/person/bartosz-milewski
