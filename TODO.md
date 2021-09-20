@@ -9,14 +9,6 @@
 - laravel: https://github.com/xieyuheng/summer.php
 - tdd: ~/watching/tdd/james-shore
 
-- laravel-like cli framework
-
-  - for `@xieyuheng/test-runner`
-  - for `@cicada-lang/cicada`
-  - for `@xieyuheng/summer`
-
-- for `@xieyuheng/partech` instead of `@cicada-lang/partech`
-
 # language design
 
 - categorical-semantics: ~/watching/person/bartosz-milewski
@@ -24,3 +16,13 @@
   - Category Theory 4.1: Terminal and initial objects
   - Category Theory 4.2: Products
   - Category Theory 5.1: Coproducts, sum types
+
+# projects
+
+- laravel-like cli framework
+
+  - for `@xieyuheng/test-runner`
+  - for `@cicada-lang/cicada`
+  - for `@xieyuheng/summer`
+
+- for `@xieyuheng/partech` instead of `@cicada-lang/partech`
