@@ -8,7 +8,7 @@
 
 My aim here is to present to you my attitude to teaching.
 It is not a method, it is not a system.
-Teaching is not a science, it is a art.
+Teaching is not a science, it is an art.
 You can not put it clearly in a system, but you may have an attitude to it.
 
 This attitude can not be easily described in words,
@@ -36,7 +36,7 @@ A second point.
 
 ------
 
-My third point, application of the second point to mathematics.
+My third point -- application of the second point to mathematics.
 
 > Finished mathematics consists of proofs, but mathematics in the making, consists of guesses.
 
