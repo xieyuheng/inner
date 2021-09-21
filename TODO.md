@@ -19,10 +19,17 @@
 
 # projects
 
-- laravel-like cli framework
+- `@xieyuheng/clidev` cli framework
 
   - for `@xieyuheng/test-runner`
   - for `@cicada-lang/cicada`
-  - for `@xieyuheng/summer`
+  - for `@xieyuheng/apidev`
 
-- for `@xieyuheng/partech` instead of `@cicada-lang/partech`
+- `@xieyuheng/partech` instead of `@cicada-lang/partech`
+
+- `@xieyuheng/langdev` language framework
+
+  - use `@xieyuheng/partech`
+
+- `@xieyuheng/apidev` api framework
+  - extract from `@xieyuheng/summer`
