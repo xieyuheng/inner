@@ -19,12 +19,6 @@
 
 # projects
 
-- `@xieyuheng/clidev` cli framework
-
-  - for `@xieyuheng/test-runner`
-  - for `@cicada-lang/cicada`
-  - for `@xieyuheng/apidev`
-
 - `@xieyuheng/partech` instead of `@cicada-lang/partech`
 
 - `@xieyuheng/langdev` language framework

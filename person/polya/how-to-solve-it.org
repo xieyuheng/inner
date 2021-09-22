@@ -2,11 +2,6 @@
 #+author: Polya
 #+date: 1945
 
-* Edition
-
-Expanded Princeton Science Library Edition,
-with a new foreword by John H. Conway, 2004
-
 * OUR LIST
 
 ** UNDERSTANDING THE PROBLEM
