@@ -62,7 +62,6 @@ With a little attention, we can observe countless reasonings in everyday life,
 in the law courts, in science, etc.,
 which appear to conform to our pattern.
 
-
 ## 2. Successive verification of several consequences
 
 In the present section, I use the phrase "discussion of a theorem" in the specific meaning:
@@ -97,7 +96,47 @@ as the new consequence differs more or less from the formerly verified consequen
 
 ## 3. Verification of an improbable consequence
 
-TODO
+Euler guessed the whole from a few scattered details.
+
+Quite similarly,
+
+- An archaeologist may reconstitute with reasonable certainty a whole inscription
+  from a few scattered letters on a worn-out stone.
+
+- A paleontologist may describe reliably the whole animal
+  after having examined a few of its petrified bones.
+
+- When a person whom you know very well starts talking in a certain way,
+  you may predict after a few words the whole story he is going to tell you.
+
+- Quite similarly, Euler guessed the whole story, the whole mathematical situation,
+  from a few clearly recognized points.
+
+The following pattern appears as a modification
+or a sophistication of the fundamental inductive pattern:
+
+```
+A implies B
+B very improbable in itself
+B true
+------
+A very much more credible
+```
+
+Let us add, without specific illustration for the moment,
+the complementary pattern which explains the same idea from the reverse side:
+
+```
+A implies B
+B quite probable in itself
+B true
+------
+A just a little more credible
+```
+
+The verification of a consequence counts more or less
+according as the consequence is more or less improbable in itself.
+The verification of the most surprising consequences is the most convincing.
 
 ## 4. Inference from analogy
 

@@ -1,10 +1,12 @@
-#+title: How to Solve it
-#+author: Polya
-#+date: 1945
+---
+title: How to Solve it
+author: Polya
+date: 1945
+---
 
-* OUR LIST
+# OUR LIST
 
-** UNDERSTANDING THE PROBLEM
+## UNDERSTANDING THE PROBLEM
 
 First. You have to understand the problem.
 
@@ -24,7 +26,7 @@ Introduce suitable notation.
 Separate the various parts of the condition.
 Can you write them down?
 
-** DEVISING A PLAN
+## DEVISING A PLAN
 
 Second. Find the connection between the data and the unknown.
 You may be obliged to consider auxiliary problems if an immediate connection cannot be found.
@@ -66,7 +68,7 @@ Did you use all the data?
 Did you use the whole condition?
 Have you taken into account all essential notions involved in the problem?
 
-** CARRYING OUT THE PLAN
+## CARRYING OUT THE PLAN
 
 Third. Carry out your plan.
 
@@ -74,7 +76,7 @@ Carrying out your plan of the solution, check each step.
 Can you see clearly that the step is correct?
 Can you prove that it is correct?
 
-** LOOKING BACK
+## LOOKING BACK
 
 Fourth. Examine the solution obtained.
 
@@ -86,11 +88,11 @@ Can you see it at a glance?
 
 Can you use the result, or method, for some other problem?
 
-* PART I. IN THE CLASSROOM
+# PART I. IN THE CLASSROOM
 
-** 1. Helping the student.
+## 1. Helping the student.
 
-** 2. Questions, recommendations, mental operations.
+## 2. Questions, recommendations, mental operations.
 
 It seemed to the author that it might be worth while
 to collect and to group questions and suggestions
@@ -108,15 +110,15 @@ mental operations typically useful for the solution of problems.
 These operations are listed in the order
 in which they are most likely to occur.
 
-** 3. Generality
+## 3. Generality
 
-** 4. Common sense.
+## 4. Common sense.
 
-** 5. Teacher and student. Imitation and practice.
+## 5. Teacher and student. Imitation and practice.
 
 学生必须关心问题，老师为了让学生关心问题，可以把自己的解题过程表演地很戏剧化。
 
-** 6. Four phases.
+## 6. Four phases.
 
 Trying to find the solution,
 we may repeatedly change our point of view,
@@ -146,7 +148,7 @@ About looking back:
 When looking back a solution, we should try to shift context, think the context larger,
 like creative art showing the viewer context they had not noticed before
 
-** 7. Understanding the problem.
+## 7. Understanding the problem.
 
 The student should understand the problem.
 But he should not only understand it, he should also desire its solution.
@@ -156,12 +158,12 @@ it is not always his fault; the problem should be well chosen,
 not too difficult and not too easy, natural and interesting,
 and some time should be allowed for natural and interesting presentation.
 
-* PART II. HOW TO SOLVE IT
+# PART II. HOW TO SOLVE IT
 
-* PART III. SHORT DICTIONARY OF HEURISTIC
+# PART III. SHORT DICTIONARY OF HEURISTIC
 
-** Problems to find, problems to prove.
+## Problems to find, problems to prove.
 
 在构造主义数学中，「problems to prove」与「problems to find」相同。
 
-* PART IV. PROBLEMS, HINTS, SOLUTIONS
+# PART IV. PROBLEMS, HINTS, SOLUTIONS
