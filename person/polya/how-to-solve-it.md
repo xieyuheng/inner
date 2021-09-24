@@ -139,6 +139,7 @@ to advance while avoiding obvious mistakes,
 and to gain the most from our works.
 
 Note that:
+
 - (1) understand & (2) plan -- like DDD
 - (3) carry out -- like TDD
 - (4) look back -- like refactoring
