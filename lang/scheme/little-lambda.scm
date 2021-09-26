@@ -32,27 +32,27 @@
 
 (define lookup-in-entry-help
   (lambda (name names values entry-f)
-    (cond [(null? names) (entry-f name)]
-          [(eq? (car names) name)
-           (car values)]
-          [else (lookup-in-entry-help
+    (cond ((null? names) (entry-f name))
+          ((eq? (car names) name)
+           (car values))
+          (else (lookup-in-entry-help
                  name
                  (cdr names)
                  (cdr values)
-                 entry-f)])))
+                 entry-f)))))
 
 (define extend-table cons)
 
 (define lookup-in-table
   (lambda (name table table-f)
-    (cond [(null? table)
-           (table-f name)]
-          [else
+    (cond ((null? table)
+           (table-f name))
+          (else
            (lookup-in-entry
             name
             (car table)
             (lambda (name)
-              (lookup-in-table name (cdr table) table-f)))])))
+              (lookup-in-table name (cdr table) table-f)))))))
 
 (define value
   (lambda (e)
@@ -65,47 +65,47 @@
 (define expression-to-action
   (lambda (e)
     (cond
-     [(atom? e)
-      (atom-to-action e)]
-     [else
-      (list-to-action e)])))
+     ((atom? e)
+      (atom-to-action e))
+     (else
+      (list-to-action e)))))
 
 (define atom-to-action
   (lambda (e)
     (cond
-     [(number? e)             *const]
-     [(eq? e #t)              *const]
-     [(eq? e #f)              *const]
-     [(eq? e (quote cons))    *const]
-     [(eq? e (quote car))     *const]
-     [(eq? e (quote cdr))     *const]
-     [(eq? e (quote null?))   *const]
-     [(eq? e (quote eq?))     *const]
-     [(eq? e (quote atom?))   *const]
-     [(eq? e (quote zero?))   *const]
-     [(eq? e (quote add1))    *const]
-     [(eq? e (quote sub1))    *const]
-     [(eq? e (quote number?)) *const]
-     [else                    *identifer])))
+     ((number? e)             *const)
+     ((eq? e #t)              *const)
+     ((eq? e #f)              *const)
+     ((eq? e (quote cons))    *const)
+     ((eq? e (quote car))     *const)
+     ((eq? e (quote cdr))     *const)
+     ((eq? e (quote null?))   *const)
+     ((eq? e (quote eq?))     *const)
+     ((eq? e (quote atom?))   *const)
+     ((eq? e (quote zero?))   *const)
+     ((eq? e (quote add1))    *const)
+     ((eq? e (quote sub1))    *const)
+     ((eq? e (quote number?)) *const)
+     (else                    *identifer))))
 
 (define list-to-action
   (lambda (e)
-    (cond [(null? e) *null]
-          [(atom? (car e))
-           (cond [(eq? (car e) (quote quote))  *quote]
-                 [(eq? (car e) (quote lambda)) *lambda]
-                 [(eq? (car e) (quote cond))   *cond]
-                 [else                         *application])]
-          [else *application])))
+    (cond ((null? e) *null)
+          ((atom? (car e))
+           (cond ((eq? (car e) (quote quote))  *quote)
+                 ((eq? (car e) (quote lambda)) *lambda)
+                 ((eq? (car e) (quote cond))   *cond)
+                 (else                         *application)))
+          (else *application))))
 
 ;; *const
 
 (define *const
   (lambda (e table)
-    (cond [(number? e) e]
-          [(eq? e #t) #t]
-          [(eq? e #f) #f]
-          [else (build (quote primitive) e)])))
+    (cond ((number? e) e)
+          ((eq? e #t) #t)
+          ((eq? e #f) #f)
+          (else (build (quote primitive) e)))))
 
 
 ;; *identifer
@@ -165,12 +165,12 @@
 
 (define evcon
   (lambda (lines table)
-    (cond [(else? (question-of (car lines)))
-           (meaning (answer-of (car lines)) table)]
-          [(meaning (question-of (car lines)) table)
-           (meaning (answer-of (car lines)) table)]
-          [else
-           (evcon (cdr lines) table)])))
+    (cond ((else? (question-of (car lines)))
+           (meaning (answer-of (car lines)) table))
+          ((meaning (question-of (car lines)) table)
+           (meaning (answer-of (car lines)) table))
+          (else
+           (evcon (cdr lines) table)))))
 
 (define question-of
   (lambda (x)
@@ -198,9 +198,9 @@
 
 (define evlis
   (lambda (args table)
-    (cond [(null? args) (quote ())]
-          [else (cons (meaning (car args) table)
-                      (evlis (cdr args) table))])))
+    (cond ((null? args) (quote ()))
+          (else (cons (meaning (car args) table)
+                      (evlis (cdr args) table))))))
 
 (define function-of car)
 
@@ -326,16 +326,17 @@
                        'what-ever)))
          'not-thirst))
 ;; 這裏用到的是有else保護的cond
-(value '((lambda (y) (cond
-                      ((eq? y 'thirst)
-                       ((lambda (x) (cons 'drink (cons x '())))
-                        'water))
-                      ((eq? y 'not-thirst)
-                       ((lambda (x) (cons 'do (cons 'not (cons 'drink (cons x '())))))
-                        'water))
-                      (else
-                       'what-ever)))
-         'do-not-tell-you))
+(display
+ (value '((lambda (y) (cond
+                       ((eq? y 'thirst)
+                        ((lambda (x) (cons 'drink (cons x '())))
+                         'water))
+                       ((eq? y 'not-thirst)
+                        ((lambda (x) (cons 'do (cons 'not (cons 'drink (cons x '())))))
+                         'water))
+                       (else
+                        'what-ever)))
+          'do-not-tell-you)))
 
 ;; 而如果不用else就會報錯
 ;; 報出的是元解釋器中的(car '())錯誤
