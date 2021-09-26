@@ -1,14 +1,3 @@
-# how to build understanding?
-
-- how to build tools for understanding?
-  - how to make it easier to debug?
-  - how to make it easier to understand?
-    not just the structure of the code, but also the behavior of the system.
-  - how to make it easier to test?
-  - how about "when in doubt, evaluate."?
-  - how to improve internal error message to help debug?
-  - why it took me so long to find out the problem is about `deep_walk` the result type?
-
 # categorical semantics & categorical logic
 
 Take rules about product and either as examples.
@@ -66,12 +55,6 @@ can we use such implementation in Geometric modeling?
 # formalization of category theory and categorical semantics
 
 can use really use such implementation in the design of programming language's type systems?
-
-# how to solve it
-
-当实现 record type 时，在改用 named sigma type 之后，
-我的第一次尝试没能解决 inheritance 的问题，
-这在于解决问题的能力不够，需要学习「怎样解题」
 
 # quotient type
 
