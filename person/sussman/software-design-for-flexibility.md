@@ -78,6 +78,21 @@ Just do not care about cost, you are often wrong when thinking about it.
 is replaced by having that system adapt itself to the new situation,
 that can be an even bigger win.
 
+**The problem with correctness**
+
+We are arguing against the discipline of requiring proofs:
+
+the requirement that everything must be proved to be applicable in a
+situation before it is allowed to be used in that situation excessively
+inhibits the use of techniques that could enhance the robustness of designs.
+
+This is especially true of techniques that allow a method to
+be used, on a tight leash, outside of its proven domain, and
+techniques that provide for future expansion without putting limits
+on the ways things can be extended.
+
+Xie: We'd better write proofs for understanding than write proofs to be safe.
+
 # 2: Domain-Specific Languages
 
 # 3: Variations on an Arithmetic Theme
