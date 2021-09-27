@@ -43,6 +43,41 @@ to produce nonlocal type constraints.
 
 > ... type inference is really a matter of combining multiple sources of partial information.
 
+## 1.1 Architecture of computation
+
+A parti (pronounced parTEE) is the central idea of an architectural work:
+it is "the [architectural] composition being conceived as a whole,
+with the detail being filled in later."
+
+The parti is a model, but it is usually not a completely workable structure.
+It must be elaborated with functional elements.
+
+These elaborations may cause modifications of the parti,
+but the parti continues to serve as a scaffold
+around which these elaborations are developed.
+
+In programming, the parti is the abstract plan for the computations to be performed.
+
+## 1.2 Smart parts for flexibility
+
+Not just composable, but also smart.
+
+## 1.3 Redundancy and degeneracy
+
+Prepare multiple ways to do the same thing.
+
+## 1.4 Exploratory behavior
+
+Use generate-and-test mechanism.
+
+## 1.5 The cost of flexibility
+
+Just do not care about cost, you are often wrong when thinking about it.
+
+... And if a significant fraction of the time spent reprogramming a system for a new requirement
+is replaced by having that system adapt itself to the new situation,
+that can be an even bigger win.
+
 # 2: Domain-Specific Languages
 
 # 3: Variations on an Arithmetic Theme
