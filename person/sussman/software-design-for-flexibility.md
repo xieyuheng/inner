@@ -31,6 +31,18 @@ build our programs to make just-in-time decisions based on the
 environment that the program is running in. We will explore several
 techniques that support this kind of design.
 
+We can also build systems that combine multiple sources of
+partial information to obtain more complete answers. This is most
+powerful when the contributions come from independent sources of
+information. In chapter 4 we will see how type inference is really a
+matter of combining multiple sources of partial information. Locally
+deducible clues about the type of a value, for example that a
+numerical comparison requires numerical inputs and produces a
+boolean output, can be combined with other local type constraints
+to produce nonlocal type constraints.
+
+> ... type inference is really a matter of combining multiple sources of partial information.
+
 # 2: Domain-Specific Languages
 
 # 3: Variations on an Arithmetic Theme
