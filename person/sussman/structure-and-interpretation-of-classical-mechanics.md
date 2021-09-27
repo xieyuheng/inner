@@ -1,6 +1,6 @@
 ---
 title: Structure and Interpretation of Classical Mechanics
-authors: Gerald Jay Sussman
+authors: [Gerald Jay Sussman, Jack Wisdom]
 date: 2000
 ---
 
