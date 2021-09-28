@@ -7,7 +7,7 @@ date: 2021-08-27
 
 The principle of type theory is:
 
-> Let's study **terms** and **types** together.
+> We should study **terms** and **types** together.
 
 # Before type theory
 
