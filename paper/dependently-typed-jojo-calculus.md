@@ -1,10 +1,8 @@
-# Dependently Typed JoJo Calculus
-
-------
-- Author: Xie Yuheng
-- Date: **WORK IN PROGRESS**
-- Keywords: Type system.
-------
+---
+title: Dependently Typed JoJo Calculus
+author: Xie Yuheng
+keywords: [type system]
+---
 
 ## Abstract
 

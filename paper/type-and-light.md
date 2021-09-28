@@ -1,18 +1,17 @@
-# Type and Light
+---
+title: Type and Light
+author: Xie Yuheng
+date: 2019-12-04
+keywords: [categorical model, dependent types]
+---
 
-------
-- Author: Xie Yuheng
-- Date: 2019-12-04
-- Keywords: Categorical model, Dependent types.
-------
-
-## Abstract
+# Abstract
 
 write something about category semantics
 and algebraic semantics in general
 compare models of light
 
-## Introduction
+# Introduction
 
 To develop the theory of light,
 first we make observation about what light does,

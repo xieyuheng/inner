@@ -1,10 +1,9 @@
-# A Substitution Model for Class Definition
-
-------
-- Author: Xie Yuheng
-- Date: 2019-05-07
-- Keywords: Cell-complex, Data structure.
-------
+---
+title: A Substitution Model for Class Definition
+author: Xie Yuheng
+date: 2019-05-07
+keywords: [cell-complex, data structure]
+---
 
 - This document serves as an appendix of the paper ["A Recursive Combinatorial Description of cell-complex"](/paper/a-recursive-combinatorial-description-of-cell-complex).
 

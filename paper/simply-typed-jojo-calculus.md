@@ -1,18 +1,16 @@
-# Simply Typed JoJo Calculus
+---
+title: Simply Typed JoJo Calculus
+author: Xie Yuheng
+keywords: [type system]
+---
 
-------
-- Author: Xie Yuheng
-- Date: **WORK IN PROGRESS**
-- Keywords: Type system.
-------
+# Abstract
 
-## Abstract
+## Contains
 
-### Contains
+# Introduction
 
-## Introduction
-
-## A review of lambda calculus
+# A review of lambda calculus
 
 We assume the reader has a basic familiarity with the lambda calculus
 and the concepts of bound variables, alpha-, beta- and eta-reduction.
@@ -32,7 +30,7 @@ In lambda expression,
 I use `{}` to brackets to dis-ambiguity
 direct application of abstraction to argument.
 
-## A review of de Bruijn notation
+# A review of de Bruijn notation
 
 The de Bruijn notation is a useful translation of lambda expression,
 after which the name of a variable binding is placed near to the argument it binds.
@@ -81,17 +79,17 @@ a(d)                                     --- {d}a
           // where `...` is well balanced.
 ```
 
-## Specification of stack machine
+# Specification of stack machine
 
 When postfix notation occur we can use stack machine to provide semantics.
 (We learned this from the programming language Forth.)
 
-## Adding function composition into de Bruijn notation
+# Adding function composition into de Bruijn notation
 
 - **[Claim]** When translating lambda expressions to De Bruijn notation, function composition does not occur.
 - **[Proof]** TODO
 
-## The algebraic structure of the space of simple type
+# The algebraic structure of the space of simple type
 
 What is the algebraic structure of the space of simple types?
 
@@ -124,7 +122,7 @@ Can this view enable us to understand something new?
 - Cell-complex?
 - Algebraic theory of two dimensional objects?
 
-## To specify algebraic system
+# To specify algebraic system
 
 To specify logic deduction system, we use inference rules,
 which is studied in details in Martin-Löf's type theory.
@@ -187,7 +185,7 @@ swap = { [x] [y] x y }
 swap swap == id
 ```
 
-## Symbolic dynamics
+# Symbolic dynamics
 
 We can use symbolic dynamics as semantics,
 because we have a simple step function.
@@ -197,6 +195,6 @@ The `cut` operator can be viewed as continuous map (respecting composition) from
 - Combinatorics on words.
   - Automata and forbidden factor (substring) of infinite word.
 
-## Appendixes
+# Appendixes
 
-## References
+# References

@@ -1,18 +1,17 @@
-# A Recursive Combinatorial Description of Cell-complex
+---
+title: A Recursive Combinatorial Description of Cell-complex
+author: Xie Yuheng
+date: 2019-05-06
+keywords: [cell-complex, data structure]
+---
 
-------
-- Author: Xie Yuheng
-- Date: 2019-05-06
-- Keywords: Cell-complex, Data structure.
-------
-
-## Abstract
+# Abstract
 
 I provide a recursive combinatorial description of cell-complex,
 which can be used to model higher order incidence relations in higher dimensional topological structures,
 I hope it will serve as a stepstone for further formalization and experiments in algebraic topology.
 
-### Contains
+## Contains
 
 - [Introduction](#introduction)
 - [Graph as an example (to help readers be familiar with the pseudo code)](#graph-as-an-example-to-help-readers-be-familiar-with-the-pseudo-code)
@@ -25,7 +24,7 @@ I hope it will serve as a stepstone for further formalization and experiments in
 - [Appendixes](#appendixes)
 - [References](#references)
 
-## Introduction
+# Introduction
 
 My description of cell-complex follows closely with the classical definition (such as in [[3]][#3]),
 excpet that I describe the incidence relation of cells more explicitly.
@@ -39,7 +38,7 @@ And the construction of higher dimensional cell-complex by my method
 is not limited by sphere recognition problem's undecidability.
 - See section ["Cell-complex (again, with comments)"](#cell-complex-again-with-comments) for details.
 
-## Graph as an example (to help readers be familiar with the pseudo code)
+# Graph as an example (to help readers be familiar with the pseudo code)
 
 In the following I use a javascript-like pseudo code to describe data structures.
 
@@ -63,7 +62,7 @@ class graph_t {
 }
 ```
 
-## Cell-complex
+# Cell-complex
 
 `cell_complex_t` can be viewed as generalization of `graph_t` to higher dimension,
 - Merge `vertex_dic` and `edge_dic` to `cell_dic`
@@ -96,7 +95,7 @@ class spherical_evidence_t {
 }
 ```
 
-## Cell-complex (again, with comments)
+# Cell-complex (again, with comments)
 
 Comments in code block are written in `/** ... */`, while corresponding comments follows the code block.
 
@@ -181,9 +180,9 @@ class spherical_evidence_t {
 }
 ```
 
-## Examples
+# Examples
 
-### `triangle` represented as javascript object
+## `triangle` represented as javascript object
 
 In the following example *in extenso*:
 - `1:2` means an `id` of dimension `1`, serial number `2`
@@ -215,7 +214,7 @@ The representation is designed to be readily serializable to JSON.
         '0:1': { id: '0:0', cell: null } } } }
 ```
 
-### `triangle` defined as subclass of `cell_complex_t`
+## `triangle` defined as subclass of `cell_complex_t`
 
 ``` typescript
 class triangle_t extends cell_complex_t {
@@ -230,7 +229,7 @@ class triangle_t extends cell_complex_t {
 }
 ```
 
-### `torus` represented as javascript object
+## `torus` represented as javascript object
 
 *in extenso*
 
@@ -383,7 +382,7 @@ class triangle_t extends cell_complex_t {
                  '0:1': { id: '0:0', cell: null } } } } } } }
 ```
 
-### `torus` defined as subclass of `cell_complex_t`
+## `torus` defined as subclass of `cell_complex_t`
 
 ``` typescript
 class torus_t extends cell_complex_t {
@@ -403,7 +402,7 @@ class torus_t extends cell_complex_t {
 }
 ```
 
-### Remarks
+## Remarks
 
 Even for simple example like `torus`, the plain representation
 goes far beyond the cognitive complexity I can endure.
@@ -420,7 +419,7 @@ And, for example, interface functions such as `attach_vertex`, `attach_face`, `a
 More example cell-complexes can be found at the [main project page](https://github.com/xieyuheng/cell-complex#hl-homology).
 - Further documentation about programming interface is work in progress.
 
-## Note about incidence matrix
+# Note about incidence matrix
 
 `dic_t` can be viewed as sparse matrix.
 
@@ -435,7 +434,7 @@ For example,
 
 and so on and so forth ...
 
-## Note about space complexity
+# Note about space complexity
 
 Due to the recursive construction, the space increases exponentially with the dimension.
 
@@ -443,7 +442,7 @@ If the dimension is bounded by `d`,
 the space complexity is `O(n^d)`,
 where `n` is the number of `d` dimension cells.
 
-## Future works
+# Future works
 
 Based on the basic construction of cell-complex, I plan to:
 - Generalize the relation between 2-dimensional cell-complex
@@ -451,7 +450,7 @@ Based on the basic construction of cell-complex, I plan to:
 - Provide more online interactive tools to help people study cell-complexes and algebraic topology,
   - The library is developed for javascript with this aim in mind.
 
-## Appendixes
+# Appendixes
 
 - [A Substitution Model for Class Definition](/paper/a-substitution-model-for-class-definition)
   - Further clarify the use of class definitions in this paper
@@ -460,17 +459,17 @@ Based on the basic construction of cell-complex, I plan to:
 
 ------
 
-## References
+# References
 
-#### [1] Unrecognizability of manifolds
+## [1] Unrecognizability of manifolds
 
 - by A.V. Chernavsky, V.P. Leksine.
 
-#### [2] Topological methods, in: "Handbook of Combinatorics"
+## [2] Topological methods, in: "Handbook of Combinatorics"
 
 - by Anders Björner, (R. Graham, M. Grötschel, and L. Lovász, eds.)
 
-#### [3] The Topology of CW Complexes
+## [3] The Topology of CW Complexes
 
 - by Albert T. Lundell, Stephen Weingram
 

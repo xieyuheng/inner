@@ -1,12 +1,11 @@
-# Fulfilling Type System
-
 ---
-- Author : Xie Yuheng
-- Date : 2018-07-18
-- Keywords : Type System, Dependent type, Categorical model, Programming Language Design.
+title: Fulfilling Type System
+author : Xie Yuheng
+date : 2018-07-18
+keywords : [type system, dependent type, categorical model, programming language design]
 ---
 
-## Abstract
+# Abstract
 
 In this work, I am designing a language,
 in which I use partly inhabited typed-record as type,
@@ -21,7 +20,7 @@ This inheritability introduces sub-type relation between types,
 which makes the type system suitable to formalize mathematical structures.
 - In this paper, I will formalize basic category theory as the main example.
 
-## My Personal Vision
+# My Personal Vision
 
 The future of programming language is mathematics.
 
@@ -34,9 +33,9 @@ The modern mathematical language is category theory.
 Thus I am designing a programming language here,
 of which the main aim is to formalize category theory.
 
-## The Design
+# The Design
 
-### Fulfilling Type
+## Fulfilling Type
 
 In the fulfilling type system,
 I use partly inhabited typed-record as type,
@@ -68,7 +67,7 @@ it has three fields, each with a name and a type.
 (cons-c <car>)
 ```
 
-### Sub-type Relation
+## Sub-type Relation
 
 It is natural to use sub-type relation to model relation between mathematical structures.
 For example :
@@ -81,7 +80,7 @@ For example :
 - eqv-relation-t <: preorder-t
 - groupoid-t <: category-t
 
-### Sum-type
+## Sum-type
 
 The use of record-type and the introduction of sub-type,
 will not be in conflict with algebraic datatype.
@@ -117,7 +116,7 @@ thus null-t and cons-t must have all the fields of list-t,
 `list-t :> [null-t cons-t]` also means
 `null-t <: list-t` and `cons-t <: list-t`.
 
-### Partly Inhabited Record as Type
+## Partly Inhabited Record as Type
 
 - A type is a partly inhabited record -- constructed by <name>-t.
 
@@ -139,7 +138,7 @@ list-append ante succ =
   we can use (cons-c <car> <cdr>),
   which inhabit the rest of the fields of the record cons-t.
 
-### Naming Convention to make Levels of Universes explicit
+## Naming Convention to make Levels of Universes explicit
 
 - I also introduced a naming convention to make the level-ness of a type explicit.
   For examples :
@@ -154,7 +153,7 @@ list-append ante succ =
 |-------+-------------------------------------|
 |     3 | type-ttt, category-ttt              |
 
-### Summary
+## Summary
 
 I am using partly inhabited typed-record as type,
 and fully inhabited typed-record to inhabits such type.
@@ -172,9 +171,9 @@ will be as intuitive as functional programming.
 
 # Examples
 
-### Functional Programming
+## Functional Programming
 
-#### nat-t
+### nat-t
 
 ``` scala
 nat-t : type-tt
@@ -188,7 +187,7 @@ succ-t = data
   prev : nat-t
 ```
 
-#### nat-add
+### nat-add
 
 ``` scala
 nat-add : -- nat-t nat-t -> nat-t
@@ -198,7 +197,7 @@ nat-add x y =
     succ-t (succ-c (recur x.prev y))
 ```
 
-#### list-t
+### list-t
 
 ``` scala
 list-t : type-tt
@@ -216,7 +215,7 @@ cons-t = data
   cdr : (list-t t)
 ```
 
-#### list-length
+### list-length
 
 ``` scala
 list-length : -- (list-t t) -> nat-t
@@ -226,7 +225,7 @@ list-length list =
     cons-t (succ-c (recur list.cdr))
 ```
 
-#### list-append
+### list-append
 
 ``` scala
 list-append : -- (list-t t) (list-t t) -> (list-t t)
@@ -236,7 +235,7 @@ list-append ante succ =
     cons-t (cons-c ante.car (recur ante.cdr succ))
 ```
 
-#### list-map
+### list-map
 
 ``` scala
 list-map : -- (-- a -> b) (list-t a) -> (list-t b)
@@ -246,9 +245,9 @@ list-map fun list =
     cons-t (cons-c (fun list.car) (recur fun list.cdr))
 ```
 
-### Logic Programming
+## Logic Programming
 
-#### list-length-t
+### list-length-t
 
 ``` scala
 list-length-t : type-tt
@@ -272,7 +271,7 @@ succ-length-t = data
   length = (succ-c length)
 ```
 
-#### list-append-t
+### list-append-t
 
 ``` scala
 list-append-t : type-tt
@@ -293,9 +292,9 @@ succ-append-t = data
   result = (cons-c car result-cdr)
 ```
 
-### Mathematical Structures
+## Mathematical Structures
 
-#### preorder-tt
+### preorder-tt
 
 ``` scala
 note
@@ -320,7 +319,7 @@ preorder-tt = data
     -> (pre-t a c)
 ```
 
-#### eqv-relation-tt
+### eqv-relation-tt
 
 ``` scala
 eqv-relation-tt : type-ttt
@@ -330,9 +329,9 @@ eqv-relation-tt = data <: [preorder-tt]
     -> (pre-t b a)
 ```
 
-### Category theory
+## Category theory
 
-#### category-ttt
+### category-ttt
 
 ``` scala
 category-ttt : type-tttt
@@ -368,7 +367,7 @@ category-ttt = data
          pre-tt = arrow-eqv-tt)
 ```
 
-#### category.isomorphic-tt
+### category.isomorphic-tt
 
 ``` scala
 category.isomorphic-tt : type-ttt
@@ -380,7 +379,7 @@ category.isomorphic-tt = data
   inv-iso-identity : (arrow-eqv-tt (compose inv iso) identity)
 ```
 
-#### category.product-tt
+### category.product-tt
 
 ``` scala
 category.product-candidate-tt : type-ttt
@@ -410,7 +409,7 @@ category.product-tt = data <: [product-candidate-tt]
            (compose factor snd-projection))
 ```
 
-#### groupoid-tt
+### groupoid-tt
 
 ``` scala
 groupoid-tt : type-ttt

@@ -1,12 +1,11 @@
-# Algebraic structure adventure
+---
+title: structure adventure
+author: Xie Yuheng
+date: 2019-11-27
+keywords: [categorical model, dependent types]
+---
 
-------
-- Author: Xie Yuheng
-- Date: 2019-11-27
-- Keywords: Categorical model, Dependent types.
-------
-
-## Abstract
+# Abstract
 
 When designing the algebraic structure of `adventure_t`,
 my aim is to provide a model for dependent types,
@@ -45,7 +44,7 @@ In category theory composability between `f` and `g` is defined as `cod(f) == do
 
 In my `adventure_t`, I use the `error` element to define non-composability.
 
-## About `(- A)`
+# About `(- A)`
 
 Note that `{ (- A) B (- C) D }` will always be `error`,
 only `{ (- A) (- C) B D }` make sense,
@@ -65,7 +64,7 @@ thus maybe we should not break up `{ C A -> B D }` into `{ (- A) (- C) B D }`.
   while infinity-category is the study of **directed** topological object (arrow is directed line).
   Specially, 2-category is the study of composition of **directed polygons**.
 
-## Comparing to category theory
+# Comparing to category theory
 
 - can we use universal property in adventure?
   - "universal" is about "uniqueness" and "forall"
@@ -129,7 +128,8 @@ thus maybe we should not break up `{ C A -> B D }` into `{ (- A) (- C) B D }`.
     id : {} = {}
     // to express "do nothing" more generally without a type parameter
     ```
-## Implementation
+
+# Implementation
 
 - Implementation can be viewed as
   - evaluation (interpretation) of expression (syntax object)

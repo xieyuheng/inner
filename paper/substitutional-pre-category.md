@@ -1,10 +1,9 @@
-# Substitutional pre-category
-
-------
-- Author : Xie Yuheng
-- Date : 2018-06-20
-- Keywords : Dependent type, Categorical semantics, Sequent calculus.
-------
+---
+title: Substitutional pre-category
+author: Xie Yuheng
+date: 2018-06-20
+keywords: [dependent type, categorical semantics, sequent calculus]
+---
 
 # Abstract
 

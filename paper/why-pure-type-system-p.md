@@ -1,10 +1,11 @@
-# Why Pure type system?
+---
+title: Why Pure type system?
+author: Xie Yuheng
+date: 2019-12-05
+keywords: [Dependent types]
+---
 
-------
-- Author: Xie Yuheng
-- Date: 2019-12-05
-- Keywords: Dependent types.
-------
+# pure type system
 
 ``` js
 (s1, s2) in axioms
@@ -40,7 +41,7 @@ ctx |- B1: s
 ctx |- A: B1
 ```
 
-## automath-like
+# automath-like
 
 let's try a dependent system
 
@@ -77,7 +78,7 @@ ctx, x: A |- f : C
 ctx |- [x: A] f : pi[x: A] C
 ```
 
-### pure type system
+## pure type system
 
 if we use pi type, we can get something like the pure type system
 
@@ -125,7 +126,7 @@ ctx |- B1: s
 ctx |- A: B1
 ```
 
-### lambda as type
+## lambda as type
 
 let's only write application and abstraction for simplicity
 
