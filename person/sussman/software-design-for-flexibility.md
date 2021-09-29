@@ -115,6 +115,13 @@ they are easy to build and to reason about.
 
 TODO We will discuss in section 3.1.5.
 
+## How to build combinator system?
+
+We must identify a set of primitive components
+and a set of combinators that combine components
+so as to make compound components
+with the same interface as the primitive components.
+
 # 3: Variations on an Arithmetic Theme
 
 # 4: Pattern Matching
