@@ -122,6 +122,22 @@ and a set of combinators that combine components
 so as to make compound components
 with the same interface as the primitive components.
 
+## 2.1.1 Function combinators
+
+We can think of function combinators as implementing wiring diagrams
+that specify how a function is built by combining its parts.
+
+For example, functional composition represents a box made of two subboxes
+so that the output of the first feeds the input of the second.
+
+A program that implements this idea is straightforward:
+
+``` scheme
+(define (compose f g)
+  (lambda args
+    (f (apply g args))))
+```
+
 # 3: Variations on an Arithmetic Theme
 
 # 4: Pattern Matching
