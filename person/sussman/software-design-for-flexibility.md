@@ -95,6 +95,26 @@ Xie: We'd better write proofs for understanding than write proofs to be safe.
 
 # 2: Domain-Specific Languages
 
+## What is a system of combinators?
+
+A system of combinators is a set of primitive parts
+and a set of means of combining parts such that
+the interface specifications of the combinations
+are the same as those of the primitives.
+
+## Why require combined parts and primitives to have the same interface?
+
+This enables construction without accidental interactions between the parts.
+
+## What are the advantages of combinator system?
+
+Combinator systems have the significant advantage that
+they are easy to build and to reason about.
+
+## What are the limitations of combinator system?
+
+TODO We will discuss in section 3.1.5.
+
 # 3: Variations on an Arithmetic Theme
 
 # 4: Pattern Matching
