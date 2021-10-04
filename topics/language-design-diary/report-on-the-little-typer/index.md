@@ -21,3 +21,5 @@ Report on The Little Typer
 # 16. If It's All the Same to You
 # A. The Way Forward
 # B. Rules Are Made to Be Spoken
+
+b--rules-are-made-to-be-spoken.md
