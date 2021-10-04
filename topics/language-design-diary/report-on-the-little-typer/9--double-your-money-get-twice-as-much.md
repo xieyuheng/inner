@@ -1,6 +1,7 @@
-# 9. Double Your Money, Get Twice as Much
-
-2021-05-26
+---
+title: 9. Double Your Money, Get Twice as Much
+date: 2021-05-26
+---
 
 But if replace replaces the from with
 the TO, why should we abstract over the

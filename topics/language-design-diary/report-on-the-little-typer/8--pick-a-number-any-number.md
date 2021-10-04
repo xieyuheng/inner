@@ -1,8 +1,9 @@
-# 8. Pick a Number, Any Number
+---
+title: 8. Pick a Number, Any Number
+date: 2021-05-24
+---
 
-2021-05-24
-
-## Sameness is judgment that can be expressed by a type constructor
+# Sameness is judgment that can be expressed by a type constructor
 
 Sameness is indeed a judgment. But, Another sandwich?
 with a new type constructor, types can
@@ -33,7 +34,7 @@ But "forall" and "exists" are special, they do not correspond to functions in im
 Creating expressions that capture the ideas behind a form of judgment
 is sometimes called internalizing the form of judgment.
 
-## judging a statement to be true
+# judging a statement to be true
 
 If a type can be read as a statement,
 then judging the statement to be true means that
@@ -43,7 +44,7 @@ Thus in this view,
 truth means that we have evidenced,
 and this evidence is called a proof.
 
-## Definition of Neutral again
+# Definition of Neutral again
 
 Expressions that are not values
 and cannot yet be evaluated due to a variable
@@ -59,7 +60,7 @@ because a defined name is the same as its definition.
 Also, if the target of an eliminator expression is neutral,
 then the entire expression is neutral.
 
-## Type theory encode patterns of reasoning
+# Type theory encode patterns of reasoning
 
 Judgments often can be mechanically checked using relatively simple rules.
 This is why judgments are a suitable basis for knowledge.
@@ -68,7 +69,7 @@ Expressions, however, can encode interesting patterns of reasoning,
 such as using induction to try each possibility
 for the variable in a neutral expression.
 
-## Total function
+# Total function
 
 Why it is important that all functions should be total?
 Because only total functions can be viewed as proof.

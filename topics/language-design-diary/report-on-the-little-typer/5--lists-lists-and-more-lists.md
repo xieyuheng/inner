@@ -1,8 +1,9 @@
-# 5. Lists, Lists, and More Lists
+---
+title: 5. Lists, Lists, and More Lists
+date: 2021-04-22
+---
 
-2021-04-22
-
-## Eliminators of Inductive types
+# Eliminators of Inductive types
 
 In both cases,
 the step accepts every argument

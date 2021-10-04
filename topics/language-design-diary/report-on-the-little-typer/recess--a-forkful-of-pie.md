@@ -1,8 +1,9 @@
-# Recess: A Forkful of Pie
+---
+title: Recess: A Forkful of Pie
+date: 2020-09-16
+---
 
-2020-09-16
-
-## Using Pie
+# Using Pie
 
 - Using Pie is very much like a conversation:
   it accepts claims, definitions, and expressions

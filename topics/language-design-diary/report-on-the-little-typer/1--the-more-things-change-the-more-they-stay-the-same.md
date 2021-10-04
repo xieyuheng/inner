@@ -1,12 +1,13 @@
-# 1. The More Things Change, the More They Stay the Same
+---
+title: 1. The More Things Change, the More They Stay the Same
+date: 2020-09-15
+---
 
-2020-09-15
-
-## Didactics 1: Forwarding engaging examples
+# Didactics 1: Forwarding engaging examples
 
 To introduce a new concept, first give many engaging examples.
 
-## Didactics 2: Familiar concept
+# Didactics 2: Familiar concept
 
 More formal concept should be introduced
 after the introduction of the equivalent more familiar concept.
@@ -17,7 +18,7 @@ is more familiar than direct introduction of formal judgment.
 "The Law of Tick Marks" is an instance of the first form of judgment.
 Just like this, we should also introduce instance first, then introduce class.
 
-## Definition of Judgment
+# Definition of Judgment
 
 A judgment is an attitude that a person takes towards expressions.
 When we come to know something, we are making a judgment.
@@ -41,7 +42,7 @@ with blank spaces in it, such as
 
 `____ is a ____.`
 
-## Didactics 3: What not obvious should be further explained
+# Didactics 3: What not obvious should be further explained
 
 We want to ask the question:
 "Is (cons 'ratatouille 'baguette) a (Pair Atom Atom)?",
@@ -61,7 +62,7 @@ And the answer is "Not at all. What does Atom mean?"
 类似于用 stack 去实现 tree 的递归处理，
 stack 相较于 tree 是更加线性的。
 
-## Definition of Type
+# Definition of Type
 
 Expressions that describe other expressions are called types.
 
@@ -71,7 +72,7 @@ or in our language "the P x" is the same as "x is P".
 This definition of type is very simple,
 with a leading question, it is even more natural.
 
-## The Four Forms of Judgment
+# The Four Forms of Judgment
 
 2020-09-16
 
@@ -90,7 +91,7 @@ But, Sentences get their meaning from those who understand them.
 The sentences capture thoughts that we have,
 and thoughts are more important than the words we use to express them.
 
-## Definition of Normal Forms
+# Definition of Normal Forms
 
 2020-09-17
 
@@ -130,7 +131,7 @@ then they are the same.
 
 在 `readback` 中，根据不同的 type，为不同的 value 实现了不同的 eta-expansion。
 
-## Value, Neutral & Normal
+# Value, Neutral & Normal
 
 当 `Neutral` 想要递归引用到 `Value` 时，
 应该通过带有类型的 `Value`，即 `Normal` 来引用，
@@ -138,7 +139,7 @@ then they are the same.
 其类型不应是 `(ctx: Ctx, value: Value) => Exp`，
 而应该是 `(ctx: Ctx, t: Ty, value: Value) => Exp`。
 
-## Normal Form in jojo
+# Normal Form in jojo
 
 也许在不同类型的语义中考虑 Normal Form，对于理解 Normal Form 有帮助。
 也许在 jojo 里考虑 Normal Form，对于理解 Normal Form 有帮助。
@@ -202,14 +203,14 @@ x y
 // variable bound by (x) and (y).
 ```
 
-## Definition of Value
+# Definition of Value
 
 An expression with a constructor at the top is called a value.
 
 这种对 Value 的定义，好像很适合 lazy language。
 也就是说 Dan 的理解，可能比 David 的实现要深刻一些。
 
-## Definition of Neutral
+# Definition of Neutral
 
 Expressions that are not values
 and cannot yet be evaluated due to a variable
@@ -218,7 +219,7 @@ are called neutral.
 这个定义是出现在下一章的，
 我先写在这里做对比。
 
-## Definition of constructor
+# Definition of constructor
 
 Some expressions, such as Nat or (Pair Nat Atom), are types.
 
@@ -227,7 +228,7 @@ is to say what its constructors are.
 The constructor expressions are the direct ways
 of building expressions with the new type.
 
-## Value, Neutral & Normal as predicates or subsets of Exp
+# Value, Neutral & Normal as predicates or subsets of Exp
 
 注意，当定义这些术语时，Dan 是通过给 Exp 的集合分类来作出定义的。
 
@@ -251,7 +252,7 @@ are called neutral."
 也就是说，上面的 Neutral + Value = Exp 是错误的，
 要加上 "尝试 evaluate，但因 var 而失败" 才正确。
 
-## Definition of evaluation
+# Definition of evaluation
 
 Finding a value that is the same as
 some starting expression is called evaluation.

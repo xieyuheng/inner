@@ -1,8 +1,9 @@
-# 2. Doin' What Comes Naturally
+---
+title: 2. Doin' What Comes Naturally
+date: 2020-10-04
+---
 
-2020-10-04
-
-## Definition of eliminator
+# Definition of eliminator
 
 In chapter 1, there are constructors, which build values,
 and type constructors, which build types.
@@ -18,12 +19,12 @@ Another way to see the difference is that
 values contain information, and eliminators
 allow that information to be used.
 
-## Definition of substitution
+# Definition of substitution
 
 Consistently replacing a variable with an expression
 is sometimes called substitution.
 
-## Eliminating Functions
+# Eliminating Functions
 
 Applying a function to arguments is the eliminator for functions.
 
@@ -38,7 +39,7 @@ Applying a function to arguments is the eliminator for functions.
 
 在某些语言的设计中，也有给 apply 之类的词来代表 function 的 eliminator。
 
-## Definition of equivalent between lambda-expressions
+# Definition of equivalent between lambda-expressions
 
 Two lambda-expressions that expect the same number of arguments
 are the same if their bodies are the same.
@@ -61,7 +62,7 @@ Consistently renaming variables can't change the meaning of anything.
 Renaming variables in a consistent way is often called alpha-conversion.
 Thank you, Alonzo Church.
 
-## The Initial First Commandment of lambda
+# The Initial First Commandment of lambda
 
 Two lambda-expressions that expect the same number of arguments
 are the same if their bodies are the same
@@ -77,7 +78,7 @@ after consistently renaming their variables.
   (x) => (y) => cons(y, x)
 然后可以比较出二者 body 的不同。
 
-## The Initial Second Commandment of lambda -- eta expansion rule
+# The Initial Second Commandment of lambda -- eta expansion rule
 
 If `f` is an
   (X) -> Y
@@ -89,7 +90,7 @@ as long as x dose not occur in `f`.
 
 注意这里的规则体现着 "Everything Is an Expression" 的原则。
 
-## Definition of Neutral
+# Definition of Neutral
 
 2020-10-05
 
@@ -97,7 +98,7 @@ Expressions that are not values
 and cannot yet be evaluated due to a variable
 are called neutral.
 
-## The Commandment of Neutral Expressions
+# The Commandment of Neutral Expressions
 
 Neutral expressions make it necessary to
 expand our view on what it means to be the same.
@@ -117,7 +118,7 @@ are the same, no matter their type.
 功能 (feature) "each variable is the same as itself" 来自
 约束 (constraint) "variables are only replaced consistently"。
 
-## The Law and Commandment of define
+# The Law and Commandment of define
 
 Following
   (claim name X) and (define name expr),
@@ -139,13 +140,13 @@ and
   用处理 lexical scope 的机制 -- `Env`，就能处理好它，
   没必要引入 `Mod` 来让解释器变复杂。
 
-## The Second Commandment of cons -- expansion rule
+# The Second Commandment of cons -- expansion rule
 
 If p is a (Pair A D), then it is the same (Pair A D) as (cons (car p) (cdr p)).
 
 Finding the values of (car p) and (cdr p) is not necessary.
 
-## Note About `which_Nat`
+# Note About `which_Nat`
 
 In lang2, when implementing `which_Nat` by `Nat.ind`,
 we can only implement
@@ -155,7 +156,7 @@ we can not implement `which_Nat` with implicit `(T: Type)`
 
 We use `[T: Type] ->` to denote the implicit argument in the type above.
 
-## Recursion is not an option.
+# Recursion is not an option.
 
 Recursion is not an option because every expression must have a value.
 Some recursive definitions make it possible to write expressions that do not have values.
@@ -164,7 +165,7 @@ Some recursive definitions make it possible to write expressions that do not hav
 
 An expression with a constructor at the top is called a value.
 
-## Type Values
+# Type Values
 
 An expression that is described by a type is a value
 when it has a constructor at its top.
@@ -176,13 +177,13 @@ Judging that an expression is a type requires knowing its data constructors.
 But the meaning of `Type` is not given by knowing all the type data constructors,
 because new types can be introduced.
 
-## Defined names are not value
+# Defined names are not value
 
 Names defined with `define` are neither type constructors nor constructors.
 
 Thus, they are not values.
 
-## Definitions Are Unnecessary
+# Definitions Are Unnecessary
 
 Everything can be done without definitions,
 but they do improve understanding.
