@@ -1,10 +1,12 @@
-#+title: Design Patterns
-#+author: Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides
-#+date: 1994
+---
+title: Design Patterns
+author: Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides
+date: 1994
+---
 
-* info
+# info
 
-** Categories of patterns
+## Categories of patterns
 
 Ralph Johnson - 22 Years Of Design Patterns:
 - video: https://www.youtube.com/watch?v=Lf0uHSBTKEw&ab_channel=FASTFoundation
@@ -46,16 +48,16 @@ Composite: Component :> Leaf, Composite
 - Where to put children side-effect methods? in Component or Composite?
   - We should put them in Composite, because this way is type safe.
 
-* 1 Introduction
+# 1 Introduction
 
-** Experienced designers evidently know something inexperienced ones don't. What is it?
+## Experienced designers evidently know something inexperienced ones don't. What is it?
 
 One thing expert designers know not to do is solve every problem from first principles.
 Rather, they reuse solutions that have worked for them in the past.
 When they find a good solution, they use it again and again.
 Such experience is part of what makes them experts.
 
-** What is a design pattern?
+## What is a design pattern?
 
 Christopher Alexander says, "Each pattern describes a problem which occurs over and
 over again in our environment, and then describes the core of the solution to that
@@ -72,14 +74,14 @@ doing it the same way twice" [AIS+77, page x]
 
   Are those design patterns clearly expressed in my OOD code?
 
-** What are the four parts of a design pattern?
+## What are the four parts of a design pattern?
 
 1. The pattern name
 2. The problem
 3. The solution
 4. The consequences
 
-** What is the "level of abstraction" of a design pattern?
+## What is the "level of abstraction" of a design pattern?
 
 Point of view affects one's interpretation of what is and isn't a pattern.
 One person's pattern can be another person's primitive building block.
@@ -95,7 +97,7 @@ One person's pattern can be another person's primitive building block.
   descriptions of communicating objects and classes that are
   customized to solve a general design problem in a particular context.
 
-** What is a good example of design pattern?
+## What is a good example of design pattern?
 
 The Model/View/Controller (MVC) triad of classes
 is used to build user interfaces in Smalltalk-80.
@@ -105,7 +107,7 @@ should help you see what we mean by the term "pattern."
 MVC is a high level design pattern, which contains
 Observer, Composite, and Strategy mid level design patterns.
 
-** What template should we use to describe design patterns?
+## What template should we use to describe design patterns?
 
 - Pattern Name and Classification
 
@@ -175,7 +177,7 @@ Observer, Composite, and Strategy mid level design patterns.
   What design patterns are closely related to this one?
   What are the important differences? With which other patterns should this one be used?
 
-** What are the ways by which we can classify design patterns?
+## What are the ways by which we can classify design patterns?
 
 - Scope:
   - Class:
@@ -194,7 +196,7 @@ Observer, Composite, and Strategy mid level design patterns.
     Characterize the ways in which classes
     or objects interact and distribute responsibility.
 
-** Why we want multiple ways of thinking about patterns?
+## Why we want multiple ways of thinking about patterns?
 
 Because having multiple ways of thinking about patterns
 will deepen your insight into what they do, how they compare,
@@ -202,7 +204,7 @@ and when to apply them.
 
 (Similar is true for a lot of other things.)
 
-** How design patterns solve design problems?
+## How design patterns solve design problems?
 
 - Finding Appropriate Objects (roles, responsibilities)
 - Determining Object Granularity (level of abstractions)
@@ -212,7 +214,7 @@ and when to apply them.
 - Relating Run-Time and Compile-Time Structures
 - Designing for Change
 
-** When to use inheritance?
+## When to use inheritance?
 
 We should not use inheritance for code sharing.
 
@@ -225,47 +227,47 @@ overrides operations and does not hide operations of the parent class. All subcl
 can then respond to the requests in the interface of this abstract class, making them all
 subtypes of the abstract class.
 
-** How should we program?
+## How should we program?
 
 Program to an interface, not an implementation.
 
-** Does parser belong to one of the creational patterns?
+## Does parser belong to one of the creational patterns?
 
 TODO I do not know yet.
 
-** Does my use of evaluation and check function belong to one of the patterns?
+## Does my use of evaluation and check function belong to one of the patterns?
 
 TODO I do not know yet.
 
-** How to select a design pattern?
+## How to select a design pattern?
 
 Match the pattern to your problem.
 
-* 2 A Case Study: Designing a Document Editor
+# 2 A Case Study: Designing a Document Editor
 
-** 2.2 Document Structure
+## 2.2 Document Structure
 
 The main pattern is Composite.
 
-** 2.3 Formatting
+## 2.3 Formatting
 
-** 2.4 Embellishing the User Interface
+## 2.4 Embellishing the User Interface
 
-** 2.5 Supporting Multiple Look-and-Feel Standards
+## 2.5 Supporting Multiple Look-and-Feel Standards
 
-** 2.6 Supporting Multiple Window Systems
+## 2.6 Supporting Multiple Window Systems
 
-** 2.7 User Operations
+## 2.7 User Operations
 
-** 2.8 Spelling Checking and Hyphenation
+## 2.8 Spelling Checking and Hyphenation
 
-* 3 Creational Patterns
+# 3 Creational Patterns
 
-* 4 Structural Patterns
+# 4 Structural Patterns
 
-** Composite (Object, Structural)
+## Composite (Object, Structural)
 
-*** Intent
+### Intent
 
 Compose objects into tree structures to represent part-whole hierarchies.
 Composite lets clients treat individual objects and compositions of objects uniformly.
@@ -280,7 +282,7 @@ Composite lets clients treat individual objects and compositions of objects unif
   - then, how to compose old elements to new element
   - finally, how to do abstraction, so that a composite is like primitive again
 
-*** Motivation
+### Motivation
 
 In simple implementation, code that uses some classes
 must treat primitive and container objects differently,
@@ -294,4 +296,4 @@ The key to the Composite pattern is an abstract class
 that represents both primitives and their containers.
 It also declares operations that all composite objects share.
 
-* 5 Behavioral Patterns
+# 5 Behavioral Patterns

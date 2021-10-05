@@ -1,6 +1,8 @@
-# Domain Driven Design
+---
+title: Domain Driven Design -- Talks
+---
 
-## Graph theory as model
+# Graph theory as model
 
 2020-11-09
 
@@ -20,7 +22,7 @@
 通常我们建立模型是以 graph theory 为基础的，
 只不过会给 graph theory 中的概念以不同名字。
 
-## Game theory as model
+# Game theory as model
 
 2020-11-14
 
