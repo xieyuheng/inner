@@ -3,7 +3,7 @@ title: Explaining our beliefs as a programmer
 date: 2020-11-11
 ---
 
-Reading "Implementation patterns" by Kent Beck.
+# Reading "Implementation patterns" by Kent Beck
 
 Which teaches us to think about "why we write programs in our styles?",
 and by encouraging us to explain our styles (ways (beliefs)), let us learn from ourselves.
@@ -25,3 +25,7 @@ I can have a lots of generic methods implemented for you (generic proofs proven 
 
 - like typeclass, but explicit.
 - like algebraic structure (or mathematic structure).
+
+# Reading "Refactoring" by Martin Fowler
+
+In this book, the author's writing style is "explaining himself as a programmer".
