@@ -1,10 +1,12 @@
-#+title: Patterns of Enterprise Application Architecture
-#+author: Martin Fowler
-#+date: 2003
+---
+title: Patterns of Enterprise Application Architecture
+author: Martin Fowler
+date: 2003
+---
 
-* Preface
+# Preface
 
-** What is Enterprise application?
+## What is Enterprise application?
 
 Enterprise applications are about
 the display, manipulation, and storage
@@ -12,16 +14,16 @@ of large amounts of often complex data
 and the support or automation
 of business processes with that data.
 
-** What is iterative development?
+## What is iterative development?
 
 At the heart of iterative development
 is the notion that you should deliver software
 as soon as you have something useful to the user,
 even if it's not complete.
 
-* Introduction
+# Introduction
 
-** What are examples of Enterprise applications?
+## What are examples of Enterprise applications?
 
 - payroll
 - patient records
@@ -34,7 +36,7 @@ even if it's not complete.
 - customer service
 - foreign exchange trading
 
-** What are NOT examples of Enterprise applications?
+## What are NOT examples of Enterprise applications?
 
 - automobile fuel injection
 - word processors
@@ -45,7 +47,7 @@ even if it's not complete.
 - compilers
 - games
 
-** About Enterprise applications
+## About Enterprise applications
 
 Enterprise applications usually involve {persistent} data.
 
@@ -61,40 +63,40 @@ we will run into problems of {conceptual dissonance} with the data.
 One of the best things you can do to a large system is turn it into a small one
 by {simplifying its architecture and process}.
 
-* Chapter 1: Layering
+# Chapter 1: Layering
 
-* Chapter 2: Organizing Domain Logic
+# Chapter 2: Organizing Domain Logic
 
-* Chapter 3: Mapping to Relational Databases
+# Chapter 3: Mapping to Relational Databases
 
-** Row Data Gateway
+## Row Data Gateway
 
 - to be used with [Transaction Scripts]
 - one instance per row
 - without domain logic
 
-** Table Data Gateway
+## Table Data Gateway
 
 - to be used with [Transaction Scripts]
 - one instance per table
 - without domain logic
 - return logic-less record
 
-** Active Record
+## Active Record
 
 - [Row Data Gateway] with domain logic -- to dry or replace [Transaction Scripts]
 - The one-to-one match of domain classes to tables starts to fail as you factor domain logic into smaller classes.
 
-** Data Mapper
+## Data Mapper
 
 - like [Table Data Gateway] but with only simple methods -- such as `create`, `load` and `save`
 - can not return logic-less record, because it need to maintain [Identity Map]
 
-** Unit of Work
+## Unit of Work
 
 - TODO
 
-** Identity Map
+## Identity Map
 
 As you load objects, you have to be wary about loading the same one twice.
 If you do that, you’ll have two in-memory objects that correspond to a single
@@ -111,23 +113,23 @@ Identity Map (195) also doubles as a cache for the database.
 Don’t forget, however, that the primary purpose of an Identity Map (195)
 is to maintain correct identities, not to boost performance.
 
-** Lazy Load
+## Lazy Load
 
 - to bring back just enough from the database with each call.
 
-* Chapter 10: Data Source Architectural Patterns
+# Chapter 10: Data Source Architectural Patterns
 
-** Table Data Gateway
+## Table Data Gateway
 
-** Row Data Gateway
+## Row Data Gateway
 
-** Active Record
+## Active Record
 
-** Data Mapper
+## Data Mapper
 
-* Chapter 9: Domain Logic Patterns
+# Chapter 9: Domain Logic Patterns
 
-** Service Layer
+## Service Layer
 
 Defines an application’s boundary with a layer of services that
 establishes a set of available operations and coordinates the
@@ -151,9 +153,9 @@ Since a user interface is designed to support the use cases that actors want to 
 the starting point for identifying Service Layer operations
 is the use case model and the user interface design for the application.
 
-* Chapter 18: Base Patterns
+# Chapter 18: Base Patterns
 
-** Gateway
+## Gateway
 
 An object that encapsulates access to an external system or resource.
 

@@ -1,6 +1,8 @@
-#+title: Practical Object-Oriented Design
-#+author: Sandi Marts
-#+date: 2019
+---
+title: Practical Object-Oriented Design
+author: Sandi Marts
+date: 2019
+---
 
 - What is Object-Oriented Design?
 
@@ -10,7 +12,7 @@
   so that the roles its functions play are
   explicitly and clearly expressed in the arrangement of code.
 
-* 1 Object-Oriented Design 1
+# 1 Object-Oriented Design 1
 
 - What is the world like?
 
@@ -34,9 +36,9 @@
   thinking of the world as a collection of predefined procedures
   to modeling the world as a series of messages that pass between objects.
 
-** 1.1 In Praise of Design 2
+## 1.1 In Praise of Design 2
 
-*** 1.1.1 The Problem Design Solves 2
+### 1.1.1 The Problem Design Solves 2
 
 - What problem does design solve?
 
@@ -56,7 +58,7 @@
 
   Change is unavoidable.
 
-*** 1.1.2 Why Change Is Hard 3
+### 1.1.2 Why Change Is Hard 3
 
 - Why change is hard?
 
@@ -82,7 +84,7 @@
   When the application is very small.
   As long as it grows, poor design kill the application.
 
-*** 1.1.3 A Practical Definition of Design 3
+### 1.1.3 A Practical Definition of Design 3
 
 - What is design?
 
@@ -93,9 +95,9 @@
 
   The primary goal of design is to reduce the cost of change.
 
-** 1.2 The Tools of Design 4
+## 1.2 The Tools of Design 4
 
-*** 1.2.1 Design Principles 4
+### 1.2.1 Design Principles 4
 
 - What are the main design principles of OOP?
 
@@ -124,7 +126,7 @@
   These experiences led them to develop
   opinions about how to write good code.
 
-*** 1.2.2 Design Patterns 6
+### 1.2.2 Design Patterns 6
 
 - What's good about design patterns?
 
@@ -132,45 +134,45 @@
   To name common problems and to solve the problems in common ways brings the fuzzy into focus.
   Design Patterns gave an entire generation of programmers the means to communicate and collaborate.
 
-** 1.3 The Act of Design 6
+## 1.3 The Act of Design 6
 
-*** 1.3.1 How Design Fails 6
+### 1.3.1 How Design Fails 6
 
-*** 1.3.2 When to Design 7
+### 1.3.2 When to Design 7
 
-*** 1.3.3 Judging Design 9
+### 1.3.3 Judging Design 9
 
-*** 1.4 A Brief Introduction to Object-Oriented Programming
+### 1.4 A Brief Introduction to Object-Oriented Programming
 
-**** 1.4.1 Procedural Languages 11
+#### 1.4.1 Procedural Languages 11
 
-**** 1.4.2 Object-Oriented Languages 11
+#### 1.4.2 Object-Oriented Languages 11
 
-** 1.5 Summary 13
+## 1.5 Summary 13
 
-* 2 Designing Classes with a Single Responsibility 15
+# 2 Designing Classes with a Single Responsibility 15
 
-** 2.1 Deciding What Belongs in a Class 16
+## 2.1 Deciding What Belongs in a Class 16
 
-*** 2.1.1 Grouping Methods into Classes 16
+### 2.1.1 Grouping Methods into Classes 16
 
-*** 2.1.2 Organizing Code to Allow for Easy Changes 16
+### 2.1.2 Organizing Code to Allow for Easy Changes 16
 
-** 2.2 Creating Classes That Have a Single Responsibility 17
+## 2.2 Creating Classes That Have a Single Responsibility 17
 
-*** 2.2.1 An Example Application: Bicycles and Gears 17
+### 2.2.1 An Example Application: Bicycles and Gears 17
 
-*** 2.2.2 Why Single Responsibility Matters 21
+### 2.2.2 Why Single Responsibility Matters 21
 
-*** 2.2.3 Determining If a Class Has a Single Responsibility
+### 2.2.3 Determining If a Class Has a Single Responsibility
 
-*** 2.2.4 Determining When to Make Design Decisions 22
+### 2.2.4 Determining When to Make Design Decisions 22
 
-** 2.3 Writing Code That Embraces Change 24
+## 2.3 Writing Code That Embraces Change 24
 
-*** 2.3.1 Depend on Behavior, Not Data 24
+### 2.3.1 Depend on Behavior, Not Data 24
 
-*** 2.3.2 Enforce Single Responsibility Everywhere 29
+### 2.3.2 Enforce Single Responsibility Everywhere 29
 
 - What design techniques can be used here?
 
@@ -224,11 +226,11 @@
   If you identify extra responsibilities that you cannot yet remove, isolate them.
   Do not allow extraneous responsibilities to leak into your class.
 
-** 2.4 Finally, the Real Wheel 33
+## 2.4 Finally, the Real Wheel 33
 
-** 2.5 Summary
+## 2.5 Summary
 
-* 3 Managing Dependencies 37
+# 3 Managing Dependencies 37
 
 - What are the three ways an object might fulfill a desired behavior?
 
@@ -243,7 +245,7 @@
   This chapter "Managing Dependencies",
   is about the third way.
 
-** 3.1 Understanding Dependencies 38
+## 3.1 Understanding Dependencies 38
 
 - What is the definition of dependency between objects?
 
@@ -253,7 +255,7 @@
 
   Dependency must be defined relative to change.
 
-*** 3.1.1 Recognizing Dependencies 39
+### 3.1.1 Recognizing Dependencies 39
 
 - How can an object depend on another object?
 
@@ -263,7 +265,7 @@
   - The arguments that a message requires.
   - The order of those arguments.
 
-*** 3.1.2 Coupling Between Objects (CBO) 39
+### 3.1.2 Coupling Between Objects (CBO) 39
 
 - What is the definition of coupling?
 
@@ -277,7 +279,7 @@
 
   Based on their definitions, they are the same.
 
-*** 3.1.3 Other Dependencies 40
+### 3.1.3 Other Dependencies 40
 
 - Beside the four kinds of dependencies listed previously,
   what are other dependency-related issues?
@@ -285,9 +287,9 @@
   - message chain
   - tests on code
 
-** 3.2 Writing Loosely Coupled Code 41
+## 3.2 Writing Loosely Coupled Code 41
 
-*** 3.2.1 Inject Dependencies 41
+### 3.2.1 Inject Dependencies 41
 
 - What kind of dependency does this "Inject Dependencies" coding technique deal with?
 
@@ -300,7 +302,7 @@
   and the responsibility for knowing the name of a message to send to that class
   may belong in different objects.
 
-*** 3.2.2 Isolate Dependencies 44
+### 3.2.2 Isolate Dependencies 44
 
 - What should we do if we cannot remove unnecessary dependency?
 
@@ -345,7 +347,7 @@
     Although not every external method is a candidate for this preemptive isolation,
     it's worth examining your code, looking for and wrapping the most vulnerable dependencies.
 
-*** 3.2.3 Remove Argument-Order Dependencies
+### 3.2.3 Remove Argument-Order Dependencies
 
 - What are the methods we can use to remove argument-order dependencies?
 
@@ -391,13 +393,13 @@
   Do not allow these kinds of external dependencies to permeate your code;
   protect yourself by wrapping each in a method that is owned by your own application.
 
-** 3.3 Managing Dependency Direction 53
+## 3.3 Managing Dependency Direction 53
 
 - What is the most import way of managing dependency?
 
   Reverse the direction of the dependency.
 
-*** 3.3.1 Reversing Dependencies 53
+### 3.3.1 Reversing Dependencies 53
 
 - How to reverse dependency?
 
@@ -408,7 +410,7 @@
   dependency injection remove dependency,
   reversing dependency change direction.
 
-*** 3.3.2 Choosing Dependency Direction 55
+### 3.3.2 Choosing Dependency Direction 55
 
 - Based on what simple truths about code, you tell your classes,
   "depend on things that change less often than you do."
@@ -435,7 +437,7 @@
   the "check" method should belong to expression instead of type,
   because type is more abstract then expression.
 
-** 3.4 Summary
+## 3.4 Summary
 
 - Make a table of coding techniques that can be used to managing dependencies.
 
@@ -459,9 +461,9 @@
   |                                       | argument order   | isolate  |                          |
   |---------------------------------------+------------------+----------+--------------------------|
 
-* 4 Creating Flexible Interfaces 61
+# 4 Creating Flexible Interfaces 61
 
-** 4.1 Understanding Interfaces 61
+## 4.1 Understanding Interfaces 61
 
 - Why messages is the core concept of OOP?
 
@@ -485,13 +487,13 @@
 
   Public interfaces constrain the communication pattern formed by the messages.
 
-** 4.2 Defining Interfaces 63
+## 4.2 Defining Interfaces 63
 
 - Why this distinction between public and private exists?
 
   Because it is the most effective way to do business.
 
-*** 4.2.1 Public Interfaces 64
+### 4.2.1 Public Interfaces 64
 
 - What are the properties of public Interface?
 
@@ -501,7 +503,7 @@
   - Are safe for others to depend on.
   - Are thoroughly documented in the tests.
 
-*** 4.2.2 Private Interfaces 64
+### 4.2.2 Private Interfaces 64
 
 - What are the properties of private Interface?
 
@@ -511,17 +513,17 @@
   - Are unsafe for others to depend on.
   - May not even be referenced in the tests.
 
-*** 4.2.3 Responsibilities, Dependencies, and Interfaces 64
+### 4.2.3 Responsibilities, Dependencies, and Interfaces 64
 
 - What is the relation between public methods and responsibilities?
 
   Public methods should read like a description of responsibilities.
 
-** 4.3 Finding the Public Interface 65
+## 4.3 Finding the Public Interface 65
 
-*** 4.3.1 An Example Application: Bicycle Touring Company 65
+### 4.3.1 An Example Application: Bicycle Touring Company 65
 
-*** 4.3.2 Constructing an Intention 65
+### 4.3.2 Constructing an Intention 65
 
 - The emphasis on messages rather than objects here,
   reminds me of the functional style in "Architecture with Ashi Krishnan".
@@ -530,7 +532,7 @@
 
     Because we wish to add new expression type easily. (The open close principle)
 
-*** 4.3.3 Using Sequence Diagrams 66
+### 4.3.3 Using Sequence Diagrams 66
 
 - Compare sequence diagram with function type, what is the difference?
 
@@ -578,13 +580,13 @@
   from "I know I need this class, what should it do?"
   to "I need to send this message, who should respond to it?"
 
-*** 4.3.4 Asking for "What" Instead of Telling "How" 70
+### 4.3.4 Asking for "What" Instead of Telling "How" 70
 
 - What is the effect of switching the conversation from "How" to "What"?
 
   The size of the public interface in receiver was drastically reduced.
 
-*** 4.3.5 Seeking Context Independence 72
+### 4.3.5 Seeking Context Independence 72
 
 - What constitutes an object's context?
 
@@ -598,41 +600,41 @@
   we still need to know the receiver class name,
   but can tell the receiver our intention and pass self to it.
 
-*** 4.3.6 Trusting Other Objects 74
+### 4.3.6 Trusting Other Objects 74
 
-*** 4.3.7 Using Messages to Discover Objects 75
+### 4.3.7 Using Messages to Discover Objects 75
 
-*** 4.3.8 Creating a Message-Based Application 77
+### 4.3.8 Creating a Message-Based Application 77
 
-** 4.4 Writing Code That Puts Its Best (Inter)Face Forward 77
+## 4.4 Writing Code That Puts Its Best (Inter)Face Forward 77
 
-*** 4.4.1 Create Explicit Interfaces 77
+### 4.4.1 Create Explicit Interfaces 77
 
-*** 4.4.2 Honor the Public Interfaces of Others 79
+### 4.4.2 Honor the Public Interfaces of Others 79
 
-*** 4.4.3 Exercise Caution When Depending on Private Interfaces
+### 4.4.3 Exercise Caution When Depending on Private Interfaces
 
-*** 4.4.4 Minimize Context 80
+### 4.4.4 Minimize Context 80
 
-** 4.5 The Law of Demeter 80
+## 4.5 The Law of Demeter 80
 
-*** 4.5.1 Defining Demeter 81
+### 4.5.1 Defining Demeter 81
 
-*** 4.5.2 Consequences of Violations 81
+### 4.5.2 Consequences of Violations 81
 
-*** 4.5.3 Avoiding Violations 82
+### 4.5.3 Avoiding Violations 82
 
-*** 4.5.4 Listening to Demeter 83
+### 4.5.4 Listening to Demeter 83
 
-** 4.6 Summary 84
+## 4.6 Summary 84
 
-* 5 Reducing Costs with Duck Typing 85
+# 5 Reducing Costs with Duck Typing 85
 
 - What is the purpose of object-oriented design.
 
   The purpose of object-oriented design is to reduce the cost of change.
 
-** 5.1 Understanding Duck Typing 85
+## 5.1 Understanding Duck Typing 85
 
 - What is type in normal programmer's view?
 
@@ -645,13 +647,13 @@
 
   By the way, programm is proof.
 
-*** 5.1.1 Overlooking the Duck 86
+### 5.1.1 Overlooking the Duck 86
 
-*** 5.1.2 Compounding the Problem 88
+### 5.1.2 Compounding the Problem 88
 
-*** 5.1.3 Finding the Duck 90
+### 5.1.3 Finding the Duck 90
 
-*** 5.1.4 Consequences of Duck Typing 94
+### 5.1.4 Consequences of Duck Typing 94
 
 - What are the consequences of duck typing?
 
@@ -686,9 +688,9 @@
 
   A single message thus has many (poly) forms (morphs).
 
-** 5.2 Writing Code That Relies on Ducks 95
+## 5.2 Writing Code That Relies on Ducks 95
 
-*** 5.2.1 Recognizing Hidden Ducks 95
+### 5.2.1 Recognizing Hidden Ducks 95
 
 - What are the common coding patterns that indicate the presence of a hidden duck?
 
@@ -708,7 +710,7 @@
   The answer to that question suggests the message you should send;
   this message begins to define the underlying duck type.
 
-*** 5.2.2 Placing Trust in Your Ducks 97
+### 5.2.2 Placing Trust in Your Ducks 97
 
 - What should you do when you see the code patterns above?
 
@@ -724,7 +726,7 @@
   Flexible applications are built on objects that operate on trust;
   it is your job to make your objects trustworthy.
 
-*** 5.2.3 Documenting Duck Types 98
+### 5.2.3 Documenting Duck Types 98
 
 - What is the problem of dynamic language?
 
@@ -735,22 +737,22 @@
 
   We need to write tests (as documentation) for these interfaces.
 
-*** 5.2.4 Sharing Code between Ducks 98
+### 5.2.4 Sharing Code between Ducks 98
 
 - Where we will learn about sharing code between ducks?
 
   In Chapter 7, "Sharing Role Behavior with Modules".
 
-*** 5.2.5 Choosing Your Ducks Wisely 98
+### 5.2.5 Choosing Your Ducks Wisely 98
 
 - What is the measuring stick of design?
 
   The purpose of design is to lower costs (of changing);
   bring this measuring stick to every situation.
 
-** 5.3 Conquering a Fear of Duck Typing 100
+## 5.3 Conquering a Fear of Duck Typing 100
 
-*** 5.3.1 Subverting Duck Types with Static Typing 100
+### 5.3.1 Subverting Duck Types with Static Typing 100
 
 - What feature will allow a static type language
   to use the technique of duck typing very well?
@@ -758,13 +760,13 @@
   Record type and structural typing,
   maybe with intersection type and union type.
 
-*** 5.3.2 Static versus Dynamic Typing 101
+### 5.3.2 Static versus Dynamic Typing 101
 
 - Why some people love static typing?
 
   Because type is proposition, and programm is proof.
 
-*** 5.3.3 Embracing Dynamic Typing 102
+### 5.3.3 Embracing Dynamic Typing 102
 
 - Why some people dislike metaprogramming?
 
@@ -774,11 +776,11 @@
   And if you there is no macro system,
   you can still write interpreter or compiler.
 
-** 5.4 Summary 103
+## 5.4 Summary 103
 
-* 6 Acquiring Behavior through Inheritance 105
+# 6 Acquiring Behavior through Inheritance 105
 
-** 6.1 Understanding Classical Inheritance 105
+## 6.1 Understanding Classical Inheritance 105
 
 - What is inheritance?
 
@@ -802,11 +804,11 @@
   - Lattice theory -- https://en.wikipedia.org/wiki/Lattice_(order)
   - Formal concept analysis -- https://en.wikipedia.org/wiki/Formal_concept_analysis
 
-** 6.2 Recognizing Where to Use Inheritance 106
+## 6.2 Recognizing Where to Use Inheritance 106
 
-*** 6.2.1 Starting with a Concrete Class 107
+### 6.2.1 Starting with a Concrete Class 107
 
-*** 6.2.2 Embedding Multiple Types 109
+### 6.2.2 Embedding Multiple Types 109
 
 - What is an antipattern?
 
@@ -814,22 +816,22 @@
   but is actually detrimental, and for which
   there is a well-known alternative.
 
-*** 6.2.3 Finding the Embedded Types 111
+### 6.2.3 Finding the Embedded Types 111
 
-*** 6.2.4 Choosing Inheritance 112
+### 6.2.4 Choosing Inheritance 112
 
-*** 6.2.5 Drawing Inheritance Relationships 114
+### 6.2.5 Drawing Inheritance Relationships 114
 
-** 6.3 Misapplying Inheritance 114
+## 6.3 Misapplying Inheritance 114
 
-** 6.4 Finding the Abstraction 116
+## 6.4 Finding the Abstraction 116
 
 - What is subclasse?
 
   Subclasses are specializations of their superclasses.
   A subclasse should be everything a superclass is, plus more.
 
-*** 6.4.1 Creating an Abstract Superclass 117
+### 6.4.1 Creating an Abstract Superclass 117
 
 - How to minimize the costs of creating a hierarchy?
 
@@ -863,7 +865,7 @@
   but don't fear to move forward
   based on two concrete cases if this seems best.
 
-*** 6.4.2 Promoting Abstract Behavior 120
+### 6.4.2 Promoting Abstract Behavior 120
 
 - What refactoring strategy should we use here?
 
@@ -878,17 +880,17 @@
   Taking both costs into account when choosing among alternatives
   motivates you to make conservative choices that minimize the cost of change.
 
-*** 6.4.3 Separating Abstract from Concrete 123
+### 6.4.3 Separating Abstract from Concrete 123
 
-*** 6.4.4 Using the Template Method Pattern 125
+### 6.4.4 Using the Template Method Pattern 125
 
-*** 6.4.5 Implementing Every Template Method 127
+### 6.4.5 Implementing Every Template Method 127
 
-** 6.5 Managing Coupling between Superclasses and Subclasses 129
+## 6.5 Managing Coupling between Superclasses and Subclasses 129
 
-*** 6.5.1 Understanding Coupling 129
+### 6.5.1 Understanding Coupling 129
 
-*** 6.5.2 Decoupling Subclasses Using Hook Messages 134
+### 6.5.2 Decoupling Subclasses Using Hook Messages 134
 
 - What is the possible couplings in the relation between superclass and subclass?
 
@@ -898,7 +900,7 @@
   - When overriding a method, subclass can call superclass's method.
     - We can try to minimize this.
 
-** 6.6 Summary 139
+## 6.6 Summary 139
 
 - What problem does inheritance solve?
 
@@ -906,15 +908,15 @@
   that share a great deal of common behavior
   but differ across some dimension.
 
-* 7 Sharing Role Behavior with Modules 141
+# 7 Sharing Role Behavior with Modules 141
 
 - Can we do this in the "record type + closure" style of OOP?
 
   Yes just like inheritance.
 
-** 7.1 Understanding Roles 142
+## 7.1 Understanding Roles 142
 
-*** 7.1.1 Finding Roles 142
+### 7.1.1 Finding Roles 142
 
 - What is mixin?
 
@@ -944,13 +946,13 @@
   is at best intimidating,
   at worst, impossible.
 
-*** 7.1.2 Organizing Responsibilities 143
+### 7.1.2 Organizing Responsibilities 143
 
-*** 7.1.3 Removing Unnecessary Dependencies 146
+### 7.1.3 Removing Unnecessary Dependencies 146
 
-*** 7.1.4 Writing the Concrete Code 147
+### 7.1.4 Writing the Concrete Code 147
 
-*** 7.1.5 Extracting the Abstraction 150
+### 7.1.5 Extracting the Abstraction 150
 
 - What is the difference between inheritance and mixin?
 
@@ -962,13 +964,13 @@
   However, the coding techniques for these two things are very similar
   and this similarity exists because both techniques rely on automatic message delegation.
 
-*** 7.1.6 Looking Up Methods 153
+### 7.1.6 Looking Up Methods 153
 
-*** 7.1.7 Inheriting Role Behavior 157
+### 7.1.7 Inheriting Role Behavior 157
 
-** 7.2 Writing Inheritable Code 158
+## 7.2 Writing Inheritable Code 158
 
-*** 7.2.1 Recognize the Antipatterns 158
+### 7.2.1 Recognize the Antipatterns 158
 
 - What are the two antipatterns that indicate that your code might benefit from inheritance.
 
@@ -993,29 +995,29 @@
   When they do, place the shared code in a mixin
   and include that mixin in each class or object that plays the role.
 
-*** 7.2.2 Insist on the Abstraction 158
+### 7.2.2 Insist on the Abstraction 158
 
-*** 7.2.3 Honor the Contract 159
+### 7.2.3 Honor the Contract 159
 
-*** 7.2.4 Use the Template Method Pattern 160
+### 7.2.4 Use the Template Method Pattern 160
 
-*** 7.2.5 Preemptively Decouple Classes 160
+### 7.2.5 Preemptively Decouple Classes 160
 
-*** 7.2.6 Create Shallow Hierarchies 160
+### 7.2.6 Create Shallow Hierarchies 160
 
-** 7.3 Summary 161
+## 7.3 Summary 161
 
-* 8 Combining Objects with Composition 163
+# 8 Combining Objects with Composition 163
 
 - In composition, what is the relation between larger object and its parts?
 
   In composition, the larger object is connected to its parts via a has-a relationship.
 
-** 8.1 Composing a Bicycle of Parts 163
+## 8.1 Composing a Bicycle of Parts 163
 
-*** 8.1.1 Updating the Bicycle Class 164
+### 8.1.1 Updating the Bicycle Class 164
 
-*** 8.1.2 Creating a Parts Hierarchy 165
+### 8.1.2 Creating a Parts Hierarchy 165
 
 - What is the relation between Bicycle hierarchy and Parts hierarchy?
 
@@ -1025,33 +1027,33 @@
   is like the distributive law of elementary algebra.
   x * (y + z) = (x * y) + (x * z)
 
-** 8.2 Composing the Parts Object 168
+## 8.2 Composing the Parts Object 168
 
-*** 8.2.1 Creating a Part 168
+### 8.2.1 Creating a Part 168
 
-*** 8.2.2 Making the Parts Object More Like an Array 172
+### 8.2.2 Making the Parts Object More Like an Array 172
 
-** 8.3 Manufacturing Parts 176
+## 8.3 Manufacturing Parts 176
 
-*** 8.3.1 Creating the PartsFactory 177
+### 8.3.1 Creating the PartsFactory 177
 
-*** 8.3.2 Leveraging the PartsFactory 179
+### 8.3.2 Leveraging the PartsFactory 179
 
-** 8.4 The Composed Bicycle 181
+## 8.4 The Composed Bicycle 181
 
-** 8.5 Deciding between Inheritance and Composition 185
+## 8.5 Deciding between Inheritance and Composition 185
 
-*** 8.5.1 Accepting the Consequences of Inheritance 186
+### 8.5.1 Accepting the Consequences of Inheritance 186
 
-*** 8.5.2 Accepting the Consequences of Composition 188
+### 8.5.2 Accepting the Consequences of Composition 188
 
-*** 8.5.3 Choosing Relationships 189
+### 8.5.3 Choosing Relationships 189
 
-** 8.6 Summary 191
+## 8.6 Summary 191
 
-* 9 Designing Cost-Effective Tests 193
+# 9 Designing Cost-Effective Tests 193
 
-** 9.1 Intentional Testing 194
+## 9.1 Intentional Testing 194
 
 - What are the three skills for the art of writing changeable code?
 
@@ -1065,7 +1067,7 @@
   refactoring is how you change from one design to the next,
   and tests free you to refactor with impunity.
 
-*** 9.1.1 Knowing Your Intentions 194
+### 9.1.1 Knowing Your Intentions 194
 
 - What are the potential benefits of testing?
 
@@ -1101,7 +1103,7 @@
   but right now you don't have enough information to anticipate
   what that abstraction will be.
 
-*** 9.1.2 Knowing What to Test 196
+### 9.1.2 Knowing What to Test 196
 
 - What are the the design principles of testing?
 
@@ -1155,53 +1157,53 @@
     But the parser is not test independently,
     and everytime we change the syntax, we have to change type syntax tests.
 
-*** 9.1.3 Knowing When to Test 199
+### 9.1.3 Knowing When to Test 199
 
 - When to test?
 
   You should write tests first,
   whenever it makes sense to do so.
 
-*** 9.1.4 Knowing How to Test 200
+### 9.1.4 Knowing How to Test 200
 
-** 9.2 Testing Incoming Messages 202
+## 9.2 Testing Incoming Messages 202
 
-*** 9.2.1 Deleting Unused Interfaces 204
+### 9.2.1 Deleting Unused Interfaces 204
 
-*** 9.2.2 Proving the Public Interface 204
+### 9.2.2 Proving the Public Interface 204
 
-*** 9.2.3 Isolating the Object under Test 206
+### 9.2.3 Isolating the Object under Test 206
 
-*** 9.2.4 Injecting Dependencies Using Classes 208
+### 9.2.4 Injecting Dependencies Using Classes 208
 
-*** 9.2.5 Injecting Dependencies as Roles 210
+### 9.2.5 Injecting Dependencies as Roles 210
 
-** 9.3 Testing Private Methods 215
+## 9.3 Testing Private Methods 215
 
-*** 9.3.1 Ignoring Private Methods during Tests 216
+### 9.3.1 Ignoring Private Methods during Tests 216
 
-*** 9.3.2 Removing Private Methods from the Class under Test 216
+### 9.3.2 Removing Private Methods from the Class under Test 216
 
-*** 9.3.3 Choosing to Test a Private Method 216
+### 9.3.3 Choosing to Test a Private Method 216
 
-** 9.4 Testing Outgoing Messages 217
+## 9.4 Testing Outgoing Messages 217
 
-*** 9.4.1 Ignoring Query Messages 217
+### 9.4.1 Ignoring Query Messages 217
 
-*** 9.4.2 Proving Command Messages 218
+### 9.4.2 Proving Command Messages 218
 
-** 9.5 Testing Duck Types 221
+## 9.5 Testing Duck Types 221
 
-*** 9.5.1 Testing Roles 221
+### 9.5.1 Testing Roles 221
 
-*** 9.5.2 Using Role Tests to Validate Doubles 227
+### 9.5.2 Using Role Tests to Validate Doubles 227
 
-** 9.6 Testing Inherited Code 233
+## 9.6 Testing Inherited Code 233
 
-*** 9.6.1 Specifying the Inherited Interface 233
+### 9.6.1 Specifying the Inherited Interface 233
 
-*** 9.6.2 Specifying Subclass Responsibilities 236
+### 9.6.2 Specifying Subclass Responsibilities 236
 
-*** 9.6.3 Testing Unique Behavior 240
+### 9.6.3 Testing Unique Behavior 240
 
-** 9.7 Summary 244
+## 9.7 Summary 244
