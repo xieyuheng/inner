@@ -7,6 +7,7 @@ TODO
 - error reporter of computer programming
 - narrator of elaboration in type check
 - three kinds of writing by Niklas Luhmann
+  - fourth kind -- interaction -- you and I
 
 # Narrative point of view
 
