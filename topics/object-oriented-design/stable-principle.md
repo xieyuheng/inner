@@ -1,6 +1,8 @@
-#+title: STABLE principle
-#+author: Sarah Mei
-#+date: 2015
+---
+title: STABLE principle
+author: Sarah Mei
+date: 2015
+---
 
 goal: changeable code (why)
 strategy: SOLID (what)

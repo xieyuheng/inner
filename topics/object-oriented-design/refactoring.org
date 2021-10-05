@@ -1,5 +1,0 @@
-#+title: Refactoring
-#+author: Martin Fowler
-#+date: 2018
-
-TODO

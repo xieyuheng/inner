@@ -1,14 +1,16 @@
-#+title: A Theory of Objects
-#+authors: Martin Abadi, Luca Cardelli
-#+date: 1996
+---
+title: A Theory of Objects
+authors: Martin Abadi, Luca Cardelli
+date: 1996
+---
 
-* Prologue
+# Prologue
 
-** 为什么要为程序语言发展相对形式化的理论？
+## 为什么要为程序语言发展相对形式化的理论？
 
 因为理论可以帮助程序语言的实现者，理解在实现中所遇到的问题。
 
-** 本书作者的主要目的是什么？
+## 本书作者的主要目的是什么？
 
 函数式和过程式语言已经有相对完备的理论了。
 对象式还没有被广泛认可的理论。
@@ -33,6 +35,6 @@
 - covariance and contravariance
 - method specialization
 
-* 1 Object Orientation
+# 1 Object Orientation
 
-* 2 Class-Based Languages
+# 2 Class-Based Languages
