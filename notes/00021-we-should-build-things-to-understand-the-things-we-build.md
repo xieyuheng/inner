@@ -38,14 +38,8 @@ Closure apply to solution of unification 就是 reify。
 - How about "when in doubt, evaluate."?
 - How to improve internal error message to help debug?
 
-# Elaboration in type checker
+# Narration of elaboration during type checking
 
-Currently,
-the result data type of check-elaboration is `Core`,
-the result data type of infer-elaboration is `{ t: Value, core: Core }`.
-
-Maybe we should enrich the result type to propagate explanation of the process of elaboration.
-
-Usage:
-- Turn on interactive explanation for a REPL session.
-- Mark (or say, decorate) an expression to be log explanation during its elaboration.
+We can inject a `Narrator` in to `check` and `infer`,
+and mark an expression by `@elaborate`,
+for narration of elaboration during type checking.
