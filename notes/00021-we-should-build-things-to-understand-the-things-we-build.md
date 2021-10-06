@@ -40,6 +40,6 @@ Closure apply to solution of unification 就是 reify。
 
 # Narration of elaboration during type checking
 
-We can inject a `Narrator` in to `check` and `infer`,
+We can inject a `Narrator` into `check` and `infer`,
 and mark an expression by `@elaborate`,
 for narration of elaboration during type checking.
