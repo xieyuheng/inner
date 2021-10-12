@@ -9,6 +9,8 @@ corresponds to a function that determines
 whether a particular judgment is believable
 by the Laws and Commandments.
 
+The forms of judgment for implementations of Pie:
+
 | Form of judgment             | Reading                                 |
 |------------------------------|-----------------------------------------|
 | is_ctx(ctx)                  | ctx is a context.                       |
@@ -19,3 +21,12 @@ by the Laws and Commandments.
 | chech(ctx, e, ct) ~> ce      | check e can have type ct results in ce. |
 | synth(ctx, e) ~> the(ct, ce) | From e, inter the ct ce.                |
 | the_same(ctx, ct, c1, c2)    | c1 is the same ct as c2.                |
+
+The use of Hungarian notations in the table above:
+
+| Type | variable name  |
+|------|----------------|
+| Ctx  | ctx            |
+| Var  | x              |
+| Exp  | e, et          |
+| Core | c1, c2, ct, ce |
