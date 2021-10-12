@@ -22,7 +22,7 @@ The forms of judgment for implementations of Pie:
 | infer(ctx, e) ~> the(ct, ce) | from e, infer the ct ce.                   |
 | the_same(ctx, ct, c1, c2)    | c1 is the same ct as c2.                   |
 
-The use of Hungarian notations in the table above:
+The use of [Hungarian notation][] in the table above:
 
 | Type | variable name  |
 |------|----------------|
@@ -30,3 +30,5 @@ The use of Hungarian notations in the table above:
 | Var  | x              |
 | Exp  | e, et          |
 | Core | c1, c2, ct, ce |
+
+[Hungarian notation]: https://en.wikipedia.org/wiki/Hungarian_notation
