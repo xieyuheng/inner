@@ -13,7 +13,7 @@ Try to understand logic theories and type system along Peirce's theory about kno
 
 - belief := that upon which a man is prepared to act.
 
-- logic := the system we use to express beliefs.
+- logic := the system (or language) in which we express our beliefs.
 
 - judgment := an attitude that a person takes towards expressions.
 

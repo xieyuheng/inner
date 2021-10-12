@@ -1,3 +1,14 @@
+# domain languages
+
+the-domain-language-of-books.md
+- https://en.wikipedia.org/wiki/Book_design
+
+the-domain-language-of-articles.md
+- https://en.wikipedia.org/wiki/Article_(publishing)
+
+the-domain-language-of-tables.md
+- https://en.wikipedia.org/wiki/Table_(information)
+
 # categorical semantics & categorical logic
 
 Take rules about product and either as examples.
