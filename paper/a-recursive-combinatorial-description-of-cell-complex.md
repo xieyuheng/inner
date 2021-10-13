@@ -36,7 +36,7 @@ because "describable" (or "constructible") is weaker than "decidable".
 
 And the construction of higher dimensional cell-complex by my method
 is not limited by sphere recognition problem's undecidability.
-- See section ["Cell-complex (again, with comments)"](#cell-complex-again-with-comments) for details.
+- See section ["Cell-complex (again, with comments)"](#Cell-complex (again, with comments)) for details.
 
 # Graph as an example (to help readers be familiar with the pseudo code)
 
