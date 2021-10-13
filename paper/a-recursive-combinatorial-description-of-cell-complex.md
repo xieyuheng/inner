@@ -465,7 +465,7 @@ Based on the basic construction of cell-complex, I plan to:
 
 - by A.V. Chernavsky, V.P. Leksine.
 
-## [2] Topological methods, in: "Handbook of Combinatorics"
+## [2] Topological methods, in: 'Handbook of Combinatorics'
 
 - by Anders Björner, (R. Graham, M. Grötschel, and L. Lovász, eds.)
 
@@ -474,5 +474,5 @@ Based on the basic construction of cell-complex, I plan to:
 - by Albert T. Lundell, Stephen Weingram
 
 [#1]: #[1] Unrecognizability of manifolds
-[#2]: '#[2] Topological methods, in: "Handbook of Combinatorics"'
+[#2]: #[2] Topological methods, in: 'Handbook of Combinatorics'
 [#3]: #[3] The Topology of CW Complexes
