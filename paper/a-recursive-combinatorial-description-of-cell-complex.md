@@ -473,6 +473,6 @@ Based on the basic construction of cell-complex, I plan to:
 
 - by Albert T. Lundell, Stephen Weingram
 
-[#1]: #1-unrecognizability-of-manifolds
-[#2]: #2-topological-methods-in-handbook-of-combinatorics
-[#3]: #3-the-topology-of-cw-complexes
+[#1]: #[1] Unrecognizability of manifolds
+[#2]: '#[2] Topological methods, in: "Handbook of Combinatorics"'
+[#3]: #[3] The Topology of CW Complexes
