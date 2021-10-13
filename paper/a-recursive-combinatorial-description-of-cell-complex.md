@@ -13,30 +13,30 @@ I hope it will serve as a stepstone for further formalization and experiments in
 
 ## Contains
 
-- [Introduction](#Introduction)
-- [Graph as an example (to help readers be familiar with the pseudo code)](#Graph as an example (to help readers be familiar with the pseudo code))
-- [Cell-complex](#Cell-complex)
-- [Cell-complex (again, with comments)](#Cell-complex (again, with comments))
-- [Examples](#Examples)
-- [Note about space complexity](#Note about space complexity)
-- [Note about incidence matrix](#Note about incidence matrix)
-- [Future works](#Future works)
-- [Appendixes](#Appendixes)
-- [References](#References)
+- [Introduction](#introduction)
+- [Graph as an example (to help readers be familiar with the pseudo code)](#graph-as-an-example-to-help-readers-be-familiar-with-the-pseudo-code)
+- [Cell-complex](#cell-complex)
+- [Cell-complex (again, with comments)](#cell-complex-again-with-comments)
+- [Examples](#examples)
+- [Note about space complexity](#note-about-space-complexity)
+- [Note about incidence matrix](#note-about-incidence-matrix)
+- [Future works](#future-works)
+- [Appendixes](#appendixes)
+- [References](#references)
 
 # Introduction
 
-My description of cell-complex follows closely with the classical definition (such as in [[3]][#[3] The Topology of CW Complexes]),
+My description of cell-complex follows closely with the classical definition (such as in [[3]][#3]),
 excpet that I describe the incidence relation of cells more explicitly.
 
-It is known that higher dimensional sphere recognition is undecidable[[1]][#[1] Unrecognizability of manifolds].
+It is known that higher dimensional sphere recognition is undecidable[[1]][#1].
 
-But we should not conclude that combinatorial description cannot be given (such as in section 12 of [[2]][#[2] Topological methods, in: 'Handbook of Combinatorics']),
+But we should not conclude that combinatorial description cannot be given (such as in section 12 of [[2]][#2]),
 because "describable" (or "constructible") is weaker than "decidable".
 
 And the construction of higher dimensional cell-complex by my method
 is not limited by sphere recognition problem's undecidability.
-- See section ["Cell-complex (again, with comments)"](#Cell-complex (again, with comments)) for details.
+- See section ["Cell-complex (again, with comments)"](#cell-complex-again-with-comments) for details.
 
 # Graph as an example (to help readers be familiar with the pseudo code)
 
@@ -465,10 +465,14 @@ Based on the basic construction of cell-complex, I plan to:
 
 - by A.V. Chernavsky, V.P. Leksine.
 
-## [2] Topological methods, in: 'Handbook of Combinatorics'
+## [2] Topological methods, in: "Handbook of Combinatorics"
 
 - by Anders Björner, (R. Graham, M. Grötschel, and L. Lovász, eds.)
 
 ## [3] The Topology of CW Complexes
 
 - by Albert T. Lundell, Stephen Weingram
+
+[#1]: #1-unrecognizability-of-manifolds
+[#2]: #2-topological-methods-in-handbook-of-combinatorics
+[#3]: #3-the-topology-of-cw-complexes
