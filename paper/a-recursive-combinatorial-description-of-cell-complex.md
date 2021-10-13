@@ -26,12 +26,12 @@ I hope it will serve as a stepstone for further formalization and experiments in
 
 # Introduction
 
-My description of cell-complex follows closely with the classical definition (such as in [[3]][#3]),
+My description of cell-complex follows closely with the classical definition (such as in [#3][]),
 excpet that I describe the incidence relation of cells more explicitly.
 
-It is known that higher dimensional sphere recognition is undecidable[[1]][#1].
+It is known that higher dimensional sphere recognition is undecidable[#1][].
 
-But we should not conclude that combinatorial description cannot be given (such as in section 12 of [[2]][#2]),
+But we should not conclude that combinatorial description cannot be given (such as in section 12 of [#2][]),
 because "describable" (or "constructible") is weaker than "decidable".
 
 And the construction of higher dimensional cell-complex by my method
