@@ -1,8 +1,7 @@
-# 一個構造主義者的宣言 / A Constructivist Manifesto
-
-------
-- Author: Errett Bishop
-------
+---
+title: 一個構造主義者的宣言 / A Constructivist Manifesto
+author: Errett Bishop
+---
 
 # 題解
 

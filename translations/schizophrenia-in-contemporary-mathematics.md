@@ -1,8 +1,7 @@
-# 當代數學之精神分裂症 / Schizophrenia in Contemporary Mathematics
-
-------
-- Author: Errett Bishop
-------
+---
+title: 當代數學之精神分裂症 / Schizophrenia in Contemporary Mathematics
+author: Errett Bishop
+---
 
 # 題解
 

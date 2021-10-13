@@ -1,8 +1,7 @@
-# 上帝是道家的嗎 / Is God A Taoist
-
-------
-- Author: Raymond Smullyan
-------
+---
+title: 上帝是道家的嗎 / Is God A Taoist
+author: Raymond Smullyan
+---
 
 # 題解
 

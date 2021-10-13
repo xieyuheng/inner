@@ -1,8 +1,7 @@
-# Are you an anarchist
-
-------
-- Author: David Graeber
-------
+---
+title: Are you an anarchist
+author: David Graeber
+---
 
 # 題解
 
