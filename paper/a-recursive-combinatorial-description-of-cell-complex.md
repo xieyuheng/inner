@@ -13,16 +13,16 @@ I hope it will serve as a stepstone for further formalization and experiments in
 
 ## Contains
 
-- [Introduction](#introduction)
-- [Graph as an example (to help readers be familiar with the pseudo code)](#graph-as-an-example-to-help-readers-be-familiar-with-the-pseudo-code)
-- [Cell-complex](#cell-complex)
-- [Cell-complex (again, with comments)](#cell-complex-again-with-comments)
-- [Examples](#examples)
-- [Note about space complexity](#note-about-space-complexity)
-- [Note about incidence matrix](#note-about-incidence-matrix)
-- [Future works](#future-works)
-- [Appendixes](#appendixes)
-- [References](#references)
+- [Introduction](#Introduction)
+- [Graph as an example (to help readers be familiar with the pseudo code)](#Graph as an example (to help readers be familiar with the pseudo code))
+- [Cell-complex](#Cell-complex)
+- [Cell-complex (again, with comments)](#Cell-complex (again, with comments))
+- [Examples](#Examples)
+- [Note about space complexity](#Note about space complexity)
+- [Note about incidence matrix](#Note about incidence matrix)
+- [Future works](#Future works)
+- [Appendixes](#Appendixes)
+- [References](#References)
 
 # Introduction
 
