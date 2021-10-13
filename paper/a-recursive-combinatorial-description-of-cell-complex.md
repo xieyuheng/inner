@@ -26,12 +26,12 @@ I hope it will serve as a stepstone for further formalization and experiments in
 
 # Introduction
 
-My description of cell-complex follows closely with the classical definition (such as in [#3][]),
+My description of cell-complex follows closely with the classical definition (such as in [[3]][#[3] The Topology of CW Complexes]),
 excpet that I describe the incidence relation of cells more explicitly.
 
-It is known that higher dimensional sphere recognition is undecidable[#1][].
+It is known that higher dimensional sphere recognition is undecidable[[1]][#[1] Unrecognizability of manifolds].
 
-But we should not conclude that combinatorial description cannot be given (such as in section 12 of [#2][]),
+But we should not conclude that combinatorial description cannot be given (such as in section 12 of [[2]][#[2] Topological methods, in: 'Handbook of Combinatorics']),
 because "describable" (or "constructible") is weaker than "decidable".
 
 And the construction of higher dimensional cell-complex by my method
@@ -472,7 +472,3 @@ Based on the basic construction of cell-complex, I plan to:
 ## [3] The Topology of CW Complexes
 
 - by Albert T. Lundell, Stephen Weingram
-
-[#1]: #[1] Unrecognizability of manifolds
-[#2]: #[2] Topological methods, in: 'Handbook of Combinatorics'
-[#3]: #[3] The Topology of CW Complexes
