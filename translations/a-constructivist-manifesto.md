@@ -1,6 +1,7 @@
 ---
 title: 一個構造主義者的宣言 / A Constructivist Manifesto
 author: Errett Bishop
+newline: preserve
 ---
 
 # 題解

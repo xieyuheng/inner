@@ -1,6 +1,7 @@
 ---
 title: Are you an anarchist
 author: David Graeber
+newline: preserve
 ---
 
 # 題解
