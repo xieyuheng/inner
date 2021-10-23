@@ -26,12 +26,16 @@ A
 
 R
 ---- g
-{ T
+{
+  T
   ---- f
   A
-  ---- a }
-{ B
-  ---- b }
+  ---- a
+}
+{
+  B
+  ---- b
+}
 ```
 
 # Does reverse necessary?
@@ -59,27 +63,56 @@ g(f(a: A): T, b: B): R
 
 R
 ---- g
-{ T
+{
+  T
   ---- f
   A
-  ---- a }
-{ B
-  ---- b }
+  ---- a
+}
+{
+  B
+  ---- b
+}
 
 // non-reverse
 
-{ ---- a
+{
+  ---- a
   A
   ---- f
-  T }
-{ ---- b
-  B }
+  T
+}
+{
+  ---- b
+  B
+}
 ---- g
 R
 ```
 
 It seems reversing is not necessary,
 and non-reverse is more natural.
+
+# Named arguments
+
+```
+g(f(a: A): T, b: B): R
+
+// named arguments
+
+first: {
+  ---- a
+  A
+  ---- f
+  T
+}
+second: {
+  ---- b
+  B
+}
+---- g
+R
+```
 
 # Traditional syntax for writing inference rules
 
