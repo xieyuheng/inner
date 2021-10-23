@@ -93,6 +93,10 @@ R
 It seems reversing is not necessary,
 and non-reverse is more natural.
 
+When writing inference rules, non-reverse might be natural,
+but when writing proofs, reversing make the tree grows down naturally
+(without a lot of editing efforts).
+
 # Named arguments
 
 ```
