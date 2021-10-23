@@ -3,6 +3,8 @@ title: Reversed-inference-rule style function application syntax
 date: 2021-09-12
 ---
 
+# Reversed-inference-rule
+
 By changing function application syntax,
 we can mimic the way people write inference rules
 (but the direction of inferencing is reversed).
@@ -31,6 +33,53 @@ R
 { B
   ---- b }
 ```
+
+# Does reverse necessary?
+
+```
+f(a: A): T
+
+// =>
+
+T
+---- f
+A
+---- a
+
+// non-reverse
+
+---- a
+A
+---- f
+T
+
+g(f(a: A): T, b: B): R
+
+// =>
+
+R
+---- g
+{ T
+  ---- f
+  A
+  ---- a }
+{ B
+  ---- b }
+
+// non-reverse
+
+{ ---- a
+  A
+  ---- f
+  T }
+{ ---- b
+  B }
+---- g
+R
+```
+
+It seems reversing is not necessary,
+and non-reverse is more natural.
 
 # Traditional syntax for writing inference rules
 
