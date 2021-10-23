@@ -133,6 +133,16 @@ second: {
 R
 ```
 
+# Differenc between "bidirectional type checking" reading of inference rules
+
+Note that, viewing application of inference rule
+as an alternative syntax of function application,
+is for writing proofs by hand.
+
+While in "bidirectional type checking" reading of inference rules,
+since we already be able to translate inference rules to functions,
+we do not write proofs by hand,
+
 # Traditional syntax for writing inference rules
 
 Comparing our syntax with the traditional syntax for writing inference rules:
