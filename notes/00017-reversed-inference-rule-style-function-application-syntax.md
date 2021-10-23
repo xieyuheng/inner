@@ -116,6 +116,21 @@ second: {
 }
 ---- g
 R
+
+// write function in []
+
+first: {
+  ---- [a]
+  A
+  ---- [f]
+  T
+}
+second: {
+  ---- [b]
+  B
+}
+---- [g]
+R
 ```
 
 # Traditional syntax for writing inference rules
