@@ -35,7 +35,7 @@ the "modus tollens" of the so-called hypothetical syllogism:
 ```
 A implies B
 B false
-------
+------------
 A false
 ```
 
@@ -48,7 +48,7 @@ We have here a pattern of plausible inference:
 ```
 A implies B
 B true
-------
+------------
 A more credible
 ```
 
@@ -77,7 +77,7 @@ which is closely related to, but more sophisticated than, the fundamental induct
 A implies B(n+1)
 B(n+1) is very different from the formerly verified consequences B(1), ... B(n) of A
 B(n+1) true
-------
+------------
 A much more credible
 ```
 
@@ -87,7 +87,7 @@ And a complementary form of it:
 A implies B(n+1)
 B(n+1) is very similar from the formerly verified consequences B(1), ... B(n) of A
 B(n+1) true
-------
+------------
 A just a little more credible
 ```
 
@@ -119,7 +119,7 @@ or a sophistication of the fundamental inductive pattern:
 A implies B
 B very improbable in itself
 B true
-------
+------------
 A very much more credible
 ```
 
@@ -130,7 +130,7 @@ the complementary pattern which explains the same idea from the reverse side:
 A implies B
 B quite probable in itself
 B true
-------
+------------
 A just a little more credible
 ```
 
@@ -140,7 +140,30 @@ The verification of the most surprising consequences is the most convincing.
 
 ## 4. Inference from analogy
 
-TODO
+... Both tables start with the circle which has the
+shortest perimeter among the ten figures listed and also the lowest principal
+frequency, and this suggests two theorems:
+
+- Of all plane figures with a given area the circle has the shortest perimeter.
+- Of all membranes with a given area the circle has the lowest principal frequency.
+
+The geometrical minimum property of the circle,
+inductively supported by Table II, has been proved.
+It is natural to expect that the analogous physical minimum property of the circle,
+inductively supported by Table III, will also turn out to be true.
+In expecting this we follow an important pattern of plausible inference:
+
+```
+A analogous to B
+B true
+------------
+A more credible
+```
+
+A conjecture becomes more credible when an analogous conjecture turns out to be true.
+
+The application of this pattern to the situation discussed seems sensible.
+Yet there are further promising indications in this situation.
 
 ## 5. Deepening the analogy
 
