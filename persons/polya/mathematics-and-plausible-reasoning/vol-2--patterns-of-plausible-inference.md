@@ -167,7 +167,27 @@ Yet there are further promising indications in this situation.
 
 ## 5. Deepening the analogy
 
-TODO
+The arrangement in Table II appears not very different
+from that in Table III, but this is not the main point.
+The tables contain various kinds of figures: rectangles, triangles, sectors.
+
+- How are the figures of the same kind arranged ?
+- How would a shorter table look listing only figures of one kind?
+
+The tables contain a few regular figures:
+the equilateral triangle, the square, and, let us not forget it, the circle.
+
+- How are the regular figures arranged?
+
+A conclusion from analogy become stronger if the analogy itself,
+on which the conclusion is based, becomes stronger.
+
+```
+A analogous to B, in a very deep way
+B true
+------------
+A very much more credible
+```
 
 ## 6. Shaded analogical inference
 
