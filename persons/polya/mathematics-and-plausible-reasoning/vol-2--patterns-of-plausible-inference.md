@@ -215,6 +215,54 @@ This is a weakened or shaded form of the pattern formulated in sect. 4.
 
 ## 1. Examining a consequence
 
+We consider a situation which frequently occurs in mathematical
+research. We wish to decide whether a clearly formulated mathematical
+proposition A is true or not. We have, perhaps, some intuitive
+confidence in the truth of A, but that is not enough: we wish to prove
+A or disprove it. We work at this problem, but without decisive
+success. After a while we notice a consequence B of A. This B is a
+clearly formulated mathematical proposition of which we know that it
+follows from A:
+
+```
+A implies B
+```
+
+Yet we do not know whether B is true or not. Now it seems that B is
+more accessible than A; for some reason or other we have the
+impression that we shall have better success with B than we had with
+A. Therefore, we switch to examining B. We work to answer the
+question: is B true or false?  Finally we succeed in answering
+it. *How does this answer influence our confidence in A?*
+
+That depends on the answer.
+
+*Demonstrative*
+
+```
+A implies B
+B false
+------------
+A false
+```
+
+*Heuristic*
+
+```
+A implies B
+B true
+------------
+A more credible
+```
+
+We met these patterns already in sect. 12.1 where we called the heuristic
+pattern the fundamental inductive pattern. We shall meet with similar
+but different patterns in the following sections.
+
+## 2. Examining a possible ground
+
+TODO
+
 # Chapter 14. Chance, the Ever-present Rival Conjecture
 
 # Chapter 15. The Calculus of Probability and the Logic of Plausible Reasoning
