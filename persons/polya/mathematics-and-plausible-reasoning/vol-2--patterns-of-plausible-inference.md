@@ -191,11 +191,17 @@ A very much more credible
 
 ## 6. Shaded analogical inference
 
-TODO
+```
+A analogous to B
+B more credible
+------------
+A somewhat more credible
+```
 
-## Examples and comments on chapter 12
+A conjecture becomes somewhat more credible
+when an analogous conjecture becomes more credible.
 
-TODO
+This is a weakened or shaded form of the pattern formulated in sect. 4.
 
 # Chapter 13. Further Patterns and First Links
 
