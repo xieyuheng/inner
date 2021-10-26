@@ -205,6 +205,16 @@ This is a weakened or shaded form of the pattern formulated in sect. 4.
 
 # Chapter 13. Further Patterns and First Links
 
+> When we have intuitively understood some simple propositions . . . it is
+> useful to go through them with a continuous, uninterrupted motion of thought,
+> to meditate upon their mutual relations, and to conceive distinctly several of
+> them, as many as possible, simultaneously. In this manner our knowledge
+> will grow more certain, and the capacity of the mind will notably increase.
+>
+> -- DESCARTES, The eleventh of his Rules for the Direction of the Mind.
+
+## 1. Examining a consequence
+
 # Chapter 14. Chance, the Ever-present Rival Conjecture
 
 # Chapter 15. The Calculus of Probability and the Logic of Plausible Reasoning
