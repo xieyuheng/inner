@@ -1,7 +1,7 @@
 ---
 title: An ignorable behavior of REPL
 date: 2021-09-29
-tags: [repl, design]
+keywords: [repl, design]
 ---
 
 When implementing the REPL of cicada language.

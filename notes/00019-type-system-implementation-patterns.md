@@ -1,7 +1,7 @@
 ---
 title: Type system implementation patterns
 date: 2021-07-02
-tags: [cicada]
+keywords: [cicada]
 ---
 
 # 描述实现技术的准则

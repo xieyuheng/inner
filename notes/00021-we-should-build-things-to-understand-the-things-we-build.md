@@ -1,7 +1,7 @@
 ---
 title: We should build things to understand the things we build
 date: 2021-09-27
-tags: [cicada, record type, implicit arguments]
+keywords: [cicada, record type, implicit arguments]
 ---
 
 # 缺乏理解之案例

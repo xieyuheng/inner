@@ -1,7 +1,7 @@
 ---
 title: Looking back solutions
 date: 2021-07-03
-tags: [cicada, implicit arguments]
+keywords: [cicada, implicit arguments]
 ---
 
 # 实现带有 implicit argument 的 lambda

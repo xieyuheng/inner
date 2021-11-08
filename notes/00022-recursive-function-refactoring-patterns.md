@@ -1,7 +1,7 @@
 ---
 title: Recursive function refactoring patterns
 date: 2021-09-27
-tags: [recursion, refactoring, scheme]
+keywords: [recursion, refactoring, scheme]
 ---
 
 # When to take an extra argument?
