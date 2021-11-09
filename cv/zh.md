@@ -28,14 +28,13 @@ newline: preserve
 ### 形式语言设计
 
 在自己的项目中，我积累了很多设计程序语言的经验，熟悉各种语言的实现技术。
-- 语法解析，类型检查，解释器，基于栈的虚拟机
+- 语法解析，类型检查，解释器，基于栈的虚拟机 等等
 
 我可以帮助团队设计 DSL，通过从语言级别做抽象，来解决领域中所遇到的复杂问题。
 
 ### 软件工程与项目管理
 
-我熟悉面向对象的设计原则（Object Oriented Design）与模式（Design Patterns），
-也熟悉测试驱动开发（Test Driven Development）与重构（Refactoring）。
+我熟悉面向对象的设计原则（Object Oriented Design）与模式（Design Patterns），也熟悉测试驱动开发（Test Driven Development）与重构（Refactoring）。
 
 我相信敏捷开发（Agile）的要点在于优化 Feedback Loop 以响应需求的变化。
 
