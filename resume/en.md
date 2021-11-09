@@ -23,7 +23,7 @@ I am good at:
 - Parser generator
 - Type checker
 - Interpreter
-- Stack based VM
+- Stack-based VM
 
 I can help the team design DSL, to use language level abstract to solve domain problems.
 
