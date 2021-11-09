@@ -31,9 +31,9 @@ I can help the team design DSL, to use language level abstract to solve domain p
 
 I know all about:
 
-- Object Oriented Design
-- Design Patterns
-- Test Driven Development
+- Object oriented design
+- Design patterns
+- Test driven development
 - Refactoring
 
 I understand the essence of agile is all about feedback loop.

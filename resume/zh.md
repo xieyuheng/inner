@@ -30,9 +30,9 @@
 
 ### 软件工程与项目管理
 
-我熟悉面向对象的设计原则（Object Oriented Design）与模式（Design Patterns），也熟悉测试驱动开发（Test Driven Development）与重构（Refactoring）。
+我熟悉面向对象的设计原则（Object oriented design）与模式（Design patterns），也熟悉测试驱动开发（Test driven development）与重构（Refactoring）。
 
-我相信敏捷开发（Agile）的要点在于优化 Feedback Loop 以响应需求的变化。
+我相信敏捷开发（Agile）的要点在于优化 Feedback loop 以响应需求的变化。
 
 ## 工作经历
 
