@@ -53,7 +53,6 @@ I understand the essence of agile is all about feedback loop.
 ### Tehang, Shenzhen, 2019-06 - 2019-08:
 
 - Contribution:
-  - Teaching colleagues about functional programming (Typeclass, Monad)
   - Third party data sync
   - International hotel API
 - Tech: Scala, Akka, PostgresSQL
