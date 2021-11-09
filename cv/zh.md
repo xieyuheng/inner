@@ -4,11 +4,11 @@ newline: preserve
 
 ### 简介
 
-姓名：谢宇恒
-出生：一九九二年
-邮箱：xyheme@gmail.com
-诸项目：[github.com/xieyuheng](https://github.com/xieyuheng)
-主页：[xieyuheng.com](https://xieyuheng.com)
+- 姓名：谢宇恒
+- 出生：一九九二年
+- 邮箱：xyheme@gmail.com
+- 诸项目：[github.com/xieyuheng](https://github.com/xieyuheng)
+- 主页：[xieyuheng.com](https://xieyuheng.com)
 
 ### 学历
 
@@ -24,10 +24,10 @@ newline: preserve
 
 **形式语言设计**
 
-- 语法解析生成器
-- 类型检查器
-- 解释器
-- 基于栈的虚拟机
+在自己的项目中，我积累了很多设计程序语言的经验，熟悉各种语言的实现技术。
+（语法解析，类型检查，解释器，基于栈的虚拟机 等等）
+
+可以帮助团队设计 DSL，通过从语言级别做抽象，来解决领域中的复杂问题。
 
 ### 工作经历
 
