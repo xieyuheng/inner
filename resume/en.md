@@ -5,7 +5,7 @@
   - Given Name: Yuheng
 - Born: 1992, in China
 - Citizenship: China
-- Email: xyheme@gmail.com
+- Email: [xyheme@gmail.com](mailto:xyheme@gmail.com)
 - Homepage: [xieyuheng.com](https://xieyuheng.com)
 
 ## Skills
