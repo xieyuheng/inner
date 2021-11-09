@@ -10,5 +10,12 @@ science and mathematics.
 
 #### EnchanterJS
 
-[EnchanterJS](https://github.com/enchanterjs/enchanter) is web (and
-console) application framework.
+Since I work as a web developer, learning about all kinds of tools
+designed for web development is my daily routine.
+
+After encountered [Laravel](https://laravel.com) and its amazing community,
+I start bringing its artisan spirit and beautiful API to my team.
+
+Hence [EnchanterJS](https://github.com/enchanterjs/enchanter)
+-- a web (and console) application framework,
+for TypeScript and NodeJs, emphasis on clarity and well typed API.
