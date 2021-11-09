@@ -44,34 +44,34 @@ I understand the essence of agile is all about feedback loop.
 
 ## Experience
 
-- 2019-12 - 2021-11:
-  - Company: Forchange, ShenZhen
-  - Contribution:
-    - Create interactive teaching platform [cleword.cn](https://cleword.cn), which become the company's main product.
-    - Create [sisuo](https://sisuo.cleword.cn) project, to explore applications of cognitive psychology in interactive teaching.
+### Forchange, Shenzhen, 2019-12 - 2021-11
 
-- 2019-06 - 2019-08:
-  - Company: Tehang, ShenZhen
-  - Contribution:
-    - Teaching colleagues about functional programming (Typeclass, Monad)
-    - Third party data sync
-    - International hotel API
-  - Tech: Scala, Akka, PostgresSQL
+- Contribution:
+  - Create interactive teaching platform [cleword.cn](https://cleword.cn), which become the company's main product.
+  - Create [sisuo](https://sisuo.cleword.cn) project, to explore applications of cognitive psychology in interactive teaching.
 
-- 2018-11 - 2019-02:
-  - Company: ChangChunLiXiang Tech, China, Beijing
-  - Contribution: Data mining algorithms, Anomaly detection, Root cause analysis
-  - Tech: Python, Pandas, Numpy
+### Tehang, Shenzhen, 2019-06 - 2019-08:
 
-- 2018-03 -- 2018-05:
-  - Company: InBlockchain, pxn.one, China, Beijing
-  - Contribution: Web backend, GraphQL API
-  - Tech: Elixir, PostgresSQL
+- Contribution:
+  - Teaching colleagues about functional programming (Typeclass, Monad)
+  - Third party data sync
+  - International hotel API
+- Tech: Scala, Akka, PostgresSQL
 
-- 2017-11 -- 2018-02:
-  - Company: RiceQuant.com, China, ShenZhen
-  - Contribution: Web backend, Trading strategies
-  - Tech: Python, Pandas, Numpy, Flask, MongoDB
+### ChangChunLiXiang Tech, Beijing, 2018-11 - 2019-02
+
+- Contribution: Data mining algorithms, Anomaly detection, Root cause analysis
+- Tech: Python, Pandas, Numpy
+
+### InBlockchain, Beijing, 2018-03 -- 2018-05
+
+- Contribution: Web backend, GraphQL API
+- Tech: Elixir, PostgresSQL
+
+### RiceQuant.com, ShenZhen, 2017-11 -- 2018-02
+
+- Contribution: Web backend, Trading strategies
+- Tech: Python, Pandas, Numpy, Flask, MongoDB
 
 ## Teachings
 
