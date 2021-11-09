@@ -1,12 +1,9 @@
 ### Cicada Language
 
-Right now I'm working on [Cicada Language](https://cicada-lang.org),
-a *dependently typed programming language* and *interactive theorem prover*.
+Right now I'm working on [Cicada Language](https://cicada-lang.org), a *programming language* and *theorem prover*.
 
-I want my language to serve as a bridge between computer science and mathematics.
-
-Based on this language, I want to build a wiki of formalized mathematics,
-to flourish the ideas developed in the *foundations of mathematics*.
+Based on my language, I want to build a wiki of formalized mathematics,
+to flourish the ideas developed in the *foundations of mathematics*, and serve as a bridge between computer science and mathematics.
 
 ### EnchanterJS
 
