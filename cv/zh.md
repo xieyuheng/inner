@@ -7,7 +7,6 @@ newline: preserve
 - 姓名：谢宇恒
 - 出生：一九九二年
 - 邮箱：xyheme@gmail.com
-- 诸项目：[github.com/xieyuheng](https://github.com/xieyuheng)
 - 主页：[xieyuheng.com](https://xieyuheng.com)
 
 ## 学历
@@ -35,7 +34,9 @@ newline: preserve
 
 ### 软件工程与项目管理
 
-
+- Object oriented design
+- Test driven development
+- Refactoring
 
 ## 工作经历
 
