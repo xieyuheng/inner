@@ -33,6 +33,10 @@ newline: preserve
 
 我可以帮助团队设计 DSL，通过从语言级别做抽象，来解决领域中所遇到的复杂问题。
 
+### 软件工程与项目管理
+
+
+
 ## 工作经历
 
 ### 风变科技，深圳，2019-12 - 2021-11
@@ -51,29 +55,27 @@ newline: preserve
 
 ### 特航航空，深圳，2019-06 - 2019-08
 
-- 函数式编程内部培训 -- typeclass，monad
-- 第三方数据同步 -- scala，akka stream，postgres
-- 国际酒店 API -- scala，akka stream，akka http
-- Ontology based 数据整合方案设计与实现
-- Propagator model based 爬虫框架设计
+- 函数式编程内部培训 -- Typeclass，Monad
+- 第三方数据同步 -- Scala，Akka stream，PostgresSQL
+- 国际酒店 API -- Scala，Akka stream，Akka HTTP
 
 ### 长春理想科技研发部，北京，2018-11 - 2019-02
 
-- 数据挖掘算法 研究，设计与实现 -- python，pandas，numpy
+- 数据挖掘算法 研究，设计与实现 -- Python，Pandas，Numpy
 - 主要研究题目包括:
   - 异常检测 / Anomaly detection
   - 根因分析 / Root cause analysis
 
 ### InBlockchain.com，北京，2018-03 - 2018-05
 
-- web 后端 -- elixir，phoenix (web framework)
-- GraphQL API -- postgresql，absinthe-graphql
+- web 后端 -- Elixir，Phoenix (web framework)
+- GraphQL API -- PostgresSQL，Absinthe GraphQL
 
 ### RiceQuant.com，深圳，2017-10 - 2018-01
 
-- 爬虫 -- python，scrapy，mongodb
-- web 后端 -- python，flask
-- 量化交易策略 -- python，pandas，numpy
+- 爬虫 -- Python，Scrapy，MongoDB
+- web 后端 -- Python，Flask
+- 量化交易策略 -- Python，Pandas，Numpy
 
 ## 授课经历
 
