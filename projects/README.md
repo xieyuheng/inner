@@ -1,4 +1,4 @@
-#### [Cicada Language](https://cicada-lang.org)
+#### Cicada Language
 
 Right now I'm working on [Cicada Language](https://cicada-lang.org),
 both a *programming language* and a *theorem prover*.
@@ -8,7 +8,7 @@ mathematical theories, to flourish the ideas developed in the
 *foundations of mathematics*, and serve as a bridge between computer
 science and mathematics.
 
-#### [EnchanterJS](https://github.com/enchanterjs/enchanter)
+#### EnchanterJS
 
 Since I work as a web developer, learning about all kinds of tools
 designed for web development is my daily routine.
@@ -20,15 +20,19 @@ Hence [EnchanterJS](https://github.com/enchanterjs/enchanter)
 -- a web (and console) application framework,
 for TypeScript and NodeJs, emphasis on clarity and well typed API.
 
-#### [LogicDB](https://github.com/xieyuheng/logic-db)
+#### LogicDB
 
-Embedding a Prolog-like logic programming language in JavasScript and TypeScript.
+While learning Logic programming, I started a project called
+[LogicDB](https://github.com/xieyuheng/logic-db), to embed a
+Prolog-like logic programming language in JavasScript and TypeScript.
 
-#### [Ty](https://github.com/xieyuheng/ty)
+#### ty
 
-Write schema to bring TypeScript's types to runtime.
+[ty](https://github.com/xieyuheng/ty) can be used to write schema to bring TypeScript's types to runtime.
 
-#### [Lowdim](https://github.com/xieyuheng/lowdim) & [cell-complex](https://github.com/xieyuheng/cell-complex)
+We can use ty schema to do validation and generate random data of certain type.
+
+#### Lowdim & cell-complex
 
 [Lowdim](https://github.com/xieyuheng/lowdim) is about modeling low
 dimensional (0, 1, 2, 3 maybe 4 dimension) topology and geometry.
