@@ -66,13 +66,13 @@ newline: preserve
 
 ### InBlockchain.com，北京，2018-03 - 2018-05
 
-- web 后端 -- Elixir，Phoenix (web framework)
+- Web 后端 -- Elixir，Phoenix (Web Framework)
 - GraphQL API -- PostgresSQL，Absinthe GraphQL
 
 ### RiceQuant.com，深圳，2017-10 - 2018-01
 
 - 爬虫 -- Python，Scrapy，MongoDB
-- web 后端 -- Python，Flask
+- Web 后端 -- Python，Flask
 - 量化交易策略 -- Python，Pandas，Numpy
 
 ## 授课经历
