@@ -7,7 +7,7 @@
 - Citizenship: China
 - Email: xyheme@gmail.com
 - Github: [github.com/xieyuheng](https://github.com/xieyuheng)
-- Homepage: [xieyuheng.github.io](https://xieyuheng.github.io)
+- Homepage: [xieyuheng.com](https://xieyuheng.com)
 
 ### Education
 
