@@ -4,23 +4,23 @@ newline: preserve
 
 ### 简介
 
-姓名: 谢宇恒
-出生: 一九九二年
-邮箱: xyheme@gmail.com
-诸项目: [github.com/xieyuheng](https://github.com/xieyuheng)
-主页: [xieyuheng.com](https://xieyuheng.com)
+姓名：谢宇恒
+出生：一九九二年
+邮箱：xyheme@gmail.com
+诸项目：[github.com/xieyuheng](https://github.com/xieyuheng)
+主页：[xieyuheng.com](https://xieyuheng.com)
 
 ### 学历
 
-2015: 学士 数学与应用数学 中山大学
+2015：学士 数学与应用数学 中山大学
 
 ### 技能
 
 **Web 全栈开发**:
 
-- 语言: TypeScript
-- 前端: Vue, TailwindCSS
-- 后端: NodeJs, MongoDB, PostgresSQL
+- 语言：TypeScript
+- 前端：Vue, TailwindCSS
+- 后端：NodeJs, MongoDB, PostgresSQL
 
 **形式语言设计**:
 
@@ -39,7 +39,7 @@ newline: preserve
 - 开创「思索」项目，以探索「主动回顾」和「间隔重复」等等认知心理学技术在教学中的应用 (Markdown 语法定制与扩展, 前端插件机制)
 - 附注：
   - 在所开创的一系列项目中，我负责产品设计以及全栈开发，制定技术构架并带领 3 - 4 人的全栈团队
-  - 所用的技术栈: TypeScript, Vue, NodeJs, MongoDB, PostgresSQL
+  - 所用的技术栈：TypeScript, Vue, NodeJs, MongoDB, PostgresSQL
 
 **特航航空, 深圳, 2019-06 - 2019-08**:
 
@@ -76,10 +76,10 @@ newline: preserve
 #### 拓扑与几何建模
 
 [cell-complex](https://github.com/xieyuheng/cell-complex) -- Libraries and tools for topological and geometric modeling
-- 2019-05-08: A Recursive Combinatorial Description of cell-complex
+- 2019-05-08：A Recursive Combinatorial Description of cell-complex
   ([paper](http://inner-universe.surge.sh/paper/a-recursive-combinatorial-description-of-cell-complex))
 
 #### 程序语言设计
 
-2016-06-14: Function compose, Type cut, and The algebra of logic ([paper](https://xieyuheng.github.io/writing/function-compose-type-cut.html)) ([pdf](http://xieyuheng.github.io/paper/function-compose-type-cut.pdf)) ([demo](https://xieyuheng.github.io/writing/function-compose-type-cut--demo))
+2016-06-14：Function compose, Type cut, and The algebra of logic ([paper](https://xieyuheng.github.io/writing/function-compose-type-cut.html)) ([pdf](http://xieyuheng.github.io/paper/function-compose-type-cut.pdf)) ([demo](https://xieyuheng.github.io/writing/function-compose-type-cut--demo))
 - ICFP, 2016, 日本奈良
