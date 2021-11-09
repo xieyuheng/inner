@@ -31,7 +31,7 @@ newline: preserve
 
 ### 工作经历
 
-**风变科技，深圳，2019-12 - 2021-11**
+#### 风变科技，深圳，2019-12 - 2021-11
 
 - 作为程序语言工程师，设计并研发创作交互式课程所用的语言。
   - 语法解析，schema 检查
@@ -45,7 +45,7 @@ newline: preserve
 - 在上述项目中，我负责产品设计以及全栈开发，制定技术构架 并带领 3 - 4 人的全栈团队。
 - 所用的技术栈为 TypeScript，Vue，NodeJs，MongoDB，PostgresSQL。
 
-**特航航空，深圳，2019-06 - 2019-08**
+#### 特航航空，深圳，2019-06 - 2019-08
 
 - 函数式编程内部培训 -- typeclass，monad
 - 第三方数据同步 -- scala，akka stream，postgres
@@ -53,19 +53,19 @@ newline: preserve
 - Ontology based 数据整合方案设计与实现
 - Propagator model based 爬虫框架设计
 
-**长春理想科技研发部，北京，2018-11 - 2019-02**
+#### 长春理想科技研发部，北京，2018-11 - 2019-02
 
 - 数据挖掘算法 研究，设计与实现 -- python，pandas，numpy
 - 主要研究题目包括:
   - 异常检测 -- anomaly detection
   - 根因分析 -- root cause analysis
 
-**InBlockchain.com，北京，2018-03 - 2018-05**
+#### InBlockchain.com，北京，2018-03 - 2018-05
 
 - web 后端 -- elixir，phoenix (web framework)
 - GraphQL API -- postgresql，absinthe-graphql
 
-**RiceQuant.com，深圳，2017-10 - 2018-01**
+#### RiceQuant.com，深圳，2017-10 - 2018-01
 
 - 爬虫 -- python，scrapy，mongodb
 - web 后端 -- python，flask
@@ -77,12 +77,8 @@ newline: preserve
 
 ### 个人项目
 
-**拓扑与几何建模**
-
 - [cell-complex](https://github.com/xieyuheng/cell-complex) -- Libraries and tools for topological and geometric modeling
   - 2019-05-08：A Recursive Combinatorial Description of cell-complex
-
-**程序语言设计**
 
 - 2016-06-14：Function compose, Type cut, and The algebra of logic
   - ICFP, 2016, 日本奈良
