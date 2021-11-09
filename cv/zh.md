@@ -121,7 +121,7 @@ topological and geometric modeling in any dimension.
 
 ## 论文
 
-- 2019-05-08：A Recursive Combinatorial Description of cell-complex
+**2019-05-08：A Recursive Combinatorial Description of cell-complex**
 
-- 2016-06-14：Function compose, Type cut, and The algebra of logic
-  - ICFP, Scheme Workshop，2016, 日本奈良
+**2016-06-14：Function compose, Type cut, and The algebra of logic**
+- ICFP, Scheme Workshop，2016, 日本奈良
