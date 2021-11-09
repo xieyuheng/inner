@@ -1,7 +1,3 @@
----
-newline: preserve
----
-
 ## Info
 
 Name: Xie Yuheng
