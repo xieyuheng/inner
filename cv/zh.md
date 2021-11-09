@@ -18,6 +18,10 @@ newline: preserve
 
 ### Web 全栈开发
 
+我喜爱 Web 这个无处不在的多元而包容的平台，也享受 JavaScript 社区令人眼花缭乱的活力与创造力。
+
+我认为 Web 就像是程序员的艺术媒介，让大家能够在天马行空的样式与交互中表达自己，并且很轻松地与整个世界紧密相连。
+
 - 语言：TypeScript
 - 前端：Vue，TailwindCSS
 - 后端：NodeJs，MongoDB，PostgresSQL

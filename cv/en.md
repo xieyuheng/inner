@@ -2,7 +2,7 @@
 newline: preserve
 ---
 
-### Info
+## Info
 
 Name: Xie Yuheng
 - Family Name: Xie
@@ -13,11 +13,11 @@ Email: xyheme@gmail.com
 Github: [github.com/xieyuheng](https://github.com/xieyuheng)
 Homepage: [xieyuheng.com](https://xieyuheng.com)
 
-### Education
+## Education
 
 - B.S. (Mathematics) Sun Yat-sen University, 2015
 
-### Experience
+## Experience
 
 - 2019-06 - 2019-08:
   - Company: Tehang, ShenZhen
@@ -44,23 +44,23 @@ Homepage: [xieyuheng.com](https://xieyuheng.com)
   - Contribution: web backend, trading strategies
   - Tech: python, pandas, numpy, flask, mongodb
 
-### Teachings
+## Teachings
 
 - Assembly Language Experiments, SYSU, 2015
   ([Homepage](http://the-little-language-designer.github.io/cicada-nymph/course/contents.html))
   ([Group](https://github.com/the-little-language-designer))
   - Implementing Forth interpreter in assembly language
 
-### Projects
+## Projects
 
-#### Geometric Modeling
+### Geometric Modeling
 
 - [cell-complex](https://github.com/xieyuheng/cell-complex) -- Libraries and tools for topological and geometric modeling
 
 - 2019-05-08: A Recursive Combinatorial Description of cell-complex
   ([paper](http://inner-universe.surge.sh/paper/a-recursive-combinatorial-description-of-cell-complex))
 
-#### Programming Language Design
+### Programming Language Design
 
 - 2016-06-14: Function compose, Type cut, and The algebra of logic
   ([paper](https://xieyuheng.github.io/writing/function-compose-type-cut.html))
