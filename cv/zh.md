@@ -33,39 +33,43 @@ newline: preserve
 
 **风变科技，深圳，2019-12 - 2021-11**:
 
-- 作为程序语言工程师，设计并研发创作交互式课程所用的语言 (语法解析，schema 检查)
-- 开创交互式课程创作平台「课灵小馆」，使其成为了公司新的主打产品 (交互式课程技术架构，在线编辑与预览，github 与 gitlab API，OAuth)
-- 基于课程创作平台，开创「卡牌」系统，以卡牌的形式收集和检索公司运营中的转化案例
-- 开创「思索」项目，以探索「主动回顾」和「间隔重复」等等认知心理学技术在教学中的应用 (Markdown 语法定制与扩展，前端插件机制)
-- 附注：
-  - 在所开创的一系列项目中，我负责产品设计以及全栈开发，制定技术构架并带领 3 - 4 人的全栈团队
-  - 所用的技术栈：TypeScript，Vue，NodeJs，MongoDB，PostgresSQL
+- 作为程序语言工程师，设计并研发创作交互式课程所用的语言。
+  - 语法解析，schema 检查
+- 开创交互式课程创作平台「课灵小馆」，使其成为了公司新的主打产品。
+  - 交互式课程技术架构，在线编辑与预览，github 与 gitlab API，OAuth
+- 基于课程创作平台，开创「卡牌」系统，以卡牌的形式收集和检索公司运营中的转化案例。
+- 开创「思索」项目，以探索「主动回顾」和「间隔重复」等等认知心理学技术在教学中的应用。
+  - Markdown 语法定制与扩展，前端插件机制
+
+附注：
+- 在上述项目中，我负责产品设计以及全栈开发，制定技术构架 并带领 3 - 4 人的全栈团队。
+- 所用的技术栈为 TypeScript，Vue，NodeJs，MongoDB，PostgresSQL。
 
 **特航航空，深圳，2019-06 - 2019-08**:
 
-- 函数式编程内部培训 (typeclass，monad)
-- 第三方数据同步 (scala，akka stream，postgres)
-- 国际酒店 API (scala，akka stream，akka http)
+- 函数式编程内部培训 -- typeclass，monad
+- 第三方数据同步 -- scala，akka stream，postgres
+- 国际酒店 API -- scala，akka stream，akka http
 - Ontology based 数据整合方案设计与实现
 - Propagator model based 爬虫框架设计
 
 **长春理想科技研发部，北京，2018-11 - 2019-02**:
 
-- 数据挖掘算法 研究，设计与实现 (python，pandas，numpy)
+- 数据挖掘算法 研究，设计与实现 -- python，pandas，numpy
 - 主要研究题目包括:
-  - 异常检测 (anomaly detection)
-  - 根因分析 (root cause analysis)
+  - 异常检测 -- anomaly detection
+  - 根因分析 -- root cause analysis
 
 **InBlockchain.com，北京，2018-03 - 2018-05**:
 
-- web 后端 (elixir，phoenix (web framework))
-- GraphQL API (postgresql，absinthe-graphql)
+- web 后端 -- elixir，phoenix (web framework)
+- GraphQL API -- postgresql，absinthe-graphql
 
 **RiceQuant.com，深圳，2017-10 - 2018-01**:
 
-- 爬虫 (python，scrapy，mongodb)
-- web 后端 (python，flask)
-- 量化交易策略 (python，pandas，numpy)
+- 爬虫 -- python，scrapy，mongodb
+- web 后端 -- python，flask
+- 量化交易策略 -- python，pandas，numpy
 
 ### 授课经历
 
