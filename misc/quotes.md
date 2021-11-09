@@ -114,7 +114,7 @@
 ## Life
 
 - If I abandoned this project I would be a man without dreams, and I don't want to live like that.
-  I live my life, I end my life wish this project.
+  I live my life, I end my life with this project.
   - Werner Herzog
 
 - (The miniature plan)
