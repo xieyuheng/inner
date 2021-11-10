@@ -452,7 +452,7 @@ Based on the basic construction of cell-complex, I plan to:
 
 # Appendixes
 
-- [A Substitution Model for Class Definition](/paper/a-substitution-model-for-class-definition)
+- [A Substitution Model for Class Definition](a-substitution-model-for-class-definition.md)
   - Further clarify the use of class definitions in this paper
     for people with less programming experiences.
   - Also summarize the difference between "describable" and "decidable".

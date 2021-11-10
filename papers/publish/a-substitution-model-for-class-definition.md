@@ -5,7 +5,7 @@ date: 2019-05-07
 keywords: [cell-complex, data structure]
 ---
 
-- This document serves as an appendix of the paper ["A Recursive Combinatorial Description of cell-complex"](/paper/a-recursive-combinatorial-description-of-cell-complex).
+- This document serves as an appendix of the paper ["A Recursive Combinatorial Description of cell-complex"](a-recursive-combinatorial-description-of-cell-complex.md).
 
 My overall class definitions are:
 
