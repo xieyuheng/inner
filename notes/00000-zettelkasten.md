@@ -1,5 +1,5 @@
 ---
-title: Zettelkasten
+title: 卡片盒子 / Zettelkasten
 date: 2021-08-22
 ---
 

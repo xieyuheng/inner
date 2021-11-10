@@ -1,5 +1,5 @@
 ---
-title: Pattern languages
+title: 模式语言 / Pattern languages
 date: 2021-10-31
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: Type system implementation patterns
+title: 类型系统实现模式 / Type system implementation patterns
 date: 2021-07-02
 keywords: [cicada]
 ---
