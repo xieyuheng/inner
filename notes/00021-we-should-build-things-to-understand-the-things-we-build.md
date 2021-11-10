@@ -1,32 +1,8 @@
 ---
 title: We should build things to understand the things we build
 date: 2021-09-27
-keywords: [cicada, record type, implicit arguments]
+keywords: [type checking, elaboration]
 ---
-
-# 缺乏理解之案例
-
-案例一：
-
-当实现 record type 时，在改用 null object pattern 之后，
-我的第一次尝试没能解决 inheritance 的问题。
-
-就像「怎样解题」中 Polya 所说的，
-退一步重新清晰叙述所要解决的问题，
-对问题有了更清晰的理解，就简单了。
-
-我解决问题的技巧还不够，需要认真学习「怎样解题」。
-
-案例二：
-
-在实现 implicit arguments 时，
-在支持 named implicit arguments 时，
-初次尝试遇到了 bug，我 debug 了很久，
-还以为是因为没有 `Value.deep_walk` result type 而导致的。
-（需要作为 infer-elaboration 的返回值的 result type）
-
-其实并不需要用 `Value.deep_walk` 来做 reify，
-Closure apply to solution of unification 就是 reify。
 
 # How to build tools for understanding?
 
