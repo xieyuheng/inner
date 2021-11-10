@@ -1,5 +1,5 @@
 ---
-title: structure adventure
+title: Algebraic structure adventure
 author: Xie Yuheng
 date: 2019-11-27
 keywords: [categorical model, dependent types]
