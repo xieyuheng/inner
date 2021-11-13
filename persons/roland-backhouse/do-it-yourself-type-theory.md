@@ -144,6 +144,22 @@ Examples:
   ]
   ```
 
+- Sum type:
+
+  ``` cicada
+  either_swap(
+    implicit { A: Type, B: Type },
+    target: Either(A, B),
+  ): Either(B, A) {
+    either_ind(
+      target,
+      (_) => Either(B, A),
+      (left) => inr(left),
+      (right) => inl(right)
+    )
+  }
+  ```
+
 ## 2.1 The Membership Judgement Form
 
 ``` js
