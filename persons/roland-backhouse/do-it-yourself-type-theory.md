@@ -1,7 +1,7 @@
 ---
 title: Do-it-yourself Type Theory
 authors: [Roland Backhouse, Paul Chisholm, Erik Saaman, Grant Malcolm]
-date: 1988
+year: 1988
 ---
 
 # Abstract
