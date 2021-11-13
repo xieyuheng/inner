@@ -68,14 +68,10 @@ P == Q
 - Xie: I also use the following notations for judgement,
 
   ``` js
-  P : type
-  p : P
-
-  the_eqv_t(P, p, q)
-  eqv_t(p, q)
-
-  the_eqv_t(type, P, Q)
-  eqv_t(P, Q)
+  P: type
+  p: P
+  Equal(P, p, q)
+  Equal(Type, P, Q)
   ```
 
 ## 2.2 An Example Derivation
@@ -245,23 +241,23 @@ if they have the same constructor and they have equal components.
 ``` js
 A type
 ---------------- // list-formation
-list_t(A) type
+List(A) type
 
 A type
 ---------------- // nil-introduction
-nil : list_t(A)
+nil : List(A)
 
 A type
 a : A
-l : list_t(A)
+l : List(A)
 ---------------------- // cons-introduction
-cons(a, l) : list_t(A)
+cons(a, l) : List(A)
 ```
 
 In cicada,
 
 ``` js
-list_t : {
+List : {
   A : type
   ---------
   type
@@ -269,14 +265,14 @@ list_t : {
   case nil : {
     [ A : type ]
     ---------
-    list_t(A)
+    List(A)
   }
   case cons : {
     [ A : type ]
     a : A
-    l : list_t(A)
+    l : List(A)
     ---------
-    list_t(A)
+    List(A)
   }
 }
 ```
@@ -304,7 +300,7 @@ involves a family of types -- `C`, indexed by objects of `A`.
 
 ``` js
 w : A
------------
+------------
 C(w) type
 ```
 
@@ -326,12 +322,12 @@ we need to add an induction hypothesis (such as `h : C(l)`)
 to the assumptions of the corresponding minor premise.
 
 ``` js
-{ w : list_t(A)
+{ w : List(A)
   ------------
   C(w) type }
-x : list_t(A)
+x : List(A)
 y : C(nil)
-{ a : A, l : list_t(A), h : C(l)
+{ a : A, l : List(A), h : C(l)
   ------------------------
   z(a, l, h) : C(cons(a, l)) }
 --------------------------- // list-elimination
@@ -343,12 +339,12 @@ In cicada,
 ``` js
 list_elim : {
   [ A : type
-    C : { w : list_t(A) -> type } ]
-  x : list_t(A)
+    C : { w : List(A) -> type } ]
+  x : List(A)
   y : C(nil)
   z : {
     a : A
-    l : list_t(A)
+    l : List(A)
     h : C(l)
     ---------
     C(cons(a, l)) }
@@ -360,30 +356,30 @@ list_elim : {
 ``` js
 list_append(l, m) = list_elim(l, m, (x, _, h) => cons(x, h))
 
-list_append : (list_t(A), list_t(A)) -> list_t(A)
+list_append : (List(A), List(A)) -> List(A)
 list_append = (l, m) => list_elim(l, m, (x, _, h) => cons(x, h))
 
 proof {
-  { l : list_t(A)
-    m : list_t(A)
+  { l : List(A)
+    m : List(A)
     ------------------
     { x : A
-      _ : list_t(A)
-      h : list_t(A)
+      _ : List(A)
+      h : List(A)
       ------------------
-      cons(x, h) : list_t(A)
+      cons(x, h) : List(A)
     }
-    (x, _, h) => cons(x, h) : (A, list_t(A), list_t(A)) -> list_t(A)
-    list_elim(l, m, (x, _, h) => cons(x, h)) : list_t(A)
+    (x, _, h) => cons(x, h) : (A, List(A), List(A)) -> List(A)
+    list_elim(l, m, (x, _, h) => cons(x, h)) : List(A)
   }
-  list_append : (list_t(A), list_t(A)) -> list_t(A)
+  list_append : (List(A), List(A)) -> List(A)
 }
 ```
 
 - Xie: In JoJo,
 
   ``` js
-  list_append : { (- A list_t) (- A list_t) A list_t }
+  list_append : { (- A List) (- A List) A List }
   list_append = {
     [l, m]
     l m { [x, _, h] x h cons }
@@ -395,42 +391,42 @@ proof {
 
   ``` js
   list_append : {
-    l, m : list_t(A)
+    l, m : List(A)
     ---------
-    list_t(A)
+    List(A)
   }
   list_append = {
-    l : list_t(A)
-    m : list_t(A)
+    l : List(A)
+    m : List(A)
     -----------------------
-    g : { A; list_t(A); list_t(A); -> list_t(A) }
+    g : { A; List(A); List(A); -> List(A) }
     g = {
       x : A
-      _ : list_t(A)
-      h : list_t(A)
+      _ : List(A)
+      h : List(A)
       ------------------
-      cons(x, h) : list_t(A)
+      cons(x, h) : List(A)
     }
-    list_elim(l, m, g) : list_t(A)
+    list_elim(l, m, g) : List(A)
   }
 
   // Or, in one definition:
 
   list_append : {
-    l, m : list_t(A)
+    l, m : List(A)
     ---------
-    list_t(A)
+    List(A)
   } = {
     g : {
       x : A
-      _ : list_t(A)
-      h : list_t(A)
+      _ : List(A)
+      h : List(A)
       ---------
-      list_t(A)
+      List(A)
     } = {
-      cons(x, h) : list_t(A)
+      cons(x, h) : List(A)
     }
-    list_elim(l, m, g) : list_t(A)
+    list_elim(l, m, g) : List(A)
   }
   ```
 
@@ -449,16 +445,16 @@ p == q : P
 
 The `nil-computation` rule is like the `list-elimination` rule.
 Since `x` is replaced by `nil` in `list_elim(nil, y, z)`,
-we replace `x : list_t(A)` in `list-elimination`
+we replace `x : List(A)` in `list-elimination`
 by the list of premises in `nil-introduction`.
 
 The list of premises in `nil-introduction` is empty,
-thus we simply delete `x : list_t(A)` from the `list-elimination` rule.
+thus we simply delete `x : List(A)` from the `list-elimination` rule.
 
 ``` js
-{ w : list_t(A) -> C(w) type }
+{ w : List(A) -> C(w) type }
 y : C(nil)
-{ a : A, l : list_t(A), h : C(l)
+{ a : A, l : List(A), h : C(l)
   ------------------------
   z(a, l, h) : C(cons(a, l)) }
 ---------------------------------- // nil-computation
@@ -467,19 +463,19 @@ list_elim(nil, y, z) == y : C(nil)
 
 The `cons-computation` rule is like the `list-elimination` rule.
 Since `x` is replaced by `cons(a, l)` in `list_elim(cons(a, l), y, z)`,
-we replace `x : list_t(A)` in `list-elimination`
+we replace `x : List(A)` in `list-elimination`
 by the list of premises in `cons-introduction`.
 
-The list of premises in `cons-introduction` is `{ a : A, l : list_t(A) }`.
+The list of premises in `cons-introduction` is `{ a : A, l : List(A) }`.
 
 We can just follow the type to get the right right hand side of the equality.
 
 ``` js
-{ w : list_t(A) -> C(w) type }
+{ w : List(A) -> C(w) type }
 a : A
-l : list_t(A)
+l : List(A)
 y : C(nil)
-{ a : A, l : list_t(A), h : C(l)
+{ a : A, l : List(A), h : C(l)
   ------------------------
   z(a, l, h) : C(cons(a, l)) }
 ----------------------------------- // cons-computation
@@ -491,23 +487,23 @@ z(a, l, list_elim(l, y, z)) : C(cons(a, l))
 
 ``` js
 ------------ // nat-formation
-nat_t type
+Nat type
 
 ------------ // zero-introduction
-zero : nat_t
+zero : Nat
 
-n : nat_t
+n : Nat
 ------------ // succ-introduction
-succ(n) : nat_t
+succ(n) : Nat
 ```
 
 In cicada,
 
 ``` js
-nat_t : type
-nat_t = {
-  case zero : nat_t
-  case succ : { nat_t -> nat_t }
+Nat : type
+Nat = {
+  case zero : Nat
+  case succ : { Nat -> Nat }
 }
 ```
 
@@ -589,7 +585,7 @@ a : A
 
 We observe that we can not follow the pattern of "Free Type Structures" any more.
 The introduction rule of arrow type (`lambda-introduction`)
-is different from that of `list_t` or `nat_t`,
+is different from that of `List` or `Nat`,
 for the premise `{ x : A -> f(x) : B }` has a hypothesis (`x : A`).
 
 - Xie: *F-algebra* and *F-coalgebra* generalize this.
@@ -606,29 +602,29 @@ A type
 a : A
 b : A
 --------------------- // eqv-formation
-eqv_t(A, a, b) type
+Equal(A, a, b) type
 ```
 
 - Xie: Note that `a == b : A` is a judgement of the system,
-  while `eqv_t(A, a, b)` is a inductively defined type.
+  while `Equal(A, a, b)` is a inductively defined type.
 
 ### 3.2.3 General Rules
 
 ``` js
 a == b : A
 ----------------------- // eqv-introduction
-refl : eqv_t(A, a, b)
+refl : Equal(A, a, b)
 
 a == b : A
 ----------------------- // eqv-introduction
-same(a) : eqv_t(A, a, b)
+same(a) : Equal(A, a, b)
 ```
 
 - Xie: The `replace` rule,
 
   ``` js
   { w : A -> C(w) type }
-  p : eqv_t(A, x, y)
+  p : Equal(A, x, y)
   base : C(x)
   --------------------------
   replace(p, base) : C(y)
@@ -639,15 +635,15 @@ same(a) : eqv_t(A, a, b)
   `C` does not apply on the eliminator `replace` 's first argument `p`,
   but applies on values `x` and `y` in `p`'s type.
 
-- Xie: Another elimination rule for `eqv_t`,
+- Xie: Another elimination rule for `Equal`,
 
   ``` js
-  { x : A, y : A, p : eqv_t(A, x, y) -> C(x, y, p) }
+  { x : A, y : A, p : Equal(A, x, y) -> C(x, y, p) }
   { x : A -> s(x) : C(x, x, same(x)) }
   ------------------------------------------- // eqv-elimination
   eqv_ind(x, y, p, s) : C(x, y, p)
 
-  { x : A, y : A, p : eqv_t(A, x, y) -> C(x, y, p) }
+  { x : A, y : A, p : Equal(A, x, y) -> C(x, y, p) }
   { x : A -> s(x) : C(x, x, same(x)) }
   ------------------------------------------- // eqv-computation
   eqv_ind(x, x, same(x), s) ==
@@ -658,13 +654,13 @@ same(a) : eqv_t(A, a, b)
   eqv_ind : {
     [ C : {
         x, y : A
-        p : eqv_t(A, x, y)
+        p : Equal(A, x, y)
         ------
         type } ]
     x, y : A
-    p : eqv_t(A, x, y)
+    p : Equal(A, x, y)
     s : { x : A -> C(x, x, same(x)) }
-    ------
+    --------
     C(x, y, p)
   } = {
     J(x, s, p)
@@ -673,14 +669,14 @@ same(a) : eqv_t(A, a, b)
   J : {
     [ C : {
         x, y : A
-        p : eqv_t(A, x, y)
-        ------
+        p : Equal(A, x, y)
+        --------
         type } ]
     x : A
     [ y : A ]
     s : { x : A -> C(x, x, same(x)) }
-    p : eqv_t(A, x, y)
-    ------
+    p : Equal(A, x, y)
+    --------
     C(x, y, p)
   } = {
     let same(t) = p
@@ -692,10 +688,10 @@ same(a) : eqv_t(A, a, b)
   function eqv_ind : {
     suppose C : {
       given x, y : A
-      given p : eqv_t(A, x, y)
+      given p : Equal(A, x, y)
       conclude type }
     given x, y : A
-    given p : eqv_t(A, x, y)
+    given p : Equal(A, x, y)
     given s : { given x : A conclude C(x, x, same(x)) }
     conclude C(x, y, p)
   } = {
@@ -705,12 +701,12 @@ same(a) : eqv_t(A, a, b)
   function J : {
     suppose C : {
       given x, y : A
-      given p : eqv_t(A, x, y)
+      given p : Equal(A, x, y)
       conclude type }
     given x : A
     suppose y : A
     given s : { given x : A conclude C(x, x, same(x)) }
-    given p : eqv_t(A, x, y)
+    given p : Equal(A, x, y)
     conclude C(x, y, p)
   } = {
     let same(t) = p
@@ -791,7 +787,7 @@ This means such types either has one element, or has no element.
 We are interested only in whether they are inhabited.
 
 Examples are
-- `eqv_t(A, x, y)` only has element `refl`.
+- `Equal(A, x, y)` only has element `refl`.
 - `absurd_t` has no element.
 - `A -> absurd_t` only has element `(x) => x`.
 
