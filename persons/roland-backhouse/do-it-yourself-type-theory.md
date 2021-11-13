@@ -26,7 +26,7 @@ and deriving *elimination rule* and *computation rule*
 from *formation rule* and *introduction rule*,
 thus reduce the rules to remember when study the theory.
 
-- Xie: When designing or studying a formal language,
+- **Xie**: When designing or studying a formal language,
   one has to answer three questions,
   - What are the primitives?
   - How to do composition?
@@ -57,7 +57,7 @@ thus reduce the rules to remember when study the theory.
 
 # 2 Propositions As Types
 
-- Xie: Some preliminary remarks about the notation.
+- **Xie**: Some preliminary remarks about the notation.
 
   | Expression type         | Example expression |
   |-------------------------|--------------------|
@@ -78,7 +78,7 @@ p == q : P
 P == Q
 ```
 
-- Xie: I also use the following notations for judgement,
+- **Xie**: I also use the following notations for judgement,
 
   ``` js
   P: type
@@ -147,14 +147,14 @@ example = {
 }
 ```
 
-- Xie:
+- **Xie**:
   We use the syntax of deduction `{ ... -> ... }` for both function and pi type,
   whose argument types are fully annotated (de Bruijn style typed lambda calculus).
   The last element in conclusion is return value.
 
   We call this style of syntax "cicada".
 
-- Xie:
+- **Xie**:
   The above means we can use `f = { ... }`
   to define new function from existing functions.
 
@@ -240,7 +240,7 @@ We have divided the discussion into three parts.
   - Equality type.
   - Subtype.
 
-- Xie: The classification of types is all about equational theory.
+- **Xie**: The classification of types is all about equational theory.
 
 ## 3.1 Free Type Structures
 
@@ -290,7 +290,7 @@ List : {
 }
 ```
 
-- Xie: We use
+- **Xie**: We use
 
   ``` js
   {
@@ -389,7 +389,7 @@ proof {
 }
 ```
 
-- Xie: In JoJo,
+- **Xie**: In JoJo,
 
   ``` js
   list_append : { (- A List) (- A List) A List }
@@ -400,7 +400,7 @@ proof {
   }
   ```
 
-- Xie: In cicada,
+- **Xie**: In cicada,
 
   ``` js
   list_append : {
@@ -452,7 +452,7 @@ the third judgement form in the theory -- that is, the form
 p == q : P
 ```
 
-- Xie: When analysing or implementing the computation rules,
+- **Xie**: When analysing or implementing the computation rules,
   sometimes we need to add direction to the equality judgement,
   and to view it as reduction.
 
@@ -522,7 +522,7 @@ Nat = {
 
 ### 3.1.3 Disjoint Sums
 
-- Xie: We can just say "Sum" instead of "Disjoint Sum",
+- **Xie**: We can just say "Sum" instead of "Disjoint Sum",
   and say "Sum" is "Disjoint Union".
 
 ``` js
@@ -601,7 +601,7 @@ The introduction rule of arrow type (`lambda-introduction`)
 is different from that of `List` or `Nat`,
 for the premise `{ x : A -> f(x) : B }` has a hypothesis (`x : A`).
 
-- Xie: *F-algebra* and *F-coalgebra* generalize this.
+- **Xie**: *F-algebra* and *F-coalgebra* generalize this.
   Would it be easier to describe them in jojo?
 
 ## 3.2 More on Equality and Type Judgements
@@ -618,7 +618,7 @@ b : A
 Equal(A, a, b) type
 ```
 
-- Xie: Note that `a == b : A` is a judgement of the system,
+- **Xie**: Note that `a == b : A` is a judgement of the system,
   while `Equal(A, a, b)` is a inductively defined type.
 
 ### 3.2.3 General Rules
@@ -633,7 +633,7 @@ a == b : A
 same(a) : Equal(A, a, b)
 ```
 
-- Xie: The `replace` rule,
+- **Xie**: The `replace` rule,
 
   ``` js
   { w : A -> C(w) type }
@@ -648,7 +648,7 @@ same(a) : Equal(A, a, b)
   `C` does not apply on the eliminator `replace` 's first argument `p`,
   but applies on values `x` and `y` in `p`'s type.
 
-- Xie: Another elimination rule for `Equal`,
+- **Xie**: Another elimination rule for `Equal`,
 
   ``` js
   { x : A, y : A, p : Equal(A, x, y) -> C(x, y, p) }
