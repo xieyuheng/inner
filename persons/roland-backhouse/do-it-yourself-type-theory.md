@@ -69,14 +69,20 @@ thus reduce the rules to remember when study the theory.
   | Dependent function type | `forall (P, Q[x])` |
   | Dependent product type  | `exists (P, Q[x])` |
 
-  Examples:
+Examples:
 
-  - Dependent product type
+- Dependent product type
 
-    ``` cicada
-    the([T: Type | T], [Nat | 1])
-    the([T: Type | (T) -> T], [Nat | (x) => x])
-    ```
+  ``` cicada
+  the([T: Type | T], [Nat | 1])
+  the([T: Type | (T) -> T], [Nat | (x) => x])
+  ```
+
+- Dependent function type
+
+  ``` cicada
+  the((T: Type) -> (T) -> T, (T) => (x) => x)
+  ```
 
 ## 2.1 The Membership Judgement Form
 
