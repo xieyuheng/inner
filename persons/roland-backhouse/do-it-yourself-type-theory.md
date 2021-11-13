@@ -80,7 +80,7 @@ About variable,
 
 ``` js
 A type
------------------- // assumption
+-------------------- // assumption
 { x : A -> x : A }
 ```
 
@@ -175,9 +175,9 @@ example = {
   } = #<intro>
   ```
 
-If we replace `B` by `absurd_t`,
+If we replace `B` by `Absurd`,
 we get a proof of `not not (A + not A)`,
-because `not P` is defined to be `(P) -> absurd_t` in constructive mathematics.
+because `not P` is defined to be `(P) -> Absurd` in constructive mathematics.
 
 This means although the law of the excluded middle
 is not valid in constructive mathematics,
@@ -552,10 +552,10 @@ sum_elim(inr(b), e, f) == f(b) : C(inr(b))
 
 ``` js
 ----------------- // absurd-formation
-absurd_t type
+Absurd type
 
-{ w : absurd_t -> C(w) type }
-r : absurd_t
+{ w : Absurd -> C(w) type }
+r : Absurd
 --------------------------- // absurd-elimination
 absurd_elim(r) : C(r)
 ```
@@ -733,22 +733,22 @@ which differ only in the number of occurrences of elements.
 ``` js
 A type
 ------------ // bag-formation
-bag_t(A)
+Bag(A)
 
 ------------ // bag_empty-introduction
 bag_empty(A)
 
 a : A
-s : bag_t(A)
+s : Bag(A)
 -------------------------- // bag_cons-introduction
-bag_cons(a, s) : bag_t(A)
+bag_cons(a, s) : Bag(A)
 
 a : A
 b : A
-s : bag_t(A)
+s : Bag(A)
 -------------------------- // order-congruence
 bag_cons(a, bag_cons(b, s)) ==
-bag_cons(b, bag_cons(a, s)) : bag_t(A)
+bag_cons(b, bag_cons(a, s)) : Bag(A)
 ```
 
 When defining the elimination rule,
@@ -756,13 +756,13 @@ note that a function must give equal values
 when applied to equal objects.
 
 ``` js
-{ w : bag_t(A) -> C(w) type }
+{ w : Bag(A) -> C(w) type }
 t : A
 c : C(bag_empty)
-{ a : A, s : bag_t(A), h : C(s)
+{ a : A, s : Bag(A), h : C(s)
   -------------------------------------
   d(a, s, h) : C(bag_cons(a, s)) }
-{ a : A, b : A, s : bag_t(A), h : C(s)
+{ a : A, b : A, s : Bag(A), h : C(s)
   --------------------------------------
   d(a, bag_cons(b, s), d(b, s, h)) ==
   d(b, bag_cons(a, s), d(a, s, h))
@@ -788,8 +788,8 @@ We are interested only in whether they are inhabited.
 
 Examples are
 - `Equal(A, x, y)` only has element `refl`.
-- `absurd_t` has no element.
-- `A -> absurd_t` only has element `(x) => x`.
+- `Absurd` has no element.
+- `A -> Absurd` only has element `(x) => x`.
 
 ### 3.4.2 Information Loss: The Subset Type
 
@@ -811,21 +811,21 @@ pair(a, b) : exists(A, B)
 A type
 { x : A -> B(x) type }
 ------------------------- // subset-formation
-subset_t(A, B)
+Subset(A, B)
 
 a : A
 b : B(a)
 ------------------------- // subset-introduction
-a : subset_t(A, B)
+a : Subset(A, B)
 
-{ w : subset_t(A, B) -> C(w) }
-a : subset_t(A, B)
+{ w : Subset(A, B) -> C(w) }
+a : Subset(A, B)
 { x : A, y : B(x) -> c(x) : C(x) }
 ----------------------------------- // subset-elimination
 c(a) : C(a)
 ```
 
-Since `subset_t` has no canonical constants,
+Since `Subset` has no canonical constants,
 it is unnecessary to have an elimination constant.
 Likewise, there are no computation rules.
 
@@ -837,10 +837,10 @@ This would give objects of a union type.
 a : A
 b : B(a)
 ------------------  // union-introduction
-b : union_t(A, B)
+b : Union(A, B)
 ```
 
-An object of `union_t(A, B)` is an object of some member `B(a)`
+An object of `Union(A, B)` is an object of some member `B(a)`
 of a family of types `B(x)`, indexed by `x` in `A`,
 but the information about the index has been lost.
 
@@ -864,7 +864,7 @@ The first, and more general form, we shall refer to as the intersection type con
 A type
 { x : A -> B(x) type }
 --------------------------- // intersection-formation
-intersection_t(A, B) type
+Intersection(A, B) type
 ```
 
 The polymorphic function type may be viewed as a special case of dependent function type,
@@ -877,7 +877,7 @@ whose objects are constant functions.
 
 { x : A -> b : B(x) }
 --------------------------- // intersection-introduction
-b : intersection_t(A, B)
+b : Intersection(A, B)
 ```
 
 The `intersection-introduction` rule imposes the restriction that
@@ -885,7 +885,7 @@ The `intersection-introduction` rule imposes the restriction that
 (It may, on the other hand,
 appear free in the type expression `B(x)`.)
 
-Thus `b` is an element of `intersection_t(A, B)`
+Thus `b` is an element of `Intersection(A, B)`
 if it is an element of each type in the family `B(x)`
 where `x` ranges over elements of `A`.
 
@@ -894,7 +894,7 @@ then `b` is an element of `B(a)`.
 This is expressed by the `intersection-elimination` rule.
 
 ``` js
-b : intersection_t(A, B)
+b : Intersection(A, B)
 a : A
 ------------- // intersection-elimination
 b : B(a)
@@ -903,7 +903,7 @@ b : B(a)
 The polymorphic identity function is an example.
 
 ``` js
-(x) => x : intersection_t(univ(1), (A) => (A) -> A)
+(x) => x : Intersection(univ(1), (A) => (A) -> A)
 ```
 
 TODO
