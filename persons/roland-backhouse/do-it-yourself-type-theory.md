@@ -69,6 +69,13 @@ thus reduce the rules to remember when study the theory.
   | Dependent function type | `forall (P, Q[x])` |
   | Dependent product type  | `exists (P, Q[x])` |
 
+  Examples:
+
+  ``` cicada
+  the([T: Type | T], [Nat | 1])
+  the([T: Type | T], [Nat | 1])
+  ```
+
 ## 2.1 The Membership Judgement Form
 
 ``` js
@@ -697,7 +704,7 @@ same(a) : Equal(A, a, b)
   }
   ```
 
-  ``` cicada
+  ``` js
   function eqv_ind : {
     suppose C : {
       given x, y : A
