@@ -210,35 +210,35 @@ About sum type,
 ``` js
 a : A
 ---------------- // inl-introduction
-inl(a) : A + B
+inl(a) : Either(A, B)
 
 b : B
 ---------------- // inr-introduction
-inr(b) : A + B
+inr(b) : Either(A, B)
 ```
 
 Example proof:
 
 ``` js
-example : ((A + ((A) -> B)) -> B) -> B
+example : ((Either(A, (A) -> B)) -> B) -> B
 example = (f) => f(inr((x) => f(inl(x))))
 ```
 
 Example proof, with more detailed deduction steps:
 
 ``` js
-example : { { A + { A -> B } -> B } -> B }
+example : { { Either(A, { A -> B }) -> B } -> B }
 example = {
-  f : { A + { A -> B } -> B }
+  f : { Either(A, { A -> B }) -> B }
   --------
   g : { A -> B }
   g = {
     x : A
     ------------
-    inl(x) : A + { A -> B }
+    inl(x) : Either(A, { A -> B })
     f(inl(x)) : B
   }
-  inr(g) : A + { A -> B }
+  inr(g) : Either(A, { A -> B })
   f(inr(g)) : B
 }
 ```
