@@ -4,6 +4,19 @@ authors: [Roland Backhouse, Paul Chisholm, Erik Saaman, Grant Malcolm]
 date: 1988
 ---
 
+# Abstract
+
+This paper provides a tutorial introduction to a constructive theory
+of types based on, but incorporating some extensions to, that
+originally developed by Per Martin-L6f. The emphasis is on the
+relevance of the theory to the construction of computer programs and,
+in particular, on the formal relationship between program and data
+structure. Topics discussed include the principle of propositions as
+types, free types, congruence types, types with information loss and
+mutually recursive types. Several examples of program development
+within the theand mutually recursive types. Several examples of
+program development within the theory are also discussed in detail.
+
 # 1 Introduction
 
 Let us demystify Martin-Löf's type theory.
