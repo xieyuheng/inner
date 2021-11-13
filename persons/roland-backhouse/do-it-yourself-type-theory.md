@@ -95,6 +95,20 @@ Examples:
   )
   ```
 
+- Product type:
+
+  ``` cicada
+  the(
+    (implicit { A: Type, B: Type }, Pair(A, B)) -> A,
+    (pair) => car(pair)
+  )
+
+  the(
+    (implicit { A: Type, B: Type }, Pair(A, B)) -> B,
+    (pair) => cdr(pair)
+  )
+  ```
+
 ## 2.1 The Membership Judgement Form
 
 ``` js
