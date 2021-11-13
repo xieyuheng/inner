@@ -4,6 +4,10 @@ authors: [Roland Backhouse, Paul Chisholm, Erik Saaman, Grant Malcolm]
 year: 1988
 ---
 
+# TODO
+
+- update to new cicada syntax
+
 # Abstract
 
 > This paper provides a tutorial introduction to a constructive theory
@@ -197,7 +201,7 @@ About arrow,
 
 a : A
 f : (A) -> B
--------------- // arrow-elimination
+---------------- // arrow-elimination
 f(a) : B
 ```
 
@@ -219,17 +223,18 @@ Example proof:
 example : ((A + ((A) -> B)) -> B) -> B
 example = (f) => f(inr((x) => f(inl(x))))
 ```
+
 Example proof, with more detailed deduction steps:
 
 ``` js
 example : { { A + { A -> B } -> B } -> B }
 example = {
   f : { A + { A -> B } -> B }
-  ------
+  --------
   g : { A -> B }
   g = {
     x : A
-    ---------
+    ------------
     inl(x) : A + { A -> B }
     f(inl(x)) : B
   }
@@ -242,8 +247,6 @@ example = {
   We use the syntax of deduction `{ ... -> ... }` for both function and pi type,
   whose argument types are fully annotated (de Bruijn style typed lambda calculus).
   The last element in conclusion is return value.
-
-  We call this style of syntax "cicada".
 
 - **Xie**:
   The above means we can use `f = { ... }`
