@@ -224,6 +224,21 @@ example : ((Either(A, (A) -> B)) -> B) -> B
 example = (f) => f(inr((x) => f(inl(x))))
 ```
 
+``` cicada
+example(
+  implicit { A: Type, B: Type },
+  f: (Either(A, (A) -> B)) -> B,
+): B {
+  g(x: A): B {
+    _ = is(inl(x), Either(A, (A) -> B))
+    is(f(inl(x)), B)
+  }
+
+  _ = is(inr(g), Either(A, (A) -> B))
+  is(f(inr(g)), B)
+}
+```
+
 Example proof, with more detailed deduction steps:
 
 ``` js
