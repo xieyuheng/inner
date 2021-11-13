@@ -107,6 +107,41 @@ Examples:
     (implicit { A: Type, B: Type }, Pair(A, B)) -> B,
     (pair) => cdr(pair)
   )
+
+  pair_elim(
+    implicit { A: Type, B: Type },
+    target: Pair(A, B),
+    motive: (Pair(A, B)) -> Type,
+    f: (A, B) -> motive(target),
+  ): motive(target) {
+    f(car(target), cdr(target))
+  }
+
+  fst(
+    implicit { A: Type, B: Type },
+    target: Pair(A, B),
+  ): A {
+    pair_elim(target, (_) => A, (a, b) => a)
+  }
+
+  snd(
+    implicit { A: Type, B: Type },
+    target: Pair(A, B),
+  ): B {
+    pair_elim(target, (_) => B, (a, b) => b)
+  }
+
+  same_as_chart! (implicit { A: Type, B: Type }, Pair(A, B)) -> A [
+    (pair) => car(pair),
+    (pair) => fst(pair),
+    fst,
+  ]
+
+  same_as_chart! (implicit { A: Type, B: Type }, Pair(A, B)) -> B [
+    (pair) => cdr(pair),
+    (pair) => snd(pair),
+    snd,
+  ]
   ```
 
 ## 2.1 The Membership Judgement Form
