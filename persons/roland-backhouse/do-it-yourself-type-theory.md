@@ -71,10 +71,12 @@ thus reduce the rules to remember when study the theory.
 
   Examples:
 
-  ``` cicada
-  the([T: Type | T], [Nat | 1])
-  the([T: Type | T], [Nat | 1])
-  ```
+  - Dependent product type
+
+    ``` cicada
+    the([T: Type | T], [Nat | 1])
+    the([T: Type | (T) -> T], [Nat | (x) => x])
+    ```
 
 ## 2.1 The Membership Judgement Form
 
