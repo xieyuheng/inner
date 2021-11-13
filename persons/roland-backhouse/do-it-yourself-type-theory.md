@@ -82,6 +82,17 @@ Examples:
 
   ``` cicada
   the((T: Type) -> (T) -> T, (T) => (x) => x)
+
+  the(
+    (A: Type, B: Type) -> (A) -> (B) -> A,
+    (A, B) => (x, y) => x
+  )
+
+  the(
+    (implicit { A: Type }, A,
+     implicit { B: Type }, B) -> A,
+    (x, y) => x
+  )
   ```
 
 ## 2.1 The Membership Judgement Form
