@@ -110,3 +110,19 @@ which may be read as "assuming `a0` and assuming `a1` then `p2`".
   ```
   (a0) -> (a1) -> p2
   ```
+
+Each *rule* in the pre-theory (and in the theory) consists of a set of
+*premises* and a *conclusion*, in the usual way. The application of a
+rule permits a derivation to be extended by adding a statement to the
+end of the derivation or to the end of a sub derivation provided that
+the extended derivation includes statements preceding the added
+statement that match the premises in the same way that the added
+statement matches the conclusion. An axiom is a rule that has no
+premises; thus application of an axiom permits a derivation to be
+extended at an arbitrary point.
+
+- **Xie**： A rule is function (or primitive function),
+  we can apply a function to expressions (variables) in scope
+  provided that the type matches.
+
+  An axiom is a constant value (or zero-arity function).
