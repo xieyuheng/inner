@@ -4,10 +4,6 @@ authors: [Roland Backhouse, Paul Chisholm, Erik Saaman, Grant Malcolm]
 year: 1988
 ---
 
-# TODO
-
-- update to new cicada syntax
-
 # Abstract
 
 > This paper provides a tutorial introduction to a constructive theory
@@ -192,6 +188,12 @@ A type
 { x : A -> x : A }
 ```
 
+``` cicada
+id(implicit { A: Type }, x: A): A {
+  x
+}
+```
+
 About arrow,
 
 ``` js
@@ -261,7 +263,10 @@ example = {
   ```
 
 - **Xie**:
-  We use the syntax of deduction `{ ... -> ... }` for both function and pi type,
+  The author uses the syntax `|[ ... |> ... ]|`
+  for both deduction (function) and judgement (pi type).
+
+  We may use the syntax `{ ... -> ... }` for easy of writing,
   whose argument types are fully annotated (de Bruijn style typed lambda calculus).
   The last element in conclusion is return value.
 
