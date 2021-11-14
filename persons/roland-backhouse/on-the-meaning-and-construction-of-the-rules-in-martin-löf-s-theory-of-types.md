@@ -239,11 +239,15 @@ a function mapping elements of `X` into the category of types, then
 
 - **Xie**: In dependent function type,
   the bound variable is written after the argument type,
-  - such as `Y: F(El(X), (x)Type)` which means `Y: (x: X) -> Type`,
+
+  - such as `Y: F(El(X), (x)Type)` which means `Y: (x: X) -> Type`
+
   this is because the author want to use lambda
   as the only way for introducing bound variable,
-  - remind that `(x)Type` means `(x) => Type`,
-  - thus `F(El(X), (x)Type)` can be viewed as `F(El(X), (x) => Type)`,
+
+  - remind that `(x)Type` means `(x) => Type`
+  - thus `F(El(X), (x)Type)` can be viewed as `F(El(X), (x) => Type)`
+
   in general the author can write `F(A, B)`, where `B` might be `(x) => ...`.
 
   This is actually how we represent pi type in a implementation.
