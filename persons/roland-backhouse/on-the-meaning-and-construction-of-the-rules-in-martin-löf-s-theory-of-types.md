@@ -255,7 +255,11 @@ a function mapping elements of `X` into the category of types, then
 - **Xie**: We can write the example in our language as the following:
 
   ``` cicada
-  example(X: Type, y: X, Y: (x: X) -> Type): Type {
+  example(
+    X: Type,
+    y: X,
+    Y: (x: X) -> Type,
+  ): Type {
     Y(y)
   }
 
