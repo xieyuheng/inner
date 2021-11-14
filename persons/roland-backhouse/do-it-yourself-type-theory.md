@@ -224,21 +224,6 @@ example : ((Either(A, (A) -> B)) -> B) -> B
 example = (f) => f(inr((x) => f(inl(x))))
 ```
 
-``` cicada
-example(
-  implicit { A: Type, B: Type },
-  f: (Either(A, (A) -> B)) -> B,
-): B {
-  g(x: A): B {
-    _ = is(inl(x), Either(A, (A) -> B))
-    is(f(inl(x)), B)
-  }
-
-  _ = is(inr(g), Either(A, (A) -> B))
-  is(f(inr(g)), B)
-}
-```
-
 Example proof, with more detailed deduction steps:
 
 ``` js
@@ -258,44 +243,27 @@ example = {
 }
 ```
 
+- **Xie**: Don't forget that proof is function.
+
+  ``` cicada
+  example(
+    implicit { A: Type, B: Type },
+    f: (Either(A, (A) -> B)) -> B,
+  ): B {
+    g(x: A): B {
+      _ = is(inl(x), Either(A, (A) -> B))
+      is(f(inl(x)), B)
+    }
+
+    _ = is(inr(g), Either(A, (A) -> B))
+    is(f(inr(g)), B)
+  }
+  ```
+
 - **Xie**:
   We use the syntax of deduction `{ ... -> ... }` for both function and pi type,
   whose argument types are fully annotated (de Bruijn style typed lambda calculus).
   The last element in conclusion is return value.
-
-- **Xie**:
-  The above means we can use `f = { ... }`
-  to define new function from existing functions.
-
-  In the same spirit, we may view introduction rules as primitive functions.
-
-  We can write
-
-  ``` js
-  a : A
-  ---------------- // inl-introduction
-  inl(a) : A + B
-
-  b : B
-  ---------------- // inr-introduction
-  inr(b) : A + B
-  ```
-
-  In cicada,
-
-  ``` js
-  inl : {
-    a : A
-    ---------
-    A + B
-  } = #<intro>
-
-  inr : {
-    b : B
-    ---------
-    A + B
-  } = #<intro>
-  ```
 
 If we replace `B` by `Absurd`,
 we get a proof of `not not (A + not A)`,
@@ -618,8 +586,6 @@ n : Nat
 ------------ // succ-introduction
 succ(n) : Nat
 ```
-
-In cicada,
 
 ``` js
 Nat : type
