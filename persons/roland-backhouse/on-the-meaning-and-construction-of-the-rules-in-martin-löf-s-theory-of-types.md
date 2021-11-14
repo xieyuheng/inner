@@ -268,4 +268,9 @@ a function mapping elements of `X` into the category of types, then
 
 # 2. The Rules of Type Theory
 
-TODO
+Now that we have discussed the pre-theory we may proceed to explicate
+the meaning of the rules in type theory itself. We do this by
+interpreting each rule of type theory as a judgement in the
+pre-theory. The premises of the rule become assumptions of the
+pre-theory judgement.
+
