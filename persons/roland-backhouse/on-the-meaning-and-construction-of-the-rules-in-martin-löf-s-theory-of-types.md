@@ -14,7 +14,7 @@ year: 1986
 > disciplined extensions to the theory as well as to have a deeper
 > understanding of its structure.
 
-# 1 The Pre-Theory
+# 1. The Pre-Theory
 
 - **Xie**: In this paper, the author write application of lambda expression as `((x)P)(x)`,
   which means `(x) => P` applied to `x`.
@@ -181,7 +181,43 @@ F(A, B) cat
 that map an object `x` of the category `A`
 into an object of the category `B(x)`.
 
-- **Xie**: The author uses `F` for function type, and `El(X)` instead of just `X`.
+- **Xie**: Note that, the author uses `F` for function type, and `El(X)` instead of just `X`.
+
+The final rule we need in the pre-theory is the rule of function elimination.
+
+```
+a: A
+c: F(A, B)
+------------ Function elimination
+c(a): B(a)
+```
+
+An example of a derivation using these rules is as follows.
+Comments are included to aid the readers.
+Also, the symbol "==" has been used to denote definitional equality.
+
+```
+Type cat          // Type Formation
+|[ X: Type        // Assumption
+   El(X) cat      // Element formation
+   |[ x: El(X)    // Assumption
+   |> Type cat    // Type Formation
+   ]|
+
+   F(El(X), (x)Type) cat  // Function formation
+                          // ((x)Type)(x) === Type
+
+|> |[ y: El(X)                 // Assumption
+   |> |[ Y: F(El(X), (x)Type)  // Assumption
+      |> Y(y): Type            // Function elimination
+                               // ((x)Type)(y) === Type
+      ]|
+   ]|
+]|
+```
+
+The judgement obtained from this derivation by eliding all but the
+last statement in every sub derivation is the following.
 
 ```
 |[ X: Type
@@ -193,6 +229,10 @@ into an object of the category `B(x)`.
 ]|
 ```
 
+In words, assuming `X` is a type, `y` is an element of `X` and `Y` is
+a function mapping elements of `X` into the category of types, then
+`Y` applied to `y` is a type.
+
 - **Xie**: In dependent function type,
   the bound variable is written after the argument type,
   such as `Y: F(El(X), (x)Type)` which means `Y: (x: X) -> Type`,
@@ -201,7 +241,7 @@ into an object of the category `B(x)`.
   remind that `(x)Type` means `(x) => Type`,
   thus `F(El(X), (x)Type)` can be viewed as `F(El(X), (x) => Type)`,
   in general the author can write `F(A, B)`, where `B` might be `(x) => ...`.
-  
+
   This is actually how we represent pi type in a implementation.
 
 ``` cicada
@@ -211,3 +251,7 @@ example(X: Type, y: X, Y: (x: X) -> Type): Type {
 
 example(Nat, 1, (x) => String)
 ```
+
+# 2. The Rules of Type Theory
+
+TODO
