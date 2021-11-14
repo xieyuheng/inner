@@ -244,13 +244,15 @@ a function mapping elements of `X` into the category of types, then
 
   This is actually how we represent pi type in a implementation.
 
-``` cicada
-example(X: Type, y: X, Y: (x: X) -> Type): Type {
-  Y(y)
-}
+- **Xie**: We can write the example in our language as the following:
 
-example(Nat, 1, (x) => String)
-```
+  ``` cicada
+  example(X: Type, y: X, Y: (x: X) -> Type): Type {
+    Y(y)
+  }
+
+  example(Nat, 1, (x) => String)
+  ```
 
 # 2. The Rules of Type Theory
 
