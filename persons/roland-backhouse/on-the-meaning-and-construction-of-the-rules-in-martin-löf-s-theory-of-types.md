@@ -16,7 +16,8 @@ year: 1986
 
 # 1 The Pre-Theory
 
-- **Xie**: In this paper, the author write application of lambda expression as `((x)P)(x)`.
+- **Xie**: In this paper, the author write application of lambda expression as `((x)P)(x)`,
+  which means `(x) => P` applied to `x`.
 
 The rules of the pre-theory (and of the theory) prescribe the
 formation of derivations and from derivations one may abstract
@@ -127,22 +128,81 @@ extended at an arbitrary point.
 
   An axiom is a constant value (or zero-arity function).
 
+Just those rules that we explicitly employ are given below.
+For these rules we explain their meaning in an ad hoc way.
+
+We do not, however, attempt to give any meaning to the word category:
+the reader must accept that certain expressions denote "categories".
+
+The first rule is as an axiom -- "Type" denotes a category.
+
+```
+------------ Type Formation
+Type cat
+```
+
+- **Xie**: The term "category" as it is used here, denotes universe in type theory.
+
+  In our theory where `Type: Type`, it simply denotes `Type`.
+
+  Thus the basic "Type Formation" rule in our theory is just `Type: Type`,
+  and the following `C cat` can also be written as `C: Type`.
+
+Contexts may be introduced into a derivation via the assumption rule.
+
+```
+C cat
+------------ Assumption
+|[ x: C
+|>
+]|
+```
+
+For each type A the elements of A form a category.
+
+```
+A: Type
+------------ Element formation
+El(A) cat
+```
+
+Function categories are obtained by discharging assumptions.
+
+```
+A cat
+|[ x: A
+|> B(x) cat
+]|
+------------ Function formation
+F(A, B) cat
+```
+
+`F(A, B)` is the category of functions
+that map an object `x` of the category `A`
+into an object of the category `B(x)`.
+
+- **Xie**: The author uses `F` for function type, and `El(X)` instead of just `X`.
+
 ```
 |[ X: Type
 |> |[ y: El(X)
    |> |[ Y: F(El(X), (x)Type)
-     |> Y(y): Type
-     ]|
+      |> Y(y): Type
+      ]|
    ]|
 ]|
 ```
 
-- **Xie**: Note that, in this paper,
-  the author uses `F` for function type,
-  and `El(X)` instead of just `X`.
-  and in dependent function type
+- **Xie**: In dependent function type,
   the bound variable is written after the argument type,
-  such as `Y: F(El(X), (x)Type)` which means `Y: (x: X) -> Type`.
+  such as `Y: F(El(X), (x)Type)` which means `Y: (x: X) -> Type`,
+  this is because the author want to use lambda
+  as the only way for introducing bound variable,
+  remind that `(x)Type` means `(x) => Type`,
+  thus `F(El(X), (x)Type)` can be viewed as `F(El(X), (x) => Type)`,
+  in general the author can write `F(A, B)`, where `B` might be `(x) => ...`.
+  
+  This is actually how we represent pi type in a implementation.
 
 ``` cicada
 example(X: Type, y: X, Y: (x: X) -> Type): Type {
