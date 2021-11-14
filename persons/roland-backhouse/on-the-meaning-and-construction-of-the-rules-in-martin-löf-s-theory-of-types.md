@@ -126,7 +126,7 @@ statement matches the conclusion. An axiom is a rule that has no
 premises; thus application of an axiom permits a derivation to be
 extended at an arbitrary point.
 
-- **Xie**： A rule is function (or primitive function),
+- **Xie**: A rule is function (or primitive function),
   we can apply a function to expressions (variables) in scope
   provided that the type matches.
 
