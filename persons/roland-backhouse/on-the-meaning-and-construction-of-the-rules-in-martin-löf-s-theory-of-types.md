@@ -31,7 +31,11 @@ a *primitive statement* or a *context*.
 Contexts are written as an assumption followed by a (sub-) derivation:
 
 ```
-|[ assumption, ... |> (sub-)derivation, ... ]|
+|[ assumption,
+   ...
+|> (sub-)derivation,
+   ...
+]|
 ```
 
 A *judgement* is formed from a derivation by the simple process of
