@@ -126,3 +126,28 @@ extended at an arbitrary point.
   provided that the type matches.
 
   An axiom is a constant value (or zero-arity function).
+
+```
+|[ X: Type
+|> |[ y: El(X)
+   |> |[ Y: F(El(X), (x)Type)
+     |> Y(y): Type
+     ]|
+   ]|
+]|
+```
+
+- **Xie**: Note that, in this paper,
+  the author uses `F` for function type,
+  and `El(X)` instead of just `X`.
+  and in dependent function type
+  the bound variable is written after the argument type,
+  such as `Y: F(El(X), (x)Type)` which means `Y: (x: X) -> Type`.
+
+``` cicada
+example(X: Type, y: X, Y: (x: X) -> Type): Type {
+  Y(y)
+}
+
+example(Nat, 1, (x) => String)
+```
