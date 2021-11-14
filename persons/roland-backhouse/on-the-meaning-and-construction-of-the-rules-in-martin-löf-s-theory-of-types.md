@@ -274,3 +274,14 @@ interpreting each rule of type theory as a judgement in the
 pre-theory. The premises of the rule become assumptions of the
 pre-theory judgement.
 
+This rather simple idea has far-reaching consequences. It means that
+we can decide whether the premises of a type-theory rule make sense by
+constructing a derivation in the pre-theory. We can also check that
+the conclusion of the rule obeys a certain consistency requirement
+(called internal consistency in the sequel).
+
+TODO
+
+# 3. Introducing New Types into the Theory
+
+TODO
