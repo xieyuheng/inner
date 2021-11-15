@@ -280,7 +280,73 @@ constructing a derivation in the pre-theory. We can also check that
 the conclusion of the rule obeys a certain consistency requirement
 (called internal consistency in the sequel).
 
-TODO
+Below we show the formation rule and the corresponding pre-theory
+judgement. Here the correspondence is immediate: premises become
+assumptions and `P type` is replaced by `P: Type`.
+
+type-theory rule:
+
+```
+A type
+B type
+------------
+Either(A, B)
+```
+
+pre-theory judgement:
+
+``` cicada
+either_formation(A: Type, B: Type): Type {
+  Either(A, B)
+}
+```
+
+Next the introduction rule of disjoint-sum type.
+
+type-theory rule:
+
+```
+A type
+B type
+x: A
+------------
+inl(x): Either(A, B)
+```
+
+pre-theory judgement:
+
+``` cicada
+either_inl_intro(A: Type, B: Type, x: A): Either(A, B) {
+  inl(x)
+}
+```
+
+The so called "internally consistent":
+
+``` cicada
+either_inl_internal_consistency(A: Type, B: Type, x: A): Type {
+  Either(A, B)
+}
+```
+
+Finally consider the elimination rule for disjoint sum.
+
+```
+A type
+B type
+|[ x: Either(A, B)
+|> C(x) type
+]|
+|[ y: A
+|> d(y): C(inl(y))
+]|
+|[ y: B
+|> e(y): C(inr(y))
+]|
+f: Either(A, B)
+----------------
+w(f, d, e): C(f)
+```
 
 # 3. Introducing New Types into the Theory
 
