@@ -1,3 +1,7 @@
+# implementation notes
+
+- write chinese notes about implicit arguments and inductive type -- like the note about implementation patterns
+
 # problem solving
 
 - polya: ~/inner/person/polya/mathematics-and-plausible-reasoning
