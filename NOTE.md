@@ -1,3 +1,10 @@
+# about inductive type and implicit arguments
+
+- [read] On the Meaning and Construction of the Rules in Martin-Löf's Theory of Types
+- [read] Do-it-yourself Type Theory
+- [read] AndrasKovacs/implicit-fun-elaboration
+- [others] try implicit arguments in agda and arend
+
 # I also do not have the time
 
 - [Thesis 1] Fulfilling type system
