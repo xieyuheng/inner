@@ -49,12 +49,13 @@ infer(ctx: Ctx, exp: Exp): Value
 
 "bidirectional" 一词中所说的「双向」就在于：
 - 在 check 时，type 是输入
-- 在 infer 时 type 是输出
+- 在 infer 时，type 是输出
 
-需要被 check 的 Exp 对应 intro rule，即 data constructor，
+需要被 check 的 Exp 对应 intro rule (即 data constructor)，
 需要被 infer 的 Exp 对应 elim rule。
 
-典型的 intro rule 是 Fn，典型的 elim rule 是 Ap。
+典型的 intro rule 是 Fn，
+典型的 elim rule 是 Ap。
 
 # Core
 
