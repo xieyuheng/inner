@@ -1,3 +1,9 @@
+# extending Martin Löf's Type theory
+
+- 在 Martin Löf 的基础的 Type theory 中引入新的类型有多种方式，
+  inductive datatype 只是其中一种，higher inductive datatype 可能是另一种，
+  那么一般的引入心类型的形式是什么呢？
+
 # implementation notes
 
 - write chinese notes about implicit arguments and inductive type -- like the note about implementation patterns
