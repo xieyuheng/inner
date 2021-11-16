@@ -17,10 +17,10 @@ keywords: [cicada, implicit arguments]
 我想，是因为在 Polya 所提出的解决问题的四个阶段中，
 我们缺少了 look back 这个阶段。
 
-(1) understand
-(2) plan
-(3) carry out
-(4) look back
+- (1) understand
+- (2) plan
+- (3) carry out
+- (4) look back
 
 look back 在于，产正了某个解决方案之后，
 将这个解决方案抽象出来，
