@@ -1,3 +1,10 @@
+# anti-conditional-programming.md
+
+和 Sandi Metz 学到了 anti-conditional programming。
+
+每当在非 object creation 相关的代码中使用了 conditional，
+都审问自己，为什么这样做，给出让自己安心的理由。
+
 # extending Martin Löf's Type theory
 
 - 在 Martin Löf 的基础的 Type theory 中引入新的类型有多种方式，
