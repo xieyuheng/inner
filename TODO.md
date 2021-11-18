@@ -2,6 +2,12 @@
 
 也许动态类型语言可以使得我们这样做
 
+- 更认真地学习 laravel & php 和 ruby & rails
+- 用中文的童谣来讲解 OOP
+  - https://en.wikipedia.org/wiki/99_Bottles_of_Beer
+    - Knuth, Donald. "The Complexity of Songs"
+- 制作类似 https://exercism.org/ 的网站来让大家对比同一个习题的不同解法
+
 # anti-conditional-programming.md
 
 和 Sandi Metz 学到了 anti-conditional programming。
