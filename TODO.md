@@ -11,6 +11,10 @@
   inductive datatype 只是其中一种，higher inductive datatype 可能是另一种，
   那么一般的引入心类型的形式是什么呢？
 
+- structural typing 和简单的 key value top level 可以简化理论
+  - 也许可以参考 theory of object，
+    还有历史上其他关于 structural typing 的论文
+
 # implementation notes
 
 - write chinese notes about implicit arguments and inductive type -- like the note about implementation patterns
