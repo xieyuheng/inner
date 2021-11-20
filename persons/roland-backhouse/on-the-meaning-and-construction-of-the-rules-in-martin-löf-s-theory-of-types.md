@@ -255,7 +255,7 @@ a function mapping elements of `X` into the category of types, then
 - **Xie**: We can write the example in our language as the following:
 
   ``` cicada
-  example(
+  function example(
     X: Type,
     y: X,
     Y: (x: X) -> Type,
@@ -296,7 +296,7 @@ Either(A, B)
 pre-theory judgement:
 
 ``` cicada
-either_formation(A: Type, B: Type): Type {
+function either_formation(A: Type, B: Type): Type {
   return Either(A, B)
 }
 ```
@@ -316,7 +316,7 @@ inl(x): Either(A, B)
 pre-theory judgement:
 
 ``` cicada
-either_inl_intro(A: Type, B: Type, x: A): Either(A, B) {
+function either_inl_intro(A: Type, B: Type, x: A): Either(A, B) {
   return inl(x)
 }
 ```
@@ -324,7 +324,7 @@ either_inl_intro(A: Type, B: Type, x: A): Either(A, B) {
 The so called "internally consistent":
 
 ``` cicada
-either_inl_internal_consistency(A: Type, B: Type, x: A): Type {
+function either_inl_internal_consistency(A: Type, B: Type, x: A): Type {
   return Either(A, B)
 }
 ```

@@ -108,7 +108,7 @@ Examples:
     (pair) => cdr(pair)
   )
 
-  pair_elim(
+  function pair_elim(
     implicit A: Type,
     implicit B: Type,
     target: Pair(A, B),
@@ -118,7 +118,7 @@ Examples:
     return f(car(target), cdr(target))
   }
 
-  fst(
+  function fst(
     implicit A: Type,
     implicit B: Type,
     target: Pair(A, B),
@@ -126,7 +126,7 @@ Examples:
     return pair_elim(target, (_) => A, (a, b) => a)
   }
 
-  snd(
+  function snd(
     implicit A: Type,
     implicit B: Type,
     target: Pair(A, B),
@@ -150,7 +150,7 @@ Examples:
 - Sum type:
 
   ``` cicada
-  either_swap(
+  function either_swap(
     implicit A: Type,
     implicit B: Type,
     target: Either(A, B),
@@ -193,7 +193,7 @@ A type
 ```
 
 ``` cicada
-id(implicit A: Type, x: A): A {
+function id(implicit A: Type, x: A): A {
   return x
 }
 ```
@@ -252,17 +252,17 @@ example = {
 - **Xie**: Don't forget that proof is function.
 
   ``` cicada
-  example(
+  function example(
     implicit A: Type,
     implicit B: Type,
     f: (Either(A, (A) -> B)) -> B,
   ): B {
-    g(x: A): B {
-      _ = is(inl(x), Either(A, (A) -> B))
+    function g(x: A): B {
+      let _ = is(inl(x), Either(A, (A) -> B))
       return is(f(inl(x)), B)
     }
 
-    _ = is(inr(g), Either(A, (A) -> B))
+    let _ = is(inr(g), Either(A, (A) -> B))
     return is(f(inr(g)), B)
   }
   ```
