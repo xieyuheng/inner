@@ -259,11 +259,15 @@ example = {
   ): B {
     function g(x: A): B {
       let _ = is(inl(x), Either(A, (A) -> B))
-      return is(f(inl(x)), B)
+      // check inl(x): Either(A, (A) -> B)
+      // check f(inl(x)): B
+      return f(inl(x))
     }
 
     let _ = is(inr(g), Either(A, (A) -> B))
-    return is(f(inr(g)), B)
+    // check inr(g): Either(A, (A) -> B)
+    // check f(inr(g)): B
+    return f(inr(g))
   }
   ```
 
