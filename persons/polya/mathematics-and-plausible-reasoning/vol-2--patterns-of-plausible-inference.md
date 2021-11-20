@@ -18,14 +18,15 @@ The study of patterns of plausible reasoning is done in the manner of the natura
 Take one of Euler's conjecture, and Euler's verification of it, as an example.
 
 ``` cicada
-euler_s_conjecture(n: Nat): (
-  x: Nat, p: Nat, Prime(p)
-) * Equal(
-  Nat,
-  add(mul(8, n), 3),
-  add(mul(x, x), add(p, p))
-) {
-  TODO("euler_s_conjecture")
+euler_s_conjecture(n: Nat): [
+  x: Nat, p: Nat, Prime(p) |
+  Equal(
+    Nat,
+    add(mul(8, n), 3),
+    add(mul(x, x), add(p, p))
+  )
+] {
+  return @TODO("euler_s_conjecture")
 }
 ```
 

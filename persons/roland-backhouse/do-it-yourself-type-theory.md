@@ -115,7 +115,7 @@ Examples:
     motive: (Pair(A, B)) -> Type,
     f: (A, B) -> motive(target),
   ): motive(target) {
-    f(car(target), cdr(target))
+    return f(car(target), cdr(target))
   }
 
   fst(
@@ -123,7 +123,7 @@ Examples:
     implicit B: Type,
     target: Pair(A, B),
   ): A {
-    pair_elim(target, (_) => A, (a, b) => a)
+    return pair_elim(target, (_) => A, (a, b) => a)
   }
 
   snd(
@@ -131,7 +131,7 @@ Examples:
     implicit B: Type,
     target: Pair(A, B),
   ): B {
-    pair_elim(target, (_) => B, (a, b) => b)
+    return pair_elim(target, (_) => B, (a, b) => b)
   }
 
   same_as_chart! (implicit A: Type, implicit B: Type, Pair(A, B)) -> A [
@@ -155,7 +155,7 @@ Examples:
     implicit B: Type,
     target: Either(A, B),
   ): Either(B, A) {
-    either_ind(
+    return either_ind(
       target,
       (_) => Either(B, A),
       (left) => inr(left),
@@ -194,7 +194,7 @@ A type
 
 ``` cicada
 id(implicit A: Type, x: A): A {
-  x
+  return x
 }
 ```
 
@@ -259,11 +259,11 @@ example = {
   ): B {
     g(x: A): B {
       _ = is(inl(x), Either(A, (A) -> B))
-      is(f(inl(x)), B)
+      return is(f(inl(x)), B)
     }
 
     _ = is(inr(g), Either(A, (A) -> B))
-    is(f(inr(g)), B)
+    return is(f(inr(g)), B)
   }
   ```
 

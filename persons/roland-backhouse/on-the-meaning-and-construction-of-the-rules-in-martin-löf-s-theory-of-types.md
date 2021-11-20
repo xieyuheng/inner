@@ -260,7 +260,7 @@ a function mapping elements of `X` into the category of types, then
     y: X,
     Y: (x: X) -> Type,
   ): Type {
-    Y(y)
+    return Y(y)
   }
 
   example(Nat, 1, (x) => String)
@@ -297,7 +297,7 @@ pre-theory judgement:
 
 ``` cicada
 either_formation(A: Type, B: Type): Type {
-  Either(A, B)
+  return Either(A, B)
 }
 ```
 
@@ -317,7 +317,7 @@ pre-theory judgement:
 
 ``` cicada
 either_inl_intro(A: Type, B: Type, x: A): Either(A, B) {
-  inl(x)
+  return inl(x)
 }
 ```
 
@@ -325,7 +325,7 @@ The so called "internally consistent":
 
 ``` cicada
 either_inl_internal_consistency(A: Type, B: Type, x: A): Type {
-  Either(A, B)
+  return Either(A, B)
 }
 ```
 
