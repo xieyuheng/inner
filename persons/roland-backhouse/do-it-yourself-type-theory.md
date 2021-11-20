@@ -89,8 +89,8 @@ Examples:
   )
 
   the(
-    (implicit { A: Type }, A,
-     implicit { B: Type }, B) -> A,
+    (implicit A: Type, A,
+     implicit B: Type, B) -> A,
     (x, y) => x
   )
   ```
@@ -99,17 +99,18 @@ Examples:
 
   ``` cicada
   the(
-    (implicit { A: Type, B: Type }, Pair(A, B)) -> A,
+    (implicit A: Type, implicit B: Type, Pair(A, B)) -> A,
     (pair) => car(pair)
   )
 
   the(
-    (implicit { A: Type, B: Type }, Pair(A, B)) -> B,
+    (implicit A: Type, implicit B: Type, Pair(A, B)) -> B,
     (pair) => cdr(pair)
   )
 
   pair_elim(
-    implicit { A: Type, B: Type },
+    implicit A: Type,
+    implicit B: Type,
     target: Pair(A, B),
     motive: (Pair(A, B)) -> Type,
     f: (A, B) -> motive(target),
@@ -118,26 +119,28 @@ Examples:
   }
 
   fst(
-    implicit { A: Type, B: Type },
+    implicit A: Type,
+    implicit B: Type,
     target: Pair(A, B),
   ): A {
     pair_elim(target, (_) => A, (a, b) => a)
   }
 
   snd(
-    implicit { A: Type, B: Type },
+    implicit A: Type,
+    implicit B: Type,
     target: Pair(A, B),
   ): B {
     pair_elim(target, (_) => B, (a, b) => b)
   }
 
-  same_as_chart! (implicit { A: Type, B: Type }, Pair(A, B)) -> A [
+  same_as_chart! (implicit A: Type, implicit B: Type, Pair(A, B)) -> A [
     (pair) => car(pair),
     (pair) => fst(pair),
     fst,
   ]
 
-  same_as_chart! (implicit { A: Type, B: Type }, Pair(A, B)) -> B [
+  same_as_chart! (implicit A: Type, implicit B: Type, Pair(A, B)) -> B [
     (pair) => cdr(pair),
     (pair) => snd(pair),
     snd,
@@ -148,7 +151,8 @@ Examples:
 
   ``` cicada
   either_swap(
-    implicit { A: Type, B: Type },
+    implicit A: Type,
+    implicit B: Type,
     target: Either(A, B),
   ): Either(B, A) {
     either_ind(
@@ -189,7 +193,7 @@ A type
 ```
 
 ``` cicada
-id(implicit { A: Type }, x: A): A {
+id(implicit A: Type, x: A): A {
   x
 }
 ```
@@ -249,7 +253,8 @@ example = {
 
   ``` cicada
   example(
-    implicit { A: Type, B: Type },
+    implicit A: Type,
+    implicit B: Type,
     f: (Either(A, (A) -> B)) -> B,
   ): B {
     g(x: A): B {
