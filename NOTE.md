@@ -1,3 +1,7 @@
+# about data construction, function application and class telescope
+
+telescope is handle by `env` instead of `ctx`
+
 # understanding-existing-code.md
 
 to understanding existing code, to read big code base,
