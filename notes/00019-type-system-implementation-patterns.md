@@ -27,7 +27,7 @@ keywords: [cicada]
 
 这样做好处是，每当需要增加一个新的 Exp 子类型时，不需要修改涉及到其他 Exp 的函数。
 
-- 这是 OOP 中的 [open-closed principle]。
+- 这是 OOP 中的 [open-closed principle][]。
 
 [open-closed principle]: https://en.wikipedia.org/wiki/Open-closed_principle
 
