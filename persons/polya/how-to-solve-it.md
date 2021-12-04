@@ -10,7 +10,7 @@ date: 1945
 
 First. You have to understand the problem.
 
-Unknown, date and condition:
+Unknown, data and condition:
 
 - What is the unknown?
 - What are the data?
