@@ -1,5 +1,5 @@
 ---
 title: Induction and Analogy in Mathematics
 author: Polya
-date: 1954
+year: 1954
 ---

@@ -1,7 +1,7 @@
 ---
 title: How to Solve it
 author: Polya
-date: 1945
+year: 1945
 ---
 
 # Our list

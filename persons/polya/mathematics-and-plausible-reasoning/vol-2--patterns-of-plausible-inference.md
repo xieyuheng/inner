@@ -1,7 +1,7 @@
 ---
 title: Patterns of Plausible Inference
 author: Polya
-date: 1954
+year: 1954
 ---
 
 # Preface
