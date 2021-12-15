@@ -44,6 +44,15 @@ I understand the essence of agile is all about feedback loop.
 
 ## Experience
 
+### XMind, Shenzhen, 2021-12 - 2021-12 (two weeks)
+
+Finished a product prototype, which extends Markdown List Item to write [mind maps](https://en.wikipedia.org/wiki/Mind_map).
+The demo web app can load Markdown files from GitHub,
+and render beautiful Markdown pages with mind maps.
+
+- Using [Postmark](https://github.com/xieyuheng/postmark).
+  - A framework for building markdown extensions.
+
 ### Forchange, Shenzhen, 2019-12 - 2021-11
 
 - Contribution:
