@@ -36,6 +36,14 @@
 
 ## 工作经历
 
+### XMind，深圳，2021-12 - 2021-12 (两周)
+
+完成了一个产品原型，可以以简洁优雅的语法，将思维导图作为 List Item 的扩展，编写在 Markdown 中。
+在 Demo Web App 中填写 Markdown 文件在 GitHub 的地址，
+就可以拉取内容并且渲染成美丽的带有思维导图的页面，其中的思维导图带有丰富的交互。
+
+- 用到了 Markdown 扩展框架：[Postmark](https://github.com/xieyuheng/postmark)
+
 ### 风变科技，深圳，2019-12 - 2021-11
 
 - 设计交互式课程创作平台[「课灵小馆」](https://cleword.cn)，使其成为了公司新的主打产品。
