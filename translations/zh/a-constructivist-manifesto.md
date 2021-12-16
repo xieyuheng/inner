@@ -478,7 +478,6 @@ newline: preserve
 
 # 構造 / The constructivization of mathematics
 
-
 - 一個集合定義於
   描述如何構造其元素
   描述如何判斷二元素相等
