@@ -318,7 +318,7 @@ newline: preserve
   來看一看取 n = 3 時的情況
   設 N = m(3)
   1. n(j) <= b(3) + 1/3
-     for all positive integers j
+     對於所有 j
   2. n(N) >= b(3) - 1/3
 
   而 n(N) = 0 或 1
