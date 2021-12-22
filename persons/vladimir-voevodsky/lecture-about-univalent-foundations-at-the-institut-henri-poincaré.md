@@ -172,9 +172,9 @@ using other proof assistant architectures.
 What does one need to have in a type-theoretic proof system
 in order to express the main ideas of Univalent Foundations in it?
 
-- 1. A universe U.
-- 2. Dependent products.
-- 3. Dependent sums.
+1. A universe U.
+2. Dependent products.
+3. Dependent sums.
 
 ------
 
