@@ -533,8 +533,6 @@ just like musical instrument,
 you can use it to practise,
 in the circumstance where you do not have a teacher.
 
-------
-
 **Questioner** asked about how to improve "mathematical sense".
 
 **Voevodsky**: By doing a lots and lots and lots detailed proofs and computations,
