@@ -10,16 +10,15 @@ Type theory is developed as an alternative to logic and set theory.
 Type theory is some kind of combination of logic and set theory.
 
 Set theory uses logical symbols
-like `not`, `and`, `or`, `->`,
-and `exists`, `forall`.
+
+- like `not`, `and`, `or`, `->`,
+- and `exists`, `forall`.
 
 And in ZFC, we have only two predicate symbols,
 one for membership `x in y`,
 and one for equivalent `x == y`.
 
 In set theory, a so called set is actually a tree.
-
-- Xie: This remembers me of the structure of [surreal number](https://en.wikipedia.org/wiki/Surreal_number).
 
 Axioms of set theory,
 
@@ -81,8 +80,8 @@ Computer scientists need to work with formalization of mathematical theories,
 but obviously it is impossible to work with this kind of formalization,
 so they invented something called type theory.
 
-In logic elementary pieces are sentences,
-in type theory elementary pieces are sequents.
+In logic, elementary pieces are sentences,
+in type, theory elementary pieces are sequents.
 
 ``` js
 x1 : T1, x2 : T2, ..., xn : Tn |- r : R
