@@ -256,4 +256,4 @@ will give me a mechanical way to verify which of the assumptions have been used.
 
 **Voevodsky**: I do not believe in the consistency of Peano arithmetic.
 I think it is plain inconsistent. But I am using it all the time.
-The important thing is that we do not restrict ourself necessaryly.
+The important thing is that we do not restrict ourselves, [its] unnecessary.
