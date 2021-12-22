@@ -1,8 +1,9 @@
-# What is Constructive Mathematics and Why it is Important
-
-- Place: the Global Young Scientists Summit (GYSS)
-- Date: 2017
-- Video: https://www.youtube.com/watch?v=ZVOo7T3GJmI
+---
+title: What is Constructive Mathematics and Why it is Important
+date: 2017
+place: the Global Young Scientists Summit (GYSS)
+video: https://www.youtube.com/watch?v=ZVOo7T3GJmI
+---
 
 ------
 
