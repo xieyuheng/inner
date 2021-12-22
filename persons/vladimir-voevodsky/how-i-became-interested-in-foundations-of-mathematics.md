@@ -231,8 +231,10 @@ we need to do something about the paper
 and to tell Carlos Simpson that his preprint from 2003 is correct.
 
 An interesting feature of this story is that
-Carlos Simpson did point out where in the proof, which was about 10 pages long, the mistake was.
-He only showed that it can not be correct by building a counter-example to the final statement.
+Carlos Simpson did not point out where in the proof,
+which was about 10 pages long, the mistake was.
+He only showed that it can not be correct
+by building a counter-example to the final statement.
 
 It took me several weeks to find which particular lemma in the paper is incorrect
 and to find counterexamples to that lemma.
