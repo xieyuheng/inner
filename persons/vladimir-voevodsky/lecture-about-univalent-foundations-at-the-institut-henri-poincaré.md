@@ -63,8 +63,9 @@ due to the reversal of an idea of Grothendieck:
 
 > ... the intuition appeared that infinity-groupoids should constitute
 > particularly adequate models for homotopy types,
-> the n-groupoids corresponding to truncated homotopy types
+> the n-groupoids corresponding to truncated homotopy types\
 > (with `pi(i) = 0` for `i > n`).
+>
 > -- Esquisse d'un Programme 1984
 
 - The program that Grothendieck proposed is not found,
