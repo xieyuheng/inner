@@ -5,8 +5,6 @@ place: Institut Henri Poincaré
 video: https://www.youtube.com/watch?v=CJugQ8AGCUo
 ---
 
-------
-
 First, let me state the following over simplified, but, I believe,
 important for the understanding thesis:
 

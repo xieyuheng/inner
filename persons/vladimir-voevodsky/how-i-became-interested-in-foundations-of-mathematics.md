@@ -1,10 +1,9 @@
-# How I became interested in foundations of mathematics
-
-- Place: the 9th Asian Science Camp, Thailand
-- Date: 2015
-- Video: https://www.youtube.com/watch?v=55yZE3IoAy8
-
-------
+---
+title: How I became interested in foundations of mathematics
+year: 2015
+place: the 9th Asian Science Camp, Thailand
+video: https://www.youtube.com/watch?v=55yZE3IoAy8
+---
 
 - When I was studying in Moscow University,
   foundations of mathematics is a subject is extremely unfashionable.
