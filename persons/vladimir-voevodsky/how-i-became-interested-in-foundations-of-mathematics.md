@@ -333,7 +333,7 @@ an amazing paper by Gottlob Frege from 1879 which is called
 
 Today it is studied mainly in Computer Science "Theory B".
 
-BTW -- it is "Theory B"
+By the way, it is "Theory B"
 not because it is less important than "Theory A"
 but because of a Handbook of Theoretical Computer Science
 which was published in two volumes "A" and "B"
