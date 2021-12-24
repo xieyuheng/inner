@@ -2,7 +2,7 @@
 title: Computer Science and Homotopy Theory
 author: Vladimir Voevodsky
 year: 2011
-place: Institute for Advanced Study
+venue: Institute for Advanced Study
 video: https://www.youtube.com/watch?v=UvDeVqzcw4k
 ---
 

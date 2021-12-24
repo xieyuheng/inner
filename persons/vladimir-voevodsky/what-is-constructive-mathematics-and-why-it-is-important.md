@@ -2,7 +2,7 @@
 title: What is Constructive Mathematics and Why it is Important
 author: Vladimir Voevodsky
 year: 2017
-place: the Global Young Scientists Summit (GYSS)
+venue: The Global Young Scientists Summit (GYSS)
 video: https://www.youtube.com/watch?v=ZVOo7T3GJmI
 ---
 

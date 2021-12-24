@@ -2,7 +2,7 @@
 title: How I became interested in foundations of mathematics
 author: Vladimir Voevodsky
 year: 2015
-place: the 9th Asian Science Camp, Thailand
+venue: The 9th Asian Science Camp, Thailand
 video: https://www.youtube.com/watch?v=55yZE3IoAy8
 ---
 
