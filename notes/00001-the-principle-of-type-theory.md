@@ -19,9 +19,11 @@ In logic, we do *not* write terms, we only write types
 # After type theory
 
 In programming, we can interpret a type as a collection of values that terms might evaluate to.
+
 Here, we care about **evaluation**.
 
 In logic, we can interpret a term as a recording of steps of applications of inference rules (i.e. proof).
+
 Here, we care about **inferencing** or **deduction**.
 
 - Before type theory, logic does not have terms.
@@ -33,6 +35,10 @@ Here, we care about **inferencing** or **deduction**.
     If we do not have named clause, we can use order of clauses and index,
     but the resulting proof might be hard to understand.
 
-  In Prolog, we only care about searching for what can be inferenced,
-  but do not care about writing down how a conclusion is inferenced,
+  In Prolog, we only care about searching for propositions that can be inferenced,
+  but do not care about writing down how a proposition is inferenced,
   and let the machine check our proof.
+
+# After thoughts
+
+Remember the principle, but do not be limited by one or two specifics.
