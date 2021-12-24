@@ -41,4 +41,4 @@ Here, we care about **inferencing** or **deduction**.
 
 # After thoughts
 
-Remember the principle, but do not be limited by one or two specifics.
+Remember the principle, but do not be limited by a specific implementation.
