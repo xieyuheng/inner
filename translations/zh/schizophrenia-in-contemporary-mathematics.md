@@ -1,5 +1,6 @@
 ---
-title: 當代數學之精神分裂症 / Schizophrenia in Contemporary Mathematics
+title: 當代數學之精神分裂症
+subtitle: Schizophrenia in Contemporary Mathematics
 author: Errett Bishop
 translator: Xie Yuheng
 newline: preserve

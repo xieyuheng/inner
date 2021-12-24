@@ -1,5 +1,6 @@
 ---
-title: 我是如何开始对数学基础感兴趣的 / How I became interested in foundations of mathematics
+title: 我是如何开始对数学基础感兴趣的
+subtitle: How I became interested in foundations of mathematics
 author: Vladimir Voevodsky
 translator: Xie Yuheng
 year: 2015

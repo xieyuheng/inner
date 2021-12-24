@@ -1,5 +1,6 @@
 ---
-title: 你是無政府主義者嗎 / Are you an anarchist
+title: 你是無政府主義者嗎
+subtitle: Are you an anarchist
 author: David Graeber
 translator: Xie Yuheng
 newline: preserve

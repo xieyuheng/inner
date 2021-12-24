@@ -1,5 +1,6 @@
 ---
-title: 上帝是道家的嗎 / Is God A Taoist
+title: 上帝是道家的嗎
+subtitle: Is God A Taoist
 author: Raymond Smullyan
 translator: Xie Yuheng
 newline: preserve
