@@ -2,7 +2,7 @@
 title: 一個構造主義者的宣言
 subtitle: A Constructivist Manifesto
 author: Errett Bishop
-translator: Xie Yuheng
+translator: 谢宇恒
 newline: preserve
 ---
 
