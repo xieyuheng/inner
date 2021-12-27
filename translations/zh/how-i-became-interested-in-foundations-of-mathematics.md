@@ -96,7 +96,7 @@ video: https://www.youtube.com/watch?v=55yZE3IoAy8
 1995 年，我开始着手「把证明写下来」。
 1995 年六月的时候，我完成了第一个预印本。
 
-- 注释：「预印本 / Preprint」是数学论文发表之前，分发给同事和朋友看的版本。
+- 译者注：「预印本 / Preprint」是数学论文发表之前，分发给同事和朋友看的版本。
 
 但是，对我的 Milnor 猜想证明而言，这只是故事的开始。
 
@@ -136,18 +136,17 @@ video: https://www.youtube.com/watch?v=55yZE3IoAy8
 
 ------
 
-In 1987, I was introduced to Mikhail Kapranov.
-I was an undergrad at Moscow University and he was a graduate student.
+1987 我认识了 Mikhail Kapranov。
+我那时是莫斯科大学的本科生，他是研究生。
 
-We immediately discovered that we are both dreaming of
-developing new "higher dimensional" mathematics
-inspired by the concepts of higher category theory.
+我们马上就发现，我们都梦想着发展一种新的，
+受高阶范畴论启发的「高维」数学。
 
-We started to work together.
-It was great fun.
-Doing mathematics with someone from whom you can learn,
-while discovering together things which are new both for you and for the world
-is an amazing and powerful experience.
+我们开始一起工作。
+那真是很有趣的很。
+和你可以向他学习的人一起做数学，
+同时又一起发现着，对你、对他、对整个世界来说，都是新的事物，
+真是美妙而强有力的的经历。
 
 ------
 
