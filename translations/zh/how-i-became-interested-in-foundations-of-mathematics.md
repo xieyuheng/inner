@@ -278,11 +278,11 @@ Kapranov 和我找到了我们所关心的问题的解答，即，一个定理�
 
 如果问题是解一个方程，
 而我们找到了一个解，
-在发表结果之前，我们首先应该检验它确实是方程的解，对吗？
+在发表结果之前，我们首先应该检查它确实是方程的解，对吗？
 
-并且，如果这个方程很复杂，我们可能会用电脑来做检验。
+并且，如果这个方程很复杂，我们可能会用电脑来做检查。
 
-那么，为什么当解是一个定理的某个证明的时候，我们就不能检验了呢？
+那么，为什么当解是一个定理的某个证明的时候，我们就不能检查了呢？
 
 ------
 
@@ -296,50 +296,47 @@ Kapranov 和我找到了我们所关心的问题的解答，即，一个定理�
 
 ------
 
-A solution to an equation would probably be a number or a collection of numbers.
+一个方程的解可能是一个数，或一组数。
 
-Verification in this case would consist in performing some computations with these numbers
-and comparing the result of these computations with some other numbers.
+检查，在此时就是对这些数进行一些运算，
+然后将计算结果与另外一些数所比较。
 
-But what should we do when the solution is a proof of a statement?
-
-------
-
-A hint can be seen from looking at the case
-when the problem was to solve an equation in symbolic form.
-For example, to find a formula for solving
-a general equation of the form `x^3 + a*x + b = 0`.
-
-How would we check the solution in this case?
-We would probably use some software for symbolic computation
-which can compute not only with numbers
-but also with expressions which have variables in them.
-
-So in order to check a solution which is a proof of a statement
-we need to write both the statement and the proof as some kind of symbolic expressions
-let's say `T` for the statement, and `A` for the proof,
-and then use some software which can compute with these
-expressions in such a way as to check that `A` is indeed a proof of `T`.
+但是，当解是一个命题的证明时，我们应该怎么做验证呢？
 
 ------
 
-Encoding of statements and proofs
-which exist in our thoughts
-into symbolic expressions
-is called **formalization**.
+还是解方程，当时要求符号形式的解，我们可以从这个问题上找到启发。
 
-Formalization is, just like programming, first of all a tool
-that we can use to pass on to computers
-some of the mental tasks which we need to perform.
+比如，寻找求解方程 `x^3 + a*x + b = 0` 的一般公式。
 
-But at the moment it is much less developed than programming
-and when I started to search, in 2003, for a formalization system
-that I could use to help me check my proofs I could not find any.
+这时如何检查解呢？
+我们可能会用某些可以进行符号计算的软件，
+它们不只是能对数进行进行计算，
+也可以对带有变元的表达式进行计算。
 
-I decided that I need to create such a system.
+- 译者注：「表达式 / Symbolic expression」或简称 "Expression"，是程序员所熟知的概念了。
 
-The first question to answer was
-what was it that prevented the creation of such a system earlier?
+所以，为了检查一个命题的证明，
+我们需要把命题和证明都写成表达式，
+设 `T` 为命题，`A` 为证明，
+然后用某些软件，这些软件可以对这些表达式进行运算，
+而这些计算就是检查 `A` 确实是 `T` 的证明。
+
+------
+
+将存在于我们思维中的命题与证明编码为表达式，
+这个过程就叫做 「形式化 / Formalization」。
+
+形式化，就像编程，首先是一种工具,
+凭借这种工具，我们可以将我们需要做的脑力劳动交给电脑去做。
+
+但是，如今形式化的发展还远远不如编程，
+在 2003 年，当我开始寻找可以帮我检查我的证明的形式化系统时，
+我甚至一个都找不到。
+
+我决定我要自己创造这样一个系统。
+
+此时首先要回答的问题是，什么阻碍了前人创造这样的系统？
 
 ------
 
