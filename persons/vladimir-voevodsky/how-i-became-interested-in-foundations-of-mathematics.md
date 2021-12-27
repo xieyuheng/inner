@@ -247,6 +247,7 @@ It took me several weeks to find which particular lemma in the paper is incorrec
 and to find counterexamples to that lemma.
 
 There no ending to this story yet.
+
 The question that we originally wanted to answer
 -- how to find an algebraic definition of infinity groupoids
 that would satisfy the Grothendieck correspondence,
@@ -254,6 +255,7 @@ remains open...
 
 ------
 Now let us look at this story again.
+
 Kapranov and I have found a solution to the problem which we worked on
 -- the proof of the theorem.
 

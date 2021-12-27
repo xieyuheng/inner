@@ -254,27 +254,24 @@ Kapranov 和我认为，我们知道定义是什么，
 
 ------
 
-When I recognized that the theorem of the paper is false
-I contacted Kapranov to tell him that
-we need to do something about the paper
-and to tell Carlos Simpson that his preprint from 2003 is correct.
+当我意识到论文中的定理是错误的时，
+我联系了 Kapranov，告诉他我们应该对论文做点儿什么，
+并且我告诉了 Carlos Simpson，他 2003 年的预印本是正确的。
 
-An interesting feature of this story is that
-Carlos Simpson did not point out where in the proof,
-which was about 10 pages long, the mistake was.
-He only showed that it can not be correct
-by building a counter-example to the final statement.
+这个故事中有趣的一点是，
+Carlos Simpson 没有指出我们长达 10 页的论文中哪里错了。
+他只是针对最终结论构造了反例，证明了它不可能是对的。
 
-It took me several weeks to find which particular lemma in the paper is incorrect
-and to find counterexamples to that lemma.
+我花了几周的时间才找到论文中哪条引理是错的，
+并且找到了那条引理的一个反例。
 
-There no ending to this story yet.
-The question that we originally wanted to answer
--- how to find an algebraic definition of infinity groupoids
-that would satisfy the Grothendieck correspondence,
-remains open...
+这故事还没有结束。
+
+我们起初想要解答的问题，即「如何定义 无穷阶广群，使得 格罗滕迪克一致性 成立。」
+仍然是选而未决的问题……
 
 ------
+
 Now let us look at this story again.
 Kapranov and I have found a solution to the problem which we worked on
 -- the proof of the theorem.
