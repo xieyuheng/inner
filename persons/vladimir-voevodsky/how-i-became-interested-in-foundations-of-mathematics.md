@@ -394,14 +394,14 @@ between its components and objects and actions in the world of mathematical thou
 which can be used to formalize all subject areas of mathematics
 is called a foundational system for mathematics or "Foundations of Mathematics".
 
-- Of course this is not how "Foundations of Mathematics" is formulated
-  back when I was in Moscow University.
-  It was formulated very differently,
-  if it was formulated like this,
-  I will think it would be very very cool,
-  but it was not.
+Of course this is not how "Foundations of Mathematics" is formulated
+back when I was in Moscow University.
+It was formulated very differently,
+if it was formulated like this,
+I will think it would be very very cool,
+but it was not.
 
-  And this is how we look at it now.
+And this is how we look at it now.
 
 ------
 

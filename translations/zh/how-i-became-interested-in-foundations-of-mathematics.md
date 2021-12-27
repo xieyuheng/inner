@@ -379,27 +379,25 @@ Kapranov 和我找到了我们所关心的问题的解答，即，一个定理�
 
 ------
 
-Constructing such systems and correspondences between their formal components
-and objects and actions in the world of our mathematical thoughts
-is the main task of the field which is called Foundations of Mathematics.
+构造这样的系统，并且将它的形式组件，
+与我们数学思维世界中的对象和行动对应起来，
+这就是这个叫做「数学基础 / Foundations of Mathematics」的领域的主要任务。
 
-- This is what Foundations of Mathematics is about,
-  it is about connecting the world of our thoughts to objects in formal systems,
-  which will help us to manipulate our thoughts.
+- 这就是数学基础的主旨所在，
+  它旨在连接 我们的思想世界 与 形式系统中的对象，
+  而形式系统可以帮助我们灵巧地使用我们的思想。
 
-A formal deduction system together with a correspondence
-between its components and objects and actions in the world of mathematical thoughts
-which can be used to formalize all subject areas of mathematics
-is called a foundational system for mathematics or "Foundations of Mathematics".
+一个形式推演系统，外加一个对应关系，
+这个对应关系连接了 形式推演系统的形式组件 与 我们数学思维世界中的对象和行动，
+借由这二者，我们可以形式化所有数学的领域，
+这就可以称作是「为数学而做的基本系统 / Foundational system for mathematics」
+或者「数学基础 / Foundations of Mathematics」。
 
-- Of course this is not how "Foundations of Mathematics" is formulated
-  back when I was in Moscow University.
-  It was formulated very differently,
-  if it was formulated like this,
-  I will think it would be very very cool,
-  but it was not.
+当我还在莫斯科大学的时候，人们可不是这样描述「数学基础」的。
+人们描述它的方式非常不同，如果当时就能这样描述它，
+我肯定会认为它非常非常酷，可惜当时不是。
 
-  And this is how we look at it now.
+而现在，我们就是这样看待它的。
 
 ------
 
