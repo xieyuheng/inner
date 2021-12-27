@@ -4,17 +4,18 @@ subtitle: How I became interested in foundations of mathematics
 author: Vladimir Voevodsky
 translator: 谢宇恒
 year: 2015
-venue: 泰国第九届亚洲科学营
+venue: 泰国，第九届亚洲科学营
 video: https://www.youtube.com/watch?v=55yZE3IoAy8
 ---
 
-When I was studying in Moscow University,
-foundations of mathematics is a subject is extremely unfashionable.
+记得我还在莫斯科大学上学的时候，
+「数学基础 / Foundations of mathematics」
+是一个特别不流行的学科。
 
-There were different groups,
-a group of algebra, a group of topology,
-a group of analysis, a group of differential equations ...,
-there was also a group of foundations of mathematics.
+当时有很多小组,
+代数学小组，拓扑学小组，
+分析学小组，微分方程小组……
+当然也有一个数学基础小组。
 
 At the end of second year every student must choose his or her group.
 It was an important choice, and we discuss it a lot,
