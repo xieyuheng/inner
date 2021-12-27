@@ -486,7 +486,6 @@ and you will be directed to a website
 where you can learn more about this new subject
 and also download the book for free.
 
-
 The book is a truly collective effort
 and as such it does not have an author.
 The person who did most to make this book happen
@@ -516,7 +515,7 @@ and constructive mathematics ...
 Such amazing stories as this one do not happen often.
 But little boring stories of small mistakes happen all the time.
 
-They were happening in my life
+They were happening in my life.
 
 ------
 

@@ -429,138 +429,127 @@ Kapranov 和我找到了我们所关心的问题的解答，即，一个定理�
 
 ------
 
-The mainstream foundation of classical pure mathematics
-is called Zermelo-Fraenkel Set Theory with the Axiom of Choice or ZFC,
-by the name of the axiomatic system of predicate logic which it uses.
+古典纯数学的主流基础，
+叫做「Zermelo-Fraenkel 集合论 / Zermelo-Fraenkel Set Theory」
+外加「选择公理 / The Axiom of Choice」，简称 ZFC，
+这命名来自它所使用的「谓词演算 / Predicate logic」的公理系统。
 
-- ZFC is a formal deduction system,
-  In which the way to establish the correspondence between mathematical objects and our thoughts
-  is called set theoretical mathematics.
+- ZFC 算是一个形式推演系统，
+  其中，建立数学对象与我们的思想之间的联系的方式，称作集合论数学。
 
-  That is what the Bourbaki group did for many years in some areas of mathematics.
+  这是「布尔巴基小组 / Bourbaki group」在诸多数学领域耕耘了很多年的东西。
 
-  It is a very beautiful foundation when you understand it.
+  当你理解了它之后，你会发现它是个很美的基础。
 
-It was created in the first decades of the 20th century before computers came into existence
-and before the problem of formalization of actual complex proofs became relevant.
+它是二十世纪开头几十年的造物，那时计算机还不存在，
+那时形式化实际的复杂证明也还不是紧要的问题。
 
-- Before there were computers, no one thought about actually formalizing complex proofs,
-  because it was too difficult to do without computers.
+- 在计算机之前，没人真的想过要形式化复杂的证明，
+  因为没有计算机的帮助这太难了。
 
-In part because of it was designed to be used with mathematics of that time
-it is not well adapted to the mathematics of the 21st century.
-It is not well adapted to the task of computer proof verification.
+部分是因为 ZFC 是为前计算机时代的数学而设计的，
+它没能很好地适应二十一世纪的数学；
+它也没能很好地适应计算机检查证明这个任务。
 
-To be able to check my proofs
-as one can check solutions to equations
-I needed new foundations of mathematics.
+为了像检查方程的解一样，检查我的证明，我需要心的数学基础。
 
-And this is how I became interested in foundations of mathematics ...
+而这就是 **我是如何开始关心数学基础的** ……
 
-# Developments
+# 发展
 
-Since then the story developed as follows.
+之后故事的发展是这样的。
 
-I came up with the main ideas of Univalent Foundations in 2006.
-Only one element was missing and it took me three years to find it.
+我在 2006 年想出了「单值性基础 / Univalent Foundations」中的主要想法。
+只有一个缺失的元素，而我花了三年的时间才找到它。
 
-In the Fall of 2009 I gave the first public lecture about the "univalent model"
--- a mathematical construction which connects Martin-Löf's Type Theory to ZFC
-in a new, unexpected, way.
+在 2009 年秋天，我就「单值性模型 / Univalent model」做了第一个公开演讲，
+-- 一个数学构造，以一种新的，出乎意料的方式，连接了 Martin-Löf 的类型系统 与 ZFC。
 
-By the Spring of 2010 I have recognized that
-I had a working version of a new formalization system
-based on a new foundational system that I called Univalent Foundations.
+2010 年春天，我意识到我有了一个可以使用的新形式系统，
+它基于一个新的基础系统，我称其为「单值性基础 / Univalent Foundations」。
 
-In the academic year 2012/13, Thierry Coquand, Steve Awodey and myself
-organized a special program at the Institute for Advanced Study in Princeton where I work.
+在 2012 到 2013 学年，在我就职的普林斯顿高等研究院，
+Thierry Coquand、Steve Awodey 和我，组织了一个特别项目。
 
 ------
 
-During that year the participants of the program wrote, together, a book
-called "Homotopy Type Theory".
+在这一学年间，项目的参与者们一起写了一本书叫「同伦类型论 / Homotopy Type Theory」。
 
-Type these words in Google
-and you will be directed to a website
-where you can learn more about this new subject
-and also download the book for free.
+在 Google 里搜一下这些关键词，你会找到一个网站，
+在里面你可以了解到更多关于这个新项目的信息，也可以免费下载这本书。
 
-
-The book is a truly collective effort
-and as such it does not have an author.
-The person who did most to make this book happen
-and who continues to shape the content and the style of the book
-is Michael Schulman.
+这本书是真真切切的集体劳动成果，因此它没有一个作者。
+为这本书的问世贡献最多，并且持续塑造着这本书的内容与风格的人，
+是 Michael Schulman。
 
 ------
 
-On June 21, 2014 Univalent Foundations passed another important milestone.
-Thierry Coquand gave a talk about Univalent Foundations at the Bourbaki Seminar in Paris.
-Being chosen for a presentation on this seminar
-is widely considered to be an important symbol of recognition
-in the world of pure mathematics.
+2014 年 6 月 21 日，「单值性基础 / Univalent Foundations」迎来了另外一个重要的里程碑。
+Thierry Coquand 就 单值性基础 在巴黎的「布尔巴基讨论班 / Bourbaki Seminar」做了演讲。
+被选中在这个讨论班上做演讲，是受到世界数学界认可的重要标志。
 
-Thierry and his colleagues are also the authors of the most important advance
-in the mathematics of Univalent Foundations since their invention.
-They have constructed another model,
-similar to the original "univalent model" of 2009
-but based on constructive mathematics.
+Thierry 和他的同事，同时也是 单值性基础 问世之后的最重要进展的作者，
+他们构造了另一个模型，类似最初 2009 年的「单值性模型 / Univalent model」，
+但是是基于「构造主义数学 / Constructive mathematics」的。
 
-This model opens up the way
-for wider Univalent Synthesis of classical
-and constructive mathematics ...
+这个模型为更广泛的，古典和构造主义数学的「单值性综合 / Univalent Synthesis」开辟了道路……
 
-# After Notes
+# 后记
 
-Such amazing stories as this one do not happen often.
-But little boring stories of small mistakes happen all the time.
+像这样如此令人惊喜的故事，并不经常发生。
 
-They were happening in my life
+但是，小小的，无聊的，充满了错误的故事却随时发生着。
+
+它们在我的生涯中不断上演。
 
 ------
 
-These small mistakes waste our time
-and embarrass us when discovered by others.
+这些小小的错误浪费我们的时间，并且当我们发现它们时，它们让我们狼狈不堪。
 
-As we get older and more established the fear of mistakes grows.
-We spend more time re-checking our results and become less daring in trying new things.
+随着我们变得年长，变得更有名望，对这些错误的恐惧也在增长。
+我们花费越來越多的时间，去在一遍一遍地检查我们的工作成果，而一点一点失去了尝试新事物的勇气。
 
 ------
 
-As I said, I am lucky that I don’t have in my mathematical life
-a story of a mistake which destroyed an important part of my work.
+诚如我所言，我很幸运。
 
-I know people who are not so lucky.
+在我的数学生涯中，没有这样一个故事，在其中一个错误毁掉了我工作的重要部分。
 
-And as mathematics becomes more complex
-the weight of mistakes of the fear of making a mistake
-is slowing the development of mathematics more.
+但我认识不那么幸运的人。
 
-# Q&A
+而随着数学变得越来越复杂，错误的重担，与对出错的畏惧，正在更进一步蹒跚着数学发展的脚步。
 
-**Questioner** asked about the used of proof assistants.
+# 问答
 
-**Voevodsky**: Proof assistants can be extremely useful,
-just like musical instrument,
-you can use it to practise,
-in the circumstance where you do not have a teacher.
+**提问者** 问了关于使用「辅助证明系统 / Proof assistants」的问题。
 
-**Questioner** asked about how to improve "mathematical sense".
+**Voevodsky**: 辅助证明系统可以极为有用，就像乐器一样，在没有老师的情况下，你也可以用它来练习。
 
-**Voevodsky**: By doing a lots and lots and lots detailed proofs and computations,
-for hours and hours, and days and days, and month and month, and years.
-trying to examine different areas of mathematics,
-then it all some how connected in your head in some general view.
+**提问者** 问关于如何提高「数学感 / Mathematical sense」的问题。
 
-To use such "mathematical sense" to find new proofs,
-When I was younger I would spending lots and lots of hours
-writing things on paper, thinking and writing again,
-and drinking a lot of strong tea,
-walking around and rotating these things in my head over and over again.
+**Voevodsky**: 通过做大量大量大量的细节证明与计算，日复一日，月复一月，年复一年。
+尝试考察不同领域的数学，然后它们都将以某种方式在你的脑子里联系起来，
+并且你将能够以一种更一般的观点去理解它们。
 
-As I become older I do not do this much, or at least I try not to.
-And I usually try to just formulate a question very precisely,
-to make sure it only has one meaning,
-to place it in my head, to have it there firmly for sometime,
-then I forget about it and do other things,
-and I wait for the answer to come.
+用这种「数学感」来寻找新的证明，
+年轻的时候，我会花很多很多个小时，
+在纸上写东西，思考，然后再写，并且喝很多浓茶，
+来回踱步，让这些东西在我脑子不断盘旋着。
+
+当我变得更年长了，我不再经常这么做了，或者说至少我尝试着不再这么做了。
+
+我现在通常就是，尝试非常精确地表达一个问题，以保证它只有一个意义，
+然后把这个问题放到我脑子里，让它在那老老实实待一段时间，
+然后我忘了它，去做别的事，我等待着答案出现。
+
+# 译后记
+
+V.V. 的这篇演讲，是鼓励我坚持着我的程序语言项目的重要动力之一。
+
+我的程序语言名叫 [蝉语](https://cicada-lang.org/)。
+
+和 V.V. 一样，我的目标也是：
+
+> 创造一个软件，同时也是一个语言，
+> 让所有数学家可以用它完成其工作，让我们的生活更加简单，
+> 用软件逐步验证证明中的步骤，以排除我们工作中的不确定性。
