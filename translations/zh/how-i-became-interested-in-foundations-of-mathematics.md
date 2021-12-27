@@ -166,6 +166,9 @@ Kapranov 和我写了一篇关于新的「高维」数学中关键猜想的论�
 >
 > -- Esquisse d'un Programme 1984
 
+- 译者注：法语 "Esquisse d'un Programme"，英译为 "Sketch of a Programme"，中译可作「计划概要」。
+  是 格罗滕迪克 关于远期数学研究的重要提案，直到现在还是很多数学研究灵感的来源。
+
 ------
 
 这个猜想并非表达地很精确，
