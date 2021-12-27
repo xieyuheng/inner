@@ -44,19 +44,23 @@ video: https://www.youtube.com/watch?v=55yZE3IoAy8
 
 ------
 
-Many of us do mathematics that is a little like the Rubik Cube.
+我们很多人做数学就有点儿像是拼魔方。
 
-There is a problem.
-And there is the search for a solution.
-And when the solution is found, it is certain that it is a solution.
+> 有一个问题。
+>
+> 我们找解答。
+>
+> 当找到解答时，很明确它就是解答。
 
-But the mathematics which earned me the Fields Medal of 2002 in Beijing is very different.
+但是，让我获得 2002 年北京的菲尔兹奖的数学，却并非如此。
 
-There is a problem.
-And there is the search for a solution.
-But when the solution is found, it is not certain at all that it is a solution.
+> 有一个问题。
+>
+> 我们找解答。
+>
+> 但是，当找到解答时，它是否就是解答却一点儿也不明确。
 
-(The Fields Medal was awarded to me for the proof of Milnor's Conjecture.)
+（菲尔兹奖版给我，是因为我证明了 [Milnor 猜想](https://en.wikipedia.org/wiki/Milnor_conjecture)。）
 
 ------
 
