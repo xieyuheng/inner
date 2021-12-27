@@ -365,23 +365,17 @@ Kapranov 和我找到了我们所关心的问题的解答，即，一个定理�
 
 ------
 
-But the theory of formal deduction systems
-is only one part of what we need
-to formalize mathematical statements and proofs.
+但是，为了形式化数学命题与证明，关于形式推演系统的理论，也还只是拼图的一部分。
 
-This theory studies all possible formal deduction and computation systems.
-Whether a given system formally represents some actual system of reasoning
-which is used in the world of thought
-is of no concern to this theory.
+这个理论研究所有可能的形式推演系统。
+至于一个系统是否形式地表达着某些实际的，思维领域的推理系统，
+这个理论并不关心。
 
-- It is like the theory of general differential equations,
-  so it studies all differential equations,
-  and does not care whether some differential equations
-  describe some actual process in real world or not.
+- 就像一般微分方程的理论，它研究所有的微分方程，
+  而不在乎某个微分方程是否描述着现实世界中的某些实际现象。
 
-For proof verification we need to construct a **particular** formal deduction system
-and explain how it corresponds with the mathematical objects
-and forms of reasoning which exist in our thoughts.
+对于命题的检查而言，我们需要构造一个 **特别的** 形式推演系统，
+然后解释它是如何与，存在于我们思维中的，数学的对象与推理形式相对应的，
 
 ------
 
