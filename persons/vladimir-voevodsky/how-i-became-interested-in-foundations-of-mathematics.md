@@ -44,15 +44,19 @@ will make it a very cool subject again.
 
 Many of us do mathematics that is a little like the Rubik Cube.
 
-There is a problem.
-And there is the search for a solution.
-And when the solution is found, it is certain that it is a solution.
+> There is a problem.
+>
+> And there is the search for a solution.
+>
+> And when the solution is found, it is certain that it is a solution.
 
 But the mathematics which earned me the Fields Medal of 2002 in Beijing is very different.
 
-There is a problem.
-And there is the search for a solution.
-But when the solution is found, it is not certain at all that it is a solution.
+> There is a problem.
+>
+> And there is the search for a solution.
+>
+> But when the solution is found, it is not certain at all that it is a solution.
 
 (The Fields Medal was awarded to me for the proof of Milnor's Conjecture.)
 
