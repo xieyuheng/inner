@@ -38,7 +38,7 @@ Am I becoming uncool?
 
 I am here to explain why the way we are developing the foundations of mathematics
 will make it a very cool subject again.
-(I said "again", became it was a very cool subject during 1910s and 1920s.)
+(I said "again", because it was a very cool subject during 1910s and 1920s.)
 
 ------
 

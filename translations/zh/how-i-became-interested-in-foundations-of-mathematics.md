@@ -12,36 +12,35 @@ video: https://www.youtube.com/watch?v=55yZE3IoAy8
 「数学基础 / Foundations of mathematics」
 是一个特别不流行的学科。
 
-当时有很多小组,
+当时有很多小组，
 代数学小组，拓扑学小组，
 分析学小组，微分方程小组……
 当然也有一个数学基础小组。
 
-At the end of second year every student must choose his or her group.
-It was an important choice, and we discuss it a lot,
-and different group has different reputation.
+在第二学年结束的时候，每位同学都必须选择他或她想去的小组。
+这是一个重要的选择，我们经常讨论该去哪个小组，每个小组都有各自的名声。
 
-At my time the group of algebra is very cool, there were famous people in the group.
-the group of topology and geometry was also cool, there were also famous people in the group.
+在我那个时候，代数学小组非常酷，有很多名人在里面。
+拓扑学与几何学的小组也很酷，也有很多名人在里面。
 
-Some other groups are less cool,
-and the group of foundations of mathematics was almost the least group of all.
-(Maybe except for the history of mathematics.)
+有一些小组就不是那么酷了，而其中最不酷的就数数学基础小组了。
+（也许仅次于数学历史小组吧。）
 
-Nobody who think themself a good mathematician will considered going there.
+认为自己是个好数学家的人，都不会考录去那里。
 
-Back then I went to the group of algebra,
-I still consider myself an algebraist,
-I am applying methods of algebra to other area of mathematics.
+当时我去了代数学小组，到如今我还认为自己是一个代数学家，
+我在把代数学的方法应用到数学的其它领域。
 
-But now I working full time on foundations of mathematics.
-Why?
-How did I get here?
-Am I becoming uncool?
+但是现在，我把所有的时间都投入到了而数学基础的工作中。
 
-I am here to explain why the way we are developing the foundations of mathematics
-will make it a very cool subject again.
-(I said "again", became it was a very cool subject during 1910s and 1920s.)
+为什么？
+
+为什么我会这样？
+
+我变不酷了吗？
+
+我来这儿，就是为了解释解释，为什么我们发展数学基础的方式，会让它重新变的非常酷。
+（我之所以说「重新」，是因为）(I said "again", became it was a very cool subject during 1910s and 1920s.)
 
 ------
 
