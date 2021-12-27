@@ -107,33 +107,32 @@ video: https://www.youtube.com/watch?v=55yZE3IoAy8
 
 ------
 
-The proof that I found depend on another conjecture.
-That conjecture was in itself very cool and connected two areas of mathematics
-which were at that time very far apart.
+我找到的证明依赖于另一个猜想。
+这个猜想本身也很酷，它连接了数学的两个领域，
+这两个领域在当时看似还是远远分离的。
 
-I was also sure that I know how to prove this conjecture,
-but I know it will take long time.
+我也确信，我知道如何证明这个猜想，但是我知道要花很长时间。
 
-Then I started to look for a modification of the first proof,
-to make it not depend on the new conjecture.
-About a year later I found it.
-I wrote preprint with the new proof in December 1996.
-The proof in the preprint contained all the main ideas
-but many details were left out.
+然后，我开始想办法修改我的第一个证明，
+让它能不依赖这个额外的猜想。
+大约一年之后，我找到了办法。
+我在 1996 年十二月写出了新的证明的预印本。
+这个预印本中的证明，包含了所有的主要想法，
+但是略去了很多细节。
 
-And then it took me 7 years to work out these details
-and to publish a paper with a complete proof ...
+之后，我花了七年的时间去补充这些细节，
+以发表一个完整证明的论文……
 
 ------
 
-And I was lucky!
+我很幸运！
 
-The ideas which the proof was based on turned out to be solid
-and the results of other people which I relied on turned out to be correct.
+这个证明所依赖的想法，最终都证明是可靠的，
+而且我所依赖的他人的工作成果，最终也都证明是正确的。
 
-This is not always the case.
+情况并非总是如此如愿。
 
-Let me tell you the story of another of my proofs which turned out very differently.
+我来讲讲我的另一个证明的故事，它的结果非常不同。
 
 ------
 
