@@ -363,6 +363,12 @@ Kapranov 和我找到了我们所关心的问题的解答，即，一个定理�
   因为更简单的东西要在第一卷讨论，
   而更难的东西在第二卷讨论。
 
+- 译者注：Gottlob Frege 的「模仿算术的纯思维的形式语言」是一个极富影响力的名篇，
+  原德语言标题以 "Begriffsschrift" 开头，英译大致为 "concept-script"，中译为「概念文字」。
+
+  这篇之所以影响深远，在于它丰富的哲学背景，
+  以及它的形式系统能够成功地捕捉到很大一部分数学与自然语言。
+
 ------
 
 但是，为了形式化数学命题与证明，关于形式推演系统的理论，也还只是拼图的一部分。
@@ -401,27 +407,25 @@ Kapranov 和我找到了我们所关心的问题的解答，即，一个定理�
 
 ------
 
-I you have a system which can give you formulae
-corresponding to your thoughts about numbers,
-that would be a numbers system.
+如果你有一个系统可以给你公式，
+并且这些公式对应于你对数的思考，
+那么这个系统就是数的系统。
 
-The earliest things like Foundations of Mathematics were the number systems,
-these were the systems which allow people to write numbers,
-which were objects of their simple mathematical thoughts.
+最早的类似数学基础的东西，就是各种数的系统，
+它们使得人们能够写下数，
+而数正是人们数学思维世界中的简单对象。
 
-They write numbers as symbols and to manipulate symbols
-to compute practical things about numbers in the world.
+人们将数写做符号，并且通过操纵符号来进行计算，
+而所算的，正是实际生活中各式各样关于数的东西。
 
-For example, How to compute "How many bricks is needed to build a wall of some size".
+比如说，如何计算「为了造给定大小的墙，需要多少块砖」。
 
-That was mathematics at that time,
-and the Foundations of Mathematics at that time is number systems.
+那是早期的数学，而早期的数学基础就是数的系统。
 
-Today mathematics is much wider.
+今日的数学则要广阔的多。
 
-And the Foundations of Mathematics,
-is supposed to be some analog of number systems,
-but for the mathematical objects which are much more abstract that we are dealing with today.
+今日的数学基础，也当是数的系统的某种类比，
+只是，我们现在所处理的，数学思维中的对象，更加抽象了。
 
 ------
 

@@ -405,7 +405,7 @@ And this is how we look at it now.
 
 ------
 
-I you have a system which can give you formulae
+If you have a system which can give you formulae
 corresponding to your thoughts about numbers,
 that would be a numbers system.
 
@@ -419,13 +419,14 @@ to compute practical things about numbers in the world.
 For example, How to compute "How many bricks is needed to build a wall of some size".
 
 That was mathematics at that time,
-and the Foundations of Mathematics at that time is number systems.
+and the Foundations of Mathematics at that time is a number system.
 
 Today mathematics is much wider.
 
 And the Foundations of Mathematics,
 is supposed to be some analog of number systems,
-but for the mathematical objects which are much more abstract that we are dealing with today.
+but for the mathematical thoughts about
+much more abstract objects which we are dealing with today.
 
 ------
 
