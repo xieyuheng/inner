@@ -340,34 +340,28 @@ Kapranov 和我找到了我们所关心的问题的解答，即，一个定理�
 
 ------
 
-What is involved in the creation of a formalization systems
-for use in mathematics?
+创造一个用于数学的形式系统都涉及到些什么？
 
-First of all we need to have a some knowledge
-about how to design formal deduction systems
-which are for formalization what programming languages are for programming.
+首先我们需要关于如何设计形式推演系统的知识，
+推演系统之于数学的形式化，正如程序语言之于编程。
 
-The theory of formal deduction systems originated, as far as I could find, with
-an amazing paper by Gottlob Frege from 1879 which is called
-"A formula language, modeled upon that of arithmetic, for pure thought".
+就我所知，形式推演系统的理论起源于，Gottlob Frege 的一篇令人拍案叫绝的论文，
+叫做「模仿算术的纯思维的形式语言 / A formula language, modeled upon that of arithmetic, for pure thought」。
 
-Today it is studied mainly in Computer Science "Theory B".
+如今，它归属于计算机科学的「理论 B」。
 
-By the way, it is "Theory B"
-not because it is less important than "Theory A"
-but because of a Handbook of Theoretical Computer Science
-which was published in two volumes "A" and "B"
-and the theory of formal deduction systems was discussed in the second volume.
+顺便说一句，它叫「理论 B」并不是因为它不如「理论 A」重要，
+而是因为一本「理论计算机科学手册」，它是分两卷 "A" 和 "B" 出版的，
+而关于形式推演系统的理论是在第二卷中讨论的。
 
-- The "Theory A", is much better known
-  in many country of Asia, and in America, and in Israel.
-  It is mostly concerned with complexity and algorithms.
+- 「理论 A」在亚洲个许多国家，以及美国和以色列，更为人们所熟知。
+  它主要关心的是算法的复杂度。
 
-  The "Theory B" is concerned with the theory and design of programming languages.
+  而「理论 B」所关心的是设计程序语言的理论。
 
-  The "B" here actually means it is more difficult,
-  because more simple things are discussed in the first volume,
-  and more complex things are discussed in the second volume.
+  这里 "B" 其实意味着它更难，
+  因为更简单的东西要在第一卷讨论，
+  而更难的东西在第二卷讨论。
 
 ------
 
