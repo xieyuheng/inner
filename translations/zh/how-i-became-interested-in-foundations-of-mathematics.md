@@ -206,7 +206,7 @@ Kapranov 和我认为，我们知道定义是什么，
 和「新数学基础 / New foundations of mathematics」相关的工作。
 
 无穷阶广群 和 同伦类型 之间的联系重新浮现在眼前，
-成了「单值基础 / The Univalent Foundations」的基石。
+成了「单值性基础 / The Univalent Foundations」的基石。
 
 之后，在 2013 年的秋天，
 我感到我思想中的一些「路障」倒塌了，
@@ -232,24 +232,25 @@ Kapranov 和我认为，我们知道定义是什么，
 
 在这个故事中，我又走运了。
 
-The theorem was false with the particular definition of infinity groupoids
-which Kapranov and I have used.
-There were by now various other definitions
-with which the statement of the theorem became correct.
+论文中的主要定理是错的，
+是就 Kapranov 和我使用的那种无穷阶广群的定义而言的。
+如今已经有了多种其他的定义，而且就这些定义而言，主要定理是对的。
 
-The use of the Grothendieck correspondence,
-as it became known, in the Univalent Foundations
-was not endangered.
+现在我们知道，在 单值性基础 中使用「格罗滕迪克一致性 / The Grothendieck correspondence」
+并不会有什么损害。
 
-But belief in the correctness of our false theorem
-played an important and negative role
-in how I perceived, for all these years, the subject area of multidimensional category theory.
+- 译者注：所谓「格罗滕迪克一致性 / The Grothendieck correspondence」
+  就是上面提到的 格罗滕迪克 的猜想，即「无穷阶广群 与 同伦类型 是一致的」。
 
-- Because I believed in something which was false,
-  I could not believe other things which were true,
-  because they contradict each other.
+但是，在这些年间，「相信我们其实错误的定理是正确的」这件事，
+在我认知「多维范畴论 / Multidimensional category theory」这个领域方面，
+扮演了重要而负面的角色。
 
-  So I could not understand the work of others in this area.
+- 由于我相信了一些错误的东西，
+  我没法相信其他某些正确的东西，
+  因为它们是相互矛盾的。
+
+  这样我就没法理解他人在这个领域的工作。
 
 ------
 
