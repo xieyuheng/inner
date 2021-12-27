@@ -254,6 +254,7 @@ that would satisfy the Grothendieck correspondence,
 remains open...
 
 ------
+
 Now let us look at this story again.
 
 Kapranov and I have found a solution to the problem which we worked on

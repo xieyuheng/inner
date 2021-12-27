@@ -1,5 +1,5 @@
 ---
-title: 我是怎么开始对数学基础感兴趣的
+title: 我是如何开始关心数学基础的
 subtitle: How I became interested in foundations of mathematics
 author: Vladimir Voevodsky
 translator: 谢宇恒
@@ -272,30 +272,27 @@ Carlos Simpson 没有指出我们长达 10 页的论文中哪里错了。
 
 ------
 
-Now let us look at this story again.
-Kapranov and I have found a solution to the problem which we worked on
--- the proof of the theorem.
+现在我们回顾一下这个故事。
 
-If the problem was to solve an equation
-and we would have found a solution
-we would have checked that it is a solution before publishing it, right?
+Kapranov 和我找到了我们所关心的问题的解答，即，一个定理的证明。
 
-And if it were a complex equation
-we would probably have checked it on a computer.
+如果问题是解一个方程，
+而我们找到了一个解，
+在发表结果之前，我们首先应该检验它确实是方程的解，对吗？
 
-So why can not we check a solution which is a proof of a theorem?
+并且，如果这个方程很复杂，我们可能会用电脑来做检验。
+
+那么，为什么当解是一个定理的某个证明的时候，我们就不能检验了呢？
 
 ------
 
-I started to ask myself this question more than 10 years ago
-when the solutions, proofs, which I was inventing
-were becoming more and more complex
-and I was getting more and more worried that they may contain mistakes.
+早在十几年前我就开始自己问自己这个问题，
+因为我所创造出来的解答，也就是证明，变得越来越复杂了，
+而我越来越担心它们包含着某些错误。
 
-And trying to answer this question
-led me to my current interest in Foundations of Mathematics.
+尝试回答这个问题，领我走向了我现在的兴趣所在，即「数学基础 / Foundations of Mathematics」。
 
-Let me explain how.
+容我详加分说。
 
 ------
 
