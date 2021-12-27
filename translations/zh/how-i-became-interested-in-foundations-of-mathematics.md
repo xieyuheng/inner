@@ -186,36 +186,51 @@ Kapranov 和我认为，我们知道定义是什么，
 
 ------
 
-We felt that the issue with this conjecture is closed
-and that this important element of "higher dimensional" mathematics had been understood.
+我们感到这个猜想相关的问题结束了，
+并且「高维」数学中的这个重要元素被理解透彻了。
 
-Then in 2003, twelve years after our proof was published in English,
-a preprint appeared on the web in which Carlos Simpson,
-very politely, claimed that he has constructed a counter-example to our theorem.
+之后，2003 年，我们论文的英文版发表十二年后，
+网络上出现了一个预印本，其中 Carlos Simpson 非常礼貌地宣布，
+他构造出来了我们的定理的一个反例子。
 
-I was busy with the work on the motivic program
-and very sure that our proof is correct
-and ignored the preprint.
+我当时正忙于「主旨理论的项目 / The motivic program」，
+并且确信我们的证明是正确的，
+所以忽略了这个预印本。
 
-------
-
-Then the motivic period of my life was completed
-and I started to work on computer proof verification
-and new foundations of mathematics.
-
-The correspondence between the infinity-groupoids and homotopy types
-re-emerged as the cornerstone of the Univalent Foundations.
-
-And then in the Fall of 2013,
-some sort of a block in my mind collapsed
-and I suddenly understood that Carlos Simpson was correct
-and that the proof which Kapranov and I published in 1991 is wrong.
-
-Not only the proof was wrong but the main theorem of that paper was false!.
+- 译者注：「主旨理论 / motivic」是[代数几何中的一个理论]((https://en.wikipedia.org/wiki/Motive_(algebraic_geometry)))。
 
 ------
 
-In this story I got lucky again.
+之后，我生涯中 主旨理论（motivic）的时期告以段落，
+我开始着手「计算机证明验证 / Computer proof verification」，
+和「新数学基础 / New foundations of mathematics」相关的工作。
+
+无穷阶广群 和 同伦类型 之间的联系重新浮现在眼前，
+成了「单值基础 / The Univalent Foundations」的基石。
+
+之后，在 2013 年的秋天，
+我感到我思想中的一些「路障」倒塌了，
+我突然想通了 Carlos Simpson 是对的，
+而 Kapranov 和我在 1991 年发表的证明是错的。
+
+不光这个证明是错的，论文中的主要定理本身就是错的！
+
+- 译者注：据译者所知，"Univalent" 这一术语并没有公认中文翻译。
+
+  Vladimir Voevodsky 自己解释这一术语的选择时说，
+
+  > ..., this fibration should still satisfy
+  > the "uniqueness" part of the definition of "universal"
+  > but not the "for all" part.
+  >
+  > -- [Lecture about Univalent Foundations at the Institut Henri Poincaré](https://readonly.link/articles/github.com/xieyuheng/inner/-/persons/vladimir-voevodsky/lecture-about-univalent-foundations-at-the-institut-henri-poincar%C3%A9.md)
+
+  "Universal" 出现在范畴论的 "Universal property" 中，可以译为「泛」或「万有性」；
+  而在数学中 "Univalent" 也表达函数作为关系时的单值性，所以暂且译做「单值」。
+
+------
+
+在这个故事中，我又走运了。
 
 The theorem was false with the particular definition of infinity groupoids
 which Kapranov and I have used.
