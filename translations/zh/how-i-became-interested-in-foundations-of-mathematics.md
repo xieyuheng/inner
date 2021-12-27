@@ -85,23 +85,25 @@ video: https://www.youtube.com/watch?v=55yZE3IoAy8
 
 ------
 
-Back to the Milnor's Conjecture.
+回到 Milnor 猜想。
 
-The problem is to find a proof of the conjecture.
+问题是找到这个猜想的证明。
 
-The search for a solution took me about two years, from 1993 to 1995.
+找这个解答花了我两年的时间，从 1993 年到 to 1995 年。
 
-The solution was a proof.
+解答是一个证明。
 
-In 1995 I started to work on "writing the proof down".
-I had the first preprint available in June of 1995.
+1995 年，我开始着手「把证明写下来」。
+1995 年六月的时候，我完成了第一个预印本。
 
-But it was only the beginning of the story of my proof of Milnor's Conjecture.
+- 注释：「预印本 / Preprint」是数学论文发表之前，分发给同事和朋友看的版本。
 
-- You can see how the dynamic of the work of real mathematics unfold in time.
-  Ideally a mathematician prove theorems, but you will see how it really goes.
+但是，对我的 Milnor 猜想证明而言，这只是故事的开始。
 
-  Remember that I got the proof at 1995, but got my Fields Medal in 2002.
+你可以看到，真正的数学工作是如何随着时间演进而慢慢展开的。
+理想情况下，就是「数学家证明定理」，但是你将看到真实情况是如何。
+
+别忘了，我找到证明是在 1995 年，而我得菲尔兹奖是在 2002 年。
 
 ------
 

@@ -97,10 +97,10 @@ I had the first preprint available in June of 1995.
 
 But it was only the beginning of the story of my proof of Milnor's Conjecture.
 
-- You can see how the dynamic of the work of real mathematics unfold in time.
-  Ideally a mathematician prove theorems, but you will see how it really goes.
+You can see how the dynamic of the work of real mathematics unfold in time.
+Ideally a mathematician prove theorems, but you will see how it really goes.
 
-  Remember that I got the proof at 1995, but got my Fields Medal in 2002.
+Remember that I got the proof at 1995, but got my Fields Medal in 2002.
 
 ------
 
