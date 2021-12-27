@@ -224,11 +224,11 @@ But belief in the correctness of our false theorem
 played an important and negative role
 in how I perceived, for all these years, the subject area of multidimensional category theory.
 
-- Because I believed in something which was false,
-  I could not believe other things which were true,
-  because they contradict each other.
-
-  So I could not understand the work of others in this area.
+> Because I believed in something which was false,
+> I could not believe other things which were true,
+> because they contradict each other.
+>
+> So I could not understand the work of others in this area.
 
 ------
 
