@@ -150,31 +150,35 @@ video: https://www.youtube.com/watch?v=55yZE3IoAy8
 
 ------
 
-In the summer of 1990, by recommendation of Kapranov,
-I was accepted to the graduate school of Harvard without having to apply.
-In the Fall of 1990 I left the Soviet Union and the american period of my life began ...
+1990 年夏天，经 Kapranov 的推荐，
+我不用申请就被哈佛研究生院录取了。
+1990 年秋天，我离开了苏联，开启了我生涯中在美国的时光……
 
 ------
 
-Kapranov and I wrote a paper about the key conjecture of the new "higher dimensional" mathematics
-that was due to Alexander Grothendieck,
+Kapranov 和我写了一篇关于新的「高维」数学中关键猜想的论文。
+这个猜想是 亚历山大·格罗滕迪克（Alexander Grothendieck）提出的。
 
-> the intuition appeared that infinity-groupoids should constitute particularly adequate models for homotopy types,
-> the n-groupoids corresponding to truncated homotopy types (with `pi(i) = 0` for `i > n`).
+> 直觉告诉我们，无穷阶广群（infinity-groupoids）
+> 可以构成 同伦类型（homotopy types）的特别合适的模型，
+> n-阶广群（n-groupoids）对应 截断同伦类型（truncated homotopy types）
+> （其中 `pi(i) = 0` 对所有 `i > n` 成立）。
 > -- Esquisse d'un Programme 1984
 
 ------
 
-The conjecture was not a precise one
-since what should be the definition of an infinity-groupoid remained open.
+这个猜想并非表达地很精确，
+因为如何定义 无穷阶广群（infinity-groupoid）还是公开的问题。
 
-Kapranov and I decided that we know what the definition should be
-and how to prove the conjecture with this definition.
+Kapranov 和我认为，我们知道定义是什么，
+也知道该如何根据我们的定义来证明这个猜想。
 
-We wrote a paper with a sketch of the proof
-and published it in one of the best Russian mathematical journals
-and the paper with the complete proof was published
-in the proceedings of a conference that we have been invited to.
+我们写了一篇论文来描述证明的概要，
+并且发表到了俄国最好的数学期刊之一，
+完整的证明发表在了我们受邀参加的会议的会议记录中。
+
+- 译者注：「会议记录 / The proceedings of a conference」也可称为「学报」，
+  是学术界集会结束后发表的论文集，其中会包含演讲者的论文。
 
 ------
 

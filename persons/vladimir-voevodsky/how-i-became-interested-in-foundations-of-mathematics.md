@@ -158,7 +158,8 @@ In the Fall of 1990 I left the Soviet Union and the american period of my life b
 Kapranov and I wrote a paper about the key conjecture of the new "higher dimensional" mathematics
 that was due to Alexander Grothendieck,
 
-> the intuition appeared that infinity-groupoids should constitute particularly adequate models for homotopy types,
+> the intuition appeared that infinity-groupoids
+> should constitute particularly adequate models for homotopy types,
 > the n-groupoids corresponding to truncated homotopy types (with `pi(i) = 0` for `i > n`).
 > -- Esquisse d'un Programme 1984
 
