@@ -295,7 +295,7 @@ But what should we do when the solution is a proof of a statement?
 A hint can be seen from looking at the case
 when the problem was to solve an equation in symbolic form.
 For example, to find a formula for solving
-a general equation of the form `x^3+a*x+b=0`.
+a general equation of the form `x^3 + a*x + b = 0`.
 
 How would we check the solution in this case?
 We would probably use some software for symbolic computation
