@@ -64,25 +64,24 @@ video: https://www.youtube.com/watch?v=55yZE3IoAy8
 
 ------
 
-Suppose you want to solve a special algebraic equation of degree 5.
-You found the solution by some means,
-then you can substitution the root into the equation to check that it is a solution.
+假设你想要解某个五次代数方程。
+通过某些方法，你找到了方程的解，
+然后你可以把根带入方程中，来检查解是否正确。
 
-But if you want to solve a group of 20 equations of degree 20
-or something as complicated like that.
-You found the solution by some means,
-then you have to do a lot of calculation to check your solution.
+但是当你想要解一个有二十个二十次方程的方程组时，
+或者想要解类似复杂的问题。
+通过某些方法，你找到了方程的解，
+但是此时想要检查解的正确性，就需要做很多计算了。
 
-Nowaday no one will do it by hand,
-you will use some software to help you verify your solution is a solution.
+如今没人会想用纸和笔来徒手做这类计算了，
+你会用到某些软件来帮助自己做验证。
 
-Now imagine your problem is to prove some theorem.
-And your solution is a proof.
-How do you verify the proof is really a solution?
+再设想，你的问题是要证明某个定理。
+你找到的解是一个证明。
+如何验证证明是否正确呢？
 
-There are some conventions you learned from your teachers or professors,
-about what constitutes a rigorous proof,
-but you can not feed it to a computer to let the computer check it yet.
+关于什么才是严格的证明，你从老师或教授那里，学到了一些惯例与原则，
+但是你还不能把你的证明提供给计算机，让计算机去帮你检查它。
 
 ------
 
