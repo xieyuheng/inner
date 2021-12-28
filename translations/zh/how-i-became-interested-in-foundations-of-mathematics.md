@@ -31,7 +31,7 @@ video: https://www.youtube.com/watch?v=55yZE3IoAy8
 当时我去了代数学小组，到如今我还认为自己是一个代数学家，
 我在把代数学的方法应用到数学的其它领域。
 
-但是现在，我把所有的时间都投入到了而数学基础的工作中。
+但是现在，我把所有的时间都投入到了数学基础的工作中。
 
 为什么？
 
@@ -60,7 +60,7 @@ video: https://www.youtube.com/watch?v=55yZE3IoAy8
 >
 > 但是，当找到解答时，它是否就是解答却一点儿也不明确。
 
-（菲尔兹奖版给我，是因为我证明了 [Milnor 猜想](https://en.wikipedia.org/wiki/Milnor_conjecture)。）
+（菲尔兹奖颁给我，是因为我证明了 [Milnor 猜想](https://en.wikipedia.org/wiki/Milnor_conjecture)。）
 
 ------
 
