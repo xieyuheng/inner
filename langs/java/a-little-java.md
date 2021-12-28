@@ -64,7 +64,7 @@ classs objects fields methods inheritance interfaces
 
 **motto:**
 
-> think first, experiment later.
+> Think first, experiment later.
 
 # runtime
 
