@@ -13,29 +13,28 @@ newline: preserve
 
 ## Ralph Johnson 如是说
 
-首先i lave object-oriented and Smalltalk.
 学习写程序不只是学习一些程序语言的语法与语义
 还要学习如何设计程序
 根其他的设计一样人们对于所设计的东西和设计的方式都有不同的理解
 这样就形成了联系于不同语言的各种编程范式
-而Dan展示了函数试编程和面向对象的结合
+而 Dan 展示了函数试编程和面向对象的结合
 
 ## Dan 如是说
 
-oo式的语言支持程序的重用
-要想使用好oo必须有设计良好的语言
+OO 式的语言支持程序的重用
+要想使用好 OO 必须有设计良好的语言
 同时还要遵循一些严格的编程准则
-java根oo有关的元素是:
-classs objects(instances of classs) fields methods inheritance interfaces
+java 根 oo 有关的元素是:
+classs objects fields methods inheritance interfaces
 这些元素所组成的核心部分有着简单的语义模型
 可以很好的帮助人们来表达自己
 
-- k :: oo正是利用上面的语义来完成自己的使命的
-       很容易用alist-processing来实现上面的语义
-       但是想要把这种语义嵌在scheme里
-       就还需要设计与sexp有关的语法
+- k :: OO 正是利用上面的语义来完成自己的使命的
+       很容易用 alist-processing 来实现上面的语义
+       但是想要把这种语义嵌在 scheme 里
+       就还需要设计与 sexp 有关的语法
 
-- x :: 但是没有class的所谓动态oo也可以完成这些使命
+- x :: 但是没有 class 的所谓动态 OO 也可以完成这些使命
        这里核心语义是:
        objects fields methods clone interfaces
        动态性带来了统一处理的困难
@@ -44,7 +43,7 @@ classs objects(instances of classs) fields methods inheritance interfaces
 - k :: 既然如此 那就至少说明能完成这些使命的语义不是唯一的
        那么我们可不可以自己设计一种语义来完成这些使命呢??
 
-- x :: 当然可以但是重点还是弄清楚这些``使命''具体是什么
+- x :: 当然可以但是重点还是弄清楚这些「使命」具体是什么
        我们可以通过总结上面两种语义所能完成的效果来回答这个问题
        我们也可以在具体的编程实践中
        通过考察语言的语义所带来的额外复杂性
@@ -61,9 +60,9 @@ classs objects(instances of classs) fields methods inheritance interfaces
 接收同样的输入时给出同样的输出
 
 - k :: 说上面的东西是核心
-       就是说这些核心与oo并不冲突
+       就是说这些核心与 OO 并不冲突
 
-motto:
+**motto:**
 
 > think first, experiment later.
 
