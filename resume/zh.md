@@ -100,9 +100,9 @@ science and mathematics.
 [Postmark](https://github.com/xieyuheng/postmark)
 is a framework for building markdown extensions.
 
-### Readonly.Link
+### readonly.link
 
-[Readonly.Link](https://readonly.link)
+[readonly.link](https://readonly.link)
 is a document rendering platform.
 
 ### EnchanterJS
