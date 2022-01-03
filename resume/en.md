@@ -105,7 +105,7 @@ science and mathematics.
 [Postmark](https://github.com/xieyuheng/postmark)
 is a framework for building markdown extensions.
 
-### readonly.link
+### Readonly.Link
 
 [readonly.link](https://readonly.link)
 is a document rendering platform.
