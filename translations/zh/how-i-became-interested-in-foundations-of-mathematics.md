@@ -5,7 +5,9 @@ author: Vladimir Voevodsky
 translator: 谢宇恒
 year: 2015
 venue: 泰国，第九届亚洲科学营
-video: https://www.youtube.com/watch?v=55yZE3IoAy8
+video:
+  youtube: https://www.youtube.com/watch?v=55yZE3IoAy8
+  bilibili: https://www.bilibili.com/video/BV1iD4y1F7ii
 ---
 
 记得我还在莫斯科大学上学的时候，
