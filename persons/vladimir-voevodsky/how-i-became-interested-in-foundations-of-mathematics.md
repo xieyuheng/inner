@@ -3,8 +3,11 @@ title: How I became interested in foundations of mathematics
 author: Vladimir Voevodsky
 year: 2015
 venue: The 9th Asian Science Camp, Thailand
-video: https://www.youtube.com/watch?v=55yZE3IoAy8
 ---
+
+[ [**YOUTUBE**](https://www.youtube.com/watch?v=55yZE3IoAy8) ]
+
+<br />
 
 When I was studying in Moscow University,
 foundations of mathematics is a subject is extremely unfashionable.

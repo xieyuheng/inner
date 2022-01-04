@@ -3,8 +3,11 @@ title: Computer Science and Homotopy Theory
 author: Vladimir Voevodsky
 year: 2011
 venue: Institute for Advanced Study
-video: https://www.youtube.com/watch?v=UvDeVqzcw4k
 ---
+
+[ [**YOUTUBE**](https://www.youtube.com/watch?v=UvDeVqzcw4k) ]
+
+<br />
 
 Type theory is developed as an alternative to logic and set theory.
 Type theory is some kind of combination of logic and set theory.

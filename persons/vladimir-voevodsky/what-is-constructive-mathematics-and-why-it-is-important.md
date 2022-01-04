@@ -3,8 +3,11 @@ title: What is Constructive Mathematics and Why it is Important
 author: Vladimir Voevodsky
 year: 2017
 venue: The Global Young Scientists Summit (GYSS)
-video: https://www.youtube.com/watch?v=ZVOo7T3GJmI
 ---
+
+[ [**YOUTUBE**](https://www.youtube.com/watch?v=ZVOo7T3GJmI) ]
+
+<br />
 
 When we say "constructive mathematics" we should first make clear
 what we mean by the word "mathematics" in this phrase.
