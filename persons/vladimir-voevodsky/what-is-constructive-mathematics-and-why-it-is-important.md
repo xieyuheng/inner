@@ -5,7 +5,7 @@ year: 2017
 venue: The Global Young Scientists Summit (GYSS)
 ---
 
-[ [**YOUTUBE**](https://www.youtube.com/watch?v=ZVOo7T3GJmI) ]
+[ [YOUTUBE](https://www.youtube.com/watch?v=ZVOo7T3GJmI) ]
 
 <br />
 

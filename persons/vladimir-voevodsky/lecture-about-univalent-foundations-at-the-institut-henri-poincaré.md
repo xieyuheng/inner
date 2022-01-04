@@ -5,7 +5,7 @@ date: 2014-04-22
 venue: Institut Henri Poincaré
 ---
 
-[ [**YOUTUBE**](https://www.youtube.com/watch?v=CJugQ8AGCUo) ]
+[ [YOUTUBE](https://www.youtube.com/watch?v=CJugQ8AGCUo) ]
 
 <br />
 

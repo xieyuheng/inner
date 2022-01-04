@@ -5,7 +5,7 @@ year: 2011
 venue: Institute for Advanced Study
 ---
 
-[ [**YOUTUBE**](https://www.youtube.com/watch?v=UvDeVqzcw4k) ]
+[ [YOUTUBE](https://www.youtube.com/watch?v=UvDeVqzcw4k) ]
 
 <br />
 

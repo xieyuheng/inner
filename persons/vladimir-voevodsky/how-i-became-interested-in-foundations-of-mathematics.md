@@ -5,7 +5,7 @@ year: 2015
 venue: The 9th Asian Science Camp, Thailand
 ---
 
-[ [**YOUTUBE**](https://www.youtube.com/watch?v=55yZE3IoAy8) ]
+[ [YOUTUBE](https://www.youtube.com/watch?v=55yZE3IoAy8) ]
 
 <br />
 
