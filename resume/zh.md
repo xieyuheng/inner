@@ -102,7 +102,7 @@ is a framework for building markdown extensions.
 
 ### Readonly.Link
 
-[readonly.link](https://readonly.link)
+[Readonly.Link](https://readonly.link)
 is a document rendering platform.
 
 ### EnchanterJS
