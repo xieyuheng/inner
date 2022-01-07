@@ -39,7 +39,7 @@ task of logician:
 different logics:
 
 - propositional logic -- propositions are atomic
-  - can express NP-complete problems -- what does is mean?
+  - can express NP-complete problems -- what does this mean?
 
 - predicate logic -- a family of logics, which can be categorized by their order:
 
