@@ -1,9 +1,8 @@
-# Constructive Mathematics and Computer Programming
-
-------
-- Author: Martin-Löf
-- Date: 1979
-------
+---
+title: Constructive Mathematics and Computer Programming
+author: Martin-Löf
+year: 1979
+---
 
 # intro
 

@@ -1,9 +1,8 @@
-# Intuitionistic Type Theory
-
-------
-- Author: Martin-Löf
-- Date: 1984
-------
+---
+title: Intuitionistic Type Theory
+author: Martin-Löf
+year: 1984
+---
 
 # Introductory remarks
 # Propositions and judgements

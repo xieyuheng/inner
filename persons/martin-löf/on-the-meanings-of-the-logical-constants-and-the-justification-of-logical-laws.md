@@ -1,11 +1,10 @@
-# On the meanings of the logical constants and the justification of logical laws
+---
+title: On the meanings of the logical constants and the justification of logical laws
+author: Martin-Löf
+year: 1996
+---
 
-------
-- Author: Martin-Löf
-- Date: 1996
-------
-
-## First lecture
+# First lecture
 
 - Xie:
   A study of the history of the use of the word "proposition"
@@ -130,7 +129,7 @@ before it has been judged, that is, has become known?
   the author is cornered and come up with the word "enunciation",
   I would suggest the word "claim".
 
-## Second lecture
+# Second lecture
 
 So the condition for it to be right of me to affirm a proposition A,
 that is, to say that A is true, is not that A is true, but that I know that A is true.
@@ -441,7 +440,7 @@ really has the modal character of possibility.
 The knowledge of a judgement of form `A true` is about **"How"**.
 The knowledge of a judgement of form `A prop` is about **"What"**.
 
-## Third lecture
+# Third lecture
 
 Next I have to say something about hypothetical judgements,
 before I proceed to the final piece, which consists of
