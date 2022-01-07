@@ -51,7 +51,8 @@ year: 1996
   is used as a proposition in "A is necessary is true."
   where "_ is necessary" denotes a logical operation.
 
-- Xie: The following definition of judgement is famous.
+- Xie: The following definition of judgement is very famous.
+  - For example, it is used in Dan and David's book "The Little Typer".
 
 Now, the question, What is a judgement? is no small question,
 because the notion of judgement is just about the first of all the notions of logic,

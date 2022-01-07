@@ -1,13 +1,16 @@
-The Power of Prolog
+---
+title: The Power of Prolog
+author: Markus Triska
+---
 
-- project: https://github.com/triska/the-power-of-prolog
-- book: https://www.metalevel.at/prolog
-- videos: https://www.metalevel.at/prolog/videos
-- channel: https://www.youtube.com/channel/UCFFeNyzCEQDS4KCecugmotg
+[ [PROJECT](https://github.com/triska/the-power-of-prolog)
+| [BOOK](https://www.metalevel.at/prolog)
+| [VIDEOS](https://www.metalevel.at/prolog/videos)
+| [CHANNEL](https://www.youtube.com/channel/UCFFeNyzCEQDS4KCecugmotg) ]
 
 # What is logic?
 
-video: https://www.youtube.com/watch?v=nlTZQ0FF2Eo&ab_channel=ThePowerofProlog
+[ [VIDEO](https://www.youtube.com/watch?v=nlTZQ0FF2Eo&ab_channel=ThePowerofProlog) ]
 
 Logic is one kind of study of formal languages.
 
@@ -99,7 +102,7 @@ prolog's execution mechanism is a specific form of theorem proving
 
 # Predicate Logic
 
-video: https://www.metalevel.at/prolog/videos/predicate_logic
+[ [VIDEO](https://www.metalevel.at/prolog/videos/predicate_logic) ]
 
 syntax: formula and statement
 
@@ -218,7 +221,7 @@ TODO learn about the least Herbrand model.
 
 # Horn clauses
 
-video: https://www.metalevel.at/prolog/videos/horn_clauses
+[ [VIDEO](https://www.metalevel.at/prolog/videos/horn_clauses) ]
 
 questions:
 
@@ -269,7 +272,7 @@ TODO Why unsatisfiability is different from satisfiability?
 
 # Predicates
 
-video: https://www.metalevel.at/prolog/videos/predicates
+[ [VIDEO](https://www.metalevel.at/prolog/videos/predicates) ]
 
 We define predicate by writing down Horn clauses.
 
@@ -284,7 +287,7 @@ by defining relation between states.
 
 # Clauses, rules and facts
 
-video: https://www.youtube.com/watch?v=x_APqarir-k&feature=youtu.be&ab_channel=ThePowerofProlog
+[ [VIDEO](https://www.youtube.com/watch?v=x_APqarir-k&feature=youtu.be&ab_channel=ThePowerofProlog) ]
 
 In logic, a clause a disjunction or a conjunction of literals.
 
@@ -307,7 +310,7 @@ If any clause is true, then the whole predicate is true.
 
 # Queries and Answers
 
-video: https://www.metalevel.at/prolog/videos/queries
+[ [VIDEO](https://www.metalevel.at/prolog/videos/queries) ]
 
 We put terms in, and we get terms out.
 
@@ -337,7 +340,7 @@ Y in inf..sup.
 
 # Terms
 
-video: https://www.youtube.com/watch?v=TUjQqvCTwjQ&ab_channel=ThePowerofProlog
+[ [VIDEO](https://www.youtube.com/watch?v=TUjQqvCTwjQ&ab_channel=ThePowerofProlog) ]
 
 In Prolog, all data are represented by Prolog terms.
 
@@ -351,7 +354,7 @@ A compound term is called *partially instantiated* if one of its subterms is a v
 
 # Operators
 
-video: https://www.youtube.com/watch?v=DepPPfDVSpw&ab_channel=ThePowerofProlog
+[ [VIDEO](https://www.youtube.com/watch?v=DepPPfDVSpw&ab_channel=ThePowerofProlog) ]
 
 About infix notations.
 
@@ -366,7 +369,7 @@ Useful predicate to query about operators.
 
 # Lists
 
-video: https://www.youtube.com/watch?v=9JzwUnMSCdA&ab_channel=ThePowerofProlog
+[ [VIDEO](https://www.youtube.com/watch?v=9JzwUnMSCdA&ab_channel=ThePowerofProlog) ]
 
 Prolog lists are a special case of terms.
 
@@ -374,7 +377,7 @@ Prolog lists are a special case of terms.
 
 # Pairs
 
-video: https://www.youtube.com/watch?v=EPTad1ysIRE&ab_channel=ThePowerofProlog
+[ [VIDEO](https://www.youtube.com/watch?v=EPTad1ysIRE&ab_channel=ThePowerofProlog) ]
 
 A key-value pair is written as: `K - V`
 
@@ -383,13 +386,13 @@ Why hot using list to represent pair? -- like we do in lisp.
 
 # Strings
 
-video: https://www.youtube.com/watch?v=plvBFNi0cVw&ab_channel=ThePowerofProlog
+[ [VIDEO](https://www.youtube.com/watch?v=plvBFNi0cVw&ab_channel=ThePowerofProlog) ]
 
 Use list of chars to handle string.
 
 # Type tests
 
-video: https://www.youtube.com/watch?v=ZIv0G4b1xBQ&ab_channel=ThePowerofProlog
+[ [VIDEO](https://www.youtube.com/watch?v=ZIv0G4b1xBQ&ab_channel=ThePowerofProlog) ]
 
 The standard predicates for type testing (`atom/1`, `integer/1`, `compound/1` etc.)
 are logically flawed because they are not monotonic:
@@ -413,7 +416,7 @@ which can raise instantiation errors on variable.
 
 # Clean vs. Defaulty Representations
 
-video: https://www.youtube.com/watch?v=KJ8uZiWpomg&ab_channel=ThePowerofProlog
+[ [VIDEO](https://www.youtube.com/watch?v=KJ8uZiWpomg&ab_channel=ThePowerofProlog) ]
 
 When representing data with Prolog terms, ask yourself the following question:
 
@@ -431,7 +434,7 @@ which is applied if everything else fails.
 
 # Naming Prolog Predicates
 
-video: https://www.youtube.com/watch?v=Uska9DgJEoo&ab_channel=ThePowerofProlog
+[ [VIDEO](https://www.youtube.com/watch?v=Uska9DgJEoo&ab_channel=ThePowerofProlog) ]
 
 在 Prolog 中命名 predicate 时，最好把参数相关的信息直接表达咋 predicate name 中。
 但是这其实是由于 Prolog 是 untyped language，而在 name 中所表达的信息，其实就是类型信息。
@@ -463,7 +466,7 @@ remove({ target: v`l1`, element: v`e`, result: v`l2`})
 
 # Prolog Integer Arithmetic
 
-video: https://www.youtube.com/watch?v=sHo6-hk21L8&ab_channel=ThePowerofProlog
+[ [VIDEO](https://www.youtube.com/watch?v=sHo6-hk21L8&ab_channel=ThePowerofProlog) ]
 
 CLP -- Constraint Logic Programming
 CLP(FD) -- Constraint Logic Programming over finite domain
