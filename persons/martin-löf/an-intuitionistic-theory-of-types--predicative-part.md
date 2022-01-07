@@ -1,5 +1,5 @@
 ---
-title: An intuitionistic theory of types: predicative part
+title: "An intuitionistic theory of types: predicative part"
 author: Martin-Löf
 year: 1973
 ---
