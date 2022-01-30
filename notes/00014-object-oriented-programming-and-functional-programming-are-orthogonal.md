@@ -17,5 +17,7 @@ they are orthogonal language features, (or anti-features).
 
 This summary is learned from Bob Martin.
 
+- [Robert C Martin - Functional Programming; What? Why? When?](https://www.youtube.com/watch?v=7Zlp9rKHGD4)
+
 Note that, Bob Martin get this "anti-feature" series,
 because his historical view starts from structural programming.
