@@ -89,9 +89,9 @@ On the contrary, when record-type is used uniformly,
 sum-type will be symmetric to sub-type :
 
 | syntax | semantics              |
-|--------+------------------------|
-| :>     | summing sub-types      |
-| <:     | inheriting super-types |
+|--------|------------------------|
+| `:>`   | summing sub-types      |
+| `<:`   | inheriting super-types |
 
 For example, list-t can be defined as following :
 
