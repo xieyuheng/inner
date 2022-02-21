@@ -4,6 +4,7 @@
 - 百合          --  https://github.com/lilydjwg
 - 肥猫          --  https://github.com/felixonmars
 - quininer      --  https://github.com/quininer
+- liolok        --  https://github.com/liolok
 - condy         --  https://github.com/condy0919
 - Dex Xu        --  https://github.com/dexhunter
 - atommann      --  https://github.com/atommann
