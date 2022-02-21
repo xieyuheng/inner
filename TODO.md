@@ -1,3 +1,8 @@
+what is the different between viewing the type of object as `(message) -> method`,
+and viewing the type of object as a record?
+
+- about subtyping?
+
 # implementation notes
 
 - write chinese notes about implicit arguments and inductive type -- like the note about implementation patterns
