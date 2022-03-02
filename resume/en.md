@@ -13,8 +13,8 @@
 ### Web full-stack development
 
 - Language: TypeScript
-- Frontend：Vue，Inertia.js，TailwindCSS
-- Backend：Laravel，NodeJs，MongoDB，PostgresSQL
+- Frontend：Vue.js，Inertia.js，Alpine.js, Tailwind CSS
+- Backend：Laravel，Node.js，PostgreSQL
 
 ### Formal language design
 
