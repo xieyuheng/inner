@@ -46,7 +46,7 @@ ServiceProvider.boot
 
 Responsibilities:
 
-- dependency injection
+- **dependency injection**
 - database
 - queue
 - validation
