@@ -1,5 +1,11 @@
-# Ones Inner Universe
+## Hi, I'm Xie Yuheng ^-^/
 
-[ [LINK (GitHub)](https://readonly.link/articles/github.com/xieyuheng/inner)
-| [LINK (GitLab)](https://readonly.link/articles/gitlab.com/xieyuheng/inner)
-| [LINK (Gitee)](https://readonly.link/articles/gitee.com/xyheme/inner) ]
+I am a programmer, and I work as a full-stack web developer.
+
+I share my ideas about _programming_, _mathematics_ and _philosophy_
+through my notes, projects, translations, and papers.
+
+Right now I'm working on [**Cicada Language**](https://cicada-lang.org),
+and [**Readonly.Link**](https://readonly.link).
+
+Curious? Come to see my [**inner universe**](https://readonly.link/projects/xieyuheng).
