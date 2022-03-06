@@ -22,3 +22,8 @@ Two kinds of tests:
   Test HTTP endpoints.
 
   Most of the tests should be feature test.
+
+# Environment
+
+The environment used during testing
+is different from normal environment.
