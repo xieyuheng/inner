@@ -21,3 +21,7 @@ Which returns `Illuminate\Testing\TestResponse`
 instead of `Illuminate\Http\Response`.
 
 **One test, one request.**
+
+# Look Back
+
+The `TestCase` is an exmaple of well designed HTTP library.
