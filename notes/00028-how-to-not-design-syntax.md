@@ -16,7 +16,7 @@ How to not design syntax?
 
 Examples:
 
-```cicada
+```javascript
 claim f: (x: A, y: B(x)) -> C(x, y)
 
 claim f: (
