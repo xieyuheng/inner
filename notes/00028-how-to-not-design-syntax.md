@@ -6,7 +6,7 @@ date: 2022-03-12
 First of all, Why not to design syntax?
 
 Because syntax design can be an endless tormenting circle,
-in witch no real progress can be made.
+in which no real progress can be made.
 
 How to not design syntax?
 
