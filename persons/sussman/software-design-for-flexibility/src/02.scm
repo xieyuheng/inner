@@ -38,3 +38,23 @@
      (lambda (x y z) (list 'bar x y z)))
     'a 'b 'c))
   (newline))
+
+
+(quote
+    (define (spread-combine h f g)
+      (let ((n (get-arity f)))
+        (define (the-combination . args)
+          (h (apply f (list-head args n))
+             (apply g (list-tail args n))))
+        the-combination)))
+
+
+(quote
+    (define (spread-combine h f g)
+      (let ((n (get-arity f))
+            (m (get-arity g)))
+        (let ((t (+ n m)))
+          (define (the-combination . args)
+            (h (apply f (list-head args n))
+               (apply g (list-tail args n))))
+          (restrict-arity the-combination t)))))
