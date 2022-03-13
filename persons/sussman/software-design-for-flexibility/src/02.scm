@@ -58,3 +58,13 @@
             (h (apply f (list-head args n))
                (apply g (list-tail args n))))
           (restrict-arity the-combination t)))))
+
+
+(quote
+    ((a good API to handle permutation)
+
+     (((permute-arguments 1 2 0 3)
+       (lambda (x y z w) (list 'foo x y z w)))
+      'a 'b 'c 'd)
+
+     (foo b c a d)))
