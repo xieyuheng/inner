@@ -24,6 +24,15 @@
   - TechLead
   - "Will Deno replace Node.js: Which programming language is better?"
 
+- Syntax without representation is tyranny.
+  - Sussman's mantra
+
+- One of the things that's been an observation over a long time,
+  is that it's often more to your advantage
+  to be like the person next to you
+  than it's to have a better tool.
+  - Sussman
+
 ## Design
 
 - The goal of design is for you to understand the choices you are making.
