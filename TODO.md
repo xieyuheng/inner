@@ -1,7 +1,9 @@
-what is the different between viewing the type of object as `(message) -> method`,
-and viewing the type of object as a record?
+# OOP & type system
 
-- about subtyping?
+- what is the different between viewing the type of object as `(message) -> method`,
+  and viewing the type of object as a record?
+
+  - about subtyping?
 
 # implementation notes
 
@@ -15,7 +17,6 @@ and viewing the type of object as a record?
 # software design
 
 - practice design patterns -- functional style and class style
-- laravel: https://github.com/xieyuheng/summer.php
 - tdd: ~/watching/tdd/james-shore
 
 # language design
@@ -25,14 +26,3 @@ and viewing the type of object as a record?
   - Category Theory 4.1: Terminal and initial objects
   - Category Theory 4.2: Products
   - Category Theory 5.1: Coproducts, sum types
-
-# projects
-
-- `@xieyuheng/partech` instead of `@cicada-lang/partech`
-
-- `@xieyuheng/langdev` language framework
-
-  - use `@xieyuheng/partech`
-
-- `@xieyuheng/apidev` api framework
-  - extract from `@xieyuheng/summer`
