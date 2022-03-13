@@ -54,3 +54,20 @@ from the underlying programming language.
 In our example, the primitives are functions,
 and the means of combination are the combinators `compose`,
 `parallel-combine`, `spread-combine`, and others we may introduce.
+
+## Multiple return values
+
+One can use `values`, `call-with-values`, and `let-values`
+to handle function with multiple return values.
+
+The API might comes from the use of CPS as an implementation technique.
+
+But the API is not as easy to use, even comparing to return a list.
+
+The most nature API of multiple return values is in stack-based language.
+
+Note that, "single return value" is a very valuable constraint,
+it gives us a semantic in which one expression evaluates to another expression.
+
+The semantic of stack-based language is more complicated,
+where we execute a statement to get an effect on the stack.
