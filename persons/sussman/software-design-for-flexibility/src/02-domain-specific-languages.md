@@ -71,5 +71,3 @@ it gives us a semantic in which one expression evaluates to another expression.
 
 The semantic of stack-based language is more complicated,
 where we execute a statement to get an effect on the stack.
-
-# 2.2 Regular expressions
