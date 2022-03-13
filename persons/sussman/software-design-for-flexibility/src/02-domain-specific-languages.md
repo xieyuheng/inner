@@ -44,3 +44,13 @@ A program that implements this idea is straightforward:
   (lambda args
     (f (apply g args))))
 ```
+
+For any language there are primitives,
+means of combination, and means of abstraction.
+A combinator language defines primitives and means of combination,
+inheriting its means of abstraction
+from the underlying programming language.
+
+In our example, the primitives are functions,
+and the means of combination are the combinators `compose`,
+`parallel-combine`, `spread-combine`, and others we may introduce.
