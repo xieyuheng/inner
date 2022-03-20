@@ -1,3 +1,24 @@
+# ai
+
+- 利用 sexp 向机器描述想要解决的问题，
+  机器给你解决问题的建议。
+
+  - 问题可以是关于解决数学问题的，
+    也可以是关于 OOP 的。
+
+  - 类似专家系统。
+
+  - 需要能够把某个领域的知识，表达给机器。
+
+  - 如果我能帮助别人实现别人所感兴趣的所谓「专家系统」，
+    那么这个服务是否可以赚钱呢？
+
+  - 基于 how to slove it 的 bot。
+
+  - 基于 99 bottles of OOP 和 POODR 的 bot。
+
+- 给出很多句子，学习出来语法。
+
 # OOP & type system
 
 - what is the different between viewing the type of object as `(message) -> method`,
