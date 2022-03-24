@@ -1,5 +1,5 @@
 ---
-title: How to not design syntax?
+title: Why lisp matters to me?
 date: 2022-03-25
 ---
 
