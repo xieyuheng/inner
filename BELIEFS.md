@@ -34,4 +34,4 @@ of recording knowledge that's easy to share.
 
 ## Maybe Wrong
 
-https://github.com/thma/LtuPatternFactory
+<https://github.com/thma/LtuPatternFactory>
