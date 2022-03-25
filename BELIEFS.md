@@ -36,6 +36,17 @@ of recording knowledge that's easy to share.
 
 I want to add OOP to lisp.
 
-## Maybe Wrong
+## Maybe Wrong, But ...
 
-<https://github.com/thma/LtuPatternFactory>
+Note that FP (Functional Programming) is orthogonal to OOP.
+
+If we disallow side-effect in an OOP language, the language became pure FP,
+
+The key technique of OOP -- dependency injection, is still effective in FP,
+injecting a dependency to a class' constructor, is just
+passing a record of (high order) functions to a (even higher order) function,
+which returns a record of functions (instance of the class).
+
+Thus dependency injection can be viewed as,
+using very high order functions,
+with the help of record types.
