@@ -34,7 +34,7 @@ of recording knowledge that's easy to share.
 
 ## Practical Effects
 
-I want to add OOP to lisp.
+I want to add (simple single inheritance) OOP to lisp.
 
 ## Maybe Wrong, But ...
 
