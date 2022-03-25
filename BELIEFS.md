@@ -32,6 +32,10 @@ for writing code that's easy to change.
 I also **belief** the use of _Design Patterns_ is a good way
 of recording knowledge that's easy to share.
 
+## Practical Effects
+
+I want to add OOP to lisp.
+
 ## Maybe Wrong
 
 <https://github.com/thma/LtuPatternFactory>
