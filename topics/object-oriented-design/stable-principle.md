@@ -1,7 +1,7 @@
 ---
 title: STABLE principle
 author: Sarah Mei
-date: 2015
+year: 2018
 ---
 
 goal: changeable code (why)

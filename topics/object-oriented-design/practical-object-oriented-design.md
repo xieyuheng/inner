@@ -1,7 +1,7 @@
 ---
 title: Practical Object-Oriented Design
 author: Sandi Marts
-date: 2019
+year: 2019
 ---
 
 - What is Object-Oriented Design?
