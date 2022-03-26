@@ -8,6 +8,9 @@ author: Xie Yuheng
 
 Can be learned from here: https://fermat.github.io
 
+https://github.com/Fermat/gottlob
+https://cedille.github.io
+
 https://gist.github.com/zmactep/c5e167c86fb8d80dcd5532792371863f
 
 # Equivalence between Recursive functions
