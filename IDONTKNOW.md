@@ -33,6 +33,8 @@ https://ncatlab.org/nlab/show/calculus+of+constructions
 
 # Coinductive datatypes
 
+Not just record type?
+
 # Graph based implementation of Lambda Calculus
 
 To solve the following problem:
