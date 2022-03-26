@@ -25,3 +25,5 @@ Also learn CoC when learning Coq.
 
 https://en.wikipedia.org/wiki/Calculus_of_constructions
 https://ncatlab.org/nlab/show/calculus+of+constructions
+
+# Cubical Type Theory
