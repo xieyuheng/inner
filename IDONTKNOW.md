@@ -30,3 +30,17 @@ https://en.wikipedia.org/wiki/Calculus_of_constructions
 https://ncatlab.org/nlab/show/calculus+of+constructions
 
 # Cubical Type Theory
+
+# Coinductive datatypes
+
+# Graph based implementation of Lambda Calculus
+
+To solve the following problem:
+
+> Normal forms of Parigot numerals are exponential in size,
+> but a reasonable term-graph implementation
+> should be able to keep them linear via sharing.
+
+# Lambda Cube
+
+Why complicated kinding?
