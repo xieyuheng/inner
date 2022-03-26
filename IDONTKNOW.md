@@ -53,3 +53,5 @@ as I learn these, I found that
 I'd better have a language to help me
 unify the different notations used by different authors
 -- a sexp-based lisp language.
+
+- Let's start from Lambda Cube and CoC.
