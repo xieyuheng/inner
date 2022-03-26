@@ -54,4 +54,6 @@ I'd better have a language to help me
 unify the different notations used by different authors
 -- a sexp-based lisp language.
 
+Note that, implementing is the unifying force.
+
 - Let's start from Lambda Cube and CoC.
