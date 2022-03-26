@@ -1,6 +1,7 @@
 ---
 title: Things I don't know
 subtitle: Explicitly spoken out to urge myself to learn.
+author: Xie Yuheng
 ---
 
 # Lambda Encoding of inductive types
