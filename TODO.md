@@ -1,3 +1,9 @@
+# enjoy designing languages
+
+- suki -- lambda + object (untyped)
+- lambda cube
+- lambda cube -- structural pi
+
 # ai
 
 - 利用 sexp 向机器描述想要解决的问题，
