@@ -25,6 +25,13 @@
 
 - 给出很多句子，学习出来语法。
 
+- Learn from MIT
+
+  - MIT AGI: https://www.youtube.com/playlist?list=PL4jieTF-BpWoiVjta6VuRy5plFtDm9eRG
+    - https://www.youtube.com/watch?v=bfO4EkoGh40
+
+  - Lex Fridman Podcast: https://www.youtube.com/playlist?list=PLrAXtmErZgOdP_8GztsuKi9nrraNbKKp4
+
 # OOP & type system
 
 - what is the different between viewing the type of object as `(message) -> method`,
