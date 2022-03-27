@@ -4,6 +4,12 @@ subtitle: Explicitly spoken out to urge myself to learn.
 author: Xie Yuheng
 ---
 
+# Galois Theory
+
+# Formal Concept Analysis
+
+# Linear Logic
+
 # Lambda Encoding of inductive types
 
 Can be learned from here: https://fermat.github.io
