@@ -2,6 +2,7 @@
 
 - suki -- lambda + object (untyped)
 - lambda cube
+  - ~/persons/henk-barendregt/intro/introduction-to-generalized-type-systems.pdf
 - lambda cube -- structural pi
 
 # ai
