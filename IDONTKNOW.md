@@ -43,6 +43,9 @@ To solve the following problem:
 > but a reasonable term-graph implementation
 > should be able to keep them linear via sharing.
 
+I already know how to implement interaction nets,
+which are linear, but a good starting point.
+
 # Lambda Cube
 
 Why complicated kinding?
