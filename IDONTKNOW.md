@@ -64,3 +64,14 @@ unify the different notations used by different authors
 Note that, implementing is the unifying force.
 
 - Let's start from Lambda Cube and CoC.
+
+I feel most papers are hard to understand.
+
+Maybe I am stupid, but I have some thinking about this recently.
+
+I think if I have a syntax-ly unified language,
+and I can transcript the notations of hard to understand papers
+into my unified language,
+understanding will be easier.
+
+because i will be actively testing my understanding during transcripting.
