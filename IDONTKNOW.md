@@ -10,6 +10,8 @@ author: Xie Yuheng
 
 # Linear Logic
 
+# Probabilistic Programming
+
 # Lambda Encoding of inductive types
 
 Can be learned from here: https://fermat.github.io
