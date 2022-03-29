@@ -1,15 +1,3 @@
-# enjoy designing languages
-
-- to learn self types, i think i need to learn lambda-cube and CoC.
-- the bast way to learn lambda-cube and CoC is to implement it.
-  - follow example of lambda-cube in wikipedia
-- we can learn CoC with Coq.
-
-- suki -- lambda + object (untyped)
-- lambda cube
-  - ~/persons/henk-barendregt/intro/introduction-to-generalized-type-systems.pdf
-- lambda cube -- structural pi
-
 # ai
 
 - 利用 sexp 向机器描述想要解决的问题，
