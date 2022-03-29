@@ -92,52 +92,62 @@ as all types except the universal are themselves terms with a type.
   (beta-equal B B')
   (check ctx B' Sort)
   (check ctx A B'))
+```
 
-;; NOTE The difference between the systems is in the pairs of sorts
-;; that are allowed in the following two typing rules:
+The difference between the systems is in the pairs of sorts
+that are allowed in the following two typing rules
+-- `product` and `abstraction`.
 
-;; NOTE The following rule means `SortLeft` can depend on `SortRight`.
-;;   (Prop, Prop) -- terms can depend on terms.
-;;   (Prop, Type) -- types can depend on terms.
-;;   (Type, Prop) -- terms can depend on types.
-;;   (Type, Type) -- types can depend on types.
+Where The following means `SortLeft` can depend on `SortRight`.
 
+- `(Prop, Prop)` -- terms can depend on terms.
+- `(Prop, Type)` -- types can depend on terms.
+- `(Type, Prop)` -- terms can depend on types.
+- `(Type, Type)` -- types can depend on types.
+
+```scheme
 (define-rule product
   (check ctx A SortRight)
   (check (extend ctx x A) B SortLeft)
   (check ctx (Pi ((x A)) B) SortLeft))
+```
 
-;; NOTE The structural relation between `lambda` and `Pi`
-;;   is truncated in the above rule,
-;;   we do not have `Pi2` and the following rule:
+The structural relation between `lambda` and `Pi`
+is truncated in the above rule,
+we do not have `Pi2` and the following rule:
+
+```scheme
 (define-rule product-structural
   (check ctx A SortRight)
   (check (extend ctx x A) B SortLeft)
   (check (extend ctx x A) B B2)
   (check ctx (Pi ((x A)) B) (Pi2 ((x A)) B2)))
+```
+Maybe this is because when talking about `(Pi ((x A)) B)`'s type,
+we do not want to know its structural details,
+we just want to say it is a type.
 
-;; Maybe this is because when talking about `(Pi ((x A)) B)`'s type,
-;; we do not want to know its structural details,
-;; we just want to say it is a type.
+If we have the following:
 
-;; If we have the following:
-;;   (Pi 0) lambda
-;;   (Pi 1) Pi
-;;   (Pi 2) ...
-;; We will also need `(Type 0)`, `(Type 1)`, ...
-;; and subtype relation `(Pi n) < (Type n)`,
-;; because if we can not view `(Pi)` as `Type`
-;; we will not be able to write list of functions -- `(List (-> A B))`.
+- (Pi 0) lambda
+- (Pi 1) Pi
+- (Pi 2) ...
 
+We will also need `(Type 0)`, `(Type 1)`, ...
+and subtype relation `(Pi n) < (Type n)`,
+because if we can not view `(Pi)` as `Type`
+we will not be able to write list of functions -- `(List (-> A B))`.
+
+```scheme
 (define-rule abstraction
   (check ctx A SortRight)
   (check (extend ctx x A) B SortLeft)
   (check (extend ctx x A) b B)
   (check ctx (lambda ((x A)) b) (Pi ((x A)) B)))
-
-;; Another difference between lambda and Pi is that,
-;; we want to write `(lambda (x) b)` instead of `(lambda ((x A)) b)`.
 ```
+
+Another difference between lambda and Pi is that,
+we want to write `(lambda (x) b)` instead of `(lambda ((x A)) b)`.
 
 # Comparison between the systems
 
