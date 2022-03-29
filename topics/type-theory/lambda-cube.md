@@ -1,6 +1,6 @@
 ---
 title: Lambda Cube
-subtitle: Why truncate the structural rule?
+subtitle: Why truncate the rule for Pi instead of keep it structural?
 ---
 
 # TODO
@@ -67,7 +67,7 @@ as all types except the universal are themselves terms with a type.
    (Pi ((<var> <exp>)) <exp>)))
 ```
 
-# Formal definition
+# The rules
 
 ```scheme
 (define-rule axiom
@@ -123,6 +123,9 @@ we do not have `Pi2` and the following rule:
   (check (extend ctx x A) B B2)
   (check ctx (Pi ((x A)) B) (Pi2 ((x A)) B2)))
 ```
+
+**Why truncate the rule for `Pi` instead of keep it structural?**
+
 Maybe this is because when talking about `(Pi ((x A)) B)`'s type,
 we do not want to know its structural details,
 we just want to say it is a type.
@@ -153,7 +156,9 @@ we want to write `(lambda (x) b)` instead of `(lambda ((x A)) b)`.
 
 TODO
 
-# Why truncate the structural rule?
+# Pure type system
+
+[ [WIKIPEDIA](https://en.wikipedia.org/wiki/Pure_type_system) ]
 
 ```js
 (s1, s2) in axioms
@@ -293,6 +298,4 @@ ctx |- [x: A] b : [x: A] B
 what is the implication of this
 simple structural lambda abstraction rule?
 
-**TODO**
-we need to implement this.
-and we need to implement one `exp_t` for two concrete syntaxes.
+**We need to implement this!**
