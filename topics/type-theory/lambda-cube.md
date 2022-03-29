@@ -6,13 +6,14 @@ subtitle: Why truncate the rule for Pi instead of keep it structural?
 # TODO
 
 - change the syntax of the rules to Sexp
-- transcript wikipedia page's "Comparison between the systems" section
 
 # The Lambda Cube
 
 [ [WIKIPEDIA](https://en.wikipedia.org/wiki/Lambda_cube) ]
 
 ## (λ→) Simply typed lambda calculus
+
+> Term depends on Term.
 
 ```scheme
 (define-rule
@@ -21,6 +22,8 @@ subtitle: Why truncate the rule for Pi instead of keep it structural?
 ```
 
 ## (λ2) System F
+
+> Term depends on Type.
 
 ```scheme
 (define-rule ;; Maybe wrong
@@ -33,6 +36,8 @@ subtitle: Why truncate the rule for Pi instead of keep it structural?
 
 ## (λω) System Fω
 
+> Type depends on Type.
+
 ```scheme
 (claim Tree (-> Type Type))
 (define (Tree A)
@@ -42,6 +47,8 @@ subtitle: Why truncate the rule for Pi instead of keep it structural?
 
 ## (λP) Lambda-P
 
+> Type depends on Term.
+
 ```scheme
 (define-rule
  (check (extend ctx x A) B Type)
@@ -50,12 +57,14 @@ subtitle: Why truncate the rule for Pi instead of keep it structural?
 
 ## (Fω) System Fω
 
-System Fω provides both terms that depend on types and types that depend on types.
+> Term depends on Type; <br>
+> Type depends on Type.
 
 ## (λC) Calculus of constructions
 
-The clear border that exists in λ→ between terms and types is somewhat abolished,
-as all types except the universal are themselves terms with a type.
+> Term depends on Type; <br>
+> Type depends on Term; <br>
+> Type depends on Type.
 
 ```scheme
 (define-grammer
@@ -98,12 +107,14 @@ The difference between the systems is in the pairs of sorts
 that are allowed in the following two typing rules
 -- `product` and `abstraction`.
 
-Where The following means `SortLeft` can depend on `SortRight`.
+Where in following `SortLeft` can depend on `SortRight`.
 
 - `(Prop, Prop)` -- terms can depend on terms.
 - `(Prop, Type)` -- types can depend on terms.
 - `(Type, Prop)` -- terms can depend on types.
 - `(Type, Type)` -- types can depend on types.
+
+Note that, the naming -- `Prop` and `Type` are borrowed from Coq.
 
 ```scheme
 (define-rule product
@@ -150,11 +161,69 @@ we will not be able to write list of functions -- `(List (-> A B))`.
 ```
 
 Another difference between lambda and Pi is that,
-we want to write `(lambda (x) b)` instead of `(lambda ((x A)) b)`.
+we want to write `(lambda (x) b)` instead of `(lambda ((x A)) b)`,
+i.e. we want typed lambda a al Curry.
 
 # Comparison between the systems
 
-TODO
+## (λ→)
+
+```scheme
+(check (list (cons A Prop))
+  (lambda ((x A)) x) (Pi ((x A)) A))
+
+(check (list (cons A Prop))
+  (lambda ((x A)) x) (-> A A))
+```
+
+## (λ2)
+
+```scheme
+(define Absurd (Pi ((A Prop)) A))
+
+(check (list)
+  (lambda ((Anything Prop) (falsehood Absurd)) (falsehood Anything))
+  (Pi ((Anything Prop) (falsehood Absurd)) Anything))
+```
+
+## (λP)
+
+```scheme
+(declare A Prop)
+(declare a0 A)
+(declare P (-> A Prop))
+(declare Q Prop)
+
+(claim apply
+  (-> (Pi ((x A)) (-> (P x) Q))
+      (Pi ((x A)) (P x))
+      Q))
+
+(define apply
+  (lambda ((z (Pi ((x A)) (-> (P x) Q)))
+           (y (Pi ((x A)) (P x))))
+    ((z a0) (y a0))))
+```
+
+## (λω)
+
+```scheme
+(claim and (-> Prop Prop Prop))
+(define and
+  (lambda ((A Prop) (B Prop) (C Prop))
+    (-> (-> A B C) C)))
+```
+
+From a computing point of view, λω is extremely strong,
+and has been considered as a basis for programming languages.
+
+## (λC)
+
+The calculus of constructions has both the predicate expressiveness of λP
+and the computational power of λω,
+hence why λC is also called λPω,
+so it is very powerful, both on the logical side
+and on the computational side.
 
 # Pure type system
 
