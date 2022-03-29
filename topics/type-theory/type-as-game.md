@@ -1,3 +1,7 @@
+---
+title: Type as Game
+---
+
 - type as game
 - two players: `Verifier` and `Falsifier`
 - object (including function) as winning strategy for `Verifier`
