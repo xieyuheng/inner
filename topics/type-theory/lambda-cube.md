@@ -72,6 +72,22 @@ subtitle: Why truncate the rule for Pi instead of keep it structural?
    (Pi ((<var> <exp>)) <exp>)))
 ```
 
+# Common properties
+
+All systems in the cube enjoy
+
+- The [Church-Rosser property](https://en.wikipedia.org/wiki/Church-Rosser_property);
+- The [subject reduction property (type preservation)](https://en.wikipedia.org/wiki/Subject_reduction);
+- The uniqueness of types.
+  - This property will be break if we introduce subtying.
+
+All of these can be proven on generic pure type systems.
+
+Any term well-typed in a system of the cube is strongly normalizing,
+although this property is not common to all pure type systems.
+
+No system in the cube is Turing complete.
+
 # The rules
 
 ```scheme
@@ -287,7 +303,9 @@ and on the computational side.
   (check ctx (lambda ((x A)) b) (Pi ((x A)) B)))
 ```
 
-# Structural Pi
+# Structural Lambda abstraction
+
+How about the following structural abstraction rule?
 
 ```scheme
 (define-rule abstraction
@@ -298,4 +316,5 @@ and on the computational side.
 What is the implication of this
 simple structural lambda abstraction rule?
 
-**We need to implement this!**
+- Suppose we do not have subtyping, we will not be able to a useful `and`.
+- If we have subtyping, this might be interesting and worth implementing.
