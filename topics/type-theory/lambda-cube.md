@@ -22,13 +22,20 @@ subtitle: Why truncate the rule for Pi instead of keeping it structural?
 > Term depends on Type.
 
 ```scheme
-(define-rule ;; Maybe wrong
+(define-rule
  (check ctx t B)
- (check ctx (forall (A) t) (Pi ((A Type)) B)))
+ (check ctx (lambda ((A Type)) t) (Pi ((A Type)) B)))
 
-(claim id (forall (A) (-> A A)))
-(define id (lambda (x) x))
+(claim id (Pi ((A Type)) (-> A A)))
+(define id (lambda ((A Type) (x A)) x))
 ```
+
+### Refereces
+
+- "Types and Programming Languages", Benjamin Pierce, 2002.
+  - V Polymorphism
+    - Ch. 23. Universal Types
+    - Ch. 25. An ML Implementation of System F
 
 ## (λω) System Fω
 
