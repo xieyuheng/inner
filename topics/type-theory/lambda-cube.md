@@ -5,7 +5,8 @@ subtitle: Why truncate the rule for Pi instead of keep it structural?
 
 # TODO
 
-- change the syntax of the rules to Sexp
+- change the syntax of the rules for automath-like to sexp
+- change the syntax of the rules for structural version to sexp
 
 # The Lambda Cube
 
@@ -117,7 +118,7 @@ Where in following `SortLeft` can depend on `SortRight`.
 Note that, the naming -- `Prop` and `Type` are borrowed from Coq.
 
 ```scheme
-(define-rule product
+(define-rule product ;; pi abstraction
   (check ctx A SortRight)
   (check (extend ctx x A) B SortLeft)
   (check ctx (Pi ((x A)) B) SortLeft))
@@ -169,10 +170,10 @@ i.e. we want typed lambda a al Curry.
 ## (λ→)
 
 ```scheme
-(check (list (cons A Prop))
+(check (list (tuple A Prop))
   (lambda ((x A)) x) (Pi ((x A)) A))
 
-(check (list (cons A Prop))
+(check (list (tuple A Prop))
   (lambda ((x A)) x) (-> A A))
 ```
 
@@ -181,10 +182,22 @@ i.e. we want typed lambda a al Curry.
 ```scheme
 (define Absurd (Pi ((A Prop)) A))
 
-(check (list)
+(check (list) ;; empty context
   (lambda ((Anything Prop) (falsehood Absurd)) (falsehood Anything))
   (Pi ((Anything Prop) (falsehood Absurd)) Anything))
 ```
+
+## (λω)
+
+```scheme
+(claim and (-> Prop Prop Prop))
+(define and
+  (lambda ((A Prop) (B Prop) (C Prop))
+    (-> (-> A B C) C)))
+```
+
+From a computing point of view, λω is extremely strong,
+and has been considered as a basis for programming languages.
 
 ## (λP)
 
@@ -205,18 +218,6 @@ i.e. we want typed lambda a al Curry.
     ((z a0) (y a0))))
 ```
 
-## (λω)
-
-```scheme
-(claim and (-> Prop Prop Prop))
-(define and
-  (lambda ((A Prop) (B Prop) (C Prop))
-    (-> (-> A B C) C)))
-```
-
-From a computing point of view, λω is extremely strong,
-and has been considered as a basis for programming languages.
-
 ## (λC)
 
 The calculus of constructions has both the predicate expressiveness of λP
@@ -225,42 +226,70 @@ hence why λC is also called λPω,
 so it is very powerful, both on the logical side
 and on the computational side.
 
+# Relation to other systems
+
+- The system [Automath](https://en.wikipedia.org/wiki/Automath) is similar to λ2 from a logical point of view.
+
+- The ML-like languages, from a typing point of view, lie somewhere between λ→ and λ2,
+  as they admit a restricted kind of polymorphic types,
+  that is the types in prenex normal form.
+  However, because they feature some recursion operators,
+  their computing power is greater than that of λ2.
+
+- The Coq system is based on an extension of λC
+  - with a linear hierarchy of universes (rather than only one untypable `Type`),
+  - and the ability to construct inductive types.
+
+- Pure type systems can be seen as a generalization of the cube,
+  with an arbitrary set of sorts, axiom, product and abstraction rules.
+
+  Conversely, the systems of the lambda cube
+  can be expressed as pure type systems
+  - with two sorts `(set Prop Type)`,
+  - the only axiom `(set (tuple Prop Type))`,
+  - and a set of rules `R` such that
+    ``` scheme
+    (set (tuple Prop Prop Prop))
+    <= R <=
+    (set (tuple Prop Prop Prop)
+         (tuple Prop Type Type)
+         (tuple Type Prop Prop)
+         (tuple Type Type Type))
+    ```
+
+| System of the cube | Logical System                             |
+|--------------------|--------------------------------------------|
+| λ→               | (First-order) Propositional Calculus       |
+| λ2                | Second-order Propositional Calculus        |
+| λω               | Weakly Higher Order Propositional Calculus |
+| λω               | Higher Order Propositional Calculus        |
+| λP                | (First order) Predicate Logic              |
+| λP2               | Second-order Predicate Calculus            |
+| λPω              | Weak Higher Order Predicate Calculus       |
+| λC                | Calculus of Constructions                  |
+
 # Pure type system
 
 [ [WIKIPEDIA](https://en.wikipedia.org/wiki/Pure_type_system) ]
 
-```js
-(s1, s2) in axioms
----------------------- (axiom)
-ctx_empty |- s1 : s2
+```scheme
+(define-rule axiom
+  (includes axioms (tuple SortLeft SortRight))
+  (check ctx SortLeft SortRight))
 
-exists s1, s2 in sorts
-(s1, s2, s3) in rules
-ctx |- A: s1
-ctx, x: A |- B: s2
------------------------- (pi abstraction)
-ctx |- (x: A) -> B : s3
+(define-rule product ;; pi abstraction
+  (includes axioms (tuple SortLeft SortRight))
+  (includes rules (tuple SortLeft SortRight SortFinal))
+  (check ctx A SortLeft)
+  (check (extend ctx x A) B SortRight)
+  (check ctx (Pi ((x A)) B) SortFinal))
 
-exists A
-ctx |- f: (x: A) -> B
-ctx |- a: A
------------------------- (lambda application)
-ctx |- f(a) : subst(B, x, a)
-
-exists s1, s2 in sorts
-ctx |- A: s1
-ctx, x: A |- b: B
-ctx, x: A |- B: s2
----------------------------------- (lambda abstraction)
-ctx |- (x: A) => b : (x: A) -> B
-
-exists B2
-ctx |- A: B2
-beta_reduction(B2, B1)
-exists s in sorts
-ctx |- B1: s
----------------------- (conversion)
-ctx |- A: B1
+(define-rule abstraction
+  (includes axioms (tuple SortLeft SortRight))
+  (check ctx A SortLeft)
+  (check (extend ctx x A) B SortRight)
+  (check (extend ctx x A) b B)
+  (check ctx (lambda ((x A)) b) (Pi ((x A)) B)))
 ```
 
 ## automath-like
