@@ -287,7 +287,7 @@ and on the computational side.
   (check ctx (lambda ((x A)) b) (Pi ((x A)) B)))
 ```
 
-## Structural Pi
+# Structural Pi
 
 ```scheme
 (define-rule abstraction
