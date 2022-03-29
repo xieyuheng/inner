@@ -1,6 +1,6 @@
 ---
 title: Lambda Cube
-subtitle: Why truncate the rule for Pi instead of keep it structural?
+subtitle: Why truncate the rule for Pi instead of keeping it structural?
 ---
 
 # The Lambda Cube
@@ -147,7 +147,7 @@ we do not have `Pi2` and the following rule:
   (check ctx (Pi ((x A)) B) (Pi2 ((x A)) B2)))
 ```
 
-**Why truncate the rule for `Pi` instead of keep it structural?**
+**Why truncate the rule for `Pi` instead of keeping it structural?**
 
 Maybe this is because when talking about `(Pi ((x A)) B)`'s type,
 we do not want to know its structural details,
