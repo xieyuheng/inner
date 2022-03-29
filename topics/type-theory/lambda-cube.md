@@ -1,11 +1,18 @@
 ---
 title: Lambda Cube
-subtitle: Why complicated sorts?
+subtitle: Why truncate the structural rule?
 ---
 
-# Lambda Cube
+# TODO
 
-(λ→) Simply typed lambda calculus
+- change the syntax of the rules to Sexp
+- transcript wikipedia page's "Comparison between the systems" section
+
+# The Lambda Cube
+
+[ [WIKIPEDIA](https://en.wikipedia.org/wiki/Lambda_cube) ]
+
+## (λ→) Simply typed lambda calculus
 
 ```scheme
 (define-rule
@@ -13,7 +20,7 @@ subtitle: Why complicated sorts?
  (check ctx (lambda (x) t) (-> A B)))
 ```
 
-(λ2) System F
+## (λ2) System F
 
 ```scheme
 (define-rule ;; Maybe wrong
@@ -24,7 +31,7 @@ subtitle: Why complicated sorts?
 (define id (lambda (x) x))
 ```
 
-(λω) System Fω
+## (λω) System Fω
 
 ```scheme
 (claim Tree (-> Type Type))
@@ -33,7 +40,7 @@ subtitle: Why complicated sorts?
     (-> (-> A B) (-> B B B) B)))
 ```
 
-(λP) Lambda-P
+## (λP) Lambda-P
 
 ```scheme
 (define-rule
@@ -41,11 +48,11 @@ subtitle: Why complicated sorts?
  (check ctx (Pi ((x A)) B) Type))
 ```
 
-(Fω) System Fω
+## (Fω) System Fω
 
 System Fω provides both terms that depend on types and types that depend on types.
 
-(λC) Calculus of constructions
+## (λC) Calculus of constructions
 
 The clear border that exists in λ→ between terms and types is somewhat abolished,
 as all types except the universal are themselves terms with a type.
@@ -59,6 +66,8 @@ as all types except the universal are themselves terms with a type.
    (lambda ((<var> <exp>)) <exp>)
    (Pi ((<var> <exp>)) <exp>)))
 ```
+
+# Formal definition
 
 ```scheme
 (define-rule axiom
@@ -130,9 +139,13 @@ as all types except the universal are themselves terms with a type.
 ;; we want to write `(lambda (x) b)` instead of `(lambda ((x A)) b)`.
 ```
 
-# why pure type system?
+# Comparison between the systems
 
-``` js
+TODO
+
+# Why truncate the structural rule?
+
+```js
 (s1, s2) in axioms
 ---------------------- (axiom)
 ctx_empty |- s1 : s2
@@ -170,7 +183,7 @@ ctx |- A: B1
 
 let's try a dependent system
 
-``` js
+```js
 <exp> = <var> | <fn> | <ap>
 <fn> = [<var>: <exp>] <exp>
 <ap> = { <exp> } <exp>
@@ -181,7 +194,7 @@ let's try a dependent system
 
 we can use `<fn>` as type of `<fn>`
 
-``` js
+```js
 ctx, x: A |- f : C
 -------------------------- (let)
 ctx |- [x: A] f : [x: A] C
@@ -189,7 +202,7 @@ ctx |- [x: A] f : [x: A] C
 
 we can use `(- ...)` as type of `<fn>`
 
-``` js
+```js
 ctx, x: A |- f : C
 -------------------------- (let)
 ctx |- [x: A] f : (- A) C
@@ -197,7 +210,7 @@ ctx |- [x: A] f : (- A) C
 
 we can use pi type as type of `<fn>`
 
-``` js
+```js
 ctx, x: A |- f : C
 -------------------------- (let)
 ctx |- [x: A] f : pi[x: A] C
@@ -209,7 +222,7 @@ if we use pi type, we can get something like the pure type system
 
 suppose we have the following judgments,
 
-``` js
+```js
 <symbel> in sorts
 (<symbel>, <symbel>) in axioms
 (<symbel>, <symbel>, <symbel>) in rules
@@ -217,7 +230,7 @@ suppose we have the following judgments,
 
 then we can formulate the following rules,
 
-``` js
+```js
 (s1, s2) in axioms
 ---------------------- (axiom)
 ctx_empty |- s1 : s2
@@ -255,7 +268,7 @@ ctx |- A: B1
 
 let's only write application and abstraction for simplicity
 
-``` js
+```js
 exists A
 ctx |- f: [x: A] B
 ctx |- a: A
