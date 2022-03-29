@@ -276,15 +276,15 @@ and on the computational side.
     ```
 
 | System of the cube | Logical System                             |
-|--------------------|--------------------------------------------|
-| λ→               | (First-order) Propositional Calculus       |
-| λ2                | Second-order Propositional Calculus        |
-| λω               | Weakly Higher Order Propositional Calculus |
-| λω               | Higher Order Propositional Calculus        |
-| λP                | (First order) Predicate Logic              |
-| λP2               | Second-order Predicate Calculus            |
-| λPω              | Weak Higher Order Predicate Calculus       |
-| λC                | Calculus of Constructions                  |
+|-------------------:|--------------------------------------------|
+|               λ→ | (First-order) Propositional Calculus       |
+|                λ2 | Second-order Propositional Calculus        |
+|               λω | Weakly Higher Order Propositional Calculus |
+|               λω | Higher Order Propositional Calculus        |
+|                λP | (First order) Predicate Logic              |
+|               λP2 | Second-order Predicate Calculus            |
+|              λPω | Weak Higher Order Predicate Calculus       |
+|                λC | Calculus of Constructions                  |
 
 # Pure type system
 
