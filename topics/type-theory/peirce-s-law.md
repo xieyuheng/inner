@@ -1,4 +1,6 @@
-#+title: peirce's law
+---
+title: peirce's law
+---
 
 (((x) -> y) -> x) -> x
 is always true
