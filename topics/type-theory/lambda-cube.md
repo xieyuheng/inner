@@ -31,6 +31,8 @@ subtitle: Why truncate the rule for Pi instead of keeping it structural?
 
 > Term depends on Type.
 
+[ [WIKIPEDIA](https://en.wikipedia.org/wiki/System_F) ]
+
 ```scheme
 (define-rule
  (check ctx t B)
@@ -84,6 +86,9 @@ To keep things simple, I do not use such notations.
 
 Typing Church encoding of `Boolean`.
 
+Note that comparing to untyped lambda encoding,
+we need an extra type variable.
+
 ```scheme
 (define Boolean (Pi ((A Type)) (-> A A A)))
 
@@ -92,6 +97,39 @@ Typing Church encoding of `Boolean`.
 
 (claim false Boolean)
 (define (false A t f) f)
+
+(claim if (-> Boolean (Pi ((A Type)) (-> A A))))
+(define (if p A t f) (p A t f))
+
+(claim and (-> Boolean Boolean Boolean))
+(define (and x y) (if x Boolean y false))
+
+(claim or (-> Boolean Boolean Boolean))
+(define (or x y) (if x Boolean true y))
+
+(claim not (-> Boolean Boolean))
+(define (not x) (if x Boolean false true))
+```
+
+Typing Church Numerals.
+
+```scheme
+(define Nat (Pi ((A Type)) (-> A (-> A A) A)))
+
+(claim zero Nat)
+(define zero (lambda (A base step) base))
+
+(claim add1 (-> Nat Nat))
+(define (add1 prev)
+  (lambda (A base step)
+    (step (prev A base step))))
+
+(claim iter-Nat
+  (-> Nat
+      (Pi ((A Type)) (-> A (-> A A) A)))
+  (-> (Pi ((A Type)) (-> A (-> A A) A))
+      (Pi ((A Type)) (-> A (-> A A) A))))
+(define (iter-Nat n A base step) (n A base step))
 ```
 
 ### Refereces
