@@ -17,6 +17,16 @@ subtitle: Why truncate the rule for Pi instead of keeping it structural?
  (check ctx (lambda (x) t) (-> A B)))
 ```
 
+### Examples
+
+```scheme
+(check (list (tuple A Prop))
+  (lambda ((x A)) x) (Pi ((x A)) A))
+
+(check (list (tuple A Prop))
+  (lambda ((x A)) x) (-> A A))
+```
+
 ## (λ2) System F
 
 > Term depends on Type.
@@ -29,6 +39,8 @@ subtitle: Why truncate the rule for Pi instead of keeping it structural?
 (claim id (Pi ((A Type)) (-> A A)))
 (define id (lambda ((A Type) (x A)) x))
 ```
+
+### Notes about syntax
 
 In literature, people use upper-case `Λ` to write abstraction over type variables.
 
@@ -60,6 +72,16 @@ People write
 
 To keep things simple, I do not use such notations.
 
+### Examples
+
+```scheme
+(define Absurd (Pi ((A Prop)) A))
+
+(check (list) ;; empty context
+  (lambda ((Anything Prop) (falsehood Absurd)) (falsehood Anything))
+  (Pi ((Anything Prop) (falsehood Absurd)) Anything))
+```
+
 ### Refereces
 
 - "Types and Programming Languages", Benjamin Pierce, 2002.
@@ -78,6 +100,18 @@ To keep things simple, I do not use such notations.
     (-> (-> A B) (-> B B B) B)))
 ```
 
+From a computing point of view, λω is extremely strong,
+and has been considered as a basis for programming languages.
+
+### Examples
+
+```scheme
+(claim and (-> Prop Prop Prop))
+(define and
+  (lambda ((A Prop) (B Prop) (C Prop))
+    (-> (-> A B C) C)))
+```
+
 ## (λP) Lambda-P
 
 > Type depends on Term.
@@ -86,6 +120,25 @@ To keep things simple, I do not use such notations.
 (define-rule
  (check (extend ctx x A) B Type)
  (check ctx (Pi ((x A)) B) Type))
+```
+
+### Examples
+
+```scheme
+(declare A Prop)
+(declare a0 A)
+(declare P (-> A Prop))
+(declare Q Prop)
+
+(claim apply
+  (-> (Pi ((x A)) (-> (P x) Q))
+      (Pi ((x A)) (P x))
+      Q))
+
+(define apply
+  (lambda ((z (Pi ((x A)) (-> (P x) Q)))
+           (y (Pi ((x A)) (P x))))
+    ((z a0) (y a0))))
 ```
 
 ## (Fω) System Fω
@@ -108,6 +161,12 @@ To keep things simple, I do not use such notations.
    (lambda ((<var> <exp>)) <exp>)
    (Pi ((<var> <exp>)) <exp>)))
 ```
+
+The calculus of constructions has both the predicate expressiveness of λP
+and the computational power of λω,
+hence why λC is also called λPω,
+so it is very powerful, both on the logical side
+and on the computational side.
 
 # Common properties
 
@@ -180,67 +239,6 @@ Note that, the naming -- `Prop` and `Type` are borrowed from Coq.
   (check (extend ctx x A) b B)
   (check ctx (lambda ((x A)) b) (Pi ((x A)) B)))
 ```
-
-# Comparison between the systems
-
-## (λ→)
-
-```scheme
-(check (list (tuple A Prop))
-  (lambda ((x A)) x) (Pi ((x A)) A))
-
-(check (list (tuple A Prop))
-  (lambda ((x A)) x) (-> A A))
-```
-
-## (λ2)
-
-```scheme
-(define Absurd (Pi ((A Prop)) A))
-
-(check (list) ;; empty context
-  (lambda ((Anything Prop) (falsehood Absurd)) (falsehood Anything))
-  (Pi ((Anything Prop) (falsehood Absurd)) Anything))
-```
-
-## (λω)
-
-```scheme
-(claim and (-> Prop Prop Prop))
-(define and
-  (lambda ((A Prop) (B Prop) (C Prop))
-    (-> (-> A B C) C)))
-```
-
-From a computing point of view, λω is extremely strong,
-and has been considered as a basis for programming languages.
-
-## (λP)
-
-```scheme
-(declare A Prop)
-(declare a0 A)
-(declare P (-> A Prop))
-(declare Q Prop)
-
-(claim apply
-  (-> (Pi ((x A)) (-> (P x) Q))
-      (Pi ((x A)) (P x))
-      Q))
-
-(define apply
-  (lambda ((z (Pi ((x A)) (-> (P x) Q)))
-           (y (Pi ((x A)) (P x))))
-    ((z a0) (y a0))))
-```
-
-## (λC)
-
-The calculus of constructions has both the predicate expressiveness of λP
-and the computational power of λω,
-hence why λC is also called λPω,
-so it is very powerful, both on the logical side
-and on the computational side.
 
 # Relation to other systems
 
