@@ -167,9 +167,9 @@ Note that, the naming -- `Prop` and `Type` are borrowed from Coq.
 
 ```scheme
 (define-rule product ;; pi abstraction
-  (check ctx A SortRight)
-  (check (extend ctx x A) B SortLeft)
-  (check ctx (Pi ((x A)) B) SortLeft))
+  (check ctx A SortLeft)
+  (check (extend ctx x A) B SortRight)
+  (check ctx (Pi ((x A)) B) SortRight))
 ```
 
 The structural relation between `lambda` and `Pi`
@@ -178,8 +178,8 @@ we do not have `Pi2` and the following rule:
 
 ```scheme
 (define-rule product-structural
-  (check ctx A SortRight)
-  (check (extend ctx x A) B SortLeft)
+  (check ctx A SortLeft)
+  (check (extend ctx x A) B SortRight)
   (check (extend ctx x A) B B2)
   (check ctx (Pi ((x A)) B) (Pi2 ((x A)) B2)))
 ```
@@ -203,8 +203,8 @@ we will not be able to write list of functions -- `(List (-> A B))`.
 
 ```scheme
 (define-rule abstraction
-  (check ctx A SortRight)
-  (check (extend ctx x A) B SortLeft)
+  (check ctx A SortLeft)
+  (check (extend ctx x A) B SortRight)
   (check (extend ctx x A) b B)
   (check ctx (lambda ((x A)) b) (Pi ((x A)) B)))
 ```
