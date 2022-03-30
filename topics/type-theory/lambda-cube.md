@@ -132,6 +132,25 @@ Typing Church Numerals.
 (define (iter-Nat n A base step) (n A base step))
 ```
 
+```scheme
+(claim zero? (-> Nat Boolean))
+(define (zero? n)
+  (iter-Nat n
+    Boolean
+    true
+    (lambda ((x Boolean)) false)))
+```
+
+### Properties
+
+[Joe Wells](http://www.macs.hw.ac.uk/~jbw/research-summary.html) (1994) proved that type checking is undecidable for a Curry-style variant of System F.
+
+- ["Typability and type checking in System F are equivalent and undecidable"](https://www.sciencedirect.com/science/article/pii/S0168007298000475?via%3Dihub)
+
+Wells's result implies that type inference for System F is impossible.
+
+A restriction of System F known as "Hindley–Milner", does have an easy type inference algorithm and is used for many statically typed functional programming languages such as Haskell 98 and the ML family.
+
 ### Refereces
 
 - "Types and Programming Languages", Benjamin Pierce, 2002.
