@@ -158,10 +158,12 @@ that are allowed in the following two typing rules
 
 Where in following `SortLeft` can depend on `SortRight`.
 
-- `(Prop, Prop)` -- terms can depend on terms.
-- `(Prop, Type)` -- types can depend on terms.
-- `(Type, Prop)` -- terms can depend on types.
-- `(Type, Type)` -- types can depend on types.
+|          Axiom | Meaning              |
+| -------------: | -------------------- |
+| `(Prop, Prop)` | Term depends on Term |
+| `(Prop, Type)` | Type depends on Term |
+| `(Type, Prop)` | Term depends on Type |
+| `(Type, Type)` | Type depends on Type |
 
 Note that, the naming -- `Prop` and `Type` are borrowed from Coq.
 
@@ -251,6 +253,7 @@ and on the computational side.
   their computing power is greater than that of λ2.
 
 - The Coq system is based on an extension of λC
+
   - with a linear hierarchy of universes (rather than only one untypable `Type`),
   - and the ability to construct inductive types.
 
@@ -259,10 +262,11 @@ and on the computational side.
 
   Conversely, the systems of the lambda cube
   can be expressed as pure type systems
+
   - with two sorts `(set Prop Type)`,
   - the only axiom `(set (tuple Prop Type))`,
   - and a set of rules `R` such that
-    ``` scheme
+    ```scheme
     (set (tuple Prop Prop Prop))
     <= R <=
     (set (tuple Prop Prop Prop)
@@ -272,15 +276,15 @@ and on the computational side.
     ```
 
 | System of the cube | Logical System                             |
-|-------------------:|--------------------------------------------|
-|               λ→ | (First-order) Propositional Calculus       |
-|                λ2 | Second-order Propositional Calculus        |
-|               λω | Weakly Higher Order Propositional Calculus |
-|               λω | Higher Order Propositional Calculus        |
-|                λP | (First order) Predicate Logic              |
-|               λP2 | Second-order Predicate Calculus            |
-|              λPω | Weak Higher Order Predicate Calculus       |
-|                λC | Calculus of Constructions                  |
+| -----------------: | ------------------------------------------ |
+|                 λ→ | (First-order) Propositional Calculus       |
+|                 λ2 | Second-order Propositional Calculus        |
+|                 λω | Weakly Higher Order Propositional Calculus |
+|                 λω | Higher Order Propositional Calculus        |
+|                 λP | (First order) Predicate Logic              |
+|                λP2 | Second-order Predicate Calculus            |
+|                λPω | Weak Higher Order Predicate Calculus       |
+|                 λC | Calculus of Constructions                  |
 
 # Pure type system
 
@@ -325,8 +329,8 @@ i.e. we want typed lambda a al Curry.
 
 Suppose we have the following:
 
-| New      | Old      |
-|----------|----------|
+|      New | Old      |
+| -------: | -------- |
 | `(Pi 0)` | `lambda` |
 | `(Pi 1)` | `Pi`     |
 | `(Pi 2)` | `...`    |
