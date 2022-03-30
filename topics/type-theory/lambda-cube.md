@@ -166,52 +166,18 @@ Where in following `SortLeft` can depend on `SortRight`.
 Note that, the naming -- `Prop` and `Type` are borrowed from Coq.
 
 ```scheme
-(define-rule product ;; pi abstraction
+(define-rule product
+  ;; NOTE This rule can also be viewed as `pi-abstraction`.
   (check ctx A SortLeft)
   (check (extend ctx x A) B SortRight)
   (check ctx (Pi ((x A)) B) SortRight))
-```
 
-The structural relation between `lambda` and `Pi`
-is truncated in the above rule,
-we do not have `Pi2` and the following rule:
-
-```scheme
-(define-rule product-structural
-  (check ctx A SortLeft)
-  (check (extend ctx x A) B SortRight)
-  (check (extend ctx x A) B B2)
-  (check ctx (Pi ((x A)) B) (Pi2 ((x A)) B2)))
-```
-
-**Why truncate the rule for `Pi` instead of keeping it structural?**
-
-Maybe this is because when talking about `(Pi ((x A)) B)`'s type,
-we do not want to know its structural details,
-we just want to say it is a type.
-
-If we have the following:
-
-- (Pi 0) lambda
-- (Pi 1) Pi
-- (Pi 2) ...
-
-We will also need `(Type 0)`, `(Type 1)`, ...
-and subtype relation `(Pi n) < (Type n)`,
-because if we can not view `(Pi)` as `Type`
-we will not be able to write list of functions -- `(List (-> A B))`.
-
-```scheme
 (define-rule abstraction
   (check ctx A SortLeft)
   (check (extend ctx x A) B SortRight)
   (check (extend ctx x A) b B)
   (check ctx (lambda ((x A)) b) (Pi ((x A)) B)))
 ```
-
-Another difference between lambda and Pi is that,
-we want to write `(lambda (x) b)` instead of `(lambda ((x A)) b)`,
-i.e. we want typed lambda a al Curry.
 
 # Comparison between the systems
 
@@ -342,7 +308,43 @@ and on the computational side.
 
 # Structural Lambda abstraction
 
-How about the following structural abstraction rule?
+In the `product` rule above,
+the structural relation between `lambda` and `Pi` is truncated.
+
+**Why truncate the rule for `Pi` instead of keeping it structural?**
+
+Maybe this is because when talking about `(Pi ((x A)) B)`'s type,
+we do not want to know its structural details,
+we just want to say it is a type.
+
+Also, another difference between `lambda` and `Pi` is that,
+we want to write `(lambda (x) b)` instead of `(lambda ((x A)) b)`,
+i.e. we want typed lambda a al Curry.
+
+**How about the following structural abstraction rule?**
+
+Suppose we have the following:
+
+| New      | Old      |
+|----------|----------|
+| `(Pi 0)` | `lambda` |
+| `(Pi 1)` | `Pi`     |
+| `(Pi 2)` | `...`    |
+
+```scheme
+(define-rule product-structural
+  (check (extend ctx x A) B B2)
+  (check ctx ((Pi n) ((x A)) B) ((Pi n+1) ((x A)) B2)))
+```
+
+We will also need `(Type 0)`, `(Type 1)`, ...
+and subtype relation `(Pi n) < (Type n)`,
+because if we can not view `(Pi)` as `Type`
+we will not be able to write list of functions -- `(List (-> A B))`.
+
+Or, how about just using `lambda` and have the following rule.
+
+- With the help of subtyping `(lambda ...) < Type`.
 
 ```scheme
 (define-rule abstraction
@@ -350,8 +352,7 @@ How about the following structural abstraction rule?
   (check ctx (lambda ((x A)) b) (lambda ((x A)) B)))
 ```
 
-What is the implication of this
-simple structural lambda abstraction rule?
+What is the implication of this kind of structural lambda abstraction rule?
 
 - Suppose we do not have subtyping, we will not be able to a useful `and`.
 - If we have subtyping, this might be interesting and worth implementing.
