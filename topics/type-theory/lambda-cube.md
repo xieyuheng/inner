@@ -30,6 +30,36 @@ subtitle: Why truncate the rule for Pi instead of keeping it structural?
 (define id (lambda ((A Type) (x A)) x))
 ```
 
+In literature, people use upper-case `Λ` to write abstraction over type variables.
+
+So, instead of
+
+```scheme
+(λ ((A Type)) (λ ((x A)) x))
+```
+
+People write
+
+```scheme
+(Λ (A) (λ ((x A)) x))
+```
+
+And people drop the type in `Pi` if its type.
+
+Instead of
+
+```scheme
+(Pi ((A Type)) (-> A A))
+```
+
+People write
+
+```scheme
+(Pi (A) (-> A A))
+```
+
+To keep things simple, I do not use such notations.
+
 ### Refereces
 
 - "Types and Programming Languages", Benjamin Pierce, 2002.
