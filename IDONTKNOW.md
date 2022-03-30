@@ -56,6 +56,10 @@ To solve the following problem:
 I already know how to implement interaction nets,
 which are linear, but a good starting point.
 
+Examples of formal semantics -- Knuth, 1970
+PhD theses -- C P wadsworth, 1971
+PhD theses -- R Statman, 1974
+
 # A unified language
 
 as I learn these, I found that
