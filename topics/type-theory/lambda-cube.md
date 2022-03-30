@@ -149,7 +149,10 @@ Typing Church Numerals.
 
 Wells's result implies that type inference for System F is impossible.
 
-A restriction of System F known as "Hindley–Milner", does have an easy type inference algorithm and is used for many statically typed functional programming languages such as Haskell 98 and the ML family.
+A restriction of System F known as "Hindley-Milner",
+does have an easy type inference algorithm
+and is used for many statically typed functional programming languages
+such as Haskell 98 and the ML family.
 
 ### Refereces
 

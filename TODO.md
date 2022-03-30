@@ -26,16 +26,11 @@
 
   - Lex Fridman Podcast: https://www.youtube.com/playlist?list=PLrAXtmErZgOdP_8GztsuKi9nrraNbKKp4
 
-# OOP & type system
-
-- what is the different between viewing the type of object as `(message) -> method`,
-  and viewing the type of object as a record?
-
-  - about subtyping?
-
 # implementation notes
 
 - write chinese notes about implicit arguments and inductive type -- like the note about implementation patterns
+
+  - maybe after lambda encoding and self types.
 
 # problem solving
 
