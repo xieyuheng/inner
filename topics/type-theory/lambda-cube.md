@@ -82,6 +82,18 @@ To keep things simple, I do not use such notations.
   (Pi ((Anything Prop) (falsehood Absurd)) Anything))
 ```
 
+Typing Church encoding of `Boolean`.
+
+```scheme
+(define Boolean (Pi ((A Type)) (-> A A A)))
+
+(claim true Boolean)
+(define (true A t f) t)
+
+(claim false Boolean)
+(define (false A t f) f)
+```
+
 ### Refereces
 
 - "Types and Programming Languages", Benjamin Pierce, 2002.
