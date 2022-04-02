@@ -38,6 +38,9 @@
 - The goal of design is for you to understand the choices you are making.
   - Sandi Marts, Defining Object-Oriented Design
 
+- The usage is the starting point of any design.
+  - Dieter Rams
+
 ## Lie
 
 - A lie is as simple as the hardest art.
