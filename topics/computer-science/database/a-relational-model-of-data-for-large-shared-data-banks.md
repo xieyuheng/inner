@@ -1,11 +1,10 @@
-# A Relational Model of Data for Large Shared Data Banks
-
 ---
-- Author: Edgar Frank Codd,
-- Date: 1970
+title: A Relational Model of Data for Large Shared Data Banks
+author: Edgar Frank Codd
+year: 1970
 ---
 
-## Access path dependence
+# Access path dependence
 
 The problem of tree-structured data model,
 
@@ -119,7 +118,7 @@ commit: {
 }
 ```
 
-## Relational model
+# Relational model
 
 Most users should interact with a relational model of the data
 consisting of a collection of time-varying relationships (rather than relations).
@@ -138,7 +137,7 @@ Terms:
 - Foreign key.
 - Non-simple domain.
 
-## Non-simple domain & Normal form
+# Non-simple domain & Normal form
 
 A relation with simple domain can be expressed as a (2-dim) table.
 
@@ -220,7 +219,7 @@ SalaryHistory: {
 }
 ```
 
-## Operations on relations
+# Operations on relations
 
 Permutation of column.
 
