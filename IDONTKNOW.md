@@ -14,10 +14,12 @@ author: Xie Yuheng
 
 # Lambda Encoding of inductive types
 
-Can be learned from here: https://fermat.github.io
+> Be really good at using lambda to encode inductive datatypes
 
-https://github.com/Fermat/gottlob
-https://cedille.github.io
+- learn Aaron Stump's cedille: https://cedille.github.io
+- learn Fu Peng's gottlob: https://github.com/Fermat/gottlob
+
+Can be learned from here: https://fermat.github.io
 
 https://gist.github.com/zmactep/c5e167c86fb8d80dcd5532792371863f
 
