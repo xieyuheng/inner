@@ -38,6 +38,7 @@ https://docs.google.com/viewer?url=https%3A%2F%2Fwww.ps.uni-saarland.de%2Fcourse
 infinite normal forms:
 
 - boehm tree
+  https://en.wikipedia.org/wiki/Continued_fraction
 - read henk barendregt's lambda book
 
 # Practical usage of Coq and Lean for proving theorems
