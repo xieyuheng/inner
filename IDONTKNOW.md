@@ -32,7 +32,13 @@ Maybe impossible.
 Also learn about using `fixpoint` as keyword.
 
 https://en.wikipedia.org/wiki/Fixed-point_combinator
+
 https://docs.google.com/viewer?url=https%3A%2F%2Fwww.ps.uni-saarland.de%2Fcourses%2Fsem-prog97%2Fmaterial%2FYYWorks.ps&embedded=true&chrome=false&dov=1
+
+infinite normal forms:
+
+- boehm tree
+- read henk barendregt's lambda book
 
 # Practical usage of Coq and Lean for proving theorems
 
