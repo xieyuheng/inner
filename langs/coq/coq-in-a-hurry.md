@@ -6,13 +6,14 @@ title: coq in a hurry
 
 to check whether a formula is well-formed
 the conditions for terms to be well-formed have two origins:
+
 1. the syntax must be respected
    parentheses must be balanced
    binary operators must have two arguments
    etc
 2. expressions must respect a type discipline
 
-``` coq
+```coq
 Check True.
 Check False.
 Check (1+2).
@@ -24,7 +25,7 @@ Check (3).
 
 # to be explicit about the type of a exp
 
-``` coq
+```coq
 Check True:Prop.
 Check (3, 3=5):nat*Prop.
 ```
@@ -37,7 +38,7 @@ replaces the λ symbol of λ calculus
   i can configure emacs to change the way
   it display keywords
 
-``` coq
+```coq
 Require Import Arith.
 
 (* λx:nat.x=3 *)
@@ -59,11 +60,11 @@ local-binding by pattern-matching
   but using syntax-keyword ``in'' to show
   where is the body of the exp
 - and in the following a type-inferacer is working
-- overloaded notation: * as:
-  1) multiplication on numbers
-  2) cartesian product on types
+- overloaded notation: \* as:
+  1. multiplication on numbers
+  2. cartesian product on types
 
-``` coq
+```coq
 Check (let f := fun x => (x * 3,x)
        in f 3).
 ```
@@ -72,7 +73,7 @@ Check (let f := fun x => (x * 3,x)
 
 to find the function hidden behind a notation
 
-``` coq
+```coq
 Locate "_ <= _".
 Locate "_ \/ _".
 
@@ -93,7 +94,7 @@ some symbolic computation is performed on this formula
 and there are several strategies to perform this symbolic computation
 one strategy is called ``compute''
 
-``` coq
+```coq
 Eval compute in
     let f := fun x => (x * 3, x)
     in f 3.
@@ -114,7 +115,7 @@ simple programs can be executed in the coq system itself
 more complex coq programs can be transformed into programs
 in more conventional languages and executed outside coq
 
-``` coq
+```coq
 Definition example1 (x : nat) := x*x+2*x+1.
 (* one can't use Definition
    to define something more than once *)
@@ -137,7 +138,7 @@ Print example1.
 
 observing the difference between bool and Prop
 
-``` coq
+```coq
 Require Import Bool.
 
 Eval compute in
@@ -154,7 +155,7 @@ Check True.
 
 knowing what functions are provided by a datatype
 
-``` coq
+```coq
 Search bool.
 SearchAbout bool.
 
@@ -173,7 +174,7 @@ SearchAbout Prop.
 
 # type : nat
 
-``` coq
+```coq
 Require Import Arith.
 
 Eval compute in
@@ -211,8 +212,10 @@ Print pred.
 # command : Fixpoint
 
 is it means that the recursion is implemented by ``Y''???
->< but way one can't use ``Fixpoint'' as ``Definition''???
-``` coq
+
+> < but way one can't use `Fixpoint'' as `Definition''???
+
+```coq
 Fixpoint sum_n n :=
   match n with
     | 0 => 0
@@ -255,7 +258,8 @@ so this kind of funking constraint is always bad for user
 # type : list
 
 list of data must be of the same type
-``` coq
+
+```coq
 Require Import List.
 
 
@@ -355,6 +359,7 @@ Eval compute in
 # propositions and proofs
 
 the semantices of x:A
+
 1. x is proof of logical formula A
 2. x is of the type A
 
@@ -364,7 +369,8 @@ to find already existing proofs of facts
 its argument should always be an identifier
 
 some axiom joint of the directed-graph
-``` coq
+
+```coq
 Search True.
 
 (* Search le. *)
@@ -380,8 +386,8 @@ SearchAbout True.
 
 ## note
 
-*curry–howard isomorphism*
-*propositions-as-types*
+_curry–howard isomorphism_
+_propositions-as-types_
 
 这是通过语法的相似性而被发现的
 当发现语法相似的时候就是应该融合形式语言的时候
@@ -392,9 +398,9 @@ w.z.b.w. was zu beweisen war
 
 A -> B == ¬A ∨ B
 
-## tactics是写在Proof.于Qed.之间的context&conclusion-processing function
+## tactics 是写在 Proof.于 Qed.之间的 context&conclusion-processing function
 
-每个tactics只能处理某些特定patten的context&conclusion
+每个 tactics 只能处理某些特定 patten 的 context&conclusion
 
 ### goal == context&conclusion
 
@@ -408,7 +414,7 @@ it looks like:
 <conclusion>
 ```
 
-+ >< 其中<context>是前面证明过的定理和局部的假设???
+- > < 其中<context>是前面证明过的定理和局部的假设???
 
 and initially it is:
 
@@ -422,36 +428,37 @@ and initially it is:
 Γ,x:σ ͱ M:τ
 ------------------- (->introduction)
 Γ ͱ (λx.M):(σ->τ)
-coq中的双横线``=============''对应于这里的``ͱ''
-而这里的单横线``-------------''对应于coq中的``tactics''
+coq 中的双横线`=============''对应于这里的`ͱ''
+而这里的单横线`-------------''对应于coq中的`tactics''
 可以看出在一般数学文本中
-语义上``ͱ''与``-------------''是相似的
+语义上`ͱ''与`-------------''是相似的
 只不过它们的层次不同
 
-### 被处理的context&conclusion作为数据结构是什么样的?
+### 被处理的 context&conclusion 作为数据结构是什么样的?
 
-即是问context&conclusion和context&conclusion之间的关系是什么
+即是问 context&conclusion 和 context&conclusion 之间的关系是什么
 这些关系是如何实现的
 有向图吗???
 其实就是被隐蔽起来的有向图处理
-onescontext&conclusion是有向图的节点
-tactics用来指明在回溯过程中下一步往那个方向走
+onescontext&conclusion 是有向图的节点
+tactics 用来指明在回溯过程中下一步往那个方向走
 
 ### tactics for the basic logical connectives
 
 #### intros h1 h2 ...
 
 introduce
-用来处理conclusion中的
-1) 全称量词(universal quantification)
-   + 量词后面的是约束变元 所以可以随便用什么名字
-2) 蕴含式的假设(implication)
-3) 否定式
-把表达式引入context的同时消减了conclusion中的东西
-即从conclusion中提取出可以在局部假设成立得到假设
-intros后面跟标示符用来给提取出来的局部成立的假设命名
+用来处理 conclusion 中的
 
-``` coq
+1. 全称量词(universal quantification)
+   - 量词后面的是约束变元 所以可以随便用什么名字
+2. 蕴含式的假设(implication)
+3. 否定式
+   把表达式引入 context 的同时消减了 conclusion 中的东西
+   即从 conclusion 中提取出可以在局部假设成立得到假设
+   intros 后面跟标示符用来给提取出来的局部成立的假设命名
+
+```coq
 Lemma example2 : forall a b : Prop, a /\ b -> b /\ a.
 Proof.
   intros a b.
@@ -468,16 +475,16 @@ Qed.
 
 #### destruct H as [H1 H2]
 
-用来处理context中的b /\ a
-这将会在一个goal中把H分开为两句
+用来处理 context 中的 b /\ a
+这将会在一个 goal 中把 H 分开为两句
 
 #### destruct H as [H1 | H2]
 
-用来处理context中的b \/ a中的
-这将会把一个goal分开为两个goal
+用来处理 context 中的 b \/ a 中的
+这将会把一个 goal 分开为两个 goal
 即是分情况证明
 
-``` coq
+```coq
 Lemma example3 : forall A B, A \/ B -> B \/ A.
 Proof.
   intros A B H.
@@ -502,13 +509,14 @@ statement is the same as the conclusion
 #### intuition
 
 automatic tactic
-让coq帮忙来完成一些步骤
+让 coq 帮忙来完成一些步骤
 
 #### apply
 
-用来处理context中的
+用来处理 context 中的
 universal-quantification with implication:
-``` coq
+
+```coq
 Theorem kkk
         forall x1 x2 x3 ,
           (P1 x1 x2 x3 ->
@@ -516,11 +524,13 @@ Theorem kkk
             (P3 x1 x2 x3 ->
              (P4 x1 x2 x3 -> C x1 x2 x3)))).
 ```
+
 apply try to match
 <premise> -> <conclusion>
 with the pattern provided by a Theorem
 and try to form new goal accordingly:
-``` coq
+
+```coq
 Theorem lll C a1 a2 a3.
 Proof.
   apply kkk.
@@ -540,7 +550,8 @@ Proof.
 当我再次遇到这个种道路的时候
 我就可以直接到达道路的那一头
 而不用再一步一步地走了
-``` coq
+
+```coq
 Check le_n.
 (* le_n: forall n : nat, n <= n *)
 Check le_S.
@@ -563,7 +574,8 @@ Qed.
 
 transitivity theorem for the order
 ``less than or equal to'' on natural numbers
-``` coq
+
+```coq
 Require Import Arith.
 
 Check le_trans.
@@ -605,11 +617,12 @@ Qed.
 
 many theorems have a conclusion that is an equality
 the most practical tactic to use these theorem is rewrite
-即rewrite是用来给证明等式的
-rewrite所使用的定理(rewrite-rule)
-pattern-matching被证定理的等号左边
+即 rewrite 是用来给证明等式的
+rewrite 所使用的定理(rewrite-rule)
+pattern-matching 被证定理的等号左边
 然后将被证的等式恒等变形为另一个等式
-``` coq
+
+```coq
 Require Import Arith.
 
 Lemma example6 : forall x y, (x + y) * (x + y) = x*x + 2*x*y + y*y.
@@ -671,14 +684,17 @@ Proof.
 
 Qed.
 ```
+
 上面的证法很笨很笨
 对等价关系所形成的表达式之间的无向路
 应该有更好的处理方式
 
-确实coq提供了ring这个函数
->< 但是如何使用呢?
-下面的用法是不行的
-``` coq
+确实 coq 提供了 ring 这个函数
+
+> < 但是如何使用呢?
+> 下面的用法是不行的
+
+```coq
 Lemma example6 : forall x y, (x + y) * (x + y) = x*x + 2*x*y + y*y.
 Require Import Ring.
 Proof.
@@ -686,7 +702,8 @@ Proof.
   ring.
 Qed.
 ```
-``` coq
+
+```coq
 Require Import Omega.
 Lemma omega_example :
   forall f x y, 0 < x ->
