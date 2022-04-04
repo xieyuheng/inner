@@ -1,5 +1,5 @@
 ---
-title: software foundations
+title: Logical Foundations
 ---
 
 # [note]
