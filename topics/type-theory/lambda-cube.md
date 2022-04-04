@@ -218,6 +218,8 @@ and has been considered as a basis for programming languages.
 > Term depends on Type; <br>
 > Type depends on Type.
 
+Almost at the top of the cube, but without dependent types.
+
 ## (λC) Calculus of constructions
 
 > Term depends on Type; <br>
