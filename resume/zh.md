@@ -50,15 +50,16 @@
   - 交互式课程技术架构与 DSL，在线编辑与预览，内容版本管理，GitHub 与 GitLab API，OAuth
 - 基于「课灵小馆」平台，设计[「卡牌」](https://cards.cleword.cn)系统，以卡牌的形式收集和检索公司运营中的转化案例。（为自己设计的平台创作内容，真是一件赏心乐事呢。）
   - 课程结构建模（Schema 设计）
-- 设计[「思索」](https://sisuo.cleword.cn)项目，以探索「主动回顾」和「间隔重复」等等认知心理学技术在教学中的应用。
+
+![](https://image-link.vercel.app/clepub/1.jpg)
+![](https://image-link.vercel.app/clepub/2.jpg)
+![](https://image-link.vercel.app/clepub/3.jpg)
+![](https://image-link.vercel.app/clepub/4.jpg)
+
+- 设计[「思索」](https://sisuo.cn)项目，以探索「主动回顾」和「间隔重复」等等认知心理学技术在教学中的应用。
   - Markdown 语法定制与扩展，前端插件机制
 
-![](https://github.com/xieyuheng/image-link/raw/master/clepub/1.jpg)
-![](https://github.com/xieyuheng/image-link/raw/master/clepub/2.jpg)
-![](https://github.com/xieyuheng/image-link/raw/master/clepub/3.jpg)
-![](https://github.com/xieyuheng/image-link/raw/master/clepub/4.jpg)
-
-附注：在上述项目中，我负责产品设计以及全栈开发，制定技术构架 并带领 3 - 4 人的全栈团队。（感谢风变为我创造了很好的输出环境，让我成长了很多。）
+附注：在上述项目中，我负责产品设计以及全栈开发，制定技术构架 并带领 3 - 4 人的全栈团队。（感谢风变为我创造了很好的输出环q境，让我成长了很多。）
 
 ### 特航航空，深圳，2019-06 - 2019-08
 
