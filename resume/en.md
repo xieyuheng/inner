@@ -129,19 +129,9 @@ is a framework for building markdown extensions.
 [Readonly.Link](https://readonly.link)
 is a document rendering platform.
 
-![](https://image-link.vercel.app/readonlylink/feature-1.png)
-![](https://image-link.vercel.app/readonlylink/feature-2.png)
-![](https://image-link.vercel.app/readonlylink/feature-3.png)
-![](https://image-link.vercel.app/readonlylink/book-2-1.png)
-![](https://image-link.vercel.app/readonlylink/book-2-2.png)
-![](https://image-link.vercel.app/readonlylink/book-2-3.png)
-![](https://image-link.vercel.app/readonlylink/book-2-4.png)
-![](https://image-link.vercel.app/readonlylink/book-3-1.png)
-![](https://image-link.vercel.app/readonlylink/book-3-2.png)
-![](https://image-link.vercel.app/readonlylink/book-3-3.png)
-![](https://image-link.vercel.app/readonlylink/manual-1-1.png)
-![](https://image-link.vercel.app/readonlylink/manual-1-2.png)
-![](https://image-link.vercel.app/readonlylink/manual-1-3.png)
+![](https://image-link.vercel.app/readonlylink/mobile/en-1.jpg)
+![](https://image-link.vercel.app/readonlylink/mobile/zh-1.jpg)
+![](https://image-link.vercel.app/readonlylink/mobile/zh-2.jpg)
 
 ### EnchanterJS
 
