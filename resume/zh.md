@@ -112,6 +112,8 @@ mathematical theories, to flourish the ideas developed in the
 *foundations of mathematics*, and serve as a bridge between computer
 science and mathematics.
 
+![](https://image-link.vercel.app/cicada-lang/homepage-1.png)
+
 ### Postmark
 
 [Postmark](https://github.com/xieyuheng/postmark)
