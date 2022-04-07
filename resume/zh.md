@@ -59,6 +59,41 @@
 - 设计[「思索」](https://sisuo.cn)项目，以探索「主动回顾」和「间隔重复」等等认知心理学技术在教学中的应用。
   - Markdown 语法定制与扩展，前端插件机制
 
+![](https://image-link.vercel.app/sisuo/mobile/Screenshot_20220408-032656.jpg)
+![](https://image-link.vercel.app/sisuo/mobile/Screenshot_20220408-032747.jpg)
+![](https://image-link.vercel.app/sisuo/mobile/Screenshot_20220408-032651.jpg)
+![](https://image-link.vercel.app/sisuo/mobile/Screenshot_20220408-032422.jpg)
+![](https://image-link.vercel.app/sisuo/mobile/Screenshot_20220408-032613.jpg)
+![](https://image-link.vercel.app/sisuo/mobile/Screenshot_20220408-032709.jpg)
+![](https://image-link.vercel.app/sisuo/mobile/Screenshot_20220408-032751.jpg)
+![](https://image-link.vercel.app/sisuo/mobile/Screenshot_20220408-032742.jpg)
+![](https://image-link.vercel.app/sisuo/mobile/Screenshot_20220408-032704.jpg)
+![](https://image-link.vercel.app/sisuo/mobile/Screenshot_20220408-032722.jpg)
+![](https://image-link.vercel.app/sisuo/mobile/Screenshot_20220408-032737.jpg)
+![](https://image-link.vercel.app/sisuo/mobile/Screenshot_20220408-032543.jpg)
+![](https://image-link.vercel.app/sisuo/mobile/Screenshot_20220408-032434.jpg)
+![](https://image-link.vercel.app/sisuo/mobile/Screenshot_20220408-032646.jpg)
+![](https://image-link.vercel.app/sisuo/mobile/Screenshot_20220408-032727.jpg)
+![](https://image-link.vercel.app/sisuo/mobile/Screenshot_20220408-032756.jpg)
+![](https://image-link.vercel.app/sisuo/mobile/Screenshot_20220408-032715.jpg)
+![](https://image-link.vercel.app/sisuo/mobile/Screenshot_20220408-032410.jpg)
+![](https://image-link.vercel.app/sisuo/mobile/Screenshot_20220408-032429.jpg)
+![](https://image-link.vercel.app/sisuo/mobile/Screenshot_20220408-032439.jpg)
+![](https://image-link.vercel.app/sisuo/mobile/Screenshot_20220408-032732.jpg)
+![](https://image-link.vercel.app/sisuo/mobile/Screenshot_20220408-032808.jpg)
+![](https://image-link.vercel.app/sisuo/mobile/Screenshot_20220408-032528.jpg)
+![](https://image-link.vercel.app/sisuo/mobile/Screenshot_20220408-032618.jpg)
+![](https://image-link.vercel.app/sisuo/desktop/2022-04-08-033729_3000x2000_scrot.png)
+![](https://image-link.vercel.app/sisuo/desktop/2022-04-08-033727_3000x2000_scrot.png)
+![](https://image-link.vercel.app/sisuo/desktop/2022-04-08-033722_3000x2000_scrot.png)
+![](https://image-link.vercel.app/sisuo/desktop/2022-04-08-033530_3000x2000_scrot.png)
+![](https://image-link.vercel.app/sisuo/desktop/2022-04-08-033517_3000x2000_scrot.png)
+![](https://image-link.vercel.app/sisuo/desktop/2022-04-08-033534_3000x2000_scrot.png)
+![](https://image-link.vercel.app/sisuo/desktop/2022-04-08-033757_3000x2000_scrot.png)
+![](https://image-link.vercel.app/sisuo/desktop/2022-04-08-033459_3000x2000_scrot.png)
+![](https://image-link.vercel.app/sisuo/desktop/2022-04-08-033520_3000x2000_scrot.png)
+![](https://image-link.vercel.app/sisuo/desktop/2022-04-08-033519_3000x2000_scrot.png)
+
 附注：在上述项目中，我负责产品设计以及全栈开发，制定技术构架 并带领 3 - 4 人的全栈团队。（感谢风变为我创造了很好的输出环q境，让我成长了很多。）
 
 ### 特航航空，深圳，2019-06 - 2019-08
