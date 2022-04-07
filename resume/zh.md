@@ -42,6 +42,8 @@
 在 Demo Web App 中填写 Markdown 文件在 GitHub 的地址，
 就可以拉取内容并且渲染成美丽的带有思维导图的页面，其中的思维导图带有丰富的交互。
 
+![](https://image-link.vercel.app/xmind-list-item/1.png)
+
 - 用到了 Markdown 扩展框架：[Postmark](https://github.com/xieyuheng/postmark)
 
 ### 风变科技，深圳，2019-12 - 2021-11
