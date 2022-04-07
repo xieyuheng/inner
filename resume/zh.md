@@ -66,9 +66,9 @@
 ![](https://image-link.vercel.app/sisuo/mobile/3.jpg)
 ![](https://image-link.vercel.app/sisuo/mobile/4.jpg)
 
-![](https://image-link.vercel.app/sisuo/desktop/1-1.jpg)
-![](https://image-link.vercel.app/sisuo/desktop/1-2.jpg)
-![](https://image-link.vercel.app/sisuo/desktop/1-3.jpg)
+![](https://image-link.vercel.app/sisuo/desktop/1-1.png)
+![](https://image-link.vercel.app/sisuo/desktop/1-2.png)
+![](https://image-link.vercel.app/sisuo/desktop/1-3.png)
 
 附注：在上述项目中，我负责产品设计以及全栈开发，制定技术构架 并带领 3 - 4 人的全栈团队。（感谢风变为我创造了很好的输出环q境，让我成长了很多。）
 
