@@ -58,14 +58,14 @@ and render beautiful Markdown pages with mind maps.
 ### Forchange, Shenzhen, 2019-12 - 2021-11
 
 - Contribution:
-  - Create interactive teaching platform [cleword.cn](https://cleword.cn), which become the company's main product.
+  - Create interactive teaching platform.
 
 ![](https://image-link.vercel.app/clepub/1.jpg)
 ![](https://image-link.vercel.app/clepub/2.jpg)
 ![](https://image-link.vercel.app/clepub/3.jpg)
 ![](https://image-link.vercel.app/clepub/4.jpg)
 
-  - Create [sisuo](https://sisuo.cleword.cn) project, to explore applications of cognitive psychology in interactive teaching.
+  - Create [sisuo](https://sisuo.app) project, to explore applications of cognitive psychology in interactive teaching.
 
 ![](https://image-link.vercel.app/sisuo/mobile/1.jpg)
 ![](https://image-link.vercel.app/sisuo/mobile/2.jpg)
