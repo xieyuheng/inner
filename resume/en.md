@@ -137,10 +137,6 @@ is a document rendering platform.
 ![](https://image-link.vercel.app/readonlylink/mobile/zh-1.jpg)
 ![](https://image-link.vercel.app/readonlylink/mobile/zh-2.jpg)
 
-![](https://image-link.vercel.app/readonlylink/desktop/book-1-1.png)
-![](https://image-link.vercel.app/readonlylink/desktop/book-1-2.png)
-![](https://image-link.vercel.app/readonlylink/desktop/book-1-3.png)
-
 ![](https://image-link.vercel.app/readonlylink/desktop/book-3-1.png)
 ![](https://image-link.vercel.app/readonlylink/desktop/book-3-2.png)
 ![](https://image-link.vercel.app/readonlylink/desktop/book-3-3.png)
