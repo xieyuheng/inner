@@ -12,3 +12,5 @@ year: 2002
 # 5. Representation: the finite case
 # 6. Congruences
 # 7. Complete lattices and Galois connections
+# 8. CPOs and fixpoint theorems
+# 9. Domains and information systems
