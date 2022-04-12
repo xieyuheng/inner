@@ -1,6 +1,8 @@
-# Formal Concept Analysis -- Implementation Note
+---
+title: Formal Concept Analysis -- Implementation Note
+---
 
-## Wikipedia
+# Wikipedia
 
 - https://en.wikipedia.org/wiki/Formal_concept_analysis
 

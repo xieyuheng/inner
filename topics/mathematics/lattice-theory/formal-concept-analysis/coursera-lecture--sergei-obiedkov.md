@@ -1,11 +1,10 @@
-# Formal Concept Analysis (Coursera Lecture)
-
 ---
-- Author: Sergei Obiedkov
-- Page: https://www.coursera.org/learn/formal-concept-analysis/home/welcome
+title: Formal Concept Analysis (Coursera Lecture)
+author: Sergei Obiedkov
+website: https://www.coursera.org/learn/formal-concept-analysis/home/welcome
 ---
 
-## Readings
+# Readings
 
 The main textbook on formal concept analysis (FCA) is
 
@@ -23,8 +22,12 @@ provides an introduction to FCA and focuses on a knowledge acquisition technique
 
 Many publications on FCA can be found in the proceedings of the conference series CLA (“Concept Lattices and their Applications”), ICFCA (“International Conference on Formal Concept Analysis”), and ICCS (“International Conference on Conceptual Structures”).
 
-## What is formal concept analysis?
-## Understanding the concept lattice diagram
-## Reading concepts from the lattice diagram
-## Reading implications from the lattice diagram
-## Conceptual clustering
+# What is formal concept analysis?
+
+# Understanding the concept lattice diagram
+
+# Reading concepts from the lattice diagram
+
+# Reading implications from the lattice diagram
+
+# Conceptual clustering
