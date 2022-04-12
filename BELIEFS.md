@@ -72,3 +72,23 @@ In record, the order does not matter, but in list, the order matters.
 
 We might encode string by lambda and use them as message,
 but such encoding will not be practical at all.
+
+# We'd better learn by implementing and teaching
+
+I define better learning as more clear understanding.
+
+Clear understanding allow us to use the techniques in new ways.
+
+I believe that the best way to learn something is to implement it.
+
+Because during implementation,
+we have to explain our understanding to a machine,
+which help us testing our understanding to force it to be clear.
+
+And I believe learning is even better if we teach it to others.
+
+Because the act of expressing ourself will yield results
+that help us review our understanding in the future.
+
+I define teaching as try to express to be understood by others,
+and enjoy feedback from others.
