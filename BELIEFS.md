@@ -92,3 +92,10 @@ that help us review our understanding in the future.
 
 I define teaching as try to express to be understood by others,
 and enjoy feedback from others.
+
+Forms of teaching:
+
+- Dialogue
+- Puzzle
+
+Note that, feedback is the key, both for learner and the teacher.
