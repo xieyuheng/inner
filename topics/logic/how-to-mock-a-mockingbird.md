@@ -1,6 +1,7 @@
-# 嘲嘲不已 / How To Mock A Mockingbird
-
-Notes taken from "To Mock A Mockingbird" by Raymond Smullyan.
+---
+title: 嘲嘲不已 / How To Mock A Mockingbird
+subtitle: Notes taken from "To Mock A Mockingbird" by Raymond Smullyan.
+---
 
 # TODO
 
