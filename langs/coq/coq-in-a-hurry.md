@@ -8,8 +8,6 @@ year: 2015
 
 ## 1.1 Writing correct formulas
 
-## 1.2 Evaluating expressions
-
 ### `Check`
 
 ```coq
@@ -47,7 +45,8 @@ check forall (x: Nat) Either(
 
 ```coq
 Check
-  let f := fun x => (x * 3, x)
+  let f :=
+    fun x => (x * 3, x)
   in f 3.
 ```
 
@@ -56,21 +55,20 @@ Check
 To find the function hidden behind a notation.
 
 ```coq
-Locate "_ <= _".
+Locate "_ -> _".
 Locate "_ \/ _".
+Locate "_ <= _".
+Locate "_ + _".
 
-Check and.
-Check (and True False).
-Check (and True).
 Locate and.
-
 Locate plus.
 Locate sum.
 Locate nat.
-Locate "_ + _".
 ```
 
-# command : Eval
+## 1.2 Evaluating expressions
+
+### `Eval`
 
 some symbolic computation is performed on this formula
 and there are several strategies to perform this symbolic computation
@@ -78,14 +76,20 @@ one strategy is called ``compute''
 
 ```coq
 Eval compute in
-    let f := fun x => (x * 3, x)
-    in f 3.
+  let f := fun x => (x * 3, x)
+  in f 3.
 
-Check fun x1:nat => fun x2:nat => (plus x1 x2).
+Check
+  fun x: nat =>
+  fun y: nat =>
+    plus x y.
 
 Eval compute in
-    let f := fun x1:nat => fun x2:nat => (plus x1 x2)
-    in f 4 3.
+  let add :=
+    fun x: nat =>
+    fun y: nat =>
+      plus x y
+  in add 4 3.
 ```
 
 # command : Definition
