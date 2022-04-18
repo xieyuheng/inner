@@ -2,51 +2,36 @@
 title: coq in a hurry
 ---
 
-# command : Check
-
-to check whether a formula is well-formed
-the conditions for terms to be well-formed have two origins:
-
-1. the syntax must be respected
-   parentheses must be balanced
-   binary operators must have two arguments
-   etc
-2. expressions must respect a type discipline
+# Check
 
 ```coq
 Check True.
 Check False.
-Check (1+2).
-Check ((3=5)/\True).
-Check Prop.
+Check 1 + 2.
+Check 3 = 5 /\ True.
+Check (3, 5).
 Check nat.
-Check (3).
-```
-
-# to be explicit about the type of a exp
-
-```coq
-Check True:Prop.
-Check (3, 3=5):nat*Prop.
+Check nat -> Prop.
+Check 3.
+Check True: Prop.
+Check (3, 3 = 5): nat * Prop.
 ```
 
 # keyword : fun
 
-replaces the λ symbol of λ calculus
-
-- why do not jusu use the the λ symbol of λ calculus???
-  i can configure emacs to change the way
-  it display keywords
-
 ```coq
-Require Import Arith.
+Check fun x: nat => x = 3.
+Check (fun x: nat => x = 3) 1.
 
-(* λx:nat.x=3 *)
-Check (fun x:nat => x = 3).
-Check ((fun x:nat => x = 3) 1).
+Check forall x: nat,
+  x < 3 \/ exists y: nat, x = y + 3.
+```
 
-(* ∀x:nat.x<3 ∨ ∃y:nat.x=y+3 *)
-Check (forall x:nat, x < 3 \/ (exists y:nat, x = y + 3)).
+```cicada
+check forall (x: Nat) Either(
+  LessThen(x, three),
+  exists (y: Nat) Equal(Nat, x, add(y, 3))
+)
 ```
 
 # keyword : let
