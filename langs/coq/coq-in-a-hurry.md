@@ -17,14 +17,15 @@ Check True: Prop.
 Check (3, 3 = 5): nat * Prop.
 ```
 
-# keyword : fun
+# fun
 
 ```coq
 Check fun x: nat => x = 3.
 Check (fun x: nat => x = 3) 1.
 
-Check forall x: nat,
-  x < 3 \/ exists y: nat, x = y + 3.
+Check
+  forall x: nat,
+    x < 3 \/ exists y: nat, x = y + 3.
 ```
 
 ```cicada
@@ -34,29 +35,17 @@ check forall (x: Nat) Either(
 )
 ```
 
-# keyword : let
-
-local-binding by pattern-matching
-
-- like haskell
-  or one should say
-  like math
-- not using parentheses
-  but using syntax-keyword ``in'' to show
-  where is the body of the exp
-- and in the following a type-inferacer is working
-- overloaded notation: \* as:
-  1. multiplication on numbers
-  2. cartesian product on types
+# let
 
 ```coq
-Check (let f := fun x => (x * 3,x)
-       in f 3).
+Check
+  let f := fun x => (x * 3, x)
+  in f 3.
 ```
 
-# command : Locate
+# Locate
 
-to find the function hidden behind a notation
+To find the function hidden behind a notation.
 
 ```coq
 Locate "_ <= _".
