@@ -4,7 +4,13 @@ author: Yves Bertot
 year: 2015
 ---
 
-# Check
+# 1 Expressions and logical formulas
+
+## 1.1 Writing correct formulas
+
+## 1.2 Evaluating expressions
+
+### `Check`
 
 ```coq
 Check True.
@@ -19,7 +25,7 @@ Check True: Prop.
 Check (3, 3 = 5): nat * Prop.
 ```
 
-# fun
+### `fun`
 
 ```coq
 Check fun x: nat => x = 3.
@@ -37,7 +43,7 @@ check forall (x: Nat) Either(
 )
 ```
 
-# let
+### `let`
 
 ```coq
 Check
@@ -45,7 +51,7 @@ Check
   in f 3.
 ```
 
-# Locate
+### `Locate`
 
 To find the function hidden behind a notation.
 
