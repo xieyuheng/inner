@@ -1,6 +1,5 @@
-# Recursion theory for metamathematics
-
-------
-- Authors: Raymond Smullyan
-- Date: 1993
-------
+---
+title: Recursion theory for metamathematics
+authors: Raymond Smullyan
+year: 1993
+---

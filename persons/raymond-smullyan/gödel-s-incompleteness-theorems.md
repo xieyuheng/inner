@@ -1,6 +1,5 @@
-# Godel's Incompleteness Theorems
-
-------
-- Author: Raymond Smullyan
-- Date: 1992
-------
+---
+title: Godel's Incompleteness Theorems
+author: Raymond Smullyan
+year: 1992
+---

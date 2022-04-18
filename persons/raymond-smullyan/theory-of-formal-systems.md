@@ -1,12 +1,14 @@
-#+title: Theory of formal systems
-#+author: Raymond Smullyan
-#+date: 1961
+---
+title: Theory of formal systems
+author: Raymond Smullyan
+year: 1961
+---
 
-* CHAPTER I: FORMAL MATHEMATICAL SYSTEMS
+# CHAPTER I: FORMAL MATHEMATICAL SYSTEMS
 
-** #A. Elementary Formal Systems
+## A. Elementary Formal Systems
 
-#+begin_src cicada
+```cicada
 @datatype S(String) {
   a: S("a")
   b: S("b")
@@ -15,4 +17,4 @@
   xa(x: String, S(String.concat(x, "a"))): S(String.concat(x, "ab"))
   xb(x: String, S(String.concat(x, "b"))): S(String.concat(x, "ba"))
 }
-#+end_src
+```

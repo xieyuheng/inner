@@ -1,9 +1,8 @@
-# Set Theory and the Continuum Problem
-
-------
-- Authors: Raymond Smullyan, Melvin Fitting
-- Date: 1996
-------
+---
+title: Set Theory and the Continuum Problem
+authors: [Raymond Smullyan, Melvin Fitting]
+year: 1996
+---
 
 # I AXIOMATIC SET THEORY
 
