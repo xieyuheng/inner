@@ -1,6 +1,7 @@
 ---
 title: 嘲嘲不已 / How To Mock A Mockingbird
 subtitle: Notes taken from "To Mock A Mockingbird" by Raymond Smullyan.
+newline: preserve
 ---
 
 # TODO
