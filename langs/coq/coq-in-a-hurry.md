@@ -1,5 +1,7 @@
 ---
-title: coq in a hurry
+title: Coq in a Hurry
+author: Yves Bertot
+year: 2015
 ---
 
 # Check
