@@ -824,121 +824,114 @@ newline: preserve
 
 ## 關於語法之優劣的比較
 
-- 在介紹了默認結合順序之後
-  人們宣稱在其語法更可讀了
-  在這裏我可以把兩種語法的可讀性進行一下比較
-  蟬語中並不必引進默認的結合規則
-  ```
-  | combinator            | combinator  |
-  |                       | [no space]  |
-  |                       |             |
-  | x y z w               | xyzw        |
-  | x ( y ( z w ) )       | x(y(zw))    |
-  | x ( y z ) w           | x(yz)w      |
-  | x ( y z w )           | x(yzw)      |
-  | z y ( z w y ) v       | zy(zwy)v    |
-  | ( x y z ) w v x       | (xyz)wvx    |
-  | x y ( z w v ) ( x z ) | xy(zwv)(xz) |
-  | x y ( z w v ) x z     | xy(zwv)xz   |
-  | x ( y ( z w v ) ) x z | x(y(zwv))xz |
+在介紹了默認結合順序之後
+人們宣稱在其語法更可讀了
+在這裏我可以把兩種語法的可讀性進行一下比較
+蟬語中並不必引進默認的結合規則
 
-  | combinator            | combinator                |
-  |                       | [lisp style]              |
-  |                       |                           |
-  | x y z w               | (((x y) z) w)             |
-  | x ( y ( z w ) )       | (x (y (z w)))             |
-  | x ( y z ) w           | ((x (y z)) w)             |
-  | x ( y z w )           | (x ((y z) w))             |
-  | z y ( z w y ) v       | (((z y) ((z w) y)) v)     |
-  | ( x y z ) w v x       | (((((x y) z) w) v) x)     |
-  | x y ( z w v ) ( x z ) | (((x y) ((z w) v)) (x z)) |
-  | x y ( z w v ) x z     | ((((x y) ((z w) v)) x) z) |
-  | x ( y ( z w v ) ) x z | (((x (y ((z w) v))) x) z) |
+| combinator            | combinator [no space] |
+|-----------------------|-----------------------|
+| x y z w               | xyzw                  |
+| x ( y ( z w ) )       | x(y(zw))              |
+| x ( y z ) w           | x(yz)w                |
+| x ( y z w )           | x(yzw)                |
+| z y ( z w y ) v       | zy(zwy)v              |
+| ( x y z ) w v x       | (xyz)wvx              |
+| x y ( z w v ) ( x z ) | xy(zwv)(xz)           |
+| x y ( z w v ) x z     | xy(zwv)xz             |
+| x ( y ( z w v ) ) x z | x(y(zwv))xz           |
 
-  | combinator            | combinator                        |
-  |                       | [no default order]                |
-  |                       |                                   |
-  | x y z w               | ( ( x y ) z ) w                   |
-  | x ( y ( z w ) )       | x ( y ( z w ) )                   |
-  | x ( y z ) w           | ( x ( y z ) ) w                   |
-  | x ( y z w )           | x ( ( y z ) w )                   |
-  | z y ( z w y ) v       | ( ( z y ) ( ( z w ) y ) ) v       |
-  | ( x y z ) w v x       | ( ( ( ( x y ) z ) w ) v ) x       |
-  | x y ( z w v ) ( x z ) | ( ( x y ) ( ( z w ) v ) ) ( x z ) |
-  | x y ( z w v ) x z     | ( ( ( x y ) ( ( z w ) v ) ) x ) z |
-  | x ( y ( z w v ) ) x z | ( ( x ( y ( ( z w ) v ) ) ) x ) z |
+| combinator            | combinator [lisp style]   |
+|-----------------------|---------------------------|
+| x y z w               | (((x y) z) w)             |
+| x ( y ( z w ) )       | (x (y (z w)))             |
+| x ( y z ) w           | ((x (y z)) w)             |
+| x ( y z w )           | (x ((y z) w))             |
+| z y ( z w y ) v       | (((z y) ((z w) y)) v)     |
+| ( x y z ) w v x       | (((((x y) z) w) v) x)     |
+| x y ( z w v ) ( x z ) | (((x y) ((z w) v)) (x z)) |
+| x y ( z w v ) x z     | ((((x y) ((z w) v)) x) z) |
+| x ( y ( z w v ) ) x z | (((x (y ((z w) v))) x) z) |
 
-  | combinator            | cicada language                   |
-  |                       |                                   |
-  |                       |                                   |
-  | x y z w               | w ( z ( y (x) ) )                 |
-  | x ( y ( z w ) )       | w (z) (y) (x)                     |
-  | x ( y z ) w           | w ( z (y) (x) )                   |
-  | x ( y z w )           | w ( z (y) ) (x)                   |
-  | z y ( z w y ) v       | v ( y ( w (z) ) ( y (z) ) )       |
-  | ( x y z ) w v x       | x ( v ( w ( z ( y (x) ) ) ) )     |
-  | x y ( z w v ) ( x z ) | z (x) ( v ( w (z) ) ( y (x) ) )   |
-  | x y ( z w v ) x z     | z ( x ( v ( w (z) ) ( y (x) ) ) ) |
-  | x ( y ( z w v ) ) x z | z ( x ( v ( w (z) ) (y) (x) ) )   |
+| combinator            | combinator [no default order]     |
+|-----------------------|-----------------------------------|
+| x y z w               | ( ( x y ) z ) w                   |
+| x ( y ( z w ) )       | x ( y ( z w ) )                   |
+| x ( y z ) w           | ( x ( y z ) ) w                   |
+| x ( y z w )           | x ( ( y z ) w )                   |
+| z y ( z w y ) v       | ( ( z y ) ( ( z w ) y ) ) v       |
+| ( x y z ) w v x       | ( ( ( ( x y ) z ) w ) v ) x       |
+| x y ( z w v ) ( x z ) | ( ( x y ) ( ( z w ) v ) ) ( x z ) |
+| x y ( z w v ) x z     | ( ( ( x y ) ( ( z w ) v ) ) x ) z |
+| x ( y ( z w v ) ) x z | ( ( x ( y ( ( z w ) v ) ) ) x ) z |
 
-  | cicada language                   | combinator            |
-  |                                   |                       |
-  |                                   |                       |
-  | w ( z ( y (x) ) )                 | x y z w               |
-  | w (z) (y) (x)                     | x ( y ( z w ) )       |
-  | w ( z (y) (x) )                   | x ( y z ) w           |
-  | w ( z (y) ) (x)                   | x ( y z w )           |
-  | v ( y ( w (z) ) ( y (z) ) )       | z y ( z w y ) v       |
-  | x ( v ( w ( z ( y (x) ) ) ) )     | ( x y z ) w v x       |
-  | z (x) ( v ( w (z) ) ( y (x) ) )   | x y ( z w v ) ( x z ) |
-  | z ( x ( v ( w (z) ) ( y (x) ) ) ) | x y ( z w v ) x z     |
-  | z ( x ( v ( w (z) ) (y) (x) ) )   | x ( y ( z w v ) ) x z |
+| combinator            | cicada language                   |
+|-----------------------|-----------------------------------|
+| x y z w               | w ( z ( y (x) ) )                 |
+| x ( y ( z w ) )       | w (z) (y) (x)                     |
+| x ( y z ) w           | w ( z (y) (x) )                   |
+| x ( y z w )           | w ( z (y) ) (x)                   |
+| z y ( z w y ) v       | v ( y ( w (z) ) ( y (z) ) )       |
+| ( x y z ) w v x       | x ( v ( w ( z ( y (x) ) ) ) )     |
+| x y ( z w v ) ( x z ) | z (x) ( v ( w (z) ) ( y (x) ) )   |
+| x y ( z w v ) x z     | z ( x ( v ( w (z) ) ( y (x) ) ) ) |
+| x ( y ( z w v ) ) x z | z ( x ( v ( w (z) ) (y) (x) ) )   |
 
-  | cicada language                   | combinator                        |
-  |                                   | [no default order]                |
-  |                                   |                                   |
-  | w ( z ( y (x) ) )                 | ( ( x y ) z ) w                   |
-  | w (z) (y) (x)                     | x ( y ( z w ) )                   |
-  | w ( z (y) (x) )                   | ( x ( y z ) ) w                   |
-  | w ( z (y) ) (x)                   | x ( ( y z ) w )                   |
-  | v ( y ( w (z) ) ( y (z) ) )       | ( ( z y ) ( ( z w ) y ) ) v       |
-  | x ( v ( w ( z ( y (x) ) ) ) )     | ( ( ( ( x y ) z ) w ) v ) x       |
-  | z (x) ( v ( w (z) ) ( y (x) ) )   | ( ( x y ) ( ( z w ) v ) ) ( x z ) |
-  | z ( x ( v ( w (z) ) ( y (x) ) ) ) | ( ( ( x y ) ( ( z w ) v ) ) x ) z |
-  | z ( x ( v ( w (z) ) (y) (x) ) )   | ( ( x ( y ( ( z w ) v ) ) ) x ) z |
+| cicada language                   | combinator            |
+|-----------------------------------|-----------------------|
+| w ( z ( y (x) ) )                 | x y z w               |
+| w (z) (y) (x)                     | x ( y ( z w ) )       |
+| w ( z (y) (x) )                   | x ( y z ) w           |
+| w ( z (y) ) (x)                   | x ( y z w )           |
+| v ( y ( w (z) ) ( y (z) ) )       | z y ( z w y ) v       |
+| x ( v ( w ( z ( y (x) ) ) ) )     | ( x y z ) w v x       |
+| z (x) ( v ( w (z) ) ( y (x) ) )   | x y ( z w v ) ( x z ) |
+| z ( x ( v ( w (z) ) ( y (x) ) ) ) | x y ( z w v ) x z     |
+| z ( x ( v ( w (z) ) (y) (x) ) )   | x ( y ( z w v ) ) x z |
 
-  | cicada language                   | cicada language           |
-  |                                   | [lisp style]              |
-  |                                   |                           |
-  | w ( z ( y (x) ) )                 | w (z (y (x)))             |
-  | w (z) (y) (x)                     | w (z) (y) (x)             |
-  | w ( z (y) (x) )                   | w (z (y) (x))             |
-  | w ( z (y) ) (x)                   | w (z (y)) (x)             |
-  | v ( y ( w (z) ) ( y (z) ) )       | v (y (w (z)) (y (z)))     |
-  | x ( v ( w ( z ( y (x) ) ) ) )     | x (v (w (z (y (x)))))     |
-  | z (x) ( v ( w (z) ) ( y (x) ) )   | z (x) (v (w (z)) (y (x))) |
-  | z ( x ( v ( w (z) ) ( y (x) ) ) ) | z (x (v (w (z)) (y (x)))) |
-  | z ( x ( v ( w (z) ) (y) (x) ) )   | z (x (v (w (z)) (y) (x))) |
+| cicada language                   | combinator [no default order]     |
+|-----------------------------------|-----------------------------------|
+| w ( z ( y (x) ) )                 | ( ( x y ) z ) w                   |
+| w (z) (y) (x)                     | x ( y ( z w ) )                   |
+| w ( z (y) (x) )                   | ( x ( y z ) ) w                   |
+| w ( z (y) ) (x)                   | x ( ( y z ) w )                   |
+| v ( y ( w (z) ) ( y (z) ) )       | ( ( z y ) ( ( z w ) y ) ) v       |
+| x ( v ( w ( z ( y (x) ) ) ) )     | ( ( ( ( x y ) z ) w ) v ) x       |
+| z (x) ( v ( w (z) ) ( y (x) ) )   | ( ( x y ) ( ( z w ) v ) ) ( x z ) |
+| z ( x ( v ( w (z) ) ( y (x) ) ) ) | ( ( ( x y ) ( ( z w ) v ) ) x ) z |
+| z ( x ( v ( w (z) ) (y) (x) ) )   | ( ( x ( y ( ( z w ) v ) ) ) x ) z |
 
-  | cicada language                   | cicada language     |
-  |                                   | [no space]          |
-  |                                   |                     |
-  | w ( z ( y (x) ) )                 | w(z(y(x)))          |
-  | w (z) (y) (x)                     | w(z)(y)(x)          |
-  | w ( z (y) (x) )                   | w(z(y)(x))          |
-  | w ( z (y) ) (x)                   | w(z(y))(x)          |
-  | v ( y ( w (z) ) ( y (z) ) )       | v(y(w(z))(y(z)))    |
-  | x ( v ( w ( z ( y (x) ) ) ) )     | x(v(w(z(y(x)))))    |
-  | z (x) ( v ( w (z) ) ( y (x) ) )   | z(x)(v(w(z))(y(x))) |
-  | z ( x ( v ( w (z) ) ( y (x) ) ) ) | z(x(v(w(z))(y(x)))) |
-  | z ( x ( v ( w (z) ) (y) (x) ) )   | z(x(v(w(z))(y)(x))) |
-  ```
-- 我列表的數據之後
-  我竟然不想做結論了
-- 首先
-  這裏的侷限性於
-  1. 所用的符號都是單個字母
-  2. 沒有縮進
+| cicada language                   | cicada language [lisp style] |
+|-----------------------------------|------------------------------|
+| w ( z ( y (x) ) )                 | w (z (y (x)))                |
+| w (z) (y) (x)                     | w (z) (y) (x)                |
+| w ( z (y) (x) )                   | w (z (y) (x))                |
+| w ( z (y) ) (x)                   | w (z (y)) (x)                |
+| v ( y ( w (z) ) ( y (z) ) )       | v (y (w (z)) (y (z)))        |
+| x ( v ( w ( z ( y (x) ) ) ) )     | x (v (w (z (y (x)))))        |
+| z (x) ( v ( w (z) ) ( y (x) ) )   | z (x) (v (w (z)) (y (x)))    |
+| z ( x ( v ( w (z) ) ( y (x) ) ) ) | z (x (v (w (z)) (y (x))))    |
+| z ( x ( v ( w (z) ) (y) (x) ) )   | z (x (v (w (z)) (y) (x)))    |
+
+| cicada language                   | cicada language [no space] |
+|-----------------------------------|----------------------------|
+| w ( z ( y (x) ) )                 | w(z(y(x)))                 |
+| w (z) (y) (x)                     | w(z)(y)(x)                 |
+| w ( z (y) (x) )                   | w(z(y)(x))                 |
+| w ( z (y) ) (x)                   | w(z(y))(x)                 |
+| v ( y ( w (z) ) ( y (z) ) )       | v(y(w(z))(y(z)))           |
+| x ( v ( w ( z ( y (x) ) ) ) )     | x(v(w(z(y(x)))))           |
+| z (x) ( v ( w (z) ) ( y (x) ) )   | z(x)(v(w(z))(y(x)))        |
+| z ( x ( v ( w (z) ) ( y (x) ) ) ) | z(x(v(w(z))(y(x))))        |
+| z ( x ( v ( w (z) ) (y) (x) ) )   | z(x(v(w(z))(y)(x)))        |
+
+我列表的數據之後
+我竟然不想做結論了
+
+首先
+這裏的侷限性於
+1. 所用的符號都是單個字母
+2. 沒有縮進
 
 ## 1 藍
 
