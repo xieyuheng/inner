@@ -189,14 +189,7 @@ Fixpoint sum_n n :=
   | S p => p + sum_n p
   end.
 
-Fixpoint sum_n2 n s :=
-  match n with
-  | 0 => s
-  | S p => sum_n2 p (p + s)
-  end.
-
-Compute sum_n2 100 0.
-Compute sum_n2 100 0.
+Compute sum_n 10.
 
 Fixpoint evenb n :=
   match n with
@@ -209,154 +202,110 @@ Compute evenb 100.
 Compute evenb 101.
 ```
 
-# type : list
-
-list of data must be of the same type
+## 2.4 Computing with lists
 
 ```coq
 Require Import List.
 
-
-Check 1::2::3::nil.
-
+Check 1 :: 2 :: 3 :: nil.
 Check nil.
-(* have no type *)
+Check nil : list nat.
 
-Check (nil : list nat).
+Compute map (fun x => x + 3) (1 :: 3 :: 2 :: nil).
 
-Compute
-    map (fun x => x + 3) (1::3::2::nil).
-
-Compute
-    map S (1::22::3::nil).
+Compute map S (1 :: 2 :: 3 :: nil).
 
 Compute
-    let l := (1::2::3::nil)
-    in l ++ map (fun x => x + 3) l.
+  let l := 1 :: 2 :: 3 ::nil
+  in l ++ map (fun x => x + 3) l.
+```
 
+## 2.5 Finding more functions
 
-Fixpoint evenb n :=
-  match n with
-    | 0 => true
-    | 1 => false
-    | S (S p) => evenb p
-  end.
-
-Definition head_evb :=
-  fun l =>
-    match l with
-      | nil => false
-      | a::tl => evenb a
-    end.
-
-Compute
-    head_evb (2::1::nil).
+```coq
+Require Import List.
 
 Fixpoint sum_list l :=
   match l with
-    | nil => 0
-    | n::tl => n + sum_list tl
+  | nil => 0
+  | n :: tl => n + sum_list tl
   end.
 
-Compute
-    sum_list (2::1::nil).
+Compute sum_list (1 :: 2 :: 3 :: nil).
 
-Fixpoint 大于等于 n1 n2 :=
+SearchPattern (nat -> nat -> bool).
+
+Compute Nat.eqb 1 1.
+
+Fixpoint gteq n1 n2 :=
   match n1 with
-    | 0 => match n2 with
-        | 0 => true
-        | S k2 => false
-      end
-    | S k1 =>
+  | 0 =>
       match n2 with
-        | 0 => true
-        | S k2 => 大于等于 k1 k2
+      | 0 => true
+      | S k2 => false
       end
-    end.
-
+  | S k1 =>
+      match n2 with
+      | 0 => true
+      | S k2 => gteq k1 k2
+      end
+  end.
 
 Fixpoint insert n l :=
   match l with
-    | nil => n::nil
-    | a::tl => if 大于等于 a n
-               then n::l
-               else a::insert n tl
-  end.
-Fixpoint sort l :=
-  match l with
-    | nil => nil
-    | a::tl => insert a (sort tl)
+  | nil => n :: nil
+  | a :: tl =>
+      if gteq a n
+      then n :: l
+      else a :: insert n tl
   end.
 
-Compute
-    sort (1::4::3::22::5::16::7::nil).
+Fixpoint sort l :=
+  match l with
+  | nil => nil
+  | a :: tl => insert a (sort tl)
+  end.
+
+Compute sort (1 :: 4 :: 3 :: 22 :: 5 :: 16 :: 7 :: nil).
 
 Fixpoint is_sorted l :=
   match l with
-    | nil => true
-    | a::nil => true
-    | a1::a2::nil => 大于等于 a2 a1
-    | a1::a2::tail => if 大于等于 a2 a1
-                      then
-                        match l with
-                          | nil => true
-                          | a1::tail => is_sorted tail
-                        end
-                      else false
+  | nil => true
+  | a :: nil => true
+  | a1 :: a2 :: nil => gteq a2 a1
+  | a1 :: a2 :: tail =>
+      if gteq a2 a1
+      then
+        match l with
+        | nil => true
+        | a1 :: tail => is_sorted tail
+        end
+      else false
   end.
-Compute
-    is_sorted (1::2::3::nil).
-Compute
-    is_sorted (1::4::3::nil).
+
+Compute is_sorted (1 :: 2 :: 3 :: nil).
+Compute is_sorted (1 :: 4 :: 3 :: nil).
 ```
 
-# propositions and proofs
+# 3 Propositions and proofs
 
-the semantices of x:A
+The semantices of `x: A`
 
-1. x is proof of logical formula A
-2. x is of the type A
-
-# command : Search and SearchPattern
-
-to find already existing proofs of facts
-its argument should always be an identifier
-
-some axiom joint of the directed-graph
+1. `x` is proof of logical formula `A`
+2. `x` is of the type `A`
 
 ```coq
 Search True.
-
-(* Search le. *)
-
-(* SearchPattern (_ + _ <= _ + _). *)
-
-(* SearchRewrite (_ + (_ - _)). *)
-
-SearchAbout True.
+SearchPattern True.
 ```
 
-# command : Theorem and Lemma
+# `Theorem` and `Lemma`
 
-## note
+## tactics 是写在 Proof.于 Qed.之间的 context & conclusion-processing function
 
-_curry–howard isomorphism_
-_propositions-as-types_
+每个 tactics 只能处理某些特定 patten 的 context & conclusion
 
-这是通过语法的相似性而被发现的
-当发现语法相似的时候就是应该融合形式语言的时候
-尽管语义不同
-
-Qed. quod erat demonstrandum
-w.z.b.w. was zu beweisen war
-
-A -> B == ¬A ∨ B
-
-## tactics 是写在 Proof.于 Qed.之间的 context&conclusion-processing function
-
-每个 tactics 只能处理某些特定 patten 的 context&conclusion
-
-### goal == context&conclusion
+### goal == context & conclusion
 
 so one can say ``goal-processing function''
 
