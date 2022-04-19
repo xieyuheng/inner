@@ -163,49 +163,39 @@ Compute nat_sub1 1.
 Compute nat_sub1 0.
 
 Print pred.
+Print Nat.pred.
 
 Compute pred 1.
 Compute pred 0.
 ```
 
-# command : Fixpoint
-
-is it means that the recursion is implemented by ``Y''???
-
-> < but way one can't use `Fixpoint'' as `Definition''???
+### `Fixpoint`
 
 ```coq
 Fixpoint sum_n n :=
   match n with
-    | 0 => 0
-    | S p => p + sum_n p
+  | 0 => 0
+  | S p => p + sum_n p
   end.
 
 Fixpoint sum_n2 n s :=
   match n with
-    | 0 => s
-    | S p => sum_n2 p (p + s)
+  | 0 => s
+  | S p => sum_n2 p (p + s)
   end.
 
-Compute
-    sum_n2 100 0.
-
-Compute
-    sum_n2 100 0.
-
+Compute sum_n2 100 0.
+Compute sum_n2 100 0.
 
 Fixpoint evenb n :=
   match n with
-    | 0 => true
-    | 1 => false
-    | S (S p) => evenb p
+  | 0 => true
+  | 1 => false
+  | S (S p) => evenb p
   end.
 
-Compute
-    evenb 100.
-
-Compute
-    evenb 101.
+Compute evenb 100.
+Compute evenb 101.
 ```
 
 structural-recursion-constraint:
