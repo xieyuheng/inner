@@ -142,7 +142,7 @@ SearchPattern Prop.
 # 2.3 Computing with natural numbers
 
 ```coq
-Compute S (S (S 1)).
+Compute S (S (S 0)).
 
 Definition is_zero(n: nat) :=
   match n with
