@@ -171,6 +171,17 @@ Compute pred 0.
 
 ### `Fixpoint`
 
+Coq is very sensitive to recursive definitions,
+and we have to use `Fixpoint` keyword to express recursion.
+
+When describing a recursive function,
+we have to respect a constraint called _structural recursion_.
+
+The recursive call can only be made on a subterm of the initial argument.
+More precisely the argument of the recursive call must be a variable,
+and this variable must have been obtained from the
+initial argument through pattern matching.
+
 ```coq
 Fixpoint sum_n n :=
   match n with
@@ -197,12 +208,6 @@ Fixpoint evenb n :=
 Compute evenb 100.
 Compute evenb 101.
 ```
-
-structural-recursion-constraint:
-the recursive call can only be made
-on a subterm of the initial argument
-it can't ensure that every computation terminates at all
-so this kind of funking constraint is always bad for user
 
 # type : list
 
