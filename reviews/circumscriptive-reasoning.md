@@ -1,4 +1,6 @@
-Circumscriptive Reasoning
+---
+title: Circumscriptive Reasoning
+---
 
 Based on current circumstance, I believe P.
 But although all my actions is based on my belief of P.
