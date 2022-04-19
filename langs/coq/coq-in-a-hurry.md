@@ -70,12 +70,8 @@ Locate nat.
 
 ### `Eval`
 
-some symbolic computation is performed on this formula
-and there are several strategies to perform this symbolic computation
-one strategy is called ``compute''
-
 ```coq
-Eval compute in
+Compute
   let f := fun x => (x * 3, x)
   in f 3.
 
@@ -84,7 +80,7 @@ Check
   fun y: nat =>
     plus x y.
 
-Eval compute in
+Compute
   let add :=
     fun x: nat =>
     fun y: nat =>
@@ -92,107 +88,84 @@ Eval compute in
   in add 4 3.
 ```
 
-# command : Definition
+# 2 Programming in Coq
 
-with ``Definition'' one could write programs
-programs are usually represented by functions
+## 2.1 Defining new constants
 
-simple programs can be executed in the coq system itself
-more complex coq programs can be transformed into programs
-in more conventional languages and executed outside coq
+### `Definition`
 
 ```coq
-Definition example1 (x : nat) := x*x+2*x+1.
-(* one can't use Definition
-   to define something more than once *)
+Definition example1(x : nat) := x*x + 2*x + 1.
 
 Check example1.
-Eval compute in
-    example1 100.
+Compute example1 100.
 
-(* to see the free a binding of an name *)
 Reset example1.
 
-(* explicit version: *)
-Definition example1 := fun x : nat => x*x+2*x+1.
+Definition example1 := fun x : nat => x*x + 2*x + 1.
 
-(* to see the definition of an name *)
 Print example1.
 ```
 
-# type : bool
-
-observing the difference between bool and Prop
+## 2.2 boolean conditional expressions
 
 ```coq
-Require Import Bool.
-
-Eval compute in
-    if true
-    then 3
-    else 5.
+Compute
+  if true
+  then 3
+  else 5.
 
 Check true.
 
 Check True.
 ```
 
-# command : Search and SearchAbout
+### `Search`
 
-knowing what functions are provided by a datatype
+To search definitions related to a given type.
+
+The command `SearchPattern` takes a pattern as argument
+and returns any symbol whose type finishes with that pattern.
+
+The command `Search` takes a list of patterns as arguments
+and returns any symbol whose type contains all the patterns in the list.
 
 ```coq
 Search bool.
-SearchAbout bool.
-
-Check false : bool.
-Check true : bool.
-Check xorb : bool -> bool -> bool.
-Check orb : bool -> bool -> bool.
-Check negb : bool -> bool.
-Check implb : bool -> bool -> bool.
-Check andb : bool -> bool -> bool.
-
-
 Search Prop.
-SearchAbout Prop.
+Search bool Prop.
+
+SearchPattern bool.
+SearchPattern Prop.
 ```
 
-# type : nat
+# 2.3 Computing with natural numbers
 
 ```coq
-Require Import Arith.
+Compute S (S (S 1)).
 
-Eval compute in
-    S (S (S 1)).
+Definition is_zero(n: nat) :=
+  match n with
+  | 0 => true
+  | S p => false
+  end.
 
-Definition is_zero :=
-  (fun n:nat =>
-     match n with
-       | 0 => true
-       | S p => false
-     end).
+Compute is_zero 1.
+Compute is_zero 0.
 
-Eval compute in
-    is_zero 1.
+Definition nat_sub1(n: nat) :=
+  match n with
+  | 0 => 0
+  | S p => p
+  end.
 
-Eval compute in
-    is_zero 0.
-
-Definition nat_sub1 :=
-  fun n:nat =>
-    (match n with
-       | 0 => 0
-       | S p => p
-     end).
-
-Eval compute in
-    nat_sub1 1.
-
-Eval compute in
-    nat_sub1 0.
+Compute nat_sub1 1.
+Compute nat_sub1 0.
 
 Print pred.
+
+Compute pred 1.
+Compute pred 0.
 ```
 
 # command : Fixpoint
@@ -214,10 +187,10 @@ Fixpoint sum_n2 n s :=
     | S p => sum_n2 p (p + s)
   end.
 
-Eval compute in
+Compute
     sum_n2 100 0.
 
-Eval compute in
+Compute
     sum_n2 100 0.
 
 
@@ -228,10 +201,10 @@ Fixpoint evenb n :=
     | S (S p) => evenb p
   end.
 
-Eval compute in
+Compute
     evenb 100.
 
-Eval compute in
+Compute
     evenb 101.
 ```
 
@@ -256,13 +229,13 @@ Check nil.
 
 Check (nil : list nat).
 
-Eval compute in
+Compute
     map (fun x => x + 3) (1::3::2::nil).
 
-Eval compute in
+Compute
     map S (1::22::3::nil).
 
-Eval compute in
+Compute
     let l := (1::2::3::nil)
     in l ++ map (fun x => x + 3) l.
 
@@ -281,7 +254,7 @@ Definition head_evb :=
       | a::tl => evenb a
     end.
 
-Eval compute in
+Compute
     head_evb (2::1::nil).
 
 Fixpoint sum_list l :=
@@ -290,7 +263,7 @@ Fixpoint sum_list l :=
     | n::tl => n + sum_list tl
   end.
 
-Eval compute in
+Compute
     sum_list (2::1::nil).
 
 Fixpoint 大于等于 n1 n2 :=
@@ -320,7 +293,7 @@ Fixpoint sort l :=
     | a::tl => insert a (sort tl)
   end.
 
-Eval compute in
+Compute
     sort (1::4::3::22::5::16::7::nil).
 
 Fixpoint is_sorted l :=
@@ -336,9 +309,9 @@ Fixpoint is_sorted l :=
                         end
                       else false
   end.
-Eval compute in
+Compute
     is_sorted (1::2::3::nil).
-Eval compute in
+Compute
     is_sorted (1::4::3::nil).
 ```
 
