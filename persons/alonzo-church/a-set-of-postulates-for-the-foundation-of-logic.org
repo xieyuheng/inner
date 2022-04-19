@@ -1,9 +1,0 @@
-#+title: A SET OF POSTULATES FOR THE FOUNDATION OF LOGIC
-#+author: ALONZO CHURCH
-#+date: 1932
-
-* 1. Introduction
-
-- We want to avoid using free variable,
-  because the meaning (the interpretation) of an expression with free variables
-  depends on its context.

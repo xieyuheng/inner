@@ -1,8 +1,10 @@
-#+title: THE CALCULI OF LAMBDA CONVERSION
-#+author: ALONZO CHURCH
-#+date: 1941
+---
+title: The Calculi of Lambda Conversion
+author: Alonzo Church
+year: 1941
+---
 
-* 4. ABSTRACTION
+# 4. ABSTRACTION
 
 For our present purpose it is necessary to distinguish carefully
 between a symbol or expression which denotes a function
