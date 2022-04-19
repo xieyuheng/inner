@@ -216,7 +216,7 @@ Compute map (fun x => x + 3) (1 :: 3 :: 2 :: nil).
 Compute map S (1 :: 2 :: 3 :: nil).
 
 Compute
-  let l := 1 :: 2 :: 3 ::nil
+  let l := 1 :: 2 :: 3 :: nil
   in l ++ map (fun x => x + 3) l.
 ```
 
