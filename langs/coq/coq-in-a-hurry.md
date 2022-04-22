@@ -345,6 +345,8 @@ each of which is adapted to a shape of goal.
 
   - Is it different from the space of types?
 
+    Think about sequent calculus and a stack of goals.
+
   - Can we express a goal as a type and view a tactic as a function?
 
     We will need record types, because in the context,
@@ -355,17 +357,36 @@ Lemma and_comm:
   forall A B: Prop,
     A /\ B -> B /\ A.
 Proof.
-  intros a b.
+  intros A B.
   intros both.
   split.
-  destruct both as [fst snd].
-  exact snd.
-  destruct both as [fst snd].
-  exact fst.
+  destruct both as [first second].
+  exact second.
+  destruct both as [first second].
+  exact first.
 Qed.
 ```
 
-We should learn to proof without tactics first.
+Use `elim` and `case` instead of `destruct both as [first second]`.
+
+```coq
+Lemma and_comm:
+  forall A B: Prop,
+    A /\ B -> B /\ A.
+Proof.
+  intros A B.
+  intros both.
+  split.
+  elim both.
+  intros first second.
+  exact second.
+  elim both.
+  intros first second.
+  exact first.
+Qed.
+```
+
+Without tactics.
 
 ```coq
 SearchPattern (_ /\ _).
@@ -392,11 +413,11 @@ fun x y => ...
 
 - Introduce hypotheses into context by lambda.
 
-**Tactic: `destruct both as [fst snd]`**
+**Tactic: `destruct both as [first second]`**
 
 ```
-let fst = proj1 both
-let snd = proj2 both
+let first = proj1 both
+let second = proj2 both
 ...
 ```
 
@@ -417,11 +438,30 @@ Lemma or_comm:
 Proof.
   intros A B.
   intros either.
-  destruct either as [x | y].
+  destruct either as [left | right].
   right.
-  exact x.
+  exact left.
   left.
-  exact y.
+  exact right.
+Qed.
+```
+
+Use `elim` and `case` instead of `destruct either as [left | right]`.
+
+```coq
+Lemma or_comm:
+  forall A B: Prop,
+    A \/ B -> B \/ A.
+Proof.
+  intros A B.
+  intros either.
+  elim either.
+  intro left.
+  right.
+  exact left.
+  intro right.
+  left.
+  exact right.
 Qed.
 ```
 
