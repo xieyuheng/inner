@@ -559,10 +559,14 @@ Proof.
   apply le_S.
   apply le_n.
 Qed.
+
+Definition example4_fn: 3 <= 5 :=
+  le_S 3 4 (le_S 3 3 (le_n 3)).
 ```
 
-transitivity theorem for the order
-``less than or equal to'' on natural numbers
+Transitivity theorem
+for the order "less than or equal to"
+on natural numbers.
 
 ```coq
 Require Import Arith.
@@ -576,6 +580,10 @@ Proof.
   apply le_trans.
 Qed.
 
+Definition example5_1_fn:
+  1 <= 2 -> 2 <= 3 -> 1 <= 3 :=
+  le_trans 1 2 3.
+
 Lemma example5:
   forall x y,
     x <= 10 -> 10 <= y -> x <= y.
@@ -585,6 +593,10 @@ Proof.
   exact x10.
   exact y10.
 Qed.
+
+Definition example5_fn x y:
+  x <= 10 -> 10 <= y -> x <= y :=
+  le_trans x 10 y.
 ```
 
 ### 3.3.2 Examples using rewrite
