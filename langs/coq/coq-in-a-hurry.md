@@ -405,15 +405,25 @@ Definition and_comm(A B: Prop): A /\ B -> B /\ A :=
       (proj1 both).
 ```
 
-**Tactic: `intros x y`**
+### Tactic: `intros x y`
+
+Introduce hypotheses into context by lambda.
 
 ```
 fun x y => ...
 ```
 
-- Introduce hypotheses into context by lambda.
+- Xie:
 
-**Tactic: `destruct both as [first second]`**
+  其实证明定理就像是在有向图中行走，
+  看能走到哪里就算证明到了哪里。
+  而当我证明了一个带有全称量词的定理的时候，
+  就相当于我熟悉了这个有向图中的某种模式的道路。
+  当我再次遇到这个种道路的时候，
+  我就可以直接到达道路的那一头，
+  而不用再一步一步地走了。
+
+### Tactic: `destruct both as [first second]`
 
 ```
 let first = proj1 both
@@ -421,15 +431,15 @@ let second = proj2 both
 ...
 ```
 
-**Tactic: `exact h`**
+### Tactic: `exact h`
 
-- Lookup the type of `h` in the context.
+Lookup the type of `h` in the context.
 
-**Tactic: `intuition`**
+### Tactic: `intuition`
 
-- Let Coq search the proof.
+Let Coq search the proof.
 
-Another example.
+## 3.3 More examples using tactics
 
 ```coq
 Lemma or_comm:
@@ -485,53 +495,16 @@ Definition or_comm(A B: Prop): A \/ B -> B \/ A :=
       either.
 ```
 
-**Tactic: `destruct either as [left | right]`**
+### Tactic: `destruct either as [left | right]`
 
 First, in the function body of the left case,
 then, in the function body of the right case.
 
-**Tactic: `assumption`**
+### Tactic: `assumption`
 
 Like `exact h`, but let Coq decides which variable to use.
 
-**Tactic: `apply`**
-
-- TODO 用来处理 context 中的 universal-quantification with implication:
-
-```coq
-Theorem kkk
-        forall x1 x2 x3 ,
-          (P1 x1 x2 x3 ->
-           (P2 x1 x2 x3 ->
-            (P3 x1 x2 x3 ->
-             (P4 x1 x2 x3 -> C x1 x2 x3)))).
-```
-
-apply try to match
-<premise> -> <conclusion>
-with the pattern provided by a Theorem
-and try to form new goal accordingly:
-
-```coq
-Theorem lll C a1 a2 a3.
-Proof.
-  apply kkk.
-  (* replaces the current goal with 4 goals *)
-  (* whose statements are: *)
-  (* A1 a1 a2 a3.  *)
-  (* A2 a1 a2 a3.  *)
-  (* A3 a1 a2 a3.  *)
-  (* A4 a1 a2 a3.  *)
-...
-```
-
-其实证明定理就像是在有向图中行走
-看能走到哪里就算证明到了哪里
-而当我证明了一个带有全称量词的定理的时候
-就相当于我熟悉了这个有向图中的某种模式的道路
-当我再次遇到这个种道路的时候
-我就可以直接到达道路的那一头
-而不用再一步一步地走了
+# TODO
 
 ```coq
 Check le_n.
