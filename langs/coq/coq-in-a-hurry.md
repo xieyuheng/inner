@@ -405,7 +405,7 @@ Definition and_comm(A B: Prop): A /\ B -> B /\ A :=
       (proj1 both).
 ```
 
-### Tactic: `intros x y`
+### `intros x y`
 
 Introduce hypotheses into context by lambda.
 
@@ -423,7 +423,7 @@ fun x y => ...
   我就可以直接到达道路的那一头，
   而不用再一步一步地走了。
 
-### Tactic: `destruct both as [first second]`
+### `destruct both as [first second]`
 
 ```
 let first = proj1 both
@@ -431,11 +431,11 @@ let second = proj2 both
 ...
 ```
 
-### Tactic: `exact h`
+### `exact h`
 
 Lookup the type of `h` in the context.
 
-### Tactic: `intuition`
+### `intuition`
 
 Let Coq search the proof.
 
@@ -495,12 +495,12 @@ Definition or_comm(A B: Prop): A \/ B -> B \/ A :=
       either.
 ```
 
-### Tactic: `destruct either as [left | right]`
+### `destruct either as [left | right]`
 
 First, in the function body of the left case,
 then, in the function body of the right case.
 
-### Tactic: `assumption`
+### `assumption`
 
 Like `exact h`, but let Coq decides which variable to use.
 
