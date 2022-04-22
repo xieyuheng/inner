@@ -13,7 +13,7 @@
 ### Web full-stack development
 
 - Language: TypeScript
-- Frontend：Vue.js, Inertia.js, Alpine.js, Tailwind CSS
+- Frontend：Vue.js, Inertia.js, Tailwind CSS
 - Backend：Laravel, Node.js, PostgreSQL
 
 ### Formal language design
