@@ -81,7 +81,7 @@ Check
     plus x y.
 
 Compute
-  let add :=
+  let add: nat -> nat -> nat :=
     fun x: nat =>
     fun y: nat =>
       plus x y
@@ -298,9 +298,6 @@ Fixpoint count_list(n: nat)(l: list nat): nat :=
 
 Compute count_list 1 (1 :: 2 :: 1 :: nil).
 Compute count_list 3 (1 :: 2 :: 1 :: nil).
-
-
-
 ```
 
 # 3 Propositions and proofs
@@ -310,101 +307,107 @@ The semantices of `x: A`
 1. `x` is proof of logical formula `A`
 2. `x` is of the type `A`
 
+## 3.1 Finding existing proofs
+
 ```coq
 Search True.
+
 SearchPattern True.
+SearchPattern (_ <= _).
 ```
 
-# `Theorem` and `Lemma`
+## 3.2 Constructing new proofs
 
-## tactics 是写在 Proof.于 Qed.之间的 context & conclusion-processing function
+The usual approach to construct proofs is known as _goal directed proof_,
+with the following type of scenario:
 
-每个 tactics 只能处理某些特定 patten 的 context & conclusion
+1. the user enters a statement that they want to prove, using the command `Theorem`
+   or `Lemma`, at the same time giving a name for later reference,
+2. the Coq system displays the formula as a formula to be proved, possibly giving a
+   context of local facts that can be used for this proof (the context is displayed above
+   a horizontal line written `=====`, the goal is displayed under the horizontal line),
+3. the user enters a command to decompose the goal into simpler ones,
+4. the Coq system displays a list of formulas that still need to be proved,
+5. back to step 3.
 
-### goal == context & conclusion
+The commands used at step 3 are called _tactics_.
 
-so one can say ``goal-processing function''
+When there are no more goals the proof is complete.
 
-it looks like:
+There is a large collection of tactics in the Coq system,
+each of which is adapted to a shape of goal.
 
-```
-<context>
-=======================
-<conclusion>
-```
+- Xie: Unlike function which takes many premises and return a conclusion,
+  a tactic take a _goal_ and returns more goals,
+  where a goal has two parts, a context and a conclusion.
 
-- > < 其中<context>是前面证明过的定理和局部的假设???
+- Xie: How to understand the space of goals?
 
-and initially it is:
+  - Is it different from the space of types?
 
-```
-<>
-=======================
-<statements>
-```
+  - Can we express a goal as a type and view a tactic as a function?
 
-就下面的在一般数学文本中出现的对推理规则的表达而言
-Γ,x:σ ͱ M:τ
-------------------- (->introduction)
-Γ ͱ (λx.M):(σ->τ)
-coq 中的双横线`=============''对应于这里的`ͱ''
-而这里的单横线`-------------''对应于coq中的`tactics''
-可以看出在一般数学文本中
-语义上`ͱ''与`-------------''是相似的
-只不过它们的层次不同
-
-### 被处理的 context&conclusion 作为数据结构是什么样的?
-
-即是问 context&conclusion 和 context&conclusion 之间的关系是什么
-这些关系是如何实现的
-有向图吗???
-其实就是被隐蔽起来的有向图处理
-onescontext&conclusion 是有向图的节点
-tactics 用来指明在回溯过程中下一步往那个方向走
-
-### tactics for the basic logical connectives
-
-#### intros h1 h2 ...
-
-introduce
-用来处理 conclusion 中的
-
-1. 全称量词(universal quantification)
-   - 量词后面的是约束变元 所以可以随便用什么名字
-2. 蕴含式的假设(implication)
-3. 否定式
-   把表达式引入 context 的同时消减了 conclusion 中的东西
-   即从 conclusion 中提取出可以在局部假设成立得到假设
-   intros 后面跟标示符用来给提取出来的局部成立的假设命名
+    We will need record types, because in the context,
+    the order of hypotheses does not matter.
 
 ```coq
-Lemma example2 : forall a b : Prop, a /\ b -> b /\ a.
+Lemma example2:
+  forall a b: Prop,
+    a /\ b -> b /\ a.
 Proof.
   intros a b.
-  intros H.
+  intros both.
   split.
-  destruct H as [H1 H2].
-  exact H2.
-  intuition.
-  (* intuition as: *)
-  (* destruct H as [H1 H2]. *)
-  (* exact H1. *)
+  destruct both as [x y].
+  exact y.
+  destruct both as [x y].
+  exact x.
 Qed.
 ```
 
-#### destruct H as [H1 H2]
-
-用来处理 context 中的 b /\ a
-这将会在一个 goal 中把 H 分开为两句
-
-#### destruct H as [H1 | H2]
-
-用来处理 context 中的 b \/ a 中的
-这将会把一个 goal 分开为两个 goal
-即是分情况证明
+We should learn to proof without tactics first.
 
 ```coq
-Lemma example3 : forall A B, A \/ B -> B \/ A.
+(* To find `proj1` and `proj2`. *)
+Search (_ /\ _).
+
+(* To find `conj`. *)
+SearchPattern (_ /\ _).
+
+Definition example2_fn(a b: Prop): a /\ b -> b /\ a :=
+  fun both => conj (proj2 both) (proj1 both).
+```
+
+**Tactic: `intros x y`**
+
+```
+fun x y => ...
+```
+
+- Introduce hypotheses into context by lambda.
+
+**Tactic: `destruct h as [h1 h2]`**
+
+```
+let h1 = proj1 h
+let h2 = proj2 h
+...
+```
+
+**Tactic: `exact h`**
+
+- Lookup the type of `h` in the context.
+
+**Tactic: `intuition`**
+
+- Let Coq search the proof.
+
+Another example.
+
+```coq
+Lemma example3:
+  forall A B: Prop,
+    A \/ B -> B \/ A.
 Proof.
   intros A B H.
   destruct H as [H1 | H2].
@@ -415,25 +418,24 @@ Proof.
 Qed.
 ```
 
-#### exact H
+**Tactic: `destruct h as [h1 | h2]`**
 
-simply expresses that we want to prove
-a statement that is present in the context
+```
+TODO
+```
 
-#### assumption
+**Tactic: `assumption`**
 
-to look for one hypothesis whose
-statement is the same as the conclusion
+```
+TODO
+```
 
-#### intuition
+- TODO to look for one hypothesis whose statement is the same as the conclusion.
 
-automatic tactic
-让 coq 帮忙来完成一些步骤
+**Tactic: `apply`**
 
-#### apply
 
-用来处理 context 中的
-universal-quantification with implication:
+- TODO 用来处理 context 中的 universal-quantification with implication:
 
 ```coq
 Theorem kkk
@@ -624,6 +626,7 @@ Qed.
 
 ```coq
 Require Import Omega.
+
 Lemma omega_example :
   forall f x y, 0 < x ->
            0 < f x ->
