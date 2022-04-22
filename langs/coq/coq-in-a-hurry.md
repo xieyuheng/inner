@@ -613,9 +613,10 @@ pattern-matching 被证定理的等号左边
 ```coq
 Require Import Arith.
 
-Lemma example6 : forall x y, (x + y) * (x + y) = x*x + 2*x*y + y*y.
+Lemma example6:
+  forall x y,
+    (x + y) * (x + y) = x*x + 2*x*y + y*y.
 Proof.
-
   intros x y.
   (* 约束变元的类型被推导出来了 *)
   (* 下面查一下(左)分配律的重写规则 *)
@@ -656,7 +657,6 @@ Proof.
   (* mult_succ_l: forall n m : nat, S n * m = n * m + m *)
   (* mult_1_l: forall n : nat, 1 * n = n *)
 
-
   (* using a tactic called pattern *)
   (* to limit the place where rewriting occurs *)
   pattern (x * y) at 1.
@@ -669,23 +669,18 @@ Proof.
 
   reflexivity.
   (* reflexivity用来引入基本等词 *)
-
 Qed.
 ```
 
-上面的证法很笨很笨
-对等价关系所形成的表达式之间的无向路
-应该有更好的处理方式
-
-确实 coq 提供了 ring 这个函数
-
-> < 但是如何使用呢?
-> 下面的用法是不行的
+Using `Ring`.
 
 ```coq
-Lemma example6:
-  forall x y, (x + y) * (x + y) = x*x + 2*x*y + y*y.
 Require Import Ring.
+Require Import Arith.
+
+Lemma example6:
+  forall x y,
+    (x + y) * (x + y) = x*x + 2*x*y + y*y.
 Proof.
   intros.
   ring.
@@ -703,11 +698,12 @@ TODO
 ```coq
 Require Import Omega.
 
-Lemma omega_example :
-  forall f x y, 0 < x ->
-           0 < f x ->
-           3 * f x <= 2 * y ->
-           f x <= y.
+Lemma omega_example:
+  forall f x y,
+    0 < x ->
+    0 < f x ->
+    3 * f x <= 2 * y ->
+    f x <= y.
 Proof.
   intros.
   omega.
