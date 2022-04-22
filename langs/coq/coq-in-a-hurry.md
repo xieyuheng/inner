@@ -144,7 +144,7 @@ SearchPattern Prop.
 ```coq
 Compute S (S (S 0)).
 
-Definition is_zero(n: nat) :=
+Definition is_zero(n: nat): bool :=
   match n with
   | 0 => true
   | S p => false
@@ -153,7 +153,7 @@ Definition is_zero(n: nat) :=
 Compute is_zero 1.
 Compute is_zero 0.
 
-Definition nat_sub1(n: nat) :=
+Definition nat_sub1(n: nat): nat :=
   match n with
   | 0 => 0
   | S p => p
@@ -183,7 +183,7 @@ and this variable must have been obtained from the
 initial argument through pattern matching.
 
 ```coq
-Fixpoint sum_n n :=
+Fixpoint sum_n(n: nat): nat :=
   match n with
   | 0 => 0
   | S p => p + sum_n p
@@ -191,7 +191,7 @@ Fixpoint sum_n n :=
 
 Compute sum_n 10.
 
-Fixpoint evenb n :=
+Fixpoint evenb(n: nat): bool :=
   match n with
   | 0 => true
   | 1 => false
@@ -212,6 +212,7 @@ Check nil.
 Check nil : list nat.
 
 Compute map (fun x => x + 3) (1 :: 3 :: 2 :: nil).
+Compute map (fun (x: nat) => x + 3) (1 :: 3 :: 2 :: nil).
 
 Compute map S (1 :: 2 :: 3 :: nil).
 
@@ -225,7 +226,7 @@ Compute
 ```coq
 Require Import List.
 
-Fixpoint sum_list l :=
+Fixpoint sum_list(l: list nat) :=
   match l with
   | nil => 0
   | n :: tl => n + sum_list tl
@@ -237,21 +238,21 @@ SearchPattern (nat -> nat -> bool).
 
 Compute Nat.eqb 1 1.
 
-Fixpoint gteq n1 n2 :=
-  match n1 with
+Fixpoint gteq(x y: nat): bool :=
+  match x with
   | 0 =>
-      match n2 with
+      match y with
       | 0 => true
       | S k2 => false
       end
   | S k1 =>
-      match n2 with
+      match y with
       | 0 => true
       | S k2 => gteq k1 k2
       end
   end.
 
-Fixpoint insert n l :=
+Fixpoint insert(n: nat)(l: list nat): list nat :=
   match l with
   | nil => n :: nil
   | a :: tl =>
@@ -260,7 +261,7 @@ Fixpoint insert n l :=
       else a :: insert n tl
   end.
 
-Fixpoint sort l :=
+Fixpoint sort(l: list nat): list nat :=
   match l with
   | nil => nil
   | a :: tl => insert a (sort tl)
@@ -268,7 +269,7 @@ Fixpoint sort l :=
 
 Compute sort (1 :: 4 :: 3 :: 22 :: 5 :: 16 :: 7 :: nil).
 
-Fixpoint is_sorted l :=
+Fixpoint is_sorted(l: list nat): bool :=
   match l with
   | nil => true
   | a :: nil => true
@@ -285,6 +286,21 @@ Fixpoint is_sorted l :=
 
 Compute is_sorted (1 :: 2 :: 3 :: nil).
 Compute is_sorted (1 :: 4 :: 3 :: nil).
+
+Fixpoint count_list(n: nat)(l: list nat): nat :=
+  match l with
+  | nil => 0
+  | a :: tail =>
+      if Nat.eqb a n
+      then 1 + count_list n tail
+      else count_list n tail
+  end.
+
+Compute count_list 1 (1 :: 2 :: 1 :: nil).
+Compute count_list 3 (1 :: 2 :: 1 :: nil).
+
+
+
 ```
 
 # 3 Propositions and proofs
