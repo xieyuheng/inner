@@ -351,31 +351,37 @@ each of which is adapted to a shape of goal.
     the order of hypotheses does not matter.
 
 ```coq
-Lemma example2:
-  forall a b: Prop,
-    a /\ b -> b /\ a.
+Lemma and_comm:
+  forall A B: Prop,
+    A /\ B -> B /\ A.
 Proof.
   intros a b.
   intros both.
   split.
-  destruct both as [x y].
-  exact y.
-  destruct both as [x y].
-  exact x.
+  destruct both as [fst snd].
+  exact snd.
+  destruct both as [fst snd].
+  exact fst.
 Qed.
 ```
 
 We should learn to proof without tactics first.
 
 ```coq
-(* To find `proj1` and `proj2`. *)
-Search (_ /\ _).
-
-(* To find `conj`. *)
 SearchPattern (_ /\ _).
 
-Definition example2_fn(a b: Prop): a /\ b -> b /\ a :=
-  fun both => conj (proj2 both) (proj1 both).
+(* conj: forall [A B : Prop], A -> B -> A /\ B *)
+
+Search (_ /\ _).
+
+(* proj2: forall [A B : Prop], A /\ B -> B *)
+(* proj1: forall [A B : Prop], A /\ B -> A *)
+
+Definition and_comm(A B: Prop): A /\ B -> B /\ A :=
+  fun both =>
+    conj
+      (proj2 both)
+      (proj1 both).
 ```
 
 **Tactic: `intros x y`**
@@ -386,11 +392,11 @@ fun x y => ...
 
 - Introduce hypotheses into context by lambda.
 
-**Tactic: `destruct h as [h1 h2]`**
+**Tactic: `destruct both as [fst snd]`**
 
 ```
-let h1 = proj1 h
-let h2 = proj2 h
+let fst = proj1 both
+let snd = proj2 both
 ...
 ```
 
@@ -405,35 +411,50 @@ let h2 = proj2 h
 Another example.
 
 ```coq
-Lemma example3:
+Lemma or_comm:
   forall A B: Prop,
     A \/ B -> B \/ A.
 Proof.
-  intros A B H.
-  destruct H as [H1 | H2].
+  intros A B.
+  intros either.
+  destruct either as [x | y].
   right.
-  assumption.
+  exact x.
   left.
-  assumption.
+  exact y.
 Qed.
 ```
 
-**Tactic: `destruct h as [h1 | h2]`**
+Without tactics.
 
+```coq
+SearchPattern (_ \/ _).
+
+(* or_intror: forall [A B : Prop], B -> A \/ B *)
+(* or_introl: forall [A B : Prop], A -> A \/ B *)
+
+Search (_ \/ _).
+
+(* or_ind: forall [A B P : Prop], (A -> P) -> (B -> P) -> A \/ B -> P *)
+
+Definition or_comm(A B: Prop): A \/ B -> B \/ A :=
+  fun either =>
+    or_ind
+      (fun left => or_intror left)
+      (fun right => or_introl right)
+      either.
 ```
-TODO
-```
+
+**Tactic: `destruct either as [left | right]`**
+
+First, in the function body of the left case,
+then, in the function body of the right case.
 
 **Tactic: `assumption`**
 
-```
-TODO
-```
-
-- TODO to look for one hypothesis whose statement is the same as the conclusion.
+Like `exact h`, but let Coq decides which variable to use.
 
 **Tactic: `apply`**
-
 
 - TODO 用来处理 context 中的 universal-quantification with implication:
 
