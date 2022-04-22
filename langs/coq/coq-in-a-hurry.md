@@ -405,6 +405,10 @@ Definition and_comm(A B: Prop): A /\ B -> B /\ A :=
       (proj1 both).
 ```
 
+- **Xie**: I think the problem of Coq's tactics,
+  is that they are not connected with functions
+  in simple and explicit ways.
+
 ### `intros x y`
 
 Introduce hypotheses into context by lambda.
@@ -431,9 +435,9 @@ let second = proj2 both
 ...
 ```
 
-### `exact h`
+### `exact v`
 
-Lookup the type of `h` in the context.
+Lookup the type of `v` in the context.
 
 ### `intuition`
 
@@ -502,7 +506,7 @@ then, in the function body of the right case.
 
 ### `assumption`
 
-Like `exact h`, but let Coq decides which variable to use.
+Like `exact v`, but let Coq decides which variable to use.
 
 ### 3.3.1 Examples using apply
 
