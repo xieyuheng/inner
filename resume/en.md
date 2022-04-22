@@ -13,8 +13,8 @@
 ### Web full-stack development
 
 - Language: TypeScript
-- Frontend：Vue.js，Inertia.js，Alpine.js, Tailwind CSS
-- Backend：Laravel，Node.js，PostgreSQL
+- Frontend：Vue.js, Inertia.js, Alpine.js, Tailwind CSS
+- Backend：Laravel, Node.js, PostgreSQL
 
 ### Formal language design
 
@@ -182,4 +182,4 @@ topological and geometric modeling in any dimension.
 **2019-05-08: A Recursive Combinatorial Description of cell-complex**
 
 **2016-06-14: Function compose, Type cut, and The algebra of logic**
-- ICFP, Scheme Workshop，2016, Nara, Japan
+- ICFP, Scheme Workshop, 2016, Nara, Japan

@@ -18,7 +18,7 @@
 我认为 Web 就像是程序员的艺术媒介，让大家能够在天马行空的样式与交互中表达自己，并且很轻松地与整个世界紧密相连。
 
 - 语言：TypeScript
-- 前端：Vue.js，Inertia.js，Alpine.js, Tailwind CSS
+- 前端：Vue.js，Inertia.js，Alpine.js，Tailwind CSS
 - 后端：Laravel，Node.js，PostgreSQL
 
 ### 形式语言设计
@@ -177,4 +177,4 @@ topological and geometric modeling in any dimension.
 **2019-05-08：A Recursive Combinatorial Description of cell-complex**
 
 **2016-06-14：Function compose, Type cut, and The algebra of logic**
-- ICFP, Scheme Workshop，2016, 日本奈良
+- ICFP，Scheme Workshop，2016，日本奈良
