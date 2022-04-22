@@ -409,6 +409,41 @@ Definition and_comm(A B: Prop): A /\ B -> B /\ A :=
   is that they are not connected with functions
   in simple and explicit ways.
 
+- **Xie**: While the following polynomial equalities seems requiring proof search.
+
+  But maybe not, if we can reduce symbolic polynomial to normal form and so on.
+
+```coq
+Require Import Ring.
+Require Import Arith.
+
+Theorem simple_poly:
+  forall (x : nat),
+    (x + 1) * (x + 2) = x * x + 3 * x + 2.
+Proof.
+  intros. ring.
+Qed.
+
+Compute simple_poly 10.
+
+Fixpoint sumn(n : nat): nat :=
+  match n with
+  | 0 => 0
+  | (S n') => n + (sumn n')
+  end.
+
+Theorem sum_formula:
+  forall n,
+    2 * (sumn n) = (n + 1) * n.
+Proof.
+  intros n.
+  induction n.
+  - reflexivity. (* 0 = 0 base case *)
+  - simpl.
+    ring [IHn]. (* induction step *)
+Qed.
+```
+
 ### `intros x y`
 
 Introduce hypotheses into context by lambda.
