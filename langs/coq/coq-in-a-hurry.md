@@ -337,11 +337,11 @@ When there are no more goals the proof is complete.
 There is a large collection of tactics in the Coq system,
 each of which is adapted to a shape of goal.
 
-- Xie: Unlike function which takes many premises and return a conclusion,
+- **Xie**: Unlike function which takes many premises and return a conclusion,
   a tactic take a _goal_ and returns more goals,
   where a goal has two parts, a context and a conclusion.
 
-- Xie: How to understand the space of goals?
+- **Xie**: How to understand the space of goals?
 
   - Is it different from the space of types?
 
@@ -413,7 +413,7 @@ Introduce hypotheses into context by lambda.
 fun x y => ...
 ```
 
-- Xie:
+- **Xie**:
 
   其实证明定理就像是在有向图中行走，
   看能走到哪里就算证明到了哪里。
@@ -504,26 +504,21 @@ then, in the function body of the right case.
 
 Like `exact h`, but let Coq decides which variable to use.
 
-# TODO
+### 3.3.1 Examples using apply
 
 ```coq
 Check le_n.
 (* le_n: forall n : nat, n <= n *)
+
 Check le_S.
 (* le_S: forall n m : nat, n <= m -> n <= S m *)
-Lemma example4 : 3 <= 5.
+
+Lemma example4:
+  3 <= 5.
 Proof.
-
-  (* 下面apply处理context中的 *)
-  (* universal-quantification with implication *)
   apply le_S.
   apply le_S.
-
-  (* 下面apply处理context中的 *)
-  (* universal-quantification without implication: *)
-  (* 这时就有可能完成证明了 *)
   apply le_n.
-
 Qed.
 ```
 
@@ -536,39 +531,26 @@ Require Import Arith.
 Check le_trans.
 (* Lemma le_trans : forall n m p : nat, n <= m -> m <= p -> n <= p. *)
 
-Lemma example5_1 :  1 <= 2 -> 2 <= 3 -> 1 <= 3.
+Lemma example5_1:
+  1 <= 2 -> 2 <= 3 -> 1 <= 3.
 Proof.
   apply le_trans.
 Qed.
 
-Lemma example5 : forall x y, x <= 10 -> 10 <= y -> x <= y.
+Lemma example5:
+  forall x y,
+    x <= 10 -> 10 <= y -> x <= y.
 Proof.
-
   intros x y x10 y10.
   apply le_trans with (m := 10).
-  (* 可以理解到如果没有with (m := 10)为什么就会失败 *)
-  (* 因为apply想要利用定理le_trans给出sub-goal的时候 *)
-  (* 会发现当把全称量词中的约束变元作为pattern-variable时 *)
-  (* 有的pattern-variable(这里的m)没有绑定到任何值 *)
-
-  (* 之后就简单了 *)
-
-  (* 最精确的: *)
-  (* exact x10. *)
-  (* exact y10. *)
-
-  (* 模糊一点 让coq帮忙查找: *)
-  (* assumption. *)
-  (* assumption. *)
-
-  (* 最模糊的: *)
-  intuition.
-  intuition.
-
+  exact x10.
+  exact y10.
 Qed.
 ```
 
-#### rewrite
+### 3.3.2 Examples using rewrite
+
+TODO
 
 many theorems have a conclusion that is an equality
 the most practical tactic to use these theorem is rewrite
@@ -650,13 +632,22 @@ Qed.
 > 下面的用法是不行的
 
 ```coq
-Lemma example6 : forall x y, (x + y) * (x + y) = x*x + 2*x*y + y*y.
+Lemma example6:
+  forall x y, (x + y) * (x + y) = x*x + 2*x*y + y*y.
 Require Import Ring.
 Proof.
   intros.
   ring.
 Qed.
 ```
+
+### 3.3.3 Examples using unfold
+
+TODO
+
+## 3.4 More advanced tactics
+
+TODO
 
 ```coq
 Require Import Omega.
@@ -672,6 +663,36 @@ Proof.
 Qed.
 ```
 
-# >< proving properties of programs on numbers
+# 4 Proving properties of programs on numbers
 
-# >< proving properties of programs on lists
+## 4.1 A proof by induction
+
+## 4.2 Stronger statements in induction
+
+# 5 Reasoning on conditional statements
+
+# 6 Proving properties of programs on lists
+
+# 7 Defining new datatypes
+
+## 7.1 Defining inductive types
+
+## 7.2 Pattern matching
+
+## 7.3 Recursive function definition
+
+## 7.4 Proof by cases
+
+## 7.5 Proof by induction
+
+## 7.6 An example using injection
+
+# 8 Numbers in the Coq system
+
+# 9 Inductive properties
+
+## 9.1 Defining an inductive predicate
+
+## 9.2 Proofs by induction on inductive predicates
+
+## 9.3 The inversion tactic
