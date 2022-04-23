@@ -82,46 +82,33 @@ intros 其實是在臨時給符號以類型
 # bool
 
 ```coq
-Inductive bool : Type
-  :=
-  | true  : bool
-  | false : bool.
+Inductive bool: Type :=
+  | true: bool
+  | false: bool.
 
+Definition negb(b: bool): bool :=
+  match b with
+  | true  => false
+  | false => true
+  end.
 
-Definition negb
-           (b : bool) : bool
-  :=
-    match b with
-    | true  => false
-    | false => true
-    end.
+Definition andb(b1 b2: bool): bool :=
+  match b1 with
+  | true => b2
+  | false => false
+  end.
 
-
-Definition andb
-           (b1 : bool)
-           (b2 : bool) : bool
-  :=
-    match b1 with
-    | true => b2
-    | false => false
-    end.
-
-
-Definition orb
-           (b1 : bool)
-           (b2 : bool) : bool
-  :=
-    match b1 with
-    | true => true
-    | false => b2
-    end.
+Definition orb(b1 b2: bool): bool :=
+  match b1 with
+  | true => true
+  | false => b2
+  end.
 ```
 
 # nat
 
 ```coq
 Require Export bool.
-
 
 Inductive nat : Type
   :=
@@ -595,7 +582,6 @@ Qed.
 
 ```coq
 Require Export induction.
-
 
 Theorem mult_O_plus' :
   forall n m : nat,
