@@ -1,4 +1,6 @@
-# Categorial grammar
+---
+title: Categorial Grammar
+---
 
 The mathematics of sentence structure -- joachim lambek
 
@@ -7,16 +9,16 @@ composition
 compare to construction grammar,
 categorial grammar is more about surface structure.
 
-## chiso
+# chiso
 
 an example of chiso where the calculus is concat with bracket.
 and the types are formed by / and \
 
-## Forth with types
+# Forth with types
 
 postfix and composition
 
-## Syntactic types
+# Syntactic types
 
 postfix, prefix and composition
 
@@ -38,7 +40,7 @@ n n\s = s
 x/y y = x
 y y\x = x
 
-## Type list for a fragment of English
+# Type list for a fragment of English
 
 john works
 n n\s
@@ -54,7 +56,7 @@ n ((n\s)/(n\s) n\s)
 
 - C. C. Fries, The Structure of English, New York, 1952.
 
-## Formal systems
+# Formal systems
 
 like theory of data constructor,
 in which constructor can be applied from both left and right.
