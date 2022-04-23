@@ -70,11 +70,6 @@ grammar {
 | 日出於東 | N V V N | N V   |
 | 不日成之 | V V V N | (V) V |
 
-# 重复以成副词
-
-现代汉语形成副词的方式是通过重复，
-比如「一点一点地」「小部分小部分地」。
-
 # References
 
 - [The Programming Language Called Classical Chinese](https://www.youtube.com/watch?v=vBhg2p8aAQ0)
