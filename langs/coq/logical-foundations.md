@@ -2,83 +2,6 @@
 title: Logical Foundations
 ---
 
-# [note]
-
-## 數據類型 與 函數語義
-
-一個數據類型被理解爲表達式的集合
-用 Inductive 來遞歸定義新的表達式的集合
-
-用 expression-rewriting
-來理解 function-application
-
-把 symbol 到 function 的綁定
-理解爲
-symbol 到 rewrite-rule [轉寫規則] 的綁定
-只有當 symbol 在表達式中以 "完全作用形式" 出現時
-所綁定的 rewrite-rule 才有可能被使用
-對 rewrite-rule 的執行
-由 simpl 來指示 [多步 rewrite]
-
----
-
-rewrite 就是運算
-同時 函數之間的等價關係 也和 rewrite 有關
-
-但是使用 function composition 之後
-rewrite 不再是 rewrite sub-expression in place 了
-而是 對 data-stack 中的數據的 rewrite
-
-同時 函數之間的等價關係
-應該用 function composition 和 equation 表達
-
-## [old] 證明論
-
-可以理解爲
-利用
-表達式的基本等詞
-還有
-表達式之間的關係
-[能夠被用戶動態引入的]
-來作證明
-
-最簡單的證明就是
-用表達式的基本等詞
-來對兩個表達式的相等關係作以肯定
-
-keyword
-[Example] [Theorem] [Lemma] [Fact] [Remark]
-只是名稱不同而已
-語義相同
-
-tactic
-[intros]
-[simpl]
-[reflexivity]
-
-a tactic is a command
-that is used between [Proof] and [Qed]
-to tell Coq
-how it should check the correctness
-of some claim (on expressions) we are making
-
-每個定理都以表達式的基本等詞爲基礎
-來形成表達式之間的更複雜的關係
-需要知道的是
-有那些方法可以用來從簡單來構架複雜
-於構建關係相平行地
-對更複雜關係的證明也變複雜了
-每個 可以用來從簡單來構架複雜 的方法
-都對應一個 證明方法
-
-intros 其實是在臨時給符號以類型
-或者給 兩個符號以相等關係
-兩個符號有相等關係之後
-就能用來 rewrite 了
-
-如果前面證明的是一個等式
-那麼在後面就可以利用這個等式來作 rewrite 了
-
 # bool
 
 ```coq
@@ -216,15 +139,15 @@ Fixpoint factorial
 
 # simpl
 
-- 如上對 nat 的基本函數 的遞歸定義
-  其定義中 並沒有展示出 對稱性 和 結合性
-  這些運算運算律是需要在之後證明的
+如上對 nat 的基本函數 的遞歸定義
+其定義中 並沒有展示出 對稱性 和 結合性
+這些運算運算律是需要在之後證明的
 
-- 何以至此
-  能在定義中就展示其 對稱性 與 結合性 邪
+何以至此
+能在定義中就展示其 對稱性 與 結合性 邪
 
-- 當使用自然數的不同的編碼方式時
-  情況會不同
+當使用自然數的不同的編碼方式時
+情況會不同
 
 ```coq
 Require Export nat.
@@ -351,9 +274,9 @@ Qed.
 
 # destruct
 
-- coq 的設計失誤
-  當使用 destruct 而形成了 subgoal
-  並沒有對 subgoal 的命名機制
+coq 的設計失誤
+當使用 destruct 而形成了 subgoal
+並沒有對 subgoal 的命名機制
 
 ```coq
 Require Export rewrite.
@@ -439,20 +362,22 @@ Qed.
 
 # induction
 
-- 其特點是 需要證明相等的兩個表達式中
-  有約束變元是函數作用的參數
-  1. 如果 函數的定義中 沒有匹配這個位置的參數
-     那麼 可能就不需要歸納法
-  2. 如果 函數的定義中 匹配了這個位置的參數
-     那麼 可能就需要歸納法
-     因爲
-     如果 函數根本就沒有匹配某個約束變元
-     那麼
-     這個約束變元在表達式改寫中
-     被改寫的方式 就是平凡的
-     注意
-     形式上 與 destruct 相比
-     induction 向環境中多引入了一個條件
+其特點是 需要證明相等的兩個表達式中
+有約束變元是函數作用的參數
+
+1. 如果 函數的定義中 沒有匹配這個位置的參數
+   那麼 可能就不需要歸納法
+
+2. 如果 函數的定義中 匹配了這個位置的參數
+   那麼 可能就需要歸納法
+   因爲
+   如果 函數根本就沒有匹配某個約束變元
+   那麼
+   這個約束變元在表達式改寫中
+   被改寫的方式 就是平凡的
+   注意
+   形式上 與 destruct 相比
+   induction 向環境中多引入了一個條件
 
 ```coq
 Require Export destruct.
@@ -559,26 +484,30 @@ Qed.
 
 # assert
 
-- coq 的設計失誤
-  沒有方便的語法
-  來指明某次 rewrite 作用的位置
-- 在 assert 中出現的局部變元
-  並不是約束變元
-  而是在局部環境中被引入了的
-  使用它們時
-  所能比配到的子表達式是更具體的
-  這樣就能用通過使用 assert
-  來補救上面的設計失誤
-- 可以發現
-  對於有結合律和交換律的二元函數而言
-  用前綴表達式或者後綴表達式時
-  我們就難以觀察到
-  應該使用那些運算律來對表達式進行變換
-  可能因爲
-  1. 我們不熟悉這些運算律
-     在非中綴表達式中的樣子
-  2. 中綴表達式對於體現這些運算律而言
-     是本質重要的
+coq 的設計失誤
+沒有方便的語法
+來指明某次 rewrite 作用的位置
+
+在 assert 中出現的局部變元
+並不是約束變元
+而是在局部環境中被引入了的
+使用它們時
+所能比配到的子表達式是更具體的
+這樣就能用通過使用 assert
+來補救上面的設計失誤
+
+可以發現
+對於有結合律和交換律的二元函數而言
+用前綴表達式或者後綴表達式時
+我們就難以觀察到
+應該使用那些運算律來對表達式進行變換
+可能因爲
+
+1. 我們不熟悉這些運算律
+   在非中綴表達式中的樣子
+
+2. 中綴表達式對於體現這些運算律而言
+   是本質重要的
 
 ```coq
 Require Export induction.
@@ -853,16 +782,18 @@ Qed.
 
 # bin
 
-- 就是反過來的二進制編碼
+就是反過來的二進制編碼
 
-  | 0 | 0 | Z |
-  | 1 | 1 | i Z |
-  | 2 | 10 | o i Z |
-  | 3 | 11 | i i Z |
-  | 4 | 100 | o o i Z |
-  | 5 | 101 | i o i Z |
-  | 6 | 110 | o i i Z |
-  | 7 | 111 | i i i Z |
+| dec | bin | bin in coq |
+|-----|-----|------------|
+| 0   | 0   | Z          |
+| 1   | 1   | i Z        |
+| 2   | 10  | o i Z      |
+| 3   | 11  | i i Z      |
+| 4   | 100 | o o i Z    |
+| 5   | 101 | i o i Z    |
+| 6   | 110 | o i i Z    |
+| 7   | 111 | i i i Z    |
 
 ```coq
 Inductive bin : Type
