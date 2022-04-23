@@ -543,7 +543,12 @@ then, in the function body of the right case.
 
 Like `exact v`, but let Coq decides which variable to use.
 
-### 3.3.1 Examples using apply
+### 3.3.1 Examples using `apply`
+
+The `apply` tactic allows us to work top-down,
+instead of bottom-up during normal function application.
+
+- Arguments is found after the function during proving (like typed hole).
 
 ```coq
 Check le_n.
@@ -587,88 +592,49 @@ Definition example5_1_fn:
 Lemma example5:
   forall x y,
     x <= 10 -> 10 <= y -> x <= y.
-Proof. 
-  intros x y x10 y10.
-  apply le_trans with (m := 10).
+Proof.
+  intros x y.
+  intros x10 y10.
+  apply (le_trans x 10).
+  (* NOTE Using named implicit argument (like the following)
+     will make it part of the public API. *)
+  (* apply le_trans with (m := 10). *)
   exact x10.
   exact y10.
 Qed.
 
-Definition example5_fn x y: 
+Definition example5_fn x y:
   x <= 10 -> 10 <= y -> x <= y :=
   le_trans x 10 y.
 ```
 
-### 3.3.2 Examples using rewrite
-
-TODO
-
-many theorems have a conclusion that is an equality
-the most practical tactic to use these theorem is rewrite
-即 rewrite 是用来给证明等式的
-rewrite 所使用的定理(rewrite-rule)
-pattern-matching 被证定理的等号左边
-然后将被证的等式恒等变形为另一个等式
+### 3.3.2 Examples using `rewrite`
 
 ```coq
 Require Import Arith.
 
 Lemma example6:
   forall x y,
-    (x + y) * (x + y) = x*x + 2*x*y + y*y.
+    (x + y) * (x + y) = (x * x) + (2 * x * y) + (y * y).
 Proof.
   intros x y.
-  (* 约束变元的类型被推导出来了 *)
-  (* 下面查一下(左)分配律的重写规则 *)
   SearchRewrite (_ * (_ + _)).
   rewrite mult_plus_distr_l.
-  (* 下面查一下(右)分配律的重写规则 *)
   SearchRewrite ((_ + _) * _).
-
-  (* rewrite mult_plus_distr_r. *)
-
-  (* 可以用with来指定一个上面所查找到的的定理中的 *)
-  (* 约束变元所应该在模式匹配中被绑定到的项 *)
-  (* 否则coq会选择前面的一个 *)
-  rewrite mult_plus_distr_r with (p:=y).
   rewrite mult_plus_distr_r.
-
-  (* intuition在这里不能用 *)
-  (* 看来它是专门处理一阶逻辑中的显然步骤的 *)
-
-  (* 那么继续找加法结合律 *)
+  rewrite mult_plus_distr_r.
   SearchRewrite (_ + (_ + _)).
-  (* plus_assoc: forall n m p : nat, n + (m + p) = n + m + p *)
   rewrite plus_assoc.
-
-  (* 下面反着利用rewrite-rule *)
-  (* 而匹配的还是被证明项的等号左边 *)
   rewrite <- plus_assoc with (n := x * x).
-
-  (* next : commutativity for multiplication *)
   SearchPattern (?x *?y =?y *?x).
-  (* mult_comm: forall n m : nat, n * m = m * n *)
   rewrite mult_comm with (n:= y) (m:=x).
-
-  (* 找定理的时候要小部分小部分地找 *)
-  (* 汉语形成副词的方式是通过重复:小部分小部分地 *)
-  SearchRewrite ((S _) * _).
   SearchRewrite (S _ * _).
-  (* mult_succ_l: forall n m : nat, S n * m = n * m + m *)
-  (* mult_1_l: forall n : nat, 1 * n = n *)
-
-  (* using a tactic called pattern *)
-  (* to limit the place where rewriting occurs *)
   pattern (x * y) at 1.
   rewrite <- mult_1_l.
   rewrite <- mult_succ_l.
-
-  (* 然后是乘法结合律 *)
   SearchRewrite (_ * (_ * _)).
   rewrite mult_assoc.
-
   reflexivity.
-  (* reflexivity用来引入基本等词 *)
 Qed.
 ```
 
@@ -687,28 +653,31 @@ Proof.
 Qed.
 ```
 
-### 3.3.3 Examples using unfold
+### 3.3.3 Examples using `unfold`
 
-TODO
+To _unfold_ definitions.
+
+```coq
+Lemma pred_S_eq:
+  forall x y,
+    x = S y -> Nat.pred x = y.
+Proof.
+  intros x y.
+  intros q.
+  unfold Nat.pred.
+  rewrite q.
+  reflexivity.
+Qed.
+```
 
 ## 3.4 More advanced tactics
 
-TODO
-
-```coq
-Require Import Omega.
-
-Lemma omega_example:
-  forall f x y,
-    0 < x ->
-    0 < f x ->
-    3 * f x <= 2 * y ->
-    f x <= y.
-Proof.
-  intros.
-  omega.
-Qed.
-```
+| tactic           | usage                   |
+| ---------------- | ----------------------- |
+| intuition, tauto | propositional logic     |
+| firstorder       | first-order logic       |
+| ring             | equality of polynomials |
+| omega            | linear inequations      |
 
 # 4 Proving properties of programs on numbers
 
