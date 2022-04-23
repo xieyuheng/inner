@@ -140,18 +140,6 @@ is a document rendering platform.
 ![](https://image-link.vercel.app/readonlylink/desktop/manual-1-2.png)
 ![](https://image-link.vercel.app/readonlylink/desktop/manual-1-3.png)
 
-### EnchanterJS
-
-Since I work as a web developer, learning about all kinds of tools
-designed for web development is my daily routine.
-
-After encountered [Laravel](https://laravel.com) and its amazing community,
-I start bringing its artisan spirit and beautiful API to my team.
-
-Hence [EnchanterJS](https://github.com/enchanterjs/enchanter)
--- a web (and console) application framework,
-for TypeScript and NodeJs, emphasis on clarity and well typed API.
-
 ### LogicDB
 
 While learning Logic programming, I started a project called

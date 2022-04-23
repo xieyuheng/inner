@@ -587,14 +587,14 @@ Definition example5_1_fn:
 Lemma example5:
   forall x y,
     x <= 10 -> 10 <= y -> x <= y.
-Proof.
+Proof. 
   intros x y x10 y10.
   apply le_trans with (m := 10).
   exact x10.
   exact y10.
 Qed.
 
-Definition example5_fn x y:
+Definition example5_fn x y: 
   x <= 10 -> 10 <= y -> x <= y :=
   le_trans x 10 y.
 ```
