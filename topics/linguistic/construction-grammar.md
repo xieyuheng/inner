@@ -1,4 +1,6 @@
-# Construction grammar
+---
+title: Construction grammar
+---
 
 A theory of linguistic knowledge.
 
