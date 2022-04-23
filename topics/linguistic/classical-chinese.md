@@ -77,6 +77,7 @@ grammar {
 
 # References
 
-- [The Programming Language Called Classical Chinese](https://www.youtube.com/watch?v=vBhg2p8aAQ0) - David Branner
+- [The Programming Language Called Classical Chinese](https://www.youtube.com/watch?v=vBhg2p8aAQ0)
+  - David Branner
   - 2015
   - Strange Loop Conference
