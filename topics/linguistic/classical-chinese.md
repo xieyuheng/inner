@@ -55,16 +55,28 @@ grammar {
 
 用虛詞来消除歧义。
 
+| 例子   | 类型  |
+|--------|-------|
 | 人心   | N N   |
 | 人之心 | (N) N |
 
+| 例子   | 类型  |
+|--------|-------|
 | 時祭   | N N   |
 | 以時祭 | (N) V |
 
+| 例子     | 类型    | 类型  |
+|----------|---------|-------|
 | 日出於東 | N V V N | N V   |
 | 不日成之 | V V V N | (V) V |
 
 # 重复以成副词
 
-汉语形成副词的方式是通过重复，
+现代汉语形成副词的方式是通过重复，
 比如「一点一点地」「小部分小部分地」。
+
+# References
+
+- [The Programming Language Called Classical Chinese](https://www.youtube.com/watch?v=vBhg2p8aAQ0) - David Branner
+  - 2015
+  - Strange Loop Conference
