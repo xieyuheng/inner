@@ -54,7 +54,7 @@ title: Notation of Calculus
   我常說
   只要有足夠的好奇心和興趣
   在沒有先導性的識的前提下
-  一個人也能對他所感興趣的問題形成有效的戲考與討論
+  一個人也能對他所感興趣的問題形成有效的思考與討論
   ><><>< 應該怎麼處理這個矛盾呢? 我之前的觀點有什麼問題嗎?
 - notation 有 prefix infix postfix
   而這裏的是 borderfix
