@@ -1,5 +1,5 @@
 ---
-title: note on notation of calculus
+title: Notation of Calculus
 ---
 
 # 關於語法
@@ -43,7 +43,7 @@ title: note on notation of calculus
   而對傳統數學語言的流弊有很多有趣的見解
   對當今程序語言的設計缺陷的批判是我熟悉的
   而對數學語言之最最基本之符號
-  我缺也未有諸多質疑
+  我却也未有諸多質疑
 - 但是又確實如作者所承認的
   文章的大部分
   在我看來
