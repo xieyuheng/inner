@@ -844,6 +844,12 @@ Lemma factorial_equals_factorial_eta_expansion_2:
 Proof.
   reflexivity.
 Qed.
+
+Lemma factorial_equals_factorial_eta_expansion_3:
+  (fun n => factorial n) = fun n => (fun n => factorial n) n.
+Proof.
+  reflexivity.
+Qed.
 ```
 
 ## even & odd
