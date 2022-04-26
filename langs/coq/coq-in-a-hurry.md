@@ -795,7 +795,7 @@ Definition is_zero(n: nat): bool :=
   | S p => false
   end.
 
-Lemma not_is_zero_pred :
+Lemma not_is_zero_pred:
   forall x,
     is_zero x = false -> S (pred x) = x.
 Proof.
@@ -806,6 +806,134 @@ Proof.
   discriminate.
   intros h.
   reflexivity.
+Qed.
+```
+
+# NOTE Test equality between recursive functions in Coq
+
+## factorial
+
+```coq
+Fixpoint factorial(n: nat): nat :=
+  match n with
+  | 0 => 1
+  | S p => n * factorial p
+  end.
+
+Compute factorial 0.
+Compute factorial 1.
+Compute factorial 2.
+Compute factorial 3.
+Compute factorial 4.
+Compute factorial 5.
+
+Lemma test_1:
+  factorial = factorial.
+Proof.
+  reflexivity.
+Qed.
+
+Lemma test_2:
+  factorial = fun n => factorial n.
+Proof.
+  reflexivity.
+Qed.
+```
+
+## even & odd
+
+```coq
+Fixpoint evenb(n: nat): bool :=
+  match n with
+  | 0 => true
+  | S p =>
+      match p with
+      | 0 => false
+      | S p' => evenb p'
+      end
+  end.
+
+Fixpoint evenb2(n: nat): bool :=
+  match n with
+  | 0 => true
+  | 1 => false
+  | S (S p) => evenb2 p
+  end.
+
+Fixpoint oddb(n: nat): bool :=
+  match n with
+  | 0 => false
+  | 1 => true
+  | S (S p) => oddb p
+  end.
+
+Compute evenb 0.
+Compute evenb 1.
+Compute evenb 2.
+Compute evenb 3.
+
+
+Compute evenb2 0.
+Compute evenb2 1.
+Compute evenb2 2.
+Compute evenb2 3.
+
+Compute oddb 0.
+Compute oddb 1.
+Compute oddb 2.
+Compute oddb 3.
+
+Fixpoint is_even(n : nat): bool :=
+  match n with
+  | 0 => true
+  | (S n) => is_odd n
+  end with
+is_odd(n: nat): bool :=
+  match n with
+  | 0 => false
+  | (S n) => is_even n
+  end.
+
+Compute is_even 0.
+Compute is_even 1.
+Compute is_even 2.
+Compute is_even 3.
+
+Compute is_odd 0.
+Compute is_odd 1.
+Compute is_odd 2.
+Compute is_odd 3.
+
+Lemma evenb_equals_is_even:
+  evenb = is_even.
+Proof.
+  (* reflexivity. *)
+  (* Error: Unable to unify "is_even" with "evenb". *)
+  (* Even inline `is_odd` to `is_even` is structurally equal to `evenb`, but Coq can not unify them. *)
+Abort.
+
+Fixpoint even_p(n: nat): bool :=
+  match n with
+  | 0 => true
+  | S p =>
+      match p with
+      | 0 => false
+      | S p' => even_p p'
+      end
+  end.
+
+Lemma evenb_equals_even_p:
+  evenb = even_p.
+Proof.
+  reflexivity.
+  (* `even_p` is structurally equal to `evenb`, and Coq can handle this. *)
+Qed.
+
+Lemma evenb2_equals_evenb:
+  evenb2 = evenb.
+Proof.
+  reflexivity.
+  (* Coq can be unify different patterns such as `evenb2` v.s. `evenb`. *)
 Qed.
 ```
 
