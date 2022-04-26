@@ -872,7 +872,6 @@ Compute evenb 1.
 Compute evenb 2.
 Compute evenb 3.
 
-
 Compute evenb2 0.
 Compute evenb2 1.
 Compute evenb2 2.
