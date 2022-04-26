@@ -820,6 +820,12 @@ Fixpoint factorial(n: nat): nat :=
   | S p => n * factorial p
   end.
 
+Fixpoint factorial2(n: nat): nat :=
+  match n with
+  | 0 => 1
+  | S p => n * factorial p
+  end.
+
 Compute factorial 0.
 Compute factorial 1.
 Compute factorial 2.
@@ -850,6 +856,12 @@ Lemma factorial_equals_factorial_eta_expansion_3:
 Proof.
   reflexivity.
 Qed.
+
+Lemma factorial_equals_factorial2:
+  factorial = factorial2.
+Proof.
+  (* reflexivity. *)
+Abort.
 ```
 
 ## even & odd
@@ -938,8 +950,6 @@ Lemma evenb_equals_is_even:
   evenb = is_even.
 Proof.
   (* reflexivity. *)
-  (* Error: Unable to unify "is_even" with "evenb". *)
-  (* Even inline `is_odd` to `is_even` is structurally equal to `evenb`, but Coq can not unify them. *)
 Abort.
 
 Fixpoint even_p(n: nat): bool :=
@@ -970,14 +980,12 @@ Lemma evenb2_equals_evenb3:
   evenb2 = evenb3.
 Proof.
   (* reflexivity. *)
-  (* Coq can not unify as `evenb2` with `evenb3`. *)
 Abort.
 
 Lemma evenb_equals_evenb4:
   evenb = evenb4.
 Proof.
   (* reflexivity.  *)
-  (* Coq can not unify as `evenb` with `evenb4`. *)
 Abort.
 ```
 
