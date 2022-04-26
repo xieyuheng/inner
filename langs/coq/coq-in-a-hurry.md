@@ -683,7 +683,71 @@ Qed.
 
 ## 4.1 A proof by induction
 
+```coq
+Require Import Ring.
+Require Import Arith.
+
+Fixpoint sum_n(n: nat): nat :=
+  match n with
+  | 0 => 0
+  | S p => p + sum_n p
+  end.
+
+Lemma sum_n_p:
+  forall n,
+    2 * sum_n n + n = n * n.
+Proof.
+  induction n.
+  reflexivity.
+  assert (SnSn: S n * S n = n * n + 2 * n + 1).
+  ring.
+  rewrite SnSn.
+  rewrite <- IHn.
+  simpl.
+  ring.
+Qed.
+```
+
 ## 4.2 Stronger statements in induction
+
+```coq
+Require Import Ring.
+Require Import Arith.
+
+Fixpoint evenb(n: nat): bool :=
+  match n with
+  | 0 => true
+  | 1 => false
+  | S (S p) => evenb p
+  end.
+
+Lemma evenb_p_aux:
+  forall n,
+    (evenb n = true -> exists x, n = 2 * x) /\
+      (evenb (S n) = true -> exists x, S n = 2 * x).
+Proof.
+  induction n.
+  split.
+  intros H. exists 0. ring.
+  simpl. intros H. discriminate H.
+  split.
+  elim IHn. intros _ second. exact second.
+  simpl evenb. intros H. elim IHn. intros first _.
+  assert (H': exists x, n = 2 * x).
+  apply first. exact H.
+  destruct H' as [x q]. exists (x + 1). rewrite q. ring.
+Qed.
+
+Lemma evenb_p:
+  forall n,
+    evenb n = true ->
+    exists x, n = 2 * x.
+Proof.
+  intros n H.
+  apply (evenb_p_aux n).
+  exact H.
+Qed.
+```
 
 # 5 Reasoning on conditional statements
 
