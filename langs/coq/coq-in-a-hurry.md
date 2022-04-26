@@ -860,6 +860,25 @@ Fixpoint evenb2(n: nat): bool :=
   | S (S p) => evenb2 p
   end.
 
+Fixpoint evenb3(n: nat): bool :=
+  match n with
+  | 0 => true
+  | 1 => false
+  | 2 => true
+  | 3 => false
+  | S (S (S (S p))) => evenb3 p
+  end.
+
+Fixpoint evenb4(n: nat): bool :=
+  match n with
+  | 0 => true
+  | S p =>
+      match p with
+      | 0 => false
+      | S p' => evenb p'
+      end
+  end.
+
 Fixpoint oddb(n: nat): bool :=
   match n with
   | 0 => false
@@ -928,12 +947,26 @@ Proof.
   (* `even_p` is structurally equal to `evenb`, and Coq can handle this. *)
 Qed.
 
-Lemma evenb2_equals_evenb:
-  evenb2 = evenb.
+Lemma evenb_equals_evenb2:
+  evenb = evenb2.
 Proof.
   reflexivity.
   (* Coq can be unify different patterns such as `evenb2` v.s. `evenb`. *)
 Qed.
+
+Lemma evenb2_equals_evenb3:
+  evenb2 = evenb3.
+Proof.
+  (* reflexivity. *)
+  (* Coq can not unify as `evenb2` with `evenb3`. *)
+Abort.
+
+Lemma evenb_equals_evenb4:
+  evenb = evenb4.
+Proof.
+  (* reflexivity.  *)
+  (* Coq can not unify as `evenb` with `evenb4`. *)
+Abort.
 ```
 
 # 6 Proving properties of programs on lists
