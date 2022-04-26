@@ -809,7 +809,7 @@ Proof.
 Qed.
 ```
 
-# NOTE Test equality between recursive functions in Coq
+# Test equality between recursive functions in Coq
 
 ## factorial
 
