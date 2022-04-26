@@ -29,6 +29,8 @@ https://gist.github.com/zmactep/c5e167c86fb8d80dcd5532792371863f
 
 Maybe impossible.
 
+If impossible, why?
+
 Also learn about using `fixpoint` as keyword.
 
 https://en.wikipedia.org/wiki/Fixed-point_combinator

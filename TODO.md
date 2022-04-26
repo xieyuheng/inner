@@ -1,3 +1,11 @@
+- `cicada-lang/relation`?
+
+  - json based logic programming language
+
+- `xieyuheng/algebra`
+
+  - computer algebra based on bigint of javascript
+
 # learning
 
 - implement lambda-cube (with self type)
