@@ -749,7 +749,65 @@ Proof.
 Qed.
 ```
 
+### Exercise on addition, alternative definition
+
+```coq
+Fixpoint add n m := match n with 0 => m | S p => add p (S m) end.
+
+forall n m, add n (S m) = S (add n m).
+forall n m, add (S n) m = S (add n m).
+forall n m, add n m = n + m.
+```
+
+### Exercise on the sum of odd numbers
+
+```coq
+Fixpoint sum_odd_n(n: nat): nat :=
+  match n with
+  | 0 => 0
+  | S p => 1 + 2 * p + sum_odd_n p
+  end.
+
+forall n: nat, sum_odd_n n = n*n.
+```
+
 # 5 Reasoning on conditional statements
+
+The conditional statement
+
+```
+if e1 then e2 else e3
+```
+
+actually is a short-hand for the following pattern matching construct:
+
+```
+match e1 with
+| true => e2
+| false => e3
+end
+```
+
+```coq
+Definition is_zero(n: nat): bool :=
+  match n with
+  | 0 => true
+  | S p => false
+  end.
+
+Lemma not_is_zero_pred :
+  forall x,
+    is_zero x = false -> S (pred x) = x.
+Proof.
+  intros x.
+  unfold is_zero.
+  unfold pred.
+  destruct x as [ | p].
+  discriminate.
+  intros h.
+  reflexivity.
+Qed.
+```
 
 # 6 Proving properties of programs on lists
 
