@@ -827,13 +827,13 @@ Compute factorial 3.
 Compute factorial 4.
 Compute factorial 5.
 
-Lemma test_1:
+Lemma factorial_equals_factorial:
   factorial = factorial.
 Proof.
   reflexivity.
 Qed.
 
-Lemma test_2:
+Lemma factorial_equals_factorial_eta_expansion:
   factorial = fun n => factorial n.
 Proof.
   reflexivity.
