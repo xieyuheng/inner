@@ -6,6 +6,10 @@
 
   - computer algebra based on bigint of javascript
 
+    - Integer -- OOP API over bigint
+    - Fraction
+    - ContinuedFraction
+
 # learning
 
 - implement lambda-cube (with self type)
