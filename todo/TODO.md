@@ -1,6 +1,7 @@
 - `cicada-lang/relation`?
 
   - json based logic programming language
+  - learn prolog for real
 
 - `xieyuheng/algebra`
 
