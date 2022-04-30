@@ -1,4 +1,6 @@
-# Temporal Logic
+---
+title: Temporal Logic
+---
 
 - modality
   - always
