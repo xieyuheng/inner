@@ -1,7 +1,9 @@
-# Language, Proof and Logic
-
-- Stanford open course :
-  https://lagunita.stanford.edu/courses/Philosophy/LPL-SP/SelfPaced/course
+---
+title: Language, Proof and Logic
+course:
+- kind: Stanford open course
+- link: https://lagunita.stanford.edu/courses/Philosophy/LPL-SP/SelfPaced/course
+---
 
 # Chapter 1: Atomic Sentences
 
