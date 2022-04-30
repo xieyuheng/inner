@@ -1,8 +1,8 @@
 ---
 title: Language, Proof and Logic
 course:
-- kind: Stanford open course
-- link: https://lagunita.stanford.edu/courses/Philosophy/LPL-SP/SelfPaced/course
+  - kind: Stanford open course
+  - link: https://lagunita.stanford.edu/courses/Philosophy/LPL-SP/SelfPaced/course
 ---
 
 # Chapter 1: Atomic Sentences
@@ -36,14 +36,14 @@ course:
 - Xie:
   We can have type-constructor
 
-  ``` js
+  ```js
   odd-t : (n : nat-t) -> type
   even-t : (n : nat-t) -> type
   ```
 
   But we do not have type-constructor
 
-  ``` js
+  ```js
   prime-t : (n : nat-t) -> type
   ```
 
@@ -69,6 +69,7 @@ course:
 - Xie:
   Every type in type theory can be translated to
   a predicate in a FOL model together with
+
   - generation of elements in the model which satisfy the predicate only
     (we can say "elements of the type"),
   - basic equivalent relation between elements of the type.
@@ -120,7 +121,7 @@ course:
 
   - example :
 
-    ``` js
+    ```js
     #1 Cube (c)
     #2 c = b
     ------
@@ -204,7 +205,7 @@ course:
 
   the concept of "satisfiable" dependents on model
 
-  ``` js
+  ```js
   // All P's are Q's
   (x : P) -> Q (x)
 
@@ -232,7 +233,7 @@ course:
 
 - contrapositive
 
-  ``` js
+  ```js
   A -> B
   not B -> not A
   (B -> C) -> (A -> C)
@@ -242,7 +243,7 @@ course:
 
 - De Morgan's laws For Quantifiers
 
-  ``` js
+  ```js
   not ((x : P) -> Q (x))
   f : ((x : P) -> Q (x)) -> absurd_t
   f = (h) => g.right (h (g.left))
@@ -261,7 +262,7 @@ course:
 
 - distribution
 
-  ``` js
+  ```js
   (x : N) -> P (x) and Q (x)
   ((x : N) -> P (x)) and ((x : N) -> Q (x))
 
@@ -292,7 +293,7 @@ course:
 
 - Universal Elimination
 
-  ``` js
+  ```js
   f : (x : N) -> P (x)
   t : N
   ---------------
@@ -305,7 +306,7 @@ course:
 
 - Existential Introduction
 
-  ``` js
+  ```js
   t : N
   x : P (t)
   ------------------
@@ -321,13 +322,14 @@ course:
 
 - Xie:
   in type theory
+
   - "forall" (as many product) is modeled as
     dependent exponential (dependent arrow)
   - "exists" (as many sum) is modeled as dependent product
 
 - example
 
-  ``` js
+  ```js
   f : (x : M, Small (x)) -> Tet (x)
   g : (x : M, Tet (x)) -> Adjoins (x, d)
   h : (e : M, Small (e))
@@ -343,7 +345,7 @@ course:
 - Existential Elimination
   (this is understood as naming in the lecture)
 
-  ``` js
+  ```js
   h : (t : N, P (t))
   ------------------
   h.left : N
@@ -355,7 +357,7 @@ course:
 
 - Universal Introduction
 
-  ``` js
+  ```js
   ------------------
   (c) => {
     // something of type P (c)
@@ -395,7 +397,7 @@ course:
   general quantifier theory
 
   | expression       | named quantifier expression |
-  |------------------|-----------------------------|
+  | ---------------- | --------------------------- |
   | (x : N, P (x))   | exists (x : N) P (x)        |
   | (x : N) -> P (x) | forall (x : N) P (x)        |
   | (x) => f (x)     | lambda (x : N) f (x)        |
