@@ -18,10 +18,16 @@ author: Xie Yuheng
 
 - learn Aaron Stump's cedille: https://cedille.github.io
 - learn Fu Peng's gottlob: https://github.com/Fermat/gottlob
+  - https://fermat.github.io
+- Alternative encoding: https://gist.github.com/zmactep/c5e167c86fb8d80dcd5532792371863f
 
-Can be learned from here: https://fermat.github.io
+I have learned lambda encoding from Fu Peng's works.
 
-https://gist.github.com/zmactep/c5e167c86fb8d80dcd5532792371863f
+- https://github.com/cicada-lang/lambda/tree/master/docs/tests
+
+How to use lambda encoding to understand the duality between constructor and eliminator?
+
+- Using function application as eliminator is the key?
 
 # Homotopy type theory
 
