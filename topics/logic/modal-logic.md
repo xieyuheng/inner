@@ -1,31 +1,33 @@
-# Modal Logic
+---
+title: Modal Logic
+---
 
-## Links
+# Links
 
 - [Modal logic, by Kane B, (video lectures)](https://www.youtube.com/playlist?list=PLXKKIUdnOESGk43pUg3NTkRWjglvKXKi7)
 
-## As extension of propositional logic
+# As extension of propositional logic
 
 We add `# P` (`#` as box) and `$ P` (`$` as diamond).
 We have `~ # P == $ ~ P` and `~ $ P == # ~ P` (`~` as `not`).
 
-## Kinds of modal logics
+# Kinds of modal logics
 
 Different interpretation of the modal operators `#` and `$`.
 
 | Logic     | Modality                           |
-|-----------|------------------------------------|
+| --------- | ---------------------------------- |
 | alethic   | necessary, possible, impossible    |
 | deontic   | obligatory, permissible, forbidden |
 | temporal  | always, sometimes, never           |
 | epistemic | known                              |
 | doxastic  | believed                           |
 
-## Introduction modal logic
+# Introduction modal logic
 
 Alethic modal logic is the main modal logic.
 
-``` js
+```js
 necessity      --  # P                 --  necessary P
                --  ~ $ ~ P             --  not possible not P
 possibility    --  $ P                 --  possible P
@@ -43,7 +45,7 @@ contingency    --  ($ P) & ($ ~ P)     --  possible P and possible not P
 
 We also have,
 
-``` js
+```js
 necessity -> possibility
 // this does not hold because of propositional logic,
 //   but because of intuition of meaning the modal operators.
@@ -62,7 +64,7 @@ not analyticity == contingency
 
 But necessity does not contradict with impossibility,
 
-``` js
+```js
 not impossible P == not necessary not P == possible P
 not impossible P == not necessary not P != necessary P
                         necessary not P != not necessary P
@@ -75,17 +77,18 @@ The semantics of alethic modal logic **possible worlds**,
 - Xie: When talking about "semantics", think about intuition and implementation.
 
 Kinds of possibility,
+
 - Logical, fixed given the laws of logic, rules out contradictions.
 - Nomological, fixed given the laws of nature.
 - Temporal, fixed given the actual history of the world.
 
-## System K
+# System K
 
 The `K` from [Saul Kripke](https://en.wikipedia.org/wiki/Saul_Kripke).
 
 Formation rules (for well-formed formula).
 
-``` js
+```js
 <exp> = <var> // propositional variable
   | not <exp>
   | <exp> and <exp>
@@ -98,7 +101,7 @@ Interpretation is defined as a function that assign truth value to each proposit
 
 We use model theory to provide semantics for logic.
 
-``` js
+```js
 model_t = {
   world : world_t
   accessible : (w0: world_t, w1: world_t) -> bool_t // w1 is accessible from w0
@@ -109,7 +112,7 @@ model_t = {
 Different kinds of possibility corresponding to definitions of relation `accessible`.
 Note that, the relation is not necessarily transitive.
 
-## Truth trees of system K
+# Truth trees of system K
 
 We are going to use the tree method in "Modal Logic for Philosophers", by James W. Garson,
 which captures the concepts of modal logic in a clear and common sense way.
@@ -121,7 +124,7 @@ which captures the concepts of modal logic in a clear and common sense way.
 
 The basic judgment in the logic is `<proposition> true in <world>`.
 
-``` js
+```js
 exists (w1: world_t) {
   accessible(w0, w1)
   P true in w1
@@ -130,7 +133,7 @@ exists (w1: world_t) {
 possible P true in w0
 ```
 
-``` js
+```js
 forall (w1: world_t) {
   accessible(w0, w1)
   P true in w1
@@ -141,7 +144,7 @@ necessary P true in w0
 
 Example proof,
 
-``` js
+```js
 distribution : (w : world_t) -> (necessary (P -> Q)) -> (necessary P -> necessary Q) in w
 distribution = {
   w : world_t
@@ -171,18 +174,18 @@ distribution = {
 }
 ```
 
-## A strange property of K
+# A strange property of K
 
 According to the lecturer, the following propositions are can not be proven.
 
-``` js
+```js
 necessary P -> P
 necessary P -> possible P
 ```
 
 Let's try our inference rules.
 
-``` js
+```js
 // necessary P -> P
 h1 : (w: world_t) -> necessary P -> P in w
 h1 = {
@@ -210,13 +213,13 @@ h2 = {
 It seems we can prove them, as lone as we have the following primitive function,
 making accessibility relation reflexive.
 
-``` js
+```js
 access_self : (w: world_t) -> accessible(w, w)
 ```
 
-## Truth trees for invalid arguments in K
+# Truth trees for invalid arguments in K
 
-## Logical consequence in K
+# Logical consequence in K
 
 In the History, modal logic is developed to avoid irrelevant `A -> B` like,
 "If pigs can fly, then the moon is made of cheese."
@@ -237,7 +240,7 @@ conclusion can be derived from premises by inference rules.
   - logical consequence -- predicate logic
   - analytical consequences -- with a specific model
 
-## Soundness & Completeness
+# Soundness & Completeness
 
 A group of inference rules specifies a deduction system.
 
@@ -246,7 +249,7 @@ respect to a specific model theory.
 
 Soundness,
 
-``` js
+```js
 premises |- conclusion
 ----------------------
 premises |= conclusion
@@ -254,19 +257,19 @@ premises |= conclusion
 
 Completeness,
 
-``` js
+```js
 premises |= conclusion
 ----------------------
 premises |- conclusion
 ```
 
-## The systems M, B, S4 & S5
+# The systems M, B, S4 & S5
 
 System K is one memmber of a familiy of systems called "normal modal logic".
 
 Accessibility relation can be enhanced,
 
-``` js
+```js
 M = K + reflexive {
   # P -> P
 }
@@ -284,13 +287,13 @@ S5 = K + reflexive + symmetric + transitive {
 }
 ```
 
-## More on the accessibility relation
+# More on the accessibility relation
 
-## Two important truth tree rules, and a space saving method
+# Two important truth tree rules, and a space saving method
 
-## A trick for trees in S5
+# A trick for trees in S5
 
-## The modal scope fallacy
+# The modal scope fallacy
 
 Example of scope fallacy is "All that glitter is not gold."
 which should be "Not all that glitter is gold."
@@ -300,7 +303,7 @@ The modal scope fallacy,
 "If P cannot be false, then it is necessarily true."
 Thus "If P is true, then it is necessarily true."
 
-``` js
+```js
 P -> ~ $ ~ P
 ~ $ ~ P -> # P
 --------------
@@ -309,7 +312,7 @@ P -> # P
 
 or
 
-``` js
+```js
 P -> # ~ ~ P
 # ~ ~ P -> # P
 --------------
@@ -329,6 +332,6 @@ should be
   https://en.wikipedia.org/wiki/Modal_fallacy
   https://en.wikipedia.org/wiki/Formal_fallacy
 
-## [Note] Relational semantics (a.k.a. frame semantics)
+# [Note] Relational semantics (a.k.a. frame semantics)
 
-## [Note] Intuitionistic logic as a modal logic
+# [Note] Intuitionistic logic as a modal logic
