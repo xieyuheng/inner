@@ -127,7 +127,7 @@ The same is true for variable bindings,
 (Sigma ((a A) (b B)) (C a b))
 ```
 
-```cicada
+```cicada expressions
 forall (a: A, b: B) C(a, b)
 exists (a: A, b: B) C(a, b)
 ```
