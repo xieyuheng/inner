@@ -115,8 +115,10 @@ Take object for example,
 
 For one pair of key-value, the number of delimiters are both two.
 
-- `(x 1)` -- `(`, `)`
-- `x: 1,` -- `:`, `,`
+|         | delimiters |
+|---------|------------|
+| `(x 1)` | `(` `)`    |
+| `x: 1,` | `:` `,`    |
 
 But sexp always uses parenthese.
 
