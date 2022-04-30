@@ -60,7 +60,7 @@ But it wastes indentation, for example:
              (nat-add-succ-commutative y x.prev)))))
 ```
 
-In C-like syntax, If we want to save indentation,
+In C-like `{ ... }`, If we want to save indentation,
 I can write the above example as:
 
 ```
@@ -123,15 +123,16 @@ But sexp always uses parenthese.
 The same is true for variable bindings,
 
 ```scheme
-(Pi ((a A) (b B))
-  (C a b))
+(Pi ((a A) (b B)) (C a b))
+(Sigma ((a A) (b B)) (C a b))
 ```
 
 ```cicada
 forall (a: A, b: B) C(a, b)
+exists (a: A, b: B) C(a, b)
 ```
 
-Sexp uses less delimiters in general,
+Sexp uses less delimiters in general (because of less commas),
 but it always uses parenthese as delimiter,
 thus it uses more parenthese.
 
@@ -140,3 +141,13 @@ thus it uses more parenthese.
 - It uses less delimiters in general.
 - Only using parenthese as delimiter
   might be viewed as consistency in syntax design.
+
+Clojure has one why of reducing parenthese by depending on the position.
+
+```clojure
+{:x 1
+ :y 2}
+```
+
+An item is viewed as key or value, depends on
+whether it occurs in the even or odd position (indexing from zero),
