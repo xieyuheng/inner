@@ -14,16 +14,18 @@ title: Linear Logic
 
 # Connectives
 
-| Symbol | polarity |             |      |                                          |
-|--------|----------|-------------|------|------------------------------------------|
-| `⊗`    | pos      | mul         | conj | I have both                              |
-| `⊕`    | pos      | add         | disj | Maybe; someone else's choice             |
-| `&`    | neg      | add         | conj | I have a choice between                  |
-| `⅋`    | neg      | mul         | disj | either, if not A, then B                 |
-| `!`    | pos      | exponential |      | of course; I can reuse                   |
-| `?`    | neg      | exponential |      | why not                                  |
-|--------|----------|-------------|------|------------------------------------------|
-| `-o`   |          |             |      | can construct B, by using A exactly once |
+| Symbol | polarity |                |      | meaning                      |
+| ------ | -------- | -------------- | ---- | ---------------------------- |
+| `⊗`    | pos      | multiplicative | conj | I have both                  |
+| `⊕`    | pos      | additive       | disj | Maybe; someone else's choice |
+| `&`    | neg      | additive       | conj | I have a choice between      |
+| `⅋`    | neg      | multiplicative | disj | either, if not A, then B     |
+| `!`    | pos      | exponential    |      | of course; I can reuse       |
+| `?`    | neg      | exponential    |      | why not                      |
+
+| Symbol   | derive              | meaning                                  |
+| -------- | ------------------- | ---------------------------------------- |
+| `A -o B` | `Either(Not(A), B)` | can construct B, by using A exactly once |
 
 Linear negation is involutive but constructive.
 
@@ -42,6 +44,56 @@ dollar(5) -o Both(
   Maybe(pie, ice_cream),
 )
 ```
+
+# Sequent calculus rules
+
+We study rules for propositional linear logic first.
+
+The sequent `A, B |- C, D` means,
+
+```
+Lollipop(Both(A, B), Either(C, D))
+```
+
+i.e. multiplicative.
+
+A sequent calculus inference rule consists of a set of hypothesis sequents,
+displayed above a horizontal line,
+and a single conclusion sequent,
+displayed below the line, as below:
+
+```
+Hypothesis1
+Hypothesis2
+------
+Conclusion
+```
+
+# Connections to other logics
+
+Linear logic arose partly out of a study of intuitionistic implication.
+Girard found that the intuitionistic implication `A -> B`
+could be decomposed into two separate connectives:
+
+```
+!A -o B
+```
+
+Girard showed that one could thus translate intuitionistic (and also classical) logic
+into linear logic directly, simply appending modals to certain subformulas
+and making the right choice as to which sort of conjunction and disjunction should be used.
+
+Here we see a first glimpse of the substance behind the slogan
+
+> Linear logic is a logic behind logics.
+
+# Connections to computer science
+
+TODO
+
+# Complexity
+
+TODO
 
 # References
 
