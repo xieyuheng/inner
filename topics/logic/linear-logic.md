@@ -89,7 +89,6 @@ Here we see a first glimpse of the substance behind the slogan
 
 # Connections to computer science
 
-
 Use linear logic To capture "resource" problems logically.
 
 For example,
