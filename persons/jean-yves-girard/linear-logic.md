@@ -1,7 +1,7 @@
 ---
 title: Linear Logic
 author: Jean-Yves Girard
-years: [1986, 1996]
+year: 1986
 ---
 
 # I. Introduction and abstract

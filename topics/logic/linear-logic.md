@@ -65,7 +65,7 @@ displayed below the line, as below:
 ```
 Hypothesis1
 Hypothesis2
-------
+------------
 Conclusion
 ```
 
