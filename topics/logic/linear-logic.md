@@ -57,7 +57,7 @@ Lollipop(Both(A, B), Either(C, D))
 
 i.e. multiplicative.
 
-A sequent calculus inference rule consists of a set of hypothesis sequents,
+A sequent calculus infere rule consists of a set of hypothesis sequents,
 displayed above a horizontal line,
 and a single conclusion sequent,
 displayed below the line, as below:
@@ -89,9 +89,16 @@ Here we see a first glimpse of the substance behind the slogan
 
 # Connections to computer science
 
-TODO
 
-# Complexity
+Use linear logic To capture "resource" problems logically.
+
+For example,
+
+- An encoding of Petri net reachability
+
+# Complexity results for linear logic
+
+## Recall of complexity results for logic
 
 TODO
 
