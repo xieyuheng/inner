@@ -62,7 +62,7 @@ displayed above a horizontal line,
 and a single conclusion sequent,
 displayed below the line, as below:
 
-```
+```plaintext
 Hypothesis1
 Hypothesis2
 ------------
