@@ -15,7 +15,7 @@ course:
   They are called "symbol",
   because we need a model to make them meaningful.
 
-- Xie:
+- **Xie**:
   FOL is an untyped language.
 
   A type-constructor in a typed language
@@ -33,7 +33,7 @@ course:
   A predicate, in general, does not induces an algorithm
   to generate all elements for which the predicate is true.
 
-- Xie:
+- **Xie**:
   We can have type-constructor
 
   ```js
@@ -54,11 +54,11 @@ course:
 
 - All FOL model have basic identical predicate.
 
-  - Xie:
+  - **Xie**:
     Although identical predicate is present in all FOL models,
     but it is given for each specific model, not for FOL itself.
 
-- Xie:
+- **Xie**:
   For general model theory
   we need existing theory (always set theory)
   to assign truth value to all atomic sentences.
@@ -66,7 +66,7 @@ course:
   - This assignment can be viewed as
     defining subjects and defining predicates.
 
-- Xie:
+- **Xie**:
   Every type in type theory can be translated to
   a predicate in a FOL model together with
 
@@ -74,7 +74,7 @@ course:
     (we can say "elements of the type"),
   - basic equivalent relation between elements of the type.
 
-- Xie:
+- **Xie**:
   Function symbol's meaning rely on model,
   and there are not function definition in FOL.
 
@@ -90,7 +90,7 @@ course:
 
   it is impossibile for T to be true and S false
 
-  - Xie:
+  - **Xie**:
     left player can play in both S and T
     (two games are dependent on each other)
     whenever she loss in S, she have winning strategy to win in T.
@@ -112,7 +112,7 @@ course:
   these results in later proofs, and then using
   those results yet later.
 
-  - Xie:
+  - **Xie**:
     this is where we need to make use the knowledge
     we learned from developing software
 
@@ -128,20 +128,20 @@ course:
     #3 Cube (b) -- =-elim (#1 #2)
     ```
 
-- Xie:
+- **Xie**:
   comparing to game semantics,
   inference rules are highly non-symmetric
 
-- Xie:
+- **Xie**:
   basic equivalent relation is part of every FOL model
   this means for a class to be used as a model of FOL
   it must have a basic equivalent relation
 
-- Xie:
+- **Xie**:
   substitution principle is closely related with
   unification in our implementation
 
-- Xie:
+- **Xie**:
   in our interpretation
   we need to give every inference rule
   a constructive meaning
@@ -154,7 +154,7 @@ course:
   or we can view an element of `Cube (b)`
   as an element of `Cube (c)`
 
-- Xie:
+- **Xie**:
   models can be used to provide counterexamples of sentence
 
 # Chapter 3: The Boolean Connectives
@@ -179,12 +179,12 @@ course:
 - soundness of deductive system :
   provable -> logical consequence
 
-  - Xie:
+  - **Xie**:
     the definition of logical consequence depends on model
     in the case of propositional logic
     the model is boolean algebra
 
-  - Xie:
+  - **Xie**:
     if we define "true" as provable (constructable)
     we get soundness for free
 
@@ -193,7 +193,7 @@ course:
 
 # Chapter 9: Introduction to Quantification
 
-- Xie:
+- **Xie**:
   inference rules of propositional connectives
   are simple functions of its direct parts
 
@@ -272,17 +272,17 @@ course:
 
 # Chapter 11: Multiple Quantifiers
 
-- Xie:
+- **Xie**:
   is there a better way to express "exactly one"
   and in general to count distinct objects of a class
 
 - Prenex Normal Form
 
-  - Xie:
+  - **Xie**:
     we might can not be able to get Prenex Normal Form
     in a constructive way
 
-- Xie:
+- **Xie**:
   number of quantifiers measures
   the complexness of the game of logic
 
@@ -300,7 +300,7 @@ course:
   f (t) : P (t)
   ```
 
-- Xie:
+- **Xie**:
   note that "forall" is understood as "many and" (many product)
   but its inference rule is like that of arrow (exponential)
 
@@ -313,14 +313,14 @@ course:
   (t, x) : (t : N, P (t))
   ```
 
-- Xie:
+- **Xie**:
   note that "exists" is understood as "many or" (many sum)
   but its inference rule is like that of and (product)
 
-- Xie:
+- **Xie**:
   we should use "x -> y" to denote exponential in arithmetic
 
-- Xie:
+- **Xie**:
   in type theory
 
   - "forall" (as many product) is modeled as
@@ -364,13 +364,13 @@ course:
   } : (x : N) -> P (x)
   ```
 
-  - Xie:
+  - **Xie**:
     this is like function definition in programming language
 
   the lecture also intro
   "general conditional proof" for dependent arrow
 
-- Xie:
+- **Xie**:
   this chapter showed that
   the symmetry and structures of logic are not expressed in
   the theory of FOL quantifiers
@@ -388,12 +388,12 @@ course:
   at most n
   exactly n
 
-- Xie:
+- **Xie**:
   using bijection would be more composable
 
 - Russel's analysis of "the"x
 
-- Xie:
+- **Xie**:
   general quantifier theory
 
   | expression       | named quantifier expression |
