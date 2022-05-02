@@ -11,9 +11,9 @@ The principle of type theory is:
 
 # Before type theory
 
-In programming, we do *not* write types, we only write terms.
+In programming, we do _not_ write types, we only write terms.
 
-In logic, we do *not* write terms, we only write types
+In logic, we do _not_ write terms, we only write types
 -- propositions and their inference rules.
 
 # After type theory

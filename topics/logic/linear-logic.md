@@ -14,18 +14,18 @@ title: Linear Logic
 
 # Connectives
 
-| Symbol | polarity | level          |      | name (Girard) | identifier | meaning                 |
-| ------ | -------- | -------------- | ---- | ------------- | ---------- | ----------------------- |
-| `⊗`    | pos      | multiplicative | conj | times         | Both       | I have both             |
-| `&`    | neg      | additive       | conj | with          |            | I have a choice between |
-| `⊕`    | pos      | additive       | disj | plus          | Maybe      | someone else's choice   |
-| `⅋`    | neg      | multiplicative | disj | par           | Either     | if not A, then B        |
-| `!`    | pos      | exponential    |      | of course     |            | I can reuse             |
-| `?`    | neg      | exponential    |      | why not       |            |                         |
+| symbol  | polarity | level          |      | name (Girard) | identifier | meaning                                    |
+| ------- | -------- | -------------- | ---- | ------------- | ---------- | ------------------------------------------ |
+| `A ⊗ B` | pos      | multiplicative | conj | times         | `Both`     | I have both `A` and `B`.                   |
+| `A & B` | neg      | additive       | conj | with          | `Choose`   | I have a choice between `A` and `B`.       |
+| `A ⊕ B` | pos      | additive       | disj | plus          | `Maybe`    | Someone else's choice between `A` and `B`. |
+| `A ⅋ B` | neg      | multiplicative | disj | par           | `Through`  | If not `A`, then `B`.                      |
+| `!A`    | pos      | exponential    |      | of course     | `OfCourse` | I can reuse `A`.                           |
+| `?A`    | neg      | exponential    |      | why not       | `WhyNot`   |                                            |
 
-| Symbol   | derive              | name (Girard) | meaning                                  |
-|----------|---------------------|---------------|------------------------------------------|
-| `A -o B` | `Either(Not(A), B)` | entails       | can construct B, by using A exactly once |
+| symbol   | derive               | name (Girard) | identifier | meaning                                         |
+| -------- | -------------------- | ------------- | ---------- | ----------------------------------------------- |
+| `A -o B` | `Through(Not(A), B)` | entails       | `Entails`  | I can construct `B`, by using `A` exactly once. |
 
 Linear negation is involutive but constructive.
 
@@ -52,7 +52,7 @@ We study rules for propositional linear logic first.
 The sequent `A, B |- C, D` means,
 
 ```
-Lollipop(Both(A, B), Either(C, D))
+Lollipop(Both(A, B), Through(C, D))
 ```
 
 i.e. multiplicative.

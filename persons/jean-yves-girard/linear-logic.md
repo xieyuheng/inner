@@ -87,4 +87,12 @@ contraction is the real source.
 ## II.3. Strength of linear logic
 
 To translate intuitionistic logic to linear logic,
-we need to introduction two exponentials: 
+we need to introduction two exponentials -- `!` and `?`.
+
+We can use structural rules on them.
+
+Usual logic can be viewed as the adjunction of the modalities.
+
+- **Xie**: I do not understand adjunction (in category theory) yet.
+
+
