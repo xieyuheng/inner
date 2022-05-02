@@ -45,7 +45,7 @@ but classical logic is not?
 Or why we can prove [existence and disjunction property](https://en.wikipedia.org/wiki/Disjunction_and_existence_properties)
 for intuitionistic logic but not for classical logic?
 
-- **Xie**: The **disjunction property** is satisfied by a [theory](https://en.wikipedia.org/wiki/Theory_(mathematical_logic)) if,
+- **Xie**: The **disjunction property** is satisfied by a [theory](<https://en.wikipedia.org/wiki/Theory_(mathematical_logic)>) if,
   whenever a sentence `A ∨ B` is a theorem,
   then either `A` is a theorem, or `B` is a theorem.
 
@@ -111,4 +111,22 @@ TODO translate intuitionistic logic to linear logic.
 
 # III. Linear logic explained to a (theoretical) computer scientist
 
+> Logic to computer science is like geometry to physics.
 
+## III.1. The semantics of linear logic: coherent spaces
+
+- **Xie**: TODO I do not understand this yet.
+
+## III.2. Proof-nets: a classical natural deduction
+
+- **Xie**: TODO I do not understand this yet.
+
+  The author try to use proof-nets as (type theoretical) terms for linear logic.
+
+## III.3. Normalization for proof-nets
+
+TODO
+
+## III.4. Normalization for proof-nets
+
+TODO
