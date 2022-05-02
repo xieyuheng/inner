@@ -94,5 +94,3 @@ We can use structural rules on them.
 Usual logic can be viewed as the adjunction of the modalities.
 
 - **Xie**: I do not understand adjunction (in category theory) yet.
-
-

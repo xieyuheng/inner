@@ -52,7 +52,7 @@ We study rules for propositional linear logic first.
 The sequent `A, B |- C, D` means,
 
 ```
-Lollipop(Both(A, B), Through(C, D))
+Entails(Both(A, B), Through(C, D))
 ```
 
 i.e. multiplicative.
