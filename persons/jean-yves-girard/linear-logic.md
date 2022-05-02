@@ -45,7 +45,7 @@ but classical logic is not?
 Or why we can prove [existence and disjunction property](https://en.wikipedia.org/wiki/Disjunction_and_existence_properties)
 for intuitionistic logic but not for classical logic?
 
-- **Xie**: The **disjunction property** is satisfied by a theory if,
+- **Xie**: The **disjunction property** is satisfied by a [theory](https://en.wikipedia.org/wiki/Theory_(mathematical_logic)) if,
   whenever a sentence `A ∨ B` is a theorem,
   then either `A` is a theorem, or `B` is a theorem.
 
@@ -86,4 +86,5 @@ contraction is the real source.
 
 ## II.3. Strength of linear logic
 
-TODO
+To translate intuitionistic logic to linear logic,
+we need to introduction two exponentials: 
