@@ -91,6 +91,24 @@ we need to introduction two exponentials -- `!` and `?`.
 
 We can use structural rules on them.
 
-Usual logic can be viewed as the adjunction of the modalities.
+Intuitionistic logic can be viewed as the adjunction of the modalities.
 
-- **Xie**: I do not understand adjunction (in category theory) yet.
+- **Xie**: TODO I do not understand adjunction (in category theory) yet.
+
+TODO translate intuitionistic logic to linear logic.
+
+## II.4. Subtlety of linear logic
+
+- **Xie**: TODO I do not understand the concepts from proof theory.
+
+## II.5. The semantics of linear logic: phases
+
+- **Xie**: TODO I do not understand this yet.
+
+  - References:
+    - https://ncatlab.org/nlab/show/phase+semantics
+    - https://ncatlab.org/nlab/show/quantale
+
+# III. Linear logic explained to a (theoretical) computer scientist
+
+
