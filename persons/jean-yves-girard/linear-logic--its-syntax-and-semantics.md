@@ -50,6 +50,9 @@ C = to get a pack of Marlboro.
   `A −o B` is `¬A ⅋ B`, with the definitions above, it means,
   I spend $1 then you give me a pack of Camels.
 
+  - Read in this way, `⅋` is symmetric, because it does not matter,
+    whether I give money first or get Camels first.
+
 ## 1.2 Linear sequent calculus
 
 ### 1.2.1 Structural rules
