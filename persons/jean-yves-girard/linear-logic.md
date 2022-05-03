@@ -95,7 +95,15 @@ Intuitionistic logic can be viewed as the adjunction of the modalities.
 
 - **Xie**: TODO I do not understand adjunction (in category theory) yet.
 
-TODO translate intuitionistic logic to linear logic.
+Translate intuitionistic logic to linear logic.
+
+- Recursive applications of the translation to subexpressions are omitted.
+
+| intuitionistic | linear    |
+| -------------- | --------- |
+| `A ∧ B`        | `A & B`   |
+| `A ∨ B`        | `!A ⊕ !B` |
+| `A -> B`       | `!A -o B` |
 
 ## II.4. Subtlety of linear logic
 

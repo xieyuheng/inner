@@ -29,12 +29,26 @@ A => B
 can be decomposed into exponential and linear implication:
 
 ```
-(!A) −o B
+!A −o B
 ```
 
 ### 1.1.2 The two conjunctions
 
-TODO
+```
+A = to spend $1,
+B = to get a pack of Camels,
+C = to get a pack of Marlboro.
+```
+
+- **Xie**: Here, each proposition is viewed as an action, performed by an agent.
+
+  Actions do side effects on the agent and its environment.
+
+  `A ⅋ B` can be viewed as perform two actions one by one,
+  thus called "par", which is French word for "through".
+
+  `A −o B` is `¬A ⅋ B`, with the definitions above, it means,
+  I spend $1 then you give me a pack of Camels.
 
 ## 1.2 Linear sequent calculus
 
