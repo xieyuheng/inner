@@ -80,7 +80,22 @@ We can use `!` for the axioms.
 
 ### 1.1.5 The expressive power of linear logic
 
-TODO
+The introduction of new connectives
+is the key to a more manageable way of formalizing.
+
+### 1.1.6 A Far West: non-commutative linear logic
+
+- **Xie**: Stack-based semantics are mentioned here.
+
+  Lambek's syntactic calculus is also mentioned.
+
+  - In syntax the order matters.
+
+  Using explicit modalities to express structural rules，
+  increase the expressive power of the logic.
+
+  If we ever need to model something where the order matters,
+  we might try those logics.
 
 ## 1.2 Linear sequent calculus
 
