@@ -23,6 +23,8 @@ title: Linear Logic
 | `!A`    | pos      | exponential    |      | of course     | `OfCourse` | I can reuse `A`.                           |
 | `?A`    | neg      | exponential    |      | why not       | `WhyNot`   |                                            |
 
+- Maybe we should use `Always` instead of `OfCourse`.
+
 | symbol   | derive               | name (Girard) | identifier | meaning                                         |
 | -------- | -------------------- | ------------- | ---------- | ----------------------------------------------- |
 | `A -o B` | `Through(Not(A), B)` | entails       | `Entails`  | I can construct `B`, by using `A` exactly once. |

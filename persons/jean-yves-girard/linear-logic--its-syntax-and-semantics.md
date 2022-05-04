@@ -101,4 +101,41 @@ is the key to a more manageable way of formalizing.
 
 ### 1.2.1 Structural rules
 
+A sequent is an expression:
+
+```
+A1, ..., An |- B1, ..., Bm
+```
+
+which means
+
+> A1 and ... and An imply B1 or ... or Bm.
+
+The actual meaning of the words "and", "imply", "or" in a sequent,
+is wholly in the structural group and it is not too excessive to say that
+a logic is essentially a set of structural rules!
+
+- **Xie**: Linear logic opens the gate to substructural logics,
+  like opening the gate to Non-Euclidean geometries.
+  Many substructural logics seem not useful for now,
+  but maybe in the future they will be useful.
+
+### 1.2.2 Linear sequent calculus
+
+TODO
+
+## 1.3 Proof-nets
+
+### 1.3.1 The determinism
+
+TODO
+
+### 1.3.2 Limitations of natural deduction
+
+TODO
+
+# 2 THE SEMANTICS OF LINEAR LOGIC
+
+## 2.1 The phase semantics of linear logic
+
 TODO
