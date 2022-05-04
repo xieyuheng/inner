@@ -47,7 +47,7 @@ C = to get a pack of Marlboro.
   `A ⅋ B` can be viewed as perform two actions one by one,
   thus called "par", which is French word for "through".
 
-  `A −o B` is `¬A ⅋ B`, with the definitions above, it means,
+  `A −o B` is `~A ⅋ B`, with the definitions above, it means,
   I spend $1 then you give me a pack of Camels.
 
   - Read in this way, `⅋` is symmetric, because it does not matter,
@@ -122,7 +122,117 @@ a logic is essentially a set of structural rules!
 
 ### 1.2.2 Linear sequent calculus
 
-TODO
+`Γ |- Δ` is the same as `|- ~Γ, Δ`.
+
+**Identity / Negation**
+
+```
+--------- identity
+|- A, ~A
+```
+
+```
+|- Γ, A
+|- ~A, Δ
+--------- cut
+|- Γ, Δ
+```
+
+**Structure**
+
+```
+|- Γ
+------ exchange (Γ' is permutation of Γ)
+|- Γ'
+```
+
+**Logic**
+
+```
+----- one
+|- 1
+```
+
+```
+|- Γ
+-------- false
+|- Γ, ⊥
+```
+
+```
+|- Γ, A
+|- B, Δ
+---------------- times
+|- Γ, A ⊗ B, Δ
+```
+
+```
+|- Γ, A, B
+------------ par
+|- Γ, A ⅋ B
+```
+
+```
+-------- true
+|- Γ, ⊤
+```
+
+No rule for zero.
+
+```
+|- Γ, A
+|- Γ, B
+------------ with
+|- Γ, A & B
+```
+
+```
+|- Γ, A
+------------- left plus
+|- Γ, A ⊕ B
+```
+
+```
+|- Γ, B
+------------- right plus
+|- Γ, A ⊕ B
+```
+
+```
+|- ?Γ, A
+---------- of course
+|- ?Γ, !A
+```
+
+```
+|- Γ
+---------- weakening
+|- Γ, ?A
+```
+
+```
+|- Γ, A
+---------- dereliction
+|- Γ, ?A
+```
+
+```
+|- Γ, ?A, ?A
+------------- contraction
+|- Γ, ?A
+```
+
+```
+|- Γ, A
+------------- for all (x is not free in Γ)
+|- Γ, ∀x A
+```
+
+```
+|- Γ, A[t/x]
+------------- there is
+|- Γ, ∃x A
+```
 
 ## 1.3 Proof-nets
 
