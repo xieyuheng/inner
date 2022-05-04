@@ -138,6 +138,20 @@ a logic is essentially a set of structural rules!
 |- Γ, Δ
 ```
 
+Or two-sided version:
+
+```
+-------- identity
+A |- A
+```
+
+```
+Γ |- Δ, A
+A, Λ |- Π
+------------- cut
+Γ, Λ |- Δ, Π
+```
+
 **Structure**
 
 ```
@@ -171,6 +185,12 @@ a logic is essentially a set of structural rules!
 ------------ par
 |- Γ, A ⅋ B
 ```
+
+In a sequent of linear logic,
+
+- comma on the left means `⊗`;
+- comma on the right means `⅋`;
+- `|-` in the middle means `-o`.
 
 ```
 -------- true
@@ -233,6 +253,8 @@ No rule for zero.
 ------------- there is
 |- Γ, ∃x A
 ```
+
+### 1.2.3 Comments
 
 ## 1.3 Proof-nets
 
