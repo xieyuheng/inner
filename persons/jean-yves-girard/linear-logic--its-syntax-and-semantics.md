@@ -1,6 +1,6 @@
 ---
-title: Linear Logic
-subtitle: Its syntax and semantics
+title: "Linear Logic: Its syntax and semantics"
+subtitle: Preface of "Advances in Linear Logic", proceedings of "Linear Logic Workshop", 1993
 author: Jean-Yves Girard
 year: 1995
 ---
@@ -52,6 +52,35 @@ C = to get a pack of Marlboro.
 
   - Read in this way, `⅋` is symmetric, because it does not matter,
     whether I give money first or get Camels first.
+
+### 1.1.3 Linear negation
+
+TODO
+
+### 1.1.4 States and transitions
+
+The familiar notion of
+
+```
+theory = classical logic + axioms
+```
+
+should be replaced by:
+
+```
+theory = linear logic + axioms + current state
+```
+
+We can use `!` for the axioms.
+
+- **Xie**: The "current state" part means that
+  proved propositions in the context can be used and erased.
+
+  For example, commutative algebra can be updated into non-commutative algebra.
+
+### 1.1.5 The expressive power of linear logic
+
+TODO
 
 ## 1.2 Linear sequent calculus
 
