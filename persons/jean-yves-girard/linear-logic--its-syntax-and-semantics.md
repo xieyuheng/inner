@@ -152,6 +152,8 @@ A, Λ |- Π
 Γ, Λ |- Δ, Π
 ```
 
+Similarly the following rules might be easier to understand in two-sided version.
+
 **Structure**
 
 ```
@@ -254,7 +256,9 @@ No rule for zero.
 |- Γ, ∃x A
 ```
 
-### 1.2.3 Comments
+`∀x A` is like many `&`s,
+and `∃x A` is like many `⊕`s,
+i.e. they are explained by additive connectives.
 
 ## 1.3 Proof-nets
 
