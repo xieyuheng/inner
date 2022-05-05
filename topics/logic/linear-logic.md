@@ -119,4 +119,6 @@ TODO
 
 - Girard, "Linear Logic: Its Syntax and Semantics"
 
+  - Preface of "Advances in Linear Logic", proceedings of "Linear Logic Workshop", 1993
+
   is an updated and more accessible presentation, written about ten years later.
