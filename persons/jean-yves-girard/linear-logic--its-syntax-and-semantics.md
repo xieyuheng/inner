@@ -288,7 +288,35 @@ TODO
 
 ### 1.4.1 LU
 
-TODO
+By the turn of the century the situation concerning logic was quite simple:
+there was basically one logic (classical logic)
+which could be used (by changing the set of proper axioms)
+in various situations.
+
+Logic was about pure reasoning.
+
+Brouwer's criticism destroyed this dream of unity:
+classical logic was not adapted to constructive features
+and therefore lost its universality.
+
+By the end of the century we are now faced with
+an incredible number of logics.
+
+Is still logic about pure reasoning?
+
+In other terms, could there be a way to reunify logical systems
+-- let us say those systems with a good sequent calculus
+-- into a single sequent calculus.
+
+Could we handle the (legitimate) distinction classical/intuitionistic
+not through a change of system, but through a change of formulas?
+
+Is it possible to obtain classical effects
+by restricting one to classical formulas? etc.
+
+Note that the various systems represented should freely communicate
+(and for instance a classical theorem could have
+an intuitionistic corollary and vice versa).
 
 # 2 THE SEMANTICS OF LINEAR LOGIC
 

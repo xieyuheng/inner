@@ -68,6 +68,8 @@ This approach is very modern, in the sense that
 
 > truth does not exist independently of the means, the protocols, of verification.
 
+- **Xie**: Per Martin-Löf's notion of judgements.
+
 ### Two (imaginary) confrontations between Brouwer and Hilbert
 
 - **Modus Ponens**: for Hilbert, logical consequence must essentially
