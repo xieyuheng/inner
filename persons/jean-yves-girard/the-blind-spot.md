@@ -33,6 +33,77 @@ A dichotomy:
 
 ## 1.2 Essentialist and existentialist projects
 
+### 1.2.1 Set-theory
+
+### 1.2.2 The hilbertian project
+
+A system must be consistent.
+
+It cannot prove the absurdity, i.e., a formula and its negation.
+
+This is the origin of the idea of a consistency proof.
+
+### 1.2.3 Brouwer's project
+
+Brouwer's intuitionism, claims the primacy of intuition over the language.
+
+Brouwer did not reject infinity (contrary to hilbertian finitism
+which only sees it as a façon de parler [a manner of speaking]),
+but he refused the most Thomist, "actual", aspects of infinity;
+especially set-theory and the idea that one could
+define a function of a real variable pointwise, value by value.
+
+Some principles, valid in the finite domain,
+cease to work in the infinite case,
+typically the excluded middle.
+
+The usual justification of the tertium non datur is that
+a formula A has a truth value (is true or false).
+
+However, while one can compute a truth value in the finite case,
+no algorithm can cope with the verification of infinitely many steps:
+this is why Brouwer called it in question in the infinite case.
+
+This approach is very modern, in the sense that
+
+> truth does not exist independently of the means, the protocols, of verification.
+
+### Two (imaginary) confrontations between Brouwer and Hilbert
+
+- **Modus Ponens**: for Hilbert, logical consequence must essentially
+  avoid enormous mistakes, e.g., proving the absurdity;
+  this bestows a second-class citizenship to most logical formulas:
+  they don't make sense by themselves, they should not cause mischief,
+  that's all.
+
+  A contrario [on contrary], for intuitionists,
+  Modus Ponens is more than a legal advisor,
+  it is a door open on a new world:
+  the application of a function (A -> B) to an argument (A)
+  yielding a result (B).
+
+  Proofs are no longer those sequences of symbols
+  created by a crazy bureaucrat:
+  they become functions, morphisms.
+
+- **Tertium non datur**: Hilbert accepts the excluded middle;
+  not that he believes in a preexisting truth value for A,
+  but because it simplifies matters: "A property which means nothing,
+  but which costs nothing as well".
+
+  Technically speaking, this argument is viable.
+
+  Indeed, one knows (since 1932: Gödel, one more result from him, Section 4.1.3)
+  that classical logic can be faithfully translated in intuitionistic logic:
+  it suffices to put double negations "everywhere".
+
+  In particular, the excluded middle, once translated as ~~(A ∨ ~A)
+  becomes intuitionistically provable and it is not more "risky" to add it.
+
+  However, one can answer back that it is not because
+  one is warranted impunity (consistency)
+  that one is entitled to commit a crime
+  (enunciate an unjustified principle).
 
 ## 1.3 Gödel and after
 
@@ -91,7 +162,7 @@ irreplaceable -- unless by themselves -- objects,
 is called handicraft and does not stand mediocrity;
 in opposition to industry which contents itself
 with a not quite exciting contractual minimum,
-in the style of Mc Donald’s.
+in the style of Mc Donald's.
 
 Industry is obviously (and unfortunately) right.
 
