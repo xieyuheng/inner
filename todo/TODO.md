@@ -1,3 +1,7 @@
+- try to implement as symbolic system in typescript
+  - group-presentation
+  - monoid-presentation
+
 - use patterns to organize knowledges like martin fowler
 
 - `cicada-lang/relation`?
