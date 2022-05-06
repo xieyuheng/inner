@@ -1,3 +1,5 @@
+- use patterns to organize knowledges like martin fowler
+
 - `cicada-lang/relation`?
 
   - json based logic programming language

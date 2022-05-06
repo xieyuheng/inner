@@ -31,6 +31,17 @@ A dichotomy:
 
   The opposition essence/existence is at the very heart of typing (Section 6.F).
 
+## 1.2 Essentialist and existentialist projects
+
+
+## 1.3 Gödel and after
+
+TODO
+
+## 1.A Essentialism vs. platonism
+
+TODO
+
 # 2 Incompleteness
 
 # 3 Classical sequents: LK
