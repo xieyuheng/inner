@@ -264,7 +264,21 @@ i.e. they are explained by additive connectives.
 
 ### 1.3.1 The determinism
 
-TODO
+Only when a (sequent calculus style) formal system
+has cut-elimination theorem (the Hauptsatz),
+we view it as a logic.
+
+Linear logic has cut-elimination theorem.
+
+There is an algorithm transforming
+any proof of a sequent in linear logic
+into a cut-free proof of the same sequent.
+
+- **Xie**: TODO I do not understand Gentzen's proof of
+  the Hauptsatz for intuitionistic logic yet.
+
+  Note that, the Hauptsatz is the same as
+  normalization in lambda-calculus.
 
 ### 1.3.2 Limitations of natural deduction
 
