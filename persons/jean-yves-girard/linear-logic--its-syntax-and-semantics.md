@@ -332,5 +332,30 @@ Therefore it only modelizes it only modelizes provability, and not proofs.
 
 ### 2.1.1 Phase spaces
 
-- **Xie**: We use subsets of a monoid to denote linear logic atoms,
-  and monoid act on itself to denote element of `-o`.
+TODO
+
+- **Xie**: TODO We use monoid act on itself to denote element of `-o`.
+
+- **Xie**: TODO Note the relation between the use of monoid and stack-based postfix notations.
+
+### 2.1.2 Interpretation of the connectives
+
+TODO
+
+### 2.1.3 Soundness and completeness
+
+TODO
+
+## 2.2 The denotational semantics of linear logic
+
+### 2.2.1 Implicit versus explicit
+
+TODO
+
+## 2.3 Geometry of interaction
+
+TODO
+
+## 2.4 Game semantics
+
+TODO
