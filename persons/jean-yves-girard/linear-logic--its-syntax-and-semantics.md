@@ -284,6 +284,12 @@ into a cut-free proof of the same sequent.
 
 TODO
 
+## 1.4 Is there a unique logic?
+
+### 1.4.1 LU
+
+TODO
+
 # 2 THE SEMANTICS OF LINEAR LOGIC
 
 ## 2.1 The phase semantics of linear logic
