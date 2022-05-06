@@ -318,8 +318,19 @@ Note that the various systems represented should freely communicate
 (and for instance a classical theorem could have
 an intuitionistic corollary and vice versa).
 
+### 1.4.2 LLL and ELL
+
+TODO
+
 # 2 THE SEMANTICS OF LINEAR LOGIC
 
 ## 2.1 The phase semantics of linear logic
 
-TODO
+The most traditional, and also the less interesting semantics of linear logic
+associates values to formulas, in the spirit of classical model theory.
+Therefore it only modelizes it only modelizes provability, and not proofs.
+
+### 2.1.1 Phase spaces
+
+- **Xie**: We use subsets of a monoid to denote linear logic atoms,
+  and monoid act on itself to denote element of `-o`.
