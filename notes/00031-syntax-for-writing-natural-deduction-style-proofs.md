@@ -14,7 +14,7 @@ Maybe we do not need them, and all we need are
 
 Example proof:
 
-- Take from <../persons/roland-backhouse/do-it-yourself-type-theory.md>
+- Take from [do-it-yourself-type-theory.md](../persons/roland-backhouse/do-it-yourself-type-theory.md)
 
 ```cicada pseudocode
 example : ((Either(A, (A) -> B)) -> B) -> B
