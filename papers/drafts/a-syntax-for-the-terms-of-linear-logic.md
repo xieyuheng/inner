@@ -13,9 +13,32 @@ By syntax, I mean expression implemented by syntax tree, not graph
 
 And I use "syntax" as a countable noun syntaxes
 
-# NOTE
+# TODO V.S. The Linear Abstract Machine
 
-- V.S. The Linear Abstract Machine
+# TODO Cut rule
+
+In sequent calculus of linear logic,
+we have the exchange rule,
+and when writing the cut rule (and other rules),
+it is assumed that the order does not matter.
+
+The key of our design is to limit the use of cut rule,
+to make the order matters,
+i.e. one can apply the cut rule
+only when the following pattern is matched:
+
+- Where `A1` and ... and `An` are not negation,
+  and atoms in both `Γ` and `Δ` are not negation.
+
+- Note that, we are still free to use exchange rule,
+  and we should use exchange rule, to order the sequent before a cut.
+
+```
+|- Γ, A1, ..., An
+|- ~A1, ..., ~An, Δ
+-------------------- cut
+|- Γ, Δ
+```
 
 # Net -- typed undirected graph
 
