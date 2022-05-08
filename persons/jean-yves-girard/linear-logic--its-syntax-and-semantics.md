@@ -282,6 +282,70 @@ into a cut-free proof of the same sequent.
 
 ### 1.3.2 Limitations of natural deduction
 
+Let us assume that we want to use natural deduction to deal with proofs in
+linear logic, then we run into problems:
+
+Natural deduction is not equipped to deal with classical symmetry:
+several hypotheses and one (distinguished) conclusion.
+
+To cope with symmetrical systems
+one should be able to accept several conclusions at once.
+
+But then one immediately loses the tree-like structure of natural deductions,
+with its obvious advantage: a well-determined last rule.
+
+- **Xie**: In programming language design,
+  we learned to introduce special syntax
+  for binding multiple return values.
+
+### 1.3.3 The identity links
+
+To overcome the problems of natural deduction,
+in the context of the multiplicative fragment of linear logic,
+i.e. the only connectives `⊗` and `⅋` (and also implicitly `—o`).
+
+The idea is to put everything in conclusion;
+however, when we pass from a hypothesis to a conclusion
+we must indicate the change by means of a negation symbol.
+
+There will be two basic links enabling one to replace a
+hypothesis with a conclusion and vice versa -- `axiom` and `cut`.
+
+By far the best explanation of these two links can be taken from electronics.
+Think of a sequent `Γ` as the interface of some electronic equipment,
+this interface being made of plugs of various forms `A1`,..., `An`;
+the negation corresponds to the complementarity between male and female plugs.
+Now a proof of `Γ` can be seen as any equipment with interface `Γ`.
+
+For instance the axiom link is such
+a unit and it exists in everyday life as the extension cord.
+
+Now, the cut link is well explained as a plugging.
+
+- **Xie**: In our implementation of interaction nets, we call plugs "ports",
+  and we can use `wire` to cut a circle to a wire with ports `A` and `~A` ,
+  and use `connect` to connect them back to a circle.
+
+  In general `connect` can connect any two matching ports.
+
+  | girard electronics | interaction nets |
+  |--------------------|------------------|
+  | plug               | port             |
+  | extension cord     | wire             |
+  | plugging           | connect          |
+
+  Circle is not forbidden in our implementation,
+  we are free to introduce circles into a net,
+  we are also free to remove circles from a net.
+
+### 1.3.4 Proof-structures
+
+### 1.3.5 Proof-nets
+
+### 1.3.6 Cut-elimination for proof-nets
+
+### 1.3.7 Extension to full linear logic
+
 TODO
 
 ## 1.4 Is there a unique logic?
@@ -368,5 +432,5 @@ Linear negation is the interchange of players.
 
 A type is a game, and its proof is a winning strategy.
 
-- **Xie**: What is a play? 
+- **Xie**: What is a play?
   Is it the new concept introduced by the idea of game semantics?
