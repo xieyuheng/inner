@@ -172,17 +172,17 @@ rule cons append {
 }
 
 rule cons append {
-  let [that tail head]
+  let (that, tail, head)
   that tail append head cons
 }
 
 rule cons append {
-  let head let tail let that
+  let (head) let (tail) let (that)
   that tail append head cons
 }
 
 rule cons append {
-  let head append head cons
+  let (head) append head cons
 ]
 
 claim six-soles { Trivial List }
