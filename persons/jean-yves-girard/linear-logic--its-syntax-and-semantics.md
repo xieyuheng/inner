@@ -329,7 +329,7 @@ Now, the cut link is well explained as a plugging.
   In general `connect` can connect any two matching ports.
 
   | girard electronics | interaction nets |
-  |--------------------|------------------|
+  | ------------------ | ---------------- |
   | plug               | port             |
   | extension cord     | wire             |
   | plugging           | connect          |
@@ -340,9 +340,20 @@ Now, the cut link is well explained as a plugging.
 
 ### 1.3.4 Proof-structures
 
+- **Xie**: The author use the term "times link" and "par link",
+  which is a mistake, because, in a graph, an edge (link) connect two nodes,
+  and we can not connect an edge to an edge without the help of nodes.
+
+  Instead, we should view "times" and "par" as operations to build compound ports,
+  they are simply two (nominally different) ways of grouping ports together.
+
 ### 1.3.5 Proof-nets
 
+TODO
+
 ### 1.3.6 Cut-elimination for proof-nets
+
+TODO
 
 ### 1.3.7 Extension to full linear logic
 
