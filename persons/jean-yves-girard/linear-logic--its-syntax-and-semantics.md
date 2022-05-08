@@ -359,6 +359,31 @@ Now, the cut link is well explained as a plugging.
 
 ### 1.3.5 Proof-nets
 
+A proof-structure is nothing but a graph
+whose vertices are (occurrences of) formulas
+and whose edges are links.
+
+Moreover each formula
+is the conclusion of exactly one link
+and the premise of at most one link.
+
+The formulas which are not premises
+are the conclusions of the structure.
+
+Inside proof-structures,
+let us call proof-nets those which can be obtained as
+the interpretation of sequent calculus proofs.
+
+Of course most structures are not nets:
+typically the definition of a proof-structure
+does not distinguish between `⊗`-links and `⅋`-links
+whereas conjunction is surely different from disjunction.
+
+The question which now arises is
+to find an independent characterization of proof-nets.
+
+Let us explain why this is essential:
+
 TODO
 
 ### 1.3.6 Cut-elimination for proof-nets
