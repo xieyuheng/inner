@@ -76,7 +76,7 @@ Using this convention,
 we do not need to label
 which port is principal port.
 
-```
+```inet pseudocode
 constructor <node> {
   <input-port> ...
   ------
@@ -117,34 +117,36 @@ After disconnecting, we put input ports back to the stack.
 
 ## Nat
 
-```clojure
-(define-type Nat Type)
+```inet
+type Nat { -- Type }
 
-(define-cons zero Nat)
-(define-cons add1 (- Nat) Nat)
-(define-elim add (- Nat) (- Nat) Nat)
+constructor zero { -- Nat }
+constructor add1 { Nat -- Nat }
+eliminator add { Nat Nat -- Nat }
 
-(define-rule (zero add))
-(define-rule (add1 add)
-  add add1)
+rule zero add {}
+rule add1 add {
+  add add1
+}
 
-(claim-net two Nat)
-(define-net two
+claim two { Nat }
+define two {
   zero add1
   zero add1
-  add)
+  add
+}
 ```
 
 ## Trivial
 
-```clojure
-(define-type Trivial Type)
-(define-cons sole Trivial)
+```inet
+type Trivial { -- Type }
+constructor sole { -- Trivial }
 ```
 
 ## List
 
-```
+```inet
 constructor null {
   vague (A: Type)
   ------
@@ -196,28 +198,34 @@ define six-soles {
 
 ## Vector
 
-```clojure
-(define-type Vector (- Type) (- Nat) Type)
+```inet
+type Vector { Type Nat -- Type }
 
-(define-cons null-vector
-  (vague ((A Type)))
-  zero A Vector)
+constructor null-vector {
+  vague (A: Type)
+  ------
+  zero A Vector
+}
 
-(define-cons cons-vector
-  (vague ((A Type) (prev Nat)))
-  (- A) (- prev A Vector)
-  prev add1 A Vector)
+constructor cons-vector {
+  vague (A: Type, prev: Nat)
+  A, prev A Vector
+  ------
+  prev add1 A Vector
+}
 
-(define-elim vector-append
+TODO
+
+(eliminator vector-append
   (implicit ((A Type) (y Nat)))
   (- y A Vector)
   (implicit ((x Nat)))
   (- x A Vector)
   x y add A Vector)
 
-(define-rule (null-vector vector-append))
+(rule (null-vector vector-append))
 
-(define-rule (cons-vector vector-append)
+(rule (cons-vector vector-append)
   (let head) vector-append head cons-vector)
 
 (check-net (six Trivial Vector)
@@ -228,7 +236,7 @@ define six-soles {
 
 ## DiffList
 
-```
+```inet
 // |- ~List(A), ~List(A), DiffList(A)
 
 claim diff {
@@ -240,30 +248,30 @@ claim diff {
 ```
 
 ```clojure
-(define-type DiffList (- Type) Type)
+(type DiffList (- Type) Type)
 
-(define-cons diff
+(constructor diff
   (vague ((A Type)))
   (- A List) (- A List)
   A DiffList)
 
-(define-elim diff-append
+(eliminator diff-append
   (implicit ((A Type)))
   (- A DiffList)
   (- A DiffList)
   A DiffList)
 
-(define-elim diff-open
+(eliminator diff-open
   (implicit ((A Type)))
   (- A DiffList)
   (- A List)
   A List)
 
-(define-rule (diff diff-open)
+(rule (diff diff-open)
   (let that left right)
   that left connect right)
 
-(define-rule (diff diff-append)
+(rule (diff diff-append)
   (let that left right)
   left that diff-open right diff)
 ```
