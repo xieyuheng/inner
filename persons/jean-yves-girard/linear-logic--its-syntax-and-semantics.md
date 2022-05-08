@@ -298,6 +298,10 @@ with its obvious advantage: a well-determined last rule.
   we learned to introduce special syntax
   for binding multiple return values.
 
+  Thus, use natural deduction for linear logic,
+  we simply need to handle multiple return values,
+  and limit the use of variable reference to once.
+
 ### 1.3.3 The identity links
 
 To overcome the problems of natural deduction,
