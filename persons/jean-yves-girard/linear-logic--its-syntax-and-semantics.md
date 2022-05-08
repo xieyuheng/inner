@@ -358,4 +358,15 @@ TODO
 
 ## 2.4 Game semantics
 
-TODO
+What could be the general pattern of a convincing game semantics?
+
+## 2.4.1 Plays, strategies etc
+
+Imagine a game between two players.
+
+Linear negation is the interchange of players.
+
+A type is a game, and its proof is a winning strategy.
+
+- **Xie**: What is a play? 
+  Is it the new concept introduced by the idea of game semantics?
