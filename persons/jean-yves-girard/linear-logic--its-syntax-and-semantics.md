@@ -175,6 +175,12 @@ Similarly the following rules might be easier to understand in two-sided version
 |- Γ, ⊥
 ```
 
+Note that, we only need intro rule for `⊗`,
+the only elim rule is the cut rule.
+
+Cut rule and forming hypotheses
+captures the concept of causality.
+
 ```
 |- Γ, A
 |- B, Δ
