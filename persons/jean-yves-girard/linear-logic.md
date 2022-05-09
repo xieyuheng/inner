@@ -23,7 +23,12 @@ Applications in computer science:
   We have two levels of connectives.
 
   - Multiplicative -- communication without problems of synchronization.
-  - Additive -- handles synchronization
+  - Additive -- handles synchronization.
+
+- **Xie**: In actor model based language, we also have two levels.
+
+  - Functional programming.
+  - Message passing.
 
 - To model the concept of cost.
 
