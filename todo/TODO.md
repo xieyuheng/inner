@@ -1,8 +1,17 @@
 - try to implement as symbolic system in typescript
+
   - group-presentation
   - monoid-presentation
 
 - use patterns to organize knowledges like martin fowler
+
+  learning as a soul game
+
+  | learning (the inner repo) | soul game                |
+  | ------------------------- | ------------------------ |
+  | topics                    | map                      |
+  | todo                      | plans and marks          |
+  | patterns                  | well collected knowledge |
 
 - `cicada-lang/relation`?
 
@@ -49,6 +58,7 @@
 - Learn from MIT
 
   - MIT AGI: https://www.youtube.com/playlist?list=PL4jieTF-BpWoiVjta6VuRy5plFtDm9eRG
+
     - https://www.youtube.com/watch?v=bfO4EkoGh40
 
   - Lex Fridman Podcast: https://www.youtube.com/playlist?list=PLrAXtmErZgOdP_8GztsuKi9nrraNbKKp4
