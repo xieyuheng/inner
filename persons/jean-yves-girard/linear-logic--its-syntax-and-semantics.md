@@ -530,7 +530,8 @@ By the electronic analogy,
 we can get a very good interpretation
 of cut-elimination for `⊗` and `⅋`.
 
-TODO draw the picture using ASCII art.
+- **Xie**: The connectives `⊗` and `⅋` group ports together,
+  one for the negatives one for the postives.
 
 ## 2.4 Game semantics
 
