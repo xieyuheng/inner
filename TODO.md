@@ -87,7 +87,10 @@ Patterns:
 
 ## JoJo calculus
 
+Use postfix notations as syntax.
+
 A language on which categorical semantics would fail.
+
 A language whose type system scale to higher dimensions.
 
 ## Cell complex
