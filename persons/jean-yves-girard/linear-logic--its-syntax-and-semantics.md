@@ -524,6 +524,21 @@ TODO
 
 TODO
 
+## NOTE The model and the logic are one
+
+- **Xie**: TODO Recall model theory.
+
+  Since we are using postfix notations as syntax,
+  the space of terms itself is a monoid,
+  the language by which we record the steps of inferences,
+  i.e. the language by which we do proof,
+  is algebric.
+
+  Thus, in the since of using algebric structure as model,
+  the logic is its own model.
+
+  The model and the logic are one.
+
 ## 2.3 Geometry of interaction
 
 By the electronic analogy,
