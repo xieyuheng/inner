@@ -71,7 +71,7 @@ should be replaced by:
 theory = linear logic + axioms + current state
 ```
 
-We can use `!` for the axioms.
+We can use `!` for the axioms, they are stable truth.
 
 - **Xie**: The "current state" part means that
   proved propositions in the context can be used and erased.
@@ -91,7 +91,7 @@ is the key to a more manageable way of formalizing.
 
   - In syntax the order matters.
 
-  Using explicit modalities to express structural rules，
+  Using explicit modalities to express structural rules,
   increase the expressive power of the logic.
 
   If we ever need to model something where the order matters,
@@ -112,7 +112,8 @@ which means
 > A1 and ... and An imply B1 or ... or Bm.
 
 The actual meaning of the words "and", "imply", "or" in a sequent,
-is wholly in the structural group and it is not too excessive to say that
+is wholly in the structural group of rules,
+and it is not too excessive to say that
 a logic is essentially a set of structural rules!
 
 - **Xie**: Linear logic opens the gate to substructural logics,
