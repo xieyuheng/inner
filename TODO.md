@@ -113,9 +113,9 @@ but also be able to use the case of `n-2`, `n-3`, ... (if available).
 
 > These two topics can be studied separately,
 > but based on the principle of type theory,
-> we should study term and type together.
+> we should study terms and types together.
 
-TO use interaction nets to implement Lamping's optimal beta-reduction.
+To use interaction nets to implement Lamping's optimal beta-reduction.
 
 - Maybe when using graph, we can also handle infinite normal form easily.
 
@@ -146,8 +146,8 @@ References about optimal beta-reduction:
   Thus it is beneficial to apply our skills to other problem domain
   which requires playing with expressions.
 
-  For example, we can practice by
-  implementing computer algebra based on `bigint` of JavaScript.
+  For example, we can practice implementing a computer algebra system
+  based on `bigint` of JavaScript.
 
   We are specially interested in polynomial and ring.
 
@@ -167,7 +167,7 @@ and can be formalized in logic programming languages like Prolog.
 
 But Prolog can only do proof search,
 we also want to write proof by hand,
-even if we do not have understand the computational aspect of the logic yet,
+even if we do understand the computational aspect of the logic yet,
 i.e. we do not know how to evaluate terms or how to normalize terms.
 
 - **[project]** `cicada-lang/relation`
@@ -189,14 +189,14 @@ i.e. we do not know how to evaluate terms or how to normalize terms.
 
 - **[problem]** Is inductive types already enough to formalize inference rules?
 
-  Inductive type constructors are relations.
+  Inductive type constructors are relations,
 
-  假设在 datatype 中定义数据构造子时，
-  其类型所代表的是纯逻辑式编程。
-  即所有的关系都是可逆的。
+  - But note that, a relation defined by inductive type constructor
+    might be not reversible (not pure logic programming).
 
-  但是在 dependent type system 的 judgment 中，情况不是如此，
-  因为 evaluate 不是可逆的。
+    For example, we can formalize judgments of dependent types by
+    inductive type constructors, by when evaluation occurs in the it,
+    it is no longer reversible.
 
 ## Lambda-cube, lambda encoding and self types
 
