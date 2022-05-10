@@ -3,6 +3,8 @@ title: My research as an adventure game
 author: Xie Yuheng
 ---
 
+- use patterns to organize knowledges like martin fowler
+
 # Main quests
 
 ## Cicada Language
@@ -11,97 +13,131 @@ The goal is to design a language for foundations of mathematics.
 
 - The language must have enough features to formalize mathematic theorems and proofs.
 
+  Currently we are still in lack of some important features:
+
+  - Recursion and termination-check.
+  - Subtyping.
+
+  We already implemented inductive types,
+  but we learned that it is possible to use lambda encoding
+  to greatly simplify the implementation of inductive types.
+
+  - **[side quest]** Lambda encoding and self types
+
+    To avoid exponential lambda terms during encoding,
+    we need to do graph based implementation.
+
+  - **[side quest]** Interaction nets
+
+    One graph based implementation of lambda is lamping's optimal beta-reduction,
+    which is based on interaction nets.
+
+  - **[side quest]** Linear logic
+
+    The type system of interaction nets is linear logic.
+
 - We must actually use this language to formalize a lot of mathematics,
   because without applications, language design project is not complete,
   and applications will provide feedback to improve our design.
+
+  - **[side quest]** Formalize category theory
+
+  - categorical-semantics: ~/watching/person/bartosz-milewski
+
+    - https://www.youtube.com/user/DrBartosz/playlists
+    - Category Theory 4.1: Terminal and initial objects
+    - Category Theory 4.2: Products
+    - Category Theory 5.1: Coproducts, sum types
+
+Patterns:
+
+- **[pattern]** To summarize our implementation of implicit and vague arguments as pattern.
+
+- **[pattern]** To summarize our implementation of inductive types as pattern.
+
+- **[pattern]** To summarize patterns in our implementation of cicada language.
+
+  - Statements v.s. expressions.
+  - Bidirectional type checking.
+  - NbE.
 
 # Side quests
 
 ## Interaction nets and linear logic
 
-These two topics can be studied separately,
-but based on the principle of type theory,
-we should study term and type together.
+> These two topics can be studied separately,
+> but based on the principle of type theory,
+> we should study term and type together.
 
-TODO
+Using inet to implement lamping optimal reduction.
 
-- try to implement as symbolic system in typescript
+- To learn from aaron stump lectures.
+- Maybe we can handle infinite normal form.
 
-  - group-presentation
-  - monoid-presentation
+References:
 
-- use patterns to organize knowledges like martin fowler
+- The lamping paper
+- The lambdascope paper
 
-- `cicada-lang/relation`?
+## Symbolic systems
+
+- **[project]** `monoid-presentation`
+
+  One of linear logic's model is *phase semantics*,
+  in which the definition of *phase space* is based on monoid.
+
+  Thus it is interesting to be able to play with monoid via presentation.
+
+- **[project]** `group-presentation`
+
+  Group presentation is much more well studied than monoid presentation.
+
+- **[project]** `xieyuheng/algebra`
+
+  We are good at implement programming languages,
+  which means we are good at playing with expressions.
+
+  Thus it is good to apply our skill to other problem domain
+  which requires playing with expressions.
+
+  For example, we can practice by
+  implementing computer algebra based on `bigint` of JavaScript.
+
+  We are specially interested in polynomial and ring.
+
+  - Remember Coq's `ring` tactic.
+
+  Possible topics:
+
+  - `Integer` -- OOP API over `bigint` of JavaScript.
+  - `Fraction`
+  - `ContinuedFraction`
+
+## Logic programming
+
+Remember that inference rules of a logic are relations,
+and can be formalized in a logic programming language.
+
+- **[project]** `cicada-lang/relation`
 
   - json based logic programming language
   - learn prolog for real
 
-- `xieyuheng/algebra`
+## Lambda-cube, lambda encoding and self types
 
-  - computer algebra based on bigint of javascript
+- **[project]** `lambda-disco`
 
-    - Integer -- OOP API over bigint
-    - Fraction
-    - ContinuedFraction
+  To implement lambda-cube with self types,
+  and use them to understand lambda encoding of inductive types.
 
-# learning
+# General practice
 
-- implement lambda-cube (with self type)
-
-- using inet to implement lamping optimal reduction
-  - learn from aaron stump lectures
-  - maybe we can handle infinite normal form
-
-# ai
-
-- 利用 sexp 向机器描述想要解决的问题，
-  机器给你解决问题的建议。
-
-  - 问题可以是关于解决数学问题的，
-    也可以是关于 OOP 的。
-
-  - 类似专家系统。
-
-  - 需要能够把某个领域的知识，表达给机器。
-
-  - 如果我能帮助别人实现别人所感兴趣的所谓「专家系统」，
-    那么这个服务是否可以赚钱呢？
-
-  - 基于 how to slove it 的 bot。
-
-  - 基于 99 bottles of OOP 和 POODR 的 bot。
-
-- 给出很多句子，学习出来语法。
-
-- Learn from MIT
-
-  - MIT AGI: https://www.youtube.com/playlist?list=PL4jieTF-BpWoiVjta6VuRy5plFtDm9eRG
-
-    - https://www.youtube.com/watch?v=bfO4EkoGh40
-
-  - Lex Fridman Podcast: https://www.youtube.com/playlist?list=PLrAXtmErZgOdP_8GztsuKi9nrraNbKKp4
-
-# implementation notes
-
-- write chinese notes about implicit arguments and inductive type -- like the note about implementation patterns
-
-  - maybe after lambda encoding and self types.
-
-# problem solving
+## Problem solving
 
 - polya: ~/inner/person/polya/mathematics-and-plausible-reasoning
+
   - vol-2--patterns-of-plausible-inference.md
 
-# software design
+## software design
 
-- practice design patterns -- functional style and class style
 - tdd: ~/watching/tdd/james-shore
-
-# language design
-
-- categorical-semantics: ~/watching/person/bartosz-milewski
-  - https://www.youtube.com/user/DrBartosz/playlists
-  - Category Theory 4.1: Terminal and initial objects
-  - Category Theory 4.2: Products
-  - Category Theory 5.1: Coproducts, sum types
