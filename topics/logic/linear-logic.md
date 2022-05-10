@@ -23,7 +23,15 @@ title: Linear Logic
 | `!A`    | pos      | exponential    |      | of course     | `OfCourse` | I can reuse `A`.                           |
 | `?A`    | neg      | exponential    |      | why not       | `WhyNot`   |                                            |
 
+Notes:
+
 - Maybe we should use `Always` instead of `OfCourse`.
+
+- If we view linear logic as type of channel,
+  - additive conj `&` means we can choice to `send` different messages to the channel,
+  - additive disj `⊕` means we might `receive` different messages from the channel.
+
+- How about type of actor?
 
 | symbol   | derive               | name (Girard) | identifier | meaning                                         |
 | -------- | -------------------- | ------------- | ---------- | ----------------------------------------------- |
