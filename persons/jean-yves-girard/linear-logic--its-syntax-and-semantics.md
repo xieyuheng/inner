@@ -439,8 +439,18 @@ Cut-elimination rewritings:
 
 - `{ A ~A }` => `{ }`
 
-- **Xie**: We can see cut-elimination means partial evaluation, 
-  thus also means normalization
+- **Xie**: The target of reduction is `A ~A`,
+  it might be introduced by identity axiom or other rules.
+
+  We can see cut-elimination means partial evaluation,
+  thus also means normalization.
+
+  Maybe we can use the idea of NbE for inet,
+  after normalizing a net, we can read it back
+  to our sequentialized syntax.
+
+  Equivalence between nets will still be implemented at graph level,
+  `readback` only serve as a tool to help us understand the graph.
 
 ### 1.3.7 Extension to full linear logic
 
