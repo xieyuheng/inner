@@ -339,7 +339,7 @@ Now, the cut link is well explained as a plugging.
 
   In general `connect` can connect any two matching ports.
 
-  | girard electronics | interaction nets |
+  | Girard electronics | Interaction nets |
   | ------------------ | ---------------- |
   | plug               | port             |
   | extension cord     | wire             |
