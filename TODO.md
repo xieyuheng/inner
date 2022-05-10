@@ -115,13 +115,13 @@ but also be able to use the case of `n-2`, `n-3`, ... (if available).
 > but based on the principle of type theory,
 > we should study term and type together.
 
-Using Interaction nets to implement lamping optimal beta-reduction.
+TO use interaction nets to implement Lamping's optimal beta-reduction.
 
-Maybe when using graph, we can also handle infinite normal form easily.
+- Maybe when using graph, we can also handle infinite normal form easily.
 
 References about optimal beta-reduction:
 
-- To learn from aaron stump lectures.
+- [Aaron Stump online lectures](https://www.youtube.com/channel/UCKQa6Ls95RhShE0kQsiXzVw).
 - The Lamping algorithm paper.
 - The Lambdascope paper.
 
