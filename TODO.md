@@ -7,7 +7,7 @@ author: Xie Yuheng
 > The idea of game, basically, is this: \
 > that the nature of the world is musical. \
 > i.e. everything that is happening is its own point. \
-> -- Alan Watts, ["The Joker"](https://www.organism.earth/library/document/the-joker)
+> -- ["The Joker"](https://www.organism.earth/library/document/the-joker), Alan Watts
 
 # TODO
 
