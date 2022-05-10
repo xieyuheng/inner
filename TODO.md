@@ -1,5 +1,6 @@
 ---
 title: My research as an adventure game
+subtitle: Be explicit and clear about our goals and progress, to keep direction and help planning.
 author: Xie Yuheng
 ---
 
@@ -29,7 +30,7 @@ The goal is to design a language for foundations of mathematics.
 
   - **[side quest]** Interaction nets
 
-    One graph based implementation of lambda is lamping's optimal beta-reduction,
+    One graph based implementation of lambda is Lamping's optimal beta-reduction,
     which is based on interaction nets.
 
   - **[side quest]** Linear logic
@@ -41,13 +42,6 @@ The goal is to design a language for foundations of mathematics.
   and applications will provide feedback to improve our design.
 
   - **[side quest]** Formalize category theory
-
-  - categorical-semantics: ~/watching/person/bartosz-milewski
-
-    - https://www.youtube.com/user/DrBartosz/playlists
-    - Category Theory 4.1: Terminal and initial objects
-    - Category Theory 4.2: Products
-    - Category Theory 5.1: Coproducts, sum types
 
 Patterns:
 
@@ -129,6 +123,18 @@ and can be formalized in a logic programming language.
 
   To implement lambda-cube with self types,
   and use them to understand lambda encoding of inductive types.
+
+## Formalize category theory
+
+- categorical-semantics: ~/watching/person/bartosz-milewski
+
+  - [Bartosz's youtube channel](https://www.youtube.com/user/DrBartosz)
+
+  Progress:
+
+  - Category Theory 4.1: Terminal and initial objects
+  - Category Theory 4.2: Products
+  - Category Theory 5.1: Coproducts, sum types
 
 # General practice
 
