@@ -41,14 +41,6 @@
     has been considered by Schroeder-Heister.
 - [dag-prawitz] proof theory and natural deduction
 
-# combinatory logic
-
-- [haskell-curry] combinatory logic
-
-# report
-
-- report on wiki product
-
 # actor model
 
 - armstrong_thesis_2003.pdf
@@ -73,12 +65,6 @@
   - the little prover -- little ACL
 - heyting algebra
 
-# chiso
-
-- classical logic
-- cat
-  - lambek
-
 # physics
 
 - 经典力学
@@ -95,10 +81,6 @@
 - 如何明確地敘述 bishop 的計劃?
 - 對算法複雜度的形式化描述與機械化推導
   就是向 bishop 的計劃 更買進了一步
-
-# cover space and galois theory
-
-# formal concept analysis and galois connection
 
 # fiber-space
 
@@ -128,37 +110,23 @@
 - cs
   - feynman/lectures-on-computation.pdf
 
-# database
+# AI
 
-- cmu database course
+利用 sexp 向机器描述想要解决的问题，
+机器给你解决问题的建议。
 
-# ai
+- 问题可以是关于解决数学问题的，也可以是关于 OOP 的。
 
-- 利用 sexp 向机器描述想要解决的问题，
-  机器给你解决问题的建议。
+- 类似专家系统。
 
-  - 问题可以是关于解决数学问题的，
-    也可以是关于 OOP 的。
+- 需要能够把某个领域的知识，表达给机器。
 
-  - 类似专家系统。
+- 如果我能帮助别人实现别人所感兴趣的所谓「专家系统」，
+  那么这个服务是否可以赚钱呢？
 
-  - 需要能够把某个领域的知识，表达给机器。
-
-  - 如果我能帮助别人实现别人所感兴趣的所谓「专家系统」，
-    那么这个服务是否可以赚钱呢？
-
-  - 基于 how to slove it 的 bot。
-  - 基于 99 bottles of OOP 和 POODR 的 bot。
-
-- 给出很多句子，学习出来语法。
-
-- Learn from MIT
-
-  - MIT AGI: https://www.youtube.com/playlist?list=PL4jieTF-BpWoiVjta6VuRy5plFtDm9eRG
-
-    - https://www.youtube.com/watch?v=bfO4EkoGh40
-
-  - Lex Fridman Podcast: https://www.youtube.com/playlist?list=PLrAXtmErZgOdP_8GztsuKi9nrraNbKKp4
+- **[project]** 基于 how to slove it 的 bot。
+- **[project]** 基于 99 bottles of OOP 和 POODR 的 bot。
+- **[project]** 给出很多句子，学习出来语法。
 
 # Courses
 
@@ -189,3 +157,13 @@ mit-18-086-mathematical-methods-for-engineers-ii-spring-06/
   https://www.youtube.com/playlist?list=PLslgisHe5tBPckSYyKoU3jEA4bqiFmNBJ
 - computational geometry
   https://www.youtube.com/playlist?list=PLESnaHRvLM-72xIXf8dL2EOqN8UgAZMj7
+
+## Database
+
+- cmu database course
+
+## AI
+
+- MIT AGI: https://www.youtube.com/playlist?list=PL4jieTF-BpWoiVjta6VuRy5plFtDm9eRG
+  - https://www.youtube.com/watch?v=bfO4EkoGh40
+- Lex Fridman Podcast: https://www.youtube.com/playlist?list=PLrAXtmErZgOdP_8GztsuKi9nrraNbKKp4

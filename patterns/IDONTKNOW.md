@@ -6,6 +6,9 @@ author: Xie Yuheng
 
 # Galois Theory
 
+- cover space and galois theory
+- formal concept analysis and galois connection
+
 # Formal Concept Analysis
 
 # Linear Logic
