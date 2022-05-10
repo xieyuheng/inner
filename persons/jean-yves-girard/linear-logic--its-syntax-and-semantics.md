@@ -526,7 +526,11 @@ TODO
 
 ## 2.3 Geometry of interaction
 
-TODO
+By the electronic analogy,
+we can get a very good interpretation
+of cut-elimination for `⊗` and `⅋`.
+
+TODO draw the picture using ASCII art.
 
 ## 2.4 Game semantics
 
