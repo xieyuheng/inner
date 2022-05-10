@@ -45,15 +45,13 @@ The goal is to design a language for foundations of mathematics.
 
 Patterns:
 
-- **[pattern]** To summarize our implementation of implicit and vague arguments as pattern.
-
-- **[pattern]** To summarize our implementation of inductive types as pattern.
-
 - **[pattern]** To summarize patterns in our implementation of cicada language.
 
   - Statements v.s. expressions.
   - Bidirectional type checking.
   - NbE.
+  - Inductive types.
+  - Implicit and vague arguments.
 
 # Side quests
 
