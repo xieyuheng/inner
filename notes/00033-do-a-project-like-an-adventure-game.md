@@ -10,10 +10,17 @@ Inspired by game plays of [soul-like games](https://en.wikipedia.org/wiki/Dark_S
 
 We can do a project like a soul game.
 
+# Quests
+
 For example, we can use _main quests_ and _side quests_ to organize our goals.
 
 When doing research, it is important keep our research goals (main quests) in mind,
-and equally important, to explore beyond the preset goals (side quests).
+and equally important, to explore beyond the preset goals (side quests),
+the feedback during the progress of a quest
+
+# Try to use the analogy
+
+I will try to use this analogy in my inner repo.
 
 | My inner repo | In a soul game                                          |
 | ------------- | ------------------------------------------------------- |

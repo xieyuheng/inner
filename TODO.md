@@ -1,3 +1,21 @@
+---
+title: My research as an adventure game
+author: Xie Yuheng
+---
+
+# Main quests
+
+## Cicada Language
+
+The goal is to design a language for foundations of mathematics.
+
+- The language must have enou to formalize
+
+
+# Side quests
+
+# TODO
+
 - try to implement as symbolic system in typescript
 
   - group-presentation
