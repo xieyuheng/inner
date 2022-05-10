@@ -1,25 +1,11 @@
-# extending Martin Löf's Type theory
-
-- 在 Martin Löf 的基础的 Type theory 中引入新的类型有多种方式，
-  inductive datatype 只是其中一种，higher inductive datatype 可能是另一种，
-  那么一般的引入心类型的形式是什么呢？
-
-- structural typing 和简单的 key value top level 可以简化理论
-  - 也许可以参考 theory of object，
-    还有历史上其他关于 structural typing 的论文
-
 # I also do not have the time
 
-- [Thesis 1] Fulfilling type system
-
-  A language that fit to formalize categorical semantics.
-
-- [Thesis 2] JoJo calculus
+- JoJo calculus
 
   A language on which categorical semantics would fail.
   A language whose type system scale to higher dimensions.
 
-- [Thesis 3] Cell complex
+- Cell complex
 
   Higher dimensional algebraic structure.
 

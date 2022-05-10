@@ -16,8 +16,8 @@ The goal is to design a language for foundations of mathematics.
 
   Currently we are still in lack of some important features:
 
-  - Recursion and termination-check.
-  - Subtyping.
+  - **[side quest]** Recursion and termination-check
+  - **[side quest]** Subtyping
 
   We already implemented inductive types,
   but we learned that it is possible to use lambda encoding
@@ -55,6 +55,10 @@ Patterns:
   - Telescope.
     - Telescope is used in data construction, function application and class telescope.
     - Node that, in our implementation, telescope is `env` (not `ctx`).
+
+- **[pattern]** Maybe the idea of fulfilling types is new and worth sharing as a paper.
+
+  For fulfilling types make it easy to formalize some concepts of category theory.
 
 # Side quests
 
@@ -111,12 +115,29 @@ References:
 ## Logic programming
 
 Remember that inference rules of a logic are relations,
-and can be formalized in a logic programming language.
+and can be formalized in logic programming languages like Prolog.
+
+But Prolog can only do proof search,
+we also want to write proof by hand,
+even if we do not have understand the computational aspect of the logic yet,
+i.e. we do not know how to evaluate terms or how to normalize terms.
 
 - **[project]** `cicada-lang/relation`
 
-  - json based logic programming language
-  - learn prolog for real
+  - JSON based logic programming language.
+  - Be able to write proof be hand.
+  - Learn Prolog for real.
+
+- **[side quest]** Extending Martin Löf's type theory
+
+  There are many ways to extend Martin Löf's type theory.
+
+  - Inductive types.
+  - Higher inductive types.
+
+  What are the general principles for introducing new types?
+
+  Maybe we can use logic programming language to explore different inference rules.
 
 ## Lambda-cube, lambda encoding and self types
 
