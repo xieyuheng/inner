@@ -75,8 +75,8 @@ Using inet to implement lamping optimal reduction.
 
 References:
 
-- The lamping paper
-- The lambdascope paper
+- The lamping paper.
+- The lambdascope paper.
 
 ## Symbolic systems
 
