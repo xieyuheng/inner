@@ -10,6 +10,10 @@ Inspired by game plays of [soul-like games](https://en.wikipedia.org/wiki/Dark_S
 
 I think we can do a project like a soul game.
 
+- An experienced gamer of Dark Souls
+  can carefully plan the order of explorations,
+  and carrying out the quests with focus.
+
 # Quests
 
 For example, we can use _main quests_ and _side quests_ to organize our goals.
