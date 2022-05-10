@@ -8,11 +8,6 @@
   - intersection type
 - [de-bruijn] automath
 
-# inductive type
-
-- [zhaohui-luo] Computation and Reasoning
-- [peter Dybjer] Inductive Families
-
 # topos theory
 
 - we are interested in topos theory
