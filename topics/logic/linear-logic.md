@@ -28,10 +28,13 @@ Notes:
 - Maybe we should use `Always` instead of `OfCourse`.
 
 - If we view linear logic as type of channel,
-  - additive conj `&` means we can choice to `send` different messages to the channel,
-  - additive disj `⊕` means we might `receive` different messages from the channel.
+
+  - The additive conj `&` means we can choice to `send` different messages to the channel,
+  - The additive disj `⊕` means we might `receive` different messages from the channel.
 
 - How about type of actor?
+
+  It must be similar, because actor and channel+process can simulate each other.
 
 | symbol   | derive               | name (Girard) | identifier | meaning                                         |
 | -------- | -------------------- | ------------- | ---------- | ----------------------------------------------- |
