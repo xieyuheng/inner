@@ -339,11 +339,11 @@ Now, the cut link is well explained as a plugging.
 
   In general `connect` can connect any two matching ports.
 
-  | Girard electronics | Interaction nets |
-  | ------------------ | ---------------- |
-  | plug               | port             |
-  | extension cord     | wire             |
-  | plugging           | connect          |
+  | Girard's electronics | Interaction nets |
+  | -------------------- | ---------------- |
+  | plug                 | port             |
+  | extension cord       | wire             |
+  | plugging             | connect          |
 
   Circle is not forbidden in our implementation,
   we are free to introduce circles into a net,
@@ -385,11 +385,62 @@ to find an independent characterization of proof-nets.
 
 Let us explain why this is essential:
 
-TODO
+1. If we define proof-nets from sequent calculus, this means that we
+   work with a proof-structure together with a sequentialization, in
+   other terms a step by step construction of this net.
+
+   But this sequentialization is far from being unique, typically
+   there might be several candidates for the "last rule" of a given
+   proof-net.
+
+   - **Xie**: We see Girard avoid sequentialization, but In our
+     implementation, we are actually doing a sequentialization,
+     i.e. finding the terms syntax of sequent calculus is our goal.
+
+     And our implementation is indeed a step by step construction of
+     interaction nets.
+
+     I think Girard want to avoid sequentialization, because in proof
+     theory, we want to proof meta theorems about our formal system,
+     only by means of pure syntactic analysis.
+
+     But maybe we can use a sequentialized syntax to build graph first,
+     and then prove meta theorems based on graph.
+
+     In practical implementation, we need a sequentialized syntax to
+     describe graph anyway.
+
+   In practice, we may have a proof-net with a given sequentialization
+   but we may need to use another one: this means that we will spend
+   all of our energy on problems of commutation of rules, as with old
+   sequent calculus, and we will not benefit too much from the new
+   approach.
+
+   Typically, if a proof-net ends with a splitting `⊗`-link, (i.e. a
+   link whose removal induces two disconnected structures), we would
+   like to conclude that the last rule can be chosen as `⊗`-rule;
+   working with a sequentialization this can be proved, but the proof
+   is long and boring, whereas, with a criterion, the result is
+   immediate, since the two components inherit the criterion.
+
+2. The distinction between "and" and "or" has always been explained in
+   semantical terms which ultimately use "and" and "or"; a purely
+   geometrical characterization would therefore establish the
+   distinction on more intrinsic grounds.
 
 ### 1.3.6 Cut-elimination for proof-nets
 
-TODO
+| Rule             | Sequent | Girard's graph |
+| ---------------- | ------- | -------------- |
+| cut              | `~A A`  | below link     |
+| axiom (identity) | `A ~A`  | above link     |
+
+Cut-elimination rewritings:
+
+- `{ A ~A }` => `{ }`
+
+- **Xie**: We can see cut-elimination means partial evaluation, 
+  thus also means normalization
 
 ### 1.3.7 Extension to full linear logic
 

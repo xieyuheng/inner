@@ -99,7 +99,7 @@ Higher dimensional algebraic structure.
 - **[problem]** From the point of view of type theory,
   how lowdim project different from HOTT?
 
-- **[problem]** Can we use such implementation in Geometric modeling?
+- **[problem]** Can we use such implementation in geometric modeling?
 
 # Side quests
 
@@ -140,10 +140,10 @@ References about optimal beta-reduction:
 
 - **[project]** `xieyuheng/algebra`
 
-  We are good at implement programming languages,
+  We are good at implementing programming languages,
   which means we are good at playing with expressions.
 
-  Thus it is good to apply our skill to other problem domain
+  Thus it is beneficial to apply our skills to other problem domain
   which requires playing with expressions.
 
   For example, we can practice by
@@ -155,7 +155,8 @@ References about optimal beta-reduction:
 
   Possible topics:
 
-  - `Integer` -- OOP API over `bigint` of JavaScript.
+  - `Integer`
+    - OOP API over `bigint` of JavaScript.
   - `Fraction`
   - `ContinuedFraction`
 
@@ -258,7 +259,10 @@ References:
 
 ### OOP
 
-- 模仿 "99 Bottles of OOP" 用中文的童谣来讲解 OOP
+- Mimic the style of "99 Bottles of OOP",
+  and apply it to other programming exercises.
+
+  - Maybe use Chinese ballads as examples.
 
   References:
 
