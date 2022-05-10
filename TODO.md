@@ -99,21 +99,27 @@ Higher dimensional algebraic structure.
 
 # Side quests
 
+## Recursion and termination-check
+
+The most simple termination-check is based on the general inductive principle.
+i.e. not only use the case of `n-1` as hypothesis in inductive step,
+but also be able to use the case of `n-2`, `n-3`, ... (if available).
+
 ## Interaction nets and linear logic
 
 > These two topics can be studied separately,
 > but based on the principle of type theory,
 > we should study term and type together.
 
-Using inet to implement lamping optimal reduction.
+Using Interaction nets to implement lamping optimal reduction.
 
 - To learn from aaron stump lectures.
 - Maybe we can handle infinite normal form.
 
 References:
 
-- The lamping paper.
-- The lambdascope paper.
+- The Lamping algorithm paper.
+- The Lambdascope paper.
 
 ## Symbolic systems
 
