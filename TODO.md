@@ -4,6 +4,10 @@ subtitle: Be explicit and clear about our goals and progress, to keep direction 
 author: Xie Yuheng
 ---
 
+> The idea of [game](https://www.organism.earth/library/document/the-joker#part-1), basically, is this: \
+> that the nature of the world is musical. \
+> i.e. everything that is happening is its own point.
+
 # TODO
 
 - Use linear logic as type system of inet.
