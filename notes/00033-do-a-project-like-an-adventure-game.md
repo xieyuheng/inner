@@ -28,3 +28,10 @@ I will try to use this analogy in my inner repo.
 | `persons/`    | Other players.                                          |
 | `todo/`       | Plans of quests (with and marks on the map).            |
 | `patterns/`   | Well collected knowledges (e.g. armaments, skills, ...) |
+
+# Use patterns to organize knowledges
+
+A good example is [Martin Fowler's homepage](https://martinfowler.com/).
+
+When Martin Fowler do a book project,
+he think about using patterns to organize knowledges.

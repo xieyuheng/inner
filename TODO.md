@@ -4,8 +4,6 @@ subtitle: Be explicit and clear about our goals and progress, to keep direction 
 author: Xie Yuheng
 ---
 
-- use patterns to organize knowledges like martin fowler
-
 # Main quests
 
 ## Cicada Language
