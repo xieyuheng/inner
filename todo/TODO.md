@@ -5,14 +5,6 @@
 
 - use patterns to organize knowledges like martin fowler
 
-  learning as a soul game
-
-  | learning (the inner repo) | soul game                |
-  | ------------------------- | ------------------------ |
-  | topics                    | map                      |
-  | todo                      | plans and marks          |
-  | patterns                  | well collected knowledge |
-
 - `cicada-lang/relation`?
 
   - json based logic programming language
