@@ -4,6 +4,11 @@ subtitle: Be explicit and clear about our goals and progress, to keep direction 
 author: Xie Yuheng
 ---
 
+# TODO
+
+- linear logic as type system of inet.
+- implement optimal beta-reduction by inet.
+
 # Main quests
 
 ## Cicada Language
@@ -110,13 +115,13 @@ but also be able to use the case of `n-2`, `n-3`, ... (if available).
 > but based on the principle of type theory,
 > we should study term and type together.
 
-Using Interaction nets to implement lamping optimal reduction.
+Using Interaction nets to implement lamping optimal beta-reduction.
+
+Maybe when using graph, we can also handle infinite normal form easily.
+
+References about optimal beta-reduction:
 
 - To learn from aaron stump lectures.
-- Maybe we can handle infinite normal form.
-
-References:
-
 - The Lamping algorithm paper.
 - The Lambdascope paper.
 
