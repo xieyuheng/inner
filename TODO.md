@@ -212,7 +212,7 @@ Category theory is the most basic target for formalization.
 We can also try to apply the formalization
 to categorical semantics and categorical logic.
 
-- Take rules about product and either as examples.
+- Take rules about product and sum as basic examples.
 - Inversion principle of inference rule is special case of adjoint functor.
 - Categorical semantics of inductive type -- F-algebra, and initial algebra.
 - Categorical semantics of dependent type -- also about adjoint functor.
