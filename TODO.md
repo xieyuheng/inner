@@ -6,8 +6,9 @@ author: Xie Yuheng
 
 # TODO
 
-- linear logic as type system of inet.
-- implement optimal beta-reduction by inet.
+- Use linear logic as type system of inet.
+  - Simple types first.
+- Implement optimal beta-reduction by inet.
 
 # Main quests
 
