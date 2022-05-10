@@ -3,12 +3,12 @@ title: Do a project like an adventure game
 date: 2022-05-10
 ---
 
-By "project" we specially mean software development projects and research projects,
+By "project", I specially mean software development projects and research projects,
 often a project will require both software development and research.
 
 Inspired by game plays of [soul-like games](https://en.wikipedia.org/wiki/Dark_Souls).
 
-We can do a project like a soul game.
+I think we can do a project like a soul game.
 
 # Quests
 
