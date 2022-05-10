@@ -9,12 +9,21 @@ author: Xie Yuheng
 
 The goal is to design a language for foundations of mathematics.
 
-- The language must have enou to formalize
+- The language must have enough features to formalize mathematic theorems and proofs.
 
+- We must actually use this language to formalize a lot of mathematics,
+  because without applications, language design project is not complete,
+  and applications will provide feedback to improve our design.
 
 # Side quests
 
-# TODO
+## Interaction nets and linear logic
+
+These two topics can be studied separately,
+but based on the principle of type theory,
+we should study term and type together.
+
+TODO
 
 - try to implement as symbolic system in typescript
 
