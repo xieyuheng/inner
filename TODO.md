@@ -12,6 +12,13 @@ author: Xie Yuheng
 
 The goal is to design a language for foundations of mathematics.
 
+This quest is beautifully formulated by Vladimir Voevodsky as the following:
+
+> A formal deduction system together with a correspondence
+> between its components and objects and actions in the world of mathematical thoughts
+> which can be used to formalize all subject areas of mathematics
+> is called a foundational system for mathematics or "Foundations of Mathematics".
+
 - The language must have enough features to formalize mathematic theorems and proofs.
 
   Currently we are still in lack of some important features:
@@ -48,17 +55,49 @@ Patterns:
 - **[pattern]** To summarize patterns in our implementation of cicada language.
 
   - Statements v.s. expressions.
+
   - Bidirectional type checking.
+
   - NbE.
+
   - Inductive types.
+
   - Implicit and vague arguments.
+
   - Telescope.
-    - Telescope is used in data construction, function application and class telescope.
-    - Node that, in our implementation, telescope is `env` (not `ctx`).
+
+    Telescope is used in data construction, function application and class telescope.
+
+    Node that, in our implementation, telescope is `env` (not `ctx`).
+
+    Telescope is about scope and binding.
+    formal semantics of natural language, also study scope and binding.
+
+    - <https://en.wikipedia.org/wiki/Scope_(formal_semantics)>
+    - <https://en.wikipedia.org/wiki/Binding_(linguistics)>
 
 - **[pattern]** Maybe the idea of fulfilling types is new and worth sharing as a paper.
 
   For fulfilling types make it easy to formalize some concepts of category theory.
+
+## JoJo calculus
+
+A language on which categorical semantics would fail.
+A language whose type system scale to higher dimensions.
+
+## Cell complex
+
+Higher dimensional algebraic structure.
+
+> To find an algebraic definition of infinity groupoids
+> that would satisfy the Grothendieck correspondence.
+
+- **[problem]** From the point of view of type theory,
+  how lowdim project different from HOTT?
+
+  # formalization of algebraic topology
+
+- **[problem]** Can we use such implementation in Geometric modeling?
 
 # Side quests
 
@@ -139,6 +178,17 @@ i.e. we do not know how to evaluate terms or how to normalize terms.
 
   Maybe we can use logic programming language to explore different inference rules.
 
+- **[problem]** Is inductive types already enough to formalize inference rules?
+
+  Inductive type constructors are relations.
+
+  假设在 datatype 中定义数据构造子时，
+  其类型所代表的是纯逻辑式编程。
+  即所有的关系都是可逆的。
+
+  但是在 dependent type system 的 judgment 中，情况不是如此，
+  因为 evaluate 不是可逆的。
+
 ## Lambda-cube, lambda encoding and self types
 
 - **[project]** `lambda-disco`
@@ -147,6 +197,28 @@ i.e. we do not know how to evaluate terms or how to normalize terms.
   and use them to understand lambda encoding of inductive types.
 
 ## Formalize category theory
+
+Category theory is the most basic target for formalization.
+
+We can also try to apply the formalization
+to categorical semantics and categorical logic.
+
+- Take rules about product and either as examples.
+- Inversion principle of inference rule is special case of adjoint functor.
+- Categorical semantics of inductive type -- F-algebra, and initial algebra.
+- Categorical semantics of dependent type -- also about adjoint functor.
+
+- **[problem]** Can we really use categorical semantics to guide
+  the design of programming language's type systems?
+
+The archetype of categorical logic is
+cartesian closed category and simply typed lambda calculus.
+
+- <https://en.wikipedia.org/wiki/Cartesian_closed_category>
+- <https://en.wikipedia.org/wiki/Simply_typed_lambda_calculus>
+- <https://en.wikipedia.org/wiki/Categorical_logic>
+
+References:
 
 - categorical-semantics: ~/watching/person/bartosz-milewski
 
@@ -157,6 +229,8 @@ i.e. we do not know how to evaluate terms or how to normalize terms.
   - Category Theory 4.1: Terminal and initial objects
   - Category Theory 4.2: Products
   - Category Theory 5.1: Coproducts, sum types
+
+- <https://ncatlab.org/nlab/show/categorical+model+of+dependent+types>
 
 # General practice
 

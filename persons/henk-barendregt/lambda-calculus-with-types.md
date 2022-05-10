@@ -1,8 +1,8 @@
-Lambda Calculus with Types
-==========================
-
-Authors: Henk Barendregt, Wil Dekkers, Richard Statman
-Date: 2010
+---
+title: Lambda Calculus with Types
+authors: [Henk Barendregt, Wil Dekkers, Richard Statman]
+year: 2010
+---
 
 # Preface
 
@@ -85,6 +85,7 @@ Convention relation is studied by reduction relation.
 ## Conversion relation
 
 Equational theory of lambda-beta-eta
+
 - reflexivity
 - symmetry
 - transitivity
@@ -127,6 +128,7 @@ eta_step(<c> (x) => M(x) </c>) ==> M
 ```
 
 we can also define reduction relations:
+
 - beta_reduction
 - eta_reduction
 - beta_eta_reduction
@@ -169,7 +171,7 @@ axioms |- M == N
 which means we can prove M == N by conversion plus equations in the set of axioms
 
 axioms are called inconsistent (otherwise consistent),
-if we can use  they to prove any equation.
+if we can use they to prove any equation.
 
 ```
 inconsistent(axioms) :=
@@ -208,6 +210,7 @@ i.e. there are no equations between types.
 (such as conversion relations)
 
 we can view atom as variable and define:
+
 ```
 type_subst(A: Ty, a: Atom, B: Ty)
 ```

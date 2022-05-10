@@ -1,17 +1,3 @@
-# design
-
-- design 的词源
-- design 是关于选择的 笔记
-- https://xyheme.gitee.io/inner/note/computer-science/architecture/architecture-with-ashi-krishnan.md.html
-
-# foundations
-
-- [vv] How I became interested in foundations of mathematics
-- [vv] Lecture about Univalent Foundations at the Institut Henri Poincaré
-- [Roland Backhouse] Do-it-yourself Type Theory
-  - how to understand `prop`
-- [frege] Begriffsschrift
-
 # type theory
 
 - [martin-löf] Constructive Mathematics and Computer Programming
@@ -28,14 +14,13 @@
 - [zhaohui-luo] Computation and Reasoning
 - [peter Dybjer] Inductive Families
 
-# category theory
-
 # topos theory
 
 - we are interested in topos theory
   because we want to know
   is topos theory the algebraic semantics
   behind the use of partial function?
+
 - use partial function to specify algebraic structure
   - essentially algebraic theories
   - C-system
@@ -47,39 +32,6 @@
     - use algebraic structure in language without dependent type
     - capture composition of pi type in the dependent type theory
 
-# categorical semantics
-
-- https://ncatlab.org/nlab/show/categorical+model+of+dependent+types
-- inversion principle of inference rule is special case of adjoint functor
-- is it make sences to introduce (- A) and { A } to factor A -> B ?
-- some questions for luo
-  - what is categorical semantics of inductive type ? -- F-algebra, and initial algebra
-  - what is categorical semantics of dependent type ? -- also adjoint functor
-
-# a theory of object
-
-# vladimir voevodsky
-
-- more about C System
-
-# bebop
-
-# psychology
-
-- ideas and cognitive dissonance
-  - ideas that is good to survive
-  - ideas that lower cognitive dissonance
-
-# logic
-
-- [note] we study a logic by its
-  - proof theory
-  - and categorical semantics
-- modal logic
-- linear logic
-- relevance logic
-- framework for substructural logics
-
 # proof theory
 
 - [schroeder-heister]
@@ -88,18 +40,6 @@
     that is, the pattern exhibited by the rules of falsehood, disjunction, and existence elimination,
     has been considered by Schroeder-Heister.
 - [dag-prawitz] proof theory and natural deduction
-
-# algebraic data type
-
-- maybe before implementing inductive type
-  we should study algebraic data type first
-
-# jojo
-
-- in jojo cut is the only inference rule that requires two premises
-  - inference rule with one premise can be viewed as equation?
-- Monoidal category, should we understand element in language as object instead of arrow,
-  and use the bifunctor of Monoidal category to model composition? (instead of composition of arrow.)
 
 # combinatory logic
 
@@ -191,3 +131,61 @@
 # database
 
 - cmu database course
+
+# ai
+
+- 利用 sexp 向机器描述想要解决的问题，
+  机器给你解决问题的建议。
+
+  - 问题可以是关于解决数学问题的，
+    也可以是关于 OOP 的。
+
+  - 类似专家系统。
+
+  - 需要能够把某个领域的知识，表达给机器。
+
+  - 如果我能帮助别人实现别人所感兴趣的所谓「专家系统」，
+    那么这个服务是否可以赚钱呢？
+
+  - 基于 how to slove it 的 bot。
+  - 基于 99 bottles of OOP 和 POODR 的 bot。
+
+- 给出很多句子，学习出来语法。
+
+- Learn from MIT
+
+  - MIT AGI: https://www.youtube.com/playlist?list=PL4jieTF-BpWoiVjta6VuRy5plFtDm9eRG
+
+    - https://www.youtube.com/watch?v=bfO4EkoGh40
+
+  - Lex Fridman Podcast: https://www.youtube.com/playlist?list=PLrAXtmErZgOdP_8GztsuKi9nrraNbKKp4
+
+# Courses
+
+highlights-of-calculus/
+mit-18-065-matrix-methods-in-data-analysis--signal-processing--and-machine-learning--spring-2018/
+mit-18-06sc-linear-algebra--fall-2011/
+mit-18-085-computational-science-and-engineering-i--fall-2008/
+mit-18-086-mathematical-methods-for-engineers-ii-spring-06/
+
+## Basic
+
+- mit 18.06sc linear algebra, fall 2011
+  https://www.youtube.com/playlist?list=PL221E2BBF13BECF6C
+- highlights of calculus
+  https://www.youtube.com/playlist?list=PLBE9407EA64E2C318
+- mit-18-085-computational-science--engineering-i--fall-2008
+  https://www.youtube.com/playlist?list=PLF706B428FB7BD52C
+- mit-18-086-mathematical-methods-for-engineers-ii--spring-06
+  https://www.youtube.com/playlist?list=PL3A13781649466805
+
+## Computer graphics
+
+- computer graphics, fall 2009
+  https://www.youtube.com/playlist?list=PL_w_qWAQZtAZhtzPI5pkAtcUVgmzdAP8g
+- advanced visualization (course)
+  https://www.youtube.com/playlist?list=PLslgisHe5tBNnySlj9TlL-n-4jNEK-xgi
+- ray tracing for global illumination
+  https://www.youtube.com/playlist?list=PLslgisHe5tBPckSYyKoU3jEA4bqiFmNBJ
+- computational geometry
+  https://www.youtube.com/playlist?list=PLESnaHRvLM-72xIXf8dL2EOqN8UgAZMj7
