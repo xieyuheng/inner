@@ -52,6 +52,9 @@ Patterns:
   - NbE.
   - Inductive types.
   - Implicit and vague arguments.
+  - Telescope.
+    - Telescope is used in data construction, function application and class telescope.
+    - Node that, in our implementation, telescope is `env` (not `ctx`).
 
 # Side quests
 
@@ -138,10 +141,23 @@ and can be formalized in a logic programming language.
 
 ## Problem solving
 
-- polya: ~/inner/person/polya/mathematics-and-plausible-reasoning
+### Polya
+
+- ~/inner/person/polya/mathematics-and-plausible-reasoning
 
   - vol-2--patterns-of-plausible-inference.md
 
 ## software design
 
-- tdd: ~/watching/tdd/james-shore
+### TDD
+
+- ~/watching/tdd/james-shore
+
+### OOP
+
+- 模仿 "99 Bottles of OOP" 用中文的童谣来讲解 OOP
+
+  References:
+
+  - <https://en.wikipedia.org/wiki/99_Bottles_of_Beer>
+  - "The Complexity of Songs", Knuth, Donald.

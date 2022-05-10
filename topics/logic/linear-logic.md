@@ -32,9 +32,20 @@ Notes:
   - The additive conj `&` means we can choice to `send` different messages to the channel,
   - The additive disj `⊕` means we might `receive` different messages from the channel.
 
-- How about type of actor?
+  Note that, sending message is the dual of receiving message,
+  and conditional is done by receiving messages and pattern matching,
+  thus pattern matching is the dual of method call in object oriented programming.
 
-  It must be similar, because actor and channel+process can simulate each other.
+  - Recall Sandi Metz' anti-conditional programming.
+
+- TODO How about type of actor?
+
+  - Maybe it is similarly linear logic,
+    because actor and channel+process can simulate each other.
+
+  - Maybe it is not linear logic,
+    because given a actor, we can only send messages to it,
+    but we can not receive messages from it.
 
 | symbol   | derive               | name (Girard) | identifier | meaning                                         |
 | -------- | -------------------- | ------------- | ---------- | ----------------------------------------------- |
