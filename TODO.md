@@ -47,6 +47,7 @@ This quest is beautifully formulated by Vladimir Voevodsky as the following:
   and applications will provide feedback to improve our design.
 
   - **[side quest]** Formalize category theory
+  - **[side quest]** Formalize algebraic topology
 
 Patterns:
 
@@ -92,8 +93,6 @@ Higher dimensional algebraic structure.
 
 - **[problem]** From the point of view of type theory,
   how lowdim project different from HOTT?
-
-  # formalization of algebraic topology
 
 - **[problem]** Can we use such implementation in Geometric modeling?
 
