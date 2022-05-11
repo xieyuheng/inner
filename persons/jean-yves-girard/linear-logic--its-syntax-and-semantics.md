@@ -496,6 +496,16 @@ TODO
 
 # 2 THE SEMANTICS OF LINEAR LOGIC
 
+## **Xie**: Two kinds of modelling
+
+By model theory of a logic,
+we mean a mathematic structure to model the space of propositions of the logic.
+
+- This is what Girard means by saying "it (phase space) only modelizes provability".
+
+By denotational semantics of a logic,
+we mean a mathematic structure to model the space of terms of the logic.
+
 ## 2.1 The phase semantics of linear logic
 
 The most traditional, and also the less interesting semantics of linear logic
@@ -531,6 +541,10 @@ Recall model theory.
 In logic we use inference rules to prove equations between connectives,
 and we say a mathematic structure is the logic's model,
 if the equations agree with the equivalent relation of the model.
+
+- Logic equation is defined by "iff",
+  a model might also be able to interpret inequation,
+  which is defined by "if".
 
 We often use an algebric structure as model.
 
