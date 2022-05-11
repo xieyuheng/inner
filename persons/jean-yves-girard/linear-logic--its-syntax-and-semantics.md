@@ -555,6 +555,10 @@ we mean a mathematic structure to model the space of propositions of the logic.
 By denotational semantics of a logic,
 we mean a mathematic structure to model the space of terms of the logic.
 
+- This is why, in categorical logic, we say that
+  "Cartesian closed category is the internal language
+  of simply typed lambda calculus.".
+
 ## 2.1 The phase semantics of linear logic
 
 The most traditional, and also the less interesting semantics of linear logic
