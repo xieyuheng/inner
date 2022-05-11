@@ -55,7 +55,56 @@ C = to get a pack of Marlboro.
 
 ### 1.1.3 Linear negation
 
-TODO
+The most important linear connective is linear negation (`nil`).
+
+Since linear implication will eventually be rewritten as `~A ⅋ B`,
+`nil` is the only negative operation of logic.
+
+Linear negation behaves like transposition in linear algebra
+(`A —o B` will be the same as `~B —o ~A`),
+i.e. it expresses a duality, that is, a change of standpoint:
+
+```
+action of type A = reaction of type ~A
+```
+
+Other aspects of this duality are
+
+- output/input
+- answer/question
+- send/receive
+
+The main property of `~` is that `~~A` can, without any problem,
+be identified with `A` like in classical logic.
+
+But linear logic has a very simple constructive meaning,
+whereas the constructive contents of classical logic
+is by no means ... obvious.
+
+The involutive character of "nil" ensures De Morgan-like laws
+for all connectives and quantifiers. e.g.
+
+```
+∃x A = ~(∀x ~A)
+```
+
+which may look surprising at first sight,
+especially if we keep in mind that
+the existential quantifier of linear logic is *effective*:
+typically, if one proves `∃x A`,
+then one proves `A[t/x]` for a certain term `t`.
+
+This exceptional behaviour of "nil" comes from the fact that
+`~A` negates (i.e. reacts to) a single action of type `A`,
+whereas usual negation only negates some (unspecified) iteration of `A`,
+what usually leads to a
+[Herbrand disjunction](https://en.wikipedia.org/wiki/Herbrand%27s_theorem)
+of unspecified length,
+whereas the idea of linear negation is not connected to
+anything like a Herbrand disjunction.
+
+Linear negation is therefore more primitive, but also stronger
+(i.e. more difficult to prove) than usual negation.
 
 ### 1.1.4 States and transitions
 
