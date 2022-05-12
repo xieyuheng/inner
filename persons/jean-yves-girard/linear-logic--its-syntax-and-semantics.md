@@ -672,13 +672,11 @@ We will interpret a proof of a proposition as a clique of the coherent space.
 
 TODO interpret connectives
 
+### 2.2.4 Interpretation of MALL
+
 TODO interpret identity rule
 
 TODO interpret cut rule
-
-### 2.2.4 Interpretation of MALL
-
-TODO
 
 ### 2.2.5 Exponentials
 
