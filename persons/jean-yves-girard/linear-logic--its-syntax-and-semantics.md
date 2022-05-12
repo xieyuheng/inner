@@ -90,7 +90,7 @@ for all connectives and quantifiers. e.g.
 
 which may look surprising at first sight,
 especially if we keep in mind that
-the existential quantifier of linear logic is *effective*:
+the existential quantifier of linear logic is _effective_:
 typically, if one proves `∃x A`,
 then one proves `A[t/x]` for a certain term `t`.
 
@@ -545,7 +545,7 @@ TODO
 
 # 2 THE SEMANTICS OF LINEAR LOGIC
 
-## **Xie**: Two kinds of modelling
+## Xie: Two kinds of modelling
 
 By model theory of a logic,
 we mean a mathematic structure to model the space of propositions of the logic.
@@ -585,9 +585,114 @@ TODO
 
 ### 2.2.1 Implicit versus explicit
 
+First observe that the cut rule is a way to formulate modus ponens.
+
+It is the essential ingredient of any proof.
+
+If I want to prove B, I usually try to prove a useful lemma A and,
+assuming A, I then prove B.
+
+All proofs in nature, including the most simple ones,
+are done in this way.
+
+Therefore, there is an absolute evidence that
+the cut rule is the only rule of logic
+that cannot be removed:
+without cut it is no longer possible to reason.
+
+Now against common sense Gentzen proved his Hauptsatz;
+for classical and intuitionistic logics
+(and remember that can be extended to linear logic without problems).
+
+This result implies that we can make proofs without cut,
+i.e. without lemmas (i.e. without modularity, without ideas, etc.).
+
+Formal reasoning (any reasoning) is about implicit data.
+This is because it is more convenient to forget.
+
+So, when we prove `A V B`, we never know which side holds.
+
+- **Xie**: By "making implicit explicit"
+  Girard means inlining and partial evaluation.
+
+  In SICP's primitive/composition/abstraction,
+  implicit corresponds to abstraction.
+
+### 2.2.2 Generalities about denotational semantics
+
+- **Xie**: The purpose of denotational semantics,
+  is to model the space of proofs.
+
+  The model should respect the reduction (cut-elimination) of proof.
+
+  A model can a abstract structure like in categorical logic,
+  or be a concrete structure (for example, a proof is a set).
+
+A proof will be interpreted as a [**coherent space**](https://en.wikipedia.org/wiki/Coherent_space),
+which is simplified [Scott domain](https://en.wikipedia.org/wiki/Scott_domain)
+
+These spaces were first intended as denotational semantics
+for intuitionistic logic, but it turned out that
+there were a lot of other operations hanging around.
+
+Linear logic first appeared as a kind of linear algebra built on coherent spaces;
+then linear sequent calculus was extracted out of the semantics.
+
+- **Xie**: The above is important historical note about linear logic.
+
+Recently Ehrhard, see [9], this volume, refined coherent semantics
+into hypercoherences, with applications to the question of sequentiality.
+
+### 2.2.3 Coherent spaces
+
+A **coherent space** is a **reflexive undirected graph**.
+
+| coherent space     | graph |
+| ------------------ | ----- |
+| atom               | node  |
+| coherence relation | edge  |
+
+Where edges between nodes are unique, because they are viewed as relation.
+
+A [**clique**](<https://en.wikipedia.org/wiki/Clique_(graph_theory)>) is a [complete subgraph](https://en.wikipedia.org/wiki/Complete_graph).
+
+We will interpret a linear logic proposition (a type) as a coherent space.
+
+- **Xie**: Since a coherence space is an undirected graph,
+  we can view it as a category (with a [representable functor](https://en.wikipedia.org/wiki/Representable_functor)),
+  and the space of propositions a category of categories.
+
+  After then, we can seek pure algebric definitions of connectives.
+
+In fact a coherent space can also be
+presented as a set of cliques
+(a node is a 1-node clique).
+
+We will interpret a proof of a proposition as a clique of the coherent space.
+
+TODO interpret connectives
+
+TODO interpret identity rule
+
+TODO interpret cut rule
+
+### 2.2.4 Interpretation of MALL
+
 TODO
 
-## **Xie**: The model and the logic are one
+### 2.2.5 Exponentials
+
+TODO
+
+### 2.2.6 The bridge with intuitionism
+
+TODO
+
+### 2.2.7 The bridge with classical logic
+
+TODO
+
+## Xie: The model and the logic are one
 
 Recall model theory.
 
@@ -603,6 +708,12 @@ We often use an algebric structure as model.
 
 Since we are using postfix notations as syntax,
 the space of terms itself is a monoid.
+
+- Elements in the monoid is typed by linear Logic propositions,
+  we may need to introduce an _error element_,
+  to make product between monoid elements totel,
+  otherwise we will be using category (instead of monoid)
+  to model the space of terms.
 
 The language by which we record the steps of inferences is algebric,
 i.e. the language by which we do proof is algebric.
@@ -620,6 +731,11 @@ The model and the logic are one.
   the semantics should be an algebric structure based on category theory.
 
   This constraint is not necessary in general.
+
+- The internal syntax of linear logic
+  is said to be [symmetric monoidal (closed) category](https://en.wikipedia.org/wiki/Symmetric_monoidal_category),
+  or to be [braided monoidal category](https://en.wikipedia.org/wiki/Braided_monoidal_category)
+  which is more expressive about exchange rule.
 
 ## 2.3 Geometry of interaction
 
