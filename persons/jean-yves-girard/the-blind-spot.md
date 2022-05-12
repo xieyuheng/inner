@@ -117,6 +117,9 @@ This approach is very modern, in the sense that
 
 ## 1.3 Gödel and after
 
+### 1.3.1 Failure and decay
+
+[after some bad notes about Hilbert...]
 Surely Gentzen committed the irrecoverable mistake of showing that a
 proof establishes a truth, but what he actually produced was not a
 truism one could be afraid of (axioms are true, rules preserve truth
