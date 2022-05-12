@@ -149,7 +149,25 @@ natural deduction, proof-nets, geometry of interaction, etc.
 At the end of the book, Gentzen's theorem, "cut-elimination",
 will eventually be rephrased in terms of ... operator algebras.
 
+### 1.3.2 Second readings and renewal
+
+Note about [Georg Kreisel](https://en.wikipedia.org/wiki/Georg_Kreisel)'s works.
+
+### 1.3.3 And tomorrow?
+
+TODO
+
 ## 1.A Essentialism vs. platonism
+
+### 1.A.1 Platonism
+
+TODO
+
+### 1.A.2 Essentialism and morphology
+
+TODO
+
+## 1.B Perfect vs. imperfect
 
 TODO
 
