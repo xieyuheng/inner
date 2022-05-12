@@ -117,7 +117,34 @@ This approach is very modern, in the sense that
 
 ## 1.3 Gödel and after
 
-TODO
+Surely Gentzen committed the irrecoverable mistake of showing that a
+proof establishes a truth, but what he actually produced was not a
+truism one could be afraid of (axioms are true, rules preserve truth
+and so...).
+
+He gave, in a hesitating terminology,
+an interactive definition of truth,
+the proof appearing as a winning strategy
+in a sort of "game of truth".
+
+Yes, this proof is even less convincing than the second one,
+which already convinced only the true believers; but, who cares?
+This was the first interactive interpretation of logic.
+
+In order to carry out his consistency Program,
+Gentzen had to create tools,
+essentially the "calculus of sequents".
+
+This calculus, a weapon created for a dubious battle,
+remains one of the main logical achievements of the XXth century.
+
+We shall study it in detail,
+starting with the original formulation
+and introducing more and more sophisticated avatars:
+natural deduction, proof-nets, geometry of interaction, etc.
+
+At the end of the book, Gentzen's theorem, "cut-elimination",
+will eventually be rephrased in terms of ... operator algebras.
 
 ## 1.A Essentialism vs. platonism
 
