@@ -29,6 +29,8 @@ A dichotomy:
   The existentialist world is a lawless world, in which
   contestation is total and constant.
 
+  - **Xie**: Hegelian dialectic.
+
   The opposition essence/existence is at the very heart of typing (Section 6.F).
 
 ## 1.2 Essentialist and existentialist projects
@@ -87,6 +89,12 @@ This approach is very modern, in the sense that
   Proofs are no longer those sequences of symbols
   created by a crazy bureaucrat:
   they become functions, morphisms.
+
+  - **Xie**: "morphisms" means to use structures in category theory
+    as denotational semantics of logic.
+
+    This is kind of study is called
+    [categorical logic](https://en.wikipedia.org/wiki/Categorical_logic).
 
 - **Tertium non datur**: Hilbert accepts the excluded middle;
   not that he believes in a preexisting truth value for A,
