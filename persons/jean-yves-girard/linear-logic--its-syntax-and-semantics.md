@@ -611,6 +611,16 @@ Thus the logic is its own model.
 
 The model and the logic are one.
 
+- Note that, in categorical logic,
+  the denotational semantics is already an algebric structure,
+  just the term syntax is not optimized for
+  function composition (but optimized for function application).
+
+  In categorical logic, a constraint is that
+  the semantics should be an algebric structure based on category theory.
+
+  This constraint is not necessary in general.
+
 ## 2.3 Geometry of interaction
 
 By the electronic analogy,
