@@ -567,24 +567,10 @@ Therefore it only modelizes it only modelizes provability, and not proofs.
 
 ### 2.1.1 Phase spaces
 
-- **Xie**: TODO We use monoid act on itself to denote element of `-o`.
-
 - **Xie**: Girard said this semantics is less interesting,
   because it only modelizes provability.
 
   But we can actually view an element of a fact as a proof.
-
-- **Xie**: TODO Note the relation between the use of monoid and stack-based postfix notations.
-
-- **Xie**: TODO Negation should not be interpreted as "implying false",
-  but be interpreted as linear assignment (thus constructive).
-
-- **Xie**: TODO Try to interpret linear logic connectives (without concurrency).
-
-- **Xie**: TODO If we view elements of monoid as proofs,
-   we also need to interpret cut rule.
-
-- **Xie**: TODO Maybe interaction nets is exactly the presentation theory of monoid!
 
 ### 2.1.2 Interpretation of the connectives
 
