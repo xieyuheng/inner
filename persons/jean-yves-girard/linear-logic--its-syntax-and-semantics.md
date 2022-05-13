@@ -577,7 +577,7 @@ Therefore it only modelizes it only modelizes provability, and not proofs.
 - **Xie**: TODO Note the relation between the use of monoid and stack-based postfix notations.
 
 - **Xie**: TODO Negation should not be interpreted as "implying false",
-  but be interpreted as linear assignment.
+  but be interpreted as linear assignment (thus constructive).
 
 - **Xie**: TODO If we view elements of monoid as proofs,
    we also need to interpret cut rule.
