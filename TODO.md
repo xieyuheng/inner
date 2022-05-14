@@ -11,8 +11,7 @@ author: Xie Yuheng
 
 # TODO
 
-- Term syntax for linear logic -- Simple types first.
-  - terms (monoid), types (ring)
+- Term syntax for linear logic -- simple types first.
 - Use linear logic as type system of inet.
 - Implement optimal beta-reduction by inet.
 
