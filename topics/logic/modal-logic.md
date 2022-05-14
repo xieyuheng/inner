@@ -2,6 +2,12 @@
 title: Modal Logic
 ---
 
+# Notes
+
+The idea of modal logic comes from
+the grammar of languages like English,
+how about ancient Chinese?
+
 # Links
 
 - [Modal logic, by Kane B, (video lectures)](https://www.youtube.com/playlist?list=PLXKKIUdnOESGk43pUg3NTkRWjglvKXKi7)
