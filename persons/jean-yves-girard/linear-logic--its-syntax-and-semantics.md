@@ -34,7 +34,7 @@ can be decomposed into exponential and linear implication:
 
 ### 1.1.2 The two conjunctions
 
-```plaintext
+```
 A = to spend $1,
 B = to get a pack of Camels,
 C = to get a pack of Marlboro.
