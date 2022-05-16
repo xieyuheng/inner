@@ -1,5 +1,6 @@
-What Distinguishes a Person from a Word C. S. Peirce's Thought
-==============================================================
+---
+title: What Distinguishes a Person from a Word C. S. Peirce's Thought
+---
 
 - 感知 实体
 - 抽象的实体 -- 质量 力 惯性 引力 时间 空间

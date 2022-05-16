@@ -1,9 +1,8 @@
-# The Fixation of Belief
-
-------
-- Author: Charles Sanders Peirce
-- Date: 1877
-------
+---
+title: The Fixation of Belief
+author: Charles Sanders Peirce
+year: 1877
+---
 
 ### I (CP5.358)
 

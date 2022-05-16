@@ -1,6 +1,5 @@
-# On the algebra of logic
-
-------
-- Author: Charles Sanders Peirce
-- Date: 1880
-------
+---
+title: On the algebra of logic
+author: Charles Sanders Peirce
+year: 1880
+---
