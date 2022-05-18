@@ -12,6 +12,8 @@ author: Xie Yuheng
 # TODO
 
 - Term syntax for linear logic -- simple types first.
+  - How does the algebra of linear logic connectives
+    different from boolean lattice?
 - Analysis Christopher Alexander's "A Pattern Language",
   to use patterns to record my knowledge.
   - Case study the structure of Martin Fowler's homepage.
