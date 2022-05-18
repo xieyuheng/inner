@@ -70,15 +70,15 @@ This quest is beautifully formulated by Vladimir Voevodsky as the following:
 
   Fulfilling types make it easy to formalize some concepts of category theory.
 
-## JoJo calculus
+## JoJo Calculus
 
 Use postfix notations as syntax.
 
 A language on which categorical semantics would fail.
 
-A language whose type system scale to higher dimensions.
+To view a type system as a homomorphism between monoids.
 
-## Cell complex
+## Cell Complex
 
 Higher dimensional algebraic structure.
 
