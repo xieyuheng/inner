@@ -3,11 +3,15 @@ title: Introduction
 author: Xie Yuheng
 ---
 
-To summarize patterns in our implementation of cicada language.
+By "language" I mean formal language,
+such as programming language,
+language for logic induction,
+and language for querying database.
 
-TODO Why this book?
+The patterns in this book summarize my experiences of
+implementing cicada language.
 
-TODO Why a book like this might be a bad idea?
+The form of a problem might be "How to implement a language feature?"
 
 Categories:
 
