@@ -13,6 +13,7 @@ author: Xie Yuheng
 
 - Analysis Christopher Alexander's "A Pattern Language",
   to use patterns to record my knowledge.
+  - Case study the structure of Martin Fowler's homepage.
 - Term syntax for linear logic -- simple types first.
 - Use linear logic as type system of inet.
 - Implement optimal beta-reduction by inet.
