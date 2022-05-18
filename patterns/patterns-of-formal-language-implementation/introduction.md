@@ -9,7 +9,12 @@ TODO Why this book?
 
 TODO Why a book like this might be a bad idea?
 
-Patterns:
+Categories:
+
+- Syntax
+- Type System
+
+# Syntax
 
 - **Lexical Scope and Closure**
 
@@ -32,6 +37,8 @@ Patterns:
   Use statements to support features like module system (with side effects).
 
   Use statements to provide Interactive feedback.
+
+# Type System
 
 - **Bidirectional Type Checking**
 
