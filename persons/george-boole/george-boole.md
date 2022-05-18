@@ -1,5 +1,5 @@
 ---
-title: Boole
+title: George Boole
 ---
 
 # a treatise on differential equation
