@@ -39,3 +39,14 @@ adjacenct relation can be studied without the concept of equivalence.
 
 It is exciting to know we can study two subjects together,
 but it is also important to know it is only one way of interpretation.
+
+Examples in which we almost forget "it is only one way of interpretation":
+
+- [Homotopy type theory](https://en.wikipedia.org/wiki/Homotopy_type_theory)
+  always wants to interpret higher order topological objects
+  as higher order equivalenct relations.
+
+- Forget that, concurrency is only one way of interpreting
+  [linear logic](https://en.wikipedia.org/wiki/Linear_logic)'s additive connectives,
+  it is enough to use the duality between input and output
+  to interpret the duality between connectives.
