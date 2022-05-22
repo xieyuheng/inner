@@ -125,6 +125,10 @@
 
 ## Life
 
+- Whatever you can do or dream you can do, begin it.
+  Boldness has genius, magic and power in it!
+  - Goethe
+
 - If I abandoned this project I would be a man without dreams, and I don't want to live like that.
   I live my life, I end my life with this project.
   - Werner Herzog
