@@ -1,6 +1,6 @@
 ---
 title: Practical Object-Oriented Design
-author: Sandi Marts
+author: Sandi Metz
 year: 2019
 ---
 
