@@ -217,3 +217,10 @@
   lies in its descriptive ability (not its computing ability).
   - Edgar Frank Codd
   - A Relational Model of Data for Large Shared Data Banks, 1970
+
+## Refactoring
+
+- Extract a method whenever there's a difference between
+  **what** a block of code does and
+  **how** it does it.
+  - Martin Fowler
