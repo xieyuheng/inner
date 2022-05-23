@@ -1,7 +1,7 @@
 ---
 title: Test-Driven Development By Example
 author: Kent Beck
-date: 2002
+year: 2002
 ---
 
 TODO
