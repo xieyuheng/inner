@@ -1,22 +1,24 @@
-#+title: 99 bottles of OOP
-#+author: Sandi Metz
-#+date: 2021
+---
+title: 99 bottles of OOP
+author: Sandi Metz
+year: 2021
+---
 
-* 1. Rediscovering Simplicity
+# 1. Rediscovering Simplicity
 
-** What kind of code should we write first?
+## What kind of code should we write first?
 
 Write Shameless Green code first.
 - TDD will teach us how to do this.
 - abstraction should be guided by new requirements, keep it simple when there is no new requirements
 - new design with new abstraction should be achieved by refactoring
 
-** How should we measure code quality? is it even possible?
+## How should we measure code quality? is it even possible?
 
 ABC Metric -- Assignments, Branches and Conditions,
 is a good quantitative measure of code quality.
 
-** What questions can help us understand the cost and value of code?
+## What questions can help us understand the cost and value of code?
 
 Questions about cost and value of code:
 
@@ -29,16 +31,16 @@ Among the above (now) is the most import question.
 Beside the above, domain questions is another important kind of questions.
 - Which is about understanding.
 
-* 2. Test Driving Shameless Green
+# 2. Test Driving Shameless Green
 
-** Why we wish to "getting green first"?
+## Why we wish to "getting green first"?
 
 Getting green first, Shameless Green maximum understandability
 but is generally unconcerned with changeability.
 
 Because we'd better achieve understandability and changeability in steps.
 
-** How to achieve understandability and changeability
+## How to achieve understandability and changeability
 
 To achieve understandability and changeability,
 we, little by little, separate the things that change
@@ -48,7 +50,7 @@ Like reversing the distribution of multiplication over addition:
 
 x * y + x * z => x * (y + z)
 
-** Why we wish to delay abstraction?
+## Why we wish to delay abstraction?
 
 Because we want to wait for more information.
 
@@ -57,7 +59,7 @@ Delay abstraction, wait for more information.
 It's better to tolerate duplication
 than to anticipate the wrong abstraction.
 
-** What questions can help us understand the cost and value of making abstraction?
+## What questions can help us understand the cost and value of making abstraction?
 
 Ask the following questions, before making an abstraction:
 
@@ -65,53 +67,53 @@ Ask the following questions, before making an abstraction:
 2. What is the future cost of doing nothing now?
 3. When will the future arrive, or how soon will I get more information?
 
-** During the search for Shameless Green, We should tolerate what kind of duplication?
+## During the search for Shameless Green, We should tolerate what kind of duplication?
 
 When it isolates a new independent example,
 for which the underlying abstraction is not clear yet.
 
-** And, we should not tolerate what kind of duplication?
+## And, we should not tolerate what kind of duplication?
 
 Those kind of duplication that blurs the responsibility.
 
-** When should we jump over the small steps of TDD?
+## When should we jump over the small steps of TDD?
 
 Never.
 
 Because you do not always know what is actually right.
 
-** What is Kent Beck's Triangulation? [三角测量法]
+## What is Kent Beck's Triangulation? [三角测量法]
 
 Targeting multiple tests in one implementation step.
 Because you can not fake multiple tests.
 
-** How should we design public API?
+## How should we design public API?
 
 As method provider, we should think about message sender,
 and help them to know as less as possible.
 
 Bwtween sender and provider, to know is to depend.
 
-** What is the first step in learning the art of testing?
+## What is the first step in learning the art of testing?
 
 The first step in learning the art of testing
  is to understand how to write tests that
 confirm what your code does
 without any knowledge of how your code does it.
 
-* 3. Unearthing Concepts
+# 3. Unearthing Concepts
 
-** When a new requirement arrive, what we learned?
+## When a new requirement arrive, what we learned?
 
 The arrival of a new requirement tells you two things:
 - Exactly how the code should change
 - The code need to be easy to change
 
-** What is your licence to improve some (Shameless Green) code?
+## What is your licence to improve some (Shameless Green) code?
 
 Someone has asked for a change.
 
-** What is the "open" principle of SOLID?
+## What is the "open" principle of SOLID?
 
 O - Open-Closed
 
@@ -129,15 +131,15 @@ then add the new code.
 It is important to note that, the sum type of algebra datatype, is about being close.
 Being close, we can make sure all cases are covered in a "proof by case" (function is proof).
 
-** If we do not know how to open the code, what should we do?
+## If we do not know how to open the code, what should we do?
 
 We should remove the easiest to fix and best understood code smell.
 
-** How to find code smells?
+## How to find code smells?
 
 Make a list of the things you dislike about your code.
 
-** How to achieve good abstraction?
+## How to achieve good abstraction?
 
 Use the "Flocking Rules":
 
@@ -147,7 +149,7 @@ Use the "Flocking Rules":
 
 DRYing out sameness has some value, but DRYing out difference has more.
 
-** Why "Flocking"?
+## Why "Flocking"?
 
 Birds flock, fish school, and insects swarm.
 
@@ -192,7 +194,7 @@ by doing this steps locally we can achieve some kind of normal form in a ring.
 
 - Ring: https://en.wikipedia.org/wiki/Ring_(mathematics)
 
-** What can we do when we are in the struggle for a name?
+## What can we do when we are in the struggle for a name?
 
 There are two pieces of information that can help in the struggle for a name.
 
@@ -217,9 +219,9 @@ One is a general rule and the other is the new requirement:
   it can help to imagine other concrete things
   that might also fall into the same category.
 
-* 4. Practicing Horizontal Refactoring
+# 4. Practicing Horizontal Refactoring
 
-** Should we think far ahead for creating better abstraction?
+## Should we think far ahead for creating better abstraction?
 
 You can use your common sense, but in general you should not.
 
@@ -232,12 +234,12 @@ pays off by making it easier to recognize perfect names later.
 
 You can learn something during these steps, do not jump.
 
-** How to reducing the number of dependencies imposed upon message senders?
+## How to reducing the number of dependencies imposed upon message senders?
 
 By requiring that receivers return trustworthy objects,
 which is a generalization of the Liskov Substitution Principle.
 
-** What are the benefits of abstractions?
+## What are the benefits of abstractions?
 
 Abstractions are beneficial in many ways.
 
@@ -256,15 +258,15 @@ But to get this last benefit,
 you must refer to an abstraction
 in every place where it applies.
 
-** Why the ABC score is worse, but we consider the code quality improved?
+## Why the ABC score is worse, but we consider the code quality improved?
 
 Because it revealed and isolated a lot of useful concepts.
 
 Maybe a better score is (ABC / number of domain concepts).
 
-* 5. Separating Responsibilities
+# 5. Separating Responsibilities
 
-** What is the truth about refactoring?
+## What is the truth about refactoring?
 
 Sometimes some refactoring is wrong, and we need to backtrack.
 This is expected because refactoring is an idea
@@ -273,7 +275,7 @@ that help us to explore a problem domain safely.
 If after a refactoring, the code is still not open to the new requirement.
 Don't worry, have faith, iterate, find new code smells to attack.
 
-** What questions can help us find code smells?
+## What questions can help us find code smells?
 
 The following questions help separating responsibilities.
 
@@ -291,21 +293,21 @@ Look at the methods:
 7. Do the methods contain any code other than the conditional?
 8. Does each method depend more on the argument that got passed, or on the class as a whole?
 
-** How does naming methods and naming classes different?
+## How does naming methods and naming classes different?
 
 The rule about naming can thus be amended:
 while you should continue to name methods after what they mean,
 classes can be named after what they are.
 
-* 6. Achieving Openness
+# 6. Achieving Openness
 
-** What is the "Data Clumps" code smell?
+## What is the "Data Clumps" code smell?
 
 If these two things always appear together,
 it's a signal that this pairing represents a deeper concept,
 and that concept should be named.
 
-** Why sometimes programmers add blank line in code?
+## Why sometimes programmers add blank line in code?
 
 Programmers add blank lines to signify changes of topic.
 
@@ -314,7 +316,7 @@ the existence of multiple responsibilities,
 which makes code harder to understand when reading,
 and easier to harm when changing.
 
-** How does skilled programmers choose the best solution?
+## How does skilled programmers choose the best solution?
 
 For example, to fix the "Switch Statement" code smell,
 should we use the "Replace Conditional with State/Strategy"
@@ -345,13 +347,13 @@ or revert all and try again.
 Practice builds intuition.
 Do it enough, and you'll seem magical too.
 
-** What is polymorphism in OOP?
+## What is polymorphism in OOP?
 
 In OO, polymorphism refers to the idea of
 having many different kinds of objects
 that respond to the same message.
 
-** What is a "factory"?
+## What is a "factory"?
 
 When several classes play a common role,
 a factory is a method whose job is to
@@ -360,7 +362,7 @@ return the right role-playing object.
 - This means that "Replace Conditional with Polymorphism" can not remove all conditionals,
   but can merge all conditionals into one conditional in a "factory".
 
-** With polymorphism in place what do we know about domain question about variation?
+## With polymorphism in place what do we know about domain question about variation?
 
 Domain question about variation are questions like the following form:
 
@@ -370,30 +372,30 @@ Domain question about variation are questions like the following form:
 The subtype hierarchy developed for the polymorphism,
 looks like part of a concept lattice in formal concept analysis.
 
-** How to change return type of a polymorphic method in a step by step way?
+## How to change return type of a polymorphic method in a step by step way?
 
 By temporarily allow functions that use the return value to accept both types.
 
-* 7. Manufacturing Intelligence
+# 7. Manufacturing Intelligence
 
-** How factory different from other methods that use conditionals?
+## How factory different from other methods that use conditionals?
 
 Factories don't know what to do;
 instead, they know how to choose who does.
 
 A conditional that selects an object v.s. A conditional that supplies behavior.
 
-** What knowledge do factories capture?
+## What knowledge do factories capture?
 
 Knowledge of the class names of the variants,
 and of the logic necessary to choose the correct one,
 can be captured in factories.
 
-** What is a factory's responsibility?
+## What is a factory's responsibility?
 
 A factory's responsibility is to manufacture the right object for a given role.
 
-** What dimensions factories can vary along?
+## What dimensions factories can vary along?
 
 Factories can vary along these dimensions:
 
@@ -403,7 +405,7 @@ Factories can vary along these dimensions:
 3. variant own creating logic
    - for example, by a `try_to_create` static method
 
-** What is a example use of factories in language implementation?
+## What is a example use of factories in language implementation?
 
 Parser is.
 
@@ -413,7 +415,7 @@ Thus maybe factories should not own all the responsibilities.
 But maybe we need to support multiple style of syntax,
 so the factories should own all the responsibilities.
 
-** What are ways to keep a factory open to new variants?
+## What are ways to keep a factory open to new variants?
 
 1. Use meta programming.
 2. The factory
@@ -424,7 +426,7 @@ For example, web components use (2).
 
 Note that, in (2) variants knows the factory.
 
-** Why experienced programmers are good at writing change-tolerant code?
+## Why experienced programmers are good at writing change-tolerant code?
 
 One reason experienced programmers are good at writing change-tolerant code
 is that they've built up a set of internal guidelines
@@ -433,13 +435,13 @@ about how to guess well.
 They understand that although dependencies can't be avoided,
 they can be deliberately chosen with an eye towards stability.
 
-* 8. Developing a Programming Aesthetic
+# 8. Developing a Programming Aesthetic
 
-** What we should do about programming aesthetic?
+## What we should do about programming aesthetic?
 
 While learning from others, it is more important to develop your own.
 
-** What is intuition?
+## What is intuition?
 
 Judgement is informed by past experience.
 
@@ -450,7 +452,7 @@ Intuition is a form of pattern matching
 performed by your unconscious mind,
 trained throughout your career on scores of code examples.
 
-** How should we deal with our intuition?
+## How should we deal with our intuition?
 
 Intuition is generated by the big super-computer of your unconscious mind.
 Intuition not well expressed by words are just feelings.
@@ -465,7 +467,7 @@ Intuition drives action,
 justified by aesthetics,
 and guided by heuristics.
 
-** What is Dependency Inversion Principle (DIP)?
+## What is Dependency Inversion Principle (DIP)?
 
 1. High-level modules should not depend upon low-level modules.
    Both should depend upon abstractions.
@@ -479,13 +481,13 @@ In this definition module means an encapsulated,
 named unit of functionality in a program.
 You can substitute the words "classes" or "objects" for "modules."
 
-** How to create new role and do dependency injection?
+## How to create new role and do dependency injection?
 
 Isolate the behavior you want to vary.
 
 One of the most fundamental concepts in OO is to isolate the behavior you want to vary.
 
-** When injecting collaborators, should you inject classes or instances of those classes?
+## When injecting collaborators, should you inject classes or instances of those classes?
 
 We should inject instances.
 
@@ -504,7 +506,7 @@ The practical effect of this rule is to
 prohibit the use of injected objects in message chains
 that violate the Law of Demeter.
 
-** What is the Law of Demeter (LoD)?
+## What is the Law of Demeter (LoD)?
 
 The Law of Demeter says that from within a method, messages should be sent only to:
 
@@ -525,7 +527,7 @@ must be instances of classes associated with the following classes:
 (Objects created by M, or by functions or methods which M calls,
 and objects in global variables are considered as arguments of M.)
 
-** Why the we should obey the Law of Demeter?
+## Why the we should obey the Law of Demeter?
 
 The Law of Demeter effectively restricts the list of other objects
 to which an object may send a message.
@@ -536,7 +538,7 @@ an object may talk to its neighbors but not to its neighbor's neighbors.
 
 Objects may only send messages to direct collaborators.
 
-** How to cure Demeter violations?
+## How to cure Demeter violations?
 
 Use message forwarding.
 
@@ -544,11 +546,11 @@ Also to avoid encoding the names of existing objects
 into the names of the forwarding messages,
 We should think about design from the message senders point of view.
 
-** What is the difference between delegation and message forwarding?
+## What is the difference between delegation and message forwarding?
 
 In delegation sender also pass itself to receivers.
 
-** How to get a quick handle on the consequences of a code arrangement?
+## How to get a quick handle on the consequences of a code arrangement?
 
 One way is to attempt to test it.
 
@@ -556,7 +558,7 @@ Testing is the first form of reuse.
 
 It is all about feedback.
 
-** What does OOD teach us about when we want something?
+## What does OOD teach us about when we want something?
 
 If you want something, just ask for it.
 If the receiver doesn't know how to comply, teach it.
@@ -564,7 +566,7 @@ Don't be trapped by what's currently true,
 but instead, loosen coupling by designing a conversation
 that embodies what the message sender wants.
 
-** What does well-designed object-oriented applications consist of?
+## What does well-designed object-oriented applications consist of?
 
 Well-designed object-oriented applications consist of loosely-coupled objects
 that rely on polymorphism to vary behavior.
@@ -576,7 +578,7 @@ into sets of interchangeable objects
 that look the same from the outside
 but behave differently on the inside.
 
-** When using dependency injection, what should we do about object creation?
+## When using dependency injection, what should we do about object creation?
 
 Object creation should be pushed more towards the edges.
 
@@ -587,7 +589,7 @@ object creation begins to separate from object use.
 Object creation gets pushed more towards the edges, towards the outside,
 and the objects themselves interact more towards the middle, or the inside.
 
-** What rules experienced programmers know about class name, that make applications most easily adapt to the unknown future?
+## What rules experienced programmers know about class name, that make applications most easily adapt to the unknown future?
 
 Experienced object-oriented programmers know that applications most easily adapt to the unknown future if they:
 
@@ -602,7 +604,7 @@ Even so, you should be eternally alert for instance methods that reference class
 and perpetually on the lookout for ways to remove those references,
 by pushing object creation towards the edges.
 
-** What is a programming aesthetic?
+## What is a programming aesthetic?
 
 Well expressed intuition is aesthetic.
 
@@ -617,7 +619,7 @@ use actual words to explain your concerns and proposed improvements.
 A good programming aesthetic focuses attention
 on improvements that are likely to prove worthwhile.
 
-** What are some precepts that belong in everyone's object-oriented programming aesthetic?
+## What are some precepts that belong in everyone's object-oriented programming aesthetic?
 
 1. Put domain behavior on instances.
 2. Be averse to allowing instance methods to know the names of constants.
@@ -625,9 +627,9 @@ on improvements that are likely to prove worthwhile.
 4. Push object creation to the edges, expecting objects to be created in one place and used in another.
 5. Avoid Demeter violations, using the temptation to create them as a spur to search for deeper abstractions.
 
-* 9. Reaping the Benefits of Design
+# 9. Reaping the Benefits of Design
 
-** What can tests do?
+## What can tests do?
 
 Tests help us know if something breaks.
 
@@ -650,13 +652,13 @@ before new requirements cause you to to start reusing these objects.
 Writing tests will uncover every bit of overlooked tight coupling
 and immediately reward you for fixing it.
 
-** What should we test?
+## What should we test?
 
 Every class should have its own unit test, unless doing otherwise saves money.
 
 The allowed-to-skip-tests bar is high, but some code meets it.
 
-** When we are allowed to skip tests?
+## When we are allowed to skip tests?
 
 Creating a new class by following a recipe instead of by doing TDD is allowable,
 We are allowed to temporarily skip tests in this case.
@@ -672,7 +674,7 @@ not glue you to its current implementation.
 When they constrain rather than liberate,
 ask if they're worthwhile, and consider omitting them.
 
-** How to justify skipped tests?
+## How to justify skipped tests?
 
 In the rare case where you decide to forego giving a class its own unit test,
 you must be able to defend this decision with a clearly articulated justification.
@@ -681,7 +683,7 @@ In addition to size and complexity, visibility is also an important consideratio
 
 Visibility is determined by the context in which the class is known.
 
-** How to test Exp and Core class of a type system implementation?
+## How to test Exp and Core class of a type system implementation?
 
 I do not know yet, I know two choices:
 
@@ -692,18 +694,18 @@ If Exp class owns responsibilities of syntax and parsing, (1) would be simple.
 
 But (2) seems too expensive no matter how.
 
-** Why unit tests for each class is important?
+## Why unit tests for each class is important?
 
 Because integration test involves many objects in combination,
 the code could break quite far from the origin of the problem.
 This makes it hard to determine the cause of an error.
 
-** Why integration tests are important?
+## Why integration tests are important?
 
 Integration tests are great at proving the correctness of
 the collaboration between groups of objects.
 
-** How should we write unit tests?
+## How should we write unit tests?
 
 Unit tests ought to tell an illuminating story.
 
@@ -716,7 +718,7 @@ in the fewest number necessary,
 using the most intention-revealing expectations,
 and the least amount of code.
 
-** Why we should write tests first?
+## Why we should write tests first?
 
 It's far better to struggle with a test that you don't understand
 than to write code that you don't understand.
@@ -725,12 +727,12 @@ Tests force you to clarify your intentions because they make explicit assertions
 
 Code has no such pressure, and can be left a confusing mess forever.
 
-** What is an object's context?
+## What is an object's context?
 
 An object's context is its surrounding environment,
 or the interrelated conditions under which it can exist.
 
-** How to reduce a object's (or class') context?
+## How to reduce a object's (or class') context?
 
 After refactoring, some classes might still reflect the context they come from.
 
@@ -738,7 +740,7 @@ It might be helpful to remove some dependencies,
 generalize some methods,
 and rename the class after a more general concept.
 
-** How should we name our classes when using design patterns?
+## How should we name our classes when using design patterns?
 
 We should not include the name of a pattern in the name of a class.
 Because pattern names don't generally reflect concepts in your application.
@@ -747,19 +749,19 @@ We should search for names that add semantic meaning.
 
 We should not give up too soon on the hard problem of naming.
 
-** How to use interface in dynamicly typed language?
+## How to use interface in dynamicly typed language?
 
 Use test to test class has methods in the interface,
 maybe including number of arguments, and type of arguments.
 
-** After coding of refactoring, what should we do at last?
+## After coding of refactoring, what should we do at last?
 
 Check the code for one more time,
 to obliterating obsolete context.
 
 And peruse the complete listings and glory in your accomplishments.
 
-** What features allow object-oriented to interact with unanticipated variants without having to change?
+## What features allow object-oriented to interact with unanticipated variants without having to change?
 
 When designed with the following features,
 object-oriented code can interact with new
