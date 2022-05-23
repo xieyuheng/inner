@@ -9,6 +9,7 @@ year: 2021
 ## What kind of code should we write first?
 
 Write Shameless Green code first.
+
 - TDD will teach us how to do this.
 - abstraction should be guided by new requirements, keep it simple when there is no new requirements
 - new design with new abstraction should be achieved by refactoring
@@ -29,6 +30,7 @@ Questions about cost and value of code:
 Among the above (now) is the most import question.
 
 Beside the above, domain questions is another important kind of questions.
+
 - Which is about understanding.
 
 # 2. Test Driving Shameless Green
@@ -48,7 +50,7 @@ from the things that remain the same.
 
 Like reversing the distribution of multiplication over addition:
 
-x * y + x * z => x * (y + z)
+x _ y + x _ z => x \* (y + z)
 
 ## Why we wish to delay abstraction?
 
@@ -97,7 +99,7 @@ Bwtween sender and provider, to know is to depend.
 ## What is the first step in learning the art of testing?
 
 The first step in learning the art of testing
- is to understand how to write tests that
+is to understand how to write tests that
 confirm what your code does
 without any knowledge of how your code does it.
 
@@ -106,6 +108,7 @@ without any knowledge of how your code does it.
 ## When a new requirement arrive, what we learned?
 
 The arrival of a new requirement tells you two things:
+
 - Exactly how the code should change
 - The code need to be easy to change
 
@@ -126,7 +129,7 @@ When faced with a new requirement,
 first "open" the code for change,
 then add the new code.
 
-------
+---
 
 It is important to note that, the sum type of algebra datatype, is about being close.
 Being close, we can make sure all cases are covered in a "proof by case" (function is proof).
@@ -169,7 +172,7 @@ Thus, complex behavior emerges from the repeated application of simple rules.
 In the same way that the rules in this sidebar allow birds to flock,
 the "Flocking Rules" for code allow abstractions to appear.
 
-------
+---
 
 I found a correspondence of the "Flocking Rules" in algebra:
 
@@ -366,8 +369,8 @@ return the right role-playing object.
 
 Domain question about variation are questions like the following form:
 
-- Which ______ are most alike? In what way?
-- Which ______ are most different? In what way?
+- Which `______` are most alike? In what way?
+- Which `______` are most different? In what way?
 
 The subtype hierarchy developed for the polymorphism,
 looks like part of a concept lattice in formal concept analysis.
@@ -513,7 +516,7 @@ The Law of Demeter says that from within a method, messages should be sent only 
 1. objects that are passed in as arguments to the method
 2. objects that are directly available to this
 
-------
+---
 
 This is define in a worse way in "Object-Oriented Programming: An Objective Sense of Style":
 
