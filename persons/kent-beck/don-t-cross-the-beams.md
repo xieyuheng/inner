@@ -1,6 +1,7 @@
-# Don't Cross the Beams: Avoiding Interference Between Horizontal and Vertical Refactorings
-
-- By Kent Beck
+---
+title: "Don't Cross the Beams: Avoiding Interference Between Horizontal and Vertical Refactorings"
+author: Kent Beck
+---
 
 As many of my pair programming partners could tell you, I have the annoying habit of saying "Stop thinking" during refactoring. I've always known this isn't exactly what I meant, because I can't mean it literally, but I've never had a better explanation of what I meant until now. So, apologies y'all, here's what I wished I had said.
 
