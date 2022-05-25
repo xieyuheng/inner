@@ -14,3 +14,10 @@ title: Judea Pearl
   we call it environment.
   By the way, my definition of causality is
   encoding of the invariant elements in the environment.
+
+- An equation contains more information than its solution,
+  for an equation we can ask,
+  what will happen to the solution
+  if we change the connection,
+  but for the solution,
+  all information about connection are lost.
