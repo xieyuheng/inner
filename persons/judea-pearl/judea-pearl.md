@@ -20,4 +20,6 @@ title: Judea Pearl
   what will happen to the solution
   if we change the connection,
   but for the solution,
-  all information about connection are lost.
+  all information about connection and direction are lost.
+
+  - Algebra of assignments and structural causal model.
