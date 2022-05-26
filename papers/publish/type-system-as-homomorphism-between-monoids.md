@@ -33,7 +33,7 @@ given a term it can infer the type of this term.
 We say a "type system", because of
 the principle of type theory is
 
-> to study **terms** and **types** together.
+> To study **terms** and **types** together.
 
 and a homomorphism allow us to study the two monoids together.
 
@@ -41,7 +41,7 @@ The reverse is also true, given a type system,
 we can construct two monoids to be the space of terms and types.
 And we can interpret concepts in type system as equations in monoid.
 
-# Example: a syntax for the terms of linear logic
+# Example: A syntax for the terms of linear logic
 
 Let's define two concrete monoids and a homomorphism between them,
 to see the idea of this paper in action.
