@@ -282,7 +282,7 @@ infer(two) =
 infer(one Nat.add1) =
 infer(Nat.zero Nat.add1 Nat.add1) =
 infer(Nat.zero) infer(Nat.add1) infer(Nat.add1) =
-Nat Nat neg Nat Nat neg =
+Nat Nat neg Nat Nat neg Nat =
 Nat
 ```
 
