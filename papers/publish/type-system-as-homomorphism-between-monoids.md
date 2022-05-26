@@ -18,7 +18,7 @@ and the space of terms is a _concatenative programming language_ (like Forth and
 Some key points of our demonstration:
 
 - Negation of linear logic should NOT be interpreted as "implying false",
-  but be interpreted as type of _linear assignment_ (thus constructive).
+  but be interpreted as a type of _linear assignment_ (thus constructive).
 
 - Linear logic additive connectives can be interpreted without concurrency.
 
