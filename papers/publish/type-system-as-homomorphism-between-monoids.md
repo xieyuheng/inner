@@ -17,24 +17,39 @@ Linear logic additive connectives can be interpreted without concurrency.
 
 As presentation of of monoids.
 
-# A Syntax for The Terms of Linear Logic
+# Introduction
+
+If we have a homomorphism between two monoids,
+we can view this homomorphism as the `infer` function,
+given a term it can infer the type of this term.
+
+The reverse is also true, given a type system,
+we can construct two monoids to be the space of terms and types.
+
+And we can interpret concepts in type system as equations in monoid.
+
+# Example: a syntax for the terms of linear logic
 
 We can view a type system as a homomorphism between two monoids
-(or an endomorphism of a monoid).
+(or an endomorphism of one monoid).
 
 The domain of the homomorphism is the space of terms,
 the codomain of the homomorphism is the space of types.
 
 Let's define a concrete monoid to see this idea in action.
 
-We take the free monoid of symbols as the base monoid (the building block).
+TODO mention linear logic.
+
+We take _the free monoid of symbols_ as the base monoid (the building block).
 
 - An element of the monoid is defined to be a list of symbols.
+
 - The empty list is the identity element of the monoid,
   we also write it as `empty` for convenience.
 
-We use whitespace to denote the binary operation
-of the monoid (instead of using `•`).
+We use whitespace as infix notation
+to denote the binary operation
+of the monoid (instead of using an explicit infix notation like `•`).
 
 If `A` and `B` are elements, so is `A B`.
 
@@ -97,23 +112,38 @@ is the same as
 { A neg B neg C D }
 ```
 
-TODO define datatype (type constructor + data constructor),
-instead of using symbol as generaters.
+At the beginning we took _the free monoid of symbols_ as our base monoid,
+instead of using any symbols as generaters,
+now we refine this base monoid by a limitation saying:
 
-```jojo
+- Only symbols defined by `datatype` keyword are elements of our monoid.
+
+An exmaple of datatype definition is the following:
+
+```
 datatype Nat {
   zero { -- Nat }
   add1 { Nat -- Nat }
 }
 ```
 
-TODO define homomorphism
+It defines one _type constructor_ -- `Nat`,
+and two _data constructors_ -- `Nat.zero` and `Nat.add1`.
 
-TODO use monoid equations to interpret type variable and unification
+It also defines the homomorphism for these elements:
+
+- Let's call the homomorphism `infer`.
+
+```
+infer(Nat.zero) = Nat
+infer(Nat.add1) = Nat neg Nat
+```
 
 TODO define `Type`
 
 TODO define `error` element and `Error` type
+
+TODO use monoid equations to interpret type variable and unification
 
 TODO define linear assignment
 
@@ -133,7 +163,7 @@ TODO
 
 ## Nat
 
-```jojo
+```
 datatype Nat {
   zero { -- Nat }
   add1 { Nat -- Nat }
@@ -162,7 +192,7 @@ define two {
 
 ## Trivial
 
-```jojo
+```
 datatype Trivial {
   sole { -- Trivial }
 }
@@ -170,7 +200,7 @@ datatype Trivial {
 
 ## List
 
-```jojo
+```
 datatype List {
   null { 'A List }
   cons { 'A 'A List -- 'A List }
