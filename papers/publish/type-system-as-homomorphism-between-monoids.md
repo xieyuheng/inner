@@ -75,7 +75,7 @@ but symbols introduced by datatype definitions.
 ## Two free monoids of symbols and a trivial homomorphism
 
 A element of **the monoid of terms** is a list of symbols,
-chosen from the first five lower case latin alphabets -- `a b c d e`,
+chosen from the first four lower case latin alphabets -- `a b c d`,
 such as:
 
 - `a`
@@ -84,7 +84,7 @@ such as:
 - `a c d c`
 
 A element of **the monoid of types** is a list of symbols,
-chosen from the first five upper case latin alphabets -- `A B C D E`,
+chosen from the first four upper case latin alphabets -- `A B C D`,
 such as:
 
 - `A`
