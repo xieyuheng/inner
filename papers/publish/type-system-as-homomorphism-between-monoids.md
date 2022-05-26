@@ -157,7 +157,7 @@ If `X` is a type, `X neg` is also a type.
 We refine the definition of `infer` for linear assignment and negation:
 
 ```
-infer(let (x: X) ... x ...) = A neg infer(...) X infer(...)
+infer(let (x: X) ... x ...) = X neg infer(...) X infer(...)
 ```
 
 i.e. negation is the type of linear assignment.
@@ -174,7 +174,7 @@ for elements constructed by linear assignment and negation.
 **Linear assignment can take the left term and substitute it into the place of reference:**
 
 ```
-y let (x: A) ... x ... = ... y ...
+y let (x: X) ... x ... = ... y ...
 ```
 
 **Negation cancels an type from the right side:**
