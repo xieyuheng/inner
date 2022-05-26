@@ -139,8 +139,8 @@ Note that `apply` is only defined for terms, but not for types.
 If `A` is a type, `let (x: A) ... x ...` is a term.
 
 - We call this way of constructing new terms **linear assignment**,
-  it is linear in the sense that once referenced,
-  the variable will consumed, and can not be referenced again.
+  it is linear in the sense that an assigned variable
+  must be referenced once and only once.
 
 If `A` is a type, `A neg` is also a type.
 
