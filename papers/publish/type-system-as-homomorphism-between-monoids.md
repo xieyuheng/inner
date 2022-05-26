@@ -26,12 +26,16 @@ Some key points of our demonstration:
 
 # Introduction
 
-First a homomorphism between two monoids, can be viewed as a type system.
+Firstly, a homomorphism between two monoids can be viewed as a type system.
 We can view this homomorphism as the `infer` function,
 given a term it can infer the type of this term.
 
-- TODO Note about the principle of type theory.
-- TODO Use presentation of of monoids to show some examples.
+We say a "type system", because of
+the principle of type theory is
+
+> to study **terms** and **types** together.
+
+and a homomorphism allow us to study the two monoids together.
 
 The reverse is also true, given a type system,
 we can construct two monoids to be the space of terms and types.
@@ -48,7 +52,7 @@ The types will be _linear logic propositions_.
 
 The terms will be a _programming language
 like [Forth](https://en.wikipedia.org/wiki/Forth_(programming*language))
-and [Joy](https://en.wikipedia.org/wiki/Joy*(programming*language))_.
+and [Joy](https://en.wikipedia.org/wiki/Joy*(programming\*language))\_.
 
 We use whitespace as infix notation
 to denote the binary operation
@@ -241,11 +245,15 @@ infer(Nat.zero) = Nat
 infer(Nat.add1) = Nat neg Nat
 ```
 
-## TODO
+## Type variables as variables in the monoid of types
 
-TODO define `error` element and `Error` type
+TODO
 
-TODO use monoid equations to interpret type variable and unification
+TODO unification problem as monoid equations.
+
+## The `error` term and the `Error` type
+
+TODO
 
 # Linear logic propositions
 
