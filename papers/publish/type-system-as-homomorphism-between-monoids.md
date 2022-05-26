@@ -305,18 +305,19 @@ infer(match (<type>) {
   <data-constructor> { ... }
   <data-constructor> { ... }
   ...
-}) = <type> neg same_types(
-  infer(...),
-  infer(...),
+}) = <type> neg unify_types(
+  return_type_of(<data-constructor>) infer(...),
+  return_type_of(<data-constructor>) infer(...),
   ...,
 )
 ```
 
-Suppose we define `same_types` as function
-which asserts all its arguments are equal types,
-and return this type.
+Suppose we define `unify_types` as function
+which unifies all its arguments with each other, and return the unified type.
 
-If the assertion failed, it will return a special element in the monoid of types -- `Error`.
+If the unification failed, it will return a special element in the monoid of types -- `Error`.
+
+- Complete definition of the unification will explained in the the following sections.
 
 The equivalent relation for `Error` is
 
@@ -336,7 +337,7 @@ x match (<type>) {
 } = assert_types(infer(x), <type>) match_data(x, { ... }, { ... }, ...)
 ```
 
-We define `assert_types` as a function the same as `same_types` by return `Empty`.
+We define `assert_types` as a function the same as `unify_types` by return `Empty`.
 
 And we define `match_data` as a function
 
@@ -364,6 +365,25 @@ define add {
   }
 }
 ```
+
+Type check:
+
+```
+infer(
+  match (Nat) {
+    zero {}
+    add1 { add Nat.add1 }
+  }
+) = Nat neg unify_types(infer(empty), Nat infer(add Nat.add1)) =
+Nat neg unify_types(Empty, Nat infer(Nat neg Nat neg Nat Nat neg Nat)) =
+Nat neg unify_types(Empty, Nat Nat neg Nat neg Nat Nat neg Nat) =
+Nat neg unify_types(Empty, Nat neg Nat) =
+Nat neg Nat neg Nat
+```
+
+In the example above we see `unify_types(Empty, Nat neg Nat) = Nat neg Nat`.
+
+Example computation of `add`:
 
 ```
 one one add =
@@ -397,16 +417,6 @@ with the term in the match clause -- `empty`.
 
 TODO
 
-TODO unification problem as monoid equations.
-
-# Linear logic propositions
-
-TODO
-
-# Examples
-
-## Stack permutation
-
 ```
 claim swap { 'A 'B -- 'B 'A }
 define swap {
@@ -414,22 +424,14 @@ define swap {
 }
 ```
 
-## Trivial
-
-```
-datatype Trivial {
-  sole { -- Trivial }
-}
-```
-
-## List
-
 ```
 datatype List {
   null { 'A List }
   cons { 'A 'A List -- 'A List }
 }
+```
 
+```
 claim append { 'A List 'A List -- 'A List }
 
 define append {
@@ -437,6 +439,12 @@ define append {
    null {}
    cons { let (head) append head List.cons }
   }
+}
+```
+
+```
+datatype Trivial {
+  sole { -- Trivial }
 }
 
 claim six_soles { -- Trivial List }
@@ -448,6 +456,18 @@ define six_soles {
 }
 ```
 
+## Unification problem as solving equations in monoid
+
+TODO
+
+# Interpretation of Linear logic propositions
+
+TODO
+
 # Dependent type system as an endomorphism of one monoid
+
+If we study _endomorphism of one monoid_,
+we will get _dependent type system_
+where the space of terms and types are the same monoid.
 
 TODO
