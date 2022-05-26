@@ -1,8 +1,3 @@
----
-title: Type System as Homomorphism between Monoids (Notes)
-author: Xie Yuheng
----
-
 # Cut rule
 
 In sequent calculus of linear logic,
