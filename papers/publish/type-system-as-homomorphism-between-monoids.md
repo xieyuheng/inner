@@ -106,6 +106,7 @@ for examples:
 ```
 infer(a) = A
 infer(a b) = infer(a) infer(b) = A B
+infer(empty) = Empty
 ```
 
 ## Abstraction of both term and type
@@ -188,7 +189,7 @@ X X neg = Empty
 X neg neg = X
 ```
 
-We introduce a syntactic shorthand for writing negation in abstraction,
+We introduce a syntactic shorthand for writing negation in `{ ... }`,
 
 ```
 { X -- Y }
@@ -206,7 +207,7 @@ For example:
 infer({ let (x: A) b x c }) = { A -- B A C }
 ```
 
-## Datatype definitions
+## Datatype definition
 
 At the beginning, we took the free monoid of symbols as our base monoids,
 we did this only to introduce new concepts step by step.
@@ -245,15 +246,158 @@ infer(Nat.zero) = Nat
 infer(Nat.add1) = Nat neg Nat
 ```
 
+## Global variable definition
+
+We can use the `claim` keyword to claim a global variable's type
+and the `define` keyword to define a global variable's term.
+
+- A variable introduced by linear assignment is called "local variable" (or "bound variable"),
+  and global variable (or say free variable) is different from them.
+
+```
+claim one { Nat }
+define one { Nat.zero Nat.add1 }
+
+claim two { Nat }
+define two { one Nat.add1 }
+```
+
+We infer the type of defined term,
+to check whether the inferred type is equal to the claimed type.
+
+Our definition of `one` passes this type check.
+
+```
+infer(one) =
+infer(Nat.zero Nat.add1) =
+infer(Nat.zero) infer(Nat.add1) =
+Nat Nat neg Nat =
+Nat
+```
+
+Our definition of `two` also passes this type check.
+
+```
+infer(two) =
+infer(one Nat.add1) =
+infer(Nat.zero Nat.add1 Nat.add1) =
+infer(Nat.zero) infer(Nat.add1) infer(Nat.add1) =
+Nat Nat neg Nat Nat neg =
+Nat
+```
+
+## Matching of term
+
+We can use `match` to construct a term against a given datatype.
+
+```
+match (<type-constructor>) {
+  <data-constructor> { ... }
+  <data-constructor> { ... }
+  ...
+}
+```
+
+We must also define infer for `match`:
+
+```
+infer(match (<type>) {
+  <data-constructor> { ... }
+  <data-constructor> { ... }
+  ...
+}) = <type> neg same_types(
+  infer(...),
+  infer(...),
+  ...,
+)
+```
+
+Suppose we define `same_types` as function
+which asserts all its arguments are equal types,
+and return this type.
+
+If the assertion failed, it will return a special element in the monoid of types -- `Error`.
+
+The equivalent relation for `Error` is
+
+```
+X Error = Error
+Error X = Error
+```
+
+We then introduce the following equivalent relation
+for elements constructed by `match`.
+
+```
+x match (<type>) {
+  <data-constructor> { ... }
+  <data-constructor> { ... }
+  ...
+} = assert_types(infer(x), <type>) match_data(x, { ... }, { ... }, ...)
+```
+
+We define `assert_types` as a function the same as `same_types` by return `Empty`.
+
+And we define `match_data` as a function
+
+- If its first term is NOT end with one of the given data constructors,
+  it returns `error`;
+- If its first term ends with one of the given data constructors,
+  it remove the ending data constructor
+  and compose the remaining term with the term in the matching clause.
+
+the equivalent relation for `error` is
+
+```
+x error = error
+error x = error
+```
+
+We can use `match` to define addition for `Nat`.
+
+```
+claim add { Nat Nat -- Nat }
+define add {
+  match (Nat) {
+    zero {}
+    add1 { add Nat.add1 }
+  }
+}
+```
+
+```
+one one add =
+one Nat.zero Nat.add1 match (Nat) {
+  zero {}
+  add1 { add Nat.add1 }
+} = one Nat.zero add Nat.add1
+```
+
+In the above step, we see `one Nat.zero Nat.add1` ends with `Nat.add1`,
+thus the second clause is a match,
+we remove the ending `Nat.add1`,
+and compose the remaining `one Nat.zero`
+with the term in the match clause -- `add Nat.add1`.
+
+```
+one Nat.zero add Nat.add1 =
+one Nat.zero match (Nat) {
+  zero {}
+  add1 { add Nat.add1 }
+} Nat.add1 = one Nat.add1
+```
+
+In the above step, we see `one Nat.zero` ends with `Nat.zero`,
+thus the first clause is a match,
+we remove the ending `Nat.zero`,
+and compose the remaining `one`
+with the term in the match clause -- `empty`.
+
 ## Type variables as variables in the monoid of types
 
 TODO
 
 TODO unification problem as monoid equations.
-
-## The `error` term and the `Error` type
-
-TODO
 
 # Linear logic propositions
 
@@ -265,38 +409,8 @@ TODO
 
 ```
 claim swap { 'A 'B -- 'B 'A }
-
 define swap {
-  let (x) let (y) x y
-}
-```
-
-## Nat
-
-```
-datatype Nat {
-  zero { -- Nat }
-  add1 { Nat -- Nat }
-}
-
-claim add { Nat Nat -- Nat }
-
-define add {
-  match {
-    zero {}
-    add1 { add Nat.add1 }
-  }
-}
-
-rule Nat.zero add {}
-rule Nat.add1 add { add Nat.add1 }
-
-claim two { -- Nat }
-
-define two {
-  Nat.zero Nat.add1
-  Nat.zero Nat.add1
-  add
+  let (x: 'A) let (y: 'B) x y
 }
 ```
 
@@ -318,11 +432,8 @@ datatype List {
 
 claim append { 'A List 'A List -- 'A List }
 
-rule List.null append {}
-rule List.cons append { let (head) append head List.cons }
-
 define append {
-  match {
+  match ('A List) {
    null {}
    cons { let (head) append head List.cons }
   }
