@@ -288,10 +288,10 @@ Nat
 
 ## Matching of term
 
-We can use `match` to construct a term against a given datatype.
+We can use `match` to construct a term against a given type.
 
 ```
-match (<type-constructor>) {
+match (<type>) {
   <data-constructor> { ... }
   <data-constructor> { ... }
   ...
