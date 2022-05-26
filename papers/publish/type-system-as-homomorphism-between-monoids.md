@@ -48,7 +48,7 @@ The types will be _linear logic propositions_.
 
 The terms will be a _programming language
 like [Forth](https://en.wikipedia.org/wiki/Forth_(programming*language))
-and [Joy](https://en.wikipedia.org/wiki/Joy*(programming*language))*.
+and [Joy](https://en.wikipedia.org/wiki/Joy*(programming*language))_.
 
 We use whitespace as infix notation
 to denote the binary operation
