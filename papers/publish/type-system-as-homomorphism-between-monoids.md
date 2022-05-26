@@ -7,38 +7,47 @@ keywords: [Sequent Calculus, Linear Logic, Syntax Design, Monoid]
 
 # Abstract
 
-The space of types (linear logic propositions) is monoid,
-the space of terms is also a monoid.
+We demonstrate how to view a type system as a homomorphism between two monoids,
+where the space of types is monoid, the space of terms is also a monoid,
+and the homomorphism is the `infer` function of the type system.
 
-Negation should NOT be interpreted as "implying false",
-but be interpreted as type of _linear assignment_ (thus constructive).
+We use a concrete example to demonstrate this idea,
+in our example the space of types is _linear logic propositions_,
+and the space of terms is a _programming language like Forth and Joy_.
 
-Linear logic additive connectives can be interpreted without concurrency.
+Some key points of our demonstration:
 
-As presentation of of monoids.
+- Negation of linear logic should NOT be interpreted as "implying false",
+  but be interpreted as type of _linear assignment_ (thus constructive).
+
+- Linear logic additive connectives can be interpreted without concurrency.
+
+- Type errors will be captured by a special `Error` element.
 
 # Introduction
 
-If we have a homomorphism between two monoids,
-we can view this homomorphism as the `infer` function,
+First a homomorphism between two monoids, can be viewed as a type system.
+We can view this homomorphism as the `infer` function,
 given a term it can infer the type of this term.
+
+- TODO Use presentation of of monoids to show some examples.
 
 The reverse is also true, given a type system,
 we can construct two monoids to be the space of terms and types.
-
 And we can interpret concepts in type system as equations in monoid.
 
 # Example: a syntax for the terms of linear logic
 
-We can view a type system as a homomorphism between two monoids
-(or an endomorphism of one monoid).
+Let's define two concrete monoids and a homomorphism between them,
+to see the idea of this paper in action.
 
-The domain of the homomorphism is the space of terms,
-the codomain of the homomorphism is the space of types.
+We call the homomorphism `infer`, its domain _terms_, its codomain _types_.
 
-Let's define a concrete monoid to see this idea in action.
+The types will be _linear logic propositions_.
 
-TODO mention linear logic.
+The terms will be a _programming language
+like [Forth](https://en.wikipedia.org/wiki/Forth_(programming_language))
+and [Joy](https://en.wikipedia.org/wiki/Joy_(programming_language))_.
 
 We take _the free monoid of symbols_ as the base monoid (the building block).
 
@@ -59,6 +68,15 @@ Example elements:
 - `A B`
 - `A B B A`
 - `A C D C`
+
+Along with our definition of monoid,
+we also define a homomorphism called `infer`.
+
+Since it is a homomorphism, we have:
+
+```
+infer(A B) = infer(A) infer(B)
+```
 
 We define two ways to construct new elements.
 
@@ -226,3 +244,7 @@ define six_soles {
   append
 }
 ```
+
+# Dependent type system as an endomorphism of one monoid
+
+TODO
