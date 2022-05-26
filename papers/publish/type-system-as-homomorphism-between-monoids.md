@@ -13,7 +13,7 @@ and the homomorphism is the `infer` function of the type system.
 
 We use a concrete example to demonstrate this idea,
 in our example the space of types is _linear logic propositions_,
-and the space of terms is a _programming language like Forth and Joy_.
+and the space of terms is a _concatenative programming language_ (like Forth and Joy).
 
 Some key points of our demonstration:
 
@@ -50,9 +50,9 @@ We call the homomorphism `infer`, its domain **terms**, its codomain **types**.
 
 The types will be _linear logic propositions_.
 
-The terms will be a _programming language
-like [Forth](https://en.wikipedia.org/wiki/Forth_(programming*language))
-and [Joy](https://en.wikipedia.org/wiki/Joy*(programming\*language))\_.
+The terms will be a _[concatenative programming language](https://en.wikipedia.org/wiki/Concatenative_programming_language)_
+(like [Forth](<https://en.wikipedia.org/wiki/Forth_(programming*language)>)
+and [Joy](<https://en.wikipedia.org/wiki/Joy*(programming*language)>)).
 
 We use whitespace as infix notation
 to denote the binary operation
