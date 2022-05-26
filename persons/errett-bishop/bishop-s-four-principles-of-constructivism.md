@@ -1,4 +1,6 @@
-# Bishop's Four Principles of Constructivism
+---
+title: Bishop's Four Principles of Constructivism
+---
 
 **First.** Mathematics is common sense.
 
@@ -10,11 +12,11 @@
 
 ------
 
-- Xie: Do not forget that
+- **Xie**: Do not forget that
   after knowing the meaning of the statement,
   one still needs an argument to be convinced.
 
-- Xie: Bishop's proof is subjective.
+- **Xie**: Bishop's proof is subjective.
 
   Mechanicalized proof system does not give objectivity to truth,
   because the truth of a statement proved by a proof system,
