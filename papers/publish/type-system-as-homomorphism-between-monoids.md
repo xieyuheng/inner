@@ -288,7 +288,7 @@ Nat
 
 ## Matching of term
 
-We can use `match` to construct a term against a given type.
+We can use `match` to construct a term against a given datatype.
 
 ```
 match (<type>) {
@@ -298,7 +298,7 @@ match (<type>) {
 }
 ```
 
-We must also define infer for `match`:
+We must also define `infer` for `match`:
 
 ```
 infer(match (<type>) {
