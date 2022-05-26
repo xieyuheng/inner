@@ -75,7 +75,7 @@ but symbols introduced by datatype definitions.
 ## Two free monoids of symbols and a trivial homomorphism
 
 A element of **the monoid of terms** is a list of symbols,
-chosen from the first four lower case latin alphabets -- `a b c d`,
+chosen from the first four lower case latin alphabets -- `a, b, c, d`,
 such as:
 
 - `a`
@@ -84,7 +84,7 @@ such as:
 - `a c d c`
 
 A element of **the monoid of types** is a list of symbols,
-chosen from the first four upper case latin alphabets -- `A B C D`,
+chosen from the first four upper case latin alphabets -- `A, B, C, D`,
 such as:
 
 - `A`
@@ -166,7 +166,7 @@ infer(let (x: A) b x c) = A neg B A C
 We then introduce the following equivalent relation
 for elements constructed by linear assignment and negation.
 
-**Linear assigned term can be substitute into the place of reference:**
+**Linear assignment can take the left term and substitute it into the place of reference:**
 
 ```
 y let (x: A) ... x ... = ... y ...
@@ -204,11 +204,17 @@ infer({ let (x: A) b x c }) = { A -- B A C }
 
 ## Datatype definitions
 
-At the beginning we took _the free monoid of symbols_ as our base monoid,
-instead of using any symbols as generaters,
-now we refine this base monoid by a limitation saying:
+At the beginning, we took the free monoid of symbols as our base monoids,
+we did this only to introduce new concepts step by step.
+Now it is time to refine these base monoids.
 
-- Only symbols defined by `datatype` keyword are elements of our monoid.
+We used to use `a, b, c, d` as generaters of the monoid of terms,
+and `A, B, C, D` as generaters of the monoid of types,
+we abandon them from now on.
+
+And we switch to a system where
+only symbols defined by `datatype` keyword
+are generaters of our monoids.
 
 An exmaple of datatype definition is the following:
 
@@ -219,12 +225,16 @@ datatype Nat {
 }
 ```
 
-It defines one _type constructor_ -- `Nat`,
-and two _data constructors_ -- `Nat.zero` and `Nat.add1`.
+After this definition:
 
-It also defines the homomorphism for these elements:
+- `Nat` is a type.
+- `Nat.zero` is a term.
+- `Nat.add1` is a term.
 
-- Let's call the homomorphism `infer`.
+We say `Nat` is a **type constructor**,
+and `Nat.zero` and `Nat.add1` are two **data constructors**.
+
+The datatype definition also defines the homomorphism for between elements:
 
 ```
 infer(Nat.zero) = Nat
@@ -232,8 +242,6 @@ infer(Nat.add1) = Nat neg Nat
 ```
 
 ## TODO
-
-TODO define `Type`
 
 TODO define `error` element and `Error` type
 
