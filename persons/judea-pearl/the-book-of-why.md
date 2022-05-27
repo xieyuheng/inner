@@ -172,7 +172,7 @@ measurement errors or missing data.
 class CausalInferenceEngine {
   assumptions: Array<Assumption>
 
-  check(query: Query): Estimand | undefined
+  compile(query: Query): Estimand | undefined
   estimate(estimand: Estimand, data: Data): Estimate
 }
 
@@ -202,6 +202,32 @@ Notes:
 
 - `Estimate`, for example "Drug `D` increases the Lifespan `L`
   of diabetic Patients Z by 30 percent, plus or minus 20 percent".
+
+- `Data` we collect data only after we posit the causal model,
+  after we state the scientific query we wish to answer,
+  and after we derive the estimand.
+
+Note that, information about the effects of actions or interventions
+is simply not available in raw data, unless it is collected
+by controlled experimental manipulation.
+By contrast, if we are in possession of a causal model,
+we can often predict the result of an intervention
+from hands-off, intervention-free data.
+
+The case for causal models becomes even more compelling
+when we seek to answer counterfactual queries such as
+"What would have happened had we acted differently?"
+We will discuss counterfactuals in great detail
+because they are the most challenging queries for any artificial intelligence.
+They are also at the core of the cognitive advances that made us human
+and the imaginative abilities that have made science possible.
+We will also explain why any query about the mechanism
+by which causes transmit their effects
+-- the most prototypical "Why?" question --
+is actually a counterfactual question in disguise.
+Thus, if we ever want robots to answer "Why?" questions
+or even understand what they mean, we must equip them with a causal model
+and teach them how to answer counterfactual queries.
 
 # CHAPTER 1 The Ladder of Causation
 
