@@ -142,7 +142,7 @@ orphaned scientific language making it from birth to maturity.
   to turn a type checking judgment to a function that does type checking,
   we introduced a direction to the relation.
 
-## A BLUEPRINT OF REALITY
+## A Blueprint of Reality
 
 A blueprint for a "causal inference engine" that
 might handle causal reasoning for a future artificial intelligence.
@@ -228,6 +228,14 @@ is actually a counterfactual question in disguise.
 Thus, if we ever want robots to answer "Why?" questions
 or even understand what they mean, we must equip them with a causal model
 and teach them how to answer counterfactual queries.
+
+If I could sum up the message of this book in one pithy phrase, it would
+be that you are smarter than your data. Data do not understand causes and
+effects; humans do. I hope that the new science of causal inference will
+enable us to better understand how we do it, because there is no better way to
+understand ourselves than by emulating ourselves. In the age of computers,
+this new understanding also brings with it the prospect of amplifying our
+innate abilities so that we can make better sense of data, be it big or small.
 
 # CHAPTER 1 The Ladder of Causation
 
