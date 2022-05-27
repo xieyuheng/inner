@@ -42,19 +42,31 @@ for reasoning about uncertainty
 - probability axioms
 
   - nonnegative -
+
+    ```
     (A : sample-space) -> P (A) >= 0
+    ```
 
   - normalization -
+
+    ```
     P (sample-space) = 1
+    ```
 
   - notations about set :
+
+    ```
     | ^  | set intersection |
     | +  | set union        |
     | =< | sub set          |
     | >= | super set        |
+    ```
 
   - additivity -
+
+    ```
     (A ^ B = empty-set) -> P (A + B) = P (A) + P (B)
+    ```
 
   - countable additivity -
     the additivity axiom need to be generalized to sequence of subsets
@@ -67,6 +79,7 @@ for reasoning about uncertainty
   ignore ugly and weird subsets
   because for some weird subsets we can not both
   assigning probability to them and maintain probability axioms
+
   - **Xie:**
     this also revealed set theory's inconvenience,
     but why we are not using type theory yet?
@@ -101,71 +114,87 @@ for reasoning about uncertainty
 
 - partial informations about random experiments and revise beliefs
 
-- P (A | B) := the probability of A, given that B occurred
-  P (A | B) := P (A ^ B) / P (B)
-  - given P (B) != 0
-  - if P (B) = 0, P (A | B) is undefined
+```
+P (A | B) := the probability of A, given that B occurred
+P (A | B) := P (A ^ B) / P (B)
+- given P (B) != 0
+- if P (B) = 0, P (A | B) is undefined
+```
 
-- P (A ^ B) = P (B) * P (A | B)
-  P (A ^ B) = P (A) * P (B | A)
+```
+P (A ^ B) = P (B) * P (A | B)
+P (A ^ B) = P (A) * P (B | A)
+```
 
 - with the above definition
   the proportion of probabilities in B is maintained
   suppose A1 =< B and A2 =< B
+
+  ```
   P (A1 | B) / P (A2 | B) =
   P (A1 ^ B) / P (A2 ^ B) =
   P (A1) / P (A2)
+  ```
 
 - we specify the probability model by a conditional probability tree
   instead of calculate conditional probability of a given model
 
-- P (A ^ B) = P (A) * P (B | A)
+```
+P (A ^ B) = P (A) * P (B | A)
 
-  P (A ^ B ^ C) =
-  P ((A ^ B) ^ C) =
-  P (A ^ B) * P ((A ^ B) | C) =
-  P (A) * P (B | A) * P ((A ^ B) | C)
+P (A ^ B ^ C) =
+P ((A ^ B) ^ C) =
+P (A ^ B) * P ((A ^ B) | C) =
+P (A) * P (B | A) * P ((A ^ B) | C)
+```
 
-- P (B) =
-  P (B ^ (A + ~A)) =
-  P (B ^ A) + P (B ^ ~A) =
-  P (A) * P (B | A) + P (~A) * P (B | ~A)
+```
+P (B) =
+P (B ^ (A + ~A)) =
+P (B ^ A) + P (B ^ ~A) =
+P (A) * P (B | A) + P (~A) * P (B | ~A)
 
-  P (B) =
-  P (B ^ (A1 + A2 + A3)) =
-  P (B ^ A1) + P (B ^ A2) + P (B ^ A3) =
-  P (A1) * P (B | A1) +
-  P (A2) * P (B | A2) +
-  P (A3) * P (B | A3)
+P (B) =
+P (B ^ (A1 + A2 + A3)) =
+P (B ^ A1) + P (B ^ A2) + P (B ^ A3) =
+P (A1) * P (B | A1) +
+P (A2) * P (B | A2) +
+P (A3) * P (B | A3)
+```
 
-- P (A | B) = P (A ^ B) / P (B)
+- `P (A | B) = P (A ^ B) / P (B)`
   can be interpreted as an inference problem
-  suppose B, what is the probability of A
+  suppose `B`, what is the probability of `A`
 
-  - where P (A ^ B) and P (B) can be calculated
+  - where `P (A ^ B)` and `P (B)` can be calculated
     by the above two sections
-    which goes from P (B | Ai) to P (Ai | B)
+    which goes from `P (B | Ai)` to `P (Ai | B)`
 
   - bayes-rule :
     we know
-    Ai => B -- P (B | Ai)
+    `Ai => B -- P (B | Ai)`
     we observe B, and we infer
-    B => Ai -- P (Ai | B)
+    `B => Ai -- P (Ai | B)`
 
   - the => above can be viewed as
     causal relation in the sense of hume
 
 # independence
 
-- P (B | A) = P (B)
+```
+P (B | A) = P (B)
 
-- P (A ^ B) =
-  P (A) * P (B | A) =
-  P (A) * P (B)
+P (A ^ B) =
+P (A) * P (B | A) =
+P (A) * P (B)
+```
 
 - do not confuse independence with disjointness
   disjoint means
+
+  ```
   P (A + B) = P (A) + P (B)
+  ```
 
 - A and B are independent means
   the fact that A happens conveys no information about B
@@ -174,10 +203,13 @@ for reasoning about uncertainty
   independence can be generalized to conditional independence
 
   - **Xie:**
+
+    ```
     conditional under B :
     (probability-space-t) -> probability-space-t
     conditional :
     (event-t, probability-space-t) -> probability-space-t
+    ```
 
     - where a probabilistic-model is like one of our belief
 
@@ -188,6 +220,7 @@ for reasoning about uncertainty
 # random-variable-t
 
 - random variable can be viewed statistically first
+
   - without introducing probabilistic-model
 
 - after we developed the theory of random variable
@@ -226,9 +259,10 @@ for reasoning about uncertainty
 # random-field-t
 
 - note the increasing number of sets here
+
   | sample-t | probability-space-t |
-  | state-t  | random-variable-t   |
-  | index-t  | random-field-t      |
+  | state-t | random-variable-t |
+  | index-t | random-field-t |
 
 # continuous random variables
 
@@ -262,11 +296,19 @@ for reasoning about uncertainty
     re-distribute over infinitesimal
 
 # Iterated Expectations
+
 # Bernoulli Process
+
 # Poisson Process
+
 # Markov Chains
+
 # Weak Law of Large Numbers
+
 # Central Limit Theorem
+
 # Bayesian Statistical Inference
+
 # Classical Statistical Inference
+
 # Classical Inference
