@@ -34,6 +34,43 @@ then you can understand causal diagrams,
 and you can solve the type of questions
 posed at the beginning of this introduction.
 
+Side by side with this diagrammatic "language of knowledge",
+we also have a symbolic "language of queries"
+to express the questions we want answers to.
+
+For example, if we are interested in
+the effect of a drug `D` on lifespan `L`,
+then our query might be written symbolically as: `P(L | do(D))`.
+
+The vertical line means "given that",
+so we are asking: what is the probability `P`
+that a typical patient would survive `L` years,
+given that he or she is made to take the drug `do(D)`?
+In many cases we may also wish to compare `P(L | do(D))` with `P(L | do(not-D))`.
+The do-operator signifies that we are dealing with
+an intervention rather than a passive observation;
+classical statistics has nothing remotely similar to this operator.
+
+We must invoke an intervention operator `do(D)` to ensure that the
+observed change in Lifespan `L` is due to the drug itself
+and is not confounded with other factors that tend to shorten or lengthen life.
+If, instead of intervening, we let the patient himself
+decide whether to take the drug, those other factors might
+influence his decision, and lifespan differences between
+taking and not taking the drug would no longer be solely due to the drug.
+For example, suppose only those who were terminally ill took the drug.
+
+Mathematically, we write the observed frequency of Lifespan `L` among
+patients who voluntarily take the drug as `P(L | D)`, which is the standard
+conditional probability used in statistical textbooks. This expression stands
+for the probability `P` of Lifespan `L` conditional on seeing the patient take
+Drug `D`. Note that `P(L | D)` may be totally different from `P(L | do(D))`.
+
+This difference between seeing and doing is fundamental and explains why we do
+not regard the falling barometer to be a cause of the coming storm. Seeing
+the barometer fall increases the probability of the storm, while forcing it to
+fall does not affect this probability.
+
 # CHAPTER 1 The Ladder of Causation
 
 # CHAPTER 2 From Buccaneers to Guinea Pigs: The Genesis of Causal Inference
