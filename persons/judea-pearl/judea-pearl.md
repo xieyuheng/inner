@@ -4,7 +4,7 @@ title: Judea Pearl
 
 # Judea Pearl Tribute Symposium: Causality
 
-<https://www.youtube.com/watch?v=78EmmdfOcI8>
+[ [VIDEO](https://www.youtube.com/watch?v=78EmmdfOcI8) ]
 
 - Science should be taught with its history.
 

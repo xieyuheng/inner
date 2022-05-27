@@ -6,7 +6,9 @@ data: 2018
 
 # INTRODUCTION Mind over Data
 
+The aim is to build a mathematical model of cause and effect.
 
+- **Xie**: How does the model of Judea Pearl relates to logic?
 
 # CHAPTER 1 The Ladder of Causation
 
