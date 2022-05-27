@@ -25,7 +25,7 @@ The dots represent quantities of interest, called "variables",
 and the arrows represent known or suspected causal relationships between those variables
 -- namely, which variable "listens" to which others.
 
-- **Xie**: How does causal diagrams relates to
+- **Xie**: How does causal diagrams relate to
   reactive programming
   and Sussman's propagator model?
 
@@ -73,8 +73,6 @@ not regard the falling barometer to be a cause of the coming storm. Seeing
 the barometer fall increases the probability of the storm, while forcing it to
 fall does not affect this probability.
 
-- **Xie**: Can we develop a logic for counterfactual judgments?
-
 One of the crowning achievements of the Causal Revolution has been to
 explain how to predict the effects of an intervention without actually
 enacting it.
@@ -109,6 +107,44 @@ alternative scenarios is the basis of free will and social responsibility. The
 algorithmization of counterfactuals invites thinking machines to benefit from
 this ability and participate in this (until now) uniquely human way of
 thinking about the world.
+
+In the world of AI, you do not really understand a topic
+until you can teach it to a mechanical robot. That is
+why you will find me emphasizing and reemphasizing notation, language,
+vocabulary, and grammar.
+
+For example, I obsess over whether we can express a certain claim
+in a given language and whether one claim follows from others.
+It is amazing how much one can learn from just following the
+grammar of scientific utterances. My emphasis on language also comes from
+a deep conviction that language shapes our thoughts. You cannot answer a
+question that you cannot ask, and you cannot ask a question that you have no
+words for. As a student of philosophy and computer science, my attraction to
+causal inference has largely been triggered by the excitement of seeing an
+orphaned scientific language making it from birth to maturity.
+
+- **Xie**: Can we develop a logic for counterfactual judgments?
+
+- **Xie**: About the relation between logic and causation.
+
+  If we think about inference rules in a logic system.
+
+  A judgment takes some data as arguments,
+  and a group of inference rules for a judgment
+  is a definition of the judgment as a relation
+  (thinking about Prolog or inductive datatype in dependent type system).
+
+  The relations are about about cause and effect at all.
+
+  There is a Prolog book called "Clause and Effect", but not "Cause and Effect".
+
+  Relation has no direction, but when we use the idea of "bidirectional type checking"
+  to turn a type checking judgment to a function that does type checking,
+  we introduced a direction to the relation.
+  
+## A BLUEPRINT OF REALITY
+
+
 
 # CHAPTER 1 The Ladder of Causation
 

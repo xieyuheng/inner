@@ -413,6 +413,40 @@ we remove the ending `Nat.zero`,
 and compose the remaining `one`
 with the term in the match clause -- `empty`.
 
+We can also view the above definition of `add` by `match`,
+as adding a new term (`add`) to the monoid of terms,
+and adding the following two equations:
+
+```
+Nat.zero add = empty;
+Nat.add1 add = add Nat.add1;
+```
+
+If we infer the left hand side and the right hand side
+of the first equation, we will see the resulting types
+unify with each other.
+
+```
+infer(Nat.zero add) =
+Nat Nat neg Nat neg Nat =
+Nat neg Nat
+
+infer(empty) =
+Empty
+```
+
+The same is true for the second equation.
+
+```
+infer(Nat.add1 add) =
+Nat neg Nat Nat neg Nat neg Nat =
+Nat neg Nat neg Nat
+
+infer(add Nat.add1) =
+Nat neg Nat neg Nat Nat neg Nat =
+Nat neg Nat neg Nat
+```
+
 ## Type variables as variables in the monoid of types
 
 TODO
