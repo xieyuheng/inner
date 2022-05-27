@@ -447,6 +447,9 @@ Nat neg Nat neg Nat Nat neg Nat =
 Nat neg Nat neg Nat
 ```
 
+Thus `match` can be viewed as a special way of adding new term to the monoid of terms,
+and together with the equations the new term must satisfies.
+
 ## Type variables as variables in the monoid of types
 
 TODO
