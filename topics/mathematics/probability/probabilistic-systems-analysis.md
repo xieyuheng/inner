@@ -1,24 +1,27 @@
-#+title: probabilistic systems analysis
+---
+title: Probabilistic Systems Analysis
+playlist: "https://www.youtube.com/playlist?list=PLUl4u3cNGP60A3XMwZ5sep719_nh95qOe"
+---
 
-* [note]
+# [note]
 
-*** formalize set theory
+## formalize set theory
 
     - x -
       we found that to formalize mathematical structures
       the must important basic structure to be formalize
       is the structure of type -- or to formalize set theory
 
-* links
+# links
 
   https://www.youtube.com/playlist?list=PLUl4u3cNGP61MdtwGTqZA0MreSaDybji8
 
-* intro
+# intro
 
   - probability as a mathematical framework
     for reasoning about uncertainty
 
-* probability-space-t
+# probability-space-t
 
   - x -
     note that
@@ -82,13 +85,13 @@
   - continuous uniform distribution
     probability = area
 
-* zero probability
+# zero probability
 
   - if we define probability by volume in n dimension unit space
     zero probability does not mean impossible
     zero probability only means n dimensional volume is zero
 
-* conditional probability
+# conditional probability
 
   - the story goes like this,
     you know something about this uncertain world,
@@ -155,7 +158,7 @@
     - the => above can be viewed as
       causal relation in the sense of hume
 
-* independence
+# independence
 
   - P (B | A) = P (B)
 
@@ -185,7 +188,7 @@
     we can also define pairwise independence
     - a weaker version of independence
 
-* random-variable-t
+# random-variable-t
 
   - random variable can be viewed statistically first
     - without introducing probabilistic-model
@@ -223,14 +226,14 @@
 
   - variance
 
-* random-field-t
+# random-field-t
 
   - note the increasing number of sets here
     | sample-t | probability-space-t |
     | state-t  | random-variable-t   |
     | index-t  | random-field-t      |
 
-* continuous random variables
+# continuous random variables
 
   - instead of using probability mass function (PMF)
     we need probability density function (PDF)
@@ -261,12 +264,12 @@
     - normalized with infinitesimal as the dominator
       re-distribute over infinitesimal
 
-* Iterated Expectations
-* Bernoulli Process
-* Poisson Process
-* Markov Chains
-* Weak Law of Large Numbers
-* Central Limit Theorem
-* Bayesian Statistical Inference
-* Classical Statistical Inference
-* Classical Inference
+# Iterated Expectations
+# Bernoulli Process
+# Poisson Process
+# Markov Chains
+# Weak Law of Large Numbers
+# Central Limit Theorem
+# Bayesian Statistical Inference
+# Classical Statistical Inference
+# Classical Inference
