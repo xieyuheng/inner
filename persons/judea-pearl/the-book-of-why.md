@@ -8,7 +8,9 @@ data: 2018
 
 The aim is to build a mathematical model of cause and effect -- a calculus of causation.
 
-- **Xie**: How does the model of Judea Pearl relates to logic?
+- **Xie**: How does the model of Judea Pearl relate to
+  - logic (deduction system)
+  - Polya's "Patterns of plausible inference"
 
 The calculus of causation consists of two languages:
 
@@ -70,6 +72,43 @@ This difference between seeing and doing is fundamental and explains why we do
 not regard the falling barometer to be a cause of the coming storm. Seeing
 the barometer fall increases the probability of the storm, while forcing it to
 fall does not affect this probability.
+
+- **Xie**: Can we develop a logic for counterfactual judgments?
+
+One of the crowning achievements of the Causal Revolution has been to
+explain how to predict the effects of an intervention without actually
+enacting it.
+
+When the scientific question of interest involves retrospective thinking,
+we call on another type of expression unique to causal reasoning called a
+**counterfactual**. For example, suppose that Joe took Drug `D` and died a month
+later; our question of interest is whether the drug might have caused his
+death. To answer this question, we need to imagine a scenario in which Joe
+was about to take the drug but changed his mind. Would he have lived?
+
+As with predicting the effect of interventions (mentioned above),
+in many cases we can emulate human retrospective thinking
+with an algorithm that takes what we know about the observed world
+and produces an answer about the counterfactual world.
+This "algorithmization of counterfactuals"
+is another gem uncovered by the Causal Revolution.
+
+Counterfactual reasoning, which deals with what-ifs, might strike some
+readers as unscientific. Indeed, empirical observation can never confirm or
+refute the answers to such questions. Yet our minds make very reliable and
+reproducible judgments all the time about what might be or might have been.
+We all understand, for instance, that had the rooster been silent this morning,
+the sun would have risen just as well. This consensus stems from the fact that
+counterfactuals are not products of whimsy but reflect the very structure of
+our world model. Two people who share the same causal model will also
+share all counterfactual judgments.
+
+Counterfactuals are the building blocks of moral behavior as well as
+scientific thought. The ability to reflect on one's past actions and envision
+alternative scenarios is the basis of free will and social responsibility. The
+algorithmization of counterfactuals invites thinking machines to benefit from
+this ability and participate in this (until now) uniquely human way of
+thinking about the world.
 
 # CHAPTER 1 The Ladder of Causation
 
