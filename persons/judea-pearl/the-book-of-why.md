@@ -141,10 +141,67 @@ orphaned scientific language making it from birth to maturity.
   Relation has no direction, but when we use the idea of "bidirectional type checking"
   to turn a type checking judgment to a function that does type checking,
   we introduced a direction to the relation.
-  
+
 ## A BLUEPRINT OF REALITY
 
+A blueprint for a "causal inference engine" that
+might handle causal reasoning for a future artificial intelligence.
 
+The inference engine is a machine that
+accepts three different kinds of inputs
+-- `Assumptions`, `Queries`, and `Data`
+-- and produces three kinds of outputs.
+
+The first of the outputs is a Yes/No decision as to whether the given
+query can in theory be answered under the existing causal model, assuming
+perfect and unlimited data.
+
+If the answer is Yes, the inference engine next produces an `Estimand`.
+
+This is a mathematical formula that can be thought of
+as a recipe for generating the answer from any hypothetical data, whenever
+they are available.
+
+Finally, after the inference engine has received the `Data` input,
+it will use the recipe to produce an actual `Estimate` for the answer,
+along with statistical estimates of the amount of uncertainty in that estimate.
+This uncertainty reflects the limited size of the data set as well as possible
+measurement errors or missing data.
+
+```typescript
+class CausalInferenceEngine {
+  assumptions: Array<Assumption>
+
+  check(query: Query): Estimand | undefined
+  estimate(estimand: Estimand, data: Data): Estimate
+}
+
+class Estimate {
+  uncertainty: Uncertainty
+}
+```
+
+Notes:
+
+- `Assumption` is formalized knowledge,
+  for example in the form of causal diagrams.
+
+  In a causal diagram, a variable `X` is a cause of `Y`
+  if `Y` "listens" to `X` and determines its value in response to what it hears.
+
+- `Estimand` comes from Latin, meaning "that which is to be estimated".
+  This is a statistical quantity to be estimated from the data
+  that, once estimated, can legitimately represent the answer to our query.
+
+  While written as a probability formula
+  -- for example, `P(L | D, Z) × P(Z)`
+  -- it is in fact a recipe for answering the causal query
+  from the type of data we have, once it has been certified by the engine.
+
+- `Query`, for example "What is the effect of Drug D on Lifespan L?"
+
+- `Estimate`, for example "Drug `D` increases the Lifespan `L`
+  of diabetic Patients Z by 30 percent, plus or minus 20 percent".
 
 # CHAPTER 1 The Ladder of Causation
 
