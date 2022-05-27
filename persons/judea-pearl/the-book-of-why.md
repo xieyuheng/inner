@@ -6,6 +6,8 @@ data: 2018
 
 # INTRODUCTION Mind over Data
 
+
+
 # CHAPTER 1 The Ladder of Causation
 
 # CHAPTER 2 From Buccaneers to Guinea Pigs: The Genesis of Causal Inference
