@@ -50,16 +50,18 @@ The concept of a univalent fibration was introduced by Voevodsky in early 2006
   f : (X -> Y)
   g : (X -> Y)
   可以被看成是 空間 Y 被 X 參數化
-  同樣的 X 當 f 和 g 分別跑遍 義域 時
+  同樣的 X 當 f 和 g 分別跑遍 定義域 時
   在 Y 中 所得到的像不同
   而 映射的像 通常就是 Y 中幾何體的表示
   這樣 f 和 g 就可以看成是對 Y 中兩個不同幾何體的表示了
+
 - 空間的連續映射 之間的 同倫[homotopy]
   就是 連續映射 h : (X [0, 1] -> Y)
   滿足
   x 0 h = x f
   x 1 h = x g
   h 稱作是 x 到 y 的連續形變[continuous deformation]
+
 - 其次
   考慮 同倫等價[homotopy equivalent] 的概念
   兩個空間 X Y
@@ -73,6 +75,7 @@ The concept of a univalent fibration was introduced by Voevodsky in early 2006
   即 兩個空間相互參數化之後
   得到的兩個參數映射之兩種複合
   可以變形到兩個空間的恆同函數
+
 - 同倫等價的空間 具有相同的 代數不變量[algebraic invariant]
   比如 同調[homology]
   和 基本羣[fundamental group]
@@ -93,6 +96,7 @@ The concept of a univalent fibration was introduced by Voevodsky in early 2006
   所以當說 a 是 [homotopy] type A 的元素的時候
   所說的是 a 同倫等價類的 代表空間 A 中的點
   而不是 等價類 A 之中的一個代表空間 a
+
 - 前面說過
   首先 需要考慮兩個空間之間的各個連續映射
   其次 需要利用 連續映射 和 連續形變 來定義空間的 同倫等價
@@ -108,11 +112,15 @@ The concept of a univalent fibration was introduced by Voevodsky in early 2006
   可以發現
   連續形變所帶來的幾何體的差異
   已經被我們的編碼完全抽象掉了
+
 - type = space [with homotopy equivalent] = higher groupoid
+
 - type constructor = space constructor [respect homotopy equivalent]
+
 - 只考慮同倫性質
   而不考慮拓撲性質
   比如 不考慮 開集 與 點列的極線點
+
 - 比如
   每個類型 A
   都有 判斷這個類型的兩個元素 a b 相等 的方式
@@ -127,10 +135,12 @@ The concept of a univalent fibration was introduced by Voevodsky in early 2006
   其元素 A B 爲[小]空間
   我們指定其等詞爲 A B 之間存在雙射
   這就是 univalence axiom
+
 - p : A B U id 即 在 U 中 A B 之間有路 p
   即 p : A =U= B
   定義爲
   A B 之間存在雙射
+
 - 其合理性可考慮如下
   觀察古典的 同倫等價[homotopy equivalent] 這個概念
   在類型論中的變化
@@ -143,6 +153,7 @@ The concept of a univalent fibration was introduced by Voevodsky in early 2006
   a b 和 X id 相等
   b a 和 Y id 相等
   X Y 同倫等價的條件 就被轉化爲了雙射存在
+
 - 在編程的時候
   ua [denotes univalence axiom]
   可以把 A B 之間的雙射 bi : A B exist-bijection?
@@ -150,6 +161,7 @@ The concept of a univalent fibration was introduced by Voevodsky in early 2006
   而 transport 可以把這樣一個證明轉化爲
   相等元素在 任何語境下的代換
   f ua context transport : A context -> B context
+
 - 引入此公理的動機
   是爲了在形式體系的規範下
   證明 homotopy theory 中的定理時
@@ -160,9 +172,11 @@ The concept of a univalent fibration was introduced by Voevodsky in early 2006
 - 要定義一個集合
   首先 要說明如何構造這個集合中的元素
   其次 要說明如何判斷這個集合中的兩個元素相等
+
 - 看來 hott 就是 bishop 之誡 的實踐
   univalence axiom 只不過是
   對於某個特殊的集合 強調 bishop 之誡 而已
+
 - 那麼
   在設計程序語言的時候
   我們先考慮如何把 bishop bishop 之誡
@@ -172,6 +186,7 @@ The concept of a univalent fibration was introduced by Voevodsky in early 2006
   而 type 這個類型的等詞就是[小]類型之間的雙射
   注意
   保持等詞的類型之間的操作纔稱函數
+
 - 要把 quotient type 做爲核心性狀
   可以通過改變 一個類型的基本等詞
   來構造新的類型
@@ -180,11 +195,13 @@ The concept of a univalent fibration was introduced by Voevodsky in early 2006
 
 - hott 之缺失計算模型
   就像是 bishop 的 constructive analysis 之缺失計算模型
+
 - univalence axiom 捕捉了能夠在有限步驟內能夠完成的所有計算
   但是 某些計算並沒有高效的算法實現
   正如 bishop 聲明自己的 constructive analysis
   考慮的是所有有限步驟內能夠完成的計算的一般理論
   而暫時忽略效率問題
+
 - 我想
   可以像在 constructivism 中論證 中值定理 缺乏構造性 一般
   我也可以構建一個計算模型
@@ -200,52 +217,87 @@ The concept of a univalent fibration was introduced by Voevodsky in early 2006
 
 ## higher inductive type
 
-- 這裏指的是如下對幾何體的定義
-  類似 CW complexes 中幾何體的生成法
-  1-sphere
-    base : 1-sphere
-    loop : base == base
-  2-sphere
-    base : 2-sphere
-    2-loop : (base == base) == (base == base)
-  2-torus
-    base : 2-torus
-    warp : (base == base)
-    weft : (base == base)
-    2-loop : (weft warp == warp weft)
+這裏指的是如下對幾何體的定義，
+類似 CW complexes 中幾何體的生成法。
+
+```
+datatype 1-sphere {
+  base: 1-sphere
+
+  loop: base == base
+
+  loop: Equal(1-sphere, base, base)
+}
+
+datatype 2-sphere {
+  base: 2-sphere
+
+  2-loop: (base == base) == (base == base)
+
+  2-loop: Equal(
+    Type, // This might be wrong.
+    Equal(2-sphere, base, base),
+    Equal(2-sphere, base, base),
+  )
+}
+
+datatype 2-torus {
+  base: 2-torus
+
+  warp: (base == base)
+  weft: (base == base)
+
+  2-loop: (weft warp == warp weft)
+
+  warp: Equal(2-torus, base, base)
+  weft: Equal(2-torus, base, base)
+
+  2-loop: Equal(
+    2-torus,
+    // Suppose we have a syntax for composing path.
+    path { weft, warp },
+    path { warp, weft },
+  )
+}
+```
 
 ## 記 算數的分級
 
-- 注意
-  natural 就是以 inductive type 的方式定義的
-  natural
-    base : natural
-    succ : natural -> natural
-  而且
-  由 natural 擴展而來的 integer 與 1-sphere 等價
-  所以說 算數的分級 也許可以在 這種遞歸定義中考慮
-  也就是說 這種遞歸定義 給出有趣的代數結構
-  也許 可以用以給出新的 '算數' 從而用以研究 算數的分級
-  而 他們給出的幾何直覺 可以幫助我們理解 算數的分級
+注意
+natural 就是以 inductive type 的方式定義的
+
+```
+natural
+  base: natural
+  succ: natural -> natural
+```
+
+而且
+由 natural 擴展而來的 integer 與 1-sphere 等價
+所以說 算數的分級 也許可以在 這種遞歸定義中考慮
+也就是說 這種遞歸定義 給出有趣的代數結構
+也許 可以用以給出新的 '算數' 從而用以研究 算數的分級
+而 他們給出的幾何直覺 可以幫助我們理解 算數的分級
 
 ## sets in univalent foundations
 
-- 野心是 代替 集合論 做爲當前數學基礎的地位
-- 但是
-  想要恢復集合論 就要用到 完全離散的空間
-  加上空間 A 的離散性的證明之後
-  a : A 就可以被解釋爲 a 屬於集合 A 了
+野心是 代替 集合論 做爲當前數學基礎的地位
+
+但是
+想要恢復集合論 就要用到 完全離散的空間
+加上空間 A 的離散性的證明之後
+a : A 就可以被解釋爲 a 屬於集合 A 了
 
 ## informal type theory
 
-- 語言設計上 想要貼近傳統的數學語言
+語言設計上 想要貼近傳統的數學語言
 
 ## constructivity
 
-- proof relevance
-  according to which
-  mathematical statements, and even their proofs
-  become first-class mathematical objects
+proof relevance
+according to which
+mathematical statements, and even their proofs
+become first-class mathematical objects
 
 # 1 type theory
 
