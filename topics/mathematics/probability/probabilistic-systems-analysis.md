@@ -1,79 +1,75 @@
 ---
 title: Probabilistic Systems Analysis
-playlists:
-  - "https://www.youtube.com/playlist?list=PLUl4u3cNGP61MdtwGTqZA0MreSaDybji8"
-  - "https://www.youtube.com/playlist?list=PLUl4u3cNGP60A3XMwZ5sep719_nh95qOe"
+playlist: "https://www.youtube.com/playlist?list=PLUl4u3cNGP60A3XMwZ5sep719_nh95qOe"
 ---
 
-# [note]
+# Intro
 
-## formalize set theory
+Probability as a mathematical framework
+for reasoning about uncertainty.
 
-we found that to formalize mathematical structures
-the must important basic structure to be formalize
-is the structure of type -- or to formalize set theory
-
-# intro
-
-probability as a mathematical framework
-for reasoning about uncertainty
-
-# probability-space-t
+# probability space
 
 - **Xie:**
-  note that
-  modern theory of probability
-  is limited by the mathematical structure of probability-space-t
+  Note that modern theory of probability
+  is limited by the mathematical structure of `ProbabilitySpace`.
 
-- sample space -- set of outcomes
-  we record which outcome is more likely to occur compare to others
+- A **sample space** is set of outcomes.
+
+  We record which outcome is more likely to occur compare to others
   by assigning probability to outcome.
 
-  but to deal with continuous sample space
+  But to deal with continuous sample space
   we must adjust our method by assigning probability to events
-  where an event is a subset of sample space
+  where an event is a subset of sample space.
 
-  this definition also handles discrete sample space well
-  by viewing assigning probability to sets of one element
+  This definition also handles discrete sample space well
+  by viewing assigning probability to sets of one element.
 
-- outcome : sample space
-  event = set of outcomes = subset of sample space
+- `outcome: SampleSpace`
 
-- probability axioms
+  ```
+  event =
+  a set of outcomes =
+  a subset of sample space
+  ```
 
-  - nonnegative -
+Probability axioms:
 
-    ```
-    (A : sample-space) -> P (A) >= 0
-    ```
+- **nonnegative**:
 
-  - normalization -
+  ```
+  (A : sample-space) -> P (A) >= 0
+  ```
 
-    ```
-    P (sample-space) = 1
-    ```
+- **normalization**:
 
-  - notations about set :
+  ```
+  P (sample-space) = 1
+  ```
 
-    ```
-    | ^  | set intersection |
-    | +  | set union        |
-    | =< | sub set          |
-    | >= | super set        |
-    ```
+Notations about set :
 
-  - additivity -
+```
+| ^  | set intersection |
+| +  | set union        |
+| =< | sub set          |
+| >= | super set        |
+```
 
-    ```
-    (A ^ B = empty-set) -> P (A + B) = P (A) + P (B)
-    ```
+- **additivity**:
 
-  - countable additivity -
-    the additivity axiom need to be generalized to sequence of subsets
-    instead of just two subsets
-    (where sequence implies countable)
+  ```
+  (A ^ B = empty-set) -> P (A + B) = P (A) + P (B)
+  ```
 
-  the axioms looks like integration of some function over sample-space
+- **countable additivity**:
+
+  the additivity axiom need to be generalized to sequence of subsets
+  instead of just two subsets
+  (where sequence implies countable)
+
+the axioms looks like integration of some function over sample-space
 
 - extra notes about subsets of sample-space
   ignore ugly and weird subsets
@@ -94,6 +90,37 @@ for reasoning about uncertainty
 
 - continuous uniform distribution
   probability = area
+
+# TODO ProbabilitySpace
+
+TODO We should use lattice (boolean algebra?)
+to model the `SampleSpace` or the space of events.
+
+TODO How to handle `Probability`?
+
+```cicada
+class ProbabilitySpace {
+  SampleSpace: Type
+  P(SampleSpace): Probability
+
+  nonnegative(x: SampleSpace): GtEq(P(x), zero)
+  normalization: Equal(Probability, P(SampleSpace), one)
+
+  additivity(
+    x: SampleSpace,
+    y: SampleSpace,
+    mutual_exclusive: Equal(
+      Event,
+      intersection(x, y),
+      Empty,
+    ),
+  ): Equal(
+    Probability,
+    P(union(x, y)),
+    add(P(x), P(y)),
+  )
+}
+```
 
 # zero probability
 
@@ -206,9 +233,9 @@ P (A) * P (B)
 
     ```
     conditional under B :
-    (probability-space-t) -> probability-space-t
+    (ProbabilitySpace) -> ProbabilitySpace
     conditional :
-    (event-t, probability-space-t) -> probability-space-t
+    (Event, ProbabilitySpace) -> ProbabilitySpace
     ```
 
     - where a probabilistic-model is like one of our belief
@@ -217,7 +244,7 @@ P (A) * P (B)
   we can also define pairwise independence
   - a weaker version of independence
 
-# random-variable-t
+# RandomVariable
 
 - random variable can be viewed statistically first
 
@@ -256,13 +283,13 @@ P (A) * P (B)
 
 - variance
 
-# random-field-t
+# RandomField
 
 - note the increasing number of sets here
 
-  | sample-t | probability-space-t |
-  | state-t | random-variable-t |
-  | index-t | random-field-t |
+  | Sample | ProbabilitySpace |
+  | State | RandomVariable |
+  | Index | RandomField |
 
 # continuous random variables
 
