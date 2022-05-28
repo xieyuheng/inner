@@ -11,6 +11,8 @@ author: Xie Yuheng
 
 # TODO
 
+- Read "The Book of Why",
+  and try to design a probabilistic programming language.
 - Term syntax for linear logic -- simple types first.
   - How does the algebra of linear logic connectives
     different from boolean lattice?
