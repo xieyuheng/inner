@@ -84,12 +84,19 @@ the axioms looks like integration of some function over sample-space
 - **Xie:**
   dealing with subsets remembers me of relational programming
 
-- discrete uniform distribution
-  all outcomes be equally likely
-  compute probability = counting
+- **discrete uniform distribution**
 
-- continuous uniform distribution
+  all outcomes be equally likely
+
+  ```
+  compute probability = counting
+  ```
+
+- **continuous uniform distribution**
+
+  ```
   probability = area
+  ```
 
 # TODO ProbabilitySpace
 
