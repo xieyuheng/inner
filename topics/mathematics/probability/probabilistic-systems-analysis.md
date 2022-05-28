@@ -162,7 +162,7 @@ P (A ^ B) = P (A) * P (B | A)
 
 - with the above definition
   the proportion of probabilities in B is maintained
-  suppose A1 =< B and A2 =< B
+  suppose `A1 =< B` and `A2 =< B`
 
   ```
   P (A1 | B) / P (A2 | B) =
@@ -239,9 +239,10 @@ P (A) * P (B)
   - **Xie:**
 
     ```
-    conditional under B :
+    conditional under B:
     (ProbabilitySpace) -> ProbabilitySpace
-    conditional :
+
+    conditional:
     (Event, ProbabilitySpace) -> ProbabilitySpace
     ```
 
@@ -295,8 +296,8 @@ P (A) * P (B)
 - note the increasing number of sets here
 
   | Sample | ProbabilitySpace |
-  | State | RandomVariable |
-  | Index | RandomField |
+  | State  | RandomVariable   |
+  | Index  | RandomField      |
 
 # continuous random variables
 
