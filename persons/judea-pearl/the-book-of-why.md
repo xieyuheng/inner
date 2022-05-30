@@ -359,6 +359,38 @@ we have to teach it how to break the rules.
   but not "how the dependencies"
   i.e. one variable depends on other variables by what function?
 
+  And maybe some dependencies also require us to take uncertainties into acount,
+  we will need probability theory and probabilistic programming.
+
+## On probabilities and causation
+
+> Causation is not reducible to probabilities.
+
+It is wrong to define causation as "probability raising":
+
+```
+X causes Y = X raises the probability of Y
+```
+
+It is wrong to use conditional probabilities `P(Y | X) > P(Y)`.
+
+Because it speaks only about observations:
+"If we see `X`, then the probability of `Y` increases".
+But this increase may come about for other reasons,
+including `Y` being a cause of `X` or some other variable `Z`
+being the cause of both of them.
+
+We should use `P(Y | do(X)) > P(Y)`.
+
+I have not attempted to define causation anywhere in this book:
+definitions demand reduction, and reduction demands going to a lower rung.
+Instead, I have pursued the ultimately more constructive program of explaining how to
+answer causal queries and what information is needed to answer them.
+
+The main point is this: while probabilities encode our beliefs about a static world,
+causality tells us whether and how probabilities change when the world
+changes, be it by intervention or by act of imagination.
+
 # CHAPTER 2 From Buccaneers to Guinea Pigs: The Genesis of Causal Inference
 
 # CHAPTER 3 From Evidence to Causes: Reverend Bayes Meets Mr. Holmes
