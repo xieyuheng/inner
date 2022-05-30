@@ -254,44 +254,70 @@ seeing, doing, and imagining.
 
 1. **Association**
 
-  activity: Seeing, Observing
+activity: Seeing, Observing
 
-  questions:
-  - What if I see ...?
-  - How are the variables related?
-  - How would seeing X change my belief of Y?
+questions:
 
-  examples:
-  - What does a symptom tell me about a disease?
-  - What does a survey tell us about the election results?
+- What if I see ...?
+- How are the variables related?
+- How would seeing X change my belief of Y?
+
+examples:
+
+- What does a symptom tell me about a disease?
+- What does a survey tell us about the election results?
 
 2. **Intervention**
 
-  activity: Doing, Intervening
+activity: Doing, Intervening
 
-  questions:
-  - What if I do ...? How?
-  - What would Y be if I do X?
-  - How can I make Y happen?
+questions:
 
-  examples:
-  - If I take aspirin, will my headache be cured?
-  - What if we can ban cigarettes?
+- What if I do ...? How?
+- What would Y be if I do X?
+- How can I make Y happen?
+
+examples:
+
+- If I take aspirin, will my headache be cured?
+- What if we can ban cigarettes?
 
 3. **Counterfactuals**
 
-  activity: Imagining, Retrospection, Understanding
+activity: Imagining, Retrospection, Understanding
 
-  questions:
-  - What if I had done ...? Why?
-  - Was it X that caused Y?
-  - What if X had not occured?
-  - What if I had acted differently?
+questions:
 
-  examples:
-  - Was it the aspirin that stopped my headache?
-  - Would Kennedy be alive if Oswald had not killde him?
-  - What if I had not smoked for the last 2 years?
+- What if I had done ...? Why?
+- Was it X that caused Y?
+- What if X had not occured?
+- What if I had acted differently?
+
+examples:
+
+- Was it the aspirin that stopped my headache?
+- Would Kennedy be alive if Oswald had not killde him?
+- What if I had not smoked for the last 2 years?
+
+The laws of physics, for example,
+can be interpreted as counterfactual assertions,
+such as "Had the weight on this spring doubled,
+its length would have doubled as well" (Hooke's law).
+
+- **Xie:** Maybe a _counterfactual assertion_ can be viewed as a _logical judgment_.
+
+  In the view, logic and mathematics only study
+
+  - **Logic**
+
+    - How to use judgments?
+    - How to proof more propositions from given propositions?
+
+  - **Mathematics**
+
+    - What judgments should we study? (mathematical structures)
+    - What are the relations between judgments?
+    - TO collect pattens and to reuse proofs.
 
 # CHAPTER 2 From Buccaneers to Guinea Pigs: The Genesis of Causal Inference
 
