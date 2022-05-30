@@ -239,6 +239,60 @@ innate abilities so that we can make better sense of data, be it big or small.
 
 # CHAPTER 1 The Ladder of Causation
 
+The connection between imagining and causal relations is almost self-evident.
+It is useless to ask for the causes of things unless you can imagine
+their consequences. Conversely, you cannot claim that Eve caused you to eat
+from the tree unless you can imagine a world in which, counter to facts, she
+did not hand you the apple.
+
+## The three levels of causation
+
+A causal learner must master at least three distinct levels of cognitive ability:
+seeing, doing, and imagining.
+
+**The Ladder of Causation**
+
+1. **Association**
+
+  activity: Seeing, Observing
+
+  questions:
+  - What if I see ...?
+  - How are the variables related?
+  - How would seeing X change my belief of Y?
+
+  examples:
+  - What does a symptom tell me about a disease?
+  - What does a survey tell us about the election results?
+
+2. **Intervention**
+
+  activity: Doing, Intervening
+
+  questions:
+  - What if I do ...? How?
+  - What would Y be if I do X?
+  - How can I make Y happen?
+
+  examples:
+  - If I take aspirin, will my headache be cured?
+  - What if we can ban cigarettes?
+
+3. **Counterfactuals**
+
+  activity: Imagining, Retrospection, Understanding
+
+  questions:
+  - What if I had done ...? Why?
+  - Was it X that caused Y?
+  - What if X had not occured?
+  - What if I had acted differently?
+
+  examples:
+  - Was it the aspirin that stopped my headache?
+  - Would Kennedy be alive if Oswald had not killde him?
+  - What if I had not smoked for the last 2 years?
+
 # CHAPTER 2 From Buccaneers to Guinea Pigs: The Genesis of Causal Inference
 
 # CHAPTER 3 From Evidence to Causes: Reverend Bayes Meets Mr. Holmes
