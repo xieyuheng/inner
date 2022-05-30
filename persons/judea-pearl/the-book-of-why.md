@@ -304,6 +304,8 @@ can be interpreted as counterfactual assertions,
 such as "Had the weight on this spring doubled,
 its length would have doubled as well" (Hooke's law).
 
+- **Xie:** How to formaliz the above in a logic system?
+
 - **Xie:** Maybe a _counterfactual assertion_ can be viewed as a _logical judgment_.
 
   In the view, logic and mathematics only study
@@ -317,7 +319,7 @@ its length would have doubled as well" (Hooke's law).
 
     - What judgments should we study? (mathematical structures)
     - What are the relations between judgments?
-    - TO collect pattens and to reuse proofs.
+    - To collect pattens and to reuse proofs.
 
 # CHAPTER 2 From Buccaneers to Guinea Pigs: The Genesis of Causal Inference
 
