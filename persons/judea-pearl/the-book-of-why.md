@@ -1,7 +1,7 @@
 ---
 title: The Book of Why
 authors: [Judea Pearl, Dana Mackenzie]
-data: 2018
+year: 2018
 ---
 
 # INTRODUCTION Mind over Data
