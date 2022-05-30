@@ -299,12 +299,33 @@ examples:
 - Would Kennedy be alive if Oswald had not killde him?
 - What if I had not smoked for the last 2 years?
 
+- **Xie**: We answer a why-question by creating a function
+  which can answer all the questions of the form: "What if I had done ...?"
+
+  The development of a theory that will enable us to
+  predict what will happen in situations
+  we have not even envisioned yet.
+
 The laws of physics, for example,
 can be interpreted as counterfactual assertions,
 such as "Had the weight on this spring doubled,
 its length would have doubled as well" (Hooke's law).
 
 - **Xie:** How to formaliz the above in a logic system?
+
+  Maybe a functional relationship? A function from weight to length?
+
+  Note that, if to be model by a programmer, a spring might be a class:
+
+  ```typescript
+  class Spring {
+    weight: number
+
+    length(): number {
+      // Maybe depends on weight and a coefficient.
+    }
+  }
+  ```
 
 - **Xie:** Maybe a _counterfactual assertion_ can be viewed as a _logical judgment_.
 
@@ -320,6 +341,23 @@ its length would have doubled as well" (Hooke's law).
     - What judgments should we study? (mathematical structures)
     - What are the relations between judgments?
     - To collect pattens and to reuse proofs.
+
+If we want our computer to understand causation,
+we have to teach it how to break the rules.
+
+- **Xie:** If we model by a class, to understand causation,
+  is to be able to change the dependencies between class' fields,
+  i.e. change the definition of methods.
+
+  Thus a computer that understands causation,
+  is a computer that can program itself.
+
+  I think this is possible, but it requires a different programming model,
+  maybe it should uses probability theory.
+
+- **Xie:** One problem of causal diagram is that it only records dependencies,
+  but not "how the dependencies"
+  i.e. one variable depends on other variables by what function?
 
 # CHAPTER 2 From Buccaneers to Guinea Pigs: The Genesis of Causal Inference
 
