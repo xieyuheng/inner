@@ -393,6 +393,25 @@ changes, be it by intervention or by act of imagination.
 
 # CHAPTER 2 From Buccaneers to Guinea Pigs: The Genesis of Causal Inference
 
+[Sir Francis Galton](https://en.wikipedia.org/wiki/Francis_Galton)
+demonstrates his "Galton board" or "quincunx" at the Royal Institution.
+He saw this pinball-like apparatus as an analogy
+for the inheritance of genetic traits like stature.
+The pinballs accumulate in a bell-shaped curve that is similar
+to the distribution of human heights.
+The puzzle of why human heights don't spread out
+from one generation to the next, as the balls would,
+led him to the discovery of ["regression to the mean"](https://en.wikipedia.org/wiki/Regression_toward_the_mean).
+
+For the first time, Galton's idea of correlation gave an objective measure,
+independent of human judgment or interpretation, of how two variables are
+related to one another. The two variables can stand for height, intelligence,
+or income; they can stand in causal, neutral, or reverse-causal relation. The
+correlation will always reflect the degree of cross predictability between the
+two variables.
+
+## Galton and the abandoned quest
+
 # CHAPTER 3 From Evidence to Causes: Reverend Bayes Meets Mr. Holmes
 
 # CHAPTER 4 Confounding and Deconfounding: Or, Slaying the Lurking Variable
