@@ -1,9 +1,8 @@
 ---
 title: 组合拓扑入门 / initiation combinatorial to topology
-authors: [maurice frechet and kt fan]
+authors: [Maurice Frechet, Kt Fan]
 years: [1946, 1967]
-notes:
-  - translated from the french, by howard w. eves
+note: Translated from French, by Howard W. Eves
 newline: preserve
 ---
 
