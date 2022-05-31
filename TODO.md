@@ -11,6 +11,9 @@ author: Xie Yuheng
 
 # TODO
 
+- Review notes about homotopy type theory.
+- Understand homotopy type theory with cell complex as basic objects.
+  - Design a c-family syntax for it.
 - Read "The Book of Why",
   and try to design a probabilistic programming language.
 - Term syntax for linear logic -- simple types first.
