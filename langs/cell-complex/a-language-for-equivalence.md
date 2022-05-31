@@ -1,5 +1,6 @@
 ---
 title: A Language for Equivalence
+newline: preserve
 ---
 
 - a higher dimensional generalization of fundamental group
