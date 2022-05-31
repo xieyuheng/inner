@@ -11,9 +11,16 @@ author: Xie Yuheng
 
 # TODO
 
+- V.V.'s do not use `Iso` in his univalent axiom,
+  but changed the definition of `Iso`!
+  - ~/persons/de-bruijn/on-the-roles-of-types-in-mathematics.pdf
 - Review notes about homotopy type theory.
 - Understand homotopy type theory with cell-complex as basic objects.
   - Interpret type theory by cell-complex (model of a logic system)
+  - Revisit [Curry–Howard correspondence](https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence)
+    every now and then.
+- Word problems of semigroup, monoid and group.
+  - About undecidable.
 - Design a c-family syntax for cell-complex.
 - Read "The Book of Why",
   and try to design a probabilistic programming language.
