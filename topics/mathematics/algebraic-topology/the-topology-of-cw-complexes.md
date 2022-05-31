@@ -1,9 +1,8 @@
-# The Topology of CW Complexes
-
-------
-- Authors: Albert T. Lundell, Stephen Weingram
-- Date: 1969
-------
+---
+title: The Topology of CW Complexes
+authors: [Albert T. Lundell, Stephen Weingram]
+year: 1969
+---
 
 # combinatorial cell complexes
 
