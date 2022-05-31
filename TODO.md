@@ -13,6 +13,7 @@ author: Xie Yuheng
 
 - Review notes about homotopy type theory.
 - Understand homotopy type theory with cell-complex as basic objects.
+  - Interpret type theory by cell-complex (model of a logic system)
 - Design a c-family syntax for cell-complex.
 - Read "The Book of Why",
   and try to design a probabilistic programming language.
