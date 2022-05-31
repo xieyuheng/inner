@@ -412,6 +412,29 @@ two variables.
 
 ## Galton and the abandoned quest
 
+It is an irony of history that
+Galton started out in search of causation
+and ended up discovering correlation,
+a relationship that is oblivious of causation.
+
+In supreme irony, what had started out as an attempt to
+mathematize the framework of the _Origin of Species_
+ended with the essence of that great work being discarded as unnecessary!
+
+
+The right [causal model of the stability of the genetic endowment](https://en.wikipedia.org/wiki/Hardy%E2%80%93Weinberg_principle)
+was explained by [G. H. Hardy](https://en.wikipedia.org/wiki/G._H._Hardy)
+and [Wilhelm Weinberg](https://en.wikipedia.org/wiki/Wilhelm_Weinberg) in 1908,
+-- [the Mendelian theory of inheritance](https://en.wikipedia.org/wiki/Mendelian_inheritance).
+
+It is interesting to note how close Galton came to finding the right framework
+and also how the causal diagram makes it easy to zero in on his mistaken assumption:
+the transmission of luck from one generation to the next.
+
+Unfortunately, he was led astray by his beautiful but flawed causal model,
+and later, having discovered the beauty of correlation,
+he came to believe that causality was no longer needed.
+
 # CHAPTER 3 From Evidence to Causes: Reverend Bayes Meets Mr. Holmes
 
 # CHAPTER 4 Confounding and Deconfounding: Or, Slaying the Lurking Variable
