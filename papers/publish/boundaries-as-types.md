@@ -7,14 +7,16 @@ keywords: [Type theory, Algebraic topology]
 
 # TODO Review notes
 
-- a-language-for-equivalence
-- fibration
-- holding
-- square
-- at1-note
-- aeqea
-- main
-- note
+- topics/mathematics/algebraic-topology
+- langs/cell-complex
+  - a-language-for-equivalence
+  - fibration
+  - holding
+  - square
+  - at1-note
+  - aeqea
+  - main
+  - note
 
 # Abstract
 
