@@ -11,8 +11,9 @@ author: Xie Yuheng
 
 # TODO
 
-- Read "The Book of Why", and try to
-  design a probabilistic programming language.
+- Read "The Book of Why".
+- Read "Causality Models, Reasoning and Inference".
+- Design a probabilistic programming language.
 
 - Review notes about homotopy type theory.
 - V.V.'s did not use `Iso` in his univalent axiom,
