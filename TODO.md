@@ -24,10 +24,22 @@ author: Xie Yuheng
     every now and then.
     - ~/persons/de-bruijn/on-the-roles-of-types-in-mathematics.pdf
 - Design a c-family syntax for cell-complex.
-  - It is easy to view edge in a graph as directed,
+  - Graph theory has many models, we have many ways
+    to interpret node and edge and their relations,
+    but how to interpret cell-complex?
+    for example, how to interpret a face?
+    as a relation between relations?
+    an equivalence between equivalences?
+    - Can we interpret a face and its "direction"
+      as the one-value-ness of a relation?
+  - The cell-complex as defined by us only generalize undirected graph theory,
+    how about directed graph theory?
+    It is easy to view edge in a graph as directed,
     but how should we view a face as directed?
     - How do we view an edge as directed?
-      - (A) by movement?
+      - (A) by a movement?
+      - (B) by a causal relation?
+
 
 - Word problems of semigroup, monoid and group.
   - About undecidable.
