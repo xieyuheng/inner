@@ -11,29 +11,32 @@ author: Xie Yuheng
 
 # TODO
 
+- Read "The Book of Why", and try to
+  design a probabilistic programming language.
+
 - V.V.'s did not use `Iso` in his univalent axiom,
   but changed the definition of `Iso`!
-  - If `Iso <-> isEquiv` why we can not use `Iso` to define univalent axiom? 
+  - If `Iso <-> isEquiv` why we can not use `Iso` to define univalent axiom?
 - Review notes about homotopy type theory.
 - Understand homotopy type theory with cell-complex as basic objects.
   - Interpret type theory by cell-complex (model of a logic system)
   - Revisit [Curry–Howard correspondence](https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence)
     every now and then.
-    - ~/persons/de-bruijn/on-the-roles-of-types-in-mathematics.pdf    
+    - ~/persons/de-bruijn/on-the-roles-of-types-in-mathematics.pdf
+- Design a c-family syntax for cell-complex.
+
 - Word problems of semigroup, monoid and group.
   - About undecidable.
-- Design a c-family syntax for cell-complex.
-- Read "The Book of Why",
-  and try to design a probabilistic programming language.
 - Term syntax for linear logic -- simple types first.
   - How does the algebra of linear logic connectives
     different from boolean lattice?
+- Use linear logic as type system of inet.
+- Implement optimal beta-reduction by inet.
+
 - Analysis Christopher Alexander's "A Pattern Language",
   to use patterns to record my knowledge.
   - Case study the structure of Martin Fowler's homepage.
   - Readonly.Link should support writing patterns.
-- Use linear logic as type system of inet.
-- Implement optimal beta-reduction by inet.
 
 # Main quests
 
@@ -103,6 +106,20 @@ Higher dimensional algebraic structure.
   how lowdim project different from HOTT?
 
 - **[problem]** Can we use such implementation in geometric modeling?
+
+## Causal Inference Engine
+
+The goal is to design a causal inference engine,
+following the steps of Judea Pearl.
+
+- by a library and its API.
+- or by a probabilistic programming language.
+
+- **[problem]** How does such a causal inference engine
+  relate to logic deduction system and "model by classes and objects"?
+
+- **[problem]** Can we use a causal inference engine to understand
+  Polya's "Patterns of plausible inference"?
 
 # Side quests
 

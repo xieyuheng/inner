@@ -496,6 +496,11 @@ process that produces the data, and then we get something that was not in the
 data to begin with. But Fisher was right about one point: once you remove
 causation from statistics, reduction of data is the only thing left.
 
+## From objectivity to subjectivity -- The bayesian connection
+
+
+
+
 # CHAPTER 3 From Evidence to Causes: Reverend Bayes Meets Mr. Holmes
 
 # CHAPTER 4 Confounding and Deconfounding: Or, Slaying the Lurking Variable
