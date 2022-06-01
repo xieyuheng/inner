@@ -421,7 +421,6 @@ In supreme irony, what had started out as an attempt to
 mathematize the framework of the _Origin of Species_
 ended with the essence of that great work being discarded as unnecessary!
 
-
 The right [causal model of the stability of the genetic endowment](https://en.wikipedia.org/wiki/Hardy%E2%80%93Weinberg_principle)
 was explained by [G. H. Hardy](https://en.wikipedia.org/wiki/G._H._Hardy)
 and [Wilhelm Weinberg](https://en.wikipedia.org/wiki/Wilhelm_Weinberg) in 1908,
@@ -434,6 +433,41 @@ the transmission of luck from one generation to the next.
 Unfortunately, he was led astray by his beautiful but flawed causal model,
 and later, having discovered the beauty of correlation,
 he came to believe that causality was no longer needed.
+
+## Pearson: The wrath of the zealot
+
+Galton had proved only that one phenomenon
+-- regression to the mean -- did not require a causal explanation.
+Now [Karl Pearson](https://en.wikipedia.org/wiki/Karl_Pearson)
+was completely removing causation from science.
+What made him take this leap?
+
+Pearson had been wrestling with the philosophical foundation of physics and
+wrote (for example), "Force as a cause of motion is exactly on the same
+footing as a tree-god as a cause of growth."
+More generally, Pearson belonged to a philosophical school called positivism,
+which holds that the universe is a product of human thought
+and that science is only a description of those thoughts.
+Thus causation, construed as an objective process
+that happens in the world outside the human brain,
+could not have any scientific meaning.
+Meaningful thoughts can only reflect patterns of observations,
+and these can be completely described by correlations.
+Having decided that correlation was a more
+universal descriptor of human thought than causation,
+Pearson was prepared to discard causation completely.
+
+## Sewall Wright, guinea pigs, and path diagrams
+
+> [Sewall Wright](https://en.wikipedia.org/wiki/Sewall_Wright).
+
+## E pur si muove (And yet it moves)
+
+> [And yet it moves](https://en.wikipedia.org/wiki/And_yet_it_moves).
+
+... Maybe his Midwestern
+upbringing and the tiny college he went to encouraged his self-reliance and
+taught him that the surest kind of knowledge is what you construct yourself.
 
 # CHAPTER 3 From Evidence to Causes: Reverend Bayes Meets Mr. Holmes
 
