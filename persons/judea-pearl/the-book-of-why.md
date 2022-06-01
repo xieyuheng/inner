@@ -515,6 +515,10 @@ whatever the scientist's own field of expertise is.
 - **Xie:** Maybe our way of understanding the world by causation
   is fundamentally subjective.
 
+Most of the tools of statistics strive for complete objectivity.
+There is one important exception to this rule
+-- [Bayesian statistics](https://en.wikipedia.org/wiki/Bayesian_statistics).
+
 # CHAPTER 3 From Evidence to Causes: Reverend Bayes Meets Mr. Holmes
 
 # CHAPTER 4 Confounding and Deconfounding: Or, Slaying the Lurking Variable
