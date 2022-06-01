@@ -469,6 +469,21 @@ Pearson was prepared to discard causation completely.
 upbringing and the tiny college he went to encouraged his self-reliance and
 taught him that the surest kind of knowledge is what you construct yourself.
 
+If only we could go back and ask Wright's contemporaries,
+"Why didn't you pay attention?"
+Crow suggests one reason:
+path analysis "doesn't lend itself to 'canned' programs.
+The user has to have a hypothesis
+and must devise an appropriate diagram
+of multiple causal sequences.”
+Indeed, Crow put his finger on an essential point:
+path analysis requires scientific thinking,
+as does every exercise in causal inference.
+Statistics, as frequently practiced,
+discourages it and encourages "canned" procedures instead.
+Scientists will always prefer routine calculations on data
+to methods that challenge their
+
 # CHAPTER 3 From Evidence to Causes: Reverend Bayes Meets Mr. Holmes
 
 # CHAPTER 4 Confounding and Deconfounding: Or, Slaying the Lurking Variable
