@@ -1,7 +1,7 @@
 ---
 title: the history of combinatorial group theory: a case study in the history of ideas
-author: bruce chandler, wilhelm magnus
-date: 1982
+authors: [bruce chandler, wilhelm magnus]
+year: 1982
 ---
 
 # info

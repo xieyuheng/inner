@@ -8,6 +8,7 @@ keywords: [Type theory, Algebraic topology]
 # TODO Review notes
 
 - topics/mathematics/algebraic-topology
+- topics/mathematics/combinatorial-group-theory
 - langs/cell-complex
   - a-language-for-equivalence
   - fibration

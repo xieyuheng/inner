@@ -1,7 +1,7 @@
 ---
 title: classical topology and combinatorial group theory
 author: john stillwell
-date: 1980, 1992
+years: [1980, 1992]
 ---
 
 # info

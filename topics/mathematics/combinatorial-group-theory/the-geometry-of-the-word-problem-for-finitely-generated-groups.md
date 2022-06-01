@@ -1,6 +1,6 @@
 ---
 title: the geometry of the word problem for finitely generated groups
-date: 2005
+year: 2005
 ---
 
 # (Noel Brady) Dehn Functions and Non-Positive Curvature
