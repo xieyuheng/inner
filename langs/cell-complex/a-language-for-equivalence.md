@@ -3,18 +3,15 @@ title: A Language for Equivalence
 newline: preserve
 ---
 
-- a higher dimensional generalization of fundamental group
-  with homology group as its abelianization
-
 # [todo-list]
 
-  - syntax for covering space
-  - 總結 chain 之間的等價
-    chain 之間的等價關係在 continuity-check 中用到
-  - 總結化學類比
-  - 爲空間之間的等價設計語言
-    能夠描述 normalization theory
-  - 說明高階代數結構可以經過忘記信息而得到 homology group
+- syntax for covering space
+- 總結 chain 之間的等價
+  chain 之間的等價關係在 continuity-check 中用到
+- 總結化學類比
+- 爲空間之間的等價設計語言
+  能夠描述 normalization theory
+- 說明高階代數結構可以經過忘記信息而得到 homology group
 
 # [note]
 
