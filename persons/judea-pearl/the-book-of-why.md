@@ -484,6 +484,11 @@ discourages it and encourages "canned" procedures instead.
 Scientists will always prefer routine calculations on data
 to methods that challenge their
 
+R. A. Fisher, the undisputed high priest of statistics in the generation
+after Galton and Pearson, described this difference succinctly.
+In 1925, he wrote, "Statistics may be regarded as ...
+the study of methods of the reduction of data."
+
 # CHAPTER 3 From Evidence to Causes: Reverend Bayes Meets Mr. Holmes
 
 # CHAPTER 4 Confounding and Deconfounding: Or, Slaying the Lurking Variable
