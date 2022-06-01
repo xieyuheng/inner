@@ -519,6 +519,10 @@ Most of the tools of statistics strive for complete objectivity.
 There is one important exception to this rule
 -- [Bayesian statistics](https://en.wikipedia.org/wiki/Bayesian_statistics).
 
+The prototype of Bayesian analysis goes like this:
+
+> Prior Belief + New Evidence -> Revised Belief.
+
 # CHAPTER 3 From Evidence to Causes: Reverend Bayes Meets Mr. Holmes
 
 # CHAPTER 4 Confounding and Deconfounding: Or, Slaying the Lurking Variable
