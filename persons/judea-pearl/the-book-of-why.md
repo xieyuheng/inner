@@ -523,6 +523,20 @@ The prototype of Bayesian analysis goes like this:
 
 > Prior Belief + New Evidence -> Revised Belief.
 
+Unfortunately, the acceptance of Bayesian subjectivity in mainstream
+statistics did nothing to help the acceptance of causal subjectivity,
+the kind needed to specify a path diagram.
+Why? The answer rests on a grand linguistic barrier.
+To articulate subjective assumptions,
+Bayesian statisticians still use the language of probability,
+the native language of Galton and Pearson.
+The assumptions entering causal inference, on the other hand,
+require a richer language (e.g., diagrams)
+that is foreign to Bayesians and frequentists alike.
+The reconciliation between Bayesians and frequentists shows that
+philosophical barriers can be bridged with goodwill and a common language.
+Linguistic barriers are not surmounted so easily.
+
 # CHAPTER 3 From Evidence to Causes: Reverend Bayes Meets Mr. Holmes
 
 # CHAPTER 4 Confounding and Deconfounding: Or, Slaying the Lurking Variable
