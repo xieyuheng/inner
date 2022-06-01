@@ -14,16 +14,20 @@ author: Xie Yuheng
 - Read "The Book of Why", and try to
   design a probabilistic programming language.
 
+- Review notes about homotopy type theory.
 - V.V.'s did not use `Iso` in his univalent axiom,
   but changed the definition of `Iso`!
   - If `Iso <-> isEquiv` why we can not use `Iso` to define univalent axiom?
-- Review notes about homotopy type theory.
 - Understand homotopy type theory with cell-complex as basic objects.
   - Interpret type theory by cell-complex (model of a logic system)
   - Revisit [Curry–Howard correspondence](https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence)
     every now and then.
     - ~/persons/de-bruijn/on-the-roles-of-types-in-mathematics.pdf
 - Design a c-family syntax for cell-complex.
+  - It is easy to view edge in a graph as directed,
+    but how should we view a face as directed?
+    - How do we view an edge as directed?
+      - (A) by movement?
 
 - Word problems of semigroup, monoid and group.
   - About undecidable.

@@ -505,6 +505,13 @@ want path analysis to become "stereotyped." According to Wright,
 stereotyped modes of description designed to avoid any departures from
 complete objectivity."
 
+What does he mean? First, he means that path analysis should be based
+on the user's personal understanding of causal processes, reflected in the
+causal diagram. It cannot be reduced to mechanical routines, such as those
+laid out in statistics manuals. For Wright, drawing a path diagram is not a
+statistical exercise; it is an exercise in genetics, economics, psychology, or
+whatever the scientist's own field of expertise is.
+
 # CHAPTER 3 From Evidence to Causes: Reverend Bayes Meets Mr. Holmes
 
 # CHAPTER 4 Confounding and Deconfounding: Or, Slaying the Lurking Variable
