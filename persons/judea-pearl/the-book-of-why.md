@@ -537,6 +537,17 @@ The reconciliation between Bayesians and frequentists shows that
 philosophical barriers can be bridged with goodwill and a common language.
 Linguistic barriers are not surmounted so easily.
 
+On the positive side, causal inference is objective
+in one critically important sense:
+once two people agree on their assumptions,
+it provides a 100 percent objective way
+of interpreting any new evidence (or data).
+
+I arrived at the theory of causality through a circuitous route
+that started with Bayesian probability and then
+took a huge detour through Bayesian networks.
+I will tell that story in the next chapter.
+
 # CHAPTER 3 From Evidence to Causes: Reverend Bayes Meets Mr. Holmes
 
 # CHAPTER 4 Confounding and Deconfounding: Or, Slaying the Lurking Variable
