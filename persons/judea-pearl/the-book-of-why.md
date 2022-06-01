@@ -498,8 +498,12 @@ causation from statistics, reduction of data is the only thing left.
 
 ## From objectivity to subjectivity -- The bayesian connection
 
-
-
+One other theme in Wright's rebuttal may hint at another reason for the
+resistance of statisticians to causality. He repeatedly states that he did not
+want path analysis to become "stereotyped." According to Wright,
+"The unstereotyped approach of path analysis differs profoundly from the
+stereotyped modes of description designed to avoid any departures from
+complete objectivity."
 
 # CHAPTER 3 From Evidence to Causes: Reverend Bayes Meets Mr. Holmes
 
