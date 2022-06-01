@@ -489,6 +489,13 @@ after Galton and Pearson, described this difference succinctly.
 In 1925, he wrote, "Statistics may be regarded as ...
 the study of methods of the reduction of data."
 
+Wright abhorred the idea of statistics as merely a collection of methods;
+Fisher embraced it. Causal analysis is emphatically not just about
+data; in causal analysis we must incorporate some understanding of the
+process that produces the data, and then we get something that was not in the
+data to begin with. But Fisher was right about one point: once you remove
+causation from statistics, reduction of data is the only thing left.
+
 # CHAPTER 3 From Evidence to Causes: Reverend Bayes Meets Mr. Holmes
 
 # CHAPTER 4 Confounding and Deconfounding: Or, Slaying the Lurking Variable
