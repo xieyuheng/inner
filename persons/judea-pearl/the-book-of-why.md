@@ -134,7 +134,7 @@ orphaned scientific language making it from birth to maturity.
   is a definition of the judgment as a relation
   (thinking about Prolog or inductive datatype in dependent type system).
 
-  The relations are about about cause and effect at all.
+  The relations are not about cause and effect at all.
 
   There is a Prolog book called "Clause and Effect", but not "Cause and Effect".
 
@@ -511,6 +511,9 @@ causal diagram. It cannot be reduced to mechanical routines, such as those
 laid out in statistics manuals. For Wright, drawing a path diagram is not a
 statistical exercise; it is an exercise in genetics, economics, psychology, or
 whatever the scientist's own field of expertise is.
+
+- **Xie:** Maybe our way of understanding the world by causation
+  is fundamentally subjective.
 
 # CHAPTER 3 From Evidence to Causes: Reverend Bayes Meets Mr. Holmes
 
