@@ -550,6 +550,126 @@ I will tell that story in the next chapter.
 
 # CHAPTER 3 From Evidence to Causes: Reverend Bayes Meets Mr. Holmes
 
+"It's elementary, my dear Watson."
+
+So spoke Sherlock Holmes just before dazzling his faithful assistant
+with one of his famously nonelementary deductions.
+But in fact, Holmes performed not just deduction,
+which works from a hypothesis to a conclusion.
+His great skill was induction, which works in the
+opposite direction, from evidence to hypothesis.
+
+- **Xie:** We know Peirce has
+  [deduction](https://en.wikipedia.org/wiki/Deductive_reasoning),
+  [induction](https://en.wikipedia.org/wiki/Inductive_reasoning) and
+  [abduction](https://en.wikipedia.org/wiki/Abductive_reasoning).
+
+  How do they relate to causal inference?
+
+Bayesian networks is a tool for inductive reasoning.
+
+## Bonaparte, the computer detective
+
+Bonaparte is a state-of-the-art disaster victim identification program.
+This software, developed in the mid-2000s by a team from Radboud University in Nijmegen,
+uses Bayesian networks to combine DNA information
+taken from several different family members of the victims.
+
+## Reverend Bayes and the problem of inverse probability
+
+> [Thomas Bayes](https://en.wikipedia.org/wiki/Thomas_Bayes).
+
+`P(S | T) * P(T) = P(T | S) * P(S)`
+
+This innocent-looking equation came to be known as "Bayes's rule".
+If we look carefully at what it says, we find that
+it offers a general solution to the inverse-probability problem.
+It tells us that if we know the probability of `S given T`, `P(S | T)`,
+we ought to be able to figure out the probability of `T given S`, `P(T | S)`,
+assuming of course that we know `P(T)` and `P(S)`.
+
+This is perhaps the most important role of Bayes's rule in statistics:
+we can estimate the conditional probability directly in one direction,
+for which our judgment is more reliable, and use mathematics
+to derive the conditional probability in the other direction,
+for which our judgment is rather hazy.
+The equation also plays this role in Bayesian networks;
+we tell the computer the forward probabilities,
+and the computer tells us the inverse probabilities when needed.
+
+We can also look at Bayes's rule as a way to update our belief in a
+particular hypothesis. This is extremely important to understand, because a
+large part of human belief about future events rests on the frequency with
+which they or similar events have occurred in the past.
+Indeed, when a customer walks in the door of the restaurant,
+we believe, based on our past encounters with similar customers,
+that she probably wants tea.
+But if she first orders scones, we become even more certain.
+In fact, we might even suggest it: "I presume you want tea with that?"
+Bayes's rule simply lets us attach numbers to this reasoning process.
+From Table 3.1, we see that the prior probability that the customer wants tea
+(meaning when she walks in the door, before she orders anything) is two-thirds.
+But if the customer orders scones, now we have additional information about her
+that we didn't have before.
+The updated probability that she wants tea, given that she has ordered
+scones, is `P(T | S) = 4/5`.
+
+Mathematically, that's all there is to Bayes's rule. It seems almost trivial.
+Why it makes Bayes famous and why people have argued over his rule for 250 years?
+
+Here I must confess that in the teahouse example, by deriving Bayes's
+rule from data, I have glossed over two profound objections, one
+philosophical and the other practical. The philosophical one stems from the
+interpretation of probabilities as _a degree of belief_, which we used implicitly
+in the teahouse example. Who ever said that beliefs act, or should act, like
+proportions in the data?
+
+The crux of the philosophical debate is whether we can legitimately
+translate the expression "given that I know" into the language of
+probabilities. Even if we agree that the unconditional probabilities `P(S)`, `P(T)`,
+and `P(S AND T)` reflect my degree of belief in those propositions, who says
+that my revised degree of belief in `T` should equal the ratio `P(S AND T)/P(S)`,
+as dictated by Bayes's rule? Is "given that I know T" the same as "among
+cases where `T` occurred“”? The language of probability, expressed in symbols
+like `P(S)`, was intended to capture the concept of frequencies in games of
+chance. But the expression "given that I know" is epistemological and
+should be governed by the logic of knowledge, not that of frequencies and
+proportions.
+
+From the philosophical perspective, Thomas Bayes's accomplishment lies in
+his proposing the first formal definition of conditional probability as the ratio
+
+```
+P(S | T) = P(S AND T)/P(T)
+```
+
+As we saw, Bayes's rule is formally an elementary consequence
+of his definition of conditional probability.
+But epistemologically, it is far from elementary.
+It acts, in fact, as a normative rule for
+_updating beliefs in response to evidence_.
+
+In other words, we should view Bayes's rule not just as a convenient definition
+of the new concept of "conditional probability" but as an empirical claim
+to faithfully represent the English expression "given that I know".
+
+It asserts, among other things, that the belief a person attributes
+to `S` after discovering `T` is never lower than the degree of belief that person
+attributes to `S AND T` before discovering `T`.
+Also, it implies that the more surprising the evidence `T`
+-- that is, the smaller `P(T)` is
+-- the more convinced one should become of its cause `S`.
+No wonder Bayes and his friend Price, as Episcopal ministers,
+saw this as an effective rejoinder to Hume.
+If `T` is a miracle ("Christ rose from the dead"),
+and `S` is a closely related hypothesis ("Christ is the son of God"),
+our degree of belief in `S` is very dramatically increased
+if we know for a fact that `T` is true.
+The more miraculous the miracle,
+the more credible the hypothesis that explains its occurrence.
+This explains why the writers of the New Testament
+were so impressed by their eyewitness evidence.
+
 # CHAPTER 4 Confounding and Deconfounding: Or, Slaying the Lurking Variable
 
 # CHAPTER 5 The Smoke-Filled Debate: Clearing the Air
