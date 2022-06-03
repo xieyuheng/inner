@@ -23,3 +23,13 @@ title: Judea Pearl
   all information about connection and direction are lost.
 
   - Algebra of assignments and structural causal model.
+
+- The disciplines of computer scinece
+  and the paradigm of artifical intelligance
+  that force us to explicate things in algorithmic details
+  and force us to teach those details to brainless robot,
+  and in this way not only to achieve robot emulating us,
+  but us understanding ourselves,
+  and to paraphrase Descartes, I would say,
+
+  > I compute, therefore I think.
