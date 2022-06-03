@@ -688,7 +688,31 @@ Bayes's rule tells us how to perform step (4) in the real world.
 
 ## From Bayes's rule to Bayesian networks
 
+In the early 1980s, the field of artificial intelligence had worked itself into a
+cul-de-sac. Ever since Alan Turing first laid out the challenge in his 1950
+paper “Computing Machinery and Intelligence,” the leading approach to AI
+had been so-called rule-based systems or expert systems, which organize
+human knowledge as a collection of specific and general facts, along with
+inference rules to connect them. For example: Socrates is a man (specific
+fact). All men are mortals (general fact). From this knowledge base we (or an
+intelligent machine) can derive the fact that Socrates is a mortal, using the
+universal rule of inference:
 
+```
+if all A's are B's,
+and x is an A,
+------
+then x is a B.
+```
+
+- **Xie:**: If we formalize man as a type `Man`.
+
+```
+f: (x: Man) -> Mortal(x)
+x: Man
+------
+f(x): Mortal(x)
+```
 
 # CHAPTER 4 Confounding and Deconfounding: Or, Slaying the Lurking Variable
 

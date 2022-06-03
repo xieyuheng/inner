@@ -42,6 +42,6 @@ title: Judea Pearl
 
 TODO
 
-## On the fail of expert system
+## On the fail of expert systems
 
 TODO
