@@ -930,7 +930,24 @@ represents now permit us to emulate wiggling without physically doing so.
 
 # CHAPTER 4 Confounding and Deconfounding: Or, Slaying the Lurking Variable
 
-TODO At the same time, statisticians greatly underrate controlling in the sense
+The randomized controlled trial (RCT) is indeed a wonderful invention.
+
+One of my goals in this chapter is to explain,
+from the point of view of causal diagrams,
+precisely why RCTs allow us to estimate the causal effect `X -> Y`
+without falling prey to confounder bias.
+Once we have understood why RCTs work,
+there is no need to put them on a pedestal
+and treat them as the gold standard of causal analysis,
+which all other methods should emulate.
+Quite the opposite:
+we will see that the so-called gold standard
+in fact derives its legitimacy from more basic principles.
+
+- **Xie:** Just like how Girard show that
+  the constructiveness of intuitionistic logic
+  come from the structure of sequent,
+  and we can use the basic principles to get linear logic.
 
 # CHAPTER 5 The Smoke-Filled Debate: Clearing the Air
 
