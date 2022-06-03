@@ -672,6 +672,20 @@ the more credible the hypothesis that explains its occurrence.
 This explains why the writers of the New Testament
 were so impressed by their eyewitness evidence.
 
+In many ways, Bayes's rule is a distillation of the scientific method.
+The textbook description of the scientific method goes something like this:
+
+- (1) formulate a hypothesis,
+- (2) deduce a testable consequence of the hypothesis,
+- (3) perform an experiment and collect evidence,
+- (4) update your belief in the hypothesis.
+
+Usually the textbooks deal with simple yes-or-no tests and updates;
+the evidence either confirms or refutes the hypothesis.
+But life and science are never so simple!
+All evidence comes with a certain amount of uncertainty.
+Bayes's rule tells us how to perform step (4) in the real world.
+
 # CHAPTER 4 Confounding and Deconfounding: Or, Slaying the Lurking Variable
 
 # CHAPTER 5 The Smoke-Filled Debate: Clearing the Air
