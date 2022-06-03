@@ -4,9 +4,9 @@ subtitle: Be explicit and clear about our goals and progress, to keep direction 
 author: Xie Yuheng
 ---
 
-> The idea of game, basically, is this: \
-> that the nature of the world is musical. \
-> i.e. everything that is happening is its own point. \
+> The idea of game, basically, is this:
+> that the nature of the world is musical.
+> i.e. everything that is happening is its own point.
 > -- ["The Joker"](https://www.organism.earth/library/document/the-joker), Alan Watts
 
 # TODO
@@ -14,6 +14,8 @@ author: Xie Yuheng
 - Read "The Book of Why".
 - Read "Causality Models, Reasoning and Inference".
 - Design a probabilistic programming language.
+
+------
 
 - Review notes about homotopy type theory.
 - V.V.'s did not use `Iso` in his univalent axiom,
@@ -43,6 +45,8 @@ author: Xie Yuheng
       - (B) causal relation
       how to generalize this to face and body?
 
+------
+
 - Word problems of semigroup, monoid and group.
   - About undecidable.
 - Term syntax for linear logic -- simple types first.
@@ -50,6 +54,8 @@ author: Xie Yuheng
     different from boolean lattice?
 - Use linear logic as type system of inet.
 - Implement optimal beta-reduction by inet.
+
+------
 
 - Analysis Christopher Alexander's "A Pattern Language",
   to use patterns to record my knowledge.
