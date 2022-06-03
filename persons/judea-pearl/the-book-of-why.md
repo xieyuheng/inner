@@ -714,6 +714,90 @@ x: Man
 f(x): Mortal(x)
 ```
 
+The approach was fine in theory, but hard-and-fast rules can rarely capture
+real-life knowledge. Perhaps without realizing it, we deal with exceptions to
+rules and uncertainties in evidence all the time. By 1980, it was clear that
+expert systems struggled with making correct inferences from uncertain
+knowledge. The computer could not replicate the inferential process of a
+human expert because the experts themselves were not able to articulate their
+thinking process within the language provided by the system.
+
+- **Xie**: The representation of knowledge
+  as judgments and inferences rules in a logic system,
+  is not enough.
+
+## Bayesian networks: What causes say about data
+
+Although Bayes didn't know it, his rule for inverse probability represents the
+simplest Bayesian network. We have seen this network in several guises now:
+
+```
+Tea -> Scones
+Disease -> Test
+```
+
+or, more generally,
+
+```
+Hypothesis -> Evidence
+```
+
+Unlike the causal diagrams we will deal with throughout the book,
+a Bayesian network carries no assumption that the arrow has any causal meaning.
+The arrow merely signifies that we know the "forward" probability,
+`P(scones | tea)` or `P(test | disease)`.
+Bayes's rule tells us how to reverse the procedure,
+specifically by multiplying the prior probability by a likelihood ratio.
+
+The next step after a two-node network with one link is, of course,
+a three-node network with two links, which I will call a "junction".
+These are the building blocks of all Bayesian networks
+(and causal networks as well).
+There are three basic types of junctions,
+with the help of which we can characterize
+any pattern of arrows in the network.
+
+1. `A -> B -> C`.
+
+   This junction is the simplest example of a "chain", or of mediation.
+   In science, one often thinks of `B` as the mechanism, or "mediator",
+   that transmits the effect of `A` to `C`.
+
+   A familiar example is `Fire -> Smoke -> Alarm`.
+   Although we call them "fire alarms", they are really smoke alarms.
+
+   For example, imagine a faulty alarm system that
+   fails to respond correctly 5 percent of the time.
+   If we look only at the rows where `Smoke = 1`,
+   we will find that the probability of `Alarm = 1` is the same (95 percent),
+   regardless of whether `Fire = 0` or `Fire = 1`.
+
+   The process of looking only at rows in the table where `Smoke = 1`
+   is called conditioning on a variable.
+   Likewise, we say that `Fire` and `Alarm` are conditionally independent,
+   given the value of `Smoke`.
+
+2. `A <- B -> C`.
+
+   This kind of junction is called a "fork",
+   and `B` is often called a common cause or confounder of `A` and `C`.
+   A confounder will make `A` and `C` statistically correlated
+   even though there is no direct causal link between them.
+
+   A good example (due to David Freedman) is
+   `Shoe Size <- Age of Child -> Reading Ability`.
+
+   We can eliminate this spurious correlation, as Karl Pearson
+   and George Udny Yule called it, by conditioning on the child's
+   age. For instance, if we look only at seven-year-olds, we expect
+   to see no relationship between shoe size and reading ability. As
+   in the case of chain junctions, `A` and `C` are conditionally
+   independent, given `B`.
+
+3. `A -> B <- C`.
+
+
+
 # CHAPTER 4 Confounding and Deconfounding: Or, Slaying the Lurking Variable
 
 # CHAPTER 5 The Smoke-Filled Debate: Clearing the Air
