@@ -949,6 +949,55 @@ in fact derives its legitimacy from more basic principles.
   come from the structure of sequent,
   and we can use the basic principles to get linear logic.
 
+## The chilling fear of confounding
+
+- **Xie:** Even after removed almost all the confounders,
+  a research team still do not dare to declare causation.
+
+## The skillful interrogation of nature: Why RCTs work
+
+- **Xie:** Analysis RCT by causal diagrams.
+
+  RCT is one way of performing do-operator.
+
+## The new paradigm of confounding
+
+Lacking a principled understanding of confounding, scientists could not say
+anything meaningful in observational studies where physical control over
+treatments is infeasible.
+
+Confounding should simply be defined as
+anything that leads to a discrepancy between seeing and doing:
+
+```
+P(Y | X) != P(Y | do(X))
+```
+
+We can answer such questions by referring to the causal diagram
+and checking which variables produce a discrepancy between seeing and doing.
+
+Historically, the concept of "confounding"
+has evolved around two related conceptions:
+incomparability and a lurking third variable.
+Both of these concepts have resisted formalization.
+
+When we talked about comparability,
+in the context of Daniel's experiment,
+we said that the treatment and control groups
+should be identical in all relevant ways.
+But this begs us to distinguish relevant from irrelevant attributes.
+
+How do we know that age is relevant in the Honolulu walking study?
+How do we know that the alphabetical order
+of a participant's name is not relevant?
+You might say it's obvious or common sense,
+but generations of scientists have struggled
+to articulate that common sense formally,
+and a robot cannot rely on our common sense
+when asked to act properly.
+
+## The do-operator and the back-door criterion
+
 # CHAPTER 5 The Smoke-Filled Debate: Clearing the Air
 
 # CHAPTER 6 Paradoxes Galore!

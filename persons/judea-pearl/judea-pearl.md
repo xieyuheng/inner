@@ -8,6 +8,9 @@ title: Judea Pearl
 
 - Science should be taught with its history.
 
+  After been told the stories of the persons who did great science,
+  you are under the illusion that you can do too.
+
 - Just solving constraint satisfaction problems is not enough,
   there's something there about persistence things in the world
   that is not encoded but should be encoded,
@@ -32,7 +35,7 @@ title: Judea Pearl
   but us understanding ourselves,
   and to paraphrase Descartes, I would say,
 
-  > I compute, therefore I think.
+  > **I compute, therefore I think**.
 
 # A conversation between Judea Pearl and Stephen Wolfram
 
