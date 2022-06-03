@@ -794,9 +794,40 @@ any pattern of arrows in the network.
    in the case of chain junctions, `A` and `C` are conditionally
    independent, given `B`.
 
+   Before we go on to our third junction, we need to add a
+   word of clarification. The conditional independences I have just
+   mentioned are exhibited whenever we look at these junctions in
+   isolation. If additional causal paths surround them, these paths
+   need also be taken into account.
+
+   The miracle of Bayesian networks lies in the fact that the three
+   kinds of junctions we are now describing in isolation are sufficient
+   for reading off all the independencies implied by a Bayesian network,
+   regardless of how complicated.
+
 3. `A -> B <- C`.
 
+   This is the most fascinating junction, called a "collider".
 
+   Felix Elwert and Chris Winship have illustrated this
+   junction using three features of Hollywood actors:
+   `Talent -> Celebrity <- Beauty`.
+
+   Here we are asserting that both talent and
+   beauty contribute to an actor's success,
+   but beauty and talent are completely unrelated to one another
+   in the general population.
+
+   We will now see that this collider pattern works in exactly
+   the opposite way from chains or forks when we condition on
+   the variable in the middle.
+   If `A` and `C` are independent to begin with,
+   conditioning on `B` will make them dependent.
+   For example, if we look only at famous actors
+   (in other words, we observe the variable `Celebrity = 1`),
+   we will see a negative correlation between talent and beauty:
+   finding out that a celebrity is unattractive
+   increases our belief that he or she is talented.
 
 # CHAPTER 4 Confounding and Deconfounding: Or, Slaying the Lurking Variable
 
