@@ -2,6 +2,7 @@
 title: But a Mask
 author: Xie Yuheng
 date: 2022-06-04
+newline: preserve
 ---
 
 When I first wandered on that land
