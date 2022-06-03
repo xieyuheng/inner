@@ -686,6 +686,10 @@ But life and science are never so simple!
 All evidence comes with a certain amount of uncertainty.
 Bayes's rule tells us how to perform step (4) in the real world.
 
+## From Bayes's rule to Bayesian networks
+
+
+
 # CHAPTER 4 Confounding and Deconfounding: Or, Slaying the Lurking Variable
 
 # CHAPTER 5 The Smoke-Filled Debate: Clearing the Air

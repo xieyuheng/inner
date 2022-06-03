@@ -33,3 +33,15 @@ title: Judea Pearl
   and to paraphrase Descartes, I would say,
 
   > I compute, therefore I think.
+
+# A conversation between Judea Pearl and Stephen Wolfram
+
+[ [VIDEO](https://www.youtube.com/watch?v=230PsGBxkCo) ]
+
+## On heuristics
+
+TODO
+
+## On the fail of expert system
+
+TODO
