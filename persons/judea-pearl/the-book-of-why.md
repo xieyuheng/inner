@@ -579,7 +579,9 @@ taken from several different family members of the victims.
 
 > [Thomas Bayes](https://en.wikipedia.org/wiki/Thomas_Bayes).
 
-`P(S | T) * P(T) = P(T | S) * P(S)`
+```
+P(S | T) * P(T) = P(T | S) * P(S)
+```
 
 This innocent-looking equation came to be known as "Bayes's rule".
 If we look carefully at what it says, we find that
