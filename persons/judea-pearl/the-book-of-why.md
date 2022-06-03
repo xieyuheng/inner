@@ -829,6 +829,30 @@ any pattern of arrows in the network.
    finding out that a celebrity is unattractive
    increases our belief that he or she is talented.
 
+   This negative correlation
+   is sometimes called collider bias
+   or the "explain-away" effect.
+
+   For simplicity, suppose that you don't need both
+   talent and beauty to be a celebrity;
+   one is sufficient.
+   Then if a celebrity `A` is a particularly good actor,
+   that "explains away" his success,
+   and he doesn't need to be any more beautiful
+   than the average person.
+   On the other hand, if a celebrity `B` is a really bad actor,
+   then the only way to explain his success is his good looks.
+   So, given the outcome `Celebrity = 1`,
+   talent and beauty are inversely related
+   -- even though they are not related in the population as a whole.
+   Even in a more realistic situation,
+   where success is a complicated function of beauty and talent,
+   the explain-away effect will still be present.
+   This example is admittedly somewhat apocryphal,
+   because beauty and talent are hard to measure objectively;
+   nevertheless, collider bias is quite real,
+   and we will see lots of examples in this book.
+
 # CHAPTER 4 Confounding and Deconfounding: Or, Slaying the Lurking Variable
 
 # CHAPTER 5 The Smoke-Filled Debate: Clearing the Air
