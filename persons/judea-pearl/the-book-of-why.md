@@ -853,6 +853,32 @@ any pattern of arrows in the network.
    nevertheless, collider bias is quite real,
    and we will see lots of examples in this book.
 
+These three junctions
+-- chains, forks, and colliders
+-- are like keyholes through the door
+that separates the first and second levels of the Ladder of Causation.
+If we peek through them, we can see the secrets of the causal process
+that generated the data we observe;
+each stands for a distinct pattern of causal flow
+and leaves its mark in the form of
+conditional dependences and independences in the data.
+
+In my public lectures I often call them "gifts from the gods"
+because they enable us to test a causal model,
+discover new models, evaluate effects of interventions,
+and much more.
+
+Still, standing in isolation, they give us only a glimpse.
+We need a key that will completely open the door
+and let us step out onto the second rung.
+That key, which we will learn about in Chapter 7,
+involves all three junctions, and is called d-separation.
+This concept tells us, for any given pattern of paths in the model,
+what patterns of dependencies we should expect in the data.
+This fundamental connection between causes and probabilities
+constitutes the main contribution of Bayesian networks
+to the science of causal inference.
+
 # CHAPTER 4 Confounding and Deconfounding: Or, Slaying the Lurking Variable
 
 # CHAPTER 5 The Smoke-Filled Debate: Clearing the Air
