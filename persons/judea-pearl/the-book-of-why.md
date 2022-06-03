@@ -879,6 +879,45 @@ This fundamental connection between causes and probabilities
 constitutes the main contribution of Bayesian networks
 to the science of causal inference.
 
+## Where is my bag? from Aachen to Zanzibar
+
+So far I have emphasized only one aspect of Bayesian networks
+-- namely, the diagram and its arrows that
+preferably point from cause to effect.
+Indeed, the diagram is like the engine of the Bayesian network.
+But like any engine, a Bayesian network runs on fuel.
+The fuel is called a _conditional probability table_.
+
+Another way to put this is that the diagram describes
+the relation of the variables in a qualitative way,
+but if you want quantitative answers,
+you also need quantitative inputs.
+In a Bayesian network, we have to specify
+the conditional probability of each node given its "parents".
+(Remember that the parents of a node are
+all the nodes that feed into it.)
+These are the forward probabilities, `P(evidence | hypotheses)`.
+
+TODO Try the calculation in the "Where is my bag?" example.
+
+## Bayesian networks in the real world
+
+Before the turbo revolution,
+
+2G cell phones used “soft decoding” (i.e., probabilities) but not belief propagation.
+3G cell phones used Berrou’s turbo codes,
+and 4G phones used Gallager’s turbo-like codes.
+
+From the consumer's viewpoint,
+this means that your cell phone uses less energy and the battery lasts longer,
+because coding and decoding are your cell phone's most energy-intensive
+processes. Also, better codes mean that you do not have to be as close to a
+cell tower to get high-quality transmission. In other words, Bayesian networks
+enabled phone manufacturers to deliver on their promise: more bars in more places.
+
+## From Bayesian networks to causal diagrams
+
+
 # CHAPTER 4 Confounding and Deconfounding: Or, Slaying the Lurking Variable
 
 # CHAPTER 5 The Smoke-Filled Debate: Clearing the Air
