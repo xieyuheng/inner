@@ -917,8 +917,20 @@ enabled phone manufacturers to deliver on their promise: more bars in more place
 
 ## From Bayesian networks to causal diagrams
 
+Bayesian network can not tell the difference between seeing and doing,
+or indeed to distinguish a fork from a chain.
+In other words, both a chain and a fork would predict that
+observed changes in `A` are associated with changes in `C`,
+making no prediction about the effect of "wiggling" `A`.
+
+Now we come to the second, and perhaps more important, impact of
+Bayesian networks on causal inference. The relationships that were
+discovered between the graphical structure of the diagram and the data that it
+represents now permit us to emulate wiggling without physically doing so.
 
 # CHAPTER 4 Confounding and Deconfounding: Or, Slaying the Lurking Variable
+
+TODO At the same time, statisticians greatly underrate controlling in the sense
 
 # CHAPTER 5 The Smoke-Filled Debate: Clearing the Air
 
