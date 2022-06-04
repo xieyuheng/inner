@@ -8,3 +8,8 @@ author: Xie Yuheng
 
 I like reading (math and CS) papers that are
 equipped with philosophical historical depth.
+
+# About language
+
+I enjoy the feeling of creating a language,
+Including well designed OOP API.
