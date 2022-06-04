@@ -17,3 +17,19 @@ to the univalent foundations of Vladimir Voevodsky,
 aiming to explain how he chose to encode mathematics in type theory
 and how the encoding reveals a potentially viable foundation
 for all of modern mathematics that can serve as an alternative to set theory.
+
+# 1. What is a type?
+
+# 2. The type of natural numbers
+
+# 3. Identity types
+
+# 4. Other types
+
+# 5. Formalization of mathematics
+
+# 6. Univalence
+
+# 7. The interpretation
+
+# 8. Further developments
