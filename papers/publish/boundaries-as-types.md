@@ -50,7 +50,12 @@ It can be viewed as higher dimensional algebraic structure in which,
 ## 1-dimensional
 
 ```cell-complex
-complex Graph {
+complex Circle {
+  base: Node
+  loop: Edge(base, base)
+}
+
+complex Circle2 {
   a: Node
   b: Node
   f: Edge(a, b)
