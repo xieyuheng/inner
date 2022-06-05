@@ -100,7 +100,7 @@ title: Judea Pearl
   and can be proven admissible in the sense that
   it will eventually find the global optimal.
 
-## Expert systems failed
+## Why expert systems failed?
 
 - **Stephen:** Why expert systems did not take over the world?
 
