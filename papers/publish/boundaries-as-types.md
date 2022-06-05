@@ -114,6 +114,24 @@ complex Torus {
   spoke: Face(toro, polo, -toro, -polo)
 }
 
+complex Torus {
+  origin: Torus
+
+  edge {
+    toro: endpoints (Torus) { origin origin }
+    polo: endpoints (Torus) { origin origin }
+  }
+
+  face {
+    spoke: polygon (Torus) { toro polo = polo toro }
+  }
+}
+
+check path (Torus) { toro toro toro polo }: endpoints (Torus) { origin origin }
+check path (Torus) { toro }: endpoints (Torus) { origin origin }
+check path (Torus) { relf(origin) }: endpoints (Torus) { origin origin }
+check path (Torus) { toro relf(origin) }: endpoints (Torus) { origin origin }
+
 complex KleinBottle {
   origin: Node
 
@@ -166,6 +184,45 @@ complex Torus3 {
 }
 ```
 
+```cell-complex
+complex Torus3 {
+  o: Torus3
+
+  edge {
+    a: endpoints (Torus3) { o o }
+    b: endpoints (Torus3) { o o }
+    c: endpoints (Torus3) { o o }
+  }
+
+  face {
+    ap: polygon (Torus3) { c b = b c }
+    bp: polygon (Torus3) { a c = c a }
+    cp: polygon (Torus3) { b a = a b }
+  }
+
+  body {
+    s: polyhedron (Torus3) {
+      ap { b3 c2 a2 c0 }
+      bp { b0 a2 c1 b3 }
+      cp { c0 c1 c2 b0 }
+    }
+  }
+}
+
+check path (Torus3) { a }: endpoints (Torus3) { o o }
+check path (Torus3) { refl(o) }: endpoints (Torus3) { o o }
+
+check surface (Torus3) { refl(refl(o)) }: polygon (Torus3) { refl(o) = refl(o) }
+
+check surface (Torus3) { refl(a) }: polygon (Torus3) { a = a }
+
+check surface (Torus3) {
+  ap { b3 c2 a2 c0 }
+  bp { b0 a2 c1 b3 }
+  refl(a) {  ... }
+}: polygon (Torus3) { ... }
+```
+
 ### Hopf fibration
 
 ```cell-complex
@@ -196,6 +253,11 @@ complex S3 {
   )
 }
 ```
+
+TODO How come a sphere has an 3-dimensional algebraic structure in it?
+
+- `surface (S2) { relf(relf(rim)) }`
+- `surface (S2) { relf(disk) }`
 
 ```cell-complex
 function Pi3S2 (s3: S3): S2 {
