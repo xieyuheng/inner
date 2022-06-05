@@ -60,7 +60,10 @@ For example, we can interpret a directed graph as a causal model.
 
 ## Limitation of our construction
 
-We can not use the notion of subset.
+The following notions are not built-in our language:
+
+- Subset.
+- Quotient.
 
 ## 0-dimensional
 
