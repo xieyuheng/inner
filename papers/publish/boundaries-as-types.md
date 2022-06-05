@@ -47,6 +47,7 @@ For example, we can interpret a directed graph as a causal model.
 
 - In inductive datatypes, a type constructor can take arguments
   and the arguments are to separated into two groups:
+
   - **fixed (parameters)** which do **NOT** vary between the data constructors.
   - **varied (indexes)** which can vary between the data constructors.
 
@@ -56,6 +57,23 @@ For example, we can interpret a directed graph as a causal model.
   What is the topological interpretion
   of "fixed v.s. varied arguments"
   for inductive datatype?
+
+## Limitation of our construction
+
+We can not use the notion of subset.
+
+## 0-dimensional
+
+When we define inductive datatypes
+without any higher order data constructors,
+although the defined datatypes already have interesting structures,
+we are only defining generators of 0-dimensional nodes.
+The nodes can be recursively parameterized, thus infinity many,
+and they can be parameterized in interesting ways.
+
+When defining a complex, we can specify higher order generators,
+the generators can be composed to get elements of the algebra.
+The generators can also be parameterized, thus infinity many,
 
 ## 1-dimensional
 
@@ -147,3 +165,9 @@ complex D3Torus {
   )
 }
 ```
+
+## Essential concepts
+
+TODO Continuous function.
+
+TODO Manifold.
