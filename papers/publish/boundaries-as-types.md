@@ -80,23 +80,18 @@ The generators can also be parameterized, thus infinity many,
 
 ## 1-dimensional
 
+### Circle
+
 ```cell-complex
 complex Circle {
   base: Node
   loop: Edge(base, base)
 }
-
-complex Circle2 {
-  a: Node
-  b: Node
-  f: Edge(a, b)
-  g: Edge(b, a)
-}
 ```
 
 ## 2-dimensional
 
-Four ways to glue a square.
+### Four ways to glue a square
 
 ```cell-complex
 complex Sphere {
@@ -141,8 +136,10 @@ complex ProjectivePlane {
 
 ## 3-dimensional
 
+### Torus3
+
 ```cell-complex
-complex D3Torus {
+complex Torus3 {
   o: Node
 
   a: Edge(o, o)
@@ -166,6 +163,51 @@ complex D3Torus {
     bp('b0, 'a2, 'c1, 'b3),
     cp('c0, 'c1, 'c2, 'b0),
   )
+}
+```
+
+### Hopf fibration
+
+```cell-complex
+complex S1 {
+  base: Node
+
+  rim: Edge(base, base)
+}
+
+complex S2 {
+  base: Node
+
+  rim: Edge(base, base)
+
+  disk: Face(rim, -rim)
+}
+
+complex S3 {
+  base: Node
+
+  rim: Edge(base, base)
+
+  disk: Face(rim, -rim)
+
+  ball: Body(
+    disk('x, 'y),
+    disk('x, 'y),
+  )
+}
+```
+
+```cell-complex
+function Pi3S2 (s3: S3): S2 {
+  return match (s3) {
+    case base => S2.base
+    case rim => S2.rim
+    case disk => S2.disk
+    case ball => TODO
+    // It seems there is almost not information in definition of `S3`,
+    //   thus `Pi3S2` must be about the structure of
+    //   the higher dimensional algebra itself.
+  }
 }
 ```
 
@@ -194,8 +236,22 @@ to trivial elements (`refl`) of `A`.
 
 ## Fibration
 
-TODO
+Every map can be viewed as a fibration,
+the homotopy lifting property also hold.
+
+```cicada
+function Fiber(
+  implicit E: Type,
+  implicit B: Type,
+  f: (E) -> B,
+  y: B,
+): Type {
+  return exists (x: E) Id(B, f(x), y)
+}
+```
 
 ## Manifold
+
+A closed manifold is defined as a connected finite homogeneous complex.
 
 TODO
