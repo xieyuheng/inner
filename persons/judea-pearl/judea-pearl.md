@@ -2,6 +2,8 @@
 title: Judea Pearl
 ---
 
+[ [HOMEPAGE](http://bayes.cs.ucla.edu/jp_home.html) ]
+
 # Judea Pearl Tribute Symposium: Causality
 
 [ [VIDEO](https://www.youtube.com/watch?v=78EmmdfOcI8) ]

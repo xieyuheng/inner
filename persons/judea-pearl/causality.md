@@ -5,6 +5,8 @@ author: Judea Pearl
 year: [2000, 2009]
 ---
 
+[ [WEBSITE](http://bayes.cs.ucla.edu/BOOK-2K) ]
+
 # 1 Introduction to Probabilities, Graphs, and Causal Models
 
 # 2 A Theory of Inferred Causation
@@ -26,4 +28,3 @@ year: [2000, 2009]
 # 10 The Actual Cause
 
 # 11 Reflections, Elaborations, and Discussions with Readers
-331

@@ -50,4 +50,4 @@ Try to understand logic theories and type system along Peirce's theory about kno
       - beta reduction of lambda calculus
       - turing machine
 
-  - program := carefully prepared init state.
+- program := carefully prepared init state.
