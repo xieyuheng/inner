@@ -65,12 +65,48 @@ title: Judea Pearl
   And that could be automated,
   if you know what you mean by simplification and so on.
 
+  A simplification can be a relaxation.
+
   - **Xie:** Progress in general AI is always about yet a higher level of abstraction,
     and if we are careful about our definitions and our research questions,
     maybe we can get closer and closer.
 
-  A simplification can be a relaxation.
+    We have a interpretation of nodes and edges of graph in a causal diagram,
+    What could be a interpretation of faces and bodies in causal model?
 
-## On the fail of expert systems
+    Note that, this question is not driven by research question,
+    but driven by using cell-complex as syntax for a model.
 
-TODO
+- **Stephen:** Take chess for example.
+
+- **Judea:** Example in chess can be crude,
+  let's look a simple thing like finding the optimal path in a maze,
+  the heuristics there will be finding the shortest path without any obstacles,
+  that is known to be a straight line,
+  so the optimal path in the unobstructed game
+  will be heuristics in the maze.
+
+  - **Xie:** Is this also the principle behind
+    the heuristics given by Polya for problem solving?
+
+- **Stephen:** But what if the heuristics can not lead you to the right path?
+
+- **Judea:** We can always do reasoning in addition to evaluation,
+  you do look ahead and you do backtrack, so eventually you find it.
+  The question is how much effort you're going to spend before you find it.
+
+  There is a notion of admissible heuristics,
+  which is built on relaxation of original problem,
+  and can be proven admissible in the sense that
+  it will eventually find the global optimal.
+
+## Expert systems failed
+
+- **Stephen:** Why expert systems did not take over the world?
+
+- **Judea:** I think it is because
+  they try to model the experts rather than the environment,
+  they try to model doctor instead of the disease.
+  The doctor wasn't able to articulate the various procedures
+  he or she go through when doing diagnosis,
+  specially when it comes to combining different source of knowledge.

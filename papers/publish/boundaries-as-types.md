@@ -31,6 +31,16 @@ It can be viewed as higher dimensional algebraic structure in which,
 - homotopy groups are its sub-algebras,
 - and its abelianization are homology groups.
 
+# Cell-complex as a generalization of graph theory
+
+Note that graph (with nodes and edges),
+and cell-complex (with faces and bodies and higher),
+are all only syntax, i.e. without interpretion.
+
+They are not model.
+
+For example, we can interpret a directed graph as a causal model.
+
 # Higher dimensional inductive datatypes
 
 ## TODO
