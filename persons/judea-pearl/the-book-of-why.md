@@ -996,6 +996,8 @@ to articulate that common sense formally,
 and a robot cannot rely on our common sense
 when asked to act properly.
 
+TODO In 1986, talking counterfactuals to an audience of epidemiologists took
+
 ## The do-operator and the back-door criterion
 
 # CHAPTER 5 The Smoke-Filled Debate: Clearing the Air
