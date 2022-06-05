@@ -41,9 +41,35 @@ title: Judea Pearl
 
 [ [VIDEO](https://www.youtube.com/watch?v=230PsGBxkCo) ]
 
-## On heuristics
+## Heuristics is optimal solution to a simplified problem
 
-TODO
+- **Stephen:** When you do theorem proving or logic programming and so on,
+  you are always trying to find the best path.
+  The story of pruning seems to be a consistent theme,
+  a still somewhat unsolved problem.
+
+- **Judea:** Yeah but you do it with heuristics,
+  and then the question is can the program generate heuristics
+  on its own automatically?
+
+  The idea was, yes you can do it by the following scheme
+
+  > heuristics is optimal solution to a simplified problem.
+
+  Instead of dealing with complex problem,
+  simplify it, to a point where you can find the optimal solution.
+
+  The optimal solution to a simplified problem
+  is the heuristics to the original problem.
+
+  And that could be automated,
+  if you know what you mean by simplification and so on.
+
+  - **Xie:** Progress in general AI is always about yet a higher level of abstraction,
+    and if we are careful about our definitions and our research questions,
+    maybe we can get closer and closer.
+
+  A simplification can be a relaxation.
 
 ## On the fail of expert systems
 
