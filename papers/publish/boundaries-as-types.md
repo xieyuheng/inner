@@ -169,8 +169,33 @@ complex D3Torus {
 }
 ```
 
-## Essential concepts
+# Essential concepts
 
-TODO Continuous function.
+## Continuous function
 
-TODO Manifold.
+All function can be defined in our language is continuous.
+
+If we view spaces as algebras,
+a function between two spaces `A` and `B`
+is a homomorphism between the two algebras.
+
+To define a function from `A` to `B`,
+we must specify how to map each generators of `A` to an element of `B`,
+we can check a function is well defined by viewing boundaries as types.
+
+Take _subdivision_ as an example,
+if `B` is a subdivision of `A`,
+we know `A` and `B` are equivalent,
+if we view the equivalence as two functions
+-- `f: A -> B` and `g: B -> A`
+-- it is easy to define `f`,
+while to define `g` we must map some generators
+to trivial elements (`refl`) of `A`.
+
+## Fibration
+
+TODO
+
+## Manifold
+
+TODO
