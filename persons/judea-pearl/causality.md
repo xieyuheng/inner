@@ -33,6 +33,10 @@ that underlies and propels our understanding of the world.
 
 # 1 Introduction to Probabilities, Graphs, and Causal Models
 
+## 1.1 Introduction to Probability Theory
+
+### 1.1.2 Basic Concepts in Probability Theory
+
 We will adhere to the **Bayesian interpretation of probability**,
 according to which _probabilities encode degrees of belief about events in the world_
 and data are used to strengthen, update, or weaken those degrees of belief.
