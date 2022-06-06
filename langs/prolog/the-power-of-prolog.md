@@ -25,7 +25,7 @@ Logic is concerned with the properties of, and relations between:
 
 meta properties:
 
-- strong soundness -- every theorem can be derived from inference rules is a semantic consequence of the axioms.
+- strong soundness -- every theorem can be derived from inference rules is a semantic consequencen of the axioms.
 - strong completeness -- every semantic consequence can be derived by syntactic inferences as a theorem.
 
 task of logician:

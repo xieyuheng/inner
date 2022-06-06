@@ -69,6 +69,8 @@ The most important definition comes from
 - [problem] I do not understand the duality between introduction and elimination.
   when introduction rules are given how to generate elimination rules?
 
+  - We now know lambda encoding, which seems explain this duality.
+
 - [problem] This means we use introduction rules to define type, how about elimination?
 
   - The duality between introduction rules and elimination rules

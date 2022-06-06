@@ -58,6 +58,14 @@ For example, we can interpret a directed graph as a causal model.
   of "fixed v.s. varied arguments"
   for inductive datatype?
 
+## Different meanings of higher-order-ness
+
+Higher order inductive type is one way of
+introducing higher-order-ness into our type system,
+another way is higher-order functions.
+
+Is univalent axiom a relation between this two orders?
+
 ## Limitation of our construction
 
 The following notions are not built-in our language:
