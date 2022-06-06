@@ -12,12 +12,11 @@ author: Xie Yuheng
 
 # TODO
 
-- logic-of-causality.md
-- different-meanings-of-higher-order-in-type-theory.md
 - revised-theory-of-knowledge.md -- read peirce's paper again
 
 - Read "The Book of Why".
 - Read "Causality -- Models, Reasoning and Inference".
+  - logic-of-causality.md -- definition of causality
 - Design a probabilistic programming language.
 
 ------
