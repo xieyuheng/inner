@@ -1,5 +1,6 @@
 ---
-title: What Distinguishes a Person from a Word C. S. Peirce's Thought
+title: What Distinguishes a Person from a Word
+subtitle: C. S. Peirce's Thought
 ---
 
 - 感知 实体
