@@ -199,8 +199,14 @@ such that the sum of the weights adds up to 1.
 For example, if we have three atomic propositions, `A`, `B`, and `C`,
 then a joint distribution function should assign nonnegative weights
 to all eight combinations
--- `A and B and C`, `A and B and (not C)`, ...,
-`(not A) and (not B) and (not C)` --
+
+```
+A and B and C
+A and B and (not C)
+...
+(not A) and (not B) and (not C)
+```
+
 such that the eight weights sum to 1.
 
 # 2 A Theory of Inferred Causation
