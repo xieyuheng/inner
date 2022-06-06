@@ -166,7 +166,12 @@ from our experiential knowledge.
 For example, if a person at the next gambling table declares the outcome "twelve",
 and we wish to know whether he was rolling a pair of dice or spinning a roulette wheel,
 our models of the gambling devices readily yield the quantities
-`P(twelve | dice) = 1 / 36` and `P(twelve | roulette) = 1 / 38`.
+
+```
+P(twelve | dice) = 1 / 36
+P(twelve | roulette) = 1 / 38
+```
+
 Similarly, we can judge the prior probabilities `P(dice)` and `P(roulette)`
 by estimating the number of roulette wheels and dice tables at the casino.
 
