@@ -12,11 +12,12 @@ author: Xie Yuheng
 
 # TODO
 
-- revised-theory-of-knowledge.md -- read peirce's paper again
-
 - Read "The Book of Why".
-- Read "Causality -- Models, Reasoning and Inference".
-  - logic-of-causality.md -- definition of causality
+  - Read "Causality -- Models, Reasoning and Inference".
+    - logic-of-causality.md -- definition of causality
+    - read "Illustrations of the Logic of Science (1877–1878)" which has paper about probability
+      - revised-theory-of-knowledge.md -- read peirce's paper again
+
 - Design a probabilistic programming language.
 
 ------

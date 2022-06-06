@@ -7,7 +7,7 @@ title: Charles Sanders Peirce
 | [BIBLIOGRAPHY](https://en.wikipedia.org/wiki/Charles_Sanders_Peirce_bibliography)
 | [PLATO.STANFORD](https://plato.stanford.edu/entries/peirce) ]
 
-# Illustrations of the Logic of Science (1877–1878)
+# Illustrations of the Logic of Science (1877-1878)
 
 1. [The Fixation of Belief (1877)](https://en.wikisource.org/wiki/Popular_Science_Monthly/Volume_12/November_1877/Illustrations_of_the_Logic_of_Science_I)
 2. [How to Make Our Ideas Clear (1878)](https://en.wikisource.org/wiki/Popular_Science_Monthly/Volume_12/January_1878/Illustrations_of_the_Logic_of_Science_II)
