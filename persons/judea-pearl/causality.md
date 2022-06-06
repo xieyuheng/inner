@@ -120,6 +120,62 @@ The heart of Bayesian inference lies in the celebrated inversion formula,
 P(H | e) = P(e | H) * P(H) / P(e)
 ```
 
+which states that
+the belief we accord a hypothesis `H`
+upon obtaining evidence `e`
+can be computed by multiplying our previous belief `P(H)`
+by the likelihood `P(e | H)`
+that `e` will materialize if `H` is true.
+This `P(H | e)` is sometimes called the _posterior probability_ (or simply posterior),
+and `P(H)` is called the _prior probability_ (or prior).
+The denominator `P(e)` of (1.13) hardly enters into consideration
+because it is merely a normalizing constant
+
+```
+P(e) = P(e | H) * P(H) + P(e | ~H) * P(~H)
+```
+
+which can be computed by requiring
+that `P(H | e)` and `P(~H | e)` sum to unity.
+
+The direction is important,
+because the Bayesian subjectivist regards (1.13)
+as a normative rule for updating beliefs in response to evidence.
+
+In other words, although conditional probabilities `P(... | A)`
+can be viewed as purely mathematical constructs,
+the Bayes adherent views them as primitives of the language
+and as faithful translations of the English expression
+
+> ..., given that I know A.
+
+Without the direction in the formula,
+an equation is just an empirically verifiable relationship
+between English expressions.
+It asserts, among other things,
+that the belief a person attributes to `B` after discovering `A`
+is never lower than that attributed to before discovering `A`.
+Also, the ratio between these two beliefs will increase proportionally
+with the degree of surprise `1 / P(A)` one associates with the discovery of A.
+
+The importance of (1.13) is that it expresses a quantity `P(H | e)`
+-- which people often find hard to assess --
+in terms of quantities that often can be drawn directly
+from our experiential knowledge.
+
+For example, if a person at the next gambling table declares the outcome "twelve",
+and we wish to know whether he was rolling a pair of dice or spinning a roulette wheel,
+our models of the gambling devices readily yield the quantities
+`P(twelve | dice) = 1 / 36` and `P(twelve | roulette) = 1 / 38`.
+Similarly, we can judge the prior probabilities `P(dice)` and `P(roulette)`
+by estimating the number of roulette wheels and dice tables at the casino.
+
+Issuing a direct judgment of `P(dice | twelve)`
+would have been much more difficult;
+only a specialist in such judgments,
+trained at the very same casino,
+could do it reliably.
+
 # 2 A Theory of Inferred Causation
 
 # 3 Causal Diagrams and the Identification of Causal Effects
