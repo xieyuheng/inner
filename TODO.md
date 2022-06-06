@@ -14,14 +14,15 @@ author: Xie Yuheng
 
 - Read "The Book of Why".
   - Read "Causality -- Models, Reasoning and Inference".
-    - logic-of-causality.md -- definition of causality
+    - `logic-of-causality.md` -- definition of causality
     - read "Illustrations of the Logic of Science (1877–1878)" which has paper about probability
-      - revised-theory-of-knowledge.md -- read peirce's paper again
+      - `revised-theory-of-knowledge.md` -- read peirce's paper again
 
 - Design a probabilistic programming language.
 
 ------
 
+- Fix the syntax of the "boundaries as types" paper.
 - Review notes about homotopy type theory.
 - V.V.'s did not use `Iso` in his univalent axiom,
   but changed the definition of `Iso`!
