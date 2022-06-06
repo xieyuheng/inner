@@ -20,6 +20,9 @@ here is how it is interpreted in different logic systems:
 
 Can we design a logic system which interpret "imply" as "cause"?
 
+- By works of Judea Pearl, we know
+  causal logic will has a rich probability theory as its model.
+
 |        | `A -> B`        |
 | ------ | --------------- |
 | causal | `A` causes `B`. |

@@ -222,6 +222,31 @@ A and B and (not C)
 
 such that the eight weights sum to 1.
 
+### 1.1.3 Combining Predictive and Diagnostic Supports
+
+The essence of Bayes’s rule (equation 1.13)
+is conveniently portrayed using the _odds_
+and _likelihood ratio_ parameters.
+
+```
+P(H | e) = P(e | H) * P(H) / P(e)
+P(~H | e) = P(e | ~H) * P(~H) / P(e)
+
+P(H | e) / P(~H | e) = P(e | H) * P(H) / P(e | ~H) * P(~H)
+```
+
+TODO Define `O` and `L`, and explain the use of Bayes's rule by an example.
+
+### 1.1.4 Random Variables and Expectations
+
+TODO Define `E` and `V`.
+
+### 1.1.5 Conditional Independence and Graphoids
+
+[Graphoid](https://en.wikipedia.org/wiki/Graphoid)
+
+TODO
+
 # 2 A Theory of Inferred Causation
 
 # 3 Causal Diagrams and the Identification of Causal Effects
