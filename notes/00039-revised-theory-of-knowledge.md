@@ -4,7 +4,7 @@ date: 2022-06-05
 ---
 
 An update to [00006-peirce-s-pragmatic-theory-about-knowledge.md](00006-peirce-s-pragmatic-theory-about-knowledge.md),
-after I learn Judea's work about causation.
+after I learned Judea's work about causation.
 
 # Introduction
 

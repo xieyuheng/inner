@@ -12,9 +12,9 @@ author: Xie Yuheng
 
 # TODO
 
-- revised-theory-of-knowledge.md
 - logic-of-causality.md
 - different-meanings-of-higher-order-in-type-theory.md
+- revised-theory-of-knowledge.md -- read peirce's paper again
 
 - Read "The Book of Why".
 - Read "Causality -- Models, Reasoning and Inference".
