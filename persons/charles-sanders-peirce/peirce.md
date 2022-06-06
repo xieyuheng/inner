@@ -4,24 +4,23 @@ title: Charles Sanders Peirce
 
 # links
 
+- https://en.wikisource.org/wiki/Author:Charles_Sanders_Peirce
+
 - https://en.wikipedia.org/wiki/Charles_Sanders_Peirce
 - https://en.wikipedia.org/wiki/Charles_Sanders_Peirce_bibliography
 
 - https://plato.stanford.edu/entries/peirce/
 - https://plato.stanford.edu/entries/peirce-logic/
 
-- http://www.iupui.edu/~arisbe/
+- http://peirce.iupui.edu/index.html
+
   A philosophical website,
   providing access to resources for
   the life, work, and continuing interest in
   the American philosopher, scientist, and humanist
   Charles Sanders Peirce
 
-- http://www.peirce.org/
-
 - http://www.pragmaticism.net/
-
-- http://peirce.iupui.edu/index.html
 
 - https://academic.oup.com/monist
 

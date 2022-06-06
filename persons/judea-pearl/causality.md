@@ -17,6 +17,20 @@ The two fundamental questions of causality are:
 2. Given that we are willing to accept causal information about a phenomenon,
    what inferences can we draw from such information, and how?
 
+Ten years ago, when I began writing
+_Probabilistic Reasoning in Intelligent Systems_ (1988),
+I was working within the empiricist tradition.
+In this tradition, probabilistic relationships
+constitute the foundations of human knowledge,
+whereas causality simply provides useful ways of
+abbreviating and organizing intricate patterns of probabilistic relationships.
+Today, my view is quite different.
+I now take causal relationships to be the fundamental building blocks
+both of physical reality and of human understanding of that reality,
+and I regard probabilistic relationships as
+but the surface phenomena of the causal machinery
+that underlies and propels our understanding of the world.
+
 # 1 Introduction to Probabilities, Graphs, and Causal Models
 
 # 2 A Theory of Inferred Causation
