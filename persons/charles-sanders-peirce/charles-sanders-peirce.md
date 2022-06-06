@@ -2,35 +2,25 @@
 title: Charles Sanders Peirce
 ---
 
-# References
+[ [WIKISOURCE](https://en.wikisource.org/wiki/Author:Charles_Sanders_Peirce)
+| [WIKIPEDIA](https://en.wikipedia.org/wiki/Charles_Sanders_Peirce)
+| [BIBLIOGRAPHY](https://en.wikipedia.org/wiki/Charles_Sanders_Peirce_bibliography)
+| [PLATO.STANFORD](https://plato.stanford.edu/entries/peirce) ]
 
-- https://en.wikisource.org/wiki/Author:Charles_Sanders_Peirce
+# Illustrations of the Logic of Science (1877–1878)
 
-- https://en.wikipedia.org/wiki/Charles_Sanders_Peirce
-- https://en.wikipedia.org/wiki/Charles_Sanders_Peirce_bibliography
+1. [The Fixation of Belief (1877)](https://en.wikisource.org/wiki/Popular_Science_Monthly/Volume_12/November_1877/Illustrations_of_the_Logic_of_Science_I)
+2. [How to Make Our Ideas Clear (1878)](https://en.wikisource.org/wiki/Popular_Science_Monthly/Volume_12/January_1878/Illustrations_of_the_Logic_of_Science_II)
+3. [The Doctrine of Chances (1878)](https://en.wikisource.org/wiki/Popular_Science_Monthly/Volume_12/March_1878/Illustrations_of_the_Logic_of_Science_III)
+4. [The Probability of Induction (1878)](https://en.wikisource.org/wiki/Popular_Science_Monthly/Volume_12/April_1878/Illustrations_of_the_Logic_of_Science_IV)
+5. [The Order of Nature (1878)](https://en.wikisource.org/wiki/Popular_Science_Monthly/Volume_13/June_1878/Illustrations_of_the_Logic_of_Science_V)
+6. [Deduction, Induction, and Hypothesis (1878)](https://en.wikisource.org/wiki/Popular_Science_Monthly/Volume_13/August_1878/Illustrations_of_the_Logic_of_Science_VI)
 
-- https://plato.stanford.edu/entries/peirce/
-- https://plato.stanford.edu/entries/peirce-logic/
-
-- http://peirce.iupui.edu/index.html
-
-  A philosophical website,
-  providing access to resources for
-  the life, work, and continuing interest in
-  the American philosopher, scientist, and humanist
-  Charles Sanders Peirce
-
-- http://www.pragmaticism.net/
-
-- https://academic.oup.com/monist
-
-# [note]
+# [note] pragmaticism and scientific method
 
 - **Xie**: When practicing physical science,
   the whole meaning of a physical concept
   is determined by an exact method of measuring it.
-
-# [note] pragmaticism and scientific method
 
 - For Peirce, the entire universe and everything in it
   is an evolutionary product. Indeed, he conceived that
@@ -172,8 +162,7 @@ title: Charles Sanders Peirce
 
 # (1868) questions concerning certain faculties claimed for man
 
-- **Xie:**
-  about semiotics
+TODO About semiotics.
 
 # (1868) on a new list of categories
 

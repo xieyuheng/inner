@@ -1,5 +1,5 @@
 ---
-title: Deduction Induction Abduction
+title: Deduction, Induction, Abduction
 ---
 
 [ [PLATO.STANFORD](https://plato.stanford.edu/entries/peirce/#dia) ]
