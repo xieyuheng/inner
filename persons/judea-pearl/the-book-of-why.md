@@ -1000,6 +1000,9 @@ when asked to act properly.
 
 TODO Make clear sense of the graph model and the notion of "control".
 
+- I can not make sense of the graph based arguments in this chapter.
+  - Maybe I need to read some "Causality -- Models, Reasoning and Inference" first.
+
 # CHAPTER 5 The Smoke-Filled Debate: Clearing the Air
 
 # CHAPTER 6 Paradoxes Galore!

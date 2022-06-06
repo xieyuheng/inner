@@ -12,8 +12,13 @@ author: Xie Yuheng
 
 # TODO
 
+- review the notion of logic by "the power of prolog"
+- revised-theory-of-knowledge.md
+- logic-of-causality.md
+- different-meanings-of-higher-order-in-type-theory.md
+
 - Read "The Book of Why".
-- Read "Causality Models, Reasoning and Inference".
+- Read "Causality -- Models, Reasoning and Inference".
 - Design a probabilistic programming language.
 
 ------
