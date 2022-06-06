@@ -7,6 +7,16 @@ year: [2000, 2009]
 
 [ [WEBSITE](http://bayes.cs.ucla.edu/BOOK-2K) ]
 
+# Preface
+
+The two fundamental questions of causality are:
+
+1. What empirical evidence is required
+   for legitimate inference of cause–effect relationships?
+
+2. Given that we are willing to accept causal information about a phenomenon,
+   what inferences can we draw from such information, and how?
+
 # 1 Introduction to Probabilities, Graphs, and Causal Models
 
 # 2 A Theory of Inferred Causation
