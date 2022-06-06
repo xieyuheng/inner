@@ -5,7 +5,7 @@ author: Charles Sanders Peirce
 year: 1870
 ---
 
-## General Definitions of the Algebraic Signs
+# General Definitions of the Algebraic Signs
 
 - _Inclusion in_ or _being as small as_ is a _transitive_ relation.
   The consequence holds that
@@ -137,7 +137,7 @@ year: 1870
 
 - TODO
 
-## [note] Motive for category theory
+# [note] Motive for category theory
 
 - The categorical understanding of the art of abstraction
   is not achieved at the author's time.
@@ -149,7 +149,7 @@ year: 1870
   Peirce provides interpretation of the abstract algebraic system,
   starting from Letters.
 
-## Use of the Letters
+# Use of the Letters
 
 - **Xie**:
   can all relations be reduced to
@@ -193,10 +193,10 @@ year: 1870
   w. winner over of -- to -- from --
   t. transferrer from -- to --
 
-## Numbers corresponding to Letters
+# Numbers corresponding to Letters
 
-## The Signs of Inclusion, Equality, etc.
+# The Signs of Inclusion, Equality, etc.
 
-## The Signs for Addition
+# The Signs for Addition
 
-## The Signs for Multiplication
+# The Signs for Multiplication
