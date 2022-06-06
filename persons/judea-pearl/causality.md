@@ -176,6 +176,33 @@ only a specialist in such judgments,
 trained at the very same casino,
 could do it reliably.
 
+In order to complete this brief introduction,
+we must discuss the notion of _probabilistic model_
+(also called _probability space_).
+
+A probabilistic model is an encoding of information
+that permits us to compute the probability of every well-formed sentence `S`
+in accordance with the axioms of (1.1)-(1.3).
+
+- **Xie:** A sentence describe an event.
+
+Starting with a set of atomic propositions `A, B, C, ...`,
+the set of well-formed sentences consists of all Boolean formulas involving
+these propositions, for example, `S = (A and B) or (not C)`.
+
+The traditional method of specifying probabilistic models
+employs a _joint distribution function_, which is a function that
+assigns nonnegative weights to every _elementary event_ in the language
+(an elementary event being a conjunction
+in which every atomic proposition or its negation appears once)
+such that the sum of the weights adds up to 1.
+For example, if we have three atomic propositions, `A`, `B`, and `C`,
+then a joint distribution function should assign nonnegative weights
+to all eight combinations
+-- `A and B and C`, `A and B and (not C)`, ...,
+`(not A) and (not B) and (not C)` --
+such that the eight weights sum to 1.
+
 # 2 A Theory of Inferred Causation
 
 # 3 Causal Diagrams and the Identification of Causal Effects
