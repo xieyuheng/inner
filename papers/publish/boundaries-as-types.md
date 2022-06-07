@@ -7,8 +7,9 @@ keywords: [Type theory, Algebraic topology]
 
 # TODO
 
-- example algebra of 1-dimension
+- example algebra of 1-dimension -- take presentation of group as example
 - example algebra of 2-dimension
+- example algebra of 3-dimension -- for `Pi(3)(S(2))`
 
 - product space -- and boundary operator over it
 
@@ -93,11 +94,11 @@ The following notions are not built-in our language:
 ## Naming and syntax keywords
 
 | dimension | generator (cell) | element (complex) | spherical element |
-|----------:|------------------|-------------------|-------------------|
+| --------: | ---------------- | ----------------- | ----------------- |
 |         0 | vertex           |                   | `endpoints`       |
 |         1 | edge             | `path`            | `polygon`         |
 |         2 | face             | `surface`         | `polyhedron`      |
-|         3 | body             | `complex(3)`      | `polytope(3)`     |
+|         3 | block            | `building`        | `polychoron`      |
 
 Notes:
 
@@ -130,7 +131,7 @@ The generators can also be parameterized, thus infinity many,
 ### Circle
 
 ```cicada
-complex Circle {
+datatype Circle {
   base: Circle
   loop: endpoints { base base }
 }
@@ -141,7 +142,7 @@ complex Circle {
 ### Four ways to glue a square
 
 ```cicada
-complex Sphere {
+datatype Sphere {
   south: Sphere
   middle: Sphere
   north: Sphere
@@ -154,26 +155,32 @@ complex Sphere {
 ```
 
 ```cicada
-complex Torus {
+datatype Torus {
   origin: Torus
   toro: endpoints { origin origin }
   polo: endpoints { origin origin }
   spoke: polygon { toro polo = polo toro }
 }
+```
 
+```cicada
 check path (Torus) { toro toro toro polo }: endpoints (Torus) { origin origin }
 check path (Torus) { toro }: endpoints (Torus) { origin origin }
 check path (Torus) { relf(origin) }: endpoints (Torus) { origin origin }
 check path (Torus) { toro relf(origin) }: endpoints (Torus) { origin origin }
+```
 
-complex KleinBottle {
+```cicada
+datatype KleinBottle {
   origin: KleinBottle
   toro: endpoints { origin origin }
   cross: endpoints { origin origin }
   disk: polygon { toro cross = -cross toro }
 }
+```
 
-complex ProjectivePlane {
+```cicada
+datatype ProjectivePlane {
   start: ProjectivePlane
   end: ProjectivePlane
   left_rim: endpoints { start end }
@@ -187,7 +194,7 @@ complex ProjectivePlane {
 ### Torus3
 
 ```cicada
-complex Torus3 {
+datatype Torus3 {
   o: Torus3
   a: endpoints { o o }
   b: endpoints { o o }
@@ -203,14 +210,14 @@ complex Torus3 {
     cp { 'c0 'c1 = 'b0 'c2 }
   }
 }
+```
 
+```cicada
 check path (Torus3) { a }: endpoints (Torus3) { o o }
 check path (Torus3) { refl(o) }: endpoints (Torus3) { o o }
 
 check surface (Torus3) { refl(refl(o)) }: polygon (Torus3) { refl(o) = refl(o) }
-
 check surface (Torus3) { refl(a) }: polygon (Torus3) { a = a }
-
 check surface (Torus3) {
   ap { b3 c2 a2 c0 }
   bp { b0 a2 c1 b3 }
@@ -220,19 +227,28 @@ check surface (Torus3) {
 
 ### Hopf fibration
 
+References:
+
+- <https://en.wikipedia.org/wiki/Hopf_fibration>
+- <https://en.wikipedia.org/wiki/Homotopy_groups_of_spheres>
+
+  For `n >= 2`, `Pi(n)` is abelian.
+
+  - [Eckmann–Hilton argument](https://en.wikipedia.org/wiki/Eckmann%E2%80%93Hilton_argument).
+
 ```cicada
-complex S1 {
+datatype S1 {
   base: S1
   rim: endpoints { base base }
 }
 
-complex S2 {
+datatype S2 {
   base: S2
   rim: endpoints { base base }
   disk: polygon { rim = rim }
 }
 
-complex S3 {
+datatype S3 {
   base: S3
   rim: endpoints { base base }
   disk: polygon { rim = rim }
@@ -243,10 +259,36 @@ complex S3 {
 }
 ```
 
-TODO How come a sphere has an 3-dimensional algebraic structure in it?
+TODO How to do 3-dimensional algebra?
 
-- `surface (S2) { relf(relf(rim)) }`
-- `surface (S2) { relf(disk) }`
+```cicada
+check building (S3) {
+  ball
+}: polyhedron (S3) {
+  disk { 'x = 'y }
+  disk { 'x = 'y }
+}
+```
+
+TODO How come a sphere `S2` has an 3-dimensional algebraic structure in it?
+
+- Degenerated 3-dimensional elements in `S2` has non-trivial structure?
+
+```cicada
+check building (S2) {
+  relf(disk)
+}: polyhedron (S2) {
+  TODO
+}
+
+check building (S2) {
+  relf(relf(rim))
+}: polyhedron (S2) {
+  TODO
+}
+```
+
+TODO How to define `Pi(3)(S(2))`?
 
 ```cicada
 function Pi3S2 (s3: S3): S2 {
@@ -291,22 +333,14 @@ TODO How to understand `Torus` as `Circle * Circle`?
 
 ```cicada
 boundary(
-  path (Product(Circle, Circle)) {
+  path (Pair(Circle, Circle)) {
     cons(base, loop)
   }
 )
 
-cons(
-  boundary(path (Circle) { refl(base) }),
-  boundary(path (Circle) { loop })
-)
+=> TODO
 
-cons(
-  endpoints (Circle) { base base },
-  endpoints (Circle) { base base },
-)
-
-endpoints (Product(Circle, Circle)) {
+endpoints (Pair(Circle, Circle)) {
   cons(base, base)
   cons(base, base)
 }
@@ -314,24 +348,12 @@ endpoints (Product(Circle, Circle)) {
 
 ```cicada
 boundary(
-  surface (Product(Circle, Circle)) {
+  surface (Pair(Circle, Circle)) {
     cons(loop, loop)
   }
 )
 
-cons(
-  boundary(surface (Circle) { refl(loop) }),
-  boundary(surface (Circle) { refl(loop) })
-)
-
-cons(
-  polygon (Circle) { loop },
-  polygon (Circle) { loop },
-)
-
-polygon (Product(Circle, Circle)) {
-  cons(loop, loop)
-}
+=> TODO
 ```
 
 ## Fibration
