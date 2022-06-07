@@ -164,13 +164,6 @@ datatype Torus {
 ```
 
 ```cicada
-check path (Torus) { toro toro toro polo }: endpoints (Torus) { origin origin }
-check path (Torus) { toro }: endpoints (Torus) { origin origin }
-check path (Torus) { relf(origin) }: endpoints (Torus) { origin origin }
-check path (Torus) { toro relf(origin) }: endpoints (Torus) { origin origin }
-```
-
-```cicada
 datatype KleinBottle {
   origin: KleinBottle
   toro: endpoints { origin origin }
@@ -186,6 +179,34 @@ datatype ProjectivePlane {
   left_rim: endpoints { start end }
   right_rim: endpoints { end start }
   disk: polygon { left_rim right_rim left_rim right_rim }
+}
+```
+
+## 1-dimensional algebra
+
+```cicada
+check path (Torus) {
+  toro toro toro polo
+}: endpoints (Torus) {
+  origin origin
+}
+
+check path (Torus) {
+  toro
+}: endpoints (Torus) {
+  origin origin
+}
+
+check path (Torus) {
+  relf(origin)
+}: endpoints (Torus) {
+  origin origin
+}
+
+check path (Torus) {
+  toro relf(origin)
+}: endpoints (Torus) {
+  origin origin
 }
 ```
 
@@ -212,29 +233,44 @@ datatype Torus3 {
 }
 ```
 
-```cicada
-check path (Torus3) { a }: endpoints (Torus3) { o o }
-check path (Torus3) { refl(o) }: endpoints (Torus3) { o o }
+## 2-dimensional algebra
 
-check surface (Torus3) { refl(refl(o)) }: polygon (Torus3) { refl(o) = refl(o) }
-check surface (Torus3) { refl(a) }: polygon (Torus3) { a = a }
+```cicada
 check surface (Torus3) {
-  ap { b3 c2 a2 c0 }
-  bp { b0 a2 c1 b3 }
+  refl(refl(o)) { ... }
+}: polygon (Torus3) {
+  refl(o) = refl(o)
+}
+
+check surface (Torus3) {
+  refl(a) { ... }
+}: polygon (Torus3) {
+  a = a
+}
+
+check surface (Torus3) {
+  refl(a) { ... }
+  refl(a) { ... }
+}: polygon (Torus3) {
+  a a = a a
+}
+
+check surface (Torus3) {
+  ap { 'b3 'c2 = 'c0 'a2 }
+  bp { 'b0 'a2 = 'b3 'c1 }
   refl(a) {  ... }
-}: polygon (Torus3) { ... }
+}: polygon (Torus3) {
+  ...
+}
 ```
 
-### Hopf fibration
+## Homotopy group `S3`
 
-References:
+<https://en.wikipedia.org/wiki/Homotopy_groups_of_spheres>
 
-- <https://en.wikipedia.org/wiki/Hopf_fibration>
-- <https://en.wikipedia.org/wiki/Homotopy_groups_of_spheres>
+For `n >= 2`, `Pi(n)` is abelian.
 
-  For `n >= 2`, `Pi(n)` is abelian.
-
-  - [Eckmann–Hilton argument](https://en.wikipedia.org/wiki/Eckmann%E2%80%93Hilton_argument).
+- [Eckmann–Hilton argument](https://en.wikipedia.org/wiki/Eckmann%E2%80%93Hilton_argument).
 
 ```cicada
 datatype S1 {
@@ -303,6 +339,10 @@ function Pi3S2 (s3: S3): S2 {
   }
 }
 ```
+
+## Hopf fibration
+
+<https://en.wikipedia.org/wiki/Hopf_fibration>
 
 # Essential concepts
 
