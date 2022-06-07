@@ -22,7 +22,6 @@ author: Xie Yuheng
 
 ------
 
-- Fix the syntax of the "boundaries as types" paper.
 - Review notes about homotopy type theory.
 - V.V.'s did not use `Iso` in his univalent axiom,
   but changed the definition of `Iso`!

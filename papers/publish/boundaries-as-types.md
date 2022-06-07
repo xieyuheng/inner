@@ -19,6 +19,14 @@ keywords: [Type theory, Algebraic topology]
   - main
   - note
 
+# Problems
+
+- We are trying to find a way to general algebraic structure to higher dimension,
+  how can 2-dimensional sphere has non trivial 3-dimensional algebraic structure?
+
+  - Hopf fibration describe partition of the ball of `S3`,
+    but in our language, we can not describe this detailed partition.
+
 # Abstract
 
 A language to capture the concept of continuum,
@@ -106,36 +114,32 @@ complex Circle {
 
 ```cell-complex
 complex Sphere {
-  south: Node
-  middle: Node
-  north: Node
+  south: Sphere
+  middle: Sphere
+  north: Sphere
 
-  south_long: Edge(south, middle)
-  north_long: Edge(middle, north)
+  south_long: endpoints { south middle }
+  north_long: endpoints { middle north }
 
-  surface: Face(south_long, north_long, -north_long, -south_long)
-}
-
-complex Torus {
-  origin: Node
-
-  toro: Edge(origin, origin)
-  polo: Edge(origin, origin)
-
-  spoke: Face(toro, polo, -toro, -polo)
+  disk: polygon { south_long north_long = south_long north_long }
 }
 
 complex Torus {
   origin: Torus
 
-  edge {
-    toro: endpoints (Torus) { origin origin }
-    polo: endpoints (Torus) { origin origin }
-  }
+  toro: endpoints { origin origin }
+  polo: endpoints { origin origin }
 
-  face {
-    spoke: polygon (Torus) { toro polo = polo toro }
-  }
+  spoke: polygon { toro polo = polo toro }
+}
+
+complex Torus {
+  origin: Torus
+
+  toro: endpoints { origin origin }
+  polo: endpoints { origin origin }
+
+  spoke: polygon { toro polo = polo toro }
 }
 
 check path (Torus) { toro toro toro polo }: endpoints (Torus) { origin origin }
@@ -144,22 +148,22 @@ check path (Torus) { relf(origin) }: endpoints (Torus) { origin origin }
 check path (Torus) { toro relf(origin) }: endpoints (Torus) { origin origin }
 
 complex KleinBottle {
-  origin: Node
+  origin: KleinBottle
 
-  toro: Edge(origin, origin)
-  cross: Edge(origin, origin)
+  toro: endpoints { origin origin }
+  cross: endpoints { origin origin }
 
-  surface: Face(toro, cross, -toro, cross)
+  disk: polygon { toro cross = -cross toro }
 }
 
 complex ProjectivePlane {
-  start: Node
-  end: Node
+  start: ProjectivePlane
+  end: ProjectivePlane
 
-  left_rim: Edge(start, end)
-  right_rim: Edge(end, start)
+  left_rim: endpoints { start end }
+  right_rim: endpoints { end start }
 
-  surface: Face(left_rim, right_rim, left_rim, right_rim)
+  disk: polygon { left_rim right_rim left_rim right_rim }
 }
 ```
 
@@ -169,54 +173,22 @@ complex ProjectivePlane {
 
 ```cell-complex
 complex Torus3 {
-  o: Node
-
-  a: Edge(o, o)
-  b: Edge(o, o)
-  c: Edge(o, o)
-
-  // NOTE If we use `Equal` type (identity type),
-  //   the above constructors will be:
-  // a: Equal(D3Torus, o, o)
-  // b: Equal(D3Torus, o, o)
-  // c: Equal(D3Torus, o, o)
-
-  ap: Face(c, b, -c, -b)
-  bp: Face(a, c, -a, -c)
-  cp: Face(b, a, -b, -a)
-
-  // NOTE Syntax inspired by logic programming and relational algebra,
-  //   suppose we use `'symbol` to denotes logic variables.
-  s: Body(
-    ap('b3, 'c2, 'a2, 'c0),
-    bp('b0, 'a2, 'c1, 'b3),
-    cp('c0, 'c1, 'c2, 'b0),
-  )
-}
-```
-
-```cell-complex
-complex Torus3 {
   o: Torus3
 
-  edge {
-    a: endpoints (Torus3) { o o }
-    b: endpoints (Torus3) { o o }
-    c: endpoints (Torus3) { o o }
-  }
+  a: endpoints { o o }
+  b: endpoints { o o }
+  c: endpoints { o o }
 
-  face {
-    ap: polygon (Torus3) { c b = b c }
-    bp: polygon (Torus3) { a c = c a }
-    cp: polygon (Torus3) { b a = a b }
-  }
+  ap: polygon { c b = b c }
+  bp: polygon { a c = c a }
+  cp: polygon { b a = a b }
 
-  body {
-    s: polyhedron (Torus3) {
-      ap { b3 c2 a2 c0 }
-      bp { b0 a2 c1 b3 }
-      cp { c0 c1 c2 b0 }
-    }
+  // The syntax use logic variable and linear unification
+  // to specify how edges of polygons are glued together.
+  s: polyhedron {
+    ap { 'b3 'c2 = 'c0 'a2 }
+    bp { 'b0 'a2 = 'b3 'c1 }
+    cp { 'c0 'c1 = 'b0 'c2 }
   }
 }
 
@@ -238,30 +210,24 @@ check surface (Torus3) {
 
 ```cell-complex
 complex S1 {
-  base: Node
-
-  rim: Edge(base, base)
+  base: S1
+  rim: endpoints { base base }
 }
 
 complex S2 {
-  base: Node
-
-  rim: Edge(base, base)
-
-  disk: Face(rim, -rim)
+  base: S2
+  rim: endpoints { base base }
+  disk: polygon { rim = rim }
 }
 
 complex S3 {
-  base: Node
-
-  rim: Edge(base, base)
-
-  disk: Face(rim, -rim)
-
-  ball: Body(
-    disk('x, 'y),
-    disk('x, 'y),
-  )
+  base: S3
+  rim: endpoints { base base }
+  disk: polygon { rim = rim }
+  ball: polyhedron {
+    disk { 'x = 'y }
+    disk { 'x = 'y }
+  }
 }
 ```
 
