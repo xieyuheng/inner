@@ -92,8 +92,11 @@ The generators can also be parameterized, thus infinity many,
 
 ```cell-complex
 complex Circle {
-  base: Node
-  loop: Edge(base, base)
+  base: Circle
+
+  edge {
+    loop: endpoints (Circle) { base base }
+  }
 }
 ```
 
@@ -303,6 +306,55 @@ if we view the equivalence as two functions
 -- it is easy to define `f`,
 while to define `g` we must map some generators
 to trivial elements (`refl`) of `A`.
+
+## Product space
+
+TODO How to understand `Torus` as `Circle * Circle`?
+
+```cicada
+boundary(
+  path (Product(Circle, Circle)) {
+    cons(base, loop)
+  }
+)
+
+cons(
+  boundary(path (Circle) { refl(base) }),
+  boundary(path (Circle) { loop })
+)
+
+cons(
+  endpoints (Circle) { base base },
+  endpoints (Circle) { base base },
+)
+
+endpoints (Product(Circle, Circle)) {
+  cons(base, base)
+  cons(base, base)
+}
+```
+
+```cicada
+boundary(
+  surface (Product(Circle, Circle)) {
+    cons(loop, loop)
+  }
+)
+
+cons(
+  boundary(surface (Circle) { refl(loop) }),
+  boundary(surface (Circle) { refl(loop) })
+)
+
+cons(
+  polygon (Circle) { loop },
+  polygon (Circle) { loop },
+)
+
+polygon (Product(Circle, Circle)) {
+  cons(loop, loop)
+}
+```
 
 ## Fibration
 
