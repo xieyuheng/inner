@@ -5,19 +5,26 @@ date: 2022-05-31
 keywords: [Type theory, Algebraic topology]
 ---
 
-# TODO Review notes
+# TODO
 
-- topics/mathematics/algebraic-topology
-- topics/mathematics/combinatorial-group-theory
-- langs/cell-complex
-  - a-language-for-equivalence
-  - fibration
-  - holding
-  - square
-  - at1-note
-  - aeqea
-  - main
-  - note
+- example algebra of 1-dimension
+- example algebra of 2-dimension
+
+- product space -- and boundary operator over it
+
+- review old notes
+
+  - topics/mathematics/algebraic-topology
+  - topics/mathematics/combinatorial-group-theory
+  - langs/cell-complex
+    - a-language-for-equivalence
+    - fibration
+    - holding
+    - square
+    - at1-note
+    - aeqea
+    - main
+    - note
 
 # Problems
 
@@ -39,7 +46,9 @@ It can be viewed as higher dimensional algebraic structure in which,
 - homotopy groups are its sub-algebras,
 - and its abelianization are homology groups.
 
-# Cell-complex as a generalization of graph theory
+# Introduction
+
+## Cell-complex as a generalization of graph theory
 
 Note that graph (with nodes and edges),
 and cell-complex (with faces and bodies and higher),
@@ -81,6 +90,28 @@ The following notions are not built-in our language:
 - Subset.
 - Quotient.
 
+## Naming and syntax keywords
+
+| dimension | generator (cell) | element (complex) | spherical element |
+|----------:|------------------|-------------------|-------------------|
+|         0 | vertex           |                   | `endpoints`       |
+|         1 | edge             | `path`            | `polygon`         |
+|         2 | face             | `surface`         | `polyhedron`      |
+|         3 | body             | `complex(3)`      | `polytope(3)`     |
+
+Notes:
+
+- By "element" we mean elements in an algebraic structure.
+
+- A spherical element can be used to specify
+  the attaching map of a higher dimensional generator,
+  i.e. specifying how the boundary of the generator
+  is glued to the spherical element.
+
+  After the gluing, the generator becomes part of the space,
+  and the spherical element becomes the generator's boundary
+  (boundaries as types).
+
 ## 0-dimensional
 
 When we define inductive datatypes
@@ -98,13 +129,10 @@ The generators can also be parameterized, thus infinity many,
 
 ### Circle
 
-```cell-complex
+```cicada
 complex Circle {
   base: Circle
-
-  edge {
-    loop: endpoints (Circle) { base base }
-  }
+  loop: endpoints { base base }
 }
 ```
 
@@ -112,33 +140,24 @@ complex Circle {
 
 ### Four ways to glue a square
 
-```cell-complex
+```cicada
 complex Sphere {
   south: Sphere
   middle: Sphere
   north: Sphere
-
   south_long: endpoints { south middle }
   north_long: endpoints { middle north }
-
-  disk: polygon { south_long north_long = south_long north_long }
+  disk: polygon {
+    south_long north_long = south_long north_long
+  }
 }
+```
 
+```cicada
 complex Torus {
   origin: Torus
-
   toro: endpoints { origin origin }
   polo: endpoints { origin origin }
-
-  spoke: polygon { toro polo = polo toro }
-}
-
-complex Torus {
-  origin: Torus
-
-  toro: endpoints { origin origin }
-  polo: endpoints { origin origin }
-
   spoke: polygon { toro polo = polo toro }
 }
 
@@ -149,20 +168,16 @@ check path (Torus) { toro relf(origin) }: endpoints (Torus) { origin origin }
 
 complex KleinBottle {
   origin: KleinBottle
-
   toro: endpoints { origin origin }
   cross: endpoints { origin origin }
-
   disk: polygon { toro cross = -cross toro }
 }
 
 complex ProjectivePlane {
   start: ProjectivePlane
   end: ProjectivePlane
-
   left_rim: endpoints { start end }
   right_rim: endpoints { end start }
-
   disk: polygon { left_rim right_rim left_rim right_rim }
 }
 ```
@@ -171,18 +186,15 @@ complex ProjectivePlane {
 
 ### Torus3
 
-```cell-complex
+```cicada
 complex Torus3 {
   o: Torus3
-
   a: endpoints { o o }
   b: endpoints { o o }
   c: endpoints { o o }
-
   ap: polygon { c b = b c }
   bp: polygon { a c = c a }
   cp: polygon { b a = a b }
-
   // The syntax use logic variable and linear unification
   // to specify how edges of polygons are glued together.
   s: polyhedron {
@@ -208,7 +220,7 @@ check surface (Torus3) {
 
 ### Hopf fibration
 
-```cell-complex
+```cicada
 complex S1 {
   base: S1
   rim: endpoints { base base }
@@ -236,7 +248,7 @@ TODO How come a sphere has an 3-dimensional algebraic structure in it?
 - `surface (S2) { relf(relf(rim)) }`
 - `surface (S2) { relf(disk) }`
 
-```cell-complex
+```cicada
 function Pi3S2 (s3: S3): S2 {
   return match (s3) {
     case base => S2.base
