@@ -225,7 +225,28 @@ We define causal reasoning as:
 
 Typical causal questions:
 
-- TODO
+- How effective is a given treatment in **preventing** a disease?
+- Did the new tax law **cause** our sales to go up, or was it our dvertising campaign?
+- What is the health-care cost **attributable** to obesity?
+- Can hiring records prove an employer is guilty of a policy of sex **discrimination**?
+- I'm about to quit my job. Should I? Will I **regret** it?
+
+You can **NOT** express the above in classical logic.
+
+They are inarticulable in the standard grammar of science.
+
+|    equation | assignment   |
+| ----------: | :----------- |
+| `Y = a * X` | `Y <- a * X` |
+
+Because _equality_ is the dominating connective (judgment)
+of our scientific language, but we are talking about asymmetry.
+
+During causal reasoning,
+we can filling the asymmetry in our mind,
+but robot can not.
+
+# TODO
 
 # (2019) Interpretability and explainability from a causal lens
 

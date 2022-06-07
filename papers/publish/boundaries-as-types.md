@@ -84,6 +84,26 @@ another way is higher-order functions.
 
 Is univalent axiom a relation between this two orders?
 
+Is it true that,
+if we can view other higher-order-ness
+as models of higher order inductive type,
+we can use the algebra of the later to simplify our reasoning?
+
+- One problem is that a function type is directed
+  (we do not have general method to reverse any function),
+  but in a cell-complex, the a cell has no direction
+
+  - But we used minus sign when composing edges in `path`,
+    is it not about direction?
+
+    It is not.
+    We can only say a cell has "orientation",
+    in the sense that, for example, when composing an edge,
+    we can use one of its endpoints,
+    the minus sign in `path` only means
+    to change the layout of an edge
+    to compose it by another endpoint.
+
 ## Limitation of our construction
 
 The following notions are not built-in our language:
