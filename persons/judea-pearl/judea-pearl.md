@@ -4,7 +4,7 @@ title: Judea Pearl
 
 [ [HOMEPAGE](http://bayes.cs.ucla.edu/jp_home.html) ]
 
-# Judea Pearl Tribute Symposium: Causality
+# (2010) Judea Pearl Tribute Symposium: Causality
 
 [ [VIDEO](https://www.youtube.com/watch?v=78EmmdfOcI8) ]
 
@@ -39,7 +39,7 @@ title: Judea Pearl
 
   > **I compute, therefore I think**.
 
-# A conversation between Judea Pearl and Stephen Wolfram
+# (2022) A conversation between Judea Pearl and Stephen Wolfram
 
 [ [VIDEO](https://www.youtube.com/watch?v=230PsGBxkCo) ]
 
@@ -112,3 +112,135 @@ title: Judea Pearl
   The doctor wasn't able to articulate the various procedures
   he or she go through when doing diagnosis,
   specially when it comes to combining different source of knowledge.
+
+# (2019) The Foundations of Causal Inference [The Book of WHY]
+
+[ [VIDEO](https://www.youtube.com/watch?v=nWaM6XmQEmU) ]
+
+---
+
+OUTLINE:
+
+- Why we need **a new logic** to answer causal questions.
+- Why AI need **a new engine** to operationalize the new logic.
+  - Predicate logic and probability theory are insufficient.
+- The two fundamental laws ("double-helix") of causal inference.
+  - You need to not only learn but also internalize them!
+- _The Seven Pillars of Causal Wisdom_
+  - Victories!
+    There are things we want to do,
+    but we couldn't do,
+    and now we can do.
+
+---
+
+# (2021) CS 201 JUDEA PEARL MARCH 9 2021
+
+[ [VIDEO](https://www.youtube.com/watch?v=pZkCecwE-xE) ]
+
+## Aristotle's two questions
+
+In Athenian democracy, people gathered to argue
+about who can rule the city better.
+
+People developed Euclidean geometry,
+because they craving the simplicity and objectivity of geometry,
+and they got sick and tired of arguing.
+
+Because the arguments get to the point
+where they are endless, pointless
+and leading to demagoguery.
+
+Aristotle's two questions:
+
+1. What distinguishes philosophy (love of wisdom)
+   from demagoguery (leading people)?
+
+2. What distinguishes truth from rhetoric?
+
+**Logic** is quest for objective truth.
+
+**Truth** comes out of **from**.
+
+```
+A -> B
+B -> C
+------
+A -> C
+```
+
+Only after 2000 years,
+[Boole](https://en.wikipedia.org/wiki/George_Boole) and
+[De Morgan](https://en.wikipedia.org/wiki/Augustus_De_Morgan)
+developed symbolic logic.
+
+## What is a valid inference?
+
+Aristotle syllogisms:
+
+```
+premise1, premise2 -> conclusion
+```
+
+An inference is valid,
+tf the conclusion is true
+in all **worlds** in which the premises are true.
+
+**World** is defined as
+truth value assignment to all propositions of interest.
+
+[Propositional logic](https://en.wikipedia.org/wiki/Propositional_calculus)
+is just a truth table,
+while in probability we have probability table,
+how can we go from propositional logic to causal logic?
+
+## Interpret propositional logic by set theory
+
+We can interpret propositions as sets,
+and interpret the following inference as relations between sets.
+
+```
+premise1, premise2 -> conclusion
+```
+
+```
+inclusion(intersection(premise1, premise2), conclusion)
+```
+
+An element of a set is a _World_,
+which assigns truth value to propositions.
+
+Note that, a proposition have two interpretations,
+
+- A variable which can be assigned truth value.
+- The set of worlds in which it is assigned true.
+
+How does this relates to _causal reasoning_?
+
+## What is causal reasoning?
+
+We define causal reasoning as:
+
+> Logic and Tools for answering causal questions (instead of propositions).
+
+Typical causal questions:
+
+- TODO
+
+# (2019) Interpretability and explainability from a causal lens
+
+[ [VIDEO](https://www.youtube.com/watch?v=mfh4fp_8oPg) ]
+
+TODO
+
+# (2020) Data versus Science: Contesting the Soul of Data-Science [CIFAR]
+
+[ [VIDEO](https://www.youtube.com/watch?v=X_1MG4ViVGM) ]
+
+TODO
+
+# (2012) Turing Award Lecture "The Mechanization of Causal Inference"
+
+[ [VIDEO](https://www.youtube.com/watch?v=iNm4nFBFmvo) ]
+
+TODO
