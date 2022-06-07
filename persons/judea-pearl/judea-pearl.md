@@ -231,7 +231,7 @@ Typical causal questions:
 - Can hiring records prove an employer is guilty of a policy of sex **discrimination**?
 - I'm about to quit my job. Should I? Will I **regret** it?
 
-You can **NOT** express the above in classical logic.
+You can **NOT** express the above terms in classical logic.
 
 They are inarticulable in the standard grammar of science.
 
@@ -246,7 +246,15 @@ During causal reasoning,
 we can filling the asymmetry in our mind,
 but robot can not.
 
-# TODO
+My talk today can be thought of as a calculus of *assignment*.
+
+I can express all the terms above,
+in terms of assignment,
+but not in terms of equality.
+
+## Traditional statistical inference paradigm
+
+TODO https://youtu.be/pZkCecwE-xE?t=854
 
 # (2019) Interpretability and explainability from a causal lens
 
