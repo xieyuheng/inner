@@ -17,9 +17,12 @@ author: Xie Yuheng
   - Read "Causality -- Models, Reasoning and Inference".
 
     - During study of this book,
-      I found that maybe we should revisit the idea of [orbit](https://withorbit.com/).
-
+      I found that maybe we should revisit the idea of [orbit](https://withorbit.com/),
       - Repo: https://github.com/andymatuschak/orbit
+      - Because I keep forgetting:
+        - definition of terms
+        - import intuitions
+        - typical examples
 
     - Find a interesting dataset to practice.
 
