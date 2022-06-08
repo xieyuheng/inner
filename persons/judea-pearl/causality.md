@@ -384,6 +384,14 @@ class Tree extends AcyclicGraph {
 
 TODO
 
+## 1.3 Causal Bayesian Networks
+
+TODO
+
+## 1.4 Functional Causal Models
+
+TODO
+
 # 2 A Theory of Inferred Causation
 
 # 3 Causal Diagrams and the Identification of Causal Effects

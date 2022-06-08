@@ -13,9 +13,19 @@ author: Xie Yuheng
 # TODO
 
 - Read "The Book of Why".
+
   - Read "Causality -- Models, Reasoning and Inference".
+
+    - Find a interesting dataset to practice.
+
+      https://datasetsearch.research.google.com
+      https://en.wikipedia.org/wiki/Data_set
+
     - `logic-of-causality.md` -- definition of causality
-    - read "Illustrations of the Logic of Science (1877–1878)" which has paper about probability
+
+    - Read peirce's "Illustrations of the Logic of Science (1877–1878)"
+      which has paper about probability
+
       - `revised-theory-of-knowledge.md` -- read peirce's paper again
 
 - Design a probabilistic programming language.
