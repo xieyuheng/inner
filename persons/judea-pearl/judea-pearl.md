@@ -117,9 +117,7 @@ title: Judea Pearl
 
 [ [VIDEO](https://www.youtube.com/watch?v=nWaM6XmQEmU) ]
 
----
-
-OUTLINE:
+## Outline
 
 - Why we need **a new logic** to answer causal questions.
 - Why AI need **a new engine** to operationalize the new logic.
@@ -131,8 +129,6 @@ OUTLINE:
     There are things we want to do,
     but we couldn't do,
     and now we can do.
-
----
 
 # (2021) CS 201 JUDEA PEARL MARCH 9 2021
 
@@ -246,15 +242,32 @@ During causal reasoning,
 we can filling the asymmetry in our mind,
 but robot can not.
 
-My talk today can be thought of as a calculus of *assignment*.
+My talk today can be thought of as a calculus of _assignment_.
 
 I can express all the terms above,
 in terms of assignment,
 but not in terms of equality.
 
-## Traditional statistical inference paradigm
+## Traditional statistical inference paradigm v.s. structural model paradigm
 
-TODO https://youtu.be/pZkCecwE-xE?t=854
+In traditional statistical inference paradigm,
+_joint distribution_ is the Oracle.
+
+In structural model paradigm,
+the new Oracle is a model.
+A model `M` is the invariant strategy
+by which the nature assigns values to variables.
+
+- **Xie:** The term "Oracle" is used,
+  because we want to build a machine
+  that can answer our queries.
+
+A model is like a collection of springs,
+where variables listen to each other and react to each other.
+
+The phrases "listen to" and "react to" are about assignment.
+
+The edges in the model are like ropes (or springs) behind the data.
 
 # (2019) Interpretability and explainability from a causal lens
 
