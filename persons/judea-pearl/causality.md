@@ -74,7 +74,7 @@ are statements about _conditional probabilities_
 -- for example, `P(A | B)` -- which specify the belief in `A`
 under the assumption that `B` is known with absolute certainty.
 
-We say that `A` and `B` are _independent, if
+We say that `A` and `B` are \_independent, if
 
 ```
 P(A | B) = P(A)
@@ -265,9 +265,20 @@ TODO Define `E` and `V`.
 
 ### 1.1.5 Conditional Independence and Graphoids
 
-TODO Conditional Independence
+Recall Conditional Independence
 
-[Graphoid](https://en.wikipedia.org/wiki/Graphoid)
+```
+P(A | B, C) = P(A | C)
+```
+
+If we define a relation between three variables called irrelevant `I`:
+
+```
+I(X, Z, Y) := P(X | and(Y, Z)) == P(X | Z)
+```
+
+It will satisfy a set of axioms which defines a mathematical structure
+called [Graphoid](https://en.wikipedia.org/wiki/Graphoid).
 
 ```cicada
 class Graphoid {
@@ -351,10 +362,6 @@ Notes:
 Interpretations of `I(X, Z, Y)`:
 
 - **Probability:**
-
-  ```
-  I(X, Z, Y) := P(X | and(Y, Z)) == P(X | Z)
-  ```
 
   `X` is irrelevant to `Y` given that we know `Z`.
 
