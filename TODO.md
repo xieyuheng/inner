@@ -16,6 +16,11 @@ author: Xie Yuheng
 
   - Read "Causality -- Models, Reasoning and Inference".
 
+    - During study of this book,
+      I found that maybe we should revisit the idea of [orbit](https://withorbit.com/).
+
+      - Repo: https://github.com/andymatuschak/orbit
+
     - Find a interesting dataset to practice.
 
       https://datasetsearch.research.google.com

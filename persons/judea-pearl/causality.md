@@ -438,6 +438,14 @@ for a DAG `G` to explain a body of empirical data
 represented by `P`, that is,
 to describe a stochastic process capable of generating `P`.
 
+### 1.2.3 The d-Separation Criterion
+
+TODO
+
+### 1.2.4 Inference with Bayesian Networks
+
+TODO
+
 ## 1.3 Causal Bayesian Networks
 
 TODO
