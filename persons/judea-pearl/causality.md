@@ -346,6 +346,42 @@ Interpretations of `I(X, Z, Y)`:
 
 ### 1.2.1 Graphical Notation and Terminology
 
+```cicada
+class Graph {
+  Vertex: Type
+  Edge: Type
+
+  start(e: Edge): Vertex
+  end(e: Edge): Vertex
+
+  Adjacent(x: Vertex, y: Vertex): Type {
+    return exists (f: Edge, g: Edge)
+      Equal(Vertex, end(f), start(g))
+  }
+
+  // TODO Path
+  // TODO DirectedPath
+
+  Root(x: Vertex): Type {
+    return TODO
+  }
+
+  Sink(x: Vertex): Type {
+    return TODO
+  }
+}
+
+class AcyclicGraph extends Graph {
+  // TODO
+}
+
+class Tree extends AcyclicGraph {
+  // TODO
+}
+```
+
+### 1.2.2 Bayesian Networks
+
 TODO
 
 # 2 A Theory of Inferred Causation
