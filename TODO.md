@@ -23,6 +23,7 @@ author: Xie Yuheng
         - definition of terms
         - import intuitions
         - typical examples
+      - and: https://activerecall.com
 
     - Find a interesting dataset to practice.
 
