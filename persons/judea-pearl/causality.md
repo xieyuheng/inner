@@ -365,7 +365,7 @@ Interpretations of `I(X, Z, Y)`:
 
   `X` is irrelevant to `Y` given that we know `Z`.
 
-- **Graph theory:**
+- **Graph theory (undirected):**
 
   All paths from a subset `X` of nodes
   to a subset `Y` of nodes
@@ -416,6 +416,27 @@ The role of graphs in probabilistic and statistical modeling is threefold:
 1. to provide convenient means of expressing substantive assumptions;
 2. to facilitate economical representation of joint probability functions; and
 3. to facilitate efficient inferences from observations.
+
+TODO How Bayesian Networks can be viewed as representation of joint probability functions?
+
+TODO How to construct Bayesian Networks?
+
+- **Definition 1.2.2 (Markov Compatibility)**
+
+  If a probability function `P`
+  admits the factorization of (1.33)
+  relative to DAG `G`,
+  we say that `G` represents `P`,
+  that `G` and `P` are compatible,
+  or that `P` is Markov relative to `G`.
+
+Ascertaining compatibility between DAGs and probabilities
+is important in statistical modeling
+primarily because compatibility is
+a necessary and sufficient condition
+for a DAG `G` to explain a body of empirical data
+represented by `P`, that is,
+to describe a stochastic process capable of generating `P`.
 
 ## 1.3 Causal Bayesian Networks
 
