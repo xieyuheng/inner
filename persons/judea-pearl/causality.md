@@ -74,11 +74,20 @@ are statements about _conditional probabilities_
 -- for example, `P(A | B)` -- which specify the belief in `A`
 under the assumption that `B` is known with absolute certainty.
 
-If `P(A | B) = P(A)`, we say that `A` and `B` are _independent_,
+We say that `A` and `B` are _independent, if
+
+```
+P(A | B) = P(A)
+```
+
 since our belief in `A` remains unchanged upon learning the truth of `B`.
 
-If `P(A | B, C) = P(A | C)`,
-we say that `A` and `B` are _conditionally independent_ given `C`;
+We say that `A` and `B` are _conditionally independent_ given `C`, if
+
+```
+P(A | B, C) = P(A | C)
+```
+
 that is, once we know `C`, learning `B` would not change our belief in `A`.
 
 Contrary to the traditional practice of defining
@@ -117,6 +126,19 @@ for hypothetical or "assumption-based" reasoning.
 It states that the belief in any event `A`
 is a weighted sum over the beliefs
 in all the distinct ways that `A` might be realized.
+
+Another useful generalization
+of the product rule (equation (1.9))
+is the _chain rule_ formula.
+It states that if we have a set of n events, `E1, E2, ..., En`,
+then the probability of the joint event `(E1, E2, ..., En)`
+can be written as a product of n conditional probabilities:
+
+```(1.12)
+P(E1, E2, ..., En) =
+P(En | En-1, ..., E2, E1) * P(En-1, ..., E2, E1) =
+P(En | En-1, ..., E2, E1) * ... * P(E2 | E1) * P(E1)
+```
 
 The heart of Bayesian inference lies in the celebrated inversion formula,
 
@@ -382,7 +404,11 @@ class Tree extends AcyclicGraph {
 
 ### 1.2.2 Bayesian Networks
 
-TODO
+The role of graphs in probabilistic and statistical modeling is threefold:
+
+1. to provide convenient means of expressing substantive assumptions;
+2. to facilitate economical representation of joint probability functions; and
+3. to facilitate efficient inferences from observations.
 
 ## 1.3 Causal Bayesian Networks
 
