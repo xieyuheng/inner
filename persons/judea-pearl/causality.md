@@ -243,7 +243,108 @@ TODO Define `E` and `V`.
 
 ### 1.1.5 Conditional Independence and Graphoids
 
+TODO Conditional Independence
+
 [Graphoid](https://en.wikipedia.org/wiki/Graphoid)
+
+```cicada
+class Graphoid {
+  Element: Type
+
+  I(X: Element, Y: Element, Z: Element): Type
+
+  // The symmetry axiom states that,
+  // in any state of knowledge Z,
+  // if Y tells us nothing new about X,
+  // then X tells us nothing new about Y.
+  symmetry(
+    implicit X: Element,
+    implicit Y: Element,
+    implicit Z: Element,
+    i: I(X, Z, Y),
+  ): I(Y, Z, X)
+
+  // The decomposition axiom asserts that
+  // if two combined items of information
+  // are judged irrelevant to X,
+  // then each separate item is irrelevant as well.
+  decomposition(
+    implicit X: Element,
+    implicit Y: Element,
+    implicit W: Element,
+    implicit Z: Element,
+    i: I(X, Z, or(Y, W)),
+  ): I(X, Z, Y)
+
+  // The weak union axiom states that
+  // learning irrelevant information W -- Z becoming or(Z, W) --
+  // cannot help the irrelevant information
+  // Y become relevant to X.
+  weak_union(
+    implicit X: Element,
+    implicit Y: Element,
+    implicit W: Element,
+    implicit Z: Element,
+    i: I(X, Z, or(Y, W)),
+  ): I(X, or(Z, W), Y)
+
+  // The contraction axiom states that
+  // if we judge W irrelevant to X after
+  // learning some irrelevant information Y,
+  // then W must have been irrelevant before we learned Y.
+  contraction(
+    implicit X: Element,
+    implicit Y: Element,
+    implicit W: Element,
+    implicit Z: Element,
+    i: I(X, Z, Y),
+    j: I(X, or(Z, Y), W),
+  ): I(X, Z, or(Y, W))
+
+  // Together, the weak union and contraction properties mean
+  // that irrelevant information should not alter the relevance status
+  // of other propositions in the system;
+  // what was relevant remains relevant,
+  // and what was irrelevant remains irrelevant.
+
+  // The intersection axiom states that
+  // if Y is irrelevant to X when we know W
+  // and if W is irrelevant to X when we know Y,
+  // then W and Y (and their combination) is irrelevant to X.
+  intersection(
+    implicit X: Element,
+    implicit Y: Element,
+    implicit W: Element,
+    implicit Z: Element,
+    i: I(X, or(Z, W), Y),
+    j: I(X, or(Z, Y), W),
+  ): I(X, Z, or(Y, W))
+}
+```
+
+Notes:
+
+- Intersection is valid in strictly positive probability distributions.
+
+Interpretations of `I(X, Z, Y)`:
+
+- **Probability:**
+
+  ```
+  I(X, Z, Y) := P(X | and(Y, Z)) == P(X | Z)
+  ```
+
+  `X` is irrelevant to `Y` given that we know `Z`.
+
+- **Graph theory:**
+
+  All paths from a subset `X` of nodes
+  to a subset `Y` of nodes
+  are intercepted by a subset `Z` of nodes.
+
+## 1.2 GRAPHS AND PROBABILITIES
+
+### 1.2.1 Graphical Notation and Terminology
 
 TODO
 
