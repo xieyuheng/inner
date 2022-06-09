@@ -114,6 +114,13 @@ according to the rules of probability calculus.
 - **Xie:** If we only assign 0 or 1 to propositions,
   we get propositional logic.
 
+  Note that, propositions and sets are instances of Boolean lattice,
+  which is the structure of the space of events.
+
+- **Xie:** We can inductively learn
+  what degree of belief should be assigned to a proposition,
+  by using the frequency of the proposition been true in a sample data.
+
 In the Bayesian formalism, belief measures
 obey the three basic axioms of probability calculus:
 
@@ -156,6 +163,8 @@ We say that `A` and `B` are _conditionally independent_ given `C`, if
 P(A | B, C) = P(A | C)
 ```
 
+- **Xie:** `P(A | B, C)` means `P(A | and(B, C))`.
+
 that is, once we know `C`, learning `B` would not change our belief in `A`.
 
 Contrary to the traditional practice of defining
@@ -186,7 +195,9 @@ on any set of exhaustive and mutually exclusive events `B(i)`,
 and then summing:
 
 ```(1.10)
-P(A) = sum (i: I) P(A | B(i)) * P(B(i))
+P(A) =
+sum (i: I) P(A, B(i)) =
+sum (i: I) P(A | B(i)) * P(B(i))
 ```
 
 This decomposition provides the basis
@@ -226,7 +237,9 @@ The denominator `P(e)` of (1.13) hardly enters into consideration
 because it is merely a normalizing constant
 
 ```
-P(e) = P(e | H) * P(H) + P(e | ~H) * P(~H)
+P(e) = 
+P(e, H) + P(E, ) = 
+P(e | H) * P(H) + P(e | ~H) * P(~H)
 ```
 
 which can be computed by requiring
