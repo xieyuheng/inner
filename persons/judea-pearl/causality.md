@@ -12,7 +12,7 @@ year: [2000, 2009]
 The two fundamental questions of causality are:
 
 1. What empirical evidence is required
-   for legitimate inference of cause–effect relationships?
+   for legitimate inference of cause-effect relationships?
 
 2. Given that we are willing to accept causal information about a phenomenon,
    what inferences can we draw from such information, and how?
