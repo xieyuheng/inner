@@ -348,7 +348,10 @@ such that the eight weights sum to 1.
 
   but we should
 
-  - define it for every detailed conjunction of atomic propositions.
+  - define it for every detailed conjunction of atomic propositions,
+    and use disjunctive normal form
+    (a disjunction of conjunctions)
+    to do computation.
 
   From the perspective of propositional logic,
   the base of computation is atomic,
