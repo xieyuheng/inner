@@ -421,6 +421,18 @@ TODO How Bayesian Networks can be viewed as representation of joint probability 
 
 TODO How to construct Bayesian Networks?
 
+- **Xie:** If the method by which we construct Bayesian Networks
+  does not make the directed edge causal,
+  we may need to build the graph model by our knowledge.
+
+  - Maybe this is why people do not like model-based
+    causal inferences, because it is subjective.
+
+- **Xie:** If causal model makes it more efficient
+  for compute to calculus probability,
+  is it also true that our tendency for causal reasoning
+  is evolved for the same reason?
+
 - **Definition 1.2.2 (Markov Compatibility)**
 
   If a probability function `P`
@@ -444,13 +456,49 @@ TODO
 
 ### 1.2.4 Inference with Bayesian Networks
 
-TODO
+TODO Note about "abduction".
 
 ## 1.3 Causal Bayesian Networks
 
-TODO
+### 1.3.1 Causal Networks as Oracles for Interventions
+
+The source of this flexibility rests on the assumption that
+each paren-child relationship in the network represents
+a stable and autonomous physical mechanism
+-- in other words, that it is conceivable
+to change one such relationship
+without changing the others.
+Organizing one's knowledge in such modular configurations
+permits one to predict the effect of external interventions
+with a minimum of extra information.
+Indeed, causal models (assuming they are valid)
+are much more informative than probability models.
+A joint distribution tells us how probable events are
+and how probabilities would change with subsequent observations,
+but a causal model also tells us how these probabilities
+would change as a result of external interventions
+-- such as those encountered in policy analysis,
+treatment management, or planning everyday activity.
+Such changes cannot be deduced from a joint distribution,
+even if fully specified.
 
 ## 1.4 Functional Causal Models
+
+Finally, certain concepts that are ubiquitous in human discourse
+can be defined only in the Laplacian framework.
+We shall see, for example, that such simple concepts as
+"the probability that event B occured because of event A" and
+"the probability that event B would have been different if it were not for event A"
+cannot be defined in terms of purely stochastic models.
+These so-called counterfactual concepts will require a synthesis of
+the deterministic and probabilistic components
+embodied in the Laplacian model.
+
+- **Xie:** Is it true that
+  "the probability that event B occured because of event A"
+  means a higher order probability `P(A -> B)`?
+
+### 1.4.1 Structural Equations
 
 TODO
 
@@ -462,7 +510,7 @@ TODO
 
 # 5 Causality and Structural Models in Social Science and Economics
 
-# 6 Simpson’s Paradox, Confounding, and Collapsibility
+# 6 Simpson's Paradox, Confounding, and Collapsibility
 
 # 7 The Logic of Structure-Based Counterfactuals
 
