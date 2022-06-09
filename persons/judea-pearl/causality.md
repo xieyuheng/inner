@@ -271,6 +271,12 @@ is never lower than that attributed to before discovering `A`.
 Also, the ratio between these two beliefs will increase proportionally
 with the degree of surprise `1 / P(A)` one associates with the discovery of A.
 
+- **Xie:**
+
+  ```
+  surprise(A) = 1 / P(A)
+  ```
+
 The importance of (1.13) is that it expresses a quantity `P(H | e)`
 -- which people often find hard to assess --
 in terms of quantities that often can be drawn directly
@@ -357,16 +363,35 @@ The essence of Bayes’s rule (equation 1.13)
 is conveniently portrayed using the _odds_
 and _likelihood ratio_ parameters.
 
-```
-P(H | e) = P(e | H) * P(H) / P(e)
-P(~H | e) = P(e | ~H) * P(~H) / P(e)
+The **prior odd** of a hypothesis `H` is defined as the ratio:
 
-P(H | e) / P(~H | e) = P(e | H) * P(H) / P(e | ~H) * P(~H)
+```
+O(H) = P(H) / P(~H) = P(H) / (1 - P(H))
 ```
 
-TODO Define `O` and `L`, and explain the use of Bayes's rule by an example.
+The **likelihood ratio** of an evidence `e` given a hypothesis `H` is:
+
+```
+L(e | H) = P(e | H) / P(e | ~H)
+```
+
+The **posterior odd** of a hypothesis `H` given an evidence `e` is:
+
+```
+O(H | e) = P(H | e) / P(~H | e) =
+P(e | H) * P(H) / P(e | ~H) * P(~H) =
+(P(e | H) / P(e | ~H)) * (P(H) / P(~H)) =
+L(e | H) * O(H)
+```
+
+TODO Epidemiology example.
 
 ### 1.1.4 Random Variables and Expectations
+
+- **Xie:** Random variables allow us to
+  - use the inverse of a value to denote a event.
+  - compute expectation for the values.
+  - apply function to the value.
 
 TODO Define `E` and `V`.
 
