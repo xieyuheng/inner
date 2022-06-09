@@ -237,8 +237,8 @@ The denominator `P(e)` of (1.13) hardly enters into consideration
 because it is merely a normalizing constant
 
 ```
-P(e) = 
-P(e, H) + P(E, ) = 
+P(e) =
+P(e, H) + P(e, ~H) =
 P(e | H) * P(H) + P(e | ~H) * P(~H)
 ```
 
@@ -259,6 +259,12 @@ and as faithful translations of the English expression
 Without the direction in the formula,
 an equation is just an empirically verifiable relationship
 between English expressions.
+
+```(1.14)
+P(A | B) = P(A, B) / P(B)
+P(B | A) = P(A, B) / P(A)
+```
+
 It asserts, among other things,
 that the belief a person attributes to `B` after discovering `A`
 is never lower than that attributed to before discovering `A`.
