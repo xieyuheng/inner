@@ -629,6 +629,17 @@ becomes an integral part of the study,
 for it determines the veracity of the judgments
 experts are requested to articulate.
 
+The preceding two requirements:
+
+- (1) to commence causal analysis with untested, judgmental assumptions,
+- (2) to extend the syntax of probability calculus,
+
+constitute the two main obstacles to the acceptance of causal analysis
+among professionals with traditional training in statistics.
+This book helps overcome the two barriers
+through an effective and friendly notational system
+based on symbiosis of graphical and algebraic approaches.
+
 # 2 A Theory of Inferred Causation
 
 # 3 Causal Diagrams and the Identification of Causal Effects
