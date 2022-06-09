@@ -31,6 +31,71 @@ and I regard probabilistic relationships as
 but the surface phenomena of the causal machinery
 that underlies and propels our understanding of the world.
 
+## Contents
+
+The sequence of discussion follows more or less the chronological order
+by which our team at UCLA has tackled these topics,
+thus re-creating for the reader some of our excitement
+that accompanied these developments.
+
+- (Chapter 1) The introductory chapter.
+
+- (Chapter 2) We start with the hardest questions of
+  how one can go about discovering cause-effect relationships in raw data
+  and what guarantees one can give to ensure
+  the validity of the relationships thus discovered.
+
+- (Chapters 3 and 4) We then proceed to questions of identifiability
+  -- namely, predicting the direct and indirect effects of actions and policies
+  from a combination of data and fragmentary knowledge
+  of where causal relationships might operate.
+
+- (Chapters 5 and 6) The implications of these findings for the social
+  and health sciences are then discussed in Chapters 5 and 6 (respectively),
+  where we examine the concepts of structural equations and confounding.
+
+- (Chapter 7) Offers a formal theory of counterfactuals and structural models,
+  followed by a discussion and a unification of related approaches
+  in philosophy, statistics, and economics.
+
+- (Chapters 8-10) The applications of counterfactual analysis
+  are then pursued in Chapters 8-10,
+  where we develop methods of bounding causal relationships
+  and illustrate applications to imperfect experiments,
+  legal responsibility, and the probability of
+  necessary, sufficient, and single-event causation.
+
+- (Epilogue) We end this book with a transcript of a public lecture
+  that I presented at UCLA, which provides a gentle introduction
+  to the historical and conceptual aspects of causation.
+
+Readers who wish to be first introduced to the nonmathematical aspects of causation
+are advised to start with the Epilogue
+and then to sweep through the other historical/conceptual parts of the book:
+
+- 1.1.1,
+- 3.3.3,
+- 4.5.3,
+- 5.1, 5.4.1,
+- 6.1,
+- 7.2, 7.4, 7.5,
+- 8.3,
+- 9.1, 9.3,
+- 10.1.
+
+More formally driven readers, who may be anxious to delve directly
+into the mathematical aspects and computational tools,
+are advised to start with Section 7.1
+and then to proceed as follows for tool building:
+
+- 1.2,
+- 3,
+- 4.2-4.4,
+- 5.2-5.3,
+- 6.2-6.3,
+- 7.3,
+- 8-10.
+
 # 1 Introduction to Probabilities, Graphs, and Causal Models
 
 ## 1.1 Introduction to Probability Theory
@@ -501,6 +566,68 @@ embodied in the Laplacian model.
 ### 1.4.1 Structural Equations
 
 TODO
+
+## 1.5 Causal versus Statistical Terminology
+
+**Causal versus Statistical Concepts**
+
+The demarcation line between causal and statistical parameters
+extends as well to general concepts and will be supported
+by terminological distinction.
+
+Examples of statistical concepts are:
+
+- correlation,
+- regression,
+- conditional independence,
+- association,
+- likelihood,
+- collapsibility,
+- risk ratio,
+- odds ratio,
+- propensity score,
+- Granger's causality,
+- and so on.
+
+Examples of causal concepts are:
+
+- randomization,
+- influence,
+- effect,
+- confounding,
+- exogeneity,
+- ignorability,
+- disturbance (e.g., (1.40)),
+- spurious correlation,
+- path coefficients,
+- instrumental variables,
+- intervention,
+- explanation,
+- and so on.
+
+The purpose of this demarcation line
+is not to exclude causal concepts
+from the province of statistical analysis
+but, rather, to encourage investigators
+to treat nonstatistical concepts
+with the proper set of tools.
+
+**Two Mental Barriers to Causal Analysis**
+
+The sharp distinction between statistical and causal concepts
+can be translated into a useful principle:
+
+> behind every causal claim there must lie some causal assumption
+> that is not discernable from the joint distribution
+> and, hence, not testable in observational studies.
+
+Such assumptions are usually provided by humans,
+resting on expert _judgment_.
+Thus, the way humans organize
+and communicate experiential knowledge
+becomes an integral part of the study,
+for it determines the veracity of the judgments
+experts are requested to articulate.
 
 # 2 A Theory of Inferred Causation
 
