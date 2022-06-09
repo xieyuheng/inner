@@ -1,31 +1,28 @@
-# What is Unification?
+---
+title: What is Unification?
+author: Joseph Goguen
+---
 
-------
-- Authors: Joseph Goguen
-------
+# Notes
 
-# [note]
+## About the definition of `cut` in cartesian closed category
 
-## about the definition of `cut` in cartesian closed category
-
-- Xie:
-  after identify a substitution system as a category
+- **Xie:** After identify a substitution system as a category
   all the general concepts and constructions can be used
   to hunt for interesting and importent ideas in substitution system.
 
-- Xie:
-  one of our problem is that,
+- **Xie:** One of our problem is that,
   we can not view our stack simply as a functor,
   we are generalizing the definition of category itself.
-  if we do so, we will not be able
+  If we do so, we will not be able
   to use the general concepts and constructions in category theory,
   we have to generalize them too.
   the responsibilities goes to our side.
 
-## postfix notation
+## Postfix notation
 
-- to make the syntax more close to natural usage,
-  I translate the paper to postfix notation.
+To make the syntax more close to natural usage,
+I translate the paper to postfix notation.
 
 # 1 introduction
 

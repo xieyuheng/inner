@@ -1,22 +1,21 @@
-# A Categorical Manifesto
+---
+title: A Categorical Manifesto
+author: Joseph Goguen
+year: 1989
+---
 
-------
-- Authors: Joseph Goguen
-- Date: 1989
-------
-
-## Category
+# Category
 
 To each species of mathematical structure,
 there corresponds a category whose objects have that structure,
 and whose morphisms respect [preserve] it.
 
-## Isomorphism
+# Isomorphism
 
 Two objects have the same structure iff they are isomorphic,
 and an "abstract object" is an isomorphism class of objects.
 
-## Functor
+# Functor
 
 To any natural construction on structures of one species,
 yielding structures of another species,
@@ -31,7 +30,7 @@ and endo-functors are often containers.
 Functor can also be called natural-construction,
 which will let the term `natural-transformation` make sense.
 
-## Natural transformation
+# Natural transformation
 
 To each natural translation
 from a construction `F : A -> B`
@@ -63,23 +62,23 @@ they had to define categories.
   from the category of topology spaces
   to the category of abelian-groups.
 
-## Limit
+# Limit
 
 A diagram D in a category C can be seen as a system of constraints,
 and then a limit of D represents all possible solutions of the system.
 
-## Adjoint
+# Adjoint
 
 To any canonical construction from one species of structure to another
 corresponds an adjunction between the corresponding categories.
 
 This captures the concept of "canonical construction".
 
-## Colimit
+# Colimit
 
 TODO
 
-## Comma category
+# Comma category
 
 Comma categories are another basic construction that
 first appeared in lawvere's thesis.
