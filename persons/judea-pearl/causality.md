@@ -331,6 +331,26 @@ A and B and (not C)
 
 such that the eight weights sum to 1.
 
+- **Xie:** It is interesting that,
+  to define `P(...)` for every proposition,
+
+  we should NOT
+
+  - define `P(...)` for every atomic propositions,
+  - define how to compute `P(...)` for each way of constructing
+    new proposition from old propositions.
+
+  but we should
+
+  - define it for every detailed conjunction of atomic propositions.
+
+  From the perspective of propositional logic,
+  the base of computation is atomic,
+  but from the perspective of `P(...)`,
+  the base of computation is not the atomic propositions.
+
+- **Xie:** Compare probability table with truth table of propositional logic.
+
 ### 1.1.3 Combining Predictive and Diagnostic Supports
 
 The essence of Bayes’s rule (equation 1.13)
