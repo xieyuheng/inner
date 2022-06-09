@@ -24,6 +24,10 @@ author: Xie Yuheng
         - import intuitions
         - typical examples
       - and: https://activerecall.com
+      - New design of Sisuo (rename to Xué Ér)
+        - one card one file,
+          one directory one deck
+          (maybe with a JSON config file).
 
     - Find a interesting dataset to practice.
 

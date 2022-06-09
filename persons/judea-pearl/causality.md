@@ -111,13 +111,8 @@ In this formalism, degrees of belief are assigned to propositions
 and those degrees of belief are combined and manipulated
 according to the rules of probability calculus.
 
-It is worth reemphasizing that formulas like `P(A)`
-are always understood to apply in some larger context `K`,
-which defines the assumptions taken as common knowledge
-(e.g., the fairness of dice rolling),
-i.e. `P(A)` really means `P(A | K)`,
-and when the context can change,
-we need to write the context explicitly.
+- **Xie:** If we only assign 0 or 1 to propositions,
+  we get propositional logic.
 
 In the Bayesian formalism, belief measures
 obey the three basic axioms of probability calculus:
@@ -139,7 +134,15 @@ are statements about _conditional probabilities_
 -- for example, `P(A | B)` -- which specify the belief in `A`
 under the assumption that `B` is known with absolute certainty.
 
-We say that `A` and `B` are \_independent, if
+It is worth reemphasizing that formulas like `P(A)`
+are always understood to apply in some larger context `K`,
+which defines the assumptions taken as common knowledge
+(e.g., the fairness of dice rolling),
+i.e. `P(A)` really means `P(A | K)`,
+and when the context can change,
+we need to write the context explicitly.
+
+We say that `A` and `B` are _independent_, if
 
 ```
 P(A | B) = P(A)
