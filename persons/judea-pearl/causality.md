@@ -362,11 +362,11 @@ such that the eight weights sum to 1.
 
 ### 1.1.3 Combining Predictive and Diagnostic Supports
 
-The essence of Bayes’s rule (equation 1.13)
+The essence of Bayes's rule (equation 1.13)
 is conveniently portrayed using the _odds_
 and _likelihood ratio_ parameters.
 
-The **prior odd** of a hypothesis `H` is defined as the ratio:
+The **prior odds** of a hypothesis `H` is defined as the ratio:
 
 ```
 O(H) = P(H) / P(~H) = P(H) / (1 - P(H))
@@ -378,7 +378,7 @@ The **likelihood ratio** of an evidence `e` given a hypothesis `H` is:
 L(e | H) = P(e | H) / P(e | ~H)
 ```
 
-The **posterior odd** of a hypothesis `H` given an evidence `e` is:
+The **posterior odds** of a hypothesis `H` given an evidence `e` is:
 
 ```
 O(H | e) = P(H | e) / P(~H | e) =
@@ -387,14 +387,94 @@ P(e | H) * P(H) / P(e | ~H) * P(~H) =
 L(e | H) * O(H)
 ```
 
-TODO Epidemiology example.
+Thus, Bayes's rule dictates that `O(H | e)` should be
+the product of two factors:
+
+- the prior odds `O(H)`
+  -- the _predictive_ or _prospective_ support
+  accorded to `H` by the background knowledge alone.
+
+- and the likelihood ratio `L(e | H)`
+  -- the _diagnostic_ or _retrospective_ support
+  given to `H` by the evidence actually observed.
+
+In epidemiology, if `H` stands for exposure and `e` stands for disease,
+then the likelihood ratio `L(e | H)` is called the "risk ratio".
+`O(H | e)` would then give the odds that
+a person with disease `e` had been exposed to `H`.
+
+The conditional probabilities `P(e | H)`, as opposed to `P(H | e)`,
+are the atomic relationships in Bayesian analysis.
+The former possess modularity features similar to logical rules.
+They convey a degree of confidence in rules such as "If `H` then `e`",
+a confidence that persists regardless of
+what other rules or facts reside in the knowledge base.
+
+- **Xie:** `P(e | H)` is the degree of belief that "If `H` then `e`",
+  thus maybe viewed as `P(imply(H, e))`.
+
+  How about the fact that in propositional logic,
+  we have `imply(H, e) = or(not(H), e)`?
+
+  First strengthen the `imply(H, e)` to be `imply(H, and(H, e))`
+
+  ```
+  imply(H, e) =
+  imply(H, and(H, e)) =
+  or(not(H), and(H, e))
+  ```
+
+  since we know that `and(not(H), and(H, e)) = empty`,
+  we can compute its `P(imply(H, e))`:
+
+  ```
+  P(imply(H, e)) =
+  P(or(not(H), and(H, e))) =
+  P(not(H)) + P(and(H, e)) =
+  P(and(H, e)) + 1 - P(H)
+  ```
+
+  we also know
+
+  ```
+  P(e | H) =
+  P(and(H, e)) / P(H)
+  ```
+
+  suppose `P(e | H) = P(imply(H, e))`,
+  we will have equation between `P(and(H, e))` and `P(H)`:
+
+  ```
+  P(and(H, e)) + 1 - P(H) =
+  P(and(H, e)) / P(H)
+  ```
+
+  solve the equation, we get
+
+  ```
+  P(and(H, e)) = P(H)
+  ```
+
+  thus
+
+  ```
+  P(e | H) =
+  P(and(H, e)) / P(H) =
+  1
+  ```
+
+  thus viewing `P(e | H)` as `P(imply(H, e))` means
+  the degree of our belief about "if `H` then `e`" is 1.
 
 ### 1.1.4 Random Variables and Expectations
 
-- **Xie:** Random variables allow us to
-  - use the inverse of a value to denote a event.
-  - compute expectation for the values.
-  - apply function to the value.
+- **Xie:** Random variables allow us to ask for the probability of a value,
+  for the inverse of a value is a set of outcomes.
+
+  With random variables we can also:
+
+  - compute expectation.
+  - compose function to the random variables.
 
 TODO Define `E` and `V`.
 
@@ -711,6 +791,18 @@ through an effective and friendly notational system
 based on symbiosis of graphical and algebraic approaches.
 
 # 2 A Theory of Inferred Causation
+
+## 2.1 Introduction -- The basic intuitions
+
+An autonomous intelligent system attempting
+to build a workable model of its environment
+cannot rely exclusively on preprogrammed causal knowledge;
+rather, it must be able to translate direct observations
+to cause-and-effect relationships.
+
+## 2.2 The causal discovery framework
+
+TODO
 
 # 3 Causal Diagrams and the Identification of Causal Effects
 
