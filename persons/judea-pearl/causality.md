@@ -484,17 +484,92 @@ that a variable may attain, we will call that variable a _random variable_.
   - The space might be a field or a vector space,
     where we can compute expectation.
 
+    Note that expectation can be viewed as
+    the center of mass of a set of points
+    which can be represented as a set of vectors.
+
   Random variables allow us to ask for the probability of a value,
-  for the inverse of a value is a set of outcomes in the probability space.
+  for the inverse of a value is a set of outcomes in the sample space,
+  and the probability of values are mutually exclusive
+  because of function's one-value-ness.
 
   With random variables we can also:
 
   - compute expectation.
   - compose function to the random variables.
 
-TODO Design a language for random variables -- no need to be implemented for now.
+We define the _mean_ or _expected value_ of `X` as
 
-TODO Define `E` and `V`.
+```(1.21)
+E(X) = sum (x: X) x * P(x)
+```
+
+We define the _conditional mean_ of `X`, given `Y = y`, as
+
+```(1.22)
+E(X | y) = sum (x: X) x * P(x | y)
+```
+
+The expectation of a function `g: X -> F`
+
+```(1.22)
+E(g(X)) = sum (x: X) g(x) * P(x)
+```
+
+Take `g(x) = square(x - E(X))`, we get _variance_:
+
+- **Xie:** We use lambda to reduce the ambiguity of
+  traditional mathematical syntax.
+
+```
+variance(X) = E((x) => square(x - E(X)))
+sigma(X) = square_root(variance(X))
+```
+
+The conditional mean `E(X | Y = y)` is the _best estimate_ of `X`,
+given the observation `Y = y`, in the sense of
+minimizing the expected square error
+
+```
+expected_square_error(e, X | Y = y) =
+  sum (x: X) square(x - e) * P(x | y)
+```
+
+The expectation of a function `g(X, Y)` of two variables, X and Y,
+requires the joint probability `P(x, y)` and is defined as
+
+```
+E(g(X, Y)) = sum (x: X, y: Y) g(x, y) * P(x, y)
+```
+
+Take `g(x, y) = (x - E(X))(y - E(Y))`,
+we get the _covariance_ of `X` and `Y`:
+
+```
+covariance(X, Y) = E((x, y) => (x - E(X))(y - E(Y)))
+sigma(X, Y) = covariance(X, Y)
+variance(X) = covariance(X, X)
+```
+
+and which is often normalized to yield the _correlation coefficient_:
+
+```
+correlation_coefficient(X, Y) =
+  covariance(X, Y) / sigma(X) * sigma(Y)
+
+rho(X, Y) = correlation_coefficient(X, Y)
+```
+
+and the _regression coefficient_ (of `X` on `Y`):
+
+```
+regression_coefficient(X, Y) =
+  correlation_coefficient(X, Y) * sigma(X) / sigma(Y) =
+  covariance(X, Y) / sigma(Y) * sigma(Y) =
+  covariance(X, Y) / variance(Y)
+
+r(X, Y) = regression_coefficient(X, Y)
+```
 
 ### 1.1.5 Conditional Independence and Graphoids
 
