@@ -498,6 +498,15 @@ that a variable may attain, we will call that variable a _random variable_.
   - compute expectation.
   - compose function to the random variables.
 
+Most of our analysis will concern a finite set `V` of random variables
+(also called partitions), suppose we know the _joint probability function_
+over the variables in `V`.
+
+Each variable `X` in `V` can be viewed as a function `X: S -> D`,
+from a sample space `S` to a domain `D` (e.g. a vector space).
+
+We also use `X, Y, Z` to denote any subsets of variables in `V`.
+
 We define the _mean_ or _expected value_ of `X` as
 
 ```(1.21)
