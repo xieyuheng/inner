@@ -699,6 +699,10 @@ class Graphoid {
 }
 ```
 
+- **Xie:** I can verify all axioms but not `weak_union` and `intersection`.
+
+  - TODO Read references about their proofs.
+
 Notes:
 
 - Intersection is valid in strictly positive probability distributions.
