@@ -473,13 +473,26 @@ what other rules or facts reside in the knowledge base.
 
 ### 1.1.4 Random Variables and Expectations
 
-- **Xie:** Random variables allow us to ask for the probability of a value,
-  for the inverse of a value is a set of outcomes.
+By a _variable_ we will mean an attribute, measurement or inquiry
+that may take on one of several possible values, from a specified domain.
+If we have beliefs (i.e., probabilities) attached to the possible values
+that a variable may attain, we will call that variable a _random variable_.
+
+- **Xie:** The definition above deal with random variable directly,
+  instead of defining it as a function from a sample space to another space.
+
+  - The space might be a field or a vector space,
+    where we can compute expectation.
+
+  Random variables allow us to ask for the probability of a value,
+  for the inverse of a value is a set of outcomes in the probability space.
 
   With random variables we can also:
 
   - compute expectation.
   - compose function to the random variables.
+
+TODO Design a language for random variables -- no need to be implemented for now.
 
 TODO Define `E` and `V`.
 
