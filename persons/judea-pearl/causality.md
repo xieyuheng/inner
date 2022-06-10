@@ -775,7 +775,7 @@ The role of graphs in probabilistic and statistical modeling is threefold:
   In other words, `PA(j)` is any subset of `{ X(1), ..., X(n) }` satisfying
 
   ```(1.32)
-  P(x(j), pa(j)) = P(x(j) | x(1), ..., x(j-1))
+  P(x(j) | pa(j)) = P(x(j) | x(1), ..., x(j-1))
   ```
 
   and such that no proper subset of `PA(j)` satisfies (1.32).
@@ -783,9 +783,59 @@ The role of graphs in probabilistic and statistical modeling is threefold:
   - **Xie:** Note that the definition of a Markovian parent
     is relative to a given ordering of the variables.
 
-TODO How Bayesian Networks can be viewed as representation of joint probability functions?
+Definition 1.2.1 assigns to each variable `X(j)`
+a select set `PA(j)` of preceding variables
+that are sufficient for determining the probability of `X(j)`;
+knowing the values of other preceding variables is redundant
+once we know the values `pa(j)` of the parent set `PA(j)`.
 
-TODO How to construct Bayesian Networks?
+This assignment can be represented in the form of a DAG
+in which variables are represented by nodes and arrows are drawn
+from each node of the parent set `PA(j)`
+toward the child node `X(j)`.
+
+Definition 1.2.1 also suggests a simple
+recursive method for constructing such a DAG:
+
+- Starting with the pair `{ X1, X2 }`,
+  we draw an arrow from `X1` to `X2`
+  if and only if the two variables are dependent.
+
+  - If `P(x2 | x1) = P(x2)`,
+    they are independent,
+    we do not draw the arrow.
+
+- Continuing to `X3`,
+  we draw no arrow in case `X3` is independent of `{ X1, X2 }`,
+
+  - `P(x3 | x2, x1) = P(x3)`.
+
+  otherwise, we examine whether `X2` screens off `X3` from `X1`
+
+  - `P(x3 | x2, x1) = P(x3 | x2)` -- `x2` is `pa3`
+
+  or `X1` screens off `X3` from `X2`.
+
+  - `P(x3 | x2, x1) = P(x3 | x1)` -- `x1` is `pa3`
+
+  In the first case, we draw an arrow from `X2` to `X3`;
+  in the second, we draw an arrow from `X1` to `X3`.
+
+  If no screening condition is found, `{ x1, x2 }` is `pa3`,
+  we draw arrows to `X3` from both `X1` and `X2`.
+
+  In general: at the jth stage of the construction,
+  we select any minimal set of `X(j)`'s predecessors
+  that screens off `X(j)` from its other predecessors
+  (as in equation (1.32)),
+  call this set `PA(j)` and draw an arrow
+  from each member in `PA(j)` to `X(j)`.
+
+  The result is a directed acyclic graph,
+  called a Bayesian network, in which
+  an arrow from `X(i)` to `X(j)`
+  means `X(i)` is a Markovian parent of `X(j)`,
+  consistent with Definition 1.2.1.
 
 - **Xie:** If the method by which we construct Bayesian Networks
   does not make the directed edge causal,
