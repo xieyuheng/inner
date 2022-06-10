@@ -133,7 +133,8 @@ P(sure proposition) = 1
 ```
 
 ```(1.3)
-P(A or B) = P(A) + P(B) // if A and B are mutually exclusive.
+P(A or B) = P(A) + P(B)
+// if A and B are mutually exclusive.
 ```
 
 The basic expressions in the Bayesian formalism
@@ -596,29 +597,37 @@ r(X, Y) = regression_coefficient(X, Y)
 Let `V = { V1, V2, ... }` be a finite set of variables.
 given by joint probability function `P(...)` over the variables in `V`,
 and let `X, Y, Z` stand for any three subsets of variables in `V`.
-The sets `X` and `Y` are said to be conditionally independent given `Z` if
+The sets `X` and `Y` are said to be _conditionally independent_ given `Z` if
 
 ```(1.26)
-P(x | y, z) = P(x | z) // whenever P(y, z) > 0
+forall (x: X, y: Y, z: Z)
+  P(x | y, z) = P(x | z)
+  // whenever P(y, z) > 0
 ```
 
 In words, once we know `Z`, learning the value of `Y`
 does not provide additional information about `X`.
 (Metaphorically, `Z` "screens off" `X` from `Y`.)
 
-If we define a relation between three variables called irrelevant `I`:
+We use `I(X, Z, Y)` to denote conditional independence of `X` and `Y`, given `Z`.
+Note that `Z` is in the middle.
 
-```
-I(X, Z, Y) := P(X | and(Y, Z)) == P(X | Z)
-```
+_Unconditional independence_ (also called _marginal independence_)
+will be denoted by `I(X, empty, Y)`.
 
-It will satisfy a set of axioms which defines a mathematical structure
+Note that `I(X, Z, Y)` implies
+the conditional independence of all pairs of variables,
+but the converse is not necessarily true.
+
+Conditional independence satisfies a set of axioms
+which defines a mathematical structure
 called [Graphoid](https://en.wikipedia.org/wiki/Graphoid).
 
 ```cicada
 class Graphoid {
   Element: Type
 
+  // I means independent or irrelevant.
   I(X: Element, Y: Element, Z: Element): Type
 
   // The symmetry axiom states that,
