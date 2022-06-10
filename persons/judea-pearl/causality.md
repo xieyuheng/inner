@@ -592,12 +592,12 @@ r(X, Y) = regression_coefficient(X, Y)
 
 ### 1.1.5 Conditional Independence and Graphoids
 
-**Definition 1.1.2 (Conditional Independence)**
+- **Definition 1.1.2 (Conditional Independence)**
 
-Let `V = { V1, V2, ... }` be a finite set of variables.
-given by joint probability function `P(...)` over the variables in `V`,
-and let `X, Y, Z` stand for any three subsets of variables in `V`.
-The sets `X` and `Y` are said to be _conditionally independent_ given `Z` if
+  Let `V = { V1, V2, ... }` be a finite set of variables.
+  given by joint probability function `P(...)` over the variables in `V`,
+  and let `X, Y, Z` stand for any three subsets of variables in `V`.
+  The sets `X` and `Y` are said to be _conditionally independent_ given `Z` if
 
 ```(1.26)
 forall (x: X, y: Y, z: Z)
@@ -765,6 +765,24 @@ The role of graphs in probabilistic and statistical modeling is threefold:
 2. to facilitate economical representation of joint probability functions; and
 3. to facilitate efficient inferences from observations.
 
+- **Definition 1.2.1 (Markovian Parents)**
+
+  Let `V = { X(1), ..., X(n) }` be an ordered set of variables,
+  and let `P(v)` be the joint probability distribution on these variables.
+  A set of variables `PA(j)` is said to be Markovian parents of `X(j)`
+  if `PA(j)` is a minimal set of predecessors of `X(j)`
+  that renders `X(j)` independent of all its other predecessors.
+  In other words, `PA(j)` is any subset of `{ X(1), ..., X(n) }` satisfying
+
+  ```(1.32)
+  P(x(j), pa(j)) = P(x(j) | x(1), ..., x(j-1))
+  ```
+
+  and such that no proper subset of `PA(j)` satisfies (1.32).
+
+  - **Xie:** Note that the definition of a Markovian parent
+    is relative to a given ordering of the variables.
+
 TODO How Bayesian Networks can be viewed as representation of joint probability functions?
 
 TODO How to construct Bayesian Networks?
@@ -841,10 +859,6 @@ cannot be defined in terms of purely stochastic models.
 These so-called counterfactual concepts will require a synthesis of
 the deterministic and probabilistic components
 embodied in the Laplacian model.
-
-- **Xie:** Is it true that
-  "the probability that event B occured because of event A"
-  means a higher order probability `P(A -> B)`?
 
 ### 1.4.1 Structural Equations
 
