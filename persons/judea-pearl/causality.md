@@ -879,13 +879,26 @@ Ascertaining compatibility between DAGs and probabilities
 is important in statistical modeling
 primarily because compatibility is
 a necessary and sufficient condition
-for a DAG `G` to explain a body of empirical data
+for a DAG `G` to _explain_ a body of empirical data
 represented by `P`, that is,
-to describe a stochastic process capable of generating `P`.
-
-TODO Note about generation.
+to describe a stochastic process capable of _generating_ `P`.
+If the value of each variable `X(i)` is chosen at random
+with some probability `Pi(x(i) | pa(i))`,
+based solely on the values `pa(i)` previously chosen for `PA(i)`,
+then the overall distribution `P`
+of the generated instances `{ x1, x2, ..., xn }`
+will be Markov relative to `G`.
+Conversely, if `P` is Markov relative to `G`,
+then there exists a set of probabilities `Pi(x(i) | pa(i))`
+according to which we can choose the value of each variable `X(i)`
+such that the distribution of the generated instances `{ x1, x2, ..., xn }`
+will be equal to `P`.
+(In fact, the correct choice of `Pi(x(i) | pa(i))`
+would be simply `P(x(i) | pa(i))`.)
 
 ### 1.2.3 The d-Separation Criterion
+
+The "d" denotes directional.
 
 TODO
 
