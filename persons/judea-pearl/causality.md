@@ -424,8 +424,13 @@ what other rules or facts reside in the knowledge base.
   or(not(H), and(H, e))
   ```
 
-  since we know that `and(not(H), and(H, e)) = empty`,
-  we can compute its `P(imply(H, e))`:
+  since we know that
+
+  ```
+  and(not(H), and(H, e)) = empty
+  ```
+
+  we now can compute `P(imply(H, e))`
 
   ```
   P(imply(H, e)) =
