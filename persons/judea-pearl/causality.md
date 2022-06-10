@@ -505,6 +505,15 @@ over the variables in `V`.
 Each variable `X` in `V` can be viewed as a function `X: S -> D`,
 from a sample space `S` to a domain `D` (e.g. a vector space).
 
+- **Xie:** Although `X` is defined to be a function `X: S -> D`,
+  but before most computations, the probability
+  are already defined for values of `D`,
+  thus we can ignore `S` and identify `X` with `D`,
+  when we say `x: X`, we mean `x: D`.
+
+  - We may make `S` explicit again,
+    when we interpret our probabilistic model.
+
 We also use `X, Y, Z` to denote any subsets of variables in `V`.
 
 We define the _mean_ or _expected value_ of `X` as
@@ -582,11 +591,20 @@ r(X, Y) = regression_coefficient(X, Y)
 
 ### 1.1.5 Conditional Independence and Graphoids
 
-Recall Conditional Independence
+**Definition 1.1.2 (Conditional Independence)**
 
+Let `V = { V1, V2, ... }` be a finite set of variables.
+given by joint probability function `P(...)` over the variables in `V`,
+and let `X, Y, Z` stand for any three subsets of variables in `V`.
+The sets `X` and `Y` are said to be conditionally independent given `Z` if
+
+```(1.26)
+P(x | y, z) = P(x | z) // whenever P(y, z) > 0
 ```
-P(A | B, C) = P(A | C)
-```
+
+In words, once we know `Z`, learning the value of `Y`
+does not provide additional information about `X`.
+(Metaphorically, `Z` "screens off" `X` from `Y`.)
 
 If we define a relation between three variables called irrelevant `I`:
 
