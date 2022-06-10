@@ -220,6 +220,9 @@ P(En | En-1, ..., E2, E1) * P(En-1, ..., E2, E1) =
 P(En | En-1, ..., E2, E1) * ... * P(E2 | E1) * P(E1)
 ```
 
+- **Xie:** The above ordering is used
+  in the following definition of _Markovian Parents_.
+
 The heart of Bayesian inference lies in the celebrated inversion formula,
 
 ```(1.13)
@@ -832,10 +835,19 @@ recursive method for constructing such a DAG:
   from each member in `PA(j)` to `X(j)`.
 
   The result is a directed acyclic graph,
-  called a Bayesian network, in which
+  called a **Bayesian network**, in which
   an arrow from `X(i)` to `X(j)`
   means `X(i)` is a Markovian parent of `X(j)`,
   consistent with Definition 1.2.1.
+
+It can be shown (Pearl 1988b) that the set `PA(j)` is unique
+whenever the distribution `P(v)` is strictly positive
+(i.e., involving no logical or definitional constraints),
+so that every configuration `v` of variables,
+no matter how unlikely, has some finite probability of occurring.
+Under such conditions, the Bayesian network
+associated with `P(v)` is unique,
+given the ordering of the variables.
 
 - **Xie:** If the method by which we construct Bayesian Networks
   does not make the directed edge causal,
@@ -853,6 +865,11 @@ recursive method for constructing such a DAG:
 
   If a probability function `P`
   admits the factorization of (1.33)
+
+  ```(1.33)
+  P(x(1), ..., x(n)) = product (i: I) P(x(i) | pa(i))
+  ```
+
   relative to DAG `G`,
   we say that `G` represents `P`,
   that `G` and `P` are compatible,
@@ -865,6 +882,8 @@ a necessary and sufficient condition
 for a DAG `G` to explain a body of empirical data
 represented by `P`, that is,
 to describe a stochastic process capable of generating `P`.
+
+TODO Note about generation.
 
 ### 1.2.3 The d-Separation Criterion
 
