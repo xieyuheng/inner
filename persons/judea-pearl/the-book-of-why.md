@@ -1005,6 +1005,50 @@ TODO Make clear sense of the graph model and the notion of "control".
 
 # CHAPTER 5 The Smoke-Filled Debate: Clearing the Air
 
+Because scientists had no straightforward definition of the word "cause"
+and no way to ascertain a causal effect without a randomized controlled trial,
+they were ill prepared for a debate over whether smoking caused cancer. They
+were forced to fumble their way toward a definition in a process that lasted
+throughout the 1950s and reached a dramatic conclusion in 1964.
+
+## Smoking for Newborns
+
+A example of collider and "explains away" effect.
+
+The observation in the data:
+
+- `smoking mother` increases `low birth weight baby`
+
+- given `low birth weight baby`,
+  babies who has `smoking mother`,
+  has lower `mortality of baby`.
+
+It looks like `smoking mother` helped
+`low birth weight baby`'s survival.
+
+```
+smoking mother -> low birth weight baby
+serious genetic abnormalities -> low birth weight baby
+
+smoking mother -> mortality of baby
+serious genetic abnormalities -> mortality of baby
+
+low birth weight baby -> mortality of baby
+```
+
+The collider is `Birth Weight`.
+By looking only at babies with low birth weight,
+we are conditioning on that collider.
+This opens up a back-door path
+between `Smoking` and `Mortality`
+that goes `Smoking -> Birth Weight <- Birth Defect -> Mortality`.
+This path is noncausal because
+one of the arrows goes the wrong way.
+
+## Passionate Debates: Science vs. Culture
+
+TODO
+
 # CHAPTER 6 Paradoxes Galore!
 
 # CHAPTER 7 Beyond Adjustment: The Conquest of Mount Intervention
