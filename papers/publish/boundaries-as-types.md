@@ -89,6 +89,8 @@ if we can view other higher-order-ness
 as models of higher order inductive type,
 we can use the algebra of the later to simplify our reasoning?
 
+- Higher category theory already provides an example.
+
 - One problem is that a function type is directed
   (we do not have general method to reverse any function),
   but in a cell-complex, the a cell has no direction
