@@ -1047,7 +1047,19 @@ one of the arrows goes the wrong way.
 
 ## Passionate Debates: Science vs. Culture
 
-TODO
+In fact, the same birth-weight paradox is observed in children of black
+mothers as in children of smokers. Black women give birth to underweight
+babies more often than white women do, and their babies have a higher
+mortality rate. Yet their low-birth-weight babies have a better survival rate
+than the low-birth-weight babies of white women. Now what conclusions
+should we draw? We can tell a pregnant smoker that she would help her baby
+by stopping smoking. But we can’t tell a pregnant black woman to stop being
+black.
+
+Instead, we should address the societal issues that cause the children of
+black mothers to have a higher mortality rate. This is surely not a
+controversial statement. But what causes should we address, and how should
+we measure our progress?
 
 # CHAPTER 6 Paradoxes Galore!
 
