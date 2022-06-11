@@ -1063,6 +1063,20 @@ we measure our progress?
 
 # CHAPTER 6 Paradoxes Galore!
 
+The birth-weight paradox, with which we ended Chapter 5,
+is representative of a surprisingly large class of paradoxes
+that reflect the tensions between causation and association.
+The tension starts because they stand on two different rungs
+of the Ladder of Causation and is aggravated by the fact that
+human intuition operates under the logic of causation,
+while data conform to the logic of probabilities and proportions.
+Paradoxes arise when we misapply the rules we have learned
+in one realm to the other.
+
+## The perplexing monty hall problem
+
+TODO
+
 # CHAPTER 7 Beyond Adjustment: The Conquest of Mount Intervention
 
 # CHAPTER 8 Counterfactuals: Mining Worlds That Could Have Been
