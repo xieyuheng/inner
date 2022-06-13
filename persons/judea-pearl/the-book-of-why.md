@@ -1075,7 +1075,98 @@ in one realm to the other.
 
 ## The perplexing monty hall problem
 
-TODO
+"Suppose you're on a game show, and you're given the choice of three
+doors. Behind one door is a car, behind the others, goats. You pick a
+door, say #1, and the host (Monty), who knows what's behind the doors,
+opens another door, say #3, which has a goat. He says to you, 'Do you
+want to pick door #2?' Is it to your advantage to switch your choice
+of doors?"
+
+| Door 1 | Door 2 | Door 3 | Outcome if you switch | Outcome if you stay |
+| ------ | ------ | ------ | --------------------- | ------------------- |
+| Auto   | Goat   | Goat   | Lose                  | Win                 |
+| Goat   | Auto   | Goat   | Win                   | Lose                |
+| Goat   | Goat   | Auto   | Win                   | Lose                |
+
+| Door your choice | Door with auto | Door opened by host                            | Outcome if you switch | Outcome if you stay |
+| ---------------- | -------------- | ---------------------------------------------- | --------------------- | ------------------- |
+| 1                | 1              | 2 or 3 (host's choice dose not effect outcome) | Lose                  | Win                 |
+| 1                | 2              | 3 (host has no choice)                         | Win                   | Lose                |
+| 1                | 3              | 2 (host has no choice)                         | Win                   | Lose                |
+
+What if the host opens the remaining two doors randomly?
+
+| Door your choice | Door with auto | Door opened by host | Outcome if you switch | Outcome if you stay |
+| ---------------- | -------------- | ------------------- | --------------------- | ------------------- |
+| 1                | 1              | 2 (Goat)            | Lose                  | Win                 |
+| 1                | 1              | 3 (Goat)            | Lose                  | Win                 |
+| 1                | 2              | 2 (Auto)            | Lose                  | Lose                |
+| 1                | 2              | 3 (Goat)            | Win                   | Lose                |
+| 1                | 3              | 2 (Goat)            | Win                   | Lose                |
+| 1                | 3              | 3 (Auto)            | Lose                  | Lose                |
+
+The key element in resolving this paradox is that we need to take into
+account not only the data (i.e., the fact that the host opened a
+particular door) but also the data-generating process-in other words,
+the rules of the game. They tell us something about the data that
+could have been but has not been observed. No wonder statisticians in
+particular found this puzzle hard to comprehend. They are accustomed
+to, as R. A. Fisher (1922) put it, "the reduction of data" and
+ignoring the data-generating process.
+
+In the first case, `Location of Car` is a collider:
+
+```
+Your Door -> Door Opned
+Location of Car -> Door Opned
+```
+
+Once we obtain information on this variable, all our probabilities
+become conditional on this information. But when we condition on a
+collider, we create a spurious dependence between its parents.
+
+In the second case, `Location of Car` independent from `Door Opned`:
+
+```
+Your Door -> Door Opned
+```
+
+Our minds rebel at this possibility because from earliest infancy, we
+have learned to associate correlation with causation. If a car behind
+us takes all the same turns that we do, we first think it is following
+us (causation!). We next think that we are going to the same place
+(i.e., there is a common cause behind each of our turns). But
+causeless correlation [created by the condition on a collider]
+violates our common sense. Thus, the Monty Hall paradox is just like
+an optical illusion or a magic trick: it uses our own cognitive
+machinery to deceive us.
+
+Remember we use the **Bayesian interpretation of probability**,
+according to which _probabilities encode degrees of belief about events in the world_
+and data are used to strengthen, update, or weaken those degrees of belief.
+
+After Monty opened Door 3,
+what evidence (data) increased the degree of your belief,
+so that your belief in Door 2 has gone up from one-third to two-thirds?
+
+The answer is that Monty could not open Door 1 after you chose it-but
+he could have opened Door 2. The fact that he did not makes it more likely
+that he opened Door 3 because he was forced to. Thus there is more evidence
+than before that the car is behind Door 2. This is a general theme of Bayesian
+analysis:
+
+> Any hypothesis that has survived some test
+> that threatens its validity becomes more likely.
+
+The greater the threat, the more likely it becomes after
+surviving. Door 2 was vulnerable to refutation (i.e., Monty could have
+opened it), but Door 1 was not. Therefore, Door 2 becomes a more
+likely location, while Door 1 does not. The probability that the car
+is behind Door 1 remains one in three.
+
+- **Xie:** Comparing with Polya's "Patterns of plausible inference",
+  where you have a guess (hypothesis) about a problem,
+  and after you fail to refute it, you believe it even more.
 
 # CHAPTER 7 Beyond Adjustment: The Conquest of Mount Intervention
 
