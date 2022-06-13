@@ -726,6 +726,8 @@ thinking process within the language provided by the system.
   as judgments and inferences rules in a logic system,
   is not enough.
 
+TODO Note about belief propagation.
+
 ## Bayesian networks: What causes say about data
 
 Although Bayes didn't know it, his rule for inverse probability represents the
@@ -1169,6 +1171,112 @@ is behind Door 1 remains one in three.
 - **Xie:** Comparing with Polya's "Patterns of plausible inference",
   where you have a guess (hypothesis) about a problem,
   and after you fail to refute it, you believe it even more.
+
+Notice that I have really given two explanations of the Monty Hall
+paradox. The first one uses causal reasoning to explain why we observe a
+spurious dependence between Your Door and Location of Car; the second
+uses Bayesian reasoning to explain why the probability of Door 2 goes up in
+Let’s Make a Deal.
+
+Both explanations are valuable. The Bayesian one
+accounts for the phenomenon but does not really explain why we perceive it
+as so paradoxical. In my opinion, a true resolution of a paradox should
+explain why we see it as a paradox in the first place. Why did the people who
+read her column believe so strongly that vos Savant was wrong? It wasn’t just
+the know-it-alls. Paul Erdos, one of the most brilliant mathematicians of
+modern times, likewise could not believe the solution until a computer
+simulation showed him that switching is advantageous. What deep flaw in our
+intuitive view of the world does this reveal?
+
+- **Xie:** "A true resolution of a paradox should explain why
+  we see it as a paradox in the first place."
+
+  What will happen if we apply this principle to other logic paradoxes?
+
+“Our brains are just not wired to do probability problems very well, so I’m
+not surprised there were mistakes,” said Persi Diaconis, a statistician at
+Stanford University, in a 1991 interview with the New York Times. True, but
+there’s more to it. Our brains are not wired to do probability problems, but
+they are wired to do causal problems. And this causal wiring produces
+systematic probabilistic mistakes, like optical illusions. Because there is no
+causal connection between My Door and Location of Car, either directly or
+through a common cause, we find it utterly incomprehensible that there is a
+probabilistic association. Our brains are not prepared to accept causeless
+correlations, and we need special training—through examples like the Monty
+Hall paradox or the ones discussed in Chapter 3—to identify situations where
+they can arise. Once we have “rewired our brains” to recognize colliders, the
+paradox ceases to be confusing.
+
+## More collider bias: Berkson’s paradox
+
+In 1946, Joseph Berkson, a biostatistician at the Mayo Clinic, pointed out a
+peculiarity of observational studies conducted in a hospital setting: even if
+two diseases have no relation to each other in the general population, they can
+appear to be associated among patients in a hospital.
+
+To understand Berkson’s observation, let’s start with a causal diagram
+(Figure 6.3). It’s also helpful to think of a very extreme possibility: neither
+Disease 1 nor Disease 2 is ordinarily severe enough to cause hospitalization,
+but the combination is. In this case, we would expect Disease 1 to be highly
+correlated with Disease 2 in the hospitalized population.
+
+```
+Disease 1 -> Hospitalization <- Disease 2
+```
+
+Since we know about collider, we know why now.
+
+By performing a study on patients who are hospitalized, we are
+controlling for Hospitalization. As we know, conditioning on a
+collider creates a spurious association between Disease 1 and
+Disease 2. In many of our previous examples the association was
+negative because of the explain-away effect, but here it is positive
+because both diseases have to be present for hospitalization
+(not just one).
+
+Try this experiment: Flip two coins simultaneously one hundred times
+and write down the results only when at least one of them comes up
+heads. Looking at your table, which will probably contain roughly
+seventy-five entries, you will see that the outcomes of the two
+simultaneous coin flips are not independent. Every time Coin 1 landed
+tails, Coin 2 landed heads. How is this possible? Did the coins
+somehow communicate with each other at light speed? Of course not. In
+reality you conditioned on a collider by censoring all the tails-tails
+outcomes.
+
+In _The Direction of Time_, published posthumously in 1956, philosopher
+Hans Reichenbach made a daring conjecture called the “common cause
+principle.” Rebutting the adage “Correlation does not imply causation,”
+Reichenbach posited a much stronger idea: “No correlation without
+causation.” He meant that a correlation between two variables, X and Y,
+cannot come about by accident. Either one of the variables causes the other,
+or a third variable, say Z, precedes and causes them both.
+
+Our simple coin-flip experiment proves that Reichenbach’s dictum was too
+strong, because it neglects to account for the process by which observations
+are selected. There was no common cause of the outcome of the two coins,
+and neither coin communicated its result to the other. Nevertheless, the
+outcomes on our list were correlated. Reichenbach’s error was his failure to
+consider collider structures—the structure behind the data selection.
+
+- **Xie:** Does this "data selection" relates to quantum mechanics?
+
+The distorting prism of colliders is just as prevalent in everyday life. As
+Jordan Ellenberg asks in How Not to Be Wrong, have you ever noticed that,
+among the people you date, the attractive ones tend to be jerks? Instead of
+constructing elaborate psychosocial theories, consider a simpler explanation.
+Your choice of people to date depends on two factors: attractiveness and
+personality. You’ll take a chance on dating a mean attractive person or a nice
+unattractive person, and certainly a nice attractive person, but not a mean
+unattractive person. It’s the same as the two-coin example, when you
+censored tails-tails outcomes. This creates a spurious negative correlation
+between attractiveness and personality. The sad truth is that unattractive
+people are just as mean as attractive people—but you’ll never realize it,
+because you’ll never date somebody who is both mean and unattractive.
+
+## Simpson’s paradox
+
+TODO
 
 # CHAPTER 7 Beyond Adjustment: The Conquest of Mount Intervention
 
