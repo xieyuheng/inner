@@ -1088,11 +1088,13 @@ of doors?"
 | Goat   | Auto   | Goat   | Win                   | Lose                |
 | Goat   | Goat   | Auto   | Win                   | Lose                |
 
-| Door your choice | Door with auto | Door opened by host                            | Outcome if you switch | Outcome if you stay |
-| ---------------- | -------------- | ---------------------------------------------- | --------------------- | ------------------- |
-| 1                | 1              | 2 or 3 (host's choice dose not effect outcome) | Lose                  | Win                 |
-| 1                | 2              | 3 (host has no choice)                         | Win                   | Lose                |
-| 1                | 3              | 2 (host has no choice)                         | Win                   | Lose                |
+Or
+
+| Door your choice | Door with auto | Door opened by host                                | Outcome if you switch | Outcome if you stay |
+| ---------------- | -------------- | -------------------------------------------------- | --------------------- | ------------------- |
+| 1                | 1              | 2 or 3 (host's choice dose not effect the outcome) | Lose                  | Win                 |
+| 1                | 2              | 3 (host has no choice)                             | Win                   | Lose                |
+| 1                | 3              | 2 (host has no choice)                             | Win                   | Lose                |
 
 What if the host opens the remaining two doors randomly?
 
