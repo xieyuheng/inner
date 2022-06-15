@@ -170,14 +170,14 @@ measurement errors or missing data.
 
 ```typescript
 class CausalInferenceEngine {
-  assumptions: Array<Assumption>
+  assumptions: Array<Assumption>;
 
-  compile(query: Query): Estimand | undefined
-  estimate(estimand: Estimand, data: Data): Estimate
+  compile(query: Query): Estimand | undefined;
+  estimate(estimand: Estimand, data: Data): Estimate;
 }
 
 class Estimate {
-  uncertainty: Uncertainty
+  uncertainty: Uncertainty;
 }
 ```
 
@@ -319,7 +319,7 @@ its length would have doubled as well" (Hooke's law).
 
   ```typescript
   class Spring {
-    weight: number
+    weight: number;
 
     length(): number {
       // Maybe depends on weight and a coefficient.
@@ -475,7 +475,7 @@ Crow suggests one reason:
 path analysis "doesn't lend itself to 'canned' programs.
 The user has to have a hypothesis
 and must devise an appropriate diagram
-of multiple causal sequences.”
+of multiple causal sequences."
 Indeed, Crow put his finger on an essential point:
 path analysis requires scientific thinking,
 as does every exercise in causal inference.
@@ -632,7 +632,7 @@ probabilities. Even if we agree that the unconditional probabilities `P(S)`, `P(
 and `P(S AND T)` reflect my degree of belief in those propositions, who says
 that my revised degree of belief in `T` should equal the ratio `P(S AND T)/P(S)`,
 as dictated by Bayes's rule? Is "given that I know T" the same as "among
-cases where `T` occurred“”? The language of probability, expressed in symbols
+cases where `T` occurred""? The language of probability, expressed in symbols
 like `P(S)`, was intended to capture the concept of frequencies in games of
 chance. But the expression "given that I know" is epistemological and
 should be governed by the logic of knowledge, not that of frequencies and
@@ -690,7 +690,7 @@ Bayes's rule tells us how to perform step (4) in the real world.
 
 In the early 1980s, the field of artificial intelligence had worked itself into a
 cul-de-sac. Ever since Alan Turing first laid out the challenge in his 1950
-paper “Computing Machinery and Intelligence,” the leading approach to AI
+paper "Computing Machinery and Intelligence," the leading approach to AI
 had been so-called rule-based systems or expert systems, which organize
 human knowledge as a collection of specific and general facts, along with
 inference rules to connect them. For example: Socrates is a man (specific
@@ -906,9 +906,9 @@ TODO Try the calculation in the "Where is my bag?" example.
 
 Before the turbo revolution,
 
-2G cell phones used “soft decoding” (i.e., probabilities) but not belief propagation.
-3G cell phones used Berrou’s turbo codes,
-and 4G phones used Gallager’s turbo-like codes.
+2G cell phones used "soft decoding" (i.e., probabilities) but not belief propagation.
+3G cell phones used Berrou's turbo codes,
+and 4G phones used Gallager's turbo-like codes.
 
 From the consumer's viewpoint,
 this means that your cell phone uses less energy and the battery lasts longer,
@@ -1055,7 +1055,7 @@ babies more often than white women do, and their babies have a higher
 mortality rate. Yet their low-birth-weight babies have a better survival rate
 than the low-birth-weight babies of white women. Now what conclusions
 should we draw? We can tell a pregnant smoker that she would help her baby
-by stopping smoking. But we can’t tell a pregnant black woman to stop being
+by stopping smoking. But we can't tell a pregnant black woman to stop being
 black.
 
 Instead, we should address the societal issues that cause the children of
@@ -1176,13 +1176,13 @@ Notice that I have really given two explanations of the Monty Hall
 paradox. The first one uses causal reasoning to explain why we observe a
 spurious dependence between Your Door and Location of Car; the second
 uses Bayesian reasoning to explain why the probability of Door 2 goes up in
-Let’s Make a Deal.
+Let's Make a Deal.
 
 Both explanations are valuable. The Bayesian one
 accounts for the phenomenon but does not really explain why we perceive it
 as so paradoxical. In my opinion, a true resolution of a paradox should
 explain why we see it as a paradox in the first place. Why did the people who
-read her column believe so strongly that vos Savant was wrong? It wasn’t just
+read her column believe so strongly that vos Savant was wrong? It wasn't just
 the know-it-alls. Paul Erdos, one of the most brilliant mathematicians of
 modern times, likewise could not believe the solution until a computer
 simulation showed him that switching is advantageous. What deep flaw in our
@@ -1193,10 +1193,10 @@ intuitive view of the world does this reveal?
 
   What will happen if we apply this principle to other logic paradoxes?
 
-“Our brains are just not wired to do probability problems very well, so I’m
-not surprised there were mistakes,” said Persi Diaconis, a statistician at
+"Our brains are just not wired to do probability problems very well, so I'm
+not surprised there were mistakes," said Persi Diaconis, a statistician at
 Stanford University, in a 1991 interview with the New York Times. True, but
-there’s more to it. Our brains are not wired to do probability problems, but
+there's more to it. Our brains are not wired to do probability problems, but
 they are wired to do causal problems. And this causal wiring produces
 systematic probabilistic mistakes, like optical illusions. Because there is no
 causal connection between My Door and Location of Car, either directly or
@@ -1204,18 +1204,18 @@ through a common cause, we find it utterly incomprehensible that there is a
 probabilistic association. Our brains are not prepared to accept causeless
 correlations, and we need special training—through examples like the Monty
 Hall paradox or the ones discussed in Chapter 3—to identify situations where
-they can arise. Once we have “rewired our brains” to recognize colliders, the
+they can arise. Once we have "rewired our brains" to recognize colliders, the
 paradox ceases to be confusing.
 
-## More collider bias: Berkson’s paradox
+## More collider bias: Berkson's paradox
 
 In 1946, Joseph Berkson, a biostatistician at the Mayo Clinic, pointed out a
 peculiarity of observational studies conducted in a hospital setting: even if
 two diseases have no relation to each other in the general population, they can
 appear to be associated among patients in a hospital.
 
-To understand Berkson’s observation, let’s start with a causal diagram
-(Figure 6.3). It’s also helpful to think of a very extreme possibility: neither
+To understand Berkson's observation, let's start with a causal diagram
+(Figure 6.3). It's also helpful to think of a very extreme possibility: neither
 Disease 1 nor Disease 2 is ordinarily severe enough to cause hospitalization,
 but the combination is. In this case, we would expect Disease 1 to be highly
 correlated with Disease 2 in the hospitalized population.
@@ -1245,18 +1245,18 @@ reality you conditioned on a collider by censoring all the tails-tails
 outcomes.
 
 In _The Direction of Time_, published posthumously in 1956, philosopher
-Hans Reichenbach made a daring conjecture called the “common cause
-principle.” Rebutting the adage “Correlation does not imply causation,”
-Reichenbach posited a much stronger idea: “No correlation without
-causation.” He meant that a correlation between two variables, X and Y,
+Hans Reichenbach made a daring conjecture called the "common cause
+principle." Rebutting the adage "Correlation does not imply causation,"
+Reichenbach posited a much stronger idea: "No correlation without
+causation." He meant that a correlation between two variables, X and Y,
 cannot come about by accident. Either one of the variables causes the other,
 or a third variable, say Z, precedes and causes them both.
 
-Our simple coin-flip experiment proves that Reichenbach’s dictum was too
+Our simple coin-flip experiment proves that Reichenbach's dictum was too
 strong, because it neglects to account for the process by which observations
 are selected. There was no common cause of the outcome of the two coins,
 and neither coin communicated its result to the other. Nevertheless, the
-outcomes on our list were correlated. Reichenbach’s error was his failure to
+outcomes on our list were correlated. Reichenbach's error was his failure to
 consider collider structures—the structure behind the data selection.
 
 - **Xie:** Does this "data selection" relates to quantum mechanics?
@@ -1266,17 +1266,141 @@ Jordan Ellenberg asks in How Not to Be Wrong, have you ever noticed that,
 among the people you date, the attractive ones tend to be jerks? Instead of
 constructing elaborate psychosocial theories, consider a simpler explanation.
 Your choice of people to date depends on two factors: attractiveness and
-personality. You’ll take a chance on dating a mean attractive person or a nice
+personality. You'll take a chance on dating a mean attractive person or a nice
 unattractive person, and certainly a nice attractive person, but not a mean
-unattractive person. It’s the same as the two-coin example, when you
+unattractive person. It's the same as the two-coin example, when you
 censored tails-tails outcomes. This creates a spurious negative correlation
 between attractiveness and personality. The sad truth is that unattractive
-people are just as mean as attractive people—but you’ll never realize it,
-because you’ll never date somebody who is both mean and unattractive.
+people are just as mean as attractive people—but you'll never realize it,
+because you'll never date somebody who is both mean and unattractive.
 
-## Simpson’s paradox
+## Simpson's paradox
 
-TODO
+The study was observational, not randomized,
+with sixty men and sixty women.
+This means that the patients themselves decided
+whether to take or not to take the drug.
+Table 6.4 shows how many of each gender received Drug `D`
+and how many were subsequently diagnosed with heart attack.
+
+|        | No drug, Heart attact | No drug, No heart attact | Took drug, Heart attact | Took drug, No heart attact |
+| ------ | --------------------- | ------------------------ | ----------------------- | -------------------------- |
+| Female | 1                     | 19                       | 3                       | 37                         |
+| Male   | 12                    | 28                       | 8                       | 12                         |
+| Total  | 13                    | 47                       | 11                      | 49                         |
+
+In mathematics, we do not believe the following inference at all.
+
+```
+A/B > a/b
+C/D > c/d
+-------------------------
+(A+C)/(B+D) > (a+c)/(b+d)
+```
+
+For almost twenty years, I have been trying to convince the scientific
+community that the confusion over Simpson's paradox is a result of incorrect
+application of causal principles to statistical proportions. If we use causal
+notation and diagrams, we can clearly and unambiguously decide whether
+Drug D prevents or causes heart attacks. Fundamentally, Simpson's paradox
+is a puzzle about confounding and can thus be resolved by the same methods
+we used to resolve that mystery. Curiously, three of the four 2016 papers that
+I mentioned continue to resist this solution.
+
+- **Xie:** We have a logic intuition:
+
+  ```
+  A -> R
+  B -> R
+  -----------
+  A or B -> R
+  ```
+
+  The statistics works against our logic intuition.
+
+How to explain Simpson's paradox?
+In vain will you seek guidance from Table 6.4.
+To answer the question, we must look beyond the data to the data-generating process.
+As always, we draw a causal diagram.
+
+```
+Taking Drug <- Gender -> Heart Attack
+Taking Drug -> Heart Attack
+```
+
+(men being at greater risk) and whether the patient chooses to take Drug D.
+In the study, women clearly
+had a preference for taking Drug `D`
+and men preferred not to.
+Thus `Gender` is a confounder of `Taking Drug` and `Heart Attack`. For
+an unbiased estimate of the effect of `Taking Drug` on `Heart Attack`,
+we must adjust for the confounder.
+We can do that by looking at the data for men and women
+separately, then taking the average:
+
+```
+A/B > a/b
+C/D > c/d
+-------------------------
+(A/C)+(C/D) > (a/b)+(c/d)
+```
+
+The Drug `D` is bad for man, bad for women and bad for all.
+
+I don't want you to get the impression from this example that aggregating
+the data is always wrong or that partitioning the data is always right. It
+depends on the process that generated the data. In the Monty Hall paradox, we
+saw that changing the rules of the game also changed the conclusion. The
+same principle works here. I'll use a different story to demonstrate when
+pooling the data would be appropriate. Even though the data will be precisely
+the same, the role of the "lurking third variable" will differ and so will the
+conclusion.
+
+Let's begin with the assumption that blood pressure is known to be a
+possible cause of heart attack, and Drug `B` is supposed to reduce blood
+pressure. Naturally, the Drug `B` researchers wanted to see if it might also
+reduce heart attack risk, so they measured their patients' blood pressure after
+treatment, as well as whether they had a heart attack.
+
+|                     | No drug, Heart attact | No drug, No heart attact | Took drug, Heart attact | Took drug, No heart attact |
+| ------------------- | --------------------- | ------------------------ | ----------------------- | -------------------------- |
+| Low blood pressure  | 1                     | 19                       | 3                       | 37                         |
+| High blood pressure | 12                    | 28                       | 8                       | 12                         |
+| Total               | 13                    | 47                       | 11                      | 49                         |
+
+```
+Taking Drug -> blood pressure -> Heart Attack
+Taking Drug -> Heart Attack
+```
+
+Table 6.6 shows the data from the study of Drug `B`. It should look
+amazingly familiar: the numbers are the same as in Table 6.4! Nevertheless,
+the conclusion is exactly the opposite. As you can see, taking Drug `B`
+succeeded in lowering the patients' blood pressure: among the people who
+took it, twice as many had low blood pressure afterward (forty out of sixty,
+compared to twenty out of sixty in the control group). In other words, it did
+exactly what an anti–heart attack drug should do. It moved people from the
+higher-risk category into the lower-risk category. This factor outweighs
+everything else, and we can justifiably conclude that the aggregated part of
+Table 6.6 gives us the correct result.
+
+As usual, a causal diagram will make everything clear and allow us to
+derive the result mechanically, without even thinking about the data or
+whether the drug lowers or increases blood pressure. In this case our "lurking
+third variable" is `Blood Pressure`, and the diagram looks like Figure 6.5. Here,
+`Blood Pressure` is a mediator rather than a confounder. A single glance at the
+diagram reveals that there is no confounder of the `Taking Drug -> Heart Attack`
+relationship (i.e., no back-door path), so stratifying the data is unnecessary. In
+fact, conditioning on `Blood Pressure` would disable one of the causal paths
+(maybe the main causal path) by which the drug works. For both these
+reasons, our conclusion is the exact opposite of what it was for Drug `D`:
+Drug `B` works, and the aggregate data reveal this fact.
+
+- **Xie:** TODO Given different cases,
+  in what order should we carry out `+` and `/`?
+
+  - Doing `+` first, means "aggregate the data".
+  - Doing `/` first, means "stratifying (partitioning) the data".
 
 # CHAPTER 7 Beyond Adjustment: The Conquest of Mount Intervention
 
