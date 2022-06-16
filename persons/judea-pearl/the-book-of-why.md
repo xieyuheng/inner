@@ -1415,6 +1415,46 @@ Drug `B` works, and the aggregate data reveal this fact.
 
 # CHAPTER 7 Beyond Adjustment: The Conquest of Mount Intervention
 
+## The simplest route: The back-door adjustment formula
+
+TODO Understand the argument and calculation of back-door adjustment.
+
+TODO Is it true that back-door prediction is the same as randomized controlled experiment?
+
+## The front-door criterion
+
+TODO Understand the argument and calculation of front-door criterion.
+
+Glynn and Kashin’s results show why the front-door adjustment is such a
+powerful tool: it allows us to control for confounders that we cannot observe
+(like Motivation), including those that we can’t even name. RCTs are
+considered the “gold standard” of causal effect estimation for exactly the
+same reason. Because front-door estimates do the same thing, with the
+additional virtue of observing people’s behavior in their own natural habitat
+instead of a laboratory, I would not be surprised if this method eventually
+becomes a serious competitor to randomized controlled trials.
+
+## The do-calculus, or mind over matter
+
+In both the front- and back-door adjustment formulas,
+the ultimate goal is to calculate the effect of an intervention,
+
+```
+P(Y | do(X))
+```
+
+in terms of data such as
+
+```
+P(Y | X, A, B, Z, ...)
+```
+
+that do NOT involve a do-operator.
+
+If we are completely successful at eliminating the do’s,
+then we can use observational data to estimate the causal effect,
+allowing us to leap from rung one to rung two of the Ladder of Causation.
+
 # CHAPTER 8 Counterfactuals: Mining Worlds That Could Have Been
 
 # CHAPTER 9 Mediation: The Search for a Mechanism
