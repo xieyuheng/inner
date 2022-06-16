@@ -1396,11 +1396,22 @@ fact, conditioning on `Blood Pressure` would disable one of the causal paths
 reasons, our conclusion is the exact opposite of what it was for Drug `D`:
 Drug `B` works, and the aggregate data reveal this fact.
 
-- **Xie:** TODO Given different cases,
+- **Xie:** Given different cases,
   in what order should we carry out `+` and `/`?
 
-  - Doing `+` first, means "aggregate the data".
-  - Doing `/` first, means "stratifying (partitioning) the data".
+  - doing `+` first, means "aggregate the data".
+  - doing `/` first, means "separate (stratifying, partitioning) the data".
+
+  When we try to explain the phenomenon by the semantics (the meaning) of the data,
+  we might success, but in different semantics we must give different arguments.
+
+  If we only use the syntax (the causal graph), we can say,
+
+  - when see mediator, we should aggregate the data,
+    because the mediator is part of the cause.
+
+  - when see confounder, we should separate the data,
+    because the confounder is another which should be conditioned.
 
 # CHAPTER 7 Beyond Adjustment: The Conquest of Mount Intervention
 
