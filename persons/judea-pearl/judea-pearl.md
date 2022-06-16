@@ -2,9 +2,13 @@
 title: Judea Pearl
 ---
 
+# Info
+
 [ [HOMEPAGE](http://bayes.cs.ucla.edu/jp_home.html) ]
 
-# (2010) Judea Pearl Tribute Symposium: Causality
+# Talks
+
+## (2010) Judea Pearl Tribute Symposium: Causality
 
 [ [VIDEO](https://www.youtube.com/watch?v=78EmmdfOcI8) ]
 
@@ -39,11 +43,11 @@ title: Judea Pearl
 
   > **I compute, therefore I think**.
 
-# (2022) A conversation between Judea Pearl and Stephen Wolfram
+## (2022) A conversation between Judea Pearl and Stephen Wolfram
 
 [ [VIDEO](https://www.youtube.com/watch?v=230PsGBxkCo) ]
 
-## Heuristics is optimal solution to a simplified problem
+### Heuristics is optimal solution to a simplified problem
 
 - **Stephen:** When you do theorem proving or logic programming and so on,
   you are always trying to find the best path.
@@ -102,7 +106,7 @@ title: Judea Pearl
   and can be proven admissible in the sense that
   it will eventually find the global optimal.
 
-## Why expert systems failed?
+### Why expert systems failed?
 
 - **Stephen:** Why expert systems did not take over the world?
 
@@ -113,11 +117,11 @@ title: Judea Pearl
   he or she go through when doing diagnosis,
   specially when it comes to combining different source of knowledge.
 
-# (2019) The Foundations of Causal Inference [The Book of WHY]
+## (2019) The Foundations of Causal Inference [The Book of WHY]
 
 [ [VIDEO](https://www.youtube.com/watch?v=nWaM6XmQEmU) ]
 
-## Outline
+### Outline
 
 - Why we need **a new logic** to answer causal questions.
 - Why AI need **a new engine** to operationalize the new logic.
@@ -130,11 +134,11 @@ title: Judea Pearl
     but we couldn't do,
     and now we can do.
 
-# (2021) CS 201 JUDEA PEARL MARCH 9 2021
+## (2021) CS 201 JUDEA PEARL MARCH 9 2021
 
 [ [VIDEO](https://www.youtube.com/watch?v=pZkCecwE-xE) ]
 
-## Aristotle's two questions
+### Aristotle's two questions
 
 In Athenian democracy, people gathered to argue
 about who can rule the city better.
@@ -170,7 +174,7 @@ Only after 2000 years,
 [De Morgan](https://en.wikipedia.org/wiki/Augustus_De_Morgan)
 developed symbolic logic.
 
-## What is a valid inference?
+### What is a valid inference?
 
 Aristotle syllogisms:
 
@@ -190,7 +194,7 @@ is just a truth table,
 while in probability we have probability table,
 how can we go from propositional logic to causal logic?
 
-## Interpret propositional logic by set theory
+### Interpret propositional logic by set theory
 
 We can interpret propositions as sets,
 and interpret the following inference as relations between sets.
@@ -213,7 +217,7 @@ Note that, a proposition have two interpretations,
 
 How does this relates to _causal reasoning_?
 
-## What is causal reasoning?
+### What is causal reasoning?
 
 We define causal reasoning as:
 
@@ -248,7 +252,7 @@ I can express all the terms above,
 in terms of assignment,
 but not in terms of equality.
 
-## Traditional statistical inference paradigm v.s. structural model paradigm
+### Traditional statistical inference paradigm v.s. structural model paradigm
 
 In traditional statistical inference paradigm,
 _joint distribution_ is the Oracle.
@@ -269,20 +273,36 @@ The phrases "listen to" and "react to" are about assignment.
 
 The edges in the model are like ropes (or springs) behind the data.
 
-# (2019) Interpretability and explainability from a causal lens
+## (2019) Interpretability and explainability from a causal lens
 
 [ [VIDEO](https://www.youtube.com/watch?v=mfh4fp_8oPg) ]
 
 TODO
 
-# (2020) Data versus Science: Contesting the Soul of Data-Science [CIFAR]
+## (2020) Data versus Science: Contesting the Soul of Data-Science [CIFAR]
 
 [ [VIDEO](https://www.youtube.com/watch?v=X_1MG4ViVGM) ]
 
 TODO
 
-# (2012) Turing Award Lecture "The Mechanization of Causal Inference"
+## (2012) Turing Award Lecture "The Mechanization of Causal Inference"
 
 [ [VIDEO](https://www.youtube.com/watch?v=iNm4nFBFmvo) ]
 
 TODO
+
+# Problems
+
+## Problem solving and learning
+
+TODO How can we view problem solving and learning through causal lens?
+
+- Where we make decisions and plans based on our knowledge,
+  if knowledge is really about beliefs,
+  and beliefs is about actions,
+  our play of "the game" must be about knowledge,
+  thus about causality.
+
+TODO How can we view game theorythrough causal lens?
+
+- Do not forget that logic systems might have game semantics.
