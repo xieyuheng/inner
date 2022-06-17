@@ -1460,7 +1460,7 @@ allowing us to leap from rung one to rung two of the Ladder of Causation.
   and this method depends on the causal graph,
   where else have I seen this kind of mathematical phenomenon?
 
-TODO Rules for do-transforms  .
+TODO Rules for do-transforms .
 
 ## The tapestry of science, or the hidden players in the do-orchestra
 
@@ -1475,6 +1475,41 @@ TODO
 TODO
 
 # CHAPTER 8 Counterfactuals: Mining Worlds That Could Have Been
+
+For decades or even centuries,
+lawyers have used a relatively straightforward test
+of a defendant’s culpability called “but-for causation”:
+the injury would not have occurred but for the defendant’s action.
+We will see how the language of counterfactuals
+can capture this elusive notion and how to estimate
+the probability that a defendant is culpable.
+
+Counterfactual analysis allows climate scientists to make much more
+precise and definite statements than before. It requires, however, a slight
+addition to our everyday vocabulary. It will be helpful to distinguish three
+different kinds of causation:
+
+- necessary causation (the same as but-for causation.),
+- sufficient causation,
+- and necessary-and-sufficient causation.
+
+Using these words, a climate scientist can say,
+
+- “There is a 90 percent probability that
+  man-made climate change was a necessary cause of this heat wave,”
+
+- or “There is an 80 percent probability that
+  climate change will be sufficient
+  to produce a heat wave this strong
+  at least once every 50 years.”
+
+The first sentence has to do with _attribution_:
+Who was responsible for the unusual heat?
+The second has to do with _policy_.
+It says that we had better prepare for such heat waves
+because they are likely to occur sooner or later.
+
+## From Thucydides and Abraham to Hume and Lewis
 
 
 
