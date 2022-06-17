@@ -1455,7 +1455,28 @@ If we are completely successful at eliminating the do’s,
 then we can use observational data to estimate the causal effect,
 allowing us to leap from rung one to rung two of the Ladder of Causation.
 
+- **Xie:** There is a method that can transform
+  a do-query to probabilistic expression if possible,
+  and this method depends on the causal graph,
+  where else have I seen this kind of mathematical phenomenon?
+
+TODO Rules for do-transforms  .
+
+## The tapestry of science, or the hidden players in the do-orchestra
+
+TODO
+
+## The curious case(s) of Dr. Snow
+
+TODO
+
+## Good and bad cholesterol
+
+TODO
+
 # CHAPTER 8 Counterfactuals: Mining Worlds That Could Have Been
+
+
 
 # CHAPTER 9 Mediation: The Search for a Mechanism
 
