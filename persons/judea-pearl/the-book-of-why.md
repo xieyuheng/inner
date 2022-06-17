@@ -1561,6 +1561,21 @@ consistently. We can assign them truth values and probabilities with no less
 confidence than we do for factual statements. In his view, we do this by
 envisioning “possible worlds” in which the counterfactual statements are true.
 
+- **Xie:** We can imagine “possible worlds”
+  because we can simulate the world?
+
 # CHAPTER 9 Mediation: The Search for a Mechanism
 
 # CHAPTER 10 Big Data, Artificial Intelligence, and the Big Questions
+
+# NOTE
+
+- If we read Polya's book now,
+  could we recognize the causal model diagram of "solving problems"?
+
+
+- If we read Sandi's book now,
+  could we recognize the causal model diagram of software development?
+
+  - Maybe we will come up with a model in system theory,
+    because the feedback loops are very important in software development.
