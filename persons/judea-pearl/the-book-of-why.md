@@ -1511,7 +1511,31 @@ because they are likely to occur sooner or later.
 
 ## From Thucydides and Abraham to Hume and Lewis
 
+> Thus we remember to have seen that species
+> of object we call flame, and to have felt that species of sensation we call
+> heat,” he writes. “We likewise call to mind their constant conjunction in all
+> past instances. Without any further ceremony, we call the one cause and the
+> other effect, and infer the existence of the one from the other.
+>
+> -- Hume, in "Treatise of Human Nature"
 
+This is now known as the “regularity” definition of causation.
+
+> We may define a cause to be an object followed by
+> another, and where all the objects, similar to the first,
+> are followed by objects similar to the second.
+> Or, in other words, where, if the first object had not been,
+> the second never had existed.
+>
+> -- Hume, Nine years later, in "An Enquiry Concerning Human Understanding"
+
+Although Hume tries to pass these two definitions off as one,
+by means of his innocent interjection “in other words”,
+the second version is completely different from the first.
+It explicitly invokes a counterfactual,
+so it lies on the third rung of the Ladder of Causation.
+Whereas regularities can be observed,
+counterfactuals can only be imagined.
 
 # CHAPTER 9 Mediation: The Search for a Mechanism
 
