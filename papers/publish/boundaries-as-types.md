@@ -39,7 +39,8 @@ keywords: [Type theory, Algebraic topology]
 
 - We can define partition on cell-complex,
 - When defining a map between two spaces,
-  we must also define the map for all possible partitions (serreal number?).
+  we must also define the map for all possible partitions
+  (like [surreal number](https://en.wikipedia.org/wiki/Surreal_number)?).
 - When we define map between the same dimension,
   our way of definition already give a definition
   for all possible partitions.
