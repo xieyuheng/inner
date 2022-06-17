@@ -1537,6 +1537,30 @@ so it lies on the third rung of the Ladder of Causation.
 Whereas regularities can be observed,
 counterfactuals can only be imagined.
 
+It is worth thinking for a moment about why Hume chooses to define
+causes in terms of counterfactuals, rather than the other way around.
+Definitions are intended to reduce a more complicated concept to a simpler one.
+Hume surmises that his readers will understand the statement
+“if the first object had not been, the second had never existed”
+with less ambiguity than they will understand
+“the first object caused the second”.
+
+One philosopher who defied convention, David Lewis,
+called in his 1973 book _Counterfactuals_
+for abandoning the regularity account altogether
+and for interpreting “A has caused B”
+as “B would not have occurred if not for A”.
+Lewis asked, “Why not take counterfactuals at face value:
+as statements about possible alternatives to the actual situation?”
+
+- [David Lewis](https://plato.stanford.edu/entries/david-lewis)
+
+Like Hume, Lewis was evidently impressed by the fact that humans make
+counterfactual judgments without much ado, swiftly, comfortably, and
+consistently. We can assign them truth values and probabilities with no less
+confidence than we do for factual statements. In his view, we do this by
+envisioning “possible worlds” in which the counterfactual statements are true.
+
 # CHAPTER 9 Mediation: The Search for a Mechanism
 
 # CHAPTER 10 Big Data, Artificial Intelligence, and the Big Questions
