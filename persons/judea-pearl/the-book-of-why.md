@@ -1564,6 +1564,41 @@ envisioning “possible worlds” in which the counterfactual statements are tru
 - **Xie:** We can imagine “possible worlds”
   because we can simulate the world?
 
+  - We can generate different worlds in our mind.
+  - We can compare which alternative world is “closer” to our world,
+    and find the one “most similar” to our world.
+  - We can evaluate counterfactuals in imagined world.
+  - And we have a **consensus** when doing the above,
+
+As a licensed Whiggish philosopher, I can explain this consistency quite
+well: it stems from the fact that we experience the same world and share the
+same mental model of its causal structure. We talked about this all the way
+back in Chapter 1. Our shared mental models bind us together into
+communities. We can therefore judge closeness not by some metaphysical
+notion of “similarity” but by how much we must take apart and perturb our
+shared model before it satisfies a given hypothetical condition that is contrary
+to fact (Joe not taking aspirin).
+
+Structural models also offer a resolution of a puzzle Lewis kept silent
+about: How do humans represent “possible worlds” in their minds and
+compute the closest one, when the number of possibilities is far beyond the
+capacity of the human brain? Computer scientists call this the “representation
+problem.” We must have some extremely economical code to manage that
+many worlds. Could structural models, in some shape or form, be the actual
+shortcut that we use? I think it is very likely, for two reasons. First, structural
+causal models are a shortcut that works, and there aren’t any competitors
+around with that miraculous property. Second, they were modeled on
+Bayesian networks, which in turn were modeled on David Rumelhart’s
+description of message passing in the brain. It is not too much of a stretch to
+think that 40,000 years ago, humans co-opted the machinery in their brain that
+already existed for pattern recognition and started to use it for causal
+reasoning.
+
+Logic void of representation is metaphysics.
+Causal diagrams, with their simple rules of
+following and erasing arrows, must be close to
+the way that our brains represent counterfactuals.
+
 # CHAPTER 9 Mediation: The Search for a Mechanism
 
 # CHAPTER 10 Big Data, Artificial Intelligence, and the Big Questions
