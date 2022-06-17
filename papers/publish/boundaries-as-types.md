@@ -35,6 +35,19 @@ keywords: [Type theory, Algebraic topology]
   - Hopf fibration describe partition of the ball of `S3`,
     but in our language, we can not describe this detailed partition.
 
+---
+
+- We can define partition on cell-complex,
+- When defining a map between two spaces,
+  we must also define the map for all possible partitions (serreal number?).
+- When we define map between the same dimension,
+  our way of definition already give a definition
+  for all possible partitions.
+- We can map element cross dimension,
+  but must also define the map for all possible partitions.
+- Then we can define Hopf fibration in a
+  intuitive and pure topological way.
+
 # Abstract
 
 A language to capture the concept of continuum,

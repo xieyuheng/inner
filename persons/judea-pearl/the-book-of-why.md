@@ -1599,6 +1599,26 @@ Causal diagrams, with their simple rules of
 following and erasing arrows, must be close to
 the way that our brains represent counterfactuals.
 
+## Potential outcomes, structural equations, and the algorithmization of counterfactuals
+
+TODO
+
+## The virtue of seeing your assumptions
+
+TODO
+
+## Counterfactuals and the law
+
+TODO
+
+## Necessary causes, sufficient causes, and climate change
+
+TODO
+
+## A world of counterfactuals
+
+TODO
+
 # CHAPTER 9 Mediation: The Search for a Mechanism
 
 # CHAPTER 10 Big Data, Artificial Intelligence, and the Big Questions
