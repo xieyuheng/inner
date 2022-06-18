@@ -1676,12 +1676,71 @@ Examples:
 
   - For striking the match:
 
-    - `PN = 1`.
+    - `PN` is almost `1`.
     - `PS` is high, because oxygen in the room is the normal.
 
   - For oxygen in the room:
-    - `PN = 1`.
+
+    - `PN` is almost `1`.
     - `PS` is low, because normally oxygen in the room does not cause fire.
+
+In 1982, psychologists Daniel Kahneman and Amos Tversky investigated
+how people choose an "if only" culprit to "undo" an undesired outcome
+and found consistent patterns in their choices.
+
+One was that people are more likely to imagine
+undoing a rare event than a common one.
+For example, if we are undoing a missed appointment,
+we are more likely to say,
+
+> If only the train had left on schedule.
+
+- Let's define `X` and `Y` and explain this by `PN` and `PS`.
+
+  - `X = 1` means "the train had NOT left on schedule",
+  - `Y = 1` means "I missed the appointment".
+
+  If `X = 1` is enough for me to be on time,
+  `PN` is high.
+
+  And `PS` is also high,
+  because if `X = 0` -- "the train had left on schedule",
+  it is likely that a lot of people will miss their appointments,
+  including me.
+
+than
+
+> If only the train had left early.
+
+- Let's define `X` and `Y` and explain this by `PN` and `PS`.
+
+  - `X = 1` means "the train had NOT left early",
+  - `Y = 1` means "I missed the appointment".
+
+  If `X = 1` is enough for me to be on time,
+  `PN` is also high.
+
+  But in this case `PS` is low,
+  because if `X = 1` -- "the train had NOT left early",
+  I still should not miss the appointment,
+  I should view `X = 1` as the normal.
+
+Another pattern was people’s tendency
+to blame their own actions (e.g., striking a match)
+rather than events not under their control.
+Our ability to estimate `PN` and `PS` from our model of the world
+suggests a systematic way of accounting for these considerations
+and eventually teaching robots to produce meaningful explanations of peculiar events.
+
+What weight, then, should the law assign to the necessary versus sufficient
+components of causation? Philosophers of law have not discussed the legal
+status of this question, perhaps because the notions of PS and PN were not
+formalized with such precision. However, from an AI perspective, clearly PN
+and PS should take part in generating explanations. A robot instructed to
+explain why a fire broke out has no choice but to consider both. Focusing on
+PN only would yield the untenable conclusion that striking a match and
+having oxygen are equally adequate explanations for the fire. A robot that
+issues this sort of explanation will quickly lose its owner’s trust.
 
 ## Necessary causes, sufficient causes, and climate change
 
