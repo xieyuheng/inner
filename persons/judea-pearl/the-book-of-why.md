@@ -1601,7 +1601,29 @@ the way that our brains represent counterfactuals.
 
 ## Potential outcomes, structural equations, and the algorithmization of counterfactuals
 
-TODO
+In the Rubin causal model, a **potential outcome** of a variable `Y` is simply
+“the value that `Y` _would have_ taken for individual `u`, _had_ `X` been assigned the
+value `x`.” That’s a lot of words, so it’s often convenient to write this quantity
+more compactly as `Y(X = x)(u)`. Often we abbreviate this further as `Y(x)(u)` if it is
+apparent from the context what variable is being set to the value `x`.
+
+Note that the potential outcome, or counterfactual,
+is defined at the level of an individual, not a population.
+
+There will be missing data, because we can never observe
+more than one potential outcome in the same individual.
+
+- **Xie:** If we fit data to get a function,
+  the function can calculate the missing data.
+
+  It is true that this method only uses data, without a model,
+  but why this method is wrong for solving counterfactual problems?
+
+  We might need good examples to show this method is wrong.
+
+- **Xie:** To solve counterfactual problems,
+  we need to change model, changes in the causal graph,
+  corresponds to changes in the structural functions.
 
 ## The virtue of seeing your assumptions
 
@@ -1609,7 +1631,57 @@ TODO
 
 ## Counterfactuals and the law
 
-TODO
+In principle, counterfactuals should find easy application in the courtroom. I
+say “in principle” because the legal profession is very conservative and takes
+a long time to accept new mathematical methods. But using counterfactuals as
+a mode of argument is actually very old and known in the legal profession as
+“but-for causation.”
+
+- **Xie:** Chinese version of "but-for" is 「要不是」
+
+The probability of necessity `PN`:
+
+```
+PN(X -> Y) = P(Y(where X = 0) = 0 | X = 1, Y = 1)
+```
+
+The probability of sufficiency `PS`:
+
+```
+PS(X -> Y) = P(Y(where X = 1) = 1 | X = 0, Y = 0)
+```
+
+Examples:
+
+- `X` is "Joe blocks the fire escape", `Y` is "Judy's death from fire".
+
+  - `PN` -- Given that we know
+    the fire escape was blocked `(X = 1)`
+    and Judy died `(Y = 1)`,
+    what is the probability that
+    Judy would have lived `(Y = 0)`
+    if the fire escape was not blocked `(X = 0)`?
+
+- `X` is "firing a shot to kill", `Y` is "victim runs under a piano and killed".
+
+  - `PN = 1`.
+  - `PS` is very small.
+
+- The firing squad example.
+
+  - `PN = 0`.
+  - `PS = 1`.
+
+- "What caused the fire, striking the match or the presence of oxygen in the room?”
+
+  - For striking the match:
+
+    - `PN = 1`.
+    - `PS` is high, because oxygen in the room is the normal.
+
+  - For oxygen in the room:
+    - `PN = 1`.
+    - `PS` is low, because normally oxygen in the room does not cause fire.
 
 ## Necessary causes, sufficient causes, and climate change
 
@@ -1621,13 +1693,30 @@ TODO
 
 # CHAPTER 9 Mediation: The Search for a Mechanism
 
+In ordinary language, the question “Why?” has at least two versions. The
+first is straightforward: you see an effect, and you want to know the cause.
+Your grandfather is lying in the hospital, and you ask, “Why? How could he
+have had a heart attack when he seemed so healthy?”
+
+But there is a second version of the “Why?” question, which we ask when
+we want to better understand the connection between a known cause and a
+known effect. For instance, we observe that Drug B prevents heart attacks. Or,
+like James Lind, we observe that citrus fruits prevent scurvy. The human
+mind is restless and always wants to know more. Before long we start asking
+the second version of the question: “Why? What is the mechanism by which
+citrus fruits prevent scurvy?” This chapter focuses on this second version of
+“why.”
+
+## Scurvy: The wrong mediator
+
+TODO
+
 # CHAPTER 10 Big Data, Artificial Intelligence, and the Big Questions
 
 # NOTE
 
 - If we read Polya's book now,
   could we recognize the causal model diagram of "solving problems"?
-
 
 - If we read Sandi's book now,
   could we recognize the causal model diagram of software development?
