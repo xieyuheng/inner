@@ -1,6 +1,8 @@
-#+title: css
+---
+title: CSS
+---
 
-* BEM: <block>__<element>--<modifier>
+# BEM: <block>__<element>--<modifier>
 
 Just like: object.property = value
 
