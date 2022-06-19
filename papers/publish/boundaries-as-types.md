@@ -38,14 +38,18 @@ keywords: [Type theory, Algebraic topology]
 ---
 
 - We can define partition on cell-complex,
+
 - When defining a map between two spaces,
   we must also define the map for all possible partitions
   (like [surreal number](https://en.wikipedia.org/wiki/Surreal_number)?).
+
 - When we define map between the same dimension,
   our way of definition already give a definition
   for all possible partitions.
+
 - We can map element cross dimension,
   but must also define the map for all possible partitions.
+
 - Then we can define Hopf fibration in a
   intuitive and pure topological way.
 
@@ -315,19 +319,14 @@ datatype S1 {
 }
 
 datatype S2 {
-  base: S2
-  rim: endpoints { base base }
-  disk: polygon { rim = rim }
+  south: S2
+  north: S2
+  meridian: endpoints { south north }
+  disk: polygon { meridian = meridian }
 }
 
 datatype S3 {
-  base: S3
-  rim: endpoints { base base }
-  disk: polygon { rim = rim }
-  ball: polyhedron {
-    disk { 'x = 'y }
-    disk { 'x = 'y }
-  }
+  // TODO
 }
 ```
 

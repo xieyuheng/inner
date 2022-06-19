@@ -1806,7 +1806,7 @@ TODO
   > want to estimate the total effect of one variable on another. But in a case of
   > discrimination, according to the court, it is not the total effect but the direct
   > effect that matters.
-  
+
   TODO We need to come back and understand this example clearly.
 
 ## Daisy, the kittens and indirect effects
@@ -1815,15 +1815,62 @@ TODO
 
 ## Mediation in linear wonderland
 
-TODO
+When you first hear about counterfactuals, you might wonder if such an
+elaborate machinery is really needed to express an indirect effect. Surely, you
+might argue, an indirect effect is simply what is left over after you take away
+the direct effect. Alternatively, we could write,
+
+```(9.4)
+Total Effect = Direct Effect + Indirect Effect
+```
+
+The short answer is that this does not work in models that involve
+interactions (sometimes called moderation). For example, imagine a drug that
+causes the body to secrete an enzyme that acts as a catalyst: it combines with
+the drug to cure a disease. The total effect of the drug is, of course, positive.
+But the direct effect is zero, because if we disable the mediator (for example,
+by preventing the body from stimulating the enzyme), the drug will not work.
+The indirect effect is also zero, because if we don’t receive the drug and do
+artificially get the enzyme, then the disease will not be cured. The enzyme
+itself has no curing power. Thus Equation 9.4 does not hold: the total effect is
+positive but the direct and indirect effects are zero.
+
+- **Xie:** There might be interaction between two paths,
+  in structural functions, it is enough to use a non-linear function
+  to represent the relation, but in the causal graph,
+  we can not read off the information about interaction.
+
+In a linear model, we can represent
+the strength of each effect with a single number.
+
+```
+Treatment (2) -> Mediator (3) -> Outcome
+Treatment (7) -> Outcome
+```
+
+The labels (path coefficients) indicate that
+increasing the `Treatment` variable by one unit
+will increase the `Mediator` variable by two units.
+Similarly, a one-unit increase in `Mediator`
+will increase `Outcome` by three units,
+and a one-unit increase in `Treatment`
+will increase `Outcome` by seven units.
+These are all direct effects.
+
+Here we come to the first reason why linear models are so simple:
+direct effects do not depend on the level of the mediator.
+That is, the controlled direct effect `CDE(m)`
+is the same for all values `m`,
+and we can simply speak of “the” direct effect.
+
+- **Xie:** TODO I do not understand the Baron-Kenny method
+  and the non-linear example in this section.
 
 ## Embrace the “would-haves”
 
 TODO
 
 ## Case studies of mediation
-
-TODO
 
 ### “Algebra for All”: A Program and Its Side Effects
 
