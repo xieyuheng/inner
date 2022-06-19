@@ -12,17 +12,17 @@ to manipulate theorems and proofs like polynomial equations.
 The Aim of my study of HoTT is to learn about
 how to extend Martin Löf's basic type theory in general.
 
-# introduction
+# Introduction
 
-## type theory
+- **Xie:** Homotopy equivalent and homotopy types
+  are as intuitive to human mind as natural numbers,
+  thus we should design language to formalize them directly.
 
-- [根據 bishop] 要定義一個集合
-  首先 要說明如何構造這個集合中的元素
-  其次 要說明如何判斷這個集合中的兩個元素相等
-- lambda calculus
-- 則式演算
-- 棧 與 函數複合
-- 函數 以 類型 爲元數據
+## Type theory
+
+The principle of type theory is:
+
+> We should study **terms** and **types** together.
 
 ## homotopy theory
 
