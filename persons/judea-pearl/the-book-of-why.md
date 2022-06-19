@@ -1948,7 +1948,9 @@ but we want to say something in our specification.
 Maybe the information about the dependence
 do not need to be specified by types,
 because we can easily compute them
-from the implementation of the function,
-but if there are uncertainties,
-maybe we want to specify something about the uncertainties,
-or maybe there is no implementation (pure uncertainty?)
+from the implementation of the function, but
+
+- if there are uncertainties,
+  maybe we want to specify something about the uncertainties.
+- maybe there is no implementation (pure uncertainty?)
+- maybe we want to specify independence.
