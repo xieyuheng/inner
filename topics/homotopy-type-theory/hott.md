@@ -4,7 +4,7 @@ subtitle: Univalent Foundations of Mathematics
 author: The Univalent Foundations Program
 ---
 
-# Before Notes
+# Xie: Before Notes
 
 My research problem is to design a formalized foundation of mathematics,
 to manipulate theorems and proofs like polynomial equations.

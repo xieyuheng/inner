@@ -1874,7 +1874,15 @@ TODO
 
 ### “Algebra for All”: A Program and Its Side Effects
 
-TODO
+From “Algebra for All” to “Double-Dose Algebra”.
+
+The Baron-Kenny method failed to detect the indirect effect. The reason is
+most likely just what I discussed before: linear methods cannot spot
+interactions between the treatment and the mediator. Perhaps the combination
+of more difficult material and a less supportive classroom environment caused
+the low-achieving students to become discouraged. Is this plausible? I think
+so. Algebra is a hard subject. Perhaps its difficulty made the extra attention
+from the teachers under the double-dose policy that much more valuable.
 
 ### The Smoking Gene: Mediation and Interaction
 
@@ -1894,7 +1902,7 @@ TODO
 
 TODO
 
-# Xie: Afternotes
+# Xie: After Notes
 
 ## Problem solving and learning
 
