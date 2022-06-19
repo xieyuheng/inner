@@ -1776,6 +1776,9 @@ citrus fruits prevent scurvy?” This chapter focuses on this second version of
 
 - **Xie:** Is mediation a relationship between two arrows?
 
+  - Can we use face of cell-complex to model it?
+  - Can we use partition of cell-complex to model it?
+
   > The main question of interest in such cases is
   > whether the mediating variable accounts for
   > the entire effect of the treatment variable
