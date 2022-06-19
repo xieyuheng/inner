@@ -192,14 +192,6 @@ datatype Sphere {
     south_long north_long = south_long north_long
   }
 }
-
-point(south_long, south, middle): Sphere
-
-point(
-  south_long,
-  south,
-  point(south_long, south, middle),
-): Sphere
 ```
 
 ```cicada
