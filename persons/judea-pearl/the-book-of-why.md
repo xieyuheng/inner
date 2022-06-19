@@ -1791,7 +1791,61 @@ citrus fruits prevent scurvy?” This chapter focuses on this second version of
 
 TODO
 
+## Nature versus Nurture: The tragedy of Barbara Burks
+
+TODO
+
+## In search of a language (the Berkeley admissions paradox)
+
+- **Xie:** Why this time, the paradox is solved by
+  direct v.s. indirect cause,
+  instead of like Simpson's paradox,
+  which is solved by confounder v.s. mediator?
+
+  > We have seen before that conditioning on a mediator is incorrect if we
+  > want to estimate the total effect of one variable on another. But in a case of
+  > discrimination, according to the court, it is not the total effect but the direct
+  > effect that matters.
+  
+  TODO We need to come back and understand this example clearly.
+
+## Daisy, the kittens and indirect effects
+
+TODO
+
+## Mediation in linear wonderland
+
+TODO
+
+## Embrace the “would-haves”
+
+TODO
+
+## Case studies of mediation
+
+TODO
+
+### “Algebra for All”: A Program and Its Side Effects
+
+TODO
+
+### The Smoking Gene: Mediation and Interaction
+
+TODO
+
+### Tourniquets: A Hidden Fallacy
+
+TODO
+
 # CHAPTER 10 Big Data, Artificial Intelligence, and the Big Questions
+
+## Causal models and “big data”
+
+TODO
+
+## Strong AI and free will
+
+TODO
 
 # Xie: Afternotes
 
@@ -1820,5 +1874,11 @@ TODO How can we view game theorythrough causal lens?
 
 ## Stories
 
-- We should memorize the stories in this book
-  to introduce causal inference to others.
+We should memorize the stories in this book
+to introduce causal inference to others.
+
+## Simplicity
+
+The theory of causal inference is very simple,
+I believe it will be part of high school curriculum,
+in recent years.
