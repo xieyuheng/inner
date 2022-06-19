@@ -1744,7 +1744,15 @@ issues this sort of explanation will quickly lose its owner’s trust.
 
 ## Necessary causes, sufficient causes, and climate change
 
-TODO
+`X` is "high greenhouse gas level", `Y` is "heat wave in `n` years".
+
+`PN` is high, `PS` is low.
+
+If we increase `n`, `PN` becomes lower, `PS` becomes higher.
+
+- **Xie:** The above is an interesting phenomenon.
+
+We should use `PN` to choose our policy.
 
 ## A world of counterfactuals
 
@@ -1772,7 +1780,7 @@ TODO
 
 # CHAPTER 10 Big Data, Artificial Intelligence, and the Big Questions
 
-# NOTE
+# Xie: Afternotes
 
 - If we read Polya's book now,
   could we recognize the causal model diagram of "solving problems"?
