@@ -1929,3 +1929,26 @@ to introduce causal inference to others.
 The theory of causal inference is very simple,
 I believe it will be part of high school curriculum,
 in recent years.
+
+## A type system of reactive programming has causal semantics
+
+Is it true that a type system of reactive programming has causal semantics?
+
+To understand causality, the most basic semantics (our imagination)
+is to view our World as a system of variables,
+in which one variable can listen to (observe) other variables' changes,
+and update itself according to given function (with some uncertainty).
+
+Imagine we are designing a type system for reactive programming,
+when we specify a variable's type, we want to express its dependence,
+i.e. how does it observe other variables,
+the details are in the implementation of the function,
+but we want to say something in our specification.
+
+Maybe the information about the dependence
+do not need to be specified by types,
+because we can easily compute them
+from the implementation of the function,
+but if there are uncertainties,
+maybe we want to specify something about the uncertainties,
+or maybe there is no implementation (pure uncertainty?)
