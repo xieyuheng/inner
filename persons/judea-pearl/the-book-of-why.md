@@ -1774,6 +1774,16 @@ the second version of the question: “Why? What is the mechanism by which
 citrus fruits prevent scurvy?” This chapter focuses on this second version of
 “why.”
 
+- **Xie:** Is mediation a relationship between two arrows?
+
+  > The main question of interest in such cases is
+  > whether the mediating variable accounts for
+  > the entire effect of the treatment variable
+  > or some part of the effect does not require a mediator.
+
+  - `Smoking -> Tar -> Cancer`
+  - `Smoking -> Cancer`
+
 ## Scurvy: The wrong mediator
 
 TODO
