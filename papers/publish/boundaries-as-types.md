@@ -7,7 +7,10 @@ keywords: [Type theory, Algebraic topology]
 
 # TODO
 
-- example algebra of 1-dimension -- take presentation of group as example
+- example algebra of 1-dimension
+  - take presentation of group as example
+  - take interesting groups as example (fundamental polygon)
+
 - example algebra of 2-dimension
 - example algebra of 3-dimension -- for `Pi(3)(S(2))`
 

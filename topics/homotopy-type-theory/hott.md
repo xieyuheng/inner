@@ -1,37 +1,18 @@
 ---
 title: Homotopy Type Theory
+subtitle: Univalent Foundations of Mathematics
+author: The Univalent Foundations Program
 ---
 
-# history
+# Before Notes
 
-## the groupoid model
+My research problem is to design a formalized foundation of mathematics,
+to manipulate theorems and proofs like polynomial equations.
 
-Types in intensional type theory with their identity types
-could be regarded as groupoids.
+The Aim of my study of HoTT is to learn about
+how to extend Martin Löf's basic type theory in general.
 
-- the 1998 paper of Hofmann and Streicher called
-  "The groupoid interpretation of type theory"
-  in which they showed that
-  intensional type theory had a model in the category of groupoids.
-
-- "universe extensionality"
-  and the univalence axiom of Vladimir Voevodsky
-
-## model categories and higher groupoids
-
-The first higher-dimensional models of intensional type theory
-were constructed by Steve Awodey and his student Michael Warren in 2005
-using Quillen model categories.
-
-- Michael Warren, "Homotopy Models of Intensional Type Theory"
-
-## The univalence axiom, synthetic homotopy theory, and higher inductive types
-
-The concept of a univalent fibration was introduced by Voevodsky in early 2006
-
-- Notes on homotopy lambda calculus, March 2006
-
-# intro
+# introduction
 
 ## type theory
 
@@ -401,7 +382,7 @@ become first-class mathematical objects
   比如
   quotient (? set -> set)
   如果這樣聲明類型發現根本就沒法定義 quotient 的函數體
-  ``` cicada
+  ```cicada
   set
   ({(term -> bool) #predicate}
    {(term #term1 term #term2
@@ -446,7 +427,8 @@ become first-class mathematical objects
   如果要求所有的集合都帶有等詞
   我們又需要給出這個高階集合的等詞
   那將是
-  ``` cicada
+
+  ```cicada
   cicada:equal2?
   ({cicada #cicada1 #cicada2}
    :cicada1 :cicada2 cicada:equal?
@@ -458,11 +440,13 @@ become first-class mathematical objects
    :cicada11 :cicada12 cicada:equal2?
    :cicada11 :cicada12 cicada:equal2? -> proposition)
   ```
+
   這是沒完沒了的
   也就是說
   如果想要把等詞處理爲 path 的集合
   而又要求 對每個集合都要給以等詞
   那麼對等詞的定義將是沒完沒了的
+
 - 也就是說 連個基本原理之間發生衝突了
   其一是
   應該把所有的謂詞都實現爲返回類型[命題][集合]的函數
@@ -522,14 +506,14 @@ become first-class mathematical objects
   hott 中所有的地方都使用了這種默認的對等詞的繼承
   只有一個地方沒有使用就是 ua 的地方
   不知道這樣的說法對不對
-  ><><><
+  > <><><
 - 如果是繼承
   那麼 就是對接口的繼承
   那麼 就是子類型的概念了
   如果是不要求等詞
   那麼 有什麼數據類型是沒有等詞的呢
   數值分析邪 概率論邪
-  ><><><
+  > <><><
 
 ## universes and families
 
@@ -595,10 +579,15 @@ become first-class mathematical objects
 - in memory
 
 ## coproduct types
+
 ## the type of booleans
+
 ## the natural numbers
+
 ## pattern matching and recursion
+
 ## propositions as types
+
 ## 記 商空間
 
 - 假設 集合都配以等詞爲基本接口性質
@@ -627,12 +616,21 @@ become first-class mathematical objects
   但是放起了對這個等詞的操作
 
 # 2 homotopy type theory
+
 # 3 sets and logic
+
 # 4 equivalences
+
 # 5 induction
+
 # 6 higher inductive types
+
 # 7 homotopy n-types
+
 # 8 homotopy theory
+
 # 9 category theory
+
 # 10 set theory
+
 # 11 real numbers
