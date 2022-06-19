@@ -117,7 +117,7 @@ title: Judea Pearl
   he or she go through when doing diagnosis,
   specially when it comes to combining different source of knowledge.
 
-## (2019) The Foundations of Causal Inference [The Book of WHY]
+## TODO (2019) The Foundations of Causal Inference [The Book of WHY]
 
 [ [VIDEO](https://www.youtube.com/watch?v=nWaM6XmQEmU) ]
 
@@ -273,23 +273,19 @@ The phrases "listen to" and "react to" are about assignment.
 
 The edges in the model are like ropes (or springs) behind the data.
 
-## (2019) Interpretability and explainability from a causal lens
+## TODO (2019) Interpretability and explainability from a causal lens
 
 [ [VIDEO](https://www.youtube.com/watch?v=mfh4fp_8oPg) ]
 
-TODO
-
-## (2020) Data versus Science: Contesting the Soul of Data-Science [CIFAR]
+## TODO (2020) Data versus Science: Contesting the Soul of Data-Science [CIFAR]
 
 [ [VIDEO](https://www.youtube.com/watch?v=X_1MG4ViVGM) ]
-
-TODO
 
 ## (2012) Turing Award Lecture "The Mechanization of Causal Inference"
 
 [ [VIDEO](https://www.youtube.com/watch?v=iNm4nFBFmvo) ]
 
-TODO
+- **Xie:** The structure of this talk is better than latter takls.
 
 # Problems
 
