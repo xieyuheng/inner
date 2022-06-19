@@ -1952,5 +1952,5 @@ from the implementation of the function, but
 
 - if there are uncertainties,
   maybe we want to specify something about the uncertainties.
-- maybe there is no implementation (pure uncertainty?)
+- maybe the implementation of the function is unknown.
 - maybe we want to specify independence.
