@@ -189,7 +189,7 @@ datatype Sphere {
   south_long: endpoints { south middle }
   north_long: endpoints { middle north }
   disk: polygon {
-    south_long north_long = south_long north_long
+    south_long north_long -north_long -south_long
   }
 }
 ```
@@ -199,7 +199,7 @@ datatype Torus {
   origin: Torus
   toro: endpoints { origin origin }
   polo: endpoints { origin origin }
-  spoke: polygon { toro polo = polo toro }
+  spoke: polygon { toro polo -toro -polo }
 }
 ```
 
@@ -208,7 +208,7 @@ datatype KleinBottle {
   origin: KleinBottle
   toro: endpoints { origin origin }
   cross: endpoints { origin origin }
-  disk: polygon { toro cross = -cross toro }
+  disk: polygon { toro cross -toro cross  }
 }
 ```
 
@@ -260,15 +260,15 @@ datatype Torus3 {
   a: endpoints { o o }
   b: endpoints { o o }
   c: endpoints { o o }
-  ap: polygon { c b = b c }
-  bp: polygon { a c = c a }
-  cp: polygon { b a = a b }
+  ap: polygon { c b -c -b }
+  bp: polygon { a c -a -c }
+  cp: polygon { b a -b -a }
   // The syntax use logic variable and linear unification
   // to specify how edges of polygons are glued together.
   s: polyhedron {
-    ap { 'b3 'c2 = 'c0 'a2 }
-    bp { 'b0 'a2 = 'b3 'c1 }
-    cp { 'c0 'c1 = 'b0 'c2 }
+    ap { 'b3 'c2 -'a2 -'c0 }
+    bp { 'b0 'a2 -'c1 -'b3 }
+    cp { 'c0 'c1 -'c2 -'b0 }
   }
 }
 ```
@@ -279,20 +279,20 @@ datatype Torus3 {
 check surface (Torus3) {
   refl(refl(o)) { ... }
 }: polygon (Torus3) {
-  refl(o) = refl(o)
+  refl(o) -refl(o)
 }
 
 check surface (Torus3) {
   refl(a) { ... }
 }: polygon (Torus3) {
-  a = a
+  a -a
 }
 
 check surface (Torus3) {
   refl(a) { ... }
   refl(a) { ... }
 }: polygon (Torus3) {
-  a a = a a
+  a a -a -a
 }
 
 check surface (Torus3) {
@@ -322,7 +322,7 @@ datatype S2 {
   south: S2
   north: S2
   meridian: endpoints { south north }
-  disk: polygon { meridian = meridian }
+  disk: polygon { meridian -meridian }
 }
 
 datatype S3 {
