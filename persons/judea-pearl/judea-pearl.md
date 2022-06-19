@@ -286,19 +286,3 @@ The edges in the model are like ropes (or springs) behind the data.
 [ [VIDEO](https://www.youtube.com/watch?v=iNm4nFBFmvo) ]
 
 - **Xie:** The structure of this talk is better than latter takls.
-
-# Problems
-
-## Problem solving and learning
-
-TODO How can we view problem solving and learning through causal lens?
-
-- Where we make decisions and plans based on our knowledge,
-  if knowledge is really about beliefs,
-  and beliefs is about actions,
-  our play of "the game" must be about knowledge,
-  thus about causality.
-
-TODO How can we view game theorythrough causal lens?
-
-- Do not forget that logic systems might have game semantics.

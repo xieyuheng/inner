@@ -1795,6 +1795,20 @@ TODO
 
 # Xie: Afternotes
 
+## Problem solving and learning
+
+TODO How can we view problem solving and learning through causal lens?
+
+- Where we make decisions and plans based on our knowledge,
+  if knowledge is really about beliefs,
+  and beliefs is about actions,
+  our play of "the game" must be about knowledge,
+  thus about causality.
+
+TODO How can we view game theorythrough causal lens?
+
+- Do not forget that logic systems might have game semantics.
+
 - If we read Polya's book now,
   could we recognize the causal model diagram of "solving problems"?
 
@@ -1803,3 +1817,8 @@ TODO
 
   - Maybe we will come up with a model in system theory,
     because the feedback loops are very important in software development.
+
+## Stories
+
+- We should memorize the stories in this book
+  to introduce causal inference to others.
