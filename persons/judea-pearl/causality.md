@@ -414,7 +414,8 @@ They convey a degree of confidence in rules such as "If `H` then `e`",
 a confidence that persists regardless of
 what other rules or facts reside in the knowledge base.
 
-- **Xie:** `P(e | H)` is the degree of belief that "If `H` then `e`",
+- **Xie:** `P(e | H)` is the degree of belief that
+  "If (we see) `H` then (we see) `e`",
   thus maybe viewed as `P(imply(H, e))`.
 
   How about the fact that in propositional logic,

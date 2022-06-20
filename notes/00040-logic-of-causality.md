@@ -20,24 +20,18 @@ here is how it is interpreted in different logic systems:
 
 Can we design a logic system which interpret "imply" as "cause"?
 
-- By works of Judea Pearl, we know
-  causal logic will has a rich probability theory as its model.
-
 |        | `A -> B`        |
 | ------ | --------------- |
 | causal | `A` causes `B`. |
 
-What is the interpretation of "cause"?
+By works of Judea Pearl, we know
+causal logic will have a rich probability theory as its model.
 
-- **Computational**
+- `P(e | H)` is the degree of belief that
+  "If (we see) `H` then (we see) `e`".
 
-  If we setup the init situation `A`,
-  the "World Interpreter" will evaluate it
-  into the result situation `B`.
+- Probability theory (conditional independence)
+  also is a rich model of graph theory (axioms of graphoid).
 
-- **Counterfactual**
-
-  If we observe the correlation between `A` and `B`,
-  and if we remove `A`, there will be no `B`.
-
-  TODO This need to be revised.
+For the meaning of "cause",
+see [00041-causality-is-reactivity.md](./00041-causality-is-reactivity.md).
