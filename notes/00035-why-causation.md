@@ -1,15 +1,10 @@
 ---
-title: Why logic?
+title: Why causation?
 date: 2022-05-12
 ---
 
-Why we use logic to understand the world?
-
-The core of logic is causation,
-i.e. **cause and effect relation**.
-
-So we ask, why we summarise our knowledge about the world
-in the form of causation?
+Why we summarise our knowledge about the world
+in the form of _cause and effect relation_ (causation)?
 
 For example, it is harder for us to understand:
 
@@ -34,12 +29,14 @@ For examples:
 
 ## [2022-06-01] About the relation between logic and causation
 
-By "The Book of Why" and Judea Pearl's work,
+This note was first called "Why logic?",
+and open with "Why we use logic to understand the world?",
+but from "The Book of Why" and Judea Pearl's work,
 I understand that logic is not about causation at all.
 
 Thus this note is wrong.
 
-This note should not be called "Why logic?" but "Why we understand by causation?".
+This note should not be called "Why logic?" but "Why causation?".
 
 If we think about inference rules in a logic system.
 

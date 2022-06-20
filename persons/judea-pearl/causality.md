@@ -31,6 +31,20 @@ and I regard probabilistic relationships as
 but the surface phenomena of the causal machinery
 that underlies and propels our understanding of the world.
 
+- **Xie:** I thought the idea of "force" is not about physical reality,
+  but a product of our causal way of understanding our observation.
+
+  The structural causal model (reactive model)
+  is essential to understanding causality.
+
+  We understand the world by causal relations,
+  is the same as we understand the world by reactive models.
+
+  For examples:
+
+  - In physics, we use the concept of "force" to understand movement,
+    that is where we try to use a cause -- the force, to understand movement.
+
 ## Contents
 
 The sequence of discussion follows more or less the chronological order

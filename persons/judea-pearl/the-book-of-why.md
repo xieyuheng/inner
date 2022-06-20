@@ -1900,7 +1900,125 @@ TODO
 
 ## Strong AI and free will
 
-TODO
+- **Xie:** I long thought the sentences about
+  "should", "you shouldn't have", ...
+  can never be captured by logic,
+  now I know I was wrong.
+
+- **Xie:** To build an AI, the robot must also
+  understand the world by causal relations,
+  which means it has to learn its own structural causal models
+  (or say, reactive models) to understand the world.
+
+  If we think about passing our knowledge about the world to a robot,
+  we will find out that most of our mathematical and scientific knowledge
+  are not formalized as structural causal models.
+
+  Is this statement true?
+
+In technical terms, machine learning methods today
+provide us with an efficient way of going
+from finite sample estimates to probability distributions,
+and we still need to get from distributions to cause-effect relations.
+
+To understand the reality by structural causal models,
+is to presupposes causal determinism.
+
+Not all philosophers are convinced that there really is a clash
+between free will and determinism. A group called “compatibilists,”
+among whom I count myself, consider it only an apparent clash
+between two levels of description:
+
+- the neural level at which processes appear deterministic
+  (barring quantum indeterminism),
+
+- and the cognitive level at which
+  we have a vivid sensation of options.
+
+Such apparent clashes are not infrequent in science.
+For example, the equations of physics are time reversible on a microscopic level,
+yet appear irreversible on the macroscopic level of description;
+the smoke never flows back into the chimney.
+
+Suppose that free will is an illusion,
+
+- why is it so important to us as humans to have this illusion?
+- Why did evolution labor to endow us with this conception?
+- Gimmick or no gimmick, should we program the next generation of computers
+  to have this illusion? What for?
+- What computational benefits does it entail?
+
+I think that understanding the benefits of the illusion of free will
+is the key to the stubbornly enigmatic problem of reconciling it with determinism.
+The problem will dissolve before our eyes
+once we endow a deterministic machine with the same benefits.
+
+Together with this functional issue,
+we must also cope with questions of simulation.
+If neural signals from the brain trigger all our actions,
+then our brains must be fairly busy
+decorating some actions with the title “willed” or “intentional”
+and others with “unintentional.”
+What precisely is this labeling process?
+What neural path would earn a given signal the label “willed”?
+
+In many cases, voluntary actions are recognized by a trace they leave in
+short-term memory, with the trace reflecting a purpose or motivation. For
+example, “Why did you do it?” “Because I wanted to impress you.” Or, as
+Eve innocently answered, “The serpent deceived me, and I ate.” But in many
+other cases an intentional action is taken, and yet no reason or motives come
+to mind. Rationalization of actions may be a reconstructive, post-action
+process. For example, a soccer player may explain why he decided to pass the
+ball to Joe instead of Charlie, but it is rarely the case that those reasons
+consciously triggered the action. In the heat of the game, thousands of input
+signals compete for the player’s attention. The crucial decision is which
+signals to prioritize, and the reasons can hardly be recalled and articulated.
+
+AI researchers are therefore trying to answer two questions—about
+function and simulation—with the first driving the second. Once we
+understand what computational function free will serves in our lives, then we
+can attend to equipping machines with such functions. It becomes an
+engineering problem, albeit a hard one.
+
+To me, certain aspects of the functional question stand out clearly.
+The illusion of free will gives us the ability to speak about our intents and to
+subject them to rational thinking, possibly using counterfactual logic. When
+the coach pulls us out of a soccer game and says, “You should have passed the
+ball to Charlie,” consider all the complex meanings embedded in these eight words.
+
+- **Xie:** Suppose the world is a big structural causal model
+  (The True Self in Alan Watts's Talk? The Dao?),
+  and suppose free will is an illusion.
+
+  We think some of our actions are intentional (based on free will),
+  because there is a reconstructive, post-action process,
+  which rationalizes actions by giving them reasons or motives.
+
+  As a machine we benefit from the illusion of free will computationally,
+  because it enable us to speak about our intents (beliefs, desires)
+  and to subject them to rational thinking,
+  possibly using counterfactual logic.
+  Thinking in terms of intents offers us a shorthand
+  to convert complicated causal instructions into simple ones,
+
+I believe the algorithmization of counterfactuals
+is a major step toward understanding these questions
+and making consciousness and agency a computational reality.
+The methods described for equipping a machine
+with a symbolic representation of its environment
+and the capacity to imagine a hypothetical perturbation of that environment
+can be extended to include the machine itself as part of the environment.
+No machine can process a complete copy of its own software [actually we can use recursion],
+but it can have a blueprint summary of its major software components.
+Other components can then reason about that blueprint
+and mimic a state of self-awareness.
+
+In summary, I believe that the software package that can give a thinking
+machine the benefits of agency would consist of at least three parts:
+- a causal model of the world;
+- a causal model of its own software, however superficial;
+- and a memory that records how intents in its mind 
+  correspond to events in the outside world.
 
 # Xie: After Notes
 
