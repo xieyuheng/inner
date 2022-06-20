@@ -1,5 +1,5 @@
 ---
-title: Logic of causality
+title: Causality is reactivity
 date: 2022-06-20
 ---
 
