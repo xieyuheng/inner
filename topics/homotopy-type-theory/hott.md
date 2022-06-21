@@ -172,7 +172,7 @@ that one can (and should!) take into account.
   那麼
   關於時間複雜的的很多疑難問題 就都將被解決了
 
-## higher inductive type
+## TODO Higher inductive type
 
 這裏指的是如下對幾何體的定義，
 類似 CW complexes 中幾何體的生成法。
