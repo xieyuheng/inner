@@ -12,36 +12,29 @@ author: Xie Yuheng
 
 # TODO
 
-- Read "The Book of Why".
+- Read "Causality -- Models, Reasoning and Inference".
+  - Design a probabilistic programming language.
+  - Find a interesting dataset to practice.
+    - https://datasetsearch.research.google.com
+    - https://en.wikipedia.org/wiki/Data_set
+  - Read peirce's "Illustrations of the Logic of Science (1877–1878)"
+    which has paper about probability
+    - `revised-theory-of-knowledge.md` -- read peirce's paper again
 
-  - Read "Causality -- Models, Reasoning and Inference".
+------
 
-    - During study of this book,
-      I found that maybe we should revisit the idea of [orbit](https://withorbit.com/),
-      - Repo: https://github.com/andymatuschak/orbit
-      - Because I keep forgetting:
-        - definition of terms
-        - import intuitions
-        - typical examples
-      - and: https://activerecall.com
-      - New design of Sisuo (rename to Xué Ér)
-        - one card one file,
-          one directory one deck
-          (maybe with a JSON config file).
-
-    - Find a interesting dataset to practice.
-
-      https://datasetsearch.research.google.com
-      https://en.wikipedia.org/wiki/Data_set
-
-    - `logic-of-causality.md` -- definition of causality
-
-    - Read peirce's "Illustrations of the Logic of Science (1877–1878)"
-      which has paper about probability
-
-      - `revised-theory-of-knowledge.md` -- read peirce's paper again
-
-- Design a probabilistic programming language.
+- During study of "Causality -- Models, Reasoning and Inference",
+  I found that maybe we should revisit the idea of [orbit](https://withorbit.com/),
+  - Repo: https://github.com/andymatuschak/orbit
+  - Because I keep forgetting:
+    - definition of terms
+    - import intuitions
+    - typical examples
+  - and: https://activerecall.com
+  - New design of Sisuo (rename to Xué Ér)
+    - one card one file,
+      one directory one deck
+      (maybe with a JSON config file).
 
 ------
 
