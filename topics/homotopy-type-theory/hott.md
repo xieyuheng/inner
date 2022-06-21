@@ -24,46 +24,54 @@ The principle of type theory is:
 
 > We should study **terms** and **types** together.
 
-## homotopy theory
+One problem in understanding type theory
+from a mathematical point of view, however,
+has always been that the basic concept of _type_
+is unlike that of _set_ in ways that have been hard to make precise.
+We believe that the new idea of regarding types,
+not as strange sets (perhaps constructed without using classical logic),
+but as spaces, viewed from the perspective of homotopy theory,
+is a significant step forward.
+In particular, it solves the problem of
+understanding how the notion of equality of elements of a type
+differs from that of elements of a set.
 
-- 首先
-  考慮空間之間的一些連續映射
-  f : (X -> Y)
-  g : (X -> Y)
-  可以被看成是 空間 Y 被 X 參數化
-  同樣的 X 當 f 和 g 分別跑遍 定義域 時
-  在 Y 中 所得到的像不同
-  而 映射的像 通常就是 Y 中幾何體的表示
-  這樣 f 和 g 就可以看成是對 Y 中兩個不同幾何體的表示了
+- **Xie:** In but in type theory, there can also be
 
-- 空間的連續映射 之間的 同倫[homotopy]
-  就是 連續映射 h : (X [0, 1] -> Y)
-  滿足
-  x 0 h = x f
-  x 1 h = x g
-  h 稱作是 x 到 y 的連續形變[continuous deformation]
+  - structural subtyping;
+  - union type;
+  - intersection type;
 
-- 其次
-  考慮 同倫等價[homotopy equivalent] 的概念
-  兩個空間 X Y
-  若有
-  a : (X -> Y)
-  b : (Y -> X)
-  滿足
-  a b 和 X id 之間有 homotopy
-  b a 和 Y id 之間有 homotopy
-  稱 X Y 是 同倫等價 的
-  即 兩個空間相互參數化之後
-  得到的兩個參數映射之兩種複合
-  可以變形到兩個空間的恆同函數
+  which can be view as the same operations on sets in set theory,
 
-- 同倫等價的空間 具有相同的 代數不變量[algebraic invariant]
-  比如 同調[homology]
-  和 基本羣[fundamental group]
-  等價關係給出了分類方式
-  稱此分類爲 同倫類型(同倫類)(同倫型)(homotopy type)
+In homotopy theory one is concerned with spaces
+and continuous mappings between them, up to homotopy.
 
-## homotopy type theory
+A _homotopy_ between a pair of continuous maps `f: X → Y` and `g: X → Y`
+is a continuous map `H: X × [0, 1] → Y`
+satisfying `H(x, 0) = f (x)` and `H(x, 1) = g(x)`.
+The homotopy `H` may be thought of as
+a "continuous deformation" of `f` into `g`.
+
+- **Xie:** A geometric object embedded in another space,
+  is often study by a map `f: X -> Y`,
+  where `X` is the space of parameters,
+  and `Y` the the another space,
+  and the object is the image of the map.
+
+  - For example, [parametric equation](https://en.wikipedia.org/wiki/Parametric_equation)
+
+The spaces `X` and `Y` are said to be _homotopy equivalent_, `X ≃ Y`,
+if there are continuous maps going back and forth,
+the composites of which are homotopical
+to the respective identity mappings,
+i.e., if they are isomorphic "up to homotopy".
+
+Homotopy equivalent spaces have the same algebraic invariants
+(e.g., homology, or the fundamental group),
+and are said to have the same _homotopy type_.
+
+## Homotopy type theory
 
 - 我們需要使用 type 這個術語
   然而已經有了術語 homotopy type
