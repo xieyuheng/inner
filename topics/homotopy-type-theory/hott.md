@@ -67,118 +67,86 @@ the composites of which are homotopical
 to the respective identity mappings,
 i.e., if they are isomorphic "up to homotopy".
 
+- **Xie:** In formal definition,
+  we use one map and `Fiber` and `Singleton` to define this equivalence,
+  instead of using two maps and their composites.
+
 Homotopy equivalent spaces have the same algebraic invariants
 (e.g., homology, or the fundamental group),
 and are said to have the same _homotopy type_.
 
 ## Homotopy type theory
 
-- 我們需要使用 type 這個術語
-  然而已經有了術語 homotopy type
-  古典意義下 它指 同倫等價的空間的等價類
-  但是
-  構造主義 不用 等價類 這個技術
-  而是使用 等價類的編碼
-  我們的 type
-  其實是對 同倫等價的空間所形成的等價類 的編碼
-  可以用 等價類的代表元素[此處是代表空間] 來理解這類編碼
-  所以當說 a 是 [homotopy] type A 的元素的時候
-  所說的是 a 同倫等價類的 代表空間 A 中的點
-  而不是 等價類 A 之中的一個代表空間 a
+We use the word "spaces" only in the pure homotopical sense,
+not in the topological sense, remember that
+any other topological concepts are NOT applicable.
 
-- 前面說過
-  首先 需要考慮兩個空間之間的各個連續映射
-  其次 需要利用 連續映射 和 連續形變 來定義空間的 同倫等價
-  type 就可以被看成是 對 同倫等價 的空間的等價類的代表空間 的編碼
-  a : A 是說 a 是代表空間 A 中的點
-  那麼
-  反過來
-  連續映射 和 連續形變 的意義是什麼呢
-  首先 連續映射 的概念也變了
-  f : A -> B 是模掉 連續形變 之後的 連續映射
-  即 對連續映射的同倫等價類的編碼
-  而 連續形變 就內蘊在 這種編碼中了
-  可以發現
-  連續形變所帶來的幾何體的差異
-  已經被我們的編碼完全抽象掉了
+The idea of interpreting types as structured objects,
+rather than sets, has a long pedigree,
+and is known to clarify various mysterious aspects of type theory.
+For instance,
 
-- type = space [with homotopy equivalent] = higher groupoid
+- interpreting types as sheaves helps explain
+  the intuitionistic nature of type-theoretic logic,
+- while interpreting them as partial equivalence relations or “domains”
+  helps explain its computational aspects.
+- The homotopical interpretation fits this same pattern:
+  it clarifies the nature of identity (or equality) in type theory,
+  and allows us to use type-theoretic reasoning
+  in the study of homotopy theory.
 
-- type constructor = space constructor [respect homotopy equivalent]
+The key new idea of the homotopy interpretation is that
+the logical notion of identity `a = b`
+of two objects `a, b: A` of the same type `A`
+can be understood as the existence of a path `p: a ~> b`
+from point `a` to point `b` in the space `A`.
+This also means that two functions `f, g: A → B`
+can be identified if they are homotopic,
+since a homotopy is just a (continuous) family of paths
+`p(x): f(x) ~> g(x)` in `B`, one for each `x: A`.
+In type theory, for every type `A`
+there is a (formerly somewhat mysterious) type `Id(A)`
+of identifications of two objects of `A`;
+in homotopy type theory, this is just the _path space_
+of all continuous maps `I → A` from the unit interval.
+In this way, a term `p: Id(A)(a, b)`
+represents a path `p: a ~> b` in `A`.
 
-- 只考慮同倫性質
-  而不考慮拓撲性質
-  比如 不考慮 開集 與 點列的極線點
+- **Xie:** Homotopy types can be viewed as
+  encoding of homotopy equivalent classes.
 
-- 比如
-  每個類型 A
-  都有 判斷這個類型的兩個元素 a b 相等 的方式
-  這樣一個對相等的證明 p : a == b 就是 A 中的一條 path
-  或者記爲 p : a =A= b
-  或者記爲 p : a b A id
-  而 這裏的 A id 就是 A 中所有 path 所組成的空間
+- **Xie:** TODO Univalence axiom is true
+  when we view Kan simplicial sets as the model of types, how?
 
-## univalence axiom
+  And how is Church’s principle of extensionality for propositions
+  a special case of it? what is the principle?
 
-- 對於 所有[小]空間的空間 U 這個集合 [常稱爲 universe]
-  其元素 A B 爲[小]空間
-  我們指定其等詞爲 A B 之間存在雙射
-  這就是 univalence axiom
+## Univalent foundations
 
-- p : A B U id 即 在 U 中 A B 之間有路 p
-  即 p : A =U= B
-  定義爲
-  A B 之間存在雙射
+> Isomorphic things can be identified!
 
-- 其合理性可考慮如下
-  觀察古典的 同倫等價[homotopy equivalent] 這個概念
-  在類型論中的變化
-  兩個空間 X Y 同倫等價 當爲判定二者相等之等詞
-  即有
-  a : (X -> Y)
-  b : (Y -> X)
-  因爲 a b 只是對 連續函數的編碼
-  所以 此時 在編碼意義上 同倫等價的條件就成了
-  a b 和 X id 相等
-  b a 和 Y id 相等
-  X Y 同倫等價的條件 就被轉化爲了雙射存在
+Mathematicians are of course used to
+identifying isomorphic structures in practice,
+but they generally do so by “abuse of notation”,
+or some other informal device, knowing that
+the objects involved are not “really” identical.
+But in this new foundational scheme,
+such structures can be formally identified,
+in the logical sense that every property or construction
+involving one also applies to the other.
+Indeed, the identification is now made explicit,
+and properties and constructions
+can be systematically transported along it.
+Moreover, the different ways in which
+such identifications may be made,
+themselves form a structure
+that one can (and should!) take into account.
 
-- 在編程的時候
-  ua [denotes univalence axiom]
-  可以把 A B 之間的雙射 bi : A B exist-bijection?
-  轉化成 兩個空間 A B 相等的證明 f ua : A B U id
-  而 transport 可以把這樣一個證明轉化爲
-  相等元素在 任何語境下的代換
-  f ua context transport : A context -> B context
-
-- 引入此公理的動機
-  是爲了在形式體系的規範下
-  證明 homotopy theory 中的定理時
-  能夠 更簡練 更接近非形式數學
-
-## 記 bishop 如是說
-
-- 要定義一個集合
-  首先 要說明如何構造這個集合中的元素
-  其次 要說明如何判斷這個集合中的兩個元素相等
-
-- 看來 hott 就是 bishop 之誡 的實踐
-  univalence axiom 只不過是
-  對於某個特殊的集合 強調 bishop 之誡 而已
-
-- 那麼
-  在設計程序語言的時候
-  我們先考慮如何把 bishop bishop 之誡
-  實現爲語言的核心性狀
-  也就是說
-  每個類型都要配以基本等詞
-  而 type 這個類型的等詞就是[小]類型之間的雙射
-  注意
-  保持等詞的類型之間的操作纔稱函數
-
-- 要把 quotient type 做爲核心性狀
-  可以通過改變 一個類型的基本等詞
-  來構造新的類型
+- **Xie:** TODO The above should be explained by formal definitions
+  `Fiber`, `Singleton`, `Equivalence` ...
+  specially the last sentence about
+  "different ways in which such identifications may be made",
+  is this only about higher inductive types? or NOT only?
 
 ## 記 hott 計算模型的缺失
 
