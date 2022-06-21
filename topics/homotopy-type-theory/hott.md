@@ -148,6 +148,9 @@ that one can (and should!) take into account.
   "different ways in which such identifications may be made",
   is this only about higher inductive types? or NOT only?
 
+  - Inlining the definitions of `Fiber` and `Singleton` to `Equivalence`
+    is interesting even with out higher inductive types?
+
 ## 記 hott 計算模型的缺失
 
 - hott 之缺失計算模型
