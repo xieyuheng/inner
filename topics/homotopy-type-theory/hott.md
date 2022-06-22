@@ -241,39 +241,92 @@ datatype Torus2 {
 }
 ```
 
-Notes:
-- See [warp and weft](https://en.wikipedia.org/wiki/Warp_and_weft)
+- **Xie:** See [warp and weft](https://en.wikipedia.org/wiki/Warp_and_weft)
   for the naming of edges in `Torus2`.
 
-## 記 算數的分級
+- **Xie:** 关于算數的分級。
 
-注意，`Nat` 就是以 inductive type 的方式定義的。
+  注意，`Nat` 就是以 inductive type 的方式定義的。
 
-而且，由 `Nat` 擴展而來的 `Integer` 與 `Sphere1` 等價，
-所以說 _算數的分級_ 也許可以在這種遞歸定義中考慮，
-也就是說，這種遞歸定義給出有趣的代數結構
-也許可以用以給出新的「算數」從而用以研究 _算數的分級_，
-而他們給出的幾何直覺可以幫助我們理解 _算數的分級_。
+  而且，由 `Nat` 擴展而來的 `Integer` 與 `Sphere1` 等價，
+  所以說 _算數的分級_ 也許可以在這種遞歸定義中考慮，
+  也就是說，這種遞歸定義給出有趣的代數結構
+  也許可以用以給出新的「算數」從而用以研究 _算數的分級_，
+  而他們給出的幾何直覺可以幫助我們理解 _算數的分級_。
 
 ## Sets in univalent foundations
 
-野心是 代替 集合論 做爲當前數學基礎的地位
+We have claimed that univalent foundations can eventually serve as a
+foundation for “all” of mathematics, but so far we have discussed
+only homotopy theory. Of course, there are many specific examples of
+the use of type theory without the new homotopy type theory features
+to formalize mathematics.
 
-但是
-想要恢復集合論 就要用到 完全離散的空間
-加上空間 A 的離散性的證明之後
-a : A 就可以被解釋爲 a 屬於集合 A 了
+But the traditional view is that mathematics is founded on set the-
+ory, in the sense that all mathematical objects and constructions can be
+coded into a theory such as Zermelo–Fraenkel set theory (ZF). However,
+it is well-established by now that for most mathematics outside of set
+theory proper, the intricate hierarchical membership structure of sets in
+ZF is really unnecessary: a more “structural” theory, such as Lawvere’s
+_Elementary Theory of the Category of Sets_ [Law05], suffices.
+
+- **Xie:** TODO Learn about Lawvere’s _Elementary Theory of the Category of Sets_.
+
+In univalent foundations, the basic objects are “homotopy types”
+rather than sets, but we can define a class of types which behave like
+sets. Ho- motopically, these can be thought of as spaces in which
+every connected component is contractible, i.e. those which are
+homotopy equivalent to a discrete space. It is a theorem that the
+category of such “sets” satisfies Lawvere’s axioms (or related
+ones, depending on the details of the the- ory). Thus, any sort of
+mathematics that can be represented in an theory like _Elementary
+Theory of the Category of Sets_ (which, experience suggests, is
+essentially all of mathematics) can equally well be represented in
+univalent foundations.
 
 ## Informal type theory
 
-語言設計上 想要貼近傳統的數學語言
+One objective of the present work is to develop an informal style of
+doing mathematics in univalent foundations that is at once rigorous
+and precise, but is also closer to the language and style of
+presentation of everyday mathematics.
 
 ## Constructivity
 
-proof relevance
-according to which
-mathematical statements, and even their proofs
-become first-class mathematical objects
+One of the most striking differences between classical foundations and
+type theory is the idea of proof relevance, according to which
+mathematical statements, and even their proofs, become first-class
+mathematical objects.
+
+In type theory, we represent mathematical statements by types, which
+can be regarded simultaneously as both mathematical constructions and
+mathematical assertions, a conception also known as propositions as
+types. Accordingly, we can regard a term `a: A` as both an element of
+the type `A` (or in homotopy type theory, a point of the space `A`),
+and at the same time, a proof of the proposition `A`.
+
+The logic of propositions-as-types is flexible and supports many
+variations, such as using only a subclass of types to represent
+propositions. In homotopy type theory, there are natural such
+subclasses arising from the fact that the system of all types, just
+like spaces in classical homotopy theory, is “stratified” according
+to the dimensions in which their higher homotopy structure exists or
+collapses. In particular, Voevodsky has found a purely type-theoretic
+definition of homotopy n-types, corresponding to spaces with no
+nontrivial homotopy information above dimension n. (The 0-types are
+the “sets” mentioned previously as satisfying Lawvere’s axioms.)
+Moreover, with higher inductive types, we can universally “truncate”
+a type into an n-type; in classical homotopy theory this would be its
+nth Postnikov section. Particularly important for logic is the case of
+homotopy (−1)-types, which we call _mere propositions_. Classically,
+every (−1)-type is empty or contractible; we interpret these
+possibilities as the truth values “false” and “true” respectively.
+
+- **Xie:** Is it true that
+  the _mere propositions_ will be
+  defined as `Singleton` in formalization?
+
+TODO Discussion of _axiom of choice_ and the _law of excluded middle_.
 
 # 1 type theory
 
