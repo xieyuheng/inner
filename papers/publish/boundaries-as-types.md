@@ -183,7 +183,7 @@ The generators can also be parameterized, thus infinity many,
 ```cicada
 datatype Circle {
   base: Circle
-  loop: endpoints { base base }
+  loop: endpoints { base -base }
 }
 ```
 
@@ -196,8 +196,8 @@ datatype Sphere {
   south: Sphere
   middle: Sphere
   north: Sphere
-  south_long: endpoints { south middle }
-  north_long: endpoints { middle north }
+  south_long: endpoints { south -middle }
+  north_long: endpoints { middle -north }
   disk: polygon {
     south_long north_long -north_long -south_long
   }
@@ -207,8 +207,8 @@ datatype Sphere {
 ```cicada
 datatype Torus {
   origin: Torus
-  toro: endpoints { origin origin }
-  polo: endpoints { origin origin }
+  toro: endpoints { origin -origin }
+  polo: endpoints { origin -origin }
   spoke: polygon { toro polo -toro -polo }
 }
 ```
@@ -216,8 +216,8 @@ datatype Torus {
 ```cicada
 datatype KleinBottle {
   origin: KleinBottle
-  toro: endpoints { origin origin }
-  cross: endpoints { origin origin }
+  toro: endpoints { origin -origin }
+  cross: endpoints { origin -origin }
   disk: polygon { toro cross -toro cross  }
 }
 ```
@@ -226,8 +226,8 @@ datatype KleinBottle {
 datatype ProjectivePlane {
   start: ProjectivePlane
   end: ProjectivePlane
-  left_rim: endpoints { start end }
-  right_rim: endpoints { end start }
+  left_rim: endpoints { start -end }
+  right_rim: endpoints { end -start }
   disk: polygon { left_rim right_rim left_rim right_rim }
 }
 ```
@@ -238,25 +238,25 @@ datatype ProjectivePlane {
 check path (Torus) {
   toro toro toro polo
 }: endpoints (Torus) {
-  origin origin
+  origin -origin
 }
 
 check path (Torus) {
   toro
 }: endpoints (Torus) {
-  origin origin
+  origin -origin
 }
 
 check path (Torus) {
   relf(origin)
 }: endpoints (Torus) {
-  origin origin
+  origin -origin
 }
 
 check path (Torus) {
   toro relf(origin)
 }: endpoints (Torus) {
-  origin origin
+  origin -origin
 }
 ```
 
@@ -267,9 +267,9 @@ check path (Torus) {
 ```cicada
 datatype Torus3 {
   o: Torus3
-  a: endpoints { o o }
-  b: endpoints { o o }
-  c: endpoints { o o }
+  a: endpoints { o -o }
+  b: endpoints { o -o }
+  c: endpoints { o -o }
   ap: polygon { c b -c -b }
   bp: polygon { a c -a -c }
   cp: polygon { b a -b -a }
@@ -325,13 +325,13 @@ For `n >= 2`, `Pi(n)` is abelian.
 ```cicada
 datatype S1 {
   base: S1
-  rim: endpoints { base base }
+  rim: endpoints { base -base }
 }
 
 datatype S2 {
   south: S2
   north: S2
-  meridian: endpoints { south north }
+  meridian: endpoints { south -north }
   disk: polygon { meridian -meridian }
 }
 
@@ -426,8 +426,7 @@ boundary(
 => TODO
 
 endpoints (Pair(Circle, Circle)) {
-  cons(base, base)
-  cons(base, base)
+  cons(base, base) -cons(base, base)
 }
 ```
 

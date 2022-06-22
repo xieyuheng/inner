@@ -151,70 +151,90 @@ that one can (and should!) take into account.
   - Inlining the definitions of `Fiber` and `Singleton` to `Equivalence`
     is interesting even with out higher inductive types?
 
-## 記 hott 計算模型的缺失
+## Higher inductive type
 
-- hott 之缺失計算模型
-  就像是 bishop 的 constructive analysis 之缺失計算模型
+One of the classical advantages of type theory is
+its simple and effective techniques
+for working with inductively defined structures.
 
-- univalence axiom 捕捉了能夠在有限步驟內能夠完成的所有計算
-  但是 某些計算並沒有高效的算法實現
-  正如 bishop 聲明自己的 constructive analysis
-  考慮的是所有有限步驟內能夠完成的計算的一般理論
-  而暫時忽略效率問題
+- **Xie:** Cell complexes are also inductively defined.
 
-- 我想
-  可以像在 constructivism 中論證 中值定理 缺乏構造性 一般
-  我也可以構建一個計算模型
-  來用反證法論證
-  univalence axiom
-  還有 bishop 的實數
-  都 缺乏有效可計算性
-  我可以證明
-  如果 univalence axiom 和 constructive analysis
-  具有可以被估計的時間複雜度
-  那麼
-  關於時間複雜的的很多疑難問題 就都將被解決了
+- **Xie:** TODO Does the type theory syntax describe general cell complexes,
+  or only a special subset of cell complexes?
 
-## TODO Higher inductive type
+  If a subset, which subset?
 
-這裏指的是如下對幾何體的定義，
-類似 CW complexes 中幾何體的生成法。
+- **Xie:** TODO For inductive types, we have inductive principle
+  (eliminators and their lambda encoding).
 
-```
-datatype 1-sphere {
-  base: 1-sphere
+  What is the inductive principle for higher inductive types?
 
-  loop: base == base
+Moreover, this is only the tip of the iceberg,
+many abstract constructions from homotopy theory, such as:
 
-  loop: Equal(1-sphere, base, base)
+- homotopy colimits,
+- suspensions,
+- Postnikov towers,
+- localization,
+- completion,
+- spectrification,
+
+can alsobe expressed as higher inductive types.
+Many of these are classically constructed
+using Quillen’s “small object argument”,
+which can be regarded as a finite way of algorithmically
+describing an infinite CW complex presentation of a space,
+just as “zero and successor” is a finite algorithmic
+description of the infinite set of natural numbers.
+
+Spaces produced by the small object argument
+are infamously complicated and difficult to understand;
+the type-theoretic approach is potentially much simpler,
+bypassing the need for any explicit construction
+by giving direct access to the appropriate “induction principle”.
+Thus, the combination of univalence and higher inductive types
+suggests the possibility of a revolution,
+of sorts, in the practice of homotopy theory.
+
+```cicada
+datatype Sphere1 {
+  base: Sphere1
+  loop: endpoints { base -base }
+  check loop: Equal(Sphere1, base, base)
 }
 
-datatype 2-sphere {
-  base: 2-sphere
+datatype Sphere2 {
+  south: Sphere2
+  north: Sphere2
+  meridian: endpoints { south -north }
+  disk: polygon { meridian -meridian }
+}
 
-  2-loop: (base == base) == (base == base)
-
-  2-loop: Equal(
-    Type, // This might be wrong.
-    Equal(2-sphere, base, base),
-    Equal(2-sphere, base, base),
+datatype Sphere2 {
+  base: Sphere2
+  check refl(base): endpoints { base -base }
+  loop2: polygon { refl(base) -refl(base) }
+  check loop2: Equal(
+    endpoints { base -base },
+    refl(base),
+    refl(base),
   )
 }
 
-datatype 2-torus {
-  base: 2-torus
+datatype Torus2 {
+  base: Torus2
+  toro: endpoints { base -base }
+  polo: endpoints { base -base }
+  spoke: polygon { toro polo -toro -polo }
+}
 
-  warp: (base == base)
-  weft: (base == base)
-
-  2-loop: (weft warp == warp weft)
-
-  warp: Equal(2-torus, base, base)
-  weft: Equal(2-torus, base, base)
-
-  2-loop: Equal(
-    2-torus,
-    // Suppose we have a syntax for composing path.
+datatype Torus2 {
+  base: Torus2
+  warp: endpoints { base -base }
+  weft: endpoints { base -base }
+  loop2: polygon { weft warp -weft -warp }
+  check loop2: Equal(
+    endpoints { base -base },
     path { weft, warp },
     path { warp, weft },
   )
@@ -223,21 +243,13 @@ datatype 2-torus {
 
 ## 記 算數的分級
 
-注意
-natural 就是以 inductive type 的方式定義的
+注意，`Nat` 就是以 inductive type 的方式定義的。
 
-```
-natural
-  base: natural
-  succ: natural -> natural
-```
-
-而且
-由 natural 擴展而來的 integer 與 1-sphere 等價
-所以說 算數的分級 也許可以在 這種遞歸定義中考慮
-也就是說 這種遞歸定義 給出有趣的代數結構
-也許 可以用以給出新的 '算數' 從而用以研究 算數的分級
-而 他們給出的幾何直覺 可以幫助我們理解 算數的分級
+而且，由 `Nat` 擴展而來的 `Integer` 與 `Sphere1` 等價，
+所以說 _算數的分級_ 也許可以在這種遞歸定義中考慮，
+也就是說，這種遞歸定義給出有趣的代數結構
+也許可以用以給出新的「算數」從而用以研究 _算數的分級_，
+而他們給出的幾何直覺可以幫助我們理解 _算數的分級_。
 
 ## sets in univalent foundations
 
