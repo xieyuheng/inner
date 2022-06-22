@@ -14,6 +14,13 @@ keywords: [Type theory, Algebraic topology]
 - example algebra of 2-dimension
 - example algebra of 3-dimension -- for `Pi(3)(S(2))`
 
+- about implementation:
+
+  if we think about how to implement higher order incidence relation
+  by objects and pointers,
+  and we store pointers at both direction at every order,
+  the implementation will be a graph model of cell-complex.
+
 - product space -- and boundary operator over it
 
 - review old notes
