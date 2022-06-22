@@ -241,6 +241,10 @@ datatype Torus2 {
 }
 ```
 
+Notes:
+- See [warp and weft](https://en.wikipedia.org/wiki/Warp_and_weft)
+  for the naming of edges in `Torus2`.
+
 ## 記 算數的分級
 
 注意，`Nat` 就是以 inductive type 的方式定義的。
