@@ -251,7 +251,7 @@ datatype Torus2 {
 也許可以用以給出新的「算數」從而用以研究 _算數的分級_，
 而他們給出的幾何直覺可以幫助我們理解 _算數的分級_。
 
-## sets in univalent foundations
+## Sets in univalent foundations
 
 野心是 代替 集合論 做爲當前數學基礎的地位
 
@@ -260,11 +260,11 @@ datatype Torus2 {
 加上空間 A 的離散性的證明之後
 a : A 就可以被解釋爲 a 屬於集合 A 了
 
-## informal type theory
+## Informal type theory
 
 語言設計上 想要貼近傳統的數學語言
 
-## constructivity
+## Constructivity
 
 proof relevance
 according to which
