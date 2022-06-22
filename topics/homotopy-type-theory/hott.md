@@ -328,6 +328,14 @@ possibilities as the truth values “false” and “true” respectively.
 
 TODO Discussion of _axiom of choice_ and the _law of excluded middle_.
 
+## Open problems
+
+TODO
+
+## How to read this book
+
+TODO
+
 # 1 type theory
 
 ## type theory versus set theory
