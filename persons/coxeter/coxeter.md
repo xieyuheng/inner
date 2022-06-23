@@ -2,6 +2,8 @@
 title: Coxeter
 ---
 
+[ [WIKIPEDIA](https://en.wikipedia.org/wiki/Harold_Scott_MacDonald_Coxeter) ]
+
 # (1938) the fifty-nine icosahedra
 
 # (1942) non-euclidean-geometry
