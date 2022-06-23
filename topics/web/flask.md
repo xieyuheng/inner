@@ -1,5 +1,5 @@
 ---
-title: flask
+title: Flask
 ---
 
 # getting start
