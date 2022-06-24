@@ -19,7 +19,7 @@ author: Xie Yuheng
     - https://en.wikipedia.org/wiki/Data_set
   - Read peirce's "Illustrations of the Logic of Science (1877–1878)"
     which has paper about probability
-    - `revised-theory-of-knowledge.md` -- read peirce's paper again
+    - `notes/00039-revised-theory-of-knowledge.md` -- read peirce's paper again
 
 ------
 
