@@ -42,7 +42,10 @@ author: Xie Yuheng
 
 ------
 
+- Re-study homotopy theory and algebraic topology.
+  - Study algebraic geometry, by which Hopf fibration are defined.
 - Review notes about homotopy type theory.
+
 - V.V.'s did not use `Iso` in his univalent axiom,
   but changed the definition of `Iso`!
   - If `Iso <-> isEquiv` why we can not use `Iso` to define univalent axiom?
@@ -51,24 +54,6 @@ author: Xie Yuheng
   - Revisit [Curry–Howard correspondence](https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence)
     every now and then.
     - ~/persons/de-bruijn/on-the-roles-of-types-in-mathematics.pdf
-- Design a c-family syntax for cell-complex.
-  - When we view cell-complex as a generalization of graph theory
-    to higher dimension, we are generalizing directed graph theory,
-    and the direction of an edge comes from the symmetry of its boundary -- two endpoints.
-    For a face, the symmetry of its boundary -- a polygon, is its direction.
-  - Graph theory has many models, we have many ways
-    to interpret nodes and edges and their relations,
-    but how to interpret faces and bodies of cell-complex?
-    - A face as a relation between relations?
-      an equivalence between equivalences?
-    - Can we interpret a face and its "direction"
-      as the one-value-ness of a relation?
-      - Maybe not, because a face should be relation of relations,
-        instead of relation of a multiple arguments, right?
-    - The direction of an edge as many interpretions
-      - (A) movement
-      - (B) causal relation
-      how to generalize this to face and body?
 
 ------
 
@@ -144,9 +129,9 @@ A language on which categorical semantics would fail.
 
 To view a type system as a homomorphism between monoids.
 
-## Cell Complex
+## Boundaries as Types
 
-Higher dimensional algebraic structure.
+Cell-complex and higher dimensional algebraic structure.
 
 > To find an algebraic definition of infinity groupoids
 > that would satisfy the Grothendieck correspondence.
@@ -155,9 +140,26 @@ The only way of visualizing topological space is to give it geometry,
 and one way of introducing geometry is using _algebraic geometry_.
 
 - **[problem]** From the point of view of type theory,
-  how lowdim project different from HOTT?
+  how "Boundaries as Types" project different from HoTT?
 
 - **[problem]** Can we use such implementation in geometric modeling?
+
+- **[problem]** Graph theory has many models,
+  we have many ways to interpret nodes and edges and their relations,
+  but how to interpret faces and bodies of cell-complex?
+
+  Think about things can not be modeled by graph:
+
+  - A face as a relation between relations.
+  - A face as an equivalence between equivalences.
+  - A face as a relation of a multiple arguments.
+
+  The direction of an edge as many interpretions
+
+  - Movement.
+  - Causal relation.
+
+  how to generalize this to face and body?
 
 ## Causal Inference Engine
 
