@@ -46,6 +46,21 @@ modeling clay?
 
 # 1 What Is a Manifold?
 
+Manifolds are around us in many guises.
+
+As observers in a three-dimensional world, we are most familiar
+with two-manifolds: the surface of a ball or a doughnut or a pretzel,
+the surface of a house or a tree or a volleyball net...
+
+Three-manifolds may seem harder to understand at first. But
+as actors and movers in a three-dimensional world, we can learn to
+imagine them as alternate universes.
+
+- **Xie:** We can build computer games
+  to help us imagine the alternate universes.
+
+TODO
+
 # 2 Hyperbolic Geometry and Its Friends
 
 # 3 Geometric Manifolds
