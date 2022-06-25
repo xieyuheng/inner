@@ -6,6 +6,7 @@ year: 1997
 ---
 
 # Reader's Advisory
+
 The style of exposition in this book is somewhat experimental.
 
 The most efficient logical order for a subject is usually different
