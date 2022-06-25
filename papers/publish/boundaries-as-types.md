@@ -5,57 +5,87 @@ date: 2022-05-31
 keywords: [Type theory, Algebraic topology]
 ---
 
+# Introduction
+
+## The Plan
+
+A group or a groupoid when defined by a presentation,
+can be viewed as a vertexes, edges and faces,
+where edges are the generators,
+faces are the relations between generators,
+i.e. 2-dimension cell-complex.
+
+And the reverse is also true,
+given a 2-dimension cell-complex,
+one can view it as a groupoid.
+
+If a 2-dimension cell-complex is a manifold,
+we can transform it into an equivalent cell-complex
+which is built from a fundamental polygon,
+and the study of such groupoid can be reduce to
+the study of fundamental group of fundamental polygon.
+
+The presentations of 2-dimension manifold
+as fundamental group can be normalized,
+to give a complete classification
+of 2-dimension manifolds.
+
+Can we generalize the above to 3-dimension?
+
+Given a 3-dimension cell-complex,
+we can view it as a presentation
+of a 2-dimensional algebraic structure,
+where elements are faces and relations are bodies.
+
+**Conjecture:**
+If a 3-dimension cell-complex is a manifold,
+we can transform it into an equivalent cell-complex
+which is built from a fundamental polyhedron,
+but the study of the 2-dimensional algebraic structure
+can not be reduced to the study of a fundamental group,
+because a lot of information in the fundamental polyhedron
+will be lost if we insist on reduce to group.
+
+But the algebraic structure of fundamental polyhedron
+is still easier to study than that of general cell-complex.
+
+**Conjecture:**
+The presentations of 3-dimension manifold
+as algebraic structure of fundamental polyhedron
+can be normalized to given a complete classification
+of 3-dimension manifolds.
+
+## About Algebraic Structures
+
+The elements of a groupoid,
+when viewed as a cell-complex,
+are (undirected) paths built from edges.
+
+A 3-dimensional cell-complex,
+when viewed as an algebraic structure,
+its elements are surfaces built from faces.
+
+For edges, there are only two ways to do composition
+(this is where the inverse of groupoid elements come from),
+but for faces, there are more n ways to do composition,
+where n is the number of edges of the a face.
+
+New syntactic devices are needed to represent
+the compositions easily,
+the new syntactic devices are about
+placeholder variables and unification,
+just like the logic variables and unification of relations
+in logic programming languages like Prolog.
+This syntactic difficulty is the main reason,
+why higher dimensional algebraic structures
+are not well studied in the past.
+
 # TODO
 
 - example algebra of 1-dimension
+
   - take presentation of group as example
   - take interesting groups as example (fundamental polygon)
-
-  A group or a groupoid when defined by a presentation,
-  can be viewed as a vertexes, edges and faces,
-  where edges are the generators,
-  faces are the relations between generators,
-  i.e. 2-dimension cell-complex.
-
-  And the reverse is also true,
-  given a 2-dimension cell-complex,
-  one can view it as a groupoid.
-
-  If a 2-dimension cell-complex is a manifold,
-  we can transform it into an equivalent cell-complex
-  which is built from a fundamental polygon,
-  and the study of such groupoid can be reduce to
-  the study of fundamental group of fundamental polygon.
-
-  The presentations of 2-dimension manifold
-  as fundamental group can be normalized,
-  to give a complete classification
-  of 2-dimension manifolds.
-
-  Can we generalize the above to 3-dimension?
-
-  Given a 3-dimension cell-complex,
-  we can view it as a presentation
-  of a 2-dimensional algebraic structure,
-  where elements are faces and relations are bodies.
-
-  [conjecture]
-  If a 3-dimension cell-complex is a manifold,
-  we can transform it into an equivalent cell-complex
-  which is built from a fundamental polyhedron,
-  but the study of the 2-dimensional algebraic structure
-  can not be reduced to the study of a fundamental group,
-  because a lot of information in the fundamental polyhedron
-  will be lost if we insist on reduce to group.
-
-  But the algebraic structure of fundamental polyhedron
-  is still easier to study than that of general cell-complex.
-
-  [conjecture]
-  The presentations of 3-dimension manifold
-  as algebraic structure of fundamental polyhedron
-  can be normalized to given a complete classification
-  of 3-dimension manifolds.
 
 - example algebra of 2-dimension
 - example algebra of 3-dimension -- for `Pi(3)(S(2))`
