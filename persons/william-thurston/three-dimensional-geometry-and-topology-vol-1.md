@@ -20,6 +20,30 @@ passively behind the author: in the faith that machinery being
 developed will eventually be used to manufacture something worth the
 effort.
 
+Mathematics is a huge and highly interconnected structure. It is not
+linear. As one reads mathematics, one needs to have an active mind,
+asking questions, forming mental connections between the current topic
+and other ideas from other contexts, so as to develop a sense of the
+structure not just familiarity with a particular tour through the
+structure.
+
+The style of exposition in this book is intended to encourage the
+reader to pause, to look around and to explore. I hope you will take
+the time to construct your own mental images, to form connections
+with other areas of mathematics and intcrconnections withiu the
+subject itself.
+
+Think of a tinkertoy set. The key is the pieces which have holes.
+allowing you to join them with rods to form interesting and highly
+interconnected structures. No intcresting mathematical topic is
+self-contained or complete: rather, it is full of "holes," or natural
+questions and ideas not readily answe.red by techniques native to the
+topic. These holes often give rise to commotions between the given
+topic and other topics that seem at first unrelated. Mathematical
+exposition often conceals these holes, for the sake of smoothness, but
+what good is a tinkertoy set if the holes are all filled in with
+modeling clay?
+
 # 1 What Is a Manifold?
 
 # 2 Hyperbolic Geometry and Its Friends
