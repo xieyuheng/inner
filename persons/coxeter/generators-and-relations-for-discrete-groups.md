@@ -1,7 +1,7 @@
 ---
-title: generators and relations for discrete groups
-author: coxeter
-date: 1957
+title: Generators and relations for discrete groups
+author: Coxeter
+year: 1957
 ---
 
 # 1 cyclic, dicydic and metacyclic groups
