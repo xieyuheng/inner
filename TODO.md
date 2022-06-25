@@ -44,11 +44,13 @@ author: Xie Yuheng
 
 - Re-study homotopy theory and algebraic topology.
   - Study algebraic geometry, by which Hopf fibration are defined.
+
 - Review notes about homotopy type theory.
 
 - V.V.'s did not use `Iso` in his univalent axiom,
   but changed the definition of `Iso`!
   - If `Iso <-> isEquiv` why we can not use `Iso` to define univalent axiom?
+
 - Understand homotopy type theory with cell-complex as basic objects.
   - Interpret type theory by cell-complex (model of a logic system)
   - Revisit [Curry–Howard correspondence](https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence)
