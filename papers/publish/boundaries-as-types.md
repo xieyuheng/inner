@@ -13,32 +13,32 @@ A group or a groupoid when defined by a presentation,
 can be viewed as a vertexes, edges and faces,
 where edges are the generators,
 faces are the relations between generators,
-i.e. 2-dimension cell-complex.
+i.e. a 2-dimensional cell-complex.
 
 And the reverse is also true,
-given a 2-dimension cell-complex,
+given a 2-dimensional cell-complex,
 one can view it as a groupoid.
 
-If a 2-dimension cell-complex is a manifold,
+If a 2-dimensional cell-complex is a manifold,
 we can transform it into an equivalent cell-complex
 which is built from a fundamental polygon,
 and the study of such groupoid can be reduce to
 the study of fundamental group of fundamental polygon.
 
-The presentations of 2-dimension manifold
+The presentations of 2-dimensional manifold
 as fundamental group can be normalized,
 to give a complete classification
 of 2-dimension manifolds.
 
 Can we generalize the above to 3-dimension?
 
-Given a 3-dimension cell-complex,
+Given a 3-dimensional cell-complex,
 we can view it as a presentation
 of a 2-dimensional algebraic structure,
 where elements are faces and relations are bodies.
 
 **Conjecture:**
-If a 3-dimension cell-complex is a manifold,
+If a 3-dimensional cell-complex is a manifold,
 we can transform it into an equivalent cell-complex
 which is built from a fundamental polyhedron,
 but the study of the 2-dimensional algebraic structure
@@ -50,10 +50,10 @@ But the algebraic structure of fundamental polyhedron
 is still easier to study than that of general cell-complex.
 
 **Conjecture:**
-The presentations of 3-dimension manifold
+The presentations of 3-dimensional manifold
 as algebraic structure of fundamental polyhedron
 can be normalized to given a complete classification
-of 3-dimension manifolds.
+of 3-dimensional manifolds.
 
 ## About Algebraic Structures
 
