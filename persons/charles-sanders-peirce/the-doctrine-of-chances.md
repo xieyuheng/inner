@@ -103,6 +103,25 @@ is the same as to inquire how much the given facts are worth, considered
 as evidence to prove the possible fact. Thus the problem of
 probabilities is simply the general problem of logic.
 
+- **Xie:** The vaguely saying of probability
+  "the degrees in which the evidence leans toward one or the other",
+  is the same as the **Bayesian interpretation of probability**,
+  according to which _probabilities encode degrees of belief about events in the world_
+  and data are used to strengthen, update, or weaken those degrees of belief.
+
+- **Xie:** The probability we want to determine
+  is of the form:
+
+  ```
+  P(evidence -> possible_fact)
+  ```
+
+  or written as conditional probability:
+
+  ```
+  P(possible_fact | evidence)
+  ```
+
 Probability is a continuous quantity, so that great advantages may be
 expected from this mode of studying logic. Some writers have gone so far
 as to maintain that, by means of the calculus of chances, every solid
@@ -192,6 +211,10 @@ less; and if we continue long enough, the ratio will approximate toward
 a fixed limit. We may, therefore, define the probability of a mode of
 argument as the proportion of cases in which it carries truth with it.
 
+- **Xie:** At the beginning probability is vaguely defined as "degrees of belief",
+  but now, the "real and sensible" definition of probability
+  is the frequency of data (the observation).
+
 The inference from the premise, A, to the conclusion, B, depends, as we
 have seen, on the guiding principle, that if a fact of the class A is
 true, a fact of the class B is true. The probability consists of the
@@ -211,6 +234,10 @@ not, so as to give rise to an _inherent_ chance in regard to its
 occurrence.[37] It is quite clear to me that some of the worst and most
 persistent errors in the use of the doctrine of chances have arisen from
 this vicious mode of expression.[38]
+
+- **Xie:** We should use conditional probability as the primitive,
+  instead of viewing probability of event as primitive,
+  because conditional probability is the probability of inference.
 
 # IV
 
