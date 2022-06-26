@@ -343,6 +343,10 @@ bounds. He who would not sacrifice his own soul to save the whole world,
 is, as it seems to me, illogical in all his inferences, collectively.
 Logic is rooted in the social principle.
 
+- **Xie:** Maybe "social principle" is not needed,
+  and it is sufficient for man to be able to imagine
+  many occurrences of his inference.
+
 To be logical men should not be selfish; and, in point of fact, they are
 not so selfish as they are thought. The willful prosecution of one’s
 desires is a different thing from selfishness. The miser is not selfish;
