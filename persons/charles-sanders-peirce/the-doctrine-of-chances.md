@@ -428,7 +428,8 @@ consideration. They may all be given here, since they are extremely
 simple, and it is sometimes convenient to know something of the
 elementary rules of calculation of chances.
 
-RULE I. _Direct Calculation._—To calculate, directly, any relative
+**RULE I. Direct Calculation.**
+To calculate, directly, any relative
 number, say for instance the number of passengers in the average trip of
 a street-car, we must proceed as follows:
 
@@ -456,7 +457,8 @@ the appropriate conclusions are also true. In other words, it is the
 number of cases of the occurrence of both the events A and B, divided by
 the total number of cases of the occurrence of the event A.
 
-RULE II. _Addition of Relative Numbers._—Given two relative numbers
+**RULE II. Addition of Relative Numbers.**
+Given two relative numbers
 having the same correlate, say the number of _x_’s per _y_, and the
 number of _z_’s per _y_; it is required to find the number of _x_’s and
 _z_’s together per _y_. If there is nothing which is at once an _x_ and
@@ -478,7 +480,8 @@ these two probabilities is the probability that if A then either B or C,
 so long as there is no event which belongs at once to the two classes B
 and C.
 
-RULE III. _Multiplication of Relative Numbers._—Suppose that we have
+**RULE III. Multiplication of Relative Numbers.**
+Suppose that we have
 given the relative number of _x_’s per _y_; also the relative number of
 _z_’s per _x_ of _y_; or, to take a concrete example, suppose that we
 have given, first, the average number of children in families living in
@@ -495,6 +498,35 @@ in a child’s head. In the second place, the rule would not be true if
 different children could share the same teeth, the average number of
 children’s teeth being in that case evidently something different from
 the average number of teeth belonging to a child.
+
+- **Xie:**
+  The following conditional probability equation:
+
+  ```
+  P(Z, X | Y) = P(Z | Y, X) * P(X | Y)
+  ```
+
+  is much like the composition of functions:
+
+  ```
+  P(Y -> Z, X) = P(Y, X -> Z) * P(Y -> X)
+  ```
+
+  Note that the following equation does not hold in general:
+
+  ```
+  P(A -> C) = P(A -> B) * P(B -> C)
+  ```
+
+  because
+
+  ```
+  P(A, C) / P(A) !=
+  P(A, B) / P(A) *
+  P(B, C) / P(B)
+  ```
+
+  unless `A, B, C` are mutually independent.
 
 In order to apply this rule to probabilities, we must proceed as
 follows: Suppose that we have given the probability that the conclusion
