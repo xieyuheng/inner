@@ -463,9 +463,7 @@ even in that case, a higher universe would contain us, in regard to
 whose arrangements the conception of probability could have no
 applicability.
 
-
 # IV
-
 
 We have examined the problem proposed by the conceptualists, which,
 translated into clear language, is this: Given a synthetic conclusion;
@@ -525,7 +523,7 @@ age the proportion was only 0.4977. The difference between these is
 0.0105, or about one in a 100. Can this be attributed to chance, or
 would the difference always exist among a great number of white and
 colored children under like circumstances? Here _p_ may be taken at 1/2;
-hence 2_p_(1-_p_) is also 1/2. The number of white children counted was
+hence `2 p (1-p)` is also 1/2. The number of white children counted was
 near 1,000,000; hence the fraction whose square-root is to be taken is
 about 1/2000000. The root is about 1/1400, and this multiplied by 0.477
 gives about 0.0003 as the probable error in the ratio of males among the
@@ -572,9 +570,7 @@ the present case the inference is that pretty much all Cretans are
 liars, and whether there may not be a special improbability in that I do
 not know.
 
-
 # V
-
 
 Late in the last century, Immanuel Kant asked the question, “How are
 synthetical judgments _a priori_ possible?” By synthetical judgments he
