@@ -8,6 +8,25 @@ title: Judea Pearl
 
 # Talks
 
+## Judea Pearl, 2011 ACM Turing Award Recipient
+
+[ [VIDEO](https://youtu.be/JQr0LFvR1OE?t=1630) ]
+
+**Interviewer:** What is your advice to young scientist?
+One of the things, it sounds like "Rebel".
+
+**Judea:** But not rebel in the contrarian sense.
+Rebel if you don't understand,
+and insist on understanding it your way, ok?
+and until you understand it your way,
+don't take a standard answer as an answer
+if it doesn't satisfy the question you have in mind.
+
+It is exactly what Galileo told us
+-- "I respect Aristotle,
+but I wouldn't take his authority
+as a replacement for my curiosity."
+
 ## (2010) Judea Pearl Tribute Symposium: Causality
 
 [ [VIDEO](https://www.youtube.com/watch?v=78EmmdfOcI8) ]
