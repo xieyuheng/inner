@@ -527,6 +527,10 @@ that a variable may attain, we will call that variable a _random variable_.
   // mutually exclusive-ness by one-value-ness
   ```
 
+  This view is the same as finite sample space,
+  where different outcomes (elements of sample space)
+  are mutually exclusive.
+
 - **Xie:** With random variables we can also:
 
   - compute expectation.
