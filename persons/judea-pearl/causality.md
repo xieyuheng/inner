@@ -507,12 +507,27 @@ that a variable may attain, we will call that variable a _random variable_.
     the center of mass of a set of points
     which can be represented as a set of vectors.
 
-  Random variables allow us to ask for the probability of a value,
+- **Xie:** Random variables allow us to ask for the probability of a value,
   for the inverse of a value is a set of outcomes in the sample space,
   and the probability of values are mutually exclusive
   because of function's one-value-ness.
 
-  With random variables we can also:
+  Thus, one implementation of random variable
+  is to view it as a finite set of element,
+  on which `P` is defined,
+  and the axioms hold:
+
+  ```
+  forall (a: X) P(a) > 0
+
+  sum (a: X) P(a) = 1
+
+  forall (a: X, b: X)
+  P(a or b) = P(a) + P(b)
+  // mutually exclusive-ness by one-value-ness
+  ```
+
+- **Xie:** With random variables we can also:
 
   - compute expectation.
   - compose function to the random variables.
@@ -547,11 +562,16 @@ We define the _conditional mean_ of `X`, given `Y = y`, as
 E(X | y) = sum (x: X) x * P(x | y)
 ```
 
-The expectation of a function `g: X -> F`
+The expectation of a function `g: X -> F` (`F` for "field")
 
 ```(1.22)
 E(g(X)) = sum (x: X) g(x) * P(x)
 ```
+
+- **Xie:** The type of `E` should be `(X -> F) -> F`.
+
+  - `E(g(X))` should be `E(g)`.
+  - `E(X)` should be `E(id(X))`.
 
 Take `g(x) = square(x - E(X))`, we get _variance_:
 
