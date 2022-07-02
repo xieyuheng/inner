@@ -19,22 +19,21 @@ for all testing clearly depends on classification.
   > Logicians study how to classify arguments,
   > or say, logicians study how people argue.
 
-  This kind of clear definitions
-  must come from the principles in
-  "How to Make Our Ideas Clear?",
+  This kind of clear definitions must come from the principles in
+  ["How to Make Our Ideas Clear?"](./2-how-to-make-our-ideas-clear.md),
   we should study it to get the same skill.
 
 The classes of the logicians are defined by
 certain typical forms called syllogisms.
 For example, the syllogism called _Barbara_ is as follows:
 
-                              S is M; M is P:
-                              Hence, S is P.
+    S is M; M is P:
+    Hence, S is P.
 
 Or, to put words for letters—
 
-                  Enoch and Elijah were men; all men die:
-                  Hence, Enoch and Elijah must have died.
+    Enoch and Elijah were men; all men die:
+    Hence, Enoch and Elijah must have died.
 
 The “is P” of the logicians stands for any verb, active or neuter. It is
 capable of strict proof (with which, however, I will not trouble the
@@ -43,11 +42,11 @@ under the condition that the _is_ shall mean “_is_ for the purposes of
 the argument” or “is represented by.” Thus, an induction will appear in
 this form something like this:
 
-These beans are two-thirds white;
+    These beans are two-thirds white;
 
-But, the beans in this bag are (represented by) these beans;
+    But, the beans in this bag are (represented by) these beans;
 
-∴ The beans in the bag are two-thirds white.
+    ∴ The beans in the bag are two-thirds white.
 
 But, because all inference may be reduced in some way to _Barbara_, it
 does not follow that this is the most appropriate form in which to
@@ -60,13 +59,25 @@ _Barbara_ is, in fact, nothing but the application of a rule. The
 so-called major premise lays down this rule; as, for example, _All men
 are mortal._ The other or minor premise states a case under the rule;
 as, _Enoch was a man._ The conclusion applies the rule to the case and
-states the result: _Enoch is mortal._ All deduction is of this
-character; it is merely the application of general rules to particular
-cases. Sometimes this is not very evident, as in the following:
+states the result: _Enoch is mortal._
 
-                 All quadrangles are figures,
-                 But no triangle is a quadrangle;
-                 Therefore, some figures are not triangles.
+All deduction is of this character; it is merely
+the application of general rules to particular cases.
+
+- **Xie:** Think about proofs-as-programs and propositions-as-types,
+
+  > the application of general rules to particular cases.
+
+  means application of function to argument,
+  or composition of functions;
+  and the phrase "particular cases"
+  can even capture subtype relation.
+
+Sometimes this is not very evident, as in the following:
+
+    All quadrangles are figures,
+    But no triangle is a quadrangle;
+    Therefore, some figures are not triangles.
 
 But here the reasoning is really this:
 
