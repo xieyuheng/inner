@@ -12,6 +12,19 @@ author: Xie Yuheng
 
 # TODO
 
+- In constructive logic, a proof is an evidence about the truth of a proposition,
+  in probability theory, we also have evidences, just the evidence are not decisive,
+  but change we degree of belief of the proposition.
+
+  We need a calculus of evidences.
+
+  - Is Bayes networks a calculus of evidences?
+    - We might observe more `{ A: ..., B: ... }` or `{ A: ... }`.
+    - Think about Polya's book, it seems has more complicate evidences.
+
+  - A database of evidences.
+    - Like the PLANNER language?
+
 - Read "Causality -- Models, Reasoning and Inference".
   - How tools and API are needed in statistics and probability theory?
     - `mitocw/18-650-statistics-for-applications--fall-2016`
@@ -20,9 +33,6 @@ author: Xie Yuheng
   - Find a interesting dataset to practice.
     - https://datasetsearch.research.google.com
     - https://en.wikipedia.org/wiki/Data_set
-  - Read peirce's "Illustrations of the Logic of Science (1877–1878)"
-    which has paper about probability
-    - `notes/00039-revised-theory-of-knowledge.md` -- read peirce's paper again
 
 ------
 
