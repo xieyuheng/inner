@@ -64,7 +64,7 @@ states the result: _Enoch is mortal._
 All deduction is of this character; it is merely
 the application of general rules to particular cases.
 
-- **Xie:** Think about proofs-as-programs and propositions-as-types,
+- **Xie:** Think about [proofs-as-programs and propositions-as-types](https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence),
 
   > the application of general rules to particular cases.
 
