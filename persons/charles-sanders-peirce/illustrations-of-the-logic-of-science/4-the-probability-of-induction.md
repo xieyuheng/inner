@@ -1,6 +1,5 @@
 ---
 title: The probability of induction
-subtitle: The fourth paper of "Illustrations of the logic of science"
 author: Charles Sanders Peirce
 year: 1878
 ---

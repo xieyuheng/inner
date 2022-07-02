@@ -1,6 +1,5 @@
 ---
 title: The doctrine of chances
-subtitle: The third paper of "Illustrations of the logic of science"
 author: Charles Sanders Peirce
 year: 1878
 ---
