@@ -6,10 +6,27 @@ year: 1878
 
 # I
 
-The chief business of the logician is to classify arguments; for all
-testing clearly depends on classification. The classes of the logicians
-are defined by certain typical forms called syllogisms. For example, the
-syllogism called _Barbara_ is as follows:
+The chief business of the logician is to classify arguments;
+for all testing clearly depends on classification.
+
+- **Xie:** In textbooks of nowadays, influenced by model theoy, we say
+
+  > Logic studies the relation between syntax and its models.
+
+  But Peirce's definition is much more practical
+  more direct more general and more powerful.
+
+  > Logicians study how to classify arguments,
+  > or say, logicians study how people argue.
+
+  This kind of clear definitions
+  must come from the principles in
+  "How to Make Our Ideas Clear?",
+  we should study it to get the same skill.
+
+The classes of the logicians are defined by
+certain typical forms called syllogisms.
+For example, the syllogism called _Barbara_ is as follows:
 
                               S is M; M is P:
                               Hence, S is P.
@@ -173,9 +190,7 @@ be so. But there is no difference except one of degree between such an
 inference and that by which we are led to believe that we remember the
 occurrences of yesterday from our feeling as if we did so.
 
-
 # II
-
 
 Besides the way just pointed out of inverting a deductive syllogism to
 produce an induction or hypothesis, there is another. If from the truth
@@ -292,9 +307,7 @@ premise probable. At least, this is only true, as we have seen in a
 former paper, when the word probable is used in one sense in the
 antecedent and in another in the consequent.
 
-
 # III
-
 
 A certain anonymous writing is upon a torn piece of paper. It is
 suspected that the author is a certain person. His desk, to which only
@@ -361,15 +374,15 @@ hypothesis should lead to a probable result, the following rules must be
 followed:
 
 1. The hypothesis should be distinctly put as a question, before making
-the observations which are to test its truth. In other words, we must
-try to see what the result of predictions from the hypothesis will be.
+   the observations which are to test its truth. In other words, we must
+   try to see what the result of predictions from the hypothesis will be.
 
 2. The respect in regard to which the resemblances are noted must be
-taken at random. We must not take a particular kind of predictions for
-which the hypothesis is known to be good.
+   taken at random. We must not take a particular kind of predictions for
+   which the hypothesis is known to be good.
 
 3. The failures as well as the successes of the predictions must be
-honestly noted. The whole proceeding must be fair and unbiased.
+   honestly noted. The whole proceeding must be fair and unbiased.
 
 Some persons fancy that bias and counter-bias are favorable to the
 extraction of truth—that hot and partisan debate is the way to
@@ -398,9 +411,7 @@ neglected. Such are, for example, Mr. Mill’s four methods. Nevertheless,
 in the total neglect of these, inductions and hypotheses may and
 sometimes do attain the greatest force.
 
-
 # IV
-
 
 Classifications in all cases perfectly satisfactory hardly exist. Even
 in regard to the great distinction between explicative and ampliative
@@ -568,9 +579,7 @@ such an extension explains some fact which we can and do observe. Here,
 then, we have a kind of mixture of induction and hypothesis supporting
 one another; and of this kind are most of the theories of physics.
 
-
 # V
-
 
 That synthetic inferences may be divided into induction and hypothesis
 in the manner here proposed,[53] admits of no question. The utility and
