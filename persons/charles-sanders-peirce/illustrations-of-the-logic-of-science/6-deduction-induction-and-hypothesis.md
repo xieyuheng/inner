@@ -193,6 +193,10 @@ be so. But there is no difference except one of degree between such an
 inference and that by which we are led to believe that we remember the
 occurrences of yesterday from our feeling as if we did so.
 
+- **Xie:** It would be interesting if the above analogy is
+  not only on the aspect of the degree of belief,
+  but also on the aspect of the structure of the belief.
+
 # II
 
 Besides the way just pointed out of inverting a deductive syllogism to
