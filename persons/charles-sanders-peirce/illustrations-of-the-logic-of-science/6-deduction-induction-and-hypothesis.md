@@ -205,30 +205,24 @@ of a certain premise the truth of a certain conclusion would necessarily
 follow, then from the falsity of the conclusion the falsity of the
 premise would follow. Thus, take the following syllogism in _Barbara_:
 
-                 Rule. - All men are mortal.
-
-                 Case. - Enoch and Elijah were men.
-
-                 ∴ Result. - Enoch and Elijah were mortal.
+    Rule. - All men are mortal.
+    Case. - Enoch and Elijah were men.
+    ∴ Result. - Enoch and Elijah were mortal.
 
 Now, a person who denies this result may admit the rule, and, in that
 case, he must deny the case. Thus:
 
-           Denial of Result. - Enoch and Elijah were not mortal.
-
-           Rule. - All men are mortal.
-
-           ∴ Denial of Case. - Enoch and Elijah were not men.
+    Denial of Result. - Enoch and Elijah were not mortal.
+    Rule. - All men are mortal.
+    ∴ Denial of Case. - Enoch and Elijah were not men.
 
 This kind of syllogism is called _Baroco_, which is the typical mood of
 the second figure. On the other hand, the person who denies the result
 may admit the case, and in that case he must deny the rule. Thus:
 
-         Denial of the Result. - Enoch and Elijah were not mortal.
-
-         Case. - Enoch and Elijah were men.
-
-         ∴ Denial of the Rule. - Some men are not mortal.
+    Denial of the Result. - Enoch and Elijah were not mortal.
+    Case. - Enoch and Elijah were men.
+    ∴ Denial of the Rule. - Some men are not mortal.
 
 This kind of syllogism is called _Bocardo_, which is the typical mood of
 the third figure.
@@ -240,34 +234,27 @@ a particular case. But if, instead of setting out as we have here done
 with a necessary deduction in _Barbara_, we take a probable deduction of
 similar form, the indirect moods which we shall obtain will be—
 
-                    Corresponding to _Baroco_, an hypothesis;
-               and, Corresponding to _Bocardo_, an induction.
+         Corresponding to _Baroco_, an hypothesis;
+    and, Corresponding to _Bocardo_, an induction.
 
 For example, let us begin with this probable deduction in _Barbara_:
 
-       Rule. - Most of the beans in this bag are white.
-
-       Case. - This handful of beans are from this bag.
-
-       ∴ Result. - Probably, most of this handful of beans are white.
+    Rule. - Most of the beans in this bag are white.
+    Case. - This handful of beans are from this bag.
+    ∴ Result. - Probably, most of this handful of beans are white.
 
 Now, deny the result, but accept the rule:
 
     Denial of Result. - Few beans of this handful are white.
-
     Rule. - Most beans in this bag are white.
-
-    ∴ Denial of Case. - Probably, these beans were taken from another
-       bag.
+    ∴ Denial of Case. - Probably, these beans were taken from another bag.
 
 This is an hypothetical inference. Next, deny the result, but accept the
 case:
 
-       Denial of Result. - Few beans of this handful are white.
-
-       Case. - These beans came from this bag.
-
-       ∴ Denial of Rule. - Probably, few beans in the bag are white.
+    Denial of Result. - Few beans of this handful are white.
+    Case. - These beans came from this bag.
+    ∴ Denial of Rule. - Probably, few beans in the bag are white.
 
 This is an induction.
 
