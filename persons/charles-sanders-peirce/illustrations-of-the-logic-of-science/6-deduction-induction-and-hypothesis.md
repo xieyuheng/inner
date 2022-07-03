@@ -43,9 +43,7 @@ the argument” or “is represented by.” Thus, an induction will appear in
 this form something like this:
 
     These beans are two-thirds white;
-
     But, the beans in this bag are (represented by) these beans;
-
     ∴ The beans in the bag are two-thirds white.
 
 But, because all inference may be reduced in some way to _Barbara_, it
@@ -64,7 +62,7 @@ states the result: _Enoch is mortal._
 All deduction is of this character; it is merely
 the application of general rules to particular cases.
 
-- **Xie:** Think about [proofs-as-programs and propositions-as-types](https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence),
+- **Xie:** Think about [proofs-as-programs and propositions-as-types](https://en.wikipedia.org/wiki/Curry-Howard_correspondence),
 
   > the application of general rules to particular cases.
 
@@ -81,26 +79,27 @@ Sometimes this is not very evident, as in the following:
 
 But here the reasoning is really this:
 
-             _Rule._—Every quadrangle is other than a triangle.
-             _Case._—Some figures are quadrangles.
-             _Result._—Some figures are not triangles.
+    Rule. - Every quadrangle is other than a triangle.
+    Case. - Some figures are quadrangles.
+    Result. - Some figures are not triangles.
 
-Inductive or synthetic reasoning, being something more than the mere
-application of a general rule to a particular case, can never be reduced
-to this form.
+Inductive or synthetic [v.s. analytic] reasoning,
+being something more than the mere application
+of a general rule to a particular case,
+can never be reduced to this form.
 
 If, from a bag of beans of which we know that 2/3 are white, we take one
 at random, it is a deductive inference that this bean is probably white,
 the probability being 2/3. We have, in effect, the following syllogism:
 
-_Rule._—The beans in this bag are 2/3 white.
+    Rule. - The beans in this bag are 2/3 white.
 
-_Case._—This bean has been drawn in such a way that in the long run the
-relative number of white beans so drawn would be equal to the relative
-number in the bag.
+    Case. - This bean has been drawn in such a way that
+    in the long run the relative number of white beans so drawn
+    would be equal to the relative number in the bag.
 
-_Result._—This bean has been drawn in such a way that in the long run it
-would turn out white 2/3 of the time.
+    Result. - This bean has been drawn in such a way that
+    in the long run it would turn out white 2/3 of the time.
 
 If instead of drawing one bean we draw a handful at random and conclude
 that about 2/3 of the handful are probably white, the reasoning is of
@@ -112,19 +111,18 @@ are concluding a rule from the observation of a result in a certain
 case. This is particularly clear when all the handful turn out one
 color. The induction then is:
 
-              These beans were in this bag.———————-
-              These beans are white.—————————
-              All the beans in the bag were white.             | |
-                                                             | | |
-          Which is but an inversion of the deductive         | | |
-            syllogism.                                       | | |
-                                                             | | |
-              _Rule._—All the beans in the bag were white.—+ | |
-              _Case._—These beans were in the bag.——————+-+
-              _Result._—These beans are white.————————+
+    Case. - These beans were in the bag.
+    Result. - These beans are white.
+    Rule. - All the beans in the bag were white.
 
-So that induction is the inference of the _rule_ from the _case_ and
-_result_.
+Which is but an inversion of the deductive syllogism.
+
+    Rule. - All the beans in the bag were white.
+    Case. - These beans were in the bag.
+    Result. - These beans are white.
+
+So that induction is the inference of the _rule_
+from the _case_ and _result_.
 
 But this is not the only way of inverting a deductive syllogism so as to
 produce a synthetic inference. Suppose I enter a room and there find a
@@ -135,37 +133,31 @@ as a fair guess, that this handful was taken out of that bag. This sort
 of inference is called _making an hypothesis_.[52] It is the inference
 of a _case_ from a _rule_ and _result_. We have, then—
 
-               DEDUCTION.
+**DEDUCTION.**
 
-               _Rule._—All the beans from this bag are white.
+    Rule. - All the beans from this bag are white.
+    Case. - These beans are from this bag.
+    ∴ Result. - These beans are white.
 
-               _Case._—These beans are from this bag.
+**INDUCTION.**
 
-               ∴ _Result._—These beans are white.
+    Case. - These beans are from this bag.
+    Result. - These beans are white.
+    ∴ Rule. - All the beans from this bag are white.
 
-              INDUCTION.
+**HYPOTHESIS.**
 
-              _Case._—These beans are from this bag.
-
-              _Result._—These beans are white.
-
-              ∴ _Rule._—All the beans from this bag are white.
-
-               HYPOTHESIS.
-
-               _Rule._—All the beans from this bag are white.
-
-               _Result._—These beans are white.
-
-               ∴ _Case._—These beans are from this bag.
+    Rule. - All the beans from this bag are white.
+    Result. - These beans are white.
+    ∴ Case. - These beans are from this bag.
 
 We, accordingly, classify all inference as follows:
 
-                              Inference.
-                        /———————^———————-|
-             Deductive or Analytic.       Synthetic.
-                                        /————^—————|
-                                   Induction.      Hypothesis.
+                     Inference.
+               /———————^———————-|
+    Deductive or Analytic.       Synthetic.
+                               /————^—————|
+                          Induction.      Hypothesis.
 
 Induction is where we generalize from a number of cases of which
 something is true, and infer that the same thing is true of a whole
@@ -209,30 +201,30 @@ of a certain premise the truth of a certain conclusion would necessarily
 follow, then from the falsity of the conclusion the falsity of the
 premise would follow. Thus, take the following syllogism in _Barbara_:
 
-                 _Rule._—All men are mortal.
+                 Rule. - All men are mortal.
 
-                 _Case._—Enoch and Elijah were men.
+                 Case. - Enoch and Elijah were men.
 
-                 ∴ _Result._—Enoch and Elijah were mortal.
+                 ∴ Result. - Enoch and Elijah were mortal.
 
 Now, a person who denies this result may admit the rule, and, in that
 case, he must deny the case. Thus:
 
-           _Denial of Result._—Enoch and Elijah were not mortal.
+           Denial of Result. - Enoch and Elijah were not mortal.
 
-           _Rule._—All men are mortal.
+           Rule. - All men are mortal.
 
-           ∴ _Denial of Case._—Enoch and Elijah were not men.
+           ∴ Denial of Case. - Enoch and Elijah were not men.
 
 This kind of syllogism is called _Baroco_, which is the typical mood of
 the second figure. On the other hand, the person who denies the result
 may admit the case, and in that case he must deny the rule. Thus:
 
-         _Denial of the Result._—Enoch and Elijah were not mortal.
+         Denial of the Result. - Enoch and Elijah were not mortal.
 
-         _Case._—Enoch and Elijah were men.
+         Case. - Enoch and Elijah were men.
 
-         ∴ _Denial of the Rule._—Some men are not mortal.
+         ∴ Denial of the Rule. - Some men are not mortal.
 
 This kind of syllogism is called _Bocardo_, which is the typical mood of
 the third figure.
@@ -249,29 +241,29 @@ similar form, the indirect moods which we shall obtain will be—
 
 For example, let us begin with this probable deduction in _Barbara_:
 
-       _Rule._—Most of the beans in this bag are white.
+       Rule. - Most of the beans in this bag are white.
 
-       _Case._—This handful of beans are from this bag.
+       Case. - This handful of beans are from this bag.
 
-       ∴ _Result._—Probably, most of this handful of beans are white.
+       ∴ Result. - Probably, most of this handful of beans are white.
 
 Now, deny the result, but accept the rule:
 
-    _Denial of Result._—Few beans of this handful are white.
+    Denial of Result. - Few beans of this handful are white.
 
-    _Rule._—Most beans in this bag are white.
+    Rule. - Most beans in this bag are white.
 
-    ∴ _Denial of Case._—Probably, these beans were taken from another
+    ∴ Denial of Case. - Probably, these beans were taken from another
        bag.
 
 This is an hypothetical inference. Next, deny the result, but accept the
 case:
 
-       _Denial of Result._—Few beans of this handful are white.
+       Denial of Result. - Few beans of this handful are white.
 
-       _Case._—These beans came from this bag.
+       Case. - These beans came from this bag.
 
-       ∴ _Denial of Rule._—Probably, few beans in the bag are white.
+       ∴ Denial of Rule. - Probably, few beans in the bag are white.
 
 This is an induction.
 
@@ -452,7 +444,7 @@ temperature. It may be, for instance, that _v_ being the relative
 volume, and _t_ the temperature, a few observations examined indicate a
 relation of the form—
 
-                     _v_ = 1 + _at_ + _bt_^2 + _ct_^3.
+    v = 1 + a*t + b*t^2 + c*t^3.
 
 Upon examining observations at other temperatures taken at random, this
 idea is confirmed; and we draw the inductive conclusion that all
@@ -678,16 +670,16 @@ promise him that he will find his advantage in it, in various ways.
 
 # Footnotes
 
-- Footnote 51:
+- Footnote [51]:
 
   _Popular Science Monthly_, August, 1878.
 
-- Footnote 52:
+- Footnote [52]:
 
-  [Later Pierce called it _presumptive inference_. See Baldwin’s
-  _Dictionary_ art. _Probable Inference_.]
+  [Later Pierce called it _presumptive inference_.
+  See Baldwin’s _Dictionary_ art. _Probable Inference_.]
 
-- Footnote 53:
+- Footnote [53]:
 
   This division was first made in a course of lectures by the author
   before the Lowell Institute, Boston, in 1866, and was printed in the

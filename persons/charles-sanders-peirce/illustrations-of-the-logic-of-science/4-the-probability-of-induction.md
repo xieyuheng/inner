@@ -659,21 +659,21 @@ one of the facts with which logic sets out.
 
 # Footnotes
 
-- Footnote 40:
+- Footnote [40]:
 
   _Popular Science Monthly_, April, 1878.
 
-- Footnote 41:
+- Footnote [41]:
 
   Strictly we should need an infinite series of numbers each depending
   on the probable error of the last.
 
-- Footnote 42:
+- Footnote [42]:
 
   “Perfect indecision, belief inclining neither way, an even chance.”—DE
   MORGAN, p. 182.
 
-- Footnote 43:
+- Footnote [43]:
 
   _Logique_. The same is true, according to him, of every performance of
   a differentiation, but not of integration. He does not tell us whether

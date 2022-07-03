@@ -609,17 +609,17 @@ studies of the logic of science.
 
 # Footnotes
 
-- Footnote 34:
+- Footnote [34]:
 
   _Popular Science Monthly_, March, 1878.
 
-- Footnote 35:
+- Footnote [35]:
 
   [Later, pp. 170 ff. and 215 ff., it is shown that continuity is also
   at the basis of mathematical generalization. See also article on
   Synechism in _Baldwin’s Dictionary of Philosophy_.]
 
-- Footnote 36:
+- Footnote [36]:
 
   This mode of thought is so familiarly associated with all exact
   numerical consideration, that the phrase appropriate to it is imitated
@@ -628,11 +628,11 @@ studies of the logic of science.
   of “the average man,” when they simply mean _most men_, and have no
   idea of striking an average.
 
-- Footnote 37:
+- Footnote [37]:
 
   _Cf._ pp. 179 ff. below.
 
-- Footnote 38:
+- Footnote [38]:
 
   The conception of probability here set forth is substantially that
   first developed by Mr. Venn, in his _Logic of Chance_. Of course, a
@@ -640,7 +640,7 @@ studies of the logic of science.
   to make it perfectly clear, and to him belongs the credit of first
   doing this.
 
-- Footnote 39:
+- Footnote [39]:
 
   I do not here admit an absolutely unknowable. Evidence could show us
   what would probably be the case after any given lapse of time; and
