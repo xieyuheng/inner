@@ -12,6 +12,9 @@ author: Xie Yuheng
 
 # TODO
 
+- Read "Patterns of Plausible Inference"
+  - use pomodoro to read it in one nigh
+
 - In constructive logic, a proof is an evidence about the truth of a proposition,
   in probability theory, we also have evidences, just the evidence are not decisive,
   but only changing we degree of belief of the proposition.
