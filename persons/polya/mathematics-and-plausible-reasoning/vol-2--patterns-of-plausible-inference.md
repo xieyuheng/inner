@@ -274,16 +274,244 @@ TODO
 
 features in this pattern of reasoning: it is
 
-- impersonal,
-- universal,
-- self-sufficient,
-- definitive.
+- (1) impersonal
+- (2) universal
+- (3) self-sufficient
+- (4) definitive
 
-  - **Xie:** "definitive" means classical or non-constructive,
-    where we do not care about which prove is given.
+(4) **definitive**
+If the premises are unquestionably certain,
+we can "detach" the conclusion from the syllogism.
+That is, if you know for certain both that "A implies B"
+and that "B is false", you may forget about these premises
+and just keep the conclusion "A is false"
+as your definitive mental possession.
+
+- **Xie:** "definitive" means classical or non-constructive,
+  where we do not care about which prove (which evidence) is given.
 
 ## 3. A corresponding aspect of plausible reasoning
 
-TODO
+(4) **definitive**
+We cannot "detach" the conclusion of our pattern of plausible reasoning.
+"A is rendered more credible" is meaningless without reference to the
+premises that explain by which circumstances it was rendered so. Referred
+to the premises, the plausible conclusion makes perfectly good sense and is
+perfectly reasonable, but it may diminish in value as time goes by, although
+the premises remain intact. The plausible conclusion may be very valuable
+in the moment when it emerges, but the advance of knowledge is likely to
+depreciate it: its importance is only momentary, transitory, ephemeral,
+_provisional_.
+
+- **Xie:** This case is the same as constructive logic,
+  in the sense that which evidence is used in a proof,
+  matters to the conclusion.
+
+  But constructive logic is not _provisional_,
+  while in plausible reasoning time matters,
+  like in database where data can be changed or deleted in time.
+
+From the outset it was clear that the two kinds of reasoning have
+different tasks. From the outset they appeared very different:
+demonstrative reasoning as definite, final, "machinelike"; and
+plausible reasoning as vague, provisional, specifically "human." Now
+we may see the difference a little more distinctly. In opposition to
+demonstrative inference, plausible inference leaves indeterminate a
+highly relevant point: the "strength" or the "weight" of the
+conclusion. This weight may depend not only on clarified grounds such
+as those expressed in the premises, but also on unclarified
+unexpressed grounds somewhere in the background of the person who
+draws the conclusion. A person has a background, a machine has not.
+Indeed, you can build a machine to draw demonstrative conclusions for
+you, but I think you can never build a machine that will draw
+plausible inferences.
+
+- **Xie:** A person has a background,
+  a machine might also has a background -- a causal graph.
+
+  And "building a machine that can draw plausible inferences"
+  is exactly our goal.
+
+## 4. An aspect of the calculus of probability -- Difficulties
+
+... And so it is not excluded a priori that
+the same mathematical theory may serve two purposes.
+Perhaps, we may use the calculus of probability
+both in describing random mass phenomena
+and in systematizing our rules of plausible inference.
+
+- **Xie:** It seems the "random mass phenomena" is about frequency and data,
+  while plausible inference is Bayesian inference.
+
+First, there is an ambiguity to avoid.
+The symbol `P(A)` should represent the credibility of `A`,
+or the strength of the evidence for the conjecture `A`.
+Such evidence is strong if it is convincing.
+It is convincing if it convinces somebody.
+Yet we did not say whom it should convince:
+you, or me, or Mr. Smith, or Mrs. Jones, or whom?
+The strength of the evidence could also be conceived _impersonally_.
+If we conceive it so, the degree of belief that you or me
+or any other person may happen to have in a proposed conjecture is irrelevant,
+but what matters is the _degree of reasonable belief_
+that anyone of us _should_ have.
+We did not say yet, and we have still to decide,
+in what exact sense we should use the term "credibility of A"
+and the corresponding symbol `P(A)`.
+
+There is another difficulty. The magnitudes considered by the
+physicists such as "mass," "electric charge," or "reaction velocity"
+have an operational definition; the physicist knows exactly which
+operations he has to perform if he wishes to ascertain the magnitude
+of an electric charge, for example. The definition of "long range
+relative frequency," although in some way less distinct than that of
+an electric charge, is still operational; it suggests definite
+operations that we can undertake to obtain an approximate numerical
+value of such a frequency. The trouble with the concept of the
+"credibility of a conjecture" is that we do not know any operational
+definition for it.
+
+We have still to give a suitable interpretation of the term
+"credibility of the conjecture A," and to the corresponding symbol
+`P(A)`. This interpretation must be such that the difficulty of an
+operational definition does not interfere with it. Moreover, and this
+is the main thing, this interpretation should enable us to view the
+rules of plausible reasoning systematically and realistically.
+
+## 5. An aspect of the calculus of probability -- An attempt
+
+## 6. Examining a consequence
+
+- **Xie:** `P(A | B)` is interpreted as
+  the degree of credence (belief)
+  that he [Mr. Anybody] could place in `A`
+  if he knew that `B` is true.
+
+```
+P(A) * P(B | A) = P(B) * P(A | B)
+```
+
+if `A -> B` is true, we know `P(B | A) = 1`, and
+
+```
+P(A) = P(B) * P(A | B)
+```
+
+- **Xie:** The interpretion of `P(B | A)` as `P(A -> B)` is profound,
+  because classically we have `P(A -> B) = P(or(~A, B))`,
+  thus we know this interpretion is not classical.
+
+If Mr. Anybody proves `B`, we will have `P(A) = P(A | B)`.
+
+- **Xie:** `P(A)` will be updated to `P(A | B)` by proving `B` is true.
+
+If `B` is still uncertain,
+
+```
+0 < P(B) < 1
+```
+
+we know
+
+```
+P(A) < P(A | B)
+```
+
+Suppose `P(A | B)` is fixed,
+and `P(A)` is assigned the expression `P(B) * P(A | B)`,
+
+```
+P(A) := P(B) * P(A | B)
+```
+
+We know that if we prove `B`, `P(A)` will increase to `P(A | B)`.
+
+- **Xie:** Here we see that Judea's idea about
+  "viewing equation as assignment" is very useful.
+
+Now, `P(A)` and `P(A | B)` represent the credibility of `A`
+before and after the proof of `B`, respectively.
+Therefore the above inequality is the formal expression
+of a principle with which we met so often:
+
+> the verification of a consequence renders a conjecture more credible.
+>
+> -- cf. sect. 12.1
+
+Suppose `P(A)` is fixed,
+and we have the following assignment
+
+```
+P(A | B) := P(A) / P(B)
+```
+
+How does the variation of `P(B)`
+influences the weight of the evidence resulting
+resulting from the verification of the consequence `B`?
+
+Let us pay due attention to the extreme cases.
+Since `B` is a consequence of `A`,
+`B` is certainly true when `A` is true,
+and so `P(B)`, the credibility of `B`,
+cannot be less than `P(A)`, the credibility of `A`.
+On the other hand no credibility can exceed certainty:
+`P(B)` cannot be greater than `1`. We have determined:
+
+```
+P(A) <= P(B) < 1
+```
+
+The lower bound is attained, when not only `A` implies `B`,
+but also `B` implies `A`,
+so that the two assertions `A` and `B` are equivalent,
+stand and fall together,
+in which case they are, of course, equally credible.
+The upper bound `1` cannot be really attained:
+if it were attained, `B` would be certain before investigation,
+and we have not included this case in our consideration.
+Yet the upper bound can be approached:
+`B` can be almost certain before examination.
+How does the evidence resulting from the verification of `B` change
+when `P(B)` varies between its extreme bounds?
+
+The evidence is stronger, when `P(A | B)`,
+the new confidence in `A`
+resulting from the verification of the consequence `B`, is greater.
+It is visible from the above assignment that
+
+```
+as P(B) decreases from 1 to P(A),
+P(A | B) increases from P(A) to 1.
+```
+
+This statement expresses in a new language a point
+that we have recognized before (sect. 12.3):
+
+> the increase of our confidence in a conjecture due to the verification
+> of one of its consequences varies inversely
+> as the credibility of the consequence before such verification.
+
+The more unexpected a consequence is,
+the more weight its verification carries.
+The verification of the most surprising consequence
+is the most convincing,
+whereas the verification of a consequence
+that we did not doubt much anyway (`P(B)` almost 1)
+has little value as evidence.
+
+- **Xie:** `P(A)` will be updated to `P(A | B)` by proving `B` is true,
+  and the increase of belief in this update,
+  depends on `P(B)` -- our belief of `B` before it is proved.
+
+- **Exercise:** We can use the same analysis to get:
+
+  ```
+  as P(B | ~A) decreases from 1 to 0,
+  P(A | B) increases from P(A) to 1.
+  ```
+
+  Where `P(B | ~A)` is our belief of
+  "given `A` is false, `B` is true" (cf. sect. 13.10),
+  and `P(A | B)` is still the update of `P(A)` after the verification of `B`.
 
 # Chapter 16. Plausible Reasoning in Invention and Instruction

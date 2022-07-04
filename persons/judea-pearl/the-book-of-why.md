@@ -2017,7 +2017,7 @@ In summary, I believe that the software package that can give a thinking
 machine the benefits of agency would consist of at least three parts:
 - a causal model of the world;
 - a causal model of its own software, however superficial;
-- and a memory that records how intents in its mind 
+- and a memory that records how intents in its mind
   correspond to events in the outside world.
 
 # Xie: After Notes
@@ -2032,7 +2032,7 @@ TODO How can we view problem solving and learning through causal lens?
   our play of "the game" must be about knowledge,
   thus about causality.
 
-TODO How can we view game theorythrough causal lens?
+TODO How can we view game theory through causal lens?
 
 - Do not forget that logic systems might have game semantics.
 

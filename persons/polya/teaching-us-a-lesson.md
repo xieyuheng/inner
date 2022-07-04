@@ -1,8 +1,8 @@
-# Teaching Us a Lesson
-
-------
-
-- Video: https://www.youtube.com/watch?v=h0gbw-Ur_do
+---
+title: Teaching Us a Lesson
+author: Polya
+video: "https://www.youtube.com/watch?v=h0gbw-Ur_do"
+---
 
 ------
 
