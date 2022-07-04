@@ -398,7 +398,26 @@ P(A) = P(B) * P(A | B)
 ```
 
 - **Xie:** The interpretion of `P(B | A)` as `P(A -> B)` is profound,
-  because classically we have `P(A -> B) = P(or(~A, B))`,
+  because classically we have `A -> B = or(and(~A, B))`,
+
+  We know
+
+  ```
+  P(B | A) = P(A, B) / P(A)
+  ```
+
+  and
+
+  ```
+  P(or(~A, B)) = P(A, B) + 1 - P(A)
+  ```
+
+  they are equal only when
+
+  ```
+  P(B | A) = P(A, B) / P(A) = 1
+  ```
+
   thus we know this interpretion is not classical.
 
 If Mr. Anybody proves `B`, we will have `P(A) = P(A | B)`.
