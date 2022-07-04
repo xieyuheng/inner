@@ -533,4 +533,8 @@ has little value as evidence.
   "given `A` is false, `B` is true" (cf. sect. 13.10),
   and `P(A | B)` is still the update of `P(A)` after the verification of `B`.
 
+## 7. Examining a possible ground
+
+TODO
+
 # Chapter 16. Plausible Reasoning in Invention and Instruction
