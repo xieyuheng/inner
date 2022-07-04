@@ -272,6 +272,18 @@ TODO
 
 ## 2. An aspect of demonstrative reasoning
 
+features in this pattern of reasoning: it is
+
+- impersonal,
+- universal,
+- self-sufficient,
+- definitive.
+
+  - **Xie:** "definitive" means classical or non-constructive,
+    where we do not care about which prove is given.
+
+## 3. A corresponding aspect of plausible reasoning
+
 TODO
 
 # Chapter 16. Plausible Reasoning in Invention and Instruction
