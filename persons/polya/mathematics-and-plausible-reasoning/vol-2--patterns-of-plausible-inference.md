@@ -17,7 +17,7 @@ The study of patterns of plausible reasoning is done in the manner of the natura
 
 Take one of Euler's conjecture, and Euler's verification of it, as an example.
 
-``` cicada
+```cicada
 function euler_s_conjecture(n: Nat): [
   x: Nat, p: Nat, _: Prime(p) |
   Equal(
@@ -233,12 +233,12 @@ Yet we do not know whether B is true or not. Now it seems that B is
 more accessible than A; for some reason or other we have the
 impression that we shall have better success with B than we had with
 A. Therefore, we switch to examining B. We work to answer the
-question: is B true or false?  Finally we succeed in answering
-it. *How does this answer influence our confidence in A?*
+question: is B true or false? Finally we succeed in answering
+it. _How does this answer influence our confidence in A?_
 
 That depends on the answer.
 
-*Demonstrative*
+_Demonstrative_
 
 ```
 A implies B
@@ -247,7 +247,7 @@ B false
 A false
 ```
 
-*Heuristic*
+_Heuristic_
 
 ```
 A implies B
@@ -267,5 +267,11 @@ TODO
 # Chapter 14. Chance, the Ever-present Rival Conjecture
 
 # Chapter 15. The Calculus of Probability and the Logic of Plausible Reasoning
+
+## 1. Rules of plausible reasoning?
+
+## 2. An aspect of demonstrative reasoning
+
+TODO
 
 # Chapter 16. Plausible Reasoning in Invention and Instruction

@@ -19,6 +19,8 @@ for all testing clearly depends on classification.
   > Logicians study how to classify arguments,
   > or say, logicians study how people argue.
 
+  For examples, Aristotle's logic and Polya's "Patterns of Plausible Inference".
+
   This kind of clear definitions must come from the principles in
   ["How to Make Our Ideas Clear?"](./2-how-to-make-our-ideas-clear.md),
   we should study it to get the same skill.
