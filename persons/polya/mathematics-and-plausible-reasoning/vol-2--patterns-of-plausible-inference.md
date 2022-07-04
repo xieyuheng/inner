@@ -537,4 +537,20 @@ has little value as evidence.
 
 TODO
 
+## 8. Examining a conflicting conjecture
+
+TODO
+
+## 9. Examining several consequences in succession
+
+TODO
+
+## 10. On circumstantial evidence
+
+TODO
+
+## Examples and comments on Chapter 15
+
+TODO
+
 # Chapter 16. Plausible Reasoning in Invention and Instruction
