@@ -14,14 +14,6 @@ author: Xie Yuheng
 
 - Read "Patterns of Plausible Inference"
 
-  - Use pomodoro to read it in one night.
-
-    - Remember the book saying on its cover?
-
-      > Open this book at night,
-      > after you finish this book,
-      > there will be sunrise.
-
 - In constructive logic, a proof is an evidence about the truth of a proposition,
   in probability theory, we also have evidences, just the evidence are not decisive,
   but only changing we degree of belief of the proposition.
