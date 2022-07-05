@@ -438,16 +438,45 @@ P(A) < P(A | B)
 ```
 
 Suppose `P(A | B)` is fixed,
-and `P(A)` is assigned the expression `P(B) * P(A | B)`,
+and `P(A)` varies according to `P(B)`.
 
 ```
-P(A) := P(B) * P(A | B)
+P(A) = P(B) * P(A | B)
 ```
 
 We know that if we prove `B`, `P(A)` will increase to `P(A | B)`.
 
-- **Xie:** Here we see that Judea's idea about
-  "viewing equation as assignment" is very useful.
+- **Xie:** Here is one way of understanding
+
+  > The verification of `B` updates our belief of `A` from `P(A)` to `P(A | B)`".
+
+  At the moment we verified `B`,
+  the following assignments happened one by one:
+
+  ```
+  P(A) := P(A | B) = P(A) / P(B)
+  P(B) := 1
+  ```
+
+  then, since `B` is verified,
+
+  ```
+  P(A | B) = P(A) / P(B) = P(A)
+  ```
+
+  it has no use of updating `P(A)` again.
+
+- **Xie:** Note that, it is not right to say
+
+  ```
+  P(A | B) = P(A) / P(B)
+  ```
+
+  is an assignment, the right assignment is
+
+  ```
+  P(A) := P(A | B)
+  ```
 
 Now, `P(A)` and `P(A | B)` represent the credibility of `A`
 before and after the proof of `B`, respectively.
@@ -459,10 +488,9 @@ of a principle with which we met so often:
 > -- cf. sect. 12.1
 
 Suppose `P(A)` is fixed,
-and we have the following assignment
 
 ```
-P(A | B) := P(A) / P(B)
+P(A | B) = P(A) / P(B)
 ```
 
 How does the variation of `P(B)`
@@ -523,7 +551,7 @@ has little value as evidence.
   and the increase of belief in this update,
   depends on `P(B)` -- our belief of `B` before it is proved.
 
-- **Exercise:** We can use the same analysis to get:
+- TODO We can use the same analysis to get:
 
   ```
   as P(B | ~A) decreases from 1 to 0,
@@ -536,9 +564,82 @@ has little value as evidence.
 
 ## 7. Examining a possible ground
 
+After the broad and cautious discussion in the foregoing section we
+can proceed a little faster in surveying similar situations.
+
+Here is such a situation: the aim of our research is a certain
+conjecture `A`. We notice a possible ground for `A`, that is, a
+proposition `B` from which `A` would follow:
+
+```
+B -> A
+```
+
+We start investigating `B`. If we succeeded in proving `B`, `A` would
+also be proved. Yet `B` turns out to be false. How does the disproof
+of `B` affect our confidence in `A`?
+
+From `B -> A`, we know
+
+```
+P(A | B) = 1
+```
+
 TODO
 
+and hence we see that
+
+```
+P(A | ~B) < P(A)
+```
+
+TODO
+
+- **Xie:** Is it possible to use the geometrical interpretion
+  to view the reasoning in this chapter?
+
+  Maybe for geometrical interpretion to be applicable,
+  the random variables must be viewed as
+  attributes or properties some objects.
+
+  What are these objects here?
+
+  Remember [Po-Shen Loh's Way of solving quadratic equations](https://www.poshenloh.com/quadratic)?
+
+  Where geometrical interpretion of intermedium expressions
+  can help us understand the problem in a very insightful way.
+
 ## 8. Examining a conflicting conjecture
+
+We consider now another situation:
+we examine two conflicting conjectures, `A` and `B`.
+When we say that `A` conflicts with `B` or
+
+```
+A is incompatible with B
+```
+
+we mean that the truth of one of them implies the falsity of the other. We
+are, in fact, primarily concerned with `A` and we have started investigating `B`
+because we thought that the investigation of `B` could shed some light on `A`.
+In fact, a proof of `B` would disprove `A`. Yet we succeeded in disproving `B`.
+How does this result affect our confidence in `A`?
+
+Let the calculus of probability give the answer. Let us begin by expressing
+in the language of this calculus that `A` and `B` are incompatible. This means
+in other words that `A` and `B` cannot both be true, and so
+
+```
+P(A, B) = 0
+```
+
+- **Xie:** Note that
+  "the truth of one of them implies the falsity of the other"
+  is not interpreted as
+
+  ```
+  (A -> ~B) and (B -> ~A)
+  ```
 
 TODO
 
