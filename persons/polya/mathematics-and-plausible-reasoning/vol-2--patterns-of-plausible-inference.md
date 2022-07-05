@@ -1,5 +1,6 @@
 ---
 title: Patterns of Plausible Inference
+subtitle: Mathematics and Plausible Reasoning, Vol 2
 author: Polya
 year: 1954
 ---
