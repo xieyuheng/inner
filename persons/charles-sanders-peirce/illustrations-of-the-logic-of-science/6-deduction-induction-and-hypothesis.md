@@ -199,6 +199,43 @@ occurrences of yesterday from our feeling as if we did so.
   not only on the aspect of the degree of belief,
   but also on the aspect of the structure of the belief.
 
+# Xie: Induction and Hypothesis as Evidence with Uncertainty
+
+**DEDUCTION.**
+
+    Rule. - All the beans from this bag are white.
+    Case. - These beans are from this bag.
+    ∴ Result. - These beans are white.
+
+    f: (bean: Bean) -> Bag(bean) -> White(bean)
+    bean: Bean, c: Bag(bean)
+    -------------------------
+    f(bean, c): White(bean)
+
+**INDUCTION.**
+
+    Case. - These beans are from this bag.
+    Result. - These beans are white.
+    ∴ Rule. - All the beans from this bag are white.
+
+    bean: Bean, c: Bag(bean)
+    i: White(bean)
+    -------------------------
+    memo(bean, c, i): Parital((bean: Bean) -> Bag(bean) -> White(bean))
+    // induction can be used to define parital function
+
+**HYPOTHESIS.**
+
+    Rule. - All the beans from this bag are white.
+    Result. - These beans are white.
+    ∴ Case. - These beans are from this bag.
+
+    f: (bean: Bean) -> Bag(bean) -> White(bean)
+    bean: Bean
+    i: White(bean)
+    -------------------------
+    guess(f, bean, i): Hypothesis(Bag(bean))
+
 # II
 
 Besides the way just pointed out of inverting a deductive syllogism to
