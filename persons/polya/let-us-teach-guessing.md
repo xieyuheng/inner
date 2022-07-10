@@ -1,5 +1,6 @@
 ---
-title: Teaching Us a Lesson
+title: Let us teach guessing
+subtitle: A demonstration with George Polya, presented by a committee of the Mathematical Association of America
 author: Polya
 video: "https://www.youtube.com/watch?v=h0gbw-Ur_do"
 ---
