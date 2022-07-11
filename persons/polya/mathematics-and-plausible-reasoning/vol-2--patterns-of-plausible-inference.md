@@ -874,8 +874,7 @@ speak for the conjecture A.
   guess(f, b): Hypothesis(A) // This plan might be the solution.
   ```
 
-  All of the following patterns is of this can of reasoning,
-  i.e. a hypothesis in the sense of Peirce.
+- **Xie:** `B2`, `B3`, `B4` are all hypothesis in the sense of Peirce.
 
 **B2. This plan provides for a connection between the data and the unknown.**
 
@@ -893,6 +892,13 @@ speak for the conjecture A.
 
 **B6. This plan succeeded in solving a part of the problem (in finding some of the unknowns, or in proving a weaker conclusion).**
 
+- **Xie:** `B5` and `B6` can be viewed as induction,
+  because to do induction is to give partial solution.
+
+  "a particular case of the problem" and "a part of the problem"
+  can both be viewed as a condition `c: C`
+  under which we can prove `A(c)` (the plan works for `c`).
+
 This list is by no means exhaustive. There are still other typical
 indications and signs, but we need not list them here. At any rate, it
 would be useless to list them without proper illustration.
@@ -901,6 +907,103 @@ would be useless to list them without proper illustration.
   the "hypothesis" mode of reasoning of Peirce,
   we must also know a lot of concrete example of `B` in `A -> B`.
 
+## Xie: Induction v.s. Hypothesis
+
+We see in the following chapter,
+Polya confused induction with hypothesis,
+sometimes when using the word "induction" in this section,
+he really means hypothesis.
+
+**DEDUCTION.**
+
+    Rule. - All the beans from this bag are white.
+    Case. - These beans are from this bag.
+    ∴ Result. - These beans are white.
+
+    f: (bean: Bean) -> Bag(bean) -> White(bean)
+    bean: Bean, c: Bag(bean)
+    -------------------------
+    f(bean, c): White(bean)
+
+**INDUCTION.**
+
+    Case. - These beans are from this bag.
+    Result. - These beans are white.
+    ∴ Rule. - All the beans from this bag are white.
+
+    bean: Bean, c: Bag(bean)
+    i: White(bean)
+    -------------------------
+    memo(bean, c, i): Parital((bean: Bean) -> Bag(bean) -> White(bean))
+
+**HYPOTHESIS.**
+
+    Rule. - All the beans from this bag are white.
+    Result. - These beans are white.
+    ∴ Case. - These beans are from this bag.
+
+    f: (bean: Bean) -> Bag(bean) -> White(bean)
+    bean: Bean, i: White(bean)
+    -------------------------
+    guess(f, bean, i): Hypothesis(Bag(bean))
+
 ## 8. Induction in invention
 
-TODO
+(1) When the problem-solver debates his plan of the solution with
+himself, this plan is usually more "fluid" than "rigid," it is more
+felt than formulated. In fact it would be foolish of the
+problem-solver to fix his plan prematurely. A wise problem-solver
+does not commit himself to a rigid plan. Even at a later stage, when
+the plan is riper, he keeps it ready for modification, he leaves it a
+certain flexibility, he reckons with unforeseen difficulties to which
+he might be obliged to adapt his plan. Therefore, when the problem-
+solver investigates the workability of his plan, he examines a
+changeable, sometimes a fleeting, object.
+
+On the other hand, the conjectures that the mathematician or the
+naturalist investigates are usually pretty determinate: they are
+clearly formulated, or at least reasonably close to a clear
+formulation. Also the jury has a pretty determinate conjecture to
+examine: an indictment, the terms of which have been carefully laid
+down by the prosecution.
+
+Let us note this striking difference that separates the
+problem-solver's investigation of the workability of his plan from the
+inductive investigation of a mathematical or physical conjecture, or
+from the judicial investigation of a charge: it is the difference
+between a changeable, or fleeting, and a determinate, relatively well
+defined object.
+
+(2) The proceedings and acts of a court of justice are laid down in
+the record. The conjecture examined by the naturalist, and the
+evidence gathered for or against it, are also destined for a permanent
+record. Not so the problem-solver's conjecture concerning the
+workability of his scheme, or the signs speaking for or against it:
+their importance is ephemeral. They are extremely important as long as
+they guide the problem-solver's decisions.  Yet, when the
+problem-solver's work enters a new phase, the plan itself may change,
+and then the indications speaking for or against it lose almost all
+interest. At the end, when the solution is attained and the problem is
+done, all such accessories are cast away. The final form of the
+solution may be recorded, yet the changing plans and the arguments for
+or against them are mostly or entirely forgotten. The building erected
+remains in view, but the scaffoldings, which were necessary to erect
+it, are removed.
+
+Let us note this aspect of the difference between an
+inductive, or judicial, investigation on the one hand, and the
+problem-solver's appraisal of the prospects of his plan on the other:
+one is, the other is not, for permanent record.
+
+- **Xie:** We have seen from the foregoing sections,
+  to avoid Deus ex machina in demonstration,
+  we should better provide the middle thoughts
+  leading up to the final solution.
+
+  Maybe it is useful to develop a tool
+  called "personal problem-solving adviser",
+  which can help us to record the workability evidences of a plan
+  (just like the court record).
+
+  - To help us be clear about our conjectures,
+    and make it easy to review the history of our through process.

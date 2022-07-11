@@ -236,6 +236,15 @@ occurrences of yesterday from our feeling as if we did so.
     guess(f, bean, i): Hypothesis(Bag(bean))
     // TODO What is the use of hypothesis?
     // (other than we can take `f, bean, i` out from it.)
+    // Maybe after we finally proved `Bag(bean)`,
+    // we can apply `f` to our proof,
+    // to compare the resulting `White(bean)`
+    // with the evidence in our guess,
+    // and wish to learn something from this comparison.
+
+- **Xie:** In the design of a proof assistant,
+  we know that guessing is a big part of mathematical activities,
+  why not also formalize guessing and build tools around it?
 
 # II
 
