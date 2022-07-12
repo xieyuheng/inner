@@ -12,10 +12,6 @@ author: Xie Yuheng
 
 # TODO
 
-- design a pomodoro app
-  - improve this https://pomofocus.io
-  - https://en.wikipedia.org/wiki/Pomodoro_Technique
-
 - During study of "Causality -- Models, Reasoning and Inference",
   I found that maybe we should revisit the idea of [orbit](https://withorbit.com/),
   - Repo: https://github.com/andymatuschak/orbit
