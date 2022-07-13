@@ -159,9 +159,6 @@ following the steps of Judea Pearl.
 - **[problem]** How does such a causal inference engine
   relate to logic deduction system and "model by classes and objects"?
 
-- **[problem]** Can we use a causal inference engine to understand
-  Polya's "Patterns of plausible inference"?
-
 # Side quests
 
 ## Recursion and termination-check
