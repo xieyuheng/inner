@@ -980,7 +980,7 @@ evidence gathered for or against it, are also destined for a permanent
 record. Not so the problem-solver's conjecture concerning the
 workability of his scheme, or the signs speaking for or against it:
 their importance is ephemeral. They are extremely important as long as
-they guide the problem-solver's decisions.  Yet, when the
+they guide the problem-solver's decisions. Yet, when the
 problem-solver's work enters a new phase, the plan itself may change,
 and then the indications speaking for or against it lose almost all
 interest. At the end, when the solution is attained and the problem is
@@ -1005,5 +1005,143 @@ one is, the other is not, for permanent record.
   which can help us to record the workability evidences of a plan
   (just like the court record).
 
+  - We might have top-level keywords:
+
+    - `claim` -- deduction
+    - `observe` -- inductive
+    - `guess` -- guessing
+
   - To help us be clear about our conjectures,
     and make it easy to review the history of our through process.
+
+(10) Two persons presented with the same evidence may honestly
+disagree, even if they are relying on the same patterns of plausible
+reasoning. Their backgrounds may be different. My unexpressed,
+inarticulate grounds, my whole background may influence my evaluation
+of experimental or judicial evidence. They may influence still more my
+evaluation of the indications for or against my plan of the solution,
+and this is not unreasonable. It is reasonable that, working at the
+solution of a problem, I should attach more weight than under other
+conditions to the promptings of my background and less weight to
+distinctly formulated grounds: to stir up relevant material hidden
+somewhere in the background is the thing I am working for.
+
+Still, it seems to me that one of the principal assets of a seasoned
+problem-solver is that he is able to deal astutely with indications
+for or against the workability of his plan, as a well-trained
+naturalist deals with experimental evidence, or an experienced lawyer
+with legal evidence.
+
+## 9. A few words to the teacher
+
+Mathematics has many aspects. To many students, I am afraid,
+mathematics appears as a set of rigid rules, some of which you should
+learn by heart before the final examinations, and all of which you may
+forget afterwards. To some instructors, mathematics appears as a
+system of rigorous proofs which, however, you should refrain from
+presenting in class, but instead present some more popular although
+inconclusive talk of which you are somewhat ashamed. To a
+mathematician, who is active in research, mathematics may appear
+sometimes as a guessing game: you have to guess a mathematical theorem
+before you prove it, you have to guess the idea of the proof before
+you carry through the details.
+
+To a philosopher with a somewhat open mind all intelligent acquisition
+of knowledge should appear sometimes as a guessing game, I think. In
+science as in everyday life, when faced by a new situation, we start
+out with some guess. Our first guess may fall wide of the mark, but we
+try it and, according to the degree of success, we modify it more or
+less. Eventually, after several trials and several modifications,
+pushed by observations and led by analogy, we may arrive at a more
+satisfactory guess. The layman does not find it surprising that the
+naturalist works in this way. The knowledge of the naturalist may be
+better ordered with a view to selecting the appropriate analogies, his
+observations may be more purposeful and more careful, he may give more
+fancy names to his guesses and call them "tentative generalizations,"
+but the naturalist adapts his mind to a new situation by guessing like
+the common man. And the layman is not surprised to hear that the
+naturalist is guessing like himself. It may appear a little more
+surprising to the layman that the mathematician is also guessing. The
+result of the mathematician's creative work is demonstrative
+reasoning, a proof, but the proof is discovered by plausible
+reasoning, by guessing.
+
+- **Xie:** Is analogy about the dependency between `B1` and `B2`?
+
+  Or it is about a topology of the space of `B`?
+
+If this is so, and I believe that this is so, there should be a place
+for guessing in the teaching of mathematics. Instruction should
+prepare for, or at least give a little taste of, invention. At all
+events, the instruction should not suppress the germs of invention in
+the student. A student who is somewhat interested in the problem
+discussed in class expects a certain kind of solution. If the student
+is intelligent, he foresees the solution to some extent: the result
+may look thus and so, and there is a chance that it may be obtained by
+such and such a procedure. The teacher should try to realize what the
+students might expect, he should find out what they do expect, he
+should point out what they should reasonably expect. If the student is
+less intelligent and especially if he is bored, he is likely to
+produce wild and irresponsible guesses. The teacher should show that
+guesses in the mathematical domain may be reasonable, respectable,
+responsible. I address myself to teachers of mathematics of all grades
+and say:
+
+> **Let us teach guessing!**
+
+I did not say that we should neglect proving. On the contrary, we
+should teach both proving and guessing, both kinds of reasoning,
+demonstrative and plausible. More valuable than any particular
+mathematical fact or trick, theorem, or technique, is for the student
+to learn two things:
+
+- First, to distinguish a valid demonstration from an invalid attempt,
+  a proof from a guess.
+
+- Second, to distinguish a more reasonable guess from a less
+  reasonable guess.
+
+There are special cases in which it is more important to teach
+guessing than proving. Take the teaching of calculus to engineering
+students. (I have a long and varied experience of this kind of
+teaching.) Engineers need mathematics, quite a few of them have a
+healthy interest in mathematics, but they are not trained to
+understand epsilon-proofs, they have no time for epsilon-proofs, they
+are not interested in epsilon-proofs. To teach them the rules of
+calculus as a dogma imposed from above would not be educational. To
+pretend that your proof is complete when, in fact, it is not, would
+not be honest. Confess calmly that your proofs are incomplete, but
+give respectable plausible grounds for the incompletely proved
+results, from examples and analogy. Then you need not be ashamed of
+fake proofs, and some students may remember your teaching after the
+examinations. On the basis of a long experience, I would say that
+talented students of engineering are usually more accessible to, and
+more grateful for, well-presented plausible grounds than for strict
+proofs.
+
+I said that it is desirable to teach guessing, but not that it is easy
+to teach it. There is no foolproof method for guessing, and therefore
+there cannot be any foolproof method to teach guessing. I may have
+said a few foolish things in the foregoing, perhaps, but I have
+avoided the most foolish thing, I hope, which would be to pretend that
+I have an infallible method to teach guessing.
+
+Still, it is not impossible to teach guessing. I hope that some of the
+examples explained at length and some of the exercises proposed in the
+foregoing will serve as useful suggestions. These suggestions have the
+best chance to fall on fertile ground with teachers who have some real
+experience in problem-solving.
+
+This book is principally addressed to students desiring to develop
+their own ability, and to readers curious to learn about plausible
+reasoning and its not so banal relations to mathematics. The interests
+of the teacher are not neglected, I hope, but they are met rather
+indirectly than directly. I hope to fill that gap some day. In the
+meantime, I reiterate my hope that this book, as it is, may be useful
+to some teachers, at least to those teachers who have some genuine
+experience in problem-solving. The trouble is that there are so few
+teachers of mathematics who have such experience. And even the best
+School of Education has not yet succeeded in producing the marvellous
+teacher who has such an excellent training in teaching methods that he
+can make his students understand even those things that he does not
+understand himself.

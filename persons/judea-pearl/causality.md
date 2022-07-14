@@ -1088,6 +1088,55 @@ TODO
 
 # 7 The Logic of Structure-Based Counterfactuals
 
+## 7.1 Structural Model Semantics
+
+### 7.1.1 Definitions: Causal Models, Actions, and Counterfactuals
+
+A “model,” in the common use of the word, is an idealized
+representation of reality that highlights some aspects and ignores
+others. In logical systems, however, a model is a mathematical object
+that assigns truth values to sentences in a given language, where each
+sentence represents some aspect of reality. Truth tables, for example,
+are models in propositional logic; they assign a truth value to any
+Boolean expression, which may represent an event or a set of
+conditions in the domain of interest. A joint probability function, as
+another example, is a model in probability logic; it assigns a truth
+value to any sentence of the form `P(A | B) < p`, where A and B
+are Boolean expressions representing events. A _causal model_,
+naturally, should encode the truth values of sentences that deal with
+causal relationships; these include
+
+- action sentences
+  (e.g., “A will be true if we do B”),
+
+- counterfactuals
+  (e.g., “A would have been different were it not for B”),
+
+- and plain causal utterances
+  (e.g., “A may cause B” or “B occurred because of A”).
+
+Such sentences cannot be interpreted in standard propositional logic
+or probability calculus because they deal with changes that occur in
+the external world rather than with changes in our beliefs about a
+static world. Causal models encode and distinguish information about
+external changes through an explicit representation of the mechanisms
+that are altered in such changes.
+
+TODO
+
+- **Xie:** A counterfactual expression is interpreted as
+  a hypothetical modification of the model,
+  if the model is implemented by a group of equations about number,
+  there are many modifications.
+
+  How about other kind of models?
+
+TODO
+
+### 7.1.2 Evaluating Counterfactuals: Deterministic Analysis
+
+TODO
+
 # 8 Imperfect Experiments: Bounding Effects and Counterfactuals
 
 # 9 Probability of Causation: Interpretation and Identification
@@ -1095,3 +1144,8 @@ TODO
 # 10 The Actual Cause
 
 # 11 Reflections, Elaborations, and Discussions with Readers
+
+# Epilogue: The Art and Science of Cause and Effect
+
+> A public lecture delivered November 1996 as part of
+> the UCLA Faculty Research Lectureship Program.
