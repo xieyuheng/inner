@@ -12,6 +12,19 @@ author: Xie Yuheng
 
 # TODO
 
+- Get back to numbers.
+
+  When I study probability theory,
+  I am unwilling to use just numbers.
+  This might be wrong, because numbers are still
+  the must important object in mathematics.
+
+  - draw algebraic geometry
+  - simulate classical mechanics
+  - draw differential geometry
+
+------
+
 - During study of "Causality -- Models, Reasoning and Inference",
   I found that maybe we should revisit the idea of [orbit](https://withorbit.com/),
   - Repo: https://github.com/andymatuschak/orbit
