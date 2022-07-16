@@ -196,6 +196,8 @@ like a ship on the open sea, with no one on board who understands the
 rules of navigation. And in such a case some general study of the
 guiding principles of reasoning would be sure to be found useful.
 
+- **Xie:** Practical subjects v.s. unpractical subjects.
+
 The subject could hardly be treated, however, without being first
 limited; since almost any fact may serve as a guiding principle. But
 it so happens that there exists a division among facts, such that in
@@ -217,7 +219,7 @@ hand, it is easy to believe that those rules of reasoning which are
 deduced from the very idea of the process are the ones which are the
 most essential; and, indeed, that so long as it conforms to these it
 will, at least, not lead to false conclusions from true premises. In
-point of fact, the importance of what may be deduced from the
+point of fact, the importance of _what may be deduced_ from the
 assumptions involved in the logical question turns out to be greater
 than might be supposed, and this for reasons which it is difficult to
 exhibit at the outset. The only one which I shall here mention is,
@@ -233,6 +235,45 @@ emerges above the level of the narrowly practical, is deeply imbued
 with that bad logical quality to which the epithet _metaphysical_ is
 commonly applied; and nothing can clear it up but a severe course of
 logic.
+
+- **Xie:** To ask a logical question, such as the validity of inference
+  (whether a certain conclusion follows from certain premises),
+  already requires us to have a **model** about human mind,
+
+  > A moment’s thought will show that a variety of facts are already
+  > assumed when the logical question is first asked. It is implied,
+  > for instance, that there are such states of mind as doubt and
+  > belief—that a passage from one to the other is possible, the
+  > object of thought remaining the same, and that this transition is
+  > subject to some rules which all minds are alike bound by.
+
+  ```cicada
+  class Mind {
+    state: Belief | Doubt
+    inquiry: (Doubt) -> Belief
+  }
+  ```
+
+  And we can only understand the rules of reasoning by understanding the model.
+
+  > It is easy to believe that those rules of reasoning which are
+  > deduced from the very idea of the process [the model] are the ones
+  > which are the most essential; and, indeed, that so long as it
+  > conforms to these it will, at least, not lead to false conclusions
+  > from true premises.
+
+  When we think about _what may be deduced_ from the
+  assumptions involved in the logical question,
+  we are thinking about the model instead of the surface phenomenon.
+
+- **Xie:** Common-sense is defined as
+
+  > Thought as it first emerges
+  > above the level of the narrowly practical.
+
+- **Xie:** The argument that, the conception of quality is a product
+  of logical reflections [the model], can be viewed as a critic of
+  Aristotle's metaphysics, in which there are many useless qualities.
 
 # III
 
