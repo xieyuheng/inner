@@ -610,6 +610,8 @@ facts, will from that moment not merely admit in words that that
 belief is doubtful, but will experience a real doubt of it, so that it
 ceases to be a belief.
 
+- **Xie:** The "liberal" method of fixing belief is also not good.
+
 To satisfy our doubts, therefore, it is necessary that a method should
 be found by which our beliefs may be caused by nothing human, but by
 some external permanency -- by something upon which our thinking has
@@ -633,28 +635,37 @@ experience and reason enough about it, will be led to the one true
 conclusion. The new conception here involved is that of reality. It
 may be asked how I know that there are any realities. If this
 hypothesis is the sole support of my method of inquiry, my method of
-inquiry must not be used to support my hypothesis. The reply is
-this: 1. If investigation cannot be regarded as proving that there are
-real things, it at least does not lead to a contrary conclusion; but
-the method and the conception on which it is based remain ever in
-harmony. No doubts of the method, therefore, necessarily arise from
-its practice, as is the case with all the others. 2. The feeling which
-gives rise to any method of fixing belief is a dissatisfaction at two
-repugnant propositions. But here already is a vague concession that
-there is some _one_ thing to which a proposition should
-conform. Nobody, therefore, can really doubt that there are realities,
-or, if he did, doubt would not be a source of dissatisfaction. The
-hypothesis, therefore, is one which every mind admits. So that the
-social impulse does not cause me to doubt it. 3.  Everybody uses the
-scientific method about a great many things, and only ceases to use it
-when he does not know how to apply it. 4. Experience of the method has
-not led me to doubt it, but, on the contrary, scientific investigation
-has had the most wonderful triumphs in the way of settling
-opinion. These afford the explanation of my not doubting the method or
-the hypothesis which it supposes; and not having any doubt, nor
-believing that anybody else whom I could influence has, it would be
-the merest babble for me to say more about it. If there be anybody
-with a living doubt upon the subject, let him consider it.
+inquiry must not be used to support my hypothesis.
+
+The reply is this:
+
+1. If investigation cannot be regarded as proving that there are real
+   things, it at least does not lead to a contrary conclusion; but the
+   method and the conception on which it is based remain ever in
+   harmony. No doubts of the method, therefore, necessarily arise from
+   its practice, as is the case with all the others.
+
+2. The feeling which gives rise to any method of fixing belief is a
+   dissatisfaction at two repugnant propositions. But here already is
+   a vague concession that there is some _one_ thing to which a
+   proposition should conform. Nobody, therefore, can really doubt
+   that there are realities, or, if he did, doubt would not be a
+   source of dissatisfaction. The hypothesis, therefore, is one which
+   every mind admits. So that the social impulse does not cause me to
+   doubt it.
+
+3. Everybody uses the scientific method about a great many things, and
+   only ceases to use it when he does not know how to apply it.
+
+4. Experience of the method has not led me to doubt it, but, on the
+   contrary, scientific investigation has had the most wonderful
+   triumphs in the way of settling opinion.
+
+These afford the explanation of my not doubting the method or the
+hypothesis which it supposes; and not having any doubt, nor believing
+that anybody else whom I could influence has, it would be the merest
+babble for me to say more about it. If there be anybody with a living
+doubt upon the subject, let him consider it.
 
 To describe the method of scientific investigation is the object of
 this series of papers. At present I have only room to notice some
