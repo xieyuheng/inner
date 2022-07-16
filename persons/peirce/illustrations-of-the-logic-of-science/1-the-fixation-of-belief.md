@@ -16,7 +16,7 @@ last of all our faculties, for it is not so much a natural gift as a
 long and difficult art. The history of its practice would make a grand
 subject for a book. The medieval schoolman, following the Romans, made
 logic the earliest of a boy’s studies after grammar, as being very
-easy.  So it was as they understood it. Its fundamental principle,
+easy. So it was as they understood it. Its fundamental principle,
 according to them, was, that all knowledge rests on either authority
 or reason; but that whatever is deduced by reason depends ultimately
 on a premise derived from authority. Accordingly, as soon as a boy was
@@ -93,10 +93,25 @@ to deduce certain properties of gases, especially in regard to their
 heat-relations. In like manner, Darwin, while unable to say what the
 operation of variation and natural selection in every individual case
 will be, demonstrates that in the long run they will adapt animals to
-their circumstances.  Whether or not existing animal forms are due to
+their circumstances. Whether or not existing animal forms are due to
 such action, or what position the theory ought to take, forms the
 subject of a discussion in which questions of fact and questions of
 logic are curiously interlaced.
+
+- **Xie:** People think they good at logic (the art of reasoning),
+  but actually they are not.
+
+  > Every work of science great enough to be remembered for a few
+  > generations affords some exemplification of the defective state of
+  > the art of reasoning of the time when it was written; and each
+  > chief step in science has been a lesson in logic.
+
+  Examples of this phenomenon is given in many different domains:
+
+  - Lord Bacon’s view of scientific procedure.
+  - Kepler in astronomy.
+  - Lavoisier in chemistry.
+  - Darwin in applying statistical method to biology.
 
 # II
 
@@ -122,7 +137,7 @@ so that the effect of experience is continually to counteract our
 hopes and aspirations. Yet a lifetime of the application of this
 corrective does not usually eradicate our sanguine disposition. Where
 hope is unchecked by any experience, it is likely that our optimism is
-extravagant.  Logicality in regard to practical matters is the most
+extravagant. Logicality in regard to practical matters is the most
 useful quality an animal can possess, and might, therefore, result
 from the action of natural selection; but outside of these it is
 probably of more advantage to the animal to have his mind filled with
@@ -154,7 +169,7 @@ confess, of no service to a person whose thought is directed wholly to
 practical subjects, and whose activity moves along thoroughly beaten
 paths. The problems which present themselves to such a mind are
 matters of routine which he has learned once for all to handle in
-learning his business.  But let a man venture into an unfamiliar
+learning his business. But let a man venture into an unfamiliar
 field, or where his results are not continually checked by experience,
 and all history shows that the most masculine intellect will ofttimes
 lose his orientation and waste his efforts in directions which bring
@@ -297,7 +312,7 @@ conduce to that belief, and learning to turn with contempt and hatred
 from anything which might disturb it? This simple and direct method is
 really pursued by many men. I remember once being entreated not to
 read a certain newspaper lest it might change my opinion upon
-free-trade.  “Lest I might be entrapped by its fallacies and
+free-trade. “Lest I might be entrapped by its fallacies and
 misstatements,” was the form of expression. “You are not,” my
 friend said, “a special student of political economy. You might,
 therefore, easily be deceived by fallacious arguments upon the
@@ -322,7 +337,7 @@ deceptive character. Thus, if it be true that death is annihilation,
 then the man who believes that he will certainly go straight to heaven
 when he dies, provided he have fulfilled certain simple observances in
 this life, has a cheap pleasure which will not be followed by the
-least disappointment.  A similar consideration seems to have weight
+least disappointment. A similar consideration seems to have weight
 with many persons in religious topics, for we frequently hear it said,
 “Oh, I could not believe so-and-so, because I should be wretched if I
 did.” When an ostrich buries its head in the sand as danger
@@ -354,7 +369,7 @@ problem becomes how to fix belief, not in the individual merely, but
 in the community.
 
 Let the will of the state act, then, instead of that of the
-individual.  Let an institution be created which shall have for its
+individual. Let an institution be created which shall have for its
 object to keep correct doctrines before the attention of the people,
 to reiterate them perpetually, and to teach them to the young; having
 at the same time power to prevent contrary doctrines from being
@@ -443,7 +458,7 @@ men conversing together and regarding matters in different lights,
 gradually develop beliefs in harmony with natural causes. This method
 resembles that by which conceptions of art have been brought to
 maturity. The most perfect example of it is to be found in the history
-of metaphysical philosophy.  Systems of this sort have not usually
+of metaphysical philosophy. Systems of this sort have not usually
 rested upon observed facts, at least not in any great degree. They
 have been chiefly adopted because their fundamental propositions
 seemed “agreeable to reason.” This is an apt expression; it does not
@@ -456,7 +471,7 @@ main conclusions by considerations like this; but this is the lowest
 and least developed form which the method takes, for it is clear that
 another man might find Kepler’s [earlier] theory, that the celestial
 spheres are proportional to the inscribed and circumscribed spheres of
-the different regular solids, more agreeable to _his_ reason.  But the
+the different regular solids, more agreeable to _his_ reason. But the
 shock of opinions will soon lead men to rest on preferences of a far
 more universal nature. Take, for example, the doctrine that man only
 acts selfishly—that is, from the consideration that acting in one way
@@ -518,7 +533,7 @@ will be led to the one true conclusion. The new conception here
 involved is that of reality. It may be asked how I know that there are
 any realities. If this hypothesis is the sole support of my method of
 inquiry, my method of inquiry must not be used to support my
-hypothesis.  The reply is this: 1. If investigation cannot be regarded
+hypothesis. The reply is this: 1. If investigation cannot be regarded
 as proving that there are real things, it at least does not lead to a
 contrary conclusion; but the method and the conception on which it is
 based remain ever in harmony. No doubts of the method, therefore,
@@ -582,7 +597,7 @@ priori_ method is distinguished for its comfortable conclusions. It is
 the nature of the process to adopt whatever belief we are inclined to,
 and there are certain flatteries to one’s vanities which we all
 believe by nature, until we are awakened from our pleasing dream by
-rough facts.  The method of authority will always govern the mass of
+rough facts. The method of authority will always govern the mass of
 mankind; and those who wield the various forms of organized force in
 the state will never be convinced that dangerous reasoning ought not
 to be suppressed in some way. If liberty of speech is to be
@@ -598,7 +613,7 @@ no less brutal but more refined than hunting you like a wolf. Thus,
 the greatest intellectual benefactors of mankind have never dared, and
 dare not now, to utter the whole of their thought; and thus a shade of
 _prima facie_ doubt is cast upon every proposition which is considered
-essential to the security of society.  Singularly enough, the
+essential to the security of society. Singularly enough, the
 persecution does not all come from without; but a man torments himself
 and is oftentimes most distressed at finding himself believing
 propositions which he has been brought up to regard with aversion. The
@@ -662,25 +677,25 @@ inspiration and his courage.
 
 # Footnotes
 
-- Footnote 26:
+- Footnote [26]:
 
   _Popular Science Monthly_, November, 1877.
 
-- Footnote 27:
+- Footnote [27]:
 
   [This is substantially the dictum of Harvey to John Aubrey. See the
   latter’s _Brief Lives_ (Oxford ed. 1898) I 299.]
 
-- Footnote 28:
+- Footnote [28]:
 
   Not quite so, but as nearly so as can be told in a few words.
 
-- Footnote 29:
+- Footnote [29]:
 
   [This modern logic, however, is largely the outcome of Kepler’s
   work.]
 
-- Footnote 30:
+- Footnote [30]:
 
   I am not speaking of secondary effects occasionally produced by the
   interference of other impulses.
