@@ -2,6 +2,7 @@
 title: The Fixation of Belief
 author: Charles Sanders Peirce
 year: 1877
+audio: "https://www.youtube.com/watch?v=gJAGMWZ3YQU"
 ---
 
 # I
@@ -129,6 +130,15 @@ accident; the true conclusion would remain true if we had no impulse
 to accept it; and the false one would remain false, though we could
 not resist the tendency to believe in it.
 
+- **Xie:** Objective principle of good reasoning
+  (or definition of valid inference),
+
+  > Reasoning is good if it be such as to give a true conclusion from
+  > true premises, and not otherwise. Thus, the question of validity is
+  > purely one of fact and not of thinking. A being the premises and B
+  > being the conclusion, the question is, whether these facts are really
+  > so related that if A is B is.
+
 We are, doubtless, in the main logical animals, but we are not
 perfectly so. Most of us, for example, are naturally more sanguine and
 hopeful than logic would justify. We seem to be so constituted that in
@@ -162,6 +172,14 @@ this will happen with every disk of copper. The guiding principle is,
 that what is true of one piece of copper is true of another. Such a
 guiding principle with regard to copper would be much safer than with
 regard to many other substances—brass, for example.
+
+- **Xie:** An inference is generated or governed by "a habit of mind",
+  which can be called _guiding principle_ of inference.
+
+  One example guiding principle is,
+
+  > What is true of one object is true
+  > of another object of the same substance.
 
 A book might be written to signalize all the most important of these
 guiding principles of reasoning. It would probably be, we must
