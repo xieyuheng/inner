@@ -27,9 +27,9 @@ was held to be complete.
 To Roger Bacon, that remarkable mind who in the middle of the
 thirteenth century was almost a scientific man, the schoolmen’s
 conception of reasoning appeared only an obstacle to truth. He saw
-that experience alone teaches anything—a proposition which to us seems
-easy to understand, because a distinct conception of experience has
-been handed down to us from former generations; which to him also
+that experience alone teaches anything -- a proposition which to us
+seems easy to understand, because a distinct conception of experience
+has been handed down to us from former generations; which to him also
 seemed perfectly clear, because its difficulties had not yet unfolded
 themselves. Of all kinds of experience, the best, he thought, was
 interior illumination, which teaches many things about Nature which
@@ -45,7 +45,7 @@ the inadequacy of his view of scientific procedure. That we have only
 to make some crude experiments, to draw up briefs of the results in
 certain blank forms, to go through these by rule, checking off
 everything disproved and setting down the alternatives, and that thus
-in a few years physical science would be finished up—what an idea!
+in a few years physical science would be finished up -- what an idea!
 “He wrote on science like a Lord Chancellor,”[27] indeed.
 
 The early scientists, Copernicus, Tycho Brahe, Kepler, Galileo and
@@ -99,8 +99,8 @@ such action, or what position the theory ought to take, forms the
 subject of a discussion in which questions of fact and questions of
 logic are curiously interlaced.
 
-- **Xie:** People think they good at logic (the art of reasoning),
-  but actually they are not.
+- **Xie:** People think they good at logic (the art of reasoning), but
+  actually they are not.
 
   > Every work of science great enough to be remembered for a few
   > generations affords some exemplification of the defective state of
@@ -130,14 +130,14 @@ accident; the true conclusion would remain true if we had no impulse
 to accept it; and the false one would remain false, though we could
 not resist the tendency to believe in it.
 
-- **Xie:** Objective principle of good reasoning
-  (or definition of valid inference),
+- **Xie:** Objective principle of good reasoning (or definition of
+  valid inference),
 
   > Reasoning is good if it be such as to give a true conclusion from
-  > true premises, and not otherwise. Thus, the question of validity is
-  > purely one of fact and not of thinking. A being the premises and B
-  > being the conclusion, the question is, whether these facts are really
-  > so related that if A is B is.
+  > true premises, and not otherwise. Thus, the question of validity
+  > is purely one of fact and not of thinking. A being the premises
+  > and B being the conclusion, the question is, whether these facts
+  > are really so related that if A is B is.
 
 We are, doubtless, in the main logical animals, but we are not
 perfectly so. Most of us, for example, are naturally more sanguine and
@@ -171,15 +171,15 @@ to rest when placed between the poles of a magnet, and we infer that
 this will happen with every disk of copper. The guiding principle is,
 that what is true of one piece of copper is true of another. Such a
 guiding principle with regard to copper would be much safer than with
-regard to many other substances—brass, for example.
+regard to many other substances -- brass, for example.
 
 - **Xie:** An inference is generated or governed by "a habit of mind",
   which can be called _guiding principle_ of inference.
 
   One example guiding principle is,
 
-  > What is true of one object is true
-  > of another object of the same substance.
+  > What is true of one object is true of another object of the same
+  > substance.
 
 A book might be written to signalize all the most important of these
 guiding principles of reasoning. It would probably be, we must
@@ -187,14 +187,14 @@ confess, of no service to a person whose thought is directed wholly to
 practical subjects, and whose activity moves along thoroughly beaten
 paths. The problems which present themselves to such a mind are
 matters of routine which he has learned once for all to handle in
-learning his business. But let a man venture into an unfamiliar
-field, or where his results are not continually checked by experience,
-and all history shows that the most masculine intellect will ofttimes
-lose his orientation and waste his efforts in directions which bring
-him no nearer to his goal, or even carry him entirely astray. He is
-like a ship on the open sea, with no one on board who understands the
-rules of navigation. And in such a case some general study of the
-guiding principles of reasoning would be sure to be found useful.
+learning his business. But let a man venture into an unfamiliar field,
+or where his results are not continually checked by experience, and
+all history shows that the most masculine intellect will ofttimes lose
+his orientation and waste his efforts in directions which bring him no
+nearer to his goal, or even carry him entirely astray. He is like a
+ship on the open sea, with no one on board who understands the rules
+of navigation. And in such a case some general study of the guiding
+principles of reasoning would be sure to be found useful.
 
 - **Xie:** Practical subjects v.s. unpractical subjects.
 
@@ -209,8 +209,8 @@ conclusion follows from certain premises, and those which are not
 implied in that question. A moment’s thought will show that a variety
 of facts are already assumed [**Xie:** the background, the context,
 the model] when the logical question is first asked. It is implied,
-for instance, that there are such states of mind as doubt and
-belief—that a passage from one to the other is possible, the object of
+for instance, that there are such states of mind as doubt and belief
+-- that a passage from one to the other is possible, the object of
 thought remaining the same, and that this transition is subject to
 some rules which all minds are alike bound by. As these are facts
 which we must already know before we can have any clear conception of
@@ -236,14 +236,14 @@ level of the narrowly practical, is deeply imbued with that bad
 logical quality to which the epithet _metaphysical_ is commonly
 applied; and nothing can clear it up but a severe course of logic.
 
-- **Xie:** To ask a logical question, such as the validity of inference
-  (whether a certain conclusion follows from certain premises),
-  already requires us to have a **model** about human mind,
+- **Xie:** To ask a logical question, such as the validity of
+  inference (whether a certain conclusion follows from certain
+  premises), already requires us to have a **model** about human mind,
 
   > A moment’s thought will show that a variety of facts are already
   > assumed when the logical question is first asked. It is implied,
   > for instance, that there are such states of mind as doubt and
-  > belief—that a passage from one to the other is possible, the
+  > belief -- that a passage from one to the other is possible, the
   > object of thought remaining the same, and that this transition is
   > subject to some rules which all minds are alike bound by.
 
@@ -253,7 +253,8 @@ applied; and nothing can clear it up but a severe course of logic.
   }
   ```
 
-  And we can only understand the rules of reasoning by understanding the model.
+  And we can only understand the rules of reasoning by understanding
+  the model.
 
   > It is easy to believe that those rules of reasoning which are
   > deduced from the very idea of the process [the model] are the ones
@@ -261,14 +262,14 @@ applied; and nothing can clear it up but a severe course of logic.
   > conforms to these it will, at least, not lead to false conclusions
   > from true premises.
 
-  When we think about _what may be deduced_ from the
-  assumptions involved in the logical question,
-  we are thinking about the model instead of the surface phenomenon.
+  When we think about _what may be deduced_ from the assumptions
+  involved in the logical question, we are thinking about the model
+  instead of the surface phenomenon.
 
 - **Xie:** Common-sense is defined as
 
-  > Thought as it first emerges
-  > above the level of the narrowly practical.
+  > Thought as it first emerges above the level of the narrowly
+  > practical.
 
 - **Xie:** The argument that, the conception of quality is a product
   of logical reflections [the model], can be viewed as a critic of
@@ -276,9 +277,9 @@ applied; and nothing can clear it up but a severe course of logic.
 
 # III
 
-We generally know when we wish to ask a question and
-when we wish to pronounce a judgment, for there is a dissimilarity
-between the sensation of doubting and that of believing.
+We generally know when we wish to ask a question and when we wish to
+pronounce a judgment, for there is a dissimilarity between the
+sensation of doubting and that of believing.
 
 But this is not all which distinguishes doubt from belief. There is a
 practical difference. Our beliefs guide our desires and shape our
@@ -298,8 +299,8 @@ satisfactory state which we do not wish to avoid, or to change to a
 belief in anything else.[30] On the contrary, we cling tenaciously,
 not merely to believing, but to believing just what we do believe.
 
-- **Xie:** When Peirce try to understand what is belief,
-  he studies its observed effects on us:
+- **Xie:** When Peirce try to understand what is belief, he studies
+  its observed effects on us:
 
   > Our beliefs guide our desires and shape our actions.
 
@@ -309,8 +310,7 @@ not merely to believing, but to believing just what we do believe.
   > there being established in our nature some habit which will
   > determine our actions.
 
-  And he compares belief with doubt,
-  by studying how doubt effect us:
+  And he compares belief with doubt, by studying how doubt effect us:
 
   > Doubt is an uneasy and dissatisfied state from which we struggle
   > to free ourselves and pass into the state of belief.
@@ -322,12 +322,12 @@ occasion arises. Doubt has not the least effect of this sort, but
 stimulates us to action until it is destroyed. This reminds us of the
 irritation of a nerve and the reflex action produced thereby; while
 for the analogue of belief, in the nervous system, we must look to
-what are called nervous associations—for example, to that habit of the
-nerves in consequence of which the smell of a peach will make the
+what are called nervous associations -- for example, to that habit of
+the nerves in consequence of which the smell of a peach will make the
 mouth water.
 
-- **Xie:** Doubt stimulates us to inquiry,
-  just like the smell of a peach will make the mouth water.
+- **Xie:** Doubt stimulates us to inquiry, just like the smell of a
+  peach will make the mouth water.
 
 # IV
 
@@ -438,14 +438,15 @@ approaches, it very likely takes the happiest course. It hides the
 danger, and then calmly says there is no danger; and, if it feels
 perfectly sure there is none, why should it raise its head to see? A
 man may go through life, systematically keeping out of view all that
-might cause a change in his opinions, and if he only succeeds—basing
-his method, as he does, on two fundamental psychological laws—I do not
-see what can be said against his doing so. It would be an egotistical
-impertinence to object that his procedure is irrational, for that only
-amounts to saying that his method of settling belief is not ours. He
-does not propose to himself to be rational, and indeed, will often
-talk with scorn of man’s weak and illusive reason. So let him think
-as he pleases.
+might cause a change in his opinions, and if he only succeeds --
+basing his method, as he does, on two fundamental psychological laws
+[**Xie:** which might mean the effects of belief and doubt] -- I do
+not see what can be said against his doing so. It would be an
+egotistical impertinence to object that his procedure is irrational,
+for that only amounts to saying that his method of settling belief is
+not ours. He does not propose to himself to be rational, and indeed,
+will often talk with scorn of man’s weak and illusive reason. So let
+him think as he pleases.
 
 But this method of fixing belief, which may be called the method of
 tenacity, will be unable to hold its ground in practice. The social
@@ -460,6 +461,10 @@ destroying the human species. Unless we make ourselves hermits, we
 shall necessarily influence each other’s opinions; so that the
 problem becomes how to fix belief, not in the individual merely, but
 in the community.
+
+- **Xie:** This argument means human species have a consensus about
+  the model of `Mind`, and indeed a consensus of the community is the
+  nature of a good (useful) model.
 
 Let the will of the state act, then, instead of that of the
 individual. Let an institution be created which shall have for its
@@ -484,13 +489,15 @@ assent, and let the faithful be required to accept all these
 propositions, in order to segregate them as radically as possible from
 the influence of the rest of the world.
 
+- **Xie:** What a horrible image of "the will of the state".
+
 This method has, from the earliest times, been one of the chief means
 of upholding correct theological and political doctrines, and of
 preserving their universal or catholic character. In Rome, especially,
 it has been practiced from the days of Numa Pompilius to those of Pius
 Nonus. This is the most perfect example in history; but wherever there
-is a priesthood—and no religion has been without one—this method has
-been more or less made use of. Wherever there is aristocracy, or a
+is a priesthood -- and no religion has been without one -- this method
+has been more or less made use of. Wherever there is aristocracy, or a
 guild, or any association of a class of men whose interests depend or
 are supposed to depend on certain propositions, there will be
 inevitably found some traces of this natural product of social
@@ -507,8 +514,8 @@ method of authority, we must in the first place, allow its
 immeasurable mental and moral superiority to the method of
 tenacity. Its success is proportionally greater; and in fact it has
 over and over again worked the most majestic results. The mere
-structures of stone which it has caused to be put together—in Siam,
-for example, in Egypt, and in Europe—have many of them a sublimity
+structures of stone which it has caused to be put together -- in Siam,
+for example, in Egypt, and in Europe -- have many of them a sublimity
 hardly more than rivaled by the greatest works of Nature. And, except
 the geological epochs, there are no periods of time so vast as those
 which are measured by some of these organized faiths. If we scrutinize
@@ -523,7 +530,7 @@ But no institution can undertake to regulate opinions upon every
 subject. Only the most important ones can be attended to, and on the
 rest men’s minds must be left to the action of natural causes. This
 imperfection will be no source of weakness so long as men are in such
-a state of culture that one opinion does not influence another—that
+a state of culture that one opinion does not influence another -- that
 is, so long as they cannot put two and two together. But in the most
 priest-ridden states some individuals will be found who are raised
 above that condition. These men possess a wider sort of social
@@ -567,10 +574,10 @@ spheres are proportional to the inscribed and circumscribed spheres of
 the different regular solids, more agreeable to _his_ reason. But the
 shock of opinions will soon lead men to rest on preferences of a far
 more universal nature. Take, for example, the doctrine that man only
-acts selfishly—that is, from the consideration that acting in one way
-will afford him more pleasure than acting in another. This rests on no
-fact in the world, but it has had a wide acceptance as being the only
-reasonable theory.
+acts selfishly -- that is, from the consideration that acting in one
+way will afford him more pleasure than acting in another. This rests
+on no fact in the world, but it has had a wide acceptance as being the
+only reasonable theory.
 
 This method is far more intellectual and respectable from the point of
 view of reason than either of the others which we have noticed. But
@@ -605,49 +612,49 @@ ceases to be a belief.
 
 To satisfy our doubts, therefore, it is necessary that a method should
 be found by which our beliefs may be caused by nothing human, but by
-some external permanency—by something upon which our thinking has no
-effect. Some mystics imagine that they have such a method in a private
-inspiration from on high. But that is only a form of the method of
-tenacity, in which the conception of truth as something public is not
-yet developed. Our external permanency would not be external, in our
-sense, if it was restricted in its influence to one individual. It
-must be something which affects, or might affect, every man. And,
-though these affections are necessarily as various as are individual
-conditions, yet the method must be such that the ultimate conclusion
-of every man shall be the same. Such is the method of science. Its
-fundamental hypothesis, restated in more familiar language, is this:
-There are real things, whose characters are entirely independent of
-our opinions about them; whose realities affect our senses according
-to regular laws, and, though our sensations are as different as our
-relations to the objects, yet, by taking advantage of the laws of
-perception, we can ascertain by reasoning how things really are, and
-any man, if he have sufficient experience and reason enough about it,
-will be led to the one true conclusion. The new conception here
-involved is that of reality. It may be asked how I know that there are
-any realities. If this hypothesis is the sole support of my method of
-inquiry, my method of inquiry must not be used to support my
-hypothesis. The reply is this: 1. If investigation cannot be regarded
-as proving that there are real things, it at least does not lead to a
-contrary conclusion; but the method and the conception on which it is
-based remain ever in harmony. No doubts of the method, therefore,
-necessarily arise from its practice, as is the case with all the
-others. 2. The feeling which gives rise to any method of fixing belief
-is a dissatisfaction at two repugnant propositions. But here already
-is a vague concession that there is some _one_ thing to which a
-proposition should conform. Nobody, therefore, can really doubt that
-there are realities, or, if he did, doubt would not be a source of
-dissatisfaction. The hypothesis, therefore, is one which every mind
-admits. So that the social impulse does not cause me to doubt it. 3.
-Everybody uses the scientific method about a great many things, and
-only ceases to use it when he does not know how to apply
-it. 4. Experience of the method has not led me to doubt it, but, on
-the contrary, scientific investigation has had the most wonderful
-triumphs in the way of settling opinion. These afford the explanation
-of my not doubting the method or the hypothesis which it supposes; and
-not having any doubt, nor believing that anybody else whom I could
-influence has, it would be the merest babble for me to say more about
-it. If there be anybody with a living doubt upon the subject, let him
-consider it.
+some external permanency -- by something upon which our thinking has
+no effect. Some mystics imagine that they have such a method in a
+private inspiration from on high. But that is only a form of the
+method of tenacity, in which the conception of truth as something
+public is not yet developed. Our external permanency would not be
+external, in our sense, if it was restricted in its influence to one
+individual. It must be something which affects, or might affect, every
+man. And, though these affections are necessarily as various as are
+individual conditions, yet the method must be such that the ultimate
+conclusion of every man shall be the same. Such is the method of
+science. Its fundamental hypothesis, restated in more familiar
+language, is this: There are real things, whose characters are
+entirely independent of our opinions about them; whose realities
+affect our senses according to regular laws, and, though our
+sensations are as different as our relations to the objects, yet, by
+taking advantage of the laws of perception, we can ascertain by
+reasoning how things really are, and any man, if he have sufficient
+experience and reason enough about it, will be led to the one true
+conclusion. The new conception here involved is that of reality. It
+may be asked how I know that there are any realities. If this
+hypothesis is the sole support of my method of inquiry, my method of
+inquiry must not be used to support my hypothesis. The reply is
+this: 1. If investigation cannot be regarded as proving that there are
+real things, it at least does not lead to a contrary conclusion; but
+the method and the conception on which it is based remain ever in
+harmony. No doubts of the method, therefore, necessarily arise from
+its practice, as is the case with all the others. 2. The feeling which
+gives rise to any method of fixing belief is a dissatisfaction at two
+repugnant propositions. But here already is a vague concession that
+there is some _one_ thing to which a proposition should
+conform. Nobody, therefore, can really doubt that there are realities,
+or, if he did, doubt would not be a source of dissatisfaction. The
+hypothesis, therefore, is one which every mind admits. So that the
+social impulse does not cause me to doubt it. 3.  Everybody uses the
+scientific method about a great many things, and only ceases to use it
+when he does not know how to apply it. 4. Experience of the method has
+not led me to doubt it, but, on the contrary, scientific investigation
+has had the most wonderful triumphs in the way of settling
+opinion. These afford the explanation of my not doubting the method or
+the hypothesis which it supposes; and not having any doubt, nor
+believing that anybody else whom I could influence has, it would be
+the merest babble for me to say more about it. If there be anybody
+with a living doubt upon the subject, let him consider it.
 
 To describe the method of scientific investigation is the object of
 this series of papers. At present I have only room to notice some
@@ -729,7 +736,7 @@ them; and then he should consider that, after all, he wishes his
 opinions to coincide with the fact, and that there is no reason why
 the results of these three methods should do so. To bring about this
 effect is the prerogative of the method of science. Upon such
-considerations he has to make his choice—a choice which is far more
+considerations he has to make his choice -- a choice which is far more
 than the adoption of any intellectual opinion, which is one of the
 ruling decisions of his life, to which when once made he is bound to
 adhere. The force of habit will sometimes cause a man to hold on to
@@ -755,8 +762,8 @@ and then though convinced of this, dares not know the truth and seeks
 to avoid it, is in a sorry state of mind, indeed.
 
 Yes, the other methods do have their merits: a clear logical
-conscience does cost something—just as any virtue, just as all that we
-cherish, costs us dear. But, we should not desire it to be
+conscience does cost something -- just as any virtue, just as all that
+we cherish, costs us dear. But, we should not desire it to be
 otherwise. The genius of a man’s logical method should be loved and
 reverenced as his bride, whom he has chosen from all the world. He
 need not condemn the others; on the contrary, he may honor them
