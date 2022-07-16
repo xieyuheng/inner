@@ -207,7 +207,7 @@ interest as objects of research. This division is between those which
 are necessarily taken for granted in asking whether a certain
 conclusion follows from certain premises, and those which are not
 implied in that question. A moment’s thought will show that a variety
-of facts are already assumed [**Xie**: the background, the context,
+of facts are already assumed [**Xie:** the background, the context,
 the model] when the logical question is first asked. It is implied,
 for instance, that there are such states of mind as doubt and
 belief—that a passage from one to the other is possible, the object of
@@ -277,9 +277,9 @@ applied; and nothing can clear it up but a severe course of logic.
 
 # III
 
-We generally know when we wish to ask a question and when we wish to
-pronounce a judgment, for there is a dissimilarity between the
-sensation of doubting and that of believing.
+We generally know when we wish to ask a question and
+when we wish to pronounce a judgment, for there is a dissimilarity
+between the sensation of doubting and that of believing.
 
 But this is not all which distinguishes doubt from belief. There is a
 practical difference. Our beliefs guide our desires and shape our
@@ -299,6 +299,23 @@ satisfactory state which we do not wish to avoid, or to change to a
 belief in anything else.[30] On the contrary, we cling tenaciously,
 not merely to believing, but to believing just what we do believe.
 
+- **Xie:** When Peirce try to understand what is belief,
+  he studies its observed effects on us:
+
+  > Our beliefs guide our desires and shape our actions.
+
+  and its indication about us:
+
+  > The feeling of believing is a more or less sure indication of
+  > there being established in our nature some habit which will
+  > determine our actions.
+
+  And he compares belief with doubt,
+  by studying how doubt effect us:
+
+  > Doubt is an uneasy and dissatisfied state from which we struggle
+  > to free ourselves and pass into the state of belief.
+
 Thus, both doubt and belief have positive effects upon us, though very
 different ones. Belief does not make us act at once, but puts us into
 such a condition that we shall behave in a certain way, when the
@@ -309,6 +326,9 @@ for the analogue of belief, in the nervous system, we must look to
 what are called nervous associations—for example, to that habit of the
 nerves in consequence of which the smell of a peach will make the
 mouth water.
+
+- **Xie:** Doubt stimulates us to inquiry,
+  just like the smell of a peach will make the mouth water.
 
 # IV
 
