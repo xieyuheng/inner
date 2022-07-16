@@ -357,7 +357,13 @@ to say so.
 
 That the settlement of opinion is the sole end of inquiry is a very
 important proposition. It sweeps away, at once, various vague and
-erroneous conceptions of proof. A few of these may be noticed here.
+erroneous conceptions of proof.
+
+- **Xie:** Comparing with Bishop's definition of proof:
+
+  > A proof is any completely convincing argument.
+
+A few of these may be noticed here.
 
 1. Some philosophers have imagined that to start an inquiry it was
    only necessary to utter or question or set it down on paper, and
