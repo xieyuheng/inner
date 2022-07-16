@@ -250,7 +250,6 @@ applied; and nothing can clear it up but a severe course of logic.
   ```cicada
   class Mind {
     state: Belief | Doubt
-    inquiry: (Doubt) -> Belief
   }
   ```
 
@@ -336,6 +335,15 @@ The irritation of doubt causes a struggle to attain a state of
 belief. I shall term this struggle _inquiry_, though it must be
 admitted that this is sometimes not a very apt designation.
 
+- **Xie:** Let's try to revise our model of `Mind`:
+
+  ```cicada
+  class Mind {
+    state: Belief | Doubt
+    inquiry: (Doubt) -> Belief
+  }
+  ```
+
 The irritation of doubt is the only immediate motive for the struggle
 to attain belief. It is certainly best for us that our beliefs should
 be such as may truly guide our actions so as to satisfy our desires;
@@ -368,10 +376,10 @@ A few of these may be noticed here.
 1. Some philosophers have imagined that to start an inquiry it was
    only necessary to utter or question or set it down on paper, and
    have even recommended us to begin our studies with questioning
-   everything! But the mere putting of a proposition into the
-   interrogative form does not stimulate the mind to any struggle
-   after belief. There must be a real and living doubt, and without
-   all this discussion is idle.
+   everything! [**Xie:** René Descartes] But the mere putting of a
+   proposition into the interrogative form does not stimulate the mind
+   to any struggle after belief. There must be a real and living
+   doubt, and without all this discussion is idle.
 
 2. It is a very common idea that a demonstration must rest on some
    ultimate and absolutely indubitable propositions. These, according
