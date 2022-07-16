@@ -207,34 +207,34 @@ interest as objects of research. This division is between those which
 are necessarily taken for granted in asking whether a certain
 conclusion follows from certain premises, and those which are not
 implied in that question. A moment’s thought will show that a variety
-of facts are already assumed when the logical question is first
-asked. It is implied, for instance, that there are such states of mind
-as doubt and belief—that a passage from one to the other is possible,
-the object of thought remaining the same, and that this transition is
-subject to some rules which all minds are alike bound by. As these are
-facts which we must already know before we can have any clear
-conception of reasoning at all, it cannot be supposed to be any longer
-of much interest to inquire into their truth or falsity. On the other
-hand, it is easy to believe that those rules of reasoning which are
-deduced from the very idea of the process are the ones which are the
-most essential; and, indeed, that so long as it conforms to these it
-will, at least, not lead to false conclusions from true premises. In
-point of fact, the importance of _what may be deduced_ from the
-assumptions involved in the logical question turns out to be greater
-than might be supposed, and this for reasons which it is difficult to
-exhibit at the outset. The only one which I shall here mention is,
-that conceptions which are really products of logical reflections,
-without being readily seen to be so, mingle with our ordinary
-thoughts, and are frequently the causes of great confusion. This is
-the case, for example, with the conception of quality. A quality as
-such is never an object of observation. We can see that a thing is
-blue or green, but the quality of being blue and the quality of being
-green are not things which we see; they are products of logical
-reflections. The truth is, that common-sense, or thought as it first
-emerges above the level of the narrowly practical, is deeply imbued
-with that bad logical quality to which the epithet _metaphysical_ is
-commonly applied; and nothing can clear it up but a severe course of
-logic.
+of facts are already assumed [**Xie**: the background, the context,
+the model] when the logical question is first asked. It is implied,
+for instance, that there are such states of mind as doubt and
+belief—that a passage from one to the other is possible, the object of
+thought remaining the same, and that this transition is subject to
+some rules which all minds are alike bound by. As these are facts
+which we must already know before we can have any clear conception of
+reasoning at all, it cannot be supposed to be any longer of much
+interest to inquire into their truth or falsity. On the other hand, it
+is easy to believe that those rules of reasoning which are deduced
+from the very idea of the process are the ones which are the most
+essential; and, indeed, that so long as it conforms to these it will,
+at least, not lead to false conclusions from true premises. In point
+of fact, the importance of _what may be deduced_ from the assumptions
+involved in the logical question turns out to be greater than might be
+supposed, and this for reasons which it is difficult to exhibit at the
+outset. The only one which I shall here mention is, that conceptions
+which are really products of logical reflections, without being
+readily seen to be so, mingle with our ordinary thoughts, and are
+frequently the causes of great confusion. This is the case, for
+example, with the conception of quality. A quality as such is never an
+object of observation. We can see that a thing is blue or green, but
+the quality of being blue and the quality of being green are not
+things which we see; they are products of logical reflections. The
+truth is, that common-sense, or thought as it first emerges above the
+level of the narrowly practical, is deeply imbued with that bad
+logical quality to which the epithet _metaphysical_ is commonly
+applied; and nothing can clear it up but a severe course of logic.
 
 - **Xie:** To ask a logical question, such as the validity of inference
   (whether a certain conclusion follows from certain premises),
