@@ -4,7 +4,7 @@ author: Charles Sanders Peirce
 year: 1878
 ---
 
-### I (CP5.388)
+# I
 
 Whoever has looked into a modern treatise on logic of the common sort,
 will doubtless remember the two distinctions
@@ -21,8 +21,6 @@ and are generally reckoned by logicians as among the gems of their doctrine.
   By "a modern treatise on logic of the common sort",
   Peirce might mean Descartes' treatise, or Descartes influenced treatise.
   (See the following sections about Descartes)
-
-### (CP5.389)
 
 A clear idea is defined as one which is so apprehended that
 it will be recognized wherever it is met with,
@@ -52,8 +50,6 @@ since they regard the quality as but a small merit,
 which needs to be supplemented by another,
 which they call distinctness.
 
-### (CP5.390)
-
 A distinct idea is defined as one which contains nothing which is not clear.
 This is technical language; by the contents of an idea
 logicians understand whatever is contained in its definition.
@@ -76,8 +72,6 @@ such as we see and admire in the thinkers of our own time.
 
 - **Xie**:
   Peirce changes the question from "what" to "how".
-
-### (CP5.391)
 
 When Descartes set about the reconstruction of philosophy,
 his first step was to (theoretically) permit scepticism
@@ -114,8 +108,6 @@ points of obscurity connected with them.
 
 - **Xie**:
   Peirce understand Descartes by reconstructing Descartes' thread of thoughts.
-
-### (CP5.392)
 
 Such was the distinction of Descartes,
 and one sees that it was precisely on the level of his philosophy.
@@ -173,8 +165,6 @@ That much-admired "ornament of logic"
 -- may be pretty enough,
 but it is high time to relegate to our cabinet of curiosities the antique bijou,
 and to wear about us something better adapted to modern uses.
-
-### (CP5.393)
 
 The very first lesson that we have a right to demand that logic shall teach us is,
 how to make our ideas clear; and a most important one it is,
@@ -244,7 +234,7 @@ astrologers,
 and what not, may not be told
 in the old German story?
 
-### II (CP5.394)
+# II
 
 The principles set forth in the first part of these papers
 lead, at once, to a method of reaching a clearness of thought
@@ -346,8 +336,6 @@ as those which occasioned our hesitation.
 
 In other words, we have attained belief.
 
-### (CP5.395)
-
 In this process we observe two sorts of elements of consciousness,
 the distinction between which may best be made clear by means of an illustration.
 
@@ -386,8 +374,6 @@ but must cover some portion of the past or future.
 
 Thought is a thread of melody running through the succession of our sensations.
 
-### (CP5.396)
-
 We may add that just as a piece of music may be written in parts,
 each part having its own air,
 so various systems of relationship of succession
@@ -419,8 +405,6 @@ can never be made to direct itself toward anything but the production of belief.
 
 Thought in action has for its only possible motive the attainment of thought at rest;
 and whatever does not refer to belief is no part of the thought itself.
-
-### (CP5.397)
 
 And what, then, is belief?
 
@@ -459,8 +443,6 @@ and of this thought no longer forms a part;
 but belief is only a stadium of mental action,
 an effect upon our nature due to thought,
 which will influence future thinking.
-
-### (CP5.398)
 
 The essence of belief is the establishment of a habit;
 and different beliefs are distinguished by
@@ -509,8 +491,6 @@ so that it equally interests
 the opponents of rational thought to perpetuate it,
 and its adherents to guard against it.
 
-### (CP5.399)
-
 Another such deception is to mistake a mere difference
 in the grammatical construction of two words
 for a distinction between the ideas they express.
@@ -525,8 +505,6 @@ although a person performs an action but not a relation,
 which can only be the result of an action,
 yet there was no inconsistency in what I said,
 but only a grammatical vagueness.
-
-### (CP5.400)
 
 From all these sophisms
 we shall be perfectly safe
@@ -572,8 +550,6 @@ as to consist in anything but a possible difference of practice.
   ```
 
   Maybe, we can formalize the pragmatism philosophy itself.
-
-### (CP5.401)
 
 To see what this principle leads to,
 consider in the light of it such a doctrine as that of transubstantiation.
@@ -623,8 +599,6 @@ It is foolish for Catholics and Protestants to fancy themselves
 in disagreement about the elements of the sacrament,
 if they agree in regard to all their sensible effects, here and hereafter.
 
-### (CP5.402)
-
 It appears, then, that the rule for attaining
 the third grade of clearness of apprehension is as follows:
 
@@ -632,7 +606,7 @@ Consider what effects, which might conceivably have practical bearings, we conce
 
 Then, our conception of these effects is the whole of our conception of the object.
 
-### III (CP5.403)
+# III
 
 Let us illustrate this rule by some examples;
 and, to begin with the simplest one possible,
@@ -730,8 +704,6 @@ is evidently the whole conception of weight.
 
 It is a fair question whether some particular facts may not account for gravity;
 but what we mean by the force itself is completely involved in its effects.
-
-### (CP5.404)
 
 This leads us to undertake an account of the idea of Force in general.
 This is the great conception which, developed in the early part of the seventeenth century
@@ -880,7 +852,7 @@ and, apart from those considerations,
 the quibbling character of the distinction
 must have struck every mind accustomed to real thinking.
 
-### IV (CP5.405)
+# IV
 
 Let us now approach the subject of logic,
 and consider a conception which particularly concerns it,
@@ -908,8 +880,6 @@ but is completely independent of all opinion on the subject.
 On the other hand, considering, not the fact of dreaming, but the thing dreamt,
 it retains its peculiarities by virtue of no other fact than that it was dreamt to possess them.
 Thus we may define the real as that whose characters are independent of what anybody may think them to be.
-
-### (CP5.406)
 
 But, however satisfactory such a definition may be found,
 it would be a great mistake to suppose that
@@ -997,8 +967,6 @@ In contenting themselves with fixing their own opinions
 by a method which would lead another man to a different result,
 they betray their feeble hold of the conception of what truth is.
 
-### (CP5.407)
-
 On the other hand,
 all the followers of science are animated by a cheerful hope that
 the processes of investigation, if only pushed far enough,
@@ -1041,8 +1009,6 @@ That is the way I would explain reality.
   and it is another to suppose that the word fate can never be freed from its superstitious taint.
   We are all fated to die.
 
-### (CP5.408)
-
 But it may be said that this view is directly opposed to
 the abstract definition which we have given of reality,
 inasmuch as it makes the characters of the real depend on
@@ -1074,8 +1040,6 @@ But the reality of that which is real
 does depend on the real fact that
 investigation is destined to lead, at last, if continued long enough,
 to a belief in it.
-
-### (CP5.409)
 
 But I may be asked what I have to say
 to all the minute facts of history, forgotten never to be recovered,
@@ -1129,8 +1093,6 @@ But that there are gems at the bottom of the sea,
 flowers in the untraveled desert, etc.,
 are propositions which, like that about a diamond being hard when it is not pressed,
 concern much more the arrangement of our language than they do the meaning of our ideas.
-
-### (CP5.410)
 
 It seems to me, however, that we have, by the application of our rule,
 reached so clear an apprehension of what we mean by reality,
