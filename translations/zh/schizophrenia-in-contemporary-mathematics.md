@@ -6,6 +6,8 @@ translator: 谢宇恒
 newline: preserve
 ---
 
+[ [原文](../en/schizophrenia-in-contemporary-mathematics.md) ]
+
 # 題解
 
 - 原文來源

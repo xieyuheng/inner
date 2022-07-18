@@ -6,6 +6,8 @@ translator: 谢宇恒
 newline: preserve
 ---
 
+[ [原文](../en/a-constructivist-manifesto.md) ]
+
 # 題解
 
 - 原文來源
