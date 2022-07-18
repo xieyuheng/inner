@@ -249,7 +249,8 @@ applied; and nothing can clear it up but a severe course of logic.
 
   ```cicada
   class Mind {
-    state: Belief | Doubt
+    beliefs: Collection<Belief>
+    doubts: Collection<Doubt>
   }
   ```
 
@@ -264,7 +265,7 @@ applied; and nothing can clear it up but a severe course of logic.
 
   When we think about _what may be deduced_ from the assumptions
   involved in the logical question, we are thinking about the model
-  instead of the surface phenomenon.
+  instead of the surface phenomena.
 
 - **Xie:** Common-sense is defined as
 
@@ -339,10 +340,22 @@ admitted that this is sometimes not a very apt designation.
 
   ```cicada
   class Mind {
-    state: Belief | Doubt
-    inquiry: (Doubt) -> Belief
+    beliefs: Collection<Belief>
+    doubts: Collection<Doubt>
+
+    inquiry(
+      doubt: Doubt,
+      Has(this.doubts, doubt),
+    ): exists (belief: Belief) Settlement(doubt, belief) effect {
+      this.doubts.remove(doubt)
+      this.beliefs.add(belief)
+    }
   }
   ```
+
+  The model should better be reactive,
+  and the type system should better be able to
+  express true effects directly.
 
 The irritation of doubt is the only immediate motive for the struggle
 to attain belief. It is certainly best for us that our beliefs should
