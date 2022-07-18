@@ -43,7 +43,8 @@ and are generally reckoned by logicians as among the gems of their doctrine.
   > ascend by little and little, and, as it were, step by step, to the
   > knowledge of the more complex; assigning in thought a certain
   > order even to those objects which in their own nature do not stand
-  > in a relation of antecedence and sequence.
+  > in a relation of antecedence and sequence.  [**Xie:** which is to
+  > say, not only use duduction, but also use induction and guessing.]
   >
   > And the last, in every case to make enumerations so complete, and
   > reviews so general, that I might be assured that nothing was
