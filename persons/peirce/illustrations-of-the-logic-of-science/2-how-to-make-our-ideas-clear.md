@@ -20,8 +20,34 @@ and are generally reckoned by logicians as among the gems of their doctrine.
   Like aristotle, Peirce summaries historical approaches to the same inquiry.
 
   By "a modern treatise on logic of the common sort",
-  Peirce might mean Descartes' treatise, or Descartes influenced treatise.
-  (See the following sections about Descartes)
+  Peirce might mean Descartes' treatise, or Descartes influenced treatise
+  (Descartes is also mentioned in the following sections).
+
+  In "Discourse on the Method
+  of Rightly Conducting One's Reason
+  and of Seeking Truth in the Sciences",
+  Descartes presented four precepts about the method:
+
+  > The first was never to accept anything for true which I did not
+  > clearly know to be such; that is to say, carefully to avoid
+  > precipitancy and prejudice, and to comprise nothing more in my
+  > judgment than what was presented to my mind so clearly and
+  > distinctly as to exclude all ground of doubt.
+  >
+  > The second, to divide each of the difficulties under examination
+  > into as many parts as possible, and as might be necessary for its
+  > adequate solution.
+  >
+  > The third, to conduct my thoughts in such order that, by
+  > commencing with objects the simplest and easiest to know, I might
+  > ascend by little and little, and, as it were, step by step, to the
+  > knowledge of the more complex; assigning in thought a certain
+  > order even to those objects which in their own nature do not stand
+  > in a relation of antecedence and sequence.
+  >
+  > And the last, in every case to make enumerations so complete, and
+  > reviews so general, that I might be assured that nothing was
+  > omitted.
 
 A clear idea is defined as one which is so apprehended that
 it will be recognized wherever it is met with,
