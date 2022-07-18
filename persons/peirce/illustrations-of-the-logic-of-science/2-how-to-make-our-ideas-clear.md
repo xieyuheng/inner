@@ -19,9 +19,9 @@ and are generally reckoned by logicians as among the gems of their doctrine.
 - **Xie**:
   Like aristotle, Peirce summaries historical approaches to the same inquiry.
 
-  By "a modern treatise on logic of the common sort",
-  Peirce might mean Descartes' treatise, or Descartes influenced treatise
-  (Descartes is also mentioned in the following sections).
+  By "a modern treatise on logic of the common sort", Peirce might
+  mean Descartes' "Discourse on the Method", or Descartes influenced
+  treatise (Descartes is also mentioned in the following sections).
 
   In "Discourse on the Method
   of Rightly Conducting One's Reason
@@ -97,9 +97,6 @@ _familiar use_ and _abstract distinctness_ make the perfection of apprehension
 has its only true place in philosophies which have long been extinct;
 and it is now time _to formulate the method of attaining to a more perfect clearness of thought_,
 such as we see and admire in the thinkers of our own time.
-
-- **Xie**:
-  Peirce changes the question from "what" to "how".
 
 When Descartes set about the reconstruction of philosophy,
 his first step was to (theoretically) permit scepticism
