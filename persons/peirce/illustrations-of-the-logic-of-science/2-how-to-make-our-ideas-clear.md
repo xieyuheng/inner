@@ -422,6 +422,9 @@ which strike the ear at different times;
 and to perceive it there must be some continuity of consciousness
 which makes the events of a lapse of time present to us.
 
+- **Xie:** When air (music) is used as an illustration,
+  I can't help thinking about Zhuangzi's second chapter.
+
 We certainly only perceive the air by hearing the separate notes;
 yet we cannot be said to directly hear it,
 for we hear only what is present at the instant,
@@ -454,6 +457,8 @@ for its sole motive, idea, and function is to produce belief,
 and whatever does not concern that purpose
 belongs to some other system of relations.
 
+- **Xie:** Isn't this a good guidance about building thinking machine?
+
 The action of thinking may incidentally have other results;
 it may serve to amuse us,
 for example, and among dilettanti it is not rare to find those
@@ -461,17 +466,25 @@ who have so perverted thought to the purposes of pleasure
 that it seems to vex them to think that
 the questions upon which they delight to exercise it
 may ever get finally settled;
-and a positive discovery which takes a favorite subject out of the arena of literary debate
+and a positive discovery which takes a favorite subject
+out of the arena of literary debate
 is met with ill-concealed dislike.
 This disposition is the very debauchery of thought.
+
+- **Xie:** Some mathematicians even said,
+  proving Fermat's last theorem
+  kills a chicken that lays the golden egg.
 
 But the soul and meaning of thought,
 abstracted from the other elements which accompany it,
 though it may be voluntarily thwarted,
-can never be made to direct itself toward anything but the production of belief.
+can never be made to direct itself
+toward anything but the production of belief.
 
-Thought in action has for its only possible motive the attainment of thought at rest;
-and whatever does not refer to belief is no part of the thought itself.
+Thought in action has for its only possible motive
+the attainment of thought at rest;
+and whatever does not refer to belief
+is no part of the thought itself.
 
 And what, then, is belief?
 
@@ -480,22 +493,25 @@ which closes a musical phrase
 in the symphony of our intellectual life.
 
 We have seen that it has just three properties:
-First, it is something that we are aware of;
-second, it appeases the irritation of doubt;
-and, third, it involves the establishment in our nature
-of a rule of action, or, say for short, a habit.
 
-- **Xie:**
-  If we were to program a think machine,
+- First, it is something that we are aware of;
+
+- second, it appeases the irritation of doubt;
+
+- and, third, it involves the establishment in our nature
+  of a rule of action, or, say for short, a habit.
+
+As it appeases the irritation of doubt,
+which is the motive for thinking,
+thought relaxes, and comes to rest for a moment
+when belief is reached.
+
+- **Xie:** If we were to program a think machine,
   to achieve "aware of", we at least need the machine
   to be able to explain why and how it formed its believes.
 
   The machine not only need to remember its current believes,
   but also need to have a sense of history.
-
-As it appeases the irritation of doubt,
-which is the motive for thinking,
-thought relaxes, and comes to rest for a moment when belief is reached.
 
 But, since belief is a rule for action,
 the application of which involves further doubt and further thought,
@@ -525,8 +541,7 @@ Imaginary distinctions are often drawn between beliefs
 which differ only in their mode of expression;
 -- the wrangling which ensues is real enough, however.
 
-- **Xie:**
-  This is the way by which a pragmatism can to avoid wrangling.
+- **Xie:** Here we find a method to avoid wrangling,
   i.e. to distinguish things, one should use
   _modes of action to which they give rise_
   instead of _modes of expression_.
@@ -534,7 +549,8 @@ which differ only in their mode of expression;
 To believe that any objects are arranged among themselves as in Fig. 1,
 and to believe that they are arranged in Fig. 2 are one and the same belief;
 
-[Fig. 1] [Fig. 2]
+![Fig. 1](https://arisbe.sitehost.iu.edu/menu/library/bycsp/ideas/figures/fig1.gif)
+![Fig. 2](https://arisbe.sitehost.iu.edu/menu/library/bycsp/ideas/figures/fig2.gif)
 
 yet it is conceivable that a man should assert one proposition and deny the other.
 
@@ -824,7 +840,8 @@ the diagonal A C is the sum of A B and B C;
 or, since A D is geometrically equivalent to B C,
 A C is the geometrical sum of A B and A D.
 
-[Fig. 3] [Fig. 4]
+![Fig. 3](https://arisbe.sitehost.iu.edu/menu/library/bycsp/ideas/figures/fig3.gif)
+![Fig. 4](https://arisbe.sitehost.iu.edu/menu/library/bycsp/ideas/figures/fig4.gif)
 
 All this is purely conventional.
 It simply amounts to this:
@@ -865,7 +882,7 @@ represented by A D and D B, where A D is almost the opposite of A C.
 And it is clear that there is an immense variety of ways
 in which A B might be resolved into the sum of two accelerations.
 
-[Fig. 5]
+![Fig. 5](https://arisbe.sitehost.iu.edu/menu/library/bycsp/ideas/figures/fig5.gif)
 
 After this tedious explanation, which I hope,
 in view of the extraordinary interest of the conception of force,

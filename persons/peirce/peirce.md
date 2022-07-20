@@ -5,7 +5,9 @@ title: Charles Sanders Peirce
 [ [WIKISOURCE](https://en.wikisource.org/wiki/Author:Charles_Sanders_Peirce)
 | [WIKIPEDIA](https://en.wikipedia.org/wiki/Charles_Sanders_Peirce)
 | [BIBLIOGRAPHY](https://en.wikipedia.org/wiki/Charles_Sanders_Peirce_bibliography)
-| [PLATO.STANFORD](https://plato.stanford.edu/entries/peirce) ]
+| [PLATO.STANFORD](https://plato.stanford.edu/entries/peirce)
+| [ARISBE](https://arisbe.sitehost.iu.edu)
+]
 
 # Illustrations of the Logic of Science (1877-1878)
 
