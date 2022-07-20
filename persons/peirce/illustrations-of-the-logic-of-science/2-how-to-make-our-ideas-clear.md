@@ -650,6 +650,18 @@ as to consist in anything but a possible difference of practice.
   to always use pure function and use algebraic effect
   to encode true effect.
 
+  But we also see the phrase "stimulus to action",
+  which implies a reactive system:
+
+  - Casual model with uncertainty;
+  - Dynamic system with feedback loop;
+  - Propagator model where information in a variable's
+    can be accumulated in a lattice.
+
+  We used to study pure functions instead of reactive systems,
+  because it is simple to do so, and we do not yet understand
+  the logic of reactive system well.
+
 To see what this principle leads to,
 consider in the light of it such a doctrine as that of transubstantiation.
 
