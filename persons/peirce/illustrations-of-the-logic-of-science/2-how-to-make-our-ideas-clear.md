@@ -552,9 +552,11 @@ and to believe that they are arranged in Fig. 2 are one and the same belief;
 ![Fig. 1](https://arisbe.sitehost.iu.edu/menu/library/bycsp/ideas/figures/fig1.gif)
 ![Fig. 2](https://arisbe.sitehost.iu.edu/menu/library/bycsp/ideas/figures/fig2.gif)
 
-yet it is conceivable that a man should assert one proposition and deny the other.
+yet it is conceivable that a man should
+assert one proposition and deny the other.
 
-Such false distinctions do as much harm as the confusion of beliefs really different,
+Such false distinctions do as much harm
+as the confusion of beliefs really different,
 and are among the pitfalls of which we ought constantly to beware,
 especially when we are upon metaphysical ground.
 
@@ -563,13 +565,15 @@ which often occurs,
 is to mistake the sensation produced by our own unclearness of thought
 for a character of the object we are thinking.
 Instead of perceiving that the obscurity is purely subjective,
-we fancy that we contemplate a quality of the object which is essentially mysterious;
+we fancy that we contemplate a quality of the object
+which is essentially mysterious;
 and if our conception be afterward presented to us in a clear form
 we do not recognize it as the same,
 owing to the absence of the feeling of unintelligibility.
 
 So long as this deception lasts,
-it obviously puts an impassable barrier in the way of perspicuous thinking;
+it obviously puts an impassable barrier
+in the way of perspicuous thinking;
 so that it equally interests
 the opponents of rational thought to perpetuate it,
 and its adherents to guard against it.
@@ -594,10 +598,10 @@ we shall be perfectly safe
 so long as we reflect that
 the whole function of thought is to produce habits of action;
 and that whatever there is connected with a thought,
-but irrelevant to its purpose, is an accretion to it, but no part of it.
+but irrelevant to its purpose,
+is an accretion to it, but no part of it.
 
-- **Xie:**
-  If we were to program a thinking machine,
+- **Xie:** If we were to program a thinking machine,
   what kinds of "habits of action" should we aiming for?
 
 If there be a unity among our sensations
@@ -623,16 +627,28 @@ no matter how subtile it may be;
 and there is no distinction of meaning so fine
 as to consist in anything but a possible difference of practice.
 
-- **Xie:**
-  We get a pragmatism thought distinguisher of the following type.
+- **Xie:** The above is so important from the mathematical point of view,
+  because we get a definition of equivalence of beliefs,
+  which is of the same form of the equivalence of function:
 
   ```js
-  pragmatism.thought_not_eqv(x: thought_t, y: thought_t): boolean_t {
-    // TODO
+  function EqualBelief(f: Belief, g: Belief): Type {
+    return forall (x: Circumstance) [
+      g.Applicable(x), f.Applicable(x),
+      EqualResult(g.apply(x), f.apply(x)),
+    ]
   }
   ```
 
-  Maybe, we can formalize the pragmatism philosophy itself.
+  To apply a belief is to recognize that
+  the circumstance is such that
+  under which the belief is applicable,
+  and to carry out the action of the belief
+  to get a sensible result.
+
+  In this formalization, it seems a good idea
+  to always use pure function and use algebraic effect
+  to encode true effect.
 
 To see what this principle leads to,
 consider in the light of it such a doctrine as that of transubstantiation.
