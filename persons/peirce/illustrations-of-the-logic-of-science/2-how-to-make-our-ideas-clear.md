@@ -297,7 +297,8 @@ astrologers,
 and what not, may not be told
 in the old German story?
 
-- **Xie:** I also known such a man,
+- **Xie:** Peirce described such a bleak picture,
+  because I also known such a man,
   I was such a man when I was irresolute
   about putting my ideas into tests.
 
