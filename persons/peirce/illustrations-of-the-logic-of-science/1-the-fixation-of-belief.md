@@ -694,37 +694,37 @@ this series of papers. At present I have only room to notice some
 points of contrast between it and other methods of fixing belief.
 
 This is the only one of the four methods [**Xie:** tenacity,
-authority, taste or a priori, science] which presents any distinction
-of a right and a wrong way. If I adopt the method of tenacity and shut
-myself out from all influences, whatever I think necessary to doing
-this is necessary according to that method. So with the method of
-authority: the state may try to put down heresy by means which, from a
-scientific point of view, seems very ill-calculated to accomplish its
-purposes; but the only test _on that method_ is what the state thinks,
-so that it cannot pursue the method wrongly. So with the _a priori_
-method. The very essence of it is to think as one is inclined to think
-[**Xie:** comparing with Alan Watts' "the world is a game", like a
-dance where apples are appling and people are peopling]. All
-metaphysicians will be sure to do that, however they may be inclined
-to judge each other to be perversely wrong. The Hegelian system
-recognizes every natural tendency of thought as logical, although it
-is certain to be abolished by counter-tendencies. Hegel thinks there
-is a regular system in the succession of these tendencies, in
-consequence of which, after drifting one way and the other for a long
-time, opinion will at last go right. And it is true that
-metaphysicians get the right ideas at last; Hegel’s system of Nature
-represents tolerably the science of that day; and one may be sure that
-whatever scientific investigation has put out of doubt will presently
-receive _a priori_ demonstration on the part of the
-metaphysicians. But with the scientific method the case is
-different. I may start with known and observed facts to proceed to the
-unknown; and yet the rules which I follow in doing so may not be such
-as investigation would approve [**Xie:** the inference rules can be
-revised during an inquiry]. The test of whether I am truly following
-the method is not an immediate appeal to my feelings and purposes,
-but, on the contrary, itself involves the application of the
-method. Hence it is that bad reasoning as well as good reasoning is
-possible; and this fact is the foundation of the practical side of
+authority, apriority (or taste), science] which presents any
+distinction of a right and a wrong way. If I adopt the method of
+tenacity and shut myself out from all influences, whatever I think
+necessary to doing this is necessary according to that method. So with
+the method of authority: the state may try to put down heresy by means
+which, from a scientific point of view, seems very ill-calculated to
+accomplish its purposes; but the only test _on that method_ is what
+the state thinks, so that it cannot pursue the method wrongly. So with
+the _a priori_ method. The very essence of it is to think as one is
+inclined to think [**Xie:** comparing with Alan Watts' "the world is a
+game", like a dance where apples are appling and people are
+peopling]. All metaphysicians will be sure to do that, however they
+may be inclined to judge each other to be perversely wrong. The
+Hegelian system recognizes every natural tendency of thought as
+logical, although it is certain to be abolished by
+counter-tendencies. Hegel thinks there is a regular system in the
+succession of these tendencies, in consequence of which, after
+drifting one way and the other for a long time, opinion will at last
+go right. And it is true that metaphysicians get the right ideas at
+last; Hegel’s system of Nature represents tolerably the science of
+that day; and one may be sure that whatever scientific investigation
+has put out of doubt will presently receive _a priori_ demonstration
+on the part of the metaphysicians. But with the scientific method the
+case is different. I may start with known and observed facts to
+proceed to the unknown; and yet the rules which I follow in doing so
+may not be such as investigation would approve [**Xie:** the inference
+rules can be revised during an inquiry]. The test of whether I am
+truly following the method is not an immediate appeal to my feelings
+and purposes, but, on the contrary, itself involves the application of
+the method. Hence it is that bad reasoning as well as good reasoning
+is possible; and this fact is the foundation of the practical side of
 logic.
 
 It is not to be supposed that the first three methods of settling

@@ -16,12 +16,12 @@ They have lain in the books now for nigh two centuries,
 unimproved and unmodified,
 and are generally reckoned by logicians as among the gems of their doctrine.
 
-- **Xie**:
+- **Xie:**
   Like aristotle, Peirce summaries historical approaches to the same inquiry.
 
   By "a modern treatise on logic of the common sort", Peirce might
-  mean Descartes' "Discourse on the Method", or Descartes influenced
-  treatise (Descartes is also mentioned in the following sections).
+  mean Descartes' "Discourse on the Method" (Descartes is also
+  mentioned in the following sections).
 
   In "Discourse on the Method
   of Rightly Conducting One's Reason
@@ -43,8 +43,10 @@ and are generally reckoned by logicians as among the gems of their doctrine.
   > ascend by little and little, and, as it were, step by step, to the
   > knowledge of the more complex; assigning in thought a certain
   > order even to those objects which in their own nature do not stand
-  > in a relation of antecedence and sequence.  [**Xie:** which is to
-  > say, not only use duduction, but also use induction and guessing.]
+  > in a relation of antecedence and sequence.
+  >
+  > - **Xie:** Which is to say, Not only use duduction, but also use
+  >   induction and guessing.
   >
   > And the last, in every case to make enumerations so complete, and
   > reviews so general, that I might be assured that nothing was
@@ -98,6 +100,26 @@ has its only true place in philosophies which have long been extinct;
 and it is now time _to formulate the method of attaining to a more perfect clearness of thought_,
 such as we see and admire in the thinkers of our own time.
 
+- **Xie:** Mathematical structures are _abstract distinct_,
+  and if a structure (a pattern) is often recognized in our inquiries,
+  we may say it is a useful structure anyway.
+
+  Thus clearness and distinctness might have some truths in it,
+  but can not be viewed as "the perfection of apprehension".
+
+  Indeed, In modern mathematics, the direction of inquiries
+  are often not guided by reality, here by "reality" we mean
+  building models to simulate the phenomena we observed in real world.
+
+- **Xie:** According to [wikipedia](https://en.wikipedia.org/wiki/Charles_Sanders_Peirce), the following persons inferences Charles Peirce:
+
+  - George Boole
+  - Georg Cantor
+  - Benjamin Peirce
+  - Thomas Reid
+  - Herbert Spencer
+  - Richard Whately
+
 When Descartes set about the reconstruction of philosophy,
 his first step was to (theoretically) permit scepticism
 and to discard the practice of the schoolmen
@@ -131,8 +153,9 @@ that they must not only seem clear at the outset,
 but that discussion must never be able to bring to light
 points of obscurity connected with them.
 
-- **Xie**:
-  Peirce understand Descartes by reconstructing Descartes' thread of thoughts.
+- **Xie:**
+  Peirce analyses Descartes by reconstructing Descartes' thread of thoughts,
+  the use of "what he probably meant" is an example of this reconstruction.
 
 Such was the distinction of Descartes,
 and one sees that it was precisely on the level of his philosophy.
@@ -270,11 +293,11 @@ is excited by the irritation of doubt,
 and ceases when belief is attained;
 so that the production of belief is the sole function of thought.
 
-- **Xie**:
+- **Xie:**
   When trying to define thought,
   Peirce observes its effect on us.
 
-- **Xie**:
+- **Xie:**
   Thus when asking "can machine think?",
   we should firstly ask "can machine doubt?".
 
@@ -443,7 +466,7 @@ second, it appeases the irritation of doubt;
 and, third, it involves the establishment in our nature
 of a rule of action, or, say for short, a habit.
 
-- **Xie**:
+- **Xie:**
   If we were to program a think machine,
   to achieve "aware of", we at least need the machine
   to be able to explain why and how it formed its believes.
@@ -483,7 +506,7 @@ Imaginary distinctions are often drawn between beliefs
 which differ only in their mode of expression;
 -- the wrangling which ensues is real enough, however.
 
-- **Xie**:
+- **Xie:**
   This is the way by which a pragmatism can to avoid wrangling.
   i.e. to distinguish things, one should use
   _modes of action to which they give rise_
@@ -538,7 +561,7 @@ the whole function of thought is to produce habits of action;
 and that whatever there is connected with a thought,
 but irrelevant to its purpose, is an accretion to it, but no part of it.
 
-- **Xie**:
+- **Xie:**
   If we were to program a thinking machine,
   what kinds of "habits of action" should we aiming for?
 
@@ -565,7 +588,7 @@ no matter how subtile it may be;
 and there is no distinction of meaning so fine
 as to consist in anything but a possible difference of practice.
 
-- **Xie**:
+- **Xie:**
   We get a pragmatism thought distinguisher of the following type.
 
   ```js
@@ -637,7 +660,7 @@ Let us illustrate this rule by some examples;
 and, to begin with the simplest one possible,
 let us ask what we mean by calling a thing hard.
 
-- **Xie**:
+- **Xie:**
   By this example, we know that by "object" in the above section,
   we can denote an expression like "calling a thing hard",
   and what we are trying to understand clearly, is the mean of such expressions.
