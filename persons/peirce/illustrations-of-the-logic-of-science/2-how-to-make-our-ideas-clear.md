@@ -19,6 +19,11 @@ and are generally reckoned by logicians as among the gems of their doctrine.
 - **Xie:**
   Like aristotle, Peirce summaries historical approaches to the same inquiry.
 
+  The list of targets of critique:
+
+  - Descartes
+  - Leibnitz
+
   By "a modern treatise on logic of the common sort", Peirce might
   mean Descartes' "Discourse on the Method" (Descartes is also
   mentioned in the following sections).
@@ -105,9 +110,11 @@ such as we see and admire in the thinkers of our own time.
   we may say it is a useful structure anyway.
 
   Thus clearness and distinctness might have some truths in it,
-  but can not be viewed as "the perfection of apprehension".
+  but can not be viewed as "the perfection of apprehension",
+  because under which we might easily fallen into tenacity,
+  and away from science.
 
-  Indeed, In modern mathematics, the direction of inquiries
+  But indeed, In modern mathematics, the direction of inquiries
   are often not guided by reality, here by "reality" we mean
   building models to simulate the phenomena we observed in real world.
 
@@ -153,9 +160,9 @@ that they must not only seem clear at the outset,
 but that discussion must never be able to bring to light
 points of obscurity connected with them.
 
-- **Xie:**
-  Peirce analyses Descartes by reconstructing Descartes' thread of thoughts,
-  the use of "what he probably meant" is an example of this reconstruction.
+- **Xie:** Peirce analyses Descartes by reconstructing Descartes'
+  thread of thoughts, the use of "what he probably meant" is an
+  example of this reconstruction.
 
 Such was the distinction of Descartes,
 and one sees that it was precisely on the level of his philosophy.
@@ -196,6 +203,10 @@ he described the latter quality as
 the clear apprehension of everything contained in the definition;
 and the books have ever since copied his words.
 
+- **Xie:** When we emphasize distinctness over clearness,
+  we are even further from the truth, for clearness at least
+  require familiarity.
+
 There is no danger that his chimerical scheme
 will ever again be over-valued.
 Nothing new can ever be learned by analyzing definitions.
@@ -209,14 +220,14 @@ toward clearness of apprehension, and the defining of it the second.
 But in omitting all mention of any higher perspicuity of thought,
 they simply mirror a philosophy which was exploded a hundred years ago.
 That much-admired "ornament of logic"
--- the doctrine of clearness and distinctness
--- may be pretty enough,
-but it is high time to relegate to our cabinet of curiosities the antique bijou,
+-- the doctrine of clearness and distinctness -- may be pretty enough,
+but it is high time to relegate to our cabinet of curiosities
+the antique bijou [antique jewel],
 and to wear about us something better adapted to modern uses.
 
-The very first lesson that we have a right to demand that logic shall teach us is,
-how to make our ideas clear; and a most important one it is,
-depreciated only by minds who stand in need of it.
+The very first lesson that we have a right to demand that logic shall
+teach us is, **how to make our ideas clear**; and a most important one
+it is, depreciated only by minds who stand in need of it.
 
 To know what we think, to be masters of our own meaning,
 will make a solid foundation for great and weighty thought.
@@ -228,7 +239,8 @@ A nation, it is true, may, in the course of generations,
 overcome the disadvantage of an excessive wealth of language
 and its natural concomitant, a vast, unfathomable deep of ideas.
 
-We may see it in history, slowly perfecting its literary forms,
+We may see it in history,
+slowly perfecting its literary forms,
 sloughing at length its metaphysics,
 and, by virtue of the untirable patience
 which is often a compensation, attaining great excellence
@@ -246,11 +258,14 @@ A young man would hardly be persuaded
 to sacrifice the greater part of his thoughts to save the rest;
 and the muddled head is the least apt to see the necessity of such a sacrifice.
 Him we can usually only commiserate, as a person with a congenital defect.
-Time will help him, but intellectual maturity with regard to clearness comes rather late,
+Time will help him, but intellectual maturity
+with regard to clearness comes rather late,
 an unfortunate arrangement of Nature,
 inasmuch as clearness is of less use to a man settled in life,
 whose errors have in great measure had their effect,
 than it would be to one whose path lay before him.
+
+- **Xie:** Talking about effects of errors in different context.
 
 It is terrible to see how a single unclear idea,
 a single formula without meaning, lurking in a young man's head,
@@ -281,6 +296,10 @@ metaphysicians,
 astrologers,
 and what not, may not be told
 in the old German story?
+
+- **Xie:** I also known such a man,
+  I was such a man when I was irresolute
+  about putting my ideas into tests.
 
 # II
 
