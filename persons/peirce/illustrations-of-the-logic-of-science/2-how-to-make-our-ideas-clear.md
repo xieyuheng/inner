@@ -313,12 +313,10 @@ is excited by the irritation of doubt,
 and ceases when belief is attained;
 so that the production of belief is the sole function of thought.
 
-- **Xie:**
-  When trying to define thought,
+- **Xie:** When trying to define thought,
   Peirce observes its effect on us.
 
-- **Xie:**
-  Thus when asking "can machine think?",
+- **Xie:** Thus when asking "can machine think?",
   we should firstly ask "can machine doubt?".
 
   We doubt, firstly, by finding logic contradiction within our current believes,
@@ -327,21 +325,22 @@ so that the production of belief is the sole function of thought.
   Machine can doubt in the same manner.
 
   If I program a theorem prover, so that
-  when I give it a group of inconsistent theorems (a group of believes),
+  when I give it a group of inconsistent theorems (a group of beliefs),
   It will adjust the theorems to a group of consistent theorems,
   Then it can think in the first manner.
 
-  If it can also adjust contradiction in believes its current believes and observations,
+  If it can also adjust contradiction
+  in beliefs its current believes and observations,
   it also can think in the second manner.
 
-  The problem is to formalize logics, believes and observations,
+  The problem is to formalize logics, beliefs and observations,
   so that we can write thinking programs.
 
   And to adjust contradiction,
-  the program must search for new believes without contradiction.
+  the program must search for new beliefs without contradiction.
 
-  Before designing a program which can search for believes,
-  we must also ask how to use those believes?
+  Before designing a program which can search for beliefs,
+  we must also ask how to use those beliefs?
 
 All these words, however, are too strong for my purpose.
 It is as if I had described the phenomena
