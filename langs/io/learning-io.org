@@ -1,0 +1,103 @@
+#+TITLE:  learning io
+#+AUTHOR: 謝宇恆 / XIE Yuheng
+#+EMAIL:  xyheme@gmail.com
+
+* tutorial
+** math
+   #+begin_src cicada-nymph
+   1+1
+   2 sin
+   2 sqrt
+   #+end_src
+** variables
+   #+begin_src cicada-nymph
+   a := 1
+   a
+   b := 2 * 3
+   a + b
+   #+end_src
+** conditions
+   #+begin_src cicada-nymph
+   a := 2
+   if(a == 1) then(writeln("a is one")) else(writeln("a is not one"))
+   if(a == 1, writeln("a is one"), writeln("a is not one"))
+   #+end_src
+** lists
+   #+begin_src cicada-nymph
+   d := List clone append(30, 10, 5, 20)
+   d size
+   d print
+   d := d sort
+   d first
+   d last
+   d at(2)
+   d remove(30)
+   d atPut(1, 123)
+   list(30, 10, 5, 20) select(>10)
+   list(30, 10, 5, 20) detect(>10)
+   list(30, 10, 5, 20) map(*2)
+   list(30, 10, 5, 20) map(v, v*2)
+   #+end_src
+** loops
+   #+begin_src cicada-nymph
+   for(i, 1, 10, write(i, ";"))
+   d := List clone append(30, 10, 5, 20)
+   d := d sort
+   d foreach(i, v, writeln(i, ": ", v))
+   list("abc", "def", "ghi") foreach(println)
+   #+end_src
+** strings
+   #+begin_src cicada-nymph
+   a := "foo"
+   b := "bar"
+   c := a .. b
+   c at(0)
+   c at(0) asCharacter
+   s := "this is a test"
+   words := s split(" ", "\t") print
+   s findSeq("is")
+   s findSeq("test")
+   s slice(10)
+   s slice(2, 10)
+   #+end_src
+** objects
+   #+begin_src cicada-nymph
+   Contact := Object clone
+   Contact type
+   Contact proto type
+   Contact name := nil
+   Contact address := nil
+
+   holmes := Contact clone
+   holmes name := "Holmes"
+   holmes address := "221B Baker St"
+   holmes city := "London"
+   holmes slotNames
+
+   Contact fullAddress := method(name .. "\n" .. address .. "\n" .. city)
+
+   holmes fullAddress
+   holmes getSlot("fullAddress")
+   #+end_src
+** namespace
+   #+begin_src cicada-nymph
+   Lobby slotNames
+   Lobby Protos slotNames
+   Lobby protos Core slotNames
+   Lobby protos Core Date slotNames
+   #+end_src
+* introspection
+  #+begin_src cicada-nymph
+  plus := block(a, b, a + b)
+  plus call(2, 3)
+
+  plus argumentNames
+  plus code
+  plus message name
+  plus message next
+  plus message next name
+
+  plus message next setName("-")
+  plus
+  plus call(2, 3)
+  #+end_src
