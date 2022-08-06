@@ -11,7 +11,7 @@ Idiomatic S-expression use "rigid body indentation",
 where the whole expression is moved like a rigid body,
 as the following:
 
-```scheme
+```
 (record
   (t type-tt)
   (car t)
@@ -31,7 +31,7 @@ as the following:
 
 Moving expression non-rigidly is not idomtic:
 
-```scheme
+```
 (define cons-t (record
   (t type-tt)
   (car t)
@@ -45,7 +45,7 @@ Moving expression non-rigidly is not idomtic:
 
 But it wastes indentation, for example:
 
-```scheme
+```
 (claim nat-add-commutative
   (Pi ((x y nat-t))
     (eqv-t
@@ -100,7 +100,7 @@ sexp will use too many parenthese indeed.
 
 Take object for example,
 
-```scheme
+```
 (record
   (x 1)
   (y 2))
@@ -124,7 +124,7 @@ But sexp always uses parenthese.
 
 The same is true for variable bindings,
 
-```scheme
+```
 (Pi ((a A) (b B)) (C a b))
 (Sigma ((a A) (b B)) (C a b))
 ```
