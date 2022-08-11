@@ -8,9 +8,11 @@ stream, tree, mesh
 
 # data -- stream, tree, mesh
 
-- stream: order -- event, queue
-- tree: hierarchy -- object composition, ui components
-- mesh: relation & graph
+There are only three kinds of data:
+
+- stream: order -- event, queue, interaction, user input;
+- tree: hierarchy -- object composition, ui components, dom tree;
+- mesh: graph -- relation.
 
 ## example: spotify
 

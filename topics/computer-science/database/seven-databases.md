@@ -1,5 +1,6 @@
-Seven Databases
----------------
+---
+title: Seven Databases
+---
 
 # Intro
 

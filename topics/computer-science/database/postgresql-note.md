@@ -1,6 +1,8 @@
-# PostgreSQL Note
+---
+title: PostgreSQL Note
+---
 
-## Command line
+# Command line
 
 About database:
 - create: `createdb <db_name>`
@@ -10,7 +12,7 @@ About database:
 - list: `psql -l`
   like `SELECT * FROM pg_database;`
 
-## Default databases
+# Default databases
 
 - `postgres` for the user `postgres`,
   some programs assume this database exists,
@@ -44,4 +46,6 @@ SELECT * FROM pg_size_pretty(pg_database_size('template1'));
 SELECT * FROM pg_size_pretty(pg_database_size('postgres'));
 ```
 
-# (2001) Postgresql Introduction and Concepts
+# Books
+
+- (2001) Postgresql Introduction and Concepts
