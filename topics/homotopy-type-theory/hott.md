@@ -14,9 +14,9 @@ how to extend Martin Löf's basic type theory in general.
 
 # Introduction
 
-- **Xie:** Homotopy equivalent and homotopy types
-  are as intuitive to human mind as natural numbers,
-  thus we should design language to formalize them directly.
+**Xie:** Homotopy equivalent and homotopy types
+are as intuitive to human mind as natural numbers,
+thus we should design language to formalize them directly.
 
 ## Type theory
 
