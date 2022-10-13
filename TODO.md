@@ -12,6 +12,13 @@ author: Xie Yuheng
 
 # TODO
 
+- Dependent type and low level programming.
+
+  low level programming like C,
+  is about bits and bytes in memory (stack or heap).
+
+------
+
 - Get back to numbers.
 
   When I study probability theory,
