@@ -92,5 +92,8 @@ More examples:
 # Solution 2: Clojure like key-value
 
 ```clojure
-{1 2, 3 4}
+{"Alex" {"biology" 73
+         "history" 85}
+ "Jim" {"biology" 86
+        "history" 92}}
 ```
