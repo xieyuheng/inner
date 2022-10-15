@@ -48,6 +48,8 @@ $mark = [
 ];
 ```
 
+# Solution 1: infix sugar `=>`
+
 One way of solving is to view `<key> => <value>` as a sugar of `[<key> <value>]`:
 
 ```scheme
@@ -85,4 +87,10 @@ More examples:
 (data Nat Set
   zero => Nat
   add1 => (-> Nat Nat))
+```
+
+# Solution 2: Clojure like key-value
+
+```clojure
+{1 2, 3 4}
 ```
