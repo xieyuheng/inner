@@ -48,7 +48,11 @@ $mark = [
 ];
 ```
 
-# Solution 1: infix sugar `=>`
+# Solution 0: Not a problem
+
+Parenthesis help you edit the code structurally.
+
+# Solution 1: Infix sugar `=>`
 
 One way of solving is to view `<key> => <value>` as a sugar of `[<key> <value>]`:
 
