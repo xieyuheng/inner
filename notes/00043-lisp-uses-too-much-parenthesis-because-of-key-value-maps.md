@@ -61,16 +61,28 @@ One way of solving is to view `<key> => <value>` as a sugar of `[<key> <value>]`
                "history" => 92)))
 ```
 
-Another example:
+More examples:
 
 ```scheme
 (fn ife (Pi ((A Set)) (-> Boolean A A A))
   [(ife A true a b) a]
   [(ife A false a b) b])
 
-;; with => sugar:
+;; with `=>` sugar:
 
 (fn ife (Pi ((A Set)) (-> Boolean A A A))
   (ife A true a b) => a
   (ife A false a b) => b)
+```
+
+```scheme
+(data Nat Set
+  [zero Nat]
+  [add1 (-> Nat Nat)])
+
+;; with `=>` sugar:
+
+(data Nat Set
+  zero => Nat
+  add1 => (-> Nat Nat))
 ```
