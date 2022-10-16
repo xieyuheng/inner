@@ -49,5 +49,7 @@ Because comparing to normal programming languages, the way of building context
 and doing composition are rich, the same for monad,
 which is about defining new way of composition.
 
+But maybe, all compositions are one composition.
+
 Human process expressions in a linear way,
 maybe this is a point against lisp's nested sexp.
