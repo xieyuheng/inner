@@ -30,16 +30,17 @@ All C is A
   C < A
   ```
 
-  Note that, if B < A,
-  the identity function on B,
-  can be viewed as a function of type B -> A,
-  thus we have:
+  Note that, in set theory, if B < A,
+  there is an inclusion function -- ι (iota) from B to A,
+  (a.k.a. insertion, injection).
+
+
 
   ```
-  id(B): B -> A
-  id(C): C -> B
-  ---------------------------------
-  (x) => id(B)(id(C)(x)) : C -> A
+  ι(B, A): B -> A
+  ι(C, B): C -> B
+  ------------------------------------
+  (c) => ι(B, A)(ι(C, B)(c)) : C -> A
   ```
 
 Barbara:
@@ -78,42 +79,70 @@ A belongs to all C
   > from prae + dicō (“proclaim, dedicate”), related to dīcō (“say, tell”).
   > Doublet of preach.
 
+- **Xie:** Should we understand
+
+  ```
+  A is predicated of all B
+  B is predicated of all C
+  -------------------------
+  A is predicated of all C
+  ```
+
+  as the following?
+
+  ```
+  A <- B
+  B <- C
+  -------
+  A <- C
+  ```
+
 ## 2. Premisses and terms
 
-Every Aristotelian *syllogism* consists of three propositions called *premisses*.
-
+Every Aristotelian syllogism consists of three propositions called *premisses*.
 A premiss is a sentence affirming or denying something of something.
+In this sense the conclusion is also a premiss,
+because it states something about something.
 
-- In this sense the conclusion is also a premiss,
-  because it states something about something.
+- **Xie:** Compare the premiss here with Martin Löf's judgment,
+  which is defined by Dan as:
+
+  > A judgment is an attitude that a person takes towards expressions.
+  > When we come to know something, we are making a judgment.
 
 The two elements involved in a premiss
-are its *subject* and *predicate*.
+are its subject and predicate.
 Aristotle calls them "terms".
 
+The original meaning of the Greek "term",
+as well as of the Latin "terminus", is "limit" or "boundary".
+
+The terms of a premiss, its subject and predicate,
+are the limits of the premiss, its beginning and end.
+This is the very meaning of the word "term",
+and we should be careful not to identify this logical word
+with such psychological or metaphysical words as
+"idea", "notion", "concept", or "Begriff" in German.
+
 Every premiss is either universal, particular, or indefinite.
-- "All" and "no" added to the subject -- universality
-- "some" and "some not" (or "not all")
-  added to the subject -- particularity.
-- A premiss without such quantity -- indefinite
 
-## [note] premiss
+- "All" and "no" added to the subject -- universality.
+- "some" and "some not" (or "not all") added to the subject -- particularity.
+- A premiss without such quantity -- indefinite.
 
-- x -
-  how should we understand premiss?
+In building up his logic Aristotle did not take notice
+either of singular or of empty terms.
+In the first chapters of the Prior Analytics,
+containing the systematic exposition of his syllogistic,
+only universal terms are mentioned.
 
-- k -
-  natural language is so vague,
-  the meaning of "is" is heavily overloaded.
-  for example, in :
-  - If all B is A,
-    and all C is B,
-    then all C is A.
-  we can view the first line as :
-  1. B -> A -- function type
-  2. B < A -- subtype [subset]
-  3. B : A -- belonging
-  4. quotient type
+Aristotle certainly would not accept as meaningful expressions like
+"All Calliases are men" or "Some Calliases are men", if there were only one Callias.
+
+- **Xie:** Compare with distinction between element and type in type theory.
+  To form A -> B, A and B must be type.
+
+  Maybe we can say, Aristotle talk about types not elements.
 
 ## 3. Why singular terms were omitted by Aristotle
 
@@ -125,6 +154,10 @@ Aristotle divides all things into three classes.
    but other things may be predicated of them,
    e.g. man or animal.
 
+   - **Xie:** Compare with Dan's definition of type:
+
+     > Expressions that describe other expressions are called types.
+
 2. Some other things,
    and these are the second class,
    are themselves predicated of others
@@ -133,6 +166,10 @@ Aristotle divides all things into three classes.
    but it is clear that Aristotle means
    what is most universal, like being.
 
+   - **Xie:** In type theory, the universe of all types is an example.
+
+     Maybe Aristotle knows "type in type" is not good.
+
 3. To the third class belong those things that
    may be predicated of others and others of them,
    e.g. man of Callias and animal of man,
@@ -140,9 +177,18 @@ Aristotle divides all things into three classes.
    arguments and inquiries are concerned
    with this class of things.
 
+   - **Xie:** This means "A is predicated of all B" can be understood as:
+
+     | From  | Meaning              |
+     |-------|----------------------|
+     | B : A | B is an element of A |
+     | B < A | B is a subtype of A  |
+
+     And Aristotle limits the inquiries to B < A.
+
 ## 4. Variables
 
-if all S is R,
+If all S is R,
 and some S is P,
 then some R is P.
 
