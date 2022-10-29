@@ -14,8 +14,6 @@ and the subject in the second. He never says "All B is A",
 but uses instead the expression "A is predicated of all B"
 or more often "A belongs to all B".
 
-Barbara:
-
 ```
 All B is A
 All C is B
@@ -44,11 +42,22 @@ All C is A
   (x) => id(B)(id(C)(x)) : C -> A
   ```
 
+Barbara:
+
 ```
 A is predicated of all B
 B is predicated of all C
 -------------------------
 A is predicated of all C
+```
+
+or more often
+
+```
+A belongs to all B
+B belongs to all C
+-------------------
+A belongs to all C
 ```
 
 - **Xie:** From [What does 'of' mean in 'to be predicated of'?](https://ell.stackexchange.com/questions/48769/what-does-of-mean-in-to-be-predicated-of)
@@ -68,13 +77,6 @@ A is predicated of all C
   > From Latin praedicātus, perfect passive participle of praedicō (“publish, declare, proclaim”),
   > from prae + dicō (“proclaim, dedicate”), related to dīcō (“say, tell”).
   > Doublet of preach.
-
-```
-A belongs to all B
-B belongs to all C
--------------------
-A belongs to all C
-```
 
 ## 2. Premisses and terms
 
