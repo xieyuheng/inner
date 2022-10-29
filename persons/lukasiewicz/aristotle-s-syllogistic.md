@@ -79,7 +79,7 @@ A belongs to all C
   > from prae + dicō (“proclaim, dedicate”), related to dīcō (“say, tell”).
   > Doublet of preach.
 
-- **Xie:** Should we understand
+- **Xie:** We should understand
 
   ```
   A is predicated of all B
@@ -88,13 +88,13 @@ A belongs to all C
   A is predicated of all C
   ```
 
-  as the following?
+  as
 
   ```
-  A <- B
-  B <- C
-  -------
-  A <- C
+  A > B
+  B > C
+  ------
+  A > C
   ```
 
 ## 2. Premisses and terms
