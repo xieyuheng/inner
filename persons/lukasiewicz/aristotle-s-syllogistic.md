@@ -186,6 +186,11 @@ Aristotle divides all things into three classes.
 
      And Aristotle limits the inquiries to B < A.
 
+- **Xie:** Lukasiewicz points out that, the given classification
+  is not a division of things but adivision of terms.
+
+  Terms (or say expressions) are our way of modelling (reasoning about) the world.
+
 ## 4. Variables
 
 ```
