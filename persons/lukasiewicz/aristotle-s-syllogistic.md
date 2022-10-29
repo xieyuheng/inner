@@ -1,17 +1,20 @@
 ---
 title: Aristotle's Syllogistic
+subtitle: From the standpoint of modern formal log1c
+author: Jan Lukasiewicz
+years: [1951, 1957]
 ---
 
-# chapter 1 elements of the system
+# CHAPTER 1 ELEMENTS OF THE SYSTEM
 
 ## 1. The true form of the Aristotelian syllogism
 
 Aristotle always puts the predicate in the first place
 and the subject in the second.
-He never says 'All B is A',
+He never says "All B is A",
 but uses instead the expression
-'A is predicated of all B'
-or more often 'A belongs to all B'.
+"A is predicated of all B"
+or more often "A belongs to all B".
 
 Barbara :
 
@@ -53,11 +56,11 @@ affirming or denying something of something.
 
 The two elements involved in a premiss
 are its *subject* and *predicate*.
-Aristotle calls them 'terms'.
+Aristotle calls them "terms".
 
 Every premiss is either universal, particular, or indefinite.
-- 'All' and 'no' added to the subject -- universality
-- 'some' and 'some not' (or 'not all')
+- "All" and "no" added to the subject -- universality
+- "some" and "some not" (or "not all")
   added to the subject -- particularity.
 - A premiss without such quantity -- indefinite
 
@@ -68,7 +71,7 @@ Every premiss is either universal, particular, or indefinite.
 
 - k -
   natural language is so vague,
-  the meaning of 'is' is heavily overloaded.
+  the meaning of "is" is heavily overloaded.
   for example, in :
   - If all B is A,
     and all C is B,
@@ -114,12 +117,12 @@ then some R is P.
   this example makes most sense
   when viewed in set theory.
   where S R P are sets,
-  and 'is' is the 'belong' in set theory.
+  and "is" is the "belong" in set theory.
 
 - k -
   but syllogism in natural language seems
   is able to capture more meaning then set theory.
-  - because 'is' is overloaded.
+  - because "is" is overloaded.
 
 ## 5. Syllogistic necessity
 
@@ -127,7 +130,7 @@ then some R is P.
 
 ## 7. What is formalism?
 
-# chapter 2 theses of the system
+# CHAPTER 2 THESES OF THE SYSTEM
 
 ## 8. Theses and rules of inference
 
@@ -135,7 +138,7 @@ THE Aristotelian theory of the syllogism
 is a system of true propositions
 concerning the constants A, E, I, and O.
 
-- 'true propositions' means
+- "true propositions" means
   true for all values of the variables.
 
 True propositions of a deductive system I call *theses*.
@@ -143,34 +146,34 @@ True propositions of a deductive system I call *theses*.
 types of theses :
 
 - implications :
-  begin with 'if :a then :b'
+  begin with "if :a then :b"
 
   1. laws ofconversion
      - and laws of the square of opposition
        not mentionedin the Prior Analytics
      for example :
-     'If all B is A, then some A is B.'
+     "If all B is A, then some A is B."
 
   2. syllogisms
-     of form 'if :a and :b, then :c'
+     of form "if :a and :b, then :c"
      for example :
-     'If all B is A,
+     "If all B is A,
      and all C is B,
-     then all C is A.'
+     then all C is A."
 
 - laws of identity :
 
-  1. 'A belongsto all A' or 'All A is A'
+  1. "A belongsto all A" or "All A is A"
 
-  2. 'A belongs to some A' or 'Some A is A'
+  2. "A belongs to some A" or "Some A is A"
 
 - It must be said emphatically that
   no syllogism is formulated by Aristotle
-  as an inference with the word 'therefore' (apa),
+  as an inference with the word "therefore" (apa),
   as is done in the traditional logic.
   Syllogisms of the form :
-  'All B is A; all C is B;
-  therefore all C is A'
+  "All B is A; all C is B;
+  therefore all C is A"
   are not Aristotelian.
 
 ## 9. The syllogistic figures
@@ -185,7 +188,7 @@ types of theses :
 
 ## 14. The four Galenian figures
 
-# chapter 3 the system
+# CHAPTER 3 THE SYSTEM
 
 ## 15. Perfect and imperfect syllogisms
 
@@ -201,4 +204,4 @@ types of theses :
 
 ## 21. Some unsolved problems
 
-# chapter 4 aristotle's system in symbolic form
+# CHAPTER 4 ARISTOTLE'S SYSTEM IN SYMBOLIC FORM
