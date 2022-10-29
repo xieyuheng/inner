@@ -87,4 +87,4 @@ The most important definition comes from
   - Beta reduction of lambda calculus.
   - Turing machine.
 
-**Program** is carefully prepared init state.
+**Program** is carefully prepared init state (that is useful to us).
