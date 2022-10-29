@@ -5,51 +5,82 @@ author: Jan Lukasiewicz
 years: [1951, 1957]
 ---
 
-# CHAPTER 1 ELEMENTS OF THE SYSTEM
+# CHAPTER I ELEMENTS OF THE SYSTEM
 
 ## 1. The true form of the Aristotelian syllogism
 
 Aristotle always puts the predicate in the first place
-and the subject in the second.
-He never says "All B is A",
-but uses instead the expression
-"A is predicated of all B"
+and the subject in the second. He never says "All B is A",
+but uses instead the expression "A is predicated of all B"
 or more often "A belongs to all B".
 
-Barbara :
+Barbara:
 
-- If all B is A,
-  and all C is B,
-  then all C is A.
+```
+All B is A
+All C is B
+-----------
+All C is A
+```
 
-  - x -
-    this can be understand as subtype relation :
-    - if B < A
-      and C < B
-      then C < A
-    note that, if B < A,
-    the identity function on B,
-    can be viewed as a function of type (-> B -- A)
-    thus we have :
-    - if f : (-> B -- A)
-      and g : (-> C -- B)
-      then [g f] : (-> C -- A)
+- **Xie:** This can be understand as subtype relation:
 
-- If A is predicated of all B
-  and B is predicated of all C,
-  then A is predicated of all C.
+  ```
+  B < A
+  C < B
+  ------
+  C < A
+  ```
 
-- If A belongs to all B
-  and B belongs to all C,
-  then A belongs to all C.
+  Note that, if B < A,
+  the identity function on B,
+  can be viewed as a function of type B -> A,
+  thus we have:
+
+  ```
+  id(B): B -> A
+  id(C): C -> B
+  ---------------------------------
+  (x) => id(B)(id(C)(x)) : C -> A
+  ```
+
+```
+A is predicated of all B
+B is predicated of all C
+-------------------------
+A is predicated of all C
+```
+
+- **Xie:** From [What does 'of' mean in 'to be predicated of'?](https://ell.stackexchange.com/questions/48769/what-does-of-mean-in-to-be-predicated-of)
+
+  > When we predicate a quality or property of a subject,
+  > we are stating that the subject possesses that quality or property.
+
+  See also [Wiktionary](https://en.m.wiktionary.org/wiki/predicate) for it's etymology:
+
+  > Etymology 1
+  >
+  > From post-classical Late Latin praedicātum (“thing said of a subject”),
+  > a noun use of the neuter past participle of praedicō (“I proclaim”).
+  >
+  > Etymology 2
+  >
+  > From Latin praedicātus, perfect passive participle of praedicō (“publish, declare, proclaim”),
+  > from prae + dicō (“proclaim, dedicate”), related to dīcō (“say, tell”).
+  > Doublet of preach.
+
+```
+A belongs to all B
+B belongs to all C
+-------------------
+A belongs to all C
+```
 
 ## 2. Premisses and terms
 
-Every Aristotelian *syllogism*
-consists of three propositions called *premisses*.
+Every Aristotelian *syllogism* consists of three propositions called *premisses*.
 
-A premiss is a sentence
-affirming or denying something of something.
+A premiss is a sentence affirming or denying something of something.
 
 - In this sense the conclusion is also a premiss,
   because it states something about something.
@@ -77,7 +108,7 @@ Every premiss is either universal, particular, or indefinite.
     and all C is B,
     then all C is A.
   we can view the first line as :
-  1. (-> B -- A) -- function type
+  1. B -> A -- function type
   2. B < A -- subtype [subset]
   3. B : A -- belonging
   4. quotient type
@@ -130,7 +161,7 @@ then some R is P.
 
 ## 7. What is formalism?
 
-# CHAPTER 2 THESES OF THE SYSTEM
+# CHAPTER II THESES OF THE SYSTEM
 
 ## 8. Theses and rules of inference
 
@@ -188,7 +219,7 @@ types of theses :
 
 ## 14. The four Galenian figures
 
-# CHAPTER 3 THE SYSTEM
+# CHAPTER III THE SYSTEM
 
 ## 15. Perfect and imperfect syllogisms
 
@@ -204,4 +235,12 @@ types of theses :
 
 ## 21. Some unsolved problems
 
-# CHAPTER 4 ARISTOTLE'S SYSTEM IN SYMBOLIC FORM
+# CHAPTER IV ARISTOTLE'S SYSTEM IN SYMBOLIC FORM
+
+# CHAPTER V THE PROBLEM OF DECISION
+
+# CHAPTER VI ARISTOTLE'S MODAL LOGIC OF PROPOSITIONS
+
+# CHAPTER VII THE SYSTEM OF MODAL LOGIC
+
+# CHAPTER VIII ARISTOTLE'S MODAL SYLLOGISTIC
