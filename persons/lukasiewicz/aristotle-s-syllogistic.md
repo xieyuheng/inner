@@ -206,7 +206,7 @@ which is of the universal and not of the singular.
 
 - **Xie:** Compare with modern day category theory.
 
-I (Lukasiewicz) cannot agree with this opinion.
+I [Lukasiewicz] cannot agree with this opinion.
 
 ## 4. Variables
 
