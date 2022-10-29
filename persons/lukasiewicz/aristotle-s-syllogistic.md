@@ -191,6 +191,23 @@ Aristotle divides all things into three classes.
 
   Terms (or say expressions) are our way of modelling (reasoning about) the world.
 
+
+This is the greatest defect of the Aristotelian logic,
+that singular terms and propositions have no place in it.
+What was the cause?
+
+There is an opinion among philosophers that
+Aristotle constructed his system of logic
+under the influence of Plato's philosophy;
+for it was Plato who believed that
+the object of true knowledge must be stable
+and capable of a precise definition,
+which is of the universal and not of the singular.
+
+- **Xie:** Compare with modern day category theory.
+
+I (Lukasiewicz) cannot agree with this opinion.
+
 ## 4. Variables
 
 ```
