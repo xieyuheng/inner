@@ -188,20 +188,22 @@ Aristotle divides all things into three classes.
 
 ## 4. Variables
 
-If all S is R,
-and some S is P,
-then some R is P.
+```
+All S is R
+Some S is P
+------------
+Some R is P
+```
 
-- x -
-  this example makes most sense
-  when viewed in set theory.
-  where S R P are sets,
-  and "is" is the "belong" in set theory.
+- **Xie:** This example makes most sense when viewed in set theory.
+  where S, R, P are sets, and "is" is the "belong" in set theory.
 
-- k -
-  but syllogism in natural language seems
-  is able to capture more meaning then set theory.
-  - because "is" is overloaded.
+  ```
+  S < R
+  exists (x: S) P
+  ---------------
+  exists (ι(S, R)(x): R) P
+  ```
 
 ## 5. Syllogistic necessity
 
