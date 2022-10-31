@@ -85,8 +85,10 @@ The most important definition comes from
 
 **Computational model** is rule about how to change the state in the next step.
 
-- For examples:
+- A lot of sets of rules can simulate each other thus equivalent, for examples:
   - Beta reduction of lambda calculus.
   - Turing machine.
+
+- Choosing a set of rules is like choosing reference frame (like in vector space).
 
 **Program** is carefully prepared init state (that is useful to us).
