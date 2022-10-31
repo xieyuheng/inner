@@ -48,6 +48,8 @@ author: Xie Yuheng
 
 ------
 
+- Is it easier to use hyper graph to model cell-complex?
+
 - Re-study homotopy theory and algebraic topology.
   - Study algebraic geometry, by which Hopf fibration are defined.
 
