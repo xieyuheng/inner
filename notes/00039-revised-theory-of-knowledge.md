@@ -81,6 +81,8 @@ The most important definition comes from
 
 **Computation** is directed changes (simulation of action).
 
+- I think Stephen Wolfram is saying "All changes are computation".
+
 **Computational model** is rule about how to change the state in the next step.
 
 - For examples:
