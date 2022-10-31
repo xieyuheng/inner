@@ -12,10 +12,21 @@ author: Xie Yuheng
 
 # TODO
 
-- Dependent type and low level programming.
+Dependent type and low level programming.
 
-  low level programming like C,
+- low level programming like C,
   is about bits and bytes in memory (stack or heap).
+
+How to compile with proper tail-call?
+
+How to compile closure to a language without closure?
+
+- 90 minute Scheme to C compiler presentation
+
+  - https://www.youtube.com/watch?v=Bp89aBm9tGU
+  - https://www.youtube.com/watch?v=M4dwcdK5bxE
+
+How to not use tagged value in the runtime?
 
 ------
 
