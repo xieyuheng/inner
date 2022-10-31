@@ -30,68 +30,78 @@ How to not use tagged value in the runtime?
 
 ------
 
-- Get back to numbers.
+> Get back to numbers.
 
-  When I study probability theory,
-  I am unwilling to use just numbers.
-  This might be wrong, because numbers are still
-  the must important object in mathematics.
+When I study probability theory,
+I am unwilling to use just numbers.
+This might be wrong, because numbers are still
+the must important object in mathematics.
 
-  - draw algebraic geometry
-  - simulate classical mechanics
-  - draw differential geometry
-
-------
-
-- During study of "Causality -- Models, Reasoning and Inference",
-  I found that maybe we should revisit the idea of [orbit](https://withorbit.com/),
-  - Repo: https://github.com/andymatuschak/orbit
-  - Because I keep forgetting:
-    - definition of terms
-    - import intuitions
-    - typical examples
-  - and: https://activerecall.com
-  - New design of mimor
-    - one card one xml element,
-      one file many cards,
-      one directory one deck
-      (maybe with a JSON config file).
+- draw algebraic geometry
+- simulate classical mechanics
+- draw differential geometry
 
 ------
 
-- Is it easier to use hyper graph to model cell-complex?
+During study of "Causality -- Models, Reasoning and Inference",
+I found that maybe we should revisit the idea of [orbit](https://withorbit.com/).
 
-- Re-study homotopy theory and algebraic topology.
-  - Study algebraic geometry, by which Hopf fibration are defined.
-
-- Review notes about homotopy type theory.
-
-- V.V.'s did not use `Iso` in his univalent axiom,
-  but changed the definition of `Iso`!
-  - If `Iso <-> isEquiv` why we can not use `Iso` to define univalent axiom?
-
-- Understand homotopy type theory with cell-complex as basic objects.
-  - Interpret type theory by cell-complex (model of a logic system)
-  - Revisit [Curry–Howard correspondence](https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence)
-    every now and then.
-    - ~/persons/de-bruijn/on-the-roles-of-types-in-mathematics.pdf
+- Repo: https://github.com/andymatuschak/orbit
+- Because I keep forgetting:
+  - definition of terms
+  - import intuitions
+  - typical examples
+- and: https://activerecall.com
+- New design of mimor
+  - one card one xml element,
+    one file many cards,
+    one directory one deck
+    (maybe with a JSON config file).
 
 ------
 
-- Word problems of semigroup, monoid and group.
-  - About undecidable.
-- Term syntax for linear logic -- simple types first.
-  - How does the algebra of linear logic connectives
-    different from boolean lattice?
-- Use linear logic as type system of inet.
-- Implement optimal beta-reduction by inet.
+Is it easier to use hyper graph to model cell-complex?
+
+Re-study homotopy theory and algebraic topology.
+
+- Study algebraic geometry, by which Hopf fibration are defined.
+
+Review notes about homotopy type theory.
+
+V.V.'s did not use `Iso` in his univalent axiom,
+but changed the definition of `Iso`!
+
+- If `Iso <-> isEquiv` why we can not use `Iso` to define univalent axiom?
+
+Understand homotopy type theory with cell-complex as basic objects.
+
+- Interpret type theory by cell-complex (model of a logic system)
+- Revisit [Curry–Howard correspondence](https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence)
+  every now and then.
+  - ~/persons/de-bruijn/on-the-roles-of-types-in-mathematics.pdf
 
 ------
 
-- Analysis Christopher Alexander's "A Pattern Language",
-  to use patterns to record my knowledge.
-  - Case study the structure of Martin Fowler's homepage.
-  - Readonly.Link should support writing patterns.
+Word problems of semigroup, monoid and group.
+
+- About undecidable.
+
+Term syntax for linear logic -- simple types first.
+
+- How does the algebra of linear logic connectives
+  different from boolean lattice?
+
+Use linear logic as type system of inet.
+
+Implement optimal beta-reduction by inet.
+
+------
+
+Analysis Christopher Alexander's "A Pattern Language",
+to use patterns to record my knowledge.
+
+- Case study the structure of Martin Fowler's homepage.
+- Readonly.Link should support writing patterns.
 
 # Main quests
 
@@ -106,14 +116,14 @@ This quest is beautifully formulated by Vladimir Voevodsky as the following:
 > which can be used to formalize all subject areas of mathematics
 > is called a foundational system for mathematics or "Foundations of Mathematics".
 
-- The language must have enough features to formalize mathematic theorems and proofs.
+The language must have enough features to formalize mathematic theorems and proofs.
 
-  Currently we are still in lack of some important features:
+- Currently we are still in lack of some important features:
 
   - **[side quest]** Recursion and termination-check
   - **[side quest]** Subtyping
 
-  We already implemented inductive types,
+- We already implemented inductive types,
   but we learned that it is possible to use lambda encoding
   to greatly simplify the implementation of inductive types.
 
@@ -131,16 +141,16 @@ This quest is beautifully formulated by Vladimir Voevodsky as the following:
 
     The type system of interaction nets is linear logic.
 
-- We must actually use this language to formalize a lot of mathematics,
-  because without applications, language design project is not complete,
-  and applications will provide feedback to improve our design.
+We must actually use this language to formalize a lot of mathematics,
+because without applications, language design project is not complete,
+and applications will provide feedback to improve our design.
 
-  - **[side quest]** Formalize category theory
-  - **[side quest]** Formalize algebraic topology
+- **[side quest]** Formalize category theory
+- **[side quest]** Formalize algebraic topology
 
-- **[paper]** Maybe the idea of fulfilling types is new and worth sharing as a paper.
+**[paper]** Maybe the idea of fulfilling types is new and worth sharing as a paper.
 
-  Fulfilling types make it easy to formalize some concepts of category theory.
+- Fulfilling types make it easy to formalize some concepts of category theory.
 
 ## JoJo Calculus
 
@@ -160,27 +170,27 @@ Cell-complex and higher dimensional algebraic structure.
 The only way of visualizing topological space is to give it geometry,
 and one way of introducing geometry is using _algebraic geometry_.
 
-- **[problem]** From the point of view of type theory,
-  how "Boundaries as Types" project different from HoTT?
+**[problem]** From the point of view of type theory,
+how "Boundaries as Types" project different from HoTT?
 
-- **[problem]** Can we use such implementation in geometric modeling?
+**[problem]** Can we use such implementation in geometric modeling?
 
-- **[problem]** Graph theory has many models,
-  we have many ways to interpret nodes and edges and their relations,
-  but how to interpret faces and bodies of cell-complex?
+**[problem]** Graph theory has many models,
+we have many ways to interpret nodes and edges and their relations,
+but how to interpret faces and bodies of cell-complex?
 
-  Think about things can not be modeled by graph:
+- Think about things can not be modeled by graph:
 
   - A face as a relation between relations.
   - A face as an equivalence between equivalences.
   - A face as a relation of a multiple arguments.
 
-  The direction of an edge as many interpretions
+- The direction of an edge as many interpretions
 
   - Movement.
   - Causal relation.
 
-  how to generalize this to face and body?
+- how to generalize this to face and body?
 
 ## Causal Inference Engine
 
@@ -219,20 +229,20 @@ References about optimal beta-reduction:
 
 ## Symbolic systems
 
-- **[project]** `monoid-presentation`
+**[project]** `monoid-presentation`
 
-  One of linear logic's model is *phase semantics*,
+- One of linear logic's model is *phase semantics*,
   in which the definition of *phase space* is based on monoid.
 
-  Thus it is interesting to be able to play with monoid via presentation.
+- Thus it is interesting to be able to play with monoid via presentation.
 
 - **[project]** `group-presentation`
 
-  Group presentation is much more well studied than monoid presentation.
+- Group presentation is much more well studied than monoid presentation.
 
 - **[project]** `xieyuheng/algebra`
 
-  We are good at implementing programming languages,
+- We are good at implementing programming languages,
   which means we are good at playing with expressions.
 
   Thus it is beneficial to apply our skills to other problem domain
@@ -262,40 +272,40 @@ we also want to write proof by hand,
 even if we do understand the computational aspect of the logic yet,
 i.e. we do not know how to evaluate terms or how to normalize terms.
 
-- **[project]** `cicada-lang/relation`
+**[project]** `cicada-lang/relation`
 
-  - JSON based logic programming language.
-  - Be able to write proof be hand.
-  - Learn Prolog for real.
+- JSON based logic programming language.
+- Be able to write proof be hand.
+- Learn Prolog for real.
 
-- **[side quest]** Extending Martin Löf's type theory
+**[side quest]** Extending Martin Löf's type theory
 
-  There are many ways to extend Martin Löf's type theory.
+- There are many ways to extend Martin Löf's type theory.
 
   - Inductive types.
   - Higher inductive types.
 
-  What are the general principles for introducing new types?
+- What are the general principles for introducing new types?
 
-  Maybe we can use logic programming language to explore different inference rules.
+- Maybe we can use logic programming language to explore different inference rules.
 
-- **[problem]** Is inductive types already enough to formalize inference rules?
+**[problem]** Is inductive types already enough to formalize inference rules?
 
-  Inductive type constructors are relations,
+- Inductive type constructors are relations.
 
-  - But note that, a relation defined by inductive type constructor
-    might be not reversible (not pure logic programming).
+- But note that, a relation defined by inductive type constructor
+  might be not reversible (not pure logic programming).
 
-    For example, we can formalize judgments of dependent types by
-    inductive type constructors, by when evaluation occurs in the it,
-    it is no longer reversible.
+  For example, we can formalize judgments of dependent types by
+  inductive type constructors, by when evaluation occurs in the it,
+  it is no longer reversible.
 
 ## Lambda-cube, lambda encoding and self types
 
-- **[project]** `lambda-disco`
+**[project]** `lambda-disco`
 
-  To implement lambda-cube with self types,
-  and use them to understand lambda encoding of inductive types.
+To implement lambda-cube with self types,
+and use them to understand lambda encoding of inductive types.
 
 ## Formalize category theory
 
@@ -315,9 +325,9 @@ to categorical semantics and categorical logic.
 The archetype of categorical logic is
 cartesian closed category and simply typed lambda calculus.
 
-- <https://en.wikipedia.org/wiki/Cartesian_closed_category>
-- <https://en.wikipedia.org/wiki/Simply_typed_lambda_calculus>
-- <https://en.wikipedia.org/wiki/Categorical_logic>
+- https://en.wikipedia.org/wiki/Cartesian_closed_category
+- https://en.wikipedia.org/wiki/Simply_typed_lambda_calculus
+- https://en.wikipedia.org/wiki/Categorical_logic
 
 References:
 
@@ -331,7 +341,7 @@ References:
   - Category Theory 4.2: Products
   - Category Theory 5.1: Coproducts, sum types
 
-- <https://ncatlab.org/nlab/show/categorical+model+of+dependent+types>
+- https://ncatlab.org/nlab/show/categorical+model+of+dependent+types
 
 # General practice
 
@@ -339,24 +349,24 @@ References:
 
 ### Polya
 
-- ~/inner/person/polya/mathematics-and-plausible-reasoning
+~/inner/person/polya/mathematics-and-plausible-reasoning
 
-  - vol-2--patterns-of-plausible-inference.md
+- vol-2--patterns-of-plausible-inference.md
 
 ## software design
 
 ### TDD
 
-- ~/watching/tdd/james-shore
+~/watching/tdd/james-shore
 
 ### OOP
 
-- Mimic the style of "99 Bottles of OOP",
-  and apply it to other programming exercises.
+Mimic the style of "99 Bottles of OOP",
+and apply it to other programming exercises.
 
-  - Maybe use Chinese ballads as examples.
+- Maybe use Chinese ballads as examples.
 
-  References:
+- References:
 
-  - <https://en.wikipedia.org/wiki/99_Bottles_of_Beer>
+  - https://en.wikipedia.org/wiki/99_Bottles_of_Beer
   - "The Complexity of Songs", Knuth, Donald.
