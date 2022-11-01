@@ -12,6 +12,13 @@ author: Xie Yuheng
 
 # TODO
 
+Peirce's Trilean Logic Notebook
+
+- http://www.digitalpeirce.fee.unicamp.br/lane/p-trilan.htm
+- https://plato.stanford.edu/entries/peirce-logic/#BivaTriaLogi
+
+------
+
 > JavaScript and c-family language design.
 
 Review the SICP JavaScript version.
