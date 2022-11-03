@@ -12,6 +12,13 @@ author: Xie Yuheng
 
 # TODO
 
+Closed data can be implemented by pure abstract classes.
+
+- We should explore this.
+- [Gerald Jay Sussman keynote and discussion - reClojure 2021](https://www.youtube.com/watch?v=EbzQg7R2pYU)
+
+------
+
 Peirce's Trilean Logic Notebook
 
 - http://www.digitalpeirce.fee.unicamp.br/lane/p-trilan.htm
