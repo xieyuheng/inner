@@ -12,6 +12,10 @@ author: Xie Yuheng
 
 # TODO
 
+Redesgin the syntax of BCPL and implement it in `cicada-lang/bcpl`.
+
+------
+
 Closed data can be implemented by pure abstract classes.
 
 - We should explore this.
