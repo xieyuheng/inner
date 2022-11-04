@@ -1,6 +1,6 @@
 ---
 title: The Logic Notebook
-author: Peirce
+author: Charles Sanders Peirce
 date: 1867
 ---
 
@@ -97,6 +97,28 @@ probability of the inference.
 
 It is however a good idea that a random selection is equivalent to all
 known -- the genus of those two would fit that.
+
+We have
+
+M is P in the sense that the actual denotation or things taken under M
+are P (contingent)
+
+and 2nd in the sense that all possible things taken under M would be P
+(necessary).
+
+On the same principle
+
+S is M in the senses
+
+    1st that S has the qualities taken of M (attributive)
+    2nd that S has all qualities of M (subsumptive)
+
+Still it may be doubted if Hypothesis proceeds by random selection of
+qualities of the new predicate.
+
+Then the principle would be
+
+    the possible is like most of the actual.
 
 # 1867-04-01
 # 1867-04-12

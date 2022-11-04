@@ -12,6 +12,10 @@ author: Xie Yuheng
 
 # TODO
 
+VV said playing with expressions of proofs should be
+as easy as playing with expressions of polynomials.
+But bound variables and substitution made it not so easy.
+
 What if we have a language without lambda, only top-level named functions?
 Do we still need to distinguish `Value` from `Exp` and use `Closure` to handle scope?
 
