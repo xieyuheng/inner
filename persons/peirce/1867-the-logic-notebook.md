@@ -84,6 +84,20 @@ character -- a copy of it.
 This is horribly vague.
 
 # 1867-03-25
+
+Here is another point of view.
+
+What is the function of a symbol as subject? To stand for certain
+things. Then if a predicate be true of all the things that it stands
+for as yet, that is for all which we yet know it to stand for, the
+symbol may stand as subject provisionally.
+
+The difficulty with this is that it does not represent the synthetic
+probability of the inference.
+
+It is however a good idea that a random selection is equivalent to all
+known -- the genus of those two would fit that.
+
 # 1867-04-01
 # 1867-04-12
 # 1867-04-24
