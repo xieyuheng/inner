@@ -19,6 +19,8 @@ But bound variables and substitution made it not so easy.
 What if we have a language without lambda, only top-level named functions?
 Do we still need to distinguish `Value` from `Exp` and use `Closure` to handle scope?
 
+- In normal implementation, top-level `Stmt` is different from `Exp`.
+- Glued evaluation need to handle top-level name and local name (`Closure`) differently.
 - With module system, such a language is useful enough.
 - When writing a compiler, there is a pass which makes all closures top-level.
 - Prolog is such a language.
