@@ -12,6 +12,17 @@ author: Xie Yuheng
 
 # TODO
 
+What if we have a language without lambda, only top-level named functions?
+Do we still need to distinguish `Value` from `Exp` and use `Closure` to handle scope?
+
+- With module system, such a language is useful enough.
+- When writing a compiler, there is a pass which makes all closures top-level.
+- Prolog is such a language.
+- C is such a language.
+- Maybe Whereabouts should be such a language.
+
+------
+
 Redesgin the syntax of BCPL and implement it in `cicada-lang/bcpl`.
 
 ------
@@ -20,13 +31,6 @@ Closed data can be implemented by pure abstract classes.
 
 - We should explore this.
 - [Gerald Jay Sussman keynote and discussion - reClojure 2021](https://www.youtube.com/watch?v=EbzQg7R2pYU)
-
-------
-
-Peirce's Trilean Logic Notebook
-
-- http://www.digitalpeirce.fee.unicamp.br/lane/p-trilan.htm
-- https://plato.stanford.edu/entries/peirce-logic/#BivaTriaLogi
 
 ------
 
