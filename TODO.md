@@ -21,6 +21,11 @@ Do we still need to distinguish `Value` from `Exp` and use `Closure` to handle s
 - C is such a language.
 - Maybe Whereabouts should be such a language.
 
+We should implement a language to try this idea.
+
+Maybe we should make Whereabouts explicitly such a language,
+to simplify its implementation.
+
 ------
 
 Redesgin the syntax of BCPL and implement it in `cicada-lang/bcpl`.
