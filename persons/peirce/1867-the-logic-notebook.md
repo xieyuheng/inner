@@ -216,12 +216,41 @@ Then the principle would be
 
   ```
   S possiblely belongs to M, because it has attributes taken from M.
-  M is possiblely a subset of P, because samples taken from M belongs to P.
+  M is possiblely a subset of P, because samples taken from M belongs to P
+  (also P has most of M's attributes).
   --------------------
   S possiblely belongs to P.
   ```
 
 # 1867-04-01
+
+What is taken -- the present -- of a class if it has any common
+character -- that character probably belongs to the class, or to the
+majority of it. And if what is known of the characters of a thing
+belong to another thing, the second thing has most of the characters
+of the first, probably.
+
+- **Xie:**
+  I understand the first sentence as:
+  Take samples of `M`, find the common attributes of the samples,
+  most of the attributes will belongs to `M`.
+
+  I understand the second sentence as:
+  The  `M` is a subclass of `P`, if `P` has
+  most of the properties [characters] of `M`.
+
+  The second sentence is the principle of subclass,
+  the first sentence is its dual.
+
+The reason is that the parts compose the whole and therefore what does
+not belong to the majority of the whole does not belong to the
+majority of the parts.
+
+What does not belong to most of the parts does not belong to the parts
+taken mostly, because the parts to be taken are all the possible
+parts.
+
+- **Xie:** TODO How to understand the above sentences (with negation)?
 
 # 1867-04-12
 
