@@ -32,9 +32,8 @@ Here the principle is that
 
 - **Xie:**
 
-  Think about the duality between object and attribute in [formal
-  concept
-  analysis](https://en.wikipedia.org/wiki/Formal_concept_analysis).
+  Think about the duality between object and attribute in
+  [formal concept analysis](https://en.wikipedia.org/wiki/Formal_concept_analysis).
 
   In Peirce's terminology "character" is attribute (in programming we
   also use the word "property" for attribute).
@@ -58,6 +57,14 @@ Here the principle is that
 
   > That which [belongs to] M [also belongs to] what M [is as subset of].
 
+  I guess the following abbreviation for the choice of symbols by Peirce:
+
+  | Abbreviation | Meaning            |
+  | ------------ | ------------------ |
+  | S            | Subject            |
+  | M            | Middle (Predicate) |
+  | P            | Predicate          |
+
   This double meaning of "is" first occurs in Aristotle's books.
 
   TODO Write detailed comparison of Aristotle's "is".
@@ -73,7 +80,7 @@ A purely contentless principle. As a logical principle should be.
 Now let us take up the synthetic arguments.
 
 Whatever is a character of every thing denoted by `M` is a character
-of `M`.  Whatever has every character of `M` is denoted by `m`.
+of `M`. Whatever has every character of `M` is denoted by `m`.
 
 - **Xie:** Suppose we have a set of objects denoted by `M`,
   we can first observe these objects' common attributes,
@@ -172,22 +179,23 @@ The difficulty with this is that it does not represent the synthetic
 probability of the inference.
 
 It is however a good idea that a random selection is equivalent to all
-known -- the genus of those two would fit that.
+known -- the genus of those two would fit _that_.
 
-We have
+We have `M` is `P` in the sense that
 
-M is P in the sense that the actual denotation or things taken under M
-are P (contingent)
+- the _actual_ denotation or things taken under `M` are `P`
+  (contingent)
 
-and 2nd in the sense that all possible things taken under M would be P
-(necessary).
+- and 2nd in the sense that all possible things taken under `M` would
+  be `P` (necessary)
 
 On the same principle
 
-S is M in the senses
+`S` is `M` in the senses
 
-    1st that S has the qualities taken of M (attributive)
-    2nd that S has all qualities of M (subsumptive)
+- 1st that `S` has the qualities taken of `M` (attributive)
+
+- 2nd that `S` has all qualities of `M` (subsumptive)
 
 Still it may be doubted if Hypothesis proceeds by random selection of
 qualities of the new predicate.
@@ -195,6 +203,23 @@ qualities of the new predicate.
 Then the principle would be
 
     the possible is like most of the actual.
+
+- **Xie:** The above principle is to understand the following inference again,
+  in the 1st senses (contingent and attributive):
+
+  ```
+  S : M
+  M <: P
+  -------
+  S : P
+  ```
+
+  ```
+  S possiblely belongs to M, because it has attributes taken from M.
+  M is possiblely a subset of P, because samples taken from M belongs to P.
+  --------------------
+  S possiblely belongs to P.
+  ```
 
 # 1867-04-01
 
