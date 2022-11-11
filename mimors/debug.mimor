@@ -28,6 +28,8 @@
     (2) Clearly express the expected behavior.
 
     (3) Guess what causes the difference and put the guess into test.
+
+    Don't panic. Be a scientist. Use logic.
   </answer>
 </question>
 
@@ -41,12 +43,11 @@
 </question>
 
 <question>
-  What is the cause a result?
+  What is the cause of an effect?
 
   <answer>
-    The cause of a result is an attribute (or an aspect) of a model,
-    when we change this attribute of the model,
-    the result will change because of it.
+    The cause of an effect is an attribute (or an aspect) of a model,
+    when we change it the effect will change because of it.
   </answer>
 </question>
 
