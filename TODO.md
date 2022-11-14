@@ -12,6 +12,14 @@ author: Xie Yuheng
 
 # TODO
 
+The rules about appling elements of `Equal` as functions,
+which can be used to prove simple structural `Equal` like `equalPair`.
+
+Might be the rules we are looking for in the design of language for cell-complex,
+where are also a lots of "applying under structural".
+
+------
+
 Use rewrite rule based (dynamic) language
 to implement lambda calculus.
 
