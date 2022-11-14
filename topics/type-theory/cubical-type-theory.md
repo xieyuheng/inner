@@ -130,7 +130,7 @@ function aSurface(i: Interval, j: Interval): A {
 }
 ```
 
-# Type-Theoretic Truncation Levels
+# Lecture: Type-Theoretic Truncation Levels
 
 [ [YOUTUBE](https://www.youtube.com/watch?v=LWQqE2JcDSQ&list=PL0OBHndHAAZrGQEkOZGyJu7S7KudAJ8M9&index=1) ]
 
@@ -205,5 +205,52 @@ TODO Recursive definition of `TruncationLevel(n, A)`.
 ```cicada
 function Singleton(X: Type): Type {
   return exists (c: X) forall (x: X) Equal(X, c, x)
+}
+```
+
+# Lecture: Introduction to Cubical Type Theory (Part I)
+
+[ [YOUTUBE](https://www.youtube.com/watch?v=6cLUwAiQU6Q&list=PL0OBHndHAAZrGQEkOZGyJu7S7KudAJ8M9&index=3) ]
+
+```cicada
+datatype Interval {
+  start: Interval
+  end: Interval
+  path: endpoints [ start, -end ]
+}
+
+function M(i: Interval, j: Interval): A {
+  ...
+}
+
+check M(Interval.start, Interval.path): endpoints A [
+  M(Interval.start, Interval.start),
+  M(Interval.start, Interval.end),
+]
+
+check M(Interval.end, Interval.path): ...
+check M(Interval.path, Interval.start): ...
+check M(Interval.path, Interval.end): ...
+
+check M(Interval.path, Interval.path): endpoints A [
+  // TODO What should be the rule?
+  //   Is this rule the idea of cubical types?
+  M(Interval.start, Interval.path),
+  M(Interval.end, Interval.path),
+  M(Interval.path, Interval.start),
+  M(Interval.path, Interval.end),
+]
+
+check M(i, j): endpoints A [
+  // TODO What should be the rule?
+  //   Is this rule the idea of cubical types?
+  M(0, j),
+  M(1, j),
+  M(i, 0),
+  M(i, 1),
+]
+
+space Pair(Interval, Interval) {
+  ...
 }
 ```
