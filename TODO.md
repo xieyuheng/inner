@@ -207,6 +207,7 @@ Cell-complex and higher dimensional algebraic structure.
 Links:
 
 - [papers/publish/boundaries-as-types.md](papers/publish/boundaries-as-types.md)
+  - https://xieyuheng.com/papers/boundaries-as-types.md
 - [topics/type-theory/cubical-type-theory.md](topics/type-theory/cubical-type-theory.md)
 - [topics/homotopy-type-theory/hott.md](topics/homotopy-type-theory/hott.md)
 

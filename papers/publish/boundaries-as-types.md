@@ -311,27 +311,27 @@ datatype ProjectivePlane {
 ## 1-dimensional algebra
 
 ```cicada
-check path (Torus) {
+check path Torus {
   toro toro toro polo
-}: endpoints (Torus) {
+}: endpoints Torus {
   origin -origin
 }
 
-check path (Torus) {
+check path Torus {
   toro
-}: endpoints (Torus) {
+}: endpoints Torus {
   origin -origin
 }
 
-check path (Torus) {
+check path Torus {
   relf(origin)
-}: endpoints (Torus) {
+}: endpoints Torus {
   origin -origin
 }
 
-check path (Torus) {
+check path Torus {
   toro relf(origin)
-}: endpoints (Torus) {
+}: endpoints Torus {
   origin -origin
 }
 ```
@@ -362,30 +362,30 @@ datatype Torus3 {
 ## 2-dimensional algebra
 
 ```cicada
-check surface (Torus3) {
+check surface Torus3 {
   refl(refl(o)) { ... }
-}: polygon (Torus3) {
+}: polygon Torus3 {
   refl(o) -refl(o)
 }
 
-check surface (Torus3) {
+check surface Torus3 {
   refl(a) { ... }
-}: polygon (Torus3) {
+}: polygon Torus3 {
   a -a
 }
 
-check surface (Torus3) {
+check surface Torus3 {
   refl(a) { ... }
   refl(a) { ... }
-}: polygon (Torus3) {
+}: polygon Torus3 {
   a a -a -a
 }
 
-check surface (Torus3) {
+check surface Torus3 {
   ap { 'b3 'c2 = 'c0 'a2 }
   bp { 'b0 'a2 = 'b3 'c1 }
   refl(a) {  ... }
-}: polygon (Torus3) {
+}: polygon Torus3 {
   ...
 }
 ```
@@ -419,9 +419,9 @@ datatype S3 {
 TODO How to do 3-dimensional algebra?
 
 ```cicada
-check building (S3) {
+check building S3 {
   ball
-}: polyhedron (S3) {
+}: polyhedron S3 {
   disk { 'x = 'y }
   disk { 'x = 'y }
 }
@@ -432,15 +432,15 @@ TODO How come a sphere `S2` has an 3-dimensional algebraic structure in it?
 - Degenerated 3-dimensional elements in `S2` has non-trivial structure?
 
 ```cicada
-check building (S2) {
+check building S2 {
   relf(disk)
-}: polyhedron (S2) {
+}: polyhedron S2 {
   TODO
 }
 
-check building (S2) {
+check building S2 {
   relf(relf(rim))
-}: polyhedron (S2) {
+}: polyhedron S2 {
   TODO
 }
 ```
@@ -494,21 +494,21 @@ TODO How to understand `Torus` as `Circle * Circle`?
 
 ```cicada
 boundary(
-  path (Pair(Circle, Circle)) {
+  path Pair(Circle, Circle) {
     cons(base, loop)
   }
 )
 
 => TODO
 
-endpoints (Pair(Circle, Circle)) {
+endpoints Pair(Circle, Circle) {
   cons(base, base) -cons(base, base)
 }
 ```
 
 ```cicada
 boundary(
-  surface (Pair(Circle, Circle)) {
+  surface Pair(Circle, Circle) {
     cons(loop, loop)
   }
 )
