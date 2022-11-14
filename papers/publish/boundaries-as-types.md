@@ -315,29 +315,12 @@ datatype ProjectivePlane {
 ## 1-dimensional algebra
 
 ```cicada
-check path Torus [
-  toro, toro, toro, polo
-]: endpoints Torus [
-  origin, -origin
-]
-
-check path Torus [
-  toro
-]: endpoints Torus [
-  origin, -origin
-]
-
-check path Torus [
-  relf(origin)
-]: endpoints Torus [
-  origin, -origin
-]
-
-check path Torus [
-  toro, relf(origin)
-]: endpoints Torus [
-  origin, -origin
-]
+space Torus {
+  check path [ toro, toro, toro, polo ]: endpoints [ origin, -origin ]
+  check path [ toro ]: endpoints [ origin, -origin ]
+  check path [ relf(origin) ]: endpoints [ origin, -origin ]
+  check path [ toro, relf(origin) ]: endpoints [ origin, -origin ]
+}
 ```
 
 ## 3-dimensional
@@ -366,31 +349,15 @@ datatype Torus3 {
 ## 2-dimensional algebra
 
 ```cicada
-check surface Torus3 {
-  refl(refl(o)) { ... }
-}: polygon Torus3 [
-  refl(o), -refl(o)
-]
-
-check surface Torus3 {
-  refl(a) { ... }
-}: polygon Torus3 [
-  a, -a
-]
-
-check surface Torus3 {
-  refl(a) { ... }
-  refl(a) { ... }
-}: polygon Torus3 [
-  a, a, -a, -a
-]
-
-check surface Torus3 {
-  ap { 'b3 'c2 = 'c0 'a2 }
-  bp { 'b0 'a2 = 'b3 'c1 }
-  refl(a) {  ... }
-}: polygon Torus3 {
-  ...
+space Torus3 {
+  check surface { refl(refl(o)) { ... } }: polygon [ refl(o), -refl(o) ]
+  check surface { refl(a) { ... } }: polygon [ a, -a ]
+  check surface { refl(a) { ... } refl(a) { ... } }: polygon [ a, a, -a, -a ]
+  check surface {
+    ap { 'b3 'c2 = 'c0 'a2 }
+    bp { 'b0 'a2 = 'b3 'c1 }
+    refl(a) {  ... }
+  }: polygon [ ... ]
 }
 ```
 
@@ -405,14 +372,14 @@ For `n >= 2`, `Pi(n)` is abelian.
 ```cicada
 datatype S1 {
   base: S1
-  rim: endpoints { base -base }
+  rim: endpoints [ base, -base ]
 }
 
 datatype S2 {
   south: S2
   north: S2
-  meridian: endpoints { south -north }
-  disk: polygon { meridian -meridian }
+  meridian: endpoints [ south, -north ]
+  disk: polygon [ meridian, -meridian ]
 }
 
 datatype S3 {
@@ -423,11 +390,11 @@ datatype S3 {
 TODO How to do 3-dimensional algebra?
 
 ```cicada
-check building S3 {
-  ball
-}: polyhedron S3 {
-  disk { 'x = 'y }
-  disk { 'x = 'y }
+space S3 {
+  check building { ball }: polyhedron S3 {
+    disk { 'x = 'y }
+    disk { 'x = 'y }
+  }
 }
 ```
 
@@ -436,32 +403,29 @@ TODO How come a sphere `S2` has an 3-dimensional algebraic structure in it?
 - Degenerated 3-dimensional elements in `S2` has non-trivial structure?
 
 ```cicada
-check building S2 {
-  relf(disk)
-}: polyhedron S2 {
-  TODO
+space S2 {
+  check building { relf(disk) }: polyhedron {
+    TODO
+  }
+
+  check building { relf(relf(rim)) }: polyhedron {
+    TODO
+  }
 }
 
-check building S2 {
-  relf(relf(rim))
-}: polyhedron S2 {
-  TODO
-}
 ```
 
 TODO How to define `Pi(3)(S(2))`?
 
 ```cicada
 function Pi3S2 (s3: S3): S2 {
-  return match (s3) {
-    case base => S2.base
-    case rim => S2.rim
-    case disk => S2.disk
-    case ball => TODO
-    // It seems there is almost not information in definition of `S3`,
-    //   thus `Pi3S2` must be about the structure of
-    //   the higher dimensional algebra itself.
-  }
+  case (S3.base) => S2.base
+  case (S3.rim) => S2.rim
+  case (S3.disk) => S2.disk
+  case (S3.ball) => TODO
+  // It seems there is almost not information in definition of `S3`,
+  //   thus `Pi3S2` must be about the structure of
+  //   the higher dimensional algebra itself.
 }
 ```
 
@@ -497,27 +461,10 @@ to trivial elements (`refl`) of `A`.
 TODO How to understand `Torus` as `Circle * Circle`?
 
 ```cicada
-boundary(
-  path Pair(Circle, Circle) {
-    cons(base, loop)
-  }
-)
-
-=> TODO
-
-endpoints Pair(Circle, Circle) {
-  cons(base, base) -cons(base, base)
+space Pair(Circle, Circle) {
+  check path [ cons(base, loop) ]: endpoints [ cons(base, base), -cons(base, base) ]
+  check surface { cons(loop, loop) }: polygon [ ... ]
 }
-```
-
-```cicada
-boundary(
-  surface Pair(Circle, Circle) {
-    cons(loop, loop)
-  }
-)
-
-=> TODO
 ```
 
 ## Fibration
