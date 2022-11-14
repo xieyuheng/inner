@@ -103,7 +103,7 @@ function equalCompose(
   return (i: Interval) => match (i) {
     case (Interval.start) => xyPath(i)
     case (Interval.end) => yzPath(i)
-    case (Interval.path) => path { xyPath yzPath }
+    case (Interval.path) => path [ xyPath, yzPath ]
   }
 }
 ```
@@ -116,7 +116,7 @@ function equalCompose(
 datatype Interval {
   start: Interval
   end: Interval
-  path: endpoints { start -end }
+  path: endpoints [ start, -end ]
 }
 
 function aPath(i: Interval): A {

@@ -59,11 +59,11 @@ of 3-dimensional manifolds.
 
 The elements of a groupoid,
 when viewed as a cell-complex,
-are (undirected) paths built from edges.
+are (undirected) _paths_ built from _edges_.
 
 A 3-dimensional cell-complex,
 when viewed as an algebraic structure,
-its elements are surfaces built from faces.
+its elements are _surfaces_ built from _faces_.
 
 For edges, there are only two ways to do composition
 (this is where the inverse of groupoid elements come from),
@@ -82,62 +82,81 @@ are not well studied in the past.
 
 # TODO
 
-- example algebra of 1-dimension
+Example algebra of 1-dimension
 
-  - take presentation of group as example
-  - take interesting groups as example (fundamental polygon)
+- Take presentation of group as example
+- Take interesting groups as example (fundamental polygon)
 
-- example algebra of 2-dimension
-- example algebra of 3-dimension -- for `Pi(3)(S(2))`
+Example algebra of 2-dimension
 
-- about implementation:
+Example algebra of 3-dimension -- for `Pi(3)(S(2))`
 
-  if we think about how to implement higher order incidence relation
+About implementation:
+
+- If we think about how to implement higher order incidence relation
   by objects and pointers,
   and we store pointers at both direction at every order,
   the implementation will be a graph model of cell-complex.
 
-- product space -- and boundary operator over it
+- Should we use hypergraph to encode higher order incidence relation?
 
-- review old notes
+Product space -- and boundary operator over it.
 
-  - topics/mathematics/algebraic-topology
-  - topics/mathematics/combinatorial-group-theory
-  - langs/cell-complex
-    - a-language-for-equivalence
-    - fibration
-    - holding
-    - square
-    - at1-note
-    - aeqea
-    - main
-    - note
+Review old notes:
+
+- topics/mathematics/algebraic-topology
+- topics/mathematics/combinatorial-group-theory
+- langs/cell-complex
+  - a-language-for-equivalence
+  - fibration
+  - holding
+  - square
+  - at1-note
+  - aeqea
+  - main
+  - note
 
 # Problems
 
-- We are trying to find a way to general algebraic structure to higher dimension,
-  how can 2-dimensional sphere has non trivial 3-dimensional algebraic structure?
+## Problem of Hopf fibration
 
-  - Hopf fibration describe partition of the ball of `S3`,
-    but in our language, we can not describe this detailed partition.
+We are trying to find a way to generalize algebraic structure to higher dimension,
+how can 2-dimensional sphere has non trivial 3-dimensional algebraic structure?
 
----
+- Hopf fibration describe partition of the ball of `S(3)`,
+  but in our language, we can not describe this detailed partition.
 
-- We can define partition on cell-complex,
+Maybe we can define partition on cell-complex.
 
-- When defining a map between two spaces,
-  we must also define the map for all possible partitions
-  (like [surreal number](https://en.wikipedia.org/wiki/Surreal_number)?).
+When defining a map between two spaces,
+we must also define the map for all possible partitions
 
-- When we define map between the same dimension,
-  our way of definition already give a definition
-  for all possible partitions.
+- Maybe Like [surreal number](https://en.wikipedia.org/wiki/Surreal_number).
 
-- We can map element cross dimension,
-  but must also define the map for all possible partitions.
+When we define map between the same dimension,
+our way of definition already give a definition
+for all possible partitions.
 
-- Then we can define Hopf fibration in a
-  intuitive and pure topological way.
+We can map element cross dimension,
+but must also define the map for all possible partitions.
+
+Then we can define Hopf fibration in a
+intuitive and pure topological way.
+
+## Problem of the separation between fixed parameters and varied indexes
+
+In inductive datatypes, a type constructor can take arguments
+and the arguments are to separated into two groups:
+
+- **fixed (parameters)** which do NOT vary between the data constructors.
+- **varied (indexes)** which can vary between the data constructors.
+
+When we introduce arguments to type constructor for complex,
+what is the meaning of the above separation?
+
+What is the topological interpretion
+of "fixed v.s. varied arguments"
+for inductive datatype?
 
 # Abstract
 
@@ -159,26 +178,11 @@ Note that graph (with nodes and edges),
 and cell-complex (with faces and bodies and higher),
 are all only syntax, i.e. without interpretion.
 
-They are not model.
+They are NOT model.
 
 For example, we can interpret a directed graph as a causal model.
 
 # Higher dimensional inductive datatypes
-
-## TODO
-
-- In inductive datatypes, a type constructor can take arguments
-  and the arguments are to separated into two groups:
-
-  - **fixed (parameters)** which do **NOT** vary between the data constructors.
-  - **varied (indexes)** which can vary between the data constructors.
-
-  When we introduce arguments to type constructor for complex,
-  what is the meaning of the above?
-
-  What is the topological interpretion
-  of "fixed v.s. varied arguments"
-  for inductive datatype?
 
 ## Different meanings of higher-order-ness
 
@@ -212,19 +216,19 @@ we can use the algebra of the later to simplify our reasoning?
 
 ## Limitation of our construction
 
-The following notions are not built-in our language:
+The following concepts are not built-in our language:
 
 - Subset.
 - Quotient.
 
 ## Naming and syntax keywords
 
-| dimension | generator (cell) | element (complex) | spherical element |
-| --------: | ---------------- | ----------------- | ----------------- |
-|         0 | vertex           |                   | `endpoints`       |
-|         1 | edge             | `path`            | `polygon`         |
-|         2 | face             | `surface`         | `polyhedron`      |
-|         3 | block            | `building`        | `polychoron`      |
+| dimension | generator (cell) | element (complex) | spherical element (spherical complex) |
+| --------: | ---------------- | ----------------- | ------------------------------------- |
+|         0 | vertex           |                   | `endpoints`                           |
+|         1 | edge             | `path`            | `polygon`                             |
+|         2 | face             | `surface`         | `polyhedron`                          |
+|         3 | block            | `building`        | `polychoron`                          |
 
 Notes:
 
@@ -259,7 +263,7 @@ The generators can also be parameterized, thus infinity many,
 ```cicada
 datatype Circle {
   base: Circle
-  loop: endpoints { base -base }
+  loop: endpoints [ base, -base ]
 }
 ```
 
@@ -272,29 +276,29 @@ datatype Sphere {
   south: Sphere
   middle: Sphere
   north: Sphere
-  southLong: endpoints { south -middle }
-  northLong: endpoints { middle -north }
-  disk: polygon {
-    southLong northLong -northLong -southLong
-  }
+  southLong: endpoints [ south, -middle ]
+  northLong: endpoints [ middle, -north ]
+  disk: polygon [
+    southLong, northLong, -northLong, -southLong
+  ]
 }
 ```
 
 ```cicada
 datatype Torus {
   origin: Torus
-  toro: endpoints { origin -origin }
-  polo: endpoints { origin -origin }
-  spoke: polygon { toro polo -toro -polo }
+  toro: endpoints [ origin, -origin ]
+  polo: endpoints [ origin, -origin ]
+  spoke: polygon [ toro, polo, -toro, -polo ]
 }
 ```
 
 ```cicada
 datatype KleinBottle {
   origin: KleinBottle
-  toro: endpoints { origin -origin }
-  cross: endpoints { origin -origin }
-  disk: polygon { toro cross -toro cross  }
+  toro: endpoints [ origin, -origin ]
+  cross: endpoints [ origin, -origin ]
+  disk: polygon [ toro, cross, -toro, cross ]
 }
 ```
 
@@ -302,38 +306,38 @@ datatype KleinBottle {
 datatype ProjectivePlane {
   start: ProjectivePlane
   end: ProjectivePlane
-  leftRim: endpoints { start -end }
-  rightRim: endpoints { end -start }
-  disk: polygon { leftRim rightRim leftRim rightRim }
+  leftRim: endpoints [ start, -end ]
+  rightRim: endpoints [ end, -start ]
+  disk: polygon [ leftRim, rightRim, leftRim, rightRim ]
 }
 ```
 
 ## 1-dimensional algebra
 
 ```cicada
-check path Torus {
-  toro toro toro polo
-}: endpoints Torus {
-  origin -origin
-}
+check path Torus [
+  toro, toro, toro, polo
+]: endpoints Torus [
+  origin, -origin
+]
 
-check path Torus {
+check path Torus [
   toro
-}: endpoints Torus {
-  origin -origin
-}
+]: endpoints Torus [
+  origin, -origin
+]
 
-check path Torus {
+check path Torus [
   relf(origin)
-}: endpoints Torus {
-  origin -origin
-}
+]: endpoints Torus [
+  origin, -origin
+]
 
-check path Torus {
-  toro relf(origin)
-}: endpoints Torus {
-  origin -origin
-}
+check path Torus [
+  toro, relf(origin)
+]: endpoints Torus [
+  origin, -origin
+]
 ```
 
 ## 3-dimensional
@@ -343,18 +347,18 @@ check path Torus {
 ```cicada
 datatype Torus3 {
   o: Torus3
-  a: endpoints { o -o }
-  b: endpoints { o -o }
-  c: endpoints { o -o }
-  ap: polygon { c b -c -b }
-  bp: polygon { a c -a -c }
-  cp: polygon { b a -b -a }
+  a: endpoints [ o, -o ]
+  b: endpoints [ o, -o ]
+  c: endpoints [ o, -o ]
+  ap: polygon [ c, b, -c, -b ]
+  bp: polygon [ a, c, -a, -c ]
+  cp: polygon [ b, a, -b, -a ]
   // The syntax use logic variable and linear unification
   // to specify how edges of polygons are glued together.
   s: polyhedron {
-    ap { 'b3 'c2 -'a2 -'c0 }
-    bp { 'b0 'a2 -'c1 -'b3 }
-    cp { 'c0 'c1 -'c2 -'b0 }
+    ap { 'b3 'c2 = 'c0 'a2 }
+    bp { 'b0 'a2 = 'b3 'c1 }
+    cp { 'c0 'c1 = 'b0 'c2 }
   }
 }
 ```
@@ -364,22 +368,22 @@ datatype Torus3 {
 ```cicada
 check surface Torus3 {
   refl(refl(o)) { ... }
-}: polygon Torus3 {
-  refl(o) -refl(o)
-}
+}: polygon Torus3 [
+  refl(o), -refl(o)
+]
 
 check surface Torus3 {
   refl(a) { ... }
-}: polygon Torus3 {
-  a -a
-}
+}: polygon Torus3 [
+  a, -a
+]
 
 check surface Torus3 {
   refl(a) { ... }
   refl(a) { ... }
-}: polygon Torus3 {
-  a a -a -a
-}
+}: polygon Torus3 [
+  a, a, -a, -a
+]
 
 check surface Torus3 {
   ap { 'b3 'c2 = 'c0 'a2 }
