@@ -182,3 +182,24 @@ function TruncationLevelOne(A: Type): Type {
     Equal(Equal(Equal(A, x, y), p, q), r, s)
 }
 ```
+
+TODO Recursive definition of `TruncationLevel(n, A)`.
+
+- In the talk `has-level` and `is-contr` (contractible).
+
+  > In mathematics, a topological space X is contractible if the
+  > identity map on X is null-homotopic, i.e. if it is homotopic to
+  > some constant map.
+  >
+  > Intuitively, a contractible space is one that can be continuously
+  > shrunk to a point within that space.
+  >
+  > -- https://en.wikipedia.org/wiki/Contractible_space
+
+`is-contr` is also called `Singleton` in some papers.
+
+```cicada
+function Singleton(X: Type): Type {
+  return exists (c: X) forall (x: X) Equal(X, c, x)
+}
+```
