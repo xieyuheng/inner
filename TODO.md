@@ -204,6 +204,11 @@ Cell-complex and higher dimensional algebraic structure.
 > To find an algebraic definition of infinity groupoids
 > that would satisfy the Grothendieck correspondence.
 
+Links:
+
+- [papers/publish/boundaries-as-types.md](papers/publish/boundaries-as-types.md)
+- [topics/type-theory/cubical-type-theory.md](topics/type-theory/cubical-type-theory.md)
+
 The only way of visualizing topological space is to give it geometry,
 and one way of introducing geometry is using _algebraic geometry_.
 

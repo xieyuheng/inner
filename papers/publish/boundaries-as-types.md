@@ -272,10 +272,10 @@ datatype Sphere {
   south: Sphere
   middle: Sphere
   north: Sphere
-  south_long: endpoints { south -middle }
-  north_long: endpoints { middle -north }
+  southLong: endpoints { south -middle }
+  northLong: endpoints { middle -north }
   disk: polygon {
-    south_long north_long -north_long -south_long
+    southLong northLong -northLong -southLong
   }
 }
 ```
@@ -302,9 +302,9 @@ datatype KleinBottle {
 datatype ProjectivePlane {
   start: ProjectivePlane
   end: ProjectivePlane
-  left_rim: endpoints { start -end }
-  right_rim: endpoints { end -start }
-  disk: polygon { left_rim right_rim left_rim right_rim }
+  leftRim: endpoints { start -end }
+  rightRim: endpoints { end -start }
+  disk: polygon { leftRim rightRim leftRim rightRim }
 }
 ```
 
