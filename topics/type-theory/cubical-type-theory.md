@@ -254,3 +254,75 @@ space Pair(Interval, Interval) {
   ...
 }
 ```
+
+Favonia: The higher inductive type `Interval` is not a type.
+
+```cicada
+datatype S1 {
+  base: S1
+  loop: (I) -> S1
+}
+
+-------
+S1: U
+
+---------
+base: S1
+
+r: I
+------------
+loop(r): S1
+
+// or say
+
+---------------------
+loop: (r: I) -> S1
+
+--------------------
+loop(0) = base : S1
+
+--------------------
+loop(1) = base : S1
+
+target: S1
+motive: (x: S1) -> U
+baseCase: motive(S1.base)
+loopCase: (i: I) -> motive(S1.loop(i))
+loopCase(0) = baseCase : motive(S1.base)
+loopCase(1) = baseCase : motive(S1.base)
+---------------------------------------
+elimS1(target, motive, baseCase, loopCase): motive(target)
+```
+
+The computational rule:
+
+```cicada
+function elimS1(
+  target: S1,
+  motive: (x: S1) -> U,
+  baseCase: motive(S1.base),
+  loopCase: (i: I) -> motive(S1.loop(i)),
+) -> motive(target) {
+  return match (target) {
+    case (S1.base) => baseCase
+    case (S1.loop(i)) => loopCase(i)
+  }
+}
+```
+
+We can not do `loop * loop` and `- loop` yet.
+
+Understanding the path types.
+
+```cicada
+function A(i: I): Type {
+  TODO
+}
+
+function M(i: I): A(i) {
+  return match (i) {
+    case (0) => the(A(0), N)
+    case (1) => the(A(1), O)
+  }
+}
+```
