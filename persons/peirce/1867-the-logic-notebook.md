@@ -330,8 +330,6 @@ fully to agree with in characters; it cannot be false of any thing
 because it only stands for whatever it fully agrees with. And
 therefore truth has no meaning in reference to it.
 
-TODO
-
 So if a representation merely points out certain things and implies
 nothing of them.
 
