@@ -282,6 +282,8 @@ as formal operations and between them as leading to truth.
   semantics such as checking of judgments
   and evaluation of expressions.
 
+---
+
 # 1867-04-24
 
 Let me consider a little about the nature of truth.
@@ -297,7 +299,72 @@ question for dialectical research.
 
   Judgments about truth are our attitudes toward expressions of concepts.
 
+---
+
+As it seems to me that the world has not yet exhausted the instruction
+to be derived from Sophisms I shall undertake some analysis of a
+collocation of them which seems to me to lead at once to a solution of
+the darkest questions of metaphysics.
+
+In the first place what is meant by a hypothetical proposition, when
+is it true? Take this one -- If the carotid artery of a man is cut, he
+will die. Or this -- if the shadow of the moon is cast on the earth,
+there is an eclipse of the sun.
+
+Truth may be defined as the concurrence of the extension and
+comprehension of a representation which has extension and
+comprehension independent of one another.
+
+- **Xie:** Take Dan's definition of judgment:
+
+  > A Judgment is an attitude that a person takes towards expressions.
+
+  Correspondence:
+
+  - Comprehension -- a person's attitude.
+  - A representation which has expression -- expression.
+
+Thus if a representation is a _mere_ likeness (as no human
+representations are) which stands for nothing except what it happens
+fully to agree with in characters; it cannot be false of any thing
+because it only stands for whatever it fully agrees with. And
+therefore truth has no meaning in reference to it.
+
 TODO
+
+So if a representation merely points out certain things and implies
+nothing of them.
+
+But if a representation at once indicates certain objects and inde-
+pendently implies certain characters, its truth or falsity depends on
+whether those characters can be predicated of those objects.
+
+This definition is a bad one -- it contains a diallele -- but it will
+answer as a preliminary explanation and even sometimes as a test.
+
+[First apply what has been said to a categorical.]
+
+Now in a hypothetical proposition the function of the protasis is to
+mark the _sphere_ of the representation, which it may do by means of
+its connotation or otherwise. The apodosis on the other hand conveys
+the _content_ of the representation. And the question whether the
+proposition is true is the same as whether that _content_ belongs in
+fact to that sphere. Thus in the proposition -- If the shadow of the
+moon is cast on the earth, the sun is eclipsed -- the former clause
+indicates the circumstances to which the statement made in the latter
+clause is applicable.
+
+Take now another case. If the motion of the earth in its orbit were
+suddenly arrested and the perturbative effects of other bodies
+prevented, it would fall in a direct line to the sun. Unless the word
+truth be taken in a quite improper sense, this proposition is
+true. Yet how? For in this case there are no such circumstances as
+those indicated, they are even physically impossible, so that this
+would seem to be a representation like a copy which [...]
+
+Let `x` be that of which I know absolutely nothing
+Then I do know that I know nothing of `x`
+Therefore `x` is not `x`.
 
 # 1867-09-26
 
