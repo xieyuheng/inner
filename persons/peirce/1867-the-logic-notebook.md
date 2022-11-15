@@ -90,6 +90,13 @@ of `M`. Whatever has every character of `M` is denoted by `m`.
   to determine whether a new object as every attributes,
   and write `m : M`.
 
+  We can also update `M` by adding new objects into it,
+  and in turn update `M`'s attributes.
+
+  We think about concept lattice as a system
+  where elements are reactive tp each other,
+  just as in reactive programming.
+
 Here are two principles. But they do not apply to induction and
 hypothesis just as they stand.
 
@@ -168,11 +175,6 @@ character -- a copy of it.
 
 This is horribly vague.
 
-- **Xie:** Maybe we should think of concept lattice as a system
-  where elements are reactive tp each other.
-
-  Like in reactive programming.
-
 # 1867-03-25
 
 Here is another point of view.
@@ -224,7 +226,7 @@ Then the principle would be
   ```
   S possiblely belongs to M, because it has attributes taken from M.
   M is possiblely a subset of P, because samples taken from M belongs to P
-  (also P has most of M's attributes).
+  (we can also say P has most of M's attributes).
   --------------------
   S possiblely belongs to P.
   ```
@@ -237,31 +239,65 @@ majority of it. And if what is known of the characters of a thing
 belong to another thing, the second thing has most of the characters
 of the first, probably.
 
-- **Xie:**
-  I understand the first sentence as:
+- **Xie:** I understand the first sentence as:
+
   Take samples of `M`, find the common attributes of the samples,
   most of the attributes will belongs to `M`.
 
-  I understand the second sentence as:
-  The  `M` is a subclass of `P`, if `P` has
+  And I understand the second sentence as:
+
+  The `M` is probably a subclass of `P`, if `P` has
   most of the properties [characters] of `M`.
 
-  The second sentence is the principle of subclass,
+  The second sentence is the principle of subclass (under "probably"),
   the first sentence is its dual.
 
-The reason is that the parts compose the whole and therefore what does
-not belong to the majority of the whole does not belong to the
-majority of the parts.
+The reason is that the parts compose the whole and therefore
+what does not belong to the majority of the whole
+does not belong to the majority of the parts.
 
-What does not belong to most of the parts does not belong to the parts
-taken mostly, because the parts to be taken are all the possible
-parts.
+- **Xie:** Or say without negation:
 
-- **Xie:** TODO How to understand the above sentences (with negation)?
+  The reason is that the parts compose the whole and therefore
+  what belongs to the majority of the parts
+  belongs to the majority of the whole.
+
+What does not belong to most of the parts
+does not belong to the parts taken mostly,
+because the parts to be taken are all the possible parts.
+
+- **Xie:** Or say without negation:
+
+  What belongs to the parts taken mostly belongs to most of the parts,
+  because the parts to be taken are all the possible parts.
 
 # 1867-04-12
 
+The distinction must be observed between Induction and Hypothesis
+as formal operations and between them as leading to truth.
+
+- **Xie:** I understand "formal operations" as
+  building up expressions and statements,
+  and I understand "leading to truth" as
+  semantics such as checking of judgments
+  and evaluation of expressions.
+
 # 1867-04-24
+
+Let me consider a little about the nature of truth.
+
+_First_. I notice that if we define an image to be a representation
+completely determined in content so that in it every attribute is
+affirmed or denied there is probably no image. And is not this what
+is requisite to make an image? What is an image? There is a good
+question for dialectical research.
+
+- **Xie:** I understand "image" as concept in formal concept analysis,
+  and "dialectical research" means to view concept lattice as a reactive system.
+
+  Judgments about truth are our attitudes toward expressions of concepts.
+
+TODO
 
 # 1867-09-26
 
