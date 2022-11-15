@@ -100,7 +100,7 @@ hypothesis just as they stand.
   then we can also understand Peirce's categories (see the first paragraph of this note)
   as different contexts of reasoning.
 
-Whatever is a common character of many things denoted by M is likely
+Whatever is a common character of many things denoted by `M` is likely
 to be a character of `m`.
 
 - **Xie:** Here, "common character of many things" means
@@ -125,9 +125,9 @@ these things which have the character. We cannot take any genus
 _lower_ than that which they are selected as belonging to. To take a
 higher one would involve a perfectly arbitrary proposition.
 
-- **Xie:** "lower" means more specific, "higher" means more general.
-
-- **Xie:**
+- **Xie:** In a concept lattice,
+  "lower" means more specific,
+  "higher" means more general.
 
   > Etymology of "genus":
   >
@@ -142,6 +142,8 @@ higher one would involve a perfectly arbitrary proposition.
   we do not know the rules in advance,
   we can only observe the sentences and guess the rules.
 
+  Maybe we shoud understand "genus" as formal concept here.
+
 I am convinced that this is a very awkward way of taking hold of the
 matter.
 
@@ -154,8 +156,8 @@ which fulfils the function of that subject or predicate -- only that
 which the subject or predicate represents _to the proposition_ or to
 the other terms of it.
 
-Now a subject is a direct symbol of _its_ subject to its predicate and
-a predicate of its predicate to its subject.
+Now a subject is a direct symbol of _its_ subject to its predicate
+and a predicate [is a direct symbol] of its predicate to its subject.
 
 But a subject is also an imperfect representation of that genus from
 which it has been taken -- by which it is determined. It is not a
@@ -165,6 +167,11 @@ A predicate is a representation of the thing of which it is a random
 character -- a copy of it.
 
 This is horribly vague.
+
+- **Xie:** Maybe we should think of concept lattice as a system
+  where elements are reactive tp each other.
+
+  Like in reactive programming.
 
 # 1867-03-25
 
