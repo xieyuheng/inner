@@ -335,9 +335,9 @@ TODO
 So if a representation merely points out certain things and implies
 nothing of them.
 
-But if a representation at once indicates certain objects and inde-
-pendently implies certain characters, its truth or falsity depends on
-whether those characters can be predicated of those objects.
+But if a representation at once indicates certain objects and
+independently implies certain characters, its truth or falsity depends
+on whether those characters can be predicated of those objects.
 
 This definition is a bad one -- it contains a diallele -- but it will
 answer as a preliminary explanation and even sometimes as a test.
