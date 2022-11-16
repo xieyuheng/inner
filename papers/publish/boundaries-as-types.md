@@ -400,7 +400,8 @@ datatype Torus3 {
 
   // TODO Is the following syntax valid?
   // I think it does not provide enough information.
-  // It seems it is using some conversion,
+  // It seems it is using some conversion
+  // about overloading map to map of boundary,
   // which works only in special cases.
 
   xFace: (I, I) -> Torus3 with {
@@ -437,7 +438,12 @@ datatype Torus3 {
 
   body: (I, I, I) -> Torus3 with {
     case (I.0, I.path, I.path) => xFace with {
-      case (I.0, I.0, I.path) => xFace(I.0, I.path)
+      case (I.0, I.0, I.path) => xFace(I.0, I.path) with {
+        // TODO Do we also need to specify the boundary of this map?
+        // Maybe this is required, because it specifies the orientation of the gluing.
+        case (I.0, I.0, I.0) => xFace(I.0, I.path)(I.0)
+        case (I.0, I.0, I.1) => xFace(I.0, I.path)(I.1)
+      }
       case (I.0, I.1, I.path) => xFace(I.1, I.path)
       case (I.0, I.path, I.0) => xFace(I.path, I.0)
       case (I.0, I.path, I.1) => xFace(I.path, I.1)

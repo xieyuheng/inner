@@ -324,6 +324,16 @@ function elimS1(
   return match (target) {
     case (S1.base) => baseCase
     case (S1.loop(i)) => loopCase(i)
+    // Maybe with
+    //   loopCase: motive(S1.loop)
+    // instead of
+    //   loopCase: (i: I) -> motive(S1.loop(i))
+    // because we can not only specify map on the boundary of `S1.loop`,
+    // we must also specify `S1.loop` maps to which element.
+    case (S1.loop) => loopCase with {
+      case (S1.loop(0)) => loopCase(0)
+      case (S1.loop(1)) => loopCase(1)
+    }
   }
 }
 ```
