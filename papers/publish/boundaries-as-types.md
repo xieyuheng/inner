@@ -330,18 +330,119 @@ space Torus {
 ```cicada
 datatype Torus3 {
   o: Torus3
-  a: endpoints [ o, -o ]
-  b: endpoints [ o, -o ]
-  c: endpoints [ o, -o ]
-  ap: polygon [ c, b, -c, -b ]
-  bp: polygon [ a, c, -a, -c ]
-  cp: polygon [ b, a, -b, -a ]
+  x: endpoints [ o, -o ]
+  y: endpoints [ o, -o ]
+  z: endpoints [ o, -o ]
+  zFace: polygon [ z, y, -z, -y ]
+  yFace: polygon [ x, z, -x, -z ]
+  zFace: polygon [ y, x, -y, -x ]
   // The syntax use logic variable and linear unification
   // to specify how edges of polygons are glued together.
-  s: polyhedron {
-    ap { 'b3 'c2 = 'c0 'a2 }
-    bp { 'b0 'a2 = 'b3 'c1 }
-    cp { 'c0 'c1 = 'b0 'c2 }
+  body: polyhedron {
+    xFace { Y3 Z2 = Z0 X2 }
+    yFace { Y0 X2 = Y3 Z1 }
+    xFace { Z0 Z1 = Y0 Z2 }
+  }
+}
+```
+
+Using `I` (`Interval`) as an opaque coordinate system.
+
+- How to coordinate polygon and polyhedron?
+  as simple as `I`, because to use `C` as a coordinate system
+  is to have a function `(C) -> ...`.
+
+```cicada
+datatype Torus3 {
+  o: Torus3
+
+  // NOTE To introduce a 1-dim element,
+  // we map `boundary(I)` to 0-dim elements.
+  x: (I) -> Torus3 with { case (I.0) => o  case (I.1) => o }
+  y: (I) -> Torus3 with { case (I.0) => o  case (I.1) => o }
+  z: (I) -> Torus3 with { case (I.0) => o  case (I.1) => o }
+
+  // By using `boundary(I)` as coordinate,
+  // we can get `x`'s boundary by applying `x`
+  // to elements of `boundary(I)`.
+
+  // NOTE To introduce a 2-dim element,
+  // we map `boundary(I*I)` to 1-dim elements.
+
+  // NOTE We should not write the following
+  xFace: (I, I) -> Torus3 with {
+    case (I.0, I.path) => z
+    case (I.1, I.path) => z
+    case (I.path, I.0) => y
+    case (I.path, I.1) => y
+  }
+
+  // Because it is not enough to specify
+  // the target of `(I.0, I.path)`
+  // we also need to specify
+  // the target of `(I.0, boundary(I.path))`
+
+  xFace: (I, I) -> Torus3 with {
+    case (I.0, I.path) => z with {
+      case (I.0, 0) => z(0)
+      case (I.0, 1) => z(1)
+    }
+    ...
+  }
+
+  // Note that, in the code above, we get `z`'s boundary
+  // by applying `z` to elements of `boundary(I)`.
+
+  // In the same way, by using `boundary(I*I)` as coordinate,
+  // we can get `xFace`'s boundary by applying `xFace`
+  // to elements of `boundary(I*I)`,
+  // which will be used when introducing 3-dim elements.
+
+  // TODO Is the following syntax valid?
+  // I think it does not provide enough information.
+  // It seems it is using some conversion,
+  // which works only in special cases.
+
+  xFace: (I, I) -> Torus3 with {
+    case (I.0, i) => z(i)
+    case (I.1, i) => z(i)
+    case (i, I.0) => y(i)
+    case (i, I.1) => y(i)
+  }
+
+  yFace: (I, I) -> Torus3 with {
+    case (I.0, i) => x(i)
+    case (I.1, i) => x(i)
+    case (i, I.0) => z(i)
+    case (i, I.1) => z(i)
+  }
+
+  zFace: (I, I) -> Torus3 with {
+    case (I.0, i) => y(i)
+    case (I.1, i) => y(i)
+    case (i, I.0) => x(i)
+    case (i, I.1) => x(i)
+  }
+
+  body: (I, I, I) -> Torus3 with {
+    case (I.0, i, j) => xFace(i, j)
+    case (I.1, i, j) => xFace(i, j)
+    case (i, I.0, j) => yFace(i, j)
+    case (i, I.1, j) => yFace(i, j)
+    case (i, j, I.0) => zFace(i, j)
+    case (i, j, I.1) => zFace(i, j)
+  }
+
+  // I think the right syntax should be:
+
+  body: (I, I, I) -> Torus3 with {
+    case (I.0, I.path, I.path) => xFace with {
+      case (I.0, I.0, I.path) => xFace(I.0, I.path)
+      case (I.0, I.1, I.path) => xFace(I.1, I.path)
+      case (I.0, I.path, I.0) => xFace(I.path, I.0)
+      case (I.0, I.path, I.1) => xFace(I.path, I.1)
+    }
+    ...
   }
 }
 ```
@@ -351,12 +452,12 @@ datatype Torus3 {
 ```cicada
 space Torus3 {
   check surface { refl(refl(o)) { ... } }: polygon [ refl(o), -refl(o) ]
-  check surface { refl(a) { ... } }: polygon [ a, -a ]
-  check surface { refl(a) { ... } refl(a) { ... } }: polygon [ a, a, -a, -a ]
+  check surface { refl(x) { ... } }: polygon [ x, -x ]
+  check surface { refl(x) { ... } refl(x) { ... } }: polygon [ x, x, -x, -x ]
   check surface {
-    ap { 'b3 'c2 = 'c0 'a2 }
-    bp { 'b0 'a2 = 'b3 'c1 }
-    refl(a) {  ... }
+    xFace { B3 C2 = C0 A2 }
+    yFace { B0 A2 = B3 C1 }
+    refl(x) {  ... }
   }: polygon [ ... ]
 }
 ```
@@ -392,8 +493,8 @@ TODO How to do 3-dimensional algebra?
 ```cicada
 space S3 {
   check building { ball }: polyhedron S3 {
-    disk { 'x = 'y }
-    disk { 'x = 'y }
+    disk { X = Y }
+    disk { X = Y }
   }
 }
 ```

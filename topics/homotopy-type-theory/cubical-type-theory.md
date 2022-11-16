@@ -257,7 +257,7 @@ space Pair(Interval, Interval) {
 
 Favonia: The higher inductive type `Interval` is not a type.
 
-Using `Interval` as the opaque coordinate system.
+Using `Interval` as an opaque coordinate system.
 
 instead say:
 
@@ -273,7 +273,10 @@ we say:
 ```cicada
 datatype S1 {
   base: S1
-  loop: (I) -> S1
+  loop: (I) -> S1 with {
+    loop(0) = base
+    loop(1) = base
+  }
 }
 ```
 
