@@ -12,6 +12,14 @@ author: Xie Yuheng
 
 # TODO
 
+If `datatype` can be used to define infinie set,
+`datatype` with higher dimensional constructors
+must also be able to define infinie cell-complex,
+we should start from 1-dim and try to
+define infinie graph by `datatype`.
+
+------
+
 The rules about appling elements of `Equal` as functions,
 which can be used to prove simple structural `Equal` like `equalPair`.
 
