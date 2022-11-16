@@ -257,12 +257,27 @@ space Pair(Interval, Interval) {
 
 Favonia: The higher inductive type `Interval` is not a type.
 
+Using `Interval` as the opaque coordinate system.
+
+instead say:
+
+```cicada
+datatype S1 {
+  base: S1
+  loop: Equal(S1, base, base)
+}
+```
+
+we say:
+
 ```cicada
 datatype S1 {
   base: S1
   loop: (I) -> S1
 }
+```
 
+```cicada
 -------
 S1: U
 
