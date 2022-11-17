@@ -314,6 +314,9 @@ elimS1(target, motive, baseCase, loopCase): motive(target)
 
 The computational rule:
 
+- **Xie:** A continuous function between cell-complexes
+  is a function that preserves boundary.
+
 ```cicada
 function elimS1(
   target: S1,

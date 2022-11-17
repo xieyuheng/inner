@@ -1,8 +1,10 @@
-#+title: RESTful Web APIs
-#+author: Leonard Richardson, Mike Amundsen
-#+date: 2013
+---
+title: RESTful Web APIs
+author: Leonard Richardson, Mike Amundsen
+date: 2013
+---
 
-* Introduction
+# Introduction
 
 Hypermedia is link,
 link is a way to make abstraction,
@@ -18,20 +20,20 @@ The document also helps you answer the question of what to do next.
 
 - JSON document should also helps you answer the question of what to do next.
 
-* 1. Surfing the Web
+# 1. Surfing the Web
 
 - HTTP methods form a well designed interface for resources.
 
-* 2. A Simple API
+# 2. A Simple API
 
-* 3. Resources and Representations
+# 3. Resources and Representations
 
-* 4. Hypermedia
+# 4. Hypermedia
 
-* 5. Domain-Specific Designs
+# 5. Domain-Specific Designs
 
-* 6. The Collection Pattern
+# 6. The Collection Pattern
 
-* 7. Pure-Hypermedia Designs
+# 7. Pure-Hypermedia Designs
 
-* 8. Profiles
+# 8. Profiles

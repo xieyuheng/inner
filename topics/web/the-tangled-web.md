@@ -1,6 +1,6 @@
 ---
-title: the tangled web
-subtitle: a guide to securing modern web applications
+title: The tangled web
+subtitle: A guide to securing modern web applications
 date: 2012
 ---
 
