@@ -28,22 +28,6 @@ where are also a lots of "applying under structural".
 
 ------
 
-Use rewrite rule based (dynamic) language
-to implement lambda calculus.
-
-- sexp? json? xml?
-
-- think about cellular automata
-  - can be implemented by directed change with side-effect (mutation in place)?
-
-- computation is directed change
-
-- what is the difference between rewrite and pattern match on ADT?
-
-  we do not have to write trivial matches?
-
-------
-
 VV said playing with expressions of proofs should be
 as easy as playing with expressions of polynomials.
 But bound variables and substitution made it not so easy.
