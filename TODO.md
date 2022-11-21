@@ -12,6 +12,10 @@ author: Xie Yuheng
 
 # TODO
 
+The game plan and execution.
+
+------
+
 If `datatype` can be used to define infinie set,
 `datatype` with higher dimensional constructors
 must also be able to define infinie cell-complex,
