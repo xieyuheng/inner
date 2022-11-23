@@ -10,7 +10,7 @@ keywords: [Type theory, Algebraic topology]
 ## The Plan
 
 A group or a groupoid when defined by a presentation,
-can be viewed as a vertexes, edges and faces,
+can be viewed topologically as vertexes, edges and faces,
 where edges are the generators,
 faces are the relations between generators,
 i.e. a 2-dimensional cell-complex.
@@ -67,8 +67,13 @@ its elements are _surfaces_ built from _faces_.
 
 For edges, there are only two ways to do composition
 (this is where the inverse of groupoid elements come from),
-but for faces, there are more n ways to do composition,
-where n is the number of edges of the a face.
+but for faces, there are `n` ways to do composition,
+where `n` is the number of edges of the a face.
+
+Composition of two cells -- `A` and `B` must be viewed as
+removing some common boundaries of `A` and `B`,
+and the result must still be a cell
+-- i.e. having spherical boundary.
 
 New syntactic devices are needed to represent
 the compositions easily,
@@ -263,7 +268,7 @@ The generators can also be parameterized, thus infinity many,
 ```cicada
 datatype Circle {
   base: Circle
-  loop: endpoints [ base, -base ]
+  loop: endpoints [ base, base ]
 }
 ```
 
@@ -276,8 +281,8 @@ datatype Sphere {
   south: Sphere
   middle: Sphere
   north: Sphere
-  southLong: endpoints [ south, -middle ]
-  northLong: endpoints [ middle, -north ]
+  southLong: endpoints [ south, middle ]
+  northLong: endpoints [ middle, north ]
   disk: polygon [
     southLong, northLong, -northLong, -southLong
   ]
@@ -287,8 +292,8 @@ datatype Sphere {
 ```cicada
 datatype Torus {
   origin: Torus
-  toro: endpoints [ origin, -origin ]
-  polo: endpoints [ origin, -origin ]
+  toro: endpoints [ origin, origin ]
+  polo: endpoints [ origin, origin ]
   spoke: polygon [ toro, polo, -toro, -polo ]
 }
 ```
@@ -296,8 +301,8 @@ datatype Torus {
 ```cicada
 datatype KleinBottle {
   origin: KleinBottle
-  toro: endpoints [ origin, -origin ]
-  cross: endpoints [ origin, -origin ]
+  toro: endpoints [ origin, origin ]
+  cross: endpoints [ origin, origin ]
   disk: polygon [ toro, cross, -toro, cross ]
 }
 ```
@@ -306,8 +311,8 @@ datatype KleinBottle {
 datatype ProjectivePlane {
   start: ProjectivePlane
   end: ProjectivePlane
-  leftRim: endpoints [ start, -end ]
-  rightRim: endpoints [ end, -start ]
+  leftRim: endpoints [ start, end ]
+  rightRim: endpoints [ end, start ]
   disk: polygon [ leftRim, rightRim, leftRim, rightRim ]
 }
 ```
@@ -316,10 +321,10 @@ datatype ProjectivePlane {
 
 ```cicada
 space Torus {
-  check path [ toro, toro, toro, polo ]: endpoints [ origin, -origin ]
-  check path [ toro ]: endpoints [ origin, -origin ]
-  check path [ relf(origin) ]: endpoints [ origin, -origin ]
-  check path [ toro, relf(origin) ]: endpoints [ origin, -origin ]
+  check path [ toro, toro, toro, polo ]: endpoints [ origin, origin ]
+  check path [ toro ]: endpoints [ origin, origin ]
+  check path [ relf(origin) ]: endpoints [ origin, origin ]
+  check path [ toro, relf(origin) ]: endpoints [ origin, origin ]
 }
 ```
 
@@ -330,9 +335,9 @@ space Torus {
 ```cicada
 datatype Torus3 {
   o: Torus3
-  x: endpoints [ o, -o ]
-  y: endpoints [ o, -o ]
-  z: endpoints [ o, -o ]
+  x: endpoints [ o, o ]
+  y: endpoints [ o, o ]
+  z: endpoints [ o, o ]
   zFace: polygon [ z, y, -z, -y ]
   yFace: polygon [ x, z, -x, -z ]
   zFace: polygon [ y, x, -y, -x ]
@@ -479,14 +484,14 @@ For `n >= 2`, `Pi(n)` is abelian.
 ```cicada
 datatype S1 {
   base: S1
-  rim: endpoints [ base, -base ]
+  rim: endpoints [ base, base ]
 }
 
 datatype S2 {
   south: S2
   north: S2
-  meridian: endpoints [ south, -north ]
-  disk: polygon [ meridian, -meridian ]
+  meridian: endpoints [ south, north ]
+  disk: polygon [ meridian, meridian ]
 }
 
 datatype S3 {
@@ -569,7 +574,7 @@ TODO How to understand `Torus` as `Circle * Circle`?
 
 ```cicada
 space Pair(Circle, Circle) {
-  check path [ cons(base, loop) ]: endpoints [ cons(base, base), -cons(base, base) ]
+  check path [ cons(base, loop) ]: endpoints [ cons(base, base), cons(base, base) ]
   check surface { cons(loop, loop) }: polygon [ ... ]
 }
 ```

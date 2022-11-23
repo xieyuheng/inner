@@ -116,7 +116,7 @@ function equalCompose(
 datatype Interval {
   start: Interval
   end: Interval
-  path: endpoints [ start, -end ]
+  path: endpoints [ start, end ]
 }
 
 function aPath(i: Interval): A {
@@ -216,7 +216,7 @@ function Singleton(X: Type): Type {
 datatype Interval {
   start: Interval
   end: Interval
-  path: endpoints [ start, -end ]
+  path: endpoints [ start, end ]
 }
 
 function M(i: Interval, j: Interval): A {
