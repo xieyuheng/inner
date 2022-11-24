@@ -419,9 +419,9 @@ datatype Torus3 {
   // To introduce a 1-dim element,
   // we map `boundary(I)` to 0-dim elements.
 
-  x: (I) -> dim 0 Torus3 { case (I::0) => o case (I::1) => o }
-  y: (I) -> dim 0 Torus3 { case (I::0) => o case (I::1) => o }
-  z: (I) -> dim 0 Torus3 { case (I::0) => o case (I::1) => o }
+  x: boundary(I) -> dim 0 Torus3 { case (I::0) => o case (I::1) => o }
+  y: boundary(I) -> dim 0 Torus3 { case (I::0) => o case (I::1) => o }
+  z: boundary(I) -> dim 0 Torus3 { case (I::0) => o case (I::1) => o }
 
   // By using `boundary(I)` as coordinate,
   // we can get `x`'s boundary by applying `x`
@@ -432,7 +432,7 @@ datatype Torus3 {
 
   // We should NOT write the following:
 
-  xFace: (I, I) -> dim 1 Torus3 {
+  xFace: boundary(I, I) -> dim 1 Torus3 {
     case (I::0, I::path) => z
     case (I::1, I::path) => z
     case (I::path, I::0) => y
@@ -444,7 +444,7 @@ datatype Torus3 {
   // we also need to specify
   // the target of `(I::0, boundary(I::path))`
 
-  xFace: (I, I) -> dim 1 Torus3 {
+  xFace: boundary(I, I) -> dim 1 Torus3 {
     case (I::0, I::path) => z with {
       case (I::0, I::0) => z(0)
       case (I::0, I::1) => z(1)
@@ -460,7 +460,7 @@ datatype Torus3 {
   // to elements of `boundary([I, I])`,
   // which will be used when introducing 3-dim elements.
 
-  body: (I, I, I) -> Torus3 with {
+  body: boundary(I, I, I) -> dim 2 Torus3 with {
     case (I::0, I::path, I::path) => xFace with {
       case (I::0, I::0, I::path) => xFace(I::0, I::path) with {
         // We also need to specify the boundary of this map.
