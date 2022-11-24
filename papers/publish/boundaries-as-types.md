@@ -417,6 +417,13 @@ It seems it is using some conversion
 about overloading map to map of boundary,
 which works only in special cases.
 
+What information are lost in cubical model?
+
+If you compose two squares together,
+you can view the result as a square,
+but the number of ways to do further composition,
+is reduce from 6 to 4.
+
 ### Torus3 -- Cubical -- My Way
 
 To introduce a 0-dimensional element,
@@ -493,6 +500,7 @@ datatype Torus3 {
     boundary(Boundary(I, I)): Skeleton(1, Torus3) {
       case (I::0, I::path) => z with {
         // A syntax keyword `type` to annotate the type of case function.
+        // TODO Should map coordinate space to coordinate space.
         type (Boundary(I::0, I::path)) -> Boundary(z)
         case (I::0, I::0) => z.boundary(I::0)
         case (I::0, I::1) => z.boundary(I::1)
@@ -531,8 +539,11 @@ datatype Torus3 {
   body: Skeleton(3, Torus3) = {
     boundary(Boundary(I, I, I)): Skeleton(2, Torus3) {
       case (I::0, I::path, I::path) => xFace with {
+        // TODO Should map coordinate space to coordinate space.
         type (Boundary(I::0, I::path, I::path)) -> Boundary(xFace)
         case (I::0, I::0, I::path) => xFace.boundary(I::0, I::path) with {
+          // TODO Should map coordinate space to coordinate space.
+          // TODO No need to specify further.
           type (Boundary(I::0, I::0, I::path)) -> Boundary(xFace.boundary(I::0, I::path))
           case (I::0, I::0, I::0) => xFace.boundary(I::0, I::path).boundary(I::0)
           case (I::0, I::0, I::1) => xFace.boundary(I::0, I::path).boundary(I::1)
@@ -567,6 +578,53 @@ Should we call this **the principle of continuity**?
   whose elements are specified by `xFace.boundary(c)` where `c: Boundary(I, I)`.
 - If we have a principle to view all set as type,
   then clearly `Boundary(xFace)` should be viewed as a type.
+
+------
+
+To design how to introduce a (n+1)-dimensional cell `A` into a cell-complex,
+we need to specify a attaching map from the boundary of the cell `A`
+to the n-skeleton of the cell-complex.
+
+We do this by giving the the boundary of the cell `A`
+a spherical coordinate space -- endpoints, polygon, polyhedron, ...
+
+A spherical coordinate space is a special cell-complex,
+thus we need to design how to define continuous map between two cell-complexes.
+
+To define a continuous map between two cell-complexes `A` and `B`,
+we need to specify how each cell (say `x`) of `A` is mapped to
+composition of cells (say `w * y * z` (without defining `*` for now)) of `B`
+of the same dimension.
+
+But the above is not enough,
+because there are many ways (many orientations)
+by which the cell `x` can be mapped to `w * y * z`.
+
+TODO Using group as example to explain the above judgment.
+
+To specify the orientation of the map,
+we must specify another map between two cell-complexes --
+from the spherical coordinate space of the boundary `x`
+to the spherical coordinate space of the boundary `w * y * z`.
+
+Map between two spherical cell-complexes is special,
+it is enough to just specify how cells are mapped to composition of cells,
+no need to further specify the orientation of the map,
+because it is unique.
+
+TODO Proof the above judgment.
+
+- To proof it, we must fully understand it first.
+
+TODO Is the above judgment also true for manifolds?
+
+TODO Why the above judgment is not true for general cell-complexes?
+
+TODO For the above design to work, we must be able to get
+the spherical coordinate space of the boundary
+of the composite element -- `w * y * z`.
+
+- Maybe Composition should be defined by composition of coordinate spaces.
 
 ## 2-dimensional algebra
 
