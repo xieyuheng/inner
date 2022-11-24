@@ -439,9 +439,9 @@ datatype Torus3 {
     // - The coordinate system is the domain of the attaching map.
     // - The 0-spherical complex we will use is `boundary(I)`
     //   i.e. two endpoints of the `I` -- `I::0` and `I::1`.
-    // - We use a case function called -- `attach`,
+    // - We use a case function called -- `boundary`,
     //   to specify the attaching map.
-    attach(boundary(I)): skeleton(0, Torus3) {
+    boundary(boundary(I)): skeleton(0, Torus3) {
       case (I::0) => o
       case (I::1) => o
     }
@@ -493,8 +493,7 @@ datatype Torus3 {
   }
 
   // Alternative syntax:
-  // - Maybe we should call the `attach` method `boundary`,
-  //   and not to overload function application -- `z(I::0)`
+  // - Maybe we should not overload function application -- `z(I::0)`
   //   but to overload dot -- `z.boundary(I::0)`.
   //   - The overloading of dot occurred during the design of
   //     - fulfilling class.
@@ -503,7 +502,7 @@ datatype Torus3 {
   // - How to understand this in set theory?
 
   xFace: skeleton(2, Torus3) with {
-    attach(boundary(I, I)): skeleton(1, Torus3) {
+    boundary(boundary(I, I)): skeleton(1, Torus3) {
       case (I::0, I::path) => z with {
         // The type of the case function inside `with`:
         //   (boundary(I::0, I::path)) -> boundary(z)
@@ -559,7 +558,10 @@ Should we call this **the principle of continuity**?
 
 [question] How to understand the use of `with` by boundary as type?
 
-[question] How to understand the use of `with` in set theory?
+- `boundary(xFace)` is a set, and a subset of `skeleton(1, Torus3)`,
+  whose elements are specified by `xFace.boundary(c)` where `c: boundary(I, I)`.
+- If we have a principle to view all set as type,
+  then clearly `boundary(xFace)` should be viewed as a type.
 
 ## 2-dimensional algebra
 
