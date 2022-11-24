@@ -449,7 +449,7 @@ datatype Torus3 {
   // we map `Boundary(I)` to the 0-skeleton,
   // i.e. previously introduced 0-dimensional elements.
 
-  x: Skeleton(1, Torus3) = {
+  x: Skeleton(1, Torus3) with {
     Coordinate: Boundary(I),
     // - `x` is part of `Skeleton(1, Torus3)`, which is a subspace of `Torus3`.
     // - To introduce a 1-dimensional element, we need to use a 0-spherical complex
@@ -465,14 +465,14 @@ datatype Torus3 {
     }
   }
 
-  y: Skeleton(1, Torus3) = {
+  y: Skeleton(1, Torus3) with {
     boundary(Boundary(I)): Skeleton(0, Torus3) {
       case (I::0) => o
       case (I::1) => o
     }
   }
 
-  z: Skeleton(1, Torus3) = {
+  z: Skeleton(1, Torus3) with {
     boundary(Boundary(I)): Skeleton(0, Torus3) {
       case (I::0) => o
       case (I::1) => o
@@ -494,7 +494,7 @@ datatype Torus3 {
   // - fulfilling class.
   // - data constructors as static methods.
 
-  xFace: Skeleton(2, Torus3) = {
+  xFace: Skeleton(2, Torus3) with {
     boundary(Boundary(I, I)): Skeleton(1, Torus3) {
       case (I::0, I::path) => z with {
         // A syntax keyword `type` to annotate the type of case function.
@@ -518,11 +518,11 @@ datatype Torus3 {
     }
   }
 
-  yFace: Skeleton(2, Torus3) = {
+  yFace: Skeleton(2, Torus3) with {
     ...
   }
 
-  zFace: Skeleton(2, Torus3) = {
+  zFace: Skeleton(2, Torus3) with {
     ...
   }
 
@@ -534,7 +534,7 @@ datatype Torus3 {
   // to elements of `Boundary(I, I)`,
   // which will be used when introducing 3-dimensional elements.
 
-  body: Skeleton(3, Torus3) = {
+  body: Skeleton(3, Torus3) with {
     boundary(Boundary(I, I, I)): Skeleton(2, Torus3) {
       case (I::0, I::path, I::path) => xFace with {
         // TODO Should map coordinate space to coordinate space.
@@ -605,6 +605,8 @@ we must specify another map between two cell-complexes --
 from the spherical coordinate space of the boundary `x`
 to the spherical coordinate space of the boundary `w * y * z`.
 
+The orienting map must not be degenerated.
+
 Map between two spherical cell-complexes is special,
 it is enough to just specify how cells are mapped to composition of cells,
 no need to further specify the orientation of the map,
@@ -614,7 +616,13 @@ TODO Proof the above judgment.
 
 - To proof it, we must fully understand it first.
 
-TODO Is the above judgment also true for manifolds?
+[question] Is the above judgment also true for manifolds?
+
+- No, it is not true for the `Loop` -- `Gon(1)`.
+
+  It is not about the space (both the domain space and the image space)
+  is spherical or manifold or not,
+  but about does the space have local loop or not.
 
 TODO Why the above judgment is not true for general cell-complexes?
 
@@ -666,57 +674,19 @@ datatype Endpoint {
   end: Endpoint
 }
 
-datatype Square {
-  a: Square
-  b: Square
-  c: Square
-  d: Square
-  ab: Skeleton(1, Square) = {
-    Coordinate: Endpoint,
-    attach(endpoint: Endpoint): Skeleton(0, Square) {
-      case (Endpoint::start) => a
-      case (Endpoint::end) => b
-    }
-  }
-  bc: Skeleton(1, Square) = {
-    Coordinate: Endpoint,
-    attach(endpoint: Endpoint): Skeleton(0, Square) {
-      case (Endpoint::start) => b
-      case (Endpoint::end) => c
-    }
-  }
-  cd: Skeleton(1, Square) = {
-    Coordinate: Endpoint,
-    attach(endpoint: Endpoint): Skeleton(0, Square) {
-      case (Endpoint::start) => c
-      case (Endpoint::end) => d
-    }
-  }
-  da: Skeleton(1, Square) = {
-    Coordinate: Endpoint,
-    attach(endpoint: Endpoint): Skeleton(0, Square) {
-      case (Endpoint::start) => d
-      case (Endpoint::end) => a
-    }
-  }
-}
-
-datatype Square {
-  a: Square
-  b: Square
-  c: Square
-  d: Square
-  ab: endpoint [a, b]
-  bc: endpoint [b, c]
-  cd: endpoint [c, d]
-  da: endpoint [d, a]
-}
-
 datatype Gon(n: Nat) {
+  // `Fin(n)` has 0, 1, ..., n-1.
   vertex(i: Fin(n)): Gon(n)
-  edge(i: Fin(n)): Skeleton(1, Gon(n)) = {
+  edge(i: Fin(n)): Skeleton(1, Gon(n)) with {
+    // The `with` keyword in `datatype` means
+    // once we constructed a data,
+    // we can use the dot syntax
+    // to get the properties out of it.
     Coordinate: Endpoint,
-    attach(endpoint: Endpoint)
+    attach(endpoint: Endpoint): Skeleton(0, Gon(n)) {
+      case (Endpoint::start) => vertex(i)
+      case (Endpoint::end) => vertex(Fin::add1Modular(i))
+    }
   }
 }
 
@@ -727,7 +697,7 @@ datatype Torus3 {
   // we map `Endpoint` to the 0-skeleton,
   // i.e. previously introduced 0-dimensional elements.
 
-  x: Skeleton(1, Torus3) = {
+  x: Skeleton(1, Torus3) with {
     Coordinate: Endpoint,
     // - `x` is part of `Skeleton(1, Torus3)`, which is a subspace of `Torus3`.
     // - To introduce a 1-dimensional element, we need to use a 0-spherical complex
@@ -742,7 +712,7 @@ datatype Torus3 {
     }
   }
 
-  y: Skeleton(1, Torus3) = {
+  y: Skeleton(1, Torus3) with {
     Coordinate: Endpoint,
     attach(endpoint: Endpoint): Skeleton(0, Torus3) {
       case (Endpoint::start) => o
@@ -750,7 +720,7 @@ datatype Torus3 {
     }
   }
 
-  z: Skeleton(1, Torus3) = {
+  z: Skeleton(1, Torus3) with {
     Coordinate: Endpoint,
     attach(endpoint: Endpoint): Skeleton(0, Torus3) {
       case (Endpoint::start) => o
@@ -763,78 +733,54 @@ datatype Torus3 {
   // to elements of `Endpoint`.
 
   // To introduce a 2-dimensional element,
-  // we map `Square` (polygon) to 1-skeleton,
+  // we map `Gon(4)` (polygon) to 1-skeleton,
   // i.e. previously introduced 1-dimensional elements.
 
-  // We choose to not overload function application -- `z(Square::a)`
-  // but to overload dot -- `z.attach(Square::a)`.
+  xFace: Skeleton(2, Torus3) with {
+    Coordinate: Gon(4),
+    attach(square: Gon(4)): Skeleton(1, Torus3) {
+      case (Gon::edge(0)) => z orient {
+        type (Gon::edge(0).Coordinate) -> z.Coordinate
+        case (Endpoint::start) => Endpoint::start
+        case (Endpoint::end) => Endpoint::end
+      }
 
-  // The overloading of dot also occurred during the design of
-  // - fulfilling class.
-  // - data constructors as static methods.
+      case (Gon::edge(1)) => z orient {
+        case (Endpoint::start) => Endpoint::start
+        case (Endpoint::end) => Endpoint::end
+      }
 
-  xFace: Skeleton(2, Torus3) = {
-    Coordinate: Endpoint,
-    attach(square: Square): Skeleton(1, Torus3) {
-      case (Square::ab) => z with {
-        // A syntax keyword `type` to annotate the type of case function.
-        // TODO Should map coordinate space to coordinate space.
-        type (Square::ab.Coordinate) -> z.Coordinate
-        case (Endpoint::start) => z.attach(I::0)
-        case (Endpoint::end) => z.attach(I::1)
+      case (Gon::edge(2)) => z orient {
+        case (Endpoint::start) => Endpoint::start
+        case (Endpoint::end) => Endpoint::end
       }
-      case (I::1, I::path) => z with {
-        case (I::0, I::0) => z.attach(I::0)
-        case (I::0, I::1) => z.attach(I::1)
-      }
-      case (I::path, I::0) => y with {
-        case (I::0, I::0) => y.attach(I::0)
-        case (I::0, I::1) => y.attach(I::1)
-      }
-      case (I::path, I::1) => y with {
-        case (I::0, I::0) => y.attach(I::0)
-        case (I::0, I::1) => y.attach(I::1)
+
+      case (Gon::edge(3)) => y orient {
+        case (Endpoint::start) => Endpoint::start
+        case (Endpoint::end) => Endpoint::end
       }
     }
   }
 
-  yFace: Skeleton(2, Torus3) = {
+  yFace: Skeleton(2, Torus3) with {
     ...
   }
 
-  zFace: Skeleton(2, Torus3) = {
+  zFace: Skeleton(2, Torus3) with {
     ...
   }
 
-  // Note that, in the code above, we get `z`'s boundary
-  // by applying `z` to elements of `Boundary(I)`.
-
-  // In the same way, by using `Square` as coordinate,
-  // we can get `xFace`'s boundary by applying `xFace`
-  // to elements of `Square`,
-  // which will be used when introducing 3-dimensional elements.
-
-  body: Skeleton(3, Torus3) = {
-    attach(Boundary(I, I, I)): Skeleton(2, Torus3) {
-      case (I::0, I::path, I::path) => xFace with {
-        // TODO Should map coordinate space to coordinate space.
-        type (Boundary(I::0, I::path, I::path)) -> Boundary(xFace)
-        case (I::0, I::0, I::path) => xFace.attach(I::0, I::path) with {
-          // TODO Should map coordinate space to coordinate space.
-          // TODO No need to specify further.
-          type (Boundary(I::0, I::0, I::path)) -> Boundary(xFace.attach(I::0, I::path))
-          case (I::0, I::0, I::0) => xFace.attach(I::0, I::path).attach(I::0)
-          case (I::0, I::0, I::1) => xFace.attach(I::0, I::path).attach(I::1)
+  body: Skeleton(3, Torus3) with {
+    attach(cube: Cube): Skeleton(2, Torus3) {
+      case (Cube::xFaceStart) => xFace orient {
+        type equivalent Type {
+          (Cube::xFaceStart.CoodBoundary) -> xFace.CoodBoundary
+        = (Gon(4)) -> Gon(4)
         }
-        case (I::0, I::1, I::path) => xFace.attach(I::1, I::path) with {
-          ...
-        }
-        case (I::0, I::path, I::0) => xFace.attach(I::path, I::0) with {
-          ...
-        }
-        case (I::0, I::path, I::1) => xFace.attach(I::path, I::1) with {
-          ...
-        }
+        case (Gon::edge(0)) => Gon::edge(0)
+        case (Gon::edge(1)) => Gon::edge(1)
+        case (Gon::edge(2)) => Gon::edge(2)
+        case (Gon::edge(3)) => Gon::edge(3)
       }
       ...
     }
