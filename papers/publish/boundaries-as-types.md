@@ -624,7 +624,27 @@ TODO For the above design to work, we must be able to get
 the spherical coordinate space of the boundary
 of the composite element -- `w * y * z`.
 
-- Maybe Composition should be defined by composition of coordinate spaces.
+Maybe composition should be defined by composition of coordinate spaces.
+
+------
+
+In what sense "boundaries as types"?
+
+Maybe in the sense that, when defining a function between cell-complexes,
+the boundary relation between elements of the cell-complexes,
+are used to check whether the function is continuous.
+
+------
+
+How should we implement boundary?
+
+We should not apply `Boundary` to space like `Boundary(I)`,
+but we can apply `Boundary` to element of space like `Boundary(xFace)`,
+we can get an element of `Boundary(xFace)`
+by referring to an element of the coordinate space,
+and to judge whether two elements of `Boundary(xFace)` are equivalent,
+we judge the equivalent between the image of the two elements
+under the attaching map.
 
 ## 2-dimensional algebra
 
