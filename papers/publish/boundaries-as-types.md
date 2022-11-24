@@ -419,18 +419,20 @@ which works only in special cases.
 
 ### Torus3 -- Cubical -- My Way
 
+To introduce
+
 ```cicada
 datatype Torus3 {
   o: Torus3
 
-  // To introduce a 1-dim element,
+  // To introduce a 1-dimensional element,
   // we map `Boundary(I)` to the 0-skeleton,
-  // i.e. previously introduced 0-dim elements.
+  // i.e. previously introduced 0-dimensional elements.
 
   x: Skeleton(1, Torus3) = {
     // - `x` is part of `Skeleton(1, Torus3)`, which is a subspace of `Torus3`.
-    // - To introduce a 1-dim element, we need to use a 0-spherical complex
-    //   as the coordinate system of the 1-dim element's boundary.
+    // - To introduce a 1-dimensional element, we need to use a 0-spherical complex
+    //   as the coordinate system of the 1-dimensional element's boundary.
     // - The coordinate system is the domain of the attaching map.
     // - The 0-spherical complex we will use is `Boundary(I)`
     //   i.e. two endpoints of the `I` -- `I::0` and `I::1`.
@@ -464,9 +466,9 @@ datatype Torus3 {
   // to get the boundary of higher inductive elements.
   // This is the idea of lambda encoding.
 
-  // To introduce a 2-dim element,
+  // To introduce a 2-dimensional element,
   // we map `Boundary(I, I)` to 1-skeleton,
-  // i.e. previously introduced 1-dim elements.
+  // i.e. previously introduced 1-dimensional elements.
 
   // We choose to not overload function application -- `z(I::0)`
   // but to overload dot -- `z.boundary(I::0)`.
@@ -512,7 +514,7 @@ datatype Torus3 {
   // In the same way, by using `Boundary(I, I)` as coordinate,
   // we can get `xFace`'s boundary by applying `xFace`
   // to elements of `Boundary(I, I)`,
-  // which will be used when introducing 3-dim elements.
+  // which will be used when introducing 3-dimensional elements.
 
   body: Skeleton(3, Torus3) = {
     boundary(Boundary(I, I, I)): Skeleton(2, Torus3) {
@@ -540,7 +542,7 @@ datatype Torus3 {
 ```
 
 The most important idea is that when specifying a mapping
-from a n-dim element `A` to composition of n-dim elements `B`,
+from a n-dimensional element `A` to composition of n-dimensional elements `B`,
 we also need to specify how each element of the boundary of `A`
 is mapped to the boundary of `B`, and recursively
 specifying the mapping down to 0-dim.
