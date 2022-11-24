@@ -646,6 +646,20 @@ and to judge whether two elements of `Boundary(xFace)` are equivalent,
 we judge the equivalent between the image of the two elements
 under the attaching map.
 
+------
+
+We should not say we are using `Boundary([I, I])` as coordinate space at all,
+we should construct the coordinate space -- the square (polygon) -- directly.
+
+Note that, the above definition of `Boundary` gives a boundary relation
+between elements of a space, which feels much like the "belongs to" relation of set theory,
+and the "belongs to" relation of type theory.
+
+Boundary relation between elements of product space is easy to define,
+just apply the boundary operator on one element of the tuple,
+for example, `[x, z]` is part of the boundary of `[x, y]`,
+if `z` is part of the boundary of `y`.
+
 ## 2-dimensional algebra
 
 ```cicada
