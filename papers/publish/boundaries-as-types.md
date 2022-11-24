@@ -772,9 +772,9 @@ datatype Torus3 {
 
   body: Skeleton(3, Torus3) with {
     attach(cube: Cube): Skeleton(2, Torus3) {
-      case (Cube::xFaceStart) => xFace orient {
+      case (Cube::xFrontFace) => xFace orient {
         type equivalent Type {
-          (Cube::xFaceStart.CoodBoundary) -> xFace.CoodBoundary
+          (Cube::xFrontFace.CoodBoundary) -> xFace.CoodBoundary
         = (Gon(4)) -> Gon(4)
         }
         case (Gon::edge(0)) => Gon::edge(0)
