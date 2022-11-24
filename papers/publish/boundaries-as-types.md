@@ -658,7 +658,9 @@ and the "belongs to" relation of type theory.
 Boundary relation between elements of product space is easy to define,
 just apply the boundary operator on one element of the tuple,
 for example, `[x, z]` is part of the boundary of `[x, y]`,
-if `z` is part of the boundary of `y`.
+if `z` is part of the boundary of `y`,
+or say, `[x, z]: Boundary([x, y])`,
+if and only if `z: Boundary(y)`.
 
 ## 2-dimensional algebra
 
