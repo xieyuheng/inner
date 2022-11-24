@@ -419,7 +419,18 @@ which works only in special cases.
 
 ### Torus3 -- Cubical -- My Way
 
-To introduce
+To introduce a 0-dimensional element,
+it is enough to give the name of the data constructor,
+and to specify its type.
+
+But, to introduce a n-dimensional element `A`,
+where `n` is greater than 0,
+we also need to specify an attaching map
+-- we call this `boundary` method,
+from an (n-1)-dimensional spherical complex
+(which will also be used as a coordinate system
+to reference `A`'s boundary),
+to (n-1)-skeleton of the current spece.
 
 ```cicada
 datatype Torus3 {
@@ -430,6 +441,7 @@ datatype Torus3 {
   // i.e. previously introduced 0-dimensional elements.
 
   x: Skeleton(1, Torus3) = {
+    Coordinate: Boundary(I)
     // - `x` is part of `Skeleton(1, Torus3)`, which is a subspace of `Torus3`.
     // - To introduce a 1-dimensional element, we need to use a 0-spherical complex
     //   as the coordinate system of the 1-dimensional element's boundary.
