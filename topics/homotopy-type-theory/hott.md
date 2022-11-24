@@ -199,23 +199,23 @@ of sorts, in the practice of homotopy theory.
 ```cicada
 datatype Sphere1 {
   base: Sphere1
-  loop: endpoints [ base, -base ]
+  loop: endpoint [ base, -base ]
   check loop: Equal(Sphere1, base, base)
 }
 
 datatype Sphere2 {
   south: Sphere2
   north: Sphere2
-  meridian: endpoints [ south, -north ]
+  meridian: endpoint [ south, -north ]
   disk: polygon [ meridian, -meridian ]
 }
 
 datatype Sphere2 {
   base: Sphere2
-  check refl(base): endpoints [ base, -base ]
+  check refl(base): endpoint [ base, -base ]
   loop2: polygon [ refl(base), -refl(base) ]
   check loop2: Equal(
-    endpoints [ base, -base ],
+    endpoint [ base, -base ],
     refl(base),
     refl(base),
   )
@@ -223,18 +223,18 @@ datatype Sphere2 {
 
 datatype Torus2 {
   base: Torus2
-  toro: endpoints [ base, -base ]
-  polo: endpoints [ base, -base ]
+  toro: endpoint [ base, -base ]
+  polo: endpoint [ base, -base ]
   spoke: polygon [ toro, polo, -toro, -polo ]
 }
 
 datatype Torus2 {
   base: Torus2
-  warp: endpoints [ base, -base ]
-  weft: endpoints [ base, -base ]
+  warp: endpoint [ base, -base ]
+  weft: endpoint [ base, -base ]
   loop2: polygon [ weft, warp, -weft, -warp ]
   check loop2: Equal(
-    endpoints [ base, -base ],
+    endpoint [ base, -base ],
     path [ weft, warp ],
     path [ warp, weft ],
   )

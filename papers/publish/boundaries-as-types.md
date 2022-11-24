@@ -214,7 +214,7 @@ we can use the algebra of the later to simplify our reasoning?
     It is not.
     We can only say a cell has "orientation",
     in the sense that, for example, when composing an edge,
-    we can use one of its endpoints,
+    we can use one of its endpoint,
     the minus sign in `path` only means
     to change the layout of an edge
     to compose it by another endpoint.
@@ -231,7 +231,7 @@ The following concepts are not built-in our language:
 | dim | cell        | complex    | spherical complex   |
 |     | (generator) | (element)  | (spherical element) |
 |----:|-------------|------------|---------------------|
-|   0 | vertex      |            | `endpoints`         |
+|   0 | vertex      |            | `endpoint`          |
 |   1 | edge        | `path`     | `polygon`           |
 |   2 | face        | `surface`  | `polyhedron`        |
 |   3 | block       | `building` | `polychoron`        |
@@ -273,7 +273,7 @@ The generators can also be parameterized, thus infinity many,
 ```cicada
 datatype Circle {
   base: Circle
-  loop: endpoints [ base, base ]
+  loop: endpoint [ base, base ]
 }
 ```
 
@@ -286,8 +286,8 @@ datatype Sphere {
   south: Sphere
   middle: Sphere
   north: Sphere
-  southLong: endpoints [ south, middle ]
-  northLong: endpoints [ middle, north ]
+  southLong: endpoint [ south, middle ]
+  northLong: endpoint [ middle, north ]
   disk: polygon [
     southLong, northLong, -northLong, -southLong
   ]
@@ -297,8 +297,8 @@ datatype Sphere {
 ```cicada
 datatype Torus {
   origin: Torus
-  toro: endpoints [ origin, origin ]
-  polo: endpoints [ origin, origin ]
+  toro: endpoint [ origin, origin ]
+  polo: endpoint [ origin, origin ]
   spoke: polygon [ toro, polo, -toro, -polo ]
 }
 ```
@@ -306,8 +306,8 @@ datatype Torus {
 ```cicada
 datatype KleinBottle {
   origin: KleinBottle
-  toro: endpoints [ origin, origin ]
-  cross: endpoints [ origin, origin ]
+  toro: endpoint [ origin, origin ]
+  cross: endpoint [ origin, origin ]
   disk: polygon [ toro, cross, -toro, cross ]
 }
 ```
@@ -316,8 +316,8 @@ datatype KleinBottle {
 datatype ProjectivePlane {
   start: ProjectivePlane
   end: ProjectivePlane
-  leftRim: endpoints [ start, end ]
-  rightRim: endpoints [ end, start ]
+  leftRim: endpoint [ start, end ]
+  rightRim: endpoint [ end, start ]
   disk: polygon [ leftRim, rightRim, leftRim, rightRim ]
 }
 ```
@@ -326,10 +326,10 @@ datatype ProjectivePlane {
 
 ```cicada
 space Torus {
-  check path [ toro, toro, toro, polo ]: endpoints [ origin, origin ]
-  check path [ toro ]: endpoints [ origin, origin ]
-  check path [ relf(origin) ]: endpoints [ origin, origin ]
-  check path [ toro, relf(origin) ]: endpoints [ origin, origin ]
+  check path [ toro, toro, toro, polo ]: endpoint [ origin, origin ]
+  check path [ toro ]: endpoint [ origin, origin ]
+  check path [ relf(origin) ]: endpoint [ origin, origin ]
+  check path [ toro, relf(origin) ]: endpoint [ origin, origin ]
 }
 ```
 
@@ -340,9 +340,9 @@ space Torus {
 ```cicada
 datatype Torus3 {
   o: Torus3
-  x: endpoints [ o, o ]
-  y: endpoints [ o, o ]
-  z: endpoints [ o, o ]
+  x: endpoint [ o, o ]
+  y: endpoint [ o, o ]
+  z: endpoint [ o, o ]
   zFace: polygon [ z, y, -z, -y ]
   yFace: polygon [ x, z, -x, -z ]
   zFace: polygon [ y, x, -y, -x ]
@@ -430,14 +430,16 @@ To introduce a 0-dimensional element,
 it is enough to give the name of the data constructor,
 and to specify its type.
 
-But, to introduce a n-dimensional element `A`,
-where `n` is greater than 0,
+But, to introduce a (n+1)-dimensional element `A`,
 we also need to specify an attaching map
--- we call this `boundary` method,
-from an (n-1)-dimensional spherical complex
+from an n-dimensional spherical complex
 (which will also be used as a coordinate system
 to reference `A`'s boundary),
-to (n-1)-skeleton of the current spece.
+to n-skeleton of the current spece.
+
+Overloading the syntax of function application
+to get the boundary of higher inductive elements,
+is the idea of lambda encoding.
 
 ```cicada
 datatype Torus3 {
@@ -448,13 +450,13 @@ datatype Torus3 {
   // i.e. previously introduced 0-dimensional elements.
 
   x: Skeleton(1, Torus3) = {
-    Coordinate: Boundary(I)
+    Coordinate: Boundary(I),
     // - `x` is part of `Skeleton(1, Torus3)`, which is a subspace of `Torus3`.
     // - To introduce a 1-dimensional element, we need to use a 0-spherical complex
     //   as the coordinate system of the 1-dimensional element's boundary.
     // - The coordinate system is the domain of the attaching map.
     // - The 0-spherical complex we will use is `Boundary(I)`
-    //   i.e. two endpoints of the `I` -- `I::0` and `I::1`.
+    //   i.e. two endpoint of the `I` -- `I::0` and `I::1`.
     // - We use a case function called -- `boundary`,
     //   to specify the attaching map.
     boundary(Boundary(I)): Skeleton(0, Torus3) {
@@ -480,10 +482,6 @@ datatype Torus3 {
   // By using `Boundary(I)` as coordinate,
   // we can get `x`'s boundary by applying `x`
   // to elements of `Boundary(I)` -- `I::0` and `I::1`.
-
-  // This means we overload the syntax of function application
-  // to get the boundary of higher inductive elements.
-  // This is the idea of lambda encoding.
 
   // To introduce a 2-dimensional element,
   // we map `Boundary(I, I)` to 1-skeleton,
@@ -579,14 +577,14 @@ Should we call this **the principle of continuity**?
 - If we have a principle to view all set as type,
   then clearly `Boundary(xFace)` should be viewed as a type.
 
-------
+### Torus3 -- Cubical -- My Way Revised
 
 To design how to introduce a (n+1)-dimensional cell `A` into a cell-complex,
 we need to specify a attaching map from the boundary of the cell `A`
 to the n-skeleton of the cell-complex.
 
 We do this by giving the the boundary of the cell `A`
-a spherical coordinate space -- endpoints, polygon, polyhedron, ...
+a spherical coordinate space -- endpoint, polygon, polyhedron, ...
 
 A spherical coordinate space is a special cell-complex,
 thus we need to design how to define continuous map between two cell-complexes.
@@ -662,6 +660,188 @@ if `z` is part of the boundary of `y`,
 or say, `[x, z]: Boundary([x, y])`,
 if and only if `z: Boundary(y)`.
 
+```cicada
+datatype Endpoint {
+  start: Endpoint
+  end: Endpoint
+}
+
+datatype Square {
+  a: Square
+  b: Square
+  c: Square
+  d: Square
+  ab: Skeleton(1, Square) = {
+    Coordinate: Endpoint,
+    attach(endpoint: Endpoint): Skeleton(0, Square) {
+      case (Endpoint::start) => a
+      case (Endpoint::end) => b
+    }
+  }
+  bc: Skeleton(1, Square) = {
+    Coordinate: Endpoint,
+    attach(endpoint: Endpoint): Skeleton(0, Square) {
+      case (Endpoint::start) => b
+      case (Endpoint::end) => c
+    }
+  }
+  cd: Skeleton(1, Square) = {
+    Coordinate: Endpoint,
+    attach(endpoint: Endpoint): Skeleton(0, Square) {
+      case (Endpoint::start) => c
+      case (Endpoint::end) => d
+    }
+  }
+  da: Skeleton(1, Square) = {
+    Coordinate: Endpoint,
+    attach(endpoint: Endpoint): Skeleton(0, Square) {
+      case (Endpoint::start) => d
+      case (Endpoint::end) => a
+    }
+  }
+}
+
+datatype Square {
+  a: Square
+  b: Square
+  c: Square
+  d: Square
+  ab: endpoint [a, b]
+  bc: endpoint [b, c]
+  cd: endpoint [c, d]
+  da: endpoint [d, a]
+}
+
+datatype Gon(n: Nat) {
+  vertex(i: Fin(n)): Gon(n)
+  edge(i: Fin(n)): Skeleton(1, Gon(n)) = {
+    Coordinate: Endpoint,
+    attach(endpoint: Endpoint)
+  }
+}
+
+datatype Torus3 {
+  o: Torus3
+
+  // To introduce a 1-dimensional element,
+  // we map `Endpoint` to the 0-skeleton,
+  // i.e. previously introduced 0-dimensional elements.
+
+  x: Skeleton(1, Torus3) = {
+    Coordinate: Endpoint,
+    // - `x` is part of `Skeleton(1, Torus3)`, which is a subspace of `Torus3`.
+    // - To introduce a 1-dimensional element, we need to use a 0-spherical complex
+    //   as the coordinate system of the 1-dimensional element's boundary.
+    // - The coordinate system is the domain of the attaching map.
+    // - The 0-spherical complex we will use is `Endpoint`.
+    // - We use a case function called -- `attach`,
+    //   to specify the attaching map.
+    attach(endpoint: Endpoint): Skeleton(0, Torus3) {
+      case (Endpoint::start) => o
+      case (Endpoint::end) => o
+    }
+  }
+
+  y: Skeleton(1, Torus3) = {
+    Coordinate: Endpoint,
+    attach(endpoint: Endpoint): Skeleton(0, Torus3) {
+      case (Endpoint::start) => o
+      case (Endpoint::end) => o
+    }
+  }
+
+  z: Skeleton(1, Torus3) = {
+    Coordinate: Endpoint,
+    attach(endpoint: Endpoint): Skeleton(0, Torus3) {
+      case (Endpoint::start) => o
+      case (Endpoint::end) => o
+    }
+  }
+
+  // By using `Endpoint` as coordinate,
+  // we can get `x`'s boundary by applying `x`
+  // to elements of `Endpoint`.
+
+  // To introduce a 2-dimensional element,
+  // we map `Square` (polygon) to 1-skeleton,
+  // i.e. previously introduced 1-dimensional elements.
+
+  // We choose to not overload function application -- `z(Square::a)`
+  // but to overload dot -- `z.attach(Square::a)`.
+
+  // The overloading of dot also occurred during the design of
+  // - fulfilling class.
+  // - data constructors as static methods.
+
+  xFace: Skeleton(2, Torus3) = {
+    Coordinate: Endpoint,
+    attach(square: Square): Skeleton(1, Torus3) {
+      case (Square::ab) => z with {
+        // A syntax keyword `type` to annotate the type of case function.
+        // TODO Should map coordinate space to coordinate space.
+        type (Square::ab.Coordinate) -> z.Coordinate
+        case (Endpoint::start) => z.attach(I::0)
+        case (Endpoint::end) => z.attach(I::1)
+      }
+      case (I::1, I::path) => z with {
+        case (I::0, I::0) => z.attach(I::0)
+        case (I::0, I::1) => z.attach(I::1)
+      }
+      case (I::path, I::0) => y with {
+        case (I::0, I::0) => y.attach(I::0)
+        case (I::0, I::1) => y.attach(I::1)
+      }
+      case (I::path, I::1) => y with {
+        case (I::0, I::0) => y.attach(I::0)
+        case (I::0, I::1) => y.attach(I::1)
+      }
+    }
+  }
+
+  yFace: Skeleton(2, Torus3) = {
+    ...
+  }
+
+  zFace: Skeleton(2, Torus3) = {
+    ...
+  }
+
+  // Note that, in the code above, we get `z`'s boundary
+  // by applying `z` to elements of `Boundary(I)`.
+
+  // In the same way, by using `Square` as coordinate,
+  // we can get `xFace`'s boundary by applying `xFace`
+  // to elements of `Square`,
+  // which will be used when introducing 3-dimensional elements.
+
+  body: Skeleton(3, Torus3) = {
+    attach(Boundary(I, I, I)): Skeleton(2, Torus3) {
+      case (I::0, I::path, I::path) => xFace with {
+        // TODO Should map coordinate space to coordinate space.
+        type (Boundary(I::0, I::path, I::path)) -> Boundary(xFace)
+        case (I::0, I::0, I::path) => xFace.attach(I::0, I::path) with {
+          // TODO Should map coordinate space to coordinate space.
+          // TODO No need to specify further.
+          type (Boundary(I::0, I::0, I::path)) -> Boundary(xFace.attach(I::0, I::path))
+          case (I::0, I::0, I::0) => xFace.attach(I::0, I::path).attach(I::0)
+          case (I::0, I::0, I::1) => xFace.attach(I::0, I::path).attach(I::1)
+        }
+        case (I::0, I::1, I::path) => xFace.attach(I::1, I::path) with {
+          ...
+        }
+        case (I::0, I::path, I::0) => xFace.attach(I::path, I::0) with {
+          ...
+        }
+        case (I::0, I::path, I::1) => xFace.attach(I::path, I::1) with {
+          ...
+        }
+      }
+      ...
+    }
+  }
+}
+```
+
 ## 2-dimensional algebra
 
 ```cicada
@@ -688,13 +868,13 @@ For `n >= 2`, `Pi(n)` is abelian.
 ```cicada
 datatype S1 {
   base: S1
-  rim: endpoints [ base, base ]
+  rim: endpoint [ base, base ]
 }
 
 datatype S2 {
   south: S2
   north: S2
-  meridian: endpoints [ south, north ]
+  meridian: endpoint [ south, north ]
   disk: polygon [ meridian, meridian ]
 }
 
@@ -778,7 +958,7 @@ TODO How to understand `Torus` as `Circle * Circle`?
 
 ```cicada
 space Pair(Circle, Circle) {
-  check path [ cons(base, loop) ]: endpoints [ cons(base, base), cons(base, base) ]
+  check path [ cons(base, loop) ]: endpoint [ cons(base, base), cons(base, base) ]
   check surface { cons(loop, loop) }: polygon [ ... ]
 }
 ```

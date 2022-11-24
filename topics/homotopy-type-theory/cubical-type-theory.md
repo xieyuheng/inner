@@ -108,28 +108,6 @@ function equalCompose(
 }
 ```
 
-# Lecture: Cartesian cubical type theory, by Favonia
-
-[ [YOUTUBE](https://www.youtube.com/watch?v=VbBDxVEu_bA&list=PLtIZ5qxwSNnzpNqfXzJjlHI9yCAzRzKtx&index=73) ]
-
-```cicada
-datatype Interval {
-  start: Interval
-  end: Interval
-  path: endpoints [ start, end ]
-}
-
-function aPath(i: Interval): A {
-  // TODO How case on `Interval::path`.
-  return ...
-}
-
-function aSurface(i: Interval, j: Interval): A {
-  // TODO How case on `Interval::path`.
-  return ...
-}
-```
-
 # Lecture: Type-Theoretic Truncation Levels
 
 [ [YOUTUBE](https://www.youtube.com/watch?v=LWQqE2JcDSQ&list=PL0OBHndHAAZrGQEkOZGyJu7S7KudAJ8M9&index=1) ]
@@ -216,42 +194,17 @@ function Singleton(X: Type): Type {
 datatype Interval {
   start: Interval
   end: Interval
-  path: endpoints [ start, end ]
+  path: endpoint [ start, end ]
 }
+```
 
-function M(i: Interval, j: Interval): A {
-  ...
-}
+Or say:
 
-check M(Interval::start, Interval::path): endpoints A [
-  M(Interval::start, Interval::start),
-  M(Interval::start, Interval::end),
-]
-
-check M(Interval::end, Interval::path): ...
-check M(Interval::path, Interval::start): ...
-check M(Interval::path, Interval::end): ...
-
-check M(Interval::path, Interval::path): endpoints A [
-  // TODO What should be the rule?
-  //   Is this rule the idea of cubical types?
-  M(Interval::start, Interval::path),
-  M(Interval::end, Interval::path),
-  M(Interval::path, Interval::start),
-  M(Interval::path, Interval::end),
-]
-
-check M(i, j): endpoints A [
-  // TODO What should be the rule?
-  //   Is this rule the idea of cubical types?
-  M(0, j),
-  M(1, j),
-  M(i, 0),
-  M(i, 1),
-]
-
-space Pair(Interval, Interval) {
-  ...
+```cicada
+datatype I {
+  0: I
+  1: I
+  path: endpoint [ start, end ]
 }
 ```
 
@@ -276,6 +229,26 @@ datatype S1 {
   loop: (I) -> S1 with {
     loop(0) = base
     loop(1) = base
+  }
+}
+```
+
+In my way it would be:
+
+```cicada
+datatype Endpoint {
+  start: Endpoint
+  end: Endpoint
+}
+
+datatype S1 {
+  base: S1
+  loop: Skeleton(1, S1) = {
+    Coordinate: Endpoint,
+    attach(endpoint: Endpoint): Skeleton(0, S1) {
+      case (Endpoint::start) = base
+      case (Endpoint::end) = base
+    }
   }
 }
 ```
@@ -355,5 +328,27 @@ function M(i: I): A(i) {
     case (0) => the(A(0), N)
     case (1) => the(A(1), O)
   }
+}
+```
+
+# Lecture: Cartesian cubical type theory, by Favonia
+
+[ [YOUTUBE](https://www.youtube.com/watch?v=VbBDxVEu_bA&list=PLtIZ5qxwSNnzpNqfXzJjlHI9yCAzRzKtx&index=73) ]
+
+```cicada
+datatype Interval {
+  start: Interval
+  end: Interval
+  path: endpoint [ start, end ]
+}
+
+function aPath(i: Interval): A {
+  // TODO How case on `Interval::path`.
+  return ...
+}
+
+function aSurface(i: Interval, j: Interval): A {
+  // TODO How case on `Interval::path`.
+  return ...
 }
 ```
