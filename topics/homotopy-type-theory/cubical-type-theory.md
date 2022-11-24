@@ -227,8 +227,8 @@ we say:
 datatype S1 {
   base: S1
   loop: (I) -> S1 with {
-    loop(0) = base
-    loop(1) = base
+    case (loop(0)) => base
+    case (loop(1)) => base
   }
 }
 ```
@@ -243,11 +243,11 @@ datatype Endpoint {
 
 datatype S1 {
   base: S1
-  loop: Skeleton(1, S1) = {
+  loop: Skeleton(1, S1) with {
     Coordinate: Endpoint,
     attach(endpoint: Endpoint): Skeleton(0, S1) {
-      case (Endpoint::start) = base
-      case (Endpoint::end) = base
+      case (Endpoint::start) => base
+      case (Endpoint::end) => base
     }
   }
 }
