@@ -345,8 +345,6 @@ datatype Torus3 {
   zFace: polygon [ z, y, -z, -y ]
   yFace: polygon [ x, z, -x, -z ]
   zFace: polygon [ y, x, -y, -x ]
-  // The syntax use logic variable and linear unification
-  // to specify how edges of polygons are glued together.
   body: polyhedron {
     xFace [ Y3, Z2, -X2, -Z0 ]
     yFace [ Y0, X2, -Z1, -Y3 ]
@@ -354,6 +352,14 @@ datatype Torus3 {
   }
 }
 ```
+
+The idea is that to specify the attaching map
+from polyhedron to 2-skeleton of the space,
+we can use a syntax like logic programming,
+i.e. to use meta variable and linear unification
+to specify how edges of polygons are glued together.
+
+- Note that, polygons are elements of the boundary of polyhedron.
 
 ### Torus3 -- Cubical
 
@@ -417,22 +423,45 @@ datatype Torus3 {
   o: Torus3
 
   // To introduce a 1-dim element,
-  // we map `boundary(I)` to 0-dim elements.
+  // we map `boundary(I)` to the 0-skeleton,
+  // i.e. previously introduced 0-dim elements.
 
-  x: boundary(I) -> dim 0 Torus3 { case (I::0) => o case (I::1) => o }
-  y: boundary(I) -> dim 0 Torus3 { case (I::0) => o case (I::1) => o }
-  z: boundary(I) -> dim 0 Torus3 { case (I::0) => o case (I::1) => o }
+  x: boundary(I) -> skeleton(0, Torus3) { case (I::0) => o case (I::1) => o }
+  y: boundary(I) -> skeleton(0, Torus3) { case (I::0) => o case (I::1) => o }
+  z: boundary(I) -> skeleton(0, Torus3) { case (I::0) => o case (I::1) => o }
+
+  // Alternative syntax:
+
+  x: skeleton(1, Torus3) with {
+    // - `x` is part of `skeleton(1, Torus3)`, which is a subspace of `Torus3`.
+    // - To introduce a 1-dim element, we need to use a 0-spherical complex
+    //   as the coordinate system of the 1-dim element's boundary.
+    // - The coordinate system is the domain of the attaching map.
+    // - The 0-spherical complex we will use is `boundary(I)`
+    //   i.e. two endpoints of the `I` -- `I::0` and `I::1`.
+    // - We use a case function called -- `attach`,
+    //   to specify the attaching map.
+    attach(boundary(I)): skeleton(0, Torus3) {
+      case (I::0) => o
+      case (I::1) => o
+    }
+  }
 
   // By using `boundary(I)` as coordinate,
   // we can get `x`'s boundary by applying `x`
   // to elements of `boundary(I)` -- `I::0` and `I::1`.
 
+  // This means we overload the syntax of function application
+  // to get the boundary of higher inductive elements.
+  // This is the idea of lambda encoding.
+
   // To introduce a 2-dim element,
-  // we map `boundary([I, I])` to 1-dim elements.
+  // we map `boundary(I, I)` to 1-skeleton,
+  // i.e. previously introduced 1-dim elements.
 
   // We should NOT write the following:
 
-  xFace: boundary(I, I) -> dim 1 Torus3 {
+  xFace: boundary(I, I) -> skeleton(1, Torus3) {
     case (I::0, I::path) => z
     case (I::1, I::path) => z
     case (I::path, I::0) => y
@@ -444,23 +473,67 @@ datatype Torus3 {
   // we also need to specify
   // the target of `(I::0, boundary(I::path))`
 
-  xFace: boundary(I, I) -> dim 1 Torus3 {
+  xFace: boundary(I, I) -> skeleton(1, Torus3) {
     case (I::0, I::path) => z with {
-      case (I::0, I::0) => z(0)
-      case (I::0, I::1) => z(1)
+      case (I::0, I::0) => z(I::0)
+      case (I::0, I::1) => z(I::1)
     }
-    ...
+    case (I::1, I::path) => z with {
+      case (I::0, I::0) => z(I::0)
+      case (I::0, I::1) => z(I::1)
+    }
+    case (I::path, I::0) => y with {
+      case (I::0, I::0) => y(I::0)
+      case (I::0, I::1) => y(I::1)
+    }
+    case (I::path, I::1) => y with {
+      case (I::0, I::0) => y(I::0)
+      case (I::0, I::1) => y(I::1)
+    }
+  }
+
+  // Alternative syntax:
+  // - Maybe we should call the `attach` method `boundary`,
+  //   and not to overload function application -- `z(I::0)`
+  //   but to overload dot -- `z.boundary(I::0)`.
+  //   - The overloading of dot occurred during the design of
+  //     - fulfilling class.
+  //     - data constructors as static methods.
+  // - How to understand this in type theory?
+  // - How to understand this in set theory?
+
+  xFace: skeleton(2, Torus3) with {
+    attach(boundary(I, I)): skeleton(1, Torus3) {
+      case (I::0, I::path) => z with {
+        // The type of the case function inside `with`:
+        //   (boundary(I::0, I::path)) -> boundary(z)
+        case (I::0, I::0) => z(I::0)
+        case (I::0, I::1) => z(I::1)
+      }
+      case (I::1, I::path) => z with {
+        case (I::0, I::0) => z(I::0)
+        case (I::0, I::1) => z(I::1)
+      }
+      case (I::path, I::0) => y with {
+        case (I::0, I::0) => y(I::0)
+        case (I::0, I::1) => y(I::1)
+      }
+      case (I::path, I::1) => y with {
+        case (I::0, I::0) => y(I::0)
+        case (I::0, I::1) => y(I::1)
+      }
+    }
   }
 
   // Note that, in the code above, we get `z`'s boundary
   // by applying `z` to elements of `boundary(I)`.
 
-  // In the same way, by using `boundary([I, I])` as coordinate,
+  // In the same way, by using `boundary(I, I)` as coordinate,
   // we can get `xFace`'s boundary by applying `xFace`
-  // to elements of `boundary([I, I])`,
+  // to elements of `boundary(I, I)`,
   // which will be used when introducing 3-dim elements.
 
-  body: boundary(I, I, I) -> dim 2 Torus3 with {
+  body: boundary(I, I, I) -> skeleton(2, Torus3) with {
     case (I::0, I::path, I::path) => xFace with {
       case (I::0, I::0, I::path) => xFace(I::0, I::path) with {
         // We also need to specify the boundary of this map.
@@ -475,6 +548,14 @@ datatype Torus3 {
   }
 }
 ```
+
+The most important idea is that when specifying a mapping
+from a n-dim element `A` to composition of n-dim elements `B`,
+we also need to specify how each element of the boundary of `A`
+is mapped to the boundary of `B`, and recursively
+specifying the mapping down to 0-dim.
+
+Should we call this **the principle of continuity**?
 
 [question] How to understand the use of `with` by boundary as type?
 
