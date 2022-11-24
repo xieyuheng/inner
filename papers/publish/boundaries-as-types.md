@@ -261,7 +261,7 @@ When defining a complex, we can specify higher order generators,
 the generators can be composed to get elements of the algebra.
 The generators can also be parameterized, thus infinity many,
 
-[problem] How to understand cell-complex as inductively defined set?
+[question] How to understand cell-complex as inductively defined set?
 
 - 0-dimensional cell-complex is inductively defined set.
 
@@ -410,7 +410,7 @@ It seems it is using some conversion
 about overloading map to map of boundary,
 which works only in special cases.
 
-### Torus3 -- Cubical My version
+### Torus3 -- Cubical -- My Way
 
 ```cicada
 datatype Torus3 {
@@ -446,8 +446,8 @@ datatype Torus3 {
 
   xFace: (I, I) -> dim 1 Torus3 {
     case (I::0, I::path) => z with {
-      case (I::0, 0) => z(0)
-      case (I::0, 1) => z(1)
+      case (I::0, I::0) => z(0)
+      case (I::0, I::1) => z(1)
     }
     ...
   }
@@ -463,7 +463,7 @@ datatype Torus3 {
   body: (I, I, I) -> Torus3 with {
     case (I::0, I::path, I::path) => xFace with {
       case (I::0, I::0, I::path) => xFace(I::0, I::path) with {
-        // NOTE We also need to specify the boundary of this map.
+        // We also need to specify the boundary of this map.
         case (I::0, I::0, I::0) => xFace(I::0, I::path)(I::0)
         case (I::0, I::0, I::1) => xFace(I::0, I::path)(I::1)
       }
@@ -475,6 +475,10 @@ datatype Torus3 {
   }
 }
 ```
+
+[question] How to understand the use of `with` by boundary as type?
+
+[question] How to understand the use of `with` in set theory?
 
 ## 2-dimensional algebra
 
