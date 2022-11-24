@@ -427,13 +427,7 @@ datatype Torus3 {
   // we map `Boundary(I)` to the 0-skeleton,
   // i.e. previously introduced 0-dim elements.
 
-  x: Boundary(I) -> Skeleton(0, Torus3) { case (I::0) => o case (I::1) => o }
-  y: Boundary(I) -> Skeleton(0, Torus3) { case (I::0) => o case (I::1) => o }
-  z: Boundary(I) -> Skeleton(0, Torus3) { case (I::0) => o case (I::1) => o }
-
-  // Alternative syntax:
-
-  x: Skeleton(1, Torus3) with {
+  x: Skeleton(1, Torus3) = {
     // - `x` is part of `Skeleton(1, Torus3)`, which is a subspace of `Torus3`.
     // - To introduce a 1-dim element, we need to use a 0-spherical complex
     //   as the coordinate system of the 1-dim element's boundary.
@@ -442,6 +436,20 @@ datatype Torus3 {
     //   i.e. two endpoints of the `I` -- `I::0` and `I::1`.
     // - We use a case function called -- `boundary`,
     //   to specify the attaching map.
+    boundary(Boundary(I)): Skeleton(0, Torus3) {
+      case (I::0) => o
+      case (I::1) => o
+    }
+  }
+
+  y: Skeleton(1, Torus3) = {
+    boundary(Boundary(I)): Skeleton(0, Torus3) {
+      case (I::0) => o
+      case (I::1) => o
+    }
+  }
+
+  z: Skeleton(1, Torus3) = {
     boundary(Boundary(I)): Skeleton(0, Torus3) {
       case (I::0) => o
       case (I::1) => o
@@ -460,52 +468,18 @@ datatype Torus3 {
   // we map `Boundary(I, I)` to 1-skeleton,
   // i.e. previously introduced 1-dim elements.
 
-  // We should NOT write the following:
-
-  xFace: Boundary(I, I) -> Skeleton(1, Torus3) {
-    case (I::0, I::path) => z
-    case (I::1, I::path) => z
-    case (I::path, I::0) => y
-    case (I::path, I::1) => y
-  }
-
-  // Because it is not enough to specify
-  // the target of `(I::0, I::path)`
-  // we also need to specify
-  // the target of `(I::0, Boundary(I::path))`
-
-  xFace: Boundary(I, I) -> Skeleton(1, Torus3) {
-    case (I::0, I::path) => z with {
-      case (I::0, I::0) => z(I::0)
-      case (I::0, I::1) => z(I::1)
-    }
-    case (I::1, I::path) => z with {
-      case (I::0, I::0) => z(I::0)
-      case (I::0, I::1) => z(I::1)
-    }
-    case (I::path, I::0) => y with {
-      case (I::0, I::0) => y(I::0)
-      case (I::0, I::1) => y(I::1)
-    }
-    case (I::path, I::1) => y with {
-      case (I::0, I::0) => y(I::0)
-      case (I::0, I::1) => y(I::1)
-    }
-  }
-
-  // Alternative syntax:
-
-  // Maybe we should not overload function application -- `z(I::0)`
+  // We choose to not overload function application -- `z(I::0)`
   // but to overload dot -- `z.boundary(I::0)`.
-  // - The overloading of dot occurred during the design of
-  //   - fulfilling class.
-  //   - data constructors as static methods.
 
-  xFace: Skeleton(2, Torus3) with {
+  // The overloading of dot also occurred during the design of
+  // - fulfilling class.
+  // - data constructors as static methods.
+
+  xFace: Skeleton(2, Torus3) = {
     boundary(Boundary(I, I)): Skeleton(1, Torus3) {
       case (I::0, I::path) => z with {
-        // The type of the case function inside `with`:
-        //   (Boundary(I::0, I::path)) -> Boundary(z)
+        // A syntax keyword `type` to annotate the type of case function.
+        type (Boundary(I::0, I::path)) -> Boundary(z)
         case (I::0, I::0) => z.boundary(I::0)
         case (I::0, I::1) => z.boundary(I::1)
       }
@@ -524,6 +498,14 @@ datatype Torus3 {
     }
   }
 
+  yFace: Skeleton(2, Torus3) = {
+    ...
+  }
+
+  zFace: Skeleton(2, Torus3) = {
+    ...
+  }
+
   // Note that, in the code above, we get `z`'s boundary
   // by applying `z` to elements of `Boundary(I)`.
 
@@ -532,18 +514,27 @@ datatype Torus3 {
   // to elements of `Boundary(I, I)`,
   // which will be used when introducing 3-dim elements.
 
-  body: Boundary(I, I, I) -> Skeleton(2, Torus3) with {
-    case (I::0, I::path, I::path) => xFace with {
-      case (I::0, I::0, I::path) => xFace(I::0, I::path) with {
-        // We also need to specify the boundary of this map.
-        case (I::0, I::0, I::0) => xFace(I::0, I::path)(I::0)
-        case (I::0, I::0, I::1) => xFace(I::0, I::path)(I::1)
+  body: Skeleton(3, Torus3) = {
+    boundary(Boundary(I, I, I)): Skeleton(2, Torus3) {
+      case (I::0, I::path, I::path) => xFace with {
+        type (Boundary(I::0, I::path, I::path)) -> Boundary(xFace)
+        case (I::0, I::0, I::path) => xFace.boundary(I::0, I::path) with {
+          type (Boundary(I::0, I::0, I::path)) -> Boundary(xFace.boundary(I::0, I::path))
+          case (I::0, I::0, I::0) => xFace.boundary(I::0, I::path).boundary(I::0)
+          case (I::0, I::0, I::1) => xFace.boundary(I::0, I::path).boundary(I::1)
+        }
+        case (I::0, I::1, I::path) => xFace.boundary(I::1, I::path) with {
+          ...
+        }
+        case (I::0, I::path, I::0) => xFace.boundary(I::path, I::0) with {
+          ...
+        }
+        case (I::0, I::path, I::1) => xFace.boundary(I::path, I::1) with {
+          ...
+        }
       }
-      case (I::0, I::1, I::path) => xFace(I::1, I::path) with { ... }
-      case (I::0, I::path, I::0) => xFace(I::path, I::0) with { ... }
-      case (I::0, I::path, I::1) => xFace(I::path, I::1) with { ... }
+      ...
     }
-    ...
   }
 }
 ```
