@@ -261,6 +261,10 @@ When defining a complex, we can specify higher order generators,
 the generators can be composed to get elements of the algebra.
 The generators can also be parameterized, thus infinity many,
 
+[problem] How to understand cell-complex as inductively defined set?
+
+- 0-dimensional cell-complex is inductively defined set.
+
 ## 1-dimensional
 
 ### Circle
@@ -344,14 +348,16 @@ datatype Torus3 {
   // The syntax use logic variable and linear unification
   // to specify how edges of polygons are glued together.
   body: polyhedron {
-    xFace { Y3 Z2 = Z0 X2 }
-    yFace { Y0 X2 = Y3 Z1 }
-    xFace { Z0 Z1 = Y0 Z2 }
+    xFace [ Y3, Z2, -X2, -Z0 ]
+    yFace [ Y0, X2, -Z1, -Y3 ]
+    xFace [ Z0, Z1, -Z2, -Y0 ]
   }
 }
 ```
 
-Using `I` (`Interval`) as an opaque coordinate system.
+### Torus3 -- Cubical
+
+Using `I` (`Interval`) as an coordinate system.
 
 - How to coordinate polygon and polyhedron?
   as simple as `I`, because to use `C` as a coordinate system
@@ -361,36 +367,87 @@ Using `I` (`Interval`) as an opaque coordinate system.
 datatype Torus3 {
   o: Torus3
 
-  // NOTE To introduce a 1-dim element,
+  x: (I) -> Torus3 with { case (I::0) => o case (I::1) => o }
+  y: (I) -> Torus3 with { case (I::0) => o case (I::1) => o }
+  z: (I) -> Torus3 with { case (I::0) => o case (I::1) => o }
+
+  xFace: (I, I) -> Torus3 with {
+    case (I::0, i) => z(i)
+    case (I::1, i) => z(i)
+    case (i, I::0) => y(i)
+    case (i, I::1) => y(i)
+  }
+
+  yFace: (I, I) -> Torus3 with {
+    case (I::0, i) => x(i)
+    case (I::1, i) => x(i)
+    case (i, I::0) => z(i)
+    case (i, I::1) => z(i)
+  }
+
+  zFace: (I, I) -> Torus3 with {
+    case (I::0, i) => y(i)
+    case (I::1, i) => y(i)
+    case (i, I::0) => x(i)
+    case (i, I::1) => x(i)
+  }
+
+  body: (I, I, I) -> Torus3 with {
+    case (I::0, i, j) => xFace(i, j)
+    case (I::1, i, j) => xFace(i, j)
+    case (i, I::0, j) => yFace(i, j)
+    case (i, I::1, j) => yFace(i, j)
+    case (i, j, I::0) => zFace(i, j)
+    case (i, j, I::1) => zFace(i, j)
+  }
+}
+```
+
+The syntax of cubical type theory
+does not provide enough information.
+
+It seems it is using some conversion
+about overloading map to map of boundary,
+which works only in special cases.
+
+### Torus3 -- Cubical My version
+
+```cicada
+datatype Torus3 {
+  o: Torus3
+
+  // To introduce a 1-dim element,
   // we map `boundary(I)` to 0-dim elements.
-  x: (I) -> Torus3 with { case (I.0) => o  case (I.1) => o }
-  y: (I) -> Torus3 with { case (I.0) => o  case (I.1) => o }
-  z: (I) -> Torus3 with { case (I.0) => o  case (I.1) => o }
+
+  x: (I) -> dim 0 Torus3 { case (I::0) => o case (I::1) => o }
+  y: (I) -> dim 0 Torus3 { case (I::0) => o case (I::1) => o }
+  z: (I) -> dim 0 Torus3 { case (I::0) => o case (I::1) => o }
 
   // By using `boundary(I)` as coordinate,
   // we can get `x`'s boundary by applying `x`
-  // to elements of `boundary(I)`.
+  // to elements of `boundary(I)` -- `I::0` and `I::1`.
 
-  // NOTE To introduce a 2-dim element,
-  // we map `boundary(I*I)` to 1-dim elements.
+  // To introduce a 2-dim element,
+  // we map `boundary([I, I])` to 1-dim elements.
 
-  // NOTE We should not write the following
-  xFace: (I, I) -> Torus3 with {
-    case (I.0, I.path) => z
-    case (I.1, I.path) => z
-    case (I.path, I.0) => y
-    case (I.path, I.1) => y
+  // We should NOT write the following:
+
+  xFace: (I, I) -> dim 1 Torus3 {
+    case (I::0, I::path) => z
+    case (I::1, I::path) => z
+    case (I::path, I::0) => y
+    case (I::path, I::1) => y
   }
 
   // Because it is not enough to specify
-  // the target of `(I.0, I.path)`
+  // the target of `(I::0, I::path)`
   // we also need to specify
-  // the target of `(I.0, boundary(I.path))`
+  // the target of `(I::0, boundary(I::path))`
 
-  xFace: (I, I) -> Torus3 with {
-    case (I.0, I.path) => z with {
-      case (I.0, 0) => z(0)
-      case (I.0, 1) => z(1)
+  xFace: (I, I) -> dim 1 Torus3 {
+    case (I::0, I::path) => z with {
+      case (I::0, 0) => z(0)
+      case (I::0, 1) => z(1)
     }
     ...
   }
@@ -398,60 +455,21 @@ datatype Torus3 {
   // Note that, in the code above, we get `z`'s boundary
   // by applying `z` to elements of `boundary(I)`.
 
-  // In the same way, by using `boundary(I*I)` as coordinate,
+  // In the same way, by using `boundary([I, I])` as coordinate,
   // we can get `xFace`'s boundary by applying `xFace`
-  // to elements of `boundary(I*I)`,
+  // to elements of `boundary([I, I])`,
   // which will be used when introducing 3-dim elements.
 
-  // TODO Is the following syntax valid?
-  // I think it does not provide enough information.
-  // It seems it is using some conversion
-  // about overloading map to map of boundary,
-  // which works only in special cases.
-
-  xFace: (I, I) -> Torus3 with {
-    case (I.0, i) => z(i)
-    case (I.1, i) => z(i)
-    case (i, I.0) => y(i)
-    case (i, I.1) => y(i)
-  }
-
-  yFace: (I, I) -> Torus3 with {
-    case (I.0, i) => x(i)
-    case (I.1, i) => x(i)
-    case (i, I.0) => z(i)
-    case (i, I.1) => z(i)
-  }
-
-  zFace: (I, I) -> Torus3 with {
-    case (I.0, i) => y(i)
-    case (I.1, i) => y(i)
-    case (i, I.0) => x(i)
-    case (i, I.1) => x(i)
-  }
-
   body: (I, I, I) -> Torus3 with {
-    case (I.0, i, j) => xFace(i, j)
-    case (I.1, i, j) => xFace(i, j)
-    case (i, I.0, j) => yFace(i, j)
-    case (i, I.1, j) => yFace(i, j)
-    case (i, j, I.0) => zFace(i, j)
-    case (i, j, I.1) => zFace(i, j)
-  }
-
-  // I think the right syntax should be:
-
-  body: (I, I, I) -> Torus3 with {
-    case (I.0, I.path, I.path) => xFace with {
-      case (I.0, I.0, I.path) => xFace(I.0, I.path) with {
-        // TODO Do we also need to specify the boundary of this map?
-        // Maybe this is required, because it specifies the orientation of the gluing.
-        case (I.0, I.0, I.0) => xFace(I.0, I.path)(I.0)
-        case (I.0, I.0, I.1) => xFace(I.0, I.path)(I.1)
+    case (I::0, I::path, I::path) => xFace with {
+      case (I::0, I::0, I::path) => xFace(I::0, I::path) with {
+        // NOTE We also need to specify the boundary of this map.
+        case (I::0, I::0, I::0) => xFace(I::0, I::path)(I::0)
+        case (I::0, I::0, I::1) => xFace(I::0, I::path)(I::1)
       }
-      case (I.0, I.1, I.path) => xFace(I.1, I.path)
-      case (I.0, I.path, I.0) => xFace(I.path, I.0)
-      case (I.0, I.path, I.1) => xFace(I.path, I.1)
+      case (I::0, I::1, I::path) => xFace(I::1, I::path) with { ... }
+      case (I::0, I::path, I::0) => xFace(I::path, I::0) with { ... }
+      case (I::0, I::path, I::1) => xFace(I::path, I::1) with { ... }
     }
     ...
   }
@@ -462,13 +480,13 @@ datatype Torus3 {
 
 ```cicada
 space Torus3 {
-  check surface { refl(refl(o)) { ... } }: polygon [ refl(o), -refl(o) ]
-  check surface { refl(x) { ... } }: polygon [ x, -x ]
-  check surface { refl(x) { ... } refl(x) { ... } }: polygon [ x, x, -x, -x ]
+  check surface { refl(refl(o)) [ ... ] }: polygon [ refl(o), -refl(o) ]
+  check surface { refl(x) [ ... ] }: polygon [ x, -x ]
+  check surface { refl(x) [ ... ] refl(x) [ ... ] }: polygon [ x, x, -x, -x ]
   check surface {
-    xFace { B3 C2 = C0 A2 }
-    yFace { B0 A2 = B3 C1 }
-    refl(x) {  ... }
+    xFace [ B3, C2, -A2, -C0 ]
+    yFace [ B0, A2, -C1, -B3 ]
+    refl(x) [  ... ]
   }: polygon [ ... ]
 }
 ```
@@ -504,8 +522,8 @@ TODO How to do 3-dimensional algebra?
 ```cicada
 space S3 {
   check building { ball }: polyhedron S3 {
-    disk { X = Y }
-    disk { X = Y }
+    disk [ X, -Y ]
+    disk [ X, -Y ]
   }
 }
 ```
@@ -531,10 +549,10 @@ TODO How to define `Pi(3)(S(2))`?
 
 ```cicada
 function Pi3S2 (s3: S3): S2 {
-  case (S3.base) => S2.base
-  case (S3.rim) => S2.rim
-  case (S3.disk) => S2.disk
-  case (S3.ball) => TODO
+  case (S3::base) => S2::base
+  case (S3::rim) => S2::rim
+  case (S3::disk) => S2::disk
+  case (S3::ball) => TODO
   // It seems there is almost not information in definition of `S3`,
   //   thus `Pi3S2` must be about the structure of
   //   the higher dimensional algebra itself.

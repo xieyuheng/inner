@@ -8,7 +8,7 @@ So called path type.
 
 A term of type `Equal(A, a, b)` can be used
 as a function `p: (Interval) -> A`,
-such that `p(Interval.start) = a` and `p(Interval.end) = b`,
+such that `p(Interval::start) = a` and `p(Interval::end) = b`,
 i.e. a path in space `A`,
 
 ```cicada
@@ -22,17 +22,17 @@ function equalPair(
   //    Equal(Pair(A, B), start, end)
   // => Equal(Pair(A, B), cons(car(start), cdr(start)), cons(car(end), cdr(end)))
 
-  equal carPath(Interval.start) = car(start)
-  equal carPath(Interval.end) = car(end)
+  equal carPath(Interval::start) = car(start)
+  equal carPath(Interval::end) = car(end)
 
-  equal cdrPath(Interval.start) = cdr(start)
-  equal cdrPath(Interval.end) = cdr(end)
+  equal cdrPath(Interval::start) = cdr(start)
+  equal cdrPath(Interval::end) = cdr(end)
 
   let resultPath: Equal(Pair(A, B), start, end) =
     (i: Interval) => cons(carPath(i), cdrPath(i))
 
-  equal resultPath(Interval.start) = cons(car(start), cdr(start))
-  equal resultPath(Interval.end) = cons(car(end), cdr(end))
+  equal resultPath(Interval::start) = cons(car(start), cdr(start))
+  equal resultPath(Interval::end) = cons(car(end), cdr(end))
 
   // Thus by the definition of `Equal`, we have
   //   resultPath: Equal(Pair(A, B), cons(car(start), cdr(start)), cons(car(end), cdr(end)))
@@ -50,21 +50,21 @@ function equalCompose(
   xyPath: Equal(A, x, y),
   yzPath: Equal(A, y, z),
 ): Equal(A, x, z) {
-  equal xyPath(Interval.start) = x
-  equal xyPath(Interval.end) = y
+  equal xyPath(Interval::start) = x
+  equal xyPath(Interval::end) = y
 
-  equal yzPath(Interval.start) = y
-  equal yzPath(Interval.end) = z
+  equal yzPath(Interval::start) = y
+  equal yzPath(Interval::end) = z
 
   let xzPath: Equal(A, x, z) =
     // NOTE But we can not just case over 0-level elements.
     (i: Interval) => match (i) {
-      case (Interval.start) => xyPath(i)
-      case (Interval.end) => yzPath(i)
+      case (Interval::start) => xyPath(i)
+      case (Interval::end) => yzPath(i)
     }
 
-  equal xzPath(Interval.start) = x
-  equal xzPath(Interval.end) = z
+  equal xzPath(Interval::start) = x
+  equal xzPath(Interval::end) = z
 
   return xzPath
 }
@@ -82,9 +82,9 @@ function equalCompose(
   yzPath: Equal(A, y, z),
 ): Equal(A, x, z) {
   return (i: Interval) => match (i) {
-    case (Interval.start) => xyPath(i)
-    case (Interval.end) => yzPath(i)
-    case (Interval.path) => composePath(xyPath, yzPath)
+    case (Interval::start) => xyPath(i)
+    case (Interval::end) => yzPath(i)
+    case (Interval::path) => composePath(xyPath, yzPath)
   }
 }
 ```
@@ -101,9 +101,9 @@ function equalCompose(
   yzPath: Equal(A, y, z),
 ): Equal(A, x, z) {
   return (i: Interval) => match (i) {
-    case (Interval.start) => xyPath(i)
-    case (Interval.end) => yzPath(i)
-    case (Interval.path) => path [ xyPath, yzPath ]
+    case (Interval::start) => xyPath(i)
+    case (Interval::end) => yzPath(i)
+    case (Interval::path) => path [ xyPath, yzPath ]
   }
 }
 ```
@@ -120,12 +120,12 @@ datatype Interval {
 }
 
 function aPath(i: Interval): A {
-  // TODO How case on `Interval.path`.
+  // TODO How case on `Interval::path`.
   return ...
 }
 
 function aSurface(i: Interval, j: Interval): A {
-  // TODO How case on `Interval.path`.
+  // TODO How case on `Interval::path`.
   return ...
 }
 ```
@@ -223,22 +223,22 @@ function M(i: Interval, j: Interval): A {
   ...
 }
 
-check M(Interval.start, Interval.path): endpoints A [
-  M(Interval.start, Interval.start),
-  M(Interval.start, Interval.end),
+check M(Interval::start, Interval::path): endpoints A [
+  M(Interval::start, Interval::start),
+  M(Interval::start, Interval::end),
 ]
 
-check M(Interval.end, Interval.path): ...
-check M(Interval.path, Interval.start): ...
-check M(Interval.path, Interval.end): ...
+check M(Interval::end, Interval::path): ...
+check M(Interval::path, Interval::start): ...
+check M(Interval::path, Interval::end): ...
 
-check M(Interval.path, Interval.path): endpoints A [
+check M(Interval::path, Interval::path): endpoints A [
   // TODO What should be the rule?
   //   Is this rule the idea of cubical types?
-  M(Interval.start, Interval.path),
-  M(Interval.end, Interval.path),
-  M(Interval.path, Interval.start),
-  M(Interval.path, Interval.end),
+  M(Interval::start, Interval::path),
+  M(Interval::end, Interval::path),
+  M(Interval::path, Interval::start),
+  M(Interval::path, Interval::end),
 ]
 
 check M(i, j): endpoints A [
