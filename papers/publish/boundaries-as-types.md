@@ -219,6 +219,14 @@ we can use the algebra of the later to simplify our reasoning?
     to change the layout of an edge
     to compose it by another endpoint.
 
+[question] Why using path type we can view `Equal` as a `Pi` type?
+
+- Thus prove equal under structure like `Pair` and `class` really easy.
+
+[question] What is the general relation
+between topological (homotopical) spaces
+and the `Equal` type?
+
 ## Limitation of our construction
 
 The following concepts are not built-in our language:
@@ -745,20 +753,9 @@ datatype Torus3 {
         case (Endpoint::end) => Endpoint::end
       }
 
-      case (Gon::edge(1)) => z orient {
-        case (Endpoint::start) => Endpoint::start
-        case (Endpoint::end) => Endpoint::end
-      }
-
-      case (Gon::edge(2)) => z orient {
-        case (Endpoint::start) => Endpoint::start
-        case (Endpoint::end) => Endpoint::end
-      }
-
-      case (Gon::edge(3)) => y orient {
-        case (Endpoint::start) => Endpoint::start
-        case (Endpoint::end) => Endpoint::end
-      }
+      case (Gon::edge(1)) => z orient id
+      case (Gon::edge(2)) => z orient id
+      case (Gon::edge(3)) => y orient id
     }
   }
 
