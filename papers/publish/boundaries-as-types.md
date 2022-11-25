@@ -690,6 +690,16 @@ which requires special kind of `with` properties.
 
 [question] What is the generalization (or say, a generalization) of `Skeleton`?
 
+------
+
+TODO
+
+we should use `inductive` as keyword (like coq) -- instead of `datatype`
+
+[keyword] inductive constraint
+
+[keyword] static properties of data constructor
+
 ```cicada
 datatype Endpoint {
   start: Endpoint
@@ -707,7 +717,7 @@ datatype Gon(n: Nat) {
     Coordinate: Endpoint,
     attach(endpoint: Endpoint): Skeleton(0, Gon(n)) {
       case (Endpoint::start) => vertex(i)
-      case (Endpoint::end) => vertex(Fin::add1Modular(i))
+      case (Endpoint::end) => vertex(Fin::add1Mod(i))
     }
   }
 }
