@@ -251,6 +251,18 @@ datatype S1 {
     }
   }
 }
+
+datatype Interval {
+  start: Interval
+  end: Interval
+  path: Skeleton(1, Interval) with {
+    Coordinate: Endpoint,
+    attach(endpoint: Endpoint): Skeleton(0, Interval) {
+      case (Endpoint::start) => start
+      case (Endpoint::end) => end
+    }
+  }
+}
 ```
 
 ```cicada

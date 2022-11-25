@@ -223,6 +223,25 @@ we can use the algebra of the later to simplify our reasoning?
 
 - Thus prove equal under structure like `Pair` and `class` really easy.
 
+```
+i: I |- A: Type
+i: I |- M: A
+|- M[0/i] = x : A[0/i]
+|- M[1/i] = y : A[1/i]
+-----------------------
+|- (i: I) => M: (i: I) -> A with {
+  case (0) => x
+  case (1) => y
+}
+```
+
+```
+i: I |- A: Type
+i: I |- M: A
+-----------------------
+|- (i: I) => M: (i: I) -> A
+```
+
 [question] What is the general relation
 between topological (homotopical) spaces
 and the `Equal` type?
