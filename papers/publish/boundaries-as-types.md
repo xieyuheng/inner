@@ -676,6 +676,20 @@ if `z` is part of the boundary of `y`,
 or say, `[x, z]: Boundary([x, y])`,
 if and only if `z: Boundary(y)`.
 
+------
+
+It seems to implement higher inductive type, we need two features:
+
+- data constructor can have `with` properties.
+- later data constructor can depends on previous data constructors.
+
+This is a generalization of what we need to define cell-complex.
+
+Now `Skeleton` is a special kind of datatype modifier,
+which requires special kind of `with` properties.
+
+[question] What is the generalization (or say, a generalization) of `Skeleton`?
+
 ```cicada
 datatype Endpoint {
   start: Endpoint
