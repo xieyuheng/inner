@@ -30,7 +30,7 @@ play with prolog examples
 
 - x -
   because of the use of (+data)
-  maybe we can not embed another language in cicada-script
+  maybe we can not embed another language in this languagecicada-script
   as well as in scheme
 
 - k -
