@@ -1,7 +1,7 @@
 ---
 title: Relational programming in minikanren
 subtitle: Techniques applications and implementations
-author: Will Byrd
+author: William Byrd
 year: 2009
 ---
 
