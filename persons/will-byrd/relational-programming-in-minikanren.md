@@ -133,3 +133,55 @@ one of three categories: techniques, applications, or implementations.
     Thus a pure relation must not dependent upon the groundness of terms.
   </answer>
 </question>
+
+<question>
+  What is the most critical property of relational programming?
+
+  <answer>
+    The most critical property is relations terminate whenever possible.
+  </answer>
+</question>
+
+<question>
+  What is mode restrictions of a relation in Prolog?
+
+  <answer>
+    Some position of a relation is viewed as input,
+    and we can not pass fresh variable into it.
+  </answer>
+</question>
+
+<question>
+  What is the finite failure property of a goal?
+
+  <answer>
+    If a goal is asked to produce an answer,
+    yet no answer exists, that goal should fail
+    in a finite amount of time.
+  </answer>
+</question>
+
+<question>
+  Why we can not ensure the finite failure property for all goals?
+
+  <answer>
+    Because Gödel and Turing showed that
+    it is impossible to guarantee termination
+    for all goals we might wish to write.
+  </answer>
+</question>
+
+<question>
+  What are some techniques
+  to achieve finite failure property
+  in our relational programming?
+
+  <answer>
+    The use of clever data encoding,
+    nominal unification, tabling,
+    and the derivation of bounds on the maximum size of terms
+    allows a careful relational programmer
+    to write surprisingly sophisticated programs
+    that have finite failure property.
+  </answer>
+</question>
