@@ -1,6 +1,6 @@
 ---
 title: microkanren
-subtitle: In a LISP I implemented long ago
+subtitle: In a Forth-like Lisp that I implemented long ago
 ---
 
 # TODO
@@ -13,90 +13,7 @@ note about different implementations
 
 play with the reasoned schemer
 
-- x -
-  語法爲函數複合而優化的語言
-  可以減少命名
-
-  然而 邏輯式編程中的 unnest 與 unification
-  引入了大量的 functional 中不需要的名字
-
-  函數複合 對這種 命名激增 有何影響呢?
-
 play with prolog examples
-
-# [note]
-
-## meta programming vs strict ffi
-
-- x -
-  because of the use of (+data)
-  maybe we can not embed another language in this languagecicada-script
-  as well as in scheme
-
-- k -
-  why?
-
-- x -
-  because it need meta programming
-
-- k -
-  what's wrong about meta programming?
-
-- x -
-  because meta programming is hard to understand
-
-- k -
-  what should we do then?
-
-- x -
-  we use strict ffi
-
-## stack-lize the use of closure
-
-- a microkanren program proceeds through
-  the application of a goal to a state.
-
-  the result of a microkanren program
-  is a stream of satisfying states,
-  finite or infinite many.
-
-  goal : (-> state -- state stream)
-
-- x -
-  thus a goal is a closure
-  in which hide all the controls
-
-- k -
-  and you want to make them explicit
-  by using stack?
-  why?
-
-- x -
-  because the reason of using native closure
-  is about embedding
-
-  and we already decided to use strict ffi
-  instead of meta programming
-
-- k -
-  but why native closure is not good for strict ffi?
-  what's really wrong about native closure?
-  what is the interface you want?
-  how will things really be used?
-
-------
-
-- x -
-  we stack-lize
-  because we want to avoid native closure tricks
-
-## the meaning of type class abstraction
-
-- x -
-  當嘗試解釋 disj 和 conj
-  並且描述如何用 mplus 和 bind 來實現它們時
-  就感覺 type class 所提供的抽象視角是很重要的
-  爲什麼會有這種感覺呢?
 
 # prolog
 
@@ -288,12 +205,6 @@ play with prolog examples
 (+alias goal-t (-> state-t -- state-t stream-u))
 ```
 
-## [note] stack-lization
-
-- x -
-  we must quit using closure to implement goal-t
-  we can use goal-apply instead of apply
-
 ## ==
 
 - == creates primitive goal-t
@@ -301,10 +212,6 @@ play with prolog examples
 
 - to build longer state-t stream-u
   disj and conj must be used
-
-- x -
-  with dependent type
-  maybe we can express all this
 
 ```lisp
 (+fun ==
@@ -323,10 +230,7 @@ play with prolog examples
 
 ## call/fresh
 
-- the aim of this is to create var [hypo]
-
-- in our language
-  hypo can even go without a name
+- the aim of this is to create var
 
 ```lisp
 (+fun call/fresh
@@ -364,40 +268,6 @@ play with prolog examples
      -- goal-t)
   {goal1 {goal2} bind})
 ```
-
-## [note] disj & conj 與代數結構
-
-- x -
-  說這裏的 disj & conj 類似 bool 代數中的 or 和 and
-  其實二者是代數結構
-  [goal-t = (-> state-t -- state-t stream-u)]
-  中的運算
-
-- k -
-  運算律是什麼?
-  或者說此代數結構的公理是什麼?
-
-- x -
-  我們先來看 forgetful functor 作用於這個代數結構的效果
-  如果 考慮 goal-t 所返回的 state-t stream-u 的長度
-  那麼 disj 如 add 而 conj 如 mul
-  再次遺忘 而考慮 state-t stream-u 的長度是否爲 0
-  那麼 disj 如 or 而 conj 如 and
-
-- k -
-  但是注意 只給出 goal-t 的話
-  並不能得到一個 state-t stream-u
-  還需要給出 goal-t 的參數 state-t
-  當參數不同時 state-t stream-u 的長度是不同的
-  並且 state-t stream-u 的長度還可能是無窮的
-
-- x -
-  只有當給出了某個固定的參數的時候
-  才能作出所說的遺忘
-
-  並且 當考慮到 call/fresh 之類的算子的時候
-  就知道所處理的空間是很豐富而複雜的
-  也許在範疇論裏 這些算子都有所對應吧
 
 ## mplus -- merging streams
 
