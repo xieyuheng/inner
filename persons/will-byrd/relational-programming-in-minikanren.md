@@ -1,5 +1,6 @@
 ---
-title: Relational programming in minikanren techniques applications and implementations
+title: Relational programming in minikanren
+subtitle: Techniques applications and implementations
 author: Will Byrd
 year: 2009
 ---
@@ -49,7 +50,7 @@ year: 2009
 </project>
 
 <lookback>
-  The "walk"-based algorithm for variable lookup in triangular substitutions.
+  The "walk"-based algorithm for variable lookup in triangular substitutions.   The "walk"-based algorithm for variable lookup in triangular substitutions.
 
   <generalization>
     Can this idea be used in other graph processing problems?
@@ -61,3 +62,21 @@ year: 2009
 
   </generalization>
 </lookback>
+
+With the exception of two early chapters (Chapters 2 and 5),
+each technical chapter in this dissertation is divided into
+one of three categories: techniques, applications, or implementations.
+
+- Technique chapters describe language features and idioms for writing relations,
+  such as disequality constraints (Chapter 7) and nominal logic (Chapter 9).
+
+- Application chapters demonstrate how to write interesting,
+  non-trivial relations in miniKanren;
+  these applications demonstrate the use of
+  many of the language forms and idioms presented
+  in the technique chapters.
+
+- Implementation chapters show
+  how to implement the language extensions
+  presented in the technique chapters.
+
