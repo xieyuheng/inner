@@ -40,7 +40,11 @@ year: 2009
   How tabling can be used to improve termination behavior?
 
   <answer>
-    TODO
+    Tabling is a form of memoization:
+    the answers produced by a tabled relation
+    are "remembered" (that is, stored in a table),
+    so that subsequent calls to the relation
+    can avoid recomputing the answers.
   </answer>
 </question>
 
@@ -50,7 +54,7 @@ year: 2009
 </project>
 
 <lookback>
-  The "walk"-based algorithm for variable lookup in triangular substitutions.   The "walk"-based algorithm for variable lookup in triangular substitutions.
+  The "walk"-based algorithm for variable lookup in triangular substitutions.
 
   <generalization>
     Can this idea be used in other graph processing problems?
@@ -62,6 +66,8 @@ year: 2009
 
   </generalization>
 </lookback>
+
+## 1.2 Structure of this Dissertation
 
 With the exception of two early chapters (Chapters 2 and 5),
 each technical chapter in this dissertation is divided into
@@ -80,3 +86,50 @@ one of three categories: techniques, applications, or implementations.
   how to implement the language extensions
   presented in the technique chapters.
 
+## 1.3 Relational Programming
+
+<question>
+  What is relational programming?
+
+  <answer>
+    Relational programming is a discipline of logic programming
+    in which every goal is written as a "pure" relation.
+  </answer>
+</question>
+
+<question>
+  What is a "pure" relation?
+
+  <answer>
+    A relation is pure, if it produces meaningful answers,
+    even when all of its arguments are unbound logic variables.
+  </answer>
+</question>
+
+<question>
+  What is a ground term?
+
+  <answer>
+    A term is ground if it does not contain unassociated logic variables.
+  </answer>
+</question>
+
+<question>
+  What are Prolog's operators that dependent upon the groundness of terms?
+
+  <answer>
+    cut (!), var/1, copy_term/2.
+  </answer>
+</question>
+
+<question>
+  Why operators that dependent upon the groundness of terms
+  inhibit relational programming?
+
+  <answer>
+    Because to be a pure relation is to produces meaningful answers,
+    even when all of its arguments are unbound logic variables.
+
+    Thus a pure relation must not dependent upon the groundness of terms.
+  </answer>
+</question>
