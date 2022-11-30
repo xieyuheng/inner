@@ -147,6 +147,7 @@ one of three categories: techniques, applications, or implementations.
 
   <answer>
     Some position of a relation is viewed as input,
+    input must be fully ground,
     and we can not pass fresh variable into it.
   </answer>
 </question>
