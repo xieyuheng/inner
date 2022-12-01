@@ -12,11 +12,11 @@ author: Xie Yuheng
 
 # TODO
 
-If `datatype` can be used to define infinie set,
+If `datatype` can be used to define infinite set,
 `datatype` with higher dimensional constructors
-must also be able to define infinie cell-complex,
+must also be able to define infinite cell-complex,
 we should start from 1-dim and try to
-define infinie graph by `datatype`.
+define infinite graph by `datatype`.
 
 ------
 
