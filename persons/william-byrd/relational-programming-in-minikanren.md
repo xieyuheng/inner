@@ -16,11 +16,79 @@ year: 2009
 </question>
 
 <question>
-  What is the meaning of "triangular" and  "idempotent"
+  What is the meaning of "triangular" and "idempotent"
   in "triangular rather than idempotent substitutions"?
 
   <answer>
-    TODO
+    Example of triangular substitution is `y = 5; x = y`,
+    as idempotent substitution it would be `y = 5; x = 5`
+
+    In an idempotent substitution,
+    a variable that appears as key of an key-value entry
+    never appears as value.
+  </answer>
+</question>
+
+<question>
+  What are the advantages of using triangular substitution?
+
+  <answer>
+    One advantage of triangular substitutions is that
+    they can be easily extended using cons,
+    without side-effecting or rebuilding the substitution.
+
+    This lack of side-effects permits sharing of substitutions,
+    while substitution extension remains a constant-time operation.
+
+    This sharing, in turn, gives us backtracking for free
+    -- we just "forget" irrelevant associations
+    by using an older version of the substitution,
+    which is always a suffix of the current substitution.
+  </answer>
+</question>
+
+<question>
+  What are the disadvantages of using triangular substitution?
+
+  <answer>
+    The major disadvantage is that variable lookup
+    is both more complicated and more expensive
+    than with idempotent substitutions.
+
+    We need to use `walk` function,
+    and `walk` can diverge if used on a substitution containing a circularity,
+    for example, in `x = x` and `x = y; y = x`.
+  </answer>
+</question>
+
+<question>
+  Why we need occur-check?
+
+  <answer>
+    Because `walk` can diverge if used on a substitution containing a circularity,
+    for example, in `x = x` and `x = y; y = x`.
+
+    `walk` will not diverge in the case of `x = [x]`,
+    but in this case simple implement of `reify` will diverge.
+  </answer>
+</question>
+
+<question>
+  Why occur-check is expensive?
+
+  <answer>
+    Because it must perform a complete tree walk on its second argument.
+  </answer>
+</question>
+
+<question>
+  Can we omit occur-check since it is expensive?
+
+  <answer>
+    Apt and Pellegrini (1992) point out that,
+    in practice, omission of the occurs check is usually not a problem.
+    However, the type inferencer presented in section 9.3
+    requires sound unification to prevent self-application from typechecking.
   </answer>
 </question>
 
