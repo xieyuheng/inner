@@ -58,6 +58,8 @@ year: 2009
     We need to use `walk` function,
     and `walk` can diverge if used on a substitution containing a circularity,
     for example, in `x = x` and `x = y; y = x`.
+
+    In idempotent substitution, `walk` is the same as `deepWalk`.
   </answer>
 </question>
 
@@ -266,3 +268,23 @@ one of three categories: techniques, applications, or implementations.
     A substitution s is a mapping between logic variables and values (also called terms).
   </answer>
 </question>
+
+## 3.2 Reification
+
+<question>
+  What is reification?
+
+  <answer>
+    Reification is the process of
+    turning a miniKanren term into a Scheme value
+    that does not contain logic variables.
+  </answer>
+</question>
+
+## 3.3 Goals and Goal Constructors
+
+TODO
+
+## 3.4 Impure Operators
+
+TODO
