@@ -24,7 +24,7 @@ year: 2009
   </answer>
 </question>
 
-# Introduction
+# 1 Introduction
 
 <question>
   How nominal unification can be used to support
@@ -184,5 +184,17 @@ one of three categories: techniques, applications, or implementations.
     allows a careful relational programmer
     to write surprisingly sophisticated programs
     that have finite failure property.
+  </answer>
+</question>
+
+# 3 Implementation I: Core miniKanren
+
+## 3.1 Variables, Substitutions, and Unification
+
+<question>
+  What is a substitution?
+
+  <answer>
+    A substitution s is a mapping between logic variables and values (also called terms).
   </answer>
 </question>
