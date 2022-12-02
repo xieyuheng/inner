@@ -447,3 +447,32 @@ one of three categories: techniques, applications, or implementations.
     (or say substitution with reified variables).
   </answer>
 </question>
+
+# 5 A Slight Divergence
+
+In this chapter we explore the divergence of relational programs. We
+present several divergent miniKanren programs; for each program we
+consider different techniques that can be used to make the program
+terminate.
+
+TODO
+
+# 6 Applications I: Pure Binary Arithmetic
+
+# 7 Techniques I: Disequality Constraints
+
+# 8 Implementation III: Disequality Constraints
+
+# 9 Techniques II: Nominal Logic
+
+# 10 Applications II: αleanTAP
+
+# 11 Implementation IV: αKanren
+
+# 12 Techniques III: Tabling
+
+# 13 Implementation V: Tabling
+
+# 14 Techniques IV: Ferns
+
+# 15 Implementation VI: Ferns
