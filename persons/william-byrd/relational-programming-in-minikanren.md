@@ -455,6 +455,11 @@ present several divergent miniKanren programs; for each program we
 consider different techniques that can be used to make the program
 terminate.
 
+By their very nature, relational programs are prone to divergence. As
+relational programmers, we may ask for an infinite number of answers
+from a program, or we may look for a non-existent answer in an
+infinite search tree.
+
 TODO
 
 # 6 Applications I: Pure Binary Arithmetic
@@ -464,6 +469,64 @@ TODO
 # 8 Implementation III: Disequality Constraints
 
 # 9 Techniques II: Nominal Logic
+
+<question>
+  Why the concept of "v does not occur free in exp"
+  is trick to implement in logic programming?
+
+  <answer>
+    Because logic programming has logic variables.
+
+    It is a simple matter to check for free occurrences
+    of a variable name in a fully-instantiated term,
+    but in a logic program the term might contain unbound logic variables.
+
+    At a later point in the program those variables might be
+    instantiated to terms containing the given variable name.
+  </answer>
+</question>
+
+<question>
+  Why the concept of "α-equivalent"
+  is trick to implement in logic programming?
+
+  <answer>
+    Again, because logic programming has logic variables.
+
+    If either expression contains an unbound logic variable,
+    it is impossible to perform a full parallel tree walk to determine if the
+    two expressions are α-equivalent: at least part of the tree walk
+    must be deferred until one or both expressions are fully instantiated.
+  </answer>
+</question>
+
+<question>
+  How does nominal logic programming solve the problem of
+  implementing  "v does not occur free in exp"
+  and "α-equivalent"?
+
+  <answer>
+    By introducing new kind of variable and constraint.
+  </answer>
+</question>
+
+<question>
+  We can understand how nominal logic programming extends logic programming,
+  but what does it means for nominal logic to be a new logic?
+
+  Can other kinds of logic also have their own kind of logic programming?
+  <answer>
+    First we must remember logic programming is about first-order logic.
+
+    And we also need to remember that
+    to study the relation between different theories,
+    we should use the "theory as class" correspondence.
+
+    (The theory might not be a category, which is just a special class.)
+
+    TODO
+  </answer>
+</question>
 
 # 10 Applications II: αleanTAP
 
