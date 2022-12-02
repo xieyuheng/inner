@@ -91,6 +91,18 @@ year: 2009
     in practice, omission of the occurs check is usually not a problem.
     However, the type inferencer presented in section 9.3
     requires sound unification to prevent self-application from typechecking.
+
+    <code>
+    (check () (lambda (f) (f f)) (-> A B)) {
+      (check ([f A]) (f f) B) {
+        (check ([f A]) f (-> C B))
+        (check ([f A]) f B)
+        // To not unify B with (-> C B)
+        // we need occur-check.
+        // How about f: (-> C (-> C (-> ...)))
+      }
+    }
+    </code>
   </answer>
 </question>
 
