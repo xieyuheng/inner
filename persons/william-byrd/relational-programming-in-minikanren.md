@@ -390,3 +390,60 @@ one of three categories: techniques, applications, or implementations.
     the cost of walking unassociated variables.
   </answer>
 </question>
+
+## 4.3 Eliminating assq and Checking the rhs
+
+<question>
+  What is an important property of
+  the triangular substitutions produced by unify?
+  which can be used to optimize
+  walk of unassociated variable.
+
+  <answer>
+    In the substitution ((x . y) . s),
+    the variable y will never appear
+    in the left-hand-side (lhs)
+    (appear as key) of any binding in s.
+
+    Because if y occurred as key,
+    it will be walked.
+
+    This can be used to optimize
+    walk of unassociated variable,
+    because if y occurred as value during walk,
+    we already know it is unassociated.
+
+    Note that the "Birth Records" trick
+    breaks this property in a trivial way.
+  </answer>
+</question>
+
+## 4.4 Storing the Substitution in the Variable
+
+<question>
+  What is the trick of "Birth Substitution"?
+
+  <answer>
+    When combining the birth records optimization
+    with checking for the walked variable
+    in the rhs of each association,
+    we wish to avoid polluting the substitution with birth records,
+    which not only lengthen the substitution
+    but also violate important invariants of our substitution representation.
+
+    Instead of adding birth records to the substitution,
+    we can add a "birth substitution" to each variable
+    by storing the current substitution in the variable when it is created.
+  </answer>
+</question>
+
+<question>
+  What we should be careful about when changing the implementation of walk?
+
+  <answer>
+    We should be careful about the effect of the change on reification.
+
+    Because reification uses deepWalk to create the renaming substitution
+    (or say substitution with reified variables).
+  </answer>
+</question>
