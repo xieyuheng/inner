@@ -506,7 +506,12 @@ TODO
   and "α-equivalent"?
 
   <answer>
-    By introducing new kind of variable and constraint.
+    By introducing new kind of variable to range over variables,
+    and a constraint to represent "v does not occur free in exp".
+
+    Note that a constraint propagates,
+    to define a new constraint we need
+    to define how it propagates.
   </answer>
 </question>
 
