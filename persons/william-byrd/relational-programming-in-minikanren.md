@@ -509,9 +509,20 @@ TODO
     By introducing new kind of variable to range over variables,
     and a constraint to represent "v does not occur free in exp".
 
-    Note that a constraint propagates,
-    to define a new constraint we need
-    to define how it propagates.
+    <note>
+      A constraint propagates,
+      to define a new constraint we need
+      to define how it propagates.
+
+      <note>
+        It is important to talk about the none and its verbs,
+        for examples:
+
+        - A goal is to be pursued.
+        - A constraint propagates.
+        - Constraints must be maintained.
+      </note>
+    </note>
   </answer>
 </question>
 
@@ -530,6 +541,21 @@ TODO
     (The theory might not be a category, which is just a special class.)
 
     TODO
+  </answer>
+</question>
+
+<question>
+  When defining formal languages,
+  we can use relations and rules,
+  and we might also use constraints.
+
+  Can you give an example?
+
+  <answer>
+    The notion of a constraint is prominent
+    in the standard definition of α-equivalence (Stoy 1979):
+
+    λa.M ≡α λb.M[b/a] where b does not occur free in M.
   </answer>
 </question>
 
