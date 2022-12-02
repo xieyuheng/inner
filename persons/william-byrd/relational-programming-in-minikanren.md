@@ -97,12 +97,14 @@ year: 2009
       (check ([f A]) (f f) B) [ap] {
         (check ([f A]) f (-> C B)) [var]
         (check ([f A]) f B) [var]
-        // To not unify B with (-> C B)
-        // we need occur-check.
-        // How about f: (-> C (-> C (-> ...)))
       }
     }
     </code>
+
+    To not unify B with (-> C B)
+    we need occur-check.
+
+    How about just let f: (-> C (-> C (-> ...))) ?
   </answer>
 </question>
 
