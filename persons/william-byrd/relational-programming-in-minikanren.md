@@ -366,3 +366,27 @@ one of three categories: techniques, applications, or implementations.
     to produce ((x . 5) (x . x) (y . y) ...).
   </answer>
 </question>
+
+<question>
+  Is the "Birth Records" trick really good?
+
+  <answer>
+    Maybe not.
+
+    Because in the worst case our situation has not improved:
+    if a variable is introduced at the beginning of a program,
+    but is not unified until the end of the program,
+    the birth record will occur at the very end of the substitution,
+    and lookup will still take linear time.
+
+    Indeed, the situation is even worse, since the birth records
+    more than double the length of the substitution that must be walked!
+
+    Fortunately, in most real-world programs variables are unified
+    shortly after they have been introduced.
+
+    This locality of reference means that,
+    in practice, birth records significantly reduce
+    the cost of walking unassociated variables.
+  </answer>
+</question>
