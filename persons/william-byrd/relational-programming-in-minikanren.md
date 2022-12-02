@@ -295,8 +295,74 @@ one of three categories: techniques, applications, or implementations.
 
 ## 3.3 Goals and Goal Constructors
 
-TODO
+<question>
+  What is a goal?
 
-## 3.4 Impure Operators
+  <answer>
+    A goal can be pursued, to pursue a goal
+    we take the goal and a solution,
+    and return a list of solutions.
+  </answer>
+</question>
 
-TODO
+# 4 Implementation II: Optimizing walk
+
+## 4.1 Why walk is Expensive
+
+<question>
+  Why walk is expensive?
+
+  <answer>
+    In the worst case, walk is quadratic in the length of the substitution.
+
+    For example, lookup v in ((y . z) (x . y) (w . x) (v . w)).
+  </answer>
+</question>
+
+<question>
+  How do Prolog implementations based on
+  the Warren Abstract Machine (Aït-Kaci 1991)
+  represent variable?
+
+  <answer>
+    They do not use explicit substitutions to represent variable associations.
+    Instead, they represent each variable as a mutable box,
+    and side-effect the box during unification.
+
+    This makes variable lookup extremely fast,
+    but requires remembering and undoing these side-effects during backtracking.
+
+    In addition, this simple model assumes a depth-first search strategy,
+    whereas our purely functional representation can be used
+    with interleaving search without modification.
+  </answer>
+</question>
+
+<question>
+  When using triangular substitutions (or even idempotent substitutions),
+  the entire substitution must be examined to determine that a variable in unassociated.
+
+  Can you think of a trick to avoid this?
+
+  <answer>
+    The trick is called "Birth Records".
+
+    To avoid examining the entire substitution
+    when walking an unassociated variable,
+    we will add a birth record to the substitution
+    whenever we introduce a variable.
+
+    For example, to run the goal (exist (x y) (≡ 5 x))
+    we would add the birth records (x . x) and (y . y)
+    to the current substitution,
+    then run (≡ 5 x) in the extended substitution.
+
+    Unifying x with 5 requires us to walk x:
+    when we do so, we immediately encounter the birth record (x . x),
+    indicating x is unassociated.
+
+    Unification then succeeds,
+    adding the association (x . 5) to the substitution
+    to produce ((x . 5) (x . x) (y . y) ...).
+  </answer>
+</question>
