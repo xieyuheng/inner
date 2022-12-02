@@ -93,10 +93,10 @@ year: 2009
     requires sound unification to prevent self-application from typechecking.
 
     <code>
-    (check () (lambda (f) (f f)) (-> A B)) {
-      (check ([f A]) (f f) B) {
-        (check ([f A]) f (-> C B))
-        (check ([f A]) f B)
+    (check () (lambda (f) (f f)) (-> A B)) [fn] {
+      (check ([f A]) (f f) B) [ap] {
+        (check ([f A]) f (-> C B)) [var]
+        (check ([f A]) f B) [var]
         // To not unify B with (-> C B)
         // we need occur-check.
         // How about f: (-> C (-> C (-> ...)))
