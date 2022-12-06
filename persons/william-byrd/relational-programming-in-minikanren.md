@@ -243,6 +243,8 @@ one of three categories: techniques, applications, or implementations.
     If a goal is asked to produce an answer,
     yet no answer exists, that goal should fail
     in a finite amount of time.
+
+    Which means that, it can prove there are not more answers.
   </answer>
 </question>
 
