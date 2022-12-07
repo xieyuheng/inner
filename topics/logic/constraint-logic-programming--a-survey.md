@@ -4,6 +4,12 @@ authors: [Joxan Jaffar, Michael J. Maher]
 year: 1994
 ---
 
+# Questions
+
+Horn clauses only handle part of first-order logic,
+can full first-order logic provide a framework
+to talk about constraints?
+
 # 1. INTRODUCTION
 
 Constraint Logic Programming (CLP)
@@ -77,3 +83,17 @@ such as the extra arguments discussed above.
 This is because the accumulated constraints
 can be represented by a most general unifier, and this, of course,
 is globally available via a simple binding mechanism.
+
+# 1.3. CLP Languages
+
+Viewing the subject rather broadly,
+constraint logic programming can be said to involve
+the incorporation of constraints and constraint "solving" methods
+in a logic-based language.
+
+This characterization suggests the possibility of many interesting languages,
+based on different constraints and different logics.
+
+However, to this point, work on CLP
+has almost exclusively been devoted to
+languages based on Horn clauses.

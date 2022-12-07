@@ -255,13 +255,13 @@ The following concepts are not built-in our language:
 
 ## Naming and syntax keywords
 
-| dim | cell        | complex    | spherical complex   |
-|     | (generator) | (element)  | (spherical element) |
+| dim | cell | complex | spherical complex |
+| | (generator) | (element) | (spherical element) |
 |----:|-------------|------------|---------------------|
-|   0 | vertex      |            | `endpoint`          |
-|   1 | edge        | `path`     | `polygon`           |
-|   2 | face        | `surface`  | `polyhedron`        |
-|   3 | block       | `building` | `polychoron`        |
+| 0 | vertex | | `endpoint` |
+| 1 | edge | `path` | `polygon` |
+| 2 | face | `surface` | `polyhedron` |
+| 3 | block | `building` | `polychoron` |
 
 Notes:
 
@@ -613,6 +613,9 @@ to the n-skeleton of the cell-complex.
 We do this by giving the the boundary of the cell `A`
 a spherical coordinate space -- endpoint, polygon, polyhedron, ...
 
+- If we always use boundary of cubes as the spherical coordinate space,
+  we get cubical type theory.
+
 A spherical coordinate space is a special cell-complex,
 thus we need to design how to define continuous map between two cell-complexes.
 
@@ -632,6 +635,9 @@ we must specify another map between two cell-complexes --
 from the spherical coordinate space of the boundary `x`
 to the spherical coordinate space of the boundary `w * y * z`.
 
+- In the case of boundary cubes, it is enough to
+  specify the mapping between all the corners.
+
 The orienting map must not be degenerated.
 
 Map between two spherical cell-complexes is special,
@@ -649,7 +655,8 @@ TODO Proof the above judgment.
 
   It is not about the space (both the domain space and the image space)
   is spherical or manifold or not,
-  but about does the space have local loop or not.
+  but about does the space have local-loop or not
+  (or say, self-loop (a loop formed by one element itself)).
 
 TODO Why the above judgment is not true for general cell-complexes?
 
@@ -659,33 +666,34 @@ of the composite element -- `w * y * z`.
 
 Maybe composition should be defined by composition of coordinate spaces.
 
-------
+---
 
 In what sense "boundaries as types"?
 
 Maybe in the sense that, when defining a function between cell-complexes,
-the boundary relation between elements of the cell-complexes,
+the **boundary relation** between elements of the cell-complexes,
 are used to check whether the function is continuous.
 
-------
+---
 
 How should we implement boundary?
 
-We should not apply `Boundary` to space like `Boundary(I)`,
-but we can apply `Boundary` to element of space like `Boundary(xFace)`,
+We should not apply `Boundary` to space -- like `Boundary(I)`,
+but we can apply `Boundary` to element of space -- like `Boundary(xFace)`,
 we can get an element of `Boundary(xFace)`
 by referring to an element of the coordinate space,
 and to judge whether two elements of `Boundary(xFace)` are equivalent,
 we judge the equivalent between the image of the two elements
 under the attaching map.
 
-------
+---
 
 We should not say we are using `Boundary([I, I])` as coordinate space at all,
 we should construct the coordinate space -- the square (polygon) -- directly.
 
 Note that, the above definition of `Boundary` gives a boundary relation
-between elements of a space, which feels much like the "belongs to" relation of set theory,
+between elements of a space, which feels much like
+the "belongs to" relation of set theory,
 and the "belongs to" relation of type theory.
 
 Boundary relation between elements of product space is easy to define,
@@ -695,11 +703,14 @@ if `z` is part of the boundary of `y`,
 or say, `[x, z]: Boundary([x, y])`,
 if and only if `z: Boundary(y)`.
 
-------
+---
 
 It seems to implement higher inductive type, we need two features:
 
 - data constructor can have `with` properties.
+
+  - How about letting all Pi types have `with`?
+
 - later data constructor can depends on previous data constructors.
 
 This is a generalization of what we need to define cell-complex.
@@ -709,15 +720,14 @@ which requires special kind of `with` properties.
 
 [question] What is the generalization (or say, a generalization) of `Skeleton`?
 
-------
+---
 
-TODO
+[keyword] maybe we should call `Skeleton` an **inductive constraint**
+that specifies the inductive definition of cell-complex,
+and we can also have other inductive constraint like `Cubical`.
 
-we should use `inductive` as keyword (like coq) -- instead of `datatype`
-
-[keyword] inductive constraint
-
-[keyword] static properties of data constructor
+[keyword] **static properties** of data constructor
+[keyword] **constraints on return value** of Pi type
 
 ```cicada
 datatype Endpoint {
