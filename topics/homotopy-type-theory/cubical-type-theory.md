@@ -244,6 +244,9 @@ CheckType [ctx, Exp::path(type, from, to)]
   Check [ctx, to, type]
 }
 
+// The following [i/0] means replacing i with 0,
+// this rule should be implemented by nominal logic variables.
+
 Check [ctx, Exp::pathFn(i, ret), Exp:path(type, ret[i/0], ret[i/1])]
 --------------------------------------------------------------------- {
   CheckType [ctx, type]
@@ -280,6 +283,36 @@ Equal [ctx, Exp::pathAp(t, 1), to, type]
   Check [ctx, t, Exp::path(type, from, to)]
 }
 ```
+
+The intuition is that a type in a context with n names
+corresponds to an n-dimensional cube.
+
+- **Xie:** Or say `Exp::pathFn` abstracted over n names
+  corresponds to an n-dimensional cube.
+
+- **Xie:** Note that, to apply `t` to 0 or 1,
+  it does not need to be a `Exp::pathFn`,
+  but must be introduced to the context and have a path type,
+  while `Exp::pathFn` is actually used to introduce
+  substitution of the nominal variables.
+
+The substitutions (i/i∧j) and (i/i∨j)
+correspond to special kinds of degeneracies
+called connections [7].
+
+The connections p(i/i∧j) and p(i/i∨j)
+can be drawn as the squares:
+...
+
+<question>
+  How to understand connections?
+
+  What are the topological intuitions?
+
+  <answer>
+    TODO
+  </answer>
+</question>
 
 # 4 Systems, composition, and transport
 
