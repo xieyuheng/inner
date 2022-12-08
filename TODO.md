@@ -20,6 +20,8 @@ learn about general nominal logic.
 
 implement nominal logic in `whereabouts`.
 
+implement alphaLeanTab -- learn this way Ray's book about first-order logic.
+
 implement `lowdmin` again, use constraint idea to handle boundary relation.
 
 - ctx should not just be a mapping, but be like solution.
