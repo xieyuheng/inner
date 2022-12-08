@@ -255,13 +255,13 @@ The following concepts are not built-in our language:
 
 ## Naming and syntax keywords
 
-| dim | cell | complex | spherical complex |
-| | (generator) | (element) | (spherical element) |
-|----:|-------------|------------|---------------------|
-| 0 | vertex | | `endpoint` |
-| 1 | edge | `path` | `polygon` |
-| 2 | face | `surface` | `polyhedron` |
-| 3 | block | `building` | `polychoron` |
+| dim | cell        | complex    | spherical complex   |
+|     | (generator) | (element)  | (spherical element) |
+|-----|-------------|------------|---------------------|
+| 0   | vertex      |            | `endpoint`          |
+| 1   | edge        | `path`     | `polygon`           |
+| 2   | face        | `surface`  | `polyhedron`        |
+| 3   | block       | `building` | `polychoron`        |
 
 Notes:
 
