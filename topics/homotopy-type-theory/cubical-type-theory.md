@@ -162,7 +162,7 @@ Lemma 1. Substitution is admissible:
 }
 ```
 
-Inference rules of the basic type theory:
+Figure 1: Inference rules of the basic type theory:
 
 ```whereabouts
 TODO
@@ -219,7 +219,66 @@ Contexts can now be extended with name declarations:
 ```whereabouts
 Ctx []
 Ctx [[name, exp] | rest] -- { Exp exp Ctx rest }
-Ctx [[name, i] | rest] -- { I i Ctx rest }
+Ctx [[i, Exp::interval] | rest] -- { Ctx rest }
+```
+
+The extension to `Exp`
+
+```
+t, u, A, B ::= ... | Path A t u | ⟨i⟩ t | t r // Path types
+```
+
+```whereabouts
+Exp Exp::path(type, from, to) -- { Exp A Exp from Exp to }
+Exp Exp::pathFn(i, ret) -- { Exp ret }
+Exp Exp::pathAp(target, i) -- { Exp target }
+```
+
+Figure 2: Inference rules for path types
+
+```whereabouts
+CheckType [ctx, Exp::path(type, from, to)]
+------------------------------------------- {
+  CheckType [ctx, type]
+  Check [ctx, from, type]
+  Check [ctx, to, type]
+}
+
+Check [ctx, Exp::pathFn(i, ret), Exp:path(type, ret[i/0], ret[i/1])]
+--------------------------------------------------------------------- {
+  CheckType [ctx, type]
+  Check [[[i, Exp::interval] | ctx], ret, type]
+}
+
+Check [ctx, Exp::pathAp(target, r), type]
+------------------------------------------ {
+  Check [ctx, target, Exp::path(type, from, to)]
+  Check [ctx, r, Exp::interval]
+}
+
+Equal [ctx, Exp::pathAp(Exp::pathFn(i, ret), r), ret[i/r], type]
+----------------------------------------------------------------- {
+  CheckType [ctx, type]
+  Check [[[i, Exp::interval] | ctx], ret, type]
+  Check [ctx, r, Exp::interval]
+}
+
+Equal [ctx, t, u, Exp::path(type, from, to)]
+------------------------------------------------ {
+  Equal [[[i, Exp::interval] | ctx], Exp::pathAp(t, i), Exp::pathAp(u, i), type]
+}
+
+// The follow two rule get `Equal` from path type.
+
+Equal [ctx, Exp::pathAp(t, 0), from, type]
+------------------------------------------- {
+  Check [ctx, t, Exp::path(type, from, to)]
+}
+
+Equal [ctx, Exp::pathAp(t, 1), to, type]
+------------------------------------------- {
+  Check [ctx, t, Exp::path(type, from, to)]
+}
 ```
 
 # 4 Systems, composition, and transport
