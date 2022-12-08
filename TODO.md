@@ -12,6 +12,26 @@ author: Xie Yuheng
 
 # TODO
 
+learn about general constraint logic programming framework.
+
+implement type constraint for `whereabouts`.
+
+learn about general nominal logic.
+
+implement nominal logic in `whereabouts`.
+
+implement `lowdmin` again, use constraint idea to handle boundary relation.
+
+- ctx should not just be a mapping, but be like solution.
+
+try the ideas about graph and groupoid in `lowdmin`
+
+it is import that mod has a simple map from name to values.
+
+- `whereabouts` need to change.
+
+`whereabouts` maybe we can avoid using refresh, by generate fresh at compile time.
+
 If `datatype` can be used to define infinite set,
 `datatype` with higher dimensional constructors
 must also be able to define infinite cell-complex,
@@ -41,11 +61,11 @@ Do we still need to distinguish `Value` from `Exp` and use `Closure` to handle s
 - When writing a compiler, there is a pass which makes all closures top-level.
 - Prolog is such a language.
 - C is such a language.
-- Maybe Whereabouts should be such a language.
+- Maybe `whereabouts` should be such a language.
 
 We should implement a language to try this idea.
 
-Maybe we should make Whereabouts explicitly such a language,
+Maybe we should make `whereabouts` explicitly such a language,
 to simplify its implementation.
 
 ------
