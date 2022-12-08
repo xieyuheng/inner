@@ -1,366 +1,136 @@
 ---
-title: Cubical type theory
+title: Cubical Type Theory
+subtitle: a constructive interpretation of the univalence axiom
+authors: [Cyril Cohen, Thierry Coquand, Simon Huber, and Anders Moertberg]
+year: 2016
 ---
 
-# Using elements of Equal as function
+# Abstract
 
-So called path type.
+This paper presents a type theory in which
+it is possible to directly manipulate n-dimensional cubes
+(points, lines, squares, cubes, etc.)
+based on an interpretation of dependent type theory in a cubical set model.
 
-A term of type `Equal(A, a, b)` can be used
-as a function `p: (Interval) -> A`,
-such that `p(Interval::start) = a` and `p(Interval::end) = b`,
-i.e. a path in space `A`,
+This enables new ways to reason about identity types,
+for instance, function extensionality is directly provable in the system.
+Further, Voevodsky's univalence axiom is provable in this system.
 
-```cicada
-function equalPair(
-  start: Pair(A, B),
-  end: Pair(A, B),
-  carPath: Equal(A, car(start), car(end)),
-  cdrPath: Equal(B, cdr(start), cdr(end)),
-): Equal(Pair(A, B), start, end) {
-  // NOTE First we can eta-expend the pairs `start`, `end` to cons:
-  //    Equal(Pair(A, B), start, end)
-  // => Equal(Pair(A, B), cons(car(start), cdr(start)), cons(car(end), cdr(end)))
+We also explain an extension with some higher inductive types
+like the circle and propositional truncation.
 
-  equal carPath(Interval::start) = car(start)
-  equal carPath(Interval::end) = car(end)
+Finally we provide semantics for this cubical type theory
+in a constructive meta-theory.
 
-  equal cdrPath(Interval::start) = cdr(start)
-  equal cdrPath(Interval::end) = cdr(end)
+<question>
+  What is a cubical set model?
 
-  let resultPath: Equal(Pair(A, B), start, end) =
-    (i: Interval) => cons(carPath(i), cdrPath(i))
+  Is it a set theoretical model?
+</question>
 
-  equal resultPath(Interval::start) = cons(car(start), cdr(start))
-  equal resultPath(Interval::end) = cons(car(end), cdr(end))
+# 1 Introduction
 
-  // Thus by the definition of `Equal`, we have
-  //   resultPath: Equal(Pair(A, B), cons(car(start), cdr(start)), cons(car(end), cdr(end)))
+This work is a continuation of the program started in [6, 13]
+to provide a constructive justification of Voevodsky’s univalence axiom [27].
 
-  return resultPath
-}
-```
+This axiom allows many improvements for the formalization of mathematics in type theory:
+function extensionality, identification of isomorphic structures, etc.
 
-```cicada
-function equalCompose(
-  implicit A: Type,
-  implicit x: A,
-  implicit y: A,
-  implicit z: A,
-  xyPath: Equal(A, x, y),
-  yzPath: Equal(A, y, z),
-): Equal(A, x, z) {
-  equal xyPath(Interval::start) = x
-  equal xyPath(Interval::end) = y
+In order to preserve the good computational properties of type
+theory it is crucial that postulated constants have a computational interpretation.
 
-  equal yzPath(Interval::start) = y
-  equal yzPath(Interval::end) = z
+Like in [6, 13, 22] our work is based on a nominal extension of λ-calculus,
+using names to represent formally elements of the unit interval [0, 1].
 
-  let xzPath: Equal(A, x, z) =
-    // NOTE But we can not just case over 0-level elements.
-    (i: Interval) => match (i) {
-      case (Interval::start) => xyPath(i)
-      case (Interval::end) => yzPath(i)
-    }
+This paper presents two main contributions.
 
-  equal xzPath(Interval::start) = x
-  equal xzPath(Interval::end) = z
+The first one is a refinement of the semantics presented in [6, 13].
+We add new operations on names corresponding to the fact that
+the interval [0, 1] is canonically a de Morgan algebra [3].
+This allows us to significantly simplify our semantical justifications.
+In the previous work, we noticed that it is crucial for
+the semantics of higher inductive types [26] to have a “diagonal” operation.
+By adding this operation we can provide a semantical justification
+of some higher inductive types and we give two examples
+(the spheres and propositional truncation).
+Another shortcoming of the previous work was that using path types as equality types
+did not provide a justification of the computation rule
+of the Martin-L¨of identity type [19] as a judgmental equality.
+This problem has been solved by Andrew Swan [25],
+in the framework of [6, 13, 22], who showed that
+we can define a new type, equivalent to,
+but not judgmentally equal to the path type.
+This has a simple definition in the present framework.
 
-  return xzPath
-}
-```
+The second contribution is the design of a type system inspired by this semantics
+which extends Martin-L¨of type theory [20, 19].
+We add two new operations on contexts:
+- addition of new names representing dimensions
+- and a restriction operation.
 
-Wishful thinking about `composePath`:
+Using these we can define a notion of extensibility
+which generalizes the notion of being connected by a path,
+and then a Kan composition operation that expresses that
+being extensible is preserved along paths.
+We also define a new operation on types which expresses that
+this notion of extensibility is preserved by equivalences.
+The axiom of univalence, and composition for the universe,
+are then both expressible using this new operation.
 
-```cicada
-function equalCompose(
-  implicit A: Type,
-  implicit x: A,
-  implicit y: A,
-  implicit z: A,
-  xyPath: Equal(A, x, y),
-  yzPath: Equal(A, y, z),
-): Equal(A, x, z) {
-  return (i: Interval) => match (i) {
-    case (Interval::start) => xyPath(i)
-    case (Interval::end) => yzPath(i)
-    case (Interval::path) => composePath(xyPath, yzPath)
-  }
-}
-```
+# 2 Basic type theory
 
-Wishful thinking about a `path` keyword:
-
-```cicada
-function equalCompose(
-  implicit A: Type,
-  implicit x: A,
-  implicit y: A,
-  implicit z: A,
-  xyPath: Equal(A, x, y),
-  yzPath: Equal(A, y, z),
-): Equal(A, x, z) {
-  return (i: Interval) => match (i) {
-    case (Interval::start) => xyPath(i)
-    case (Interval::end) => yzPath(i)
-    case (Interval::path) => path [ xyPath, yzPath ]
-  }
-}
-```
-
-# Lecture: Type-Theoretic Truncation Levels
-
-[ [YOUTUBE](https://www.youtube.com/watch?v=LWQqE2JcDSQ&list=PL0OBHndHAAZrGQEkOZGyJu7S7KudAJ8M9&index=1) ]
-
-A **mapping (function)** from `A` to `B` -- `f: (A) -> B`,
-can be viewed as folding (embedding) of `A` in `B`.
-
-Where `A` and `B` might be defined as higher inductive datatypes,
-we also call them "space", "shape", "type", ...
-
-- `f: (S(1)) -> A` -- `f` is a loop in `A`.
-- `f: (S(2)) -> A` -- `f` is a twisted ball in `A`.
-
-A shape `A` has **truncation level n**,
-if there is no interesting folding of `S(m)` where `m > n`.
-i.e. no interesting homotopy above dimension `n`.
-
-Where "homotopy" can be viewed as structure generated by
-paths, paths between paths, paths between paths between paths, ...
-
-- **Xie:** The intrinsic higher algebraic structure of `A`.
+The syntax of contexts, terms and types is specified by:
 
 ```
-No interesting homotopy above dimension n.
--------------------------------------------- [because S(m) are special homotopy]
-No interesting folding of S(m) where m > n.
+Γ, ∆ ::= () | Γ, x : A // Contexts
+
+t, u, A, B ::=
+    x
+  | λx : A. t | t u | (x : A) → B  // Π-types
+  | (t, u) | t.1 | t.2 | (x : A) × B // Σ-types
+  | 0 | s u | natrec t u | N // Natural numbers
 ```
 
-```
-No interesting folding of S(m) where m > n.
--------------------------------------------- [TODO need prove]
-No interesting homotopy above dimension n.
-```
+```whereabouts
+Ctx []
+Ctx [[name, exp], rest] -- { Exp exp Ctx rest }
 
-```cicada
-function TruncationLevelMinusOne(A: Type): Type {
-  return forall (x: A, y: A) Equal(A, x, y)
-}
+Exp Exp::var(name)
 
-function TruncationLevelZero(A: Type): Type {
-  return forall (x: A, y: A)
-    forall (p: Equal(A, x, y), q: Equal(A, x, y))
-    Equal(Equal(A, x, y), p, q)
-}
+Exp Exp::fn(name, argType, ret) -- { Exp argType Exp ret }
+Exp Exp::ap(target, arg) -- { Exp target Exp arg }
+Exp Exp::pi(name, argType, retType) -- { Exp argType Exp retType }
 
-function TruncationLevelOne(A: Type): Type {
-  return (x: A, y: A)
-    forall (p: Equal(A, x, y), q: Equal(A, x, y))
-    forall (r: Equal(Equal(A, x, y), p, q), s: Equal(Equal(A, x, y), p, q))
-    Equal(Equal(Equal(A, x, y), p, q), r, s)
-}
+Exp Exp::cons(car, cdr) -- { Exp car Exp cdr }
+Exp Exp::car(target) -- { Exp target }
+Exp Exp::cdr(target) -- { Exp target }
+Exp Exp::sigma(name, argType, retType) -- { Exp argType Exp retType }
+
+Ctx Exp::zero
+Ctx Exp::add1(prev) -- { Exp prev }
+Ctx Exp::natRec(target, body) -- { Exp target Exp body }
+// What is the meaning of `natRec`'s body?
+Ctx Exp::nat
 ```
 
-TODO Recursive definition of `TruncationLevel(n, A)`.
+# 3 Path types
 
-- In the talk the names are `has-level` and `is-contr` (contractible).
+# 4 Systems, composition, and transport
 
-  `is-contr` will be used as inductive base step of level -2.
+# 5 Derived notions and operations
 
-  > In mathematics, a topological space X is contractible if the
-  > identity map on X is null-homotopic, i.e. if it is homotopic to
-  > some constant map.
-  >
-  > Intuitively, a contractible space is one that can be continuously
-  > shrunk to a point within that space.
-  >
-  > -- https://en.wikipedia.org/wiki/Contractible_space
+# 6 Glueing
 
-`is-contr` is also called `Singleton` in some papers.
+# 7 Universe and the univalence axiom
 
-- https://ncatlab.org/nlab/show/contractible+type
+# 8 Semantics
 
-```cicada
-function Singleton(X: Type): Type {
-  return exists (c: X) forall (x: X) Equal(X, c, x)
-}
-```
+# 9 Extensions: identity types and higher inductive types
 
-# Lecture: Introduction to Cubical Type Theory (Part I)
+# 10 Related and future work
 
-[ [YOUTUBE](https://www.youtube.com/watch?v=6cLUwAiQU6Q&list=PL0OBHndHAAZrGQEkOZGyJu7S7KudAJ8M9&index=3) ]
+# A Details of composition for glueing
 
-```cicada
-datatype Interval {
-  start: Interval
-  end: Interval
-  path: endpoint [ start, end ]
-}
-```
+# B Univalence from glueing
 
-Or say:
-
-```cicada
-datatype I {
-  0: I
-  1: I
-  path: endpoint [ start, end ]
-}
-```
-
-Favonia: The higher inductive type `Interval` is not a type.
-
-Using `Interval` as an opaque coordinate system.
-
-instead say:
-
-```cicada
-datatype S1 {
-  base: S1
-  loop: Equal(S1, base, base)
-}
-```
-
-we say:
-
-```cicada
-datatype S1 {
-  base: S1
-  loop: (I) -> S1 with {
-    case (loop(0)) => base
-    case (loop(1)) => base
-  }
-}
-```
-
-In my way it would be:
-
-```cicada
-datatype Endpoint {
-  start: Endpoint
-  end: Endpoint
-}
-
-datatype S1 {
-  base: S1
-  loop: Skeleton(1, S1) with {
-    Coordinate: Endpoint,
-    attach(endpoint: Endpoint): Skeleton(0, S1) {
-      case (Endpoint::start) => base
-      case (Endpoint::end) => base
-    }
-  }
-}
-
-datatype Interval {
-  start: Interval
-  end: Interval
-  path: Skeleton(1, Interval) with {
-    Coordinate: Endpoint,
-    attach(endpoint: Endpoint): Skeleton(0, Interval) {
-      case (Endpoint::start) => start
-      case (Endpoint::end) => end
-    }
-  }
-}
-```
-
-```cicada
--------
-S1: U
-
----------
-base: S1
-
-r: I
-------------
-loop(r): S1
-
-// or say
-
----------------------
-loop: (r: I) -> S1
-
---------------------
-loop(0) = base : S1
-
---------------------
-loop(1) = base : S1
-
-target: S1
-motive: (x: S1) -> U
-baseCase: motive(S1.base)
-loopCase: (i: I) -> motive(S1.loop(i))
-loopCase(0) = baseCase : motive(S1.base)
-loopCase(1) = baseCase : motive(S1.base)
----------------------------------------
-elimS1(target, motive, baseCase, loopCase): motive(target)
-```
-
-The computational rule:
-
-- **Xie:** A continuous function between cell-complexes
-  is a function that preserves boundary.
-
-```cicada
-function elimS1(
-  target: S1,
-  motive: (x: S1) -> U,
-  baseCase: motive(S1.base),
-  loopCase: (i: I) -> motive(S1.loop(i)),
-) -> motive(target) {
-  return match (target) {
-    case (S1.base) => baseCase
-    case (S1.loop(i)) => loopCase(i)
-    // Maybe with
-    //   loopCase: motive(S1.loop)
-    // instead of
-    //   loopCase: (i: I) -> motive(S1.loop(i))
-    // because we can not only specify map on the boundary of `S1.loop`,
-    // we must also specify `S1.loop` maps to which element.
-    case (S1.loop) => loopCase with {
-      case (S1.loop(0)) => loopCase(0)
-      case (S1.loop(1)) => loopCase(1)
-    }
-  }
-}
-```
-
-We can not do `loop * loop` and `- loop` yet.
-
-Understanding the path types.
-
-```cicada
-function A(i: I): Type {
-  TODO
-}
-
-function M(i: I): A(i) {
-  return match (i) {
-    case (0) => the(A(0), N)
-    case (1) => the(A(1), O)
-  }
-}
-```
-
-# Lecture: Cartesian cubical type theory, by Favonia
-
-[ [YOUTUBE](https://www.youtube.com/watch?v=VbBDxVEu_bA&list=PLtIZ5qxwSNnzpNqfXzJjlHI9yCAzRzKtx&index=73) ]
-
-```cicada
-datatype Interval {
-  start: Interval
-  end: Interval
-  path: endpoint [ start, end ]
-}
-
-function aPath(i: Interval): A {
-  // TODO How case on `Interval::path`.
-  return ...
-}
-
-function aSurface(i: Interval, j: Interval): A {
-  // TODO How case on `Interval::path`.
-  return ...
-}
-```
+# C Singular cubical sets
