@@ -314,6 +314,10 @@ can be drawn as the squares:
   </answer>
 </question>
 
+## 3.2 Examples
+
+TODO
+
 # 4 Systems, composition, and transport
 
 # 5 Derived notions and operations
