@@ -28,19 +28,27 @@ implement nominal logic in `whereabouts`.
 
 implement alphaLeanTab -- learn this way Ray's book about first-order logic.
 
+implement explicit-substitution
+
+- nominal logic is important for just understanding the substitution used in paper.
+
 implement `lowdmin` again, use constraint idea to handle boundary relation.
 
 - ctx should not just be a mapping, but be like solution.
+- subdivision and surreal number
 
 try the ideas about graph and groupoid in `lowdmin`
 
-
+- the cubical version must provide a cubical-complex based model of cubical type theory
 
 If `datatype` can be used to define infinite set,
 `datatype` with higher dimensional constructors
 must also be able to define infinite cell-complex,
 we should start from 1-dim and try to
 define infinite graph by `datatype`.
+
+When see examples of hott or cubical type,
+write them in cicada syntax.
 
 ------
 
