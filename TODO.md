@@ -14,12 +14,6 @@ author: Xie Yuheng
 
 learn about general constraint logic programming framework.
 
-it is import that mod has a simple map from name to values.
-
-- `whereabouts` need to change.
-
-`whereabouts` maybe we can avoid using refresh, by generate fresh at compile time.
-
 implement type constraint for `whereabouts`.
 
 learn about general nominal logic.
