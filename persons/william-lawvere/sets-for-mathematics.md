@@ -1,9 +1,8 @@
-# Sets for Mathematics
-
-------
-- Authors: William Lawvere, Robert Rosebrugh
-- Date: 2003
-------
+---
+title: Sets for Mathematics
+authors: [William Lawvere, Robert Rosebrugh]
+year: 2003
+---
 
 # 1 Abstract Sets and Mappings
 

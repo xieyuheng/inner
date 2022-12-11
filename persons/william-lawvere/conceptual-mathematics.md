@@ -1,11 +1,9 @@
-# Conceptual Mathematics
-
-A first introduction to categories.
-
-------
-- Authors: William Lawvere, Stephen Schanuel
-- Date: 1991
-------
+---
+title: Conceptual Mathematics
+subtitle: A first introduction to categories.
+authors: [William Lawvere, Stephen Schanuel]
+year: 1991
+---
 
 ## SESSION 1 Galileo and multiplication of objects
 

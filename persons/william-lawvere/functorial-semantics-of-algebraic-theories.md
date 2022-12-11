@@ -1,12 +1,11 @@
-# Functorial Semantics of Algebraic Theories
-
-And some algebraic problems in the context of
-functorial semantics of algebraic theories.
-
-------
-- Author: William Lawvere
-- Date: 1968
-------
+---
+title: Functorial Semantics of Algebraic Theories
+subtitle: >
+  And some algebraic problems in the context of
+  functorial semantics of algebraic theories.
+author: William Lawvere
+year: 1968
+---
 
 ## Author's comments
 

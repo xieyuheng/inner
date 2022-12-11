@@ -1,9 +1,8 @@
-# Functorial Semantics of Algebraic Theories (Short)
-
-------
-- Author: William Lawvere
-- Date: 1963
-------
+---
+title: Functorial Semantics of Algebraic Theories (Short)
+author: William Lawvere
+year: 1963
+---
 
 Any "presentation" of a concept of algebraic structure
 (e.g., groups, modules over a given ring, Jordan algebras, lattices, etc.),
