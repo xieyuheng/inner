@@ -1,18 +1,20 @@
-# Type Systems Lecture Series
+---
+title: Type Systems Lecture Series
+---
 
-## 2012-08-10 -- Type Systems and Proof Assistant (Type Systems 3)
+# 2012-08-10 -- Type Systems and Proof Assistant (Type Systems 3)
 
 Definition of Systems of expressions.
 
 `T(M)` is the set of S-expressions, where `M` is the set of symbols.
 
-``` lisp
+```lisp
 <exp> := <symbol> | (<symbol> <exp> ...)
 ```
 
 For examples,
 
-``` lisp
+```lisp
 (A (B C D E))
 ```
 
@@ -24,7 +26,7 @@ For examples,
 It is assumed that bound variables will not repeat,
 And a bound variable must occurs in the sub-tree of the quantifier that introduces it.
 
-## 2012-09-27 -- Overview of Univalent Foundations
+# 2012-09-27 -- Overview of Univalent Foundations
 
 Definition of C-systems.
 
@@ -41,8 +43,8 @@ A C-system -- C, is a collection of data of the following form,
 - Xie:
   Note that contextual pre-category will only be used to model context in type theories.
 
-## 2012-11-21 -- Type Systems 5
+# 2012-11-21 -- Type Systems 5
 
-## 2012-11-28 -- Type Systems 6
+# 2012-11-28 -- Type Systems 6
 
-## 2012-12-05 -- Type Systems 7
+# 2012-12-05 -- Type Systems 7
