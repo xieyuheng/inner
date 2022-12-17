@@ -317,77 +317,54 @@ resolution to derive new goal statements from old ones.
 
 # 8. COMPUTATION
 
-The standard notion of computation, applied to Horn
-
-clause programs, concerns the repeated use of procedure
-invocation in order to derive new goal statements from
-old ones with the ultimate objective of deriving the
-halt statement.     More precisely, given a set S of
-Horn clauses and an initial goal statement C1 c S, a
-computation is a sequence of goal statementsC1,...,Cn
-
-suchthatCi+lis derived by procedure invocation from
-
-Ci using a procedure in S whose name matches some
-selected procedure call in Ci.      A computation is
-
-successful if it ends with the halt statement, i.e.
-
-if Cn = D.     A computation terminates without success
-if the selected procedure call in the end goal state-
-ment Cn matches the name of no procedure in S.
-
+The standard notion of computation, applied to Horn clause programs,
+concerns the repeated use of procedure invocation in order to derive
+new goal statements from old ones with the ultimate objective of
+deriving the halt statement.  More precisely, given a set `S` of Horn
+clauses and an initial goal statement `C1 in S`, a _computation_ is a
+sequence of goal statements `C1, ..., Cn` suchthat `Ci+1` is derived
+by procedure invocation from `Ci` using a procedure in `S` whose name
+matches some selected procedure call in `Ci`.  A computation is
+_successful_ if it ends with the halt statement, i.e.  if `Cn = <-`.
+A computation _terminates without success_ if the selected procedure
+call in the end goal statement `Cn` matches the name of no procedure
+in `S`.
 
 Fig. 1 illustrates the only successful computation
-determined by the program (F1),(F2), activated by the
-initial goal statement (F3), and employing the crit-
-erion of selecting procedure calls of the form Fact
+determined by the program (F1), (F2), activated by the
+initial goal statement (F3), and employing the criterion
+of selecting procedure calls of the form `Fact(s, t)`
+in preference to calls of the form `Times(s', t', u')`.
 
- (s,t) in preference to calls of the form Times (s ,t ,u').
+- **Xie:** The phrase "in preference to" already means a search strategy.
 
+**Fig. 1. A computation of the factorial of 2.**
 
+```
+Fact(s(s(0)), x)
+----------------- (F2)
+Fact(s(0), v)
+Times(s(s(0)), v, x)
+---------------------- (F2)
+Fact(0, v')
+Times(s(0), v', v)
+Times(s(s(0)), v, x)
+---------------------- (F1)
+v' = s(0)
+Times(s(0), s(0), v)
+Times(s(s(0)), v, x)
+----------------------- Times(s(0), s(0), s(0)) <- 
+v = s(0)
+Times(s(s(0)), s(0), x)
+----------------------- Times(s(s(0)),s(0),s(s(0))) <-
+x = s(s(0))
+```
 
-
-
-
-
-
-
-                                                4-Fact(s(s(0)),x)
-
-
-                                                4-Fact(s(0),v)
-
-                                                   Times (s (s (0)) ,v ,x)
-
-
-                                                ÷ Fact(0,v' ) ,
-                                                   Times(s(0),v',v),
-
-                                                   Times(s(s(0)),v,x)
-
-                                                   v':= s(0)
-
-                                                4- Times (s (0) ,s (0) ,v) ,
-
-                                                   Times(s(s(0)),v,x)
-
-        Times (s (0) , s (0) , s (0))              v:= s(0)
-
-                                                4- Times (s (s (0)) , s (0) ,x)
-
-Times(s(s(0)),s(0),s(s(0))) 4-                      x:= s(s(0))
-                                                    D
-
-Fig. 1. A computation of the factorial of 2. In each
-
-goal statement, the selected procedure call is under-
-lined.        The arc, connecting Ci with Ci,1 is labelled
-by the procedure used to derive Ci+1 from Ci.                              The
-same arc is labelled by the assignment of terms to
-variables which is that part of the matching substi-
-tution which-Can be interpreted as passing output from
-the procedure name to the procedure call.
+The arc [the line], connecting `Ci` with `Ci+1` is labelled by the
+procedure used to derive `Ci+1` from `Ci`.  The assignments of terms
+to variables are part of the matching substitution which can be
+interpreted as passing output from the procedure name to the procedure
+call.
 
 In the logic interpretation, computations are reso-
 lution derivations.               The end goal statement of a
