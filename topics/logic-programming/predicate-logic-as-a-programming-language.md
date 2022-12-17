@@ -132,8 +132,8 @@ special readings.
   for no x1, ..., xk, A1 and ... and An.
   ```
 
-- If both m = 0 and n = 0, write the _null clause_, `<-`, interpreted
-  as denoting falsity (or contradiction).
+- If both m = 0 and n = 0, write the _null clause_ -- `<-`,
+  interpreted as denoting falsity (or contradiction).
 
 Methods for transforming arbitrary first-order sentences into clausal
 form are described in Nilsson's book {19}.  It is our thesis, however,
@@ -197,7 +197,7 @@ program the clause
 
 which states that no list `x` results from appending `[c]` to `[a,
 b]`. This statement contradicts (A1) and (A2) which logically imply
-that `[a,b,c]` results from appending `[c]` to `[a, b]`. Any correct
+that `[a, b, c]` results from appending `[c]` to `[a, b]`. Any correct
 and complete proof-procedure will prove the unsatisfiability of the
 set of clauses `{(A1), (A2), (A3)}`. Some proof- procedures will do so
 by constructing the counter-instance `cons(a, cons(b, cons(c, nil)))`
@@ -414,11 +414,12 @@ Loveland's model elimination {14}, Reiter's ordered resolution {20}
 and our SL-resolution {10} are general purpose systems which, given a
 set of Horn clauses and an initial goal statement, admit the
 generation of a derivation which can be interpreted as a computation
-in the sense defined above.  Kuehner's system {12} is special purpose
-in that it is designed to deal only with sets of Horn clauses.
-However, his system has a bi-directional facility which can supplement
-the capability for generating new goal statements from old goal
-statements with a complimentary capability for generating new
+in the sense defined above.  [**Xie**: we say "admit" because it does not
+really generate (output) a derivations] Kuehner's system {12} is
+special purpose in that it is designed to deal only with sets of Horn
+clauses.  However, his system has a bi-directional facility which can
+supplement the capability for generating new goal statements from old
+goal statements with a complimentary capability for generating new
 assertions from old ones.  Our connection graph system {11} is a
 general purpose system which also provides bi-directional capabilities
 as well as providing facilities for deriving new procedures from old
@@ -444,85 +445,82 @@ statements from old ones, using a selection criterion to avoid
 redundancy, as top-down procedures, to distinguish them from bottom-up
 procedures which derive new assertions from old assertions.
 
+- **Xie:** Does the "redundancy" means non-deterministic?
+
 # 9. NON-DETERMINISM
 
-Predicate logic is an essentially non-deterministic
-programming language.                 Non-determinism is due to the
-fact that a given program and activating goal state-
-ment may admit more than a single legitimate compu-
-tation. . Consider the following program for selecting
-an element from a list
-          (M1) Member(x, cons (x,y))
-          (M2) Member (z, cons (x,y)) 4- Member (z ,y)
-  Fig. 2 illustrates the space of all computations
+Predicate logic is an essentially non-deterministic programming
+language.  Non-determinism is due to the fact that a given program and
+activating goal statement may admit more than a single legitimate
+computation.
 
-   determined by the program (M1),(M2) activated by the
-   goal statement
+Consider the following program for selecting an element from a list
 
+```
+(M1) Member(x, cons(x, y))
+(M2) Member(z, cons(x, y)) <- Member (z, y)
+```
 
-           (M3) 4- Member(x,cons(a,cons(b,nil)))
+Fig. 2 illustrates the space of all computations determined by the
+program (M1), (M2) activated by the goal statement
 
-  which asserts the goal of finding an x which is a
-  member of the list [a.,b].
+```
+(M3) <- Member(x, cons(a, cons(b, nil)))
+```
 
+which asserts the goal of finding an `x` which is a member of the list
+`[a, b]`.
 
+```
+Member(x, cons(a, cons(b, nil)))
+--------------------------------- (M1) {
+  x = a
+}
+--------------------------------- (M2) {
+  Member(x, cons(b, nil))
+  ------------------------ (M1) {
+    x = b
+  }
+  ------------------------ (M2) {
+    Member(x, nil)
+  }
+}
+```
 
-                                        Member(x,cons(a,cons(b,nil)))
+Fig. 2.  The space of all computations determined by (M1)-(M3).  The
+space contains two successful computations and one unsuccessfully
+terminating computation.
 
-                  x:= a        (Ml)        (M2)
+The non-determinism of predicate logic programs does not arise in the
+manner foreseen by McCarthy {16} and Floyd {6}, through the addition
+to a deterministic language of an explicit _amb_ or _choice_
+primitive.  Predicate logic is essentially non-deterministic since it
+provides for the computation of relations, treating functions as a
+special kind of relation. As in PLANNER non-determinism is implemented
+by means of pattern-directed procedure invocation.  It is the
+possibility that more than one procedure can have a name which matches
+a selected procedure call which gives rise to non-determinism.
 
+The implementation of procedure call by pattern-matching has other
+consequences besides providing a tool for the implementation of
+non-determinism. In particular, the use of pattern-matching makes it
+unnecessary to use selector functions for accessing the components of
+data structures. Thus, for example, when using the _cons_ function
+symbol for list processing it is unnecessary to use _car_ and _cdr_
+functions for accessing the first and second components of pairs
+`cons(s, t)`.  A related use of pattern-matching is for the
+implementation of conditional tests on the form of data structures.
+This is illustrated, for instance, in the factorial example where
+pattern-matching implements a conditional test on the structure of the
+first argument `t` of a procedure call `Fact(t, u)`.  If `t` is `0`
+then the assertion (F1) responds.  If `t` is `s(x)`, for some `x`,
+then the recursive procedure (F2) responds.  If `t` is a variable,
+then both (Fl) and (F2) respond non-deterministically.
 
-                                                   Member(x,cons(b.nil))
-                             x:= b         Ml)       (M2)
-
-                                                               Member(x,nil)
-
-   Fig. 2.        The space of all computations determined by
-   (M1)-(M3).          The space contains two successful compu-
-   tations and one unsuccessfully terminating computation.
-
-
-   The non-determinism of predicate logic programs does
-   not arise in the manner foreseen by McCarthy { 16} and
-   Floyd (61, through the addition to a deterministic
-   language of an explicit amb or choice primitive.
-   Predicate logic is essentially non-deterministic since
-   it provides for the computation of relations, treating
-   functions as a special kind of relation. As in PLANNER
-   non-determinism is implemented by means of pattern-
-   directed procedure invocation.                      It is the possibility
-   that more than one procedure can have a name which
-   matches a selected procedure call which gives rise to
-   non-determinism.
-
-   The implementation of procedure call by pattern-
-   matching has other consequences besides providing a
-   tool for the implementation of non-determinism. In
-   particular, the use of pattern-matching makes it
-   unnecessary to use selector functions for accessing
-   the components of data structures. Thus, for example,
-   when using the cons function symbol for list processing
-   it is unnecessary to use car and cdr functions for
-   accessing the first and second components of pairs
-   cons(s,t).          A related use of pattern-matching is for
-   the implementation of conditional tests on the form
-   of data structures.                This is illustrated, for
-   instance, in the factorial example where pattern-
-   matching implements a conditional test on the
-   structure of the first argument t of a procedure call
-   Fact(t,u).           If t is 0 then the assertion (F1)
-   responds.          If t is s(x), for some x, then the
-   recursive procedure (F2) responds.                          If t is a
-
-   variable, then both (Fl) and (F2) respond non-
-   deterministically.
-
-   Predicate logic programs exhibit a second kind of non-
-   determinism due to the fact that procedure bodies
-   consist of a set of procedure calls which can be
-   executed in any sequence.                   This kind of non-
-   determinism is investigated in the section after next.
-
+Predicate logic programs exhibit a second kind of non-determinism due
+to the fact that procedure bodies consist of a set of procedure calls
+which can be executed in any sequence.  This kind of non-determinism
+is investigated in the section after next.
 
 # 10. INPUT-OUTPUT
 
