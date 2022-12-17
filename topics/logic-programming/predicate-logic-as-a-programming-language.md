@@ -351,7 +351,7 @@ concerns the repeated use of procedure invocation in order to derive
 new goal statements from old ones with the ultimate objective of
 deriving the halt statement.  More precisely, given a set `S` of Horn
 clauses and an initial goal statement `C1 in S`, a _computation_ is a
-sequence of goal statements `C1, ..., Cn` suchthat `Ci+1` is derived
+sequence of goal statements `C1, ..., Cn` such that `Ci+1` is derived
 by procedure invocation from `Ci` using a procedure in `S` whose name
 matches some selected procedure call in `Ci`.  A computation is
 _successful_ if it ends with the halt statement, i.e.  if `Cn = <-`.
@@ -359,13 +359,23 @@ A computation _terminates without success_ if the selected procedure
 call in the end goal statement `Cn` matches the name of no procedure
 in `S`.
 
+- **Xie:** Note that, the author call "a goal statements `C1`"
+  I call "a list of goals" -- `A1, A2, ...`.
+
+  And the author say "a sequence of goal statements `C1, ..., Cn` such that ..."
+  I say "a list of solutions such that ...".
+
 Fig. 1 illustrates the only successful computation
 determined by the program (F1), (F2), activated by the
 initial goal statement (F3), and employing the criterion
 of selecting procedure calls of the form `Fact(s, t)`
 in preference to calls of the form `Times(s', t', u')`.
 
-- **Xie:** The phrase "in preference to" already means a search strategy.
+- **Xie:** The phrase "in preference to" already means a search strategy,
+  i.e. guesses are given for the non-deterministic search.
+
+  Maybe we can design a syntax for writing deduction just like this,
+  i.e. given the guesses.
 
 **Fig. 1. A computation of the factorial of 2.**
 
