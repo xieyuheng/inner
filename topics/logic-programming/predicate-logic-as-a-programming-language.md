@@ -471,6 +471,11 @@ program (M1), (M2) activated by the goal statement
 which asserts the goal of finding an `x` which is a member of the list
 `[a, b]`.
 
+**Fig. 2.  The space of all computations determined by (M1)-(M3).**
+
+The space contains two successful computations and one unsuccessfully
+terminating computation.
+
 ```
 Member(x, cons(a, cons(b, nil)))
 --------------------------------- (M1) {
@@ -486,10 +491,6 @@ Member(x, cons(a, cons(b, nil)))
   }
 }
 ```
-
-Fig. 2.  The space of all computations determined by (M1)-(M3).  The
-space contains two successful computations and one unsuccessfully
-terminating computation.
 
 The non-determinism of predicate logic programs does not arise in the
 manner foreseen by McCarthy {16} and Floyd {6}, through the addition
@@ -524,378 +525,369 @@ is investigated in the section after next.
 
 # 10. INPUT-OUTPUT
 
-The generation and application, during procedure
-invocation, of the substitution 9 which matches the
-selected procedure call Ai in a goal statement
+The generation and application, during procedure invocation, of the
+substitution `θ` which matches the selected procedure call `Ai` in a
+goal statement
 
-           A1,...,Ai_i,Ai,Ai+1,...,An
+```
+A1, ..., Ai-i, Ai, Ai+1, ..., An
+```
 
-with the name B of a procedure
+with the name `B` of a procedure
 
-        B 4- B1,...,Bm
+```
+B <- B1, ..., Bm
+```
 
 has to do with the transfer of input and output.
-Instantiation of variables occurring in the procedure
-name B by terms occurring in the procedure call Ai
-corresponds to passing input from Ai to the body
-131,...,B, of the procedure through the procedure name.
-The instantiated procedure body (B1,...,Bm)e is the
-result of the input transfer.                       Instantiation of
-variables.occurring in the procedure call Ai by terms
-occurring in the procedure name B corresponds to
-passing output (or, rather, partial output) back to
- the procedure call Ai which distributes it to the
-remaining procedure calls AI,...,A1.                    -1 1 A. +1'  ...,A   n
-The instantiated residue (A1,...,A1.                    -11  A. +1'  ...,A )en
 
+Instantiation of variables occurring in the procedure name `B` by
+terms occurring in the procedure call `Ai` corresponds to passing
+input from `Ai` to the body `B1, ..., B`, of the procedure through the
+procedure name.
 
+The instantiated procedure body `(B1, ..., Bm) θ` is the result of the
+input transfer.  Instantiation of variables occurring in the procedure
+call `Ai` by terms occurring in the procedure name `B` corresponds to
+passing output (or, rather, partial output) back to the procedure call
+`Ai` which distributes it to the remaining procedure calls `A1, ...,
+Ai-1, Ai+1, ..., An`.
 
+The instantiated residue `(A1, ..., Ai-1, Ai+1, ..., An) θ` of the
+original goal statement is the result of this output transfer.
 
+Fig. 3. illustrates the only successful computation determined by the
+program (A1), (A2) activated by the initial goal statement (A3).  The
+assignments labelling the arc which connects consecutive goal
+statements `Ci` and `Ci+1` are the output components of the
+substitution generated in deriving `Ci+1` from `Ci`.  Notice how the
+final output
 
+```
+x = cons(a, cons(b, cons(c, nil)))
+```
 
-of the original goal statement is the result of this
-output transfer.
+is the composition of the intermediate partial outputs
 
-Fig. 3 illustrates the only successful computation
-determined by the program (A1),(A2) activated by the
-initial goal statement (A3).           The assignments
-labelling the arc which connects consecutive goal
-statements Ci and Ci4.1 are the output components of
-the substitution generated in deriving Ci1.1 from Ci.
-Notice how the final output x:= cons(a,cons(b,cons
-(c,nil))) is the composition of the intermediate
-partial outputs x:= cons(a,x'), x':= cons(b,x"),
-x":= cons(c,nil).        Computation of output from input
+```
+x = cons(a, x')
+x' = cons(b, x'')
+x'' = cons(c, nil)
+```
+
+Computation of output from input
 is computation by successive approximation. In this
 example the successive approximations to the final
-output are x:= cons(a,x'), x:= cons(a,cons(b,x")) ,
-x:= cons(a,cons(b,cons(c,nil))).           Notice how the
-predicate logic notion of procedure differs from the
-usual notion of a procedure which initially accepts
-input and eventually returns output only upon
-successful termination.
+output are
 
-      o    Append(cons(a,cons(b,nil)), cons(c,nil),x)
-        x:= cons(a,x')
+```
+x = cons(a, x')
+x = cons(a, cons(b, x''))
+x = cons(a, cons(b, cons(c, nil)))
+```
 
-        4- Append(cons(b,nil),cons(c,nil),x')
-        x':= cons(b,x")
+Notice how the predicate logic notion of procedure differs from the
+usual notion of a procedure which initially accepts input and
+eventually returns output only upon successful termination.
 
-           Append(nil,cons(c,nil),x")
+**Fig. 3.  Computation of output from input by successive approximation.**
 
-        x":= cons(c,nil)
+```
+Append(cons(a, cons(b, nil)), cons(c, nil), x)
+----------------------------------------------- (A2)
+x = cons(a, x')
+Append(cons(b, nil), cons(c, nil), x')
+----------------------------------------------- (A2)
+x' = cons(b, x'')
+Append(nil, cons(c, nil), x'')
+----------------------------------------------- (A1)
+x'' = cons(c, nil)
+```
 
+In fact, predicate logic programs do not explicitly distinguish
+between input and output.  For this reason the role of input and
+output arguments of a procedure name can change from one procedure
+call to another.  For example, in the goal statement
 
-Fig. 3.     Computation of output from input by
-successive approximation.
+```
+(F4) <- Fact(x, s(0))
+```
 
-In fact, predicate logic programs do not explicitly
-distinguish between input and output.              For this
-reason the role of input and output arguments of a
-procedure name can change from one procedure call to
-another.      For example, in the goal statement
-      (F4) 4- Fact(x,s(0))
+the second argument of Fact behaves as an input position whereas the
+first argument behaves as output position.  In the goal statement (F3)
+the input and output positions are reversed.
 
-the second argument of Fact behaves as an input
-position whereas the first argument behaves as output
-position.      In the goal statement (F3) the input and
-output positions are reversed.            Fig. 4 illustrates
-the space of all computations determined by the
-program (F1),(F2) activated by (F4).              Notice how
-changing the input-output positions of a procedure
-can turn a deterministic program which computes a
-function into a non-deterministic program which
+```
+(F3) <- Fact(s(s(0)), x)
+```
+
+Fig. 4 illustrates the space of all computations determined by the
+program (F1), (F2) activated by (F4).  Notice how changing the
+input-output positions of a procedure can turn a deterministic program
+which computes a function into a non-deterministic program which
 computes the function's inverse.
 
-                   Fact(x,s(0))
+```
+Fact(x, s(0))
+-------------- (F1) {
+  x = 0
+}
+-------------- (F2) {
+  x = s(x1)
+  Fact(x', v)
+  Times(s(x'), v, s(0))
+  ---------------------- Times(s(0), s(0), s(0)) <-
+  x' = 0
+  v = s(0)
+  Fact(0, s(0))
+  --------------- (F1)
+}
 
+```
 
-x:= 0      (F1) (F2)    x:= s(x1)
+**Fig. 4.  The transformation of a 'deterministic' program into a
+non-deterministic one by changing the role of input and output
+arguments.**
 
-                              Fact(x',v),Times(s(x'),v,s(0))
-
-
-Times (s (0) , s (0) , s (0)) 4- x':= 0, v:= s (0)
-
-                            4-Fact(0,s(0))
-
-
-
-
-
-Fig. 4.     The transformation of a 'deterministic'
-program into a non-deterministic one by changing the
-role of input and output arguments.
-
-The ability to exploit the lack of explicit disti-
-nction between input and output is available also in
-the assertional programming languages ABSYS and ABSET
-(4), which in other ways resemble predicate logic as
-a programming language.
+The ability to exploit the lack of explicit distinction between input
+and output is available also in the assertional programming languages
+ABSYS and ABSET {4}, which in other ways resemble predicate logic as a
+programming language.
 
 # 11. SEQUENCING OF PROCEDURE CALLS
 
-  A procedure body consists of a set of procedure calls.
-  Although a top-down proof procedure selects and
-  executes procedure calls in some sequence, the
-  specification of this sequence is not determined by
+A procedure body consists of a set of procedure calls.  Although a
+top-down proof procedure selects and executes procedure calls in some
+sequence, the specification of this sequence is not determined by the
+predicate logic program itself.  The sequencing of procedure calls has
+no syntactic representation.  Neither does it have a semantics, in the
+sense that sequencing does not affect the input-output behaviour of
+programs.  This does not mean that sequencing is not important.
+Intelligent sequencing of procedure calls is a necessity for practical
+programming.
 
-the predicate logic program itself.              The sequencing
-of procedure calls has no syntactic representation.
-Neither does it have a semantics, in the sense that
-sequencing does not affect the input-output behaviour
-of programs.        This does not mean that sequencing is
-not important.         Intelligent sequencing of procedure
-calls is a necessity for practical programming.
+Consider the following program for sorting lists.  This same program
+was also investigated for a similar purpose in {11}.
 
-Consider the following program for sorting lists.
-This same program was also investigated for a similar
-purpose in {11).
+```
+(S1)  Sort(x, y) <- Perm(x, y), Ord(y)
+(S2)  Perm(nil, ni1) <-
+(S3)  Perm(z, cons(x, y)) <- Perm(z', y), Del(x, z, z')
+(S4)  Del(x, cons(x, y), y) <-
+(S5)  Del(x, cons(y, z), cons(y, z')) <- Del(x, z, z')
+(S6)  Ord(nil) <-
+(S7)  Ord(cons(x, nil)) <-
+(S8)  Ord(cons(x, cons(y, z))) <- LE(x, y) , Ord(cons(y, z))
+(S9)  LE(1, 2) <-
+(S10) LE(1, 3) <-
+(S11) LE(2, 3) <-
+(S12) LE(x, x) <-
+```
 
-  (S1) Sort(x,Y)÷ Perm(x,y),Ord(y)
-  (S2) Perm(nil,ni1)4-
-  (S3) Perm(z,cons(x,3))4- Perm(z' ,y),Del(x,z,z')
-  (S4) Del(x,cons(x,y),y)
-  (S5) Del(x,cons(y,z),cons(y,z'))4- Del(x,z,z')
-  (S6) Ord(nil)
-  (S7) Ord (cons (x , nil )) 4-
-  (S8) Ord (cons (x, cons (y, z))) 4- LE (x,y) ,Ord (cons (y, z))
-  (S9) LE(1,2)-4-                   (S10) LE(1,3)4-
- (S11) LE(2,3)-4-                   (S12) LE (x,x)
+Here read
 
-Here read Sort(x,y) as stating that y is a sorted
-version of the list x; Perm(x,y), that y is a
-permutation of x; Ord(y), that y is ordered;
-Del(x,y,z), that z results by deleting one occurrence
-of x from y; and LE(x,y), that x is less than or
-equal to y.
+- `Sort(x, y)` as stating that `y` is a sorted version of the list `x`;
+- `Perm(x, y)`, that `y` is a permutation of `x`;
+- `Ord(y)`, that `y` is ordered;
+- `Del(x, y, z)`, that `z` results by deleting one occurrence of `x` from `y`;
+- and `LE(x,y)`, that `x` is less than or equal to `y`.
 
+(S1) states that `y` is a sorted version of `x` if `y` is a
+permutation of `x` and `y` is ordered.  If (S1) is interpreted by a
+top-down proof procedure which selects and completes the execution of
+the procedure call `Perm(x, y)` before activating `Ord(y)`, and if in
+addition the first arguments of `Sort`, `Perm` and `Ord` are
+considered as input positions, then (S1) can be read as stating that
 
- (S1) states that y is a sorted version of x if y is a
-permutation of x and y is ordered.               If (S1) is inter-
-preted by a top-down proof procedure which selects
-and completes the execution of the procedure call
-Perm(x,y) before activating Ord(y), and if in
-addition the first arguments of Sort, Perm and Ord
-are considered as input positions, then (S1) can be
-read as stating that
-     (S1.1) in order to sort the list x, first
-             generate a permutation y of x, then test
-             that y is ordered; if it is, then y is a
-             sorted version of x.
+- (S1.1) in order to sort the list `x`, first generate a permutation
+  `y` of `x`, then test that `y` is ordered; if it is, then `y` is a
+  sorted version of `x`.
 
-The meaning of the program does not change, however,
-if it is interpreted by a top-down proof procedure
-which selects and completes the execution of Ord(y)
-before selecting Perm(x,y).            In such a case, still
-reading x as input variable, (S1) can be read as
-stating that
-     (S1.2) in order to sort the list x, first
-            generate an ordered list y, then test that
-            y is a permutation of x; if so then y is
-            a sorted version of x.
+The meaning of the program does not change, however, if it is
+interpreted by a top-down proof procedure which selects and completes
+the execution of `Ord(y)` before selecting `Perm(x, y)`.  In such a
+case, still reading `x` as input variable, (S1) can be read as stating
+that
 
-Clearly the difference in efficiency can be enormous,
-but the meaning, as determined by the input-output
-relation Sort(x,y), computed by the program, is the
+- (S1.2) in order to sort the list `x`, first generate an ordered list
+  `y`, then test that `y` is a permutation of `x`; if so then `y` is a
+  sorted version of `x`.
 
-same.      It is in this sense that the sequencing of
+Clearly the difference in efficiency can be enormous, but the meaning,
+as determined by the input-output relation `Sort(x, y)`, computed by
+the program, is the same.  It is in this sense that the sequencing of
 procedure calls can be said to have no semantics.
 
+The use of parallel processes and co-routines is a particular way of
+sequencing procedure calls.  The possibility of independent parallel
+processing arises when, for example, different procedure calls in the
+same body share no variables.  In such a case, the independent
+procedure calls can be activated simultaneously and, given a single
+processor, their execution sequences can be interleaved arbitrarily.
+On the other hand, the procedure (S1) in the sorting example
+illustrates a situation where two procedure calls can be executed
+semi-independently as co-routines.  That the use of co-routines is
+possible in this example is due, in the first place, to the fact that
+partial output from the procedure call `Perm(x, y)` is transmitted to
+the latent call `Ord(y)` and secondly that, such partially specified
+input can initiate computation as efficiently as totally specified
+input. Fig. 5 illustrates an unsuccessfully terminating computation
+determined by selecting for activation an instance of the procedure
+call `Ord(y)` before completing the execution of `Perm(x, y)`.  If
+(S1) is interpreted by a top-down proof procedure which selects the
+procedure call `Perm(x, y)` before `Ord(y)` but interrupts the
+execution of `Perm(x, y)` activating `Ord(y)` in order to monitor the
+partial output of `Perm(x, y)`, then reading `x` as input variable,
+(S1) states that
 
-The use of parallel processes and co-routines is a
-particular way of sequencing procedure calls.                 The
-possibility of independent parallel processing arises
-when, for example, different procedure calls in the
-same body share no variables.             In such a case, the
-independent procedure calls can be activated
-simultaneously and, given a single processor, their
-execution sequences can be interleaved arbitrarily.
-On the other hand, the procedure (S1) in the sorting
-example illustrates a situation where two procedure
-calls can be executed semi-independently as co-
-routines.       That the use of co-routines is possible
-in this example is due, in the first place, to the
-fact that partial output from the procedure call
-Perm(x,y) is transmitted to the latent call Ord(y)
-and secondly that, such partially specified input can
-initiate computation as efficiently as totally
-specified input. Fig. 5 illustrates an unsuccessfully
-terminating computation determined by selecting for
-activation an instance of the procedure call Ord(y)
-before completing the execution of Perm(x,y).                 If
-(S1) is interpreted by a top-down proof procedure
-which selects the procedure call Perm(x,y) before
+- (S1.3) in order to sort the list `x`, beginning with the empty
+  sublist `nil`, first generate an initial sublist of a permutation of
+  `x`, then test that the sublist is ordered. If it is not ordered,
+  generate another sublist if there is any which has not been
+  generated.  If it is ordered but is not a complete permutation, then
+  add another element to the sublist and test that the new sublist is
+  ordered.  If it is ordered and is a complete permutation of `x`,
+  then it is the desired sorted version of `x`.
 
+The equivalence of (S1.1),(S1.2) and (S1.3) can be demonstrated by
+noting that they differ only with respect to the different sequencing
+of procedure calls which they impose on the same program (S1).
 
+```
+Sort([2, 1, 3], u)
+-------------------- (S1)
+Perm([2, 1, 3], u)
+Ord(u)
+---------------------------- (S3)
+u = cons(x, y)
+Perm(z', y)
+Del(x, [2, 1, 3], z')
+Ord(cons(x, y))
+----------------- (S4)
+x = 2
+z' = [1, 3]
+Perm([1,3], y)
+Ord(cons(2, y))
+---------------------- (S3)
+y = cons(x', y')
+Perm(z'', y')
+Del(x', [1, 3], z'')
+Ord(cons(2, cons(x', y')))
+------------------------------- (S4)
+x' = 1
+z'' = [3]
+Perm([3], y')
+Ord(cons(2, cons(1, y')))
+---------------------------- (S8)
+Perm([3], y')
+LE(2, 1)
+Ord(cons(1, y'))
+```
 
+**Fig. 5.  An unsucessfully terminating computation determined by the
+program (S1)-(S12) activated by the goal of sorting the list `[2, 1,
+3]` incorporated in the goal statement `<- Sort ([2, 1 , 3] ,u)`.**
 
+Here the notation `[2, 1, 3]` is an abbreviation for `cons(2, cons(1,
+cons(3, nil)))`.  The computation terminates because no procedure name
+matches the call `LE(2,1)`.
 
-Ord(y) but interrupts the execution of Perm(x,y)
- activating Ord(y) in order to monitor the partial
-output of Perm(x,y), then reading x as input variable,
- (S1) states that
-       (S1.3) in order to sort the list x, beginning
-            with the empty sublist nil, first generate
-            an initial sublist of a permutation of x,
-            then test that the sublist is ordered. If
-            it is not ordered, generate another sublist
-            if there is any which has not been generated.
-            If it is ordered but is not a complete
-            permutation, then add another element to the
-            sublist and test that the new sublist is
-            ordered.     If it is ordered and is a
-            complete permutation of x, then it is the
-            desired sorted version of x.
-
-The equivalence of (S1.1),(S1.2) and (S1.3) can be
-demonstrated by noting that they differ only with
-respect to the different sequencing of procedure calls
-which they impose on the same program (S1).
-
-      9 •- Sort([2,1,3],u)
- (S1)
-
-          Perm([2,1,3],u),Ord(u)
-(S3)      u:= cons(x,y)
-
-        4- Perm(z',y),Del(x,[2,1,3],z'),Ord(cons(x,y))
-(S4)      x:= 2, z':= [1,3]
-
-          Perm([1,3],y),Ord(cons(2,y))
-(S3)      y:= (cons(x',y')
-
-          Perm(z",y'),Del(x',[1,3],z"),
-          Ord(cons(2,cons(x',y')))
-(S4)      x':= 1, z":= [31
-
-          Perm(t3],y'),Ord(cons(2,cons(l,y')))
-(S8)
-
-      a 4- Perm([3],y'),LE(2,1),Ord(cons(1,y'))
-
-Fig. 5.     An unsucessfully terminating computation
-determined by the program (S1)-(S12) activated by the
-goal of sorting the list [2,1,3] incorporated in the
-goal statement 4- Sort ( [2, 1 , 3] ,u) . Here the notation
-[2,1,3] is an abbreviation for cons(2,cons(1,cons
-(3,nil))).    The computation terminates because no
-procedure name matches the call. LE(2,1).
-
-It is interesting that a sequencing of procedure calls
-which may be useful for one specification of input and
-output positions may be unusable for a different
-specification.      Fig. 4 illustrates how a different
-sequencing of procedure calls is appropriate in (F2)
-when the second argument of Fact(x,y) is used for
-input rather than the first.        For another example,
-suppose that the predicate symbols P and Q denote
-relations which are one-one functions.         Consider the
+It is interesting that a sequencing of procedure calls which may be
+useful for one specification of input and output positions may be
+unusable for a different specification.  Fig. 4 illustrates how a
+different sequencing of procedure calls is appropriate in (F2) when
+the second argument of `Fact(x, y)` is used for input rather than the
+first.  For another example, suppose that the predicate symbols `P`
+and `Q` denote relations which are one-one functions.  Consider the
 procedure declaration
 
-      R(x,z) 4- P(x,y),Q(y,z).
-Given a procedure call of the form R(t,z), where t
-contains no variables, the first argument position of
-the call acts as the input position and the second
-argument acts as output position.         The selection of
-P(t,y) in preference to Q(y,z) in the instantiated
-procedure body leads to a deterministic computation.
-The unique output y:= t' of the procedure call P(t,y)
-is obtained and passed as input to the latent
-procedure call Q(y,z).       The call Q(t',z) then
-succeeds with unique output z:= t". The alternative
-selection of Q(y,z) in preference to P(t,y) determines
-the much less efficient, non-deterministic algorithm
-which first generates pairs of output (t',t") for the
-procedure call Q(y,z) and then checks that P(t,t').
-However, if the original procedure call has the form
-R(x,$), where s contains no variables, the first
-argument acts as output position and the second acts
-as input position.      Efficient sequencing of procedure
-calls in the instantiated body 4-P(x,y),Q(y,$) requires
-the activation of Q(y,$) in preference to P(x,y).
+```
+R(x, z) <- P(x, y), Q(y, z)
+```
 
-The viability of predicate logic as a programming
-language depends upon the eventual provision of an
-auxiliary control language which would provide a
-programmer with the ability to specify appropriate
-sequencing instructions to the interpreting proof
-procedure.     Such a control language ought to be
-incapable of affecting the meaning of programs,
-influencing only their efficiency.         Some day it  may
-be possible to devise autonomous proof procedures
-which are able to determine for themselves efficient
-ways of sequencing procedure calls and of sequencing
-the application of procedures when more than one
-responds to a selected procedure call.         In the
-meanwhile, it will not be possible to program
-effectively without the aid of an auxiliary control
-language.     The importance and utility of such a
-control language has been argued by Pat Hayes (8).
+Given a procedure call of the form `R(t, z)`, where `t` contains no
+variables, the first argument position of the call acts as the input
+position and the second argument acts as output position.  The
+selection of `P(t, y)` in preference to `Q(y, z)` in the instantiated
+procedure body leads to a deterministic computation.  The unique
+output `y = t'` of the procedure call `P(t, y)` is obtained and passed
+as input to the latent procedure call `Q(y, z)`.  The call `Q(t', z)`
+then succeeds with unique output `z = t''`.  The alternative selection
+of `Q(y, z)` in preference to `P(t, y)` determines the much less
+efficient, non-deterministic algorithm which first generates pairs of
+output `(t', t'')` for the procedure call `Q(y, z)` and then checks
+that `P(t, t')`.  However, if the original procedure call has the form
+`R(x, s)`, where `s` contains no variables, the first argument acts as
+output position and the second acts as input position.  Efficient
+sequencing of procedure calls in the instantiated body `<- P(x, y),
+Q(y, s)` requires the activation of `Q(y, s)` in preference to `P(x,
+y)`.
+
+The viability of predicate logic as a programming language depends
+upon the eventual provision of an auxiliary control language which
+would provide a programmer with the ability to specify appropriate
+sequencing instructions to the interpreting proof procedure.  Such a
+control language ought to be incapable of affecting the meaning of
+programs, influencing only their efficiency.  Some day it may be
+possible to devise autonomous proof procedures which are able to
+determine for themselves efficient ways of sequencing procedure calls
+and of sequencing the application of procedures when more than one
+responds to a selected procedure call.  In the meanwhile, it will not
+be possible to program effectively without the aid of an auxiliary
+control language.  The importance and utility of such a control
+language has been argued by Pat Hayes {8}.
 
 # ACKNOWLEDGMENT
 
-That sets of axioms are like programs, in the way that
-different formulations can have equivalent meanings
-but very different influences on efficiency, is a
-point of view which runs counter to the prevailing'
-moods in symbolic logic and in artificial intelligence.
-In particular, the attacks by Anderson and Hayes (I)
-and by Minsky and Papert { 171 against the utility of
-the theorem-proving paradigm depend upon the assum-
-ption that axioms convey meaning but not pragmatic
-information. Our contrary point of view was re-
-inforced by joint research with Alain Colmerauer
-(reported in fill) on axiomatisations ofrgrammars,
-regarded as programs for syntactic analysis. Further
-reinforcement was provided by the work of Philippe
-Roussel f 221, who showed that many uses of the
-equality relation could be replaced by the more
-efficiently mechanisable identity relation. Roussel's
-experience encouraged us to abandon the equality
-relation altogether, replacing equalities, not
-interpretable as identities, by implications, as in
-the procedural interpretation of Horn clauses.          The
-work of Colmerauer and Roussel has since resulted in
-the elaboration, at the University of Aix-Marseille,
-of the PROLOG. language (31 based on predicate logic.
-The work of Hayes, arguing that control structures are
-needed to provide pragmatic information which cannot
-usefully be expressed by axioms, has now been reported
- 81.
+That sets of axioms are like programs, in the way that different
+formulations can have equivalent meanings but very different
+influences on efficiency, is a point of view which runs counter to the
+prevailing moods in symbolic logic and in artificial intelligence.  In
+particular, the attacks by Anderson and Hayes {1} and by Minsky and
+Papert {17} against the utility of the theorem-proving paradigm depend
+upon the assumption that axioms convey meaning but not pragmatic
+information. Our contrary point of view was reinforced by joint
+research with Alain Colmerauer (reported in fill) on axiomatisations
+ofrgrammars, regarded as programs for syntactic analysis. Further
+reinforcement was provided by the work of Philippe Roussel {22}, who
+showed that many uses of the equality relation could be replaced by
+the more efficiently mechanisable identity relation. Roussel's
+experience encouraged us to abandon the equality relation altogether,
+replacing equalities, not interpretable as identities, by
+implications, as in the procedural interpretation of Horn clauses.
+The work of Colmerauer and Roussel has since resulted in the
+elaboration, at the University of Aix-Marseille, of the
+PROLOG. language {3} based on predicate logic.  The work of Hayes,
+arguing that control structures are needed to provide pragmatic
+information which cannot usefully be expressed by axioms, has now been
+reported {8}.
 
-Another common impression about theorem-proving is
-that deduction is completely consequence-oriented and
-therefore unsuitable for goal-oriented problem-solving.
-Our contrary attitude was substantiated by our studies
-of Loveland's model elimination {13) and by our inter-
-pretation of model elimination as a goal-oriented
-resolution system f101.       Later, the discovery by Bob
-Boyer and J Moore (2) that certain ways of efficiently
-implementing theorem-provers resemble ways of imple-
-menting programming language interpreters, helped to
-suggest that theorem-provers can be regarded as inter-
-preters for programs written in predicate logic. The
-work of Boyer and Moore led to the implementation of
-BAROQUE f 181, an experimental language with a LISP-
-like interpreter written in predicate logic and inter-
-preted in turn by a resolution theorem-proving program
-written in POP-2.
+Another common impression about theorem-proving is that deduction is
+completely consequence-oriented and therefore unsuitable for
+goal-oriented problem-solving.  Our contrary attitude was
+substantiated by our studies of Loveland's model elimination {13} and
+by our inter- pretation of model elimination as a goal-oriented
+resolution system {10}.  Later, the discovery by Bob Boyer and J Moore
+{2} that certain ways of efficiently implementing theorem-provers
+resemble ways of implementing programming language interpreters,
+helped to suggest that theorem-provers can be regarded as interpreters
+for programs written in predicate logic. The work of Boyer and Moore
+led to the implementation of BAROQUE {18}, an experimental language
+with a LISP-like interpreter written in predicate logic and
+interpreted in turn by a resolution theorem-proving program written in
+POP-2.
 
-The initiation of the work reported in this paper owes
-much to the profitable interactions we have had with
-Hayes, Colmerauer, Roussel, Boyer and Moore.           In
-particular, the general thesis that computation and
-deduction are very nearly the same is due to Pat Hayes.
-This paper would not have been written, however,
-without the encouragement and enthusiasm for predicate
-logic programming of my colleagues David Warren and
-Maarten van Emden. We owe a special debt to
-Michael Gordon for his continuing interest and helpful
-criticsms, and to Aaron Sloman for his detailed and
-useful comments on an earlier draft of this paper.
+The initiation of the work reported in this paper owes much to the
+profitable interactions we have had with Hayes, Colmerauer, Roussel,
+Boyer and Moore.  In particular, the general thesis that computation
+and deduction are very nearly the same is due to Pat Hayes.  This
+paper would not have been written, however, without the encouragement
+and enthusiasm for predicate logic programming of my colleagues David
+Warren and Maarten van Emden. We owe a special debt to Michael Gordon
+for his continuing interest and helpful criticsms, and to Aaron Sloman
+for his detailed and useful comments on an earlier draft of this
+paper.
 
-This research was initiated during a visit to the
-University of Aix-Marseille, supported by C.N.R.S.
-It was continued with the aid of a Science Research
-Council grant to Bernard Meltzer.
+This research was initiated during a visit to the University of
+Aix-Marseille, supported by C.N.R.S.  It was continued with the aid of
+a Science Research Council grant to Bernard Meltzer.
