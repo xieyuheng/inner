@@ -92,7 +92,7 @@ B1, ..., Bm  <- A1, ..., An
 
 An atomic formula has the form `P(t1, ..., tk)` where `Pi`s a k-ary
 predicate symbol and the `ti` are terms. A term is either a variable
-`x, y, z, ...` or an expression `f(ti, ..., tk)`, where `f` is a k-ary
+`x, y, z, ...` or an expression `f(t1, ..., tk)`, where `f` is a k-ary
 function symbol and the `ti` are terms.  The sets of all predicate
 symbols, function symbols and variables are any three sets of mutually
 disjoint symbols.  Constants are 0-ary function symbols.
