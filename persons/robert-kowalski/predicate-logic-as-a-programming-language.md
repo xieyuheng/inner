@@ -477,16 +477,16 @@ The space contains two successful computations and one unsuccessfully
 terminating computation.
 
 ```
-Member(x, cons(a, cons(b, nil)))
---------------------------------- (M1) {
+Member(x, cons(a, cons(b, nil))) {
+  --------------------------------- case (M1)
   x = a
-}
---------------------------------- (M2) {
-  Member(x, cons(b, nil))
-  ------------------------ (M1) {
+
+  --------------------------------- case (M2)
+  Member(x, cons(b, nil)) {
+    ------------------------ case (M1)
     x = b
-  }
-  ------------------------ (M2) {
+
+    ------------------------ case (M2)
     Member(x, nil)
   }
 }
@@ -628,11 +628,11 @@ which computes a function into a non-deterministic program which
 computes the function's inverse.
 
 ```
-Fact(x, s(0))
--------------- (F1) {
+Fact(x, s(0)) {
+  -------------- case (F1)
   x = 0
-}
--------------- (F2) {
+
+  -------------- case (F2)
   x = s(x1)
   Fact(x', v)
   Times(s(x'), v, s(0))
@@ -642,7 +642,6 @@ Fact(x, s(0))
   Fact(0, s(0))
   --------------- (F1)
 }
-
 ```
 
 **Fig. 4.  The transformation of a 'deterministic' program into a
