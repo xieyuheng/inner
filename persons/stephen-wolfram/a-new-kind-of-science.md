@@ -1,12 +1,14 @@
-#+title: a new kind of science
+---
+title: a new kind of science
+---
 
-* 1 The Foundations for a New Kind of Science
+# 1 The Foundations for a New Kind of Science
 
-** An Outline of Basic Ideas
+## An Outline of Basic Ideas
 
 - program: setup rules for change
 
-- computation: change directed rules (behavior)
+- computation: change directed by rules (behavior)
 
 - nature (the dao):
   nature is a simple programs produce great complexity
@@ -23,8 +25,9 @@
 - perception:
   our own processes of perception and analysis can be thought of as computations.
 
-* 2 The Crucial Experiment
-* 3 The World of Simple Programs
+# 2 The Crucial Experiment
+
+# 3 The World of Simple Programs
 
 - the "substitution systems" is generative grammar.
 
@@ -55,12 +58,12 @@
 
 - is it true the machine that can generate complex computation, is turing complete?
 
-* 4 Systems Based on Numbers
-* 5 Two Dimensions and Beyond
-* 6 Starting from Randomness
-* 7 Mechanisms in Programs and Nature
-* 8 Implications for Everyday Systems
-* 9 Fundamental Physics
-* 10 Processes of Perception and Analysis
-* 11 The Notion of Computation
-* 12 The Principle of Computational Equivalence
+# 4 Systems Based on Numbers
+# 5 Two Dimensions and Beyond
+# 6 Starting from Randomness
+# 7 Mechanisms in Programs and Nature
+# 8 Implications for Everyday Systems
+# 9 Fundamental Physics
+# 10 Processes of Perception and Analysis
+# 11 The Notion of Computation
+# 12 The Principle of Computational Equivalence
