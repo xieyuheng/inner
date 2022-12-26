@@ -9,7 +9,7 @@ year: 1991
 
 # Part I The category of sets
 
-## ARTICLE I Sets, maps, compositionA first example of a category
+## ARTICLE I Sets, maps, composition
 
 # Part II The algebra of composition
 
