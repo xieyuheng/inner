@@ -235,3 +235,24 @@ company(Name1, Value1), company(Name2, Value2)
 ?- company(tesla, 100), company(twitter, 30), company(google, 50).
 company((tesla:twitter):google, 180).
 ```
+
+## 1.2 CHR programs and their execution
+
+```prolog
+Rule --> [Name '@'] (SimplificationRule | PropagationRule | SimpagationRule) '.'
+
+SimplificationRule --> Head '<=>' [Guard '|'] Body
+PropagationRule --> Head '==>' [Guard '|'] Body
+SimpagationRule --> Head '\' Head '<=>' [Guard '|'] Body
+
+Head --> CHRConstraints
+Guard --> BuiltInConstraints
+Body --> Goal
+
+
+CHRConstraints --> CHRConstraint | CHRConstraint ',' CHRConstraints
+BuiltInConstraints --> BuiltIn | BuiltIn ',' BuiltInConstraints
+Goal --> CHRConstraint | BuiltIn | Goal ',' Goal
+
+Query --> Goal
+```
