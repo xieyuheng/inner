@@ -249,7 +249,6 @@ Head --> CHRConstraints
 Guard --> BuiltInConstraints
 Body --> Goal
 
-
 CHRConstraints --> CHRConstraint | CHRConstraint ',' CHRConstraints
 BuiltInConstraints --> BuiltIn | BuiltIn ',' BuiltInConstraints
 Goal --> CHRConstraint | BuiltIn | Goal ',' Goal
