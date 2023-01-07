@@ -88,3 +88,7 @@ in which no term-syntax is required.
 
 But maybe we still can provide a term-syntax for resolution calculus,
 just to record the steps, not to use the reducion of term as a computational model.
+
+But maybe the satisfiability can be verified without the proof (steps of deduction).
+
+- But the `find` query can only handle `exists`, not `forall`.

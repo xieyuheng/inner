@@ -12,6 +12,8 @@ author: Xie Yuheng
 
 # TODO
 
+ZFC as example first order theory -- try to formalize in logic programming.
+
 A browser of 3d scenes,
 one can use url to travel to other scenes.
 A scene is a box (a tree is a nested box).
