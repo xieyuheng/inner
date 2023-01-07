@@ -12,9 +12,11 @@ author: Xie Yuheng
 
 # TODO
 
-learn about general constraint logic programming framework.
+A browser of 3d scenes,
+one can use url to travel to other scenes.
+A scene is a box (a tree is a nested box).
 
-implement type constraint for `whereabouts`.
+learn about general constraint logic programming framework.
 
 learn about general nominal logic.
 
