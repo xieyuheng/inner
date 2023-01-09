@@ -4,6 +4,37 @@ authors: [Thom Frühwirth, Slim Abdennadher]
 year: 2003
 ---
 
+# 4. Logic Programming
+
+## 4.1 LP Calculus
+
+Calculus is defined by state transition.
+
+The state is one solution of
+a goal (a conjunction of goals)
+and a substitution.
+
+Thus non-deterministic is not part of the calculus,
+which requires a queue of solutions.
+
+In our implementation we have `Solver` which serve as the state:
+
+```
+class Solver {
+  solutions: Array<Solution>
+  partialSolutions: Array<Solution>
+}
+```
+
+and `pursue` function:
+
+```
+pursue: (Mod, Env, Solution, goal: Goal): Array<Solution>
+```
+
+which serve as the transition function,
+and handles non-deterministic by returning a array of solutions.
+
 # A. Foundations from Logic
 
 ## A.1 First-Order Logic: Syntax and Semantics
