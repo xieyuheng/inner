@@ -8,6 +8,8 @@ year: 2003
 
 ## 4.1 LP Calculus
 
+### 4.1.2 Operational Semantics
+
 Calculus is defined by state transition.
 
 The state is one solution of
@@ -34,6 +36,113 @@ pursue: (Mod, Env, Solution, goal: Goal): Array<Solution>
 
 which serve as the transition function,
 and handles non-deterministic by returning a array of solutions.
+
+**Non-determinism:**
+
+Given a state `<A and G, θ>`, there are two degrees of non-determinism
+in the calculus when we want to reduce it to another state:
+
+- Any atom in the conjunction `A and G` can be chosen as the atom `A`
+  according to the congruence defined on states.
+
+- Any clause `(B <- H)` in `P` for which `B` and `A θ` are unifiable
+  can be chosen.
+
+This two kinds of non-determinisms are different,
+
+- We need to try all choices of clause to keep the search complete.
+
+- We do not need to try all choices of atom,
+  because different choices only effect the performance of the search
+  and will give the same result (if not going to infinite loop).
+
+- **Xie:** Whenever we want to try all choices of a non-determinism,
+  we need to keep a queue of all branches of states,
+  and different strategy for selecting next state from the queue
+  gives different search strategy,
+  for examples depth-first and breadth-first.
+
+## 4.2 Declarative Semantics
+
+A list of clauses understand in first-order logic,
+is the universal closure of the conjunction of the clauses.
+
+For example:
+
+```
+clause Append([], l, l)
+clause Append([a | d], l, [a | r]) -- { Append(d, l, r) }
+```
+
+Should be understand as:
+
+```
+conj([
+  forall (l) Append([], l, l) <- Succeed(),
+  forall (a, d, l, r) Append([a | d], l, [a | r]) <- Append(d, l, r),
+])
+```
+
+The semantics (meaning) of "negation as failure"
+can be expressed in first-order logic easily.
+
+## 4.3 Soundness and Completeness
+
+**Soundness:**
+
+Everything that is derivable (in the sense of the operational semantics),
+should also logically follow (in the sense of first-order logic) from the program (the clauses).
+
+**Completeness:**
+
+Everything logically follow (in the sense of first-order logic) from the program (the clauses),
+should also be derivable (in the sense of the operational semantics).
+
+**Theorem 4.3.1** (Soundness and Completeness of successful derivations).
+
+Let `P` be a logic program, `C` be a goal, and `θ` be a substitution.
+
+- **Soundness:** If `θ` is a computed answer of `G`, then
+
+  ```
+  P |= forall (...) G θ
+  ```
+
+- **Completeness:**
+
+  If
+
+  ```
+  P |= forall (...) G θ
+  ```
+
+  then a computed answer `a` of `G` exists, such that `0 = a b`.
+
+  The relationship `0 = a b` means that the computed answer can be
+  more general. This is because an answer need not instantiate all
+  variables and any instance of it also follows from the logical
+  reading of the program.
+
+**Definition 4.3.1** A derivation is fair if it either fails or if
+each atom appearing in a derivation is selected after finitely many
+reductions.
+
+In other words, given a state, there is no atom that is ignored
+forever, i.e., never selected.
+
+**Theorem 4.3.2** (Soundness and Completeness offailed derivations).
+
+Let `P` be a logic program and `G` be a goal. Any fair derivation starting with
+`<G, empty>` fails finitely if and only if
+
+```
+P and Clark's completion |= not exists (...) G
+```
+
+Such a result on failed derivations would not exist without Clark's
+completion of a program. Note that SLD resolution does not admit fair
+derivations in any case, since always the left most atom of a state is
+chosen for `Unfold`.
 
 # A. Foundations from Logic
 
