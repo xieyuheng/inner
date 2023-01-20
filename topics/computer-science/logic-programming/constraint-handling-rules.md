@@ -4,6 +4,8 @@ author: Thom Frühwirth
 year: 2009
 ---
 
+[ [WEBSITE](https://www.informatik.uni-ulm.de/pm/fileadmin/pm/home/fruehwirth/constraint-handling-rules-book.html) ]
+
 # Preface
 
 Rules have a double nature, they can express monotonic static causal

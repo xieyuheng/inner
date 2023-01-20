@@ -31,7 +31,7 @@ class Solver {
 and `pursue` function:
 
 ```
-pursue: (Mod, Env, Solution, goal: Goal): Array<Solution>
+pursue(Mod, Env, Solution, goal: Goal): Array<Solution>
 ```
 
 which serve as the transition function,
@@ -143,6 +143,78 @@ Such a result on failed derivations would not exist without Clark's
 completion of a program. Note that SLD resolution does not admit fair
 derivations in any case, since always the left most atom of a state is
 chosen for `Unfold`.
+
+# 5. Constraint Logic Programming
+
+CLP languages combine the advantages of LP languages
+(declarative, for arbitrary predicates, non-deterministic)
+with those of constraint solvers
+(declarative, efficient for special predicates, deterministic).
+
+- **Xie:** Note that a constraint solver is deterministic.
+
+The solution state is the remaining goals and the constraints,
+substitution is merged into constraints.
+
+- **Xie:** Maybe we should not
+  merged substitution into constraints
+  in practical implementation.
+
+- **Xie:** Arbitrary first-order theory can be used as the constraint solver,
+  does this mean that we can use guarded hypergraph rewriting
+  to implement any first-order theory?
+
+# 6. Concurrent Constraint Logic Programming
+
+In CCLP, concurrently executing processes communicate via a common
+constraint store. The processes are defined by predicates. Constraints
+take the role of (partial) messages and variables take the role of
+communication channels.
+
+**Xie:** Maybe we can implement this using couchdb-like revison.
+
+**Xie:** Since constraints can only increase,
+maybe we can use the propagator model of Sussman.
+
+# 7. Constraint Handling Rules
+
+**Xie:** We let rules guarded by predicates instead of built-in constraints.
+
+**Xie:** Is it really necessary to distinguish
+simplification rules from propagation rules?
+
+- Maybe by distinguishing them we can view constraints as linear resource,
+  instead of dedup multiple occurance of the same constraint.
+
+CHR is not hypergraph rewriting,
+because the state consists of goals and constraints,
+and a rule can only match atoms in goals but not in constraints.
+
+- Is there a transition that move atoms from constraints back to goals?
+
+The `Propagate` transition is like the `Simplify` transition, except
+that it keeps the constraints `E` in the state. Trivial
+non-termination is avoided by not applying a rule a second time to the
+same constraints.
+
+- **Xie:** Not that a `Propagate` rule is a linear resource that can only be applied once,
+  but that it can only be applied to the same constraints once.
+
+- **Xie:** Also note that there is no dedup on the constraints store,
+  viewed a labelled hypergraph, this means
+  multiple edges of the same labelled is allowed.
+
+# 8. Constraint Systems and Constraint Solvers
+
+# 9. Boolean Algebra B
+
+# 10. Rational Trees RT
+
+# 11. Linear Polynomial Equations R
+
+# 12. Finite Domains FD
+
+# 13. Non-linear Equations I
 
 # A. Foundations from Logic
 
