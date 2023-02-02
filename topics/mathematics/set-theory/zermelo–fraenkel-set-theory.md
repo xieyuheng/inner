@@ -14,7 +14,7 @@ title: Zermelo–Fraenkel Set Theory
 
 It is helpful to view a set as a rooted tree (with unordered children).
 
-- Can we say, ZFC set theory axioms is about tree and recursion?
+- Can we say, ZFC set theory axioms is about rooted tree and recursion?
 
 ## Pattern matching between sets
 
