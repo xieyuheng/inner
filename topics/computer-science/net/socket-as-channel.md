@@ -1,5 +1,6 @@
 ---
 title: Socket as channel
+date: 2023-03-02
 ---
 
 # BSD socket
