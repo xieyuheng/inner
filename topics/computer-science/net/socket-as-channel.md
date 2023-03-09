@@ -61,3 +61,8 @@ ZeroMQ’s patterns are hard-coded
 but future versions may allow user-definable patterns.
 
 [Question] Can we use erlang actors to implement message patterns?
+
+- Yes.
+
+  First we need to implement the concept of connection,
+  because actor model are like UDP, which does not have connection.
