@@ -12,6 +12,11 @@ author: Xie Yuheng
 
 # TODO
 
+FTHTP -- a forth like language over the wire,
+to send command to build data at the other end,
+supporting conditional, loop and recursion,
+especially for building record and collection.
+
 ZFC as example first order theory -- try to formalize in logic programming.
 
 A browser of 3d scenes,
