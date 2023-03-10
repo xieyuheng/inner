@@ -12,10 +12,18 @@ author: Xie Yuheng
 
 # TODO
 
-FTHTP -- a forth like language over the wire,
+FTHTP -- Forth Transport Protocol
+
+A forth like language at the transport layer,
 to send command to build data at the other end,
 supporting conditional, loop and recursion,
 especially for building record and collection.
+
+- Using record can make the transport format
+  NOT depending on the order of message
+  -- such as ZMQ multi-part message.
+
+- Property names in record can make a protocol self documenting.
 
 ZFC as example first order theory -- try to formalize in logic programming.
 
