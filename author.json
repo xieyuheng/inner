@@ -1,11 +1,5 @@
 {
-  "index": "README.md",
-  "tabs": {
-    "NOTES": "contents/notes.md",
-    "PROJECTS": "contents/projects.md",
-    "TRANSLATIONS": "contents/translations.md",
-    "PAPERS": "contents/papers.md",
-    "LIVE": "contents/live.md",
-    "RESUME": "contents/resume.md"
-  }
+  "name": { "en": "Xie Yuheng", "zh": "谢宇恒" },
+  "homepage": "README.md",
+  "subscription": "diary/index"
 }
