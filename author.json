@@ -1,5 +1,14 @@
 {
-  "name": { "en": "Xie Yuheng", "zh": "谢宇恒" },
+  "name": "Xie Yuheng",
   "homepage": "README.md",
-  "subscription": "diary/index"
+  "activities": [
+    "diary/2022-01-27.md",
+    "diary/2022-01-28.md",
+    "diary/2022-01-29.md",
+    "diary/2022-01-30.md",
+    "diary/2022-02-02.md",
+    "diary/2022-02-04.md",
+    "diary/2022-02-17.md",
+    "diary/2022-03-12.md"
+  ]
 }
