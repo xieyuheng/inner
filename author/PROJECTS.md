@@ -1,5 +1,5 @@
-[ [HOME](HOME.md)
-| [PROJECTS](PROJECTS.md) ]
+[ [**HOME**](HOME.md)
+| [**PROJECTS**](PROJECTS.md) ]
 
 > proj·ect
 >
