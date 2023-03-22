@@ -1,5 +1,3 @@
-## Xie Yuheng
-
 [ [**HOME**](HOME.md)
 | [**PROJECTS**](PROJECTS.md) ]
 
