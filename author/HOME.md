@@ -1,5 +1,8 @@
 ## Hi, I'm Xie Yuheng ^-^/
 
+[ [HOME](HOME.md)
+| [PROJECTS](PROJECTS.md) ]
+
 I am a programmer, and I work as a full-stack web developer.
 
 I share my ideas about _programming_, _mathematics_ and _philosophy_
