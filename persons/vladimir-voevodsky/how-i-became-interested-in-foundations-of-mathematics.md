@@ -539,7 +539,7 @@ And as mathematics becomes more complex
 the weight of mistakes of the fear of making a mistake
 is slowing the development of mathematics more.
 
-# Q&A
+# Q and A
 
 **Questioner** asked about the used of proof assistants.
 
