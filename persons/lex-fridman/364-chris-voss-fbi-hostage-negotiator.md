@@ -21,3 +21,9 @@ subtitle: Lex Fridman Podcast #364
 
 - An interesting experiment: hangout but do not talk, just experience
   silence together.
+
+- What are the basic tools of great negotiation?
+
+  Labeling, mirror, paraphrasing and summarizing.
+
+  Genuinely, just try to make sure heard somebody out.
