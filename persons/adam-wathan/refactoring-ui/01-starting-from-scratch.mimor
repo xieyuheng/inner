@@ -65,3 +65,50 @@
     Tailwind CSS.
   </answer>
 </question>
+
+<question>
+  What is the point of designing in low-fidelity?
+
+  <answer>
+    To move fast.
+
+    To get important feedback as soon as possible,
+    and learn from them.
+  </answer>
+</question>
+
+<question>
+  Why you should not design every single feature in an app
+  before you move on to implementation?
+
+  <answer>
+    Because figuring out
+    how every feature in a product should interact
+    and how every edge case should look is really hard,
+    especially in the abstract.
+  </answer>
+</question>
+
+<cloze>
+  Instead of designing everything up front, <blank>work in short cycles</blank>.
+</cloze>
+
+<cloze>
+  Don't <blank>imply functionality</blank> in your designs
+  that you aren't ready to build.
+</cloze>
+
+<cloze>
+  When you're designing a new feature, <blank>expect it to be hard to build</blank>.
+
+  Designing the smallest useful version you can ship
+  reduces that risk considerably.
+</cloze>
+
+<cloze>
+  If part of a feature is <blank>a "nice-to-have"</blank>,
+  design it later.
+
+  Build the simple version first
+  and you’ll always have something to fall back on.
+</cloze>
