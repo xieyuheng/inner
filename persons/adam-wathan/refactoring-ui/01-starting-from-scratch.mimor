@@ -50,3 +50,18 @@
   <blank>spacing</blank>, contrast, and size
   to express yourself.
 </cloze>
+
+<cloze>
+  In terms of fidelity,
+  the browser is a <blank>high fidelity environment</blank>.
+</cloze>
+
+<question>
+  What is a styling tool that can help you to
+  prototype while ignoring details
+  in high fidelity environment like the browser.
+
+  <answer>
+    Tailwind CSS.
+  </answer>
+</question>
