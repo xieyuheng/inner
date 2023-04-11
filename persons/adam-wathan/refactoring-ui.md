@@ -7,7 +7,21 @@ authors: ["Adam Wathan", "Steve Schoger"]
 
 # Starting from Scratch
 
+- Start with a feature, not a layout
+
+- Detail comes later
+
+- Don’t design too much
+
 <mimor src="refactoring-ui/01-starting-from-scratch.mimor" />
+
+- Choose a personality
+
+<mimor src="refactoring-ui/01.4-choose-a-personality.mimor" />
+
+- Limit your choices
+
+<mimor src="refactoring-ui/01.5-limit-your-choices.mimor" />
 
 # Hierarchy is Everything
 
