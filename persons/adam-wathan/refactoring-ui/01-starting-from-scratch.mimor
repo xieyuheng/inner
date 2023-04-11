@@ -27,3 +27,26 @@
     to make a decision about the layout.
   </answer>
 </question>
+
+<question>
+  Please give a good example of feature first app?
+
+  <answer>
+    Google.
+
+    The homepage is just a searchbar.
+  </answer>
+</question>
+
+<cloze>
+  In the earliest stages of designing a new feature,
+  do not make low-level decisions about details such as:
+  typefaces, shadows, icons, and <blank>colors</blank>.
+</cloze>
+
+<cloze>
+  By designing in grayscale,
+  you're forced to use
+  <blank>spacing</blank>, contrast, and size
+  to express yourself.
+</cloze>
