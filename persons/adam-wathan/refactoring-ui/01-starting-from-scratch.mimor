@@ -1,0 +1,25 @@
+<metadata
+  theme-color="indigo"
+  keywords="design"
+/>
+
+<question>
+  When you start the design for a new app idea,
+  what do you design first?
+
+  <answer>
+    Start with a feature, not a layout.
+  </answer>
+</question>
+
+<question>
+  What is an app?
+
+  <answer>
+    An app is a collection of features.
+
+    Before you've designed a few features,
+    you don't even have the information you need
+    to make a decision about the layout.
+  </answer>
+</question>
