@@ -17,7 +17,7 @@
   Why when designing without constraints, decision-making is torture?
 
   <answer>
-    Because there’s always going to be more than one right choice.
+    Because there's always going to be more than one right choice.
   </answer>
 </question>
 
@@ -49,7 +49,7 @@
 </cloze>
 
 <question>
-  What we should create a design system for?
+  What should we create a design system for?
 
   <answer>
     Everything that feels like a low-level design decision.
@@ -68,6 +68,19 @@
     • Border width
     • Opacity
     </code>
+  </answer>
+</question>
+
+<question>
+  How should we create design systems?
+
+  <answer>
+    Do NOT define all of this stuff ahead of time,
+    just make sure you're approaching design with a system-focused mindset.
+
+    Look for opportunities to introduce new systems
+    as you make new decisions, and try to avoid
+    having to make the same minor decision twice.
   </answer>
 </question>
 
