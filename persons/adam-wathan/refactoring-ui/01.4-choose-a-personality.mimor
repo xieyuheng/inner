@@ -94,6 +94,43 @@
   (About color and personality.)
 </cloze>
 
+<cloze>
+  <blank>A small</blank> border radius is pretty neutral,
+  and doesn’t really communicate much of a personality on its own.
+
+  (About border radius and personality.)
+</cloze>
+
+<cloze>
+  <blank>A large</blank> border radius starts to feel more playful.
+
+  (About border radius and personality.)
+</cloze>
+
+<cloze>
+  <blank>No</blank> border radius at all feels a lot more serious or formal.
+
+  (About border radius and personality.)
+</cloze>
+
+<question>
+  What you should do if you are not sure
+  about the personality you should choose for an app?
+
+  <answer>
+    A great way to simplify the decision is to
+    take a look at other good apps of the same kind.
+  </answer>
+</question>
+
+<question>
+  Why you should NOT borrow too much from direct competitors?
+
+  <answer>
+    Because you don’t want to look like a second-rate version of something else.
+  </answer>
+</question>
+
 <back-cover>
   - Choose a personality
 </back-cover>
