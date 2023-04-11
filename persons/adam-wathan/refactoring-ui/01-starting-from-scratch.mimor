@@ -40,7 +40,7 @@
 
 <cloze>
   In the earliest stages of designing a new feature,
-  do not make low-level decisions about details such as:
+  do NOT make low-level decisions about details such as:
   typefaces, shadows, icons, and <blank>colors</blank>.
 </cloze>
 
@@ -78,7 +78,7 @@
 </question>
 
 <question>
-  Why you should not design every single feature in an app
+  Why you should NOT design every single feature in an app
   before you move on to implementation?
 
   <answer>
