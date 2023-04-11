@@ -1,7 +1,6 @@
 ---
 title: Refactoring UI
 authors: ["Adam Wathan", "Steve Schoger"]
-
 ---
 
 [ [WEBSITE](https://www.refactoringui.com) ]
@@ -10,12 +9,104 @@ authors: ["Adam Wathan", "Steve Schoger"]
 
 <mimor src="refactoring-ui/01-starting-from-scratch.mimor" />
 
-## Start with a feature, not a layout
+# Hierarchy is Everything
 
-## Detail comes later
+- Not all elements are equal
 
-## Don’t design too much
+- Size isn't everything
 
-## Choose a personality
+- Don't use grey text on colored backgrounds
 
-## Limit your choices
+- Emphasize by de-emphasizing
+
+- Labels are a last resort
+
+- Separate visual hierarchy from document hierarchy
+
+- Balance weight and contrast
+
+- Semantics are secondary
+
+# Layout and Spacing
+
+- Start with too much white space
+
+- Establish a spacing and sizing system
+
+- You don't have to fill the whole screen
+
+- Grids are overrated
+
+- Relative sizing doesn't scale
+
+- Avoid ambiguous spacing
+
+# Designing Text
+
+- Establish a type scale
+
+- Use good fonts
+
+- Keep your line length in check
+
+- Baseline, not center
+
+- Line-height is proportional
+
+- Not every link needs a color
+
+- Align with readability in mind
+
+- Use letter-spacing effectively
+
+# Working with Color
+
+- Ditch hex for HSL
+
+- You need more colors than you think
+
+- Define your shades up front
+
+- Don't let lightness kill your saturation
+
+- Greys don't have to be grey
+
+- Accessible doesn't have to mean ugly
+
+- Don't rely on color alone
+
+# Creating Depth
+
+- Emulate a light source
+
+- Use shadows to convey elevation
+
+- Shadows can have two parts
+
+- Even flat designs can have depth
+
+- Overlap elements to create layers
+
+# Working with Images
+
+- Use good photos
+
+- Text needs consistent contrast
+
+- Everything has an intended size
+
+- Beware user-uploaded content
+
+# Finishing Touches
+
+- Supercharge the defaults
+
+- Add color with accent borders
+
+- Decorate your backgrounds
+
+- Don't overlook empty states
+
+- Use fewer borders
+
+- Think outside the box
