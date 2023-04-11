@@ -17,13 +17,9 @@ authors: ["Adam Wathan", "Steve Schoger"]
 
 - Choose a personality
 
-TODO
-
 <mimor src="refactoring-ui/01.4-choose-a-personality.mimor" />
 
 - Limit your choices
-
-TODO
 
 <mimor src="refactoring-ui/01.5-limit-your-choices.mimor" />
 
