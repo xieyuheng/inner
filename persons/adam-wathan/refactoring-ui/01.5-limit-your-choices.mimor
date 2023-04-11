@@ -17,7 +17,7 @@
   Why when designing without constraints, decision-making is torture?
 
   <answer>
-    Because there's always going to be more than one right choice.
+    Because there's always going to be more than one "right" choice.
   </answer>
 </question>
 
@@ -54,20 +54,29 @@
   <answer>
     Everything that feels like a low-level design decision.
 
-    <code>
-    • Font size
-    • Font weight
-    • Line height
-    • Color
-    • Margin
-    • Padding
-    • Width
-    • Height
-    • Box shadows
-    • Border radius
-    • Border width
-    • Opacity
-    </code>
+    - Font size
+
+    - Font weight
+
+    - Line height
+
+    - Color
+
+    - Margin
+
+    - Padding
+
+    - Width
+
+    - Height
+
+    - Box shadows
+
+    - Border radius
+
+    - Border width
+
+    - Opacity
   </answer>
 </question>
 
