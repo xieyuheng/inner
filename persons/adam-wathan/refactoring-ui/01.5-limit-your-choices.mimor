@@ -21,6 +21,56 @@
   </answer>
 </question>
 
+<cloze>
+  Instead of hand-picking values from a limitless pool any time
+  you need to make a decision, start with <blank>a smaller set of options</blank>.
+</cloze>
+
+<cloze>
+  A predefined small set of options is called <blank>a design system</blank>.
+</cloze>
+
+<question>
+  When you're designing using a constrained set of values,
+  why decision-making is a lot easier?
+
+  <answer>
+    Because there are a lot fewer "right" choices.
+
+    Try a choice to get a feeling,
+    then move up or down to find the "right" choice.
+  </answer>
+</question>
+
+<cloze>
+  The set of options of a design system
+  must <blank>all look noticeably different</blank>,
+  so that picking the best one is a piece of cake.
+</cloze>
+
+<question>
+  What we should create a design system for?
+
+  <answer>
+    Everything that feels like a low-level design decision.
+
+    <code>
+    • Font size
+    • Font weight
+    • Line height
+    • Color
+    • Margin
+    • Padding
+    • Width
+    • Height
+    • Box shadows
+    • Border radius
+    • Border width
+    • Opacity
+    </code>
+  </answer>
+</question>
+
 <back-cover>
   - Limit your choices
 </back-cover>
