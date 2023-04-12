@@ -7,8 +7,6 @@ venue: The Global Young Scientists Summit (GYSS)
 
 [ [YOUTUBE](https://www.youtube.com/watch?v=ZVOo7T3GJmI) ]
 
-<br />
-
 When we say "constructive mathematics" we should first make clear
 what we mean by the word "mathematics" in this phrase.
 

@@ -7,8 +7,6 @@ venue: Institut Henri Poincaré
 
 [ [YOUTUBE](https://www.youtube.com/watch?v=CJugQ8AGCUo) ]
 
-<br />
-
 First, let me state the following over simplified, but, I believe,
 important for the understanding thesis:
 
