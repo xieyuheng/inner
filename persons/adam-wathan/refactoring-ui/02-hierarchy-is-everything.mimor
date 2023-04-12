@@ -8,14 +8,23 @@
 </front-cover>
 
 <question>
-  What is Visual hierarchy?
+  What is visual hierarchy?
 
   <answer>
-    Visual hierarchy refers to how important
-    the elements in an interface appear
-    in relation to one another,
-    and it's the most effective tool you have
+    Visual hierarchy is about attentions.
+
+    How important the elements in an interface appear
+    in relation to one another.
+
+    It's the most effective tool you have
     for making something feel "designed".
   </answer>
 </question>
 
+<cloze>
+  Instead of making the primary content large in size,
+  we can <blank>make it bolder</blank>.
+
+  Instead of making the secondary content small in size,
+  we can <blank>use a softer color</blank>.
+</cloze>

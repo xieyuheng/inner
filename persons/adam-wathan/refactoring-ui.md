@@ -41,6 +41,8 @@ authors: ["Adam Wathan", "Steve Schoger"]
 
 - Semantics are secondary
 
+<mimor src="refactoring-ui/02-hierarchy-is-everything.mimor" />
+
 # Layout and Spacing
 
 - Start with too much white space
