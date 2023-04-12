@@ -21,6 +21,22 @@
   </answer>
 </question>
 
+<question>
+  Beside visual hierarchy,
+  what other methods we can use
+  to direct user's attention?
+
+  <answer>
+    Every element on a page competes for attention.
+
+    Visual hierarchy is about this competition,
+    sometimes we can be minimalist.
+
+    Just give the user the information that mattters
+    and do not let the elements compete for attention at all.
+  </answer>
+</question>
+
 <cloze>
   Instead of making the primary content large in size,
   we can <blank>make it bolder</blank>.
@@ -28,3 +44,109 @@
   Instead of making the secondary content small in size,
   we can <blank>use a softer color</blank>.
 </cloze>
+
+<question>
+  Don’t use grey text on colored backgrounds to create hierarchy.
+
+  How should we create hierarchy in this case?
+
+  <answer>
+    Making the text closer to the background color
+    is what actually helps create hierarchy,
+    not making it light grey.
+
+    Because it is about reducing contrast.
+  </answer>
+</question>
+
+<question>
+  Why we should not use white text and reduce the opacity,
+  to create hierarchy on colored backgrounds?
+
+  <answer>
+    While this does reduce the contrast,
+    it often results in text that looks dull,
+    washed out, and sometimes even disabled.
+
+    And it does not works on image or pattern.
+  </answer>
+</question>
+
+<cloze>
+  We can emphasize by <blank>de-emphasizing</blank>,
+  because the attentions that an element got
+  is relative to other elements.
+</cloze>
+
+<question>
+  When presenting data to the user
+  (especially data from the database),
+  why it’s often not good for design
+  to use the `label: value` format.
+
+  <answer>
+    Because then it is difficult to introduce hierarchy,
+    the format is generic,
+    thus every piece of data is given equal emphasis.
+  </answer>
+</question>
+
+<question>
+  Why we often do not need to use label?
+
+  <answer>
+    Because we often can tell what a piece of data is
+    just by looking at the format of it's value.
+
+    And when the format isn't enough,
+    the context often is.
+
+    For example:
+
+    - janedoe@example.com
+
+    - (555) 765-4321
+
+    - $19.99
+  </answer>
+</question>
+
+<question>
+  When to emphasize a label?
+
+  <answer>
+    If you're designing an interface
+    where you know the user will be looking for the label.
+
+    This is often the case on information-dense pages.
+  </answer>
+</question>
+
+<question>
+   When should a title be small?
+
+  <answer>
+    When it acts more like labels than headings.
+
+    Sometimes it should even be completely hide,
+    because the content speaks for itself.
+  </answer>
+</question>
+
+<back-cover>
+  - Not all elements are equal
+
+  - Size isn't everything
+
+  - Don't use grey text on colored backgrounds
+
+  - Emphasize by de-emphasizing
+
+  - Labels are a last resort
+
+  - Separate visual hierarchy from document hierarchy
+
+  - Balance weight and contrast
+
+  - Semantics are secondary
+</back-cover>

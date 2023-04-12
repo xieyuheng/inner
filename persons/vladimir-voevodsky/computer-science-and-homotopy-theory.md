@@ -7,8 +7,6 @@ venue: Institute for Advanced Study
 
 [ [YOUTUBE](https://www.youtube.com/watch?v=UvDeVqzcw4k) ]
 
-<br />
-
 Type theory is developed as an alternative to logic and set theory.
 Type theory is some kind of combination of logic and set theory.
 
