@@ -123,7 +123,7 @@
 </question>
 
 <question>
-   When should a title be small?
+  When should a title be small?
 
   <answer>
     When it acts more like labels than headings.
@@ -132,6 +132,13 @@
     because the content speaks for itself.
   </answer>
 </question>
+
+<cloze>
+  If there are many aspects (axes),
+  such as weight and contrast,
+  by which we can emphasize or de-emphasize,
+  then we can <blank>trade them</blank>.
+</cloze>
 
 <back-cover>
   - Not all elements are equal
