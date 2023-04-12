@@ -1,0 +1,22 @@
+<metadata
+  theme-color="yellow"
+  keywords="adam-wathan, refactoring-ui, design"
+/>
+
+<front-cover>
+  Refactoring UI / Layout and Spacing
+</front-cover>
+
+<back-cover>
+  - Start with too much white space
+
+  - Establish a spacing and sizing system
+
+  - You don't have to fill the whole screen
+
+  - Grids are overrated
+
+  - Relative sizing doesn't scale
+
+  - Avoid ambiguous spacing
+</back-cover>

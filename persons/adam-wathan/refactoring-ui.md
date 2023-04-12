@@ -57,6 +57,8 @@ authors: ["Adam Wathan", "Steve Schoger"]
 
 - Avoid ambiguous spacing
 
+<mimor src="refactoring-ui/03-layout-and-spacing.mimor" />
+
 # Designing Text
 
 - Establish a type scale
