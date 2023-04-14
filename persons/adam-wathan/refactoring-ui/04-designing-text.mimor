@@ -1,11 +1,68 @@
 <metadata
-  theme-color="purple"
+  theme-color="stone"
   keywords="adam-wathan, refactoring-ui, design"
 />
 
 <front-cover>
   Refactoring UI / Designing Text
 </front-cover>
+
+<cloze>
+  Fonts meant for headlines usually have <blank>tighter</blank>
+  letter-spacing and <blank>shorter</blank> lowercase letters
+  (a shorter x-height), while fonts meant for smaller sizes have
+  <blank>wider</blank> letter-spacing and <blank>taller</blank>
+  lowercase letters.
+</cloze>
+
+<cloze>
+  For the best reading experience,
+  make your paragraphs wide enough
+  to fit between <blank>45</blank>
+  and <blank>75</blank> characters per line.
+</cloze>
+
+<cloze>
+  Align mixed font sizes by their <blank>baseline</blank>,
+  which is the imaginary line that letters rest on.
+</cloze>
+
+<question>
+  What is the use of line-height?
+
+  <answer>
+    The reason we add space between lines of text
+    is to make it easy for the reader to find the next line
+    when the text wraps.
+  </answer>
+</question>
+
+<cloze>
+  When text is small, <blank>extra line spacing</blank> is important
+  for making it easier to find the next line when the text wraps.
+</cloze>
+
+<cloze>
+  Line-height and font size are <blank>inversely proportional</blank>
+  -- use a <blank>taller</blank> line-height for small text
+  and a <blank>shorter</blank> line-height for large text.
+</cloze>
+
+<question>
+  When we should use color for links?
+
+  When we should NOT use color for links?
+
+  <answer>
+    When including a link in a block of non-link text,
+    it's important to make sure that
+    the link stands out and looks clickable.
+
+    But when designing an interface where almost everything is a link,
+    using a treatment designed to make links “pop” in paragraph text
+    can be really overbearing.
+  </answer>
+</question>
 
 <back-cover>
   - Establish a type scale
