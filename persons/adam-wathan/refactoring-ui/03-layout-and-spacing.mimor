@@ -7,6 +7,19 @@
   Refactoring UI / Layout and Spacing
 </front-cover>
 
+<cloze>
+  When creating a design system for spacing,
+  use a <blank>geometric</blank> scale instead of a linear scale.
+
+  Because layout is about <blank>gemetory</blank>.
+</cloze>
+
+<cloze>
+  If you want your system to make sizing decisions easy,
+  make sure two adjacent values in your scale
+  are <blank>not too close</blank>.
+</cloze>
+
 <back-cover>
   - Start with too much white space
 
