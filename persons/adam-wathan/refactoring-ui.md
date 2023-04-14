@@ -77,6 +77,8 @@ authors: ["Adam Wathan", "Steve Schoger"]
 
 - Use letter-spacing effectively
 
+<mimor src="refactoring-ui/04-designing-text.mimor" />
+
 # Working with Color
 
 - Ditch hex for HSL
