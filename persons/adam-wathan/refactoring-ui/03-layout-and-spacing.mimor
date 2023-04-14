@@ -20,6 +20,70 @@
   are <blank>not too close</blank>.
 </cloze>
 
+<question>
+  Why it is helpful to design for the mobile layout first?
+
+  <answer>
+    Because, a lot of the time,
+    it's easier to design something small
+    when the constraints are real.
+  </answer>
+</question>
+
+<cloze>
+  If you wanted to make better use of the available space
+  without making the form harder to use,
+  you could <blank>break the supporting text out
+  into a separate column</blank>.
+</cloze>
+
+<question>
+  Why it is advised to give sidebar a fixed width instead of a relative width?
+
+  <answer>
+    Because when using relative width,
+    if you make the screen wider the sidebar gets wider too,
+    taking up space that could've been put to better use
+    by the main content area.
+  </answer>
+</question>
+
+<cloze>
+  Give elements a <blank>max-width</blank> that is best for it's content,
+  and only force them to shrink when the screen gets too small.
+</cloze>
+
+<question>
+  Why relative sizing doesn't scale?
+
+  <answer>
+    Because elements that are large on large screens need to shrink
+    faster than elements that are already fairly small -- the
+    difference between small elements and large elements should be
+    less extreme at small screen sizes.
+  </answer>
+</question>
+
+<question>
+  Please give some examples where larger elements should shrink faster.
+
+  <answer>
+    - Headline font size v.s. content font size.
+
+    - Button's padding v.s. button text font size.
+  </answer>
+</question>
+
+<cloze>
+  Spacing can be used to express <blank>grouping</blank> of elements.
+
+  The space between <blank>groups</blank> should be clear,
+  to avoid ambiguous interpretation of the UI.
+
+  There should be more space between <blank>groups</blank>
+  than there is within <blank>a group</blank>.
+</cloze>
+
 <back-cover>
   - Start with too much white space
 
