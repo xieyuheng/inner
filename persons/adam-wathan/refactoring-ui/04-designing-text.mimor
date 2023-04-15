@@ -87,6 +87,31 @@
   so that it is a lot easier to compare them at a glance.
 </cloze>
 
+<cloze>
+  One can use <blank>hyphens: auto;</blank>
+  to mimic a print look, like books and articles.
+</cloze>
+
+<cloze>
+  When styling text, we can tweak the weight, color, line-height
+  and <blank>letter-spacing</blank>.
+</cloze>
+
+<cloze>
+  When font is designed for main content text,
+  but you want to use it for headlines,
+  it can often make sense to <blank>decrease the letter-spacing</blank>.
+</cloze>
+
+<cloze>
+  All-caps text does not have as much as visual variety
+  as normal "sentence case" text.
+
+  For this reason, it often makes sense
+  to <blank>increase the letter-spacing</blank>
+  of all-caps text to improve readability.
+</cloze>
+
 <back-cover>
   - Establish a type scale
 

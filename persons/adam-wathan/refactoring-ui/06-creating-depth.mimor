@@ -1,0 +1,22 @@
+<metadata
+  theme-color="red"
+  keywords="adam-wathan, refactoring-ui, design"
+/>
+
+<front-cover>
+  Refactoring UI / Creating Depth
+</front-cover>
+
+
+
+<back-cover>
+  - Emulate a light source
+
+  - Use shadows to convey elevation
+
+  - Shadows can have two parts
+
+  - Even flat designs can have depth
+
+  - Overlap elements to create layers
+</back-cover>

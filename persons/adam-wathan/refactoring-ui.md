@@ -95,6 +95,8 @@ authors: ["Adam Wathan", "Steve Schoger"]
 
 - Don't rely on color alone
 
+<mimor src="refactoring-ui/05-working-with-color.mimor" />
+
 # Creating Depth
 
 - Emulate a light source
@@ -107,6 +109,8 @@ authors: ["Adam Wathan", "Steve Schoger"]
 
 - Overlap elements to create layers
 
+<mimor src="refactoring-ui/06-creating-depth.mimor" />
+
 # Working with Images
 
 - Use good photos
@@ -116,6 +120,8 @@ authors: ["Adam Wathan", "Steve Schoger"]
 - Everything has an intended size
 
 - Beware user-uploaded content
+
+<mimor src="refactoring-ui/07-working-with-images.mimor" />
 
 # Finishing Touches
 
@@ -130,3 +136,5 @@ authors: ["Adam Wathan", "Steve Schoger"]
 - Use fewer borders
 
 - Think outside the box
+
+<mimor src="refactoring-ui/08-finishing-touches.mimor" />
