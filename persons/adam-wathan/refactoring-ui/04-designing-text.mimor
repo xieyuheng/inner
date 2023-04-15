@@ -64,6 +64,24 @@
   </answer>
 </question>
 
+<question>
+  Why long text should NOT be center-aligned?
+
+  <answer>
+    Because text should be aligned to match
+    the direction of the language it’s written in.
+
+    Center-alignment only works for headlines
+    or short, independent blocks of text.
+  </answer>
+</question>
+
+<cloze>
+  If you’ve got a few blocks of text you want to center
+  but one of them is a bit too long, the easiest fix is to
+  <blank>rewrite the content and make it shorter</blank>.
+</cloze>
+
 <back-cover>
   - Establish a type scale
 
