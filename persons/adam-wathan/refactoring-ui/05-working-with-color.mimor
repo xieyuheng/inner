@@ -13,6 +13,44 @@
   <blank>hue, saturation, and lightness</blank>.
 </cloze>
 
+<question>
+  What is the hue of HSL?
+
+  <answer>
+    Hue is a color’s position on the color wheel
+    -- it’s the attribute of a color that
+    lets us identify two colors as “blue” even if they aren’t identical.
+
+    Hue is measured in degrees,
+    where 0° is red,
+    120° is green,
+    and 240° is blue.
+  </answer>
+</question>
+
+<question>
+  What is the saturation of HSL?
+
+  <answer>
+    Saturation is how colorful or vivid a color looks.
+    0% saturation is grey (no color),
+    and 100% saturation is vibrant and intense.
+  </answer>
+</question>
+
+<question>
+  What is the lightness of HSL?
+
+  <answer>
+    Lightness measures how close a color is to black or to white.
+    0% lightness is pure black,
+    100% lightness is pure white,
+    and 50% lightness is a pure color at the given hue.
+  </answer>
+</question>
+
+
+
 <back-cover>
   - Ditch hex for HSL
 
