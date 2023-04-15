@@ -82,6 +82,11 @@
   <blank>rewrite the content and make it shorter</blank>.
 </cloze>
 
+<cloze>
+  Numbers in table should be <blank>right-aligned</blank>,
+  so that it is a lot easier to compare them at a glance.
+</cloze>
+
 <back-cover>
   - Establish a type scale
 
