@@ -37,19 +37,21 @@ we can view it as a presentation
 of a 2-dimensional algebraic structure,
 where elements are faces and relations are bodies.
 
-**Conjecture:**
+**Conjecture: reducing to group is not enough**
+
 If a 3-dimensional cell-complex is a manifold,
 we can transform it into an equivalent cell-complex
 which is built from a fundamental polyhedron,
 but the study of the 2-dimensional algebraic structure
-can not be reduced to the study of a fundamental group,
+can NOT be reduced to the study of a fundamental group,
 because a lot of information in the fundamental polyhedron
 will be lost if we insist on reduce to group.
 
 But the algebraic structure of fundamental polyhedron
 is still easier to study than that of general cell-complex.
 
-**Conjecture:**
+**Conjecture: normalization of 3-dimensional manifolds exists**
+
 The presentations of 3-dimensional manifold
 as algebraic structure of fundamental polyhedron
 can be normalized to given a complete classification
@@ -63,7 +65,7 @@ are (undirected) _paths_ built from _edges_.
 
 A 3-dimensional cell-complex,
 when viewed as an algebraic structure,
-its elements are _surfaces_ built from _faces_.
+it's elements are _surfaces_ built from _faces_.
 
 For edges, there are only two ways to do composition
 (this is where the inverse of groupoid elements come from),
@@ -172,8 +174,8 @@ A language to capture the concept of continuum,
 
 It can be viewed as higher dimensional algebraic structure in which,
 
-- homotopy groups are its sub-algebras,
-- and its abelianization are homology groups.
+- homotopy groups are it's sub-algebras,
+- and it's abelianization are homology groups.
 
 # Introduction
 
@@ -214,7 +216,7 @@ we can use the algebra of the later to simplify our reasoning?
     It is not.
     We can only say a cell has "orientation",
     in the sense that, for example, when composing an edge,
-    we can use one of its endpoint,
+    we can use one of it's endpoint,
     the minus sign in `path` only means
     to change the layout of an edge
     to compose it by another endpoint.
@@ -455,7 +457,7 @@ is reduce from 6 to 4.
 
 To introduce a 0-dimensional element,
 it is enough to give the name of the data constructor,
-and to specify its type.
+and to specify it's type.
 
 But, to introduce a (n+1)-dimensional element `A`,
 we also need to specify an attaching map
