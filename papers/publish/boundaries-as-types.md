@@ -37,7 +37,7 @@ we can view it as a presentation
 of a 2-dimensional algebraic structure,
 where elements are faces and relations are bodies.
 
-**Conjecture: reducing to group is not enough**
+**Conjecture: Reducing to group is not enough**
 
 If a 3-dimensional cell-complex is a manifold,
 we can transform it into an equivalent cell-complex
@@ -50,7 +50,7 @@ will be lost if we insist on reduce to group.
 But the algebraic structure of fundamental polyhedron
 is still easier to study than that of general cell-complex.
 
-**Conjecture: normalization of 3-dimensional manifolds exists**
+**Conjecture: Normalization of 3-dimensional manifolds exists**
 
 The presentations of 3-dimensional manifold
 as algebraic structure of fundamental polyhedron
