@@ -5,7 +5,7 @@ title: Cell Complexes
 ## Cell complex as a generalization of graph theory
 
 Note that graph (with nodes and edges),
-and cell-complex (with faces and bodies and higher),
+and cell complex (with faces and bodies and higher),
 are all only syntax, i.e. without interpretion.
 
 They are NOT model.
@@ -29,7 +29,7 @@ we can use the algebra of the later to simplify our reasoning?
 
 - One problem is that a function type is directed
   (we do not have general method to reverse any function),
-  but in a cell-complex, the a cell has no direction
+  but in a cell complex, the a cell has no direction
 
   - But we used minus sign when composing edges in `path`,
     is it not about direction?
@@ -143,9 +143,9 @@ When defining a complex, we can specify higher order generators,
 the generators can be composed to get elements of the algebra.
 The generators can also be parameterized, thus infinity many,
 
-[question] How to understand cell-complex as inductively defined set?
+[question] How to understand cell complex as inductively defined set?
 
-- 0-dimensional cell-complex is inductively defined set.
+- 0-dimensional cell complex is inductively defined set.
 
 ## 1-dimensional
 
@@ -216,7 +216,7 @@ space Torus {
 
 ## 3-dimensional
 
-### Torus3
+### Torus3 -- logical syntax
 
 ```cicada
 datatype Torus3 {
@@ -243,226 +243,11 @@ to specify how edges of polygons are glued together.
 
 - Note that, polygons are elements of the boundary of polyhedron.
 
-### Torus3 -- Cubical
+### Torus3
 
-Using `I` (`Interval`) as an coordinate system.
-
-- How to coordinate polygon and polyhedron?
-  as simple as `I`, because to use `C` as a coordinate system
-  is to have a function `(C) -> ...`.
-
-```cicada
-datatype Torus3 {
-  o: Torus3
-
-  x: (I) -> Torus3 with { case (I::0) => o case (I::1) => o }
-  y: (I) -> Torus3 with { case (I::0) => o case (I::1) => o }
-  z: (I) -> Torus3 with { case (I::0) => o case (I::1) => o }
-
-  xFace: (I, I) -> Torus3 with {
-    case (I::0, i) => z(i)
-    case (I::1, i) => z(i)
-    case (i, I::0) => y(i)
-    case (i, I::1) => y(i)
-  }
-
-  yFace: (I, I) -> Torus3 with {
-    case (I::0, i) => x(i)
-    case (I::1, i) => x(i)
-    case (i, I::0) => z(i)
-    case (i, I::1) => z(i)
-  }
-
-  zFace: (I, I) -> Torus3 with {
-    case (I::0, i) => y(i)
-    case (I::1, i) => y(i)
-    case (i, I::0) => x(i)
-    case (i, I::1) => x(i)
-  }
-
-  body: (I, I, I) -> Torus3 with {
-    case (I::0, i, j) => xFace(i, j)
-    case (I::1, i, j) => xFace(i, j)
-    case (i, I::0, j) => yFace(i, j)
-    case (i, I::1, j) => yFace(i, j)
-    case (i, j, I::0) => zFace(i, j)
-    case (i, j, I::1) => zFace(i, j)
-  }
-}
-```
-
-The syntax of cubical type theory
-does not provide enough information.
-
-It seems it is using some conversion
-about overloading map to map of boundary,
-which works only in special cases.
-
-What information are lost in cubical model?
-
-If you compose two squares together,
-you can view the result as a square,
-but the number of ways to do further composition,
-is reduce from 6 to 4.
-
-### Torus3 -- Cubical -- My Way
-
-To introduce a 0-dimensional element,
-it is enough to give the name of the data constructor,
-and to specify it's type.
-
-But, to introduce a (n+1)-dimensional element `A`,
-we also need to specify an attaching map
-from an n-dimensional spherical complex
-(which will also be used as a coordinate system
-to reference `A`'s boundary),
-to n-skeleton of the current spece.
-
-Overloading the syntax of function application
-to get the boundary of higher inductive elements,
-is the idea of lambda encoding.
-
-```cicada
-datatype Torus3 {
-  o: Torus3
-
-  // To introduce a 1-dimensional element,
-  // we map `Boundary(I)` to the 0-skeleton,
-  // i.e. previously introduced 0-dimensional elements.
-
-  x: Skeleton(1, Torus3) with {
-    Coordinate: Boundary(I),
-    // - `x` is part of `Skeleton(1, Torus3)`, which is a subspace of `Torus3`.
-    // - To introduce a 1-dimensional element, we need to use a 0-spherical complex
-    //   as the coordinate system of the 1-dimensional element's boundary.
-    // - The coordinate system is the domain of the attaching map.
-    // - The 0-spherical complex we will use is `Boundary(I)`
-    //   i.e. two endpoint of the `I` -- `I::0` and `I::1`.
-    // - We use a case function called -- `boundary`,
-    //   to specify the attaching map.
-    boundary(Boundary(I)): Skeleton(0, Torus3) {
-      case (I::0) => o
-      case (I::1) => o
-    }
-  }
-
-  y: Skeleton(1, Torus3) with {
-    boundary(Boundary(I)): Skeleton(0, Torus3) {
-      case (I::0) => o
-      case (I::1) => o
-    }
-  }
-
-  z: Skeleton(1, Torus3) with {
-    boundary(Boundary(I)): Skeleton(0, Torus3) {
-      case (I::0) => o
-      case (I::1) => o
-    }
-  }
-
-  // By using `Boundary(I)` as coordinate,
-  // we can get `x`'s boundary by applying `x`
-  // to elements of `Boundary(I)` -- `I::0` and `I::1`.
-
-  // To introduce a 2-dimensional element,
-  // we map `Boundary(I, I)` to 1-skeleton,
-  // i.e. previously introduced 1-dimensional elements.
-
-  // We choose to not overload function application -- `z(I::0)`
-  // but to overload dot -- `z.boundary(I::0)`.
-
-  // The overloading of dot also occurred during the design of
-  // - fulfilling class.
-  // - data constructors as static methods.
-
-  xFace: Skeleton(2, Torus3) with {
-    boundary(Boundary(I, I)): Skeleton(1, Torus3) {
-      case (I::0, I::path) => z with {
-        // A syntax keyword `type` to annotate the type of case function.
-        // TODO Should map coordinate space to coordinate space.
-        type (Boundary(I::0, I::path)) -> Boundary(z)
-        case (I::0, I::0) => z.boundary(I::0)
-        case (I::0, I::1) => z.boundary(I::1)
-      }
-      case (I::1, I::path) => z with {
-        case (I::0, I::0) => z.boundary(I::0)
-        case (I::0, I::1) => z.boundary(I::1)
-      }
-      case (I::path, I::0) => y with {
-        case (I::0, I::0) => y.boundary(I::0)
-        case (I::0, I::1) => y.boundary(I::1)
-      }
-      case (I::path, I::1) => y with {
-        case (I::0, I::0) => y.boundary(I::0)
-        case (I::0, I::1) => y.boundary(I::1)
-      }
-    }
-  }
-
-  yFace: Skeleton(2, Torus3) with {
-    ...
-  }
-
-  zFace: Skeleton(2, Torus3) with {
-    ...
-  }
-
-  // Note that, in the code above, we get `z`'s boundary
-  // by applying `z` to elements of `Boundary(I)`.
-
-  // In the same way, by using `Boundary(I, I)` as coordinate,
-  // we can get `xFace`'s boundary by applying `xFace`
-  // to elements of `Boundary(I, I)`,
-  // which will be used when introducing 3-dimensional elements.
-
-  body: Skeleton(3, Torus3) with {
-    boundary(Boundary(I, I, I)): Skeleton(2, Torus3) {
-      case (I::0, I::path, I::path) => xFace with {
-        // TODO Should map coordinate space to coordinate space.
-        type (Boundary(I::0, I::path, I::path)) -> Boundary(xFace)
-        case (I::0, I::0, I::path) => xFace.boundary(I::0, I::path) with {
-          // TODO Should map coordinate space to coordinate space.
-          // TODO No need to specify further.
-          type (Boundary(I::0, I::0, I::path)) -> Boundary(xFace.boundary(I::0, I::path))
-          case (I::0, I::0, I::0) => xFace.boundary(I::0, I::path).boundary(I::0)
-          case (I::0, I::0, I::1) => xFace.boundary(I::0, I::path).boundary(I::1)
-        }
-        case (I::0, I::1, I::path) => xFace.boundary(I::1, I::path) with {
-          ...
-        }
-        case (I::0, I::path, I::0) => xFace.boundary(I::path, I::0) with {
-          ...
-        }
-        case (I::0, I::path, I::1) => xFace.boundary(I::path, I::1) with {
-          ...
-        }
-      }
-      ...
-    }
-  }
-}
-```
-
-The most important idea is that when specifying a mapping
-from a n-dimensional element `A` to composition of n-dimensional elements `B`,
-we also need to specify how each element of the boundary of `A`
-is mapped to the boundary of `B`, and recursively
-specifying the mapping down to 0-dim.
-
-Should we call this **the principle of continuity**?
-
-[question] How to understand the use of `with` by boundary as type?
-
-- `Boundary(xFace)` is a set, and a subset of `Skeleton(1, Torus3)`,
-  whose elements are specified by `xFace.boundary(c)` where `c: Boundary(I, I)`.
-- If we have a principle to view all set as type,
-  then clearly `Boundary(xFace)` should be viewed as a type.
-
-### Torus3 -- Cubical -- My Way Revised
-
-To design how to introduce a (n+1)-dimensional cell `A` into a cell-complex,
+To design how to introduce a (n+1)-dimensional cell `A` into a cell complex,
 we need to specify a attaching map from the boundary of the cell `A`
-to the n-skeleton of the cell-complex.
+to the n-skeleton of the cell complex.
 
 We do this by giving the the boundary of the cell `A`
 a spherical coordinate space -- endpoint, polygon, polyhedron, ...
@@ -470,10 +255,10 @@ a spherical coordinate space -- endpoint, polygon, polyhedron, ...
 - If we always use boundary of cubes as the spherical coordinate space,
   we get cubical type theory.
 
-A spherical coordinate space is a special cell-complex,
-thus we need to design how to define continuous map between two cell-complexes.
+A spherical coordinate space is a special cell complex,
+thus we need to design how to define continuous map between two cell complexes.
 
-To define a continuous map between two cell-complexes `A` and `B`,
+To define a continuous map between two cell complexes `A` and `B`,
 we need to specify how each cell (say `x`) of `A` is mapped to
 composition of cells (say `w * y * z` (without defining `*` for now)) of `B`
 of the same dimension.
@@ -485,7 +270,7 @@ by which the cell `x` can be mapped to `w * y * z`.
 TODO Using group as example to explain the above judgment.
 
 To specify the orientation of the map,
-we must specify another map between two cell-complexes --
+we must specify another map between two cell complexes --
 from the spherical coordinate space of the boundary `x`
 to the spherical coordinate space of the boundary `w * y * z`.
 
@@ -494,7 +279,7 @@ to the spherical coordinate space of the boundary `w * y * z`.
 
 The orienting map must not be degenerated.
 
-Map between two spherical cell-complexes is special,
+Map between two spherical cell complexes is special,
 it is enough to just specify how cells are mapped to composition of cells,
 no need to further specify the orientation of the map,
 because it is unique.
@@ -512,7 +297,7 @@ TODO Proof the above judgment.
   but about does the space have local-loop or not
   (or say, self-loop (a loop formed by one element itself)).
 
-TODO Why the above judgment is not true for general cell-complexes?
+TODO Why the above judgment is not true for general cell complexes?
 
 TODO For the above design to work, we must be able to get
 the spherical coordinate space of the boundary
@@ -524,8 +309,8 @@ Maybe composition should be defined by composition of coordinate spaces.
 
 In what sense "boundaries as types"?
 
-Maybe in the sense that, when defining a function between cell-complexes,
-the **boundary relation** between elements of the cell-complexes,
+Maybe in the sense that, when defining a function between cell complexes,
+the **boundary relation** between elements of the cell complexes,
 are used to check whether the function is continuous.
 
 ---
@@ -567,7 +352,7 @@ It seems to implement higher inductive type, we need two features:
 
 - later data constructor can depends on previous data constructors.
 
-This is a generalization of what we need to define cell-complex.
+This is a generalization of what we need to define cell complex.
 
 Now `Skeleton` is a special kind of datatype modifier,
 which requires special kind of `with` properties.
@@ -577,7 +362,7 @@ which requires special kind of `with` properties.
 ---
 
 [keyword] maybe we should call `Skeleton` an **inductive constraint**
-that specifies the inductive definition of cell-complex,
+that specifies the inductive definition of cell complex,
 and we can also have other inductive constraint like `Cubical`.
 
 [keyword] **static properties** of data constructor

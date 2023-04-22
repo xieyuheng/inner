@@ -20,14 +20,14 @@ A group or a groupoid when defined by a presentation,
 can be viewed topologically as vertexes, edges and faces,
 where edges are the generators,
 faces are the relations between generators,
-i.e. a 2-dimensional cell-complex.
+i.e. a 2-dimensional cell complex.
 
 And the reverse is also true,
-given a 2-dimensional cell-complex,
+given a 2-dimensional cell complex,
 one can view it as a groupoid.
 
-If a 2-dimensional cell-complex is a manifold,
-we can transform it into an equivalent cell-complex
+If a 2-dimensional cell complex is a manifold,
+we can transform it into an equivalent cell complex
 which is built from a fundamental polygon,
 and the study of such groupoid can be reduce to
 the study of fundamental group of fundamental polygon.
@@ -39,15 +39,15 @@ of 2-dimension manifolds.
 
 Can we generalize the above to 3-dimension?
 
-Given a 3-dimensional cell-complex,
+Given a 3-dimensional cell complex,
 we can view it as a presentation
 of a 2-dimensional algebraic structure,
 where elements are faces and relations are bodies.
 
 **Conjecture: Reducing to group is not enough**
 
-If a 3-dimensional cell-complex is a manifold,
-we can transform it into an equivalent cell-complex
+If a 3-dimensional cell complex is a manifold,
+we can transform it into an equivalent cell complex
 which is built from a fundamental polyhedron,
 but the study of the 2-dimensional algebraic structure
 can NOT be reduced to the study of a fundamental group,
@@ -55,7 +55,7 @@ because a lot of information in the fundamental polyhedron
 will be lost if we insist on reduce to group.
 
 But the algebraic structure of fundamental polyhedron
-is still easier to study than that of general cell-complex.
+is still easier to study than that of general cell complex.
 
 **Conjecture: Normalization of 3-dimensional manifolds exists**
 
@@ -67,10 +67,10 @@ of 3-dimensional manifolds.
 ## About Algebraic Structures
 
 The elements of a groupoid,
-when viewed as a cell-complex,
+when viewed as a cell complex,
 are (undirected) _paths_ built from _edges_.
 
-A 3-dimensional cell-complex,
+A 3-dimensional cell complex,
 when viewed as an algebraic structure,
 it's elements are _surfaces_ built from _faces_.
 
