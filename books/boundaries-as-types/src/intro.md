@@ -2,6 +2,18 @@
 title: Intro
 ---
 
+## Abstract
+
+A language to capture the concept of continuum,
+
+- by viewing boundary as type,
+- to formalize constructions in algebraic topology.
+
+It can be viewed as higher dimensional algebraic structure in which,
+
+- homotopy groups are it's sub-algebras,
+- and it's abelianization are homology groups.
+
 ## The Plan
 
 A group or a groupoid when defined by a presentation,
