@@ -1,3 +1,7 @@
+separate cubical notes from cell-complexes
+
+# examples
+
 Example algebra of 1-dimension
 
 - Take presentation of group as example

@@ -42,9 +42,11 @@ we can use the algebra of the later to simplify our reasoning?
     to change the layout of an edge
     to compose it by another endpoint.
 
+## Path type
+
 [question] Why using path type we can view `Equal` as a `Pi` type?
 
-- Thus prove equal under structure like `Pair` and `class` really easy.
+- Thus proving equal under structure like `Pair` and `class` really easy.
 
 ```
 i: I |- A: Type
