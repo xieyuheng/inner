@@ -248,11 +248,13 @@ to the n-skeleton of the cell complex.
 We do this by giving the the boundary of the cell `A`
 a spherical coordinate space -- endpoint, polygon, polyhedron, ...
 
-- If we always use boundary of cubes as the spherical coordinate space,
+- If we always use boundary of cubes
+  as the spherical coordinate space,
   we get cubical type theory.
 
 A spherical coordinate space is a special cell complex,
-thus we need to design how to define continuous map between two cell complexes.
+thus we need to design how to define
+continuous map between two cell complexes.
 
 To define a continuous map between two cell complexes `A` and `B`,
 we need to specify how each cell (say `x`) of `A` is mapped to
@@ -267,25 +269,24 @@ TODO Using group as example to explain the above judgment.
 
 To specify the orientation of the map,
 we must specify another map between two cell complexes --
-from the spherical coordinate space of the boundary `x`
-to the spherical coordinate space of the boundary `w * y * z`.
-
-- [question] The image of the coordinate space is used for boundary checking,
-  but not used to define orientation?
+from the spherical coordinate space of `x`
+to the boundary space of `w * y * z`.
 
 - In the case of boundary cubes, it is enough to
   specify the mapping between all the corners.
 
 The orienting map must not be degenerated.
 
-Map between two spherical cell complexes is special,
-it is enough to just specify how cells are mapped to composition of cells,
-no need to further specify the orientation of the map,
-because it is unique.
+Maybe recursion can stop here.
 
-TODO Proof the above judgment.
+- Maybe a map between two spherical cell complexes is special,
+  it is enough to just specify how cells are mapped to composition of cells,
+  no need to further specify the orientation of the map,
+  because it is unique.
 
-- To proof it, we must fully understand it first.
+  TODO Proof the above judgment.
+
+  - To proof it, we must fully understand it first.
 
 [question] Is the above judgment also true for manifolds?
 
@@ -307,7 +308,9 @@ Maybe composition should be defined by composition of coordinate spaces.
 Whenever we introduce a new type constructor,
 we need to design it's type checking rules
 -- what are it's elements.
-We need to do this for `Cell` and `Skeleton`.
+We need to do this for `Cell` and `Skeleton` and `Boundary`.
+
+
 
 ```cicada
 datatype Endpoint {
@@ -385,15 +388,15 @@ datatype Torus3 {
   xFace: Cell(2, Torus3, {
     type (Gon(4)) -> Skeleton(1, Torus3)
     case (Gon::edge(0)) => z with {
-      type (Gon::edge(0).Coordinate) -> z.Coordinate
-      type (Endpoint) -> Endpoint
-      case (Endpoint::start) => Endpoint::start
-      case (Endpoint::end) => Endpoint::end
+      type (Gon::edge(0).Coordinate) -> Boundary(z)
+      type (Endpoint) -> Boundary(z)
+      case (Endpoint::start) => z(Endpoint::start)
+      case (Endpoint::end) => z(Endpoint::end)
     }
 
-    case (Gon::edge(1)) => z with id(Endpoint)
-    case (Gon::edge(2)) => z with id(Endpoint)
-    case (Gon::edge(3)) => y with id(Endpoint)
+    case (Gon::edge(1)) => z with { ... }
+    case (Gon::edge(2)) => z with { ... }
+    case (Gon::edge(3)) => y with { ... }
   })
 
   yFace: Cell(2, Torus3, {
@@ -407,12 +410,12 @@ datatype Torus3 {
   body: Cell(3, Torus3, {
     type (Cube) -> Skeleton(2, Torus3)
     case (Cube::xFaceStart) => xFace with {
-      type (Cube::xFaceStart.Coordinate) -> xFace.Coordinate
-      type (Gon(4)) -> Gon(4)
-      case (Gon::edge(0)) => Gon::edge(0)
-      case (Gon::edge(1)) => Gon::edge(1)
-      case (Gon::edge(2)) => Gon::edge(2)
-      case (Gon::edge(3)) => Gon::edge(3)
+      type (Cube::xFaceStart.Coordinate) -> Boundary(xFace)
+      type (Gon(4)) -> Boundary(xFace)
+      case (Gon::edge(0)) => xFace(Gon::edge(0))
+      case (Gon::edge(1)) => xFace(Gon::edge(1))
+      case (Gon::edge(2)) => xFace(Gon::edge(2))
+      case (Gon::edge(3)) => xFace(Gon::edge(3))
     }
     ...
   })
@@ -425,7 +428,8 @@ datatype Torus3 {
 
 Maybe in the sense that, when defining a function between cell complexes,
 the **boundary relation** between elements of the cell complexes,
-are used to check whether the function is continuous.
+are used to check whether the function is continuous
+-- checking orientation map.
 
 Note that there is a _boundary relation_ between cells of a cell complex,
 a n-cell is boundary of a (n+1)-cell if it is
@@ -435,19 +439,18 @@ part of the image of the attaching map of the (n+1)-cell.
 
 [question] How should we implement boundary?
 
-We should not apply `Boundary` to space -- like `Boundary(I)`,
-but we can apply `Boundary` to element of space -- like `Boundary(xFace)`,
-we can get an element of `Boundary(xFace)`
+We can apply `Boundary` to element of space -- like `Boundary(xFace)`.
+We can get an element of `Boundary(xFace)`
 by referring to an element of the coordinate space.
-
-[question] Maybe we should not say
-we are using `Boundary([I, I])` as coordinate space at all,
-we should construct the coordinate space -- the square (polygon) -- directly.
+Two elements of `Boundary(xFace)` are equal if they have the same image.
 
 Note that, the above definition of `Boundary` gives a boundary relation
 between elements of a space, which feels much like
 the "belongs to" relation of set theory,
-and the "belongs to" relation of type theory.
+and the "belongs to" relation of type theory,
+-- the type of a cell is it's boundary,
+which will be used to do type checking
+when defining mapping between cells.
 
 Boundary relation between elements of product space is easy to define,
 just apply the boundary operator on one element of the tuple,
