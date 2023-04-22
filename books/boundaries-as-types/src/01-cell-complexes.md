@@ -149,8 +149,6 @@ The generators can also be parameterized, thus infinity many,
 
 ## 1-dimensional
 
-### Circle
-
 ```cicada
 datatype Circle {
   base: Circle
@@ -160,7 +158,7 @@ datatype Circle {
 
 ## 2-dimensional
 
-### Four ways to glue a square
+Four ways to glue a square:
 
 ```cicada
 datatype Sphere {
@@ -214,9 +212,7 @@ space Torus {
 }
 ```
 
-## 3-dimensional
-
-### Torus3 -- logical syntax
+## 3-dimensional logical syntax
 
 ```cicada
 datatype Torus3 {
@@ -243,7 +239,7 @@ to specify how edges of polygons are glued together.
 
 - Note that, polygons are elements of the boundary of polyhedron.
 
-### Torus3
+## 3-dimensional
 
 To design how to introduce a (n+1)-dimensional cell `A` into a cell complex,
 we need to specify a attaching map from the boundary of the cell `A`
@@ -273,6 +269,9 @@ To specify the orientation of the map,
 we must specify another map between two cell complexes --
 from the spherical coordinate space of the boundary `x`
 to the spherical coordinate space of the boundary `w * y * z`.
+
+- [question] The image of the coordinate space is used for boundary checking,
+  but not used to define orientation?
 
 - In the case of boundary cubes, it is enough to
   specify the mapping between all the corners.
@@ -304,69 +303,6 @@ the spherical coordinate space of the boundary
 of the composite element -- `w * y * z`.
 
 Maybe composition should be defined by composition of coordinate spaces.
-
----
-
-In what sense "boundaries as types"?
-
-Maybe in the sense that, when defining a function between cell complexes,
-the **boundary relation** between elements of the cell complexes,
-are used to check whether the function is continuous.
-
----
-
-How should we implement boundary?
-
-We should not apply `Boundary` to space -- like `Boundary(I)`,
-but we can apply `Boundary` to element of space -- like `Boundary(xFace)`,
-we can get an element of `Boundary(xFace)`
-by referring to an element of the coordinate space,
-and to judge whether two elements of `Boundary(xFace)` are equivalent,
-we judge the equivalent between the image of the two elements
-under the attaching map.
-
----
-
-We should not say we are using `Boundary([I, I])` as coordinate space at all,
-we should construct the coordinate space -- the square (polygon) -- directly.
-
-Note that, the above definition of `Boundary` gives a boundary relation
-between elements of a space, which feels much like
-the "belongs to" relation of set theory,
-and the "belongs to" relation of type theory.
-
-Boundary relation between elements of product space is easy to define,
-just apply the boundary operator on one element of the tuple,
-for example, `[x, z]` is part of the boundary of `[x, y]`,
-if `z` is part of the boundary of `y`,
-or say, `[x, z]: Boundary([x, y])`,
-if and only if `z: Boundary(y)`.
-
----
-
-It seems to implement higher inductive type, we need two features:
-
-- data constructor can have `with` properties.
-
-  - How about letting all Pi types have `with`?
-
-- later data constructor can depends on previous data constructors.
-
-This is a generalization of what we need to define cell complex.
-
-Now `Skeleton` is a special kind of datatype modifier,
-which requires special kind of `with` properties.
-
-[question] What is the generalization (or say, a generalization) of `Skeleton`?
-
----
-
-[keyword] maybe we should call `Skeleton` an **inductive constraint**
-that specifies the inductive definition of cell complex,
-and we can also have other inductive constraint like `Cubical`.
-
-[keyword] **static properties** of data constructor
-[keyword] **constraints on return value** of Pi type
 
 ```cicada
 datatype Endpoint {
@@ -480,6 +416,62 @@ datatype Torus3 {
   })
 }
 ```
+
+## Generalization of Cell
+
+[question] In what sense "boundaries as types"?
+
+Maybe in the sense that, when defining a function between cell complexes,
+the **boundary relation** between elements of the cell complexes,
+are used to check whether the function is continuous.
+
+Note that there is a _boundary relation_ between cells of a cell complex,
+a n-cell is boundary of a (n+1)-cell if it is
+part of the image of the attaching map of the (n+1)-cell.
+
+[question] How should we implement boundary?
+
+We should not apply `Boundary` to space -- like `Boundary(I)`,
+but we can apply `Boundary` to element of space -- like `Boundary(xFace)`,
+we can get an element of `Boundary(xFace)`
+by referring to an element of the coordinate space.
+
+[question] Maybe we should not say
+we are using `Boundary([I, I])` as coordinate space at all,
+we should construct the coordinate space -- the square (polygon) -- directly.
+
+Note that, the above definition of `Boundary` gives a boundary relation
+between elements of a space, which feels much like
+the "belongs to" relation of set theory,
+and the "belongs to" relation of type theory.
+
+Boundary relation between elements of product space is easy to define,
+just apply the boundary operator on one element of the tuple,
+for example, `[x, z]` is part of the boundary of `[x, y]`,
+if `z` is part of the boundary of `y`,
+or say, `[x, z]: Boundary([x, y])`,
+if and only if `z: Boundary(y)`.
+
+[question] It seems to implement higher inductive type, we need two features:
+
+- Data constructors are of type `Cell`.
+- Later data constructors can depend on previous data constructors.
+
+Can we generalize this?
+
+Maybe `Cell` are only special kinds of datatype modifier.
+
+[question] What is the generalization (or say, a generalization) of `Cell`?
+
+[keyword] maybe we should call `Cell` an **inductive constraint**
+that specifies the inductive definition of cell complex,
+and we can also have other inductive constraint like `Cubical`.
+
+[keyword] **static properties** of data constructor,
+-- data constructor of record type.
+
+[keyword] **constraints on return value** of Pi type
+-- the idea of `Path` type.
 
 ## 2-dimensional algebra
 
