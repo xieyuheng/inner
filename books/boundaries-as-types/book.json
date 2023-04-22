@@ -7,5 +7,5 @@
   "date": "2022-05-31",
   "src": "src",
   "keywords": ["Type theory", "Algebraic topology"],
-  "contents": ["intro.md"]
+  "contents": ["intro.md", "cell-complexes.md", "essential-concepts.md"]
 }
