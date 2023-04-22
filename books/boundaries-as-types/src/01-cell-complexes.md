@@ -304,10 +304,15 @@ of the composite element -- `w * y * z`.
 
 Maybe composition should be defined by composition of coordinate spaces.
 
+Whenever we introduce a new type constructor,
+we need to design it's type checking rules
+-- what are it's elements.
+We need to do this for `Cell` and `Skeleton`.
+
 ```cicada
 datatype Endpoint {
-  start: Endpoint
-  end: Endpoint
+  start: Cell(0, Endpoint)
+  end: Cell(0, Endpoint)
 }
 
 function Cell(
@@ -328,7 +333,7 @@ function Cell(
 
 datatype Gon(n: Nat) {
   // `Fin(n)` has 0, 1, ..., n-1.
-  vertex(i: Fin(n)): Gon(n)
+  vertex(i: Fin(n)): Cell(0, Gon(n))
   edge(i: Fin(n)): Cell(1, Gon(n), {
     // Suppose we can write case-lambda with `type` attribute.
     type (Endpoint) -> Skeleton(0, Gon(n))
@@ -338,7 +343,7 @@ datatype Gon(n: Nat) {
 }
 
 datatype Torus3 {
-  o: Torus3
+  o: Cell(0, Torus3)
 
   // To introduce a 1-dimensional element,
   // we map `Endpoint` to the 0-skeleton,
