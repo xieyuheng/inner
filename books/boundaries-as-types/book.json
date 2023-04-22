@@ -1,0 +1,11 @@
+{
+  "kind": "Book",
+  "title": "Boundaries as Types",
+  "subtitle": "A language to capture the concept of continuum",
+  "version": "0.0.1",
+  "authors": ["Xie Yuheng"],
+  "date": "2022-05-31",
+  "src": "src",
+  "keywords": ["Type theory", "Algebraic topology"],
+  "contents": ["intro.md"]
+}
