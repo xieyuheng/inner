@@ -248,6 +248,35 @@ i: I |- M: A
 between topological (homotopical) spaces
 and the `Equal` type?
 
+If we ignore the idea of nominal-typing for a moment,
+the idea of `Path` type is to
+enrich a function of certain Pi type,
+with constraints about the return value of the function.
+
+Type checking of such enrichment is simple.
+
+```
+function Path(A, x, y): Type {
+  return (i: I) -> A with {
+    case (0) => x
+    case (1) => y
+  }
+}
+```
+
+If we view function type as special object with `apply` property,
+we can express the enrichment by other properties.
+
+```
+function Path(A, x, y): Type {
+  return {
+    apply: (i: I) -> A
+    start: Equal(A, apply(0), x)
+    end: Equal(A, apply(1), y)
+  }
+}
+```
+
 ## Limitation of our construction
 
 The following concepts are not built-in our language:
@@ -257,13 +286,13 @@ The following concepts are not built-in our language:
 
 ## Naming and syntax keywords
 
-| dim | cell        | complex    | spherical complex   |
-|     | (generator) | (element)  | (spherical element) |
-|-----|-------------|------------|---------------------|
-| 0   | vertex      |            | `endpoint`          |
-| 1   | edge        | `path`     | `polygon`           |
-| 2   | face        | `surface`  | `polyhedron`        |
-| 3   | block       | `building` | `polychoron`        |
+| dim           | cell        | complex    | spherical complex   |
+|---------------|-------------|------------|---------------------|
+| 0             | vertex      |            | `endpoint`          |
+| 1             | edge        | `path`     | `polygon`           |
+| 2             | face        | `surface`  | `polyhedron`        |
+| 3             | block       | `building` | `polychoron`        |
+| (algebraicly) | (generator) | (element)  | (spherical element) |
 
 Notes:
 
@@ -737,20 +766,33 @@ datatype Endpoint {
   end: Endpoint
 }
 
-datatype Gon(n: Nat) {
-  // `Fin(n)` has 0, 1, ..., n-1.
-  vertex(i: Fin(n)): Gon(n)
-  edge(i: Fin(n)): Skeleton(1, Gon(n)) with {
-    // The `with` keyword in `datatype` means
-    // once we constructed a data,
-    // we can use the dot syntax
-    // to get the properties out of it.
-    Coordinate: Endpoint,
-    attach(endpoint: Endpoint): Skeleton(0, Gon(n)) {
-      case (Endpoint::start) => vertex(i)
-      case (Endpoint::end) => vertex(Fin::add1Mod(i))
-    }
+// `Fin(n)` has 0, 1, ..., n-1.
+
+// Suppose we can write case-lambda with `type` attribute.
+
+function Cell(
+  dim: Nat,
+  Space: Type,
+  implicit Coordinate: SphericalType(Nat::sub1(dim)),
+  attachment: (Coordinate) -> Skeleton(Nat::sub1(dim), Space)
+): Type {
+  return {
+    // Overload function application,
+    // to get a cell's boundary in the Skeleton
+    // by applying a cell to element of Coordinate.
+    apply: attachment,
+    // TODO
+    ...
   }
+}
+
+datatype Gon(n: Nat) {
+  vertex(i: Fin(n)): Gon(n)
+  edge(i: Fin(n)): Cell(1, Gon(n), {
+    type (Endpoint) -> Skeleton(0, Gon(n))
+    case (Endpoint::start) => vertex(i)
+    case (Endpoint::end) => vertex(Fin::add1Mod(i))
+  })
 }
 
 datatype Torus3 {
@@ -760,8 +802,7 @@ datatype Torus3 {
   // we map `Endpoint` to the 0-skeleton,
   // i.e. previously introduced 0-dimensional elements.
 
-  x: Skeleton(1, Torus3) with {
-    Coordinate: Endpoint,
+  x: Cell(1, Torus3, {
     // - `x` is part of `Skeleton(1, Torus3)`, which is a subspace of `Torus3`.
     // - To introduce a 1-dimensional element, we need to use a 0-spherical complex
     //   as the coordinate system of the 1-dimensional element's boundary.
@@ -769,74 +810,66 @@ datatype Torus3 {
     // - The 0-spherical complex we will use is `Endpoint`.
     // - We use a case function called -- `attach`,
     //   to specify the attaching map.
-    attach(endpoint: Endpoint): Skeleton(0, Torus3) {
-      case (Endpoint::start) => o
-      case (Endpoint::end) => o
-    }
-  }
-
-  y: Skeleton(1, Torus3) with {
-    Coordinate: Endpoint,
-    attach(endpoint: Endpoint): Skeleton(0, Torus3) {
-      case (Endpoint::start) => o
-      case (Endpoint::end) => o
-    }
-  }
-
-  z: Skeleton(1, Torus3) with {
-    Coordinate: Endpoint,
-    attach(endpoint: Endpoint): Skeleton(0, Torus3) {
-      case (Endpoint::start) => o
-      case (Endpoint::end) => o
-    }
-  }
+    type (Endpoint) -> Skeleton(0, Torus3)
+    case (Endpoint::start) => o
+    case (Endpoint::end) => o
+  })
 
   // By using `Endpoint` as coordinate,
   // we can get `x`'s boundary by applying `x`
   // to elements of `Endpoint`.
+  // (This is not used in the definition of datatype yet.)
+
+  y: Cell(1, Torus3, {
+    type (Endpoint) -> Skeleton(0, Torus3)
+    case (Endpoint::start) => o
+    case (Endpoint::end) => o
+  })
+
+  z: Cell(1, Torus3, {
+    type (Endpoint) -> Skeleton(0, Torus3)
+    case (Endpoint::start) => o
+    case (Endpoint::end) => o
+  })
 
   // To introduce a 2-dimensional element,
   // we map `Gon(4)` (polygon) to 1-skeleton,
   // i.e. previously introduced 1-dimensional elements.
 
-  xFace: Skeleton(2, Torus3) with {
-    Coordinate: Gon(4),
-    attach(square: Gon(4)): Skeleton(1, Torus3) {
-      case (Gon::edge(0)) => z orient {
-        type (Gon::edge(0).Coordinate) -> z.Coordinate
-        case (Endpoint::start) => Endpoint::start
-        case (Endpoint::end) => Endpoint::end
-      }
-
-      case (Gon::edge(1)) => z orient id
-      case (Gon::edge(2)) => z orient id
-      case (Gon::edge(3)) => y orient id
+  xFace: Cell(2, Torus3, {
+    type (Gon(4)) -> Skeleton(1, Torus3)
+    case (Gon::edge(0)) => z with {
+      type (Gon::edge(0).Coordinate) -> z.Coordinate
+      type (Endpoint) -> Endpoint
+      case (Endpoint::start) => Endpoint::start
+      case (Endpoint::end) => Endpoint::end
     }
-  }
 
-  yFace: Skeleton(2, Torus3) with {
+    case (Gon::edge(1)) => z with id(Endpoint)
+    case (Gon::edge(2)) => z with id(Endpoint)
+    case (Gon::edge(3)) => y with id(Endpoint)
+  })
+
+  yFace: Cell(2, Torus3, {
     ...
-  }
+  })
 
-  zFace: Skeleton(2, Torus3) with {
+  zFace: Cell(2, Torus3, {
     ...
-  }
+  })
 
-  body: Skeleton(3, Torus3) with {
-    attach(cube: Cube): Skeleton(2, Torus3) {
-      case (Cube::xFrontFace) => xFace orient {
-        type equivalent Type {
-          (Cube::xFrontFace.CoodBoundary) -> xFace.CoodBoundary
-        = (Gon(4)) -> Gon(4)
-        }
-        case (Gon::edge(0)) => Gon::edge(0)
-        case (Gon::edge(1)) => Gon::edge(1)
-        case (Gon::edge(2)) => Gon::edge(2)
-        case (Gon::edge(3)) => Gon::edge(3)
-      }
-      ...
+  body: Cell(3, Torus3, {
+    type (Cube) -> Skeleton(2, Torus3)
+    case (Cube::xFaceStart) => xFace with {
+      type (Cube::xFaceStart.Coordinate) -> xFace.Coordinate
+      type (Gon(4)) -> Gon(4)
+      case (Gon::edge(0)) => Gon::edge(0)
+      case (Gon::edge(1)) => Gon::edge(1)
+      case (Gon::edge(2)) => Gon::edge(2)
+      case (Gon::edge(3)) => Gon::edge(3)
     }
-  }
+    ...
+  })
 }
 ```
 
