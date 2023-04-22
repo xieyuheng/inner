@@ -48,7 +48,7 @@ we can use the algebra of the later to simplify our reasoning?
 
 - Thus proving equal under structure like `Pair` and `class` really easy.
 
-```
+```cicada
 i: I |- A: Type
 i: I |- M: A
 |- M[0/i] = x : A[0/i]
@@ -60,7 +60,7 @@ i: I |- M: A
 }
 ```
 
-```
+```cicada
 i: I |- A: Type
 i: I |- M: A
 -----------------------
@@ -78,7 +78,7 @@ with constraints about the return value of the function.
 
 Type checking of such enrichment is simple.
 
-```
+```cicada
 function Path(A, x, y): Type {
   return (i: I) -> A with {
     case (0) => x
@@ -90,7 +90,7 @@ function Path(A, x, y): Type {
 If we view function type as special object with `apply` property,
 we can express the enrichment by other properties.
 
-```
+```cicada
 function Path(A, x, y): Type {
   return {
     apply: (i: I) -> A
@@ -147,7 +147,7 @@ The generators can also be parameterized, thus infinity many,
 
 - 0-dimensional cell complex is inductively defined set.
 
-## 1-dimensional
+## 1-dimensional -- logical syntax
 
 ```cicada
 datatype Circle {
@@ -156,7 +156,7 @@ datatype Circle {
 }
 ```
 
-## 2-dimensional
+## 2-dimensional -- logical syntax
 
 Four ways to glue a square:
 
@@ -201,7 +201,7 @@ datatype ProjectivePlane {
 }
 ```
 
-## 1-dimensional algebra
+## 1-dimensional algebra -- logical syntax
 
 ```cicada
 space Torus {
@@ -212,7 +212,7 @@ space Torus {
 }
 ```
 
-## 3-dimensional logical syntax
+## 3-dimensional -- logical syntax
 
 ```cicada
 datatype Torus3 {
@@ -355,16 +355,15 @@ datatype Torus3 {
     //   as the coordinate system of the 1-dimensional element's boundary.
     // - The coordinate system is the domain of the attaching map.
     // - The 0-spherical complex we will use is `Endpoint`.
-    // - We use a case function called -- `attach`,
-    //   to specify the attaching map.
+    // - We can use a case function to specify the attaching map.
     type (Endpoint) -> Skeleton(0, Torus3)
     case (Endpoint::start) => o
     case (Endpoint::end) => o
   })
 
   // By using `Endpoint` as coordinate,
-  // we can get `x`'s boundary by applying `x`
-  // to elements of `Endpoint`.
+  // we can get `x`'s boundary image by applying `x`
+  // to elements of `Endpoint` -- boundary coordinate.
   // (This is not used in the definition of datatype yet.)
 
   y: Cell(1, Torus3, {
@@ -432,6 +431,8 @@ Note that there is a _boundary relation_ between cells of a cell complex,
 a n-cell is boundary of a (n+1)-cell if it is
 part of the image of the attaching map of the (n+1)-cell.
 
+[question] Should we have a `Boundary` type constructor?
+
 [question] How should we implement boundary?
 
 We should not apply `Boundary` to space -- like `Boundary(I)`,
@@ -477,6 +478,41 @@ and we can also have other inductive constraint like `Cubical`.
 -- the idea of `Path` type.
 
 ## 2-dimensional algebra
+
+How to compose two cells?
+
+What operations we need to do on composed elements?
+
+- We need to get it's coordinate,
+  because the definition of map between two cell complexes
+  always require the map to be continuous,
+  in the sense that mapping `x` to `y`
+  must be oriented with a map between `x.Coordinate` and `y.Coordinate`.
+
+- Maybe coordinate space of `a * b`
+  are the sum space of
+  the coordinate space of `a`
+  and coordinate space of `b`.
+
+- Maybe definition of continuous map should not require
+  map between coordinate spaces,
+  but require map from coordinate space to image of coordinate space.
+
+When we define a continuous map
+between two cell complexes,
+what should we check?
+
+- Suppose we are defining a continuous map between two cell complexes
+  -- `X` and `Y`, and two cells `a` and `b` of `X` are listed in the case-lambda,
+  if `f` is an element of coordinate space of `a`
+  and `g` is an element of coordinate space of `b`
+  and `f` has the same image as `g` in `X` (defined by attaching maps),
+  then in the case-lambda they must also have the same image.
+  i.e. adjacent cell must map to adjacent elements.
+  i.e. the adjacency relation must be respected,
+  which is the principle of defining continuous map.
+
+## 2-dimensional algebra -- logical syntax
 
 ```cicada
 space Torus3 {
