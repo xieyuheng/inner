@@ -310,10 +310,6 @@ datatype Endpoint {
   end: Endpoint
 }
 
-// `Fin(n)` has 0, 1, ..., n-1.
-
-// Suppose we can write case-lambda with `type` attribute.
-
 function Cell(
   dim: Nat,
   Space: Type,
@@ -331,8 +327,10 @@ function Cell(
 }
 
 datatype Gon(n: Nat) {
+  // `Fin(n)` has 0, 1, ..., n-1.
   vertex(i: Fin(n)): Gon(n)
   edge(i: Fin(n)): Cell(1, Gon(n), {
+    // Suppose we can write case-lambda with `type` attribute.
     type (Endpoint) -> Skeleton(0, Gon(n))
     case (Endpoint::start) => vertex(i)
     case (Endpoint::end) => vertex(Fin::add1Mod(i))
