@@ -310,8 +310,6 @@ we need to design it's type checking rules
 -- what are it's elements.
 We need to do this for `Cell` and `Skeleton` and `Boundary`.
 
-
-
 ```cicada
 datatype Endpoint {
   start: Cell(0, Endpoint)
