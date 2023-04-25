@@ -1,0 +1,52 @@
+5. Separating Responsibilities
+
+
+<question>
+    What is the truth about refactoring?
+
+  <answer>
+    Sometimes some refactoring is wrong, and we need to backtrack.
+    This is expected because refactoring is an idea
+    that help us to explore a problem domain safely.
+
+    If after a refactoring, the code is still not open to the new requirement.
+    Don't worry, have faith, iterate, find new code smells to attack.
+
+  </answer>
+</question>
+
+
+<question>
+    What questions can help us find code smells?
+
+  <answer>
+    The following questions help separating responsibilities.
+
+    Look at the class as a whole and expose common qualities of the code:
+
+    1. Do any methods have the same shape?
+    2. Do any methods take an argument of the same name?
+    3. Do arguments of the same name always mean the same thing?
+    4. If you were going to break this class into two pieces, where's the dividing line?
+
+    Look at the methods:
+
+    5. Do the tests in the conditionals have anything in common?
+    6. How many branches do the conditionals have?
+    7. Do the methods contain any code other than the conditional?
+    8. Does each method depend more on the argument that got passed, or on the class as a whole?
+
+  </answer>
+</question>
+
+
+<question>
+    How does naming methods and naming classes different?
+
+  <answer>
+    The rule about naming can thus be amended:
+    while you should continue to name methods after what they mean,
+    classes can be named after what they are.
+
+  </answer>
+</question>

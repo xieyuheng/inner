@@ -1,0 +1,164 @@
+3. Unearthing Concepts
+
+
+<question>
+  When a new requirement arrive, what we learned?
+
+
+  <answer>
+    The arrival of a new requirement tells you two things:
+
+    - Exactly how the code should change
+    - The code need to be easy to change
+
+  </answer>
+</question>
+
+
+<question>
+    What is your licence to improve some (Shameless Green) code?
+
+  <answer>
+    Someone has asked for a change.
+  </answer>
+</question>
+
+
+
+<question>
+  What is the "open" principle of SOLID?
+
+  <answer>
+    O - Open-Closed
+
+    Objects should be open for extension, but closed for modification.
+
+    "open for extension" means extension not by editing the conditional,
+    but by merely adding code.
+
+    When faced with a new requirement,
+    first "open" the code for change,
+    then add the new code.
+
+    ----
+
+    It is important to note that, the sum type of algebra datatype, is about being close.
+    Being close, we can make sure all cases are covered in a "proof by case" (function is proof).
+
+  </answer>
+</question>
+
+
+<question>
+    If we do not know how to open the code, what should we do?
+
+  <answer>
+    We should remove the easiest to fix and best understood code smell.
+  </answer>
+</question>
+
+
+<question>
+    How to find code smells?
+
+  <answer>
+    Make a list of the things you dislike about your code.
+
+  </answer>
+</question>
+
+
+<question>
+    How to achieve good abstraction?
+
+  <answer>
+    Use the "Flocking Rules":
+
+    1. Select the things that are most alike.
+    2. Find the smallest difference between them.
+    3. Make the simplest change that will remove that difference.
+
+    DRYing out sameness has some value, but DRYing out difference has more.
+
+  </answer>
+</question>
+
+
+<question>
+  Why "Flocking"?
+
+  <answer>
+    Birds flock, fish school, and insects swarm.
+
+    A flock's behavior can appear so synchronized and complex
+    that it gives the impression of being centrally coordinated.
+    Nothing could be further from the truth.
+
+    The group's behavior is the result of a continuous series of
+    small decisions being made by each participating individual.
+    These decisions are guided by three simple rules.
+
+    1. Alignment - Steer towards the average heading of neighbors
+    2. Separation - Don't get too close to a neighbor
+    3. Cohesion - Steer towards the average position of the flock
+
+    Thus, complex behavior emerges from the repeated application of simple rules.
+    In the same way that the rules in this sidebar allow birds to flock,
+    the "Flocking Rules" for code allow abstractions to appear.
+
+    ------
+
+    I found a correspondence of the "Flocking Rules" in algebra:
+
+    The "Flocking Rules":
+
+    1. Select the things that are most alike.
+    2. Find the smallest difference between them.
+    3. Make the simplest change that will remove that difference.
+
+    Is like reversing the distribution of multiplication over addition:
+
+    `x * y + x * z => x * (y + z)`
+
+    1. `x * y` and `x * z` are alike.
+    2. The smallest difference is `y` v.s. `z`.
+    3. Extract `(y + z)` and use the distribution law, to get one product.
+
+    The metaphor of "a flock of birds" is beautiful :)
+
+    And algebra is also beautiful, the "Flocking Rules" in algebra means,
+    by doing this steps locally we can achieve some kind of normal form in a ring.
+
+  </answer>
+</question>
+
+
+<question>
+    What can we do when we are in the struggle for a name?
+
+  <answer>
+    There are two pieces of information that can help in the struggle for a name.
+
+    One is a general rule and the other is the new requirement:
+
+    - The general rule is to name a thing one level of abstraction higher than the thing itself.
+      (this rule applies more to methods than to classes.)
+
+    - While new requirement can provide new instance for the category we are trying to name.
+      We should name the category using the language of the domain.
+
+    - Avdi Grimm:
+
+      We can also use rows and columns in an imaginary spreadsheet,
+      to write things down, to help find names for underlying concepts.
+
+      This naming technique is called "what would the column header be?"
+
+    - Tom Stuart:
+
+      To name a concept for which you have only a few examples,
+      it can help to imagine other concrete things
+      that might also fall into the same category.
+
+  </answer>
+</question>

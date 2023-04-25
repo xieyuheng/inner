@@ -1,0 +1,117 @@
+6. Achieving Openness
+
+
+<question>
+  What is the "Data Clumps" code smell?
+
+  <answer>
+    If these two things always appear together,
+    it's a signal that this pairing represents a deeper concept,
+    and that concept should be named.
+
+  </answer>
+</question>
+
+
+<question>
+    Why sometimes programmers add blank line in code?
+
+  <answer>
+    Programmers add blank lines to signify changes of topic.
+
+    The presence of multiple topics suggests
+    the existence of multiple responsibilities,
+    which makes code harder to understand when reading,
+    and easier to harm when changing.
+
+  </answer>
+</question>
+
+
+<question>
+    How does skilled programmers choose the best solution?
+
+  <answer>
+    For example, to fix the "Switch Statement" code smell,
+    should we use the "Replace Conditional with State/Strategy"
+    or the "Replace Conditional with Polymorphism"?
+
+    It's the result of a lifetime of coding experiments.
+    Their present-day actions are informed by
+    a diverse body of knowledge gained piecemeal, over time.
+
+    Their deep familiarity with many varieties of code entanglements
+    allows them to unconsciously map appropriate solutions onto common problems,
+    often without the necessity of first writing code.
+
+    They also know that they don't know everything.
+    This belief in their own fallibility lends them caution.
+    Skilled programmers do what's right when they intuit the truth,
+    but otherwise they engage in careful, precise,
+    reproducible, and reversible coding experiments.
+    You are encouraged to do the same.
+
+    The best way to figure out what will happen
+    if you follow competing recipes is to try it,
+    speculatively, try them all.
+    Evaluate the results.
+    Choose one and proceed,
+    or revert all and try again.
+
+    Practice builds intuition.
+    Do it enough, and you'll seem magical too.
+
+  </answer>
+</question>
+
+
+<question>
+    What is polymorphism in OOP?
+
+  <answer>
+   In OO, polymorphism refers to the idea of
+   having many different kinds of objects
+   that respond to the same message.
+
+  </answer>
+</question>
+
+
+<question>
+    What is a "factory"?
+
+  <answer>
+    When several classes play a common role,
+    a factory is a method whose job is to
+    return the right role-playing object.
+
+    - This means that "Replace Conditional with Polymorphism" can not remove all conditionals,
+      but can merge all conditionals into one conditional in a "factory".
+
+  </answer>
+</question>
+
+
+<question>
+  With polymorphism in place what do we know about domain question about variation?
+
+  <answer>
+    Domain question about variation are questions like the following form:
+
+    - Which ______ are most alike? In what way?
+    - Which ______ are most different? In what way?
+
+    The subtype hierarchy developed for the polymorphism,
+    looks like part of a concept lattice in formal concept analysis.
+
+  </answer>
+</question>
+
+
+<question>
+    How to change return type of a polymorphic method in a step by step way?
+
+  <answer>
+    By temporarily allow functions that use the return value to accept both types.
+  </answer>
+</question>

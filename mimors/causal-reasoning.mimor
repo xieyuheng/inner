@@ -1,0 +1,25 @@
+<metadata theme-color="blue" />
+
+<question>
+  What is Bayesian interpretation of probability?
+
+  <answer>
+    Probabilities encode degrees of belief about events in the world.
+
+    And data are used to strengthen, update, or weaken those degrees of belief.
+  </answer>
+</question>
+
+<question>
+  What are some good examples of "association is not causation"?
+
+  <answer>
+    Sleeping with shoes on, and waking up with headache.
+
+    Confounder: drinking the night before.
+  </answer>
+</question>
+
+<back-cover>
+  Fin
+</back-cover>

@@ -1,0 +1,67 @@
+4. Practicing Horizontal Refactoring
+
+
+<question>
+    Should we think far ahead for creating better abstraction?
+
+  <answer>
+    You can use your common sense, but in general you should not.
+
+    When creating an abstraction,
+    first describe its responsibility as you understand it at this moment,
+    then choose a name which reflects that responsibility.
+
+    The effort you put into selecting good names right now
+    pays off by making it easier to recognize perfect names later.
+
+    You can learn something during these steps, do not jump.
+  </answer>
+</question>
+
+
+<question>
+    How to reducing the number of dependencies imposed upon message senders?
+
+  <answer>
+    By requiring that receivers return trustworthy objects,
+    which is a generalization of the Liskov Substitution Principle.
+
+  </answer>
+</question>
+
+
+<question>
+    What are the benefits of abstractions?
+
+  <answer>
+    Abstractions are beneficial in many ways.
+
+    They consolidate code into a single place
+    so that it can be changed with ease.
+
+    They name this consolidated code,
+    allowing the name to be used as a shortcut for an idea,
+    independent of its current implementation.
+
+    These are valuable benefits, but abstractions also help in another, more subtle, way.
+    In addition to the above, abstractions tell you
+    where your code relies upon an idea.
+
+    But to get this last benefit,
+    you must refer to an abstraction
+    in every place where it applies.
+
+  </answer>
+</question>
+
+
+<question>
+    Why the ABC score is worse, but we consider the code quality improved?
+
+  <answer>
+    Because it revealed and isolated a lot of useful concepts.
+
+    Maybe a better score is (ABC / number of domain concepts).
+
+  </answer>
+</question>

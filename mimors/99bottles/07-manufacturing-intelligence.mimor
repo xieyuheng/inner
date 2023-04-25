@@ -1,0 +1,93 @@
+7. Manufacturing Intelligence
+
+
+<question>
+  How factory different from other methods that use conditionals?
+
+  <answer>
+    Factories don't know what to do;
+    instead, they know how to choose who does.
+
+    A conditional that selects an object v.s. A conditional that supplies behavior.
+  </answer>
+</question>
+
+
+<question>
+    What knowledge do factories capture?
+
+  <answer>
+    Knowledge of the class names of the variants,
+    and of the logic necessary to choose the correct one,
+    can be captured in factories.
+  </answer>
+</question>
+
+
+<question>
+    What is a factory's responsibility?
+
+  <answer>
+    A factory's responsibility is to manufacture the right object for a given role.
+  </answer>
+</question>
+
+
+<question>
+  What dimensions factories can vary along?
+
+  <answer>
+    Factories can vary along these dimensions:
+
+    1. The factory can be open to new variants or closed
+    2. variant own choosing logic
+       - for example, by a `can_handle` static method
+    3. variant own creating logic
+       - for example, by a `try_to_create` static method
+  </answer>
+</question>
+
+
+<question>
+    What is a example use of factories in language implementation?
+
+  <answer>
+    Parser is.
+
+    In which syntax will change in lockstep with expression class,
+    Thus maybe factories should not own all the responsibilities.
+
+    But maybe we need to support multiple style of syntax,
+    so the factories should own all the responsibilities.
+  </answer>
+</question>
+
+
+<question>
+    What are ways to keep a factory open to new variants?
+
+  <answer>
+    1. Use meta programming.
+    2. The factory
+    2.1. holds onto the registry, and
+    2.2. provides a way for candidates to add themselves to it.
+
+    For example, web components use (2).
+
+    Note that, in (2) variants knows the factory.
+  </answer>
+</question>
+
+
+<question>
+    Why experienced programmers are good at writing change-tolerant code?
+
+  <answer>
+    One reason experienced programmers are good at writing change-tolerant code
+    is that they've built up a set of internal guidelines
+    about how to guess well.
+
+    They understand that although dependencies can't be avoided,
+    they can be deliberately chosen with an eye towards stability.
+  </answer>
+</question>

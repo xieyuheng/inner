@@ -1,0 +1,128 @@
+2. Test Driving Shameless Green
+
+
+<question>
+    Why we wish to "getting green first"?
+
+  <answer>
+    Getting green first, Shameless Green maximum understandability
+    but is generally unconcerned with changeability.
+
+    Because we'd better achieve understandability and changeability in steps.
+  </answer>
+</question>
+
+
+<question>
+    How to achieve understandability and changeability?
+
+  <answer>
+    To achieve understandability and changeability,
+    we, little by little, separate the things that change
+    from the things that remain the same.
+
+    Like reversing the distribution of multiplication over addition:
+
+    x * y + x * z => x * (y + z)
+
+  </answer>
+</question>
+
+
+<question>
+    Why we wish to delay abstraction?
+
+  <answer>
+    Because we want to wait for more information.
+
+    Delay abstraction, wait for more information.
+
+    It's better to tolerate duplication
+    than to anticipate the wrong abstraction.
+  </answer>
+</question>
+
+
+
+<question>
+    What questions can help us understand the cost and value of making abstraction?
+
+  <answer>
+    Ask the following questions, before making an abstraction:
+
+    1. Does the change I'm contemplating make the code harder to understand?
+    2. What is the future cost of doing nothing now?
+    3. When will the future arrive, or how soon will I get more information?
+
+  </answer>
+</question>
+
+
+<question>
+    During the search for Shameless Green, We should tolerate what kind of duplication?
+
+  <answer>
+    When it isolates a new independent example,
+    for which the underlying abstraction is not clear yet.
+
+  </answer>
+</question>
+
+
+
+<question>
+    And, we should not tolerate what kind of duplication?
+
+  <answer>
+    Those kind of duplication that blurs the responsibility.
+  </answer>
+</question>
+
+
+<question>
+    When should we jump over the small steps of TDD?
+
+  <answer>
+    Never.
+
+    Because you do not always know what is actually right.
+
+  </answer>
+</question>
+
+
+
+<question>
+    What is Kent Beck's Triangulation? [三角测量法]
+
+  <answer>
+    Targeting multiple tests in one implementation step.
+    Because you can not fake multiple tests.
+  </answer>
+</question>
+
+
+<question>
+    How should we design public API?
+
+  <answer>
+    As method provider, we should think about message sender,
+    and help them to know as less as possible.
+
+    Bwtween sender and provider, to know is to depend.
+
+  </answer>
+</question>
+
+
+<question>
+    What is the first step in learning the art of testing?
+
+  <answer>
+    The first step in learning the art of testing
+    is to understand how to write tests that
+    confirm what your code does
+    without any knowledge of how your code does it.
+
+  </answer>
+</question>

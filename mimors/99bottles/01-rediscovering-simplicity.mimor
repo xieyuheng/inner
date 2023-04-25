@@ -1,0 +1,56 @@
+1. Rediscovering Simplicity
+
+
+Writing Shameless Green is fast,
+and the resulting code might be "good enough."
+
+The challenge comes when a change request arrives.
+
+Code that's good enough when nothing ever changes
+may not be good enough when things do.
+
+
+<question>
+    What kind of code should we write first?
+
+  <answer>
+    Write Shameless Green code first.
+
+    - TDD will teach us how to do this.
+
+    - abstraction should be guided by new requirements, keep it simple when there is no new requirements.
+
+    - new design with new abstraction should be achieved by refactoring.
+
+  </answer>
+</question>
+
+
+<question>
+    How should we measure code quality? is it even possible?
+
+  <answer>
+    ABC Metric -- Assignments, Branches and Conditions,
+    is a good quantitative measure of code quality.
+
+  </answer>
+</question>
+
+
+<question>
+    What questions can help us understand the cost and value of code?
+
+  <answer>
+    Questions about cost and value of code:
+
+    1. How difficult was it to write? (past)
+    2. How hard is it to understand? (now)
+    3. How expensive will it be to change? (future)
+
+    Among the above (now) is the most import question.
+
+    Beside the above, domain questions is another important kind of questions.
+    - Which is about understanding.
+
+  </answer>
+</question>
