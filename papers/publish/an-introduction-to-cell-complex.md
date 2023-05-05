@@ -7,15 +7,29 @@ keywords: [胞状复形, cell complex]
 
 ## 引子
 
-当我们讨论如何将正方形的边界以四种不同的方式粘合起来，
-而分别形成球形、环面、克莱因瓶、射影平面的时候，
-我们其实是在构造胞状复形。
+我们可以将正方形的边界以四种不同的方式粘合起来：
 
 ![four-ways-to-glue-a-square.svg](./an-introduction-to-cell-complex/four-ways-to-glue-a-square.svg)
+
+而分别形成
+
+球形：
+
 ![sphere.svg](./an-introduction-to-cell-complex/sphere.svg)
+
+环面：
+
 ![torus.svg](./an-introduction-to-cell-complex/torus.svg)
+
+克莱因瓶：
+
 ![klein-bottle.svg](./an-introduction-to-cell-complex/klein-bottle.svg)
+
+射影平面：
+
 ![projective-plane.svg](./an-introduction-to-cell-complex/projective-plane.svg)
+
+当我们讨论这样的粘合构造的时候，我们其实是在构造胞状复形。
 
 维基百科的 [Cell complex](https://en.wikipedia.org/wiki/CW_complex) 文章，
 用数学语言精确地描述了如何构造胞状复形。
