@@ -5,6 +5,7 @@
   "homepage": "author/HOME.md",
   "avatar": "assets/images/xieyuheng-square.jpg",
   "activities": [
+    "activities/2023-05-05-an-introduction-to-cell-complex.md",
     "activities/2023-04-12-reading-refactoring-ui.md",
     "activities/2023-04-08-craftinginterpreters-zh.md",
     "activities/2023-03-18-vv-foundations-of-mathematics.zh.md",
