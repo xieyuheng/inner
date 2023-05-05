@@ -18,10 +18,12 @@ keywords: [胞状复形, cell complex]
 ![projective-plane.svg](./an-introduction-to-cell-complex/projective-plane.svg)
 
 维基百科的 [Cell complex](https://en.wikipedia.org/wiki/CW_complex) 文章，
-用数学语言，精确描述了如何构造胞状复形。
+用数学语言精确地描述了如何构造胞状复形。
+但是，对于不熟悉拓扑学中诸多概念的同学而言，
+维基百科的文章可能有些难懂。
 
-在这篇文章中，我想介绍一下我对构造胞状复形的理解，
-并且尝试设计一个语言来形式化地构造胞状复形。
+在这篇文章中，我想介绍一下我对构造胞状复形的理解，希望我的介绍能更易懂。
+同时，我还想尝试设计一个语言来形式化地构造胞状复形。
 
 ## 构造胞状复形的材料
 
