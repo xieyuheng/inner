@@ -1,9 +1,29 @@
 ---
-title: 胞状复形简介
+title: 胞状复形引论
 author: 谢宇恒
 date: 2023-05-05
 keywords: [胞状复形, cell complex]
 ---
+
+## 引子
+
+当我们讨论如何将正方形的边界以四种不同的方式粘合起来，
+而分别形成球形、环面、克莱因瓶、射影平面的时候，
+我们其实是在构造胞状复形。
+
+![four-ways-to-glue-a-square.svg](./an-introduction-to-cell-complex/four-ways-to-glue-a-square.svg)
+![sphere.svg](./an-introduction-to-cell-complex/sphere.svg)
+![torus.svg](./an-introduction-to-cell-complex/torus.svg)
+![klein-bottle.svg](./an-introduction-to-cell-complex/klein-bottle.svg)
+![projective-plane.svg](./an-introduction-to-cell-complex/projective-plane.svg)
+
+维基百科的 [Cell complex](https://en.wikipedia.org/wiki/CW_complex) 文章，
+用数学语言，精确描述了如何构造胞状复形。
+
+在这篇文章中，我想介绍一下我对构造胞状复形的理解，
+并且尝试设计一个语言来形式化地构造胞状复形。
+
+## 构造胞状复形的材料
 
 构造胞状复形，在于将许多胞状结构粘连起来，复合而成复杂的拓扑形状。
 
@@ -34,6 +54,8 @@ keywords: [胞状复形, cell complex]
 - 这个表格中，所列的球状结构，都是所对应的团状结构的边界。
   比如球形，是实心球的边界。
 
+## 粘连
+
 > 构造胞状复形，在于将许多胞状结构粘连起来，复合而成复杂的拓扑形状。
 
 如何将许多胞状结构粘连起来呢？
@@ -57,6 +79,8 @@ keywords: [胞状复形, cell complex]
 我能想到两种方式，
 一是用解析几何的方法（感谢笛卡尔），
 二是用离散数学的方法（毕竟我们所关心的只是拓扑属性，而不是几何属性）。
+
+### 解析几何的方法
 
 先介绍解析几何的方法。
 
@@ -82,6 +106,8 @@ keywords: [胞状复形, cell complex]
 胞状结构的解析坐标系与作为解析函数的粘合映射，
 甚至给出了几何结构，使得我们可以度量点之间距离等等。
 但是，实际上我们只关心拓扑结构。
+
+### 离散数学的方法
 
 下面介绍离散数学的方法，
 在保持拓扑结构不变的前提下，
