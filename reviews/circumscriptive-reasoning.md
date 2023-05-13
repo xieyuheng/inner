@@ -10,7 +10,6 @@ Firstly I aware something is wrong,
 then I ascribe the wrong to the fact that "I am believing P".
 Only now P is explicit.
 
-
 In a prover,
 if a theorem is proven, it will alway be proven.
 Adding new facts to the system will not disprove any proven theorems.
