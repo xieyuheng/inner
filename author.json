@@ -1,6 +1,12 @@
 {
   "kind": "Author",
   "name": "Xie Yuheng",
+  "contact": {
+    "bilibili": "https://space.bilibili.com/550104600",
+    "github": "https://github.com/xieyuheng",
+    "email": "xyheme@gmail.com",
+    "twitter": "https://twitter.com/CicadaLanguage"
+  },
   "tagline": "A programmer who created readonly.link.",
   "homepage": "HOME.md",
   "avatar": "assets/images/xieyuheng-square.jpg",
