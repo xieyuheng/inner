@@ -7,7 +7,7 @@ through my [projects](PROJECTS.md), [translations](TRANSLATIONS.md), and [papers
 
 Right now I'm working on [**Cicada Language**](https://cicada-lang.org),
 [**Readonly.Link**](https://readonly.link),
-[**Mimor**](https://mimer.app),
+[**Mimor**](https://mimor.app),
 and [**FiDB**](https://fidb.dev).
 
 Curious? Come to see my [**inner universe**](https://github.com/xieyuheng/inner).
