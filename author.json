@@ -6,7 +6,8 @@
   "avatar": "assets/images/xieyuheng-square.jpg",
   "tabs": {
     "HOME": "HOME.md",
-    "PROJECTS": "PROJECTS.md"
+    "PROJECTS": "PROJECTS.md",
+    "RESUME": "RESUME.md"
   },
   "activities": [
     "activities/2023-05-05-an-introduction-to-cell-complex.md",
