@@ -9,7 +9,8 @@
     "PROJECTS": "PROJECTS.md",
     "TRANSLATIONS": "TRANSLATIONS.md",
     "PAPERS": "PAPERS.md",
-    "RESUME": "RESUME.md"
+    "RESUME": "RESUME.md",
+    "TODO": "TODO.md"
   },
   "activities": [
     "activities/2023-05-05-an-introduction-to-cell-complex.md",
