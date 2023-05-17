@@ -2,11 +2,12 @@
   "kind": "Author",
   "name": "Xie Yuheng",
   "tagline": "A programmer who created readonly.link.",
-  "homepage": "author/HOME.md",
+  "src": "author",
+  "homepage": "HOME.md",
   "avatar": "assets/images/xieyuheng-square.jpg",
   "tabs": {
-    "HOME": "author/HOME.md",
-    "PROJECTS": "author/PROJECTS.md"
+    "HOME": "HOME.md",
+    "PROJECTS": "PROJECTS.md"
   },
   "activities": [
     "activities/2023-05-05-an-introduction-to-cell-complex.md",
