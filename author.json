@@ -4,7 +4,10 @@
   "tagline": "A programmer who created readonly.link.",
   "homepage": "author/HOME.md",
   "avatar": "assets/images/xieyuheng-square.jpg",
-  "tabs": ["author/HOME.md", "author/PROJECTS.md"],
+  "tabs": {
+    "HOME": "author/HOME.md",
+    "PROJECTS": "author/PROJECTS.md"
+  },
   "activities": [
     "activities/2023-05-05-an-introduction-to-cell-complex.md",
     "activities/2023-04-12-reading-refactoring-ui.md",
