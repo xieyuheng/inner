@@ -14,52 +14,36 @@ Don't merely do a project, dance with it!
 
 ### Cicada Language
 
-Right now I'm working on [Cicada Language](https://cicada-lang.org),
+[Cicada Language](https://cicada-lang.org) is
 both a *programming language* and a *theorem prover*.
-
-Based on cicada, I want to build a wiki of formalized
-mathematical theories, to flourish the ideas developed in the
-*foundations of mathematics*, and serve as a bridge between computer
-science and mathematics.
-
-### Postmark
-
-[Postmark](https://github.com/xieyuheng/postmark)
-is a framework for building markdown extensions.
 
 ### Readonly.Link
 
 [Readonly.Link](https://readonly.link)
 is a document rendering platform.
 
-### EnchanterJS
+### Mimor
 
-Since I work as a web developer, learning about all kinds of tools
-designed for web development is my daily routine.
+[Mimor](https://Mimor.app)
+is a memory helping app.
 
-After encountered [Laravel](https://laravel.com) and its amazing community,
-I start bringing its artisan spirit and beautiful API to my team.
+### FiDB
 
-Hence [EnchanterJS](https://github.com/enchanterjs/enchanter)
--- a web (and console) application framework,
-for TypeScript and NodeJs, emphasis on clarity and well typed API.
+[FiDB](https://fidb.dev)
+-- What if we use file system as database?
 
-### LogicDB
+### Pomodoro
 
-While learning Logic programming, I started a project called
-[LogicDB](https://github.com/xieyuheng/logic-db), to embed a
-Prolog-like logic programming language in JavasScript and TypeScript.
+[Pomodoro](https://pomodoro.fidb.app)
+is a timer to help people focusing.
 
-### ty
+### X-series
 
-[ty](https://github.com/xieyuheng/ty) can be used to write schema to bring TypeScript's types to runtime.
+- [x-markdown](https://github.com/xieyuheng/x-markdown):
+  A stable Markdown AST.
 
-We can use ty schema to do validation and generate random data of certain type.
+- [x-node](https://github.com/xieyuheng/x-node):
+  A stable XML AST.
 
-### Lowdim & cell-complex
-
-[Lowdim](https://github.com/xieyuheng/lowdim) is about modeling low
-dimensional (0, 1, 2, 3 maybe 4 dimension) topology and geometry.
-
-[cell-complex](https://github.com/xieyuheng/cell-complex) is about
-topological and geometric modeling in any dimension.
+- [x-schema](https://github.com/xieyuheng/x-schema):
+  A runtime schema for JSON data, where the syntax is optimized for the most used use cases.
