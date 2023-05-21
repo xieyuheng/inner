@@ -1,0 +1,18 @@
+<question>
+  What is the fundamental theorem of calculus.
+
+  <answer>
+    The derivative of the area under the graph of a function,
+    gives you back the function defining the graph itself.
+
+    A(x) is the area under the graph of f(x)
+
+    dx is infinitesimal
+
+    dA = A(x) - A(x + dx)
+
+    dA / dx = f(x)
+
+    A(x) is called the integral of f(x)
+  </answer>
+</question>
