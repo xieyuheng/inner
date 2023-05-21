@@ -1,5 +1,5 @@
 <question>
-  What is the fundamental theorem of calculus.
+  What is the fundamental theorem of calculus?
 
   <answer>
     The derivative of the area under the graph of a function,
@@ -14,5 +14,35 @@
     dA / dx = f(x)
 
     A(x) is called the integral of f(x)
+  </answer>
+</question>
+
+<question>
+  What is integral about?
+
+  <answer>
+    Integral is about accumulated infinitesimal changes.
+
+    In the case of the area of the graph of a function,
+    the infinitesimal change is the line height of the function.
+
+    Early inventors of calculus view area as sum of lines.
+  </answer>
+</question>
+
+<question>
+  What is derivative about?
+
+  <answer>
+    Derivative is about how infinitesimal change of a quantity
+    causing infinitesimal change of another quantity.
+  </answer>
+</question>
+
+<question>
+  What is infinitesimal?
+
+  <answer>
+    TODO
   </answer>
 </question>
