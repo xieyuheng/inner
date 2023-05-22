@@ -75,8 +75,8 @@
   From the point view of slope, what is the fundamental theorem of calculus?
 
   <answer>
-    The average slope of a continuous line between a start point and an end point,
-    is the slope of the line calculated only using the rise from the start to the end.
+    The average slope of a continuous curve between a start point and an end point,
+    is the slope of the curve calculated only using the rise from the start to the end.
 
     (∫ [a, b] f(x) dx) / (b - a) = (F(b) - F(a)) / (b - a)
 
@@ -86,10 +86,24 @@
 
     ∫ [a, b] f(x) dx = F(b) - F(a)
 
-    The information at the two endpoints of the line
+    The information at the two endpoints of the curve
     is sufficient to calculate the average slope between the endpoints.
 
     Because the slope can varies in between
-    but it must rice the line to the height at end point.
+    but it must rice the curve to the height at end point.
+  </answer>
+</question>
+
+
+<question>
+  What is surprising about Taylor series?
+
+  <answer>
+    The analytic continuous function are so regular,
+    so that the enumerably amount of information
+    can capture the whole function.
+
+    Namely higher and higher order derivatives
+    taken at one point (any point).
   </answer>
 </question>
