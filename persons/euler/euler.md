@@ -15,6 +15,9 @@ implicit differentiation is hard to explain,
 because we can not use dx and dy directly.
 How does Euler use infinitesimal directly?
 
+Since Euler does not have the arithmetization of calculus,
+he must view all the concepts of calculus with good intuition!
+
 # Books
 
 - [Elements of Algebra](https://en.wikipedia.org/wiki/Elements_of_Algebra)
