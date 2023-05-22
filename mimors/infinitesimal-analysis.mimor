@@ -1,0 +1,95 @@
+<question>
+  What is the fundamental theorem of calculus?
+
+  <answer>
+    The derivative of the area under the graph of a function,
+    gives you back the function defining the graph itself.
+
+    A(x) is the area under the graph of f(x).
+
+    dx is infinitesimal.
+
+    dA = A(x) - A(x + dx)
+
+    dA / dx = f(x)
+
+    A(x) is called the integral of f(x).
+  </answer>
+</question>
+
+
+<question>
+  What is integral about?
+
+  <answer>
+    Integral is about accumulated infinitesimal changes.
+
+    In the case of the area of the graph of a function,
+    the infinitesimal change is the line height of the function.
+
+    Early inventors of calculus view area as sum of lines.
+  </answer>
+</question>
+
+
+<question>
+  What is derivative about?
+
+  <answer>
+    Derivative is about how infinitesimal change of a quantity (dx)
+    causing infinitesimal change of another quantity (df).
+
+    Expressed by their rate df / dx.
+  </answer>
+</question>
+
+
+<question>
+  What is infinitesimal?
+
+  <answer>
+    TODO
+  </answer>
+</question>
+
+
+<question>
+  When we can use integration to compute a quantity?
+
+  <answer>
+    When the quantity is the linear combination of infinitesimals.
+
+    When df = f(x) * dx
+
+    The quantity = ∫ df = ∫ f(x) * dx
+  </answer>
+</question>
+
+
+<cloze>
+  There are two geometric intuition of calculus: area and <blank>slope</blank>.
+</cloze>
+
+
+<question>
+  From the point view of slope, what is the fundamental theorem of calculus?
+
+  <answer>
+    The average slope of a continuous line between a start point and an end point,
+    is the slope of the line calculated only using the rise from the start to the end.
+
+    (∫ [a, b] f(x) dx) / (b - a) = (F(b) - F(a)) / (b - a)
+
+    The left side of the above euqaiton
+    can be considered as weighted average,
+    where the weight of each slope is dx / (b - a).
+
+    ∫ [a, b] f(x) dx = F(b) - F(a)
+
+    The information at the two endpoints of the line
+    is sufficient to calculate the average slope between the endpoints.
+
+    Because the slope can varies in between
+    but it must rice the line to the height at end point.
+  </answer>
+</question>
