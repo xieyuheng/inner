@@ -107,3 +107,23 @@
     taken at one point (any point).
   </answer>
 </question>
+
+
+<question>
+  Are there any other intuition about calculus,
+  other than area and slope?
+
+  <answer>
+    - To understand derivative as density (change of mess).
+
+    - To understand function as mapping, and derivative as a measure of
+      how the points in the domain are stretched apart in the codomain,
+      the larger the absulate derivative, the further the points are stretched,
+      zero derivative means the points are squeezed into one point,
+      absulate derivative less than one means contraction,
+      absulate derivative greater than one means expansion.
+      This is useful when studying iterate functions,
+      where contraction means stable fixpoint;
+      and Jacobian TODO?
+  </answer>
+</question>
