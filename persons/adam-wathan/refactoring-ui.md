@@ -13,15 +13,15 @@ authors: ["Adam Wathan", "Steve Schoger"]
 
 - Don’t design too much
 
-<mimor src="refactoring-ui/01-starting-from-scratch.mimor" />
+<mimor src="../../mimors/refactoring-ui/01-starting-from-scratch.mimor" />
 
 - Choose a personality
 
-<mimor src="refactoring-ui/01.4-choose-a-personality.mimor" />
+<mimor src="../../mimors/refactoring-ui/01.4-choose-a-personality.mimor" />
 
 - Limit your choices
 
-<mimor src="refactoring-ui/01.5-limit-your-choices.mimor" />
+<mimor src="../../mimors/refactoring-ui/01.5-limit-your-choices.mimor" />
 
 # Hierarchy is Everything
 
@@ -41,7 +41,7 @@ authors: ["Adam Wathan", "Steve Schoger"]
 
 - Semantics are secondary
 
-<mimor src="refactoring-ui/02-hierarchy-is-everything.mimor" />
+<mimor src="../../mimors/refactoring-ui/02-hierarchy-is-everything.mimor" />
 
 # Layout and Spacing
 
@@ -57,7 +57,7 @@ authors: ["Adam Wathan", "Steve Schoger"]
 
 - Avoid ambiguous spacing
 
-<mimor src="refactoring-ui/03-layout-and-spacing.mimor" />
+<mimor src="../../mimors/refactoring-ui/03-layout-and-spacing.mimor" />
 
 # Designing Text
 
@@ -77,7 +77,7 @@ authors: ["Adam Wathan", "Steve Schoger"]
 
 - Use letter-spacing effectively
 
-<mimor src="refactoring-ui/04-designing-text.mimor" />
+<mimor src="../../mimors/refactoring-ui/04-designing-text.mimor" />
 
 # Working with Color
 
@@ -95,7 +95,7 @@ authors: ["Adam Wathan", "Steve Schoger"]
 
 - Don't rely on color alone
 
-<mimor src="refactoring-ui/05-working-with-color.mimor" />
+<mimor src="../../mimors/refactoring-ui/05-working-with-color.mimor" />
 
 # Creating Depth
 
@@ -109,7 +109,7 @@ authors: ["Adam Wathan", "Steve Schoger"]
 
 - Overlap elements to create layers
 
-<mimor src="refactoring-ui/06-creating-depth.mimor" />
+<mimor src="../../mimors/refactoring-ui/06-creating-depth.mimor" />
 
 # Working with Images
 
@@ -121,7 +121,7 @@ authors: ["Adam Wathan", "Steve Schoger"]
 
 - Beware user-uploaded content
 
-<mimor src="refactoring-ui/07-working-with-images.mimor" />
+<mimor src="../../mimors/refactoring-ui/07-working-with-images.mimor" />
 
 # Finishing Touches
 
@@ -137,4 +137,4 @@ authors: ["Adam Wathan", "Steve Schoger"]
 
 - Think outside the box
 
-<mimor src="refactoring-ui/08-finishing-touches.mimor" />
+<mimor src="../../mimors/refactoring-ui/08-finishing-touches.mimor" />
