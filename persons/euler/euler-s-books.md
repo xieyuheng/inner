@@ -45,6 +45,9 @@ including formulae for solutions of polynomial equations.
 
 # (1755) Institutiones calculi differentialis
 
+[ [WIKIPEDIA](https://en.wikipedia.org/wiki/Institutiones_calculi_differentialis)
+| [17CENTURYMATHS](https://www.17centurymaths.com/contents/differentialcalculus.htm) ]
+
 # (1768–1770) Institutionum calculi integralis
 
 # (1760-1762) Letters to a German Princess
