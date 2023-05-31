@@ -66,11 +66,14 @@ Puellae aquam ancillae apportant
 
 et ancilla cum puellis maculam tunicae aqua purgat.
 
-女仆用水为女孩们清洗衣服上的污渍。
+女仆和女孩们用水清洗衣服上的污渍。
 
 Regina et nauta numquam sciunt.
 
 女王和水手永远不会知道。
+
+- 注意，这个例子前面复数的衣服后面变成了单数。
+  可能是例子有问题。
 
 # Vocabulary for the translation
 
