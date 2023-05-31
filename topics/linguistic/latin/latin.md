@@ -5,10 +5,6 @@ title: Latin
 [ [WIKIPEDIA](https://en.wikipedia.org/wiki/Latin)
 | [VICIPAEDIA](https://la.wikipedia.org) ]
 
-# Resources
-
-- [Learn Latin from scratch](https://www.youtube.com/playlist?list=PLYJnrdT_iv39Oedx7hI9WJPtwQ5W7FEAD)
-
 # Cases
 
 https://zh.wikipedia.org/wiki/%E6%A0%BC_(%E8%AF%AD%E6%B3%95)
