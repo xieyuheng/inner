@@ -1,8 +1,11 @@
+<metadata theme-color="red" />
+
+
 <question>
   What are the six cases of Latin?
 
   <answer>
-    N. Nominative: subject.
+    N. Nominative: subject, attribute (object of "be", where the order does not matter).
 
     V. Vocative: getting attention.
 
@@ -15,7 +18,6 @@
     Ab. Ablative: adverbial.
   </answer>
 </question>
-
 
 
 <question>
@@ -55,6 +57,12 @@
     pl. N.
   </answer>
 </question>
+
+
+<cloze>
+  The -ae is both s. G. and pl. N.
+  just like the <blank>-s</blank> in English.
+</cloze>
 
 
 <question>
