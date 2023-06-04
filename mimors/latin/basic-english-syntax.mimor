@@ -63,7 +63,7 @@
 
   <answer>
     The attribute (also known as subject complement or predicate)
-    appears mostly with the verb “to be”, usually right after it.
+    appears mostly with the verb "to be", usually right after it.
   </answer>
 </question>
 
@@ -75,9 +75,13 @@
     The direct object is the obligatory complement of a type of verb
     called transitive.
 
-    transitive verb → requires a direct object
+
 
     intransitive verb → doesn’t admit a direct object
+
+    transitive verb → requires a direct object
+
+    ditransitive verb → requires a direct object and a indirect object
   </answer>
 </question>
 
@@ -92,12 +96,93 @@
     But be careful about indirect object
     which might also becomes the subject.
 
-    You give a ring to me.
+    - You give a ring to me.
 
     -> I am given a ring by you.
 
     -> A ring is given to me by you.
 
     Note that, the direct object is never preceded by a preposition.
+  </answer>
+</question>
+
+
+<question>
+  How do we identify the indirect object?
+
+  <answer>
+    The indirect object often follows "to".
+
+    - I give the letter to the mailman.
+
+    Without "to", the indirect is often next to the verb.
+
+    - I give the mailman the letter.
+  </answer>
+</question>
+
+
+<question>
+  How do we identify adverbials?
+
+  <answer>
+    Adverbials (sometimes circumstantial complements) can be of
+    several types and are easily identified through questions to the
+    verb. The most important ones are the following:
+
+    manner → how?
+
+    instrument → with what?
+
+    quantity → how many/much?
+
+    cause → why?
+
+    purpose → for what?
+
+    company → with whom?
+
+    time → when?
+
+    about place:
+
+    location → where?
+
+    origin → from where?
+
+    direction → to where?
+
+    through → through where?
+  </answer>
+</question>
+
+
+<question>
+  What is the prepositional complement?
+
+  <answer>
+    We use this name to refer to an obligatory complement of verbs
+    which require a preposition. We can think of it as a direct
+    object, but with a preposition. (Some of these verb actually can
+    work with or without a preposition with pretty much the same
+    meaning).
+
+    Some analyses consider that the preposition is part of the verb,
+    not part of the complement.
+  </answer>
+</question>
+
+
+<question>
+  How do we identified the complement of the noun?
+
+  <answer>
+    Most of the times, the complement of the noun is not obligatory.
+
+    Quite often it can be expressed through the Saxon genitive:
+
+    ... [of ...]
+
+    [...'s] ...
   </answer>
 </question>
