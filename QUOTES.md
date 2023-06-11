@@ -3,6 +3,7 @@ title: Quotes
 ---
 
 - Vague, but exciting.
+
   - Mike Sendall
   - About Tim Berners-Lee's work on internet
 
@@ -24,34 +25,48 @@ title: Quotes
 # Programming Languages
 
 - What truely drives language adoption is necessity.
+
   - TechLead
   - "Will Deno replace Node.js: Which programming language is better?"
 
 - Syntax without representation is tyranny.
+
   - Sussman's mantra
 
 - One of the things that's been an observation over a long time,
   is that it's often more to your advantage
   to be like the person next to you
   than it's to have a better tool.
+
   - Sussman
 
 # Design
 
 - The goal of design is for you to understand the choices you are making.
+
   - Sandi Marts, Defining Object-Oriented Design
 
 - The usage is the starting point of any design.
+
   - Dieter Rams
 
 # Lie
 
 - A lie is as simple as the hardest art.
+
   - Ryszard Peryt to Nina Gierasimczuk
+
+# Right
+
+- Beware of he who would deny you access to information,
+  for in his heart he dreams himself your master.
+
+  - Pravin Lal
 
 # Business
 
 - If you're good at something, never do it for free.
+
   - The Joker
 
 # Love
@@ -61,6 +76,7 @@ title: Quotes
   then you are touched by melancholy however it is expressed.
   And I am very much touched by melancholy, because it's something very vivid,
   it's something let's you disassociate and understand the true moments of joy and happiness.
+
   - Keren Ann on melancholy, love and loss
 
 # Education
@@ -70,49 +86,59 @@ title: Quotes
 - Do extra work each time,
   and get down to fundamentals,
   and study things until you understand them.
+
   - Richard Hamming
   - Lecture "Digital Filters, Part I" (April 27, 1995)
 
 - You need both theory to guide you, and skill and technique to do.
+
   - Richard Hamming
 
 # Engineering
 
 - Anything complex in the world can be improved.
+
   - Donald Knuth
 
 - Remember, an engineer doesn't want just a religion about how to solve a problem.
+
   - Gerry Sussman
   - "We Really Don't Know How to Compute!"
 
 - It is through restriction that we gain power.
   The less that we can do, the more we can do with what we did.
   The less that we can do, the more that we can optimize.
+
   - Paul Phillips
   - We're Doing It All Wrong, at Pacific Northwest Scala 2013
 
 # Mathematics
 
 - The code pretty much writes itself.
+
   - Bartosz Milewski
   - "category theory for programmers".
 
 - Mathematics is a beautiful dream world where progress can begin.
+
   - Eugenia Cheng
   - 2015 TEDx talk.
 
 - Equality does not means they are the same,
   equality studies in what context they should be treated the same.
+
   - Eugenia Cheng
   - 2017 Lambda World talk.
 
 # Game
 
 - There is always a chance to start asking "Why?" again.
+
   - James Portnow
   - "The Martian Chronicles - The New Martians - Extra Sci Fi - #13"
 
 - You will level up as a player, even if you do not feel any progress in the game.
+
   - James Portnow
   - "Dark Souls - #7 - Dan Masters the Crossbow - Side Quest"
 
@@ -123,6 +149,7 @@ title: Quotes
   What's hard is dealing with project failures.
   It's easy to interpret your project failing as your failing;
   in fact, it proves that you had the courage to do something difficult.
+
   - MIT AI Lab graduate students
   - "How to do Research At the MIT AI Lab"
 
@@ -130,10 +157,12 @@ title: Quotes
 
 - Whatever you can do or dream you can do, begin it.
   Boldness has genius, magic and power in it!
+
   - Goethe
 
 - If I abandoned this project I would be a man without dreams, and I don't want to live like that.
   I live my life, I end my life with this project.
+
   - Werner Herzog
 
 - (The miniature plan)
@@ -142,6 +171,7 @@ title: Quotes
   of his life will, more than anything else
   stimulate, rouse and ennoble him,
   urge him on to action and keep him from false paths.
+
   - Arthur Schopenhauer
 
 - (A day)
@@ -149,10 +179,12 @@ title: Quotes
   and therefore irreplaceable portion of life,
   and to look upon life as though it were a collective idea or name
   which does not suffer if one of the individuals it covers is destroyed.
+
   - Arthur Schopenhauer
 
 - We so underestimate what we can achieve in a year,
   and so overestimate what we can achieve in a day.
+
   - Conor Neill
   - "The Discipline of Finishing: Conor Neill at TEDxUniversidaddeNavarra"
 
@@ -160,6 +192,7 @@ title: Quotes
   are not make by doing complicated things.
   They are the discoveries that tell you very very simple things
   that people haven't really noticed.
+
   - John Horton Conway
   - "On His LOVE-HATE Relationship with LIFE" - Talks at Google
 
@@ -173,6 +206,7 @@ title: Quotes
   The terms classic and romantic, as Phaedrus used them, mean the following:
   A classical understanding sees the world primarily as underlying form itself.
   A romantic understanding sees it primarily in terms of immediate appearance.
+
   - Robert Pirsig
   - in "Zen and the Art of Motorcycle Maintenance"
 
@@ -180,17 +214,20 @@ title: Quotes
 
 - I care about what the security and efficiency properties
   of a technology are, not what it's called.
+
   - Radia Perlman
   - "Blockchain: Hype or Hope?"
 
 - Maybe instead of getting excited about the most exciting new cool fancy education apps,
   we could fix the way kids' minds are getting manipulated into sending empty messages back and forth.
+
   - Tristan Harris
   - How a handful of tech companies control billions of minds every day
 
 - And what we need to recognize is that the human architecture is limited
   and that we have certain boundaries or dimensions of our lives
   that we want to be honored and respected.
+
   - Tristan Harris
   - How a handful of tech companies control billions of minds every day
 
@@ -198,11 +235,13 @@ title: Quotes
 
 - Programmers are abstractors and detail managers,
   as detail managers we separate details from the generals.
+
   - Bob Martin
   - The Principles of Clean Architecture by Uncle Bob Martin
 
 - Good architectures allows major decisions to be deferred,
   so that decisions can made later with the most possible information.
+
   - Bob Martin
   - The Principles of Clean Architecture by Uncle Bob Martin
 
@@ -211,6 +250,7 @@ title: Quotes
   selectively inverse certain key dependencies in your architecture
   so that you can prevent fragility and non-reusability.
   (absolute control over the dependency structure)
+
   - Bob Martin
   - SOLID Principles of Object Oriented and Agile Design
 
@@ -218,6 +258,7 @@ title: Quotes
 
 - The universality of the data sublanguage
   lies in its descriptive ability (not its computing ability).
+
   - Edgar Frank Codd
   - A Relational Model of Data for Large Shared Data Banks, 1970
 
@@ -226,4 +267,5 @@ title: Quotes
 - Extract a method whenever there's a difference between
   **what** a block of code does and
   **how** it does it.
+
   - Martin Fowler
