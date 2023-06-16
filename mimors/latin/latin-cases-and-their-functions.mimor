@@ -12,3 +12,91 @@
   number (singular and plural) and also another characteristic,
   almost lost in English, which is called <blank>case</blank>.
 </cloze>
+
+<question>
+  What is a case?
+
+  <answer>
+    A case is a form of a noun, which marks a syntactic function.
+  </answer>
+</question>
+
+
+<question>
+  How many cases does Latin have?
+
+  <answer>
+    Latin has six cases.
+
+    - Nominative
+
+    - Vocative
+
+    - Accusative
+
+    - Genitive
+
+    - Dative
+
+    - Ablative
+  </answer>
+</question>
+
+
+<question>
+  What is the Nominative case used for?
+
+  <answer>
+    Nominative is the most basic case,
+    it can express the subject (S) of the sentence or attribute (ATTR).
+
+    - Puer est probus.
+
+    -> The boy is good.
+
+    - Homo non est deus.
+
+    -> A man is not a god.
+  </answer>
+</question>
+
+
+<question>
+  What is the Vocative case used for?
+
+  <answer>
+    Vocative is used for getting the listener's attention (VOC).
+
+    It must be written between commas, both in Latin and in English.
+
+    - Manete, pueri, hic.
+
+    -> Stay, children, here.
+  </answer>
+</question>
+
+
+<question>
+  What is the Accusative case used for?
+
+  <answer>
+    The accusative, without preposition,
+    usually expresses the direct object (DO),
+    and sometimes some kind of adverbial (place or time).
+
+    - Puer videt canem.
+
+    -> The boy sees a dog.
+
+    The accusative case can have prepositions,
+    in which case it always expresses an adverbial (ADV).
+    The specific kind and meaning of the adverbial depends on the preposition.
+
+    - Puer it ad canem.
+
+    -> The boy goes toward the dog.
+
+    (Maybe we can also group the preposition with the verb,
+    and still view the accusative as direct object.)
+  </answer>
+</question>
