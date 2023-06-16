@@ -52,11 +52,11 @@
 
     - Puer est probus.
 
-    -> The boy is good.
+    > The boy is good.
 
     - Homo non est deus.
 
-    -> A man is not a god.
+    > A man is not a god.
   </answer>
 </question>
 
@@ -71,7 +71,7 @@
 
     - Manete, pueri, hic.
 
-    -> Stay, children, here.
+    > Stay, children, here.
   </answer>
 </question>
 
@@ -86,7 +86,7 @@
 
     - Puer videt canem.
 
-    -> The boy sees a dog.
+    > The boy sees a dog.
 
     The accusative case can have prepositions,
     in which case it always expresses an adverbial (ADV).
@@ -94,7 +94,7 @@
 
     - Puer it ad canem.
 
-    -> The boy goes toward the dog.
+    > The boy goes toward the dog.
 
     (Maybe we can also group the preposition with the verb,
     and still view the accusative as direct object.)
