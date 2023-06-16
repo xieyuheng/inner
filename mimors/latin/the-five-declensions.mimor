@@ -1,0 +1,97 @@
+<metadata theme-color="red" />
+
+<!-- https://latinfromscratch.com/course/translate-latin-text/five-declensions/ -->
+
+<front-cover>
+  The five declensions
+</front-cover>
+
+
+<question>
+  What is the declension of a word?
+
+  <answer>
+    The whole set of cases of a word is called declension.
+  </answer>
+</question>
+
+
+<question>
+  How many kinds of declensions does Latin have?
+
+  <answer>
+    Latin has five declensions.
+  </answer>
+</question>
+
+
+<question>
+  How to know which declension a noun belongs to?
+
+  <answer>
+    By remembering the noun's statement.
+  </answer>
+</question>
+
+
+<question>
+  What is a noun's statement?
+
+  <answer>
+    The statement of a noun is made up of two cases:
+
+    1. nominative singular
+
+    2. genitive singular
+
+    These two forms are the ones which appear in the dictionaries.
+
+    For examples:
+
+    - rosa, rosae -- rose (the first declension)
+
+    - servus, servi -- servant (the second declension)
+
+    From these two forms we can know what declension a noun belongs to,
+    so we can know the whole declension of the noun.
+  </answer>
+</question>
+
+
+<question>
+  How to identify the declension of a Latin noun?
+
+  <answer>
+    By identify the genitive of the statement of the noun:
+
+    - 1st declension: genitive -ae
+
+    - 2nd declension: genitive -i
+
+    - 3rd declension: genitive -is
+
+    - 4th declension: genitive -us
+
+    - 5th declension: genitive -ei
+  </answer>
+</question>
+
+
+<question>
+  Which of the five declensions is the most irregularly one?
+
+  <answer>
+    The third declension -is is the most irregularly one.
+
+    Since the root of the nominative is often
+    different from the one of the genitive.
+
+    Examples:
+
+    - caput, capitis -- head
+
+    - Apollo, Apollinis -- Apollo
+
+    - iter, itineris -- journey, trip
+  </answer>
+</question>
