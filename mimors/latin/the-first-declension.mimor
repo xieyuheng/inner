@@ -1,7 +1,7 @@
 <metadata theme-color="red" />
 
 <!--
-https://latinfromscratch.com/course/translate-latin-text/quick-start
+https://latinfromscratch.com/course/translate-latin-text/quick-start/
 https://latinfromscratch.com/course/translate-latin-text/first-declension/
 -->
 
@@ -30,10 +30,16 @@ https://latinfromscratch.com/course/translate-latin-text/first-declension/
 
 
 <question>
-  Give three example words belong to the first declension.
+  Give some example words belong to the first declension.
 
   <answer>
-    rosa, puella, regina.
+    - domina, dominae -- lady lord
+
+    - rosa, rosae -- rose
+
+    - puella, puellae -- girl
+
+    - regina, reginae -- queen
   </answer>
 </question>
 
@@ -108,5 +114,39 @@ https://latinfromscratch.com/course/translate-latin-text/first-declension/
     pl. D.
 
     pl. Ab.
+  </answer>
+</question>
+
+
+<cloze>
+  In the first declension we have mostly <blank>feminine</blank> nouns.
+</cloze>
+
+
+<question>
+  Are there any masculine nouns of the first declension?
+
+  <answer>
+    Yes.
+
+    The only masculine nouns are the ones which refer to men
+
+    - Catilina, Catilinae -- Catilina (name)
+
+    or men's professions
+
+    - agricola, agricolae -- farmer
+
+    - nauta, nautae -- sailor
+  </answer>
+
+</question>
+
+
+<question>
+  Are there any neuter nouns of the first declension?
+
+  <answer>
+    No.
   </answer>
 </question>
