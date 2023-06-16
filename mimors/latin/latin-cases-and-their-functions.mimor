@@ -39,6 +39,8 @@
     - Dative
 
     - Ablative
+
+    Seven, if we include Locative, which is not often used.
   </answer>
 </question>
 
@@ -98,5 +100,76 @@
 
     (Maybe we can also group the preposition with the verb,
     and still view the accusative as direct object.)
+  </answer>
+</question>
+
+
+<question>
+  What is the Genitive case used for?
+
+  <answer>
+    Genitive expresses, most of the times,
+    the complement of a noun (CN) or an adjective (ADJ).
+
+    Most of the times the meaning has to do with possession and similar notions.
+
+    - Puer videt canem puellae.
+
+    > The boy sees the girl's dog.
+
+    > The boy sees the dog of the girl.
+  </answer>
+</question>
+
+
+<question>
+  What is the Dative case used for?
+
+  <answer>
+    Dative expresses the indirect object complement (IO).
+
+    Take into account that in Latin it is never preceded by any preposition.
+
+    - Puer dat malum puellae.
+
+    > The boy gives an apple to the girl.
+
+    > The boy gives the girl an apple.
+  </answer>
+</question>
+
+
+<question>
+  What is the Ablative case used for?
+
+  <answer>
+    Ablative can work both with and without prepositions.
+    It always expresses adverbials (ADV) of many kinds.
+
+    With a preposition we know the specific kind of adverbial.
+
+    - Puer it ad canem cum patre.
+
+    > The boy goes toward the dog with his father.
+
+    Wihtout a preposition we can only know from the context.
+
+    - Romani pugnant gladiis.
+
+    > Romans fight with swords.
+  </answer>
+</question>
+
+
+<question>
+  What is the Locative case used for?
+
+  <answer>
+    Locative is used by just a few nouns.
+    It expresses the adverbial of place (where).
+
+    - Manete Romae.
+
+    > Stay in Rome.
   </answer>
 </question>
