@@ -1,0 +1,48 @@
+<metadata theme-color="red" />
+
+<!--
+https://latinfromscratch.com/course/translate-latin-text/verbal-conjugation/
+-->
+
+<front-cover>
+  The verbal conjugation
+</front-cover>
+
+
+<question>
+  What aspects does a Latin verb have?
+
+  <answer>
+    A Latin verb have
+
+    - voice (active, passive)
+
+    - mood (indicative, subjunctive, imperative)
+
+    - tense (present, past, future; perfect, imperfect)
+
+    - person (first, second, third)
+
+    - number (singular, plural)
+  </answer>
+</question>
+
+
+<question>
+  What is the statement of Latin verbs?
+
+  <answer>
+    In the same way as with nouns,
+    we also have the statement of verbs,
+    which informs us about the conjugation of the verbs
+    and their different stems.
+
+    Latin verbs have three stems:
+
+    - present stem (infectum)
+
+    - perfect stem (perfectum)
+
+    - supine stem (verb as noun)
+  </answer>
+</question>

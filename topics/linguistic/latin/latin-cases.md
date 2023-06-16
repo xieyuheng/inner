@@ -1,11 +1,6 @@
 ---
-title: Latin
+title: Latin Cases
 ---
-
-[ [WIKIPEDIA](https://en.wikipedia.org/wiki/Latin)
-| [VICIPAEDIA](https://la.wikipedia.org) ]
-
-# Cases
 
 https://zh.wikipedia.org/wiki/%E6%A0%BC_(%E8%AF%AD%E6%B3%95)
 
