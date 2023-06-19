@@ -11,6 +11,8 @@ title: Latin Resources
 
 - https://latinfromscratch.com
 - https://latinitium.com
+- [So You Really Want to Learn Latin](https://www.youtube.com/playlist?list=PLAYPhdBQ5G1rBEirWWHxfgL2Vm99HuCRL)
+- [Easy Latin Lesson](https://www.youtube.com/playlist?list=PLjqqMkeHFt1E_lRi9nQvtmP9Od2JokI1J)
 
 # DICTIONARIES
 
