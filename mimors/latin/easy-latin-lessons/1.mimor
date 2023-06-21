@@ -1,0 +1,227 @@
+<metadata theme-color="red" />
+
+<!--
+https://www.youtube.com/watch?v=aWUlrL6E_QU&list=PLjqqMkeHFt1E_lRi9nQvtmP9Od2JokI1J&index=1
+     <!--  --> -->
+
+
+<front-cover>
+  Easy Latin Lesson #1
+
+  Learn simple sentences in Latin
+  to pick up grammar
+</front-cover>
+
+
+<question>
+  Poeta scribit.
+
+  <answer>
+    A poet writes.
+  </answer>
+</question>
+
+
+<question>
+  Discipula sutdet.
+
+  <answer>
+    A disciple (student) studies.
+  </answer>
+</question>
+
+
+<question>
+  Poeta sutdet.
+
+  <answer>
+    A poet studies.
+  </answer>
+</question>
+
+
+<question>
+  Ego sutdeo.
+
+  <answer>
+    I study.
+  </answer>
+</question>
+
+
+<question>
+  Ego scribo.
+
+  <answer>
+    I write.
+  </answer>
+</question>
+
+
+<question>
+  Discipula legit.
+
+  <answer>
+    A disciple (student) reads.
+  </answer>
+</question>
+
+
+<question>
+  I read.
+
+  <answer>
+    Ego lego.
+  </answer>
+</question>
+
+
+<question>
+  Tu scribis.
+
+  Tu studes.
+
+  Tu legis.
+
+  <answer>
+    You write.
+
+    You study.
+
+    You read.
+  </answer>
+</question>
+
+
+<cloze>
+  The verb ending changes according to the person of the subject.
+
+  | Subject | Ending | Example |
+
+  | Ego | <blank>-o</blank> | scribo |
+
+  | Tu | <blank>-s</blank> | studes |
+
+  | (It) | <blank>-t</blank> | legit |
+</cloze>
+
+
+<cloze>
+  Ego dormio.
+
+  Tu dormi<blank>s</blank>.
+
+  Discipula dormi<blank>t</blank>.
+</cloze>
+
+
+<question>
+  Agricola laborat.
+
+  <answer>
+    A farmer labors (works).
+  </answer>
+</question>
+
+
+<question>
+  I labor (work).
+
+  <answer>
+    Ego laboro.
+  </answer>
+</question>
+
+
+<question>
+  You labor (work).
+
+  <answer>
+    Tu laboras.
+  </answer>
+</question>
+
+
+<cloze>
+  Four verb patterns.
+
+  | Infinitive | laborare | scribere | studere | dormire |
+
+  | Ego | <blank>labor_-o</blank> | <blank>scrib_-o</blank> | stude-o | dormi-o |
+
+  | Tu | labora-s | scribi-s | stude-s | dormi-s |
+
+  | (It) | labora-t | scribi-t | stude-t | dormi-t |
+</cloze>
+
+
+<question>
+  Discipula discit.
+
+  <answer>
+    A disciple (student) learns.
+  </answer>
+</question>
+
+
+<question>
+  Discipula legit et discit.
+
+  <answer>
+    A disciple (student) reads and learns.
+  </answer>
+</question>
+
+
+<question>
+  Ego disco.
+
+  <answer>
+    I learn.
+  </answer>
+</question>
+
+
+<question>
+  You study and learn.
+
+  <answer>
+    Tu studes et discis.
+  </answer>
+</question>
+
+
+<question>
+  You work and write and study and sleep.
+
+  <answer>
+    Tu laboras et sribis et studes et dormis.
+  </answer>
+</question>
+
+
+<question>
+  Magistra docet.
+
+  <answer>
+    A teacher teaches.
+  </answer>
+</question>
+
+
+<question>
+  I teach and you teach.
+
+  <answer>
+    Ego doceo et tu doces.
+  </answer>
+</question>
+
+
+<question>
+  Qui docet, dicit.
+
+  <answer>
+    Who teaches, learns.
+  </answer>
+</question>
