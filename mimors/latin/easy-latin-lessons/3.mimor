@@ -1,0 +1,235 @@
+<metadata theme-color="red" />
+
+<!--
+https://www.youtube.com/watch?v=3MR1himw7EM&list=PLjqqMkeHFt1E_lRi9nQvtmP9Od2JokI1J&index=3
+-->
+
+
+<front-cover>
+  Easy Latin Lesson #3
+
+  Pick up the grammar from simple sentences
+</front-cover>
+
+
+<question>
+  Discipulus studet.
+
+  <answer>
+    The (male) studet studies.
+  </answer>
+</question>
+
+
+<question>
+  I see the (male) studet.
+
+  <answer>
+    Discipulum video.
+  </answer>
+</question>
+
+
+<question>
+  The farmer reads the the letter of the (male) student.
+
+  <answer>
+    Agricola epistulam discipuli legit.
+  </answer>
+</question>
+
+
+<question>
+  I have a (male) friend.
+
+  <answer>
+    Amicum habeo.
+  </answer>
+</question>
+
+
+<question>
+  The (male) student has a (female) friend.
+
+  <answer>
+    Discipulus amicam habet.
+  </answer>
+</question>
+
+
+<question>
+  You have the farmer's letter.
+
+  <answer>
+    Agricolae epistulam habes.
+  </answer>
+</question>
+
+
+<question>
+  Poeta librum scribit.
+
+  <answer>
+    The poet writes a book.
+  </answer>
+</question>
+
+
+<cloze>
+  Second declension.
+
+  Regular noun: amicus, amicum, amici.
+
+  Irregular noun: <blank>liber</blank>, librum, libri.
+</cloze>
+
+
+<question>
+  The (male) student has a sword (gladius).
+
+  <answer>
+    Discipulus gladium habet.
+  </answer>
+</question>
+
+
+<question>
+  friend of the sword
+
+  <answer>
+    amicus gladii
+  </answer>
+</question>
+
+
+<question>
+  friend's sword
+
+  <answer>
+    amici gladius
+  </answer>
+</question>
+
+
+<question>
+  Agricola est poeta.
+
+  <answer>
+    The farmer is a poet.
+  </answer>
+</question>
+
+
+<question>
+  Agricola poeta est.
+
+  <answer>
+    The farmer is a poet.
+  </answer>
+</question>
+
+
+<question>
+  Discipula est amica mea.
+
+  <answer>
+    The female student is my friend.
+  </answer>
+</question>
+
+
+<question>
+  The male student is my friend.
+
+  <answer>
+    Discipulus est amicus meus.
+  </answer>
+</question>
+
+
+<question>
+  The teacher is beautiful.
+
+  <answer>
+    Magistra pulchra est.
+  </answer>
+</question>
+
+
+<question>
+  The male student is beautiful.
+
+  <answer>
+    Discipulus pulcher est.
+  </answer>
+</question>
+
+
+<question>
+  The poet is beautiful.
+
+  <answer>
+    Poeta pulcher est.
+  </answer>
+</question>
+
+
+<question>
+  The farmer is big.
+
+  <answer>
+    Agricola magnus est.
+  </answer>
+</question>
+
+
+<question>
+  You are a (female) student.
+
+  <answer>
+    Tu es discipula.
+  </answer>
+</question>
+
+
+<question>
+  You are the male student's friend.
+
+  <answer>
+    Tu es amicus discipuli.
+
+    Amicus discipuli es.
+  </answer>
+</question>
+
+
+<question>
+  I am a big (male) student.
+
+  <answer>
+    Ego sum magnus discipulus.
+
+    Magnus discipulus sum.
+  </answer>
+</question>
+
+
+<question>
+  pot- is the prefix of "potential".
+
+  What is the meaning of the following words?
+
+  - possum
+
+  - potes
+
+  - potest
+
+  <answer>
+    - possum: I can
+
+    - potes: You can
+
+    - potest: He/She/It can
+  </answer>
+</question>
