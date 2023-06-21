@@ -1,0 +1,280 @@
+<metadata theme-color="red" />
+
+<!--
+https://www.youtube.com/watch?v=3MR1himw7EM&list=PLjqqMkeHFt1E_lRi9nQvtmP9Od2JokI1J&index=2
+-->
+
+
+<front-cover>
+  Easy Latin Lesson #2
+
+  Learn simple sentences in Latin
+  to pick up grammar
+</front-cover>
+
+
+<question>
+  Salvete, omnes!
+
+  <answer>
+    Hello everybody!
+  </answer>
+</question>
+
+
+<question>
+  The farmer works and sleeps.
+
+  <answer>
+    Agricola laborat et dormit.
+  </answer>
+</question>
+
+
+<question>
+  The teacher teaches and the student learns.
+
+  <answer>
+    Magistra docet et discipula discit.
+  </answer>
+</question>
+
+
+<question>
+  You work and write and study and sleep.
+
+  <answer>
+    Tu laboras et scribis et studes et dormis.
+  </answer>
+</question>
+
+
+<question>
+  The student reads.
+
+  <answer>
+    Discipula legit.
+  </answer>
+</question>
+
+
+<question>
+  Magistra discipulam docet.
+
+  <answer>
+    The teacher teaches the student.
+  </answer>
+</question>
+
+
+<question>
+  The student teaches the teacher.
+
+  <answer>
+    Discipula magistram  docet.
+  </answer>
+</question>
+
+
+<question>
+  The poet writes a letter.
+
+  <answer>
+    Poeta epistulam scribit.
+  </answer>
+</question>
+
+
+<question>
+  I write and you read.
+
+  <answer>
+    Ego scribo et tu legis.
+  </answer>
+</question>
+
+
+<question>
+  Scribo et legis.
+
+  <answer>
+    I write and you read.
+  </answer>
+</question>
+
+
+<question>
+  Poetam video.
+
+  <answer>
+    I see the poet.
+  </answer>
+</question>
+
+
+<question>
+  The poet sees.
+
+  <answer>
+    Poeta videt.
+  </answer>
+</question>
+
+
+<question>
+  The student sees the letter.
+
+  <answer>
+    Discipula epistulam videt.
+  </answer>
+</question>
+
+
+<question>
+  Magistram vides.
+
+  <answer>
+    You see the student.
+  </answer>
+</question>
+
+
+<question>
+  You read the letter.
+
+  <answer>
+    Epistulam legis.
+  </answer>
+</question>
+
+
+<question>
+  Agricola aquam bibit.
+
+  <answer>
+    The farmer drinks water.
+  </answer>
+</question>
+
+
+<question>
+  You study the water.
+
+  <answer>
+    Aquam studes.
+  </answer>
+</question>
+
+
+<question>
+  discipulae magistra
+
+  <answer>
+    the student's teacher
+  </answer>
+</question>
+
+
+<question>
+  magistra discipulae
+
+  <answer>
+    teacher of the student
+  </answer>
+</question>
+
+
+<question>
+  Epistulam poetae lego.
+
+  <answer>
+    I read the letter of the poet.
+  </answer>
+</question>
+
+
+<question>
+  Aquam agricolae bibis.
+
+  <answer>
+    You drink the water of the farmer.
+  </answer>
+</question>
+
+
+<question>
+  Discipula epistulam magistrae scribit.
+
+  <answer>
+    The student writes the teacher's letter.
+  </answer>
+</question>
+
+
+<question>
+  Longam epistulam scribo.
+
+  <answer>
+    I write a long letter.
+  </answer>
+</question>
+
+
+<question>
+  Magistra magnam discipulam docet.
+
+  <answer>
+    The teacher teaches the large student.
+  </answer>
+</question>
+
+
+<question>
+  Magistra magna discipulam docet.
+
+  <answer>
+    The large teacher teaches the student.
+  </answer>
+</question>
+
+
+<question>
+  Magistra magna discipulam pulchram docet.
+
+  <answer>
+    The large teacher teaches the beautiful student.
+  </answer>
+</question>
+
+
+<question>
+  Magistra docet sed discipula non discit.
+
+  <answer>
+    The teacher teaches but the student does not learn.
+  </answer>
+</question>
+
+
+<question>
+  Magistra docet sed nemo discit.
+
+  <answer>
+    The teacher teaches but nobody learns.
+  </answer>
+</question>
+
+
+<question>
+  Magistra agricolam scribere docet.
+  Agricola studet et scribere discit.
+  Epistulam pulchram scribit quod magistra bene docet.
+  Agricola epistulam bene scribit sed nemo legit.
+
+  <answer>
+    The teacher teaches the farmer to write.
+    The farmer studies and learns to write.
+    He writes a beautiful letter because the teacher teaches well.
+    The farmer writes a letter well but nobody reads.
+  </answer>
+</question>
