@@ -1,6 +1,8 @@
 <metadata theme-color="blue" />
 
 <front-cover>
+  "HOW TO SOLVE IT" list
+
   Questions to provoke mental operations typically useful for the
   solution of problems.
 </front-cover>
@@ -47,8 +49,11 @@
 
 <question>
   Is the condition sufficient to determine the unknown?
+
   Or is it insufficient?
+
   Or redundant?
+
   Or contradictory?
 
   <answer>
@@ -89,7 +94,6 @@
     Analysising the condition.
   </answer>
 </question>
-
 
 ## Devising a plan
 
@@ -141,28 +145,76 @@ Check your mistakes:
 - Did you use the whole condition?
 - Have you taken into account all essential notions involved in the problem?
 
-## Carrying out the plan
+<question>
+  Carrying out your plan of the solution, check each step.
 
-Third. Carry out your plan.
+  <answer>
+    CARRYING OUT THE PLAN
+  </answer>
+</question>
 
-- Carrying out your plan of the solution, check each step.
-- Can you see clearly that the step is correct?
-- Can you prove that it is correct?
+<question>
+  Can you see clearly that the step is correct?
 
-## Looking back
+  <answer>
+    CARRYING OUT THE PLAN
+  </answer>
+</question>
 
-Fourth. Examine the solution obtained.
+<question>
+  Can you prove that it is correct?
 
-Testing:
+  <answer>
+    CARRYING OUT THE PLAN
+  </answer>
+</question>
 
-- Can you check the result?
-- Can you check the argument?
+<question>
+  Can you check the result?
 
-Improve understanding:
+  <answer>
+    LOOKING BACK
 
-- Can you derive the result differently?
-- Can you see it at a glance?
+    Testing.
+  </answer>
+</question>
 
-Packaging:
+<question>
+  Can you check the argument?
 
-- Can you use the result, or method, for some other problem?
+  <answer>
+    LOOKING BACK
+
+    Testing.
+  </answer>
+</question>
+
+<question>
+  Can you derive the result differently?
+
+  <answer>
+    LOOKING BACK
+
+    Improve understanding.
+  </answer>
+</question>
+
+<question>
+  Can you see it at a glance?
+
+  <answer>
+    LOOKING BACK
+
+    Improve understanding.
+  </answer>
+</question>
+
+<question>
+  Can you use the result, or method, for some other problem?
+
+  <answer>
+    LOOKING BACK
+
+    Packaging.
+  </answer>
+</question>
