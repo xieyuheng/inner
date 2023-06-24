@@ -1,30 +1,95 @@
-## Understanding the problem
+<metadata theme-color="blue" />
 
-First. You have to understand the problem.
+<front-cover>
+  Questions to provoke mental operations typically useful for the
+  solution of problems.
+</front-cover>
 
-Unknown, data and condition:
+<question>
+  What is the unknown?
 
-- What is the unknown?
-- What are the data?
-- What is the condition?
+  <answer>
+    UNDERSTANDING THE PROBLEM
 
-Thinking about the condition:
+    Unknown, data and condition.
+  </answer>
+</question>
 
-- Is it possible to satisfy the condition?
-- Is the condition sufficient to determine the unknown?
-- Or is it insufficient?
-- Or redundant?
-- Or contradictory?
+<question>
+  What are the data?
 
-Build up impression and domain vocabulary:
+  <answer>
+    UNDERSTANDING THE PROBLEM
 
-- Draw a figure.
-- Introduce suitable notation.
+    Unknown, data and condition.
+  </answer>
+</question>
 
-Analysising the condition:
+<question>
+  What is the condition?
 
-- Separate the various parts of the condition.
-- Can you write them down?
+  <answer>
+    UNDERSTANDING THE PROBLEM
+
+    Unknown, data and condition.
+  </answer>
+</question>
+
+<question>
+  Is it possible to satisfy the condition?
+
+  <answer>
+    UNDERSTANDING THE PROBLEM
+
+    Thinking about the condition.
+  </answer>
+</question>
+
+<question>
+  Is the condition sufficient to determine the unknown?
+  Or is it insufficient?
+  Or redundant?
+  Or contradictory?
+
+  <answer>
+    UNDERSTANDING THE PROBLEM
+
+    Thinking about the condition.
+  </answer>
+</question>
+
+<question>
+  Draw a figure.
+
+  <answer>
+    UNDERSTANDING THE PROBLEM
+
+    Build up impression and domain vocabulary.
+  </answer>
+</question>
+
+<question>
+  Introduce suitable notation.
+
+  <answer>
+    UNDERSTANDING THE PROBLEM
+
+    Build up impression and domain vocabulary.
+  </answer>
+</question>
+
+<question>
+  Separate the various parts of the condition.
+
+  Can you write them down?
+
+  <answer>
+    UNDERSTANDING THE PROBLEM
+
+    Analysising the condition.
+  </answer>
+</question>
+
 
 ## Devising a plan
 

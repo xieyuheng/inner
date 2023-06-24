@@ -9,29 +9,11 @@ year: 1945
 
 # 2. Questions, recommendations, mental operations
 
-It seemed to the author that it might be worth while
-to collect and to group questions and suggestions
-which are typically helpful in discussing problems with students.
-
-The list we study contains questions and suggestions of this sort,
-carefully chosen and arranged; they are equally useful
-to the problem-solver who works by himself.
-
-If the reader is sufficiently acquainted with the list
-and can see, behind the suggestion, the action suggested,
-he may realize that the list enumerates, indirectly,
-mental operations typically useful for the solution of problems.
-
-These operations are listed in the order
-in which they are most likely to occur.
-
 # 3. Generality
 
 # 4. Common sense
 
 # 5. Teacher and student. Imitation and practice
-
-学生必须关心问题，老师为了让学生关心问题，可以把自己的解题过程表演地很戏剧化。
 
 # 6. Four phases
 
