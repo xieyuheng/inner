@@ -1,0 +1,157 @@
+<metadata theme-color="red" />
+
+<!--
+https://www.youtube.com/watch?v=akV-riuCrWg&list=PLjqqMkeHFt1E_lRi9nQvtmP9Od2JokI1J&index=4
+-->
+
+
+<front-cover>
+  Easy Latin Lesson #4
+
+  Pick up the grammar from simple sentences
+</front-cover>
+
+
+<question>
+  What is the case of Olympo in
+
+  in Olympo
+
+  <answer>
+    Ablative.
+  </answer>
+</question>
+
+
+<question>
+  In vino veritas.
+
+  <answer>
+    In wine there is truth.
+  </answer>
+</question>
+
+
+<question>
+  I drink wine.
+
+  <answer>
+    Vinum bibo.
+  </answer>
+</question>
+
+
+<question>
+  He (or she) drinks wine.
+
+  <answer>
+    Vinum bibit.
+  </answer>
+</question>
+
+
+<cloze>
+  Vinum is a neutral none.
+
+  For neutral nones nominative and <blank>accusative</blank> are the same.
+</cloze>
+
+
+<question>
+  Vinum in silva bibis.
+
+  <answer>
+    You drink wine in the forest.
+  </answer>
+</question>
+
+
+<question>
+  The forest is large.
+
+  <answer>
+    Silva manega est.
+  </answer>
+</question>
+
+
+<question>
+  In silva ambulo.
+
+  <answer>
+    I walk in the forest.
+  </answer>
+</question>
+
+
+<question>
+  In silvam ambulo.
+
+  <answer>
+    I walk into the forest.
+  </answer>
+</question>
+
+
+<question>
+  What are the cases of silva and silvam in the following sentences:
+
+  In silva ambulo.
+
+  In silvam ambulo.
+
+  <answer>
+    In silva ambulo.
+
+    Ablative -- location of the verb.
+
+    In silvam ambulo.
+
+    Accusative -- object of the verb.
+  </answer>
+</question>
+
+
+<question>
+  Jupiter se in taurum transformat.
+
+  <answer>
+    Jupiter transforms himself into a bull.
+  </answer>
+</question>
+
+
+<question>
+  The god lives in Olympus.
+
+  <answer>
+    Deus in olympo habitat.
+  </answer>
+</question>
+
+
+<question>
+  The (female) god walks into Olympus.
+
+  <answer>
+    Dea in olympum ambulat.
+  </answer>
+</question>
+
+
+<question>
+  You walk to the forest.
+
+  <answer>
+    Ad silvam ambulas.
+  </answer>
+</question>
+
+
+<question>
+  Agricola aquam portat.
+
+  <answer>
+    A farmer carries (transports) water.
+  </answer>
+</question>
