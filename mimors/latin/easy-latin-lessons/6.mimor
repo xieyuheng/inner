@@ -157,3 +157,146 @@ https://www.youtube.com/watch?v=akV-riuCrWg&list=PLjqqMkeHFt1E_lRi9nQvtmP9Od2Jok
     你睡觉呢？
   </answer>
 </question>
+
+
+<question>
+  Are the male students drinking wine?
+
+  <answer>
+    Discipuline vinum bibunt?
+  </answer>
+</question>
+
+
+<question>
+  Nonne agricolae laborant?
+
+  <answer>
+    The female farmers are not working?
+
+    The female farmers are working, aren't they?
+  </answer>
+</question>
+
+
+<question>
+  You are reading the book, aren't you?
+
+  <answer>
+    Nonne librum legis?
+  </answer>
+</question>
+
+
+<question>
+  Ita est.
+
+  <answer>
+    It is so.
+  </answer>
+</question>
+
+
+<question>
+  "Ita est" dicit agricola.
+
+  <answer>
+    "It is so" says the farmer.
+  </answer>
+</question>
+
+
+<question>
+  Militi aquam do.
+
+  <answer>
+    I give water to the soldier.
+  </answer>
+</question>
+
+
+<question>
+  Miles agricolae gladium dat.
+
+  <answer>
+    The soldier gives the sword to the farmer.
+  </answer>
+</question>
+
+
+<question>
+  to the male student
+
+  <answer>
+    discipulo
+  </answer>
+</question>
+
+<cloze>
+  First, second and third dative declension
+
+  | Nominative | agricola | discipulus | miles |
+
+  | Dative | <blank>agricolae</blank> | <blank>discipulo</blank> | <blank>militi</blank> |
+</cloze>
+
+
+<question>
+  Miles feli carnem dat.
+
+  <answer>
+    The soldier gives meat to the cat.
+
+    (felis is a third declension noun, feli is it's dative case.)
+  </answer>
+</question>
+
+
+<question>
+  I give the book to a male friend.
+
+  <answer>
+    Amico librum do.
+  </answer>
+</question>
+
+
+<question>
+  Felis murem edit.
+
+  <answer>
+    Cat eats mouse.
+
+    (mus is a third declension noun, murem is it's accusative case.)
+  </answer>
+</question>
+
+
+<question>
+  We eat and drink.
+
+  <answer>
+    Nos edimus et bibimus.
+  </answer>
+</question>
+
+
+<question>
+  Felis ad silvam ambulat quod amicum desiderat.
+  "Nonne hic sunt amici" dicit et in silvam ambulat.
+  Felis murem videt et mus felem spectat.
+  Deinde mus fugat.
+  Sed felis celer est
+  et murem consequitur.
+
+  <answer>
+    A cat walks to the forest
+    because it wants a friend.
+    "No friends here" says the cat
+    nad walks in the forest.
+    The cat see a mouse and the mouse looks at the cat.
+    Then the mouse flees.
+    But the cat is fast
+    and chases the mouse.
+  </answer>
+</question>
