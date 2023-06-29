@@ -10,3 +10,328 @@ https://www.youtube.com/watch?v=akV-riuCrWg&list=PLjqqMkeHFt1E_lRi9nQvtmP9Od2Jok
 
   Pick up the grammar from simple sentences
 </front-cover>
+
+
+<question>
+  Discipuli et discipulae in schola student.
+
+  <answer>
+    Male students and female students study in the school.
+  </answer>
+</question>
+
+
+<question>
+  The farmers walk.
+
+  <answer>
+    Agricolae ambulant.
+  </answer>
+</question>
+
+
+<question>
+  The gods live in Olympus.
+
+  <answer>
+    Dei in Olympo habitant.
+  </answer>
+</question>
+
+
+<question>
+  The female friends flee.
+
+  <answer>
+    Amicae fugitant.
+  </answer>
+</question>
+
+
+<question>
+  Poetae legunt.
+
+  <answer>
+    The poets read.
+  </answer>
+</question>
+
+
+<question>
+  The male students write a letter.
+
+  <answer>
+    Discipuli epistulam scribunt.
+  </answer>
+</question>
+
+
+<question>
+  The female students learn.
+
+  <answer>
+    Discipulae discunt.
+  </answer>
+</question>
+
+
+<question>
+  The girls drink.
+
+  <answer>
+    Puellae bibunt.
+  </answer>
+</question>
+
+
+<question>
+  We walk into the forest.
+
+  <answer>
+    In silvam ambulamus.
+
+    Nos in silvam ambulamus.
+  </answer>
+</question>
+
+
+<question>
+  We drink in the forest.
+
+  <answer>
+    In silva bibimus.
+
+    Nos in silva bibimus.
+  </answer>
+</question>
+
+
+<question>
+  The poet and I read.
+
+  <answer>
+    Poeta et ego legimus.
+  </answer>
+</question>
+
+
+<question>
+  The road is long.
+
+  <answer>
+    Via longa est.
+  </answer>
+</question>
+
+
+<question>
+  The roads are long.
+
+  <answer>
+    Viae longae sunt.
+  </answer>
+</question>
+
+
+<question>
+  Omnes viae Romam ducunt.
+
+  <answer>
+    All roads lead to Rome.
+  </answer>
+</question>
+
+
+<question>
+  The road leads to Rome.
+
+  <answer>
+    Via Romam ducit.
+  </answer>
+</question>
+
+
+<question>
+  Roma in Italia est.
+
+  <answer>
+    Rome is in Italy.
+  </answer>
+</question>
+
+
+<question>
+  Italy is in Europe.
+
+  <answer>
+    Italia in Europa est.
+  </answer>
+</question>
+
+
+<question>
+  Romae habito.
+
+  <answer>
+    I live in Roma.
+
+    I inhabit in Rome.
+
+    (Romae in dative case (receive the verb).)
+  </answer>
+</question>
+
+
+<question>
+  Poeta agricolae legit.
+
+  <answer>
+    The poet reads to the farmer.
+  </answer>
+</question>
+
+
+<question>
+  Poeta agricolae epistulam legit.
+
+  <answer>
+    The poet reads the letter to the farmer.
+
+    The poet reads the letter of the farmer.
+  </answer>
+</question>
+
+
+<question>
+  Discipula discipulo gladium dat.
+
+  <answer>
+    The female student gives the sword to the male student.
+  </answer>
+</question>
+
+
+<question>
+  Discipulo amicae librum do.
+
+  <answer>
+    I give the book to the male student of the female friend.
+  </answer>
+</question>
+
+
+<question>
+  Magistro tunicam das.
+
+  <answer>
+    You give the tunic (shirt) to the teacher.
+  </answer>
+</question>
+
+
+<question>
+  What is the male form of Magistra?
+
+  <answer>
+    Just like liber
+
+    | Nominative | Magistrer |
+
+    | Accusative | Magistrum |
+
+    | Genitive | Magistri |
+
+    | Ablative | Magistro |
+  </answer>
+</question>
+
+
+<question>
+  We give the girl water.
+
+  <answer>
+    Nos aquam puellae damus.
+  </answer>
+</question>
+
+
+<question>
+  Optimus sum, quod possum legere.
+
+  <answer>
+    I am the best because I can read.
+  </answer>
+</question>
+
+
+<question>
+  I (female) am the best because I can read.
+
+  <answer>
+    Optima sum, quod possum legere.
+  </answer>
+</question>
+
+
+<question>
+  Amicum volo.
+
+  <answer>
+    I want a friend.
+  </answer>
+</question>
+
+
+<question>
+  Nunc scribere volo.
+
+  <answer>
+    Now I want to write.
+  </answer>
+</question>
+
+
+<question>
+  Hic laboro.
+
+  <answer>
+    I work here.
+  </answer>
+</question>
+
+
+<question>
+  Hic sunt libri.
+
+  <answer>
+    There are books here.
+  </answer>
+</question>
+
+
+<question>
+  Hic sunt dracones.
+
+  <answer>
+    There are dragons here.
+  </answer>
+</question>
+
+
+<question>
+  Roma optima est.
+  Viae Romanae directae sunt
+  et aqua clara est.
+  Hic tunicae pulchrae sunt
+  et arma splendida sunt.
+  Volo hic habitare.
+
+  <answer>
+    Rome is the best.
+    Roads of Rome are direct
+    and water clear.
+    Here tunics are beautiful
+    and arms are splendid.
+    I want to live here.
+  </answer>
+</question>
