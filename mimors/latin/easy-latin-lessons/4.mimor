@@ -24,6 +24,24 @@ https://www.youtube.com/watch?v=akV-riuCrWg&list=PLjqqMkeHFt1E_lRi9nQvtmP9Od2Jok
 
 
 <question>
+  In the friend
+
+  <answer>
+    In amico
+  </answer>
+</question>
+
+
+<question>
+  God of olympus
+
+  <answer>
+    Deus olympi
+  </answer>
+</question>
+
+
+<question>
   In vino veritas.
 
   <answer>
@@ -113,7 +131,7 @@ https://www.youtube.com/watch?v=akV-riuCrWg&list=PLjqqMkeHFt1E_lRi9nQvtmP9Od2Jok
 
 
 <question>
-  Jupiter se in taurum transformat.
+  Iuppiter se in taurum transformat.
 
   <answer>
     Jupiter transforms himself into a bull.
@@ -153,5 +171,210 @@ https://www.youtube.com/watch?v=akV-riuCrWg&list=PLjqqMkeHFt1E_lRi9nQvtmP9Od2Jok
 
   <answer>
     A farmer carries (transports) water.
+  </answer>
+</question>
+
+
+<question>
+  The bull carries the girl.
+
+  <answer>
+    Taurus puellam portat.
+  </answer>
+</question>
+
+
+<question>
+  You carry the letter to the forest.
+
+  <answer>
+    Epistulam ad silvam portas.
+  </answer>
+</question>
+
+
+<question>
+  I carry a book and wine into Olympus.
+
+  <answer>
+    Librum et vinum in Olympum porto.
+  </answer>
+</question>
+
+
+<question>
+  None declensions of
+
+  | Puella | Gladius | Liber | Vinum |
+
+  In the order of
+
+  | Nominative |
+
+  | Accusative |
+
+  | Genitive |
+
+  | Ablative |
+
+  <answer>
+    | Puella | Gladius | Liber | Vinum |
+
+    | Puellam | Gladium | Librum | Vinum |
+
+    | Puellae | Gladii | Libri | Vini |
+
+    | Puella | Gladio | Libro | Vino |
+  </answer>
+</question>
+
+
+<cloze>
+  Some tips for remembering
+
+  | Nominative | Puella | Gladius | Liber | Vinum |
+
+  | Accusative | Puellam | Gladium | Librum | Vinum |
+
+  | Genitive | Puellae | Gladii | Libri | Vini |
+
+  | Ablative | Puella | Gladio | Libro | Vino |
+
+  The second declension only different in <blank>nominative</blank> case.
+
+  Genitive's -ae and -i sound <blank>similar</blank>.
+
+  Ablative's -a and -o are <blank>long</blank> vowel.
+</cloze>
+
+
+<question>
+  Discipulus et discipula in schola student.
+
+  <answer>
+    The male student and the female study in the school.
+  </answer>
+</question>
+
+
+<question>
+  I walk to school.
+
+  <answer>
+    Ad scholam ambulo.
+  </answer>
+</question>
+
+
+<question>
+  Discipuli et discipulae in schola student.
+
+  <answer>
+    Male students and female students study in the school.
+  </answer>
+</question>
+
+
+<cloze>
+  In Latin, just like in English,
+  the genitive case and <blank>plural</blank> are the same.
+</cloze>
+
+
+<question>
+  The farmers work.
+
+  <answer>
+    Agricolae laborant.
+  </answer>
+</question>
+
+
+<question>
+  The female students see the poet's letter.
+
+  <answer>
+    Discipulae epistulam poetae vident.
+  </answer>
+</question>
+
+
+<question>
+  Discipulae epistulam poetae vident.
+
+  <answer>
+    The female students see the poet's letter.
+
+    The poets see the female student's letter.
+  </answer>
+</question>
+
+
+<question>
+  Puellae fugitant.
+
+  <answer>
+    The girls flee.
+  </answer>
+</question>
+
+
+<question>
+  The girl flees to the forest.
+
+  <answer>
+    Puella ad silvam fugitat.
+  </answer>
+</question>
+
+
+<question>
+  Agricolae librum ad insulam portant.
+
+  <answer>
+    The farmers carry a book to the island.
+  </answer>
+</question>
+
+
+<question>
+  watchs (looks at) the earth
+
+  <answer>
+    terram spectat
+  </answer>
+</question>
+
+
+<question>
+  I don't look at the letter.
+
+  <answer>
+    Epistulam non specto.
+  </answer>
+</question>
+
+
+<question>
+  nunc
+
+  <answer>
+    now
+  </answer>
+</question>
+
+
+<question>
+  Europa taurum spectat
+  et taurus puellam portat.
+  Nunc puella non est timida.
+  Taurus fugitat et Europam ad insulam Cretam portat.
+  Deus et puella in insula habitant.
+
+  <answer>
+    Europa looks at the bull and the bull carries the girl.
+    Now the girl is not timid.
+    The bull flee and the bull carries Europa to the island of Crete.
+    The god and the girl live in the island.
   </answer>
 </question>
