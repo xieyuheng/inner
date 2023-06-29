@@ -1,7 +1,7 @@
 <metadata theme-color="red" />
 
 <!--
-https://www.youtube.com/watch?v=akV-riuCrWg&list=PLjqqMkeHFt1E_lRi9nQvtmP9Od2JokI1J&index=7
+     https://www.youtube.com/watch?v=akV-riuCrWg&list=PLjqqMkeHFt1E_lRi9nQvtmP9Od2JokI1J&index=7
 -->
 
 
@@ -10,3 +10,269 @@ https://www.youtube.com/watch?v=akV-riuCrWg&list=PLjqqMkeHFt1E_lRi9nQvtmP9Od2Jok
 
   Pick up the grammar from simple sentences
 </front-cover>
+
+
+<question>
+  Felis murem videt et mus felem spectat.
+
+  <answer>
+    The cat see a mouse and the mouse looks at the cat.
+
+    (Almost all third declension nouns end with -em in accusative case.)
+  </answer>
+</question>
+
+
+<question>
+  Miles feli carnem dat.
+
+  <answer>
+    The soldier give meat to the cat.
+  </answer>
+</question>
+
+
+<cloze>
+  The third declension dative case
+  is the same as the second declension <blank>genitive</blank> case,
+  they both end with <blank>-i</blank>.
+</cloze>
+
+
+<question>
+  Felis cibum muris edit.
+
+  <answer>
+    The cat eats the food of the mouse.
+  </answer>
+</question>
+
+
+<question>
+  Compare the first, second and third declensions.
+
+  | N. | Magistra | Cibus | Felis |
+
+  <answer>
+    | N. | Magistra | Cibus | Felis |
+
+    | Ac. | Magistram | Cibum | Felem |
+
+    | G. | Magistrae | Cibi | Felis |
+
+    | D. | Magistrae | Cibo | Feli |
+
+    | Ab. | Magistra | Cibo | Fele |
+  </answer>
+</question>
+
+
+<question>
+  Dominus mihi cibum dat.
+
+  <answer>
+    The lord gives food to me.
+
+    ("mihi" is the dative case of the pronoun "sum", meaning "to me".)
+  </answer>
+</question>
+
+
+<question>
+  Tibi librum do.
+
+  <answer>
+    I give the book to you.
+
+    ("tibi" is the dative case of the pronoun "tu", meaning "to you".)
+  </answer>
+</question>
+
+
+<question>
+  Servus meus es.
+
+  <answer>
+    You are my slave.
+
+    ("meus" is the genitive case of the pronoun "sum".)
+  </answer>
+</question>
+
+
+<question>
+  Ego dominus tuus.
+
+  <answer>
+    I am your lord.
+
+    Like "Dominus tuus sum."
+  </answer>
+</question>
+
+
+<question>
+  I am not your slave.
+
+  <answer>
+    Servus tuus non sum.
+  </answer>
+</question>
+
+
+<question>
+  The master praises (lauds) the slave.
+
+  <answer>
+    Dominus servum laudat.
+  </answer>
+</question>
+
+
+<question>
+  The male teachers rarely praise the male student.
+
+  <answer>
+    Magistri discipulum raro laudant.
+  </answer>
+</question>
+
+
+<question>
+  I rarely praise you.
+
+  <answer>
+    Tibi raro laudo.
+
+    TODO Why the above uses dative "tibi" instead of accusative "te",
+    but "discipulum" is in accusative case instead of dative case?
+
+    Maybe we can answer this by reading LATIN FOR BEGINNERS by BENJAMIN L. D'OOGE.
+  </answer>
+</question>
+
+
+<question>
+  The soldier rarely gives the cat food.
+
+  <answer>
+    Miles feli raro cibum dat.
+  </answer>
+</question>
+
+
+<question>
+  Linguam Latinam amo.
+
+  <answer>
+    I love the Latin language.
+  </answer>
+</question>
+
+
+<question>
+  Poeta linguas amat.
+
+  <answer>
+    The poet loves languages.
+  </answer>
+</question>
+
+
+<question>
+  Do you love cats?
+
+  <answer>
+    Felesne amas?
+  </answer>
+</question>
+
+
+<question>
+  The female teacher praises the male students.
+
+  <answer>
+    Magistra discipulos laudat.
+  </answer>
+</question>
+
+
+<question>
+  The female student loves books.
+
+  <answer>
+    Discipula libros amat.
+  </answer>
+</question>
+
+
+<cloze>
+  When a noun (of any declension) is in accusative case,
+  it ends with <blank>-m</blank> when it is singular,
+  it ends with <blank>-s</blank> when it is plural.
+</cloze>
+
+
+<question>
+  Noli aquam bibere.
+
+  <answer>
+    Don't drink water.
+
+    (The verb is in infinitive form,
+    because there is no subject of the verb.)
+  </answer>
+</question>
+
+
+<question>
+  Don't read my letters.
+
+  <answer>
+    Noli epistulas meas legere.
+  </answer>
+</question>
+
+
+<question>
+  Omnes feles meas amant.
+
+  <answer>
+    Everyone love my cats.
+
+    (Adjective declines by the gender not the ending,
+    "felis" is feminine thus we use "meas".)
+  </answer>
+</question>
+
+
+<question>
+  "Noli cibum meum edere!" mus clamat.
+
+  <answer>
+    "Don't eat my food!" the mouse exclaims.
+  </answer>
+</question>
+
+
+<question>
+  "Noli fugere!" felis clamat.
+  "Amicum volo!"
+  "Felis et mus amici non sunt!" clamat mus.
+  "Quod feles mures edunt."
+  "Non mures edo, quod dominus mihi cibum dat," dicit felis.
+  "Non mures edis?" rogat mus.
+  "Ita est," dicit felis. "Sumusne amici?"
+  "Ita est," dicit mus.
+
+  <answer>
+    "Don't flee!" the cat exclaims.
+    "I want friend!"
+    "Cat and mouse are not friends!" the mouse exclaims.
+    "Because cats eat mouses."
+    "I do not eat mouses, because my master give me food," says the cat.
+    "You do not eat mouses?" the mouse asks.
+    "It is so," the cat says. "Aren't we friends?"
+    "It is so," the mouse says.
+  </answer>
+</question>
