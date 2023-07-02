@@ -1,0 +1,20 @@
+<metadata
+  theme-color="green"
+  keywords="test"
+/>
+
+
+<question>
+  Question 1
+
+  <answer>
+    Answer 1
+  </answer>
+
+  Question 2
+
+  <answer>
+    Answer 2
+  </answer>
+
+</question>

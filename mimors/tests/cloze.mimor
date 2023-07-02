@@ -1,0 +1,29 @@
+<metadata
+  theme-color="green"
+  keywords="test"
+/>
+
+
+<cloze>
+  start<blank>blank</blank>end
+</cloze>
+
+
+<cloze>
+  start with space <blank>blank</blank> space and end
+</cloze>
+
+<cloze>
+  start with newline
+  <blank>blank</blank>
+  newline and end
+</cloze>
+
+
+<cloze>
+  start with two newlines
+
+  <blank>blank</blank>
+
+  two newlines and end
+</cloze>
