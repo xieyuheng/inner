@@ -1,0 +1,178 @@
+<metadata theme-color="red" />
+
+<!--
+     https://www.youtube.com/watch?v=RLRwPJNl0QI&list=PLjqqMkeHFt1GCiWvOzQpLuubJhCeN_HnA
+ -->
+
+<front-cover>
+  Learn Latin from Harry Potter
+
+  Harry Potter Latin Spells
+</front-cover>
+
+<cloze>
+  Albus Dumbledore
+
+  Albus = <blank>White</blank>
+</cloze>
+
+
+<question>
+  White house
+
+  <answer>
+    Domus alba
+
+    Although ending with -us, "Domus" is feminine noun.
+  </answer>
+</question>
+
+
+<question>
+  Hic sunt dracones.
+
+  <answer>
+    Here be dragons.
+
+    draco = dragon
+  </answer>
+</question>
+
+
+<question>
+  Lumen video.
+
+  <answer>
+    I see a light.
+
+    Derived spell: "Lumos", which is used to light the magic wand.
+  </answer>
+</question>
+
+
+<cloze>
+  Accio = I <blank>summon</blank>
+
+  Derived spell: "Accio Firebolt".
+</cloze>
+
+
+<question>
+  Expello armus.
+
+  Derived spell: "Expelliarmus".
+
+  <answer>
+    I banish the weapon.
+  </answer>
+</question>
+
+
+<question>
+  Finite incantatum.
+
+  <answer>
+    Terminates all spell effects in the vicinity of the caster.
+
+    "Finite" is the plural imperative of "finio",
+    meaning to finish or terminate.
+
+    "Incantatum" is the participle form of "incanto",
+    which means to enchant, thus "Incantatum" means enchantment.
+  </answer>
+</question>
+
+
+<question>
+  Semper fidelis.
+
+  <answer>
+    Forever faithful.
+  </answer>
+</question>
+
+
+<question>
+  Obliviscor.
+
+  Derived spell: "Obliviate".
+
+  <answer>
+    I forget.
+
+    "Obliviscor" is in the first person form
+    but does not ending with -o.
+  </answer>
+</question>
+
+
+<question>
+  Obliviscere.
+
+  <answer>
+    Forget about it.
+
+    "Obliviscere" is in the command form.
+  </answer>
+</question>
+
+
+<question>
+  Expecto patronum.
+
+  <answer>
+    I wait for a protector.
+
+    This spell is used to fight off Dementors.
+
+    One of the most powerful defensive charms.
+
+    (A charm is a spell that added certain properties to an object or individual.)
+
+    It channels the caster's positive emotions
+    into a powerful protection and evoked a partially-tangible
+    positive energy force known as a spirit guardian.
+  </answer>
+</question>
+
+
+<question>
+  Crucio.
+
+  <answer>
+    I crucify (torture).
+
+    When cast successfully on a fellow human being or living creature,
+    the curse inflicted intense, excruciating physical pain on the victim,
+    and would result in insanity if the victim was
+    subjected to it for a prolonged time.
+  </answer>
+</question>
+
+
+<question>
+  Captus excruciabat.
+
+  <answer>
+    He was torturing the prisoners.
+  </answer>
+</question>
+
+
+<question>
+  Impero.
+
+  Derived spell: "Imperio".
+  <answer>
+    I command.
+  </answer>
+</question>
+
+
+<question>
+  Impera tibi!
+
+  <answer>
+    Control yourself!
+  </answer>
+</question>
