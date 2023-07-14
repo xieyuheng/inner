@@ -56,7 +56,7 @@ a "continuous deformation" of `f` into `g`.
 - **Xie:** A geometric object embedded in another space,
   is often study by a map `f: X -> Y`,
   where `X` is the space of parameters,
-  and `Y` the the another space,
+  and `Y` the another space,
   and the object is the image of the map.
 
   - For example, [parametric equation](https://en.wikipedia.org/wiki/Parametric_equation)

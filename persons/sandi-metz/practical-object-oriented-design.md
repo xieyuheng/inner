@@ -1105,7 +1105,7 @@ year: 2019
 
 ### 9.1.2 Knowing What to Test 196
 
-- What are the the design principles of testing?
+- What are the design principles of testing?
 
   The design principles you are enforcing in your application apply to your tests as well.
   Each test is merely another application object that needs to use an existing class.

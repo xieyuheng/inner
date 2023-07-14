@@ -26,7 +26,7 @@ year: 1969
   --- to the images of lower-cells.
 
 - note that,
-  the the axiom (3) in the book is that
+  the axiom (3) in the book is that
 
   - the image of the boundary of n-cell under the attaching-map
     is a sub-set of the lower-cells.

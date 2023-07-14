@@ -29,7 +29,7 @@ He then writes:
 
 > The universe of the Invariant Foundation is not clearly defined yet,
 > it should contain ana-n-categories for all natural n's;
-> the the totality of ana-n-categories, with their morphisms, etc.,
+> the totality of ana-n-categories, with their morphisms, etc.,
 > will form a ana-n+1-category.
 
 - He basically means the foundations should be infinity-category of infinity-categories.

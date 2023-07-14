@@ -317,7 +317,7 @@ which unifies all its arguments with each other, and return the unified type.
 
 If the unification failed, it will return a special element in the monoid of types -- `Error`.
 
-- Complete definition of the unification will explained in the the following sections.
+- Complete definition of the unification will explained in the following sections.
 
 The equivalent relation for `Error` is
 

@@ -382,7 +382,7 @@
       thus (son) can not push the data to argument-stack to return them
       - because in argument-stack
         every data is of unit cell
-      after process the the data
+      after process the data
       (son) stores them into the local memory that
       allocated by (allocate-local-memory)
     - problem is

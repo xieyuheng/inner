@@ -45,7 +45,7 @@
 
         - x -
           'everything as file' is like
-          to optimize the the syntax[the language] of API of devices
+          to optimize the syntax[the language] of API of devices
           for file storage device.
 
 ******* open

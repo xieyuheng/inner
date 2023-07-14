@@ -652,7 +652,7 @@
 
     (note
       the formalization of gluing
-      must be with detailed info about the the gluing is done
+      must be with detailed info about the gluing is done
       if i view union as gluing
       the info will be denoted by the global-naming-as-mark
       two types with the same constructor can still be seprated or not?)

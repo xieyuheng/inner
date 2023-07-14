@@ -248,7 +248,7 @@
           unlocking needs the locked lock and the key
           or say
           locking needs the encryption key [the open lock]
-          unlocking needs the the decryption key
+          unlocking needs the decryption key
 
         - james ellis
           https://en.wikipedia.org/wiki/James_H._Ellis

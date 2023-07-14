@@ -43,7 +43,7 @@ The most important definition comes from
     > given an element of type `A`.
 
     Two interpretations are the same,
-    if we view the the nature as a big computer.
+    if we view the nature as a big computer.
 
 # Logic, judgment and inference
 
