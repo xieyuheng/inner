@@ -1,0 +1,245 @@
+<metadata theme-color="red" />
+
+<!--
+     https://www.youtube.com/watch?v=B6xHXY7VFrg&list=PLjqqMkeHFt1GCiWvOzQpLuubJhCeN_HnA
+-->
+
+<front-cover>
+  Latin Vocabulary Builder #1
+
+  Animals and Numbers
+</front-cover>
+
+<question>
+  Unus duo tres.
+
+  <answer>
+    One two three.
+  </answer>
+</question>
+
+<question>
+  Unus ursus.
+
+  <answer>
+    A bear.
+
+    Ursa Major 是西方的大熊星座，中国称北斗七星。
+
+    "Unity" and "unite" are from "unus".
+  </answer>
+</question>
+
+<question>
+  Duo ursi.
+
+  <answer>
+    Two bears.
+  </answer>
+</question>
+
+<question>
+  Tres vaccae.
+
+  <answer>
+    Three cows.
+  </answer>
+</question>
+
+<question>
+  One cow.
+
+  <answer>
+    Una vacca.
+
+    The first three numbers decline with the noun.
+
+    "Vaccine" comes from "vacca".
+
+    疫苗首次发现于得了天花的牛。
+  </answer>
+</question>
+
+<question>
+  Two cows.
+
+  <answer>
+    Duae vaccae.
+
+    The first three numbers decline with the noun.
+  </answer>
+</question>
+
+<question>
+  One cat.
+
+  <answer>
+    Una felis.
+
+    "Felis" is a feminine noun.
+  </answer>
+</question>
+
+<question>
+  Two cats.
+
+  <answer>
+    Unae feles.
+  </answer>
+</question>
+
+<cloze>
+  Declensions of the first three numbers.
+
+  Nominative case only.
+
+  | number | masculine | feminine |
+
+  | 1 | unus | <blank>una</blank> |
+
+  | 2 | duo | <blank>duae</blank> |
+
+  | 3 | tres | <blank>tres</blank> |
+</cloze>
+
+<question>
+  I have one dog.
+
+  <answer>
+    Unum canem habeo.
+
+    Canem habeo.
+
+    "Canis" is a thrid declension noun.
+  </answer>
+</question>
+
+<question>
+  You have two dogs.
+
+  <answer>
+    Duos canes habes.
+  </answer>
+</question>
+
+<question>
+  I see three dogs.
+
+  <answer>
+    Tres canes video.
+  </answer>
+</question>
+
+<question>
+  Quattour vaccae.
+
+  <answer>
+    Four cows.
+
+    The numbers from 4 to 10 don't decline.
+  </answer>
+</question>
+
+<question>
+  Quinque aves.
+
+  <answer>
+    Five birds.
+
+    Singular of "aves" is "avis".
+  </answer>
+</question>
+
+<question>
+  Sex porci.
+
+  <answer>
+    Six pigs.
+  </answer>
+</question>
+
+<question>
+  Septem leones.
+
+  <answer>
+    Seven lions.
+  </answer>
+</question>
+
+<question>
+  Quinque aves et tres aves sunt octo aves.
+
+  <answer>
+    Five birds and three birds are eight birds.
+  </answer>
+</question>
+
+<question>
+  Quattour vaccae et quinque aves sunt novem animalia.
+
+  <answer>
+    Four cows and five birds are nine animals.
+  </answer>
+</question>
+
+<cloze>
+  | 7 | septem |
+
+  | 8 | octo |
+
+  | 9 | novem |
+
+  | 10 | <blank>decem</blank> |
+</cloze>
+
+<cloze>
+  | singular | plural |
+
+  | ursus | <blank>ursi</blank> |
+</cloze>
+
+<cloze>
+  | singular | plural |
+
+  | canis | <blank>canes</blank> |
+</cloze>
+
+<cloze>
+  | singular | plural |
+
+  | vacca | <blank>vaccae</blank> |
+</cloze>
+
+<cloze>
+  | singular | plural |
+
+  | avis | <blank>aves</blank> |
+</cloze>
+
+<cloze>
+  | singular | plural |
+
+  | felis | <blank>feles</blank> |
+</cloze>
+
+<cloze>
+  | singular | plural |
+
+  | leo | <blank>leones</blank> |
+</cloze>
+
+<cloze>
+  | singular | plural |
+
+  | porcus | <blank>porci</blank> |
+</cloze>
+
+<back-cover>
+  Unus duo tres
+
+  quattour quinque sex
+
+  septem octo
+
+  novem decem
+</back-cover>
