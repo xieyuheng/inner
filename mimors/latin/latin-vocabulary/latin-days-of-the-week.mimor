@@ -14,7 +14,7 @@
   dies Solis
 
   <answer>
-    日曜太阳
+    日曜 太阳
 
     day of the Sun
 
@@ -28,7 +28,7 @@
   dies Lunae
 
   <answer>
-    月曜太阴
+    月曜 太阴
 
     day of the Moon
 
@@ -42,7 +42,7 @@
   dies Martis
 
   <answer>
-    火曜荧惑
+    火曜 荧惑
 
     day of the Mars
 
@@ -58,7 +58,7 @@
   dies Mercurii
 
   <answer>
-    水曜辰星
+    水曜 辰星
 
     day of the Mercury
 
@@ -74,7 +74,7 @@
   dies Iovis
 
   <answer>
-    木曜岁星
+    木曜 岁星
 
     day of the Jupiter
 
@@ -90,7 +90,7 @@
   dies Veneris
 
   <answer>
-    金曜太白
+    金曜 太白
 
     day of the Venus
 
@@ -106,7 +106,7 @@
   dies Saturni
 
   <answer>
-    土曜镇星
+    土曜 镇星
 
     day of the Saturn
 
