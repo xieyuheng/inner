@@ -45,5 +45,183 @@
 
   <answer>
     Nothing after death.
+
+    We can drop "est" sometimes.
+  </answer>
+</question>
+
+<question>
+  Mortem non timeo.
+
+  <answer>
+    I don't fear death.
+  </answer>
+</question>
+
+<question>
+  Rigor mortis.
+
+  <answer>
+    Stiffness of death.
+  </answer>
+</question>
+
+<question>
+  Mors certa est.
+
+  <answer>
+    Death is certain.
+  </answer>
+</question>
+
+<question>
+  alibi
+
+  <answer>
+    elsewhere
+  </answer>
+</question>
+
+<question>
+  Maximus alibi habitabat.
+
+  <answer>
+    Maximus was living elsewhere.
+  </answer>
+</question>
+
+<question>
+  mea cupla
+
+  <answer>
+    my fault
+  </answer>
+</question>
+
+<question>
+  Hoc erat mea cupla.
+
+  <answer>
+    This was my fault.
+  </answer>
+</question>
+
+<question>
+  A cupla absunt.
+
+  <answer>
+    They are not to blame.
+
+    They are absunt from blame.
+
+    "absunt" means "they are absent".
+
+    "a" means "from".
+  </answer>
+</question>
+
+<question>
+  quid pro quo
+
+  <answer>
+    What for what.
+
+    Something for something.
+
+    "quo" is the ablative form of "quid".
+  </answer>
+</question>
+
+<question>
+  What are you doing?
+
+  <answer>
+    Quid facis?
+  </answer>
+</question>
+
+<question>
+  Pro bono.
+
+  <answer>
+    Without charge.
+
+    For good.
+  </answer>
+</question>
+
+<question>
+  terra incognita
+
+  <answer>
+    unknown land
+  </answer>
+</question>
+
+<question>
+  Potius diabolus cognitus quam incognitus angelus.
+
+  <answer>
+    rather a known devil than an unknown angel.
+
+    "potius ... quam ..." means "rather ... than ...".
+  </answer>
+</question>
+
+<question>
+  vox populi
+
+  <answer>
+    the voice of the people
+  </answer>
+</question>
+
+<question>
+  Vox feminae senis est.
+
+  <answer>
+    The voice of a old woman.
+  </answer>
+</question>
+
+<question>
+  We are the people.
+
+  <answer>
+    Populus sumus.
+  </answer>
+</question>
+
+<question>
+  magnum opus
+
+  <answer>
+    great work
+
+    The plural of "opus" is "opera".
+  </answer>
+</question>
+
+<question>
+  Domi opus facio.
+
+  <answer>
+    I do work at home.
+  </answer>
+</question>
+
+<question>
+  carpe diem
+
+  <answer>
+    harvest the day
+  </answer>
+</question>
+
+<question>
+  Valentina flores carpit.
+
+  <answer>
+    Valentina is picking flowers.
   </answer>
 </question>
