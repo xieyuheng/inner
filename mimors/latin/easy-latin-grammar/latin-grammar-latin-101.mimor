@@ -1,0 +1,70 @@
+<metadata theme-color="red" />
+
+<!--
+  https://www.youtube.com/watch?v=0s0vczeVuqo&list=PLjqqMkeHFt1FMRaUbOSerWjk52-Id0c4K&index=1
+-->
+
+<front-cover>
+  Understanding Latin Grammar Latin 101
+</front-cover>
+
+<cloze>
+  Syntax based on word order or
+  based on inflection (with free word order),
+  in programming, is like <blank>function argument</blank>
+  based on position or keyword.
+</cloze>
+
+<question>
+  For English sentences, sometimes we can change the order and still mean the same.
+
+  <answer>
+    He gives the cat to the dog.
+
+    He gives to the dog the cat.
+
+    To the dog he gives the cat.
+
+    We can change order all because of the "to",
+    latin is like this, but they change the end of the words.
+  </answer>
+</question>
+
+<question>
+  For English sentences, lets add Latin suffix -m to distinguish object.
+
+  Dog bites man.
+
+  Dog bites manem.
+
+  <answer>
+    Dog bites manem.
+
+    Dog manem bites.
+
+    Manem dog bites.
+
+    Manem bites dog.
+
+    Bites manem dog.
+
+    Bites dog manem.
+  </answer>
+</question>
+
+<question>
+  For English sentences, lets add Latin suffix -m to distinguish object,
+  and -o to distinguish indirect object.
+
+  He gives cat to the dog.
+
+  He gives catem dogo.
+
+  <answer>
+    He gives catem dogo.
+
+    He gives dogo catem.
+
+    Dogo he gives catem.
+  </answer>
+</question>
