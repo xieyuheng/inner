@@ -1,4 +1,6 @@
-# section 1 of DE DIFFERENTIIS FINITIS
+# words of DE DIFFERENTIIS FINITIS
+
+## 1
 
 ex iis
 from them
@@ -41,3 +43,22 @@ where by chance, in which case
 
 utcunque
 however
+
+## 2
+
+sit
+let
+
+igitur
+therefore
+
+quaecunque
+any
+
+scilicet
+you may know, you may be sure, it is certain, it is obvious
+
+## 3
+
+quemadmodum
+just like that
