@@ -2,8 +2,148 @@
 
 <!--
      https://www.youtube.com/watch?v=B1zSNc7PijA&list=PLjqqMkeHFt1GCiWvOzQpLuubJhCeN_HnA
- -->
+     <!--  --> -->
 
 <front-cover>
   Latin Abbreviations Used in English
 </front-cover>
+
+<question>
+  A.D.
+
+  <answer>
+    anno Domini
+
+    the year of the load
+
+    "anno" is the dative/ablative singular of "annus".
+
+    English word "annual" is derived from this.
+  </answer>
+</question>
+
+<question>
+  a.m.
+
+  p.m.
+
+  <answer>
+    ante meridiem
+
+    post meridiem
+
+    meridiem = medius (middle) + dies (day)
+
+    "ante" and "post" are preposition always used with
+    the accusative case of the noun.
+  </answer>
+</question>
+
+<question>
+  R.I.P.
+
+  <answer>
+    Requiescat in pace.
+
+    May he/she rest in peace.
+  </answer>
+</question>
+
+<question>
+  per cent.
+
+  <answer>
+    per centum
+
+    for each hundred
+
+    English word "century" is derived from "centum".
+  </answer>
+</question>
+
+<question>
+  e.g.
+
+  <answer>
+    exempli gratia
+
+    gratitude for an example
+
+    for the sake of an example
+
+    in favor of an example
+
+    "gratia" is a preposition to used with
+    the genitive case of the noun.
+  </answer>
+</question>
+
+<question>
+  Ars gratia artis.
+
+  <answer>
+    Art for the sake of art.
+  </answer>
+</question>
+
+<question>
+  i.e.
+
+  <answer>
+    id est
+
+    that is
+  </answer>
+</question>
+
+<question>
+  P.S.
+
+  <answer>
+    post scriptum
+
+    after the text
+
+    after the written
+  </answer>
+</question>
+
+<question>
+  [sic]
+
+  <answer>
+    sic erat scriptum
+
+    thus was the writing
+
+    "erat" is the imperfect past tense of "est".
+  </answer>
+</question>
+
+<question>
+  Sic est vita.
+
+  <answer>
+    Thus is life.
+
+    That's the way life is.
+  </answer>
+</question>
+
+<question>
+  QED
+
+  <answer>
+    Quod erat demonstrandum.
+
+    Which was demonstrated.
+  </answer>
+</question>
+
+<cloze>
+  | m | qui |
+
+  | f | <blank>quae</blank> |
+
+  | n | <blank>quod</blank> |
+</cloze>
