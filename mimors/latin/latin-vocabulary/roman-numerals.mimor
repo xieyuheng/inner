@@ -1,0 +1,83 @@
+<metadata theme-color="red" />
+
+<!--
+     https://www.youtube.com/watch?v=hYd7t7ixjtc&list=PLjqqMkeHFt1GCiWvOzQpLuubJhCeN_HnA
+-->
+
+<front-cover>
+  Roman numerals
+</front-cover>
+
+<question>
+  Why early Roman numerals do not
+  use IV and IX for 4 and 9?
+
+  <answer>
+    Because they are not good for symbolic manipulation.
+
+    Without the trick for saving space, we can write:
+
+    <code>
+      VIII + III =
+      VIIIIII =
+      VVI =
+      XI
+    </code>
+  </answer>
+</question>
+
+<question>
+  Why X = V + V?
+
+  <answer>
+    Because X is like a V and a upside down V.
+  </answer>
+</question>
+
+<cloze>
+  | I | 1 |
+
+  | <blank>V</blank> | 5 |
+
+  | X | 10 |
+
+  | <blank>L</blank> | 50 |
+
+  | C | 100 | centum |
+
+  | <blank>D</blank> | 500 |
+
+  | M | 1000 | mille |
+</cloze>
+
+<question>
+  DLV
+
+  <answer>
+    555
+  </answer>
+</question>
+
+<question>
+  MMCCCXX
+
+  <answer>
+    2320
+  </answer>
+</question>
+
+<question>
+  DCLXVI
+
+  <answer>
+    666
+  </answer>
+</question>
+
+<question>
+  semis
+
+  <answer>
+    half
+  </answer>
+</question>
