@@ -1,0 +1,67 @@
+<metadata theme-color="red" />
+
+<!--
+     https://www.youtube.com/watch?v=jpqEiAkOEfo&list=PLjqqMkeHFt1FMRaUbOSerWjk52-Id0c4K&index=7
+-->
+
+<front-cover>
+  The third declension in Latin made simple
+</front-cover>
+
+<question>
+  Why is the third declension important?
+
+  <answer>
+    Because it is the declension of participles
+    (verbs turned into adjectives).
+  </answer>
+</question>
+
+<question>
+  What is the stem of "homo" (meaning "human")?
+
+  <answer>
+    homin-
+
+    | Nominative | homo |
+
+    | Accusative | hominem |
+
+    | Genitive | hominis |
+
+    | Dative | homini |
+
+    | Ablative | homine |
+  </answer>
+</question>
+
+<question>
+  What is the stem of "canis" (meaning "dog")?
+
+  <answer>
+    can-
+
+    | Nominative | canis |
+
+    | Accusative | canem |
+
+    | Genitive | canis |
+
+    | Dative | cani |
+
+    | Ablative | cane |
+  </answer>
+</question>
+
+<question>
+  Canis amicus optimus hominis est.
+
+  <answer>
+    Dog is best friend of human.
+  </answer>
+</question>
+
+<cloze>
+  The genitive case for all third declension nouns
+  end with <blank>-is</blank>.
+</cloze>
