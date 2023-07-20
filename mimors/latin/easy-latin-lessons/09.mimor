@@ -1,0 +1,267 @@
+<metadata theme-color="red" />
+
+<!--
+     https://www.youtube.com/watch?v=etJy99U1YBc&list=PLjqqMkeHFt1E_lRi9nQvtmP9Od2JokI1J
+-->
+
+<front-cover>
+  Easy Latin Lesson #9
+
+  More about imperative
+</front-cover>
+
+<question>
+  Flecte ad sinistram.
+
+  <answer>
+    Turn to the left.
+  </answer>
+</question>
+
+<question>
+  Flecte ad dextram.
+
+  <answer>
+    Turn to the right.
+  </answer>
+</question>
+
+<question>
+  The soldier turns to the left.
+
+  <answer>
+    Miles ad sinistram flectit.
+  </answer>
+</question>
+
+<question>
+  Milites ad dextram flectunt.
+
+  <answer>
+    The soldiers turn to the right.
+  </answer>
+</question>
+
+<question>
+  Read the book.
+
+  <answer>
+    Librum lege.
+  </answer>
+</question>
+
+<question>
+  Libera nos a malo.
+
+  <answer>
+    Liberate us from evil.
+  </answer>
+</question>
+
+<question>
+  Go home.
+
+  <answer>
+    Domum i.
+  </answer>
+</question>
+
+<question>
+  I go home.
+
+  <answer>
+    Domum eo.
+  </answer>
+</question>
+
+<question>
+  The master praise the slave.
+
+  <answer>
+    Dominus servum laudat.
+  </answer>
+</question>
+
+<question>
+  cum laude
+
+  <answer>
+    with praise
+
+    with honors
+  </answer>
+</question>
+
+<question>
+  Cum Iulio i, quaeso.
+
+  <answer>
+    Go with Julius, please.
+
+    "quaeso" is a verb meaning "I beg".
+  </answer>
+</question>
+
+<question>
+  Cheese please.
+
+  <answer>
+    Queso quaeso.
+  </answer>
+</question>
+
+<question>
+  The poet and the mela student go.
+
+  <answer>
+    Poeta et discipulus eunt.
+  </answer>
+</question>
+
+<question>
+  The poet goes with the the mela student.
+
+  <answer>
+    Poeta cum discipulo it.
+  </answer>
+</question>
+
+<question>
+  The cat walks with the farmer.
+
+  <answer>
+    Felis cum agricola anbulat.
+  </answer>
+</question>
+
+<question>
+  Study!
+
+  <answer>
+    Studete!
+  </answer>
+</question>
+
+<question>
+  Learn!
+
+  <answer>
+    Discite!
+  </answer>
+</question>
+
+<question>
+  Drink wine!
+
+  <answer>
+    Vinum bibite!
+  </answer>
+</question>
+
+<question>
+  Mater filiam amat.
+
+  <answer>
+    The mother loves her daughter.
+  </answer>
+</question>
+
+<question>
+  Iulius duos filios habet.
+
+  <answer>
+    Iulius has two sons.
+
+    "-os" is the accusative male (second declension) plural.
+  </answer>
+</question>
+
+<question>
+  Tres parvi porci.
+
+  <answer>
+    The three little pigs.
+
+    "parus" means "little".
+  </answer>
+</question>
+
+<question>
+  Mundus parvus est.
+
+  <answer>
+    The world is small.
+  </answer>
+</question>
+
+<question>
+  Lingua mundum aedificat.
+
+  <answer>
+    Language builds the world.
+  </answer>
+</question>
+
+<cloze>
+  ex + ire = <blank>go out (exit)</blank>
+
+  "ex" can also be used as preposition.
+
+  and when followed by a consonant, just "e".
+</cloze>
+
+<question>
+  E culina exi!
+
+  <answer>
+    Go out of the kitchen.
+  </answer>
+</question>
+
+<question>
+  Volo te e domo mea exire.
+
+  <answer>
+    I want you to leave my house.
+  </answer>
+</question>
+
+<question>
+  Cavete.
+
+  <answer>
+    Take care (plural).
+  </answer>
+</question>
+
+<question>
+  Cave.
+
+  <answer>
+    Take care (singular).
+  </answer>
+</question>
+
+<question>
+  Primus, secundus, tertius and  quartus.
+
+  <answer>
+    First, second, third and fourth.
+  </answer>
+</question>
+
+<question>
+  Sunt tres parvi porci et in mundum exire volunt.
+  "Cavete," dicit mater et primus porcus parvus exit.
+  Domum aedificare volat. Agricolam videt et dicit,
+  "Da mihi stramentum, quaeso."
+  Et primus porcus parvus domum suam aedificat.
+
+  <answer>
+    There are three little pigs, want to go out to the world.
+    "Take care," says the mother and the first little pig go out.
+    He wants to build a house. He sees farmer and say,
+    "Give me straw, please."
+    And the first little pig build his house.
+  </answer>
+</question>
