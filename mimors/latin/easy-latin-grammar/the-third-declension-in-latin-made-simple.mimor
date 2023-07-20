@@ -162,11 +162,15 @@
 
 <cloze>
   For third declension nouns,
-
-  the plural nominative is the same as the <blank>plural accusative</blank>,
+  the <blank>plural nominative</blank> is
+  the same as the <blank>plural accusative</blank>,
   -es for masculine, -a for neutral;
+</cloze>
 
-  the plural dative is the same as the <blank>plural ablative</blank>,
+<cloze>
+  For third declension nouns,
+  the <blank>plural dative</blank> is
+  the same as the <blank>plural ablative</blank>,
   -ibus for both masculine and neutral.
 </cloze>
 
@@ -196,5 +200,34 @@
     What are the names of your cats?
 
     "tuis" is the dative/ablative masculine/feminine/neuter plural of "tuus".
+  </answer>
+</question>
+
+<question>
+  Nocte dieque studet.
+
+  <answer>
+    In night and in day studies.
+
+    "nocte" is the ablative of "nox".
+
+    "die" is the ablative of "dies"
+    (a fifth declension noun).
+  </answer>
+</question>
+
+<question>
+  Librum de animalibus lego.
+
+  <answer>
+    I read book of animals.
+  </answer>
+</question>
+
+<question>
+  Leo rex animalium est.
+
+  <answer>
+    Lion is the king of animals.
   </answer>
 </question>
