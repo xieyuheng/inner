@@ -121,3 +121,80 @@
     A man is a wolf to a man.
   </answer>
 </question>
+
+<question>
+  Canes natare possunt.
+
+  <answer>
+    Dogs swim can.
+  </answer>
+</question>
+
+<question>
+  Hic liber a duobus hominibus scriptus est.
+
+  <answer>
+    This book was written by two people.
+
+    "hominibus" is the ablative plural.
+
+    "a" should be used with ablative.
+
+    "scriptus est" is passive.
+  </answer>
+</question>
+
+<question>
+  Milites felibus cibum dant.
+
+  <answer>
+    Soldiers give food to cats.
+  </answer>
+</question>
+
+<question>
+  Milites gladiatores necant.
+
+  <answer>
+    Soldiers kill gladiators.
+  </answer>
+</question>
+
+<cloze>
+  For third declension nouns,
+
+  the plural nominative is the same as the <blank>plural accusative</blank>,
+  -es for masculine, -a for neutral;
+
+  the plural dative is the same as the <blank>plural ablative</blank>,
+  -ibus for both masculine and neutral.
+</cloze>
+
+<cloze>
+  For neutral nouns, the third declension plural nouns
+  have the same <blank>nominative and accusative</blank> with
+  the second declension plural nouns,
+  they all end in -a.
+</cloze>
+
+<question>
+  Brevis hominum vita.
+
+  <answer>
+    Life of humans is short.
+
+    "hominum" is the plural genitive.
+  </answer>
+</question>
+
+<question>
+  Quae sunt tuis nomina felibus?
+
+  <answer>
+    What are the names to your cats?
+
+    What are the names of your cats?
+
+    "tuis" is the dative/ablative masculine/feminine/neuter plural of "tuus".
+  </answer>
+</question>
