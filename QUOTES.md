@@ -22,6 +22,13 @@ title: Quotes
   - Bob Martin
   - "Uncle" Bob Martin - "The Future of Programming"
 
+- Ultimately every strong teacher [programmer] must develop his own
+  method, and the stronger he is the less he will feel bound to follow
+  the methods recommended by others.
+
+  - Benjamin L. D'ooge
+  - "Teachers' manual to accompany 'Latin for beginners'"
+
 # Programming Languages
 
 - What truely drives language adoption is necessity.
