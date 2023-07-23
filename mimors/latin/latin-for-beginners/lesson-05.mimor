@@ -5,3 +5,99 @@
 
   Dative
 </front-cover>
+
+<question>
+  Quis nautīs pecūniam dat?
+
+  <answer>
+    Who give money to sailors?
+  </answer>
+</question>
+
+<question>
+  Fīliae agricolae nautīs pecūniam dant.
+
+  <answer>
+    The daughters of the farmer give money to the sailors.
+
+    "fīliae" is nominative plural of "filia".
+  </answer>
+</question>
+
+<question>
+  Quis fortūnam pugnae nūntiat?
+
+  <answer>
+    Who announces the fortune of the battle?
+  </answer>
+</question>
+
+<question>
+  Galba agricolīs fortunam pugnae nūntiat.
+
+  <answer>
+    Galba announces the fortune of the battle to the farmers?
+  </answer>
+</question>
+
+<question>
+  Cui domina fābulam nārrat?
+
+  <answer>
+    The lady tells the story to whom?
+  </answer>
+</question>
+
+<question>
+  Fīliae agricolae domina fābulam nārrat.
+
+  <answer>
+    The lady tells the story to the daughter of the farmer.
+
+    "fīliae" is dative of "filia".
+  </answer>
+</question>
+
+<question>
+  Quis Diānae corōnam dat?
+
+  <answer>
+    Who gives the wreath/crown to Diana?
+  </answer>
+</question>
+
+<question>
+  Puella Diānae corōnam dat quia Diānam amat.
+
+  <answer>
+    The girl gives the wreath to Diana,
+    because she loves Diana?
+  </answer>
+</question>
+
+<question>
+  Dea lūnae sagittās portat et ferās silvārum necat.
+
+  <answer>
+    The god fo the moon carries arrows
+    and kills the beasts of the forests.
+  </answer>
+</question>
+
+<question>
+  Cuius victōriam Galba nūntiat?
+
+  <answer>
+    Galba announces the victory of who?
+  </answer>
+</question>
+
+<question>
+  Nautae victōriam Galba nūntiat.
+
+  <answer>
+    Galba announces the victory of the sailor?
+
+    "nautae" is the genitive of "nauta".
+  </answer>
+</question>
