@@ -10,6 +10,20 @@ author: Xie Yuheng
 >
 > -- ["The Joker"](https://www.organism.earth/library/document/the-joker), Alan Watts
 
+# measure
+
+3 latin lessons a day -- 20 days
+
+the c -- 1 chapter a day -- 8 days
+
+- earley
+- inet
+  - design of syntax -- first of all, what we need to express? what we aspects need to use syntax to distinguish?
+
+fidb features -- performance -- 7 days
+
+complete mimor.app -- payment -- 7 days
+
 # TODO
 
 FTHTP -- Forth Transport Protocol
