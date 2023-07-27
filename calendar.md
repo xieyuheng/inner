@@ -32,6 +32,8 @@ Read the book "Latin for Beginners".
 - How (The plan): 79 lessons -- 3 lessons per day (26 days).
 - What (The result): Mimor notes.
 - Measure: 7 lessons.
+  - 2023-07-27 10:49 -- 1 lesson
+  - 2023-07-27 12:10 -- 1 lesson
 
 Read The C book.
 
@@ -39,10 +41,6 @@ Read The C book.
 - How: 8 chapters -- 1 chapter per day (8 days).
 - What: E book, inet and earley re-implementation.
 - Measure: 1 chapter.
-- notes:
-  - inet -- design of syntax
-    - first of all, what we need to express?
-      what we aspects need to use syntax to distinguish?
 
 fidb features -- performance
 

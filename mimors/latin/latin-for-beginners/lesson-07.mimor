@@ -7,3 +7,112 @@
 
   The A-Declension
 </front-cover>
+
+<question>
+  Agricola cum fīliā in casā habitat.
+
+  <answer>
+    The farmer and the daughter live in the small house.
+  </answer>
+</question>
+
+<question>
+  Bona fīlia agricolae cēnam parat.
+
+  <answer>
+    The good daughter of the farmer prepares dinner.
+  </answer>
+</question>
+
+<question>
+  Cēna est grāta agricolae et agricola bonam fīliam laudat.
+
+  <answer>
+    Dinner is pleasing to the farmer
+    and the farmer praises the good daughter.
+  </answer>
+</question>
+
+<question>
+  Deinde fīlia agricolae gallīnās ad cēnam vocat.
+
+  <answer>
+    Then the daughter of the farmer calls the hens to the dinner.
+  </answer>
+</question>
+
+<question>
+  Gallīnae fīliam agricolae amant.
+
+  <answer>
+    The hens love the daughter of the farmer.
+  </answer>
+</question>
+
+<question>
+  Malae fīliae bonās cēnās nōn parant.
+
+  <answer>
+    Bad daughters do not prepare good dinners.
+  </answer>
+</question>
+
+<question>
+  Fīlia agricolae est grāta dominae.
+
+  <answer>
+    The daughter of the farmer is pleasing to the lady.
+  </answer>
+</question>
+
+<question>
+  Domina in īnsulā magnā habitat.
+
+  <answer>
+    The lady lives in a big island.
+  </answer>
+</question>
+
+<question>
+  Domina bonae puellae parvae pecūniam dat.
+
+  <answer>
+    The lady gives money to the good little girl.
+  </answer>
+</question>
+
+<cloze>
+  Q. Quis cum agricolā in casā habitat?
+
+  A. <blank>Filia agricolae</blank>.
+</cloze>
+
+<cloze>
+  Q. Quid bona fīlia agricolae parat?
+
+  A. <blank>Cenam</blank>.
+</cloze>
+
+<cloze>
+  Q. Quem agricola laudat?
+
+  A. <blank>Filiam laudat</blank>.
+</cloze>
+
+<cloze>
+  Q. Vocatne fīlia agricolae gallīnās ad cēnam?
+
+  A. <blank>Vocat</blank>.
+</cloze>
+
+<cloze>
+  Q. Cuius fīlia est grāta dominae?
+
+  A. <blank>Filia agricolae</blank>.
+</cloze>
+
+<cloze>
+  Q. Cui domina pecūniam dat?
+
+  A. <blank>Puellae bonae parvae dat.</blank>.
+</cloze>
