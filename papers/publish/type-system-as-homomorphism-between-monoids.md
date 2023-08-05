@@ -12,8 +12,11 @@ where the space of types is monoid, the space of terms is also a monoid,
 and the homomorphism is the `infer` function of the type system.
 
 We use a concrete example to demonstrate this idea,
-in our example the space of types is _linear logic propositions_,
-and the space of terms is a _concatenative programming language_ (like Forth and Joy).
+in our example the space of types is a space of _linear logic propositions_,
+and the space of terms is a space of _concatenative programs_.
+
+The space of concatenative programs is inspired by
+the Forth programming language.
 
 Some key points of our demonstration:
 
@@ -46,19 +49,21 @@ And we can interpret concepts in type system as equations in monoid.
 Let's define two concrete monoids and a homomorphism between them,
 to see the idea of this paper in action.
 
-We call the homomorphism `infer`, its domain **terms**, its codomain **types**.
+We call the homomorphism `infer`,
+it's domain is the space of **terms**,
+it's codomain is the space of **types**.
 
 The types will be _linear logic propositions_.
 
-The terms will be a _[concatenative programming language](https://en.wikipedia.org/wiki/Concatenative_programming_language)_
-(like [Forth](<https://en.wikipedia.org/wiki/Forth_(programming*language)>)
-and [Joy](<https://en.wikipedia.org/wiki/Joy*(programming*language)>)).
+The terms will be _[concatenative programs](https://en.wikipedia.org/wiki/Concatenative_programming_language)_
+(like programs in the [Forth](<https://en.wikipedia.org/wiki/Forth_(programming*language)> language)
+and the [Joy](<https://en.wikipedia.org/wiki/Joy*(programming*language)>) language).
 
 We use whitespace as infix notation
 to denote the binary operation
 of the monoids (instead of using an explicit infix notation like `•`).
 
-if `x` and `y` are elements, so is `x y`.
+If `x` and `y` are elements, so is `x y`.
 
 Since `infer` is a homomorphism, we have:
 
@@ -100,7 +105,7 @@ The empty list is the **identity element** of both monoids,
 for convenience we also explicitly write them as `empty` and `Empty` in equations.
 
 And we define the `infer` to be the trivial homomorphism
-from lower case to upper case,
+from lower case words to capitalized words,
 for examples:
 
 ```
@@ -252,7 +257,7 @@ We can use the `claim` keyword to claim a global variable's type
 and the `define` keyword to define a global variable's term.
 
 - A variable introduced by linear assignment is called "local variable" (or "bound variable"),
-  and global variable (or say free variable) is different from them.
+  and a global variable (or say free variable) is different from them.
 
 ```
 claim one { Nat }
