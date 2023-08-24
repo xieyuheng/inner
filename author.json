@@ -10,10 +10,10 @@
     "readonlylink": "https://readonly.link/authors/https://inner.xieyuheng.com/author.json"
   },
   "tagline": "A programmer who created readonly.link.",
-  "homepage": "HOME.md",
+  "homepage": "README.md",
   "avatar": "assets/images/xieyuheng-square.jpg",
   "tabs": {
-    "HOME": "HOME.md",
+    "HOME": "README.md",
     "PROJECTS": "PROJECTS.md",
     "TRANSLATIONS": "TRANSLATIONS.md",
     "PAPERS": "PAPERS.md",
