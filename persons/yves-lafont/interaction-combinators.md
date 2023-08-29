@@ -4,7 +4,7 @@ author: Yves Lafont
 year: 1997
 ---
 
-# Xie: Note about drawing of nets
+# Xie: Drawing of nets
 
 In the first paper "Interaction Nets",
 drawing of a net is based on layered-tree,
@@ -25,3 +25,11 @@ is similarly to a syntex tree,
 and to highlight the principle,
 we can just highlight the edge
 without changing the layered-tree drawing.
+
+# Xie: Reduced the right side of rule
+
+The author require the right side of a rule to be reduced.
+
+This means when defining a rule,
+we can (and we should) eager evaluate the right side,
+and the evaluation must terminate.
