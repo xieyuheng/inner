@@ -29,7 +29,7 @@ is a memory helping app.
 
 ### FiDB
 
-[FiDB](https://fidb.dev)
+[FiDB](https://fidb.app)
 -- What if we use file system as database?
 
 ### Pomodoro

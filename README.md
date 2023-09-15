@@ -10,6 +10,6 @@ Right now I'm working on:
 - [**Cicada Language**](https://cicada-lang.org)
 - [**Readonly.Link**](https://readonly.link)
 - [**Mimor**](https://mimor.app)
-- [**FiDB**](https://fidb.dev)
+- [**FiDB**](https://fidb.app)
 
 Curious? Come to see my [**inner universe**](https://github.com/xieyuheng/inner).
