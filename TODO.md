@@ -1,6 +1,6 @@
 ---
 title: My research as an adventure game
-subtitle: Be explicit and clear about our goals and progress, to keep direction and help planning.
+subtitle: Be explicit and clear about my goals and progress, to keep direction and help planning.
 author: Xie Yuheng
 ---
 
@@ -11,6 +11,17 @@ author: Xie Yuheng
 > -- ["The Joker"](https://www.organism.earth/library/document/the-joker), Alan Watts
 
 # TODO
+
+During study of "Causality -- Models, Reasoning and Inference",
+I found that maybe we should revisit the idea of [orbit](https://withorbit.com/).
+
+- Repo: https://github.com/andymatuschak/orbit
+- Because I keep forgetting:
+  - definition of terms
+  - import intuitions
+  - typical examples
+
+------
 
 FTHTP -- Forth Transport Protocol
 
@@ -35,7 +46,7 @@ learn about general constraint logic programming framework.
 
 learn about general nominal logic.
 
-implement nominal logic in `whereabouts`.
+implement nominal logic in `mo`.
 
 implement alphaLeanTab -- learn this way Ray's book about first-order logic.
 
@@ -84,11 +95,11 @@ Do we still need to distinguish `Value` from `Exp` and use `Closure` to handle s
 - When writing a compiler, there is a pass which makes all closures top-level.
 - Prolog is such a language.
 - C is such a language.
-- Maybe `whereabouts` should be such a language.
+- Maybe `mo` should be such a language.
 
 We should implement a language to try this idea.
 
-Maybe we should make `whereabouts` explicitly such a language,
+Maybe we should make `mo` explicitly such a language,
 to simplify its implementation.
 
 ------
@@ -120,23 +131,6 @@ the must important object in mathematics.
 - draw algebraic geometry
 - simulate classical mechanics
 - draw differential geometry
-
-------
-
-During study of "Causality -- Models, Reasoning and Inference",
-I found that maybe we should revisit the idea of [orbit](https://withorbit.com/).
-
-- Repo: https://github.com/andymatuschak/orbit
-- Because I keep forgetting:
-  - definition of terms
-  - import intuitions
-  - typical examples
-- and: https://activerecall.com
-- New design of mimor
-  - one card one xml element,
-    one file many cards,
-    one directory one deck
-    (maybe with a JSON config file).
 
 ------
 
@@ -211,15 +205,6 @@ The language must have enough features to formalize mathematic theorems and proo
 
     To avoid exponential lambda terms during encoding,
     we need to do graph based implementation.
-
-  - **[side quest]** Interaction nets
-
-    One graph based implementation of lambda is Lamping's optimal beta-reduction,
-    which is based on interaction nets.
-
-  - **[side quest]** Linear logic
-
-    The type system of interaction nets is linear logic.
 
 We must actually use this language to formalize a lot of mathematics,
 because without applications, language design project is not complete,
@@ -298,10 +283,6 @@ i.e. not only use the case of `n-1` as hypothesis in inductive step,
 but also be able to use the case of `n-2`, `n-3`, ... (if available).
 
 ## Interaction nets and linear logic
-
-> These two topics can be studied separately,
-> but based on the principle of type theory,
-> we should study terms and types together.
 
 To use interaction nets to implement Lamping's optimal beta-reduction.
 
@@ -433,19 +414,9 @@ References:
 
 ## Problem solving
 
-### Polya
+inner/persons/polya/mathematics-and-plausible-reasoning/vol-2--patterns-of-plausible-inference.md
 
-~/inner/person/polya/mathematics-and-plausible-reasoning
-
-- vol-2--patterns-of-plausible-inference.md
-
-## software design
-
-### TDD
-
-~/watching/tdd/james-shore
-
-### OOP
+## OOP
 
 Mimic the style of "99 Bottles of OOP",
 and apply it to other programming exercises.
