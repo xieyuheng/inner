@@ -15,7 +15,7 @@ App projects I'm working on:
 - [FiDB](https://fidb.app)
 - [Mimor](https://mimor.app)
 
-Programming languages projects:
+Programming language projects:
 
 - [iNet](https://inet.run)
 - [Cicada](https://cicada-lang.org)
