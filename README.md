@@ -18,7 +18,7 @@ App projects I'm working on:
 Programming languages projects:
 
 - [iNet](https://inet.run)
-- [Cicada Language](https://cicada-lang.org)
+- [Cicada](https://cicada-lang.org)
 
 X series software library projects:
 
