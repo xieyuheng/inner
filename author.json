@@ -13,10 +13,10 @@
   "homepage": "README.md",
   "avatar": "assets/images/xieyuheng-square.jpg",
   "tabs": {
-    "HOME": "README.md",
-    "TRANSLATIONS": "TRANSLATIONS.md",
-    "PAPERS": "PAPERS.md",
-    "RESUME": "RESUME.md",
+    "Home": "README.md",
+    "Translations": "TRANSLATIONS.md",
+    "Papers": "PAPERS.md",
+    "Resume": "RESUME.md",
     "TODO": "TODO.md"
   },
   "activities": [
