@@ -25,7 +25,5 @@ X series software library projects:
 - [x-node](https://github.com/xieyuheng/x-node)
 - [x-markdown](https://github.com/xieyuheng/x-markdown)
 - [x-server](https://github.com/xieyuheng/x-server)
-- [x-proxy](https://github.com/xieyuheng/x-proxy)
-- [x-json](https://github.com/xieyuheng/x-json)
 
 Curious? Come to see my [inner universe](https://github.com/xieyuheng/inner).
