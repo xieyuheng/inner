@@ -12,7 +12,6 @@
   "homepage": "homepage.zh.md",
   "avatar": "assets/images/xieyuheng-square.jpg",
   "tabs": {
-    "主页": "README.md",
     "翻译": "translations.md",
     "论文": "papers.md",
     "简历": "resume.md",
