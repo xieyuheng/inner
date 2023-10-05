@@ -1,15 +1,10 @@
 ### Hi, I'm Xie Yuheng ^-^/
 
-I am a programmer, and I work as a full-stack web developer.
+I am a programmer, a full-stack web developer.
 
-I share my ideas about _programming_, _mathematics_ and _philosophy_
-through my [translations](TRANSLATIONS.md) and [papers](PAPERS.md).
+Here, I share my ideas about programming, mathematics and philosophy.
 
-A project can be a wonderful journey,
-where we aiming to get somewhere, while also
-practicing our skills and enjoy being on the road.
-
-App projects I'm working on:
+Web App projects:
 
 - [Readonly.Link](https://readonly.link)
 - [FiDB](https://fidb.app)
@@ -20,7 +15,7 @@ Programming language projects:
 - [iNet](https://inet.run)
 - [Cicada](https://cicada-lang.org)
 
-X series software library projects:
+X series software libraries:
 
 - [x-node](https://github.com/xieyuheng/x-node)
 - [x-markdown](https://github.com/xieyuheng/x-markdown)
