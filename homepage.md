@@ -1,24 +1,29 @@
-### 我是谢宇恒 ^-^/
+### Hi, I'm Xie Yuheng ^-^/
 
-一名程序员。一名全栈 Web 开发者。
+I am a programmer, and I work as a full-stack web developer.
 
-我在这里分享关于编程、数学和哲学的想法。
+I share my ideas about _programming_, _mathematics_ and _philosophy_
+through my [translations](TRANSLATIONS.md) and [papers](PAPERS.md).
 
-网络应用项目：
+A project can be a wonderful journey,
+where we aiming to get somewhere, while also
+practicing our skills and enjoy being on the road.
+
+App projects I'm working on:
 
 - [Readonly.Link](https://readonly.link)
 - [FiDB](https://fidb.app)
 - [Mimor](https://mimor.app)
 
-程序语言项目：
+Programming language projects:
 
 - [iNet](https://inet.run)
 - [Cicada](https://cicada-lang.org)
 
-X 系列软件工具：
+X series software library projects:
 
 - [x-node](https://github.com/xieyuheng/x-node)
 - [x-markdown](https://github.com/xieyuheng/x-markdown)
 - [x-server](https://github.com/xieyuheng/x-server)
 
-有趣吗？来我的[小宇宙]((https://github.com/xieyuheng/inner))瞧瞧！
+Curious? Come to see my [inner universe](https://github.com/xieyuheng/inner).
