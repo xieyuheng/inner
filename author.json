@@ -13,9 +13,9 @@
   "avatar": "assets/images/xieyuheng-square.jpg",
   "tabs": {
     "Home": "README.md",
-    "Translations": "TRANSLATIONS.md",
-    "Papers": "PAPERS.md",
-    "Resume": "RESUME.md",
+    "Translations": "translations.md",
+    "Papers": "papers.md",
+    "Resume": "resume.md",
     "TODO": "TODO.md"
   },
   "activities": [
