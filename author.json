@@ -15,7 +15,6 @@
   "homepage": "homepage.md",
   "avatar": "assets/images/xieyuheng-square.jpg",
   "tabs": {
-    "Home": "README.md",
     "Translations": "translations.md",
     "Papers": "papers.md",
     "Resume": "resume.md",
