@@ -1,9 +1,6 @@
 {
   "kind": "Author",
-  "name": "Xie Yuheng",
-  "langs": {
-    "zh": "author.zh.json"
-  },
+  "name": "谢宇恒",
   "contact": {
     "bilibili": "https://space.bilibili.com/550104600",
     "github": "https://github.com/xieyuheng",
@@ -11,14 +8,14 @@
     "twitter": "https://twitter.com/CicadaLanguage",
     "mimor": "https://mimor.app/authors/xieyuheng"
   },
-  "tagline": "A programmer who created readonly.link.",
+  "tagline": "一名程序员。",
   "homepage": "README.md",
   "avatar": "assets/images/xieyuheng-square.jpg",
   "tabs": {
-    "Home": "README.md",
-    "Translations": "translations.md",
-    "Papers": "papers.md",
-    "Resume": "resume.md",
+    "主页": "README.md",
+    "翻译": "translations.md",
+    "论文": "papers.md",
+    "简历": "resume.md",
     "TODO": "TODO.md"
   },
   "activities": [
