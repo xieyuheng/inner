@@ -12,7 +12,7 @@
     "mimor": "https://mimor.app/authors/xieyuheng"
   },
   "tagline": "A programmer who created readonly.link.",
-  "homepage": "README.md",
+  "homepage": "homepage.md",
   "avatar": "assets/images/xieyuheng-square.jpg",
   "tabs": {
     "Home": "README.md",
