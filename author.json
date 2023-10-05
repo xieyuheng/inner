@@ -1,9 +1,6 @@
 {
   "kind": "Author",
   "name": "Xie Yuheng",
-  "langs": {
-    "zh": "author.zh.json"
-  },
   "contact": {
     "bilibili": "https://space.bilibili.com/550104600",
     "github": "https://github.com/xieyuheng",
