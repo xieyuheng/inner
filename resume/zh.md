@@ -44,7 +44,7 @@
 
 - 用到了 Markdown 扩展框架：[Postmark](https://github.com/xieyuheng/postmark)
 
-![](https://image-link.vercel.app/xmind-list-item/1.png)
+![](https://image-link.fidb.app/xmind-list-item/1.png)
 
 ### 风变科技，深圳，2019-12 - 2021-11
 
@@ -53,28 +53,28 @@
 - 基于「课灵小馆」平台，设计「卡牌」系统，以卡牌的形式收集和检索公司运营中的转化案例。（为自己设计的平台创作内容，真是一件赏心乐事呢。）
   - 课程结构建模（Schema 设计）
 
-![](https://image-link.vercel.app/clepub/1.jpg)
-![](https://image-link.vercel.app/clepub/2.jpg)
-![](https://image-link.vercel.app/clepub/3.jpg)
-![](https://image-link.vercel.app/clepub/4.jpg)
+![](https://image-link.fidb.app/clepub/1.jpg)
+![](https://image-link.fidb.app/clepub/2.jpg)
+![](https://image-link.fidb.app/clepub/3.jpg)
+![](https://image-link.fidb.app/clepub/4.jpg)
 
 - 设计[「思索」](https://sisuo.cn)项目，以探索「主动回顾」和「间隔重复」等等认知心理学技术在教学中的应用。
   - Markdown 语法定制与扩展，前端插件机制
 
-![](https://image-link.vercel.app/sisuo/mobile/1.jpg)
-![](https://image-link.vercel.app/sisuo/mobile/2.jpg)
-![](https://image-link.vercel.app/sisuo/mobile/3.jpg)
-![](https://image-link.vercel.app/sisuo/mobile/4.jpg)
+![](https://image-link.fidb.app/sisuo/mobile/1.jpg)
+![](https://image-link.fidb.app/sisuo/mobile/2.jpg)
+![](https://image-link.fidb.app/sisuo/mobile/3.jpg)
+![](https://image-link.fidb.app/sisuo/mobile/4.jpg)
 
-![](https://image-link.vercel.app/sisuo/desktop/1-1.png)
-![](https://image-link.vercel.app/sisuo/desktop/1-2.png)
-![](https://image-link.vercel.app/sisuo/desktop/1-3.png)
+![](https://image-link.fidb.app/sisuo/desktop/1-1.png)
+![](https://image-link.fidb.app/sisuo/desktop/1-2.png)
+![](https://image-link.fidb.app/sisuo/desktop/1-3.png)
 
 附注：在上述项目中，我负责产品设计以及全栈开发，制定技术构架 并带领 3 - 4 人的全栈团队。
 
 感谢风变的同伴们，我向你们学到了很多。
 
-![](https://image-link.vercel.app/forchange/xieyuheng-1.jpg)
+![](https://image-link.fidb.app/forchange/xieyuheng-1.jpg)
 
 ### 特航航空，深圳，2019-06 - 2019-08
 
@@ -116,7 +116,7 @@ mathematical theories, to flourish the ideas developed in the
 *foundations of mathematics*, and serve as a bridge between computer
 science and mathematics.
 
-![](https://image-link.vercel.app/cicada-lang/homepage-1.png)
+![](https://image-link.fidb.app/cicada-lang/homepage-1.png)
 
 ### Postmark
 
@@ -128,17 +128,17 @@ is a framework for building markdown extensions.
 [Readonly.Link](https://readonly.link)
 is a document rendering platform.
 
-![](https://image-link.vercel.app/readonlylink/mobile/en-1.jpg)
-![](https://image-link.vercel.app/readonlylink/mobile/zh-1.jpg)
-![](https://image-link.vercel.app/readonlylink/mobile/zh-2.jpg)
+![](https://image-link.fidb.app/readonlylink/mobile/en-1.jpg)
+![](https://image-link.fidb.app/readonlylink/mobile/zh-1.jpg)
+![](https://image-link.fidb.app/readonlylink/mobile/zh-2.jpg)
 
-![](https://image-link.vercel.app/readonlylink/desktop/book-3-1.png)
-![](https://image-link.vercel.app/readonlylink/desktop/book-3-2.png)
-![](https://image-link.vercel.app/readonlylink/desktop/book-3-3.png)
+![](https://image-link.fidb.app/readonlylink/desktop/book-3-1.png)
+![](https://image-link.fidb.app/readonlylink/desktop/book-3-2.png)
+![](https://image-link.fidb.app/readonlylink/desktop/book-3-3.png)
 
-![](https://image-link.vercel.app/readonlylink/desktop/manual-1-1.png)
-![](https://image-link.vercel.app/readonlylink/desktop/manual-1-2.png)
-![](https://image-link.vercel.app/readonlylink/desktop/manual-1-3.png)
+![](https://image-link.fidb.app/readonlylink/desktop/manual-1-1.png)
+![](https://image-link.fidb.app/readonlylink/desktop/manual-1-2.png)
+![](https://image-link.fidb.app/readonlylink/desktop/manual-1-3.png)
 
 ### LogicDB
 
