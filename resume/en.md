@@ -62,7 +62,7 @@ and render beautiful Markdown pages with mind maps.
 ![](https://image-link.fidb.app/clepub/3.jpg)
 ![](https://image-link.fidb.app/clepub/4.jpg)
 
-  - Create [sisuo](https://sisuo.app) project, to explore applications of cognitive psychology in interactive teaching.
+  - Create Sisuo project, to explore applications of cognitive psychology in interactive teaching.
 
 ![](https://image-link.fidb.app/sisuo/mobile/1.jpg)
 ![](https://image-link.fidb.app/sisuo/mobile/2.jpg)
