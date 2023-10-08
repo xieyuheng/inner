@@ -17,9 +17,9 @@
 
 我认为 Web 就像是程序员的艺术媒介，让大家能够在天马行空的样式与交互中表达自己，并且很轻松地与整个世界紧密相连。
 
-- 语言：TypeScript
-- 前端：Vue.js，Inertia.js，Tailwind CSS
-- 后端：Laravel，Node.js，PostgreSQL
+- 语言：JavaScript/TypeScript
+- 前端：Vue.js，Tailwind CSS
+- 后端：Node.js
 
 ### 形式语言设计
 
@@ -30,19 +30,43 @@
 
 ### 软件工程与项目管理
 
-我熟悉面向对象的设计原则（Object oriented design）与模式（Design patterns），也熟悉测试驱动开发（Test driven development）与重构（Refactoring）。
+我熟悉：
+
+- 面向对象的设计原则（Object oriented design）
+- 设计模式（Design patterns）
+- 测试驱动开发（Test driven development）
+- 重构（Refactoring）
 
 我相信敏捷开发（Agile）的要点在于优化 Feedback loop 以响应需求的变化。
 
 ## 工作经历
+
+### 谢宇恒软件工作室，深圳，2022-10 - 2023-10
+
+工作室项目：
+
+- [readonly.link](https://readonly.link) -- 文档渲染平台。
+- [mimor.app](https://mimor.app) -- 卡片类笔记工具。
+- [fidb.app](https://fidb.app) -- 基于文件系统的数据库。
+
+### 中国科学院软件研究所 PLCT 实验室，远程，2022-08 - 2022-10
+
+以 Cicada 项目为基础，和四名全国各地的大学生一起探索 Dependently Typed 程序语言。
+通过讲解 Cicada 的实现，使得四名优秀的学员都学会了如何实现 Dependent Type。
+我们一起阅读论文，探索并实现了一些高阶功能，比如 Implicit Argument 等等。
+
+- [Cicada 项目代码](https://github.com/cicada-lang/cicada)
+- [项目在 PLCT 的招聘信息](https://github.com/plctlab/weloveinterns/blob/master/open-internships.md#bj61-%E8%9D%89%E8%AF%AD%E5%AE%9E%E4%B9%A0%E7%94%9F%E6%9A%82%E5%81%9C%E6%8B%9B%E8%81%98)
+
+### 维格智数（Vikadata），深圳，2022-04 - 2022-07
+
+实现维格表日常的前端需求 -- React
 
 ### XMind，深圳，2021-12 - 2021-12（两周）
 
 完成了一个产品原型，可以以简洁优雅的语法，将思维导图作为 List Item 的扩展，编写在 Markdown 中。
 在 Demo Web App 中填写 Markdown 文件在 GitHub 的地址，
 就可以拉取内容并且渲染成美丽的带有思维导图的页面，其中的思维导图带有丰富的交互。
-
-- 用到了 Markdown 扩展框架：[Postmark](https://github.com/xieyuheng/postmark)
 
 ![](https://image-link.fidb.app/xmind-list-item/1.png)
 
@@ -104,65 +128,10 @@
 
 实验性的汇编语言实验 中山大学 2015 ([主页](http://the-little-language-designer.github.io/cicada-nymph/course/contents.html)) ([讨论小组](https://github.com/the-little-language-designer))
 
-## 个人项目
-
-### Cicada Language
-
-Right now I'm working on [Cicada Language](https://cicada-lang.org),
-both a *programming language* and a *theorem prover*.
-
-Based on cicada, I want to build a wiki of formalized
-mathematical theories, to flourish the ideas developed in the
-*foundations of mathematics*, and serve as a bridge between computer
-science and mathematics.
-
-![](https://image-link.fidb.app/cicada-lang/homepage-1.png)
-
-### Postmark
-
-[Postmark](https://github.com/xieyuheng/postmark)
-is a framework for building markdown extensions.
-
-### Readonly.Link
-
-[Readonly.Link](https://readonly.link)
-is a document rendering platform.
-
-![](https://image-link.fidb.app/readonlylink/mobile/en-1.jpg)
-![](https://image-link.fidb.app/readonlylink/mobile/zh-1.jpg)
-![](https://image-link.fidb.app/readonlylink/mobile/zh-2.jpg)
-
-![](https://image-link.fidb.app/readonlylink/desktop/book-3-1.png)
-![](https://image-link.fidb.app/readonlylink/desktop/book-3-2.png)
-![](https://image-link.fidb.app/readonlylink/desktop/book-3-3.png)
-
-![](https://image-link.fidb.app/readonlylink/desktop/manual-1-1.png)
-![](https://image-link.fidb.app/readonlylink/desktop/manual-1-2.png)
-![](https://image-link.fidb.app/readonlylink/desktop/manual-1-3.png)
-
-### LogicDB
-
-While learning Logic programming, I started a project called
-[LogicDB](https://github.com/xieyuheng/logic-db), to embed a
-Prolog-like logic programming language in JavasScript and TypeScript.
-
-### ty
-
-[ty](https://github.com/xieyuheng/ty) can be used to write schema to bring TypeScript's types to runtime.
-
-We can use ty schema to do validation and generate random data of certain type.
-
-### Lowdim & cell-complex
-
-[Lowdim](https://github.com/xieyuheng/lowdim) is about modeling low
-dimensional (0, 1, 2, 3 maybe 4 dimension) topology and geometry.
-
-[cell-complex](https://github.com/xieyuheng/cell-complex) is about
-topological and geometric modeling in any dimension.
-
 ## 论文
 
-**2019-05-08：A Recursive Combinatorial Description of cell-complex**
+2019-05-08：[A Recursive Combinatorial Description of cell-complex](https://readonly.link/articles/https://inner.xieyuheng.com/papers/publish/a-recursive-combinatorial-description-of-cell-complex.md)
 
-**2016-06-14：Function compose, Type cut, and The algebra of logic**
+2016-06-14：Function compose, Type cut, and The algebra of logic
+
 - ICFP，Scheme Workshop，2016，日本奈良

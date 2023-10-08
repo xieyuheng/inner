@@ -12,9 +12,9 @@
 
 ### Web full-stack development
 
-- Language: TypeScript
-- Frontend：Vue.js, Inertia.js, Tailwind CSS
-- Backend：Laravel, Node.js, PostgreSQL
+- Language: JavaScript/TypeScrip
+- Frontend：Vue.js, Tailwind CSS
+- Backend：Node.js
 
 ### Formal language design
 
@@ -49,9 +49,6 @@ I understand the essence of agile is all about feedback loop.
 Finished a product prototype, which extends Markdown List Item to write [mind maps](https://en.wikipedia.org/wiki/Mind_map).
 The demo web app can load Markdown files from GitHub,
 and render beautiful Markdown pages with mind maps.
-
-- Using [Postmark](https://github.com/xieyuheng/postmark).
-  - A framework for building markdown extensions.
 
 ![](https://image-link.fidb.app/xmind-list-item/1.png)
 
@@ -123,11 +120,6 @@ science and mathematics.
 
 ![](https://image-link.fidb.app/cicada-lang/homepage-1.png)
 
-### Postmark
-
-[Postmark](https://github.com/xieyuheng/postmark)
-is a framework for building markdown extensions.
-
 ### Readonly.Link
 
 [Readonly.Link](https://readonly.link)
@@ -151,23 +143,10 @@ While learning Logic programming, I started a project called
 [LogicDB](https://github.com/xieyuheng/logic-db), to embed a
 Prolog-like logic programming language in JavasScript and TypeScript.
 
-### ty
-
-[ty](https://github.com/xieyuheng/ty) can be used to write schema to bring TypeScript's types to runtime.
-
-We can use ty schema to do validation and generate random data of certain type.
-
-### Lowdim & cell-complex
-
-[Lowdim](https://github.com/xieyuheng/lowdim) is about modeling low
-dimensional (0, 1, 2, 3 maybe 4 dimension) topology and geometry.
-
-[cell-complex](https://github.com/xieyuheng/cell-complex) is about
-topological and geometric modeling in any dimension.
-
 ## Papers
 
-**2019-05-08: A Recursive Combinatorial Description of cell-complex**
+2019-05-08：[A Recursive Combinatorial Description of cell-complex](https://readonly.link/articles/https://inner.xieyuheng.com/papers/publish/a-recursive-combinatorial-description-of-cell-complex.md)
 
-**2016-06-14: Function compose, Type cut, and The algebra of logic**
+2016-06-14: Function compose, Type cut, and The algebra of logic
+
 - ICFP, Scheme Workshop, 2016, Nara, Japan
