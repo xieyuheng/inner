@@ -4,7 +4,7 @@
 
 <readonlylink href="https://inner.xieyuheng.com/resume/zh.md" />
 
-- [PDF](https://papers.fidb.app/resume/zh.pdf)
+- [PDF（13 Mb）](https://papers.fidb.app/resume/zh.pdf)
 
 ### English
 
