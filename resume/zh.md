@@ -142,7 +142,10 @@
 
 ## 授课经历
 
-实验性的汇编语言实验，中山大学，2015 ([主页](http://the-little-language-designer.github.io/cicada-nymph/course/contents.html)) ([讨论小组](https://github.com/the-little-language-designer))
+实验性的汇编语言实验，中山大学，2015。
+
+- [课程主页](http://the-little-language-designer.github.io/cicada-nymph/course/contents.html)
+- [课程小组](https://github.com/the-little-language-designer)
 
 ## 论文
 
