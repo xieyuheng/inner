@@ -13,9 +13,11 @@
 
 ### Web 全栈开发
 
-我喜爱 Web 这个无处不在的多元而包容的平台，也享受 JavaScript 社区令人眼花缭乱的活力与创造力。
-
-我认为 Web 就像是程序员的艺术媒介，让大家能够在天马行空的样式与交互中表达自己，并且很轻松地与整个世界紧密相连。
+我喜爱 Web 这个无处不在的多元而包容的平台，
+也享受 JavaScript 社区令人眼花缭乱的活力与创造力。
+我还认为 Web 是一个艺术媒介，
+让大家能够在天马行空的样式与交互中表达自己，
+并且很轻松地与整个世界紧密相连。
 
 - 语言：JavaScript/TypeScript
 - 前端：Vue.js，Tailwind CSS
@@ -24,9 +26,13 @@
 ### 形式语言设计
 
 在自己的项目中，我积累了很多设计程序语言的经验，熟悉各种语言的实现技术。
-- 语法解析，类型检查，解释器，基于栈的虚拟机 等等
 
-我可以帮助团队设计 DSL，通过从语言级别做抽象，来解决领域中所遇到的复杂问题。
+- 语法解析
+- 类型检查
+- 解释器
+- 基于栈的虚拟机
+
+一般情况下，公司用不到这些技能。偶然用到了，我可以很快实现语言相关的需求。
 
 ### 软件工程与项目管理
 
@@ -92,7 +98,7 @@
 ![](https://image-link.fidb.app/clepub/3.jpg)
 ![](https://image-link.fidb.app/clepub/4.jpg)
 
-- 设计[「思索」](https://sisuo.cn)项目，以探索「主动回顾」和「间隔重复」等等认知心理学技术在教学中的应用。
+- 设计「思索」项目，以探索「主动回顾」和「间隔重复」等等认知心理学技术在教学中的应用。
   - Markdown 语法定制与扩展，前端插件机制
 
 ![](https://image-link.fidb.app/sisuo/mobile/1.jpg)
@@ -136,7 +142,7 @@
 
 ## 授课经历
 
-实验性的汇编语言实验 中山大学 2015 ([主页](http://the-little-language-designer.github.io/cicada-nymph/course/contents.html)) ([讨论小组](https://github.com/the-little-language-designer))
+实验性的汇编语言实验，中山大学，2015 ([主页](http://the-little-language-designer.github.io/cicada-nymph/course/contents.html)) ([讨论小组](https://github.com/the-little-language-designer))
 
 ## 论文
 
