@@ -20,5 +20,6 @@ X series software libraries:
 - [x-node](https://github.com/xieyuheng/x-node)
 - [x-markdown](https://github.com/xieyuheng/x-markdown)
 - [x-server](https://github.com/xieyuheng/x-server)
+- [x-editor](https://github.com/xieyuheng/x-editor)
 
 Curious? Come to see my [inner universe](https://github.com/xieyuheng/inner).
