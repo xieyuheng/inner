@@ -2,7 +2,6 @@
 
 2020-10-29
 
-
 ## 对比 Structural Typing 之简化
 
 经过简化后 structural typing 与 fulfilling type 的实现方式已经处理地比较清楚了。
