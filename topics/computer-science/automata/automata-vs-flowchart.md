@@ -9,7 +9,37 @@ date: 2023-11-07
 In UML, we use _State Machine Diagram_ to draw automata,
 and we use _Activity Diagram_ to draw flowchart.
 
-- Activity Diagram supports concurrency.
+About names:
+
+- In activity diagram, actions are named.
+- In state machine diagram, states AND actions are BOTH named.
+
+About roles:
+
+- In one activity diagram, there might be many actors.
+- In one state machine diagram, there can ONLY be one actor.
+
+To reduce an activity diagram involving many actors
+to many state machine diagrams,
+we must first partition the activity diagram by actors,
+and to use message passing to handle across-actor actions.
+
+# Concurrency
+
+Activity Diagram supports concurrency.
+
+In automata, if we want to support concurrency,
+we need to be able to spawn new state node
+and "join" multiple state nodes.
+
+```
+             | (B1) -> (B2) |
+(A) -spawn-> |              | -join-> (D)
+             | (C1)         |
+```
+
+Maybe we should implement Actor Model,
+and use automata as private state of actor.
 
 # Complexity
 
@@ -35,6 +65,10 @@ flowchart =unfold=> state machine diagram
 
 Unfolding (tracing) a loop in flowchart,
 will generate a line in state machine diagram.
+
+Automata is simple, because a state
+is represented by a single value,
+instead of a production of values.
 
 # Representation
 
