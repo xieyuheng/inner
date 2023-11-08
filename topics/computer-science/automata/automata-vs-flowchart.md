@@ -70,6 +70,11 @@ Automata is simple, because a state
 is represented by a single value,
 instead of a production of values.
 
+In UML State Diagram, the state machine is said to have "extended states",
+when it has local variables, and guard can reference these local variables.
+In this sense, UML State Diagram is Turing complete and not limited to finite states,
+which is very much like the local state of an Actor in Actor Model.
+
 # Representation
 
 An automata can be represented by a state-transition table.
@@ -78,3 +83,13 @@ of directed graph (with labeled edges).
 
 A flowchart is the same as imperative programming language,
 thus should better be represented by programming language syntax.
+
+# Translate from flowchart to state machine with "extended states"
+
+To translate a flowchart to state machine with "extended states":
+
+- View the edge before an action node as a single-action state of the state machine.
+- View a decision node (or say, a branching node) as a multi-action state of the state machine.
+- When the flowchart has multiple actors, partition the flowchart by actor,
+  and view the two edges that go out of the boundary and come back from the boundary
+  as a single state that waiting for event the other actor.
