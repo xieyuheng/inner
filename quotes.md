@@ -7,6 +7,13 @@ title: Quotes
   - Mike Sendall
   - About Tim Berners-Lee's work on internet
 
+- As an adult, it's really rare that you feel bad at something.
+  As you get better at your craft, you forget about the other things,
+  and being bad at something again felt amazing.
+
+  - Devine Lu Linvega
+  - About Sailing
+
 # Programmer
 
 - We rule the world, we write the rules,
