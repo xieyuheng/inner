@@ -7,7 +7,7 @@ Continued Learning: The Beauty of Maintenance - Kent Beck
 
 Kent Beck 的讲解很生动很难忘记。
 
-coupling(A, B, d) = implication(change(A, d), change(B, d))
+coupling(A, B, d) = change(A, d) -> change(B, d)
 
 cohesive(element) = sub element all change together
 
