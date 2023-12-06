@@ -10,7 +10,7 @@ author: Xie Yuheng
 >
 > -- ["The Joker"](https://www.organism.earth/library/document/the-joker), Alan Watts
 
-# TODO
+# Mimor
 
 During study of "Causality -- Models, Reasoning and Inference",
 I found that maybe we should revisit the idea of [orbit](https://withorbit.com/).
@@ -21,7 +21,7 @@ I found that maybe we should revisit the idea of [orbit](https://withorbit.com/)
   - import intuitions
   - typical examples
 
-------
+# FTHTP
 
 FTHTP -- Forth Transport Protocol
 
@@ -36,11 +36,17 @@ especially for building record and collection.
 
 - Property names in record can make a protocol self documenting.
 
+# ZFC
+
 ZFC as example first order theory -- try to formalize in logic programming.
+
+# A browser of 3d scenes
 
 A browser of 3d scenes,
 one can use url to travel to other scenes.
 A scene is a box (a tree is a nested box).
+
+# Mo
 
 learn about general constraint logic programming framework.
 
@@ -53,6 +59,8 @@ implement alphaLeanTab -- learn this way Ray's book about first-order logic.
 implement explicit-substitution
 
 - nominal logic is important for just understanding the substitution used in paper.
+
+# lowdmin
 
 implement `lowdmin` again, use constraint idea to handle boundary relation.
 
@@ -72,7 +80,7 @@ define infinite graph by `datatype`.
 When see examples of hott or cubical type,
 write them in cicada syntax.
 
-------
+# Path type
 
 The rules about appling elements of `Equal` as functions,
 which can be used to prove simple structural `Equal` like `equalPair`.
@@ -80,7 +88,7 @@ which can be used to prove simple structural `Equal` like `equalPair`.
 Might be the rules we are looking for in the design of language for cell-complex,
 where are also a lots of "applying under structural".
 
-------
+# A language without lambda
 
 VV said playing with expressions of proofs should be
 as easy as playing with expressions of polynomials.
@@ -102,26 +110,18 @@ We should implement a language to try this idea.
 Maybe we should make `mo` explicitly such a language,
 to simplify its implementation.
 
-------
-
-Redesgin the syntax of BCPL and implement it in `cicada-lang/bcpl`.
-
-------
+# Closed data by pure abstract classes
 
 Closed data can be implemented by pure abstract classes.
 
 - We should explore this.
 - [Gerald Jay Sussman keynote and discussion - reClojure 2021](https://www.youtube.com/watch?v=EbzQg7R2pYU)
 
-------
-
-> JavaScript and c-family language design.
+# JavaScript and c-family language design
 
 Review the SICP JavaScript version.
 
-------
-
-> Get back to numbers.
+# Get back to numbers
 
 When I study probability theory,
 I am unwilling to use just numbers.
@@ -132,9 +132,14 @@ the must important object in mathematics.
 - simulate classical mechanics
 - draw differential geometry
 
-------
+# Graph and cell-complex
 
 Is it easier to use hyper graph to model cell-complex?
+
+- In Petri nets, the idea about bipartite graph is to view edge as a kind of node,
+  can is be applied to cell-complex?
+
+# Algebraic Topology
 
 Re-study homotopy theory and algebraic topology.
 
@@ -154,11 +159,13 @@ Understand homotopy type theory with cell-complex as basic objects.
   every now and then.
   - ~/persons/de-bruijn/on-the-roles-of-types-in-mathematics.pdf
 
-------
+# Word problems
 
 Word problems of semigroup, monoid and group.
 
 - About undecidable.
+
+# iNet
 
 Term syntax for linear logic -- simple types first.
 
@@ -169,7 +176,7 @@ Use linear logic as type system of inet.
 
 Implement optimal beta-reduction by inet.
 
-------
+# A Pattern Language
 
 Analysis Christopher Alexander's "A Pattern Language",
 to use patterns to record my knowledge.
@@ -177,9 +184,7 @@ to use patterns to record my knowledge.
 - Case study the structure of Martin Fowler's homepage.
 - Readonly.Link should support writing patterns.
 
-# Main quests
-
-## Cicada Language
+# Cicada Language
 
 The goal is to design a language for foundations of mathematics.
 
@@ -217,7 +222,7 @@ and applications will provide feedback to improve our design.
 
 - Fulfilling types make it easy to formalize some concepts of category theory.
 
-## JoJo Calculus
+# JoJo Calculus
 
 Use postfix notations as syntax.
 
@@ -225,7 +230,7 @@ A language on which categorical semantics would fail.
 
 To view a type system as a homomorphism between monoids.
 
-## Boundaries as Types
+# Boundaries as Types
 
 Cell-complex and higher dimensional algebraic structure.
 
@@ -263,7 +268,7 @@ but how to interpret faces and bodies of cell-complex?
 
 - how to generalize this to face and body?
 
-## Causal Inference Engine
+# Causal Inference Engine
 
 The goal is to design a causal inference engine,
 following the steps of Judea Pearl.
@@ -274,15 +279,13 @@ following the steps of Judea Pearl.
 - **[problem]** How does such a causal inference engine
   relate to logic deduction system and "model by classes and objects"?
 
-# Side quests
-
-## Recursion and termination-check
+# Recursion and termination-check
 
 The most simple termination-check is based on the general inductive principle.
 i.e. not only use the case of `n-1` as hypothesis in inductive step,
 but also be able to use the case of `n-2`, `n-3`, ... (if available).
 
-## Interaction nets and linear logic
+# Interaction nets and linear logic
 
 To use interaction nets to implement Lamping's optimal beta-reduction.
 
@@ -294,7 +297,7 @@ References about optimal beta-reduction:
 - The Lamping algorithm paper.
 - The Lambdascope paper.
 
-## Symbolic systems
+# Symbolic systems
 
 **[project]** `monoid-presentation`
 
@@ -329,7 +332,7 @@ References about optimal beta-reduction:
   - `Fraction`
   - `ContinuedFraction`
 
-## Logic programming
+# Logic programming
 
 Remember that inference rules of a logic are relations,
 and can be formalized in logic programming languages like Prolog.
@@ -367,14 +370,14 @@ i.e. we do not know how to evaluate terms or how to normalize terms.
   inductive type constructors, by when evaluation occurs in the it,
   it is no longer reversible.
 
-## Lambda-cube, lambda encoding and self types
+# Lambda-cube, lambda encoding and self types
 
 **[project]** `lambda-disco`
 
 To implement lambda-cube with self types,
 and use them to understand lambda encoding of inductive types.
 
-## Formalize category theory
+# Formalize category theory
 
 Category theory is the most basic target for formalization.
 
@@ -410,13 +413,11 @@ References:
 
 - https://ncatlab.org/nlab/show/categorical+model+of+dependent+types
 
-# General practice
-
-## Problem solving
+# Polya
 
 inner/persons/polya/mathematics-and-plausible-reasoning/vol-2--patterns-of-plausible-inference.md
 
-## OOP
+# 99 Bottles of OOP
 
 Mimic the style of "99 Bottles of OOP",
 and apply it to other programming exercises.
