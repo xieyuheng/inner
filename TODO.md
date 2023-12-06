@@ -10,6 +10,10 @@ author: Xie Yuheng
 >
 > -- ["The Joker"](https://www.organism.earth/library/document/the-joker), Alan Watts
 
+# Learn essentials-of-compilation
+
+learn also x86 assembly language for writing compilers.
+
 # Mimor
 
 During study of "Causality -- Models, Reasoning and Inference",
