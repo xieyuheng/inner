@@ -38,6 +38,13 @@ title: Quotes
 
 # Programming Languages
 
+- I spend 20min a year looking for memory leaks,
+  the rest of the world spends all their time
+  trying to avoid garbage collections.
+
+  - Eskil Steenberg
+  - How I program C
+
 - In the beginning you always want results,
   In the end all you want is control.
 
