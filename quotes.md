@@ -38,6 +38,12 @@ title: Quotes
 
 # Programming Languages
 
+- In the beginning you always want results,
+  In the end all you want is control.
+
+  - Eskil Steenberg
+  - How I program C
+
 - What truely drives language adoption is necessity.
 
   - TechLead
