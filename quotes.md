@@ -36,6 +36,18 @@ title: Quotes
   - Benjamin L. D'ooge
   - "Teachers' manual to accompany 'Latin for beginners'"
 
+- Usually if it's solving a task (removing friction when doing something)
+  it should feel like it's more painful to NOT have the idea realized than going around it.
+  Sometimes doing little incremental steps, where the tool is usable
+  before it's 100% finished could help with that.
+
+  I don't know much about type-checking,
+  I've only written one, but I'm using it now even tho it's not totally perfect.
+  if you can settle to using it while it's still growing,
+
+  - Devine Lu Linvega
+  - About running out of steam when hitting doubts about what to do next.
+
 # Programming Languages
 
 - In the beginning you always want results,
