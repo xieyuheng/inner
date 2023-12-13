@@ -8,6 +8,14 @@ Closure is a technique to solve
 the problem of consistent substitution
 (or say the problem of lexical scope).
 
+- **Lexical scope**:
+
+  With lexical scope, a name always refers to its lexical context.
+  This is a property of the program text and is made independent of
+  the runtime call stack by the language implementation.  Because this
+  matching only requires analysis of the static program text, this
+  type of scope is also called static scope.
+
 Consistent substitution can be implemented by
 recursively renaming, which is not as performant as closure.
 
