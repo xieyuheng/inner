@@ -10,6 +10,19 @@ author: Xie Yuheng
 >
 > -- ["The Joker"](https://www.organism.earth/library/document/the-joker), Alan Watts
 
+# Earley parser
+
+Implement Earley parser in JS again, and prepare to port it to C.
+
+Maybe design Earley parser as a standalone language,
+with pure postfix syntax, and return the AST in pure postfix syntax.
+
+# Postfix SECD
+
+Do a SECD for postfix language,
+to support multiple return value
+and do not wast the stack (S).
+
 # Learn essentials-of-compilation
 
 learn also x86 assembly language for writing compilers.

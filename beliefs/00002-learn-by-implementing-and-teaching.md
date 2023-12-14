@@ -2,7 +2,6 @@
 title: Learn by implementing and teaching
 ---
 
-
 We'd better learn by implementing and teaching.
 
 I define better learning as more clear understanding.
