@@ -35,7 +35,7 @@ We should not define class to get the dot syntax.
 We should just use Scalable-C style OOP,
 and use classes to implement real interfaces.
 
-# Record is about polymorphism and can not be encoded by Lambda
+# Record can not be encoded by Lambda
 
 We know that lambda can encode inductive datatypes,
 but how about record types (with OOP in mind)?
