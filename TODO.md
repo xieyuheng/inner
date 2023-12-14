@@ -23,6 +23,23 @@ Do a SECD for postfix language,
 to support multiple return value
 and do not wast the stack (S).
 
+# Finish x-script
+
+With a linear type syntax implemented in C.
+
+# iNet
+
+Do iNet in C again.
+
+Use linear logic as type system of inet.
+
+Paper: Term syntax for linear logic -- simple types first.
+
+- How does the algebra of linear logic connectives
+  different from boolean lattice?
+
+Implement optimal beta-reduction by inet.
+
 # Learn essentials-of-compilation
 
 learn also x86 assembly language for writing compilers.
@@ -181,17 +198,6 @@ Understand homotopy type theory with cell-complex as basic objects.
 Word problems of semigroup, monoid and group.
 
 - About undecidable.
-
-# iNet
-
-Term syntax for linear logic -- simple types first.
-
-- How does the algebra of linear logic connectives
-  different from boolean lattice?
-
-Use linear logic as type system of inet.
-
-Implement optimal beta-reduction by inet.
 
 # A Pattern Language
 
