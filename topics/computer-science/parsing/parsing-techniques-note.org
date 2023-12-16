@@ -494,6 +494,10 @@
     // postfix notation -- forth
     3 digit 5 digit sum 1 digit sum
 
+    3 digit 5 digit
+    sum 1 digit
+    sum
+
     // prefix notation
     sum sum digit 3 digit 5 digit 1
 
