@@ -19,13 +19,22 @@ with pure postfix syntax, and return the AST in pure postfix syntax.
 
 # Postfix SECD
 
+To learn about closure.
+
 Do a SECD for postfix language,
 to support multiple return value
-and do not wast the stack (S).
+and do not waste the stack (S).
+
+- There are also variants of SECD by Dan and friends.
 
 # Finish x-script
 
 With a linear type syntax implemented in C.
+
+- Just copy and rename type variables in quoted programs.
+
+  - To avoid this copy, maybe we need to use closure,
+    to learn more about closure, learn SECD.
 
 # iNet
 
