@@ -36,6 +36,11 @@ With a linear type syntax implemented in C.
   - To avoid this copy, maybe we need to use closure,
     to learn more about closure, learn SECD.
 
+About programming in C:
+
+- generaic array with realloc
+- generaic stack with realloc
+
 # iNet
 
 Do iNet in C again.
