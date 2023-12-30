@@ -54,7 +54,7 @@ instead of
 ```
 
 Maybe we should just go back to sexp,
-so that everything is symple and clear.
+so that everything is simple and clear.
 
 ```
 ((lambda (x) (add 1 x)) 2)
