@@ -10,6 +10,12 @@ author: Xie Yuheng
 >
 > -- ["The Joker"](https://www.organism.earth/library/document/the-joker), Alan Watts
 
+# Go back to lisp again
+
+- Learn from clojure's syntax design.
+- Update the sexp library in JS -- use esmodule instead of commonjs.
+- Do a sexp library in C.
+
 # Earley parser
 
 Implement Earley parser in JS again, and prepare to port it to C.

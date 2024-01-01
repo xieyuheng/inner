@@ -59,3 +59,13 @@ so that everything is simple and clear.
 ```
 ((lambda (x) (add 1 x)) 2)
 ```
+
+# Lambda Calculus
+
+The core of the λ-calculus is based on little more than a well deﬁned
+concept of variables, variable scoping and the orderly substitution of
+variables by expressions.
+
+The λ-calculus is a **closed language**, meaning that its semantics
+can be deﬁned on the basis of the equivalence of expressions (or
+terms) of the calculus itself.
