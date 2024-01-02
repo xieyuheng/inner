@@ -10,29 +10,28 @@ author: Xie Yuheng
 >
 > -- ["The Joker"](https://www.organism.earth/library/document/the-joker), Alan Watts
 
-# Go back to lisp again
-
-- Learn from clojure's syntax design.
-- Update the sexp library in JS -- use esmodule instead of commonjs.
-- Do a sexp library in C.
-- Do inet-lisp in C (instead of JS).
-
-# Earley parser
-
-Implement Earley parser in JS again, and prepare to port it to C.
-
-Maybe design Earley parser as a standalone language,
-with pure postfix syntax, and return the AST in pure postfix syntax.
-
 # Postfix SECD
 
 To learn about closure.
 
-Do a SECD for postfix language,
+Design a SECD for postfix language,
 to support multiple return value
 and do not waste the stack (S).
 
 - There are also variants of SECD by Dan and friends.
+
+# Go back to lisp again
+
+- Update the sexp library in JS -- use esmodule instead of commonjs.
+- Do a sexp library in C.
+- Do a SECD machine in sexp and C.
+- Do inet-lisp (with sexp syntax) in C (instead of JS).
+- [maybe] Learn from clojure's syntax design.
+
+# About programming in C
+
+- generaic array with realloc (in x-script)
+- generaic stack with realloc (in x-script)
 
 # Finish x-script
 
@@ -43,10 +42,12 @@ With a linear type syntax implemented in C.
   - To avoid this copy, maybe we need to use closure,
     to learn more about closure, learn SECD.
 
-About programming in C:
+# Earley parser
 
-- generaic array with realloc
-- generaic stack with realloc
+Implement Earley parser in JS again, and prepare to port it to C.
+
+Maybe design Earley parser as a standalone language,
+with pure postfix syntax, and return the AST in pure postfix syntax.
 
 # iNet
 
