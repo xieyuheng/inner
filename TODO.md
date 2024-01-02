@@ -15,6 +15,7 @@ author: Xie Yuheng
 - Learn from clojure's syntax design.
 - Update the sexp library in JS -- use esmodule instead of commonjs.
 - Do a sexp library in C.
+- Do inet-lisp in C (instead of JS).
 
 # Earley parser
 

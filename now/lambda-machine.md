@@ -69,3 +69,7 @@ variables by expressions.
 The λ-calculus is a **closed language**, meaning that its semantics
 can be deﬁned on the basis of the equivalence of expressions (or
 terms) of the calculus itself.
+
+TODO Naive substitutions suﬃce to weakly normalize since other than
+top-level reductions, including those of partial applications, are
+ruled out, which precludes name clashes.
