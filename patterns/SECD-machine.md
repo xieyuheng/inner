@@ -12,5 +12,17 @@ environment. All substitutions are subsequently done while traversing
 the body expressions only once in search of bound-variable
 occurrences.
 
+Closely related to delayed substitutions is the notion of
+closures. They pair abstractions that generally include occurrences of
+free variables with environments containing the (evaluated)
+expressions that may have to be substituted for them later on,
+whenever it becomes possible and necessary to actually evaluate these
+closures.
+
 -- Abstract Computing Machines: A Lambda Calculus Perspective
 -- W. Kluge
+
+```
+((λ (u v w) ((u v) w)) v w u)
+((((λ (u) (λ (v) (λ (w) ((u v) w)))) v) w) u)
+```

@@ -73,3 +73,15 @@ terms) of the calculus itself.
 TODO Naive substitutions suﬃce to weakly normalize since other than
 top-level reductions, including those of partial applications, are
 ruled out, which precludes name clashes.
+
+# Nameless
+
+```
+(((λu.λv.λw.(((w v) u) (x u)) x) λz.z) λx.λy.x)
+((λv.λw.(((w v) x) (x x)) λz.z) λx.λy.x)
+(λw.(((w λz.z) x) (x x)) λx.λy.x)
+(((λx.λy.x λz.z) x) (x x))
+((λy.λz.z x) (x x))
+(λz.z (x x))
+(x x)
+```

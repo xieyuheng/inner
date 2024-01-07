@@ -22,7 +22,6 @@ and do not waste the stack (S).
 
 # Go back to lisp again
 
-- Update the sexp library in JS -- use esmodule instead of commonjs.
 - Do a sexp library in C.
 - Do a SECD machine in sexp and C.
 - Do inet-lisp (with sexp syntax) in C (instead of JS).
