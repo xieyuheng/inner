@@ -10,15 +10,24 @@ author: Xie Yuheng
 >
 > -- ["The Joker"](https://www.organism.earth/library/document/the-joker), Alan Watts
 
+# 一个专门用来实验语言设计的语言
+
+我们需要有一个专门用来实验语言设计的语言。
+为了避免在设计语法以及语法解析上浪费时间，
+我们必须使用 lisp 的 sexp。
+为了包含 record，我们学习 clojure 的语法，
+在 `()` 之外，加入 `[]` 和 `{}`。
+
+我们需要用 C 之间实现 inet，
+这个版本也用 lisp 的语法，
+因此需要先用 C 实现一个 sexp 的解析器。
+
+“实验语言设计的语言” 也将用 C 实现，
+并且这个 sexp 解析器处理。
+
 # Postfix SECD
 
-To learn about closure.
-
-Design a SECD for postfix language,
-to support multiple return value
-and do not waste the stack (S).
-
-- There are also variants of SECD by Dan and friends.
+Learn about other variants of SECD by Dan and friends.
 
 # Go back to lisp again
 

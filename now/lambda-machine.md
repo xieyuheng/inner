@@ -85,3 +85,8 @@ ruled out, which precludes name clashes.
 (λz.z (x x))
 (x x)
 ```
+
+# SECD v.s. Forth
+
+The D of SECD is the return stack with frame,
+where frame have env, index and program (C of SECD).
