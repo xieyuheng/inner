@@ -10,7 +10,31 @@ author: Xie Yuheng
 >
 > -- ["The Joker"](https://www.organism.earth/library/document/the-joker), Alan Watts
 
-# 一个专门用来实验语言设计的语言
+# lambda-machine
+
+Do a lambda-machine porject like the lambda project,
+but not limited by the max call stack size of the hosting language.
+
+# explicit-substitution
+
+Learn from the explicit-substitution paper.
+
+Do a project to study explicit-substitution.
+
+- Maybe just in the lambda-machine project.
+
+# Postfix SECD
+
+Learn about other variants of SECD by Dan and friends.
+
+# A language for language design
+
+Go back to lisp again
+
+- Do a sexp library in C.
+- Do a SECD machine in sexp and C.
+- Do inet-lisp (with sexp syntax) in C (instead of JS).
+- [maybe] Learn from clojure's syntax design.
 
 我们需要有一个专门用来实验语言设计的语言。
 为了避免在设计语法以及语法解析上浪费时间，
@@ -24,17 +48,6 @@ author: Xie Yuheng
 
 “实验语言设计的语言” 也将用 C 实现，
 并且这个 sexp 解析器处理。
-
-# Postfix SECD
-
-Learn about other variants of SECD by Dan and friends.
-
-# Go back to lisp again
-
-- Do a sexp library in C.
-- Do a SECD machine in sexp and C.
-- Do inet-lisp (with sexp syntax) in C (instead of JS).
-- [maybe] Learn from clojure's syntax design.
 
 # About programming in C
 
