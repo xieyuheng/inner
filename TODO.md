@@ -69,6 +69,7 @@ Go back to lisp again
 - 简单类型系统，不用 dependent type。
 - 纯函数，没有副作用，但是支持 Exception。
   - 也许可以将 Exception 表达在类型系统中。
+  - 也许还是需要副作用的，否则就没法实现 inet 之类的东西。
 
 # About programming in C
 
