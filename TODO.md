@@ -15,6 +15,12 @@ author: Xie Yuheng
 Do a lambda-machine porject like the lambda project,
 but not limited by the max call stack size of the hosting language.
 
+We can even say the idea of SECD is to
+transform a interpreter to a machine,
+or transform recursion to explicit stacks.
+Beside applicative lambda calculus,
+Maybe other interpreter can also be transformed.
+
 # explicit-substitution
 
 Learn from the explicit-substitution paper.
@@ -22,6 +28,10 @@ Learn from the explicit-substitution paper.
 Do a project to study explicit-substitution.
 
 - Maybe just in the lambda-machine project.
+
+We want to merge `Exp` and `Value`,
+we thought about graph (inet) to achieve this goal,
+but maybe explicit-substitution is the simple way.
 
 # Postfix SECD
 
@@ -48,6 +58,17 @@ Go back to lisp again
 
 “实验语言设计的语言” 也将用 C 实现，
 并且这个 sexp 解析器处理。
+
+我们需要的语言特性：
+- sexp -- 为简化语法。
+  - 也许应该用 HTTP header 的命名方式来命名类型。
+- macro system 不重要，
+  重要的是方便为我实验新语法，
+  而不是让用户能设计新语法。
+- 不用考虑 C 的 FFI，可以设计成一个封闭的系统。
+- 简单类型系统，不用 dependent type。
+- 纯函数，没有副作用，但是支持 Exception。
+  - 也许可以将 Exception 表达在类型系统中。
 
 # About programming in C
 
