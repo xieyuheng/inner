@@ -60,6 +60,7 @@ Go back to lisp again
 并且这个 sexp 解析器处理。
 
 我们需要的语言特性：
+
 - sexp -- 为简化语法。
   - 也许应该用 HTTP header 的命名方式来命名类型。
 - macro system 不重要，
@@ -70,6 +71,12 @@ Go back to lisp again
 - 纯函数，没有副作用，但是支持 Exception。
   - 也许可以将 Exception 表达在类型系统中。
   - 也许还是需要副作用的，否则就没法实现 inet 之类的东西。
+
+实现计划：
+
+- 模仿 lambda-machine，设计一个虚拟机。
+  - 同时用 JS 和 C 实现。用 C 实现的时候自己管理内存。
+- 把 sexp 语法编译到 lambda-machine 的汇编语言。
 
 # About programming in C
 
