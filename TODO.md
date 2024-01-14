@@ -19,7 +19,7 @@ We can even say the idea of SECD is to
 transform a interpreter to a machine,
 or transform recursion to explicit stacks.
 Beside applicative lambda calculus,
-Maybe other interpreter can also be transformed.
+maybe other interpreter can also be transformed.
 
 # explicit-substitution
 
@@ -27,11 +27,14 @@ Learn from the explicit-substitution paper.
 
 Do a project to study explicit-substitution.
 
-- Maybe just in the lambda-machine project.
+Maybe just in the lambda-machine project.
 
 We want to merge `Exp` and `Value`,
 we thought about graph (inet) to achieve this goal,
 but maybe explicit-substitution is the simple way.
+
+Our finial goal about merging `Exp` and `Value`
+is to make implementing dependent type easy.
 
 # Postfix SECD
 
@@ -62,20 +65,29 @@ Go back to lisp again
 我们需要的语言特性：
 
 - sexp -- 为简化语法。
+
   - 也许应该用 HTTP header 的命名方式来命名类型。
+
 - macro system 不重要，
   重要的是方便为我实验新语法，
   而不是让用户能设计新语法。
+
 - 不用考虑 C 的 FFI，可以设计成一个封闭的系统。
+
 - 简单类型系统，不用 dependent type。
+
 - 纯函数，没有副作用，但是支持 Exception。
+
   - 也许可以将 Exception 表达在类型系统中。
+
   - 也许还是需要副作用的，否则就没法实现 inet 之类的东西。
 
 实现计划：
 
 - 模仿 lambda-machine，设计一个虚拟机。
+
   - 同时用 JS 和 C 实现。用 C 实现的时候自己管理内存。
+
 - 把 sexp 语法编译到 lambda-machine 的汇编语言。
 
 # About programming in C
