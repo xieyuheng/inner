@@ -36,6 +36,24 @@ but maybe explicit-substitution is the simple way.
 Our finial goal about merging `Exp` and `Value`
 is to make implementing dependent type easy.
 
+Important notes:
+
+In named variable + explicit substitution,
+if we view substitution as term (first-class), we will have record,
+if we add type system, we will have class,
+which is typing context viewed as term (first-class).
+
+In de Bruijn index + explicit substitution,
+substitution are like infinite list, not record.
+
+Since record is meaningful, because it can derive subtype relation.
+named variable + explicit substitution
+is more meaningful than
+de Bruijn index + explicit substitution.
+
+Can we view de Bruijn index as always use natural numbers as variable names?
+and the simplified reduction rule as a result of this limitation?
+
 # Postfix SECD
 
 Learn about other variants of SECD by Dan and friends.
