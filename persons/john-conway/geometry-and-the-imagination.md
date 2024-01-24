@@ -1,5 +1,5 @@
 ---
-title: geometry and the imagination
+title: Geometry and The Imagination
 author: john conway
 year: 1991
 ---
