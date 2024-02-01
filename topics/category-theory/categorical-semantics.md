@@ -1,6 +1,8 @@
-# Categorical Semantics
+---
+title: Categorical Semantics
+---
 
-## The Plan
+# The Plan
 
 First, we implement category theory in a programming language with dependent type and record type.
 Where an abstract mathematical structure can be implemented as an abstract class (record type).
@@ -46,7 +48,7 @@ We need to give semantics to inference rules of the type theory.
 
 The validity of a group of introduction rules and elimination rule will be ensured by adjoint functors.
 
-## Context
+# Context
 
 Context is the same as telescope (of de Bruijn).
 
@@ -93,7 +95,7 @@ or more general the diagram is a tree whose root is `unit_t`.
 - **TODO**
   can we capture all set theoretic properties of context by universal properties?
 
-## How to use categorical semantics in a language without dependent type?
+# How to use categorical semantics in a language without dependent type?
 
 First we need to model category theory in the language.
 

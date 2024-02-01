@@ -1,12 +1,10 @@
-# The Catsters
-
-------
-- Author: The Catsters
-------
+---
+title: The Catsters
+---
 
 Notes taken from TheCatsters' lectures: http://www.simonwillerton.staff.shef.ac.uk/TheCatsters
 
-## Natural transformations
+# Natural transformations
 
 A functor is a morphism between categories (in the category of categories).
 
@@ -52,7 +50,7 @@ two_morphism_t(f, g) = transformation_t(C, D, f, g)
 
 - Xie: Higher category theory is just special case of the theory of cell-complex.
 
-## Representable Functors and Yoneda
+# Representable Functors and Yoneda
 
 ``` js
 class contravariant_representable_functor_t {
@@ -94,4 +92,4 @@ yoneda_embedding : {
 }
 ```
 
-## Adjunctions
+# Adjunctions

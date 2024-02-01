@@ -1,1 +1,3 @@
-# Categories for The Working Mathematician
+---
+title: Categories for The Working Mathematician
+---
