@@ -65,3 +65,13 @@ figChange: (s: X(F), f: C.Morphism(F1, F)) -> X(F1)
 (== (fig-change s (C.id F)) s)
 (== (fig-change (fig-change s f) g) (fig-change s (C.compose f g)))
 ```
+
+# [note] Cell complex and generic figure
+
+If we view polyhedron and polygon as the generic figures,
+we can define cell complex as C-set.
+
+The boundary relation will be expressed
+by the algebraic language of category theory.
+
+- TODO Is it pushouts (nlab definition of cell complex)?
