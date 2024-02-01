@@ -1,12 +1,12 @@
 ---
-title: computational geometry
+title: 編碼
 ---
-
-# 編碼
 
 - x -
   計算幾何 與 其在三維建模中的應用 這將涉及到對度量性質的建模
   計算幾何如何編碼圖形?
+
+  - [Boundary representation](https://en.wikipedia.org/wiki/Boundary_representation)
 
 - k -
   我發現在敘述某些函數 比如 neighborhood 的時候
@@ -15,6 +15,8 @@ title: computational geometry
   這是純粹是因爲形式語法的設計問題嗎?
 
   計算幾何是如何定義各種概念的?
+
+  - 描述出来基本的拓扑对象之后，根据定义就可以描述其他概念。
 
 - x -
   既然計算幾何形成了一個穩定的研究領域
