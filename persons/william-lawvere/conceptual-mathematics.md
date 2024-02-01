@@ -1,6 +1,6 @@
 ---
 title: Conceptual Mathematics
-subtitle: A first introduction to categories.
+subtitle: A first introduction to categories
 authors: [William Lawvere, Stephen Schanuel]
 year: 1991
 ---

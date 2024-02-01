@@ -66,6 +66,11 @@ figChange: (s: X(F), f: C.Morphism(F1, F)) -> X(F1)
 (== (fig-change (fig-change s f) g) (fig-change s (C.compose f g)))
 ```
 
+- The `C.Object` syntax is problematic,
+  what should be the full sexp-based syntax?
+  I think `(C .Object)` is not acceptable.
+  Maybe we should just view `.` as part of the symbol syntax.
+
 # [note] Cell complex and generic figure
 
 If we view polyhedron and polygon as the generic figures,
