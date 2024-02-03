@@ -27,10 +27,22 @@ year: 1991
 当我们设计 sexp 的 OOP 语法时，
 可以同时支持这两种表达方式。
 
+也许我们应该把语法设计成这样：
+
 ```scheme
 (define-class User
   (claim name String)
   (claim age Number))
+
+;; 也许不应该分解语法，使得人们可以写出匿名的 class，
+;; 因为 class 的名字也是重要的（比如在递归的时候）；
+;; 或者说我们应该允许匿名的 class，并且禁止递归的 class，
+;; 也许这样才是正确的设计。
+
+(define
+  (class User
+    (claim name String)
+    (claim age Number)))
 
 (define xyh
   (object
