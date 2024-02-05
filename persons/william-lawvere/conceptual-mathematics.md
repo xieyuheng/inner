@@ -5,8 +5,6 @@ authors: [William Lawvere, Stephen Schanuel]
 year: 1991
 ---
 
-## SESSION 1 Galileo and multiplication of objects
-
 # Part I The category of sets
 
 > A _map_ of sets is a process for getting from one set to another. We
@@ -15,7 +13,7 @@ year: 1991
 > resembles the algebra of multiplication of numbers, but its
 > interpretation is much richer.
 
-## ARTICLE I Sets, maps, composition
+## Article I Sets, maps, composition
 
 用 `A -g-> A -f-> B`
 这样的的后缀表达式描述的函数复合，
@@ -53,7 +51,7 @@ xyh.name    ;; xyh's name
 
 # Part II The algebra of composition
 
-## ARTICLE II Isomorphisms
+## Article II Isomorphisms
 
 # Part III Categories of structured sets
 
