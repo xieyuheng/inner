@@ -10,6 +10,16 @@ author: Xie Yuheng
 >
 > -- ["The Joker"](https://www.organism.earth/library/document/the-joker), Alan Watts
 
+# TODO
+
+[b-rep] about polyhedral-complex -- https://www.cis.upenn.edu/~cis6100/complex1.pdf
+[b-rep] polyhedral-complex vs cell-complex -- topological properties
+[simplicial-complex] 也是有必要，并实现，并熟练掌握的一个概念。
+[cicada] 与线性的小说不同，数学是一个大厦，想要搞懂高层的概念，必须要有底层的基础。
+- 比如循序渐进的，有很多例子的范畴论。
+- 形式语言很适合用来构造牢固的基础。
+- 但是我不能确定 sexp 还是 js-like 语法的选择。
+
 # lambda-machine
 
 Do a lambda-machine porject like the lambda project,
