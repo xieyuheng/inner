@@ -118,6 +118,13 @@ xyh.name
 
   在 `id(A) = g ° f` 中，要覆盖 `id(A)` 的值域，`g` 必须是满射。
 
+  > Another word that is used to describe this point of view about a
+  > map is fibering, by the agricultural analogy in which a bunch is
+  > imagined in the shape of a line or fiber. We say that X is divided
+  > into B fibers. If one fiber is empty, the map has no sections.
+
+  section 一词来自 fibering 这种观点。
+
 - idempotent
 
   `e = e ° e`，就是说 `a` 依然在其所代表的划分 `e[-1](a)` 中。
