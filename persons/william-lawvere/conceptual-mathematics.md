@@ -129,8 +129,27 @@ xyh.name
 
   `e = e ° e`，就是说 `a` 依然在其所代表的划分 `e[-1](a)` 中。
 
+  reduction 就是典型的 idempotent，
+  利用 reduction 的 normal term，
+  我们可以定义所有 term 之间的一个等价关系。
+  等价关系就定义一个商集。
+  用整数对儿的集合定义分数的集合，就是这样一个商集的例子。
+
 # Part III Categories of structured sets
+
+> We use maps to express extra 'structure' on sets, leading to graphs,
+> dynamical systems, and other examples of 'types of structure.' We
+> then investigate 'structure-preserving' maps.
 
 # Part IV Elementary universal mapping properties
 
+> We find there is a single definition of multiplication of objects,
+> and a single definition of addition of objects, in all categories.
+> The relations between addition and multiplication are found to be
+> surprisingly different in various categories.
+
 # Part V Higher universal mapping properties
+
+> We find that the algebra of exponents comes from the notion of 'map
+> object', and we explore other universal mapping properties including
+> that of 'truth-value' objects.
