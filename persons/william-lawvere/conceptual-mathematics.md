@@ -5,6 +5,22 @@ authors: [William Lawvere, Stephen Schanuel]
 year: 1991
 ---
 
+# Review
+
+首先这本书很适合入门，
+因为它的形式模仿了一个学习氛围很好的班级，
+即老师在课堂上对范畴论中概念的讲解 (Article)，
+再加上很多学生的讨论（Session）。
+
+Session 6.3 讨论范畴论的哲学，
+解释了对偶的两个视角之间的差异，
+是如何体现在实际应用中的。
+如果没有这种对应用的讨论，
+两个视角的差异就很肤浅了。
+
+Session 10.5 有对 Brouwer 不动点定理的范畴论处理，
+指出了如何在范畴论的指导下发明新的数学。
+
 # Part I The category of sets
 
 > A _map_ of sets is a process for getting from one set to another. We
@@ -134,6 +150,19 @@ xyh.name
   我们可以定义所有 term 之间的一个等价关系。
   等价关系就定义一个商集。
   用整数对儿的集合定义分数的集合，就是这样一个商集的例子。
+
+## Session 10 Brouwer's theorems
+
+### 5. How to understand a proof: The objectification and 'mapification' of concepts
+
+> You may have felt that none of our reasoning about Brouwer's
+> theorems was valid, since we still have no precise notion of
+> 'continuous map.'  What we wish to do next is to extract those
+> properties which are needed for our reasoning, and see that our
+> conclusions are valid in any category in which these properties
+> (which we will call Axiom 1 and Axiom 2) hold.
+
+这大概就是新数学如何在范畴论的指导下被发明出来的一般过程。
 
 # Part III Categories of structured sets
 
