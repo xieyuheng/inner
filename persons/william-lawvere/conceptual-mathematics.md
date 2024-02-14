@@ -164,6 +164,18 @@ xyh.name
 
 这大概就是新数学如何在范畴论的指导下被发明出来的一般过程。
 
+> The main thing to study, though, is the way in which by objectifying
+> certain concepts as maps in a category, the combining of concepts
+> becomes composition of maps! Then we can condense a complicated
+> argument into simple calculations using the associative law. Several
+> hundred years ago, Hooke, Leibniz, and other great scientists
+> foresaw the possibility of a 'philosophical algebra' which would
+> have such features. This section has been quite condensed, and it
+> may take effort to master it. You will need to go back to our
+> previous discussion of Brouwer's proof, and carefully compare it
+> with this version. Such a study will be helpful because this example
+> is a model for the method of 'thinking categorically.'
+
 # Part III Categories of structured sets
 
 > We use maps to express extra 'structure' on sets, leading to graphs,
