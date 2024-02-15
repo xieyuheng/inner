@@ -12,20 +12,10 @@ author: Xie Yuheng
 
 # TODO
 
-[b-rep] about polyhedral-complex -- https://www.cis.upenn.edu/~cis6100/complex1.pdf
-
-[b-rep] polyhedral-complex vs cell-complex
-
-- topological properties
-- categorical properties
-
-[simplicial-complex] 也是有必要，并实现，并熟练掌握的一个概念。
-
-[cicada] 与线性的小说不同，数学是一个大厦，想要搞懂高层的概念，必须要有底层的基础。
-
-- 比如循序渐进的，有很多例子的范畴论。
-- 形式语言很适合用来构造牢固的基础。
-- 但是我不能确定 sexp 还是 js-like 语法的选择。
+[higher-aglebra] in category theory,
+complicate algebric reasoning (1 dimensional)
+is made simple by diagram chasing,
+exactly because of 2 dimensional aglebric structures.
 
 [topos] topos and subtype relation (i.e. OOP) in FP
 
@@ -57,6 +47,21 @@ author: Xie Yuheng
   > categories are Grothendieck toposes which do not involve the
   > notion of a Grothendieck topology, making them much easier to
   > understand and work with them.
+
+[b-rep] about polyhedral-complex -- https://www.cis.upenn.edu/~cis6100/complex1.pdf
+
+[b-rep] polyhedral-complex vs cell-complex
+
+- topological properties
+- categorical properties
+
+[simplicial-complex] 也是有必要，并实现，并熟练掌握的一个概念。
+
+[cicada] 与线性的小说不同，数学是一个大厦，想要搞懂高层的概念，必须要有底层的基础。
+
+- 比如循序渐进的，有很多例子的范畴论。
+- 形式语言很适合用来构造牢固的基础。
+- 但是我不能确定 sexp 还是 js-like 语法的选择。
 
 # lambda-machine
 
