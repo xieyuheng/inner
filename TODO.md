@@ -14,7 +14,10 @@ author: Xie Yuheng
 
 [b-rep] about polyhedral-complex -- https://www.cis.upenn.edu/~cis6100/complex1.pdf
 
-[b-rep] polyhedral-complex vs cell-complex -- topological properties
+[b-rep] polyhedral-complex vs cell-complex
+
+- topological properties
+- categorical properties
 
 [simplicial-complex] 也是有必要，并实现，并熟练掌握的一个概念。
 
@@ -39,9 +42,21 @@ author: Xie Yuheng
 [fp] 一阶的函数式编程就是先递归地定义数据类型（集合），然后再用函数去揭示数据类型的结构。
 
 - 在这种观点下，如何分析 Exp v.s. Exp + Value？
+
 - 可否利用 generic figure 的想法推广 cell complex 的定义？
   使得 cell 更一般，获得抽象的球面概念，
   而不是只是用具体的多边形与多面体。
+
+  也许 generic figure 就是这种想法的推广，
+  因为其书中说：
+
+  > A few years ago, Lawvere suggested another alternative: to
+  > introduce topos theory through presheaf toposes or, equivalently,
+  > C-sets. These are categories whose objects result from the
+  > _glueing of simpler ones_, **the generic figures**. These
+  > categories are Grothendieck toposes which do not involve the
+  > notion of a Grothendieck topology, making them much easier to
+  > understand and work with them.
 
 # lambda-machine
 

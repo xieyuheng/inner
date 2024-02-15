@@ -190,6 +190,14 @@ xyh.name
 > dynamical systems, and other examples of 'types of structure.' We
 > then investigate 'structure-preserving' maps.
 
+## Article III Examples of categories -- Directed graphs and other structures
+
+Set + endomap 的范畴，考虑其 internal map，就是 directed graphs 的范畴。
+
+对于很多不适合被画出来的 directed graphs，
+比如 lambda 演算等等 rewrite system，
+用范畴论的代数语言描述更方便。
+
 # Part IV Elementary universal mapping properties
 
 > We find there is a single definition of multiplication of objects,
