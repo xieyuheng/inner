@@ -13,12 +13,35 @@ author: Xie Yuheng
 # TODO
 
 [b-rep] about polyhedral-complex -- https://www.cis.upenn.edu/~cis6100/complex1.pdf
+
 [b-rep] polyhedral-complex vs cell-complex -- topological properties
+
 [simplicial-complex] 也是有必要，并实现，并熟练掌握的一个概念。
+
 [cicada] 与线性的小说不同，数学是一个大厦，想要搞懂高层的概念，必须要有底层的基础。
+
 - 比如循序渐进的，有很多例子的范畴论。
 - 形式语言很适合用来构造牢固的基础。
 - 但是我不能确定 sexp 还是 js-like 语法的选择。
+
+[topos] topos and subtype relation (i.e. OOP) in FP
+
+[category] use category instead of groupoid for higher algebra
+
+- 态射被理解为 process，态射之间的等价也应该被理解为 process（有方向的）。
+  - 高阶代数的作用方式变得像一阶代数一样单一了。
+
+[automath] 在语法上区分函数作用与数据构造子的作用。
+
+- 我们在定义 datatype 的时候，是否也应该如此设计？
+  - 比如 `List::null` 和 `List::cons`。
+
+[fp] 一阶的函数式编程就是先递归地定义数据类型（集合），然后再用函数去揭示数据类型的结构。
+
+- 在这种观点下，如何分析 Exp v.s. Exp + Value？
+- 可否利用 generic figure 的想法推广 cell complex 的定义？
+  使得 cell 更一般，获得抽象的球面概念，
+  而不是只是用具体的多边形与多面体。
 
 # lambda-machine
 
