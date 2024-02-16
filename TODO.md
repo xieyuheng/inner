@@ -17,6 +17,14 @@ complicate algebric reasoning (1 dimensional)
 is made simple by diagram chasing,
 exactly because of 2 dimensional aglebric structures.
 
+- the levels of higher aglebra should be:
+
+  category-theory (0-groupoid), 1-groupoid, 2-groupoid, ...
+
+  because in diagram chasing equivalences between arrows are already inversible.
+
+  - why there are 2-category and higher-category (in which the levels are wrong)?
+
 [topos] topos and subtype relation (i.e. OOP) in FP
 
 [category] use category instead of groupoid for higher algebra
