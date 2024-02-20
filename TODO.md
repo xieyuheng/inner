@@ -12,6 +12,19 @@ author: Xie Yuheng
 
 # TODO
 
+[geometer] 为了保证 cell complex 给出的数据对于几何建模中的算法来说是充分的，
+只需要写一个 cell complex 到 winged edge 的转化。
+
+[geometer] 调研几何模型前端渲染的方案
+
+[b-rep] 某些 b-rep 中，拓扑和几何并没有完全分离，
+或者说拓扑信息不能独立于几何信息而存在，
+拓扑对象之间的邻接关系是通过几何来描述的。
+
+- 这合理吗？
+  究竟应该如何表达邻接关系？
+  用 generic figure？
+
 [higher-aglebra] in category theory,
 complicate algebric reasoning (1 dimensional)
 is made simple by diagram chasing,
