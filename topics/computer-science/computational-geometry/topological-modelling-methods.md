@@ -115,3 +115,10 @@ HalfEdge 的 Dual：
 - http://groups.csail.mit.edu/graphics/classes/6.838/S98/meetings/m4/VIII.SplitEdge_and_Corner.html
 
   - 这个文档中还提到了 Corner Data Structure。
+
+# CellComplex
+
+# Functional interface
+
+重要的是拓扑对象的函数接口，而不是具体实现方式，
+具体实现方式只影响某个接口函数的效率。
