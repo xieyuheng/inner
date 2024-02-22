@@ -41,6 +41,11 @@ year: 1991
   这种方法的有效性在于函数即证明。
   这种方法的有效性正如 interface 在编程中的有效性。
 
+- 范畴论把对对象内部结构的研究，
+  转化为了对象之间关系的研究，
+  以这种方式发现的抽象模式，
+  通常是可以在更广泛的情况下应用的。
+
 # Part I The category of sets
 
 > A _map_ of sets is a process for getting from one set to another. We
