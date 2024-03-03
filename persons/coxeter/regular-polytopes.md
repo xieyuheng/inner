@@ -82,6 +82,11 @@ perimeter(gon) = TODO
 TODO Cartesian coordinates of vertices.
 TODO Argand diagram.
 
+> It is sometimes desirable to extend our definition of a p-gon by
+> allowing the sides to be curved ; e.g., we shall have occasion to
+> consider spherical polygons, whose sides are arcs of great circles
+> on a sphere.
+
 ## 1.2 polyhedra
 
 - for polyhedron,
