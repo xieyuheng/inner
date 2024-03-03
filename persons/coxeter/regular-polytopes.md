@@ -71,7 +71,16 @@ let gon = new RegularPolygon(p)
 
 let r0 = circumCircleRadius(gon)
 let r1 = inCircleRadius(gon)
+
+exteriorAngle(gon) = 2 * Pi / p
+interiorAngle(gon) = Pi - exteriorAngle(gon)
+
+area(gon) = TODO
+perimeter(gon) = TODO
 ```
+
+TODO Cartesian coordinates of vertices.
+TODO Argand diagram.
 
 ## 1.2 polyhedra
 
