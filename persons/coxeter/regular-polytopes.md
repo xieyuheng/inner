@@ -89,20 +89,21 @@ TODO Argand diagram.
 
 ## 1.2 polyhedra
 
-- for polyhedron,
+> For polyhedron,
+>
+> 1. Every side of each polygon belongs also to just one other polygon,
+> 2. The polygons surrounding each vertex form a single circuit
+>    (to exclude anomalies such as two pyramids with a common apex).
 
-  1. every side of each polygon belongs also to just one other polygon,
-  2. the polygons surrounding each vertex form a single circuit
-     (to exclude anomalies such as two pyramids with a common apex).
+Note that, by this definition,
+a polyhedron can be a partition of torus,
+i.e. not simple-connected.
 
-- **Xie**:
-  by this definition, polyhedron can be partition of torus,
-  i.e. not simple-connected.
-
-- examples of polyhedra
-  - pyramid
-  - prism
-  - anti-prism
+> Examples of polyhedra:
+>
+> - pyramid
+> - prism
+> - anti-prism
 
 ## 1.3 the five platonic solids
 
