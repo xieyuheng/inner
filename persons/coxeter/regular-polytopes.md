@@ -101,8 +101,8 @@ i.e. not simple-connected.
 
 > Examples of polyhedra:
 >
-> - pyramid
-> - prism
+> - Pyramid -- a point and a p-gon can be joinedby ρ triangles
+> - Prism --  two equal p-gons canbe joined by ρ rectangles
 > - anti-prism
 
 ## 1.3 the five platonic solids
