@@ -103,7 +103,7 @@ i.e. not simple-connected.
 >
 > - Pyramid -- a point and a p-gon can be joinedby ρ triangles
 > - Prism --  two equal p-gons canbe joined by ρ rectangles
-> - anti-prism
+> - AntiPrism
 
 ## 1.3 the five platonic solids
 
