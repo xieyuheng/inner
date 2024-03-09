@@ -107,46 +107,43 @@ i.e. not simple-connected.
 
 ## 1.3 the five platonic solids
 
-- A convex polyhedron is said to be regular
-  if its faces are regular and equal,
-  while its vertices are all surrounded alike.
+> A convex polyhedron is said to be regular
+> if its faces are regular and equal,
+> while its vertices are all surrounded alike.
 
-- If its faces are {p}'s,
-  q surrounding each vertex,
-  the polyhedron is denoted by {p, q}.
+可以先从正多面体的存在给出点和边数量的不等式，
+满足不等式的只有五个组合，
+然后给出构造这五个正多面体的方式来证明其存在。
 
-  |        | name         | points | edges | faces |
-  | ------ | ------------ | ------ | ----- | ----- |
-  | {3, 3} | tetrahedron  | 4      | 6     | 4     |
-  | {3, 4} | octahedron   | 6      | 12    | 8     |
-  | {4, 3} | cube         | 8      | 12    | 6     |
-  | {3, 5} | icosahedron  | 12     | 30    | 20    |
-  | {5, 3} | dodecahedron | 20     | 30    | 12    |
+> If its faces are {p}'s,
+> q surrounding each vertex,
+> the polyhedron is denoted by {p, q}.
+
+|        | name         | points | edges | faces |
+| ------ | ------------ | ------ | ----- | ----- |
+| {3, 3} | tetrahedron  | 4      | 6     | 4     |
+| {3, 4} | octahedron   | 6      | 12    | 8     |
+| {4, 3} | cube         | 8      | 12    | 6     |
+| {3, 5} | icosahedron  | 12     | 30    | 20    |
+| {5, 3} | dodecahedron | 20     | 30    | 12    |
 
 ## 1.4 graphs and maps
 
-- a polyhedron may be regarded as a map,
-  i.e. as the partition of an unbounded surface into polygonal regions.
-  the surface might be sphere, torus, etc.
+注意，用 “算两次” 的方式给出计数相关的图论等式时，
+计数的是不同邻接关系的个数，而不是点或边的个数。
 
-  - **Xie**:
-    thus the 'map' can be viewed as polytopelization of space.
 
-- a map has a dual map on the surface.
-  Corresponding to a p-gonal face of the given map,
-  the dual map will have a vertex where p faces (and p edges) come together.
+> A polyhedron may be regarded as a map,
+> i.e. as the partition of an unbounded surface into polygonal regions.
+> the surface might be sphere, torus, etc.
 
-  - **Xie**:
-    dual map can not reduce dimension.
+Thus the "map" can be viewed as polytopelization of space.
 
-- **Xie**:
-  different partition of the same surface have the same topology,
-
-  but different partition of the same surface
-  have different 2 dimensional algebraic structure,
-
-  and different ways of identify parts of the partitions
-  give different 3 spaces.
+Note that,  different partition of the same surface have the same topology,
+but different partition of the same surface
+have different 2 dimensional algebraic structure,
+and different ways of identify parts of the partitions
+give different 3 spaces.
 
 ## 1.5 "a voyage round the world"
 
