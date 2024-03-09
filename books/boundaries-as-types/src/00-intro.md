@@ -72,7 +72,7 @@ are (undirected) _paths_ built from _edges_.
 
 A 3-dimensional cell complex,
 when viewed as an algebraic structure,
-it's elements are _surfaces_ built from _faces_.
+it's elements are _shells_ built from _faces_.
 
 For edges, there are only two ways to do composition
 (this is where the inverse of groupoid elements come from),

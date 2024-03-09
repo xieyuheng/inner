@@ -6,9 +6,41 @@ year: 1957
 
 # 1 cyclic, dicydic and metacyclic groups
 
+```cicada
+complex G1 {
+  o: G1
+  r: o = o
+  g: r * r * r * r * r * r = id(G1)
+}
+
+complex G2 {
+  o: G1
+  s: o = o
+  t: o = o
+  hs: s * s * s = id(G2)
+  ht: t * t = id(G2)
+  hst: s^[-1] * t * s * t = id(G2)
+}
+
+function f(x: G1): G2 {
+  match (x) {
+    case G1.o => G2.o
+    case G1.r => G2.s * G2,t
+  }
+}
+
+function f(x: G1): G2 {
+  match (x) {
+    case G1::o => G2::o
+    case G1::r => G2::s * G2::t
+  }
+}
+```
+
 ## cyclic group
 
 - 用 AT1 的語言
+
   ``` scheme
   (type space
     (: a (-1 <>))

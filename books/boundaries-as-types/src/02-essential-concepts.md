@@ -30,7 +30,7 @@ TODO How to understand `Torus` as `Circle * Circle`?
 ```cicada
 space Pair(Circle, Circle) {
   check path [ cons(base, loop) ]: endpoint [ cons(base, base), cons(base, base) ]
-  check surface { cons(loop, loop) }: polygon [ ... ]
+  check shell { cons(loop, loop) }: polygon [ ... ]
 }
 ```
 

@@ -113,7 +113,7 @@ The following concepts are not built-in our language:
 |---------------|-------------|------------|---------------------|
 | 0             | vertex      |            | `endpoint`          |
 | 1             | edge        | `path`     | `polygon`           |
-| 2             | face        | `surface`  | `polyhedron`        |
+| 2             | face        | `shell`  | `polyhedron`        |
 | 3             | block       | `building` | `polychoron`        |
 | (algebraicly) | (generator) | (element)  | (spherical element) |
 
@@ -517,10 +517,10 @@ what should we check?
 
 ```cicada
 space Torus3 {
-  check surface { refl(refl(o)) [ ... ] }: polygon [ refl(o), -refl(o) ]
-  check surface { refl(x) [ ... ] }: polygon [ x, -x ]
-  check surface { refl(x) [ ... ] refl(x) [ ... ] }: polygon [ x, x, -x, -x ]
-  check surface {
+  check shell { refl(refl(o)) [ ... ] }: polygon [ refl(o), -refl(o) ]
+  check shell { refl(x) [ ... ] }: polygon [ x, -x ]
+  check shell { refl(x) [ ... ] refl(x) [ ... ] }: polygon [ x, x, -x, -x ]
+  check shell {
     xFace [ B3, C2, -A2, -C0 ]
     yFace [ B0, A2, -C1, -B3 ]
     refl(x) [  ... ]
