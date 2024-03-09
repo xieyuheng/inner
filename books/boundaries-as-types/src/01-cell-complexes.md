@@ -95,6 +95,8 @@ an element of the type must satisfy the constraints.
 
   - TODO Is this idea enough to be used as the path type
     where structural equivalence is easy to prove?
+    
+    If it is, we can already back to cicada without cell complex!
 
 [question] What is the general relation
 between topological (homotopical) spaces
