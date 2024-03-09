@@ -67,6 +67,32 @@ i: I |- M: A
 |- (i: I) => M: (i: I) -> A
 ```
 
+Note that, we use `with` to add extra constraints to a type,
+an element of the type must satisfy the constraints.
+
+- Why this can not be expressed by record type?
+  Maybe it can, and maybe it should.
+
+- Note that, when introducing constructor to higher inductive type,
+  we also plan use `with`, maybe we should not,
+  because it means providing more information
+  (beside the name of the constructor)
+  instead of adding constraints on elements the type.
+
+- What if we do not use substitution?
+  but use function instead:
+
+  ```cicada
+  A : (I) -> Type
+  m : (i: I) -> A(p)
+  m(0) = x : A(0)
+  m(1) = y : A(1)
+  ---------
+  m : Path(A, x, y)
+  ```
+  
+  no nominal-typing is needed here, `I` is a normal type of endpoints.
+
 [question] What is the general relation
 between topological (homotopical) spaces
 and the `Equal` type?
@@ -100,6 +126,8 @@ function Path(A, x, y): Type {
 }
 ```
 
+But the returned record is not a type at all.
+
 ## Limitation of our construction
 
 The following concepts are not built-in our language:
@@ -113,7 +141,7 @@ The following concepts are not built-in our language:
 |---------------|-------------|------------|---------------------|
 | 0             | vertex      |            | `endpoint`          |
 | 1             | edge        | `path`     | `polygon`           |
-| 2             | face        | `shell`  | `polyhedron`        |
+| 2             | face        | `shell`    | `polyhedron`        |
 | 3             | block       | `building` | `polychoron`        |
 | (algebraicly) | (generator) | (element)  | (spherical element) |
 
