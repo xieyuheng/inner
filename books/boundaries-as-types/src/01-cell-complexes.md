@@ -90,8 +90,11 @@ an element of the type must satisfy the constraints.
   ---------
   m : Path(A, x, y)
   ```
-  
+
   no nominal-typing is needed here, `I` is a normal type of endpoints.
+
+  - TODO Is this idea enough to be used as the path type
+    where structural equivalence is easy to prove?
 
 [question] What is the general relation
 between topological (homotopical) spaces
