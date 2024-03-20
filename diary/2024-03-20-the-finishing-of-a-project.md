@@ -1,6 +1,6 @@
 ---
 title: The finishing of a project
-date: 2024-03-21
+date: 2024-03-20
 ---
 
 理解一个现象，在于能够预测，能够回答“为什么”一类的问题。
