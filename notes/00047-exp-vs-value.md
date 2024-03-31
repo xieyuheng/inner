@@ -39,3 +39,8 @@ date: 2024-04-01
 然后探索了 inet 的实现方式。
 最后我才发现，原来 explicit substitution
 就是要将 Value 合并到 Exp 中。
+
+既然 "The Little Typer" 的书中想要 "everything is expression"，
+而实现中还是用到了 Exp 与 Value 分离的实现方式，
+为了探索这个问题，首先我就应该尝试用 explicit substitution
+来实现 "The Little Typer" 的 Pie。
