@@ -11,9 +11,10 @@ date: 2024-04-01
 此时 evaluate 作为函数是从 Exp 到 Value 的。
 
 如果能将二者合并为一个类型，实现的复杂度就会降低很多。
-我获得这个印象的线索有三个：
 
-- 一，Vladimir Voevodsky 在一次演讲中畅想未来的数学时，
+我获得这个印象的线索有如下几条：
+
+- 一、Vladimir Voevodsky 在一次演讲中畅想未来的数学时，
   用人们现在对多项式的操作，来类比人们未来对证明的操作。
   而多项式是简单的表达式，当区分 Exp 与 Value 时，
   操作就会变复杂。
@@ -21,7 +22,7 @@ date: 2024-04-01
   当人们用纸和笔来操作证明时，
   很难想象人们会发展出来 Exp 与 Value 分离的系统。
 
-- 二，在 "The Little Typer" 中，"everything is expression"，
+- 二、在 "The Little Typer" 中，"everything is expression"，
   evaluate 作为函数是从 Exp 到 Exp 的。
   这样没有 Exp 和 Value 之分，是十分易于理解的。
   但是假设真就这么实现，真想不用 closure 和 Value，
@@ -30,7 +31,10 @@ date: 2024-04-01
 
   - 我现在知道，可以用 explicit substitution 来解决实现效率的问题。
 
-- 三，在 inet 中，语法是用来以线性的方式构造 graph 的，
+- 三、所有论文中的 inference rule 都只会用 Exp
+  而不会用 Value 和 closure。
+
+- 四、在 inet 中，语法是用来以线性的方式构造 graph 的，
   而 reduce 作为函数是从 graph 到 graph 的。
   此时和上面的情况一样，在关键的地方仍然没有两个类型之分，
   仍然是易于理解的，并且此时没有实现效率的问题。
