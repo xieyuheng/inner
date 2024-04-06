@@ -10,15 +10,6 @@ which involves a set of symbols denoting finitary operations
 together with a set of equations (= identities) relating composite operations,
 determines an algebraic theory, and conversely every algebraic theory has such presentations.
 
-- Xie:
-  Examples of **algebraic theory**,
-
-  ``` js
-  class group_t {
-    TODO
-  }
-  ```
-
 By a mapping between algebraic theories we will understand a functor
 which preserves products and takes `1` into `1`.
 
