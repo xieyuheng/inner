@@ -1,8 +1,10 @@
 ---
 title: Transition System
+references:
+  wikipedia: "https://en.wikipedia.org/wiki/Transition_system"
 ---
 
-https://en.wikipedia.org/wiki/Transition_system
+# Types of Transition Systems
 
 ```cicada
 class TransitionSystem {
@@ -28,28 +30,6 @@ class DeterministicLabelledTransitionSystem {
 }
 ```
 
-CamelCase is hard to read indeed.
-
-```scheme
-(class Transition-System
-  (claim State Type)
-  (claim transition (tuple State State)))
-
-(class Deterministic-Transition-System
-  (claim State: Type)
-  (claim transition (-> State State)))
-
-(class Labelled-Transition-System
-  (claim State Type)
-  (claim Label Type) ;; To model action, event and condition.
-  (claim transition (tuple State Label State)))
-
-(class Deterministic-Labelled-Transition-System
-  (claim State Type)
-  (claim Label Type)
-  (claim transition (-> State Label State)))
-```
-
 # Examples
 
 - Finite State Machine is finite Transition System.
@@ -64,6 +44,8 @@ CamelCase is hard to read indeed.
   and a generalization of flowchart.
 
 - TODO How about Operational semantics?
+
+- TODO How about SECD and Forth?
 
 # TODO Related
 

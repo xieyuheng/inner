@@ -1,9 +1,39 @@
 ---
 title: Automata Lectures by Jeff Ullman
 references:
-  videos: "https://www.youtube.com/playlist?list=PLEAYkSg4uSQ33jY4raAXvUT7Bm_S_EGu0"
+  video: "https://www.youtube.com/playlist?list=PLEAYkSg4uSQ33jY4raAXvUT7Bm_S_EGu0"
   site: "http://infolab.stanford.edu/~ullman/ialc.html"
 ---
+
+# 学习 automata 的动机
+
+看了 Jonathan Blow 的 ["Discussion: Making Programming Language Parsers"](https://www.youtube.com/watch?v=MnctEW1oL-E)，
+我发现我应该放弃 parser generator 项目，
+比如 [Earley parser](https://en.wikipedia.org/wiki/Earley_parser)，
+我应该直接手写语法解析器。
+
+- 在当前程序语言之外，不依赖于额外的工具（哪怕工具是自己设计的）。
+- 方便实现更好的语法解析报错。
+
+为此我想学到如下知识：
+
+- 语法复杂度，automata，正则表达式这三者之间的关系。
+- 用递归下降，手写语法解析的基本 pattern。
+- 递归下降与 [parser combinator](https://en.wikipedia.org/wiki/Parser_combinator) 之间的关系。
+
+进而我想到，手写 automata 可能就是程序员可以做的基本练习之一。
+因为编程中大部分函数都有一个 state 作为 context，
+根据这个 state 的不同，执行不同的操作，
+可能是对其他数据的操作，也可能是对 state 本身的操作。
+automata 除了根据 state 不同，还有一个 input 参数，
+这个参数不同也会有不同转移（transition）。
+
+也就是说大量的函数都是这种类型的：
+
+```cicada
+automata: (state: State, input: Input) -> State
+f: (state: State, input: Input) -> State
+```
 
 # 有限状态机 -- Finite Automata
 
