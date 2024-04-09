@@ -22,18 +22,11 @@ references:
 - 递归下降与 [parser combinator](https://en.wikipedia.org/wiki/Parser_combinator) 之间的关系。
 
 进而我想到，手写 automata 可能就是程序员可以做的基本练习之一。
-因为编程中大部分函数都有一个 state 作为 context，
-根据这个 state 的不同，执行不同的操作，
-可能是对其他数据的操作，也可能是对 state 本身的操作。
-automata 除了根据 state 不同，还有一个 input 参数，
-这个参数不同也会有不同转移（transition）。
+有如下线索：
 
-也就是说大量的函数都是这种类型的：
-
-```cicada
-automata: (state: State, input: Input) -> State
-f: (state: State, input: Input) -> State
-```
+- 写程序时，大部分的函数都是转换系统（transition system）。
+  - 甚至大多数计算模型都是转换系统。
+- 利用 automata 经常能把复杂的 if else 用 finite automata 理清。
 
 # 有限状态机 -- Finite Automata
 
