@@ -14,7 +14,7 @@ references:
 ```cicada
 class TransitionSystem {
   State: Type
-  transition: [State, State]
+  transition: Relation([State, State])
 }
 ```
 
@@ -39,7 +39,7 @@ class DeterministicTransitionSystem {
 class LabelledTransitionSystem {
   State: Type
   Label: Type
-  transition: [State, Label, State]
+  transition: Relation([State, Label, State])
 }
 ```
 
