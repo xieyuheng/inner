@@ -33,6 +33,12 @@ references:
   - 甚至大多数计算模型都是转换系统。
 - 利用 automata 经常能把复杂的 if else 用 finite automata 理清。
 
+# 学习结论总结
+
+- 递归下降与 parser combinator 之间的关系很简单：
+
+  - 递归下降与 + currying = parser combinator
+
 # 有限状态机 -- Finite Automata
 
 有限状态机很简单，因为只有有限多个状态。
