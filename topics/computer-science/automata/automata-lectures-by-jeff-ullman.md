@@ -15,6 +15,11 @@ references:
 - 在当前程序语言之外，不依赖于额外的工具（哪怕工具是自己设计的）。
 - 方便实现更好的语法解析报错。
 
+正如写类型检查器的时候，我们要把关系式的 inference rule
+手动翻译成过程式或函数式的代码，
+而不是写一个一般的 inference rule 到代码的生成器。
+写语法解析器的时候，我们也应该把语法规则手动翻译成代码。
+
 为此我想学到如下知识：
 
 - 语法复杂度，automata，正则表达式这三者之间的关系。
@@ -116,4 +121,42 @@ TODO 在 Lecture 1.3 中，
 虽然 non-deterministic finite automata 看起来更强大，
 但是它还是只能识别正则语言。
 
-TODO
+- 但是证明过程中，所构造的等价的 deterministic finite automata
+  State 个数将指数爆炸。
+
+与 deterministic finite automata 相比，
+non-deterministic finite automata 可以在看到某个 input 时，
+选择转移到哪个 state。
+
+假设每次的选择都是对的，等价于假设可以在平行世界中同时探索所有选择。
+
+- 在实现时，可以让 `transition` 返回一个 State 的集合。
+
+带有 epsilon 的 epsilon-NFA 相当于给 NFA 的 State 之间定义了继承关系。
+
+设想设计 DSL 来描述 FA 与 NFA：
+
+```
+-- FA
+(x) [a] (y)
+(x) [a b] (y)
+
+-- NFA
+(x) [a] (y z)
+(x) [a b] (y z)
+```
+
+嵌入在 JavaScript 中：
+
+
+```javascript
+// FA
+defineTransition("x", "a", "y")
+defineTransition("x", ["a", "b"], "y")
+
+// NFA
+defineTransition("x", "a", ["y", "z"])
+defineTransition("x", ["a", "b"], ["y", "z"])
+```
+
+# 正则语言与 FA 的等价
