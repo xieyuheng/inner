@@ -140,10 +140,10 @@ non-deterministic finite automata 可以在看到某个 input 时，
 
 带有 epsilon 的 epsilon-NFA 相当于给 NFA 的 State 之间定义了继承关系。
 
-设想设计 DSL 来描述 FA 与 NFA：
+设想设计 DSL 来描述 DFA 与 NFA：
 
 ```
--- FA
+-- DFA
 (x) [a] (y)
 (x) [a b] (y)
 
@@ -154,15 +154,42 @@ non-deterministic finite automata 可以在看到某个 input 时，
 
 嵌入在 JavaScript 中：
 
-
-```javascript
-// FA
-defineTransition("x", "a", "y")
-defineTransition("x", ["a", "b"], "y")
+```js
+// DFA
+defineTransition(automaton, "x", "a", "y")
+defineTransition(automaton, "x", ["a", "b"], "y")
 
 // NFA
-defineTransition("x", "a", ["y", "z"])
-defineTransition("x", ["a", "b"], ["y", "z"])
+defineTransition(automaton, "x", "a", ["y", "z"])
+defineTransition(automaton, "x", ["a", "b"], ["y", "z"])
 ```
 
-# 正则语言与 FA 的等价
+```js
+const toggle = createAutomaton({ count: 0 })
+
+toggle.transition("inactive", ["toggle"], "active", (context) => {
+  context.count++
+})
+toggle.transition("active", ["toggle"], "inactive")
+```
+
+TODO 用 automata 实现 readable regular expression。
+
+- It's interface should be like regex (and maybe more).
+
+# 正则语言与 DFA 的等价
+
+正则表达式：
+
+- 基础 symbol 的集合。
+- Union。
+- Concatenation。
+- Kleen Star。
+
+正则语言的定义就是定义正则表达式所代表的 sentence 集合，
+即，每个表达式中的 Exp 所对应的集合上的操作。
+
+正则表达式与 DFA 的等价：
+
+- （1）对于每个正则表达式，它所匹配的语言，都可以被一个 eNFA 所接受。
+- （2）对于每个 DFA，都有正则表达式可以匹配它所接受的语言。
