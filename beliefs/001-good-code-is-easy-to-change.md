@@ -2,16 +2,16 @@
 title: Good code is easy to change
 ---
 
-# Object Oriented Programming is necessary for writing code that's easy to change
-
 After I read Sandi Metz's two books --
 "Practical Object Oriented Design" and "99 bottles of OOP",
 I **define** good code structure as easy to change.
 
-I **belief** _SOLID principles_ are necessary
+The most important attribute about easy to change is easy to understand.
+
+I think _SOLID principles_ are necessary
 for writing code that's easy to change.
 
-I also **belief** the use of _Design Patterns_ is a good way
+I also think the use of _Design Patterns_ is a good way
 of recording knowledge that's easy to share.
 
 # Functional Programming is orthogonal to OOP
