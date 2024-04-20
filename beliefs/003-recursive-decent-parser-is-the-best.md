@@ -15,5 +15,4 @@ to use high order functions to do recursive decent.
 Evidences:
 
 - Niklaus Wirth: "5.1. Syntax analysis" of "Good Ideas, Through the Looking Glass"
-
 - Jonathan Blow: ["Discussion: Making Programming Language Parsers, etc (Q&A is in separate video)."](https:  //www.youtube.com/watch?v=MnctEW1oL-E&t=3788s)

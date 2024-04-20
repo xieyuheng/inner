@@ -4,7 +4,7 @@ title: Learn by implementing and teaching
 
 We'd better learn by implementing and teaching.
 
-I define better learning as more clear understanding.
+I **define** better learning as more clear understanding.
 
 Clear understanding allow us to use the techniques in new ways.
 
@@ -19,7 +19,7 @@ And I believe learning is even better if we teach it to others.
 Because the act of expressing ourself will yield results
 that help us review our understanding in the future.
 
-I define teaching as try to express to be understood by others,
+I **define** teaching as try to express to be understood by others,
 and enjoy feedback from others.
 
 Forms of teaching:
