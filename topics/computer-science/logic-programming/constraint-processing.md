@@ -41,6 +41,15 @@ Constraint Programming 的知识可以用来加深人们对程序语言中类型
 可以看作是一个整体在某个动力系统下的运动。
 描述变化的规则就是运动的“物理”定律。
 
+# Preface
+
+> A constraint is a restriction on a space of possibilities; it is a
+> piece of knowledge that narrows the scope of this space.  They can
+> be used to formulate regularities that govern our computational,
+> physical, biological, and social worlds.  They identify the
+> impossible, narrow down the realm of possibilities, and thus permit
+> us to focus more effectively on the possible.
+
 # Chapter 1 Introduction
 
 ## 1.3 Mathematical Background
