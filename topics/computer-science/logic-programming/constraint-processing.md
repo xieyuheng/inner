@@ -52,6 +52,39 @@ Constraint Programming 的知识可以用来加深人们对程序语言中类型
 
 # Chapter 1 Introduction
 
+## 1.1 Basic Concepts and Examples
+
+> First, every constraint problem must include **variables**: objects
+> or items that can take on a variety of values. The set of possible
+> values for a given variable is called its **domain**.
+
+> The second component to every constraint problem is the set of
+> constraints them selves. **Constraints** are rules that impose a
+> limitation on the values that a variable, or a combination of
+> variables, may be assigned.
+
+因此一个 constraint 就是一个 relation。
+
+> Note that there is often more than one way to model a problem. In
+> the previous example, we could just as logically have decided to
+> call the guests our variables and their domains the set of chairs at
+> the table.
+
+
+和 Formal concept analysis 中一样，object 和 attribute 是对偶的。
+
+> A model that includes variables, their domains, and constraints is
+> called a **constraint network**, also called a **constraint
+> problem**.
+
+> A **solution** is an assignment of a single value from its domain to
+> each variable such that no constraint is violated. A problem may
+> have one, many, or no solutions. A problem that has one or more
+> solutions is **satisfiable** or **consistent**. If there is no
+> possible assignment of values to variables that satisfies all the
+> constraints, then the network is **unsatisfiable** or
+> **inconsistent**.
+
 ## 1.3 Mathematical Background
 
 We can represent a relation as a table.
