@@ -41,6 +41,14 @@ Constraint Programming 的知识可以用来加深人们对程序语言中类型
 可以看作是一个整体在某个动力系统下的运动。
 描述变化的规则就是运动的“物理”定律。
 
+（3）local consistency algorithms (constraint propagation) 可以用 propagator model 实现。
+也许 propagator model 中使用 lattice 的想法就来自 constraint problems。
+
+https://groups.csail.mit.edu/mac/users/gjs/propagators
+
+（4）如果一般意义上的 pure logic programming 可以被看作是特殊的 constraint problem，
+那么 arc-consistency 和 path-consistency 等等概念如何体现？
+
 # Preface
 
 > A constraint is a restriction on a space of possibilities; it is a
@@ -85,25 +93,43 @@ Constraint Programming 的知识可以用来加深人们对程序语言中类型
 > constraints, then the network is **unsatisfiable** or
 > **inconsistent**.
 
-## 1.3 Mathematical Background
-
-We can represent a relation as a table.
-
-Consider object and attribute (property)
--- like in formal concept analysis.
-
-API:
-
-```
-Table = { schema: Schema, objects: Array(Object) }
-
-tableSelection(table, record): Table
-tableProjection(table, names): Table
-objectProjection(table, names): Table
-tableJoin(table, table): Table
-```
-
 # Chapter 2 Constraint Networks
+
+> A **constraint network** consists of a finite set of variables X --
+> {x1, ..., xn}, with respective domains D -- {D1, ..., Dn} which list
+> the possible values for each variable, and a set of constraints C =
+> {C1, ..., Ct}. Thus, a constraint network can be viewed as a triple
+> (X, D, C).
+
+也许可以用 record 来表示 X 与 D。
+
+```
+variables = {
+  x1: D1,
+  x2: D2,
+  ...,
+  xn: Dn
+}
+```
+
+注意 C 不单是 relation，而是 relation 作用于某些具体的 variables，
+也就是说一个 constraint 是一个 goal
+-- application of a relation as a goal。
+
+为什么有些关系可以实现为纯的 Horn clause 而有些不能？
+N-Queen 问题中，“两个皇后不能吃对方” 这个关系，
+以皇后位置为参数，可以被定义为纯的 Horn clause relation 吗？
+
+- 注意这与书中给定 variables 再定义 relation 的方式很不同。
+
+用 prolog 解 constraint problem 的时候，
+所有的 variables 都要作为 logic variable 引入进来。
+
+Hypergraph 的 dual graph 可以把任意一个带有多元关系的 constraint problem，
+转化为一个只带有二元关系的 constraint problem！
+
+- 但是注意，转化得到的 dual graph 中的两条边可能被同一个原来的点标记。
+- 填字游戏（Crossword）是这种转化的典型的例子。
 
 # Chapter 3 Consistency-Enforcing and Constraint Propagation
 
