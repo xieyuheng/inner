@@ -485,7 +485,7 @@
     such as using induction to try each possibility
     for the variable in a neutral expression.
 
-    Expressions the syntax we designed to record the steps of deduction.
+    Expressions are the syntax we designed to record the steps of deduction.
 
     Expressions are proofs.
   </answer>
