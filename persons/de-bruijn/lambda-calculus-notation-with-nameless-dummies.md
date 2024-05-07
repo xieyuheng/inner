@@ -1,20 +1,18 @@
-# Lambda calculus notation with nameless dummies, a tool for automatic formula manipulation, with application to the church-rosser theorem
-
+---
+title: Lambda calculus notation with nameless dummies
+subtitle: A tool for automatic formula manipulation, with application to the church-rosser theorem
 author: De Bruijn
 date: 1972
+---
 
-## info
-
-- this paper is about about de bruijn index
-
-## What is the problem of lambda calculus?
+# What is the problem of lambda calculus?
 
 Manipulations in lambda calculus need to rename bound variables.
 
 If a free variable in an expression has to be replaced by a second expression,
 some free variable of the second expression might be bound by the first one.
 
-## What are the author's three criteria for a good notation?
+# What are the author's three criteria for a good notation?
 
 - (i) easy to write and easy to read for the human reader;
 - (ii) easy to handle in metalingual discussion;
@@ -25,7 +23,7 @@ Nameless lambda expression will be good for (ii) and (iii) but not (i).
 Thus, we should translate from the usual system to nameless system at the input stage,
 and backwards at the output stage.
 
-## What notation does the author used to handle meta language?
+# What notation does the author used to handle meta language?
 
 Use `{ <Exp> }` to eval a `Exp`, view evaluation as a function,
 its type will be `Exp -> Exp` (There is no `Value` type here).
@@ -53,7 +51,7 @@ Example of nested `{ }`:
 { reverse({ S }) } == amgis
 ```
 
-## In the author's planner tree representation of lambda expression, what are depth and level?
+# In the author's planner tree representation of lambda expression, what are depth and level?
 
 Each variable is assigned two integers,
 
@@ -70,7 +68,7 @@ By the author's definitions, the last lambda also counts.
 In the author's notation, free variables are viewed as bound by lambda beyond the root,
 thus when depth is greater than level, we know it is a free variable.
 
-## How to get the author's De Bruijn index from the planner tree?
+# How to get the author's De Bruijn index from the planner tree?
 
 In the planner tree,
 - erase the variable names
@@ -82,7 +80,7 @@ no information is lost.
 
 The result is lambda expression represented by De Bruijn index.
 
-## How to translate lambda expression to nameless lambda expression?
+# How to translate lambda expression to nameless lambda expression?
 
 from: https://en.wikipedia.org/wiki/De_Bruijn_index
 
@@ -108,11 +106,11 @@ which might correspond to the following term written in the usual notation
   the second is under two binders, so we replace it with `λ 7 1` (free variables increased by 2).
   The final result is `λ 3 (λ 6 1) (λ 1 (λ 7 1))`.
 
-## How to translate theorems of lambda calculus to nameless lambda calculus?
+# How to translate theorems of lambda calculus to nameless lambda calculus?
 
 TODO
 
-## references
+# references
 
 1. BARENDREGT, H. P.,
    Some extensional  models for combinatory logics and lambda calculi.
@@ -132,6 +130,6 @@ TODO
    Combinatory Logic.
    North-Holland Publishing Company, Amsterdam 1958.
 
-## automath
+# automath
 
 automath is dependently typed forth

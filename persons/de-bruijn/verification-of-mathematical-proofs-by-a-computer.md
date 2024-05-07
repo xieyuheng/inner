@@ -1,1 +1,3 @@
-# Verification of mathematical proofs by a computer
+---
+title: Verification of mathematical proofs by a computer
+---
