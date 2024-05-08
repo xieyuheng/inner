@@ -25,6 +25,8 @@ and backwards at the output stage.
 
 # What notation does the author used to handle meta language?
 
+TODO 不要改原文，用 <>。
+
 Use `{ <Exp> }` to eval a `Exp`, view evaluation as a function,
 its type will be `Exp -> Exp` (There is no `Value` type here).
 
