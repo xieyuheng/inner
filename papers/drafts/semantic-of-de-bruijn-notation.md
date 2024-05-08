@@ -1,5 +1,5 @@
 ---
-title: Semantic of De Bruijn Notation
+title: Semantic of de Bruijn Notation
 author: Xie Yuheng
 date: 2018-07-22
 keywords: [language design, syntax]
@@ -7,7 +7,7 @@ keywords: [language design, syntax]
 
 # Semantic
 
-The direct semantic of De Bruijn notation,
+The direct semantic of de Bruijn notation,
 is stack based postfix programming language.
 
 # Translating
@@ -17,7 +17,7 @@ is stack based postfix programming language.
   | []    | local variable binding |
 
 - Suppose `trans( ... )` is a syntax translating function,
-  which translate normal lambda notation to De Bruijn notation.
+  which translate normal lambda notation to de Bruijn notation.
 
 - The rules :
 
@@ -29,7 +29,7 @@ is stack based postfix programming language.
 
 # Example
 
-- in De Bruijn notation :
+- in de Bruijn notation :
   { M } { N } [u] { P } [v] [w] { Q } z
 
 - which is equal to (for example) :

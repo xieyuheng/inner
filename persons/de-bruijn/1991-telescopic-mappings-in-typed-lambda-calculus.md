@@ -1,4 +1,8 @@
-# Telescopic Mappings in Typed Lambda Calculus
+---
+title: Telescopic Mappings in Typed Lambda Calculus
+author: de Bruijn
+year: 1991
+---
 
 - Xie:
   To understand this "telescope",

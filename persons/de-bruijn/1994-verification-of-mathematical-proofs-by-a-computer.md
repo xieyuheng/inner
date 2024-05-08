@@ -1,5 +1,5 @@
 ---
 title: Verification of mathematical proofs by a computer
-author: De Bruijn
-date: 1994
+author: de Bruijn
+year: 1994
 ---

@@ -86,7 +86,7 @@ When postfix notation occur we can use stack machine to provide semantics.
 
 # Adding function composition into de Bruijn notation
 
-- **[Claim]** When translating lambda expressions to De Bruijn notation, function composition does not occur.
+- **[Claim]** When translating lambda expressions to de Bruijn notation, function composition does not occur.
 - **[Proof]** TODO
 
 # The algebraic structure of the space of simple type

@@ -1,7 +1,7 @@
 ---
 title: Lambda calculus notation with nameless dummies
 subtitle: A tool for automatic formula manipulation, with application to the church-rosser theorem
-author: De Bruijn
+author: de Bruijn
 date: 1972
 ---
 
@@ -68,7 +68,7 @@ By the author's definitions, the last lambda also counts.
 In the author's notation, free variables are viewed as bound by lambda beyond the root,
 thus when depth is greater than level, we know it is a free variable.
 
-# How to get the author's De Bruijn index from the planner tree?
+# How to get the author's de Bruijn index from the planner tree?
 
 In the planner tree,
 - erase the variable names
@@ -78,7 +78,7 @@ In the planner tree,
 
 no information is lost.
 
-The result is lambda expression represented by De Bruijn index.
+The result is lambda expression represented by de Bruijn index.
 
 # How to translate lambda expression to nameless lambda expression?
 
