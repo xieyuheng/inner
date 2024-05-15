@@ -36,6 +36,9 @@ title: The Little Learner
 line 被称为 target，
 这章找更多的 target 函数来练习一下。
 
+练习了一个非线性函数 -- 二次函数 quad，
+还有一个多元函数 -- 平面 plane。
+
 > **The Rule of Parameters**
 >     (Final Version)
 > Every parameter is a tensor.
