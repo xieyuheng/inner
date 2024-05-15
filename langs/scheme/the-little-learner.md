@@ -51,6 +51,15 @@ line 被称为 target，
 > that can have different shapes.
 
 # Interlude III: The Shape of Things to Come
+
+介绍新的 Tensor 的缩写。
+
+把 rank 为 2 的 tensor 写成矩阵，
+然后在旁边标注上 shape。
+
+比如 shape 为 `(3 1)` 的是 column matrix，
+而 shape 为 `(1 3)` 的是 row matrix。
+
 # 6: An Apple a Day
 # 7: The Crazy “ates”
 # 8: The Nearer Your Destination, the Slower You Become
