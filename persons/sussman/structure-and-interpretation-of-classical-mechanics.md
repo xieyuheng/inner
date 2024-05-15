@@ -49,42 +49,43 @@ SICM 的目的在与，利用函数式编程中的严格的符号系统，来介
 人们观察到的相同的力对不同物体的作用效果不同，
 人们引入质量这个物体万有的参数来度量这种不同的作用效果。
 
-## 术语
+# 1 Lagrangian Mechanics
 
-configuration path
-相曲线 相空间中的时间参数化曲线
+> The motion of a system can be described by giving the position of
+> every piece of the system at each moment. Such a description of the
+> motion of the system is called a _configuration path_; the
+> config-configuration path specifies the configuration as a function
+> of time.
 
-invent some mathematical function
-that allows us to distinguish realizable motions
-from among all conceivable motions
+说 configuration 而不是说 position，
+是因为想要描述刚体，除了 position 之外还需要 orientation。
 
-a path-distinguishing function
-that has a minimum on the realizable paths
+Newton 的方程是一个方程，
+满足运动条件的 configuration path 需要让方程等于 0。
 
-on nearby unrealizable paths the value of the function
-is higher than it is on the realizable path
+> However, there is a alternate strategy that provides more in-insight
+> and power: we could look for a path-distinguishing functionthat has
+> a minimum on the realizable paths -- on nearby unreal-unrealizable
+> paths the value of the function is higher than it is on the
+> realizable path. This is the _variational strategy_: for each
+> physical system we invent a path-distinguishing function that
+> distinguishes realizable motions of the system by having a
+> stationary point foreach realizable path. For a great variety of
+> systems realizable motions of the system can be formulated in terms
+> of a variational principle.
 
-# intro
-
-good mathematics must be precise, clear and computationally effective.
-
-functional notation -- without irrelevant letters.
-
-# 1 lagrangian mechanics
-
-## intro
-
-newtonian formulation v.s. variational formulation
+而在变分法中，之需要 configuration path 为 stationary point。
 
 ## 1.1 The Principle of Stationary Action
 
-Let us suppose that for each physical system
-there is a path-distinguishing function
-that is stationary on realizable paths.
+尝试通过我们对运动的直觉，推导出 path-distinguishing function。
+能熟练地重复这里的推导过程，就算是学会这一节了。
+推导的结论是：
 
-路径积分 与 变分问题
+> We will consider actionsthat are integrals of some local property of
+> the configuration pathat each moment.
 
-分解被积函数
+TODO
 
 ## 1.2 Configuration Spaces
 
