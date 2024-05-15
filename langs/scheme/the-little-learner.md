@@ -61,6 +61,11 @@ line 被称为 target，
 而 shape 为 `(1 3)` 的是 row matrix。
 
 # 6: An Apple a Day
+
+用 Sampling 来避免在每次调用 loss 函数的时候都使用整个数据集。
+
+TODO
+
 # 7: The Crazy “ates”
 # 8: The Nearer Your Destination, the Slower You Become
 # Interlude IV: Smooth Operator
