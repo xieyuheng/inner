@@ -37,11 +37,15 @@ line 被称为 target，
 这章找更多的 target 函数来练习一下。
 
 > **The Rule of Parameters**
->      (Final Version)
+>     (Final Version)
 > Every parameter is a tensor.
 
 注意 `Parameters` 不是 `Tensor` 而是 `Array<Tensor>`，
 因为每个 parameter 的 shape 可能不一样。
+
+> **The Rule of θ**
+> θ is a list of parameters
+> that can have different shapes.
 
 # Interlude III: The Shape of Things to Come
 # 6: An Apple a Day
