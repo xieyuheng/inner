@@ -4,7 +4,7 @@ title: The Little Learner
 
 # 0: Are You Schemish?
 
-复习以下 Scheme。
+复习一下 Scheme。
 
 # 1: The Lines Sleep Tonight
 
@@ -64,7 +64,27 @@ line 被称为 target，
 
 用 Sampling 来避免在每次调用 loss 函数的时候都使用整个数据集。
 
-TODO
+> Using a small random sample of a few points
+> from the data set produces a good enough
+> approximation of loss, which can be used to
+> revise θ. We refer to this sample as a batch
+> and its generation as sampling a batch from
+> the data set.
+
+注意这里函数复合式的设计，
+实现 `samplingObjective` 之后，
+并不用修改 `gradientDescent` 的实现，
+只需要在使用 `gradientDescent` 的时候用 `samplingObjective` 做复合。
+在 Sussman 关于如何灵活地编程的新书中，也有提到类似的技巧。
+
+> This kind of gradient descent where the
+> objective function uses sampling is known as
+> _stochastic gradient descent_
+
+> **The Law of Batch Sizes**
+> Each revision in stochastic gradient descent uses only a batch of
+> size batch-size from the data set and the ranks of the tensors in
+> the batch are the same as the ranks of the tensors in the data set.
 
 # 7: The Crazy “ates”
 # 8: The Nearer Your Destination, the Slower You Become
