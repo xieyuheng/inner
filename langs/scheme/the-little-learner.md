@@ -87,6 +87,13 @@ line 被称为 target，
 > the batch are the same as the ranks of the tensors in the data set.
 
 # 7: The Crazy “ates”
+
+抽出来一个 interface，为下一步做准备。
+
+```js
+interface Representation { inflate, deflate, update }
+```
+
 # 8: The Nearer Your Destination, the Slower You Become
 # Interlude IV: Smooth Operator
 # 9: Be Adamant
