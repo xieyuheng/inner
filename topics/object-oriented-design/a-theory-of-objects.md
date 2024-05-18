@@ -4,6 +4,14 @@ authors: Martin Abadi, Luca Cardelli
 date: 1996
 ---
 
+# 笔记
+
+## Object 不是函数
+
+注意不能用 `(message) -> method` 来理解 object 或者 record，
+因为我们需要明确 object 的 properties 的名字，
+才能获得 object 之间的 subtype relation。
+
 # Prologue
 
 ## 为什么要为程序语言发展相对形式化的理论？
