@@ -23,12 +23,12 @@ datatype List(A) {
 }
 ```
 
-对比类似 Haskell 的语法，还是类似 JS 的舒服：
+对比类似 JS 的语法，可以说类似 Haskell 的语法是为 match 而优化的。
 
 ```cicada
 function sum(implicit A: Type, list: List(A)): Number {
   match (list) {
-    case List::Null() => 0
+    case List::Null => 0
     case List::Cons(head, tail) => add(head, sum(tail))
   }
 }
