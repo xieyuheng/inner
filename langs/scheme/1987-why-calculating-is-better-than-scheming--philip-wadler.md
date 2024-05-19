@@ -73,3 +73,50 @@ Lisp 没有让用户自定义 data type 的机制。
 > support most of the major programming paradigms in use today.
 
 两个原则确实相互矛盾了，重点在于 trade-off。
+
+# 2. Confusion between program and data
+
+## 2.1. Lisp list are not self-quoting
+
+这里的对这个 Lisp feature 的批评并不成立。
+
+只是揭露了作者自己的教学水平不行。
+
+> In this case, perhaps one can afford the extra effort. But the
+> problem is greatly compounded when one must explain this sort of
+> thing in the middle of some other derivation. I have encountered
+> this sort of problem many times.
+
+应该先打好基础，再介绍进一步的概念，在教学任何东西的时候都一样。
+
+## 2.5. Syntax
+
+对这一章，我的理解是，作者假装自己喜欢 Lisp，然后编故事来抹黑 Lisp。
+
+整个 2. 章 的批评都站不住脚。
+
+# 3. Programs that manipulate programs
+
+Lisp 让人们可以不用写 parser 就能直接处理用 sexp 表示的具体语法，
+但是作者故意在使用 Lisp 写解释器的时候还用 ADT 而没有用具体语法。
+
+# 4. Lazy evaluation
+
+Lazy evaluation 确实让语言更靠近数学。
+
+但是 Lazy evaluation 的代价是，
+语言必须是没有副作用的纯函数式。
+
+确实某些需要被定义为语法关键词的东西，
+比如 if，在 lazy evaluation 下可以被定义为函数。
+
+macro 很多时候都是在处理 lazy evaluation。
+
+除了 lazy evaluation 之外，macro 经常处理的是 bindings，
+也许 nominal logic 可以让我们把 bindings 也变成语言内部的机制，
+而避免用 macro 才能处理。
+
+# 结论
+
+最后作者还找 Abelson 和 Sussman 来点评自己的批评了，
+可见 Abelson 和 Sussman 的格局是很高的。
