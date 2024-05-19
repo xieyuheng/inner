@@ -5,6 +5,8 @@ author: Philip Wadler
 year: 1987
 ---
 
+# 笔记
+
 可以设想一个类似 Haskell 的语言，
 但是以 `f(x)` 而不是 `f x` 为函数作用的语法。
 
@@ -33,3 +35,14 @@ function sum(implicit A: Type, list: List(A)): Number {
   }
 }
 ```
+
+# 1. Data types
+
+说类 Haskell 的语法比 lisp 容易理解，完全是偏见。
+
+- 首先纯前缀表达式比前缀+中缀表达式简单，
+- 其次纯 sexp 比一般的具体语法简单。
+
+Haskell 把 Pattern match 以 implicit 的方式内置在语言里，
+而不用 explicit 的处理，确实是优点。
+但是只需要给 lisp 加 `match` 关键词就可以了。
