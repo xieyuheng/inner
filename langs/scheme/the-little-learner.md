@@ -95,6 +95,14 @@ interface Representation { inflate, deflate, update }
 ```
 
 # 8: The Nearer Your Destination, the Slower You Become
+
+上一章和这一章，完美的展示了，如何先把代码打开，然后在修改代码。
+
+> For each desired change,
+> make the change easy (warning: this may be hard),
+> then make the easy change.
+> -- Kent Beck
+
 # Interlude IV: Smooth Operator
 # 9: Be Adamant
 # Interlude V: Extensio Magnifico!
