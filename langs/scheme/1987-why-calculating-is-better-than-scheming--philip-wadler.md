@@ -9,12 +9,27 @@ year: 1987
 但是以 `f(x)` 而不是 `f x` 为函数作用的语法。
 
 ```cicada
+sum: (implicit A: Type, List(A)) -> Number
+sum(List::Null) = 0
+sum(List::Cons(head, tail)) = add(head, sum(tail))
+```
+
+其中 `List` 的定义如下：
+
+```cicada
 datatype List(A) {
   Null: List(A)
   Cons(head: A, tail: List(A)): List(A)
 }
+```
 
-sum: (implicit A: Type, List(A)) -> Number
-sum(List::Null) = 0
-sum(List::Cons(head, tail)) = add(head, sum(tail))
+对比类似 Haskell 的语法，还是类似 JS 的舒服：
+
+```cicada
+function sum(implicit A: Type, list: List(A)): Number {
+  match (list) {
+    case List::Null() => 0
+    case List::Cons(head, tail) => add(head, sum(tail))
+  }
+}
 ```
