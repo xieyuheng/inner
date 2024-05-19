@@ -120,3 +120,7 @@ macro 很多时候都是在处理 lazy evaluation。
 
 最后作者还找 Abelson 和 Sussman 来点评自己的批评了，
 可见 Abelson 和 Sussman 的格局是很高的。
+
+其实，某些人对 Lisp 的恐惧远远不是对程序语言的 feature 的分析能够解释的，
+人们的恐惧源自更深刻的心理学因素，即害怕看起来陌生的东西。
+然而有很多人喜欢 Lisp，这些人对于陌生的东西没有那么恐惧。
