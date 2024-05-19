@@ -46,3 +46,30 @@ function sum(implicit A: Type, list: List(A)): Number {
 Haskell 把 Pattern match 以 implicit 的方式内置在语言里，
 而不用 explicit 的处理，确实是优点。
 但是只需要给 lisp 加 `match` 关键词就可以了。
+
+## 1.4. Data representation and abetract data types
+
+强调了 pattern match 只能用于具体的 data type，
+比如 algebraic data type（free data type），
+而不能用于抽象的 data type。
+
+非 free data type 的例子是集合。
+
+## 1.5. A last word on the mobile exercise
+
+Lisp 没有让用户自定义 data type 的机制。
+只能用 sexp + selector functions 来模拟自定义 data type 的过程。
+
+这正是违反了 Sussman 说的某些机制应该在语言层面 implicit 处理。
+
+但是这却遵循了 R5RS 开篇说的：
+
+> Programming languages should be designed not by piling feature on
+> top of feature, but by removing the weaknesses and restrictions that
+> make additional features appear necessary. Scheme demonstrates that
+> a very small number of rules for forming expressions, with no
+> restrictions on how they are composed, suffice to form a practical
+> and efficient programming language that is flexible enough to
+> support most of the major programming paradigms in use today.
+
+两个原则确实相互矛盾了，重点在于 trade-off。
