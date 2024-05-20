@@ -103,6 +103,10 @@ interface Representation { inflate, deflate, update }
 > then make the easy change.
 > -- Kent Beck
 
+由于接近极值点的时候梯度太小了，
+这里的方案是去积累整个梯度下降路径上的梯度，
+每次都乘上一个因子来减少积累的程度。
+
 # Interlude IV: Smooth Operator
 # 9: Be Adamant
 # Interlude V: Extensio Magnifico!
