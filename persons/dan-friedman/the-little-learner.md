@@ -107,6 +107,8 @@ interface Representation { inflate, deflate, update }
 这里的方案是去积累整个梯度下降路径上的梯度，
 每次都乘上一个因子来减少积累的程度。
 
+这种梯度下降称为 momentum gradient descent。
+
 # Interlude IV: Smooth Operator
 # 9: Be Adamant
 # Interlude V: Extensio Magnifico!
