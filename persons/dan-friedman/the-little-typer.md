@@ -4,7 +4,7 @@ title: the little typer
 
 # 1. The More Things Change, the More They Stay the Same
 
-``` scheme
+```scheme
 'ratatouille
 (the Atom 'ratatouille)
 (the Atom (the Atom 'ratatouille))
@@ -26,7 +26,7 @@ title: the little typer
 
   Given a type, every expression described by that type has a normal form.
 
-``` scheme
+```scheme
 0 1
 (the Nat 0)
 (the Nat 1)
@@ -93,7 +93,7 @@ title: the little typer
   `car` and `cdr` can also be builtin as
   "taking fields of record".
 
-``` scheme
+```scheme
 (check-same (-> Atom Atom (Pair Atom Atom))
   (lambda (a d) (cons a d))
   (lambda (d a) (cons d a)))
@@ -145,7 +145,7 @@ title: the little typer
   then it is the same (Pair A D)
   as (cons (car p) (cdr p)).
 
-``` scheme
+```scheme
 (which-Nat zero
   'naught
   (lambda (n) 'more))
@@ -210,7 +210,7 @@ which_Nat: (
   Pie replies with just its normal form.
   - such as U, (Pair U U), (Pair Atom U), (-> U U)
 
-``` scheme
+```scheme
 (the (Pair Atom (Pair Atom Atom))
   (cons 'spinach
         (the (Pair Atom Atom)
@@ -230,7 +230,7 @@ which_Nat: (
   - x -
     base of the format of the game of equivalent
 
-``` scheme
+```scheme
 | (gauss (add1 zero))
 | (add1 (gauss zero))
 | (add1 zero)
@@ -319,7 +319,7 @@ rec_List: (
 
 # 6. Precisely How Many?
 
-``` scheme
+```scheme
 (the (Vec Atom 0) vecnil)
 (the (Vec Atom 1) (vec:: 'oyster vecnil))
 
@@ -376,7 +376,7 @@ ind_Nat: (
 
 # Recess: One Piece at a Time
 
-``` scheme
+```scheme
 (claim peas
   (Pi ([n Nat])
     (Vec Atom n)))
@@ -403,7 +403,7 @@ ind_Nat: (
   behind a form of judgment is sometimes called
   internalizing the form of judgment.
 
-``` scheme
+```scheme
 (= Atom 'kale 'blackberries)
 ```
 
@@ -587,7 +587,7 @@ ind_Vec: (
     when proving equivalence, we could make it more intuitive
     to reduce the equivalent to smaller one.
 
-``` scheme
+```scheme
 (-> (= (List E)
       es
       (vec->list E (length E es) (list->vec E es)))
