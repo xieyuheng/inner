@@ -5,6 +5,10 @@ date: 2024-05-19
 
 Ideas 来自 Sussman 的新演讲 ["Artificial Intelligence: a Problem of Plumbing?"](https://www.youtube.com/watch?v=CGxbRJPCoAQ)
 
+传统的机器学习是在全局地优化一个有很多参数的函数。
+这样看来不够仿生，如何把传统的机器学习局部化？
+可能在于使用类似 propagator 的 idea。
+
 # 逻辑式编程的自我优化
 
 逻辑式语言在搜索的时候，
