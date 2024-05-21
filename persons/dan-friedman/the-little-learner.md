@@ -116,6 +116,31 @@ interface Representation { inflate, deflate, update }
 > is less relevant as we move forward.
 
 # 9: Be Adamant
+
+> Because α (learning rate) represents the fraction of the
+> gradient we're going to use as our velocity,
+> another approach to addressing this
+> problem is to make this fraction _adaptive_.
+
+> Adaptive here means that the fraction is
+> decided based on the gradient and its
+> historical values.
+
+不用在纠结 `learningRate` 这个常数了，
+因为我们讲用历史数据类计算 `adaptiveLearningRate`。
+
+并且可以把这里修改 `learningRate` 的技巧，
+和前一章的 momentum gradient descent 结合起来用，
+得到 ADMA 算法。
+
+> NOTE ADAM is short for adaptive moment estimation.
+> The accompaniment `v` is known as
+> the gradient's 1st moment and `r` its 2nd moment.
+
+注意，
+这里两个算法的复合并没有那么优雅了，
+必须要修改算法定义的细节才能做到。
+
 # Interlude V: Extensio Magnifico!
 # 10: Doing the Neuron Dance
 # 11: In Love with the Shape of Relu
