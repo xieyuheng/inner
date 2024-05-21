@@ -110,6 +110,11 @@ interface Representation { inflate, deflate, update }
 这种梯度下降称为 momentum gradient descent。
 
 # Interlude IV: Smooth Operator
+
+> So, smooth seems to be a way of
+> incorporating historical information that
+> is less relevant as we move forward.
+
 # 9: Be Adamant
 # Interlude V: Extensio Magnifico!
 # 10: Doing the Neuron Dance
@@ -121,5 +126,29 @@ interface Representation { inflate, deflate, update }
 # 14: It's Really Not That Convoluted
 # 15: …But It Is Correlated!
 # Epilogue - We've Only Just Begun
+# Appendix A: Ghost in the Machine
+
+介绍了利用 Dual Number 进行自动微分的方法，
+不用对函数复合而成的表达式做符号处理，
+只需要扩展 Number 的定义，
+并且再扩展 primitive function，
+不需要改变 compound function 的定义，
+就能完成自动微分。
+
+据说这个方法是 Clifford 发明的，
+Sussman 在讲经典力学的 Scheme 书中也用了这种方法。
+
+在无类型语言中，
+可以自由地扩展 primitive function
+（需要小心避免递归定义）。
+在带有类型检查的语言中，
+可能需要重新定义一套 primitive function
+（正如我们在 JS/TS 实现中做的那样）。
+
+我们在什么地方可以用类似的技巧呢？
+
+注意不用修改已有的定义就能做扩展，
+也是 propagator 的主题。
+
 # Appendix B: I Could Have Raced All Day
 # References
