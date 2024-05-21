@@ -142,6 +142,11 @@ interface Representation { inflate, deflate, update }
 必须要修改算法定义的细节才能做到。
 
 # Interlude V: Extensio Magnifico!
+
+这里学习如何实现 extended functions。
+
+TODO
+
 # 10: Doing the Neuron Dance
 # 11: In Love with the Shape of Relu
 # 12: Rock Around the Block
