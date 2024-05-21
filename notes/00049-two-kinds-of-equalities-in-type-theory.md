@@ -18,3 +18,7 @@ date: 2024-05-22
 那么我们可以在设计类型系统时，
 同时实现这两类算法，
 作为工具为人所用。
+
+这样类型论就与可计算性和可证明性联系了起来，
+可以参考 Boolos 的书，"Computability and Logic"
+和 "The Logic of Provability"。
