@@ -3,6 +3,10 @@ title: Fail Faster
 date: 2024-05-23
 ---
 
+在尝试用 cicada 的 dependent type
+来实现 "The Little Learner" 中 Tensor 相关的
+extended function 时，发现自己拖了很长时间没有验证 explicit substitution 的可行性。
+
 科学就在于提出假设并且验证假设，
 但是假设就是信条，
 人们是倾向于坚持自己的信条的，
