@@ -145,7 +145,14 @@ interface Representation { inflate, deflate, update }
 
 这里学习如何实现 extended functions。
 
-TODO
+我不理解为什么不用函数复合，
+而是重新从头定义 `of-rank?` 之类的函数。
+是为了优化？难道经过测试这里的函数是瓶颈？
+
+我在实现这里的 `extend1` 和 `extend2` 时，
+没有先看这章，但是我只是实现了对 Scalar 函数的 extend，
+这里实现了对任意 base rank 的函数 extend，
+技巧就是把 base rank 作为参数传进来。
 
 # 10: Doing the Neuron Dance
 # 11: In Love with the Shape of Relu
