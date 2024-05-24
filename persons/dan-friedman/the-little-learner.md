@@ -154,6 +154,13 @@ interface Representation { inflate, deflate, update }
 这里实现了对任意 base rank 的函数 extend，
 技巧就是把 base rank 作为参数传进来。
 
+```typescript
+const mul21 = extend2(mul, 2, 1)
+```
+
+`mul21` 与 `mul` 作用于两个 rank 为 2 的 Tensor 的效果并不一样，
+`mul21` 可以用来实现 matrix-vector multiplication。
+
 # 10: Doing the Neuron Dance
 # 11: In Love with the Shape of Relu
 # 12: Rock Around the Block
