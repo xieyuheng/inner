@@ -162,6 +162,40 @@ const mul21 = extend2(mul, 2, 1)
 `mul21` 可以用来实现 matrix-vector multiplication。
 
 # 10: Doing the Neuron Dance
+
+如何构造更复杂的，模仿人类神经网络的函数，作为 target 函数呢？
+
+用函数复合就可以吗？
+
+称 activation functions 为 deciders，
+activation 来自神经网络的比喻，
+但是 decider 这样的命名更接地气。
+
+> Functions like relu are known
+> as artificial neurons. Each
+> neuron has a linear part, like
+> linear, and a nonlinear
+> decider like rectify.
+
+引入 relu 函数。
+
+> **The Rule of Artificial Neurons**
+> An artificial neuron is a parameterized linear function
+> composed with a nonlinear decider function.
+
+> Let's see an illustration of
+> how multiple uses of relus
+> can be combined to do more interesting things.
+
+获得用 relu 的复合模拟更复杂的函数的直觉。
+
+用 `halfStrip` 和 `fullStrip` 为例子，
+因为根据勒贝格（Lebesgue）积分的方案，
+任何函数都可以被分解为 `halfStrip` 和 `fullStrip`，
+即 piecewise-linear approximation。
+
+这类方案叫做 universal approximation。
+
 # 11: In Love with the Shape of Relu
 # 12: Rock Around the Block
 # 13: An Eye for an Iris
