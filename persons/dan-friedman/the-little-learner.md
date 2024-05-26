@@ -261,10 +261,21 @@ layer function 是特殊的 target function，
 
 > **The Law of Dense Layers**
 >       (Initial Version)
-> A dense layer function invokes m neurons on an n element
-> input tensor1 and produces an m element output tensor1.
+> A dense layer function invokes m neurons on an n-element
+> input tensor-1 and produces an m-element output tensor-1.
 
-TODO
+> **The Law of Dense Layers**
+>       (Final Version)
+> A dense layer function invokes m neurons on an n-element
+> input tensor-1 that produces an m-element output tensor-1
+> in a single invocation of *-2-1.
+
+注意，这里对 `linear` 的定义要用 `matrixVactorMul`，而不能用 `dot`。
+
+观察这里 `matrixVactorMul` 和 `dot` 的定义，
+也许我们在处理 tensor 的函数的时候，
+应该放弃传统线性代数中，只有行向量与列向量才能 `dot` 的限制，
+也许行列向量的发明只是为了书写矩阵乘向量的时候方便。
 
 # 12: Rock Around the Block
 # 13: An Eye for an Iris
