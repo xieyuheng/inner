@@ -173,6 +173,25 @@ const mul21 = extend2(mul, 2, 1)
 只有当考虑 tensor 的 shape 的时候，
 其类型才能有效地约束函数的范围。
 
+比如：
+
+```cicada
+mul21: ([m, n], [n]) -> [m, n]
+mul21: ([a, m, n], [n]) -> [a, m, n]
+mul21: ([m, n], [b, n]) -> [b, m, n]
+
+// 由于 extend2 的定义中两个参数 rank 相等时，
+// 被特殊处理为 zip + map 了，
+// 这也许是不合理的，因为下面两个作用返回的 shape 一样了。
+mul21: ([a, m, n], [a, b, n]) -> [a, b, m, n]
+mul21: ([a, m, n], [b, n]) -> [a, b, m, n]
+// 也许应该要求相对于两个 base rank 的 extra rank 相等时，
+// 才使用 zip + map，从而达到下面的效果：
+mul21: ([a, m, n], [a, n]) -> [a, m, n]
+// 而按照当前的定义，我们将得到：
+mul21: ([a, m, n], [a, n]) -> [a, a, m, n]
+```
+
 # 10: Doing the Neuron Dance
 
 如何构造更复杂的，模仿人类神经网络的函数，作为 target 函数呢？
