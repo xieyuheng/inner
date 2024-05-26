@@ -29,5 +29,20 @@ year: 1979
 当想要设计具体语法的时候，
 也许我们可以使用之前设计 inet 语言时的方案，
 重载函数作用，来表示 build propagator 的过程。
+比如，currying 的时候，参数不足，就把不足的位置作为 cell 返回。
 
-TODO 给出嵌入在 JS 中的语法。
+## Simple Constraints
+
+TODO 设计嵌入在 JS 中的语法。
+
+## Networks of Constraints
+
+没有像逻辑式语言一样，用同名的变量来代表连接，
+可能是为了避免给很多 cell 命名。
+但是逻辑式语言的实践告诉我们，使用同名变量是没问题的。
+
+TODO 设计嵌入在 JS 中的语法。
+
+TODO 设计类似 inet 的具体语法，JS 和 Lisp 各一个版本。
+
+TODO 对比两种风格的语法。
