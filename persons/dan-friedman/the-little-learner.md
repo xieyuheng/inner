@@ -277,6 +277,20 @@ layer function 是特殊的 target function，
 应该放弃传统线性代数中，只有行向量与列向量才能 `dot` 的限制，
 也许行列向量的发明只是为了书写矩阵乘向量的时候方便。
 
+> The list of shapes of the tensor2 and
+> tensor1 parameters necessary for a layer is
+> known as the _shape list_ of the layer.
+
+在带有 dependent type 的语言中，
+shape list 就是 layer 的类型参数。
+
+这里很多篇幅用来处理 `k-rule` 的 currying，
+看来带有自动 currying 的语言是必要的。
+
+> The problem is that network functions, as
+> in 1-relu, 2-relu, and 3-relu above, must
+> take their arguments t and θ one at a time.
+
 # 12: Rock Around the Block
 # 13: An Eye for an Iris
 # Interlude VI: How the Model Trains
