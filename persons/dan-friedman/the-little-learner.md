@@ -30,6 +30,14 @@ title: The Little Learner
 
 介绍 dynamic scope，可以用来处理递归下降法中的参数。
 
+我们在练习实现的时候可以不用 dynamic scope，
+因为这是一个程序语言级别的功能，
+而一般的程序语言没有 dynamic scope 这个功能。
+
+在一般的程序语言中，我们可以使用的备选方案是，
+直接多带一个参数 `options`，
+把需要的所有参数都传到函数里。
+
 # 5: Target Practice
 
 之前用 line 测试了递归下降法，
