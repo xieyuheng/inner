@@ -169,6 +169,10 @@ const mul21 = extend2(mul, 2, 1)
 `mul21` 与 `mul` 作用于两个 rank 为 2 的 Tensor 的效果并不一样，
 `mul21` 可以用来实现 matrix-vector multiplication。
 
+注意，对于 `extend2` 之类的高阶 tensor 函数，
+只有当考虑 tensor 的 shape 的时候，
+其类型才能有效地约束函数的范围。
+
 # 10: Doing the Neuron Dance
 
 如何构造更复杂的，模仿人类神经网络的函数，作为 target 函数呢？
