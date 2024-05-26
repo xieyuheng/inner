@@ -192,6 +192,20 @@ mul21: ([a, m, n], [a, n]) -> [a, m, n]
 mul21: ([a, m, n], [a, n]) -> [a, a, m, n]
 ```
 
+TODO 用 dependent type 描述 `extend2` 的类型将会是很有趣的挑战。
+
+```cicada
+claim extend2: (
+  fn: (
+    Tensor(firstShape),
+    Tensor(secondShape),
+  ) -> Tensor(resultShape)
+) -> (
+  Tensor(???),
+  Tensor(???),
+) -> Tensor(???)
+```
+
 # 10: Doing the Neuron Dance
 
 如何构造更复杂的，模仿人类神经网络的函数，作为 target 函数呢？
