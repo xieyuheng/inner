@@ -197,6 +197,30 @@ activation 来自神经网络的比喻，
 这类方案叫做 universal approximation。
 
 # 11: In Love with the Shape of Relu
+
+这一章学习神经网络的 layer，
+layer function 是特殊的 target function，
+有一样的类型声明。
+
+有不同类型的 layer：
+
+- dense layers (fully-connected layers)
+
+  In general, the layer function of a dense
+  layer with `m` neurons takes one input tensor of shape `[n]`,
+  and parameters weight of shape `[m, n]` and bias of shape `[m]`,
+  and invokes each of those `m` neurons on input,
+  to produce output tensor of shape `[m]`.
+
+  We say that the width of this layer is `m`.
+
+> **The Law of Dense Layers**
+>       (Initial Version)
+> A dense layer function invokes m neurons on an n element
+> input tensor1 and produces an m element output tensor1.
+
+TODO
+
 # 12: Rock Around the Block
 # 13: An Eye for an Iris
 # Interlude VI: How the Model Trains
