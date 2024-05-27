@@ -99,7 +99,11 @@ line 被称为 target，
 抽出来一个 interface，为下一步做准备。
 
 ```js
-interface Representation { inflate, deflate, update }
+interface Representation {
+  inflate,
+  deflate,
+  update,
+}
 ```
 
 # 8: The Nearer Your Destination, the Slower You Become
@@ -284,7 +288,7 @@ layer function 是特殊的 target function，
 在带有 dependent type 的语言中，
 shape list 就是 layer 的类型参数。
 
-这里很多篇幅用来处理 `k-rule` 的 currying，
+这里很多篇幅用来处理 `k-relu` 的 currying，
 看来带有自动 currying 的语言是必要的。
 
 > The problem is that network functions, as
@@ -292,6 +296,55 @@ shape list 就是 layer 的类型参数。
 > take their arguments t and θ one at a time.
 
 # 12: Rock Around the Block
+
+前一章定义的 `k-relu`，
+给出了 `k` 之后，
+对所接受的 parameters 完全没有约束。
+
+parameters 的 shape list 必须作为分离的 metadata 给出，
+这一章我们改进这一点。
+
+> We begin by introducing blocks.
+> (A block is short for network building block.)
+> A block associates a layer function with its shape list.
+
+可以说是带有一些运行时的类型信息了，
+也许可以在 compose block 的时候用来检查 shape 是否符合？
+
+- 其实不是，在做 composition 的时候，
+  shape list 只是简单地被 append 到一起，
+  shape list 之间并没有什么相互的约束（constraints）。
+
+> Now let's see the real magic in these blocks.
+> A neural network is fully described by a
+> network function and a shape list.
+
+> Oh, that means a neural
+> network can also be a block!
+> So stacking blocks together
+> also produces another block.
+
+找到了！什么？
+范畴的态射。
+那是带有 shape list 的 layer functions。
+
+有 composition 的地方，就有范畴与它的态射，
+而上一章的 `k-relu` 显然是在做 composition，
+因此要找范畴与态射。
+
+但是，如果真的是范畴的话，
+单位元是什么？
+就是对 输入 tensor 而言的 identity function，
+并且忽略 parameters。
+
+想要成为范畴，
+还需要检查复合是满足结合律的，
+这是显然的。
+
+> **The Law of Blocks**
+> Blocks can be stacked to form bigger blocks
+> and complete networks.
+
 # 13: An Eye for an Iris
 # Interlude VI: How the Model Trains
 # Interlude VII: Are Your Signals Crossed?
