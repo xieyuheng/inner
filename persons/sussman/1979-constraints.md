@@ -33,7 +33,100 @@ year: 1979
 
 ## Simple Constraints
 
-TODO 设计嵌入在 JS 中的语法。
+```scheme
+(create zap adder)
+;; 也许等价于
+(define zap (adder))
+
+(>> type? zap) ;=> ADDER
+(>> pathnames? zap) ;=> (A1 A2 SUM)
+(>> type? a1 zap) ;=> CELL
+(>> pathnames? a1 zap) ;=> ()
+```
+
+> A cell is a primitive entity which hath no parts. Cells are used for
+> two things in the constraint language.  They are used to hold
+> computational values, and they can be connected together when
+> building compound constraints.
+
+```scheme
+==> (what-is? (>> sum zap))
+I don't know it. I need:
+  (>> A1 ZAP)
+  (>> A2 ZAP)
+to use rule: (>> ADDER-RULE#1 ZAP)
+
+==> (set-parameter (>> sum zap) 5.8)
+5.8
+
+==> (what-is? (>> sum zap))
+(>> SUM ZAP) = 5.8
+
+==> (why (>> sum zap))
+Because you told me so,
+
+==> (what-is? (>> a1 zap))
+I don't know it. I need:
+  (>> A2 ZAP)
+to use rule: (>> ADDER-RULE#2 ZAP)
+
+==> (set-parameter (>> al zap) -2.8)
+-2.0
+
+==> (what-is? (>> a2 zap))
+(>> A2 ZAP) = 0.7
+
+==> (why-is? (>> a2 zap))
+I used rule (>> AOOER-RULE#3 ZAP) on:
+  (>> SUM ZAP)
+  (>> A1 ZAP)
+```
+
+> We have just illustrated the use of an adder, a typical entity of
+> the constraint language. A constraint enforces a relationship among
+> several entities. If enough information is known to immediately
+> deduce unknown cell values, those values are computed. These new
+> values may enable further deductions. We call this deductive process
+> "propagation of constraints". (Actually, it is values that are
+> propagated, through a network of constraints.)
+
+嵌入在 JS 中：
+
+```typescript
+const zap = adder()
+zap.type //=> adder
+zap.args //=> {"a1": ..., "a2": ..., "sum": ...}
+zap.args.a1.type //=> cell
+zap.args.a1.args //=> {}
+```
+
+好像 cell 与 propagator 是有共同 interface 的 objects。
+
+```typescript
+zap.args.sum.get()
+// I don't know it. I need:
+//   a1
+//   a2
+// to use rule: adder-rule#1
+
+zap.args.sum.set(5.8)
+zap.args.sum.get() //=> 5.8
+
+zap.args.sum.why()
+// Because you told me so,
+
+zap.args.a1.get()
+// I don't know it. I need:
+//   a2
+// to use rule: adder-rule#2
+zap.args.a1.set(-2.0)
+
+zap.args.a2.get() //=> 0,7
+zap.args.a2.why()
+// I used rule aooer-rule#3 on:
+//   sum
+//   a1
+```
 
 ## Networks of Constraints
 
