@@ -346,6 +346,57 @@ parameters 的 shape list 必须作为分离的 metadata 给出，
 > and complete networks.
 
 # 13: An Eye for an Iris
+
+> Degrees of belief is the confidence we have
+> about a certain statement.
+
+> In general, the layers closer to the input are
+> wider than the layers closer to the output.
+
+> The layers closer to the input are responsible
+> for learning some of the more primitive
+> characteristics of the data set, and the layers
+> closer to the output learn more advanced
+> characteristics based on the output produced
+> by the earlier layers.
+
+Breaking the symmetry between neurons
+-- 使用随即的初始 weights。
+
+He initialization for networks that use rectify:
+
+> ... that formula makes sure that in deep
+> networks, the weights stay in a very tight
+> cluster around 0.0 so that when a scalar from
+> the input tensor is multiplied with weights in
+> each layer, the result neither explodes nor
+> vanishes.
+
+> **The Rule of Layer Initialization**
+>          (Initial Version)
+> The bias tensor-1 of a layer is initialized to contain only 0.0
+> The weight tensor-2 of a layer is initialized to random scalars
+> with a central value of 0.0 and a variance of 2/n where n is the
+> length of the input to the layer.
+
+用部分数据来训练，用另一部分数据来测试。
+
+> On larger data sets, the general guideline
+> is to use 20% of the data set for testing.
+> Since our data set here is quite small, we
+> limit the test set to 10%.
+
+> A model is an approximation of an
+> _idealized_ function represented by the data
+> set. This idealized function yields, for
+> every x in the xs of the data set, the
+> corresponding y from ys, but also
+> produces a y for any given x, even if it is
+> not in xs.
+
+这一章的 `randomTensor` 需要用到正态分布。
+要写一个能生成符合正态分布的随机数的函数。
+
 # Interlude VI: How the Model Trains
 # Interlude VII: Are Your Signals Crossed?
 # 14: It's Really Not That Convoluted
