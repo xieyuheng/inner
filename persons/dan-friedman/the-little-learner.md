@@ -417,6 +417,23 @@ He initialization for networks that use rectify:
 > test inputs we have is known as the
 > _accuracy_ of the model.
 
+当决定算法的合适参数（options）时，
+可以尝试不同的参数组合，
+然后用 accurate 来判断参数是否合适。
+
+> This way of testing different
+> combinations for the best one is known as
+>     _grid search_.
+
+尽管这里把 `grid-search` 定义为了一个语法关键词，
+但是也有用函数实现 `grid-search` 的方案，
+并且不依赖 dynamic scope。
+
+这里像是 `grid-search` 这种基于实验的方案，
+让我感到很不舒服，也许是因为与（可以被机器学习的） parameters 相比，
+人们对这些 hyperparameters 的理解并没有那么透彻，
+也许科学的探索就是需要这些实验。
+
 # Interlude VII: Are Your Signals Crossed?
 # 14: It's Really Not That Convoluted
 # 15: …But It Is Correlated!
