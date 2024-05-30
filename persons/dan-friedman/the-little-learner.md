@@ -397,7 +397,26 @@ He initialization for networks that use rectify:
 这一章的 `randomTensor` 需要用到正态分布。
 要写一个能生成符合正态分布的随机数的函数。
 
+引入 model 的概念，
+每次 training 都会获得一个 model，
+但是只是用函数来实现 model 可能是不合适的，
+因为好的 model 的 parameters 应该被保存下来。
+
 # Interlude VI: How the Model Trains
+
+> [for classifiers]
+> We say that the model is accurate for
+> those inputs where the two classes are
+> the same.
+
+> When the classes are not the same,
+> we call them _classification errors_.
+
+> The ratio of the number of accurate
+> classifications to the total number of
+> test inputs we have is known as the
+> _accuracy_ of the model.
+
 # Interlude VII: Are Your Signals Crossed?
 # 14: It's Really Not That Convoluted
 # 15: …But It Is Correlated!
