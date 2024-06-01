@@ -204,3 +204,10 @@ connect(foo.m1, zap.a2)
 就算我们使用 lattice 并要求信息只增，
 或者采纳了「后加入的信息优先」原则，
 Sussman 所描述的这种交互还是有助于 debug 的。
+
+可以发现，propagator 有多种更新策略：
+
+- Web 前端用的 reactive programming -- 响应最新的数据。
+- 积累更精确的解 -- 用 Lattice 来保证 cell 的值单调变化。
+- 当用 programming 实现类型检查时，
+  主要是为了发现并且报告 constraints 之间的冲突。
