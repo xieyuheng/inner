@@ -211,3 +211,28 @@ Sussman 所描述的这种交互还是有助于 debug 的。
 - 积累更精确的解 -- 用 Lattice 来保证 cell 的值单调变化。
 - 当用 programming 实现类型检查时，
   主要是为了发现并且报告 constraints 之间的冲突。
+
+> Two constraints describing electrical
+> devices cannot be directly connected, but must be
+> connected through a node. Additionally, two nodes
+> cannot be directly connected, except through a constraint
+> representing a device.
+
+这与 Petri net 中，用二分图（Bipartite graph）
+来实现超图（hypergraph）很相似。
+
+也许 inet 和 cell complex 也应该用这种方式实现，
+而不是去区分点、边、面等多类元素，
+全部都用不同类型的 点 来实现。
+
+## Ahmost-Hierarchical Systems
+
+TODO
+
+# Constraints and Algebra
+
+TODO
+
+# Computing with Constraints
+
+TODO
