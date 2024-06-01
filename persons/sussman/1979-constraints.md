@@ -225,6 +225,11 @@ Sussman 所描述的这种交互还是有助于 debug 的。
 而不是去区分点、边、面等多类元素，
 全部都用不同类型的 点 来实现。
 
+因为有向图（directed graph）对于用计算机实现而言，
+其实是最为保真的模型，
+因为计算机数据单元，
+与其之间的指针就构成有向图。
+
 ## Ahmost-Hierarchical Systems
 
 TODO
