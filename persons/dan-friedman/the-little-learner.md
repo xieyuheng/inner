@@ -435,6 +435,18 @@ He initialization for networks that use rectify:
 也许科学的探索就是需要这些实验。
 
 # Interlude VII: Are Your Signals Crossed?
+
+利用神经网络，来解码带有噪声的信号。
+
+`tenserZip` -- `[d, n] -> [n, d]` -- 与矩阵转置类似。
+
+> **The Law of Zipped Signals**
+> A signal-2 is formed by zipping signal-1s, and the signal-2 as well
+> as its constituent signal-1s all have the same number of segments.
+
+由于信息开始的时间可能是任意的，
+所以需要使用卷积来消除信号中开始时间的差异。
+
 # 14: It's Really Not That Convoluted
 # 15: …But It Is Correlated!
 # Epilogue - We've Only Just Begun
