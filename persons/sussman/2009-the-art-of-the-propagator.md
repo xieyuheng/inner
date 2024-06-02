@@ -155,6 +155,14 @@ TODO
   (sqrter x^2 x))
 ```
 
+这里可以思考一下 lattice 的表示论，
+即用集合来表示 lattice。
+因为 constraint processing 中有 domain 的概念，
+一个变量的值是一个 domain，即一个集合。
+
+这里也可以结合 formal concept analysis 的理论，
+把集合单纯的 objects 推广成 objects + attributes。
+
 # 5 Generic Operations
 
 用对函数的所有参数的类型和值的 dispatching 来实现 generic operations。
