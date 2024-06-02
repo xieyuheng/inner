@@ -18,6 +18,14 @@ year: 2009
   为了流行可以用类似 JS 语法，
   为了 Sussman 和 Dan 可以用 Scheme 语法。
 
+1979 年的论文也设计了一版 propagator 语言，
+分析这篇四十年后的论文中的语言的演化方向也是有趣的。
+
+# 结论
+
+这个世界上绝对应该有一本 "The Little Propagator"。
+最好是 Dan 和 Sussman 一起写的。
+
 # 1 Introduction
 
 > We use the idea of a propagator network as a computational metaphor
@@ -175,13 +183,68 @@ TODO
 
 ## 6.1 Dependencies for Provenance
 
-TODO
+> We now illustrate these ideas, and the manner in which they fit into
+> the propagator network framework, by building a sequence of sample
+> dependency tracking systems of increasing complexity. We start with
+> a relatively simple system that only tracks and reports the
+> provenance of its data.
+
+和 "Making this work" 一样，
+注意这里的教学法，或者说展示法。
+
+> We now illustrate these ideas，
+> by building a sequence of X
+> of increasing complexity.
+
+> How do we want our provenance system to work? We can make cells
+> and define networks as usual, but if we add supported values as inputs,
+> we get supported values as outputs.
+
+也就是说，我们用 generic operations 的方式实现 dependency。
+具体就是将 operations 扩展到 supported value 上。
+
+所谓 supported value 就是给每个 value
+加上一个 label 的集合，用来简单地（非递归地）标记 value 的来源。
 
 ## 6.2 Dependencies for Alternate Worldviews
 
-TODO
+> The anomaly shown above was a consequence of the loss of information
+> about the derivation of a value due to its sequential accumulation.
+> We can begin to generalize this by allowing a cell to hold more than
+> one value at a time, each justified by its own justification.
+
+是否可以直接用这种方式实现 Horn clause 中的「或」？
+毕竟逻辑式编程中的 substitution 只是特殊的 constraint，
+那么逻辑式编程中的 goal 也只是特殊的 propagator 吗？
+
+这里描述的「未能获得最精确 dependencies」问题，
+是通过更进一步的用户交互来解决的，
+是否有更好的解法？
 
 ## 6.3 Dependencies for Implicit Search
+
+> Implicit generate and test can be viewed as a way of making systems
+> that are modular and independently evolvable.
+
+Sussman 说过，设计语言就在于 "making something implicit"。
+
+> Of course, this gets us into potentially deadly exponential searches
+> through all possible assignments to all the choices that have been
+> made in the program. As usual, modular flexibility can be dangerous.
+
+比如说，如果真的用生成语法的规则生成所有可能的句子，
+通过这种方式来识别某个句子是否属于某个语言，
+这种方式实现起来确实简单，但是复杂度是爆炸的。
+
+> The extension we need make to the system we already have is to add a
+> propagator that makes guesses and manufactures new premises to
+> support them, and modify the contradiction detection machinery to
+> inform the guessers of their mistakes and give them the opportunity
+> to change their minds.
+
+这一章的 footnote 中，也设计了一种简化的基于表达式的构造图的语言。
+
+这一章对搜索的优化太重要了。
 
 TODO
 
