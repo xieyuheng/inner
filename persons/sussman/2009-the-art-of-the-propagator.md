@@ -136,10 +136,70 @@ TODO
 
 # 3 Partial Information
 
+以 interval 为例子，来介绍非平凡的 lattice 数据类型。
+
 # 4 Multidirectional Computation
+
+这里描述的多方向计算与 logic programming 中的反向计算不同，
+这里并不能处理 relation 的多值性，
+而是只有当反方向的计算也形成具有单值性的函数时才能进行。
+
+```scheme
+(define (product x y total)
+  (multiplier x y total)
+  (divider total x y)
+  (divider total y x))
+
+(define (quadratic x x^2)
+  (squarer x x^2)
+  (sqrter x^2 x))
+```
 
 # 5 Generic Operations
 
+用对函数的所有参数的类型和值的 dispatching 来实现 generic operations。
+
 # 6 Dependencies
 
+记录依赖关系是为了处理 beliefs 之间的冲突。
+
+> If we observe inconsistencies we do not crash -- we chuckle!
+
+## 6.1 Dependencies for Provenance
+
+TODO
+
+## 6.2 Dependencies for Alternate Worldviews
+
+TODO
+
+## 6.3 Dependencies for Implicit Search
+
+TODO
+
 # 7 There is More to Do
+
+propagator 可以有两种模式 push 和 pull，
+push 类比 applicative order lambda calculus，
+pull 类比 normal order lambda calculus。
+
+在 pull 的模式下，只有当查询某个 cell 的时候，
+相关的 propagator 才会运行。
+
+> In fact, maintaining separate justifications for
+> the upper and lower bounds of an interval would have eliminated the
+> anomaly of Figure 2.
+
+处理上下界所形成的 constraint 时，
+把上下界分解成上界和下界更方便。
+
+> We come, at the end, to the eternal problem of time.  The structure
+> of a propagator network is space.  To the extent that there is no
+> "spooky" action at a distance, there is no reason to require time
+> to pass uniformly and synchronously in all regions of the network.
+
+我们目前对 propagator 的实现是单线程的，
+可以想像用 actor model 之类的并发模型来实现 propagator。
+
+可以尝试用 shared-memory multithreading 来实现 propagator，
+看看有哪些地方是需要上锁的。
