@@ -128,6 +128,12 @@ propagator heronStep(x: Number, g: Number, h: Number) {
 
 TODO
 
+先描述一个假想的语言，
+然后跟一个 "Making this work"
+来实现这个语言，
+这种格式也是我写 inet 文档时候的格式，
+哈哈。
+
 # 3 Partial Information
 
 # 4 Multidirectional Computation
