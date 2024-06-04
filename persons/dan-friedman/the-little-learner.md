@@ -438,6 +438,12 @@ He initialization for networks that use rectify:
 
 利用神经网络，来解码带有噪声的信号。
 
+介绍莫尔斯码，以及用 tensor 表示莫尔斯码的方式。
+
+为了在书中给出 signal 例子时方便，
+还设计了一种代表 signal 的 tensor 的缩写，
+这也是一种简单的压缩数据的方案。
+
 `tenserZip` -- `[d, n] -> [n, d]` -- 与矩阵转置类似。
 
 > **The Law of Zipped Signals**
@@ -448,6 +454,57 @@ He initialization for networks that use rectify:
 所以需要使用卷积来消除信号中开始时间的差异。
 
 # 14: It's Really Not That Convoluted
+
+> To decode Alice and Bob's messages,
+> we need to now learn about _correlation_
+> between two 1-dimensional signals.
+
+> Correlation is a way to detect the
+> occurrence of a pattern anywhere within
+> a signal.
+
+> We detect a pattern by _scanning_ the
+> signal from beginning to end and
+> measuring the similarity between a
+> portion of the source signal and the
+> pattern.
+
+假设有一个已知的信号模式（pattern signal），
+将它在需要被识别的对象信号（target signal）上扫过（scan），
+然后逐个度量当前信号和信号模式的耦合程度（correlation），
+就能在对象信号上找到最符合信号模式的位置。
+
+可以想像，在带有卷积网络中，
+开始的时候 pattern signal 是未知的，
+需要在学习的过程中找到，因此它们是 parameters。
+
+target signal 在书中被称做 source signal，
+pattern single 也叫做 filter 或者 kernel。
+
+注意在 scan 的时候，
+要用一半 pattern 从边界开始对比，
+这样能够使得结果信号（result signal）
+与 target signal 的长度相等，
+也能够囊括边界上的 partial match。
+
+> **The Law of Correlation**
+>   (Single Filter Version)
+> The correlation of a filter of length m with a source signal1 of
+> length n, where m is odd (given by 2p + 1), is a signal1 of
+> length n obtained by sliding the filter from overlap position −p
+> to overlap position n − p − 1, where each segment of the result
+> signal1 is obtained by taking the dot product of the filter and the
+> overlap in the source at each overlap position.
+
+> What are features?
+> Features are specific kinds of patterns
+> that we look for in the source.
+
+> **The Rule of Filters**
+> Filters are tensor parameters in a θ.
+
+TODO
+
 # 15: …But It Is Correlated!
 # Epilogue - We've Only Just Begun
 # Appendix A: Ghost in the Machine
