@@ -500,12 +500,36 @@ pattern single 也叫做 filter 或者 kernel。
 > Features are specific kinds of patterns
 > that we look for in the source.
 
+刚好我最近的工作在处理属性图（attributed graph）
+中的特征识别（feature recognition），
+很巧在这里遇到 feature 一词。
+也许属性图中的特征也可以用卷积神经网络来识别。
+
 > **The Rule of Filters**
 > Filters are tensor parameters in a θ.
 
-TODO
+> In a typical neural network classifier,
+> we're simultaneously trying to detect
+> multiple features in a single source.
+
+多个 shape 相同的 filter
+可以组成一个 filter bank tensor (or just bank)。
+
+> **The Law of Correlation**
+>    (Filter Bank Version)
+> The correlation of a filter bank of shape (list b m d) with a
+> source signal2 of shape (list n d) is a signal2 of shape (list n b)
+> resulting from zipping the b signals1 resulting from correlating
+> the b filters2 in the bank with the source.
+
+为了保持多个卷积 layer 可以复合，
+对结果做了一次 sum。
+
+TODO 以图片识别为例，从直觉上解释高维度 single 的 correlation。
 
 # 15: …But It Is Correlated!
+
+TODO
 # Epilogue - We've Only Just Begun
 # Appendix A: Ghost in the Machine
 
