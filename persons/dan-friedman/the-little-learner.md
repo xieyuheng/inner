@@ -529,8 +529,54 @@ TODO 以图片识别为例，从直觉上解释高维度 single 的 correlation�
 
 # 15: …But It Is Correlated!
 
+这两章的标题很棒。
+
+> It's Really Not That Convoluted.
+> But It Is Correlated!
+
+因为 CNN 的 C 在原始的论文中代表 convolution（mirrored correlation），
+但是在现代的实现中，没有必要做 mirror。
+
+> Since filters are learned during training of
+> the network, it does not matter if we mirror
+> them or not -- they are learned in the
+> appropriate direction. So we can avoid the
+> mirroring, leaving just the correlation.
+
 TODO
+
 # Epilogue - We've Only Just Begun
+
+## 1 Mathematical foundations
+
+The most relevant mathematical fields:
+
+- Linear Algebra
+- Probability and Statistics
+- Vector Calculus
+
+Condensed presentation of the necessary mathematics:
+
+- Deep Learning [1]
+
+Learning from first principles:
+
+- Coding the Matrix [2]
+- Bayesian Statistics the Fun Way [3]
+
+## 2 Data-generating distributions
+
+TODO
+
+## 3 Tasks
+## 4 Other loss functions
+## 5 More deciders
+## 6 Higher-dimensional signals
+## 7 Natural language systems
+## 8 Generative networks
+## 9 Practical things
+## 10 Onwards, little learners!
+
 # Appendix A: Ghost in the Machine
 
 介绍了利用 Dual Number 进行自动微分的方法，
@@ -556,4 +602,9 @@ Sussman 在讲经典力学的 Scheme 书中也用了这种方法。
 也是 propagator 的主题。
 
 # Appendix B: I Could Have Raced All Day
+
+TODO
+
 # References
+
+TODO
