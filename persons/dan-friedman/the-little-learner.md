@@ -557,12 +557,12 @@ The most relevant mathematical fields:
 
 Condensed presentation of the necessary mathematics:
 
-- Deep Learning [1]
+- Deep Learning [^1]
 
 Learning from first principles:
 
-- Coding the Matrix [2]
-- Bayesian Statistics the Fun Way [3]
+- Coding the Matrix [^2]
+- Bayesian Statistics the Fun Way [^3]
 
 ## 2 Data-generating distributions
 
@@ -620,13 +620,187 @@ Learning from first principles:
 
 ## 5 More deciders
 
-TODO
+> The only decider in previous chapters is _rectify_. While it has a
+> number of very useful properties and is extremely simple, _rectify_
+> is a rather recent development. Earlier neural networks relied on
+> nonlinear functions, for example, the _logistic sigmoid_ and the
+> hyperbolic _tanh_.
+
+leaky rectify 对于避免某些训练时出现大量 0 的情况。
+
+有方案[^6]可以通过学习获得 leaky rectify 中的反向倾斜角的角度，
+而不是作为一个在训练过程中不变的 hyperparameter。
+
+> This function [softmax] always produces a tensor1 that meets the
+> criterion of a probability distribution -- each element in it is
+> between 0.0 and 1.0, and the elements sum to 1.0. Because of this
+> property, a softmax decider is used in conjunction with the
+> cross-entropy loss function (which expects a probability
+> distribution), making it ideal for the last layer of a classifier
+> neural network.
 
 ## 6 Higher-dimensional signals
+
+一维的 signal 包括：
+
+- sounds
+- seismic vibrations
+- variability of temperature
+
+高维的 signal 包括：
+
+- images
+- videos
+
+> Higher-dimensional signals give rise to networks that have much
+> larger θs since we're now dealing with a much larger amount of
+> data. It is not uncommon to see θs containing hundreds of millions
+> of scalar parameters in them.
+
+Examples of these networks that make for
+extremely interesting architectural explorations:
+
+- AlexNet [^7]
+- ResNet [^8]
+- VGG [^9]
+
 ## 7 Natural language systems
+
+> Text-based tasks such as translation and text classification require
+> the processing of natural languages. A neural network designed for
+> natural language processing usually relies on very specific layer
+> structures that allow the network to learn the relationship between
+> words in different parts of a piece of text.
+
+> These networks can learn how ideas are threaded through a sequence
+> of sentences and reproduce them as necessary in tasks like
+> translation and summarization. Networks such as GPT-3 [^10] carry
+> billions of scalars in their θs and are able to handle very complex
+> tasks.
+
+> There are two main kinds of architectures used for text processing.
+> There is a _recurrent_ neural network architecture that uses an
+> output associated with a prior token for processing a future token.
+> This allows the network to develop information about the context in
+> which a given token appears.
+
+> Recurrent networks are rapidly being replaced by a newer form of
+> network based on the idea of _attention_ [^11]. The difference in
+> attention-based networks is that they work on whole sequences rather
+> than one token at a time. They include a processing block known as a
+> _transformer_ that uses attention to provide a mechanism with which
+> the network can learn how each token in the input sequence
+> influences other tokens.
+
+构造一个简单的使用 attention 和 transformer 的网络，
+可以看作是 The Little Learner 的有趣练习，
+毕竟现在 ChatGPT 非常火。
+
 ## 8 Generative networks
+
+有两种主要的 generative network architectures：
+
+- variational autoencoder [^12]
+- generative adversarial network, or GAN [^13]
+
+variational autoencoder 有 encoder 和 decoder 两部分：
+
+- encoder 压缩数据成 code，
+- decoder 可以反过来把随机的 code
+  还原成类似原数据的数据。
+
+这听起来比 ChatGPT 还有趣，感觉类似于人类的想象力，
+比如发现新的图片，乐曲，字体等等。
+
+要知道，人们发现新的数学也在于想象力，
+可否用这种 network 来发现新的数学呢？
+
+generative adversarial network 也有两部分：
+
+- generator -- 把随机数变为带有想要属性的数据，
+- discriminator -- 用来筛选所生成的数据。
+
+> The clever bit about GANs is that their training is designed in a
+> way that both penalizes the discriminator if it is wrong in making a
+> judgment and penalizes the generator if it generates the wrong kind
+> of output.
+
+generative adversarial network（生成对抗网络），
+中的 adversarial（对抗） 就在于此。
+
+这个 clever bit 听起来也是有趣的 idea，具体如何实现呢？
+
+> Training the discriminator and generator together ensures that the
+> generator learns how to produce samples that the discriminator will
+> accept and the discriminator learns to accept only samples that
+> satisfy the application requirements.
+
 ## 9 Practical things
+
+> One of the most important elements of the design of a neural network
+> is its _capacity_, which can roughly be thought of as the number of
+> scalars in its θ.
+
+> If the network has too few, then it won't learn enough about the
+> training set, a condition known as _underfitting_.  If it has too
+> many, then it will learn to be very specific to the training set,
+> a condition known as _overfitting_.
+
+> Even if a network has the appropriate capacity, training it with too
+> few revs can lead to underfitting, while training it with too many
+> can lead to overfitting.
+
+> Either underfitting or overfitting or both might cause the network
+> to not perform optimally. The network will fail to _generalize_ to
+> points that lie outside the training set. Selecting networks with
+> the right capacity and choosing the hyperparameters carefully is a
+> very critical part of the network training process.
+
+这里，可能是因为我们还欠缺足够强大的数学理论来理解 hyperparameters，
+因此实验就很重要，最好不要满足于找到合适的 hyperparameters，
+而是要勇于做关于 hyperparameters 的假设，
+然后用实验数据来验证假设。
+
+这样就和科学研究非常类似了。
+
+实用的技巧：
+
+> First, it always helps to properly track the metrics of a network as
+> it trains.  Tracking the training loss, i.e., the value produced by
+> the loss function at each of the revs, helps follow how well the
+> network is training.
+
+设计结构化的 log 来记录实验过程。
+
+> Second, using a proper validation set to track the relevant
+> performance metric associated with the network (such as accuracy of
+> predictions) helps determine if the training is proceeding
+> correctly.
+
+比如之前用到的 grid-search。
+
+> Third, techniques like _regularization_ are used to manage the
+> effectiveness of training. Regularization is the name given to a
+> technique of adding an additional term to the loss function that
+> influences the direction the gradient descent takes. See Good-fellow
+> et al. [^1] for examples of regularization.  This helps train the
+> network without under- or over-training it, which improves the
+> overall performance of the network for its designated task.
+
+> Fourth, initialization of weights is a significant part of
+> training. He et al. [^6] proposed the initialization scheme used in
+> this book. This scheme is useful with rectifier-based networks.
+> Other schemes such as the one proposed by Glorot et al. [^14] help
+> with other types of networks.
+
 ## 10 Onwards, little learners!
+
+> This epilogue is a whirlwind tour of the topics and sources for
+> curious readers to pursue. With the understanding of neural networks
+> gained from this book, we hope these topics are less formidable than
+> they would otherwise have been.
+
+> À bientôt
 
 # Appendix A: Ghost in the Machine
 
@@ -658,4 +832,30 @@ TODO
 
 # References
 
-TODO
+[^1]: I. Goodfellow, Y. Bengio, and A. Courville, Deep Learning. MIT Press, 2016.
+
+[^2]: P. N. Klein, Coding the Matrix: Linear Algebra Through Applications to Computer Science. Newtonian Press, 2013.
+
+[^3]: W. Kurt, Bayesian Statistics the Fun Way. No Starch Press, Inc., 2019.
+
+[^4]: L. Hui and M. Belkin, “Evaluation of neural architectures trained with square loss vs cross-entropy in classification tasks,” in 9th International Conference on Learning Representations, ICLR 2021, OpenReview.net, 2021.
+
+[^5]: A. L. Maas, “Rectifier nonlinearities improve neural network acoustic models,” 2013.
+
+[^6]: K. He, X. Zhang, S. Ren, and J. Sun, “Delving deep into rectifiers: Surpassing human-level performance on imagenet classification,” in Proceedings of the IEEE International Conference on Computer Vision (ICCV), December 2015.
+
+[^7]: A. Krizhevsky, I. Sutskever, and G. E. Hinton, “Imagenet classification with deep convolutional neural networks,” in Advances in neural information processing systems, 2012.
+
+[^8]: K. He, X. Zhang, S. Ren, and J. Sun, “Deep residual learning for image recognition,” in IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2016.
+
+[^9]: K. Simonyan and A. Zisserman, “Very deep convolutional networks for large-scale image recognition,” in International Conference on Learning Representations, 2015.
+
+[^10]: T. Brown, B. Mann, N. Ryder, et al., “Language models are few-shot learners,” in Advances in Neural Information Processing Systems (H. Larochelle et al., eds.), vol. 33, Curran Associates, Inc., 2020.
+
+[^11]: A. Vaswani, N. Shazeer, N. Parmar, et al., “Attention is all you need,” in Advances in Neural Information Processing Systems (I. Guyon et al., eds.), vol. 30, Curran Associates, Inc., 2017.
+
+[^12]: D. P. Kingma and M. Welling, “Auto-Encoding Variational Bayes,” in 2nd International Conference on Learning Representations, ICLR 2014, Banff, AB, Canada, April 14-16, 2014, Conference Track Proceedings, 2014.
+
+[^13]: I. Goodfellow, J. Pouget-Abadie, et al., “Generative adversarial nets,” in Advances in Neural Information Processing Systems (Z. Ghahramani, M. Welling, et al., eds.), vol. 27, Curran Associates, Inc., 2014.
+
+[^14]: X. Glorot and Y. Bengio, “Understanding the difficulty of training deep feedforward neural networks,” in Proceedings of the Thirteenth International Conference on Artificial Intelligence and Statistics, PMLR, 2010.
