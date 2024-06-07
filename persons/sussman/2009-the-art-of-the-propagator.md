@@ -1,6 +1,6 @@
 ---
 title: The Art of the Propagator
-authors: [Alexey Radul, Gerald Jay Sussman]
+authors: [Alexey Andreyevich Radul, Gerald Jay Sussman]
 year: 2009
 ---
 
