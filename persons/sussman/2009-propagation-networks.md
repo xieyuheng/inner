@@ -256,6 +256,12 @@ lattice 作为抽象的数学结构，
 cell 只要实现这个 interface 就好。
 
 # 3 Core Implementation
+
+我先按照 "The Art" 中的顺序实现一版 propagator，
+再回到这里的顺序。
+
+TODO
+
 # 4 Dependencies
 # 5 Expressive Power
 # 6 Towards a Programming Language
