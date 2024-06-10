@@ -127,6 +127,9 @@ h = (g + x/g) / 2
 是一种 call-by-need，即在运行时动态构造出更大的 propagator network，
 此时 network 的规模和递归的次数成正比，这显然是不可取方案。
 
+- 这也许是 "Propagation Networks" 这篇论文，
+  中不再以 heron 迭代为例子的原因。
+
 正确的方案需要引入 lattice，
 因为对于这里的逼近问题，
 可以用 `good-enuf?` 来定义一个 lattice。
