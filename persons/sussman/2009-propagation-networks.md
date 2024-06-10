@@ -266,3 +266,197 @@ TODO
 # 5 Expressive Power
 # 6 Towards a Programming Language
 # 7 Philosophical Insights
+
+
+
+# Bibliography
+
+[Abdelmeged et al., 2007] Ahmed Abdelmeged, Christine Hang, Daniel Rinehart, and Karl Lieberherr (2007). Superresolution and P-Optimality in Boolean MAX-CSP Solvers. Transition.
+
+[Abelson et al., 1996] Harold Abelson, Gerald Jay Sussman, and Julie Sussman (1984, 1996). Structure and Interpretation of Computer Programs. MIT Press, Cambridge, MA.
+
+[Allen et al., 2005] E. Allen, D. Chase, V. Luchangco, J.W. Maessen, S. Ryu, G.L. Steele Jr, S. Tobin-Hochstadt, J. Dias, C. Eastlund, J. Hallett, et al. (2005). The Fortress Language Specification. Sun Microsystems.
+
+[Andersen, 1837] Hans Christian Andersen (1837). The Emperor’s New Clothes. In Tales for Children.
+
+[Apt, 2003] Krzysztof R. Apt (2003). Principles of Constraint Programming. Cambridge University Press, Cambridge, UK.
+
+[Apt et al., 1999] Krzysztof R. Apt, Victor W. Marek, Miroslaw Truszczynski, and David S. Warren, editors (1999). The Logic Programming Paradigm: a 25-Year Perspective. Springer, Berlin; New York.
+
+[Athanassakis, 1983] Apostolos N. Athanassakis (1983). Hesiod: Theogony, Works and Days and The Shield of Heracles. Johns Hopkins University Press, Baltimore and London. p.90.
+
+[Bacchus et al., 2003] Fahiem Bacchus, Shannon Dalmao, and Toniann Pitassi (2003). Value Elimination: Bayesian Inference via Backtracking Search. In Uncertainty in Artificial Intelligence, pages 20–28.
+
+[Bonawitz, 2008] Keith A. Bonawitz (2008). Composable Probabilistic Inference with Blaise. CSAIL Tech Report MIT-CSAIL-TR-2008-044, MIT Computer Science and Artificial Intelligence Laboratory, Cambridge, MA.
+
+[Borning, 1979] Alan H. Borning (1979). ThingLab–a Constraint-Oriented Simulation Laboratory. PhD thesis, Stanford University, Stanford, CA, USA.
+
+[Borning, 1981] Alan H. Borning (1981). The Programming Language Aspects of ThingLab, a Constraint-Oriented Simulation Laboratory. ACM Transactions on Programming Languages and Systems, 3(4):353–387.
+
+[Bricklin and Frankston, 1999] Dan Bricklin and Bob Frankston (1999). VisiCalc: Information from its Creators, Dan Bricklin and Bob Frankston. http://bricklin.com/visicalc.htm.
+
+[Calandra, 1961] Alexander Calandra (1961). The Teaching of Elementary Science and Mathematics. Washington University Press, St. Louis.
+
+[Calandra, 1968] Alexander Calandra (1968). Angels on a Pin. Saturday Review.
+
+[Cooper, 2008] Gregory H. Cooper (2008). Integrating Dataflow Evaluation into a Practical Higher-Order Call-by-Value Language. PhD thesis, Brown University.
+
+[Cooper and Krishnamurthi, 2004] Gregory H. Cooper and Shriram Krishnamurthi (2004). FrTime: Functional Reactive Programming in PLT Scheme. Computer science technical report CS-03-20, Brown University.
+
+[Cooper and Krishnamurthi, 2006] Gregory H. Cooper and Shriram Krishnamurthi (2006). Embedding Dynamic Dataflow in a Call-by-Value Language. Lecture Notes in Computer Science, 3924:294.
+
+[Cormen et al., 2001] T.H. Cormen, C.E. Leiserson, R.L. Rivest, and C. Stein (2001). Introduction to Algorithms. MIT Press, Cambridge, MA.
+
+[de Kleer, 1976] Johan de Kleer (1976). Local Methods for Localizing Faults in Electronic Circuits. AI Memo 394, MIT Artificial Intelligence Laboratory, Cambridge, MA.
+
+[de Kleer and Brown, 1992] Johan de Kleer and John Seely Brown (1992). Model-Based Diagnosis in SOPHIE III. Readings in Model-Based Diagnosis.
+
+[Dinesman, 1968] Howard P. Dinesman (1968). Superior Mathematical Puzzles, with Detailed Solutions. Simon and Schuster, New York, NY.
+
+[Doyle, 1978] Jon Doyle (1978). Truth Maintenance Systems for Problem Solving. AI Memo 419, MIT Artificial Intelligence Laboratory, Cambridge, MA.
+
+[Doyle, 1890] Sir Arthur Conan Doyle (1890). The Sign of the Four. Lippincott’s Monthly Magazine. Available online at http://www.gutenberg.org/files/2097/2097-h/2097-h.htm.
+
+[Driscoll et al., 1989] James R. Driscoll, Neil Sarnak, Daniel D. Sleator, and Robert E. Tarjan (1989). Making Data Structures Persistent. Journal of Computer and System Sciences, 38(1).
+
+[Elliott and Hudak, 1997] Conal Elliott and Paul Hudak (1997). Functional Reactive Animation. In Proceedings of the second ACM SIGPLAN International Conference on Functional Programming, pages 263–273. Association for Computing Machinery, New York, NY.
+
+[Erman et al., 1980] L.D. Erman, F. Hayes-Roth, V.R. Lesser, and D.R. Reddy (1980). The Hearsay-II Speech-Understanding System: Integrating Knowledge to Resolve Uncertainty. ACM Computing Surveys (CSUR), 12(2):213–253.
+
+[Ernst et al., 1998] M. Ernst, C. Kaplan, and C. Chambers (1998). Predicate Dispatching: A Unified Theory of Dispatch. Lecture Notes in Computer Science, pages 186–211.
+
+[Floyd, 1967] Robert W. Floyd (1967). Nondeterministic Algorithms. Journal of the ACM (JACM), 14(4):636–644.
+
+[Forbus and de Kleer, 1993] Kenneth D. Forbus and Johan de Kleer (1993). Building Problem Solvers. MIT Press, Cambridge, MA.
+
+[Friedman and Wand, 2007] Daniel P. Friedman and Mitchell Wand (2007). Essentials of Programming Languages. MIT Press, Cambridge, MA, 3rd edition.
+
+[Goodman et al., 2008] N.D. Goodman, V.K. Mansinghka, D. Roy, K. Bonawitz, and J.B. Tenenbaum (2008). Church: a Language for Generative Models. In Uncertainty in Artificial Intelligence.
+
+[Gosling et al., 2005] J. Gosling, B. Joy, G. Steele, and G. Bracha (2005). The Java (TM) Language Specification. Addison-Wesley Professional.
+
+[Gupta et al., 1996] Vineet Gupta, Radha Jagadeesan, and Vijay Saraswat (1996). Models for Concurrent Constraint Programming. Lecture Notes in Computer Science, pages 66–83.
+
+[Hand, 2009] Linda Hand (2009). Have you found all three easter eggs in this document? In Look Carefully, page 7. MIT Press, Cambridge, MA.
+
+[Hanson, 2007] Chris Hanson (2007). Personal communication.
+
+[Hanson et al., 2005] Chris Hanson et al. (2005). MIT/GNU Scheme Reference Manual. Massachusetts Institute of Technology, Cambridge, MA. http://www.gnu.org/software/mit-scheme/documentation/mit-scheme-ref/index.html. The code presented in this dissertation was run specifically on MIT/GNU Scheme Release 7.7.90.+, Snapshot 20080401, under a GNU/Linux operating system.
+
+[Hayes-Roth, 1985] Frederick Hayes-Roth (1985). Rule-Based Systems. Communications of the ACM, 28(9):921–932.
+
+[Heath, 1921] Thomas Little Heath (1921). A History of Greek Mathematics. Clarendon Press, Oxford.
+
+[Hewitt, 1969] Carl E. Hewitt (1969). Planner: A Language for Proving Theorems in Robots. In Proceedings of the International Joint Conference on Artificial Intelligence, pages 295–301.
+
+[Hudak et al., 1999] Paul Hudak, John Peterson, and Joseph H. Fasel (1999). A Gentle Introduction to Haskell 98. Online tutorial.
+
+[Jaynes, 2003] Edwin T. Jaynes (2003). Probability Theory: The Logic of Science. Cambridge University Press, Cambridge, UK.
+
+[Johnston et al., 2004] W.M. Johnston, J.R.P. Hanna, and R.J. Millar (2004). Advances in Dataflow Programming Languages. ACM Computing Surveys, 36(1):1–34.
+
+[Jones, 2002] Simon L. Peyton Jones (2002). Tackling the Awkward Squad: Monadic Input/Output, Concurrency, Exceptions, and Foreign-Language Calls in Haskell. Engineering theories of software construction.
+
+[Kelsey et al., 1998] Richard Kelsey, William D. Clinger, Jonathan Rees, et al. (1998). Revised5 Report on the Algorithmic Language Scheme. SIGPLAN Notices, 33(9):26–76.
+
+[Kiczales et al., 1999] Gregor Kiczales, Daniel G. Bobrow, and Jim des Rivières (1999). The Art of the Metaobject Protocol. MIT Press, Cambridge, MA.
+
+[Konopasek and Jayaraman, 1984] Milos Konopasek and Sundaresan Jayaraman (1984). The TK! Solver Book: a Guide to Problem-Solving in Science, Engineering, Business, and Education. Osborne/McGraw-Hill.
+
+[Liang et al., 1995] S. Liang, P. Hudak, and M. Jones (1995). Monad Transformers and Modular Interpreters. In Proceedings of the 22nd ACM SIGPLAN-SIGACT symposium on Principles of Programming Languages, pages 333–343. Association for Computing Machinery, New York, NY.
+
+[Lieberherr, 1977] Karl Lieberherr (1977). Information Condensation of Models in the Propositional Calculus and the P=NP Problem. PhD thesis, ETH Zurich. 145 pages, in German.
+
+[Lloyd, 1987] J.W. Lloyd (1987). Foundations of Logic Programming. SpringerVerlag, New York, NY.
+
+[McAllester, 1978] David Allen McAllester (1978). A Three Valued Truth Maintenance System. AI Memo 473, MIT Artificial Intelligence Laboratory, Cambridge, MA.
+
+[McAllester, 1990] David Allen McAllester (1990). Truth Maintenance. In Proceedings of the Eighth National Conference on Artificial Intelligence, volume 2, pages 1109–1116. AAAI Press.
+
+[McCarthy, 1963] John McCarthy (1963). A Basis for a Mathematical Theory of Computation. In P. Braffort and D. Hirschberg, editors, Computer Programming and Formal Systems, pages 33–70. North-Holland, Amsterdam.
+
+[Mikkelson and Mikkelson, 2007] Barbara Mikkelson and David Mikkelson (2007). The Barometer Problem. http://www.snopes.com/college/exam/barometer.asp.
+
+[Milch et al., 2005] B. Milch, B. Marthi, S. Russell, D. Sontag, D.L. Ong, and A. Kolobov (2005). BLOG: Probabilistic Models with Unknown Objects. In Proceedings of the Nineteenth Joint Conference on Artificial Intelligence.
+
+[Müller, 2001] Tobias Müller (2001). Constraint Propagation in Mozart. PhD thesis, Universität des Saarlandes, Saarbrücken.
+
+[Nilsson et al., 2002] H. Nilsson, A. Courtney, and J. Peterson (2002). Functional Reactive Programming, Continued. In Proceedings of the 2002 ACM SIGPLAN workshop on Haskell, pages 51–64. Association for Computing Machinery, New York, NY.
+
+[Nilsson and Małuszyński, 1995] Ulf Nilsson and Jan Małuszyński (1995). Logic, Programming and Prolog. Wiley, second edition.
+
+[Norvig, 2004] Peter Norvig (2004). Paradigms of Artificial Intelligence Programming: Case Studies in Common LISP. Morgan Kaufmann.
+
+[Ockham, 1340] William of Ockham (ca. 1340). Ockham’s razor.
+
+[Park et al., 2005] S. Park, F. Pfenning, and S. Thrun (2005). A Probabilistic Language Based upon Sampling Functions. In Proceedings of the 32nd ACM SIGPLAN-SIGACT symposium on Principles of Programming Languages, pages 171–182. Association for Computing Machinery, New York, NY.
+
+[Pfeffer, 2001] Avi Pfeffer (2001). IBAL: A Probabilistic Rational Programming Language. In International Joint Conferences on Artificial Intelligence, pages 733–740.
+
+[Pfeffer, 2007] Avi Pfeffer (2007). The Design and Implementation of IBAL: A General-Purpose Probabilistic Language. In An Introduction to Statistical Relational Learning, pages 399–432. MIT Press, Cambridge, MA.
+
+[Piponi, 2006] Dan Piponi (2006). You Could Have Invented Monads! (And Maybe You Already Have.). Weblog post. http://sigfpe.blogspot.com/2006/08/you-could-have-invented-monads-and.html.
+
+[Puget, 1998] J.F. Puget (1998). A Fast Algorithm for the Bound Consistency of Alldiff Constraints. In Proceedings of the National Conference on Artificial Intelligence, pages 359–366. John Wiley & Sons Ltd.
+
+[Radul, 2007] Alexey Radul (2007). Report on the Probabilistic Language Scheme. In DLS ’07: Proceedings of the 2007 symposium on Dynamic languages, pages 2–10. Association for Computing Machinery, New York, NY. http://hdl.handle.net/1721.1/39831.
+
+[Radul and Sussman, 2009a] Alexey Radul and Gerald Jay Sussman (2009a). The (Abridged) Art of the Propagator. In Proceedings of the 2009 International Lisp Conference, pages 41–56, Cambridge, MA. Association of Lisp Users, Sterling, Virginia, USA.
+
+[Radul and Sussman, 2009b] Alexey Radul and Gerald Jay Sussman (2009b). The Art of the Propagator. CSAIL Tech Report MIT-CSAIL-TR-2009-002, MIT Computer Science and Artificial Intelligence Laboratory, Cambridge, MA. http://hdl.handle.net/1721.1/44215.
+
+[Ramsey and Pfeffer, 2002] Norman Ramsey and Avi Pfeffer (2002). Stochastic Lambda Calculus and Monads of Probability Distributions. Proceedings of the 29th ACM SIGPLAN-SIGACT symposium on Principles of Programming Languages, pages 154–165.
+
+[Royce, 1970] Winston W. Royce (1970). Managing the Development of Large Software Systems. In Proceedings, IEEE WESCON, pages 1–9.
+
+[Russell and Norvig, 1995] Stuart J. Russell and Peter Norvig (1995). Artificial Intelligence: a Modern Approach. Prentice-Hall, Inc. Upper Saddle River, NJ, USA.
+
+[Schulte and Stuckey, 2008] C. Schulte and P.J. Stuckey (2008). Efficient Constraint Propagation Engines. Transactions on Programming Languages and Systems, 31(1).
+
+[Shivers, 1991] Olin Shivers (1991). Control-Flow Analysis of Higher-Order Languages. PhD thesis, Carnegie Mellon University, Pittsburgh, PA. CMU-CS-91-145.
+
+[Shivers, 1999] Olin Shivers (1999). SRFI 1: List Library. Scheme Requests for Implementation. http://srfi.schemers.org/srfi-1/srfi-1.html.
+
+[Siskind and McAllester, 1993] Jeffrey Mark Siskind and David Allen McAllester (1993). Screamer: A Portable Efficient Implementation of Nondeterministic Common Lisp. Technical report IRCS-93-03, University of Pennsylvania Institute for Research in Cognitive Science.
+
+[Sitaram, 2004] Dorai Sitaram (2004). Teach Yourself Scheme in Fixnum Days. Online at http://www.ccs.neu.edu/home/dorai/ty-scheme/ty-scheme.html.
+
+[Smolka, 1995] Gert Smolka (1995). The Oz Programming Model. Lecture Notes in Computer Science, 1000:324–343.
+
+[Stallman and Sussman, 1977] Richard Matthew Stallman and Gerald Jay Sussman (1977). Forward Reasoning and Dependency-Directed Backtracking in a System for Computer-Aided Circuit Analysis. Artificial Intelligence, 9:135–196.
+
+[Steele Jr., 1980] Guy L. Steele Jr. (1980). The Definition and Implementation of a Computer Programming Language Based on Constraints. AI Memo 595, MIT Artificial Intelligence Laboratory, Cambridge, MA.
+
+[Steele Jr. and Sussman, 1980] Guy L. Steele Jr. and Gerald Jay Sussman (1980). Constraints-A Language for Expressing Almost-Hierarchical Descriptions. Artificial Intelligence, 14(1):1–39.
+
+[Strachey, 1967] Christopher Strachey (1967). Fundamental Concepts in Programming Languages. Lecture notes for International Summer School in Computer Programming.
+
+[Strachey, 2000] Christopher Strachey (2000). Fundamental Concepts in Programming Languages. Higher-Order and Symbolic Computation, 13(1):11–49.
+
+[Stroustrup et al., 1991] Bjarne Stroustrup et al. (1991). The C++ Programming Language. Addison-Wesley Reading, MA.
+
+[Sulzmann and Stuckey, 2007] M. Sulzmann and P.J. Stuckey (2007). HM (X) Type Inference is CLP (X) Solving. Journal of Functional Programming, 18(02):251–283.
+
+[Sussman et al., 2001] Gerald Jay Sussman, Jack Wisdom, and M.E. Mayer (2001). Structure and Interpretation of Classical Mechanics. MIT Press, Cambridge, MA.
+
+[Sutherland, 1963] Ivan E. Sutherland (1963). SketchPad: A Man-Machine Graphical Communication System. PhD thesis, Massachusetts Institute of Technology, Cambridge, MA.
+
+[Tack, 2009] Guido Tack (2009). Constraint Propagation - Models, Techniques, Implementation. PhD thesis, Saarland University, Germany.
+
+[Van Hentenryck, 1989] Pascal Van Hentenryck (1989). Constraint Satisfaction in Logic Programming. MIT Press, Cambridge, MA.
+
+[Van Roy, 2005] Peter Van Roy (2005). Multiparadigm Programming in Mozart/Oz. Springer.
+
+[Van Roy and Haridi, 2004] Peter Van Roy and Seif Haridi (2004). Concepts, Techniques, and Models of Computer Programming. MIT Press, Cambridge, MA.
+
+[Waltz, 1972] David L. Waltz (1972). Generating Semantic Description from Drawings of Scenes with Shadows. PhD thesis, Massachusetts Institute of Technology, Cambridge, MA.
+
+[Waltz, 1975] David L. Waltz (1975). Understanding Line Drawings of Scenes with Shadows. The Psychology of Computer Vision, pages 19–91.
+
+[Wan and Hudak, 2000] Z. Wan and Paul Hudak (2000). Functional Reactive Programming from First Principles. ACM SIGPLAN Notices, 35(5):242–252.
+
+[Zabih, 1987] Ramin Zabih (1987). Dependency-Directed Backtracking in Non-Deterministic Scheme. Master’s thesis, Massachusetts Institute of Technology, Cambridge, MA.
+
+[Zabih, 1998] Ramin Zabih (1998). Dependency-Directed Backtracking in Non-Deterministic Scheme. AI Memo 956, MIT Artificial Intelligence Laboratory, Cambridge, MA.
+
+[Zabih et al., 1987] Ramin Zabih, David Allen McAllester, and David Chapman (1987). Non-Deterministic Lisp with Dependency-Directed Backtracking. In Proceedings of AAAI 87, pages 59–64.
