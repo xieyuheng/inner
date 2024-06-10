@@ -72,26 +72,6 @@ h = (g + x/g) / 2
 作者提到了 ugly code，
 也就是认为嵌入在 Scheme 中的 propagator 的语法是不够好的。
 
-尝试设计类 JS 的具体语法：
-
-```cicada
-propagator add(x: Number, y: Number, z: Number) {
-  // 带有多个运行方向的 primitive propagator。
-  TODO
-}
-
-propagator div(x: Number, y: Number, z: Number) {
-  TODO
-}
-
-// 还是用类似函数的语法，但是输入 cells，
-// 然后 connect cells。
-
-propagator heronStep(x: Number, g: Number, h: Number) {
-  div(add(g, div(x, g)), 2，h)
-}
-```
-
 尝试设计类 Scheme 的具体语法：
 
 ```scheme
@@ -134,7 +114,22 @@ propagator heronStep(x: Number, g: Number, h: Number) {
 利用 currying 和多返回值，把 expression language
 解释为 graph assembly language 的方案。
 
-TODO
+> What is interesting is the mechanism of iteration (or recursion)
+> that we use.  A propagator does something only if it has inputs
+> worth working on.  A `compound-propagator` builds its body when
+> presented with values in all of the cells declared as its inputs.
+> The `sqrt-iter` propagator (see Figure 1) uses switches to connect
+> inputs to the `heron-step` and the recursive call only if the
+> `good-enuf?` test is not satisfied. This is not the only way to do
+> recursion, but it is a good start.
+
+用 `compound-propagator` 来实现递归的 propagator，
+是一种 call-by-need，即在运行时动态构造出更大的 propagator network，
+此时 network 的规模和递归的次数成正比，这显然是不可取方案。
+
+正确的方案需要引入 lattice，
+因为对于这里的逼近问题，
+可以用 `good-enuf?` 来定义一个 lattice。
 
 先描述一个假想的语言，
 然后跟一个 "Making this work"
