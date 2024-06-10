@@ -126,6 +126,9 @@ h = (g + x/g) / 2
 用 `compound-propagator` 来实现递归的 propagator，
 是一种 call-by-need，即在运行时动态构造出更大的 propagator network，
 此时 network 的规模和递归的次数成正比，这显然是不可取方案。
+因为与递归函数在栈中的展开不同，
+函数可以通过 return 来回收栈的空间，
+但是动态构造的 propagator network 并不会被回收。
 
 - 这也许是 "Propagation Networks" 这篇论文，
   中不再以 heron 迭代为例子的原因。
