@@ -195,7 +195,11 @@ Network 的运行有三种情况：
 > We should think of a cell as a thing that accumulates _information
 > about_ a value.
 
-这是这篇论文的主要贡献，即用 Lattice。
+这是这篇论文的主要贡献，即用 lattice。
+
+注意，lattice 要求交换律，
+但是也许有实用的信息积累过程，
+并不满足交换律。
 
 > The basic philosophical reason why cells must accumulate
 > incrementally refinable information is that computation in
@@ -263,11 +267,129 @@ cell 只要实现这个 interface 就好。
 TODO
 
 # 4 Dependencies
+
+TODO
+
 # 5 Expressive Power
+
+TODO
+
 # 6 Towards a Programming Language
+
+TODO
+
 # 7 Philosophical Insights
 
+## 7.1 On Concurrency
 
+> We are used to thinking, both in our everyday lives and in our
+> computer programs, of things as happening in a sequence.
+
+这是 concurrency 成问题的原因。
+
+> In point of fact, concurrency is the natural state of affairs, and
+> synchronicity is what's difficult.
+
+大自然是非串行的，只不过计算机是串行才好 debug 的。
+
+> The physical world in which we live is perfectly concurrent: every
+> little patch of universe evolves on its own, according to local
+> rules, and physical effects travel from one patch to another at a
+> finite speed (which we even know: 299,792,458 meters per second).
+
+> As a matter of physics, time in the universe is partially ordered: A
+> occurs before B if and only if A has any chance of influencing B, to
+> wit if and only if light emitted at A can reach the location of B
+> before B occurs.  Over sufficiently large spaces or sufficiently
+> small times this entails pairs of events neither of which occurred
+> before the other, because light hasn't the time to reach in either
+> direction.
+
+尽管可以用宏观和高速的物理学来讨论时间，
+但是在人类大部分时候所观察的尺度中，
+时间还是全序的，而不是偏序的。
+
+> Our experience of time appears as a linear stream of events only
+> because our memory imposes an order on them, which is the order in
+> which events are remembered to have occurred.
+
+这就像是说，一个命题正确与否，取决于我是否倾向于相信这个命题。
+这显然是错误的，甚至相信这种准则，将是不利于我在世间生存的。
+
+下面讨论电子电路中的时间问题，算是回到了实用的范畴。
+解释了为什么计算机必然向多核发展，
+因此类似 propagator 的计算模型必将大行其道。
+
+> The obvious thing to do is to make some variation on multicore
+> computers, which consist of many complete locally-synchronous computer
+> blocks. Unfortunately, the standard rendition of this idea is fatally
+> flawed because it provides for a large memory that the cores all
+> share. This large memory implicitly imposes a linear order on the
+> reads and writes that it experiences. Since synchronizing concurrent
+> things well is hard, the implicit synchronization done by such a
+> memory is terrible. As a consequence of the pervasive, terrible
+> synchronization, it appears that all concurrent programming is hard.
+
+批判了多核共享内存的方案。
+也许我可以以「制作非共享内存的 CPU」为目标项目，
+来学习电子电路。
+
+也许作者这里对共享内存的批判是错误的
+（因此上面的项目根本就是不切合实际的），
+因为 Forth 的创造者设计过多核，局部内存的芯片，
+但是芯片中 cell 的拓扑是固定的，
+每个 cell 只能直接与周围的邻居通讯，
+而 propagator 要求 cell 的拓扑可变。
+
+> Propagators don't magically solve the hard problem of synchronizing
+> concurrent systems, they merely move it where it belongs -- away
+> from the "concurrent" and to the "synchronizing".
+
+呼应前文。
+
+## 7.2 On Time and Space
+
+> At the bottom of modern computation lie the highly parallel laws of
+> electromagnetism, and the solid state physics of devices, that
+> describe the behavior of electrical circuits.
+
+> Thus we are come full-circle: from asynchronous devices with local
+> communication; through computers that forcibly synchronize them; to
+> simulations of asynchronous devices with local communication.
+
+指在传统计算模型中模拟 propagator networks 的行为。
+
+## 7.3 On Side Effects
+
+想要让一个语言实用，就必须处理 side effects。
+
+如何在 propagator model 中处理 side effects，
+我在实现 inet 的时候也遇到过这个问题。
+
+在 inet 中，不处理，也是一种选择，
+因为可以返回表达式，被另一个带有 side effects 的语言解释。
+
+在 propagator model 中，
+用 actor model 的消息传递来处理 side effects
+看来是自然而然的选择。
+
+> The essential reason why side effects tend to mess up models of
+> computation is that side effects inescapably introduce time.
+
+其实并非如此，
+因为消息传递作为重要且通用的 side effects，
+是异步的。
+
+# 后记
+
+Imagine propagator networks run.
+
+想象 propagator networks 运行起来的样子。
+形成计算结果的方式与之前不同了。
+尝试类比类似的过程。
+类似构造蛋白质的过程？
+
+再想象。
 
 # Bibliography
 

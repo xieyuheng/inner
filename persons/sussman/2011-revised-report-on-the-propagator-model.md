@@ -51,6 +51,14 @@ source: "https://groups.csail.mit.edu/mac/users/gjs/propagators"
 
 > This work was supported in part by the MIT Mind Machine Project.
 
+这篇论文的 abstract，
+对「propagator model 有什么用？」这个问题，
+给出了新的软件工程方面的答案。
+
+先知道了一个新计算的存在，
+然后慢慢发现应用领域
+（毕竟项目的时间跨越了 30 多年）。
+
 # Propagator System
 
 > Although most of this document introduces you to the
