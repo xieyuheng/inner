@@ -274,7 +274,7 @@ cell 只要实现这个 interface 就好。
 而在 "The Art" 中，每次调用 `add-content`
 都会自动运行所有相关的 propagators。
 修改很简单，只要把 `add-content` 中马上调用所有 propagators 的地方，
-改成把 propagators 交给 scheduler 就行了（比如保存到 scheduler 的队列里）。
+改成把 propagators 交给（submit） scheduler 就行了（比如保存到 scheduler 的队列里）。
 
 - 在实现 inet 的时候，
   我所设计的用户接口也是先构造 network 再调用 `run`。
