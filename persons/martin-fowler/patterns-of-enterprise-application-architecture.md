@@ -1,7 +1,7 @@
 ---
 title: Patterns of Enterprise Application Architecture
 author: Martin Fowler
-date: 2003
+year: 2003
 ---
 
 # Preface

@@ -268,7 +268,41 @@ cell 只要实现这个 interface 就好。
 因为在迭代中逼近一个数字，需要用特殊的 lattice 来处理，
 而不能用简单的平凡 lattice。
 
-TODO
+与 "The Art" 相比，这里的实现需要 scheduler，
+因此在用户接口上，用户每次设置好 cell 中的初始值时，
+需要调用 `run` 才能看 propagator network 的结果。
+而在 "The Art" 中，每次调用 `add-content`
+都会自动运行所有相关的 propagators。
+修改很简单，只要把 `add-content` 中马上调用所有 propagators 的地方，
+改成把 propagators 交给 scheduler 就行了（比如保存到 scheduler 的队列里）。
+
+- 在实现 inet 的时候，
+  我所设计的用户接口也是先构造 network 再调用 `run`。
+
+从图论的角度来考虑这里所描述的实现，
+cells 和 propagators 形成一个（无向）二分图，
+这个二分图中的边是通过 cells 和 propagators 之间的双向引用来实现的，
+
+- 一个 cell 引用一个 propagator 的方式是，
+  把它保存在一个这个 cell 所拥有的 propagator 的列表里。
+
+- 而一个 propagator 是一个 unary closure，
+  它引用一个 cell 的方式是在 closure 的 env 中，
+  引用了某个保存这个 cell 的变量。
+
+这与我的 inet 实现不同，
+在 inet 中我是真的设计了代表 graph 的数据结构，
+然后用来表示 inet。
+
+这里的，具有教学意义的实现顺序是：
+
+- 先实现 cell。
+
+  - 推迟 scheduler 的实现，
+    让 `add-content` 立刻运行所有的 propagator，
+    或者用最简单的 scheduler + queue。
+
+- TODO 再实现 propagator。
 
 ## 3.2 Propagation can Go in Any Direction
 
