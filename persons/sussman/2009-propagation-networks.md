@@ -261,8 +261,24 @@ cell 只要实现这个 interface 就好。
 
 # 3 Core Implementation
 
-我先按照 "The Art" 中的顺序实现一版 propagator，
-再回到这里的顺序。
+## 3.1 Numbers are Easy to Propagate
+
+注意，与 "The Art" 不同，这里没有用带有循环的 Heron 迭代作为第一个例子，
+而是用了更简单的 `fahrenheitToCelsius`。
+因为在迭代中逼近一个数字，需要用特殊的 lattice 来处理，
+而不能用简单的平凡 lattice。
+
+TODO
+
+## 3.2 Propagation can Go in Any Direction
+
+TODO
+
+## 3.3 We can Propagate Intervals Too
+
+TODO
+
+## 3.4 Generic Operations let us Propagate Anything!
 
 TODO
 
@@ -275,6 +291,8 @@ TODO
 TODO
 
 # 6 Towards a Programming Language
+
+## 6.1 Conditionals Just Work
 
 TODO
 

@@ -59,6 +59,11 @@ source: "https://groups.csail.mit.edu/mac/users/gjs/propagators"
 然后慢慢发现应用领域
 （毕竟项目的时间跨越了 30 多年）。
 
+可以感到，作者在为 propagator model 寻找应用场景，
+其实基于 propagator model 的类型检查器就是最有趣的应用场景，
+因为每种逻辑就对应一种类型系统，因此有各种各样的类型检查器有待开发。
+Sussman 也曾经说过，类型检查不过是 constraint solving 而已。
+
 # Propagator System
 
 > Although most of this document introduces you to the
