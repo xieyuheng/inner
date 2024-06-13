@@ -303,7 +303,7 @@ cells 和 propagators 形成一个（无向）二分图，
 自然的是 directed graph，
 graph 是 directed graph + 双向连接。
 
-这里的，具有教学意义的实现顺序是：
+这里作者给出的，具有教学意义的实现顺序是：
 
 - 先实现 cell。
 
@@ -311,7 +311,7 @@ graph 是 directed graph + 双向连接。
     让 `add-content` 立刻运行所有的 propagator，
     或者用最简单的 scheduler + queue。
 
-- TODO 再实现 propagator。
+- 再实现 propagator。
 
 ## 3.2 Propagation can Go in Any Direction
 
