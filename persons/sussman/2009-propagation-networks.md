@@ -294,6 +294,15 @@ cells 和 propagators 形成一个（无向）二分图，
 在 inet 中我是真的设计了代表 graph 的数据结构，
 然后用来表示 inet。
 
+在 inet 中，edge 是有具体存在的，
+而在 propagator network 中，
+由于使用了二分图，edge 就是简单的用指针实现的双向连接了。
+
+并且 inet 中的 edge 是用两个 half-edge 来实现的，
+也就是说，在冯诺依曼构架下，所实现的东西，
+自然的是 directed graph，
+graph 是 directed graph + 双向连接。
+
 这里的，具有教学意义的实现顺序是：
 
 - 先实现 cell。
