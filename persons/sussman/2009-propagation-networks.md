@@ -313,13 +313,57 @@ graph 是 directed graph + 双向连接。
 
 - 再实现 propagator。
 
+与 "The Art" 中使用 Heron 迭代，而需要在初期就实现 `if` 不同，
+这里可以把 `if` 的实现推迟到大后期。
+
 ## 3.2 Propagation can Go in Any Direction
 
-TODO
+到这里我们只是用 propagator network 模拟了 expression，
+还没有处理的重要 feature 有：
+
+- Recursion (Section 6.2)
+- Compound data (Section 6.2)
+- Higher order function (Future work)
+  - 看来作者也没有明白如何处理高阶函数，
+    我在 inet 的实现中也没有明白如何处理高阶函数。
+    但是这也许并不难，
+    只要让 propagator definition
+    （或者说 propagator constructor）
+    成为一种 value 就可以了，
+    在探索的初期，
+    这个 value 所属的 lattice 可以是平凡的。
 
 ## 3.3 We can Propagate Intervals Too
 
-TODO
+> One of the original motivations for examining propagators is that
+> multidirectional constraints are very easy to express in terms of
+> unidirectional propagators.
+
+> This does not yet constitute a full constraint solving system,
+> because it will get confused by circularities in the constraints
+> (which amount to simultaneous equations).  We will return to that
+> problem later (Section 5.3), but for now even this facility can
+> already be useful if it could integrate seamlessly with general
+> programming, and it is already painful to try to build directly in
+> expression-land.
+
+TODO 这里说与 "a full constraint solving system" 相比还欠缺的属性，
+我还不理解。
+也许到 (Section 5.3) 可以理解。
+
+一个 `fahrenheit-celsius` 比分别写
+`fahrenheit->celsius` 与 `celsius->fahrenheit` 要简单，
+一个 `fahrenheit-celsius` 作为 API，使用起来也比两个函数要简单。
+当我们再加一个 `celsius-kelvin` 的时候，
+三种单位之间的换算需要六个独立的单向转换函数，
+但是们只要把两个 propagator network 连接起来就行了。
+
+看了这个例子，我想也许 propagator 可以在 Web 前端，
+取代单方向的 reactive programming，
+作为表达能力更强的范式，
+来简化某些 Web 前端中遇到的问题。
+但是注意，一定要有真实的案例支撑论点才行，
+不能为了推广自己的方案而骗人。
 
 ## 3.4 Generic Operations let us Propagate Anything!
 
