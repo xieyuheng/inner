@@ -333,8 +333,6 @@ graph 是 directed graph + 双向连接。
     在探索的初期，
     这个 value 所属的 lattice 可以是平凡的。
 
-## 3.3 We can Propagate Intervals Too
-
 > One of the original motivations for examining propagators is that
 > multidirectional constraints are very easy to express in terms of
 > unidirectional propagators.
@@ -364,6 +362,13 @@ TODO 这里说与 "a full constraint solving system" 相比还欠缺的属性，
 来简化某些 Web 前端中遇到的问题。
 但是注意，一定要有真实的案例支撑论点才行，
 不能为了推广自己的方案而骗人。
+
+## 3.3 We can Propagate Intervals Too
+
+Cell 能够从任意多个方向接受信息，
+那么下一步自然就想用 cell 来整合多个方向发来的部分信息。
+
+TODO
 
 ## 3.4 Generic Operations let us Propagate Anything!
 
