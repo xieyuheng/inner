@@ -525,7 +525,27 @@ defineHandler(merge, [isNothing, isAnything], (content, increment) => increment)
 
 ## A.2 The Scheduler
 
-TODO
+> ... it is, in fact, especially important that the scheduler not make
+> too many promises, because a helpful promise that supports one
+> application is a shackle that restrains another.
+
+实现一个极简的 scheduler，
+只为了在单线程的情况下模拟 propagator 网络。
+
+有 scheduler 之后，需要 explicit use `run`，
+而不是在每次 `addContent` 时候自动 `run` 了。
+
+抽出来这个显示的 `run` 之后，可以支持：
+
+- inspect scheduler 的状态。
+- 让 scheduler 在运行的时候打 log。
+- scheduler 在运行时的 profiling。
+
+TODO 读论文中 scheduler 的代码。
+
+- 论文要求 `schedule` 函数是 idempotent 的，
+  这要求我们不能在 `definePrimitive` 中创建 closure。
+- 如何做错误处理，也可以模仿论文中的实现。
 
 ## A.3 Primitives for Section 3.1
 
