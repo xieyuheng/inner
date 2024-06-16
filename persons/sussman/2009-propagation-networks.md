@@ -368,11 +368,19 @@ TODO 这里说与 "a full constraint solving system" 相比还欠缺的属性，
 Cell 能够从任意多个方向接受信息，
 那么下一步自然就想用 cell 来整合多个方向发来的部分信息。
 
-TODO
+这里没有急着做抽象，
+而是直接加 if else 让实例代码能够跑过，
+类似 Sandi Metz 的 "Shameless Green"。
 
 ## 3.4 Generic Operations let us Propagate Anything!
 
-TODO
+这里有必要用 generic function + dispatching，
+而不能用简单的 interface，因为需要扩展的函数 merge 是二元函数，
+并且应该根据两个参数的类型来 dispatch。
+
+如果 generic dispatch 如此重要，是否在设计 cicada 的时候，
+也应该用 generic dispatch 而不应该用简单而 OOP 呢？
+这样，在使用 sexp 时，就没有 dot 语法上的设计难题了。
 
 # 4 Dependencies
 
@@ -489,6 +497,51 @@ TODO
 其实并非如此，
 因为消息传递作为重要且通用的 side effects，
 是异步的。
+
+# A Details
+
+## A.1 The Generic Operations System
+
+这里描述的是一个简单的运行时的 predicate dispatch system。
+
+我们在 JavaScript 中实现的 API 如下：
+
+```javascript
+// const generic = defineGeneric({ default?: ... })
+// defineHandler(generic, predicates, (...args) => ...)
+```
+
+例如：
+
+```javascript
+export const merge = defineGeneric({
+  default: (content, increment) =>
+    increment === content ? content : theContradiction,
+})
+
+defineHandler(merge, [isAnything, isNothing], (content, increment) => content)
+defineHandler(merge, [isNothing, isAnything], (content, increment) => increment)
+```
+
+## A.2 The Scheduler
+
+TODO
+
+## A.3 Primitives for Section 3.1
+
+TODO
+
+## A.4 Data Structure Definitions
+
+TODO
+
+## A.5 Generic Primitives
+
+TODO
+
+## A.6 Miscellaneous Utilities
+
+TODO
 
 # 后记
 
