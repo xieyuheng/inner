@@ -563,40 +563,6 @@ TODO
 
 TODO
 
-# 后记
-
-## 想象运行
-
-Imagine propagator networks run.
-
-想象 propagator networks 运行起来的样子。
-形成计算结果的方式与之前不同了。
-尝试类比类似的过程。
-类似构造蛋白质的过程？
-
-再想象。
-
-## back propagation 适合用 propagator network 来理解
-
-用 propagator network 来实现 back propagation 将是很自然的事情，
-在一般的 expression 语言中，需要非常复杂技巧才能完成的计算，
-在 propagator network 中几乎是平凡的。
-
-用 "The Little Learner" 中的技巧去实现 back propagation，
-看起来还是非常难理解的。
-
-但是如果画出 propagator network，
-就容易理解多了。
-
-可以说 propagator model 是一种理解计算的方式，
-在其中，相邻的节点之间，可以沿任意方向，以任意的方式，传播信息，
-而不是像 expression tree 中那样，只能沿着一个方向传播信息。
-
-## inet v.s. pnet
-
-- inet -- interaction nets
-- pnet -- propagation nets
-
 # Bibliography
 
 [Abdelmeged et al., 2007] Ahmed Abdelmeged, Christine Hang, Daniel Rinehart, and Karl Lieberherr (2007). Superresolution and P-Optimality in Boolean MAX-CSP Solvers. Transition.
@@ -788,3 +754,37 @@ Imagine propagator networks run.
 [Zabih, 1998] Ramin Zabih (1998). Dependency-Directed Backtracking in Non-Deterministic Scheme. AI Memo 956, MIT Artificial Intelligence Laboratory, Cambridge, MA.
 
 [Zabih et al., 1987] Ramin Zabih, David Allen McAllester, and David Chapman (1987). Non-Deterministic Lisp with Dependency-Directed Backtracking. In Proceedings of AAAI 87, pages 59–64.
+
+# 后记
+
+## 想象运行
+
+Imagine propagator networks run.
+
+想象 propagator networks 运行起来的样子。
+形成计算结果的方式与之前不同了。
+尝试类比类似的过程。
+类似构造蛋白质的过程？
+
+再想象。
+
+## back propagation 适合用 propagator network 来理解
+
+用 propagator network 来实现 back propagation 将是很自然的事情，
+在一般的 expression 语言中，需要非常复杂技巧才能完成的计算，
+在 propagator network 中几乎是平凡的。
+
+用 "The Little Learner" 中的技巧去实现 back propagation，
+看起来还是非常难理解的。
+
+但是如果画出 propagator network，
+就容易理解多了。
+
+可以说 propagator model 是一种理解计算的方式，
+在其中，相邻的节点之间，可以沿任意方向，以任意的方式，传播信息，
+而不是像 expression tree 中那样，只能沿着一个方向传播信息。
+
+## inet v.s. pnet
+
+- inet -- interaction nets
+- pnet -- propagation nets
