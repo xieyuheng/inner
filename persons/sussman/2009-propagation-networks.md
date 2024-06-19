@@ -378,9 +378,25 @@ Cell 能够从任意多个方向接受信息，
 而不能用简单的 interface，因为需要扩展的函数 merge 是二元函数，
 并且应该根据两个参数的类型来 dispatch。
 
-如果 generic dispatch 如此重要，是否在设计 cicada 的时候，
-也应该用 generic dispatch 而不应该用简单而 OOP 呢？
-这样，在使用 sexp 时，就没有 dot 语法上的设计难题了。
+- 如果 generic dispatch 如此重要，是否在设计 cicada 的时候，
+  也应该用 generic dispatch 而不应该用简单而 OOP 呢？
+  这样，在使用 sexp 时，就没有 dot 语法上的设计难题了。
+
+首先 `merge` 本身要被定义为 generic 函数。
+
+其次在 define primitive propagator 的时候，
+要以 generic 为基础来做定义。
+
+- 注意这里的技巧，
+  在用 `function->propagator-constructor` 时，
+  套上了一个 lifting 函数 -- `nary-unpacking`：
+
+  > ... to have a common mechanism to handle
+  > sufficiently uniform types of partial information.
+
+  以一般的方式处理，某些不用知道具体类型就可以处理的 partial information。
+  在实现 cicada 的时候，我也经常用类似的技巧。
+  `nary-unpacking` 的具体定义要看 A.5.1 一节。
 
 # 4 Dependencies
 
