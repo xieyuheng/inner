@@ -143,6 +143,10 @@ h = (g + x/g) / 2
 这种格式也是我写 inet 文档时候的格式，
 哈哈。
 
+"Making this work" 放在前面，
+有点类似 TDD 中先用测试来设计 API，
+然后再实现。
+
 # 3 Partial Information
 
 以 interval 为例子，来介绍非平凡的 lattice 数据类型。

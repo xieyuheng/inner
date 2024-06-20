@@ -345,8 +345,7 @@ graph 是 directed graph + 双向连接。
 > programming, and it is already painful to try to build directly in
 > expression-land.
 
-TODO 这里说与 "a full constraint solving system" 相比还欠缺的属性，
-我还不理解。
+这里说与 "a full constraint solving system" 相比还欠缺的属性，我还不理解。
 也许到 (Section 5.3) 可以理解。
 
 一个 `fahrenheit-celsius` 比分别写
@@ -400,7 +399,121 @@ Cell 能够从任意多个方向接受信息，
 
 # 4 Dependencies
 
+人类可以处理相互冲突的信念（inconsistent beliefs）而不死机。
+但是纯粹的古典逻辑不行。
+
+> Our personal belief systems appear to be locally consistent, in that
+> there are no contradictions apparent.  If we observe inconsistencies
+> we do not crash -- we chuckle!
+
+人类在思考中，
+所能追求的，也是所应该追求的，
+仅仅是局部的一致性，
+而不是全局的一致性。
+
+> Dependency decorates metadata to data.  The metadata records the
+> justifications for the data.  Every piece of data (or procedure)
+> came from somewhere.  Either it entered the computation as a premise
+> that can be labeled with its external provenance, or it was created
+> by combining other data. We can add methods to our primitive
+> operations which, when processing or combining data that is
+> decorated with justifications, can decorate the results with
+> appropriate justifications.
+
+首先是简单地，在函数作用的过程中，
+用 metadata 来追踪 external provenance 的集合（称为 premises）。
+
+以加法为例子，与 data 的相加平行的是作为集合的 premises 的 union。
+
+这只是 dependency 所能引出的最简单的概念，
+论文一共有三层 dependency 所引出的概念：
+
+- dependencies for provenance
+- dependencies for alternate worldviews
+- dependencies for implicit search
+
+如果这些概念都能通过扩展 merge 来实现，
+并且这些扩展还是渐进的，
+那将是极好的。
+
+关于 alternate worldviews：
+
+> By decorating data with dependencies a system can manage and
+> usefully compute with multiple, possibly inconsistent world views.
+> A world view is a subset of the data that is supported by a given
+> set of explicit assumptions. Each computational process may restrict
+> itself to working with some consistent world view.  Dependencies
+> allow a system to separate the potentially contradictory
+> consequences of different assumptions, and make useful progress by
+> exercising controlled incredulity.
+
+关于 implicit search：
+
+> If a contradiction is discovered, a process can determine the
+> particular **nogood set** of inconsistent premises. The system can
+> then "chuckle", realizing that no computations supported by any
+> superset of those premises can be believed; computations can proceed
+> in worldviews that do not include the nogood set. This chuckling
+> process, **dependency-directed backtracking**, can be used to
+> optimize a complex search process, allowing a search to make the
+> best use of its mistakes.
+
+关于 dependency-directed backtracking 的文献：
+
+- [Stallman and Sussman, 1977]
+- [Lieberherr, 1977]
+- [Zabih et al., 1987]
+
+即使没有 implicit search 这个重要的应用，
+在 propagator 中支持 alternate worldviews 这个 idea 也很有价值：
+
+> But enabling a process to simultaneously hold beliefs based on
+> mutually inconsistent sets of premises, without logical disaster, is
+> itself revolutionary.
+
+> ... dependency tracking is extremely useful in its own right, for
+> provenance information, world-view separation, and search.
+
+关于 dependency tracking，
+我想到了在 web 前端中实现 reactive programming 时，
+用到的自动的 dependency tracking，
+即 `watchEffect(fn)` 时，会把 `fn` 保存到某个全局变量中，
+在读 `ref` （类似 cell），
+或经过 proxy 来读 reactive object 的 attribute 时，
+会在 `ref` 中记录对这个 `fn` 的依赖
+（类似 cell 要保存依赖了自己的 propagators）。
+
+> Observe that as we evolve our dependency tracking system below, we
+> need make no changes to any of the code already presented, whether
+> to cells, basic propagators, or the scheduler.  All our changes are
+> just new partial information structures.  The core propagation
+> system is as modular and flexible as promised in the beginning.
+
+> As a case in point, when the system needs to change its world-view,
+> as may happen in search, it can do so directly through a partial
+> information structure—no provision for this is necessary in the
+> toplevel controller of the propagation system. This stands in stark
+> contrast to traditional constraint satisfaction, where search is an
+> additional, special-purpose external control loop commanding the
+> propagation proper.
+
+实现神经网络时所做的 back propagation，也可以说是 "a special-purpose
+external control loop commanding the propagation proper"。
+
+## 4.1 Dependencies Track Provenance
+
+我想这里用 supported value 来命名，
+意味着 value supported by evidence (provenance information)，
+另外又用 premise 来命名，让人想到 premise 的集合，作为命题的集合在逻辑意义上的且。
+
+直接用 lisp symbol 来代表 premise，
+也让人想到命题逻辑中代表命题的 atom。
+
 TODO
+
+## 4.2 Dependencies Support Alternate Worldviews
+## 4.3 Dependencies Explain Contradictions
+## 4.4 Dependencies Improve Search
 
 # 5 Expressive Power
 
