@@ -509,6 +509,49 @@ external control loop commanding the propagation proper"。
 直接用 lisp symbol 来代表 premise，
 也让人想到命题逻辑中代表命题的 atom。
 
+将 `merge` 扩展到 supported value，
+其实是结构化地将 `merge` 扩展到了，
+能作用于平行的两部分数据 -- interval 和 set。
+也许我们要先将 `merge` 扩展到 `Set`。
+
+A justified-intervals anomaly:
+
+```
+A:     [           ]
+B:           [        ]
+-----------------------
+A,B:         [     ]
+C:         [   ]
+-----------------------
+A,B,C:       [ ]
+```
+
+即 supports 的集合可能与 supported value put 进来的顺序有关，
+
+> The deep reason why this happens is that an interval is really a
+> compound of the upper and lower bounds, and it is profitable to
+> track those dependencies separately; we will study that question, in
+> its general form, in Section 6.3. This anomaly will also become less
+> severe as a consequence of the worldview support we will add in
+> Section 4.2.
+
+> The important thing is to describe how to merge the information
+> contained in two such data structures; see Figure 4-2. The value
+> contained in the answer must of course be the merge of the values
+> contained in the two inputs, but sometimes we may get away with
+> using only some of the supporting premises. There are three cases:
+> if neither the new nor the old values are redundant, then we need
+> both their supports; if either is strictly redundant, we needn’t
+> include its support; and if they are equivalent, we can choose which
+> support to use. In this case, we use the support of the value
+> already present unless the support of the new one is strictly more
+> informative (i.e., is a strict subset of the same premises).
+
+也就是说，这里用的并不是集合意义上的 lattice，
+或者说根本就不是 lattice，
+因为集合在一般情况下做了并，
+但是在某个特殊情况下做了交。
+
 TODO
 
 ## 4.2 Dependencies Support Alternate Worldviews
