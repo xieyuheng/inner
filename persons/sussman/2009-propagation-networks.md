@@ -732,6 +732,84 @@ TODO
 
 ## A.5 Generic Primitives
 
+这里用 generic 实现了 monad，
+需要复习一下 monad。
+
+```cicada
+given M: (Type) -> Type,
+given A: Type,
+claim unit: (A) -> M(A)
+
+given M: (Type) -> Type
+given A: Type
+given B: Type
+claim bind: (M(A), (A) -> M(B)) -> M(B)
+
+given M: (Type) -> Type
+given A: Type
+claim flatten: M(M(A)) -> M(A)
+```
+
+如果 `bind` 的类型是（交换上面的参数顺序的）
+`((A) -> M(B), M(A)) -> M(B)`，
+并且假设 `a |> f = f(a)` 那么：
+
+```cicada
+bind(g, bind(f, a)) =
+a
+|> bind(f)
+|> bind(g)
+```
+
+这可以代替 do notation 来形成易读的语法。
+
+注意如果 `bind` 是中缀表达式的 `>>=`
+（用 monad 在前的参数顺序），
+也可以达到上面的效果。
+
+```cicada
+a >>= f
+  >>= g
+```
+
+可以说 `|>` 是想用一个中缀表达式，
+代替诸多中缀表达式。
+但是代价是传统的 `bind` 的参数要交换位置。
+也许应该更名叫 `chain`。
+
+要为了这一节复习 monad，
+其实只要知道：
+
+```haskell
+ma >>= f <-> (join ∘ (map f)) ma
+bind(ma, f) <-> join(map(f, ma))
+```
+
+也就是：
+
+```scheme
+(define (generic-bind thing function)
+  (generic-flatten (generic-unpack thing function)))
+```
+
+`generic-unpack` 其实是 `map`，
+或者用 haskell 的 `fmap` 命名更好一些。
+
+在 JS 实现中，我们的定义如下 generic function：
+
+- fmap
+- join
+- bind
+- pure
+
+`nary-unpacking` 应该是：
+
+```cicada
+naryFmap: ((A1, A2, ...) -> B) -> (M(A1), M(A2), ...) -> M(B)
+```
+
+但是按照文章中的定义，所定义的可能是 `naryBind`。
+
 TODO
 
 ## A.6 Miscellaneous Utilities
