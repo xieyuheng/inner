@@ -509,6 +509,9 @@ external control loop commanding the propagation proper"。
 直接用 lisp symbol 来代表 premise，
 也让人想到命题逻辑中代表命题的 atom。
 
+同时，premises 作为 symbol 的集合，
+也让人想到 formal concept analysis 中对偶的 object 与 attribute。
+
 将 `merge` 扩展到 supported value，
 其实是结构化地将 `merge` 扩展到了，
 能作用于平行的两部分数据 -- interval 和 set。
