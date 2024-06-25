@@ -555,9 +555,16 @@ A,B,C:       [ ]
 因为集合在一般情况下做了并，
 但是在某个特殊情况下做了交。
 
+但是其实在某种情况下用并，
+但是在另外特定的情况下用交，
+可能还是可以构成一个 lattice。
+
 TODO
 
 ## 4.2 Dependencies Support Alternate Worldviews
+
+TODO
+
 ## 4.3 Dependencies Explain Contradictions
 ## 4.4 Dependencies Improve Search
 
