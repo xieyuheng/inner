@@ -563,10 +563,89 @@ TODO
 
 ## 4.2 Dependencies Support Alternate Worldviews
 
-TODO
+关于这里的命名，我不想用 TMS 这个所写，而是用 `BeliefSystem`。
+
+```typescript
+type BeliefSystem = {
+  beliefs: Array<Supported>
+}
+```
+
+可以理解为是 cell 的 belief system，
+每个 cell 可以相信一些信息，
+这些信息以 supported 的形式存在，
+并且 promises 之间可能存在冲突。
+
+这里论文中的命名有些乱：
+
+- supported.support 也被称作 promises 和 worldview。
+
+注意，supported 是 cell 可以保存的一种信息，
+而不是 put （或 add-content）接口函数的一部分。
+
+注意，cell 保存的信息可能会升级，
+Number -> Interval -> Supported -> BeliefSystem，
+保存的信息越来越多，并且只能递增不能减少。
+当一个 cell 里已经保存着 BeliefSystem 了，
+再往里加 Supported，得到的还是 BeliefSystem。
+也就是说 cell 所保存的值所在的偏序关系，是跨类型的。
+
+- BeliefSystem 中和「或」相关的语义，
+  可能和分配格的理论类似。
+
+如何避免这里所用的 global worldview？
 
 ## 4.3 Dependencies Explain Contradictions
+
+> As promised, contradictory beliefs are not traumatic.
+> The deep reason contradiction handling works so well is that
+> `the-contradiction` is just another partial information state,
+> and our truth maintenance machinery operates on partial information
+> by design.
+
 ## 4.4 Dependencies Improve Search
+
+> Implicit generate-and-test can be viewed as a way of making systems
+> that are modular and independently evolvable.
+
+generate-and-test 是 Sussman 经常提到的一个关键词（一个关键 idea）。
+
+> A better way to handle this issue is to build backtracking into the
+> infrastructure.
+
+这就是 Sussman 所说的，
+设计程序语言的意义在与，
+能够把一个东西变成 implicit。
+
+- 这不一定要通过设计新的语法来完成，
+  也可以以函数为语法，在函数复合的限制下完成。
+
+  - 浅嵌入就是如此。
+
+- 但是函数有的时候确实是不够的，
+  虽然图灵完备，但是写起来太啰嗦。
+
+> It is, and should be, the receiver’s responsibility to determine if
+> the ingredients to its computation are appropriate and acceptable.
+
+比如，在实现 web app 的时候，
+前端作为 receiver，要能接入任何后端，
+即使后端的 API 是错的，
+前端也要给出有意义的交互。
+
+> We can reap the benefit of this modular flexibility by burying
+> search into the already-implicit control flow of the propagator
+> network.
+
+我想，这和 datalog 的 forward chaining 应该很像，
+在 datalog 中，每个关系作为一个数据库，
+保存着 clauses（限于 facts），
+这个数据库在 forward chaining 一直在演化和递增。
+而在 propagator 中，cell 就是这样的数据库，
+当里面保存的是带有「或」语义的 `BeliefSystem` 时，
+就和 datalog 的一个关系中保存 clauses 的情况类似。
+
+TODO
 
 # 5 Expressive Power
 
