@@ -103,6 +103,16 @@ merge 两份信息，会得到更多的信息，
 因为我们可以将递归函数视作是由无穷多个 partial maps 的极限。
 
 ## Diagrams: the art of drawing ordered sets
+
+和图论一样，ordered sets （的有限局部）可以被画出来。
+由于 below 这个关系中间可能有别的元素，
+所以为了画图，需要重新定义一个中间没有元素的关系。
+比如称作 beneath 或者 cover。
+
+根据 order 的公理，所画出来的是无圈的有向图。
+
+TODO
+
 ## Constructing and de-constructing ordered sets
 ## Down-sets and up-sets
 ## Maps between ordered sets
