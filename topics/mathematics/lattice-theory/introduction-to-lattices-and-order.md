@@ -15,6 +15,8 @@ year: 2002
 
 # 1. Ordered sets
 
+## Ordered sets
+
 一个 ordered set 就在于 reflexivity，antisymmetry 与 transitivity。
 
 - (1) x == y -> x <= y & y <= x
@@ -39,7 +41,7 @@ less than or equal to 太长了，也许 lteq 可以，
 - 集合的包含关系 x is included in y
 - 命题的蕴含关系 x implies y
 
-## 1.7 Ordered sets in the humanities and social sciences
+## Examples from social science and computer science
 
 注意这里定义 interval order 的方式不是 interval 之间的包含关系，
 而是两个 interval 的数字之间的大小关系：
@@ -47,6 +49,8 @@ less than or equal to 太长了，也许 lteq 可以，
 ```
 x <= y := x.right <= y.left
 ```
+
+- 后面也会提到用 interval 之间的包含关系来定义的 order。
 
 这一章提到的 social choice function 非常有趣。
 这是关于投票，或者集体意志和集体偏好的。
@@ -65,7 +69,44 @@ x <= y := x.right <= y.left
 
 可以说哪里有排序，哪里就有比较，也就有序理论。
 
-TODO
+> ..., concept analysis builds an ordered set which reveals inherent
+> hierarchical structure and thence natural groupings and dependencies
+> among the objects and the attributes.
+
+formal concept analysis 也被算到 humanities 这一节了，
+其实将其看作是计算机科学，甚至是纯数学也可以。
+
+- 在 propagator 的 cell 中，保存 supported value 时，
+  support 的集合越小，代表信息越多，
+  也许应该被理解为 FCA 中的 attributes。
+
+将要讲序理论在计算机领域的应用了，
+这与我们的目的 propagator，息息相关了。
+
+> In each case, a relation ⩾ serves to capture the notion of "is at
+> least as informative as", with the precise interpretation depending
+> on the context.
+
+也就是说，就在 propagator 的 cell 中保存 interval 而言，
+interval A 被包含在 B 中，反而代表 A 更精确，包含的信息更多，
+因此 A ⩾ B -- A is at least as informative as b。
+
+propagator 用的正是这种意义上的序关系，
+merge 两份信息，会得到更多的信息，
+及在 ⩾ 的意义上更大。
+
+这里定义程序的时候，其实只要以 record 为 value，
+就可以将处理输入 state 和输出 state 的 program，
+理解为处理输入 record 和输出 record 的 function 了。
+
+这里 partial maps 显然是关于递归函数的，
+因为我们可以将递归函数视作是由无穷多个 partial maps 的极限。
+
+## Diagrams: the art of drawing ordered sets
+## Constructing and de-constructing ordered sets
+## Down-sets and up-sets
+## Maps between ordered sets
+## Exercises
 
 # 2. Lattices and complete lattices
 # 3. Formal concept analysis
