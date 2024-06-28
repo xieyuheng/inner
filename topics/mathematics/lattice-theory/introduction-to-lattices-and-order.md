@@ -76,9 +76,10 @@ x <= y := x.right <= y.left
 formal concept analysis 也被算到 humanities 这一节了，
 其实将其看作是计算机科学，甚至是纯数学也可以。
 
-- 在 propagator 的 cell 中，保存 supported value 时，
-  support 的集合越小，代表信息越多，
-  也许应该被理解为 FCA 中的 attributes。
+[propagator] 在 propagator 的 cell 中，
+保存 supported value 时，
+support 的集合越小，代表信息越多，
+也许应该被理解为 FCA 中的 attributes。
 
 将要讲序理论在计算机领域的应用了，
 这与我们的目的 propagator，息息相关了。
@@ -87,10 +88,9 @@ formal concept analysis 也被算到 humanities 这一节了，
 > least as informative as", with the precise interpretation depending
 > on the context.
 
-也就是说，就在 propagator 的 cell 中保存 interval 而言，
+[propagator] 也就是说，就在 propagator 的 cell 中保存 interval 而言，
 interval A 被包含在 B 中，反而代表 A 更精确，包含的信息更多，
 因此 A ⩾ B -- A is at least as informative as b。
-
 propagator 用的正是这种意义上的序关系，
 merge 两份信息，会得到更多的信息，
 及在 ⩾ 的意义上更大。
@@ -111,10 +111,129 @@ merge 两份信息，会得到更多的信息，
 
 根据 order 的公理，所画出来的是无圈的有向图。
 
-TODO
+显然任何有向无环图都可以画成
+[Hasse diagram](https://en.wikipedia.org/wiki/Hasse_diagram)，
+可以理解为将有向图化成所有的箭头的指向下方的样子。
+
+- 以 `below(low, high)` 为关系，
+  用不等号表示就是 `low <= high`，
+  为了好记忆，把不等号看成是有向图中的箭头，
+  这样箭头就是指向下方的。
+
+在 Hasse diagram 可以更直观地通过高低看出 below 关系，
+而不用跟随有向图的 arrow。
+
+- 比如在 FCA 中，所引出的中间概念，
+  就出现在 Hasse diagram 的中间。
 
 ## Constructing and de-constructing ordered sets
+
+**dual ordered set**，就是 Hasse diagram 在上下方向的镜面反射。
+
+**top 和 bottom** 元素：
+
+> In the context of information orderings, ⊥ represents "no
+> information", while ⊤ corresponds to an over-determined, or
+> contradictory, element.
+
+[propagator] 这与 propagator 中的 nothing 和 contradictory 是否一致？
+
+top 和 bottom 元素也可以视为构造新 ordered set 的方法，
+因为对于没有 top 或 bottom 的 ordered set，
+可以添加一个，获得新的 ordered set。
+
+对于一个 ordered set 的子集，
+可以定义 **maximal 和 minimal 元素**，
+注意与 top 和 bottom 不同，
+maximal 和 minimal 可能不唯一。
+
+> ... when an order relation models information, we might expect a
+> correlation between maximal elements and totally defined elements.
+
+**disjoint sum** 在图上看，就是把两个 Hasse diagram 并列摆在一起，中间没有连线。
+
+**linear sum** 在图上看，就是把两个 Hasse diagram 上下摆在一起，
+并且让上图的所有极小元都连接到下图的所有极大元。
+
+给 ordered set 增加 top 和增加 bottom 元素，
+都可以被看成是特殊的 linear sum。
+
+disjoint sum 和 linear sum 显然都满足结合律。
+
+[propagator] 在 propagator 中，
+一个 cell 可以保存多种类型的元素，
+这些元素的并，作为更大的 ordered set，
+之间的 order 有时是用 disjoint sum 来定义的，
+比如 String 和 Number 之间；
+但有时是用分层次的 linear sum 来定义的，
+比如 Number <= Interval <= Supported <= BeliefSystem。
+
+另外有两个构造 primitive ordered set 的函数：
+
+- 一个是 `Chain(n)` -- `Nat` 的子集合，继承序关系；
+- 一个是 `Antichain(n)` -- `Nat` 的子集合，带有离散的序关系。
+
+用上面的两个 sum 和两个 primitive 函数，
+已经可以构造出来很多有趣的有限 ordered sets 了。
+
+另外有 `PowerSet(set)` 这个 promises 函数也很常用。
+比如 `PowerSet({1, 2, 3})` 是 cube。
+结构化的群也可以给出 ordered sets，
+比如群的 `SubgroupOrder` 和 `NormalSubgroupOrder`。
+
+- 也许这里的命名不对，因为根据后面两个命名，
+  `PowerSet` 应该叫 `SubsetOrder`。
+  但是好像没有更好的命名了。
+
+**product** 一组 ordered set 的笛卡尔积，
+可以被视为一个 ordered set，
+其中 order 可以逐坐标地定义
+-- **product by coordinatewise order**。
+这很严格，只有每个坐标维度上的值都对应满足 below 时，
+两个乘积元素才满足 below。
+
+另外一个重要的 product
+是 **product by lexicographic order**，
+即编程中常见的字典序乘积。
+也是有笛卡尔积构成，
+但是定义 order 的方式不一样，
+就像在英文字典中给单词排序而方案一样，
+乘积前面的元素占主导地位，
+只有前面的 prefix 相等的时候，
+才需要比较后面的元素。
+
+[propagator] Supported value 也是由笛卡尔积构成的，
+中包含一个 order set `T`，和一个 `PowerSet(String)`，
+它用的是 字典序 还是 逐坐标序 呢？
+可能是类似 逐坐标序 但是又有一些变化，
+我们之后要用 order theory 的数学语言把这一点明确下来。
+
+> Informally, a product P * Q is drawn by replacing each point of a
+> diagram of P by a copy of a diagram for Q, and connecting
+> "corresponding" points.
+
+"corresponding" points 就是第二个维度元素相等的点。
+注意，画出来的 Hasse 图还要满足 Hasse 图需要的几何条件。
+在想象 product 的 Hasse 图时，
+可以想象沿着 P 中箭头复制与平移整个 Q。
+
+有趣的例子：
+
+```
+Chain(2) * Chain(2) * Chain(2) =
+PowerSet({1, 2, 3}) =
+Cube
+```
+
+显然 `Chain(2)` 的 `n` 次方，
+与 `PowerSet({1, 2, ..., n})` 是同构的，
+因为前者有 `n` 个坐标维度，
+每个维度可以记录 `n` 各元素是否出现。
+
 ## Down-sets and up-sets
+
+TODO
+
 ## Maps between ordered sets
 ## Exercises
 

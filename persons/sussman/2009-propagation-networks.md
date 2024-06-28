@@ -584,7 +584,7 @@ type BeliefSystem = {
 而不是 put （或 add-content）接口函数的一部分。
 
 注意，cell 保存的信息可能会升级，
-Number -> Interval -> Supported -> BeliefSystem，
+Number <= Interval <= Supported <= BeliefSystem，
 保存的信息越来越多，并且只能递增不能减少。
 当一个 cell 里已经保存着 BeliefSystem 了，
 再往里加 Supported，得到的还是 BeliefSystem。
