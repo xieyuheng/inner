@@ -232,9 +232,74 @@ Cube
 
 ## Down-sets and up-sets
 
-TODO
+**down-set** 是子序集向下的闭包，
+又称 **decreasing set** 和 **order ideal**；
+
+- 当考虑 lattice 中的 meet 和 join 运算时，
+  这个定义可能与环的理想的定义类似，
+  所以也叫理想。
+
+**up-sets** 是子序集向上的闭包，
+又称 **increasing set** 和 **order filter**。
+
+我们可以把 `DownClosure` 和 `UpClosure` 视为两个函数
+（我们不用 `UpSet` 因为听起来不好），
+
+`DownClosure({x})` 与 `UpClosure({x})` 也称为 principal。
+
+- 也许类似环中的主理想。
+
+给定一个序集 `P`，
+考虑它的所有 `DownClosure` 构成的 ordered set
+-- 称为 `PowerDownClosure(P)`。
+
+因为我们可以用一个 DownClosure 中的极大值来代表这个 DownClosure，
+所以显然可以到到一个计算（表示） `PowerDownClosure` 的方式。
+
+注意，有趣的是：
+
+- 如果 `P` 是 `Antichain(n)`，
+  那么 `PowerDownClosure(P) == PowerSet(P)`；
+
+- 如果 `P` 是 `Chain(n)`，
+  那么 `PowerDownClosure(P) == Chain(n+1)`
+  （因为带有空集所以加一）。
+
+`PowerSet(P)` 代表了全量的搜索，
+`PowerDownClosure(P)` 是否代表根据 `P` 的序关系进行的剪枝呢？
+
+从书中给出的一些例子可以看出，
+`P` 的对称性会以有趣的方式出现在 `PowerDownClosure(P)` 中。
+
+连接序关系和 `DownClosure` 的引理：
+
+> Let P be an ordered set and x, y ∈ P . following are equivalent:
+> (1) x <= y;
+> (2) DownClosure(x) ⊆ DownClosure(y);
+> (3) (forall Q ∈ PowerDownClosure(P)) -> (y ∈ Q -> x ∈ Q).
+
+也就是说，元素之间的序关系，被转化为了集合之间的包含关系。
+
+同时，ordered set 之间的 dual，也可以被转化为集合之间的补：
+
+> Q is a down-set of P if and only if P\Q is an up-set of P
+> (equivalently, a down-set of Dual(P)).
+
+有范畴论意义上的自然同构（Natural transformation）：
+
+```
+PowerDownClosure(Dual(P)) ≅ Dual(PowerDownClosure(P))
+```
+
+书中还列举了很多 `PowerDownClosure`
+和构造 ordered set 的运算（各种 sum 和 product）之间的自然同构。
+
+TODO 练习 1.32 Proposition 中的证明和运算。
 
 ## Maps between ordered sets
+
+TODO
+
 ## Exercises
 
 # 2. Lattices and complete lattices
