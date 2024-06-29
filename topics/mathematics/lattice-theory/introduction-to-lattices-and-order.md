@@ -42,7 +42,7 @@ less than or equal to 太长了，也许 lteq 可以，
 - 命题的蕴含关系 x implies y
 
 [propagator] 在实现 propagator 时，
-可能应该实现一个 generic 的 `compare(a, b)` 函数，返回四种可能：
+可能应该实现一个 generic 的 compare(a, b) 函数，返回四种可能：
 
 - < -- a < b
 - = -- a = b
@@ -50,8 +50,8 @@ less than or equal to 太长了，也许 lteq 可以，
 - | -- a 与 b 不可比较
 
 但是这可能并不合理，
-因为需要调用 `below(a, b)` 和 `below(b, a)` 两次，
-所以应该实现的 generic 是最基础的 `below`。
+因为需要调用 below(a, b) 和 below(b, a) 两次，
+所以应该实现的 generic 是最基础的 below。
 
 ## Examples from social science and computer science
 
@@ -127,8 +127,8 @@ merge 两份信息，会得到更多的信息，
 [Hasse diagram](https://en.wikipedia.org/wiki/Hasse_diagram)，
 可以理解为将有向图化成所有的箭头的指向下方的样子。
 
-- 以 `below(low, high)` 为关系，
-  用不等号表示就是 `low <= high`，
+- 以 below(low, high) 为关系，
+  用不等号表示就是 low <= high，
   为了好记忆，把不等号看成是有向图中的箭头，
   这样箭头就是指向下方的。
 
@@ -339,11 +339,75 @@ Lattice 中的二元运算可以理解为，
 > least upper bound (or supremum) and a greatest lower bound (or
 > infimum) in I. These concepts pertain to any ordered set.
 
-join 和 meet 存在的 ordered set 称为 **lattice**；
-sup 和 inf 存在的 ordered set 称为 **complete lattice**。
+join(a, b) 和 meet(a, b) 存在的 ordered set 称为 **lattice**。
 
-- 前者要求 sup 和 inf 对于任意有限子集存在；
-- 后者要求 sup 和 inf 对于任意子集存在。
+sup 是 supremum 的缩写 least upper bound；
+inf 是 infimum 的缩写 greatest lower bound。
+
+sup({a, b, c, ...}) 和 inf({a, b, c, ...})
+存在的 ordered set 称为 **complete lattice**。
+
+lattice 要求 sup 和 inf 对于任意有限子集存在；
+complete lattice 要求 sup 和 inf 对于任意子集存在。
+
+在 lattice 中，当 x ⩽ y 时，
+join(x, y) = y 且 meet(x, y) = x。
+
+并不是对所有的 ordered set，这两个运算都存在。
+
+> In an ordered set P, the least upper bound join(x, y) of {x, y}
+> may fail to exist for two different reasons:
+> (a) because x and y have no common upper bound, or
+> (b) because they have no least upper bound.
+
+想要求 join 或 sup，
+要先找到所有 upper bound 的集合，
+然后再找到集合中的唯一最小元。
+
+TODO 2.6 Examples.
+
+TODO 2.7 Lattices of subgroups.
+
+## Lattices as algebraic structures
+
+∨, ∧ 与 ⩽ 之间的系：
+
+- (1) a ⩽ b;
+- (2) a ∨ b = b;
+- (3) a ∧ b = a.
+
+a ⩽ b -> a ∨ b = b
+
+如果 a ⩽ b，即 a 在 b 之下，那么显然二者的上确界就是 b。
+
+a ⩽ b <- a ∨ b = b
+
+如果 a ∨ b = b，即 b 是 a 与 b 的上确界，那么作为上界，我们就已经有 b >= a。
+
+在 ordered set 中定义的 join 和 meet 满足运算律：
+
+- associative laws
+- commutative laws
+- idempotency laws
+- absorption laws
+
+反过来从代数结构的角度看，
+带有 join 和 meet 运算，
+并且满足上述运算律的代数结构，
+就是 lattice。
+
+假设 join 和 meet 满足上述运律，
+那么 join(a, b) = b 等价于 meet(a, b) = a，
+可以中这个等式来定义 below(a, b) 关系。
+
+也许 join 和 meet 可以比喻为爬山，
+join 意思是在上山的路上汇合，
+meet 意思是在下山的路上相遇。
+尤其是对于带有 top 的 lattice 来说，
+这个比喻尤其贴切。
+
+TODO 反过来证明，由 join 和 meet 定义的 ordered set，
+满足从 ordered set 出发的两个元素的集合的 上确界 sup 和 下确界 inf 的定义。
 
 TODO
 
