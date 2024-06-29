@@ -19,9 +19,9 @@ year: 2002
 
 一个 ordered set 就在于 reflexivity，antisymmetry 与 transitivity。
 
-- (1) x == y -> x <= y & y <= x
-- (2) x <= y & y <= x -> x == y
-- (3) x <= y & y <= z -> x <= z
+- (1) x == y -> x <= y & y <= x -- reflexivity
+- (2) x <= y & y <= x -> x == y -- antisymmetry
+- (3) x <= y & y <= z -> x <= z -- transitivity
 
 与 ordered set 等价的名字有 partially ordered set 和缩写 poset。
 
@@ -40,6 +40,18 @@ less than or equal to 太长了，也许 lteq 可以，
 - 数字而小于等于 x is less than or equal to y
 - 集合的包含关系 x is included in y
 - 命题的蕴含关系 x implies y
+
+[propagator] 在实现 propagator 时，
+可能应该实现一个 generic 的 `compare(a, b)` 函数，返回四种可能：
+
+- < -- a < b
+- = -- a = b
+- > -- a > b
+- | -- a 与 b 不可比较
+
+但是这可能并不合理，
+因为需要调用 `below(a, b)` 和 `below(b, a)` 两次，
+所以应该实现的 generic 是最基础的 `below`。
 
 ## Examples from social science and computer science
 
@@ -298,11 +310,43 @@ TODO 练习 1.32 Proposition 中的证明和运算。
 
 ## Maps between ordered sets
 
-TODO
-
 ## Exercises
 
+关于练习，对于一般的数学书，我以前经常没有耐心去做练习。
+但是 Dan 的 little books 也带有很多练习，
+为什么对与 little books 我就有耐心做练习呢？
+
+可以在做一般的数学书中的练习时，把它们想象成 little book 吗？
+
 # 2. Lattices and complete lattices
+
+> Many important properties of an ordered set P are expressed in terms
+> of the existence of certain upper bounds or lower bounds of subsets
+> of P.  Two of the most important classes of ordered sets defined in
+> this way are lattices and complete lattices.
+
+Lattice 中的二元运算可以理解为，
+两个元素的集合的 upper bound（可能不在集合之内了）。
+
+虽然 Lattice 有二元运算，类似代数结构，
+但是以 upper bound 和 lower bound 为基础，
+可以以统一的方式去理解 complete lattices。
+
+## Lattices as ordered sets
+
+> It is a fundamental property of the real numbers, R, that if I is a
+> closed and bounded interval in R, then every subset of I has both a
+> least upper bound (or supremum) and a greatest lower bound (or
+> infimum) in I. These concepts pertain to any ordered set.
+
+join 和 meet 存在的 ordered set 称为 **lattice**；
+sup 和 inf 存在的 ordered set 称为 **complete lattice**。
+
+- 前者要求 sup 和 inf 对于任意有限子集存在；
+- 后者要求 sup 和 inf 对于任意子集存在。
+
+TODO
+
 # 3. Formal concept analysis
 # 4. Modular, distributive and Boolean lattices
 # 5. Representation: the finite case
