@@ -409,6 +409,48 @@ meet 意思是在下山的路上相遇。
 TODO 反过来证明，由 join 和 meet 定义的 ordered set，
 满足从 ordered set 出发的两个元素的集合的 上确界 sup 和 下确界 inf 的定义。
 
+如果一个 lattice 中 top 和 bottom 存在的话，
+那么它们满足代数结构中单位元的属性：
+
+- forall a, a = join(a, bottom)
+  join 类似加法，bottom 类似 0；
+
+- forall a, a = meet(a, top)
+  meet 类似乘法，top 类似 1。
+
+虽然类比了加法和乘法，但是其实差异很大，
+因为 lattice 中两个运算是完全对称的。
+
+其实，下面的三个等价的关系，
+说明 join 与 meet 更类似于 max 与 min。
+
+```
+a <= b
+join(a, b) = b
+meet(a, b) = a
+```
+
+类比 Number 中的关系：
+
+```
+a <= b
+max(a, b) = b
+min(a, b) = a
+```
+
+带有 top 和 bottom 的 lattice 称为 **bounded lattice**，
+因为 join 与 meet 总是存在，
+所以有限 lattice 中 top 和 bottom 一定存在。
+
+还有一个典型的 bounded lattice
+是 Nat 上的整除（divisible）所给出的序关系，此时：
+
+- below(a, b) := divisor(a, b) 或 multiple(b, a) 或 factor(a, b)
+- join(a, b) := lcm(a, b) -- least common multiple
+- meet(a, b) := gcd(a, b) -- greatest common divisor
+- bottom := 1 -- 1 是任何自然数的因子
+- top := 0 -- 任何数乘以 0 都得 0
+
 TODO
 
 # 3. Formal concept analysis
