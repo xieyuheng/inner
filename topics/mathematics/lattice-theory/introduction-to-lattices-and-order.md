@@ -318,6 +318,10 @@ TODO 练习 1.32 Proposition 中的证明和运算。
 
 可以在做一般的数学书中的练习时，把它们想象成 little book 吗？
 
+练习就像写程序过程中的测试一样，
+是为了检验自己是否真的掌握了知识。
+对于定义一类的知识，特别适合用 mimor 来辅助记忆。
+
 # 2. Lattices and complete lattices
 
 > Many important properties of an ordered set P are expressed in terms
@@ -450,6 +454,8 @@ min(a, b) = a
 - meet(a, b) := gcd(a, b) -- greatest common divisor
 - bottom := 1 -- 1 是任何自然数的因子
 - top := 0 -- 任何数乘以 0 都得 0
+
+## Sublattices, products and homomorphisms
 
 TODO
 
