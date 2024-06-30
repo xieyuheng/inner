@@ -457,9 +457,111 @@ min(a, b) = a
 
 ## Sublattices, products and homomorphisms
 
+一个 lattice 的，
+对 join 和 meet 运算封闭的子集，
+是这个 lattice 的 sublattice。
+
+关于 homomorphisms，
+保持运算 join 与 meet 的 lattice homomorphism，
+与保持 order 的 ordered set homomorphism 不同。
+
+- (1) The following are equivalent:
+
+  - (a) f is order-preserving;
+  - (b) (∀a, b ∈ L) f (a ∨ b) ⩾ f (a) ∨ f (b);
+  - (c) (∀a, b ∈ L) f (a ∧ b) ⩽ f (a) ∧ f (b).
+
+  也就是说，order-preserving
+  只能给出 join 与 meet 相关的不等式，
+  而不能给出等式。
+
+  In particular, if f is a homomorphism,
+  then f is order-preserving.
+
+- (2) f is a lattice isomorphism
+  if and only if it is an order-isomorphism.
+
+## Ideals and filters
+
+一个 lattice 的 **ideal** 是对 join 封闭的 DownClosure 子集。
+DownClosure 要求小于子集中任意一个元素的元素，还在子集中。
+DownClosure 使得 meet 也在子集中，因此子集也是 sublattice。
+
+对偶地：
+
+一个 lattice 的 **filter** 是对 meet 封闭的 UpClosure 子集。
+UpClosure 要求大于子集中任意一个元素的元素，还在子集中。
+UpClosure 使得 join 也在子集中，因此子集也是 sublattice。
+
+DownClosure({x}) 总是 ideal，并且称为 principal ideal；
+UpClosure({x}) 总是 filter，并且称为 principal filter。
+
+在有限 lattice 中，每个 ideal 和 filter 都是 principal，
+即都是由一个元素的 DownClosure 和 UpClosure 生成的。
+
+对一一个保持 top 和 bottom 的 lattice homomorphism 而言，
+ideal 和 filter 分别是两个 kernel：
+
+- ideal 是 0（bottom）的逆像；
+- filter 是 1（top）的逆像。
+
+对于拓扑空间而言，
+一个点的邻域（neighbourhood）
+是 PowerSet order 意义上的 filter。
+
+- 对 meet 封闭，就是对集合的交封闭，
+  因为是同一个点的邻域，所以显然满足；
+- UpClosure 显然满足。
+
+## Complete lattices and intersection–structures
+
+有限 lattice 都是 complete lattice，
+所以我先跳过这一节，之后需要用到相关概念了再来探索。
+
 TODO
 
+## Chain conditions and completeness
+
+TODO
+
+## Join-irreducible elements
+
+lattice 中不可分解的元素，
+类比的是自然数中，
+素数在乘积意义上是不可分解的元素。
+
+> The Fundamental Theorem of Arithmetic says that every natural number
+> is a product of prime numbers. Since prime numbers are just the
+> product-irreducible natural numbers (other than 1) an analogous
+> result for lattices would state that every element is a meet of
+> meet-irreducible elements or, dually, a join of join-irreducible
+> elements. This will not be true in general but will hold provided we
+> impose an appropriate finiteness condition. We prefer to build from
+> the bottom up rather than the top down and consequently focus on
+> joins rather than meets.
+
+lattice 中的元素 x 是 **join-irreducible**，定义为：
+
+- (1) x != bottom -- 如果 lattice 有 bottom 的话。
+- (2) forall a, b: x = join(a, b) -> x = a 且 x = b。
+- 与 (2) 等价的 (2') forall a, b: a < x 且 b < x -> join(a, b) < x，
+  即任意两个元素的 join 都在 x 之下。
+
+在 hasse diagram 中，
+所有尽下方（beneath）只有一个元素的元素都是 join-irreducible。
+注意 bottom 不算，因为 bottom 尽下方没有元素了。
+
+在自然数的 lcm 和 gcd 中的，
+形状为 p^r 的素数的幂，都是 join-irreducible。
+
+在 PowerSet 中，只有单元素集合才是 join-irreducible。
+
+TODO 这一节还有一些先不看了，先探索 FCA。
+
 # 3. Formal concept analysis
+
+TODO
+
 # 4. Modular, distributive and Boolean lattices
 # 5. Representation: the finite case
 # 6. Congruences
