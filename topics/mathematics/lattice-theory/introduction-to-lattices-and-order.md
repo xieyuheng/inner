@@ -560,6 +560,38 @@ TODO 这一节还有一些先不看了，先探索 FCA。
 
 # 3. Formal concept analysis
 
+开篇说要用 ordered set 和 lattice 来研究层级（Hierarchy）。
+但是我觉得对于 FCA 来说，层级还是次要的，
+主要是概念这一概念本身。
+因为画出 concept lattice 是为了找出更多有意义的概念。
+
+## Contexts and their concepts
+
+几句话讲清楚 FCA 的理论如何处理 concept：
+
+> What is a concept?  This would appear to be a question for
+> philosophers rather than for mathematicians. Indeed, traditional
+> philosophy's answer provides us with the basis for our formal
+> definition.  A concept is considered to be determined by its extent
+> and its intent: the extent consists of all objects belonging to the
+> concept while the intent is the collection of all attributes shared
+> by the objects.
+
+解释为什么要有 formal context：
+
+> As it is often difficult to list all the objects belonging to a
+> concept and usually impossible to list all its attributes, it is
+> natural to work within a specific context in which the objects and
+> attributes are fixed.
+
+TODO
+
+## The fundamental theorem of concept lattices
+
+TODO
+
+## From theory to practice
+
 TODO
 
 # 4. Modular, distributive and Boolean lattices

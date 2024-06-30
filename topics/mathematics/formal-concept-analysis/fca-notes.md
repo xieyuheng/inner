@@ -22,6 +22,22 @@ subtitle: Formal Concept Analysis Notes
 比如 Petri net，propagator，cell complex（多分图），等等。
 也就是说，可以用 FCA 的方法来分析二分图。
 
+# 练习
+
+TODO 找一些有趣的 FCA 数据集的例子，
+手算 concept lattice，并且能给别人讲清楚其意义。
+
+可以根据例子观察一下 FCA 的局限性，
+属性必须被离散化，才能被理解为 concept，比如：
+- size 被离散化为 small、medium、large；
+- distance 被离散化为 near、far。
+
+那么数学中那些连续函数怎么办？
+concept 可以有某种连续性吗？
+可以通过带连续的参数来实现吗？
+和 temporal logic 类似也有 temporal FCA，
+是否和 TLA+ 这种建模语言中使用 temporal 参数类似呢？
+
 # 实现
 
 ```typescript
