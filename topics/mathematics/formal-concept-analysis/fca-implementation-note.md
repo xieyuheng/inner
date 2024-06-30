@@ -1,10 +1,7 @@
 ---
-title: Formal Concept Analysis -- Implementation Note
+title: FCA -- Implementation Note
+wikipedia: "https://en.wikipedia.org/wiki/formal_concept_analysis"
 ---
-
-# Wikipedia
-
-- https://en.wikipedia.org/wiki/Formal_concept_analysis
 
 The original motivation of formal concept analysis
 was the search for real-world meaning of mathematical order theory.
