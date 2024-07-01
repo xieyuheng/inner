@@ -577,6 +577,8 @@ TODO 这一节还有一些先不看了，先探索 FCA。
 > concept while the intent is the collection of all attributes shared
 > by the objects.
 
+一个 concept 由 extent 和 intent 组成。
+
 解释为什么要有 formal context：
 
 > As it is often difficult to list all the objects belonging to a
@@ -584,7 +586,80 @@ TODO 这一节还有一些先不看了，先探索 FCA。
 > natural to work within a specific context in which the objects and
 > attributes are fixed.
 
-TODO
+concept 需要被限制在某个 context 中才有意义，
+context 限制 objects 和 attributes 的范围，
+并且给出它们之间的 incidence 关系。
+
+而集合论中一个集合只有 extent。
+但是 concept 的形式化定义还是依赖集合论，
+即 concept 是一个二元组 -- `(extent, intent)`；
+且 context 是一个三元组 -- `(objects, attributes, incidence)`。
+
+尽管 concept 由两部分组成，但是其中的一部分可以确定另一部分。
+
+> To demand that the concept (A, B) is determined by its extent and by
+> its intent means that B should contain just those attributes shared
+> by all the objects in A and, similarly, the objects in A should be
+> precisely those sharing all the attributes in B.
+
+这一节的开头表明，
+可以完全从一个具体的例子，
+来把 FCA 中的所有核心概念介绍清楚。
+
+形式定义：
+
+```cicada
+class Context {
+  Objects: Type
+  Attributes: Type
+  incidence: Relation(Objects, Attributes)
+
+  commonAttributes(objects: Set(Objects)): Set(Attributes)
+  commonObjects(attributes: Set(Attributes)): Set(Objects)
+
+  isConcept(extent: Set(Objects), intent: Set(Attributes)): Boolean {
+    setEqual(commonAttributes(extent), intent) &&
+    setEqual(commonObjects(intent), extent)
+  }
+
+  // TODO
+  // Concept 本身作为对象（如果想不依赖），Context 存在，
+  // 就需要固定 Objects 和 Attributes 这两个 Type。
+  // 也许 Concept 本身根本就没必要作为一个 class 存在。
+}
+```
+
+在实现的时候，我们可以用 JSON 来表示 corss-table 中的一行 `{ "@id": "", ... }`，
+用 JSON 的缺点是，一个东西存在不能直接像是 XML 的 attributes 一样写出 attribute 即可，
+而是要写 `{ "@id": "", "attribute": true, ... }`。
+也许可以专门给 FCA 设计一个 DSL，来解决这个问题。
+
+> The framework within which we are working -- a pair of sets, G, M,
+> and a binary relation I linking them -- is extremely general, and
+> encompasses contexts which might not at first sight be viewed in
+> terms of an object-attribute correspondence.
+
+毕竟任何二分图都有这样的结构。
+
+一个关于程序的，非平凡的例子：
+
+> Consider, for example, a computer program modelled by an
+> input-output relation R between a finite set of initial states X and
+> a finite set of final states Y with xRy if and only if the program
+> when started in state x can terminate in state y.  Then (X, Y, R) is
+> the context for what is known as a (non-deterministic) transition
+> system.  Here A' (for A ⊆ X ) is to be interpreted as the set of
+> final states in which the program can terminate when started from
+> any one of the states in A.
+
+定义好 Context 之后，`commonAttributes` 和 `commonObjects` 都有很常用的解释。
+
+- 学习 Galois connection 之后，对于这两个函数，
+  可能可以给出更抽象的名字。
+
+TODO 证明 3.6 Proposition，
+即 concept lattice 是 complete lattice，
+并且找出合适的 join 和 meet。
 
 ## The fundamental theorem of concept lattices
 
