@@ -11,97 +11,12 @@ subtitle: Formal Concept Analysis Notes
 我们可以给这一组属性，以及其所描述的所有物体，
 取一个名字，并且称其为一个概念（Concept）。
 
+- 新发现一个概念，是否与新增一个属性等价呢？
+  显然可以，因为所发现的一个概念的 intent 就是一组 attributes，
+  只要把这组 attributes 的交命名为一个新的 attribute 就可以了。
+
 寻找有意义的属性组合以形成概念，
 就是我们所要解决的问题。
-
-# 形式定义
-
-注意，FCA 的三元组形式定义，与二分图完全相同。
-
-然而二分图的存在非常广泛，
-比如 Petri net，propagator，cell complex（多分图），等等。
-也就是说，可以用 FCA 的方法来分析二分图。
-
-# 练习
-
-TODO 找一些有趣的 FCA 数据集的例子，
-手算 concept lattice，并且能给别人讲清楚其意义。
-
-可以根据例子观察一下 FCA 的局限性，
-属性必须被离散化，才能被理解为 concept，比如：
-- size 被离散化为 small、medium、large；
-- distance 被离散化为 near、far。
-
-那么数学中那些连续函数怎么办？
-concept 可以有某种连续性吗？
-可以通过带连续的参数来实现吗？
-和 temporal logic 类似也有 temporal FCA，
-是否和 TLA+ 这种建模语言中使用 temporal 参数类似呢？
-
-# 实现
-
-```typescript
-interface FormalContext {
-  objects: Array<Object>
-  attributes: Array<Attribute>
-  incidence(object: Object, attribute: Attribute): boolean
-}
-
-function extent(
-  ctx: FormalContext,
-  attributes: Array<Attribute>,
-): Array<Object>
-
-function intent(
-  ctx: FormalContext,
-  objects: Array<Object>
-): Array<Attribute>
-
-function extentClosure(
-  ctx: FormalContext,
-  objects: Array<Object>,
-): Array<Object> {
-  return extent(intent(ctx, objects))
-}
-
-function intentClosure(
-  ctx: FormalContext,
-  attributes: Array<Attribute>,
-): Array<Attribute> {
-  return intent(extent(ctx, attributes))
-}
-
-interface FormalConcept {
-  ctx: FormalContext
-  objects: Array<Object>
-  attributes: Array<Attribute>
-
-  extent(ctx, attributes) == objects
-  intent(ctx, objects) == attributes
-}
-```
-
-# FCA 与 Peirce
-
-Peirce 的实用主义格言：
-
-> It appears, then, that the rule for attaining the third grade of
-> clearness of apprehension is as follows: Consider what effects, that
-> might conceivably have practical bearings, we conceive the object of
-> our conception to have. Then, our conception of these effects is the
-> whole of our conception of the object.
-
-也许可以总结为：
-
-```
-object = all of it's practical effects
-```
-
-例如在 FCA 中，两个 object 相等，
-就定义为它们的 attributes 完全相等
-（与带有 structural subtyping 的类型系统类似，比如 TypeScript）。
-
-# 形式概念分析
 
 形式概念分析（Formal concept analysis）正是解决上述问题的数学理论。
 我们通过分析概念的一般性与特殊性，我们可以构造出概念格（Concept lattice）。
@@ -183,3 +98,47 @@ TODO 对比一般的闭包算子，以及拓扑学的闭包算子。
 在上面所定义的闭包算子下，闭集的交集还是闭集。
 
 利用这一点我们可以定义完全格中的上确界（Supremum）与下确界（Infimum）。
+
+# 形式定义
+
+注意，FCA 的三元组形式定义，与二分图完全相同。
+
+然而二分图的存在非常广泛，
+比如 Petri net，propagator，cell complex（多分图），等等。
+也就是说，可以用 FCA 的方法来分析二分图。
+
+# 例子
+
+TODO 找一些有趣的 FCA 数据集的例子，
+手算 concept lattice，并且能给别人讲清楚其意义。
+
+可以根据例子观察一下 FCA 的局限性，
+属性必须被离散化，才能被理解为 concept，比如：
+- size 被离散化为 small、medium、large；
+- distance 被离散化为 near、far。
+
+那么数学中那些连续函数怎么办？
+concept 可以有某种连续性吗？
+可以通过带连续的参数来实现吗？
+和 temporal logic 类似也有 temporal FCA，
+是否和 TLA+ 这种建模语言中使用 temporal 参数类似呢？
+
+# FCA 与 Peirce
+
+Peirce 的实用主义格言：
+
+> It appears, then, that the rule for attaining the third grade of
+> clearness of apprehension is as follows: Consider what effects, that
+> might conceivably have practical bearings, we conceive the object of
+> our conception to have. Then, our conception of these effects is the
+> whole of our conception of the object.
+
+也许可以总结为：
+
+```
+object = all of it's practical effects
+```
+
+例如在 FCA 中，两个 object 相等，
+就定义为它们的 attributes 完全相等
+（与带有 structural subtyping 的类型系统类似，比如 TypeScript）。

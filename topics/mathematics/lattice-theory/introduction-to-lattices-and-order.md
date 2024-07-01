@@ -10,8 +10,8 @@ year: 2002
 读这本书的目标有两个：
 
 - 一个是熟悉 FCA；
-- 一个是看 propagator 中 cell 保存的东西，
-  能否以某种 lattice 为 interface。
+- 一个是看 propagator 中 cell 保存的东西，能否以某种 lattice 为 interface。
+- FCA 的形式定义就是 [EAV](https://en.wikipedia.org/wiki/entity-attribute-value_model) 但是没有 V。
 
 # 1. Ordered sets
 
@@ -663,7 +663,25 @@ TODO 证明 3.6 Proposition，
 
 ## The fundamental theorem of concept lattices
 
-TODO
+TODO 我跳过了很多证明与推导，
+一个有意义的练习是尝试从头开始独立给出这些推导。
+
+TODO 看完第五章之后回来推导相关的证明。
+
+已知 concept lattices 是 complete lattices。
+所谓 concept lattices 基本定理，
+就是对于任意一个 complete lattices，
+构造一个与它同构的 concept lattices。
+
+构造方式类似于在线性空间中选择一组基，
+这里要选择两组基，
+分别作为 concept context
+的 objects 和 attribute。
+
+于线性空间不同的时，这里不要求基相互独立。
+
+- concept lattices 之间同构，
+  但是 concept context 却有可能不同。
 
 ## From theory to practice
 
