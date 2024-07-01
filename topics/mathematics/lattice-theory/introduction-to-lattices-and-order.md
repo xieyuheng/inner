@@ -11,7 +11,6 @@ year: 2002
 
 - 一个是熟悉 FCA；
 - 一个是看 propagator 中 cell 保存的东西，能否以某种 lattice 为 interface。
-- FCA 的形式定义就是 [EAV](https://en.wikipedia.org/wiki/entity-attribute-value_model) 但是没有 V。
 
 # 1. Ordered sets
 

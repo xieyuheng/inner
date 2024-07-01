@@ -3,6 +3,12 @@ title: 形式概念分析笔记
 subtitle: Formal Concept Analysis Notes
 ---
 
+# 学习动机
+
+FCA 的形式定义就是 [EAV](https://en.wikipedia.org/wiki/entity-attribute-value_model) 但是没有 V。
+与 FCA 的 EA 相比，EAV 多出的一个 V 在理论上有什么意义呢？
+还能形成类似 complete lattice 的理论吗？
+
 # 所解决的问题
 
 当观察物体（Object，Gegenstand）
