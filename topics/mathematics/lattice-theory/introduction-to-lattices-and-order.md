@@ -628,10 +628,26 @@ class Context {
 }
 ```
 
-在实现的时候，我们可以用 JSON 来表示 corss-table 中的一行 `{ "@id": "", ... }`，
-用 JSON 的缺点是，一个东西存在不能直接像是 XML 的 attributes 一样写出 attribute 即可，
-而是要写 `{ "@id": "", "attribute": true, ... }`。
-也许可以专门给 FCA 设计一个 DSL，来解决这个问题。
+如何实现？
+
+- 方案 A：
+
+  corss-table = array of rows
+
+  我们可以用 JSON 来表示 corss-table 中的一行 `{ "@id": "", ... }`，
+  用 JSON 的缺点是，一个 attributes 之存在，
+  不能直接像是 XML 的 attributes 一样单单写出 attribute，
+  而是要写 `{ "@id": "", "attribute": true, ... }`。
+  也许可以专门给 FCA 设计一个 DSL，来解决这个问题。
+
+- 方案 B：
+
+  corss-table = map from an entity (an object) to a set of attributes
+
+  这样可以保证 object 的唯一性。
+  实际实现的时候我们用 entity 一词，而不用 object，
+  因为和程序语言中的 OOP 混淆了。
+  entity 也能让人想起 EAV 这种三元组的数据库。
 
 > The framework within which we are working -- a pair of sets, G, M,
 > and a binary relation I linking them -- is extremely general, and
