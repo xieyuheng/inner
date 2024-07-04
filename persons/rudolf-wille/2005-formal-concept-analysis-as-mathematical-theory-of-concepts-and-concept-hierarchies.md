@@ -65,4 +65,26 @@ FCA 可以帮助人们从已有的数据发现新的概念。
 回答者回答的形式是在一个模型中解释 Why，
 而提问者所期待的也是 Why 在一个模型中被解释。
 
+整个第二章就是作者读了另一本书关于 concept 的书：
+
+> "Begreifen und Verstehen. Ein Buch über Begriffe und Bedeutungen"
+> ("Conceiving and Understanding. A Book on Concepts and Meanings")
+> written by Thomas Bernhard Seiler.
+
+然后一章一章地用 FCA 来解释那本书中关于 concept 的诸多观点。
+
+## 2.1 Concepts Are Cognitive Acts and Knowledge Units
+
+TODO
+
+## 2.2 Concepts Are Not Categories, but Subjective Theories
+
+TODO
+
+## 2.3 Concepts Are Not Generally Interlinked in the Sense of Formal Logic
+
+TODO
+
+# 3 Formal Concept Analysis as Transdisciplinary Mathematics
+
 TODO
