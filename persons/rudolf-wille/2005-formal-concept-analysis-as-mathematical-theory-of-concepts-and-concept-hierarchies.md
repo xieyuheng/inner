@@ -10,6 +10,10 @@ year: 2005
 来定义 concept lattice。
 首先要学会这个。
 
+这个论文是作者读了另一个作者的，
+一篇关于「概念」的哲学论文之后，
+用 FCA 来解释其中论点的过程。
+
 # 1 Formal Concept Analysis, Mathematics, and Logic
 
 > Only after more than a decade of development, the connections to
@@ -143,9 +147,57 @@ implication 不能理解为谓词逻辑意义上的集合包含关系，
 
 ## 2.4 Concepts Are Domain Specific and Often Prototypical
 
-TODO
+> Formal concepts result from applications of **derivation operators**
+> in formal contexts which represent _domains of interest_.
+
+所谓 "derivation operators" 就是：
+
+- 找一组对象都拥有的属性集合；
+- 找一组属性都属于的对象集合。
+
+> Protoconcepts have been formally introduced in [Wi00b] for the
+> development of a Boolean Concept Logic with "negation" and
+> "opposition" as unary operations (see also [VW03]).
+
+Boolean Concept Logic 看来也是很有趣的理论，
+并且是 FCA 的进阶理论。
+
+注意 protoconcept 的定义与 concept 的定义差别很小。
+
+```
+concept :-
+  extent = derive(intent)
+  intent = derive(extent)
+
+protoconcept :-
+  derive(extent) = derive(derive(intent))
+  derive(intent) = derive(derive(extent))
+```
 
 ## 2.5 Concepts as Knowledge Units Refer to Reality
+
+> According to [Se01], concepts are adapted to circumstances and facts
+> of the world arround us, but do not copy realities.
+
+> Concepts consider things and events out of a specific perspective
+> and reconstruct only those aspects and relations which follow from
+> the specific view.
+
+形成 concepts 的过程就是构建模型的过程，而每个模型都有局限性。
+
+Context 是 `(G, M, I)`，其中数据是二元组 `(G, M)`；
+这一节提到了所谓 many-valued contexts `(G, M, W, I)`，
+其中数据是三元组 `(G, M, W)`，
+并且称为 objects, attributes, and attribute values,
+这与 Clojure 的 Datomic 中所使用的 E-A-V 三元组相同
+-- (Entity, Attribute, Value)`。
+
+一个限制是第三个位置相对于前两个位置的单值性，
+即，如果前两个位置相等，并且两个三元组
+-- `(g, m, w1)` 和 `(g, m, w2)` 都在数据库中，
+那么 `w1` 和 `w2` 也相等。
+
+TODO 如何用新增的这个 value 维度来处理 specific perspective？
 
 TODO
 
