@@ -75,13 +75,81 @@ FCA 可以帮助人们从已有的数据发现新的概念。
 
 ## 2.1 Concepts Are Cognitive Acts and Knowledge Units
 
-TODO
+我不太理解作者这一章想讲什么。
+
+> Personal concepts exceed conventional meaning with additional
+> aspects and connotations. Conventional concepts and meanings are
+> objectified and standardized contents, evolved in recurrently
+> performed discourses.
+
+我尤其不理解上面所讲的，
+personal concepts 与 conventional concepts 之间的区别。
+这种差异看来已经不是可以从数学角度去区分的了。
 
 ## 2.2 Concepts Are Not Categories, but Subjective Theories
 
-TODO
+这一节有趣的例子是关于三角形的：
+
+```
+语境 = （某些具体三角形，特殊的三角形类别）
+```
+
+此时 lattice 的 top 是「三角形」这个概念本身，
+可以想象三角形这个概念本身又是某个更大的 lattice 中的非 top 节点。
+
+由于偏序关系不排至无关系的元素，
+所以整个世界中的所有概念都可以被包含到一个大语境下。
+
+- 可否设计带有模块系统的 FCA，
+  使得人们所写的 context 可以互相 import 呢？
+
+  显然可以 import 别人的 context，然后向里面加新的 object 和 attribute。
+  并且，考虑到 context 的函数式实现，就算是删除 object 和 attribute 的操作，
+  或者修改邻接关系的操作，都是可以在 import 之后做的。
+
+> It is not surprising that the logic of the lexical word concepts of
+> triangles is determined by implications with one-element premise and
+> incompatibilities; seemingly, our everyday thinking has
+> intersubjectively incorporated the predominant use of logical
+> implications with one-element premise (cf. [Wi04]).
+
+我还没有完全理解这里的论点，
+但是 implication with one-element premise 确实重要。
+
+- Horn clause 刚好相反，是 implication with one-element conclusion。
 
 ## 2.3 Concepts Are Not Generally Interlinked in the Sense of Formal Logic
+
+也许，personal concepts 与 conventional concepts 之间的区别是说，
+implication 不能理解为谓词逻辑意义上的集合包含关系，
+不是谓词逻辑，而是某种和人的主观意识相关的模态逻辑。
+
+后面讲了一个关于治疗厌食症（anorectic）病人的例子，
+首先让病人填人际关系表（一个 CrossTable），
+然后把所获得的 concept lattice 作为诊断结果，
+来观察病人人际关系中的问题。
+
+为什么要分析厌食症病人的人际关系呢？
+因为：
+
+> Since such a patient is understood to suffer from a loss of control
+> over interpersonal relationships, the examination is performed to
+> make disturbed relationships conscious so that she becomes able to
+> understand those disturbances and to overcome her mental disorder.
+
+可能只是简单地代表主观的概念与客观的概念，
+但是我想没必要这样区分，
+因为逻辑（就算是谓词逻辑）都能同时应用到主观和客观两种情况。
+
+## 2.4 Concepts Are Domain Specific and Often Prototypical
+
+TODO
+
+## 2.5 Concepts as Knowledge Units Refer to Reality
+
+TODO
+
+## 2.6 Concepts Are Analogous Patterns of Thought
 
 TODO
 
