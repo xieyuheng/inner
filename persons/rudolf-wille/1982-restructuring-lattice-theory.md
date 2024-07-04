@@ -1,6 +1,9 @@
-# Restructuring lattice theory: an approach based on hierarchies of concepts
+---
+title: Restructuring lattice theory: an approach based on hierarchies of concepts
+year: 1982
+---
 
-## Abstract
+# Abstract
 
 Lattice theory today reflects the general status of current
 mathematics: there is a rich production of theoretical concepts,
@@ -25,7 +28,7 @@ to its "extent".
 We propose to make the reduction less abstract
 by retaining in some measure the "intent" of a concept.
 
-## 1. Restructuring lattice theory
+# 1. Restructuring lattice theory
 
 Lattice theory today reflects the general status of current
 mathematics: there is a rich production of theoretical concepts,
@@ -71,9 +74,9 @@ arithmetic, structure and representation theory of lattices may
 be developed out of problems and questions which occur within the
 analysis of contexts and their hierarchies of concepts.
 
-## 2. Concept lattices
-## 3. Examples
-## 4. The determination problem
+# 2. Concept lattices
+# 3. Examples
+# 4. The determination problem
 
 The concept lattice can be understood as a basic answer to
 two fundamental questions concerning a context, namely
@@ -83,7 +86,7 @@ two fundamental questions concerning a context, namely
 Hence an important problem is:
 How can one determine the concept lattice of a given context (G,M,I)?
 
-## 5. The description problem
+# 5. The description problem
 
 Connected with the description problem is the basic problem:
 How can one describe the concept Lattice of a given context (G,M,I)?
@@ -104,10 +107,10 @@ skill that even a computer can work out. Because of the absence
 of a theory, we shall only discuss the development of a Hasse
 diagram by an example.
 
-## 6. From structures to concept lattices
-## 7. Measurement
-## 8. Completions of partial concept lattices
-## 9. Further remarks
+# 6. From structures to concept lattices
+# 7. Measurement
+# 8. Completions of partial concept lattices
+# 9. Further remarks
 
 This restructuring of lattice theory
 does not pretend to be complete in any sense.
