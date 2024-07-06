@@ -10,7 +10,8 @@ year: 2002
 读这本书的目标有两个：
 
 - 一个是熟悉 FCA；
-- 一个是看 propagator 中 cell 保存的东西，能否以某种 lattice 为 interface。
+- 一个是看 propagator 中 cell 保存的东西，
+  能否以某种 lattice 为 interface。
 
 # 1. Ordered sets
 

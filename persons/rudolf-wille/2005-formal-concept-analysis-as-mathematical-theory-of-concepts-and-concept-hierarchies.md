@@ -197,11 +197,135 @@ Context 是 `(G, M, I)`，其中数据是二元组 `(G, M)`；
 -- `(g, m, w1)` 和 `(g, m, w2)` 都在数据库中，
 那么 `w1` 和 `w2` 也相等。
 
-TODO 如何用新增的这个 value 维度来处理 specific perspective？
+如何用新增的这个 value 维度来处理 specific perspective？
+
+- 我没能理解这里用的数学符号。
+
+## 2.6 Concepts Are Analogous Patterns of Thought
+
+> According to [Se01], concepts do not grasp realities directly, but
+> realities are incorporated, examined, and assimilated in an
+> analogous manner in cognitive schemata (formed by previous
+> experiences) which are finally adapted to the incorporated
+> realities. In this way, the analogous character of concepts evolves
+> so that conceptual thought can be understood as analogous
+> representation of realities.
+
+如果概念只能通过类比之前的经验来把握现实，
+难么类比的开端是什么呢？
+应该是经验。
+经验可以提供类比的基础。
+
+在这样的模型中：
+
+- 要么必须将经验与概念分开，经验不是概念；
+- 要么允许概念被转化为经验，经验是特殊的更熟悉的概念。
+
+也许，艺术对于科学的意义，
+就在与可以快速提供大量经验。
+
+> Mathematics never represents forms of realities as they are, but
+> forms of realities give rise to abstracted mathematical forms and
+> structures multifariously.  In this way mathematics becomes
+> constantly richer and increases its ability to assist human thought.
+
+现实永远比抽象更丰富，
+抽象的永远是现实的影子。
+
+我对于抽象的数学结构的想象，在充分熟悉了之后，是否也能算作经验呢？
+
+- 考虑范畴论中的 diagram chasing，
+  人们对范畴论中概念的把握，
+  也是来自图论的类比，
+  而图论就是人们最直接的拓扑经验了。
+
+- 也许人们所能直接获得的基础经验，
+  比如时间、几何、拓扑等等，
+  就是人们想象力的边界。
+  而正是想象力的边界在限制着人类抽象的数学理论的发展。
+
+这里提到 "Why can concept lattices support knowledge discovery in
+databases?" 一文中有更多的关于这个话题的讨论。
+可以看一下。
+
+因为 inversion in a circle 中，点和直线也形成的对偶关系，
+所以作者构造了一个无穷的 FCA 来理解它们。
+这有点牵强，我很难想出这有什么用。
+并且我也很难想出，这和这一节开篇所提到的论点有什么关系。
+
+读这篇论文一直给我这种感觉，
+好像是 Rudolf 作为 FCA 理论的奠基人，
+想要让理论与更广泛的其他理论有所联系，
+但是我觉得重点应该放在 FCA 的应用上。
+
+## 2.7 Concepts Are Principally Conscious, but Their Content Is Seldom Fully Actualized in Consciousness
+
+这一节的论点，我同样看不太懂。
+
+但是例子很有意思：
+
+- 以图书馆的书为 objects；
+- 以人们给书加的 keywords 为 attribute。
+
+来形成一个 Context。
+
+这种加 keywords 的行为，太普遍了，
+比如 github 的 repo 有 keywords，
+我自己的笔记有 keywords，
+辅助记忆的 mimor 卡片有 keywords。
+因此以这个角度入手，去写一个 FCA 的应用，
+也许是很不错的。
+
+- 记得我刚刚会写程序的时候，
+  想要做一个用 keywords（或者或 tags）寻找文件的系统，
+  不是用 path 来在一个 tree 中寻找文件的，
+  因为以 keywords 为 path 中的 directory 的名字时，
+  在 path 中这些 keywords 是带有顺序的，
+  但是在整理文件和搜索文件时，
+  我并不在乎 keywords 的顺序。
+
+作者还提到了，使用这个技术的图书馆，
+是他们的交叉学科研究中心的图书馆，
+作者总是想强调「叉学科研」，
+但是我们也要注意 Errett Bishop 的格言：
+
+> Meaningful distinctions deserve to be maintained.
+
+具体地，这个例子中有：
+
+- 377 个 keywords；
+- 1554 个文档，平均每个带有 32 个 keywords。
+
+人们使用这个 concept context 的方式就是画出来 concept lattice，
+但是显然画出这么大的 concept lattice 是没法看的，
+因此人们制作了 137 conceptual views，
+也就以一个 keywords 的子集为主题来缩小 concept lattice。
+
+比如 Informatics and Knowledge Processing 这个主题，有 keywords：
+
+- Formalization
+- Artificial Intelligence
+- Expert Systems
+- Knowledge Processing
+- Hypertext
+
+## 2.8 Concepts as Habitual and Virtual Knowledge Can Be Implicitly and Explicitly Actualized
 
 TODO
 
-## 2.6 Concepts Are Analogous Patterns of Thought
+## 2.9 The Language as Medial System Promotes the Actualization of Concepts
+
+TODO
+
+## 2.10 Concepts Have Motivational and Emotional Qualities
+
+TODO
+
+## 2.11 Concepts Have a History and Go Through a Developmental Process
+
+TODO
+
+## 2.12 Concept Formation Is Not a Formalizable Automatism
 
 TODO
 
