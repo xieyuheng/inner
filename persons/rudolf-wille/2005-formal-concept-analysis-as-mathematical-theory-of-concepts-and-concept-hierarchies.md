@@ -431,8 +431,14 @@ self-dynamics 和 autonomy 这些属性。
 
 ## 2.12 Concept Formation Is Not a Formalizable Automatism
 
-TODO
+这节意思是说想要自动画出可读性高的 concept lattice 并不容易。
 
 # 3 Formal Concept Analysis as Transdisciplinary Mathematics
 
-TODO
+> The discussion of Seiler's twelve aspects of concepts shows that
+> there are close connections between concepts and formal concepts in
+> each of the considered aspects.
+
+我觉得这个结论纯属搞笑。
+很多 Seiler 的论点与文章中所讨论的例子的关系非常牵强。
+只有例子本身是有意思的，作者对例子的牵强附会的解释反而有害。
