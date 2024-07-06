@@ -5,14 +5,16 @@ year: 2005
 
 # 学习动机
 
+这个论文是作者读了另一个作者的，
+一篇关于「概念」的哲学论文之后，
+用 FCA 来解释其中论点的过程。
+
+**动机 A：**
+
 我大致浏览了以下，
 看到论文里可能在用 `... => ...` 这种 implication
 来定义 concept lattice。
 首先要学会这个。
-
-这个论文是作者读了另一个作者的，
-一篇关于「概念」的哲学论文之后，
-用 FCA 来解释其中论点的过程。
 
 # 1 Formal Concept Analysis, Mathematics, and Logic
 
@@ -309,21 +311,123 @@ databases?" 一文中有更多的关于这个话题的讨论。
 - Knowledge Processing
 - Hypertext
 
+这里还描述了一个 use case，
+假设一个研究员想要找 literature about expert systems dealing with traffic，
+她可以先用 Informatics and Knowledge Processing 这个主题，
+点击 Expert Systems，然后再用 Town and Traffic 这个主题，
+这个主题有 keywords：
+
+- Parking
+- Street
+- Traffic
+- Town
+- Means of Transportation
+
+想象为 lattice 设计 UI/UX 真是有意思。
+
+既然 FCA 的主要结果就是画出 concept lattice 给人看，
+那么这种 app 的设计就是核心重要的事情了。
+
 ## 2.8 Concepts as Habitual and Virtual Knowledge Can Be Implicitly and Explicitly Actualized
 
-TODO
+这里给出的例子想要说明，
+通过分析 concept lattice 的结构
+（比如拓扑结构、对称性等等），
+可以发现原数据集中的错误，
+并且给出修改方法。
+
+具体的例子是德国建筑条例中，不同条例对房间功能的要求，
+objects 是建筑条例，attributes 是房间的功能。
+
+所发现的数据集中的错误，就是条例中不合理的地方。
 
 ## 2.9 The Language as Medial System Promotes the Actualization of Concepts
 
-TODO
+这一节想讲的是 FCA 在语言学中的应用，
+具体的形式语境是：
+- 以作曲家与古典音乐曲子为 objects；
+- 以描述人们对音乐的感受的词为 attributes。
+
+这一节还描述了一个有趣的 attribute exploration 应用：
+
+> In general, an attribute exploration is performed as an interactive
+> procedure of questions and answers. The questions ask for the validity
+> of attribute implcations deduced from the just present formal
+> context. The answers given should be "yes" if the implication is
+> considered to be valid in the assumed domain, or "no" and then be
+> justified by a counterexample taken to be a new object of the
+> underlying formal context. A typical question in our exploration was:
+>     Has every musical composition with the attributes "dramatic",
+>     "lively", and "transparent" also the attributes "sprightly ",
+>     "rhythmizing", and "fast"?
+
+这一篇论文的「动机 A」算是达成了。
+在浏览论文时所看到的 implication 就是这一节所说的 attribute exploration。
+
+这是一个很有趣的交互，人适合被做成 app。
+
+另外还提到了 implication 的基，
+即所有其他的 implication 都可以由基推导出来。
+
+- 可能这与 sequent calculus 有关，
+  因为既然这里所有的逻辑表达式都是 implication，
+  那么这里所用的推导规则应该就是 cut。
+
+> ... the Ganter-Algorithm [Ga86] (see also [GW99a]) which guarantees
+> that the final list of valid attribute implication forms the
+> Duquenne-Guigues-Basis of all attribute implications of the
+> resulting context.
 
 ## 2.10 Concepts Have Motivational and Emotional Qualities
 
-TODO
+> Another dream is to develop a conceptually structured lexical
+> landscape of knowledge as an extension of language thesauri.
+
+用 FCA 分析词典之类的工具书（拥有近义词反义词之类的信息），
+也许这些工具书本身就应该以 concept lattice 的形式呈现。
+
+- https://en.wikipedia.org/wiki/Roget's_Thesaurus
+- https://en.wikipedia.org/wiki/Thesaurus
 
 ## 2.11 Concepts Have a History and Go Through a Developmental Process
 
-TODO
+> According to [Se01], each personal concept goes through a long
+> history of development in which its content progressively
+> changes. Conventional concepts on the one hand are anchored in the
+> personal cognition, knowledge and thought, and on the other hand are
+> subjected to continuous social change because of their dependence on
+> discourses.
+
+所以有 Zettelkasten 这种形式的笔记，可以记录个人概念的演变。
+
+也许人类思想的表面上的 self-dynamics 和 autonomy，
+都与 concept lattice 的动力系统有关。
+
+所谓动力系统，就是说允许 concept lattice 变化，
+并且研究它的变化规律。
+
+我的意思是，也许通过模拟这个动力系统，
+我就能在 AI 系统中模拟人类思想的
+self-dynamics 和 autonomy 这些属性。
+
+> In formal contexts and their formal concepts, processes of
+> developing concept structures and of building conceptual theories
+> can be represented, examined, improved, and documented.
+
+设计一个 FCA 的语言，然后实现模块系统包与管理系统（版本控制）。
+
+- 如果要设计 FCA 的语言，这个语言是否要带有 lambda 呢？
+  亦或是没有抽象能力的纯描述语言。
+
+作者总是提到 conceptual landscape 一词，
+也表明了 FCA 的目的就是画出 concept lattice 来观看。
+
+这一节给出的例子是，
+部分 attributes 是时间区间（半区间）的形式给出的，
+比如「早于 1800 年」「晚于 1780 年」等等。
+
+也可以理解为语言学分析，
+但是（用索绪尔的话来说）这次是「历时的」而不是「共时的」。
 
 ## 2.12 Concept Formation Is Not a Formalizable Automatism
 
