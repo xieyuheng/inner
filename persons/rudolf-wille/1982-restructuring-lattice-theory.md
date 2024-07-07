@@ -6,8 +6,9 @@ year: 1982
 
 # 学习动机
 
-这篇论文是 Formal Concept Analysis 的奠基论文。
+**动机 A：**
 
+这篇论文是 Formal Concept Analysis 的奠基论文。
 可以在其中学到这个理论的历史与研究动机。
 
 # Abstract

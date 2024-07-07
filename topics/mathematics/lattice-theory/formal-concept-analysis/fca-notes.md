@@ -5,14 +5,17 @@ subtitle: Formal Concept Analysis Notes
 
 # 学习动机
 
+**动机 A：**
+
 FCA 的形式定义就是 [EAV](https://en.wikipedia.org/wiki/entity-attribute-value_model) 但是没有 V。
 与 FCA 的 EA 相比，EAV 多出的一个 V 在理论上有什么意义呢？
 还能形成类似 complete lattice 的理论吗？
 
 # 所解决的问题
 
-当观察物体（Object，Gegenstand）
-我们可以总结出属性（Attribute，Merkmal），
+当观察物体（Object，Gegenstand）时，我们总是想要去给分类，
+而给我们物体分类的依据会被总结成物体的属性（Attribute，Merkmal）。
+
 我们经常会发现某一组属性具有特殊意义，
 我们可以给这一组属性，以及其所描述的所有物体，
 取一个名字，并且称其为一个概念（Concept）。
@@ -33,9 +36,12 @@ FCA 的形式定义就是 [EAV](https://en.wikipedia.org/wiki/entity-attribute-v
 一组属性，以及其所描述的所有物体，就是一个概念。
 因此为了描述概念，我们先要明确什么是物体与属性。
 
-先看物体与属性之间的关系，我们可以说「物体具有属性」，也可以说「属性描述物体」。
+先看物体与属性之间的关系，
+我们可以说「物体具有属性」或「物体拥有属性」，
+也可以说「属性描述物体」或「属性属于物体」。
 
-想要明确什么是物体与属性，就需要明确它们之间的「具有」或者「描述」关系。
+想要明确什么是物体与属性，
+就需要明确它们之间的「具有」或者「描述」关系。
 
 我们通过形式语境（Formal context）来限定物体与属性以及其关系。
 
@@ -63,7 +69,8 @@ FCA 的形式定义就是 [EAV](https://en.wikipedia.org/wiki/entity-attribute-v
 
 # 概念格
 
-概念层级是一个完全格（Complete lattice）称为为概念格（Concept lattice）。
+概念层级是一个完全格（Complete lattice），
+称为概念格（Concept lattice）。
 
 # 对比集合论
 
@@ -71,26 +78,35 @@ FCA 的形式定义就是 [EAV](https://en.wikipedia.org/wiki/entity-attribute-v
 
 # 衍生算子
 
-一组物体可以衍生出一组属性，即所有描述这组物体的属性。
-（说一个属性描述一组物体，就是说这个属性描述其中每一个物体。）
+首先可以把「具有」与「描述」关系，
+从元素与元素之间的关系，
+拓展为元素与集合之间的关系：
 
-一组属性可以衍生出一组物体，即所有具有这组属性的物体。
-（说一个物体具有一组属性，就是说这个物体具有其中每一个属性。）
+- 说一个物体具有一组属性，就是说这个物体具有其中每一个属性。
+- 说一个属性描述一组物体，就是说这个属性描述其中每一个物体。
 
-形式概念定义中所说的「一组属性，以及其所描述的所有物体，就是一个形式概念。」
-只是显式地说明了，内涵衍生外延。
-为了定义形式概念，我们还必须要求外延也衍生内涵。
+然后可以定义两个衍生算子，
+也算是把「具有」与「描述」关系，
+拓展成了集合与集合之间的关系：
+
+- 一组物体可以衍生出一组属性，即所有描述这组物体的属性。
+- 一组属性可以衍生出一组物体，即所有具有这组属性的物体。
+
+注意，形式概念定义中所说的
+「一组属性，以及其所描述的所有物体，就是一个形式概念。」
+只是显式地说出了，内涵衍生外延（或者说内涵描述外延）。
+为了定义形式概念，我们还必须要求外延也衍生内涵（或者说外延具有内涵）。
 即是说，概念的内涵与外延相互衍生。
 
 # 闭包算子
 
-一组物体所衍生的属性所衍生的物体，就是这组物体的闭包。
+衍生算子还可以给出两个闭包算子：
 
-一组属性所衍生的物体所衍生的属性，就是这组属性的闭包。
+- 一组物体所衍生的属性所衍生的物体，就是这组物体的闭包。
+- 一组属性所衍生的物体所衍生的属性，就是这组属性的闭包。
 
-TODO 对比一般的闭包算子，以及拓扑学的闭包算子。
-- https://en.wikipedia.org/wiki/Closure_operator
-- https://en.wikipedia.org/wiki/Characterizations_of_the_category_of_topological_spaces
+对比一般的[闭包算子](https://en.wikipedia.org/wiki/Closure_operator)，
+以及[拓扑学中的闭包算子](https://en.wikipedia.org/wiki/Characterizations_of_the_category_of_topological_spaces)。
 
 # 用物体与属性生成概念
 
@@ -139,12 +155,36 @@ Peirce 的实用主义格言：
 > our conception to have. Then, our conception of these effects is the
 > whole of our conception of the object.
 
+「物体所能拥有的所有效果。」
+
+- 就可以理解为是 FCA 中物体的所有属性。
+  例如在 FCA 中，两个 object 相等，
+  就定义为它们的 attributes 完全相等。
+
+- 这也与带有 structural subtyping 的类型系统类似，
+  比如 TypeScript。
+
+「效果指我们所能想到的，有实际影响的效果。」
+
+- 强调「我们所能想到的实际影响」，
+  因为在不同的语境下（情况下），
+  我们所考虑的「实际影响」可能不同。
+  可以理解为是 FCA 中的形式语境。
+
 也许可以总结为：
 
-```
-object = all of it's practical effects
-```
+> 我们在对一个物体所形成的概念，
+> 就是，在我们所关心的情况下，
+> 这个物体的具有实际影响的效果的总和。
 
-例如在 FCA 中，两个 object 相等，
-就定义为它们的 attributes 完全相等
-（与带有 structural subtyping 的类型系统类似，比如 TypeScript）。
+一些自动翻译的结果蛮有趣的：
+
+- Kimi: The concept we form of an object is, in the cases we care
+  about, the sum of the practical effects that the object has.
+
+- Google: The conception we form of an object is the sum of its
+  effects, which have a practical influence on the case in which we
+  are concerned.
+
+- ChatGPT: The concept we form of an object is the sum of the effects
+  it has in the situations we care about.
