@@ -51,8 +51,6 @@ FCA 本质上是有限的，
 
 # 1. Restructuring lattice theory
 
-TODO 重读论文并整理笔记。
-
 > Lattice theory today reflects the general status of current
 > mathematics: there is a rich production of theoretical concepts,
 > results, and developments, many of which are reached by elaborate
@@ -60,45 +58,42 @@ TODO 重读论文并整理笔记。
 > theory to its surroundings are getting weaker: the result is
 > that the theory and even many of its parts become more isolated.
 
-We need to restructuring other theories of mathematics.
+也许我们也应该在实用主义的原则下，
+像作者处理 lattice theory 一样，
+重新构造其他数学理论。
 
 > This is not only a problem of lattice theory or of mathematics.
-> Many sciences suffer from this effect of specialization.
+> Many sciences suffer from this effect of specialization.  Scientists
+> and philosophers are, of course, aware of the danger of this growing
+> isolation.  In [17], H. von Hentig extensively discusses the status
+> of the humanities and sciences today.  One consequence is his charge
+> to "restructure" theoretical developments in order to integrate and
+> rationalize origins, connections, interpretations, and applications.
+> In particular, abstract developments should be brought back to the
+> commonplace in perception, thinking, and action.  Thus,
+> _restructuring lattice theory_ is understood as an attempt to unfold
+> lattice-theoretical concepts, results, and methods in a continuous
+> relationship with their surroundings.  One basic aim is to promote
+> better communication between lattice theorists and potential users
+> of lattice theory.
 
-> Scientists and philosophers are, of course,
-> aware of the danger of this growing isolation.
-
-> In [17], H. von Hentig extensively discusses
-> the status of the humanities and sciences today.
-> One consequence is his charge to "restructure" theoretical developments
-> in order to integrate and rationalize origins, connections,
-> interpretations, and applications.
-
-> In particular, abstract developments should be brought back to
-> the commonplace in perception, thinking, and action.
-
-> Thus, restructuring lattice theory is understood as an attempt to
-> unfold lattice-theoretical concepts, results, and methods
-> in a continuous relationship with their surroundings.
-
-> One basic aim is to promote better communication between
-> lattice theorists and potential users of lattice theory.
-
-> Traditional philosophy considers a concept to be determined
-> by its "extent" [extension] and its "intent" [intension, comprehen-
-> sion]: the extent consists of all objects (or entities) belonging
-> to the concept while the intent is the multitude of all attributes
-> (or properties) valid for all those objects (cf. Wagner [36]).
-
-> The approach reported here takes these
-> "concept lattices" as the basis and discusses how parts of
-> arithmetic, structure and representation theory of lattices may
-> be developed out of problems and questions which occur within the
-> analysis of contexts and their hierarchies of concepts.
+> Traditional philosophy considers a concept to be determined by its
+> "extent" [extension] and its "intent" [intension, comprehension]:
+> the extent consists of all objects (or entities) belonging to the
+> concept while the intent is the multitude of all attributes (or
+> properties) valid for all those objects (cf. Wagner [36]).
 
 # 2. Concept lattices
+
+TODO
+
 # 3. Examples
+
+TODO
+
 # 4. The determination problem
+
+TODO
 
 > The concept lattice can be understood as a basic answer to
 > two fundamental questions concerning a context, namely
@@ -109,6 +104,8 @@ We need to restructuring other theories of mathematics.
 > How can one determine the concept lattice of a given context (G,M,I)?
 
 # 5. The description problem
+
+TODO
 
 > Connected with the description problem is the basic problem:
 > How can one describe the concept Lattice of a given context (G,M,I)?
@@ -130,9 +127,20 @@ We need to restructuring other theories of mathematics.
 > diagram by an example.
 
 # 6. From structures to concept lattices
+
+TODO
+
 # 7. Measurement
+
+TODO
+
 # 8. Completions of partial concept lattices
+
+TODO
+
 # 9. Further remarks
+
+TODO
 
 > This restructuring of lattice theory
 > does not pretend to be complete in any sense.

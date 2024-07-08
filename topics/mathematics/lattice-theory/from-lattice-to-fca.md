@@ -15,7 +15,27 @@ date: 2024-07-07
 
 可以从 Rudolf 对 FCA 的简要总结出发。
 
-TODO 看 Rudolf 在近期的论文中对 FCA 的总结。
+首先是如何计算 join 与 meet。
+这需要 lattice 的 intersection-structure：
+- meet 用到 extent 之间的 intersection；
+- join 用到 intent 之间的 intersection。
+
+其次是如何在已有 objects 和 attributes 的情况下，
+生成 concept lattice 中的有 concepts。
+这需了解 join-danse 与 meet-danse 的概念，
+lattice 的这些子集可以用来生成 lattice 中的所有元素。
+
+能从 lattice 的公理开始，
+推导出这两点知识基本就够了。
+这也正是 the order book 中在介绍 FCA 之前所介绍的概念。
+
+## intersection-structure
+
+TODO
+
+## join-danse 与 meet-danse
+
+TODO
 
 # 画出概念格需要哪些格论知识？
 
