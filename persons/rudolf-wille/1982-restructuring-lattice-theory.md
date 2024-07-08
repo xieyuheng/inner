@@ -93,8 +93,6 @@ TODO
 
 # 4. The determination problem
 
-TODO
-
 > The concept lattice can be understood as a basic answer to
 > two fundamental questions concerning a context, namely
 > 1. the question of an appropriate classification of the objects,
@@ -102,6 +100,11 @@ TODO
 
 > Hence an important problem is:
 > How can one determine the concept lattice of a given context (G,M,I)?
+
+所描述的就是我们用来，
+从所有 single-object concepts，
+或所有 single-attribute concepts，
+生成所有 concepts 的算法。
 
 # 5. The description problem
 
@@ -116,15 +119,15 @@ TODO
 > If we label in a Hasse diagram of L(G,M,I) the circle representing
 > ({g}", {g}') by a name for g (g in G) and the circle representing
 > ({m}', {m}") by a name for m (m in M), as in the examples in Section 3,
-> the diagram retains the full information about (G,M,I) because
-> gIm is equivalent to ({g}", {g}') <= ({m}', {m}") by the theorem in Section 2.
+> the diagram retains the full information about (G,M,I) because gIm
+> is equivalent to ({g}", {g}') <= ({m}', {m}") by the theorem in
+> Section 2.
 
 > Although Hasse diagrams are frequently used, it is surprising that
-> there is no "theory of readable Hasse diagrams".
-> Drawing a Hasse diagram is still more an art than a mechanical
-> skill that even a computer can work out. Because of the absence
-> of a theory, we shall only discuss the development of a Hasse
-> diagram by an example.
+> there is no "theory of readable Hasse diagrams".  Drawing a Hasse
+> diagram is still more an art than a mechanical skill that even a
+> computer can work out. Because of the absence of a theory, we shall
+> only discuss the development of a Hasse diagram by an example.
 
 # 6. From structures to concept lattices
 
