@@ -1,11 +1,20 @@
 ---
-title: 形式概念分析笔记
-subtitle: Formal Concept Analysis Notes
+title: 形式概念分析
+subtitle: Formal Concept Analysis
 ---
 
 # 学习动机
 
 **动机 A：**
+
+首先要学会如何从数据构造 concept lattice。
+因为这是非常实用的工具，可以让我们的思想变清晰。
+回忆 Peirce 的 "How to make our ideas clear"。
+
+我们要写算法实现这个构造，
+并且要写实用的 app 来产品化相关的算法。
+
+**动机 B：**
 
 FCA 的形式定义就是 [EAV](https://en.wikipedia.org/wiki/entity-attribute-value_model) 但是没有 V。
 与 FCA 的 EA 相比，EAV 多出的一个 V 在理论上有什么意义呢？
@@ -129,10 +138,7 @@ FCA 的形式定义就是 [EAV](https://en.wikipedia.org/wiki/entity-attribute-v
 比如 Petri net，propagator，cell complex（多分图），等等。
 也就是说，可以用 FCA 的方法来分析二分图。
 
-# 例子
-
-TODO 找一些有趣的 FCA 数据集的例子，
-手算 concept lattice，并且能给别人讲清楚其意义。
+# 连续的数据如何处理？
 
 可以根据例子观察一下 FCA 的局限性，
 属性必须被离散化，才能被理解为 concept，比如：
@@ -188,3 +194,11 @@ Peirce 的实用主义格言：
 
 - ChatGPT: The concept we form of an object is the sum of the effects
   it has in the situations we care about.
+
+考虑 Peirce 的 "How to make our ideas clear?"，
+也可以说我们能够回答 "When to use formal concept analysis?"，
+答案是 "When we want to make our ideas clear"。
+
+注意，我们并不是所有时候都想这样做，
+比如读诗歌和欣赏风景的时候，
+单纯只是在体验而不是在思考。
