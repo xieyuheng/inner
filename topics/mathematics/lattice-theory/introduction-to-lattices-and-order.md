@@ -55,7 +55,7 @@ less than or equal to 太长了，也许 lteq 可以，
 
 ## Examples from social science and computer science
 
-注意这里定义 interval order 的方式不是 interval 之间的包含关系，
+注意，这里定义 interval order 的方式不是 interval 之间的包含关系，
 而是两个 interval 的数字之间的大小关系：
 
 ```
