@@ -75,6 +75,10 @@ x <= y := x.right <= y.left
 在社会学意义上，这个结果就很有意思了，
 因为可以解释很多社会现象。
 
+- 简单的方案是不要只是排序，
+  而是 n 个体都给 m 个东西打分，
+  然后根据总分来给 m 个东西排序。
+
 另外举了组织工业生产和组织会议等例子，
 在设计解决方案的过程中，要求解 constraints，
 而 constraints 通常是用 order 关系表达的。
@@ -87,6 +91,9 @@ x <= y := x.right <= y.left
 
 formal concept analysis 也被算到 humanities 这一节了，
 其实将其看作是计算机科学，甚至是纯数学也可以。
+因为 formal 的意思就是，
+对 concept 的分析，只依赖于 formal context，
+而不依赖于这个 concept 在 formal context 之外外延与内涵。
 
 [propagator] 在 propagator 的 cell 中，
 保存 supported value 时，
@@ -132,6 +139,11 @@ merge 两份信息，会得到更多的信息，
   为了好记忆，把不等号看成是有向图中的箭头，
   这样箭头就是指向下方的。
 
+  - 其实不应该用这种方式来记忆，因为很容易混淆。
+    比如，就蕴含关系而言 below(low, high)
+    等价于 imply(low, high)
+    在箭头上就反过来了 low -> high。
+
 在 Hasse diagram 可以更直观地通过高低看出 below 关系，
 而不用跟随有向图的 arrow。
 
@@ -162,7 +174,9 @@ maximal 和 minimal 可能不唯一。
 > ... when an order relation models information, we might expect a
 > correlation between maximal elements and totally defined elements.
 
-**disjoint sum** 在图上看，就是把两个 Hasse diagram 并列摆在一起，中间没有连线。
+**disjoint sum** 在图上看，
+就是把两个 Hasse diagram 并列摆在一起，
+中间没有连线。
 
 **linear sum** 在图上看，就是把两个 Hasse diagram 上下摆在一起，
 并且让上图的所有极小元都连接到下图的所有极大元。
@@ -188,7 +202,7 @@ disjoint sum 和 linear sum 显然都满足结合律。
 用上面的两个 sum 和两个 primitive 函数，
 已经可以构造出来很多有趣的有限 ordered sets 了。
 
-另外有 `PowerSet(set)` 这个 promises 函数也很常用。
+另外有 `PowerSet(set)` 这个 primitive 函数也很常用。
 比如 `PowerSet({1, 2, 3})` 是 cube。
 结构化的群也可以给出 ordered sets，
 比如群的 `SubgroupOrder` 和 `NormalSubgroupOrder`。
@@ -215,9 +229,11 @@ disjoint sum 和 linear sum 显然都满足结合律。
 才需要比较后面的元素。
 
 [propagator] Supported value 也是由笛卡尔积构成的，
-中包含一个 order set `T`，和一个 `PowerSet(String)`，
+其中一个元素属于某个 order set -- `T`，
+另一个元素属于 `PowerSet(String)`，
 它用的是 字典序 还是 逐坐标序 呢？
-可能是类似 逐坐标序 但是又有一些变化，
+可能是类似 逐坐标序 但是又有一些变化
+（当某个坐标的元素相等时，另一个坐标的序关系反过来了），
 我们之后要用 order theory 的数学语言把这一点明确下来。
 
 > Informally, a product P * Q is drawn by replacing each point of a
@@ -322,6 +338,18 @@ TODO 练习 1.32 Proposition 中的证明和运算。
 是为了检验自己是否真的掌握了知识。
 对于定义一类的知识，特别适合用 mimor 来辅助记忆。
 
+little book 有一个特点是一般的练习所没有的，
+即练习最终会为一个项目服务。
+比如 the little schemer 中的解释器项目，
+the little learner 中神经网络的项目，等等。
+甚至可以说，little book 中的教学顺序以及教学过程中的练习，
+是从最终的项目中，反向推导出来的。
+这么看，在自己的学习过程中模仿 little book 好像并不难，
+比如，假设在读 FCA 相关的书时，
+以实现一个 FCA App 为最终项目，
+那么为了实现 FCA App 中的某些功能，
+就需要明了 lattice 中的相关知识。
+
 # 2. Lattices and complete lattices
 
 > Many important properties of an ordered set P are expressed in terms
@@ -335,6 +363,16 @@ Lattice 中的二元运算可以理解为，
 虽然 Lattice 有二元运算，类似代数结构，
 但是以 upper bound 和 lower bound 为基础，
 可以以统一的方式去理解 complete lattices。
+
+- 是否有了 OrderedSet 的公理之后，
+  就可以定义 upper bound 和 lower bound 这两个函数了呢？
+  好像不行，为什么不行？
+  因为定义只是说明了 sup 与 inf 这两个函数的类型，
+  但是没有给出函数的定义本身。
+  所以说，OrderedSet 与 Lattice 并不等价，
+  后者需要把 sup 和 inf 明显地定义出来，
+  这两个函数的的类型虽然只用到了 OrderedSet 中的元素与关系，
+  但是想要成为 Lattice，还需要给出函数本身。
 
 ## Lattices as ordered sets
 
