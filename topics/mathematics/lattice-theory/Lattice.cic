@@ -1,0 +1,17 @@
+class Lattice {
+  Element: Type
+
+  join, meet: (x: Element, y: Element) -> Element
+  bottom, top: Element
+
+  joinCommute: (x, y: Element) -> Equal(join(x, y), join(y, x))
+  meetCommute: (x, y: Element) -> Equal(meet(x, y), meet(y, x))
+
+  bottomIsUnitOfJoin: (x: Element) -> Equal(join(x, bottom), x)
+  topIsUnitOfMeet: (x: Element) -> Equal(meet(x, top), x)
+
+  joinDistributeOverMeet: (x, y, z: Element) ->
+    Equal(join(x, meet(y, z)), meet(join(x, y), join(x, z)))
+  meetDistributeOverJoin: (x, y, z: Element) ->
+    Equal(meet(x, join(y, z)), join(meet(x, y), meet(x, z)))
+}
