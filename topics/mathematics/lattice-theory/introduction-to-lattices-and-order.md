@@ -654,16 +654,6 @@ class Context {
 
   commonAttributes(objects: Set(Objects)): Set(Attributes)
   commonObjects(attributes: Set(Attributes)): Set(Objects)
-
-  isConcept(extent: Set(Objects), intent: Set(Attributes)): Boolean {
-    setEqual(commonAttributes(extent), intent) &&
-    setEqual(commonObjects(intent), extent)
-  }
-
-  // TODO
-  // Concept 本身作为对象（如果想不依赖），Context 存在，
-  // 就需要固定 Objects 和 Attributes 这两个 Type。
-  // 也许 Concept 本身根本就没必要作为一个 class 存在。
 }
 ```
 
@@ -682,6 +672,8 @@ class Context {
 - 方案 B：
 
   corss-table = map from an entity (an object) to a set of attributes
+
+  - entity attribute index
 
   这样可以保证 object 的唯一性。
   实际实现的时候我们用 entity 一词，而不用 object，
@@ -732,12 +724,39 @@ TODO 看完第五章之后回来推导相关的证明。
 分别作为 concept context
 的 objects 和 attribute。
 
-于线性空间不同的时，这里不要求基相互独立。
+与线性空间不同的时，这里不要求基相互独立。
 
 - concept lattices 之间同构，
   但是 concept context 却有可能不同。
 
 ## From theory to practice
+
+concept lattice 中的点是 concept，
+而不是 object 或 attribute，
+但是每个 object 和 attribute 都可以用来生成 concept，
+我们可以分别称之为 object concept 和 attribute concept，
+因此部分 concept 可以用 object 和 attribute 标记。
+
+从 concept lattice 中，可以读出任意一个 concept 的 extent 和 intent：
+
+- extent -- 这个 concept 向下可以走到的所有 object concept 所对应的 objects；
+- intent -- 这个 concept 向上可以走到的所有 attribute concept 所对应的 attributes。
+
+> The concept lattice provides a basic analysis of a context: it
+> yields an appropriate classification of the objects and at the same
+> time indicates the implications between the attributes.
+
+也许作者也认为 FCA 中的 A -- analysis，
+就在于画出 concept lattice。
+
+"an appropriate classification of the objects"
+可能指的是被映射到了同一个 object concept 的 objects，
+反应在图上就是一个点被多个 objects 标记了。
+
+"the implications between the attributes"
+就在于，如果一个 attribute concept 节点，
+向上能够走到另一 attribute concept 节点，
+那么前一个 attribute 就蕴含后一个 attribute。
 
 TODO
 
