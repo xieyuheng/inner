@@ -583,7 +583,7 @@ lattice 中的元素 x 是 **join-irreducible**，定义为：
 - (1) x != bottom -- 如果 lattice 有 bottom 的话。
 - (2) forall a, b: x = join(a, b) -> x = a 且 x = b。
 - 与 (2) 等价的 (2') forall a, b: a < x 且 b < x -> join(a, b) < x，
-  即任意两个元素的 join 都在 x 之下。
+  即任意两个在 x 之下的元素，取上之后还在 x 之下。
 
 在 hasse diagram 中，
 所有尽下方（beneath）只有一个元素的元素都是 join-irreducible。
