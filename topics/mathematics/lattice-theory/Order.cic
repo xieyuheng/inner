@@ -2,22 +2,14 @@ class PreOrder {
   Element: Type
   Below: (Element, Element) -> Type
   reflexive: (x: Element) -> Below(x, x)
-  transitive: (
-    implicit x, y, z: Element,
-    Below(x, y), Below(y, z),
-  ) -> Below(x, z)
 
-
-  // 不想把 implicit 写在函数的参数列表中，看着很乱。
-  given x, y, z: Element
+  @given x, y, z: Element
   transitive: (Below(x, y), Below(y, z)) -> Below(x, z)
 }
 
 class Order extends PreOrder {
-  antisymmetric: (
-    implicit x, y: Element,
-    Below(x, y), Below(y, x),
-  ) -> x == y
+  @given x, y: Element
+  antisymmetric: (Below(x, y), Below(y, x)) -> Equal(x, y)
 }
 
 class TotalOrder extends Order {
