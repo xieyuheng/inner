@@ -96,7 +96,18 @@ year: 1999
 
 ## 0.3 Closure Operators
 
-TODO
+TODO 这里定义的 closure system，
+就是 the order book 中定义的 intersection-structure，
+但是在那本书里没有定义 closure operator。
+
+注意，closure system 是说一个集合的子集的集合对于交封闭，
+而 closure operator 是一个集合的子集到子集的运算。
+
+closure system 与 closure operator 的联系在于，
+如果对于子集的集合对于交封闭，
+给定任意一个子集，
+取 closure system 中所有包含它的集合，
+然后取交，就可以定义一个 closure operator。
 
 ## 0.4 Galois Connections
 
