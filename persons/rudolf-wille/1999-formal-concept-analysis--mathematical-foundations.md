@@ -96,18 +96,101 @@ year: 1999
 
 ## 0.3 Closure Operators
 
-TODO 这里定义的 closure system，
-就是 the order book 中定义的 intersection-structure，
-但是在那本书里没有定义 closure operator。
+注意，这里定义的闭包系统（closure system），
+就是 The Order Book 中定义的交集结构（intersection-structure），
+但是在那本书里没有强调闭包算子。
 
-注意，closure system 是说一个集合的子集的集合对于交封闭，
-而 closure operator 是一个集合的子集到子集的运算。
+闭包结构（closure structure）也是一个十分重要的数学结构，
+它出现在拓扑、代数、逻辑等各个领域。
 
-closure system 与 closure operator 的联系在于，
-如果对于子集的集合对于交封闭，
-给定任意一个子集，
-取 closure system 中所有包含它的集合，
-然后取交，就可以定义一个 closure operator。
+常见的闭包算子（closure operator），
+是就某个集合 A 的幂集 PowerSet(A) 而言的。
+
+```cicada
+claim A: Set
+
+closure: (PowerSet(A)) -> PowerSet(A)
+extensive: (X: PowerSet(A)) -> SubsetOf(X, closure(X))
+increasing: (X, Y: PowerSet(A), SubsetOf(X, Y)) -> SubsetOf(closure(X), closure(Y))
+idempotent: (X: PowerSet(A)) -> Equal(closure(closure(X)), closure(X))
+```
+
+PowerSet(A) 是一个特殊的 OrderedSet，
+closure 的定义也可以推广到一般的 OrderedSet。
+
+```cicada
+claim order: OrderedSet
+
+closure: order.Element -> order.Element
+extensive: (X: order.Element) -> order.Below(X, closure(X))
+increasing: (X, Y: order.Element, order.Below(X, Y)) -> order.Below(closure(X), closure(Y))
+idempotent: (X: order.Element) -> Equal(closure(closure(X)), closure(X))
+```
+
+闭包系统是说一个集合的某个子集
+-- 称为闭集（closed set）的集合对于交封闭，
+而闭包算子是一个集合的幂到自身的映射。
+
+闭包系统与闭包算子之间的联系在于如下定理：
+
+- 如果已有一个闭包算子，它的像空间就是闭包系统的闭集的集合；
+
+- 如果已有一个闭包系统，对于任意一个子集，
+  取所有包含它的闭集，然后求交（按闭包系统的定义封闭），
+  就得到一个新的子集，这样就可以定义闭包算子。
+
+TODO 证明这里的断言。
+
+我们已经知道闭包系统对于形式概念分析非常重要，
+因为在概念格中定义取上和取下运算的时候，
+分别要用到内涵的交与外延的交。
+
+乍一看，这好像是不对称的，为什么用到的是交而不是并？
+也许闭包算子可以帮助理解这一点。
+
+这方面最重要的定理是：
+
+- 任意一个闭包系统都是一个完全格，
+  其中，序关系是集合的包含关系
+  （看参数的位置，应该说是「包含于」关系），
+  取下就定义为集合的交，
+  取上就定义为集合的并的闭包。
+
+- 任意一个完全格，它的上闭包（或下闭包）的集合，
+  可以看成是一个闭包系统。
+
+  - 序集的上闭包（up closure）与下闭包（down closure），
+    就是在 The Order Book 中提到的 up-set 和 down-set，
+    它可以把对任意序关系的研究，
+    转化为对某个集合的特殊子集之间的包含关系的研究。
+    特殊的序关系被转化为了特殊的子集加一般的序关系（集合的包含关系）。
+
+TODO 这里有一个问题，
+一个闭包系统给出一个完全格，
+但是一个完全格却可以分别用上闭包与下闭包给出两个闭包系统！
+
+- 注意，上闭包与下闭包是可以对任意序集定义的，
+  但是书中的定理的对象却不是序集，而是完全格，
+  也许这个问题的答案就在这里。
+
+很多重要的数学结构的子结构的集合，都是闭包系统。
+也就是说，对于这样的每个具体的数学结构，
+都可以获得一个子结构的完全格：
+
+- 向量空间的子空间
+- 群的子群和正规子群
+- 拓扑空间中的闭集
+- 欧氏空间中子集的凸包
+- 多面体的面的集合 TODO ！？
+- 等价关系 TODO ！？
+
+注意，对于这些子空间构成的完全格来说，取下就是交，
+但是，取上的计算带有闭包算子，与具体数学结构有关，
+是值得仔细考察的东西。
+
+TODO 看看群论中取上如何计算。
+
+TODO 关于 distributive
 
 ## 0.4 Galois Connections
 
