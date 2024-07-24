@@ -315,7 +315,12 @@ TODO 下面的定理，
 
 介绍与格论相关的教科书与文献。
 
+比如，关于上面的 residuated map 有 residuation theory 相关的引用。
+
 # 1. Concept Lattices of Contexts
+
+
+
 # 2. Determination and Representation
 # 3. Parts and Factors
 # 4. Decompositions of Concept Lattices
