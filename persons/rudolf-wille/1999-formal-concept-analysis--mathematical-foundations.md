@@ -319,9 +319,24 @@ TODO 下面的定理，
 
 # 1. Concept Lattices of Contexts
 
+## 1.1 Concept Lattices of Contexts
 
+TODO
+
+## 1.2 Context and Concept
+## 1.3 Context and Concept Lattice
+## 1.4 Many-valued Contexts
+## 1.5 Context Constructions and Standard Scales
+## 1.6 Hints and References
 
 # 2. Determination and Representation
+
+## 2.1 All Concepts of a Context
+## 2.2 Diagrams
+## 2.3 Implications between Attributes
+## 2.4 Dependencies between Attributes
+## 2.5 Hints and References
+
 # 3. Parts and Factors
 # 4. Decompositions of Concept Lattices
 # 5. Constructions of Concept Lattices
