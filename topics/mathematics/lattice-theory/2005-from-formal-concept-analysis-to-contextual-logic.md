@@ -15,6 +15,21 @@ year: 2005
 Lattice 经过 restructuring 而得到 FCA。
 强调 learnable 的理论，让更多的人能理解，能对更多的人有用。
 
+这里提到的所谓 many-valued contexts，
+其实就是把 FCA 的数据库的 entity-attribute 的结构，
+扩展为 entity-attribute-value 的结构，
+因为这个结构才是人们自然地记录数据的方式。
+
+但是 FCA 的方法只能用于 entity-attribute，
+所以需要把 value 进一步离散化 -- 所谓 scaling。
+
+这确实是非常重要的问题。
+这里说的不能 auto scaling，
+必须由领域专家根据领域知识来 scaling，
+其实也是错的，auto scaling 正是一个实用的 app 的方向。
+即，用机器学习的方法，以奥卡姆的剃刀为原则，
+找出合理的离散化方式，使得概念数量最少。
+
 # 3 Logic
 
 > The purpose of predicate logic has never been to model or support
