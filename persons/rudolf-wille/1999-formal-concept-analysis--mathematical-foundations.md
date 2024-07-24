@@ -116,7 +116,7 @@ idempotent: (X: PowerSet(A)) -> Equal(closure(closure(X)), closure(X))
 ```
 
 PowerSet(A) 是一个特殊的 OrderedSet，
-closure 的定义也可以推广到一般的 OrderedSet。
+闭包算子的定义也可以推广到一般的 OrderedSet。
 
 ```cicada
 claim order: OrderedSet
@@ -127,17 +127,17 @@ increasing: (X, Y: order.Element, order.Below(X, Y)) -> order.Below(closure(X), 
 idempotent: (X: order.Element) -> Equal(closure(closure(X)), closure(X))
 ```
 
-闭包系统是说一个集合的某个子集
--- 称为闭集（closed set）的集合对于交封闭，
+闭包系统是说一个集合的某个子集的集合对于交封闭，
+这些子集被称为闭集（closed set），
 而闭包算子是一个集合的幂到自身的映射。
 
 闭包系统与闭包算子之间的联系在于如下定理：
 
-- 如果已有一个闭包算子，它的像空间就是闭包系统的闭集的集合；
+- 如果已有一个闭包算子，它的像空间就定义了一个闭包系统的闭集的集合；
 
 - 如果已有一个闭包系统，对于任意一个子集，
   取所有包含它的闭集，然后求交（按闭包系统的定义封闭），
-  就得到一个新的子集，这样就可以定义闭包算子。
+  就得到一个新的子集，这样就可以定义一个闭包算子。
 
 TODO 证明这里的断言。
 
@@ -145,7 +145,8 @@ TODO 证明这里的断言。
 因为在概念格中定义取上和取下运算的时候，
 分别要用到内涵的交与外延的交。
 
-乍一看，这好像是不对称的，为什么用到的是交而不是并？
+乍一看，这好像是不对称的，
+为什么用到的是交而不是并？
 也许闭包算子可以帮助理解这一点。
 
 这方面最重要的定理是：
@@ -190,11 +191,125 @@ TODO 这里有一个问题，
 
 TODO 看看群论中取上如何计算。
 
-TODO 关于 distributive
+如果一个完全格满足下面的等式，
+就称它为分配的（distributive）：
+
+```
+meet(x, join(y, z)) = join(meet(x, y), meet(x, z))
+join(x, meet(y, z)) = meet(join(x, y), join(x, z))
+```
+
+类比乘法对加法的分配律：
+
+```
+x * (y + z) = x * y + x * z
+```
+
+如果满足下面的性质，
+就称它为模格（modular lattice）：
+
+```
+below(x, z) -> join(x, meet(y, z)) = meet(join(x, y), z)
+```
+
+可以认为这个性质描述了
+join 和 meet 之间可以使用结合律的条件。
+
+在这个简单的定义之外，
+diamond isomorphism theorem
+可以让人更直觉地认识模格。
+
+> Distributivity and modularity are **self-dual** properties:
+> if they hold for a lattice V, they also hold for the dual of V.
+> All above-mentioned properties transfer to complete sublattices.
+> Power-set lattices are completely distributive,
+> subspace lattices of vector spaces are modular.
+
+子结构的格的属性，竟然能用来区分不同的数学结构。
+可能类似于，拓扑空间的拓扑不变量可以用来区分空间。
+
+TODO 在格论的背景下，学习一下伽罗瓦理论，应该是很棒的。
 
 ## 0.4 Galois Connections
 
-TODO
+一对满足如下性质的反向保序映射，
+被称为伽罗瓦对应（Galois connection）：
+
+```cicada
+claim f: P -> Q
+claim g: Q -> P
+
+f 反向保序: (p1, p2: P, below(p1, p2)) -> below(f(p2), f(p1))
+g 反向保序: (q1, q2: Q, below(q1, q2)) -> below(g(q2), g(q1))
+
+P 中递增: (p: P) -> below(p, g(f(p)))
+Q 中递增: (q: Q) -> below(q, f(g(q)))
+```
+
+f 与 g 被称为对偶伴随（dually adjoint），
+应该和范畴论中的伴随函子（adjoint functor）有关。
+
+上面的四个性质可以简化为一个等价的性质：
+
+```cicada
+below(p, g(q)) <-> below(q, f(p))
+```
+
+伽罗瓦对应满足如下属性：
+
+```cicada
+f == f ∘ g ∘ f
+g == g ∘ f ∘ g
+```
+
+TODO 下面的定理，
+给出了判断一个序集之间的映射 f: P -> Q，
+是否具有 dual adjoint 的条件，
+并且给出了构造它的 dual adjoint 的方式，
+并且证明了如果 dual adjoint 存在，就是唯一的。
+
+条件可以叙述于主理想与主滤子，也可叙述如下：
+
+```cicada
+(p1, p2: P) -> f(join(p1, p2)) == meet(f(p1), f(p2))
+```
+
+这就很直观了很好记了。
+
+两个集合之间的伽罗瓦对应，
+定义为两个幂集之间的伽罗瓦对应。
+
+集合之间的伽罗瓦对应与闭包算子之间的关系在于如下定理，
+给定对偶伴随 f: P -> Q 和 g: Q -> P，
+
+- g ∘ f: P -> P 是 P 上的闭包算子，
+- f ∘ g: Q -> Q 是 Q 上的闭包算子，
+- 并且 f 和 g 构成 P 和 Q 作为闭包系统之间的对偶同构。
+
+下面描述两个集合之间的伽罗瓦对应，
+与两个集合上的二元关系之间的关系。
+
+- 注意，一个二元关系就是一个形式概念语境，
+  所以这里的结论也可以延伸到形式概念分析中。
+
+  比如，首先这里就定义了形式概念分析中的两个衍生算子，
+  但是是就二元关系来定义的。
+
+下面对于任意一个二元关系，
+给出一个集合之间的伽罗瓦对应。
+
+- 已知一个二元关系，
+  得到伽罗瓦对应的方式很简单，
+  两个衍生算子本身就是对偶伴随。
+
+- 已知一个集合之间的伽罗瓦对应，
+  有两个等价的定义二元关系的方式，
+  即 R(x, y) := x in g(y)，
+  或 R(x, y) := y in f(x)。
+
+如果不用反向保序映射，
+而是用保序映射和对偶序集来叙述伽罗瓦对应，
+就得到 residuated map 和 adjoint 的概念（不是 dual adjoint 了）。
 
 ## 0.5 Hints and References
 
