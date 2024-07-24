@@ -49,3 +49,8 @@ Lattice 经过 restructuring 而得到 FCA。
 
 也许说的没错，数学的核心在于想像与建模，而不在于证明。
 但是想否定证明 -- 这个数学的核心概念，的价值，还是有点过头了。
+
+# 4 Conceptual Graphs
+
+这里所描述的 CG，看起来像是 
+high order logic programming with a type system。
