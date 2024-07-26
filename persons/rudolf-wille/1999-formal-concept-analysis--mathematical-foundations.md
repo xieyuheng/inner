@@ -321,6 +321,77 @@ TODO 下面的定理，
 
 ## 1.1 Concept Lattices of Contexts
 
+先看一下简单的实现方式。
+
+首先是类似 `String` 的 `Entity` 和 `Attribute`：
+
+```cicada
+class Entity extends String
+class Attribute extends String
+```
+
+其次是 `Context`：
+
+```cicada
+class Context {
+  entities: Set(Entity)
+  attributes: Set(Attribute)
+  entityAttributeIndex: Map(Entity, Set(Attribute))
+  attributeEntityIndex: Map(Attribute, Set(Entity))
+}
+```
+
+`Concept`：
+
+```cicada
+class Concept {
+  context: Context
+  extent: Set(Entity)
+  intent: Set(Attribute)
+}
+```
+
+重要的 API：
+
+```cicada
+entityHasAttribute(context: Context, entity: Entity, attribute: Attribute) -> boolean
+
+entitiesOf(context: Context, attribute: Attribute) -> Set(Entity)
+attributesOf(context: Context, entity: Entity) -> Set(Attribute)
+
+commonEntities(context: Context, attributes: Set(Attribute)) -> Set(Entity)
+commonAttributes(context: Context, entities: Set(Entity)) -> Set(Attribute)
+
+closureEntities(context: Context, entities: Set(Entity)) -> Set(Entity)
+closureAttributes(context: Context, attributes: Set(Attribute)) -> Set(Attribute)
+```
+
+我们可以用到前一章学的知识，来总结概念格的性质。
+
+首先是伽罗瓦对应：
+
+```cicada
+claim context: Context
+
+commonEntities(context): (Set(Attribute)) -> Set(Entity)
+commonAttributes(context): (Set(Entity)) -> Set(Attribute)
+```
+
+构成 `context.entities` 和 `context.attributes` 这两个 Set 之间的伽罗瓦对应。
+注意，集合之间的伽罗瓦对应就是集合的幂集作为序集之间的伽罗瓦对应。
+
+其次是闭包算子：
+
+```cicada
+claim context: Context
+
+closureEntities(context: Context) -> (Set(Entity)) -> Set(Entity)
+closureAttributes(context: Context) -> (Set(Attribute)) -> Set(Attribute)
+```
+
+构成 `context.entities` 和 `context.attributes` 这两个 Set 上的闭包算子，
+其中的闭集，将会作为某个 `concept` 的 `concept.extent` 和 `concept.intent`。
+
 TODO
 
 ## 1.2 Context and Concept
