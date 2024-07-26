@@ -242,8 +242,8 @@ claim g: Q -> P
 f 反向保序: (p1, p2: P, below(p1, p2)) -> below(f(p2), f(p1))
 g 反向保序: (q1, q2: Q, below(q1, q2)) -> below(g(q2), g(q1))
 
-P 中递增: (p: P) -> below(p, g(f(p)))
-Q 中递增: (q: Q) -> below(q, f(g(q)))
+函数复合在 P 中递增: (p: P) -> below(p, g(f(p)))
+函数复合在 Q 中递增: (q: Q) -> below(q, f(g(q)))
 ```
 
 f 与 g 被称为对偶伴随（dually adjoint），
