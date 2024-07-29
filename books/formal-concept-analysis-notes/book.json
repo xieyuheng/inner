@@ -1,0 +1,10 @@
+{
+  "kind": "Book",
+  "title": "形式概念分析笔记",
+  "version": "0.0.1",
+  "authors": ["谢宇恒"],
+  "date": "2024-07-29",
+  "src": "src",
+  "keywords": ["FCA"],
+  "contents": []
+}

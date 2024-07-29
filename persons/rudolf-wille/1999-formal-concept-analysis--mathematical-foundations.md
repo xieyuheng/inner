@@ -341,16 +341,6 @@ class Context {
 }
 ```
 
-`Concept`：
-
-```cicada
-class Concept {
-  context: Context
-  extent: Set(Entity)
-  intent: Set(Attribute)
-}
-```
-
 重要的 API：
 
 ```cicada
@@ -392,9 +382,35 @@ closureAttributes: (Context) -> (Set(Attribute)) -> Set(Attribute)
 构成 `context.entities` 和 `context.attributes` 这两个 Set 上的闭包算子，
 其中的闭集，将会作为某个 `concept` 的 `concept.extent` 和 `concept.intent`。
 
-TODO
+`Concept` 只有在给定某个 context 的时候才有意义：
+
+```cicada
+class Concept {
+  context: Context
+  extent: Set(Entity)
+  intent: Set(Attribute)
+}
+```
+
+本章包括对概念格基本定理的证明。
+其定理叙述为，如果一个完全格与概念格同构，
+则存在用 context 中的 objects 和 attributes
+来 labelling 完全格中的基的方式，
+并且满足「具有」关系 `entityHasAttribute(ctx, e, a)`，
+和 labelling 之后的不等式关系
+`labelling(e) <= labelling(a)` 之间的等价。
 
 ## 1.2 Context and Concept
+
+一个概念是 G x M 的子集，
+所有概念作为集合的并，
+给出的 G x M 的子集定义了一个二元关系，
+这个二元关系就是 I --「具有」关系。
+
+考虑这个定理的拓扑直觉是很有趣的。
+
+TODO 到底是否可以在这里用拓扑这个词？
+
 ## 1.3 Context and Concept Lattice
 ## 1.4 Many-valued Contexts
 ## 1.5 Context Constructions and Standard Scales
