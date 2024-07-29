@@ -354,16 +354,16 @@ class Concept {
 重要的 API：
 
 ```cicada
-entityHasAttribute(context: Context, entity: Entity, attribute: Attribute) -> boolean
+entityHasAttribute: (Context, Entity, Attribute) -> Boolean
 
-entitiesOf(context: Context, attribute: Attribute) -> Set(Entity)
-attributesOf(context: Context, entity: Entity) -> Set(Attribute)
+entitiesOf: (Context, Attribute) -> Set(Entity)
+attributesOf: (Context, Entity) -> Set(Attribute)
 
-commonEntities(context: Context, attributes: Set(Attribute)) -> Set(Entity)
-commonAttributes(context: Context, entities: Set(Entity)) -> Set(Attribute)
+commonEntities: (Context, Set(Attribute)) -> Set(Entity)
+commonAttributes: (Context, Set(Entity)) -> Set(Attribute)
 
-closureEntities(context: Context, entities: Set(Entity)) -> Set(Entity)
-closureAttributes(context: Context, attributes: Set(Attribute)) -> Set(Attribute)
+closureEntities: (Context, Set(Entity)) -> Set(Entity)
+closureAttributes: (Context, Set(Attribute)) -> Set(Attribute)
 ```
 
 我们可以用到前一章学的知识，来总结概念格的性质。
@@ -385,8 +385,8 @@ commonAttributes(context): (Set(Entity)) -> Set(Attribute)
 ```cicada
 claim context: Context
 
-closureEntities(context: Context) -> (Set(Entity)) -> Set(Entity)
-closureAttributes(context: Context) -> (Set(Attribute)) -> Set(Attribute)
+closureEntities: (Context) -> (Set(Entity)) -> Set(Entity)
+closureAttributes: (Context) -> (Set(Attribute)) -> Set(Attribute)
 ```
 
 构成 `context.entities` 和 `context.attributes` 这两个 Set 上的闭包算子，
