@@ -62,7 +62,9 @@ propagation 在 constraint processing 中很常用，
 > work done to produce that value came _before_; the work that will be
 > done using that value comes _after_.
 
-在之前 inet 的设计中，正是因为 call-by-value 这种具有确定时间顺序的语义，
+时间的限制未必是坏处，
+比如，在之前 inet 的设计中，
+正是因为 call-by-value 这种具有确定时间顺序的语义，
 使得我们可以用 expression evaluation 来构造 graph。
 
 另外，既然 inet 和 propagator 都使用 expression evaluation 来构造 graph，
