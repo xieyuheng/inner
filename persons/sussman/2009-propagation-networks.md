@@ -124,7 +124,7 @@ propagation 在 constraint processing 中很常用，
 > To be explicit about the events in the system, let us say that the
 > machines are not connected to each other directly, but through
 > shared locations that can remember things which interested machines
-> can read and write. Such locations are tradition- ally called
+> can read and write. Such locations are traditionally called
 > **cells**. As the machines communicate with each other and perform
 > their various computations, information will propagate through the
 > cells of the network.  The machines are for this reason
@@ -194,12 +194,13 @@ Network 的运行有三种情况：
 
 ## 2.3 Cells Accumulate Information
 
-> We should think of a cell as a thing that accumulates _information
-> about_ a value.
+> We should think of a cell as a thing that
+> accumulates _information about_ a value.
 
 这是这篇论文的主要贡献，即用 lattice。
 
-注意，lattice 要求交换律，
+注意，如果把 merge 当成是 lattice 的 join 或 meet，
+就要求 merge 满足交换律，
 但是也许有实用的信息积累过程，
 并不满足交换律。
 
@@ -298,7 +299,7 @@ cells 和 propagators 形成一个（无向）二分图，
 
 在 inet 中，edge 是有具体存在的，
 而在 propagator network 中，
-由于使用了二分图，edge 就是简单的用指针实现的双向连接了。
+edge 就是简单的用指针实现的双向连接了。
 
 并且 inet 中的 edge 是用两个 half-edge 来实现的，
 也就是说，在冯诺依曼构架下，所实现的东西，
@@ -316,7 +317,7 @@ graph 是 directed graph + 双向连接。
 - 再实现 propagator。
 
 与 "The Art" 中使用 Heron 迭代，而需要在初期就实现 `if` 不同，
-这里可以把 `if` 的实现推迟到大后期。
+这里可以把 `if` 的实现推迟到后期再实现。
 
 ## 3.2 Propagation can Go in Any Direction
 
@@ -333,7 +334,7 @@ graph 是 directed graph + 双向连接。
     （或者说 propagator constructor）
     成为一种 value 就可以了，
     在探索的初期，
-    这个 value 所属的 lattice 可以是平凡的。
+    这个 value 所属的 lattice 可以是平凡的 anti-chain。
 
 > One of the original motivations for examining propagators is that
 > multidirectional constraints are very easy to express in terms of
@@ -363,6 +364,12 @@ graph 是 directed graph + 双向连接。
 来简化某些 Web 前端中遇到的问题。
 但是注意，一定要有真实的案例支撑论点才行，
 不能为了推广自己的方案而骗人。
+
+如果像上面一样，从图论的角度分析 vue 的 reactive system，
+可以发现 ref 就是 cell，而 watch 就是 propagator，
+
+- TODO vue 的 API 是否与我目前的实现的 API 完全等价呢？
+  需要好好检验一下这个问题。
 
 ## 3.3 We can Propagate Intervals Too
 
