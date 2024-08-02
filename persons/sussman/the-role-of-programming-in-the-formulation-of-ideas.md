@@ -1,6 +1,6 @@
 ---
 title: The role of programming in the formulation of ideas
-authors: Gerald Jay Sussman
+author: Gerald Jay Sussman
 date: 2002
 ---
 
