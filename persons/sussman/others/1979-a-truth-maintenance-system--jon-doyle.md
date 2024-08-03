@@ -71,6 +71,50 @@ propagator 中，直接用 TMS 作为数据结构的名字，
 
 比如，增加 facts 不会减少 logic programming 的搜索空间。
 
+> The language of such inference rules, and the language for
+> evaluating which self-change to make, are for the most part outside
+> the language of inference rules encouraged by the conventional view
+> of reasoning. For example, when the current set of beliefs is
+> inconsistent, one uses rules like "Reject the smallest set of
+> beliefs possible to restore consistency" and "Reject those beliefs
+> which represent the simplest explanation of the inconsistency."
+> These sorts of rules are all we have, since we cannot infallibly
+> analyze errors or predict the future, yet these rules are
+> non-monotonic, since they lead to removing beliefs from the set of
+> current beliefs.
+
+这种形式的 inference rule 我确实是头一次见。
+如果说每个 logic 都代表一个类型系统，
+那么 TMS 这种 logic 所代表的类型系统以及程序语言是什么样的呢？
+
+> To repeat, one source of each of these problems is the monotonicity
+> inherent in the conventional view of reasoning. I now propose a
+> different view, and some new concepts which have far reaching
+> consequences for these issues.
+>
+>     Rational thought is the process of finding reasons for attitudes.
+>
+> To say that some attitude (such as belief, desire, intent, or
+> action) is rational is to say that there is some acceptable reason
+> for holding that attitude. Rational thought is the process of
+> finding such acceptable reasons.
+
+从皮尔士的实用主义出发，也许可以说：
+理性思维是建立指导行为的 belief system。
+
+也许这里说的 attitude 和 "The Little Typer" 中，
+对 judgement 的定义是一个 attitude：
+judgement 就是人们对 expression 的 attitude。
+
+> Whatever purposes the reasoner may have, such as solving problems,
+> finding answers, or taking action, it operates by constructing
+> reasons for believing things, desiring things, intending things, or
+> doing or willing things.
+
+这篇论文看来，belief 只是 attitude 的一种，
+是否所有的 attitude 都能表达为 belief 呢？
+如果不能完整的分类是什么？
+
 TODO
 
 ## 1.2. Basic terminology
