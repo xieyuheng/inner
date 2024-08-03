@@ -580,6 +580,12 @@ type BeliefSystem = {
 }
 ```
 
+关于 TMS：
+
+- [Doyle, 1978]
+- [McAllester, 1978]
+- [Forbus and de Kleer, 1993]
+
 可以理解为是 cell 的 belief system，
 每个 cell 可以相信一些信息，
 这些信息以 supported 的形式存在，
