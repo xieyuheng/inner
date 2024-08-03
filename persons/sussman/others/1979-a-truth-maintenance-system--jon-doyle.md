@@ -115,15 +115,29 @@ judgement 就是人们对 expression 的 attitude。
 是否所有的 attitude 都能表达为 belief 呢？
 如果不能完整的分类是什么？
 
-TODO
-
 ## 1.2. Basic terminology
+
+TODO 这里的 TMS 与 propagator 中对 TSM 的使用很不同。
+需要读更多才能理解。
 
 # 2. Representation of Reasons for Beliefs
 
 ## 2.1. States of belief
+
+TODO
+
 ## 2.2. Justifications
+
+介绍一个简单的证明的例子，
+然后在 justification 之外，
+把简单地用集合记录 dependency，
+改为用结构化的 SL（support-list）来记录 dependency。
+
 ## 2.3. Support-list justifications
+
+TODO 解释 `(SL (inlist) (outlist))` 所为 justification 的意义，
+并且给出一些例子。
+
 ## 2.4. Terminology of dependency relationships
 ## 2.5. Conditional-proof justifications
 ## 2.6. Other types of justifications
