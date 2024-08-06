@@ -130,6 +130,65 @@ year: 1993
 表现出了理性，但是没有搜索，
 而是一个超大规模的 pattern recognition。
 
+## 3.1 The problem space model
+
+problem space model 来自 Simon 的书：
+
+- [5] Newell, A., and Simon, H., Human Problem Solving, Prentice Hall, 1972.
+
+> The problem space model of problems and problem solving makes
+> similar use of the ideas of location, shape, and distance that are
+> so useful in physical space.
+
+## 3.2 CPS design
+
+CPS 就是本章标题 classical problem solving 的缩写，
+也是所实现的最基础的 problem space model 的框架的名字。
+
+- 可惜 CPS 这个缩写与 continuation passing style 的缩写重名了。
+
+我决定在我的代码库中完全不用缩写，
+用 `classical-problem-solving/`
+作为这部分代码的文件夹名就可以了。
+
+> Conceptually, CPS consists of two parts: an interface for
+> user-supplied problem spaces, and a search engine.
+
+`State` 的相关的接口函数：
+
+1. Goal detection:
+   Ascertain whether a given state
+   satisfies the goal criterion.
+
+2. State identity:
+   Detect when two descriptions of states
+   refer to the same state.
+
+3. State display:
+   Produce a human-readable description
+   of a given state.
+
+Operators 的接口：
+
+1. Identify what operators are available.
+
+2. Determine whether a given operator is
+   applicable to a particular state.
+
+3. Given a state and an operator applicable to it,
+   ascertain all the ways the operator
+   can be instantiated on that state.
+
+   - 注意，这里一个 operator 作用于 state 上，
+     可能给出多种新的 state，而不是一个。
+     也可以理解为一个用户给出的是一个模糊的 operator，
+     系统有机会将它翻译成多个精确的 operators。
+
+4. Figure out what new state results
+   from applying an instantiated operator to a state.
+
+TODO
+
 # 4 Pattern-Directed Inference Systems
 # 5 Extending Pattern-Directed Inference Systems
 # 6 Introduction to Truth Maintenance Systems
