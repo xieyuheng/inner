@@ -16,6 +16,10 @@ year: 1993
 - 也许这里介绍的 Problem Solvers 的实现，
   可以与 Polya 的 "How to Solve Problem" 中介绍的技术联系起来。
 
+趣闻：
+
+- 本书的第二作者 Johan de Kleer 是 Sussman 的学生。
+
 # 1 Preface
 
 ## 1.1 The role of this book
@@ -186,6 +190,32 @@ Operators 的接口：
 
 4. Figure out what new state results
    from applying an instantiated operator to a state.
+
+这里列出了四点，但是在简单的实现中，
+可能只需要一个 `State` 到 `List(State)` 的函数就可以了。
+
+搜索的策略：
+
+- breadth-first search = FIFO queue
+
+- depth-first search = LIFO queue
+
+- best-first search = sorting the queue according to
+  the minimum estimated distance to the goal
+
+- beam search = best-first search + limit on the size of the queue
+
+> What should elements of the queue be? Clearly the state to be
+> explored must be part of it. For some problems, that would be
+> enough—we may only care about the solution to an equation, for
+> example, not how it was derived. For other problems the path taken
+> to the goal is of paramount importance: a chess program needs the
+> path the search took in order to move towards a win. Consequently,
+> when a search succeeds we stipulate that the search engine must
+> return the path it found between initial and goal states. The path
+> is a list of alternating states and operator instances.
+
+## 3.3 CPS implementation issues
 
 TODO
 
