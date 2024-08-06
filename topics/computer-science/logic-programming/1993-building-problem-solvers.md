@@ -98,9 +98,38 @@ year: 1993
 并且还分类组织好了，
 并且还考虑到了如何应用。
 
-TODO
-
 # 3 Classical Problem Solving
+
+> In the early days of AI, it was often hoped that a small set of
+> grand principles could be found that provided the basis for
+> understanding the nature of intelligence, much as Newton's laws
+> provided a basis for understanding the interactions of force,
+> matter, and motion. One of the first principles proposed was
+> search. Why search? Cognitive science starts with the assumption
+> that human intelligence is a computational process. A natural
+> question to ask is, what kind of computation is it? Intelligence
+> seems utterly unlike simple algorithms, such as sort routines or
+> accounting systems. Such algorithms perform a single task extremely
+> well, but cannot deal with situations where what to do next isn't
+> clear. Intelligence seems to require the ability to try something
+> out, look at how well it did, and try something else until you get
+> something that works. That is search.
+
+也许，人类的认知有两大类：
+
+- search 代表理性；
+- pattern recognition 代表直觉。
+
+> While few today hold that search is the single key idea underlying
+> intelligence, most would agree that search has a central role to
+> play in building Al programs.  Here we examine how to implement a
+> classical model of problem solving, the problem space model[5], in a
+> clean and modular fashion.
+
+但是感觉 ChatGPT 之类的大模型，
+表现出了理性，但是没有搜索，
+而是一个超大规模的 pattern recognition。
+
 # 4 Pattern-Directed Inference Systems
 # 5 Extending Pattern-Directed Inference Systems
 # 6 Introduction to Truth Maintenance Systems
