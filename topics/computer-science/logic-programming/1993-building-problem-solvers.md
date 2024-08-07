@@ -217,6 +217,8 @@ Operators 的接口：
 
 ## 3.3 CPS implementation issues
 
+解释为什么不用 CLOS。
+
 TODO
 
 # 4 Pattern-Directed Inference Systems
