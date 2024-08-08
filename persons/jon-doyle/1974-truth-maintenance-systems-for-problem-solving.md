@@ -67,7 +67,78 @@ TODO 在看了 example 之后整理这里的描述。
 
 ## C. An Example
 
-TODO 需要先看《仲夏夜之梦》，这是我没想到的。
+需要先看《仲夏夜之梦》，这是我没想到的。
+
+```scheme
+(assert (loves Hermia Lysander) (premise))
+;; F-l (LOVES HERMIA LYSANDER) (PREMISE)
+
+(assert (loves Helena Demitrius) (premise))
+;; F-2 (LOVES HELENA DEMITRIUS) (PREMISE)
+```
+
+可以理解为，每次调用 assert，
+会创造一个 id，并且插入一条数据到数据库。
+
+> The information and rules of our example will be framed in a simple
+> rule-based language called SCHPDS, developed by G. J. Sussman and
+> J. de Kleer. Assertions, as above, are of the form
+>
+>     (ASSERT <assertion-pattern> <justification>)
+>
+> and should be read as
+>
+>     "belief in <assertion-pattern> is justified by <justification>"
+>
+> The justifications refer to functions which will accept the
+> information transmitted in the justifications and implement the
+> necessary TMS justifications between facts.
+
+```scheme
+(assume (loves Demitrius Hermia) (premise))
+;; F-3 (ASSUMED (LOVES DEHITRIUS HERMIA)) (PREMISE)
+;; F-4 (NOT (LOVES DEMTRIUS HERMIA)) ()
+;; F-5 (LOVES DEMTRIUS HERMIA) (ASSUMPTION F-3 F-4)
+```
+
+> Assumptions are the fundamental use of non-monotonic Justifications
+> in the dependency system.  Thus the assumption of F-5 above is
+> accomplished by asserting the reason for the assumption, F-3, and
+> establishing belief in F-5 based on this reason and on, as will be
+> explained further in the next chapter, the lack of belief in F-4.
+
+```scheme
+(assume (loves Lyeander Hermia) (premise))
+;; F-6 (ASSUMED (LOVES LYSANDER HERMIA)) (PREMISE)
+;; F-7 (NOT (LOVES LYSANDER HERMIA)) ()
+;; F-8 (LOVES LYSANDER HERMIA) (ASSUMPTION F-6 F-7)
+```
+
+```scheme
+(rule (:n (not (loves Demitrius Hermia)))
+  (assert (loves Demitrius Helena) (quality-not-quantity :n)))
+```
+
+> This rule provides for Demitrius' love if he falls from love with
+> Hermia by providing the alternative of Helena. The format of the
+> rule is a pattern, which specifies both a variable (marked by the
+> colon prefix) to be bound to the fact name of the matching
+> assertion, and the pattern which assertions are to be matched by for
+> the body to be executed. If a matching assertion is present, the
+> rule will bind the variables of the pattern to the appropriate
+> values and evaluate each expression of the body. In the rule above,
+> if it becomes known that Demitrius does not love Hermia, the rule
+> will justify the belief that Demitrius loves Helena.
+
+```scheme
+(rule (:n (not (loves Lysander Hernia)))
+  (assert (loves Lysander Helena) (love-in-idleness :n)))
+```
+
+quality-not-quantity 与 love-in-idleness
+算是对这两个男人的讽刺了，哈哈哈。
+
+TODO
 
 # II. Truth Maintenance Systems Applied
 
