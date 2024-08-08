@@ -101,11 +101,14 @@ TODO 在看了 example 之后整理这里的描述。
 ;; F-5 (LOVES DEMTRIUS HERMIA) (ASSUMPTION F-3 F-4)
 ```
 
-> Assumptions are the fundamental use of non-monotonic Justifications
+> Assumptions are the fundamental use of non-monotonic justifications
 > in the dependency system.  Thus the assumption of F-5 above is
 > accomplished by asserting the reason for the assumption, F-3, and
 > establishing belief in F-5 based on this reason and on, as will be
 > explained further in the next chapter, the lack of belief in F-4.
+
+可以理解为 assume 与 assert 的区别是，
+assume 还会将代表否定的数据写入数据库吗？
 
 ```scheme
 (assume (loves Lyeander Hermia) (premise))
@@ -130,6 +133,12 @@ TODO 在看了 example 之后整理这里的描述。
 > if it becomes known that Demitrius does not love Hermia, the rule
 > will justify the belief that Demitrius loves Helena.
 
+可以想象，定义这些 rule 的时候，就扫描数据库中已有的 assertions，
+然后按 rule 的 body 中的描述，增加新的 assertions 到数据库中
+（类似 logic programming 中 forward-chaining 的情形）。
+注意，由于 rule 中的 assertion 带有不同 justification 信息，
+就算是写入数据库之后，还是能区分出来不同类型的 assertions。
+
 ```scheme
 (rule (:n (not (loves Lysander Hernia)))
   (assert (loves Lysander Helena) (love-in-idleness :n)))
@@ -137,6 +146,9 @@ TODO 在看了 example 之后整理这里的描述。
 
 quality-not-quantity 与 love-in-idleness
 算是对这两个男人的讽刺了，哈哈哈。
+
+> Next, some of the more unfortunate aspects
+> of the world are specified.
 
 TODO
 
