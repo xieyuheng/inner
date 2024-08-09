@@ -241,6 +241,47 @@ F-10 (KILLS LYSANDER DEMTRIUS) (JEALOUSY F-9 F-8 F-5)
   就是变量名到类型（还有其他辅助信息）的对应。
   也许这种 context 就应该用类似数据库的模式来实现。
 
+这里可以看出，所谓「类型论基本原则」是一个实用的想法，
+即 "We should study **terms** and **types** together"。
+它可以让我们发现 TMS 虽然看似形式不同，但是实际是满足类型论原则的。
+
+和类型论对应起来之后，这篇论文中所声称的 TMS 的属性看起来就很神奇了。
+
+- 一般的类型论是 monotonic 的，而 TMS 是 non-monotonic。
+
+- 一般的类型论不能以直接的方式处理否定命题，
+  而 TMS 可以直接处理否定命题。
+
+但是要注意，与一般的类型论中手写证明不同，
+这里的 rule 是自动去数据库里找符合类型的表达式，
+然后生成新的表达式。
+
+- 可能有点像是所谓「证明搜索」；
+- 也可能只是为了找到矛盾，在一般的类型系统实现过程中也会用到类似技术。
+
+回到论文中来。
+
+> This, however, is noticed to be a tragedy,
+> and so ruled out as a happy state of affairs.
+
+```scheme
+F-ll (TRAGEDY F-10) (CONTRADICTION F-10)
+```
+
+> The reaction of the system to contradictions is the invocation of
+> dependency-directed backtracking. This process begins by examining
+> the reasons for the contradiction in order to locate the
+> inconsistent set of assumptions underlying the contradiction.  In
+> this case, the contradiction F-11 depends upon F-10, which in turn
+> depends upon F-9, F-8, and F-5. F-8 and F-5 are recognized as
+> assumptions by the system, since the reasons for their beliefs
+> include the lack of belief in the assertions F-7 and F-4
+> respectively. Beliefs supported by a lack of knowledge in other
+> assertions are suspect, since an inconsistency can be interpreted as
+> indicating that some unbelieved assertion must be believed. Thus the
+> backtracking system will use the support for the contradiction to
+> justify belief in one of these unbelieved facts.
+
 TODO
 
 # II. Truth Maintenance Systems Applied
