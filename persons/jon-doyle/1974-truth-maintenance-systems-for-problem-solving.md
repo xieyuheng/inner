@@ -282,6 +282,44 @@ F-ll (TRAGEDY F-10) (CONTRADICTION F-10)
 > backtracking system will use the support for the contradiction to
 > justify belief in one of these unbelieved facts.
 
+> Note at this point one of the efficiencies of dependency-directed
+> backtracking relative to the traditional chronological backtracking
+> schemes. In the above, the set of inconsistent assumptions
+> underlying the contradiction is a subset of all extant assumptions.
+> (I neglected to mention the assumed loves of Theseus, Hippolyta,
+> Oberon, Titania, Bottom, Pyramus and Thisby, which may have been
+> determined after the current choices for Lysander and Demitrius.)
+> Thus where chronological systems for choosing alternatives might
+> search through sets of choices involving these independent
+> assumptions, the dependency-directed system will only consider those
+> assumption actually affecting the discovered contradiction.
+
+这里可以看出，chronological backtracking 确实有很大问题，
+Kent Dybvig 说过所谓优化很多时候就是不要犯傻，
+这里 chronological backtracking 就是犯傻了。
+
+有趣的是，所提出的解决方案
+-- dependency-directed backtracking
+中所需要的信息，在 dependent type system 中也有！
+
+> The next step in the backtracking procedure is the creation of a
+> **nogood**, an assertion summarizing the support for the
+> contradiction which is independent of the inconsistent set of
+> assumptions.
+
+```scheme
+F-12 (NOGOOD F-11) (CP F-11 (F-8 F-5))
+```
+
+NOGOOD 记录的对象必须是 ASSUMPTION。
+
+> This statement of independent support is made by means of a
+> conditional proof justification, stating that F-12 should be
+> believed if when F-8 and F-5 are believed, so is F-11.
+
+注意，这里不是 `(-> [F-8 F-5] F-11)`，
+因为这里要求 CP 所构造出来的是 value 级别的 expression，而不是 type。
+
 TODO
 
 # II. Truth Maintenance Systems Applied
