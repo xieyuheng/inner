@@ -71,10 +71,10 @@ TODO 在看了 example 之后整理这里的描述。
 
 ```scheme
 (assert (loves Hermia Lysander) (premise))
-;; F-l (LOVES HERMIA LYSANDER) (PREMISE)
+F-l (LOVES HERMIA LYSANDER) (PREMISE)
 
 (assert (loves Helena Demitrius) (premise))
-;; F-2 (LOVES HELENA DEMITRIUS) (PREMISE)
+F-2 (LOVES HELENA DEMITRIUS) (PREMISE)
 ```
 
 可以理解为，每次调用 assert，
@@ -96,9 +96,9 @@ TODO 在看了 example 之后整理这里的描述。
 
 ```scheme
 (assume (loves Demitrius Hermia) (premise))
-;; F-3 (ASSUMED (LOVES DEHITRIUS HERMIA)) (PREMISE)
-;; F-4 (NOT (LOVES DEMTRIUS HERMIA)) ()
-;; F-5 (LOVES DEMTRIUS HERMIA) (ASSUMPTION F-3 F-4)
+F-3 (ASSUMED (LOVES DEHITRIUS HERMIA)) (PREMISE)
+F-4 (NOT (LOVES DEMTRIUS HERMIA)) ()
+F-5 (LOVES DEMTRIUS HERMIA) (ASSUMPTION F-3 F-4)
 ```
 
 > Assumptions are the fundamental use of non-monotonic justifications
@@ -112,9 +112,9 @@ assume 还会将代表否定的数据写入数据库吗？
 
 ```scheme
 (assume (loves Lyeander Hermia) (premise))
-;; F-6 (ASSUMED (LOVES LYSANDER HERMIA)) (PREMISE)
-;; F-7 (NOT (LOVES LYSANDER HERMIA)) ()
-;; F-8 (LOVES LYSANDER HERMIA) (ASSUMPTION F-6 F-7)
+F-6 (ASSUMED (LOVES LYSANDER HERMIA)) (PREMISE)
+F-7 (NOT (LOVES LYSANDER HERMIA)) ()
+F-8 (LOVES LYSANDER HERMIA) (ASSUMPTION F-6 F-7)
 ```
 
 ```scheme
@@ -149,6 +149,97 @@ quality-not-quantity 与 love-in-idleness
 
 > Next, some of the more unfortunate aspects
 > of the world are specified.
+
+```scheme
+(assert (jealous Lysander) (premise))
+F-9 (JEALOUS LYSANDER) (PREMISE)
+```
+
+```scheme
+(rule (:j (jealous :x))
+  (rule (:l1 (loves :x :y))
+    (rule (:l2 (loves :z :y))
+      (if (not (equal :x :z))
+        (assert (kills :x :z) (jealousy :j :l1 :l2))))))
+```
+
+> This rule embodies the knowledge that jealous people tend to react
+> unpleasantly against others loving the object of their jealousy.
+> The conditional of the rule body ensures that jealousy is not
+> self-applicable.
+
+```scheme
+(rule (:l1 (loves :x :y))
+  (rule (:l2 (loves :y :z))
+    (if (not (equal :x :z))
+      (assert (kills :x :z) (unrequited-love :ll :l2)))))
+```
+
+> This rule expresses the depression and consequent action
+> resulting from unrequited love.
+
+> The final rule provides the means by which the happy nature of this
+> comedy is ensured.  This is accomplished by watching for killings,
+> and a statement of contradiction implying that the set of
+> assumptions about the loves of the characters which lead to such a
+> tragedy must be changed.
+
+```scheme
+(rule (:k (Kills :x :y))
+  (assert (tragedy :k) (contradiction :k)))
+```
+
+> With these assertions and rules we begin the analysis of the
+> conflicts between the desires of the four lovers. For this example,
+> we will choose an order for applying the rules to matching
+> assertions which provides for maximal entertainment.
+
+> The first derived assertion notes the conflict
+> caused by Lysander's jealousy.
+
+```scheme
+F-10 (KILLS LYSANDER DEMTRIUS) (JEALOUSY F-9 F-8 F-5)
+```
+
+这么看来，这里的 justification 是对推理的记录，
+对推理的记录就是证明。
+
+在类型论的语境下：
+
+- 满足某个类型的表达式就是证明；
+- 所证明的命题就是所满足的类型。
+
+回顾之前对 assertion 的定义：
+
+> Assertions, as above, are of the form
+>
+>     (ASSERT <assertion-pattern> <justification>)
+>
+> and should be read as
+>
+>     "belief in <assertion-pattern> is justified by <justification>"
+>
+> The justifications refer to functions which will accept the
+> information transmitted in the justifications and implement the
+> necessary TMS justifications between facts.
+
+在类型论的语境下：
+
+- <assertion-pattern> 就是类型（命题）；
+- <justification> 就是属于这个类型的表达式（这个命题的证明）。
+
+与一般的类型论不同的是，这里有数据库的概念，
+并且调用 ASSERT 时，会生成形如 F-<n> 的 id，
+并且把相应的数据写入数据库。
+但是在类型论的语境下，这些 id 可以视为是变量名，
+因为在构造后面的 justification 表达式时，会用到它们。
+
+- 在实现 dependent type 的时候，
+  确实需要经常生成没有重复过的变量名。
+
+- 在类型检查中用到的 context，
+  就是变量名到类型（还有其他辅助信息）的对应。
+  也许这种 context 就应该用类似数据库的模式来实现。
 
 TODO
 
