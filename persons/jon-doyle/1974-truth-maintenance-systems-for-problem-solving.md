@@ -320,12 +320,30 @@ NOGOOD 记录的对象必须是 ASSUMPTION。
 注意，这里不是 `(-> [F-8 F-5] F-11)`，
 因为这里要求 CP 所构造出来的是 value 级别的 expression，而不是 type。
 
-TODO
+更新已有的数据：
+
+```scheme
+F-7 (NOT (LOVES LYSANDER HERMIA)) (NOGOOD F-12 F-5)
+TRUTH MAINTENANCE PROCESSING DUE TO F-7
+F-4 (NOT (LOVES DEMTRIUS HERMIA)) (NOGOOD F-12 F-8)
+```
+
+这么看来 ASSUME 记录了一个搜索的分支点。
+
+TODO 完成后面的推理，并检验后面的 TRUTH MAINTENANCE PROCESS 的效果。
 
 # II. Truth Maintenance Systems Applied
 
 ## A. Historical Introduction
+
+一般的逻辑式语言的 backtracking 机制，
+其实假定的是时间上的先后关系就是依赖关系，
+但是这显然是错误的，依赖关系来自具体的语义而不是时间。
+
 ## B. Representing Knowledge About Beliefs
+
+TODO
+
 ## C. Hypothetical Reasoning
 ## D. Backtracking
 ## E. Generalization and Levels of Detail
