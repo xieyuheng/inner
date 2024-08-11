@@ -558,6 +558,18 @@ TODO 略过这里关于电路的例子，关于电路我还看不懂。
 justification 和 fact 是特殊的 expression，
 judgment 就是 belief。
 
+> If a fact is believed to be true by way of its justifications, we
+> say the fact is in, otherwise the fact is out. The distinction
+> between in and out is not that of true and false: rather the former
+> represent the presence or absence of knowledge supporting belief,
+> and the latter actual truth value.
+
+in 和 out 这就是构造主义对 true 和 false 的解释。
+但是与直觉主义逻辑的差别是 TMS 中有否定。
+
+> The inness or outness of a fact is also termed
+> the fact's support-status.
+
 TODO
 
 ## C. Well-Founded Support Relations
