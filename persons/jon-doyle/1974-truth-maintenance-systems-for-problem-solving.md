@@ -26,6 +26,9 @@ Sussman 是作者的老师，也是这篇论文的导师。
 
   - 也许这个项目可以叫做 maintainer。
 
+也许，在知道了 Sussman 想要达到的效果之后，
+我应该遵循孔涅的教导，首先尝试自己实现类似的系统。
+
 # Abstract
 
 > This report describes progress that has been made in the ability of
@@ -143,9 +146,16 @@ F-8 (LOVES LYSANDER HERMIA) (ASSUMPTION F-6 F-7)
 
 可以想象，定义这些 rule 的时候，就扫描数据库中已有的 assertions，
 然后按 rule 的 body 中的描述，增加新的 assertions 到数据库中
-（类似 logic programming 中 forward-chaining 的情形）。
+（类似 datalog 中 forward-chaining 的情形）。
 注意，由于 rule 中的 assertion 带有不同 justification 信息，
 就算是写入数据库之后，还是能区分出来不同类型的 assertions。
+
+这里的 rule 代表 antecedence -> consequence 这种正向的推理，
+与逻辑式语言中，为了回答 query 而做的反向推理是
+consequence -> antecedence。
+
+- 我还没有实现过带有正向推理的系统，
+  真的很需要实现一个试试。
 
 ```scheme
 (rule (:n (not (loves Lysander Hernia)))
@@ -493,15 +503,61 @@ TODO 略过这里关于电路的例子，关于电路我还看不懂。
 
 ## F. Comparison With Other Current Work
 
-TODO 也许，在知道了 Sussman 想要达到的效果之后，
-我应该遵循孔涅的教导，首先尝试自己实现类似的系统。
+> There are three major areas of research relevant to the current
+> effort,
+>
+> - the representation of knowledge about belief,
+>
+> - hypothetical reasoning,
+>
+> - and levels of detail,
+>
+> which we discuss in turn.
 
-TODO
+提到了 Hintikka 的哲学书 "knowledge and belief" 可以给 in 和 out 以语义。
 
 # III. Truth Maintenance Mechanisms
 
 ## A. Historical Introduction
+
+> The earliest recording of dependency information by AI programs is
+> found in mechanical theorem proven, in which justifications for
+> beliefs were recorded in the form of proofs.
+
+难怪我会觉得 TMS 与类型系统很相似。
+
+> Unfortunately, the traditional preoccupation with consistency of
+> theorem prover designers seems to have led these efforts to ignore
+> any possible uses of the recorded proofs.  Since beliefs can never
+> become false in their monotonic systems, no attention was devoted to
+> methods for judging belief rather than truth.
+
+想要在类型系统中用 TMS，就必须生成 id 并且用类似数据库的模式来实现，
+因为只有这样，每个表达式的中间节点才能被引用，
+否则就是只有一个单向引用的表达式的 tree。
+
 ## B. Facts and Dependencies
+
+> Facts are those components of program knowledge which may be
+> invested with belief and justifications.
+
+模仿 Dan 对 judgement 的定义：
+
+> A judgment is an attitude that a person takes towards expressions.
+>
+> When we come to know something, we are making a judgment.
+
+可以定义 belief 如下：
+
+> Belief is an attitude that a person or machine takes towards
+> justifications of facts.
+>
+> When we come to know something, we are fixing a belief.
+
+从这样转述的定义可以看出来，
+justification 和 fact 是特殊的 expression，
+judgment 就是 belief。
+
 ## C. Well-Founded Support Relations
 ## D. Truth Maintenance
 ## E. Truth Maintenance Efficiency
