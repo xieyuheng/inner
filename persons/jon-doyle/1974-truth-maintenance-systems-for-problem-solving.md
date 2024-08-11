@@ -558,6 +558,8 @@ TODO 略过这里关于电路的例子，关于电路我还看不懂。
 justification 和 fact 是特殊的 expression，
 judgment 就是 belief。
 
+TODO
+
 ## C. Well-Founded Support Relations
 ## D. Truth Maintenance
 ## E. Truth Maintenance Efficiency
