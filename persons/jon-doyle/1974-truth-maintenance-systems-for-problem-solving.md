@@ -18,6 +18,14 @@ Sussman 是作者的老师，也是这篇论文的导师。
   在 propagator 中，直接用 TMS 作为数据结构的名字，
   我不想用缩写，希望了解理论的背景之后能够想出更好的名字。
 
+- 动机 C：
+
+  经过初步的阅读发现，
+  这里描述的语言是非常有趣的，
+  值得单独（独立于 propagator）实现出来体验一下。
+
+  - 也许这个项目可以叫做 maintainer。
+
 # Abstract
 
 > This report describes progress that has been made in the ability of
@@ -265,7 +273,7 @@ F-10 (KILLS LYSANDER DEMTRIUS) (JEALOUSY F-9 F-8 F-5)
 > and so ruled out as a happy state of affairs.
 
 ```scheme
-F-ll (TRAGEDY F-10) (CONTRADICTION F-10)
+F-11 (TRAGEDY F-10) (CONTRADICTION F-10)
 ```
 
 > The reaction of the system to contradictions is the invocation of
@@ -341,6 +349,70 @@ TODO 完成后面的推理，并检验后面的 TRUTH MAINTENANCE PROCESS 的效
 但是这显然是错误的，依赖关系来自具体的语义而不是时间。
 
 ## B. Representing Knowledge About Beliefs
+
+> The basic components of a truth maintenance system are facts,
+> representations for justifications of belief in facts, and processes
+> for determining beliefs in facts consistent with these
+> justifications.  The details of these representations and processes
+> are not critical, and are discussed in Chapter III.  This section
+> instead enumerates several basic forms of justifications for belief
+> and their important properties and uses.
+
+从类型论的角度看：
+
+- facts -- 类型。
+
+- representations for justifications
+  of belief in facts -- 属于某类型的表达式。
+
+- processes for determining beliefs in facts
+  consistent with these justifications
+  -- 也许对应于类型检查过程中的 constraint processing。
+
+> Facts are not isolated objects, but are connected to each other by
+> dependencies, the relationships of antecedence and consequence in
+> which belief in a fact is related with belief in other facts by
+> means of a justification.
+
+"connected by dependencies" 类似 propagator network。
+
+> Justifications for belief in a fact are predicates of other facts,
+> predicates whose internal structure is accessible to the truth
+> maintenance system to allow efficient processing and the
+> determination of various dependency relationships.
+
+在类型系统中，一个表达式通过变量引用到的，只是表达式而不是类型，
+但是 "internal structure is accessible" 可能代表着，
+通过 id 引用到的所有信息都可以使用。
+
+- 注意，这里所说的 "justification for belief in a fact"，
+  belief 是一个 meta 概念，如果非要在实现中使用这个词的话，
+  可能可以理解为 justification + fact = belief。
+
+另外一个重要的差异是 justification 是用 predicate 来实现的，而表达式不是。
+表达式经过类型检查器的 check 函数解释之后，才能被理解为 predicate。
+
+> Belief in a fact may or may not be supported by the existence of a
+> valid (that is, **evaluating true**) justification for the fact.
+> If a fact has at least one valid justification for belief, we say
+> the fact is _in_; otherwise the fact is _out_.
+
+> The distinction between in and out is not that of true and false;
+> indeed, there is no imposed notion of falsity in a truth maintenance
+> system. Instead, a support-status of _in_ for a fact denotes the
+> existence of knowledge supporting belief in the truth of the fact,
+> and _out_ denotes the lack of such knowledge. The function of the
+> truth maintenance system is to mark each fact in or out in
+> accordance with the validity of its justifications.
+
+TODO justification 的分类。
+
+> ... assumption justifications can be invalidated
+> by the addition of new beliefs.
+
+说 assumption 是 non-monottnic 的，
+其实是不是等于说 assumption 节点，
+在搜索空间中提供了可能的分支？
 
 TODO
 
