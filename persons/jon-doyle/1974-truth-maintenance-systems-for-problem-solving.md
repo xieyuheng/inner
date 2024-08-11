@@ -414,12 +414,89 @@ TODO justification 的分类。
 其实是不是等于说 assumption 节点，
 在搜索空间中提供了可能的分支？
 
-TODO
+ASSUME 的语义是 "to assume a fact is true unless proven otherwise"，
+因此，也许可以应用到推理小说或者法庭辩护游戏中！
+因为 ASSUME 的语义是这些语境下经常出现的语义。
+
+TODO 关于用 IN 和 OUT 来实现 beliefs 之间的各种不同关系，我没太看懂。
 
 ## C. Hypothetical Reasoning
+
+> The making of hypotheses is a straightforward application of the
+> justification forms described in the previous section.
+
+作者之后的论文可能对这种，
+justification form 方面的创新有更好的表达。
+
 ## D. Backtracking
+
+> Systems engaging in hypothetical reasoning require mechanisms for
+> reconciling beliefs upon the introduction of new hypotheses.
+
+与数学辅助证明系统和朴素的逻辑式编程相比，
+这种可以进入新假设的系统才更接近人们日常的推理。
+
+> Two types of hypotheses can be distinguished; **speculative**
+> hypotheses and **counterfactual** hypotheses.  Speculative
+> hypotheses are those which are consistent with existing beliefs and
+> justifications. Speculative hypotheses are useful when a lack of
+> knowledge forces the making of an assumption for the purpose of
+> exploration.  Counterfactual hypotheses, on the other hand,
+> contradict previous beliefs. Such hypotheses are useful in exploring
+> the results of actions and in deriving constraints existing in
+> different worlds.
+
+这里说的 counterfactual 是否就是 Judea Pearl 的 counterfactual 呢？
+应该是的，因为 Judea Pearl 强调的是，
+在用一个模型解释现象的时候，
+可以利用模型，分析假设的现象。
+
+在应用 dependency-directed backtracking 方面，
+Stallman and Sussman 在 1976 论文中所解决的问题：
+"transistor state-choices in electronic circuit analysis"，
+作为一个典范问题也应该学习一下。
+
+对 NOGOOD 的记录与使用，模仿了人类推理时所用的归谬法。
+
 ## E. Generalization and Levels of Detail
+
+中间节点也有名字，而不是把中间节点实现为子节点的集合。
+
+这样节点之间就能形成偏序关系，
+而这个偏序关系代表了 levels of detail，
+成了 backtracking 的依据，
+
+其他系统中类似的设计决策：
+
+- 实现编译器的时候，
+  保持 function 与 inline 一个 function，
+  与这里所描述的设计决策是类似的。
+
+- 在实现 propagator 时，
+  我把 `definePropagator` 实现为了去构建连接的函数，
+  而不是一个存在于网络中的节点。
+
+  这样做也许是不对的。
+
+- 在实现 inet 时，
+  我把形成抽象的机制 -- function statement，
+  实现为了构造 network 的函数，
+  而不是存在于系统中的节点。
+
+  这样做也许是对的，
+  因为系统中的节点都是有待反应的数据。
+
+TODO 这里讲到了用到了 boundary 概念的实现技巧，我没理解。
+是否就是简单的加一层 indirect？
+
+TODO 略过这里关于电路的例子，关于电路我还看不懂。
+
 ## F. Comparison With Other Current Work
+
+TODO 也许，在知道了 Sussman 想要达到的效果之后，
+我应该遵循孔涅的教导，首先尝试自己实现类似的系统。
+
+TODO
 
 # III. Truth Maintenance Mechanisms
 
