@@ -6,7 +6,7 @@ year: 1983
 
 # Abstract
 
-> To progress signi cantly beyond current reason maintenance systems,
+> To progress signicantly beyond current reason maintenance systems,
 > we must formulate their structure and intended behavior precisely
 > enough to analyze computational complexities and tradeoffs
 > independently of the current set of limited implementation
