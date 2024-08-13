@@ -219,7 +219,7 @@ Operators 的接口：
 
 解释为什么不用 CLOS。
 
-TODO
+用 common-lisp 的 defstruct。
 
 # 4 Pattern-Directed Inference Systems
 # 5 Extending Pattern-Directed Inference Systems
