@@ -14,6 +14,26 @@ title: learning lisp
 - `f` 在函数位置，就取 `:function`；
 - `x` 和 `y` 在参数位置，就取 `:value`。
 
+这种多个命名空间的设计的特点在于，
+可以用 string 来命名一个 type，保存在 :type 的命名空间中，
+然后再用 string 来命名一个 value，保存在 :value 的命名空间中，
+这样就不需要用 PascalCase 的 String 和 lisp-case 的 string
+来区分类型与保存这个类型的值的变量了。
+
+但是，我认为这种设让 common-lisp 相较于 scheme 显得非常复杂。
+并且，在 dependent type 时代，因为 type 就是 value，
+所以看来 :type 与 :value 都保存在同一个命名空间中才是合理的。
+
+但是，也许在 dependent type 时代，这种设计是正确的，
+因为在 scheme 中，没法出合理的 naming convention 来区分 type 与 value。
+这样，引用同一个 symbol 的时候，
+不是用 naming convention，
+而是用更结构化的 namespace 来区分 type 与 value，
+也许就是合理的。
+
+毕竟，在一个 symbol 下同时保存 value 与 type，
+正好也是实现类型检查器时 context 的实现方式。
+
 # apply & funcall
 
 想要取 `:function` 时，用 `(function f)` 或者 `#'f`。
