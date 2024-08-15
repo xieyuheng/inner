@@ -114,8 +114,9 @@ An **interpretation**:
 - function: (D^n) -> D
 - predicate: (D^n) -> boolean
 
-A formula is **satisfiabe** if there is an interpretation under which the formula is true,
-such interpretation is called a **model** of the formula.
+A formula is **satisfiabe** if there is an interpretation under which
+the formula is true, such interpretation is called a **model** of the
+formula.
 
 A formula is **valid** if it is true under all interpretations.
 
@@ -123,7 +124,8 @@ If every interpretation that make A true also make B true,
 then B is a **semantic consequences** of A, witten `A |= B`.
 
 - Xie: In general programming language,
-  we can implement the relation between theory and model by class and object.
+  we can implement the relation between
+  theory and model by class and object.
 
   Take group theory for example:
 
@@ -150,8 +152,9 @@ function GroupLaws<G>({ eq, mul, id, inv }: Group<G>) {
 
 - Xie: In type theory however, we define logic within type theory.
 
-  We explain proposition by assigning type of evidence to the proposition.
-  When defining inference rules, we always have the syntax with us, to record the evidence, which will form proofs.
+  We explain proposition by assigning type of evidence to the
+  proposition.  When defining inference rules, we always have the
+  syntax with us, to record the evidence, which will form proofs.
 
 If semantics is to be explained by the interpretation of theory in a model,
 how should we define a model?

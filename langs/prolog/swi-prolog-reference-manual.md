@@ -1,12 +1,8 @@
 ---
 title: SWI prolog references manual
+author: Jan Wielemaker
+link: "https://www.swi-prolog.org/pldoc/doc_for?object=manual"
 ---
-
-# info
-
-- by Jan Wielemaker
-- J.Wielemaker@vu.nl
-- http://www.swi-prolog.org
 
 # 1 Introduction
 
