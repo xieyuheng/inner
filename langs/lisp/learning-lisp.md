@@ -130,11 +130,18 @@ title: learning lisp
 ;; t as true
 t
 
+(type-of t)
+
 ;; nil as false
 ()
 '()
 nil
 'nil
+
+(type-of ())
+(type-of '())
+(type-of nil)
+(type-of 'nil)
 ```
 
 ## symbol
@@ -147,9 +154,12 @@ nil
 (defvar *kkk* 5)
 (symbol-value '*kkk*)
 (boundp '*kkk*)
+(boundp '*vvv*)
 
 (defun kkk () 'k)
 (symbol-function 'kkk)
+(funcall (symbol-function 'kkk))
+(apply (symbol-function 'kkk) '())
 
 (list '|ci ci ci|
       '|ca,ca,ca|
@@ -159,10 +169,12 @@ nil
       '|ABC|
       '|\|\|\||
       '|\\\\\\|)
+```
 
+symbol 与 string 之间的转化：
 
+```list
 ;; symbol->string
-;; i.e. hash-back
 (symbol-name 'kkk)
 (mapcar (lambda (symbol)
           (list (symbol-name symbol)
@@ -176,36 +188,45 @@ nil
               '|\|\|\||
               '|\\\\\\|))
 
+;; string->symbol
+(intern "kkk")
+(eq (intern "kkk") 'kkk)
+```
 
-;; 每一个 key 就等价于所有 symbol 所组成的一个新的命名空间
-;; 不过这种全局的性质 一般只有语言的核心部分才会使用到
-;; 否则不同的人所写的程序就相互冲突了
-;; 而 一般的程序都只使用一般性质的 hash-table
+每个 symbol 可以有多个属性，这个功能可以用来实现命名空间。
+
+其实 `(function f)` 类似于 `(get 'f :function)`，
+其实 `f` 类似于 `(get 'f :value)`，
+但是其实并没有这样实现，
+因为语言内部的命名空间最好不要和用户能定义的命名空间相冲突。
+
+- 实际上用不是用 `get`，
+  是用 `symbol-value` 和 `symbol-function` 这两个接口函数。
+
+这种全局的性质，一般只有语言的核心部分才会使用到，
+否则不同的人所写的程序就相互冲突了。
+而一般的程序都只使用一般性质的 hash-table。
+
+```lisp
 (setf (get 'kkk 'color1) 'red
       (get 'kkk 'color2) 'yellow
       (get 'kkk 'color3) 'blue)
+
 (get 'kkk 'color1)
+(get 'kkk 'color2)
+
 (symbol-plist 'kkk)
 
-;; 其实 (function symbol) 的更清晰的语义是
-;;   (get 'symbol 'function)
-;; 而 symbol 的更清晰的语义是
-;;   (get 'symbol 'value)
-;; 这两个命名空间并没有什么特殊性
-;; 尤其是当能以如此的方式为某个命名空间提供特殊的语法时
-;; 就能形成对多个命名空间的良好利用
-;; 比如 package[module] 和 type
+;; 用 keyword symbol 也可以：
 
-;; 返回两个值
-;; 第二个值是一个对函数运行状态的报告
-;; intern 以 package name 为额外参数
-;; 这说明不同的 package
-;; 有不同的 hash-function 和 hash-table 邪
-(intern "RANDOM-SYMBOL")
-(eq (intern "RANDOM-SYMBOL")
-    'random-symbol)
-(eq (intern "random-symbol")
-    'random-symbol)
+(setf (get :kkk :color1) :red
+      (get :kkk :color2) :yellow
+      (get :kkk :color3) :blue)
+
+(get :kkk :color1)
+(get :kkk :color2)
+
+(symbol-plist :kkk)
 ```
 
 ## number
@@ -217,6 +238,8 @@ nil
 ```
 
 ## list
+
+这个数据类型无需多言了。
 
 ## array
 
@@ -239,11 +262,11 @@ nil
 - 其实这里的 '() 与 #()
   也都可以称作是边缀表达式
   只不过其形态不对称而已
+
 ```lisp
 ;; 在 sbcl 中 默认的是
 (make-array '(2 3) :initial-element 0)
 (make-array '(2 3))
-
 
 (setf a3
       (make-array '(3) :initial-element nil))
@@ -252,14 +275,11 @@ nil
 ;; 这里可以看 出语法设计的不规则性
 ;; 尽管这里的 不规则性 其实是情有可原的
 
-
 (setf a23
       (make-array '(2 3) :initial-element nil))
 
 (setf a234
       (make-array '(2 3 4) :initial-element nil))
-
-
 
 ;; 很直观地
 ;;   长度为 2 的向量中 包含 长度为 3 的向量
@@ -277,11 +297,9 @@ nil
 #3a(((nil nil nil nil) (nil nil nil nil) (nil nil nil nil))
     ((nil nil nil nil) (nil nil nil nil) (nil nil nil nil)))
 
-
 ;; aref denotes array-reference
 (aref a23 0 0)
 (setf (aref a23 0 0) 1)
-
 
 (make-array '(3) :initial-element nil)
 (make-array 3 :initial-element nil)
