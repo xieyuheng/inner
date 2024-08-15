@@ -4,9 +4,10 @@ title: learning lisp
 
 # function application
 
-与 scheme 的差异在于，common-lisp 有多个 namespace，
+与 scheme 的差异在于，common-lisp 有多个命名空间（namespace），
 可以想像为 symbol 到 properties 的列表，
-在不同的情况下引用一个 symbol 时，取不同的属性。
+在不同的情况下引用一个 symbol 时，取不同的属性，
+每个属性就代表了一个命名空间。
 
 比如 `(f x y)`：
 
@@ -15,27 +16,34 @@ title: learning lisp
 
 # apply & funcall
 
-- function as argument
+想要取 `:function` 时，用 `(function f)` 或者 `#'f`。
+有些函数拿到 symbol 时，也会直接取 `:function`。
 
 ```lisp
 (+ 1 2 3)
 
-;; on named function
+;; apply 有两个参数，第一个是函数，第二个是 args。
+
 (apply (function +) '(1 2 3))
 (apply #'+ '(1 2 3))
 (apply '+ '(1 2 3))
 
-;; funcall 是必要的
+;; function 有可变个参数，第一个是函数，其余的是 args。
+
+;; funcall 和是必要的
 ;; 因为 边缀表达式 () 的头上的 symbol
 ;; 会被解释为一个函数名 而不会被当作局部变元处理
 (funcall (function +) 1 2 3)
 (funcall #'+ 1 2 3)
 (funcall '+ 1 2 3)
 
-;; I will use (function +) always
+;; 我将主要用 `(function +)`
+
 (sort (list 4 2 3 1) (function <))
 
-;; on lambda function
+;; 对于 lambda function 来说，没有歧义，
+;; 此时使用 (function ...) 和 #'f... 是多余的。
+
 (funcall #'(lambda (x) (+ x 100))
          1)
 (funcall (function (lambda (x) (+ x 100)))
@@ -46,22 +54,16 @@ title: learning lisp
        '(1))
 
 ;; I will use (lambda (x) (+ x 100)) always
+
 (mapcar (lambda (x) (+ x 10))
         '(1 2 3 4 5))
 ```
 
 # lambda abstraction
 
-- λ xyz : N  =
-
-  (lambda (x y z) N)
-
 ```lisp
 (lambda (a b) (+ a b))
-
-((lambda (a b) (+ a b))
- 1 2)
-
+((lambda (a b) (+ a b)) 1 2)
 
 ;; &rest
 
