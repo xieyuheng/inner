@@ -1721,9 +1721,9 @@ xxx2
 
 ## generic function
 
-- the common lisp object system (clos)
-  does not associate methods with classes
-  but rather under generic functions
+the common lisp object system (clos)
+does not associate methods with classes
+but rather under generic functions
 
 ```lisp
 (defclass kkk ()
@@ -1742,31 +1742,22 @@ xxx2
 (setf (k2 k) 2)
 (setf (k3 k) 3)
 
-
 (defclass aaa ()
   ((a1 :accessor a1)
    (a2 :accessor a2)
    (a3 :accessor a3)))
 
-(defmethod kkk (&key
-                  x1
-                  x2)
-  `(,x1 ,x2))
+(defmethod kkk (&key x1 x2) `(,x1 ,x2))
 (kkk :x1 1 :x2 2)
 
-(defmethod kkk (&key
-                  x1
-                  (x2 aaa))
-  ;; {var | ({var | (keywordvar)} [initform [supplied-p-parameter] ])}
-  `(,x1 (,x2 aaa)))
+(defmethod kkk (&key x1 (x2 aaa)) `(,x1 (,x2 aaa)))
 (kkk (make-instance 'kkk)
      (make-instance 'aaa))
+
 ;; 如果新定义了下面的函数
 ;; 那么对上面的函数的调用结果就改变了
-(defmethod kkk ((x1 kkk) x2)
-  `((,x1 kkk) ,x2))
 
-
+(defmethod kkk ((x1 kkk) x2) `((,x1 kkk) ,x2))
 
 (defgeneric key-input (key-name))
 
@@ -1789,7 +1780,9 @@ xxx2
 
 - 所有的函数都在某个 package 中
   就算核心函数也不例外
+
 - always be in the package that you are developing
+
 - in-package 是就某个文件而言的
   在一个文件中对 in-package 的调用并不影响之后被 load 的文件
 
