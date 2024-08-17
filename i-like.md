@@ -12,4 +12,4 @@ equipped with philosophical historical depth.
 # About language
 
 I enjoy the feeling of creating a language,
-Including well designed OOP API.
+including well designed OOP API.

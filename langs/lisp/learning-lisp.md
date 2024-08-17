@@ -354,12 +354,12 @@ array 其实是 tensor，
 
 ## sequence
 
-- 在 shen-lang 中，key-word argument 完全可以用模式匹配来实现。
-
 ```lisp
 (elt '(a b c) 0)
 (elt #(a b c) 0)
 (elt "abc" 0)
+
+;; position 的可选参数
 
 :key
 :test
@@ -382,7 +382,6 @@ array 其实是 tensor，
 (position '(a b) '((a b) (c d)) :test (function equal))
 
 (position 3 '(1 0 7 5) :test (function <))
-
 
 (defun second-word (string)
   (let* ((sqace (code-char 32))
@@ -417,10 +416,10 @@ array 其实是 tensor，
       '((c c) (a a) (t t))
       :key (function car))
 
-
 ;; like foldl
 (reduce (function intersection)
         '((b r a d s) (b a d) (c a t)))
+
 (intersection (intersection '(b r a d s)
                             '(b a d))
               '(c a t))
@@ -428,17 +427,26 @@ array 其实是 tensor，
 
 ## structure
 
-- 这种用来定义一系列函数的函数
-  在蝉语中也将常用与将某些些代码的模式结构化
-  然而
-  我将设计良好的命名规则
-  以让相关的操作都变得了然
+用一个定义生成一些列函数。
+
+当有 dot 语法可以用来表示消息传递时，
+这样的设计是完全没必要的。
+
+有 generic 机制之后，
+也可设计和 keyword 相关的 generic，
+来避免生成一系列函数。
+
+也许生成一系列函数也有优点，
+就是简单，语言可以没有任何 generic 机制。
+
+但是何必呢？
+最基本的 dot 语法的 generic 机制一般的程序员都非常熟悉了，
+而 common-lisp 的 `defgeneric` lisper 也很熟悉了。
 
 ```lisp
 (defstruct point
   x
   y)
-
 
 (make-point)
 
@@ -457,13 +465,12 @@ array 其实是 tensor，
 (point-y p)
 (setf (point-y p) 2)
 
-
-
 (defstruct polemic
   (type (progn
           (format t "What kind of polemic was it? ")
           (read)))
   (effect nil))
+
 (setf kkk (make-polemic))
 
 (defstruct (point (:conc-name p)
