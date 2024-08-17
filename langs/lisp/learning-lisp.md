@@ -243,27 +243,18 @@ symbol 与 string 之间的转化：
 
 ## array
 
+array 其实是 tensor，
+`make-array` 的第一个参数是 tensor 的 shape。
+
 ```lisp
 ;; 在 sbcl 中 默认的是
 (make-array '(2 3) :initial-element 0)
 (make-array '(2 3))
 
-(setf a3
-      (make-array '(3) :initial-element nil))
-(setf v3
-      (make-array 3 :initial-element nil))
-;; 这里可以看 出语法设计的不规则性
-;; 尽管这里的 不规则性 其实是情有可原的
-
-(setf a23
-      (make-array '(2 3) :initial-element nil))
-
-(setf a234
-      (make-array '(2 3 4) :initial-element nil))
-
-;; 很直观地
-;;   长度为 2 的向量中 包含 长度为 3 的向量
-;;   长度为 3 的向量中 包含 长度为 4 的向量
+(setf a3 (make-array '(3) :initial-element nil))
+(setf v3 (make-array 3 :initial-element nil))
+(setf a23 (make-array '(2 3) :initial-element nil))
+(setf a234 (make-array '(2 3 4) :initial-element nil))
 
 ;; literal array as the following
 #3a(((nil nil nil nil) (nil nil nil nil) (nil nil nil nil))
@@ -278,6 +269,7 @@ symbol 与 string 之间的转化：
     ((nil nil nil nil) (nil nil nil nil) (nil nil nil nil)))
 
 ;; aref denotes array-reference
+
 (aref a23 0 0)
 (setf (aref a23 0 0) 1)
 
@@ -295,7 +287,6 @@ symbol 与 string 之间的转化：
 ;;   not adjustable
 ;;   not displaced
 ;;   not has a fill-pointer
-
 
 (arrayp #3a(((nil nil nil nil) (nil nil nil nil) (nil nil nil nil))
             ((nil nil nil nil) (nil nil nil nil) (nil nil nil nil))))
@@ -332,51 +323,43 @@ symbol 与 string 之间的转化：
 
 (copy-seq #(1 2 3))
 
-(equal "lisp" "lisp")
-(equal "lisp" "LISP")
+(equal "lisp" "lisp") ;; T
+(equal "lisp" "LISP") ;; NIL
 
-(equalp "lisp" "lisp")
-(equalp "lisp" "LISP")
-
+(equalp "lisp" "lisp") ;; T
+(equalp "lisp" "LISP") ;; T
 
 (string-equal "lisp" "LISP")
 
-(equal #(1) #(1))
-(equalp #(1) #(1))
+(equal #(1) #(1)) ;; NIL
+(equalp #(1) #(1)) ;; T
 
-
-;; nil means do not print at all
-;; it makes format become make-string
-(format nil "~A or ~A" "truth" "dare")
 (concatenate 'string "not " "to worry")
 
+;; nil 代表不要 print，只是构造 string
+(format nil "~A or ~A" "truth" "dare")
+;; t 代表 print to stdout，这打破函数复合的 API 设计真是不好
+(format t "~A or ~A" "truth" "dare")
+
+;; for human
 
 (princ '("kkk" "kkk" "kkk"))
 (princ "he yelled \"stop that thief!\" from the busy street.")
+
+;; for machine
+
+(print '("kkk" "kkk" "kkk"))
+(print "he yelled \"stop that thief!\" from the busy street.")
 ```
 
 ## sequence
 
-- 尽管在 common-lisp 中
-  并没有一个机制来以一致的方式
-  表示数学结构之间的复杂关系
-  但还是尝试使用 sequence
-  来综合 lisp 和 vector 这两个数学结构
-- ><><><
-  同样是试图捕捉数学结构间的关系
-  以避免对处理函数的重复定义
-  [正如 以避免对类似命题的重复证明]
-  但是 common-lisp 与 haskell 对此的处理方式非常不同
-  这种处理方式直接的差别
-  以及其各自所达到的效果
-  值得仔细分析
-- 另外在神语中
-  key-word argument 完全可以用模式匹配来实现
+- 在 shen-lang 中，key-word argument 完全可以用模式匹配来实现。
+
 ```lisp
 (elt '(a b c) 0)
 (elt #(a b c) 0)
 (elt "abc" 0)
-
 
 :key
 :test
