@@ -494,17 +494,22 @@ array 其实是 tensor，
 
 ## hash table
 
+构造 hash-table 用 `make-hash-table`。
+
 ```lisp
 (setf color-table (make-hash-table))
+```
 
-;; gethash 返回两个值
-;; 其中第二个值是一个 type-tag
-;; type-tag 被用以表明这个位置的是否有值存入
-;; nil 不能作为信号来表明没有值存入
-;; 因为 nil 本身就可能是被存入的值
-;; >< 这种信号性的返回值在蝉语中应该如何设计呢
-;; 有更好的处理方式吗?
-;; 如果只是使用多返回值的话 那么在蝉语中是很简单的
+`gethash` 返回两个值
+其中第二个值是一个 type-tag
+type-tag 被用以表明这个位置的是否有值存入
+nil 不能作为信号来表明没有值存入
+因为 nil 本身就可能是被存入的值
+
+这种 API 感觉是很脱离实际的。
+在 JavaScript 里没有这种 API，也没什么问题。
+
+```lisp
 (gethash 'color1 color-table)
 
 ;; 万能的 setf
@@ -512,7 +517,7 @@ array 其实是 tensor，
       (gethash 'color2 color-table) 'yellow
       (gethash 'color3 color-table) 'blue)
 
-;; remhash 的返回值 只有一个
+;; remhash (hash-table-remove) 的返回值 只有一个
 ;; 并且是一个信号性的值 代表需要进行 remove
 (remhash 'color1 color-table)
 
@@ -520,12 +525,7 @@ array 其实是 tensor，
            (format t "~A = ~A ~%" key value))
          color-table)
 
-
-
-;; 注意这列的 hash-table 是一般性的
-;;   hash-function 可以作用于的值可以是任何类型的
-;;   而其 可以存储的值也可以是任何类型的
-;; 与蝉语中的并不同类
+;; 函数也可以作为 hash-table 的 key：
 
 (defun kkk (x) x)
 
@@ -538,21 +538,6 @@ array 其实是 tensor，
 
 ;; 重新定义之后就不被认为是相同的值了
 (defun kkk (x) (+ x x))
-
-
-;; 关于实现方式
-;; 说 hash-table 的大小会在需要的时候自动增加
-;; 难道 hash-function 能够以渐进的方式被改写?
-;; 也许
-;; 确实
-;; 巧妙的数论函数可以完成很多让人意想不到的任务
-;; ><><><
-;; 值得好好研究一下数论函数在 hash-function 中的应用
-
-;; 因为需要查找 所以又涉及到对不同的谓词[等词]的处理
-;; 这又是实现上的一个难点
-(setf writers (make-hash-table :test (function equal)))
-(setf (gethash '(ralph waldo emerson) writers) t)
 ```
 
 # side effect
@@ -563,8 +548,10 @@ array 其实是 tensor，
   defparameter 定义全局变量
   并且所作的绑定不会被 defvar 修改
   let 定义局部变量
+
 - flet 定义局部非递归函数
   labels 定义局部递归函数
+
 - 注意 其二类分属两个命名空间
 
 ```lisp
