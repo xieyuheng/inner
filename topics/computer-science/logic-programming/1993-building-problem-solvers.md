@@ -221,6 +221,25 @@ Operators 的接口：
 
 用 common-lisp 的 defstruct。
 
+## 3.4 The CPS implementation
+
+common-lisp 的类型系统太乱了，我用一个想象中的 lisp 来记录这里的实现。
+
+```scheme
+(define-class problem
+  :name string
+  :goal-recognizer (-> state boolean)
+  :operators (list operators))
+
+(define boston
+  (new problem
+    :name "boston"
+    :goal-recognizer (lambda (state) ...)
+    :operators (create-list ...)))
+
+TODO
+```
+
 # 4 Pattern-Directed Inference Systems
 # 5 Extending Pattern-Directed Inference Systems
 # 6 Introduction to Truth Maintenance Systems
