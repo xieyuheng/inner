@@ -223,13 +223,27 @@ Operators 的接口：
 
 ## 3.4 The CPS implementation
 
-common-lisp 的类型系统太乱了，我用一个想象中的 lisp 来记录这里的实现。
+common-lisp 的类型系统太乱了，
+我用一个想象中的 lisp 来记录这里的实现。
 
 ```scheme
+;; given types:
+;; - state
+;; - operator
 (define-class problem
   :name string
   :goal-recognizer (-> state boolean)
-  :operators (list operators))
+  ;; 在书中 :operator-applier 这个 API 的设计不是很好，
+  ;; operator 可能是一个 pattern of operators，
+  ;; 首先要找到在给定 state 下适用的具体 operator 列表，
+  ;; 然后给出具体 operator 到 state 的 map。
+  ;; 这其实是说 :operators 是依赖 state 的。
+  ;; 所以正确的设计是：
+  ;; :operator-applier (-> operator state state)
+  ;; :operators (-> state (list operator))
+  :operator-applier (-> operator state (map operator state))
+  :operators (list operator)
+  :state-equal? (-> state state boolean))
 
 (define boston
   (new problem
