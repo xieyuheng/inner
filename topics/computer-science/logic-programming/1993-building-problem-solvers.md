@@ -20,6 +20,31 @@ year: 1993
 
 - 本书的第二作者 Johan de Kleer 是 Sussman 的学生。
 
+# 总结
+
+这本书有一个特点是，在主要 ideas 之外，
+还掺杂了很多不必要的对各种 lisp programming 中的 tradeoff 的讨论。
+
+其实，既然所有的 solver 都是以 Simon 的 problem space model 为基础的，
+那么就可以以 problem space model 为核心 idea 来组织全书。
+
+用不需要讨论那么多 tradeoff 的程序语言来介绍这些概念，
+应该能成为很好的学习材料。
+
+也许正如 Kent Beck 所说的，所有的 commit 分为两类：
+
+- 一类是改变代码行为的 behavior change；
+
+- 一类是不改变代码行为，
+  而只优化代码结构的 structural change，
+  即 refactoring。
+
+一个 commit 应该只包含一种类型的 change，而不应该混合。
+讲课教书也是如此，主要是介绍解决方案的书，
+和介绍 refactoring 的书应该分开，
+或者如果目标是想要在一本书中同时讲授方案与 refactoring，
+至少要做到将它们分开在不同的章节中。
+
 # 1 Preface
 
 ## 1.1 The role of this book
