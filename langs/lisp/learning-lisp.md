@@ -560,7 +560,6 @@ nil 不能作为信号来表明没有值存入
 ;; 而局部的名 的实现方式各异
 
 ;; setf 和 setq 是在全局和局部都通用的
-;; 不知道他们又什么区别
 
 (defparameter kkk 1)
 (boundp 'kkk)
@@ -587,8 +586,6 @@ xxx2
 
 ;; 只要是对这个命名空间的绑定都是如此
 
-
-
 (defparameter *kkk* 10)
 
 (defconstant LIMIT (+ *kkk* 1))
@@ -611,10 +608,6 @@ xxx2
 (defparameter *colours* (list 'red 'green 'blue))
 (setf (car *colours*) 'yellow)
 (push 'red (cdr *colours*))
-
-;; 但是 common-lisp 中 相关的语法还是显得混乱
-;; 在蝉语中 我要以一致的方式来解决这些问题
-
 
 ;; local
 (let ((x 6)
@@ -649,7 +642,6 @@ xxx2
 
 (mapcar (function add-counter) '(1 1 1 1))
 (add-counter 50)
-
 
 ;; 简陋的模式匹配
 (destructuring-bind (w (x y) . z) '(a (b c) d e)

@@ -217,9 +217,8 @@ Operators 的接口：
 
 ## 3.3 CPS implementation issues
 
-解释为什么不用 CLOS。
-
-用 common-lisp 的 defstruct。
+解释为什么不用 CLOS，用 common-lisp 的 defstruct。
+这个选择也许是正确的，因为 CLOS 的语法很啰嗦。
 
 ## 3.4 The CPS implementation
 
@@ -227,32 +226,73 @@ common-lisp 的类型系统太乱了，
 我用一个想象中的 lisp 来记录这里的实现。
 
 ```scheme
-;; given types:
-;; - state
-;; - operator
-(define-class problem
+(define-class problem ((state type) (operator type))
   :name string
   :goal-recognizer (-> state boolean)
-  ;; 在书中 :operator-applier 这个 API 的设计不是很好，
-  ;; operator 可能是一个 pattern of operators，
-  ;; 首先要找到在给定 state 下适用的具体 operator 列表，
-  ;; 然后给出具体 operator 到 state 的 map。
-  ;; 这其实是说 :operators 是依赖 state 的。
-  ;; 所以正确的设计是：
-  ;; :operator-applier (-> operator state state)
-  ;; :operators (-> state (list operator))
-  :operator-applier (-> operator state (map operator state))
+  :operator-applier (-> operator state (list (pair operator state)))
   :operators (list operator)
   :state-equal? (-> state state boolean))
 
 (define boston
-  (new problem
+  (make (problem boston-state boston-operator)
     :name "boston"
-    :goal-recognizer (lambda (state) ...)
-    :operators (create-list ...)))
+    :goal-recognizer (lambda (the-state) ...)
+    :operator-applier (lambda (the-operator the-state) ...)
+    :operators (make-list ...)
+    :state-equal? (lambda (left-state right-state) ...)))
+```
+
+在书中 :operator-applier 这个 API 的设计不是很好，
+operator 可能是一个 pattern of operators，
+首先要找到在给定 state 下适用的具体 operator 列表，
+然后给出具体 operator 到 state 的 map。
+这其实是说 :operators 是依赖 state 的。
+所以正确的设计是：
+
+```scheme
+:operator-applier (-> operator state state)
+:operators (-> state (list operator))
+```
+
+并且这两个函数其实还可以复合成：
+
+```scheme
+(-> state (list (tuple operator state)))
+```
+
+但是我们需要返回 solution-path，
+而 operator 就在 solution-path 中，
+所以明显地出现在 API 中也是合理的。
+
+并且命名也有问题，
+class 的名字不应该叫 problem，而应该叫 classical-solver，
+这个 solver 的状态代表当前搜索（solving）的状态，
+state 的名字应该直接用 problem，
+goal 应该叫 solution。
+
+```scheme
+(define-class classical-solver ((problem type) (operator type))
+  :name string
+  :problem-is-solution? (-> problem boolean)
+  :problem-equal? (-> problem problem boolean)
+  :valid-operators (-> problem (list operator))
+  :operator-apply (-> operator problem problem)
+  :problem-expand (-> problem (list (pair operator problem))))
+
+(define boston
+  (make (classical-solver boston-problem boston-operator)
+    :name "boston"
+    :problem-is-solution? (lambda (the-problem) ...)
+    :problem-equal? (lambda (left-problem right-problem) ...)
+    :valid-operators (lambda (the-problem) ...)
+    :operator-apply (lambda (the-operator the-problem) ...)
+    :problem-expand (lambda (the-problem) ...)))
+```
+
+作者还在这里说，为什么不依赖尾递归，而是用循环语法。
+其实就是反对 scheme 而倾向于 common-lisp 的偏见。
 
 TODO
-```
 
 # 4 Pattern-Directed Inference Systems
 # 5 Extending Pattern-Directed Inference Systems
