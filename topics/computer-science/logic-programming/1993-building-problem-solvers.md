@@ -177,7 +177,7 @@ CPS 就是本章标题 classical problem solving 的缩写，
 - 可惜 CPS 这个缩写与 continuation passing style 的缩写重名了。
 
 我决定在我的代码库中完全不用缩写，
-用 `classical-problem-solving/`
+用 `classical-solver/`
 作为这部分代码的文件夹名就可以了。
 
 > Conceptually, CPS consists of two parts: an interface for
@@ -242,8 +242,10 @@ Operators 的接口：
 
 ## 3.3 CPS implementation issues
 
-解释为什么不用 CLOS，用 common-lisp 的 defstruct。
-这个选择也许是正确的，因为 CLOS 的语法很啰嗦。
+关于代码结构：
+
+- 解释为什么不用 CLOS，用 common-lisp 的 defstruct。
+  这个选择也许是正确的，因为 CLOS 的语法很啰嗦。
 
 ## 3.4 The CPS implementation
 
@@ -314,10 +316,20 @@ goal 应该叫 solution。
     :problem-expand (lambda (the-problem) ...)))
 ```
 
-作者还在这里说，为什么不依赖尾递归，而是用循环语法。
-其实就是反对 scheme 而倾向于 common-lisp 的偏见。
+关于代码结构：
 
-TODO
+- 作者还在这里说，为什么不依赖尾递归，而是用循环语法。
+  其实就是反对 scheme 而倾向于 common-lisp 的偏见。
+
+- 还讲到了，如果需要的话，在循环中使用多个 return 是好的风格。
+
+这里的 API 还有一个严重的问题是，搜索到一个结果就结束了，
+并且放弃了目前 queue 中搜索到的其他未完成的 path，
+这浪费了很多计算，并且没法处理想要多个结果的情况。
+正确的设计是，solver 本身可以像一个 generator 一样，
+返回 next solution。
+
+TODO 第 32 页。
 
 # 4 Pattern-Directed Inference Systems
 # 5 Extending Pattern-Directed Inference Systems
