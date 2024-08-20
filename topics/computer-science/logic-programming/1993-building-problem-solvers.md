@@ -25,7 +25,7 @@ year: 1993
 这本书有一个特点是，在主要 ideas 之外，
 还掺杂了很多不必要的对各种 lisp programming 中的 tradeoff 的讨论。
 
-其实，既然所有的 solver 都是以 Simon 的 problem space model 为基础的，
+其实，既然所有的 solver 都是以 Simon 的 Problem Space Model 为基础的，
 那么就可以以 problem space model 为核心 idea 来组织全书。
 
 用不需要讨论那么多 tradeoff 的程序语言来介绍这些概念，
