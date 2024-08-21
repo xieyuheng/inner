@@ -291,11 +291,19 @@ operator 可能是一个 pattern of operators，
 而 operator 就在 solution-path 中，
 所以明显地出现在 API 中也是合理的。
 
+- 其实，区分 operator pattern 与 operator，
+  也算是对上面 API 的进一步分解，
+  在某情形下也是合理的。
+
 并且命名也有问题，
 class 的名字不应该叫 problem，而应该叫 classical-solver，
 这个 solver 的状态代表当前搜索（solving）的状态，
 state 的名字应该直接用 problem，
 goal 应该叫 solution。
+
+- 也不一定，problem 和 solution 以及 partialSolution，
+  可以衍生出来不同的 API 命名，
+  中性的 state 也是合理的。
 
 ```scheme
 (define-class classical-solver ((problem type) (operator type))
@@ -329,7 +337,7 @@ goal 应该叫 solution。
 正确的设计是，solver 本身可以像一个 generator 一样，
 返回 next solution。
 
-TODO 第 32 页。
+TODO 第 33 页 -- 关于 Path 的结构。
 
 # 4 Pattern-Directed Inference Systems
 # 5 Extending Pattern-Directed Inference Systems
