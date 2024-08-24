@@ -350,6 +350,39 @@ TODO 3.4.2 Alternative search strategies
 
 ## 3.5 Navigating the Boston subway
 
+> We assume the names of stations and lines are represented by symbols
+> instead of strings. This way we can set the value of the associated
+> symbol to the struct representing the station, and thus provide a
+> simple mapping from what users can type in to the internal
+> datastructures.
+
+这意味着用 common lisp 内置的 symbol table
+来实现类似 [entity–component–system (ECS)](https://en.wikipedia.org/wiki/Entity_component_system)
+的机制。
+
+即，不是通过 object 的 pointer 来直接相互引用，
+而是通过作为 entity id 的 symbol 来相互引用。
+
+line 和 station 之间相互引用：
+- 一个 station 有 lines。
+- 一个 line 有 stations。
+
+> These symbols act as placeholders, allowing us to define stations
+> and lines in any order we please. Even if we choose another means to
+> associate names with internals, it still makes sense to use
+> indirection. Otherwise, one must enforce a rigid format on how
+> subways are defined, to avoid referring to a name before it is
+> bound.
+
+书中定义了 `defline` 与 `defstation` macro，
+并且用全局变量来保存，lines 与 stations 的信息，
+这样就需要实现对全局资源做 clean up 的函数，
+才能让代码可以被复用。
+
+更好的方式是定义一个 subway class 作为 context 参数，
+`defline` 与 `defstation` 都带上这个参数，
+这样就避免了全局变量，也就不需要 clean up 了。
+
 TODO
 
 # 4 Pattern-Directed Inference Systems
