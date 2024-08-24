@@ -231,14 +231,14 @@ Operators 的接口：
 - beam search = best-first search + limit on the size of the queue
 
 > What should elements of the queue be? Clearly the state to be
-> explored must be part of it. For some problems, that would be
-> enough—we may only care about the solution to an equation, for
-> example, not how it was derived. For other problems the path taken
-> to the goal is of paramount importance: a chess program needs the
-> path the search took in order to move towards a win. Consequently,
-> when a search succeeds we stipulate that the search engine must
-> return the path it found between initial and goal states. The path
-> is a list of alternating states and operator instances.
+> explored must be part of it. For some problems, that would be enough
+> -- we may only care about the solution to an equation, for example,
+> not how it was derived. For other problems the path taken to the
+> goal is of paramount importance: a chess program needs the path the
+> search took in order to move towards a win. Consequently, when a
+> search succeeds we stipulate that the search engine must return the
+> path it found between initial and goal states. The path is a list of
+> alternating states and operator instances.
 
 ## 3.3 CPS implementation issues
 
@@ -337,7 +337,20 @@ goal 应该叫 solution。
 正确的设计是，solver 本身可以像一个 generator 一样，
 返回 next solution。
 
-TODO 第 33 页 -- 关于 Path 的结构。
+- 注意，lisp 的 cons list，总是将新加入的元素放在 head。
+
+  假设我们用 (p) 来表示 Problem，用 [b] 来表示 Branch，
+  那么形如 (p0) -> [b0] -> (p1) -> [b1] -> (p2) 的 Path，
+  会被实现为：
+  - current: p2
+  - so-far: ((p1 b1) (p0 b0))
+
+TODO 3.4.2 Alternative search strategies
+-- 先把测试跑起来再回来看这部分。
+
+## 3.5 Navigating the Boston subway
+
+TODO
 
 # 4 Pattern-Directed Inference Systems
 # 5 Extending Pattern-Directed Inference Systems
