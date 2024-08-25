@@ -383,7 +383,21 @@ line 和 station 之间相互引用：
 `defline` 与 `defstation` 都带上这个参数，
 这样就避免了全局变量，也就不需要 clean up 了。
 
+## 3.7 Sic transit gloria search?
+
 TODO
+
+搜索只是设计 Solver 的技巧之一，
+搜索不可避免地会导致计算时间随问题规模而指数增长，
+如果对问题有更深的理解，就应该直接针对问题本身设计 Solver，
+而不要只是依赖搜索。
+
+最典型的问题就是语法解析，
+我之前用 生成式语法 + 广度有限搜索
+实现过一个一般的语法解析器，
+但是由于指数爆炸，导致它根本就没法用，
+其实语法解析已经有很多线性时间和多项式时间的算法了，
+这里就没必要用搜索了。
 
 # 4 Pattern-Directed Inference Systems
 # 5 Extending Pattern-Directed Inference Systems
