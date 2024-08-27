@@ -1,7 +1,7 @@
 ---
 title: Refactoring
 subtitle: Improving the Design of Existing Code
-author: Martin Fowler
+authors: [Martin Fowler, Kent Beck]
 year: 2018
 ---
 
