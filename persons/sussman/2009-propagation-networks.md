@@ -664,6 +664,120 @@ TODO
 
 # 5 Expressive Power
 
+## 5.1 Dependency Directed Backtracking Just Works
+
+这一节用一个简单的例子讲明白了 nogood sets 的原理。
+重点在于 set 一词，即发现某些选择的集合出现了，
+即可以这个搜索路径不会有结果。
+如果能在搜索过程中总结这些 nogood sets，
+就能学习到关于搜索空间的知识，来剪枝掉很多分支。
+
+提到了用 McCarthy 的 amb 来实现 nogood sets 时的难点，
+但是何必要用 amb 呢？
+直接用搜索时的状态保存这些 nogood sets 就可以了。
+
+注意，这里讲了三种加速搜索的方式，
+nogood sets 只是其中之二。
+
+其一的例子是，搜索到了 {a, b, c, d} 发现了错误，
+同时也发现 {a, b} 就足以导致错误，
+那么回退的时候就可以跳过 c，直接回退到 {a, b} 出现之前。
+但是什么情况下是，
+搜索到了 {a, b, c, d} 发现错误，
+才发现 {a, b} 会导致错误？
+而不是搜索到 {a, b} 的时候就已经发现这个集合会导致错误？
+我还想不出这样的例子。
+
+第三个优化搜索的点如下：
+
+- 其实只有这一点是需要用 propagator model 实现的，
+  其他的两点用普通的 explicit searching state 也可以实现。
+
+> Third, if we’re tracking the dependencies anyway, then when we
+> change a choice, we should be able to avoid recomputing anything
+> that doesn’t depend on that choice.
+
+> Moving to propagation instead of evaluation solves this
+> problem. Propagation has a much more flexible intrinsic notion of
+> time.[^1] Implicit dependency-directed search can be achieved by
+> propagating a truth maintenance data structure, as we did in Section
+> 4.4.
+>
+> Doing that removes the linear-branching structure of our search
+> “tree”. Each choice becomes an entity in its own right, instead of
+> being a row of nodes in a search tree; so their identities are
+> conserved.
+>
+> [^1]: Like nearly all of our most powerful analytical metaphors,
+> propagation technology turns time into space. We are used to
+> thinking of space as having more dimensions than time, hence the
+> flexibility.
+
+上面这段话的脚注很有趣。
+如此对数学的理解犹如直觉主义一样主观。
+
+> The state of the search is now stored explicitly in partial
+> information structures in the cells instead of implicitly in the
+> control flow of the evaluation.
+
+我们不单单放弃了用控制流保存数据的方案，
+而且还选择了用 cells + partial information 这种方式来保存数据。
+
+不要用控制流来保存数据！
+
+在后面讨论哲学的时候，
+指出了古典计算模型对时间的隐式依赖，
+这确实是对 propagator model 与古典计算模型之差异的最好总结。
+
+> Considered from the propagators’ perspective, dependency-directed
+> search is just a mechanism for solving long -- range Boolean
+> dependencies -- if raw propagation of certain values is not enough
+> to deduce the answer, make a hypothetical guess, and propagate its
+> consequences, keeping track of which guess was responsible. If you
+> hit any contradictions, send them back to the guess so it can be
+> adjusted.  One might think of this as a kind of reasoning by
+> trial-and-error.
+
+## 5.2 Probabilistic Programming Tantalizes
+
+TODO
+
+## 5.3 Constraint Satisfaction Comes Naturally
+
+TODO
+
+## 5.7 Type Inference Looks Like Propagation Too
+
+对我来说最重要的一节。
+
+前面的章节提到了 propagator model
+可以用来解 constraint processing problem，
+所以只要把 type inference/checking problem
+化归为 constraint processing problem 就行了。
+
+> Type inference can be formulated as generating and then solving
+> constraints (on variables that range over the possible types)
+> [Sulzmann and Stuckey, 2007].
+
+> We can write this type inference problem down as a propagator
+> network as follows: Let there be a cell for every variable binding
+> and for every expression. This cell holds (everything we know about)
+> the type of that variable or the type of the object produced by that
+> expression. Then add propagators for every occurrence of every
+> construct of the language.
+
+遍历表达式的时候构造 propagation network：
+
+- 每个表达式（子表达式）都有一个自己的 cell，
+  用来保存 type 相关的 partial information。
+
+- 每种表达式都对应一种构造局部的
+  propagation network 的方式。
+
+这不禁让人想到 bidirectional type checking 中的 bidirectional，
+propagation network 已经不是 bidirectional 了，
+而是 multidirectional。
+
 TODO
 
 # 6 Towards a Programming Language
