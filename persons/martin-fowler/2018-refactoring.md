@@ -1,5 +1,6 @@
 ---
 title: Refactoring
+subtitle: Improving the Design of Existing Code
 author: Martin Fowler
 year: 2018
 ---
