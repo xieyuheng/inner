@@ -299,7 +299,8 @@ propagator 只负责把信息发过去。
 而在 "The Art" 中，每次调用 `add-content`
 都会自动运行所有相关的 propagators。
 修改很简单，只要把 `add-content` 中马上调用所有 propagators 的地方，
-改成把 propagators 交给（submit） scheduler 就行了（比如保存到 scheduler 的队列里）。
+改成把 propagators 交给（submit） scheduler 就行了
+（比如保存到 scheduler 的队列里）。
 
 - 在实现 inet 的时候，
   我所设计的用户接口也是先构造 network 再调用 `run`。
@@ -311,7 +312,7 @@ cells 和 propagators 形成一个（无向）二分图，
 - 一个 cell 引用一个 propagator 的方式是，
   把它保存在一个这个 cell 所拥有的 propagator 的列表里。
 
-- 而一个 propagator 是一个 unary closure，
+- 而一个 propagator 是一个 nullary closure，
   它引用一个 cell 的方式是在 closure 的 env 中，
   引用了某个保存这个 cell 的变量。
 
@@ -325,8 +326,9 @@ edge 就是简单的用指针实现的双向连接了。
 
 并且 inet 中的 edge 是用两个 half-edge 来实现的，
 也就是说，在冯诺依曼构架下，所实现的东西，
-自然的是 directed graph，
-graph 是 directed graph + 双向连接。
+自然的是 directed graph。
+在实现 graph 时，可以用双向连接，
+就像数学上 graph 被理解为双向的 directed graph 一样。
 
 这里作者给出的，具有教学意义的实现顺序是：
 
@@ -343,20 +345,24 @@ graph 是 directed graph + 双向连接。
 
 ## 3.2 Propagation can Go in Any Direction
 
-到这里我们只是用 propagator network 模拟了 expression，
+到这里我们只是初步做到了，
+用 propagator network 来模拟 expression 的效果，
 还没有处理的重要 feature 有：
 
 - Recursion (Section 6.2)
+
 - Compound data (Section 6.2)
+
 - Higher order function (Future work)
-  - 看来作者也没有明白如何处理高阶函数，
-    我在 inet 的实现中也没有明白如何处理高阶函数。
-    但是这也许并不难，
-    只要让 propagator definition
-    （或者说 propagator constructor）
-    成为一种 value 就可以了，
-    在探索的初期，
-    这个 value 所属的 lattice 可以是平凡的 anti-chain。
+
+  看来作者也没有明白如何处理高阶函数，
+  我在 inet 的实现中也没有明白如何处理高阶函数。
+  但是这也许并不难，
+  只要让 propagator definition
+  （或者说 propagator constructor）
+  成为一种 value 就可以了，
+  在探索的初期，
+  这个 value 所属的 lattice 可以是平凡的 anti-chain。
 
 > One of the original motivations for examining propagators is that
 > multidirectional constraints are very easy to express in terms of
@@ -389,9 +395,8 @@ graph 是 directed graph + 双向连接。
 
 如果像上面一样，从图论的角度分析 vue 的 reactive system，
 可以发现 ref 就是 cell，而 watch 就是 propagator，
-
-- TODO vue 的 API 是否与我目前的实现的 API 完全等价呢？
-  需要好好检验一下这个问题。
+相比之下，vue 的 API 所缺少的只是
+cell 中要保存 partial information 这个 ieda。
 
 ## 3.3 We can Propagate Intervals Too
 
@@ -406,7 +411,7 @@ Cell 能够从任意多个方向接受信息，
 
 这里有必要用 generic function + dispatching，
 而不能用简单的 interface，因为需要扩展的函数 merge 是二元函数，
-并且应该根据两个参数的类型来 dispatch。
+并且应该根据两个参数的类型（或值）来 dispatch。
 
 - 如果 generic dispatch 如此重要，是否在设计 cicada 的时候，
   也应该用 generic dispatch 而不应该用简单而 OOP 呢？
@@ -417,16 +422,17 @@ Cell 能够从任意多个方向接受信息，
 其次在 define primitive propagator 的时候，
 要以 generic 为基础来做定义。
 
-- 注意这里的技巧，
-  在用 `function->propagator-constructor` 时，
-  套上了一个 lifting 函数 -- `nary-unpacking`：
+注意这里的技巧，
+在用 `function->propagator-constructor` 时，
+套上了一个 lifting 函数 -- `nary-unpacking`：
 
-  > ... to have a common mechanism to handle
-  > sufficiently uniform types of partial information.
+> ... to have a common mechanism to handle
+> sufficiently uniform types of partial information.
 
-  以一般的方式处理，某些不用知道具体类型就可以处理的 partial information。
-  在实现 cicada 的时候，我也经常用类似的技巧。
-  `nary-unpacking` 的具体定义要看 A.5.1 一节。
+即，以一般的方式处理某些不用知道具体类型
+就可以处理的 partial information。
+在实现 cicada 的时候，我也经常用类似的技巧。
+`nary-unpacking` 的具体定义要看 A.5.1 一节。
 
 # 4 Dependencies
 
@@ -473,10 +479,10 @@ Cell 能够从任意多个方向接受信息，
 > usefully compute with multiple, possibly inconsistent world views.
 > A world view is a subset of the data that is supported by a given
 > set of explicit assumptions. Each computational process may restrict
-> itself to working with some consistent world view.  Dependencies
-> allow a system to separate the potentially contradictory
-> consequences of different assumptions, and make useful progress by
-> exercising controlled incredulity.
+> itself to work with some consistent world view.  Dependencies allow
+> a system to separate the potentially contradictory consequences of
+> different assumptions, and make useful progress by exercising
+> controlled incredulity.
 
 关于 implicit search：
 
@@ -522,7 +528,7 @@ Cell 能够从任意多个方向接受信息，
 
 > As a case in point, when the system needs to change its world-view,
 > as may happen in search, it can do so directly through a partial
-> information structure—no provision for this is necessary in the
+> information structure -- no provision for this is necessary in the
 > toplevel controller of the propagation system. This stands in stark
 > contrast to traditional constraint satisfaction, where search is an
 > additional, special-purpose external control loop commanding the
@@ -535,7 +541,9 @@ external control loop commanding the propagation proper"。
 
 我想这里用 supported value 来命名，
 意味着 value supported by evidence (provenance information)，
-另外又用 premise 来命名，让人想到 premise 的集合，作为命题的集合在逻辑意义上的且。
+另外又用 premise 来命名，
+让人想到 premise 的集合，
+作为命题的集合在逻辑意义上的「且」。
 
 直接用 lisp symbol 来代表 premise，
 也让人想到命题逻辑中代表命题的 atom。
@@ -560,7 +568,7 @@ C:         [   ]
 A,B,C:       [ ]
 ```
 
-即 supports 的集合可能与 supported value put 进来的顺序有关，
+即 supports 的集合可能与获得 supported value 的顺序有关，
 
 > The deep reason why this happens is that an interval is really a
 > compound of the upper and lower bounds, and it is profitable to
@@ -574,27 +582,51 @@ A,B,C:       [ ]
 > contained in the answer must of course be the merge of the values
 > contained in the two inputs, but sometimes we may get away with
 > using only some of the supporting premises. There are three cases:
-> if neither the new nor the old values are redundant, then we need
-> both their supports; if either is strictly redundant, we needn’t
-> include its support; and if they are equivalent, we can choose which
-> support to use. In this case, we use the support of the value
-> already present unless the support of the new one is strictly more
-> informative (i.e., is a strict subset of the same premises).
+>
+> - if neither the new nor the old values are redundant, then we need
+>   both their supports;
+>
+> - if either is strictly redundant, we needn’t include its support;
+>
+> - and if they are equivalent, we can choose which support to use.
+>
+>   In this case, we use the support of the value already present
+>   unless the support of the new one is strictly more informative
+>   (i.e., is a strict subset of the same premises).
 
-也就是说，这里用的并不是集合意义上的 lattice，
-或者说根本就不是 lattice，
-因为集合在一般情况下做了并，
-但是在某个特殊情况下做了交。
+看起来这里用的并不是集合意义上的 lattice，
+因为集合在一般情况下做了并，但是在某个特殊情况下做了交。
+但是其实在某种情况下用并，但是在另外特定的情况下用交，
+也可以构成一个 lattice。
 
-但是其实在某种情况下用并，
-但是在另外特定的情况下用交，
-可能还是可以构成一个 lattice。
+> If it so happens that two supported values contradict each other, we
+> want to return an object that will be recognized as representing a
+> contradiction, but will retain the information about which premises
+> were involved in the contradiction.  It is convenient to do that by
+> using the cell’s generic contradiction test; that way we can let
+> `v&s-merge` return a supported value whose value is a contradiction,
+> and whose support can carry information about why the contradiction
+> arose.
 
-TODO
+> Finally, we need to upgrade our arithmetic primitives to carry
+> dependencies around, and to interoperate with data they find that
+> lacks justifications by inserting empty dependency sets.
+
+在实现中，为了实现上面所说的这一点，
+我们不是给 arithmetic primitives 加新的 handlers，
+而是实现 supported-monad -- 实现 fmap 和 join 这两个接口。
+
+- 注意，这里的 join 不是 lattice 的接口，
+  lattice 的接口不是 join 而是 merge，
+  并且在定义 `definePrimitive` 时引入这个 monad。
+
+- 类似于 Supported，Nothing 也是这样用 nothing-monad 来处理的。
 
 ## 4.2 Dependencies Support Alternate Worldviews
 
-关于这里的命名，我不想用 TMS 这个所写，而是用 `BeliefSystem`。
+关于这里的命名，
+我不想用 TMS 这个所写，
+而是用 `BeliefSystem`。
 
 ```typescript
 type BeliefSystem = {
@@ -618,7 +650,10 @@ type BeliefSystem = {
 - supported.support 也被称作 promises 和 worldview。
 
 注意，supported 是 cell 可以保存的一种信息，
-而不是 put （或 add-content）接口函数的一部分。
+而不是 put（或 add-content）接口函数的一部分。
+
+- 我尝试过把 supported 作为 put 的参数之一来实现，
+  但是发现这样做并不好。
 
 注意，cell 保存的信息可能会升级，
 Number <= Interval <= Supported <= BeliefSystem，
@@ -632,6 +667,8 @@ Number <= Interval <= Supported <= BeliefSystem，
 
 如何避免这里所用的 global worldview？
 
+TODO 完成这里的实现。
+
 ## 4.3 Dependencies Explain Contradictions
 
 > As promised, contradictory beliefs are not traumatic.
@@ -639,6 +676,8 @@ Number <= Interval <= Supported <= BeliefSystem，
 > `the-contradiction` is just another partial information state,
 > and our truth maintenance machinery operates on partial information
 > by design.
+
+TODO 完成这里的实现。
 
 ## 4.4 Dependencies Improve Search
 
@@ -677,12 +716,12 @@ generate-and-test 是 Sussman 经常提到的一个关键词（一个关键 idea
 我想，这和 datalog 的 forward chaining 应该很像，
 在 datalog 中，每个关系作为一个数据库，
 保存着 clauses（限于 facts），
-这个数据库在 forward chaining 一直在演化和递增。
+这个数据库在 forward chaining 的过程中一直在演化和递增。
 而在 propagator 中，cell 就是这样的数据库，
 当里面保存的是带有「或」语义的 `BeliefSystem` 时，
 就和 datalog 的一个关系中保存 clauses 的情况类似。
 
-TODO
+TODO 完成这里的实现。
 
 # 5 Expressive Power
 
