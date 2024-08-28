@@ -15,14 +15,17 @@ year: 2009
 > general-purpose propagation is that a cell should not be seen as
 > storing a value, but as accumulating _information about_ a value.
 
-propagation 在 constraint processing 中很常用，
-但是在 constraint processing 中，每个 propagation system 都是特殊的。
-而这里要设计一个语言，使得人们可以用它实现任何 propagation system。
+开篇就很好地描述了 propagation 的主要性质，
+并且指出了论文的核心 idea 是什么。
 
 # 1 Time for a Revolution
 
 > This dissertation introduces, explains, illustrates, and implements
 > _general-purpose propagation._
+
+propagation 在 constraint processing 中很常用，
+但是在 constraint processing 中，每个 propagation system 都是特殊的。
+而这里要设计一个语言，使得人们可以用它实现任何 propagation system。
 
 > The key idea of propagating _mergeable_, _partial information_
 > allows propagation to be used for general-purpose computation.
@@ -91,7 +94,7 @@ propagation 在 constraint processing 中很常用，
 而是语法，或者说构造出来的图是具体语法，
 而解释图的程序才是语义。
 
-这个论文要设计一般的 propagation 语言，
+这篇论文要设计一般的 propagation 语言，
 来统一上面提到的几个领域：
 
 - constraint processing
@@ -112,6 +115,11 @@ propagation 在 constraint processing 中很常用，
 
 可能有点牵强，哈哈。
 
+关于 understanding，也许是真的，
+因为在写类型检查器的时候，
+我感到用正常的 OOP 或 FP 手段，
+是压制不住实现的复杂性的。
+
 # 2 Design Principles
 
 前一章阐释发展 propagator 之必要，这一章讲如何发展。
@@ -130,9 +138,8 @@ propagation 在 constraint processing 中很常用，
 > cells of the network.  The machines are for this reason
 > traditionally called **propagators**.
 
-cells 与 propagators，
-和 petri net 中的 places 与 transitions
-这种二分图类似。
+cells 与 propagators 也构成二分图，
+正如 petri net 中的 places 与 transitions 也构成二分图。
 
 > The purpose of all this is to avoid too early a commitment to the
 > timing of events in our computers, so that the computers can decide
@@ -169,6 +176,10 @@ cells 与 propagators，
 比如，一种方案是，用 actor model 来实现 cell 和 propagator，
 propagator 和 cell 之间也用 message passing 来沟通。
 
+从 propagator 到 actor 是非常有趣的归约，
+从二分图到图的归约，
+毕竟二分图也是特殊的图。
+
 ## 2.2 We Simulate the Network until Quiescence
 
 Propagator 网络可以用实际的硬件构造，
@@ -200,9 +211,15 @@ Network 的运行有三种情况：
 这是这篇论文的主要贡献，即用 lattice。
 
 注意，如果把 merge 当成是 lattice 的 join 或 meet，
-就要求 merge 满足交换律，
-但是也许有实用的信息积累过程，
-并不满足交换律。
+就要求 merge 满足交换律。
+
+- 也许这个要求太高了，
+  因为也许有实用的信息积累过程，
+  并不满足交换律。
+
+- 也许这个要求是非常重要的，
+  因为也许所有看似不满足交换律的信息积累过程，
+  都应该被转化为满足交换律的过程。
 
 > The basic philosophical reason why cells must accumulate
 > incrementally refinable information is that computation in
@@ -215,6 +232,13 @@ Network 的运行有三种情况：
 > accept and merge all the contributions of all the propagators that
 > might write to it.
 
+上面是从逻辑上推理出来，
+为什么应该保存 partial information。
+
+- 大前提：多个 propagators 可以向同一个 cell 中赋值。
+- 小前提：多个值至今可能没有全序关系来判读谁好谁坏。
+- 结论：应该用偏序关系与 lattice，来 merge 多个值。
+
 ### 2.3.1 Why don't cells store values?
 
 如果一个 cell 已经有某个 value 了，
@@ -223,7 +247,7 @@ Network 的运行有三种情况：
 
 最自然的方式就是用 lattice 的 join 或 meet。
 
-也许在实现的时候，
+在实现的时候，
 这个 lattice 操作应该由 cell 自身来进行，
 propagator 只负责把信息发过去。
 
@@ -254,13 +278,11 @@ propagator 只负责把信息发过去。
 但这一切还在 lattice 的范围内，
 只是某些特殊的高阶 lattice 而已。
 
+- Supported Value 与 TMS 都是从已有的 lattice 生成新的 lattice 的方式。
+
 > The point of this dissertation is that propagating and accumulating
 > partial information is enough for a complete, expressive, and
 > flexible model of computation.
-
-lattice 作为抽象的数学结构，
-是一个 interface，
-cell 只要实现这个 interface 就好。
 
 # 3 Core Implementation
 
