@@ -2,7 +2,7 @@
 title: Essential concepts
 ---
 
-## Continuous function
+# Continuous function
 
 All function can be defined in our language is continuous.
 
@@ -23,7 +23,7 @@ if we view the equivalence as two functions
 while to define `g` we must map some generators
 to trivial elements (`refl`) of `A`.
 
-## Product space
+# Product space
 
 TODO How to understand `Torus` as `Circle * Circle`?
 
@@ -34,7 +34,7 @@ space Pair(Circle, Circle) {
 }
 ```
 
-## Fibration
+# Fibration
 
 Every map can be viewed as a fibration,
 the homotopy lifting property also hold.
@@ -50,7 +50,7 @@ function Fiber(
 }
 ```
 
-## Manifold
+# Manifold
 
 A closed manifold is defined as a connected finite homogeneous complex.
 
