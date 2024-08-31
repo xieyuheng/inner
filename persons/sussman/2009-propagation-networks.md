@@ -666,6 +666,7 @@ Number <= Interval <= Supported <= BeliefSystem，
   可能和分配格的理论类似。
 
 如何避免这里所用的 global worldview？
+好像给 `tms-query` 加一个参数就可以了。
 
 TODO 完成这里的实现。
 
