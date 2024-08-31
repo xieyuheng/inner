@@ -1,5 +1,8 @@
-To be is a value of a variable
-==============================
+---
+title: To be is a value of a variable
+author: George Boolos
+year: 1984
+---
 
 Involving numerical quantifiers
 such as "more", "most", and "as many".
