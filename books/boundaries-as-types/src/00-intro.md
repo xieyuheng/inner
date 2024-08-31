@@ -2,7 +2,7 @@
 title: Intro
 ---
 
-## Abstract
+# Abstract
 
 A language to capture the concept of continuum,
 
@@ -14,7 +14,7 @@ It can be viewed as higher dimensional algebraic structure in which,
 - homotopy groups are it's sub-algebras,
 - and it's abelianization are homology groups.
 
-## The Plan
+# The Plan
 
 A group or a groupoid when defined by a presentation,
 can be viewed topologically as vertexes, edges and faces,
@@ -64,7 +64,7 @@ as algebraic structure of fundamental polyhedron
 can be normalized to given a complete classification
 of 3-dimensional manifolds.
 
-## About Algebraic Structures
+# About Algebraic Structures
 
 The elements of a groupoid,
 when viewed as a cell complex,

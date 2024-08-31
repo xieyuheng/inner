@@ -2,7 +2,7 @@
 title: Cell Complexes
 ---
 
-## Cell complex as a generalization of graph theory
+# Cell complex as a generalization of graph theory
 
 Note that graph (with nodes and edges),
 and cell complex (with faces and bodies and higher),
@@ -12,7 +12,7 @@ They are NOT model.
 
 For example, we can interpret a directed graph as a causal model.
 
-## Different meanings of higher-order-ness
+# Different meanings of higher-order-ness
 
 Higher order inductive type is one way of
 introducing higher-order-ness into our type system,
@@ -42,7 +42,7 @@ we can use the algebra of the later to simplify our reasoning?
     to change the layout of an edge
     to compose it by another endpoint.
 
-## Path type
+# Path type
 
 [question] Why using path type we can view `Equal` as a `Pi` type?
 
@@ -95,7 +95,7 @@ an element of the type must satisfy the constraints.
 
   - TODO Is this idea enough to be used as the path type
     where structural equivalence is easy to prove?
-    
+
     If it is, we can already back to cicada without cell complex!
 
 [question] What is the general relation
@@ -133,14 +133,14 @@ function Path(A, x, y): Type {
 
 But the returned record is not a type at all.
 
-## Limitation of our construction
+# Limitation of our construction
 
 The following concepts are not built-in our language:
 
 - Subset.
 - Quotient.
 
-## Naming and syntax keywords
+# Naming and syntax keywords
 
 | dim           | cell        | complex    | spherical complex   |
 |---------------|-------------|------------|---------------------|
@@ -163,7 +163,7 @@ Notes:
   and the spherical element becomes the generator's boundary
   (boundaries as types).
 
-## 0-dimensional
+# 0-dimensional
 
 When we define inductive datatypes
 without any higher order data constructors,
@@ -180,7 +180,7 @@ The generators can also be parameterized, thus infinity many,
 
 - 0-dimensional cell complex is inductively defined set.
 
-## 1-dimensional -- logical syntax
+# 1-dimensional -- logical syntax
 
 ```cicada
 datatype Circle {
@@ -189,7 +189,7 @@ datatype Circle {
 }
 ```
 
-## 2-dimensional -- logical syntax
+# 2-dimensional -- logical syntax
 
 Four ways to glue a square:
 
@@ -234,7 +234,7 @@ datatype ProjectivePlane {
 }
 ```
 
-## 1-dimensional algebra -- logical syntax
+# 1-dimensional algebra -- logical syntax
 
 ```cicada
 space Torus {
@@ -245,7 +245,7 @@ space Torus {
 }
 ```
 
-## 3-dimensional -- logical syntax
+# 3-dimensional -- logical syntax
 
 ```cicada
 datatype Torus3 {
@@ -272,7 +272,7 @@ to specify how edges of polygons are glued together.
 
 - Note that, polygons are elements of the boundary of polyhedron.
 
-## 3-dimensional
+# 3-dimensional
 
 To design how to introduce a (n+1)-dimensional cell `A` into a cell complex,
 we need to specify a attaching map from the boundary of the cell `A`
@@ -453,7 +453,7 @@ datatype Torus3 {
 }
 ```
 
-## Generalization of Cell
+# Generalization of Cell
 
 [question] In what sense "boundaries as types"?
 
@@ -511,7 +511,7 @@ and we can also have other inductive constraint like `Cubical`.
 [keyword] **constraints on return value** of Pi type
 -- the idea of `Path` type.
 
-## 2-dimensional algebra
+# 2-dimensional algebra
 
 How to compose two cells?
 
@@ -546,7 +546,7 @@ what should we check?
   i.e. the adjacency relation must be respected,
   which is the principle of defining continuous map.
 
-## 2-dimensional algebra -- logical syntax
+# 2-dimensional algebra -- logical syntax
 
 ```cicada
 space Torus3 {
@@ -561,7 +561,7 @@ space Torus3 {
 }
 ```
 
-## Homotopy group `S3`
+# Homotopy group `S3`
 
 <https://en.wikipedia.org/wiki/Homotopy_groups_of_spheres>
 
@@ -629,6 +629,6 @@ function Pi3S2 (s3: S3): S2 {
 }
 ```
 
-## Hopf fibration
+# Hopf fibration
 
 <https://en.wikipedia.org/wiki/Hopf_fibration>
