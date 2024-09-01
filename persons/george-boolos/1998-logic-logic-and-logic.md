@@ -95,13 +95,13 @@ TODO Plural Quantification
 - 假设 y 没有在 <formula> 中自由出现。
 
 ```cicada
-exists (y) And(Set(y), forall (x) Iff(BelongTo(x, y), <formula>))
+exists (y) And(Set(y), forall (x) Iff(ElementOf(x, y), <formula>))
 ```
 
 或者假设 `P` 是谓词：
 
 ```cicada
-exists (y) And(Set(y), forall (x) Iff(BelongTo(x, y), P(x)))
+exists (y) And(Set(y), forall (x) Iff(ElementOf(x, y), P(x)))
 ```
 
 另外还有 extensionality axiom 或者说 extensional equality axiom：
@@ -109,13 +109,13 @@ exists (y) And(Set(y), forall (x) Iff(BelongTo(x, y), P(x)))
 ```cicada
 exists (x, y) And(
   Set(x), Set(y),
-  (forall (x) Iff(BelongTo(z, x), BelongTo(z, y))) ->
+  (forall (x) Iff(ElementOf(z, x), ElementOf(z, y))) ->
     Equal(Set, x, y),
 )
 ```
 
 用类型论来表达 extension axiom，
-我们可以把 `Set(y)` 和 `BelongTo(x, y)`
+我们可以把 `Set(y)` 和 `ElementOf(x, y)`
 分别写在 `exists` 和 `forall` 两个量词中：
 
 ```cicada
@@ -164,9 +164,93 @@ TODO 用类似 cicada 的语法叙述罗素悖论。
 但是，回想康托对集合论的两个非形式定义，
 这种批判也是有道理的。
 
+下面要介绍新的集合论公理，
+主要就是为了排除这种自我包含的集合。
+
+所描述的就是 cumulative 风格的集合论。
+也许可以想象为有一个谓词可以用来计算任意一个集合所在 stage。
+
+- 按照这里的计数方式，
+  所有非集合的东西（primitive）是 stage-(-1)，
+  而空集和 primitive 的集合是 stage-0。
+  或者说非集合的东西不能计算 stage，
+  即只能对集合计算 stage。
+
+注意，需要通过加入 omega 来扩展序数的集合。
+stage 可以是 omega，omega + 1，omega + 2，
+2 * omega，2 * omega + 1，
+等等。
+
+> The sets of which ZF in its usual formulation speaks ("quantifies
+> over") are not all the sets there are, if we assume that there are
+> some individuals, but only those which are formed at some stage
+> under the assumption that there are no individuals.
+
+感觉这就是从集合论角度看来，类型论的核心 idea，
+即用 `exists` 和 `forall` 量词引入集合的时候，
+要带有类型来表示所引入而集合属于哪个 stage。
+
+> Let us now try to state a theory, the stage-theory, that precisely
+> expresses much, but not all, of the content of the iterative
+> conception.  We shall use a language, J, in which there are two
+> sorts of variables: variables x, y, z, w, ..., which range over
+> sets, and variables r, s, t, ..., which range over stages.  In
+> addition to the predicate letters "∈" and "==" of L (the language
+> of naive set theory), J also contains two new two-place predicate
+> letters "E", read "is earlier than," and "F", read "is formed at."
+
+我们不用缩写，就直接用：
+
+- `ElementOf`
+- `Equal`
+- `Earlier`
+- `FormedAt`
+
+我们也不用约定来生命变量的类型，
+而是在引入变量的时候，明显地用 `:` 给出类型。
+
+首先给出上面的关系的类型：
+
+```cicada
+claim ElementOf(e: Any, x: Set)
+claim Equal(T: Type, x: T, y: y)
+claim Earlier(s: Stage, t: Stage)
+claim FormedAt(x: Set, s: Stage)
+```
+
+```cicada
+ // No stage is earlier than itself.
+(I) forall (s: Stage) Not(Earlier(s, s))
+
+// Earlier than is transitive.
+(II) forall (r, s, t: Stage)
+  (And(Earlier(r, s), Earlier(s, t))) -> Earlier(r, t)
+
+ // Earlier than is connected. -- 即全序关系。
+(III) forall (s, t: Stage) Or(
+  Earlier(s, t),
+  Earlier(t, s),
+  Equal(Stage, s, t),
+)
+
+ // There is an earliest stage.
+(IV) exists (s: Stage) forall (t: Stage)
+  (Not(Equal(Stage, s, t))) -> Earlier(s, t)
+
+TODO 完成这里所有公理在 cicada 中的形式化。
+```
+
 TODO
 
-## 2 reply to Charles Parsons' "sets and classes"
+### III. Zermelo set theory
+
+TODO
+
+### IV. Zermelo-Fraenkel set theory
+
+TODO
+
+## 2 Reply to Charles Parsons' "Sets and Classes"
 ## 3 on second-order logic
 ## 4 to be is to be a value of a variable (or to be some values of some variables)
 ## 5 nominalist platonism
