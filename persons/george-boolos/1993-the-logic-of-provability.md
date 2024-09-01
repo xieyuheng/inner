@@ -117,6 +117,26 @@ TODO 在 cicada 中形式化 Godel 用到的形式系统。
 
 TODO 我们可以把这个系统实现出来试试。
 
+> The construction of Bew(x) is described in Chapter 2,
+> where we also show that for all sentences S, S' of PA,
+> Bew(x) satisfies the following three conditions:
+>
+> TODO 用 cicada 的语法总结这里的断言，
+> 并且把 `Bew` 换成 `Provable` 试试读起来的效果。
+
+发现 Godel 配数法所捕捉到的「可证明性」满足 modal logic 的公理！
+
+Godel 配数法可以把原来是元语言中的词捕捉到语言本身中，
+在实现 dependent type 的时候，
+是否也可以把 Check 捕捉到语言本身中呢？
+是否类似于用一个语言写自身的类型检查器呢？
+
+Godel 的证明技术本身，就和在一个语言中实现自身非常相似！
+
+Boolos 应该是我看到的第一个把 Godel 的证明讲明白的人。
+
+TODO Modal logic and arithmetic
+
 # 1 GL and other systems of propositional modal logic
 
 TODO
