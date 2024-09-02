@@ -273,7 +273,7 @@ to specify how edges of polygons are glued together.
 # 3-dimensional
 
 To design how to introduce a (n+1)-dimensional cell `A` into a cell complex,
-we need to specify a attaching map from the boundary of the cell `A`
+we need to specify an attaching map from the boundary of the cell `A`
 to the n-skeleton of the cell complex.
 
 We do this by giving the boundary of the cell `A`
