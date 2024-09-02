@@ -123,15 +123,13 @@ we can express the enrichment by other properties.
 
 ```cicada
 function Path(A, x, y): Type {
-  return {
-    apply: (i: I) -> A
-    start: Equal(A, apply(0), x)
-    end: Equal(A, apply(1), y)
+  return class {
+    apply: (i: I) -> A,
+    start: Equal(A, apply(0), x),
+    end: Equal(A, apply(1), y),
   }
 }
 ```
-
-But the returned record is not a type at all.
 
 # Limitation of our construction
 
