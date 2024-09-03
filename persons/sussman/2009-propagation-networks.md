@@ -614,10 +614,10 @@ A,B,C:       [ ]
 
 在实现中，为了实现上面所说的这一点，
 我们不是给 arithmetic primitives 加新的 handlers，
-而是实现 supported-monad -- 实现 fmap 和 join 这两个接口。
+而是实现 supported-monad -- 实现 fmap 和 flatten 这两个接口。
 
-- 注意，这里的 join 不是 lattice 的接口，
-  lattice 的接口不是 join 而是 merge，
+- 注意，这里的 flatten 也被称为 join，它不是 lattice 的接口，
+  lattice 的接口也不是称作 join 而是 merge，
   并且在定义 `definePrimitive` 时引入这个 monad。
 
 - 类似于 Supported，Nothing 也是这样用 nothing-monad 来处理的。
@@ -626,11 +626,17 @@ A,B,C:       [ ]
 
 关于这里的命名，
 我不想用 TMS 这个所写，
-而是用 `BeliefSystem`。
+而是用 `BeliefSystem`，
+`Supported` 也改为 `Belief`。
 
 ```typescript
-type BeliefSystem = {
-  beliefs: Array<Supported>
+type Belief<A> = {
+  value: A
+  reasons: Reasons
+}
+
+type BeliefSystem<A> = {
+  beliefs: Array<Belief<A>>
 }
 ```
 
@@ -642,12 +648,14 @@ type BeliefSystem = {
 
 可以理解为是 cell 的 belief system，
 每个 cell 可以相信一些信息，
-这些信息以 supported 的形式存在，
-并且 promises 之间可能存在冲突。
+这些信息以 belief 的形式存在，
+belief 有 value 和 reasons，
+并且 belief 的 reasons 之间可能存在冲突。
 
 这里论文中的命名有些乱：
 
 - supported.support 也被称作 promises 和 worldview。
+  supported.support 在我的代码里叫 belief.reasons。
 
 注意，supported 是 cell 可以保存的一种信息，
 而不是 put（或 add-content）接口函数的一部分。
@@ -667,6 +675,12 @@ Number <= Interval <= Supported <= BeliefSystem，
 
 如何避免这里所用的 global worldview？
 好像给 `tms-query` 加一个参数就可以了。
+
+> Asking the TMS to deduce all the consequences of all its facts all
+> the time is perhaps a bad idea, so when we merge TMSes we assimilate
+> the facts from the incoming one into the current one, and then
+> deduce only those consequences that are relevant to the current
+> worldview.
 
 TODO 完成这里的实现。
 
