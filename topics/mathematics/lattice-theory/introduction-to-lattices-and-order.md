@@ -44,10 +44,12 @@ less than or equal to 太长了，也许 lteq 可以，
 [propagator] 在实现 propagator 时，
 可能应该实现一个 generic 的 compare(a, b) 函数，返回四种可能：
 
-- < -- a < b
-- = -- a = b
-- > -- a > b
-- | -- a 与 b 不可比较
+```
+(1) = -- a = b
+(2) < -- a < b
+(3) > -- a > b
+(4) | -- a 与 b 不可比较
+```
 
 但是这可能并不合理，
 因为需要调用 below(a, b) 和 below(b, a) 两次，
