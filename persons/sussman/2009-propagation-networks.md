@@ -682,8 +682,6 @@ Number <= Interval <= Supported <= BeliefSystem，
 > deduce only those consequences that are relevant to the current
 > worldview.
 
-TODO 完成这里的实现。
-
 ## 4.3 Dependencies Explain Contradictions
 
 > As promised, contradictory beliefs are not traumatic.
