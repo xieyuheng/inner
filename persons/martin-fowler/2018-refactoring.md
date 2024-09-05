@@ -27,6 +27,19 @@ Refactoring 这本书里所讲的，是现代程序员最基本的知识。
 在一位代码的读者尝试去区分不同部分时，
 人脑的模式匹配机制可以利用到这个 constraint。
 
+> The way to put that understanding [about different parts of the
+> overall behavior] into code is to turn that chunk of code into its
+> own function, naming it after what it does -- something like
+> `amountFor(aPerformance)`.
+
+> When I want to turn a chunk of code into a function like this, I
+> have a procedure for doing it that minimizes my chances of getting
+> it wrong. I wrote down this procedure and, to make it easy to
+> reference, named it Extract Function (106).
+
+这就是程序员们和 Christopher Alexander 所学到的，
+「用 pattern language 来总结知识」的技巧了。
+
 # Chapter 2: Principles in Refactoring
 # Chapter 3: Bad Smells in Code
 # Chapter 4: Building Tests
