@@ -1,23 +1,16 @@
-#+TITLE: learning-lojban
-#+AUTHOR: XYH(谢宇恒)
-#+EMAIL: xyheme@gmail.com
+---
+title: learning lojban
+---
 
+# web
 
+- http://www.tlg.uci.edu/~opoudjis/lojbanbrochure/lessons/book1.html
+- http://www.lojban.org/tiki/CLL+Beginner%27s+Order
+- http://dag.github.io/cll/
+- http://www.lojban.org/tiki/CLL%2C+aka+Reference+Grammar%2C+Errata
 
-* note
+# grammar
 
-* web
-http://www.tlg.uci.edu/~opoudjis/lojbanbrochure/lessons/book1.html
-
-
-http://www.lojban.org/tiki/CLL+Beginner%27s+Order
-
-
-http://dag.github.io/cll/
-
-
-http://www.lojban.org/tiki/CLL%2C+aka+Reference+Grammar%2C+Errata
-* grammar
 bridi (predicate)
 selbri (关系 谓词)
 sumti (argument)
@@ -29,10 +22,12 @@ sumti的顺序被用来区分词所属于的语义类型
 
 tavla:
 x1 talks to x2 about x3 in language x4
-#+begin_src lojban
+
+```lojban
 mi tavla do zo'e zo'e
  == mi tavla do
-#+end_src
+```
+
 I talk to you about something in some language
 
 一个陈述句就是一个被判断为真的命题
@@ -40,11 +35,13 @@ I talk to you about something in some language
 
 vecnu:
 seller-x1 sells goods-sold-x2 buyer-x3 price-x4
-#+begin_src lojban
+
+```lojban
 mi vecnu ti ta zo’e
 mi ti vecnu ta
  mi ti ta vecnu
-#+end_src
+```
+
 I sell this to that for some price.
 I sell this-thing/these-things to that-buyer/those-buyers.
 
@@ -58,24 +55,37 @@ selbri后面的sumti算是第二个
 
 melbi:
 x1 (object/idea) is beautiful to x2 (observer) by standard x3
-* cmavo
+
+# cmavo
+
 即语法词
 或语法助词
 as separators a heavily needed in this language
-** cu
-** se
+
+## cu
+
+## se
+
 x1 <-> x2
-#+begin_src lojban
+
+```lojban
 mi tavla do ti
 do se tavla mi ti
-#+end_src
-** ta
+```
+
+## ta
+
 x1 <-> x3
-#+begin_src lojban
+
+```lojban
 mi tavla do ti
 ti te tavla do mi
-#+end_src
-** ve
+```
+
+## ve
+
 x1 <-> x4
-** xe
+
+## xe
+
 x1 <-> x5
