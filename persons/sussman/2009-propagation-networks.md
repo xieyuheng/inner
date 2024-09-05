@@ -690,6 +690,14 @@ Number <= Interval <= Supported <= BeliefSystem，
 > and our truth maintenance machinery operates on partial information
 > by design.
 
+> On the other hand, contradictions are not quite like the other kinds
+> of partial information, because we chose to make them have a global
+> effect: we wanted our system to stop computing things in a given
+> worldview immediately, as soon as it discovered that worldview to be
+> contradictory anywhere. We must therefore do some work to treat
+> contradictions a little specially. This work is a consequence of our
+> particular choice of making the worldview global.
+
 TODO 完成这里的实现。
 
 ## 4.4 Dependencies Improve Search
