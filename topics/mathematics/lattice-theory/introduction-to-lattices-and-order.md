@@ -208,9 +208,15 @@ disjoint sum 和 linear sum 显然都满足结合律。
 [propagator] 上面所说的，表面上看起来正确的
 Number <= Interval <= Belief <= BeliefSystem 
 绝对是错误的。
-Number <= Interval 是正确的，
-Belief <= BeliefSystem 也是正确的，
-但是两部分不是用过 <= 连接起来的。
+Number <= Interval 是正确的 
+-- merge Interval 可能会得到更精确的 Number。
+BeliefSystem <= Belief 是正确的
+-- merge Belief 可能会得到 BeliefSystem，
+如何理解后者是带有更多信息的？
+也许可以通过把它认为是 reasons 到 value 的 key-value map 来理解，
+因为 record 的 attributes 越多就越具体。
+而且 Number <= Interval 与 BeliefSystem <= Belief，
+这两部分不是用过 <= 连接起来的。
 具体的 lattice theory 和 order theory 我还没弄明白，
 但是看起来二者之间是通过 contradiction 连接的。
 
