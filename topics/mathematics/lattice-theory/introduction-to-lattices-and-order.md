@@ -116,6 +116,15 @@ propagator 用的正是这种意义上的序关系，
 merge 两份信息，会得到更多的信息，
 及在 ⩾ 的意义上更大。
 
+[propagator] 上面很有可能搞错了，
+"more information" 代表 <=，而不是 >=。
+比如在 propagator 的实现中，
+`merge` 应该被理解为 lattice 的 meet 而不是 join。
+用 `merge` 定义的 `implies(x, y) = merge(x, y) = x`，
+就是 "more information" 的意思。
+也就是说 "more information" 代表更具体，更精确的信息，
+对区间而言，就是更精确的区间，对集合而言，就是更小的集合。
+
 这里定义程序的时候，其实只要以 record 为 value，
 就可以将处理输入 state 和输出 state 的 program，
 理解为处理输入 record 和输出 record 的 function 了。
@@ -195,6 +204,15 @@ disjoint sum 和 linear sum 显然都满足结合律。
 比如 String 和 Number 之间；
 但有时是用分层次的 linear sum 来定义的，
 比如 Number <= Interval <= Supported <= BeliefSystem。
+
+[propagator] 上面所说的，表面上看起来正确的
+Number <= Interval <= Belief <= BeliefSystem 
+绝对是错误的。
+Number <= Interval 是正确的，
+Belief <= BeliefSystem 也是正确的，
+但是两部分不是用过 <= 连接起来的。
+具体的 lattice theory 和 order theory 我还没弄明白，
+但是看起来二者之间是通过 contradiction 连接的。
 
 另外有两个构造 primitive ordered set 的函数：
 
