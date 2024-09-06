@@ -698,8 +698,6 @@ Number <= Interval <= Supported <= BeliefSystem，
 > contradictions a little specially. This work is a consequence of our
 > particular choice of making the worldview global.
 
-TODO 完成这里的实现。
-
 ## 4.4 Dependencies Improve Search
 
 > Implicit generate-and-test can be viewed as a way of making systems
