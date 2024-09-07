@@ -40,6 +40,40 @@ Refactoring 这本书里所讲的，是现代程序员最基本的知识。
 这就是程序员们和 Christopher Alexander 所学到的，
 「用 pattern language 来总结知识」的技巧了。
 
+这里 Martin Fowler 介绍了两个他自己的 coding style。
+
+第一个是 `result` 这个变量名的用法：
+
+> It’s my coding standard to always call the return value from a
+> function “result”.  That way I always know its role.
+
+第二个是，在没有更有意义的名字的情况下，
+用「不定冠词 + 类型」来命名变量。
+
+> Again, this is following my coding style. With a dynamically typed
+> language such as JavaScript, it’s useful to keep track of types --
+> hence, my default name for a parameter includes the type name. I use
+> an indefinite article with it unless there is some specific role
+> information to capture in the name. I learned this convention from
+> Kent Beck [Beck SBPP] and continue to find it helpful.
+
+我这次重读 "Refactoring" 就是为了体验这种命名变量的方式，
+因为我觉得这很时候在一个有静态类型的 lisp/scheme 中使用。
+
+原来这一点是和 Kent Beck 学的！
+来自 "Smalltalk Best Practice Patterns"（SBPP） 这本书。
+
+> The great benefit of removing local variables is that it makes it
+> much easier to do extractions, since there is less local scope to
+> deal with. Indeed, usually I’ll take out local variables before I
+> do any extractions.
+
+在 Forth 中，这一点有了极端的体现，
+因为 Forth 根本就没有 local variables，
+所以对任意一段代码我们都可以 do extraction。
+
+TODO
+
 # Chapter 2: Principles in Refactoring
 # Chapter 3: Bad Smells in Code
 # Chapter 4: Building Tests

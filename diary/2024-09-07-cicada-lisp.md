@@ -3,6 +3,8 @@ title: cicada-lisp
 date: 2024-09-07
 ---
 
+# cicada-lisp 的动机
+
 想要用一个新的语言来实现 propagator，
 就需要先实现 actor model，
 然后把 propagator 和 cell 都实现为 actor。
@@ -37,3 +39,11 @@ Martin Fowler 在 "Refactoring" 一书中，
 - 先用 JS 实现 cicada-lisp 的解释器。
 - 然后用 cicada-lisp 实现自身的编译器，编译到 XVM。
 - XVM 支持 actor model，类似 erlang 虚拟机。
+
+# 关于 lisp 的 naming convenient
+
+在开始学 lisp 和 scheme 的时候，
+我就觉得与 underscore_case 和 camelCase 相比，
+lisp-case 要好看很多。
+比如命名文件和命令行程序的时候，
+大多数 linux/unix 程序员还是用 lisp-case。
