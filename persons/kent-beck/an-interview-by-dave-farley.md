@@ -25,12 +25,10 @@ title: An interview by Dave Farley
   If I organize development around that principle,
   then anything that looks like a easily understood model
   has to be wrong, because that's focused on what I already know.
-  
+
   It's uncomfortable right?
   Because we do not know what we are going to discover.
 
   - **Xie:** Actually every model has to be wrong,
     Kent said "a easily understood model"
     to exclude some chaos models.
-
- 

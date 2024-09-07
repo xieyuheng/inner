@@ -100,6 +100,21 @@ year: 1997
 > analysis.  Coding is where your fuzzy, comfortable ideas awaken in
 > the harsh dawn of reality. It is where you learn what your computer
 > can do. If you stop coding, you stop learning.
+>
+> We aren’t always good at guessing where responsibilities should go.
+> Coding is where our design guesses are tested. Being prepared to be
+> flexible about making design changes during coding results in
+> programs that get better and better over time.
+
+```smalltalk
+Station>>computePart: aPart
+  ^self multiplyPartTimesRate: aPart
+
+Station>>multiplyPartTimesRate: aPart
+  ^Part
+    amount: aPart amount * self rate
+    date: aPart date
+```
 
 TODO
 
