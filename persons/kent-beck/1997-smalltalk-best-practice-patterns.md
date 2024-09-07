@@ -16,6 +16,11 @@ year: 1997
 
 所以我也来学习一下，希望能学到更多好而编程风格。
 
+但是我不会直接用 Smalltalk 本身，因为我只喜欢编辑纯文本的代码。
+
+- 也许可以尝试一下 squeak，感觉跑起来还挺简单的。
+- 也许我可以用想像中的 lisp 来写这本书里代码的例子。
+
 # PREFACE
 
 ## What’s it all about?
@@ -84,9 +89,20 @@ year: 1997
 
 # 1. INTRODUCTION
 
+## CODING
+
+> To me, development consists of two processes that feed each other.
+> First, you figure out what you want the computer to do.  Then, you
+> instruct the computer to do it. Trying to write those instructions
+> inevitably changes what you want the computer to do, and so it goes.
+>
+> In this model, coding isn’t the poor handmaiden of design or
+> analysis.  Coding is where your fuzzy, comfortable ideas awaken in
+> the harsh dawn of reality. It is where you learn what your computer
+> can do. If you stop coding, you stop learning.
+
 TODO
 
-## CODING
 ### Talking Programs
 ## GOOD SOFTWARE
 ## STYLE
