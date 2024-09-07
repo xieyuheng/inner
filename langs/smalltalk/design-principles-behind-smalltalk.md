@@ -1,5 +1,6 @@
 ---
 title: design principles behind smalltalk
+author: Dan Ingalls
 ---
 
 # design
