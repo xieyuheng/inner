@@ -85,3 +85,6 @@ TODO
 # Chapter 10: Simplifying Conditional Logic
 # Chapter 11: Refactoring APIs
 # Chapter 12: Dealing with Inheritance
+# Bibliography
+
+[Refactoring Bibliography Online](https://martinfowler.com/books/refactoring-bibliography.html).
