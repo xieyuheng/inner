@@ -82,15 +82,9 @@ year: 1997
 
 从上面可以看出来，也是继承了 Christopher Alexander 的传统。
 
-## Why should you read it?
-
-TODO
-
-## What isn’t it about?
-
-TODO
-
 # 1. INTRODUCTION
+
+TODO
 
 ## CODING
 ### Talking Programs
