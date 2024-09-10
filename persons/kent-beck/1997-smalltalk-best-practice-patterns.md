@@ -106,6 +106,8 @@ year: 1997
 > flexible about making design changes during coding results in
 > programs that get better and better over time.
 
+一个例子是这段代码：
+
 ```smalltalk
 Station>>computePart: aPart
   ^self multiplyPartTimesRate: aPart
@@ -116,15 +118,105 @@ Station>>multiplyPartTimesRate: aPart
     date: aPart date
 ```
 
+> I said, “we seem to be using a lot of the Part’s data in
+> multiplyPartTimesRate:. Why don’t we move this code into Part?”
+> “But we didn’t design Parts to do arithmetic!” “Since the code
+> seems to be telling us to do this, let’s try it.”
+
+```smalltalk
+Part>>* aRate
+  ^Part
+    amount: amount * aRate
+    date: date
+
+Station>>computePart: aPart
+  ^aPart * self rate
+```
+
+对应于 TypeScript 可能是：
+
+```typescript
+class Part {
+  amount: number
+  date: Date
+}
+
+class Station {
+  rate: number
+
+  computePart(aPart) {
+    return this.multiplyPartTimesRate(aPart)
+  }
+
+  multiplyPartTimesRate(aPart) {
+    return Part({
+      amount: aPart.amount * this.rate,
+      date: aPart.date,
+    })
+  }
+}
+```
+
+改成：
+
+```typescript
+class Part {
+  amount: number
+  date: Date
+
+  mul(aRate) {
+    return Part({
+      amount: this.amount * aRate,
+      date: this.date,
+    })
+  }
+}
+
+class Station {
+  rate: number
+
+  computePart(aPart) {
+    return aPart.mul(this.rate)
+  }
+}
+```
+
+Some of the biggest improvements come from figuring out how to eliminate:
+
+- Duplicate code (even little bits of it)
+- Conditional logic
+- Complex methods
+- Structural code (where one object treats another as a data structure)
+
+想要消除 structural code 换成 object 的 message passing，
+这与我目前的 belief 相冲突了，我的 belief 是：
+
+- 尽量使用 record + functions，而不用 class + methods。
+
+我以前也是 message passing，但是慢慢转成 record + functions 了。
+
+因此回顾这里的 message passing 风格，应该是很有益的体验。
+
+## GOOD SOFTWARE
+
+> The patterns here form a system; one that I have developed during my
+> years as a Smalltalk programmer. Most of it is really the work of
+> the Smalltalkers who came before me and left their wisdom in the
+> image. Some small part is my own invention.  I consider myself part
+> of a culture. As with any culture, there is a core set of values
+> that drives what the culture sees as good and what it sees as
+> bad. What are those values?
+
+也就是「使命、愿景、价值观」中的价值观
+-- 用来判断好与坏的准则。
+
 TODO
 
-### Talking Programs
-## GOOD SOFTWARE
 ## STYLE
 ## WHAT’S MISSING?
 ## BOOK ORGANIZATION
 ## ADOPTION
-## LEARNING A P ATTERN
+## LEARNING A PATTERN
 
 # 2. PATTERNS
 
