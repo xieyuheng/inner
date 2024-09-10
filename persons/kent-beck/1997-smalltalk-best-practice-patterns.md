@@ -181,6 +181,48 @@ class Station {
 }
 ```
 
+用想像的 cicada-lisp：
+
+```scheme
+(define-class part ()
+  (claim amount number)
+  (claim date date)
+  (define (mul a-rate)
+    (create part
+      :amount (number-mul amount a-rate)
+      :date date)))
+
+(define-class station ()
+  (claim rate number)
+  (define (compute-part a-part)
+    (a-part :mul rate)))
+```
+
+可以发现，在想像中的 cicada-lisp 中，
+如果用之前的 cicada 的语义，
+那么 `(claim date date)` 这种 class 中的 statement 是有问题的。
+因为这相当于是引入局部变量，而不是引入一个 property name。
+
+在 cicada-lisp 中，`define-class` 时，
+不能有 define，只能有 claim。
+
+```scheme
+(define-class part ()
+  :amount number
+  :date date)
+
+(define (part-mul (a-part part) (a-rate number))
+  (create part
+    :amount (number-mul (a-part :amount) a-rate)
+    :date (a-part :date)))
+
+(define-class station ()
+  :rate number)
+
+(define (station-compute-part (a-station station) (a-part part))
+  (part-mul a-part (a-station :rate)))
+```
+
 Some of the biggest improvements come from figuring out how to eliminate:
 
 - Duplicate code (even little bits of it)
