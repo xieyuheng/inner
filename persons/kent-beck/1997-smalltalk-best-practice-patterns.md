@@ -210,10 +210,42 @@ Some of the biggest improvements come from figuring out how to eliminate:
 也就是「使命、愿景、价值观」中的价值观
 -- 用来判断好与坏的准则。
 
-TODO
+> I can’t say it often enough -- the bottlenecks throughout
+> development come from limitations in human communication. Over and
+> over in the patterns, you will read “You could do this or you could
+> do that, but this over here communicates best, so that’s what you
+> should do.” If there’s a radical thought here, that’s it; that
+> when you program, you have to think about how someone will read your
+> code, not just how a computer will interpret it.
+
+关于 human communication，
+还有 [Conway's law](https://en.wikipedia.org/wiki/Conway%27s_law)。
 
 ## STYLE
+
+There are a few things I look for that are good predictors of whether
+a project is in good shape. These are also properties I strive for in
+my code.
+
+- Once and only once -- In a program written with good style,
+  everything is said once and only once.
+
+- Lots of little pieces -- Only by factoring the system into many
+  small pieces of state and function can you hope to satisfy the
+  “once and only once” rule.
+
+- Replacing objects -- In a really good system, every time the user
+  says “I want to do this radically different thing,” the developer
+  says, “Oh, I’ll have to make a new kind of X and plug it in.”
+
+- Moving objects -- objects can be easily moved to new contexts.
+
+- Rates of change -- don’t put two rates of change together.
+
 ## WHAT’S MISSING?
+
+TODO
+
 ## BOOK ORGANIZATION
 ## ADOPTION
 ## LEARNING A PATTERN
