@@ -308,6 +308,26 @@ pattern 是 context shared 的一部分。
 > left after behavior is done, how the model is represented before,
 > after, and during a computation.
 
+> Of the two, behavior is the more important to get right. The primacy
+> of behavior is one of the odd truths of objects; odd because it
+> flies in the face of so much accumulated experience. Back in the bad
+> old days, you wanted to get the representation right as quickly as
+> possible because every change to the representation bred changes in
+> many different computations.
+
+> Objects (done right) change all that. No longer is your system a
+> slave of its representation. Because objects can hide their
+> representation behind a wall of messages, you are free to change
+> representation and only affect one object.
+
+其实在用 record + functions 的时候，
+我就是在先确定 representation
+-- 通常是一个 record type，
+然后以这个为基础来写 functions。
+
+也许，我的这种方式应该被归类为 data-oriented programming，
+可能不该说与 OOP 相比谁对谁错，而是开发方式的演变。
+
 TODO
 
 ## METHODS
