@@ -244,7 +244,32 @@ my code.
 
 # 2. PATTERNS
 
+> Developers don’t ever develop from scratch. Many problems recur in
+> various guises throughout development. Mature engineering
+> disciplines capitalize on the repetitive nature of development by
+> collecting handbooks of adequate solutions to recurring problems.
+
 ## WHY PATTERNS WORK
+
+> Here is the Big Assumption: There are only so many things objects
+> can do. Not in the sense that there are a limited number of
+> applications, because there will always be new domains to model, but
+> in the sense that the same structures of objects keep appearing over
+> and over, regardless of the application.
+
+数学结构作为和证明相关的 pattern 也是如此。
+
+> The problems in the construction of objects are universal. You have
+> to name classes, relate classes via inheritance and delegation,
+> relate methods in the same class and different classes, name
+> variables, and so on. Patterns record these problems and how to
+> approach solving them.
+
+注意，这里提到的都是 class + methods 风格中的 patterns，
+那么 record + functions 是否需要总结出新的 patterns 呢？
+
+TODO
+
 ## ROLE OF PATTERNS
 ### Reading
 ### Development
