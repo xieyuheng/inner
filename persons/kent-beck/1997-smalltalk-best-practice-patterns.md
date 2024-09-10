@@ -59,6 +59,7 @@ year: 1997
 用到的 Problem - Solution 格式。
 
 我觉得 Kent Beck 的 Problem - Tradeoffs - Solution 格式，
+也可以说成是 Problem - Constraints - Solution 格式，
 甚至比 Pieter 在写 Scalable C 时用到的 Problem - Solution 格式还要先进。
 
 前言中给出的第一个 Pattern 的例子，就解决也困扰我很久的问题：
@@ -181,48 +182,6 @@ class Station {
 }
 ```
 
-用想像的 cicada-lisp：
-
-```scheme
-(define-class part ()
-  (claim amount number)
-  (claim date date)
-  (define (mul a-rate)
-    (create part
-      :amount (number-mul amount a-rate)
-      :date date)))
-
-(define-class station ()
-  (claim rate number)
-  (define (compute-part a-part)
-    (a-part :mul rate)))
-```
-
-可以发现，在想像中的 cicada-lisp 中，
-如果用之前的 cicada 的语义，
-那么 `(claim date date)` 这种 class 中的 statement 是有问题的。
-因为这相当于是引入局部变量，而不是引入一个 property name。
-
-在 cicada-lisp 中，`define-class` 时，
-不能有 define，只能有 claim。
-
-```scheme
-(define-class part ()
-  :amount number
-  :date date)
-
-(define (part-mul (a-part part) (a-rate number))
-  (create part
-    :amount (number-mul (a-part :amount) a-rate)
-    :date (a-part :date)))
-
-(define-class station ()
-  :rate number)
-
-(define (station-compute-part (a-station station) (a-part part))
-  (part-mul a-part (a-station :rate)))
-```
-
 Some of the biggest improvements come from figuring out how to eliminate:
 
 - Duplicate code (even little bits of it)
@@ -329,17 +288,27 @@ pattern 是 context shared 的一部分。
 > week and last year, and what our friends did last week and last
 > year, and do something similar.
 
-TODO
+> Patterns are a literary form for capturing and transmitting common
+> practice.  Each pattern records a recurring problem, how to
+> construct a solution for the problem, and why the solution is
+> appropriate.
 
-## ROLE OF PATTERNS
-### Reading
-### Development
-### Review
-### Documentation
-### Clean Up
-## FORMAT
+这是很好的对 pattern 的定义，
+前一句讲了 pattern 的属性，
+后一句讲了如何使用。
+
+- 也许应该说是对 design pattern 的定义，
+  而这里只是省略了 design，
+  因为 pattern 的概念本省更广。
 
 # 3. BEHAVIOR
+
+> Objects model the world through behavior and state. Behavior is the
+> dynamic, active, computational part of the model. State is what is
+> left after behavior is done, how the model is represented before,
+> after, and during a computation.
+
+TODO
 
 ## METHODS
 ### Composed Method
