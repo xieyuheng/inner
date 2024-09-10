@@ -242,14 +242,6 @@ my code.
 
 - Rates of change -- don’t put two rates of change together.
 
-## WHAT’S MISSING?
-
-TODO
-
-## BOOK ORGANIZATION
-## ADOPTION
-## LEARNING A PATTERN
-
 # 2. PATTERNS
 
 ## WHY PATTERNS WORK
