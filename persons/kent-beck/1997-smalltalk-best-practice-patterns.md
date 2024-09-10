@@ -268,6 +268,25 @@ my code.
 注意，这里提到的都是 class + methods 风格中的 patterns，
 那么 record + functions 是否需要总结出新的 patterns 呢？
 
+> When you want to improve communication, you have two choices; either
+> increase the bandwidth so you can communicate more bits or increase
+> the context shared between sender and receiver so the same number of
+> bits mean more. The first is impractical, especially in the presence
+> of reuse (one developer can only be sliced into so many pieces), so
+> we must find some way to make our words mean more.
+
+pattern 是 context shared 的一部分。
+
+同时这也解释了 pair programming 为什么实用。
+
+> When you want to optimize any process, the first strategy to employ
+> is to find how the common case is simpler than the general case. For
+> software engineering, the general case is the programming
+> language. Commonly, though, we don’t go all the way back to the
+> programming language to solve problems.  We look at what we did last
+> week and last year, and what our friends did last week and last
+> year, and do something similar.
+
 TODO
 
 ## ROLE OF PATTERNS
