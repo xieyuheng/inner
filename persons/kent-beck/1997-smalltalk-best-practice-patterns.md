@@ -338,9 +338,8 @@ pattern 是 context shared 的一部分。
 
 这点对于 lisp/scheme 的 generic + handler 也适用。
 
-TODO
-
 ## METHODS
+
 ### Composed Method
 ### Constructor Method
 ### Constructor Parameter Method
@@ -357,6 +356,7 @@ TODO
 ### Method Comment
 
 ## MESSAGES
+
 ### Message
 ### Choosing Message
 ### Decomposing Message

@@ -1,0 +1,95 @@
+## METHODS
+
+<question>
+  Composed Method
+
+  How do you divide a program into methods?
+
+  <answer>
+    Divide your program into methods that perform one identifiable
+    task. Keep all of the operations in a method at the same level of
+    abstraction. This will naturally result in programs with many
+    small methods, each a few lines long.
+  </answer>
+</question>
+
+<question>
+  Constructor Method
+
+  How do you represent instance creation?
+
+  <answer>
+    Provide methods that create well-formed instances.
+    Pass all required parameters to them.
+  </answer>
+</question>
+
+<question>
+  Constructor Parameter Method
+
+  How do you set instance variables
+  from the parameters to a Constructor Method?
+
+  <answer>
+    Code a single method that sets all the variables.
+    Preface its name with “set,” then the names of the variables.
+  </answer>
+</question>
+
+<question>
+  Shortcut Constructor Method
+
+  What is the external interface for creating a new object
+  when a Constructor Method is too wordy?
+
+  <answer>
+    Represent object creation as a message to one of the arguments to
+    the Constructor Method. Add no more than three of these Shortcut
+    Constructor Methods per system you develop.
+  </answer>
+</question>
+
+<question>
+  Conversion
+
+  How do you convert information
+  from one object’s format to another’s?
+
+  <answer>
+    Convert from one object to another
+    rather than overwhelm any one object’s protocol.
+  </answer>
+</question>
+
+<question>
+  Converter Method
+
+  How do you represent simple conversion of an object to another
+  object with the same protocol but different format?
+
+  <answer>
+    Provide a method in the object to be converted that converts to
+    the new object. Name the method by prepending “as” to the class
+    of the object returned.
+  </answer>
+</question>
+
+<question>
+  Converter Constructor Method
+
+  How do you represent the conversion of an object to another with
+  different protocol?
+
+  <answer>
+    Make a Constructor Method that takes the object to be converted as
+    an argument.
+  </answer>
+</question>
+
+### Query Method
+### Comparing Method
+### Reversing Method
+### Method Object
+### Execute Around Method
+### Debug Printing Method
+### Method Comment
