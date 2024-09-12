@@ -328,6 +328,16 @@ pattern 是 context shared 的一部分。
 也许，我的这种方式应该被归类为 data-oriented programming，
 可能不该说与 OOP 相比谁对谁错，而是开发方式的演变。
 
+> I saw a great comment at OOPSLA (the Object Oriented Programming
+> Languages, Systems and Applications conference). It said, “This
+> seems an awful fuss for a fancy procedure call.” Well, separating
+> computation into messages and methods and binding the message to the
+> method at run time, based on the class of the receiver, may seem
+> like a small change from an ordinary procedure call, but it is a
+> small change that makes a big difference.
+
+这点对于 lisp/scheme 的 generic + handler 也适用。
+
 TODO
 
 ## METHODS
