@@ -40,19 +40,185 @@ title: 3. Behavior
 # METHODS
 
 ## Composed Method
+
+<question>
+  Composed Method
+
+  How do you divide a program into methods?
+
+  <answer>
+    Divide your program into methods that perform one identifiable
+    task. Keep all of the operations in a method at the same level of
+    abstraction. This will naturally result in programs with many
+    small methods, each a few lines long.
+  </answer>
+</question>
+
 ## Constructor Method
+
+<question>
+  Constructor Method
+
+  How do you represent instance creation?
+
+  <answer>
+    Provide methods that create well-formed instances.
+    Pass all required parameters to them.
+  </answer>
+</question>
+
 ## Constructor Parameter Method
+
+<question>
+  Constructor Parameter Method
+
+  How do you set instance variables
+  from the parameters to a Constructor Method?
+
+  <answer>
+    Code a single method that sets all the variables.
+    Preface its name with “set,” then the names of the variables.
+  </answer>
+</question>
+
 ## Shortcut Constructor Method
+
+<question>
+  Shortcut Constructor Method
+
+  What is the external interface for creating a new object
+  when a Constructor Method is too wordy?
+
+  <answer>
+    Represent object creation as a message to one of the arguments to
+    the Constructor Method. Add no more than three of these Shortcut
+    Constructor Methods per system you develop.
+  </answer>
+</question>
+
 ## Conversion
+
+<question>
+  Conversion
+
+  How do you convert information
+  from one object’s format to another’s?
+
+  <answer>
+    Convert from one object to another
+    rather than overwhelm any one object’s protocol.
+  </answer>
+</question>
+
 ## Converter Method
+
+<question>
+  Converter Method
+
+  How do you represent simple conversion of an object to another
+  object with the same protocol but different format?
+
+  <answer>
+    Provide a method in the object to be converted that converts to
+    the new object. Name the method by prepending “as” to the class
+    of the object returned.
+  </answer>
+</question>
+
 ## Converter Constructor Method
+
+<question>
+  Converter Constructor Method
+
+  How do you represent the conversion of an object to another with
+  different protocol?
+
+  <answer>
+    Make a Constructor Method that takes the object to be converted as
+    an argument.
+  </answer>
+</question>
+
 ## Query Method
+
+<question>
+  Query Method
+
+  How do you represent testing a property of an object?
+
+  <answer>
+    Provide a method that returns a Boolean. Name it by prefacing
+    the property name with a form of “be” -- is, was, will, etc.
+  </answer>
+</question>
+
 ## Comparing Method
+
+<question>
+  Comparing Method
+
+  How do you order objects with respect to each other?
+
+  <answer>
+    Implement “<=” to return true if the receiver
+    should be ordered before the argument.
+  </answer>
+</question>
+
 ## Reversing Method
+
+<question>
+  Reversing Method
+
+
+  <answer>
+
+  </answer>
+</question>
+
 ## Method Object
+
+<question>
+  Method Object
+
+
+  <answer>
+
+  </answer>
+</question>
+
 ## Execute Around Method
+
+<question>
+  Execute Around Method
+
+
+  <answer>
+
+  </answer>
+</question>
+
 ## Debug Printing Method
+
+<question>
+  Debug Printing Method
+
+
+  <answer>
+
+  </answer>
+</question>
+
 ## Method Comment
+
+<question>
+  Method Comment
+
+
+  <answer>
+
+  </answer>
+</question>
 
 # MESSAGES
 
