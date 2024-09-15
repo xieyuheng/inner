@@ -446,11 +446,53 @@ Obligation>>sendTask: aTask job: aJob
 <question>
   Execute Around Method
 
-  
-  <answer>
+  How do you represent pairs of actions
+  that have to be taken together?
 
+  <answer>
+    Code a method that takes a Block as an argument. Name the method
+    by appending “During: aBlock” to the name of the first method
+    that needs to be invoked. In the body of the Execute Around
+    Method, invoke the first method, evaluate the block, then invoke
+    the second method.
   </answer>
 </question>
+
+```smalltalk
+Cursor>>showWhile: aBlock
+  | old |
+  old := Cursor currentCursor.
+  self show.
+  aBlock value.
+  old show
+
+File>>openDuring:self open.
+  aBlock value.
+  self close
+  aBlock
+
+File>>openDuring: aBlock
+  self open.
+  [aBlock value] ensure: [self close]
+```
+
+```scheme
+(define-handler (:show-while (a-cursor cursor) (a-block block))
+  (let ((old (current-cursor)))
+    (a-cursor :show)
+    (a-block :evaluate)
+    (old :show)))
+
+(define-handler (:open-during (a-file file) (a-block block))
+  (a-file :open)
+  (a-block :evaluate)
+  (a-file :close))
+
+(define-handler (:open-during (a-file file) (a-block block))
+  (a-file :open)
+  ((lambda () (a-block :evaluate))
+   :ensure (lambda () (a-file :close))))
+```
 
 ## Debug Printing Method
 
