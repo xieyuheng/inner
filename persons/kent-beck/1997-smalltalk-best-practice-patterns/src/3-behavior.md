@@ -204,6 +204,21 @@ Number>>@ aNumber
   </answer>
 </question>
 
+```smalltalk
+Collection>>asSet
+Number>>asFloat
+```
+
+```scheme
+(claim as-set (-> collection set))
+(define (as-set (a-collection collection))
+  ...)
+
+(claim as-float (-> number float))
+(define (as-float (n number))
+  ...)
+```
+
 ## Converter Constructor Method
 
 <question>

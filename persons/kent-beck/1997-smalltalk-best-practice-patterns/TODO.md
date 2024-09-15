@@ -1,4 +1,4 @@
-3-behavior -- Conversion -- 代码例子
+3-behavior -- Query Method -- 代码例子
 
 读 3-behavior -- METHODS
 读 3-behavior -- MESSAGES
