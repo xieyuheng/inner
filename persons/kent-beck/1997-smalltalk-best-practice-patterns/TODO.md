@@ -1,4 +1,4 @@
-3-behavior -- Constructor Parameter Method -- 代码例子
+3-behavior -- Shortcut Constructor Method -- 代码例子
 
 读 3-behavior -- METHODS
 读 3-behavior -- MESSAGES

@@ -113,6 +113,33 @@ Point class>>r: radiusNumber theta: thetaNumber
   </answer>
 </question>
 
+```smalltalk
+Point class>>x: xNumber y: yNumber
+  ^self new
+    x: xNumber;
+    y: yNumber;
+    yourself
+
+Point class>>x: xNumber y: yNumber
+  ^self new
+    setX: xNumber
+    y: yNumber
+
+Point>>setX: xNumber y: yNumber
+  x := xNumber.
+  y := yNumber.
+  ^self
+```
+
+```scheme
+(define a-point (create point :x x :y y))
+
+(point-set-x! a-point x)
+
+(define (point-set-x! (a-point point) (x number))
+  (set! a-point :x x))
+```
+
 ## Shortcut Constructor Method
 
 <question>
