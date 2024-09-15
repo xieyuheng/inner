@@ -138,6 +138,14 @@ Point>>setX: xNumber y: yNumber
   (set! a-point :x x))
 
 (point-set-x! a-point x)
+
+;; Every keyword can be viewed as a generic function.
+
+(define-handler (:set-x! (a-point point) (x number))
+  (set! a-point :x x))
+
+(:set-x! a-point x)
+(a-point :set-x! x)
 ```
 
 ## Shortcut Constructor Method
@@ -316,7 +324,26 @@ Number>>asFloat
 
 # MESSAGES
 
+> Messages are the heartbeat of a Smalltalk program. Without messages,
+> there would be no program. Deftly managing this heartbeat is the
+> first skill of the expert Smalltalk programmer. When you learn to
+> see your program in terms of patterns of messages and you learn what
+> can be done to that stream of messages to solve problems, then you
+> will be able to solve any problem you can imagine in Smalltalk.
+
+> Procedural languages explicitly make choices. When you code up a
+> case statement, you say once and for all what all the possibilities
+> are. In Smalltalk, you use messages to make choices for you. The
+> extra added bonus is that the set of choices is not set in
+> concrete. You can come along later and add new choices without
+> affecting the existing choices just by defining a new class.
+
+> This section talks about the tactical ways you can use the message
+> stream. It gives you a toolbox of techniques for solving problems by
+> manipulating the communication between objects.
+
 ## Message
+
 ## Choosing Message
 ## Decomposing Message
 ## Intention Revealing Message
