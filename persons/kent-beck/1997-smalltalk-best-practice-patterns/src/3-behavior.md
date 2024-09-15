@@ -28,8 +28,8 @@ title: 3. Behavior
 可能不该说与 OOP 相比谁对谁错，而是开发方式的演变。
 
 > I saw a great comment at OOPSLA (the Object Oriented Programming
-> Languages, Systems and Applications conference). It said, “This
-> seems an awful fuss for a fancy procedure call.” Well, separating
+> Languages, Systems and Applications conference). It said, "This
+> seems an awful fuss for a fancy procedure call." Well, separating
 > computation into messages and methods and binding the message to the
 > method at run time, based on the class of the receiver, may seem
 > like a small change from an ordinary procedure call, but it is a
@@ -109,7 +109,7 @@ Point class>>r: radiusNumber theta: thetaNumber
 
   <answer>
     Code a single method that sets all the variables.
-    Preface its name with “set,” then the names of the variables.
+    Preface its name with "set," then the names of the variables.
   </answer>
 </question>
 
@@ -207,7 +207,7 @@ Number>>@ aNumber
 
   <answer>
     Provide a method in the object to be converted that converts to
-    the new object. Name the method by prepending “as” to the class
+    the new object. Name the method by prepending "as" to the class
     of the object returned.
   </answer>
 </question>
@@ -250,9 +250,49 @@ Number>>asFloat
 
   <answer>
     Provide a method that returns a Boolean. Name it by prefacing
-    the property name with a form of “be” -- is, was, will, etc.
+    the property name with a form of "be" -- is, was, will, etc.
   </answer>
 </question>
+
+```smalltalk
+Switch>>makeOn
+  status := #on
+Switch>>makeOff
+  status := #off
+Switch>>status
+  ^status
+
+WallPlate>>update
+  self switch status = #on ifTrue: [self light makeOn].
+  self switch status = #off ifTrue: [self light makeOff]
+
+Switch>>on
+  "Return true if the receiver is on, otherwise return false."
+
+isNil
+isControlWanted
+isEmpty
+```
+
+```scheme
+(define-handler (:make-on (a-switch switch))
+  (set! a-switch :status 'on))
+
+(define-handler (:make-off (a-switch switch))
+  (set! a-switch :status 'off))
+
+(define-handler (:update (a-wall-plate wall-plate))
+  (match (a-wall-plate :switch :status)
+    ('on (a-wall-plate :light :make-on))
+    ('off (a-wall-plate :light :make-off))))
+
+(define-handler (:on (a-switch switch))
+  "Return true if the receiver is on, otherwise return false.")
+
+nil?
+control-wanted?
+empty?
+```
 
 ## Comparing Method
 
@@ -262,7 +302,7 @@ Number>>asFloat
   How do you order objects with respect to each other?
 
   <answer>
-    Implement “<=” to return true if the receiver
+    Implement "<=" to return true if the receiver
     should be ordered before the argument.
   </answer>
 </question>
