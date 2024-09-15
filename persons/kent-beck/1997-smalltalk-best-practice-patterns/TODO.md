@@ -1,4 +1,5 @@
-补充 3-behavior 中的代码例子
+3-behavior -- Constructor Method -- 代码例子
+
 读 3-behavior -- METHODS
 读 3-behavior -- MESSAGES
 

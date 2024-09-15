@@ -54,6 +54,20 @@ title: 3. Behavior
   </answer>
 </question>
 
+```smalltalk
+Controller>>controlActivity
+  self controlInitialize.
+  self controlLoop.
+  self controlTerminate
+```
+
+```scheme
+(define (control-activity (a-controller controller))
+  (control-initialize a-controller)
+  (control-loop a-controller)
+  (control-terminate a-controller))
+```
+
 ## Constructor Method
 
 <question>
