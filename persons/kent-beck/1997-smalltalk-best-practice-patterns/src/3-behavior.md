@@ -344,6 +344,17 @@ Number>>asFloat
 
 ## Message
 
+<question>
+  Message
+
+  How do you invoke computation?
+
+  <answer>
+    Send a named message and let the receiving object decide
+    what to do with it.
+  </answer>
+</question>
+
 ## Choosing Message
 ## Decomposing Message
 ## Intention Revealing Message

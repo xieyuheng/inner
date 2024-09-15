@@ -5,7 +5,6 @@
 3-behavior -- METHODS -- Debug Printing Method
 3-behavior -- METHODS -- Method Comment
 
-3-behavior -- MESSAGES -- Message
 3-behavior -- MESSAGES -- Choosing Message
 3-behavior -- MESSAGES -- Decomposing Message
 3-behavior -- MESSAGES -- Intention Revealing Message
