@@ -1,11 +1,13 @@
-# 2. PATTERNS
+---
+title: 2. Patterns
+---
 
 > Developers don’t ever develop from scratch. Many problems recur in
 > various guises throughout development. Mature engineering
 > disciplines capitalize on the repetitive nature of development by
 > collecting handbooks of adequate solutions to recurring problems.
 
-## WHY PATTERNS WORK
+# WHY PATTERNS WORK
 
 > Here is the Big Assumption: There are only so many things objects
 > can do. Not in the sense that there are a limited number of

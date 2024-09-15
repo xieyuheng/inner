@@ -1,4 +1,6 @@
-# 3. BEHAVIOR
+---
+title: 3. Behavior
+---
 
 > Objects model the world through behavior and state. Behavior is the
 > dynamic, active, computational part of the model. State is what is
@@ -35,40 +37,40 @@
 
 这点对于 lisp/scheme 的 generic + handler 也适用。
 
-## METHODS
+# METHODS
 
-### Composed Method
-### Constructor Method
-### Constructor Parameter Method
-### Shortcut Constructor Method
-### Conversion
-### Converter Method
-### Converter Constructor Method
-### Query Method
-### Comparing Method
-### Reversing Method
-### Method Object
-### Execute Around Method
-### Debug Printing Method
-### Method Comment
+## Composed Method
+## Constructor Method
+## Constructor Parameter Method
+## Shortcut Constructor Method
+## Conversion
+## Converter Method
+## Converter Constructor Method
+## Query Method
+## Comparing Method
+## Reversing Method
+## Method Object
+## Execute Around Method
+## Debug Printing Method
+## Method Comment
 
-## MESSAGES
+# MESSAGES
 
-### Message
-### Choosing Message
-### Decomposing Message
-### Intention Revealing Message
-### Intention Revealing Selector
-### Dispatched Interpretation
-### Double Dispatch
-### Mediating Protocol
-### Super
-### Extending Super
-### Modifying Super
-### Delegation
-### Simple Delegation
-### Self Delegation
-### Pluggable Behavior
-### Pluggable Selector
-### Pluggable Block
-### Collecting Parameter
+## Message
+## Choosing Message
+## Decomposing Message
+## Intention Revealing Message
+## Intention Revealing Selector
+## Dispatched Interpretation
+## Double Dispatch
+## Mediating Protocol
+## Super
+## Extending Super
+## Modifying Super
+## Delegation
+## Simple Delegation
+## Self Delegation
+## Pluggable Behavior
+## Pluggable Selector
+## Pluggable Block
+## Collecting Parameter

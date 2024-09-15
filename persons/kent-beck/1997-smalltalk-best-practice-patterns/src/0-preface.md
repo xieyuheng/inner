@@ -1,6 +1,8 @@
-# PREFACE
+---
+title: Preface
+---
 
-## What’s it all about?
+# What’s it all about?
 
 > This book is about the simple things experienced, successful
 > Smalltalkers do that beginners don’t. In a sense, it is a style

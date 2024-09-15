@@ -1,6 +1,8 @@
-# 1. INTRODUCTION
+---
+title: 1. Introduction
+---
 
-## CODING
+# CODING
 
 > To me, development consists of two processes that feed each other.
 > First, you figure out what you want the computer to do.  Then, you
@@ -108,7 +110,7 @@ Some of the biggest improvements come from figuring out how to eliminate:
 
 因此回顾这里的 message passing 风格，应该是很有益的体验。
 
-## GOOD SOFTWARE
+# GOOD SOFTWARE
 
 > The patterns here form a system; one that I have developed during my
 > years as a Smalltalk programmer. Most of it is really the work of
@@ -132,7 +134,7 @@ Some of the biggest improvements come from figuring out how to eliminate:
 关于 human communication，
 还有 [Conway's law](https://en.wikipedia.org/wiki/Conway%27s_law)。
 
-## STYLE
+# STYLE
 
 There are a few things I look for that are good predictors of whether
 a project is in good shape. These are also properties I strive for in
