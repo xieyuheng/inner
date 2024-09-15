@@ -3,6 +3,7 @@ title: 5. Collections
 ---
 
 # CLASSES
+
 ## Collection
 ## OrderedCollection
 ## RunArray
@@ -16,6 +17,7 @@ title: 5. Collections
 ## Interval
 
 # COLLECTION PROTOCOL
+
 ## IsEmpty
 ## Includes:
 ## Concatentation
@@ -27,6 +29,7 @@ title: 5. Collections
 ## Inject:into:
 
 # COLLECTION IDIOMS
+
 ## Duplicate Removing Set
 ## Temporarily Sorted Collection
 ## Stack

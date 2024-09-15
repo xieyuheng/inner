@@ -20,12 +20,75 @@
 3-behavior -- MESSAGES -- Pluggable Block
 3-behavior -- MESSAGES -- Collecting Parameter
 
-4-state
+4-state -- INSTANCE VARIABLES -- Common State
+4-state -- INSTANCE VARIABLES -- Variable State
+4-state -- INSTANCE VARIABLES -- Explicit Initialization
+4-state -- INSTANCE VARIABLES -- Lazy Initialization
+4-state -- INSTANCE VARIABLES -- Default Value Method
+4-state -- INSTANCE VARIABLES -- Constant Method
+4-state -- INSTANCE VARIABLES -- Direct Variable Access
+4-state -- INSTANCE VARIABLES -- Indirect Variable Access
+4-state -- INSTANCE VARIABLES -- Getting Method
+4-state -- INSTANCE VARIABLES -- Setting Method
+4-state -- INSTANCE VARIABLES -- Collection Accessor Method
+4-state -- INSTANCE VARIABLES -- Enumeration Method
+4-state -- INSTANCE VARIABLES -- Boolean Property Setting Method
+4-state -- INSTANCE VARIABLES -- Role Suggesting Instance Variable Name
 
-5-collections
+4-state -- TEMPORARY VARIABLES -- Temporary Variable
+4-state -- TEMPORARY VARIABLES -- Collecting Temporary Variable
+4-state -- TEMPORARY VARIABLES -- Caching Temporary Variable
+4-state -- TEMPORARY VARIABLES -- Explaining Temporary Variable
+4-state -- TEMPORARY VARIABLES -- Reusing Temporary Variable
+4-state -- TEMPORARY VARIABLES -- Role Suggesting Temporary Variable Name
 
-6-classes
+5-collections -- CLASSES -- Collection
+5-collections -- CLASSES -- OrderedCollection
+5-collections -- CLASSES -- RunArray
+5-collections -- CLASSES -- Set
+5-collections -- CLASSES -- Equality Method
+5-collections -- CLASSES -- Hashing Method
+5-collections -- CLASSES -- Dictionary
+5-collections -- CLASSES -- SortedCollection
+5-collections -- CLASSES -- Array
+5-collections -- CLASSES -- ByteArray
+5-collections -- CLASSES -- Interval
 
-7-formatting
+5-collections -- COLLECTION PROTOCOL -- IsEmpty
+5-collections -- COLLECTION PROTOCOL -- Includes:
+5-collections -- COLLECTION PROTOCOL -- Concatentation
+5-collections -- COLLECTION PROTOCOL -- Enumeration
+5-collections -- COLLECTION PROTOCOL -- Do
+5-collections -- COLLECTION PROTOCOL -- Collect
+5-collections -- COLLECTION PROTOCOL -- Select/Reject
+5-collections -- COLLECTION PROTOCOL -- Detect
+5-collections -- COLLECTION PROTOCOL -- Inject:into:
 
-8-development-example
+5-collections -- COLLECTION IDIOMS -- Duplicate Removing Set
+5-collections -- COLLECTION IDIOMS -- Temporarily Sorted Collection
+5-collections -- COLLECTION IDIOMS -- Stack
+5-collections -- COLLECTION IDIOMS -- Queue
+5-collections -- COLLECTION IDIOMS -- Searching Literal
+5-collections -- COLLECTION IDIOMS -- Lookup Cache
+5-collections -- COLLECTION IDIOMS -- Parsing Stream
+5-collections -- COLLECTION IDIOMS -- Concatenating Stream
+
+6-classes -- Simple Superclass Name
+6-classes -- Qualified Subclass Name
+
+7-formatting -- Inline Message Pattern
+7-formatting -- Type Suggesting Parameter Name
+7-formatting -- Indented Control Flow
+7-formatting -- Rectangular Block
+7-formatting -- Guard Clause
+7-formatting -- Conditional Expression
+7-formatting -- Simple Enumeration Parameter
+7-formatting -- Cascade
+7-formatting -- Yourself
+7-formatting -- Interesting Return Value
+
+8-development-example -- PROBLEM
+8-development-example -- START
+8-development-example -- ARITHMETIC
+8-development-example -- INTEGRATION
+8-development-example -- SUMMARY

@@ -3,6 +3,7 @@ title: 4. State
 ---
 
 # INSTANCE VARIABLES
+
 ## Common State
 ## Variable State
 ## Explicit Initialization
@@ -19,6 +20,7 @@ title: 4. State
 ## Role Suggesting Instance Variable Name
 
 # TEMPORARY VARIABLES
+
 ## Temporary Variable
 ## Collecting Temporary Variable
 ## Caching Temporary Variable
