@@ -86,10 +86,69 @@
   </answer>
 </question>
 
-### Query Method
-### Comparing Method
-### Reversing Method
-### Method Object
-### Execute Around Method
-### Debug Printing Method
-### Method Comment
+<question>
+  Query Method
+
+  How do you represent testing a property of an object?
+
+  <answer>
+    Provide a method that returns a Boolean. Name it by prefacing
+    the property name with a form of “be” -- is, was, will, etc.
+  </answer>
+</question>
+
+<question>
+  Comparing Method
+
+  How do you order objects with respect to each other?
+
+  <answer>
+    Implement “<=” to return true if the receiver
+    should be ordered before the argument.
+  </answer>
+</question>
+
+<question>
+  Reversing Method
+
+
+  <answer>
+
+  </answer>
+</question>
+
+<question>
+  Method Object
+
+
+  <answer>
+
+  </answer>
+</question>
+
+<question>
+  Execute Around Method
+
+
+  <answer>
+
+  </answer>
+</question>
+
+<question>
+  Debug Printing Method
+
+
+  <answer>
+
+  </answer>
+</question>
+
+<question>
+  Method Comment
+
+
+  <answer>
+
+  </answer>
+</question>

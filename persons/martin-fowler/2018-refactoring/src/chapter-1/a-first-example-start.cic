@@ -1,0 +1,34 @@
+(define (statement (inv invoices) (plays (list play)))
+  (let ((total-amount 0)
+        (volume-credits 0)
+        (result "Statement for $(invoice :customer)\n" )
+        (format (create intl-number-format
+                  :lang "en-US"
+                  :style "currency"
+                  :currency "USD"
+                  :minimum-fraction-digits 2)))
+    (for-each (inv :performances)
+              (lambda (perf)
+                (let ((a-play (plays (perf :play-id)))
+                      (this-amount 0))
+                  (match (a-play :type)
+                    ("tragedy"
+                     (set! this-amount 40000)
+                     (if (> (perf :audience) 30)
+                       (set! this-amount (+ this-amount (* 1000 (- (perf :audience) 30))))))
+                    ("comedy"
+                     (set! this-amount 30000)
+                     (if (> (perf :audience) 20)
+                       (set! this-amount (+ this-amount 10000 (* 500 (- (perf :audience) 20)))))
+                     (set! this-amount (+ this-amount (* 300 (perf :audience))))))
+                  ;; add volume credits
+                  (set! volume-credits (+ volume-credits (max (- (perf :audience) 30) 0)))
+                  ;; add extra credit for every ten comedy attendees
+                  (if (equal "comedy" (a-play :type))
+                    (set! volume-credits (+ volume-credits (int-floor (/ (perf :audience) 5)))))
+                  ;; print line for this order
+                  (set! result (+ result "$(a-play :name): $(format (/ total-amount 100)) ($(perf :audience) seats)\n"))
+                  (set! total-amount (+ total-amount this-amount)))))
+    (set! result (+ result "Amount owed is $(format (/ total-amount 100))\n"))
+    (set! result (+ result "You earned $volume-credits credits\n"))
+    result))
