@@ -81,6 +81,24 @@ Controller>>controlActivity
   </answer>
 </question>
 
+```smalltalk
+Point new x: 0; y: 0
+
+Point class>>r: radiusNumber theta: thetaNumber
+  ^self
+    x: radiusNumber * thetaNumber cos
+    y: radiusNumber * thetaNumber sin
+```
+
+```scheme
+(create point :x 0 :y 0)
+
+(define (polar-point (:radius number) (:theta number))
+  (create point
+    :x (cos (* radius theta))
+    :y (sin (* radius theta))))
+```
+
 ## Constructor Parameter Method
 
 <question>
