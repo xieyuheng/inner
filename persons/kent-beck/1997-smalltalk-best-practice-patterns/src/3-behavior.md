@@ -324,11 +324,44 @@ Event>><= anEvent
 <question>
   Reversing Method
 
+  How do you code a smooth flow of messages?
 
   <answer>
-
+    Code a method on the parameter. Derive its name from the original
+    message. Take the original receiver as a parameter to the new
+    method. Implement the method by sending the original message to
+    the original receiver.
   </answer>
 </question>
+
+```smalltalk
+Point>>printOn: aStream
+  x printOn: aStream.
+  aStream nextPutAll: ‘ @ ‘.
+  y printOn: aStream
+
+Stream>>print: anObject
+  anObject printOn: self
+Point>>printOn: aStream
+  aStream
+    print: x;
+    nextPutAll: ‘ @ ‘;
+    print: y
+```
+
+```scheme
+(define-handler (:print-on (a-point point) (a-stream stream))
+  (a-point :x :print-on a-stream)
+  (a-stream :next-put-all " @ ")
+  (a-point :y :print-on a-stream))
+
+(define-handler (:print (a-stream stream) (an-object object))
+  (an-object :print-on a-stream))
+(define-handler (:print-on (a-point point) (a-stream stream))
+  (a-stream :print (a-point :x))
+  (a-stream :next-put-all " @ ")
+  (a-stream :print (a-point :y)))
+```
 
 ## Method Object
 
