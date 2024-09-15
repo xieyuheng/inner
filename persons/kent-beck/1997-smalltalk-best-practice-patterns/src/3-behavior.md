@@ -499,11 +499,28 @@ File>>openDuring: aBlock
 <question>
   Debug Printing Method
 
+  How do you code the default printing method?
 
   <answer>
-
+    Override printOn: to provide information about
+    an object’s structure to the programmer.
   </answer>
 </question>
+
+```smalltalk
+Association>> printOn: aStream
+  aStream
+    print: self key;
+    nextPutAll: ‘->’;
+    print: self value
+```
+
+```scheme
+(define-handler (:print-on (an-association association) (a-stream stream))
+  (a-stream :print (an-association :key))
+  (a-stream :next-put-all "->")
+  (a-stream :print (an-association :value)))
+```
 
 ## Method Comment
 

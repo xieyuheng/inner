@@ -1,4 +1,3 @@
-3-behavior -- METHODS -- Debug Printing Method
 3-behavior -- METHODS -- Method Comment
 
 3-behavior -- MESSAGES -- Choosing Message
