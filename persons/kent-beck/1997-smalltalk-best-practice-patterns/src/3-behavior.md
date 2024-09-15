@@ -134,10 +134,10 @@ Point>>setX: xNumber y: yNumber
 ```scheme
 (define a-point (create point :x x :y y))
 
-(point-set-x! a-point x)
-
 (define (point-set-x! (a-point point) (x number))
   (set! a-point :x x))
+
+(point-set-x! a-point x)
 ```
 
 ## Shortcut Constructor Method
@@ -154,6 +154,26 @@ Point>>setX: xNumber y: yNumber
     Constructor Methods per system you develop.
   </answer>
 </question>
+
+```smalltalk
+Point class>>x: xNumber y: yNumber
+  ^self new
+    setX: xNumber
+    y: yNumber
+
+Number>>@ aNumber
+  ^Point
+    x: self
+    y: aNumber
+```
+
+```scheme
+(define (p (x number) (y number))
+  (create point :x x :y y))
+
+(create point :x x :y y)
+(p x y)
+```
 
 ## Conversion
 
