@@ -307,6 +307,18 @@ empty?
   </answer>
 </question>
 
+```smalltalk
+Event>><= anEvent
+  ^self timestamp <= anEvent timestamp
+```
+
+```scheme
+(define-handler (:<= (target event) (an-event event))
+  (<= (target :timestamp) (an-event :timestamp)))
+
+(target-event :<= an-event)
+```
+
 ## Reversing Method
 
 <question>

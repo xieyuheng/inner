@@ -1,4 +1,3 @@
-3-behavior -- METHODS -- Comparing Method
 3-behavior -- METHODS -- Method Object
 3-behavior -- METHODS -- Execute Around Method
 3-behavior -- METHODS -- Debug Printing Method
