@@ -22,8 +22,12 @@
 3-behavior -- MESSAGES -- Pluggable Block
 3-behavior -- MESSAGES -- Collecting Parameter
 
-read 4-state
-read 5-collections
-read 6-classes
-read 7-formatting
-read 8-development-example
+4-state
+
+5-collections
+
+6-classes
+
+7-formatting
+
+8-development-example
