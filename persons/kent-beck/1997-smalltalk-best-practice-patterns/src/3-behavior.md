@@ -93,7 +93,7 @@ Point class>>r: radiusNumber theta: thetaNumber
 ```scheme
 (create point :x 0 :y 0)
 
-(define (polar-point (:radius number) (:theta number))
+(define (polar-point (:radius radius number) (:theta theta number))
   (create point
     :x (cos (* radius theta))
     :y (sin (* radius theta))))
@@ -368,11 +368,78 @@ Point>>printOn: aStream
 <question>
   Method Object
 
+  How do you code a method where many lines of code share
+  many arguments and temporary variables?
 
   <answer>
-
+    Create a class named after the method. Give it an instance
+    variable for the receiver of the original method, each argument,
+    and each temporary variable. Give it a Constructor Method that
+    takes the original receiver and the method arguments. Give it one
+    instance method, #compute, implemented by copying the body of the
+    original method. Replace the method with one that creates an
+    instance of the new class and sends it #compute.
   </answer>
 </question>
+
+```smalltalk
+Obligation>>sendTask: aTask job: aJob
+  | notProcessed processed copied executed |
+  ...150 lines of heavily commented code...
+
+Class: TaskSender
+  superclass: Object
+  instance variables: obligation task job notProcessed processed copied executed
+
+TaskSender class>>obligation: anObligation task: aTask job: aJob
+  ^self new
+    setObligation: anObligation
+    task: aTask
+    job: aJob
+
+TaskSender>>compute
+  ...150 lines of heavily commented code...
+
+Obligation>>sendTask: aTask job: aJob
+  (TaskSender
+    obligation: self
+    task: aTask
+    job: aJob) compute
+```
+
+```scheme
+(define-handler
+    (:send (an-obligation obligation)
+           (:task a-task task)
+           (:job a-job job))
+  (let ((not-processed ...)
+        (processed ...)
+        (copied ...)
+        (executed ...))
+    ...150 lines of heavily commented code...))
+
+(define-class task-sender (object)
+  :obligation
+  :task
+  :job
+  :not-processed
+  :processed
+  :copied
+  :executed)
+
+(define-handler (:compute (a-task-sender task-sender))
+  ...150 lines of heavily commented code...)
+
+(define-handler
+    (:send (an-obligation obligation)
+           (:task a-task task)
+           (:job a-job job))
+  ((create task-sender
+     :obligation: an-obligation
+     :task: a-task
+     :job: a-job)
+   :compute))
+```
 
 ## Execute Around Method
 
