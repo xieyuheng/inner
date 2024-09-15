@@ -451,7 +451,7 @@ Obligation>>sendTask: aTask job: aJob
 
   <answer>
     Code a method that takes a Block as an argument. Name the method
-    by appending “During: aBlock” to the name of the first method
+    by appending "During: aBlock" to the name of the first method
     that needs to be invoked. In the body of the Execute Around
     Method, invoke the first method, evaluate the block, then invoke
     the second method.
@@ -527,11 +527,52 @@ Association>> printOn: aStream
 <question>
   Method Comment
 
+  How do you comment methods?
 
   <answer>
-
+    Communicate important information that is not obvious from the
+    code in a comment at the beginning of the method.
   </answer>
 </question>
+
+```smalltalk
+(self flags bitAnd: 2r1000) = 1 "Am I visible?"
+  ifTrue: [...]
+
+isVisible
+  ^(self flags bitAnd: 2r1000) = 1
+
+self isVisible
+  ifTrue: [...]
+```
+
+```scheme
+(if (equal? (self :flags :bit-and 2r1000) 1)
+  ;; Am I visible?
+  ...)
+
+(define-handler (:visible? self)
+  (equal? (self :flags :bit-and 2r1000) 1))
+
+(if (self :visible?)
+  ...)
+```
+
+```smalltalk
+Bin>>run
+  "Tell my station to process me."
+  self station process: self
+```
+
+```scheme
+(define (run (a-bin bin))
+  "Tell my station to process me."
+  ((a-bin :station) :process a-bin))
+
+(define (run (a-bin bin))
+  "Tell my station to process me."
+  (a-bin :station :process a-bin))
+```
 
 # MESSAGES
 
