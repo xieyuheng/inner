@@ -141,7 +141,7 @@ Point>>setX: xNumber y: yNumber
 
 ;; Every keyword can be viewed as a generic function.
 
-(define-handler (:set-x! (a-point point) (x number))
+(define (:set-x! (a-point point) (x number))
   (set! a-point :x x))
 
 (:set-x! a-point x)
@@ -275,18 +275,18 @@ isEmpty
 ```
 
 ```scheme
-(define-handler (:make-on (a-switch switch))
+(define (:make-on (a-switch switch))
   (set! a-switch :status 'on))
 
-(define-handler (:make-off (a-switch switch))
+(define (:make-off (a-switch switch))
   (set! a-switch :status 'off))
 
-(define-handler (:update (a-wall-plate wall-plate))
+(define (:update (a-wall-plate wall-plate))
   (match (a-wall-plate :switch :status)
     ('on (a-wall-plate :light :make-on))
     ('off (a-wall-plate :light :make-off))))
 
-(define-handler (:on (a-switch switch))
+(define (:on (a-switch switch))
   "Return true if the receiver is on, otherwise return false.")
 
 nil?
@@ -313,7 +313,7 @@ Event>><= anEvent
 ```
 
 ```scheme
-(define-handler (:<= (target event) (an-event event))
+(define (:<= (target event) (an-event event))
   (<= (target :timestamp) (an-event :timestamp)))
 
 (target-event :<= an-event)
@@ -350,14 +350,14 @@ Point>>printOn: aStream
 ```
 
 ```scheme
-(define-handler (:print-on (a-point point) (a-stream stream))
+(define (:print-on (a-point point) (a-stream stream))
   (a-point :x :print-on a-stream)
   (a-stream :next-put-all " @ ")
   (a-point :y :print-on a-stream))
 
-(define-handler (:print (a-stream stream) (an-object object))
+(define (:print (a-stream stream) (an-object object))
   (an-object :print-on a-stream))
-(define-handler (:print-on (a-point point) (a-stream stream))
+(define (:print-on (a-point point) (a-stream stream))
   (a-stream :print (a-point :x))
   (a-stream :next-put-all " @ ")
   (a-stream :print (a-point :y)))
@@ -408,7 +408,7 @@ Obligation>>sendTask: aTask job: aJob
 ```
 
 ```scheme
-(define-handler
+(define
     (:send (an-obligation obligation)
            (:task a-task task)
            (:job a-job job))
@@ -427,10 +427,10 @@ Obligation>>sendTask: aTask job: aJob
   :copied
   :executed)
 
-(define-handler (:compute (a-task-sender task-sender))
+(define (:compute (a-task-sender task-sender))
   ...150 lines of heavily commented code...)
 
-(define-handler
+(define
     (:send (an-obligation obligation)
            (:task a-task task)
            (:job a-job job))
@@ -477,18 +477,18 @@ File>>openDuring: aBlock
 ```
 
 ```scheme
-(define-handler (:show-while (a-cursor cursor) (a-block block))
+(define (:show-while (a-cursor cursor) (a-block block))
   (let ((old (current-cursor)))
     (a-cursor :show)
     (a-block :evaluate)
     (old :show)))
 
-(define-handler (:open-during (a-file file) (a-block block))
+(define (:open-during (a-file file) (a-block block))
   (a-file :open)
   (a-block :evaluate)
   (a-file :close))
 
-(define-handler (:open-during (a-file file) (a-block block))
+(define (:open-during (a-file file) (a-block block))
   (a-file :open)
   ((lambda () (a-block :evaluate))
    :ensure (lambda () (a-file :close))))
@@ -516,7 +516,7 @@ Association>> printOn: aStream
 ```
 
 ```scheme
-(define-handler (:print-on (an-association association) (a-stream stream))
+(define (:print-on (an-association association) (a-stream stream))
   (a-stream :print (an-association :key))
   (a-stream :next-put-all "->")
   (a-stream :print (an-association :value)))
@@ -551,7 +551,7 @@ self isVisible
   ;; Am I visible?
   ...)
 
-(define-handler (:visible? self)
+(define (:visible? self)
   (equal? (self :flags :bit-and 2r1000) 1))
 
 (if (self :visible?)
@@ -649,6 +649,32 @@ responsible := anEntry responsible
 ```
 
 ## Decomposing Message
+
+<question>
+  Decomposing Message
+
+  How do you invoke parts of a computation?
+
+  <answer>
+     Send several messages to "self."
+  </answer>
+</question>
+
+```smalltalk
+Controller>>controlActivity
+  self
+    controlInitialize;
+    controlLoop;
+    controlTerminate
+```
+
+```scheme
+(define (:control-activity (a-controller controller))
+  (a-controller :control-initialize)
+  (a-controller :control-loop)
+  (a-controller :control-terminate))
+```
+
 ## Intention Revealing Message
 ## Intention Revealing Selector
 ## Dispatched Interpretation

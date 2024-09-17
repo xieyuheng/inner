@@ -1,4 +1,3 @@
-3-behavior -- MESSAGES -- Decomposing Message
 3-behavior -- MESSAGES -- Intention Revealing Message
 3-behavior -- MESSAGES -- Intention Revealing Selector
 3-behavior -- MESSAGES -- Dispatched Interpretation
