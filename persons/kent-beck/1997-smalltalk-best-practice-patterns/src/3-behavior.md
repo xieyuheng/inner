@@ -42,11 +42,11 @@ title: 3. Behavior
 ## Composed Method
 
 <question>
-  Composed Method
-
   How do you divide a program into methods?
 
   <answer>
+    Composed Method
+
     Divide your program into methods that perform one identifiable
     task. Keep all of the operations in a method at the same level of
     abstraction. This will naturally result in programs with many
@@ -71,11 +71,11 @@ Controller>>controlActivity
 ## Constructor Method
 
 <question>
-  Constructor Method
-
   How do you represent instance creation?
 
   <answer>
+    Constructor Method
+
     Provide methods that create well-formed instances.
     Pass all required parameters to them.
   </answer>
@@ -102,12 +102,12 @@ Point class>>r: radiusNumber theta: thetaNumber
 ## Constructor Parameter Method
 
 <question>
-  Constructor Parameter Method
-
   How do you set instance variables
   from the parameters to a Constructor Method?
 
   <answer>
+    Constructor Parameter Method
+
     Code a single method that sets all the variables.
     Preface its name with "set," then the names of the variables.
   </answer>
@@ -151,12 +151,12 @@ Point>>setX: xNumber y: yNumber
 ## Shortcut Constructor Method
 
 <question>
-  Shortcut Constructor Method
-
   What is the external interface for creating a new object
   when a Constructor Method is too wordy?
 
   <answer>
+    Shortcut Constructor Method
+
     Represent object creation as a message to one of the arguments to
     the Constructor Method. Add no more than three of these Shortcut
     Constructor Methods per system you develop.
@@ -186,12 +186,12 @@ Number>>@ aNumber
 ## Conversion
 
 <question>
-  Conversion
-
   How do you convert information
   from one object’s format to another’s?
 
   <answer>
+    Conversion
+
     Convert from one object to another
     rather than overwhelm any one object’s protocol.
   </answer>
@@ -200,12 +200,12 @@ Number>>@ aNumber
 ## Converter Method
 
 <question>
-  Converter Method
-
   How do you represent simple conversion of an object to another
   object with the same protocol but different format?
 
   <answer>
+    Converter Method
+
     Provide a method in the object to be converted that converts to
     the new object. Name the method by prepending "as" to the class
     of the object returned.
@@ -230,12 +230,12 @@ Number>>asFloat
 ## Converter Constructor Method
 
 <question>
-  Converter Constructor Method
-
   How do you represent the conversion of an object to another with
   different protocol?
 
   <answer>
+    Converter Constructor Method
+
     Make a Constructor Method that takes the object to be converted as
     an argument.
   </answer>
@@ -244,11 +244,11 @@ Number>>asFloat
 ## Query Method
 
 <question>
-  Query Method
-
   How do you represent testing a property of an object?
 
   <answer>
+    Query Method
+
     Provide a method that returns a Boolean. Name it by prefacing
     the property name with a form of "be" -- is, was, will, etc.
   </answer>
@@ -297,11 +297,11 @@ empty?
 ## Comparing Method
 
 <question>
-  Comparing Method
-
   How do you order objects with respect to each other?
 
   <answer>
+    Comparing Method
+
     Implement "<=" to return true if the receiver
     should be ordered before the argument.
   </answer>
@@ -322,11 +322,11 @@ Event>><= anEvent
 ## Reversing Method
 
 <question>
-  Reversing Method
-
   How do you code a smooth flow of messages?
 
   <answer>
+    Reversing Method
+
     Code a method on the parameter. Derive its name from the original
     message. Take the original receiver as a parameter to the new
     method. Implement the method by sending the original message to
@@ -366,12 +366,12 @@ Point>>printOn: aStream
 ## Method Object
 
 <question>
-  Method Object
-
   How do you code a method where many lines of code share
   many arguments and temporary variables?
 
   <answer>
+    Method Object
+
     Create a class named after the method. Give it an instance
     variable for the receiver of the original method, each argument,
     and each temporary variable. Give it a Constructor Method that
@@ -444,12 +444,12 @@ Obligation>>sendTask: aTask job: aJob
 ## Execute Around Method
 
 <question>
-  Execute Around Method
-
   How do you represent pairs of actions
   that have to be taken together?
 
   <answer>
+    Execute Around Method
+
     Code a method that takes a Block as an argument. Name the method
     by appending "During: aBlock" to the name of the first method
     that needs to be invoked. In the body of the Execute Around
@@ -497,11 +497,11 @@ File>>openDuring: aBlock
 ## Debug Printing Method
 
 <question>
-  Debug Printing Method
-
   How do you code the default printing method?
 
   <answer>
+    Debug Printing Method
+
     Override printOn: to provide information about
     an object’s structure to the programmer.
   </answer>
@@ -525,11 +525,11 @@ Association>> printOn: aStream
 ## Method Comment
 
 <question>
-  Method Comment
-
   How do you comment methods?
 
   <answer>
+    Method Comment
+
     Communicate important information that is not obvious from the
     code in a comment at the beginning of the method.
   </answer>
@@ -597,11 +597,11 @@ Bin>>run
 ## Message
 
 <question>
-  Message
-
   How do you invoke computation?
 
   <answer>
+    Message
+
     Send a named message and let the receiving object decide
     what to do with it.
   </answer>
@@ -610,11 +610,11 @@ Bin>>run
 ## Choosing Message
 
 <question>
-  Choosing Message
-
   How do you execute one of several alternatives?
 
   <answer>
+    Choosing Message
+
     Send a message to one of several different kinds of objects,
     each of which executes one alternative.
   </answer>
@@ -651,11 +651,11 @@ responsible := anEntry responsible
 ## Decomposing Message
 
 <question>
-  Decomposing Message
-
   How do you invoke parts of a computation?
 
   <answer>
+    Decomposing Message
+
     Send several messages to "self."
   </answer>
 </question>
@@ -678,12 +678,12 @@ Controller>>controlActivity
 ## Intention Revealing Message
 
 <question>
-  Intention Revealing Message
-
   How do you communicate your intent
   when the implementation is simple?
 
   <answer>
+    Intention Revealing Message
+
     Send a message to "self."
     Name the message so it communicates what is to be done
     rather than how it is to be done.
@@ -713,12 +713,20 @@ Number>>reciprocal
 
 (define (:reciprocal (self number))
   (div 1 self))
-
-(define (:reciprocal (self number))
-  (div 1 self))
 ```
 
 ## Intention Revealing Selector
+
+<question>
+  What do you name a method?
+
+  <answer>
+    Intention Revealing Selector
+
+    Name methods after what they accomplish.
+  </answer>
+</question>
+
 ## Dispatched Interpretation
 ## Double Dispatch
 ## Mediating Protocol
