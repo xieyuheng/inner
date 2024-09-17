@@ -608,6 +608,46 @@ Bin>>run
 </question>
 
 ## Choosing Message
+
+<question>
+  Choosing Message
+
+  How do you execute one of several alternatives?
+
+  <answer>
+    Send a message to one of several different kinds of objects,
+    each of which executes one alternative.
+  </answer>
+</question>
+
+```smalltalk
+responsible := (anEntry isKindOf: Film)
+  ifTrue: [anEntry producer]
+  ifFalse: [anEntry author]
+
+Film>>responsible
+  ^self producer
+Entry>>responsible
+  ^self author
+
+responsible := anEntry responsible
+```
+
+```scheme
+(define responsible
+  (if (an-entry :is-kind-of film)
+    (an-entry :producer)
+    (an-entry :author)))
+
+(define (:responsible (a-film film))
+  (a-film :producer))
+
+(define (:responsible (an-entry entry))
+  (an-entry :author))
+
+(define responsible (an-entry :responsible))
+```
+
 ## Decomposing Message
 ## Intention Revealing Message
 ## Intention Revealing Selector
