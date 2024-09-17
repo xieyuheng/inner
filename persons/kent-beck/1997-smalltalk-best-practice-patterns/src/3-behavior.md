@@ -656,7 +656,7 @@ responsible := anEntry responsible
   How do you invoke parts of a computation?
 
   <answer>
-     Send several messages to "self."
+    Send several messages to "self."
   </answer>
 </question>
 
@@ -676,6 +676,48 @@ Controller>>controlActivity
 ```
 
 ## Intention Revealing Message
+
+<question>
+  Intention Revealing Message
+
+  How do you communicate your intent
+  when the implementation is simple?
+
+  <answer>
+    Send a message to "self."
+    Name the message so it communicates what is to be done
+    rather than how it is to be done.
+    Code a simple method for the message.
+  </answer>
+</question>
+
+```smalltalk
+ParagraphEditor>>highlight: aRectangle
+  self reverse: aRectangle
+
+Collection>>isEmpty
+  ^self size = 0
+
+Number>>reciprocal
+  ^1 / self
+```
+
+```scheme
+(define (:highlight
+         (self paragraph-editor)
+         (a-rectangle rectangle))
+  (self :reverse a-rectangle))
+
+(define (:is-empty (self collection))
+  (equal? (self :size) 0))
+
+(define (:reciprocal (self number))
+  (div 1 self))
+
+(define (:reciprocal (self number))
+  (div 1 self))
+```
+
 ## Intention Revealing Selector
 ## Dispatched Interpretation
 ## Double Dispatch

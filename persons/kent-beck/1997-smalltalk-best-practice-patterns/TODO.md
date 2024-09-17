@@ -1,4 +1,3 @@
-3-behavior -- MESSAGES -- Intention Revealing Message
 3-behavior -- MESSAGES -- Intention Revealing Selector
 3-behavior -- MESSAGES -- Dispatched Interpretation
 3-behavior -- MESSAGES -- Double Dispatch
