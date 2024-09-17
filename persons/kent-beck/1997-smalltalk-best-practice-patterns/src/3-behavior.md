@@ -727,6 +727,26 @@ Number>>reciprocal
   </answer>
 </question>
 
+```smalltalk
+Array>>linearSearchFor:
+Set>>hashedSearchFor:
+BTree>>treeSearchFor:
+
+Collection>>searchFor:
+
+Collection>>includes:
+```
+
+```scheme
+(define (:linear-search-for (self array)))
+(define (:hashed-search-for (self set)))
+(define (:tree-search-for (self btree)))
+
+(define (:search-for (self collection)))
+
+(define (:includes (self collection)))
+```
+
 ## Dispatched Interpretation
 ## Double Dispatch
 ## Mediating Protocol
