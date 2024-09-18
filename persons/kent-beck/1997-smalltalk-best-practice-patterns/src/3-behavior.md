@@ -40,6 +40,7 @@ title: 3. Behavior
 - generic 的缺点也许是不能像 OOP 那样被理解为消息传递，
   但是也可以理解为群发消息给所有参数。
 
+
 # METHODS
 
 ## Composed Method
