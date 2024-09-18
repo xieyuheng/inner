@@ -480,17 +480,17 @@ File>>openDuring: aBlock
 (define (:show-while (a-cursor cursor) (a-block block))
   (let ((old (current-cursor)))
     (a-cursor :show)
-    (a-block :evaluate)
+    (a-block :value)
     (old :show)))
 
 (define (:open-during (a-file file) (a-block block))
   (a-file :open)
-  (a-block :evaluate)
+  (a-block :value)
   (a-file :close))
 
 (define (:open-during (a-file file) (a-block block))
   (a-file :open)
-  ((lambda () (a-block :evaluate))
+  ((lambda () (a-block :value))
    :ensure (lambda () (a-file :close))))
 ```
 
@@ -748,6 +748,45 @@ Collection>>includes:
 ```
 
 ## Dispatched Interpretation
+
+<question>
+  How can two objects cooperate
+  when one wishes to conceal its representation?
+
+  <answer>
+    Dispatched Interpretation
+
+    Have the client send a message to the encoded object.
+    Pass a parameter to which the encoded object
+    will send decoded messages.
+  </answer>
+</question>
+
+```smalltalk
+True>>ifTrue: trueBlock ifFalse: falseBlock
+  ^trueBlock value
+False>>ifTrue: trueBlock ifFalse: falseBlock
+  ^falseBlock value
+
+String>>at: anInteger
+  ^Character asciiValue: (self basicAt: anInteger)
+```
+
+```scheme
+(define (:if (self true)
+             (true-block block)
+             (false-block block))
+  (true-block :value))
+
+(define (:if (self false)
+             (true-block block)
+             (false-block block))
+  (false-block :value))
+
+(define (:at (self string) (an-integer integer))
+  (character :ascii-value  (self :basic-at an-integer)))
+```
+
 ## Double Dispatch
 ## Mediating Protocol
 ## Super

@@ -1,4 +1,4 @@
-3-behavior -- MESSAGES -- Dispatched Interpretation
+3-behavior -- MESSAGES -- Dispatched Interpretation -- PostScriptShapePrinter
 3-behavior -- MESSAGES -- Double Dispatch
 3-behavior -- MESSAGES -- Mediating Protocol
 3-behavior -- MESSAGES -- Super
