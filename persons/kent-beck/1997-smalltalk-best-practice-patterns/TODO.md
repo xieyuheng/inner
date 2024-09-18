@@ -1,5 +1,3 @@
-3-behavior -- :size as a generic function
-
 3-behavior -- MESSAGES -- Mediating Protocol
 3-behavior -- MESSAGES -- Super
 3-behavior -- MESSAGES -- Extending Super

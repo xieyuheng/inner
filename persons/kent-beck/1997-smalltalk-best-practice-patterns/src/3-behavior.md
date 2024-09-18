@@ -702,7 +702,7 @@ Number>>reciprocal
   (reverse self a-rectangle))
 
 (define (is-empty (self collection))
-  (equal? (self :size) 0))
+  (equal? (size self) 0))
 
 (define (reciprocal (self number))
   (div 1 self))
@@ -835,7 +835,7 @@ PostScriptShapePrinter>>display: aShape
 
 ```scheme
 (define (display (self postscript-shape-printer) (a-shape shape))
-  (foreach (range 1 (a-shape :size))
+  (foreach (range 1 (size a-shape))
     (lambda (i)
       (let ((a-command (command-at a-shape i))
             (arguments (arguments-at a-shape i)))
@@ -857,7 +857,7 @@ PostScriptShapePrinter>>display: aShape
   (next-put-all self "line"))
 
 (define (display (self postscript-shape-printer) (a-shape shape))
-  (foreach (range 1 (a-shape :size))
+  (foreach (range 1 (size a-shape))
     (lambda (i)
       (let ((a-command (command-at a-shape i))
             (arguments (arguments-at a-shape i)))
@@ -872,13 +872,13 @@ PostScriptShapePrinter>>display: aShape
     (print-line an-object (ref arguments 1) (ref arguments 2))))
 
 (define (display (self postscript-shape-printer) (a-shape shape))
-  (foreach (range 1 (a-shape :size))
+  (foreach (range 1 (size a-shape))
     (lambda (i)
       (send-command-at a-shape i :to self))))
 
 
 (define (send-commands-to (self shape) (an-object object))
-  (foreach (range 1 (self :size))
+  (foreach (range 1 (size self))
     (lambda (i)
       (send-command-at self i :to an-object))))
 
