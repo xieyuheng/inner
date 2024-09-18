@@ -40,7 +40,6 @@ title: 3. Behavior
 - generic 的缺点也许是不能像 OOP 那样被理解为消息传递，
   但是也可以理解为群发消息给所有参数。
 
-
 # METHODS
 
 ## Composed Method
@@ -972,17 +971,126 @@ Float>>addInteger: anInteger
 protocol 体现为一组需要同时实现的 generic functions，
 比如 monad 的 fmap 和 flatten。
 
-- 在大量使用 generic function 之前，
-  我把 monad 理解为一个带有类型参数的 class，
-  如何调和这两种观点？
+在大量使用 generic function 之前，
+我把 monad 理解为一个带有类型参数的 class，
+如何调和这两种观点？
 
 ## Super
+
+<question>
+  How can you invoke superclass behavior?
+
+  <answer>
+    Super
+
+    TODO
+  </answer>
+</question>
+
 ## Extending Super
+
+<question>
+  TODO
+
+  <answer>
+    Extending Super
+
+    TODO
+  </answer>
+</question>
+
 ## Modifying Super
+
+<question>
+  TODO
+
+  <answer>
+    Modifying Super
+
+    TODO
+  </answer>
+</question>
+
 ## Delegation
+
+<question>
+  TODO
+
+  <answer>
+    Delegation
+
+    TODO
+  </answer>
+</question>
+
 ## Simple Delegation
+
+<question>
+  TODO
+
+  <answer>
+    Simple Delegation
+
+    TODO
+  </answer>
+</question>
+
 ## Self Delegation
+
+<question>
+  TODO
+
+  <answer>
+    Self Delegation
+
+    TODO
+  </answer>
+</question>
+
 ## Pluggable Behavior
+
+<question>
+  TODO
+
+  <answer>
+    Pluggable Behavior
+
+    TODO
+  </answer>
+</question>
+
 ## Pluggable Selector
+
+<question>
+  TODO
+
+  <answer>
+    Pluggable Selector
+
+    TODO
+  </answer>
+</question>
+
 ## Pluggable Block
+
+<question>
+  TODO
+
+  <answer>
+    Pluggable Block
+
+    TODO
+  </answer>
+</question>
+
 ## Collecting Parameter
+
+<question>
+  TODO
+
+  <answer>
+    Collecting Parameter
+
+    TODO
+  </answer>
+</question>
