@@ -37,6 +37,9 @@ title: 3. Behavior
 
 这点对于 lisp/scheme 的 generic + handler 也适用。
 
+- generic 的缺点也许是不能像 OOP 那样被理解为消息传递，
+  但是也可以理解为群发消息给所有参数。
+
 # METHODS
 
 ## Composed Method
@@ -134,18 +137,10 @@ Point>>setX: xNumber y: yNumber
 ```scheme
 (define a-point (create point :x x :y y))
 
-(define (point-set-x! (a-point point) (x number))
+(define (set-x! (a-point point) (x number))
   (set! a-point :x x))
 
-(point-set-x! a-point x)
-
-;; Every keyword can be viewed as a generic function.
-
-(define (:set-x! (a-point point) (x number))
-  (set! a-point :x x))
-
-(:set-x! a-point x)
-(a-point :set-x! x)
+(set-x! a-point x)
 ```
 
 ## Shortcut Constructor Method
@@ -275,18 +270,18 @@ isEmpty
 ```
 
 ```scheme
-(define (:make-on (a-switch switch))
+(define (make-on (a-switch switch))
   (set! a-switch :status 'on))
 
-(define (:make-off (a-switch switch))
+(define (make-off (a-switch switch))
   (set! a-switch :status 'off))
 
-(define (:update (a-wall-plate wall-plate))
+(define (update (a-wall-plate wall-plate))
   (match (a-wall-plate :switch :status)
-    ('on (a-wall-plate :light :make-on))
-    ('off (a-wall-plate :light :make-off))))
+    ('on (make-on (a-wall-plate :light)))
+    ('off (make-off (a-wall-plate :light)))))
 
-(define (:on (a-switch switch))
+(define (on (a-switch switch))
   "Return true if the receiver is on, otherwise return false.")
 
 nil?
@@ -313,10 +308,8 @@ Event>><= anEvent
 ```
 
 ```scheme
-(define (:<= (target event) (an-event event))
-  (<= (target :timestamp) (an-event :timestamp)))
-
-(target-event :<= an-event)
+(define (<= (x event) (y event))
+  (<= (x :timestamp) (y :timestamp)))
 ```
 
 ## Reversing Method
@@ -340,8 +333,11 @@ Point>>printOn: aStream
   aStream nextPutAll: ‘ @ ‘.
   y printOn: aStream
 
+
+
 Stream>>print: anObject
   anObject printOn: self
+
 Point>>printOn: aStream
   aStream
     print: x;
@@ -350,17 +346,19 @@ Point>>printOn: aStream
 ```
 
 ```scheme
-(define (:print-on (a-point point) (a-stream stream))
-  (a-point :x :print-on a-stream)
-  (a-stream :next-put-all " @ ")
-  (a-point :y :print-on a-stream))
+(define (print-on (a-point point) (a-stream stream))
+  (print-on (a-point :x) a-stream)
+  (next-put-all a-stream " @ ")
+  (print-on (a-point :y) a-stream))
 
-(define (:print (a-stream stream) (an-object object))
-  (an-object :print-on a-stream))
-(define (:print-on (a-point point) (a-stream stream))
-  (a-stream :print (a-point :x))
-  (a-stream :next-put-all " @ ")
-  (a-stream :print (a-point :y)))
+
+(define (print (a-stream stream) (an-object object))
+  (print-on an-object a-stream))
+
+(define (print-on (a-point point) (a-stream stream))
+  (print a-stream (a-point :x))
+  (next-put-all a-stream " @ ")
+  (print a-stream (a-point :y)))
 ```
 
 ## Method Object
@@ -387,6 +385,7 @@ Obligation>>sendTask: aTask job: aJob
   | notProcessed processed copied executed |
   ...150 lines of heavily commented code...
 
+
 Class: TaskSender
   superclass: Object
   instance variables: obligation task job notProcessed processed copied executed
@@ -408,10 +407,9 @@ Obligation>>sendTask: aTask job: aJob
 ```
 
 ```scheme
-(define
-    (:send (an-obligation obligation)
-           (:task a-task task)
-           (:job a-job job))
+(define (send (an-obligation obligation)
+              (:task a-task task)
+              (:job a-job job))
   (let ((not-processed ...)
         (processed ...)
         (copied ...)
@@ -427,18 +425,17 @@ Obligation>>sendTask: aTask job: aJob
   :copied
   :executed)
 
-(define (:compute (a-task-sender task-sender))
+(define (compute (a-task-sender task-sender))
   ...150 lines of heavily commented code...)
 
-(define
-    (:send (an-obligation obligation)
-           (:task a-task task)
-           (:job a-job job))
-  ((create task-sender
-     :obligation: an-obligation
-     :task: a-task
-     :job: a-job)
-   :compute))
+(define (send (an-obligation obligation)
+              (:task a-task task)
+              (:job a-job job))
+  (compute
+   (create task-sender
+     :obligation an-obligation
+     :task a-task
+     :job a-job)))
 ```
 
 ## Execute Around Method
@@ -477,21 +474,21 @@ File>>openDuring: aBlock
 ```
 
 ```scheme
-(define (:show-while (a-cursor cursor) (a-block block))
+(define (show-while (a-cursor cursor) (a-block block))
   (let ((old (current-cursor)))
-    (a-cursor :show)
-    (a-block :value)
-    (old :show)))
+    (show a-cursor)
+    (evaluate a-block)
+    (show old)))
 
-(define (:open-during (a-file file) (a-block block))
-  (a-file :open)
-  (a-block :value)
-  (a-file :close))
+(define (open-during (a-file file) (a-block block))
+  (open a-file)
+  (evaluate a-block)
+  (close a-file))
 
-(define (:open-during (a-file file) (a-block block))
-  (a-file :open)
-  ((lambda () (a-block :value))
-   :ensure (lambda () (a-file :close))))
+(define (open-during (a-file file) (a-block block))
+  (open a-file)
+  (run-and-ensure (lambda () (evaluate a-block))
+    (lambda () (close a-file))))
 ```
 
 ## Debug Printing Method
@@ -516,10 +513,10 @@ Association>> printOn: aStream
 ```
 
 ```scheme
-(define (:print-on (an-association association) (a-stream stream))
-  (a-stream :print (an-association :key))
-  (a-stream :next-put-all "->")
-  (a-stream :print (an-association :value)))
+(define (print-on (an-association association) (a-stream stream))
+  (print a-stream (an-association :key))
+  (next-put-all a-stream "->")
+  (print a-stream (an-association :evaluate)))
 ```
 
 ## Method Comment
@@ -547,14 +544,14 @@ self isVisible
 ```
 
 ```scheme
-(if (equal? (self :flags :bit-and 2r1000) 1)
+(if (equal? (bit-and (self :flags) 2r1000) 1)
   ;; Am I visible?
   ...)
 
-(define (:visible? self)
-  (equal? (self :flags :bit-and 2r1000) 1))
+(define (visible? self)
+  (equal? (bit-and (self :flags) 2r1000) 1))
 
-(if (self :visible?)
+(if (visible? self)
   ...)
 ```
 
@@ -567,11 +564,7 @@ Bin>>run
 ```scheme
 (define (run (a-bin bin))
   "Tell my station to process me."
-  ((a-bin :station) :process a-bin))
-
-(define (run (a-bin bin))
-  "Tell my station to process me."
-  (a-bin :station :process a-bin))
+  (process (a-bin :station) a-bin))
 ```
 
 # MESSAGES
@@ -625,6 +618,7 @@ responsible := (anEntry isKindOf: Film)
   ifTrue: [anEntry producer]
   ifFalse: [anEntry author]
 
+
 Film>>responsible
   ^self producer
 Entry>>responsible
@@ -634,18 +628,17 @@ responsible := anEntry responsible
 ```
 
 ```scheme
-(define responsible
-  (if (an-entry :is-kind-of film)
+(define (responsible (an-entry entry))
+  (if (is-kind-of an-entry film)
     (an-entry :producer)
     (an-entry :author)))
 
-(define (:responsible (a-film film))
+
+(define (responsible (a-film film))
   (a-film :producer))
 
-(define (:responsible (an-entry entry))
+(define (responsible (an-entry entry))
   (an-entry :author))
-
-(define responsible (an-entry :responsible))
 ```
 
 ## Decomposing Message
@@ -669,10 +662,10 @@ Controller>>controlActivity
 ```
 
 ```scheme
-(define (:control-activity (a-controller controller))
-  (a-controller :control-initialize)
-  (a-controller :control-loop)
-  (a-controller :control-terminate))
+(define (control-activity (a-controller controller))
+  (control-initialize a-controller)
+  (control-loop a-controller)
+  (control-terminate a-controller))
 ```
 
 ## Intention Revealing Message
@@ -703,15 +696,15 @@ Number>>reciprocal
 ```
 
 ```scheme
-(define (:highlight
+(define (highlight
          (self paragraph-editor)
          (a-rectangle rectangle))
-  (self :reverse a-rectangle))
+  (reverse self a-rectangle))
 
-(define (:is-empty (self collection))
+(define (is-empty (self collection))
   (equal? (self :size) 0))
 
-(define (:reciprocal (self number))
+(define (reciprocal (self number))
   (div 1 self))
 ```
 
@@ -738,13 +731,13 @@ Collection>>includes:
 ```
 
 ```scheme
-(define (:linear-search-for (self array)))
-(define (:hashed-search-for (self set)))
-(define (:tree-search-for (self btree)))
+(define (linear-search-for (self array)))
+(define (hashed-search-for (self set)))
+(define (tree-search-for (self btree)))
 
-(define (:search-for (self collection)))
+(define (search-for (self collection)))
 
-(define (:includes (self collection)))
+(define (includes (self collection)))
 ```
 
 ## Dispatched Interpretation
@@ -782,18 +775,18 @@ String>>at: anInteger
 ```
 
 ```scheme
-(define (:if (self true)
-             (true-block block)
-             (false-block block))
-  (true-block :value))
+(define (ifte (self true)
+              (true-block block)
+              (false-block block))
+  (evaluate true-block))
 
-(define (:if (self false)
-             (true-block block)
-             (false-block block))
-  (false-block :value))
+(define (ifte (self false)
+              (true-block block)
+              (false-block block))
+  (evaluate false-block))
 
-(define (:at (self string) (an-integer integer))
-  (character :ascii-value  (self :basic-at an-integer)))
+(define (at (self string) (an-integer integer))
+  (ascii-value (basic-at self an-integer)))
 ```
 
 ```smalltalk
@@ -841,56 +834,56 @@ PostScriptShapePrinter>>display: aShape
 ```
 
 ```scheme
-(define (:display (self postscript-shape-printer) (a-shape shape))
+(define (display (self postscript-shape-printer) (a-shape shape))
   (foreach (range 1 (a-shape :size))
     (lambda (i)
-      (let ((a-command (a-shape :command-at i))
-            (arguments (a-shape :arguments-at i)))
+      (let ((a-command (command-at a-shape i))
+            (arguments (arguments-at a-shape i)))
         (if (equal? a-command 'line)
-          (self :print-point (arguments :at 1))
-          (self :space)
-          (self :print-point (arguments :at 2))
-          (self :space)
-          (self :next-put-all "line"))
+          (print-point self (ref arguments 1))
+          (space self)
+          (print-point self (ref arguments 2))
+          (space self)
+          (next-put-all self "line"))
         (if (equal? a-command 'curve) ...)
         ...))))
 
 
-(define (:line (self postscript-shape-printer) (from point) (to point))
-  (self :print-point from)
-  (self :space)
-  (self :print-point to)
-  (self :space)
-  (self :next-put-all "line"))
+(define (print-line (self postscript-shape-printer) (from point) (to point))
+  (print-point self from)
+  (space self)
+  (print-point self to)
+  (space self)
+  (next-put-all self "line"))
 
-(define (:display (self postscript-shape-printer) (a-shape shape))
+(define (display (self postscript-shape-printer) (a-shape shape))
   (foreach (range 1 (a-shape :size))
     (lambda (i)
-      (let ((a-command (a-shape :command-at i))
-            (arguments (a-shape :arguments-at i)))
+      (let ((a-command (command-at a-shape i))
+            (arguments (arguments-at a-shape i)))
         (if (equal? a-command 'line)
-          (self :line (arguments :at 1) (arguments :at 2)))
+          (print-line self (ref arguments 1) (ref arguments 2)))
         (if (equal? a-command 'curve) ...)
         ...))))
 
 
-(define (:send-command-at (self a-line) (:to an-object object))
-  (let ((arguments (self :arguments-at i)))
-    (an-object :line (arguments :at 1) (arguments :at 2))))
+(define (send-command-at (self a-line) (:to an-object object))
+  (let ((arguments (arguments-at self i)))
+    (print-line an-object (ref arguments 1) (ref arguments 2))))
 
-(define (:display (self postscript-shape-printer) (a-shape shape))
+(define (display (self postscript-shape-printer) (a-shape shape))
   (foreach (range 1 (a-shape :size))
     (lambda (i)
-      (a-shape :send-command-at i :to self))))
+      (send-command-at a-shape i :to self))))
 
 
-(define (:send-commands-to (self shape) (an-object object))
+(define (send-commands-to (self shape) (an-object object))
   (foreach (range 1 (self :size))
     (lambda (i)
-      (self :send-command-at i :to an-object))))
+      (send-command-at self i :to an-object))))
 
-(define (:display (self postscript-shape-printer) (a-shape shape))
-  (a-shape :send-commands-to self))
+(define (display (self postscript-shape-printer) (a-shape shape))
+  (send-commands-to a-shape self))
 ```
 
 ## Double Dispatch
@@ -933,20 +926,20 @@ Float>>addInteger: anInteger
 ```
 
 ```scheme
-(define (:add (x integer) (y number))
-  (y :add-integer x))
-(define (:add (x float) (y number))
-  (y :add-float x))
+(define (add (x integer) (y number))
+  (add-integer y x))
+(define (add (x float) (y number))
+  (add-float y x))
 
-(define (:add-integer (x integer) (y integer))
+(define (add-integer (x integer) (y integer))
   <primitive: 1>)
-(define (:add-float (x float) (y float))
+(define (add-float (x float) (y float))
   <primitive: 2>)
 
-(define (:add-float (x integer) (y float))
-  (x :as-float :add-float y))
-(define (:add-integer (x float) (y integer))
-  (x :add-float (y :as-float)))
+(define (add-float (x integer) (y float))
+  (add-float (as-float x) y))
+(define (add-integer (x float) (y integer))
+  (add-float x (as-float y)))
 ```
 
 正常的 generic 实现方式：
@@ -954,8 +947,8 @@ Float>>addInteger: anInteger
 ```scheme
 (define (add (x integer) (y integer)) <primitive: 1>)
 (define (add (x float) (y float)) <primitive: 2>)
-(define (add (x integer) (y float)) (add (x :as-float) y))
-(define (add (x float) (y integer)) (add x (y :as-float)))
+(define (add (x integer) (y float)) (add (as-float x) y))
+(define (add (x float) (y integer)) (add x (as-float y))
 ```
 
 ## Mediating Protocol

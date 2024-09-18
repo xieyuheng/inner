@@ -1,4 +1,4 @@
-3-behavior -- 将例子完全改成前缀表达式 + generic 的形式 -- :keyword 不再被用作函数，因为有歧义。
+3-behavior -- :size as a generic function
 
 3-behavior -- MESSAGES -- Mediating Protocol
 3-behavior -- MESSAGES -- Super
