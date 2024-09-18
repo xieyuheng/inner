@@ -787,6 +787,47 @@ String>>at: anInteger
   (character :ascii-value  (self :basic-at an-integer)))
 ```
 
+```smalltalk
+PostScriptShapePrinter>>display: aShape
+  1 to: aShape size do:
+    [:each || command arguments |
+    command := aShape commandAt: each.
+    arguments := aShape argumentsAt: each.
+    command = #line ifTrue:
+      [self
+        printPoint: (arguments at: 1);
+        space;
+        printPoint: (arguments at: 2);
+        space;
+        nextPutAll: ‘line’].
+    command = #curve...
+    ...]
+
+PostScriptShapePrinter>>lineFrom: fromPoint to: toPoint
+  self
+    printPoint: fromPoint;
+    space;
+    printPoint: toPoint;
+    space;
+    nextPutAll: ‘line’
+```
+
+```scheme
+(define (:display (self postscript-shape-printer) (a-shape shape))
+  (foreach (range 1 (a-shape :size))
+    (lambda (i)
+      (let ((a-command (a-shape :command-at i))
+            (arguments (a-shape :arguments-at i)))
+        (if (equal? a-command 'line)
+          (self :print-point (arguments :at 1))
+          (self :space)
+          (self :print-point (arguments :at 2))
+          (self :space)
+          (self :next-put-all "line"))
+        (if (equal? a-command 'curve) ...)
+        ...))))
+```
+
 ## Double Dispatch
 ## Mediating Protocol
 ## Super
