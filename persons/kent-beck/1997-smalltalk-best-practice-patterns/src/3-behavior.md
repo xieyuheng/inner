@@ -952,6 +952,29 @@ Float>>addInteger: anInteger
 ```
 
 ## Mediating Protocol
+
+<question>
+  How do you code the interaction between two objects
+  that need to remain independent?
+
+  <answer>
+    Mediating Protocol
+
+    Refine the protocol between the objects
+    so the words used are consistent.
+  </answer>
+</question>
+
+对于 generic function 而言也适用。
+
+在 generic function 的情形下，
+protocol 体现为一组需要同时实现的 generic functions，
+比如 monad 的 fmap 和 flatten。
+
+- 在大量使用 generic function 之前，
+  我把 monad 理解为一个带有类型参数的 class，
+  如何调和这两种观点？
+
 ## Super
 ## Extending Super
 ## Modifying Super
