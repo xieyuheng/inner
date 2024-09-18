@@ -762,6 +762,15 @@ Collection>>includes:
   </answer>
 </question>
 
+可以理解为 method level 的 dependency injection。
+
+- 将：从一个对象中取出所需要的数据，然后进行操作。
+
+- 改成：把操作写成一个 lambda，参数是所需要的最简的数据，
+  然后把这个 lambda 给对象，
+  对象自己构造所需要的数据，
+  然后调用这个 lambda。
+
 ```smalltalk
 True>>ifTrue: trueBlock ifFalse: falseBlock
   ^trueBlock value
@@ -803,6 +812,7 @@ PostScriptShapePrinter>>display: aShape
     command = #curve...
     ...]
 
+
 PostScriptShapePrinter>>lineFrom: fromPoint to: toPoint
   self
     printPoint: fromPoint;
@@ -810,6 +820,24 @@ PostScriptShapePrinter>>lineFrom: fromPoint to: toPoint
     printPoint: toPoint;
     space;
     nextPutAll: ‘line’
+
+PostScriptShapePrinter>>display: aShape
+  1 to: aShape size do:
+    [:each |
+    aShape
+      sendCommandAt: each
+      to: self]
+
+
+Shape>>sendCommandsTo: anObject
+  1 to: self size do:
+    [:each |
+    self
+      sendCommandAt: each
+      to: anObject]
+
+PostScriptShapePrinter>>display: aShape
+  aShape sendCommandsTo: self
 ```
 
 ```scheme
@@ -826,6 +854,43 @@ PostScriptShapePrinter>>lineFrom: fromPoint to: toPoint
           (self :next-put-all "line"))
         (if (equal? a-command 'curve) ...)
         ...))))
+
+
+(define (:line (self postscript-shape-printer) (from point) (to point))
+  (self :print-point from)
+  (self :space)
+  (self :print-point to)
+  (self :space)
+  (self :next-put-all "line"))
+
+(define (:display (self postscript-shape-printer) (a-shape shape))
+  (foreach (range 1 (a-shape :size))
+    (lambda (i)
+      (let ((a-command (a-shape :command-at i))
+            (arguments (a-shape :arguments-at i)))
+        (if (equal? a-command 'line)
+          (self :line (arguments :at 1) (arguments :at 2)))
+        (if (equal? a-command 'curve) ...)
+        ...))))
+
+
+(define (:send-command-at (self a-line) (:to an-object object))
+  (let ((arguments (self :arguments-at i)))
+    (an-object :line (arguments :at 1) (arguments :at 2))))
+
+(define (:display (self postscript-shape-printer) (a-shape shape))
+  (foreach (range 1 (a-shape :size))
+    (lambda (i)
+      (a-shape :send-command-at i :to self))))
+
+
+(define (:send-commands-to (self shape) (an-object object))
+  (foreach (range 1 (self :size))
+    (lambda (i)
+      (self :send-command-at i :to an-object))))
+
+(define (:display (self postscript-shape-printer) (a-shape shape))
+  (a-shape :send-commands-to self))
 ```
 
 ## Double Dispatch
