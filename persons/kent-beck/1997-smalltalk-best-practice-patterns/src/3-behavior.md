@@ -894,6 +894,70 @@ PostScriptShapePrinter>>display: aShape
 ```
 
 ## Double Dispatch
+
+<question>
+  How can you code a computation that has many cases,
+  the cross product of two families of classes?
+
+  <answer>
+    Double Dispatch
+
+    Send a message to the argument.
+    Append the class name of the receiver to the selector.
+    Pass the receiver as an argument.
+  </answer>
+</question>
+
+如果语言有 generic 的功能，
+解决这个问题就简单很多了。
+
+double dispatch 看起来也是可行的，
+但是由于要给中间 method 命名，
+所以是不 scalable 的。
+
+```smalltalk
+Integer>>+ aNumber
+  ^aNumber addInteger: self
+Float>>+ aNumber
+  ^aNumber addFloat: self
+
+Integer>>addInteger: anInteger
+  <primitive: 1>
+Float>>addFloat: aFloat
+  <primitive: 2>
+
+Integer>>addFloat: aFloat
+  ^self asFloat addFloat: aFloat
+Float>>addInteger: anInteger
+  ^self addFloat: anInteger asFloat
+```
+
+```scheme
+(define (:add (x integer) (y number))
+  (y :add-integer x))
+(define (:add (x float) (y number))
+  (y :add-float x))
+
+(define (:add-integer (x integer) (y integer))
+  <primitive: 1>)
+(define (:add-float (x float) (y float))
+  <primitive: 2>)
+
+(define (:add-float (x integer) (y float))
+  (x :as-float :add-float y))
+(define (:add-integer (x float) (y integer))
+  (x :add-float (y :as-float)))
+```
+
+正常的 generic 实现方式：
+
+```scheme
+(define (add (x integer) (y integer)) <primitive: 1>)
+(define (add (x float) (y float)) <primitive: 2>)
+(define (add (x integer) (y float)) (add (x :as-float) y))
+(define (add (x float) (y integer)) (add x (y :as-float)))
+```
+
 ## Mediating Protocol
 ## Super
 ## Extending Super
