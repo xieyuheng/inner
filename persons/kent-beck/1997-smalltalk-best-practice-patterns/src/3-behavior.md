@@ -994,12 +994,13 @@ protocol 体现为一组需要同时实现的 generic functions，
 ## Extending Super
 
 <question>
-  TODO
+  How do you add to a superclass' implementation of a method?
 
   <answer>
     Extending Super
 
-    TODO
+    Override the method and send a message to "super"
+    in the overriding method.
   </answer>
 </question>
 
