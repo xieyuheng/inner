@@ -1004,6 +1004,18 @@ protocol 体现为一组需要同时实现的 generic functions，
   </answer>
 </question>
 
+```smalltalk
+BorderedFigure>>display
+  super display.
+  self displayBorder
+```
+
+```scheme
+(define (display (self bordered-figure))
+  (display (as-figure self))
+  (display-border self))
+```
+
 ## Modifying Super
 
 <question>
