@@ -1,8 +1,9 @@
-3-behavior -- MESSAGES -- Simple Delegation
 3-behavior -- MESSAGES -- Self Delegation
+
 3-behavior -- MESSAGES -- Pluggable Behavior
 3-behavior -- MESSAGES -- Pluggable Selector
 3-behavior -- MESSAGES -- Pluggable Block
+
 3-behavior -- MESSAGES -- Collecting Parameter
 
 4-state -- INSTANCE VARIABLES -- Common State

@@ -1086,14 +1086,58 @@ merge/merge-number.ts
 ## Simple Delegation
 
 <question>
-  TODO
+   How do you invoke a disinterested delegate?
 
   <answer>
     Simple Delegation
 
-    TODO
+    Delegate messages unchanged.
   </answer>
 </question>
+
+例子是 Vector 作为特殊的 Collection，
+不是继承 Collection，而是包含一个 collection，
+然后转发 message 给所包含的 collection。
+
+```smalltalk
+Vector
+  superclass: Object
+  instance variables: elements
+
+Vector class>>new: anInteger
+  ^self new setElements: (Array new: anInteger)
+Vector>>setElements: aCollection
+  elements := aCollection
+
+Vector>>do: aBlock
+  elements do: aBlock
+```
+
+```scheme
+(define-class vector ()
+  :elements collection)
+
+(define (create-vector (n integer))
+  (create vector :elements (create-array n)))
+
+(define (map (a-vector vector) (f function))
+  (create vector
+    :elements (map (a-vector :elements) f)))
+```
+
+`collection` 带有类型参数的版本：
+
+```scheme
+(define-class vector ()
+  :elements (collection number))
+
+(define (create-vector (n integer))
+  (create vector :elements (create-array n)))
+
+(define (map (a-vector vector) (f (-> number number)))
+  (create vector
+    :elements (map (a-vector :elements) f)))
+```
 
 ## Self Delegation
 
