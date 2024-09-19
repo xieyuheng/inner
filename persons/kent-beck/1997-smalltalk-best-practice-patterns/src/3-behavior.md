@@ -1298,7 +1298,7 @@ Parameter 在 smalltalk 中就是局部变量的意思。
   <answer>
     Collecting Parameter
 
-     Add a parameter that collects their results
-     to all of the submethods.
+    Add a parameter that collects their results
+    to all of the submethods.
   </answer>
 </question>

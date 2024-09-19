@@ -58,25 +58,256 @@ title: 4. State
 又有了「有必要把这本书读完，再写下下一行代码」的感觉。
 
 ## Common State
+
+> In the dawn of computing time, state was all there was.
+
+这句话又让我想到了用 resource 的概念来理解所有 HTTP API，
+又让人想实现 fidb 这种项目，
+外加以 fidb 为基础来实现别的 web app。
+
+<question>
+  How do you represent state,
+  different values for which will exist
+  in all instances of a class?
+
+  <answer>
+    Common State
+
+    TODO
+  </answer>
+</question>
+
 ## Variable State
+
+<question>
+  TODO
+
+  <answer>
+    Variable State
+
+    TODO
+  </answer>
+</question>
+
 ## Explicit Initialization
+
+<question>
+  TODO
+
+  <answer>
+    Explicit Initialization
+
+    TODO
+  </answer>
+</question>
+
 ## Lazy Initialization
+
+<question>
+  TODO
+
+  <answer>
+    Lazy Initialization
+
+    TODO
+  </answer>
+</question>
+
 ## Default Value Method
+
+<question>
+  TODO
+
+  <answer>
+    Default Value Method
+
+    TODO
+  </answer>
+</question>
+
 ## Constant Method
+
+<question>
+  TODO
+
+  <answer>
+    Constant Method
+
+    TODO
+  </answer>
+</question>
+
 ## Direct Variable Access
+
+<question>
+  TODO
+
+  <answer>
+    Direct Variable Access
+
+    TODO
+  </answer>
+</question>
+
 ## Indirect Variable Access
+
+<question>
+  TODO
+
+  <answer>
+    Indirect Variable Access
+
+    TODO
+  </answer>
+</question>
+
 ## Getting Method
+
+<question>
+  TODO
+
+  <answer>
+    Getting Method
+
+    TODO
+  </answer>
+</question>
+
 ## Setting Method
+
+<question>
+  TODO
+
+  <answer>
+    Setting Method
+
+    TODO
+  </answer>
+</question>
+
 ## Collection Accessor Method
+
+<question>
+  TODO
+
+  <answer>
+    Collection Accessor Method
+
+    TODO
+  </answer>
+</question>
+
 ## Enumeration Method
+
+<question>
+  TODO
+
+  <answer>
+    Enumeration Method
+
+    TODO
+  </answer>
+</question>
+
 ## Boolean Property Setting Method
+
+<question>
+  TODO
+
+  <answer>
+    Boolean Property Setting Method
+
+    TODO
+  </answer>
+</question>
+
 ## Role Suggesting Instance Variable Name
+
+<question>
+  TODO
+
+  <answer>
+    Role Suggesting Instance Variable Name
+
+    TODO
+  </answer>
+</question>
 
 # TEMPORARY VARIABLES
 
+看这里给 temporary variable 分类的架势，
+让人想到了亚里士多德给 be 分类，
+同样是人们觉得再简单不过的概念，
+其分类中都藏着很多知识。
+
 ## Temporary Variable
+
+<question>
+  TODO
+
+  <answer>
+    Temporary Variable
+
+    TODO
+  </answer>
+</question>
+
 ## Collecting Temporary Variable
+
+<question>
+  TODO
+
+  <answer>
+    Collecting Temporary Variable
+
+    TODO
+  </answer>
+</question>
+
 ## Caching Temporary Variable
+
+<question>
+  TODO
+
+  <answer>
+    Caching Temporary Variable
+
+    TODO
+  </answer>
+</question>
+
 ## Explaining Temporary Variable
+
+<question>
+  TODO
+
+  <answer>
+    Explaining Temporary Variable
+
+    TODO
+  </answer>
+</question>
+
 ## Reusing Temporary Variable
+
+<question>
+  TODO
+
+  <answer>
+    Reusing Temporary Variable
+
+    TODO
+  </answer>
+</question>
+
 ## Role Suggesting Temporary Variable Name
+
+<question>
+  TODO
+
+  <answer>
+    Role Suggesting Temporary Variable Name
+
+    TODO
+  </answer>
+</question>
