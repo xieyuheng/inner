@@ -123,14 +123,22 @@ Kent 在此批判某些 lisper 用 assositive list 作为 object 的行为。
 ## Explicit Initialization
 
 <question>
-  TODO
+  How do you initialize instance variables to their default value?
 
   <answer>
     Explicit Initialization
 
-    TODO
+    Implement a method "initialize"
+    that sets all the values explicitly.
+    Override the class message "new"
+    to invoke it on new instances.
   </answer>
 </question>
+
+对于 cicada-lisp 来说，
+就是 `(create <class> :key value ...)`。
+
+静态类型语言，一般会直接从语言层面上禁止未初始化的 instances variables 之存在。
 
 ## Lazy Initialization
 

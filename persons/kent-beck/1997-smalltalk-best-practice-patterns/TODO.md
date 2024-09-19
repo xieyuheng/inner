@@ -1,4 +1,3 @@
-4-state -- INSTANCE VARIABLES -- Explicit Initialization
 4-state -- INSTANCE VARIABLES -- Lazy Initialization
 
 4-state -- INSTANCE VARIABLES -- Default Value Method
