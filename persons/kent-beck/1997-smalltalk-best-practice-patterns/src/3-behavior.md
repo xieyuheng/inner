@@ -1142,14 +1142,51 @@ Vector>>do: aBlock
 ## Self Delegation
 
 <question>
-  TODO
+  How do you implement delegation to an object
+  that needs reference to the delegating object?
 
   <answer>
     Self Delegation
 
-    TODO
+    Pass along the delegating object (i.e. "self")
+    in an additional parameter called "for:".
   </answer>
 </question>
+
+```smalltalk
+Dictionary>>at: keyObject put: valueObject
+  self hashTable
+    at: keyObject
+    put: valueObject
+    for: self
+
+HashTable>>at: keyObject put: valueObject for: aCollection
+  | hash |
+  hash := aCollection hashOf: keyObject.
+  ...
+
+Dictionary>>hashOf: anObject
+  ^anObject hash
+IdentityDictionary>>hashOf: anObject
+  ^anObject basicHash
+```
+
+```scheme
+(define (put (self dictionary) (key object) (value object))
+  (put-for (self :hash-table) key value self))
+
+(define (put-for (self hash-table)
+                 (key object)
+                 (value object)
+                 (a-collection collection))
+  (let ((hash (hash-of a-collection key)))
+    ...))
+
+(define (hash-of (self dictionary) (key object))
+  (hash object))
+(define (hash-of (self identity-dictionary) (key object))
+  (basic-hash object))
+```
 
 ## Pluggable Behavior
 

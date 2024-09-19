@@ -1,5 +1,3 @@
-3-behavior -- MESSAGES -- Self Delegation
-
 3-behavior -- MESSAGES -- Pluggable Behavior
 3-behavior -- MESSAGES -- Pluggable Selector
 3-behavior -- MESSAGES -- Pluggable Block
