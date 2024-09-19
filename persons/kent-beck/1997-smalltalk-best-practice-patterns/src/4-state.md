@@ -12,7 +12,23 @@ title: 4. State
 对于 generic function 的编程风格而言，
 也许这一章比上一章更重要。
 
-TODO
+> Most state-related decisions have more to do with modeling and less
+> with coding, so the patterns here don’t tell anything like the
+> whole story. However, the tactical decisions you make about
+> representation will have an important impact on how well your code
+> communicates with others.
+
+> This section talks about two kinds of state: instance variables and
+> temporary variables.  Of the two, temporary variables are covered
+> much more thoroughly because they are a complete artifact of coding,
+> living only as long as a method is computing.  Instance variables
+> also have an important role to play in coding, however, so their
+> role in coding, and even some of their roles in modeling, is covered
+> here.
+
+虽然都是 variables，
+但是 instance variables 在于建模，
+而 temporary variables 在于编写代码的过程。
 
 # INSTANCE VARIABLES
 
