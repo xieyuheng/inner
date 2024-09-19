@@ -101,13 +101,22 @@ electronic computing 对人类社会的冲击在于，
 
 ## Variable State
 
+Kent 在此批判某些 lisper 用 assositive list 作为 object 的行为。
+
+也许只有在实现某个语言的解释器的时候，
+这种实现方式才是合理的。
+
 <question>
-  TODO
+  How do you represent state whose presence
+  varies from instance to instance?
 
   <answer>
     Variable State
 
-    TODO
+    Put variables that only some instances will have in a Dictionary
+    stored in an instance variable called "properties." Implement
+    "propertyAt: aSymbol" and "propertyAt: aSymbol put: anObject"
+    to access properties.
   </answer>
 </question>
 

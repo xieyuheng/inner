@@ -1,15 +1,18 @@
-4-state -- INSTANCE VARIABLES -- Variable State
 4-state -- INSTANCE VARIABLES -- Explicit Initialization
 4-state -- INSTANCE VARIABLES -- Lazy Initialization
+
 4-state -- INSTANCE VARIABLES -- Default Value Method
 4-state -- INSTANCE VARIABLES -- Constant Method
+
 4-state -- INSTANCE VARIABLES -- Direct Variable Access
 4-state -- INSTANCE VARIABLES -- Indirect Variable Access
+
 4-state -- INSTANCE VARIABLES -- Getting Method
 4-state -- INSTANCE VARIABLES -- Setting Method
 4-state -- INSTANCE VARIABLES -- Collection Accessor Method
 4-state -- INSTANCE VARIABLES -- Enumeration Method
 4-state -- INSTANCE VARIABLES -- Boolean Property Setting Method
+
 4-state -- INSTANCE VARIABLES -- Role Suggesting Instance Variable Name
 
 4-state -- TEMPORARY VARIABLES -- Temporary Variable
