@@ -1284,12 +1284,21 @@ ListPane>>initialize
 
 ## Collecting Parameter
 
+Parameter 在 smalltalk 中就是局部变量的意思。
+
+这个 pattern 看起来很平凡，
+但是其实，给这种写代码的时候非常常见的行为一个名字，
+是非常有意义的，不止是与别人交流时有意义，
+自己在写类似的代码时，也能更好地意识到自己在写这类代码。
+
 <question>
-  TODO
+  How do you return a collection
+  that is the collaborative result of several methods?
 
   <answer>
     Collecting Parameter
 
-    TODO
+     Add a parameter that collects their results
+     to all of the submethods.
   </answer>
 </question>

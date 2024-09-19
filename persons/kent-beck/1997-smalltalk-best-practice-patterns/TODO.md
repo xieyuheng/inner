@@ -1,5 +1,3 @@
-3-behavior -- MESSAGES -- Collecting Parameter
-
 4-state -- INSTANCE VARIABLES -- Common State
 4-state -- INSTANCE VARIABLES -- Variable State
 4-state -- INSTANCE VARIABLES -- Explicit Initialization
