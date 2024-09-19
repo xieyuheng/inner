@@ -65,6 +65,25 @@ title: 4. State
 又让人想实现 fidb 这种项目，
 外加以 fidb 为基础来实现别的 web app。
 
+> The first thing electronic computing did was make state virtual. No
+> longer did it only exist in physical form, that physical form was
+> turned into electrons so it could be more easily and quickly
+> manipulated. The manipulations were still physically manifested in
+> the form of patch cords, but they were getting easier to change.
+
+这也是很不错的见识。
+
+electronic computing 对人类社会的冲击在于，
+让 state 变成 virtual 的，
+从此人类可以快速操纵 state。
+
+可以说这是对冯诺依曼计算模型的总结。
+但是即便是 propagator model，
+还是可以理解为快速操纵 state，
+只不过 state 分布在 cell 中，
+并且操纵是通过预先设定的诸多 propagators 完成的，
+并且操纵的方式只能是 patch。
+
 <question>
   How do you represent state,
   different values for which will exist
@@ -73,7 +92,10 @@ title: 4. State
   <answer>
     Common State
 
-    TODO
+    Declare an instance variable in the class.
+
+    Be sure to declare instance variables
+    in order of importance in the class definition.
   </answer>
 </question>
 
