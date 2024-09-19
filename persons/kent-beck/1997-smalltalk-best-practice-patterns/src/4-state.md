@@ -32,6 +32,31 @@ title: 4. State
 
 # INSTANCE VARIABLES
 
+> I wrote the section on Temporary Variables before I wrote this
+> section. I was pleased with how the section on temps came out. I
+> expected this section to turn out to be the same sort of
+> cut-and-dry, "Here's how it goes" list of patterns. It didn't.
+
+> The problem is that temporary variables really are all about
+> coding. They are a tactical solution to a tactical problem. Thus,
+> they fit very well in the scope of this book.
+
+可见写书的过程就是思考的过程，
+在这个过程中可以学到很多新的东西。
+
+> Most uses of instance variables are not tactical. Along with the
+> distribution of computational responsibility, the choice of how to
+> represent a model is at the core of modeling. The decision to create
+> an instance variable usually comes from a much different mind-set
+> and in a different context than the decision to create a temp.
+
+> I leave this section here because there are still important coding
+> reasons to create instance variables, and there are some practical,
+> tactical techniques to be learned when using instance variables.
+
+越是读下去，越是觉得这本书重要。
+又有了「有必要把这本书读完，再写下下一行代码」的感觉。
+
 ## Common State
 ## Variable State
 ## Explicit Initialization
