@@ -1,4 +1,3 @@
-3-behavior -- MESSAGES -- Pluggable Selector
 3-behavior -- MESSAGES -- Pluggable Block
 
 3-behavior -- MESSAGES -- Collecting Parameter

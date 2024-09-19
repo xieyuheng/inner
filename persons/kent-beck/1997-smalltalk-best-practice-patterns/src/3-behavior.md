@@ -1208,14 +1208,60 @@ IdentityDictionary>>hashOf: anObject
 ## Pluggable Selector
 
 <question>
-  TODO
+  How do you code simple instance specific behavior?
 
   <answer>
     Pluggable Selector
 
-    TODO
+    Add a variable that contains a selector to be performed.
+    Append "Message" to the Role Suggesting Instance Variable Name.
+    Create a Composed Method that simply performs the selector.
   </answer>
 </question>
+
+The code small is:
+
+- After awhile, we notice that
+  there are many subclasses of ListPane
+  that only override this one method.
+
+```smalltalk
+ListPane>>printElement: anObject
+  ^anObject printString
+
+DollarListPane>>printElement: anObject
+  ^anObject asDollarFormatString
+DescriptionListPane>>printElement: anObject
+  ^anObject description
+
+
+ListPane>>printElement: anObject
+  ^anObject perform: printMessage
+
+ListPane>>initialize
+  printMessage := #printString
+```
+
+我觉得 inject function
+比 inject 代表 method name 的 symbol 更灵活。
+这也是下一个 pattern 要讲的。
+
+```scheme
+(define (print-element (self list-pane) (an-object object))
+  (print-string an-object))
+
+(define (print-element (self dollar-list-pane) (an-object object))
+  (as-dollar-format-string an-object))
+(define (print-element (self description-list-pane) (an-object object))
+  (description an-object))
+
+
+(define (print-element (self list-pane) (an-object object))
+  (self :print-message an-object))
+
+(create list-pane
+  :print-message print-string)
+```
 
 ## Pluggable Block
 
