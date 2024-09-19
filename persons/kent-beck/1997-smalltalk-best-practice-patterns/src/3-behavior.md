@@ -1019,14 +1019,37 @@ BorderedFigure>>display
 ## Modifying Super
 
 <question>
-  TODO
+  How do you change part of the behavior
+  of a superclass' method
+  without modifying it?
 
   <answer>
     Modifying Super
 
-    TODO
+    Override the method and invoke "super,"
+    then execute the code to modify the results.
   </answer>
 </question>
+
+```smalltalk
+SuperFigure>>initialize
+  color := Color white.
+  size := 0@0
+SubFigure>>initialize
+  super initialize.
+  color := Color beige
+```
+
+```scheme
+(define (create-super-figure)
+  (create super-figure
+    :color color-white
+    :size 0))
+
+(define (create-sub-figure)
+  (let ((a-figure (create-super-figure)))
+    (set! a-figure :color color-beige)))
+```
 
 ## Delegation
 
