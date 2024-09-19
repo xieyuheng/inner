@@ -1246,6 +1246,9 @@ ListPane>>initialize
 比 inject 代表 method name 的 symbol 更灵活。
 这也是下一个 pattern 要讲的。
 
+但是注意，与 function 相比，symbol 的好处是可以序列化。
+
+
 ```scheme
 (define (print-element (self list-pane) (an-object object))
   (print-string an-object))
@@ -1266,12 +1269,16 @@ ListPane>>initialize
 ## Pluggable Block
 
 <question>
-  TODO
+  How do you code complex Pluggable Behavior
+  that is not quite worth its own class?
 
   <answer>
     Pluggable Block
 
-    TODO
+    Add an instance variable to store a Block.
+    Append "Block" to the Role Suggesting Instance Variable Name.
+    Create a Composed Method to evaluate the Block
+    to invoke the Pluggable Behavior.
   </answer>
 </question>
 
