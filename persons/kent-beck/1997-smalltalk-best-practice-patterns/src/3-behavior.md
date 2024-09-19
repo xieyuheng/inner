@@ -1191,14 +1191,19 @@ IdentityDictionary>>hashOf: anObject
 ## Pluggable Behavior
 
 <question>
-  TODO
+   How do you parameterize the behavior of an object?
 
   <answer>
     Pluggable Behavior
 
-    TODO
+    Add a variable that will be used to trigger different behavior.
   </answer>
 </question>
+
+又是 dependency injection 的例子。
+
+体验上，是把两组 classes 相乘，
+而不是对每个乘积都定义一个新的 class。
 
 ## Pluggable Selector
 
