@@ -983,7 +983,11 @@ protocol 体现为一组需要同时实现的 generic functions，
   <answer>
     Super
 
-    TODO
+    Invoke code in a superclass explicitly
+    by sending a message to "super" instead of "self".
+    The method corresponding to the message
+    will be found in the superclass
+    of the class implementing the sending method.
   </answer>
 </question>
 

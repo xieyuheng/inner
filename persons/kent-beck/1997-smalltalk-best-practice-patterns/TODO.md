@@ -1,4 +1,3 @@
-3-behavior -- MESSAGES -- Super
 3-behavior -- MESSAGES -- Extending Super
 3-behavior -- MESSAGES -- Modifying Super
 3-behavior -- MESSAGES -- Delegation
