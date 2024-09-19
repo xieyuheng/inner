@@ -1,4 +1,3 @@
-3-behavior -- MESSAGES -- Delegation
 3-behavior -- MESSAGES -- Simple Delegation
 3-behavior -- MESSAGES -- Self Delegation
 3-behavior -- MESSAGES -- Pluggable Behavior

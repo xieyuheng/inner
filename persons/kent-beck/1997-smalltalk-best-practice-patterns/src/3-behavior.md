@@ -1054,14 +1054,34 @@ SubFigure>>initialize
 ## Delegation
 
 <question>
-  TODO
+  How does an object share implementation without inheritance?
 
   <answer>
     Delegation
 
-    TODO
+    Pass part of its work on to another object.
   </answer>
 </question>
+
+在用 generic function 的时候，
+其实就是一个文件夹，
+针对某个类型的 handler 可以放到一个文件中。
+
+比如：
+
+```
+merge/index.ts
+merge/merge.ts
+merge/merge-belief-system.ts
+merge/merge-belief.ts
+merge/merge-interval.ts
+merge/merge-merge-conflict.ts
+merge/merge-nothing.ts
+merge/merge-number.ts
+```
+
+代表类型的 class 只是最简单的形态（通常只是数据），
+不会继承很多东西。
 
 ## Simple Delegation
 
