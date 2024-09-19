@@ -2,6 +2,18 @@
 title: 4. State
 ---
 
+> Sure, how you specify behavior is most important in coding Smalltalk
+> objects, but you still won’t get anywhere without state.  Before
+> you start a computation, something has to record what the problem
+> is. While you are computing, you often need to store intermediate
+> results. When you finish a computation, you have to remember the
+> answer.
+
+对于 generic function 的编程风格而言，
+也许这一章比上一章更重要。
+
+TODO
+
 # INSTANCE VARIABLES
 
 ## Common State
