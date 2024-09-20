@@ -244,10 +244,11 @@ ExpressionFigure>>textColor
 
 我几乎只用 Direct Variable Access 这种风格，
 Indirect Variable Access 被我视为是迂腐的。
+我得承认我是两个 dogma 中 direct 的一派。
 
 只有当有非平凡的行为的时候，
-才需要 explicit getter and setter， 
-并且必须是 explicit，所以 JS 那种定义 getter 和 setter 的语法， 
+才需要 explicit getter and setter，
+并且必须是 explicit，所以 JS 那种定义 getter 和 setter 的语法，
 在我看来也是不可取的。
 
 <question>
@@ -262,13 +263,24 @@ Indirect Variable Access 被我视为是迂腐的。
 
 ## Indirect Variable Access
 
+注意，对于 smalltalk 来说，
+direct 与 indirect 之分，
+是就一个 class 自身的 scope 而言的，
+此时有 `x` 和 `self x` 是有区别的，
+前者是 instance variable，
+后者是 self message passing。
+
+而我所倾向于的 direct 风格，
+是让其他 class 也能读写这个 class 的 instance variables。
+
 <question>
-  TODO
+  How do you get and set an instance variable's value?
 
   <answer>
     Indirect Variable Access
 
-    TODO
+    Access and set its value only through
+    a Getting Method and a Setting Method.
   </answer>
 </question>
 
