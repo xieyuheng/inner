@@ -169,12 +169,14 @@ Timer>>count
 ## Default Value Method
 
 <question>
-  TODO
+  How do you represent the default value of a variable?
 
   <answer>
     Default Value Method
 
-    TODO
+    Create a method that returns the value.
+    Prepend "default" to the name of the variable
+    as the name of the method.
   </answer>
 </question>
 
