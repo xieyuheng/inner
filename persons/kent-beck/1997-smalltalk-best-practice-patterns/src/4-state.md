@@ -182,15 +182,59 @@ Timer>>count
 
 ## Constant Method
 
+> I would rather limit the visibility of constants to a single
+> class. Then, that class can provide meaningful behavior to other
+> objects.
+
 <question>
-  TODO
+  How do you code a constant?
 
   <answer>
     Constant Method
 
-    TODO
+    Create a method that returns the constant.
   </answer>
 </question>
+
+```smalltalk
+ListPane>>singleSelect
+  self selectionPolicy: 15
+
+"If other methods also needed to know that 15 was the magic constant
+for single selection, we create a method for it—a method that just
+returns 15."
+
+ListPane>>singleSelectPolicy
+  ^15
+ListPane>>singleSelect
+  self selectionPolicy: self singleSelectPolicy
+
+
+SelectorFigure>>textColor
+  ^Color darkGray
+ExpressionFigure>>textColor
+  ^Color chartreuse
+```
+
+```scheme
+(define (single-select (self list-pane))
+  (self :selection-policy 15))
+
+;; If other methods also needed to know that 15 was the magic constant
+;; for single selection, we create a method for it—a method that just
+;; returns 15.
+
+(define (single-select (self list-pane))
+  (self :selection-policy (single-select-policy self)))
+(define (single-select-policy (self list-pane))
+  15)
+
+
+(define (text-color (self selector-figure))
+  color-dark-gray)
+(define (text-color (self expression-figure))
+  color-chartreuse)
+```
 
 ## Direct Variable Access
 

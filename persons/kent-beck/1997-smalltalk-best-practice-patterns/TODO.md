@@ -1,5 +1,3 @@
-4-state -- INSTANCE VARIABLES -- Constant Method
-
 4-state -- INSTANCE VARIABLES -- Direct Variable Access
 4-state -- INSTANCE VARIABLES -- Indirect Variable Access
 
