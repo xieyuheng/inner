@@ -143,14 +143,28 @@ Kent 在此批判某些 lisper 用 assositive list 作为 object 的行为。
 ## Lazy Initialization
 
 <question>
-  TODO
+  How do you initialize an instance variable to its default value?
 
   <answer>
     Lazy Initialization
 
-    TODO
+    Write a Getting Method for the variable.
+    Initialize it if necessary with a Default Value Method.
   </answer>
 </question>
+
+```smalltalk
+Timer>>count
+  count isNil ifTrue: [count := self defaultCount].
+  ^count
+```
+
+```scheme
+(define (count (self timer))
+  (if (nil? (self :count))
+    (set! self :count (self :default-count)))
+  (self :count))
+```
 
 ## Default Value Method
 
