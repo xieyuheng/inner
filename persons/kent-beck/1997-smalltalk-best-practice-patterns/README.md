@@ -20,3 +20,19 @@ year: 1997
 
 - 也许可以尝试一下 squeak，感觉跑起来还挺简单的。
 - 也许我可以用想像中的 lisp 来写这本书里代码的例子。
+
+# Method Protocol
+
+Smalltalk 有 method protocol 的概念，
+其实在动态类型语言中，就是简单地给 method 分组。
+
+> Put Default Value Methods in a method protocol called “private.”
+
+但是作为学习这本书的方法，
+也许可以总结一下书中所提到的所有 method protocols，
+以及每个 method protocol 中的函数有什么。
+
+其实在长期写代码的过程中，
+每个人都会形成自己的 method protocol，
+Smalltalk 明显地把它作为一个语言中的概念，
+还是很不错的。
