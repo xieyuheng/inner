@@ -1,4 +1,3 @@
-4-state -- INSTANCE VARIABLES -- Direct Variable Access
 4-state -- INSTANCE VARIABLES -- Indirect Variable Access
 
 4-state -- INSTANCE VARIABLES -- Getting Method

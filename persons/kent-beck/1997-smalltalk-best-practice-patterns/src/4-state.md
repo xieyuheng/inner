@@ -238,13 +238,25 @@ ExpressionFigure>>textColor
 
 ## Direct Variable Access
 
+> Accessing state is a topic much like initialization. There are two
+> good answers. One is more readable. One is more flexible. Also like
+> initialization, you will find dogmatic adherents of both approaches.
+
+我几乎只用 Direct Variable Access 这种风格，
+Indirect Variable Access 被我视为是迂腐的。
+
+只有当有非平凡的行为的时候，
+才需要 explicit getter and setter， 
+并且必须是 explicit，所以 JS 那种定义 getter 和 setter 的语法， 
+在我看来也是不可取的。
+
 <question>
-  TODO
+  How do you get and set an instance variable's value?
 
   <answer>
     Direct Variable Access
 
-    TODO
+    Access and set the variable directly.
   </answer>
 </question>
 
