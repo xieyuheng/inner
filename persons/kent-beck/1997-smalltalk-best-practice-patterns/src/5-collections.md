@@ -58,9 +58,11 @@ Document>>typesetOn: aPrinter
   self paragraphs do: [:each | each typesetOn: aPrinter]
 ```
 
+`ordered-collection` 在 lisp 的语境下就是 `list`。
+
 ```scheme
 (define-class document ()
-  paragraphs (ordered-collection paragraph))
+  paragraphs (list paragraph))
 
 (define (add-paragraph (self document) (a-paragraph paragraph))
   (cons (self :paragraphs) a-paragraph))
@@ -73,13 +75,19 @@ Document>>typesetOn: aPrinter
 
 ## RunArray
 
+这是我第一次见这种数据结构。
+这应该是受压缩算法启发的一个 collection class。
+
+- RunArray 可以被实现为和 OrderedCollection 有完全相同接口的 class。
+
 <question>
-  TODO
+  How do you compactly code an OrderedCollection or Array
+  where you have the same element many times in a row?
 
   <answer>
     RunArray
 
-    TODO
+    Use a RunArray to compress long runs of the same element.
   </answer>
 </question>
 
