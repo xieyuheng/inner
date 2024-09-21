@@ -1,5 +1,3 @@
-4-state -- INSTANCE VARIABLES -- Role Suggesting Instance Variable Name
-
 4-state -- TEMPORARY VARIABLES -- Temporary Variable
 4-state -- TEMPORARY VARIABLES -- Collecting Temporary Variable
 4-state -- TEMPORARY VARIABLES -- Caching Temporary Variable

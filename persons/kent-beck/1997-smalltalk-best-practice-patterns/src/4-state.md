@@ -494,26 +494,77 @@ Department>>employeesDo: aBlock
 </question>
 
 ```smalltalk
-beVisible/beInvisible/toggleVisible
-beDirty/beClean
+beVisible / beInvisible / toggleVisible
+beDirty / beClean
 ```
 
 ```scheme
-be-visible/be-invisible/toggle-visible
-be-dirty/be-clean
+be-visible / be-invisible / toggle-visible
+be-dirty / be-clean
 ```
 
 ## Role Suggesting Instance Variable Name
 
+> The two important pieces of information to communicate about any
+> variable are:
+>
+> - What is its purpose?
+> - How is it used?
+
+> Typically, when you read code you have a purpose in mind.  If you
+> understand the role of a variable and it is unrelated to your
+> purpose, you can quickly skim over irrelevant code that uses that
+> variable.  Likewise, if you see a variable that is related to your
+> purpose, you can quickly narrow your reading to relevant code by
+> looking for that variable.
+
+> How a variable is used and the messages it is sent are its "type".
+> Smalltalk doesn't have declared types, but that doesn't mean they
+> aren't important. Understanding the messages sent to a variable
+> tells you what objects can be safely placed as values in that
+> variable. Substitution of objects is the heart of disciplined
+> maintenance and reuse.
+
+这个 pattern 就是我读这本书的主要原因，
+在之前我经常是用 type 来命名 instance variable，
+我怀疑这并不是最好的选择，现在 Kent 的解释让我更明白了这一点。
+
+> Different variables appear in different contexts, so what you need
+> to communicate with their names is different. The context for
+> instance variables is most similar to the context for temporary
+> variables. The only way you have for communicating the role of an
+> instance variable is through its name. If the variables in Point
+> were called "t1" and "t2" instead of "x" and "y", you'd have a lot
+> of reading to do before you could tell which was the horizontal
+> component and which the vertical. Naming the variables by their
+> roles gives you that information directly.
+
+> On the other hand, the type of an instance variable is easily
+> discovered from the code in which it resides. It is easy to find
+> where the variable is used and from there discover what messages it
+> is sent. You also get hints from Creation Parameter Setting Methods
+> or Setting Methods that set the value of the variable.
+
+在静态类型的语言中，情况更是如此，更没必要在变量名中加上类型信息了。
+用「冠词 + 类型」的方式来命名变量只是在找不到更好的
+role suggesting name 时才需要做的事。
+
 <question>
-  TODO
+  What do you name an instance variable?
 
   <answer>
     Role Suggesting Instance Variable Name
 
-    TODO
+    Name instance variables for the role they play in the computation.
+    Make the name plural if the variable will hold a Collection.
   </answer>
 </question>
+
+之所以有上面关于 "plural" 的建议，
+在于英语有这样的变形，可以用来区分 plural。
+
+比如，如果人们用来编程的是拉丁语，
+就会有更多的变形相关的 convention 了。
 
 # TEMPORARY VARIABLES
 
