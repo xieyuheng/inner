@@ -563,8 +563,14 @@ role suggesting name 时才需要做的事。
 之所以有上面关于 "plural" 的建议，
 在于英语有这样的变形，可以用来区分 plural。
 
-比如，如果人们用来编程的是拉丁语，
-就会有更多的变形相关的 convention 了。
+比如：
+
+- 如果人们用来编程的是拉丁语，
+  就会有更多的变形相关的 convention 了。
+
+- 假如人们编程用的是 Esperanto，
+  使用冠词可能就更自然了，
+  因为 Esperanto 没有不定冠词（不用不定冠词也能形成泛指），只有定冠词 la，可用于所有的性、数、格。
 
 # TEMPORARY VARIABLES
 
