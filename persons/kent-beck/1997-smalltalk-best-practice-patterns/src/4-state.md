@@ -292,7 +292,7 @@ direct 与 indirect 之分，
   <answer>
     Getting Method
 
-    Provide a method that returns the value of the variable. 
+    Provide a method that returns the value of the variable.
     Give it the same name as the variable.
   </answer>
 </question>
@@ -300,14 +300,42 @@ direct 与 indirect 之分，
 ## Setting Method
 
 <question>
-  TODO
+  How do you change the value of an instance variable?
 
   <answer>
     Setting Method
 
-    TODO
+    Provide a method with the same name as the variable.
+    Have it take a single parameter, the value to be set.
   </answer>
 </question>
+
+如果能 overload arity，
+也许在 generic function 中也可以用这个 pattern。
+
+```smalltalk
+Book>>author
+  ^author
+Book>>title
+  ^title
+
+Book>>author: aString
+  author := aString
+Book>>title: aString
+  title := aString
+```
+
+```scheme
+(define (author (self book))
+  (self :author))
+(define (title (self book))
+  (self :title))
+
+(define (author (self book) (a-string string))
+  (set! self :author a-string))
+(define (title (self book) (a-string string))
+  (set! self :title a-string))
+```
 
 ## Collection Accessor Method
 

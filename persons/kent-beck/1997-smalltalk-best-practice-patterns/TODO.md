@@ -1,4 +1,4 @@
-4-state -- INSTANCE VARIABLES -- Setting Method
+rename `set!` to `assign!`
 
 4-state -- INSTANCE VARIABLES -- Collection Accessor Method
 
