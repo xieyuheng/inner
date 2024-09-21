@@ -720,12 +720,15 @@ LinearHashTable>>findKeyIndex: element for: client
 ## Reusing Temporary Variable
 
 <question>
-  TODO
+  How do you use an expression several places in a method
+  when its value may change?
 
   <answer>
     Reusing Temporary Variable
 
-    TODO
+    Execute the expression once and set a temporary variable.
+    Use the variable instead of the expression
+    in the remainder of the method.
   </answer>
 </question>
 
