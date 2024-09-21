@@ -719,6 +719,8 @@ LinearHashTable>>findKeyIndex: element for: client
 
 ## Reusing Temporary Variable
 
+JS 的 `Date.now()` 就是最典型的例子。
+
 <question>
   How do you use an expression several places in a method
   when its value may change?
@@ -734,12 +736,26 @@ LinearHashTable>>findKeyIndex: element for: client
 
 ## Role Suggesting Temporary Variable Name
 
+> There are two important dimensions to communicate about a variable.
+> The first is its type. Readers wishing to modify code need to know
+> what responsibilities are assumed for an object occupying a
+> variable.  The second important dimension is role, that is, how the
+> object is used in the computation.  Understanding the role is
+> important to understanding the method in which the variable is used.
+> Different kinds of variables require different naming treatments to
+> communicate type and role.
+
+重复了前面关于 Role Suggesting Instance Variable Name 的讨论。
+
 <question>
-  TODO
+  What do you call a temporary variable?
 
   <answer>
     Role Suggesting Temporary Variable Name
 
-    TODO
+    Name a temporary variable for the role it plays in the computation.
+
+    Use variable naming as an opportunity to communicate
+    valuable tactical information to future readers.
   </answer>
 </question>

@@ -1,5 +1,3 @@
-4-state -- TEMPORARY VARIABLES -- Role Suggesting Temporary Variable Name
-
 5-collections -- CLASSES -- Collection
 5-collections -- CLASSES -- OrderedCollection
 5-collections -- CLASSES -- RunArray
