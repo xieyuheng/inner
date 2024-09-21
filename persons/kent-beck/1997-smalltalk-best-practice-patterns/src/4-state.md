@@ -287,12 +287,13 @@ direct 与 indirect 之分，
 ## Getting Method
 
 <question>
-  TODO
+  How do you provide access to an instance variable?
 
   <answer>
     Getting Method
 
-    TODO
+    Provide a method that returns the value of the variable. 
+    Give it the same name as the variable.
   </answer>
 </question>
 

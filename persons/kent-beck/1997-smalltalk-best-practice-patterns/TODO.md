@@ -1,4 +1,3 @@
-4-state -- INSTANCE VARIABLES -- Getting Method
 4-state -- INSTANCE VARIABLES -- Setting Method
 
 4-state -- INSTANCE VARIABLES -- Collection Accessor Method
