@@ -138,7 +138,7 @@ Point>>setX: xNumber y: yNumber
 (define a-point (create point :x x :y y))
 
 (define (set-x! (a-point point) (x number))
-  (set! a-point :x x))
+  (assign! a-point :x x))
 
 (set-x! a-point x)
 ```
@@ -271,10 +271,10 @@ isEmpty
 
 ```scheme
 (define (make-on (a-switch switch))
-  (set! a-switch :status 'on))
+  (assign! a-switch :status 'on))
 
 (define (make-off (a-switch switch))
-  (set! a-switch :status 'off))
+  (assign! a-switch :status 'off))
 
 (define (update (a-wall-plate wall-plate))
   (match (a-wall-plate :switch :status)
@@ -1048,7 +1048,7 @@ SubFigure>>initialize
 
 (define (create-sub-figure)
   (let ((a-figure (create-super-figure)))
-    (set! a-figure :color color-beige)))
+    (assign! a-figure :color color-beige)))
 ```
 
 ## Delegation

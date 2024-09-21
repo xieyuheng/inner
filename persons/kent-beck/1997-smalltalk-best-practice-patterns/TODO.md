@@ -1,5 +1,3 @@
-rename `set!` to `assign!`
-
 4-state -- INSTANCE VARIABLES -- Collection Accessor Method
 
 4-state -- INSTANCE VARIABLES -- Enumeration Method

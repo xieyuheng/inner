@@ -162,7 +162,7 @@ Timer>>count
 ```scheme
 (define (count (self timer))
   (if (nil? (self :count))
-    (set! self :count (self :default-count)))
+    (assign! self :count (self :default-count)))
   (self :count))
 ```
 
@@ -332,9 +332,9 @@ Book>>title: aString
   (self :title))
 
 (define (author (self book) (a-string string))
-  (set! self :author a-string))
+  (assign! self :author a-string))
 (define (title (self book) (a-string string))
-  (set! self :title a-string))
+  (assign! self :title a-string))
 ```
 
 ## Collection Accessor Method
