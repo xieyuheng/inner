@@ -570,9 +570,17 @@ role suggesting name 时才需要做的事。
 
 - 假如人们编程用的是 Esperanto，
   使用冠词可能就更自然了，
-  因为 Esperanto 没有不定冠词（不用不定冠词也能形成泛指），只有定冠词 la，可用于所有的性、数、格。
+  因为 Esperanto 没有不定冠词（不用不定冠词也能形成泛指），
+  只有定冠词 la，可用于所有的性、数、格。
 
 # TEMPORARY VARIABLES
+
+> Temporary variables let you store and reuse the value of
+> expressions.  They can be used to improve the performance or
+> readability of methods.  The following patterns motivate and guide
+> the use of temporary variables. The examples are taken from
+> Smalltalk, but the discussion applies to any language with
+> procedure-scoped variables.
 
 看这里给 temporary variable 分类的架势，
 让人想到了亚里士多德给 be 分类，
@@ -582,14 +590,49 @@ role suggesting name 时才需要做的事。
 ## Temporary Variable
 
 <question>
-  TODO
+  How do you save the value of an expression
+  for later use within a method?
 
   <answer>
     Temporary Variable
 
-    TODO
+    Create a variable whose scope and extent is a single method.
+    Declare it just below the method selector.
+    Assign it as soon as the expression is valid.
   </answer>
 </question>
+
+Temporary variables are good at helping you understand a computation
+that is halfway towards its goal. Thus, you can more easily read:
+
+```smalltalk
+Rectangle>>bottomRight
+  | right bottom |
+  right := self left + self width.
+  bottom := self top + self height.
+  ^right @ bottom
+```
+
+```scheme
+(define (bottom-right (self rectangle))
+  (let ((right (add (self :left) (self :width)))
+        (bottom (add (self :top) (self :height))))
+    (create point :x right :y bottom)))
+```
+
+than you can:
+
+```smalltalk
+Rectangle>>bottomRight
+  ^self left + self width @ (self top + self height)
+```
+
+```scheme
+(define (bottom-right (self rectangle))
+  (create point
+    :x (right (add (self :left) (self :width)))
+    :y (bottom (add (self :top) (self :height)))))
+```
 
 ## Collecting Temporary Variable
 
