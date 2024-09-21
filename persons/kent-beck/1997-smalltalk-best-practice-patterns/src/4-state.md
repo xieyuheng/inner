@@ -651,14 +651,35 @@ Rectangle>>bottomRight
 ## Caching Temporary Variable
 
 <question>
-  TODO
+  How do you improve the performance of a method?
 
   <answer>
     Caching Temporary Variable
 
-    TODO
+    Set a temporary variable to the value of the expression
+    as soon as it is valid. Use the variable instead of the expression
+    in the remainder of the method.
   </answer>
 </question>
+
+```smalltalk
+self children do: [:each | ...self bounds...]
+
+| bounds |
+bounds := self bounds.
+self children do: [:each | ...bounds...]
+```
+
+```scheme
+(foreach (self :children)
+  (lambda (child)
+    ... (compute-bounds self) ...))
+
+(let ((bounds (compute-bounds self)))
+ (foreach (self :children)
+   (lambda (child)
+     ... bounds ...)))
+```
 
 ## Explaining Temporary Variable
 
