@@ -683,15 +683,39 @@ self children do: [:each | ...bounds...]
 
 ## Explaining Temporary Variable
 
+> In the passion of the moment, you can write expressions within
+> methods that are quite complex.  ...  Coming back to such a method
+> in six months is quite a different experience.
+
+这里的意思是说，即便不是为了效率而 extract a variable，
+也可以为了 explaining 而 extract a variable。
+
 <question>
-  TODO
+  How do you simplify a complex expression within a method?
 
   <answer>
     Explaining Temporary Variable
 
-    TODO
+    Take a subexpression out of the complex expression.
+    Assign its value to a temporary variable
+    before the complex expression.
+    Use the variable instead in the complex expression.
   </answer>
 </question>
+
+
+```smalltalk
+LinearHashTable>>findKeyIndex: element for: client
+  | index indexedObject lastIndex |
+  lastIndex := self size.
+  ...
+```
+
+```scheme
+(define (find-key-index-for (self linear-hash-table) ...)
+  (let ((last-index (sub1 (self :size))))
+    ...))
+```
 
 ## Reusing Temporary Variable
 

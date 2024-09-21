@@ -1,4 +1,3 @@
-4-state -- TEMPORARY VARIABLES -- Explaining Temporary Variable
 4-state -- TEMPORARY VARIABLES -- Reusing Temporary Variable
 4-state -- TEMPORARY VARIABLES -- Role Suggesting Temporary Variable Name
 
