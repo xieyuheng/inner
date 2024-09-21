@@ -1,4 +1,3 @@
-5-collections -- CLASSES -- Collection
 5-collections -- CLASSES -- OrderedCollection
 5-collections -- CLASSES -- RunArray
 5-collections -- CLASSES -- Set
