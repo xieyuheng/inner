@@ -1,5 +1,3 @@
-4-state -- INSTANCE VARIABLES -- Boolean Property Setting Method
-
 4-state -- INSTANCE VARIABLES -- Role Suggesting Instance Variable Name
 
 4-state -- TEMPORARY VARIABLES -- Temporary Variable

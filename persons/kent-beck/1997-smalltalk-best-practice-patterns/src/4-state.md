@@ -474,21 +474,34 @@ Department>>employeesDo: aBlock
 ```
 
 ```scheme
-(define (foreach-employees (self department) (f (-> employee any)))
+(define (foreach-employee (self department) (f (-> employee any)))
   (foreach employees f))
 ```
 
 ## Boolean Property Setting Method
 
 <question>
-  TODO
+   How do you set a boolean property?
 
   <answer>
     Boolean Property Setting Method
 
-    TODO
+    Create two methods beginning with "be".
+    One has property name, the other the negation.
+    Add "toggle" if the client doesn't
+    want to know about the current state.
   </answer>
 </question>
+
+```smalltalk
+beVisible/beInvisible/toggleVisible
+beDirty/beClean
+```
+
+```scheme
+be-visible/be-invisible/toggle-visible
+be-dirty/be-clean
+```
 
 ## Role Suggesting Instance Variable Name
 
