@@ -94,14 +94,48 @@ Document>>typesetOn: aPrinter
 ## Set
 
 <question>
-  TODO
+  How do you code a Collection whose elements are unique?
 
   <answer>
     Set
 
-    TODO
+    Use a Set.
   </answer>
 </question>
+
+```smalltalk
+owners
+  | results |
+  results := OrderedCollection new.
+  self accounts do:
+    [:each || owner |
+    owner := each owner.
+    (results includes: owner) ifFalse: [results add: owner]].
+  ^results
+
+owners
+  | results |
+  results := Set new.
+  self accounts do: [:each | results add: each owner].
+  ^results
+```
+
+```scheme
+(define (owners (self app))
+  (let ((results (create list)))
+    (foreach (self :accounts)
+      (lambda (an-account)
+        (let ((an-owner (an-account :owner)))
+          (if (not (includes? results an-owner))
+            (list-push! results an-owner))))
+    results)))
+
+(define (owners (self app))
+  (let ((results (create set)))
+    (foreach (self :accounts)
+       (lambda (an-account) (set-add! results an-owner)))
+  results))
+```
 
 ## Equality Method
 
