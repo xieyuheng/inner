@@ -1,4 +1,3 @@
-4-state -- INSTANCE VARIABLES -- Enumeration Method
 4-state -- INSTANCE VARIABLES -- Boolean Property Setting Method
 
 4-state -- INSTANCE VARIABLES -- Role Suggesting Instance Variable Name

@@ -457,14 +457,26 @@ includesEmployee: anEmployee
 ## Enumeration Method
 
 <question>
-  TODO
+   How do you provide safe, general access to collection elements?
 
   <answer>
     Enumeration Method
 
-    TODO
+    Implement a method that executes a Block for each element of
+    the collection. Name the method by concatenating the name of
+    the collection and "Do:".
   </answer>
 </question>
+
+```smalltalk
+Department>>employeesDo: aBlock
+  employees do: aBlock
+```
+
+```scheme
+(define (foreach-employees (self department) (f (-> employee any)))
+  (foreach employees f))
+```
 
 ## Boolean Property Setting Method
 
