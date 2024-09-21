@@ -1,5 +1,3 @@
-4-state -- INSTANCE VARIABLES -- Collection Accessor Method
-
 4-state -- INSTANCE VARIABLES -- Enumeration Method
 4-state -- INSTANCE VARIABLES -- Boolean Property Setting Method
 

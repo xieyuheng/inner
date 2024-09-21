@@ -335,19 +335,124 @@ Book>>title: aString
   (assign! self :author a-string))
 (define (title (self book) (a-string string))
   (assign! self :title a-string))
+
+
+(define a-book
+  (create book
+    :author "Xie Yuheng"
+    :title "Cicada Monologues"))
+
+(author a-book)
+(author a-book "xyh")
+
+(a-book :author)
+(assign! a-book :author "xyh")
 ```
 
 ## Collection Accessor Method
 
 <question>
-  TODO
+  How do you provide access to an instance variable
+  that holds a collection?
 
   <answer>
     Collection Accessor Method
 
-    TODO
+    Provide methods that are implemented with
+    Delegation to the collection.
+    To name the methods, add the name of the collection
+    to the collection messages.
   </answer>
 </question>
+
+```smalltalk
+Department
+  superclass: Object
+  instance variables: employees totalSalary
+
+totalSalary
+  totalSalary isNil ifTrue: [totalSalary := self computeTotalSalary].
+  ^totalSalary
+
+computeTotalSalary
+  ^employees
+    inject: 0
+    into: [:sum :each | sum + each salary]
+
+clearTotalSalary
+  totalSalary := nil
+
+
+...aDepartment employees remove: anEmployee...
+
+
+addEmployee: anEmployee
+  self clearTotalSalary.
+  employees add: anEmployee
+
+removeEmployee: anEmployee
+  self clearTotalSalary.
+  employees remove: anEmployee
+```
+
+```scheme
+(define-class department ()
+  :employees (list employee)
+  :total-salary (union number nil))
+
+(define (total-salary (self department))
+  (if (nil? (self :total-salary))
+    (assign! self :total-salary
+      (compute-total-salary self)))
+  (self :total-salary))
+
+(define (compute-total-salary (self department))
+  (reduce
+    (lambda (sum an-employee) (add sum (an-employee :salary)))
+    0
+    (self :employees)))
+
+(define (clear-total-salary (self department))
+  (assign! self :total-salary nil))
+
+...
+(remove (a-department :employees) an-employee)
+...
+
+(define (add-employee (self department) (an-employee employee))
+  (clear-total-salary self)
+  (cons (self :employees) an-employee))
+
+(define (remove-employee (self department) (an-employee employee))
+  (clear-total-salary self)
+  (remove (self :employees) an-employee))
+```
+
+> Don't just blindly name a Collection Accessor Method after the
+> collection message it delegates. See if you can find a word from the
+> domain that makes more sense. For example, I prefer:
+
+```smalltalk
+employs: anEmployee
+  ^employees includes: anEmployee
+```
+
+```scheme
+(define (employs? (self department) (an-employee employee))
+  (includes? (self :employees) an-employee))
+```
+
+to:
+
+```smalltalk
+includesEmployee: anEmployee
+  ^employees includes: anEmployee
+```
+
+```scheme
+(define (includes-employee? (self department) (an-employee employee))
+  (includes? (self :employees) an-employee))
+```
 
 ## Enumeration Method
 
