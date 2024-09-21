@@ -1,4 +1,3 @@
-4-state -- TEMPORARY VARIABLES -- Collecting Temporary Variable
 4-state -- TEMPORARY VARIABLES -- Caching Temporary Variable
 4-state -- TEMPORARY VARIABLES -- Explaining Temporary Variable
 4-state -- TEMPORARY VARIABLES -- Reusing Temporary Variable

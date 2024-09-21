@@ -637,12 +637,14 @@ Rectangle>>bottomRight
 ## Collecting Temporary Variable
 
 <question>
-  TODO
+  How do you gradually collect values
+  to be used later in a method?
 
   <answer>
     Collecting Temporary Variable
 
-    TODO
+    When you need to collect or merge objects over a complex enumeration,
+    use a temporary variable to hold the collection or merged value.
   </answer>
 </question>
 
