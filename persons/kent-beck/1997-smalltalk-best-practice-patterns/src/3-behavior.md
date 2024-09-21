@@ -137,10 +137,10 @@ Point>>setX: xNumber y: yNumber
 ```scheme
 (define a-point (create point :x x :y y))
 
-(define (set-x! (a-point point) (x number))
+(define (assign-x! (a-point point) (x number))
   (assign! a-point :x x))
 
-(set-x! a-point x)
+(assign-x! a-point x)
 ```
 
 ## Shortcut Constructor Method
