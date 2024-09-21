@@ -36,14 +36,40 @@ title: 5. Collections
 ## OrderedCollection
 
 <question>
-  TODO
+  How do you code Collections whose size can’t be
+  determined when they are created?
 
   <answer>
     OrderedCollection
 
-    TODO
+    Use an OrderedCollection as your default dynamically sized Collection.
   </answer>
 </question>
+
+```smalltalk
+Class: Document
+  superclass: Object
+  instance variables: paragraphs
+
+Document>>addParagraph: aParagraph
+  self paragraphs add: aParagraph
+
+Document>>typesetOn: aPrinter
+  self paragraphs do: [:each | each typesetOn: aPrinter]
+```
+
+```scheme
+(define-class document ()
+  paragraphs (ordered-collection paragraph))
+
+(define (add-paragraph (self document) (a-paragraph paragraph))
+  (cons (self :paragraphs) a-paragraph))
+
+(define (typeset-on (self document) (a-printer printer))
+  (foreach (self :paragraphs)
+    (lambda (a-paragraph)
+      (typeset-on a-paragraph a-printer))))
+```
 
 ## RunArray
 
