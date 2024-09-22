@@ -23,7 +23,6 @@
 5-collections -- COLLECTION IDIOMS -- Parsing Stream
 5-collections -- COLLECTION IDIOMS -- Concatenating Stream
 
-6-classes -- Simple Superclass Name
 6-classes -- Qualified Subclass Name
 
 7-formatting -- Inline Message Pattern

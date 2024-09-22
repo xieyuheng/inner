@@ -529,6 +529,12 @@ be-dirty / be-clean
 在之前我经常是用 type 来命名 instance variable，
 我怀疑这并不是最好的选择，现在 Kent 的解释让我更明白了这一点。
 
+- 我也想到了这两种区分，但是我没能像 Kent 一样，
+  把我的思考总结成一个 pattern，并且给它一个好名字。
+  在之后学习和工作中，我要努力学习 Kent 捕捉 pattern 的知识论。
+
+  - 可以称 pattern 为一个知识论/认识论（Epistemology）吗？
+
 > Different variables appear in different contexts, so what you need
 > to communicate with their names is different. The context for
 > instance variables is most similar to the context for temporary
