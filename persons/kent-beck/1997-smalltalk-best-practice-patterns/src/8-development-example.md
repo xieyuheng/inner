@@ -14,12 +14,18 @@ title: 8. Development Example
 
 # PROBLEM
 
-TODO
+> The problem we will solve is representing
+> multi-currency monetary values.
+
+解决方案不涉及到汇率之类的问题，
+只是把所有类型的钱放在一起。
 
 下面我只记录两种风格的代码 -- 可以看作是一个习题，
 让读者（之后的我）重新发现代码用到了哪些 pattern。
 
 # START
+
+
 # ARITHMETIC
 # INTEGRATION
 # SUMMARY
