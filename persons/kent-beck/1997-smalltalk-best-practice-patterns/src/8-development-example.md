@@ -193,7 +193,84 @@ m1 + m2 "5 USD + 7 GBP"
 
 # INTEGRATION
 
+```smalltalk
+Money>> + aMoney
+  ^aMoney addMoney: self
 
+Money>>addMoney: aMoney
+  ^currency = aMoney currency
+    ifTrue:
+      [self species
+        amount: amount + aMoney amount
+        currency: currency]
+    ifFalse:
+      [MoneySum monies: (Array
+        with: self
+        with: aMoney)]
+
+MoneySum>> + aMoney
+  ^aMoney addMoneySum: self
+
+MoneySum>>addMoney: aMoney
+  ^self species monies: (monies copyWith: aMoney)
+
+| m1 m2 |
+m1 := Money
+        amount: 5
+        currency: #USD.
+m2 := Money
+        amount: 7
+        currency: #GBP.
+m1 + (m2 + m1) "5 USD + 7 GBP + 5 USD"
+```
+
+generic function 的优势一下就体现出来了，
+看来不实现 generic function 是不行了。
+
+```scheme
+(define (add (x money-sum) (y money))
+  (create money-sum
+    :monies (cons (x :monies) y)))
+
+(let ((m1 (create money :amount 5 :currency 'USD))
+      (m2 (create money :amount 7 :currency 'USD)))
+  (add m1 (add m1 m2))) ;; 5 USD + 7 GBP + 5 USD
+```
+
+```smalltalk
+Money>> addMoneySum: aMoneySum
+  ^aMoneySum addMoney: self
+
+MoneySum>>addMoneySum: aMoneySum
+  ^MoneySum monies: monies , aMoneySum monies
+
+| m1 m2 |
+m1 := Money
+        amount: 5
+        currency: #USD.
+m2 := Money
+        amount: 7
+        currency: #GBP.
+(m1 + m2) + (m1 + m2) "7 GBP + 5 USD + 7 GBP + 5 USD"
+```
+
+```scheme
+(define (add (x money) (y money-sum)) (add y x))
+
+(define (add (x money-sum) (y money-sum))
+  (create money-sum
+    :monies (append (x :monies) (y :monies))))
+
+(let ((m1 (create money :amount 5 :currency 'USD))
+      (m2 (create money :amount 7 :currency 'USD)))
+  (add (add m1 m2) (add m1 m2))) ;; 7 GBP + 5 USD + 7 GBP + 5 USD
+```
+
+作为最终例子，感觉 Kent 的这个 money 差点意思。
+
+相比之下，
+Sussman 和他的学生们，
+直接 lisp/scheme 例子来写论文更为有趣。
 
 # SUMMARY
 

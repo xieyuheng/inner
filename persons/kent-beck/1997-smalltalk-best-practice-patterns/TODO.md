@@ -1,5 +1,3 @@
-8-development-example -- INTEGRATION
-
 5-collections -- CLASSES -- Dictionary
 5-collections -- CLASSES -- SortedCollection
 5-collections -- CLASSES -- Array
