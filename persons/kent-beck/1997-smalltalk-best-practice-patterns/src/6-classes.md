@@ -89,12 +89,52 @@ title: 6. Classes
 
 # Qualified Subclass Name
 
+如果我们把 class 限制在纯粹抽象的 interface，
+那么 qualified subclass 的命名规则就是合理的了，
+比如在命名数学结构的时候就是如此。
+
+- 有了 group、ring、field 等基础 superclass 名字之后，
+  其他而 subclass 都是用 qualified 的方式命名的。
+
+> The two pieces of information you need to communicate are:
+>
+> - how the new class is the same; and
+>
+> - how the new class is different.
+>
+> You can communicate how the new class is the same by naming [after]
+> some superclass. It need not be the immediate superclass, if some
+> distant ancestor communicates more clearly.
+>
+> You can communicate how the new class is different by finding a word
+> that accurately highlights the reason the new class isn’t just the
+> superclass.
+
 <question>
-  TODO
+  What do you name a new subclass?
 
   <answer>
     Qualified Subclass Name
 
-    TODO
+    Name subclasses in your hierarchies by prepending
+    an adjective to the superclass name.
   </answer>
 </question>
+
+不需要遵循这个规则的例子：
+
+- Array <: Collection
+- Number <: Magnitude
+- String <: Collection
+
+遵循这个规则的例子：
+
+- OrderedCollection <: Collection
+- SortedCollection <: OrderedCollection <: Collection
+  - The choice to subclass OrderedCollection
+    is strictly for implementation reasons,
+    not because the two collections play similar roles.
+- LargeInteger is an Integer that takes many bits to represent.
+  - 是否有子类型意义上的 LargeInteger <: Integer？
+    就子类型替换原则而言，应该有 Integer <: LargeInteger，
+    但是命名上反过来了。

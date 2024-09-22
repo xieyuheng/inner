@@ -23,8 +23,6 @@
 5-collections -- COLLECTION IDIOMS -- Parsing Stream
 5-collections -- COLLECTION IDIOMS -- Concatenating Stream
 
-6-classes -- Qualified Subclass Name
-
 7-formatting -- Inline Message Pattern
 7-formatting -- Type Suggesting Parameter Name
 7-formatting -- Indented Control Flow
