@@ -202,15 +202,40 @@ Library>>hasAuthor: authorString title: titleString
 
 ## Hashing Method
 
+这里提到想要放入 set 的元素，需要实现 hash。
+
+- 其实也可以有结构化的自动实现。
+- 就算没有 hash 也可以实现 set，只不过效率更低。
+
 <question>
-  TODO
+  How do you ensure that new objects
+  work correctly with hashed Collections?
 
   <answer>
     Hashing Method
 
-    TODO
+    If you override "=" and use the object with a hashed Collection,
+    override "hash" so that two objects that are equal
+    return the same hash value.
   </answer>
 </question>
+
+其实下面的实现并不能保证 hash 的唯一性，
+真的想要结构化的唯一性其实是很难的。
+
+- 哥德尔配数法就是一个例子，
+  但是所得到的数可能太大了而不实用。
+
+```smalltalk
+Book>>hash
+  ^self title hash bitXor: self author hash
+```
+
+```scheme
+(define (hash (self book))
+  (bit-xor (hash (self :title))
+           (hash (self :author))))
+```
 
 ## Dictionary
 
