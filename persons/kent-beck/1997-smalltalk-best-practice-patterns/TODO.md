@@ -1,4 +1,3 @@
-5-collections -- CLASSES -- Equality Method
 5-collections -- CLASSES -- Hashing Method
 5-collections -- CLASSES -- Dictionary
 5-collections -- CLASSES -- SortedCollection

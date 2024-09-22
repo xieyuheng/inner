@@ -139,15 +139,66 @@ owners
 
 ## Equality Method
 
+如果能限制 value 都为 record + array，
+就可以用结构化的 equal? 来统一处理所有 class 的等价问题。
+
+- 但是也许不能这么做，因为 object 中可能带有函数；
+  但是也许可以，因为函数也有 normalization 意义上的等价。
+
 <question>
-  TODO
+  How do you code equality for new objects?
 
   <answer>
     Equality Method
 
-    TODO
+    If you will be putting objects in a Set, using them as Dictionary keys,
+    define a method called "=". Protect the implementation of "=" so
+    only objects of compatible classes will be fully tested for equality.
+    or otherwise using them with other objects that define equality,
   </answer>
 </question>
+
+```smalltalk
+Point>>= aPoint
+  (aPoint isMemberOf: self class) ifFalse: [^false].
+  ^x = aPoint x & (y = aPoint y)
+
+
+Book>>= aBook
+  (aBook isMemberOf: self class) ifFalse: [^false].
+  ^self author = aBook author & (self title = aBook title)
+
+Library>>hasAuthor: authorString title: titleString
+  | book |
+  book := Book
+    author: authorString
+    title: titleString.
+  ^self books includes: book
+```
+
+如果对 A 和 B 定义了 equal?，
+看来对 A B 的 union 也定义 equal?，
+如何表达这种结构化的扩张呢？
+
+- 在 generic function 的机制下，
+  是可以用增加 handler 的方式来实现的。
+
+```scheme
+(define (equal? (x any) (y any)) (eq? x y))
+
+(define (equal? (p point) (q point))
+  (and (equal? (p :x) (q :x))
+       (equal? (p :y) (q :y))))
+
+
+(define (equal? (x book) (y book))
+  (and (equal? (x :title) (y :title))
+       (equal? (x :author) (x :author))))
+
+(define (has-author? (self library) (author string) (title string))
+  (let ((a-book (create book :author author :title title)))
+    (includes? (self :books) a-book)))
+```
 
 ## Hashing Method
 
