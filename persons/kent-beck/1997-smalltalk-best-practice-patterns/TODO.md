@@ -1,3 +1,14 @@
+7-formatting -- Inline Message Pattern
+7-formatting -- Type Suggesting Parameter Name
+7-formatting -- Indented Control Flow
+7-formatting -- Rectangular Block -- 这讨论的也许是 lisp 的刚性 block 问题！
+7-formatting -- Guard Clause
+7-formatting -- Conditional Expression
+7-formatting -- Simple Enumeration Parameter
+7-formatting -- Cascade
+7-formatting -- Yourself
+7-formatting -- Interesting Return Value
+
 5-collections -- CLASSES -- Dictionary
 5-collections -- CLASSES -- SortedCollection
 5-collections -- CLASSES -- Array
@@ -22,14 +33,3 @@
 5-collections -- COLLECTION IDIOMS -- Lookup Cache
 5-collections -- COLLECTION IDIOMS -- Parsing Stream
 5-collections -- COLLECTION IDIOMS -- Concatenating Stream
-
-7-formatting -- Inline Message Pattern
-7-formatting -- Type Suggesting Parameter Name
-7-formatting -- Indented Control Flow
-7-formatting -- Rectangular Block -- 这讨论的也许是 lisp 的刚性 block 问题！
-7-formatting -- Guard Clause
-7-formatting -- Conditional Expression
-7-formatting -- Simple Enumeration Parameter
-7-formatting -- Cascade
-7-formatting -- Yourself
-7-formatting -- Interesting Return Value
