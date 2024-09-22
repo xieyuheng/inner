@@ -68,7 +68,7 @@ Money>>printOn: aStream
 (define (print-on (self money) (a-stream stream))
   (print a-stream (self :amount))
   (space a-stream)
-  (next-put-all (self :currency)))
+  (next-put-all a-stream (self :currency)))
 ```
 
 ```smalltalk
@@ -86,5 +86,110 @@ Money
 ```
 
 # ARITHMETIC
+
+```smalltalk
+Money>>+ aMoney
+  ^self species
+    amount: amount + aMoney amount
+    currency: currency
+
+Money>>amount
+  ^amount
+
+| m1 m2 |
+m1 := Money
+        amount: 5
+        currency: #USD.
+m2 := Money
+        amount: 7
+        currency: #USD.
+m1 + m2 "12 USD"
+```
+
+```scheme
+(define (add (x money) (y money))
+  (create money
+    :amount (add (x :amount) (y :money))
+    :currency (x :currency)))
+
+(let ((m1 (create money :amount 5 :currency 'USD))
+      (m2 (create money :amount 7 :currency 'USD)))
+  (add m1 m2)) ;; 12 USD
+```
+
+```smalltalk
+Class: MoneySum
+  superclass: Object
+  instance variables: monies
+
+MoneySum class>>monies: aCollection
+  ^self new setMonies: aCollection
+
+MoneySum>>setMonies: aCollection
+  monies := aCollection
+```
+
+```scheme
+(define-class money-sum ()
+  :monies (list money))
+
+(create money-sum :money a-collection)
+```
+
+```smalltalk
+MoneySum>>printOn: aStream
+  monies do:
+    [:each |
+    aStream
+      print: each;
+      nextPutAll: ‘ + ‘].
+  aStream skip: -3
+```
+
+```scheme
+(define (print-on (self money-sum) (a-stream stream))
+  (foreach (money-sum :monies)
+    (lambda (a-money)
+      (print a-stream a-money)
+      (next-put-all a-stream " + ")))
+  (skip a-stream -3)
+```
+
+```smalltalk
+Money>>+ aMoney
+  ^currency = aMoney currency
+    ifTrue:
+      [self species
+        amount: amount + aMoney amount
+        currency: currency]
+    ifFalse:
+      [MoneySum monies: (Array
+        with: self
+        with: aMoney)]
+
+Money>>currency
+  ^currency
+
+| m1 m2 |
+m1 := Money
+        amount: 5
+        currency: #USD.
+m2 := Money
+        amount: 7
+        currency: #GBP.
+m1 + m2 "5 USD + 7 GBP"
+```
+
+```scheme
+(define (add (x money) (y money))
+  (if (eq? (x :currency) (y :currency))
+    (create money :amount (x :amount) (y :amount))
+    (create money-sum :monies [x y])))
+
+(let ((m1 (create money :amount 5 :currency 'USD))
+      (m2 (create money :amount 7 :currency 'GBP)))
+  (add m1 m2)) ;; 5 USD + 7 GBP
+```
+
 # INTEGRATION
 # SUMMARY
