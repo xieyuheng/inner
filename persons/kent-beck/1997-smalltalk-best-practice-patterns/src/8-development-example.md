@@ -66,9 +66,9 @@ Money>>printOn: aStream
 
 ```scheme
 (define (print-on (self money) (a-stream stream))
-  (print a-stream (self :amount))
+  (print a-stream (self:amount))
   (space a-stream)
-  (next-put-all a-stream (self :currency)))
+  (next-put-all a-stream (self:currency)))
 ```
 
 ```smalltalk
@@ -109,8 +109,8 @@ m1 + m2 "12 USD"
 ```scheme
 (define (add (x money) (y money))
   (create money
-    :amount (add (x :amount) (y :money))
-    :currency (x :currency)))
+    :amount (add (x:amount) (y:money))
+    :currency (x:currency)))
 
 (let ((m1 (create money :amount 5 :currency 'USD))
       (m2 (create money :amount 7 :currency 'USD)))
@@ -148,7 +148,7 @@ MoneySum>>printOn: aStream
 
 ```scheme
 (define (print-on (self money-sum) (a-stream stream))
-  (foreach (money-sum :monies)
+  (foreach (money-sum:monies)
     (lambda (a-money)
       (print a-stream a-money)
       (next-put-all a-stream " + ")))
@@ -182,8 +182,8 @@ m1 + m2 "5 USD + 7 GBP"
 
 ```scheme
 (define (add (x money) (y money))
-  (if (eq? (x :currency) (y :currency))
-    (create money :amount (x :amount) (y :amount))
+  (if (eq? (x:currency) (y:currency))
+    (create money :amount (x:amount) (y:amount))
     (create money-sum :monies [x y])))
 
 (let ((m1 (create money :amount 5 :currency 'USD))
@@ -230,7 +230,7 @@ generic function 的优势一下就体现出来了，
 ```scheme
 (define (add (x money-sum) (y money))
   (create money-sum
-    :monies (cons (x :monies) y)))
+    :monies (cons (x:monies) y)))
 
 (let ((m1 (create money :amount 5 :currency 'USD))
       (m2 (create money :amount 7 :currency 'USD)))
@@ -259,7 +259,7 @@ m2 := Money
 
 (define (add (x money-sum) (y money-sum))
   (create money-sum
-    :monies (append (x :monies) (y :monies))))
+    :monies (append (x:monies) (y:monies))))
 
 (let ((m1 (create money :amount 5 :currency 'USD))
       (m2 (create money :amount 7 :currency 'USD)))
