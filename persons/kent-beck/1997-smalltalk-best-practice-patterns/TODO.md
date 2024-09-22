@@ -1,3 +1,9 @@
+8-development-example -- PROBLEM
+8-development-example -- START
+8-development-example -- ARITHMETIC
+8-development-example -- INTEGRATION
+8-development-example -- SUMMARY
+
 5-collections -- CLASSES -- Dictionary
 5-collections -- CLASSES -- SortedCollection
 5-collections -- CLASSES -- Array
@@ -33,9 +39,3 @@
 7-formatting -- Cascade
 7-formatting -- Yourself
 7-formatting -- Interesting Return Value
-
-8-development-example -- PROBLEM
-8-development-example -- START
-8-development-example -- ARITHMETIC
-8-development-example -- INTEGRATION
-8-development-example -- SUMMARY

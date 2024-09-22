@@ -134,6 +134,9 @@ Point>>setX: xNumber y: yNumber
   ^self
 ```
 
+smalltalk 在 message 的名字上有些不对称 -- `setX:y:`，
+也许应该是前缀表达式应该写作 `(set-x-y x y)`。
+
 ```scheme
 (define a-point (create point :x x :y y))
 
