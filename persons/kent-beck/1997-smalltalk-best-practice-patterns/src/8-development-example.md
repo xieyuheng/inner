@@ -25,6 +25,65 @@ title: 8. Development Example
 
 # START
 
+```smalltalk
+Class: Money
+  superclass: Object
+  instance variables: amount currency
+```
+
+```scheme
+(define-class money ()
+  :amount number
+  :currency symbol)
+```
+
+```smalltalk
+Money class>>amount: aNumber currency: aSymbol
+  ^self new
+    setAmount: aNumber
+    currency: aSymbol
+
+Money>>setAmount: aNumber currency: aSymbol
+  amount := aNumber.
+  currency := aSymbol
+```
+
+在 cicada-lisp 中可以直接用 `create`。
+
+```scheme
+(create money
+  :amount a-number
+  :currency a-symbol)
+```
+
+```smalltalk
+Money>>printOn: aStream
+  aStream
+    print: amount;
+    space;
+    nextPutAll: currency
+```
+
+```scheme
+(define (print-on (self money) (a-stream stream))
+  (print a-stream (self :amount))
+  (space a-stream)
+  (next-put-all (self :currency)))
+```
+
+```smalltalk
+Money
+  amount: 5
+  currency: #USD
+"5 USD"
+```
+
+```scheme
+(create money
+  :amount 5
+  :currency 'USD)
+;; 5 USD
+```
 
 # ARITHMETIC
 # INTEGRATION

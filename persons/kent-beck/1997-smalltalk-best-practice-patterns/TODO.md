@@ -1,4 +1,3 @@
-8-development-example -- START
 8-development-example -- ARITHMETIC
 8-development-example -- INTEGRATION
 8-development-example -- SUMMARY
