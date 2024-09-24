@@ -304,17 +304,16 @@ cicada-lisp 可以使用更简单的 API，
   </answer>
 </question>
 
-
-
 ## ByteArray
 
 <question>
-  TODO
+  How do you code an Array of numbers
+  in the range 0..255 or -128..127?
 
   <answer>
     ByteArray
 
-    TODO
+    Use a ByteArray.
   </answer>
 </question>
 

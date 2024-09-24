@@ -1,4 +1,3 @@
-5-collections -- CLASSES -- ByteArray
 5-collections -- CLASSES -- Interval
 
 5-collections -- COLLECTION PROTOCOL -- IsEmpty
