@@ -98,8 +98,8 @@ Point class>>r: radiusNumber theta: thetaNumber
 
 (define (polar-point (:radius radius number) (:theta theta number))
   (create point
-    :x (cos (* radius theta))
-    :y (sin (* radius theta))))
+    :x (cos (mul radius theta))
+    :y (sin (mul radius theta))))
 ```
 
 ## Constructor Parameter Method
@@ -280,9 +280,9 @@ isEmpty
   (assign! a-switch :status 'off))
 
 (define (update (a-wall-plate wall-plate))
-  (match (a-wall-plate:switch:status)
-    ('on (make-on (a-wall-plate:light)))
-    ('off (make-off (a-wall-plate:light)))))
+  (match a-wall-plate:switch:status
+    ('on (make-on a-wall-plate:light))
+    ('off (make-off a-wall-plate:light))))
 
 (define (on (a-switch switch))
   "Return true if the receiver is on, otherwise return false.")
@@ -312,7 +312,7 @@ Event>><= anEvent
 
 ```scheme
 (define (<= (x event) (y event))
-  (<= (x:timestamp) (y:timestamp)))
+  (<= x:timestamp y:timestamp))
 ```
 
 ## Reversing Method
@@ -350,18 +350,18 @@ Point>>printOn: aStream
 
 ```scheme
 (define (print-on (a-point point) (a-stream stream))
-  (print-on (a-point:x) a-stream)
+  (print-on a-point:x a-stream)
   (next-put-all a-stream " @ ")
-  (print-on (a-point:y) a-stream))
+  (print-on a-point:y a-stream))
 
 
 (define (print (a-stream stream) (an-object object))
   (print-on an-object a-stream))
 
 (define (print-on (a-point point) (a-stream stream))
-  (print a-stream (a-point:x))
+  (print a-stream a-point:x)
   (next-put-all a-stream " @ ")
-  (print a-stream (a-point:y)))
+  (print a-stream a-point:y))
 ```
 
 ## Method Object
@@ -517,9 +517,9 @@ Association>> printOn: aStream
 
 ```scheme
 (define (print-on (an-association association) (a-stream stream))
-  (print a-stream (an-association:key))
+  (print a-stream an-association:key)
   (next-put-all a-stream "->")
-  (print a-stream (an-association:evaluate)))
+  (print a-stream (evaluate an-association)))
 ```
 
 ## Method Comment
@@ -547,12 +547,12 @@ self isVisible
 ```
 
 ```scheme
-(if (equal? (bit-and (self:flags) 2r1000) 1)
+(if (equal? (bit-and self:flags 2r1000) 1)
   ;; Am I visible?
   ...)
 
 (define (visible? self)
-  (equal? (bit-and (self:flags) 2r1000) 1))
+  (equal? (bit-and self:flags 2r1000) 1))
 
 (if (visible? self)
   ...)
@@ -567,7 +567,7 @@ Bin>>run
 ```scheme
 (define (run (a-bin bin))
   "Tell my station to process me."
-  (process (a-bin:station) a-bin))
+  (process a-bin:station a-bin))
 ```
 
 # MESSAGES
@@ -633,15 +633,15 @@ responsible := anEntry responsible
 ```scheme
 (define (responsible (an-entry entry))
   (if (is-kind-of an-entry film)
-    (an-entry:producer)
-    (an-entry:author)))
+    an-entry:producer
+    an-entry:author))
 
 
 (define (responsible (a-film film))
-  (a-film:producer))
+  a-film:producer)
 
 (define (responsible (an-entry entry))
-  (an-entry:author))
+  an-entry:author)
 ```
 
 ## Decomposing Message
@@ -1125,7 +1125,7 @@ Vector>>do: aBlock
 
 (define (map (a-vector vector) (f function))
   (create vector
-    :elements (map (a-vector:elements) f)))
+    :elements (map a-vector:elements f)))
 ```
 
 `collection` 带有类型参数的版本：
@@ -1139,7 +1139,7 @@ Vector>>do: aBlock
 
 (define (map (a-vector vector) (f (-> number number)))
   (create vector
-    :elements (map (a-vector:elements) f)))
+    :elements (map a-vector:elements f)))
 ```
 
 ## Self Delegation

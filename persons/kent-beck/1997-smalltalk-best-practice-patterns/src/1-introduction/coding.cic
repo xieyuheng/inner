@@ -27,8 +27,8 @@
 
 (define (part-mul (a-part part) (a-rate number))
   (create part
-    :amount (number-mul (a-part:amount) a-rate)
-    :date (a-part:date)))
+    :amount (number-mul a-part:amount a-rate)
+    :date a-part:date))
 
 (define-class station ()
   :rate number)
@@ -36,7 +36,7 @@
 (define (station-compute-part
          (a-station station)
          (a-part part))
-  (part-mul a-part (a-station:rate)))
+  (part-mul a-part a-station:rate))
 
 ;; 函数类型应该在 claim 中声明，
 ;; 而不应该在 define 中声明：
@@ -48,12 +48,12 @@
 (claim part-mul (-> part number part))
 (define (part-mul a-part a-rate)
   (create part
-    :amount (number-mul (a-part:amount) a-rate)
-    :date (a-part:date)))
+    :amount (number-mul a-part:amount a-rate)
+    :date a-part:date))
 
 (define-class station ()
   :rate number)
 
 (claim station-compute-part (-> station part part))
 (define (station-compute-part a-station a-part)
-  (part-mul a-part (a-station:rate)))
+  (part-mul a-part a-station:rate))

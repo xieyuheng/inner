@@ -65,10 +65,10 @@ Document>>typesetOn: aPrinter
   paragraphs (list paragraph))
 
 (define (add-paragraph (self document) (a-paragraph paragraph))
-  (cons (self:paragraphs) a-paragraph))
+  (cons self:paragraphs a-paragraph))
 
 (define (typeset-on (self document) (a-printer printer))
-  (foreach (self:paragraphs)
+  (foreach self:paragraphs
     (lambda (a-paragraph)
       (typeset-on a-paragraph a-printer))))
 ```
@@ -123,16 +123,16 @@ owners
 ```scheme
 (define (owners (self app))
   (let ((results (create list)))
-    (foreach (self:accounts)
+    (foreach self:accounts
       (lambda (an-account)
-        (let ((an-owner (an-account:owner)))
+        (let ((an-owner an-account:owner))
           (if (not (includes? results an-owner))
             (list-push! results an-owner))))
     results)))
 
 (define (owners (self app))
   (let ((results (create set)))
-    (foreach (self:accounts)
+    (foreach self:accounts
        (lambda (an-account) (set-add! results an-owner)))
   results))
 ```
@@ -187,17 +187,17 @@ Library>>hasAuthor: authorString title: titleString
 (define (equal? (x any) (y any)) (eq? x y))
 
 (define (equal? (p point) (q point))
-  (and (equal? (p:x) (q:x))
-       (equal? (p:y) (q:y))))
+  (and (equal? p:x q:x)
+       (equal? p:y q:y)))
 
 
 (define (equal? (x book) (y book))
-  (and (equal? (x:title) (y:title))
-       (equal? (x:author) (x:author))))
+  (and (equal? x:title y:title)
+       (equal? x:author x:author)))
 
 (define (has-author? (self library) (author string) (title string))
   (let ((a-book (create book :author author :title title)))
-    (includes? (self:books) a-book)))
+    (includes? self:books a-book)))
 ```
 
 ## Hashing Method
@@ -233,8 +233,8 @@ Book>>hash
 
 ```scheme
 (define (hash (self book))
-  (bit-xor (hash (self:title))
-           (hash (self:author))))
+  (bit-xor (hash self:title)
+           (hash self:author)))
 ```
 
 ## Dictionary

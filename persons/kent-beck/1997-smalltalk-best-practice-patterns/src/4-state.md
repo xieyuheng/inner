@@ -161,9 +161,9 @@ Timer>>count
 
 ```scheme
 (define (count (self timer))
-  (if (nil? (self:count))
-    (assign! self :count (self:default-count)))
-  (self:count))
+  (if (nil? self:count)
+    (assign! self :count self:default-count))
+  self:count)
 ```
 
 ## Default Value Method
@@ -327,9 +327,9 @@ Book>>title: aString
 
 ```scheme
 (define (author (self book))
-  (self:author))
+  self:author)
 (define (title (self book))
-  (self:title))
+  self:title)
 
 (define (author (self book) (a-string string))
   (assign! self :author a-string))
@@ -345,7 +345,7 @@ Book>>title: aString
 (author a-book)
 (author a-book "xyh")
 
-(a-book:author)
+a-book:author
 (assign! a-book :author "xyh")
 ```
 
@@ -401,31 +401,31 @@ removeEmployee: anEmployee
   :total-salary (union number nil))
 
 (define (total-salary (self department))
-  (if (nil? (self:total-salary))
+  (if (nil? self:total-salary)
     (assign! self :total-salary
       (compute-total-salary self)))
-  (self:total-salary))
+  self:total-salary)
 
 (define (compute-total-salary (self department))
   (reduce
-    (lambda (sum an-employee) (add sum (an-employee:salary)))
+    (lambda (sum an-employee) (add sum an-employee:salary))
     0
-    (self:employees)))
+    self:employees))
 
 (define (clear-total-salary (self department))
   (assign! self :total-salary nil))
 
 ...
-(remove (a-department:employees) an-employee)
+(remove a-department:employees an-employee)
 ...
 
 (define (add-employee (self department) (an-employee employee))
   (clear-total-salary self)
-  (cons (self:employees) an-employee))
+  (cons self:employees an-employee))
 
 (define (remove-employee (self department) (an-employee employee))
   (clear-total-salary self)
-  (remove (self:employees) an-employee))
+  (remove self:employees an-employee))
 ```
 
 > Don't just blindly name a Collection Accessor Method after the
@@ -439,7 +439,7 @@ employs: anEmployee
 
 ```scheme
 (define (employs? (self department) (an-employee employee))
-  (includes? (self:employees) an-employee))
+  (includes? self:employees an-employee))
 ```
 
 to:
@@ -451,7 +451,7 @@ includesEmployee: anEmployee
 
 ```scheme
 (define (includes-employee? (self department) (an-employee employee))
-  (includes? (self:employees) an-employee))
+  (includes? self:employees an-employee))
 ```
 
 ## Enumeration Method
@@ -621,8 +621,8 @@ Rectangle>>bottomRight
 
 ```scheme
 (define (bottom-right (self rectangle))
-  (let ((right (add (self:left) (self:width)))
-        (bottom (add (self:top) (self:height))))
+  (let ((right (add self:left self:width))
+        (bottom (add self:top self:height)))
     (create point :x right :y bottom)))
 ```
 
@@ -636,8 +636,8 @@ Rectangle>>bottomRight
 ```scheme
 (define (bottom-right (self rectangle))
   (create point
-    :x (right (add (self:left) (self:width)))
-    :y (bottom (add (self:top) (self:height)))))
+    :x (right (add self:left self:width))
+    :y (bottom (add self:top self:height))))
 ```
 
 ## Collecting Temporary Variable
@@ -677,12 +677,12 @@ self children do: [:each | ...bounds...]
 ```
 
 ```scheme
-(foreach (self:children)
+(foreach self:children
   (lambda (child)
     ... (compute-bounds self) ...))
 
 (let ((bounds (compute-bounds self)))
- (foreach (self:children)
+ (foreach self:children
    (lambda (child)
      ... bounds ...)))
 ```
@@ -719,7 +719,7 @@ LinearHashTable>>findKeyIndex: element for: client
 
 ```scheme
 (define (find-key-index-for (self linear-hash-table) ...)
-  (let ((last-index (sub1 (self:size))))
+  (let ((last-index (sub1 self:size)))
     ...))
 ```
 
