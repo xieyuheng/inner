@@ -289,6 +289,10 @@ self children do: [:each | self processChild: each]
   (lambda (each)
     (process-child self each)))
 
+(foreach self:children
+  (lambda (each-child)
+    (process-child self each-child)))
+
 (foreach (range 0 self:width)
   (lambda (each-x)
     (foreach (range 0 self:height)
