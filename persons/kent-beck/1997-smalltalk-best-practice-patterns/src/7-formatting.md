@@ -264,14 +264,37 @@ cost
 # Simple Enumeration Parameter
 
 <question>
-  TODO
+  What do you call the parameter to an enumeration block?
 
   <answer>
     Simple Enumeration Parameter
 
-    TODO
+    Call the parameter "each".
+    If you have nested enumeration blocks,
+    append a descriptive word to all parameter names.
   </answer>
 </question>
+
+```smalltalk
+self children do: [:each | self processChild: each]
+
+1 to: self width do:
+  [:eachX |
+    1 to: self height do:
+      [:eachY | ...]]
+```
+
+```scheme
+(foreach self:children
+  (lambda (each)
+    (process-child self each)))
+
+(foreach (range 0 self:width)
+  (lambda (each-x)
+    (foreach (range 0 self:height)
+      (lambda (each-y)
+        ...))))
+```
 
 # Cascade
 
