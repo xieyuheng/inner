@@ -125,15 +125,44 @@ at: keyObject put: valueObject
 
 # Indented Control Flow
 
+> Arguments do not need to be aligned, unlike keywords, because
+> readers seldom scan all the arguments. Arguments are only
+> interesting in the context of their keyword.
+
+反对 align arguments。
+这在某些语言里 align arguments 甚至是 convention。
+
 <question>
-  TODO
+  How do you indent messages?
 
   <answer>
     Indented Control Flow
 
-    TODO
+    Put zero or one argument messages on the same lines as their receiver.
+    For messages with two or more keywords put each
+    keyword/argument pair on its own line, indented two spaces.
   </answer>
 </question>
+
+```smalltalk
+aCollection
+  copyFrom: 1
+  to: aString size
+  with: aString
+  startingAt: 1
+```
+
+```scheme
+(copy a-collection
+  :from 1
+  :to (size a-string)
+  :with a-string
+  :starting-at 1)
+```
+
+从上面的例子可以看出，
+把 `copy` 这个动词放到一个 keyword 里，
+是不对称的。
 
 # Rectangular Block
 
