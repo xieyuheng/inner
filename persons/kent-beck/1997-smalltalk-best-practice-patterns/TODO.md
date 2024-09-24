@@ -1,4 +1,3 @@
-7-formatting -- Type Suggesting Parameter Name
 7-formatting -- Indented Control Flow
 7-formatting -- Rectangular Block -- 这讨论的也许是 lisp 的刚性 block 问题！
 7-formatting -- Guard Clause

@@ -89,15 +89,39 @@ startingAt: startInteger
 
 # Type Suggesting Parameter Name
 
+> There are two important pieces of information associated with every
+> variable -- what messages it receives (its type) and what role it
+> plays in the computation. Understanding the type and role of
+> variables is important for understanding a piece of code.
+
+第三次重复强调 role v.s. type 这个观点了。
+
+> Keywords communicate their associated parameter’s role. Since the
+> keywords and parameters are together at the head of every method,
+> the reader can easily understand a parameter’s role without any
+> help from the name.
+
 <question>
-  TODO
+  What do you call a method parameter?
 
   <answer>
     Type Suggesting Parameter Name
 
-    TODO
+    Name parameters according to their most general expected class,
+    preceded by "a" or "an". If there is more than one parameter
+    with the same expected class, precede the class with a descriptive word.
   </answer>
 </question>
+
+```smalltalk
+at: anInteger put: anObject
+at: keyObject put: valueObject
+```
+
+```scheme
+:at an-integer :put an-object
+:at key-object :put value-object
+```
 
 # Indented Control Flow
 
