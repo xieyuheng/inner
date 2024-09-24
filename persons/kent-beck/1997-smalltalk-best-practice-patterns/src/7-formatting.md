@@ -382,12 +382,15 @@ all := OrderedCollection new
 
 # Interesting Return Value
 
+由于 smalltalk 默认返回 self，所以才有这条 pattern。
+一般的语言中，这条 pattern 才是常态。
+
 <question>
-  TODO
+   When do you explicitly return a value at the end of a method?
 
   <answer>
     Interesting Return Value
 
-    TODO
+    Return a value only when you intend for the sender to use the value.
   </answer>
 </question>
