@@ -1,4 +1,3 @@
-7-formatting -- Cascade
 7-formatting -- Yourself
 7-formatting -- Interesting Return Value
 

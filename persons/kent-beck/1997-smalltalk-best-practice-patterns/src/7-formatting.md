@@ -303,14 +303,37 @@ self children do: [:each | self processChild: each]
 # Cascade
 
 <question>
-  TODO
+  How do you format multiple messages to the same receiver?
 
   <answer>
     Cascade
 
-    TODO
+    Use a Cascade to send several messages to the same receiver.
+    Separate the messages with a semicolon.
+    Put each message on its own line and indent one tab.
+    Only use Cascades for messages with zero or one argument.
   </answer>
 </question>
+
+```smalltalk
+self listPane parent color: Color black.
+self listPane parent height: 17.
+self listPane parent width: 11.
+
+self listPane parent
+  color: Color black;
+  height: 17;
+  width: 11
+```
+
+lisp 的前缀表达式中，没有这个机制，
+除非引入需要破坏前缀表达式的语法糖，
+我认为这得不偿失。
+
+而且这条 pattern 里面有
+"Only use Cascades for messages with zero or one argument."
+这种更限定条件，
+所以也不是很好用。
 
 # Yourself
 
