@@ -319,15 +319,29 @@ cicada-lisp 可以使用更简单的 API，
 
 ## Interval
 
+在 cicada-lisp 中，这个类型可能会叫做 `range` 而不是 `interval`。
+
 <question>
-  TODO
+  How do you code a collection of numbers in sequence?
 
   <answer>
     Interval
 
-    TODO
+    Use an Interval with start, stop,
+    and an optional step value.
+    The Shortcut Constructor Methods
+    Number>>to: and to:by:
+    build Intervals for you.
   </answer>
 </question>
+
+```smalltalk
+(1 to: 20) do: [:each | ...]
+```
+
+```scheme
+(foreach (range 0 20) (lambda (each) ...))
+```
 
 # COLLECTION PROTOCOL
 
