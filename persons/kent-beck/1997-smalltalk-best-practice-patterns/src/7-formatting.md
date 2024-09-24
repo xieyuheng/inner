@@ -335,10 +335,30 @@ lisp 的前缀表达式中，没有这个机制，
 这种更限定条件，
 所以也不是很好用。
 
+但是，如果我们不把 `(:keyword object)` 理解为 `(object :keyword)`，
+而是认为 `(:keyword object)` 是构造 message 的方式。
+那么，外加一个 `send` 函数，cascades 也许就是可行的：
+
+```scheme
+(self:list-pane:parent :color color-black)
+(self:list-pane:parent :height 17)
+(self:list-pane:parent :width 11)
+
+(send self:list-pane:parent
+  (:color color-black)
+  (:height 17)
+  (:width 11))
+```
+
+但是其实也不行，
+因为我们常用的是 generic function，
+而不是 method。
+
 # Yourself
 
 <question>
-  TODO
+  How can you use the value of a Cascade
+  if the last message doesn’t return the receiver of the message?
 
   <answer>
     Yourself
