@@ -1,4 +1,3 @@
-7-formatting -- Conditional Expression
 7-formatting -- Simple Enumeration Parameter
 7-formatting -- Cascade
 7-formatting -- Yourself

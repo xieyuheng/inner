@@ -221,14 +221,45 @@ connect
 # Conditional Expression
 
 <question>
-  TODO
+  How do you format conditional expressions
+  where both branches assign or return a value?
 
   <answer>
     Conditional Expression
 
-    TODO
+    Format conditionals so their value is used
+    where it clearly expresses the intent of the method.
   </answer>
 </question>
+
+```smalltalk
+self isInitialized
+  ifTrue: [cost := self calculateCost]
+  ifFalse: [cost := 0]
+
+cost := self isInitialized
+  ifTrue: [self calculateCost]
+  ifFalse: [0]
+```
+
+```smalltalk
+cost
+  self isInitialized
+    ifTrue: [^self calculateCost]
+    ifFalse: [^0]
+
+cost
+  ^self isInitialized
+    ifTrue: [self calculateCost]
+    ifFalse: [0]
+```
+
+```scheme
+(define (cost (self ...) )
+  (if (is-Initialized self)
+    (calculate-cost self)
+    0))
+```
 
 # Simple Enumeration Parameter
 
