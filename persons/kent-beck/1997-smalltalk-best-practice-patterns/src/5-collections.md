@@ -293,14 +293,18 @@ cicada-lisp 可以使用更简单的 API，
 ## Array
 
 <question>
-  TODO
+  How do you code a collection with a fixed number of elements?
 
   <answer>
     Array
 
-    TODO
+    Use an Array.
+    Create it with "new: anInteger" so that
+    it has space for the number of elements you know it needs.
   </answer>
 </question>
+
+
 
 ## ByteArray
 
