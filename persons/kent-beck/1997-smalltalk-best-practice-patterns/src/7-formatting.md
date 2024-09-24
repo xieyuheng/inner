@@ -189,14 +189,34 @@ aCollection
 # Guard Clause
 
 <question>
-  TODO
+  How do you format code that shouldn’t execute if a condition holds?
 
   <answer>
     Guard Clause
 
-    TODO
+    Format the one-branch conditional with an explicit return.
   </answer>
 </question>
+
+```smalltalk
+connect
+  self isConnected
+    ifFalse: [self connectConnection]
+
+connect
+  self isConnected ifTrue: [^self].
+  self connectConnection
+```
+
+```scheme
+(define (connect (self connection))
+  (if (not (is-connected self))
+    (connect-connection self)))
+
+(define (connect (self connection))
+  (if (is-connected self) (return))
+  (connect-connection self))
+```
 
 # Conditional Expression
 
