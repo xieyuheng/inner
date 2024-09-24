@@ -240,14 +240,33 @@ Book>>hash
 ## Dictionary
 
 <question>
-  TODO
+  How do you map one kind of object to another?
 
   <answer>
     Dictionary
 
-    TODO
+    Use a Dictionary.
   </answer>
 </question>
+
+```smalltalk
+Widget>>defaultColors
+  | results |
+  results := Dictionary new.
+  results
+    at: ‘foreground’
+    put: Color black.
+  results
+    at: ‘background’
+    put: Color mauve.
+  ^results
+```
+
+```scheme
+(define (default-colors (self widget))
+  {:foreground color-black
+   :background color-mauve})
+```
 
 ## SortedCollection
 
