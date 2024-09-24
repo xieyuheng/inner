@@ -46,7 +46,23 @@ Station>>computePart: aPart
   ^aPart * self rate
 ```
 
-对应于 TypeScript 可能是：
+Some of the biggest improvements come from figuring out how to eliminate:
+
+- Duplicate code (even little bits of it)
+- Conditional logic
+- Complex methods
+- Structural code (where one object treats another as a data structure)
+
+想要消除 structural code 换成 object 的 message passing，
+这与我目前的 belief 相冲突了，我的 belief 是：
+
+- 尽量使用 record + functions，而不用 class + methods。
+
+我以前也是 message passing，但是慢慢转成 record + functions 了。
+
+因此回顾这里的 message passing 风格，应该是很有益的体验。
+
+## Example in TypeScript
 
 ```typescript
 class Part {
@@ -94,21 +110,71 @@ class Station {
 }
 ```
 
-Some of the biggest improvements come from figuring out how to eliminate:
+## Example in scheme
 
-- Duplicate code (even little bits of it)
-- Conditional logic
-- Complex methods
-- Structural code (where one object treats another as a data structure)
+```scheme
+(define-class part ()
+  (claim amount number)
+  (claim date date)
+  (define (mul a-rate)
+    (create part
+      :amount (number-mul amount a-rate)
+      :date date)))
 
-想要消除 structural code 换成 object 的 message passing，
-这与我目前的 belief 相冲突了，我的 belief 是：
+(define-class station ()
+  (claim rate number)
+  (define (compute-part a-part)
+    (a-part:mul rate)))
+```
 
-- 尽量使用 record + functions，而不用 class + methods。
+可以发现，在想像中的 cicada-lisp 中，
+如果用之前的 cicada 的语义，
+那么 `(claim date date)` 这种 class 中的 statement 是有问题的。
+因为这相当于是引入局部变量，而不是引入一个 property name。
 
-我以前也是 message passing，但是慢慢转成 record + functions 了。
+在 cicada-lisp 中，`define-class` 时，
+不能有 define，只能有 claim。
 
-因此回顾这里的 message passing 风格，应该是很有益的体验。
+```scheme
+(define-class part ()
+  :amount number
+  :date date)
+
+(define (part-mul (a-part part) (a-rate number))
+  (create part
+    :amount (number-mul a-part:amount a-rate)
+    :date a-part:date))
+
+(define-class station ()
+  :rate number)
+
+(define (station-compute-part
+         (a-station station)
+         (a-part part))
+  (part-mul a-part a-station:rate))
+```
+
+函数类型应该在 claim 中声明，
+而不应该在 define 中声明：
+
+```scheme
+(define-class part ()
+  :amount number
+  :date date)
+
+(claim part-mul (-> part number part))
+(define (part-mul a-part a-rate)
+  (create part
+    :amount (number-mul a-part:amount a-rate)
+    :date a-part:date))
+
+(define-class station ()
+  :rate number)
+
+(claim station-compute-part (-> station part part))
+(define (station-compute-part a-station a-part)
+  (part-mul a-part a-station:rate))
+```
 
 # GOOD SOFTWARE
 
