@@ -166,13 +166,23 @@ aCollection
 
 # Rectangular Block
 
+> ... the tendency of the eye to distinguish and interpolate vertical
+> and horizontal lines. The square brackets used to signify blocks
+> lead the eye to create the illusion of a whole rectangle even though
+> one isn’t there.
+
+这里的套路，直接支持了 lisp 中的「刚性 block」convention。
+
 <question>
-  TODO
+  How do you format blocks?
 
   <answer>
     Rectangular Block
 
-    TODO
+    Make blocks rectangular. Use the square brackets as the upper left
+    and bottom right corners of the rectangle. If the statement in the
+    block is simple, the block can fit on one line. If the statement
+    is compound, bring the block onto its own line and indent.
   </answer>
 </question>
 
