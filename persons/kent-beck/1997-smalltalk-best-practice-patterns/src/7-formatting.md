@@ -356,6 +356,10 @@ lisp 的前缀表达式中，没有这个机制，
 
 # Yourself
 
+与其有这么多使用 Cascades 时遇到的复杂情况，
+与相应的特殊规则，
+不如不用 Cascades。
+
 <question>
   How can you use the value of a Cascade
   if the last message doesn’t return the receiver of the message?
@@ -363,9 +367,18 @@ lisp 的前缀表达式中，没有这个机制，
   <answer>
     Yourself
 
-    TODO
+    When you need the value of a Cascade
+    and the last message does not return the receiver,
+    append the message "yourself" to the Cascade.
   </answer>
 </question>
+
+```smalltalk
+all := OrderedCollection new
+  add: 5;
+  add: 7;
+  yourself
+```
 
 # Interesting Return Value
 
