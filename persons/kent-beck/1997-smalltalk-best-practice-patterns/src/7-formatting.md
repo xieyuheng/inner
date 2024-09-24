@@ -57,14 +57,35 @@ title: 7. Formatting
 # Inline Message Pattern
 
 <question>
-  TODO
+  How do you format the message pattern?
 
   <answer>
     Inline Message Pattern
 
-    TODO
+    Write the message pattern without explicit line breaks.
   </answer>
 </question>
+
+```smalltalk
+from: fromInteger to: toInteger with: aCollection startingAt: startInteger
+
+from: fromInteger
+to: toInteger
+with: aCollection
+startingAt: startInteger
+```
+
+```scheme
+(define (... (:from from integer) (:to to integer) (:with a-collection collection) (:starting-at start integer))
+  ...)
+
+(define (...
+         (:from from integer)
+         (:to to integer)
+         (:with a-collection collection)
+         (:starting-at start integer))
+  ...)
+```
 
 # Type Suggesting Parameter Name
 
