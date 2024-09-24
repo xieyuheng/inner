@@ -1,4 +1,3 @@
-5-collections -- CLASSES -- SortedCollection
 5-collections -- CLASSES -- Array
 5-collections -- CLASSES -- ByteArray
 5-collections -- CLASSES -- Interval

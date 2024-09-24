@@ -271,14 +271,24 @@ Widget>>defaultColors
 ## SortedCollection
 
 <question>
-  TODO
+  How do you sort a collection?
 
   <answer>
     SortedCollection
 
-    TODO
+    Use a SortedCollection.
+    Set its sort block if you want to
+    sort by some criteria other than "<=".
   </answer>
 </question>
+
+```smalltalk
+childrenByAge
+  ^self children asSortedCollection: [:a :b | a age < b age]
+```
+
+cicada-lisp 可以使用更简单的 API，
+可能没必要生成一个新的 SortedCollection。
 
 ## Array
 
