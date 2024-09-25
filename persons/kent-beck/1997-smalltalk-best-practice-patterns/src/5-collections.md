@@ -768,13 +768,20 @@ childrenWithHairColor: aString
 
 ## Parsing Stream
 
+用一个 class 来简化参数传递，
+这确实是一个可选的 pattern。
+
+但是可能很难和 parser 组合子一起使用，
+因为 parser 组合子不适合放在某个特殊的 parser class 中。
+
 <question>
   How do you write a simple parser?
 
   <answer>
     Parsing Stream
 
-    TODO
+    Put the Stream in an instance variable.
+    Have all parsing methods work from the same Stream.
   </answer>
 </question>
 
