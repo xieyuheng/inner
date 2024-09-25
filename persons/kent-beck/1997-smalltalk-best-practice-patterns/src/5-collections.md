@@ -417,6 +417,8 @@ aCollection includes: anObject
 
 employs: aPerson
   ^employees includes aPerson
+
+collection1 select: [:each | collection2 includes: each]
 ```
 
 ```scheme
@@ -424,17 +426,21 @@ employs: aPerson
 
 (define (employs (a-person person))
   (includes? employees a-person))
+
+(define (intersection (x collection) (y collection))
+  (filter x (lambda (each) (includes? y each))))
 ```
 
 ## Concatentation
 
 <question>
-  TODO
+  How do you put two collections together?
 
   <answer>
     Concatentation
 
-    TODO
+    Concatenate two collections by sending ","
+    to the first with the second as an argument.
   </answer>
 </question>
 
