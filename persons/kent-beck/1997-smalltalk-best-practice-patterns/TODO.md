@@ -1,4 +1,3 @@
-5-collections -- COLLECTION PROTOCOL -- Includes:
 5-collections -- COLLECTION PROTOCOL -- Concatentation
 5-collections -- COLLECTION PROTOCOL -- Enumeration
 5-collections -- COLLECTION PROTOCOL -- Do

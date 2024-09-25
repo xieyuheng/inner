@@ -396,21 +396,35 @@ answer isEmpty ifTrue: [^self].
 (empty? a-collection)
 
 (let ((an-answer (dialog-request "Number, please?")))
-  (if (empty? answer) (return))
+  (if (empty? an-answer) (return))
   ...)
 ```
 
 ## Includes:
 
 <question>
-  TODO
+  How do you search for a particular element in a collection?
 
   <answer>
     Includes:
 
-    TODO
+    Send includes: and pass the object to be searched for.
   </answer>
 </question>
+
+```smalltalk
+aCollection includes: anObject
+
+employs: aPerson
+  ^employees includes aPerson
+```
+
+```scheme
+(includes? a-collection an-object)
+
+(define (employs (a-person person))
+  (includes? employees a-person))
+```
 
 ## Concatentation
 
