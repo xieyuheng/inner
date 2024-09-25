@@ -7,7 +7,7 @@ title: 5. Collections
 > Our discussion of collections is divided into three sections:
 >
 > - Classes -- When you want to use a collection, the first thing you
->   have to decide is “which one.” This section describes what
+>   have to decide is "which one." This section describes what
 >   problem or problems each of the major collection classes solve.
 >
 > - Protocol -- Programming habits carried over from other languages
@@ -36,7 +36,7 @@ title: 5. Collections
 ## OrderedCollection
 
 <question>
-  How do you code Collections whose size can’t be
+  How do you code Collections whose size can't be
   determined when they are created?
 
   <answer>
@@ -254,10 +254,10 @@ Widget>>defaultColors
   | results |
   results := Dictionary new.
   results
-    at: ‘foreground’
+    at: 'foreground'
     put: Color black.
   results
-    at: ‘background’
+    at: 'background'
     put: Color mauve.
   ^results
 ```
@@ -360,7 +360,7 @@ Collection library 在每个语言中都是这个体验，这个现象很有趣�
 > overwhelmed by it. There is a lot to learn just to achieve basic
 > competence.  However, the collection protocol is one of the highest
 > leverage pieces of the sys- tem. The better you can use it, the
-> faster you can code and the faster you can read other folks’ code.
+> faster you can code and the faster you can read other folks' code.
 
 > This section highlights the most important messages in the
 > collection repertoire. It is by no means exhaustive. I selected
@@ -386,7 +386,7 @@ aCollection size = 0
 aCollection isEmpty
 
 | answer |
-answer := Dialog request: ‘Number, please?’.
+answer := Dialog request: 'Number, please?'.
 answer isEmpty ifTrue: [^self].
 ...
 ```
@@ -560,15 +560,38 @@ giveKeys: self carKeys
 
 ## Inject:into:
 
+> Why doesn't everybody use this mysterious and powerful message?
+> Because it has a funky name. People see the name and they think,
+> "No way can I figure out what that does. Better leave it alone."
+
+可以看出 smalltalk 的 collection 术语，
+与现在常见的语言的术语非常不同。
+
 <question>
-  TODO
+  How do you keep a running value
+  as you iterate over a Collection?
 
   <answer>
     Inject:into:
 
-    TODO
+    Use inject:into: to keep a running value.
+    Make the first argument the initial value.
+    Make the second argument a two element block.
+    Call the block arguments "sum" and "each".
+    Have the block evaluate to the next value of the running value.
   </answer>
 </question>
+
+```smalltalk
+^self children
+  inject: 0
+  into: [:sum :each | sum max: each]
+```
+
+```scheme
+(reduce self:children 0
+  (lambda (sum each) (max sum each)))
+```
 
 # COLLECTION IDIOMS
 

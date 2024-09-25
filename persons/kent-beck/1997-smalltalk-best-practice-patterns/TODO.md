@@ -1,5 +1,3 @@
-5-collections -- COLLECTION PROTOCOL -- Inject:into:
-
 5-collections -- COLLECTION IDIOMS -- Duplicate Removing Set
 5-collections -- COLLECTION IDIOMS -- Temporarily Sorted Collection
 5-collections -- COLLECTION IDIOMS -- Stack
