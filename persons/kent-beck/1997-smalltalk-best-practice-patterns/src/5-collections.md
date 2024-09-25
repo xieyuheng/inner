@@ -367,6 +367,20 @@ Collection library 在每个语言中都是这个体验，这个现象很有趣�
 > these messages to pattern because they are the ones I see most often
 > missed or misused.
 
+注意，smalltalk 的 collection 术语，
+与现在常见的语言的术语非常不同。
+
+| smalltalk collection | lisp/scheme |
+|----------------------|-------------|
+| isEmpty              | empty?      |
+| includes             | includes?   |
+| , (concatentation)   | append      |
+| do                   | foreach     |
+| collect              | map         |
+| select/reject        | filter      |
+| detect               | find        |
+| inject:into:         | reduce      |
+
 ## IsEmpty
 
 <question>
@@ -564,9 +578,6 @@ giveKeys: self carKeys
 > Because it has a funky name. People see the name and they think,
 > "No way can I figure out what that does. Better leave it alone."
 
-可以看出 smalltalk 的 collection 术语，
-与现在常见的语言的术语非常不同。
-
 <question>
   How do you keep a running value
   as you iterate over a Collection?
@@ -709,9 +720,51 @@ collection 一类的数据转换而言比较自然了。
   <answer>
     Lookup Cache
 
-    TODO
+    Prepend "lookup" to the name of the expensive search or filter method.
+    Add an instance variable holding a Dictionary to cache results.
+    Name the variable by appending "Cache" to the name of the search.
+    Make the parameters of the search the keys of the Dictionary
+    and the results of the search the values.
   </answer>
 </question>
+
+```smalltalk
+lookupChildNamed: aString
+  ^self children detect: [:each | each name = aString]
+
+childNamed: aString
+  ^nameCache
+    at: aString
+    ifAbsentPut: [self lookupChildNamed: aString]
+
+
+lookupChildrenWithHairColor: aString
+  ^self children select: [:each | each hairColor = aString]
+
+childrenWithHairColor: aString
+  ^hairColorCache
+    at: aString
+    ifAbsentPut: [self lookupChildrenWithHairColor: aString]
+```
+
+```scheme
+(define (lookup-child-named (self ...) (a-string string))
+  (find self:children (lambda (each) (equal? each:name a-string))))
+
+(define (child-named (self ...) (a-string string))
+  (put-if-absent self:name-cache
+    :at a-string
+    :if-absent (lookup-child-named self a-string)))
+
+
+(define (lookup-children-with-hair-color (self ...) (a-string string))
+  (filter self:children (lambda (each) (equal? each:hair-color a-string))))
+
+(define (children-with-hair-color (self ...) (a-string string))
+  (put-if-absent self:hair-color-cache
+    :at a-string
+    :if-absent (lookup-children-with-hair-color self a-string)))
+```
 
 ## Parsing Stream
 
