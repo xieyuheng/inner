@@ -607,7 +607,8 @@ giveKeys: self carKeys
   <answer>
     Duplicate Removing Set
 
-    TODO
+    Send “asSet” to the Collection.
+    The result will have all duplicates removed.
   </answer>
 </question>
 
