@@ -510,14 +510,29 @@ childrenHairStyles
 ## Select/Reject
 
 <question>
-  TODO
+  How do you filter out part of a collection?
 
   <answer>
     Select/Reject
 
-    TODO
+    Use select: and reject: to return new collections
+    containing only elements of interest.
+    Enumerate the new collection.
+    Both take a one argument Block that returns a Boolean.
+    Select: gives you elements for which the Block returns true,
+    reject: gives you elements for which the Block returns false.
   </answer>
 </question>
+
+```smalltalk
+responsibleChildren
+  ^self children select: [:each | each isResponsible]
+```
+
+```scheme
+(define (responsible-children (self ...) )
+  (filter self:children (lambda (each) (responsible? each))))
+```
 
 ## Detect
 
