@@ -595,10 +595,14 @@ giveKeys: self carKeys
 
 # COLLECTION IDIOMS
 
+> Once you are comfortable using the collection protocol, you can
+> begin using collections to solve higher level tasks. Here are a few
+> of the common ways collections are used.
+
 ## Duplicate Removing Set
 
 <question>
-  TODO
+  How do you remove the duplicates from a Collection?
 
   <answer>
     Duplicate Removing Set
@@ -610,7 +614,7 @@ giveKeys: self carKeys
 ## Temporarily Sorted Collection
 
 <question>
-  TODO
+  How do you present a Collection with one of many sort orders?
 
   <answer>
     Temporarily Sorted Collection
@@ -622,7 +626,7 @@ giveKeys: self carKeys
 ## Stack
 
 <question>
-  TODO
+  How do you implement a stack?
 
   <answer>
     Stack
@@ -634,7 +638,7 @@ giveKeys: self carKeys
 ## Queue
 
 <question>
-  TODO
+  How do you implement a queue?
 
   <answer>
     Queue
@@ -646,7 +650,8 @@ giveKeys: self carKeys
 ## Searching Literal
 
 <question>
-  TODO
+  How do you search for one of a few literal objects
+  known when you write the code?
 
   <answer>
     Searching Literal
@@ -658,7 +663,7 @@ giveKeys: self carKeys
 ## Lookup Cache
 
 <question>
-  TODO
+  How do you optimize complex Detect or Select/Reject loops?
 
   <answer>
     Lookup Cache
@@ -670,7 +675,7 @@ giveKeys: self carKeys
 ## Parsing Stream
 
 <question>
-  TODO
+  How do you write a simple parser?
 
   <answer>
     Parsing Stream
@@ -682,7 +687,7 @@ giveKeys: self carKeys
 ## Concatenating Stream
 
 <question>
-  TODO
+  How do you concatenate several Collections?
 
   <answer>
     Concatenating Stream
