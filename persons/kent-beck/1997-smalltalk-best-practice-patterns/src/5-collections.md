@@ -452,7 +452,7 @@ collection1 select: [:each | collection2 includes: each]
   <answer>
     Enumeration
 
-    Use the enumeration messages 
+    Use the enumeration messages
     to spread a computation across a collection.
   </answer>
 </question>
@@ -460,14 +460,26 @@ collection1 select: [:each | collection2 includes: each]
 ## Do
 
 <question>
-  TODO
+  How do you execute code for each element in a collection?
 
   <answer>
     Do
 
-    TODO
+    Send do: to a collection to iterate over its elements.
+    Send a one argument block as the argument to do:.
+    It will be evaluated once for each element.
   </answer>
 </question>
+
+```smalltalk
+Collection>>addAll: aCollection
+  aCollection do: [:each | self add: each]
+```
+
+```scheme
+(define (add-all (self collection) (a-collection collection))
+  (foreach a-collection (lambda (each) (add self each))))
+```
 
 ## Collect
 
