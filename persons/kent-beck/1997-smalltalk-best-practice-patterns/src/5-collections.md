@@ -537,14 +537,26 @@ responsibleChildren
 ## Detect
 
 <question>
-  TODO
+  How do you search a collection?
 
   <answer>
     Detect
 
-    TODO
+    Search a collection by sending it detect:.
+    The first element for which the block argument
+    evaluates to true will be returned.
   </answer>
 </question>
+
+```smalltalk
+(self children detect: [:each | each isResponsible])
+giveKeys: self carKeys
+```
+
+```scheme
+(let ((found (find self:children (lambda (each) (responsible? each)))))
+  (give-keys found self:car-keys))
+```
 
 ## Inject:into:
 
