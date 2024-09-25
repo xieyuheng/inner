@@ -697,7 +697,7 @@ collection 一类的数据转换而言比较自然了。
   <answer>
     Searching Literal
 
-    TODO
+    Ask a literal Collection if it includes the element you are seeking.
   </answer>
 </question>
 
