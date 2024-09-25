@@ -1,4 +1,3 @@
-5-collections -- COLLECTION IDIOMS -- Stack
 5-collections -- COLLECTION IDIOMS -- Queue
 5-collections -- COLLECTION IDIOMS -- Searching Literal
 5-collections -- COLLECTION IDIOMS -- Lookup Cache

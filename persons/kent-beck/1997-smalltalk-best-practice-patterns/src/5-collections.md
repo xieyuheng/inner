@@ -651,13 +651,21 @@ collection 一类的数据转换而言比较自然了。
 
 ## Stack
 
+| Stack Operation | OrderedCollection message |
+|-----------------|---------------------------|
+| push            | addLast:                  |
+| pop             | removeLast:               |
+| top             | last                      |
+| depth           | size                      |
+| empty           | isEmpty                   |
+
 <question>
   How do you implement a stack?
 
   <answer>
     Stack
 
-    TODO
+    Implement a Stack using an OrderedCollection.
   </answer>
 </question>
 
