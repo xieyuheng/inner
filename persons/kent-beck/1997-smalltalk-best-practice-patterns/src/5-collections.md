@@ -620,9 +620,34 @@ giveKeys: self carKeys
   <answer>
     Temporarily Sorted Collection
 
-    TODO
+    Return a sorted copy of the Collection by sending
+    "asSortedCollection" to the Collection.
+    Send "asSortedCollection: aBlock" for custom sort orders.
   </answer>
 </question>
+
+> A common use for this pattern is presenting information in a list,
+> especially if you have just used Duplicate Removing Set:
+
+```smalltalk
+candidateList
+  ^self candidates asSet asSortedCollection: [:a :b | a name < b name]
+```
+
+```scheme
+(define (candidate-list (self ...))
+  (as-sorted-collection (as-set self:candidates)
+    (lambda (a b) (lt? a:name b:name))))
+```
+
+不得不说后缀表达式更自然：
+
+```forth
+self:candidates as-set as-sorted-collection
+```
+
+但是其实后缀表达式也就是对这些
+collection 一类的数据转换而言比较自然了。
 
 ## Stack
 
