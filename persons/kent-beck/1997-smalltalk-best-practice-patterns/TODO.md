@@ -1,4 +1,3 @@
-5-collections -- COLLECTION PROTOCOL -- Collect
 5-collections -- COLLECTION PROTOCOL -- Select/Reject
 5-collections -- COLLECTION PROTOCOL -- Detect
 5-collections -- COLLECTION PROTOCOL -- Inject:into:

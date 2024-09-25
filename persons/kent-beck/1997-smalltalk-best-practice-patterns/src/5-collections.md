@@ -484,14 +484,28 @@ Collection>>addAll: aCollection
 ## Collect
 
 <question>
-  TODO
+  How do you operate on the result of a message
+  sent to each object in the collection?
 
   <answer>
     Collect
 
-    TODO
+    Use collect: to create a new collection whose elements are
+    the results of evaluating the block passed to collect:
+    with each element of the original collection.
+    Use the new collection.
   </answer>
 </question>
+
+```smalltalk
+childrenHairStyles
+  ^self children collect: [:each | each hairStyle]
+```
+
+```scheme
+(define (children-hair-styles (self ...))
+  (map self:children (lambda (each) (hair-style each))))
+```
 
 ## Select/Reject
 
