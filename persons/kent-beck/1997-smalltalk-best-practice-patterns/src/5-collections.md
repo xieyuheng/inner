@@ -345,17 +345,60 @@ cicada-lisp 可以使用更简单的 API，
 
 # COLLECTION PROTOCOL
 
+> The uniform protocol of the collection classes are one of their
+> greatest strengths. Client code is effectively decoupled from
+> decisions about how to store a collection by using a common set of
+> messages.
+
+> Many Smalltalk programmers take a long time to learn all the
+> collection protocol. They begin with a couple of messages, like do:,
+> add:, and size, and then stick with them for a long time.
+
+Collection library 在每个语言中都是这个体验，这个现象很有趣。
+
+> When I started programming in Smalltalk, I can remember being
+> overwhelmed by it. There is a lot to learn just to achieve basic
+> competence.  However, the collection protocol is one of the highest
+> leverage pieces of the sys- tem. The better you can use it, the
+> faster you can code and the faster you can read other folks’ code.
+
+> This section highlights the most important messages in the
+> collection repertoire. It is by no means exhaustive. I selected
+> these messages to pattern because they are the ones I see most often
+> missed or misused.
+
 ## IsEmpty
 
 <question>
-  TODO
+  How do you test if a collection is empty?
 
   <answer>
     IsEmpty
 
-    TODO
+    Send isEmpty to test whether a collection is empty (has no elements).
+    Use notEmpty to test whether a collection has elements.
   </answer>
 </question>
+
+```smalltalk
+aCollection size = 0
+
+aCollection isEmpty
+
+| answer |
+answer := Dialog request: ‘Number, please?’.
+answer isEmpty ifTrue: [^self].
+...
+```
+
+```scheme
+(equal? (size a-collection) 0)
+(empty? a-collection)
+
+(let ((an-answer (dialog-request "Number, please?")))
+  (if (empty? answer) (return))
+  ...)
+```
 
 ## Includes:
 
