@@ -447,12 +447,13 @@ collection1 select: [:each | collection2 includes: each]
 ## Enumeration
 
 <question>
-  TODO
+  How do you execute code across a collection?
 
   <answer>
     Enumeration
 
-    TODO
+    Use the enumeration messages 
+    to spread a computation across a collection.
   </answer>
 </question>
 

@@ -1,4 +1,3 @@
-5-collections -- COLLECTION PROTOCOL -- Enumeration
 5-collections -- COLLECTION PROTOCOL -- Do
 5-collections -- COLLECTION PROTOCOL -- Collect
 5-collections -- COLLECTION PROTOCOL -- Select/Reject
