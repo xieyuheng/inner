@@ -787,12 +787,19 @@ childrenWithHairColor: aString
 
 ## Concatenating Stream
 
+目的是为了避免递归的 append 生成太多无用的中间 list。
+
+现在的语言比如 JS 所用的 iterator 可能更好，
+因为使用 stream 饰，需要让所有处理函数都带一个 stream 参数的。
+- 通过带一个参数就可以达到 iterator 的效果，
+  也是很有趣的现象。
+
 <question>
   How do you concatenate several Collections?
 
   <answer>
     Concatenating Stream
 
-    TODO
+    Use a Stream to concatenate many Collections.
   </answer>
 </question>
