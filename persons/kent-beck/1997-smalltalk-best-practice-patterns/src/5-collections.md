@@ -665,11 +665,18 @@ collection 一类的数据转换而言比较自然了。
   <answer>
     Stack
 
-    Implement a Stack using an OrderedCollection.
+    Just use OrderedCollection as stack.
   </answer>
 </question>
 
 ## Queue
+
+| Queue Operation | OrderedCollection message |
+|-----------------|---------------------------|
+| add             | addFirst:                 |
+| remove          | removeLast:               |
+| empty           | isEmpty                   |
+| length          | size                      |
 
 <question>
   How do you implement a queue?
@@ -677,7 +684,7 @@ collection 一类的数据转换而言比较自然了。
   <answer>
     Queue
 
-    TODO
+    Just use OrderedCollection as queues.
   </answer>
 </question>
 
