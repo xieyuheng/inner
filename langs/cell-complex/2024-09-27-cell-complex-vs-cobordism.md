@@ -21,7 +21,8 @@ cell complex：
 
 ```scheme
 (check boundary
-  (-> (element n) (spherical n)))
+  (-> (element n)
+      (spherical (sub1 n))))
 
 (check glue
   (-> (element n) (element (sub1 n)) (element n)
@@ -32,9 +33,16 @@ cobordism：
 
 ```scheme
 (check boundary
-  (-> (element n) (list (spherical n))))
+  (-> (element n)
+      (list (spherical (sub1 n)))))
 
 (check glue
   (-> (element n) (element n)
       (element n)))
 ```
+
+为了能够像 cell complex 构造拓扑元素，
+在 cobordism 的语境下，
+只需要 `(list (spherical (sub1 n)))`
+能够确定唯一一个 `(element n)` 就可以了。
+这显然是满足的。
