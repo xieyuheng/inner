@@ -465,9 +465,9 @@ Cell 能够从任意多个方向接受信息，
 这只是 dependency 所能引出的最简单的概念，
 论文一共有三层 dependency 所引出的概念：
 
-- dependencies for provenance
-- dependencies for alternate worldviews
-- dependencies for implicit search
+- Dependencies Track Provenance
+- Dependencies Support Alternate Worldviews
+- Dependencies Improve Search
 
 如果这些概念都能通过扩展 merge 来实现，
 并且这些扩展还是渐进的，
@@ -740,6 +740,55 @@ generate-and-test 是 Sussman 经常提到的一个关键词（一个关键 idea
 当里面保存的是带有「或」语义的 `BeliefSystem` 时，
 就和 datalog 的一个关系中保存 clauses 的情况类似。
 
+将下面的显式 cell 改成隐式 cell：
+
+```scheme
+(define (multiple-dwelling)
+  (let ((baker (make-cell))
+        (cooper (make-cell))
+        (fletcher (make-cell))
+        (miller (make-cell))
+        (smith (make-cell))
+        (floors '(1 2 3 4 5)))
+    (one-of floors baker)
+    (one-of floors cooper)
+    (one-of floors fletcher)
+    (one-of floors miller)
+    (one-of floors smith)
+    (require-distinct (list baker cooper fletcher miller smith))
+    (let ((b=5 (make-cell))
+          (c=1 (make-cell))
+          (f=5 (make-cell))
+          (f=1 (make-cell))
+          (m>c (make-cell))
+          (sf (make-cell))
+          (fc (make-cell))
+          (one (make-cell))
+          (five (make-cell))
+          (s-f (make-cell))
+          (as-f (make-cell))
+          (f-c (make-cell))
+          (af-c (make-cell)))
+      ((constant 1) one)     ((constant 5) five)
+      (=? five baker b=5)    (forbid b=5)
+      (=? one cooper c=1)    (forbid c=1)
+      (=? five fletcher f=5) (forbid f=5)
+      (=? one fletcher f=1)  (forbid f=1)
+      (>? miller cooper m>c) (require m>c)
+      (subtractor smith fletcher s-f)
+      (absolute-value s-f as-f)
+      (=? one as-f sf)       (forbid sf)
+      (subtractor fletcher cooper f-c)
+      (absolute-value f-c af-c)
+      (=? one af-c fc)       (forbid fc)
+      (list baker cooper fletcher miller smith))))
+```
+
+TODO 隐式 cell：
+
+```scheme
+```
+
 TODO 完成这里的实现。
 
 # 5 Expressive Power
@@ -766,7 +815,7 @@ nogood sets 只是其中之二。
 搜索到了 {a, b, c, d} 发现错误，
 才发现 {a, b} 会导致错误？
 而不是搜索到 {a, b} 的时候就已经发现这个集合会导致错误？
-我还想不出这样的例子。
+也许依赖信息是从 {a} 直接增加到了 {a, b, c, d}。
 
 第三个优化搜索的点如下：
 
@@ -810,7 +859,7 @@ nogood sets 只是其中之二。
 这确实是对 propagator model 与古典计算模型之差异的最好总结。
 
 > Considered from the propagators’ perspective, dependency-directed
-> search is just a mechanism for solving long -- range Boolean
+> search is just a mechanism for solving long-range Boolean
 > dependencies -- if raw propagation of certain values is not enough
 > to deduce the answer, make a hypothetical guess, and propagate its
 > consequences, keeping track of which guess was responsible. If you
