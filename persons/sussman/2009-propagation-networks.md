@@ -816,6 +816,21 @@ generate-and-test 是 Sussman 经常提到的一个关键词（一个关键 idea
 
 TODO 完成这里的实现。
 
+> Though on one hand this chapter is much more special-purpose than
+> the last, being entirely devoted to an examination of one particular
+> partial information type -- one among the myriads that could be
+> plugged into this system -- on the other hand, it is this example
+> more than any other that shows the quantum leap of modularity that
+> the partial information idea makes possible. It is generally thought
+> that a propagation system needs a search algorithm to be built into
+> the core scheduler: we have just shown how it can instead be
+> associated with a composable partial information type and tuned to
+> the needs of each problem separately, without modifying the core or
+> the other information propagated by the network. This is one of the
+> revolutionary aspects of this system: when we turn, in the next
+> chapter, to the subject of the expressive power of propagation, we
+> will see its consequences play out.
+
 # 5 Expressive Power
 
 ## 5.1 Dependency Directed Backtracking Just Works
