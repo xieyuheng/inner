@@ -784,9 +784,34 @@ generate-and-test 是 Sussman 经常提到的一个关键词（一个关键 idea
       (list baker cooper fletcher miller smith))))
 ```
 
-TODO 隐式 cell：
+隐式 cell：
 
 ```scheme
+(define (multiple-dwelling)
+  (let ((baker (make-cell))
+        (cooper (make-cell))
+        (fletcher (make-cell))
+        (miller (make-cell))
+        (smith (make-cell))
+        (floors '(1 2 3 4 5)))
+    (one-of floors baker)
+    (one-of floors cooper)
+    (one-of floors fletcher)
+    (one-of floors miller)
+    (one-of floors smith)
+    (require-distinct (list baker cooper fletcher miller smith))
+    (let ((one (make-cell))
+          (five (make-cell)))
+      ((constant 1) one)
+      ((constant 5) five)
+      (forbid (=? five baker))
+      (forbid (=? one cooper))
+      (forbid (=? five fletcher))
+      (forbid (=? one fletcher))
+      (require (>? miller cooper))
+      (forbid (=? one (absolute-value (subtractor smith fletcher))))
+      (forbid (=? one (absolute-value (subtractor fletcher cooper))))
+      (list baker cooper fletcher miller smith))))
 ```
 
 TODO 完成这里的实现。
