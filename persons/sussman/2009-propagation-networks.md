@@ -236,7 +236,7 @@ Network 的运行有三种情况：
 为什么应该保存 partial information。
 
 - 大前提：多个 propagators 可以向同一个 cell 中赋值。
-- 小前提：多个值至今可能没有全序关系来判读谁好谁坏。
+- 小前提：多个值之间可能没有全序关系来判读谁好谁坏。
 - 结论：应该用偏序关系与 lattice，来 merge 多个值。
 
 ### 2.3.1 Why don't cells store values?
