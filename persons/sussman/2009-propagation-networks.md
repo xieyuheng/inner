@@ -909,9 +909,28 @@ nogood sets 只是其中之二。
 
 ## 5.2 Probabilistic Programming Tantalizes
 
+> The motivating observation is that many useful programs need to
+> perform deductions under regimes of uncertain knowledge.
+> Probability theory is the extension of classical logic to reasoning
+> with propositions whose truth is uncertain, if the uncertainty can
+> be quantified [Jaynes, 2003]. In effect, doing probability is like
+> doing logic but with numbers attached.
+
 TODO
 
 ## 5.3 Constraint Satisfaction Comes Naturally
+
+TODO
+
+## 5.4 Logic Programming Remains Mysterious
+
+TODO
+
+## 5.5 Functional Reactive Programming Embeds Nicely
+
+TODO
+
+## 5.6 Rule-based Systems Have a Special Topology
 
 TODO
 
