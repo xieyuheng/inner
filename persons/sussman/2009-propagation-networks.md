@@ -966,6 +966,28 @@ TODO
 propagation network 已经不是 bidirectional 了，
 而是 multidirectional。
 
+> Propagation networks are inherently multidirectional -- indeed,
+> multidirectionality is the point -- so they can seamlessly integrate
+> this kind of producer-consumer communication without needing to rely
+> on an external mechanism such as type inference. And of course, the
+> only reason for type inference to be external to a normal program is
+> its multidirectionality.
+
+类型检查器之独立于程序的运行时，还在于两层信息，
+不只是在于类型检查是可以多方向的。
+比如，逻辑式语言或者 propagator 语言，也可以带有类型系统。
+
+propagator 语言的类型系统应该很有意思：
+
+- 可能是除了 run 之外，还有一个 check，来 propagate 类型信息。
+- 可能是只有 run，但是 cell 除了能保存 value 之外还能保存类型，
+  如果只有类型信息，就只 propagate 类型信息。
+
+> A program running on a propagation infrastructure could
+> incrementally, dynamically infer more information about the types
+> flowing through it as relevant inputs became available, perhaps
+> refining a compiler-computed type analysis at runtime.
+
 TODO
 
 # 6 Towards a Programming Language
