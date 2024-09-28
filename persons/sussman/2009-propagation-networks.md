@@ -586,7 +586,7 @@ A,B,C:       [ ]
 > - if neither the new nor the old values are redundant, then we need
 >   both their supports;
 >
-> - if either is strictly redundant, we needn’t include its support;
+> - if either is strictly redundant, we needn't include its support;
 >
 > - and if they are equivalent, we can choose which support to use.
 >
@@ -603,7 +603,7 @@ A,B,C:       [ ]
 > want to return an object that will be recognized as representing a
 > contradiction, but will retain the information about which premises
 > were involved in the contradiction.  It is convenient to do that by
-> using the cell’s generic contradiction test; that way we can let
+> using the cell's generic contradiction test; that way we can let
 > `v&s-merge` return a supported value whose value is a contradiction,
 > and whose support can carry information about why the contradiction
 > arose.
@@ -720,7 +720,7 @@ generate-and-test 是 Sussman 经常提到的一个关键词（一个关键 idea
 - 但是函数有的时候确实是不够的，
   虽然图灵完备，但是写起来太啰嗦。
 
-> It is, and should be, the receiver’s responsibility to determine if
+> It is, and should be, the receiver's responsibility to determine if
 > the ingredients to its computation are appropriate and acceptable.
 
 比如，在实现 web app 的时候，
@@ -862,9 +862,9 @@ nogood sets 只是其中之二。
 - 其实只有这一点是需要用 propagator model 实现的，
   其他的两点用普通的 explicit searching state 也可以实现。
 
-> Third, if we’re tracking the dependencies anyway, then when we
+> Third, if we're tracking the dependencies anyway, then when we
 > change a choice, we should be able to avoid recomputing anything
-> that doesn’t depend on that choice.
+> that doesn't depend on that choice.
 
 > Moving to propagation instead of evaluation solves this
 > problem. Propagation has a much more flexible intrinsic notion of
@@ -898,7 +898,7 @@ nogood sets 只是其中之二。
 指出了古典计算模型对时间的隐式依赖，
 这确实是对 propagator model 与古典计算模型之差异的最好总结。
 
-> Considered from the propagators’ perspective, dependency-directed
+> Considered from the propagators' perspective, dependency-directed
 > search is just a mechanism for solving long-range Boolean
 > dependencies -- if raw propagation of certain values is not enough
 > to deduce the answer, make a hypothetical guess, and propagate its
@@ -1208,7 +1208,7 @@ TODO
 
 [Allen et al., 2005] E. Allen, D. Chase, V. Luchangco, J.W. Maessen, S. Ryu, G.L. Steele Jr, S. Tobin-Hochstadt, J. Dias, C. Eastlund, J. Hallett, et al. (2005). The Fortress Language Specification. Sun Microsystems.
 
-[Andersen, 1837] Hans Christian Andersen (1837). The Emperor’s New Clothes. In Tales for Children.
+[Andersen, 1837] Hans Christian Andersen (1837). The Emperor's New Clothes. In Tales for Children.
 
 [Apt, 2003] Krzysztof R. Apt (2003). Principles of Constraint Programming. Cambridge University Press, Cambridge, UK.
 
@@ -1246,7 +1246,7 @@ TODO
 
 [Doyle, 1978] Jon Doyle (1978). Truth Maintenance Systems for Problem Solving. AI Memo 419, MIT Artificial Intelligence Laboratory, Cambridge, MA.
 
-[Doyle, 1890] Sir Arthur Conan Doyle (1890). The Sign of the Four. Lippincott’s Monthly Magazine. Available online at http://www.gutenberg.org/files/2097/2097-h/2097-h.htm.
+[Doyle, 1890] Sir Arthur Conan Doyle (1890). The Sign of the Four. Lippincott's Monthly Magazine. Available online at http://www.gutenberg.org/files/2097/2097-h/2097-h.htm.
 
 [Driscoll et al., 1989] James R. Driscoll, Neil Sarnak, Daniel D. Sleator, and Robert E. Tarjan (1989). Making Data Structures Persistent. Journal of Computer and System Sciences, 38(1).
 
@@ -1318,7 +1318,7 @@ TODO
 
 [Norvig, 2004] Peter Norvig (2004). Paradigms of Artificial Intelligence Programming: Case Studies in Common LISP. Morgan Kaufmann.
 
-[Ockham, 1340] William of Ockham (ca. 1340). Ockham’s razor.
+[Ockham, 1340] William of Ockham (ca. 1340). Ockham's razor.
 
 [Park et al., 2005] S. Park, F. Pfenning, and S. Thrun (2005). A Probabilistic Language Based upon Sampling Functions. In Proceedings of the 32nd ACM SIGPLAN-SIGACT symposium on Principles of Programming Languages, pages 171–182. Association for Computing Machinery, New York, NY.
 
@@ -1330,7 +1330,7 @@ TODO
 
 [Puget, 1998] J.F. Puget (1998). A Fast Algorithm for the Bound Consistency of Alldiff Constraints. In Proceedings of the National Conference on Artificial Intelligence, pages 359–366. John Wiley & Sons Ltd.
 
-[Radul, 2007] Alexey Radul (2007). Report on the Probabilistic Language Scheme. In DLS ’07: Proceedings of the 2007 symposium on Dynamic languages, pages 2–10. Association for Computing Machinery, New York, NY. http://hdl.handle.net/1721.1/39831.
+[Radul, 2007] Alexey Radul (2007). Report on the Probabilistic Language Scheme. In DLS '07: Proceedings of the 2007 symposium on Dynamic languages, pages 2–10. Association for Computing Machinery, New York, NY. http://hdl.handle.net/1721.1/39831.
 
 [Radul and Sussman, 2009a] Alexey Radul and Gerald Jay Sussman (2009a). The (Abridged) Art of the Propagator. In Proceedings of the 2009 International Lisp Conference, pages 41–56, Cambridge, MA. Association of Lisp Users, Sterling, Virginia, USA.
 
@@ -1386,7 +1386,7 @@ TODO
 
 [Wan and Hudak, 2000] Z. Wan and Paul Hudak (2000). Functional Reactive Programming from First Principles. ACM SIGPLAN Notices, 35(5):242–252.
 
-[Zabih, 1987] Ramin Zabih (1987). Dependency-Directed Backtracking in Non-Deterministic Scheme. Master’s thesis, Massachusetts Institute of Technology, Cambridge, MA.
+[Zabih, 1987] Ramin Zabih (1987). Dependency-Directed Backtracking in Non-Deterministic Scheme. Master's thesis, Massachusetts Institute of Technology, Cambridge, MA.
 
 [Zabih, 1998] Ramin Zabih (1998). Dependency-Directed Backtracking in Non-Deterministic Scheme. AI Memo 956, MIT Artificial Intelligence Laboratory, Cambridge, MA.
 
