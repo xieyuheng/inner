@@ -992,9 +992,34 @@ TODO
 
 # 6 Towards a Programming Language
 
+> It is now time to explore several hitherto unaddressed issues that
+> arise in trying to build a complete programming system (programming
+> language or virtual machine, if you will) based on the propagation
+> model.
+
 ## 6.1 Conditionals Just Work
 
+> Every programming system has some notion of a conditional, and
+> propagation is no exception. The basic conditional propagation
+> construct is the switch. This propagator either passes its input to
+> its output, if the signal on the control is true, or not.
+
 TODO
+
+## 6.2 There are Many Possible Means of Abstraction
+### 6.2.1 Compound blueprints
+### 6.2.2 Delayed blueprints
+### 6.2.3 Virtual copies
+### 6.2.4 Opening abstractions
+## 6.3 What Partial Information to Keep about Compound Data?
+### 6.3.1 Recursive partial information
+### 6.3.2 Carrying cells
+### 6.3.3 Other considerations
+## 6.4 Scheduling can be Smarter
+## 6.5 Propagation Needs Better Garbage Collection
+## 6.6 Side Effects Always Cause Trouble
+## 6.7 Input is not Trivial Either
+## 6.8 What do we Need for Self-Reliance?
 
 # 7 Philosophical Insights
 
