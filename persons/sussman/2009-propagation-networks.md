@@ -873,7 +873,7 @@ nogood sets 只是其中之二。
 > 4.4.
 >
 > Doing that removes the linear-branching structure of our search
-> “tree”. Each choice becomes an entity in its own right, instead of
+> "tree". Each choice becomes an entity in its own right, instead of
 > being a row of nodes in a search tree; so their identities are
 > conserved.
 >
@@ -1007,18 +1007,170 @@ TODO
 TODO
 
 ## 6.2 There are Many Possible Means of Abstraction
+
+> Every language must have primitives, means of combination, and means
+> of abstraction. The primitives in the propagator network are cells
+> and primitive propagators.  The means of combination is wiring them
+> together into larger propagator networks.
+>
+> What are the means of abstraction?  The job of an abstraction
+> mechanism is to package up a propagator network and give it a name,
+> so that it may be treated as a primitive to build larger
+> combinations that aren’t interested in its internal structure. How
+> can this job be done?
+
 ### 6.2.1 Compound blueprints
+
+> One means of abstraction is inherited directly from the host
+> Scheme. The primitive propagators are represented as Scheme
+> procedures that act as blueprints: call it on a collection of
+> neighbor cells, and it will attach a copy of the appropriate
+> propagator to those cells, and schedule it.
+
+这是最自然的，也是我在 JS 中首先实现的 abstraction 方式。
+
+- 这也是我在实现 inet 时使用的 abstraction 方式，
+  在 inet 中只有这种抽象方式也是合理的，
+  因为在 inet 中定义函数等价于定义 eliminator nodes 和相关的 rules。
+
+关于 blueprint 一词，如果认为运行时被 schedule 的实例是 propagator，
+那么 blueprint 自然就指 propagator constructor。
+
+依照这样的惯例，把主要名词给运行时的存在，而不是描述性的存在，
+就应该有下面的对应：
+
+|        | 关于函数            | 关于传播子             |
+|--------|---------------------|------------------------|
+| 运行时 | function            | propagator             |
+| 描述性 | function definition | propagator constructor |
+
+显然 blueprint、constructor 和 definition 在这里是近义词。
+
+> From the perspective of the network, this acts like a macro system
+> because the compound blueprints are expanded when the network is
+> constructed, and in particular before the scheduler runs.
+
+这里到 macro system 的比喻很贴切。
+
+- 在 inet 中，meta language 就是用来构造图语法的 macro system。
+
+> Being a macro system is a sword with two edges, though. Since
+> compound blueprints are fully expanded before the network is run,
+> they have no access to the data that the network actually computes.
+> As a consequence, this abstraction mechanism does not suffice to
+> implement, for example, recursion: That requires a notionally
+> infinite propagator network, whose structure is elaborated only as
+> the computation being done actually needs it, but compound
+> blueprints have no way to know what will be actually needed and what
+> will not.
+
+注意，真的有必要用在运行时无穷展开的 propagator network 来实现 recursion，
+因为每次 recursive 调用的时候，都可能生成新的 cell 作为局部变量。
+
+- 注意，在实现的时候，一定要保证垃圾回收器可以正确回收 cell。
+
+这一节是讨论递归定义的。
+
+- 注意，在 inet 中，除了 macro system 一类的 abstraction，
+  其实定义 node 和 rule 的行为也算是 abstraction，
+  递归是通过 rule 的递归定义实现的，
+  而不是通过 macro 的递归定义实现的。
+
 ### 6.2.2 Delayed blueprints
+
+> If one wants to implement recursion with some abstraction mechanism
+> like compound blueprints, but is stymied by the fact that they will
+> fully expand before the network is run, the natural thing to do is
+> to delay them. In other words, define a propagator that, when run,
+> will expand some compound blueprint. That compound blueprint can
+> then presumably refer to more such propagators that delay more
+> compound blueprints, but those will not be expanded until the
+> computation needs them.
+
+这里实现的 API `(compound-propagator neighbors to-build)`
+的第二个参数是一个 nullary closure，
+也许我们可以用 apply 式的 API，
+而不用 nullary closure。
+
+> This code presumes that the blueprint (here to-build) is already
+> closed over the appropriate cells, and can therefore be called with
+> no arguments. It also presumes that an abstraction will not do
+> anything interesting if all of its neighbor cells contain nothing;
+> we will consider how wise a presumption that is in Section 6.2.4.
+
+当有了可以在运行时生成 propagation network 的函数，
+就很自然地要讨论高阶函数，并且根据 partial information 原则，
+network 本身也应该可以以 partial information 的方式保存。
+
+另外就是动态生成的 network 的垃圾回收问题，
+首先，垃圾回收是不能由 meta language 的垃圾回收机制自动处理的（为什么）。
+其次，可能需要 quiescence 这种全局的属性来判断垃圾回收的时机。
+
+- 也可以将 network 按是否是动态的来分类，
+  静态的 network 是不用考虑垃圾回收的，
+  对于动态的 network，我们可以增加信息来帮助垃圾回收。
+
+这都是很有趣也很有挑战性的课题。
+
+TODO Recursion with delayed blueprints
+
 ### 6.2.3 Virtual copies
+
+> Abstraction by virtual copies makes the shape of the propagator
+> network reflect the shape of the source code of a program rather
+> than the shape of its execution: the propagators actually
+> constructed correspond to bits of code, whereas the shape of the
+> execution is tracked by the collection of virtual copies that exist:
+> for any particular token, the set of mappings of that token in all
+> cells corresponds to one frame of a Scheme lexical environment.  In
+> order to build closures, I expect to need a notion of "parent token"
+> for the tokens.
+
+是否可以这样理解这一节？
+
+即它所讲的是如何在不动态生成更多的 network 的情况下，
+通过让 cell 所保存的 partial information 更丰富，
+来实现递归调用。
+
+> One disadvantage of abstraction by virtual copies is that it
+> requires additional machinery not present in the base propagator
+> system, namely the token-value mappings and the translation objects.
+
+也许不是，
+而是用一个额外的 token 到 cell 的 mapping 实现的。
+
+> This is not so bad, however, because the propagator infrastructure
+> is flexible enough that this machinery can be added in user space:
+> the token-value mappings are yet another kind of partial
+> information, and the translators are yet another kind of
+> propagator. No fundamental design changes are required.
+
+其实还是可以通过 cell 和 partial information 来实现。
+
+可否将 propagator network 与 inet 相结合来实现垃圾回收呢？
+要知道 inet 就是完全根据 network 的局部 pattern
+来改变 network 的机制。
+
+这一节还经常提到如何实现 closure 这个的问题，
+在 inet 中我也没解决如何实现 closure 的问题，
+或者说实现高阶函数的问题。
+
 ### 6.2.4 Opening abstractions
+
 ## 6.3 What Partial Information to Keep about Compound Data?
+
 ### 6.3.1 Recursive partial information
 ### 6.3.2 Carrying cells
 ### 6.3.3 Other considerations
+
 ## 6.4 Scheduling can be Smarter
+
 ## 6.5 Propagation Needs Better Garbage Collection
+
 ## 6.6 Side Effects Always Cause Trouble
+
 ## 6.7 Input is not Trivial Either
+
 ## 6.8 What do we Need for Self-Reliance?
 
 # 7 Philosophical Insights
