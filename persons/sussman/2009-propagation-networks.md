@@ -1157,6 +1157,26 @@ TODO Recursion with delayed blueprints
 
 ### 6.2.4 Opening abstractions
 
+> An abstraction is a named piece of network that is manipulated by
+> reference to its name alone.
+
+> In previous sections we were concerned with how that might be done;
+> here let us turn our attention to questions of when to do it.
+
+这里所谓的 opening abstraction
+就是 dereference abstraction。
+
+需要一些讨论是因为
+`compound-propagator` 何时展开自己的定义，
+有多种策略可以选择。
+
+最简单的两个是：
+
+- （1）有一些 arguments 不是 nothing 就展开。
+- （2）所有 arguments 不是 nothing 才展开。
+
+`compound-propagator` 的定义选择的是（1）。
+
 ## 6.3 What Partial Information to Keep about Compound Data?
 
 ### 6.3.1 Recursive partial information

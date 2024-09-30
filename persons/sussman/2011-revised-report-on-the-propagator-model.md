@@ -59,8 +59,8 @@ source: "https://groups.csail.mit.edu/mac/users/gjs/propagators"
 然后慢慢发现应用领域
 （毕竟项目的时间跨越了 30 多年）。
 
-可以感到，作者在为 propagator model 寻找应用场景，
-其实基于 propagator model 的类型检查器就是最有趣的应用场景，
+可以感到，作者在为 propagator model 寻找应用场景。
+我认为基于 propagator model 的类型检查器就是很有趣的应用场景之一，
 因为每种逻辑就对应一种类型系统，因此有各种各样的类型检查器有待开发。
 Sussman 也曾经说过，类型检查不过是 constraint solving 而已。
 
@@ -104,6 +104,16 @@ Sussman 也曾经说过，类型检查不过是 constraint solving 而已。
 (content answer) ==> 5
 ```
 
+```typescript
+const a = Cell()
+const b = Cell()
+patch(a, 3)
+patch(b, 2)
+const answer = adder(a, b)
+await run()
+answer.content // ==> 5
+```
+
 # The Details
 
 > Now that you know how to play around with our propagators we have to
@@ -117,7 +127,7 @@ Sussman 也曾经说过，类型检查不过是 constraint solving 而已。
 > The two basic operations when making a propagator network are making
 > cells and attaching propagators to cells.
 
-attaching propagators to cells 可以用函数作用来表示。
+为了简化语法，"attaching propagators to cells" 可以用函数作用来表示。
 
 ## Attaching Basic Propagators: d@
 
