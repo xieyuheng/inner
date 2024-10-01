@@ -286,7 +286,38 @@ operation 的 content 不会跟着更新。
 也可以作为 `(d@ operation 3 4 answer)` 的缩写。
 就是对于 cell 也可以 overload function application syntax。
 
+cell 保存 propagator 相关的 partial information 之后，
+是否可以直接用这种 partial information
+来实现 `define-generic` 和 `define-handler` 的效果呢？
+我想应该是可以的！
+
 ## Provided Primitives: p:foo and e:foo
+
+除非设计纯粹的 propagator system，
+其中没有正常意义上的函数，
+所有的行为都由 propagator 完成；
+否则总是要让 function 与 propagator 共存，
+不同类型的东西共存有命名问题，
+何况这两类东西都占用 function application syntax。
+
+也许应该设计 pure propagator system，
+因为 pure 意味着简单，没有很多相互掺杂的概念，
+比如 syntax overload，
+还有 `add` v.s. `adder` 的 naming 的问题。
+
+假设我们 JS 来实现 pure propagator system，
+所有的 primitive 都要用 JS 实现。
+这在实现的时候确实很麻烦，
+但是使用的时候简单，
+而且可以帮助我们提炼出来合理的 primitive propagator 集合。
+
+假设我们要实现 pure propagator 语言，
+类型系统应该如何处理？
+其实就是两层计算，是否可以直接用 partial information 来处理呢？
+我想也是可以的！
+
+TODO
+
 ## Cells are Data Too
 ## Compound Data
 ## Propagator Constraints: c:foo and ce:foo
