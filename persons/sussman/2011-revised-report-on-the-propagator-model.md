@@ -250,6 +250,42 @@ Sussman 的设计也重载了函数作用，
 ```
 
 ## Late Binding of Application
+
+propagator is first class citizen，
+这意味着 propagator 也可以保存在 cell 中
+（可能需要定义相关的 partial information）。
+
+成为了 first class citizen 之后，
+就可能有 high order propagator，
+diagram apply -- d@ 就是最典型的 high order propagator。
+
+```scheme
+(define-cell operation)
+(define-cell answer)
+(d@ operation 3 4 answer)
+(run)
+(content answer)  ==>  nothing
+```
+
+可以在 diagram apply 构造好 propagator 之后，
+再向 operation cell 中添加 propagator。
+
+```scheme
+(p:id p:* operation)
+(run)
+(content answer)  ==>  12
+```
+
+为什么要用 `(p:id p:* operation)`
+而不是直接 `(add-content (content p:*) operation)`，
+因为前者是 reactive 的，
+而后者会导致 p:* 的 content 更新之后，
+operation 的 content 不会跟着更新。
+
+`(operation 3 4 answer)`
+也可以作为 `(d@ operation 3 4 answer)` 的缩写。
+就是对于 cell 也可以 overload function application syntax。
+
 ## Provided Primitives: p:foo and e:foo
 ## Cells are Data Too
 ## Compound Data
@@ -309,3 +345,26 @@ Sussman 的设计也重载了函数作用，
 # 12 How this supports the goal
 
 # Bibliography
+
+[1]: Applicative programming with effects
+
+- Conor McBride and Ross Paterson.
+- Journal of Functional Programming, 18(1):1-13.
+- 2008.
+
+[2]: Propagation Networks: A Flexible and Expressive Substrate for Computation
+
+- Alexey Radul.
+- PhD thesis, Massachusetts Institute of Technology,
+  Cambridge, MA.
+- September 2009.
+- http://hdl.handle.net/1721.1/49525
+
+[3]: The Art of the Propagator
+
+- Alexey Radul and Gerald Jay Sussman.
+- CSAIL Tech Report MIT-CSAIL-TR-2009-002,
+  MIT Computer Science and Artificial Intelligence Laboratory,
+  Cambridge, MA.
+- 2009.
+- http://hdl.handle.net/1721.1/44215
