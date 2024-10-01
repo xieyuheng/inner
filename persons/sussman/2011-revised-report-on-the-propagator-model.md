@@ -402,6 +402,38 @@ TODO
 
 # 6 Using Partial Information
 
+> Partial, cumulative information is essential to multidirectional,
+> non-sequential programming. Each "memory location" of
+> Scheme-Propagators, that is each cell, maintains not "a value", but
+> "all the information it has about a value". Such information may be
+> as little as "I know absolutely nothing about my value", as much as
+> "I know everything there is to know about my value, and it is 42",
+> and many possible variations in between; and also one not-in-between
+> variation, which is "Stop the presses! I know there is a
+> contradiction!"
+
+> The key thing about partial information is that it's cumulative.  So
+> if you also added some other knowledge to a cell, it would need to
+> merge with the content that's there to represent the cumulated
+> knowledge.
+
+> If incoming knowledge hopelessly contradicts the knowledge a cell
+> already has, it will complain, and stop the network mid-stride, and
+> give you a chance to examine the situation so you can debug the
+> program that led to it, using the standard MIT Scheme debugging
+> facilities.
+
+> The partial information types are defined by a suite of Scheme
+> procedures. The ones defining the actual partial information types
+> are `equivalent?`, `merge`, and `contradictory?`, which test whether
+> two information structures represent the same information, merge
+> given information structures, and test whether a given information
+> structure represents an impossible state, respectively. Each partial
+> information structure also defines the way various propagators treat
+> it. The behavior in the control position of a `switch` propagator
+> and in the operator position of an apply propagator are particularly
+> important.
+
 # 7 Built-in Partial Information Structures
 
 ## Nothing
