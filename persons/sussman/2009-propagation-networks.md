@@ -1179,19 +1179,69 @@ TODO Recursion with delayed blueprints
 
 ## 6.3 What Partial Information to Keep about Compound Data?
 
+TODO
+
 ### 6.3.1 Recursive partial information
+
+TODO
+
 ### 6.3.2 Carrying cells
+
+TODO
+
 ### 6.3.3 Other considerations
+
+TODO
 
 ## 6.4 Scheduling can be Smarter
 
+TODO
+
 ## 6.5 Propagation Needs Better Garbage Collection
+
+TODO
 
 ## 6.6 Side Effects Always Cause Trouble
 
+首先不能直接简单地让 propagator 带有副作用
+（除非想要的就是在每次相邻的 cell 变化时运行 propagator）。
+也许可以用一个这样的 propagator，
+外加一个用户（也包括其他 propagator）可以控制的 cell，
+这个 cell 保存的可以是 history of events。
+这样通过给这个 cell patch event，
+就可以控制带有副作用的 propagator 的运行了。
+
+> The right solution to this problem is an exciting topic for future
+> research. There is a glimmer of hope in the observation that timings
+> are not always unpredictable in propagator networks: If some region
+> of the network is acyclic, and admits only nothing or complete,
+> non-refinable values as partial information states, then that
+> portion of the network will behave basically like a normal program,
+> and can therefore be arranged to execute any side-effecting
+> propagators it contains at predictable points.
+
 ## 6.7 Input is not Trivial Either
 
+这个和上一节的 side effects 问题一样，
+也可以让 cell 保存 history of events 来解决。
+
+在当前的实现中，patch 信息到 cell 就是 input。
+
 ## 6.8 What do we Need for Self-Reliance?
+
+这里讨论如何让 propagator 的使用，
+可以独立于 hosting language（比如 scheme）。
+
+这是很难的问题，
+尤其是因为所有对 propagator system 的扩展，
+比如定义新的 propagator 和 partial information，
+都需要 hosting language
+-- 需要给 merge 定义新的 handler，
+并且对于 container 类的 partial information 定义新的 monad。
+
+其实没必要完全脱离 hosting language，
+后者可以理解为是 meta language，
+正如 lisp 的 macro system 也是 lisp 的一部分。
 
 # 7 Philosophical Insights
 
