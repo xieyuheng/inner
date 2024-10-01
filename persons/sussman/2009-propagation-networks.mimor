@@ -1,0 +1,136 @@
+<问>
+  一个传播网（Propagation Network）作为一个二分图，
+  由哪两种节点组成？
+
+  <答>
+    Cell（单元）和 Propagator（传播器）。
+  </答>
+</问>
+
+<填空>
+  使得使用通用传播网络进行计算的新颖见解是，
+  不应将单元视为存储一个值，
+  而应将其视为<空>积累关于该值的信息</空>。
+</填空>
+
+<填空>
+  本论文的另一个更具技术性的贡献是，
+  在 cell 保存的信息中，带上<空>依赖信息</空>。
+</填空>
+
+<问>
+  Propagator Model 作为一个新的计算模型，
+  突破了传统的 expression evaluation paradigm。
+
+  类似的突破这种传统的计算模型还有哪些？
+
+  <答>
+    - logic programming
+
+    - constraint processing
+
+    - reactive programming
+
+    - actor model
+
+    - interaction network
+
+    - Petri net
+  </答>
+</问>
+
+<问>
+  很适合用来实现 Propagator Model
+  这个计算模型的更底层计算模型是什么？
+
+  <答>
+    Actor Model。
+
+    用 actor 实现 propagator，
+    正如用图实现二分图，毕竟二分图也是特殊的图。
+  </答>
+</问>
+
+<填空>
+  Propagator 是异步的（Asynchronous）,
+  自治的（Autonomous）且<空>无状态的（Stateless）</空>。
+</填空>
+
+<问>
+  如何理解 Propagator 是无状态的（Stateless）？
+
+  <答>
+    Propagator 本身是纯函数，所有的状态都保存在 cell 中。
+
+    状态总是不可避免地与时间有关。
+  </答>
+</问>
+
+<问>
+  如何理解 Propagator 是自治的（Autonomous）？
+
+  <答>
+    Propagator 时刻准备着进行计算，不需要任何前提条件。
+  </答>
+</问>
+
+<问>
+  如何理解 Propagator 是异步的（Asynchronous）？
+
+  <答>
+    一个 propagator 可以随时进行其计算，
+    没责任去与其他 propagator 在时间上相互协调。
+  </答>
+</问>
+
+<填空>
+  尝试从逻辑上推理出来，为什么应该保存 partial information。
+
+  - 大前提：多个 propagators 可以向同一个 cell 中赋值。
+
+  - 小前提：<空>多个值之间可能没有全序关系来判读谁好谁坏</空>。
+
+  - 结论：应该用偏序关系与 lattice，来 merge 多个值。
+</填空>
+
+<问>
+  论文通过逐步扩展 merge 所能处理的 partial information type，
+  来扩展 propagator 的能力。
+
+  一共实现了有四种 partial information type，分别是什么？
+
+  <答>
+    - Number
+
+    - Interval
+
+    - Belief -- SupportedValue
+
+    - BeliefSystem -- TMS（Truth Maintenance System）
+
+  </答>
+</问>
+
+<问>
+  在论文中，Dependency 的作用一共有三层，分别是？
+
+  <答>
+    - Dependencies Track Provenance
+
+    - Dependencies Support Alternate Worldviews
+
+    - Dependencies Improve Search
+  </答>
+</问>
+
+<问>
+  用 dependencies 来优化搜索的技术叫什么？
+
+  <答>
+    Dependency-directed backtracking
+  </答>
+</问>
+
+<填空>
+  人类可以处理相互冲突的信念（inconsistent beliefs）而不<空>死机</空>。
+</填空>
