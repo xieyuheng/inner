@@ -316,9 +316,78 @@ cell 保存 propagator 相关的 partial information 之后，
 其实就是两层计算，是否可以直接用 partial information 来处理呢？
 我想也是可以的！
 
-TODO
+```scheme
+(p:foo input ... output)
+```
+
+> Attaches a propagator that does the foo job to the given input and
+> output cells. p:abs, p:square, p:sqrt, p:not, p:pair?, and p:null?
+> accept one input cell and one output cell. p:+, p:-, p:*, p:/, p:=,
+> p:<, p:>, p:<=, p:>=, p:and, p:or, p:eq?, p:eqv?, p:atan2, and
+> p:expt, accept two input cells and one output cell.
+
+```scheme
+(e:foo input ...)
+```
+
+> The e:foo equivalents of all the p:foo propagator constructors are
+> all available and accept the same number of input cells (and make
+> their own output cell).
+
+```scheme
+(p:id input output)
+(e:id input)
+```
+
+> Attaches an identity propagator to the given cells. The identity
+> propagator will continuously copy the contents of the input cell to
+> the output cell.
+
+```scheme
+(p:== input ... output)
+(e:== input ...)
+```
+
+> These are variadic versions of p:id. The result is a star topology,
+> with every input feeding into the one output.
+
+```scheme
+(p:switch control input output)
+(e:switch control input)
+```
+
+> Conditional propagation. The propagator made by switch copies its
+> input to its output if and only if its control is "true". The
+> presence of partial information (see Section 6) makes this
+> interesting. For example, a #t contingent on some premise will cause
+> switch to propagate, but the result written to the output will be
+> contingent on that premise (in addition to any other premises the
+> input may already be contingent on).
+
+```scheme
+(p:conditional control consequent alternate output)
+(e:conditional control consequent alternate)
+```
+
+> Two-armed conditional propagation. May be defined by use of two
+> switch propagators and a not propagator.
+
+```scheme
+(p:conditional-router control input consequent alternate)
+(e:conditional-router control input consequent)
+```
+
+> Two-output-armed conditional propagation. This is symmetric with
+> conditional; the consequent and alternate are possible output
+> destinations.
+
+"Propagation Networks" 论文中
+`conditional-router` 叫 `conditional-writer`。
 
 ## Cells are Data Too
+
+TODO
+
 ## Compound Data
 ## Propagator Constraints: c:foo and ce:foo
 ## Constants and Literal Values
