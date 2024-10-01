@@ -64,7 +64,7 @@ source: "https://groups.csail.mit.edu/mac/users/gjs/propagators"
 因为每种逻辑就对应一种类型系统，因此有各种各样的类型检查器有待开发。
 Sussman 也曾经说过，类型检查不过是 constraint solving 而已。
 
-# Propagator System
+# 1 Propagator System
 
 > Although most of this document introduces you to the
 > Scheme-Propagator system that we have developed in MIT Scheme, the
@@ -92,7 +92,7 @@ Sussman 也曾经说过，类型检查不过是 constraint solving 而已。
 > idempotent. The behavior of propagators must be monotonic with
 > respect to the lattice induced by the merge operation.
 
-# Getting Started
+# 2 Getting Started
 
 ```scheme
 (define-cell a)
@@ -114,7 +114,7 @@ await run()
 answer.content // ==> 5
 ```
 
-# The Details
+# 3 The Details
 
 > Now that you know how to play around with our propagators we have to
 > tell you what we actually provide. In every coherent system for
@@ -122,7 +122,7 @@ answer.content // ==> 5
 > can be combined, and means by which combinations can be abstracted
 > so that they can be named and treated as if they are primitive.
 
-# Making Propagator Networks
+# 4 Making Propagator Networks
 
 > The two basic operations when making a propagator network are making
 > cells and attaching propagators to cells.
@@ -131,9 +131,37 @@ answer.content // ==> 5
 
 ## Attaching Basic Propagators: d@
 
-TODO
+> The name d@ is mnemonic for "diagram apply".
+
+```scheme
+(d@ propagator boundary-cell ...)
+```
+
+> Attaches a propagator to the given boundary cells. By convention,
+> cells used as outputs go last. As a Scheme procedure, d@ does not
+> return a useful value.
+
+例子：
+
+```scheme
+(d@ p:+ foo bar baz)
+```
+
+> As in Scheme, p:+ is actually the name of a cell that contains a
+> propagator constructor for attaching propagators that do
+> addition. The first argument to d@ can be any cell that contains any
+> desired partial information (see Section 6) about a propagator
+> constructor. Actual attachment of propagators will occur as the
+> propagator constructor becomes sufficiently well constrained.
+
+p:+ 不是 propagator constructor，
+而是一个保存了 propagator constructor 的 cell。
+这里与 "Propagation Networks" 论文中的实现方式不一样了。
 
 ## Propagator Expressions: e@
+
+TODO
+
 ## Late Binding of Application
 ## Provided Primitives: p:foo and e:foo
 ## Cells are Data Too
@@ -144,14 +172,14 @@ TODO
 ## Making Cells
 ## Conditional Network Construction
 
-# Making New Compound Propagators
+# 5 Making New Compound Propagators
 
 ## Lexical Scope
 ## Recursion
 
-# Using Partial Information
+# 6 Using Partial Information
 
-# Built-in Partial Information Structures
+# 7 Built-in Partial Information Structures
 
 ## Nothing
 ## Just a Value
@@ -163,7 +191,7 @@ TODO
 ## Contradiction
 ## Implicit Dependency-Directed Search
 
-# Making New Kinds of Partial Information
+# 8 Making New Kinds of Partial Information
 
 ## An Example: Adding Interval Arithmetic
 ## Generic Coercions
@@ -172,16 +200,16 @@ TODO
 ## Uniform Applicative Extension of Propagators
 ## Interoperation with Existing Partial Information Types
 
-# Making New Primitive Propagators
+# 9 Making New Primitive Propagators
 
 ## Direct Construction from Functions
 ## Propagatify
 ## Compound Cell Carrier Construction
 ## Fully-manual Low-level Propagator Construction
 
-# Debugging
+# 10 Debugging
 
-# Miscellany
+# 11 Miscellany
 
 ## Macrology
 ## Reboots
@@ -191,6 +219,6 @@ TODO
 ## Hacking
 ## Arbitrary Choices
 
-# How this supports the goal
+# 12 How this supports the goal
 
 # Bibliography
