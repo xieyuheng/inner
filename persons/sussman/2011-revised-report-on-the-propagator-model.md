@@ -493,28 +493,174 @@ cell 保存 propagator 相关的 partial information 之后，
 
 ## Propagator Constraints: c:foo and ce:foo
 
-TODO
+combined 应该可以被视作是 primitive，
+但是这里却用了不同的名字前缀来表示 combined propagator。
+
+可能是因为取名字的压力太大了。
+也可能是因为要区分相似的但是方向不同的 propagator。
+- 也许可以在类型中带上信息来区分 propagator 的方向。
 
 ## Constants and Literal Values
 
-TODO
+```scheme
+(define-cell thing)
+((constant 5) thing)
+(content thing) ==> #(*the-nothing*)
+(run)
+(content thing) ==> 5
+```
+
+> There is also an expression-oriented version,
+> called, naturally, e:constant:
+
+```scheme
+(define-cell thing (e:constant 5))
+(run)
+(content thing) ==> 5
+```
 
 ## Constant Conversion
 
-TODO
+> In fact, inserting constants is so important, that there is one more
+> nicification of this: whenever possible, the system will convert a
+> raw constant (i.e. a non-cell Scheme object) into a cell, using
+> e:constant.
+
+> Some examples:
+
+```scheme
+(e:+ x 2)          ==   (e:+ x (e:constant 2))
+(define-cell x 4)  ==   (define-cell x (e:constant 4))
+(c:+ x y 0)        ==   (c:+ x y (e:constant 0))
+```
+
+这个 implicit conversion 未必是好事。
 
 ## Making Cells
 
-TODO
+使用 macro：
+
+```scheme
+(define-cell x)
+```
+
+而不是：
+
+```scheme
+(define x (make-cell))
+```
+
+就可以获得名字信息，达到类似下面的效果：
+
+```scheme
+(define x (make-cell :name 'x))
+```
+
+这种 `define-cell` 的设计，
+就是为什么用 lisp/scheme 可以更快速地做一些语言设计实验。
+
+> Just as Scheme has several mechanisms of making variables, so
+> Scheme-Propagators has corresponding ones. Corresponding to Scheme's
+> let, Scheme-Propagators has let-cells:
+
+```scheme
+(let-cells ((foo (e:+ x y))
+            (bar (e:* x y)))
+  ...)
+```
+
+> will create the Scheme bindings foo and bar, and bind them to the
+> cells made by (e:+ x y) and (e:* x y), respectively (this code is
+> only sensible if x and y are already bound to cells (or subject to
+> constant conversion)). The new bindings will only be visible inside
+> the scope of the let-cells, just like in Scheme; but if you attach
+> propagators to them, the cells themselves will continue to exist and
+> function as part of your propagator network.
+
+> One notable difference from Scheme: a cell in a propagator network,
+> unlike a variable in Scheme, has a perfectly good "initial
+> state“. Every cell starts life knowing nothing about its intended
+> contents; where Scheme variables have to start life in a weird
+> "unassigned" state, nothing is a perfectly good partial information
+> structure. This means that it's perfectly reasonable for let-cells
+> to make cells with no initialization forms:
+
+```scheme
+(let-cells (x y (foo (some thing))) ...)
+(let-cells ((x) (y) (foo (some thing))) ...)
+```
+
+> Moreover, since an "uninitialized" propagator cell can still start
+> life in a perfectly sensible state, namely the state of containing
+> nothing, let-cells-rec removes a restriction that Scheme's letrec
+> enforced; namely, you may use the names defined by a given
+> let-cells-rec directly in the defining forms, without any explicit
+> intermediate delay in evaluation. For example:
+
+```scheme
+(let-cells-rec ((z (e:+ x y))
+                (x (e:- z y))
+                (y (e:- z x)))
+  ...)
+```
+
+上面这个例子很有趣，
+看起来递归和相互递归的处理都更简单了。
 
 ## Conditional Network Construction
 
-TODO
+> The switch propagator does conditional propagation -- it only
+> forwards its input to its output if its control is "true". As such,
+> it serves the purpose of controlling the flow of data through an
+> existing propagator network. However, it is also appropriate to
+> control the construction of more network, for example to design
+> recursive networks that expand themselves no further than
+> needed. The basic idea here is to delay the construction of some
+> chunk of network until some information appears on its boundary, and
+> control whether said information appears by judicious use of switch
+> propagators. The low-level tools for accomplishing this effect are
+> delayed-propagator-constructor and switch. The supported user
+> interface is:
+
+```scheme
+(p:when internal-cells condition-cell body ...)
+```
+
+> Delays the construction of the body until sufficiently "true" (in
+> the sense of switch) partial information appears in the
+> condition-cell. The condition-cell argument is an expression to
+> evaluate to produce the cell controlling whether construction of the
+> body takes place. The body is an arbitrary collection of code,
+> defining some amount of propagator network that will not be built
+> until the controlling cell indicates that it should. The
+> internal-cells argument is a list of the free variables in
+> body. This is the same kind of kludge as the import clause in
+> define-propagator (see Section 5.1).
+
+```scheme
+(p:if internal-cells condition-cell consequent alternate)
+```
+
+> Two-armed conditional construction. Just like a p:when and a
+> p:unless: constructs the network indicated by the consequent form
+> when the condition-cell becomes sufficiently "true", and constructs
+> the network indicated by the alternate form when the condition-cell
+> becomes sufficiently "false". Note that both can occur for the same
+> p:if over the life of a single computation, for example if the
+> condition-cell comes to have a TMS that includes a #t contingent on
+> some premises and later a #f contingent on others.
 
 # 5 Making New Compound Propagators
 
+TODO
+
 ## Lexical Scope
+
+TODO
+
 ## Recursion
+
+TODO
 
 # 6 Using Partial Information
 
