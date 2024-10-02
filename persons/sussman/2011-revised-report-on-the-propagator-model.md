@@ -5,6 +5,18 @@ year: 2011
 source: "https://groups.csail.mit.edu/mac/users/gjs/propagators"
 ---
 
+# 学习目标
+
+与 "Propagation Networks" 那篇论文相比，
+这篇论文在处理 cell 和 cons 时有很多新的见解，
+在之前很多设计决策还悬而未决，
+这篇论文已经做出了选择。
+
+"Cells are Data Too" 之类的章节，
+延续了 Sussman 的研究风格，
+比如在设计 scheme 之初，
+很多设计决策都来自概念之间的融合与简化，这个指导思想。
+
 # Abstract
 
 > In the past year we have made serious progress on elaborating the
@@ -386,14 +398,66 @@ cell 保存 propagator 相关的 partial information 之后，
 
 ## Cells are Data Too
 
-TODO
+> Cells, and structures thereof, are perfectly good partial
+> information (see Section 6) and are therefore perfectly legitimate
+> contents of other cells. The event that two different cells A and B
+> find themselves held in the same third cell C means that A and B are
+> now known to contain information about the same thing. The two cells
+> are therefore merged by attaching c:id propagators to them so as to
+> keep their contents in sync in the future.
+
+这些想法在 Propagation Networks 那篇论文中，
+只是在 6.3.2 Carrying cells 的章节稍有提及。
+
+```scheme
+(p:deposit cell place-cell)
+(e:deposit cell)
+```
+
+>  Grabs the given cell and deposits it into place-cell. The rule for
+>  merging cells has the effect that the given cell will be identified
+>  with any other cells that place-cell may come to hold.
+
+```scheme
+(p:examine place-cell cell)
+(e:examine place-cell)
+```
+
+> Grabs the given cell and deposits it into place-cell. The rule for
+> merging cells has the effect that the given cell will be identified
+> with any other cells that place-cell may come to hold.
+>
+> In fact, p:deposit and p:examine are the same operation, except with
+> the arguments reversed.
+>
+> The e:examine variant includes an optimization: if the place-cell
+> already contains a cell, e:examine will just Scheme-return that cell
+> instead of synthesizing a new one and identifying it with the cell
+> present.
 
 ## Compound Data
+
+TODO
+
 ## Propagator Constraints: c:foo and ce:foo
+
+TODO
+
 ## Constants and Literal Values
+
+TODO
+
 ## Constant Conversion
+
+TODO
+
 ## Making Cells
+
+TODO
+
 ## Conditional Network Construction
+
+TODO
 
 # 5 Making New Compound Propagators
 
