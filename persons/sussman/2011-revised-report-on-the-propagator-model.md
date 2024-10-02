@@ -437,7 +437,59 @@ cell 保存 propagator 相关的 partial information 之后，
 
 ## Compound Data
 
-TODO
+```scheme
+(p:cons car-cell cdr-cell output)
+(e:cons car-cell cdr-cell)
+```
+
+> Constructs a propagator that collects the car-cell and the cdr-cell,
+> makes a pair of them, and writes that pair into the output
+> cell. This is like a binary p:deposit.
+
+```scheme
+(p:pair? input output)
+(e:pair? input)
+```
+
+> Attaches a propaagtor that tests whether input cell contains a pair.
+
+```scheme
+(p:null? input output)
+(e:null? input)
+```
+
+> Attaches a propaagtor that tests whether input cell contains the empty list.
+
+```scheme
+(p:car input output)
+(e:car input)
+```
+
+> Makes a propagator that identifies the given output with the cell in
+> the car of the pair in the given input. This is like a p:examine of
+> that field. Note that using p:car on an input implies the
+> expectation that said input contains a pair. That wish is treated as
+> a command, and a pair appears. If fact, (p:car input output) is
+> equivalent to (p:cons output nothing input).
+
+```scheme
+(p:cdr input output)
+(e:cdr input)
+```
+
+> Same as p:car and e:car, except the other field of the pair.
+
+> Scheme pairs created by p:cons and company are partial information
+> structures, and they merge by recursively merging their
+> corresponding fields. Together with the rule for merging cells, the
+> emergent behavior is unification (with a merge delay instead of the
+> occurs check).
+
+这里的 merge delay 是什么意思？
+也许是说构造 network 的时候，并不会发生 merge，
+只有当 run network 的时候才会发生 merge，
+而在 run 的过程中，如果发现两个 cell 已经保存了相同的 pair，
+就不会再有进一步的 propagation。
 
 ## Propagator Constraints: c:foo and ce:foo
 
