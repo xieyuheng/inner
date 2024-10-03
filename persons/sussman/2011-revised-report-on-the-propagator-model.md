@@ -811,7 +811,63 @@ Scheme-Propagators:
 > entail only small changes to the implementation. These are tough
 > goals to achieve.
 
-TODO
+> Systems built on the Propagator Model of computation can approach
+> some of these goals.
+
+> A key idea is to allow fan-in, merging partial results. A result may
+> be computed in multiple ways, by complementary processes. There may
+> be multiple ways to partially contribute to a result; these
+> contributions are merged to make better approximations to the
+> desired result. Partial results can be used as a base for further
+> computations, which may further refine known values or partially
+> determine new ones. So we can make effective use of methods that
+> give only part of an answer, depending on other methods to fill in
+> missing details. This ability to absorb redundant and partial
+> computations contributes to additivity: it is easy to add new
+> propagators that implement additional ways to compute any part of
+> the information about a value in a cell.
+
+> Dependency tracking and truth maintenance contribute to additivity
+> in a different way. If you want to add a new pile of stuff, you
+> don't need to worry too much about whether or not it will be
+> compatible with the old: just make it contingent on a fresh
+> premise. If the addition turns out to conflict with what was already
+> there, it (or the offending old thing) can be ignored, locally and
+> dynamically, by retracting a premise.
+
+> A propagator program is analogous to an electrical circuit diagram,
+> whereas a program written for a more traditional model is more like
+> a system diagram: the intellectual viewpoint of the Propagator Model
+> of computation is not the composition of functions, as in
+> traditional models, but is rather the construction of
+> mechanisms. The difference is profound:
+>
+> 1. circuit models are multidirectional; system diagrams compute from
+>    inputs to outputs.
+>
+> 2. circuit models are abstractions of physics; system diagrams are
+>    abstractions of process.
+
+> The circuit diagram viewpoint gives us powerful ways to think. We
+> can modify a circuit diagram by clipping out a part, or by
+> installing a different version. We can temporarily carry information
+> from one place to another using a clip lead. We have lots of places
+> to connect various kinds of meters for monitoring and debugging.
+
+> Now for something completely different! Scheme-Propagators is built
+> with dynamically-extensible generic operations. The pervasive merge
+> operation, as well as all the primitive propagators, are generic,
+> and this makes it easier for us to add new forms of partial
+> information. Adding new forms of partial information is a way to
+> extend the capabilities of the propagation infrastructure to novel
+> circumstances. With appropriate foresight, new partial information
+> structures can interoperate with old, and additively extend the
+> capabilities of existing systems -- a way to teach old dogs new
+> tricks. Of course, such power is dangerous: if a network that
+> depends on commutativity of multiplication of numbers meets an
+> extension to square matrices, we will get wrong answers. But then,
+> cross-checking across complementary methods, together with
+> dependency tracking, simplifies the task of debugging such errors.
 
 # Bibliography
 
