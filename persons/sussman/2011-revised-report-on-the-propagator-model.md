@@ -765,7 +765,64 @@ Scheme-Propagators:
 - closures
 
 ## Nothing
+
+```scheme
+nothing
+```
+
+> A single Scheme object that represents the complete absence of information.
+
+```scheme
+(nothing? thing)
+```
+
+> A predicate that tests whether a given Scheme object is the nothing object.
+
+> nothing is equivalent? only to itself.
+
+> nothing never contributes anything to a merge -- the merge of
+> anything with nothing is the anything.
+
+> nothing is not contradictory?.
+
+> Strict propagators, such as ones made by p:+, output nothing if any
+> of their inputs are nothing.
+
+> A switch whose control cell contains nothing will emit nothing.
+
+> An apply propagator whose operator cell contains nothing will not do
+> anything.
+
+这里的说明，其实描述了一个类型的 partial information
+所需要满足的 interface，只不过这里 interface
+是以 generic function 的方式实现的。
+
 ## Just a Value
+
+> A Scheme object that is not otherwise defined as a partial
+> information structure indicates that the content of the cell is
+> completely known, and is exactly (by eqv?) that object. Note:
+> floating point numbers are compared by approximate numerical
+> equality; this is guaranteed to screw you eventually, but we don't
+> know how to do better.
+
+> Raw Scheme objects are equivalent? if they are eqv? (or are
+> approximately equal floating point numbers).
+
+> Non-equivalent? raw Scheme objects merge into the contradiction
+> object.
+
+> A raw Scheme object is never contradictory?.
+
+> A switch interprets any non-#f raw Scheme object in its control cell
+> as true and forwards its input cell to its output cell unmodified. A
+> switch whose control cell is #f emits nothing to its output cell.
+
+> An apply propagator whose operator cell contains a raw Scheme
+> procedure will apply it to the boundary cells. It is an error for a
+> raw Scheme object which is not a Scheme procedure to flow into the
+> operator cell of an apply propagator.
+
 ## Numerical Intervals
 ## Propagator Cells as Partial Information
 ## Compound Data
