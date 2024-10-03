@@ -652,15 +652,62 @@ combined 应该可以被视作是 primitive，
 
 # 5 Making New Compound Propagators
 
-TODO
+```scheme
+(define-propagator (foo ...) ...)     defines  p:foo and e:foo
+(define-propagator (p:foo ...) ...)   defines  p:foo and e:foo
+(define-propagator (e:foo ...) ...)   defines  p:foo and e:foo
+(define-propagator (c:foo ...) ...)   defines  c:foo and ce:foo
+(define-propagator (ce:foo ...) ...)  defines  c:foo and ce:foo
+```
 
 ## Lexical Scope
 
-TODO
+> Compound propagator definitions can be closed over cells available
+> in their lexical environment:
+
+```scheme
+(define-e:propagator (addn n)
+  (define-e:propagator (the-adder x)
+    (import n)
+    (e:+ n x))
+  e:the-adder)
+```
+
+> import is a kludge, which is a consequence of the embedding of
+> Scheme-Propagators into Scheme. Without enough access to the Scheme
+> interpreter, or enough macrological wizardry, we cannot detect the
+> free variables in an expression, so they must be listed explicitly
+> by the user. Globally bound objects like e:+ (and p:addn and e:addn
+> if the above were evaluated at the top level) need not be mentioned.
+
+embedding 的坏处竟然是很难处理 lexical scope。
+
+- 也可能是实现方式导致的，而不是 embedding 的限制，
+  因为在我的 embedding 实现中，
+  我想象不到为什么会需要这样处理 lexical scope，
+  直接用 hosting language 的 closure 就可以了。
+
+- 也许 Sussman 这么做是为了垃圾回收？
 
 ## Recursion
 
-TODO
+```scheme
+(define-propagator (p:factorial n n!)
+ (p:if (n n!) (e:= 0 n)
+   (p:== 1 n!)
+   (p:== (e:* n (e:factorial (e:- n 1))) n!)))
+```
+
+> p:if needs to be told the names of the non-global variables that are
+> free in its branches, just like the import clause of a propagator
+> definition (and for the same kludgerous reason).
+
+```scheme
+(define-e:propagator (e:factorial n)
+  (e:if (n) (e:= 0 n)
+    1
+    (e:* n (e:factorial (e:- n 1)))))
+```
 
 # 6 Using Partial Information
 
@@ -697,6 +744,25 @@ TODO
 > important.
 
 # 7 Built-in Partial Information Structures
+
+The following partial information structures are provided with
+Scheme-Propagators:
+
+- nothing
+- just a value
+- intervals
+- propagator cells
+- compound data
+- closures
+- supported values
+- truth maintenance systems
+- contradiction
+
+从 Propagation Networks 论文实现到这里，我还差：
+
+- propagator cells
+- compound data
+- closures
 
 ## Nothing
 ## Just a Value
@@ -737,6 +803,15 @@ TODO
 ## Arbitrary Choices
 
 # 12 How this supports the goal
+
+> We started with the goal of making it easier for people to build
+> systems that are additive. A system should not become so
+> interdependent that it is difficult to extend its behavior to
+> accommodate new requirements. Small changes to the behavior should
+> entail only small changes to the implementation. These are tough
+> goals to achieve.
+
+TODO
 
 # Bibliography
 
