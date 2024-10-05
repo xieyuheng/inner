@@ -919,6 +919,27 @@ TODO
 
 ## Closures
 ## Truth Maintenance Systems
+
+> A Truth Maintenance System (TMS) is a set of contingent values. A
+> contingent value is any partial information object that describes
+> the "value" in the cell, together with a set of premises. The
+> premises are Scheme objects that have no interesting properties
+> except identity (by eq?). A worldview defines which premises are
+> believed.
+
+之前的 supported value 在这里被称为 contingent value。
+
+> The meaning of a TMS as information is the logical **and** of the
+> meanings of all of its contingent values. The meaning of each
+> contingent value is an implication: The conjunction of the premises
+> implies the contingent information. Therefore, given a worldview,
+> some of the contingent information is believed and some is not. If
+> the TMS is queried, it produces the best summary it can of the
+> believed information, together with the full set of premises that
+> information is contingent upon.
+
+注意是 logical and 而不是 or！
+
 ## Contradiction
 ## Implicit Dependency-Directed Search
 
