@@ -1087,6 +1087,10 @@ the-contradiction
 当 cell 发现自己 content 带有 the-contradiction + reasons 时，
 就把 reasons 记录成 nogood set。
 
+- 如果是 cell 的行为，
+  就可以通过一个带有 local cell 的 propagator
+  来实现 signals contradiction。
+
 ```scheme
 (p:one-of input ... output)
 (e:one-of input ...)
