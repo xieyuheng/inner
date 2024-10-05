@@ -755,6 +755,8 @@ Scheme-Propagators:
 - compound data
 - closures
 - supported values
+  - 和 TMS 一起介绍，
+    并且已经改名为了 contingent values。
 - truth maintenance systems
 - contradiction
 
@@ -918,6 +920,9 @@ nothing
 TODO
 
 ## Closures
+
+TODO
+
 ## Truth Maintenance Systems
 
 > A Truth Maintenance System (TMS) is a set of contingent values. A
@@ -940,8 +945,167 @@ TODO
 
 注意是 logical and 而不是 or！
 
+TODO
+
+> TMSes are equivalent? if they contain equivalent contingent
+> objects. Contingent objects are equivalent if they have equivalent
+> info and the same set of premises.
+
+> TMSes merge by appending their lists of known contingencies (and
+> sweeping out redundant ones).
+
+上面的描述很简单，但是对 redundant 的定义，
+涉及到 contingent objects 之间的序关系，
+其实是比较复杂的。
+
+> Strict propagators react to TMSes by querying them to obtain
+> ingredients for computation. The result of a computation is
+> contingent on the premises of the ingredients that contribute to
+> that result.
+
+上面尝试同时描述 contingent object 和 TMS 的 monad 的行为。
+
+> If the input itself is a TMS, switch queries it and (possibly)
+> forwards the result of the query, rather than forwarding the entire
+> TMS. For example:
+
+```scheme
+(define-cell frob (make-tms (contingent 4 '(bill))))
+(define-cell maybe-frob (e:switch (make-tms (contingent #t '(fred))) frob))
+(run)
+(tms-query (content maybe-frob))  ==>  #(contingent 4 (bill fred))
+```
+
+虽然不是 forwarding the entire TMS，
+但是 maybe-frob 的 content 还是一个 TMS。
+
+> If a TMS appears in the operator cell of an apply propagator, the
+> apply propagator will query the TMS. If the result of the query is a
+> contingent propagator constructor, the apply propagator will execute
+> that constructor in a sandbox that ensures that the premises on
+> which the constructor was contingent are both forwarded to the
+> constructed propagator's inputs and attached to the constructed
+> propagator's outputs. For example, suppose Bill wanted us to add 3
+> to 4:
+
+```scheme
+(define-cell operation)
+(define-cell answer)
+(p:switch (make-tms (contingent #t '(bill))) p:+ operation)
+(d@ operation 3 4 answer)
+(run)
+(tms-query (content answer))  ==>  #(contingent 7 (bill))
+```
+
+> The answer cell contains a 7 contingent on the Bill premise. This is
+> the right thing, because that answer depends not only on the inputs
+> to the operation being performed, but also on the identity of the
+> operation itself.
+
 ## Contradiction
+
+> The Scheme object the-contradiction represents a completely
+> contradictory state of information. If a cell ever finds itself in
+> such a contradictory state, it will signal an error. The explicit
+> the-contradiction object is useful, however, for representing
+> contradictory information in recursive contexts. For example, a
+> truth maintenance system may discover that some collection of
+> premises leads to a contradiction -- this is represented by a
+> the-contradiction object contingent on those premises.
+
+```scheme
+the-contradiction
+```
+
+> A Scheme object representing a contradictory state of information
+> with no further structure.
+
+> the-contradiction is equivalent? only to itself.
+
+> Any information state merges with the-contradiction to produce
+> the-contradiction.
+
+> the-contradiction is contradictory?.
+
+带有 the-contradiction 的 contingent object 应该也是 contradictory?
+下一章的 implicit dependency-directed search
+就是利用这种信息来增加 nogood set 的。
+
+> Propagators cannot operate on the-contradiction because any cell
+> containing it will signal an error before any such propagator might
+> run.
+
 ## Implicit Dependency-Directed Search
+
+> If a cell discovers that it contains a TMS that harbors a contingent
+> contradiction, the cell will signal that the premises of that
+> contradiction form a nogood set, and that nogood set will be
+> recorded. For the worldview to be consistent, at least one of those
+> premises must be removed. The system maintains the invariant that
+> the current worldview never has a subset which is a known nogood.
+
+```scheme
+(p:amb cell)
+(e:amb)
+```
+
+> A propagator that emits a TMS consisting of a pair of contingencies.
+> One contains the information #t contingent on one fresh hypothetical
+> premise, and the other contains the information #f contingent on
+> anther.  amb also tries to maintain the invariant that exactly one
+> of those premises is believed. If doing so does not cause the
+> current worldview to believe a known nogood set, amb can just
+> bring-in! one premise or the other. If the current worldview is such
+> that bringing either premise in will cause a known nogood set to be
+> believed, then, by performing a cut, the amb discovers and signals a
+> new nogood set that does not include either of them. Together with
+> the reaction of the system to nogood sets, this induces an emergent
+> satisfiability solver by the resolution principle.
+
+只是看上面的描述我还是不能理解 amb 这种 propagator，
+由于和全局变量相关，所以 TMS 和 amb 都很复杂。
+要实际实现出来才能理解。
+
+```scheme
+(p:require cell)
+(e:require)
+```
+
+> A propagator that requires its given cell to be true (that is to
+> say, signals contradictions if it is not).
+
+```scheme
+(p:forbid cell)
+(e:forbid)
+```
+
+> A propagator that forbids its given cell from being true (that is to
+> say, signals contradictions if it is).
+
+如何实现这里提到的 signals contradictions？
+可能 cell 的行为（为了找到 nogood），
+当 cell 发现自己 content 带有 the-contradiction + reasons 时，
+就把 reasons 记录成 nogood set。
+
+```scheme
+(p:one-of input ... output)
+(e:one-of input ...)
+```
+
+> An n-ary version of amb. Picks one of the objects in the given input
+> cells using an appropriate collection of amb and switch propagators
+> and puts it into its output cell.
+
+amb 其实是为了实现这个 one-of，
+而 one-of 在于用 propagation 来实现搜索功能。
+这里 output 就是搜索中对 input cells 的选择。
+
+```scheme
+(require-distinct cells)
+```
+
+> Requires all of the objects in its list of input cells to be
+> distinct (in the sense of eqv?)
 
 # 8 Making New Kinds of Partial Information
 
