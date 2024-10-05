@@ -797,6 +797,8 @@ nothing
 所需要满足的 interface，只不过这里 interface
 是以 generic function 的方式实现的。
 
+我们可以在结尾以 OOP interface 的形式总结这里所描述的 interface。
+
 ## Just a Value
 
 > A Scheme object that is not otherwise defined as a partial
@@ -824,8 +826,97 @@ nothing
 > operator cell of an apply propagator.
 
 ## Numerical Intervals
+
+> An object of type interval? has fields for a lower bound and an
+> upper bound. Such an object represents the information "This value
+> is between these bounds".
+
+```scheme
+(make-interval low high)
+```
+
+> Creates an interval with the given lower and upper bounds
+
+```scheme
+(interval-low interval)
+```
+
+> Extracts the lower bound of an interval
+
+```scheme
+(interval-high interval)
+```
+
+> Extracts the upper bound of an interval
+
+```scheme
+(interval? thing)
+```
+
+> Tests whether the given object is an interval
+
+> Two interval objects are equivalent? if they are the same
+> interval. An interval is equivalent? to a number if both the upper
+> and lower bounds are that number.
+
+> Arithmetic can be performed on intervals. They can be compared, and
+> the comparison predicates will have a truth value only when no
+> future shrinkage of the intervals can change that value. For
+> example, (e:< int1 int2) will be true only if (e:< (interval-high
+> int1) (interval-low int2)); it will be false only if (e:>=
+> (interval-low int1) (interval-high int2)); otherwise the result of
+> the comparison is nothing.
+
+> Interval objects merge with each other by intersection. Interval
+> object merge with numbers by treating the number as a degenerate
+> interval and performing intersection (whose result will either be
+> that number or an empty interval). Interval objects merge with other
+> raw Scheme objects into the contradiction object.
+
+> An interval object is contradictory? if and only if it represents a
+> strictly empty interval (that is, if the upper bound is strictly
+> less than the lower bound).
+
+> The arithmetic propagators react to interval objects by performing
+> interval arithmetic.
+
+> A switch propagator treats any interval object in its control as a
+> non-#f object and forwards its input to its output.
+
+> It is an error for an interval object to appear in the operator
+> position of an apply propagator.
+
+> As an interval arithmetic facility, this one is very primitive. It
+> cannot extract new information from division by an interval that
+> contains zero, because that would require intervals around the point
+> at infinity. The main purpose of including intervals is to have a
+> partial information structure with an intuitive meaning, and that
+> requires nontrivial operations on the information it is over.
+
 ## Propagator Cells as Partial Information
+
+> A propagator cell interpreted as partial information is an
+> indirection: it means ``I contain the structure that describes this
+> value''. Cells can appear as the contents of cells or other
+> structures via the deposit and examine propagators (see Section
+> 4.5).
+
+> Propagator cells are equivalent? if they are known to contain
+> information about the same subject. This occurs only if they are
+> identically the same cell, or if they have previously been
+> unconditionally identified (by merging).
+
+> Propagator cells merge with each other by attaching bidirectional
+> identity propagators that keep the contents of the cells in
+> sync. These identity propagators will cause the contents of the
+> cells to merge, both now and in the future.
+
+> A propagator cell is never contradictory?.
+
 ## Compound Data
+
+TODO
+
 ## Closures
 ## Truth Maintenance Systems
 ## Contradiction
