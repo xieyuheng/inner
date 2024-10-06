@@ -1,6 +1,8 @@
-# Language implementation tricks
+---
+title: Language implementation tricks
+---
 
-## Closure and lexical scope
+# Closure and lexical scope
 
 We need lexical scope for lambda.
 
@@ -12,7 +14,7 @@ this is the most basic trick for writing simple call-by-value interpreter.
 
 Whenever lexical scope is need, the trick of closure must be used.
 
-## Keep the model of expression and value simple
+# Keep the model of expression and value simple
 
 The expression is already simple.
 
@@ -23,7 +25,7 @@ The "keep it simple trick" says,
 
 > Keep it simple.
 
-## Implementation of inference rules
+# Implementation of inference rules
 
 Type system is specified by logic inference rules.
 
@@ -138,7 +140,7 @@ we can implement infer for conclusion.
 is like dependent function type `check_t(premise) -> infer_t(conclusion)`,
 where `infer_t` is a subtype of `check_t`.
 
-## Comparing equivalence between expressions
+# Comparing equivalence between expressions
 
 We can comparing equivalence between expressions, if we can normalize expressions.
 
@@ -159,7 +161,7 @@ by comparing weak head normal form step by step,
 and know that two expressions are not equal
 as soon as they start to appear to be not equal.
 
-## Exp, Value, Neutral & Normal
+# Exp, Value, Neutral & Normal
 
 The terms are developed in the theory of partial evaluation.
 
