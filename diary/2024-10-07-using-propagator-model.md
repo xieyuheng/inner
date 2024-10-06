@@ -33,7 +33,7 @@ George Hotz 肯定也不知道，
 就算是动态类型也是可以接受的。
 
 如果为 pure propagator model 设计类型系统，
-类型系统应该描述的是什么？
+类型系统应该描述的是什么（比如 inet 描述的是构造图时候的接口）？
 
 - propagator 的参数类型。
 - cell 所能接受的数据类型。
@@ -46,3 +46,13 @@ George Hotz 肯定也不知道，
 上层计算是什么？
 应该也是 propagator network，
 而不是传统的基于 expression 的类型检查器。
+
+也许与 inet 构造图时所描述的接口类型一样，
+这里也描述的是构造 pnet 时的接口类型，
+类型检查就是检查接口是否匹配。
+
+- 一个 cell 可能保存 cell 和 propagator，
+  这样就可能有 high-order type。
+
+- 对于这种类型系统过来说 dependent type 是什么？
+  TODO 可以先以 inet 为例子来思考。
