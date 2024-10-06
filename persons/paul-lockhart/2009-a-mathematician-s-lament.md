@@ -23,4 +23,19 @@ year: 2009
 
 ## Mathematics and Culture
 
+这里以平面几何的想象为例子，
+对计算模型的想象是否也简单而美呢？
+比如 inet 和 pnet。
+
+也许在计算模型之中，简单而美的是：
+
+- lambda calculus
+- stack machine
+- inet 应该也算
+
+在语言设计中简单而美的是：
+
+- scheme
+- forth
+
 TODO
