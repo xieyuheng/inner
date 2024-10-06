@@ -1,6 +1,8 @@
-# Inheritance Is Not Subtyping
+---
+title: Inheritance Is Not Subtyping
+---
 
-## 2 Background
+# 2 Background
 
 ## 2.1 A Typed Record Calculus
 
