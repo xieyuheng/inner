@@ -8,6 +8,16 @@ year: 2009
 
 想找回一点小时候对数学的热爱。
 
+# 读后
+
+正如前言所说，
+作者的文笔很好，
+读起来是一种享受。
+
+读了之后发现，
+可以从这本书里学到的东西太多了，
+是可以常读常新的书。
+
 # Lamentation
 
 让人汗毛倒立的比喻，
@@ -87,7 +97,88 @@ year: 2009
 > in a subject than to make it a mandatory part of the school
 > curriculum.
 
-TODO
+> Mathematics is _the music of reason_.  To do mathematics is to
+> engage in an act of discovery and conjecture, intuition and
+> inspiration; to be in a state of confusion -- not because it makes
+> no sense to you, but because you _gave_ it sense and you still don't
+> understand what your creation is up to; to have a breakthrough idea;
+> to be frustrated as an artist; to be awed and overwhelmed by an
+> almost painful beauty; to be _alive_, damn it.
+
+写程序也是如此，不是想清楚了一切才开始写，
+而是在写的过程中会遇到 a state of confusion。
+要通过创造力从疑惑的状态中走出来。
+
+举了一个代数中简洁问题的例子，
+用来批判学校教的所谓「应用题」：
+
+> Suppose I am given the sum and difference of
+> two numbers. How can I figure out what the
+> numbers are themselves?
+
+我好像才意识到，
+在 inet 和 pnet 中，
+用变量和函数作用来构造二分图的想法，
+其实来自代数学中对变量的使用。
+
+变量在于形成连接，
+变量通常代表图中的节点，
+从对偶图的角度看，也是这些节点连接了相关的边。
+
+> In any case, do you really think kids even want something that is
+> relevant to their daily lives? You think something practical like
+> compound interest is going to get them excited? People enjoy
+> fantasy, and that is just what mathematics can provide -- a relief
+> from daily life, an anodyne to the practical workaday world.
+
+Raymond Smullyan 的谜题书是 fantasy 的代表，
+其中有魔法树林，其中的鸟儿有神秘鸣叫规律，哈哈。
+
+相比之下，学校教授数学的方式也是荒谬而愚蠢的。
+
+这一章的例子让我回忆起了自己所受的应试教育，
+那个漫长的过程是煎熬的，就像在监牢中，只是刑期结束的那天。
+
+幻想着自由之后会是多么快乐：
+在做学校作业的疲倦之余，我在读斯宾诺莎的书信集，
+看到他与同时代的哲学家和科学家的讨论与探索。
+但是我总觉得自己不应该读这些，因为我要考试，
+我不应该分散时间与精力到与考试无关的地方。
+我梦想高考结束的那天，我不需要进入一个好大学，
+只需要有一个图书馆，和自由。
+
+在大学的时候，一位老师说，
+你们不应该反感应试教育，
+因为你们是应试教育的最大受益者。
+所受的「益」是名校的标签吧？
+但是在人的成长过程中，
+有漫长的时间创造力被抑制，
+思想的自由被禁锢，
+失去的是什么呢？
+
+其实我知道不应该抱怨，
+因为个人没有能力改变这种社会环境，
+但是可以像 Lockhart 一样写书，
+用优美的行文揭示出来荒谬愚蠢的东西，
+然后再写书去展示美的东西。
+
+然而在大学之后，
+我并没有做到珍惜时间去学习，
+现在知道还来得及吧。
+
+> A good problem is something you don't know how to solve. That's what
+> makes it a good puzzle, and a good opportunity. A good problem does
+> not just sit there in isolation, but serves as a springboard to
+> other interesting questions. A triangle takes up half its box. What
+> about a pyramid inside its three dimensional box? Can we handle this
+> problem in a similar way?
+
+用 propagator 实现类型系统，
+对我来说就是这样一个好问题。
+
+类型系统作为逻辑系统，
+与各种不同计算模型的程序运行时的关系，
+也是很好的问题。
 
 ## The Mathematics Curriculum
 
