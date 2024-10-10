@@ -182,7 +182,16 @@ Raymond Smullyan 的谜题书是 fantasy 的代表，
 
 ## The Mathematics Curriculum
 
-TODO
+> As a result, we have a math curriculum with no historical
+> perspective or thematic coherence, a fragmented collection of
+> assorted topics and techniques, united only by the ease with which
+> they can be reduced to step-by-step procedures.
+
+我们介绍数学的方式有问题，
+「阶梯神话」阻止了数学被视为一个有机的整体。
+为什么历史很重要，因为在历史中你能读到前人创造的过程。
+重点是要思考某些数学是如何被发现的，
+因为前人发现的过程可以帮助我们学习如何获得新的发现。
 
 ## High School Geometry: Instrument of the Devil
 
