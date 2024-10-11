@@ -195,7 +195,17 @@ Raymond Smullyan 的谜题书是 fantasy 的代表，
 
 ## High School Geometry: Instrument of the Devil
 
-TODO
+> A proof, that is, a mathematical argument,
+> is a work of fiction, a poem.
+> Its goal is to _satisfy_.
+
+甚至暗合了构造主义四原则中关于证明的定义。
+
+> A beautiful proof should explain, and it should explain clearly,
+> deeply, and elegantly.  A well-written, well-crafted argument should
+> feel like a splash of cool water, and be a beacon of light -- it
+> should refresh the spirit and illuminate the mind.  And it should be
+> _charming_.
 
 # Exultation
 
