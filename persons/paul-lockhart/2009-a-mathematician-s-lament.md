@@ -207,6 +207,57 @@ Raymond Smullyan 的谜题书是 fantasy 的代表，
 > should refresh the spirit and illuminate the mind.  And it should be
 > _charming_.
 
+> Instead of a witty and enjoyable argument written by an actual human
+> being, and conducted in one of the world's many natural languages,
+> we get this sullen, soulless, bureaucratic form-letter of a proof.
+
+上面这个段也构成对辅助证明系统的批判。
+用类型来编码命题，用函数来写证明的过程，
+所得到的证明应该也可以被称为是 bureaucratic。
+
+> The effect of such a production being made over something so simple
+> is to make people doubt their own intuition. Calling into question
+> the obvious, by insisting that it be "rigorously proved" (as if the
+> above even constitutes a legitimate formal proof), is to say to a
+> student, "Your feelings and ideas are suspect. You need to think and
+> speak our way."
+
+在纯粹的形式证明中，如何才能避免这种现象？
+
+> Now there is a place for formal proof in mathematics, no question.
+> But that place is not a student's first introduction to mathematical
+> argument. At least let people get familiar with some mathematical
+> objects, and learn what to expect from them, before you start
+> formalizing everything.
+
+也许只是如上面所说，
+不应该在教学的开始就介绍形式证明，
+应该先介绍例子，让直觉先行。
+
+其实下面马上就有更好的为形式证明的辩护：
+
+> Rigorous formal proof only becomes important when there is a crisis
+> -- when you discover that your imaginary objects behave in a
+> counterintuitive way; when there is a paradox of some kind.
+
+> But such excessive preventative hygiene is completely unnecessary
+> here nobody's gotten sick yet! Of course if a logical crisis should
+> arise at some point, then obviously it should be investigated, and
+> the argument made more clear, but that process can be carried out
+> intuitively and informally as well. In fact it is the soul of
+> mathematics to carry out such a dialogue with one's own proof.
+
+关于 proof，数学家心中应该有什么样的 dialogue 呢？
+可能可以总结为，应该有让 the argument more and more clear 的 dialogue。
+
+作者总是说数学在于数学家想象中的 pattern，
+的确如此，pattern 的概念可以进化到范畴论，
+也可以进化到计算机语言方向的 design pattern 与具体的 class，
+实际上在辅助证明系统中，就是用 class 来表达抽象的数学结构的，
+而抽象的数学结构，就是最典型的数学家想象中的 pattern。
+
+TODO
+
 # Exultation
 
 TODO
