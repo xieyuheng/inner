@@ -256,6 +256,16 @@ Raymond Smullyan 的谜题书是 fantasy 的代表，
 实际上在辅助证明系统中，就是用 class 来表达抽象的数学结构的，
 而抽象的数学结构，就是最典型的数学家想象中的 pattern。
 
+> This is what comes from a misplaced sense of logical rigor:
+> _ugliness_. The spirit of the argument has been buried under a heap
+> of confusing formalism.
+
+又遇到可以用来批判辅助证明系统的句子了。
+不得不说设计这种系统的人是心虚的，
+形式证明确实不如古典的证明直观，
+那么有直观的形式证明吗？
+有好的形式证明的例子吗？
+
 TODO
 
 # Exultation
