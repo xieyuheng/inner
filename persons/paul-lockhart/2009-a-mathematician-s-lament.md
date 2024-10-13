@@ -290,4 +290,133 @@ interaction network 更简单，更适合作为数学的研究对象。
 确满足于在门口站着，
 而不进去探索。
 
+> ... Specifically, after expanding our notion of collection sizes to
+> include zero (the size of the empty collection), we can then define
+> new numbers like '-3 ' to be "that which when added to three makes
+> zero." And similarly for the other negative numbers. Notice the
+> philosophy here -- a number is what a number _does_.
+
+这么说来，
+原来皮尔士实用主义格言，
+就是数学中的基本常识之一。
+
+> In particular, we can replace the old-fashioned notion of
+> subtraction by a more modern idea: _adding the opposite_.
+> Instead of "eight take away five," we can (if we wish) view this
+> activity as "eight plus negative five." The advantage here is that
+> we have only one operation to deal with: adding. We have transferred
+> the subtraction idea away from the world of operations and over to
+> the numbers themselves. So instead of taking off my shoe, I can
+> think of it as putting on my "anti-shoe." And of course my
+> anti-anti-shoe would just be my shoe. Do you see the charm in this
+> viewpoint?
+
+anti-shoe 真是太搞笑了，哈哈。
+
+> What are so often presented to students as a cold, sterile set of
+> facts and formulas are actually the exciting and dynamic results of
+> these new creatures interacting with each other -- the patterns they
+> play out as a result of their inborn linguistic "nature."
+
+在讲述数与数的概念的扩张的时候说是
+new creatures interacting with each other。
+在实现 inet 时，
+也有很迫切的创造 new creatures 的需要，
+就是 dependent type 要求：
+- type 中可以包含任意 node，
+  因此 type constructor 本身也应该被实现为 node。
+- 类型检查中 type 之间等价的判断的需求，
+  要求可以判断任意两个 net (rooted net) 是否相等。
+
+这大概要求我们在 data constructor 之外实现 type constructor，
+可能不需要区分，都可以用 node 来实现。
+
+> The bold idea was to add new points to the classical Euclidean
+> plane. Specifically, we create one new point "at infinity" for each
+> direction in the plane. All the parallel lines in that direction
+> will now "meet" at this new point. We can imagine the new point to
+> be infinitely far away in that direction. Of course, since every
+> line goes off in two opposite directions, the new point must lie
+> infinitely far away in both directions!  In other words, our lines
+> are now infinite loops. Is that a far out idea, or what?
+
+与扩展数系相似的过程是构造射影平面。
+这里对射影平面的构造有一个很好的描述，
+解释了为什么要添加无穷远点，
+因为要让任意两个平行线也能相交在一点（像非平行线一样），
+因此摄影平面才有了拓扑意义上 cross-cap 的样子。
+有的教科书并不解释为什么。
+
+> Make up anything you want, so long as it isn't boring. Of course
+> this is a matter of taste, and tastes change and evolve. Welcome to
+> art history! Being a mathematician is not so much about being clever
+> (although lord knows that helps); it's about being aesthetically
+> sensitive and having refined and exquisite taste.
+
+确实如此，因为在设计数学结构，
+或者对已有的数学结构做扩展的时候，
+可能方向和选择太多了，
+因此必须要用美学来限制。
+
+> This is especially an issue when making extensions or improvements
+> to existing structures. We are of course free to do as we wish, but
+> usually we want to extend a system in such a way that the new
+> patterns do not conflict with the old ones. (Such is the case with
+> the arithmetic of negative numbers and fractions, for instance.)
+
+做数学与设计程序是如此相似。
+
+> Occasionally, this compels us to make decisions we might otherwise
+> not want to make, such as forbidding division by zero (if a number
+> such as '1/0' were to exist, it would conflict with the nice pattern
+> that multiplication by zero always makes zero).  Anyway, as long as
+> you are consistent, you can pretty much have whatever you want.
+
+甚至需要做妥协的情况都相似。
+
+注意，上面这种扩展而不影响已有系统的性质，
+只有在带有 generic function 的程序语言中才能实现。
+
+- inet 好像天生就是 generic 的！
+
+> So the mathematical landscape is filled with these interesting and
+> delightful structures that we have built (or accidentally
+> discovered) for our own amusement.  We observe them, notice
+> interesting patterns, and try to craft elegant and compelling
+> narratives to explain their behavior.
+
+写程序很多时候也是为了娱乐，
+比如模拟物理世界的就称作是「游戏引擎」。
+
+> This is the Frankenstein aspect of mathematics -- we have the
+> authority to define our creations, to instill in them whatever
+> features or properties we choose, but we have no say in what
+> behaviors may then ensue as a _consequence_ of our choices.
+
+这种说法不一定对，因为为了某种 consequence
+而设计数学结构的例子也是有的，
+比如 inet 就是为了获得更好的 normalization 相关的属性。
+
+如何研究 inet 呢？
+可能开始的时候，就是以 functional programming 中，
+简单的数据结构与程序为例子，尝试去实现它们，
+然后在这个过程中总结经验。
+
+> I am drawn in by the possibility of a _connection_ -- a new,
+> unforeseen relationship that will improve my intuition and perhaps
+> permanently change the way I think about these objects. I suppose
+> that's really a key part of it for me: I want to be _changed_. I
+> want to be affected in a fundamental way.
+
+浪漫。
+
+> Math is not about a collection of "truths" (however useful or
+> interesting they may be). Math is about reason and understanding. We
+> want to know _why_. And _not_ for any practical purpose.
+
+这里就是要引出「证明」这个概念了，
+但是注意这里提到的 why，
+why 在于用一个模型去解释，
+而对证明而言，这个模型就是逻辑系统。
+
 TODO
