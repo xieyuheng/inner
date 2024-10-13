@@ -279,4 +279,15 @@ Raymond Smullyan 的谜题书是 fantasy 的代表，
 因为这种飞跃同样适用于从数到群等抽象数学结构，
 以及从群等抽象数学结构到范畴论。
 
+也许，与相对复杂的 propagator network 相比，
+interaction network 更简单，更适合作为数学的研究对象。
+
+- 如果把 interaction network 中的无向图改成二分图会怎样？
+  注意，二分图、超图、关系、形式语境等等结构是等价的。
+
+我实现了 inet，但是却没有研究很多具体的 inet。
+这就像是发现了一个数学领域，
+确满足于在门口站着，
+而不进去探索。
+
 TODO
