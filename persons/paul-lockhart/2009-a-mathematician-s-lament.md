@@ -266,8 +266,17 @@ Raymond Smullyan 的谜题书是 fantasy 的代表，
 那么有直观的形式证明吗？
 有好的形式证明的例子吗？
 
-TODO
-
 # Exultation
+
+> To me the important step is not the move from rocks to symbols, it's
+> the transition from quantity to _entity_ -- the conception of five
+> and seven not as amounts of something but as _beings_, like
+> hamsters, which have features and behavior.
+
+确实，以数为实体本身已经是一个认知上的飞跃了。
+可以简单的认为是等价关系的概念吗？以等价类为实体。
+我想不可以这样简单地认为，
+因为这种飞跃同样适用于从数到群等抽象数学结构，
+以及从群等抽象数学结构到范畴论。
 
 TODO
