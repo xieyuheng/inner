@@ -87,6 +87,9 @@ Paul 的前一本书的主题就是 Measurement。
 给出了浪漫的，并且符合直觉主义的解释。
 
 # Language
+
+TODO
+
 # Repetition
 # Three Tribes
 # Egypt
