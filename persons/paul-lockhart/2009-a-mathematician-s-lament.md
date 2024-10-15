@@ -419,4 +419,7 @@ new creatures interacting with each other。
 why 在于用一个模型去解释，
 而对证明而言，这个模型就是逻辑系统。
 
-TODO
+> We are biochemical pattern-recognition machines and mathematics is
+> nothing less than the distilled essence of _who we are_.
+
+太过浪漫，哈哈。

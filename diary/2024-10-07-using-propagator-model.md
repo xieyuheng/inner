@@ -90,3 +90,5 @@ George Hotz 肯定也不知道，
 此时要判断类型是否相等，
 就要判断两个 propagator network 是否等价。
 如何判断 network 之间的等价呢？
+
+- [2024-10-15] 可以尝试在 inet 中先解决这个问题。
