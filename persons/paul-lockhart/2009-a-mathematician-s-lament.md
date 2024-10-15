@@ -423,3 +423,9 @@ why 在于用一个模型去解释，
 > nothing less than the distilled essence of _who we are_.
 
 太过浪漫，哈哈。
+
+> So let me leave you with the only practical advice I have to offer:
+> just play! You don't need a license to do math. You don't need to
+> take a class or read a book. Mathematical Reality is yours to enjoy
+> for the rest of your life. It exists in your imagination and you can
+> do whatever you want with it. Including nothing, of course.
