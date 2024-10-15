@@ -4,6 +4,17 @@ author: Paul Lockhart
 year: 2012
 ---
 
+# 学习目的
+
+看了《一位数学家的挽歌》之后想进一步看看，
+Paul 会如何展示数学的艺术。
+
+# Reality and Imagination
+
+TODO
+
+# On Problems
+
 # Part One: Size and Shape
 
 ## In which we begin our investigation of abstract geometrical figures.
