@@ -134,6 +134,11 @@ datatype Nat {
 这里总结出了三种语言中的工具。
 程序语言设计中可以总结出类似的工具吗？
 
+- repetition 是自然数最自然的结构。
+- grouping 和 abbreviation 是为了解决人类对 repetition 的认知问题。
+  就像设计程序语言是，考虑的复杂度不是算法的复杂度，
+  而是就人类认知而言的复杂度。
+
 在程序语言的语法设计中，
 从最底层的角度看，
 我们在设计 token 的序列来代表语法树。
@@ -152,6 +157,26 @@ datatype Nat {
 进位制本身也是一种语法工具。
 
 # Three Tribes
+
+非常有趣的故事。
+构拟历史。
+假设了三个原始部落，用不同的 grouping size -- 5、4、7。
+
+不同的 grouping size 会产生不同的「文明」。
+十进制确实让人们对「十」有特殊的认知与感情。
+
+> As humble as it may appear, the Piles of Rocks system is actually a
+> very powerful calculating device. To use it, you simply rearrange
+> the rocks into whatever different grouping sizes you wish.
+
+然后石子可以作为他们之间数字换算的计算器。
+
+> This is what is known as “doing arithmetic.” You have taken
+> numerical information presented in one form, and you have
+> reorganized it into another. Congratulations.  Arithmetic doesn’t
+> actually get much more complicated than this, so if rearranging
+> piles of rocks into different-sized groups makes sense to you, then
+> it’s probably going to be pretty smooth sailing from here on out.
 
 TODO
 
