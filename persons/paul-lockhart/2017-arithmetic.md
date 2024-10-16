@@ -211,7 +211,34 @@ datatype Nat {
 - [Wikipedia / Lexicographic order](https://en.wikipedia.org/wiki/Lexicographic_order)
 
 # Egypt
+
+> One of the earliest and simplest examples of a marked-value system
+> is the one used by the ancient Egyptians from about 3000 bc.
+
+> Also, as with most numerical representation systems used by humans,
+> the grouping size is ten.
+
+> In particular, ten is well beyond the limit of most people’s number
+> perception abilities. So in order to design a convenient
+> marked-value system, the Egyptians first needed to solve the
+> perception problem.
+
+> Another wonderful innovation, which replaces Piles of Rocks as a
+> calculation tool, was the introduction of counting coins. The idea
+> is simply to make objects (usually wooden or ceramic chips of some
+> kind) that are marked so as to indicate their value.
+
+类似某些桌游中的硬币。
+
+> An abacus is simply a manual representation system; that is, a way
+> of representing numbers by things that can be held and manipulated.
+
+有了一个对「算盘」的一般定义。
+
 # Rome
+
+TODO
+
 # China and Japan
 # India
 # Europe
