@@ -178,7 +178,37 @@ datatype Nat {
 > piles of rocks into different-sized groups makes sense to you, then
 > it’s probably going to be pretty smooth sailing from here on out.
 
-TODO
+从一个最简单的例子，给出了 "doing arithmetic" 的定义。
+
+> These three tribal number languages are examples of what are called
+> _marked-value systems_, meaning that each word or symbol has a
+> fixed, definite meaning. In particular, for representation systems
+> like these, the order of the symbols doesn’t matter.
+
+原始部落在设计语言，顺序无关是语言的重要属性。
+进位制就需要位置相关了。
+
+其他的 marked-value systems 的例子有：
+
+- 钱。
+- 扑克牌的手牌。
+
+|      | Set  | Bag  |
+|------|------|------|
+| 顺序 | 无关 | 无关 |
+| 重复 | 不可 | 可   |
+
+顺序无关，因此有多种表示方式，
+为了方便比较，需要整理到一种表示方式
+-- 就是 normal form 的概念了，
+用 normal form 可以实现等价的判断。
+
+> ... nothing could be simpler than to compare two numbers that are
+> both nicely packed into groups and organized by size.
+
+> This way of organizing and comparing is called _lexicographic ordering_.
+
+- [Wikipedia / Lexicographic order](https://en.wikipedia.org/wiki/Lexicographic_order)
 
 # Egypt
 # Rome
