@@ -88,10 +88,73 @@ Paul 的前一本书的主题就是 Measurement。
 
 # Language
 
-TODO
+用 representation 的功能来解释 language 的起源。
+
+> In particular, when we start designing arithmetic systems, it will
+> be crucial to keep clear the distinction between a number and its
+> representation. A lot of people are walking around in a muddle about
+> this, and I don’t want you to be one of them.
+
+也就是设计程序语言的时候，要区分语法和语义。
+
+> The history of language (and arithmetic in particular) is a history
+> of increasingly abstract and portable substitutions: from actual
+> antelope to drawings of antelope, to rocks, sticks, or fingers, to
+> scratches on bones, to verbal utterances (i.e., words), to abstract
+> symbols.
+
+> My guess is that each of these developments in the evolution of
+> language arose from the need to explain and communicate information.
+> Mathematics, in particular, is an explanatory art form, and
+> ultimately all of its structures arise as “information carriers”
+> for the purpose of explaining a pattern or idea.  Numbers are simply
+> the most basic kind of mathematical information.
 
 # Repetition
+
+讲最简单的，无进位制的自然数编码。
+
+```cicada
+datatype Nat {
+  zero: Nat
+  add1(prev: Nat): Nat
+}
+```
+
+在发展出进位制之前，人们先发展出了 grouping 的技术，
+比如中文用「正」字来计数，就是五个一组。
+
+> However we wish to communicate numbers -- by words, gestures, or in
+> written form -- repetition, grouping, and abbreviation are the
+> natural linguistic means. It’s up to the users of such languages to
+> decide on a convenient grouping size and how they wish to indicate
+> both groups and leftovers.
+
+"repetition, grouping, and abbreviation"
+这里总结出了三种语言中的工具。
+程序语言设计中可以总结出类似的工具吗？
+
+在程序语言的语法设计中，
+从最底层的角度看，
+我们在设计 token 的序列来代表语法树。
+语法树本身是工具还是被表达的对象呢？
+可能二者都是，在不同的层次有不同的理解。
+
+- 就像编程领域的 pattern language 中，
+  有 class 层次的 design pattern，
+  也有 app 层次的 app pattern。
+
+- 也许形成程序语言设计的科学，
+  就在于总结这些不同层次的语法工具。
+
+"repetition, grouping, and abbreviation"
+这三种工具再进一步就是进位制了，
+进位制本身也是一种语法工具。
+
 # Three Tribes
+
+TODO
+
 # Egypt
 # Rome
 # China and Japan
