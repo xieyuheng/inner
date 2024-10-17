@@ -272,9 +272,75 @@ tabula abacus 的状态很容易被打翻。
 
 # China and Japan
 
-TODO
+把中国和日本放到一起说已经很搞笑了，
+因为从历史发展来看，日本根本不值一提。
+
+说中国发明数字是 200 BC 也很搞笑，
+因为那个时候已经西汉了，
+其实至少在 1600 BC 到 1000 BC 的商朝，
+就有甲骨文对数字的记载了。
+
+还说汉字是任意的，
+其实每个字都有从甲骨文开始有趣的故事和演变。
+
+算盘介绍的是传到日本的一四珠算盘。
+其实中国在有算盘之前就有算筹了，作者也不知道。
+
+> The main difference between the Japanese soroban and the Roman
+> tabula is that we don’t need to carry around a bowl of calculi; the
+> stones (in the form of beads) are built in. It’s just a question of
+> indicating which of them “count.”
+
+> No matter what plan you come up with, it will have advantages and
+> disadvantages, pros and cons, and will undoubtedly require a fair
+> amount of practice before you get really comfortable.
 
 # India
+
+这章算是介绍到了人们从小学习到的算术了，
+但是，经历了对算术历史的了解，
+算术与计数所用的语言是密不可分的，
+并且现在我们能在比较不同语言下算术的不同性质，
+从而认识到我们现代算术的优越性。
+
+> In fact, getting stuck (say on 7 + 8, for instance) is one of the
+> best things that can happen to you because it gives you an
+> opportunity to reinvent and to appreciate exactly what it is that
+> you are doing: you are rearranging numerical information for
+> comparison purposes.You have an amount of things, seven of them
+> added to eight of them, and that is a complete and unambiguous
+> description of what you have. There is no need to do anything.The
+> number 7 + 8 is not a problem requiring a solution, nor a question
+> seeking an answer. It is a number, that’s all. Oh, what’s that you
+> say? You want to compare it with something else? Well, all
+> right. That’s another matter.
+
+重申了算术是为了比较。
+回顾开篇所说的：
+
+> Arithmetic is the skillful arrangement of numerical
+> information for ease of communication and comparison.
+
+算术是为了比较，
+一般的计算是否也是呢？
+就函数式计算和 lambda 演算而言，
+确实是为了比较，因为计算的目的就是为了得到 normal form。
+
+我经常说，计算被定义为「有方向的变化」，
+但是计算是为了什么？
+rewrite system 一类的计算模型显然是为了比较，
+turing machine 一类的计算模型是在模仿人类的计算，
+因此也是为了比较。
+
+「我想知道计算的结果」的前提是，
+计算的对象编码了我感兴趣的信息，
+计算的方法代表了我感兴趣的变化。
+
+在学到高等的数学和计算机科学时，
+还记得这些最初的动机吗？
+
+TODO
+
 # Europe
 # Multiplication
 # Division
