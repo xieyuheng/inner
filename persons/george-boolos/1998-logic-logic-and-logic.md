@@ -139,6 +139,9 @@ assert Subtype(Extension(P), A)
 (x: Extension(P)) -> P(x)
 ```
 
+在类型论中，遇到 `Iff` 一类的命题时，
+经常要将它拆成两个命题 -- 类似 API 的优化。
+
 TODO 用类似 cicada 的语法叙述这里的命题的例子。
 TODO 用类似 cicada 的语法叙述罗素悖论。
 
@@ -206,7 +209,7 @@ stage 可以是 omega，omega + 1，omega + 2，
 - `Earlier`
 - `FormedAt`
 
-我们也不用约定来生命变量的类型，
+我们也不用约定来声明变量的类型，
 而是在引入变量的时候，明显地用 `:` 给出类型。
 
 首先给出上面的关系的类型：
