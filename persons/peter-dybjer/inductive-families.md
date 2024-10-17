@@ -1,9 +1,8 @@
-# Inductive Families
-
-------
-- Author: Peter Dybjer
-- Date: 1994
-------
+---
+title: Inductive Families
+author: Peter Dybjer
+year: 1994
+---
 
 # 1 Introduction
 
