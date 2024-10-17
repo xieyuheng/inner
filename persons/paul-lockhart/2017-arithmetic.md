@@ -188,6 +188,8 @@ datatype Nat {
 原始部落在设计语言，顺序无关是语言的重要属性。
 进位制就需要位置相关了。
 
+与 marked-value 相对的是 place-value。
+
 其他的 marked-value systems 的例子有：
 
 - 钱。
@@ -237,9 +239,41 @@ datatype Nat {
 
 # Rome
 
-TODO
+> The Roman system provides a rather different solution to the
+> problems of repetition and perception.  The grouping size is still
+> ten, and being a marked-value system, it has special names for a
+> group, a group of groups, and so on.
+
+> In the Roman system these are represented by various letters of the
+> Roman alphabet. Thus, leftovers were denoted by the letter I, a
+> group of ten was represented by an X, and a group of groups by the
+> letter C. A group of ten hundreds was written M.
+
+> What we are doing here is making a trade. We are eliminating the
+> need for stacking but at the cost of having more symbols to get used
+> to. Once again, the new symbols (and their English equivalents) are:
+
+| I | one          |
+| V | five         |
+| X | ten          |
+| L | fifty        |
+| C | one hundred  |
+| D | five hundred |
+| M | one thousand |
+
+罗马 tabula abacus 用一个纸质棋盘就可以玩，
+比中国算盘要简单一些，可能更适合给小孩子学习用。
+
+这里提到的 trade-off 很有趣，
+与 marked-value 的硬币相比，
+tabula abacus 的状态很容易被打翻。
+类似选择数据结构和算法时的 trade-off，
+但是这里真就是物理意义上的 fragility。
 
 # China and Japan
+
+TODO
+
 # India
 # Europe
 # Multiplication
