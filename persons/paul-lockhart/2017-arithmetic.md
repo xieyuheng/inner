@@ -339,9 +339,64 @@ turing machine 一类的计算模型是在模仿人类的计算，
 在学到高等的数学和计算机科学时，
 还记得这些最初的动机吗？
 
-TODO
+> When we say that seven plus eight is fifteen what we are really
+> saying is that seven combined with eight can be rearranged into a
+> group of ten and five leftovers. In fact, the very word fifteen is
+> simply an abbreviation for five and ten.
+
+这里介绍了一种计算加法的方式，
+可以不用太在意数字的对齐。
+
+|   | 1 | 8  |    | 4  |
+|   |   | 6  | 9  | 7  |
+|---|---|----|----|----|
+|   | 1 | 14 | 9  | 11 |
+|---|---|----|----|----|
+|   | 2 | 4  | 10 | 1  |
+|---|---|----|----|----|
+|   | 2 | 5  |    | 1  |
+
+相比需要对齐的方法：
+
+```
+  18 4
+   697
+------
+```
+
+> So the Hindu arithmeticians came up with a wonderful, revolutionary,
+> and hilarious solution: create a new symbol to stand for
+> _nothing_. We simply expand our number language to include a
+> “blank” or placeholder symbol, so we can tell if a column is
+> intended to be empty (as opposed to just being a space between
+> consecutive symbols).
+
+其中空格的个数也是要精确控制的，
+这可能就是印度人发明 0 的原因。
+
+```
+  1804
+   697
+------
+  2501
+```
+
+计算 453 + 866 - 395 时，
+可以不用急着化为 normal form，
+先得到 12 11 9，然后再减 395。
+
+> I guess my real point here (and with this book in general) is that
+> there are many good strategies for encoding and manipulating
+> numerical information, and you can use them in any way you see
+> fit. Instead of thinking in terms of systems and rules, think of it
+> more as options and tools at your disposal.  There’s no rule saying
+> I can’t have forty-seven in the tens column if I want to; the only
+> issue is whether I know what I mean and what I want. So play around!
 
 # Europe
+
+TODO
+
 # Multiplication
 # Division
 # Machines
