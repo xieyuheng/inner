@@ -64,11 +64,117 @@ Prawitz 用了 cut elimination，
 
 ## 1.3 Proof nets
 
-TODO
+Proof nets 就是想要用图论中的结构来捕捉证明的语法本质。
+
+正如实现 inet 时，真正的语法是 graph，
+有一个 meta language 用来构造 graph。
 
 # 2 Unit-free multiplicative linear logic
 
+> Unit-free multiplicative linear logic (MLL-) is a very simple logic,
+> that has nonetheless a well-developed theory of proof nets. For this
+> reason I will use MLL- to introduce the concept of proof nets.
+
 ## 2.1 Sequent calculus for MLL
+
+> When we define a logic in terms of a deductive system, we have to do
+> two things. First, we have to define the set of well-formed
+> formulas, and second, we have to define the subset of derivable (or
+> provable) formulas, which is done via a set of inference rules.
+
+| symbol  | name (Girard) | identifier |
+|---------|---------------|------------|
+| `A ⊗ B` | times         | `Both`     |
+| `A ⅋ B` | par           | `Through`  |
+
+> The set of formulas is defined via
+
+```cicada
+datatype Formula {
+  Var(name: String): Formula
+  NegativeVar(name: String): Formula
+  Through(A: Formula, B: Formula): Formula
+  Both(A: Formula, B: Formula): Formula
+}
+```
+
+> The (linear) negation of a formula is defined inductively via
+
+```cicada
+function negation(formula: Formula): Formula {
+  match (formula) {
+    case Formula::Var(name) => Formula::NegativeVar(name)
+    case Formula::NegativeVar(name) => Formula::Var(name)
+    case Formula::Through(A, B) => Formula::Both(negation(B), negation(A))
+    case Formula::Both(A, B) => Formula::Through(negation(B), negation(A))
+  }
+}
+```
+
+> Note that we invert the order of the arguments when we take the
+> negation of a binary connective. This is not strictly necessary
+> (since for the time being we stay in the commutative world) but will
+> simplify our life when it comes to drawing pictures of proof nets in
+> later sections.
+
+> Here is a set of inference rules for MLL- given in the formalism of
+> the sequent calculus:
+
+```cicada
+let Sequent: Type = List(Formula)
+
+datatype Provable(Sequent) {
+  Id(implicit A: Formula): Sequent([A, negation(A)])
+
+  Exchange(
+    implicit Γ, ∆: Sequent,
+    implicit A, B: Formula,
+    Provable(Γ + [A, B] + ∆),
+  ): Provable(Γ + [B, A] + ∆)
+
+  Through(
+    implicit Γ, ∆: Sequent,
+    implicit A, B: Formula,
+    Provable(Γ + [A, B] + ∆),
+  ): Provable(Γ + [Formula::Through(A, B)] + ∆)
+
+  Both(
+    implicit Γ, ∆: Sequent,
+    implicit A, B: Formula,
+    Provable(Γ + [A]),
+    Provable([B] + ∆),
+  ): Provable(Γ + [Formula::Both(A, B)] + ∆)
+
+  Cut(
+    implicit Γ, ∆: Sequent,
+    implicit A: Formula,
+    Provable(Γ + [A]),
+    Provable([negation(A)] + ∆),
+  ): Provable(Γ + ∆)
+}
+```
+
+> Note that the sequent calculus needs (apart from the concept of
+> formula) another kind of syntactic entity, called sequent. Very
+> often these are just sets or multisets of formulas. But depending on
+> the logic in question, sequents can be more sophisticated structures
+> like lists or partial orders (or whatever) of formulas. For us,
+> throughout these lecture notes, sequents will be finite lists of
+> formulas, separated by a comma, and written with a ⊢ at the
+> beginning. Usually they are denoted by Γ or ∆.
+
+> Examples:
+
+```cicada
+claim A, B: Formula
+
+check [A, B]: Sequent
+check [A, B, A]: Sequent
+check [A, A, B]: Sequent
+```
+
+TODO
+
 ## 2.2 From sequent calculus to proof nets, 1st way (sequent calculus rule based)
 ## 2.3 From sequent calculus to proof nets, 2nd way (coherence graph based)
 ## 2.4 From deep inference to proof nets
