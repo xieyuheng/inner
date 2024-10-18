@@ -163,7 +163,7 @@ datatype Provable(Sequent) {
 > formulas, separated by a comma, and written with a ⊢ at the
 > beginning. Usually they are denoted by Γ or ∆.
 
-> Examples:
+> 2.1.1 Example:
 
 ```cicada
 claim A, B: Formula
@@ -171,6 +171,22 @@ claim A, B: Formula
 check [A, B]: Sequent
 check [A, B, A]: Sequent
 check [A, A, B]: Sequent
+```
+
+> We say a sequent ⊢ Γ is _derivable_ (or _provable_) if there is a
+> _derivation_ (or _proof tree_) with ⊢ Γ as conclusion.  Defining
+> this formally precise tends to be messy. Since the basic concept
+> should be familiar for the reader, we content ourselves here by
+> giving some examples.
+
+其实定义很简单，一点也不 messy：
+
+- `Provable` 就是一个 datatype。
+- derivation 就是构造类型为 `Provable(sequent)` 的数据。
+
+> 2.1.2 Example:
+
+```cicada
 ```
 
 TODO
