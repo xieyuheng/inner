@@ -147,24 +147,25 @@ Polya 的《怎样解题》也有类似的建议。
 
 # Part One: Size and Shape
 
-## 1 In which we begin our investigation of abstract geometrical figures.
+- In which we begin our investigation of abstract geometrical figures.
+- Symmetrical tiling and angle measurement.
+- Scaling and proportion.
+- Length, area, and volume.
+- The method of exhaustion and its consequences.
+- Polygons and trigonometry.
+- Conic sections and projective geometry.
+- Mechanical curves.
+
+## 1
 
 TODO
 
-## 2 Symmetrical tiling and angle measurement.
-## 3 Scaling and proportion.
-## 4 Length, area, and volume.
-## 5 The method of exhaustion and its consequences.
-## 6 Polygons and trigonometry.
-## 7 Conic sections and projective geometry.
-## 8 Mechanical curves.
-
 # Part Two: Time and Space
 
-## 9 Containing some thoughts on mathematical motion.
-## 10 Coordinate systems and dimension.
-## 11 Motion as a numerical relationship.
-## 12 Vector representation and mechanical relativity.
-## 13 The measurement of velocity.
-## 14 The differential calculus and its myriad uses.
-## 15 Some final words of encouragement to the reader.
+- Containing some thoughts on mathematical motion.
+- Coordinate systems and dimension.
+- Motion as a numerical relationship.
+- Vector representation and mechanical relativity.
+- The measurement of velocity.
+- The differential calculus and its myriad uses.
+- Some final words of encouragement to the reader.
