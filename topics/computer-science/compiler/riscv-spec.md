@@ -1,3 +1,0 @@
----
-title: RISC-V Spec
----

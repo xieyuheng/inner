@@ -63,6 +63,16 @@ Paul 会如何展示数学的艺术。
 
 # On Problems
 
+> What is a math problem? To a mathematician, a problem is a probe --
+> a test of mathematical reality to see how it behaves. It is our way
+> of “poking it with a stick” and seeing what happens.
+
+第一次听到这种说法，
+提出数学问题本身也是一个艺术。
+对于我所关心的数学问题
+
+TODO
+
 # Part One: Size and Shape
 
 ## In which we begin our investigation of abstract geometrical figures.
