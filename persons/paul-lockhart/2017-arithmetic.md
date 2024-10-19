@@ -405,9 +405,18 @@ turing machine 一类的计算模型是在模仿人类的计算，
 
 对于程序语言也是如此，要小心。
 
-TODO
+米制系统起源于法国大革命。
+
+> The only thing that really matters is that we understand what we
+> mean by our symbols and notations -- that we own our language and
+> feel comfortable and free to play and invent.
+
+对程序语言设计也适用。
 
 # Multiplication
+
+TODO
+
 # Division
 # Machines
 # Fractions
