@@ -395,6 +395,16 @@ turing machine 一类的计算模型是在模仿人类的计算，
 
 # Europe
 
+> As a mathematician, I tend not to think of numbers symbolically, or
+> even necessarily as quantities.To me, numbers are _creatures_ that
+> exhibit behavior, and I occupy my time observing, studying, and
+> trying to understand that behavior.
+
+> All I’m trying to say is that we need to be wary and not let our
+> familiarity with a particular system blind us to its arbitrariness.
+
+对于程序语言也是如此，要小心。
+
 TODO
 
 # Multiplication
