@@ -124,7 +124,7 @@ function negation(formula: Formula): Formula {
 let Sequent: Type = List(Formula)
 
 datatype Provable(Sequent) {
-  Id(implicit A: Formula): Sequent([A, negation(A)])
+  Id(implicit A: Formula): Provable([A, negation(A)])
 
   Exchange(
     implicit Γ, ∆: Sequent,
@@ -184,9 +184,105 @@ check [A, A, B]: Sequent
 - `Provable` 就是一个 datatype。
 - derivation 就是构造类型为 `Provable(sequent)` 的数据。
 
-> 2.1.2 Example:
+> 2.1.2 Example.
+> The two sequents ⊢ !a, a⊗!b, b⊗!c, c
+> and ⊢ ((a ⅋ !a) ⊗ b) ⅋ !b are provable:
 
 ```cicada
+let a = Formula::Var("a")
+let b = Formula::Var("b")
+let c = Formula::Var("c")
+
+let s1 = [
+  negation(a),
+  Formula::Both(a, negation(b)),
+  Formula::Both(b, negation(c)),
+  c,
+]
+
+let s2 = [
+  Formula::Through(
+    Formula::Both(Formula::Through(a, negation(a)), b),
+    negation(b),
+  ),
+]
+
+check Provable::Id(implicit a): Provable([negation(a), a])
+check Provable::Id(implicit b): Provable([negation(b), b])
+check Provable::Id(implicit c): Provable([negation(c), c])
+
+check Provable::Both(
+  Provable::Id(implicit b), Provable::Id(implicit c),
+): Provable([
+  negation(b)
+  Formula::Both(b, negation(c)),
+  c,
+])
+
+check Provable::Both(
+  Provable::Id(implicit b), Provable::Id(implicit c),
+): Provable([
+  negation(b)
+  Formula::Both(b, negation(c)),
+  c,
+])
+
+check Provable::Both(
+  Provable::Id(implicit a),
+  Provable::Both(
+    Provable::Id(implicit b), Provable::Id(implicit c),
+  ),
+): Provable([
+  negation(a),
+  Formula::Both(a, negation(b)),
+  Formula::Both(b, negation(c)),
+  c,
+])
+
+
+check Provable::Id(implicit a): Provable([negation(a), a])
+check Provable::Id(implicit b): Provable([negation(b), b])
+
+check Provable::Through(
+  Provable::Id(implicit a),
+): Provable([
+  Formula::Through(a, negation(b)),
+])
+
+// NOTE 下面照搬论文中的证明，其实错了，
+// 还少了一个 Exchange。
+
+check Provable::Both(
+  Provable::Through(
+    Provable::Id(implicit a)
+  ),
+  Provable::Id(implicit b),
+): Provable([
+  Formula::Both(Formula::Through(a, negation(a)), b),
+  negation(b),
+])
+
+check Provable::Through(
+  Provable::Both(
+    Provable::Through(
+      Provable::Id(implicit a)
+    ),
+    Provable::Id(implicit b),
+  )
+): Provable([
+  Formula::Through(
+    Formula::Both(Formula::Through(a, negation(a)), b),
+    negation(b),
+  ),
+])
+```
+
+> TODO Here are four different proofs of the sequent: ...
+> three of them do not contain the cut-rule,
+> and one does contain the cut-rule.
+
+```cicada
+TODO
 ```
 
 TODO
