@@ -28,6 +28,8 @@ geometry 叫大地测量学，
   我想是可以的，毕竟黎曼几何是特殊的度量空间，
   而度量空间的定义就在于度量。
 
+Paul 的这三本书可以看作是为读 Coxeter 和 Conway 做准备。
+
 # Reality and Imagination
 
 > I want to talk about a different sort of place. I’m going to call
@@ -324,6 +326,10 @@ the method of exhaustion 中文是穷竭法。
 然后想办法推广到更一般的图形。
 这种先处理特殊，再解决一般的过程，已经出现好几次了。
 在我所关心的问题领域（证明论）有类似的例子吗？
+
+- 也许 "The Little Typer" 中，
+  先处理 List 和 Vector，
+  再处理一般的 datatype 的过程就算是这样的例子。
 
 TODO
 
