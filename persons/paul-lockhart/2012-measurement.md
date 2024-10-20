@@ -194,7 +194,33 @@ measure 的是 proportion，
 > behavior. We can certainly try to find out what is true, but we no
 > longer have any say in the matter.
 
-## 3 
+## 3
+
+关于面积。
+
+## 4
+
+> The study of size and shape is called **geometry**.
+
+size 包括各个维度的 size -- length、area、volume。
+
+关于 measure the diagonal of a square：
+
+> The problem is not with the diagonal; it’s with our language.
+
+程序语言的设计也是如此，我们需要能表达更多。
+也许我不应该说程序语言设计，而应该说类型系统设计，
+因为程序语言可以只关心运行时的行为，
+而我所关心的是把 program 视为 proof 时的行为。
+
+> Numbers like this that cannot be expressed as fractions are called
+> irrational (meaning “not a ratio”).
+
+不是 ir-rational 而是 ir-ratio-nal，
+所以不应该依照 rational 来翻译，
+而是应该翻译成「非比率数」。
+
+# 5
 
 TODO
 
