@@ -241,11 +241,11 @@ size 包括各个维度的 size -- length、area、volume。
 所以不应该依照 rational 来翻译，
 而是应该翻译成「非比率数」。
 
-# 5
+## 5
 
 勾股定理。
 
-# 6
+## 6
 
 > The answer to the question about the diagonal of a square is not
 > √2; it’s the mosaic design.
@@ -253,24 +253,24 @@ size 包括各个维度的 size -- length、area、volume。
 > The solution to a math problem is not a number; it’s an argument,
 > a proof. We’re trying to create these little poems of pure reason.
 
-# 7
+## 7
 
 计算正五边形的对角线长度。
 
-# 8
+## 8
 
 > The tangling and untangling of numerical relationships
 > is called **algebra**.
 
 要解上面求得的正五边形的对角线长度的代数方程。
 
-# 9
+## 9
 
 > In general, the main task of the geometer is to translate geometric
 > information into algebraic information, and vice versa. This is not
 > so much a technical problem as it is a creative one.
 
-# 10
+## 10
 
 已知圆的周长，求面积。
 
@@ -286,7 +286,7 @@ size 包括各个维度的 size -- length、area、volume。
 中学的圆周角定理。
 都忘记如何证明了。
 
-# 11
+## 11
 
 > So that’s the story. The ratio of circumference to diameter is pi,
 > and there’s nothing we can do about it. We’ll simply have to
@@ -294,7 +294,7 @@ size 包括各个维度的 size -- length、area、volume。
 
 哈哈。
 
-# 12
+## 12
 
 the method of exhaustion 中文是穷竭法。
 
@@ -315,7 +315,7 @@ the method of exhaustion 中文是穷竭法。
 用拉伸和体积的关系，
 可以证明金字塔的体积是其包围立方体的三分之一。
 
-# 13
+## 13
 
 用横向切割的穷竭法证明圆锥的体积，
 也是其包围圆柱的三分一。
