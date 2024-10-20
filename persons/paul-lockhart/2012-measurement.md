@@ -222,6 +222,18 @@ size 包括各个维度的 size -- length、area、volume。
 
 # 5
 
+勾股定理。
+
+# 6
+
+> The answer to the question about the diagonal of a square is not
+> √2; it’s the mosaic design.
+
+> The solution to a math problem is not a number; it’s an argument,
+> a proof. We’re trying to create these little poems of pure reason.
+
+# 7
+
 TODO
 
 # Part Two: Time and Space
