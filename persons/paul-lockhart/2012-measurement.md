@@ -158,6 +158,44 @@ Polya 的《怎样解题》也有类似的建议。
 
 ## 1
 
+> What are all the different ways to make symmetrical mosaic designs
+> using regular polygons?
+
+这与 John Conway 的 "The Symmetries of Things" 的主题类似。
+John Conway 的书也契合这里的精神。
+
+## 2
+
+> What is measuring? What exactly are we doing when we measure
+> something? I think it is this: we are making a comparison. We are
+> comparing the thing we are measuring to the thing we are measuring
+> it with. In other words, _measuring is relative_.
+
+measure 的是 proportion，
+在 scaling 下不变的 proportion。
+
+> Whenever you create or define a mathematical object, it always
+> carries with it the blueprint of its own construction -- the
+> defining features that make it what it is and not some other thing.
+
+正如 create 一个 class 的 instance。
+
+> ... one thing to always be aware of is whether you’ve pinned down
+> your objects enough to get any information out of them.
+
+> We need to be clear about the extent to which we have specified our
+> objects so that we can ask well-posed, meaningful questions.
+
+"pin down an object" 可以理解为所构造出来的 instance，
+在所关心的等价关系意义上是等价的。
+
+> Once a shape (or any structure in mathematics) is specified enough,
+> the “forces of mathematical nature” then dictate all of its
+> behavior. We can certainly try to find out what is true, but we no
+> longer have any say in the matter.
+
+## 3 
+
 TODO
 
 # Part Two: Time and Space
