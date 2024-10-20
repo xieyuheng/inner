@@ -359,6 +359,45 @@ the method of exhaustion 中文是穷竭法。
 
 ## 15
 
+> I think this is a very significant idea, this way of describing one
+> shape via the motion of another. Not only does it provide us with
+> new and exotic shapes like the torus, but it also allows us to look
+> at some familiar objects in a new way. For instance, a cube can be
+> thought of as being traced out by a square moving along a straight
+> path.
+
+> Sometimes I like to pretend that the square is a prehistoric animal
+> that crawled along this path millions of years ago. The cube is the
+> “fossil record” of its struggle.
+
+哈哈哈。
+
+> The question is whether thinking of a shape in this way helps at all
+> in the measuring department. This is part of a recurring theme in
+> geometry, the relationship between description and measurement. How
+> does the measurement of an object depend on the way in which it is
+> described?
+
+看待事物的不同视角，给我们不同的处理方式。
+正如 Thurston 所说的 "different ways of imagine things"。
+
+> This is a nice example of the way description (the annulus is
+> described by the motion of the stick) affects measurement (the area
+> depends in an elegant way on the stick and the path). Like I said,
+> the connection between description and measurement is what geometry
+> is all about.
+
+在编程领域，有什么类似的例子呢？
+也许 constraint processing = search + propagation，
+
+- 可以从 logic programming 的角度看，
+  先有 search 的基础，再加上 propagation。
+
+- 也可以从 propagator network 的角度看，
+  先有 propagation，再加上 search。
+
+## 16
+
 TODO
 
 # Part Two: Time and Space
