@@ -280,6 +280,10 @@ size 包括各个维度的 size -- length、area、volume。
 然后裁开成锯齿，
 然后再拼起来。
 
+- 但是这里的方法可以推广，
+  用来求球体的表面积，
+  而拼接的方法是没法推广到三维的。
+
 > Show that if two points are connected to the same
 > arc, the resulting angles must be the same.
 
@@ -330,6 +334,30 @@ the method of exhaustion 中文是穷竭法。
 - 也许 "The Little Typer" 中，
   先处理 List 和 Vector，
   再处理一般的 datatype 的过程就算是这样的例子。
+
+> Why can’t the method of exhaustion be used in
+> this way to measure the diagonal of a square?
+
+因为用折线逼近时，
+穷竭法只是告诉我们用来逼近的折线，
+可以被压缩在任意小的面积中，
+但是这并不代表折线真的逼近了对角线。
+穷竭法只能用于给定面积内挤面积来逼近，
+或者给定体积内挤体积来逼近，
+不能是任意小体积内挤面积，
+也不能是任意小面积内挤长度。
+
+## 14
+
+阿基米德用穷竭法求球的体积，太妙了！
+代数与几何的完美舞蹈！
+
+另外，已知了球的体积，
+推广求圆形周长与面积的关系，
+到球的表面积与体积的关系，
+来求球的表面积。
+
+## 15
 
 TODO
 
