@@ -234,6 +234,47 @@ size 包括各个维度的 size -- length、area、volume。
 
 # 7
 
+计算正五边形的对角线长度。
+
+# 8
+
+> The tangling and untangling of numerical relationships
+> is called **algebra**.
+
+要解上面求得的正五边形的对角线长度的代数方程。
+
+# 9
+
+> In general, the main task of the geometer is to translate geometric
+> information into algebraic information, and vice versa. This is not
+> so much a technical problem as it is a creative one.
+
+# 10
+
+已知圆的周长，求面积。
+
+与这里的证明相比，
+小时候学到的证明更好，
+即把圆裁开成两个半圆，
+然后裁开成锯齿，
+然后再拼起来。
+
+> Show that if two points are connected to the same
+> arc, the resulting angles must be the same.
+
+中学的圆周角定理。
+都忘记如何证明了。
+
+# 11
+
+> So that’s the story. The ratio of circumference to diameter is pi,
+> and there’s nothing we can do about it. We’ll simply have to
+> expand our language to include it.
+
+哈哈。
+
+# 12
+
 TODO
 
 # Part Two: Time and Space
