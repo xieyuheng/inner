@@ -415,6 +415,32 @@ turing machine 一类的计算模型是在模仿人类的计算，
 
 # Multiplication
 
+> There is one situation, however, that occurs rather frequently in
+> arithmetic, where place-value representation possesses a clear and
+> overwhelming advantage: _making copies_.
+
+纯粹的进位制适合用来做乘法，
+因为可以用 shift 来做基数幂的乘法，
+比如在指令集中有整数 shift 相关的指令。
+
+这里是用几何的方法来证明乘法交换律，
+如何在辅助证明系统中形式化这种证明？
+好像是不可能的，必须要先用递归函数定义乘法，
+然后用归纳法根据递归定义来做证明。
+这种形式证明完全没有这里的几何证明的优雅的对称性。
+
+> This picture of multiplication as a rectangle of rocks also clearly
+> pertains to the measurement of areas such as a rectangular plot of
+> ground, or a wall that needs to be plastered and painted. Usually,
+> such areas are sectioned off into a grid, and then the grid squares
+> can be counted using multiplication.
+
+几何的证明也可以适用于计算面积，
+但是注意 "usually, such areas are sectioned off into a grid"，
+是几何的算术化。
+可能穷竭法也算是一种算术化。
+
+
 TODO
 
 # Division
