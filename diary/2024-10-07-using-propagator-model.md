@@ -57,6 +57,8 @@ George Hotz 肯定也不知道，
 - 对于这种类型系统过来说 dependent type 是什么？
   TODO 可以先以 inet 为例子来思考。
 
+  - [2024-10-21] 可能反而是 propagator 的 dependent type 比 inet 要简单。
+
 # 类型作为接口
 
 这段思考的顺序是：接口 -> 差异 -> 认知。
