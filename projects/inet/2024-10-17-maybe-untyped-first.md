@@ -11,12 +11,14 @@ date: 2024-10-17
 按照这个原则，开始的时候也不应该有 port 的 sign 的限制，
 即不应该限制只有相反的 sign 的 port 才能相连。
 
-可以回到 inet-cute 中做这个修改：
+# inet-untyped
+
+开启一个新的 inet-untyped 项目来做这个修改：
 
 ```inet
-node zero value! end
-node add1 prev value! end
-node add target! addend result end
+node zero -- value! end
+node add1 prev -- value! end
+node add target! addend -- result end
 
 rule cons append
   (append)-rest (cons)-tail append
