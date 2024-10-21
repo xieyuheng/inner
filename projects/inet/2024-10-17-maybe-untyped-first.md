@@ -38,3 +38,17 @@ end
 为什么在考虑「证明的逻辑」时，
 会产生 linear logic 这种带有资源语义的系统？
 证明中有什么是和资源相关的？
+
+# 是否应该消除 port 的 sign
+
+即 input port 和 output port 的区别？
+
+考虑证明论中的推演规则，
+感觉应该是需要 input 和 output 的区别的。
+
+是在与 inet 类似的 propagator 中，才完全不区分 input 和 output。
+
+而且，如果不区分 input 和 output，
+用 stack-based 的后缀表达式作为 inet 的语法就不合理，
+因为一个 node 的定义中需要指出 input 和 output，
+才能方便把 node 作用于 stack。
