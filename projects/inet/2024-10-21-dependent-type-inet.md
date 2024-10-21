@@ -46,7 +46,13 @@ stack-based concatenative 语言的类型系统对应于 sequent calculus。
 
 # propagator
 
-TODO
+给 propagator 实现类型系统时，
+可以想象 type 是 cell 所保存的数据的一部分。
+
+propagator model 的厉害之处是 cell 本身就带有「匹配」机制，
+merge 本身就可以用于定义两个类型是否匹配。
+
+TODO dependent type 在此时的表现形式是什么？
 
 # inet
 
