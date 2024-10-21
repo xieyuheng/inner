@@ -2,17 +2,6 @@
 title: a plan
 ---
 
-# TODO
-
-one language can use different type systems,
-just as one proof style can be applied to different logics.
-
-classical logic and logic programming
-
-how different proof styles are correspond to each other?
-
-# plan
-
 - in sequent calculus style, I will show:
 
   1. the proof theory of intuitionistic logic
