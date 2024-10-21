@@ -10,6 +10,10 @@ inet 与 propagator 的差异是，
 但是 propagator network 中，
 每个 cell 可以连接任意多各 propagator。
 
+反过来 propagator 所构成的网络结构是固定的，
+而 inet 中网络结构是不断变化的，
+正是网络结构的变化编码了计算。
+
 # c and actor
 
 我们需要用 C 写的，
