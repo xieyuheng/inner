@@ -81,9 +81,11 @@ Peirce 给出的用图表示的命题，
 
 sequence calculus 中的 antecedent 被定义为 disjunction 也是不自然的。
 
-# 3 ALPHA
+# 3 Alpha
 
-ALPHA 只能处理命题演算。
+## 3.1 The alpha conventions
+
+ ALPHA 只能处理命题演算。
 
 按照这里画圈的限制，
 也可以自然地用 sexp 来表示 ALPHA，
@@ -104,14 +106,35 @@ label 以后缀表达式的形式作用于前面的集合。
 (P :x (Q) :x)
 
 注意，这里 P 和 Q 都是集合，即单参数的 predicate。
+现在还不知道应该如何处理多参数的 predicate，可能后面会讲到。
+
+> The diagrams are to be two-dimensional figures; so we begin by
+> providing for a two-dimensional surface on which these diagrams are
+> to be drawn. This surface may in practice· be a blackboard, or it
+> may be a sheet of paper. In any case it will be called the 'sheet of
+> assertion' (SA).
+
+sexp 外加允许 sub-sexp 的任意 permutation，
+就可以获得 two-dimensional diagram 的语义。
+
+> SA represents for us the 'universe of discourse', that is, the
+> domain of objects to be talked about.
+
+["universe of discourse"](https://en.wikipedia.org/wiki/Domain_of_discourse)
+的概念，
+就是为什么在 first-order logic 中，
+用 `forall (x)` 和 `exists (x)` 引入局部变量时，
+不需要给出 `x` 的类型。
+可以理解为总是假设 `(x: Any)`，
+这里的 `Any` 就是 "universe of discourse"。
 
 TODO
 
-# 4 BETA
-# 5 GAMMA
-# 6 TINCTURED EXISTENTIAL GRAPHS
-# 7 GRAPHICAL ANALYSIS AND OUTCROPPINGS
-# APPENDIX 1. A Selective Chronology of Peirce's Work on Logic
-# APPENDIX 2. Table of Logic Notations
-# APPENDIX 3. EG Conventions and Rules
-# APPENDIX 4. Completeness and Consistency
+# 4 Beta
+# 5 Gamma
+# 6 Tinctured existential graphs
+# 7 Graphical analysis and outcroppings
+# Appendix 1. A Selective Chronology of Peirce's Work on Logic
+# Appendix 2. Table of Logic Notations
+# Appendix 3. EG Conventions and Rules
+# Appendix 4. Completeness and Consistency
