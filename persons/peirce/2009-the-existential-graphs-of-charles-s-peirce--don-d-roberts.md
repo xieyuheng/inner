@@ -60,4 +60,9 @@ Peirce 给出的用图表示的命题，
 
 ## 2.3 The influence of Kempe
 
+## 2.4 The first system: the entitative graphs
+
+TODO
+## 2.5 The second system: the existential graphs
+
 TODO
