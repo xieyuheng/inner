@@ -85,7 +85,7 @@ sequence calculus 中的 antecedent 被定义为 disjunction 也是不自然的�
 
 ## 3.1 The alpha conventions
 
- ALPHA 只能处理命题演算。
+ALPHA 只能处理命题演算。
 
 按照这里画圈的限制，
 也可以自然地用 sexp 来表示 ALPHA，
