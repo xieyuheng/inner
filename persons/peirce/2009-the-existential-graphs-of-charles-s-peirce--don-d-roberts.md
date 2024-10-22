@@ -9,6 +9,10 @@ year: 2009
 在想要给 inet 加依赖类型系统的时候，
 发现了 proof net，也就是说现代的发展已经又开始重视 graph 了。
 
+- 在 proof net 中，inet 的 node 应该被理解为 application of inference rule。
+  但是在 existential graph 中 node 被理解为 proposition，
+  可能是某个 relation 作用于变量而形成的 proposition。
+
 实现 inet 的技巧（meta language + graph language）
 让我并不害怕处理 graph。
 
@@ -62,7 +66,52 @@ Peirce 给出的用图表示的命题，
 
 ## 2.4 The first system: the entitative graphs
 
-TODO
 ## 2.5 The second system: the existential graphs
 
+注意，这里的圈不能理解为集合意义上的包含，
+反而是大圈 implies 小圈。
+
+需要区分奇偶性，而且 node 的边界不能相交，
+所以可以用内外边界的区别来代替奇偶性。
+
+> The most unnatural feature of the system is its interpretation of
+> the juxtaposition of two propositions as alternation.  For since the
+> writing down of a proposition asserts it, the writing down of two
+> propositions naturally suggests asserting them both (as in EG).
+
+sequence calculus 中的 antecedent 被定义为 disjunction 也是不自然的。
+
+# 3 ALPHA
+
+ALPHA 只能处理命题演算。
+
+按照这里画圈的限制，
+也可以自然地用 sexp 来表示 ALPHA，
+但是到 BETA 就需要一些语法设计才能用 sexp 了。
+
+| connective | graph     | literal expression       |
+|------------|-----------|--------------------------|
+| P          | P         |                          |
+| not(P)     | (P)       |                          |
+| and(P, Q)  | P Q       |                          |
+| or(P, Q)   | ((P) (Q)) | not(and(not(P), not(Q))) |
+| if(P, Q)   | (P (Q))   | or(not(P), not(not(Q)))  |
+
+可以用两个名字相同的 label 来表达 edge，
+用 :keyword 的语法来表示 label，
+label 以后缀表达式的形式作用于前面的集合。
+
+(P :x (Q) :x)
+
+注意，这里 P 和 Q 都是集合，即单参数的 predicate。
+
 TODO
+
+# 4 BETA
+# 5 GAMMA
+# 6 TINCTURED EXISTENTIAL GRAPHS
+# 7 GRAPHICAL ANALYSIS AND OUTCROPPINGS
+# APPENDIX 1. A Selective Chronology of Peirce's Work on Logic
+# APPENDIX 2. Table of Logic Notations
+# APPENDIX 3. EG Conventions and Rules
+# APPENDIX 4. Completeness and Consistency
