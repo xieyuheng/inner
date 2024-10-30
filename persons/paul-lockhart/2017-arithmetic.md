@@ -440,6 +440,29 @@ turing machine 一类的计算模型是在模仿人类的计算，
 是几何的算术化。
 可能穷竭法也算是一种算术化。
 
+> [to compare 6 x 8 and 50] One way to proceed would be to stick with
+> ten as our grouping size and try to rewrite six groups of eight in
+> terms of tens, then see how it compares to five groups. This is what
+> most people mean when they say they are multiplying: converting a
+> quantity conveniently expressed in one grouping size into piles of
+> ten and leftovers.
+
+计算的目的是比较，计算的本质是划归到正规形式，然后做比较。
+
+计算可以定义为指定方向的变化。
+所谓变化是一个对象从一种形态变化为等价的形态，
+在所有的可能的等价形态所构成的空间中，
+一个对象的变化方向有很多，
+指定方向就是指定了「计算规则」，
+就形成了计算。
+
+这种定义所引起的想象，
+适用纯粹的 rewrite system，
+比如 lambda calculus 和 interaction net。
+而不适用于带有副作用的系统，
+比如 turing machine 和冯诺依曼构架。
+纯粹的 rewrite system 是计算的本质，
+而 turing machine 只是在模拟人类做 rewrite 的过程。
 
 TODO
 

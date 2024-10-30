@@ -12,7 +12,7 @@ date: 2024-10-21
 也是 multiset rewriting。
 
 Paul 的 "Measurement" 这本书中，
-解代数方程 d*(d-1)=1，的过程，
+解代数方程 d*(d-1)=1 的过程，
 也是 rewrite to normal form 的过程。
 但是这里涉及的可能是 constraint processing
 中的 hypergraph rewriting 了。
@@ -33,3 +33,23 @@ rewrite to normal form 的目的就是去比较。
 就是 proof theory 中搜索的感觉，
 给定目标类型，然后构造满足目标类型的证明，
 像是搜索而不是计算。
+
+但是在实现 proof theory 的时候，
+要能够检查所构造的对象是否满足条件，
+就是类型检查。
+这个过程如果被理解为是判断是否等价，
+那就还是需要比较。
+
+注意，考虑 propagator network 中的 `merge`，
+这比 `equal` 要丰富很多，
+但是 arithmetic 和 normal form
+都是为了实现 `equal`。
+所以说 propagator network
+确实是把人们对计算的理解向前推进了一大步。
+
+另外，算术系统的对象的类型是固定的，
+而程序语言中对象是可以通过定义来扩展的。
+比如：
+- lambda calculus 的类型是固定的 lambda expression。
+- interaction net 的类型是可以通过定义新的 node 来扩展的。
+这种感受也很不一样。
