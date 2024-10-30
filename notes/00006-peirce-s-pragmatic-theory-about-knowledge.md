@@ -11,7 +11,7 @@ Try to understand logic theories and type system along Peirce's theory about kno
 
 - knowledge := fixation of belief.
 
-- belief := that upon which a man is prepared to act.
+- belief := that upon which a person is prepared to act.
 
 - logic := the system (or language) in which we express our beliefs.
 
@@ -50,4 +50,4 @@ Try to understand logic theories and type system along Peirce's theory about kno
       - beta reduction of lambda calculus
       - turing machine
 
-- program := carefully prepared init state.
+- program := carefully prepared initial state.
