@@ -12,7 +12,7 @@ Web App projects:
 
 Programming language projects:
 
-- [iNet](https://inet.run)
+- [iNet](https://inet.xieyuheng.com)
 - [Cicada](https://cicada-lang.org)
 
 X series software libraries:
