@@ -7,7 +7,6 @@ Here, I share my ideas about programming, mathematics and philosophy.
 Web App projects:
 
 - [Readonly.Link](https://readonly.link)
-- [FiDB](https://fidb.app)
 - [Mimor](https://mimor.app)
 
 Programming language projects:
