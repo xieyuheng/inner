@@ -11,4 +11,8 @@ A "card" can be any thing that has it's own state machine,
 - Maybe we can do survey in the form of cards,
   because the state machine can collect data.
 
+比如吉他相关的 Cards：
+
+- [major minor game](https://www.youtube.com/watch?v=2Fjd-VJjvO8)
+
 [2024-10-27] 应该只做好简单的 mimor 功能。
