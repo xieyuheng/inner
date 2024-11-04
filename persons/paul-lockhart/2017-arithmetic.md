@@ -9,6 +9,13 @@ year: 2017
 看了《一位数学家的挽歌》之后想进一步看看，
 Paul 会如何展示数学的艺术。
 
+# 读后感
+
+这本书对算术的介绍，
+会让人对什么是计算有很多反思。
+这对我来说是很有用的，
+因为我要设计语言来实现各种计算模型。
+
 # Dear Reader
 
 > It’s fun to count and arrange things. We like doing it, and we have
@@ -518,7 +525,28 @@ turing machine 一类的计算模型是在模仿人类的计算，
 抽象代数起源于算术相关的运算律，
 对于其他代数系统，我们很少有这种熟悉与直觉了。
 
-TODO P 105
+就像介绍十进制加法的格式一样，
+Paul 再次在介绍最终的计算格式之前，
+发明了一种稍微有些啰嗦，
+但是更容易理解的中间格式。
+
+甚至解释了自己的这种行为：
+
+> Of course, once we have a purely symbolic algorithm like this,
+> especially if it makes good sense and we understand why it works,
+> then naturally we get lazy and impatient and we want to streamline
+> the procedure to make it even easier.  One possible first step is to
+> eliminate the imaginary rectangle altogether.
+
+然后 generalize a little：
+
+> This is what we humans always do once we’ve mastered something --
+> look for shortcuts.
+
+这里一点一点一字不漏地解释简单例子的样子，
+很像 "the little schemer" 的风格。
+
+TODO
 
 # Division
 # Machines
