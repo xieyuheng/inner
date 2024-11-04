@@ -494,6 +494,32 @@ turing machine 一类的计算模型是在模仿人类的计算，
 没有意识到其实这种表示其实就是一种像算盘一样的计算器，
 只是必须在纸上以 append-only 的方式运行。
 
+> I could come up with several arguments in favor of the Hindu-Arabic
+> system over its marked-value cousins -- light-weight portability,
+> low cost, and so forth—but the truth is that it is this
+> place-shifting business that is the real advantage. No transmutation
+> of coins or symbols, no sliding rocks around from one line to
+> another. It’s just symbols lightly dancing on the page, leaping
+> from one column to the next.  That’s the ultimate reason why the
+> Roman system had to make way and why pretty much the whole world now
+> uses the Hindu-Arabic system.
+
+甚至还能引出和乘方相关的运算律。
+
+```
+30 × 200 =
+(3 × 10) × (2 × 10 × 10) =
+(3 × 2) × (10 × 10 × 10) = 6000
+```
+
+> So it’s particularly easy to multiply these sorts of single-digit
+> numbers: just multiply the digits and add the shifts.
+
+抽象代数起源于算术相关的运算律，
+对于其他代数系统，我们很少有这种熟悉与直觉了。
+
+TODO P 105
+
 # Division
 # Machines
 # Fractions
