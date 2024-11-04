@@ -18,6 +18,20 @@ year: 2023
 - tagged-value。
 - garbage collection。
 
+为了这个目标，可以从这本书里学：
+
+- runtime tagged-value encoding
+- garbage collection 实现方式
+
+等等。
+
+与 Jeremy 使用 racket 和 python 不同，
+我将用 JS/TS 来做练习。
+
+# Preface
+
+TODO
+
 # 1 Preliminaries
 
 TODO
