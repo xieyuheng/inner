@@ -546,9 +546,40 @@ Paul 再次在介绍最终的计算格式之前，
 这里一点一点一字不漏地解释简单例子的样子，
 很像 "the little schemer" 的风格。
 
-TODO
+> While we’re on the subject, an extreme case of small grouping size
+> would be a _binary_ system, with a grouping size of two.  There
+> would be only two symbols needed, 0 and 1. The only thing to
+> remember is that 1 + 1 = 10; there are no pesky times tables at all.
+
+我才发现二进制没有乘法表！
+
+还介绍了科学记数法：
+
+> While we’re on the subject of decimal representation, place
+> shifting, and estimation, it often happens (especially in scientific
+> work) that one is presented with numbers -- usually measurements of
+> some kind -- that are both astronomically large (or microscopically
+> small) as well as approximate. In these cases it becomes convenient
+> to take advantage of the place-shifting apparatus in order to save
+> space. Instead of writing the number four billion six hundred
+> million as 4 600 000 000, I could use the more succinct version 4.6
+> [9], meaning 4.6 with nine shifts. The approximate number of carbon
+> atoms in a 12-gram sample is 6.02 [23] and the radius of a proton in
+> meters is about 8.5 [–16] (meaning sixteen antishifts). This is a
+> quick and convenient way to encode large-scale information in a
+> compact form.
+
+还随手设计了一个 后缀 + 边缀 的 shift 函数。
+
+注意，计算机用的 float，就是根据科学记数法设计的。
+
+使用科学记数法的一个原因是适合带有误差的测量，
+为什么这样计数适合误差？
 
 # Division
+
+TODO
+
 # Machines
 # Fractions
 # Negative Numbers
