@@ -464,7 +464,35 @@ turing machine 一类的计算模型是在模仿人类的计算，
 纯粹的 rewrite system 是计算的本质，
 而 turing machine 只是在模拟人类做 rewrite 的过程。
 
-TODO
+> While we’re on the subject of numbers in the abstract, especially
+> their behavior with respect to multiplication, let me just mention
+> an extremely important, though patently obvious fact. When we say
+> that two plus three is five, what we mean is that two of _anything_,
+> together with three more of those same things, whatever they may be,
+> makes a total of five of them.Two cows added to three cows makes
+> five cows, two years added on to a prison sentence of three years
+> makes five years in the slammer, and so on.
+
+用直来证明乘法对加法的分配律。
+
+介绍这些定律，是为了进一步介绍十进制下乘法的算法。
+可以想象，作者是从这个目的出发，来安排这一章的内容的。
+
+> The real power of this method comes when we combine it with a
+> place-value representation system that uses a consistent grouping
+> size, such as the Hindu-Arabic system.  The reason is that now there
+> is at least one number that is always easy to multiply by: _the
+> grouping size itself_. This is such an important discovery that it
+> pays to look at it a bit more generally.
+
+我们从小就学的十进制下的乘法计算，其实是有很多条件才能成立的：
+
+- 必须是 place-value system 而不能是 marked-value system。
+- 还必须有 consistent grouping size。
+
+在小时候学印度-阿拉伯表示数的方式时，
+没有意识到其实这种表示其实就是一种像算盘一样的计算器，
+只是必须在纸上以 append-only 的方式运行。
 
 # Division
 # Machines
