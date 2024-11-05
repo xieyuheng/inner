@@ -578,6 +578,41 @@ Paul 再次在介绍最终的计算格式之前，
 
 # Division
 
+> Let’s step away from the issues of representation and symbolic
+> manipulation for a moment and think about what we are really doing
+> when we are doing arithmetic. As I’ve said before (probably too
+> many times), arithmetic is the art of arranging quantities for ease
+> of comparison.
+
+> The modern view of arithmetic is that it consists of two categories
+> of objects: _numbers_ and _operations_. Numbers are the actors;
+> operations are the actions.
+
+类似 lambda calculus 的计算模型，
+的意义就在于比较 operations 本身。
+
+> ... we often find ourselves asking questions about numbers that
+> concern their interplay, and it is the behavior of these various
+> arithmetic activities (i.e., operations) that attracts our interest
+> and curiosity. At any rate, this is the modern viewpoint -- what
+> matters is not the actors but the acting.
+
+> Addition, for instance, is an operation in the abstract (namely,
+> pushing piles together) that does what it does independent of
+> anyone’s language or representation scheme. Of course, once you
+> have adopted such a scheme, then it certainly behooves you to
+> investigate what the operation of addition “looks like” in that
+> system and to develop algorithms (and mnemonic devices such as
+> needles) to make things quick and convenient. That’s what we’ve
+> been talking about this whole time. Be that as it may, addition is
+> not columns of symbols and carrying; it’s pushing piles together.
+
+上面这种观点也许可以理解为，
+先有自然数的最朴素递归定义，
+add 也是最朴素的递归函数，
+然后再寻找等价的，
+但是有更好属性的表示方式与算法。
+
 TODO
 
 # Machines

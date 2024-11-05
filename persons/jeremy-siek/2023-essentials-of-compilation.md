@@ -192,7 +192,6 @@ Jeremy 也有一个演讲是介绍这种观点的：
 <Exp> ::= (Prim '- (<Exp>))
 <Exp> ::= (Prim '+ (<Exp> <Exp>))
 <Exp> ::= (Prim '- (<Exp> <Exp>))
-
 ```
 
 注意上面所使用的 quote，
