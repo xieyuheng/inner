@@ -1,7 +1,7 @@
 ---
 title: Essentials of Compilation
-subtitle: An Incremental Approach
-authors: [Jeremy G. Siek, Ryan R. Newton]
+subtitle: An Incremental Approach in Racket
+authors: Jeremy G. Siek
 year: 2023
 ---
 
@@ -27,6 +27,12 @@ year: 2023
 
 与 Jeremy 使用 racket 和 python 不同，
 我将用 JS/TS 来做练习。
+
+另外，这里的实现的语言是相对传统的 lambda 演算，
+用的实现方式也是相对传统的 expression-based。
+因此，还有一个学习动机，
+就是看这里的传统知识可以给
+propagator 和 inet 的实现带来什么启发。
 
 # Preface
 
@@ -77,6 +83,166 @@ year: 2023
 对 incremental 的定义。
 
 # 1 Preliminaries
+
+> The program-as-text representation is called _concrete syntax_.
+> We use concrete syntax to concisely write down and talk about
+> programs. Inside the compiler, we use abstract _syntax trees_ (ASTs)
+> to represent programs in a way that efficiently supports the
+> operations that the compiler needs to perform. The process of
+> translating concrete syntax to abstract syntax is called _parsing_.
+
+> This book does not cover the theory and implementation of parsing.
+
+直接用 sexp。
+
+> ASTs can be represented inside the compiler in many different ways,
+> depending on the programming language used to write the compiler.
+>
+> - We use Racket’s struct feature to represent ASTs (section 1.1).
+>
+> - We use grammars to define the abstract syntax of programming
+>   languages (section 1.2)
+>
+> - and pattern matching to inspect individual nodes in an AST
+>   (section 1.3).
+>
+> - We use recursive functions to construct and deconstruct ASTs
+>   (section 1.4).
+
+## 1.1 Abstract Syntax Trees
+
+> By using a tree to represent the program, we can easily follow the
+> links to go from one part of a program to its subparts.
+
+但是与 propagator model 相比，
+这里的 tree 只能从 parent to children。
+
+> We define a Racket `struct` for each kind of node. For this chapter
+> we require just two kinds of nodes: one for integer constants (aka
+> literals) and one for primitive operations. The following is the
+> `struct` definition for integer constants.
+
+```racket
+(struct Int (value))
+```
+
+> The following is the struct definition for primitive operations.
+
+```racket
+(struct Prim (op args))
+```
+
+> We have made a design choice regarding the Prim structure. Instead
+> of using one structure for many different operations (`read`, `+`,
+> and `-`), we could have instead defined a structure for each
+> operation, as follows:
+
+```racket
+(struct Read ())
+(struct Add (left right))
+(struct Neg (value))
+```
+
+> The reason that we choose to use just one structure is that many
+> parts of the compiler can use the same code for the different
+> primitive operators, so we might as well just write that code once
+> by using a single structure.
+
+解释设计决策与 trade-off。
+
+> We often write down the concrete syntax of a program even when we
+> actually have in mind the AST, because the concrete syntax is more
+> concise. We recommend that you always think of programs as abstract
+> syntax trees.
+
+## 1.2 Grammars
+
+> A programming language can be thought of as a _set_ of programs.
+
+这种 set theory 的观点承自 EOPL。
+
+Jeremy 也有一个演讲是介绍这种观点的：
+
+- [Crash Course on Notation in Programming Language Theory (Part 1) - λC 2018](https://www.youtube.com/watch?v=vU3caZPtT2I)
+- [Crash Course on Notation in Programming Language Theory (Part 2) - λC 2018](https://www.youtube.com/watch?v=MhuK_aepu1Y)
+
+一个 grammar 会定义一个集合。
+定义一个集合在于可以判断元素是否属于这个集合。
+而元素，可以理解为一个预先定义的 [Domain of discourse](https://en.wikipedia.org/wiki/Domain_of_discourse) 中的元素。
+
+> The set is infinite (that is, one can always create larger
+> programs), so one cannot simply describe a language by listing all
+> the programs in the language. Instead we write down a set of rules,
+> a _context-free_ grammar, for building programs.
+
+> Grammars are often used to define the concrete syntax of a language,
+> but they can also be used to describe the abstract syntax.
+
+> As an example, we describe a small language, named `LangInt` , that
+> consists of integers and arithmetic operations.
+
+我们没法用字体来区分 grammer 中的 terminal 与 nonterminal，
+因此我们用 `<Exp>` 来表示 nonterminal。
+
+```bnf
+<Exp> ::= (Int <Int>)
+<Int> ::= "An int is a sequence of decimals (0 to 9),
+           possibly starting with – (for negative integers),"
+<Exp> ::= (Prim 'read ())
+<Exp> ::= (Prim '- (<Exp>))
+<Exp> ::= (Prim '+ (<Exp> <Exp>))
+<Exp> ::= (Prim '- (<Exp> <Exp>))
+
+```
+
+注意上面所使用的 quote，
+这意味着在定义 grammer 时，
+已经有 racket 这个 meta-language 了。
+
+Example exp in `LangInt`：
+
+```racket
+(Prim '+ ((Prim 'read ()) (Prim '- ((Int 8)))))
+```
+
+上面对 quote 的用法有歧义，
+如果想要成为 meta-language 中合法的表达式，
+必须加上 `list`：
+
+```racket
+(Prim '+ (list (Prim 'read (list)) (Prim '- (list (Int 8)))))
+```
+
+> The last grammar rule for `LangInt` states that there is a `Program`
+> node to mark the top of the whole program:
+
+```bnf
+<LangInt> ::= (Program '() <Exp>)
+```
+
+> The Program structure is defined as follows:
+
+```racket
+(struct Program (info body))
+```
+
+> where `body` is an expression. In further chapters, the `info` part
+> is used to store auxiliary information, but for now it is just the
+> empty list.
+
+The concrete syntax for `LangInt`：
+
+```bnf
+TODO
+```
+
+The abstract syntax for `LangInt`：
+
+```bnf
+TODO
+```
+
+## 1.3 Pattern Matching
 
 TODO
 
