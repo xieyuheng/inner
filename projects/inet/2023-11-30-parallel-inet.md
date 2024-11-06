@@ -30,6 +30,12 @@ And a "free-stack" can be viewed as a ring,
 i give back to the front instead of the end,
 thus lock-free.
 
+[2024-11-06] `malloc` 已经实现类似的功能了：
+https://stackoverflow.com/questions/10706466/how-does-malloc-work-in-a-multithreaded-environment
+实在不行还有 [jemalloc](https://jemalloc.net)。
+所以，不用可以先不考虑 malloc 的并行性能。
+这样可以让实现简化很多。
+
 # Datatypes
 
 I need to allocate the following kinds of datatypes:
