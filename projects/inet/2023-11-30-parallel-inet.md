@@ -31,8 +31,9 @@ i give back to the front instead of the end,
 thus lock-free.
 
 [2024-11-06] `malloc` 已经实现类似的功能了：
-https://stackoverflow.com/questions/10706466/how-does-malloc-work-in-a-multithreaded-environment
-实在不行还有 [jemalloc](https://jemalloc.net)。
+- [How does malloc work in a multithreaded environment?](https://stackoverflow.com/questions/10706466/how-does-malloc-work-in-a-multithreaded-environment)
+实在不行还有 [jemalloc](https://jemalloc.net)：
+- [How does jemalloc work? What are the benefits?](https://stackoverflow.com/questions/1624726/how-does-jemalloc-work-what-are-the-benefits)
 所以，不用可以先不考虑 malloc 的并行性能。
 这样可以让实现简化很多。
 
