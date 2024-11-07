@@ -198,6 +198,111 @@ the object of the entire program, is not input;"
 
 ## 2.2 Choosing a computer
 
+> Of course I don't expect that you're in a position to choose a
+> computer. Nor am I going to discuss hardware at all. But I do have a
+> mental image of the kind of computer, and explaining it may help you
+> understand some of my comments.
+
+> Most applications can be programmed very nicely on a small computer:
+> say 4K of 16-bit words with a typical instruction set,
+> floating-point hardware if needed. If, that is so, the computer is
+> augmented with random access secondary memory, which I will call
+> disk. The capacity of disk is unimportant, even a small disk
+> providing plenty for our purposes, and is determined by the
+> application.  However, it is important to be able to copy the disk
+> onto another disk, or tape, for back-up. Thus I envisage a small
+> computer with 2 secondary memories, and of course a keyboard or
+> card-reader and printer or scope for input and output.
+
+> Instead of running applications in serial on a small computer, you
+> can run them in parallel on a large one. I see no advantage, for the
+> amount of core and disk you can afford to use for a single
+> application is about that available on a small computer. You don't
+> gain speed, you suffer from a complex operating system, and you have
+> a enormous capital investment. But the configuration I have in mind
+> remains the same:
+>
+> **4K of core, secondary memory and input/output device.**
+
+## 2.3 Arrangement and formatting
+
+> Now I'm going to tell you how to write a program, independent of
+> language or computer. Things you ought to be doing already, but
+> probably aren't because noone ever told you to. Little things. but
+> if you don't do them you won't have a good program; and we're going
+> to write a good program.
+
+这里是关于编程风格的讨论。
+
+> Remember the Basic Principle!
+>
+> **Keep it Simple.**
+
+> Declare all variables. Even in FORTRAN when you don't have to.
+> Everyone likes to know what parameters you are using, presumably
+> need to use; likes to count them, to see if they could use fewer; is
+> annoyed if you slip one in without mentioning it.
+
+> Define everything you can before you reference it. Even in FORTRAN
+> when you don't have to. Why not? You don't like to read a program
+> backwards either. 'Everything you can' means everything except
+> forward jumps. You better not have many forward jumps.
+
+> Make the variables as GLOBAL as possible. Why not? You can save some
+> space and clarify your requirements. For instance, how many Is, Js
+> and Ks do you need? In most cases a single copy in COMMON would
+> suffice (you have to declare them, remember, and may as well put
+> them in COMMON); you can redefine it locally if you must; and it is
+> of interest that you must.
+
+> Indent! High-level languages, even modern assemblers, fail to insist
+> that you start in column x. But you do! The unbelievable appeal of a
+> straight left margin! Paper is 2-dimensional. Use it! If you indent
+> all statements inside a loop, it's obvious at a glance the extent of
+> the loop. If you indent conditionally executed statements you'll
+> find that nested conditions sort themselves out - automatically. If
+> you indent little statements you wish you didn't have to include (I
+> = I) you'll find they intrude less as you glance through the
+> listing. Always indent the same amount, 3 spaces/level is good. Be
+> consistant and be accurate.  Sloppy indenting is obvious.
+
+"The unbelievable appeal of a straight left margin!"
+
+所以也许这种 single-char-rune 外加 2-space indentation，
+是不错的设计。
+
+```inet
+* (zero) -- value!
+* (add1) prev -- value!
+* (add) target! addend -- result
+
+! (zero)-(add)
+  (add)-addend result-(add)
+
+! (add1)-(add)
+  (add)-addend (add1)-prev add
+  add1 result-(add)
+```
+
+```inet
+* (null) -- value!
+* (cons) head tail -- value!
+* (append) target! rest -- result
+
+! (null)-(append)
+  (append)-rest result-(append)
+
+! (cons)-(append)
+  (append)-rest (cons)-tail append
+  (cons)-head cons result-(append)
+```
+
+## 2.4 Mnemonics
+
+TODO
+
+## 2.5 Routines and subroutines
+
 TODO
 
 # 3 Programs with input
