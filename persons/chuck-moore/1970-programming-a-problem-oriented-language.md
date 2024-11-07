@@ -114,6 +114,90 @@ readonly.link 整理的版本（有些排版没整理完）：
 
 # 2 Programs without input
 
+> The simplest possible program is one that has no input. That is a
+> somewhat foolish statement, but if you'll give me a chance to
+> explain we can establish some useful definitions.
+
+> First consider the word "input". I want to use it in a specific sense:
+>
+> - Input is information that controls a program.
+
+这里的 input 的定义，看起来就是函数的参数。
+
+让用户用调用函数的方式使用程序，看来是不合理的。
+但是让用户使用后缀表达式的 word 来使用程序看来是合理的，
+比如后缀表达式的计算器。
+可以以这种计算器为典型例子，来理解这里提到的 input。
+
+> In particular, I do not consider as input:
+>
+> - Moving data between media within the computer. For instance,
+>   - copying tape onto disk, or disk into core.
+> - Reading data into the computer. This is really a transfer between media:
+>   - from card to core.
+
+> In order to sharpen your recognition of input, let me describe a
+> program that has input. Consider a program that fits a smooth curve
+> through measured data points. It needs a lot of information in order
+> to run: the number of data points, the spacing between points, the
+> number of iterations to perform, perhaps even which function to fit.
+> This information might be built into the program; if it is not, it
+> must be supplied as input. The measured data itself, the object of
+> the entire program, is not input; but must be accompanied by input
+> in order to to intelligible.
+
+这个例子非常适合 "The Little Learner"，
+因为 learner 就是在 fits curve，
+而在 learner 中区分了 parameters 和 arguments，
+这里的 "input" 就类似 parameters。
+"The measured data itself,
+the object of the entire program, is not input;"
+那应该就是 arguments 了。
+
+> A program that has no input may be extremely complex. Lacking input
+> simply means the program knows what to do without being told.
+> That built into the code is all the information needed to run. If
+> you are willing to re-compile the program, you can even modify it
+> without input.
+
+从这段来看，input 又像是 dependency injection。
+
+> But I'll be viewing programs from the input side. I'll be ranking
+> programs according to the complexity of their input and I plan to
+> demonstrate that a modest increase in the complexity of input can
+> provide a substantial decrease in the complexity of the program.
+> From this point of view, a program with no input is simple.
+
+## 2.1 Choosing a language
+
+> ... we won't be talking about problems at the language level.
+
+> I want to talk about problems common to all programs in a
+> machine-independent and language-independent manner. I will leave to
+> you the details of implementation. I am not going to write a
+> program, I am going to show you how to write a program.
+
+> Now let's look at the major failing of higher-level languages.  In
+> attempting to achieve machine-independence and to be applicable to a
+> wide range of applications, they only give you acess to a fraction
+> of the capabilities of your computer. If you compare the number of
+> loop control instructions on your computer to the number of loop
+> constructs in your language, you'll see what I mean.
+
+批评了高阶语言隐藏了 computer 的能力。
+
+后面还批评了复杂的 calling convention，比如需要保存寄存器之类的。
+相比之下简单的 calling convention 就是用一个传递 arguments 的 stack。
+
+> You will have to code in assembler! Not the whole program, if you
+> insist, but the important parts that we'll be concentrating on. You
+> might be able to do some of these in FORTRAN, but it simply isn't
+> worth the effort.
+
+这里说的是 FORTRAN，但是对 C 而言也是如此。
+
+## 2.2 Choosing a computer
+
 TODO
 
 # 3 Programs with input
