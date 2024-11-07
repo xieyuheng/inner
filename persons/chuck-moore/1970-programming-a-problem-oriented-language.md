@@ -299,13 +299,69 @@ the object of the entire program, is not input;"
 
 ## 2.4 Mnemonics
 
-TODO
+> You will find as you read, that I have strong opinions on some
+> subjects and no opinion of others. Actually I have strong opinions
+> on all, but sometimes I can't make up my mind which to express.
+> Fortunately it leaves you some decisions to make for yourself.
+
+这里是延续对编程风格的讨论，
+并且是最重要的关于命名的风格。
+
+> Use words with mnemonic value. Unfortunately what is mnemonic to you
+> may not be mnemonic to me; and I'm the one who judges. Also
+> unfortunately, mnemonic words tend to be long, which conflicts with:
+
+> Use short words. You don't want to type long words, and I don't want
+> to read them. In COBOL this means avoid dashes and avoid
+> qualification, though both can be useful upon occasion.
+
+"dashes" 指 lisp-case naming convention for multi-part word；
+"qualification" 应该是指 `module::name` 或 `module.name` 之类的。
+
+> So let me suggest a compromise: abbreviate in some consistant
+> fashion and stick to your own rules. I can probably figure out the
+> rules you're using. You might even mention them in a comment.
+
+> Use words with the correct grammatical connotations: nouns for
+> variables, verbs for subroutines, adjectives for ... Do not use
+> clever words (GO TO HELL). Their cuteness wears off very fast and
+> their mnemonic value is too subjective. Besides they offer an
+> unwanted insight into your personality.
+
+> Use comments sparingly! (I bet that's welcome.) Remember that
+> program you looked through - the one with all the comments? How
+> helpful were all those comments? How soon did you quit reading them?
+> Programs are self-documenting, even assembler programs, with a
+> modicum of help from mnemonics.
+
+> What comments should say is what the program is doing. I have to
+> figure out how it's doing it from the instructions anyway. A comment
+> like this is welcome:
+>
+> - COMMENT SEARCH FOR DAMAGED SHIPMENTS
+
+> Mnemonics apply to variables and labels. Where possible you should
+> apply them to registers also. You may do well to assign several
+> names to the same entity, to indicate its current use. However,
+> don't waste effort naming things that don't need names. If you need
+> a counter, use I, J, K; to assign a big name (EXC-CNTR) to an
+> insignificant variable is no help.
 
 ## 2.5 Routines and subroutines
 
-TODO
+> There are two words I need to establish precise definitions for: A
+> _subroutine_ is a set of instructions that return from whence they
+> came. A _routine_ is a set of instructions that return to some
+> standard place.
+
+> To put it another way, you _jump_ to a routine, you _call_ a
+> subroutine.  The difference is retained in higher-level languages:
+> GO TO versus CALL or ENTER.
 
 # 3 Programs with input
+
+TODO
+
 # 4 Programs that grow
 # 5 Programs with memory
 # 6 Programs with output
