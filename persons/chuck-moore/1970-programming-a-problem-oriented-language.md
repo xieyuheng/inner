@@ -459,13 +459,132 @@ monoid composition -- 可以自由的 refactor。
 > - Destructive verb removes its arguments from the stack.
 > - Non-destructive verb leaves its arguments on the stack.
 
-TODO
+forth 处理常量和变量的方式：
+
+> Literals are nouns. We can define other words as nouns; words that
+> use their parameter field to place numbers onto the stack:
+>
+> - Constants place the contents of their parameter field onto the stack.
+> - Variables place the address of their parameter field onto the stack.
+
+> Rather than try to distinguish function by context, as compilers do,
+> we shall define 2 verbs that act upon variables:
+>
+> - @ replace the address on the stack with its contents.
+> - = Store into the address on the stack, the value just beneath it on the stack.
+
+上面提到 "distinguish function by context"，
+forth 所做的也可以理解为 making context explicit。
 
 ## 3.2 Control loop
+
+这里的 Control loop 指的是 forth 的 outer interpreter。
+
+之前提到的 subroutine 和 routine 的区别，
+就是 routine 可以用 RETURN jump 到这个 outer interpreter。
+
+错误处理也会 jump 到这个 outer interpreter。
+
+## 3.3 Word subroutine
+
+> What is a word?
+> A word is a string of characters bounded by spaces.
+
+> The order of the words we read is significant, though their position
+> is not.  We lose, however, the ability to leave a field empty, since
+> we cannot recognise an empty word.
+
+没法区分 `f(x, y)` 和 `f(x)`，
+因此没法做自动的 currying。
+
+> All our data must be explicit, which is probably a good idea but a
+> slow one to learn. Decide now that you will not specify input
+> conventions that have optional parameters.
+
+也没法像 `f(x)` 式的语法一样，带有可选参数。
+
+### 3.3.1 Message I/O
+
+> The WORD subroutine presumably examines input characters.
+> Where does it get these characters?
+
+> I'm going to assume that you have a keyboard to type input.
+
+> In any case we may want to examine each character more than once, so
+> we want buffered input. Even if you can process characters as they
+> arrive, don't. Store them into a message buffer.
+
+### 3.3.2 Moving characters
+
+TODO
+
+## 3.6 Dictionary
+
+> Every program with input must have a dictionary. Many programs
+> without input have dictionaries. However these are often not
+> recognised as such. A common 'casual' dictionary is a series of IF
+> ...  ELSE IF ... ELSE IF ... statements, or their equivalent. Indeed
+> this is a reasonable implementation if the dictionary is small (8
+> entries) and non-expandable.
+
+> The most important property of an entry is one that is usually
+> overlooked. Each entry should identify a routine that is to be
+> executed.
+
+> An entry has 4 fields: the word being defined, the code to be
+> executed, a link to the next entry and parameters. Each of these
+> warrants discussion.
+
+> The code field should contain the address of a routine rather than
+> an index to a table or other abbreviation. Program efficiency
+> depends strongly on how long it takes to get to the code once a
+> entry is identified.
+
+code field 虽然指向一个 routine，
+但是其实代表了这个 entry 的类型。
+
+> The parameter field will typically contain 4 kinds of information:
+>
+> - A number, constant or variable, of variable size. The nature of
+>   the number is determined by the code it executes.
+>
+> - Space in which numbers will be stored - an array. The size of the
+>   array may be a parameter, or may be implicit in the code executed.
+>
+> - A definition: an array of dictionary entries representing
+>   virtual-computer instructions.
+>
+> - Machine instructions: code compiled by your program which is
+>   itself executed for this entry. Such data must probably be aligned
+>   on word boundary, the other need not.
+
+最重要的是 "a definition" that
+"representing virtual-computer instructions"。
+
+### 3.6.2 Search strategies
 
 TODO
 
 # 4 Programs that grow
+
+TODO
+
+## 4.4 Definition entries
+
+TODO
+
+### 4.4.1 Defining a definition
+
+> To compile a word is simple. After finding it in the dictionary, you
+> have the address of its dictionary entry. Deposit this address in the
+> parameter field.
+
+TODO
+
+### 4.4.2 Executing a definition
+
+TODO
+
 # 5 Programs with memory
 # 6 Programs with output
 # 7 Programs that share
