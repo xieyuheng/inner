@@ -358,7 +358,110 @@ the object of the entire program, is not input;"
 > subroutine.  The difference is retained in higher-level languages:
 > GO TO versus CALL or ENTER.
 
+确立我们将要使用的 calling convention：
+
+- 用 return-stack 处理递归的 subroutine call。
+- 用 value-stack 来 pass parameters。
+
 # 3 Programs with input
+
+> A program without input is a program with a single task. A program
+> with input may have many tasks, which it will perform as directed by
+> its input. Thus I consider input to be control information, and the
+> control information to define a control language.
+
+> To set the stage, let me briefly outline how our program must
+> operate.  You are sitting at a keyboard typing input. You type a
+> string of characters that the computer breaks into words. It finds
+> each word in a dictionary, and executes the code indicated by the
+> dictionary entry, perhaps using parameters also supplied by the
+> entry. The process of reading words, identifying them and executing
+> code for them is certainly not unusual. I am simply trying to
+> systematize the process, to extract the inevitable functions and see
+> that they are efficiently performed.
+
+"The process of reading words,
+identifying them and executing code for
+them is certainly not unusual."
+
+- pattern match on sumtype
+- dispatch on arguments
+- route by request
+
+和上面所说的 process 都是类似的。
+
+## 3.1 Nouns and verbs
+
+> I've mentioned the dictionary and we'll soon examine the details
+> required to implement it. But first I'd like to talk a bit about
+> individual entries to try and give you a feel for what we're doing.
+
+这里 "individual entries" 中的 "entry" 指字典中的条目
+-- word entries in dictionary。
+
+forth 可以在编译时期就找到
+word 所对应的 dictionary 中的地址，
+在运行是就不用查找地址了。
+但是 inet 从 active edge 到 rule 的查找，
+好象是没法避免的，因为生成和消除 active edge 的过程是动态的。
+相比之下 forth 的一个 word definition 是静态的。
+
+> We're going to read words from your input, find them in the
+> dictionary, and execute their code. A particular kind of word is a
+> literal, We won't find such words in the dictionary, but we can
+> identify them by their appearance.
+
+> Each word performs its specific, limited function; independently of
+> any other word. Yet the combination of words achieves something
+> useful.
+
+> This is basically the value of our program. It lets us combine
+> simple operations in a flexible way to accomplish a task.
+
+monoid composition -- 可以自由的 refactor。
+
+下面对 noun 和 verb 的讨论是关于如何 refactor 的。
+
+> Let's look more closely at the words we used above. They fall into 2
+> distinct classes; English even provides names for them:
+>
+> - Nouns place arguments onto the stack.
+> - Verbs operate upon arguments on the stack.
+
+下面描述一些系统的「不变量」来帮助人们认知系统。
+
+> All words cause code to be executed. However in the case of nouns,
+> the code does very little: simply place a number on the stack. Verbs
+> are considerably more varied in their effects. They may do as little
+> as add 2 arguments, or as much as type out a result -- which
+> requires a great deal of code.
+
+> In effect, nouns place arguments onto the stack in anticipation of
+> verbs that will act upon them. The word anticipation is a good
+> one. In order to keep our verbs simple, we promise that their
+> arguments are available. We could define a verb that reads the next
+> word and uses it as an argument; but in general we don't. It is not
+> the business of a verb to provide its own arguments; we use nouns to
+> provide arguments before we execute the verb. In fact, this
+> substantially simplifies our program.
+
+下面对 word entries 的分类，
+代表了人们对类型论的最原始需求。
+
+> We can extend the characterization of entries a little further. Verbs
+> have different numbers of arguments:
+>
+> - Unary verbs modify the number on the stack.
+> - Binary verbs combine 2 arguments to leave a single result.
+
+> Another way of distinguishing verbs is:
+>
+> - Destructive verb removes its arguments from the stack.
+> - Non-destructive verb leaves its arguments on the stack.
+
+TODO
+
+## 3.2 Control loop
 
 TODO
 
