@@ -613,6 +613,45 @@ add 也是最朴素的递归函数，
 然后再寻找等价的，
 但是有更好属性的表示方式与算法。
 
+> Multiplication, on the other hand, is a bit more sophisticated. As
+> an operation, we are taking two piles and using one of them to
+> dictate how many copies to make of the other.
+
+这里是用群作用（一元函数的迭代）的观点去看二元运算。
+这种观点可以处理很多自然二元运算，
+比如加法也可以是 how many add1 to add to the other。
+
+> Or, if you prefer, the two piles refer to the number of rows and
+> columns of a rectangle of rocks, the total of which is their
+> product.
+
+> In any case, multiplication is a perfectly nice operation -- another
+> verb in the grammar of arithmetic.
+
+下面就是数与运算的交替扩张过程。
+
+> The thing about verbs is that whenever we have one, we always seem
+> to get two. ... Actions that can be done almost always need to be
+> undone. And this is especially true in mathematics, where symmetry
+> is so highly prized and where the imaginary nature of the place
+> allows us the freedom to reverse our actions so easily.
+
+想要自然地引出除法运算。
+
+> So we can view subtraction, for example, as an almost necessary
+> linguistic construct. Once we can speak of addition, we then have
+> the ability to ask questions: What do I add to this to get that? The
+> desire to unadd follows immediately.
+
+> It so happens that making copies (multiplication) has a very natural
+> inverse that arises quite frequently in arithmetic: _sharing_.
+
+> The interesting aspect of such a sharing scenario is that we have no
+> idea how many each person should receive, only that we want the
+> amounts to be equal. That is, whatever this mystery quantity is,
+> seven copies of it should make the original total. This is the way
+> that sharing is the inverse of multiplication.
+
 TODO
 
 # Machines
