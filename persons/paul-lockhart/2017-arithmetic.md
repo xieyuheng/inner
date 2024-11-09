@@ -652,6 +652,34 @@ add 也是最朴素的递归函数，
 > seven copies of it should make the original total. This is the way
 > that sharing is the inverse of multiplication.
 
+用 distributing 来理解人们是如何发明除法运算的具体算法的。
+用带有 "Amount Given to Each" 和 "Number Remaining" 的 table，
+作为一个中间阶段，来引出最终的除法算法。
+
+以 248 / 7 为例：
+
+```
+   Each     Remaining
+-----------------------
+                 248
+  + 10          - 70
+               -----
+                 178
+  + 20         - 140
+               -----
+                  38
+   + 5          - 35
+  ----         -----
+    35             3
+```
+
+> There always seems to be a kind of "conservation of
+> energy" principle with things like this. We can do a lot of
+> simple arithmetic over and over, or we can work a little
+> harder mentally but get it over with faster.
+
+类似设计算法时的 tradeoff。
+
 TODO
 
 # Machines
