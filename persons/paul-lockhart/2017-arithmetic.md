@@ -680,9 +680,29 @@ add 也是最朴素的递归函数，
 
 类似设计算法时的 tradeoff。
 
-TODO
+关于乘法表：
+
+> ... we really are talking about a dictionary -- we’re translating
+> from groups of six to groups of ten and back again. That’s what the
+> times tables really are: a dictionary from decimal to other grouping
+> sizes.
+
+> Truth be told, I’m not actually all that big a fan of the more
+> efficient version. I don’t really want to work that hard to ensure
+> that I’m always giving away the greatest possible amount each time.
+> I’d rather just give out whatever I want to whenever I want to. In
+> fact, sometimes I will even give away too much (that is, more than I
+> can afford) and then take a little back later just to make my life
+> easier with the estimation.
+
+每次都要估算出来最大的商，
+让计算不能有中间状态，
+因此容易出错。
 
 # Machines
+
+TODO
+
 # Fractions
 # Negative Numbers
 # The Art of Counting
