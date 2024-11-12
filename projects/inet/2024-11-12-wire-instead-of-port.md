@@ -15,3 +15,13 @@ what should we call this -< ?
 We should call it "wire".
 -- a wire-like connector with different terminals,
 just like in EE.
+
+Possible situation of node wire connections:
+
+```
+(1)            -<
+(2) (node)-port-<
+(3) (node)-port-<>-
+(4)            -<>-
+(5) (node)-port-<>-port-(node)
+```
