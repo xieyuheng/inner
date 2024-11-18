@@ -701,6 +701,19 @@ add 也是最朴素的递归函数，
 
 # Machines
 
+> The simplest mechanical arithmetic device would be a _counter_.
+
+> The trick to getting a machine to do something for us is to find a
+> way to remove comprehension and understanding from the process; to
+> reduce it to a purely mechanical activity, where not only is it
+> unnecessary to understand what is going on, but it is _essential_
+> that there be no understanding needed, else how are we going to get
+> a bunch of mindless gears and springs to do it?
+
+> So the first step in the construction of any machine is to break
+> down the procedure you wish it to perform into a sequence of
+> mindless, rote mechanical activities.
+
 TODO
 
 # Fractions
