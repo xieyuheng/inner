@@ -24,3 +24,9 @@ applicative language 也可以，并且也有很好的性质，可以 auto curry
 可能不需要的属性是：
 
 - GC -- 因为 inet 不需要 GC。
+
+我想先试试一个带有 generic function 功能的 forth-like。
+
+- 首先，我想体验一下 concatenative 所带来的激进 refactor。
+- 其次，学习 propagator 和 the little learner 的过程中，
+  我知道了 generic function 非常重要。
