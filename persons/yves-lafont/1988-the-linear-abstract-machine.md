@@ -4,6 +4,24 @@ author: yves lafont
 year: 1988
 ---
 
+# 学习动机
+
+理解 linear logic 的连接词。
+
+linear logic 连接词的解释之一：
+
+| ⊗ | have(A and B)     |
+| & | can(A) and can(B) |
+| ⊕ | have(A or B)      |
+| ⅋ | can(A) or can(B)  |
+
+> Linear logic wise (A ⊗ B) is like the tuple (you have these two
+> resources), while (A & B) is a choice you can make between two
+> resources (but you cannot have both).  For example, if you have
+> enough fuel to go to mars or mercury, but not both, you could say
+> you have (Trip To Mars & Trip To Mercury) but not (Trip To Mars ⊗
+> Trip To Mercury).
+
 # Abstract
 
 > Linear Logic [6] provides a refinement of functional progamming and
@@ -74,6 +92,10 @@ intuitionistic linear logic。
 类型是用范畴论中的 object 来表示的，
 此时 term 代表范畴论中的 arrow。
 
+注意，在引入 term 语法的时候，不得不修改规则转而去讨论范畴论，
+而不是直接给 sequent calculus 的 inference rule 引入 term 语法，
+就是因为作者不知道 concatenative language 也可以作为 term 语法。
+
 ## 2.2 linear combinators
 
 one way of viewing the logic connectives of linear logic is:
@@ -83,6 +105,10 @@ one way of viewing the logic connectives of linear logic is:
 
 - A & B (direct product) --
   a tuple of type (A, B) in the stack.
+
+从 resource 的语义上来看，上面的解释是不对的。
+但是也许 resource 只是语义之一，
+毕竟 linear logic 也可以直接解释为古典 logic。
 
 ## 2.3 about the products
 
@@ -98,4 +124,21 @@ one way of viewing the logic connectives of linear logic is:
 
 # 3 the modality
 
-TODO
+## 3.2 Of course!
+
+在资源的语义下 `A` 可以被理解为是资源 -- `malloc` 之后的 pointer，
+而 `!A` 是 `int` 或 `float` 之类的可以随意复制的 primitive value。
+如果为 `A` 实现了 dup 和 drop 这两个函数的 interface，
+那么 `A` 就可以转化为 `!A`。
+
+## 3.3. intuitionistic Logic recovered
+
+可以用 linear logic + of course 来实现 intuitionistic logic，
+就像是一种对 intuitionistic logic 的 factoring。
+
+# 后记
+
+感觉后面的讨论很乱，applicative language
+与用 sequent calculus 描述的 inference rule 一点也不匹配。
+看这篇论文只能让我想实现一个叫
+LinearScript 或者 LinearCat 的简单类型语言。
