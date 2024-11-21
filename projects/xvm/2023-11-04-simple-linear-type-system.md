@@ -63,7 +63,24 @@ every inputs have to be in reverse.
   =: list ( :a -- type )
   =: null ( -- :a list )
   =: cons ( :a list :a -- :a list )
+  ```
 
+  或者进一步分解：
+
+  ```
+  : list ( :a -- type )
+  = list type :list 1 typed-named-tuple
+
+  : null ( -- :a list )
+  = null :a list :null 0 typed-named-tuple
+
+  : cons ( :a list :a -- :a list )
+  = cons :a list :cons 2 typed-named-tuple
+  ```
+
+  `typed-named-tuple` 还真是可以被类型检查的！
+
+  ```
   : lenght ( :a list -- :a list uint )
   = lenght {
       { null? } { zero }
@@ -79,10 +96,19 @@ every inputs have to be in reverse.
 
   ```
   : lenght ( :a list -- :a list uint )
-  = lenght { null? } dispatch null zero
-  = lenght { cons? } dispatch
+  = lenght :null dispatch zero
+  = lenght :cons dispatch-data
     swap lenght rot swap cons swap add1
   ```
+
+  调用一个函数时，尝试运行所有定义到这个名字的函数，
+  第一个返回成功的，没有返回的继续尝试下一个。
+
+  `dispatch` -- 保留 data 本身。
+  `dispatch-data` -- 分解 data 的 part 出来。
+
+  这只是局部的 generic dispatch，并不是全局的，
+  因为 `lenght` 的 type 已经固定了。
 
 But the semantics of composition is so good.
 It feels evil, but maybe I can implement both `-` and `--`.
