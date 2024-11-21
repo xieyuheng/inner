@@ -49,6 +49,41 @@ every inputs have to be in reverse.
 'list_match [ :a list_t [ :b ] [ :a list_t :a -- :b ] -- :b ] claim
 ```
 
+- [2024-11-21] 简化语法：
+
+  ```
+  : list-null -- :a list
+  : list-cons :a list :a -- :a list
+  : list-match :a list ( -- :b ) ( :a list :a -- :b ) -- :b
+  ```
+
+  用 `=:` 代表 a (data or type) constructor defined by type：
+
+  ```
+  =: list ( :a -- type )
+  =: null ( -- :a list )
+  =: cons ( :a list :a -- :a list )
+
+  : lenght ( :a list -- :a list uint )
+  = lenght {
+      { null? } { zero }
+      { cons? } { swap lenght rot swap cons swap add1 }
+    } match
+  ```
+
+  `match` 的语法不是很令人满意。
+  也许我们给这个语言实现 generic function 功能，
+  来避免使用 `match`。
+  但是如何形成 generic dispatch 的依据？
+  data constructor `null` 并不是类型。
+
+  ```
+  : lenght ( :a list -- :a list uint )
+  = lenght { null? } dispatch null zero
+  = lenght { cons? } dispatch
+    swap lenght rot swap cons swap add1
+  ```
+
 But the semantics of composition is so good.
 It feels evil, but maybe I can implement both `-` and `--`.
 
