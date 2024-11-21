@@ -34,3 +34,17 @@ this will make one of the prefix or postfix notation easier to edit.
 Thus, prefix and postfix notation are not symmetrical.
 
 Note that, symmetry (like equivalence) should always be considered in context.
+
+[2024-11-22] There's another argument to be made here: under
+left-to-right reading order, prefix notation is action first and
+postfix notation is data first.
+
+And what if you structured the code to break and indent based on stack depth?
+
+```
+f e +
+  d c +
+    *
+  b a *
+    +
+```
