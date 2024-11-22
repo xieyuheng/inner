@@ -249,4 +249,120 @@ polish parsing 处理的是纯前缀表达式，
 
 这是我主要想批判的地方。
 
-TODO
+我觉得正确的方向不是直接给图设计具体语法，
+而是用两层语言，一层构造图，一层以图为语法。
+
+> For each symbol, the type of its principal port is given first:
+
+```
+symbol Cons: list+; atom-, list-
+       Nil: list
+       Append: list-; list-, list+
+```
+
+> Non-discrete partitions are specified by means of curly brackets.
+
+```
+symbol Dupl: nat-; {nat+, nat+}
+       Erase: nat-; {}
+```
+
+> Notation for rules is a bit disconcerting, but very natural.
+> Consider the following example: [picture]
+
+> We join variables between left and right members: [picture]
+
+> Putting principal ports up and auxiliary ones down,
+> we obtain two trees with links between leafs: [picture]
+
+> So interaction is written as follows:
+
+```
+Cons [x, Append(v, t)] >< Append [v, Cons(x, t)]
+```
+
+> Note that the left and right sides of `><` have nothing to do with
+> the left and right members of the initial rule.  It requires a bit
+> of training to become acquainted with this syntax.
+
+disconcerting 和 natural 是相互矛盾的。
+
+在我的设计中：
+
+```
+* (null) -- value!
+* (cons) tail head -- value!
+* (append) target! rest -- result
+
+! (null)-(append)
+  (append)-rest result-(append)
+
+! (cons)-(append)
+  (cons)-tail (append)-rest append
+  (cons)-head cons result-(append)
+```
+
+一个 rule 的 body 就是构造 rule 的 right hand graph 的过程。
+因此更直观。
+
+> Here we described only the kernel of our language, but it should be
+> interfaced with external devices such as keyboards or displays: for
+> example, the output of a keyboard can be seen as an infinite stream
+> of agents with characters as symbols.
+
+> Furthermore some extensions such as polymorphic typing and
+> modularity are certainly needed to get a high level programming
+> language.
+
+我就不抄 code listing 了。
+但是也许为了看其他人基于这里的语法设计而写的论文，
+还是必须熟悉这里的语法。
+
+# Conclusion
+
+> Our proposal can be compared with existing programming paradigms. As
+> in functional programming, we have a strong type discipline and a
+> deterministic semantics based on a Church-Rosser property, but the
+> functional paradigm (like intuitionistic logic) assumes an essential
+> asymmetry between inputs and outputs, which is incompatible with
+> parallelism and inconvenient for writing interactive softwares.
+
+> Our rules are clearly reminiscent of clauses in logic programming,
+> especially in the use of variables (see the example of
+> difference-lists), and our proposal could be related to PARLOG or
+> GHC. There are also some similarities with data-flow languages and
+> the CCS-CSP family, but as far as we know, the concepts of principal
+> port (which is critical for determinism) and semi-simplicity (which
+> prevents deadlock) has never been considered in such systems.
+
+我觉得上面说的只有 logic programming 是值得对比的。
+在 applicative 的语法下，一个 node 在作用时，
+可以以 return value 为参数，
+就像逻辑式语言中的关系一样。
+
+> The first idea of generalising multiplicative connectors of linear
+> logic appears in [Girard88] (partitions are considered in [Regnos])
+> and led to the Geometry of inieruction [Girard89, Girard89a].
+
+上面这些引用也许是值得一读的。
+
+> We are now working on a true implementation of the language to
+> develop real examples in a practical programming environment.
+
+不知道作者的实现后来如何了。
+
+# Appendix: Linear Logic
+
+也就是为 inet 的运行时设计类型系统。
+可以只考虑简单类型系统。
+
+这一节的引用可能也值得一读。
+
+问题是想要和 linear logic 联系起来，
+就需要给 port 区分 input 和 output 以获得 atom 的 sign。
+
+> Indeed, our proposal generalises the so-called multiplicative
+> fragment of linear logic, for which the notion proof nel works very
+> well, but with very iimited dynamics (everything reduces in linear
+> time). On the contrary, our type system does not ensure termination,
+> although it would be interesting to isolate terminating subsystems.
