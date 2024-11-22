@@ -41,3 +41,153 @@ The author require the right side of a rule to be reduced.
 This means when defining a rule,
 we can (and we should) eager evaluate the right side,
 and the evaluation must terminate.
+
+# Abstract
+
+> It is shown that a very simple system of interaction combinators,
+> with only three symbols and six rules, is a universal model of
+> distributed computation, in a sense that will be made precise. This
+> paper is the continuation of the author's work on interaction nets,
+> inspired by Girard's proof nets for linear logic, but no preliminary
+> knowledge of these topics is required for its reading.
+
+# Introduction
+
+> This paper addresses the following question: what are the
+> fundamental laws of computation? Of course, the answer depends on
+> the choice of a particular model of computation. Let us mention some
+> of them:
+
+> - _Turing machines_ imitate the mathematician writing symbols on
+>   paper. There are many variants, for instance _register machines_
+>   and _stack machines_. This notion has the advantage of being
+>   simple and powerful at the same time, but it models only
+>   sequential computation.
+
+> - _Cellular automata_ can be seen as discrete approximations of
+>   physical processes. This notion models distributed computation,
+>   but with a global synchronization of transitions.
+
+> - _Rewrite systems_ are closer to the algebraic tradition, since a
+>   rewrite rule is just an oriented equation. An interesting example
+>   is the _lambda-calculus_, with only one rewrite rule:
+>
+>       ((lambda (x) u) v) => v [u/x]
+
+> This calculus is _Turing complete_ and it has a nice logical
+> interpretation, at least in the typed case. However, the rule is
+> more complicated than it seems: is it reasonable to consider
+> substitution as an atomic operation? In this sense, a more primitive
+> system is combinatory logic, with two rewrite rules:
+>
+>     Kxy => x,
+>     Sxyz => xz(yz).
+>
+> But again, is it reasonable to consider erasing and duplication as
+> atomic operations?
+
+> Following this tradition of rewrite systems, interaction nets were
+> introduced in [Laf 90] as a model of distributed computation with
+> local synchronization (Section 1). These nets, which are related to
+> the connection graphs of [Baw86], appeared as a generalization of
+> Girard's proof nets for linear logic (see [Gir95, Laf95]).
+
+> By "local synchronization," we mean that there is no need to
+> consider a global time for computation. In other words, time is
+> relativistic. By "distributed," we mean that the computation is
+> performed at several places at the same time, whereas "parallel"
+> sometimes refers to a kind of magical superposition, as in "parallel
+> or":
+>
+>     T or x -> T,
+>     x or T -> T,
+>     F or F -> F.
+
+> Our interaction nets are deterministic in a strong sense: not only
+> the result, but also the computation is unique, up to trivial
+> commutations. In particular, it is not possible to encode "parallel
+> or." We shall not address the question of deciding whether this
+> should be considered as a good or a bad point.
+
+"parallel or" 是什么意思？
+可能是说 `x or y` 可以同时计算两边，
+然后把结果汇集起来。
+在上篇论文中，
+natural number 的 `max` 可能是一个类似的例子。
+
+> From the viewpoint of computability, our interaction nets are
+> equivalent to the Turing machines, but from the viewpoint of
+> computation, there is something more, for instance parallelism (in
+> the sense of distributed computation). To express this rigorously,
+> we introduce a natural notion of _translation of interaction system_
+> preserving the essential properties of computations, such as the
+> complexity and the degree of parallelism.
+
+> By definition, a _universal interaction system_ has the property
+> that any other interaction system can be translated into it. Turing
+> machines can be seen as particular interaction systems, but such
+> systems are intrinsically sequential and cannot be universal in the
+> above sense, even if they come from universal Turing machines. On
+> the other hand, it is proved that a system of _interaction
+> combinators_ is universal (Section 2). This suggests an answer to
+> our original question, at least within the framework of interaction
+> nets: the fundamental laws of computation are _commutation_ and
+> _annihilation_.
+
+如何理解这一点？
+可能需要理解把任意 interaction net
+翻译成 interaction combinators 的方式。
+
+> Our system of interaction combinators has been obtained by a kind of
+> distillation, starting from some more complicated system suggested
+> by Samson Abramsky for implementing the proof boxes of linear logic
+> (see [Mac94]). Independently, Simon Gay has also obtained a
+> universal system, with eight symbols instead of three (see [Gay95]).
+
+这个 [Gay95] 也值得看看，有时候形式上数量最少，并不是最容易理解的。
+
+> Our system is simpler because it uses the same symbols for different
+> purposes. Among the other related systems, let us mention the
+> infinite one introduced by John Lamping for the optimal reduction of
+> lambda-calculus (see [Lam90]) and the variants proposed by Georges
+> Gonthier, Martin Abadi, and Jean-Jacques Levy, in connection with
+> linear logic (see [GAL92a, GAL92b]).
+
+为什么说 [Lam90] 的是 infinite one？
+是因为有 infinite 个 combinators？
+
+> Apart from its simplicity, the system of interaction combinators has
+> an unexpected interpretation in terms of reversible 2-stack machines
+> which seems to throw a bridge between distributed and sequential
+> computation (Section 3). This section benefited from discussions
+> with Vincent Danos and Laurent Regnier.
+
+# 1 Interaction Nets
+
+## 1.1 Nets
+## 1.2 Interaction
+## 1.3 Example: Turing Machines
+## 1.4 Example: Cellular Automata
+## 1.5 Example: Unary Arithmetics
+## 1.6 Reduced Nets
+## 1.7 Translations
+
+# 2 Interaction Combinators
+
+## 2.1 The System
+## 2.2 Multiplexors and Transpositors
+## 2.3 Menus and Selectors
+## 2.4 Translation (Restricted Case)
+## 2.5 Duplication
+## 2.6 Codes, Copiers, and Decoder
+## 2.7 Translation (General Case)
+## 2.8 Minimality of the System
+
+# 3 Semantics of Combinators
+
+## 3.1 Execution
+## 3.2 Equivalence
+## 3.3 Algebraic Formulation
+## 3.4 Directed Combinators
+
+# 4 Discussion
