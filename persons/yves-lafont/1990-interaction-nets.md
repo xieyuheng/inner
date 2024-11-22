@@ -146,4 +146,107 @@ polish parsing 处理的是纯前缀表达式，
 
 # 2 A Type Discipline
 
+> We are going to strengthen the conditions of section 1 so that for
+> each alive pair of agents, some rule applies.  Introducing rules for
+> all pairs of symbols is not conceivable: how the devil would Cons
+> interact with Nil, or Parse with Append? Moreover this would be
+> inconsistent with condition 3. So we are led to limit valid
+> configurations by means of typing.
+
+其实，找不到 rule 的 alive pairs 放着不管就可以了，
+没必要因此引入类型系统。
+
+> We introduce constant types
+> -- `atom`, `list`, `nat`, `d-list`, `stream`, `tree`, ...
+> For each symbol, ports must be typed as input or output.
+
+在 1997-interaction-combinators 中将会消除 input 与 output 之分。
+
+> A net is well typed if inputs are connected to outputs of the same
+> type.  A rule is well typed if:
+>
+> - symbols in the left member match, which means
+>   that their principal ports have opposite types,
+> - the right member is well typed
+>   (the types of variables being given by the left member).
+
+其实不应该着急设计类型系统，
+而是应该先尝试写程序，
+来体验用这种模型编程的感觉。
+
+> So we have new conditions for typed interaction:
+
+> 5. (typing)
+>    Rules are well typed.
+
+> 6. (completeness)
+>    There is a rule for each pair of matching symbols.
+
+无类型时，inet 的 eliminatior
+可以很好地支持 generic function，
+但是加上类型反而不行了。
+
+> All examples in section 1 are easily typed. The choice of an
+> input/output denomination is purely conventional: it does not matter
+> if you call input what I call output, and conversely, but we must
+> agree on matching.  In other words, the notions of constructor
+> (symbol with a positively typed principal port, like Cons) and
+> destructor (symbol with a negatively typed principal port, like
+> Append) are symmetrical in our system.
+
+上面这段观察，已经说明区分 input 和 output 有问题了。
+比如两个人可能写出来 library，
+刚好只是因为 input 和 output 相反而不兼容。
+
+> So far, typing ensures local correciness of computations, but we
+> shall see that a notion of global correctness is necessary to
+> prevent _deadlock_.
+
+> Proposition 2 (stopping cases)
+> If a net is irreducible,
+> starting from any point,
+> you can follow principal ports
+> until you reach a variable, or you loop!
+
+> Proposition 3 (deadlock)
+> A circle like in proposition 2 stays forever.
+
+论文里称其为 pathological vicious circle。
+我觉得没必要用这种词，
+因为这些 circle 可能就是我们想要让运算得到的结果。
+
+也许应该叫做 principal circle，
+因为是顺着 principal port 形成的 circle。
+
+在图上看，好像形成 principal circle 就会失去引用了，需要被垃圾回收了。
+但是其实图上所表达的引用，只是形成 graph 时所用的 pointer，
+还可能有别的 pointer 引用 principal circle 中的 node 和 wire。
+
+判断是否会出现 principal circle 是否和停机问题等价？
+
+论文这一段通过给 auxiliary port 分组，
+并且避免某些组之间相互连接，
+来证明在某组 node 和 rule 的定义下，
+写出的程序不会出现 principal circle。
+
+> Proposition 6 (invariance)
+> Simple nets are closed under reduction by simple rules.
+
+我不明白分组的依据是什么，
+可能要人工找到一个分组，
+才能用来证明。
+如果不能自动寻找分组，
+那就没什么意义。
+
+可能这个定理的意义在于，
+如果一个 rule 没有故意引入 principal circle，
+并且初始条件没有 principal circle，
+那么整体的程序运行起来也不会产生 principal circle。
+这样，针对小规模的数据做测试，
+就可以保证没有 principal circle 了。
+
+# 3 A Programming Language
+
+这是我主要想批判的地方。
+
 TODO

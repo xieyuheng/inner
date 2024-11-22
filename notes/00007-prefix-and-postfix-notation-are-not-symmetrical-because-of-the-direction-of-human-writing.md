@@ -48,3 +48,59 @@ f e +
   b a *
     +
 ```
+
+In another note,
+f < g < h is much harder to flow together than h > g > f.
+(or step 3 < step 2 < step 1 v.s. step 1 > step 2 > step 3).
+
+This is why applicative language have statements:
+
+```
+step 1;
+step 3 < step 2;
+```
+
+Example of how statements are required in prefix programming language:
+
+- code from: https://github.com/evincarofautumn/hap-wip/blob/main/hap/hello.hap
+
+```
+put-in :var x 8;
+put-in :var y 4;
+
+put-in :var s 20;
+
+color 0 0 0; clear;
+
+color 238 102 119;
+
+rect    mul s add  0 x    mul s       y    mul s 1    mul s 6;
+rect    mul s add  1 x    mul s add 2 y    mul s 2    mul s 1;
+rect    mul s add  3 x    mul s       y    mul s 1    mul s 6;
+
+color 204 187 68;
+
+rect    mul s add  5 x    mul s       y    mul s 1    mul s 6;
+rect    mul s add  6 x    mul s       y    mul s 3    mul s 1;
+rect    mul s add  6 x    mul s add 2 y    mul s 2    mul s 1;
+rect    mul s add  6 x    mul s add 5 y    mul s 3    mul s 1;
+
+color 34 136 51;
+
+rect    mul s add 10 x    mul s       y    mul s 1    mul s 6;
+rect    mul s add 11 x    mul s add 5 y    mul s 3    mul s 1;
+
+color 68 119 170;
+
+rect    mul s add 15 x    mul s       y    mul s 1    mul s 6;
+rect    mul s add 16 x    mul s add 5 y    mul s 3    mul s 1;
+
+color 170 51 119;
+
+rect    mul s add 20 x    mul s       y    mul s 1    mul s 6;
+rect    mul s add 21 x    mul s       y    mul s 2    mul s 1;
+rect    mul s add 21 x    mul s add 5 y    mul s 2    mul s 1;
+rect    mul s add 23 x    mul s       y    mul s 1    mul s 6;
+
+show;
+```
