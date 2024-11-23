@@ -289,11 +289,22 @@ positional arguments 是自然的，
 
 ## 1.4 Example: Cellular Automata
 
-TODO
+这里也需要一些 Cellular Automata 的例子和练习。
+
+这里只处理的一维的，二维的如何？
+会不会中间步骤太多了？
+
+从上面两个例子可以体验到，
+用 inet 编程的时候，
+解决问题的方式是不同的，
+可以直接用 net 来编码问题中的部分条件，
+比如图的邻接关系。
+
+- 用 propagator model 是否也会有类似的体验？
 
 ## 1.5 Example: Unary Arithmetics
 
-TODO
+这里类似函数式编程，是最简单的部分。
 
 ## 1.6 Reduced Nets
 ## 1.7 Translations
