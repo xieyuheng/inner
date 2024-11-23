@@ -1,6 +1,6 @@
 ---
 title: general graph rewriting
-date: 00053
+date: 2024-11-23
 ---
 
 在这个演讲中：[[IFIP WG 1.6 - 2021] Graph Rewriting](https://www.youtube.com/watch?v=_gwz64o1eBQ&ab_channel=FSCD2021)
