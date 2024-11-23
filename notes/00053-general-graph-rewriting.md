@@ -8,7 +8,9 @@ date: 2024-11-23
 作者介绍了以往的 double pushout graph rewriting 有问题，
 问题在于想要强行使用范畴论，并且实现自动重新连接，
 而解决方式就在于人工标注如何重连。
-所谓 Patch Graph Rewriting。
+所谓 Patch Graph Rewriting (2020)。
+
+- 作者在 2021 的新论文中又想强行使用范畴论，感觉有点迂腐了。
 
 在实现 interaction nets 时，我就是这样做的。
 并且使用了一个底层的 meta-language，
