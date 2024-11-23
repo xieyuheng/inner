@@ -210,12 +210,91 @@ natural number 的 `max` 可能是一个类似的例子。
 positional arguments 是自然的，
 此时可以使用 pattern match 来取 positional arguments。
 
+## 1.2 Interaction
+
+这里可以明显看出来 interaction 应该被理解为 re-wiring。
+
+> Note that cells can only interact pairwise,
+> through their principal ports.
+
+因此是一种带有特殊限制的 graph rewriting。
+
+是否可以设计一种一个 node 带有多个 principal ports，
+或者多个 node 组成的 pattern 作为 rewriting 的对象的计算模型？
+在 build net 的过程中，每次 node 都可以检查自己是否和周边的 node
+形成可 reduce 的 pattern。
+好像这样也是完全可行的，但是会导致 rewriting 与顺序相关。
+限制只有两个 node 的 pattern 作为 rewriting 的 target，
+就是为了和顺序无关。
+
+在这里描述了 strong confluence property。
+
+> Moreover, if one abstracts from the irrelevant order of application
+> of rules, there is only one possible reduction from A to B. So we
+> can say interaction nets are a deterministic and asynchronous model
+> of computation. In fact, we think that any computation of that kind
+> can be modeled by means of interaction nets, but of course, an
+> assertion of this kind cannot be proved.
+
+## 1.3 Example: Turing Machines
+
+> Classical models of sequential computation such as Turing machines,
+> register machines and stack machines can be seen as special classes
+> of interaction systems.
+
+> For instance, a Turing machine is given by a triple `(Q, A, T)`,
+> where `Q` is a finite set of states, `A` a finite set of letters,
+> and `T` a (partially defined) map from `(Q, A)` to `(A, {+, -],
+> Q)`. A configuration of the machine is given by a state `q`, an
+> infinite tape filled with letters, and a current position in the
+> tape:
+
+```
+                         q
+                         |
+  ... - a[-2] - a[-1] - a[0] - a[1] - a[2] - ...
+```
+
+> If `T(q, a) = (a', +, q')`, and being in state `q`, the machine
+> reads `a` from the tape, then it writes `a'`, moves right, and goes
+> to state `q'`: [picture]
+
+> If `T(q, a) = (a', -, q')`, the machine has the same behavior,
+> except that it moves left
+
+> By doubling the number of states, one can always assume that the
+> direction of the move depends only on `q'`. One says that `q'` comes
+> from the left in the first case, and that it comes from the right in
+> the second case.
+
+我不理解这里的 doubling。
+可能不应该说 depends on，
+而是说 `T(q, a) = (a', +, q')`
+可以理解为 `T(q, a) = (a', +q')`，
+也许这样也不对。
+我还是不理解。
+
+可以尝试用这里提到的翻译方法，
+把一些 turing machine 的程序翻译到 inet 试试。
+
+> So it appears that interaction nets are complete from the viewpoint
+> of computability. Similarly, the register machines and the stack
+> machines can be simulated in a fairly obvious way.
+
+如何实现呢？
+尤其是如何实现 stack machines？
+也许有众所周知的用 turing machine
+实现 stack machine 的方法，
+我还不知道。
+
+## 1.4 Example: Cellular Automata
+
 TODO
 
-## 1.2 Interaction
-## 1.3 Example: Turing Machines
-## 1.4 Example: Cellular Automata
 ## 1.5 Example: Unary Arithmetics
+
+TODO
+
 ## 1.6 Reduced Nets
 ## 1.7 Translations
 
