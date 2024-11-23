@@ -12,7 +12,7 @@ year: 1997
 因此可以用来实现 Interaction Combinators 了。
 因此需要重新读一下这篇论文。
 
-# Xie: Drawing of nets
+# [note] Drawing of nets
 
 In the first paper "Interaction Nets",
 drawing of a net is based on layered-tree,
@@ -34,13 +34,17 @@ and to highlight the principle,
 we can just highlight the edge
 without changing the layered-tree drawing.
 
-# Xie: Reduced the right side of rule
+# [note] Reduced the right side of rule
 
 The author require the right side of a rule to be reduced.
 
 This means when defining a rule,
 we can (and we should) eager evaluate the right side,
 and the evaluation must terminate.
+
+We can let the compiler to do this partial evaluation
+as an optimization and a terminate check.
+Programmers do not need to care about this.
 
 # Abstract
 
@@ -164,7 +168,50 @@ natural number 的 `max` 可能是一个类似的例子。
 
 # 1 Interaction Nets
 
+> The origin of our favorite model of computation is explained in [Laf 95].
+> Here, it is introduced from scratch, without explicit reference to proof theory.
+
+这里 [Laf 95] 引用的是 1995-from-proof-nets-to-interaction-nets，
+而不是 1990-interaction-nets。
+
 ## 1.1 Nets
+
+> From now on, a symbol will always be given with its arity n >= 0.
+> An occurrence of such a symbol is called a _cell_.
+
+换名字了，不管 node 叫 agent 了，叫 cell。
+
+图像中用三角形的 node 来指出 principle port 的位置。
+
+> Such a cell has one _principal port_ and n _auxiliary ports_. It is
+> well understood that the latter are not interchangeable. For
+> instance, one can number them from 1 to n, keeping 0 for the
+> principal port.
+
+> In practice, the ports will always be implicitly numbered in
+> clockwise order.
+
+这种规定不是好事，因为：
+
+- 对于 constructor 而言，
+  principal port 代表 value，
+  此时 principal port 应该放到最后一个位置。
+
+- 对于 eliminatior 而言，
+  principal port 代表 target。
+  此时 principal port 应该放到第一个位置。
+
+在使用 concatenative 的语法时，
+我们应该自然避免用 positional arguments，
+而是用 named arguments -- 类似 record type。
+这样就可以避免上面的约定。
+
+在使用 applicative 语法时，
+positional arguments 是自然的，
+此时可以使用 pattern match 来取 positional arguments。
+
+TODO
+
 ## 1.2 Interaction
 ## 1.3 Example: Turing Machines
 ## 1.4 Example: Cellular Automata
