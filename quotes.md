@@ -151,6 +151,15 @@ title: Quotes
   - Paul Phillips
   - We're Doing It All Wrong, at Pacific Northwest Scala 2013
 
+# Chemistry
+
+- Chemistry is take a liquid and a solid,
+  mix it up and heat it,
+  and then extract it.
+
+  - Lee Cronin
+  - Origin of Life, Aliens, Complexity, and Consciousness | Lex Fridman Podcast #269
+
 # Mathematics
 
 - The code pretty much writes itself.
