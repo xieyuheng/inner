@@ -114,11 +114,47 @@ if (other condition) return
 
 ## 3. Normalize Symmetries
 
-TODO
+其实用一种重复的复制粘贴的 pattern 代码，
+虽然保持了一致性也不是好的解决方案，
+最好是能遇到 pattern 时抽一个函数出来。
+
+但是有的语言不能把某些 pattern 抽成函数，
+这就是语言的问题了。
 
 ## 4. New Interface, Old Implementation
+
+> So you need to call a routine, and the interface makes it
+> difficult/complicated/confusing/tedious. Implement the interface you
+> wish you could call and call it. Implement the new interface by
+> simply calling the old one (you can inline the implementation later,
+> after migrating all other callers).
+
+比如 c 标准库中糟糕的命名规则，
+此时可以直接给 c 函数套一层更好的名字。
+
 ## 5. Reading Order
+
+> Reorder the code in the file in the order in which a reader
+> (remember, there are many readers for each writer) would prefer to
+> encounter it.
+
+> You’re a reader. You just read it. So you know.
+
+这是否要求一个语言要能够引用在后面的定义的东西？
+还是只能先定义再引用比较好？
+
+> No single ordering of elements is perfect. Sometimes you want to
+> understand the primitives first and then understand how they
+> compose. Sometimes you want to understand the API first and then
+> understand the details of implementation.
+
+c 带有 header file，同时又要求先定义再引用。
+这样就算是同时解决了上面的两个问题。
+
 ## 6. Cohesion Order
+
+TODO
+
 ## 7. Move Declaration and Initialization Together
 ## 8. Explaining Variables
 ## 9. Explaining Constants
