@@ -109,9 +109,13 @@ if (other condition) return
 
 ## 2. Dead Code
 
-TODO
+> Delete it. That’s all.
+> If the code doesn’t get executed, just delete it.
 
 ## 3. Normalize Symmetries
+
+TODO
+
 ## 4. New Interface, Old Implementation
 ## 5. Reading Order
 ## 6. Cohesion Order
