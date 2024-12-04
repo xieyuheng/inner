@@ -45,42 +45,108 @@ coupling 和 cohesion 概念的提出者。
 
 # Preface
 
-TODO
+> As a book, Tidy First? practices what it proposes -- delivering
+> these tidyings in small chunks and suggesting when and where you
+> might apply them. So, instead of trying to master tidying all at
+> once, you can try out a few tidyings that make sense for your
+> problem. Tidy First? also begins describing the theory behind
+> software design: coupling, cohesion, discounted cash flows, and
+> optionality.
+
+# Introduction
+
+> Helping folks learn to design safely contributes to my mission.
+> Hence, you will see frequent references to working in small, safe
+> steps throughout these pages. I’m not interested in short-term
+> acceleration. Software design creates value, when it creates value,
+> that is realized over time.
+
+时间。
+
+标题 "tidy first?" 带有问号，
+代表疑问是否此时应该 tidy。
 
 # Part I. Tidyings
-# 1. Guard Clauses
-# 2. Dead Code
-# 3. Normalize Symmetries
-# 4. New Interface, Old Implementation
-# 5. Reading Order
-# 6. Cohesion Order
-# 7. Move Declaration and Initialization Together
-# 8. Explaining Variables
-# 9. Explaining Constants
-# 10. Explicit Parameters
-# 11. Chunk Statements
-# 12. Extract Helper
-# 13. One Pile
-# 14. Explaining Comments
-# 15. Delete Redundant Comments
+
+> My general learning strategy is to go from concrete to abstract.
+> Therefore, we’ll start with a catalog of little design “moves”
+> you can make when faced with messy code you have to change.
+
+> Tidyings are a subset of refactorings. Tidyings are the cute, fuzzy
+> little refactorings that nobody could possibly hate on.
+
+以 tidyings 这些使用的技巧为诱饵，
+来介绍 coupling 和 cohesion 相关的理论。
+
+## 1. Guard Clauses
+
+> You see some code like this:
+
+```
+if (condition)
+    ...some code...
+```
+
+> Or even better, this:
+
+```
+if (condition)
+    if (not other condition)
+        ...some code...
+```
+
+> As a reader, it’s easy to get lost in nested conditions.  Tidy the
+> above to:
+
+```
+if (not condition) return
+if (other condition) return
+...some code...
+```
+
+> This is easier to read. It says, “Before we get into the details of
+> the code, there are some preconditions we need to bear in mind.”
+
+## 2. Dead Code
+
+TODO
+
+## 3. Normalize Symmetries
+## 4. New Interface, Old Implementation
+## 5. Reading Order
+## 6. Cohesion Order
+## 7. Move Declaration and Initialization Together
+## 8. Explaining Variables
+## 9. Explaining Constants
+## 10. Explicit Parameters
+## 11. Chunk Statements
+## 12. Extract Helper
+## 13. One Pile
+## 14. Explaining Comments
+## 15. Delete Redundant Comments
+
 # Part II. Managing
-# 16. Separate Tidying
-# 17. Chaining
-# 18. Batch Sizes
-# 19. Rhythm
-# 20. Getting Untangled
-# 21. First, After, Later, Never
+
+## 16. Separate Tidying
+## 17. Chaining
+## 18. Batch Sizes
+## 19. Rhythm
+## 20. Getting Untangled
+## 21. First, After, Later, Never
+
 # Part III. Theory
-# 22. Beneficially Relating Elements
-# 23. Structure and Behavior
-# 24. Economics: Time Value and Optionality
-# 25. A Dollar Today > A Dollar Tomorrow
-# 26. Options
-# 27. Options Versus Cash Flows
-# 28. Reversible Structure Changes
-# 29. Coupling
-# 30. Constantine’s Equivalence
-# 31. Coupling Versus Decoupling
-# 32. Cohesion
-# 33. Conclusion
+
+## 22. Beneficially Relating Elements
+## 23. Structure and Behavior
+## 24. Economics: Time Value and Optionality
+## 25. A Dollar Today > A Dollar Tomorrow
+## 26. Options
+## 27. Options Versus Cash Flows
+## 28. Reversible Structure Changes
+## 29. Coupling
+## 30. Constantine’s Equivalence
+## 31. Coupling Versus Decoupling
+## 32. Cohesion
+## 33. Conclusion
+
 # Appendix: Annotated Reading List and References
