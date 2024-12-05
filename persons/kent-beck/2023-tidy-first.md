@@ -153,9 +153,33 @@ c 带有 header file，同时又要求先定义再引用。
 
 ## 6. Cohesion Order
 
-TODO
+> Reorder the code so the elements you need to change are adjacent.
+
+> Cohesion order works for routines in a file: if two routines are
+> coupled, put them next to each other.  It also works for files in
+> directories: if two files are coupled, put them in the same
+> directory. It even works across repositories: put coupled code in
+> the same repository before changing it.
+
+> Why not just eliminate the coupling?  If you know how to do that, go
+> for it. That’s the best tidying of all, assuming:
+
+```
+cost(decoupling) + cost(change) < cost(coupling) + cost(change)
+```
+
+但是完全消除 coupling 是不可能的，总是有需要同时修改的东西。
+比如 coupling 有时给人以方便的 API。
+
+> Tidying can increase cohesion enough to make behavior changes
+> easier. Sometimes the increased clarity from slightly better
+> cohesion unlocks whatever is blocking you from decoupling.
+> Sometimes better cohesion helps you live with the coupling.
 
 ## 7. Move Declaration and Initialization Together
+
+TODO
+
 ## 8. Explaining Variables
 ## 9. Explaining Constants
 ## 10. Explicit Parameters
