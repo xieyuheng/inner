@@ -249,9 +249,35 @@ return new Point(x, y)
 
 ## 9. Explaining Constants
 
-TODO
+与上一章的原则一样。
+
+```
+if response.code = 404
+    ...blah blah blah...
+```
+
+```
+PAGE_NOT_FOUND := 404
+
+if response.code = PAGE_NOT_FOUND
+    ...blah blah blah...
+```
+
+> You’re reading. You understand. You’re putting that understanding
+> into the code so you don’t have to hold it in your head.
+
+我们太熟悉 HTTP 的某些 code 了，以至于会忽略上面的修改。
+但是对于 404 之外的其他 code，其实找一个地方集中定义一下是不错的。
+
+> There are a few tidyings downstream of this one about putting
+> constants that change together or need to be understood together in
+> one place and separating them from constants that cluster for other
+> reasons.
 
 ## 10. Explicit Parameters
+
+TODO
+
 ## 11. Chunk Statements
 ## 12. Extract Helper
 ## 13. One Pile
