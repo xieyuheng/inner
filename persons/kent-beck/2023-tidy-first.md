@@ -210,9 +210,47 @@ fn()
 
 ## 8. Explaining Variables
 
-TODO
+> Some expressions grow. Even if they start small, they grow. And they
+> grow and they grow. And then along you come with your reading
+> glasses on, and you try to understand what’s happening.
+
+不要直接写一个 tree 在代码里,
+而是一点一点构造这个 tree。
+这对于构造 graph 的语言也适用。
+
+> When you understand a part of a big, hairy expression, extract the
+> subexpression into a variable named after the intention of the
+> expression.
+
+> You’ll see this frequently in graphics code:
+
+```
+return new Point(
+    ...big long expression...,
+    ...another big long expression...
+)
+```
+
+> Before changing one of those expressions, consider tidying first:
+
+```
+x := ...big long expression...
+y := ...another big long expression...
+return new Point(x, y)
+```
+
+> Or maybe the expressions mean something more specific, like width
+> and height, top and left, run and rise.
+
+> In this tidying you are taking your hard-won understanding and
+> putting it back into the code. This sets you up to change either one
+> of those expressions more easily (because now they are separated),
+> and to read them more quickly next time the code needs to change.
 
 ## 9. Explaining Constants
+
+TODO
+
 ## 10. Explicit Parameters
 ## 11. Chunk Statements
 ## 12. Extract Helper
