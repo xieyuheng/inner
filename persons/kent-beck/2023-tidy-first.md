@@ -178,9 +178,40 @@ cost(decoupling) + cost(change) < cost(coupling) + cost(change)
 
 ## 7. Move Declaration and Initialization Together
 
-TODO
+> Here’s what this tidying looks like. Imagine you have some code like this:
+
+```
+fn()
+    int a
+    ...some code that doesn't use a
+    a = ...
+    int b
+    ...some more code, maybe it uses a but doesn't use b
+    b = ...a...
+    ...some code that uses b
+```
+
+> Tidy this by moving the initialization up to the declaration:
+
+```
+fn()
+    int a = ...
+    ...some code that doesn't use a
+    ...some more code, maybe it uses a but doesn't use b
+    int b = ...a...
+    ...some code that uses b
+```
+
+> You can’t just put variables and code that sets them in any old
+> order. You must respect the data dependencies between variables.
+> If you use a to initialize b, you have to initialize a first.
+> As you’re executing this tidying, remember that you have to
+> maintain the order of the data dependencies.
 
 ## 8. Explaining Variables
+
+TODO
+
 ## 9. Explaining Constants
 ## 10. Explicit Parameters
 ## 11. Chunk Statements
