@@ -276,9 +276,44 @@ if response.code = PAGE_NOT_FOUND
 
 ## 10. Explicit Parameters
 
-TODO
+> You’re reading some code you want to change, and you notice that
+> some of the data it works on wasn’t passed explicitly to the
+> routine. How do you make the inputs clear?
+
+> Split the routine. The top part gathers the parameters and passes
+> them explicitly to the second part.
+
+> For example, if you see this:
+
+```
+params = { a: 1, b: 2 }
+foo(params)
+
+function foo(params)
+    ...params.a... ...params.b...
+```
+
+> Make the parameters explicit by splitting foo:
+
+```
+function foo(params)
+    foo_body(params.a, params.b)
+
+function foo_body(a, b)
+    ...a... ...b...
+```
+
+什么时候应该直接传参数，
+什么时候应该用 record 传，
+这也是个问题。
+
+在 js 中用 record 很方便，所以很多人倾向于用 record。
+但是在 c 中用 record 不太方便。
 
 ## 11. Chunk Statements
+
+TODO
+
 ## 12. Extract Helper
 ## 13. One Pile
 ## 14. Explaining Comments
