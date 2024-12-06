@@ -312,11 +312,107 @@ function foo_body(a, b)
 
 ## 11. Chunk Statements
 
-TODO
+> This one wins the prize for simplest tidying. You’re reading a big
+> chunk of code and you realize, “Oh, this part does this and then
+> that part does that.” Put a blank line between the parts.
+
+想要用一致的方式做好这件事也不容易。
+
+在增加空行时需要考虑各种情况，
+比如：
+
+- 跨越多行的一个函数调用
+- `if`
+- `while`
 
 ## 12. Extract Helper
+
+> You see a block of code inside a routine that has an obvious purpose
+> and limited interaction with the rest of the code in the routine.
+> Extract it as a helper routine.  Name the routine after the purpose
+> (not how the routine works).
+
+> I want to mention a couple of special cases of extracting a
+> helper. One is when you have to change a couple of lines within a
+> larger routine. Extract those lines as a helper, change just the
+> lines in the helper, then, if it makes sense, inline the helper back
+> into the calling routine. (Usually you’ll find yourself growing
+> fond of the helper and keeping it around.)
+
+为了修改先 extract，再修改，再 inline。
+这可能是 Kent 在实验 TCR 时发现的技巧。
+这是我没做过的。
+
+> Another case for extracting a helper is expressing temporal coupling
+> (`a()` needs to be called before `b()`). If you see:
+
+```
+foo.a()
+foo.b()
+```
+
+> frequently, then create:
+
+```
+ab()
+  a()
+  b()
+```
+
+这种是我没注意到的 helper function 的情形！
+
+> Fondness is not the only reason to keep helpers around. Frequently
+> you’ll find yourself wanting to use your new helper again hours or
+> even minutes after you’ve created it. Interfaces become tools for
+> thinking about problems. New interfaces emerge when we’re ready to
+> think more abstractly, to add words to our design vocabulary.
+
 ## 13. One Pile
+
+> Sometimes you read code that’s been split into many tiny pieces,
+> but in a way that hinders you from understanding it. Inline as much
+> of the code as you need until it’s all in one big pile. Tidy from
+> there.
+
+一般的建议是推迟 abstraction。
+这里的更好的建议是，
+不要害怕 abstraction，
+需要的时候随时 inline 回来。
+总之，重点是不要害怕 inline，
+不要忘记 inline 也是设计的一个方向。
+
+> The biggest cost of code is the cost of reading and understanding
+> it, not the cost of writing it. Tidy first has a bias toward lots of
+> little pieces, both theoretically, to increase cohesion as a path to
+> reducing coupling, and practically, to reduce the amount of detail
+> that needs to be held in your head at any one time.
+
+> The goal of this bias toward small pieces is to enable the code to
+> be understood a little at a time. Sometimes, though, this process
+> goes wrong. Because of how the small pieces interact, the code is
+> harder to understand. To regain clarity, the code must first be
+> mooshed together so new, easier-to-understand parts can then be
+> extracted.
+
+Sandi Metz 也经常提到 "small pieces"
+与 "easy to understand as a whole"
+有时是相互冲突的。
+
+> Some symptoms you’re looking for are:
+>
+> - Long, repeated argument lists
+> - Repeated code, especially repeated conditionals
+> - Poor naming of helper routines
+> - Shared mutable data structures
+
+我觉得重点还是要记住 inline 也是一个 option。
+有时候小规模的 inline 并不能形成 One Pile 的景象，
+但是也是很实用的。
+
 ## 14. Explaining Comments
+
+TODO
+
 ## 15. Delete Redundant Comments
 
 # Part II. Managing
