@@ -411,11 +411,53 @@ Sandi Metz 也经常提到 "small pieces"
 
 ## 14. Explaining Comments
 
-TODO
+> You know that moment when you’re reading some code and you say,
+> "Oh, so that’s what’s going on!" That’s a valuable moment.
+> Record it.
+
+注释有很多种类：
+
+- 解释背后的模型。
+- 解释一些 coupling。
+- 等等。
+
+> It’s not ideal to have that coupling in your code.  Eventually,
+> you’ll have to learn how to eliminate it, but in the meantime,
+> it’s much better to add the comment that points out the coupling
+> issue, rather than leaving it buried in the sand.
 
 ## 15. Delete Redundant Comments
 
+> When you see a comment that says exactly what the code says,
+> remove it.
+
+> Tidyings often chain together. A previous tidying may have made a
+> comment redundant. For example, the original code might look like
+> this:
+
+```
+if (generator)
+    ...a bunch of lines of code to set up the generator...
+else
+    # no generator, return the default
+    return getDefaultGenerator()
+```
+
+> After tidying with a guard clause, the code looks like this:
+
+```
+if (! generator)
+    # no generator, return the default
+    return getDefaultGenerator()
+
+...a bunch of lines of code to set up the generator...
+```
+
+我才发现 guard clause 可以用来避免原本看似有用的注释。
+
 # Part II. Managing
+
+TODO
 
 ## 16. Separate Tidying
 ## 17. Chaining
