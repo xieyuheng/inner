@@ -15,6 +15,12 @@ year: 2023
 因此我想把两个 class 融合，也就是进一步增加 coupling。
 但是这样做是否正确呢？这本书的理论可以给出答案。
 
+[2024-12-12] 经过融合上面的两个 class，API 确实简化了很多。
+现在新的问题是给 inet 实现 GUI debug 功能时，
+代码结构应该如何组织？
+目前是 `debug` has `net_layout` as `node_layout_list`，
+有更好的结构吗？
+
 # Foreword
 
 前言的作者是 Larry Constantine，
@@ -457,11 +463,78 @@ if (! generator)
 
 # Part II. Managing
 
-TODO
+> This section on managing tidying discusses how to fit tidying into a
+> personal development workflow:
+>
+> - When do you start tidying?
+> - When do you stop tidying?
+> - How do you combine tidying,
+>   changing the structure of the code,
+>   with changing the behavior of the system?
 
 ## 16. Separate Tidying
+
+> Folks learning to tidy seem to go through predictable phases.
+> In the first phase we’re just making changes, and we begin with an
+> undifferentiated mass of changes.
+
+> After learning the tidyings, it’s as if our picture under the
+> microscope snaps into focus. Some of those changes were changing the
+> behavior of the program, its attributes as observed from the running
+> of the program. Some of those changes, though, were changing the
+> structure of the program. Those changes can only be observed by
+> looking at the code.
+
+> After a bit of this, we start noticing the common flows. Chunking
+> statements leads to explaining helpers leads to an easier time
+> making behavior changes. Now programming is more like chess, and you
+> can guess how the game will play out several moves ahead.
+
+关于 pull-request 的讨论，可以参考 zmq 的 c4。
+
 ## 17. Chaining
+
+> Tidyings are like potato chips. You eat one, and you’ll want
+> another. Managing the urge to keep tidying is a key tidying
+> skill. You just tidied; should you tidy more? It depends.
+
+这一章有很多 tidying/refactoring 之间的引出关系。
+
+> **Explicit parameters** After making parameters explicit, you may be
+> able to group a set of parameters into an object and move code into
+> that object. This is out of the scope of tidying, but be on the
+> lookout for new abstractions revealed as you tidy. Some of the most
+> powerful abstractions you will ever discover derive from running
+> code. You would never have created them on speculation.
+
+这种抽象出 object 的观点是我第一次听说。
+"powerful abstractions may be discovered from running code."
+也是第一次听说。
+
+> **Delete redundant comments** Since change is the dominant cost of
+> software development and understanding code is the dominant cost of
+> change, communicating the structure and intent of working code is
+> one of the most valuable skills you can exercise. Comments are a
+> form of communication, but tidying lets you explore the limits of
+> communicating through the other elements of programming.
+
+对其他技术文献的学习也是类似，理解是最废时间的。
+
+- 表达清晰帮助读者理解。
+- 在遇到表达不好的文献时，想办法帮助自己理解。
+
+理解的结果是什么？
+理解的结果不是笔记，而是想象力。
+
+- 能够清楚无误地想像出来整个系统的运行过程。
+  可能对于计算模型而言尤其是如此。
+- 能够知道系统的重要不变量（invariant）。
+- 能够衍生出来新的想法。
+
 ## 18. Batch Sizes
+
+TODO
+
 ## 19. Rhythm
 ## 20. Getting Untangled
 ## 21. First, After, Later, Never
