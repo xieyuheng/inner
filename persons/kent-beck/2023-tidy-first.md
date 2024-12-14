@@ -490,7 +490,7 @@ if (! generator)
 > making behavior changes. Now programming is more like chess, and you
 > can guess how the game will play out several moves ahead.
 
-关于 pull-request 的讨论，可以参考 zmq 的 c4。
+关于 pull-request 的讨论，可以参考 ZMQ 的 c4。
 
 ## 17. Chaining
 
@@ -533,10 +533,22 @@ if (! generator)
 
 ## 18. Batch Sizes
 
-TODO
+这里所对比的 tradeoff 是说如果有很多小 tidy，
+可能会增加 review 的时间。
+其实这是一个团队组织问题而不是代码结构的问题。
+因为实际上 tidy 几乎不需要 review。
+
+ZMQ 的 C4 甚至定义了什么是「正确的」修改，
+并且规定「正确的」修改都不需要 review。
 
 ## 19. Rhythm
+
+structure 和 behavior change 应该交替进行。
+
 ## 20. Getting Untangled
+
+TODO
+
 ## 21. First, After, Later, Never
 
 # Part III. Theory
