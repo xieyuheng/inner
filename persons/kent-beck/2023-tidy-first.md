@@ -547,11 +547,29 @@ structure 和 behavior change 应该交替进行。
 
 ## 20. Getting Untangled
 
-TODO
+再次强调了 structure 和 behavior change 应该分开。
+并且建议如果乱了，就 revert 然后重写。
 
 ## 21. First, After, Later, Never
 
+> Let’s talk about the timing of tidying with respect to a behavior
+> change in the system.
+
+Never 需要强调这也是一个选项，
+如果代码不需要修改的话。
+但是注意，很少有代码是不需要修改的。
+
+Later 在于人们认为自己没有时间，
+其实是有时间的，把眼光放长远一些。
+
+After 就像解题之后的 lookback。
+
+First 这是默认的选择。
+注意这里的前提是你知道如何 tidy。
+
 # Part III. Theory
+
+TODO
 
 ## 22. Beneficially Relating Elements
 ## 23. Structure and Behavior
