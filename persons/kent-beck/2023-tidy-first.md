@@ -687,9 +687,46 @@ box_area(box)
 
 ## 23. Structure and Behavior
 
-TODO
+> Software creates value in two ways:
+>
+> - What it does today
+> - The possibility of new things we can make it do tomorrow
+
+> Behavior can be characterized in two ways:
+>
+> - Input/output pairs
+> - Invariants
+
+> Behavior creates value.
+
+> This is the secret it took me decades to absorb. I didn’t have to
+> change the behavior of my system to make it more valuable. As soon
+> as I added to the options of what it could do next, I had already
+> made money. (I went down the rabbit hole of options pricing formulas
+> to really cement this understanding, but I trust you to figure out
+> how to convince yourself.)
+
+用期权来理解软件设计的经济学原理。
+
+option 定义为在未来做选择的权力。
+
+> One of the coolest thing about options is that the more volatile the
+> environment is, the more valuable options become.
+
+> As a young engineer, I was terrified when a seemingly settled
+> situation turned chaotic. As I learned to enhance optionality, I saw
+> chaos as an opportunity.
+
+> The structure of the system doesn’t matter to its behavior.
+> The structure creates options.
+
+structure changes 和 behavior changes 之间有很多区别，
+其中最重要的区别就是 reversibility。
 
 ## 24. Economics: Time Value and Optionality
+
+TODO
+
 ## 25. A Dollar Today > A Dollar Tomorrow
 ## 26. Options
 ## 27. Options Versus Cash Flows
