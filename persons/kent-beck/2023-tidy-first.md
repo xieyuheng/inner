@@ -725,6 +725,15 @@ structure changes 和 behavior changes 之间有很多区别，
 
 ## 24. Economics: Time Value and Optionality
 
+> The nature [of money] I learned consisted of two surprising
+> properties:
+>
+> - A dollar today is worth more than a dollar tomorrow, so earn
+>   sooner and spend later.
+>
+> - In a chaotic situation, options are better than things, so create
+>   options in the face of uncertainty.
+
 TODO
 
 ## 25. A Dollar Today > A Dollar Tomorrow
