@@ -7,6 +7,8 @@ xvm 可能并不适合处理 struct 之类的定义。
 xforth 更适合。
 
 forth 不用考虑 object in heap 的问题，更灵活。
+比如 xforth 可以通过 builtin function 来扩展，
+而不用都处理成 opcode。
 
 学习 forth 如何处理 struct
 
