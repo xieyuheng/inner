@@ -660,22 +660,22 @@ combine the return stack and the parameter stack，
 就可以实现下面的效果：
 
 ```c
-infer(ctx: ctx_t, exp: exp_t -- type: value_t)
+infer: (ctx: ctx_t, exp: exp_t) -> (type: value_t);
 
 // given:
 // ctx: ctx_t
 // exp: exp_t
 
-type: value_t
-infer(ctx, exp, type)
+type: value_t = infer(ctx, exp);
 
 // the same as:
 
-type: value_t = infer(ctx, exp)
+type: value_t;
+infer(ctx, exp, type);
 ```
 
-好像甚至不需要 * 和 &，
-所有的参数都是 reference。
+好像甚至不需要 `*` 和 `&`，
+所有的参数都是 reference 而不是 value。
 
 在设计 propagator 和 inet 的函数作用语义时，
 我都用到了类似的技巧。
