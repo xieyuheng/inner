@@ -256,6 +256,23 @@ the object of the entire program, is not input;"
 > them in COMMON); you can redefine it locally if you must; and it is
 > of interest that you must.
 
+我很少使用 global variables。
+在看似需要 global variables 的地方，
+我总是通过给所有函数增加一个变量来解决。
+但是这会让函数的参数变多。
+也许我应该尝在某些时候试使用 global variables 试试。
+
+对于单线程的计算来说，
+全局变量其实是非常本质的，
+比如说，看似在写 C 代码时我没有用全局变量，
+但是其实我用了 C 的 malloc，
+而 malloc 一定是用很多全局变量来实现的。
+
+想要避免使用 malloc，就要自己使用全局变量。
+比如在 data-oriented programming 中，
+我们可以为每个 struct 设置多个全局的 allocator，
+每个 allocator 有自己的 managed memory。
+
 > Indent! High-level languages, even modern assemblers, fail to insist
 > that you start in column x. But you do! The unbelievable appeal of a
 > straight left margin! Paper is 2-dimensional. Use it! If you indent
@@ -311,7 +328,6 @@ the object of the entire program, is not input;"
 > Use words with mnemonic value. Unfortunately what is mnemonic to you
 > may not be mnemonic to me; and I'm the one who judges. Also
 > unfortunately, mnemonic words tend to be long, which conflicts with:
-
 > Use short words. You don't want to type long words, and I don't want
 > to read them. In COBOL this means avoid dashes and avoid
 > qualification, though both can be useful upon occasion.
@@ -323,11 +339,21 @@ the object of the entire program, is not input;"
 > fashion and stick to your own rules. I can probably figure out the
 > rules you're using. You might even mention them in a comment.
 
+用 dashes 和 qualification，
+可以避免让写程序的人过度思考如何简化命名，
+也可以让读程序的人避免浪费时间去猜测简化命名的方式。
+比如 C 的标准库中，为了避免 dashes 而使用了很多奇怪的简化命名。
+所以我还是选择用长的名字。
+
 > Use words with the correct grammatical connotations: nouns for
 > variables, verbs for subroutines, adjectives for ... Do not use
 > clever words (GO TO HELL). Their cuteness wears off very fast and
 > their mnemonic value is too subjective. Besides they offer an
 > unwanted insight into your personality.
+
+我早期在写 scheme 代码时，
+就经常设计自己的奇怪 macro，
+其实就是犯了上面提到的错误。
 
 > Use comments sparingly! (I bet that's welcome.) Remember that
 > program you looked through - the one with all the comments? How
