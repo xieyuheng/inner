@@ -654,6 +654,32 @@ combine the return stack and the parameter stack，
 
 这么看来 C 的设计也是很好的。
 
+设想实现一个类似 C 的语言，
+没有 malloc，通过额外的 pointer 参数来实现返回值。
+如果给函数标记出来 input 和 output 参数，
+就可以实现下面的效果：
+
+```c
+infer(ctx: ctx_t, exp: exp_t -- type: value_t)
+
+// given:
+// ctx: ctx_t
+// exp: exp_t
+
+type: value_t
+infer(ctx, exp, type)
+
+// the same as:
+
+type: value_t = infer(ctx, exp)
+```
+
+好像甚至不需要 * 和 &，
+所有的参数都是 reference。
+
+在设计 propagator 和 inet 的函数作用语义时，
+我都用到了类似的技巧。
+
 ## 3.5.2 Parameter stack
 
 TODO
