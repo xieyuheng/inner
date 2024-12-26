@@ -78,8 +78,7 @@ readonly.link 整理的版本（有些排版没整理完）：
 > complicated than your application warrants?
 
 "how to write a program. It is a specific program ..."
-是说要用一个例子来介绍 forth 是如何在解决问题的过程中，
-被自然而然地逐步设计出来的。
+这里的 a program 其实就是 forth。
 
 > First I'll define "input", and mention some general rules of
 > programming that apply to all programs, whether they have input or
