@@ -121,9 +121,7 @@ readonly.link 整理的版本（有些排版没整理完）：
 >
 > - Input is information that controls a program.
 
-这里的 input 的定义，看起来就是函数的参数。
-
-让用户用调用函数的方式使用程序，看来是不合理的。
+让用户用调用 C 函数的方式使用程序，看来是不合理的。
 但是让用户使用后缀表达式的 word 来使用程序看来是合理的，
 比如后缀表达式的计算器。
 可以以这种计算器为典型例子，来理解这里提到的 input。
@@ -159,13 +157,10 @@ the object of the entire program, is not input;"
 > you are willing to re-compile the program, you can even modify it
 > without input.
 
-从这段来看，input 又像是 dependency injection。
-
 > But I'll be viewing programs from the input side. I'll be ranking
 > programs according to the complexity of their input and I plan to
 > demonstrate that a modest increase in the complexity of input can
 > provide a substantial decrease in the complexity of the program.
-> From this point of view, a program with no input is simple.
 
 ## 2.1 Choosing a language
 
@@ -194,6 +189,7 @@ the object of the entire program, is not input;"
 > worth the effort.
 
 这里说的是 FORTRAN，但是对 C 而言也是如此。
+但是在现在这个时代，为了让简化实现，我还是用了 C。
 
 ## 2.2 Choosing a computer
 
@@ -222,6 +218,12 @@ the object of the entire program, is not input;"
 > remains the same:
 >
 > **4K of core, secondary memory and input/output device.**
+
+用现在的术语是：
+
+- 4K of RAM
+- disk
+- input/output device
 
 ## 2.3 Arrangement and formatting
 
