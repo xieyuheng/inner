@@ -734,16 +734,202 @@ structure changes 和 behavior changes 之间有很多区别，
 > - In a chaotic situation, options are better than things, so create
 >   options in the face of uncertainty.
 
+## 25. A Dollar Today > A Dollar Tomorrow
+
+> More is more and less is less, right? Depends.
+> With money, it depends on:
+>
+> - When
+> - How sure
+
+> In the scope of this book, the time value of money encourages tidy
+> after over tidy first. If we can implement a behavior change that
+> makes us money now and tidy after, we make money sooner and spend
+> money later.
+
+## 26. Options
+
+> The previous chapter modeled the economic value of a software system
+> as the sum of the discounted future cash flows. We create value when
+> we change those flows:
+>
+> - Earning money more, sooner, and with greater likelihood
+> - Spending money less, later, and with less likelihood
+
+> There’s another, sometimes conflicting, source of value: optionality.
+
+> I can’t implement all those algorithms [about options pricing] for
+> you, but I can report the lessons I learned (I encourage you to try
+> the exercise if you really want to “get it”):
+
+> - “What behavior can I implement next?” has value all on its own,
+>   even before I implement it. This surprised me. I thought I was
+>   getting paid for what I had done (as per the previous chapter).
+>   I wasn’t. I was mostly getting paid for what I could do next.
+
+> - “What behavior can I implement next?” is more valuable the more
+>   behaviors are in the portfolio. If I can increase the size of the
+>   portfolio, I have created value.
+
+> - “What behavior can I implement next?” is more valuable the more
+>   the behaviors in that portfolio are valuable. I can’t predict
+>   which behavior will be most valuable, nor how valuable it will be,
+>   but…
+
+> - I don’t have to care which item will be most valuable, as long as
+>   I keep open the option of implementing it.
+
+> - (This is the best one.) The more uncertain my predictions of value
+>   are, the greater the value of the option is (versus just
+>   implementing it). If I embrace change, I maximize the value I
+>   create in exactly those situations where (then) conventional
+>   software development fails most spectacularly.
+
+> [a story about potatoes]
+
+> What does this mean for software design? Software design is
+> preparation for change; change of behavior. The behavior changes we
+> could make next are the potatoes from the story. Design we do today
+> is the premium we pay for the “option” of “buying” the behavior
+> change tomorrow.
+
+> Thinking of software design in terms of optionality turned my
+> thinking upside-down.  When I focused on balancing creating options
+> and changing behavior, what used to scare me now excited me:
+>
+> - The more volatile the value of a potential behavior change, the better.
+> - The longer I could develop, the better.
+> - Yes, the cheaper I could develop in future, the better,
+>   but that was a small proportion of the value.
+> - The less design work I could do to create an option, the better.
+
+## 27. Options Versus Cash Flows
+
+> Here we have the economic tug-of-war that makes “tidy first?” such
+> an interesting question:
+
+> - Discounted cash flow tells us to make money sooner with greater
+>   likelihood and spend money later with less likelihood. Don’t tidy
+>   first. That’s spending money sooner and earning money
+>   later. Maybe don’t even tidy after or later.
+
+> - Options tell us to spend money now to make more money later (even
+>   if we don’t currently know exactly how). Absolutely tidy first
+>   (when it creates options). Tidy after and later too.
+
+简单地说 Tidy first？ 取决于：
+
+- 取决于软件是否要长期维护；
+- 软件是否要在未来变化以适应新的需求。
+
+在下面这种情况下，不用想也需要 tidy first：
+
+```
+cost(tidying) + cost(behavior change after tidying) <
+                cost(behavior change without tidying)
+```
+
+在下面这种情况下，则取决于软件是否需要长期维护：
+
+```
+cost(tidying) + cost(behavior change after tidying) >
+                cost(behavior change without tidying)
+```
+
+也就是取决于我们对未来的判断。
+
+## 28. Reversible Structure Changes
+
+Structure Change 是 Reversible 的，
+与 Behavior Changes 相比几乎没有成本，
+因此可以大胆地去做去尝试，
+在决定 structure change 上考虑太多，
+反而是不对的，是浪费时间。
+
+## 29. Coupling
+
+> To prepare to write their classic text Structured Design, Ed Yourdon
+> and Larry Constantine examined programs to find out what made them
+> so expensive. They noticed that the expensive programs all had one
+> property in common: changing one element required changing other
+> elements. The cheap programs tended to require localized changes.
+
+> They dubbed this change infection property “coupling.”
+> Two elements are coupled with respect to a particular change
+> if changing one element necessitates changing the other element.
+
+```
+coupled(E1, E2, Δ) := ΔE1 -> ΔE2
+```
+
+可以画成 graph with labelled edges：
+
+- node 是 E1 E2；
+- edge 的 label 是 Δ。
+
+> For example, a calling function is coupled to a called function with
+> respect to changes to the name of the called function.  To say
+> something useful, we have to also say coupled with respect to which
+> changes.  If two elements are coupled with respect to a change that
+> never happens, then they aren’t coupled in a way that should
+> concern us.
+
+> Analyzing coupling cannot be done simply by looking at the source
+> code of a program. We need to know what changes have happened and/or
+> are likely to happen before we can tell whether two elements are
+> coupled. (For an experiment, see which pairs of files tend to show
+> up together in commits. Those files are coupled.)
+
+> If coupling were only ever between two elements, then it wouldn’t
+> haunt our nightmares. Instead, coupling has two properties that drag
+> it center stage:
+
+> - 1–N
+>   One element can be coupled with any number of other elements with
+>   respect to a change.
+
+> - Cascading
+>   Once a change has rippled from one element to another, that
+>   implied change can trigger another round of changes, which can
+>   themselves trigger changes of their own.
+
+关于 changing program 的动力学。
+
+> Cascading changes are the bigger issue. As we will see in the next
+> book, the cost of changes follows a power law distribution. This
+> distribution is created by the cost of cascading changes. You will
+> be using software design to reduce the probability and magnitude of
+> cascading changes.
+
+> In large, complex systems, coupling can be subtle. Indeed, when we
+> say a system is “complex,” we mean that changes have unexpected
+> consequences.
+
+甚至人们对复杂的主观理解也是与 coupling 相关的。
+
+> What does coupling mean for answering the question, “Should I tidy
+> first?” Sometimes when you’re staring at a messy change, it’s
+> coupling that’s harshing your mellow: “But if I change this, then
+> I’ll have to change all those too.” Messy. Take a minute to go
+> through the list of tidyings and see which of them would reduce
+> coupling.
+
+## 30. Constantine’s Equivalence
+
 TODO
 
-## 25. A Dollar Today > A Dollar Tomorrow
-## 26. Options
-## 27. Options Versus Cash Flows
-## 28. Reversible Structure Changes
-## 29. Coupling
-## 30. Constantine’s Equivalence
 ## 31. Coupling Versus Decoupling
+
+TODO
+
 ## 32. Cohesion
+
+TODO
+
 ## 33. Conclusion
 
+TODO
+
 # Appendix: Annotated Reading List and References
+
+TODO
