@@ -385,7 +385,7 @@ the object of the entire program, is not input;"
 > subroutine.  The difference is retained in higher-level languages:
 > GO TO versus CALL or ENTER.
 
-确立我们将要使用的 calling convention：
+这一节还确立我们将要使用的 calling convention：
 
 - 用 return-stack 处理递归的 subroutine call。
 - 用 value-stack 来 pass parameters。
@@ -396,6 +396,11 @@ the object of the entire program, is not input;"
 > with input may have many tasks, which it will perform as directed by
 > its input. Thus I consider input to be control information, and the
 > control information to define a control language.
+
+在为了探索某个计算模型，而实现程序语言时，
+最重要的 input 就是 making definition。
+我需要一个灵活的 meta language 来做各种的 definition。
+后面的章节应该会讨论这种 input。
 
 > To set the stage, let me briefly outline how our program must
 > operate.  You are sitting at a keyboard typing input. You type a
@@ -426,12 +431,25 @@ them is certainly not unusual."
 这里 "individual entries" 中的 "entry" 指字典中的条目
 -- word entries in dictionary。
 
+- 注意，entry 和 item 这两个词，
+  经常被用在 array 和 record 和 map 相关的 API 中，
+  比如 javascript 用 entry，python 用 item。
+
+  因此在实现 froth 的时候，
+  entry 可能是一个意义很一般的词，
+  没法被直接用来代表 dictionary entry。
+  可能需要加上前缀 "word entry" 或 "dictionary entry"，
+  或改成别的词，比如 "definition"。
+
 forth 可以在编译时期就找到
 word 所对应的 dictionary 中的地址，
 在运行是就不用查找地址了。
 但是 inet 从 active edge 到 rule 的查找，
 好象是没法避免的，因为生成和消除 active edge 的过程是动态的。
 相比之下 forth 的一个 word definition 是静态的。
+
+- 在实现 inet 时，一定要优化这个动态查询的时间。
+  可以通过使用嵌套的 dictionary 来实现。
 
 > We're going to read words from your input, find them in the
 > dictionary, and execute their code. A particular kind of word is a
@@ -445,9 +463,12 @@ word 所对应的 dictionary 中的地址，
 > This is basically the value of our program. It lets us combine
 > simple operations in a flexible way to accomplish a task.
 
-monoid composition -- 可以自由的 refactor。
+monoid composition，可以非常方便地 refactoring。
 
-下面对 noun 和 verb 的讨论是关于如何 refactor 的。
+数学世界中的 factoring 方式有很多。
+下面对 noun 和 verb 的讨论，
+可以看成是人类语言带来的，
+对如何 factoring 的一种指导。
 
 > Let's look more closely at the words we used above. They fall into 2
 > distinct classes; English even provides names for them:
@@ -494,6 +515,21 @@ forth 处理常量和变量的方式：
 > - Constants place the contents of their parameter field onto the stack.
 > - Variables place the address of their parameter field onto the stack.
 
+这里可以发现一些关于如何实现的信息：
+
+- 每个 word 从 dictionary 里找到 word entry。
+- 有不同类型的 word entry。
+- 不同类型的 word entry 下保存的数据不一样。
+  保存数据的地方，被作者称作 "parameter field"。
+
+这里介绍了两类 word entry，
+而最重要的一类 word entry 是代表函数的 entry。
+不同的 forth threading 方式，
+就对应了函数 entry 的不同实现方式：
+
+- 函数保存 array of opcode。
+- 函数保存 array of address of word entry。
+
 > Rather than try to distinguish function by context, as compilers do,
 > we shall define 2 verbs that act upon variables:
 >
@@ -521,8 +557,10 @@ forth 所做的也可以理解为 making context explicit。
 > is not.  We lose, however, the ability to leave a field empty, since
 > we cannot recognise an empty word.
 
-没法区分 `f(x, y)` 和 `f(x)`，
-因此没法做自动的 currying。
+与 applicative 语法相比，
+concatenative 语法没法区分 `f(x, y)` 和 `f(x)`，
+因此没法做自动的 currying
+（可以专门定义一些 word 来手动 currying）。
 
 > All our data must be explicit, which is probably a good idea but a
 > slow one to learn. Decide now that you will not specify input
@@ -535,6 +573,8 @@ forth 所做的也可以理解为 making context explicit。
 > The WORD subroutine presumably examines input characters.
 > Where does it get these characters?
 
+"The WORD subroutine" 就是 forth outer interpreter 的 lexer。
+
 > I'm going to assume that you have a keyboard to type input.
 
 > In any case we may want to examine each character more than once, so
@@ -542,6 +582,29 @@ forth 所做的也可以理解为 making context explicit。
 > arrive, don't. Store them into a message buffer.
 
 ### 3.3.2 Moving characters
+
+讨论 WORD subroutine 的实现方式。
+我应该不会这样实现，
+而是先用 lexer 把代码处理成 token，
+然后以 token 为基础，实现 outer interpreter。
+
+## 3.4 Decimal conversion
+
+TODO
+
+### 3.4.1 Numbers
+
+TODO
+
+### 3.4.2 Input conversion
+
+TODO
+
+### 3.4.3 Output conversion
+
+TODO
+
+## 3.5 Stacks
 
 TODO
 
