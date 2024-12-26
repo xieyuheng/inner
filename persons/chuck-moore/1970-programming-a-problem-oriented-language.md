@@ -1,5 +1,5 @@
 ---
-title: PROGRAMMING A PROBLEM-ORIENTED-LANGUAGE
+title: Programming a problem-oriented-language
 author: Charles H. Moore
 year: 1970
 ---
@@ -874,13 +874,176 @@ LIST SORT EQUAL GREATER LESS
 
 # 4 Programs that grow
 
+> So far our dictionary has been static. It contains all the entries
+> you need - placed there when the program was compiled. This need not
+> be.  We can define entries that will cause additional entries to be
+> made and deleted.
+
+> In fact, the purpose of your program undergoes a gradual but
+> important change.  You started with a program that controlled an
+> application. You now have a program that provides the capability to
+> control an application.  In effect, you have moved up a level from
+> language to meta-language.  This is an extremely important step.  It
+> may not be productive. It leads you from talking _to_ your
+> application to talking _about_ your application.
+
+> Another way of viewing the transition is the entries in your
+> dictionary. At first they were words that executed pieces of code
+> that constituted your application program. A purely control
+> function. Now they tend to become words that let you construct your
+> application program. They constsitute a
+> **problem-oriented-language**.
+
+problem-oriented-language 标题出现！
+
+> I suspect any application of sufficient complexity, and surely any
+> application of any generality, must develop a specialized
+> language. Not a control language, but a descriptive language.
+
+要能够扩展 dictionary entry 的种类，
+因为 entry 所代表的 definition
+就是 descriptive language 中的 description。
+
+> Some examples: A simulator does not want a control language. It is
+> important to be able to describe with great facility the system
+> being simulated. A linear-programming problem needs a language that
+> can describe the problem. A compiler actually provides a descriptive
+> language for use with the programs it compiles. A compiler-compiler
+> describes compilers. What is a compile-compiler that can execute the
+> compiler it describes and in turn execute the program it compiled?
+> That is the question!
+
+> Let me now assume that you have a problem that qualifies for a
+> descriptive language. What dictionary entries do you need?
+
 ## 4.1 Adding dictionary entries
 
-TODO
+> Let us now assume that you want to expand your dictionary; that you
+> have a sufficiently complex application to justify a specialized
+> language. How do you make a dictionary entry?
+
+> Recall the control loop: it reads a word and searches the
+> dictionary. If you want to define a word, you must define an entry
+> that will read the next word and use it before RETURNing to the
+> control loop.  Let us call such an entry a _defining_ entry, its
+> purpose is to define the next word.
+
+> In principle we only need one defining entry, but we must supply as
+> a parameter the address of the code to be executed for the entry it
+> defines.
+
+这个 code 代表了 entry 的类型。
+
+> Remember that 4 fields are required for each entry:
+> the word, its code address, a link, and (optionally) parameters.
+> - The word we obtain from the word subroutine;
+> - the link we construct;
+> - the parameters we take from the stack.
+
+> We could also take the address from the stack, but it's more
+> convenient to have a separate defining word for each kind of entry
+> to be constructed. That is, to have a separate defining entry for
+> each address we need, that provides the address from its parameter
+> field.
+
+也就是说：
+
+```
+<parameter> ... <defining-word> <word> ...
+```
+
+如果 code 也 stack 里获得，就是：
+
+```
+<code> <parameter> ... define <word> ...
+```
+
+但是这是不合理的，因为不同的 defining word
+可能对 body 的处理方式不同。
+
+因此，其实不只是 convenient -- "but it's more convenient to have a
+separate defining word for each kind of entry to be constructed."
+而是必须要有不同的 defining word 来处理这里的差异。
+
+例如：
+
+```
+<value> constant <name>
+variable <name>
+function <name> ... end
+```
+
+如果严格按照从 stack 中取 (optionally) parameters，
+假设 `{ ... }` 可以将 lambda 放到 stack 里，
+那么 function 应该是：
+
+```
+{ ... } function <name>
+```
+
+但是这也是不合理的，
+因为这种方式局限了 defining word 读取 body 的方式。
+defining word 读取 body 的方式不同，
+让我们可以灵活地扩展语法。
+
+这一节还提到了一个 ENTRY subroutine，
+可以用来在 forth 中通过定义新的 defining word
+来扩展 definition 的种类。
+
+但是在 C 实现中，这个扩展能力可能会被 C 保留，
+而不下放到 forth 中，因为在 forth 中不方便定义新的 code。
+
+- 用汇编实现的 forth，如果定义了自己的汇编器的话，
+  就可以在 forth 中定义 code。
+
+- 是否可以设计一个自己的 VM，
+  然后用这个 VM 的汇编来实现 forth 呢？
+  这样就即获得了 forth 的灵活性，
+  也获得了 VM 的可移植性。
+
+  如果要实现 forth over portable VM，
+  这个 VM 可以是没有 tagged value 的，
+  这样可以保持 VM 的设计简单。
+
+  如果 VM 本身就是 stack-based，
+  会对上层实现的 forth 有什么影响？
+  是否此时应该放弃 stack-based VM，
+  而使用 register-based VM？
+
+关于 defining word 的命名，
+为了不占变量的名字，
+也许应该加上 `define` 前缀：
+
+```
+<value> define-constant <name>
+define-variable <name>
+define <name> ... end
+```
+
+没有前缀就是 `define-function`。
 
 ## 4.2 Deleting entries
 
-TODO
+如果用 hash table 而不用 linked-list 来实现 dictionary，
+可能要用额外的技巧来实现 deleting。
+或者直接不允许 redefine 和 deleting。
+
+> There is only one feasible way to delete entries.
+> That is to delete all entries after a certain point.
+
+delete 某个 entry，必须同时 delete 所有在这个 entry 之后定义的 entries。
+这不是因为 linked-list 和内存管理的问题，
+而是依赖关系的问题，因为后面的 entries 可能会依赖前面的 entry。
+
+- 尽管这里的依赖关系是不精确的，
+  而是通过定义时间推导出来的保守估计。
+
+> Deleting trailing entries is a completely satisfactory solution.
+> You'll find that, in practice, you add a bunch of entries; find a
+> problem; delete those entries; fix the problem; and reenter all the
+> entries. Or you fill your dictionary for one application; clear it;
+> and re-fill with another application.
+
 ## 4.3 Operations
 
 TODO
