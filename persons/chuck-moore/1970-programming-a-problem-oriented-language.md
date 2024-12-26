@@ -524,7 +524,7 @@ forth 处理常量和变量的方式：
 
 这里介绍了两类 word entry，
 而最重要的一类 word entry 是代表函数的 entry。
-不同的 forth threading 方式，
+不同的 forth threaded code 方式，
 就对应了函数 entry 的不同实现方式：
 
 - 函数保存 array of opcode。
@@ -682,7 +682,25 @@ infer(ctx, exp, type);
 
 ## 3.5.2 Parameter stack
 
-TODO
+> This stack is the one I intend when I say simply stack. Numbers,
+> constants, variables are all placed on this stack, as will be
+> discussed later. This stack is used to pass parameters among
+> routines. Each routine can find its arguments there, regardless of
+> how many other parameters are present, or how long ago they were
+> placed there.
+
+> We need some terminology:
+>
+> - You _place_ a word _onto_ then stack, thereby increasing its size.
+> - You _drop_ a word _from_ the stack, thereby decreasing its size.
+> - The word on top of the stack is called the _top_ word.
+> - The word immediately below the top of the stack is called the _lower_ word.
+
+这里的 word 代表 machine word，
+比如对 64bit machine 来说，一个 word 就是 64bit。
+这与 C 的混合 stack 是很不同的，
+C 的 stack 没有「只能保存 machine word」的限制，
+而是可以当作一种 memory management 的方式。
 
 ## 3.6 Dictionary
 
@@ -693,13 +711,29 @@ TODO
 > this is a reasonable implementation if the dictionary is small (8
 > entries) and non-expandable.
 
+if else 和 dictionary 的共同点在于，
+它们都用来形成 dispatching 或者说 branching。
+
+> It is important to acknowledge the function and existence of a
+> dictionary, to concentrate it in a single place and to standardize
+> the format of entries.
+
 > The most important property of an entry is one that is usually
 > overlooked. Each entry should identify a routine that is to be
 > executed.
 
+指下一节所说的 `on_call` callback。
+
+### 3.6.1 Entry format
+
+讨论了不同的实现 dictionary entry 的方式，
+并且选择了用 linked list of entry 来实现。
+
 > An entry has 4 fields: the word being defined, the code to be
 > executed, a link to the next entry and parameters. Each of these
 > warrants discussion.
+
+在 C 中，我们可以用 hash table 来实现 dictionary。
 
 > The code field should contain the address of a routine rather than
 > an index to a table or other abbreviation. Program efficiency
@@ -709,27 +743,134 @@ TODO
 code field 虽然指向一个 routine，
 但是其实代表了这个 entry 的类型。
 
+在 C 中，指向一个 routine 的 code field
+相当于 entry 带有一个 `on_call` callback。
+也可以用让 entry 带有一个 `kind`，
+然后写函数来 dispatch 这个 `kind`。
+我觉得使用 `on_call` callback 好一点。
+
 > The parameter field will typically contain 4 kinds of information:
->
+
 > - A number, constant or variable, of variable size. The nature of
 >   the number is determined by the code it executes.
->
+
 > - Space in which numbers will be stored - an array. The size of the
 >   array may be a parameter, or may be implicit in the code executed.
->
+
 > - A definition: an array of dictionary entries representing
 >   virtual-computer instructions.
->
+
+这一条描述的就是最经典的 indirected threaded code interpreter。
+在 C 实现中与其用 dictionary entry，
+也许用一个明显的 instruction 类型比较好，
+此时 dictionary entry 对应 call 这个 instruction。
+
 > - Machine instructions: code compiled by your program which is
 >   itself executed for this entry. Such data must probably be aligned
 >   on word boundary, the other need not.
 
-最重要的是 "a definition" that
-"representing virtual-computer instructions"。
+如果使用了 instruction，这一条还是对应 call，
+只不过被 call 的 definition 是 primitive definition。
 
 ### 3.6.2 Search strategies
 
-TODO
+> One basic principle applies to dictionary search: it must be
+> backwards -- from latest to oldest entries. You have perhaps noticed
+> that the dictionary is not arranged in any order (ie. alphabetical)
+> other than that in which entries are made. This permits the same
+> word to be re-defined, and the latest meaning to be obtained. There
+> is no trade-off valuable enough to compromise this property.
+
+我选择用 hash table 来实现 dictionary。
+相比 linked list 更复杂了，但是搜索的速度快了。
+
+这里还讨论了一个优化用 linked list 实现的 dictionary 的方式，
+那就是用多个 linked list，
+按照 word 的 hash 来决定这个 word 属于哪个 list。
+
+把这种优化推广到极限其实就是 hash table。
+
+> However, search time is not a important consideration, and I advise
+> against multiple chains unless the dictionary is very large
+> (hundreds of entries).
+
+keep it simple。
+
+### 3.6.3 Initialization
+
+> The dictionary is built into your program and is presumably
+> initialized by your compiler. This is centainly true if you have
+> fixed-size entries.  Variable-sized entries must be linked together,
+> however, and this can be beyond the ability of your compiler,
+> especially if you have multiple chains.
+
+> Other things may need initializing, particularly any registers that
+> are assigned specific tasks. All such duties should be concentrated
+> in this one place.
+
+## 3.7 Control language, example
+
+> Applications tend to be complicated before they become interesting.
+> But here's a fairly common problem that shows off a control language
+> to advantage. Implementation would be tricky, execution woud be
+> inefficient; but the program would be simple, and its application
+> flexible.
+
+> The problem is to examine a sequential file, select certain records,
+> sort them, and list them - in many different ways. Suppose these
+> variables define the fields in the record:
+
+```
+NAME AGE SALARY DEPT JOB SENIORITY
+```
+
+> Let's define these verbs:
+
+```
+LIST SORT EQUAL GREATER LESS
+```
+
+> Each acts upon the temporary file produced by the previous, in
+> accordance with the following examples:
+
+> List in alphabetical order all employees in dept 6:
+
+```
+6 DEPT EQUAL NAME SORT LIST
+```
+
+> List twice, by seniority, all employees holding job 17 in dept 3:
+
+```
+17 JOB EQUAL 3 DEPT EQUAL SENIORITY SORT LIST LIST
+```
+
+> List, by age, all employees whose salary is greater than $10,000;
+> and identify those whose seniority is less than 3:
+
+```
+10000 SALARY GREATER AGE SORT LIST 3 SENIORITY LESS LIST
+```
+
+> Several comments seem indicated. We can apply a logical "and" by
+> using several select verbs in sequence; we cannot use a logical "or".
+
+> Actually many other capabilities could be provided, including the
+> ability to locate specific records and modify them. But rather than
+> design a particular application, I just want to show how nouns and
+> verbs combine to provide great flexibility with a simple program.
+> Notice how even such a simple example uses all our facilities: the
+> word subroutine, the number subroutine, the dictionary, the stack.
+> We're not speculating, we are providing essential code.
+
+假设所操作的是 array of JSON record，
+让我来实现，函数的命名可能会是这样：
+
+```cicada
+6 :dept filter-equal :name sort-by print
+17 :job filter-equal 3 :dept filter-equal :seniority sort-by print print
+10000 :salary filter-greater :age sort-by print 3 :seniority filter-less print
+```
 
 # 4 Programs that grow
 
