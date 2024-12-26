@@ -1010,6 +1010,17 @@ defining word 读取 body 的方式不同，
   是否此时应该放弃 stack-based VM，
   而使用 register-based VM？
 
+作者还列举了一些 defining words:
+
+```
+0 integer i
+1. real x
+8 array temp
+0 8 index j
+3 vector x 3 vector y 9 vector z
+remember here
+```
+
 关于 defining word 的命名，
 为了不占变量的名字，
 也许应该加上 `define` 前缀：
@@ -1021,6 +1032,17 @@ define <name> ... end
 ```
 
 没有前缀就是 `define-function`。
+
+给作者的例子加上 `define` 前缀看起来也好一些：
+
+```
+0 define-integer i
+1. define-real x
+8 define-array temp
+0 8 define-index j
+3 define-vector x 3 define-vector y 9 define-vector z
+define-undo-point here
+```
 
 ## 4.2 Deleting entries
 
@@ -1046,11 +1068,149 @@ delete 某个 entry，必须同时 delete 所有在这个 entry 之后定义的 
 
 ## 4.3 Operations
 
-TODO
+> Recall that the stack is where arguments are found.  There are some
+> words you may want to define to provide arithmetic capabilities.
+> They are of little value to a control language, but essential to add
+> power to it.
+
+在定义数字相关的函数时，我将不用符号而是用单词，比如 `add`。
+并且我需要加上类型前缀，比如 `int-add`。
+不带前缀的名字应该代表 generic function。
+generic function 在运行时 dispatch to handler by predicates，
+注意，因为 concatenative 语法中函数的参数不带括号，
+因此 generic function 必须有固定的 arity。
+
+> Your stack must have a fixed word-length. However the operations
+> mentioned above might apply to several kinds of numbers: integers,
+> fixed-point fractions, floating-point fractions, double-precision
+> fractions, complex numbers, vectors of the above kinds. The truth
+> values are only 1 bit. Clearly, the stack must be able to hold the
+> largest number you expect to use. Less clear is how you should
+> distinguish among various kinds of numbers.  One way is to define
+> separate operations for each kind of number:
+>
+> - `+` integer and fixed-point add (they are the same).
+> - `+F` floating-point add.
+> - `+D` double-precision add.
+
+> Another is to make a stack entry long enough to contain a code
+> identifying the kind of number. This makes the code defining each
+> operation more elaborate and raises the problem of illegal arguments.
+
+这里甚至讨论的 tagged value 的方案，
+但是 tag 是在 machine word 之外的；
+而 scheme 之类的动态类型语言，
+tag 是在 machine word 之内的。
+
+> I recommend not checking arguments and defining separate
+> operations, for reasons of simplicity. Actually, you are working with
+> one kind of number at a time and the problem may never arise.
+
+我们可以用 generic function 来处理这里的问题。
+不只是为了简化命名，generic function 本身的表达能力很强，
+可以让代码更容易扩展。
+
+> Do not bother with mixed-mode arithmetic. You _never need_ it, and it's
+> not convenient often enough to be worth the great bother. With
+> multiple word numbers (complex, double-precision) you may put the
+> address of the number on the stack. However, this leads to 3-address
+> operations with the result generally replacing one of the arguments.
+> And this, in turn, leads to complications about constants.
+
+用 3-address operation 来实现 pass-by-reference 的 binary function，
+在 C 里是常用的，原来在 forth 里也可以用。
+
+但是，有两点会导致用起来不如 C-like 语言方便：
+
+- 由于 concatenative 语法不能对 overload over arity。
+- 由于没有像 C 一样的 stack-based memory management，
+  不能像 C 一样使用 local variable。
+  - 这一点也许可以通过在 return stack 的 frame 上做文章来解决。
+
+> In general, the number of things you might do with numbers increases
+> indefinitely.  Many of these are mutually incompatible.
+> Basic Principle!
 
 ## 4.4 Definition entries
 
-TODO
+> I must now describe an entry more complicated than any so far,
+> though not the most complicated that you'll see. It is also
+> exceptional in that it's not optional. For this ability is required
+> for any effective application language: to be able to define one
+> word in terms of others.  To abbreviate, if you will. You recall
+> that I characterised words as being simple in themselves, but
+> powerful in combination. Well here is a way to combine words.
+
+> A definition consists of a defining entry ":" followed by a series
+> of words terminated by ";". The intention is that the word defined
+> by ":" has the meaning expressed by the words that follow. For
+> example:
+
+```
+: ABS DUP 0 LESS IF MINUS THEN ;
+```
+
+我选择不用任何标点，因此代码是：
+
+```
+define abs dup 0 less if minus then end
+```
+
+带上缩进：
+
+```
+define abs
+  dup 0 less if
+    minus
+  then
+end
+```
+
+> You may consider this a rather clumsy definition of ABS. Especially
+> since there is an instruction on your computer that does exactly
+> that.  you're quite right, definitions tend to be clumsy. But they
+> let us use words that we hadn't the foresight to provide entries
+> for. Given certain basic words we can construct any entry we
+> need. Definitions provide a succinct distinction betwen a control
+> language and an application language: The control language must have
+> all its capabilities built in; the application language can
+> construct those capabilities it needs.
+
+作者只管这种 word entry 叫做 definition，
+
+但是我想用 "definition" 代替 "entry"，
+并且把这种 definition 叫做 "function definition"
+或者 "program definition"。
+
+> Another viewpoint is concealed in an abbreviation I use: I speak of
+> "executing a word", when I really mean executing the code associated
+> with the word. Or even more precisely, executing the code whose
+> address is stored in the dictionary entry for the word. The
+> abbreviation is not only convenient, it suggests that a word is an
+> instruction that can be executed. And indeed, it is helpful to think
+> of a word as an instruction: an instruction for a computer that is
+> being simulated by our real computer. Let's call that imaginary
+> computer the "virtual computer". Thus when you type words you are
+> presenting instructions to the virtual computer. The control loop
+> becomes the instruction fetch circuitry of the virtual computer.
+
+> If we extend this analogy to definitions, a definition becomes a
+> subroutine for the virtual computer. And the process of defining a
+> definition is equivalent to compiling this subroutine.
+
+作者对 "definition" 的理解是 "defining one word in terms of others"，
+但是其实 "defining one word by a primitive function"
+或者 "defining one word by a constant value"
+或者 "defining one word as a variable"
+也都可以以算是 definition。
+
+> Definitions are extremely powerful. Why, is hard to explain, hard even
+> to comprehend. Their value is best appreciated by hindsight. You
+> complete a ludicrously simple implementation of an application,
+> discover that you used a dozen definitions and nested them 8 deep.
+> The definitions appear responsible for the simplicity.
+
+我觉得是 "easy to factor" 的力量。
 
 ### 4.4.1 Defining a definition
 
