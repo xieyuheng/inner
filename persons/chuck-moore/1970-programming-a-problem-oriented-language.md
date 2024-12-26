@@ -874,6 +874,15 @@ LIST SORT EQUAL GREATER LESS
 
 # 4 Programs that grow
 
+## 4.1 Adding dictionary entries
+
+TODO
+
+## 4.2 Deleting entries
+
+TODO
+## 4.3 Operations
+
 TODO
 
 ## 4.4 Definition entries
@@ -892,8 +901,38 @@ TODO
 
 TODO
 
+### 4.4.3 Conditions
+
+TODO
+
+### 4.4.4 Loops
+
+TODO
+
+### 4.4.5 Implementation
+
+TODO
+
+## 4.5 Code entries
+
+TODO
+
 # 5 Programs with memory
+
+TODO
+
 # 6 Programs with output
+
+TODO
+
 # 7 Programs that share
+
+TODO
+
 # 8 Programs that think
+
+TODO
+
 # 9 Programs that bootstrap
+
+TODO
