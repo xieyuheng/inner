@@ -590,21 +590,71 @@ concatenative 语法没法区分 `f(x, y)` 和 `f(x)`，
 
 ## 3.4 Decimal conversion
 
-TODO
+> After isolating and aligning a word from the input string, your
+> control loop searches the dictionary for it. If it isn't in the
+> dictionary, it might be a number. A number is a special kind of word
+> that doesn't need a dictionary entry; by examining the word itself
+> we can decide what to do with it. The code executed for a number
+> will place the binary representation of the number onto the stack.
+
+称 number 这种 word 为 literal 很合适。
+尽管和 scheme 的 literal expression 不同。
 
 ### 3.4.1 Numbers
 
-TODO
+> It is very hard to state exactly what is a number and what is
+> not. You will have to write a NUMBER subroutine to convert numbers
+> to binary, and this subroutine is the definition of a number. If it
+> can convert a word to binary, that word is a number; otherwise not.
+
+> One of your major tasks will be to decide what kinds of numbers you
+> need for your application, how you will format them, and how you
+> will convert them. Each kind of number must be uniquely identifiable
+> by the NUMBER subroutine, and for each you must provide an output
+> conversion routine.
+
+我选择直接用 C 的 number 相关的传统，
+因为 C 的传统已经很流行了。
 
 ### 3.4.2 Input conversion
 
-TODO
+这一节讨论如何 parse number。
+
+在我的实现中，lexer 会处理 number 的 input conversion。
 
 ### 3.4.3 Output conversion
 
-TODO
+这一节讨论如何 format number。
+
+在我的实现中，我会给每一类数实现所需要的 format 函数。
 
 ## 3.5 Stacks
+
+> We will be using several push-down stacks and I want to make sure
+> you can implement them. A push-down stack operates in a last-in
+> first-out fashion. It is composed of an array and a pointer. The
+> pointer identifies the last word placed in the array.
+
+## 3.5.1 Return stack
+
+> This stack stores return information. One use is to store the return
+> address for subroutines, when subroutine calls use an index
+> register.  The last-in first-out nature of a stack is exactly the
+> behavior required for nested subroutine calls. We will later
+> encounter several other kinds of return information that can be
+> stored in the same stack.
+
+> It is important not to attempt to combine the return stack and the
+> parameter stack. They are not synchronized.
+
+其实 C 的 calling convention 确实是
+combine the return stack and the parameter stack，
+并且这种设计对于实现局部变量而言很有用，
+可以在实现局部的 memory allocator，而不用垃圾回收器。
+
+这么看来 C 的设计也是很好的。
+
+## 3.5.2 Parameter stack
 
 TODO
 
