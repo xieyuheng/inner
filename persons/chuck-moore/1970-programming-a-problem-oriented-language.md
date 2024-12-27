@@ -1214,6 +1214,17 @@ end
 
 ### 4.4.1 Defining a definition
 
+> The defining entry ":" acts just like any other. It passes the
+> address EXECUTE to the ENTRY subroutine. I'll discuss that code in
+> the next section.
+
+> It then sets a switch STATE. The control loop must be changed to
+> test STATE: if it is 0, words are executed as I've already
+> described; if it is 1, words are compiled.
+
+这里的全局 STATE 是我想要避免的。
+全局 STATE 导致每个 defining word 处理 compilation 的方式是固定的，
+
 > To compile a word is simple. After finding it in the dictionary, you
 > have the address of its dictionary entry. Deposit this address in the
 > parameter field.

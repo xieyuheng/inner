@@ -916,7 +916,11 @@ coupled(E1, E2, Δ) := ΔE1 -> ΔE2
 
 ## 30. Constantine’s Equivalence
 
-TODO
+> The cost of software is approximately equal to the cost of changing it.
+
+```
+cost(software) ~= cost(change)
+```
 
 ## 31. Coupling Versus Decoupling
 
