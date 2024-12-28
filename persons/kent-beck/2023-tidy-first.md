@@ -954,16 +954,123 @@ cost(software) ~= coupling
 
 ## 31. Coupling Versus Decoupling
 
-TODO
+> Why don’t you just decouple all the things?
+> Why have any coupling at all?
+
+首先，因为 coupling 有时在需要做 change 的时候才能发现，开始设计的时候发现不了。
+其次，经济压力可能让人没有时间 decouple。
+最后，有时为了实现某些功能，coupling 是无法避免的。
 
 ## 32. Cohesion
 
-TODO
+> Coupled elements should be subelements of the same containing element.
+> That’s the first implication of cohesion.
+
+> For example, suppose we have a module containing 10 functions.
+> Three of those functions are coupled.
+> Where do the other seven go?
+> We have two options:
+>
+> - Extract a cohesive subelement.
+>   Extracting a helper function is an example of this approach.
+>
+> - Take the uncoupled elements and put them elsewhere.
+>   Where? This is where you get to be a designer.
+
+> Make no sudden moves. You’re working with incomplete and changing
+> information about what’s coupled with what. Don’t dramatically
+> rearrange everything. Move one element at a time.
 
 ## 33. Conclusion
 
-TODO
+> And with that you are prepared to answer the question “tidy first?” Over and over.
+> Each time slightly differently, but each time affected by the same forces:
+>
+> - Cost -- Will tidying make costs smaller, later, or less likely?
+> - Revenue -- Will tidying make revenue larger, sooner, or more likely?
+> - Coupling -- Will tidying make it so I need to change fewer elements?
+> - Cohesion -- Will tidying make it so the elements I need to change
+>   are in a smaller, more concentrated scope?
+
+> Tidy first?
+> Likely yes.
+> Just enough.
+> You’re worth it.
 
 # Appendix: Annotated Reading List and References
 
-TODO
+- Alexander, Christopher.
+  Notes on the Synthesis of Form.
+  Cambridge: Harvard University Press, 1964.
+
+  The book that introduced patterns. The basic idea is that each
+  design decision resolves some of the conflicting constraints and
+  creates (one hopes smaller) constraints to be resolved by future
+  decisions. These configurations of constraints repeat, hence the
+  word “pattern.”
+
+- Alexander, Christopher.
+  The Timeless Way of Building.
+  New York: Oxford University Press, 1979.
+
+  I can’t recommend this book highly enough. It starts by
+  re-imagining the rela‐ tionship between designers and those designed
+  for. Who should have the power to do what? It then applies patterns
+  and novel construction techniques to defer most design decisions far
+  beyond what would seem sensible (is this sounding familiar yet?).
+
+- Ball, Philip. Branches: Nature’s Patterns. New York: Oxford University Press, 2011.
+- Ball, Philip. Flow: Nature’s Patterns. New York: Oxford University Press, 2011.
+- Ball, Philip. Shapes: Nature’s Patterns. New York: Oxford University Press, 2011.
+
+  As designers of an intellectual artifact, we tend to believe that we
+  can design whatever we want however we want to design it. Nope. Our
+  work is subject to natural laws (more about this in the next
+  Empirical Software Design book). This trilogy is a cabinet of
+  curiosities from design in the natural world.
+
+- Mollison, B.C. Permaculture 1. London: Transworld Publishers, 1988.
+
+  My definition of design as “beneficially relating elements”
+  restates the definition of permaculture. Permaculture is a
+  discipline of designing ecosystems that yield value while retaining
+  the resilience of natural ecosystems.
+
+- Myers, Glenford J.
+  Composite/Structured Design.
+  New York: Van Nostrand Reinhold, 1978.
+
+  An early approach to information hiding
+  -- functions in modules that assume
+  as little about each other as possible.
+
+- Normand, Eric. Grokking Simplicity. Shelter Island: Manning, 2021.
+
+  Some folks think it’s “functions versus objects.” I agree with
+  Eric that the more valuable perspective is “functions inside
+  objects.” This book addresses the cost of change by applying
+  functional programming.
+
+- Petre, Marian, and Andre Van Der Hoek.
+  Software Design Decoded.
+  Cambridge: MIT Press, 2016.
+
+  Describes activities you’ll see expert designers apply. Since it’s
+  such a short, approachable book, there is little detail about any
+  given activity. Use it as a prompt: “Well, I don’t ever do that,
+  so I’d better try it.”
+
+- Seemann, Mark.
+  Code That Fits in Your Head.
+  Boston: Addison-Wesley Professional, 2021.
+
+  The human brain doesn’t come with an operator’s manual. This book
+  is close to an operator’s manual for the programming brain.
+
+- Yourdon, Edward, and Larry L. Constantine.
+  Structured Design.
+  Upper Saddle River: Prentice Hall, 1979.
+
+  This is the bible of software design. Newton’s laws for software
+  designers. Everything in Tidy First? restates points made in
+  Structured Design.
