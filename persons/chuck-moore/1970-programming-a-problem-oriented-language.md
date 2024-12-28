@@ -1276,6 +1276,26 @@ TODO
 
 ## 4.5 Code entries
 
+> I've explained definitions and how they, in effect, compile
+> instructions for the virtual-computer. What about compiling code for
+> your real computer then? Of course you can. But you probably won't.
+
+> The Basic Principle intrudes. If you add code entries to your
+> program, you add enormous power and flexibility. Anything your
+> computer can do, any instructions it has, any tricks you can play
+> with its hardware are at you fingertips. This is fine, but you
+> rarely need such power.  And the cost is appreciable. You'll need
+> many entries (say 10) to provide a useful compiler; plus all the
+> instruction mnemonics.  Moreover you'll have to design an
+> application language directed at the problem of compiling code.
+
+从这本书的开始就有强调，
+我们的目标写应用，而不是实现语言。
+需要实现一个语言是在思考如何写好应用的过程中，
+用逻辑推导出的结果。
+
+与其让语言更强大，不如先去写好应用。
+
 TODO
 
 # 5 Programs with memory
