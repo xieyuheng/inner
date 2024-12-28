@@ -1257,9 +1257,12 @@ end
 
 ### 4.4.2 Executing a definition
 
-TODO
+我没看懂这一节。
 
 ### 4.4.3 Conditions
+
+我用与 jump 相关的 operations，
+外加 `define` 识别 if else then 来实现 condition。
 
 TODO
 
