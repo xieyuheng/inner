@@ -1229,7 +1229,31 @@ end
 > have the address of its dictionary entry. Deposit this address in the
 > parameter field.
 
-TODO
+我需要让每个 compiling word 都有机会处理不同的语法。
+
+> Before showing how to compile a number, let me define
+> pseudo-entries. A pseudo-entry is a dictionary entry that is not in
+> the dictionary. That is, it has the format of an entry but it is not
+> linked to other entries. Thus it would never be found during a
+> dictionary search.
+
+> As you've probably guessed, in order to compile a literal you
+> compile a pseudo-entry. You then follow it by the number itself;
+> that is, you compile the number also. The result is a double-length
+> virtual-computer instruction.  The code executed for the
+> pseudo-entry must fetch the number and place it onto the stack. Thus
+> literals that are compiled have the same effect, when executed, as
+> if they were executed immediately.
+
+我用一个独立的 operation 类型来给 entry 加一层 indirect，
+而不是直接在函数体内保存 entry 的地址。
+
+- 我用 "operation" 而不用 "instruction"，
+  因为 "operation" 有一个简单好认的缩写 "op"，
+  而 "instruction" 没有什么好的缩写。
+
+这一节还介绍了用 `:R` 来做递归定义，
+保持 `:` 简单。
 
 ### 4.4.2 Executing a definition
 
