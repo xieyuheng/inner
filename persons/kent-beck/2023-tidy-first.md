@@ -922,6 +922,36 @@ coupled(E1, E2, Δ) := ΔE1 -> ΔE2
 cost(software) ~= cost(change)
 ```
 
+> The most expensive behavior changes cost, together, far more than
+> all the least expensive behavior changes put together. Put another
+> way, the cost of change is approximately equal to the cost of the
+> big changes:
+
+```
+cost(change) ~= cost(big changes)
+```
+
+> What makes those expensive changes expensive?
+> The propagating changes -- coupling.
+
+> So, the cost of software is approximately equal to the coupling:
+
+```
+cost(big changes) ~= coupling
+```
+
+> And now we have the full Constantine’s Equivalence:
+
+```
+cost(software) ~= cost(change) ~= cost(big changes) ~= coupling
+```
+
+> Or, to highlight the importance of software design:
+
+```
+cost(software) ~= coupling
+```
+
 ## 31. Coupling Versus Decoupling
 
 TODO
