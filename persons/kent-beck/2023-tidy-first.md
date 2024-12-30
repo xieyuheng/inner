@@ -846,6 +846,11 @@ Structure Change 是 Reversible 的，
 在决定 structure change 上考虑太多，
 反而是不对的，是浪费时间。
 
+命名是最典型的例子，
+修改名字是最简单的 structure change，
+但是我之前总是停下来想名字。
+正确的方式是先用一个名字，之后再改。
+
 ## 29. Coupling
 
 > To prepare to write their classic text Structured Design, Ed Yourdon
