@@ -178,11 +178,30 @@ avoid the limitation to equational varieties，
 
 ## 1.2 The two semantic traditions
 
-TODO
-
 ### 1.2.1 Tarski
 
-TODO
+> This tradition is distinguished by an extreme platitude: the
+> connector “∨” is translated by “or”, and so on.
+
+哈哈哈。
+
+这里有一个对 Tarski 的 Model Theory 的很好的简短总结。
+
+> 1. For atomic sentences, we assume that
+>    the denotation is known; for example:
+>    - 3 + 2 = 5 has the denotation t.
+>    - 3 + 3 = 5 has the denotation f .
+
+> 2. The denotations of the expressions A ∧ B, A ∨ B, A ⇒ B and ¬A
+>    are obtained by means of a truth table.
+
+> 3. The denotation of ∀ξ.A is t iff
+>    for every a in the domain of interpretation, A[a/ξ] is t.
+>    Likewise ∃ξ.A is t iff A[a/ξ] is t for some a.
+
+> Once again, this definition is ludicrous from the point of view of
+> logic, but entirely adequate for its purpose. The development of
+> Model Theory shows this.
 
 ### 1.2.2 Heyting
 
