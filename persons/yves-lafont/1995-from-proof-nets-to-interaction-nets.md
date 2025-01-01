@@ -64,4 +64,3 @@ year: 1995
 TODO 分别用 inet-forth 和 inet-lisp 的语法作为 term language，把这里的证明写出来。
 
 TODO
-

@@ -11,6 +11,8 @@ year: 1989
 
 # 1 Sense, Denotation and Semantics
 
+TODO
+
 ## 1.1 Sense and denotation in logic
 ### 1.1.1 The algebraic tradition
 ### 1.1.2 The syntactic tradition
