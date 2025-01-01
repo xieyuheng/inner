@@ -11,14 +11,182 @@ year: 1989
 
 # 1 Sense, Denotation and Semantics
 
+## 1.1 Sense and denotation in logic
+
+> A first attempt is to say that we have an _equality_
+
+```
+27 × 37 = 999
+```
+
+> This equality makes sense in the mainstream of mathematics by saying
+> that the two sides denote the same integer and that × is a function
+> in the Cantorian sense of a graph.
+
+> This is the denotational aspect, which is undoubtedly correct, but
+> it misses the essential point:
+
+> There is a finite _computation_ process which shows that the
+> denotations are equal.
+
+Paul Lockhart 在 2017-arithmetic 中虽然讲的是 arithmetic，
+也就是 compute to normal form，但是所强调的却是 "denotational aspect"。
+
+> Concretely we ask a question, 27 × 37, and get an answer, 999.  The
+> two expressions have different senses and we must do something (make
+> a proof or a calculation, or at least look in an encyclopedia) to
+> show that these two senses have the same denotation.
+
+> Whereas denotation was modelled at a very early stage, sense has
+> been pushed towards subjectivism, with the result that the present
+> mathematical treatment of sense is more or less reduced to syntactic
+> manipulation. This is not a priori in the essence of the subject,
+> and we can expect in the next decades to find a treatment of
+> computation that would combine the advantages of denotational
+> semantics (mathematical clarity) with those of syntax (finite
+> dynamics).
+
+为什么说 syntax 和它的 finite dynamics 没有 mathematical clarity？
+denotational semantics 如果能被实现出来，就是解释器。
+也许大多数 denotational semantics 都没法被实现出来。
+
+> So, one of the most fundamental distinctions in logic is that made
+> by Frege: given a sentence A, there are two ways of seeing it:
+
+> - as a sequence of instructions, which determine its _sense_, for
+>   example A ∨ B means “A or B”, etc..
+
+> - as the ideal result found by these operations: this is its
+>   _denotation_.
+
+sense 是对人而言的语义，
+而 denotation 是数学意义上的语义。
+如果这部分数学理论被实现出来了，
+就是对计算机而言而语义，
+就是解释器用来解释语法的 evaluation 函数。
+
+> Two sentences which have the same sense have the same denotation,
+> that is obvious; but two sentences with the same denotation rarely
+> have the same sense.  For example, take a complicated mathematical
+> equivalence A ⇔ B. The two sentences have the same denotation (they
+> are true at the same time) but surely not the same sense, otherwise
+> what is the point of showing the equivalence?
+
+denotation 的 domain 中尽管定义了等价关系，
+但是人们还是能在这个等价关系之外区分出来等价类中的元素。
+
+> This example allows us to introduce some associations of ideas:
+
+> - sense, syntax, proofs;
+> - denotation, truth, semantics, algebraic operations.
+
+> That is the fundamental dichotomy in logic.
+
+为什么 sense 是和 syntax 一组的？
+也许因为 syntax 是最底层的 equivalence，
+当两个东西的 syntax 相等时，
+任何人的 sense 都会认为它们是相等的。
+
+### 1.1.1 The algebraic tradition
+
+> This tradition (begun by Boole well before the time of Frege) is
+> based on a radical application of Ockham’s razor: we quite simply
+> discard the sense, and consider only the denotation. The
+> justification of this mutilation of logic is its operational side:
+> it works!
+
+> In fact, considering logic from the point of view of denotation,
+> i.e. the result of operations, we discover a slightly peculiar kind
+> of algebra, but one which allows us to investigate operations
+> unfamiliar to more traditional algebra. In particular, it is
+> possible to avoid the limitation to -- shall we say -- equational
+> varieties, and consider general definable structures. Thus Model
+> Theory rejuvenates the ideas and methods of algebra in an often
+> fruitful way.
+
+denotation 在于 the result of operations，
+就是说在 domain 中定义的函数与运算。
+
+avoid the limitation to equational varieties，
+应该是指传统代数几何中的 variety 概念。
+只有满足很传统的运算律才能发展代数几何，
+逻辑所带来的 denotation domain 中的函数与运算，
+经常不具备这些运算律。
+
+### 1.1.2 The syntactic tradition
+
+> On the other hand, it is impossible to say “forget completely the
+> denotation and concentrate on the sense”, for the simple reason
+> that the sense contains the denotation, at least implicitly. So it
+> is not a matter of symmetry. In fact there is hardly any unified
+> syntactic point of view, because we have never been able to give an
+> operational meaning to this mysterious sense. The only tangible
+> reality about sense is the way it is written, the formalism; but the
+> formalism remains an unaccommodating object of study, without true
+> structure, a piece of soft camembert.
+
+我觉得未必如此。
+从线性的 postfix notation 的 word sequence，到 lisp 的 tree，
+再到 proof nets 和 interaction nets 的 graph，
+这一路看来，语法的本质应该是容易被人们轻易掌握的拓扑结构。
+
+> Does this mean that the purely syntactic approach has nothing
+> worthwhile to say? Surely not, and the famous theorem of Gentzen of
+> 1934 shows that logic possesses some profound symmetries at the
+> syntactical level (expressed by cut-elimination). However these
+> symmetries are blurred by the imperfections of syntax. To put it in
+> another way, they are not symmetries of syntax, but of sense.
+
+这样我基本可以把 sense 理解为，
+直觉主义所说的人类朴素的拓扑直觉了。
+
+> So, summing up our opinion about this tradition, it is always in
+> search of its fundamental concepts, which is to say, an operational
+> distinction between sense and syntax. Or to put these things more
+> concretely, it aims to find deep geometrical invariants of syntax:
+> therein is to be found the sense.
+
+"it aims to find deep geometrical invariants of syntax"，
+像不像是在说 to find deep topological invariants？
+我觉得二者是等价的，
+对于 tree 和 graph 来说是如此，
+对于书写和具体的语法设计而言甚至还需要几何结构。
+
+下面说 computer science 从 algebraic 学派手上拯救了证明论，哈哈哈。
+
+> The disaster was averted because of computer science -- that great
+> manipulator of syntax -- which posed it some very important
+> theoretical problems.
+
+"that great manipulator of syntax"
+也在于 bits 之间的等价也是最基本的等价关系，
+并且人们在用计算机编程时所考虑的 pointer 等概念，
+也是一直在诉诸于拓扑直觉。
+
+> We are led, then, to a revision of proof theory, from the
+> fundamental theorem of Herbrand which dates back to 1930. This
+> revision sheds a new light on those areas which one had thought were
+> fixed forever, and where routine had prevailed for a long time.
+
+> In the exchange between the syntactic logical tradition and computer
+> science one can wait for new languages and new machines on the
+> computational side.  But on the logical side (which is that of the
+> principal author of this book) one can at last hope to draw on the
+> conceptual basis which has always been so cruelly ignored.
+
+有一种以发展为己任的感觉，相比 CS 领域的快速发展，不能落下风。
+
+## 1.2 The two semantic traditions
+
 TODO
 
-## 1.1 Sense and denotation in logic
-### 1.1.1 The algebraic tradition
-### 1.1.2 The syntactic tradition
-## 1.2 The two semantic traditions
 ### 1.2.1 Tarski
+
+TODO
+
 ### 1.2.2 Heyting
+
+TODO
 
 # 2 Natural Deduction
 
