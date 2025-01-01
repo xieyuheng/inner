@@ -192,7 +192,7 @@ avoid the limitation to equational varieties，
 >    - 3 + 2 = 5 has the denotation t.
 >    - 3 + 3 = 5 has the denotation f .
 
-> 2. The denotations of the expressions A ∧ B, A ∨ B, A ⇒ B and ¬A
+> 2. The denotations of the expressions A ∧ B, A ∨ B, A => B and ¬A
 >    are obtained by means of a truth table.
 
 > 3. The denotation of ∀ξ.A is t iff
@@ -205,9 +205,59 @@ avoid the limitation to equational varieties，
 
 ### 1.2.2 Heyting
 
-TODO
+> Heyting’s idea is less well known, but it is difficult to imagine a
+> greater disparity between the brilliance of the original idea and
+> the mediocrity of subsequent developments. The aim is extremely
+> ambitious: to model not the denotation, but the proofs.
+
+> Instead of asking the question “when is a sentence A true?”, we
+> ask “what is a proof of A?”.  ... We take the view that what we
+> write as a proof is merely a description of something which is
+> already a process in itself.
+
+然后描述了 Heyting 对逻辑的理解，其实就是构造主义对逻辑的理解。
+
+这里给出了一个非常贴近程序语言的，
+对构造主义逻辑的解释，
+这样没有看似 tautology 的废话了。
+我就不摘抄了，因为这些已经太熟悉了。
+
+> Undeniably, Heyting semantics is very original: it does not
+> interpret the logical operations by themselves, but by abstract
+> constructions. Now we can see that these constructions are nothing
+> but typed (i.e. modular) programs. But the experts in the area have
+> seen in this something very different: a functional approach to
+> mathematics. In other words, the semantics of proofs would express
+> the very essence of mathematics.
+
+这种与 Tarski 的逻辑学的对比，
+是非常好的介绍 "proposition as type" 的方式。
+相当于是一种复习，然后对比差异才能让观众体会到后者厉害的地方。
+
+> The tradition of Heyting is original, but fundamentally has the same
+> problems. ... If we wish to explain A by the act of proving A, we
+> come up against the fact that the definition of a proof uses
+> quantifiers twice (for => and ∀). Moreover in the => case, one cannot
+> say that the domain of definition of f is particularly well
+> understood!
+
+> Since the => and ∀ cases were problematic (from this absurd
+> foundational point of view), it has been proposed to add to clauses
+> 4 and 6 the codicil “together with a proof that f has this
+> property”.
+
+以 4 为例：
+
+> 4. A proof of A => B is a function f,
+>    which maps each proof p of A to a proof f (p) of B.
+
+这其实就是说需要实现一个函数的类型检查器，
+而类型检查器就是证明检查器，
+所以也可以理解为逻辑的意义最终来自于类型检查器之实现。
 
 # 2 Natural Deduction
+
+TODO
 
 ## 2.1 The calculus
 ### 2.1.1 The rules
