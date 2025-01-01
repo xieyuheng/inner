@@ -14,23 +14,23 @@ title: Linear Logic
 
 # Connectives
 
-| symbol  | polarity | level          |      | name (Girard) | identifier |
-|---------|----------|----------------|------|---------------|------------|
-| `A ⊗ B` | pos      | multiplicative | conj | times         | `Both`     |
-| `A & B` | neg      | additive       | conj | with          | `Choose`   |
-| `A ⊕ B` | pos      | additive       | disj | plus          | `Maybe`    |
-| `A ⅋ B` | neg      | multiplicative | disj | par           | `Through`  |
-| `!A`    | pos      | exponential    |      | of course     | `OfCourse` |
-| `?A`    | neg      | exponential    |      | why not       | `WhyNot`   |
+| symbol | polarity | level |      | name (Girard) | identifier |
+|--------|----------|-------|------|---------------|------------|
+| A ⊗ B  | pos      | mul   | conj | times         | Both       |
+| A & B  | neg      | add   | conj | with          | Choose     |
+| A ⊕ B  | pos      | add   | disj | plus          | Maybe      |
+| A ⅋ B  | neg      | mul   | disj | par           | Through    |
+| !A     | pos      | exp   |      | of course     | OfCourse   |
+| ?A     | neg      | exp   |      | why not       | WhyNot     |
 
-| symbol  | meaning                                    |
-|---------|--------------------------------------------|
-| `A ⊗ B` | I have both `A` and `B`.                   |
-| `A & B` | I have a choice between `A` and `B`.       |
-| `A ⊕ B` | Someone else's choice between `A` and `B`. |
-| `A ⅋ B` | If not `A`, then `B`.                      |
-| `!A`    | I can reuse `A`.                           |
-| `?A`    |                                            |
+| symbol | meaning                                |
+|--------|----------------------------------------|
+| A ⊗ B  | I have both A and B.                   |
+| A & B  | I have a choice between A and B.       |
+| A ⊕ B  | Someone else's choice between A and B. |
+| A ⅋ B  | If not A, then B.                      |
+| !A     | I can reuse A.                         |
+| ?A     |                                        |
 
 Notes:
 
