@@ -257,6 +257,20 @@ avoid the limitation to equational varieties，
 
 # 2 Natural Deduction
 
+> As we have said, the syntactic point of view shows up some profound
+> symmetries of Logic. Gentzen’s sequent calculus does this in a
+> particularly satisfying manner. Unfortunately, the computational
+> significance is somewhat obscured by syntactic complications that,
+> although certainly immaterial, have never really been overcome.
+> That is why we present Prawitz’ natural deduction before we deal
+> with sequent calculus.
+
+我怀疑，以类 forth 的 stack-based language 为基础，
+外加 Prowl 的 costack 的想法，
+可能就能给出 sequent calculus 的忠实的 term language。
+
+- https://github.com/UberPyro/Prowl-Ideas-Pile/issues/3
+
 TODO
 
 ## 2.1 The calculus
