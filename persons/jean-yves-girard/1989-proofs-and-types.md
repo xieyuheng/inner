@@ -7,7 +7,7 @@ year: 1989
 
 # 学习动机
 
-系统地学习 Girard 理解逻辑学的方式。
+[2025-01-01] 系统地学习 Girard 理解逻辑学的方式。
 
 # 1 Sense, Denotation and Semantics
 
@@ -271,9 +271,37 @@ avoid the limitation to equational varieties，
 
 - https://github.com/UberPyro/Prowl-Ideas-Pile/issues/3
 
-TODO
+> Natural deduction is a slightly paradoxical system: it is limited to
+> the intuitionistic case (in the classical case it has no
+> particularly good properties) but it is only satisfactory for the
+> (∧, =>, ∀) fragment of the language: we shall defer consideration
+> of ∨ and ∃ until chapter 10. Yet disjunction and existence are the
+> two most typically intuitionistic connectors!
+
+为什么说 ∨ and ∃ 没有处理好？
+我感觉目前的语言已经把 ∨ and ∃ 处理的挺好了。
+
+> The basic idea of natural deduction is an asymmetry: a proof is a
+> vaguely tree-like structure (this view is more a graphical illusion
+> than a mathematical reality, but it is a pleasant illusion) with one
+> or more hypotheses (possibly none) but a single conclusion. The deep
+> symmetry of the calculus is shown by the introduction and
+> elimination rules which match each other exactly. Observe,
+> incidentally, that with a tree-like structure, one can always decide
+> uniquely what was the last rule used, which is something we could
+> not say if there were several conclusions.
+
+proof 就是程序语言中的 expression，所以这里说的也是 expression。
+说 tree-like structure 是 illusion，就在于在语法层面是 tree，
+但是解释的时候局部变量会形成图。
+
+这里对 tree-like expression 的批评，
+和 2009-propagation-networks 中对 expression 的批判类似。
 
 ## 2.1 The calculus
+
+TODO
+
 ### 2.1.1 The rules
 ## 2.2 Computational significance
 ### 2.2.1 Interpretation of the rules
