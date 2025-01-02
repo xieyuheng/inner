@@ -39,9 +39,12 @@ coherence semantics of the sum，
 而是抽象掉 lambda term 的实现方式，来定义等价。
 感觉和什么也没说一样。
 
-TODO
-
 # 1. The Problem of Self-Application
+
+> Since a function (say, mapping integers to generally in itself an
+> infinite object. it also becomes necessary to introduce some idea of
+> finite approximation -- just as we do in a sense for real numbers.
+
 # 2. Data Types and Mappings
 # 3. Completeness and Continuity
 # 4. Computability
