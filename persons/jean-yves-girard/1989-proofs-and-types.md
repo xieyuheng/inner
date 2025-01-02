@@ -300,14 +300,36 @@ proof 就是程序语言中的 expression，所以这里说的也是 expression�
 
 ## 2.1 The calculus
 
-TODO
+natural deduction 模仿人类用自然语言证明数学定理的过程，
+在引入 term language 之前，先要理解这一点。
 
 ### 2.1.1 The rules
+
 ## 2.2 Computational significance
+
+> We shall re-examine the natural deduction system in the light of
+> Heyting semantics; we shall suppose fixed the interpretation of
+> atomic formulae and also the range of the quantifiers. A formula A
+> will be seen as the set of its possible deductions; instead of
+> saying “δ proves A”, we shall say “δ ∈ A”.
+
+"A formula A will be seen as the set of its possible deductions"
+看似是循环定义，因为 deduction 的定义依赖 A 的定义，
+因为只有引入了 term language 才能消除这种表面上的循环定义，
+让这句话看起来更自然一些。
+
 ### 2.2.1 Interpretation of the rules
+
+用构造主义的方式去解释 rules，就引入了 term language。
+
 ### 2.2.2 Identification of deductions
 
+描述 proofs 之间的等价关系。
+如果使用了 term language，这里的描述就会简单很多。
+
 # 3 The Curry-Howard Isomorphism
+
+TODO
 
 ## 3.1 Lambda Calculus
 ### 3.1.1 Types
