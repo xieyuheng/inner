@@ -9,6 +9,13 @@ year: 1989
 
 [2025-01-01] 系统地学习 Girard 理解逻辑学的方式。
 
+[2025-01-02] 想要理解 linear logic 的起源，
+说是起源于 coherence semantics of the sum，
+但是这是一种 denotational semantics，
+我完全看不懂为什么要定义 coherence spaces。
+可能需要先读 Soctt 关于 denotational semantics 的论文，
+然后才能看懂。
+
 # 1 Sense, Denotation and Semantics
 
 ## 1.1 Sense and denotation in logic
@@ -317,6 +324,10 @@ natural deduction 模仿人类用自然语言证明数学定理的过程，
 看似是循环定义，因为 deduction 的定义依赖 A 的定义，
 因为只有引入了 term language 才能消除这种表面上的循环定义，
 让这句话看起来更自然一些。
+
+- 之所以要避免用 term language 来定义，
+  可能是因为在 sequent calculus 和 linear logic 的情形下，
+  人们还不知道 term language 是什么。
 
 ### 2.2.1 Interpretation of the rules
 
@@ -627,6 +638,20 @@ TODO
 # 8 Coherence Spaces
 
 ## 8.1 General ideas
+
+> The fundamental idea of denotational semantics is to interpret
+> reduction (a dynamic notion) by equality (a static notion). To put
+> it in another way, we model the invariants of the calculi.
+
+> We have in mind rather to take literally the naı̈ve interpretation
+> -- that an object of type U → V is a function from U to V --
+> and see if we can give a reasonable meaning to the word “function”.
+> In this way of looking at things, we try to avoid being obsessed by
+> completeness, but instead look for simple geometrical ideas.
+
+我理解上面的 abstraction，
+但是我完全不理解这一章的内容。
+
 ## 8.2 Coherence Spaces
 ### 8.2.1 The web of a coherence space
 ### 8.2.2 Interpretation
