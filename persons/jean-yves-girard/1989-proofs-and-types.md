@@ -549,12 +549,48 @@ Curry-Howard isomorphism 并非无意义的简单等价，
 而是连接起来了两个本来可以独立研究的领域。
 
 ## 5.1 The calculus
+
 ### 5.1.1 Sequents
+
 ### 5.1.2 Structural rules
+
 ### 5.1.3 The intuitionistic case
+
+> The intuitionistic restriction is in fact a modification to the
+> management of the formulae -- the particular place distinguished by
+> the symbol |- is a place where contraction is forbidden -- and from
+> that, numerous properties follow. On the other hand, this choice is
+> made at the expense of the left/right symmetry. A better result is
+> without doubt obtained by forbidding contraction (and weakening)
+> altogether, which allows the symmetry to reappear.
+
+这里应该是 linear logic 这个 idea 的起源。
+即，意识到能带来很多好处的直觉主义逻辑本质上来自于哪里。
+
 ### 5.1.4 The “identity” group
+
+这里解释为什么 identity axiom 和 cut rule 是对称的。
+可能了解了 cut elimination 的证明之后会对这一点有更好的理解。
+
+```
+------ identity axiom
+A |- A
+
+X |- A
+     A |- Y
+----------- cut
+X    |-   Y
+```
+
+> The deep content of the two results is the same;
+> they only differ in their syntactic dressing.
+
 ### 5.1.5 Logical rules
+
 ## 5.2 Some properties of the system without cut
+
+TODO
+
 ### 5.2.1 The last rule
 ### 5.2.2 Subformula property
 ### 5.2.3 Asymmetrical interpretation
