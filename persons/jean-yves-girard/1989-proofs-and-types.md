@@ -329,29 +329,224 @@ natural deduction 模仿人类用自然语言证明数学定理的过程，
 
 # 3 The Curry-Howard Isomorphism
 
-TODO
+> We have seen that Heyting’s ideas perform very well in the
+> framework of natural deduction. We shall exploit this remark by
+> establishing a formal system of typed terms for discussing the
+> functional objects which lie behind the proofs.
+
+term language 就是 "typed terms for discussing the functional objects
+which lie behind the proofs"。
+
+- 注意，从解释器的角度看，term 是 expression，
+  而 functional object 是 value。
 
 ## 3.1 Lambda Calculus
+
+Church 风格的 simple typed lambda calculus。
+
 ### 3.1.1 Types
+
+> When we think of proofs in the spirit of Heyting,
+> formulae become types.
+
 ### 3.1.2 Terms
+
+> Proofs become terms; more precisely,
+> a proof of A (as a formula)
+> becomes a term of type A (as a type).
+
 ## 3.2 Denotational significance
+
+> Types represent the kind of object under discussion.
+
+为了定义 object 的集合，需要定义 object 之间的等价关系。
+就用关于 term 的 beta 和 eta 两种类型的 rewrite rule 来定义。
+
+当我们在实现类型检查器的时候，
+通过 NbE 来计算 object 之间的等价，
+其实我们实在定义 object 的集合。
+
 ## 3.3 Operational significance
+
+> In general, terms will represent programs. The purpose of a program
+> is to calculate (or at least put in a convenient form) its
+> denotation. The type of a program is seen as a specification,
+> i.e. what the program (abstractly) does. A priori it is a commentary
+> of the form “this program calculates the sum of two integers”.
+
+> At a more general level, abstracting away from any peculiar
+> syntactic choice, one should see a type as an instruction for
+> plugging things together.
+
+在考虑 inet 和 propagator 的类型系统时这一点尤其明显。
+
+> This idea of arbitrary pluggings seems mathematisable, but to
+> attempt this would lead us too far astray.
+
+Girard 的 mathematisable 是什么意思？
+
+> This way of seeing variables and values as dual aspects of the same
+> plugging phenomenon, allows us to view the execution of an algorithm
+> as a symmetrical input/output process. The true operational
+> interpretation of the schemes is still in an embryonic state (see
+> appendix B).
+
+appendix B 是关于 linear logic 的。
+从古典的逻辑，获得了 linear logic，
+linear logic 是什么程序语言的类型系统，
+大家还不知道。
+
+应该就是 inet，
+但是 inet 中只有 principal port 能反应，
+这一点在 linear logic 中如何体现？
+
 ## 3.4 Conversion
+
 ## 3.5 Description of the isomorphism
+
 ## 3.6 Relevance of the isomorphism
+
+这种 proof 化简和 functional object
+作为 rewrite system 之间的 isomorphism，
+给出了一种方法论，让我们在发明了新的 logic 时，
+寻找其对应的计算模型；
+在发明了新的计算模型时，
+寻找其对应的 logic 来作为类型系统。
+
+linear logic 到 proof nets 就是使用这个方法论的例子。
+
+> Basically, the two sides of the isomorphism are undoubtedly the the
+> same object, accidentally represented in two different ways. It
+> seems, in the light of recent work, that the “proof” aspect is
+> less tied to contingent intuitions, and is the way in which one
+> should study algorithms. The functional aspect is more eloquent,
+> more immediate, and should be kept to a heuristic rôle.
+
+在发现了 proof 和 term 之间的等价之后，
+Girard 依然认为 proof 更本质。
+可能是因为 linear logic 的 term 没有找到。
 
 # 4 The Normalisation Theorem
 
 ## 4.1 The Church-Rosser property
+
+> This property states the uniqueness of the normal form,
+> independently of its existence.
+
 ## 4.2 The weak normalisation theorem
+
+> This result states the existence of a normal form
+> -- which is necessarily unique --
+> for every term.
+
+> Its immediate corollary is the decidability
+> of denotational equality.
+
+> There is perhaps a small difficulty hidden in calculating the normal
+> forms, since the reduction is not a deterministic algorithm. That
+> is, for fixed t, many conversions (but only a finite number) are
+> possible on the subterms of t. So the theorem states the possibility
+> of finding the normal form by appropriate conversions, but does not
+> exclude the possibility of bad reductions, which do not lead to a
+> normal form. That is why one speaks of weak normalisation.
+
+解释术语 weak 的意义。
+
+> Having said that, it is possible to find the normal form by
+> enumerating all the reductions in one step, all the reductions in
+> two steps, and so on until a normal form is found. This inelegant
+> procedure is justified by the fact that there are only finitely many
+> reductions of length n starting from a fixed term t.
+
+对于 lambda calculus 而言，
+这样的并行计算可能会产生分支和重复。
+但是，对于 inet 而言，reduction 与顺序无关。
+并且我们正是要利用 inet 来做并行计算。
+
+> The strong normalisation theorem will simplify the situation by
+> guaranteeing that all normalisation strategies are good, in the
+> sense they all lead to the normal form. Obviously, some are more
+> efficient than others, in terms of the number of steps, but if one
+> ignores this (essential) aspect, one always gets to the result!
+
+inet 的 normalisation 甚至更 strong，
+因为每个 strategy 都同样 efficient。
+
 ## 4.3 Proof of the weak normalisation theorem
+
+TODO
+
 ### 4.3.1 Degree and substitution
 ### 4.3.2 Degree and conversion
 ### 4.3.3 Conversion of maximal degree
 ### 4.3.4 Proof of the theorem
+
 ## 4.4 The strong normalisation theorem
 
+> There are several methods to prove that every term (of the typed
+> λ-calculus) is strongly normalisable:
+
+> - internalisation: this consists of a tortuous translation of the
+>   calculus into itself in such a way as to prove strong
+>   normalisation by means of weak normalisation. Gandy was the first
+>   to use this technique [Gandy].
+
+> - reducibility: we introduce a property of “hereditary
+>   calculability” which allows us to manipulate complex
+>   combinatorial information. This is the method we shall follow,
+>   since it is the only one which generalises to very complicated
+>   situations. This method will be the subject of chapter 6.
+
 # 5 Sequent Calculus
+
+> The sequent calculus, due to Gentzen, is the prettiest illustration
+> of the symmetries of Logic. It presents numerous analogies with
+> natural deduction, without being limited to the intuitionistic case.
+
+> This calculus is generally ignored by computer scientists . Yet it
+> underlies essential ideas: for example, PROLOG is an implementation
+> of a fragment of sequent calculus, and the “tableaux” used in
+> automatic theorem-proving are just a special case of this
+> calculus. In other words, it is used unwittingly by many people, but
+> mixed with control features, i.e. programming devices. What makes
+> everything work is the sequent calculus with its deep symmetries,
+> and not particular tricks.  So it is difficult to consider, say, the
+> theory of PROLOG without knowing thoroughly the subtleties of
+> sequent calculus.
+
+注释中提到了 Gallier 没有忽视 sequent calculus：
+
+- [Gallier] J. Gallier, Logic for Computer Science, Harper and Row (1986).
+
+这应该是一本不错的教科书。
+
+> From an algorithmic viewpoint, the sequent calculus has no
+> Curry-Howard isomorphism, because of the multitude of ways of
+> writing the same proof. This prevents us from using it as a typed
+> λ-calculus, although we glimpse some deep structure of this kind,
+> probably linked with parallelism. But it requires a new approach to
+> the syntax, for example natural deductions with several conclusions.
+
+其实 new approach to the syntax 很简单，
+实现 inet 的时候自然就会想到。
+
+这里可以看出为什么在介绍 proof 和 term 之间的对应时，
+Girard 认为 proof 更本质，因为他还不知道如何描述 term。
+
+Girard 关于 sequent calculus
+没有 Curry-Howard isomorphism 的观点，
+可能影响了很多人。
+
+注意，inet 对应于 untyped lambda calculus，
+想要真的以 linear logic 为类型系统，
+可能需要看类似 propagator 的计算模型，
+和 untyped lambda calculus 一样，
+在获得 proof 和 object 的对应之后，
+inet 所给出的 rewrite system，
+只是用来化简 proof 的 rewrite system。
+
+Curry-Howard isomorphism 并非无意义的简单等价，
+而是连接起来了两个本来可以独立研究的领域。
 
 ## 5.1 The calculus
 ### 5.1.1 Sequents
