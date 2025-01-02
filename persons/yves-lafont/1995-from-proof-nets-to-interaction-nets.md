@@ -29,6 +29,13 @@ year: 1995
 > this opportunity to give a survey of the theory of proof-nets,
 > including a new proof of the sequentialization theorem.
 
+"The notion of interaction net introduced in [Laf90] comes from an
+attempt to implement the reduction of these proof-nets."
+
+正如 untyped lambda calculus 可以从
+lambda calculus + intuitionistic logic 中分离出来，
+作为计算模型来研究。
+
 # 2 Multiplicatives
 
 回顾 linear logic 的连接词：
