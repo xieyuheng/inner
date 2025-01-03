@@ -11,6 +11,19 @@ coherence semantics of the sum，
 但是这是一种 denotational semantics，
 所以需要先理解 denotational semantics。
 
+[2025-01-03]
+进一步读了 1976-data-types-as-lattices 之后，
+我还是认为这种所谓的 denotational semantics
+是在用复杂的东西解释简单的东西，
+只不过这些复杂的东西在这些人的认识中更「数学」而已。
+
+为了理解 linear logic 的起源，
+需要理解 coherence semantics，
+我放弃这一点了。
+
+我希望为了理解 linear logic，
+并不需要理解 coherence semantics。
+
 # Abstract
 
 > This paper introduces a theory of computation which is mathematical

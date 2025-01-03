@@ -11,6 +11,10 @@ year: 1976
 但是感觉太抽象了。
 这篇论文应该有更多具体的例子。
 
+[2025-01-03]
+这里有具体 lambda expression 到 PowerSet(Nat) 的定义了，
+但是这并不让我满意，这是用复杂的东西解释简单的东西。
+
 # Abstruct
 
 > The meaning of many kinds of expressions in programming languages
@@ -72,10 +76,7 @@ fn(x, t) = ...
 看看更简单的 `id = fn(x, x) = { (n, m) | m in encode(n) }`。
 这个 `id : (N, N)` 有什么意义呢？
 `id` 作为一个二元关系编码了集合的属于关系 `m in encode(n)`。
-可以检查以下 `ap(id, x)` 的属性。
-
-TODO 上面错了，`(n, m)` 并不是 `(N, N)` 的子集，
-而是被定义为一个 `N`。
+只是把对自然数有限子集的排序，以关系的方式表示出来了而已。
 
 # 3. enumeration and degrees
 # 4. retracts and data types
