@@ -102,9 +102,35 @@ cell 保存 lattice 的现象吗？
 
 # 3. Completeness and Continuity
 
-TODO
+> AXIOM 3. A data type is a complete lattice under its partial ordering.
+
+> A mapping that preserves all limits is called continuous.
+> What we have just motivated is:
+> AXIOM 4. Mappings between data types are continuous.
 
 # 4. Computability
+
 # 5. Construction of Data Types
+
+> It is a well-known theorem that every continuous (even monotonic)
+> function mapping a complete lattice into itself has a fixed point.
+
+发展函数的定义域和值域都理解为 lattice，
+然后通过 fixed point 存在来证明 `#1=(a . #1#)` 之类的 list 存在。
+有什么意义呢？
+
 # 6. Conclusion
+
 # 7. Background and References
+
+> The idea of using monotonic and continuous functions in connection
+> with recursion theory has been current for some time.  The author
+> believes, however, that his use of the idea along with more abstract
+> lattices (in particular: with limits of lattices) is new and adds
+> greater flexibility to the program,
+
+> How this connects with McCarthy's program for a mathematical theory
+> of computation will require further discussion in a future
+> publication.
+
+哈哈，通过 Sussman 的 propagator model 连起来吧。
