@@ -32,6 +32,13 @@ title: Linear Logic
 | !A     | I can reuse A.                         |
 | ?A     |                                        |
 
+| connective | meaning           |
+|------------|-------------------|
+| ⊗          | have(A and B)     |
+| &          | can(A) and can(B) |
+| ⊕          | have(A or B)      |
+| ⅋          | can(A) or can(B)  |
+
 Notes:
 
 - Maybe we should use `Always` instead of `OfCourse`.

@@ -779,7 +779,31 @@ TODO
 # B What is Linear Logic?
 
 ## B.1 Classical logic is not constructive
+
+> Of course, our example shows that cut elimination in sequent
+> calculus does not satisfy the Church-Rosser property: it even
+> diverges in the worst way! There are two options to eliminate this
+> pathology:
+>
+> - making the calculus asymmetric: this leads to intuitionistic logic;
+>
+> - forbidding structural rules, except the exchange which is harmless:
+>   this leads to linear logic.
+
+由于没有 term language，所举的例子不是很明显。
+
 ## B.2 Linear Sequent Calculus
+
+TODO
+
 ## B.3 Proof nets
+
+TODO
+
 ## B.4 Cut elimination
+
+TODO
+
 ## B.5 Proof nets and natural deduction
+
+TODO
