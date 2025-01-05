@@ -802,8 +802,22 @@ TODO
 虽然我还不理解如何解释 linear logic 的规则，
 但是一个事实是可以将 intuitionistic logic 翻译成 linear logic：
 
-> ... in such a way that an intuitionistic formula is valid iff its
+> This allows us to represent intuitionistic formulae in linear logic,
+> via the following definitions
+
+```
+A ∧ B = A & B
+A ∨ B = !A ⊕ !B
+A ⇒ B = !A -o B
+¬A = !A -o 0
+```
+
+> in such a way that an intuitionistic formula is valid iff its
 > translation is provable in Linear Sequent Calculus.
+
+注意，这里的翻译不是用 ⅋ 来翻译 disjunction 的，
+因此 linear logic 的 succedent 根本就不能理解为 disjunction，
+同理 antecedent 也不能理解为 conjunction。
 
 ## B.3 Proof nets
 
