@@ -794,16 +794,100 @@ TODO
 
 ## B.2 Linear Sequent Calculus
 
-TODO
+用两种风格介绍 linear logic 的 inference rule。
+
+- 对称的：sequent 有 antecedent 和 succedent
+- 不对称的：sequent 只有 succedent
+
+虽然我还不理解如何解释 linear logic 的规则，
+但是一个事实是可以将 intuitionistic logic 翻译成 linear logic：
+
+> ... in such a way that an intuitionistic formula is valid iff its
+> translation is provable in Linear Sequent Calculus.
 
 ## B.3 Proof nets
 
-TODO
+> Here, we shall concentrate on the so-called multiplicative fragment
+> of linear logic.
+
+> From an algorithmic viewpoint, this fragment is very unexpressive,
+> but this restriction is necessary if we want to tackle problems
+> progressively. Furthermore, multiplicative connectors and rules can
+> be generalised to make a genuine programming language.
+
+也就是能够定义 datatype，
+然后不用 if else，
+而是用 pattern matching 来形成分支。
+类似 haskell 与 prolog。
+
+在 graph 语法中，link 与 cut 完全对称：
+
+- link 用于引入 atom；
+- cut 用于连接两个带有互补类型的 wire。
+
+奇怪的是 ⊗ 和 ⅋ 的差异在于，
+被连接的两个 wire 是否在同一个联通分支上。
+
+- ⊗ 只能连接两个联通分支；
+- ⅋ 只能连接一个联通分支。
+
+在已有的规则和例子中，
+我看不出来为什么要有联通分支的限制。
+如果看之后的 inet，也是只有当 constructor 和 duplicator
+分别与自己相连的时候才会消除 node 获得 wire 直连。
+而这种消除 node 获得 wire 直连的现象，
+现在发生在 ⊗ 和 ⅋ 的反应上。
+
+TODO long trip condition 是什么？ see [Gir87]
+
+另外一个疑问是，在这里把 sequent 解释为 graph 之后，
+已经完全看不出来 succedent 是 disjunction 了。
 
 ## B.4 Cut elimination
 
-TODO
+> Proofs nets provide a very nice framework
+> for describing cut elimination.
+
+> Proposition: Any proof net reduces to a (unique) cut free one.
+
+> To prove the proposition, it is enough to see that the rewrite rules
+> defines a terminating and confluent relation, and a normal form is
+> necessarily cut free, unless it contains circle, which is impossible
+> in a proof net.
+
+> Termination is obvious (the size decreases at each step) and
+> confluence comes from the fact that conversions are purely local,
+> the only possible conflicts being: reducing two wires to one wire.
+
+这也是实现时必须用 wire 是 half-edge 而不是 edge。
+
+所谓的 "purely local" 就是可以用过 shared-memory + multithread
+来实现真正的并行计算，而不同的 thread 在处理不同的计算步骤时不会相互影响。
+
+> This turbo cut elimination mechanism is the basic idea
+> for generalising proof nets to non-multiplicative connectives
+> (geometry of interaction).
+
+听起来 geometry of interaction 就是为了这一点而发展出来的。
 
 ## B.5 Proof nets and natural deduction
 
-TODO
+> It is fair to say that proof nets are the natural deductions of
+> linear logic, but with two notable differences:
+
+> - Thanks to linearity, there is no need for parcels of hypotheses.
+
+> - Thanks to linear negation, there is no need for discharge or for
+>   elimination rules.
+
+这后一点，体现在 inet 这种程序语言上，
+就是 construction rule
+与 elimination rule
+没有本质的分别。
+
+TODO 这里对于 natural deduction 和 proof nets 之间的对应，
+没有给出 term syntax。我们可以尝试把 term syntax 都给出来。
+
+> So linear logic is not just another exotic logic:
+> it gives new insight into basic notions
+> which had seemed to be fixed forever.

@@ -9,6 +9,10 @@ year: 1995
 [2025-01-01] 这篇论文在 1997-interaction-combinators 之前。
 需要看一下从 1990-interaction-nets 开始 inet 的发展。
 
+[2025-01-05] 看了很多 linear logic 的文献，我还是不理解它的语义。
+既然 interaction nets 和 proof nets 是 linear logic 的 term language，
+也许反过来可以理解 linear logic。
+
 # 1 introduction
 
 > If we consider the interpretation of proofs as programs, say in
