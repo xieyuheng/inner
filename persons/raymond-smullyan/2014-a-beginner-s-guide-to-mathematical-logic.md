@@ -194,4 +194,51 @@ Therefore, I am my own baby.
 > the book, one can describe a set of natural numbers that cannot
 > possibly be listed on any page!
 
+关于 Continuum Problem：
+
+> Now, there are those mathematicians known as formalists who regard
+> this as a sign that the continuum hypothesis is neither true nor
+> false in its own right, but depends on what axiom system is
+> used. Then there are others, called Platonists (and this includes
+> the present author) who believe, quite independent of any axiom
+> system, that the generalized continuum hypothesis is either true or
+> false in its own right, but we simply don’t know which is the case.
+
+原来 Ray 是 Platonists，
+那么关于构造主义逻辑学的证明论，
+Ray 会是什么观点呢？
+Ray 知道类型论吗？
+
+对 The Bernstein Schroeder Theorem 的证明太有趣了！
+
+关于 The Paradoxes，先叙述了一个关于基数的悖论。
+然后是罗素悖论，即关于属于关系的悖论。
+从罗素悖论到理发师悖论，
+也是一个形成 puzzle 的例子。
+
+> Problem 1. The solution to the barber paradox is really very simple!
+> What is it?
+
+> Solution 1. Suppose I told you that there is a man who is more than
+> six feet tall and also less than six feet tall. How would you
+> explain that?  The obvious answer is that I must be either mistaken
+> or lying! There obviously couldn’t be such a man. Similarly, there
+> couldn’t be a barber, given the contradictory information given
+> about him. Thus the answer to the paradox is that there was no such
+> barber.
+
+罗素自己给出的类型论，也是排除带有悖论的集合。
+所以说，悖论并不可怕，只是说明了所描述的东西不存在而已。
+需要重新审视朴素集合论对集合的定义，
+因为这个定义方式允许了带有悖论的集合被定义出来。
+
+但是好像也不用修改定义，
+能描述出来带有悖论的集合又怎样呢？
+我们知道发现悖论的时候，所描述的集合不存在就好了。
+
+- 在类型检查器中，如果悖论存在，
+  并且导致可以证明任意命题，
+  也就是有漏洞可以让人绕过类型检查器的检查，
+  那就是需要修复的漏洞了。
+
 TODO
