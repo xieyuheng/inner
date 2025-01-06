@@ -9,6 +9,8 @@ year: 2014
 [2025-01-05] 想要读 Yves Lafont 的 2017-linear-logic-pages，
 但是感觉需要复习一下命题逻辑和谓词逻辑。
 
+[2025-01-06] 这绝对是一本隐藏成教科书的谜题书。
+
 # Part I General Background
 
 ## Chapter 1 Genesis
@@ -209,7 +211,12 @@ Therefore, I am my own baby.
 Ray 会是什么观点呢？
 Ray 知道类型论吗？
 
+- 从后面一章可以知道，
+  Ray 至少知道罗素意义上的型论。
+
 对 The Bernstein Schroeder Theorem 的证明太有趣了！
+
+## Chapter 3 Some Problems Arise!
 
 关于 The Paradoxes，先叙述了一个关于基数的悖论。
 然后是罗素悖论，即关于属于关系的悖论。
@@ -240,5 +247,124 @@ Ray 知道类型论吗？
   并且导致可以证明任意命题，
   也就是有漏洞可以让人绕过类型检查器的检查，
   那就是需要修复的漏洞了。
+
+在 Ray 的语境中，好像每一个悖论，都有一个答案。
+
+> Solution 4. If Hypergame were well-defined, we would have a
+> contradiction; hence it is not well-defined. Yes, given a set of
+> games not containing Hypergame, one can well define a Hypergame for
+> the set, but one cannot well define Hypergame for a set that already
+> contains Hypergame.
+
+这是在排除 self-reference 的定义。
+
+假设有一个 normal game 的集合，
+此时 hypergame 的定义是每问题的，
+然后证明 hypergame 是 normal game，
+把它加入可选的集合（副作用），
+hypergame 的定义就变了（因为所引用的集合变了），
+此时 normal game 的集合就失去 normal 属性了。
+
+用 hypergame 可以给出 Cantor’s theorem 的另一个证明。
+
+- 好像任何一个证明，都可以被 Ray 变成一个谜题。
+
+Two Systems of Set Theory 指：
+
+- 罗素的类型论
+- Zermelo 的公理集合论
+
+注意，罗素的类型论是给集合以类型，来限制构造集合的方式。
+
+```
+element ∈ set ⊆ type-1
+```
+
+type 本身也描述这集合，因此有：
+
+```
+type-0 = set of elements
+type-1 = power-set(type-0) // any set of elements of type-0
+type-2 = power-set(type-2)
+...
+```
+
+因此有：
+
+```
+type-0 ∈ type-1 ∈ type-2 ...
+```
+
+罗素的类型论排除了一个集合包含自己的情况。
+
+> The sad thing is that only after Frege completed his monumental work
+> on set theory did Russell discover and communicate to Frege the
+> inconsistency of his system! Frege was totally crestfallen by this
+> discovery and regarded his whole system as a total failure! In
+> actuality, his pessimism was quite unjustified, since all his other
+> axioms were quite sound and of great importance to mathematical
+> systems of today. It was merely his abstraction principle that
+> needed modification, and this modification was carried out by
+> Zermelo, who replaced the abstraction principle by the following
+> axiom:
+
+> - Z0 [Limited abstraction principle].
+>   For any property P and any set S, there exists
+>   the set of all elements of S having property P.
+
+这是说一个 property 必须要就一个给定的集合来定义。
+类型论中更进一步，说引入每个变量的时候都应该指定其所在的集合
+（避免了类似于全局变量的 "the universe of discourse"）。
+
+- 我不记得看 Boolos 关于 ZFC 的论文时，
+  有看到这个 Limited abstraction principle，
+  需要回顾一下 Boolos 关于 ZFC 的论文。
+
+- "For any property P" 中的 property 的定义是什么？
+  可以理解为一个可以用程序实现的谓词吗？
+
+  - 我觉得这是需要讨论的。
+    毕竟，下面的段落中自由地使用了等词（Equal）来定义 property。
+    而 Equal 本身是非常复杂的概念。
+
+  「可用程序实现」这个定语可能太局限了，可能应该改成：
+  有良好的定义，使得我们可以判断一个「x 满足 P」的证明是否正确。
+
+  - 「有良好的定义」就是说，有程序可以实现对这种证明的自动检查。
+  - 不能用程序实现出来谓词，就是说，不是所有的 property 都有证明生成器。
+
+> Here are some other axioms of Zermelo’s system:
+
+> - Z1 [Existence of the empty set].
+>   There is a set that contains no elements at all.
+
+> Before stating other Zermelo axioms, let me tell you a funny
+> incident concerning Z1. As a graduate student, I had a course in set
+> theory. When the professor introduced the axioms, the first was the
+> existence of the empty set. At that point, brash student that I was,
+> I raised my hand and said, “The empty set must exist, since if it
+> didn’t the set of all empty sets would be empty, and we would then
+> have a contradiction.” The teacher then explained that without some
+> axioms to the effect, the existence of the set of all empty sets
+> could not be proved – indeed, one could not prove the existence of
+> any set at all! Of course he was right.  The interesting thing,
+> though, is that if instead of Z1, Zermelo had taken the axiom,
+> “There exists a set,” the existence of the empty set would follow
+> (by using the limited abstraction principle Z0).
+
+即便是在这种老生常谈的公理中，
+Ray 还是能发现一些新东西。
+
+> Here is another axiom of Zermelo’s system:
+
+> - Z2 [Pairing Axiom].
+>   For any pair of sets x and y,
+>   there is a set that contains both x and y.
+
+下面对比了 Zermelo 和 John Von Neumann 用集合构造自然数的两种方案。
+
+- John Von Neumann 的方式可以推广到 infinite ordinals。
+
+## Chapter 4 Further Background
 
 TODO
