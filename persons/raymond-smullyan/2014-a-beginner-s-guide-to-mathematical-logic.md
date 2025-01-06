@@ -110,4 +110,42 @@ Therefore, I am my own baby.
 > A Boolean equation is called _valid_ if it is true no matter what sets
 > the set variables represent.
 
+这里甚至提出了一个新颖的判断 equal 的方案，
+首先把目标集合分解为不相交的子集，
+以这些子集的 union 为 normal form 来判断 equal。
+
+- 类似 disjunctive normal form。
+
+这里给出了这个一般方法之后，
+让学生自己去证明很多 boolean 等式。
+
+- 由于计算的本质就是化归到正规形式，
+  然后比较相等或者比较大小。
+  所以这里的例子也可以让学生体验一下，
+  在不同于数字的领域做计算的感觉。
+
+看到 "Solutions to the Problems of Chapter 1"，
+让人感觉这又是 Ray 的一本谜题书。
+
+- 我可否模仿这种风格给 linear logic 和 inet 写一本书？
+- 如果能在写 solution 的时候，用 "how to solve it" 的风格，
+  把所有用到的定义都列出来，也是不错的。
+  也就是把解题思路也列出来。
+
+> Speaking of logic, here is a little something for you to think
+> about: I once saw a sign in a restaurant which read, “Good food is
+> not cheap. Cheap food is not good.”
+
+> Problem 1. Do those two statements say different things, or the same thing?
+
+> Solution 1. Logically they say the same thing, namely that no food
+> is both good and cheap, but psychologically they convey quite
+> different images. The statement “good food is not cheap” tends to
+> create the image of good expensive food, whereas “cheap food is not
+> good” makes on think of cheap rotten food.
+
+也就是说，一句话的主语会成为人们想象的主体。
+
+## Chapter 2 Infinite Sets
+
 TODO
