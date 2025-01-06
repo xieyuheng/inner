@@ -26,6 +26,9 @@ year: 2014
 > I can tell you right now, and that is to make precise the notion of
 > a proof.
 
+不能很快给出证明论意义上的 proof 的定义。
+但是对 syllogism 而言，可以简单讨论一下 valid 和 sound。
+
 > It is important to understand the difference between a syllogism
 > being valid and a syllogism being sound. A valid syllogism is one in
 > which the conclusion is a logical consequence of the premises,
@@ -147,5 +150,48 @@ Therefore, I am my own baby.
 也就是说，一句话的主语会成为人们想象的主体。
 
 ## Chapter 2 Infinite Sets
+
+> A complete mathematical revolution occurred in the late nineteenth
+> century with Georg Cantor’s theory of infinite sets. Just what does
+> it mean for a set to be finite or infinite? The basic idea behind
+> this is that of a 1-1 (one to one) correspondence.
+
+关于 denumerable sets：
+
+> Imagine that you and I are immortal. I write down on a piece of
+> paper some positive integer, and tell you that each day you have one
+> and only one guess as to what the number is. I offer you a grand
+> prize if you ever guess my number. Is there a strategy you can take
+> that will guarantee that you will get the prize sooner or later?
+> Obviously there is: On the first day, you ask if the number is 1; on
+> the second day, whether it is 2, and so forth. If my number is n,
+> then you will win the prize on the nth day.
+
+> Next, I make the problem a wee bit harder. This time I write down
+> either a positive whole number 1, 2, 3, ..., n, ... or a negative
+> whole number –1, –2, –3, ..., –n, ... Again you are allowed only one
+> guess a day.
+
+通过假设 "a grand prize" 来鼓励读者思考这个问题。
+用一个读者和作者之间的游戏，
+来鼓励读者思考数学问题。
+
+> We have just seen that the set of all finite sets of positive
+> integers is denumerable.  What about the set of all sets of
+> integers, whether finite or infinite? Is that set denumerable?
+> Cantor’s great discovery is that the set of all sets of positive
+> integers is not denumerable! We now turn to the proof of this
+> crucial fact, which started the whole mathematical field known as
+> set theory.
+
+下面 Ray 再次把技巧性很高的证明，变成了有趣的谜题。
+
+> To illustrate the proof, let us consider a book with denumerably
+> many pages -- Page 0, Page 1, Page 2, ..., Page n, .... On each page
+> is written down a description of a set of natural numbers. If every
+> set of natural numbers is listed somewhere in the book, then the
+> book wins a grand prize. But without even looking at the contents of
+> the book, one can describe a set of natural numbers that cannot
+> possibly be listed on any page!
 
 TODO
