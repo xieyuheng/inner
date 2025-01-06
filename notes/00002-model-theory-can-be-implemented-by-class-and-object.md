@@ -5,7 +5,7 @@ date: 2021-08-27
 
 # The implementation
 
-[Model theory][] studies the relation between theory and model.
+[Model theory][] studies the relation between formal theory and model.
 
 [model theory]: https://en.wikipedia.org/wiki/Model_theory
 
