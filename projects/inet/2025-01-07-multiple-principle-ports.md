@@ -64,6 +64,32 @@ date: 2025-01-07
   (nadd1 (nat-max first prev) result))
 ```
 
+用更一般的 `define-rule*`：
+
+```scheme
+(define-node nat-max
+  first! second result)
+
+(define-node nat-max-nadd1
+  first second! result)
+
+(define-rule* [(nat-max first second result)
+               (nzero first)]
+  (connect second result))
+
+(define-rule* [(nat-max first second result)
+               (nadd1 prev first)]
+  (nat-max-nadd1 prev second result))
+
+(define-rule* [(nat-max-nadd1 first second result)
+               (nzero second)]
+  (nadd1 first result))
+
+(define-rule* [(nat-max-nadd1 first second result)
+               (nadd1 prev second)]
+  (nadd1 (nat-max first prev) result))
+```
+
 # lisp-like multiple principle ports
 
 ```scheme
@@ -77,6 +103,27 @@ date: 2025-01-07
   (connect first result))
 
 (define-rule (nat-max (nadd1 first-prev) (nadd1 second-prev) result)
+  (nadd1 (nat-max first-prev second-prev) result))
+```
+
+用更一般的 `define-rule*`：
+
+```scheme
+(define-node nat-max
+  first! second! result)
+
+(define-rule* [(nat-max first second result)
+               (nzero first)]
+  (connect second result))
+
+(define-rule* [(nat-max first second result)
+               (nzero second)]
+  (connect first result))
+
+(define-rule*
+    [(nat-max first second result)
+     (nadd1 first-prev first)
+     (nadd1 second-prev second)]
   (nadd1 (nat-max first-prev second-prev) result))
 ```
 
@@ -124,10 +171,6 @@ define-rule
   nzero ( value )
   first value is-connected
 do
-  // 这里设计是错误的，不能约定在 pattern matching 的时候，
-  // 取出所有 principle ports，然后在描述 rule 的 body 的时候，
-  // 取出所有 non principle ports，比如这个函数就没法实现。
-  // 也许可以约定：没用完的局部变量会在 rule body 中用到。
   ( result )
   second result connect
 end
@@ -156,6 +199,19 @@ do
   result connect
 end
 ```
+
+注意，不能简单地约定在 pattern matching 的时候，
+取出所有 principle ports，然后在描述 rule 的 body 的时候，
+取出所有 non principle ports，否则 nat-max nzero 就没法实现。
+
+也许可以约定：没用完的局部变量会在 rule body 中用到。
+上面的定义用到的就是这种约定。
+
+这样的约定的一个缺点是：有太多的约定了。
+
+- 也许如果能够按照名字取出 field 会更好。
+
+注意，lisp-like 的语法设计并不受这种问题的困扰。
 
 在上面的约定下，也可以囊括之前的 define-rule 语义：
 
