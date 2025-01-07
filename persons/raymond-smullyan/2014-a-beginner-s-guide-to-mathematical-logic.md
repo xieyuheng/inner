@@ -367,4 +367,179 @@ Ray 还是能发现一些新东西。
 
 ## Chapter 4 Further Background
 
+> Before embarking on the subject of mathematical logic proper,
+> some more basic mathematical topics are in order.
+
+先导知识还没有结束。
+看来想要开始讲数理逻辑还是很难的。
+
+本章介绍的概念：
+
+- tuple
+- relation
+- function
+- mathematical induction
+- complete induction
+- the least number principle
+
+虽然上面三个是等价的，但是 dependent type
+好像是以 mathematical induction 为公理最方便。
+
+还有：
+
+- principle of finite descent
+
+> König’s Lemma. A finitely generated tree with infinitely many
+> points must have an infinite path.
+
+> Problem 12. Prove König’s lemma. [Hint: Recall that if a point x
+> has only finitely many successors, and if each of the successors has
+> only finitely many descendants, then x has only finitely many
+> descendants.]
+
+> Solution 12. Call a point rich if it has infinitely many
+> descendants, and poor if it does not.  We recall that if a point x
+> has only finitely many successors, if each of those successors is
+> poor, then x must be poor. Thus if x is rich and has only finitely
+> many successors, then it cannot be that all its successors are
+> poor. At least one of them must be rich. Thus in a finitely
+> generated tree, each rich point must have a rich successor. [A rich
+> point with infinitely many successors doesn’t necessarily have to
+> have at least one rich successor. For example, in the tree of the
+> solution of Problem 10, the origin is rich, but all its successors
+> are poor.]
+>
+> Now, we are considering a tree with infinitely many points and such
+> that each point has only finitely many successors. Since there are
+> infinitely many points, and all points other than the origin are
+> successors of the origin, the origin must be rich, hence must have
+> at least one rich successor x1 (as we have seen), which in turn has
+> at least one rich successor x2, which in turn has at least one rich
+> successor x3, and so forth. We thus generate an infinite path.
+
+注意，Solution 12 不是 constructive 的证明，
+因为一般情况下，判断 rich 和 poor 是 undecidable 的。
+
+> Discussion. Brouwer’s Fan Theorem is in fact the contrapositive of
+> the König lemma. [By the contrapositive of an implication “p
+> implies q” is the proposition “not q implies not p.”] Now, the
+> logic we are using in this book is known as classical logic, a
+> fixture of which is that any implication is equivalent to its
+> contrapositive. There is a weaker system of logic known as
+> intuitionist logic, of which Brouwer was a major representative, in
+> which not all implications can be shown to be equivalent to their
+> contrapositives. In particular, the Fan Theorem can be proved in
+> intuitionist logic, but König’s Lemma cannot. Another proof of the
+> Fan Theorem will be given shortly, one which is intuitionistically
+> acceptable.  Unfortunately, we will not be able to say more about
+> intuitionist logic in this work.
+
+Ray 是知道 intuitionistic logic 的。
+
+> Generalized Induction Theorem. A sufficient condition for a
+> component relation C(x, y) on a set A to obey the generalized
+> induction principle is that all descending chains be finite.
+
+这就是 dependent type 中对递归定义的类型进行归纳证明的基础。
+
+这一章关于 inductive 证明技巧的讨论很精彩。
+值得读多次。
+
+> Problem 17. The converse of the Generalized Induction Theorem also
+> holds, that is, if the component relation obeys the generalized
+> induction principle, then all descending chains must be
+> finite. Prove this.
+
+TODO 后面的部分有点难，之后需要了再看。
+
+# Part II Propositional Logic
+
+## Chapter 5 Beginning Propositional Logic
+
+> The so-called logistic program, which is the one we are following,
+> is one that is designed to develop all mathematics from just a few
+> principles of logic. Thestarting point is Propositional Logic, which
+> is the basis of First-Order Logic, as well as of higher order
+> logics.
+
+### Formulas
+
+关于括号的讨论，让人想到 lisp 和 forth 的简洁性。
+
+> A way people often write complex formulas to help them to be
+> understandable as well as to help checking that they are
+> well-formed, is to use different kinds of parentheses within the
+> formula, i.e. ordinary parentheses “(and)”, square brackets “[
+> and ]”, curly brackets “{ and }”, or even ordinary parentheses of
+> different sizes.  These can make matching parentheses more apparent.
+
+正如 scheme 中同时使用 () 和 []。
+
+### Compound Truth Tables
+
+从最简单最稳定的命题逻辑开始，
+把形式逻辑中的各种概念理解透彻。
+
+重点是要能用一个故事把整个理论的发展串起来的。
+Truth Table 就是最容易理解的开端。
+
+### Tautologies
+
+> In general, by an _interpretation_ of a formula is meant an
+> assignment of truth values (T’s and F’s) to all the propositional
+> variables in the formula. As we have seen, for a formula with n
+> variables, there are 2^n interpretations, each corresponding to a
+> row in its truth table. A formula is called a _tautology_ if it is
+> always true, that, is, true under all its interpretations.
+
+### Logical Implication and Equivalence
+
+> A formula X is said to logically imply a formula Y if Y is true in
+> all cases in which X is true, or what is the same thing, if X ⊃ Y is
+> a tautology.
+
+这其实是很有趣的情况。
+即 meta theory 中的一些概念，
+可以用 theory 中的 expression 来捕捉！
+
+> Given a set S offormulas and a formula X, we say that X is logically
+> implied by S if X is true in all cases in which all elements of S
+> are true.
+
+上面包括证明论中所写的各种推演规则。
+比如：
+
+```
+S1
+S2
+---
+X
+```
+
+> Two formulas X and Y are called logically equivalent (sometimes just
+> equivalent for short) if they are true in just the same cases, or
+> what is the same thing, if X ≡ Y is a tautology.
+
+### Finding a Formula Corresponding to a Truth Table
+
+用 disjunctive normal form
+-- disjunction of conjunctions。
+
+### Formulas Involving t and f
+
+> Any formula X involving t or f or both, is equivalent either to a
+> formula involving neither, or to t alone, or to f alone.
+
+这其实是一种 partial evaluation。
+
+### Liars, Truth Tellers and Propositional Logic
+
+> Before continuing with a formal study of Propositional Logic, I
+> would like to interject some problems that illustrate how
+> Propositional Logic is related torecreational logic puzzles about
+> lying and truth-telling of the type considered in many of my earlier
+> puzzle books.
+
+魔术师要揭秘魔术背后的秘密了！
+
 TODO
