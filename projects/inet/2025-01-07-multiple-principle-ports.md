@@ -123,7 +123,7 @@ define-rule
   nat-max ( first second )
   nzero ( value )
   first value is-connected
-begin
+do
   // 这里设计是错误的，不能约定在 pattern matching 的时候，
   // 取出所有 principle ports，然后在描述 rule 的 body 的时候，
   // 取出所有 non principle ports，比如这个函数就没法实现。
@@ -136,7 +136,7 @@ define-rule
   nat-max ( first second )
   nzero ( value )
   second value is-connected
-begin
+do
   ( result )
   first result connect
 end
@@ -148,7 +148,7 @@ define-rule
   ( first second )
   first first-value is-connected
   second second-value is-connected and
-begin
+do
   ( second-prev )
   ( first-prev )
   ( result )
@@ -162,14 +162,14 @@ end
 ```forth
 define-rule
   nzero nadd is-connected
-begin
+do
   ( addend result )
   addend result connect
 end
 
 define-rule
   nadd1 nadd is-connected
-begin
+do
   ( addend result ) ( prev )
   prev addend nadd
   nadd1 result connect
