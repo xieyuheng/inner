@@ -602,4 +602,111 @@ X
 
 ## Chapter 6 Propositional Tableaux
 
+> We shall later be studying First-Order Logic, which is an enormous
+> advance over Propositional Logic, and in fact is an adequate logic
+> for virtually all of mathematics. For First-Order Logic, the method
+> of truth-tables is far from sufficient, and so we now turn to the
+> method known as tableaux (more precisely “analytic tableaux”),
+> which in this chapter will be treated at the elementarypropositional
+> level, and which will later on be extended to First-Order Logic.
+
+为了解释 first-order logic 的 analytic tableaux
+需要从 proposition logic 开始。
+正如我们想要了解 linear logic 的语义，
+也要从 proposition logic 的语义开始。
+
+analytic tableaux 是 Ray 的主要发明之一。
+根据 wikiepdia 说，analytic tableaux 与 sequent calculus 有关：
+
+> Tableaux can be intuitively seen as sequent systems
+> upside-down. This symmetrical relation between tableaux and sequent
+> systems was formally established in (Carnielli 1991).
+
+- "On sequents and tableaux for many-valued logics",
+  Walter Carnielli, 1991.
+
+所以在学习这个理论的时候，要思考它和 sequent calculus 的关系。
+毕竟 sequent calculus 对于我们想要了解的 linear logic
+还有 concatenative type system 而言都很重要。
+
+### Illustration of the Tableaux Method
+
+> Suppose we wish to prove the formula
+> p ∨ (q ∧ r) ⊃ [(p ∨ q) ∧ (p ∨ r)]
+
+> What we do in the tableau method is explore all the possible
+> scenarios in which a formula X could be false. Each branch of a
+> completed tableau shows the situation in one of the possible
+> scenarios.  And the reason we could conclude that the formula
+> p ∨ (q ∧ r) ⊃ [(p ∨ q) ∧ (p ∨ r) ] of our example could not
+> ever be false is that we always reached contradictions in following
+> out every single possible scenario.
+
+在一个 path 上的 formula 都有 and 的关系，
+所以可以在一个 path 上找 contradiction。
+
+但是，一个问题是，这里的例子先用 (2) 做 branching，
+然后再在所形成的分支中用 (3) 做 branching，
+如何记得要用到所有可以继续形成分支的类似 (3) 的 formula 呢？
+另外，分支的数量也是指数爆炸的。
+
+### Rules for the Construction of Tableaux
+
+也许可以尝试把这里的规则翻译成 sequent calculus 的形式。
+
+> We shall base our propositional tableaux on signed formulas using
+> the logical connectives ∼, ∧, ∨ and ⊃. For each of these
+> connectives, there are two rules, one for a formula signed T, and
+> one for a formula signed F. Here are the eight rules. Explanations
+> will follow.
+
+sequent calculus 对于每个 connective 也有两个 rule。
+与 sequent calculus 相反这里把 branching 表示到一个 rule 里了，
+而把推演过程中的 conjunction 分开了。
+
+按照 sequent calculus，类似 prolog，
+分支因该用多个 clause 来表示：
+
+```
+T X -> Y -- F X
+T X -> Y -- T Y
+F X -> Y -- T X, F Y
+```
+
+注意，tableaux 也是从对命题的否定先开始，与 prolog 的搜索过程类似。
+也许对于谓词演算而言，tableaux 就是 prolog。
+
+tableaux 的规则本身也是显然可以用 prolog 实现的，
+对于命题演算的达式，定义两个相互递归的关系就可以了。
+
+既然和 prolog 有关，那么也就和 sequent calculus 有关。
+
+如何给 tableaux 设计一个线性的语法？
+
+用 lisp 语法：
+
+```
+(define-relation (T (if X Y)) (F X))
+(define-relation (T (if X Y)) (T Y))
+(define-relation (F (if X Y)) (T X) (F Y))
+```
+
+用 c 语法：
+
+```
+relation T(if(X, Y)) -- F(X);
+relation T(if(X, Y)) -- T(Y);
+relation F(if(X, Y)) -- T(X), F(Y);
+```
+
+或者就用 prolog 的语法。
+
+> Note that what we conclude directly from a signed formula according
+> to the tableau rules is precisely everything we canconclude from our
+> assumption about the truth or falsity of the signed formula based on
+> the meaning of the sign and of the highest level connective in the
+> formula.
+
+### Proof in the Context of Tableaux for Propositional Logic
+
 TODO
