@@ -564,4 +564,42 @@ X
 
 ### Joint Denial
 
+> All the five logical connectives, ∼, ∧, ∨, ⊃, ≡, are definable
+> from ∼ and ∧ alone (since we have seen that we can first get ∨,
+> then ⊃, and hence ≡). Likewise it follows from the last ten
+> problems that ∼ and ∨ is a basis for the rest, and so is ∼ and ⊃,
+> as well as ⊃ and f.
+
+> Now there is a single logical connective p ↓ q, called joint denial
+> from which all the five connectives ∼, ∧, ∨, ⊃, ≡, can be
+> defined. p ↓ q means “p and q are both false,” and is thus
+> equivalent to ∼ p ∧ ∼ q.
+
+### Alternative Denial
+
+> There is another single connective from which all the others can be
+> obtained. It is known as alternative denial, and also as the Sheffer
+> Stroke. p|q is read “at least one of p, q is false, or as “p is
+> false or q is false.” It is equivalent both to ∼ p ∨ ∼ q and to
+> ∼(p ∧ q).
+
+### The Sixteen Logical Connectives
+
+系统地给出所有可能的二元 Logical Connectives。
+
+> A set of connectives is sometimes called a basis (for all the
+> connectives) if all sixteen connectives are definable from
+> them. Now, we have seen that given any truth table, a formula can be
+> found that has it for its truth table – moreover, as seen in the
+> solution of Problem 2, a formula using just the connectives ∼, ∨,
+> and ∧, so that these three connectives clearly form a basis for all
+> the others. But these three are derived in turn, either from ∼ and
+> ∧, or from ∼ and ∨. Thus both ∼, ∧ and ∼, ∨ are also
+> bases. Other bases are ∼ and ⊃; ⊃ and f; ⊃ and ~⊃; ↓ alone; and |
+> alone.
+
+⊃ and f 是 basis，正好是类型系统里有的两个 type。
+
+## Chapter 6 Propositional Tableaux
+
 TODO
