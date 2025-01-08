@@ -542,4 +542,26 @@ X
 
 魔术师要揭秘魔术背后的秘密了！
 
+背后的秘密就在于发现如何根据问题，列 boolean 方程。
+
+### Interdependence of the Logical Connectives
+
+这里有趣的等式是：
+
+```
+(or p q) = (if (if p q) q)
+```
+
+因为：
+
+```
+(or (not (or (not p) q)) q)
+(or (and p (not q)) q)
+(and (or p q) (or (not q) q))
+(and (or p q) true)
+(or p q)
+```
+
+### Joint Denial
+
 TODO
