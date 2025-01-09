@@ -618,6 +618,9 @@ X
 analytic tableaux 是 Ray 的主要发明之一。
 根据 wikiepdia 说，analytic tableaux 与 sequent calculus 有关：
 
+analytic tableaux 把一个 judgment 拆开成两个，
+也算是一种「辅助线」技巧了。
+
 > Tableaux can be intuitively seen as sequent systems
 > upside-down. This symmetrical relation between tableaux and sequent
 > systems was formally established in (Carnielli 1991).
@@ -707,6 +710,77 @@ relation F(if(X, Y)) -- T(X), F(Y);
 > the meaning of the sign and of the highest level connective in the
 > formula.
 
-### Proof in the Context of Tableaux for Propositional Logic
+### Correctness and Completeness
+
+> Now we come to the most interesting part,
+> the metatheory of tableaux.
+
+> We wish to prove two things:
+
+> (1) Correctness. The tableau method is correct in the sense that if
+> an unsigned formula X is provable by the tableau method (e.g. if
+> there is a closed tableau starting with FX), then X really is a
+> tautology.
+
+> (2) Completeness. The tableau method is complete, in the sense that
+> every tautology is provable by the tableau method. Better still, if
+> X is a tautoloty, then not only is there a closed tableau starting
+> with FX, but every completed tableau starting with FX will be
+> closed.
+
+> We remark that the proof of (1) is relatively simple, but the proof
+> of (2) is quite a different story!
+
+已知通过展开 truth table 就可以判断 tautology，
+这里可以说是找到了一个判断 tautology 的更好算法
+（由人来运行的算法）。
+
+> To show that a signed formula T X is satisfiable, one constructs a
+> completed tableau, not for F X, but for T X. Any open branch of it
+> will actually yield an interpretation in which T X is true, namely
+> one which assigns truth to those variables p for which T p is on the
+> branch, and falsehood to those for which F p is on the branch.
+
+satisfiable 问题也能用同样的算法解决。
+
+## Chapter 7 Axiomatic Propositional Logic
+
+> The earlier treatment of Propositional Logic was through axiom
+> systems. Truth tables came much later, and tableaux later still. The
+> axiomatic treatment has certain advantages that we will see in later
+> chapters, besides the fact that axiom systems are quite interesting
+> in their own right!
+
+> Axiom systems, in the ancient Greek sense of the term, consisted of
+> a set ofpropositions considered self-evident, called axioms, and a
+> set of apparently unquestionably valid logical rules that enabled
+> one to derive from these self evident propositions other
+> propositions, many of which were far from self evident.
+
+> In the modern sense of the term, an axiom system consists of a set
+> of formulas called the axioms of the system, together with certain
+> relations called inference rules, each being of the form “From the
+> formulas X1, ..., Xn, one can infer formula X.” By a proof in the
+> axiom system is meant a finite sequence of formulas, usually
+> displayed vertically rather than horizontally, called the lines of
+> the proof, such that each line is either an axiom or is inferable
+> from earlier lines by one of the inference rules. A formula X is
+> called provable in the system if it is the last line of a proof, and
+> such a proof is called a proof of X.
+
+这种对证明论的定义，比某些作者的 formal 定义好多了。
+
+> We aim to show that the system S0 is complete, in the sense that all
+> tautologies are provable in the system. There are several ways this
+> can be done. One way is to show how from a truth table for a
+> tautology X, one can find a proof of X in the axiom system S0. This
+> was the approach I took in my book Logical Labyrinths [2009].
+
+甚至在谜题书中藏了这种理论。
+或者说，正式为了这个理论而制作出的谜题书。
+
+# Part III First-Order Logic
+
+## Chapter 8 Beginning First-Order Logic
 
 TODO
