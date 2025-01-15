@@ -72,30 +72,6 @@ dollar(5) -o Both(
 )
 ```
 
-# Sequent calculus rules
-
-We study rules for propositional linear logic first.
-
-The sequent `A, B |- C, D` means,
-
-```
-Entails(Both(A, B), Through(C, D))
-```
-
-i.e. multiplicative.
-
-A sequent calculus infere rule consists of a set of hypothesis sequents,
-displayed above a horizontal line,
-and a single conclusion sequent,
-displayed below the line, as below:
-
-```
-Hypothesis1
-Hypothesis2
-------------
-Conclusion
-```
-
 # Connections to other logics
 
 Linear logic arose partly out of a study of intuitionistic implication.
@@ -106,18 +82,19 @@ could be decomposed into two separate connectives:
 !A -o B
 ```
 
-Girard showed that one could thus translate intuitionistic (and also classical) logic
-into linear logic directly, simply appending modals to certain subformulas
-and making the right choice as to which sort of conjunction and disjunction should be used.
+Girard showed that one could thus translate intuitionistic (and also
+classical) logic into linear logic directly, simply appending modals
+to certain subformulas and making the right choice as to which sort of
+conjunction and disjunction should be used.
 
-Here we see a first glimpse of the substance behind the slogan
-
-> Linear logic is a logic behind logics.
+因此 linear logic 可以看作是对
+intuitionistic logic 和 classical logic 的进一步 factoring。
 
 # Connections to computer science
 
-Use linear logic To capture "resource" problems logically.
+Use linear logic to capture "resource" problems logically.
 
-For example,
+Examples:
 
 - An encoding of Petri net reachability
+
