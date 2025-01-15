@@ -205,3 +205,9 @@ TODO 还有什么概念是在语法中有的，而在语义中没有的？
 
 人们从证明所得到的，确实是 certainty。
 TODO 但是这时如何得到的呢？
+
+# 2 From multiplicatives to GoI
+
+## 2.1 Multiplicatives
+
+TODO
