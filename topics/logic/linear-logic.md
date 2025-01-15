@@ -29,26 +29,9 @@ title: Linear Logic
 | !A     | I can reuse A.                         |
 | ?A     |                                        |
 
-| connective | meaning           |
-|------------|-------------------|
-| ⨂          | have(A and B)     |
-| &          | can(A) and can(B) |
-| ⨁          | have(A or B)      |
-| ⅋          | can(A) or can(B)  |
-
 Notes:
 
-- Maybe we should use `Always` instead of `OfCourse`.
-
-- If we view linear logic as type of channel,
-
-  - The additive conj `&` means
-    we can choice to `send` different messages to the channel,
-
-  - The additive disj `⨁` means
-    we might `receive` different messages from the channel.
-
-  Note that, sending message is the dual of receiving message, and
+- Note that, sending message is the dual of receiving message, and
   conditional is done by receiving messages and pattern matching, thus
   pattern matching is the dual of method call (messages passing) in
   object oriented programming.
@@ -60,17 +43,16 @@ Notes:
   - Maybe it is similarly linear logic,
     because actor and channel + process can simulate each other.
 
-  - Maybe it is not linear logic,
-    because given a actor, we can only send messages to it,
-    but we can not receive messages from it.
+  - An actor can send messages to other actors,
+    and can also receive messages other actors.
 
-| symbol   | derive               | name (Girard) | identifier |
-|----------|----------------------|---------------|------------|
-| `A -o B` | `Through(Not(A), B)` | entails       | `Entails`  |
+| symbol | derive             | name (Girard) | identifier |
+|--------|--------------------|---------------|------------|
+| A -o B | Through(Not(A), B) | entails       | Entails    |
 
-| symbol   | meaning                                         |
-|----------|-------------------------------------------------|
-| `A -o B` | I can construct `B`, by using `A` exactly once. |
+| symbol | meaning                                     |
+|--------|---------------------------------------------|
+| A -o B | I can construct B, by using A exactly once. |
 
 Linear negation is involutive but constructive.
 
