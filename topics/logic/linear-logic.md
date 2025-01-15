@@ -7,10 +7,7 @@ title: Linear Logic
 > In linear logic, we view proposition as resource.
 
 - How to view its rules in terms of resources?
-
 - How to design its terms, how to evaluate them?
-
-  - Should we use stack machine for evaluation?
 
 # Connectives
 
@@ -142,9 +139,3 @@ Use linear logic To capture "resource" problems logically.
 For example,
 
 - An encoding of Petri net reachability
-
-# Complexity results for linear logic
-
-## Recall of complexity results for logic
-
-TODO
