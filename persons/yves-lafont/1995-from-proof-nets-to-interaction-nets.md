@@ -44,9 +44,9 @@ lambda calculus + intuitionistic logic 中分离出来，
 
 回顾 linear logic 的连接词：
 
-| ⊗ | mul | conj | have(A and B)     |
+| ⨂ | mul | conj | have(A and B)     |
 | & | add | conj | can(A) and can(B) |
-| ⊕ | add | disj | have(A or B)      |
+| ⨁ | add | disj | have(A or B)      |
 | ⅋ | mul | disj | can(A) or can(B)  |
 
 也许可以直接用属性命名：

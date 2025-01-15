@@ -752,7 +752,7 @@
       |-----+-----+-----+-----|
       |     | add | mul | exp |
       |-----+-----+-----+-----|
-      | pos | ⊕ 0 | ⊗ 1 | !   |
+      | pos | ⨁ 0 | ⨂ 1 | !   |
       | neg |     |     |?   |
       |-----+-----+-----+-----|
     * 其他連詞概覽
@@ -912,20 +912,20 @@
 *** and version 1 [pos-mul]
 
 ***** old notation
-      * ⊗ [tensor] [simultaneous conjunction]
+      * ⨂ [tensor] [simultaneous conjunction]
       * right
         Δ1 ⊢ A
         Δ2 ⊢ B
-        -------------- ⊗ R
-        Δ1, Δ2 ⊢ A ⊗ B
+        -------------- ⨂ R
+        Δ1, Δ2 ⊢ A ⨂ B
       * left
         Δ, A, B ⊢ C
-        ------------ ⊗ L
-        Δ, A ⊗ B ⊢ C
+        ------------ ⨂ L
+        Δ, A ⨂ B ⊢ C
 
 ***** function
-      * pair : (A B -> (A ⊗ B))
-        dair : ((A ⊗ B) -> A B)
+      * pair : (A B -> (A ⨂ B))
+        dair : ((A ⨂ B) -> A B)
 
 ***** new notation
       * right
@@ -933,12 +933,12 @@
         n : (Δ2 -> B)
         --------------------
         n swap t swap pair :
-        (Δ1 Δ2 -> (A ⊗ B))
+        (Δ1 Δ2 -> (A ⨂ B))
       * left
         t : (Δ A B -> C)
         ----------------
         dair t :
-        (Δ (A ⊗ B) -> C)
+        (Δ (A ⨂ B) -> C)
 
 ***** harmony
 
@@ -947,12 +947,12 @@
           id(B) : (B -> B)
           ----------------------------
           id(B) swap id(A) swap pair :
-          (A B -> (A ⊗ B))
+          (A B -> (A ⨂ B))
           ---------------------------------
           dair id(B) swap id(A) swap pair :
-          ((A ⊗ B) -> (A ⊗ B))
+          ((A ⨂ B) -> (A ⨂ B))
         * I can say
-          id(A ⊗ B) => dair id(B) swap id(A) swap pair
+          id(A ⨂ B) => dair id(B) swap id(A) swap pair
           or
           dair swap swap pair = do nothing
 
@@ -960,12 +960,12 @@
         1. t : (Δ1 -> A)
            n : (Δ2 -> B)
            ---------------------------------------
-           n swap t swap pair : (Δ1 Δ2 -> (A ⊗ B))
+           n swap t swap pair : (Δ1 Δ2 -> (A ⨂ B))
         2. m : (Δ3 A B -> C)
            --------------------------
-           dair m : (Δ3 (A ⊗ B) -> C)
-        3. n swap t swap pair : (Δ1 Δ2 -> (A ⊗ B))
-           dair m : (Δ3 (A ⊗ B) -> C)
+           dair m : (Δ3 (A ⨂ B) -> C)
+        3. n swap t swap pair : (Δ1 Δ2 -> (A ⨂ B))
+           dair m : (Δ3 (A ⨂ B) -> C)
            --------------------------
            xxswapx
            n swap t swap pair
@@ -1035,7 +1035,7 @@
 *** or version 1
 
 ***** >< old notation
-      * ⊕
+      * ⨁
       * right
       * left
 
@@ -1043,15 +1043,15 @@
       * right1
         (Δ -> A)
         --------------
-        (Δ -> (A ⊕ B))
+        (Δ -> (A ⨁ B))
       * right2
         (Δ -> B)
         --------------
-        (Δ -> (A ⊕ B))
+        (Δ -> (A ⨁ B))
       * left
         (Δ A -> C) (Δ B -> C)
         -----------------------
-        (Δ (A ⊕ B) -> C)
+        (Δ (A ⨁ B) -> C)
 
 *** >< or version 2
 

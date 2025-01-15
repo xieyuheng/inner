@@ -10,16 +10,16 @@ year: 1988
 
 linear logic 连接词的解释之一：
 
-| ⊗ | have(A and B)     |
+| ⨂ | have(A and B)     |
 | & | can(A) and can(B) |
-| ⊕ | have(A or B)      |
+| ⨁ | have(A or B)      |
 | ⅋ | can(A) or can(B)  |
 
-> Linear logic wise (A ⊗ B) is like the tuple (you have these two
+> Linear logic wise (A ⨂ B) is like the tuple (you have these two
 > resources), while (A & B) is a choice you can make between two
 > resources (but you cannot have both).  For example, if you have
 > enough fuel to go to mars or mercury, but not both, you could say
-> you have (Trip To Mars & Trip To Mercury) but not (Trip To Mars ⊗
+> you have (Trip To Mars & Trip To Mercury) but not (Trip To Mars ⨂
 > Trip To Mercury).
 
 # Abstract
@@ -63,12 +63,12 @@ intuitionistic linear logic。
 
 连词表：
 
-- ⊗ (tensor product)
+- ⨂ (tensor product)
 - 1 (tensor product)
 - ⊸ (linear implication)
 - & (direct product)
 - t (direct unit)
-- ⊕ (direct sum)
+- ⨁ (direct sum)
 - 0 (direct zero)
 
 ## 1.3 examples of proofs
@@ -100,7 +100,7 @@ intuitionistic linear logic。
 
 one way of viewing the logic connectives of linear logic is:
 
-- A ⊗ B (tensor product) --
+- A ⨂ B (tensor product) --
   a value of type A in the stack and a value of type B in the stack.
 
 - A & B (direct product) --
@@ -112,10 +112,10 @@ one way of viewing the logic connectives of linear logic is:
 
 ## 2.3 about the products
 
-⊗ (tensor product) 与 ⊸ (linear implication) 有关。
+⨂ (tensor product) 与 ⊸ (linear implication) 有关。
 而 & (direct product) 与 pair 的 `fst` 和 `snd` 有关。
 
-- ⊗ -- strict pair
+- ⨂ -- strict pair
 - & -- lazy pair
 
 > `fst` and `snd` are not strict in their arguments

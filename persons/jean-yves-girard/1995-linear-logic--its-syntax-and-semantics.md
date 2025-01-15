@@ -225,7 +225,7 @@ Similarly the following rules might be easier to understand in two-sided version
 |- Γ, ⊥
 ```
 
-Note that, we only need intro rule for `⊗`,
+Note that, we only need intro rule for `⨂`,
 the only elim rule is the cut rule.
 
 Cut rule and forming hypotheses
@@ -235,7 +235,7 @@ captures the concept of causality.
 |- Γ, A
 |- B, Δ
 ---------------- times
-|- Γ, A ⊗ B, Δ
+|- Γ, A ⨂ B, Δ
 ```
 
 ```
@@ -246,7 +246,7 @@ captures the concept of causality.
 
 In a sequent of linear logic,
 
-- comma on the left means `⊗`;
+- comma on the left means `⨂`;
 - comma on the right means `⅋`;
 - `|-` in the middle means `-o`.
 
@@ -267,13 +267,13 @@ No rule for zero.
 ```
 |- Γ, A
 ------------- left plus
-|- Γ, A ⊕ B
+|- Γ, A ⨁ B
 ```
 
 ```
 |- Γ, B
 ------------- right plus
-|- Γ, A ⊕ B
+|- Γ, A ⨁ B
 ```
 
 ```
@@ -313,7 +313,7 @@ No rule for zero.
 ```
 
 `∀x A` is like many `&`s,
-and `∃x A` is like many `⊕`s,
+and `∃x A` is like many `⨁`s,
 i.e. they are explained by additive connectives.
 
 ## 1.3 Proof-nets
@@ -362,7 +362,7 @@ with its obvious advantage: a well-determined last rule.
 
 To overcome the problems of natural deduction,
 in the context of the multiplicative fragment of linear logic,
-i.e. the only connectives `⊗` and `⅋` (and also implicitly `—o`).
+i.e. the only connectives `⨂` and `⅋` (and also implicitly `—o`).
 
 The idea is to put everything in conclusion;
 however, when we pass from a hypothesis to a conclusion
@@ -426,7 +426,7 @@ the interpretation of sequent calculus proofs.
 
 Of course most structures are not nets:
 typically the definition of a proof-structure
-does not distinguish between `⊗`-links and `⅋`-links
+does not distinguish between `⨂`-links and `⅋`-links
 whereas conjunction is surely different from disjunction.
 
 The question which now arises is
@@ -465,9 +465,9 @@ Let us explain why this is essential:
    sequent calculus, and we will not benefit too much from the new
    approach.
 
-   Typically, if a proof-net ends with a splitting `⊗`-link, (i.e. a
+   Typically, if a proof-net ends with a splitting `⨂`-link, (i.e. a
    link whose removal induces two disconnected structures), we would
-   like to conclude that the last rule can be chosen as `⊗`-rule;
+   like to conclude that the last rule can be chosen as `⨂`-rule;
    working with a sequentialization this can be proved, but the proof
    is long and boring, whereas, with a criterion, the result is
    immediate, since the two components inherit the criterion.
@@ -738,9 +738,9 @@ The model and the logic are one.
 
 By the electronic analogy,
 we can get a very good interpretation
-of cut-elimination for `⊗` and `⅋`.
+of cut-elimination for `⨂` and `⅋`.
 
-- **Xie**: The connectives `⊗` and `⅋` group ports together,
+- **Xie**: The connectives `⨂` and `⅋` group ports together,
   one for the negatives one for the postives.
 
 ## 2.4 Game semantics

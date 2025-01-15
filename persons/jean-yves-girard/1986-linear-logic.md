@@ -78,7 +78,7 @@ writing the right rule of conjunction will become different:
 ```
 
 - Rule `M` treats the contexts by juxtaposition
-  and yields the **multiplicative conjunction** -- `⊗` (times).
+  and yields the **multiplicative conjunction** -- `⨂` (times).
 
 - Rule `A` treats the contexts by identification
   and yields the **additive conjunction** -- `&`(with).
@@ -107,7 +107,7 @@ Translate intuitionistic logic to linear logic.
 | intuitionistic | linear    |
 | -------------- | --------- |
 | `A ∧ B`        | `A & B`   |
-| `A ∨ B`        | `!A ⊕ !B` |
+| `A ∨ B`        | `!A ⨁ !B` |
 | `A -> B`       | `!A -o B` |
 
 ## II.4. Subtlety of linear logic

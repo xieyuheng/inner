@@ -13,27 +13,27 @@ title: Linear Logic
 
 | symbol | polarity | level |      | name (Girard) | identifier |
 |--------|----------|-------|------|---------------|------------|
-| A ⊗ B  | pos      | mul   | conj | times         | Both       |
+| A ⨂ B  | pos      | mul   | conj | times         | Both       |
 | A & B  | neg      | add   | conj | with          | Choose     |
-| A ⊕ B  | pos      | add   | disj | plus          | Maybe      |
+| A ⨁ B  | pos      | add   | disj | plus          | Maybe      |
 | A ⅋ B  | neg      | mul   | disj | par           | Through    |
 | !A     | pos      | exp   |      | of course     | OfCourse   |
 | ?A     | neg      | exp   |      | why not       | WhyNot     |
 
 | symbol | meaning                                |
 |--------|----------------------------------------|
-| A ⊗ B  | I have both A and B.                   |
+| A ⨂ B  | I have both A and B.                   |
 | A & B  | I have a choice between A and B.       |
-| A ⊕ B  | Someone else's choice between A and B. |
+| A ⨁ B  | Someone else's choice between A and B. |
 | A ⅋ B  | If not A, then B.                      |
 | !A     | I can reuse A.                         |
 | ?A     |                                        |
 
 | connective | meaning           |
 |------------|-------------------|
-| ⊗          | have(A and B)     |
+| ⨂          | have(A and B)     |
 | &          | can(A) and can(B) |
-| ⊕          | have(A or B)      |
+| ⨁          | have(A or B)      |
 | ⅋          | can(A) or can(B)  |
 
 Notes:
@@ -45,7 +45,7 @@ Notes:
   - The additive conj `&` means
     we can choice to `send` different messages to the channel,
 
-  - The additive disj `⊕` means
+  - The additive disj `⨁` means
     we might `receive` different messages from the channel.
 
   Note that, sending message is the dual of receiving message, and

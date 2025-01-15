@@ -93,7 +93,7 @@ Proof nets 就是想要用图论中的结构来捕捉证明的语法本质。
 
 | symbol  | name (Girard) | identifier |
 |---------|---------------|------------|
-| `A ⊗ B` | times         | `Both`     |
+| `A ⨂ B` | times         | `Both`     |
 | `A ⅋ B` | par           | `Through`  |
 
 > The set of formulas is defined via
@@ -194,8 +194,8 @@ check [A, A, B]: Sequent
 - derivation 就是构造类型为 `Provable(sequent)` 的数据。
 
 > 2.1.2 Example.
-> The two sequents ⊢ !a, a⊗!b, b⊗!c, c
-> and ⊢ ((a ⅋ !a) ⊗ b) ⅋ !b are provable:
+> The two sequents ⊢ !a, a⨂!b, b⨂!c, c
+> and ⊢ ((a ⅋ !a) ⨂ b) ⅋ !b are provable:
 
 ```cicada
 let a = Formula::Var("a")
