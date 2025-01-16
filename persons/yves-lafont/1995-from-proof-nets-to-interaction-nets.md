@@ -42,20 +42,6 @@ lambda calculus + intuitionistic logic 中分离出来，
 
 # 2 Multiplicatives
 
-回顾 linear logic 的连接词：
-
-| ⨂ | mul | conj | have(A and B)     |
-| & | add | conj | can(A) and can(B) |
-| ⨁ | add | disj | have(A or B)      |
-| ⅋ | mul | disj | can(A) or can(B)  |
-
-也许可以直接用属性命名：
-
-- conj-add -- cadd
-- disj-add -- dadd
-- conj-mul -- cmul
-- disj-mul -- dmul
-
 对于 natural deduction 而言，
 用来描述证明的 term language 就是 lambda term。
 
@@ -67,11 +53,6 @@ lambda calculus + intuitionistic logic 中分离出来，
 用一个 meta language 来构造 graph，
 就是我实现 inet 时主要的 idea。
 
-- 考虑 concatenative language 用对栈中元素的自由置换，
-  可以很自然的想到 inet-forth。
-  然后发现其实任何 meta language 都是可行的，
-  比如也可以实现 inet-lisp。
-
-TODO 分别用 inet-forth 和 inet-lisp 的语法作为 term language，把这里的证明写出来。
+TODO 用 inet-lisp 的语法作为 term language，把这里的证明写出来。
 
 TODO
