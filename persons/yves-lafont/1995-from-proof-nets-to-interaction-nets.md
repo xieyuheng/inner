@@ -193,9 +193,9 @@ cut-elimination 等价于 proof-net 的 rewrite rule：
 > In [LW94], it is shown indeed that the multiplicative fragment of
 > linear logic with units but without proper atoms is NP-complete.
 
-> [LW94] P. Lincoln & T. Winkler. Constant-Only Multiplicative Linear
-> Logic is NP-Complete. To appear in Theoretical Computer
-> Science. 1994.
+> - [LW94] P. Lincoln & T. Winkler. Constant-Only Multiplicative
+>   Linear Logic is NP-Complete. To appear in Theoretical Computer
+>   Science. 1994.
 
 说一个逻辑是 NP-complete 到底是什么意思？
 
@@ -230,13 +230,54 @@ cut-elimination 等价于 proof-net 的 rewrite rule：
 
 Lafont 也看不懂 linear logic。
 
+linear logic 如果这么难理解，它的意义到底何在？
+可能在于能把 classical logic 和 intuitionistic logic 翻译成 linear logic，
+也就是对已有的逻辑系统的进一步 factoring。
+
+TODO 详细验证这两种翻译。
+
 # 8 Exponentials
+
+先看 Mark Swoope 对 Exponentials 的解释：
+https://protovision.github.io/#!/documents/blog/modalities-in-linear-logic.html
 
 TODO
 
 # 9 Interaction nets
 
-TODO
+这一章就是对 interaction nets 的介绍，
+我已经很熟悉了。
+
+有一些引用比较有意思，值得进一步阅读：
+
+> ... In fact, it is possible to replace this infinite system by a
+> finite one at the expense of 6some encoding (see [Mac94]).
+
+> - [Mac94] I. Mackie. The Geometry of Implementation (an
+>   investigation into using the Geometry of Interaction for language
+>   implementation).  Thesis, Imperial College, London. In
+>   preparation.
+
+> In [GAL92b], another encoding of exponential boxes is proposed,
+> which is inspired by the geometry of interaction and the optimal
+> reduction of lambda-calculus (see [GAL92a]).
+
+> - [GAL92a] G. Gonthier, M. Abadi &: J.-J. Levy. The geometry of op-
+>   timal lambda reduction. Proceedings of 19th ACM Symposium on
+>   Principles of Programming Languages (POPL 92). 1992.
+
+> - [GAL92b] G. Gonthier, M. Abadi &; J.-J. Levy. Linear Logic without
+>   boxes. Proceedings of 7th Annual Symposium on Logic in Computer
+>   Science (LICS 92). 1992.
+
+> It is also interesting to notice that our interaction nets are an
+> instance of the _connection graphs_, which were designed as an
+> assembly language for parallel machines (see [Baw86]).
+
+这个 connection graphs 值得研究一下。
+
+> - [Baw86] A. Bawden. Connection Graphs. Proceedings of ACM
+>   Conference on Lisp and Functional Programming, 258-265. 1986.
 
 # 10 Conclusion
 
