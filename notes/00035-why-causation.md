@@ -25,9 +25,7 @@ For examples:
 - In physics, we use the concept of "force" to understand movement,
   that is where we try to use a cause -- the force, to understand movement.
 
-# Errata
-
-## [2022-06-01] About the relation between logic and causation
+# [2022-06-01] About the relation between logic and causation
 
 This note was first called "Why logic?",
 and open with "Why we use logic to understand the world?",
@@ -61,3 +59,12 @@ when we write functions (or classes and their methods),
 we are creating causal models.
 
 The dependencies between reactive data is the arrows in causal diagrams.
+
+# [2025-01-18] New understanding after linear logic
+
+The note above is wrong again,
+logic is about causation,
+i.e. about the model that we used to understand the world.
+
+This is very clear in linear logic,
+where `A -o B` can be a summarization of how a machine works.
