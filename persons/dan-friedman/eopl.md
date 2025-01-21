@@ -3,7 +3,38 @@ title: Essentials of Programming Languages
 authors: [Daniel P. Friedman, Mitchell Wand]
 ---
 
-# preface
+# 学习动机
+
+[2025-01-22]
+很久之前就读过这本书，
+但是感觉没有读透。
+很多实现技术隐约记得这本书里有提到过，
+但是想不起来了。
+这次希望能利用 mimor 完全记住。
+
+# Foreword
+
+> This book brings you face-to-face with the most fundamental idea in
+> computer programming:
+
+>     The interpreter for a computer language is just another program.
+
+> It sounds obvious, doesn’t it? But the implications are
+> profound. If you are a computational theorist, the interpreter idea
+> recalls Gödel’s discovery of the limitations of formal logical
+> systems, Turing’s concept of a universal computer, and von
+> Neumann’s basic notion of the stored-program machine.  If you are a
+> programmer, mastering the idea of an interpreter is a source of
+> great power. It provokes a real shift in mindset, a basic change in
+> the way you think about programming.
+
+> If you do this, you will change your view of your programming, and
+> your view of yourself as a programmer. You’ll come to see yourself
+> as a designer of languages rather than only a user of languages, as
+> a person who chooses the rules by which languages are put together,
+> rather than only a follower of rules that other people have chosen.
+
+# Preface
 
 ## goal
 

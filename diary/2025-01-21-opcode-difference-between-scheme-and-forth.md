@@ -21,3 +21,5 @@ value 可以被 apply。
 在 EOPL 中 def 被称为 den 代表 denotation。
 
 也许需要重读 EOPL 才能处理好这个问题。
+
+但是与 EOPL 不同的是，我现在正在编译到 opcode。
