@@ -19,3 +19,5 @@ value 可以被 apply。
 
 这两种实现方式在 EOPL 中有讨论过，
 在 EOPL 中 def 被称为 den 代表 denotation。
+
+也许需要重读 EOPL 才能处理好这个问题。
