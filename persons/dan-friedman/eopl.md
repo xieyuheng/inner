@@ -8,9 +8,18 @@ authors: [Daniel P. Friedman, Mitchell Wand]
 [2025-01-22]
 很久之前就读过这本书，
 但是感觉没有读透。
+在实现 inet-lisp 时，
 很多实现技术隐约记得这本书里有提到过，
 但是想不起来了。
 这次希望能利用 mimor 完全记住。
+
+另外 inet-lisp 现在不是简单的解释器了，
+而是编译到一个我自己设计的 vm，
+因此 solution space 又变化了很多，
+可以在这次重读时思考一下这个新的 solution space。
+
+想要设计的 x-lisp，
+其目标场景，就是适合用来实现这本书中的解释器。
 
 # Foreword
 
