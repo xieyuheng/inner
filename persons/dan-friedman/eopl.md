@@ -26,7 +26,7 @@ authors: [Daniel P. Friedman, Mitchell Wand]
 > This book brings you face-to-face with the most fundamental idea in
 > computer programming:
 
->     The interpreter for a computer language is just another program.
+> **The interpreter for a computer language is just another program.**
 
 > It sounds obvious, doesn’t it? But the implications are
 > profound. If you are a computational theorist, the interpreter idea
