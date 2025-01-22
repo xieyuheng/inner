@@ -151,9 +151,9 @@ designing an interface for a recursive data type -
 
 > In this chapter, we study the binding and scoping of variables. We
 > do this by presenting a sequence of small languages that illustrate
-> these concepts. We write speciﬁcations for these languages, and
+> these concepts. We write specifications for these languages, and
 > implement them using interpreters, following the interpreter recipe
-> from chapter 1. Our speciﬁcations and interpreters take a context
+> from chapter 1. Our specifications and interpreters take a context
 > argument, called the environment, which keeps track of the meaning
 > of each variable in the expression being evaluated.
 
@@ -163,12 +163,11 @@ designing an interface for a recursive data type -
 
 ### 3.2.2 Specification of Values
 
-> An important part of the speciﬁcation of any programming language is
+> An important part of the specification of any programming language is
 > the set of values that the language manipulates. Each language has
 > at least two such sets:
-
+>
 > - **expressed values** -- the possible values of expressions.
-
 > - **denoted values** -- the values bound to variables.
 
 expressed values 和 denoted values 之间的区分，
@@ -213,7 +212,7 @@ DenVal = Int + Bool
 
 > So far, we have only considered the _value_ produced by a
 > computation. But a computation may have _effects_ as well: it may
-> read, print, or alter the state of memory or a ﬁle system. In the
+> read, print, or alter the state of memory or a file system. In the
 > real world, we are always interested in effects: if a computation
 > doesn’t display its answer, it doesn’t do us any good!
 
@@ -253,7 +252,7 @@ with a future invocation of itself
 by <blank>leaving the information in a known location</blank>.
 </cloze>
 
-> We model memory as a ﬁnite map from _locations_ to a set of values
+> We model memory as a finite map from _locations_ to a set of values
 > called the _storable values_. For historical reasons, we call this
 > the _store_. The storable values in a language are typically, but
 > not always, the same as the expressed values of the language. This
@@ -361,19 +360,99 @@ end
 
 一个 class 中相互递归的 methods 也有类似的优点。
 
+> Another use of assignment is to create hidden state through the use
+> of private variables. Here is an example.
+
+```sml
+let g =
+  let counter = newref(0) in
+  proc (dummy) begin
+    setref(counter, -(deref(counter), -1));
+    deref(counter)
+  end in
+let a = (g 11) in
+let b = (g 11) in
+-(a,b)
+```
+
+```scheme
+(let ([g (let ([counter (newref 0)])
+           (lambda ()
+             (setref counter (- (deref counter) -1))
+             (deref counter)))])
+  (let ([a (g)]
+        [b (g)])
+    (- a b)))
+```
+
+> We can think of this as the different invocations of `g` sharing
+> information with each other. This technique is used by the Scheme
+> procedure `gensym` to create unique symbols.
+
+### 4.2.1 Store-Passing Specifications
+
+> In our language, any expression may have an effect. To specify these
+> effects, we need to describe what store should be used for each
+> evaluation and how each evaluation can modify the store.
+
+> We use _store-passing specfications_. In a store-passing
+> specification, the store is passed as an explicit argument to
+> `value-of` and is returned as an explicit result from `value-of`.
+> Thus we write
+
+```
+(value-of exp env store) = (pair value new-store)
+```
+
 ## 4.3 IMPLICIT-REFS: A Language with Implicit References
 
-The explicit reference design
-gives a clear account of allocation, dereferencing,
-and mutation because all these operations
-are explicit in the programmer’s code.
+> The explicit reference design gives a clear account of allocation,
+> dereferencing, and mutation because all these operations are
+> explicit in the programmer’s code.
 
-Most programming languages take common patterns of
-allocation, dereferencing, and mutation,
-and package them up as part of the language.
-Then the programmer need not worry about
-when to perform these operations,
-because they are built into the language.
+> Most programming languages take common patterns of allocation,
+> dereferencing, and mutation, and package them up as part of the
+> language.  Then the programmer need not worry about when to perform
+> these operations, because they are built into the language.
+
+> In this design, every variable denotes a reference. Denoted values
+> are references to locations that contain expressed values.
+> References are no longer expressed values. They exist only as the
+> bindings of variables.
+
+```
+ExpVal = Int + Bool + Proc
+DenVal = Ref(ExpVal)
+```
+
+当 DenVal 与 ExpVal 相同时，
+在 lookup 一个 variable 只能是把其中的 ExpVal 取出来。
+当 DenVal 与 ExpVal 不同时，
+我们就有了设计空间，可以在 lookup 一个 variable 时做文章。
+
+> Locations are created with each binding operation:
+>
+> - at each procedure call,
+> - `let`,
+> - or `letrec`.
+
+> When a variable appears in an expression, we first look up the
+> identifier in the environment to find the location to which it is
+> bound, and then we look up in the store to find the value at that
+> location. Hence we have a “two-level” system for `var-exp`.
+
+`var-exp` 增加了一层 indirect。
+从 EXPLICIT 到 IMPLICIT，是 indirectness 单调增长的过程。
+
+> This design is called _call-by-value_, or _implicit references_.
+> Most programming languages, including Scheme,
+> use some variation on this design.
+
+> Because references are no longer expressed values, we can’t make
+> chains of references, as we did in the last example in section 4.2.
+
+这也说明了 C 的 pointer 是一种 EXPLICIT-REFS，
+因为可以有嵌套的 pointer。
 
 ## 4.4 MUTABLE-PAIRS: A Language with Mutable Pairs
 

@@ -62,12 +62,12 @@ so that everything is simple and clear.
 
 # Lambda Calculus
 
-The core of the λ-calculus is based on little more than a well deﬁned
+The core of the λ-calculus is based on little more than a well defined
 concept of variables, variable scoping and the orderly substitution of
 variables by expressions.
 
 The λ-calculus is a **closed language**, meaning that its semantics
-can be deﬁned on the basis of the equivalence of expressions (or
+can be defined on the basis of the equivalence of expressions (or
 terms) of the calculus itself.
 
 TODO Naive substitutions suﬃce to weakly normalize since other than
