@@ -47,22 +47,20 @@ authors: [Daniel P. Friedman, Mitchell Wand]
 
 ## goal
 
-this book is an analytic study of programming languages.
+> This book is an analytic study of programming languages. Our goal is
+> to provide a deep, working understanding of the essential concepts
+> of programming languages. These essentials have proved to be of
+> enduring importance; they form a basis for understanding future
+> developments in programming languages.
 
-our goal is to provide a deep, working understanding
-of the essential concepts of programming languages.
-
-most of these essentials relate to the semantics, or meaning, of program elements.
-
-programs called interpreters provide the most direct,
-executable expression of program semantics.
-
-they process a program by directly analyzing
-an abstract representation of the program text.
-
-- x -
-  we can view this as a handbook for
-  a list of "how to implement ___?" questions.
+> Most of these essentials relate to the semantics, or meaning, of
+> program elements. Such meanings reﬂect how program elements are
+> interpreted as the program executes. Programs called interpreters
+> provide the most direct, executable expression of program
+> semantics. They process a program by directly analyzing an abstract
+> representation of the program text. We therefore choose interpreters
+> as our primary vehicle for expressing the semantics of programming
+> language elements.
 
 # 1 Inductive Sets of Data
 
@@ -131,12 +129,6 @@ not just the initial values.
   3. extract the components of the datum
      and do the right thing with them.
 
-- x -
-  interpreter of a programming language.
-  interprets data which encode program.
-
-  such data is called expression.
-
 ## 2.3 Interfaces for Recursive Data Types
 
 designing an interface for a recursive data type -
@@ -157,23 +149,44 @@ designing an interface for a recursive data type -
 
 ## 3.1 Specification and Implementation Strategy
 
-- specification will consist of assertions of the form :
-
-  (value-of exp env) = val
-
-  meaning that
-  the value of expression exp
-  in environment env
-  should be val.
-
-- We write down rules of inference and equations,
-  like those in chapter 1,
-  that will enable us to derive such assertions.
-
-  We use the rules and equations by hand
-  to find the intended value of some expressions.
+> In this chapter, we study the binding and scoping of variables. We
+> do this by presenting a sequence of small languages that illustrate
+> these concepts. We write speciﬁcations for these languages, and
+> implement them using interpreters, following the interpreter recipe
+> from chapter 1. Our speciﬁcations and interpreters take a context
+> argument, called the environment, which keeps track of the meaning
+> of each variable in the expression being evaluated.
 
 ## 3.2 LET: A Simple Language
+
+### 3.2.1 Specifying the Syntax
+
+### 3.2.2 Specification of Values
+
+> An important part of the speciﬁcation of any programming language is
+> the set of values that the language manipulates. Each language has
+> at least two such sets:
+
+> - **expressed values** -- the possible values of expressions.
+
+> - **denoted values** -- the values bound to variables.
+
+expressed values 和 denoted values 之间的区分，
+是我第一次读 EOPL 时印象最深的一个 idea。
+
+> In the languages of this chapter, the expressed and denoted values
+> will always be the same. They will start out as
+
+```
+ExpVal = Int + Bool
+DenVal = Int + Bool
+```
+
+> Chapter 4 presents languages in which expressed and denoted values
+> are different.
+
+对于简单的语言来说，没必要有这种区分。
+但是对于某些语言特性来说，没有这种区分根本没法理解清楚。
 
 ## 3.3 PROC: A Language with Procedures
 
@@ -192,79 +205,161 @@ designing an interface for a recursive data type -
   just where in the environment
   any particular variable will be found.
 
-- x -
-  thus, no runtime searching overhead.
-
 ### 3.7 Implementing Lexical Addressing
 
 # 4 State
 
 ## 4.1 Computational Effects
 
-- So far, we have only considered the *value*
-  produced by a computation.
-  But a computation may have *effects* as well.
+> So far, we have only considered the _value_ produced by a
+> computation. But a computation may have _effects_ as well: it may
+> read, print, or alter the state of memory or a ﬁle system. In the
+> real world, we are always interested in effects: if a computation
+> doesn’t display its answer, it doesn’t do us any good!
 
-  - Different from producing a value
-    an effect is global, it is seen by the *entire* computation.
+<question>
+What’s the difference between producing a value and producing an effect?
 
-- We will be concerned primarily with a single effect :
-  assignment to a location in memory.
+<answer>
+An effect is *global*: it is seen by the entire computation.
 
-  - Assignment is different from binding.
-    binding is local, but variable assignment
-    is potentially global.
+An effect affects the entire computation (pun intended).
+</answer>
+</question>
 
-- It is about the sharing of values between
-  otherwise unrelated portions of the computation.
+<question>
+We will be concerned primarily with a single effect:
+assignment to a location in memory.
 
-  1. Two procedures can share information
-     if they both know about the same location in memory.
+How does assignment differ from binding?
 
-  2. A single procedure can share information
-     with a future invocation of itself
-     by leaving the information in a known location.
+<answer>
+As we have seen, binding is local,
+but variable assignment is potentially global.
 
-- We model memory as a finite map from *locations*
-  to a set of values called the *storable values*.
+It is about the sharing of values between
+otherwise unrelated portions of the computation.
+</answer>
+</question>
 
-  - The storable values in a language
-    are typically, but not always,
-    the same as the expressed values of the language.
-    This choice is part of the design of a language.
+<cloze>
+Two procedures can share information
+if they both know about <blank>the same location in memory</blank>.
+</cloze>
 
-- A data structure that represents a location
-  is called a *reference*.
+<cloze>
+A single procedure can share information
+with a future invocation of itself
+by <blank>leaving the information in a known location</blank>.
+</cloze>
 
-  - A location is a place in memory
-    where a value can be stored,
-    and a reference is a data structure
-    that refers to that place.
+> We model memory as a ﬁnite map from _locations_ to a set of values
+> called the _storable values_. For historical reasons, we call this
+> the _store_. The storable values in a language are typically, but
+> not always, the same as the expressed values of the language. This
+> choice is part of the design of a language.
 
-  - References are sometimes called L-values.
-    This name reflects the association
-    of such data structures with variables
-    appearing on the left-hand side of assignment statements.
+> A data structure that represents a location is called a _reference_.
+> A location is a place in memory where a value can be stored, and a
+> reference is a data structure that refers to that place.
+> The distinction between locations and references may be seen by
+> analogy: a location is like a file and a reference is like a URL.
+> The URL refers to the file, and the file contains some data.
 
-  - Analogously, expressed values,
-    such as the values of the right-hand side expressions
-    of assignment statements,
-    are known as R-values.
+在 C 中，一个 pointer 可以被看成是一个 reference。
+
+> References are sometimes called _L-values_. This name reflects the
+> association of such data structures with variables appearing on the
+> left-hand side of assignment statements. Analogously, expressed
+> values, such as the values of the right-hand side expressions of
+> assignment statements, are known as _R-values_.
+
+注意 assignment 是我们要考虑的唯一 effect。
 
 ## 4.2 EXPLICIT-REFS: A Language with Explicit References
 
-We leave the binding structures of the language unchanged,
-but we add three new operations to create and use references.
+> In this design, we add references
+> as a new kind of expressed value.
+> So we have
 
-1. newref
-   allocates a new location and returns a reference to it.
-2. deref
-   dereferences a reference
-   it returns the contents of the location
-   that the reference represents.
-3. setref
-   changes the contents of the location
-   that the reference represents.
+```
+DenVal = ExpVal = Int + Bool + Proc + Ref(ExpVal)
+```
+
+EXPLICIT 保持了 DenVal 与 ExpVal 相等，
+因此可以说，与 ExpVal 不同的 DenVal，
+就是为了某些 IMPLICIT 的语言特性。
+
+- C 的 `*` 和 `&` 是 EXPLICIT-REFS 的例子。
+
+> Here `Ref(ExpVal)` means the set of references to locations
+> that contain expressed values.
+
+> We leave the binding structures of the language unchanged, but we
+> add three new operations to create and use references.
+
+> 1. `newref` allocates a new location and returns a reference to it.
+
+> 2. `deref` dereferences a reference it returns the contents of the
+>    location that the reference represents.
+
+> 3. `setref` changes the contents of the location that the reference
+>    represents.
+
+例子：
+
+```sml
+let x = newref(0) in
+let rec even(dummy) =
+  if zero?(deref(x))
+  then 1
+  else begin
+    setref(x, -(deref(x),1));
+    (odd 888)
+  end
+and odd(dummy) =
+  if zero?(deref(x))
+  then 0
+  else begin
+    setref(x, -(deref(x),1));
+    (even 888)
+  end
+in begin
+  setref(x,13);
+  (odd 888)
+end
+```
+
+换成 scheme 语法：
+
+```scheme
+(let ([x (newref 0)])
+  (letrec ([(even)
+            (if (zero? (deref x))
+              1
+              (begin
+                (setref x (- ((deref x) 1)))
+                (odd)))]
+           [(odd)
+            (if (zero? (deref x))
+              0
+              (begin
+                (setref x (- ((deref x) 1)))
+                (even)))])
+    (setref x 13)
+    (odd)))
+```
+
+> This style of communication is convenient when two procedures might
+> share many quantities; one needs to assign only to the few
+> quantities that change from one call to the next. Similarly, one
+> procedure might call another procedure not directly but through a
+> long chain of procedure calls. They could communicate data directly
+> through a shared variable, without the intermediate procedures
+> needing to know about it. Thus communication through a shared
+> variable can be a kind of information hiding.
+
+一个 class 中相互递归的 methods 也有类似的优点。
 
 ## 4.3 IMPLICIT-REFS: A Language with Implicit References
 
