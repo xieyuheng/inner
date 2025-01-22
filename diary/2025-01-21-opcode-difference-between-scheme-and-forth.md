@@ -6,11 +6,11 @@ date: 2025-01-21
 在实现 forth 时，查找 word 的地方称为 dictionary，
 我称 dictionary entry 为 definition 简称 def。
 在引用一个全局名字时，用 CALL 这个 opcode，
-CALL 先在 dictionary 中 LOOKUP，找到 definition，
+CALL 先在 dictionary 中 GET，找到 definition，
 然后 APPLY 这个 definition。
 
 ```
-CALL = LOOKUP + APPLY
+CALL = GET + APPLY
 ```
 
 类似 EOPL 中的 IMPLICIT-REFS，
@@ -23,14 +23,14 @@ CALL = LOOKUP + APPLY
 没有 definition 的概念，所有东西都是 value。
 value 可以被 apply。
 一个函数调用可以被编译为，
-从 mod 中 LOOKUP value 然后再 APPLY。
+从 mod 中 GET value 然后再 APPLY。
 
-- 在实现 inet-lisp 时，一个问题是每次 LOOKUP 函数时得到的是同一个 function，
-  但是每次 LOOKUP node 时得到的是一个新的 node。
+- 在实现 inet-lisp 时，一个问题是每次 GET 函数时得到的是同一个 function，
+  但是每次 GET node 时得到的是一个新的 node。
 
   - 在逻辑式语言中，当使用 logic variable 来实现 rule 时，
-    每次 LOOKUP 一个 clause 可能需要 refresh 其中的所有 logic variable。
-    所以这种每次 LOOKUP 出来的东西不一样的行为是有先例的。
+    每次 GET 一个 clause 可能需要 refresh 其中的所有 logic variable。
+    所以这种每次 GET 出来的东西不一样的行为是有先例的。
 
 其实在 scheme 中，
 一旦要求实现副作用 `(set! <name> <value>)`，
