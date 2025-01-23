@@ -4,7 +4,7 @@ author: alan bawden
 year: 1986
 ---
 
-# motive
+# Motive
 
 [2025-01-23]
 根据 [wikipedia](https://en.wikipedia.org/wiki/Linear_graph_grammar)：
@@ -85,5 +85,95 @@ year: 1986
 > over some set of types are analogous to the strings over some
 > alphabet, then a connection graph grammar is analogous to the
 > familiar string grammar.
+
+> Figure 3. Example Method.
+
+用 inet-lisp 的语法写：
+
+```scheme
+(define-node cons car cdr up)
+(define-node transistor collector base emitter)
+
+(define-rule*
+    [(cons car x! up)
+     (transistor collector x! emitter)]
+  (connect car collector)
+  (cons) (=> new-car new-cdr new-up)
+  (connect new-cdr new-up)
+  (cons up new-car emitter))
+```
+
+> Only one form of method will appear in the connection graph grammars
+> generated: methods whose left hand side consists of exactly two
+> vertices joined by a single connection. Figure 3 is an example of
+> such a two-vertex method.
+
+虽然 connection graphs 解除了
+interaction nets 中单一 principle port 的限制，
+但是保留了规则中只能出现两个 node 的和一种连接的限制。
+
+# Implementing Connection Graphs
+
+> I shall assume a fairly general description of a parallel computer:
+> a collection of independent processing elements embedded in some
+> communications medium. There is no shared memory -- all information
+> is exchanged by explicit interprocessor communications. There must
+> be some global addressing scheme for processing elements so that it
+> makes sense for one processing element to transmit the address of
+> another to a third party. Each processing element needs at least
+> enough local memory to hold a handful of processing element
+> addresses and small integers.
+
+与 inet-lisp 的 parallel 不同，
+这里拒绝了 shared memory，
+而是用 interprocessor communication。
+
+> It is clear how the representation of a connection graph can be
+> distributed among the processing elements of a parallel computer:
+> individual vertices can be held locally in processing elements, and
+> connections can be implemented by passing around addresses.
+
+> Methods can be applied as a purely local operation. The processing
+> elements that contain the vertices that constitute an instance of
+> the left hand side of some method can agree to replace that subgraph
+> with an instance of the right hand side, without bothering any other
+> processing elements. Thus many methods can be applied in parallel
+> throughout the machine.
+
+但是看上面两段的描述，还是 shared memory multithreading。
+
+> Two-vertex methods are particularly easy to implement because they
+> require the cooperation of at most two processing elements. It is
+> hard to imagine a scheme for parallel computation in which no
+> processing element ever has to cooperate with any other processing
+> element, so this, in some sense, is minimal.
+
+从这一段看来一个 vertex 对应一个 processing element，
+可能 Bawden 想的是 actor model。
+可能 Bawden 没能像 Lafont 一样，
+发现其实可以用 shared memory multithreading。
+
+> Any graph reduction based model can make similar claims of locality;
+> the distinguishing feature of the connection graph model is the
+> _connection_. Other models join objects to each other using
+> pointer-like mechanisms, which allow an unbounded number of other
+> objects to hold references to any given object. In a connection
+> graph a trivalent vertex, for example, is referenced from (connected
+> to) exactly three other places.
+
+比如 propagator model 中，
+一个 propagator 可以和任意多个 cell 相连。
+
+但是这里不能只说和其他 graph rewriting 的区别在于 connection，
+应该说区别在于 linear connection。
+
+也不应该说 pointer 和 connection 有区别，
+其实 linear connection 就是用 pointer 实现的，
+只不过区别在于是否以 linear 的方式使用 pointer。
+
+关于如何实现 Bawden 讲的很混乱，
+还是看看如何编程吧。
+
+# Translating Lisp into a Grammar
 
 TODO
