@@ -4,7 +4,7 @@ author: alan bawden
 year: 1986
 ---
 
-# Motive
+# My Motive
 
 [2025-01-23]
 根据 [wikipedia](https://en.wikipedia.org/wiki/Linear_graph_grammar)：
@@ -254,7 +254,167 @@ closure 可以看成是 object，
 
 conditional 的翻译比较简单，
 直接用 inet 的 rule 自带的 disjunction 就可以。
-注意，和 lambda 一样，这里没有定义一般的 (if) node，
+和 lambda 一样，这里没有定义一般的 (if) node，
 而是给每个 conditional 生成了一个 unique node。
+注意，和 lambda 所生成的 unique node 一样，
+如果规则中有 free variable，
+conditional 所生成的 unique node
+也要带有额外的 port 来处理 free variable。
 
-TODO
+这里 (put)-(cell) 和 (get)-(cell) 之间的规则还是符合 inet 的，
+
+```scheme
+;; I use STATE as port name -- for passing state,
+;; where the paper uses USERS.
+
+(define-node cell value state)
+(define-node put target new state)
+(define-node get target cont state)
+
+(define-rule (put (cell value) new state)
+  (drop value)
+  (cell new state))
+
+(define-rule (get (cell value) cont state)
+  (copy value) (=> first second)
+  (connect cont second)
+  (cell first state))
+```
+
+> The bottom four methods are variations of the same basic idea.
+> They allow PUT and GET operations to propagate from multiple
+> references at the leaves, up the fan-in tree, to the apex,
+> where the state variable can be accessed.
+
+```scheme
+(define-rule*
+    [(put target! new state)
+     (copy value target! second)]
+  (copy (put value new) state second))
+
+(define-rule*
+    [(put target! new state)
+     (copy value first target!)]
+  (copy (put value new) first state))
+
+(define-rule*
+    [(get target! cont state)
+     (copy value target! second)]
+  (copy (get value cont) state second))
+
+(define-rule*
+    [(get target! cont state)
+     (copy value first target!)]
+  (copy (get value cont) first state))
+```
+
+但是 (put)-(copy) 和 (get)-(copy) 之间的规则，
+使得 (put) 和 (get) 可以越过 (copy) 就不符合 inet 了，
+因为按照 inet 的定义，这里所连接的 (copy) 的 port 并不是 principle port。
+如果真的这样定义就会产生 non-deterministic。
+执行 put 和 get 的先后顺序，会影响运算结果。
+
+> Figure 20 demonstrates how a CELL functions.
+
+这里假设了引用同一个局部变量多次时，会有 implicit-copy。
+
+```scheme
+(let ([x (cell 3)])
+  (put x 4)
+  (get x))
+```
+
+如果用 explicit-copy（需要语言能够处理多返回值）：
+
+```scheme
+(define (main cont)
+  (copy (cell 3))
+  (=> c1 c2)
+  (drop (put c1 4))
+  (drop (get c2 cont)))
+```
+
+> That beta-reduction is in some way incompatible with both
+> side-effects and non-determinism is well-known. Connection graphs
+> give us a new way to look at this incompatibility. Expressions have
+> a basically tree-like structure; multiple occurrences of variables
+> in an expression introduce loops into the structure, as in
+> figure 17. When beta-reduction textually substitutes expressions for
+> variables, it eliminates the loops. Therefore, the beta-reduction
+> rule is not sound when the meaning of an expression is taken to be
+> the connection graph it describes.
+
+> Connection graphs are a more realistic way to assign meanings to
+> programming language expressions, because the interactions of
+> expressions with side-effects and non-determinism are explicitly
+> accounted for.
+
+最后这两段有意思，
+lambda calculus 好的性质 -- determinism -- 被说成了不好的。
+并且 lambda calculus 也不是不能处理 side-effects，
+只要稍加扩展就可以了。
+
+# Implementation Status
+
+> A prototype compiler for a connection graph programming language,
+> and a simulator, have been implemented on Symbolics Lisp Machines.
+
+> A code generator for the Thinking Machines Corporation connection
+> machine, a fine grained, massively parallel computer [4], is
+> currently under development.
+
+> A few small test programs have been written. We are just beginning
+> to write our first sizable program, a parallel production system.
+
+这里提到的
+[connection machine](https://en.wikipedia.org/wiki/Connection_Machine)
+是个失败的并行计算机项目。
+
+# Conclusion
+
+> Connection graphs are well suited for implementation on at least the
+> class of parallel computers consisting of independent, communicating
+> processing elements. The mechanism of connections and two-vertex
+> methods makes it easy and natural for such parallel machines to
+> execute a connection graph grammar. With a little work, many common
+> cases of interprocessor communication can be reduced to a single
+> message transmission, and more efficient representations for
+> vertices serving as conventional data structures can be deduced.
+
+> A programming language based on connection graph grammars can be
+> constructed using two-vertex methods to implement a procedure
+> calling and message sending mechanism. The symmetry of connections
+> allow the notions of _object_ and _message_ to emerge in a new light
+> as completely dual concepts. A difficulty arises with respect to
+> multiple occurrences of variables in expressions, but it is shown to
+> be merely an old adversary in new clothing.
+
+# My Conclusion
+
+1986-connection-graphs 是在 Lafont 的 1990-interaction-nets 之前的论文。
+Lafont 没有引用这篇论文，可能是不知道。
+
+这里对计算模型的设计偏重试验，
+没有考虑太多 deterministic 和 termination，
+而 Lafont 通过增加限制来保证 deterministic 的同时，
+还用大量理论篇幅来讨论 termination，
+尽管对 termination 的讨论不是很令人满意。
+
+这篇论文中有趣的 ideas：
+
+（1）给出了一种把 lambda calculus 翻译到 inet 的方案：
+
+- use explicit (call/n) node.
+- function is like object that can only receive (call/n) as message.
+
+（2）给出了 non-determinism 的 inet 的具体例子。
+
+- 没有了 single principle port 的限制，
+  non-determinism 来自一个 node (copy)
+  对其他两个 node (put) (get) 都能反应。
+
+- parallelization 还是可以的，
+  因为 rule 的 "two-vertex" pattern 都是局部的且上下文无关的。
+
+这个作者 Alan Bawden 的论文风格像是其他 Schemers 的论文，
+我读起来很舒服，可以继续读他的博士论文。
