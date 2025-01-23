@@ -252,4 +252,9 @@ closure 可以看成是 object，
 > ordinary programming languages, where all objects are referenced
 > through asymmetrical pointers, this symmetcy doesn't exist.
 
+conditional 的翻译比较简单，
+直接用 inet 的 rule 自带的 disjunction 就可以。
+注意，和 lambda 一样，这里没有定义一般的 (if) node，
+而是给每个 conditional 生成了一个 unique node。
+
 TODO
