@@ -176,4 +176,80 @@ interaction nets 中单一 principle port 的限制，
 
 # Translating Lisp into a Grammar
 
+首先 function call 是用 explicit (call/n) 节点来表示的，
+而不是以 function 本身为节点。
+
+其次是给每个 lambda 所形成的 closure 分配一个 unique node，
+比如这里的 (G0069) 和 (G0257)，
+这些节点和 (call/n) 反应时会产生新的子图。
+
+也就是说，并不是像用 interaction combinators 那样，
+这里并没有一个一般的 (lambda) 节点。
+
+> The introduction of anonymous vertex types, such as G0069, and new
+> methods [rules] for those types, such as the method in figure 6, is
+> a consequence of the declarative nature of LAMBDA-expressions. The
+> graph of a LAMBDA-expression itself is always very simple,
+> consisting of a single vertex of an anonymous type. The body of the
+> LAMBDA-expression declares how that type should behave in
+> conjunction with an appropriate CALL vertex.
+
+这里就是把 closure 编译成 rule，
+而 interaction combinators 是要实现 (lambda) 本身。
+实现 (lambda) 本身的过程，
+其实就类似在 inet 中实现 inet。
+
+如果真的想实现匿名的 (lambda) 而避免生成 unique node，
+可以简单地把 rule 的内容包含在 (lambda) 中。
+
+处理 lambda 中的自由变量的方式就是给所生成的 node 增加 port！
+
+> ... the extra terminal is used to pass the value of the free
+> variable X from where the closure was generated to where it is
+> invoked.
+
+这样就有了一个很简单的把 lambda calculus 翻译到 inet 的方式了。
+
+> Now we can see why we need only consider two-vertex methods: they
+> can be used to capture the basic mechanism of procedure calling. One
+> vertex represents the procedure to be called. Its terminals (except
+> the one connecting it to the other vertex) are the environment of
+> the procedure.  Its type is the procedure code.  The other vertex
+> [(call/n)] is the argument list. Its terminals are the arguments to
+> be passed to the procedure, and the continuation to be connected to
+> the returned value. Its type is used to indicate the operation that
+> should be performed (the procedure should be _called_), and allows a
+> procedure call to be distinguished from a procedure that is merely
+> connected to some static data structure, such as when a procedure is
+> an element of a list built from CONS vertices.
+
+注意，到目前为止这里所用到的 net 都还在 inet 的范围内，
+即，都是带有 single principle port 的 node。
+
+> This suggests how a two-vertex method can also be viewed as a
+> messaae pass [1] [9]. One vertex is the object, the other is the
+> message. The terminals of the object vertex are its instance
+> variables. The terminals of the message vertex are the arguments to
+> the message.
+
+closure 可以看成是 object，
+但是只能接受 (call/n) 这一种信息，
+此时 object 的 instance variables
+与 closure 的 free variables 对应。
+
+> Figure 12 shows the method for an object of type 4
+> receiving an ADD1 message.
+
+显然和 object 与 message 之间的关系是对称的，
+选择把一方看成是 object 另一方看成是 message 只是视角上的选择。
+这与 inet 中 constructor 与 eliminator 之间的对称一样。
+
+> When a two-vertex method is viewed as a message pass, the difference
+> between the message and the object is entirely in the eye of the
+> beholder.  The method could just as well be interpreted in the other
+> way, so that object and message exchange roles!  This symmetry is
+> possible because connections themselves are symmetrical.  In
+> ordinary programming languages, where all objects are referenced
+> through asymmetrical pointers, this symmetcy doesn't exist.
+
 TODO
