@@ -17,8 +17,13 @@ linear logic 首先可以被想象成是 Hilbert 风格的公理系统，
 
 phase space 定义为 commutative monoid 外加一个选定的子集。
 commutative monoid 其实就是 multiset rewriting system。
-所选定的子集可以定义一个 dual 和 closure system，因此形成 lattice。
+所选定的子集可以定义一个 dual 和 closure system，
+因此形成 lattice（称作 facts）。
 因此也可以而与 formal concept analysis 联系起来。
 
 TODO 可否设计一个 typed multiset rewriting language，
 以 linear logic 为其 type system？
+
+给定一个无类型的 multiset rewriting system，
+外加一个指定的子集，可以像 FCA 一样找到 fact lattice，
+也许这个 fact lattice 中的元素就应该是 types。
