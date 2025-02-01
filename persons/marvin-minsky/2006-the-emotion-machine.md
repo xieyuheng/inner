@@ -1,10 +1,12 @@
-#+title: THE EMOTION MACHINE
-#+author: Marvin Minsky
-#+date: 2006
+---
+title: the emotion machine
+author: marvin minsky
+year: 2006
+---
 
-* INTRODUCTION
+# INTRODUCTION
 
-** Xie, How do you think about the "resourcefulness" discussed by the author?
+## Xie, How do you think about the "resourcefulness" discussed by the author?
 
 在寫程序解決問題的時候
 [比如 proof search 這類問題]
@@ -14,7 +16,7 @@
 - reflective think 所要求的，可能不是简单的「根據結果批判」
 那麼就像是智能了
 
-** What is the author's aim in this book?
+## What is the author's aim in this book?
 
 Analysis popular psychology concepts,
 such as "feelings", "emotions" or "consciousness",
@@ -32,7 +34,7 @@ turning certain resources on
 while turning certain others off
 -- and thus changing some ways that our brains behave.
 
-** What is emotion?
+## What is emotion?
 
 Emotional states are not especially different from
 the processes that we call "thinking"; instead,
@@ -45,7 +47,7 @@ although this book will call it "resourcefulness."
 And this applies not only to emotional states
 but to all of our mental activities.
 
-** What does each chapter of this book discuss?
+## What does each chapter of this book discuss?
 
 Every chapter of this book will discuss some of
 the sources of our uniquely human resourcefulness.
@@ -60,20 +62,20 @@ Ch7. We switch among different Ways to Think.
 Ch8. We find multiple ways to represent things.
 Ch9. We build multiple models ofourselves.
 
-* FALLING IN LOVE
+# FALLING IN LOVE
 
-* ATTACHMENTS AND GOALS
+# ATTACHMENTS AND GOALS
 
-* FROM PAIN TO SUFFERING
+# FROM PAIN TO SUFFERING
 
-* CONSCIOUSNESS
+# CONSCIOUSNESS
 
-* LEVELS OF MENTAL ACTIVITIES
+# LEVELS OF MENTAL ACTIVITIES
 
-* COMMON SENSE
+# COMMON SENSE
 
-* THINKING
+# THINKING
 
-* RESOURCEFULNESS
+# RESOURCEFULNESS
 
-* THE SELF
+# THE SELF
