@@ -20,4 +20,19 @@ year: 1967
 但是不知道作者设计了一个计算模型。
 现在要从计算模型和语言设计的角度学习一下。
 
-# TODO
+# 1 physical machines and their abstract counterparts
+# 2 finite-state machines
+# 3 neural networks. automata made up of parts
+# 4 the memories of eventsin finite-state machines
+# 5 computability, effective procedures, and algorithms. infinite machines
+# 6 turing machines
+# 7 universal turing machines
+# 8 limitations of effective computability: some problems not solvable by instruction-obeying machines
+# 9 the computable real numbers
+# 10 the relations betweenturing machines and recursive functions
+# 11 models similarto digital computers
+# 12 the symbol-manipulationsystems of post
+# 13 post's normal-form theorem
+# 14 very simple bases for computability
+# 15 solutions to selected problems
+# 16 suggestions for further readingand descriptor-indexed bibliography
