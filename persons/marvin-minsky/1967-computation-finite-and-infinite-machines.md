@@ -20,7 +20,17 @@ year: 1967
 但是不知道作者设计了一个计算模型。
 现在要从计算模型和语言设计的角度学习一下。
 
+这本书不止介绍 McCulloch-Pitts 的计算模型，
+还介绍了很多其他计算模型。
+
+# preface
+
+TODO
+
 # 1 physical machines and their abstract counterparts
+
+TODO
+
 # 2 finite-state machines
 # 3 neural networks. automata made up of parts
 # 4 the memories of eventsin finite-state machines
