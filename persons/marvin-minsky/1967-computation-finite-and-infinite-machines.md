@@ -85,15 +85,69 @@ Minsky 认为没法精确定义就在技术意义上是无用的。
 如何从一般的带有输入输出的机器，
 发明出来有限状态机。
 
-- 带有输入输出的机器，
-  完全可以想象成是一个带有副作用的 C 函数。
+- t for discrete time
+- H for history
+- input channel S for "stimulus"
+- output channel R for "response"
+
+```
+R(t + 1) = F(H(t), S(t))
+```
+
+带有输入输出的机器，
+完全可以想象成是一个带有副作用的 C 函数。
+此时 t 是调用次数，
+S(t) 是第 t 次调用时的输入，
+R(t) 是第 t 次调用时的输出。
 
 这里有个有趣的观点是，
 一个 machine 的 internal state
 压缩了 input history 中的信息。
 
-有限状态机就是把可能无限的 input history
-压缩到有限个状态。
+有限状态机就是把可能无限的 input history H(t)
+压缩到有限个状态 Q(t)。
+
+```
+R(t + 1) = F(Q(t), S(t))
+```
+
+潜在无限的历史 event 的列表，
+到有限集的映射（会形成等价类），
+可能都可以这样实现。
+
+> This brings us to the key postulate of the theory of finite
+> automata. We assume that the machine can distinguish, by its present
+> and future behavior, between only some finite number of classes of
+> possible histories. These classes will be called the "internal
+> states" of the machine.
+
+在把 input history events H(t) 转化为有限内部状态 Q(t) 之后，
+分析 Q(t) 的依赖关系可以得到状态转化函数 G：
+
+```
+Q(t + 1) = G(Q(t), S(t))
+```
+
+只把有限状态机当作一个 black box 来讨论，
+有点像是范畴论中，用方程来讨论 object 和 arrow 的属性，
+而不能看 object 和 arrow 的内部构造。
+
+一般对有限状态机的定义其实是用内部构造来定义的。
+即 state transition diagrams。
+
+```scheme
+(define-finite-automata <name>
+  (<state> (<event> <new-state> <response>) ...)
+  ...)
+
+(define-finite-automata memory
+  (q0 (s0 q0 r0) (s1 q1 r0))
+  (q1 (s0 q0 r1) (s1 q1 r1)))
+
+(define-finite-automata parity
+  (even (0 even 0) (1 odd 1))
+  (odd (0 odd 0) (1 even 1)))
+```
 
 TODO
 
