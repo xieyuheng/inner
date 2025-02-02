@@ -147,6 +147,15 @@ Q(t + 1) = G(Q(t), S(t))
 (define-finite-automata parity
   (even (0 even 0) (1 odd 1))
   (odd (0 odd 0) (1 even 1)))
+
+;; TODO 2-memory
+;; TODO 3-memory
+
+(define-finite-automata binary-serial-adder
+  ;; n for no curry
+  (n (00 n 0) (01 n 1) (10 n 1) (11 c 0))
+  ;; c for curry
+  (c (00 n 1) (01 c 0) (10 c 0) (11 c 1)))
 ```
 
 TODO
