@@ -75,6 +75,26 @@ Minsky 认为没法精确定义就在技术意义上是无用的。
 
 # 2 finite-state machines
 
+> ... To make this simple, we choose for our parts some very simple
+> devices, the "neurons" of McCulloch and Pitts, and we eventually
+> demonstrate that the theory of all finite automata is equivalent to
+> the theory of these particularly simple elements.
+
+也就是说，要用 neurons 来实现 finite-state machines！
+
+如何从一般的带有输入输出的机器，
+发明出来有限状态机。
+
+- 带有输入输出的机器，
+  完全可以想象成是一个带有副作用的 C 函数。
+
+这里有个有趣的观点是，
+一个 machine 的 internal state
+压缩了 input history 中的信息。
+
+有限状态机就是把可能无限的 input history
+压缩到有限个状态。
+
 TODO
 
 # 3 neural networks. automata made up of parts
