@@ -158,22 +158,59 @@ Q(t + 1) = G(Q(t), S(t))
   (c (00 n 1) (01 c 0) (10 c 0) (11 c 1)))
 ```
 
-TODO
+> What happens if a finite-state machine is left to itself -- that is,
+> if it receives no information from the outside world? That would be
+> the case if the machine receives only a constant input -- that is, a
+> repetitive, unchanging signal.
+
+想象出来这种机器，
+就像是一个离散的随时间而变化的动力系统，
+其运行轨迹一定是 chain (tree) + cycle。
+像是很多分支河流汇入一个主要河流，然后进入一个漩涡。
+
+> ..., different starting states may lead into the same cycle i.e.,
+> different starting chains may merge. But two paths, once merged (by
+> entering a common state) can never diverge again.
+
+以这种想像为基础，
+再进一步去想象如何构造可以接受多种 event 的 machine，
+就获得了一种新的理解。
+
+- 即便是可以接受多种 events，
+  也可以逐个 event 来分析 machine 的结构，
+  即每次假设输入只是一种 event。
+
+到目前为止，对于 finite automata，
+Minsky 已经给出了两种新颖的理解方式了。
+
+真实的计算机也有有限多个状态，
+只不过状态太多了，有 2^n 个状态，
+其中 n 是机器 bit 的个数。
+
+因此，虽然状态数很少时，有限状态机的表达能力很弱，
+但是，只要我们在写规则的时候允许状态和事件带有参数，
+就可以构造出来实用的有限状态机。
+
+当数字大到这种宇宙级别时，
+以有限性为前提对系统做的分析其实已经不适用了。
+
+> THEOREM: No fixed finite-state machine can multiply arbitrarily
+> large pairs of binary (or decimal) numbers.
 
 # 3 neural networks. automata made up of parts
 
 TODO
 
-# 4 the memories of eventsin finite-state machines
+# 4 the memories of events in finite-state machines
 # 5 computability, effective procedures, and algorithms. infinite machines
 # 6 turing machines
 # 7 universal turing machines
 # 8 limitations of effective computability: some problems not solvable by instruction-obeying machines
 # 9 the computable real numbers
-# 10 the relations betweenturing machines and recursive functions
-# 11 models similarto digital computers
-# 12 the symbol-manipulationsystems of post
+# 10 the relations between turing machines and recursive functions
+# 11 models similar to digital computers
+# 12 the symbol-manipulation systems of post
 # 13 post's normal-form theorem
 # 14 very simple bases for computability
 # 15 solutions to selected problems
-# 16 suggestions for further readingand descriptor-indexed bibliography
+# 16 suggestions for further reading and descriptor-indexed bibliography
