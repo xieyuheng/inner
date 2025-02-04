@@ -199,6 +199,22 @@ Minsky 已经给出了两种新颖的理解方式了。
 
 # 3 neural networks. automata made up of parts
 
+每个 neural 都可以被视为有限状态机，
+或者说，上一章的结论其实是：
+任何有有限个状态的机器，
+都不可避免地是有限状态机。
+
+注意，当 Minsky 把（被当作黑箱的）有限状态机组合起来，
+形成 cellular automata 或 neural network 时，
+要求了机器之间时间同步。
+在物理仿真和游戏渲染中，这种要求是常用的，
+但是作为计算模型这个要求是不好的。
+也许换成 Petri nets 可以解决需要同步的问题。
+
+在用有限状态机组成 neural network 时，
+连接方式很自由，连线的输出可以有分支，
+输出的断点可以选择是「激发」还是「抑制」这两种类型。
+
 TODO
 
 # 4 the memories of events in finite-state machines
