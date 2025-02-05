@@ -211,9 +211,84 @@ Minsky 已经给出了两种新颖的理解方式了。
 但是作为计算模型这个要求是不好的。
 也许换成 Petri nets 可以解决需要同步的问题。
 
+- 注意，所画的 state transition diagram
+  是作为黑箱的有限状态机内部的构造，
+  以有限状态机为基本零件，
+  组合成别的计算模型时，
+  每个有限状态机都只是一个节点。
+  对有限状态机而言，只有一个输入 channel 和一个输出 channel，
+  多输入和多输出需要用笛卡尔积来编码。
+  也许 Petri nets 可以直接处理多个输入与多输出。
+
 在用有限状态机组成 neural network 时，
 连接方式很自由，连线的输出可以有分支，
 输出的断点可以选择是「激发」还是「抑制」这两种类型。
+这些连接方式本身就可以利用不同的拓扑来编码很多信息，
+比如用 circle 来实现 memory。
+
+neural networks 不像是 interaction nets，
+而是更像 propagator model。
+因为 interaction nets 是 ported graph，
+而另外两种 graph 不是。
+
+neuron 与 propagator model 中的 cell 保存信息时的机制不同，
+cell 的机制是 lattice 理论，
+而 neuron 可能根本不保存信息（不依赖自身状态的 finite automata），
+而是只能用 circle 所形成的 feedback 来保存信息。
+
+尝试设计一个语言来描述 neural network：
+
+```scheme
+(define-neural-network
+    (and a b -> c)
+  (2 a b -> c))
+
+(define-neural-network
+    (or a b -> c)
+  (1 a b -> c))
+
+(define-neural-network
+    (memory start (- stop) -> output)
+  (2 input control -> output)
+  (1 start stop feedback -> feedback control))
+
+(define-neural-network
+    (gate-with-memory input start (- stop) -> output)
+  (2 input control -> output)
+  (1 start stop feedback -> feedback control))
+```
+
+fizzbuzz in neur:
+
+```
+fizzbuzz* -> fizz* buzz*.
+fizz* -> * -> * -> fizz*.
+buzz* -> * -> * -> * -> * -> buzz*.
+
+start fizzbuzz* program.
+```
+
+fizzbuzz in scheme:
+
+```scheme
+(define-neural-network (fizz in out)
+  (1 (1 (1 in)) out
+   :on (lambda () (println "fizz"))))
+
+(define-neural-network (buzz in out)
+  (1 (1 (1 (1 (1 in)))) out
+   :on (lambda () (println "buzz"))))
+
+(define-neural-network (fizzbuzz in out)
+  (fizz in out)
+  (buzz in out))
+```
+
+neur 的语法问题在于，没法形成 abstraction，
+因为 abstraction 必须就连接进行，而没法就 neuron 进行。
+也许应该完全模仿 propagator model 的二分图。
+
+neur 的一个启发在于，neuron firing 的 event 本身就是程序的输出。
 
 TODO
 

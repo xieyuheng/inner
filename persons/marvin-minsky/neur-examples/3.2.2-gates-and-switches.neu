@@ -1,0 +1,7 @@
+transmitter*: channel1/1*: receiver1*.
+transmitter*: channel2/2*: receiver2*.
+
+control*; channel1*.
+control*: channel2*.
+
+start transmitter* with control*.

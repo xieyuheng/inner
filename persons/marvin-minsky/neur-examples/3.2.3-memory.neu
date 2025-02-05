@@ -1,0 +1,8 @@
+input*: gate/2*: output*.
+
+switch*: control gate*.
+switch*: feedback to switch*.
+on*: switch*.
+off*; switch*.
+
+input* with the switch off*.
