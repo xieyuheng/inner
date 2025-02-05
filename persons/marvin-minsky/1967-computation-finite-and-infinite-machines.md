@@ -284,6 +284,25 @@ fizzbuzz in scheme:
   (buzz in out))
 ```
 
+```scheme
+(define-neural-network fizz
+  (-> start * end)
+  (-> end start))
+
+(define-neural-network buzz
+  (-> start * * * end)
+  (-> end start))
+
+(define-neural-network fizzbuzz
+  (= f (fizz))
+  (= b (buzz))
+  (-> start f.start)
+  (-> start b.start))
+
+(= fb fizzbuzz)
+(! fb.start)
+```
+
 neur 的语法问题在于，没法形成 abstraction，
 因为 abstraction 必须就连接进行，而没法就 neuron 进行。
 也许应该完全模仿 propagator model 的二分图。
