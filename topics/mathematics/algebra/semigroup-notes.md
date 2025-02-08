@@ -10,14 +10,14 @@ year: 2025
 ```scheme
 (define-class semigroup-t ()
   :element-t type-t
-  :mul (-> @element-t @element-t @element-t)
-  :mul-associative
+  :compose (-> @element-t @element-t @element-t)
+  :compose-associative
   (forall ((x @element-t)
            (y @element-t)
            (z @element-t))
     (equal-t @element-t
-      (@mul x (@mul y z))
-      (@mul (@mul x y) z))))
+      (@compose x (@compose y z))
+      (@compose (@compose x y) z))))
 ```
 
 # 典型例子

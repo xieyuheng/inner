@@ -14,8 +14,8 @@ year: 2025
 
 (define-class monoid-t (semigroup-t)
   :id @element-t
-  :id-left (forall ((x @element-t)) (equal-t @element-t (@mul @id x) x))
-  :id-right (forall ((x @element-t)) (equal-t @element-t (@mul x @id) x)))
+  :id-left (forall ((x @element-t)) (equal-t @element-t (@compose @id x) x))
+  :id-right (forall ((x @element-t)) (equal-t @element-t (@compose x @id) x)))
 ```
 
 # 典型例子
@@ -26,7 +26,7 @@ year: 2025
 
 ```scheme
 (define-object nat-monoid (monoid-t)
-  :element-t nat-t :mul add :id zero
+  :element-t nat-t :compose add :id zero
   ...)
 ```
 
