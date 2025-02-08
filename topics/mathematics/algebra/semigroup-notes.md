@@ -10,9 +10,7 @@ year: 2025
 ```scheme
 (define-class semigroup-t ()
   :element-t type-t
-
   :mul (-> @element-t @element-t @element-t)
-
   :mul-associative
   (forall ((x @element-t)
            (y @element-t)
