@@ -8,7 +8,7 @@ year: 2025
 # 形式定义
 
 ```scheme
-(import semigroup-t "semigroup.cic")
+(import semigroup-t semigroup)
 
 (define-class monoid-t (semigroup-t)
   :id @element-t
@@ -23,3 +23,7 @@ TODO
 # 幺半群作用
 
 TODO
+
+# 参考资料
+
+- [Monoid / Wikipedia](https://en.wikipedia.org/wiki/Monoid)
