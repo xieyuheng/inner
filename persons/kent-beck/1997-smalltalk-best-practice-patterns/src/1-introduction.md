@@ -176,6 +176,46 @@ class Station {
   (part-mul a-part a-station:rate))
 ```
 
+
+## Example in scheme -- with -t
+
+```scheme
+(define-class part-t ()
+  (claim amount number-t)
+  (claim date date-t)
+  (define (mul rate)
+    (new part-t
+      :amount (number-mul amount rate)
+      :date date)))
+
+(define-class station-t ()
+  (claim rate number-t)
+  (define (compute-part part)
+    (part:mul @rate)))
+```
+
+在 cicada-lisp 中，`define-class` 时，
+不能有 define，只能有 claim。
+
+```scheme
+(define-class part-t ()
+  :amount number-t
+  :date date-t)
+
+(claim part-mul (-> part-t number-t part-t))
+(define (part-mul part rate)
+  (new part-t
+    :amount (number-mul part:amount rate)
+    :date part:date))
+
+(define-class station-t ()
+  :rate number-t)
+
+(claim station-compute-part (-> station-t part-t part-t))
+(define (station-compute-part station part)
+  (part-mul part station:rate))
+```
+
 # GOOD SOFTWARE
 
 > The patterns here form a system; one that I have developed during my

@@ -1,9 +1,0 @@
-0-preface.md -- use -t postfix
-1-introduction.md -- use -t postfix
-2-patterns.md -- use -t postfix
-3-behavior.md -- use -t postfix
-4-state.md -- use -t postfix
-5-collections.md -- use -t postfix
-6-classes.md -- use -t postfix
-7-formatting.md -- use -t postfix
-8-development-example.md -- use -t postfix
