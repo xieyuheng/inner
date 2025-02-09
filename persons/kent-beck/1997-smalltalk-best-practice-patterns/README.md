@@ -14,7 +14,7 @@ year: 1997
 他是从 Kent Beck 的这本书中了解到
 「用不定冠词来命名变量」这个 ieda 的。
 
-所以我也来学习一下，希望能学到更多好而编程风格。
+所以我也来学习一下，希望能学到更多好的编程风格。
 
 但是我不会直接用 Smalltalk 本身，因为我只喜欢编辑纯文本的代码。
 
@@ -27,7 +27,7 @@ year: 1997
 # Method Protocol
 
 Smalltalk 有 method protocol 的概念，
-其实在动态类型语言中，就是简单地给 method 分组。
+其实在动态类型语言中，就是给一个 class 的所有 methods 分组。
 
 > Put Default Value Methods in a method protocol called “private.”
 
