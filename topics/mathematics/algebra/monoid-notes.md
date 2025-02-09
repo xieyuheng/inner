@@ -10,8 +10,6 @@ year: 2025
 半群是某个类型上，满足结合律的复合运算。
 
 ```scheme
-(import semigroup-t semigroup)
-
 (define-class monoid-t (semigroup-t)
   :id @element-t
   :id-left (forall ((x @element-t)) (equal-t @element-t (@compose @id x) x))
@@ -55,6 +53,10 @@ linux 的 relative path 的集合，构成一个幺半群。
 比如 relative path 能作用于 absolute path 的集合，
 对某个 absolute path 求作用，
 能计算出两个 relative path 是否相等。
+
+# 作为特殊的范畴
+
+一个范畴中固定一个 object，就是一个幺半群。
 
 TODO
 
