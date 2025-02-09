@@ -17,7 +17,7 @@ date: 2024-09-28
 
 - 还是保留 Exp 与 Value 的区分。
 
-- 不在用 Core 来实现 elaboration，
+- 不再用 Core 来实现 elaboration，
   尝试用 propagator 所带来的
   reactive programming 功能来实现 elaboration。
 

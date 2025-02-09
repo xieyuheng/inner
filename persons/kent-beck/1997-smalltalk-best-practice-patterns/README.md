@@ -21,6 +21,9 @@ year: 1997
 - 也许可以尝试一下 squeak，感觉跑起来还挺简单的。
 - 也许我可以用想像中的 lisp 来写这本书里代码的例子。
 
+[2025-02-09] 用冠词命名并不是个好主意，
+应该反过来用 -t 后缀来命名类型。
+
 # Method Protocol
 
 Smalltalk 有 method protocol 的概念，
