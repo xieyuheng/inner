@@ -64,3 +64,8 @@ date: 2024-09-18
 注意，inet-lisp 中，
 node constructor 是带有 auto currying 的，
 并且其语义与 function 的 auto currying 不同。
+
+如果允许不同类型的 value 有不同的 auto currying，
+- 禁止 generic auto currying。
+- 允许 function auto currying。
+就可以了。
