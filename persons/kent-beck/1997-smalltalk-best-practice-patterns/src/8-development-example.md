@@ -51,7 +51,7 @@ Money>>setAmount: aNumber currency: aSymbol
 在 cicada-lisp 中可以直接用 `create`。
 
 ```scheme
-(create money
+(new money
   :amount a-number
   :currency a-symbol)
 ```
@@ -79,7 +79,7 @@ Money
 ```
 
 ```scheme
-(create money
+(new money
   :amount 5
   :currency 'USD)
 ;; 5 USD
@@ -108,12 +108,12 @@ m1 + m2 "12 USD"
 
 ```scheme
 (define (add (x money) (y money))
-  (create money
+  (new money
     :amount (add x:amount y:money)
     :currency x:currency))
 
-(let ((m1 (create money :amount 5 :currency 'USD))
-      (m2 (create money :amount 7 :currency 'USD)))
+(let ((m1 (new money :amount 5 :currency 'USD))
+      (m2 (new money :amount 7 :currency 'USD)))
   (add m1 m2)) ;; 12 USD
 ```
 
@@ -133,7 +133,7 @@ MoneySum>>setMonies: aCollection
 (define-class money-sum ()
   :monies (list money))
 
-(create money-sum :money a-collection)
+(new money-sum :money a-collection)
 ```
 
 ```smalltalk
@@ -183,11 +183,11 @@ m1 + m2 "5 USD + 7 GBP"
 ```scheme
 (define (add (x money) (y money))
   (if (eq? x:currency y:currency)
-    (create money :amount x:amount y:amount)
-    (create money-sum :monies [x y])))
+    (new money :amount x:amount y:amount)
+    (new money-sum :monies [x y])))
 
-(let ((m1 (create money :amount 5 :currency 'USD))
-      (m2 (create money :amount 7 :currency 'GBP)))
+(let ((m1 (new money :amount 5 :currency 'USD))
+      (m2 (new money :amount 7 :currency 'GBP)))
   (add m1 m2)) ;; 5 USD + 7 GBP
 ```
 
@@ -229,11 +229,11 @@ generic function 的优势一下就体现出来了，
 
 ```scheme
 (define (add (x money-sum) (y money))
-  (create money-sum
+  (new money-sum
     :monies (cons x:monies y)))
 
-(let ((m1 (create money :amount 5 :currency 'USD))
-      (m2 (create money :amount 7 :currency 'USD)))
+(let ((m1 (new money :amount 5 :currency 'USD))
+      (m2 (new money :amount 7 :currency 'USD)))
   (add m1 (add m1 m2))) ;; 5 USD + 7 GBP + 5 USD
 ```
 
@@ -258,11 +258,11 @@ m2 := Money
 (define (add (x money) (y money-sum)) (add y x))
 
 (define (add (x money-sum) (y money-sum))
-  (create money-sum
+  (new money-sum
     :monies (append x:monies y:monies)))
 
-(let ((m1 (create money :amount 5 :currency 'USD))
-      (m2 (create money :amount 7 :currency 'USD)))
+(let ((m1 (new money :amount 5 :currency 'USD))
+      (m2 (new money :amount 7 :currency 'USD)))
   (add (add m1 m2) (add m1 m2))) ;; 7 GBP + 5 USD + 7 GBP + 5 USD
 ```
 

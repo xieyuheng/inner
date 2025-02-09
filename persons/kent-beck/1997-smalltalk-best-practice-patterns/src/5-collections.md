@@ -122,7 +122,7 @@ owners
 
 ```scheme
 (define (owners (self app))
-  (let ((results (create list)))
+  (let ((results (new list)))
     (foreach self:accounts
       (lambda (an-account)
         (let ((an-owner an-account:owner))
@@ -131,7 +131,7 @@ owners
     results)))
 
 (define (owners (self app))
-  (let ((results (create set)))
+  (let ((results (new set)))
     (foreach self:accounts
        (lambda (an-account) (set-add! results an-owner)))
   results))
@@ -196,7 +196,7 @@ Library>>hasAuthor: authorString title: titleString
        (equal? x:author x:author)))
 
 (define (has-author? (self library) (author string) (title string))
-  (let ((a-book (create book :author author :title title)))
+  (let ((a-book (new book :author author :title title)))
     (includes? self:books a-book)))
 ```
 

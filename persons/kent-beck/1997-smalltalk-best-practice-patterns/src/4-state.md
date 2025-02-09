@@ -136,7 +136,7 @@ Kent 在此批判某些 lisper 用 assositive list 作为 object 的行为。
 </question>
 
 对于 cicada-lisp 来说，
-就是 `(create <class> :key value ...)`。
+就是 `(new <class> :key value ...)`。
 
 静态类型语言，一般会直接从语言层面上禁止未初始化的 instances variables 之存在。
 
@@ -338,7 +338,7 @@ Book>>title: aString
 
 
 (define a-book
-  (create book
+  (new book
     :author "Xie Yuheng"
     :title "Cicada Monologues"))
 
@@ -623,7 +623,7 @@ Rectangle>>bottomRight
 (define (bottom-right (self rectangle))
   (let ((right (add self:left self:width))
         (bottom (add self:top self:height)))
-    (create point :x right :y bottom)))
+    (new point :x right :y bottom)))
 ```
 
 than you can:
@@ -635,7 +635,7 @@ Rectangle>>bottomRight
 
 ```scheme
 (define (bottom-right (self rectangle))
-  (create point
+  (new point
     :x (right (add self:left self:width))
     :y (bottom (add self:top self:height))))
 ```

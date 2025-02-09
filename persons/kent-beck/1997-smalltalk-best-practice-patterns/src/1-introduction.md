@@ -117,7 +117,7 @@ class Station {
   (claim amount number)
   (claim date date)
   (define (mul a-rate)
-    (create part
+    (new part
       :amount (number-mul amount a-rate)
       :date date)))
 
@@ -141,7 +141,7 @@ class Station {
   :date date)
 
 (define (part-mul (a-part part) (a-rate number))
-  (create part
+  (new part
     :amount (number-mul a-part:amount a-rate)
     :date a-part:date))
 
@@ -164,7 +164,7 @@ class Station {
 
 (claim part-mul (-> part number part))
 (define (part-mul a-part a-rate)
-  (create part
+  (new part
     :amount (number-mul a-part:amount a-rate)
     :date a-part:date))
 

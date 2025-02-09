@@ -34,7 +34,7 @@ year: 1979
 ## Simple Constraints
 
 ```scheme
-(create zap adder)
+(new zap adder)
 ;; 也许等价于
 (define zap (adder))
 
@@ -155,7 +155,7 @@ zap.args.a2.why()
 但是逻辑式语言的实践告诉我们，使用同名变量是没问题的。
 
 ```scheme
-==> (create foo multiplier)
+==> (new foo multiplier)
 FOO
 ==> (== (>> product foo) (>> a1 zap))
 IDENTITY

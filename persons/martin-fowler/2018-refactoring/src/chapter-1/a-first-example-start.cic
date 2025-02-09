@@ -2,7 +2,7 @@
   (let ((total-amount 0)
         (volume-credits 0)
         (result "Statement for $(invoice :customer)\n" )
-        (format (create intl-number-format
+        (format (new intl-number-format
                   :lang "en-US"
                   :style "currency"
                   :currency "USD"

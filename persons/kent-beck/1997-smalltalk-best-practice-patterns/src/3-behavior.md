@@ -94,10 +94,10 @@ Point class>>r: radiusNumber theta: thetaNumber
 ```
 
 ```scheme
-(create point :x 0 :y 0)
+(new point :x 0 :y 0)
 
 (define (polar-point (:radius radius number) (:theta theta number))
-  (create point
+  (new point
     :x (cos (mul radius theta))
     :y (sin (mul radius theta))))
 ```
@@ -138,7 +138,7 @@ smalltalk 在 message 的名字上有些不对称 -- `setX:y:`，
 也许应该是前缀表达式应该写作 `(set-x-y x y)`。
 
 ```scheme
-(define a-point (create point :x x :y y))
+(define a-point (new point :x x :y y))
 
 (define (assign-x! (a-point point) (x number))
   (assign! a-point :x x))
@@ -175,9 +175,9 @@ Number>>@ aNumber
 
 ```scheme
 (define (p (x number) (y number))
-  (create point :x x :y y))
+  (new point :x x :y y))
 
-(create point :x x :y y)
+(new point :x x :y y)
 (p x y)
 ```
 
@@ -435,7 +435,7 @@ Obligation>>sendTask: aTask job: aJob
               (:task a-task task)
               (:job a-job job))
   (compute
-   (create task-sender
+   (new task-sender
      :obligation an-obligation
      :task a-task
      :job a-job)))
@@ -1045,7 +1045,7 @@ SubFigure>>initialize
 
 ```scheme
 (define (create-super-figure)
-  (create super-figure
+  (new super-figure
     :color color-white
     :size 0))
 
@@ -1121,10 +1121,10 @@ Vector>>do: aBlock
   :elements collection)
 
 (define (create-vector (n integer))
-  (create vector :elements (create-array n)))
+  (new vector :elements (create-array n)))
 
 (define (map (a-vector vector) (f function))
-  (create vector
+  (new vector
     :elements (map a-vector:elements f)))
 ```
 
@@ -1135,10 +1135,10 @@ Vector>>do: aBlock
   :elements (collection number))
 
 (define (create-vector (n integer))
-  (create vector :elements (create-array n)))
+  (new vector :elements (create-array n)))
 
 (define (map (a-vector vector) (f (-> number number)))
-  (create vector
+  (new vector
     :elements (map a-vector:elements f)))
 ```
 
@@ -1265,7 +1265,7 @@ ListPane>>initialize
 (define (print-element (self list-pane) (an-object object))
   (self:print-message an-object))
 
-(create list-pane
+(new list-pane
   :print-message print-string)
 ```
 
