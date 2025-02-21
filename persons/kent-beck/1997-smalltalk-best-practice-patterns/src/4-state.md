@@ -162,7 +162,7 @@ Timer>>count
 ```scheme
 (define (count (self timer))
   (if (nil? self:count)
-    (assign! self :count self:default-count))
+    (assign self :count self:default-count))
   self:count)
 ```
 
@@ -332,9 +332,9 @@ Book>>title: aString
   self:title)
 
 (define (author (self book) (a-string string))
-  (assign! self :author a-string))
+  (assign self :author a-string))
 (define (title (self book) (a-string string))
-  (assign! self :title a-string))
+  (assign self :title a-string))
 
 
 (define a-book
@@ -346,7 +346,7 @@ Book>>title: aString
 (author a-book "xyh")
 
 a-book:author
-(assign! a-book :author "xyh")
+(assign a-book :author "xyh")
 ```
 
 ## Collection Accessor Method
@@ -402,7 +402,7 @@ removeEmployee: anEmployee
 
 (define (total-salary (self department))
   (if (nil? self:total-salary)
-    (assign! self :total-salary
+    (assign self :total-salary
       (compute-total-salary self)))
   self:total-salary)
 
@@ -413,7 +413,7 @@ removeEmployee: anEmployee
     self:employees))
 
 (define (clear-total-salary (self department))
-  (assign! self :total-salary nil))
+  (assign self :total-salary nil))
 
 ...
 (remove a-department:employees an-employee)

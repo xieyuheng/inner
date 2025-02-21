@@ -127,13 +127,13 @@ owners
       (lambda (an-account)
         (let ((an-owner an-account:owner))
           (if (not (includes? results an-owner))
-            (list-push! results an-owner))))
+            (list-push results an-owner))))
     results)))
 
 (define (owners (self app))
   (let ((results (new set)))
     (foreach self:accounts
-       (lambda (an-account) (set-add! results an-owner)))
+       (lambda (an-account) (set-add results an-owner)))
   results))
 ```
 

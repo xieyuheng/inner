@@ -140,10 +140,10 @@ smalltalk 在 message 的名字上有些不对称 -- `setX:y:`，
 ```scheme
 (define a-point (new point :x x :y y))
 
-(define (assign-x! (a-point point) (x number))
-  (assign! a-point :x x))
+(define (assign-x (a-point point) (x number))
+  (assign a-point :x x))
 
-(assign-x! a-point x)
+(assign-x a-point x)
 ```
 
 ## Shortcut Constructor Method
@@ -274,10 +274,10 @@ isEmpty
 
 ```scheme
 (define (make-on (a-switch switch))
-  (assign! a-switch :status 'on))
+  (assign a-switch :status 'on))
 
 (define (make-off (a-switch switch))
-  (assign! a-switch :status 'off))
+  (assign a-switch :status 'off))
 
 (define (update (a-wall-plate wall-plate))
   (match a-wall-plate:switch:status
@@ -1051,7 +1051,7 @@ SubFigure>>initialize
 
 (define (create-sub-figure)
   (let ((a-figure (create-super-figure)))
-    (assign! a-figure :color color-beige)))
+    (assign a-figure :color color-beige)))
 ```
 
 ## Delegation

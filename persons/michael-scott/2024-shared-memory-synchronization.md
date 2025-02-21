@@ -160,7 +160,84 @@ atomicity 比 condition synchronization 更复杂，
 
 ## 1.3 Spinning Versus Blocking
 
-TODO
+> Just as synchronization patterns tend to fall into two main camps
+> (atomicity and condition synchronization), so too do their
+> implementations: they all employ _spinning_ or _blocking_.
+
+> For isolated condition synchronization,
+> it takes the form of a trivial loop:
+
+```
+while ¬condition
+  // do nothing (spin)
+```
+
+> For mutual exclusion, the simplest implementation employs a special
+> hardware instruc-tion known as `test_and_set` (TAS). The TAS
+> instruction, available on almost every modern machine, sets a
+> specified Boolean variable to true and returns the previous
+> value. Using TAS, we can implement a trivial _spin lock_:
+
+```scheme
+(define-class lock-t ()
+  :locked? bool-t)
+
+(define (lock-acquire lock)
+  (while (test-and-set lock:locked?)
+    (spin)))
+
+(define (lock-release lock)
+  (assign lock :locked? false))
+```
+
+> The obvious objection to spinning (also known as _busy-waiting_) is
+> that it wastes processor cycles. In a multiprocessor system it is
+> often preferable to _block_ -- to yield the processor core to some
+> other, runnable thread. The prior thread may then be run again later
+> -- either after some suitable interval of time (at which point it
+> will check its condition, and possibly yield, again), or at some
+> particular time when another thread has determined that the
+> condition is finally true.
+
+> The software responsible for choosing which thread to execute when
+> is known as a _scheduler_.
+
+为了解决我在实现 inet-lisp 中遇到的问题，
+我可能也需要实现一个 scheduler 来协调 worker threads 的工作。
+
+> While blocking saves cycles that would otherwise be wasted on
+> fruitless re-checks of a condition or lock, it _spends_ cycles on
+> the context switching overhead required to change the running
+> thread. If the average time that a thread expects to wait is less
+> than twice the context switch time, spinning will actually be faster
+> than blocking. ... Finally, as we shall see in Chapter 7, blocking
+> (otherwise known as _scheduler-based synchronization_) must be built
+> _on top_ of spinning, because the data structures used by the
+> scheduler itself require synchronization.
+
+> **Processes, Threads, and Tasks**
+>
+> Like “concurrent” and “parallel,” the terms “process,”
+> “thread,” and “task” are used in different ways by different
+> authors. In the most common usage (adopted here), a thread is an
+> active computation that has the potential to share variables with
+> other, concurrent threads. A process is a set of threads, together
+> with the address space and other resources (e.g., open files) that
+> they share. A task is a well-defined (typically small) unit of work
+> to be accomplished -- most often the closure of a subroutine with
+> its parameters and referencing environment. Tasks are passive
+> entities that may be executed by threads. They are invariably
+> implemented at user level. The reader should beware, however, that
+> this terminology is not universal. Many papers (particularly in
+> theory) use “process” where we use “thread.” Ada uses “task”
+> where we use “thread.” The Mach operating system uses “task”
+> where we use “process.” And some systems introduce additional
+> words -- e.g., “activation,” “fiber,” “filament,” or “hart.”
+
+在这里所采纳的 "thread 所执行的 task" 这种对 "task" 的用法之外，
+我的 inet-lisp 实现中对 "task" 还有一个用法，
+即 `worker_t` has a queue of `task_t`。
+而 thread 所执行的 task 是 `run(worker)`。
 
 ## 1.4 Safety and Liveness
 
