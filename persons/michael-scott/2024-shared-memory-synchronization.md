@@ -241,9 +241,86 @@ while ¬condition
 
 ## 1.4 Safety and Liveness
 
-TODO
+> Whether based on spinning or blocking, a correct implementation of
+> synchronization requires both _safety_ and _liveness_.
+>
+> - Informally, safety means that bad things never happen:
+>
+>   - we never have two threads in a critical section for the same
+>     lock at the same time;
+>
+>   - we never have all of the threads in the system blocked.
+>
+> - Liveness means that good things eventually happen:
+>
+>   - if lock L is free and at least one thread is waiting for it,
+>     some thread eventually acquires it;
+>
+>   - if queue Q is nonempty and at least one thread is waiting to
+>     remove an element, some thread eventually does.
+
+> A bit more formally, for a given program and input,
+> running on a given system,
+
+> - safety properties
+>   can always be expressed as predicates P on reachable system states S
+>   -- that is, `∀S[P(S)]`.
+
+```cicada
+forall (S: ReachableState) P(S)
+```
+
+> - liveness properties require at least one extra level of quantification:
+>   `∀S[P(S) → ∃T[Q(T)]]`,
+>   where T is a subsequent state in the _same execution_ as S,
+>   and Q is some other predicate on states.
+
+```cicada
+forall (S: ReachableState)
+  (P(S)) -> exists (T: SubsequentState(S)) Q(T)
+```
+
+> From a practical perspective, liveness properties tend to be harder
+> than safety to ensure -- or even to define; from a formal
+> perspective, they tend to be harder to prove.
+
+注意，这里的 `ReachableState` 和 `SubsequentState`，
+都可以用开篇提出的 "多个 event 序列，外加全局状态" 来理解。
+
+这里提出了三种 liveness：
+
+- livelock freedom
+- starvation freedom
+- fairness
+
+TODO 结合 lock 的例子，以及后续的例子充分理解这三种 liveness。
+TODO 按照 liveness 的格式，定义这三种 liveness。
+
+deadlock freedom 是一种 safety （而不是 liveness）。
+
+TODO 按照 safety 的格式给出具体定义。
+
+> **Multiple Meanings of “Blocking”**
+>
+> “Blocking” is another word with more than one meaning. In this
+> chapter, we are using it in an implementation-oriented sense, as a
+> synonym for “de-scheduling” (giving the underlying kernel thread
+> or hardware core to another user or kernel thread). In a similar
+> vein, it is sometimes used in a “systems” context to refer to an
+> operation (e.g., a “blocking” I/O request) that waits for a
+> response from some other system component. In Chapter 3, we will use
+> it in a more formal sense, as a synonym for “unable to make forward
+> progress on its own.” To a theoretician, a thread that is spinning
+> on a condition that must be made true by some other thread is just
+> as “blocked” as one that has given up its kernel thread or
+> hardware core, and will not run again until some other thread tells
+> the scheduler to resume it.  Which definition we have in mind should
+> usually be clear from context.
 
 # 2 Architectural Background
+
+TODO
+
 # 3 Essential Theory
 # 4 Practica Spin Locks
 # 5 Busy-Wait Synchronization with Conditions
