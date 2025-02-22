@@ -353,6 +353,43 @@ TODO 按照 safety 的格式给出具体定义。
 
 ### 2.1.2 Cache Coherence
 
+> On a shared-memory parallel system, by contrast -- unless we do
+> something special -- data in upper levels of the memory hierarchy
+> may no longer be up-to-date if they have been modified by some
+> thread on another core.
+
+这么说来，memory cache 看起来是为 single-core 设计的，
+当使用 multi-core 时，memory cache 会引发新的 cache coherence 问题。
+
+> A _cache-coherent_ parallel system is one in which
+>
+> - (1) changes to data, even when cached, are guaranteed to become
+>    visible to all threads, on all cores, within a bounded (and
+>    typically small) amount of time;
+>
+> - (2) changes to the same location are seen in the same order by all
+>    threads.
+
+> On almost all modern machines, coherence is achieved by means of
+> an _invalidation-based cache coherence protocol_.
+
+### 2.1.3 Processor (Core) Locality
+
+对于 inet-lisp 而言，thread locality 可能意味着，
+worker threads 不应该每次都把新产生的 tasks 返回给 scheduler，
+而是应该尽量自己处理自己产生的新 tasks，
+只有在需要 balance 的时候才把多余的 tasks 返回给 scheduler。
+
+> For busy-wait synchronization algorithms, it is particularly
+> important to minimize the extent to which different threads may spin
+> on the same location -- or locations in the same cache
+> block. Spinning with a write on a shared location -- as we did in
+> the `test_and_set` lock of Sec. 1.3, is particularly deadly: ...
+
+一旦要考虑 cache，需要考虑的因素就太多了。
+
+## 2.2 Memory Consistency
+
 TODO
 
 # 3 Essential Theory
