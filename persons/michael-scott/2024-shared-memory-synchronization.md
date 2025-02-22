@@ -319,6 +319,18 @@ TODO 按照 safety 的格式给出具体定义。
 
 # 2 Architectural Background
 
+## 2.1 Cores and Caches: Basic Shared-Memory Architecture
+
+> In a so-called symmetric machine, all memory banks are equally
+> distant from every processor core. Symmetric machines are sometimes
+> said to have a _uniform memory access_ (UMA) architecture. More
+> common today are _nonuniform memory access_ (NUMA) machines, in
+> which each memory bank is associated with a processor (or in some
+> cases with a multi-processor node), and can be accessed by cores of
+> the local processor more quickly than by cores of other processors.
+
+也就是说，两个 core 访问同一块内存的时候速度可能不同。
+
 TODO
 
 # 3 Essential Theory
