@@ -406,11 +406,47 @@ TODO 先略过。
 
 # 3 Essential Theory
 
-TODO
+> Concurrent algorithms and synchronization techniques have a long and
+> very rich history of formalization -- far too much to even survey
+> adequately here.
+>
+> - Arguably the most accessible resource for practitioners is the
+>   text of Herlihy et al. (2021).
+>
+> - Deeper, more mathematical coverage can be found in the text of
+>   Schneider (1997).
+
+> - On the broader topic of distributed computing (which as noted in
+>   the box on Chapter 1 is viewed by theoreticians as a superset of
+>   shared-memory concurrency), interested readers may wish to consult
+>   the classic text of Lynch (1996).
+
+1997-on-concurrent-programming--fred-b-schneider.djvu
+这本书介绍了逻辑相关的形式化方法，
+值得看一看。
+
+## 3.1 Safety
+
+TODO 想要看懂这一章，需要先能看懂伪代码中的 `||` 参数标记。
 
 # 4 Practica Spin Locks
 # 5 Busy-Wait Synchronization with Conditions
 # 6 Read-Mostly Atomicity
 # 7 Synchronization and Scheduling
+
+> So far in this monograph, we have emphasized busy-wait
+> synchronization. In the current chapter we turn to mechanisms built
+> on top of a _scheduler_, which multiplexes some collection of cores
+> among a (typically larger) set of threads, switching among them from
+> time to time and -- in particular -- when the current thread needs
+> to wait for synchronization.
+
+## 7.1 Scheduling
+
+TODO
+
 # 8 Nonblocking Algorithms
+
+TODO 想要看懂这一章，需要先能看懂伪代码中的 `||` 参数标记。
+
 # 9 Transactional Memory
