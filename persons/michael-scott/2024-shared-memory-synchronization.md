@@ -331,6 +331,28 @@ TODO 按照 safety 的格式给出具体定义。
 
 也就是说，两个 core 访问同一块内存的时候速度可能不同。
 
+### 2.1.1 Temporal and Spatial Locality
+
+> In both sequential and parallel programs, performance can usually be
+> expected to correlate with the temporal and spatial locality of
+> memory references. If a given location `l` is accessed more than
+> once by the same thread (or perhaps by different threads on the same
+> core or cluster), performance is likely to be better if the two
+> references are close together in time (temporal locality). The
+> benefit stems from the fact that `l` is likely still to be in cache,
+> and the second reference will be a hit instead of a miss.
+
+> Similarly, if a thread accesses location `l2` shortly after `l1`,
+> performance is likely to be better if the two locations have nearby
+> addresses (spatial locality). Here the benefit stems from the fact
+> that `l1` and `l2` are likely to lie in the same _cache line_, so
+> `l2` will have been loaded into cache as a side effect of loading
+> `l1`.
+
+无奈的 abstraction leak。
+
+### 2.1.2 Cache Coherence
+
 TODO
 
 # 3 Essential Theory
