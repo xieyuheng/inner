@@ -76,8 +76,8 @@ event 序列之间错误的交替情况。
 >
 > At the level of hardware devices, the distinction between shared
 > memory and message passing disappears: we can think of a memory cell
-> as a simple process that receives load and store messages from more
-> complicated processes, and sends value and ok messages,
+> as a simple process that receives `load` and `store` messages from
+> more complicated processes, and sends `value` and `ok` messages,
 > respectively, in response. While theoreticians often think of things
 > this way (the annual PODC [Symposium on Principles of Distributed
 > Computing] and DISC [International Symposium on Distributed
