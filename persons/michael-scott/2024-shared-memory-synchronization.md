@@ -390,9 +390,38 @@ worker threads 不应该每次都把新产生的 tasks 返回给 scheduler，
 
 ## 2.2 Memory Consistency
 
-TODO 先略过。
+这一章介绍了重要的关于伪代码的术语，没法跳过。
+
+> On a single-core machine, it is relatively straightforward to ensure
+> that instructions appear to complete in execution order. Ideally,
+> one might hope that a similar guarantee would apply to parallel
+> machines -- that memory accesses, system-wide, would appear to
+> constitute an interleaving (in execution order) of the accesses of
+> the various cores.  For several reasons, this sort of _sequential
+> consistency_ (Lamport 1979) imposes nontrivial constraints on
+> performance.
+
+这里的 "execution order" 可以理解为 "given order"。
+
+> Most real machines implement a more _relaxed_ (i.e., potentially
+> inconsistent) memory model, in which accesses by different threads,
+> or to different locations by the same thread, may appear to occur
+> “out of order” from the perspective of threads on other cores.
+
+比如由于需要将某个 core 的 memory cache 的信息同步给其他 cores。
+
+> When consistency is required, programmers (or compilers) must employ
+> special _synchronizing instructions_ that are more strongly ordered
+> than other, “ordinary” instructions, forcing the local core to
+> wait for various classes of potentially in-flight
+> events. Synchronizing instructions are an essential part of
+> synchronization algorithms on any non-sequentially consistent
+> machine.
 
 ### 2.2.1 Sources of Inconsistency
+
+TODO
+
 ### 2.2.2 Special Instructions to Order Memory Access
 ### 2.2.3 Example Architectures
 
