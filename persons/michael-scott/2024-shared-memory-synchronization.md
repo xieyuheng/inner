@@ -390,9 +390,24 @@ worker threads 不应该每次都把新产生的 tasks 返回给 scheduler，
 
 ## 2.2 Memory Consistency
 
-TODO
+TODO 先略过。
+
+### 2.2.1 Sources of Inconsistency
+### 2.2.2 Special Instructions to Order Memory Access
+### 2.2.3 Example Architectures
+
+## 2.3 Atomic Primitives
+
+TODO 先略过。
+
+### 2.3.1 The ABA Problem
+### 2.3.2 The Value of FAA
+### 2.3.3 Other Synchronization Hardware
 
 # 3 Essential Theory
+
+TODO
+
 # 4 Practica Spin Locks
 # 5 Busy-Wait Synchronization with Conditions
 # 6 Read-Mostly Atomicity
