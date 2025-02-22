@@ -420,14 +420,38 @@ worker threads 不应该每次都把新产生的 tasks 返回给 scheduler，
 
 ### 2.2.1 Sources of Inconsistency
 
-TODO
+> Inconsistency is a natural result of common architectural features.
+
+> - In an _out-of-order_ processor, for example -- one that can
+>   execute instructions in any order consistent with (thread-local)
+>   data dependences -- a write must be held in the _reorder buffer_
+>   until all instructions that precede it in program order have
+>   completed.
+
+> - Likewise, since almost any modern processor can generate a burst
+>   of `store` instructions faster than the underlying memory system
+>   can absorb them, even writes that are logically ready to commit
+>   may need to be buffered for many cycles. The structure that holds
+>   these writes is known as a _store buffer_.
+
+两个产生表面 ordering loop 的例子。
+
+- 理解指令执行过程的模型需要更复杂，
+  需要考虑到指令的效果传播到不同 core 的时间。
 
 ### 2.2.2 Special Instructions to Order Memory Access
+
+这一章很重要，因为规定了后面要频繁使用的 pseudocode 的语法。
+
+TODO
+
 ### 2.2.3 Example Architectures
+
+TODO
 
 ## 2.3 Atomic Primitives
 
-TODO 先略过。
+TODO
 
 ### 2.3.1 The ABA Problem
 ### 2.3.2 The Value of FAA
