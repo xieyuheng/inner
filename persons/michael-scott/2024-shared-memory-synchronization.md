@@ -441,13 +441,125 @@ worker threads 不应该每次都把新产生的 tasks 返回给 scheduler，
 
 ### 2.2.2 Special Instructions to Order Memory Access
 
-这一章很重要，因为规定了后面要频繁使用的 pseudocode 的语法。
+本书的开篇提到了并发程序的难点在于：
+两个 thread 的 event 序列可能相互 interleaving。
 
-TODO
+而这一章提到的需要程序员指明的 local order 在于：
+processor 可能会不按顺序运行某个 thread 中的 instructions。
+
+- 这一章很重要，因为规定了后面要频繁使用的 pseudocode 的语法。
+
+  主要是一种「局部不可交换性」的标记。
+
+  在一个 thread 中，由于没有用到 shared variable，也没有 conditional，
+  所以表面上没有依赖关系的 instructions，
+  在另外的 thread 中可能会由于 conditional 而产生依赖关系。
+
+  - 由 conditional 导致的依赖关系，
+    也可能会因为 processor 猜测 conditional 的结果而失效。
+
+TODO Figure 2.5 -- local order 影响多线程程序语义的例子。
+
+> Identifying a minimal set of ordering instructions to ensure the
+> correctness of a given algorithm on a given machine is a difficult
+> and error-prone task.4 In fact, the minimal fencing problem has been
+> shown to be NP hard even for straightline programs when there are
+> only two types of fences (Taheri et al. 2019).
+
+> We have made a good-faith effort -- especially in Chapters 4 through
+> 6 -- to explicitly specify near-minimal ordering constraints. For
+> more complex algorithms -- including most of those presented in
+> Chapter 8 -- we revert to unlabeled `load` and `store` instructions,
+> which are fully ordered by default.
+
+注意，minimal fencing 是一种优化，
+默认用 sequentially consistent 就可以。
+
+- C 关于 memory order 的文档：
+
+  - https://en.cppreference.com/w/c/atomic/memory_order
+  - https://en.cppreference.com/w/c/atomic
+  - https://en.cppreference.com/w/c/header/stdatomic
 
 ### 2.2.3 Example Architectures
 
-TODO
+> Hill (1998) has argued that the overhead of sequential consistency
+> need not be onerous, particularly in comparison to its conceptual
+> benefits.
+
+- Mark D. Hill.
+  Multiprocessors should support simple memory-consistency models.
+  Computer, 31(8):28–34, 1998.
+
+> Most machines today, however, fall into two broad classes of more
+> relaxed alternatives.
+
+> - On the SPARC, x86 (both 32- and 64-bit), and IBM z Series, reads
+>   are allowed to bypass writes, but `R||R`, `R||W`, and `W||W`
+>   orderings are all guaranteed to be respected by the hardware, and
+>   writes are always globally ordered (write atomic). Special
+>   instructions -- synchronizing accesses or fences -- are required
+>   only when the programmer must ensure that a write and a subsequent
+>   read complete in program order.
+
+> - On Arm, Power, and IA-64 (Itanium) machines, all four combinations
+>   of local bypassing are possible: special instructions must be used
+>   whenever ordering is required. Moreover, on Arm v8 and Power,
+>   ordinary writes are not guaranteed to be write atomic.
+
+> We will refer to hardware-level memory models in the SPARC/x86/z
+> camp using the SPARC term TSO (Total Store Order). We will refer to
+> the other machines as “more relaxed.”
+
+> - On TSO machines, `W||R` orderings (`W||` on a `load`, `||R` on a
+>   `store`, or a `W||R` `fence`) should be enforced with appropriate
+>   machine instructions; other annotations can be elided from our
+>   code.
+
+> - On more relaxed machines, all annotations (explicit and implicit)
+>   must be enforced with appropriate machine instructions.
+
+> One particular form of local ordering is worthy of special mention.
+
+> - As noted in Sec. 2.2.2, a lock `acquire` operation must ensure
+>   that a thread cannot read or write shared data until it has
+>   actually acquired the lock. The appropriate guarantee will
+>   typically be provided by a `||RW` `load` or a `load` that is
+>   followed by a `R||RW` fence.
+
+> - In a similar vein, a lock `release` must ensure that all reads and
+>   writes within the critical section have completed before the lock
+>   is actually released. The appropriate guarantee will typically be
+>   provided by a `RW||` `store` or a `store` that is preceded by a
+>   `RW||W` fence.
+
+> These combinations are common enough that they are sometimes
+> referred to as _acquire_ and _release_ orderings.
+
+正如 `<stdatomic.h>` 中所定义的：
+
+```c
+enum memory_order
+{
+    memory_order_relaxed,
+    memory_order_consume,
+    memory_order_acquire,
+    memory_order_release,
+    memory_order_acq_rel,
+    memory_order_seq_cst
+};
+```
+
+> They are used not only for mutual exclusion, but for most forms of
+> condition synchronization as well. The IA-64 (Itanium), AArch64, and
+> several research machines -- notably the Stanford Dash (Lenoski et
+> al. 1992) -- support acquire and release orderings directly in
+> hardware. In the mutual exclusion case, particularly when using
+> synchronizing accesses rather than fences, acquire and release
+> orderings allow work to “migrate” into a critical section both
+> from above (prior to the lock acquire) and from below (after the
+> lock release). They do not allow work to migrate out of a critical
+> section in either direction.
 
 ## 2.3 Atomic Primitives
 
