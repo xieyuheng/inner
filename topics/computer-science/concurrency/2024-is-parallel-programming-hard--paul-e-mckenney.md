@@ -142,4 +142,20 @@ source: "https://www.kernel.org/pub/linux/kernel/people/paulmck/perfbook/perfboo
 > stack. This fact of life even has its own acronym: YAGNI, or “You
 > Ain’t Gonna Need It.”
 
+> Another option is to tailor a given programming language or
+> environment to some abstraction (for example, Haskell, Prolog, or
+> Snobol), as is shown by the circular region near the center of
+> Figure 2.4.  These languages can be considered to be general in the
+> sense that they are equally ill-suited to the jobs required by users
+> 1, 2, 3, and 4. In other words, their generality comes at the
+> expense of decreased productivity when compared to domain-specific
+> languages and environments. Worse yet, a language that is tailored
+> to a given abstraction is likely to suffer from performance and
+> scalability problems unless and until it can be efficiently mapped
+> to real hardware.
+
+设计 general 的语言时要小心。
+
+## 2.3 Alternatives to Parallel Programming
+
 TODO
