@@ -84,7 +84,7 @@ source: "https://www.kernel.org/pub/linux/kernel/people/paulmck/perfbook/perfboo
 
 这里从经济学的角度对软件开发中的某些现象给出了不错的分析：
 
-> One such tradeoff is depicted by the green “iron triangle”5 shown
+> One such tradeoff is depicted by the green “iron triangle” shown
 > in Figure 2.3, which shows how productivity becomes increasingly
 > important at the upper layers of the system stack, while performance
 > and generality become increasingly important at the lower layers of
@@ -108,7 +108,7 @@ source: "https://www.kernel.org/pub/linux/kernel/people/paulmck/perfbook/perfboo
 >   cheaper than extra developers.
 
 这里对 "bloatware" 现象的解释很令人信服。
-在 stack 的上层，人们更关心 productivity；
+在 stack 的上层，人们更关心 productivity。
 
 - 因为用户少，花费没法被均摊。
 
@@ -157,6 +157,52 @@ source: "https://www.kernel.org/pub/linux/kernel/people/paulmck/perfbook/perfboo
 设计 general 的语言时要小心。
 
 ## 2.3 Alternatives to Parallel Programming
+
+> In order to properly consider alternatives to parallel programming,
+> you must first decide on what exactly you expect the parallelism to
+> do for you.
+
+正如 Bishop 所说：
+Do not ask whether a statement is true
+until you know what it means.
+
+> As seen in Section 2.2, the primary goals of parallel programming
+> are performance, productivity, and generality.
+
+其实最主要的重点就是 performance。
+
+所以这一章要聊的就是，为了提升 performance，
+除了并行之外 alternative 的方案还有哪些。
+
+### 2.3.1 Multiple Instances of a Sequential Application
+
+这是最简单有效的方式。
+
+### 2.3.2 Use Existing Parallel Software
+
+> There is no longer any shortage of parallel software environments
+> that can present a single-threaded programming environment,
+> including relational databases [Dat82], web-application servers, and
+> map-reduce environments.
+
+### 2.3.3 Performance Optimization
+
+这里最有趣的观点是，
+并行优化会受到 CPU 核心个数的限制，
+但是算法优化没有限制。
+
+另外，优化最好是用科学的态度，
+首先用测量来找到 bottleneck。
+
+对于并行程序的 bottleneck：
+
+> The fact is that every resource which is shared between multiple
+> CPUs or threads is a potential bottleneck.
+
+memory cache 其实缓减了这种 sharing，
+完全解决 sharing 的问题，可能需要分布式系统与共识算法。
+
+## 2.4 What Makes Parallel Programming Hard?
 
 TODO
 
