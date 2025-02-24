@@ -159,3 +159,40 @@ source: "https://www.kernel.org/pub/linux/kernel/people/paulmck/perfbook/perfboo
 ## 2.3 Alternatives to Parallel Programming
 
 TODO
+
+## 2.4 What Makes Parallel Programming Hard?
+
+> ... consider the tasks that parallel programmers must undertake that
+> are not required of sequential programmers.  We can then evaluate
+> how well a given programming language or environment assists the
+> developer with these tasks. These tasks fall into the four
+> categories shown in Figure 2.5, each of which is covered in the
+> following sections.
+
+### 2.4.1 Work Partitioning
+
+在实现 inet-lisp 时，work partitioning 是主要问题之一。
+
+- 背景：多个 worker threads 每个有一个 task queue，
+  一个 worker 处理完一个 task 之后，
+  可能会产生多个新的 tasks。
+
+- 问题：需要平衡所有 worker 所处理的 task 数量。
+
+- 方案 A：额外增加一个 scheduler thread，
+  每次 worker 产生新 tasks 时都返回给 scheduler，
+  scheduler 按照当前 worder 的 workload 情况，
+  把所收到的 task 分配给各个 worker。
+
+  - worker 新产生 tasks 时，
+    也可以直接放到自己的 task queue 里，
+    只有处理不过来的时候才返回给 scheduler。
+
+  - 实现方式可以是，每个 worker 有一个 lock-free task queue，
+    scheduler 也有一个 lock-free task queue。
+    - worker 从自己的 queue 前面取 task，
+      返回 task 到 scheduler 的 queue 后面。
+    - scheduler 从自己的 queue 前面取 task，
+      返回 task 到某个 worker 的 queue 后面。
+
+TODO
