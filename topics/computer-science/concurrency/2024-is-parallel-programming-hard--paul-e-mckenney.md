@@ -204,10 +204,6 @@ memory cache 其实缓减了这种 sharing，
 
 ## 2.4 What Makes Parallel Programming Hard?
 
-TODO
-
-## 2.4 What Makes Parallel Programming Hard?
-
 > ... consider the tasks that parallel programmers must undertake that
 > are not required of sequential programmers.  We can then evaluate
 > how well a given programming language or environment assists the
