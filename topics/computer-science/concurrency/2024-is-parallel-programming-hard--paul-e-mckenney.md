@@ -306,4 +306,84 @@ inet-lisp 就是其中之一。
 
 # Chapter 3 Hardware and its Habits
 
+## 3.1 Overview
+
+总结那些导致 CPU 运行速度慢下来的各种阻碍。
+
+### 3.1.1 Pipelined CPUs
+
+为了优化运行速度，
+CPU 在硬件设计上令人惊讶的地方不是 pipeline，
+而是 out-of-order execution 和 speculative execution。
+
+> Achieving full performance with a CPU having a long pipeline
+> requires highly predictable control flow through the program.
+
+pipeline flush 是阻碍之一，
+而导致 pipeline flush 的因素又有很多，
+比如错误预测 branch。
+
+### 3.1.2 Memory References
+
+memory reference 会阻碍 CPU 快速运行。
+memory cache 可以缓解这个阻碍，
+但是 memory cache 需要 CPU 预测访问内存的规律。
+
+使用很多指针，比如用 link list 而不用 array，
+基本就告别 memory cache 了。
+
+### 3.1.3 Atomic Operations
+
+atomic operation 阻碍 CPU 快速运行，
+因为它们要求不同 core 的 cache 之间相互协调。
+
+### 3.1.4 Memory Barriers
+
+> Memory barriers prevent reorderings that the CPU (to say nothing of
+> the compiler) would otherwise undertake in order to increase
+> performance.
+
+### 3.1.5 Functional Unit Failings
+
+CPU 有大量的 functional units，
+但是处理某种任务的时候，
+可能只能用到少数 units。
+
+> Modern superscalar CPUs have numerous functional units with varying
+> purposes and capabilities. Each CPU is likely to have several
+> arithmetic-logic units (ALUs) for integer and boolean arithmetic, a
+> few vector units, a couple of floating-point units (FPUs), and at
+> least one each branch unit, load unit, and store unit. Different
+> CPUs will of course have different combinations of functional units.
+
+### 3.1.6 Thermal Throttling
+
+讲温度墙导致某些软件上的优化反而成了劣化。
+
+### 3.1.7 Cache Misses
+
+cache misses 阻碍 CPU 快速运行。
+并行的程序会加剧 cache misses。
+
+### 3.1.8 I/O Operations
+
+I/O operations 阻碍 cpu 快速运行。
+
+> A cache miss can be thought of as a CPU-to-CPU I/O operation, and as
+> such is one of the cheapest I/O operations available.
+
+> This is one of the differences between shared-memory and
+> distributed- system parallelism: Shared-memory parallel programs
+> must normally deal with no obstacle worse than a cache miss, while a
+> distributed parallel program will typically incur the larger network
+> communication latencies. In both cases, the relevant latencies can
+> be thought of as a cost of communication -- a cost that would be
+> absent in a sequential program. Therefore, the ratio between the
+> overhead of the communication to that of the actual work being
+> performed is a key design parameter.
+
+## 3.2 Overheads
+
+### 3.2.1 Hardware System Architecture
+
 TODO
