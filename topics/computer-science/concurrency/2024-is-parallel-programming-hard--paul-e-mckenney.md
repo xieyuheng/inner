@@ -268,20 +268,42 @@ memory cache 其实缓减了这种 sharing，
 
 ### 2.4.3 Resource Partitioning and Replication
 
-TODO
+> The most effective parallel algorithms and systems exploit resource
+> parallelism, so much so that it is usually wise to begin
+> parallelization by partitioning your write-intensive resources and
+> replicating frequently accessed read-mostly resources.
+
+分布式数据库和带有 memory cache 的多核 CPU，都是一个道理。
 
 ### 2.4.4 Interacting With Hardware
 
-TODO
+> Hardware interaction is normally the domain of the operating system,
+> the compiler, libraries, or other software-environment
+> infrastructure.
+
+当需要考虑不同机器 memory model 的差异时，就已经很底层了。
 
 ### 2.4.5 Composite Capabilities
 
-TODO
+> Although these four capabilities are fundamental, good engineering
+> practice uses composites of these capabilities.
 
 ### 2.4.6 How Do Languages and Environments Assist With These Tasks?
 
-TODO
+> Although many environments require the developer to deal manually
+> with these tasks, there are long-standing environments that bring
+> significant automation to bear.
+
+更多的关于并行计算的语言和工具还有待研究，
+inet-lisp 就是其中之一。
 
 ## 2.5 Discussion
+
+总之，不要怕并行编程。
+既然已经有很多人能做好并行编程，
+比如操作系统、数据库等等，
+那么我们也能。
+
+# Chapter 3 Hardware and its Habits
 
 TODO
