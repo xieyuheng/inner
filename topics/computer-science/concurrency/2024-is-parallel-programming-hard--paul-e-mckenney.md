@@ -169,6 +169,13 @@ TODO
 > categories shown in Figure 2.5, each of which is covered in the
 > following sections.
 
+与串行编程相比，并行编程中程序员要面临的四类新问题：
+
+- Work Partitioning
+- Parallel Access Control
+- Resource Partitioning and Replication
+- Interacting With Hardware
+
 ### 2.4.1 Work Partitioning
 
 在实现 inet-lisp 时，work partitioning 是主要问题之一。
@@ -188,11 +195,50 @@ TODO
     也可以直接放到自己的 task queue 里，
     只有处理不过来的时候才返回给 scheduler。
 
-  - 实现方式可以是，每个 worker 有一个 lock-free task queue，
+  - 实现 A：每个 worker 有一个 lock-free task queue，
     scheduler 也有一个 lock-free task queue。
+
     - worker 从自己的 queue 前面取 task，
       返回 task 到 scheduler 的 queue 后面。
     - scheduler 从自己的 queue 前面取 task，
       返回 task 到某个 worker 的 queue 后面。
+
+    也可以考虑在 scheduler 中给每个 worker 一个自己的 task queue，
+    这样 worker 在返回 task 给 scheduler 时是 lock-free 的了。
+
+  - 实现 B：让 worker 处理自己的 task queue，
+    在这个过程中产生的新 task 都返回给 scheduler。
+    当所有的 worker 都停下来之后，
+    scheduler 把产生的新一批 tasks 重新分配给 worker
+    （称作一个 batch）。
+
+    这是受到简单并行（embarrassing parallelism）的启发，
+    因为每个 batch 阶段都是一个简单并行问题，
+    无需 worker 之间的协调与通讯，
+    至少在这个 batch 阶段每个 worker 是独立的。
+
+    这也模仿了垃圾回收器的 "stop the world" 阶段。
+
+### 2.4.2 Parallel Access Control
+
+TODO
+
+### 2.4.3 Resource Partitioning and Replication
+
+TODO
+
+### 2.4.4 Interacting With Hardware
+
+TODO
+
+### 2.4.5 Composite Capabilities
+
+TODO
+
+### 2.4.6 How Do Languages and Environments Assist With These Tasks?
+
+TODO
+
+## 2.5 Discussion
 
 TODO
