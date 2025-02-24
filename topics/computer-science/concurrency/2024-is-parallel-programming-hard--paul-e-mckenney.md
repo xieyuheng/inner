@@ -384,6 +384,82 @@ I/O operations 阻碍 cpu 快速运行。
 
 ## 3.2 Overheads
 
+> Don’t design bridges in ignorance of materials, and don’t design
+> low-level software in ignorance of the underlying hardware.
+
 ### 3.2.1 Hardware System Architecture
+
+由于 memory cache，
+个芯片本身就是一个带有多个 core 的分布式系统，
+需要 cache-coherency protocol。
+
+这个 cache-coherency protocol 本身就是一个研究领域，
+看起来还挺有意思的。
+
+### 3.2.2 Costs of Operations
+
+> In the time required to do one CAS operation, the CPU could have
+> executed more than _two hundred_ normal instructions.
+
+这有点让人质疑，对 inet-lisp 的并行到底是不是优化了。
+
+- 如果 inet-lisp 的正常运行本身，
+  也带有很多内存访问和 cache misses，
+  可能和 CAS 差不多了。
+
+### 3.2.3 Hardware Optimizations
+
+TODO
+
+## 3.3 Hardware Free Lunch?
+
+> It is only natural to ask how the hardware is helping, and the answer
+> is “Quite a bit!”
+
+> (1) One hardware optimization is large cachelines.
+>
+> - However, this optimization has a dark side, namely false sharing,
+>   which happens when different variables in the same cacheline are
+>   being updated by different CPUs, resulting in a high cache-miss
+>   rate.
+
+> (2) A second related hardware optimization is cache prefetching, in
+> which the hardware reacts to consecutive accesses by prefetching
+> subsequent cachelines. ... Of course, the hardware must use simple
+> heuristics to determine when to prefetch, and these heuristics can
+> be fooled by the complex data-access patterns in many applications.
+
+> (3) A third hardware optimization is the store buffer, which allows
+> a string of store instructions to execute quickly even when the
+> stores are to non-consecutive addresses and when none of the needed
+> cachelines are present in the CPU’s cache.
+>
+> - The dark side of this optimization is memory misordering, for
+>   which see Chapter 15.
+
+> (4) A fourth hardware optimization is speculative execution, which
+> can allow the hardware to make good use of the store buffers without
+> resulting in memory misordering.
+>
+> - The dark side of this optimization can be energy inefficiency and
+>   lowered performance if the speculative execution goes awry and
+>   must be rolled back and retried.
+
+> (5) A fifth hardware optimization is large caches, allowing
+> individual CPUs to operate on larger datasets without incurring
+> expensive cache misses.  Although large caches can degrade both
+> energy efficiency and cache-miss latency, the ever-growing cache
+> sizes on production microprocessors attests to the power of this
+> optimization.
+
+注意，large cache 和 large cacheline 是两个维度的优化。
+
+> (6) A final hardware optimization is read-mostly replication, in
+> which data that is frequently read but rarely updated is present in
+> all CPUs’ caches. This optimization allows the read-mostly data to
+> be accessed exceedingly efficiently, and is the subject of Chapter
+> 9.
+
+## 3.3 Hardware Free Lunch?
 
 TODO
