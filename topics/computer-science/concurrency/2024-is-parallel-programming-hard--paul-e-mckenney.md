@@ -261,6 +261,9 @@ memory cache 其实缓减了这种 sharing，
 
     这也模仿了垃圾回收器的 "stop the world" 阶段。
 
+    - 也许以这种方式使用 CPU 中的多线程并不合理，
+      但是如果迫于无奈，可以用这种方式来使用 GPU！
+
 ### 2.4.2 Parallel Access Control
 
 就是并行的 thread 在访问公用的资源时，
