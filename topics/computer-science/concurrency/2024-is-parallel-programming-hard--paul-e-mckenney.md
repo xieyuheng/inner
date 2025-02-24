@@ -221,7 +221,8 @@ TODO
 
 ### 2.4.2 Parallel Access Control
 
-TODO
+就是并行的 thread 在访问公用的资源时，
+需要 synchronization，比如 lock 之类的。
 
 ### 2.4.3 Resource Partitioning and Replication
 
