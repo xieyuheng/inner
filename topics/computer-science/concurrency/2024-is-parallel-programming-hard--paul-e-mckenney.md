@@ -465,4 +465,117 @@ TODO
 
 ## 3.3 Hardware Free Lunch?
 
+> The major reason that concurrency has been receiving so much focus
+> over the past few years is the end of Moore’s-Law induced
+> single-threaded performance increases (or “free lunch” [Sut08]),
+> as shown in Figure 2.1 on page 18. This section briefly surveys a
+> few ways that hardware designers might bring back the “free
+> lunch”.
+
+### 3.3.1 Novel Materials and Processes
+
+新材料与新工艺，
+比如取代二氧化硅（SiO₂）。
+但是感觉这里进展不是很多。
+
+### 3.3.2 Light, Not Electrons
+
+> ... electric waves in semiconductor materials move at between 3% and
+> 30% of the speed of light in a vacuum.
+
+> there have been some experiments with tiny optical fibers as
+> interconnects within and between chips, based on the fact that the
+> speed of light in glass is more than 60% of the speed of light in a
+> vacuum.  One obstacle to such optical fibers is the inefficiency
+> conversion between electricity and light and vice versa, resulting
+> in both power-consumption and heat-dissipation problems.
+
+### 3.3.3 3D Integration
+
+> 3-dimensional integration (3DI) is the practice of bonding very thin
+> silicon dies to each other in a vertical stack. This practice
+> provides potential benefits, but also poses significant fabrication
+> challenges [Kni08].
+
+### 3.3.4 Special-Purpose Accelerators
+
+> Software must be modified to take advantage of this specialized
+> hardware, and this specialized hardware must be sufficiently
+> generally useful that the high up-front hardware-design costs can be
+> spread over enough users to make the specialized hardware
+> affordable.
+
+这是前面章节提到的 generality 和 performance 之间的 tradeoff 的例子。
+
+> For example, in the mid-2020s, many are betting on special-purpose
+> accelerators for artificial-intelligence and machine-learning
+> workloads.
+
+现在（2025）的感受是，人们在这方面的探索比较多。
+
+### 3.3.5 Existing Parallel Software
+
+又提到了 SQL，这与硬件无关但是与 "free lunch" 有关。
+
+还提到了 parallel-software crisis，
+难道只有保持 "free lunch" 才算是没有 crisis？
+
+## 3.4 Software Design Implications
+
+> The values of the ratios in Table 3.1 are critically important, as
+> they limit the efficiency of a given parallel application. To see
+> this, suppose that the parallel application uses CAS operations to
+> communicate among threads.  These CAS operations will typically
+> involve a cache miss, that is, assuming that the threads are
+> communicating primarily with each other rather than with
+> themselves. Suppose further that the unit of work corresponding to
+> each CAS communication operation takes 300 ns, which is sufficient
+> time to compute several floating-point transcendental
+> functions. Then about half of the execution time will be consumed by
+> the CAS communication operations!  This in turn means that a two-CPU
+> system running such a parallel program would run no faster than a
+> sequential implementation running on a single CPU.
+
+"the unit of work corresponding to each CAS
+communication operation takes 300 ns"
+
+想要真的有效率上的优化，
+就必增大 "the unit of work"，
+直到超过 CAS 几个数量级。
+
+注意这里的 "which is sufficient time to
+compute several floating-point transcendental functions"，
+但是其实只要 "the unit of work" 中涉及 memory references，
+其用时一下就上来了。
+
+> This illustrates how important it is for communications operations
+> to be extremely infrequent and to enable very large quantities of
+> processing.
+
+> The lesson should be quite clear: Parallel algorithms must be
+> explicitly designed with these hardware properties firmly in
+> mind. One approach is to run nearly independent threads. The less
+> frequently the threads communicate, whether by atomic operations,
+> locks, or explicit messages, the better the application’s
+> performance and scalability will be. This approach will be touched
+> on in Chapter 5, explored in Chapter 6, and taken to its logical
+> extreme in Chapter 8.
+
+> Another approach is to make sure that any sharing be read-mostly,
+> which allows the CPUs’ caches to replicate the read-mostly data, in
+> turn allowing all CPUs fast access. This approach is touched on in
+> Section 5.2.4, and explored more deeply in Chapter 9.
+
+> In short, achieving excellent parallel performance and scalability
+> means striving for embarrassingly parallel algorithms and
+> implementations, whether by careful choice of data structures and
+> algorithms, use of existing parallel applications and environments,
+> or transforming the problem into an embarrassingly parallel form.
+
+"embarrassingly parallel" 虽然有个尴尬的名字，
+但是却是并行计算的核心 idea。
+也许应该换个名字叫 "simply parallel"。
+
+# Chapter 4 Tools of the Trade
+
 TODO
