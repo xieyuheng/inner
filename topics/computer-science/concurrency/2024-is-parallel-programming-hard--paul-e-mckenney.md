@@ -594,4 +594,43 @@ grep $pattern1 | sed -e 's/a/b/' | sort
 
 ## 4.2 POSIX Multiprocessing
 
+### 4.2.1 POSIX Process Creation and Destruction
+
+> Processes are created using the `fork()` primitive, they may be
+> destroyed using the `kill()` primitive, they may destroy themselves
+> using the `exit()` primitive. A process executing a `fork()`
+> primitive is said to be the “parent” of the newly created
+> process. A parent may wait on its children using the `wait()`
+> primitive.
+
+### 4.2.2 POSIX Thread Creation and Destruction
+
+TODO
+
+### 4.2.3 POSIX Locking
+
+TODO
+
+### 4.2.4 POSIX Reader-Writer Locking
+
+TODO
+
+### 4.2.5 Atomic Operations (GCC Classic)
+
+TODO
+
+### 4.2.6 Atomic Operations (C11)
+
+TODO
+
+### 4.2.7 Atomic Operations (Modern GCC)
+
+TODO
+
+### 4.2.8 Per-Thread Variables
+
+TODO
+
+## 4.3 Alternatives to POSIX Operations
+
 TODO
