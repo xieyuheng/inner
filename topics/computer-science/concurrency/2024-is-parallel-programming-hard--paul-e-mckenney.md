@@ -701,6 +701,38 @@ Deepseek 关于 "checkpoint execution" 的解释：
 
 ### 4.2.5 Atomic Operations (GCC Classic)
 
+小的 critical section 有问题，
+而 atomic operations 就可以被认为是，
+从底层出发的，用来来解决极小的 critical section 的问题的方案。
+
+- TODO 这是否意味着所有的 atomic operations
+  都可以用 lock + critical section 来实现？
+
+> If a pair of threads concurrently execute `__sync_fetch_and_add()`
+> on the same variable, the resulting value of the variable will
+> include the result of both additions.
+
+所谓 "atomic" 就在于，两个 threads 的 event 序列不会交织，
+因此多个 threads 在执行多个 atomic operation 时也一定成功。
+
+```c
+// return the old value
+__sync_fetch_and_add()
+__sync_fetch_and_sub()
+__sync_fetch_and_or()
+__sync_fetch_and_and()
+__sync_fetch_and_xor()
+__sync_fetch_and_nand()
+
+// return the new value
+__sync_add_and_fetch()
+__sync_sub_and_fetch()
+__sync_or_and_fetch()
+__sync_and_and_fetch()
+__sync_xor_and_fetch()
+__sync_nand_and_fetch()
+```
+
 TODO
 
 ### 4.2.6 Atomic Operations (C11)
