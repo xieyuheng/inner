@@ -605,15 +605,99 @@ grep $pattern1 | sed -e 's/a/b/' | sort
 
 ### 4.2.2 POSIX Thread Creation and Destruction
 
-TODO
+这里的例子展示了 threads 可以 share memory，
+而前一章 process 的例子不可以 share memory。
+
+有趣的是 process 和 thread 的术语取反了：
+
+- process：fork & wait
+- thread：create & join
+
+应该 fork 和 join 配对：
+
+- process：fork & join
+- thread：create & wait
 
 ### 4.2.3 POSIX Locking
 
-TODO
+> The POSIX standard allows the programmer to avoid data races via
+> “POSIX locking”.
+
+```c
+pthread_mutex_t
+pthread_mutex_lock()
+pthread_mutex_unlock()
+```
+
+这里有一个没有 lock 导致两个 threads 的 event 序列交织的情况。
 
 ### 4.2.4 POSIX Reader-Writer Locking
 
-TODO
+```c
+pthread_rwlock_t
+pthread_rwlock_rdlock()
+pthread_rwlock_wrlock()
+pthread_rwlock_unlock()
+```
+
+> ... the reader-writer lock permits an arbitrarily large number of
+> readers to concurrently hold the lock.
+
+这里有一个展示 Reader-Writer Lock 效率的例子
+Listing 4.8: Measuring Reader-Writer Lock Scalability。
+这种用实际代码来展示效率的方式很科学，值得学习。
+
+> As can be seen in the figure, reader-writer locking scalability is
+> decidedly non-ideal, especially for smaller sizes of critical
+> sections. To see why read-acquisition can be so slow, consider that
+> all the acquiring threads must update the `pthread_rwlock_t` data
+> structure. Therefore, if all 448 executing threads attempt to
+> read-acquire the reader-writer lock concurrently, they must update
+> this underlying `pthread_rwlock_t` one at a time.
+
+这基本上就是说，
+对于 small critical sections，
+带 lock 的多线程是不适用的。
+
+> **Quick Quiz 4.21:**
+>
+> But one microsecond is not a particularly small size for a critical
+> section.  What do I do if I need a much smaller critical section,
+> for example, one containing only a few instructions?
+
+> - Answer: If the data being read _never_ changes, then you do not
+>   need to hold any locks while accessing it. If the data changes
+>   sufficiently infrequently, you might be able to checkpoint
+>   execution, terminate all threads, change the data, then restart at
+>   the checkpoint.
+>
+>   ... Some other ways of efficiently handling very small critical
+>   sections are described in Chapter 9 [Deferred Processing].
+
+我所想到的 inet-lisp 的「实现 B」
+可能就是这里描述的 "checkpoint execution"，
+也可能是 Chapter 9 的 "Deferred Processing"。
+
+Deepseek 关于 "checkpoint execution" 的解释：
+
+当需要修改极少变化的共享数据时，通过以下步骤避免锁的开销：
+
+- 保存状态：记录所有线程当前的执行进度（即“检查点”）。
+- 暂停线程：确保所有线程安全地停止在某个一致的状态
+  （如不持有锁、未处于临界区）。
+- 修改数据：在无并发访问的环境下更新数据。
+- 恢复执行：从检查点重启线程，继续运行。
+
+这么说来 inet-lisp 的「实现 B」还真实类似，
+因为所有 worker threads 都处理完毕 task queue 的时候，
+就是一个自然的 checkpoint。
+
+其实根本没必要以这个「都处理完毕 task queue」为停下来的条件，
+随时停下来都能获得一个安全的 checkpoint，
+也许这是更好的方式，因为不同 worker 所分配到的 task 的任务量并不一样，
+因此可能会产生有的 worker 先完成所有 task 的情况。
+可以随时停下，就给了 scheduler 更多的发挥空间，
+可以设计更好的算法来 re-balance worker 的 task queue。
 
 ### 4.2.5 Atomic Operations (GCC Classic)
 
