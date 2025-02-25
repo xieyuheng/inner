@@ -578,4 +578,20 @@ compute several floating-point transcendental functions"，
 
 # Chapter 4 Tools of the Trade
 
+## 4.1 Scripting Languages
+
+```shell
+compute_it 1 > compute_it.1.out &
+compute_it 2 > compute_it.2.out &
+wait
+cat compute_it.1.out
+cat compute_it.2.out
+```
+
+```shell
+grep $pattern1 | sed -e 's/a/b/' | sort
+```
+
+## 4.2 POSIX Multiprocessing
+
 TODO
