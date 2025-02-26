@@ -647,6 +647,9 @@ pthread_rwlock_unlock()
 Listing 4.8: Measuring Reader-Writer Lock Scalability。
 这种用实际代码来展示效率的方式很科学，值得学习。
 
+- 这个例子也是 scheduler thread，
+  通过全局变量来控制 worker threads 运行的例子。
+
 > As can be seen in the figure, reader-writer locking scalability is
 > decidedly non-ideal, especially for smaller sizes of critical
 > sections. To see why read-acquisition can be so slow, consider that
@@ -865,5 +868,20 @@ __ATOMIC_SEQ_CST
 > that can be used in place of `__thread`.
 
 ## 4.3 Alternatives to POSIX Operations
+
+> Unfortunately, threading operations, locking primitives, and atomic
+> operations were in reasonably wide use long before the various
+> standards committees got around to them. As a result, there is
+> considerable variation in how these operations are supported.
+
+### 4.3.1 Organization and Initialization
+
+> Although many environments do not require any special initialization
+> code, the code samples in this book start with a call to `smp_init()`,
+> which initializes a mapping from `pthread_t` to consecutive integers.
+
+`smp_init()` 是 linux 内核中的函数。
+
+### 4.3.2 Thread Creation, Destruction, and Control
 
 TODO
