@@ -913,7 +913,75 @@ void spin_unlock(spinlock_t *sp);
 
 ### 4.3.4 Accessing Shared Variables
 
-TODO linux kernel 相关的 API，先跳过。
+在学习并行编程以前，我们可能认为，
+下面这种 inline 一个 variable 之后代码是等价的：
+
+```c
+ptr = global_ptr;
+if (ptr != NULL && ptr < high_address)
+  do_low(ptr);
+
+if (global_ptr != NULL && global_ptr < high_address)
+  do_low(global_ptr);
+```
+
+但是其实不是的。
+
+#### 4.3.4.1 Shared-Variable Shenanigans
+
+> Given code that does plain loads and stores, the compiler is within
+> its rights to assume that the affected variables are neither
+> accessed nor modified by any other thread. This assumption allows
+> the compiler to carry out a large number of transformations,
+> including:
+>
+> - load tearing,
+> - store tearing,
+> - load fusing,
+> - store fusing,
+> - code reordering,
+> - invented loads,
+> - invented stores,
+> - store-to-load transformations,
+> - dead-code elimination,
+>
+> all of which work just fine in single-threaded code. But concurrent
+> code can be broken by each of these transformations, or
+> shared-variable shenanigans, as described below.
+
+不加任何额外信息的话，
+编译器默认代码是 single-threaded，
+并且以此为依据来做优化。
+
+> - **Load tearing** occurs when the compiler uses multiple load
+>   instructions for a single access. For example, the compiler could
+>   in theory compile the load from `global_ptr` (see line 1 of
+>   Listing 4.14) as a series of one-byte loads.
+
+> - **Store tearing** occurs when the compiler uses multiple store
+>   instructions for a single access. For example, one thread might
+>   store 0x12345678 to a four-byte integer variable at the same time
+>   another thread stored 0xabcdef00. If the compiler used 16-bit
+>   stores for either access, the result might well be 0x1234ef00,
+>   which could come as quite a surprise to code loading from this
+>   integer.
+
+> - **Load fusing** occurs when the compiler uses the result of a
+>   prior load from a given variable instead of repeating the load.
+
+TODO
+
+#### 4.3.4.2 A Volatile Solution
+
+TODO
+
+#### 4.3.4.3 Assembling the Rest of a Solution
+
+TODO
+
+#### 4.3.4.4 Avoiding Data Races
+
+TODO
 
 ### 4.3.5 Atomic Operations
 
@@ -947,5 +1015,29 @@ TODO linux kernel 相关的 API，先跳过。
 因此测量与科学的态度很重要。
 
 # Chapter 5 Counting
+
+> Counting is perhaps the simplest and most natural thing a computer
+> can do. However, counting efficiently and scalably on a large
+> shared-memory multiprocessor can be quite challenging. Furthermore,
+> the simplicity of the underlying concept of counting allows us to
+> explore the fundamental issues of concurrency without the
+> distractions of elaborate data structures or complex synchronization
+> primitives. Counting therefore provides an excellent introduction to
+> parallel programming.
+
+感觉这将是最有趣的一章。
+
+比如 inet-lisp 的 `worker_t` 中就有两个 count。
+
+```c
+struct worker_t {
+    // ...
+    size_t node_id_count;
+    size_t fresh_name_count;
+    // ...
+};
+```
+
+## 5.1 Why Isn’t Concurrent Counting Trivial?
 
 TODO
