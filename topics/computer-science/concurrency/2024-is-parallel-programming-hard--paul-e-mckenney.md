@@ -733,19 +733,136 @@ __sync_xor_and_fetch()
 __sync_nand_and_fetch()
 ```
 
-TODO
+`fetch-add-and` 和 `add-and-fetch` 可以相互实现：
+
+```scheme
+(define (add-and-fetch pointer value)
+  (= old-value (fetch-add-and pointer value))
+  (= new-value (add old-value value))
+  new-value)
+
+(define (fetch-add-and pointer value)
+  (= new-value (add-and-fetch pointer value))
+  (= old-value (sub new-value value))
+  old-value)
+```
+
+> The classic compare-and-swap operation
+> is provided by a pair of primitives:
+
+```c
+__sync_bool_compare_and_swap()
+__sync_val_compare_and_swap()
+```
+
+> - The first variant returns 1 if the operation succeeded and 0 if it
+>   failed, for example, if the prior value was not equal to the
+>   specified old value.
+>
+> - The second variant returns the prior value of the location, which,
+>   if equal to the specified old value, indicates that the operation
+>   succeeded.
+
+用 `compare-and-swap-value` 可以实现 `compare-and-swap?`
+（反过来好像不行）：
+
+```scheme
+(define (compare-and-swap? pointer expected new-value)
+  (= old-value (compare-and-swap-value pointer expected new-value))
+  (eq? old-value expected))
+```
+
+linux kernel 有定义自己的 macro：
+
+```c
+READ_ONCE(x)
+WRITE_ONCE(x, val)
+```
 
 ### 4.2.6 Atomic Operations (C11)
 
-TODO
+> The C11 standard added atomic operations.
+
+```c
+// load & store
+atomic_load()
+atomic_store()
+
+// barriers
+atomic_thread_fence()
+atomic_signal_fence()
+
+// read-modify-write atomics
+atomic_fetch_add()
+atomic_fetch_sub()
+atomic_fetch_and()
+atomic_fetch_xor()
+atomic_exchange()
+atomic_compare_exchange_strong()
+atomic_compare_exchange_weak()
+```
+
+> These operate in a manner similar to those described in Section
+> 4.2.5, but with the addition of memory-order arguments to
+> `_explicit` variants of all of the operations.
+
+> Without memory-order arguments, all the atomic operations are fully
+> ordered, and the arguments permit weaker orderings. For example,
+> `atomic_load_explicit(&a, memory_order_relaxed)` is vaguely similar
+> to the Linux kernel’s `READ_ONCE()`.
 
 ### 4.2.7 Atomic Operations (Modern GCC)
 
-TODO
+> One restriction of the C11 atomics is that they apply only to
+> special atomic types, which can be problematic. The GNU C compiler
+> therefore provides atomic intrinsics.
+
+```c
+__atomic_load()
+__atomic_load_n()
+__atomic_store()
+__atomic_store_n()
+__atomic_thread_fence()
+```
+
+> These intrinsics offer the same semantics as their C11 counterparts,
+> but may be used on plain non-atomic objects. Some of these
+> intrinsics may be passed a memory-order argument from this list:
+
+```c
+__ATOMIC_RELAXED
+__ATOMIC_CONSUME
+__ATOMIC_ACQUIRE
+__ATOMIC_RELEASE
+__ATOMIC_ACQ_REL
+__ATOMIC_SEQ_CST
+```
 
 ### 4.2.8 Per-Thread Variables
 
-TODO
+正常情况下，代码中声明的全局变量是所有 thread 共享的。
+
+> Per-thread variables, also called thread-specific data, thread-local
+> storage, and other less-polite names, are used extremely heavily in
+> concurrent code, as will be explored in Chapters 5 and 8. POSIX
+> supplies the `pthread_key_create()` function to create a per-thread
+> variable (and return the corresponding key), `pthread_key_delete()`
+> to delete the per-thread variable corresponding to key,
+> `pthread_setspecific()` to set the value of the current thread’s
+> variable corresponding to the specified key, and
+> `pthread_getspecific()` to return that value.
+
+> A number of compilers (including GCC) provide a `__thread` specifier
+> that may be used in a variable definition to designate that variable
+> as being per-thread. The name of the variable may then be used
+> normally to access the value of the current thread’s instance of
+> that variable. Of course, `__thread` is much easier to use than the
+> POSIX thread-specific data, and so `__thread` is usually preferred
+> for code that is to be built only with GCC or other compilers
+> supporting `__thread`.
+
+> Fortunately, the C11 standard introduced a `_Thread_local` keyword
+> that can be used in place of `__thread`.
 
 ## 4.3 Alternatives to POSIX Operations
 
