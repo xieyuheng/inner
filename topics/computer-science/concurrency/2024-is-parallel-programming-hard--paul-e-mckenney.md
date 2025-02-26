@@ -969,6 +969,33 @@ if (global_ptr != NULL && global_ptr < high_address)
 > - **Load fusing** occurs when the compiler uses the result of a
 >   prior load from a given variable instead of repeating the load.
 
+> - **Store fusing** can occur when the compiler notices a pair of
+>   successive stores to a given variable with no intervening loads
+>   from that variable. In this case, the compiler is within its
+>   rights to omit the first store.
+
+> - **Code reordering** is a common compilation technique used to
+>   combine common subexpressions, reduce register pressure, and
+>   improve utilization of the many functional units available on
+>   modern superscalar microprocessors.
+
+> - **Invented Load** TODO
+
+> - **Invented stores**
+
+```c
+if (condition)
+  a = 1;
+else
+  do_a_bunch_of_stuff(&a);
+
+a = 1;
+if (!condition) {
+  a = 0;
+  do_a_bunch_of_stuff(&a);
+}
+```
+
 TODO
 
 #### 4.3.4.2 A Volatile Solution
