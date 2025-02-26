@@ -884,4 +884,68 @@ __ATOMIC_SEQ_CST
 
 ### 4.3.2 Thread Creation, Destruction, and Control
 
+这一章介绍了作者自己在例子代码中所用到的 thread API。
+也是定义了 `thread_id_t`，
+应该是在 `pthread_t` 之类的底层 API 上包了一层。
+
+```c
+int smp_thread_id(void)
+thread_id_t create_thread(void *(*func)(void *), void *arg)
+void *wait_thread(thread_id_t tid)
+void wait_all_threads(void)
+
+// macros
+for_each_thread(t)
+for_each_running_thread(t)
+```
+
+### 4.3.3 Locking
+
+> A good starting subset of the Linux kernel’s locking API
+> is shown in Listing 4.13.
+
+```c
+void spin_lock_init(spinlock_t *sp);
+void spin_lock(spinlock_t *sp);
+int spin_trylock(spinlock_t *sp);
+void spin_unlock(spinlock_t *sp);
+```
+
+### 4.3.4 Accessing Shared Variables
+
+TODO linux kernel 相关的 API，先跳过。
+
+### 4.3.5 Atomic Operations
+
+> The Linux kernel provides a wide variety of atomic operations,
+> but those defined on type `atomic_t` provide a good start.
+>
+> - https://www.kernel.org/doc/Documentation/atomic_t.txt
+
+### 4.3.6 Per-CPU Variables
+
+TODO linux kernel 相关的 API，先跳过。
+
+## 4.4 The Right Tool for the Job: How to Choose?
+
+> As a rough rule of thumb,
+> use the simplest tool that will get the job done.
+> If you can, simply program sequentially.
+
+> ... Furthermore, always remember that inter-process communication
+> and message-passing can be good alternatives to shared-memory
+> multithreaded execution, especially when your code makes good use of
+> the design principles called out in Chapter 6.
+
+> Whatever approach you take, please keep in mind that randomly
+> hacking multi-threaded code is a spectacularly bad idea, especially
+> given that shared-memory parallel systems use your own perceived
+> intelligence against you: The smarter you think you are, the deeper
+> a hole you will dig for yourself before you realize that you are in
+> trouble [Pok16](https://deadlockempire.github.io).
+
+因此测量与科学的态度很重要。
+
+# Chapter 5 Counting
+
 TODO
