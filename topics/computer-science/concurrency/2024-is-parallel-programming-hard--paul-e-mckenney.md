@@ -799,11 +799,35 @@ __sync_val_compare_and_swap()
         result))))
 ```
 
-linux kernel 有定义自己的 macro：
+> In some cases, it is only necessary to ensure that the compiler
+> avoids optimizing away a given memory read, in which case the
+> `READ_ONCE()` primitive may be used, as it was on line 20 of Listing
+> 4.5. Similarly, the `WRITE_ONCE()` primitive may be used to prevent
+> the compiler from optimizing away a given memory write. These last
+> three primitives are not provided directly by GCC, but may be
+> implemented straightforwardly as shown in Listing 4.9, and all three
+> are discussed at length in Section 4.3.4.
+
+> **Listing 4.9**: Compiler Barrier Primitive (for GCC)
 
 ```c
-READ_ONCE(x)
-WRITE_ONCE(x, val)
+#define ACCESS_ONCE(x) (*(volatile typeof(x) *)&(x))
+#define READ_ONCE(x) ({ typeof(x) ___x = ACCESS_ONCE(x); ___x; })
+#define WRITE_ONCE(x, val) do { ACCESS_ONCE(x) = (val); } while (0)
+#define barrier() __asm__ __volatile__("": : :"memory")
+```
+
+- 在 C 语言中，volatile 关键字用于告诉编译器：
+  **该变量的值可能会在程序的控制之外被意外修改**，
+  因此编译器不应对此变量进行某些优化。
+  它的核心作用是 **强制编译器生成直接访问内存的代码**，
+  而不是依赖寄存器缓存或进行其他优化。
+
+C11 `<stdatomic.h>` 中对应的 API：
+
+```c
+READ_ONCE(var) → atomic_load_explicit(&var, memory_order_relaxed)
+WRITE_ONCE(var, val) → atomic_store_explicit(&var, val, memory_order_relaxed)
 ```
 
 ### 4.2.6 Atomic Operations (C11)
@@ -1113,7 +1137,36 @@ Data Ownership pattern，第六章是专门讲 pattern 的！
 
 ### 5.2.2 Array-Based Implementation
 
-这里不用 atomic operation 了，但是还是需要在局部避免编译器优化。
+> One way to provide per-thread variables is to allocate an array with
+> one element per thread (presumably cache aligned and padded to avoid
+> false sharing).
+
+> Such an array can be wrapped into per-thread primitives, as shown in
+> Listing 5.3 (count_stat.c).
+
+注意，这里的代码没有直接用 array 而是做了一层抽象。
+
+这里不用 atomic operation 了，
+但是还是需要在局部避免编译器优化。
 因此还是用到了 `WRITE_ONCE` 和 `READ_ONCE`。
+
+TODO 重复这里的实验。
+
+### 5.2.3 Per-Thread-Variable-Based Implementation
+
+> The C language, since C11, features a `_Thread_local` storage class
+> that provides per-thread storage.
+
+TODO
+
+### 5.2.4 Eventually Consistent Implementation
+
+TODO
+
+### 5.2.5 Discussion
+
+TODO
+
+## 5.3 Approximate Limit Counters
 
 TODO
