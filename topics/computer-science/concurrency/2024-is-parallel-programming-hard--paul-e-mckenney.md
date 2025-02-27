@@ -1157,11 +1157,46 @@ TODO 重复这里的实验。
 > The C language, since C11, features a `_Thread_local` storage class
 > that provides per-thread storage.
 
-TODO
+我应该会很少用 per-thread-variable，而是多用 global array。
+因为如果 worker 直接使用 global array，scheduler 访问起来就更方便。
+
+- 如果用的是 per-thread-variable：
+
+  - 方案 A：还是要有 global array，并且在启动和退出时，
+    将 per-thread-variable 的信息保存在 global array 中，
+    让 scheduler 能够引用到。
+
+  - 方案 B：将 per-thread-variable 全部封装在 thread 的接口函数中。
+    这个方案更好一点。
 
 ### 5.2.4 Eventually Consistent Implementation
 
-TODO
+前两章的方案是每个 worker 读写起来很快，但是 scheduler 读起来较慢。
+
+> One way to retain update-side scalability while greatly improving
+> read-side performance is to weaken consistency requirements.
+
+> The counting algorithm in the previous section is guaranteed to
+> return a value between the value that an ideal counter would have
+> taken on near the beginning of `read_count()`’s execution and that
+> near the end of `read_count()`’s execution.
+
+> _Eventual consistency_ [Vog09] provides a weaker guarantee: In
+> absence of calls to `inc_count()`, calls to `read_count()` will
+> eventually return an accurate count.
+
+与之前的方案相比，eventual consistency 的差别应该是不保证收敛的时间。
+
+> We exploit eventual consistency by maintaining a global
+> counter. However, updaters only manipulate their per-thread
+> counters. A separate thread is provided to transfer counts from the
+> per-thread counters to the global counter. Readers simply access the
+> value of the global counter. If updaters are active, the value used
+> by the readers will be out of date, however, once updates cease, the
+> global counter will eventually converge on the true value -- hence
+> this approach qualifies as eventually consistent.
+
+TODO **Quick Quiz 5.27** more notes about tradeoffs here.
 
 ### 5.2.5 Discussion
 
