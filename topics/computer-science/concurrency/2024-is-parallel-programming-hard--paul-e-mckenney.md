@@ -766,13 +766,37 @@ __sync_val_compare_and_swap()
 >   if equal to the specified old value, indicates that the operation
 >   succeeded.
 
-用 `compare-and-swap-value` 可以实现 `compare-and-swap?`
-（反过来好像不行）：
+用 `compare-and-swap-value` 可以实现 `compare-and-swap?`：
 
 ```scheme
 (define (compare-and-swap? pointer expected new-value)
   (= old-value (compare-and-swap-value pointer expected new-value))
   (eq? old-value expected))
+```
+
+反过是（我还不完全理解这里使用的 memory fence）：
+
+```scheme
+(define (compare-and-swap-value pointer expected new-value)
+  (if (compare-and-swap? pointer expected new-value)
+    expected
+    (let ((result (load pointer)))
+      ;; when compare-and-swap-value fails and returns result ≠ expected,
+      ;; the (load pointer) of result gets its value
+      ;; from a (store pointer result) by another thread.
+      ;; the fence (synchronize) makes sure that
+      ;; that store is also visible to all other threads
+      ;; before compare-and-swap-value returns.
+      (synchronize)
+      ;; also, you might as well do the fence before you retry,
+      ;; because having a more up-to-date view of pointer means
+      ;; you’re less likely to retry again.
+      (if (eq? result expected)
+        ;; the result might be a new object created by another thread,
+        ;; but reused the same pointer, so it is wrong to return it,
+        ;; and we must retry.
+        (compare-and-swap-value pointer expected new-value)
+        result))))
 ```
 
 linux kernel 有定义自己的 macro：
@@ -1088,5 +1112,8 @@ struct worker_t {
 Data Ownership pattern，第六章是专门讲 pattern 的！
 
 ### 5.2.2 Array-Based Implementation
+
+这里不用 atomic operation 了，但是还是需要在局部避免编译器优化。
+因此还是用到了 `WRITE_ONCE` 和 `READ_ONCE`。
 
 TODO
