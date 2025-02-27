@@ -1067,4 +1067,26 @@ struct worker_t {
 
 ## 5.1 Why Isn’t Concurrent Counting Trivial?
 
+- just count -- loss 87% of the counts
+- just count atomically -- multiple orders of magnitude slower
+
+## 5.2 Statistical Counters
+
+> This section covers the count that is updated extremely frequently
+> and the value is read out rarely.
+
+### 5.2.1 Design
+
+> Statistical counting is typically handled by providing a counter per
+> thread (or CPU, when running in the kernel), so that each thread
+> updates its own counter. The aggregate value of the counters is read
+> out by simply summing up all of the threads’ counters, relying on
+> the commutative and associative properties of addition.  This is an
+> example of the Data Ownership pattern that will be introduced in
+> Section 6.3.4 on page 200.
+
+Data Ownership pattern，第六章是专门讲 pattern 的！
+
+### 5.2.2 Array-Based Implementation
+
 TODO
