@@ -1196,11 +1196,45 @@ TODO 重复这里的实验。
 > global counter will eventually converge on the true value -- hence
 > this approach qualifies as eventually consistent.
 
-TODO **Quick Quiz 5.27** more notes about tradeoffs here.
+> **Quick Quiz 5.27**
+>
+> Given that in the eventually-consistent algorithm shown in Listing
+> 5.5 both reads and updates have extremely low overhead and are
+> extremely scalable, why would anyone bother with the implementation
+> described in Section 5.2.2, given its costly read-side code?
+>
+> Answer:
+>
+> The thread executing `eventual()` consumes CPU time. As more of
+> these eventually-consistent counters are added, the resulting
+> `eventual()` threads will eventually consume all available
+> CPUs. This implementation therefore suffers a different sort of
+> scalability limitation, with the scalability limit being in terms of
+> the number of eventually consistent counters rather than in terms of
+> the number of threads or CPUs.
+>
+> Of course, it is possible to make other tradeoffs. For example, a
+> single thread could be created to handle all eventually-consistent
+> counters, which would limit the overhead to a single CPU, but would
+> result in increasing update-to-read latencies as the number of
+> counters increased. Alternatively, that single thread could track
+> the update rates of the counters, visiting the frequently-updated
+> counters more frequently. In addition, the number of threads
+> handling the counters could be set to some fraction of the total
+> number of CPUs, and perhaps also adjusted at runtime. Finally, each
+> counter could specify its latency, and deadline-scheduling
+> techniques could be used to provide the required latencies to each
+> counter.
+
+像是运行 `eventual()` 的这种 thread 可以称为 "side-running thread"，
+当算法中引入这种 "side-running thread" 时，
+就会有新的解题空间可以探索，
+也会产生新的 tradeoffs。
 
 ### 5.2.5 Discussion
 
-TODO
+在多线程程序中，因为所有的线程都可以通过 shared-memory 来传递信息，
+所以解题空间很广泛，不必局限于一个信息传递的方向。
 
 ## 5.3 Approximate Limit Counters
 
