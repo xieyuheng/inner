@@ -1150,8 +1150,6 @@ Data Ownership pattern，第六章是专门讲 pattern 的！
 但是还是需要在局部避免编译器优化。
 因此还是用到了 `WRITE_ONCE` 和 `READ_ONCE`。
 
-TODO 重复这里的实验。
-
 ### 5.2.3 Per-Thread-Variable-Based Implementation
 
 > The C language, since C11, features a `_Thread_local` storage class
