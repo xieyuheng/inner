@@ -1236,4 +1236,49 @@ Data Ownership pattern，第六章是专门讲 pattern 的！
 
 ## 5.3 Approximate Limit Counters
 
+这里描述的是资源计数的问题。
+
+有点像是内存分配的问题，但是这里只是计数。
+
+计数问题的特点是每个 +1 中的 1 没有 identity，
+而内存分配问题中的 object 有 identity。
+
+如果在实现 inet-lisp 的过程中，
+发现 malloc 是多线程的瓶颈，
+就还需要自己处理 node 的内存分配问题。
+
+### 5.3.1 Design
+
+> But then what happens if a given thread needs to increment its
+> `counter`, but `counter` is equal to its `countermax`? The trick
+> here is to move half of that thread’s `counter` value to a
+> `globalcount`, then increment `counter`.  For example, if a given
+> thread’s `counter` and `countermax` variables were both equal to
+> 10, we do the following:
+>
+> 1. Acquire a global lock.
+> 2. Add five to globalcount.
+> 3. To balance out the addition, subtract five from this thread’s counter.
+> 4. Release the global lock.
+> 5. Increment this thread’s counter, resulting in a value of six.
+>
+> Although this procedure still requires a global lock, that lock need
+> only be acquired once for every five increment operations, greatly
+> reducing that lock’s level of contention.  We can reduce this
+> contention as low as we wish by increasing the value of
+> `countermax`. However, the corresponding penalty for increasing the
+> value of `countermax` is reduced accuracy of `globalcount`.
+
+`countermax` 越高效率越高，
+`countermax` 越低 `globalcount` 越准确。
+
+> This design is an example of _parallel fastpath_, which is an
+> important design pattern in which the common case executes with no
+> expensive instructions and no interactions between threads, but
+> where occasional use is also made of a more conservatively designed
+> (and higher overhead) global algorithm. This design pattern is
+> covered in more detail in Section 6.4.
+
+### 5.3.2 Simple Limit Counter Implementation
+
 TODO
