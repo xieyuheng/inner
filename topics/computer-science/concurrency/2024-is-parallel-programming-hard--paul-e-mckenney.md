@@ -830,6 +830,13 @@ READ_ONCE(var) → atomic_load_explicit(&var, memory_order_relaxed)
 WRITE_ONCE(var, val) → atomic_store_explicit(&var, val, memory_order_relaxed)
 ```
 
+我的用法是：
+
+```c
+#define volatile_load(pointer) atomic_load_explicit(pointer, memory_order_relaxed)
+#define volatile_store(pointer, value) atomic_store_explicit(pointer, value, memory_order_relaxed)
+```
+
 ### 4.2.6 Atomic Operations (C11)
 
 > The C11 standard added atomic operations.
@@ -1280,5 +1287,21 @@ Data Ownership pattern，第六章是专门讲 pattern 的！
 > covered in more detail in Section 6.4.
 
 ### 5.3.2 Simple Limit Counter Implementation
+
+这里 balance counter 的方法是否也可以用来 balance task queue？
+
+TODO
+
+# Chapter 15 Advanced Synchronization: Memory Ordering
+
+这一章对于理解 memory-model 很重要。
+
+TODO
+
+# Appendix A Important Questions
+
+TODO
+
+# Appendix C Why Memory Barriers?
 
 TODO
