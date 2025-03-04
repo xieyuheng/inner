@@ -1288,7 +1288,91 @@ Data Ownership pattern，第六章是专门讲 pattern 的！
 
 ### 5.3.2 Simple Limit Counter Implementation
 
+注意，当 `add_count()` 在发现当前 thread 的 counter 余额不够增加 `delta` 时，
+
+- 先 `globalize_count()` -- 清空当前的 counter；
+- 再 直接把 `delta` 加到 `globalcount`；
+- 再 `balance_count()` -- 根据 `globalcount`
+  和 `globalcountmax` 还有 `globalreserve`，
+  把一些 counts balance 到当前 thread 的 couter 中。
+
+感觉看上面的描述，还不如直接看代码呢，
+毕竟正如 sussman 所说，代码就是描述过程式知识的。
+
 这里 balance counter 的方法是否也可以用来 balance task queue？
+
+每个 thread 都有 `add_count` 和 `sub_count`：
+
+- `add_count` 就是增加 task 到自己的 task queue 中；
+- `sub_ccont` 就是处理自己 task queue 中的 task，
+  如果自己的已经处理完了，可以从全局的 task queue 中取。
+
+这么看来好像确实是可以用来 balance task queue，
+可以在实验的时候把 count 改成 task queue 试试。
+
+> Lines 1–7 show `globalize_count()`, which zeros the current
+> thread’s per-thread counters, adjusting the global variables
+> appropriately. It is important to note that this function does not
+> change the aggregate value of the counter, but instead changes how
+> the counter’s current value is represented.
+
+用不变量来简化人们对算法的理解。
+
+> By doing this, `balance_count()` maximizes
+> use of `add_count()`’s and `sub_count()`’s low-overhead fastpaths.
+
+这就是 "balance" 通常的意义，
+比如 balanced tree 是为了让搜索的速度更快。
+
+> As with `globalize_count()`, `balance_count()` is not permitted to
+> change the aggregate value of the counter.
+
+用不变量来简化人们对算法的理解。
+
+TODO 为什么在 `balance_count()` 中要 `countermax /= num_online_threads();`？
+这样会导致每个 thread 所能分到的 `countermax` 不同。
+比如，考虑初始化的时候，每个 thread 都运行一下 `balance_count`，
+假设有 3 个 threads，那么每个 thread 所分配到的 `countermax` 为：
+
+- thread 0 -- 33.3% -- (100% / 3)
+- thread 1 -- 22.2% -- ((100% - (100% / 3)) / 3)
+- thread 2 -- 14.8% -- ((100% - (100% / 3) - ((100% - (100% / 3)) / 3)) / 3)
+
+不过这个是动态分配的，所以运行起来应该还好。
+
+注意，这里用的 thread local variables 外加：
+
+- `count_register_thread()` -- 启动 thread 后用来初始化；
+- `count_unregister_thread()` -- 退出 thread 前清理资源。
+
+实现了动态挂载新 thread 的效果。
+也就是说 thread 也有生命周期，而上面两个类似于 vue 的：
+
+- `count_register_thread()` -- `mounted`；
+- `count_unregister_thread()` -- `before-destroyed`。
+
+我之前说我不用 thread local variables，
+但是这里看来，使用的话可以保持 main thread 简单。
+好像这样也方便内存管理，thread 退出时局部变量就被回收了。
+
+### 5.3.3 Simple Limit Counter Discussion
+
+> ... the use of a per-thread
+> `countermax` reserve means that `add_count()` can fail even when the
+> aggregate value of the counter is nowhere near `globalcountmax`. Similarly,
+> `sub_count()` can fail even when the aggregate value of the counter is
+> nowhere near zero.
+
+这里说的 "fail" 只是 "fail to take the fast path"。
+
+> In many cases, this is unacceptable. Even if the `globalcountmax` is
+> intended to be an approximate limit, there is usually a limit to
+> exactly how much approximation can be tolerated. One way to limit
+> the degree of approximation is to impose an upper limit on the value
+> of the per-thread `countermax` instances. This task is undertaken in
+> the next section.
+
+### 5.3.4 Approximate Limit Counter Implementation
 
 TODO
 
