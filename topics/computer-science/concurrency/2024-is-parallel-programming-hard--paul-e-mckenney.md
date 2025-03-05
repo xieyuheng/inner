@@ -1412,6 +1412,82 @@ TODO
 > and given the simplicity of most of these counting algorithms, most
 > of the techniques described in Chapter 12 can also be quite helpful.
 
+### 5.5.2 Parallel Counting Performance
+
+shared-array 比 thread local variable 的 read 速度要快很多，
+因为后者多了一层 pointer 的 indirect。
+
+### 5.5.3 Parallel Counting Specializations
+
+> Wouldn’t it be better to have a general algorithm that operated
+> efficiently in all cases?
+
+这一章的回答是没有这么好的事，和其他设计决策一样都需要 tradeoffs。
+并行计算给诸多 tradeoffs 中增加了和 scalability 的效率相关的变量。
+
+> That said, it would be good to automate this process, so that the
+> software adapts to changes in hardware configuration and in
+> workload.
+
+作者这里说的是 online reconfiguration 相关的方案，
+inet-lisp 是否也算是这个问题的决方案呢？
+可以用 inet-lisp 来实现并行的 counter 吗？
+
+- 但是在 inet-lisp 中 thread 的概念不是 explicit 的，
+  所以应该没法直接表达这里的 parallel counter 问题。
+  也许可以考虑多个 active 的函数 update 同一个局部变量的问题。
+  如何在 inet-lisp 中 share 局部变量呢？
+
+  - 比如 sum a list of number 的问题，
+    朴素的 reduce 可能没法利用到多个 worker。
+
+> In short, as discussed in Chapter 3, the laws of physics constrain
+> parallel software just as surely as they constrain mechanical
+> artifacts such as bridges.
+
+> These constraints _force specialization_, though in the case of
+> software it might be possible to automate the choice of
+> specialization to fit the hardware and workload in question.
+
+### 5.5.4 Parallel Counting Lessons
+
+可以总结出的 ideas：
+
+- partitioning
+- parallel fastpath (partial parallelization)
+- data ownership
+- batching
+- deferring activity
+
+> The partially partitioned counting algorithms used locking to guard
+> the global data, and locking is the subject of Chapter 7. In
+> contrast, the partitioned data tended to be fully under the control
+> of the corresponding thread, so that no synchronization whatsoever
+> was required. This _data ownership_ will be introduced in Section
+> 6.3.4 and discussed in more detail in Chapter 8.
+
+> Because integer addition and subtraction are extremely cheap
+> compared to typical synchronization operations, achieving reasonable
+> scalability requires synchronization operations be used
+> sparingly. One way of achieving this is to _batch_ the addition and
+> subtraction operations, so that a great many of these cheap
+> operations are handled by a single synchronization operation.
+
+> Finally, the eventually consistent statistical counter discussed in
+> Section 5.2.4 showed how _deferring activity_ (in that case,
+> updating the global counter) can provide substantial performance and
+> scalability benefits. This approach allows common case code to use
+> much cheaper synchronization operations than would otherwise be
+> possible. Chapter 9 will examine a number of additional ways that
+> deferral can improve performance, scalability, and even real-time
+> response.
+
+这一节结合具体例子整体总结了各种 ideas，值得反复读。
+
+# Chapter 6 Partitioning and Synchronization Design
+
+TODO
+
 # Chapter 15 Advanced Synchronization: Memory Ordering
 
 这一章对于理解 memory-model 很重要。
