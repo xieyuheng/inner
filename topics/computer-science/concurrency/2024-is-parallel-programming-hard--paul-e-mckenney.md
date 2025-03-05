@@ -668,14 +668,15 @@ Listing 4.8: Measuring Reader-Writer Lock Scalability。
 > section.  What do I do if I need a much smaller critical section,
 > for example, one containing only a few instructions?
 
-> - Answer: If the data being read _never_ changes, then you do not
->   need to hold any locks while accessing it. If the data changes
->   sufficiently infrequently, you might be able to checkpoint
->   execution, terminate all threads, change the data, then restart at
->   the checkpoint.
+> Answer:
 >
->   ... Some other ways of efficiently handling very small critical
->   sections are described in Chapter 9 [Deferred Processing].
+> If the data being read _never_ changes, then you do not need to hold
+> any locks while accessing it. If the data changes sufficiently
+> infrequently, you might be able to checkpoint execution, terminate
+> all threads, change the data, then restart at the checkpoint.
+>
+> ... Some other ways of efficiently handling very small critical
+> sections are described in Chapter 9 [Deferred Processing].
 
 我所想到的 inet-lisp 的「实现 B」
 可能就是这里描述的 "checkpoint execution"，
@@ -1387,6 +1388,147 @@ TODO 为什么在 `balance_count()` 中要 `countermax /= num_online_threads();`
 > instead to counters with exact limits.
 
 ## 5.4 Exact Limit Counters
+
+> To solve the exact structure-allocation limit problem noted in Quick
+> Quiz 5.4, we need a limit counter that can tell exactly when its
+> limits are exceeded.  One way of implementing such a limit counter
+> is to cause threads that have reserved counts to give them up. One
+> way to do this is to use atomic instructions. Of course, atomic
+> instructions will slow down the fastpath, but on the other hand, it
+> would be silly not to at least give them a try.
+
+### 5.4.1 Atomic Limit Counter Implementation
+
+> Unfortunately, if one thread is to safely remove counts from another
+> thread, both threads will need to atomically manipulate that
+> thread’s `counter` and `countermax` variables. The usual way to do
+> this is to combine these two variables into a single variable, for
+> example, given a 32-bit variable, using the high-order 16 bits to
+> represent `counter` and the low-order 16 bits to represent
+> `countermax`.
+
+> The variables and access functions for a simple atomic limit counter
+> are shown in Listing 5.12 (`count_lim_atomic.c`). The `counter` and
+> `countermax` variables in earlier algorithms are combined into the
+> single variable `counterandmax` shown on line 1, with `counter` in
+> the upper half and `countermax` in the lower half. This variable is
+> of type `atomic_t`, which has an underlying representation of `int`.
+
+作者的代码风格很不好：
+
+- 有很多真让人头疼的缩写 -- `int cami, int *c, int *cm`。
+- 另外 thread local variable 其实也是全局变量，
+  在很多没必要用全局变量的地方用了全局变量。
+
+> **Quick Quiz 5.41**:
+>
+> Given that there is only one counterandmax variable, why bother
+> passing in a pointer to it on line 18 of Listing 5.12?
+>
+> Answer:
+>
+> There is only one counterandmax variable per thread. Later, we will
+> see code that needs to pass other threads’ `counterandmax`
+> variables to `split_counterandmax()`.
+
+本身就应该避免上面的这种问题，
+在没有必要的时候不要用全局变量。
+下面这个问题也是同理：
+
+> **Quick Quiz 5.42**:
+>
+> Why does `merge_counterandmax()` in Listing 5.12 return an int
+> rather than storing directly into an `atomic_t`?
+>
+> Answer:
+>
+> Later, we will see that we need the int return to pass to the
+> `atomic_cmpxchg()` primitive.
+
+> Listing 5.13 shows the `add_count()` and `sub_count()` functions.
+
+> Lines 1–32 show `add_count()`, whose fastpath spans lines 8–15,
+> with the remainder of the function being the slowpath. Lines 8–14
+> of the fastpath form a compare-and-swap (CAS) loop, with the
+> `atomic_cmpxchg()` primitive on lines 13–14 performing the actual
+> CAS.
+
+这是第一次在这本书中简单 CAS 的实际应用。
+
+另外，注意这种先在栈中定义局部变量，
+然后再调用带有副作用的函数的 c 代码风格：
+
+```c
+int add_count(unsigned long delta) {
+  int c;
+  int cm;
+  int old;
+  int new;
+
+  // ...
+  split_counterandmax(&counterandmax, &old, &c, &cm);
+  // ...
+}
+```
+
+这种风格不用 `malloc` 但是没法处理递归的数据类型。
+
+这一节，点题的函数是 `flush_local_count`，
+其中对每个 thread 的 counter 调用了 `atomic_xchg`，
+而不用加 lock。
+
+注意，`add_count` 和 `sub_count` 都会调用 `flush_local_count`，
+也就是说在 worker thread 在做 update 的时候，
+虽然不用加 lock，但是会调用很多 `atomic_xchg`
+来修改所有 thread 的局部变量 -- `counterandmax`。
+
+现在终于可以理解 5.4 开头的这句话了：
+
+> To solve the exact structure-allocation limit problem noted in Quick
+> Quiz 5.4, we need a limit counter that can tell exactly when its
+> limits are exceeded.  One way of implementing such a limit counter
+> is to cause threads that have reserved counts to give them up.
+
+正是调用 `flush_local_count`，
+使得 `add_count` 和 `sub_count`
+在返回 `0` 来报告失败状态时是精确的报告。
+
+问题：为什么在 Listing 5.15 的
+`globalize_count` 和 `flush_local_count` 两个函数中，
+修改下面两个全局变量的时候不用考虑 atomic 了？
+
+```c
+globalcount += c;
+globalreserve -= cm;
+```
+
+回答：因为 `add_count` 是在加了 lock 之后，
+才调用 `globalize_count` 和 `flush_local_count` 的，
+这两个调用根本不在 fastpath 中。
+但是这个 lock 只是对 global variables 的 lock，
+所以在 `flush_local_count` 中清空所有 thread local variables
+-- `counterandmax` 时还是需要 atomic。
+
+注意，在上一个版本中（Listing 5.9: Simple Limit），
+也没有考虑这两个变量的 atomic。
+但是在上一个版本中，是加了 lock 之后才调用 `globalize_count` 的。
+
+TODO 我每看懂下面这个 Quiz：
+
+> **Quick Quiz 5.45:**
+>
+> TODO
+
+下面这个 Quiz 讨论了 atomic 是如何解决各种情况的 data race 的：
+
+> **Quick Quiz 5.46:**
+>
+> What prevents concurrent execution of the fastpath of either
+> `add_count()` or `sub_count()` from interfering with the
+> `counterandmax` variable while `flush_local_count()` is accessing it
+> on line 27 of Listing 5.15?
+>
+> TODO
 
 TODO
 
