@@ -1374,7 +1374,43 @@ TODO 为什么在 `balance_count()` 中要 `countermax /= num_online_threads();`
 
 ### 5.3.4 Approximate Limit Counter Implementation
 
+和上一节算法的差异就是不让 `countermax` 超过 `MAX_COUNTERMAX`。
+
+### 5.3.5 Approximate Limit Counter Discussion
+
+> These changes greatly reduce the limit inaccuracy seen in the
+> previous version, but present another problem: Any given value of
+> `MAX_COUNTERMAX` will cause a workload-dependent fraction of
+> accesses to fall off the fastpath.  As the number of threads
+> increase, non-fastpath execution will become both a performance and
+> a scalability problem. However, we will defer this problem and turn
+> instead to counters with exact limits.
+
+## 5.4 Exact Limit Counters
+
 TODO
+
+## 5.5 Parallel Counting Discussion
+
+### 5.5.1 Parallel Counting Validation
+
+> Many of the algorithms in this section are quite simple, so much so
+> that it is tempting to declare them to be correct by construction or
+> by inspection.  Unfortunately, it is all too easy for those carrying
+> out the construction or the inspection to become overconfident,
+> tired, confused, or just plain sloppy, all of which can result in
+> bugs.
+
+本章的测试方法可以看 `counttorture.h` 和 `limtorture.h`。
+作者直接把这些头文件，拼到不同的 counter 算法的 `.c` 文件后面了。
+太不讲究了。
+
+> Although this level of validation is good and sufficient for
+> textbook implementations such as these, it would be wise to apply
+> additional validation before putting similar algorithms into
+> production. Chapter 11 describes additional approaches to testing,
+> and given the simplicity of most of these counting algorithms, most
+> of the techniques described in Chapter 12 can also be quite helpful.
 
 # Chapter 15 Advanced Synchronization: Memory Ordering
 
