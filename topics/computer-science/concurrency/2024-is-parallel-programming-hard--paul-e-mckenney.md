@@ -1783,6 +1783,8 @@ TODO 为什么 one variable many threads 不会有问题呢？
 
 ### 15.2.2 How to Force Ordering?
 
+可惜没有讲 pthread API。
+
 TODO
 
 ### 15.2.3 Basic Rules of Thumb
