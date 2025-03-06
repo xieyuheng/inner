@@ -1632,7 +1632,160 @@ TODO
 
 # Chapter 15 Advanced Synchronization: Memory Ordering
 
+> ... this chapter will help you gain an understanding of memory
+> ordering, that, with practice, will be sufficient to implement
+> synchronization primitives and performance-critical fast paths.
+
 这一章对于理解 memory-model 很重要。
+
+## 15.1 Memory-Model Intuitions
+
+> The key point is that although loads and stores are conceptually
+> simple, on real multicore hardware significant periods of time are
+> required for their effects to become visible to all other
+> threads.
+
+最简单的直觉是：
+不同 thread 的 load 和 store
+不需要时间就能相互同步。
+
+正是这个简答的直觉是需要被纠正的。
+
+> Strange though it might seem, this means that:
+>
+> - a given store’s value might not be returned by a load that
+>   happens later in wall-clock time,
+>
+> - and it also means that a given store’s value might be overwritten
+>   by a store that happens earlier in wall-clock time.
+
+### 15.1.1 Transitive Intuitions
+
+#### 15.1.1.1 Singular Intuitive Bliss
+
+> A program that has only one variable or only one thread
+> will see all accesses in order.
+
+"only one thread" 的情况我能理解，
+"only one variable"  的情况是什么？
+
+#### 15.1.1.2 Locking Intuitions
+
+> The graphical description is shown in Figure 15.1, which shows a
+> lock being acquired and released by CPUs 0, 1, and 2 in that order.
+
+> In short, lock-based ordering is transitive through CPUs 0, 1,
+> and 2. A key point is that this ordering extends beyond the critical
+> sections, so that everything before an earlier lock release is seen
+> by everything after a later lock acquisition.
+
+这里 "transitive" 指的是传递性。
+就像代数结构中的直觉是被运算律相关的公理捕捉的一样。
+
+> For those who prefer words to diagrams, code holding a given lock
+> will see the accesses in all prior critical sections for that same
+> lock, transitively. ... In other words, when a CPU releases a given
+> lock, all of that lock’s subsequent critical sections will see the
+> accesses in all of that CPU’s code preceding that lock release.
+
+> Inversely, code holding a given lock will be protected from seeing
+> the accesses in any subsequent critical sections for that same lock,
+> again, transitively. ...  In other words, when a CPU acquires a
+> given lock, all of that lock’s previous critical sections will be
+> protected from seeing the accesses in all of that CPU’s code
+> following that lock acquisition.
+
+> Locking is strongly intuitive, which is one reason why it has
+> survived so many attempts to eliminate it. This is also one reason
+> why you should use it where it applies.
+
+#### 15.1.1.3 Release-Acquire Intuitions
+
+> Release-acquire chains also behave in a transitively intuitive
+> manner not unlike that of locking, except that release-acquire
+> chains do not provide mutual exclusion.
+
+说这里的 acquire 和 release 应该是，
+传递给 `atomic_` 函数的 memory-order 参数。
+
+#### 15.1.1.4 RCU Intuitions
+
+TODO 先略过，因为还没看到 Chapter 9 的 RCU。
+
+#### 15.1.1.5 Fully Ordered Intuitions
+
+> A more extreme example of transitivity places at least one
+> `smp_mb()` between each pair of accesses. All accesses seen by any
+> given access will also be seen by all later accesses.
+
+### 15.1.2 Rules of Thumb
+
+> The first rule of thumb is that memory-ordering operations are only
+> required where there is a possibility of interaction between at
+> least two variables shared among at least two threads, which
+> underlies the singular intuitive bliss presented in Section
+> 15.1.1.1.
+
+TODO 为什么 one variable many threads 不会有问题呢？
+
+下面的术语指的是 thread 之间，
+由于 memory accesses 而产生的 dependency：
+
+- load-to-store
+- store-to-store
+- store-to-load
+
+> 1. Memory-ordering operations are required only if at least two
+>    variables are shared by at least two threads.
+>
+> 2. If all links in a cycle are store-to-load links, then minimal
+>    ordering suffices.
+>
+> 3. If all but one of the links in a cycle are store-to-load links,
+>    then each store-to-load link may use a release-acquire pair.
+>
+> 4. Otherwise, at least one full barrier is required between each
+>    pair of non-store-to-load links.
+
+> One final word of advice: Use of raw memory-ordering primitives is a
+> last resort. It is almost always better to use existing primitives,
+> such as locking or RCU, thus letting those primitives do the memory
+> ordering for you.
+
+## 15.2 Ordering: Why and How?
+
+这里举的反直觉的例子，
+和 Michael Scott 在 2024-shared-memory-synchronization 中举的一个例子类似，
+反直觉的结果是两个 thread 上的事件产生了循环的 ordering。
+
+- 注意，Michael Scott 是这本书的编者的导师。
+
+### 15.2.1 Why Hardware Misordering?
+
+解释为什么 多核 + cache + store-buffer 的设计会产生 misordering。
+
+- CPU 运行一般指令的速度比访问内存要快两个数量级。
+- 因此需要有 cache 来解决这个速度差异。
+- 如果 CPU 所 store 的内存不在 cache 中，
+  就需要先记录到 store-buffer 中。
+
+> When a given CPU stores to a variable not present in that CPU’s
+> cache, then the new value is instead placed in that CPU’s store
+> buffer. The CPU can then proceed immediately, without having to wait
+> for the store to do something about all the old values of that
+> variable residing in other CPUs’ caches.
+
+用 event table 逐步解释上面的反直觉的例子。
+
+> In summary, store buffers are needed to allow CPUs to handle store
+> instructions efficiently, but they can result in counter-intuitive
+> memory misordering.
+
+### 15.2.2 How to Force Ordering?
+
+TODO
+
+### 15.2.3 Basic Rules of Thumb
 
 TODO
 
