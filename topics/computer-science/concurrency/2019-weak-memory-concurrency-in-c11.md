@@ -46,7 +46,7 @@ Ori Lahav 这个演讲是我找到的对这个主题最好的介绍。
 在 SC 中并不会出现这种现象。
 
 所谓 sequential consistency，
-就是 CPU 直接访问 memory，
+就是 CPU 直接访问内存，
 中间没有 cache 的简单构架。
 
 > No existing hardware implements SC!
@@ -56,8 +56,102 @@ Ori Lahav 这个演讲是我找到的对这个主题最好的介绍。
 下面要介绍的 weak memory model，
 每一个都对应一种芯片设计构架。
 
-TODO
+# Store buffering in x86-TSO
+
+TSO 是 totel store order 的缩写。
+
+这种构架是：
+
+- load -- 直接从内存取；
+- store -- 先保存在一个 store buffer 中，以免阻塞 CPU 运行，然后批量写入内存。
+
+这种模型可以解释 load 被换到了 store 前面的现象。
+
+# Load buffering in ARM
+
+这种构架是 load 和 store 都有多级的 cache。
+
+这种模型可以解释 store 被换到了 load 前面的现象。
+
+# Challenge 2: Compilers stir the pot
+
+介绍了一个编译器优化的例子，
+即编译器优化掉一个 store，改为从已有的寄存器中复制。
+当有多线程时，这种优化只有在 sequential consistency 下才合法。
+在 weak memory model 下不合法。
+
+# Challenge 3: Transformations do not suffice
+
+这里的 transformation 指的是用代码的变换，
+来解释 weak memory model 中的现象。
+比如，上面的例子都可以用 instruction 的顺序改变来解释。
+
+但是这一章介绍了一个不能用顺序改变来解释的 weak memory model 现象。
+
+# Weak memory model desiderata
+
+所谓 Weak memory model 就是要在，
+芯片（指令集）的具体构架和编译器的优化上层，
+给出一个好用的数学模型。
+
+Desiderata：
+
+1. Formal and comprehensive
+2. Not too weak (good for programmers)
+3. Not too strong (good for hardware)
+4. Admits optimizations (good for compilers)
+
+**Implementability v.s. Programmability**
+
+# The C11 memory model
+
+> - Introduced by the ISO C/C++ 2011 standards.
+> - Defines the semantics of _concurrent_ memory accesses.
+
+> Two types of accesses:
+>
+> - Ordinary (Non-Atomic) -- Races are **errors**
+> - Atomic -- Welcome to the expert mode
+
+就是说，不用 atomic 相关的 API 的话，根本不允许 data race。
+
+- 此时只能用 lock 来避免 data race。
+- 如果 data race 就是想要的行为，
+  那就必须要用 atomic 加 explicit 声明 `memory_order_relaxed`。
+
+> **DRF (data race freedom) guarantee:**
+>
+> no data races under SC => only SC behaviors
+
+# A spectrum of access modes
+
+TODO 这一章画了一个格，还是看图比较好。
+
+# C11: a declarative memory model
+
+> _Declarative semantics_ abstracts away from implementation details.
+>
+> 1. a program -> a set of directed _graphs_.
+> 2. The model defines what executions are _consistent_.
+> 3. C/C++11 also has _catch-fire_ semantics (forbidden data races).
+
+一个多线程的程序运行起来之后，
+把每个 thread 的 event 序列都带上时间戳记录下来，
+所有的 event 按照时间排序有多种可能。
+
+- 由于 thread 之间的相互影响，不混合所有 event，
+  逐个检查 event 序列，也会发现有多种可能。
+
+因此一个 program 会产生一个 execution graph 的集合。
+graph 以 event 为节点，以 event 之间的关系为边。
+
+- 注意，一般的关系产生的是 hypergraph，
+  这里可能会限制在 graph 内，以方便使用数学工具。
 
 # Execution graphs
 
+例子：
+
+```scheme
 TODO
+```
