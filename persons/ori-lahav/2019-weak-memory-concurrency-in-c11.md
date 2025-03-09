@@ -146,6 +146,11 @@ graph 以 event 为节点，以 event 之间的关系为边。
 - 注意，一般的关系产生的是 hypergraph，
   这里可能会限制在 graph 内，以方便使用数学工具。
 
+所谓 consistent 是一个 graph 的谓词
+-- `(claim consistent? (-> graph-t bool-t))`，
+用来定义哪些 graph 是 consistent 的（允许出现的），
+哪些 graph 不是 consistent 的（不应该出现的）。
+
 # Execution graphs
 
 多线程程序的例子：
@@ -166,8 +171,9 @@ graph 以 event 为节点，以 event 之间的关系为边。
 
 关系：
 
-- `po` -- program order
-- `rf` -- read-from
+- `po` -- program order -- 由指令在代码中的顺序给出。
+- `rf` -- read-from -- 每一个 read 都是 read from 某一个 write，
+  这个关系就是明显地把这个 read-from 表示出来。
 
 ```scheme
 (graph
@@ -202,6 +208,40 @@ graph 以 event 为节点，以 event 之间的关系为边。
   (rf :0 :4)
   (rf :1 :2)))
 ```
+
+
+
+# Basic ingredients of execution graph consistency
+
+定义一种 execution graph consistency，
+就是定义一个下面这样的谓词：
+
+```scheme
+(claim consistent? (-> graph-t bool-t))
+```
+
+> 1. SC-per-location (a.k.a. coherence)
+> 2. Release/acquire synchronization
+> 3. Global conditions on SC accesses
+
+## SC-per-location (a.k.a. coherence)
+
+忘记 weak memory model，先来定义一下 sequential consistency。
+
+> **Definition (Declarative definition of SC, Lamport ’79)**
+
+也就是说最早研究并行程序所生成的 graph，
+并且定义了一种最重要的 consistency 的是 Lamport 79 年的论文。
+
+TODO
+
+## Release/acquire synchronization
+
+TODO
+
+## Global conditions on SC accesses
+
+TODO
 
 # My references
 
