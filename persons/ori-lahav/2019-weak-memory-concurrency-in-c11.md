@@ -209,7 +209,16 @@ graph 以 event 为节点，以 event 之间的关系为边。
   (rf :1 :2)))
 ```
 
+注意，这里的 node 是由形如 `:key` 的 key 唯一指定的，
+而在定义中 key 又对应了形如 `(store y 0)` 的 value，
+value 反过来可以用来代表一个 key 的集合，
+因此 value 的作用类似于 expression 的类型，
+又由于 value 是带有非类型参数的，
+所以 value 的作用类似于 dependent type！
 
+- 比如下面的定义中就用到了所有以 `(store _ _)` 为类型的 node。
+
+因此从形式上看，这里对 graph 的定义也与 inductive datatype 的定义有联系！
 
 # Basic ingredients of execution graph consistency
 
@@ -233,7 +242,45 @@ graph 以 event 为节点，以 event 之间的关系为边。
 也就是说最早研究并行程序所生成的 graph，
 并且定义了一种最重要的 consistency 的是 Lamport 79 年的论文。
 
-TODO
+> G is SC-consistent if there exists a relation S
+> such that the following hold:
+
+> - S is a total order on the events (nodes) of G.
+
+> - (po ∪ rf) ; S = ∅.
+
+TODO 这里有一个目前还不知道定义的 `;`，
+我记得在哪里看到过，但是忘记了。
+
+在演讲中这一条的定义是：
+
+> - po ∪ rf ⊆ S.
+
+就是说这个新定义的 S 关系 agree with po 和 rf。
+如果两个 node a 和 b 满足 `(po a b)` 或 `(rf a b)`
+那么 a 和 b 也满足 `(S a b)`。
+
+最后一个条件是（store 和 write 同义，load 和 read 同义）：
+
+```scheme
+(forall ((x location-t)
+         (a (write x _))
+         (b (read x)))
+  (-> (rf a b)
+      (not-t (exists ((c (write x _)))
+               (and-t (S a c) (S c b))))))
+```
+
+即不允许 rf 跨过一个 write 去读另一个 wirte。
+
+```
+  .---------rf->-------.
+  |                    |
+(W x) -S-> (W x) -S-> (W x)
+```
+
+换句话说，是要找一个所有 node 的排序，
+使得 every read is a read from the last write。
 
 ## Release/acquire synchronization
 
