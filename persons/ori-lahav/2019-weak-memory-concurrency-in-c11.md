@@ -202,3 +202,39 @@ graph 以 event 为节点，以 event 之间的关系为边。
   (rf :0 :4)
   (rf :1 :2)))
 ```
+
+# My references
+
+## memory order in C standards
+
+[cppreference / memory_order](https://en.cppreference.com/w/c/atomic/memory_order)
+
+```c
+// Defined in header <stdatomic.h> (since C11)
+enum memory_order {
+    memory_order_relaxed,
+    memory_order_consume,
+    memory_order_acquire,
+    memory_order_release,
+    memory_order_acq_rel,
+    memory_order_seq_cst
+};
+```
+
+Example usage:
+
+```c
+// `memory_order_seq_cst` is the default.
+atomic_load(pointer) =
+    atomic_load_explicit(pointer, memory_order_seq_cst)
+atomic_store(pointer, value) =
+    atomic_store_explicit(pointer, value, memory_order_seq_cst)
+
+// `volatile` means simply avoid compiler optimizations.
+#define volatile_load(pointer) \
+    atomic_load_explicit(pointer, memory_order_relaxed)
+#define volatile_store(pointer, value) \
+    atomic_store_explicit(pointer, value, memory_order_relaxed)
+```
+
+TODO
