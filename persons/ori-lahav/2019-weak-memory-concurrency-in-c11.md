@@ -209,6 +209,14 @@ graph 以 event 为节点，以 event 之间的关系为边。
 
 [cppreference / memory_order](https://en.cppreference.com/w/c/atomic/memory_order)
 
+> Absent any constraints on a multi-core system, when multiple threads
+> simultaneously read and write to several variables, one thread can
+> observe the values change in an order different from the order
+> another thread wrote them. Indeed, the apparent order of changes can
+> even differ among multiple reader threads. Some similar effects can
+> occur even on uniprocessor systems due to compiler transformations
+> allowed by the memory model.
+
 ```c
 // Defined in header <stdatomic.h> (since C11)
 enum memory_order {
@@ -237,4 +245,10 @@ atomic_store(pointer, value) =
     atomic_store_explicit(pointer, value, memory_order_relaxed)
 ```
 
-TODO
+> **Relationship with volatile**
+>
+> ... volatile access does not establish inter-thread synchronization.
+>
+> In addition, volatile accesses are not atomic (concurrent read and
+> write is a data race) and do not order memory (non-volatile memory
+> accesses may be freely reordered around the volatile access).
