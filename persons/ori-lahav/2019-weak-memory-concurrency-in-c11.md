@@ -26,19 +26,17 @@ Ori Lahav 这个演讲是我找到的对这个主题最好的介绍。
   (store x 0)
   (store y 0)
 
-  (thread-start
-   (lambda ()
-     (store x 1)
-     (store a (load y)) ;; a = 0
-     (if (eq? a 0)
-       (critical-section))))
+  (begin-thread
+   (store x 1)
+   (store a (load y)) ;; a = 0
+   (if (eq? a 0)
+     (critical-section)))
 
-  (thread-start
-   (lambda ()
-     (store y 1)
-     (store b (load x)) ;; b = 0
-     (if (eq? b 0)
-       (critical-section)))))
+  (begin-thread
+   (store y 1)
+   (store b (load x)) ;; b = 0
+   (if (eq? b 0)
+     (critical-section))))
 ```
 
 想要回答「为什么」的问题，就需要了解底层的模型，即 weak memory model。
@@ -150,8 +148,57 @@ graph 以 event 为节点，以 event 之间的关系为边。
 
 # Execution graphs
 
-例子：
+多线程程序的例子：
 
 ```scheme
-TODO
+(begin
+  (store x 0)
+  (store y 0)
+
+  (begin-thread
+   (store-relax x 1)
+   (load-relax y))
+
+  (begin-thread
+   (store-relax y 1)
+   (load-relax x)))
+```
+
+关系：
+
+- `po` -- program order
+- `rf` -- read-from
+
+```scheme
+(graph
+ (nodes
+  :0 (store x 0)
+  :1 (store y 0)
+  :2 (store-relax x 1)
+  :3 (load-relax y)
+  :4 (store-relax y 1)
+  :5 (load-relax x))
+ (relations
+  (po* :0 :2 :3)
+  (po* :0 :4 :5)
+  (po* :1 :2 :3)
+  (po* :1 :4 :5)
+  (rf :0 :3)
+  (rf :1 :5)))
+
+(graph
+ (nodes
+  :0 (store x 0)
+  :1 (store y 0)
+  :2 (store-relax x 1)
+  :3 (load-relax y)
+  :4 (store-relax y 1)
+  :5 (load-relax x))
+ (relations
+  (po* :0 :2 :3)
+  (po* :0 :4 :5)
+  (po* :1 :2 :3)
+  (po* :1 :4 :5)
+  (rf :0 :4)
+  (rf :1 :2)))
 ```
