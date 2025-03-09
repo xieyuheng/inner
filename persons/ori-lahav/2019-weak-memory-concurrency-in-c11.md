@@ -233,7 +233,7 @@ value 反过来可以用来代表一个 key 的集合，
 > 2. Release/acquire synchronization
 > 3. Global conditions on SC accesses
 
-## SC-per-location (a.k.a. coherence)
+## Sequential consistency (SC)
 
 忘记 weak memory model，先来定义一下 sequential consistency。
 
@@ -281,6 +281,10 @@ TODO 这里有一个目前还不知道定义的 `;`，
 
 换句话说，是要找一个所有 node 的排序，
 使得 every read is a read from the last write。
+
+## SC-per-location (a.k.a. coherence)
+
+TODO
 
 ## Release/acquire synchronization
 
