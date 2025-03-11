@@ -1820,6 +1820,10 @@ Deq structure, empty list:
 
 问题：这里 N 最小取多少才能保证所有 lock 的 domain 的不相互重合？
 
+> ... a left-enqueue running concurrently with a right-enqueue would
+> result in lock contention, but the probability of such contention
+> can be reduced to arbitrarily low levels by using a larger hash table.
+
 TODO
 
 #### 6.1.2.5 Compound Double-Ended Queue Revisited
