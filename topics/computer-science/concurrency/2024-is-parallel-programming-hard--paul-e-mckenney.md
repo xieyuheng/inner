@@ -1774,6 +1774,10 @@ rebalancing 的方式上可以做很多文章。
 这里描述的不是很清楚。
 好像是 mod N 而不是 hash。
 
+- 哦，我想这也可以称作是 hash，
+  因为 hash table 在把 value 变成自然数的 hash function 之外，
+  也还有一个 mod P，这里 P 是一个很大的素数。
+
 看下面的图应该就清楚了，
 作者想像一个 double-ended queue 时给出了下面的图示。
 
