@@ -1632,6 +1632,18 @@ inet-lisp 是否也算是这个问题的决方案呢？
 > fourth.  Changing this order often leads to poor performance and
 > scalability along with great frustration.
 
+在使用 lock 的时候 partition 和 batch 尤其重要。
+设想用「scheduler 给 worker 分配 task」这种模式来设计方案，
+如果不追求 lock free，可以让 worker 分批处理 (batching) tasks，
+一批 tasks 处理完之后，所有 worker 要停下来，scheduler 重新分配 tasks。
+
+只要重新分配的时间相比 batch processing 而言足够短，
+这就是合理的方案。
+
+另外，关于 weaken。
+上一章的 counter 被 weaken 成了 eventually consistency，
+就是这里的 weaken 的例子。
+
 ## 6.1 Partitioning Exercises
 
 ### 6.1.1 Dining Philosophers Problem
@@ -1780,6 +1792,7 @@ rebalancing 的方式上可以做很多文章。
 
 看下面的图应该就清楚了，
 作者想像一个 double-ended queue 时给出了下面的图示。
+好像是一个二维的数据结构了。
 
 ```
 Deq structure, empty list:
@@ -1796,6 +1809,14 @@ Deq structure, empty list:
 每个假设有四个 queue，要有一个规则来表明 enqueue 一个 element 时，
 应该取哪个 queue，因此 mod 4 就可以了。
 需要有额外两个 index 来记录当前 mod 4 的位置。
+
+> Given this approach, we assign one lock to guard the left-hand
+> index, one to guard the right-hand index, and one lock for each hash
+> chain. Figure 6.7 shows the resulting data structure given four hash
+> chains. Note that the lock domains do not overlap, and that deadlock
+> is avoided by acquiring the index locks before the chain locks, and
+> by never acquiring more than one lock of a given type (index or
+> chain) at a time.
 
 TODO
 
