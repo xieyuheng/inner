@@ -1726,7 +1726,10 @@ TODO 先略过，因为还没看到 Chapter 9 的 RCU。
 > underlies the singular intuitive bliss presented in Section
 > 15.1.1.1.
 
-TODO 为什么 one variable many threads 不会有问题呢？
+为什么 one variable many threads 不会有问题呢？
+
+- 一个原因是因编译器优化而产生的 OOTA (out of thin air) 问题，
+  在有一个 variable 时不会出现。
 
 下面的术语指的是 thread 之间，
 由于 memory accesses 而产生的 dependency：
