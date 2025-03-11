@@ -1771,13 +1771,27 @@ rebalancing 的方式上可以做很多文章。
 > trivially hash a double-ended queue by assigning each element a
 > sequence number based on its position in the list, ...
 
-TODO 没看明白这里的描述。
+这里描述的不是很清楚。
+好像是 mod N 而不是 hash。
 
-看起来是想要通过提供更多的 queue
-来避免前一个算法中的 rebalancing 步骤。
-每个假设有四个 queue，
-要有一个规则来表明 enqueue 一个 element 时，
-应该取哪个 queue。
+看下面的图应该就清楚了，
+作者想像一个 double-ended queue 时给出了下面的图示。
+
+```
+Deq structure, empty list:
+
+    +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+    |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+    +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+                              ^   ^
+                              |   |
+                      left_index right_index
+```
+
+看起来是想要通过提供更多的 queue 来避免前一个算法中的 rebalancing 步骤。
+每个假设有四个 queue，要有一个规则来表明 enqueue 一个 element 时，
+应该取哪个 queue，因此 mod 4 就可以了。
+需要有额外两个 index 来记录当前 mod 4 的位置。
 
 TODO
 
