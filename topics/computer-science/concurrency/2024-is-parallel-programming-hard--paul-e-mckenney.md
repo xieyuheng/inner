@@ -1818,6 +1818,8 @@ Deq structure, empty list:
 > by never acquiring more than one lock of a given type (index or
 > chain) at a time.
 
+问题：这里 N 最小取多少才能保证所有 lock 的 domain 的不相互重合？
+
 TODO
 
 #### 6.1.2.5 Compound Double-Ended Queue Revisited
