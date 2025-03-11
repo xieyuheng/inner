@@ -1628,6 +1628,165 @@ inet-lisp 是否也算是这个问题的决方案呢？
 
 # Chapter 6 Partitioning and Synchronization Design
 
+> You should partition first, batch second, weaken third, and code
+> fourth.  Changing this order often leads to poor performance and
+> scalability along with great frustration.
+
+## 6.1 Partitioning Exercises
+
+### 6.1.1 Dining Philosophers Problem
+
+> Dijkstra’s solution used a global semaphore, which works fine
+> assuming negligible communications delays, an assumption that became
+> invalid in the late 1980s or early 1990s.
+
+Dijkstra 的解法现在已经过时了，一个新的解法是给叉子排序：
+
+> More recent solutions number the forks as shown in Figure 6.3. Each
+> philosopher picks up the lowest-numbered fork next to his or her
+> plate, then picks up the other fork. The philosopher sitting in the
+> uppermost position in the diagram thus picks up the leftmost fork
+> first, then the rightmost fork, while the rest of the philosophers
+> instead pick up their rightmost fork first. Because two of the
+> philosophers will attempt to pick up fork 1 first, and because only
+> one of those two philosophers will succeed, there will be five forks
+> available to four philosophers. At least one of these four will have
+> two forks, and will thus be able to eat.
+
+> This general technique of numbering resources and acquiring them in
+> numerical order is heavily used as a deadlock-prevention technique.
+> However, it is easy to imagine a sequence of events that will result
+> in only one philosopher eating at a time even though all are hungry:
+>
+> 1. P2 picks up fork 1, preventing P1 from taking a fork.
+> 2. P3 picks up fork 2.
+> 3. P4 picks up fork 3.
+> 4. P5 picks up fork 4.
+> 5. P5 picks up fork 5 and eats.
+> 6. P5 puts down forks 4 and 5.
+> 7. P4 picks up fork 4 and eats.
+
+> In short, this algorithm can result in only one philosopher eating
+> at a given time, even when all five philosophers are hungry, despite
+> the fact that there are more than enough forks for two philosophers
+> to eat concurrently.  It should be possible to do better than this!
+
+第二个解法是给叉子打包，要求每个哲学家每次都要同时拿起来两个叉子：
+
+> One approach is shown in Figure 6.4, which includes four
+> philosophers rather than five to better illustrate the partition
+> technique. Here the upper and rightmost philosophers share a pair of
+> forks, while the lower and leftmost philosophers share another pair
+> of forks. If all philosophers are simultaneously hungry, at least
+> two will always be able to eat concurrently.
+
+第三个，也是最好的解法是，给每个哲学家分两个叉子。
+看似是在作弊，其实是最好的解法，哈哈。
+
+### 6.1.2 Double-Ended Queue
+
+#### 6.1.2.1 Double-Ended Queue Validation
+
+先设计一些测试。
+
+#### 6.1.2.2 Left- and Right-Hand Locks
+
+> One seemingly straightforward approach would be to use a doubly
+> linked list with a left-hand lock for left-hand-end enqueue and
+> dequeue operations along with a right-hand lock for right-hand-end
+> operations, as shown in Figure 6.5.
+
+> However, the problem with this approach is that the two locks’
+> domains must overlap when there are fewer than four elements on the
+> list. This overlap is due to the fact that removing any given
+> element affects not only that element, but also its left- and
+> right-hand neighbors.
+
+每个 lock 都有自己的 domain。
+
+> Although it is possible to create an algorithm that works this way,
+> perhaps using a dummy element similar to the two-lock queue
+> presented by Michael and Scott [MS96], the fact that it has no fewer
+> than five special cases should raise a big red flag.
+
+看来 michael scott queue 是这个 idea 的变体。
+
+- 另外注意，Michael and Scott 是两个人，
+  但是 Scott 全名就叫 Michael Scott。
+
+#### 6.1.2.3 Compound Double-Ended Queue
+
+> One way of forcing non-overlapping lock domains is shown in Figure 6.6.
+> Two separate double-ended queues are run in tandem, each protected by its
+> own lock. This means that elements must occasionally be shuttled from one
+> of the double-ended queues to the other, in which case both locks must be
+> held. A simple lock hierarchy may be used to avoid deadlock, for example,
+> always acquiring the left-hand lock before acquiring the right-hand lock.
+
+> Two separate double-ended queues are run in tandem, each protected by its
+> own lock. This means that elements must occasionally be shuttled from one
+> of the double-ended queues to the other, in which case both locks must be
+> held. A simple lock hierarchy may be used to avoid deadlock, for example,
+> always acquiring the left-hand lock before acquiring the right-hand lock.
+> This will be much simpler than applying two locks to the same double-ended
+> queue, as we can unconditionally left-enqueue elements to the left-hand
+> queue and right-enqueue elements to the right-hand queue.
+
+> The main complication arises when dequeuing from an empty queue,
+> in which case it is necessary to:
+>
+> 1. If holding the right-hand lock,
+>    release it and acquire the left-hand lock.
+> 2. Acquire the right-hand lock.
+> 3. Rebalance the elements across the two queues.
+> 4. Remove the required element if there is one.
+> 5. Release both locks.
+
+> **Quick Quiz 6.4**:
+>
+> In this compound double-ended queue implementation, what should be
+> done if the queue has become non-empty while releasing and reacquiring
+> the lock?
+>
+> Answer:
+>
+> In this case, simply dequeue an item from the non-empty queue,
+> release both locks, and return.
+
+就是说，如果在上面的 (1) 步骤之后，重新拿到了两个 lock，
+但是发现 right-hand queue 不是空的了。
+这时候显然只要 dequeue 这个 right-hand queue 就可以了。
+
+> The rebalancing operation might well shuttle a given element back
+> and forth between the two queues, wasting time and possibly
+> requiring workload-dependent heuristics to obtain optimal
+> performance.
+
+rebalancing 的方式上可以做很多文章。
+
+#### 6.1.2.4 Hashed Double-Ended Queue
+
+> One of the simplest and most effective ways to deterministically
+> partition a data structure is to hash it. It is possible to
+> trivially hash a double-ended queue by assigning each element a
+> sequence number based on its position in the list, ...
+
+TODO 没看明白这里的描述。
+
+看起来是想要通过提供更多的 queue
+来避免前一个算法中的 rebalancing 步骤。
+每个假设有四个 queue，
+要有一个规则来表明 enqueue 一个 element 时，
+应该取哪个 queue。
+
+TODO
+
+#### 6.1.2.5 Compound Double-Ended Queue Revisited
+
+TODO
+
+#### 6.1.2.6 Double-Ended Queue Discussion
+
 TODO
 
 # Chapter 15 Advanced Synchronization: Memory Ordering
@@ -1786,11 +1945,14 @@ TODO 先略过，因为还没看到 Chapter 9 的 RCU。
 
 ### 15.2.2 How to Force Ordering?
 
-可惜没有讲 pthread API。
+介绍了 linux kernel 中相关的 API，
+但是没有讲 C11 的 atomic API。
+
+### 15.2.3 Basic Rules of Thumb
 
 TODO
 
-### 15.2.3 Basic Rules of Thumb
+## 15.3 Tricks and Traps
 
 TODO
 
