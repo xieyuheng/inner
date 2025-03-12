@@ -2003,7 +2003,19 @@ TODO
 
 # Appendix A Important Questions
 
+## A.1 Why aren’t parallel programs always faster?
+
+> The short answer is “because parallel execution often requires
+> communication, and communication is not free”.
+
 TODO
+
+## A.2 Why not remove locking?
+## A.3 What time is it?
+## A.4 What does “after” mean?
+## A.5 How much ordering is needed?
+## A.6 What is the difference between “concurrent” and “parallel”?
+## A.7 Why is software buggy?
 
 # Appendix C Why Memory Barriers?
 
