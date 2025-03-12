@@ -2008,11 +2008,22 @@ TODO
 > The short answer is “because parallel execution often requires
 > communication, and communication is not free”.
 
+## A.2 Why not remove locking?
+
+lock 和 lockless 都是实用的解决并行编程问题的工具。
+
+lockless 听起来很好，但是不能盲目推崇。
+
+## A.3 What time is it?
+
+> One problem is that it takes time to read out the time.
+
+> ... in many cases, the exact time is not necessary.
+
+## A.4 What does “after” mean?
+
 TODO
 
-## A.2 Why not remove locking?
-## A.3 What time is it?
-## A.4 What does “after” mean?
 ## A.5 How much ordering is needed?
 ## A.6 What is the difference between “concurrent” and “parallel”?
 ## A.7 Why is software buggy?
