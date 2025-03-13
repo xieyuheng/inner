@@ -13,6 +13,13 @@ SICM 的目的在于，
 我学习 SICM 的动机是学会经典力学，
 同时也学习用 Scheme 表达知识的方式。
 
+构拟经典力学的历史：
+
+- 初步地观察，使人们区分出空间与空间中的物体。
+- 人们观察到物体在运动，运动的规律被总结为物体之间有相互作用，并称之为力。
+- 人们观察到的相同的力对不同物体的作用效果不同，
+  人们引入质量这个物体万有的参数来度量这种不同的作用效果。
+
 [2025-02-13] 上面的动机大概是十年前的了。
 现在的动机是 simulation，即完成下面的循环：
 
@@ -22,33 +29,6 @@ SICM 的目的在于，
         (simulation)
         (render)))
 ```
-
-## 经典力学的产生
-
-数世纪的对星体运动的观察中，
-人们积累了相当多的关于星体运动的规律的经验性知识，
-这使得人们有能力预测很多天文现象。
-
-为了理解运动，
-而把这些知识表达地符合人类对事物的理性的认识方式，
-人们就创造出了一种描述运动的一般规律的数学语言，
-即经典力学。
-
-初步地观察，
-使人们区分出空间与空间中的物体，
-并用一种几何（度量关系等抽象数学结构）去描述空间，
-而物体被抽象为空间中的点集。
-
-人们观察到物体在运动，
-人们通过引入参考系来描述点在空间中的位置，
-而运动就被描述为点在空间中的位置的变化，
-需要引入时间这个参数才能描述变化这个概念。
-
-人们观察到物体之间有相互作用，
-这被描述为力，它以物体为作用对象。
-
-人们观察到的相同的力对不同物体的作用效果不同，
-人们引入质量这个物体万有的参数来度量这种不同的作用效果。
 
 # Preface
 
@@ -76,38 +56,180 @@ SICM 的目的在于，
 # 1 Lagrangian Mechanics
 
 > The motion of a system can be described by giving the position of
-> every piece of the system at each moment. Such a description of the
+> every piece of the system at each moment.  Such a description of the
 > motion of the system is called a _configuration path_; the
-> config-configuration path specifies the configuration as a function
-> of time.
+> configuration path specifies the configuration as a function of
+> time.
 
-说 configuration 而不是说 position，
-是因为想要描述刚体，除了 position 之外还需要 orientation。
+```scheme
+(define-class motion-system-t ()
+  :configuration-t type-t
+  :configuration-path-t (-> time-t @configuration-t))
+```
 
-Newton 的方程是一个方程，
-满足运动条件的 configuration path 需要让方程等于 0。
+例如 juggling pin：
 
-> However, there is a alternate strategy that provides more in-insight
+> The juggling pin rotates as it flies through the air; the
+> configuration of the juggling pin is specified by giving the
+> position and orientation of the pin. The motion of the juggling pin
+> is specified by giving the position and orientation of the pin as a
+> function of time.
+
+对于 juggling pin 而言，
+configuration = position + orientation。
+
+> The function that we seek takes a configuration path as an input and
+> produces some output. We want this function to have some
+> characteristic behavior when the input is a realizable path. For
+> example, the output could be a number, and we could try to arrange
+> that the number is zero only on realizable paths. Newton's equations
+> of motion are of this form; at each moment Newton's differential
+> equations must be satisfied.
+
+> However, there is a alternate strategy that provides more insight
 > and power: we could look for a path-distinguishing functionthat has
-> a minimum on the realizable paths -- on nearby unreal-unrealizable
-> paths the value of the function is higher than it is on the
-> realizable path. This is the _variational strategy_: for each
-> physical system we invent a path-distinguishing function that
-> distinguishes realizable motions of the system by having a
-> stationary point foreach realizable path. For a great variety of
-> systems realizable motions of the system can be formulated in terms
-> of a variational principle.
+> a minimum on the realizable paths -- on nearby unrealizable paths
+> the value of the function is higher than it is on the realizable
+> path. This is the _variational strategy_: for each physical system
+> we invent a path-distinguishing function that distinguishes
+> realizable motions of the system by having a _stationary point_
+> foreach realizable path. For a great variety of systems realizable
+> motions of the system can be formulated in terms of a variational
+> principle.
 
-而在变分法中，之需要 configuration path 为 stationary point。
+两个函数如果都是 stationary point，
+那么它们的线性组合显然也是 stationary point。
+
+> In the Newtonian formulation the forces can often be written as
+> derivatives of the potential energy of the system. The motion of the
+> system is determined by considering how the individual component
+> particles respond to these forces. The Newtonian formulation of the
+> equations of motion is intrinsically a particle-by-particle
+> description.
+
+> In the variational formulation the equations of motion are
+> formulated in terms of the difference of the kinetic energy and the
+> potential energy. The potential energy is a number that is
+> characteristic of the arrangement of the particles in the system;
+> the kinetic energy is a number that is determined by the velocities
+> of the particles in the system. Neither the potential energy nor the
+> kinetic energy depend on how those positions and velocities are
+> specified. The difference is characteristic of the system as a whole
+> and does not depend on the details of how the system is specified.
+> So we are free to choose ways of describing the system that are easy
+> to work with; we are liberated from the particle-by-particle
+> description inherent in the Newtonian formulation.
 
 ## 1.1 The Principle of Stationary Action
 
-尝试通过我们对运动的直觉，推导出 path-distinguishing function。
-能熟练地重复这里的推导过程，就算是学会这一节了。
-推导的结论是：
+> Let us suppose that for each physical system there is a
+> path-distinguishing function that is stationary on realizable
+> paths. We will try to deduce some of its properties.
 
-> We will consider actionsthat are integrals of some local property of
-> the configuration pathat each moment.
+通过我们对运动的直觉，推导出 path-distinguishing function。
+能熟练地重复这里的推导过程，就算是学会这一节了。
+
+### Experience of motion
+
+根据我们的日常经验：
+
+- 构型路径应该是连续且光滑的函数。
+
+- 物理系统的运动不依赖于系统的历史。
+
+- 物理系统的运动是确定性的，
+  即只要知道了系统的当前状态（通常只是几个参数），
+  系统的未来演化方式就是完全确定的。
+
+### Realizable paths
+
+对于可实现的构型路径，我们也有一些直觉上的要求：
+
+- 如果一个路径是可实现的，
+  那么这个路径的任意一个片段（segment）都是可实现的；
+  反之如果一个路径被分成了很多片段，
+  并且每个片段都是可实现的，
+  那么这整个路径就是可实现的。
+
+- 一个路径片段可实现与否，依赖于其上的每一个点。
+  并且依赖于每一个点的方式都是一样的，
+  每个点都是平等的，没有特殊的点。
+
+- 一个路径片段可实现与否，只依赖于这个片段内的点。
+  即路径片段的可实现性是一个局部属性。
+
+因此所要找的路径区分函数，
+是每一个瞬间的路径片段上的，
+某种局部属性的聚合。
+
+一种满足件的聚合方式是加法，
+此时路径区分函数是就某个路径的局部属性而言，
+在路径片段上的积分。
+
+这里的注释是：
+
+> We suspect that this argument can be promoted to a precise
+> constraint on the possible ways of making this path-distinguishing
+> function.
+
+也许确实如此，可以模仿 William Lawvere 在证明 Brouwer 定理时，
+原地构造了一个 category 的方式，来处理这里的推理。
+
+> So we will try to arrange that the path-distinguishing function,
+> constructed as an integral of a local property along the path,
+> assumes an extreme value for any realizable path. Such a
+> path-distinguishing function is traditionally called an _action_ for
+> the system.
+
+```
+action := path-distinguishing function
+```
+
+> In order to pursue the agenda of variational mechanics, we must
+> invent action functions that are stationary on the realizable
+> trajectories of the systems we are studying. We will consider
+> actions that are integrals of some local property of the
+> configuration path at each moment.
+
+> Let `γ` be the configuration-path function;
+
+```scheme
+(claim configuration-t type-t)
+(define configuration-path-t (-> time-t configuration-t))
+(claim γ (-> time-t configuration-t))
+(claim γ configuration-path-t)
+```
+
+> `γ(t)` is the configuration at time `t`.
+
+```scheme
+(claim t time-t)
+(claim (γ t) configuration-t)
+```
+
+> The action of the segment of the path `γ`
+> in the time interval from `t1` to `t2` is:
+
+```scheme
+(claim t1 time-t)
+(claim t2 time-t)
+(claim definite-integral
+  (-> (-> time-t real-t) time-t time-t real-t))
+(claim F
+  (-> configuration-path-t time-t real-t))
+(define (S γ t1 t2)
+  (definite-integral (F γ) t1 t2))
+```
+
+> where `F[γ]` is a function of time that measures some local
+> property of the path. It may depend upon the value of the function
+> `γ` at that time and the value of any derivatives of `γ` at that
+> time.
+
+> Traditionally, square brackets are put around functional arguments.
+> In this case, the square brackets remind us that the value of `S`
+> may depend on the function `γ` in complicated ways, such as
+> through its derivatives.
 
 TODO
 
