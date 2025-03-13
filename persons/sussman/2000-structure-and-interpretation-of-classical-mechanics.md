@@ -4,23 +4,24 @@ authors: [Gerald Jay Sussman, Jack Wisdom]
 date: 2000
 ---
 
-# 引用
+# My Motive
 
-- Hans Freudenthal,
-  Didactical Phenomenology of Mathematical Structures,
-  Kluwer Publishing Co., Boston, 1983.
+SICM 的目的在于，
+利用函数式编程中的严格的符号系统，
+来介绍经典力学和微分几何。
 
-- P. E. B. Jourdain,
-  The Principle of Least Action,
-  The Open CourtPublishing Company, Chicago, 1913.
+我学习 SICM 的动机是学会经典力学，
+同时也学习用 Scheme 表达知识的方式。
 
-# 笔记
+[2025-02-13] 上面的动机大概是十年前的了。
+现在的动机是 simulation，即完成下面的循环：
 
-## 学习动机
-
-SICM 的目的在与，利用函数式编程中的严格的符号系统，来介绍经典力学和微分几何。
-
-我学习 SICM 的动机是学会经典力学，同时也学习用 Scheme 表达知识的方式。
+```scheme
+(define (game)
+  (loop (input)
+        (simulation)
+        (render)))
+```
 
 ## 经典力学的产生
 
@@ -33,7 +34,7 @@ SICM 的目的在与，利用函数式编程中的严格的符号系统，来介
 人们就创造出了一种描述运动的一般规律的数学语言，
 即经典力学。
 
-初步的观察，
+初步地观察，
 使人们区分出空间与空间中的物体，
 并用一种几何（度量关系等抽象数学结构）去描述空间，
 而物体被抽象为空间中的点集。
@@ -48,6 +49,29 @@ SICM 的目的在与，利用函数式编程中的严格的符号系统，来介
 
 人们观察到的相同的力对不同物体的作用效果不同，
 人们引入质量这个物体万有的参数来度量这种不同的作用效果。
+
+# Preface
+
+> Classical mechanics is deceptively simple. It is surprisingly easy
+> to get the right answer with fallacious reasoning or without real
+> understanding. Traditional mathematical notation contributes to this
+> problem.  ... In order that the reasoning be clear and unambiguous,
+> we have adopted a more precise mathematical notation. Our notation
+> is functional and follows that of modern mathematical presentations.
+
+> We require that our mathemathematical notations be explicit and
+> precise enough so that they can be interpreted automatically, as by
+> a computer.
+
+> Computational algorithms are used to communicate precisely some of
+> the methods used in the analysis of dynamical phenomena. Expressing
+> the methods of variational mechanics in a computer language forces
+> them to be unambiguous and computationally effective. Computation
+> requires us to be precise about the representation of mechanical and
+> geometric notions as computational objects and permits us to
+> represent explicitly the algorithms for manipulating these
+> objects. Also, once formalized as a procedure, a mathematical idea
+> becomes a tool that can be used directly to compute results.
 
 # 1 Lagrangian Mechanics
 
@@ -131,12 +155,17 @@ Xie:
 
 ## 1.10 Constrained Motion
 
-# 2 rigid bodies
+# 2 Rigid Bodies
+# 3 Hamiltonian Mechanics
+# 4 Phase Space Structure
+# 5 Canonical Transformations
+# 6 Canonical Perturbation Theory
+# References
 
-# 3 hamiltonian mechanics
+- Hans Freudenthal,
+  Didactical Phenomenology of Mathematical Structures,
+  Kluwer Publishing Co., Boston, 1983.
 
-# 4 phase space structure
-
-# 5 canonical transformations
-
-# 6 canonical perturbation theory
+- P. E. B. Jourdain,
+  The Principle of Least Action,
+  The Open CourtPublishing Company, Chicago, 1913.
