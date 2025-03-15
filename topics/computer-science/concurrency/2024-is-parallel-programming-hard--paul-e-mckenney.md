@@ -2038,6 +2038,16 @@ lockless 听起来很好，但是不能盲目推崇。
 
 ## A.5 How much ordering is needed?
 
+> One approach is to construct a strongly ordered system, then examine
+> its performance and scalability. If these suffice, the system is
+> good and sufficient, and no more need be done. Otherwise, undertake
+> careful analysis (see Section 11.7) and attack each bottleneck until
+> the system’s performance is good and sufficient.
+
+> It would be better to have design-time tools to determine which
+> portions of the system could use weak ordering, and at the same
+> time, which portions actually benefit from weak ordering.
+
 TODO
 
 ## A.6 What is the difference between “concurrent” and “parallel”?
