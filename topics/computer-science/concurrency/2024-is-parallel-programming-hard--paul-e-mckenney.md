@@ -1786,13 +1786,12 @@ rebalancing 的方式上可以做很多文章。
 这里描述的不是很清楚。
 好像是 mod N 而不是 hash。
 
-- 哦，我想这也可以称作是 hash，
-  因为 hash table 在把 value 变成自然数的 hash function 之外，
-  也还有一个 mod P，这里 P 是一个很大的素数。
+哦，我想这也可以称作是 hash，
+因为 hash table 在把 value 变成自然数的 hash function 之外，
+也还有一个 mod P，这里 P 是一个很大的素数。
 
-看下面的图应该就清楚了，
-作者想像一个 double-ended queue 时给出了下面的图示。
-好像是一个二维的数据结构了。
+看下面的图应该就清楚了，在 C 代码的注释中，
+作者在想像一个 double-ended queue 时，给出了下面的图示。
 
 ```
 Deq structure, empty list:
@@ -1804,6 +1803,8 @@ Deq structure, empty list:
                               |   |
                       left_index right_index
 ```
+
+好像是一个二维的数据结构了。
 
 看起来是想要通过提供更多的 queue 来避免前一个算法中的 rebalancing 步骤。
 每个假设有四个 queue，要有一个规则来表明 enqueue 一个 element 时，
@@ -1824,13 +1825,96 @@ Deq structure, empty list:
 > result in lock contention, but the probability of such contention
 > can be reduced to arbitrarily low levels by using a larger hash table.
 
-TODO
-
 #### 6.1.2.5 Compound Double-Ended Queue Revisited
 
-TODO
+在 Compound Double-Ended Queue 的基础上，
+选择了一个具体的 rebalancing 方式上。
+即，当一个 queue 空了的时候，
+把另外一个 queue 的元素都转移过来。
+
+如果经常是从一边 enqueue 另一边 dequeue，
+这种 rebalancing 就是可以接受的。
+
+- inet-lisp 的 scheduler + worker 实现方式，
+  所带来的其实就是这种使用 queue 的模式。
+
+但是，经常要从两边交替 dequeue，
+就遇到这种 rebalancing 的最坏情况。
+
+> **Quick Quiz 6.7**:
+>
+> Why can’t the compound parallel double-ended queue
+> implementation be symmetric?
+>
+> Answer:
+>
+> The need to avoid deadlock by imposing a lock hierarchy forces the
+> asymmetry, just as it does in the fork-numbering solution to the
+> Dining Philosophers Problem (see Section 6.1.1).
+
+略过这里的代码，需要实现的时候在来参考。
 
 #### 6.1.2.6 Double-Ended Queue Discussion
+
+注意，queue 需要维持 FIFO，
+但是在实现 inet-lisp 时，
+task 并不需要 FIFO。
+
+- 为了处理 task 无穷递归的情形，
+  需要保证对 task 的处理是公平的，
+  FIFO 只是保证公平的方式之一。
+
+弱化 FIFO 的子有：
+
+- "Fast and scalable k-FIFO queues", 2012,
+  by Christoph M. Kirsch, Michael Lippautz, and Hannes Payer.
+
+另外有论文告诉你，并行的 FIFO queue 其实不 FIFO：
+
+- "How FIFO is your concurrent FIFO queue?", 2012,
+  by Andreas Haas, Christoph M. Kirsch, Michael Lippautz, and Hannes Payer.
+
+### 6.1.3 Partitioning Example Discussion
+
+> The optimal solution to the dining philosophers problem given in the
+> answer to the Quick Quiz in Section 6.1.1 is an excellent example of
+> “horizontal parallelism” or “data parallelism”. The
+> synchronization overhead in this case is nearly (or even exactly)
+> zero.
+
+就是给所有人足够多的餐具的解决方案。
+
+> In contrast, the double-ended queue implementations are examples of
+> “vertical parallelism” or “pipelining”, given that data moves
+> from one thread to another. The tighter coordination required for
+> pipelining in turn requires larger units of work to obtain a given
+> level of efficiency.
+
+考虑 units of work 就是在考虑 batch 了，
+也就是先考虑 partition 在考虑 batch。
+
+> **Quick Quiz 6.12**:
+>
+> The tandem double-ended queue runs about twice as fast as the hashed
+> double-ended queue, even when I increase the size of the hash table
+> to an insanely large number. Why is that?
+>
+> Answer:
+>
+> The hashed double-ended queue’s locking design only permits one
+> thread at a time at each end, and further requires two lock
+> acquisitions for each operation. The tandem double-ended queue also
+> permits one thread at a time at each end, and in the common case
+> requires only one lock acquisition per operation. Therefore, the
+> tandem double-ended queue should be expected to outperform the
+> hashed double-ended queue.
+
+根据上面这个 quiz，也许在 inet-lisp 中，
+就应该用 tandem double-ended queue。
+
+TODO
+
+## 6.2 Design Criteria
 
 TODO
 
@@ -2022,7 +2106,6 @@ lockless 听起来很好，但是不能盲目推崇。
 
 ## A.4 What does “after” mean?
 
-
 > “After” is an intuitive, but surprisingly difficult concept. An
 > important non-intuitive issue is that code can be delayed at any
 > point for any amount of time.
@@ -2048,10 +2131,71 @@ lockless 听起来很好，但是不能盲目推崇。
 > portions of the system could use weak ordering, and at the same
 > time, which portions actually benefit from weak ordering.
 
-TODO
+### A.5.1 Where is the Defining Data?
+
+每看懂这一节。
+
+### A.5.2 Consistent Data Used Consistently?
+
+> Another hint that weakening is safe can appear in the guise of data
+> that is computed while holding a lock, but then used after the lock
+> is released. The computed result clearly becomes at best an
+> approximation as soon as the lock is released, which suggests
+> computing an approximate result in the first place, possibly
+> permitting use of weaker ordering.
+
+### A.5.3 Is the Problem Partitionable?
+
+> Suppose that the system holds the defining instance of the data, or
+> that using a computed value past lock release proved to be a
+> bug. What then?  One approach is to partition the system, as
+> discussed in Chapter 6.  Partititioning can provide excellent
+> scalability and in its more extreme form, per-CPU performance
+> rivaling that of a sequential program, as discussed in
+> Chapter 8. Partial partitioning is often mediated by locking, which
+> is the subject of Chapter 7.
 
 ## A.6 What is the difference between “concurrent” and “parallel”?
+
+> ... distinctions can be understood
+> from a couple of different perspectives.
+
+> The first perspective [a dependency-based distinction] treats
+> “parallel” as an abbreviation for “data parallel”, and treats
+> “concurrent” as pretty much everything else. From this
+> perspective, in parallel computing, each partition of the overall
+> problem can proceed completely independently, with no communication
+> with other partitions. In this case, little or no coordination among
+> partitions is required.  In contrast, concurrent computing might
+> well have tight interdependencies, in the form of contended locks,
+> transactions, or other synchronization mechanisms.
+
+> This of course begs the question of why such a distinction matters,
+> which brings us to the second perspective, that of the underlying
+> scheduler.  Schedulers come in a wide range of complexities and
+> capabilities, and as a rough rule of thumb, the more tightly and
+> irregularly a set of parallel processes communicate, the higher the
+> level of sophistication required from the scheduler. As such,
+> parallel computing’s avoidance of interdependencies means that
+> parallel-computing programs run well on the least-capable
+> schedulers.
+
+我每看明白 second perspective 是什么。
+
+> A third perspective considers concurrency to a logical manifestation
+> of the source code and parallelism to be a physical manifestation of
+> running that code on actual hardware.
+
+作者的导师 Michael Scott 所采取的就是上面这种区分，
+见 2024-shared-memory-synchronization。
+
 ## A.7 Why is software buggy?
+
+> The short answer is “because it was written
+> by humans, and to err is human”.
+
+> Furthermore, careful validation can be very helpful in finding bugs,
+> as discussed in Chapters 11–12.
 
 # Appendix C Why Memory Barriers?
 
