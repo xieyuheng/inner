@@ -1916,6 +1916,76 @@ TODO
 
 ## 6.2 Design Criteria
 
+> One way to obtain the best performance and scalability is to simply
+> hack away until you converge on the best possible parallel program.
+> Unfortunately, if your program is other than microscopically tiny,
+> the space of possible parallel programs is so huge that convergence
+> is not guaranteed in the lifetime of the universe. ...  We clearly
+> need to be able to make higher-level choices at design time in order
+> to arrive at an acceptably good parallel program before that program
+> becomes obsolete.
+
+> However, more detailed design criteria are required to actually
+> produce a real-world design, ... This being the real world, these
+> criteria often conflict to a greater or lesser degree, requiring
+> that the designer carefully balance the resulting tradeoffs.
+
+> As such, these criteria may be thought of as the “forces” acting
+> on the design, with particularly good tradeoffs between these forces
+> being called “design patterns” [Ale79, GHJV95].
+
+回顾一下 Section 2.2 的「并行编程三目标」：
+
+- performance
+- productivity
+- generality
+
+> The design criteria for attaining the three parallel-programming
+> goals are:
+>
+> - speedup
+> - contention
+> - overhead (work-to-synchronization ratio)
+> - read-to-write ratio
+> - complexity
+
+> **Speedup**: Speedup is defined to be the ratio of the time required
+> to run a sequential version of the program to the time required to
+> run a parallel version.
+
+> **Contention**: If more CPUs are applied to a parallel program than
+> can be kept busy by that program, the excess CPUs are prevented from
+> doing useful work by contention. This may be lock contention, memory
+> contention, or a host of other performance killers.
+
+> **Work-to-Synchronization Ratio**: A uniprocessor, single-threaded,
+> non-preemptible, and non-interruptible8 version of a given parallel
+> program would not need any synchronization primitives. Therefore,
+> any time consumed by these primitives (including communication cache
+> misses as well as message latency, locking primitives, atomic
+> instructions, and memory barriers) is overhead that does not
+> contribute directly to the useful work that the program is intended
+> to accomplish.
+
+> **Read-to-Write Ratio**: A data structure that is rarely updated
+> may often be replicated rather than partitioned.
+
+> **Complexity**: A parallel program is more complex than an
+> equivalent sequential program because the parallel program has a
+> much larger state space than does the sequential program, although
+> large state spaces having regular structures can in some cases be
+> easily understood. A parallel programmer must consider
+> synchronization primitives, messaging, locking design,
+> critical-section identification, and deadlock in the context of this
+> larger state space.
+>
+> This greater complexity often translates to higher development and
+> maintenance costs.
+
+## 6.3 Synchronization Granularity
+
+### 6.3.1 Sequential Program
+
 TODO
 
 # Chapter 15 Advanced Synchronization: Memory Ordering
