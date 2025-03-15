@@ -2022,9 +2022,24 @@ lockless 听起来很好，但是不能盲目推崇。
 
 ## A.4 What does “after” mean?
 
-TODO
+
+> “After” is an intuitive, but surprisingly difficult concept. An
+> important non-intuitive issue is that code can be delayed at any
+> point for any amount of time.
+
+没看懂这一章的例子，例子太复杂了。
+
+> In summary, if you acquire an exclusive lock, you know that anything
+> you do while holding that lock will appear to happen after anything
+> done by any prior holder of that lock, ... Of course, the fact that
+> this locking prevents these two pieces of code from running
+> concurrently might limit the program’s ability to gain increased
+> performance on multiprocessors, ...
 
 ## A.5 How much ordering is needed?
+
+TODO
+
 ## A.6 What is the difference between “concurrent” and “parallel”?
 ## A.7 Why is software buggy?
 
