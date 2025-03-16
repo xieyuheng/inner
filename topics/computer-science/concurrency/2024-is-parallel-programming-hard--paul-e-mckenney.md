@@ -1998,7 +1998,71 @@ TODO
   - embarrassingly parallel 就是这类的一个例子。
   - 另外，如果需要分享的数据是只读的，每个 thread 可以有自己的 copy。
 
-### 6.3.5 Locking Granularity and Performance
+## 6.4 Parallel Fastpath
+
+就是只并行最常会跑到的代码。
+
+### 6.4.1 Reader/Writer Locking
+### 6.4.2 Hierarchical Locking
+
+### 6.4.3 Resource Allocator Caches
+
+> This section presents a simplified schematic of a parallel
+> fixed-block-size memory allocator.
+
+在实现 inet-lisp 时，目前我在用 malloc，
+如果 malloc 的并行效率不行的话，可能就需要用这一章的 ideas 了。
+
+这一章的开头有很多引用，如果想要深入研究的话可以看看。
+
+#### 6.4.3.1 Parallel Resource Allocation Problem
+
+多个 CPU 要调用同一 malloc 的函数。
+每个 CPU 都可以 free 别的 CPU malloc 的 object。
+最简单的方案就是给 malloc 和 free 操作加用全局的 lock，
+但是这个方案的 lock contention 显然是没法接受的。
+
+#### 6.4.3.2 Parallel Fastpath for Resource Allocation
+
+> The commonly used solution uses parallel fastpath with each CPU
+> owning a modest cache of blocks, and with a large code-locked shared
+> pool for additional blocks.
+
+每个 thread 有一个 stack of pointers to `memblock`，
+然后又有一个全局的 stack of pointers to `memblock` 外加一个全局的锁。
+开始的时候 per-thread block stack 是空的，而 global block stack 是满的。
+
+为了读懂下面这段话，首先要知道：
+
+- alloc = pop  per-thread block stack
+- free  = push per-thread block stack
+
+> When a given CPU is trying to free a block when its pool is full, it
+> sends blocks to the global pool, and, similarly, when that CPU is
+> trying to allocate a block when its pool is empty, it retrieves
+> blocks from the global pool.
+
+在某个 thread 内 `memblock_alloc` 就是 pop per-thread block stack，
+如果 stack 是空的，就是在 lock 下 global 取 block 到半满状态，
+然后再 pop per-thread block stack。
+
+在某个 thread 内 `memblock_free` 就是 push per-thread block stack，
+如果 stack 是满的，就是在 lock 下把一半 block 放回 global，
+然后再 push per-thread block stack。
+
+我在实现 inet 时，也想过给 `node_t` 和 `wire_t` 之类的数据类型，
+设计类似的并行 allocator，我想到每个 thread 可以有自己的 stack，
+但是没想到可以用一个带锁的 global stack 来平衡 per-thread stack。
+
+#### 6.4.3.6 Performance
+
+TODO
+
+#### 6.4.3.7 Validation
+
+TODO
+
+#### 6.4.3.8 Real-World Design
 
 TODO
 
