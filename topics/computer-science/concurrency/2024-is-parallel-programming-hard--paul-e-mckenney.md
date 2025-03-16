@@ -2015,6 +2015,9 @@ TODO
 
 这一章的开头有很多引用，如果想要深入研究的话可以看看。
 
+注意，这里只处理 fixed-block-size 的情况，
+我也想研究一下一般情况。
+
 #### 6.4.3.1 Parallel Resource Allocation Problem
 
 多个 CPU 要调用同一 malloc 的函数。
