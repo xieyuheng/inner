@@ -1985,10 +1985,22 @@ TODO
 ## 6.3 Synchronization Granularity
 
 - Sequential Program -- 作为最基本的特例，不需要 synchronization。
+
 - Code Locking -- 意思是全局的 lock 与 Data Locking 相对。
+
 - Data Locking -- 意思是把锁放到数据结构内，
   比如 hash table 的每个 entry 带一个自己的 lock。
-- Data Ownership -- TODO
+
+- Data Ownership -- 如果 partition 设计的好，
+  每个 thread 有自己的数据，
+  访问的时候不需要 synchronization。
+
+  - embarrassingly parallel 就是这类的一个例子。
+  - 另外，如果需要分享的数据是只读的，每个 thread 可以有自己的 copy。
+
+### 6.3.5 Locking Granularity and Performance
+
+TODO
 
 # Chapter 15 Advanced Synchronization: Memory Ordering
 
