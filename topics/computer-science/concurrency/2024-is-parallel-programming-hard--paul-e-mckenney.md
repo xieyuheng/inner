@@ -2037,8 +2037,8 @@ TODO
 
 为了读懂下面这段话，首先要知道：
 
-- alloc = pop  per-thread block stack
-- free  = push per-thread block stack
+- alloc = pop  per-thread block stack -- return `memblock` to caller
+- free  = push per-thread block stack -- take `memblock` from caller
 
 > When a given CPU is trying to free a block when its pool is full, it
 > sends blocks to the global pool, and, similarly, when that CPU is
@@ -2046,20 +2046,56 @@ TODO
 > blocks from the global pool.
 
 在某个 thread 内 `memblock_alloc` 就是 pop per-thread block stack，
-如果 stack 是空的，就是在 lock 下 global 取 block 到半满状态，
+如果 stack 是空的，就是在 lock 下，从 global stack 取 block 到半满状态，
 然后再 pop per-thread block stack。
 
 在某个 thread 内 `memblock_free` 就是 push per-thread block stack，
-如果 stack 是满的，就是在 lock 下把一半 block 放回 global，
+如果 stack 是满的，就是在 lock 下，把一半 block 放回 global stack，
 然后再 push per-thread block stack。
 
 我在实现 inet 时，也想过给 `node_t` 和 `wire_t` 之类的数据类型，
 设计类似的并行 allocator，我想到每个 thread 可以有自己的 stack，
 但是没想到可以用一个带锁的 global stack 来平衡 per-thread stack。
 
+> **Quick Quiz 6.23**:
+>
+> Doesn’t this resource-allocator design resemble that of the
+> approximate limit counters covered in Section 5.3?
+
+对 counter 而言，每个数字都是对称的，没法被区分的。
+对于 fixed-block-size memory allocation 问题而言，
+每个 fixed-size block 也是对称的，没法被区分的。
+
+满足类似的公理，所以有类似的算法。
+
+block allocation 其实与 counter 问题是同构的，
+代表自然数的数据结构从 bit pattern，变成了 a stack of blocks，
+类似数石子和结绳计数。
+
 #### 6.4.3.6 Performance
 
-TODO
+> Note that run lengths up to six scale linearly and give excellent
+> performance, while run lengths greater than six show poor
+> performance and almost always also show _negative_ scaling. It is
+> therefore quite important to size TARGET_POOL_SIZE sufficiently
+> large, ...
+
+这里的 "run length" 大概就是，
+一个程序（在某个 CPU）运行过程中，
+所用到的内存大小。
+
+也就是说一定要把 TARGET_POOL_SIZE 设置的比常用到的内存大，
+否则会有 negative scaling，即并行程序的效率还不如单线程程序。
+
+注意，
+这里的「把 TARGET_POOL_SIZE 设置的比常用到的内存大」，
+其实就是把程序保持在 fastpath 内。
+
+> As can be seen from the figure, the situations where the common-case
+> data-ownership applies (run lengths up to six) provide greatly
+> improved performance compared to the cases where locks must be
+> acquired. Avoiding synchronization in the common case will be a
+> recurring theme through this book.
 
 #### 6.4.3.7 Validation
 
