@@ -2272,6 +2272,39 @@ TODO
 
 TODO
 
+# Chapter 16 Ease of Use
+
+TODO
+
+# Chapter 17 Conflicting Visions of the Future
+
+这章读起来应该比较轻松，因为只是对 CPU 的发展方向作预测。
+注意，inet 本身就代表着这样的一种发展方向，但是作者可能并不知道 inet。
+
+## 17.1 The Future of CPU Technology Ain’t What it Used to Be
+
+这一章讲 CPU 的发展对 RCU 技术的影响。
+
+## 17.2 Transactional Memory
+
+TODO
+
+## 17.3 Hardware Transactional Memory
+
+TODO
+
+## 17.4 Formal Regression Testing?
+
+TODO
+
+## 17.5 Functional Programming for Parallelism
+
+TODO
+
+# Chapter 18 Looking Forward and Back
+
+TODO
+
 # Appendix A Important Questions
 
 ## A.1 Why aren’t parallel programs always faster?
