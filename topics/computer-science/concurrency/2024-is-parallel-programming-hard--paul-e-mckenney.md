@@ -2299,7 +2299,20 @@ TODO
 
 ## 17.5 Functional Programming for Parallelism
 
-TODO
+这里的观点是，由于 formal-verification 的兴起，
+所以 functional programming 主导的 parallelism 可能根本不会出现。
+
+## 17.6 Summary
+
+> Any of these futures might come true, but it is more likely that, as
+> in the past, the future will be far stranger than we can possibly
+> imagine.
+
+可能会有新的计算模型兴起，
+但是计算机科学的重要之处在于，
+给人类提供精确的语言以记录过程式知识，
+单线程的过程式编程是最符合人类理解的，
+所以应该永远也不会被取代。
 
 # Chapter 18 Looking Forward and Back
 
