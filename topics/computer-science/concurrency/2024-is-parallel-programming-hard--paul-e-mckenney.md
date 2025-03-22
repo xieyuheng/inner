@@ -2274,7 +2274,31 @@ TODO
 
 # Chapter 16 Ease of Use
 
-TODO
+## 16.1 What is Easy?
+
+easy of use 是非常主管和相对的，
+因为不同的人有不同的背景和需求。
+
+## 16.2 Rusty Scale for API Design
+
+> Rusty’s key point is that the goal should not be merely to make an
+> API easy to use, but rather to make the API hard to misuse.
+
+## 16.3 Shaving the Mandelbrot Set
+
+> ... we “shave the Mandelbrot set”, restricting the use of the API
+> to an easily described subset of the full set of potential uses.
+
+> In summary, we do not use algorithms simply because they happen to
+> work. We instead restrict ourselves to algorithms that are useful
+> enough to make it worthwhile learning about them. The more difficult
+> and complex the algorithm, the more generally useful it must be in
+> order for the pain of learning it and fixing its bugs to be
+> worthwhile.
+
+我实现的 hash table 的 get 不会 own key，
+但是 和 set 和 put 会 own key，
+有时忘记这一点会导致 bug。
 
 # Chapter 17 Conflicting Visions of the Future
 
