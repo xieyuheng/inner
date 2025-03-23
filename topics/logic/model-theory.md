@@ -55,7 +55,7 @@ title: Model Theory
   for the constructive-ness
   seems come from "free from interpretation"
 
-# about type theory v.s. set theory
+# about type theory vs. set theory
 
 - https://plato.stanford.edu/entries/model-theory/
   But in a broader sense, model theory is

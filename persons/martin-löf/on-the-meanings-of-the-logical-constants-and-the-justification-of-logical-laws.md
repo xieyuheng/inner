@@ -457,17 +457,17 @@ are forms of hypothetical judgement.
   The judgements is called "categorical" in the sense that
   they are made without assumption or generality.
 
-  Thus, in the terminology "categorical" v.s. "hypothetical",
+  Thus, in the terminology "categorical" vs. "hypothetical",
   "categorical" can be understood as "non-hypothetical",
-  just like in the terminology "extensional type theory" v.s. "intensional type theory",
+  just like in the terminology "extensional type theory" vs. "intensional type theory",
   "intensional type theory" can be understood as "non-extensional type theory",
   where "extensional type theory" means equality between functions are "extensional",
   "extensional equality" means that two functions are considered equal,
   if given the same arguments, they will return the same results.
 
   And note that,
-  "extensional" v.s. "intensional" has broader philosophical meaning,
-  such as "extensional context" v.s. "intensional context" in philosophy of language.
+  "extensional" vs. "intensional" has broader philosophical meaning,
+  such as "extensional context" vs. "intensional context" in philosophy of language.
 
 The rule for making assumptions is simply this:
 **whenever you have a judgement,

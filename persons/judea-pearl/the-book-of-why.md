@@ -1798,9 +1798,9 @@ TODO
 ## In search of a language (the Berkeley admissions paradox)
 
 - **Xie:** Why this time, the paradox is solved by
-  direct v.s. indirect cause,
+  direct vs. indirect cause,
   instead of like Simpson's paradox,
-  which is solved by confounder v.s. mediator?
+  which is solved by confounder vs. mediator?
 
   > We have seen before that conditioning on a mediator is incorrect if we
   > want to estimate the total effect of one variable on another. But in a case of

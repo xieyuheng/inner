@@ -1,5 +1,5 @@
 ---
-title: Signed Ports v.s. Signed Types
+title: Signed Ports vs. Signed Types
 author: Xie Yuheng
 date: 2023-07-31
 ---

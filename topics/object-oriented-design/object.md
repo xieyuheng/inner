@@ -4,7 +4,7 @@ title: object -- old notes
 
 # type of type system
 
-- dynamic v.s. static
+- dynamic vs. static
 
 - different subtype semantic
 

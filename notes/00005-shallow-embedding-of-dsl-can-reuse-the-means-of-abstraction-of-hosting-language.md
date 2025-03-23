@@ -3,7 +3,7 @@ title: Shallow embedding of DSL can reuse the means of abstraction of hosting la
 date: 2021-09-03
 ---
 
-# Shallow embedding v.s. Deep embedding
+# Shallow embedding vs. Deep embedding
 
 Deep embedding means we can design new syntax freely, but we need to write our own parser.
 

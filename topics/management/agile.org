@@ -24,7 +24,7 @@
     https://www.youtube.com/watch?v=QVBlnCTu9Ms
 
     - story map [with three levels]
-      story counting v.s. story points [which require estimation]
+      story counting vs. story points [which require estimation]
 
   - Jim Coplien and Bob Martin Debate TDD
     https://www.youtube.com/watch?v=KtHQGs3zFAM

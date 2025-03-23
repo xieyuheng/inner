@@ -1,5 +1,5 @@
 ---
-title: Closure v.s. linear variables
+title: Closure vs. linear variables
 date: 2024-01-07
 ---
 

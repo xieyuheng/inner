@@ -31,7 +31,7 @@ title: a new kind of science
 
 - the "substitution systems" is generative grammar.
 
-- 1-dim cellular automata v.s. phrase structure grammar
+- 1-dim cellular automata vs. phrase structure grammar
 
   - the rules of cellular automata can be describe by similar way we describe grammar,
     but the semantic of the rule is different.

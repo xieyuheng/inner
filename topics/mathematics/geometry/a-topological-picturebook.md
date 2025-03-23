@@ -54,7 +54,7 @@ year: 1987
 
 - smooth a piecewise flat and cornered version of the surface.
 
-- contour edges v.s. face edges
+- contour edges vs. face edges
 
 ## 4 rounding a polyhedral saddle
 ## 5 dunce hat

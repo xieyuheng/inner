@@ -1,5 +1,5 @@
 ---
-title: linear variable v.s. normal variable
+title: linear variable vs. normal variable
 date: 2024-11-18
 ---
 

@@ -1709,7 +1709,7 @@ Imagine propagator networks run.
 在其中，相邻的节点之间，可以沿任意方向，以任意的方式，传播信息，
 而不是像 expression tree 中那样，只能沿着一个方向传播信息。
 
-## inet v.s. pnet
+## inet vs. pnet
 
 - inet -- interaction nets
 - pnet -- propagation nets

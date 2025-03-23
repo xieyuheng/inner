@@ -11,7 +11,7 @@ date: 2024-10-21
 :gcd [ dup2 eq [ drop ] [ dup2 sub abs gcd ] if_else ] define
 ```
 
-v.s.
+vs.
 
 ```
 'abs [ dup 0 lt [ -1 mul ] if ] define

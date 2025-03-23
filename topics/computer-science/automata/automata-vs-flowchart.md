@@ -1,5 +1,5 @@
 ---
-title: automata v.s. flowchart
+title: automata vs. flowchart
 author: Xie Yuheng
 date: 2023-11-07
 ---

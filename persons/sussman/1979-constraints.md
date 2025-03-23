@@ -184,7 +184,7 @@ connect(foo.m1, zap.a2)
 
 这里可能与作者后期的 propagator 文论不同，
 后期的论文好像要求 cell 中的 value 属于一个 lattice。
-可以用副作用自由地增减信息 v.s. 只能增加信息不能减少信息。
+可以用副作用自由地增减信息 vs. 只能增加信息不能减少信息。
 
 > We cannot so easily change a parameter whose value is a
 > consequence of other known facts. One of the premises

@@ -1,5 +1,5 @@
 ---
-title: cell complex v.s. cobordism
+title: cell complex vs. cobordism
 date: 2024-09-27
 ---
 

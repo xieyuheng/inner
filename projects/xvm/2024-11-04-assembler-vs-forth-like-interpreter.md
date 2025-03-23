@@ -1,5 +1,5 @@
 ---
-title: assembler v.s. forth like interpreter
+title: assembler vs. forth like interpreter
 author: 谢宇恒
 date: 2024-11-04
 ---

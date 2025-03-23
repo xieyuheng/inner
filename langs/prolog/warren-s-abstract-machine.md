@@ -207,7 +207,7 @@ equation-t = * (term-t term-t)
   is based on solution preserving translation
   most general unifier (MGU) should be the result
 
-## [note] unify in searching v.s. unify in checking
+## [note] unify in searching vs. unify in checking
 
 ```cicada
 // unify in searching

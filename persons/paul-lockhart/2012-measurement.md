@@ -38,7 +38,7 @@ Paul 的这三本书可以看作是为读 Coxeter 和 Conway 做准备。
 > surprising things that keep me amused and entertained. It’s an
 > amazing place, and I really love it.
 
-首先是 physical reality v.s. mathematical reality。
+首先是 physical reality vs. mathematical reality。
 
 > The thing is, physical reality is a disaster. It’s way too
 > complicated, and nothing is at all what it appears to be. Objects

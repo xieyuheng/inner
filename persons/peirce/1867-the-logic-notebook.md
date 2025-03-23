@@ -101,7 +101,7 @@ Here are two principles. But they do not apply to induction and
 hypothesis just as they stand.
 
 - **Xie:** The terminology "induction" and "hypothesis" refer to
-  Peirce's deduction v.s. induction v.s. hypothesis.
+  Peirce's deduction vs. induction vs. hypothesis.
 
   If we can understand Aristotle's categories as different contexts of "is",
   then we can also understand Peirce's categories (see the first paragraph of this note)
@@ -120,7 +120,7 @@ the things must have been taken at random out of those denoted by `M`.
   the summarised "common attributes" will be more representivity.
 
 - **Xie:** Merely distinguishing two meaning of "is",
-  and understand the duality of object v.s. attribute,
+  and understand the duality of object vs. attribute,
   is not enough to express the reasoning we used in scientific method.
 
 In what point of view shall we regard this necessity for a random

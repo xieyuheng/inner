@@ -75,5 +75,5 @@ When we introduce arguments to type constructor for complex,
 what is the meaning of the above separation?
 
 What is the topological interpretion
-of "fixed v.s. varied arguments"
+of "fixed vs. varied arguments"
 for inductive datatype?

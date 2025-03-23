@@ -315,7 +315,7 @@ cell 保存 propagator 相关的 partial information 之后，
 也许应该设计 pure propagator system，
 因为 pure 意味着简单，没有很多相互掺杂的概念，
 比如 syntax overload，
-还有 `add` v.s. `adder` 的 naming 的问题。
+还有 `add` vs. `adder` 的 naming 的问题。
 
 假设我们 JS 来实现 pure propagator system，
 所有的 primitive 都要用 JS 实现。

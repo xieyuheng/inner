@@ -51,7 +51,7 @@
       I began to write my own forth-like language,
       and tried to add various features to it.
       soon I found another forth-like language -- joy.
-      from joy I learned the composition v.s. application trade-off in syntax.
+      from joy I learned the composition vs. application trade-off in syntax.
 
     - I added more and more features to my forth-like language.
       things went well, until I tried to add a type system to the it.
@@ -61,9 +61,9 @@
 
     - and after some learning,
       I figured that
-      the composition v.s. application trade-off in syntax,
+      the composition vs. application trade-off in syntax,
       corresponds to
-      the sequent-calculus v.s. natural-deduction in proof theory.
+      the sequent-calculus vs. natural-deduction in proof theory.
 
     - I tried to add such a sequent-calculus type system
       to the forth-like language several times.

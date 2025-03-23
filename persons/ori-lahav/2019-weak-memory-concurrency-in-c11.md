@@ -99,7 +99,7 @@ Desiderata：
 3. Not too strong (good for hardware)
 4. Admits optimizations (good for compilers)
 
-**Implementability v.s. Programmability**
+**Implementability vs. Programmability**
 
 # The C11 memory model
 

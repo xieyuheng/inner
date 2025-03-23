@@ -1,5 +1,5 @@
 ---
-title: class v.s. interface
+title: class vs. interface
 ---
 
 在看 "Building Problem Solvers" 这本书时，
@@ -14,7 +14,7 @@ interface + function 的方式来实现，
 class 好于 interface 的地方：
 
 - 有 dot 这种更简洁的语法
-  -- `a.f(x)` v.s. `f(a, x)`
+  -- `a.f(x)` vs. `f(a, x)`
   真的简洁吗？
   至少可以少重复声明一些类型参数。
 

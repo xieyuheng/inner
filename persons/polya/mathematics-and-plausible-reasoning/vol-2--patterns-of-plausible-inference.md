@@ -907,7 +907,7 @@ would be useless to list them without proper illustration.
   the "hypothesis" mode of reasoning of Peirce,
   we must also know a lot of concrete example of `B` in `A -> B`.
 
-## Xie: Induction v.s. Hypothesis
+## Xie: Induction vs. Hypothesis
 
 We see in the following chapter,
 Polya confused induction with hypothesis,

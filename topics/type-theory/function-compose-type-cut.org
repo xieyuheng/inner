@@ -119,7 +119,7 @@
       variables are written in lower-case latin letter
       functions are written in upper-case latin letter
       personally I do not wish to
-      distinguish meaning by lower-case v.s. upper-case
+      distinguish meaning by lower-case vs. upper-case
       (maybe because I am a scheme user, or maybe because I am a Chinese)
       so, in the following implementation of our language
       I will write

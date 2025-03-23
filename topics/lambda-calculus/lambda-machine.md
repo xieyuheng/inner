@@ -86,7 +86,7 @@ ruled out, which precludes name clashes.
 (x x)
 ```
 
-# SECD v.s. Forth
+# SECD vs. Forth
 
 The D of SECD is the return stack with frame,
 where frame have env, index and program (C of SECD).

@@ -220,7 +220,7 @@ type_subst(A: Ty, a: Atom, B: Ty)
 
 since we do not have abstraction over types
 (in which bound variables are introduced)
-we do not have to worry about free variable v.s. bound variable
+we do not have to worry about free variable vs. bound variable
 
 ## Assigning simple types
 

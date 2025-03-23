@@ -61,7 +61,7 @@ different logics:
 
   - a general principle -- increased expressiveness has a price
 
-classical v.s. non-classical logic (another way to categorize logics):
+classical vs. non-classical logic (another way to categorize logics):
 
 - classical (found by Frege):
   - law of excluded middle: (A or (not A))
@@ -385,7 +385,7 @@ Prolog lists are a special case of terms.
 A key-value pair is written as: `K - V`
 
 Why hot using list to represent pair? -- like we do in lisp.
-- Because it is easier to read. -- nominal v.s. structural -- nominal is easier to read?
+- Because it is easier to read. -- nominal vs. structural -- nominal is easier to read?
 
 # Strings
 

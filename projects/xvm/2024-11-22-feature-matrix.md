@@ -3,7 +3,7 @@ title: feature matrix
 date: 2024-11-22
 ---
 
-| plan      | tagged v.s. raw | GC  | type system  | generic  |
+| plan      | tagged vs. raw | GC  | type system  | generic  |
 |           | about value     |     | maybe linear | dispatch |
 |-----------|-----------------|-----|--------------|----------|
 | initial   | raw             | no  | no           | no       |

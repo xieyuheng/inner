@@ -121,7 +121,7 @@
     `x * y + x * z => x * (y + z)`
 
     1. `x * y` and `x * z` are alike.
-    2. The smallest difference is `y` v.s. `z`.
+    2. The smallest difference is `y` vs. `z`.
     3. Extract `(y + z)` and use the distribution law, to get one product.
 
     The metaphor of "a flock of birds" is beautiful :)

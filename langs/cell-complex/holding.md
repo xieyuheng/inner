@@ -1872,7 +1872,7 @@ until only one simplex is left.
 所謂 shelling 之失敗 導致我們不能獲得 normalization
 是不成立的
 
-# homeomorphism v.s. homotopy equivalent
+# homeomorphism vs. homotopy equivalent
 
 如何在我們的語言中區分這兩種等價關係
 

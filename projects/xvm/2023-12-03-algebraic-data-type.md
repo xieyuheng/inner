@@ -62,6 +62,6 @@ for type maybe:
 datatype_close
 ```
 
-maybe like `define` v.s. `claim`,
+maybe like `define` vs. `claim`,
 we should use untyped `datatype_define`
 and `claim` the type separately.

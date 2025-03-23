@@ -51,7 +51,7 @@ f e +
 
 In another note,
 f < g < h is much harder to flow together than h > g > f.
-(or step 3 < step 2 < step 1 v.s. step 1 > step 2 > step 3).
+(or step 3 < step 2 < step 1 vs. step 1 > step 2 > step 3).
 
 This is why applicative language have statements:
 

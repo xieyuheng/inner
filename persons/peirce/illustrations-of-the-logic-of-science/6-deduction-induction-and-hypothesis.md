@@ -85,7 +85,7 @@ But here the reasoning is really this:
     Case. - Some figures are quadrangles.
     Result. - Some figures are not triangles.
 
-Inductive or synthetic [v.s. analytic] reasoning,
+Inductive or synthetic [vs. analytic] reasoning,
 being something more than the mere application
 of a general rule to a particular case,
 can never be reduced to this form.

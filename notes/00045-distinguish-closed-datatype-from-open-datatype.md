@@ -25,7 +25,7 @@ and to implement `Zero` & `Add1` as its subclasses.
 Because we will write a lot of functions to process `Nat`,
 subclassing will require us to edit the class definition very often.
 
-# Exp v.s. Stmt as typical examples
+# Exp vs. Stmt as typical examples
 
 Similar for `Exp`, when it is defined, it is almost closed,
 we might add new sum types to it, but not very often.

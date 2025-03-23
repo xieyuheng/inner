@@ -271,7 +271,7 @@ I can express all the terms above,
 in terms of assignment,
 but not in terms of equality.
 
-### Traditional statistical inference paradigm v.s. structural model paradigm
+### Traditional statistical inference paradigm vs. structural model paradigm
 
 In traditional statistical inference paradigm,
 _joint distribution_ is the Oracle.

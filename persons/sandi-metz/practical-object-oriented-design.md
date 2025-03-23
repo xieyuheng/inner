@@ -472,7 +472,7 @@ year: 2019
 
 - What are the two kinds of interfaces?
 
-  The first kind of interface is public v.s. private method, that is,
+  The first kind of interface is public vs. private method, that is,
   methods within a class and how and what to expose to others.
 
   The second kind of interface is the one that represents a concept

@@ -52,7 +52,7 @@ exactly because of 2 dimensional aglebric structures.
 
 [fp] 一阶的函数式编程就是先递归地定义数据类型（集合），然后再用函数去揭示数据类型的结构。
 
-- 在这种观点下，如何分析 Exp v.s. Exp + Value？
+- 在这种观点下，如何分析 Exp vs. Exp + Value？
 
 - 可否利用 generic figure 的想法推广 cell complex 的定义？
   使得 cell 更一般，获得抽象的球面概念，

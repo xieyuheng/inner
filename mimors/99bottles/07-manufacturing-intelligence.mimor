@@ -8,7 +8,7 @@
     Factories don't know what to do;
     instead, they know how to choose who does.
 
-    A conditional that selects an object v.s. A conditional that supplies behavior.
+    A conditional that selects an object vs. A conditional that supplies behavior.
   </answer>
 </question>
 

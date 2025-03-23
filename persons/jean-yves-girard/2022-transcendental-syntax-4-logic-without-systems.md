@@ -54,7 +54,7 @@ https://github.com/engboris/transcendental-syntax
 > same roof with no right to communicate: like hospital patients, each
 > of them quarantined in his room, lest he contaminate the others.
 
-这种观点与 Sussman 对 静态类型 v.s. 动态类型 的观点类似。
+这种观点与 Sussman 对 静态类型 vs. 动态类型 的观点类似。
 
 > The fact that l’usine has been delegated to current mathematics,
 > i.e., set theory, makes our toolbox absolutely faultless -- except

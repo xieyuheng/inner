@@ -187,7 +187,7 @@ Is like reversing the distribution of multiplication over addition:
 `x * y + x * z => x * (y + z)`
 
 1. `x * y` and `x * z` are alike.
-2. The smallest difference is `y` v.s. `z`.
+2. The smallest difference is `y` vs. `z`.
 3. Extract `(y + z)` and use the distribution law, to get one product.
 
 The metaphor of "a flock of birds" is beautiful :)
@@ -386,7 +386,7 @@ By temporarily allow functions that use the return value to accept both types.
 Factories don't know what to do;
 instead, they know how to choose who does.
 
-A conditional that selects an object v.s. A conditional that supplies behavior.
+A conditional that selects an object vs. A conditional that supplies behavior.
 
 ## What knowledge do factories capture?
 

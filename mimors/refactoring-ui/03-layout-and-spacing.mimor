@@ -68,9 +68,9 @@
   Please give some examples where larger elements should shrink faster.
 
   <answer>
-    - Headline font size v.s. content font size.
+    - Headline font size vs. content font size.
 
-    - Button's padding v.s. button text font size.
+    - Button's padding vs. button text font size.
   </answer>
 </question>
 

@@ -176,7 +176,7 @@ title: Old Notes
       一種語言可以用來介紹另一種語言嗎?
 ## functions not are as relations
     but are a primary concept in type-theory
-## 推理規則 v.s. 公理
+## 推理規則 vs. 公理
     - 類型論:
       動態的推理規則
     - 一階邏輯 + 集合論:

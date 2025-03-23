@@ -268,7 +268,7 @@ newline: preserve
 
 ## 10 拓扑学的发展 / The Development of Topology
 
-- Poincare's combinatorial topology v.s. Cantor's set topology
+- Poincare's combinatorial topology vs. Cantor's set topology
 
 # 曲面的拓扑概念 / topological notions about surfaces
 
@@ -433,7 +433,7 @@ newline: preserve
   the same surface can give rise to different forms of polyhedra,
   the same polyhedron can give rise to different forms of symbolic representations.
 
-## note 'glue to each other' v.s. 'glue to a common skeleton'
+## note 'glue to each other' vs. 'glue to a common skeleton'
 
 - x -
   "there are exactly two equivalent sides in the plane

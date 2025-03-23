@@ -30,7 +30,7 @@
 
 - [schroeder-heister]
   - standard formulation of elimination rule for implication
-    v.s. another elimination rules to follow the same pattern,
+    vs. another elimination rules to follow the same pattern,
     that is, the pattern exhibited by the rules of falsehood, disjunction, and existence elimination,
     has been considered by Schroeder-Heister.
 - [dag-prawitz] proof theory and natural deduction

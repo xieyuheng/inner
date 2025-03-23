@@ -124,7 +124,7 @@ Most users should interact with a relational model of the data
 consisting of a collection of time-varying relationships (rather than relations).
 
 - Xie:
-  By "relationships" v.s. "relations",
+  By "relationships" vs. "relations",
   the author means "record" (with named fields) vs "tuple" (with unnamed fields)
 
   I do not use the term "relationships"

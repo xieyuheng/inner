@@ -196,7 +196,7 @@ ship on the open sea, with no one on board who understands the rules
 of navigation. And in such a case some general study of the guiding
 principles of reasoning would be sure to be found useful.
 
-- **Xie:** Practical subjects v.s. unpractical subjects.
+- **Xie:** Practical subjects vs. unpractical subjects.
 
 The subject could hardly be treated, however, without being first
 limited; since almost any fact may serve as a guiding principle. But

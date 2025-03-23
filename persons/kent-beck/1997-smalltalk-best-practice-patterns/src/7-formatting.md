@@ -94,7 +94,7 @@ startingAt: startInteger
 > plays in the computation. Understanding the type and role of
 > variables is important for understanding a piece of code.
 
-第三次重复强调 role v.s. type 这个观点了。
+第三次重复强调 role vs. type 这个观点了。
 
 > Keywords communicate their associated parameter’s role. Since the
 > keywords and parameters are together at the head of every method,

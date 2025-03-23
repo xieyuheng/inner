@@ -2,7 +2,7 @@
 
 * [note]
 
-*** type parameter v.s. type indice
+*** type parameter vs. type indice
 
     - type constructor
       can not change type parameter
@@ -150,7 +150,7 @@
       證明之後就能處理了嘛
       找個例子試試
 
-*** cicada v.s. agda
+*** cicada vs. agda
 
     |                    | cicada | agda |
     |--------------------+--------+------|

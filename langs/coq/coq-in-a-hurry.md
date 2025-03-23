@@ -973,7 +973,7 @@ Lemma evenb_equals_evenb2:
   evenb = evenb2.
 Proof.
   reflexivity.
-  (* Coq can be unify different patterns such as `evenb2` v.s. `evenb`. *)
+  (* Coq can be unify different patterns such as `evenb2` vs. `evenb`. *)
 Qed.
 
 Lemma evenb2_equals_evenb3:

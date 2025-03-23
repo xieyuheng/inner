@@ -2835,7 +2835,7 @@ x:a ͱ (λ y:b . x) : b -> a
 *** functions not are as relations
 but are a primary concept in type-theory
 
-*** 推理规则 v.s. 公理
+*** 推理规则 vs. 公理
 - 类型论:
   动态的推理规则
 - 一阶逻辑 + 集合论:

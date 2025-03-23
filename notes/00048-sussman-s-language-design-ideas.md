@@ -37,7 +37,7 @@ lisp 可以将这个权力分散给所有用户，
 
 我们需要一个带有模块系统和包管理器的 scheme。
 
-# implicit v.s. explicit
+# implicit vs. explicit
 
 语言设计的意义在与可以把 explicit 的事情变为 implicit 的，
 这是一般的编程做不到的。

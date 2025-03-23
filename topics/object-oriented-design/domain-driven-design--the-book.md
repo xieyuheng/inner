@@ -15,7 +15,7 @@ by Eric Evans
 
 - The following seems like
   the inference rules in type theory paper
-  v.s. type system implementation.
+  vs. type system implementation.
 
 This connection can break down in many ways, but the detach-
 ment is often a conscious choice. Many design methodologies advo-

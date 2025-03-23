@@ -402,7 +402,7 @@
 
       - grounding of continua in the world of perception.
 
-        synthetic geometric (v.s. algebraic or analytical)
+        synthetic geometric (vs. algebraic or analytical)
 
         It was a geometry
         which we may call empirical
