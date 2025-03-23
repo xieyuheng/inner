@@ -2110,6 +2110,23 @@ block allocation 其实与 counter 问题是同构的，
 
 #### 6.4.3.8 Real-World Design
 
+> First, real-world allocators are required to handle a wide range of
+> allocation sizes, as opposed to the single size shown in this toy
+> example.  One popular way to do this is to offer a fixed set of
+> sizes, spaced so as to balance external and internal fragmentation,
+> such as in the late-1980s BSD memory allocator [MK88].
+
+这个 BSD memory allocator 也许可以看看。
+
+另外还提到了 tcmalloc 和 jemalloc，
+如果深入研究的话也可以看看。
+
+> Despite this real-world design’s greater complexity, the underlying
+> idea is the same -- repeated application of parallel fastpath, as
+> shown in Table 6.1.
+
+## 6.5 Beyond Partitioning
+
 TODO
 
 # Chapter 15 Advanced Synchronization: Memory Ordering
