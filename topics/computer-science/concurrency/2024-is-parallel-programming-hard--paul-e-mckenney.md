@@ -2099,7 +2099,14 @@ block allocation 其实与 counter 问题是同构的，
 
 #### 6.4.3.7 Validation
 
-TODO
+> Validation of this simple allocator spawns a specified number of
+> threads, with each thread repeatedly allocating a specified number
+> of memory blocks and then deallocating them.
+
+> Much more aggressive validation is required for memory allocators
+> that are to be used in production. The test suites for tcmalloc
+> [Ken20] and jemalloc [Eva11] are instructive, as are the tests for
+> the Linux kernel’s memory allocator.
 
 #### 6.4.3.8 Real-World Design
 
