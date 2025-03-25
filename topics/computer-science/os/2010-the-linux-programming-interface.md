@@ -447,120 +447,120 @@ void sync(void);
 
 ### device special files (devices)
 
-        - Character devices
+- Character devices
 
-          Terminals and keyboards
+  Terminals and keyboards
 
-          handle data on a character-by-character basis.
+  handle data on a character-by-character basis.
 
-        - Block devices handle data a block at a time.
+- Block devices handle data a block at a time.
 
-          disks and tape drives
+  disks and tape drives
 
-          The size of a block depends on the type of device,
-          but is typically some multiple of 512 bytes.
+  The size of a block depends on the type of device,
+  but is typically some multiple of 512 bytes.
 
 ### I-nodes
 
-        - A file system’s i-node table contains one i-node for each file.
-          I-nodes are identified numerically
-          by their sequential location in the i-node table.
+- A file system’s i-node table contains one i-node for each file.
+  I-nodes are identified numerically
+  by their sequential location in the i-node table.
 
-          information maintained in an i-node :
+  information maintained in an i-node :
 
-          - File type
-            e.g., regular file, directory, symbolic link, character device.
+  - File type
+    e.g., regular file, directory, symbolic link, character device.
 
-          - Owner
-            (also referred to as the user ID or UID) for the file.
+  - Owner
+    (also referred to as the user ID or UID) for the file.
 
-          - Group
-            (also referred to as the group ID or GID) for the file.
+  - Group
+    (also referred to as the group ID or GID) for the file.
 
-          - Access permissions for three categories of user:
-            owner (sometimes referred to as user),
-            group,
-            and other (the rest of the world).
+  - Access permissions for three categories of user:
+    owner (sometimes referred to as user),
+    group,
+    and other (the rest of the world).
 
-          - Three timestamps:
-            time of last access to the file
-            time of last modification of the file
-            time of last status change
+  - Three timestamps:
+    time of last access to the file
+    time of last modification of the file
+    time of last status change
 
-          - Number of hard links to the file.
+  - Number of hard links to the file.
 
-          - Size of the file in bytes.
+  - Size of the file in bytes.
 
-          - Number of blocks actually allocated to the file,
-            measured in units of 512-byte blocks.
-            There may not be a simple correspondence
-            between this number and the size of the file in bytes,
-            since a file can contain holes,
-            and thus require fewer allocated blocks
-            than would be expected according to its nominal size in bytes.
+  - Number of blocks actually allocated to the file,
+    measured in units of 512-byte blocks.
+    There may not be a simple correspondence
+    between this number and the size of the file in bytes,
+    since a file can contain holes,
+    and thus require fewer allocated blocks
+    than would be expected according to its nominal size in bytes.
 
-          - Pointers to the data blocks of the file.
+  - Pointers to the data blocks of the file.
 
 ## 15: file attributes
 
 ### retrieving file information: stat()
 
-        - retrieve information about a file,
-          mostly drawn from the file i-node.
+- retrieve information about a file,
+  mostly drawn from the file i-node.
 
-        ``` c
-        #include <sys/stat.h>
-        int stat(const char *pathname, struct stat *statbuf);
-        int lstat(const char *pathname, struct stat *statbuf);
-        int fstat(int fd, struct stat *statbuf);
-        // All return 0 on success, or –1 on error
+``` c
+#include <sys/stat.h>
+int stat(const char *pathname, struct stat *statbuf);
+int lstat(const char *pathname, struct stat *statbuf);
+int fstat(int fd, struct stat *statbuf);
+// All return 0 on success, or –1 on error
 
-        struct stat {
-          dev_t     st_dev;     // IDs of device on which file resides
-          ino_t     st_ino;     // I-node number of file
-          mode_t    st_mode;    // File type and permissions
-          nlink_t   st_nlink;   // Number of (hard) links to file
-          uid_t     st_uid;     // User ID of file owner
-          gid_t     st_gid;     // Group ID of file owner
-          dev_t     st_rdev;    // IDs for device special files
-          off_t     st_size;    // Total file size (bytes)
-          blksize_t st_blksize; // Optimal block size for I/O (bytes)
-          blkcnt_t  st_blocks;  // Number of (512B) blocks allocated
-          time_t    st_atime;   // Time of last file access
-          time_t    st_mtime;   // Time of last file modification
-          time_t    st_ctime;   // Time of last status change
-        };
-        ```
+struct stat {
+  dev_t     st_dev;     // IDs of device on which file resides
+  ino_t     st_ino;     // I-node number of file
+  mode_t    st_mode;    // File type and permissions
+  nlink_t   st_nlink;   // Number of (hard) links to file
+  uid_t     st_uid;     // User ID of file owner
+  gid_t     st_gid;     // Group ID of file owner
+  dev_t     st_rdev;    // IDs for device special files
+  off_t     st_size;    // Total file size (bytes)
+  blksize_t st_blksize; // Optimal block size for I/O (bytes)
+  blkcnt_t  st_blocks;  // Number of (512B) blocks allocated
+  time_t    st_atime;   // Time of last file access
+  time_t    st_mtime;   // Time of last file modification
+  time_t    st_ctime;   // Time of last status change
+};
+```
 
-        - The stat() and lstat() system calls
-          don’t require permissions on the file itself.
-          However, execute (search) permission
-          is required on all of the parent directories
-          specified in pathname.
+- The stat() and lstat() system calls
+  don’t require permissions on the file itself.
+  However, execute (search) permission
+  is required on all of the parent directories
+  specified in pathname.
 
 ### checking file accessibility: access()
 
-        - The access() system call
-          checks the accessibility of the file specified in pathname
-          based on a process’s real user
-          and group IDs (and supplementary group IDs).
+- The access() system call
+  checks the accessibility of the file specified in pathname
+  based on a process’s real user
+  and group IDs (and supplementary group IDs).
 
-        ``` c
-        #include <unistd.h>
-        int access(const char *pathname, int mode);
-        // Returns 0 if all permissions are granted, otherwise –1
-        ```
+``` c
+#include <unistd.h>
+int access(const char *pathname, int mode);
+// Returns 0 if all permissions are granted, otherwise –1
+```
 
-        - If pathname is a symbolic link, access() dereferences it.
+- If pathname is a symbolic link, access() dereferences it.
 
-        - The time gap between a call to access()
-          and a subsequent operation on a file
-          means that there is no guarantee that
-          the information returned by access() will still be true
-          at the time of the later operation
-          (no matter how brief the interval).
+- The time gap between a call to access()
+  and a subsequent operation on a file
+  means that there is no guarantee that
+  the information returned by access() will still be true
+  at the time of the later operation
+  (no matter how brief the interval).
 
-          This situation could lead to security holes in some application designs.
+  This situation could lead to security holes in some application designs.
 
 ## 16: extended attributes
 ## 17: access control lists
@@ -570,336 +570,336 @@ void sync(void);
 
 ### process default actions on signals
 
-        - The signal is ignored;
-          that is, it is discarded by the kernel
-          and has no effect on the process.
-          (The process never even knows that it occurred.)
+- The signal is ignored;
+  that is, it is discarded by the kernel
+  and has no effect on the process.
+  (The process never even knows that it occurred.)
 
-        - The process is terminated (killed).
-          This is sometimes referred to as abnormal process termination,
-          as opposed to the normal process termination that occurs
-          when a process terminates using exit().
+- The process is terminated (killed).
+  This is sometimes referred to as abnormal process termination,
+  as opposed to the normal process termination that occurs
+  when a process terminates using exit().
 
-        - A core dump file is generated,
-          and the process is terminated.
-          A core dump file contains an image of
-          the virtual memory of the process,
-          which can be loaded into a debugger
-          in order to inspect the state of the process
-          at the time that it terminated.
+- A core dump file is generated,
+  and the process is terminated.
+  A core dump file contains an image of
+  the virtual memory of the process,
+  which can be loaded into a debugger
+  in order to inspect the state of the process
+  at the time that it terminated.
 
-        - The process is stopped
-          execution of the process is suspended.
+- The process is stopped
+  execution of the process is suspended.
 
-        - Execution of the process is resumed
-          after previously being stopped.
+- Execution of the process is resumed
+  after previously being stopped.
 
 ### signal types and default actions
 
-        - SIGABRT
-          A process is sent this signal when it calls the abort() function
-          By default, this signal terminates the process with a core dump.
+- SIGABRT
+  A process is sent this signal when it calls the abort() function
+  By default, this signal terminates the process with a core dump.
 
-        - SIGBUS
-          This signal ("bus error") is generated
-          to indicate certain kinds of memory access errors.
-          One such error can occur when using memory mappings
-          created with mmap(),
-          if we attempt to access an address
-          that lies beyond the end of the underlying memory-mapped file.
+- SIGBUS
+  This signal ("bus error") is generated
+  to indicate certain kinds of memory access errors.
+  One such error can occur when using memory mappings
+  created with mmap(),
+  if we attempt to access an address
+  that lies beyond the end of the underlying memory-mapped file.
 
-        - SIGFPE
-          This signal is generated for certain types of arithmetic errors,
-          such as divide-by-zero.
-          The suffix FPE is an abbreviation for floating-point exception,
-          although this signal can also be generated
-          for integer arithmetic errors.
+- SIGFPE
+  This signal is generated for certain types of arithmetic errors,
+  such as divide-by-zero.
+  The suffix FPE is an abbreviation for floating-point exception,
+  although this signal can also be generated
+  for integer arithmetic errors.
 
-        - SIGILL
-          This signal is sent to a process if it tries to execute an illegal
-          (i.e., incorrectly formed) machine-language instruction.
+- SIGILL
+  This signal is sent to a process if it tries to execute an illegal
+  (i.e., incorrectly formed) machine-language instruction.
 
-        - SIGINT
-          When the user types the terminal interrupt character
-          (usually Control-C),
-          the terminal driver sends this signal to the foreground process group.
-          The default action for this signal is to terminate the process.
+- SIGINT
+  When the user types the terminal interrupt character
+  (usually Control-C),
+  the terminal driver sends this signal to the foreground process group.
+  The default action for this signal is to terminate the process.
 
-        - SIGIO
+- SIGIO
 
-        - SIGIOT
-          On Linux, this is a synonym for SIGABRT.
-          On some other UNIX implementations,
-          this signal indicates an implementation-defined hardware fault.
+- SIGIOT
+  On Linux, this is a synonym for SIGABRT.
+  On some other UNIX implementations,
+  this signal indicates an implementation-defined hardware fault.
 
-        - SIGKILL
-          This is the sure kill signal.
-          It can’t be blocked, ignored, or caught by a handler,
-          and thus always terminates a process.
+- SIGKILL
+  This is the sure kill signal.
+  It can’t be blocked, ignored, or caught by a handler,
+  and thus always terminates a process.
 
-        - SIGPIPE
-          This signal is generated when a process tries to write to a pipe,
-          a FIFO, or a socket
-          for which there is no corresponding reader process.
-          This normally occurs because the reading process
-          has closed its file descriptor for the IPC channel.
+- SIGPIPE
+  This signal is generated when a process tries to write to a pipe,
+  a FIFO, or a socket
+  for which there is no corresponding reader process.
+  This normally occurs because the reading process
+  has closed its file descriptor for the IPC channel.
 
-        - SIGPROF
-          The kernel generates this signal
-          upon the expiration of a profiling timer
-          set by a call to setitimer().
-          A profiling timer is one that counts the CPU time used by a process.
-          Unlike a virtual timer (see SIGVTALRM below),
-          a profiling timer counts CPU time used
-          in both user mode and kernel mode.
+- SIGPROF
+  The kernel generates this signal
+  upon the expiration of a profiling timer
+  set by a call to setitimer().
+  A profiling timer is one that counts the CPU time used by a process.
+  Unlike a virtual timer (see SIGVTALRM below),
+  a profiling timer counts CPU time used
+  in both user mode and kernel mode.
 
-        - SIGQUIT
-          When the user types the quit character
-          (usually Control-\) on the keyboard,
-          this signal is sent to the foreground process group.
-          By default, this signal terminates a process
-          and causes it to produce a core dump.
+- SIGQUIT
+  When the user types the quit character
+  (usually Control-\) on the keyboard,
+  this signal is sent to the foreground process group.
+  By default, this signal terminates a process
+  and causes it to produce a core dump.
 
-        - SIGSEGV
-          This very popular signal is generated
-          when a program makes an invalid memory reference.
-          A memory reference may be invalid because
-          1. the referenced page doesn’t exist
-             e.g., it lies in an unmapped area
-             somewhere between the heap and the stack,
-          2. the process tried to update a location in read-only memory
-             e.g., the program text segment
-             or a region of mapped memory marked read-only,
-          3. the process tried to access a part of kernel memory
-             while running in user mode.
+- SIGSEGV
+  This very popular signal is generated
+  when a program makes an invalid memory reference.
+  A memory reference may be invalid because
+  1. the referenced page doesn’t exist
+     e.g., it lies in an unmapped area
+     somewhere between the heap and the stack,
+  2. the process tried to update a location in read-only memory
+     e.g., the program text segment
+     or a region of mapped memory marked read-only,
+  3. the process tried to access a part of kernel memory
+     while running in user mode.
 
-          In C, these events often result from
-          1. dereferencing a pointer containing a bad address
-             e.g., an uninitialized pointer
-          2. passing an invalid argument in a function call.
+  In C, these events often result from
+  1. dereferencing a pointer containing a bad address
+     e.g., an uninitialized pointer
+  2. passing an invalid argument in a function call.
 
-          The name of this signal derives from
-          the term segmentation violation.
+  The name of this signal derives from
+  the term segmentation violation.
 
-        - SIGSTOP
-          This is the sure stop signal.
-          It can’t be blocked, ignored, or caught by a handler;
-          thus, it always stops a process.
+- SIGSTOP
+  This is the sure stop signal.
+  It can’t be blocked, ignored, or caught by a handler;
+  thus, it always stops a process.
 
-        - SIGSYS
-          This signal is generated if a process makes a "bad" system call.
-          This means that the process executed an instruction
-          that was interpreted as a system call trap,
-          but the associated system call number was not valid.
+- SIGSYS
+  This signal is generated if a process makes a "bad" system call.
+  This means that the process executed an instruction
+  that was interpreted as a system call trap,
+  but the associated system call number was not valid.
 
-        - SIGTERM
-          This is the standard signal used for terminating a process
-          and is the default signal sent by the kill and killall commands.
+- SIGTERM
+  This is the standard signal used for terminating a process
+  and is the default signal sent by the kill and killall commands.
 
-          A well-designed application will have a handler for SIGTERM
-          that causes the application to exit gracefully,
-          cleaning up temporary files and releasing other resources beforehand.
+  A well-designed application will have a handler for SIGTERM
+  that causes the application to exit gracefully,
+  cleaning up temporary files and releasing other resources beforehand.
 
-          Killing a process with SIGKILL bypasses the SIGTERM handler.
+  Killing a process with SIGKILL bypasses the SIGTERM handler.
 
-        - SIGTRAP
-          This signal is used to implement debugger breakpoints
-          and system call tracing,
-          as performed by strace(1).
-          See the ptrace(2) manual page for further information.
+- SIGTRAP
+  This signal is used to implement debugger breakpoints
+  and system call tracing,
+  as performed by strace(1).
+  See the ptrace(2) manual page for further information.
 
-        - SIGTSTP
-          This is the job-control stop signal,
-          sent to stop the foreground process group
-          when the user types the suspend character
-          (usually Control-Z) on the keyboard.
+- SIGTSTP
+  This is the job-control stop signal,
+  sent to stop the foreground process group
+  when the user types the suspend character
+  (usually Control-Z) on the keyboard.
 
-          The name of this signal derives from "terminal stop."
+  The name of this signal derives from "terminal stop."
 
-        - SIGTTIN
-          When running under a job-control shell,
-          the terminal driver sends this signal to a background process group
-          when it attempts to read() from the terminal.
-          This signal stops a process by default.
+- SIGTTIN
+  When running under a job-control shell,
+  the terminal driver sends this signal to a background process group
+  when it attempts to read() from the terminal.
+  This signal stops a process by default.
 
-        - SIGTTOU
-          This signal serves an analogous purpose to SIGTTIN,
-          but for terminal output by background jobs.
-          This signal stops a process by default.
+- SIGTTOU
+  This signal serves an analogous purpose to SIGTTIN,
+  but for terminal output by background jobs.
+  This signal stops a process by default.
 
-        - SIGUNUSED
-          As the name implies, this signal is unused.
-          On Linux 2.4 and later,
-          this signal name is synonymous with SIGSYS on many architectures.
-          In other words, this signal number is no longer unused
-          on those architectures,
-          although the signal name remains for backward compatibility.
+- SIGUNUSED
+  As the name implies, this signal is unused.
+  On Linux 2.4 and later,
+  this signal name is synonymous with SIGSYS on many architectures.
+  In other words, this signal number is no longer unused
+  on those architectures,
+  although the signal name remains for backward compatibility.
 
-        - SIGURG
-          This signal is sent to a process
-          to indicate the presence of out-of-band
-          (also known as urgent) data on a socket.
+- SIGURG
+  This signal is sent to a process
+  to indicate the presence of out-of-band
+  (also known as urgent) data on a socket.
 
-        - SIGUSR1 and SIGUSR1
-          This signal and SIGUSR2 are available
-          for programmer-defined purposes.
-          The kernel never generates these signals for a process.
-          Processes may use these signals to notify one another of events
-          or to synchronize with each other.
+- SIGUSR1 and SIGUSR1
+  This signal and SIGUSR2 are available
+  for programmer-defined purposes.
+  The kernel never generates these signals for a process.
+  Processes may use these signals to notify one another of events
+  or to synchronize with each other.
 
-        - SIGVTALRM
-          The kernel generates this signal
-          upon expiration of a virtual timer set by a call to setitimer().
-          A virtual timer is one that counts the user-mode CPU time
-          used by a process.
+- SIGVTALRM
+  The kernel generates this signal
+  upon expiration of a virtual timer set by a call to setitimer().
+  A virtual timer is one that counts the user-mode CPU time
+  used by a process.
 
-        - SIGWINCH
-          In a windowing environment,
-          this signal is sent to the foreground process group
-          when the terminal window size changes.
-          By installing a handler for this signal,
-          programs such as vi and less can know
-          to redraw their output after a change in window size.
+- SIGWINCH
+  In a windowing environment,
+  this signal is sent to the foreground process group
+  when the terminal window size changes.
+  By installing a handler for this signal,
+  programs such as vi and less can know
+  to redraw their output after a change in window size.
 
-        - SIGXCPU
-          This signal is sent to a process
-          when it exceeds its CPU time resource limit (RLIMIT_CPU).
+- SIGXCPU
+  This signal is sent to a process
+  when it exceeds its CPU time resource limit (RLIMIT_CPU).
 
-        - SIGXFSZ
-          This signal is sent to a process
-          if it attempts (using write() or truncate())
-          to increase the size of a file
-          beyond the process’s file size resource limit (RLIMIT_FSIZE).
+- SIGXFSZ
+  This signal is sent to a process
+  if it attempts (using write() or truncate())
+  to increase the size of a file
+  beyond the process’s file size resource limit (RLIMIT_FSIZE).
 
 ### >< changing signal dispositions: signal()
 
-        - signal()
-          the original API
-          simpler than sigaction().
-          has variations in the behavior across UNIX implementations
+- signal()
+  the original API
+  simpler than sigaction().
+  has variations in the behavior across UNIX implementations
 
-        - sigaction()
-          more functionality
+- sigaction()
+  more functionality
 
-        ``` c
-        #include <signal.h>
-        void (*signal(int sig, void (*handler)(int))) (int);
-        // Returns previous signal disposition on success, or SIG_ERR on error
+``` c
+#include <signal.h>
+void (*signal(int sig, void (*handler)(int))) (int);
+// Returns previous signal disposition on success, or SIG_ERR on error
 
-        void
-        handler(int sig) {
-          /* Code for the handler */
-        }
+void
+handler(int sig) {
+  /* Code for the handler */
+}
 
-        void (*oldHandler)(int);
+void (*oldHandler)(int);
 
-        oldHandler = signal(SIGINT, newHandler);
+oldHandler = signal(SIGINT, newHandler);
 
-        if (oldHandler == SIG_ERR)
-          errExit("signal");
+if (oldHandler == SIG_ERR)
+  errExit("signal");
 
-        /* Do something else here. During this time, if SIGINT is
-           delivered, newHandler will be used to handle the signal. */
+/* Do something else here. During this time, if SIGINT is
+   delivered, newHandler will be used to handle the signal. */
 
-        if (signal(SIGINT, oldHandler) == SIG_ERR)
-          errExit("signal");
+if (signal(SIGINT, oldHandler) == SIG_ERR)
+  errExit("signal");
 
-        // It is not possible to use signal()
-        // to retrieve the current disposition of a signal
-        // without at the same time changing that disposition.
-        // To do that, we must use sigaction().
+// It is not possible to use signal()
+// to retrieve the current disposition of a signal
+// without at the same time changing that disposition.
+// To do that, we must use sigaction().
 
 
-        // We can make the prototype for signal() much more comprehensible
-        // by using the following type definition for a pointer
-        // to a signal handler function:
-        typedef void (*sighandler_t)(int);
+// We can make the prototype for signal() much more comprehensible
+// by using the following type definition for a pointer
+// to a signal handler function:
+typedef void (*sighandler_t)(int);
 
-        // This enables us to rewrite the prototype for signal() as follows:
-        sighandler_t signal(int sig, sighandler_t handler);
-        ```
+// This enables us to rewrite the prototype for signal() as follows:
+sighandler_t signal(int sig, sighandler_t handler);
+```
 
-        - Instead of specifying the address of a function
-          as the handler argument of signal(),
-          we can specify one of the following values :
+- Instead of specifying the address of a function
+  as the handler argument of signal(),
+  we can specify one of the following values :
 
-          - SIG_DFL
-            Reset the disposition of the signal to its default.
-            This is useful for undoing the effect
-            of an earlier call to signal()
-            that changed the disposition for the signal.
+  - SIG_DFL
+    Reset the disposition of the signal to its default.
+    This is useful for undoing the effect
+    of an earlier call to signal()
+    that changed the disposition for the signal.
 
-          - SIG_IGN
-            Ignore the signal.
-            If the signal is generated for this process,
-            the kernel silently discards it.
-            The process never even knows that the signal occurred.
+  - SIG_IGN
+    Ignore the signal.
+    If the signal is generated for this process,
+    the kernel silently discards it.
+    The process never even knows that the signal occurred.
 
-          return value of signal()
-          also might be SIG_DFL or SIG_IGN.
+  return value of signal()
+  also might be SIG_DFL or SIG_IGN.
 
 ### Sending Signals: kill()
 
-        - One process can send a signal to another process
-          using the kill() system call,
-          which is the analog of the kill shell command.
+- One process can send a signal to another process
+  using the kill() system call,
+  which is the analog of the kill shell command.
 
-          The term 'kill' was chosen
-          because the default action of most of the signals
-          that were available on early UNIX implementations
-          was to terminate the process.
+  The term 'kill' was chosen
+  because the default action of most of the signals
+  that were available on early UNIX implementations
+  was to terminate the process.
 
-        ``` c
-        #include <signal.h>
-        int kill(pid_t pid, int sig);
-        // Returns 0 on success, or –1 on error
-        ```
+``` c
+#include <signal.h>
+int kill(pid_t pid, int sig);
+// Returns 0 on success, or –1 on error
+```
 
 ### Checking for the Existence of a Process
 
-        - The kill() system call can serve another purpose.
-          If the sig argument is specified as 0
-          (the so-called null signal),
-          then no signal is sent.
-          Instead, kill() merely performs error checking
-          to see if the process can be signaled.
+- The kill() system call can serve another purpose.
+  If the sig argument is specified as 0
+  (the so-called null signal),
+  then no signal is sent.
+  Instead, kill() merely performs error checking
+  to see if the process can be signaled.
 
-        - Various other techniques can also be used to check
-          whether a particular process is running.
+- Various other techniques can also be used to check
+  whether a particular process is running.
 
 ### Displaying Signal Descriptions
 
-        - Each signal has an associated printable description.
-          These descriptions are listed in the array sys_siglist.
-          For example, we can refer to sys_siglist[SIGPIPE]
-          to get the description for SIGPIPE (broken pipe).
+- Each signal has an associated printable description.
+  These descriptions are listed in the array sys_siglist.
+  For example, we can refer to sys_siglist[SIGPIPE]
+  to get the description for SIGPIPE (broken pipe).
 
-          However, rather than using the sys_siglist array directly,
-          the strsignal() function is preferable.
+  However, rather than using the sys_siglist array directly,
+  the strsignal() function is preferable.
 
-        ``` c
-        #define _BSD_SOURCE
-        #include <signal.h>
+``` c
+#define _BSD_SOURCE
+#include <signal.h>
 
-        extern const char *const sys_siglist[];
+extern const char *const sys_siglist[];
 
-        #define _GNU_SOURCE
-        #include <string.h>
+#define _GNU_SOURCE
+#include <string.h>
 
-        char *strsignal(int sig);
-        // Returns pointer to signal description string
-        ```
+char *strsignal(int sig);
+// Returns pointer to signal description string
+```
 
-        - The psignal() function displays (on standard error)
-          the string given in its argument msg,
-          followed by a colon,
-          and then the signal description corresponding to sig.
-          Like strsignal(), psignal() is locale-sensitive.
+- The psignal() function displays (on standard error)
+  the string given in its argument msg,
+  followed by a colon,
+  and then the signal description corresponding to sig.
+  Like strsignal(), psignal() is locale-sensitive.
 
-        ``` c
-        #include <signal.h>
-        void psignal(int sig, const char *msg);
-        ```
+``` c
+#include <signal.h>
+void psignal(int sig, const char *msg);
+```
 
 ### Signal Sets
 
@@ -911,11 +911,11 @@ void sync(void);
 
 ### Changing Signal Dispositions: sigaction()
 
-        ``` c
-        #include <signal.h>
-        int sigaction(int sig, const struct sigaction *act, struct sigaction *oldact);
-        // Returns 0 on success, or –1 on error
-        ```
+``` c
+#include <signal.h>
+int sigaction(int sig, const struct sigaction *act, struct sigaction *oldact);
+// Returns 0 on success, or –1 on error
+```
 
 ### Waiting for a Signal: pause()
 
@@ -973,161 +973,161 @@ void sync(void);
 
 ### overview
 
-        - client and server
+- client and server
 
-          - each application creates a socket.
-            A socket is the thing that allows communication,
-            and both client and server require one.
+  - each application creates a socket.
+    A socket is the thing that allows communication,
+    and both client and server require one.
 
-          - the server binds its socket to a well-known address (name)
-            so that clients can locate it.
+  - the server binds its socket to a well-known address (name)
+    so that clients can locate it.
 
-        - A socket is created using the socket() system call,
-          fd = socket(domain, type, protocol);
+- A socket is created using the socket() system call,
+  fd = socket(domain, type, protocol);
 
-        - in the internet domain :
+- in the internet domain :
 
-          | internet domain stream socket   | SOCK_STREAM |
-          | Transmission Control Protocol   | TCP         |
-          |---------------------------------+-------------|
-          | internet domain datagram socket | SOCK_DGRAM  |
-          | User Datagram Protocol          | UDP         |
+  | internet domain stream socket   | SOCK_STREAM |
+  | Transmission Control Protocol   | TCP         |
+  |---------------------------------|-------------|
+  | internet domain datagram socket | SOCK_DGRAM  |
+  | User Datagram Protocol          | UDP         |
 
-        - socket system calls :
-          #include <sys/socket.h>
+- socket system calls :
+  #include <sys/socket.h>
 
 ### socket
 
-        - int socket(int domain, int type, int protocol);
-          Returns file descriptor on success, or –1 on error.
+- int socket(int domain, int type, int protocol);
+  Returns file descriptor on success, or –1 on error.
 
-          creates a new socket.
+  creates a new socket.
 
-          domain := AF_UNIX | AF_INET | AF_INET6
-          type := SOCK_STREAM | SOCK_DGRAM
-          protocol := 0 [for now]
+  domain := AF_UNIX | AF_INET | AF_INET6
+  type := SOCK_STREAM | SOCK_DGRAM
+  protocol := 0 [for now]
 
-          for example,
-          protocol = IPPROTO_RAW for raw sockets (SOCK_RAW)
-          but protocol = 0 for now
+  for example,
+  protocol = IPPROTO_RAW for raw sockets (SOCK_RAW)
+  but protocol = 0 for now
 
 ### bind
 
-        - int bind(int sockfd, const struct sockaddr *addr, socklen_t addrlen);
+- int bind(int sockfd, const struct sockaddr *addr, socklen_t addrlen);
 
-          Returns 0 on success, or –1 on error
+  Returns 0 on success, or –1 on error
 
-          binds a socket to an address.
-          usually, a server employs this call
-          to bind its socket to a well-known address
-          so that clients can locate the socket.
+  binds a socket to an address.
+  usually, a server employs this call
+  to bind its socket to a well-known address
+  so that clients can locate the socket.
 
-        - struct sockaddr
-          ``` c
-          struct sockaddr {
-            // Address family (AF_* constant)
-            sa_family_t sa_family;
+- struct sockaddr
+  ``` c
+  struct sockaddr {
+    // Address family (AF_* constant)
+    sa_family_t sa_family;
 
-            // Socket address
-            // (size varies according to socket domain)
-            char sa_data[14];
-          };
-          ```
+    // Socket address
+    // (size varies according to socket domain)
+    char sa_data[14];
+  };
+  ```
 
-        - UNIX domain sockets use pathnames.
-        - Internet domain sockets use IP address + port number.
+- UNIX domain sockets use pathnames.
+- Internet domain sockets use IP address + port number.
 
 ### stream sockets
 
 #### phone analog of stream sockets
 
-          | socket(domain, type, protocol); | setup phone        |
-          | bind(sockfd, addr, addrlen);    | to have a number   |
-          | listen(sockfd, backlog);        | ready to be called |
-          |---------------------------------+--------------------|
-          | connect(sockfd, addr, addrlen); | dialing number     |
-          | accept(sockfd, addr, addrlen);  | pick up the phone  |
+| socket(domain, type, protocol); | setup phone        |
+| bind(sockfd, addr, addrlen);    | to have a number   |
+| listen(sockfd, backlog);        | ready to be called |
+|---------------------------------+--------------------|
+| connect(sockfd, addr, addrlen); | dialing number     |
+| accept(sockfd, addr, addrlen);  | pick up the phone  |
 
-          server : socket -- bind -- listen -- accept -- (send and recv) -- close
-          client : socket -- connect -- (send and recv) -- close
+server : socket -- bind -- listen -- accept -- (send and recv) -- close
+client : socket -- connect -- (send and recv) -- close
 
 #### listen
 
-          - int listen(int sockfd, int backlog);
+- int listen(int sockfd, int backlog);
 
-            Returns 0 on success, or –1 on error
+  Returns 0 on success, or –1 on error
 
-            allows a stream socket to accept
-            incoming connections from other sockets.
+  allows a stream socket to accept
+  incoming connections from other sockets.
 
 #### accept
 
-          - int accept(int sockfd, struct sockaddr *addr, socklen_t *addrlen);
+- int accept(int sockfd, struct sockaddr *addr, socklen_t *addrlen);
 
-            Returns file descriptor on success, or –1 on error
+  Returns file descriptor on success, or –1 on error
 
-            accepts a connection from a peer application
-            on a listening stream socket,
-            and optionally returns the address of the peer socket.
+  accepts a connection from a peer application
+  on a listening stream socket,
+  and optionally returns the address of the peer socket.
 
-            If there are no pending connections when accept() is called,
-            the call blocks until a connection request arrives.
+  If there are no pending connections when accept() is called,
+  the call blocks until a connection request arrives.
 
-            accept(sockfd, addr, addrlen) creates a new socket,
-            and it is this new socket
-            that is connected to the peer socket
-            that performed the connect(sockfd, addr, addrlen).
+  accept(sockfd, addr, addrlen) creates a new socket,
+  and it is this new socket
+  that is connected to the peer socket
+  that performed the connect(sockfd, addr, addrlen).
 
-            the listening socket remains open,
-            and can be used to accept further connections.
-            [phone analog breaks]
+  the listening socket remains open,
+  and can be used to accept further connections.
+  [phone analog breaks]
 
-            accept(sockfd, addr, addrlen);
-            set the addr to the addr of the peer socket.
+  accept(sockfd, addr, addrlen);
+  set the addr to the addr of the peer socket.
 
 #### connect()
 
-          - int connect(int sockfd, const struct sockaddr *addr, socklen_t addrlen);
+- int connect(int sockfd, const struct sockaddr *addr, socklen_t addrlen);
 
-            Returns 0 on success, or –1 on error
+  Returns 0 on success, or –1 on error
 
-            establishes a connection with another socket.
+  establishes a connection with another socket.
 
-            If connect() fails and we wish to reattempt the connection,
-            then SUSv3 specifies that
-            the portable method of doing so
-            is to close the socket,
-            create a new socket,
-            and reattempt the connection with the new socket.
+  If connect() fails and we wish to reattempt the connection,
+  then SUSv3 specifies that
+  the portable method of doing so
+  is to close the socket,
+  create a new socket,
+  and reattempt the connection with the new socket.
 
 ### datagram sockets
 
 #### postal analog of datagram sockets
 
-          server : socket -- bind -- (sendto and recvfrom) -- close
-          client : socket -- (sendto and recvfrom) -- close
+server : socket -- bind -- (sendto and recvfrom) -- close
+client : socket -- (sendto and recvfrom) -- close
 
 #### recvfrom and sendto
 
-          - ssize_t recvfrom(
-            int sockfd,
-            void *buffer,
-            size_t length,
-            int flags,
-            struct sockaddr *src_addr,
-            socklen_t *addrlen);
+- ssize_t recvfrom(
+  int sockfd,
+  void *buffer,
+  size_t length,
+  int flags,
+  struct sockaddr *src_addr,
+  socklen_t *addrlen);
 
-            Returns number of bytes received, 0 on EOF, or –1 on error
+  Returns number of bytes received, 0 on EOF, or –1 on error
 
-          - ssize_t sendto(
-            int sockfd,
-            const void *buffer,
-            size_t length,
-            int flags,
-            const struct sockaddr *dest_addr,
-            socklen_t addrlen );
+- ssize_t sendto(
+  int sockfd,
+  const void *buffer,
+  size_t length,
+  int flags,
+  const struct sockaddr *dest_addr,
+  socklen_t addrlen );
 
-            Returns number of bytes sent, or –1 on error
+  Returns number of bytes sent, or –1 on error
 
 ## 57: sockets: unix domain
 ## 58: sockets: fundamentals of tcp/ip networks
