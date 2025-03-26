@@ -33,13 +33,14 @@ date: 2025-01-07
 
 ```scheme
 (define-rule*
-    ((add target! addend! result)
+    ((iadd target! addend! result)
      (int x target!)
      (int y addend!))
   (connect result (int-add x y)))
 ```
 
 也许 primitive add 并不是一个好例子，
+因为这里的 `(int x target!)` 是不合理的，
 试试 nat-max 的例子。
 
 # lisp-like single principle port
