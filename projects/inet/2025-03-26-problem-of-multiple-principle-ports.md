@@ -24,3 +24,41 @@ date: 2025-03-26
 这样在处理某一批 task 的时候，
 在同一批中被 matched 点不会被删除，
 在处理下一批的时候，可能被删除的点都已经被标记为了 matched。
+
+[2025-03-27] 备选方案：
+
+如果在 inet-lisp 中 embarrassingly parallel 方案失败，
+就回到 inet-forth 中来实现 parallel，如果成果，
+可以从 inet-lisp 中删除 multiple principle ports 的功能。
+
+因为我还是觉得 lisp 的语法相比 forth 有优越性。
+
+主要是因为：
+- 在实现 forth 时，是要对不同的 definition 实现 call；
+- 而在实现 lisp/scheme 时，是要对不同的 value 实现 apply。
+
+forth 必须要同时有 value 和 definition，
+而 lisp 可以只有 value。
+或者可以说，applicative 的函数作用语法，
+把 call 进一步 factor 成为了 lookup + apply。
+
+这使得在 lisp 中更方便实现 list-map 之类的高阶函数：
+
+```scheme
+(define-node list-map target! fn result)
+
+(define-rule (list-map (null) fn result)
+  (null result))
+
+(define-rule (list-map (cons head tail) fn result)
+  (= fn fn* (fn-dup fn))
+  (cons (fn head) (list-map tail fn*) result))
+```
+
+或者可以说，在 forth 中引用每一个 name 时只有一种解释方式，就是 call；
+而在 lisp 中有两种引用 name 的方式 -- `name` 和 `(name ...)`。
+
+可能说 lisp 有优越性并不对，
+因为 forth 的函数复合语义也有很大优点。
+
+到底应该如何分析这二者的优劣呢？
