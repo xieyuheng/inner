@@ -218,7 +218,6 @@ a sequence of terms, and a multiset of equations。
 | ∆, Θ, ...   | set of equations       |
 | C, C', ...   | configuration          |
 
-
 # 3 Related works: evaluators towards efficient computation
 # 4 Single link encoding method
 # 5 Low-level language LL0
