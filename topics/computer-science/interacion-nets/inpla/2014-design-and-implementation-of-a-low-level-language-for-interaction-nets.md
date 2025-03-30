@@ -206,8 +206,6 @@ a sequence of terms, and a multiset of equations。
 而不是 term 的 value 就可以了，
 这样就是 set 而没必要说是 multiset。
 
-一个 configuration 就是一个 net。
-
 变量名与类型之间的关系表：
 
 | 变量名       | 类型                   |
@@ -217,6 +215,27 @@ a sequence of terms, and a multiset of equations。
 | x, y, z, ... | name (logic variables) |
 | ∆, Θ, ...   | set of equations       |
 | C, C', ...   | configuration          |
+
+
+一个 configuration 就是一个 net。
+
+我称作 inet-lisp 的语法为 natural applicative encoding，
+而这里所介绍的语法为 principal applicative encoding。
+相应的 inet-forth 的语法为 natural concatenative encoding。
+
+principal applicative encoding 的好处是，
+principal port 之间的连接 -- 也就是 active pair 或 redex，
+总是被 equation 明显地表示出来了，
+想要增加 principal port 之间的连接，用户需要明显地增加 equation。
+
+而在 natural applicative encoding 中，
+一个 net 的 active pair 是隐式的，
+net 是拥有一个保存 active pair 的 container，
+但是用户不直接操作这个 container，
+用户只是用 applicative 语法来构造 net，
+发现 active pair 之后会被自动保存在这个 container 中。
+
+TODO
 
 # 3 Related works: evaluators towards efficient computation
 # 4 Single link encoding method
