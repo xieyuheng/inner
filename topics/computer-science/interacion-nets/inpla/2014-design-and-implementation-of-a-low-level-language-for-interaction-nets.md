@@ -20,12 +20,6 @@ year: 2014
 问题就在于这一步「检查」需要 read wire 另一端的 node 的信息。
 而这个 read 和另一端可能的 write 会形成 data race。
 
-在一般的介绍 inet 的论文中，
-提到并行计算总是说 redex 是局部的切独立的，
-但是在消除一个 redex 后，如果想要发现是否会引出更多 redex，
-就需要读相邻 node 的信息，在并行计算中就会引起 data race。
-这一点在一般的论文中是没有提到的。
-
 读 inpla 相关的论文就是要看别人是如何处理这个 data race 的。
 
 # Summary
@@ -62,6 +56,96 @@ linear logic 的 proof nets 得来的，
   是对这段历史的更好的介绍。
 
 ## 1.2 Interaction nets
+
+> ... an interaction net computational step can be defined as a
+> constant time operation, and the model allows for parallelism (many
+> steps can take place at the same time).
+
+在一般的介绍 inet 的论文中，
+提到并行计算总是说 redex 是局部的切独立的，
+但是在消除一个 redex 后，如果想要发现是否会引出更多 redex，
+就需要读相邻 node 的信息，在并行计算中就会引起 data race。
+这一点在一般的论文中是没有提到的。
+
+这里在提到 inet 如何适合并行计算时也是如此。
+
+- 但是，上面这种情况并不是无药可救，
+  因为只是「读相邻 node 的信息」，
+  也许可以有技巧来处理这一点。
+
+> The model therefore is an interesting one if we are interested in
+> cost models of computation, and also take advantage of possible
+> parallelism.
+
+这里所谓的 cost models of computation
+就是 HVM 团队想用基于 inet 的语言，
+来为区块链写智能合约的原因。
+
+### 1.2.1 Interaction nets as an implementation language
+
+> There have been a number of different encodings
+> of the λ-calculus. We mention just a sample:
+
+> - Gonthier, Abadi and Lévy [24] gave an optimal implementation
+>   using an infinite set of (indexed) agents. In practice, this
+>   system turns out to be very inefficient in time, but several
+>   works (Asperti et al. [8] for example) have made significant
+>   performance improvements.
+
+> - In [41] an interaction system is given which uses a finite number
+>   of agents, but it does not implement substitution through
+>   λ-abstractions, which is essential to obtain sharing. Although
+>   very little sharing is captured by this system it does better than
+>   call-by-need. This system lead to a sequence of papers [43, 46]
+>   delivering more efficient evaluators. These systems are the most
+>   efficient to date.
+
+> - Lippi [40]: has given an alternative approach based on encoding
+>   the λ-calculus indirectly by implementing an environment machine.
+
+### 1.2.2 Interaction nets as a programming language
+
+我认为，把 interaction nets 直接当作一个程序语言，
+和传统程序语言的的主要差异在于，
+不是设计好数据结构再实现函数来操作数据，
+而是把计算直接编码在数据的局部反应之中。
+
+换了一个计算模型，
+程序员应该如何编程也成了新的挑战。
+
+## 1.3 Implementing and extending interaction nets
+
+这里列举了很多 interaction nets 的实现，
+需要的时候可以参考。
+
+还有对 interaction nets 的扩展，比如：
+
+- multiple principal ports:
+
+  Vladimir Alexiev.
+  Non-deterministic interaction nets.
+  PhD thesis, University of Alberta, 1999.
+
+- type system:
+
+  Maribel Fernández.
+  Type assignment and termination of interaction nets.
+  Mathematical Structures in Computer Science, 8(6):593–636, 1998.
+
+- equivalence:
+
+  Maribel Fernández and Ian Mackie.
+  Operational equivalence for interaction nets.
+  Theoretical Computer Science, 297(1–3):157–181, February 2003.
+
+- GPU:
+
+  Eugen Jiresch.
+  Towards a gpu-based implementation of interaction nets.
+  In Benedikt Löwe and Glynn Winskel, editors, DCM, volume 143 of EPTCS,
+  pages 41–53, 2014.
+
+## 1.4 Contribution
 
 TODO
 
