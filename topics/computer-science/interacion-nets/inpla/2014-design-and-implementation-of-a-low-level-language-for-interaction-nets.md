@@ -206,6 +206,13 @@ a sequence of terms, and a multiset of equations。
 而不是 term 的 value 就可以了，
 这样就是 set 而没必要说是 multiset。
 
+- 后面可以发现如果一个 term 在
+  configuration 的 equation set 中出现了，
+  就不会在 term sequence 中再次出现了，
+  因此 value 就有了 reference 的意义。
+  另外 configuration 的 term sequence
+  其实代表 free ports，即 net 的 interface。
+
 变量名与类型之间的关系表：
 
 | 变量名       | 类型                   |
@@ -215,7 +222,6 @@ a sequence of terms, and a multiset of equations。
 | x, y, z, ... | name (logic variables) |
 | ∆, Θ, ...   | set of equations       |
 | C, C', ...   | configuration          |
-
 
 一个 configuration 就是一个 net。
 
@@ -236,8 +242,66 @@ net 是拥有一个保存 active pair 的 container，
 发现 active pair 之后会被自动保存在这个 container 中。
 
 我们也可以为 principal applicative encoding
-设计一个 lisp-like 语法，
-以方便后面的讨论。
+设计一个 lisp-like 语法，以方便后面的讨论。
+
+configuration 是用来编码 net 的，
+所以我们就用 `(net ...)` 来表示。
+因此 configuration 的语法可以设计成：
+
+```scheme
+(net <term-sequence> . <equation-body>)
+```
+
+**Example 2.1.3**
+
+```scheme
+(net [(S Z)])
+(net [r] (= (Add Z r) (S Z)))
+```
+
+**Example 2.1.4**
+
+```scheme
+(net [r] (= (Add Z r) (S w)) (= (Add Z w) Z))
+```
+
+下面沿用了 Lafont 所设计的 interaction rule 的语法。
+这里可以发现与我的 natural encoding 相比，
+这里的 principal encoding 要难读很多。
+
+我们不用 `⋈`（Bow Tie），
+而是直接写 `(rule)`
+
+**Example 2.1.5**
+
+```scheme
+(rule (Add y (S w)) (S (Add y w)))
+(rule (Add y y) Z)
+```
+
+下面用 substitution 来描述
+configuration 在 interaction 之后的变化。
+类似 lambda calculus 的 beta-reduction rule。
+
+这确实给出来了一个以 configuration 为 reduction 对象的 rewrite system。
+我的在 inet-forth 和 inet-lisp 中的设计没法做到这一点。
+
+- 因为只有完全 explicit 的语法才能做到这一点，
+  而 active pair 在我的语法中是 implicit 的。
+
+**Example 2.1.9**
+
+```scheme
+(net [r] (= (Add Z r) (S Z)))
+(net [r] (= Z y') (= r (S w')) (= Z (Add y' w')))
+(net [r] (= r (S w')) (= Z (Add Z w')))
+(net [(S w')] (= Z (Add Z w')))
+(net [(S w')] (= Z y'') (= w' y''))
+(net [(S w')] (= w' Z))
+(net [(S Z)])
+```
+
+## 2.2 Examples
 
 TODO
 
