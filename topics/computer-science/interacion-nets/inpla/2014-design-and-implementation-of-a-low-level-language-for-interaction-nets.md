@@ -235,6 +235,10 @@ net 是拥有一个保存 active pair 的 container，
 用户只是用 applicative 语法来构造 net，
 发现 active pair 之后会被自动保存在这个 container 中。
 
+我们也可以为 principal applicative encoding
+设计一个 lisp-like 语法，
+以方便后面的讨论。
+
 TODO
 
 # 3 Related works: evaluators towards efficient computation
