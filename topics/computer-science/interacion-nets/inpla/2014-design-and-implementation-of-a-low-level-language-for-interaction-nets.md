@@ -145,11 +145,80 @@ linear logic 的 proof nets 得来的，
   In Benedikt Löwe and Glynn Winskel, editors, DCM, volume 143 of EPTCS,
   pages 41–53, 2014.
 
-## 1.4 Contribution
-
-TODO
-
 # 2 Background
+
+## 2.1 Interaction nets
+
+这一章将要介绍 Fernández 和 Mackie 设计的语法，
+也就是 1999-a-calculus-for-interaction-nets。
+
+### 2.1.1 Graph rewriting system
+
+> Locality is a property of rewriting such that there is at most one
+> interaction rule for each active pair and the interface is preserved
+> during the rewriting. By the locality property, all rewritings are
+> performed locally. In interaction nets, since strong confluence
+> holds and all rewrites are local, rewriting can be performed in any
+> order. Therefore interaction nets are inherently parallel.
+
+这里有趣的现象是，乍一看确实可以并行，
+但是实际实现时会发现有 overlooked data race。
+
+### 2.1.2 A textual calculus for interaction nets
+
+**Agents**：
+
+类似于 inet-lisp 中的 node，
+但是总是把 principal port 当作返回值（最后一个 port）。
+注意这里的 arity 只是 auxiliary port 的个数，
+而不包含 principal port。
+
+**Names**：
+
+对应于描述连接关系的 logic variables，
+所描述的只能是 tree 的 auxiliary port 之间的连接关系。
+
+**Terms**：
+
+一个 term 是一个 tree，由于构造 tree 时，
+一个 node 的 principal port 只能连接到 parent node 的 auxiliary port，
+所以 tree 不包含 active pair。
+
+这里的语法也是通过重载函数作用语法来构造网，
+但是与 inet-lisp 相比有了更多的限制，
+会导致 constructor 类的 node 很自然，
+但是 eliminator 类的 node 不自然，
+即 eliminator 的 target 参数，
+会当成是函数作用语法中的返回值。
+
+**Equations**：
+
+An occurrence of an equation corresponds to
+a connection between two ports。
+即 active pair，或者说是 redex。
+
+**Configurations**：
+
+a sequence of terms, and a multiset of equations。
+为什么是 multiset 而不是 set？
+因为可能有很多 zero arity 的 nodes 相连。
+只要说一个 equation 中所保存的是 term 的 reference
+而不是 term 的 value 就可以了，
+这样就是 set 而没必要说是 multiset。
+
+一个 configuration 就是一个 net。
+
+变量名与类型之间的关系表：
+
+| 变量名       | 类型                   |
+|--------------|------------------------|
+| α, β, ...  | agent                  |
+| s, t, u, ... | term                   |
+| x, y, z, ... | name (logic variables) |
+| ∆, Θ, ...   | set of equations       |
+| C, C', ...   | configuration          |
+
+
 # 3 Related works: evaluators towards efficient computation
 # 4 Single link encoding method
 # 5 Low-level language LL0
