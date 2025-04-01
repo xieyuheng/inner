@@ -450,6 +450,39 @@ TODO 从 Fibonacci number 开始跳过例子，
 
 ## 3.2 Evaluators based on the graph rewriting system
 
+### 3.2.1 INET
+
+这里的数据结构设计是，
+node 和 node 直接通过指针（index）相连，
+这不可能可以并行反应。
+
+嵌入在 C 里，rule body 直接就用 C 的函数来表示。
+
+### 3.2.2 in^2
+
+继承上面的数据结构，但是这里所观察到的是：
+
+- 两个 principal port 之间不用真的连接，直接放到 active stack 里就可以了；
+
+- 一个 principal port 和一个 auxiliary port 之间，只需要单向连接，
+  即只需要从 auxiliary port 能找到 principal port；
+
+- 只有两个 auxiliary port 之间需要双向连接。
+
+## 3.3 Evaluators based on the textual calculi
+
+TODO
+
+### 3.3.1 AMINE (MPINE)
+
+TODO
+
+### 3.3.2 amineLight
+
+TODO
+
+## 3.4 Comparison of encoding methods
+
 TODO
 
 # 4 Single link encoding method
