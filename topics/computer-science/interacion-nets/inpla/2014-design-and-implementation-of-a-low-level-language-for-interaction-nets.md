@@ -49,11 +49,9 @@ year: 2014
 ## 1.1 Linear logic
 
 介绍 interaction nets 是如何从
-linear logic 的 proof nets 得来的，
-但是感觉这里的介绍并不充分。
-
-- Lafont 的论文 1995-from-proof-nets-to-interaction-nets，
-  是对这段历史的更好的介绍。
+linear logic 的 proof nets 得来的。
+Lafont 的论文 1995-from-proof-nets-to-interaction-nets，
+是对这段历史的更好的介绍。
 
 ## 1.2 Interaction nets
 
@@ -170,7 +168,7 @@ linear logic 的 proof nets 得来的，
 
 类似于 inet-lisp 中的 node，
 但是总是把 principal port 当作返回值（最后一个 port）。
-注意这里的 arity 只是 auxiliary port 的个数，
+注意，这里的 arity 只是 auxiliary port 的个数，
 而不包含 principal port。
 
 **Names**：
@@ -181,7 +179,8 @@ linear logic 的 proof nets 得来的，
 **Terms**：
 
 一个 term 是一个 tree，由于构造 tree 时，
-一个 node 的 principal port 只能连接到 parent node 的 auxiliary port，
+一个 node 的 principal port 只能连接到
+parent node 的 auxiliary port，
 所以 tree 不包含 active pair。
 
 这里的语法也是通过重载函数作用语法来构造网，
@@ -225,9 +224,9 @@ a sequence of terms, and a multiset of equations。
 
 一个 configuration 就是一个 net。
 
-我称作 inet-lisp 的语法为 natural applicative encoding，
-而这里所介绍的语法为 principal applicative encoding。
-相应的 inet-forth 的语法为 natural concatenative encoding。
+我称 inet-lisp 的语法为 **natural applicative encoding**，
+而这里所介绍的语法为 **principal applicative encoding**。
+相应的 inet-forth 的语法为 **natural concatenative encoding**。
 
 principal applicative encoding 的好处是，
 principal port 之间的连接 -- 也就是 active pair 或 redex，
@@ -267,10 +266,9 @@ configuration 是用来编码 net 的，
 
 下面沿用了 Lafont 所设计的 interaction rule 的语法。
 这里可以发现与我的 natural encoding 相比，
-这里的 principal encoding 要难读很多。
+这里的 principal encoding 在描述 interaction rule 时要难读很多。
 
-我们不用 `⋈`（Bow Tie），
-而是直接写 `(rule)`
+我们不用 `⋈`（Bow Tie）而是直接写 `(rule)`：
 
 **Example 2.1.5**
 
@@ -301,9 +299,86 @@ configuration 在 interaction 之后的变化。
 (net [(S Z)])
 ```
 
-TODO
+> ... in the λ-calculus, there are two types of normal form: full
+> normal form and weak normal form. In our framework, we can define
+> interface normal form (INF) as a weak normal form paying attention
+> to interfaces:
+
+> Intuitively, a configuration is in INF when it is not expected to
+> obtain new results that could be observed from the interface even if
+> some reductions were applied.
+
+> **Definition 2.1.12 (Weak reduction)**
+
+看起来就是，只对与 interface 相连通的部分做 reduction，
+我还需要更多的例子才能明白。
+
+> By using weak reduction, we can evaluate only active pairs that are
+> connected to the interface. In other words, we avoid evaluation of
+> nets which are disconnected from the interface. This reduction
+> strategy will be particularly useful when we have infinite lists,
+> encodings of recursive functions, etc.
 
 ## 2.2 Examples
+
+### 2.2.1 Arithmetic operations on unary natural numbers
+
+这里介绍了另外一种定义 Add 和 S 之间反应规则的方式，
+就是不要把 S 连接到返回值上，而是连接到被加数上。
+说是在 Section 7.2.2 会解释这两种定义的差异。
+
+原来的定义：
+
+```scheme
+(rule (Add y (S w)) (S (Add y w)))
+(rule (Add y y) Z)
+```
+
+alternative 的定义：
+
+```scheme
+(rule (Add (S y) w) (S (Add y w)))
+(rule (Add y y) Z)
+```
+
+直接用 Lafont 写 rule 的语法，会非常不直观。
+另外一种引入更多逻辑变量的语法如下：
+
+原来的定义：
+
+```scheme
+(rule (Add x1 x2) (S y1)
+  (= y1 (Add x1 w))
+  (= x2 (S w)))
+```
+
+将 rule body 中的等式带入 rule 的 head，才得到：
+
+```scheme
+(rule (Add x1 (S w)) (S (Add x1 w)))
+(rule (Add y (S w)) (S (Add y w)))
+```
+
+alternative 的定义：
+
+```scheme
+(rule (Add x1 x2) (S y1)
+  (= y1 (Add y x2))
+  (= x1 (S y)))
+```
+
+将 rule body 中的等式带入 rule 的 head，才得到：
+
+```scheme
+(rule (Add (S y) x2) (S (Add y x2)))
+(rule (Add (S y) w) (S (Add y w)))
+```
+
+因此 `(rule)` 的一般语法为：
+
+```scheme
+(rule <left-term> <right-term> . <equation-body>)
+```
 
 TODO
 
