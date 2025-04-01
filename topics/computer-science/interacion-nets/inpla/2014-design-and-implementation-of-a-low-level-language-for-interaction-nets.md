@@ -483,6 +483,21 @@ TODO
 
 ## 3.4 Comparison of encoding methods
 
+> In this section, we compare methods of encoding nets among
+> evaluators which we have discussed in the previous section so that
+> we can compare them in terms of efficiency.
+
+> To unify the data-structures, we use a standardised implementation
+> model such that, instead of indexes of arrays, pointers are used for
+> entries of the memory heaps.
+
+和 INET 一样但是改用指针。
+
+### 3.4.1 Undirected graph encoding
+
+> We call the encoding method of in^2, PIN and INET
+> **undirected graph encoding**.
+
 TODO
 
 # 4 Single link encoding method
