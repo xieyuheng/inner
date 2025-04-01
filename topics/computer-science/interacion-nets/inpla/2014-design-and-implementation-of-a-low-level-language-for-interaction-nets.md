@@ -341,10 +341,10 @@ alternative 的定义：
 (rule (Add y y) Z)
 ```
 
-直接用 Lafont 写 rule 的语法，会非常不直观。
-另外一种引入更多逻辑变量的语法如下：
+用 Lafont 的 principal applicative encoding 来写 rule，
+是非常不直观的，引入更多逻辑变量和等式可以缓解这种不直观。
 
-原来的定义：
+原来的定义，引入更多的逻辑变量和等式：
 
 ```scheme
 (rule (Add x1 x2) (S y1)
@@ -359,7 +359,7 @@ alternative 的定义：
 (rule (Add y (S w)) (S (Add y w)))
 ```
 
-alternative 的定义：
+alternative 的定义，引入更多的逻辑变量和等式：
 
 ```scheme
 (rule (Add x1 x2) (S y1)
