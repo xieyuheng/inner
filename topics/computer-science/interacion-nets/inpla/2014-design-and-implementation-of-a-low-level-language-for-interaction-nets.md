@@ -408,6 +408,50 @@ TODO 从 Fibonacci number 开始跳过例子，
 因为我的目的是学习并行计算的实现方式。
 
 # 3 Related works: evaluators towards efficient computation
+
+## 3.1 Overview
+
+介绍已有的 interaction nets 实现：
+
+- 1991 -- Simon Gay
+  - "Interaction nets"
+  - with type system like in Lafont's first paper.
+
+- 2000 -- AMINE -- Jorge Sousa Pinto
+  - "Sequential and Concurrent Abstract Machines for Interaction Nets"
+  - 用 substitution + search 来实现，
+    就像用 substitution 来实现 lambda calculus 一样不切实际。
+  - MPINE 是 AMINE 的并行版本。
+
+- 2002 -- in^2 -- Sylvain Lippi
+  - "in^2: A graphical interpreter for interaction nets"
+
+- 2008 -- PIN -- Abubakar Hassan, Ian Mackie, and Shinya Sato
+  - "Interaction nets: programming language design and implementation"
+  - 避免用 substitution，编译到一个 VM 的 bytecode。
+
+- 2009 -- INET -- Abubakar Hassan, Ian Mackie, and Shinya Sato
+  - "Compilation of interaction nets"
+  - 避免用 substitution，编译到 C。
+
+- 2010 -- amineLight -- Abubakar Hassan, Ian Mackie, and Shinya Sato
+  - "A lightweight abstract machine for interaction nets"
+  - 据说改良了前面的语法和 calculus，称为 lightweight calculus。
+
+- 2014 -- ingpu -- Eugen Jiresch
+  - "Towards a gpu-based implementation of interaction nets"
+  - ... re-wirings are realised by substitutions
+    that require synchronised rewritings.
+    - 可能这里说的 re-wirings 就是我遇到的问题。
+
+| graph rewriting system | textual calculi                  |
+|------------------------|----------------------------------|
+| in^2, PIN, INET        | AMINE (MPINE), amineLight, ingpu |
+
+## 3.2 Evaluators based on the graph rewriting system
+
+TODO
+
 # 4 Single link encoding method
 # 5 Low-level language LL0
 # 6 A language for programming in interaction nets
