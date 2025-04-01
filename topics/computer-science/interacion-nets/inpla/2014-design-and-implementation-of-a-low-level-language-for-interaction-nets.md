@@ -380,7 +380,32 @@ alternative 的定义，引入更多的逻辑变量和等式：
 (rule <left-term> <right-term> . <equation-body>)
 ```
 
-TODO
+principal applicative encoding 是如此不直观，
+以至于论文的作者在第 20 页把 Add 和 S 之间的规则写错了，
+
+应该是：
+
+```scheme
+(rule (Add x1 x2) (S y1)
+  (= y1 (Add y x2))
+  (= x1 (S y)))
+```
+
+作者错写成了：
+
+```scheme
+(rule (Add x1 x2) (S y1)
+  (= y1 (Add (S x1) x2)))
+```
+
+就是 S 节点的方向错了。
+
+在理解规则方面如此不直观，
+我认为对于程序语言的语法设计而言，
+principal applicative encoding 是完全不切实际的。
+
+TODO 从 Fibonacci number 开始跳过例子，
+因为我的目的是学习并行计算的实现方式。
 
 # 3 Related works: evaluators towards efficient computation
 # 4 Single link encoding method
