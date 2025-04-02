@@ -57,6 +57,13 @@ thread 2 |      -<>- -<>- |      -<      >-
 也许可以不要当场 free，而是让 scheduler 统一回收。
 但是就算是如此，也没法把两个原子操作变成一个。
 
+in^2 的 idea 在于观察到不是所有的连接都是必须的。
+那么 wire 和 wire 之间的双向连接，
+以及 node 和 wire 之间的双向连接，
+都是必须的吗？
+
+画出来具体的 pointer 图看看。
+
 # Summary
 
 > This thesis is about the implementation of interaction
