@@ -204,9 +204,9 @@ parent node 的 auxiliary port，
 这里的语法也是通过重载函数作用语法来构造网，
 但是与 inet-lisp 相比有了更多的限制，
 会导致 constructor 类的 node 很自然，
-但是 eliminator 类的 node 不自然，
-即 eliminator 的 target 参数，
-会当成是函数作用语法中的返回值。
+但是 eliminator 类的 node 不自然，即：
+- eliminator 的 target 参数，会被当成是函数作用语法中的返回值；
+- 而 eliminator 的返回值会被当成是最后一个参数。
 
 **Equations**：
 
@@ -216,28 +216,33 @@ a connection between two ports。
 
 **Configurations**：
 
-a sequence of terms, and a multiset of equations。
+A sequence of terms, and a multiset of equations。
 为什么是 multiset 而不是 set？
 因为可能有很多 zero arity 的 nodes 相连。
-只要说一个 equation 中所保存的是 term 的 reference
+只要说一个 equation 中所保存的是 term 的 entity
 而不是 term 的 value 就可以了，
 这样就是 set 而没必要说是 multiset。
+因为 **different occurrence of the same value
+can be viewed as different entity**。
 
-- 后面可以发现如果一个 term 在
-  configuration 的 equation set 中出现了，
-  就不会在 term sequence 中再次出现了，
-  因此 value 就有了 reference 的意义。
-  另外 configuration 的 term sequence
-  其实代表 free ports，即 net 的 interface。
+后面可以发现，如果一个 term 在
+configuration 的 equation set 中出现了，
+就不会在 term sequence 中再次出现了，
+因此 value 就有了 entity 的意义。
+另外 configuration 的 term sequence
+其实代表 free ports，即 net 的 interface。
+
+因此这里可以总结出来一个技巧，
+称作 **a value can be viewed as an entity if it only occur once**。
 
 变量名与类型之间的关系表：
 
 | 变量名       | 类型                   |
 |--------------|------------------------|
-| α, β, ...  | agent                  |
+| α, β, ...    | agent                  |
 | s, t, u, ... | term                   |
 | x, y, z, ... | name (logic variables) |
-| ∆, Θ, ...   | set of equations       |
+| ∆, Θ, ...    | set of equations       |
 | C, C', ...   | configuration          |
 
 一个 configuration 就是一个 net。
@@ -302,8 +307,10 @@ configuration 在 interaction 之后的变化。
 这确实给出来了一个以 configuration 为 reduction 对象的 rewrite system。
 我的在 inet-forth 和 inet-lisp 中的设计没法做到这一点。
 
-- 因为只有完全 explicit 的语法才能做到这一点，
-  而 active pair 在我的语法中是 implicit 的。
+因为只有完全 explicit 的语法才能做到这一点，
+或者说只有把 reduction 对象的所有信息都在语法中明显地表示出来，
+才能形成一个类似 lambda calculus 的 rewrite system。
+然而 active pair 在我的语法中是 implicit 的。
 
 **Example 2.1.9**
 
@@ -507,9 +514,19 @@ node 和 node 直接通过指针（index）相连，
 
 ### 3.3.1 AMINE (MPINE)
 
-就像用 substitution 实现 lambda calculus。
+像用 substitution 实现 lambda calculus 一样，
+用 substitution 实现 2.1.2 借介绍的 interaction net calculus。
 
-TODO
+这一节太可怕了，非常难读。
+这里临时设计了一个语言，
+然后用这个临时语言来写不能跑的程序，
+以实现 AMINE。
+这种描述方式之所以可怕，
+是因为如果这样写出来的程序中有 bug，
+就很难被发现。
+
+只有把这里的实现用 scheme 重写我才能理解。
+scheme 对于清晰表达关于过程的知识而言太重要了。
 
 ### 3.3.2 amineLight
 
@@ -552,7 +569,7 @@ auxiliary port 和 auxiliary port 之间的连接，
 
 感觉这样确实可以在并行时避免 data race！
 
-这种技巧可以称作是 break mutual reference with an extra element：
+这种技巧可以称作是 **break mutual reference with an extra element**：
 
 ```
 (A) <-> (B)
