@@ -40,6 +40,22 @@ year: 2014
 > **Thus, two active pairs that are not connected to each other via
 > auxiliary ports can be reduced simultaneously.**
 
+[2025-04-03] 感觉只要使用 in^2 中的 idea，
+就可以避免我目前的实现中的大多数 data race 了！
+还是使用 wire，但是 principal port 不用 wire，
+直接用 `principal_port_t`。
+
+还需要处理的 data race 就是 wire 和 wire 之间的 connect。
+
+```
+         | A  B C  D      | A       D
+thread 1 | -<>- -<>-      | -<      >-
+thread 2 |      -<>- -<>- |      -<      >-
+         |      C  D E  F |      C       F
+```
+
+也许可以不要当场 free，而是让 scheduler 统一回收。
+
 # Summary
 
 > This thesis is about the implementation of interaction
