@@ -498,7 +498,34 @@ TODO
 > We call the encoding method of in^2, PIN and INET
 > **undirected graph encoding**.
 
-TODO
+### 3.4.2 Directed graph encoding
+
+> A pointer to an agent node is regarded as
+> the principal port of the agent.
+
+基于 in^2 所引入而优化，这里更进一步优化，
+可以节省 principal port 的内存。
+
+principal port 和 principal port 之间的连接，
+还是通过 active stack 来完成。
+
+principal port 和 auxiliary port 之间的连接，
+就是把 node 的指针保存到 auxiliary port 中。
+
+auxiliary port 和 auxiliary port 之间的连接，
+是通过生成一个 name，然后将这同一个 name 保存到两个 port 中。
+这避免了 double link，因此指针所形成的有向无圈图（DAG）。
+
+感觉这样确实可以在并行时避免 data race！
+
+这种技巧可以称作是 break mutual reference with an extra element：
+
+```
+(A) <-> (B)
+----------- break mutual reference
+(A) -> (C)
+(B) -> (C)
+```
 
 # 4 Single link encoding method
 # 5 Low-level language LL0
