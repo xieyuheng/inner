@@ -22,6 +22,24 @@ year: 2014
 
 读 inpla 相关的论文就是要看别人是如何处理这个 data race 的。
 
+# My Summary
+
+[2025-04-02] 我的实现中的 data race 中的 read，
+来自需要发现两个 wire 是否是 principal wire。
+但是如果没有 wire，直接让 port 之间相连，
+就不会有这个 read，因此能避免这种 data race。
+
+但是直接连接 port，会引入新的 data race 类型，
+这一点在 "4.1 Motivation" 有说明：
+
+> Generally, when an active pair is reduced, a new net is created
+> according to an interaction rule. The interface of the right hand
+> side net of the rule must be connected to ports that were connected
+> to the active pair.
+
+> **Thus, two active pairs that are not connected to each other via
+> auxiliary ports can be reduced simultaneously.**
+
 # Summary
 
 > This thesis is about the implementation of interaction
