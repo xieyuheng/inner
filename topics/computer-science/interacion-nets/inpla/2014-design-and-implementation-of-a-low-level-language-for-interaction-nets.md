@@ -471,9 +471,25 @@ node 和 node 直接通过指针（index）相连，
 
 ## 3.3 Evaluators based on the textual calculi
 
-TODO
+> In this section we review evaluators based on textual calculi, AMINE
+> (MPINE) [57], amineLight [30] and ingpu [34] in 2000, 2010 and 2014
+> respectively.
+
+> In the textual calculi, rewritings in interaction nets are divided
+> into two groups: interaction and re-wiring.
+
+> - The rewritings for the interaction can be performed locally thanks
+>   to names introduced for connections between auxiliary ports.
+
+> - The re-wiring is realised by substitution of names. To keep
+>   consistent relationship between names, some extra rules are
+>   required which potentially cause some overhead in the computation.
+
+最重要的问题不是 overhead，而是不能 performed locally。
 
 ### 3.3.1 AMINE (MPINE)
+
+就像用 substitution 实现 lambda calculus。
 
 TODO
 
@@ -528,6 +544,56 @@ auxiliary port 和 auxiliary port 之间的连接，
 ```
 
 # 4 Single link encoding method
+
+> In this chapter we propose a new method for implementing interaction
+> nets. Our new method is a refinement of the method used in
+> amineLight in that we use only single links to encode nets as a
+> tree-like data-structure.
+
+## 4.1 Motivation
+
+> Generally, when an active pair is reduced, a new net is created
+> according to an interaction rule. The interface of the right hand
+> side net of the rule must be connected to ports that were connected
+> to the active pair.
+
+> **Thus, two active pairs that are not connected to each other via
+> auxiliary ports can be reduced simultaneously.**
+
+上面这句是关于并行实现最重要的修正，
+即不是任意两个 active pair 都可以并行进行，
+只有满足了 "not connected to each other via auxiliary port"
+这个条件才能并行进行。
+
+我之前的错误在于，认为只要不是让 port 直接连到 port，
+而是引入一个中间的 wire 就可以避免上面的问题。
+但是实际上还是有 data race（见笔记开头的 "My Motive"）。
+
+> Reduction of two active pairs that are connected via an auxiliary
+> port(s) of an interacting agent need to be managed differently
+> because each rewrite will update the same set of auxiliary ports.
+
+> The connection via their auxiliary ports is preserved by a name, and
+> thus reduction of the two active pairs are performed in parallel as
+> long as the operation of the name is managed as a critical section.
+
+尽管如上所说，
+amineLight 用 "break mutual reference with an extra element"
+这个技巧缓解了朴素实现中 auxiliary port 的直接相连。
+
+但是：
+
+> ... the connections between names are represented as mutual links
+> and we need to check for the lock and this can also spread globally.
+
+> The mutual links affect the locality and thus we propose a new
+> method of encoding so that a connection between names can be
+> represented by a single link.
+
+## 4.2 Lightweight textual calculus
+
+TODO
+
 # 5 Low-level language LL0
 # 6 A language for programming in interaction nets
 # 7 Results and future work
