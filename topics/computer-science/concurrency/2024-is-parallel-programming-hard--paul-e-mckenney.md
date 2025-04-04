@@ -2020,8 +2020,8 @@ TODO
 
 #### 6.4.3.1 Parallel Resource Allocation Problem
 
-多个 CPU 要调用同一 malloc 的函数。
-每个 CPU 都可以 free 别的 CPU malloc 的 object。
+多个 thread 要调用同一 malloc 的函数。
+每个 thread 都可以 free 别的 thread malloc 的 object。
 最简单的方案就是给 malloc 和 free 操作加用全局的 lock，
 但是这个方案的 lock contention 显然是没法接受的。
 
