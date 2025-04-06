@@ -43,7 +43,48 @@ process 是被数据化了的 process 的运行状态，
 > used to determine when to stop work on one process and service a
 > different one.
 
-### 2.1.2 Process Creation
+### 2.1.5 Process States
+
+> In Fig. 2-2 we see a state diagram showing
+> the three states a process may be in:
+>
+> 1. Running (actually using the CPU at that instant).
+> 2. Ready (runnable; temporarily stopped to let another process run).
+> 3. Blocked (unable to run until some external event happens).
+
+> Transitions between these states:
+>
+> 1. [running -> blocked] Process blocks for input
+> 2. [running -> ready] Scheduler picks another process
+> 3. [ready -> running] Scheduler picks this process
+> 4. [blocked -> ready] Input becomes available
+
+> But the point is that instead of thinking about interrupts, we can
+> think about user processes, disk processes, terminal processes, and
+> so on, which block when they are waiting for something to happen.
+
+这是否意味着 process 是用 interrupt 实现的？
+
+> This view gives rise to the model shown in Fig. 2-3. Here the lowest
+> level of the operating system is the scheduler, with a variety of
+> processes on top of it. All the interrupt handling and details of
+> actually starting and stopping processes are hidden away in the
+> scheduler, which is actually quite small.
+
+> The rest of the operating system is nicely structured in process form.
+
+在实现 inet 时，我是否也需要在
+task 和 worker 之间加上 process 的概念？
+比如一组 tasks 是一个 process。
+
+因为从 process 的状态看来，带有 task 的 worker
+就是只有 running 和 ready 两个状态的 process。
+
+但是也许不因该完全模仿操作系统的 scheduler，
+因为 inet 的问题有特殊性，
+可能有比模仿 process scheduler 更简单的解决方案。
+
+### 2.1.6 Implementation of Processes
 
 TODO
 
