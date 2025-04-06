@@ -84,7 +84,33 @@ task 和 worker 之间加上 process 的概念？
 因为 inet 的问题有特殊性，
 可能有比模仿 process scheduler 更简单的解决方案。
 
-### 2.1.6 Implementation of Processes
+## 2.4 Scheduling
+
+> Categories of Scheduling Algorithms
+>
+> - All systems
+>   - Fairness — giving each process a fair share of the CPU
+>   - Policy enforcement — seeing that stated policy is carried out
+>   - Balance — keeping all parts of the system busy
+> - Batch systems
+>   - Throughput — maximize jobs per hour
+>   - Turnaround time — minimize time between submission and termination
+>   - CPU utilization — keep the CPU busy all the time
+> - Interactive systems
+>   - Response time — respond to requests quickly
+>   - Proportionality — meet users’ expectations
+> - Real—time systems
+>   - Meeting deadlines — avoid losing data
+>   - Predictability — avoid quality degradation in multimedia systems
+
+### 2.4.2 Scheduling in Batch Systems
+
+- First-Come First-Served
+- Shortest Job First
+- Shortest Remaining Time Next
+- Three-Level Scheduling (swap)
+
+### 2.4.3 Scheduling in Interactive Systems
 
 TODO
 
