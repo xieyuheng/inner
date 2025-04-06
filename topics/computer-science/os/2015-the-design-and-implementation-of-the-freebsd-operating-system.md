@@ -3,6 +3,15 @@ title: the design and implementation of the freebsd operating system
 year: 2015
 ---
 
+# My Motive
+
+[2025-04-06] 在实现 inet 的并行计算时需要设计 scheduler，
+而 scheduler 的设计类似 OS 的 process scheduler。
+
+# Preface
+
+TODO
+
 # intro
 
 - (1993)
