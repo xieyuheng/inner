@@ -23,7 +23,7 @@ only when the following pattern is matched:
 - Where `A1` and ... and `An` are not negation,
   and atoms in both `Γ` and `Δ` are not negation.
 
-- Note that, we are can still use exchange rule,
+- Note that, we can still use exchange rule,
   we just have to use them explicitly.
   And we should use exchange rule
   to order the sequent before a cut.
