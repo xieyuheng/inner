@@ -149,12 +149,17 @@ source: "https://www.kernel.org/pub/linux/kernel/people/paulmck/perfbook/perfboo
 > sense that they are equally ill-suited to the jobs required by users
 > 1, 2, 3, and 4. In other words, their generality comes at the
 > expense of decreased productivity when compared to domain-specific
-> languages and environments. Worse yet, a language that is tailored
-> to a given abstraction is likely to suffer from performance and
-> scalability problems unless and until it can be efficiently mapped
-> to real hardware.
+> languages and environments.
 
 设计 general 的语言时要小心。
+
+> Worse yet, a language that is tailored to a given abstraction is
+> likely to suffer from performance and scalability problems unless
+> and until it can be efficiently mapped to real hardware.
+
+比如 byte code interpreter 的速度要比 native code 慢很多，
+一个语言如果想要有好的运行效率，模拟是不够的，
+必须要研究在真实的硬件上实现。
 
 ## 2.3 Alternatives to Parallel Programming
 
@@ -263,6 +268,12 @@ memory cache 其实缓减了这种 sharing，
 
     - 也许以这种方式使用 CPU 中的多线程并不合理，
       但是如果迫于无奈，可以用这种方式来使用 GPU！
+
+[2025-05-04] 上面的使用 scheduler thread 的两种实现都是不对的，
+正确的方式是使用 work stealing。
+目前在实现 work stealing 时，
+最难的部分是如何判断所有 task 都已经处理完毕。
+- 也许应该用 conditional variable。
 
 ### 2.4.2 Parallel Access Control
 
@@ -376,8 +387,8 @@ I/O operations 阻碍 cpu 快速运行。
 > such is one of the cheapest I/O operations available.
 
 > This is one of the differences between shared-memory and
-> distributed- system parallelism: Shared-memory parallel programs
-> must normally deal with no obstacle worse than a cache miss, while a
+> distributed-system parallelism: Shared-memory parallel programs must
+> normally deal with no obstacle worse than a cache miss, while a
 > distributed parallel program will typically incur the larger network
 > communication latencies. In both cases, the relevant latencies can
 > be thought of as a cost of communication -- a cost that would be
@@ -2126,6 +2137,10 @@ block allocation 其实与 counter 问题是同构的，
 > shown in Table 6.1.
 
 ## 6.5 Beyond Partitioning
+
+TODO
+
+# Chapter 10 Data Structures
 
 TODO
 
