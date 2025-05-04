@@ -1119,19 +1119,6 @@ TODO linux kernel 相关的 API，先跳过。
 > primitives. Counting therefore provides an excellent introduction to
 > parallel programming.
 
-感觉这将是最有趣的一章。
-
-比如 inet-lisp 的 `worker_t` 中就有两个 count。
-
-```c
-struct worker_t {
-    // ...
-    size_t node_id_count;
-    size_t fresh_name_count;
-    // ...
-};
-```
-
 ## 5.1 Why Isn’t Concurrent Counting Trivial?
 
 - just count -- loss 87% of the counts
