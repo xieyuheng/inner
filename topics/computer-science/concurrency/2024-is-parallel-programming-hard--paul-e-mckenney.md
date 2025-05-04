@@ -703,7 +703,7 @@ Deepseek 关于 "checkpoint execution" 的解释：
 - 修改数据：在无并发访问的环境下更新数据。
 - 恢复执行：从检查点重启线程，继续运行。
 
-这么说来 inet-lisp 的「实现 B」还真实类似，
+这么说来 inet-lisp 的「实现 B」还真是类似，
 因为所有 worker threads 都处理完毕 task queue 的时候，
 就是一个自然的 checkpoint。
 
