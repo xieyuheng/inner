@@ -11,3 +11,4 @@ year: 1999
 需要先了解一下 pi calculus。
 
 # 1 Introduction
+# 2 Behaviour of Automata
