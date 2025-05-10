@@ -49,4 +49,83 @@ black box 上的按钮对应于 automata 的 event。
 这一节应该是对语言设计者而言最重要的，
 也是对读 2014-propositions-as-sessions 而言最重要的。
 
-TODO
+> In the work that follows, especially when we introduce concurrency,
+> it will help to represent each state of a system by a _process
+> expression_, which carries information about both the behaviour and
+> the structure of the system.
+
+可见计算机科学中的很多研究，
+是通过设计新的形式语言来完成的。
+
+注意，这里的 process 表达式的语法，
+就是来自前面解方程来找 automata 所对应的正则表达式时，
+相应的代数结构中的表达式！
+
+```scheme
+(define-process (A a b)
+  (options
+    (=> 'a (A a b))
+    (=> 'b (B a a))))
+
+(define-process (B c d)
+  (=> 'c 'd 0))
+
+
+(define-process (A a b)
+  (options
+    (process (event a) (A a b))
+    (process (event b) (B a a))))
+
+(define-process (B c d)
+  (process (event c) (event d) 0))
+```
+
+```c
+process A(a, b) = options {
+  a.A(a, b)
+  b.B(a, a)
+}
+
+process B(c, d) = c.d.0
+```
+
+这样看来，process calculus 的表达式，
+也可以用来描述 automata。
+
+## 3.5 Boolean buffer
+
+```c
+process Buff2 = options {
+  in(0).Buff2(0)
+  in(1).Buff2(1)
+}
+
+process Buff2(i) = options {
+  out(i).Buff2
+  in(0).Buff2(0, i)
+  in(1).Buff2(1, i)
+}
+
+process Buff2(i, j) = options {
+  out(j).Buff2(i)
+}
+```
+
+一个 process 表达式的前缀可以不只是一个 symbol，
+还可以带参数，这样 substitution 的情况就复杂多了。
+
+## 3.6 Scheduler
+
+```c
+process Scheduler = Sched(1, {})
+process Sched(i, X) = {
+  if (in(i, X)) {
+    option_sum(X, (j) => finish(j).Sched(i, remove(X, j)))
+  } else {
+    option_sum(X, (j) => options {
+      finish(j).Sched(i, remove(X, j))
+      start(i).Sched(add1(i), add(X, i))
+    })
+  }
+}
+```
