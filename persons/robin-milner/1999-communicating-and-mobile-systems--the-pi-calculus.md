@@ -111,6 +111,10 @@ process Buff2(i, j) = options {
 }
 ```
 
+```scheme
+TODO
+```
+
 一个 process 表达式的前缀可以不只是一个 symbol，
 还可以带参数，这样 substitution 的情况就复杂多了。
 
@@ -124,8 +128,29 @@ process Sched(i, X) = {
   } else {
     option_sum(X, (j) => options {
       finish(j).Sched(i, remove(X, j))
-      start(i).Sched(add1(i), add(X, i))
+      start(i).Sched(mod(add1(i), n), add(X, i))
     })
   }
 }
 ```
+
+```scheme
+TODO
+```
+
+## 3.7 Counter
+
+```c
+process Count = Count(0)
+process Count(n) = if (equal(n, 0)) options {
+  inc.Count(1)
+  [zero].Count(0)
+} else options {
+  inc.Count(add1(n))
+  [dec].Count(sub1(n))
+}
+```
+
+# 4 Concurrent Processes and Reaction
+
+TODO
