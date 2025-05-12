@@ -61,25 +61,6 @@ black box 上的按钮对应于 automata 的 event。
 就是来自前面解方程来找 automata 所对应的正则表达式时，
 相应的代数结构中的表达式！
 
-```scheme
-(define-process (A a b)
-  (options
-    (=> 'a (A a b))
-    (=> 'b (B a a))))
-
-(define-process (B c d)
-  (=> 'c 'd 0))
-
-
-(define-process (A a b)
-  (options
-    (process (event a) (A a b))
-    (process (event b) (B a a))))
-
-(define-process (B c d)
-  (process (event c) (event d) 0))
-```
-
 ```c
 process A(a, b) = options {
   a.A(a, b)
@@ -87,6 +68,16 @@ process A(a, b) = options {
 }
 
 process B(c, d) = c.d.0
+```
+
+```scheme
+(define (A a b)
+  (options
+    (=> a (A a b))
+    (=> b (B a a))))
+
+(define (B c d)
+  (=> c d 0))
 ```
 
 这样看来，process calculus 的表达式，
