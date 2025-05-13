@@ -10,6 +10,45 @@ year: 1999
 [2025-05-09] 为了看懂 philip wadler 的 2014-propositions-as-sessions，
 需要先了解一下 pi calculus。
 
+# My Summary
+
+[2025-05-14] 总结一下需要记住的 ideas。
+
+数学在于想象力，
+所以首先要记住的 automata 的 black box 模型，
+对一个现象要有多种观察的角度，想象才能丰富。
+所以还要记住 automata 的 transition graph
+这第二种观察 automata 的角度。
+
+transition graph 来自 labeled transition system，
+类似 rewrite system 但是每个 rewrite step 带有 label，
+label 可以理解为 event 或者输入，
+因此这种 system 所建模的是 interactive system。
+
+还要记住 process expression 所形成的 process calculus，
+这比直接描述 automata 所形成的 graph 的表达能力要强很多，
+用 expression 来构造 automata，其特点就是适于 composition，
+可以用递归了描述非有限的 automata。
+
+每个 process 对应一个 automata，
+process 递归调用自己的时候带上不同的参数，
+就代表 automata 的不同状态，
+这和 erlang 类似。
+
+给 process expression 加上 concurrent composition，
+就把 labeled transition system 重新转化为了
+unlabeled rewrite system。
+
+给 concurrent composition 中所匹配的数据带上 channel，
+只有这样才能有有效的实现。
+
+让 channel 成为 first class value，就能描述 mobility 了。
+
+还有一些关于理论证明的 ideas，
+比如 simulation 和 congruent 下次再总结。
+simulation 可以联系到一般的二元关系，
+congruent 可以追溯到其几何起源。
+
 # 1 Introduction
 
 # 2 Behaviour of Automata
