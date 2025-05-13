@@ -73,11 +73,12 @@ process B(c, d) = c.d.0
 ```scheme
 (define (A a b)
   (options
-    (=> a (A a b))
-    (=> b (B a a))))
+   [a (A a b)]
+   [b (B a a)]))
 
 (define (B c d)
-  (=> c d 0))
+  (options
+   [c d 0]))
 ```
 
 这样看来，process calculus 的表达式，
@@ -103,7 +104,20 @@ process Buff2(i, j) = options {
 ```
 
 ```scheme
-TODO
+(define Buff2
+  (options
+   [(in 0) (Buff2 0)]
+   [(in 1) (Buff2 1)]))
+
+(define (Buff2 i)
+  (options
+   [(out i) Buff2]
+   [(in 0) (Buff2 0 i)]
+   [(in 1) (Buff2 1 i)]))
+
+(define (Buff2 i j)
+  (options
+   [(out j) (Buff2 i)]))
 ```
 
 一个 process 表达式的前缀可以不只是一个 symbol，
@@ -126,7 +140,15 @@ process Sched(i, X) = {
 ```
 
 ```scheme
-TODO
+(define Scheduler (Sched 1 {}))
+
+(define (Sched i X)
+  (if (in i X)
+    (options-sum X (lambda (j) (finish j) (Sched i (remove X j))))
+    (options-sum X (lambda (j)
+                     (options
+                      [(finish j) (Sched i (remove X j))]
+                      [(start i) (Sched (mod (add1 i) n) (add X i))])))))
 ```
 
 ## 3.7 Counter
@@ -142,6 +164,92 @@ process Count(n) = if (equal(n, 0)) options {
 }
 ```
 
+```scheme
+(define Count (Count 0))
+(define (Count n)
+  (if (equal n 0)
+    (options
+     [inc (Count 1)]
+     [(- zero) (Count 0)])
+    (options
+     [inc (Count (add1 n))]
+     [(- dec) (Count (sub1 n))])))
+```
+
 # 4 Concurrent Processes and Reaction
 
-TODO
+## 4.2 Observations and reactions
+
+这里有解释 Petri nets 是如何作为 automata 的推广的，
+并且解释了 Petri nets 图语法的设计来源。
+
+## 4.3 Concurrent process expressions
+
+Example 4.3:
+
+```c
+process P = concurrent {
+  scope (a) concurrent {
+    options {
+      a.Q1
+      b.Q2
+    }
+    [a]
+  }
+  options {
+    [b].R1
+    [a].R2
+  }
+}
+
+// one result
+
+concurrent {
+  scope (a) Q1
+  options {
+    [b].R1
+    [a].R2
+  }
+}
+
+// another result
+
+concurrent {
+  scope (a) concurrent {
+    Q2
+    [a]
+  }
+  R1
+}
+```
+
+```scheme
+(define P
+  (concurrent
+   (scope (a)
+     (concurrent
+      (options
+       [a Q1]
+       [b Q2])
+      (- a)))
+   (options
+    [(- b) R1]
+    [(- a) R2])))
+
+;; one result
+
+(concurrent
+  (scope (a) Q1)
+  (options
+   [(- b) R1]
+   [(- a) R2]))
+
+;; another result
+
+(concurrent
+ (scope (a)
+   (concurrent
+    Q2
+    (- a)))
+ R1)
+```
