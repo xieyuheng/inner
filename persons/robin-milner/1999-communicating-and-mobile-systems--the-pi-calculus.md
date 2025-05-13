@@ -170,10 +170,10 @@ process Count(n) = if (equal(n, 0)) options {
   (if (equal n 0)
     (options
      [inc (Count 1)]
-     [(- zero) (Count 0)])
+     [(op zero) (Count 0)])
     (options
      [inc (Count (add1 n))]
-     [(- dec) (Count (sub1 n))])))
+     [(op dec) (Count (sub1 n))])))
 ```
 
 # 4 Concurrent Processes and Reaction
@@ -231,18 +231,18 @@ concurrent {
       (options
        [a Q1]
        [b Q2])
-      (- a)))
+      (op a)))
    (options
-    [(- b) R1]
-    [(- a) R2])))
+    [(op b) R1]
+    [(op a) R2])))
 
 ;; one result
 
 (concurrent
   (scope (a) Q1)
   (options
-   [(- b) R1]
-   [(- a) R2]))
+   [(op b) R1]
+   [(op a) R2]))
 
 ;; another result
 
@@ -250,6 +250,6 @@ concurrent {
  (scope (a)
    (concurrent
     Q2
-    (- a)))
+    (op a)))
  R1)
 ```
