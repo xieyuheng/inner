@@ -14,6 +14,15 @@ year: 1999
 
 # 2 Behaviour of Automata
 
+## 2.3 The language of an automaton
+
+通过在一个代数结构中解方程，
+来找到一个 automaton 所对应的 regular language。
+
+本书的后面进一步以这个代数结构为基础，
+发展出了 process calculus，也就是一种 rewrite system。
+这种发展我还是第一次简单。
+
 ## 2.5 Black boxes, or reactive systems
 
 这里的 black box 模型可以用来理解下面将要介绍的，
@@ -62,7 +71,7 @@ black box 上的按钮对应于 automata 的 event。
 相应的代数结构中的表达式！
 
 ```c
-process A(a, b) = options {
+process A(a, b) = choice {
   a.A(a, b)
   b.B(a, a)
 }
@@ -72,12 +81,12 @@ process B(c, d) = c.d.0
 
 ```scheme
 (define (A a b)
-  (options
+  (choice
    [a (A a b)]
    [b (B a a)]))
 
 (define (B c d)
-  (options
+  (choice
    [c d 0]))
 ```
 
@@ -87,36 +96,36 @@ process B(c, d) = c.d.0
 ## 3.5 Boolean buffer
 
 ```c
-process Buff2 = options {
+process Buff2 = choice {
   in(0).Buff2(0)
   in(1).Buff2(1)
 }
 
-process Buff2(i) = options {
+process Buff2(i) = choice {
   out(i).Buff2
   in(0).Buff2(0, i)
   in(1).Buff2(1, i)
 }
 
-process Buff2(i, j) = options {
+process Buff2(i, j) = choice {
   out(j).Buff2(i)
 }
 ```
 
 ```scheme
 (define Buff2
-  (options
+  (choice
    [(in 0) (Buff2 0)]
    [(in 1) (Buff2 1)]))
 
 (define (Buff2 i)
-  (options
+  (choice
    [(out i) Buff2]
    [(in 0) (Buff2 0 i)]
    [(in 1) (Buff2 1 i)]))
 
 (define (Buff2 i j)
-  (options
+  (choice
    [(out j) (Buff2 i)]))
 ```
 
@@ -131,7 +140,7 @@ process Sched(i, X) = {
   if (in(i, X)) {
     option_sum(X, (j) => finish(j).Sched(i, remove(X, j)))
   } else {
-    option_sum(X, (j) => options {
+    option_sum(X, (j) => choice {
       finish(j).Sched(i, remove(X, j))
       start(i).Sched(mod(add1(i), n), add(X, i))
     })
@@ -144,9 +153,9 @@ process Sched(i, X) = {
 
 (define (Sched i X)
   (if (in i X)
-    (options-sum X (lambda (j) (finish j) (Sched i (remove X j))))
-    (options-sum X (lambda (j)
-                     (options
+    (choice-sum X (lambda (j) (finish j) (Sched i (remove X j))))
+    (choice-sum X (lambda (j)
+                     (choice
                       [(finish j) (Sched i (remove X j))]
                       [(start i) (Sched (mod (add1 i) n) (add X i))])))))
 ```
@@ -155,10 +164,10 @@ process Sched(i, X) = {
 
 ```c
 process Count = Count(0)
-process Count(n) = if (equal(n, 0)) options {
+process Count(n) = if (equal(n, 0)) choice {
   inc.Count(1)
   [zero].Count(0)
-} else options {
+} else choice {
   inc.Count(add1(n))
   [dec].Count(sub1(n))
 }
@@ -168,10 +177,10 @@ process Count(n) = if (equal(n, 0)) options {
 (define Count (Count 0))
 (define (Count n)
   (if (equal n 0)
-    (options
+    (choice
      [inc (Count 1)]
      [(op zero) (Count 0)])
-    (options
+    (choice
      [inc (Count (add1 n))]
      [(op dec) (Count (sub1 n))])))
 ```
@@ -190,13 +199,13 @@ Example 4.3:
 ```c
 process P = concurrent {
   scope (a) concurrent {
-    options {
+    choice {
       a.Q1
       b.Q2
     }
     [a]
   }
-  options {
+  choice {
     [b].R1
     [a].R2
   }
@@ -206,7 +215,7 @@ process P = concurrent {
 
 concurrent {
   scope (a) Q1
-  options {
+  choice {
     [b].R1
     [a].R2
   }
@@ -228,11 +237,11 @@ concurrent {
   (concurrent
    (scope (a)
      (concurrent
-      (options
+      (choice
        [a Q1]
        [b Q2])
       (op a)))
-   (options
+   (choice
     [(op b) R1]
     [(op a) R2])))
 
@@ -240,7 +249,7 @@ concurrent {
 
 (concurrent
   (scope (a) Q1)
-  (options
+  (choice
    [(op b) R1]
    [(op a) R2]))
 
