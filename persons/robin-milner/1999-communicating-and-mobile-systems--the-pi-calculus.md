@@ -51,10 +51,24 @@ unlabeled rewrite system。
 
 让 channel 成为 first class value，就能描述 mobility 了。
 
-还有一些关于理论证明的 ideas，
-比如 simulation 和 congruent 下次再总结。
-simulation 可以联系到一般的二元关系，
+还有一些关于理论证明的 ideas。
+
+保持语法结构的等价关系称作 congruent。
 congruent 可以追溯到其几何起源。
+
+每一个 calculus 都有一个语法层的基础等价关系叫做 structure congruent，
+这个等价关系一般会带上 alpha equivalence。
+
+定义 rewriting 而引出语义层的等价关系时，会用到这个基础等价关系，
+从而使得语义层的等价关系成为这个基础等价关系的加粗
+（更多的 expression 划归为同一等价类了）。
+
+这种发展 calculus 理论的方式，
+显然是以 lambda calculus 为范例的。
+例如这里的 process calculus 也在很多地方使用了 substitution。
+
+TODO simulation。
+TODO simulation 可以联系到一般的二元关系。
 
 # 1 Introduction
 
@@ -326,5 +340,40 @@ concurrent {
 
 # 9 The pi-Calculus and Reaction
 
+## 9.1 Names, actions and processes
+
 这里用 pi 来代表 action prefix，
 这就是 pi-calculus 中 pi 的来源。
+
+Example 9.2 Illustrating reaction:
+
+```scheme
+(define P
+  (scope (z)
+   (concurrent
+    (choice [(out x y)] [(in z w) (out w y)])
+    (choice [(in x u) (out u v)])
+    (choice [(out x z)]))))
+
+;; P -> P1
+
+(scope (z)
+ (concurrent
+  (choice [(out y v)])
+  (choice [(out x z)])))
+
+;; P -> P2
+
+(scope (z)
+ (concurrent
+  (choice [(out x y)] [(in z w) (out w y)])
+  (choice [(out z v)])))
+
+;; P2 -> P3
+
+(scope (z)
+ (concurrent
+  (choice [(out v y)])))
+```
+
+## 9.2 Structural congruence and reaction
