@@ -338,6 +338,9 @@ concurrent {
 用 process 之间的 link 来定义相对的 location，
 这符合一维的拓扑学。
 
+把 location 和 person 都当作 process，
+person 和 location 之间的某种连接就可以被理解为「person 在 location」。
+
 # 9 The pi-Calculus and Reaction
 
 ## 9.1 Names, actions and processes
@@ -354,7 +357,9 @@ Example 9.2 Illustrating reaction:
     (choice [(out x y)] [(in z w) (out w y)])
     (choice [(in x u) (out u v)])
     (choice [(out x z)]))))
+```
 
+```scheme
 ;; P -> P1
 
 (scope (z)
@@ -376,4 +381,74 @@ Example 9.2 Illustrating reaction:
   (choice [(out v y)])))
 ```
 
+也许可以以上面这种 normal form 作为 `define-process` 的定义：
+
+```scheme
+(define-process P (z)
+  (choice [(out x y)]
+   [(in z w) (out w y)])
+  (choice [(in x u) (out u v)])
+  (choice [(out x z)]))
+```
+
+用 expression 来处理 scope 类似于 `(let)`，
+用起来的时候可能不方便。
+也许可以在 body 中加入 statement：
+
+```scheme
+(define-process P
+  (= z (new-channel))
+  (choice [(out x y)]
+   [(in z w) (out w y)])
+  (choice [(in x u) (out u v)])
+  (choice [(out x z)]))
+```
+
+```c
+process P = concurrent {
+  let z = channel_new()
+  choice { [x(y)] z(w).[w(y)] }
+  choice { x(u).[u(v)] }
+  choice { [x(z)] }
+}
+```
+
+用这种写法 Example 4.3 可以简化如下：
+
+```c
+process P = concurrent {
+  scope (a) concurrent {
+    choice { a.Q1 b.Q2 }
+    choice { [a] }
+  }
+  choice { [b].R1 [a].R2 }
+}
+
+process P = concurrent {
+  let a = channel_new()
+  choice { a.Q1 b.Q2 }
+  choice { [a] }
+  choice { [b].R1 [a].R2 }
+}
+```
+
 ## 9.2 Structural congruence and reaction
+
+## 9.3 Mobility
+
+在画一组 concurrent 的 process 之间的连接图（这里称作 flowgraph）时，
+只要两个 choice expression 顶层的 pi（action prefixes）之间有共用的变元，
+就认为两个 process expression 之间有 link。
+mobility 就要被理解为这种 graph 中 connection 的变化。
+
+## 9.4 The polyadic pi-calculus
+
+注意，这里看似聪明的用只接受 atomic name 的单参数 channel
+实现多参数 channel 的方式，假设了每个 channel 有固定的 arity。
+
+这种假设是合理的，可以简化所需要支持的数据类型。
+另外也可以用 tuple 的 pattern match 来实现多参数 channel。
+
+## 9.5 Recursive definitions
+
+TODO
