@@ -20,6 +20,9 @@ year: 1999
 所以还要记住 automata 的 transition graph
 这第二种观察 automata 的角度。
 
+纯粹从外部行为来定义 automata 之间的等价关系，
+也可以用 black box 这个直觉来理解。
+
 transition graph 来自 labeled transition system，
 类似 rewrite system 但是每个 rewrite step 带有 label，
 label 可以理解为 event 或者输入，
@@ -29,6 +32,10 @@ label 可以理解为 event 或者输入，
 这比直接描述 automata 所形成的 graph 的表达能力要强很多，
 用 expression 来构造 automata，其特点就是适于 composition，
 可以用递归了描述非有限的 automata。
+
+process expression 的想法大致来自于，
+为了求 automata 所对应的正则表达式而解方程。
+解方程是所用的代数结构就是 process expression 的来源。
 
 每个 process 对应一个 automata，
 process 递归调用自己的时候带上不同的参数，
@@ -82,7 +89,7 @@ black box 上的按钮对应于 automata 的 event。
 可以用 black box 模型来理解这里的 simulation，
 如果以任意一个状态为起点，
 一个 black box 的所有操作（所有按钮序列），
-都可以被另一个 black box 模仿而不卡住，
+都可以被另一个 black box 模仿而不卡住（deadlock），
 就说后一个 black box 就可以 simulate 前一个。
 
 注意，这里要求对应的按钮相同，
@@ -151,21 +158,24 @@ process Buff2(i, j) = choice {
 }
 ```
 
+因为 `out` 会被用作语法关键词，
+所以下面改用 `output`：
+
 ```scheme
 (define Buff2
   (choice
-   [(in 0) (Buff2 0)]
-   [(in 1) (Buff2 1)]))
+   [(input 0) (Buff2 0)]
+   [(input 1) (Buff2 1)]))
 
 (define (Buff2 i)
   (choice
-   [(out i) Buff2]
-   [(in 0) (Buff2 0 i)]
-   [(in 1) (Buff2 1 i)]))
+   [(output i) Buff2]
+   [(input 0) (Buff2 0 i)]
+   [(input 1) (Buff2 1 i)]))
 
 (define (Buff2 i j)
   (choice
-   [(out j) (Buff2 i)]))
+   [(output j) (Buff2 i)]))
 ```
 
 一个 process 表达式的前缀可以不只是一个 symbol，
@@ -177,9 +187,11 @@ process Buff2(i, j) = choice {
 process Scheduler = Sched(1, {})
 process Sched(i, X) = {
   if (in(i, X)) {
-    option_sum(X, (j) => finish(j).Sched(i, remove(X, j)))
+    choice_flat_map(X, (j) => choice {
+      finish(j).Sched(i, remove(X, j))
+    })
   } else {
-    option_sum(X, (j) => choice {
+    choice_flat_map(X, (j) => choice {
       finish(j).Sched(i, remove(X, j))
       start(i).Sched(mod(add1(i), n), add(X, i))
     })
@@ -191,12 +203,16 @@ process Sched(i, X) = {
 (define Scheduler (Sched 1 {}))
 
 (define (Sched i X)
-  (if (in i X)
-    (choice-sum X (lambda (j) (finish j) (Sched i (remove X j))))
-    (choice-sum X (lambda (j)
-                     (choice
-                      [(finish j) (Sched i (remove X j))]
-                      [(start i) (Sched (mod (add1 i) n) (add X i))])))))
+  (if (in? i X)
+    (choice-flat-map X
+     (lambda (j)
+       (choice
+        [(finish j) (Sched i (remove X j))])))
+    (choice-flat-map X
+     (lambda (j)
+       (choice
+        [(finish j) (Sched i (remove X j))]
+        [(start i) (Sched (mod (add1 i) n) (add X i))])))))
 ```
 
 ## 3.7 Counter
@@ -215,13 +231,13 @@ process Count(n) = if (equal(n, 0)) choice {
 ```scheme
 (define Count (Count 0))
 (define (Count n)
-  (if (equal n 0)
+  (if (equal? n 0)
     (choice
      [inc (Count 1)]
-     [(op zero) (Count 0)])
+     [(out zero) (Count 0)])
     (choice
      [inc (Count (add1 n))]
-     [(op dec) (Count (sub1 n))])))
+     [(out dec) (Count (sub1 n))])))
 ```
 
 # 4 Concurrent Processes and Reaction
@@ -279,18 +295,18 @@ concurrent {
       (choice
        [a Q1]
        [b Q2])
-      (op a)))
+      (out a)))
    (choice
-    [(op b) R1]
-    [(op a) R2])))
+    [(out b) R1]
+    [(out a) R2])))
 
 ;; one result
 
 (concurrent
   (scope (a) Q1)
   (choice
-   [(op b) R1]
-   [(op a) R2]))
+   [(out b) R1]
+   [(out a) R2]))
 
 ;; another result
 
@@ -298,6 +314,6 @@ concurrent {
  (scope (a)
    (concurrent
     Q2
-    (op a)))
+    (out a)))
  R1)
 ```
