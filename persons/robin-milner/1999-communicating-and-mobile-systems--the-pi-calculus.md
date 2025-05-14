@@ -267,7 +267,7 @@ Example 4.3:
 
 ```c
 process P = concurrent {
-  scope (a) concurrent {
+  fresh (a) concurrent {
     choice {
       a.Q1
       b.Q2
@@ -283,7 +283,7 @@ process P = concurrent {
 // one result
 
 concurrent {
-  scope (a) Q1
+  fresh (a) Q1
   choice {
     [b].R1
     [a].R2
@@ -293,7 +293,7 @@ concurrent {
 // another result
 
 concurrent {
-  scope (a) concurrent {
+  fresh (a) concurrent {
     Q2
     [a]
   }
@@ -304,7 +304,7 @@ concurrent {
 ```scheme
 (define P
   (concurrent
-   (scope (a)
+   (fresh (a)
      (concurrent
       (choice
        [a Q1]
@@ -317,7 +317,7 @@ concurrent {
 ;; one result
 
 (concurrent
-  (scope (a) Q1)
+  (fresh (a) Q1)
   (choice
    [(out b) R1]
    [(out a) R2]))
@@ -325,7 +325,7 @@ concurrent {
 ;; another result
 
 (concurrent
- (scope (a)
+ (fresh (a)
    (concurrent
     Q2
     (out a)))
@@ -352,33 +352,33 @@ Example 9.2 Illustrating reaction:
 
 ```scheme
 (define P
-  (scope (z)
-   (concurrent
-    (choice [(out x y)] [(in z w) (out w y)])
-    (choice [(in x u) (out u v)])
-    (choice [(out x z)]))))
+  (fresh (z)
+    (concurrent
+     (choice [(out x y)] [(in z w) (out w y)])
+     (choice [(in x u) (out u v)])
+     (choice [(out x z)]))))
 ```
 
 ```scheme
 ;; P -> P1
 
-(scope (z)
- (concurrent
-  (choice [(out y v)])
-  (choice [(out x z)])))
+(fresh (z)
+  (concurrent
+   (choice [(out y v)])
+   (choice [(out x z)])))
 
 ;; P -> P2
 
-(scope (z)
- (concurrent
-  (choice [(out x y)] [(in z w) (out w y)])
-  (choice [(out z v)])))
+(fresh (z)
+  (concurrent
+   (choice [(out x y)] [(in z w) (out w y)])
+   (choice [(out z v)])))
 
 ;; P2 -> P3
 
-(scope (z)
- (concurrent
-  (choice [(out v y)])))
+(fresh (z)
+  (concurrent
+   (choice [(out v y)])))
 ```
 
 也许可以以上面这种 normal form 作为 `define-process` 的定义：
@@ -391,7 +391,7 @@ Example 9.2 Illustrating reaction:
   (choice [(out x z)]))
 ```
 
-用 expression 来处理 scope 类似于 `(let)`，
+用 expression 来处理 fresh 类似于 `(let)`，
 用起来的时候可能不方便。
 也许可以在 body 中加入 statement：
 
@@ -417,7 +417,7 @@ process P = concurrent {
 
 ```c
 process P = concurrent {
-  scope (a) concurrent {
+  fresh (a) concurrent {
     choice { a.Q1 b.Q2 }
     choice { [a] }
   }
@@ -451,4 +451,141 @@ mobility 就要被理解为这种 graph 中 connection 的变化。
 
 ## 9.5 Recursive definitions
 
+用 channel 来 encoding named process！
+
+Exercise 9.23 Consider the buffer defined in Section 8.3:
+
+```scheme
+(define (B l r) (choice [(in l x) (C x l r)]))
+(define (C x l r) (choice [(out r x) (B l r)]))
+
+;; no recursion
+
+(define (B l r)
+  (fresh (b c)
+    (concurrent
+     (choice [(in l x) (out c x l r)])
+     (! (choice [(in c x l r) (out r x) (out b l r)]))
+     (! (choice [(in b l r) (in l x) (out c x l r)])))))
+
+(define (C x l r)
+  (fresh (b c)
+    (concurrent
+     (choice [(out r x) (out b l r)])
+     (! (choice [(in c x l r) (out r x) (out b l r)]))
+     (! (choice [(in b l r) (in l x) (out c x l r)])))))
+```
+
+也许应该用 overload 函数作用语法为 `(out)`，
+并且用 `(@)` 代替 `(in)`：
+
+```scheme
+(define (B l r) (choice [(@ l x) (C x l r)]))
+(define (C x l r) (choice [(r x) (B l r)]))
+
+;; no recursion
+
+(define (B l r)
+  (fresh (b c)
+    (concurrent
+     (choice [(@ l x) (c x l r)])
+     (! (choice [(@ c x l r) (r x) (b l r)]))
+     (! (choice [(@ b l r) (@ l x) (c x l r)])))))
+
+(define (C x l r)
+  (fresh (b c)
+    (concurrent
+     (choice [(r x) (b l r)])
+     (! (choice [(@ c x l r) (r x) (b l r)]))
+     (! (choice [(@ b l r) (@ l x) (c x l r)])))))
+```
+
+## 9.6 Abstractions
+
+这一章又用 `(x).F` 这种语法，
+把 lambda 加入到表达式中来了。
+
+这里有一个感想是，process calculus 起源于 regular expression 的代数，
+而 lisp 的纯前缀表达式语法并不适合描述带有结合律的二元运算。
+
+也许更适合用 forth 语法？
+
+```forth
+define B (l r) [@l (x), x l r C] end
+define C (x l r) [x r, l r B] end
+
+// 下面的 concurrent 和 choice 就很难设计了。
+
+(define (B l r)
+  (fresh (b c)
+    (concurrent
+     (choice [(@ l x) (c x l r)])
+     (! (choice [(@ c x l r) (r x) (b l r)]))
+     (! (choice [(@ b l r) (@ l x) (c x l r)])))))
+
+(define (C x l r)
+  (fresh (b c)
+    (concurrent
+     (choice [(r x) (b l r)])
+     (! (choice [(@ c x l r) (r x) (b l r)]))
+     (! (choice [(@ b l r) (@ l x) (c x l r)])))))
+```
+
+这一节所作的就是给语法设计做进一步的 refactoring，
+把 binding 相关的语法都用 lambda abstraction 来实现。
+
+```
+in x (y) P == x (y) P
+-- reference 一个 channel x 会取出里面的值，保存在 y 中。
+
+new y P == new (y) P
+-- new 会生成一个 fresh name 保存在 y 中。
+```
+
+这里 binding 的 concatenation 让人想起 forth，
+但是与 forth 不同的是，这里的 function application
+还是用前缀表达式 `F<y>` 来表示的，比如 `(x).F<y>`。
+
+如果用 `[]` 表示把值放到栈中（而不是 joy 中的 quote），
+那么上面的函数作用也可以用纯粹的后缀表达式 `[y] (x) F`，
+这应该和 automath 类似。
+
+按照这个思路再尝试设计一下后缀表达式的语法：
+
+```forth
+// () -- binding
+// [] -- put values on stack
+
+define B (l r) l (x) [x l r] C end
+define C (x l r) [x] r [l r] B end
+
+// | -- concurrent
+// ; -- choice
+// {} -- quote
+
+// use pure postfix and list processing
+// to build structural values.
+
+define B (l r)
+  fresh (b) fresh (c)
+  null
+    { l (x) [x l r] c } cons
+    { c (x l r) [x] r [l r] b } replication cons
+    { b (l r) l (x) [x l r] c } replication cons
+  concurrent
+end
+
+define C (x l r)
+  fresh (b) fresh (c)
+  null
+    { [x] r [l r] b } cons
+    { c (x l r) [x] r [l r] b } replication cons
+    { b (l r) l (x) [x l r] c } replication cons
+  concurrent
+end
+```
+
+# 10 Applications of the pi-Calculus
+
 TODO
+
