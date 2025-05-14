@@ -317,3 +317,14 @@ concurrent {
     (out a)))
  R1)
 ```
+
+# 8 What is Mobility?
+
+要定义 mobility 就要定义 location，
+用 process 之间的 link 来定义相对的 location，
+这符合一维的拓扑学。
+
+# 9 The pi-Calculus and Reaction
+
+这里用 pi 来代表 action prefix，
+这就是 pi-calculus 中 pi 的来源。
