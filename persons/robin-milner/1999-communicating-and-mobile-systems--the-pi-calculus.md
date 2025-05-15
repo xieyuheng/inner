@@ -180,15 +180,19 @@ process A(a, b) = choice {
 process B(c, d) = c.d.0
 ```
 
+在 lisp 语法中，
+overload 函数作用语法为 `(out)`，
+并且用 `(@)` 代替 `(in)`：
+
 ```scheme
 (define (A a b)
   (choice
-   [a (A a b)]
-   [b (B a a)]))
+    [a (A a b)]
+    [b (B a a)]))
 
 (define (B c d)
   (choice
-   [c d 0]))
+    [c d 0]))
 ```
 
 这样看来，process calculus 的表达式，
@@ -203,34 +207,31 @@ process Buff2 = choice {
 }
 
 process Buff2(i) = choice {
-  out(i).Buff2
+  [out(i)].Buff2
   in(0).Buff2(0, i)
   in(1).Buff2(1, i)
 }
 
 process Buff2(i, j) = choice {
-  out(j).Buff2(i)
+  [out(j)].Buff2(i)
 }
 ```
-
-因为 `out` 会被用作语法关键词，
-所以下面改用 `output`：
 
 ```scheme
 (define Buff2
   (choice
-   [(input 0) (Buff2 0)]
-   [(input 1) (Buff2 1)]))
+   [(@ in 0) (Buff2 0)]
+   [(@ in 1) (Buff2 1)]))
 
 (define (Buff2 i)
   (choice
-   [(output i) Buff2]
-   [(input 0) (Buff2 0 i)]
-   [(input 1) (Buff2 1 i)]))
+   [(out i) Buff2]
+   [(@ in 0) (Buff2 0 i)]
+   [(@ in 1) (Buff2 1 i)]))
 
 (define (Buff2 i j)
   (choice
-   [(output j) (Buff2 i)]))
+   [(out j) (Buff2 i)]))
 ```
 
 一个 process 表达式的前缀可以不只是一个 symbol，
@@ -262,12 +263,12 @@ process Sched(i, X) = {
     (choice-flat-map X
      (lambda (j)
        (choice
-        [(finish j) (Sched i (remove X j))])))
+         [(finish j) (Sched i (remove X j))])))
     (choice-flat-map X
      (lambda (j)
        (choice
-        [(finish j) (Sched i (remove X j))]
-        [(start i) (Sched (mod (add1 i) n) (add X i))])))))
+         [(finish j) (Sched i (remove X j))]
+         [(start i) (Sched (mod (add1 i) n) (add X i))])))))
 ```
 
 ## 3.7 Counter
@@ -288,11 +289,11 @@ process Count(n) = if (equal(n, 0)) choice {
 (define (Count n)
   (if (equal? n 0)
     (choice
-     [inc (Count 1)]
-     [(out zero) (Count 0)])
+     [(@ inc) (Count 1)]
+     [(zero) (Count 0)])
     (choice
-     [inc (Count (add1 n))]
-     [(out dec) (Count (sub1 n))])))
+     [(@ inc) (Count (add1 n))]
+     [(dec) (Count (sub1 n))])))
 ```
 
 # 4 Concurrent Processes and Reaction
@@ -348,20 +349,21 @@ concurrent {
    (fresh (a)
      (concurrent
       (choice
-       [a Q1]
-       [b Q2])
-      (out a)))
+        [(@ a) Q1]
+        [(@ b) Q2])
+      (choice
+        [(a)])))
    (choice
-    [(out b) R1]
-    [(out a) R2])))
+     [(b) R1]
+     [(a) R2])))
 
 ;; one result
 
 (concurrent
-  (fresh (a) Q1)
-  (choice
-   [(out b) R1]
-   [(out a) R2]))
+ (fresh (a) Q1)
+ (choice
+   [(b) R1]
+   [(a) R2]))
 
 ;; another result
 
@@ -369,7 +371,7 @@ concurrent {
  (fresh (a)
    (concurrent
     Q2
-    (out a)))
+    (a)))
  R1)
 ```
 
@@ -395,9 +397,9 @@ Example 9.2 Illustrating reaction:
 (define P
   (fresh (z)
     (concurrent
-     (choice [(out x y)] [(in z w) (out w y)])
-     (choice [(in x u) (out u v)])
-     (choice [(out x z)]))))
+     (choice [(x y)] [(@ z w) (w y)])
+     (choice [(@ x u) (u v)])
+     (choice [(x z)]))))
 ```
 
 ```scheme
@@ -405,31 +407,31 @@ Example 9.2 Illustrating reaction:
 
 (fresh (z)
   (concurrent
-   (choice [(out y v)])
-   (choice [(out x z)])))
+   (choice [(y v)])
+   (choice [(x z)])))
 
 ;; P -> P2
 
 (fresh (z)
   (concurrent
-   (choice [(out x y)] [(in z w) (out w y)])
-   (choice [(out z v)])))
+   (choice [(x y)] [(@ z w) (w y)])
+   (choice [(z v)])))
 
 ;; P2 -> P3
 
 (fresh (z)
   (concurrent
-   (choice [(out v y)])))
+   (choice [(v y)])))
 ```
 
 也许可以以上面这种 normal form 作为 `define-process` 的定义：
 
 ```scheme
 (define-process P (z)
-  (choice [(out x y)]
-   [(in z w) (out w y)])
-  (choice [(in x u) (out u v)])
-  (choice [(out x z)]))
+  (choice [(x y)]
+   [(@ z w) (w y)])
+  (choice [(@ x u) (u v)])
+  (choice [(x z)]))
 ```
 
 用 expression 来处理 fresh 类似于 `(let)`，
@@ -439,10 +441,10 @@ Example 9.2 Illustrating reaction:
 ```scheme
 (define-process P
   (= z (new-channel))
-  (choice [(out x y)]
-   [(in z w) (out w y)])
-  (choice [(in x u) (out u v)])
-  (choice [(out x z)]))
+  (choice [(x y)]
+   [(@ z w) (w y)])
+  (choice [(@ x u) (u v)])
+  (choice [(x z)]))
 ```
 
 ```c
@@ -497,30 +499,6 @@ mobility 就要被理解为这种 graph 中 connection 的变化。
 Exercise 9.23 Consider the buffer defined in Section 8.3:
 
 ```scheme
-(define (B l r) (choice [(in l x) (C x l r)]))
-(define (C x l r) (choice [(out r x) (B l r)]))
-
-;; no recursion
-
-(define (B l r)
-  (fresh (b c)
-    (concurrent
-     (choice [(in l x) (out c x l r)])
-     (! (choice [(in c x l r) (out r x) (out b l r)]))
-     (! (choice [(in b l r) (in l x) (out c x l r)])))))
-
-(define (C x l r)
-  (fresh (b c)
-    (concurrent
-     (choice [(out r x) (out b l r)])
-     (! (choice [(in c x l r) (out r x) (out b l r)]))
-     (! (choice [(in b l r) (in l x) (out c x l r)])))))
-```
-
-也许应该用 overload 函数作用语法为 `(out)`，
-并且用 `(@)` 代替 `(in)`：
-
-```scheme
 (define (B l r) (choice [(@ l x) (C x l r)]))
 (define (C x l r) (choice [(r x) (B l r)]))
 
@@ -551,27 +529,6 @@ Exercise 9.23 Consider the buffer defined in Section 8.3:
 
 也许更适合用 forth 语法？
 
-```forth
-define B (l r) [@l (x), x l r C] end
-define C (x l r) [x r, l r B] end
-
-// 下面的 concurrent 和 choice 就很难设计了。
-
-(define (B l r)
-  (fresh (b c)
-    (concurrent
-     (choice [(@ l x) (c x l r)])
-     (! (choice [(@ c x l r) (r x) (b l r)]))
-     (! (choice [(@ b l r) (@ l x) (c x l r)])))))
-
-(define (C x l r)
-  (fresh (b c)
-    (concurrent
-     (choice [(r x) (b l r)])
-     (! (choice [(@ c x l r) (r x) (b l r)]))
-     (! (choice [(@ b l r) (@ l x) (c x l r)])))))
-```
-
 这一节所作的就是给语法设计做进一步的 refactoring，
 把 binding 相关的语法都用 lambda abstraction 来实现。
 
@@ -591,7 +548,7 @@ new y P == new (y) P
 那么上面的函数作用也可以用纯粹的后缀表达式 `[y] (x) F`，
 这应该和 automath 类似。
 
-按照这个思路再尝试设计一下后缀表达式的语法：
+按照这个思路尝试设计一下后缀表达式的语法：
 
 ```forth
 // () -- binding
