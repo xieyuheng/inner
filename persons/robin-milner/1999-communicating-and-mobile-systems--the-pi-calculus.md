@@ -262,8 +262,7 @@ process Sched(i, X) = {
   (if (in? i X)
     (choice-flat-map X
      (lambda (j)
-       (choice
-         [(finish j) (Sched i (remove X j))])))
+       (do (finish j) (Sched i (remove X j)))))
     (choice-flat-map X
      (lambda (j)
        (choice
@@ -310,34 +309,24 @@ Example 4.3:
 ```c
 process P = concurrent {
   fresh (a) concurrent {
-    choice {
-      a.Q1
-      b.Q2
-    }
-    [a]
+    choice { a.Q1 b.Q2 }
+    choice { [a] }
   }
-  choice {
-    [b].R1
-    [a].R2
-  }
+  choice { [b].R1 [a].R2 }
 }
 
 // one result
 
 concurrent {
   fresh (a) Q1
-  choice {
-    [b].R1
-    [a].R2
-  }
+  choice { [b].R1 [a].R2 }
 }
 
 // another result
 
 concurrent {
   fresh (a) concurrent {
-    Q2
-    [a]
+    Q2 [a]
   }
   R1
 }
@@ -351,8 +340,7 @@ concurrent {
       (choice
         [(@ a) Q1]
         [(@ b) Q2])
-      (choice
-        [(a)])))
+      (do (a))))
    (choice
      [(b) R1]
      [(a) R2])))
@@ -371,7 +359,7 @@ concurrent {
  (fresh (a)
    (concurrent
     Q2
-    (a)))
+    (do (a))))
  R1)
 ```
 
@@ -398,8 +386,8 @@ Example 9.2 Illustrating reaction:
   (fresh (z)
     (concurrent
      (choice [(x y)] [(@ z w) (w y)])
-     (choice [(@ x u) (u v)])
-     (choice [(x z)]))))
+     (do (@ x u) (u v))
+     (do (x z)))))
 ```
 
 ```scheme
@@ -407,72 +395,21 @@ Example 9.2 Illustrating reaction:
 
 (fresh (z)
   (concurrent
-   (choice [(y v)])
-   (choice [(x z)])))
+   (do (y v))
+   (do (x z))))
 
 ;; P -> P2
 
 (fresh (z)
   (concurrent
    (choice [(x y)] [(@ z w) (w y)])
-   (choice [(z v)])))
+   (do (z v))))
 
 ;; P2 -> P3
 
 (fresh (z)
   (concurrent
-   (choice [(v y)])))
-```
-
-也许可以以上面这种 normal form 作为 `define-process` 的定义：
-
-```scheme
-(define-process P (z)
-  (choice [(x y)]
-   [(@ z w) (w y)])
-  (choice [(@ x u) (u v)])
-  (choice [(x z)]))
-```
-
-用 expression 来处理 fresh 类似于 `(let)`，
-用起来的时候可能不方便。
-也许可以在 body 中加入 statement：
-
-```scheme
-(define-process P
-  (= z (new-channel))
-  (choice [(x y)]
-   [(@ z w) (w y)])
-  (choice [(@ x u) (u v)])
-  (choice [(x z)]))
-```
-
-```c
-process P = concurrent {
-  let z = channel_new()
-  choice { [x(y)] z(w).[w(y)] }
-  choice { x(u).[u(v)] }
-  choice { [x(z)] }
-}
-```
-
-用这种写法 Example 4.3 可以简化如下：
-
-```c
-process P = concurrent {
-  fresh (a) concurrent {
-    choice { a.Q1 b.Q2 }
-    choice { [a] }
-  }
-  choice { [b].R1 [a].R2 }
-}
-
-process P = concurrent {
-  let a = channel_new()
-  choice { a.Q1 b.Q2 }
-  choice { [a] }
-  choice { [b].R1 [a].R2 }
-}
+   (do (v y))))
 ```
 
 ## 9.2 Structural congruence and reaction
@@ -499,24 +436,24 @@ mobility 就要被理解为这种 graph 中 connection 的变化。
 Exercise 9.23 Consider the buffer defined in Section 8.3:
 
 ```scheme
-(define (B l r) (choice [(@ l x) (C x l r)]))
-(define (C x l r) (choice [(r x) (B l r)]))
+(define (B l r) (do (@ l x) (C x l r)))
+(define (C x l r) (do (r x) (B l r)))
 
 ;; no recursion
 
 (define (B l r)
   (fresh (b c)
     (concurrent
-     (choice [(@ l x) (c x l r)])
-     (! (choice [(@ c x l r) (r x) (b l r)]))
-     (! (choice [(@ b l r) (@ l x) (c x l r)])))))
+     (do (@ l x) (c x l r))
+     (! (do (@ c x l r) (r x) (b l r)))
+     (! (do (@ b l r) (@ l x) (c x l r))))))
 
 (define (C x l r)
   (fresh (b c)
     (concurrent
-     (choice [(r x) (b l r)])
-     (! (choice [(@ c x l r) (r x) (b l r)]))
-     (! (choice [(@ b l r) (@ l x) (c x l r)])))))
+     (do (r x) (b l r))
+     (! (do (@ c x l r) (r x) (b l r)))
+     (! (do (@ b l r) (@ l x) (c x l r))))))
 ```
 
 ## 9.6 Abstractions
@@ -585,4 +522,58 @@ end
 
 # 10 Applications of the pi-Calculus
 
-TODO
+## 10.3 Data revisited
+
+这一节模仿 lambda 演算中用 lambda expression 编码数据类型的过程。
+
+Definition 10.11 Truth values (ephemeral):
+
+```scheme
+(define (True l) (do (@ l t f) (t)))
+(define (False l) (do (@ l t f) (f)))
+```
+
+参数 `l` 是 location 的缩写。
+
+另外这里其实不需要 `(do)`，
+因为 function body 默认就是 do 的语义，
+只有 `(concurrent)` 内需要 `(do)`。
+
+```scheme
+(define (True l) (@ l t f) (t))
+(define (False l) (@ l t f) (f))
+```
+
+```scheme
+;; given t f
+
+(define (Menu l)
+  (l t f)
+  (choice
+    [(@ t) P]
+    [(@ f) Q]))
+
+;; given l
+
+(concurrent (True l) (Menu l)) => (concurrent P)
+(concurrent (False l) (Menu l)) => (concurrent Q)
+```
+
+所有的 enum 都可以用类似的方式编码：
+
+``` scheme
+(define (Monday l)
+  (@ l d1 d2 d3 d4 d5 d6 d7)
+  (d1))
+```
+
+把上面的具体 `Menu` 定义为一个通用的 `Cond`：
+
+```scheme
+(define (Cond P Q l)
+  (fresh (t f)
+    (l t f)
+    (choice
+      [(@ t) P]
+      [(@ f) Q])))
+```
