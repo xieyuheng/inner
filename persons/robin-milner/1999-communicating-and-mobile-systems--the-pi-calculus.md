@@ -535,8 +535,8 @@ Definition 10.11 Truth values (ephemeral):
 
 参数 `l` 是 location 的缩写。
 
-另外这里其实不需要 `(do)`，
-因为 function body 默认就是 do 的语义，
+另外这里其实不需要 `(do)`，因为 function body 默认就是 do 的语义。
+process 的语义来自对 function application 的 overload，而不是来源于 `(do)`。
 只有 `(concurrent)` 内需要 `(do)`。
 
 ```scheme
@@ -555,8 +555,8 @@ Definition 10.11 Truth values (ephemeral):
 
 ;; given l
 
-(concurrent (True l) (Menu l)) => (concurrent P)
-(concurrent (False l) (Menu l)) => (concurrent Q)
+(concurrent (True l) (Menu l)) => P
+(concurrent (False l) (Menu l)) => Q
 ```
 
 所有的 enum 都可以用类似的方式编码：
@@ -570,10 +570,15 @@ Definition 10.11 Truth values (ephemeral):
 把上面的具体 `Menu` 定义为一个通用的 `Cond`：
 
 ```scheme
-(define (Cond P Q l)
+(define ((Cond P Q) l)
   (fresh (t f)
     (l t f)
     (choice
       [(@ t) P]
       [(@ f) Q])))
+
+;; given P Q l
+
+(concurrent (True l) ((Cond P Q) l)) => P
+(concurrent (False l) ((Cond P Q) l)) => Q
 ```
