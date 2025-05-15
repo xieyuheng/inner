@@ -67,8 +67,10 @@ congruent 可以追溯到其几何起源。
 显然是以 lambda calculus 为范例的。
 例如这里的 process calculus 也在很多地方使用了 substitution。
 
-TODO simulation。
-TODO simulation 可以联系到一般的二元关系。
+在一个 labeled transition system 中，
+任意一个保持 transition 的二元关系就称作一个 simulation。
+从这个「保持 transition」已经可以推出很多属性了。
+注意，二元关系与二分图等价。
 
 # 1 Introduction
 
@@ -93,17 +95,31 @@ black box 上的按钮对应于 automata 的 event。
 
 # 3 Sequential Processes and Bisimulation
 
+## 3.1 Labelled transition systems
+
+这一章定义 labelled transition system。
+
+> An LTS can be thought of as an automaton
+> without a start state or accepting states.
+
+```scheme
+(define-class labelled-transition-system-t ()
+  (claim state-t type-t)
+  (claim action-t type-t)
+  (claim transition (relation state-t action-t state-t)))
+```
+
 ## 3.2 Strong simulation
 
 用 automata 所能接受的语言，可以定义 automata 之间的等价关系。
 这里想要定义新的等价关系，来区分更多的 automata。
 想要区分的重点，恰好和 petri net 中的两种 or 类似，
-即 deterministic or 和 non-deterministic or。
+即 deterministic choice 和 non-deterministic choice。
 
 可以用 black box 模型来理解这里的 simulation，
 如果以任意一个状态为起点，
 一个 black box 的所有操作（所有按钮序列），
-都可以被另一个 black box 模仿而不卡住（deadlock），
+都可以被另一个 black box 模仿（可以执行相同的按钮序列）而不卡住（deadlock），
 就说后一个 black box 就可以 simulate 前一个。
 
 注意，这里要求对应的按钮相同，
@@ -112,6 +128,31 @@ black box 上的按钮对应于 automata 的 event。
 为了用数学语言定义上面的等价关系，
 作者引入了两个 automata state 之间的，
 保持 transition 的二元关系。
+
+```scheme
+(define-class strong-simulation-t ()
+  (claim lts labelled-transition-system-t)
+  (claim simulation (relation lts:state-t lts:state-t))
+  (claim simulation-respect-transition
+    (forall ((p lts:state-t)
+             (q lts:state-t)
+             (r (simulation p q)))
+      (forall ((a lts:action-t)
+               (p* lts:state-t)
+               (t (lts:transition p a p*))))
+      (exists ((q* lts:state-t)
+               (s (lts:transition q a q*)))
+        (simulation p* q*)))))
+```
+
+给出 simulation 这个二元关系的第一个参数的 transition，
+来找第二个参数的 transition，因此是后者在 simulate 前者。
+
+## 3.3 Strong bisimulation
+
+如果一个 simulation 作为二元关系的逆关系也是 simulation，
+那么这个 simulation 就称作是 bisimulation。
+bisimulation 显然是等价关系。
 
 ## 3.4 Sequential process expressions
 
@@ -588,4 +629,3 @@ end
 # 10 Applications of the pi-Calculus
 
 TODO
-
