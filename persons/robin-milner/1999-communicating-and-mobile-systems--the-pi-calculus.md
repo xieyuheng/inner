@@ -372,6 +372,42 @@ concurrent {
 把 location 和 person 都当作 process，
 person 和 location 之间的某种连接就可以被理解为「person 在 location」。
 
+## 8.2 Mobile phones
+
+```scheme
+(define (transmitter talk switch gain lose)
+  (choice
+    [(@ talk) (transmitter talk switch gain lose)]
+    [(@ lose t s) (switch t s) (idle-transmitter gain lose)]))
+
+(define (idle-transmitter gain lose)
+  (@ gain t s)
+  (transmitter t s gain lose))
+
+(define (car talk switch)
+  (choice
+    [(talk) (car talk switch)]
+    [(@ switch t s) (car t s)]))
+
+(define (system)
+  (fresh (talk1 switch1 gain1 lose1
+          talk2 switch2 gain2 lose2
+          control1 control2)
+    (concurrent
+     (! (do (@ control1)
+            (lose1 talk2 switch2)
+            (gain2 talk2 switch2)
+            (control2)))
+     (! (do (@ control2)
+            (lose2 talk1 switch1)
+            (gain1 talk1 switch1)
+            (control1)))
+     (car talk1 switch1)
+     (transmitter talk1 switch1 gain1 lose1)
+     (idle-transmitter gain2 lose2)
+     (control1))))
+```
+
 # 9 The pi-Calculus and Reaction
 
 ## 9.1 Names, actions and processes
