@@ -421,8 +421,13 @@ Example 9.2 Illustrating reaction:
 就认为两个 process expression 之间有 link。
 mobility 就要被理解为这种 graph 中 connection 的变化。
 
-另外，link 可以根据 input 和 out 分为两种，
-即在图中用被 channel label 的有限边。
+另外，link 可以根据 input 和 output 分为两种，
+即在图中用被 channel label 的有向边。
+
+但是这种图示是有歧义的，与其用有歧义的图示，
+不如好好设计一个没有歧义的图示。
+
+TODO 设计一个没有歧义的 pi-calculus 的图示。
 
 ## 9.4 The polyadic pi-calculus
 
@@ -525,6 +530,14 @@ end
 
 # 10 Applications of the pi-Calculus
 
+## 10.2 Unique handling
+
+> Let us say that `P` _handles_ `x` if `P` has a free occurrence of `x`
+> in an action prefix of the form `(x ...)` or `(v ... x ...)`.
+
+`x` 出现在 `P` 的 output 的位置，称作 `P` handles `x`。
+在 process 的 flowgraph 图示中画作出边 `[P]-x->`。
+
 ## 10.3 Data revisited
 
 这一节模仿 lambda 演算中用 lambda expression 编码数据类型的过程。
@@ -585,6 +598,11 @@ process 的语义来自对 function application 的 overload，而不是来源�
 (concurrent (true l) ((conditional P Q) l)) => P
 (concurrent (false l) ((conditional P Q) l)) => Q
 ```
+
+在介绍 `(node)` 的数据类型的 flowgraph 中，
+从一个 channel `k` 中取值，画作 `-k->[node]`；
+沿着某个 channel `c` 把 `v` 和 `l` 送走，
+画作 `[node]-v->` 和 `[node]-l->`。
 
 ```scheme
 (define (null k) (@ k n c) (n))
