@@ -421,6 +421,9 @@ Example 9.2 Illustrating reaction:
 就认为两个 process expression 之间有 link。
 mobility 就要被理解为这种 graph 中 connection 的变化。
 
+另外，link 可以根据 input 和 out 分为两种，
+即在图中用被 channel label 的有限边。
+
 ## 9.4 The polyadic pi-calculus
 
 注意，这里看似聪明的用只接受 atomic name 的单参数 channel
@@ -644,6 +647,17 @@ process 的语义来自对 function application 的 overload，而不是来源�
       [(@ c v l) (F v l)])))
 ```
 
+这里书中错写成了和 `conditional` 相同的：
+
+```scheme
+(define ((list-which P F) k)
+  (fresh (n c)
+    (k n c)
+    (choice
+      [(@ n) P]
+      [(@ c) F])))
+```
+
 ```scheme
 (same-as-chart
  (concurrent
@@ -749,3 +763,62 @@ process 的语义来自对 function application 的 overload，而不是来源�
       [(@ n) P]
       [(@ c v l) (F v l)])))
 ```
+
+TODO `list-copy`
+TODO `list-join`
+
+TODO `list-move`
+TODO `list-append`
+
+## 10.5 Persistent and mutable data
+
+TODO
+
+# 11 Sorts, Objects, and Functions
+
+TODO
+
+# 14 Discussion and related work
+
+这一章介绍了很多其他人的工作，现在没法马上去看，
+可以经常回来重新读读，然后找感兴趣的看。
+
+> The pi-calculus has been introduced as a new and fundamental way of
+> thinking about mobile interactive processes, and one which is
+> amenable to rigorous treatment.
+
+后面所强调的 amenable to rigorous treatment，
+是对比 actor model 而言的。
+
+> A very general question is: How should we rigorously express the
+> specification or required behaviour of a system, perhaps in terms of
+> some logical formalism;
+
+也许是 philip wadler 在 2014-propositions-as-sessions
+中所引入的 linear logic。
+
+> and then what does it means for a system -- perhaps represented by a
+> pi-calculus term -- to satisfy such a specification?  There is no
+> reason why the system and its specification should be expressed in
+> the same formalism.
+
+> A fortiori, there is no reason to expect that the satisfaction of a
+> specification by a system should always be expressed as the
+> equivalence between two terms in the same formalism.  But the study
+> of behavioural equivalence, as far as it goes, has the advantage
+> that only a single formalism is required.  Furthermore, equivalence
+> is in a certain sense fundamental; to echo the introductory chapter,
+> until we know what constitutes equivalent behaviour we do not
+> reallynunderstand what the term 'behaviour' means!
+
+其实就算是从逻辑和类型系统的角度看，等价关系也是非常重要的，
+用 NbE 实现 dependent type 就是一个例子。
+
+> But as we seriously address the problem of modelling mobile
+> communicating systems we get a sense of completing a model which was
+> previously incomplete; for we can now begin to describe what goes on
+> _outside_ a computer in the same terms as what goes on _inside_ --
+> i.e. in terms of interaction.  Turning this observation inside-out,
+> we may say that we inhabit a global computer, an informatic world
+> which demands to be understood just as fundamentally as physicists
+> understand the material world.
