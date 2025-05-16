@@ -730,3 +730,22 @@ process 的语义来自对 function application 的 overload，而不是来源�
     (L l)
     (F v l))))
 ```
+
+假设 `(match)` 可以根据 `null` 和 `cons` 的定义，
+展开成上面的 `(choice)`：
+
+```scheme
+(define ((list-which P F) k)
+  (match k
+    [(null) P]
+    [(cons v l) (F v l)]))
+
+;; expand to:
+
+(define ((list-which P F) k)
+  (fresh (n c)
+    (k n c)
+    (choice
+      [(@ n) P]
+      [(@ c v l) (F v l)])))
+```
