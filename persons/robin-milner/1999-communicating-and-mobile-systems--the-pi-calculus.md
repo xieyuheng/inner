@@ -845,11 +845,102 @@ TODO
 
 ## 11.2 Sorts and sortings
 
-TODO
+在 9.4 The polyadic pi-calculus 处理多元 abstraction 时，
+假设了每个 channel 有固定的 arity。
+这里的 sort 还不是 process calculus 的完整的类型系统，
+但是可以用来保证使用 channel 时没有 arity 错误。
+
+> **Definition 11.1 Sorting**
+>
+> Given a set S of sorts, a sorting over S
+> is a partial function `ob : S -> (list-t S)`.
+
+> and we say that a process or family of processes
+> respects `ob` if, for every sub-term of the form
+> `(@ x y) P` or `(x y) P`, if `x: s` then `y: ob(s)`.
+
+TODO 不知道 `ob` 是什么的缩写。
+
+注意，Milner 并没有真的用 `(chan ...)` 这个单一的类型构造子，
+来定义类型系统，而是把 `(chan ...)` 递归嵌套的结构，
+拆解成了一种叫做 sorting 的函数。
+
+Example 11.3 Sorting for mobile phones
+
+```scheme
+(define-sorting
+  [talk-s ()]
+  [switch-s (talk-s switch-s)]
+  [gain-s (talk-s switch-s)]
+  [lose-s (talk-s switch-s)])
+```
+
+显然也可以只用 `talk-s` 和 `switch-s`。
 
 ## 11.3 Extending the sort language
 
-TODO
+```scheme
+(define-sorting
+  [bool-s (true-s false-s)
+  [true-s ()]
+  [false-s ()]])
+
+(define-sorting
+  [list-s (null-s cons-s)
+  [null-s ()]
+  [cons-s (value-s list-s)]])
+```
+
+这里又引入了 `(chan ...)`，并且称其为 sort constructor。
+这是为了获得 structural equality，
+使得 `true-s` `false-s` `null-s` 都可被认为在结构上等价于 `(chan)`。
+
+这里对类型系统的讨论，让人感到 Milner 不愧是大师。
+
+利用 `(chan ...)` 还能定义 generic sort：
+
+```scheme
+(define-sort (list-s value-s)
+  (chan)
+  (chan value-s (list-s value-s)))
+```
+
+Definition 11.9 Sort language
+
+给带有参数的 sort constructor 定义了 `ob` map。
+其中 `(chan<n> ...)` 只是一个具体的 sort constructor。
+
+> The most important sort constructor of all
+> is the channel sort constructor `(chan<n> ...)`,
+> of rank n, with the sorting rule:
+>
+>     (chan<n> s1 ... sn) => s1 ... sn
+
+> Note that the new sort discipline is just a refinement of what we
+> had before; all that we have done is to allow the set S, which we
+> previously called basic sorts, to have a hierarchical structure --
+> and to require that any sorting function `ob` respects this
+> structure by treating each sort constructor uniformly.
+
+> We canstill we have basic sorts, such as SWITCH and TALK, as sort
+> constructors of rank 0, with the same sorting rules as before.
+
+这个 `ob` 映射可以理解为是在用 `define-sort` 逐步定义新的 sort。
+比如上面定义的 sort constructor `list-s`，
+对应于 `ob` 映射就是：
+
+```
+(list-s value-s) => (chan) (chan value-s (list-s value-s))
+```
+
+标注 sort 的例子：
+
+```scheme
+(claim (node (forall [A sort]) (list-s A) A (list-s A)))
+(define (node k v l) (@ k n c) (c v l))
+```
+
+上面假设了我们有一个 concatenative 的 `(forall)`。
 
 ## 11.4 Object-oriented programming
 
