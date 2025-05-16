@@ -641,5 +641,92 @@ process 的语义来自对 function application 的 overload，而不是来源�
     (k n c)
     (choice
       [(@ n) P]
-      [(@ c) F])))
+      [(@ c v l) (F v l)])))
+```
+
+```scheme
+(same-as-chart
+ (concurrent
+  (null k)
+  ((list-which P F) k))
+ (concurrent
+  (do (@ k n c) (n))
+  (fresh (n c)
+    (k n c)
+    (choice
+      [(@ n) P]
+      [(@ c v l) (F v l)])))
+ (fresh (n c)
+   (concurrent
+    (do (@ k n c) (n))
+    (do (k n c)
+        (choice
+          [(@ n) P]
+          [(@ c v l) (F v l)]))))
+ (fresh (n c)
+   (concurrent
+    (n)
+    (choice
+      [(@ n) P]
+      [(@ c v l) (F v l)])))
+ (fresh (n c)
+   (concurrent
+    P))
+ (fresh (n c)
+   P)
+ P)
+```
+
+```scheme
+(same-as-chart
+ (concurrent
+  (cons V L k)
+  ((list-which P F) k))
+ (concurrent
+  (fresh (v l)
+    (concurrent
+     (node k v l)
+     (V v)
+     (L l)))
+  (fresh (n c)
+    (k n c)
+    (choice
+      [(@ n) P]
+      [(@ c v l) (F v l)])))
+ (fresh (v l n c)
+   (concurrent
+    (node k v l)
+    (V v)
+    (L l)
+    (do (k n c)
+        (choice
+          [(@ n) P]
+          [(@ c v l) (F v l)]))))
+ (fresh (v l n c)
+   (concurrent
+    (do (@ k n c) (c v l))
+    (V v)
+    (L l)
+    (do (k n c)
+        (choice
+          [(@ n) P]
+          [(@ c v l) (F v l)]))))
+ (fresh (v l n c)
+   (concurrent
+    (c v l)
+    (V v)
+    (L l)
+    (choice
+      [(@ n) P]
+      [(@ c v l) (F v l)])))
+ (fresh (v l n c)
+   (concurrent
+    (V v)
+    (L l)
+    (F v l)))
+ (fresh (v l)
+   (concurrent
+    (V v)
+    (L l)
+    (F v l))))
 ```
