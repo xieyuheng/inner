@@ -638,8 +638,8 @@ process 的语义来自对 function application 的 overload，而不是来源�
 ```scheme
 (define ((list-which P F) k)
   (fresh (n c)
-    (@ k n c)
+    (k n c)
     (choice
-      [(n) P]
-      [(c) F])))
+      [(@ n) P]
+      [(@ c) F])))
 ```
