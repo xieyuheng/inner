@@ -830,6 +830,37 @@ TODO
 
 # 11 Sorts, Objects, and Functions
 
+## 11.1 A hierarchy of channel types?
+
+一个 process -- `(do ...)` 中出现的所有变量都代表 channel。
+定义带有参数的 process 时也是 abstract over channels。
+所以这里自然想到要定义一个类型构造子 `(chan ...)`，
+并且尝试用这一个类型构造子去描述所有 process expression 的类型。
+
+比如 8.2 Mobile phones 中的 `switch` 变量的类型是 `switch-t`：
+
+```scheme
+(define-type switch-t (chan talk-t switch-t))
+```
+
+## 11.2 Sorts and sortings
+
+TODO
+
+## 11.3 Extending the sort language
+
+TODO
+
+## 11.4 Object-oriented programming
+
+TODO
+
+## 11.5 Processes and abstractions as messages
+
+TODO
+
+## 11.6 Functional computing as name-passing
+
 TODO
 
 # 14 Discussion and related work
