@@ -529,8 +529,8 @@ end
 Definition 10.11 Truth values (ephemeral):
 
 ```scheme
-(define (True l) (do (@ l t f) (t)))
-(define (False l) (do (@ l t f) (f)))
+(define (true l) (do (@ l t f) (t)))
+(define (false l) (do (@ l t f) (f)))
 ```
 
 参数 `l` 是 location 的缩写。
@@ -540,14 +540,14 @@ process 的语义来自对 function application 的 overload，而不是来源�
 只有 `(concurrent)` 内需要 `(do)`。
 
 ```scheme
-(define (True l) (@ l t f) (t))
-(define (False l) (@ l t f) (f))
+(define (true l) (@ l t f) (t))
+(define (false l) (@ l t f) (f))
 ```
 
 ```scheme
 ;; given t f
 
-(define (Menu l)
+(define (menu l)
   (l t f)
   (choice
     [(@ t) P]
@@ -555,22 +555,22 @@ process 的语义来自对 function application 的 overload，而不是来源�
 
 ;; given l
 
-(concurrent (True l) (Menu l)) => P
-(concurrent (False l) (Menu l)) => Q
+(concurrent (true l) (menu l)) => P
+(concurrent (false l) (menu l)) => Q
 ```
 
 所有的 enum 都可以用类似的方式编码：
 
 ``` scheme
-(define (Monday l)
+(define (monday l)
   (@ l d1 d2 d3 d4 d5 d6 d7)
   (d1))
 ```
 
-把上面的具体 `Menu` 定义为一个通用的 `Cond`：
+把上面的具体 `menu` 定义为一个通用的 `conditional`：
 
 ```scheme
-(define ((Cond P Q) l)
+(define ((conditional P Q) l)
   (fresh (t f)
     (l t f)
     (choice
@@ -579,6 +579,67 @@ process 的语义来自对 function application 的 overload，而不是来源�
 
 ;; given P Q l
 
-(concurrent (True l) ((Cond P Q) l)) => P
-(concurrent (False l) ((Cond P Q) l)) => Q
+(concurrent (true l) ((conditional P Q) l)) => P
+(concurrent (false l) ((conditional P Q) l)) => Q
+```
+
+```scheme
+(define (null k) (@ k n c) (n))
+(define (node k v l) (@ k n c) (c v l))
+(define ((cons V L) k)
+  (fresh (v l)
+    (concurrent
+     (node k v l)
+     (V v)
+     (L l))))
+```
+
+```scheme
+(same-as-chart
+ ((cons false null) k)
+ (fresh (v0 l0)
+   (concurrent
+    (node k v0 l0)
+    (false v0)
+    (null l0)))
+ (fresh (v0 l0)
+   (concurrent
+    (do (@ k n c) (c v0 l0))
+    (do (@ v0 t f) (f))
+    (do (@ l0 n c) (n)))))
+
+(same-as-chart
+ ((cons true (cons false null)) k)
+ (fresh (v1 l1)
+   (concurrent
+    (node k v1 l1)
+    (true v1)
+    ((cons false null) l1)))
+ (fresh (v1 l1)
+   (concurrent
+    (do (@ k n c) (c v1 l1))
+    (do (@ v1 t f) (t))
+    (fresh (v0 l0)
+      (concurrent
+       (do (@ l1 n c) (c v0 l0))
+       (do (@ v0 t f) (f))
+       (do (@ l0 n c) (n))))))
+ (fresh (v0 l0 v1 l1)
+   (concurrent
+    (do (@ k n c) (c v1 l1))
+    (do (@ v1 t f) (t))
+    (do (@ l1 n c) (c v0 l0))
+    (do (@ v0 t f) (f))
+    (do (@ l0 n c) (n)))))
+```
+
+## 10.4 Programming with lists
+
+```scheme
+(define ((list-which P F) k)
+  (fresh (n c)
+    (@ k n c)
+    (choice
+      [(n) P]
+      [(c) F])))
 ```
