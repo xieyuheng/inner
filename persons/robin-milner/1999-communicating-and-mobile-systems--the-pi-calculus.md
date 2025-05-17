@@ -611,6 +611,11 @@ process 的语义来自对 function application 的 overload，而不是来源�
 (concurrent (false l) (menu l)) => Q
 ```
 
+之所以叫 `menu`，是因为看起来是沿着 `l` 
+发送了两个东西让对方选择，
+根据不同的选择，执行不同的 骗人哦测试是。
+
+
 所有的 enum 都可以用类似的方式编码：
 
 ``` scheme
@@ -861,6 +866,10 @@ TODO
 
 TODO 不知道 `ob` 是什么的缩写。
 
+从上面的例子来看，如果 `s` 是 target `x` 的类型，
+那么 `ob(s)` 是 `x` 在 application 中所能取的参数的类型。
+channel 的 application 没有返回值。
+
 注意，Milner 并没有真的用 `(chan ...)` 这个单一的类型构造子，
 来定义类型系统，而是把 `(chan ...)` 递归嵌套的结构，
 拆解成了一种叫做 sorting 的函数。
@@ -944,15 +953,23 @@ Definition 11.9 Sort language
 
 ## 11.4 Object-oriented programming
 
+> Note that a method can return before finishing its work;
+> this is what gives riseto concurrent activity.
+
+这个我还是头一次听说。
+
 TODO
 
 ## 11.5 Processes and abstractions as messages
 
-TODO
+passing process 或 lambda as message，
+可以被 only passing name as message + replication 模拟。
+
+TODO 用 lisp 语法写这里的例子。
 
 ## 11.6 Functional computing as name-passing
 
-TODO
+TODO 用 lisp 语法写这里的例子。
 
 # 14 Discussion and related work
 
