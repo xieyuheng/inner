@@ -611,9 +611,9 @@ process 的语义来自对 function application 的 overload，而不是来源�
 (concurrent (false l) (menu l)) => Q
 ```
 
-之所以叫 `menu`，是因为看起来是沿着 `l` 
+之所以叫 `menu`，是因为看起来是沿着 `l`
 发送了两个东西让对方选择，
-根据不同的选择，执行不同的 骗人哦测试是。
+根据不同的选择，执行不同的 process。
 
 
 所有的 enum 都可以用类似的方式编码：
