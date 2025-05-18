@@ -56,4 +56,88 @@ par-lang 就是受这篇论文的启发，所以要读一下。
 | x().P       | (do (@ x))                           | empty input          |
 | x.case()    | (choice)                             | empty choice         |
 
+这里说：
+
+> in `x[y].(P|Q)`, name `y` is bound in `P` (but not in `Q`),
+> and in `x(y).P`, name `y` is bound in `P`.
+
+但是在 Milner 的 pi-calculus 中，output 是不引入 binding 的。
+
+> unlike pi-calculus, both output and input names are bound.
+> ... `x[y].P` in our calculus behave like `νy.x<y>.P` in pi-calculus.
+
+也就是说 `x[y].(P|Q)` 不是 `(do (x y) (run P Q))`，
+而是 `(run (fresh (y) (x y) P) Q)`。
+
+> Judgements take the form
+> `P |- x1: A1, ..., xn: An`
+> indicating that process `P` communicates along each channel
+> named `xi` obeying the protocol specified by `Ai`.
+
+```scheme
+(obey P [x1 A1] ... [xn An])
+```
+
+> Erasing the process and the channel names from the above yields
+> `|- A1, ..., An` and applying this erasure to the rules in Figure 1
+> yields the rules of classical linear logic, as given by Girard (1987).
+
+```scheme
+(sequent A1 ... An)
+```
+
+在描述 inference rule 时，我将使用如下语法：
+
+```scheme
+(define-inference-rule <rule-name>
+  <conclusion-judgement>
+  <premise-judgement>
+  ...)
+```
+
+Fig. 1. CP, classical linear logic as a session-typed process calculus.
+
+```scheme
+(define-inference-rule axiom-rule
+  (obey (link w x) [w (dual A)] [x A]))
+
+TODO
+```
+
+## 3.1 Structural rules
+
+TODO
+
+## 3.2 Output and input
+
+TODO
+
+## 3.3 Selection and choice
+
+TODO
+
+## 3.4 Servers and clients
+
+TODO
+
+## 3.5 Polymorphism
+
+TODO
+
+## 3.6 Commuting conversions
+
+TODO
+
+## 3.7 Cut elimination
+
+TODO
+
+# 4 A session-typed functional language
+
+TODO
+
+# 5 Related work
+
+这里有很多关于 session type 的引用。
+
 TODO
