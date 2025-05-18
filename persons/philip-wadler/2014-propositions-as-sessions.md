@@ -172,7 +172,14 @@ TODO
 
 ## 3.2 Output and input
 
+> Example. We give a series of examples inspired by Internet commerce,
+> based on similar examples in Caires & Pfenning (2010). Our first
+> example is that of a sale, where the client sends a product name and
+> credit card number to a server, which returns a receipt.
+
+```scheme
 TODO
+```
 
 ## 3.3 Selection and choice
 
