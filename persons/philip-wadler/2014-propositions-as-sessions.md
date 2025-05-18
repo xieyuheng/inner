@@ -53,7 +53,7 @@ par-lang 就是受这篇论文的启发，所以要读一下。
 | x[A].P      | (do (x A) P)                         | output a type        |
 | x(X).P      | (do (@ x X) P)                       | input a type         |
 | x[].0       | (do (x))                             | empty output         |
-| x().P       | (do (@ x))                           | empty input          |
+| x().P       | (do (@ x) P)                         | empty input          |
 | x.case()    | (choice)                             | empty choice         |
 
 这里说：
@@ -76,6 +76,7 @@ par-lang 就是受这篇论文的启发，所以要读一下。
 
 ```scheme
 (obey P [x1 A1] ... [xn An])
+(obey P . (record [x1 A1] ... [xn An]))
 ```
 
 > Erasing the process and the channel names from the above yields
@@ -101,7 +102,68 @@ Fig. 1. CP, classical linear logic as a session-typed process calculus.
 (define-inference-rule axiom-rule
   (obey (link w x) [w (dual A)] [x A]))
 
-TODO
+(define-inference-rule cut-rule
+  (obey (fresh ([x A]) (run P Q)) . (merge E1 E2))
+  (obey P [x A] . E1)
+  (obey Q [x (dual A)] . E2))
+
+(define-inference-rule output-rule
+  (obey (run (fresh (y) (x y) P) Q) [x (times A B)] . (merge E1 E2))
+  (obey P [y A] . E1)
+  (obey Q [x B] . E2))
+
+(define-inference-rule input-rule
+  (obey (do (@ x y) R) [x (par A B)] . E)
+  (obey R [y A] [x B] . E))
+
+(define-inference-rule select-left-rule
+  (obey (do (x inl) P) [x (plus A B)] . E)
+  (obey P [x A] . E))
+
+(define-inference-rule select-right-rule
+  (obey (do (x inr) P) [x (plus A B)] . E)
+  (obey P [x B] . E))
+
+(define-inference-rule choice-rule
+  (obey (choice [(@ x inl) P] [(@ x inr) Q]) [x (with A B)] . E)
+  (obey P [x A] . E)
+  (obey Q [x B] . E))
+
+(define-inference-rule server-accept-rule
+  (obey (! (@ x y) P) [x (of-course A)] . (why-not E))
+  (obey P [y A] . (why-not E)))
+
+(define-inference-rule client-request-rule
+  (obey (! (x y) P) [x (why-not A)] . E)
+  (obey P [y A] . E))
+
+(define-inference-rule weaken-rule
+  (obey P [x (why-not A)] . E)
+  (obey P . E))
+
+(define-inference-rule contract-rule
+  (obey (subst P x* x) [x (why-not A)] . E)
+  (obey P [x (why-not A)] [x* (why-not A)] . E))
+
+(define-inference-rule exists-rule
+  (obey (do (x A) P) [x (exists X B)] . E)
+  (obey P [x (subst B X A)] . E))
+
+(define-inference-rule forall-rule
+  (obey (do (@ x X) P) [x (forall X B)] . E)
+  (obey P [x B] . E))
+
+(define-inference-rule one-rule
+  (obey (do (x)) [x one]))
+
+(define-inference-rule bottom-rule
+  (obey (do (@ x) P) [x bottom] . E)
+  (obey P . E))
+
+;; no rule for zero
+
+(define-inference-rule top-rule
+  (obey (choice) [x top] . E))
 ```
 
 ## 3.1 Structural rules
