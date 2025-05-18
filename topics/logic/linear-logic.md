@@ -13,18 +13,18 @@ title: Linear Logic
 
 | symbol | polarity | level |      | name (Girard) | identifier |
 |--------|----------|-------|------|---------------|------------|
-| A ⨂ B  | pos      | mul   | conj | times         | Both       |
+| A ⨂ B | pos      | mul   | conj | times         | Both       |
 | A & B  | neg      | add   | conj | with          | Choose     |
-| A ⨁ B  | pos      | add   | disj | plus          | Maybe      |
+| A ⨁ B | pos      | add   | disj | plus          | Maybe      |
 | A ⅋ B  | neg      | mul   | disj | par           | Through    |
 | !A     | pos      | exp   |      | of course     | OfCourse   |
 | ?A     | neg      | exp   |      | why not       | WhyNot     |
 
 | symbol | meaning                                |
 |--------|----------------------------------------|
-| A ⨂ B  | I have both A and B.                   |
+| A ⨂ B | I have both A and B.                   |
 | A & B  | I have a choice between A and B.       |
-| A ⨁ B  | Someone else's choice between A and B. |
+| A ⨁ B | Someone else's choice between A and B. |
 | A ⅋ B  | If not A, then B.                      |
 | !A     | I can reuse A.                         |
 | ?A     |                                        |
@@ -97,4 +97,3 @@ Use linear logic to capture "resource" problems logically.
 Examples:
 
 - An encoding of Petri net reachability
-

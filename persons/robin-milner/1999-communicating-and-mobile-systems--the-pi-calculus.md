@@ -394,14 +394,14 @@ person 和 location 之间的某种连接就可以被理解为「person 在 loca
           talk2 switch2 gain2 lose2
           control1 control2)
     (concurrent
-     (! (do (@ control1)
-            (lose1 talk2 switch2)
-            (gain2 talk2 switch2)
-            (control2)))
-     (! (do (@ control2)
-            (lose2 talk1 switch1)
-            (gain1 talk1 switch1)
-            (control1)))
+     (! (@ control1)
+        (lose1 talk2 switch2)
+        (gain2 talk2 switch2)
+        (control2))
+     (! (@ control2)
+        (lose2 talk1 switch1)
+        (gain1 talk1 switch1)
+        (control1))
      (car talk1 switch1)
      (transmitter talk1 switch1 gain1 lose1)
      (idle-transmitter gain2 lose2)
@@ -489,15 +489,15 @@ Exercise 9.23 Consider the buffer defined in Section 8.3:
   (fresh (b c)
     (concurrent
      (do (@ l x) (c x l r))
-     (! (do (@ c x l r) (r x) (b l r)))
-     (! (do (@ b l r) (@ l x) (c x l r))))))
+     (! (@ c x l r) (r x) (b l r))
+     (! (@ b l r) (@ l x) (c x l r)))))
 
 (define (C x l r)
   (fresh (b c)
     (concurrent
      (do (r x) (b l r))
-     (! (do (@ c x l r) (r x) (b l r)))
-     (! (do (@ b l r) (@ l x) (c x l r))))))
+     (! (@ c x l r) (r x) (b l r))
+     (! (@ b l r) (@ l x) (c x l r)))))
 ```
 
 ## 9.6 Abstractions
