@@ -205,10 +205,10 @@ TODO
 ;; ^ as fresh + output
 
 (define (buy x)
-  (^ x name)
+  (@out x name)
   (run
     (put-name name)
-    (do (^ x credit)
+    (do (@out x credit)
         (run
           (put-credit credit)
           (do (@ x receipt)
@@ -218,10 +218,10 @@ TODO
 (define (sell x)
   (@ x name)
   (@ x credit)
-  (^ x receipt)
+  (@out x receipt)
   (run
     (compute name credit receipt)
-    (do (^ x))))
+    (do (@out x))))
 ```
 
 ## 3.3 Selection and choice
