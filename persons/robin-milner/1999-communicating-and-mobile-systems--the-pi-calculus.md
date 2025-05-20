@@ -307,8 +307,8 @@ process Count(n) = if (equal(n, 0)) choice {
 Example 4.3:
 
 ```c
-process P = concurrent {
-  fresh (a) concurrent {
+process P = run {
+  fresh (a) run {
     choice { a.Q1 b.Q2 }
     choice { [a] }
   }
@@ -317,15 +317,15 @@ process P = concurrent {
 
 // one result
 
-concurrent {
+run {
   fresh (a) Q1
   choice { [b].R1 [a].R2 }
 }
 
 // another result
 
-concurrent {
-  fresh (a) concurrent {
+run {
+  fresh (a) run {
     Q2 [a]
   }
   R1
@@ -334,33 +334,33 @@ concurrent {
 
 ```scheme
 (define P
-  (concurrent
-   (fresh (a)
-     (concurrent
-      (choice
-        [(@ a) Q1]
-        [(@ b) Q2])
-      (do (a))))
-   (choice
-     [(b) R1]
-     [(a) R2])))
+  (run
+    (fresh (a)
+      (run
+        (choice
+          [(@ a) Q1]
+          [(@ b) Q2])
+        (do (a))))
+    (choice
+      [(b) R1]
+      [(a) R2])))
 
 ;; one result
 
-(concurrent
- (fresh (a) Q1)
- (choice
-   [(b) R1]
-   [(a) R2]))
+(run
+  (fresh (a) Q1)
+  (choice
+    [(b) R1]
+    [(a) R2]))
 
 ;; another result
 
-(concurrent
- (fresh (a)
-   (concurrent
-    Q2
-    (do (a))))
- R1)
+(run
+  (fresh (a)
+    (run
+      Q2
+      (do (a))))
+  R1)
 ```
 
 # 8 What is Mobility?
@@ -391,21 +391,21 @@ person 和 location 之间的某种连接就可以被理解为「person 在 loca
 
 (define (system)
   (fresh (talk1 switch1 gain1 lose1
-          talk2 switch2 gain2 lose2
-          control1 control2)
-    (concurrent
-     (! (@ control1)
-        (lose1 talk2 switch2)
-        (gain2 talk2 switch2)
-        (control2))
-     (! (@ control2)
-        (lose2 talk1 switch1)
-        (gain1 talk1 switch1)
-        (control1))
-     (car talk1 switch1)
-     (transmitter talk1 switch1 gain1 lose1)
-     (idle-transmitter gain2 lose2)
-     (control1))))
+                talk2 switch2 gain2 lose2
+                control1 control2)
+    (run
+      (! (@ control1)
+         (lose1 talk2 switch2)
+         (gain2 talk2 switch2)
+         (control2))
+      (! (@ control2)
+         (lose2 talk1 switch1)
+         (gain1 talk1 switch1)
+         (control1))
+      (car talk1 switch1)
+      (transmitter talk1 switch1 gain1 lose1)
+      (idle-transmitter gain2 lose2)
+      (control1))))
 ```
 
 # 9 The pi-Calculus and Reaction
@@ -420,32 +420,32 @@ Example 9.2 Illustrating reaction:
 ```scheme
 (define P
   (fresh (z)
-    (concurrent
-     (choice [(x y)] [(@ z w) (w y)])
-     (do (@ x u) (u v))
-     (do (x z)))))
+    (run
+      (choice [(x y)] [(@ z w) (w y)])
+      (do (@ x u) (u v))
+      (do (x z)))))
 ```
 
 ```scheme
 ;; P -> P1
 
 (fresh (z)
-  (concurrent
-   (do (y v))
-   (do (x z))))
+  (run
+    (do (y v))
+    (do (x z))))
 
 ;; P -> P2
 
 (fresh (z)
-  (concurrent
-   (choice [(x y)] [(@ z w) (w y)])
-   (do (z v))))
+  (run
+    (choice [(x y)] [(@ z w) (w y)])
+    (do (z v))))
 
 ;; P2 -> P3
 
 (fresh (z)
-  (concurrent
-   (do (v y))))
+  (run
+    (do (v y))))
 ```
 
 ## 9.2 Structural congruence and reaction
@@ -487,17 +487,17 @@ Exercise 9.23 Consider the buffer defined in Section 8.3:
 
 (define (B l r)
   (fresh (b c)
-    (concurrent
-     (do (@ l x) (c x l r))
-     (! (@ c x l r) (r x) (b l r))
-     (! (@ b l r) (@ l x) (c x l r)))))
+    (run
+      (do (@ l x) (c x l r))
+      (! (@ c x l r) (r x) (b l r))
+      (! (@ b l r) (@ l x) (c x l r)))))
 
 (define (C x l r)
   (fresh (b c)
-    (concurrent
-     (do (r x) (b l r))
-     (! (@ c x l r) (r x) (b l r))
-     (! (@ b l r) (@ l x) (c x l r)))))
+    (run
+      (do (r x) (b l r))
+      (! (@ c x l r) (r x) (b l r))
+      (! (@ b l r) (@ l x) (c x l r)))))
 ```
 
 ## 9.6 Abstractions
@@ -538,7 +538,7 @@ new y P == new (y) P
 define B (l r) l (x) [x l r] C end
 define C (x l r) [x] r [l r] B end
 
-// | -- concurrent
+// | -- run
 // ; -- choice
 // {} -- quote
 
@@ -551,7 +551,7 @@ define B (l r)
     { l (x) [x l r] c } cons
     { c (x l r) [x] r [l r] b } replication cons
     { b (l r) l (x) [x l r] c } replication cons
-  concurrent
+  run
 end
 
 define C (x l r)
@@ -560,7 +560,7 @@ define C (x l r)
     { [x] r [l r] b } cons
     { c (x l r) [x] r [l r] b } replication cons
     { b (l r) l (x) [x l r] c } replication cons
-  concurrent
+  run
 end
 ```
 
@@ -589,7 +589,7 @@ Definition 10.11 Truth values (ephemeral):
 
 另外这里其实不需要 `(do)`，因为 function body 默认就是 do 的语义。
 process 的语义来自对 function application 的 overload，而不是来源于 `(do)`。
-只有 `(concurrent)` 内需要 `(do)`。
+只有 `(run)` 内需要 `(do)`。
 
 ```scheme
 (define (true l) (@ l t f) (t))
@@ -607,8 +607,8 @@ process 的语义来自对 function application 的 overload，而不是来源�
 
 ;; given l
 
-(concurrent (true l) (menu l)) => P
-(concurrent (false l) (menu l)) => Q
+(run (true l) (menu l)) => P
+(run (false l) (menu l)) => Q
 ```
 
 之所以叫 `menu`，是因为看起来是沿着 `l`
@@ -636,8 +636,8 @@ process 的语义来自对 function application 的 overload，而不是来源�
 
 ;; given P Q l
 
-(concurrent (true l) ((conditional P Q) l)) => P
-(concurrent (false l) ((conditional P Q) l)) => Q
+(run (true l) ((conditional P Q) l)) => P
+(run (false l) ((conditional P Q) l)) => Q
 ```
 
 在介绍 `(node)` 的数据类型的 flowgraph 中，
@@ -650,49 +650,49 @@ process 的语义来自对 function application 的 overload，而不是来源�
 (define (node k v l) (@ k n c) (c v l))
 (define ((cons V L) k)
   (fresh (v l)
-    (concurrent
-     (node k v l)
-     (V v)
-     (L l))))
+    (run
+      (node k v l)
+      (V v)
+      (L l))))
 ```
 
 ```scheme
 (same-as-chart
  ((cons false null) k)
  (fresh (v0 l0)
-   (concurrent
-    (node k v0 l0)
-    (false v0)
-    (null l0)))
+   (run
+     (node k v0 l0)
+     (false v0)
+     (null l0)))
  (fresh (v0 l0)
-   (concurrent
-    (do (@ k n c) (c v0 l0))
-    (do (@ v0 t f) (f))
-    (do (@ l0 n c) (n)))))
+   (run
+     (do (@ k n c) (c v0 l0))
+     (do (@ v0 t f) (f))
+     (do (@ l0 n c) (n)))))
 
 (same-as-chart
  ((cons true (cons false null)) k)
  (fresh (v1 l1)
-   (concurrent
-    (node k v1 l1)
-    (true v1)
-    ((cons false null) l1)))
+   (run
+     (node k v1 l1)
+     (true v1)
+     ((cons false null) l1)))
  (fresh (v1 l1)
-   (concurrent
-    (do (@ k n c) (c v1 l1))
-    (do (@ v1 t f) (t))
-    (fresh (v0 l0)
-      (concurrent
-       (do (@ l1 n c) (c v0 l0))
-       (do (@ v0 t f) (f))
-       (do (@ l0 n c) (n))))))
+   (run
+     (do (@ k n c) (c v1 l1))
+     (do (@ v1 t f) (t))
+     (fresh (v0 l0)
+       (run
+         (do (@ l1 n c) (c v0 l0))
+         (do (@ v0 t f) (f))
+         (do (@ l0 n c) (n))))))
  (fresh (v0 l0 v1 l1)
-   (concurrent
-    (do (@ k n c) (c v1 l1))
-    (do (@ v1 t f) (t))
-    (do (@ l1 n c) (c v0 l0))
-    (do (@ v0 t f) (f))
-    (do (@ l0 n c) (n)))))
+   (run
+     (do (@ k n c) (c v1 l1))
+     (do (@ v1 t f) (t))
+     (do (@ l1 n c) (c v0 l0))
+     (do (@ v0 t f) (f))
+     (do (@ l0 n c) (n)))))
 ```
 
 ## 10.4 Programming with lists
@@ -719,32 +719,32 @@ process 的语义来自对 function application 的 overload，而不是来源�
 
 ```scheme
 (same-as-chart
- (concurrent
-  (null k)
-  ((list-which P F) k))
- (concurrent
-  (do (@ k n c) (n))
-  (fresh (n c)
-    (k n c)
-    (choice
-      [(@ n) P]
-      [(@ c v l) (F v l)])))
+ (run
+   (null k)
+   ((list-which P F) k))
+ (run
+   (do (@ k n c) (n))
+   (fresh (n c)
+     (k n c)
+     (choice
+       [(@ n) P]
+       [(@ c v l) (F v l)])))
  (fresh (n c)
-   (concurrent
-    (do (@ k n c) (n))
-    (do (k n c)
-        (choice
-          [(@ n) P]
-          [(@ c v l) (F v l)]))))
+   (run
+     (do (@ k n c) (n))
+     (do (k n c)
+         (choice
+           [(@ n) P]
+           [(@ c v l) (F v l)]))))
  (fresh (n c)
-   (concurrent
-    (n)
-    (choice
-      [(@ n) P]
-      [(@ c v l) (F v l)])))
+   (run
+     (n)
+     (choice
+       [(@ n) P]
+       [(@ c v l) (F v l)])))
  (fresh (n c)
-   (concurrent
-    P))
+   (run
+     P))
  (fresh (n c)
    P)
  P)
@@ -752,56 +752,56 @@ process 的语义来自对 function application 的 overload，而不是来源�
 
 ```scheme
 (same-as-chart
- (concurrent
-  (cons V L k)
-  ((list-which P F) k))
- (concurrent
-  (fresh (v l)
-    (concurrent
+ (run
+   (cons V L k)
+   ((list-which P F) k))
+ (run
+   (fresh (v l)
+     (run
+       (node k v l)
+       (V v)
+       (L l)))
+   (fresh (n c)
+     (k n c)
+     (choice
+       [(@ n) P]
+       [(@ c v l) (F v l)])))
+ (fresh (v l n c)
+   (run
      (node k v l)
      (V v)
-     (L l)))
-  (fresh (n c)
-    (k n c)
-    (choice
-      [(@ n) P]
-      [(@ c v l) (F v l)])))
+     (L l)
+     (do (k n c)
+         (choice
+           [(@ n) P]
+           [(@ c v l) (F v l)]))))
  (fresh (v l n c)
-   (concurrent
-    (node k v l)
-    (V v)
-    (L l)
-    (do (k n c)
-        (choice
-          [(@ n) P]
-          [(@ c v l) (F v l)]))))
+   (run
+     (do (@ k n c) (c v l))
+     (V v)
+     (L l)
+     (do (k n c)
+         (choice
+           [(@ n) P]
+           [(@ c v l) (F v l)]))))
  (fresh (v l n c)
-   (concurrent
-    (do (@ k n c) (c v l))
-    (V v)
-    (L l)
-    (do (k n c)
-        (choice
-          [(@ n) P]
-          [(@ c v l) (F v l)]))))
+   (run
+     (c v l)
+     (V v)
+     (L l)
+     (choice
+       [(@ n) P]
+       [(@ c v l) (F v l)])))
  (fresh (v l n c)
-   (concurrent
-    (c v l)
-    (V v)
-    (L l)
-    (choice
-      [(@ n) P]
-      [(@ c v l) (F v l)])))
- (fresh (v l n c)
-   (concurrent
-    (V v)
-    (L l)
-    (F v l)))
+   (run
+     (V v)
+     (L l)
+     (F v l)))
  (fresh (v l)
-   (concurrent
-    (V v)
-    (L l)
-    (F v l))))
+   (run
+     (V v)
+     (L l)
+     (F v l))))
 ```
 
 假设 `(match)` 可以根据 `null` 和 `cons` 的定义，
