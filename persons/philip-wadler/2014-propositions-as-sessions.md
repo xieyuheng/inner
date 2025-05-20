@@ -96,7 +96,7 @@ par-lang 就是受这篇论文的启发，所以要读一下。
   ...)
 ```
 
-Fig. 1. CP, classical linear logic as a session-typed process calculus.
+## 3.1 Structural rules
 
 ```scheme
 (define-inference-rule axiom-rule
@@ -106,7 +106,11 @@ Fig. 1. CP, classical linear logic as a session-typed process calculus.
   (obey (fresh ([x A]) (run P Q)) . (merge E1 E2))
   (obey P [x A] . E1)
   (obey Q [x (dual-t A)] . E2))
+```
 
+## 3.2 Output and input
+
+```scheme
 (define-inference-rule output-rule
   (obey (run (fresh (y) (x y) P) Q) [x (times-t A B)] . (merge E1 E2))
   (obey P [y A] . E1)
@@ -115,62 +119,7 @@ Fig. 1. CP, classical linear logic as a session-typed process calculus.
 (define-inference-rule input-rule
   (obey (do (@ x y) R) [x (par-t A B)] . E)
   (obey R [y A] [x B] . E))
-
-(define-inference-rule select-left-rule
-  (obey (do (x inl) P) [x (plus-t A B)] . E)
-  (obey P [x A] . E))
-
-(define-inference-rule select-right-rule
-  (obey (do (x inr) P) [x (plus-t A B)] . E)
-  (obey P [x B] . E))
-
-(define-inference-rule choice-rule
-  (obey (choice [(@ x inl) P] [(@ x inr) Q]) [x (with-t A B)] . E)
-  (obey P [x A] . E)
-  (obey Q [x B] . E))
-
-(define-inference-rule server-accept-rule
-  (obey (! (@ x y) P) [x (of-course-t A)] . (why-not-t E))
-  (obey P [y A] . (why-not-t E)))
-
-(define-inference-rule client-request-rule
-  (obey (! (x y) P) [x (why-not-t A)] . E)
-  (obey P [y A] . E))
-
-(define-inference-rule weaken-rule
-  (obey P [x (why-not-t A)] . E)
-  (obey P . E))
-
-(define-inference-rule contract-rule
-  (obey (subst P x* x) [x (why-not-t A)] . E)
-  (obey P [x (why-not-t A)] [x* (why-not-t A)] . E))
-
-(define-inference-rule exists-rule
-  (obey (do (x A) P) [x (exists X B)] . E)
-  (obey P [x (subst B X A)] . E))
-
-(define-inference-rule forall-rule
-  (obey (do (@ x X) P) [x (forall X B)] . E)
-  (obey P [x B] . E))
-
-(define-inference-rule one-rule
-  (obey (do (x)) [x one-t]))
-
-(define-inference-rule bottom-rule
-  (obey (do (@ x) P) [x bottom-t] . E)
-  (obey P . E))
-
-;; no rule for zero
-
-(define-inference-rule top-rule
-  (obey (choice) [x top-t] . E))
 ```
-
-## 3.1 Structural rules
-
-TODO
-
-## 3.2 Output and input
 
 > Example. We give a series of examples inspired by Internet commerce,
 > based on similar examples in Caires & Pfenning (2010). Our first
@@ -201,40 +150,90 @@ TODO
     (run
       (compute name credit receipt)
       (do (x)))))
+```
 
-;; ^ as fresh + output
+`(claim buy protocol)` 其实是说，`buy` 的参数是一个 channel，
+这个 channel 满足 protocol。
+
+```scheme
+(claim put-name name-t)
+(define (put-name x) (x "tea"))
+
+(claim put-credit credit-t)
+(define (put-credit x) (x 123))
+
+(claim get-receipt receipt-t)
+(define (get-receipt x)
+  (@ x receipt)
+  ...)
 
 (define (buy x)
-  (@out x name)
+  (put-name x)
   (run
-    (put-name name)
-    (do (@out x credit)
-        (run
-          (put-credit credit)
-          (do (@ x receipt)
-              (@ x)
-              (get-receipt receipt))))))
-
-(define (sell x)
-  (@ x name)
-  (@ x credit)
-  (@out x receipt)
-  (run
-    (compute name credit receipt)
-    (do (@out x))))
+    (put-credit x)
+    (get-receipt x)))
 ```
 
 ## 3.3 Selection and choice
 
-TODO
+```scheme
+(define-inference-rule select-left-rule
+  (obey (do (x inl) P) [x (plus-t A B)] . E)
+  (obey P [x A] . E))
+
+(define-inference-rule select-right-rule
+  (obey (do (x inr) P) [x (plus-t A B)] . E)
+  (obey P [x B] . E))
+
+(define-inference-rule choice-rule
+  (obey (choice [(@ x inl) P] [(@ x inr) Q]) [x (with-t A B)] . E)
+  (obey P [x A] . E)
+  (obey Q [x B] . E))
+```
 
 ## 3.4 Servers and clients
 
-TODO
+```scheme
+(define-inference-rule server-accept-rule
+  (obey (! (@ x y) P) [x (of-course-t A)] . (why-not-t E))
+  (obey P [y A] . (why-not-t E)))
+
+(define-inference-rule client-request-rule
+  (obey (! (x y) P) [x (why-not-t A)] . E)
+  (obey P [y A] . E))
+
+(define-inference-rule weaken-rule
+  (obey P [x (why-not-t A)] . E)
+  (obey P . E))
+
+(define-inference-rule contract-rule
+  (obey (subst P x* x) [x (why-not-t A)] . E)
+  (obey P [x (why-not-t A)] [x* (why-not-t A)] . E))
+```
 
 ## 3.5 Polymorphism
 
-TODO
+```scheme
+(define-inference-rule exists-rule
+  (obey (do (x A) P) [x (exists X B)] . E)
+  (obey P [x (subst B X A)] . E))
+
+(define-inference-rule forall-rule
+  (obey (do (@ x X) P) [x (forall X B)] . E)
+  (obey P [x B] . E))
+
+(define-inference-rule one-rule
+  (obey (do (x)) [x one-t]))
+
+(define-inference-rule bottom-rule
+  (obey (do (@ x) P) [x bottom-t] . E)
+  (obey P . E))
+
+;; no rule for zero
+
+(define-inference-rule top-rule
+  (obey (choice) [x top-t] . E))
+```
 
 ## 3.6 Commuting conversions
 
