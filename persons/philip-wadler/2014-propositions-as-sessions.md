@@ -18,22 +18,22 @@ par-lang 就是受这篇论文的启发，所以要读一下。
 > Types. Propositions, which may be interpreted as session types,
 > are defined by the following grammar:
 
-| paper | lisp          | meaning                            |
-|-------|---------------|------------------------------------|
-| X     | X             | propositional variable             |
-| X^⊥   | (dual X)      | dual of propositional variable     |
-| A ⨂ B | (times A B)   | "times", output A then behave as B |
-| A ⅋ B | (par A B)     | "par", input A then behave as B    |
-| A ⨁ B | (plus A B)    | "plus", select from A or B         |
-| A & B | (with A B)    | "with", offer choice of A or B     |
-| !A    | (of-course A) | "of course!", server accept        |
-| ?A    | (why-not A)   | "why not?", client request         |
-| ∃X.B  | (forall X B)  | existential, output a type         |
-| ∀X.B  | (exists X B)  | universal, input a type            |
-| 1     | one           | unit for ⨂                         |
-| ⊥     | bottom        | unit for ⅋                         |
-| 0     | zero          | unit for ⨁                         |
-| ⊤     | top           | unit for &                         |
+| paper | lisp            | meaning                            |
+|-------|-----------------|------------------------------------|
+| X     | X               | propositional variable             |
+| X^⊥   | (dual-t X)      | dual of propositional variable     |
+| A ⨂ B | (times-t A B)   | "times", output A then behave as B |
+| A ⅋ B | (par-t A B)     | "par", input A then behave as B    |
+| A ⨁ B | (plus-t A B)    | "plus", select from A or B         |
+| A & B | (with-t A B)    | "with", offer choice of A or B     |
+| !A    | (of-course-t A) | "of course!", server accept        |
+| ?A    | (why-not-t A)   | "why not?", client request         |
+| ∃X.B  | (forall X B)    | existential, output a type         |
+| ∀X.B  | (exists X B)    | universal, input a type            |
+| 1     | one-t           | unit for ⨂                         |
+| ⊥     | bottom-t        | unit for ⅋                         |
+| 0     | zero-t          | unit for ⨁                         |
+| ⊤     | top-t           | unit for &                         |
 
 > Processes. Our process calculus is a variant on the pi-calculus
 > (Milner et al. 1992). Processes are defined by the following
@@ -100,50 +100,50 @@ Fig. 1. CP, classical linear logic as a session-typed process calculus.
 
 ```scheme
 (define-inference-rule axiom-rule
-  (obey (link w x) [w (dual A)] [x A]))
+  (obey (link w x) [w (dual-t A)] [x A]))
 
 (define-inference-rule cut-rule
   (obey (fresh ([x A]) (run P Q)) . (merge E1 E2))
   (obey P [x A] . E1)
-  (obey Q [x (dual A)] . E2))
+  (obey Q [x (dual-t A)] . E2))
 
 (define-inference-rule output-rule
-  (obey (run (fresh (y) (x y) P) Q) [x (times A B)] . (merge E1 E2))
+  (obey (run (fresh (y) (x y) P) Q) [x (times-t A B)] . (merge E1 E2))
   (obey P [y A] . E1)
   (obey Q [x B] . E2))
 
 (define-inference-rule input-rule
-  (obey (do (@ x y) R) [x (par A B)] . E)
+  (obey (do (@ x y) R) [x (par-t A B)] . E)
   (obey R [y A] [x B] . E))
 
 (define-inference-rule select-left-rule
-  (obey (do (x inl) P) [x (plus A B)] . E)
+  (obey (do (x inl) P) [x (plus-t A B)] . E)
   (obey P [x A] . E))
 
 (define-inference-rule select-right-rule
-  (obey (do (x inr) P) [x (plus A B)] . E)
+  (obey (do (x inr) P) [x (plus-t A B)] . E)
   (obey P [x B] . E))
 
 (define-inference-rule choice-rule
-  (obey (choice [(@ x inl) P] [(@ x inr) Q]) [x (with A B)] . E)
+  (obey (choice [(@ x inl) P] [(@ x inr) Q]) [x (with-t A B)] . E)
   (obey P [x A] . E)
   (obey Q [x B] . E))
 
 (define-inference-rule server-accept-rule
-  (obey (! (@ x y) P) [x (of-course A)] . (why-not E))
-  (obey P [y A] . (why-not E)))
+  (obey (! (@ x y) P) [x (of-course-t A)] . (why-not-t E))
+  (obey P [y A] . (why-not-t E)))
 
 (define-inference-rule client-request-rule
-  (obey (! (x y) P) [x (why-not A)] . E)
+  (obey (! (x y) P) [x (why-not-t A)] . E)
   (obey P [y A] . E))
 
 (define-inference-rule weaken-rule
-  (obey P [x (why-not A)] . E)
+  (obey P [x (why-not-t A)] . E)
   (obey P . E))
 
 (define-inference-rule contract-rule
-  (obey (subst P x* x) [x (why-not A)] . E)
-  (obey P [x (why-not A)] [x* (why-not A)] . E))
+  (obey (subst P x* x) [x (why-not-t A)] . E)
+  (obey P [x (why-not-t A)] [x* (why-not-t A)] . E))
 
 (define-inference-rule exists-rule
   (obey (do (x A) P) [x (exists X B)] . E)
@@ -154,16 +154,16 @@ Fig. 1. CP, classical linear logic as a session-typed process calculus.
   (obey P [x B] . E))
 
 (define-inference-rule one-rule
-  (obey (do (x)) [x one]))
+  (obey (do (x)) [x one-t]))
 
 (define-inference-rule bottom-rule
-  (obey (do (@ x) P) [x bottom] . E)
+  (obey (do (@ x) P) [x bottom-t] . E)
   (obey P . E))
 
 ;; no rule for zero
 
 (define-inference-rule top-rule
-  (obey (choice) [x top] . E))
+  (obey (choice) [x top-t] . E))
 ```
 
 ## 3.1 Structural rules
@@ -178,7 +178,50 @@ TODO
 > credit card number to a server, which returns a receipt.
 
 ```scheme
-TODO
+(claim buy (-x name-t credit-t (-o receipt-t bottom-t)))
+(claim sell (-o name-t credit-t (-x receipt-t one-t)))
+
+(define (buy x)
+  (fresh (name)
+    (x name)
+    (run
+      (put-name name)
+      (fresh (credit)
+        (x credit)
+        (run
+          (put-credit credit)
+          (do (@ x receipt)
+              (@ x)
+              (get-receipt receipt)))))))
+
+(define (sell x)
+  (@ x name) (@ x credit)
+  (fresh (receipt)
+    (x receipt)
+    (run
+      (compute name credit receipt)
+      (do (x)))))
+
+;; ^ as fresh + output
+
+(define (buy x)
+  (^ x name)
+  (run
+    (put-name name)
+    (do (^ x credit)
+        (run
+          (put-credit credit)
+          (do (@ x receipt)
+              (@ x)
+              (get-receipt receipt))))))
+
+(define (sell x)
+  (@ x name)
+  (@ x credit)
+  (^ x receipt)
+  (run
+    (compute name credit receipt)
+    (do (^ x))))
 ```
 
 ## 3.3 Selection and choice
