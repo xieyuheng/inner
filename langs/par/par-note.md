@@ -1,5 +1,6 @@
 ---
 title: par note
+repo: "https://github.com/faiface/par-lang"
 ---
 
 The types are quite literally linear logic propositions:
