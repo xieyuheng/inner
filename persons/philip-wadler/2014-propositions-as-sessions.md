@@ -152,8 +152,8 @@ par-lang 就是受这篇论文的启发，所以要读一下。
       (do (x)))))
 ```
 
-`(claim buy protocol)` 其实是说，`buy` 的参数是一个 channel，
-这个 channel 满足 protocol。
+为什么要 `fresh` 一个 channel 出来然后再 send 或 receive，
+而不是直接 send 或 receive？
 
 ```scheme
 (claim put-name name-t)
@@ -172,6 +172,27 @@ par-lang 就是受这篇论文的启发，所以要读一下。
   (run
     (put-credit x)
     (get-receipt x)))
+```
+
+`(claim buy protocol)` 其实是说，`buy` 的参数是一个 channel，
+这个 channel 满足 protocol。
+是否应该直接把 `buy` 当作 channel？
+
+```scheme
+(claim buyer (-x name-t credit-t (-o receipt-t bottom-t)))
+(claim seller (-o name-t credit-t (-x receipt-t one-t)))
+
+(define buyer
+  (buyer "tea")
+  (buyer 123)
+  (@ buyer receipt)
+  (... receipt))
+
+(define seller
+  (@ seller name)
+  (@ seller credit)
+  (let ([receipt (compute name credit)])
+    (seller receipt)))
 ```
 
 ## 3.3 Selection and choice
