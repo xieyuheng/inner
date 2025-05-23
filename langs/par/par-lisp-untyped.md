@@ -10,13 +10,15 @@ source: "https://github.com/faiface/par-lang/blob/50d85d6913d57b71cb2d2947619146
 (define (<name>) <expression> ...)
 ```
 
-# Channel spawning
+# Process syntax
+
+## Channel spawning
 
 ```scheme
 (channel (<name>) <process>)
 ```
 
-# Closing channels
+## Closing channels
 
 ```scheme
 (define program
@@ -31,7 +33,7 @@ source: "https://github.com/faiface/par-lang/blob/50d85d6913d57b71cb2d2947619146
       (user !))))
 ```
 
-# Linearity of channels
+## Linearity of channels
 
 ```scheme
 (define program
@@ -45,7 +47,7 @@ source: "https://github.com/faiface/par-lang/blob/50d85d6913d57b71cb2d2947619146
       (user !))))
 ```
 
-# Signaling
+## Signaling
 
 ```scheme
 (define program
@@ -75,7 +77,7 @@ source: "https://github.com/faiface/par-lang/blob/50d85d6913d57b71cb2d2947619146
       [:third => (user :wrong) (user !)])))
 ```
 
-# Exchanging values
+## Exchanging values
 
 ```scheme
 (define true (channel (result) (result :true !)))
@@ -108,7 +110,7 @@ source: "https://github.com/faiface/par-lang/blob/50d85d6913d57b71cb2d2947619146
       (user value1 value2 !))))
 ```
 
-# Implementing functions
+## Implementing functions
 
 ```scheme
 (define not
@@ -121,7 +123,8 @@ source: "https://github.com/faiface/par-lang/blob/50d85d6913d57b71cb2d2947619146
 (define program
   (channel (user)
     (let ([function not])
-      (@ (function true) result ?)
+      (function true)
+      (@ function result ?)
       (user result !))))
 ```
 
@@ -144,17 +147,58 @@ source: "https://github.com/faiface/par-lang/blob/50d85d6913d57b71cb2d2947619146
     (user (not true) !)))
 ```
 
-# Linking
+## Linking
 
 ```scheme
+(define true (channel (result) (result :true !)))
+(define false (channel (result) (result :false !)))
+
+(define not
+  (channel (caller)
+    (@ caller bool)
+    (match bool
+      [:true ! => (link caller false)]
+      [:false ! => (link caller true)])))
 ```
 
-# Recursion, the usual way
+## Recursion, the usual way
 
 ```scheme
+(define list-of-booleans
+  (channel (consumer)
+    (consumer
+     :item true
+     :item false
+     :item false
+     :item true
+     :item true
+     :item false
+     :empty !)))
+
+(define negate-list
+  (channel (caller)
+    (@ caller list)
+    (match list
+      [:empty ! => (caller :empty !)]
+      [:item bool =>
+        (caller :item (not bool))
+        (link caller (negate-list list))])))
+
+(define try-negate-list
+  (negate-list list-of-booleans))
 ```
 
-# Recursion, a better way
+## Recursion, a better way
 
 ```scheme
+(define negate-list
+  (channel (caller)
+    (@ caller list)
+    (begin list ;; loop point established here
+      (match list
+        [:empty ! => (caller :empty !)]
+        [:item bool =>
+          (caller :item (not bool))
+          ;; go back to the loop point
+          (loop list)]))))
 ```
