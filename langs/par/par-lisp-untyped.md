@@ -29,7 +29,7 @@ source: "https://github.com/faiface/par-lang/blob/50d85d6913d57b71cb2d2947619146
 (define program
   (channel (user)
     (let ([child (channel (parent) (parent !))])
-      (@ child ?)
+      (@ child !)
       (user !))))
 ```
 
@@ -40,10 +40,10 @@ source: "https://github.com/faiface/par-lang/blob/50d85d6913d57b71cb2d2947619146
   (channel (user)
     (let ([child1 (channel (parent) (parent !))]
           [child2 (channel (parent)
-                    (@ child1 ?) ;; captured `child1` here
+                    (@ child1 !) ;; captured `child1` here
                     (parent !))])
-      (@ child1 ?) ;; comment this line to avoid crash
-      (@ child2 ?)
+      (@ child1 !) ;; comment this line to avoid crash
+      (@ child2 !)
       (user !))))
 ```
 
@@ -106,7 +106,7 @@ source: "https://github.com/faiface/par-lang/blob/50d85d6913d57b71cb2d2947619146
                    (parent false !))])
       (@ child value1)  ;; creates a new variable `value1`
       (@ child value2)  ;; and another variable, `value2`
-      (@ child ?)
+      (@ child !)
       (user value1 value2 !))))
 ```
 
@@ -124,7 +124,7 @@ source: "https://github.com/faiface/par-lang/blob/50d85d6913d57b71cb2d2947619146
   (channel (user)
     (let ([function not])
       (function true)
-      (@ function result ?)
+      (@ function result !)
       (user result !))))
 ```
 
