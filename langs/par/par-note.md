@@ -98,3 +98,60 @@ But I don’t have to since I can just write
 ```
 x(a) …
 ```
+
+# 4
+
+**xyh**: Any story about how you find the design of expression syntax (and compiling it to process syntax)?
+
+**Michal Štrba**: Just a boring story, but purely by exploration. I got a strong sense that Wadler’s CP was the right way to go when it comes to a language for linear logic. The sense was due to it handling the hard cases of linear logic elegantly.
+
+But I wasn’t happy with CP’s overuse of auxiliary variables and a lack of expressions overall.
+
+So I went through a several iterations of redesigning it, eventually figuring out the `chan c { … }` syntax. I was happy with that.
+
+I implemented it and was playing with it, and noticed some patterns of usage. For example, if I had a function definition, I could always call it like this:
+```
+// inside a process
+let f = function
+f(argument)
+let result = f
+```
+I also noticed a similar pattern for other destructive operations.
+
+Then I figured out I could actually separate it into a chan expression:
+```
+let result = chan return {
+  let f = function
+  f(argument)
+  return <> f
+}
+```
+For constructions, I noticed I can construct pairs like this:
+```
+let pair = chan return {
+  return(first)
+  return <> second
+}
+```
+And then it all just clicked.
+
+I noticed a general pattern for constructions:
+```
+let x = <operation> rest
+// can mean
+let x = chan result {
+  result <operation>
+  result <> rest
+}
+```
+and for applications
+```
+let x = value <operation>
+// could be
+let x = chan result {
+  let object = value
+  object <operation>
+  result <> object
+}
+```
+And it just all came together perfectly after that.
