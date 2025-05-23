@@ -38,10 +38,10 @@ source: "https://github.com/faiface/par-lang/blob/50d85d6913d57b71cb2d2947619146
 ```scheme
 (define program
   (channel (user)
-    (let ((child1 (channel (parent) (parent !)))
-          (child2 (channel (parent)
+    (let ([child1 (channel (parent) (parent !))]
+          [child2 (channel (parent)
                     (@ child1 ?) ;; captured `child1` here
-                    (parent !))))
+                    (parent !))])
       (@ child1 ?) ;; comment this line to avoid crash
       (@ child2 ?)
       (user !))))
