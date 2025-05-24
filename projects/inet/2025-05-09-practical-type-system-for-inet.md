@@ -25,3 +25,13 @@ date: 2025-05-09
          result)
     (connect result z)))
 ```
+
+# assembly like syntax design
+
+```scheme
+(define-rule <pattern>
+  (assign-prop x :primitive-predicate int?)
+  (assign-prop x :auto-dup int-dup)
+  (assign-prop x :auto-drop int-drop)
+  ...)
+```
