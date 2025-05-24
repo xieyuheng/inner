@@ -80,7 +80,15 @@ propagator 和 inet 的实现带来什么启发。
 > understand.
 
 还继承了 chez-scheme 的 nanopass。
-上面这段也算是包含了一个对 compiler 的定义。
+
+<question>
+What is a compiler?
+<answer>
+A compiler is typically organized as a sequence of stages that
+progressively translate a program to the code that runs on
+hardware.
+</answer>
+</question>
 
 > The most familiar approach to describing compilers is to dedicate
 > each chapter to one pass. The problem with that approach is that it
@@ -91,7 +99,17 @@ propagator 和 inet 的实现带来什么启发。
 > language features in subsequent chapters, extending the compiler as
 > necessary.
 
-对 incremental 的定义。
+<question>
+What is an incremental approach to build a compiler?
+<answer>
+In an incremental approach,
+we build a complete compiler in each chapter,
+starting with a small input language
+that includes only arithmetic and variables.
+We add new language features in subsequent chapters,
+extending the compiler as necessary.
+</answer>
+</question>
 
 # 1 Preliminaries
 
@@ -126,12 +144,16 @@ propagator 和 inet 的实现带来什么启发。
 > links to go from one part of a program to its subparts.
 
 但是与 propagator model 相比，
-这里的 tree 只能从 parent to children。
+这里的 tree 能也只能从 parent to children。
 
 > We define a Racket `struct` for each kind of node. For this chapter
 > we require just two kinds of nodes: one for integer constants (aka
 > literals) and one for primitive operations. The following is the
 > `struct` definition for integer constants.
+
+在 Charles H. Moore 1970 年的文章
+"Programming a problem-oriented-language" 中，
+设计语言的起点也是 primitive data 和 primitive operations。
 
 ```racket
 (struct Int (value))
@@ -173,13 +195,25 @@ propagator 和 inet 的实现带来什么启发。
 这种 set theory 的观点承自 EOPL。
 
 Jeremy 也有一个演讲是介绍这种观点的：
-
-- [Crash Course on Notation in Programming Language Theory (Part 1) - λC 2018](https://www.youtube.com/watch?v=vU3caZPtT2I)
-- [Crash Course on Notation in Programming Language Theory (Part 2) - λC 2018](https://www.youtube.com/watch?v=MhuK_aepu1Y)
+- "Crash Course on Notation in Programming Language Theory - λC 2018"
+  - [Part 1](https://www.youtube.com/watch?v=vU3caZPtT2I)
+  - [Part 2](https://www.youtube.com/watch?v=MhuK_aepu1Y)
 
 一个 grammar 会定义一个集合。
-定义一个集合在于可以判断元素是否属于这个集合。
-而元素，可以理解为一个预先定义的 [Domain of discourse](https://en.wikipedia.org/wiki/Domain_of_discourse) 中的元素。
+
+定义一个集合在于：
+
+- （1）可以判断元素是否属于这个集合；
+- （2）一个基础等价关系，
+  使得给出这个集合中的任意两个元素，
+  可以判断它们是否相等。
+
+而元素，可以理解为一个预先定义的
+[Domain of discourse](https://en.wikipedia.org/wiki/Domain_of_discourse)
+中的元素。例如：
+- 所有 JSON 数据的集合。
+- 所有 sexp 表达式的的集合。
+等等。
 
 > The set is infinite (that is, one can always create larger
 > programs), so one cannot simply describe a language by listing all
