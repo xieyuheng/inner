@@ -35,6 +35,8 @@ keywords:
 # Simply typed
 
 It seems simply typed version makes more sense,
+if we want to go this way, we can learn from Milner's ML.
+
 But is it still possible to support generic dispatching?
 
 ```scheme
