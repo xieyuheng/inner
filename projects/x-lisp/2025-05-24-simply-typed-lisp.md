@@ -53,23 +53,29 @@ But is it still possible to support generic dispatching?
   [(exp-ap target arg) ...])
 ```
 
+Suppose data need to be constructed with `()`,
+even zero arity `(null)` and `(zero)`,
+so that it is clear what is a pattern in pattern matching.
+
 ```scheme
 (claim add (-> nat-t nat-t nat-t))
 (define (add x y)
   (match x
-    [zero y]
+    [(zero) y]
     [(add1 prev)
      (add1 (add prev y))]))
+
+(define-case (add (zero) y) y)
+(define-case (add (add1 prev) y) (add1 (add prev y)))
 ```
 
 ```scheme
 (claim list-map
   (fresh (A B)
     (-> (list-t A) (-> A B) (list-t B))))
-
 (define (list-map l f)
   (match l
-    [null null]
+    [(null) (null)]
     [(cons head tail)
      (cons (f head) (list-map tail f))]))
 ```
