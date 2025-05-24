@@ -34,13 +34,16 @@ propagator 和 inet 的实现带来什么启发。
 [2025-05-14] 在 inet-lisp 和 inet-forth 中，
 我已经尝试了 runtime tagged-value encoding，
 但是我是编译到一个类似 forth 的 byte code interpreter，
-现在想要学会如何编译到 native code 并且符合 C 的调用习惯。
+现在想要学会如何编译到 native code 并且符合 C 的 calling convention。
 
 读 pi calculus 时，
 想要写解释器来试验里面层层递进所介绍的各种语言，
 但是没有合适的语言来实现，
 所以需要自己的动态类型的 lisp，
 所以需要学如何写编译器来处理 closure 和 call/cc。
+
+[2025-05-24] 也许更适合用来为 pi calculus 之类的语言写解释器的，
+是 simply typed scheme，而不是 generic dispatching。
 
 # Preface
 
