@@ -226,6 +226,15 @@ Jeremy 也有一个演讲是介绍这种观点的：
 > As an example, we describe a small language, named `LangInt` , that
 > consists of integers and arithmetic operations.
 
+<question>
+What is context-free grammar rule?
+<answer>
+Each rule has a left-hand side and a right-hand side.
+If you have an AST node that matches the right-hand side,
+then you can categorize it according to the left-hand side.
+</answer>
+</question>
+
 我们没法用字体来区分 grammer 中的 terminal 与 nonterminal，
 因此我们用 `<Exp>` 来表示 nonterminal。
 
@@ -277,13 +286,25 @@ Example exp in `LangInt`：
 The concrete syntax for `LangInt`：
 
 ```bnf
-TODO
+<type> ::= Integer
+<exp> ::= <int>
+        | (read)
+        | (- <exp>)
+        | (+ <exp> <exp>)
+        | (- <exp> <exp>)
+<LangInt> ::= <exp>
 ```
 
 The abstract syntax for `LangInt`：
 
 ```bnf
-TODO
+<type> ::= Integer
+<exp> ::= (Int <int>)
+        | (Prim 'read ())
+        | (Prim '- (<exp>))
+        | (Prim '+ (<exp> <exp>))
+        | (Prim '- (<exp> <exp>))
+<LangInt> ::= (Program ’() <exp>)
 ```
 
 ## 1.3 Pattern Matching
