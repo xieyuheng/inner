@@ -29,6 +29,7 @@ keywords:
 
 ```scheme
 (declare add (-> nat? nat? nat?))
+
 (define (add x y) ...)
 ```
 
@@ -61,6 +62,7 @@ so that it is clear what is a pattern in pattern matching.
 
 ```scheme
 (claim add (-> nat-t nat-t nat-t))
+
 (define (add x y)
   (match x
     [(zero) y]
@@ -75,6 +77,7 @@ so that it is clear what is a pattern in pattern matching.
 (claim list-map
   (fresh (A B)
     (-> (list-t A) (-> A B) (list-t B))))
+
 (define (list-map l f)
   (match l
     [(null) (null)]
