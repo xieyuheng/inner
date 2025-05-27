@@ -283,7 +283,7 @@ Example exp in `LangInt`：
 > is used to store auxiliary information, but for now it is just the
 > empty list.
 
-The concrete syntax for `LangInt`：
+Figure 1.1: The concrete syntax for `LangInt`：
 
 ```bnf
 <type> ::= Integer
@@ -295,7 +295,7 @@ The concrete syntax for `LangInt`：
 <LangInt> ::= <exp>
 ```
 
-The abstract syntax for `LangInt`：
+Figure 1.2: The abstract syntax for `LangInt`：
 
 ```bnf
 <type> ::= Integer
@@ -368,6 +368,38 @@ The abstract syntax for `LangInt`：
 ```
 
 # 2 Integers and Variables
+
+## 2.1 The LangVar Language
+
+Figure 2.1: The concrete syntax for `LangVar`：
+
+```bnf
+<type> ::= Integer
+<exp> ::= <int>
+        | (read)
+        | (- <exp>)
+        | (+ <exp> <exp>)
+        | (- <exp> <exp>)
+------
+<exp> ::= <var>
+        | (let ([<var> <exp>]) <exp>)
+<LangVar> ::= <exp>
+```
+
+Figure 2.2: The abstract syntax for `LangVar`：
+
+```bnf
+<type> ::= Integer
+<exp> ::= (Int <int>)
+        | (Prim 'read ())
+        | (Prim '- (<exp>))
+        | (Prim '+ (<exp> <exp>))
+        | (Prim '- (<exp> <exp>))
+------
+<exp> ::= (Var <var>)
+       | (Let <var> <exp> <exp>)
+<LangVar> ::= (Program ’() <exp>)
+```
 
 TODO
 
