@@ -223,7 +223,7 @@ Jeremy 也有一个演讲是介绍这种观点的：
 > Grammars are often used to define the concrete syntax of a language,
 > but they can also be used to describe the abstract syntax.
 
-> As an example, we describe a small language, named `LangInt` , that
+> As an example, we describe a small language, named `LInt` , that
 > consists of integers and arithmetic operations.
 
 <question>
@@ -252,7 +252,7 @@ then you can categorize it according to the left-hand side.
 这意味着在定义 grammer 时，
 已经有 racket 这个 meta-language 了。
 
-Example exp in `LangInt`：
+Example exp in `LInt`：
 
 ```racket
 (Prim '+ ((Prim 'read ()) (Prim '- ((Int 8)))))
@@ -266,11 +266,11 @@ Example exp in `LangInt`：
 (Prim '+ (list (Prim 'read (list)) (Prim '- (list (Int 8)))))
 ```
 
-> The last grammar rule for `LangInt` states that there is a `Program`
+> The last grammar rule for `LInt` states that there is a `Program`
 > node to mark the top of the whole program:
 
 ```bnf
-<LangInt> ::= (Program '() <Exp>)
+<LInt> ::= (Program '() <Exp>)
 ```
 
 > The Program structure is defined as follows:
@@ -283,7 +283,7 @@ Example exp in `LangInt`：
 > is used to store auxiliary information, but for now it is just the
 > empty list.
 
-Figure 1.1: The concrete syntax for `LangInt`：
+Figure 1.1: The concrete syntax for `LInt`：
 
 ```bnf
 <type> ::= Integer
@@ -292,10 +292,10 @@ Figure 1.1: The concrete syntax for `LangInt`：
         | (- <exp>)
         | (+ <exp> <exp>)
         | (- <exp> <exp>)
-<LangInt> ::= <exp>
+<LInt> ::= <exp>
 ```
 
-Figure 1.2: The abstract syntax for `LangInt`：
+Figure 1.2: The abstract syntax for `LInt`：
 
 ```bnf
 <type> ::= Integer
@@ -304,7 +304,7 @@ Figure 1.2: The abstract syntax for `LangInt`：
         | (Prim '- (<exp>))
         | (Prim '+ (<exp> <exp>))
         | (Prim '- (<exp> <exp>))
-<LangInt> ::= (Program ’() <exp>)
+<LInt> ::= (Program ’() <exp>)
 ```
 
 ## 1.5 Interpreters
@@ -369,9 +369,9 @@ Figure 1.2: The abstract syntax for `LangInt`：
 
 # 2 Integers and Variables
 
-## 2.1 The LangVar Language
+## 2.1 The LVar Language
 
-Figure 2.1: The concrete syntax for `LangVar`：
+Figure 2.1: The concrete syntax for `LVar`：
 
 ```bnf
 <type> ::= Integer
@@ -383,10 +383,10 @@ Figure 2.1: The concrete syntax for `LangVar`：
 ------
 <exp> ::= <var>
         | (let ([<var> <exp>]) <exp>)
-<LangVar> ::= <exp>
+<LVar> ::= <exp>
 ```
 
-Figure 2.2: The abstract syntax for `LangVar`：
+Figure 2.2: The abstract syntax for `LVar`：
 
 ```bnf
 <type> ::= Integer
@@ -398,8 +398,37 @@ Figure 2.2: The abstract syntax for `LangVar`：
 ------
 <exp> ::= (Var <var>)
        | (Let <var> <exp> <exp>)
-<LangVar> ::= (Program ’() <exp>)
+<LVar> ::= (Program ’() <exp>)
 ```
+
+### 2.1.1 Extensible Interpreters via Method Overriding
+
+> To prepare for discussing the interpreter of LVar, we explain why we
+> implement it in an object-oriented style. Throughout this book we
+> define many interpreters, one for each language that we
+> study. Because each language builds on the prior one, there is a lot
+> of commonality between these interpreters. We want to write down the
+> common parts just once instead of many times. A naive interpreter
+> for LVar would handle the cases for variables and let but dispatch
+> to an interpreter for LInt in the rest of the cases.
+
+> The problem with this naive approach is that it does not handle
+> situations in which an LVar feature is nested inside an LInt
+> feature.
+
+> To make our interpreters extensible we need something called open
+> recursion, in which the tying of the recursive knot is delayed until
+> the functions are composed.  Object-oriented languages provide open
+> recursion via method overriding.
+
+### 2.1.2 Definitional Interpreter for LVar
+
+> The interpreter for LVar adds two new cases for variables and
+> let. For let, we need a way to communicate the value bound to a
+> variable to all the uses of the variable. To accomplish this, we
+> maintain a mapping from variables to values called an _environment_.
+
+## 2.2 The x86Int Assembly Language
 
 TODO
 
