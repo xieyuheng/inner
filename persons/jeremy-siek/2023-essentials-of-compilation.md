@@ -430,7 +430,27 @@ Figure 2.2: The abstract syntax for `LVar`：
 
 ## 2.2 The x86Int Assembly Language
 
-TODO
+Figure 2.6: The syntax of the x86Int assembly language (AT&T syntax).
+
+```bnf
+<reg> ::= rsp | rbp | rax | rbx | rcx | rdx | rsi | rdi
+        | r8 | r9 | r10 | r11 | r12 | r13 | r14 | r15
+<arg> ::= $<int>
+        | %<reg>
+        | <int>(%<reg>)
+<instr> ::= addq <arg>, <arg>
+          | subq <arg>, <arg>
+          | negq <arg>
+          | movq <arg>, <arg>
+          | pushq <arg>
+          | popq <arg>
+          | callq <label>
+          | retq
+          | jmp <label>
+          | <label>: <instr>
+<x86Int> ::= .globl main
+             main: <instr> …
+```
 
 # 3 Register Allocation
 
