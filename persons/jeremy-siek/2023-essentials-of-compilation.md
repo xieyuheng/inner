@@ -483,6 +483,71 @@ Figure 2.10: The abstract syntax of x86Int assembly.
 从 bridging the differences 的角度来看，编译器的领域就宽广多了。
 渐进地开发编译器，一定也是渐进地发现新的需要 bridging 的 differences。
 
+编译器不只是一类程序，它同时还代表了一种解决问题的思路，
+即通过翻译来解决问题，并且在实现翻译的时候可以用多层 pass 来控制复杂度。
+
+### 2.3.1 The CVar Intermediate Language
+
+Figure 2.12: The concrete syntax of the CVar intermediate language.
+
+```bnf
+<atm> ::= <int> | <var>
+<exp> ::= <atm>
+        | (read)
+        | (- <atm>)
+        | (+ <atm> <atm>)
+        | (- <atm> <atm>)
+<stmt> ::= <var> = <exp>;
+<tail> ::= return <exp>; | <stmt> <tail>
+<CVar>::= (<label>: <tail>) …
+```
+
+Figure 2.13: The abstract syntax of the CVar intermediate language.
+
+```bnf
+<atm> ::= (Int <int>)
+        | (Var <var>)
+<exp> ::= <atm>
+        | (Prim 'read ())
+        | (Prim '- (<atm>))
+        | (Prim '+ (<atm> <atm>))
+        | (Prim '- (<atm> <atm>))
+<stmt> ::= (Assign (Var <var>) <exp>)
+<tail> ::= (Return <exp>)
+         | (Seq <stmt> <tail>)
+<CVar> ::= (CProgram <info> ((<label> . <tail>) … ))
+```
+
+## 2.4 Uniquify Variables
+
+```scheme
+(define (freshen name)
+  (gensym (string-append (symbol->string name) ".")))
+
+(define ((uniquify-exp env) exp)
+  (match exp
+    [(Var name)
+     (define found-name (dict-ref env name #f))
+     (Var (or found-name name))]
+    [(Int n)
+     (Int n)]
+    [(Let name rhs body)
+     (define fresh-name (freshen name))
+     (define new-env (dict-set env name fresh-name))
+     (Let fresh-name
+          ((uniquify-exp env) rhs)
+          ((uniquify-exp new-env) body))]
+    [(Prim op args)
+     (Prim op (map (uniquify-exp env) args))]))
+
+(define (uniquify program)
+  (match program
+    [(Program info body)
+     (Program info ((uniquify-exp (list)) body))]))
+```
+
+## 2.5 Remove Complex Operands
+
 TODO
 
 # 3 Register Allocation
