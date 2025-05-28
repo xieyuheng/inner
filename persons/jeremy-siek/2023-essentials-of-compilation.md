@@ -521,6 +521,24 @@ Figure 2.13: The abstract syntax of the CVar intermediate language.
 ## 2.4 Uniquify Variables
 
 ```scheme
+(let ([x 32])
+  (+ (let ([x 10]) x) x))
+=>
+(let ([x.1 32])
+  (+ (let ([x.2 10]) x.2) x.1))
+```
+
+```scheme
+(let ([x (let ([x 4])
+           (+ x 1))])
+  (+ x 2))
+=>
+(let ([x.2 (let ([x.1 4])
+             (+ x.1 1))])
+  (+ x.2 2))
+```
+
+```scheme
 (define (freshen name)
   (gensym (string-append (symbol->string name) ".")))
 
@@ -547,6 +565,10 @@ Figure 2.13: The abstract syntax of the CVar intermediate language.
 ```
 
 ## 2.5 Remove Complex Operands
+
+TODO
+
+## 2.6 Explicate Control
 
 TODO
 
