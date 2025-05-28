@@ -452,6 +452,39 @@ Figure 2.6: The syntax of the x86Int assembly language (AT&T syntax).
              main: <instr> …
 ```
 
+## 2.3 Planning the Trip to x86
+
+Figure 2.10: The abstract syntax of x86Int assembly.
+
+```bnf
+<reg> ::= rsp | rbp | rax | rbx | rcx | rdx | rsi | rdi
+       | r8 | r9 | r10 | r11 | r12 | r13 | r14 | r15
+<arg> ::= (Imm <int>)
+       | (Reg <reg>)
+       | (Deref <reg> <int>)
+<instr> ::= (Instr addq (<arg> <arg>))
+         | (Instr subq (<arg> <arg>))
+         | (Instr negq (<arg>))
+         | (Instr movq (<arg> <arg>))
+         | (Instr pushq (<arg>))
+         | (Instr popq (<arg>))
+         | (Callq <label> <int>)
+         | (Retq)
+         | (Jmp <label>)
+<block> ::= (Block <info> (<instr> … ))
+<x86Int> ::= (X86Program <info> ((<label> . <block>) … ))
+```
+
+> To compile one language to another, it helps to focus on the
+> differences between the two languages because the compiler will need
+> to bridge those differences. What are the differences between LVar
+> and x86 assembly?
+
+从 bridging the differences 的角度来看，编译器的领域就宽广多了。
+渐进地开发编译器，一定也是渐进地发现新的需要 bridging 的 differences。
+
+TODO
+
 # 3 Register Allocation
 
 # 4 Booleans and Conditionals
