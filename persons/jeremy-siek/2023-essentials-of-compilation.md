@@ -566,7 +566,37 @@ Figure 2.13: The abstract syntax of the CVar intermediate language.
 
 ## 2.5 Remove Complex Operands
 
-TODO
+Figure 2.15: LVarMon is LVar with operands restricted to atomic expressions.
+
+```bnf
+<atm> ::= (Int <int>)
+        | (Var <var>)
+<exp> ::= <atm>
+        | (Prim 'read ())
+        | (Prim '- (<atm>))
+        | (Prim '+ (<atm> <atm>))
+        | (Prim '- (<atm> <atm>))
+        | (Let <var> <exp> <exp>)
+<LVarMon> ::= (Program '() <exp>)
+```
+
+```scheme
+(let ([x (+ 42 (- 10))])
+  (+ x 10))
+=>
+(let ([x (let ([tmp.1 (- 10)])
+           (+ 42 tmp.1))])
+  (+ x 10))
+```
+
+> The atomic expressions are pure (they do not cause or depend on side
+> effects) whereas complex expressions may have side effects, such as
+> `(Prim 'read ())`.  A language with this separation between pure
+> expressions versus expressions with side effects is said to be in
+> monadic normal form (Moggi 1991; Danvy 2003), which explains the mon
+> in the name LVarMon.
+
+TODO note about mutual recursion
 
 ## 2.6 Explicate Control
 
