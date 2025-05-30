@@ -75,7 +75,7 @@ so that it is clear what is a pattern in pattern matching.
 
 ```scheme
 (claim list-map
-  (fresh (A B)
+  (fresh-type (A B)
     (-> (list-t A) (-> A B) (list-t B))))
 
 (define (list-map l f)
@@ -83,4 +83,12 @@ so that it is clear what is a pattern in pattern matching.
     [(null) (null)]
     [(cons head tail)
      (cons (f head) (list-map tail f))]))
+```
+
+用 `nu` 代表 `fresh-type`：
+
+```scheme
+(claim list-map
+  (nu (A B)
+    (-> (list-t A) (-> A B) (list-t B))))
 ```
