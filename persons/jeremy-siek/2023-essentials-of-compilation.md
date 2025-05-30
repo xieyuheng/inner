@@ -596,7 +596,24 @@ Figure 2.15: LVarMon is LVar with operands restricted to atomic expressions.
 > monadic normal form (Moggi 1991; Danvy 2003), which explains the mon
 > in the name LVarMon.
 
-TODO note about mutual recursion
+> We recommend implementing this pass with two mutually recursive
+> functions, `rco-atom` and `rco-exp`. The idea is to apply `rco-atom`
+> to subexpressions that need to become atomic and to apply `rco-exp`
+> to subexpressions that do not. Both functions take an LVar
+> expression as input. The `rco-exp` function returns an expression.
+> The `rco-atom` function returns two things: an atomic expression and
+> an alist mapping temporary variables to complex subexpressions.
+
+> In the example program with the expression `(+ 42 (- 10))`, the
+> subexpression `(- 10)` should be processed using the `rco-atom`
+> function because it is an argument of the + operator and therefore
+> needs to become atomic. The output of `rco-atom` applied to `(- 10)`
+> is as follows:
+
+```scheme
+(- 10)  =>  tmp.1
+            ((tmp.1 . (- 10)))
+```
 
 ## 2.6 Explicate Control
 
