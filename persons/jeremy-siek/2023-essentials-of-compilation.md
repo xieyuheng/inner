@@ -458,19 +458,19 @@ Figure 2.10: The abstract syntax of x86Int assembly.
 
 ```bnf
 <reg> ::= rsp | rbp | rax | rbx | rcx | rdx | rsi | rdi
-       | r8 | r9 | r10 | r11 | r12 | r13 | r14 | r15
+        | r8 | r9 | r10 | r11 | r12 | r13 | r14 | r15
 <arg> ::= (Imm <int>)
-       | (Reg <reg>)
-       | (Deref <reg> <int>)
+        | (Reg <reg>)
+        | (Deref <reg> <int>)
 <instr> ::= (Instr addq (<arg> <arg>))
-         | (Instr subq (<arg> <arg>))
-         | (Instr negq (<arg>))
-         | (Instr movq (<arg> <arg>))
-         | (Instr pushq (<arg>))
-         | (Instr popq (<arg>))
-         | (Callq <label> <int>)
-         | (Retq)
-         | (Jmp <label>)
+          | (Instr subq (<arg> <arg>))
+          | (Instr negq (<arg>))
+          | (Instr movq (<arg> <arg>))
+          | (Instr pushq (<arg>))
+          | (Instr popq (<arg>))
+          | (Callq <label> <int>)
+          | (Retq)
+          | (Jmp <label>)
 <block> ::= (Block <info> (<instr> … ))
 <x86Int> ::= (X86Program <info> ((<label> . <block>) … ))
 ```
@@ -616,6 +616,10 @@ Figure 2.15: LVarMon is LVar with operands restricted to atomic expressions.
 ```
 
 ## 2.6 Explicate Control
+
+TODO
+
+## 2.7 Select Instructions
 
 TODO
 
