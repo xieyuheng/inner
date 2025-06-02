@@ -36,7 +36,7 @@ year: 2003
 在两种现象中，观察到相似的关系，就能形成 metaphor。
 这和数学结构之间的同构和同态类似。
 
-这一章的典型例子是 argument is war metaphor。
+这一章的典型例子是 ARGUMENT IS WAR metaphor。
 为什么人们要用和 war 相关的词语来讨论 argument 呢？
 也许和数学结构一样是为了经济性，即可以重用旧词。
 
@@ -47,5 +47,68 @@ year: 2003
 > conceptual system is metaphorically structured and defined.
 
 # 2 The Systematicity of Metaphorical Concepts
+
+当发现了 ARGUMENT 和 WAR 之间的部分相似性，
+并且建立起来了 ARGUMENT IS WAR metaphor，
+WAR 的结构就会反过来塑造 ARGUMENT 的结构。
+
+这一章的例子是 TIME IS MONEY metaphor。
+
+# 3 Metaphorical Systematicity: Highlighting and Hiding
+
+> The very systematicity that allows us to comprehend one aspect of a
+> concept in terms of another (e.g. ,comprehending an aspect of
+> arguing in terms of battle) will necessarily hide other aspects of
+> the concept. In allowing us to focus on one aspect of a concept
+> (e.g., the battling aspects ofarguing), a metaphorical concept can
+> keep us from focusing on other aspects of the concept that are
+> inconsistent with that metaphor.
+
+比如在辩论中，如果我输了辩论，那么我就纠正了我的错误的 belief。
+但是没法在 war metaphor 中被表达出来的。
+
+> Someone who is arguing with you can be viewed as giving you his
+> time, a valuable commodity, in an effort at mutual understanding.
+> But when we are preoccupied with the battle aspects, we often lose
+> sight of the cooperative aspects.
+
+这一章的例子是关于语言的复杂的 conduit metaphor：
+
+IDEAS (OR MEANINGS) ARE OBJECTS.
+LINGUISTIC EXPRESSIONS ARE CONTAINERS.
+COMMUNICATION IS SENDING.
+
+> The speaker puts ideas (objects) into words (containers) and sends
+> them (along a conduit) to a hearer who takes the idea/objects out of
+> the word/containers.
+
+某个文化圈常用的 metaphor 为其提供了默认的 model，
+来理解作为 metaphor 的 domain 的现象。
+但是这种默认的 model 经常是肤浅的，不科学的，
+经常会让人们误入歧途的。
+
+> The part of the metaphor that says LINGUISTIC EXPRESSIONS ARE
+> CONTAINERS FOR MEANING entails that words (and sentences) have
+> meanings independent of contexts and speakers.
+
+> It is important to see that the metaphorical structuring
+> involved here is partial, not total.
+
+metaphor 是同态而非同构。
+
+# 4 Orientational Metaphors
+
+即方位隐喻。
+
+看不同文化的隐喻差异是很有趣的，
+比如 "I'm depressed" 中有方位隐喻，
+因为 depressed 的词源是 to press down。
+而中文翻译「焦虑」的「焦」，
+《說文》本作焳。火所傷也。
+
+这里提到了隐喻的经验基础（experiential basis），
+想用经验基础来解释隐喻的存在，以及隐喻之间的关系。
+
+# 5 Metaphor and Cultural Coherence
 
 TODO
