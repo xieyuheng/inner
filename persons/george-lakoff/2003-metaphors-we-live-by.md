@@ -146,4 +146,22 @@ THE MIND IS A BRITTLE OBJECT
 对比一下可以发现中国对 MIND 的隐喻是非常不同的，
 在读中国古典著作的时候，可以尝试去发现和总结一下其中的核心隐喻。
 
+关于容器隐喻：
+
+> We are physical beings, bounded and set off from the rest of the
+> world by the surface of our skins, and we experience the rest of the
+> world as outside us. Each of us is a container, with a bounding
+> surface and an in-out orientation. We project our own in-out
+> orientation onto other physical objects that are bounded by
+> surfaces. Thus we also view them as containers with an inside and an
+> outside.
+
+这里说的有些问题，
+因为人体并非典型的容器，
+不是这个隐喻的 domain 而是 codomain。
+
+或者说，人们所创造的拓扑和几何结构，
+并非单一或主要来源于人体之内外的体验，
+尽管这个体验也是促使人们创造这些结构的经验的一部分。
+
 TODO
