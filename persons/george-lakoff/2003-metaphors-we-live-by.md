@@ -22,6 +22,15 @@ year: 2003
 但是想象的对象是什么？
 好像还是以人们的体验为基础的。
 
+# My Summary
+
+[2025-06-04] 庞加莱在研究拓扑结构的时候，
+会尝试从经验出发，寻找人们构造出如是拓扑结构的原因。
+说人类的认知结构是以 metaphor 为基础的，
+也就是说人们的认知是以经验为基础的。
+但是还要认识到人们有从经验做抽象的能力，
+例如人们所构造的数学结构。
+
 # 1 Concepts We Live By
 
 想要研究人类 conceptual system 中的 metaphorical structure，
@@ -160,8 +169,72 @@ THE MIND IS A BRITTLE OBJECT
 因为人体并非典型的容器，
 不是这个隐喻的 domain 而是 codomain。
 
+即 BODY IS CONTAINER，
+意思是有 CONTAINER -> BODY 的 morphism，
+并非反过来。
+本书中形如 BODY IS CONTAINER，
+的句子都是 codomain IS domain。
+
 或者说，人们所创造的拓扑和几何结构，
 并非单一或主要来源于人体之内外的体验，
 尽管这个体验也是促使人们创造这些结构的经验的一部分。
+
+人对世界的认识确实是以隐喻为基础的，经验确实是认知的基础。
+但是人不只能使用一种经验到另一种经验的直接隐喻，
+人还能从多种隐喻中抽象出其核心重要的结构，
+拓扑和几何结构就是最典型的例子。
+
+> And such defining of a territory, putting a boundary around it, is
+> an act of quantification. Bounded objects, whether human beings,
+> rocks, or land areas, have sizes. This allows them to be quantified
+> in terms of the amount of substance they contain.
+
+这里再次提到了 substance，
+可以看出在作者看来 object 与 substance 的对立，
+确实是离散与连续的对立，
+因为连续这一概念本身的基础正是边界。
+
+下面提到了 VISUAL FIELDS ARE CONTAINERS 这个隐喻，
+但是我觉得这已经不是一个简单的隐喻了，
+而是人们通过抽象的几何结构来认识空间的行为。
+
+下面所举的 RACE 例子，让人想到写程序时
+object as container has properties：
+
+> A race, for example, is anevent, which is viewed as a discrete
+> entity.  The race exists in space and time, and it has well-defined
+> boundaries.  Hence we view it as a CONTAINER OBJECT, having in it
+> participants (which are objects), events like the start and finish
+> (which are metaphorical objects), and the activity of running (which
+> is a metaphorical substance).
+
+```scheme
+(define-class race-t
+  (claim participants (list-t participant-t))
+  (claim start event-t)
+  (claim end event-t)
+  (claim running activity-t))
+```
+
+```cicada
+class Race {
+  participants: List(Participant)
+  start: Event
+  end: Event
+  running: Activity
+}
+```
+
+> Thus, activities are viewed as containers for the actions and other
+> activities that make them up. They are also viewed as containers for
+> the energy and materials required for them and for their by-products,
+> which may be viewed as in them or as emerging from them.
+
+> Various kinds of states may also be conceptualized as containers.
+
+activities 和 states 都通常被理解为 containers，
+也解释了为什么集合论可以用来作为很多模型的基础理论。
+
+# 7 Personification
 
 TODO
