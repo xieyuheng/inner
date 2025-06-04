@@ -237,4 +237,10 @@ activities 和 states 都通常被理解为 containers，
 
 # 7 Personification
 
+> Perhaps the most obvious ontological metaphors are those where the
+> physical object is further specified as being a person. This allows
+> us to comprehend a wide variety of experiences with nonhuman
+> entities in terms of human motivations, characteristics, and
+> activities.
+
 TODO
