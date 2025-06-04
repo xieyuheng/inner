@@ -111,4 +111,39 @@ metaphor 是同态而非同构。
 
 # 5 Metaphor and Cultural Coherence
 
+在一种文化内，不同的 metaphor 会趋于 coherence。
+
+# 6 Ontological Metaphors
+
+> Understanding our experiences in terms of objects and substances
+> allows us to pick out parts of our experience and treat them as
+> discrete entities or substances of a uniform kind.
+
+看来在作者的理解中，
+objects 和 substances 的对立，
+就是离散与连续的对立。
+
+关于离散：
+
+> Human purposes typically require us to impose artificial boundaries
+> that make physical phenomena discrete just as we are: entities
+> bounded by a surface.
+
+这里的例子是动词的名词化，
+比如 the experience of rising prices
+被赋予名词 inflation。
+
+这里给出的例子是：
+
+THE MIND IS AN ENTITY
+THE MIND IS A MACHINE
+THE MIND IS A BRITTLE OBJECT
+
+> The machine metaphor gives us a conception of the mind as having an
+> on-off state, a level of efficiency, a productive capacity, an
+> internal mechanism, a source of energy, and an operating condition.
+
+对比一下可以发现中国对 MIND 的隐喻是非常不同的，
+在读中国古典著作的时候，可以尝试去发现和总结一下其中的核心隐喻。
+
 TODO
