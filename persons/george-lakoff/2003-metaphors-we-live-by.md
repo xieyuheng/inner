@@ -243,4 +243,70 @@ activities 和 states 都通常被理解为 containers，
 > entities in terms of human motivations, characteristics, and
 > activities.
 
+例如：
+
+INFLATION IS A PERSON
+INFLATION IS AN ADVERSARY
+
+> The point here is that personification is a general category that
+> covers a very wide range of metaphors, each picking out different
+> aspects of a person or ways of looking at a person.
+
+> When we are suffering substantial economic losses due to complex
+> economic and political factors that no one really understands, the
+> inflation is anadversary metaphor at least gives us a coherent
+> account of why we're suffering these losses.
+
+# 8 Metonymy
+
+转喻。
+
+> ... we are using one entity to refer to another that is related to it.
+> This is a case of what we will call _metonymy_.
+
+> Metaphor and metonymy are different _kinds_ of processes. Metaphor
+> is principally a way of conceiving of one thing in terms of another,
+> and its primary function is understanding. Metonymy, on the other
+> hand, has primarily a referential function, that is, it allows us to
+> use one entity to _stand_ for another.
+
+典型的转喻是：
+
+THE PART FOR THE WHOLE
+
+选择了什么 PART 去代表 WHOLE，也包含了意义。
+
+当我们使用转喻时，我们不光指像了被指代物，
+还强调了指代物与被指代物之间的关系。
+
+例如：
+
+THE FACE FOR THE PERSON
+
+> We function in terms of a metonymy when we perceive the person
+> in terms of his face and act on those perceptions.
+
+又例如：
+
+PRODUCER FOR PRODUCT
+OBJECT USED FOR USER
+CONTROLLER FOR CONTROLLED
+INSTITUTION FOR PEOPLE RESPONSIBLE
+THE PLACE FOR THE INSTITUTION
+THE PLACE FOR THE EVENT
+
+这种看似模糊的引用，在自然语言中常见，
+在程序语言中，想必是很难出现的。
+但是其实，程序语言中命名函数与变量的过程，
+还是要依赖自然语言。
+也就是说，程序语言的语言学要素可以被分为两类：
+- 一类用以形成对机器的意义。
+- 一类用以形成对人类的意义。
+
+宗教符号都是转喻，比如：
+
+DOVE FOR HOLY SPIRIT
+
+# 9 Challenges to Metaphorical Coherence
+
 TODO
