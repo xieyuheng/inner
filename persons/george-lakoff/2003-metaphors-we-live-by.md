@@ -309,4 +309,9 @@ DOVE FOR HOLY SPIRIT
 
 # 9 Challenges to Metaphorical Coherence
 
+两个不同的具体的隐喻，可能被同一个更抽象的隐喻所包含。
+此时称这两个更具体的隐喻为 coherence。
+
+# 10 Some Further Examples
+
 TODO

@@ -45,6 +45,27 @@ propagator 和 inet 的实现带来什么启发。
 [2025-05-24] 也许更适合用来为 pi calculus 之类的语言写解释器的，
 是 simply typed scheme，而不是 generic dispatching。
 
+# My Summary
+
+[2025-06-05] 作为渐进的开发与教学的著作，
+作者在两个方面践行了渐进：
+
+- 多个 pass 渐进。
+- 多个 lang 渐进。
+
+多个 pass 渐进很容易实现。
+
+但是实现多个 lang 渐进的时候，
+作者用到了 class 与 open recursion。
+在实际的实现中，
+可能根本不必保留多个 lang 的历史，
+因此不用使用这些更为复杂的语言功能。
+
+还有其他保持开发历史的方式：
+
+- 复制粘贴每个阶段的语言。
+- git repo + tags。
+
 # Preface
 
 > We take you on a journey through constructing your own compiler for
