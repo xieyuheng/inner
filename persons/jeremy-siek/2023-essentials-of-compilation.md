@@ -66,6 +66,37 @@ propagator 和 inet 的实现带来什么启发。
 - 复制粘贴每个阶段的语言。
 - git repo + tags。
 
+[2025-06-06] 上面说不需要 lang 之间的渐进，
+但是 c-program 的 exp 是 program 的 exp 的子集。
+
+```bnf
+<exp> ::= (Int <int>)
+        | (Var <var>)
+        | (Prim 'read ())
+        | (Prim '- (<exp>))
+        | (Prim '+ (<exp> <exp>))
+        | (Prim '- (<exp> <exp>))
+        | (Let <var> <exp> <exp>)
+<LVar> ::= (Program '() <exp>)
+```
+
+```bnf
+<atm> ::= (Int <int>)
+        | (Var <var>)
+<exp> ::= <atm>
+        | (Prim 'read ())
+        | (Prim '- (<atm>))
+        | (Prim '+ (<atm> <atm>))
+        | (Prim '- (<atm> <atm>))
+<stmt> ::= (Assign (Var <var>) <exp>)
+<tail> ::= (Return <exp>)
+         | (Seq <stmt> <tail>)
+<CVar> ::= (CProgram <info> ((<label> . <tail>) … ))
+```
+
+如果要区分 c-program 与 program，并且还想要重用代码，
+就还是需要 class 与 open recursion。
+
 # Preface
 
 > We take you on a journey through constructing your own compiler for
