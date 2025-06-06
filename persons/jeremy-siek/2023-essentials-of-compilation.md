@@ -77,7 +77,7 @@ propagator 和 inet 的实现带来什么启发。
         | (Prim '+ (<exp> <exp>))
         | (Prim '- (<exp> <exp>))
         | (Let <var> <exp> <exp>)
-<LVar> ::= (Program '() <exp>)
+<program> ::= (Program '() <exp>)
 ```
 
 ```bnf
@@ -91,7 +91,7 @@ propagator 和 inet 的实现带来什么启发。
 <stmt> ::= (Assign (Var <var>) <exp>)
 <tail> ::= (Return <exp>)
          | (Seq <stmt> <tail>)
-<CVar> ::= (CProgram <info> ((<label> . <tail>) … ))
+<c-program> ::= (CProgram <info> ((<label> . <tail>) … ))
 ```
 
 如果要区分 c-program 与 program，并且还想要重用代码，
