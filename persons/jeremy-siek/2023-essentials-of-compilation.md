@@ -97,6 +97,8 @@ propagator 和 inet 的实现带来什么启发。
 如果要区分 c-program 与 program，并且还想要重用代码，
 就还是需要 class 与 open recursion。
 
+有没有办法避免这种情况？
+
 # Preface
 
 > We take you on a journey through constructing your own compiler for
