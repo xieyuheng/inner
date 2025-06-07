@@ -60,7 +60,7 @@ year: 1995
 
 这看来与 jeremy siek 和 abdulaziz ghuloum 的课程都不同。
 
-# 2.1 The Run-time Model
+## 2.1 The Run-time Model
 
 这里所描述的 run-time model，
 没有 forth 的 run-time model 简单，
@@ -73,7 +73,11 @@ forth 用两个 stack，
 也可以基于这里所描述的 run-time model 写一个 vM，
 作为 intermediate language 的 specification。
 
-# 2.2 Code Generation
+## 2.2 Code Generation
+
+TODO
+
+## 2.3 Compiling to Intermediate Code
 
 TODO
 
