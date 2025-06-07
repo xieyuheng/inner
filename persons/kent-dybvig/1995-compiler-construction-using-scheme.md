@@ -186,8 +186,9 @@ n ∈ N
 
 ## 4.2 Run-time Topics
 
-TODO
-
-# 5 Conclusions
-
-TODO
+> Some of the topics covered in a past course have been:
+>
+> - separate compilation,
+> - buffered I/O,
+> - first-class continuations [14], and
+> - garbage collection.
