@@ -19,7 +19,8 @@ year: 1967
 
 [2025-06-08] 这篇论文看起来是想要为程序语言的数学奠基，
 即从对程序语言设计中的现象做解释说明（explication），
-过度到使用数学模型来解释这些现象。
+过度到使用数学模型来解释这些现象，
+即 denotational semantic。
 
 这个课程中有很多对名词的定义，
 很适合写成 mimor 卡片来回顾。
@@ -839,19 +840,143 @@ interaction nets 可以做到让这个 partial order 中，
 - `R` 就是 `evaluate`。
 - `L` 是针对 L-value 的 `evaluate`，也许可以叫做 `locate`。
 
-TODO
+> These functions show an application to Schönfinkel’s device which is
+> of more than merely notational convenience. The function R, for
+> example, shows that its result depends on both ε and σ , so it might
+> be thought natural to write it as R(ε, σ). However by writing R ε σ
+> and remembering that by our convention of association to the left
+> this means (R ε)σ it becomes natural to consider the application of
+> R to ε separately and before the application of R ε to σ. These two
+> phases correspond in a very convenient way to the processes of
+> compilation, which involves manipulation of the text of the program,
+> and execution which involves using the store of the computer. Thus
+> the notation allows us to distinguish clearly between compile-time
+> and execution-time processes. This isolation of the effect of σ is a
+> characteristic of the method of semantic description described here.
 
 ### 3.3.3 Commands
 
-TODO
+> Commands can be considered as functions which transform σ. Thus
+> the assignment
+>
+>     ε1 := ε2
+>
+> has the effect of producing a store
+>
+>     σ' = U(α1, β2)σ
+>
+> where
+>
+>     α1 = L ε1 σ
+>
+> and
+>
+>     β2 = R ε2 σ
+>
+> so that
+>
+>     σ' = U (L ε1 σ, R ε2 σ)σ
+>
+> and if θ is the function on σ which is equivalent to the original command we have
+>
+>     σ 0 = θσ
+>
+> where
+>
+>     θ = λσ.U(L ε1 σ, R ε2 σ)σ
+
+> Sequences of commands imply the successive application of sequences
+> of θ's. Thus, for example, if γ1, γ2, γ3 are commands and θ1, θ2, θ3
+> the equivalent functions on σ, the command sequence (or compound
+> command)
+>
+>     γ1;γ2;γ3;
+>
+> applied to a store σ will produce a store
+>
+>     σ 0 = θ3(θ2(θ1 σ))
+>         = (θ3·θ2·θ1)σ
+>
+> where f·g is the function product of f and g.
+
+> Conditional expressions can also be treated more naturally. The
+> dummy argument introduced in the last section to delay evaluation
+> can be taken to be σ with considerable advantages in
+> transparency. Thus
+>
+>     R(ε1 -> ε2, ε3)σ = If(R ε1 σ)(R ε2, R ε3)σ
+>
+> and
+>
+>     L(ε1 -> ε2, ε3)σ = If(R ε1 σ)(L ε2, L ε3)σ
+
+> An interesting feature of this approach to the semantics of
+> programming languages is that all concept of sequencing appears to
+> have vanished. It is, in fact, replaced by the partially ordered
+> sequence of functional applications which is specified by
+> λ-expressions.
+
+> In the remaining sections we shall revert to a slightly less formal
+> approach, and try to isolate some important ‘high level’ concepts in
+> programming languages.
 
 ## 3.4 Definition of functions and routines
 
 ### 3.4.1 Functional abstractions
+
+> In order to combine programs hierarchically we need the process of
+> functional abstraction. That is to say that we need to be able to
+> form functions from expressions such as
+>
+>     let f[x] = 5x + 3x^2 + 2/x^3
+
 ### 3.4.2 Parameter calling modes
+
+> When the function is used (or called or applied) we write f[ε] where
+> ε can be an expression. If we are using a referentially transparent
+> language all we require to know about the expression ε in order to
+> evaluate f[ε] is its value. There are, however, two sorts of value,
+> so we have to decide whether to supply the R-value or the L-value of
+> ε to the function f. Either is possible, so that it becomes a part
+> of the definition of the function to specify for each of its bound
+> variables (also called its formal parameters) whether it requires an
+> R-value or an L-value. These alternatives will also be known as
+> calling a parameter by _value_ (R-value) or _reference_ (L-value).
+
+也许 call-by-value 和 call-by-reference 就是从这里来的。
+
+注释中解释了 ALGOL 60 call-by-name：
+
+> Let f be an ALGOL procedure which calls a formal parameter x by
+> name. Then a call for f with an actual parameter expression ε will
+> have the same effect as forming a parameterless procedure λ().ε
+> and supplying this by value to a procedure f* which is derived from
+> f by replacing every written occurrence of x in the body of f by
+> x(). The notation λ().ε denotes a parameterless procedure whose body
+> is ε while x() denotes its application (to a null parameter list).
+
+Strachey 解释问题的方式真清晰。
+
 ### 3.4.3 Modes of free variables
+
+讲了：
+
+- lexical scope
+- passing pointer + auto deref
+- dynamic scope
+
 ### 3.4.4 Own variables
+
+> The purpose is to allow a variable to preserve its value from one
+> application of a function to the next -- say to produce a
+> pseudo-random number or to count the number of times the function is
+> applied. ... What we need is a way of limiting the scope of a
+> variable to be the definition only.
+
 ### 3.4.5 Functions and routines
+
+
+
 ### 3.4.6 Constants and variables
 ### 3.4.7 Fixed and free
 ### 3.4.8 Segmentation
