@@ -14,6 +14,16 @@ year: 1993
 
 看来这篇论文解决了这个问题。
 
+# My Summary
+
+[2025-06-08] 之看算法而不看对算法正确性的证明的话，其实 idea 非常简单。
+本质上是要比较 infinite tree，
+而这些 infinite tree 都是由 rooted directed graph 生成的，
+想要比较两个 rooted directed graphs，
+只需要在遍历的过程中记录所走过的两个 pathes 上的 nodes 的 address pair，
+称这个 address pair 的 list 为 trail，
+递归的时候带上这个 trail 即可。
+
 # Abstract
 
 > We investigate the interactions of subtyping and recursive types, in
@@ -182,8 +192,93 @@ TODO
 
 等价的推演规则要独立于 subtyping 的推演规则给出。
 
+TODO
+
 ## 1.4 Subtyping of Recursive Types
+
+介绍判断 recursive structural type 的 subtype relation 时的难点。
+
+TODO
+
 ## 1.5 Algorithm outline
+
+介绍利用 trail 来比较 rooted directed graph 的算法。
+
+整个 idea 可以被总结为：
+
+- 递归定义所生成的无限树，某种意义上来说都是无限循环树，
+  正如分数所生成的无穷小数都是无限循环小数的。
+  无限循环数显然能被表示为有根有向图。
+
+- 想要递归地比较两个有根有向图，
+  只需要在比较时记录所走过的 path 为 trail。
+
+TODO
+
+> For other interesting examples,
+> check how µt.(t→t) ≤ µs.(s→s) succeeds,
+> and how µt.(t→⊥) ≤ µs.(s→⊤) fails.
+
+```
+{} µt.(t→t) ≤ µs.(s→s)
+---------------------- {
+  {t ≤ s} t→t ≤ s→s
+  ----------------- {
+    {t ≤ s} t ≤ s
+    ------------- {
+      success
+    }
+    {t ≤ s} s ≤ t
+    ------------- [loopback s and t] {
+      {t ≤ s} µs.(s→s) ≤ µt.(t→t)
+      --------------------------- {
+        {t ≤ s, s ≤ t} s→s ≤ t→t
+        ------------------------ {
+          {t ≤ s, s ≤ t} s ≤ t
+          -------------------- {
+            success
+          }
+          {t ≤ s, s ≤ t} t ≤ s
+          -------------------- {
+            success
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+```
+{} µt.(t→⊥) ≤ µs.(s→⊤)
+---------------------- {
+  {t ≤ s} t→⊥ ≤ s→⊤
+  ----------------- {
+    {t ≤ s} s ≤ t
+    ------------- [loopback s and t] {
+      {t ≤ s} µs.(s→⊤) ≤ µt.(t→⊥)
+      --------------------------- {
+        {t ≤ s, s ≤ t} s→⊤ ≤ t→⊥
+        ------------------------ {
+          {t ≤ s, s ≤ t} ⊤ ≤ ⊥
+          -------------------- {
+            fail
+          }
+          {t ≤ s, s ≤ t} t ≤ s
+          -------------------- {
+            success
+          }
+        }
+      }
+    }
+    {t ≤ s} ⊥ ≤ ⊤
+    ------------- {
+      success
+    }
+  }
+}
+```
+
 ## 1.6 Formal development
 
 # 2 A Simply Typed λ-calculus with Recursive Types
