@@ -15,6 +15,15 @@ year: 1967
 
 所以要读一下。
 
+# My Summary
+
+[2025-06-08] 这篇论文看起来是想要为程序语言的数学奠基，
+即从对程序语言设计中的现象做解释说明（explication），
+过度到使用数学模型来解释这些现象。
+
+这个课程中有很多对名词的定义，
+很适合写成 mimor 卡片来回顾。
+
 # Foreword
 
 Foreword 的作者是 Peter Mosses 写于 2000。
@@ -324,10 +333,21 @@ A[a > b j, k] := A[i]
 
 就赋值命令而言，等号左边的表达式和等号右边的表达式意义不同。
 
-就 variable 而言，确实要区分 L-value 和 R-value；
-但是就 vector（或 list）而言，
-这样的区分只是为了把 `vector-set!` 和 `vector-ref` 这两个函数，
+就 vector（或 list）而言，
+区分 L-value 和 R-value 只是为了把
+`vector-set!` 和 `vector-ref` 这两个函数，
 强行捏在一起，使用一个语法元素来表达 `:=`。
+
+但是就 variable 而言，
+`set!` 确实要区分 L-value 和 R-value，
+因此这个概念是重要的。
+毕竟 store 和 load 确实是计算机构架中最本质的概念。
+
+尽管如此，但是假设我设计的是纯函数语言，没有 `set!`，
+那么就可以完全消除 L-value 和 R-value 的概念了。
+其实不用是纯函数式（没有副作用），
+只要排除对 variable 的 `set!` 这一种副作用，
+就可以消除 L-value 和 R-value 的概念。
 
 > Roughly speaking an expression on the left stands for an ‘address’
 > and one on the right for a ‘value’ which will be stored there.
@@ -353,15 +373,145 @@ A[a > b j, k] := A[i]
 
 ## 2.3 Definitions
 
-TODO
+> In CPL a programmer can introduce a new quantity and give it a value
+> by an initialised definition such as
+>
+>     let p = 3.5
+>
+> This introduces a new use of the name p (ALGOL uses the term
+> ‘identifier’ instead of name), and the best way of looking at this
+> is that the activation of the definition causes a new location not
+> previously used to be set up as the L-value of p and that the
+> R-value 3.5 is then assigned to this location.
+
+> The relationship between a name and its L-value cannot be altered by
+> assignment, and it is this fact which makes the L-value important.
+
+> In CPL, but not in ALGOL, it is also possible to have several names
+> with the same L-value.  This is done by using a special form of
+> definition:
+>
+>    let q ≃ p
+>
+> which has the effect of giving the name of the same L-value as p
+> (which must already exist).  This feature is generally used when the
+> right side of the definition is a more complicated expression than a
+> simple name. Thus if M is a matrix, the definition
+>
+>    let x ≃ M[2,2]
+>
+> gives x the same L-value as one of the elements of the matrix. It is
+> then said to be sharing with M[2,2], and an assignment to x will
+> have the same effect as one to M[2,2].
+>
+> It is worth noting that the expression on the right of this form of
+> definition is evaluated in the L-mode to get an L-value at the time
+> the definition is obeyed. It is this L-value which is associated
+> with x.
+
+可以看出 C 的 pointer 就继承自这里。
+
+> M[i,i] is an example of an anonymous quantity i.e., an expression
+> rather than a simple name—which has both an L-value and an
+> R-value. There are other expressions, such as a+b, which only have
+> R-values. In both cases the expression has no name as such although
+> it does have either one value or two.
 
 ## 2.4 Names
+
+> ALGOL 60 uses ‘identifier’ where we have used ‘name’ ...
+
+> It seems to me wiser not to make a distinction between the meaning
+> of ‘name’ and that of ‘identifier’ and I shall use them
+> interchangeably. The important feature of a name is that it has no
+> internal structure at any rate in the context in which we are using
+> it as a name.  Names are thus atomic objects and the only thing we
+> know about them is that given two names it is always possible to
+> determine whether they are equal (i.e., the same name) or not.
+
 ## 2.5 Numerals
+
+> We use the word ‘number’ for the abstract object and ‘numeral’ for
+> its written representation.  Thus 24 and XXIV are two different
+> numerals representing the same number.
+
+> There is often some confusion about the status of numerals in
+> programming languages. One view commonly expressed is that numerals
+> are the ‘names of numbers’ which presumably means that every
+> distinguishable numeral has an appropriate R-value associated with
+> it. This seems to me an artificial point of view and one which falls
+> foul of Occam’s razor by unnecessarily multiplying the number of
+> entities (in this case names). This is because it overlooks the
+> important fact that numerals in general do have an internal
+> structure and are therefore not atomic in the sense that we said
+> names were in the last section.
+
+> An interpretation more in keeping with our general approach is to
+> regard numerals as R-value expressions written according to special
+> rules. Thus for example the numeral 253 is a syntactic variant for
+> the expression
+>
+>     2 × 102 + 5 × 10 + 3
+
+> Local rules for special forms of expression can be regarded as a
+> sort of ‘micro-syntax’ and form an important feature of programming
+> languages. The micro-syntax is frequently used in a preliminary
+> ‘pre-processing’ or ‘lexical’ pass of compilers to deal with the
+> recognition of names, numerals, strings, basic symbols
+> (e.g. boldface words in ALGOL) and similar objects which are
+> represented in the input stream by strings of symbols in spite of
+> being atomic inside the language.
+
+比如 lisp 的 `'symbol` 和 `:keyword`，
+还有各种 `#` 开头的 reader macro。
+
+> With this interpretation the only numerals which are also names are
+> the single digits and these are, of course, constants with the
+> appropriate R-value.
+
 ## 2.6 Conceptual model
+
+> It is sometimes helpful to have a picture showing the relationships
+> between the various objects in the programming language, their
+> representations in the store of a computer and the abstract objects
+> to which they correspond. Figure 1 is an attempt to portray the
+> conceptual model which is being used in this course.
+
+> Figure 1. The conceptual model.
+>
+> | language component | L-value (address) | R-value (value) |
+>
+> On the left are some of the components of the programming
+> language. Many of these correspond to either an L-value or an
+> R-value and the correspondence is indicated by an arrow terminating
+> on the value concerned. Both L-values and R-values are in the
+> idealised store, a location being represented by a box and its
+> contents by a dot inside it. R-values without corresponding L-values
+> are represented by dots without boxes, and R-values which are
+> themselves locations (as, for example, that of a vector) are given
+> arrows which terminate on another box in the idealised store.
+
+> R-values which correspond to numbers are given arrows which
+> terminate in the right hand part of the diagram which represents the
+> abstract objects with which the program deals.
+
+不只表示了 name 到 address，以及 address 之间的指针图，
+还同时表示出了表达式到 value 的 evaluation，
+以及 name 在 evaluation 过程中，经过 address 得到 value。
+
+尽管这里的 conceptual model 总结的很不错，
+但是对比 SICP 中没有引入副作用之前的 conceptual model，
+还是后者简单。
+但是这种简单的 model 不能包含计算机科学的全部，
+甚至不能包含一个语言实现的全部，
+因为要写 scheme 的编译器，
+还是需要认识汇编中的副作用。
 
 # 3 Conceptual constructs
 
 ## 3.1 Expressions and commands
+
+TODO
 
 ## 3.2 Expressions and evaluation
 
