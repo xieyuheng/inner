@@ -511,21 +511,239 @@ A[a > b j, k] := A[i]
 
 ## 3.1 Expressions and commands
 
-TODO
+> All the first and simplest programming language—by which I mean
+> machine codes and assembly languages—consist of strings of commands.
+> When obeyed, each of these causes the computer to perform some
+> elementary operation such as subtraction, and the more elaborate
+> results are obtained by using long sequences of commands.
+
+> In the rest of mathematics, however, there are generally no commands
+> as such. Expressions using brackets, either written or implied, are
+> used to build up complicated results.  When talking about these
+> expressions we use descriptive phrases such as ‘the sum of x and y’
+> or possibly ‘the result of adding x to y’ but never the imperative
+> ‘add x to y’.
+
+> As programming languages developed and became more powerful they
+> came under pressure to allow ordinary mathematical expressions as
+> well as the elementary commands.  It is, after all, much more
+> convenient to write as in CPL, x := a(b+c)+d than the more
+> elementary
+>
+>    CLA b
+>    ADD c
+>    MPY a
+>    ADD d
+>    STO x
+>
+> and also, almost equally important, much easier to follow.
+
+> To a large extent it is true that the increase in power of
+> programming languages has corresponded to the increase in the size
+> and complexity of the right hand sides of their assignment commands
+> for this is the situation in which expressions are most valuable.
+
+比如写 complier 的时候，有一个 pass 就是，
+消除 right hand sides 的 complex expression。
+
+> In almost all programming languages, however, commands are still
+> used and it is their inclusion which makes these languages quite
+> different from the rest of mathematics.
+
+> There is a danger of confusion between the properties of
+> expressions, not all of which are familiar, and the additional
+> features introduced by commands, and in particular those introduced
+> by the assignment command. In order to avoid this as far as
+> possible, the next section will be concerned with the properties of
+> expressions in the absence of commands.
 
 ## 3.2 Expressions and evaluation
 
 ### 3.2.1 Values
+
+> The characteristic feature of an expression is that it has a _value_.
+
+> We have seen that in general in a programming language, an
+> expression may have two values -- an L-value and an R-value. In this
+> section, however, we are considering expressions in the absence of
+> assignments and in these circumstances L-values are not
+> required. Like the rest of mathematics, we shall be concerned only
+> with R-values.
+
+> One of the most useful properties of expressions is that called by
+> Quine [4] _referential transparency_. In essence this means that if
+> we wish to find the value of an expression which contains a
+> sub-expression, the only thing we need to know about the
+> sub-expression is its value. Any other features of the
+> sub-expression, such as its internal structure, the number and
+> nature of its components, the order in which they are evaluated or
+> the colour of the ink in which they are written, are irrelevant to
+> the value of the main expression.
+
+这就是在引入副作用之前
+SICP 的 conceptual model 很简单的原因。
+
 ### 3.2.2 Environments
+
+> In order to find the value of an expression it is necessary to know
+> the value of its components. Thus to find the value of a + 5 + b/a
+> we need to know the values of a and b. Thus we speak of evaluating
+> an expression in an environment (or sometimes relative to an
+> environment) which provides the values of components.
+
+> One way in which such an environment can be provided is by a
+> _where-clause_. Thus
+>
+>     a + 3/a where a = 2 + 3/7
+>     a + b − 3/a where a = b + 2/b
+>
+> have a self evident meaning.
+> An alternative syntactic form which has the same effect
+> is the initialised definition:
+>
+>     let a = 2 + 3/7; a + 3/a
+>     let a = b + 2/b; a + b − 3/a
+>
+> Another way of writing these is to use λ-expressions:
+>
+>     (λa. a + 3/a)(2 + 3/7)
+>     (λa. a + b − 3/a)(b + 2/b)
+
+> All three methods are exactly equivalent and are, in fact, merely
+> syntactic variants whose choice is a matter of taste. In each the
+> letter a is singled out and given a value and is known as the _bound
+> variable_. The letter b in the second expression is not bound and
+> its value still has to be found from the environment in which the
+> expression is to be evaluated. Variables of this sort are known as
+> _free variables_.
+
 ### 3.2.3 Applicative structure
+
+> Another important feature of expressions is that it is possible to
+> write them in such a way as to demonstrate an _applicative
+> structure_ -- i.e., as an operator applied to one or more
+> operands. One way to do this is to write the operator in front of
+> its operand or list of operands enclosed in parentheses. Thus
+>
+>     a + b corresponds to +(a, b)
+>     a + 3/a corresponds to +(a, /(3, a))
+
+> Expressions written in this way with deeply nesting brackets are
+> very difficult to read.  Their importance lies only in emphasising
+> the uniformity of applicative structure from which they are built
+> up. In normal use the more conventional syntactic forms which are
+> familiar and easier to read are much to be preferred -- providing
+> that we keep the underlying applicative structure at the back of our
+> minds.
+
+上面这些论点，只对带有结合律的算术函数有效。
+
 ### 3.2.4 Evaluation
+
+> We thus have a distinction between _evaluating_ an operator
+> and _applying_ it to its operands.
+
+> ... the general rule for evaluating compound expressions
+> in the operator-operand form viz:
+>
+> 1. Evaluate the operator and the operand(s) in any order.
+> 2. After this has been done, apply the operator to the operand(s).
+
+> The interesting thing about this rule is that it specifies a partial
+> ordering of the operations needed to evaluate an expression. Thus
+> for example when evaluating
+>
+>     (a + b)(c + d/e)
+>
+> both the additions must be performed before the multiplication, and
+> the division before the second addition but the sequence of the
+> first addition and the division is not specified. This partial
+> ordering is a characteristic of algorithms which is not yet
+> adequately reflected in most programming languages.
+
+interaction nets 可以做到让这个 partial order 中，
+所有能并行的计算都并行。
+
+> There is a device originated by Schönfinkel [5], for reducing
+> operators with several operands to the successive application of
+> single operand operators.
+
+介绍 currying。
+
 ### 3.2.5 Conditional expressions
+
+> There is one important form of expression which appears to break the
+> applicative expression evaluation rule. A conditional expression
+> such as
+>
+>     (x = 0) -> 0, 1/x
+
+```scheme
+(if (eq? x 0) 0 (div 1 x))
+```
+
+> Various devices can be used to convert this to a true applicative
+> form, and in essence all have the effect of delaying the evaluation
+> of the arms until after the condition has been decided. Thus suppose
+> that If is a function of a Boolean argument whose result is the
+> selector First or Second so that
+>
+>     If (True) = First and
+>     If (False) = Second
+>
+> the naive interpretation of the conditional expression
+> given above as
+>
+>
+>     {If (x = 0)}(0, 1/x)
+>
+> is wrong because it implies the evaluation of both members of the
+> list (0, 1/x) before applying the operator {If (x = 0)}. However the
+> expression
+>
+>     [{If (x = 0)}({λa. 0}, {λa. 1/x})]a
+>
+> will have the desired effect as the selector function If (x = 0) is
+> now applied to the list ({λa. 0}, {λa. 1/x}) whose members are
+> λ-expressions and these can be evaluated (but not applied) without
+> danger.
+
+```scheme
+(ifte true first second) => first
+(ifte false first second) => second
+
+;; wrong:
+(ifte (eq? x 0)
+      0
+      (div 1 x))
+
+;; right:
+((ifte (eq? x 0)
+       (lambda () 0)
+       (lambda () (div 1 x))))
+```
+
+> Recursive (self referential) functions do not require commands or
+> loops for their definition, although to be effective they do need
+> conditional expressions. For various reasons, of which the principal
+> one is lack of time, they will not be discussed in this course.
+
+没有 conditional 的 recursive function 注定是发散的。
+没有 sum type 的 recursive type 也注定是发散的。
 
 ## 3.3 Commands and sequencing
 
 ### 3.3.1 Variables
+
+TODO
+
 ### 3.3.2 The abstract store
+
+TODO
+
 ### 3.3.3 Commands
+
+TODO
 
 ## 3.4 Definition of functions and routines
 
