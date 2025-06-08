@@ -133,6 +133,8 @@ mu 来自 recursion theory 中的 mu operator。
   (union unit-t (tau int-t L)))
 ```
 
+TODO
+
 > Having discussed recursive types, we now need to determine when a
 > value belongs to a recursive type. The rule above for µt.α allows us
 > to expand recursive types arbitrarily far, for a finite number of
