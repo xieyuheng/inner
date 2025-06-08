@@ -83,7 +83,26 @@ Foreword 的作者是 Peter Mosses 写于 2000。
 
 # Abstract
 
-TODO
+> This paper forms the substance of a course of lectures given at the
+> International Summer School in Computer Programming at Copenhagen in
+> August, 1967. The lectures were originally given from notes and the
+> paper was written after the course was finished.
+
+> In spite of this, and only partly because of the shortage of time,
+> the paper still retains many of the shortcomings of a lecture
+> course. The chief of these are an uncertainty of aim -- it is never
+> quite clear what sort of audience there will be for such
+> lectures—and an associated switching from formal to informal modes
+> of presentation which may well be less acceptable in print than it
+> is natural in the lecture room.
+
+带有 informal mode 是好事情。
+
+> There are numerous references throughout the course to CPL
+> [1–3]. This is a programming language which has been under
+> development since 1962 at Cambridge and London and Oxford. It has
+> served as a vehicle for research into both programming languages and
+> the design of compilers.
 
 # 1 Preliminaries
 
