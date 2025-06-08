@@ -279,9 +279,41 @@ TODO
 }
 ```
 
+> One of the main aims of this paper is to show that the algorithm
+> above is consistent with, and in fact equivalent to, the rules (2)
+> and (3) of sections 1.2 and 1.3. For this we need to place both the
+> rules and the algorithm in a more formal framework.
+
 ## 1.6 Formal development
 
+> So far we have discussed rules for the subtyping of recursive types
+> which are motivated by some operational intuition. In the following
+> we will broaden our perspective and consider various notions of type
+> equivalence, α = β, and subtyping, α ≤ β. These are induced by:
+
+| (a) An ordering on infinite trees | α =T β, α ≤T β | (Section 3) |
+| (b) An algorithm                  | α =A β, α ≤A β | (Section 4) |
+| (c) A collection of typing rules  | α =R β, α ≤R β | (Section 5) |
+| (d) A collection of per models    | α =M β, α ≤M β | (Section 6) |
+
+> The mathematical content of the paper consists mainly in analyzing
+> the relationships between these notions. For a simply typed lambda
+> calculus with recursive types (described in Section 2) we show,
+> among other properties:
+>
+>     α =T β <=> α =A β <=> α =R β <=> α =M β
+>     α ≤T β <=> α ≤A β <=> α ≤R β <=> α ≤M β
+
+> Moreover, we prove a restricted form of completeness with respect to
+> the model (6.3), we show the definability in the calculus of certain
+> maps that interpret coercions (7.1), and we give an algorithm for
+> computing the minimal type of a term with respect to ≤ T (7.2). All
+> these results support the relevance of the theory for the subtyping
+> of recursive types sketched in this introduction.
+
 # 2 A Simply Typed λ-calculus with Recursive Types
+
+TODO
 
 ## 2.1 Types
 ## 2.2 Terms
