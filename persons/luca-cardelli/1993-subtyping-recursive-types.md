@@ -307,7 +307,7 @@ TODO
 > Moreover, we prove a restricted form of completeness with respect to
 > the model (6.3), we show the definability in the calculus of certain
 > maps that interpret coercions (7.1), and we give an algorithm for
-> computing the minimal type of a term with respect to ≤ T (7.2). All
+> computing the minimal type of a term with respect to ≤T (7.2). All
 > these results support the relevance of the theory for the subtyping
 > of recursive types sketched in this introduction.
 
