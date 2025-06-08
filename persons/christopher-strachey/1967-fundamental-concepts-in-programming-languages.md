@@ -666,9 +666,27 @@ interaction nets 可以做到让这个 partial order 中，
 
 > There is a device originated by Schönfinkel [5], for reducing
 > operators with several operands to the successive application of
-> single operand operators.
+> single operand operators. Thus, for example, instead of +(2, p)
+> where the operator + takes two arguments we introduce another adding
+> operator say +' which takes a single argument such that +'(2) is
+> itself a function which adds 2 to its argument. Thus (+' (2))(p) =
+> +(2, p) = 2 + p. In order to avoid a large number of brackets we
+> make a further rule of association to the left and write +' 2 p in
+> place of ((+' 2) p) or (+' (2))(p). This convention is used from
+> time to time in the rest of this paper. Initially, it may cause some
+> difficulty as the concept of functions which produce functions as
+> results is a somewhat unfamiliar one and the strict rule of
+> association to the left difficult to get used to. But the effort is
+> well worth while in terms of the simpler and more transparent
+> formulae which result.
 
-介绍 currying。
+这里在介绍 currying 的时候，已经放弃了传统函数作用语法 `f(x)` 了，
+但是就算是想要用 currying，也没必要放弃传统语法，
+直接说 `+(2, p)` 等价于 `+(2)(p)` 就可以了。
+
+这种不带最外层括号和逗号的函数作用语法，
+可能就是 Schönfinkel 首先使用的，
+而其灵感可能来自 Polish notation（不带所有括号和逗号）。
 
 ### 3.2.5 Conditional expressions
 
@@ -735,9 +753,91 @@ interaction nets 可以做到让这个 partial order 中，
 
 ### 3.3.1 Variables
 
-TODO
+> One important characteristic of mathematics is our habit of using
+> names for things. Curiously enough mathematicians tend to call these
+> things ‘variables’ although their most important property is
+> precisely that they do not vary. We tend to assume automatically
+> that the symbol x in an expression such as 3x 2 + 2x + 17 stands for
+> the same thing (or has the same value) on each occasion it occurs.
+> This is the most important consequence of referential transparency
+> and it is only in virtue of this property that we can use the
+> where-clauses or λ-expressions described in the last section.
+
+> The introduction of the assignment command alters all this, and if
+> we confine ourselves to the R-values of conventional mathematics we
+> are faced with the problem of variables which actually vary,
+> ... Referential transparency has been destroyed, and without it we
+> have lost most of our familiar mathematical tools -- for how much of
+> mathematics can survive the loss of identity?
+
+> If we consider L-values as well as R-values, however, we can
+> preserve referential transparency as far as L-values are
+> concerned. This is because L-values, being generalised addresses,
+> are not altered by assignment commands. Thus the command x := x+1
+> leaves the address of the cell representing x (L-value of x)
+> unchanged although it does alter the contents of this cell (R-value
+> of x). So if we agree that the values concerned are all L-values, we
+> can continue to use where-clauses and λ-expressions for describing
+> parts of a program which include assignments.
+
+也许好的策略是直接放弃 `set!` 所带来的 L-value 和 R-value 之分，
+副作用只能出现在 compound data structures 上，
+这样它们都能用函数来实现。
 
 ### 3.3.2 The abstract store
+
+> Our conceptual model of the computing process includes an abstract
+> store which contains both L-values and R-values. The important
+> feature of this abstract store is that at any moment it specifies
+> the relationship between L-values and the corresponding R-values. We
+> shall always use the symbol σ to stand for this mapping from
+> L-values onto R-values. Thus if α is an L-value and β the
+> corresponding R-value we shall write (remembering the conventions
+> discussed in the last section)
+>
+>     β = σ α.
+
+在 C 里，这就是取指针的值 `β = *α`。
+
+> The effect of an assignment command is to change the contents of the
+> store of the machine.  Thus it alters the relationship between
+> L-values and R-values and so changes σ . We can therefore regard
+> assignment as an operator on σ which produces a fresh σ . If we
+> update the L-value α (whose original R-value in σ was β) by a fresh
+> R-value β 0 to produce a new store σ 0 , we want the R-value of α in
+> σ 0 to be β 0 , while the R-value of all other L-values remain
+> unaltered. This can be expressed by the equation
+>
+>     (U (α, β'))σ = σ' where σ' x = (x = α) → β', σ x.
+
+```scheme
+((U α β') σ) = σ'
+;; where:
+(σ' x) = (if (eq? x α) β' (σ x))
+```
+
+> Thus U is a function which takes two arguments (an L-value and an
+> R-value) and produces as a result an operator which transforms σ
+> into σ' as defined.
+
+> The arguments of U are L-values and R-values and we need some way of
+> getting these from the expressions written in the program. Both the
+> L-value and the R-value of an expression such as V[i+3] depend on
+> the R-value of i and hence on the store. Thus both must involve σ
+> and if ε stands for a written expression in the programming language
+> we shall write L ε σ and R ε σ for its L-value and R-value
+> respectively.
+
+注意，这里已经在用 Schönfinkel 的函数作用语法了，
+也就是现在 Haskell 和 ML 的函数作用语法。
+
+在 C 里，`L ε σ` 就是取地址 `&ε`，
+而 `R ε σ` 就是 `ε` 本身。
+
+或者可以说 `L` 和 `R` 是实现解释器的时候的两个函数：
+
+- `R` 就是 `evaluate`。
+- `L` 是针对 L-value 的 `evaluate`，也许可以叫做 `locate`。
 
 TODO
 
