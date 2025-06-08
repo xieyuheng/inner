@@ -175,11 +175,173 @@ Foreword 的作者是 Peter Mosses 写于 2000。
 > Unfortunately, but also not surprisingly, their emphasis on
 > construction rules leads them to an intense concern for the way in
 > which things are written -- i.e., for their representation,
-> generally as strings of symbols on paper—and this in turn seems to
-> lead to a preoccupation with the problems of syntax.
+> generally as strings of symbols on paper -- and this in turn seems
+> to lead to a preoccupation with the problems of syntax.
 
-TODO
+研究构造主义数学和证明论的人，
+需要构造逻辑系统，这就需要设计语法。
+但是人们经常陷在语法相关的问题中，而忽略了语义。
+
+> This is probably an unfair criticism, for, as will become clear
+> later, I am not only temperamentally a Platonist and prone to
+> talking about abstracts if I think they throw light on a discussion,
+> but I also regard syntactical problems as essentially irrelevant to
+> programming languages at their present stage of development. In a
+> rough and ready sort of way it seems to me fair to think of the
+> semantics as being what we want to say and the syntax as how we have
+> to say it.
+
+lisp 可以缓解这一点，
+即减少人们在处理语法上所花费的时间。
+
+> In these terms the urgent task in programming languages is to
+> explore the field of semantic possibilities.
+
+semantic possibilities 在我看来，
+很大一部分包括探索各种计算模型。
+
+即便是在现在，对计算模型的探索还在初级阶段，
+很多模型都没有被实现为能够让人满意地编程的语言。
+比如：
+
+- interaction nets
+- petri nets
+- pi calculus
+- propagator
+- ...
+
+> When we have discovered the main outlines and the principal peaks we
+> can set about devising a suitably neat and satisfactory notation for
+> them, and this is the moment for syntactic questions.
+
+> But first we must try to get a better understanding of the processes
+> of computing and their description in programming languages.
+> In computing we have what I believe to be a new field of mathematics
+> which is at least as important as that opened up by the discovery
+> (or should it be invention?) of calculus.
+
+> We are still intellectually at the stage that calculus was at when
+> it was called the ‘Method of Fluxions’ and everyone was arguing
+> about how big a differential was.
+
+> We need to develop our insight into computing processes and to
+> recognise and isolate the central concepts -- things analogous to
+> the concepts of continuity and convergence in analysis.
+
+如果人们对于程序语言的理解，
+正如作者所言还在如此初期，
+那么发展的潜力就还很大。
+对比无穷小分析的发展，感觉确实如此。
+
+> To do this we must become familiar with them and give them names
+> even before we are really satisfied that we have described them
+> precisely. If we attempt to formalise our ideas before we have
+> really sorted out the important concepts the result, though possibly
+> rigorous, is of very little value -- indeed it may well do more harm
+> than good by making it harder to discover the really important
+> concepts. Our motto should be ‘No axiomatisation without insight’.
+
+这里可以看出，发展理论的过程和软件开发的过程非常类似。
+比如这里说的很多建议类似 Sendi Metz 和 Kent Beck 关于软件开发的讨论。
+‘No axiomatisation without insight’ 对应的就是「不要过早抽象」。
+
+> However, it is equally important to avoid the opposite of perpetual
+> vagueness. My own view is that the best way to do this in a rapidly
+> developing field such as computing, is to be extremely careful in
+> our choice of terms for new concepts. If we use words such as
+> ‘name’, ‘address’, ‘value’ or ‘set’ which already have meanings with
+> complicated associations and overtones either in ordinary usage or
+> in mathematics, we run into the danger that these associations or
+> overtones may influence us unconsciously to misuse our new terms --
+> either in context or meaning.
+
+这是认知语言学的观点。
+
+> For this reason I think we should try to give a new concept a
+> neutral name at any rate to start with. The number of new concepts
+> required may ultimately be quite large, but most of these will be
+> constructs which can be defined with considerable precision in terms
+> of a much smaller number of more basic ones. This intermediate form
+> of definition should always be made as precise as possible although
+> the rigorous description of the basic concepts in terms of more
+> elementary ideas may not yet be available. Who when defining the
+> eigenvalues of a matrix is concerned with tracing the definition
+> back to Peano’s axioms?
+
+> Not very much of this will show up in the rest of this course. The
+> reason for this is partly that it is easier, with the aid of
+> hindsight, to preach than to practice what you preach. In part,
+> however, the reason is that my aim is not to give an historical
+> account of how we reached the present position but to try to convey
+> what the position is. For this reason I have often preferred a
+> somewhat informal approach even when mere formality would in fact
+> have been easy.
+
+early formality 类似于 early abstraction。
 
 # 2 Basic concepts
 
 ## 2.1 Assignment commands
+## 2.2 L-values and R-values
+## 2.3 Definitions
+## 2.4 Names
+## 2.5 Numerals
+## 2.6 Conceptual model
+
+# 3 Conceptual constructs
+
+## 3.1 Expressions and commands
+
+## 3.2 Expressions and evaluation
+
+### 3.2.1 Values
+### 3.2.2 Environments
+### 3.2.3 Applicative structure
+### 3.2.4 Evaluation
+### 3.2.5 Conditional expressions
+
+## 3.3 Commands and sequencing
+
+### 3.3.1 Variables
+### 3.3.2 The abstract store
+### 3.3.3 Commands
+
+## 3.4 Definition of functions and routines
+
+### 3.4.1 Functional abstractions
+### 3.4.2 Parameter calling modes
+### 3.4.3 Modes of free variables
+### 3.4.4 Own variables
+### 3.4.5 Functions and routines
+### 3.4.6 Constants and variables
+### 3.4.7 Fixed and free
+### 3.4.8 Segmentation
+
+## 3.5 Functions and routines as data items
+
+### 3.5.1 First and second class objects
+### 3.5.2 Representation of functions
+
+## 3.6 Types and polymorphism
+
+### 3.6.1 Types
+### 3.6.2 Manifest and latent
+### 3.6.3 Dynamic type determination
+### 3.6.4 Polymorphism
+### 3.6.5 Types of functions
+
+## 3.7 Compound data structures
+
+### 3.7.1 List processing
+### 3.7.2 Nodes and elements
+### 3.7.3 Assignments
+### 3.7.4 Implementation
+### 3.7.5 Programming example
+### 3.7.6 Pointers
+### 3.7.7 Other forms of structure
+
+# 4 Miscellaneous topics
+
+## 4.1 Load-Update Pairs
+## 4.2 Macrogenerators
+## 4.3 Formal semantics
