@@ -975,7 +975,7 @@ Strachey 解释问题的方式真清晰。
 
 ### 3.4.5 Functions and routines
 
-
+TODO
 
 ### 3.4.6 Constants and variables
 ### 3.4.7 Fixed and free
@@ -989,6 +989,21 @@ Strachey 解释问题的方式真清晰。
 ## 3.6 Types and polymorphism
 
 ### 3.6.1 Types
+
+> Most programming languages deal with more than one sort of object --
+> for example with integers and floating point numbers and labels and
+> procedures. We shall call each of these a different _type_ and spend
+> a little time examining the concept of type and trying to clarify
+> it.
+
+> A possible starting point is the remark in the CPL Working Papers
+> [3] that “The Type of an object determines its representation and
+> constrains the range of abstract object it may be used to
+> represent. Both the representation and the range may be
+> implementation dependent”.
+
+TODO 这句话有两部分，哪一部分是集合论意义上的 set？
+
 ### 3.6.2 Manifest and latent
 ### 3.6.3 Dynamic type determination
 ### 3.6.4 Polymorphism
