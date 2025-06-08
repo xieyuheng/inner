@@ -16,7 +16,7 @@ year: 1993
 
 # My Summary
 
-[2025-06-08] 之看算法而不看对算法正确性的证明的话，其实 idea 非常简单。
+[2025-06-08] 只看算法而不看对算法正确性的证明的话，其实 idea 非常简单。
 本质上是要比较 infinite tree，
 而这些 infinite tree 都是由 rooted directed graph 生成的，
 想要比较两个 rooted directed graphs，
@@ -32,6 +32,9 @@ year: 1993
 > 1. whether two (recursive) types are in the subtype relation,
 > 2. and whether a term has a type.
 
+注意，这里只讨论 simply typed λ-calculus，而不带 polymorphism。
+因此举例的时候用了 list of int 而没有用带有类型参数的 list。
+
 > To address the first question, we relate various definitions of type
 > equivalence and subtyping that are induced by a model, an ordering
 > on infinite trees, an algorithm, and a set of type rules. We show
@@ -41,8 +44,8 @@ year: 1993
 
 > To address the second question, we show that to every pair of types
 > in the subtype relation we can associate a term whose denotation is
-> the uniquely determined coercion map between the two
-> types. Moreover, we derive an algorithm that, when given a term with
+> the uniquely determined coercion map between the two types.
+> Moreover, we derive an algorithm that, when given a term with
 > implicit coercions, can infer its least type whenever possible.
 
 # 1 Introduction
@@ -56,27 +59,28 @@ year: 1993
 > A type, as normally intended in programming languages, is a
 > collection of values sharing a common structure or shape.
 
-从集合论意义上理解 type，
-正是 structural type 的特点。
+从集合论意义上理解 type，这正是 structural type 的特点。
 
 recursive structural type 的例子：
 
 ```cicada
 Tree = Int + (Tree × Tree)
 List = Unit + (Int × List)
+```
 
+```cicada
 Cell = (Unit → Int) × (Int → Cell) × (Cell → Cell)
 Cell = {
-  read: (Unit → Int)
+  read: (Unit → Int),
   write: (Int → Cell),
-  add: (Cell → Cell)
+  add: (Cell → Cell),
 }
 ```
 
 > Recursive types can hence be described by equations, and we shall
-> see that in fact they can be unambiguously _defined_ by
-> equations. To see this, we need some formal way of reasoning about
-> the solutions of type equations.
+> see that in fact they can be unambiguously _defined_ by equations.
+> To see this, we need some formal way of reasoning about the
+> solutions of type equations.
 
 > These formal tools become particularly useful if we start examining
 > problematic equations such as t = t, s = s×s, r = r→r, etc., for
@@ -95,28 +99,39 @@ Cell = {
 mu 来自 recursion theory 中的 mu operator。
 有时间了需要仔细学一下 recursion theory。
 
-用 lisp 的语法表示 mu 的话就是：
+用 lisp 的语法表示 mu，并且允许类型参数：
 
 ```scheme
-(define (list-t A) (union unit-t (pair-t A (list-t A))))
-(define (list-t A) (mu (T) (union unit-t (pair-t A T))))
+(define (list-t A) (union unit-t (tau A (list-t A))))
+(define (list-t A) (mu (T) (union unit-t (tau A T))))
 ```
 
-> To say that L @ µt.Unit+(Int×t) (where @ means equal by definition)
+> To say that L ≜ µt.Unit+(Int×t) (where ≜ means equal by definition)
 > is the solution of the List equation, implies that L must satisfy
 > the equation; that is, L = Unit+(Int×L) must be provable. This
-> requirement suggests the most important rule for the µt.α
-> construction, which amounts to a one-step unfolding of the
-> recursion:
+> requirement suggests the most important rule for the µt.α construction,
+> which amounts to a one-step unfolding of the recursion:
 >
 >    µt.α = α[µt.α/t]
 >
-> meaning that µt.α is equal to α where we replace t by µt.α
-> itself. In our example we have:
+> meaning that µt.α is equal to α where we replace t by µt.α itself.
+> In our example we have:
 >
 >    L = µt.Unit+(Int×t) = (Unit+(Int×t))[L/t] = Unit+(Int×L)
 >
 > which is the equation we expected to hold.
+
+用 lisp 语法表示：
+
+```scheme
+(define L (mu (T) (union unit-t (tau int-t T))))
+
+(same-as-chart
+  L
+  (mu (T) (union unit-t (tau int-t T)))
+  (let ((T L)) (union unit-t (tau int-t T)))
+  (union unit-t (tau int-t L)))
+```
 
 > Having discussed recursive types, we now need to determine when a
 > value belongs to a recursive type. The rule above for µt.α allows us
