@@ -282,8 +282,79 @@ early formality 类似于 early abstraction。
 # 2 Basic concepts
 
 ## 2.1 Assignment commands
+
+> One of the characteristic features of computers is that they have a
+> store into which it is possible to put information and from which it
+> can subsequently be recovered. Furthermore the act of inserting an
+> item into the store erases whatever was in that particular area of
+> the store before -- in other words the process is one of
+> overwriting. This leads to the assignment command which is a
+> prominent feature of most programming languages.
+
+> The simplest forms of assignments such as
+
+```
+x := 3
+x := y + 1
+x := x + 1
+```
+
+```scheme
+(set! x 3)
+(set! x (add1 y))
+(set! x (add1 x))
+```
+
+> The following assignment commands show this danger.
+
+```
+            i := a > b j, k
+         A[i] := A[a > b j, k]
+A[a > b j, k] := A[i]
+   a > b j, k := i
+```
+
+```scheme
+(set! i (if (> a b) j k))
+(vector-set! A i (vector-ref A (if (> a b) j k)))
+(vector-set! A (if (> a b) j k) (vector-ref A i))
+(set! (if (> a b) j k) i) ;; not valid in standard scheme
+(if (> a b) (set! j i) (set! j k))
+```
+
+就赋值命令而言，等号左边的表达式和等号右边的表达式意义不同。
+
+就 variable 而言，确实要区分 L-value 和 R-value；
+但是就 vector（或 list）而言，
+这样的区分只是为了把 `vector-set!` 和 `vector-ref` 这两个函数，
+强行捏在一起，使用一个语法元素来表达 `:=`。
+
+> Roughly speaking an expression on the left stands for an ‘address’
+> and one on the right for a ‘value’ which will be stored there.
+
+> We shall therefore accept this view and say that there are two
+> values associated with an expression or identifier. In order to
+> avoid the overtones which go with the word ‘address’ we shall give
+> these two values the neutral names: L-value for the address-like
+> object appropriate on the left of an assignment, and R-value for the
+> contents-like object appropriate for the right.
+
+发明 L-value 和 R-value 这对术语是为了实践前文提到的认知语言学。
+
 ## 2.2 L-values and R-values
+
+> An L-value represents an area of the store of the computer. We call
+> this a location rather than an address in order to avoid confusion
+> with the normal store-addressing mechanism of the computer.
+
+> The two essential features of a location are that it has a content
+> -- i.e. an associated R-value -- and that it is in general possible
+> to change this content by a suitable updating operation.
+
 ## 2.3 Definitions
+
+TODO
+
 ## 2.4 Names
 ## 2.5 Numerals
 ## 2.6 Conceptual model
