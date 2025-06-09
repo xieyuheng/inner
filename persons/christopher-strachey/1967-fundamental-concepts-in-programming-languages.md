@@ -1224,6 +1224,32 @@ L-value 必须被换成 variable（expression）。
 ## 3.7 Compound data structures
 
 ### 3.7.1 List processing
+
+> While programming was confined to problems of numerical analysis the
+> need for general forms of data structure was so small that it was
+> often ignored.
+>
+> - For this reason ALGOL, which is primarily a language for numerical
+>   problems, contains no structure other than arrays.
+>
+> - COBOL, being concerned with commercial data processing, was
+>   inevitably concerned with larger and more complicated structures.
+>
+> Unfortunately, however, the combined effect of the business man’s
+> fear of mathematics and the mathematician’s contempt for business
+> ensured that this fact had no influence on the development of
+> general programming languages.
+
+> It was not until mathematicians began using computers for
+> non-numerical purposes -- initially in problems connected with
+> artificial intelligence -- that any general forms of compound data
+> structure for programming languages began to be discussed.
+
+> Both IPL V and LISP used data structures built up from lists and
+> soon a number of other ‘List Processing’ languages were devised.
+
+TODO
+
 ### 3.7.2 Nodes and elements
 ### 3.7.3 Assignments
 ### 3.7.4 Implementation
