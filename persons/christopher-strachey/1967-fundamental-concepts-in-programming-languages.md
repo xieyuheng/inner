@@ -975,16 +975,152 @@ Strachey 解释问题的方式真清晰。
 
 ### 3.4.5 Functions and routines
 
-TODO
+> We have so far discussed the process of functional abstrac- tion as
+> applied to expressions. The result is called a function and when
+> applied to suitable arguments it produces a value. Thus a function
+> can be regarded as a complicated sort of expression. The same
+> process of abstraction can be applied to a command (or sequence of
+> commands), and the result is know in CPL as a routine. The
+> application of a routine to a suitable set of arguments is a
+> complicated command, so that although it affects the store of the
+> computer, it produces no value as a result.
+
+区分对 expression 和 command，
+然后再区分对二者的 abstraction，
+即 function 和 routine。
+这样就可以把纯函数和副作用分开了。
+
+> Functions and routines are as different in their nature as
+> expressions and commands. It is unfortunate, therefore, that most
+> programming languages manage to confuse them very successfully. The
+> trouble comes from the fact that it is possible to write a function
+> which also alters the store, so that it has the effect of a function
+> and a routine. Such functions are sometimes said to have side
+> effects and their uncontrolled use can lead to great obscurity in
+> the program. There is no generally agreed way of controlling or
+> avoiding the side effects of functions, and most programming
+> languages make no attempt to deal with the problem at all -- indeed
+> their confusion between routines and functions adds to the
+> difficulties.
+
+> The problem arises because we naturally expect referential
+> transparency of R-values in expressions, particularly those on the
+> right of assignment commands. This is, I think, a very reasonable
+> expectation as without this property, the value of the expression is
+> much harder to determine, so that the whole program is much more
+> obscure.
+
+> Any departure of R-value referential transparency in a R-value
+> context should either be eliminated by decomposing the expression
+> into several commands and simpler expressions, or, if this turns out
+> to be difficult, the subject of a comment.
+
+只有有了 L-value 和 R-value 之分之后，
+才能做这种 function 和 routine 的区分。
+如果用 `vector-set!` 而不同和 vector 相关的 L-value，
+就没法区分 function 和 routine 了，
+因为所有的副作用都是通过 L-value 完成的。
+
+比如 scheme 没有区分 function 和 routine，
+并且用了 procdure 一词来指带有副作用的 function，
+这一点应该继承自 ALGOL。
 
 ### 3.4.6 Constants and variables
+
+> There is another approach to the problem of side effects which is
+> somewhat simpler to apply, though it does not get round all the
+> difficulties. This is, in effect, to turn the problem inside out and
+> instead of trying to specify functions and expressions which have no
+> side effect to specify objects which are immune from any possible
+> side effect of others.
+
+> There are two chief forms which this protection can take which can
+> roughly be described as hiding and freezing. Their inaccessibility
+> (by reason of the scope rules) makes them safe from alteration
+> except from inside the body of the function or routine they
+> qualify. We shall be concerned in this section and the next with
+> different forms of protection by freezing.
+
+> The characteristic thing about variables is that their R-values can
+> be altered by an assign- ment command. If we are looking for an
+> object which is frozen, or invariant, an obvious possibility is to
+> forbid assignments to it. This makes it what in CPL we call a
+> _constant_. It has an L-value and R-value in the ordinary way, but
+> applying the update function to it either has no effect or produces
+> an error message. Constancy is thus an attribute of an L-value, and
+> is, moreover, an invariant attribute. Thus when we create a new
+> L-value, and in particular when we define a new quantity, we must
+> decide whether it is a constant or a variable.
+
+比如 javascript 有 let 和 const 之分，
+但是没有 function 和 routine 之分。
+
 ### 3.4.7 Fixed and free
+
+> The constancy or otherwise of a function has no connection with the
+> mode in which it uses its free variables. If we write a definition
+> in its standard form such as
+>
+>     let f ≡ λx. x + a
+>
+> we see that this has the effect of initialising f with a
+> λ-expression. The constancy of f merely means that we are not
+> allowed to assign to it. The mode of its free variables (indicated
+> by ≡) is a property of the λ-expression.
+
+> Functions which call their free variables by reference (L-value) are
+> liable to alteration by assignments to their free variables.
+
+就算是 CPL 也能通过 L-value 的 free variable
+让 function 失去 referential transparency。
+
+> The converse of a free function is a fixed function. This is defined
+> as a function which either has no free variables, or if it has,
+> whose free variables are all both constant and fixed.  The crucial
+> feature of a fixed function is that it is independent of its
+> environment and is always the same function. It can therefore be
+> taken out of the computer (e.g., by being compiled separately) and
+> reinserted again without altering its effect.
+
 ### 3.4.8 Segmentation
+
+> A fixed routine or function is precisely the sort of object which
+> can be compiled separately.
+
+> Suppose R[x] is a routine which uses a, b, and c by reference as
+> free variables. We can define a function R'[a,b,c] which has as
+> formal parameters all the free variables of R and whose result is
+> the routine R[x]. Then R' will have no free variables and will thus
+> be a fixed function which can be compiled separately.
+
+这正是编译 closure 的方法。
 
 ## 3.5 Functions and routines as data items
 
 ### 3.5.1 First and second class objects
+
+> Historically this second class status of procedures in ALGOL is
+> probably a consequence of the view of functions taken by many
+> mathematicians: that they are constants whose name one can always
+> recognise. This second class view of functions is demonstrated by
+> the remarkable fact that ordinary mathematics lacks a systematic
+> notation for functions.
+
 ### 3.5.2 Representation of functions
+
+> If we want to make it possible to assign functions we must be clear
+> what are their L-values and R-values. The L-value is simple -- it is
+> the location where the R-value is stored -- but the R-value is a
+> little more complicated.
+
+这里作者说错了，L-value 和 R-value 是 expression 的属性，
+而 function 已经是 value 了，所以不能有 L-value 和 R-value。
+说 function 的 L-value 是 location，
+其实是说 variable（expression）的 L-value 是 location。
+
+> ... the R-value of a function contains two parts -- a rule for
+> evaluating the expression, and an environment which supplies its
+> free variables. An R-value of this sort will be called a _closure_.
 
 ## 3.6 Types and polymorphism
 
