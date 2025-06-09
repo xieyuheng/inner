@@ -1132,18 +1132,94 @@ Strachey 解释问题的方式真清晰。
 > a little time examining the concept of type and trying to clarify
 > it.
 
-> A possible starting point is the remark in the CPL Working Papers
-> [3] that “The Type of an object determines its representation and
+> A possible starting point is the remark in the CPL Working Papers [3]
+> that “The Type of an object determines its representation and
 > constrains the range of abstract object it may be used to
 > represent. Both the representation and the range may be
 > implementation dependent”.
 
-TODO 这句话有两部分，哪一部分是集合论意义上的 set？
+"representation" 可以理解为不同类型的 value 在 runtime 中的差异，
+"the range of abstract object" 可以理解为集合论意义上的语义，
+即以抽象的数学对象作为表达式的能指。
+
+例如：
+
+- 汇编语言在运行时看到的只是数和地址。
+- 静态类型语言有可能在运行时没法区分不同类型 value 的 representation。
 
 ### 3.6.2 Manifest and latent
+
+> It is natural to ask whether type is an attribute
+> of an L-value or of an R-value
+> -- of a location or of its content.
+
+这句话在我看来也有问题，
+因为在我看来 type 是对 expression 而言的，
+而 L-value 和 R-value 都是 value。
+
+对我来说，想要让上面这句话合理，
+L-value 必须被换成 variable（expression）。
+
+> We call attributes which can be determined at compile time in this
+> way _manifest_; attributes that can only be determined by running
+> the program are known as _latent_.
+
+这两个术语没有流传下来。
+
 ### 3.6.3 Dynamic type determination
+
+> The decision in CPL to make types a manifest property of expressions
+> was a deliberate one of language design. The opposite extreme is
+> also worth examining. We now decide that types are to be attributes
+> of R-values only and that any type of R-value may be assigned to any
+> L-value.
+
+我理解这里的的 L-value 为 variable（expression）。
+
+> We should not reject a system which is logically satisfactory merely
+> because today’s computers are unsuitable for it. If we can prove a
+> sufficient advantage for it, machines with the necessary hardware
+> will ultimately appear even if this is rather complicated; the
+> introduction of floating-point arithmetic units is one case when
+> this has already happened.
+
+我才发现把 floating-point arithmetic units 定死在硬件中，
+可能是一件很不好的事情。
+
 ### 3.6.4 Polymorphism
+
+区分 ad hoc polymorphism 与 parametric polymorphism。
+
+> In ad hoc polymorphism there is no single systematic way of
+> determining the type of the result from the type of the arguments.
+
+对 ad hoc polymorphism 的定义是通过否定来完成的。
+带有开放递归的 generaic dispatching，
+是最极端的不满足这里的 "single systematic way" 的情况。
+
+> Parametric polymorphism is more regular
+> and may be illustrated by an example.
+
+以 map 为典型例子。
+
 ### 3.6.5 Types of functions
+
+> A question of greater interest is whether a polymorphic function is
+> a first class object in the sense of Section 3.5.1. If it is, we
+> need to know what type it is. This must clearly include in some way
+> the types of all its possible versions. Thus the type of a
+> polymorphic function includes or specifies in some way the nature of
+> its polymorphism.
+
+如果融合静态类型和 generaic dispatching？
+
+> If, as in CPL, the types are manifest, all this information must be
+> available to the compiler. Although this is not impossible, it
+> causes a considerable increase in the complexity of the compiler and
+> exerts a strong pressure either to forbid programmers to define new
+> polymorphic functions or even to reduce all polymorphic functions to
+> second class status. A decision on these points has not yet been
+> taken for CPL.
 
 ## 3.7 Compound data structures
 
