@@ -236,11 +236,414 @@ Hindley-Milner type system 名字的由来。
 (define cons-t (-> T5 (list-t T5) (list-t T5)))
 ```
 
-TODO
+> The other identifiers (map, f, m) each occur more than once, and our
+> rules demand that each occurrence is assigned the same type. The
+> rules also demand that the following equations are satisfied for
+> some types X1, X2, ...
+
+```scheme
+(define (map f m)
+  (if (null? m)
+    null
+    (cons (f (car m)) (map f (cdr m)))))
+
+(= map-t (-> f-t m-t X1))
+(= null?-t (-> m-t bool-t))
+(= car-t (-> m-t X2))
+(= cdr-t (-> m-t X3))
+(= f-t (-> X2 X4))
+(= map-t (-> f-t X3 X5))
+(= cons-t (-> X4 X5 X6))
+(= null-t X1) (= X6 X1)
+```
+
+> The first of these conditions relates the type of a function to
+> those of its formal parameters; each of the other conditions arises
+> from some subterm which is a function application, except the last,
+> which is because a conditional expression has the same type as its
+> two arms, and because the definiens and definiendum of a declaration
+> have the same type.
+
+根据函数的定义，列类型的方程。
+解方程的过程可以有专门的算法，
+也可以用一般的 propagator 来完成。
+
+> Now these equations may be solved for the variables `Xn`, `Tn`, and
+> `<id>-t`; Morris [10] discusses the solution of such equations.
+
+这么看来 Morris [10] 是必须要读的了！
+
+我记得在读 Milner 的 pi calculus book 时，process calculus 本身，
+也是受到 regular expression 相关的代数方程的启发而来的。
+可见代数的重要性。
+
+> Indeed, the situation is entirely appropriate for the use of the
+> Unification Algorithm of Robinson [14]; our well-typing algorithm is
+> based upon this algorithm, and (since in this case nothing more than
+> unification is needed) we may conclude from Robinson’s work that the
+> most general type of map is obtained, i.e., any other type `map-t`
+> which satisfies the equations must be a substitution instance of the
+> type obtained. In fact, the solution of the above equations is
+
+```scheme
+(define map-t
+  (nu (A B)
+    (-> (-> A B) (list-t A)
+        (list-t B))))
+```
+
+> So this is the generic type of map, that is, to any occurrence of
+> map within the scope of this declaration must be assigned some
+> substitution instance of this type.
+
+> These instances need not be the same. Suppose that `token-t` is a
+> basic type (a token being a sequence of characters) and that we have
+> available the identifiers (with their types)
+
+```scheme
+(claim token (list-t token-t))
+(claim length (-> token-t int-t))
+(claim sqroot (-> int-t real-t))
+```
+
+> Then in the expression
+>
+>    (map sqroot (map length token))
+>
+> the two occurrence of `map` will have types
+
+```scheme
+(-> (-> token-t int-t) (list-t token-t) (list-t int-t))
+(-> (-> int-t real-t) (list-t int-t) (list-t real-t))
+```
+
+> Similarly, if `null?`, for example, had occurred twice in the
+> definition of `map`, its types could have been different instances
+> of
+>
+>     (nu (A) (-> (list-t A) bool-t))
+>
+> but our rules demand that different occurrences of a formal
+> parameter (f, for example), or of an identifier (map) being
+> recursively defined, shall have the same type.
+
+> It is clear from our example that the rules of typing need to be
+> carefully framed. We leave this task until the next section, but
+> here we look at one more example to illustrate what happens when
+> `let` or `letrec` is used locally.
+
+> Example 2. Tagging. Suppose we want a function `tag-pair`, such that
+> `(tag-pair a)` is a function under which
+
+```scheme
+[b c] => [[a b] [a c]]
+```
+
+> Of course, we can easily write
+
+```scheme
+(define (tag-pair a)
+  (lambda ([b c])
+    [[a b] [a c]]))
+```
+
+> Now we can explain, without setting up equations, how our well-typing algorithm
+> tackles this declaration. It first assigns “unknown” types (i.e., type variables)
+> A, B, and C to a, b, and c. Then [[a b] [a c]] acquires type
+> (tau (tau A B) (tau A C)) and the lambda-expression acquires
+
+```scheme
+(-> (tau B C) (tau (tau A B) (tau A C)))
+```
+
+> finally `tag-pair` acquires
+
+```scheme
+(-> A (tau B C) (tau (tau A B) (tau A C)))
+```
+
+> (no type equations have placed any constraint
+> upon the types of A, B, and C).
+
+> But consider another way of defining tagpair, using the `fn-pair` function
+
+```scheme
+(claim fn-pair
+  (nu (A B C D)
+    (-> (-> A B) (-> C D)
+        (-> (tau A C) (tau B D)))))
+
+(define (fn-pair f g [a c])
+  [(f a) (g c)])
+```
+
+> and the pairing function `pair`
+
+```scheme
+(claim pair (nu (-> A B (tau A B))))
+(define (pair a b) [a b])
+```
+
+> We could write `tag-pair`
+
+```scheme
+(define (tag-pair a)
+  (let ((tag (pair a)))
+    (fn-pair tag tag)))
+```
+
+> We might then expect the well-typing algorithm to proceed as follows.
+
+```scheme
+(check a A)
+(check (pair a) (-> D (tau A D)))
+;; two occurrences of `tag` in `(fn-pair tag tag)`
+(check tag (nu (B A1) (-> B (tau A1 B))))
+(check tag (nu (C A2) (-> C (tau A2 C))))
+;; by the type equation for function application
+(check (fn-pair tag tag)
+  (-> (tau B C) (tau (tau A1 B) (tau A2 C))))
+(check tag-pair
+  (-> A (tau B C) (tau (tau A1 B) (tau A2 C))))
+```
+
+> compare it with:
+
+```scheme
+(-> A (tau B C) (tau (tau A B) (tau A C)))
+```
+
+> something has gone wrong; the second type is too general.
+
+正确的处理方式是：
+
+```scheme
+(check a A)
+(check (pair a) (nu (D) (-> D (tau A D))))
+;; two occurrences of `tag` in `(fn-pair tag tag)`
+(check tag (nu (B) (-> B (tau A B))))
+(check tag (nu (C) (-> C (tau A C))))
+;; by the type equation for function application
+(check (fn-pair tag tag)
+  (-> (tau B C) (tau (tau A B) (tau A C))))
+(check tag-pair
+  (-> A (tau B C) (tau (tau A B) (tau A C))))
+```
+
+实际实现的时候可以通过 A 和 A1， A2 的 unification 处理。
+
+> From the examples it becomes clear that the rules for typing
+> variables bound, respectively, by `let` (or `letrec`) and by lambda
+> are going to be different. Thus, although our semantics for the two
+> expressions
+
+```scheme
+(let ((x e)) e')
+((lambda (x) e') e)
+```
+
+> may be (and are) equivalent, it may be possible to assign types
+> correctly to the former but not to the latter. An example is the
+> pair
+
+```scheme
+(let ((I (lambda (x) x))) (I I))
+((lambda (I) (I I)) (lambda (x) x))
+```
+
+> A (partial) intuition for this is that a lambda-abstraction may
+> often occur without an argument; the second expression above
+> contains a special (and rather unnecessary) use of abstraction, in
+> that an explicit argument -- `(lambda (x) x)` -- is present.
+> Since the `let` construct (when translated) involves this restricted
+> use of an abstraction, it is not unnatural that its rule for type
+> assignment is less constrained. A compiler could, of course, treat
+> all explicit occurrences of `((lambda (x) e') e)` in the less
+> constrained manner.
+
+就是说先把所有的 `((lambda (x) e') e)` 都翻译为 `let`，
+然后再用 `let` 的 inference rule 来做类型检查。
+
+TODO 我认为 Milner 在这里的论述并不清楚，
+想要清楚的论述为什么后者不能 infer，
+应该用 bidirectional type checking 中的概念。
+
+```scheme
+(let ((I (lambda (x) x))) (I I))
+(infer (lambda (x) x) (nu (A) (-> A A)))
+(check I (nu (A) (-> A A)))
+(infer (I I) (-> (nu (A) (-> A A)) (nu (A) (-> A A))))
+```
+
+```scheme
+((lambda (I) (I I)) (lambda (x) x))
+(infer (lambda (x) x) (nu (A) (-> A A)))
+(infer (lambda (I) (I I)) ?)
+```
+
+```
+f: F
+x: X
+-------
+F = (-> A B)
+X = A
+(f x): B
+--------
+F = (-> X B)
+(lambda (x) (f x)): (nu (X) (-> X B))
+```
+
+```
+I: B
+-----
+B = (-> C D)
+B = C
+(I I): D
+-----
+B = (-> B D)
+(lambda (I) (I I)): (nu (B) (-> B D))
+```
+
+TODO 尝试用 bidirectional type checking，
+把这里的问题论述清楚。
+
+> The treatment of types in the interaction between lambda-bindings
+> (i.e., formal parameter bindings) and let bindings is really the
+> core of our approach.
+
+> It gives a consistent treatment of the nonglobal declaration of a
+> procedure which may contain, as a free variable, a formal parameter
+> of an enclosing procedure. This appears to be one of the more
+> crucial difficulties with polymorphism, and therefore we feel
+> justified in presenting our analysis in terms of a simple language
+> (Exp) which excludes as much as possible that is irrelevant to the
+> difficulty.
+
+> The reader may still feel that our rules are arbitrarily chosen and
+> only partly supported by intuition. We certainly do not claim that
+> the rules are the only possible ones, but the results given later
+> demonstrate that they are semantically justified.
+
+> In fact, we show that a program which admits a correct type
+> assignment cannot fail at run-time due to a type error -- or more
+> precisely, that type constraints encoded in its semantics are always
+> satisfied. It follows from this that compile-time type checking
+> (i.e., the attempt to discover a correct type assignment) obviates
+> the need to carry types at run-time, with an obvious gain in the
+> efficiency of implementation.
+
+> We would like to give an independent characterization of the class
+> of programs which can be well typed in our system, but we have no
+> idea how to do this. However, we can give some pointers. At the
+> suggestion of a referee we looked at Burge [1, Chapter. 3] concerning
+> general functions for processing data structures. All of the
+> functions there (with the exception of Section 3.11 which we did not
+> examine) acquired the expected types from the ML type checker after
+> they had been modified in two respects.
+
+Burge [1] 看来也是必须要读的了。
+
+> First, Burge leaves implicit the coercion functions between a
+> disjoint sum type and its summand types; we needed to make these
+> explicit (this point was mentioned in our Introduction).  Second, we
+> used the ML abstract type construct (see Section 5 for an example)
+> to formulate the recursive type definitions used by Burge. In this
+> construct, the isomorphism between a defined abstract type and its
+> representation is made explicit and must be used explicitly. To see
+> the need for this requirement consider the case of an A stream,
+> which is defined to be a function which yields a pair consisting of
+> an A and an A stream. The type equation
+>
+>     (stream-t A) = (-> (tau A (stream-t A)))
+>
+> cannot be solved by unification (unless we allow infinite type
+> expressions). But by treating the equation as an isomorphism, and
+> using two functions to convert back and forth between an abstract
+> type and its representation, this difficulty is removed. We claim
+> that this solution is in keeping with the notion of abstract type
+> (see [8], for example).
+
+> On the negative side, there are certainly useful expressions which
+> we cannot well type, though we are not clear how burdensome it is to
+> do without them. An obvious example is Curry’s Y combinator.
+
+```scheme
+(define (Y f)
+  ((lambda (x) (f (x x)))
+   (lambda (x) (f (x x)))))
+```
+
+> since self-application is ill typed for us. But Zetrec avoids the
+> need for Y.
+
+如果不考虑 infer，check 显然是可以支持 Y 的：
+
+```scheme
+(claim factorial-wrap (-> (-> Nat Nat) (-> Nat Nat)))
+(claim (Y factorial-wrap) (-> Nat Nat))
+(claim Y (nu (A) (-> (-> A A) A)))
+
+(define factorial-wrap
+  (lambda (factorial)
+    (lambda (n)
+      (if (zero? n)
+        one
+        (mul n (factorial (sub1 n)))))))
+```
+
+> More practically, consider
+
+```scheme
+(define (F f) (lambda ([a b]) [(f a) (f b)]))
+```
+
+> which -- it may be argued-should accept as argument a function which
+> is polymorphic enough to operate upon a and b of different type. For
+> example,
+
+```scheme
+(F reverse [x y])
+```
+
+> produces a pair of reversed lists of different type if x and y are
+> lists of different type.  Our system rejects such a use of F (since
+> it requires a and b to have the same type), but admits
+
+```scheme
+(define (reverse-pair [x y]) [(reverse x) (reverse y)])
+```
+
+> or any other specialization of the function argument of F.
+
+说不支持的意思是不能 infer，
+check 显然是简单的：
+
+```scheme
+(claim F
+  (nu (A B)
+    (-> (-> A B) (tau A A)
+        (tau B B))))
+(define (F f) (lambda ([a b]) [(f a) (f b)]))
+```
+
+> We feel that this example illustrates the main limitation of our
+> system, but that we may have kept as much flexibility as is possible
+> without the use of explicit type parameters.  When these are
+> introduced, the problem arises of the type of types; Reynolds [12]
+> has made some progress in solving this problem, but we were anxious
+> to see how much could be done while avoiding it.
+
+值得一读：
+
+- [12] "Towards a Theory of Type Structure".
+  J. C. Reynolds, 1974.
 
 # 3 A Simple Applicative Language and Its Types
 
 ## 3.1 The Language Exp
+
+TODO
+
 ## 3.2 Semantic Equations for Exp
 ## 3.3 Discussion of Types
 ## 3.4 Types and their Semantics
