@@ -174,12 +174,69 @@ Hindley-Milner type system 名字的由来。
 
 # 2 Illustrations of The Type Discipline
 
-TODO
+> We illustrate our notion of polymorphism by means of some simple
+> examples. They are written in a fragment of ML which we hope is
+> self-explanatory; this fragment is indeed no more than Landins ISWIM
+> [7], and we refer the reader to Burge’s book [l] in which he uses
+> this style of programming almost exactly. We use no imperative
+> constructs here (assignments or jumps).
 
 也许值得一读：
 
 - [1] “Recursive Programming Techniques”,
   W. H. BURGE, 1975.
+
+> Example 1. Mapping a function over a list.
+
+```scheme
+(define (map f m)
+  (if (null? m)
+    null
+    (cons (f (car m)) (map f (cdr m)))))
+```
+
+> Intuitively, the function map so declared takes a function from
+> things of one sort to things of another sort, and a list of things
+> of the first sort, and produces a list of things of the second
+> sort. So we say that map has type
+
+```scheme
+(claim map
+  (nu (A B)
+    (-> (-> A B) (list-t A)
+        (list-t B))))
+```
+
+> How is this type determined from the bare declaration of map?
+> First, the generic types (we discuss “generic” later) of the
+> identifiers occurring free in the declaration are given by
+
+```scheme
+(claim null? (nu (A) (-> (list-t A) bool-t)))
+(claim null (nu (A) (list-t A)))
+(claim car (nu (A) (-> (list-t A) A)))
+(claim cdr (nu (A) (-> (list-t A) (list-t A))))
+(claim cons (nu (A) (-> A (list-t A) (list-t A))))
+```
+
+> that is, they are polymorphic, because their types contain one or
+> more type variables, and our rule is: To every occurrence of such an
+> identifier is assigned a type which is a substitution instance
+> (substituting types for type variables) of its generic type.
+
+> Now each of these identifiers occurs just once in the declaration,
+> so if we denote by `<id>-t` the type assigned to an identifier
+> `<id>` we must have for some types T1, ..., T5.
+
+```scheme
+(define null?-t (-> (list-t T1) bool-t))
+(define null-t (list-t T2))
+(define car-t (-> (list-t T3) T3))
+(define cdr-t (-> (list-t T4) (list-t T4)))
+(define cons-t (-> T5 (list-t T5) (list-t T5)))
+```
+
+TODO
 
 # 3 A Simple Applicative Language and Its Types
 
