@@ -100,6 +100,28 @@ luca cardelli 的 1993 论文 "subtyping recursive types" 来解决，
 
 "simple and could not be made much simpler"！
 
+> Third, polymorphism plays a leading role. For example, a procedure
+> is assigned a polymorphic type (which we abbreviate to _polytype_)
+> in general; only when the types of its arguments and result can be
+> uniquely determined from the context is it monomorphic (i.e.,
+> assigned a _monotype_).
+
+> We do not discuss in this paper -- except briefly at the end --
+> either coercions or the “overloading” of identifiers. Our view is
+> that these concepts, and also run-time type manipulation, are
+> somewhat orthogonal to a compile-time polymorphic type discipline,
+> and may (to some extent) be incorporated without invalidating it.
+
+> In Section 2 we illustrate our type discipline by examples in a
+> fragment of ML. This fragment should be self-explanatory, but an
+> outline of ML is given in [3] and a full description appears in [2].
+
+为了了解 ML，与 standard ML 的文档相比，
+也许上面的两个引用更合适：
+
+- [3] 1978-a-metalanguage-for-interactive-proof-in-lcf
+- [2] 1979-edinburgh-lcf--a-mechanised-logic-of-computation
+
 TODO
 
 # 2 Illustrations of The Type Discipline
