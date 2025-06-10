@@ -11,6 +11,16 @@ year: 1978
 但是其实对 type system 的学习应该从更简单的入手，
 应该从 Hindley-Milner type system 入手。
 
+# My Summary
+
+[2025-06-10] 这篇论文与 luca 的
+1993 年论文 "subtyping recursive types"
+有相似的结构，即：
+
+- 明确程序语言设计中的问题；
+- 找出算法来解决这个问题；
+- 构建理论来证明算法的正确性。
+
 # Abstract
 
 > The aim of this work is largely a practical one. A widely employed
@@ -122,9 +132,54 @@ luca cardelli 的 1993 论文 "subtyping recursive types" 来解决，
 - [3] 1978-a-metalanguage-for-interactive-proof-in-lcf
 - [2] 1979-edinburgh-lcf--a-mechanised-logic-of-computation
 
-TODO
+> The types in Exp are just the hierarchy of purely functional types
+> over a set of basic types. That is, the polymorphism in Exp is the
+> natural outgrowth of a single primitive polymorphic operator,
+> function application, together with variable binding.
+
+> To add other primitive polymorphic operators, such as pairing and
+> list-processing operators (as in ML), together with types built from
+> basic ones x (Cartesian Product), list (list-forming), and +
+> (disjoint sum) in addition to (function type), presents no extra
+> difficulty in the two soundness theorems.
+
+> Our work is a step towards solving the problem expressed by Morris
+> [10] in his thesis as follows: “to design a language and a type
+> system in which a programmer may define functions whose parameters
+> may have different types for different calls of the function.”  We
+> recommend Chapter 4 of this thesis as a lucid introduction to the
+> problem.
+
+> Although Morris does not discuss the semantics of types formally, or
+> give a polymorphic type system, he describes how a valid type
+> assignment may be found for a term of the lambda calculus by solving
+> a set of simultaneous linear equations; we take this idea further in
+> the next section.
+
+看起来值得一读：
+
+- [10] “Lambda-Calculus Models of Programming Languages”,
+  J. H. Morris, Ph.D. Thesis, 1968.
+
+> After doing this work we became aware of Hindley’s [5] method for
+> deriving the “principal type scheme” (which is what we call a
+> polymorphic type) for a term in combinatory logic. Hindley appears
+> to have been the first to notice that the Unification Algorithm of
+> Robinson [14] is appropriate to this problem. Our work can be
+> regarded as an extension of Hindley’s method to programming
+> languages with local declarations, and as a semantic justification
+> of the method.
+
+Hindley-Milner type system 名字的由来。
 
 # 2 Illustrations of The Type Discipline
+
+TODO
+
+也许值得一读：
+
+- [1] “Recursive Programming Techniques”,
+  W. H. BURGE, 1975.
 
 # 3 A Simple Applicative Language and Its Types
 
