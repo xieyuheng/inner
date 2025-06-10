@@ -1248,17 +1248,176 @@ L-value 必须被换成 variable（expression）。
 > Both IPL V and LISP used data structures built up from lists and
 > soon a number of other ‘List Processing’ languages were devised.
 
-TODO
+> The characteristic feature of all these languages is that they are
+> designed to manipulate more or less elaborate structures, which are
+> built up from large numbers of components drawn from a very limited
+> number of types. In LISP, for instance, there are only two sorts of
+> object, an _atom_ and a _cons-word_ which is a doublet. The crucial
+> feature is that each member of a doublet can itself be either an
+> atom or another cons-word. Structures are built up by joining
+> together a number of cons-words and atoms.
+
+> This scheme of building up complex structures from numbers of
+> similar and much simpler elements has a great deal to recommend
+> it. In some sense, moreover, the doublet of LISP is the simplest
+> possible component from which to construct a structure and it is
+> certainly possible to represent any other structure in terms of
+> doublets. However from the practical point of view, not only for
+> economy of implementation but also for convenience in use, the
+> logically simplest representation is not always the best.
+
+只要设计好处理 lisp 的语法和函数，就能在保持最简的同时好用。
+
+> In about 1965 or 1966 interest began to turn to more general schemes
+> for compound data structures which allowed the programmer to specify
+> his own building blocks in some very general manner rather than
+> having to make do with those provided by the language
+> designer. Several such schemes are now around and in spite of being
+> to a large extent developed independently they have a great deal in
+> common -- at least as far as the structures described in the next
+> section as nodes are concerned. In order to illustrate these ideas,
+> I shall outline the scheme which will probably be incorporated in
+> CPL.
+
+在 structural type + list 下，
+有 programmer-defined type，
+可以代替 struct 和 ADT，
+而不必要有 programmer-defined value。
 
 ### 3.7.2 Nodes and elements
+
+介绍 ADT，
+node 是 product type，
+element 是 union type。
+
 ### 3.7.3 Assignments
+
+> In order to understand assignments in compound data structure we
+> need to know what are the L- and R-values of nodes and their
+> components.
+
+compound data 的 L-value 与 pattern matching 中的 pattern 有一些相似。
+
 ### 3.7.4 Implementation
+
+> Suppose we have a machine with a word length which is a few bits
+> longer than a single address. The R-value of a node will then be an
+> address pointing to a small block of consecutive words, one for each
+> component, containing the R-values of the components.  An element
+> requires for its R-value an address (e.g., the R-value of a node)
+> and a marker to say which of the various possibilities is its
+> dynamically current type. (There should be an escape mechanism in
+> case there are too few bits available for the marker.)
+
+介绍 ADT 的具体实现方式，
+相比之下 structural type + list 要简单很多。
+
 ### 3.7.5 Programming example
+
+CPL 中二叉树的例子。
+
 ### 3.7.6 Pointers
+
+> There is no reason why an R-value should not represent (or be) a
+> location; such objects are known as _pointers_.
+
+`Follow[Pointer[X]]` 对应于 C 的 `*(&x)`。
+
 ### 3.7.7 Other forms of structure
+
+介绍 vector 之外的 collection structure：
+
+- list
+- tuple
+- set
+- bag
+
+> The name bag is derived from probability problems concerned with
+> balls of various colours in a bag.
+
+> It is easy enough to include any selection of these in a programming
+> language, but the result would seem rather arbitrary. We still lack
+> a convincing way of describing those and any other extensions to the
+> sort of structures that a programmer may want to use.
+
+确实如此，比如 ADT 没法描述 set。
 
 # 4 Miscellaneous topics
 
 ## 4.1 Load-Update Pairs
+
+> A general L-value (location) has two important features: There is a
+> function which gives the corresponding R-value (contents) and
+> another which will update this. If the location is not simply
+> addressable, it can therefore be represented by a structure with two
+> components -- a `Load` part and an `Update` part...
+
 ## 4.2 Macrogenerators
+
+> However the fact that it is possible to push a pea up a mountain
+> with your nose does not mean that this is a sensible way of getting
+> it there. Each of these techniques of language extension should be
+> used in its proper place.
+
+> Macrogeneration seems to be particularly valuable when a semantic
+> extension of the language is required. If this is one which was not
+> contemplated by the language designer the only alternative to
+> trickery with macros is to rewrite the compiler -- in effect to
+> design a new language.
+
+对滥用 marco 的很好的比喻。
+
+> However with a more sophisticated language the need for a
+> macrogenerator diminishes, and it is a fact that ALGOL systems on
+> the whole use macrogenerators very rarely. It is, I believe, a
+> proper aim for programming language designers to try to make the use
+> of macrogenerators wholly unnecessary.
+
 ## 4.3 Formal semantics
+
+> Section 3.3 gives an outline of a possible method for formalising
+> the semantics of programming languages. It is a development of an
+> earlier proposal [8], but it is far from complete and cannot yet be
+> regarded as adequate.
+
+> There are at present (Oct. 1967) only three examples of the formal
+> description of the semantics of a real programming language, as
+> opposed to those which deal with emasculated versions of languages
+> with all the difficulties removed. These are the following:
+>
+> (i) Landin’s reduction of ALGOL to λ-expressions with the addition
+> of assignments and jumps. This requires a special form of evaluating
+> mechanism (which is, of course, a notional computer) to deal with
+> the otherwise non-applicative parts of the language.  The method is
+> described in [6] and given in full in [9].
+>
+> (ii) de Bakker [10] has published a formalisation of most of ALGOL
+> based on an extension of Markov algorithms. This is an extreme
+> example of treating the language as a symbol string. It requires no
+> special machine except, of course, the symbol string manipulator.
+>
+> (iii) A team at the IBM Laboratories in Vienna have published [12,
+> 13] a description of PL/I which is based on an earlier evaluating
+> mechanism for pure λ-expressions suggested by Landin [11] and the
+> concept of a state vector for a machine suggested by McCarthy
+> [14]. This method requires a special ‘PL/I machine’ whose properties
+> and transition function are described. The whole description is very
+> long and complex and it is hard to determine how much of this
+> complexity is due to the method of semantic description and how much
+> to the amorphous nature of PL/I.
+
+> The method suggested in Section 3.3 has more in common with the
+> approach of Landin or the IBM team than it has with de Bakker’s. It
+> differs, however, in that the ultimative machine required (and all
+> methods of describing semantics come to a machine ultimately) is in
+> no way specialised. Its only requirement is that it should be able
+> to evaluate pure λ-expressions. It achieves this result by
+> explicitly bringing in the store of the computer in an abstract
+> form, an operation which brings with it the unexpected bonus of
+> being able to distinguish explicitly between manifest and latent
+> properties. However until the whole of a real language has been
+> described in these terms, it must remain as a proposal for a method,
+> rather than a method to be recommended.
+
+可以说，这是 section 3.3 的主要 idea："It achieves this result by
+explicitly bringing in the store of the computer in an abstract form."
