@@ -34,7 +34,7 @@ coherence semantics of the sum，
 > on them are discussed in an informal manner and shown to be very
 > suitable for developing a mathematical theory of the semantics of
 > programming languages.  A preliminary result of this approach is the
-> construction of the first "mathematical" model for the A-calculus.
+> construction of the first "mathematical" model for the lambda-calculus.
 
 # O. Introduction
 
@@ -54,9 +54,10 @@ coherence semantics of the sum，
 
 # 1. The Problem of Self-Application
 
-> Since a function (say, mapping integers to generally in itself an
-> infinite object. it also becomes necessary to introduce some idea of
-> finite approximation -- just as we do in a sense for real numbers.
+> Since, a function can be in itself an infinite object (ex. a mapping
+> from integers to integers) we must introduce some idea of
+> approximation to deal with the finite nature of the machines -- just
+> as we do with real numbers.
 
 看来 Dana 很喜欢无穷小分析的算术化。
 但是 real number 是完全脱离计算机科学的。
