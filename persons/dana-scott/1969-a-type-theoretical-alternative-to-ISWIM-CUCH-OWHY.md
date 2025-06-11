@@ -61,4 +61,27 @@ HoTT 所处理的连续函数是 cell complex
 
 # Abstract
 
+> The paper (first written in 1969 and circulated privately) concerns
+> the definition, axiomatization, and applications of the hereditarily
+> monotone and continuous functionals generated from the integers and
+> the Booleans (plus “undefined” elements). The system is formulated
+> as a typed system of combinators (or as a typed lambda-calculus)
+> with a recursion operator (the least fixed-point operator), and its
+> proof rules are contrasted to a certain extent with those of the
+> untyped lambda-calculus.
+
+> For publication (1993), a new preface has been added, and many
+> bibliographical references and comments in footnotes have been
+> appended.
+
+# Preface (1993)
+
 TODO
+
+# 0 Introduction
+# 1 Types
+# 2 Interpretation
+# 3 Axiomatization
+# 4 Completeness
+# 5 Conclusions
+# 6 Afterthought (1993)
