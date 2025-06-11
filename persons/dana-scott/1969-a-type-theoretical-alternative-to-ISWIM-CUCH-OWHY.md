@@ -76,6 +76,22 @@ HoTT 所处理的连续函数是 cell complex
 
 # Preface (1993)
 
+> This particular paper has, of course, an odd historical role: in it
+> the author argues against the type-free calculi of Church and Curry,
+> Kleene and Rosser, and their later uses by Bohm and Strachey. But
+> then in November of 1969, after writing this report, the author
+> himself saw that the method of monotone continuous functions (which
+> grew out of traditional recursive function theory in discussing
+> certain kinds of functionals) could be applied to posets other than
+> just those generated from the integers (with bottom) by the very
+> simple type constructors. In particular, it was recognized that
+> there were posets whose continuous function spaces of self-maps
+> could be identified with the given posets themselves. And so there
+> actually were “traditional” models of lambda-calculus that could be
+> defined without first going through the proof theory of the formal
+> system itself (and which could be related to many other
+> mathematically meaningful structures and theories as well).
+
 TODO
 
 # 0 Introduction
