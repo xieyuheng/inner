@@ -59,7 +59,22 @@ HoTT 所处理的连续函数是 cell complex
 
 另外注意，这篇论文比 Martin Löf 系列论文还早。
 
-# My Summ
+# My Notes
+
+[2025-06-11] 这种 D 到 D -> D 之间的对应，
+我感到很熟悉，因为在讨论「算术的等级」时有过类似的构造，
+比如先通过皮亚诺公理定义 Nat，
+加法这个二元运算 add: Nat -> Nat -> Nat,
+其实是把 Nat 中的元素映射到一个类型为 Nat -> Nat 的函数的集合。
+
+不同的是，为了构造加法，
+add(Nat) 只是 Nat -> Nat 的子集，
+而为了寻求 lambda 演算的指称语义，
+需要找到 D 与 D -> D 之间的同构。
+
+可以说函数作用是最一般的，
+不满足任何运算律的二元运算。
+
 # Abstract
 
 > The paper (first written in 1969 and circulated privately) concerns
@@ -92,6 +107,64 @@ HoTT 所处理的连续函数是 cell complex
 > defined without first going through the proof theory of the formal
 > system itself (and which could be related to many other
 > mathematically meaningful structures and theories as well).
+
+> After writing with tiresome sarcasm about the lack of meaning in the
+> type-free lambda-calculus introduced only formally, the author
+> himself found an interesting kind of semantical interpretation for
+> the “type-free” language. This total shift of gears is the reason
+> the present paper was not published: the foundational program being
+> advocated had apparently been completely outmoded by the discovery
+> of the more general lattice-theoretic models.  However, the
+> _axiomatic_ program laid out here had much to recommend it, and it
+> was continued and extended in many directions by Milner, Plotkin,
+> and many others, to whom the paper had been circulated privately -
+> often at nth hand.
+
+> On the other hand, the type-theoretical approach has not died out at
+> all, because it has been taken over and absorbed into the
+> applications of category theory to semantics and computation
+> theory. The author is fond of saying that a category represents the
+> “algebra of types”, just as abstract rings give us the algebra of
+> polynomials, originally understood to concern only integers or
+> rationals. One can of course think only of particular type systems,
+> but, for a full understanding, one really needs also to take into
+> account the general theory of types, and especially translations or
+> interpretations of one system in another. Category theory together
+> with the notion of functor and natural transformation between
+> functors has been proved over and over again in the last
+> half-century to be the appropriate way to go about these studies.
+> The author himself does not always like or enjoy the discipline of
+> category theory, which seems ofttimes to carry along very, very
+> heavy machinery and odd terminology, but he long ago came to the
+> conclusion that it is quite _unavoidable_. The extremely active
+> current research in semantics also shows that it is an especially
+> fruitful way to think. The book of Gunter [9] with its wide-ranging
+> historical comments and references is adequate proof of this
+> assertion.
+
+值得一读：
+
+- [9] Semantics of Programming Languages - Structures and Techniques,
+  C.A. Gunter, 1992.
+
+> The strange title of this paper ought perhaps to be explained. In
+> 1966, Landin published an influential paper [14] which introduced a
+> syntactical design style for programming languages, one of which he
+> called ISWIM, standing for “If you See What I Mean”.
+
+也就是说 Landin 的这篇论文是关于语法设计风格的？
+
+> Also Böhm in 1966 published the paper [3] which named a language of
+> combinators called CUCH, standing for “Curry-Church”.
+
+> The author hoped to stop some proliferation by suggesting a return
+> to the logically standard type-theoret- ical framework and thereby
+> deter the creation of programming languages of doubtful foundation
+> called (as a group) OWHY, standing for “Or What Have You.”
+
+> No one really understood the joke, and the effort was doomed to be
+> of no avail. And history proved the author to be too conservative in
+> any case.
 
 # 0 Introduction
 # 1 Types
