@@ -224,7 +224,7 @@ add(Nat) 只是 Nat -> Nat 的子集，
 > Unfortunately, the axiomatics of “synthetic domain theory” have not
 > been completely clarified so that a convenient foundation for
 > computation theory and semantics can be given in set-theoretic terms
-> (see [12, 251 and the references therein).
+> (see [12, 25] and the references therein).
 
 也就是说人们尝试直接公理化 domain theory。
 值得看看。
