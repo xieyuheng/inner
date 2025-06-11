@@ -262,11 +262,15 @@ add(Nat) 只是 Nat -> Nat 的子集，
 > I list them along with their types (A, B, C are arbitrary type symbols):
 
 ```scheme
-(check omega-any any-t) ???
-(check omega-bool bool-t) ???
+;; two bottom elements
+(check any-omega any-t)
+(check bool-omega bool-t)
+
 (check true bool-t)
 (check false bool-t)
+
 (check if (nu (A) (-> any-t A A A)))
+
 (check K (nu (A B) (-> A B A)))
 (check S (nu (A B C) (-> (-> A B C) (-> A B) (-> A C))))
 (check Y (nu (A) (-> (-> A A) A)))
@@ -340,6 +344,80 @@ expressions 之间有顺关系？
 > have different symbols for different notions.
 
 # 2 Interpretation
+
+> The classical way of viewing the theory of types is to assign to
+> each type A a domain (D A). ... and each (D (-> A B)) is the domain
+> of all functions from (D A), with values in (D B).
+
+> This point of view is not convenient for our purposes. The reason is
+> simple: classical type theory supposes total (everywhere defined)
+> functions, while algorithms in general produce partial functions.
+> We do not wish to reject a program if the function defined is
+> partial -- because as everyone knows it is not possible to predict
+> which programs will “loop” and which will define total functions.
+
+> The solution to this problem of total versus partial functions is to
+> make a “mathematical model” for the theory of partial functions
+> using ordinary total functions. The idea is not at all original to
+> the author (he has taken it from more “standard” versions of
+> recursive function theory -- in particular, from the thesis of
+> Platek [20]).
+
+值得一读：
+
+- [20] "Foundations of recursion theory",
+  Richard Alan Platek, Ph.D. Thesis, 1966.
+
+> What we do is to adjoin a “fictitious” element `any-omega`, to the
+> domain `(D any-t)`, and an element `bool-omega`, to `(D bool-t)`. We call
+> `any-omega` the “undefined” individual and `bool-omega`, the
+> “undefined” truth value.
+
+> However, we need to distinguish the new elements from the old. To do
+> this we create a relation ≤ on (D any-t), and ≤ on (D bool-t), (same
+> symbol -- different relations) meaning, roughly, “is less or equally
+> defined as”. Thus, a reasonable assumption is that
+>
+>     any-omega ≤ x
+>
+> for all x ∈ (D any-t), but that
+>
+>     x ≤ y
+>
+> implies
+>
+>     x = y
+>
+> if x and y are not equal to `any-omega`.
+
+这里有一段注释：
+
+> [from the original text] I am sorry that I must use the same symbols
+> in the metalanguage as some of those in the object language. It is a
+> sad fact that there are just toofew symbols.
+
+为什么不用清晰的而且可规模化的 lisp 语法呢？
+
+> We make this assumption about ≤ on (D bool-t), but for the moment
+> not about (D any-t). Thus, a “picture” of (D bool-t), could be:
+
+```
+  false    true
+     \     /
+      \   /
+    bool-omega
+```
+
+omega 就是 propagator model 中的 undefined。
+
+> We are therefore involved with a three-valued “logic” with the new
+> value bool-omega, “in between” true and false but placed “a little
+> lower down”.
+
+> Kleene introduced such a three-valued logic in [13], and it has been
+> discussed by many, many authors.
+
+Kleene [13] 就是著名的 1952 年的 "Introduction to Metamathematics"。
 
 TODO
 
