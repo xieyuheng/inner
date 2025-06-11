@@ -237,9 +237,112 @@ add(Nat) 只是 Nat -> Nat 的子集，
 
 # 1 Types
 
-TODO
+> We can reduce the notion of function to that of set, but it is not
+> convenient to do so. A much better plan is to treat sets (and
+> relations) as special functions (truth-valued) as Church does.
+
+> These are the two logical types of the lowest order：
+
+- `any-t` -- the largest data type;
+  all other data types are to be “included” in it.
+
+- `bool-t` -- the type of the truth values.
+
+> The higher types are represented as follows: If `A` and `B` are
+> types, then so is `(-> A B)`. What `(-> A B)` represents is the type
+> of functions from objects of type A to those of type B.
+
+> Aside from this collection of type symbols, we will also have a rich
+> language of expressions.
+
+> Each expression will have a (unique) type, and I shall write `X: A`
+> to mean that the expression `X` is of type `A`.
+
+> The logical constants are infinite in number (so are the types);
+> I list them along with their types (A, B, C are arbitrary type symbols):
+
+```scheme
+(check omega-any any-t) ???
+(check omega-bool bool-t) ???
+(check true bool-t)
+(check false bool-t)
+(check if (nu (A) (-> any-t A A A)))
+(check K (nu (A B) (-> A B A)))
+(check S (nu (A B C) (-> (-> A B C) (-> A B) (-> A C))))
+(check Y (nu (A) (-> (-> A A) A)))
+```
+
+> As for the other expressions, suppose `X: A` and `F: (-> A B)` then
+> we have `(F X): B`.
+
+```
+X: A
+F: (-> A B)
+-----------
+(F X): B
+```
+
+> That is to say the standard function-value notation is the only way
+> in which compounds can be made. Note that the type of X must& the
+> type of `F` for `(F X)` to be well formed. Note, too, how
+> complicated the types of our constants are. In particular, it is
+> possible to form an expression of any type using only constants and
+> no variables.
+
+> By a _formula_, we understand either an atomic formula of the form
+>
+>     X ≤ Y,
+>
+> where X and Y are expressions, or a list (possibly empty!) of atomic
+> formulae.
+
+expressions 之间有顺关系？
+
+> By an _assertion_, we understand a string of the form
+>
+>     C |- D
+>
+> where C and D are lists of atomic formulae. Intuitively lists of
+> formulae are just conjunctions and |- gives an implication between
+> conjunctions -- but this will all be clear when we find out in the
+> next section the meanings of all our symbols. After that we will
+> discuss _axioms_ and _rules of inference_ for generating the (or a
+> good part of the) valid assertions in an “algebraic” way.
+
+用 inference rule 所推导也能称作是 an “algebraic” way 了？
+
+> We need a few abbreviations. If X and Y are expressions of the same
+> type, then
+>
+>     X = Y
+>
+> stands for the list
+>
+>     X ≤ Y, Y ≤ X.
+
+> If F is an expression, and if `F(X)(Y)(Z)` is well formed,
+> then we abbreviate this as
+>
+>     F(X, Y, Z)
+>
+> Similarly, for more than three terms.
+
+下面是很多年后的符号变更注释：
+
+> Subsequently, the author’s notation changed because it was confusing
+> (he felt) to use either ≤ or ⊆ for the information ordering within a
+> domain. He thus adopted the “square” notation of ⊑ from lattice
+> theory. This brought along ⊓ and ⊔. and took ⊥ for the bottom
+> element instead of omega. It still seems to the author a better
+> notation, but too many people prefer to write the easier ≤. However,
+> in a system that might involve integers, sets (say as elements of
+> power domains), and the information ordering, it seems cleaner to
+> have different symbols for different notions.
 
 # 2 Interpretation
+
+TODO
+
 # 3 Axiomatization
 # 4 Completeness
 # 5 Conclusions
