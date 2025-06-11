@@ -11,7 +11,7 @@ year: 1978
 但是其实对 type system 的学习应该从更简单的入手，
 应该从 Hindley-Milner type system 入手。
 
-# My Summary
+# My Notes
 
 [2025-06-10] 这篇论文与 luca 的
 1993 年论文 "subtyping recursive types"

@@ -59,6 +59,7 @@ HoTT 所处理的连续函数是 cell complex
 
 另外注意，这篇论文比 Martin Löf 系列论文还早。
 
+# My Summ
 # Abstract
 
 > The paper (first written in 1969 and circulated privately) concerns
@@ -91,8 +92,6 @@ HoTT 所处理的连续函数是 cell complex
 > defined without first going through the proof theory of the formal
 > system itself (and which could be related to many other
 > mathematically meaningful structures and theories as well).
-
-TODO
 
 # 0 Introduction
 # 1 Types

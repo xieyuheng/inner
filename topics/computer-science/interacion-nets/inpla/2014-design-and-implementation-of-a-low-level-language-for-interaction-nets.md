@@ -22,7 +22,7 @@ year: 2014
 
 读 inpla 相关的论文就是要看别人是如何处理这个 data race 的。
 
-# My Summary
+# My Notes
 
 [2025-04-02] 我的实现中的 data race 中的 read，
 来自需要发现两个 wire 是否是 principal wire。

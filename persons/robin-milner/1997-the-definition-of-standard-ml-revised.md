@@ -36,7 +36,7 @@ year: 1997
      (cons (f head) (list-map tail f))]))
 ```
 
-# My Summary
+# My Notes
 
 [2025-05-27] 太枯燥了，根本看不下去。
 难怪会有 "Commentary on standard ML"。

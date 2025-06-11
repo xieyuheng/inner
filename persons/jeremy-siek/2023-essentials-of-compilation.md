@@ -45,7 +45,7 @@ propagator 和 inet 的实现带来什么启发。
 [2025-05-24] 也许更适合用来为 pi calculus 之类的语言写解释器的，
 是 simply typed scheme，而不是 generic dispatching。
 
-# My Summary
+# My Notes
 
 [2025-06-05] 作为渐进的开发与教学的著作，
 作者在两个方面践行了渐进：
