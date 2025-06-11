@@ -57,7 +57,9 @@ HoTT 所处理的连续函数是 cell complex
 这种代数拓扑的直接对象之间连续函数。
 连续在于保持边界，而不是在于（经典拓扑空间的公理下）保持开集。
 
-另外注意，这篇论文比 Martin Löf 系列论文还早。
+另外注意，这里的 type theory 来自罗素，
+其目的是避免朴素集合论的悖论，
+而不是方便人们写程序。
 
 # My Notes
 
@@ -117,7 +119,7 @@ add(Nat) 只是 Nat -> Nat 的子集，
 > of the more general lattice-theoretic models.  However, the
 > _axiomatic_ program laid out here had much to recommend it, and it
 > was continued and extended in many directions by Milner, Plotkin,
-> and many others, to whom the paper had been circulated privately -
+> and many others, to whom the paper had been circulated privately --
 > often at nth hand.
 
 > On the other hand, the type-theoretical approach has not died out at
@@ -167,7 +169,76 @@ add(Nat) 只是 Nat -> Nat 的子集，
 > any case.
 
 # 0 Introduction
+
+> No matter how much wishful thinking we do, the theory of types is
+> here to stay.  There is _no other way_ to make sense of the
+> foundations of mathematics.
+
+> My point is that formalism _without eventual interpretation_ is in
+> the end useless. Now, it may turn out that a system such as the
+> lambda-calculus will have an interpretation along standard lines
+> (and I have spent more days than I care to remember trying to find
+> one), but until it is produced I would like to argue that its
+> purposes can just as well be fulfilled by a system involving
+> types. Indeed, as far as _proofs_ are concerned, the system with
+> types seems to be much better.
+
+> It is a pity that a system such as Zermelo-Fraenkel set theory is
+> usually presented in a purely formal way, because the conception
+> behind it is quite straightforwardly based on type theory. One has
+> the concept of an arbitrary subset of a giuen domain and that the
+> collection of all subsets of the given domain can form a new domain
+> (of the next type!).
+
+从罗素的类型论出发，而不是从程序语言的类型论出发。
+
+> Starting with a domain of individuals (possibly empty), this process
+> of forming subsets is then iterated into the transfinite. Thus, each
+> set has a type (or rank) given by the ordinal number of the stage at
+> which it is first to be found in the iteration.
+
+> One advantage of this method is that the types are built into the
+> sets themselves and need not be made manifest in the
+> formalism. (Computer people might say that the type checking in set
+> theory is done at runtime rather than at compile time.)
+
+> For the purposes of understanding computation, however,
+> set-theoretical formalism is not too helpful in any direct way.
+
+其实 structural type 是非常接近集合论的。
+
+> ... the axioms of set theory are meant to capture something
+> essential of the idea of an arbitrary subset, while computation
+> theory is more interested in the notion of an algorithmically
+> dejined subset (or function). Of course, one can define in set
+> theory such notions as that of a general recursive function, but
+> such definitions do not emphasize enough what is special about
+> algorithms.
+
+> Nor is it generally clear when a defined function is recursive. So
+> what we want is a “restricted” system that is specially designed for
+> algorithms.
+
+这里有一段注释：
+
+> Unfortunately, the axiomatics of “synthetic domain theory” have not
+> been completely clarified so that a convenient foundation for
+> computation theory and semantics can be given in set-theoretic terms
+> (see [12, 251 and the references therein).
+
+也就是说人们尝试直接公理化 domain theory。
+值得看看。
+
+> What I shall present below is an independent system with its own
+> axioms and rules; but, since I observe the canons of type theory, it
+> can be (and indeed must be) read as a fragment of set theory so that
+> its theorems can be recognized as valid. This is the main feature
+> missing from the lambda-calculus.
+
 # 1 Types
+
+TODO
+
 # 2 Interpretation
 # 3 Axiomatization
 # 4 Completeness
