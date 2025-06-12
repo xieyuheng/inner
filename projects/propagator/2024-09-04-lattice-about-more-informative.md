@@ -18,6 +18,14 @@ merge 的效果是让 partial information 变得 more informative。
   虽然 "more informative" 一词中有一个 "more"，
   但是其实就序集而言它是更小。
 
+[2025-06-12] 也许应该用 join 而不是 meet，
+以使得 propagator model 对 lattice 的使用方式，
+和 domain theory 对 lattice 的使用方式保持一致。
+并且统一用 "richer" 来表示 propagator model 中的 "more informative"，
+和 domain theory 中的 "more defined"。
+注意，还需要反方向的词，如果用 richer，反过来就是 poorer，这不太好。
+也许应该直接用 more 和 less，这两个更简单的词。
+
 注意术语所在的领域：
 
 - merge 是就 partial information 而言的术语。

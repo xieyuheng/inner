@@ -84,54 +84,39 @@ add(Nat) 只是 Nat -> Nat 的子集，
 [2025-06-12] 这里的 lattice 上的连续性，
 和拓扑学公理所定义的连续性有什么关系？
 
-首先我想要把 propagator model 中使用 lattice 的方式，
-和 denotational semantic 中使用 lattice 的方式统一起来。
+通过给 lattice 定义 Scott 开集，可以满足拓扑公理。
 
-在 propagator model 中，
-merge 是 lattice 的 meet -- ⋀，
+## propagator model vs. domain theory
+
+[2025-06-12] 我想要把 propagator model 中使用 lattice 的方式，
+和 domain theory 中使用 lattice 的方式统一起来。
+
+以 domain theory 为主，因为这一方面的理论发展的更完备。
+
+在 domain theory 中，X ≤ Y，
+代表 Y is "more defined" than X，
+也就是 propagator model 中的 "more informative"。
+
+因此在 propagator model 中，
+merge 是 lattice 的 join -- ⋁，
 的效果是让 partial information 变得 more informative。
 
-在 denotational semantic 中，X ≤ Y，
-代表 Y is "more defined" than X，
-也就是 "more informative"。
+我统一用 richer 来表示 more informative 和 more defined。
+相反的用 poorer 来表示 less informative 和 less defined。
+也许应该用 more 和 less，这两个更简单的词。
 
-也就是说 denotational semantic 中，
-使用 lattice 的方式（定义 ≤ 的方式），
-与 propagator model 中使用 lattice 的方式刚好相反。
-
-TODO 问题：为了统一二者使用 lattice 的方式，应该让谁迎合谁呢？
-
-方案 A：propagator model 为主。
-
-```scheme
-(define more-informative? lteq?)
-(define merge meet)
-```
-
-方案 B：domain theory 为主。
-
-```scheme
-(define more-informative? gteq?)
-(define merge join)
-```
-
-假设使用方案 A，
-那么就应该用拓扑空间的闭集公理（而不是开集合公理）：
-
-- 全集和空集是闭集；
-- 任意交集是闭集；
-- 有限并集是闭集。
-
-用闭集的公理是因为想要强调「交」而不是「并」，
-比如 {a: 1} 和 {b: 2} 的 intersection 是 {a: 1, b: 2}。
+- x ≤ y -- (less x y)
+- x ≥ y -- (more x y)
+- x ⋁ y -- (join x y)
+- x ⋀ y -- (meet x y)
 
 用一组无穷多函数去逼近递归函数，
-就是取这组无穷多函数的「交」，
-因此我们需要「无限交」，
-因此需要拓扑空间闭集的公理，
-而不是开集的公理。
+就是取这组无穷多函数的 join。
+lattice 需要对于无限 join 封闭。
 
-TODO 假设使用方案 B。
+问题：如果取 lattice 的 Scott 开集，
+对无限 join 封闭是否对应于，
+拓扑空间对开集的无限并的封闭？
 
 # Abstract
 
