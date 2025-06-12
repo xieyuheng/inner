@@ -156,7 +156,7 @@ luca cardelli 的 1993 论文 "subtyping recursive types" 来解决，
 > a set of simultaneous linear equations; we take this idea further in
 > the next section.
 
-看起来值得一读：
+看起来值得一读，尤其是通过解方程来做类型推导的过程：
 
 - [10] “Lambda-Calculus Models of Programming Languages”,
   J. H. Morris, Ph.D. Thesis, 1968.
@@ -667,13 +667,235 @@ check 显然是简单的：
 > conditional, and the occurrence of a nonfunctional value as the
 > operator of an application.
 
-可以用 `(error)` 来表示这里的 "wrong"。
+[2025-06-13] 为了理解这里所用的 denotational semantics，
+看完 Scott 的 1969-a-type-theoretical-alternative-to-ISWIM-CUCH-OWHY 回来了。
+在 Scott 的论文中这里的 "wrong" 代表 "undefined"。
 
-TODO 看不懂这里的 denotational semantics。
+每个 domain 都有 bottom，并且对取 domain 的任意子集的最小上界封闭。
+
+我用 `(undefined D)` 来表示 D 的 bottom。
+
+> Take as given a set {Bi} of basic domains, with B0 = T, the three
+> element truth value domain
+
+```
+  false    true
+     \     /
+      \   /
+  (undefined bool)
+```
+
+我直接用 `bool-t` 来指代 B0。
+
+> and we define recursively
+
+```bnf
+V := B0 + B1 + ... + F + W -- disjoint sum of domains
+F := V -> V                -- continuous functions from V to V
+W := {}                    -- error
+```
+
+> The solution (up to isomorphism) of such a set of domain equations
+> is assured by Scott [15]. Although he worked with complete lattices,
+> the solution also exists in cpos (see Plotkin [11]).
+
+这里的两个引用：
+- [15] "Lattice theoretic models for various type-free calculi", Scott, 1972.
+- [11] "A power-domain construction", Plotkin, 1976.
+
+> The semantic function is E ∈ Exp -> Env -> V, where Env = Id -> V,
+> the domain of environments.
+
+```scheme
+(define env-t (-> id-t value-t))
+(claim evaluate (-> exp-t env-t value-t))
+```
+
+> In defining `evaluate`, and later, we use some familiar notation of
+> Scott and Strachey [16], illustrated by these examples (where D is
+> some summand of V):
+
+(1) 那么存在 D 到 value-t 的 injection。
+
+(2) 一个判断元素是否属于类型的函数：
+
+```scheme
+(claim in (-> value-t type-t))
+(define (in v D)
+  (cond ((check v D) true)
+        ((equal? v (undefined value-t))
+         (undefined bool-t))
+        (else false)))
+```
+
+(3) 一个判断元素是否属于类型，并且返回这个元素本身的函数：
+
+```scheme
+(claim the (-> type-t value-t))
+(define (the D v) (if (in v D) v (undefined D)))
+```
+
+关于 env 的函数：
+
+```scheme
+(claim env-cons (-> env-t id-t value-t env-t))
+(define (env-cons env id value)
+  (lambda (x)
+    (if (equal? x id)
+      value
+      (env x))))
+```
 
 ## 3.2 Semantic Equations for Exp
+
+这一节就是写解释器。
+
+回顾一下语法：
+
+```bnf
+<exp> := <var>
+       | (<exp> <exp>)
+       | (if <exp> <exp> <exp>)
+       | (lambda (<var>) <exp>)
+       | (fix (<var>) <exp>)
+       | (let ((<var> <exp>)) <exp>)
+```
+
+把语法定义成 structural type：
+
+```scheme
+(define-type exp-t (union var-t ap-t if-t fn-t fix-t let-t))
+(define-type var-t (symbol-exclude 'if 'lambda 'fix 'let))
+(define-type ap-t (tau exp-t exp-t))
+(define-type if-t (tau 'if exp-t exp-t exp-t))
+(define-type fn-t (tau 'lambda (tau var-t) exp-t))
+(define-type fix-t (tau 'fix (tau var-t) exp-t))
+(define-type let-t (tau 'let (tau (tau var-t exp-t)) exp-t))
+```
+
+解释器：
+
+```scheme
+(define env-t (-> id-t value-t))
+
+(define function-t (-> value-t value-t))
+
+(define error-t (enum (undefined value-t)))
+(claim error error-t)
+(define error (undefined value-t))
+
+(claim evaluate (-> exp-t env-t value-t))
+(define (evaluate exp env)
+  (match exp
+    ((the var-t x)
+     (env x))
+    ([(the exp-t target) body]
+     (let ((f (evaluate target env))
+           (arg (evaluate body env)))
+       (when (not (in f function-t)) error)
+       (when (in arg error-t) error)
+       (f arg)))
+    (`(if ,e1 ,e2 ,e3)
+     (let ((p (evaluate e1 env))
+           (t (evaluate e2 env))
+           (f (evaluate e3 env)))
+       (when (not (in p bool-t)) error)
+       (if p t f)))
+    (`(lambda (,x) ,e)
+     ;; milner didn't use closure,
+     ;; but use partial evaluation.
+     (let ((v (fresh-var))
+           (r (evaluate e (env-cons env x v))))
+       `(lambda (,v) ,r)))
+    (`(fix (,x) e)
+     (Y (let ((v (fresh-var))
+              (r (evaluate e (env-cons env x v))))
+          `(lambda (,v) ,r))))
+    (`(let ((,x ,e1)) ,e2)
+     (let ((v1 (evaluate e1 env)))
+       (when (in v1 error-t) error)
+       (evaluate e2 (env-cons env x v1))))))
+```
+
+> (1) Y is the least fixed-point operation.
+> In many languages the e in
+>
+>     (fix (f) e)
+>
+> would be restricted to be an abstraction
+>
+>     (lambda (y) e2)
+>
+> and then
+>
+>     (let ((f (fix (f) (lambda (y) e2)))) ...)
+>
+> might receive the syntax
+>
+>     (letrec (((f y) e2)) ...)
+
+> (2) It is easy to see that `(let ((x e1)) e2)` has the same meaning
+> under `evaluate` as `((lambda (x) e2) e1)`. But part of our aim is a
+> type discipline which admits certain expressions in the first form
+> and yet rejects their translations into the second form; this is
+> because lambda-abstractions may in general occur without an explicit
+> operand, and need more careful treatment.
+
+> (3) The semantics for `(e1 e2)` corresponds to call-by-value, since
+> the test `(in arg error-t)` ensures that the meaning of `(e1 e2)` is
+> `error` if the meaning of `e2` is `error` . The omission of this
+> test gives a call-by-name semantics (a similar test may be omitted
+> in the semantics of the let construct), and the Semantic Soundness
+> Theorem goes through equally in this case.
+
 ## 3.3 Discussion of Types
+
+> We now proceed, in outline, as follows. We define a new class of
+> expressions which we shall call types; then we say what is meant by
+> a value _possessing_ a type. Some values have many types, and some
+> have no type at all. In fact “wrong” has no type. But if a
+> functional value has a type, then as long as it is applied to the
+> right kind (type) of argument it will produce the right kind (type)
+> of result -- which cannot be “wrong”!
+
+> Now we wish to be able to show that -- roughly speaking -- an Exp
+> expression evaluates (in an appropriate environment) to a value
+> which has a type, and so cannot be wrong.  In fact, we can give a
+> sufficient syntactic condition that an expression has this robust
+> quality; the condition is just that the expression has a
+> “well-typing” with respect to the environment, which means that we
+> can assign types to it and all its subexpressions in a way which
+> satisfies certain laws.
+
+注意最后这句话，"which means that we can assign types to it and all
+its subexpressions in a way which satisfies certain laws."
+看起来非常 适合用 propagator model 实现。
+
+> So there are two main tasks, once the laws of type assignment are
+> given. The first -- to show that an expression (or program) with a
+> legal type assignment cannot “go wrong” -- is tackled in this
+> section; surprisingly enough, it is the easier task (at least for an
+> applicative language).
+
+> The second task is to _discover_ a legal type assignment, given a
+> program with incomplete type information.  This task is often called
+> _type checking_. Of course, this term can also mean just verifying
+> that a given type assignment is legal; in a practical situation we
+> probably require something between the two, since one cannot expect
+> a programmer to attach a type to every subexpression.
+
+> In Section 4 we look at the class of legal type assignments for a
+> given program (the class is infinite in general, since we admit
+> polymorphism), and we give an algorithm which, if it succeeds,
+> produces a legal type assignment. We conjecture that if the latter
+> exists then the algorithm finds one which is most general, in the
+> sense that any other legal type assignment is a substitution
+> instance of it (substituting types for type variables).
+
 ## 3.4 Types and their Semantics
+
+TODO
+
 ## 3.5 Type Assignments
 ## 3.6 Substitutions
 ## 3.7 Well-Typed Expressions Do Not Go Wrong
