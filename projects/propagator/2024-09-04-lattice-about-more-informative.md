@@ -13,7 +13,7 @@ export function implies<A, B>(x: A, y: B): boolean {
 
 merge 的效果是让 partial information 变得 more informative。
 
-- merge 是 lattice 的 meet。
+- merge 是 lattice 的 meet -- ⋀。
 - implies 是 ordered set 中的 "less or equal to"。
   虽然 "more informative" 一词中有一个 "more"，
   但是其实就序集而言它是更小。

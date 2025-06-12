@@ -63,6 +63,8 @@ HoTT 所处理的连续函数是 cell complex
 
 # My Notes
 
+## 算术的等级
+
 [2025-06-11] 这种 D 到 D -> D 之间的对应，
 我感到很熟悉，因为在讨论「算术的等级」时有过类似的构造，
 比如先通过皮亚诺公理定义 Nat，
@@ -76,6 +78,60 @@ add(Nat) 只是 Nat -> Nat 的子集，
 
 可以说函数作用是最一般的，
 不满足任何运算律的二元运算。
+
+## 格上的连续函数 vs. 拓扑空间上的连续函数
+
+[2025-06-12] 这里的 lattice 上的连续性，
+和拓扑学公理所定义的连续性有什么关系？
+
+首先我想要把 propagator model 中使用 lattice 的方式，
+和 denotational semantic 中使用 lattice 的方式统一起来。
+
+在 propagator model 中，
+merge 是 lattice 的 meet -- ⋀，
+的效果是让 partial information 变得 more informative。
+
+在 denotational semantic 中，X ≤ Y，
+代表 Y is "more defined" than X，
+也就是 "more informative"。
+
+也就是说 denotational semantic 中，
+使用 lattice 的方式（定义 ≤ 的方式），
+与 propagator model 中使用 lattice 的方式刚好相反。
+
+TODO 问题：为了统一二者使用 lattice 的方式，应该让谁迎合谁呢？
+
+方案 A：propagator model 为主。
+
+```scheme
+(define more-informative? lteq?)
+(define merge meet)
+```
+
+方案 B：domain theory 为主。
+
+```scheme
+(define more-informative? gteq?)
+(define merge join)
+```
+
+假设使用方案 A，
+那么就应该用拓扑空间的闭集公理（而不是开集合公理）：
+
+- 全集和空集是闭集；
+- 任意交集是闭集；
+- 有限并集是闭集。
+
+用闭集的公理是因为想要强调「交」而不是「并」，
+比如 {a: 1} 和 {b: 2} 的 intersection 是 {a: 1, b: 2}。
+
+用一组无穷多函数去逼近递归函数，
+就是取这组无穷多函数的「交」，
+因此我们需要「无限交」，
+因此需要拓扑空间闭集的公理，
+而不是开集的公理。
+
+TODO 假设使用方案 B。
 
 # Abstract
 
@@ -484,9 +540,6 @@ Kleene [13] 就是著名的 1952 年的 "Introduction to Metamathematics"。
 这「可数多个函数」可以是一个 chain：
 
     f0 ≤ f1 ≤ f2 ≤ f3 ≤ ...
-
-TODO 明确这里的 lattice 上的连续性，
-和拓扑学公理所定义的连续性之间的关系。
 
 TODO 这种带有 lattice 的语义理论，
 可否扩展到 cell complex？

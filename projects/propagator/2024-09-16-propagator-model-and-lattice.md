@@ -25,7 +25,7 @@ Structural Subtyping 作为 Lattice，
 {a, b} <= {a, b, c}
 ```
 
-但是当把集合的元素理解为 record 的 key 时，就有：
+但是当把集合的元素理解为 record 的 key 时，就有（相反的）：
 
 ```
 {a: Unit, b: Unit, c: Unit} <= {a: Unit, b: Unit}
