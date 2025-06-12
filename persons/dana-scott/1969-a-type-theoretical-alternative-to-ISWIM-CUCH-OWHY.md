@@ -63,6 +63,30 @@ HoTT 所处理的连续函数是 cell complex
 
 # My Notes
 
+[2025-06-13] 对我来说，从这篇论文中所学到的最重要的 idea 是，
+想要把用程序实现的函数解释为数学函数的时候，
+会遇到完全性问题，即数学函数全是完全的函数，
+而程序所实现的函数是部分函数，可能对某些参数没有定义。
+这表现为死循环或者报错。
+
+而这里的 idea 是通过给函数的 domain 加上一个 undefined 值，
+来重新回到数学意义上的完全函数。
+
+并且这种添加 undefined 的行为，会引出函数之间的 lattice，
+(less f g) 就定义为 (more-defined f g)。
+
+这个 lattice 可以用来把递归函数解释为 lattice 中的极限。
+
+另外重要的是，这里考虑的 lattice 非常平凡，
+只有 undefined 和原来的 value 之间有实质的序关系。
+但是 propagator model 也用到了 lattice，
+并且给出了很多非平凡的序关系。
+
+注意，尽管带有 undefined 的 domain 只有平凡的序关系，
+但是如果把函数视为 record（mapping），
+就可以引出丰富的 record 之间的序关系，
+甚至更多，因为函数可以表示无穷的 record。
+
 ## 算术的等级
 
 [2025-06-11] 这种 D 到 D -> D 之间的对应，
@@ -590,6 +614,27 @@ subdivision 的概念可否帮助我们形成这个联系？
 ...
 ```
 
+> Having now interpreted all of our constants, we can define the
+> important notion of _validity_. Suppose X and Y are two expressions
+> of the same type. In general, they contain variables; hence they do
+> not denote, as they stand, anything in particular. But, if we assign
+> values in the appropriate domain, to each of the variables, then all
+> of the symbols in the expressions become meaningful and X and Y have
+> values. Thus, under the assignment to the variables, the atomic
+> formula X ≤ Y is either true or false.
+
+> Now consider an assertion C |- D. It is said to be valid if under
+> every assignment of values to variables that makes all the atomic
+> formulae of the list C true, all the atomic formulae of Y are true
+> also. That is, C “implies” D with the variables being universally
+> quantified.
+
+> Notice, however, how different our method is compared to the
+> lambda-calculus. In the latter theory, validity of equations
+> (interconvertibility) is defined in a purely formal manner.  Here we
+> have dejned validity “semantically” and must _discover_ the formal
+> properties of this notion.
+
 # 3 Axiomatization
 
 > In the first place there are some very general properties of |- that
@@ -597,11 +642,119 @@ subdivision 的概念可否帮助我们形成这个联系？
 > self-evidently valid assertions) and “rules of inference” (simple
 > deduction methods that clearly preserve validity).
 
-TODO 补全上一章对 validity 的定义。
+本身 assertion 对应 Martin Lof 的 judgement，judgement 是推演规则的对象。
+而 judgement 包含 expressions 代表人们对 expression 的看法。
+
+最典型的例子是 bidirectional type checking 中的两个 judgements
+-- check 和 infer。
+
+而这里的 assertion（即 judgement），虽然形如蕴涵式（implies），
+但是可以理解为是 `(valid premises conclusions)`，
+其中 premises 可以看作是类似 check 和 infer 的 context。
+
+这里的 assertion 的对象是 formula，
+formula 都是形如 X ≤ Y。
+这就使得 formula 类似于 judgement。
+
+暂时使用正向的 inference rule，结论写在后面。
+
+```
+(include D C)
+------------- [INCLUSION]
+C |- D
+
+C |- D
+C' |- D'
+-------------- [CONJUNCTION]
+C, C' |- D, D'
+
+C |- D
+D |- E
+------ [CUT]
+C |- E
+
+C |- D
+---------------- [SUBSTITUTION]
+C[X/x] |- D[X/x]
+```
+
+> Next the relation ≤ enjoys several useful properties:
+
+```
+-------- [REFLEXIVITY]
+|- x ≤ x
+
+--------------------- [TRANSITIVITY]
+x ≤ y, y ≤ z |- x ≤ z
+
+--------------------------- [MONOTONICITY]
+x ≤ y, f ≤ g |- f(x) ≤ g(y)
+
+C |- f(x) ≤ g(x)
+x not in C
+---------------- [EXTENSIONALITY]
+C |- f ≤ g
+```
+
+> Note especially that we have stated these principles without type
+> subscripts, This is a very convenient trick available in the
+> metalanguage.  The point is that, say, |- x ≤ x is valid for
+> variables x of all types. Similarly for the axiom of transitivity
+> with the understanding that x, y, z are all of the same type --
+> otherwise the formulae would not all be well formed.
+
+在解释 EXTENSIONALITY rule 的时候，scope 已经乱了。
+后面的规则 scope 更乱，比如 INDUCTION。
+
+> By the way, remember that X = Y is short for X ≤ Y, Y ≤ X. Note that
+> = is indeed an equality relation because we can now prove, as
+> theorems from the axioms and rules we already have, that
+
+```
+              |- X = X
+ X = Y, Y = Z |- X = Z
+        Y = X |- X = Y
+C[X/x], X = Y |- C[Y/x]
+```
+
+> Inasmuch as we have assumed no “non-logical” constants, there is in
+>  general very little to say about individuals of type `any-t` except
+>  for the “undefined” individual `any-omega`:
+
+```
+---------------- [MINIMALITY]
+|- any-omega ≤ x
+```
+
+可以看出作者是想从上一章的数学推理中，
+抽出来一个形式化的公理系统，
+但是我不认为作者成功了。
+
+而且我认为作者这样做本身就有点问题，
+毕竟 denotational semantics 和 domain theory，
+就是为了使用数学语言和工具，
+这里就没有必要再回到证明论了。
+
+后面讨论 induction 的时候有一个注释：
+
+> In fact, there have been many subsequent studies of induction
+> principles.  See for example [18, 19], but also compare the proofs
+> in [5].
+
+值得一读：
+
+- [18] "A co-induction principle for recursively defined domains",
+  A.M. Pitts, 1994.
+- [19] "Relational properties of recursively defined domains",
+  A.M. Pitts, 1993.
+
+注意，在 HoTT 中，induction 也是大问题。
 
 # 4 Completeness
 
-TODO
+作者讨论上面的形式系统的完备性，
+读到这里我已经没有耐心了，
+只是匆忙看完。
 
 # 5 Conclusions
 
