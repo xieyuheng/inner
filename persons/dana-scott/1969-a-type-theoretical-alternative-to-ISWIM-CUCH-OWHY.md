@@ -263,17 +263,18 @@ add(Nat) 只是 Nat -> Nat 的子集，
 
 ```scheme
 ;; two bottom elements
-(check any-omega any-t)
-(check bool-omega bool-t)
+(claim any-omega any-t)
+(claim bool-omega bool-t)
 
-(check true bool-t)
-(check false bool-t)
+(claim true bool-t)
+(claim false bool-t)
 
-(check if (nu (A) (-> any-t A A A)))
+(claim ifte (nu (A) (-> bool-t A A A)))
 
-(check K (nu (A B) (-> A B A)))
-(check S (nu (A B C) (-> (-> A B C) (-> A B) (-> A C))))
-(check Y (nu (A) (-> (-> A A) A)))
+(claim K (nu (A B) (-> A B A)))
+(claim S (nu (A B C) (-> (-> A B C) (-> A B) (-> A C))))
+(claim S (nu (A B C) (-> (-> A B C) (-> A B) A C)))
+(claim Y (nu (A) (-> (-> A A) A)))
 ```
 
 > As for the other expressions, suppose `X: A` and `F: (-> A B)` then
@@ -418,6 +419,115 @@ omega 就是 propagator model 中的 undefined。
 > discussed by many, many authors.
 
 Kleene [13] 就是著名的 1952 年的 "Introduction to Metamathematics"。
+
+既然 (D any-t) 和 (D bool-t) 都是篇序集，
+那么 (D (-> A B)) 就是所有单调函数的集合，
+这个集合是一个由 (D A) 和 (D B) 的篇序集所引出的篇序集。
+
+> By _monotonic_ we understand a function, where
+>
+>     x ≤ y  ->  f(x) ≤ f(y).
+>
+> In words this means: the more you define an argument, the more
+> you define its value under a “computable” function.
+
+这与 propagator model 对 domain 的理解完全相同。
+
+> we define
+>
+>     f ≤ g
+>
+> to mean
+>
+>     forall x ∈ (D any-t) f(x) ≤ g(x)
+
+> Note that there is a natural “smallest” element among the
+> elements of (D (-> any-t any-t)), the function omega:
+>
+>    (define (omega x) any-omega)
+
+以 `nat-t` 和 `(D nat-t)` 为例，
+注意这里的偏序关系，
+`(D nat-t)` 是 `nat-t` 添加 `nat-omega` 而来的集合，
+`nat-t` 的元素之间没有定义序关系，
+只是在 添加 `nat-omega` 之后，要求：
+
+    forall (n: nat-t) nat-omega ≤ n
+
+> Now the monotonic functions f are almost like
+> ordinary functions except we allow
+>
+>     (f n) = omega
+>
+> for certain arguments n if we so desire. If we read this equation
+> as: f is undefined at n, then we agree that f is defined only for a
+> subset of the natural numbers.
+
+假设 f0 是对 nat-t 一个子集 S 有定义的，
+那么可以定义单调（注意是就上面的序关系而言的）函数 f：
+
+```scheme
+(define (f x)
+  (if (in x S)
+    (f0 x)
+    nat-omega))
+```
+
+对于函数的 domain 来说，
+其序关系和 structural type 所定义的序关系类似，
+只不过 structural type 中有有限的 record，
+而一个函数是一个无限的 record（mapping）。
+
+可数多个函数，在这种序关系下的最小上界，
+显然可以为递归函数提供语义（用数学对象来解释）。
+
+这「可数多个函数」可以是一个 chain：
+
+    f0 ≤ f1 ≤ f2 ≤ f3 ≤ ...
+
+TODO 明确这里的 lattice 上的连续性，
+和拓扑学公理所定义的连续性之间的关系。
+
+TODO 这种带有 lattice 的语义理论，
+可否扩展到 cell complex？
+cell complex 用边界关系定义的连续性，
+如何与拓扑学公理的连续性联系起来？
+subdivision 的概念可否帮助我们形成这个联系？
+
+```scheme
+(claim ifte (nu (A) (-> bool-t A A A)))
+(define (ifte p x y)
+  (if (eq? p true)
+    x
+    (if (eq? p false)
+      y
+      omega)))
+
+(claim K (nu (A B) (-> A B A)))
+(define (K x y) x)
+
+(claim S (nu (A B C) (-> (-> A B C) (-> A B) (-> A C))))
+(claim S (nu (A B C) (-> (-> A B C) (-> A B) A C)))
+(define (S f g x) (f x (g x)))
+
+(claim Y (nu (A) (-> (-> A A) A)))
+(define (Y f)
+  ((lambda (x) (f (x x)))
+   (lambda (x) (f (x x)))))
+
+(define (Y f)
+  (check f (-> A A))
+  (check (x x) A)
+  (check x (mu (B) (-> B A)))
+  (check x (-> (mu (B) (-> B A)) A)) ;; expend mu once
+  (check (f (x x)) A)
+  (check g (-> (mu (B) (-> B A)) A))
+  (check (g g) A)
+  (check (f (g g)) A)
+  (-> (mu (B) (-> B A)) A)
+  (let ((g (lambda (x) (f (x x)))))
+    (f (g g))))
+```
 
 TODO
 
