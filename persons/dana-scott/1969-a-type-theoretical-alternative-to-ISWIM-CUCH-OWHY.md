@@ -567,13 +567,83 @@ subdivision 的概念可否帮助我们形成这个联系？
     (f (g g))))
 ```
 
-> Already we should be forced to prove something in order to see that
-> the above definitions “make sense”. In particular, we need to know
-> that the functions do belong to the correct domains.
+```scheme
+(claim pair (nu (A) (-> A A bool-t A)))
+(define (pair x y p) (ifte p x y))
+
+(claim x A)
+(claim y A)
+(check (pair x y) (-> bool-t A))
+```
+
+下面用极限来定义 (Y f)，
+并且证明 (Y f) 是 f 的最小不动点。
+这里的「最小」是就上面所定义的函数之间的序集而言的。
+
+注意，要带入 f 的是 factorial-wrap，而不是 factorial。
+这样看来 (f omega) 就有意义多了：
+
+```scheme
+(factorial-wrap omega)
+(factorial-wrap (factorial-wrap omega))
+(factorial-wrap (factorial-wrap (factorial-wrap omega)))
+...
+```
+
+# 3 Axiomatization
+
+> In the first place there are some very general properties of |- that
+> would be the same for any similar theory. We give “axioms” (quite
+> self-evidently valid assertions) and “rules of inference” (simple
+> deduction methods that clearly preserve validity).
+
+TODO 补全上一章对 validity 的定义。
+
+# 4 Completeness
 
 TODO
 
-# 3 Axiomatization
-# 4 Completeness
 # 5 Conclusions
-# 6 Afterthought (1993)
+
+> It seems to me that the idea of a monotonic and continuous function
+> is a very natural one for anyone thinking about computability.
+
+这里有注释：
+
+> The recursive function people have been considering monotonic
+> functions for a long time, and Bekić recently came across the idea
+> again in his study of automata theory [2].
+
+值得一读：
+
+- [2] "Definable operations in general algebras,
+  and the theory of automata and flowcharts",
+  Hans Bekić, 1969.
+
+> What I have tried here is to give a logical calculus (or even:
+> algebra) for the notion using type theory. The point is that the
+> types are natural -- the higher-type functionals are useful -- and
+> they have the advantage of possessing a semantical interpretation.
+
+> It is not very surprising that there is a nice algebra since all we
+> really need are the conditional expression and the possibility of
+> explicit definition (S and K) and of recursive definition (Y).
+
+> Now what about other data types? My present view is that all the
+> data should be kept in type `any-t`.
+
+这种观点，好像和我想要设计的 structural typed lisp 类似！
+
+> Finally, we must agree that the study of lambda-calculus cannot
+> replace the study of programming languages. It is true that the
+> logical notation allows us to express many computations and that the
+> system could be given the look of a programming language, but we
+> have not built into the theory logical notions corresponding to the
+> full glory of the assignment statement and to the idea of jumps and
+> goto’s. Landin has tried to do this with ISWIM, but the personal
+> view of the author is that the result is not quite
+> successful. Landin does have a clean, regular, and powerful
+> language, but in a certain sense it is just another language:
+> evaluation still must be done on a machine.
+
+operational semantics vs. denotational semantics！
