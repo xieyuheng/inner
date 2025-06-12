@@ -529,6 +529,10 @@ subdivision 的概念可否帮助我们形成这个联系？
     (f (g g))))
 ```
 
+> Already we should be forced to prove something in order to see that
+> the above definitions “make sense”. In particular, we need to know
+> that the functions do belong to the correct domains.
+
 TODO
 
 # 3 Axiomatization
