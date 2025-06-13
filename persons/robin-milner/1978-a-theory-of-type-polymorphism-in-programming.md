@@ -894,9 +894,50 @@ its subexpressions in a way which satisfies certain laws."
 
 ## 3.4 Types and their Semantics
 
-TODO
+> Polytypes thereby also stand for subsets of V, and these are also
+> directed complete. The reader may like to think of each type
+> variable in a polytype as universally quantified at the outermost;
+> for example,
+>
+>     A -> A “means” forall (A) A -> A
+>
+> where the bound A ranges over monotypes. In fact, it is because A
+> here ranges over monotypes (not all types) and because we do not
+> admit expressions like
+>
+>     (forall (A) A -> A) -> (forall (A) A -> A)
+>
+> as types -- though we can see they “mean ” if the bound variables
+> are taken to range over monotypes -- that we avoid the difficulties
+> (and also some of the interest) of Reynolds [12] in his richer
+> notion of type.
+
+这里警告了不要用显示的 forall，
+也就是我们准备在 lisp 中引入的 `nu` -- `(nu (A) (-> A A))`。
+因为会导致类型变量本身的类型也可能是带有变量的，
+即这里所说的 polytype 而不只是 monotype。
+
+值得一读：
+
+- [12] "Towards a Theory of Type Structure", Reynolds, 1974.
+
+> We need the following simple properties,
+> which are immediate from our definitions.
+>
+> - Proposition 1. if v: d and t ≤ d, then v: t.
+> - Proposition 2. If v: d -> t and v': d, then (v v'): t.
+>
+> In each case, a property of monotypes is lifted to polytypes.
+
+注意，前面给出了 type 之间，
+因 substitution type variable 而形成的序关系，
+这个序关系不是子类型关系。
+Proposition 1 说这与子类型关系的性质刚好相反。
 
 ## 3.5 Type Assignments
+
+TODO
+
 ## 3.6 Substitutions
 ## 3.7 Well-Typed Expressions Do Not Go Wrong
 
