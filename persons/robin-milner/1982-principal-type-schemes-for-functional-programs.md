@@ -63,12 +63,17 @@ M. Coppo，1980.
 
 > Thus, the main result of this paper is that the type-scheme deduced
 > for such a declaration (and more generally, for any ML expression)
-> is a principal type-scheme, i.e.  that any other type-scheme for the
+> is a principal type-scheme, i.e. that any other type-scheme for the
 > declaration is a generic instance of it. This is a generalisation of
 > Hindley’s result for Combinatory Logic [3].
 
 [3] "The principal type-scheme of an object in combinatory logic",
 R. Hindley, 1969.
+
+注意，type-scheme 这个术语的使用，
+是想要区分带有约束类型变量类型，
+和不带约束类型变量的类型。
+如今（dependent type 的时代）我们显然不应该再这样使用这个术语。
 
 > ML may be contrasted with Algol 68, in which there is no
 > polymorphism, and with Russell [2], in which parametric types appear
@@ -146,8 +151,8 @@ e ::= x | e e 0 | λx.e | let x = e in e 0
 > the type-scheme obtained by replacing each free occurrence of αi in
 > σ by τi, renaming the generic variables of σ if necessary. Then Sσ
 > is called an _instance_ of σ; the notions of substitution and
-> instance extend naturally to larger syntactic constructs containing
-> type-schemes.
+> instance extend naturally to larger syntactic constructs [such as
+> type context] containing type-schemes.
 
 ```scheme
 (define substitution-t (list-t (tau var-t type-t)))
@@ -161,6 +166,9 @@ e ::= x | e e 0 | λx.e | let x = e in e 0
 > has a _generic instance_ σ' = ∀β1...βn τ'
 > if τ' = [τi/αi]τ for some types τ1, ..., τm
 > and the βj are not free in σ.
+
+这里 "βj are not free in σ" 的条件，
+也许应该直接说成是 β1...βn 是 α1...αm 的子集。
 
 注意，generic instance 包含了 n = 0 的情况，
 即 σ = ∀α1...αm τ 而 σ' = τ'。
@@ -187,7 +195,33 @@ W = {·}                     (error element)
 > Further we write v: τ if v: µ for every monotype instance µ of τ,
 > and we write v: σ if v: τ for every τ which is a generic instance of σ.
 
-给出值的集合，并且定义值和类型之间的属于关系。
+给出值的集合，并且以 monotype 为基础，
+定义值和类型之间的属于关系。
+
+注意，τ 想要作为 σ 的 generic instance，
+τ 必定是不带有约束类型变元的。
+
+另外注意，对于 monotype 来说，
+这个属于关系是用语义层次的集合的属于关系来定义的，
+而对于 type-scheme（polytype），
+就是语义元素（值）与语法元素（type-scheme）之间的关系了。
+
+这么看来，也许传统证明论的特点，
+就是语法层次的 free variable 以及相关的量词，
+这些语法元素本身是没有语义层次的对应的。
+但是 dependent type 改变了这一点
+（如果能找到令人满意的 dependent type 的指称语义的话）。
+
+函数虽然是数学对象，
+但是对函数的逻辑解读只能是：
+`forall x: A, exists unique y: B`，
+如果去掉了 unique
+`forall x: A, exists y: B`，
+就是一种对第一个参数都有定义的关系，
+关系也是数学对象。
+
+可否用一组数学对象，作为逻辑的组合子，
+把所有的 forall 和 exists 的组合都穷尽呢？
 
 > Now let `Env = Id → V` be the domain of environments η.
 > The semantic function `evaluate: Exp → Env → V` is given in [5].
@@ -200,6 +234,8 @@ W = {·}                     (error element)
 
 也就是要为 judgment check 定义 inference rule。
 注意，在 model theory 中，这个 `|=` 是语义意义上的 judgment。
+
+TODO 复习 model theory 来理解这里的 `|=`。
 
 ```scheme
 (define context-t (list-t (tau var-t type-scheme-t)))
