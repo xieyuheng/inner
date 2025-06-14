@@ -345,27 +345,148 @@ W = {·}                     (error element)
 >
 > if this instance may be derived from the following inference rules:
 
+为了方便排版，我们反过来写推理树：
+
 ```scheme
 (define context-t (list-t (tau var-t type-scheme-t)))
 (claim check (-> context-t exp-t type-scheme-t judgment-t))
 
-TODO
+(define-rule TAUT (check A x σ)
+  (equal? (lookup A x) σ))
+
+(define-rule INST (check A e σ*)
+  (check A e σ)
+  (instance-of? σ* σ))
+
+(define-rule GEN (check A e (nu (α) σ))
+  (check A e σ)
+  (not (include? A α)))
+
+(define-rule COMB (check A (e e*) τ)
+  (check A e (-> τ* τ))
+  (check A e* τ*))
+
+(define-rule ABS (check A (lambda (x) e) (-> τ* τ))
+  (check (update A x τ*) e τ))
+
+(define-rule LET (check A (let ((x e)) e*) τ)
+  (check A e σ)
+  (check (update A x σ) e* τ))
 ```
 
 > The following example of a derivation is organised as a tree,
 > in which each node follows from those immediately above it
 > by an inference rule.
 
-为了方便排版，我们反过来写推理树：
+```
+TAUT: --------------
+      x : α |- x : α
+ABS: -----------------
+     |- (λx.x) : α → α
+GEN: ---------------------
+     |- (λx.x) : ∀α(α → α)
+```
+
+用 lisp 语法（省略语法元素上的 quote）：
 
 ```scheme
-TODO
+(define P1
+  (prove (check [] (lambda (x) x) (nu (α) (-> α α))) GEN
+    (prove (check [] (lambda (x) x) (-> α α)) ABS
+      (prove (check [[x α]] x α) TAUT))))
 ```
+
+展开应该是：
+
+```scheme
+(define (P1)
+  (the (check [] (lambda (x) x) (nu (α) (-> α α)))
+    (GEN (the (check [] (lambda (x) x) (-> α α))
+           (ABS (the (check [[x α]] x α)
+                  (TAUT)))))))
+```
+
+```scheme
+(define (P2)
+  (prove (check [[i (nu (α) (-> α α))]] (i i) (-> α α)) COMB
+    (prove (check [[i (nu (α) (-> α α))]] i (-> (-> α α) (-> α α))) INST
+      (prove (check [[i (nu (α) (-> α α))]] i (nu (α) (-> α α))) TAUT))
+    (prove (check [[i (nu (α) (-> α α))]] i (-> α α)) INST
+      (prove (check [[i (nu (α) (-> α α))]] i (nu (α) (-> α α))) TAUT))))
+```
+
+```scheme
+(define (P3)
+  (prove (check [] (let ((i (lambda (x) x))) (i i)) (-> α α)) LET
+    (prove (check [] (lambda (x) x) (nu (α) (-> α α))) P1)
+    (prove (check [[i (nu (α) (-> α α))]] (i i) (-> α α)) P2)))
+```
+
+> The following proposition, stating the semantic soundness of
+> inference, can be proved by induction on e.
+
+> **Proposition 1** (Soundness of inference).
+>
+> If A |- e: σ then A |= e: σ.
+
+> We will also require later the following
+> two properties of the inference system.
+
+> **Proposition 2**.
+>
+> If S is a substitution
+> and A |- e: σ
+> then S A |- e: S σ.
+> Moreover if there is a derivation of A |- e: σ of height n
+> then there is also a derivation of S A |- e: S σ
+> of height less [than] or equal to n.
+>
+> Proof. By induction on n.
+
+> **Lemma 1**.
+>
+> If σ > σ' and `A[^x] ∪ {x: σ'} |- e: σ0`
+> then also `A[^x] ∪ {x: σ} |- e: σ0`.
+>
+> Proof. We construct a derivation of the second assertion from a
+> derivation of the first assertion by substituting each use of TAUT
+> for x: σ' with x: σ, followed by an INST step to derive x: σ'.
+> Note that GEN steps remain valid since if α occurs free in σ
+> then it also occurs free in σ'.
 
 # 6 The type assignment algorithm W
 
-TODO
+> The type inference system itself does not provide an easy method for
+> finding, given A and e, a type-scheme σ such that A |- e: σ.
+
+> We now present an algorithm W for this purpose. In fact, W goes a
+> step further. Given A and e, if W succeeds it finds a substitution S
+> and a type τ, which are most general in a sense to be made precise
+> below, such that
+>
+>     S A |- e : τ.
+
+> To define W we require the unification algorithm of Robinson [6].
+
+读过了，可以再读一遍：
+
+- [6] "A machine-oriented logic based on the resolution principle",
+  J.A. Robinson. 1965.
+
+TODO 有歧义的地方：
+substitution 作用于 type context，
+是否不改变 key 而只改变 value？
+
+TODO 实现这里的算法。
 
 # 7 Completeness of W
 
-TODO
+TODO 有歧义的地方：
+说 A' be an instance of A，
+是否只是针对 value 而言的，
+而不能增加 key？
+
+> The detailed proofs of results in this paper, and related results,
+> will appear in the first author’s forthcoming Ph.D. Thesis.
+
+继续读 Damas 的博士论文，也许可以消除歧义。
