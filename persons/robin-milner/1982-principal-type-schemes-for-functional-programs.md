@@ -468,7 +468,7 @@ GEN: ---------------------
 
 > To define W we require the unification algorithm of Robinson [6].
 
-读过了，可以再读一遍：
+值得一遍：
 
 - [6] "A machine-oriented logic based on the resolution principle",
   J.A. Robinson. 1965.
