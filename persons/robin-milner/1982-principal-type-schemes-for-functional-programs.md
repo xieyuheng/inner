@@ -30,10 +30,8 @@ year: 1982
 > well-typed, in contrast with the elegant and slightly more
 > permissive type discipline of Coppo. [1]
 
-也许值得一读：
-
-- [1] "An extended polymorphic type system for applicative languages",
-  M. Coppo，1980.
+[1] "An extended polymorphic type system for applicative languages",
+M. Coppo，1980.
 
 > The discipline can be well illustrated by a small example.
 
@@ -69,19 +67,198 @@ year: 1982
 > declaration is a generic instance of it. This is a generalisation of
 > Hindley’s result for Combinatory Logic [3].
 
-值得一读：
+[3] "The principal type-scheme of an object in combinatory logic",
+R. Hindley, 1969.
 
-- [3] "The principal type-scheme of an object in combinatory logic",
-  R. Hindley, 1969.
+> ML may be contrasted with Algol 68, in which there is no
+> polymorphism, and with Russell [2], in which parametric types appear
+> explicitly as arguments to polymorphic functions. The generic types
+> of Ada may be compared with type-schemes. For simplicity, our
+> definitions and results here are formulated for a skeletal language,
+> since their extension to ML is a routine matter. For example
+> recursion is omitted since it can be introduced by simply adding the
+> polymorphic fixed-point operator
 
-TODO
+[2] "Report on the programming language russell",
+A. Demers and J. Donahue, 1979.
+
+这里所说的
+"parametric types appear explicitly
+as arguments to polymorphic functions"
+和没有 implicit argument 的 dependent type 一样。
+
+```scheme
+(claim fix (nu (A) (-> (-> A A) A)))
+```
+
+> and likewise for conditional expressions.
+
+省略了 Milner 原始论文中的 if 表达式。
 
 # 2 The language
 
-TODO
+> Assuming a set Id of identifiers x the language Exp of expressions e
+> is given by the syntax
+
+```bnf
+e ::= x | e e 0 | λx.e | let x = e in e 0
+```
+
+用 lisp 语法：
+
+```bnf
+<exp> := <var>
+       | (<exp> <exp>)
+       | (lambda (<var>) <exp>)
+       | (let ((<var> <exp>)) <exp>)
+```
+
+> Assuming a set of type variables α and of primitive types ι,
+> the syntax of types τ and of type-schemes σ is given by
+
+```bnf
+τ ::= α | ι | τ → τ
+σ ::= τ | ∀ασ
+```
+
+用 lisp 语法：
+
+```bnf
+<type> ::= <type-var>
+         | <primitive-type>
+         | (-> <type> <type>)
+
+<type-scheme> ::= <type>
+                | (nu (<type-var>) <type-scheme>)
+```
+
+`(nu (A1) (nu (A2) T))` 可以简写做 `(nu (A1 A2) T)`。
+
+> A _monotype_ µ is a type containing no type variables.
 
 # 3 Type instantiation
+
+定义 type 和 type-scheme 由 substitution 引出的序关系，
+后面定义值和类型之间的属于关系时要用到。
+
+> If S is a substitution of types for type variables, often written
+> [τ1/α1, ..., τn/αn] or [τi/αi], and σ is a type-scheme, then Sσ is
+> the type-scheme obtained by replacing each free occurrence of αi in
+> σ by τi, renaming the generic variables of σ if necessary. Then Sσ
+> is called an _instance_ of σ; the notions of substitution and
+> instance extend naturally to larger syntactic constructs containing
+> type-schemes.
+
+```scheme
+(define substitution-t (list-t (tau var-t type-t)))
+
+(claim subst
+  (-> substitution-t type-scheme-t
+      type-scheme-t))
+```
+
+> By contrast a type-scheme σ = ∀α1...αm τ
+> has a _generic instance_ σ' = ∀β1...βn τ'
+> if τ' = [τi/αi]τ for some types τ1, ..., τm
+> and the βj are not free in σ.
+
+注意，generic instance 包含了 n = 0 的情况，
+即 σ = ∀α1...αm τ 而 σ' = τ'。
+
+> In this case we shall write σ > σ'.
+> Note that instantiation acts on free variables,
+> while generic instantiation acts on bound variables.
+> It follows that σ > σ' implies Sσ > Sσ'.
+
 # 4 Semantics
+
+> The semantic domain V for Exp is a complete partial order satisfying
+> the following equations up to isomorphism, where Bi is a cpo
+> corresponding to primitive type ιi:
+
+```
+V = B0 + B1 + ... + F + W   (disjoint sum)
+F = V → V                   (function space)
+W = {·}                     (error element)
+```
+
+> To each monotype µ corresponds a subset V, as detailed in [5];
+> if v ∈ V is in the subset for µ we write v: µ.
+> Further we write v: τ if v: µ for every monotype instance µ of τ,
+> and we write v: σ if v: τ for every τ which is a generic instance of σ.
+
+给出值的集合，并且定义值和类型之间的属于关系。
+
+> Now let `Env = Id → V` be the domain of environments η.
+> The semantic function `evaluate: Exp → Env → V` is given in [5].
+> Using it, we wish to attach meaning to assertions of the form
+>
+>     A |= e : σ
+>
+> where e ∈ Exp and A is a set of assumptions
+> of the form x: σ, x ∈ Id.
+
+也就是要为 judgment check 定义 inference rule。
+注意，在 model theory 中，这个 `|=` 是语义意义上的 judgment。
+
+```scheme
+(define context-t (list-t (tau var-t type-scheme-t)))
+(claim check (-> context-t exp-t type-scheme-t judgment-t))
+```
+
+> If the assertion is closed, i.e. if A and σ contain no free type
+> variables, then the sentence is said to hold iff, for every
+> environment η, whenever η[[x]]: σ' for each member x: σ' of A,
+> it follows that evaluate [[e]] η: σ.
+
+用对 environment 的全称量词来从语义上（数学意义上）定义 judgment。
+即，对于任意 environment，如果 context 中的属于关系都成立，
+那么结论中的属于关系在这个 environment 的 evaluate 下也成立。
+
+> Further, an assertion holds iff all its closed instances hold.
+
+> Thus, to verify the assertion
+>
+>     x: α, f: ∀β(β → β) |= (f x): α
+>
+> it is enough to verify it for every monotype µ in place of α.
+
+用 lisp 语法：
+
+```scheme
+(check '((x A)
+         (f (nu (B) (-> B B))))
+  '(f x) 'A)
+```
+
+> This example illustrates that free type variables in an assertion
+> are implicitly quantified over the whole assertion, while explicit
+> quantification in a type scheme has restricted scope.
+
+> The remainder of this paper proceeds as follows.
+>
+> - First we present an inference system for inferring valid assertions.
+>
+> - Next we present an algorithm W for computing a type-scheme
+>   for any expression, under assumptions A.
+>
+> - We then show that W is _sound_, in the sense that
+>   any type-scheme it derives is derivable in the inference system.
+>
+> - Finally we show that W is _complete_,
+>   in the sense that [any] derivable type-scheme
+>   is an instance of that computed by W.
+
+典型的 proof theory + model theory 的结论。
+
 # 5 Type inference
+
+TODO
+
 # 6 The type assignment algorithm W
+
+TODO
+
 # 7 Completeness of W
+
+TODO

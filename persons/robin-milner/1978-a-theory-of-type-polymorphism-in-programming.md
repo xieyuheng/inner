@@ -707,7 +707,7 @@ W := {}                    -- error
 > the domain of environments.
 
 ```scheme
-(define env-t (-> id-t value-t))
+(define env-t (-> var-t value-t))
 (claim evaluate (-> exp-t env-t value-t))
 ```
 
@@ -738,10 +738,10 @@ W := {}                    -- error
 关于 env 的函数：
 
 ```scheme
-(claim env-cons (-> env-t id-t value-t env-t))
-(define (env-cons env id value)
+(claim env-cons (-> env-t var-t value-t env-t))
+(define (env-cons env name value)
   (lambda (x)
-    (if (equal? x id)
+    (if (equal? x name)
       value
       (env x))))
 ```
@@ -776,7 +776,7 @@ W := {}                    -- error
 解释器：
 
 ```scheme
-(define env-t (-> id-t value-t))
+(define env-t (-> var-t value-t))
 
 (define function-t (-> value-t value-t))
 
