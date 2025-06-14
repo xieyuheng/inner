@@ -195,20 +195,26 @@ W = {·}                     (error element)
 > Further we write v: τ if v: µ for every monotype instance µ of τ,
 > and we write v: σ if v: τ for every τ which is a generic instance of σ.
 
-给出值的集合，并且以 monotype 为基础，
-定义值和类型之间的属于关系。
-
 注意，τ 想要作为 σ 的 generic instance，
 τ 必定是不带有约束类型变元的。
 
+例如，f: ∀β(β → β) 定义为对任意 T ∈ type-t，f: (T → T) 为真。
+
+```scheme
+(claim in (-> value-t type-scheme-t relation-t))
+```
+
+这里给出值的集合，并且以 monotype 为基础，
+定义值和类型之间的属于关系。
+
 另外注意，对于 monotype 来说，
-这个属于关系是用语义层次的集合的属于关系来定义的，
+这个属于关系是用语义层面的集合的属于关系来定义的，
 而对于 type-scheme（polytype），
 就是语义元素（值）与语法元素（type-scheme）之间的关系了。
 
 这么看来，也许传统证明论的特点，
-就是语法层次的 free variable 以及相关的量词，
-这些语法元素本身是没有语义层次的对应的。
+就是语法层面的 free variable 以及相关的量词，
+这些语法元素本身是没有语义层面的对应的。
 但是 dependent type 改变了这一点
 （如果能找到令人满意的 dependent type 的指称语义的话）。
 
@@ -227,15 +233,33 @@ W = {·}                     (error element)
 > The semantic function `evaluate: Exp → Env → V` is given in [5].
 > Using it, we wish to attach meaning to assertions of the form
 >
->     A |= e : σ
+>     A |= e: σ
 >
 > where e ∈ Exp and A is a set of assumptions
 > of the form x: σ, x ∈ Id.
 
-也就是要为 judgment check 定义 inference rule。
-注意，在 model theory 中，这个 `|=` 是语义意义上的 judgment。
+注意，这里虽然还是用了 `e: σ`，但是不是：
 
-TODO 复习 model theory 来理解这里的 `|=`。
+```scheme
+(claim in (-> value-t type-scheme-t relation-t))
+```
+
+而是：
+
+```scheme
+(claim in (-> exp-t type-scheme-t relation-t))
+```
+
+所以需要用 `evaluate` 才能定义这个 assertion form。
+
+另外，这里 `|=` 是 model theory 意义上的 semantic entailment，
+即所有使得前提（A）为真的语义赋值，
+都会使得结论（e: σ）也（在数学意义上）为真。
+
+「语义赋值」就是用 environment 来完成的。
+
+如果忘记了 `|=` 的意义，
+可以回顾一下其在（最简单的）命题演算中的定义。
 
 ```scheme
 (define context-t (list-t (tau var-t type-scheme-t)))
@@ -250,6 +274,7 @@ TODO 复习 model theory 来理解这里的 `|=`。
 用对 environment 的全称量词来从语义上（数学意义上）定义 judgment。
 即，对于任意 environment，如果 context 中的属于关系都成立，
 那么结论中的属于关系在这个 environment 的 evaluate 下也成立。
+这就是 model theory 中 semantic entailment -- `|=` 的定义。
 
 > Further, an assertion holds iff all its closed instances hold.
 
@@ -278,8 +303,9 @@ TODO 复习 model theory 来理解这里的 `|=`。
 > - Next we present an algorithm W for computing a type-scheme
 >   for any expression, under assumptions A.
 >
-> - We then show that W is _sound_, in the sense that
->   any type-scheme it derives is derivable in the inference system.
+> - We then show that W is _sound_,
+>   in the sense that any type-scheme it derives
+>   is derivable in the inference system.
 >
 > - Finally we show that W is _complete_,
 >   in the sense that [any] derivable type-scheme
@@ -289,7 +315,52 @@ TODO 复习 model theory 来理解这里的 `|=`。
 
 # 5 Type inference
 
+这里首先从语义层面把 `check`
+定义为了一个数学意义上的谓词，
+或者说数学意义上的一个断言。
+
+之所以强调说是数学意义上的（而不是程序意义上的），
+是因为想要判断一个断言是否成立，
+需要引入很多 forall 来做证明才能完成。
+
+比如：
+
+- 想要证明 `|=` 需要引入「对于任意赋值」，即 forall environment。
+- 想要证明 `v: τ` 需要 for every monotype instance µ of τ.
+- 想要证明 `v: σ` 需要 v: τ for every τ which is a generic instance of σ.
+
+相比之下，the little typer 中没有这种语义分析，
+直接给出了语法层面上的 judgment 和相关的 inference rules。
+也许给出语义分析才是正确的，
+毕竟 inference rule 只有在有 model 解释的情况下，
+才是有用的。
+
+> From now on we shall assume that A contains at most one assumption
+> about each identifier x. `A[^x]` stands for removing any assumption
+> about x from A.
+
+> For assumptions A, expressions e and type-scheme σ we write
+>
+>     A |- e: σ
+>
+> if this instance may be derived from the following inference rules:
+
+```scheme
+(define context-t (list-t (tau var-t type-scheme-t)))
+(claim check (-> context-t exp-t type-scheme-t judgment-t))
+
 TODO
+```
+
+> The following example of a derivation is organised as a tree,
+> in which each node follows from those immediately above it
+> by an inference rule.
+
+为了方便排版，我们反过来写推理树：
+
+```scheme
+TODO
+```
 
 # 6 The type assignment algorithm W
 
