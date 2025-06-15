@@ -871,18 +871,21 @@ W := {}                    -- error
 its subexpressions in a way which satisfies certain laws."
 看起来非常 适合用 propagator model 实现。
 
-> So there are two main tasks, once the laws of type assignment are
-> given. The first -- to show that an expression (or program) with a
-> legal type assignment cannot “go wrong” -- is tackled in this
-> section; surprisingly enough, it is the easier task (at least for an
-> applicative language).
-
-> The second task is to _discover_ a legal type assignment, given a
-> program with incomplete type information.  This task is often called
-> _type checking_. Of course, this term can also mean just verifying
-> that a given type assignment is legal; in a practical situation we
-> probably require something between the two, since one cannot expect
-> a programmer to attach a type to every subexpression.
+> So there are two main tasks,
+> once the laws of type assignment are given.
+>
+> - The first -- to show that an expression (or program) with a legal
+>   type assignment cannot “go wrong” -- is tackled in this section;
+>   surprisingly enough, it is the easier task (at least for an
+>   applicative language).
+>
+> - The second task is to _discover_ a legal type assignment, given a
+>   program with incomplete type information.  This task is often
+>   called _type checking_. Of course, this term can also mean just
+>   verifying that a given type assignment is legal; in a practical
+>   situation we probably require something between the two, since one
+>   cannot expect a programmer to attach a type to every
+>   subexpression.
 
 > In Section 4 we look at the class of legal type assignments for a
 > given program (the class is infinite in general, since we admit
@@ -907,15 +910,13 @@ its subexpressions in a way which satisfies certain laws."
 >
 >     (forall (A) A -> A) -> (forall (A) A -> A)
 >
-> as types -- though we can see they “mean ” if the bound variables
-> are taken to range over monotypes -- that we avoid the difficulties
-> (and also some of the interest) of Reynolds [12] in his richer
-> notion of type.
+> as types that we avoid the difficulties (and also some of the
+> interest) of Reynolds [12] in his richer notion of type.
 
-这里警告了不要用显示的 forall，
+这里警告了 bound a variable ranges over monotypes，
+而不能 ranges over polytypes，
 也就是我们准备在 lisp 中引入的 `nu` -- `(nu (A) (-> A A))`。
-因为会导致类型变量本身的类型也可能是带有变量的，
-即这里所说的 polytype 而不只是 monotype。
+为什么会如此？也许只有在具体的实现中才能体会到。
 
 值得一读：
 
@@ -936,17 +937,80 @@ Proposition 1 说这与子类型关系的性质刚好相反。
 
 ## 3.5 Type Assignments
 
-TODO
+> To prepare the ground for the theorem that well-typed expressions
+> cannot “go wrong,” we need to define what is meant by _typing_ an
+> expression. We need first some notion of a type environment to give
+> types to the free variables in an expression.
+
+> A _prefix_ `p` is a finite sequence whose members have the form
+> `let x`, `fix x`, or `lambda x`, where x is a variable.
+
+这里定义的 prefix 和 sub-prefix 概念，
+看来是为了计算一个 sub-expression 的 scope。
+
+> so a sub-pe [sub-prefixed-expression] is just a subexpression
+> prefixed with all the variable bindings which enclose it.
+
+这里的定义不是很令人满意，
+在后续的论文中 prefixed-expression 的概念应该也被放弃了，
+因为在 luis damas 1982 年的论文和 1985 年的 phd thesis 中，
+都没有这个概念了。
+
+下面进一步定义 well-typed prefixed-expression。
+这看来就是 well-typed 的 inference rule。
+这样看来 prefix 就可以理解为 `check` judgment 中个的 type context，
+但是与后续论文中的 type context 不同的是，
+prefix 不只记录了 var 到 type 的 mapping，
+还记录了 var 被引入的方式 -- `let x`, `fix x`, `lambda x`。
 
 ## 3.6 Substitutions
+
+> A substitution S is a map from type variables to types. S may be
+> extended in a natural way to yield a map from types to types, from
+> typed pe’s to typed pe’s, etc.
+
+也许在命名上应该强调这里的 substitution 是 type-substitution。
+
+> We need substitutions extensively in the second part of this paper,
+> but for the present we need only one property relating substitutions
+> and well-typed.
+
+> **Proposition 4**. If S involves no generic variables
+> of a well-typed `p | d`,  then `S(p | d)` is also well-typed.
+
 ## 3.7 Well-Typed Expressions Do Not Go Wrong
+
+证明语法层面用 inference rule 定义的 well-typed，
+可以保证语义层面定义的 `(claim in (-> value-t type-t))`，
+即 semantic soundness。
+
+这个证明论和模型论之间的定理，
+在后续的 luis damas 1982 年论文中体现地更清晰，
+因为有对 inference rule 的明确定义。
+
+TODO 熟悉这个证明的细节。
 
 # 4 A Well-typing Algorithm and Its Correctness
 
 ## 4.1 The Algorithm W
+
+TODO 实现算法的时候再来看细节。
+
 ## 4.2 The Soundness of W
 ## 4.3 Implementation of W; a Simplified Algorithm J
 
 # 5 Types in Extended Languages
 
 # 6 Conclusion
+
+> We have presented a discipline of polymorphic programming which
+> appears to be practically useful, and have given a rather simple
+> type-checking algorithm. In a restricted language we have shown that
+> this algorithm can be proved correct (the proof was factored into
+> two Soundness Theorems). Though much work remains to be done, we
+> hope to have made the point that the practice of type checking can
+> and should by supported by semantic theory and proof.
+
+这应该是 "the practice of type checking can be
+supported by semantic theory and proof"
+的第一个例子。
