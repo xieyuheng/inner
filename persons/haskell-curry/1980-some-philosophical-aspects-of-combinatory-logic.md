@@ -124,8 +124,17 @@ typed lambda calculus，只是 typed magam 中非常特殊的一种。
 比如 polymorphic type 和 dependent type
 都是这个方向上的推广。
 
-注意，实现类型系统时，
-context 可以用 propagator model 来处理。
+dependent type 时，
+(infer (f a)) = (compute-type (infer f) (infer a) f a)。
+
+实现类型系统时，context 可以用 propagator model 来处理。
+
+想要这样实现类型系统的话，
+还是需要一个简单的语言，
+在遍历 Exp 的 tree 的过程中，
+构造 propagator nets。
+
+x-lisp 就是比较适合的简单语言！
 
 # 3 Lambda-conversion
 
