@@ -76,6 +76,8 @@ year: 1980
 注意，这里只用到了 lambda abstraction 的表达式，
 而没有用到 lambda calculus 相关的等价关系。
 
+TODO 用 lisp 和 compiler 代码记录这里的算法。
+
 这里的算法很有意思，这些算法就是 S，K，I 的来源。
 也就是说 S，K，I 是为了保证这里的算法有效，列方程解出来的！
 
@@ -91,10 +93,39 @@ currying 这个技巧已经告诉我们，
 通过添加元素，就可以把多元运算转化为二元运算。
 
 再考虑带有多个二元运算的代数结构（比如环）。
-此时也可以通过把每个运算本身都作为一个元素添加到空间中，
+此时也可以通过把每个运算本身都作为一个元素添加到原结构中，
 把这个代数结构化归为带有一个二元运算（application）的代数结构。
 
-TODO 用 lisp 和 compiler 代码记录这里的算法。
+看来这个推广方向上，所有的代数结构都可以通过给原结构添加元素，
+而划归到带有一个二元运算的代数结构中。
+
+是这样的吗？
+
+是这样的，因为不带有任何运算律的二元运算代数结构，
+就是 free magma，根据 free 的定义，所有其他代数结构都可以由此扩展而来。
+
+难怪在设计 interaction nets 和 propagator model 的语言时，
+都可以通过给 applicative language 扩展而来。
+
+那么还有什么推广的方向？
+看来就是类型了。
+但是注意，增加类型不会从 group 到 groupoid 或 category
+（这是 concatenative language 的事情），
+而是从 magam 到 typed magam。
+
+typed lambda calculus，只是 typed magam 中非常特殊的一种。
+比如对于 simple type 的 lambda calculus 而言，
+(f a) 的返回类型只来自于 f 的类型，而不来自 a 的类型，
+也就是说在 (infer f) 和 (infer a) 的类型之后，
+用 infer 的结果计算新的类型 (infer (f a)) 时，
+所用的计算规则是非常特殊的。
+这是可以推广的方向！
+
+比如 polymorphic type 和 dependent type
+都是这个方向上的推广。
+
+注意，实现类型系统时，
+context 可以用 propagator model 来处理。
 
 # 3 Lambda-conversion
 
