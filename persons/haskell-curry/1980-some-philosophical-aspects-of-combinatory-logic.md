@@ -19,6 +19,22 @@ magma 是 applicative language 所对应的代数结构，
 类似 forth 的 concatenative language 所对应的代数结构，
 是 groupoid 或 category。
 
+从代数的角度去理解形式语言，
+可以让我们把类型系统理解为两个代数结构之间的关系。
+比如类型系统中个的 infer 就是代数结构之间的同态：
+
+    (infer (f a)) = ((infer f) (infer a))
+
+如何理解 dependent type 的依赖值的 infer：
+
+    (infer (f a)) = (compute-type (infer f) (infer a) f a)
+
+感觉可以通过让 infer 的结果带上类型，来把等式右边转化为：
+
+    ((infer f) (infer a))
+
+即，通过添加元素丰富 type 的子空间。
+
 # Dedication
 
 > Dedicated to Professor S. C. Kieene
