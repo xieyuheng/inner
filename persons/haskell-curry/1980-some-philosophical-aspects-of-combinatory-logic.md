@@ -8,6 +8,17 @@ year: 1980
 
 [2025-06-22] 想了解 combinatory logic 背后的历史。
 
+# My Notes
+
+[2025-06-23] 这篇论文中一个需要记住的 idea 来自 Schönfinkel，
+即带有 application 这个二元运算的代数结构，是 free magma。
+combinatory logic 的形式系统（formal system），
+可以理解为是以这个 free magma 为基础发展而来的。
+
+magma 是 applicative language 所对应的代数结构，
+类似 forth 的 concatenative language 所对应的代数结构，
+是 groupoid 或 category。
+
 # Dedication
 
 > Dedicated to Professor S. C. Kieene
@@ -347,6 +358,8 @@ Curry 的 formal system 只有两层结构：
 > A second point is that pure combinatory logic is a type-free
 > structure, and some persons object to this on the ground that it
 > involves a generality which transcends the theory of types.
+
+TODO
 
 # 10 Conceptualization
 # 11 Priority of the function notion
