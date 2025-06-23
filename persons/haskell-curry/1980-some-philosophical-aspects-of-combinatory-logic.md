@@ -34,6 +34,9 @@ magma 是 applicative language 所对应的代数结构，
     ((infer f) (infer a))
 
 即，通过添加元素丰富 type 的子空间。
+比如 `(infer <exp>)` 的结果，
+可以是类似 pair 的 `(the <type> <normal-exp>)`，
+用来记住所得到的 type 是经由什么 exp infer 而来。
 
 # Dedication
 
