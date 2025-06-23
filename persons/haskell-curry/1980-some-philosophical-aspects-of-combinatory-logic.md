@@ -429,8 +429,121 @@ Curry 为形式主义辩护的论文：
 
 # 11 Priority of the function notion
 
-TODO
+> Another point about combinatory logic is the priority of the notion
+> of function. In current mathematics the tendency is to think of a
+> function in the sense of Dirichlet, i.e. essentially as a set of
+> ordered pairs, whereby the first elements range over a set, the
+> domain of the function, and when the first element of a pair is
+> given, the second is uniquely determined. Thus the notion of set is
+> more fundamental than that of function, and the domain of a function
+> is given before the function itself. In combinatory logic, on the
+> other hand, the notion of function is fundamental; a set is a
+> function whose application to an argument may sometimes be an
+> assertion, or have some other property; its members are those
+> arguments for which the application has that property. The function
+> is primary; its domain, which is a set, is another function. Thus it
+> is simpler to define a set in terms of a function than vice versa;
+> but the idea is repugnant to many mathematicians, and probably to
+> Scott. This has been a great handicap and source of
+> misunderstanding.
+
+这里有一个注释：
+
+> For a similar idea cf. the set theory of Von Neumann (1928)
+
+引用是 1928-die-axiomatisierung-der-mengenlehre。
 
 # 12 Finiteness of structure
+
+> Another point worth mentioning is its essentially finite
+> character. If equality is defined in terms of Q, then pure
+> combinatory logic can be formulated in terms of a finite number of
+> atoms, a finite number of axioms, and a finite number of simple
+> rules.
+
+> All other systems of logic and mathematics involve either a complex
+> substitution process or axiom schemes involving infinitely many
+> axioms, and, of course, infinitely many atoms. This is true even for
+> propositional algebra. This finiteness of structure presumably holds
+> for various forms of illative combinatory logic. It does not hold,
+> however, even in pure combinatory logic [lambda calculus], for
+> theories of reduction.
+
 # 13 Pertinence to logic
+
+> Another criticism by Scott is that the use of the word “logic” in
+> “combinatory logic” is premature. Although this is a question of the
+> usage of terms, and therefore not strictly debatable, yet it may be
+> worthwhile to explain in just what sense the use of the term is
+> justified. In CURRY (1963, p.l), I defined mathematical logic as the
+> study of mathematical structures having some connection with the
+> “analysis and criticism of thought” (W. E. Johnson), and the
+> analogues of such structures. Since combinatory logic analyzes a
+> process used in practically all such structures, it is a part of
+> mathematical logic so defined, just as propositional logic,
+> relational logic, or even Aristotelian logic is.
+
+值得强调 Curry 对数理逻辑的定义：
+
+I defined mathematical logic as the study of mathematical structures
+having some connection with the “analysis and criticism of thought”,
+and the analogues of such structures.
+
+这里的 analogues，就是说数理逻辑是：对人类思维过程的建模。
+
+这里提到的 William Ernest Johnson，
+是受到 Peirce 实用主义强烈影响的，
+也许值得一读。
+
+> Scott’s point, however, is that pure combinatory logic -- which, at
+> least the synthetic aspect of it, might perhaps better be called the
+> theory of combinators -- excludes the propositional concepts which
+> are central in logic as ordinarily understood. However, combinatory
+> logic is broader than pure combinatory logic; it includes illative
+> theories, some of which do contain those concepts.
+
+> To be sure, illative combinatory logic is not completely settled. In
+> view of the Godel theorem, we cannot prove its consistency by
+> methods which it itself formalizes. But it is still a well-defined
+> field for investigation. Moreover significant work has been done in
+> it.
+
+> Scott himself proposes one system of it in his paper (1975b).
+
+这里引用的是 1975-combinators-and-classes。
+
+> It is plausible that some systems proposed by Bunder will prove
+> acceptable; and there are nonconstructive consistency proofs of some
+> systems proposed by Fitch.
+
+> Indeed, given any of the usual systems of logic, if one formalizes
+> the substitution process by pure combinatory logic, and the theory
+> of types by functionality, one has a system of illative combinatory
+> logic.
+
+TODO 如何用 functionality 处理 the theory of types？
+在无类型的 pure combinatory logic 中处理类型论，
+正是我所最关心的！
+
+> Although this has not yet been done in most cases, it seems
+> unreasonable to doubt that it is possible. In this field, in which
+> our previously developed intuitions are not a safe guide, we make
+> progress by trial and error.
+
 # 14 Conclusion
+
+> One final point must be mentioned. The history of combinatory logic
+> shows that progress can result from the interaction of different
+> philosophies.
+>
+> - One who, as I do, takes an empirical view of mathematics and
+>   logic, in the sense that our intuitions are capable of evolution,
+>   and who prefers constructive methods, would never discover the
+>   models which Scott proposed.
+>
+> - On the other hand, it is doubtful if anyone with what seems to be
+>   Scott’s philosophy, would have discovered combinatory logic.
+>
+> Both of these approaches have added to the depth of our
+> understanding, and their interaction has produced more than either
+> would have alone.
