@@ -378,10 +378,59 @@ Curry 的 formal system 只有两层结构：
 > structure, and some persons object to this on the ground that it
 > involves a generality which transcends the theory of types.
 
-TODO
+> One answer is that the consistency of pure combinatory logic is
+> guaranteed by the Church-Rosser theorem. Type theory was invented by
+> Russell to explain the paradoxes; since inconsistencies (in the Post
+> sense) cannot arise, types are unnecessary.
+
+> However, pure combinatory logic is not a closed system. It is
+> intended to be a basis to which we can adjoin the entities of
+> ordinary logic; and in illative combinatory logic we can indeed have
+> contradictions.
+
+下面给出了一个在 illative combinatory logic 中不一致性的例子。
+TODO 但是由于不熟悉 illative combinatory logic 我还没看懂这个例子。
 
 # 10 Conceptualization
+
+> Scott seems to argue that formalization without “conceptualization”
+> is useless. What he means by this is not entirely clear; but it
+> seems to mean an interpretation in terms of notions of ordinary
+> mathematics.
+
+Curry 是 Hilbert 的学生，所以也支持形式主义观点。
+Curry 为形式主义辩护的论文：
+1951-outlines-of-a-formalist-philosophy-of-mathematics
+
+> One reason for his change of opinion seems to be that, after some
+> effort, he discovered such interpretations -- in terms of lattices,
+> sets of integers, etc. In so doing he added immensely to our
+> knowledge about combinatory logic; but he did not, as he seems to
+> imply, save it from damnation. While it is true that concocting
+> formalisms entirely without regard to interpretation is probably
+> fruitless, yet it is not necessary that there be "conceptualization"
+> in terms of current mathematical intuitions. In fact, mathematical
+> intuition is a result of evolution.
+
+这种论点也很有说服力，并且是非常唯物的。
+
+> Mathematicians depend on their intuitions a great deal; let us hope
+> they always will. But the mathematical intuitions of today are not
+> the same as those of a thousand years ago. Combinatory logic may not
+> have had a conceptualization in what seems to be Scott’s sense; but
+> it did have an interpretation by which it was motivated. The
+> formation of functions from other functions by substitution does
+> form a structure, and this structure it analyzed and formalized. For
+> progress we need the freedom to let our intuitions develop further;
+> this includes the possibility of formalizing in new ways.
+
+这里说的也很对，因为模型论意义上的 interpretation，
+其实是把语法层次的构造，当作数学世界的二等公民来看待了。
+
 # 11 Priority of the function notion
+
+TODO
+
 # 12 Finiteness of structure
 # 13 Pertinence to logic
 # 14 Conclusion
