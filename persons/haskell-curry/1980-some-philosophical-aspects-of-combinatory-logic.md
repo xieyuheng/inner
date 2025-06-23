@@ -8,6 +8,16 @@ year: 1980
 
 [2025-06-22] 想了解 combinatory logic 背后的历史。
 
+# Dedication
+
+> Dedicated to Professor S. C. Kieene
+> on the occasion of his 70th birthday
+
+# Abstract
+
+> This is a discussion of some philosophical criticisms of combinatory
+> logic, preceded by a brief survey to give background.
+
 # 0 Introduction
 
 > Combinatory Logic is a branch of mathematical logic which is
@@ -261,10 +271,58 @@ formal system 的一般关系，可能是由编译器所定义的更精妙的关
 
 # 6 Combinatory arithmetic
 
-TODO
+介绍 Kleene 证明了可以用 Church 编码实现的算术函数，
+与 partial recursive 等价。
+
+> Thus representability in combinatory logic is a criterion of
+> constructiveness which is equivalent to other well-known ones.
+
+这里把 partial recursive 理解为 constructiveness criterion。
+看来 recursion theory 值得深入学习。
 
 # 7 Illative combinatory logic
+
+> So far -- except for the abstract arithmetic-we have been
+> considering only what is called _pure combinatory logic_.
+> In order to base logic on this we need to introduce new atoms
+> standing for the usual logical notions, such as implication,
+> quantification, etc. Combinatory logic with the addition of such
+> primitives has been called illative.
+
+> For this we need to introduce a new predicate (statement functor),
+> a unary one, which I indicate by prefixing the Frege assertion sign
+> "|-". Thus if X is an ob,
+>
+>     |- X
+>
+> is the statement that X belongs to a category of obs called
+> _assertions_.
+
+> Let P, Π, Ξ, F be new obs, not necessarily all atoms,
+> representing
+>
+> - P -- implication.
+> - Π -- universality.
+> - Ξ -- restricted generality (or formal implication).
+> - F -- functionality (i.e., Fαβ represents being a function
+>   from a domain α into a category β).
+
+> then these will have the rules
+>
+> - RULE P. |- X & | (P X Y) -> |- Y (modus ponens)
+> - RULE Π. |- (Π X) -> |- (X Y) for any ob Y
+> - RULE Ξ. |- (Ξ X Y) & |- (X U) -> |- (Y U) for any ob U
+> - RULE F. |- (F X Y Z) & |- (X U) -> |- (Y (Z U))
+
+> It is not my purpose to go into illative combinatory logic here, but
+> simply to mention its existence, and to give just enough information
+> about it to give background for the philosophical criticisms which
+> are the main purpose of this paper.
+
 # 8 The assertion sign
+
+TODO
+
 # 9 Types
 # 10 Conceptualization
 # 11 Priority of the function notion
