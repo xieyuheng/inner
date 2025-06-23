@@ -1,5 +1,5 @@
 ---
-title: categories and groupoids
+title: notes on categories and groupoids
 author: philip j higgins
 year: 1971
 ---
