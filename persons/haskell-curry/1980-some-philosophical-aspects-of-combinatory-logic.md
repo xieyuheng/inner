@@ -151,9 +151,9 @@ currying 这个技巧已经告诉我们，
 看来就是类型了。
 但是注意，增加类型不会从 group 到 groupoid 或 category
 （这是 concatenative language 的事情），
-而是从 magam 到 typed magam。
+而是从 magma 到 typed magma。
 
-typed lambda calculus，只是 typed magam 中非常特殊的一种。
+typed lambda calculus，只是 typed magma 中非常特殊的一种。
 比如对于 simple type 的 lambda calculus 而言，
 (f a) 的返回类型只来自于 f 的类型，而不来自 a 的类型，
 也就是说在 (infer f) 和 (infer a) 的类型之后，
