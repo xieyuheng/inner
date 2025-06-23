@@ -319,11 +319,35 @@ formal system 的一般关系，可能是由编译器所定义的更精妙的关
 > about it to give background for the philosophical criticisms which
 > are the main purpose of this paper.
 
+这类似于 dependent type 中只有 value（包含 type），而不区分 value 与 type，
+作为 `|-` 参数的前提是 value 本身能被认为是 type。
+
 # 8 The assertion sign
 
-TODO
+这一节可以看出，不同作者对 formal system 的理解方式不同。
+也许应该将 formal system 直接定义为：
+用某个程序语言来实现新的程序语言。
+
+Curry 的 formal system 只有两层结构：
+
+- Expression（value，object）。
+- Judgement（statement，assertion）-- 由 predicate 作用于 object 而得。
+
+注意，在 Martin-Löf 的定义中 judgement 与 assertion 等价，
+但是 Curry 也把 predicate `|-` 称作 assertion。
+
+> In the theory of formal systems it can be shown that one can
+> reduce any system to one with a single unary predicate like `|-`.
+> In combinatory logic there are two predicates, `|-` and `=` .
+> One can eliminate equality by introducing a new atom Q,
+> and defining `X = Y` as `Q X Y`.
 
 # 9 Types
+
+> A second point is that pure combinatory logic is a type-free
+> structure, and some persons object to this on the ground that it
+> involves a generality which transcends the theory of types.
+
 # 10 Conceptualization
 # 11 Priority of the function notion
 # 12 Finiteness of structure
