@@ -1,7 +1,7 @@
 ---
 title: 1900-1982 haskell brooks curry
 author: Jonathan P. Seldin
-source: "https://.utm.edu/haskell-brooks-curry"
+source: "https://iep.utm.edu/haskell-brooks-curry"
 ---
 
 # My Motive
