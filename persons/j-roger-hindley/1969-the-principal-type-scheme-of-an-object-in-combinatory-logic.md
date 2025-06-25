@@ -4,6 +4,12 @@ author: j roger hindley
 year: 1969
 ---
 
+# My Motive
+
+[2025-06-26] 想要了解 Hindley-Milner 类型系统中 Hindley 的贡献。
+看起来，Hindley 的论文更强调 combinatory logic 的传统（毕竟他是 Curry 的合作者），
+而 Milner 更强调 Data Scott 的指称语义。
+
 # Introduction
 
 > In their book Combinatory Logic [1], Curry and Feys introduced the
@@ -30,9 +36,49 @@ year: 1969
 > functions from the set `α` into the set `β` is represented by the
 > type `F α β` (using Curry's notation).
 
-TODO
+但是恒等函数 `I` 的类型，用 `F` 表示时，
+可能有多个，`F α α` 和 `F β β` 等等。
+
+因此需要引入类型变元 `a, b, c`，
+称 `I` 的类型为 `F a a`，
+并称带有类型变元的类型为 type-scheme
+（模仿 formal system 中的 axiom-scheme）。
+
+> We shall see later that all the types which the rules assign to `I`
+> have the form `F α α`, so the types of `I` are just those obtained
+> by substituting a type `α` for the variables in the type-scheme
+> `F a a`.
+
+> It will not be obvious from the rules that every ob `X` has a
+> type-scheme with this property. If `X` does have a type-scheme from
+> which all the types of `X` (and no extra types) can be obtained by
+> substituting types for variables, it will be called a _principal
+> type-scheme_ of `X`.
+
+> In §3 of this paper it will be proved that every ob `X` that has a
+> type at all, has in fact a principal type-scheme which can be
+> effectively determined from the structure of the ob.
+
+> Finally, in §6 it will be shown that if `α` is a principal
+> type-scheme of an ob `X`, then any substitution-instance `β` of `α`
+> is a principal type-scheme of some ob `Xβ` (which is reducible to
+> `X` by the reduction-rules for combinators).
+
+这个结果还挺令人惊讶的。
+
+> Besides its intrinsic interest, this result goes part of the way
+> towards justifying a conjecture of Curry's that the alternative
+> system of combinatory logic with type-restrictions (in which an
+> infinity of basic combinators is postulated, each with a unique
+> type) can be defined in the system described here. This point will
+> be explained in §5.
+
+是要避免引入 infinity of basic combinators 吗？
 
 # 1 Definitions
+
+TODO
+
 # 2 Lemmas on substitution
 # 3 Existence of principal type-schemes
 # 4 The principal type-scheme of [x].M
