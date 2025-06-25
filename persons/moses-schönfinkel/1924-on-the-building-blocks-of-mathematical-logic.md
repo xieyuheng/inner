@@ -16,10 +16,10 @@ year: 1924
 
 > Examples of how to eliminate variables had long been known in
 > logic. The inclusion notation `F ⊆ G` gets rid of the universally
-> quantified `x` of `(x)(Fx → Gx)`.
+> quantified `x` of `(x) (Fx → Gx)`.
 
 > The notation `F | G` of relative product gets rid of an
-> existentially quantified `x`, since `exists(x)(Fyx and Gxz)` becomes
+> existentially quantified `x`, since `exists (x) (Fyx and Gxz)` becomes
 > `(F | G) yz`.
 
 这里的 relative product 只关系之间的复合，函数复合可以视为其特殊情况。
@@ -114,7 +114,6 @@ lambda 演算使得等式本身变成了语法元素，
 但是也因此使得 substitution 变复杂了，
 因为需要考虑变元的 scope。
 
-
 # 1
 
 > It is in the spirit of the axiomatic method as it has now received
@@ -161,7 +160,7 @@ axiom 只是其中一个方面。
 > of a function `f` for the argument value `x` by simple juxtaposition
 > of the signs for the function and the argument, that is, by
 >
->     f x.
+>     f x
 
 省略最左边的括号，
 把 `(f x) y` 写成 `f x y` 的想法，
@@ -178,13 +177,306 @@ axiom 只是其中一个方面。
 
 # 3
 
-TODO
+> Now a sequence of _particular functions_ of a very general nature
+> will be introduced.  I call them:
+>
+> - `I` -- the identity function [Identitatsfunktion]
+> - `C` -- the constancy function [Konstanzfunktion]
+> - `T` -- the interchange function [Vertauschungsfunktion]
+> - `Z` -- the composition function [Zusammensetzungsfunktion]
+> - `S` -- the fusion function [Verschmelzungsfunktion]
+
+> (1) By the _identity function_ `I` we mean that completely
+> determined function whose argument value is not subject to any
+> restriction and whose function value always coincides with the
+> argument value, that function, in other words, by which each object,
+> as well as each function, is associated with itself. It is therefore
+> defined by the equation
+>
+>     I x = x
+
+> (2) Now let us assume that the argument value is again arbitrary
+> without restriction, while, regardless of what this value is, the
+> function value will always be the fixed value `a`. This function is
+> itself dependent upon `a`; thus it is of the form `C a`. That its
+> function value is always `a` is written
+>
+>     (C a) y = a
+>
+> And by now letting `a`, too, be variable we obtain
+>
+>     (C x) y = x, or C x y = x
+>
+> as the defining equation of the _constancy function_ `C`.
+>
+> This function `C` is obviously of the kind considered on page 360
+> [section 2]; for only when we substitute a fixed value for `x` does
+> it yield a function with the argument `y`. In practical applications
+> it serves to permit the introduction of a quantity `x` as a "blind"
+> variable.
+
+> (3) Conversely, we can obviously always think of an expression like
+>
+>     f x y
+>
+> as having been obtained from
+>
+>     F(x, y)
+>
+> where `F` is uniquely determined by the given `f`.  If, however, we
+> now rewrite this expression as
+>
+>     g y x
+>
+> taking `y` as a parameter, then this new function, too, is uniquely
+> given by `F` and therefore indirectly also by `f`.
+>
+> Hence we may think of the function `g` as the value of a function
+> `T` for the argument value `f`. This _interchange function_ `T` has
+> as its argument a function of the form `φ x y`, and the function
+> value
+>
+>     ψ = T φ
+>
+> is that function `ψ x y` whose value `ψ x y` coincides with `φ y x`
+> for all argument values `x` and `y` for which `φ y x` has
+> meaning. We write this definition briefly as
+>
+>     (T φ) x y = φ y x
+>
+> where the parentheses may again be omitted.
+>
+> The function T makes it possible to alter the order of the terms of
+> an expression, and in this way it compensates to a certain extent
+> for the lack of a commutative law.
+
+由于引入了全新的函数作用语法，所以 Schönfinkel 在耐心解释，
+而不是只是列出定义这些函数的等式。
+
+> (4) If in the argument place of a function `f` there occurs the
+> value (dependent upon `x`) of another function, `g`, then
+>
+>     f (g x)
+>
+> obviously also depends upon `x` and can in consequence be regarded
+> as the value of a third function, `F`, which is uniquely determined
+> by `f` and `g`.  ... and we call `F` the function "compounded" from
+> `f` and `g`. The function `F` is thus itself the value of a certain
+> function `Z'` of `f` and `g`.
+>
+> We could therefore define
+>
+>     (Z'(φ, χ))x = φ (χ x)
+>
+> But, following our earlier convention, we prefer to replace `Z'` by
+> the corresponding function of one argument, and we consequently
+> obtain
+>
+>     Z φ χ x = φ (χ x)
+>
+> as the defining equation of the _composition function_ `Z`.
+>
+> By means of the function `Z` parentheses can be shifted (not really
+> eliminated, since they must always be thought of as still being
+> there) within a more comprehensive expression; its effect is
+> therefore somewhat like that of the associative law, which is not
+> satisfied here either.
+
+这里提到结合律，是因为函数复合总是满足结合律。
+
+    Z f (Z g h) = Z (Z f g) h
+
+```
+Z f (Z g h) x
+= f ((Z g h) x)
+= f (g (h x))
+```
+
+```
+Z (Z f g) h x
+= (Z f g) (h x)
+= f (g (h x))
+```
+
+> (5) If in
+>
+>     f x y
+>
+> we substitute the value of a function `g` for `y`, and in particular
+> the value taken for the same `x` as that which appears as argument
+> of `f`, we come upon the expression
+>
+>     f x (g x)
+>
+> or, as we shall write it for the moment to make it clearer,
+>
+>     (f x) (g x)
+>
+> This, of course, is the value of a function of `x` alone; thus
+>
+>     (f x) (g x) = F x
+>
+> where
+>
+>     F = S'(f, g)
+>
+> again depends in a completely determined way upon the given
+> functions `f` and `g`. Accordingly we have
+>
+>     (S'(φ, χ))x = (φ x) (χ x)
+>
+> or, if we carry out the same transformation as in the preceding case,
+>
+>     S φ χ x = (φ x) (χ x)
+>
+> as the defining equation of the _fusion function_ `S`.
+
+虽然下面用例子说明了 `S`，
+但是也只是说明了它的定义，
+而没有解释为什么有这样的定义。
+想要解释「为什么」就需要了解，
+消除表达式中变量的算法。
+
+> It will be advisable to make this function more intelligible by
+> means of a practical example. If we take for `f x y`, say, the value
+> `log x y` (that is, the logarithm of `y` to the base `x`) and for `g
+> z` the function value `1 + z`, then `(f x) (g x)` obviously becomes
+> `log x (l + x)`, that is, the value of a function of `x` that is
+> univocally associated with the two given functions precisely by our
+> general function `S`.
+
+> Clearly, the practical use of the function `S` will be to enable us
+> to reduce the number of occurrences of a variable -- and to some
+> extent also of a particular function -- from several to a single
+> one.
 
 # 4
 
-TODO
+> It will prove to be relevant to the solution of the problem that we
+> have raised concerning the symbolism of logic that the five
+> particular functions of the function calculus that were defined
+> above, `I`, `C`, `T`, `Z`, and `S`, are not mutually independent,
+> that, rather, two of them, namely `C` and `S`, suffice to define the
+> others. In fact, the following relations obtain here.
+
+> (l) According to the definitions of the functions `I` and `C`,
+>
+>     I x = x = C x y
+>
+> Since `y` is arbitrary, we can substitute any object or any function
+> for it, hence, for example, `C x`. This yields
+>
+>     I x = (C x) (C x)
+>
+> According to the definition of `S`, however, this means
+> so that we obtain `S C C x`,
+>
+>     I = S C C
+
+这里有一个注释说明对于 Schönfinkel 来说，
+在这种函数作用所构成的代数结构中解方程，
+也不是一开始就那么简单的：
+
+> [1]: This reduction was communicated to me by Boskowitz;
+> some time before that, Bernays had called the somewhat less simple
+> one `(S C) (C C)` to my attention.
+
+也许 Schönfinkel 发现 `S` 的契机，
+并不是为了消除表达式中变量的算法，
+而是为了上面所提到的：
+二元函数在一个参数位置与一元函数复合，
+从而消除一个参数。
+
+> The last `C`, incidentally, does not occur in the expression `S C C`
+> in an essential way.  For, if above we put for `y` not `C x` but an
+> arbitrary function `φ x`, we obtain in a similar way
+>
+>     I = S C φ
+>
+> where any function can then be substituted for `φ`.
+
+这里有一个注释说明 Schönfinkel 总是在考虑函数的类型：
+
+> [2]: Only such a function, of course, as has meaning for every `x`.
+
+> (2) According to the definition of `Z`
+>
+>     Z f g x = f (g x)
+>
+> Furthermore, by virtue of the transformations already employed,
+>
+>     f (g x)
+>     = (C f x) (g x)
+>     = S (C f) g x
+>     = (C S f) (C f) g x
+>
+> Fusion over `f` yields
+>
+>     S (C S) C f g x
+>
+> therefore
+>
+>     Z = S (C S) C
+
+这里解方程的过程，前瞻了消除表达式中变量的算法，
+与其说是消除变量，不如说是把变量都整理到末尾的参数位置。
+
+> (3) In an entirely analogous way
+>
+>     T f y x = f x y
+>
+> can be further transformed thus:
+>
+>     f x y
+>     = f x (C y x)
+>     = (f x) (C y x)
+>     = S f (C y) x
+>     = (S f) (C y) x
+>     = Z (S f) C y x
+>     = Z Z S f C y x
+>     = (Z Z S f) C y x
+>     = (Z Z S f) (C C f) y x
+>     = S (Z Z S) (C C) f y x
+>
+> Therefore we have
+>
+>     T = S (Z Z S) (C C)
+>
+> If we here substitute for `Z` the expression found above, `T` too
+> will have been reduced to `C` and `S`.
 
 # 5
+
+用 lisp 的为 lambda 引入 bound variable 的语法
+-- `(lambda (x) ...)`，
+可以推广到 forall -- `(forall (x) (f x))`
+和 exists -- `(exists (x) (f x))`。
+
+在这种语法之下，第一章所描述的，
+命题演算中的 Sheffer's stroke 到谓词演算的推广，
+可以表示为：
+
+    (forall (x) (not (and (f x) (g x))))
+
+> Let us now apply our results to a special case, that of the calculus
+> of logic in which the basic elements are individuals and the
+> functions are propositional functions [predicates].
+>
+> First we require an additional particular function, which is
+> peculiar to this calculus.  The expression
+>
+>    (forall (x) (not (and (f x) (g x))))
+>
+> where `f` and `g` are propositional functions of one argument -- in
+> view of an earlier remark we may confine ourselves to these -- is
+> obviously a definite function of the two functions `f` and `g`; thus
+> it is of the form `U'(f, g)`, or, by our principle of
+> transformation, `U f g`. Thus we have
+>
+>    U f g = (forall (x) (not (and (f x) (g x))))
+>
+> where `f` and `g`, of course, now are propositional functions,
+> as the defining equation of the _incompatibility function_ `U`.
 
 TODO
 
