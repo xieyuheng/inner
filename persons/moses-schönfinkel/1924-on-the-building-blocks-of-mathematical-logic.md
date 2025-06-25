@@ -445,6 +445,14 @@ Z (Z f g) h x
 > If we here substitute for `Z` the expression found above, `T` too
 > will have been reduced to `C` and `S`.
 
+不得不说，在一个具体的代数结构内解方程的感觉很好，
+尽管这里的具体代数结构只是 free magma，
+外加一些 presention 意义上的生成元和生成元所满足的等式。
+
+TODO 如果 group 和 groupoid 的 presention 理论，
+有对应的 topological 解释，
+那么 magma 的 presention 理论是否也有 topological 解释？
+
 # 5
 
 用 lisp 的为 lambda 引入 bound variable 的语法
@@ -457,6 +465,11 @@ Z (Z f g) h x
 可以表示为：
 
     (forall (x) (not (and (f x) (g x))))
+
+或者写作：
+
+    (forall (x) (nand (f x) (g x)))
+
 
 > Let us now apply our results to a special case, that of the calculus
 > of logic in which the basic elements are individuals and the
@@ -478,7 +491,103 @@ Z (Z f g) h x
 > where `f` and `g`, of course, now are propositional functions,
 > as the defining equation of the _incompatibility function_ `U`.
 
-TODO
+> It is a remarkable fact, now, that every formula of logic can be
+> expressed by means of our particular functions `I`, `C`, `T`, `Z`,
+> `S`, and `U` alone, hence, in particular, by means solely of `C`,
+> `S`, and `U`.
+
+> First of all, every formula of logic can be expressed by means of
+> the generalized stroke symbol, with the bound variables (apparent
+> variables) at the upper ends of the strokes. This holds without
+> restriction; hence it holds for arbitrary orders of propositions
+> [Aussagenordnungen] and also if relations occur. Furthermore, we can
+> introduce the function `U` step by step in place of the stroke
+> symbol by suitable use of the remaining constant functions.
+
+> We will not give the complete demonstration here but only explain
+> the role of the different particular functions in this reduction.
+
+如果 Schönfinkel 有编程相关的经体，
+即用程序表达过程式知识的经验，
+那么他就不用省略对这里算法的完整描述了。
+
+The role of functions:
+
+- C -- 引入变元，以增加平凡的依赖关系。
+- T -- 交换参数位置。
+- Z -- 变换括号的位置。
+- S -- 将一个变元的两次出现融合（fuze）成一次出现。
+
+> Thus, for example,
+>
+>     (forall (x) (nand (f x) (g x y)))
+>     = (forall (x) (nand (f x) (T g y x)))
+>     = U f (T g y)
+
+> Or, to take a somewhat more involved example,
+
+```scheme
+(same-as-chart
+ (forall (x)
+   (nand (forall (y)
+           (nand (f x y)
+                 (g x y)))
+         (forall (z)
+           (nand (h x z)
+                 (k x z)))))
+ (forall (x)
+   (nand (U (f x) (g x))
+         (U (h x) (k x))))
+ (forall (x)
+   (nand (Z U f x (g x))
+         (Z U h x (k x))))
+ (forall (x)
+   (nand (S (Z U f) g x)
+         (S (Z U h) k x)))
+ (U (S (Z U f) g)
+    (S (Z U h) k)))
+```
+
+再考虑由上面的例子所引起的例子：
+
+    S (Z U f) f
+
+如何 fuze 这里的 `f`？
+
+```scheme
+(same-as-chart
+  (S (Z U f) f)
+  (S (Z U f) (I f))
+  (S ((Z U) f) (I f))
+  (Z S (Z U) f (I f))
+  ((Z S (Z U)) f (I f))
+  (S (Z S (Z U)) I f))
+```
+
+> To give a practical example of the claim of this section we shall
+> deal with the following proposition:
+>
+>     For every predicate there exists a predicate
+>     incompatible with it.
+>
+> that is
+>
+>     For every predicate `f` there exists a predicate `g` such that
+>     the propositional function `(f x) & (g x)` is not true of any
+>     object `x`.
+
+```scheme
+(same-as-chart
+ (forall (f) (exists (g) (forall (x) (not (and (f x) (g x))))))
+ (forall (f) (exists (g) (U f g)))
+ (forall (f) (not (forall (g) (not (U f g)))))
+ (forall (f) (not (forall (g) (not (and (U f g) (U f g))))))
+ (forall (f) (not (U (U f) (U f))))
+ (forall (f) (not (Z U U f (U f))))
+ (forall (f) (not (S (Z U U) U f)))
+ (forall (f) (not (and (S (Z U U) U f) (S (Z U U) U f))))
+ (U (S (Z U U) U) (S (Z U U) U)))
+```
 
 # 6
 
