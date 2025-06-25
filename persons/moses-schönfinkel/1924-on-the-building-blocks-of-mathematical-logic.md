@@ -106,15 +106,75 @@ year: 1924
 实际上在考虑程序语言的时候，所有相对内层 scope 的 free variable，
 对于某个外层 scope 来说，都是 bound variable。
 
-TODO
+在 lambda 演算发明之前，人们提到 variable，
+主要指在用变元代替等式中的元素，以形成方程。
+
+做定义的时候，需要给出名字，和其所满足的方程。
+lambda 演算使得等式本身变成了语法元素，
+但是也因此使得 substitution 变复杂了，
+因为需要考虑变元的 scope。
+
 
 # 1
 
-TODO
+> It is in the spirit of the axiomatic method as it has now received
+> recognition, chiefly through the work of Hilbert, that we not only
+> strive to keep the axioms as few and their content as limited as
+> possible but also attempt to make the number of fundamental
+> undefined _notions_ as small as we can; we do this by seeking out
+> those notions from which we shall best be able to construct all
+> other notions of the branch of science in question.
+
+这里的 motion 是概念的统称，
+axiom 只是其中一个方面。
+我们在追求精简的 axioms 的同时，
+也要追求精简的 notions。
+
+这里给出的简化 propositional connectives，
+就是简化 notions 的例子。
+
+这篇论文的目标是消除逻辑中的「变量」这个概念。
+因为变量只不过是用来标记出某些位置的元素是相同的，
+这与逻辑的核心概念相比，只不过是个辅助概念。
+
+> It seems to me remarkable in the extreme that the goal we have just
+> set can be realized also; as it happens, it can be done by a
+> reduction to three fundamental signs.
 
 # 2
 
-TODO
+首先需要重现发展关于函数的理论。
+
+介绍高阶函数，
+以及如何用高阶函数处理多元函数，
+即后人所说的 currying。
+
+> As is well known, by function we mean in the simplest case a
+> correspondence between the elements of some domain of quantities,
+> the argument domain, and those of a domain of function values
+> (which, to be sure, is in most cases regarded as coinciding with the
+> former domain) such that to each argument value there corresponds at
+> most one function value.
+
+> We now extend this notion, permitting functions themselves to appear
+> as argument values and also as function values. We denote the value
+> of a function `f` for the argument value `x` by simple juxtaposition
+> of the signs for the function and the argument, that is, by
+>
+>     f x.
+
+省略最左边的括号，
+把 `(f x) y` 写成 `f x y` 的想法，
+来自无穷级数理论。
+
+> In the foregoing case, therefore, `f x` is the value of a function
+> that, upon substitution of a value for `x`, does not yet yield an
+> object of the fundamental domain (if indeed such an object was
+> intended as the value of `F(x, y)`) but yields another function,
+> whose argument now is `y`; ...
+
+考虑 domain 的话，就需要扩张 domain。
+只有使用类型论的想法，才能把 domain 的变化描述清楚。
 
 # 3
 
