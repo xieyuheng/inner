@@ -5,6 +5,24 @@ translator:  stefan bauer-mengelberg
 year: 1924
 ---
 
+# My Motive
+
+[2025-06-25] Combinatory logic 的开创性论文。
+
+# My Notes
+
+[2025-06-25] 可以说 Schönfinkel 是 combinatory logic 真正的发明人。
+
+其贡献如下：
+
+- 考虑 application 所构成的 magma 代数结构，
+  并且为这个代数发明语法糖，即后世所称的 currying。
+
+- 找到消除变元的算法。
+
+Curry 的贡献可以说是进一步仔细研究，
+这个 magma 代数结构中的等价关系。
+
 # Forward (by Quine)
 
 > The initial aim of the paper is reduction of the number of primitive
@@ -40,26 +58,26 @@ year: 1924
 > quantifiers and their variables altogether, go far beyond the
 > algebra of classes and relations, for that algebra makes no special
 > provision for classes of classes, relations of classes, classes of
-> relations, or relations of relations.  Schonfinkel's notions provide
+> relations, or relations of relations.  Schönfinkel's notions provide
 > for these things, and for the whole sweep of abstract set
-> theory. The crux of the matter is that Schonfinkel lets functions
+> theory. The crux of the matter is that Schönfinkel lets functions
 > stand as arguments.
 
 就是说 Peirce 的理论缺少高阶元素。
 
-> For Schonfinkel, substantially as for Frege, a classes are special
+> For Schönfinkel, substantially as for Frege, a classes are special
 > sorts of functions. They are propositional functions, functions
 > whose values are truth values.
 
-> All functions, propositional and otherwise, are for Schonfinkel
+> All functions, propositional and otherwise, are for Schönfinkel
 > one-place functions, thanks to the following ingenious device.
 > Where F is what we would ordinarily call a two-place function,
-> Schonfinkel reconstrues it by treating `F x y` not as `F(x, y)` but
+> Schönfinkel reconstrues it by treating `F x y` not as `F(x, y)` but
 > as `(F x) y`. Thus F becomes a one-place function whose value is a
 > one-place function. The same trick applies to functions of three or
 > more places; thus `F x y z` is taken as `((F x) y) z`.
 
-人们都会被 Schonfinkel 的天才想法震惊。
+人们都会被 Schönfinkel 的天才想法震惊。
 
 > In particular, a dyadic relation, as an ostensibly two-place
 > propositional function, thus becomes a one-place function whose
@@ -72,7 +90,7 @@ year: 1924
 > say that `U` is the function whose value `U x` is the class of all
 > classes that share no members with `x`.
 
-> Schonfinkel assumes one operation, that of application of a function
+> Schönfinkel assumes one operation, that of application of a function
 > to anargument. It is expressed by juxtaposition as in `U x` above,
 > or `(U x) y`, or in general `z y`. Also he assumes three specific
 > functions, as objects: `U` above, `C`, and `S`.
@@ -591,4 +609,69 @@ The role of functions:
 
 # 6
 
-TODO
+> So far as we can see, we cannot carry the reduction to anything
+> beyond the symbols `C`, `S`, and `U` without doing violence to it.
+
+> Purely schematically, to be sure, we could replace even `C`, `S`,
+> and `U` by a single function if we were to introduce the new
+> function `J` through the definitions
+>
+>     J C = U
+>     J S = C
+>     J x = S
+>
+> where `x` is any object distinct from `C` and `S`. We ascertain,
+> first, that `J` is itself distinct from `C` and `S`, since `J` takes
+> on only three function values whereas `C` and `S` take on infinitely
+> many.
+
+注意，这里用来定义 `J` 的方程，
+与之前用来定义 `S`，`C`，`U` 的方程有本质不同，
+即后者用到的只有自由变元，而前者用到了常量。
+
+> Consequently we have
+>
+>     JJ = S
+>     J(JJ) = JS = C
+>     J[J(JJ)] = JC = U
+>
+> which in fact accomplishes the reduction. But on account of its
+> obvious arbitrariness it is probably without any real significance.
+
+下面的最后三段是德文版编者 Heinrich Behmann 写的。
+
+> However, we can in a certain sense free ourselves at least from the
+> sign U in another, more natural way. Every formula of logic [when
+> transformed as indicated] certainly contains the sign U and -- quite
+> in accordance with our earlier conclusion about an arbitrary symbol
+> -- can be written in terms of the particular functions of the
+> general function calculus (hence, in particular, by means of C and
+> 8) in such a way that U occurs as the argument of the entire
+> expression; the expression thus assumes the form FU, where F itself
+> no longer contains U. If in writing the expression down we omit the
+> U, regarding it as understood, we can in fact manage with C and S.
+
+就是对所有表达式中的 U 再做一次 abstraction，
+然后把所有表达式都理解为 U 的函数
+（正如有人把所有 froth word 都理解为 stack 的函数）。
+
+但是，其实获得的表达式之间不再 composable。
+
+> On the other hand we could, while relinquishing the most extreme
+> reduction of the basic function symbols, demand that parentheses be
+> entirely avoided. If now we take the form FU as a point of
+> departure, then, by means of Z alone, F can be transformed in such a
+> way that all parentheses disappear. By means of C, Z, and S,
+> therefore, every formula of logic can be written without parentheses
+> as a simple sequence of these signs and can therefore be
+> characterized completely by a number written to the base 3.
+
+这里指出可以用 `Z`（函数复合）来消除所有的括号。
+代数意义上，可以从 magma 转化到 semigroup，
+或者说 monoid（因为函数符合显然有单位元）。
+
+> ... The reduction here considered of the formulas of logic has the
+> remarkable peculiarity, therefore, of being independent of the
+> axioms of logic.
+
+Schönfinkel 理论的通用性，也让人震惊。

@@ -72,7 +72,7 @@ magma 是 applicative language 所对应的代数结构，
 
 介绍带有 currying 的 application 的想法来自 Schönfinkel。
 
-> ..., In it Schonfinkel introduced a binary operation since called
+> ..., In it Schönfinkel introduced a binary operation since called
 > _application_. He wrote the application of an object f to an object
 > a as (f a).
 

@@ -179,25 +179,25 @@ newline: preserve
   1. 單由 "|" 即 "nand" 就足以推演 命題演算
      [classical sentential logic] [SL]
      [classical propositional logic]
-  2. schonfinkel 想要
+  2. schönfinkel 想要
      僅憑 "for-all" 和 "|" 而推演 謂詞演算
      [first-order logic] [FOL]
      但是 命題演算 並不需要處理 約束變元
      而 謂詞演算 需要處理 約束變元
      現在我只能說是出於個人審美方面的原因
-     schonfinkel 決定消除對約束變元的使用
+     schönfinkel 決定消除對約束變元的使用
      - 因爲我很喜歡使用約束變元
        並且我比認爲處理它們有什麼困難
        並且我認爲
        有時用約束變元來構造新的函數比用組合子方便
 
-### Schonfinkel
+### Schönfinkel
 
-- Schonfinkel 首先所做的就是
+- Schönfinkel 首先所做的就是
   定義了一個組合子 它作用於兩個 謂詞
   降低兩個謂詞的定義域的維數
   [零維者即爲真值]
-  顯然 Schonfinkel 知道
+  顯然 Schönfinkel 知道
   只要定義一些基本的
   用以降低謂詞定義域的維數的
   高階函數
@@ -206,13 +206,13 @@ newline: preserve
   組合以形成複雜高階函數
   那麼很可能就能系統的消除約束變元的使用
   所以他去找了一個這樣的比較基本的東西
-- Schonfinkel 發現
+- Schönfinkel 發現
   單單使用一個 nextand [not-exists-and]
   [被約束變元參數化的二元高階函數]
   就能形成整個理論
 - 我從程序語言的角度
   以精確易懂的語義
-  來解釋一下 Schonfinkel 的發現
+  來解釋一下 Schönfinkel 的發現
   TODO
 
 ### Combinatory terms and their main properties
