@@ -148,6 +148,23 @@ TODO 如何设计组合子来消除那些不是由 lambda 所引入的 bound var
 Church 发明 lambda 是想得到一种通用的引入 bound variable 的手段，
 可以看一下 Church 为什么没有成功。
 
+好像只需要定义 `(N f) = (nu (x) (f x))` 就可以解决问题。
+`x` 的多次出现可以用 `S` 处理，
+正如在 interaction nets 中使用 dup，
+来处理 linear value。
+
+TODO 可否用 formal system 之间的编译，把这两个理论联系起来？
+
+比如，用 `nu` 所表达的 `I` 的类型 `(nu (x) (F x x))`：
+
+```scheme
+(same-as-chart
+  (nu (x) (F x x))
+  (nu (x) (F x (I x)))
+  (nu (x) (S F I x))
+  (N (S F I)))
+```
+
 > In the usual interpretations, the ob `(X Y)` represents the result of
 > applying the function `X` to the argument `Y`.
 
@@ -170,6 +187,8 @@ Church 发明 lambda 是想得到一种通用的引入 bound variable 的手段�
 在 combinatory logic 中也常用。
 
 > **Definition 3. Substitution.**
+
+模仿分数的形式，来写 substitution。
 
 TODO
 
