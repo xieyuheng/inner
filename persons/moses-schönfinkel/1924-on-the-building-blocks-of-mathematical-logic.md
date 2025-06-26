@@ -465,11 +465,11 @@ Z (Z f g) h x
 
 不得不说，在一个具体的代数结构内解方程的感觉很好，
 尽管这里的具体代数结构只是 free magma，
-外加一些 presention 意义上的生成元和生成元所满足的等式。
+外加一些 presentation 意义上的生成元和生成元所满足的等式。
 
-TODO 如果 group 和 groupoid 的 presention 理论，
+TODO 如果 group 和 groupoid 的 presentation 理论，
 有对应的 topological 解释，
-那么 magma 的 presention 理论是否也有 topological 解释？
+那么 magma 的 presentation 理论是否也有 topological 解释？
 
 # 5
 

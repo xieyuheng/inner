@@ -77,6 +77,31 @@ year: 1969
 
 # 1 Definitions
 
+Hindley 强调后面要区分语法意义上的等价 `≡`（基础等价关系），
+以及经过（方程）解释之后的等价关系 `=`。
+
+> **Definition 1. Obs.**
+
+其实说是 a presentation of magma 就可以了，
+可以模仿 presentation of group，写作：
+
+    < S, K | K x y = x, S f g x = f x (g y) >
+
+用 lisp 的语法：
+
+```scheme
+(magma (S K)
+  (= (K x y) x)
+  (= (S f g x) (f x (g y))))
+```
+
+和 group 的元素一样，magma 的集合并不包含变元。
+
+> It is assumed that no compound ob is also an atom,
+> and that if `(X Y) ≡ (U V)`, then `X ≡ Y` and `U ≡ V`.
+
+> **Definition 2. Types and Type-schemes.**
+
 TODO
 
 # 2 Lemmas on substitution
