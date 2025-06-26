@@ -190,6 +190,16 @@ TODO 可否用 formal system 之间的编译，把这两个理论联系起来？
 
 模仿分数的形式，来写 substitution。
 
+> An expression consisting of a type-scheme α beside an ob X is called
+> a _statement_, `α X`. The statement `β X` is called an instance of
+> `α X` iff `β` is an instance of `α`.
+
+为什么会有这种类似 C 语言的类型声明语法？
+
+如果想用 lisp 语法写的话，可以用 the little typer 的 `(the α X)`。
+
+> **Definition 4. Type-schemes of obs.**
+
 TODO
 
 # 2 Lemmas on substitution
