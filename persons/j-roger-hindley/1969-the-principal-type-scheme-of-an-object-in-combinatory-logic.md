@@ -97,10 +97,79 @@ Hindley 强调后面要区分语法意义上的等价 `≡`（基础等价关系
 
 和 group 的元素一样，magma 的集合并不包含变元。
 
+这里可以看出，如果想用 magma 来理解 lambda calculus，
+之需要假设所有用来定义 generator 的方程都有解，
+即形如 `(<name> <arg> ...) = <exp>` 的方程。
+
+正是因为消除了变量，combinatory logic 作为 magma 的试试才显现出来。
+如果一开始就研究 lambda calculus，由于其形式之复杂，
+让人很难和代数结构联系起来。
+
 > It is assumed that no compound ob is also an atom,
 > and that if `(X Y) ≡ (U V)`, then `X ≡ Y` and `U ≡ V`.
 
 > **Definition 2. Types and Type-schemes.**
+
+```bnf
+<type-scheme> := <atom-type> | <compound-type-scheme>
+<atom-type> := <basic-type> | <type-variable>
+<compound-type-scheme> := (F <type-scheme> <type-scheme>)
+```
+
+> A type is any type-scheme which contains no variables[3].
+
+这里有一个注释：
+
+> [3]: In [1], Curry finds it convenient to regard types as a
+> particular kind of ob, called "F-obs"; the results of the present
+> paper apply to this case.
+
+也就是说 Curry 把 type 也理解为 value，
+这对于 dependent type 来说是重要的。
+
+> It is assumed that no compound type-scheme is a type-atom and that
+> if `(F α β) ≡ (F γ δ)` then `α ≡ β` and `γ ≡ δ`.
+
+> Greek letters denote arbitrary type-schemes, and lower case Roman
+> letters from the start of the alphabet denote type-variables.
+
+这里有犯了众多数学书的毛病，
+开始规定和类型相关的使用字母的惯例。
+这种惯例之使用，只在草稿本或者黑板上说得过去。
+设计形式语言的时候，应该用更 scalable 的方式来处理。
+
+也许在类型变量的时候，我可以模仿 lisp 的 lambda，
+写成 `(nu (a) (F a a))` 来明确 bound variable 的 scope。
+
+但是，这样写会违背 combinatory logic 的初衷！
+即消除 bound variable。
+
+TODO 如何设计组合子来消除那些不是由 lambda 所引入的 bound variable？
+Church 发明 lambda 是想得到一种通用的引入 bound variable 的手段，
+可以看一下 Church 为什么没有成功。
+
+> In the usual interpretations, the ob `(X Y)` represents the result of
+> applying the function `X` to the argument `Y`.
+
+> Each basic type represents a particular set of functions, depending
+> on the interpretation one may have in mind.
+
+注意，这里对 basic type 的理解方式。
+不是向 SKI 的 magma 代数结构中增加元素，
+而是代表其子集！这可以理解为是 structural typing。
+
+> And `F α β` represents the set of all functions from `α` into
+> `β`. Thus each type represents a particular set of functions.
+
+> The variables are intended to represent arbitrary types, so that a
+> type-scheme a containing variables represents a class of types, each
+> type being obtained from a by substituting types for the variables.
+
+如果没有 bound variables 和 scope，
+那么 substitution 确实是简单的，
+在 combinatory logic 中也常用。
+
+> **Definition 3. Substitution.**
 
 TODO
 
