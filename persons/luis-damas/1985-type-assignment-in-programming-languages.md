@@ -79,6 +79,37 @@ ML 可以完全省略类型声明，因此：
 这个符合 Curry 风格的类型系统。
 也符合集合论的直觉。
 
+下面介绍了几个 ML 代码的例子，
+也介绍了在 ML 中定义新类型的方式，
+即定义 type constructor 的同时，
+定义相关的 data constructor 和 data eliminator。
+
+并且强调，定义新类型的功能，
+并不影响把类型当作 filter 的直觉：
+
+> Now, even the introduction of abstract data types does not change
+> much the point of view mentioned above of ML being seen as an
+> untyped language in which type assignment is used as a filter.
+
+如果用 structural type，
+而不是定义新的 data constructor，
+filter 的直觉就会更明显，不需要额外解释。
+
+> Having acquainted those readers unfamiliar with ML, with the main
+> features of its type discipline we should also point out that ML,
+> even if it provides assignable variables, is essentially a purely
+> applicative language, and its lack of updatable structures like,
+> e.g. arrays, does limit its acceptability as a general purpose
+> programming language.
+
+作为纯函数语言，
+不带有 updatable structures 才是正确的，
+而不是不允许 assignable variables。
+
+此时 assignment 应该处理为 shadowing，
+这样可以避免人们用 closure 和真的 assignment
+实现 updatable structures。
+
 TODO
 
 # 1 A type inference system for an applicative language
