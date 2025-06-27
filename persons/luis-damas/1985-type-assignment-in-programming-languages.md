@@ -8,6 +8,10 @@ year: 1985
 
 [2025-06-27] 一边练习实现 Hindley-Milner 类型系统，一边读这篇论文。
 
+是否真的要实现一个练习用的语言，
+还是直接实现实用的 x-lisp，
+取决于读这篇论文的感受。
+
 # Abstract
 
 > The purpose of this work is to present and study a family of
@@ -110,11 +114,121 @@ filter 的直觉就会更明显，不需要额外解释。
 这样可以避免人们用 closure 和真的 assignment
 实现 updatable structures。
 
-TODO
+> The theoretical basis for the ML type discipline was introduced in
+> [Milner 78] where a type asslgnnient algorithm was defined and type
+> assignment was shown to be semantically sound.
+
+> The main aim of this work is to complete Miler's work and to extend
+> it in two directions.
+>
+> - On one hand we will present here the proofs of the results
+>   anounced in [Damas & Milner 82] stating the existence of principal
+>   type schemes and the completeness of the ML type assignment
+>   algorithm.
+>
+> - On the other hand we will extend that theory to handle overloading
+>   of identifiers and to a semantics including references to an
+>   updatable store as first class objects.
+
+> We will now present the criteria that, in our opinion, a theory of
+> type assignment for a programming language should satisfy if it is
+> to be of any practical use.
+
+> First of all it is desirable from a pragmatic point of view that the
+> type discipline should be stated in some simple form. In accordance
+> with previous works on type assignment we will use inference systems
+> to specify what expressions are well typed and what types can be
+> inferred for them. For an algebraic approach to type assignment see
+> [Shultis 82].
+
+[Shultis 82] "Type Checking in Exp: An Algebraic Approach".
+
+> Secondly the type system should be semantically sound in the sense
+> that if a type can be inferred for an expression than the result of
+> evaluating the expression should be of that type. An example of an
+> application where such strict view about soundness of the type
+> discipline is essential, is provided by the LCF system itself where
+> one of the primitive types is type "theorem" and one wants to ensure
+> that objects of that type can only be produced using primitive
+> functions modelling axioms and inference rules.
+
+注意，想要论述 semantic soundness，
+就要区分 expression 与 type 的关系，
+和 value 与 type 的关系。
+
+- infer: expression -> type
+- in: value, type -> bool
+
+当提到 semantic 的时候，作者指的是指称语义，
+或者也可以理解为运行时（运行时的对象是 value 而不是 expression）。
+
+这种理解方式对于单纯做 infer 的类型系统可能合适，
+但是对于有时需要 type annotation 和 check 的类型系统可能不合适：
+
+- check: expression, type -> bool
+
+> Thirdly, for any practical purpose, it is essential to have some
+> form of algorithm to infer types for expressions. Moreover the type
+> inferred by the algorithm should be as general as any other type
+> which could be inferred for the expression because otherwise it
+> could fail to come up with a type which the user was entitled to
+> expect from the inference rules. This also means that the algorithm
+> should only fail if no type could be inferred for the expression.
+
+infer 的结果必须是 principal type-scheme。
+
+> Finally the type discipline achieved should be powerful enough to
+> overcome the limitations of strict type disciplines exemplified at
+> the very beginning of this introduction.
+
+需要 polymorphic type。
+
+下面介绍需要给 lambda calculus 的语法增加 let 表达式，
+才能实现这里的 infer。
+
+这应该就是 bidirectional type checking 思想的开端。
+但是还没有完全形成理论。
+
+也可以说不是引入新的 let 表达式，而是说，
+在类型推导时，必须把 `((lambda (x) e*) e)` 看成是一个整体。
+
+可能作者对于「infer 成功与否，受到 bate-reduction 影响」，
+这个事实感觉不是很好，所以说要介绍 let-reduction。
+以保持「infer 成功与否」在 reduction 下的不变性。
+
+> We can now outline the remainder of this work in which we present
+> three theories which meet the criteria mentioned above.
+
+> In chapter I we study an inference system for inferring types for
+> expressions. This system overcomes the limitation of at most one
+> assumption for each variable of the system presented in [Damas &
+> Milner 82] while preserving the existence of principal types and of
+> a type assignment algorithm. From a practical point of view the
+> importance of the results of that chapter is that they provide a
+> basis for handling overloading of identifiers such as arithmetic
+> operators or the equality operator `=`.
+
+取消 "at most one assumption for each variable" 这个限制，
+可能等同于引入 union type。
+
+> In chapter II we study the type scheme inference system of [Damas &
+> Milner 82] and, besides presenting the proofs of the results stated
+> in that work, we also study its relation with the inference system
+> of chapter I.
+
+> In chapter III we extend the theory of chapter II to the case where
+> the language semantics is no longer purely applicative but includes
+> references to a store as first class objects. We will also present
+> some programming examples showing how familiar data structures like
+> arrays and records with updatable fields can be adequately handled
+> with this extension to the ML type discipline.
 
 # 1 A type inference system for an applicative language
 
 ## 1.1 Introduction
+
+TODO
+
 ## 1.2 Expressions
 ## 1.3 Types
 ## 1.4 Semantics
