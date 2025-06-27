@@ -244,10 +244,10 @@ e ::= x | e e' | λx.e | let x = e in e'
 用 lisp 语法：
 
 ```bnf
-<exp> := <var>
-       | (<exp> <exp>)
-       | (lambda (<var>) <exp>)
-       | (let ((<var> <exp>)) <exp>)
+<exp> ::= <var>
+        | (<exp> <exp>)
+        | (lambda (<var>) <exp>)
+        | (let ((<var> <exp>)) <exp>)
 ```
 
 与经典的 lambda calculus 相比，只是增加了 `let` 表达式。
@@ -259,7 +259,7 @@ substitution 必须被明显地（explicitly）表示在语法中，
 也许上面不应该用 scheme 的一般的多元素 `let`，而应该用：
 
 ```bnf
-<exp> := (let-one (<var> <exp>) <exp>)
+<exp> ::= (let-one (<var> <exp>) <exp>)
 ```
 
 因为 `let-one` 的嵌套所形成的是 `let*`。
@@ -267,20 +267,157 @@ substitution 必须被明显地（explicitly）表示在语法中，
 如果是为了减少括号，甚至可以写成：
 
 ```bnf
-<exp> := (let-one <var> <exp> <exp>)
+<exp> ::= (let-one <var> <exp> <exp>)
 ```
 
 带有多个 `<exp>` 的 body 也是支持的：
 
 ```bnf
-<exp> := (let-one <var> <exp> <exp> ...)
+<exp> ::= (let-one <var> <exp> <exp> ...)
 ```
 
 ## 1.3 Types
 
-TODO
+> Assuming we are given a set `Tv` of type variables `α` and α set
+> `Pt` of primitive types `ι`, the syntax of types is given by
+
+```bnf
+τ ::= α | ι | τ → τ'
+```
+
+用 lisp 语法：
+
+```bnf
+<type> ::= <type-var> | <primitive-type> | (-> <type> <type>)
+```
+
+> We will denote the set of all the types by `Ty`.
+
+也就是说这里的语言与第二章的差别在于此，
+暂时没有引入 `<type-scheme>`
+-- 其中有 bound type variables。
+
+> A _substitution of types for type variables_ `S` is a map
+> from type variables to types.
+
+也许可以用下面的 lisp 语法来表示 substitution：
+
+```scheme
+(make-subst
+  (<type-var> <type>)
+  ...)
+```
+
+> A substitution `S` extends naturally to a map from types to types by
+> replacing (simultaneously) each occurrence of a variable `α` in a
+> type with `S α` (the same can be done when instead of types we have
+> any larger syntactic class involving types).
+
+这里 larger syntactic class 最重要的例子就是 type context。
+
+这里 substitution 可以用函数作用语法，
+作用于类型以表达 "substitute" 的现象，
+又很像是在遵循 combinatory logic 的宗旨，
+即，尽量 overload 函数作用语法，
+把所有的 object 都看成是函数。
+
+但是，上面这种说法又有问题，因为在 combinatory logic 中，
+应该只有语义层次的函数，而不能有修改语法的函数，
+比如上面的 substitution 就是修改语法的函数，
+又比如不能实现 expression 的 check 函数，
+因为要模式匹配所输入的语法结构。
+
+TODO 上面这种对 combinatory logic 的理解正确吗？
+确实不能对 expression 做模式匹配吗？
+
+> The _composition_ of two substitutions R and S is defined by
+>
+>     (S R) α = S (R α)
+
+但是提到 substitution 的复合时，
+又不遵循 combinatory logic 的宗旨了，
+用 substitution 之间的 concatenation
+表示了 composition 而不是 application。
+可能作者只是为了尽量简化语法，
+而没有在考虑 combinatory logic 的传统。
+
+定义了一些关于 substitution 的函数：
+
+```scheme
+(claim subst-domain (-> subst-t (set-t type-var-t)))
+(claim subst-range  (-> subst-t (set-t type-var-t)))
+```
+
+其中：
+
+- domain 出现在 subst 的 key 中，但是不被映射到自身的类型变量。
+- range 出现在 subst 的 value 中（这里没有显示不是来自到自身的映射）。
+
+感觉如果实现了 x-lisp，
+上面些对于 formal system 的描述，
+便可以完全形式化（可测试，可运行）。
+
+```scheme
+(claim subst-involved (-> subst-t (set-t type-var-t)))
+(define (subst-involved subst)
+  (set-union (subst-domain subst) (subst-range subst)))
+```
+
+```scheme
+(claim subst-restriction (-> subst-t (set-t type-var-t) subst-t))
+(define (subst-restriction subst vars)
+  (make-subst
+   (lambda (v)
+     (if (set-has? vars v)
+       (subst v)
+       v))))
+```
+
+定义 substitution 的 simultaneous composition，
+条件是 domain 相交的地方，映射的值相等。
+
+我称为 `subst-merge`：
+
+```scheme
+(claim subst-merge (-> subst-t subst-t subst-t))
+```
+
+对于两个 substitution `S` 和 `R`，和类型 `T`，
+如果 `(S T) = (R T)`，那么：
+
+```scheme
+(let ((A (free-type-vars T)))
+  (assert-subst-equal
+   (subst-restriction S A)
+   (subst-restriction R A)))
+```
+
+特别的，如果 `(S T) = T*`，
+可以求出 minimal substitution `S*`，
+满足 `(S* T) = T*`：
+
+```scheme
+(define S* (subst-restriction S (free-type-vars T)))
+```
+
+> The above discussion about minimal substitutions still applies when
+> instead of just one equation we have any finite number of equations
+> where a substitution `S` occurs applied to types or other larger
+> syntactic structures involving types.
+
+这里的 minimal substitution，
+应该就是求 principal type-scheme 的技巧。
+
+> Finally a type `t'` is said to be an instance of a type `t` iff
+> there is a substitution `S` such that `t' = S t`.
+
+> If `t` and `t'` are instances of each other then we will say that
+> `t'` is a _trivial variant_ of `t`.
 
 ## 1.4 Semantics
+
+TODO
+
 ## 1.5 Type inference
 ## 1.6 A type assignment algorithm
 ## 1.7 Principal types and completeness of T

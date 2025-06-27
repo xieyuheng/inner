@@ -112,10 +112,10 @@ e ::= x | e e' | λx.e | let x = e in e'
 用 lisp 语法：
 
 ```bnf
-<exp> := <var>
-       | (<exp> <exp>)
-       | (lambda (<var>) <exp>)
-       | (let ((<var> <exp>)) <exp>)
+<exp> ::= <var>
+        | (<exp> <exp>)
+        | (lambda (<var>) <exp>)
+        | (let ((<var> <exp>)) <exp>)
 ```
 
 > Assuming a set of type variables α and of primitive types ι,
@@ -129,14 +129,11 @@ e ::= x | e e' | λx.e | let x = e in e'
 用 lisp 语法：
 
 ```bnf
-<type> ::= <type-var>
-         | <primitive-type>
-         | (-> <type> <type>)
-
-<type-scheme> ::= <type>
-                | (nu (<type-var>) <type-scheme>)
+<type> ::= <type-var> | <primitive-type> | (-> <type> <type>)
+<type-scheme> ::= <type> | (nu (<type-var>) <type-scheme>)
 ```
 
+`(-> A (-> B C))` 可以简写做 `(-> A B C)`；
 `(nu (A1) (nu (A2) T))` 可以简写做 `(nu (A1 A2) T)`。
 
 > A _monotype_ µ is a type containing no type variables.
