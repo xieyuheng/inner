@@ -264,9 +264,12 @@ proof 在 substitution 下形成的序关系，
 
 # 2 Lemmas on substitution
 
-TODO
+substitution 相关的引理。
 
 # 3 Existence of principal type-schemes
 # 4 The principal type-scheme of [x].M
 # 5 An alternative approach to typed combinators
+
+就是 Church 风格的类型系统。
+
 # 6 Every type-scheme is a p.t.s (principal type-scheme)
