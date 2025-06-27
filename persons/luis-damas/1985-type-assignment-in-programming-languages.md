@@ -227,6 +227,11 @@ infer 的结果必须是 principal type-scheme。
 
 ## 1.1 Introduction
 
+> The type inference system is essentially that of basic functionality
+> theory in combinatory logic and λ-calculus [Curry & Feys 58].
+
+Curry 已经开始做 type inference 了吗？
+
 TODO
 
 ## 1.2 Expressions
