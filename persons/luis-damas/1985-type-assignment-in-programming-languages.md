@@ -232,10 +232,54 @@ infer 的结果必须是 principal type-scheme。
 
 Curry 已经开始做 type inference 了吗？
 
+## 1.2 Expressions
+
+> The syntax of expressions is described by the following ambiguous
+> BNF grammar:
+
+```bnf
+e ::= x | e e' | λx.e | let x = e in e'
+```
+
+用 lisp 语法：
+
+```bnf
+<exp> := <var>
+       | (<exp> <exp>)
+       | (lambda (<var>) <exp>)
+       | (let ((<var> <exp>)) <exp>)
+```
+
+与经典的 lambda calculus 相比，只是增加了 `let` 表达式。
+
+注意，在用 explicit substitution 实现 lambda calculus 时，
+substitution 必须被明显地（explicitly）表示在语法中，
+而表达 substitution 的语法正好与 scheme 的 `let` 一致（而不是 `let*`）。
+
+也许上面不应该用 scheme 的一般的多元素 `let`，而应该用：
+
+```bnf
+<exp> := (let-one (<var> <exp>) <exp>)
+```
+
+因为 `let-one` 的嵌套所形成的是 `let*`。
+
+如果是为了减少括号，甚至可以写成：
+
+```bnf
+<exp> := (let-one <var> <exp> <exp>)
+```
+
+带有多个 `<exp>` 的 body 也是支持的：
+
+```bnf
+<exp> := (let-one <var> <exp> <exp> ...)
+```
+
+## 1.3 Types
+
 TODO
 
-## 1.2 Expressions
-## 1.3 Types
 ## 1.4 Semantics
 ## 1.5 Type inference
 ## 1.6 A type assignment algorithm

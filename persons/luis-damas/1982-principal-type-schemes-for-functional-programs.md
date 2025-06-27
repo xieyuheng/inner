@@ -106,7 +106,7 @@ as arguments to polymorphic functions"
 > is given by the syntax
 
 ```bnf
-e ::= x | e e 0 | λx.e | let x = e in e 0
+e ::= x | e e' | λx.e | let x = e in e'
 ```
 
 用 lisp 语法：
