@@ -3,3 +3,112 @@ title: type assignment in programming languages
 author: luis damas
 year: 1985
 ---
+
+# My Motive
+
+[2025-06-27] 一边练习实现 Hindley-Milner 类型系统，一边读这篇论文。
+
+# Abstract
+
+> The purpose of this work is to present and study a family of
+> polymorphic type disciplines for programming languages similar to
+> the type discipline of ML, the metalanguage of the LCF system, which
+> are based on the use of type inference systems to define the notion
+> of well typed expressions and programs and on the use of type
+> assignment algorithms to compute the type or types that can be
+> inferred for those same expressions or programs.
+
+> Previous work on the theoretical foundations of the ML type
+> discipline is reexamined and completed here. It is also extended in
+> two directions, namely to handle overloading of identifiers and also
+> to cope with a semantics involving references to a store as first
+> class objects.
+
+> For each of the theories studied here we present proofs of the
+> semantic soundness of type inference, i.e. that well typed
+> expressions evaluate to objects of the correct type and that in
+> particular they do not lead to run-time errors like trying to add an
+> integer to a list.
+
+> Algorithms for computing the type or types which can be inferred for
+> expressions are also presented together with proofs of the soundness
+> and completeness of the algorithms, i.e. that the algorithms compute
+> exactly the types which can be actually inferred for the
+> expressions.
+
+# Introduction
+
+批评 algol68 没有 polymorphism，例如。
+
+```algol68
+struct IntList = (Int hd, Ref IntList tl);
+struct RealList = (Real hd, Ref RealList tl);
+```
+
+> This restrictions may explain, in part, why those languages had a
+> very small impact on areas such as Artificial Intelligence where
+> programs usually involve a relatively large number of different, but
+> in many cases similar, data types which tend to change often during
+> program development.
+
+介绍把类型作为函数 explicit 参数的解决方案。
+这很矛盾，因为在大多数情况下，在运行时类型参数都是用不到的。
+
+因此需要 polymorphic type。
+
+```scheme
+(the (nu (A) (-> A A)) (lambda (x) x))
+```
+
+```scheme
+(claim compute
+  (nu (A B C)
+    (-> (-> A B) (-> C A)
+        (-> C B))))
+
+(define (compose f g)
+  (lambda (x) (f (g x))))
+```
+
+ML 可以完全省略类型声明，因此：
+
+> Thus types play only a passive role in the semantics of the language
+> in the sense that they are used, as a filter, to restrict the set of
+> acceptable programs to those for which a type can be derived.
+
+这个符合 Curry 风格的类型系统。
+也符合集合论的直觉。
+
+TODO
+
+# 1 A type inference system for an applicative language
+
+## 1.1 Introduction
+## 1.2 Expressions
+## 1.3 Types
+## 1.4 Semantics
+## 1.5 Type inference
+## 1.6 A type assignment algorithm
+## 1.7 Principal types and completeness of T
+## 1.8 Type schemes, assumption schemes and type inference
+## 1.9 Type assignment and overloading
+
+# 2 A type scheme inference system
+
+## 2.1 Introduction
+## 2.2 Preliminaries
+## 2.3 Type inference
+## 2.4 The type assignment algorithm W
+## 2.5 The completeness of W and principal type schemes
+## 2.6 Comparison with the inference system of chapter I
+
+# 3 References to a store and type inference
+
+# 3.1 Introduction
+# 3.2 The language and its semantics
+# 3.3 Types, type schemes and their semantics
+# 3.4 Type inference
+# 3.5 A type assignment algorithm
+# 3.6 Weak polymorphism and programming examples
+
+# 4 Conclusions and directions for further research
