@@ -408,13 +408,33 @@ TODO 上面这种对 combinatory logic 的理解正确吗？
 这里的 minimal substitution，
 应该就是求 principal type-scheme 的技巧。
 
-> Finally a type `t'` is said to be an instance of a type `t` iff
+> Finally a type `t'` is said to be an _instance_ of a type `t` iff
 > there is a substitution `S` such that `t' = S t`.
+
+`<type>` 在 substitution 的诱导下，形成序关系。
 
 > If `t` and `t'` are instances of each other then we will say that
 > `t'` is a _trivial variant_ of `t`.
 
 ## 1.4 Semantics
+
+> Since our semantic domains will be complete partial orders we will
+> recall briefly the definitions of complete partial order and of
+> other related notions.
+
+沿用 Scott 和 Milner 的指称语义。
+
+根据对 propagator model 和 domain theory 中使用 lattice 方式的讨论，
+这里的 order 与我想使用的符合集合论直觉的 order 刚好相反。
+
+> A _complete partial order (cpo)_ `D` is a partial order with a least
+> or _bottom_ element and such that every ascending ω-chain in D has a
+> least upper bound (lub).
+
+> A map between cpos is _continuous_ iff it is monotonic and also
+> preserves lubs of ω-chain.
+
+TODO complete partial order 中 ω-chain 的定义是什么？
 
 TODO
 
