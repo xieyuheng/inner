@@ -195,15 +195,78 @@ TODO 可否用 formal system 之间的编译，把这两个理论联系起来？
 > `α X` iff `β` is an instance of `α`.
 
 为什么会有这种类似 C 语言的类型声明语法？
+可能是 ALGOL 68。
+不对！
+应该是想说类型代表集合，因此代表谓词，
+`α X` 就是谓词作用于 object 结果为真。
 
 如果想用 lisp 语法写的话，可以用 the little typer 的 `(the α X)`。
 
 > **Definition 4. Type-schemes of obs.**
+>
+> The type-scheme `α` is a type-scheme of `X` iff the statement `α X`
+> can be deduced from the axioms below by the rule (F) below.
+
+> Axiom-schemes:
+
+```scheme
+(claim (nu (A B C) (-> (-> A B C) (-> A B) A C)) S)
+(define (S f g x) ((f x) (g x)))
+
+(claim (nu (A B) (-> A B A)) K)
+(define (K x y) x)
+
+(claim (nu (A) (-> A A)) I)
+(define (I x) x)
+```
+
+> Rule (F):
+
+```scheme
+(check (-> A B) X)
+(check A Y)
+--------------- rule-F
+(check B (X Y))
+```
+
+> If `α` contains no variables, and `α X` is deduced from axioms
+> containing no variables, we say that `α` is a type of `X`.
+
+> **Definition 5. Deductions.**
+
+就是 proof。
+
+> Example 1:
+
+```scheme
+(prove (check (-> A A) (S K K)) rule-F
+  (prove (check (-> (-> A B A) A A) (S K)) rule-F
+    (prove (check (-> (-> A (-> B A) A) (-> A B A) A A) S)
+        (type-of S A (-> B A) A))
+    (prove (check (-> A (-> B A) A) K) (type-of K A (-> B A))))
+  (prove (check (-> A B A) K) (type-of K A B)))
+```
+
+> **Definition 6. Instances of deductions.**
+
+就是可以把 proof 中出现的全局类型变量，用 substitution 代换成任意类型。
+
+> **Definition 7. Principal type-schemes.**
+
+type-scheme 在 substitution 下形成序关系，
+就是上面定义中的 "instance of"，
+在这个序关系中最一般的类型就是 principal type-scheme。
+
+> **Definition 8. Principal deductions.**
+
+proof 在 substitution 下形成的序关系，
+此时最一般的 proof 就是 principal deduction。
+
+# 2 Lemmas on substitution
 
 TODO
 
-# 2 Lemmas on substitution
 # 3 Existence of principal type-schemes
 # 4 The principal type-scheme of [x].M
 # 5 An alternative approach to typed combinators
-# 6 Every type-scheme is a p.t.s
+# 6 Every type-scheme is a p.t.s (principal type-scheme)

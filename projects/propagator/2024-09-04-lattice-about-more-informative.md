@@ -18,14 +18,6 @@ merge 的效果是让 partial information 变得 more informative。
   虽然 "more informative" 一词中有一个 "more"，
   但是其实就序集而言它是更小。
 
-[2025-06-12] 也许应该用 join 而不是 meet，
-以使得 propagator model 对 lattice 的使用方式，
-和 domain theory 对 lattice 的使用方式保持一致。
-并且统一用 "richer" 来表示 propagator model 中的 "more informative"，
-和 domain theory 中的 "more defined"。
-注意，还需要反方向的词，如果用 richer，反过来就是 poorer，这不太好。
-也许应该直接用 more 和 less，这两个更简单的词。
-
 注意术语所在的领域：
 
 - merge 是就 partial information 而言的术语。
@@ -47,3 +39,29 @@ merge 的效果是让 partial information 变得 more informative。
 注意，对于 Belief 来说，merge 所定义的 implies，
 与之后定义 beliefSystemMerge 时所用到的 stronger，
 对 reasons 集合的理解方式是相反的。
+
+# 用 join 而不是 meet
+
+[2025-06-12] 也许应该用 join 而不是 meet，
+以使得 propagator model 对 lattice 的使用方式，
+和 domain theory 对 lattice 的使用方式保持一致。
+
+并且统一用 "richer" 来表示 propagator model 中的 "more informative"，
+和 domain theory 中的 "more defined"。
+注意，还需要反方向的词，如果用 richer，反过来就是 poorer，这不太好。
+也许应该直接用 more 和 less，这两个更简单的词。
+
+# 用 meet 而不是 join
+
+[2025-06-27] 也许 domain theory 的选择是错误的，就是应该用 meet。
+因为这样更符合集合论的直觉，
+即更小的集合代表了更小的范围，
+因此是 "more informative" 的。
+
+符合集合论的直觉很重要，
+因为逻辑中的 "A imples B" 所使用的也是这个直觉，
+类型论中类型的大小也是这个直觉。
+
+domain theory 术语选择的问题在于，
+想要用 "more defined" 来表达一个函数所能处理的参数范围更大，
+但是其实一个函数所能处理的参数范围更大，这个函数的类型就更小。
