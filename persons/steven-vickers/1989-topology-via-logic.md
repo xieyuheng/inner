@@ -71,7 +71,7 @@ domain theory 和指称语义是核心重要的，
 
 我一直对 topology 公理不满意，这本书也许可以解答疑惑。
 
-# Introduction
+# 1 Introduction
 
 > **A Historical Overview**
 
@@ -157,8 +157,10 @@ Hausdorff spaces 满足 Hausdorff 分离公理，
 - [63] More Mathematical Puzzles and Diversions, Bell [in Great Britain] 1963.
 - [86] Knotted Doughnuts and Other Mathematical Entertainments, Freeman, NewYork, 1986.
 
-# 1 Introduction
 # 2 Affirmative and refutative assertions
+
+TODO
+
 # 3 Frames
 # 4 Frames as algebras
 # 5 Topology: the definitions
