@@ -98,7 +98,7 @@ domain theory 和指称语义是核心重要的，
 > some neighbouring points inside the set and some outside.
 
 > Part of this will entail studying _closed sets_, which include all
-> their boundary points Oiks a circle with its circumference), and
+> their boundary points (like a circle with its circumference), and
 > _open sets_, which include none of their boundary points (like a
 > circle without its circumference).
 

@@ -2,6 +2,8 @@
 title: luis damas
 ---
 
+[2025-06-25]
+
 luis damas 是葡萄牙人。
 luis damas 是 robin milner 的学生。
 
