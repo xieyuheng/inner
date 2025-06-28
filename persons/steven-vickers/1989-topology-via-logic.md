@@ -14,7 +14,7 @@ year: 1989
 可以把 lattice 上的连续性，
 和 topology 公理所定义的连续性联系起来。
 
-[2025-06-27] Scott 的 domain theory 的基础是 topology，
+[2025-06-28] Scott 的 domain theory 的基础是 topology，
 而 Milner 认为，在研究 formal system 时，
 domain theory 和指称语义是核心重要的，
 因为模型可以给看似任意的 formal system 设计以指导。
