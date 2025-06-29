@@ -749,18 +749,49 @@ TODO 我没理解这里与原来例子的区别。
 
 这太符合 propagator model 了！
 
-TODO 这里给这个例子添加 bottom 的方式，我没看懂。
-为什么代表 a computation that will never finish 的 bottom，
-可以小于其他元素？
+一般说 flat domain 的时候，并不构成 lattice，
+描述 order set 的 graph 只有两层，
+是 flat 的，所以才有 flat domain 这个命名。
+
+但是这里是直接考虑 powerset 所构成的 frame（lattice），
+这样就方便理解 propagator model 了：
+
+|            | order relation   | binary operation | bottom        | top       |
+|------------|------------------|------------------|---------------|-----------|
+| frame      | less than        | meet             | bottom        | top       |
+| logic      | implies          | and              | false         | true      |
+| set        | subset           | intersection     | empty set     | whole set |
+| propagator | more informative | merge            | contradiction | nothing   |
+| domain     | less defined     | [trivial]        | error         | [no]      |
+
+如果只考虑使用 flat domain 的 domain theory，
+那么术语 less defined 是有问题的，
+error 应该被理解为 over defined 而不是 less defined。
 
 如果真的是这样，domain theory 和 propagator model 中，
 使用 lattice 的方式就是相一致的了！
+或者说使用 order set 的方式就是一致的了，
+因为 flat domain 不是 lattice。
 
-在 propagator model 中 bottom 总是代表 error，
+在 propagator model 中 bottom 总是代表 error（contradiction），
 而不是代表 no information（nothing）。
 
 可能由于一些作者在讨论 domain theory 时管 bottom 叫做 undefined，
 所以我才会把 undefined 误解为 no information。
+
+毕竟，一个 propagator 会把 nothing 映射成 nothing，
+也会把 contradiction 映射成 contradiction。
+
+注意，这里的构造还区分了两种 true：
+
+- `(nothing <type>)` -- 知道类型，但是不知道具体的值。
+- `any` -- 甚至不知道类型（也可以理解为动态类型）。
+
+另外，这里所构造的 Alexandrov topology 是对 flat domain 所构造的，
+而不是对 powerset 所形成的 lattice 构造的。
+
+可以看出 frame 比 domain
+和 domain 所得的 Alexandrov topology 的结构要丰富很多。
 
 > **Function spaces**
 
@@ -832,9 +863,35 @@ TODO
 
 ## 10.1 Why domain theory?
 
-TODO
+用集合去解释程序中的类型，
+就是让每一个类型对应一个集合，
+此时会遇到和集合基数相关的悖论。
+
+这里给出的产生悖论的例子，
+还不是要给 lambda calculus 找 domain，
+而是更贴近日常编程的例子。
+
+> The problem here is with the function type, which is where the
+> cardinality blows up. The solution is that we don't actually need
+> all the functions that, set-theoretically, are supposed to exist;
+> all the functions follow routines stored in the computer, and hence
+> must be _computable_. These are far fewer than the general
+> functions, few enough in fact to resolve the contradiction for us.
+
+> Now we see that our "sets of possible values" for the types must
+> have more than just their set structure, so that we can determine
+> which functions to admit. We don't really need to investigate in
+> detail what computability is, as long as the extra structure allows
+> us to omit enough uncomputable functions. Speaking rather broadly,
+> we might call a _domain_ a set with this extra structure, whatever
+> it is.
+
+这应该是我看到的对 domain theory 的动机最清晰的描述了。
 
 ## 10.2 Bottoms and lifting
+
+TODO
+
 ## 10.3 Products
 ## 10.4 Sums
 ## 10.5 Function spaces and Scott domains
