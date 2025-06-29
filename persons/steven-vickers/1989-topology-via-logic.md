@@ -396,6 +396,10 @@ Mike Smyth [83]:
 > In which we set up an algebraic theory for the Logic of Finite
 > Observations: its algebras arc frames.
 
+finite observation 是我们想要捕捉的直觉概念，
+用以给逻辑判断（assertion）之「是否可证实」做进一步的分析。
+下面就要发展代数类的数学结构来捕捉这一概念。
+
 # 3.1 Algebraicizing logic
 
 > We are going to apply a fairly standard trick in logic, which is to
@@ -453,23 +457,165 @@ preorder 就是 poset 去掉反对称性，
 poset 的典型例子是无环有向图，
 比如 lattice 的图示。
 
+# 3.3 Meets and joins
+
+> Thinking of "less than" as meaning "entails",
+> we next wish to describe what corresponds to `and`
+> and `or`. First, the _meets_, which correspond to `and`.
+
+poset 中子集的 meet 定义为 greatest lower bound （gib or inf）。
+poset 中子集的 join 定义为 least upper bound （lub or sup）。
+
+然后定义作为 poset 中二元运算的 meet 和 join。
+
+然后展示二元运算 meet 和 join 与 "less than" 的关系，
+使得我们可以以满足公理的二元运算为基础，获得 poset 结构。
+
+> In logic, meets are conjunctions and joins are disjunctions.
+
+检查 conjunction 和 disjunction
+的 introduction rules 以及 elimination rules
+在所对应代数结构中成立。
+
+注意，描述 inference rule 时所用到的 entails（横线），
+必须被翻译为 poset 的 "less than"。
+
+> In set theory, meets are intersections and joins are unions.
+
+三种视角相互等价：
+
+- algebra --  强调运算律与方程。
+- logic -- 强调推演系统。
+- set -- 强调元素之所属。
+
+这么看来，传统的类型论，
+其实也是「强调元素之所属」，
+因此很接近集合论视角，
+但是更强调推演系统。
+
+也许 Curry 想要在 combinatory logic 中做的，
+就是从 algebra 的视角来处理类型系统。
+注意，在描述类型时 Curry 好像也不得不引入推演系统，
+而不能把理论限制在代数之内来叙述。
+
+> It is easy to see that if Ρ has all binary meets,
+> and f preserves them, then f is monotone.
+
+> Let's now pause to map out our route to frames.
+>
+> - Posets aren't guaranteed to have anything except the order "less
+>   than";
+>
+> - lattices have all finite meets and joins;
+>
+> - distributive lattices obey an additional distributive law that
+>   brings them closer to logic;
+>
+> - and frames have in addition all joins, and an infinite
+>   distributivity law.
+
+# 3.4 Lattices
+
+> A poset Ρ is a lattice iff every finite subset has both a meet and a
+> join.
+
+> A function between two lattices is a lattice homomorphism iff it
+> preserves all finite meets and joins.
+
+注意，要求对有限集合存在 meet 和 join，
+就也要求对空集存在，因此这种对 lattice 的定义要求存在 top 和 bottom。
+
+其实，在术语使用上，不要求 lattice 带有 top 和 bottom，
+用 bounded lattice 来定义带有 top 和 bottom 的 lattice。
+这样更好。
+
+满足两个分配律的 lattice 称为 distributive lattice。
+注意，一个分配律，可以用来证明另一个。
+
+Example 3.4.6: 对于全序集，可以定义 min 和 max，
+因此形成 lattice（但是可能没有 top 和 bottom）。
+并且这种 lattice 也是 distributive 的。
+
+有两种基础的 non-distributive lattice 的反例。
+Birkhoff [67] 证明了，每个 non-distributive lattice 中，
+都能找到带有五个元素的子 lattice，与这两种反例之一同构。
+
+# 3.5 Frames
+
+> A frame is supposed to consist of the possible finite observations
+> for some system, with equivalent observations identified, and the
+> logic of finite observations (arbitrary disjunctions and finite
+> conjunctions) built in as joins and meets.
+
+> Definition 3.5.1  A poset A is a _frame_ iff
+>
+> (i) every subset has a join;
+> (ii) every finite subset has a meet;
+> (iii) binary meets distribute over joins.
+
+> We write true for the empty meet (top) and false for the empty join
+> (bottom).
+
+> A function between two frames is a. frame homomorphism iff it
+> preserves all joins and finite meets.
+
+> Some authors use the terms locale or complete Heyting algebra (cHa)
+> for what we have called a frame, and it is important to be aware of
+> this. We follow Johnstone's [82] careful distinction between frames
+> and locales (see Section 5.4), and also between frames and cHa's
+> (Section 3.10).
+
+> A frame is clearly a distributive lattice.
+
+> It is also worth noting that clause (ii) of the definition is unnecessary:
+
+因为对一个子集的下界的集合取 join，就得到这个子集的下确界。
+
+> Such a poset, with all joins and hence also all meets, is called a
+> complete lattice.
+
+> This Proposition is at first sight rather curious, because it shows
+> that even infinite meets exist in a frame. This will be discussed
+> further in Section 3.10.
+
+> We can now redefine frames as complete lattices satisfying the frame
+> distributivity law.
+
+# 3.6 Topological spaces
+
 TODO
 
-# 3.3 Meets and joins
-# 3.4 Lattices
-# 3.5 Frames
-# 3.6 Topological spaces
 # 3.7 Some examples from computer science
 # 3.8 Bases and subbases
 # 3.9 The real line
 # 3.10 Complete Heyting algebras
 
 # 4 Frames as algebras
+
+## 4.1 Semilattices
+## 4.2 Generators and relations
+## 4.3 The universal characterization of presentations
+## 4.4 Generators and relations for frames
+
 # 5 Topology: the definitions
+
+## 5.1 Topological systems
+## 5.2 Continuous maps
+## 5.3 Topological spaces
+## 5.4 Locales
+## 5.5 Spatial locales or sober spaces
+## 5.6 Summary
+
 # 6 New topologies for old
+
 # 7 Point logic
+
 # 8 Compactness
+
 # 9 Spectral algebraic locales
+
 # 10 Domain Theory
+
 # 11 Power domains
+
 # 12 Spectra of rings
