@@ -583,9 +583,18 @@ Birkhoff [67] 证明了，每个 non-distributive lattice 中，
 
 # 3.6 Topological spaces
 
-TODO
+Topological space 是特殊的 frame，
+即 power set 作为 frame 的 subframe。
+
+> At present, topologies look like just a rather concrete way in which
+> some particular frames can arise. But later we shall see how we can
+> often reconstruct a topological space X from a frame A so that the
+> frames ΩΧ and A are essentially the same (isomorphic).
 
 # 3.7 Some examples from computer science
+
+TODO
+
 # 3.8 Bases and subbases
 # 3.9 The real line
 # 3.10 Complete Heyting algebras
