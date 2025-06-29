@@ -22,6 +22,12 @@ domain theory 和指称语义是核心重要的，
 在读 luis damas 的 1985-type-assignment-in-programming-languages 时，
 遇到了 domain theory 中 ω-chain 的概念，因此也想来预习一下。
 
+[2025-06-29] 这里对序关系中的 "less than" 的理解，
+是符合集合论直觉的，也就是与我对 propagator model 中的序关系的理解一致，
+但是与 domain theory 中对序关系的理解相反。
+
+如果真是这样，这本书也可以看成是 propagator model 的理论基础。
+
 # Preface
 
 > Both [this book's] subject matter and its approach derive from a
@@ -547,6 +553,22 @@ Birkhoff [67] 证明了，每个 non-distributive lattice 中，
 > logic of finite observations (arbitrary disjunctions and finite
 > conjunctions) built in as joins and meets.
 
+Finite observation 在直觉上也非常符合 propagator model 中，
+cell 所保存的信息，因此一个 cell 所保存的信息的类型就是 frame。
+
+|            | order relation   | binary operation |
+|------------|------------------|------------------|
+| frame      | less than        | meet             |
+| logic      | implies          | and              |
+| set        | subset           | intersection     |
+| propagator | more informative | merge            |
+
+在 propagator model 中，
+确实只会用到 finite merge，即 finite meet。
+那么如何解释 frame 中的 join 呢？
+为什么 join 需要是 infinite？
+以及如何在 propagator model 中解释 frame 的其他概念？
+
 > Definition 3.5.1  A poset A is a _frame_ iff
 >
 > (i) every subset has a join;
@@ -593,9 +615,189 @@ Topological space 是特殊的 frame，
 
 # 3.7 Some examples from computer science
 
-TODO
+> **Finite observations on bit streams**
+
+> The idea of a stream is that items of data are arriving one by one
+> at a reading device. For simplicity, we assume that each item is a
+> bit, 0 or 1.  We are going to describe a frame whose elements
+> represent finite observations on some bit stream: in fact, we are
+> going to describe three. The differences between them correspond to
+> different physical assumptions and show how we can tailor a frame to
+> our particular needs.
+
+> The most elementary observations are the values of individual bits:
+> so for each natural number n >= 1 we have two _subbasic_
+> observations:
+>
+> - `(eq? (s n) 0)` -- the nth bit has been read as a zero
+> - `(eq? (s n) 1)` -- the nth bit has been read as a one
+
+或者简写做：
+
+- `(s n 0)`
+- `(s n 1)`
+
+> Without doubt, we shall want never to read the same bit as both zero
+> and one:
+>
+>     (and (s n 0) (s n 1)) = false
+>
+> We take
+>
+>     (or (s n 0) (s n 1))
+>
+> to mean that the nth bit has now been read, but we're not saying
+> what its value was. On this interpretation, we build in an important
+> physical assumption about streams:
+>
+>     (or (s n 0) (s n 1)) ≤ (or (s (add1 n) 0) (s (add1 n) 1))
+>
+> Recalling that `≤` means "implies", this means that you can't read
+> a bit until you've read the previous one -- the bits come out
+> strictly in order.
+
+> We have now presented some "subbasic" propositions `(s n 0)` and `(s
+> n 1)`, and some axioms that are supposed to hold for them. The idea
+> is that this defines a logical theory, and that from this we can get
+> a frame as a kind of Lindenbaum algebra. The mathematical
+> justification for this, showing that this process does always lead
+> to a well-defined frame, is non-trivial, and we postpone it to
+> Chapter 4. For the present, and on the assumption that the frame
+> does indeed exist, we shall show how we can play with the subbasics
+> and the axioms to arrive at a more concrete definition of it.
+
+应该以用 `01*` 的 string 来代表 finite observation，
+以表示 stream starts with string，比如："01**1"。
+我们可以称这种 string 为 prefix。
+
+例如（index 从 1 开始，从 string 的左边开始数）：
+
+```scheme
+(make-prefix "01") =>
+(and (s 1 0) (s 2 1))
+
+(make-prefix "01*") =>
+(or (and (s 1 0) (s 2 1) (s 3 0))
+    (and (s 1 0) (s 2 1) (s 3 1)))
+```
+
+公理应该是：
+
+```scheme
+(≤ (s n 0) (s (add1 n) 0))
+(≤ (s n 1) (s (add1 n) 1))
+```
+
+对于只有 `01` 的 string `l` `m` 来说：
+
+```scheme
+(implies (is-prefix-of l m) (≤ m l))
+```
+
+因为越长的 prefix 就是越多的 observation 的 meet，
+包含更多的信息（在 frame 中被理解为是更「小」）。
+
+反向的 implies 也成立。
+
+这里用 upper closed sets 来构造 Alexandrov topology，进而得到 frame。
+这样构造时，一个元素在 frame 中越小，它的 upper closed set 就越小。
+
+TODO 这里构造 Alexandrov topology 的时候，
+作者可能把生成元的下闭包写成上闭包了。
+
+为什么不直接定义作为代数结构的 frame 呢？
+可能是为了避免验证 frame 的公理。
+
+> **Different physical assumptions**
+
+> **(1) Different bits are read independently.**  This is more like an
+> infinite read-only memory, where there is no obligation to read the
+> data in order. Now, for instance,
+>
+>     (s 2 0) != (or (and (s 1 0) (s 2 0)) (and (s 1 1) (s 2 0)))
+>
+> The frame constructed here will have fewer equalities holding
+> between the possible expressions than the first frame, so it has
+> more elements.
+
+> **(2) Time is not important.** We assume that every bit can be read
+> sooner or later (so whatever is generating them is not allowed ever
+> to stop). We don't distinguish between the bits that we have already
+> read and those that we are going to read in the future, so the
+> assumption is expressed by the formal axiom
+>
+>     (or (s n 0) (s n 1)) = true
+>
+> However, there are now more equalities holding than we had in our
+> main example, so the frame here is smaller.
+
+TODO 我没理解这里与原来例子的区别。
+
+> **Flat domains**
+
+> We have already seen that if `X` is any set, then `(powerset X)` is
+> a frame. We can view the subsets as being observations on some
+> object that has a value in `X`, `(subset-of S X)` being interpreted
+> as
+>
+>     (or-for ((x S)) (it-is x))
+>
+> A singleton `{x}` represents an observation it's `x` that the object
+> definitely has value `x`, while a larger set means that the object
+> has been observed to be within some range, but not yet pinned down
+> exactly.
+
+这太符合 propagator model 了！
+
+TODO 这里给这个例子添加 bottom 的方式，我没看懂。
+为什么代表 a computation that will never finish 的 bottom，
+可以小于其他元素？
+
+如果真的是这样，domain theory 和 propagator model 中，
+使用 lattice 的方式就是相一致的了！
+
+在 propagator model 中 bottom 总是代表 error，
+而不是代表 no information（nothing）。
+
+可能由于一些作者在讨论 domain theory 时管 bottom 叫做 undefined，
+所以我才会把 undefined 误解为 no information。
+
+> **Function spaces**
+
+> An important topic concerns the observations that can be made on
+> functions. The general idea is that we know how to make observations
+> on the result, and we also know how to manufacture arguments. A
+> subbasic observation on a function `f` is then `[x => a]`, meaning
+> "we have manufactured `x`, fed it to `f`, and observed a of the
+> result `f(x)`". Let us imagine f as a black box.
+
+这里可以看出 domain theory 只是给集合增加了 bottom，
+但是 propagator model 中使用的其实是 frame，
+既有 top（nothing）也有 bottom（contradiction 或 error）。
+
+这里的例子也可能是 frame 这个术语的来源，
+因为其 lattice 图示像是挂在墙上的相框。
+
+注意，这里对 function 的 more informative 的讨论，
+与函数类型的子类型关系不同。
+其中对特殊参数 contradiction（文中称 nothing）的讨论，
+类似 propagator 中的某个针对特殊值转换 order 方向的构造。
+
+> If the function allows us to observe a on the basis of no input at
+> all, it is not allowed to retract that if we subsequently put in a
+> more solid x.
+
+TODO 到底能不能把这里的 nothing
+理解为 propagator model 中的 contradiction？
+看上面的讨论感觉这样理解也不太对。
+
+TODO 可否把这里对函数（partial function）的 finite observation 的讨论，
+理解为，可以保存 propagator 的 cell？
 
 # 3.8 Bases and subbases
+
+TODO
+
 # 3.9 The real line
 # 3.10 Complete Heyting algebras
 
@@ -624,6 +826,20 @@ TODO
 # 9 Spectral algebraic locales
 
 # 10 Domain Theory
+
+> In which we see how certain parts of domain theory can be done
+> topologicals.
+
+## 10.1 Why domain theory?
+
+TODO
+
+## 10.2 Bottoms and lifting
+## 10.3 Products
+## 10.4 Sums
+## 10.5 Function spaces and Scott domains
+## 10.6 Strongly algebraic locales (SFP)
+## 10.7 Domain equations
 
 # 11 Power domains
 
