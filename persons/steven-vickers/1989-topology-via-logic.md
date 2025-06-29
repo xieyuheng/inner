@@ -323,6 +323,9 @@ circumstances when it can be affirmed.
 > Therefore, The logic of affirmative assertions must not include
 > implication.
 
+如果 P 代表有限集合，那么 P -> Q 就是有限集合的 conjunction，
+就像在程序语言中，record 对应于参数为有限集合的函数。
+
 > **(6) Distributivity**
 
 对于无限 disjunction 和有限 conjunction，
@@ -395,9 +398,63 @@ Mike Smyth [83]:
 
 # 3.1 Algebraicizing logic
 
-TODO
+> We are going to apply a fairly standard trick in logic, which is to
+> identify, in other words treat as equal, formulae that are logically
+> equivalent. The logical connectives then become algebraic operators
+> subject to laws, and we can use the methods of algebra to prove
+> equivalences. For instance,
+>
+>     y or (x or y) = y or (y or x) = (y or y) or x = y or x = x or y
+
+> The idea is that, for instance, x or y and y or x are really just
+> different ways of saying the same thing. We want to concern
+> ourselves with what we can say rather than how we can say them.
+
+> We shall want to incorporate assumptions about the real world, for
+> instance that two particular propositions `р3` and `р10` are
+> inconsistent: `р3 and р10 = false`. This means that we shall be able
+> to tailor a frame to the circumstances that its propositions are
+> supposed to be talking about.
+
+> To define frames, we shall need to investigate in more detail the
+> way in which algebra will reflect logic. Building in more and more
+> logic, we shall see in mm the concepts of posct, lattice,
+> distributive lattice and, finally, frame.
 
 # 3.2 Posets
+
+Poset 是 partially ordered set（偏序集）的缩写。
+要求其二元关系满足：自反性，传递性，反对称性。
+保持 poset 结构的函数称为单调函数。
+
+> We shall think of the elements of a poset as being propositions, and
+> of "less than" as meaning "entails", or "is logically stronger
+> than".
+
+也就是说对序关系中的 "less than" 的理解还是符合集合论直觉的，
+讲到 domain theory 的时候会反转过来吗？
+
+> As we have already implied with our talk of "algebraicizing logic",
+> the antisymmetry law of posets is often not present initially, but
+> has to be imposed. We now formalize this.
+
+preorder 就是 poset 去掉反对称性，
+此时可以用双向的 "less than" 来定义一个新的定价关系，
+满足反对称性，重新得到 poset。
+
+也就是说，preorder 不需要假设基础等词，
+可以让我们从 "less than" 定义 "equal to"。
+相比之下，也许基础等词应该叫做 "the same as"。
+
+最典型的 preorder 是有向图，
+所诱导出的等价关系是「可达性」比如形成环，
+环上的元素相互可达（这让人想起同伦类型论中等价代表路径）。
+
+poset 的典型例子是无环有向图，
+比如 lattice 的图示。
+
+TODO
+
 # 3.3 Meets and joins
 # 3.4 Lattices
 # 3.5 Frames
