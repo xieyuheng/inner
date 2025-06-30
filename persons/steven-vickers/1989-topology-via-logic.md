@@ -1229,9 +1229,17 @@ law 中有变元，并且理解为全称量词下的约束变元；
 就可以把想要定义的满足给定 universal property 的存在，
 当成是具体的存在本身！
 
-TODO
-
 ## 4.4 Generators and relations for frames
+
+> There are infinitary theories (such as that of complete Boolean
+> algebras -- see Johnstone [82]) where this is insuperable and
+> presentations simply don't present algebras. For frames,
+> fortunately, presentations do present, but we have to argue slightly
+> carefully to show this. The trick is to import our knowledge of the
+> frame laws into Step 2 and say that all possible expressions are
+> joins of finite meets of generators.
+
+TODO
 
 # 5 Topology: the definitions
 
