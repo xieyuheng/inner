@@ -1023,9 +1023,214 @@ meet-semilattice 作为代数结构是：
 >   any two given expressions must be equal. This, then, is an
 >   equivalence relation on the Step 2 expressions.
 
-TODO
+> From one point of view, this is a method of logic. The generators
+> are the primitive propositional symbols, the Step 2 expressions are
+> well-formed formulae, the Step 3 relations (written as inequations)
+> are the axioms, and the Step 4 equivalence is mutual entailment.
+
+generators 只是被当作 primitive propositional symbols，
+而不能是 predicate 所构成的 relation 吗？
+
+前面的例子，比如 stream 中的关系 `(s i b)`，和 real line 中的区间，
+难道都要被理解为 primitive propositional symbols 的集合？
+只是这个集合本身带有一定结构，正是利用这些结构，
+我们才能描述 propositional symbol 之间的 relation。
+是这样吗？
+
+这样说来，谓词演算中的 relation 也可以被理解为是在描述，
+propositional symbols 的集合，只不过这些集合本身有一定的结构。
+
+> However, it also represents a very general method of Universal
+> Algebra, enabling us in a wide class of algebraic theories to
+> present an algebra by writing down generators and relations for it.
+
+即，generators 和 relations 所构成的 presentation theory，
+最典型的是 presentation of group and groupoid。
+
+下面说 infinite join 会带来困难，不是因为生成元有有限个，
+而是因为在代数中，用运算构造新项的时候，只能用到有限多项。
+
+比如，处理无穷多项的相加时，
+就已经到了无穷级数理论，
+而超越了代数的范围。
+
+> Unfortunately, for the theory of frames the infinite joins give rise
+> to obstacles to formalizing the general argument. In Section 4.4 we
+> shall see that these can be overcome, but meanwhile we shall
+> concentrate on developing the practical intuition.
+
+> Assuming that the method does indeed define a frame, we write it as
+>
+>     Fr < generators | relations >
+>
+> and call this a _presentation_ of the frame.
+
+用 lisp 的语法可以写成：
+
+```scheme
+(make-frame (<generator> ...)
+  <relation>
+  ...)
+```
+
+Example 4.2.1:
+
+```scheme
+(make-frame ()) => [true false]
+```
+
+Example 4.2.2:
+
+```scheme
+(make-frame (a b)) => [true false a b (and a b) (or a b)]
+```
+
+Example 4.2.4:
+
+- 假设 `less` 和 `equal` 都代表 relation，
+  而不是 `equal?` 这类 decidable 的谓词。
+
+```scheme
+(make-frame (a b) (less a b)) => [true false a b]
+
+(equal-to-chart (and a b) a)
+(equal-to-chart (or a b) b)
+```
+
+> In general, if Τ is any algebraic theory (described by operators
+> and equational laws) for which this method works, then we write
+>
+>     Τ < generators | relations >
+>
+> for the T-algebra presented by the given generators and relations.
+
+因此也许应该用一个一般的 deifne 类的语法关键词：
+
+```scheme
+(define-presentation <algebra> (<generator> ...)
+  <relation> ...)
+```
+
+```scheme
+(define-presentation frame (a b)) =>
+[true false a b (and a b) (or a b)]
+
+(define-presentation semilattice (a b)) =>
+[true a b (and a b)]
+```
 
 ## 4.3 The universal characterization of presentations
+
+> As a preliminary, we quickly summarize the standard definitions of
+> universal algebra.
+
+> Definition 4.3.1 Let `Τ` be an algebraic theory. It has some
+> _operators_, each with an _arity_ (the number of arguments it has),
+> and some _laws_, each of the form `e1 = e2`, where `e1` and `e2` are
+> expressions formed from a convenient stock of variables by applying
+> the given operators. We define `A` to be a T-algebra iff
+>
+> - (i) `A` is a set (often known as the _carrier_ of the algebra);
+>
+> - (ii) for each operator `ω` of `Τ` (say `ω` is an n-ary
+>   operator), `A` is equipped with a corresponding _operation_,
+>   a function `ω: Α^n -> A`.
+
+我不需要 a convenient stock of variables，可以临时引入约束变元。
+我也常称 element 而不是 carrier。
+
+| universal algebra  | logic     | programming |
+|--------------------|-----------|-------------|
+| algebraic theory   | syntax    | class       |
+| operator           | function  | method      |
+| law                | predicate | constraint  |
+| (concrete) algebra | model     | object      |
+
+假设用如下语法定义 algebra：
+
+- 先保持最简的设计，不要使用 dependent type。
+
+```scheme
+(define-algebra <name>
+  ((<operator> <arity>) ...)
+  ((= <exp> <exp>) ...))
+```
+
+Examples 4.3.2:
+
+```scheme
+(define-algebra semilattice
+  ((true 0) (meet 2))
+  ((= (meet x y) (meet y x))
+   (= (meet x (meet y z)) (meet (meet x y) z))
+   (= (meet x true) x)
+   (= (meet x x) x)))
+```
+
+还有一个例子是 frame，
+有限交可以用二元运算处理，
+如何在 lisp 语法中处理 frame 的无限并？
+
+```scheme
+(define-algebra frame
+  ((true 0) (meet 2) (join-forall *))
+  ((= (meet y (join-forall ((i I)) (x i)))
+      (join-forall ((i I)) (meet y (x i))))))
+```
+
+需要特殊处理 `y` 在集合 `(set-forall ((i I)) (x i))` 中的情形，
+此时结果是 `y` 本身，而不能把 `y` 分配到 `join-forall` 中。
+
+这里还定义了 model for presentation，
+但是 presentation 已经是具体的代数结构了，
+所以这里定义的是 presentation 所代表的代数结构，
+到另外一个具体代数的同态。
+
+> Notice the two different uses of equations, in the laws that were
+> part of Τ and in the relations in a presentation. In a law, an
+> equation contains variables, and the equation must always hold,
+> whatever values from an algebra are substituted for the
+> variables. In a relation, the equation contains generators, and the
+> equation must hold when the generators are given their particular
+> values in a model.
+
+law 中有变元，并且理解为全称量词下的约束变元；
+而 relation 中，只允许出现常量（generators）。
+
+这么说来 combinatory logic 中，关于 SKI 组合子的等式是什么？
+
+因为带有全称量词，所以应该算是 law，
+但是这些等式确是用来定义 SKI 三个元素的，
+这三个元素又像是 magma 的生成元。
+
+当然，另外一个区别是，SKI 的等式带有方向，这个方向代表了计算。
+
+一种理解方式是消除 presentation 中对 relation 的限制，
+像 law 一样，允许在其中使用全称量词与约束变元。
+可以理解为，combinatory logic 是一种高阶的 universal algebra，
+在这种高阶 algebra 的 presentation theory 中，没有固定的 operators，
+所定义的 generators 就是 algebra 中的 operators。
+
+在定义了 model for presentation（同态）之后，
+还定义了 [model] is presented by presentation，
+后者就是同构了。
+
+书中 "presented by presentation"
+是用 universal property 来定义的。
+
+> Because the second condition applies to all models B, relating them
+> to A by homomorphisms, it is called a _universal_ property. Notice
+> carefully the word _unique_. It is an essential part.
+
+其实把 presentation 本身当作具体的代数结构就可以了，
+没必要再用同构来说明。
+
+也许每次遇到范畴论中关于 universal property 的抽象废话的时候，
+就可以把想要定义的满足给定 universal property 的存在，
+当成是具体的存在本身！
+
+TODO
+
 ## 4.4 Generators and relations for frames
 
 # 5 Topology: the definitions
