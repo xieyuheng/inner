@@ -827,14 +827,152 @@ TODO 可否把这里对函数（partial function）的 finite observation 的讨
 
 # 3.8 Bases and subbases
 
-TODO
+> It's worth paying attention to a particular part of the argument in
+> Section 3.7. Quite often in a frame we want to say that we start off
+> with some simple assertions and generate the rest from these using
+> the frame operations meet and join. The simple assertions are called
+> _subbasic_, and they form a _subbasis_.
+
+> In any frame, the steps of generation can be done as:
+>
+> - Step 1: Finite conjunctions of subbasics;
+>
+> - Step 2: Disjunctions of finite conjunctions of subbasics;
+>
+> - Step 3: Anything more complicated can be reduced to a step 2
+>   expression by using the frame distributivity law.
+
+> Sometimes we can do better and say that any assertion is a
+> disjunction of subbasics (we don't have to bother with the finite
+> conjunctions). Then the subbasis is called a _basis_, and its
+> elements are _basic_.
+
+> For example, given any subbasis, the finite conjunctions of
+> subbasics form a basis.
 
 # 3.9 The real line
+
+> We now describe a frame of assertions for real numbers. It is based
+> on the idea of taking measurements of some real-valued quantity, all
+> measurements giving results that are _rational_, and _subject to
+> error_. We write a subbasic assertion as `(q ± ε)` where `q`, a
+> rational number, is the result, and `ε`, a _positive_ rational
+> number, is the possible error.
+
+这就是我大学的时候所看的分析学的书，
+处理无穷小分析的方式。
+
+这也符合 propagator model 处理 interval 的方式。
+
+> If `x` is a given real number, then we write `X |= (q + ε)` (`x`
+> _satisfies_ the assertion) iff `x` is a possible exact value for the
+> quantity, i.e. iff `q-ε < x < q+ε`.
+
+> Having the strict inequality < here enables us to avoid the
+> embarrassing possibility of pinning a value down to an exact real
+> number.  If we measure both `(0 ± 1)` and `(2 ± 1)`, then we
+> deduce not that the quantity has a value of exactly `1`, but that
+> something is wrong with the measurements.
+
+> A finite conjunction of these subbasic measurements is either false
+> (contradiction, fault in measurements) or another such
+> measurement.
+
+> Thus the subbasics form a basis.
+
+对 conjunction 的封闭性，使得 subbasis 变成 basis。
+
+> Disjunctions [maybe infinite] give us many new assertions, e.g.
+>
+> - x > 0
+> - x != 0
+> - x > square root of 2
+
+open set 定义为不带有边界点的集合，
+即，open set 中的每一个点，
+都有一个这个点的开领域，
+完全包含在这个 open set 中。
+
+显然所有的 open set 都可以用 basis 的 disjunction 构造出来。
+
 # 3.10 Complete Heyting algebras
+
+> In Chapter 2, we carefully ruled out infinite conjunctions,
+> implication and negation from our logic. Curiously enough, frames
+> have operations to support these connectives. The reason for
+> ignoring them is not that they don't exist, but that they are less
+> well-behaved.
+
+frame 是 complete lattice，
+complete lattice 如果有无限 join，
+就也有无限 meet。
+
+无限 meet 之所以不能出现在 finite observation 的 logic 中，
+是因为它们不代表 true conjunction。
+
+可以做无限的 conjunction，
+但是无限个 assertion 的 true conjunction 的结果，
+可能不是 true 了。
+
+比如，当 `ε` 无限缩小时（无限交），`(q ± ε)` 闭集（一个点），
+无限 meet 是无限交的内部（interior），为空（false）。
+
+> Next, we look at implication.
+
+> Definition 3.10.1 Let A be a lattice. A is a Heyting algebra iff for
+> every a, b in A there is an element `a -> b` satisfying
+>
+>     c ≤ a -> b iff с and а ≤ Ь
+>
+> A Heyting algebra homomorphism is a function f between Heyting
+> algebras that preserves finite meets and joins, and also the `->`
+> operation:
+>
+>     f(a -> b) = f(a) -> f(b)
+>
+> A Heyting algebra A is a complete Heyting algebra (cHa) iff it is a
+> complete lattice.
+>
+> A cHa homomorphism is a function between cHa's that is a Heyting
+> algebra homomorphism and moreover preserves all joins.
+
+> Proposition 3.10.2 Let A be a lattice.
+> Then A is a frame iff it is a cHa.
+
+在 frame 中，由于无限交存在，
+所以可以直接用所有满足 `с and а ≤ Ь` 的 `c` 的无限交，
+定义 `a -> b`。
+
+反过来的证明，需要验证 frame 的分配律。
+
+> In themselves, therefore, frames and complete Heyting algebras are
+> the same thing. However, the notions become different when we
+> consider homomorphisms, in other words when we compare two
+> algebras. A frame homomorphism need not preserve the -> operation,
+> and hence need not be a cHa homomorphism.
+
+结构等价，但是同态不同的情况，我还是第一次见。
+
+> If we define negation by
+>
+>     not a = a -> false
+>
+> then any Heyting algebra is a model for propositional intuitionistic
+> logic. Roughly speaking, this is the same as classical logic except
+> that the law of excluded middle, `x and not x` might fail.
+
+> This means that any frame, and in particular that of open sets of a
+> topological space, forms such a model.
+
+这里有一段对 intuitionistic logic 的模型论的讨论。
+值得深究。
 
 # 4 Frames as algebras
 
 ## 4.1 Semilattices
+
+TODO
+
 ## 4.2 Generators and relations
 ## 4.3 The universal characterization of presentations
 ## 4.4 Generators and relations for frames
