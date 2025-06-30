@@ -969,11 +969,62 @@ complete lattice 如果有无限 join，
 
 # 4 Frames as algebras
 
+> In which we see methods that exploit our algebraicizing of logic.
+
 ## 4.1 Semilattices
+
+> Logic on the whole has both conjunctions and disjunctions, and so it
+> seems natural to think in terms of lattices. However, in the
+> algebraic development upon which we now embark, it is convenient to
+> consider _semilattices_, which have only one of these.  As we shall
+> see, to investigate the algebra of frames, we shall look first at
+> the meet on its own and then at the joins when they are added in.
+
+- meet-semilattice -- close over binary meet.
+  binary to rule out the empty case from finite meet.
+- join-semilattice -- close over binary join.
+- lattice -- close over binary meet and binary join.
+- bounded lattice -- has top and bottom.
+- complete lattice -- close over infinite meet and join.
+
+meet-semilattice 作为代数结构是：
+交换幺半群（monoid）
+外加幂等性（idempotence）。
+
+只要把序关系 x less than y 定义为 x meet y = x
+就和 poset 所定义的 semilattice 等价了。
+
+> For completeness, we note that lattices (and hence distributive
+> lattices) and Heyting algebras can also be described algebraically
+> in this way (see Exercise 1). In a sense, frames can too. But the
+> join in frames, being a possibly infiniiary operation (the join of
+> infinitely many elements) falls slightly outside the scope of the
+> usual algebraic methods, and Section 4.4 is devoted to showing that
+> this doesn't matter.
+
+## 4.2 Generators and relations
+
+> Suppose we want to describe a frame. One method, which we have
+> already seen informally (in Section 3.7) but not yet justified,
+> presents a frame in four steps.
+>
+> - Step 1: Specify some subbasic elements (generators).
+>
+> - Step 2: Derive from these all possible joins of meets of
+>   subbasics.
+>
+> - Step 3: Specify certain axiomatic relations to hold between
+>   expressions of Step 2.  They can be of the form e1 ≤ e2
+>   (inequations) or e1 = е2 (equations). It doesn't matter which you
+>   use, because, as in Proposition 4.1.2, the two forms are
+>   interconvertible.
+>
+> - Step 4: Deduce, just from the relations and the frame laws, when
+>   any two given expressions must be equal. This, then, is an
+>   equivalence relation on the Step 2 expressions.
 
 TODO
 
-## 4.2 Generators and relations
 ## 4.3 The universal characterization of presentations
 ## 4.4 Generators and relations for frames
 
