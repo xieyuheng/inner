@@ -1239,18 +1239,160 @@ law 中有变元，并且理解为全称量词下的约束变元；
 > frame laws into Step 2 and say that all possible expressions are
 > joins of finite meets of generators.
 
-TODO
+对于允许无穷多元素一起运算的代数结构（infinitary），
+比如 frame 的无限 join，
+其展示（presentation）理论成为难点。
+
+这里的构造用到了 cover，coverage 和 满足 coverage 的 ideal。
+
+在 join-semilattice 中，
+cover 描述一个元素 x 如何被一组元素 u1, u2, ..., un 的并（join）所覆盖：
+
+    x ≤ u1 ∨ u2 ∨ ... ∨ un
+
+我们讨论的是 meet-semilattice，没有 join。
+但是我们可以通过把有限子集作为 cover 添加进来。
+
+先从 frame 的 presentation，
+得到 meet-semilattice 的 presentation。
+
+> First, rewrite the relations in equational form `e1 = e2`, where
+> each expression `ei` is a join of finite meets of generators.
+
+> Second, for each relation `e1 = e2` introduce a new generator `x`
+> and replace the relation by `e1 = x` and `e2 = x`.
+
+> Third, present a semilattice `S` as follows: its generators are
+> those of the frame, and for each frame relation
+>
+>     (join (meet ...) ...) = x
+>
+> it has relations
+>
+>     (meet ...) ≤ x
+
+> Fourth, generate a coverage `С` on `S` from the cover relations
+>
+>     {(meet ...)} -| x
+>
+> and take the frame `C-Idl(S)`.
+
+这个过程像是代数中常见的 completion 过程。
+也许和这个等同：https://en.wikipedia.org/wiki/Dedekind-MacNeille_completion
+
+> Generators and relations are nowadays a standard method in algebra,
+> as well as being related to the axiomatic methods of logic.
+> Johnstone [82] (Notes on chapter II) discusses the history of their
+> application to frames; he himself introduced the method of coverages
+> that we describe.
+
+可能需要看一下 Johnstone [82]。
+
+> Technically, what makes universal algebra go wrong for complete
+> Boolean algebras is that there is no free complete Boolean algebra
+> on a countably infinite set of generators.
+
+> Also, there can be no free cHa on a countably infinite set of
+> generators: for if there were one, then the free complete Boolean
+> algebra could be constructed as a quotient. This puts cHa's in stark
+> contrast with frames, even though they are the same objects.
 
 # 5 Topology: the definitions
 
+> In which we introduce Topological Systems, subsuming topological
+> spaces and locales.
+
 ## 5.1 Topological systems
+
+这里描述的系统很像类型系统，就是把类型解释为 frame 中的元素。
+
+这是当然的，因为这里描述的是 topological space 的推广，
+而 topological space 中 point 和 open set 的关系，
+就是集合的属于关系，也就是元素和类型之间的关系。
+
+这样的推广之后，就能不用考虑集合吗？
+不是的，因为给定 frame 的元素 `a`，
+所有满足 `x |= a` 的 `x` 就是 `a` 所对应的集合。
+
+这样就得到了一个 frame 到集合的映射，
+注意，不同的 frame 元素可能被映射到不同的集合。
+
 ## 5.2 Continuous maps
+
+如果把一个 topological system 解释为类型系统（即一个程序语言），
+那么这里的 continuous map 就成了语言之间的编译器。
+
+但是想要的解释看来是在一个类型系统内，
+把一个 topological system 解释为一个类型。
+
+一个类型本身，就会形成一个由其子类型构成的 frame。
+
 ## 5.3 Topological spaces
+
+> **Spatialization**
+
+> We stick with topological spaces if we take the view that there is
+> no reason to distinguish between two opens when they're satisfied by
+> exactly the same points.  This is reasonable for fixed points like
+> the real numbers, but perhaps it is less so when we're not quite
+> sure what the points are, like the streams.
+
+> If we want to, we can always convert a topological system D into a topological
+> space, by comparing opens entirely by the points that satisfy them.
+>
+> **Definition 5.3.3** For each open `a`, its _extent_ in `D` is
+> `{x in (pt D): x |= a}`.
+
+给定一个 topological system，
+就引出一个从 frame 到 powerset 所构成的 frame 的同态。
+
+> It is often more helpful to know not that a topological system is a
+> topological space, but that it is homeomorphic to one. We say that
+> such a system is _spatial_.
+
 ## 5.4 Locales
+
+> Just as in spatialization We thought of an open as being a set of
+> points, in other words a function (the characteristic function of
+> the set) from the points to 2, we can also think of a point as being
+> a function from the opens to 2.
+
+这里的 2 是有两个元素的 frame，代表 boolean 类型。
+
+一个类型将所有的点分成两类，是否满足这个类型；
+一个点也将所有的类型成两类，是为这个点所满足。
+
+只单独给出一个 frame，
+用它自身就可以构造一个 topological system：
+
+> **Definition 5.4.1** Let `A` be a frame. The _locale_ corresponding
+> to `A` is the topological system `D` defined by
+>
+>     Ω D = A
+>     pt D = {frame homomorphisms x: A —> 2}
+>     x |= a iff x(a) = true
+>
+> By abuse of language, we shall sometimes refer to "the locale A"
+> rather than inventing a new symbol `D`.
+>
+> A topological system is _localic_ iff it is homeomorphic to a
+> locale.
+
 ## 5.5 Spatial locales or sober spaces
+
+TODO
+
 ## 5.6 Summary
 
 # 6 New topologies for old
+
+> In which we see some ways of constructing topological systems, and
+> some ways of specifying what they construct.
+
+## 6.1 Subsystems
+## 6.2 Sublocales
+## 6.3 Topological sums
+## 6.4 Topological products
 
 # 7 Point logic
 
