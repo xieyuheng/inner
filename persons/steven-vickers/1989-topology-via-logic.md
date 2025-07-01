@@ -1307,6 +1307,7 @@ cover 描述一个元素 x 如何被一组元素 u1, u2, ..., un 的并（join�
 这里描述的系统很像类型系统，就是把类型解释为 frame 中的元素。
 
 这是当然的，因为这里描述的是 topological space 的推广，
+把开集从集合推广为一般的抽象开元素（frame 中的元素）。
 而 topological space 中 point 和 open set 的关系，
 就是集合的属于关系，也就是元素和类型之间的关系。
 
@@ -1315,7 +1316,15 @@ cover 描述一个元素 x 如何被一组元素 u1, u2, ..., un 的并（join�
 所有满足 `x |= a` 的 `x` 就是 `a` 所对应的集合。
 
 这样就得到了一个 frame 到集合的映射，
+这种从 topological system 重新构造出 topological space 的方式，
+称为 spatialization。
+
 注意，不同的 frame 元素可能被映射到不同的集合。
+也就是说，这里的「满足」关系，
+与集合论的「属于」关系不同，
+不满足集合论的外延公理。
+因此一个 topological system 的 spatialization
+作为 topological system 可能与原 system 不同。
 
 ## 5.2 Continuous maps
 
@@ -1380,9 +1389,58 @@ cover 描述一个元素 x 如何被一组元素 u1, u2, ..., un 的并（join�
 
 ## 5.5 Spatial locales or sober spaces
 
-TODO
+> We know that a continuous map between spatial topological systems is
+> completely determined by its function part; while a continuous map
+> between localic topological systems is completely determined by its
+> frame part. Therefore if the systems are both spatial and localic,
+> there is a complete duality ("duality" implies the order reversal)
+> between the continuous functions and the frame homomorphisms.
+
+> The point of this is that we move freely between two rather
+> different ways of reasoning.
+>
+> - On the points side, arguments are set theoretic with some extra
+>   notions for topology. For instance if U and V are open sets, then
+>   we show U ⊆ V by showing that if x is a point in U then it's also
+>   in V.
+>
+> - On the frame side, arguments are logical or algebraic. To show
+>   that U ≤ V in a frame, we show that it follows from the relations
+>   with which we present the frame.  Thinking of the relations as
+>   logical axioms, this amounts to a logical proof that U entails V.
+
+> In locale theory, we can think of the axioms and algebra as giving
+> the syntax of a frame, and the points as giving the semantics (each
+> point is a model).
+
+> The syntax is automatically sound (if U ≤ V then extent(U) ⊆
+> extent(V)), but completeness is equivalent to spatiality (if
+> extent(U) ⊆ extent(V) then U ≤ V).
+
+> Therefore:
+>
+> A proof of spatiality of a locale shows completeness of a logical
+> system.
+
+> Our discussion shows that for a topological space, sober and localic
+> mean the same. Localification of a space is usually called
+> _soberification_.
+
+> **Proposition 5.5.3** Hausdorff spaces are sober.
 
 ## 5.6 Summary
+
+> The "topological systems" described in this section are new. My
+> justification for introducing them is, first, that it seems
+> pedagogically useful to have a single framework in which to treat
+> both spaces and locales and, second, that with domains -- which are
+> both spaces and locales -- it is useful not to have commit oneself
+> to making them concretely either one or the other.
+
+> Although the results are new in the sense that they use topological
+> systems, they are essentially no more than rephrasings of the
+> established connections between spaces and locales, as described in
+> Johnstone [82].
 
 # 6 New topologies for old
 
@@ -1396,9 +1454,150 @@ TODO
 
 # 7 Point logic
 
+> In which we seek a logic of points, and find an ordering and a weak
+> disjunction.
+
+> The satisfaction relation `x |= a` is supposed to describe some
+> finitely observable relationship between points and opens, and so
+> far we have been thinking of `a` as the observation and `x` as what
+> is observed.
+
+本体论意义上：
+
+- "what is observed" 先存在在先，可以理解为动态类型语言中的 value；
+- "finite observation" 依赖于被观察的对象，可以理解为对 value 的 predicate。
+
+反过来：
+
+- 由类型所表示的命题存在在先。
+- 然后人们才寻找命题的证明，证明在后。
+  同一个命题可能有很多不同证明。
+
+> However, for `x` and `a` in isolation, there is no overriding reason
+> for this; why can't we think of `x` as being the open, making an
+> observation about `a` as a point?
+
+## 7.1 The specialization preorder
+
+> **Definition 7.1.1** Let `x` and `y` be two points. We say `y`
+> specializes `x`, and write `x ⊑ у`, iff for every open `a`,
+> if `x |= a` then `y |= a`.
+
+Dana Scott 考虑函数之间的序关系的时候，考虑的就是这种序关系。
+因此 `y` specializes `x` 也可以成为是，
+`y` is more defined than `x`。
+
+在带有 record 的类型论中，这种关系最明显：
+
+```scheme
+(⊑ [:x 1 :y 2] [:x 1 :y 2 :z 3])
+(more-defined [:x 1 :y 2 :z 3] [:x 1 :y 2])
+```
+
+对于函数（partial function）而言，
+"more defined" 就代表结果一致的情况下，
+能处理更多参数。
+
+> In other words:
+>
+> - `y` satisfies at least all the opens satisfied by `x`;
+> - or we can say more about `y` than about `x`;
+> - or `y` represents a superior, or more refined
+>   state of information than `x`.
+>
+> This leads to various synonyms for specialization:
+>
+> - y specializes x
+> - y refines x
+> - x ⊑ y
+> - x approximates y
+> - x implies y (thinking of x and y as properties of opens).
+
+在读 Scott 时，我一直觉得它所定义的序关系是反的，
+但是看 `forall a.  x |= a  ->  y |= a` 这个逻辑蕴含关系，
+感觉这个序关系的方向也是合理的，
+毕竟集合之间的蕴含关系就有类似的形式：
+`A ⊆ B` 定义为 `forall x.  x ∈ A  ->  x ∈ B`。
+
+越大的集合包含更多的元素；
+越大的元素属于更多的集合。
+
+考虑 Galois connection，
+也可以更好地理解这里序方向的反转。
+
+为什么会觉得这个序关系设计反了？
+因为对于 record type 而言，
+对 attribute 个数的多少有相反的理解：
+
+```scheme
+(more-defined
+ [:x 1 :y 2 :z 3]
+ [:x 1 :y 2])
+
+(subtype
+ (tau :x int-t :y int-t :z int-t)
+ (tau :x int-t :y int-t))
+```
+
+所以说，首先应该区分元素之间的序关系，与类型之间的序关系。
+这种考虑只有在 structural type system 中才有意义，
+因为如果每次定义新类型时，也在定义新元素，
+就没有属于关系之间的相互蕴含了。
+
+这种反方向的序关系的出现，
+引起我困惑的另一个原因是，
+在 propagator model 中讨论 more informative 时，
+我把它理解为了序关系中的 less，
+并且把 merge 理解为了 lattice 中的 meet。
+可能这是不对的，应该反过来，遵循这里的 specialization preorder。
+因为 cell 中保存的并不是 type 而是 value。
+
+也许以后在遇到序关系的时候，
+都应该让所尝试捉的直觉上的 more or less，
+与序关系中的 more or less 方向一致，
+因此 more defined 和 more informative 都应该是序关系中的 more。
+如果需要相反的方向，可以再取 dual。
+
+比如，用 propagator model 实现类型系统时，
+cell 中保存的就是被视为 value 的 type 了，
+此时可以按需要取 dual。
+
+> **Proposition 7.1.3** In any Hausdorff topological space,
+> `x ⊑ y` iff `x = y` (the specialization ordering is discrete).
+
+## 7.2 Directed disjunctions of points
+
+value 之间的最典型的格与序关系，
+是由 unification 与 substitution 构成的，
+这里所描述的 value 之间的序关系是否类似？
+
+TODO
+
+## 7.3 The Scott topology
+
+TODO
+
 # 8 Compactness
 
+> In which we define conjunctions of points and discover the notion of
+> compactness.
+
+## 8.1 Scott open filters
+## 8.2 The Scott Open Filter Theorem
+## 8.3 Compactness and the reals
+## 8.4 Examples with bit-streams
+## 8.5 Compactness and products
+
 # 9 Spectral algebraic locales
+
+> In which we see a category of locales within which we can do the
+> topology of domain theory.
+
+## 9.1 Algebraic posets
+## 9.2 Spectral locales
+## 9.3 Spectral algebraic locales
+## 9.4 Finiteness, second countability and co-algebraicity
+## 9.5 Stone spaces
 
 # 10 Domain Theory
 
@@ -1444,4 +1643,18 @@ TODO
 
 # 11 Power domains
 
+> In which we investigate domains of subsets of a given domain.
+
+## 11.1 Non-determinism and sets
+## 11.2 The Smyth power domain
+## 11.3 Closed sets and the Hoare power domain
+## 11.4 Tne Plotkin power domain
+## 11.5 Sets implemented as lists
+
 # 12 Spectra of rings
+
+> In which we see some old examples of spectral locales.
+
+## 12.1 The Pierce spectrum
+## 12.2 Quantales and the Zariski spectrum
+## 12.3 Cohn's field spectrum
