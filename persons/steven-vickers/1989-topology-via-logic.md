@@ -28,6 +28,48 @@ domain theory 和指称语义是核心重要的，
 
 如果真是这样，这本书也可以看成是 propagator model 的理论基础。
 
+# My Notes
+
+## Propagator model 的 lattice 与 domain theory
+
+[2025-07-02] 可以说是理清了
+propagator model 中使用的 lattice，
+和 domain theory 之间的关系。
+
+首先 domain 只是 ordered set 不是 lattice，
+因为 domain theory 起源于给函数找指称语义，
+而函数的定义域和值域一般都不是 lattice，
+也不是 ordered set，只有添加了 undefined 元素之后，
+才是构成了一个 flat 的 ordered set -- flat domain。
+
+propagator model 正是加强了整个背景条件，
+考虑的是 propagator 不是 function，
+要求所有 propagator 都是 lattice 之间的同态。
+
+Power domain 是 lattice。
+
+## 类型系统 与 Galois connection
+
+这本书中想要推广 topology space，
+把开集从「集」解放出来，考虑抽象的开元素，
+所以定义了 topology system `x |= a` 称作 "x satisfies a"。
+其中 `a` 所属的集合带有 frame 结构，
+而 `x` 所属的集合（point）不带任何结构 。
+
+通过 frame 上的序关系，可以引出 point 集合上的序关系。
+
+    forall a.  x |= a  ->  y |= a
+
+这样就获得两个序关系之间的 Galois connection。
+
+这与类型系统中的基本关系 `x: T` 很相似。
+因此类型系统也能因此获得 value 和 type 之间的 Galois connection。
+
+这里我们学到了要区分，
+type 之间的序关系，
+和 value 之间的序关系。
+它们的方向是相反的。
+
 # Preface
 
 > Both [this book's] subject matter and its approach derive from a
@@ -1473,6 +1515,11 @@ cover 描述一个元素 x 如何被一组元素 u1, u2, ..., un 的并（join�
 - 然后人们才寻找命题的证明，证明在后。
   同一个命题可能有很多不同证明。
 
+这是不对的，因为是现有对命题的部分归纳验证，
+充分理解了命题，人们才会去证明一个命题，证明是有限验证的极限。
+也就是说，value 是本体，predicate 是衍生概念，
+一个 predicate 刻画所有 value 的集合的一个子集。
+
 > However, for `x` and `a` in isolation, there is no overriding reason
 > for this; why can't we think of `x` as being the open, making an
 > observation about `a` as a point?
@@ -1519,10 +1566,7 @@ Dana Scott 考虑函数之间的序关系的时候，考虑的就是这种序关
 毕竟集合之间的蕴含关系就有类似的形式：
 `A ⊆ B` 定义为 `forall x.  x ∈ A  ->  x ∈ B`。
 
-越大的集合包含更多的元素；
-越大的元素属于更多的集合。
-
-考虑 Galois connection，
+考虑 Galois connection 和 formal concept analysis，
 也可以更好地理解这里序方向的反转。
 
 为什么会觉得这个序关系设计反了？
@@ -1530,14 +1574,21 @@ Dana Scott 考虑函数之间的序关系的时候，考虑的就是这种序关
 对 attribute 个数的多少有相反的理解：
 
 ```scheme
-(more-defined
- [:x 1 :y 2 :z 3]
- [:x 1 :y 2])
+(less-defined
+ [:x 1 :y 2]
+ [:x 1 :y 2 :z 3])
 
 (subtype
  (tau :x int-t :y int-t :z int-t)
  (tau :x int-t :y int-t))
 ```
+
+越大的集合包含更多的元素；
+越具体的元素属于更多的集合。
+
+比如 `[:x 1 :y 2 :z 3]` 比 `[:x 1 :y 2]` 更具体，
+后者是属于类型 `(tau :x int-t :y int-t)` 前者也属于这个类型，
+同时前者还属于类型 `(tau :z int-t)` 但是后者不属于这个类型。
 
 所以说，首先应该区分元素之间的序关系，与类型之间的序关系。
 这种考虑只有在 structural type system 中才有意义，
@@ -1571,7 +1622,24 @@ value 之间的最典型的格与序关系，
 是由 unification 与 substitution 构成的，
 这里所描述的 value 之间的序关系是否类似？
 
-TODO
+这里论证如果想要把两个 value x y 之间的 join，
+解释为逻辑的 disjunction，
+就必须假设两个元素 x y 之间已经有了序关系。
+
+后面会论证 value 之间的 meet 也不能解释为 conjunction。
+但是这就已经与 propagator model 使用 lattice 的方式不同了，
+因为 propagator model 要求 value 之间可以 merge。
+究竟应该如何理解 propagator model 中的 lattice。
+
+> **Definition 7.2.1** Let `⊑` be a preorder on a set `X`.  A subset
+> `S ⊆ X` directed iff every finite subset of `S` has an upper bound
+> in `S`. (Note that `S` cannot be empty, because it must contain an
+> upper bound for the empty set.)
+
+只要求存在 upper bound，
+不要求对 join（least upper bound）封闭。
+
+> The prime example is a linearly ordered subset of `X`.
 
 ## 7.3 The Scott topology
 
