@@ -1820,6 +1820,29 @@ TODO
 > we might call a _domain_ a set with this extra structure, whatever
 > it is.
 
+> Thinking of a spectral algebraic locale as representing a type, we
+> think of the points of the locale as representing the elements of
+> the type. The reasoning at the end of Section 7.3 suggests that
+> computable functions between types ought to be Scott continuous, and
+> so (in the light of Theorem 9.3.8) continuous maps between the
+> locales. Moreover, if the frames are presented by generators and
+> relations, then these continuous maps can be described on the frame
+> side by saying how their frame parts act on the generators.
+
+注意这里形成指称语义的方式，
+不是整个类型系统对应与一个 locale，
+而是一个类型就对应于一个 locale：
+
+- locale 的 frame 上的代数，对应于这个类型的子类型之间的代数；
+- locale 的 point 所形成的 domain，对应于属于这个类型的所有元素的集合。
+
+> We now systematically work through the type constructors. For each
+> one, we show how it combines spectral algebraic domains, and we
+> present the new frame using generators and relations.
+
+类型构造子是 locale 构造子，也是 domain 构造子，
+而不是 locale 的 frame 中的代数算子 join 和 meet。
+
 ## 10.2 Bottoms and lifting
 
 TODO
