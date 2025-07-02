@@ -1843,6 +1843,17 @@ TODO
 类型构造子是 locale 构造子，也是 domain 构造子，
 而不是 locale 的 frame 中的代数算子 join 和 meet。
 
+如果把所有集合的并 `any-t` 理解为一个 locale，
+那么这个 locale 确实可以被理解为是一个类型系统。
+注意此时 join 和 meet 是子集之间的运算，
+而不是 dependent type 中的 or 和 and，
+那需要用其他 locale 构造子来处理。
+
+如果 pi 和 sigma 也能以优雅的方式，
+用额外的 locale 构造子来处理，
+那么这里所描述 topological system 的理论，
+以及 domain theory，对我来说就很有价值了。
+
 ## 10.2 Bottoms and lifting
 
 TODO
