@@ -945,6 +945,18 @@ open set 定义为不带有边界点的集合，
 > ignoring them is not that they don't exist, but that they are less
 > well-behaved.
 
+> We have already seen, in Proposition 3.5.2, that a frame is a
+> complete lattice and hence has infinite meets. Apparently, this
+> contradicts our argument in Chapter 2 that infinite conjunctions
+> were inadmissible in the logic of finite observations.  However, the
+> correct conclusion is that the infinite meets do not represent true
+> conjunctions. In a topology,
+
+也就是说，只有考虑了代数结构之间的同态，
+才能捕捉 finite observation 的逻辑。
+
+对 judgement 的判断，可以用同态（态射）表示！
+
 frame 是 complete lattice，
 complete lattice 如果有无限 join，
 就也有无限 meet。
@@ -955,6 +967,10 @@ complete lattice 如果有无限 join，
 可以做无限的 conjunction，
 但是无限个 assertion 的 true conjunction 的结果，
 可能不是 true 了。
+
+frame 的同态要保持有限 meet 和无限 join。
+在考虑一个 frame 到 `{true, false}` 的同态时，
+并不要求保持无限 meet，如果要求了很多同态就定义不了。
 
 比如，当 `ε` 无限缩小时（无限交），`(q ± ε)` 闭集（一个点），
 无限 meet 是无限交的内部（interior），为空（false）。
@@ -1663,6 +1679,18 @@ TODO
 
 ## 9.1 Algebraic posets
 ## 9.2 Spectral locales
+
+> Reasoning that finite joins are nicer than infinite ones, we now
+> investigate frames that can be presented without infinite joins. It
+> turns out that this is related to algebraicity of the frame. In the
+> next section we shall introduce algebraicity also for the dcpo of
+> points, so that it is present on both sides.
+
+> **Definition 9.2.1** A presentation of a frame is coherent iff there
+> are no infinite joins in its relations.
+
+> A locale D is spectral iff Ω D is coherent.
+
 ## 9.3 Spectral algebraic locales
 ## 9.4 Finiteness, second countability and co-algebraicity
 ## 9.5 Stone spaces
@@ -1696,8 +1724,6 @@ TODO
 > us to omit enough uncomputable functions. Speaking rather broadly,
 > we might call a _domain_ a set with this extra structure, whatever
 > it is.
-
-这应该是我看到的对 domain theory 的动机最清晰的描述了。
 
 ## 10.2 Bottoms and lifting
 
