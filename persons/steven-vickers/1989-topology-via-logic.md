@@ -70,6 +70,101 @@ type 之间的序关系，
 和 value 之间的序关系。
 它们的方向是相反的。
 
+## domain theory 的起源
+
+Domain theory 首先起源于给程序语言中的概念，
+寻找数学中的指称语义，想要找指称语义，
+就要找到数学结构来作为所指。
+
+Domain 作为数学结构的构造，
+就是从技术上解决递归函数的指称语义问题。
+
+其重点就在于利用「极限」这个概念，
+来把递归函数当成是函数迭代的极限。
+
+想要处理「极限」概念就要用拓扑学。
+
+Partial order 中所包含的子 total order 就称为 chain。
+chain 推广而得到 directed set 的概念。
+所谓 directed set 就是每个有限子集都有上界。
+directed set 之所以是重要是因为可以用来描述「极限」的概念。
+
+拓扑学是从分析的算术化抽象出来的，
+分析的算术化是基于这个「极限」的概念，
+「连续性」「导数」「黎曼积分」等等重要概念，
+就是用函数的极限定义的。
+
+Directed set 可以把函数的极限和数列的极限统一起来处理。
+统一的处理叫做 limit of net，
+所谓 net 就是 directed set 到一个 topological space 的映射。
+
+```scheme
+(claim net (pi ((Y topology-t)) directed-set-t (space Y)))
+```
+
+一个 `net` 以 `y0: (space Y)` 为极限，定义为，
+对于 `y0` 的任意邻域 `U`，都存在 directed set 中的下界 `x0`，
+使得任意 `x` 满足 `x0 ≤ x`，都有 `(net Y x)` 在 `U` 内。
+
+这里取任意 `x` 对于 `x0`，
+模仿了数列极限中的取任意 `n` 大于给定下界。
+因此可以说 net 是「无穷级数」的推广。
+
+为什么 directed set 的定义中，
+不是像级数一样直接要求存在更大的 `n`，
+而是要求对于任意有限子集，都有更大（大于等于）的元素？
+因为这样更一般，可以包含有限序集的情况。
+
+在 Hausdorff space 中，极限如果存在总是唯一的。
+
+就是分析算术化过程中的 ε-δ 技巧。
+函数 `f` 在 `x0` 点的极限是 `y0`，定义为，
+对于任意 `ε`，存在 `δ`，
+当 `x` 在 `(x0 ± δ)` 内时，
+`f(x)` 在 `(y0 ± ε)` 内。
+
+更抽象得在范畴论中描述极限的方式叫 direct limit。
+
+另外一种统一处理极限的方式是 filter，
+由 Henri Cartan 发明，
+由 Bourbaki 推行。
+
+相比 net 对无穷级数的极限的推广，
+filter 更像是对函数极限的推广，
+因为一个 filter 是一个 downward directed set，
+这对应于，对于更小的 `ε`，需要取更小的 `δ`，
+以得到 `x0` 的更小领域 `(x0 ± δ)`。
+
+另外 filter 还要求作为序集的子集是 upward closed。
+
+如果 filter 的一个子集的 upward closure 等于这个 filter 本身，
+那么这个子集称为是 filter 的 base。
+在要求 filter 是 downward directed set 之外，
+还要求filter 是 upward closed，
+就是为了保证 base 总是存在（即 filter 本身）。
+
+net 是函数需要引进额外的 directed set 作为 index domain。
+而 filter 不需要使用 index domain，就能用来推广「极限」的概念。
+
+```scheme
+X: topology-t
+x: (space X)
+f: (filter-t X)
+```
+
+`f` 收敛于拓扑空间中的一点 `x`，定义为，
+`x` 的任意邻域，都包含某个 `f` 的元素。
+`x` 的邻域的集合本身就构成 filter，
+说 `f` 收敛于 `x` 就是说 `f` 比 `x` 邻域 filter 更细。
+
+这相当于是从「极限」概念中 refactor 出了「收敛」概念。
+
+函数 `f` 在 `x0` 点的极限是 `y0`，就变成了：
+`x0` 的邻域 filter，在 `f` 下的像的集合，作为 filter 收敛于 `y0`。
+
+filter 也称为 dual ideal，
+因为其在 lattice 中的对偶是 ideal。
+
 # Preface
 
 > Both [this book's] subject matter and its approach derive from a
