@@ -49,6 +49,12 @@ propagator model 正是加强了整个背景条件，
 通过给 domain 添加一个 top 就能得到 complete lattice。
 
 Power domain 也是 lattice。
+可能 Hoare power domain 在 propagator 中会有用，
+可能可以用来构造 record of domains：
+
+    A ⊑ B ⟺ ∀ a ∈ A, ∃ b ∈ B. a ⊑ b
+
+但是 power domain 还是很特殊，在 propagator 中更常用的是 power set。
 
 ## 类型系统 与 Galois connection
 
