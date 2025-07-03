@@ -46,7 +46,9 @@ propagator model 正是加强了整个背景条件，
 考虑的是 propagator 不是 function，
 要求所有 propagator 都是 lattice 之间的同态。
 
-Power domain 是 lattice。
+通过给 domain 添加一个 top 就能得到 complete lattice。
+
+Power domain 也是 lattice。
 
 ## 类型系统 与 Galois connection
 
@@ -164,6 +166,40 @@ f: (filter-t X)
 
 filter 也称为 dual ideal，
 因为其在 lattice 中的对偶是 ideal。
+
+## 用 presentation 研究代数结构
+
+之前我只知道 group 和 groupoid 的 presentation。
+
+最近学会了 combinatory logic 可以视为广义的 presentation，
+或者视为 higher universal algebra。
+
+这里的说明了 presentation 也可以用来研究 lattice。
+毕竟 lattice 也是代数，也在 universal algebra 之内。
+如果考虑无穷与极限的话，也可以用来研究代数化了的拓扑结构。
+
+从实现程序语言，或实现形式系统的角度看，
+这几乎是唯一实用的视角。
+
+比如我们熟知 groupoid 的 presentation，
+可以在 dependent type 中用 higher inductive type 实现。
+
+这种 presentation 方法相当灵活，比如这本书里，
+用 presentation 来实现 topological space 的构造子。
+
+## 用 combinatory logic 的 idea 来处理极限
+
+用拓扑结构处理极限当然可以，
+但是用 combinatory logic 可能更好，
+比如用 Y 处理递归函数非常简单。
+
+也许 combinatory logic 的想法，
+不光能用来系统地消除约束变元，
+还能系统地消除极限之类的概念，
+把理论变简单。
+
+这应该是我之后的研究方向，
+继续 Schönfinkel 和 Curry 未完成的事业。
 
 # Preface
 
@@ -1600,6 +1636,11 @@ cover 描述一个元素 x 如何被一组元素 u1, u2, ..., un 的并（join�
 > In which we see some ways of constructing topological systems, and
 > some ways of specifying what they construct.
 
+这里介绍新 topology 的构造时，
+最好的方式给出很多例子 presentation 的例子，
+然后介绍两个（多个）presentation 如何通过各种方式，
+合成为一个 presentation。
+
 ## 6.1 Subsystems
 ## 6.2 Sublocales
 ## 6.3 Topological sums
@@ -1694,8 +1735,8 @@ Dana Scott 考虑函数之间的序关系的时候，考虑的就是这种序关
  (tau :x int-t :y int-t))
 ```
 
-越大的集合包含更多的元素；
-越具体的元素属于更多的集合。
+越大的类型包含更多的元素；
+越具体的元素属于更多的类型。
 
 比如 `[:x 1 :y 2 :z 3]` 比 `[:x 1 :y 2]` 更具体，
 后者是属于类型 `(tau :x int-t :y int-t)` 前者也属于这个类型，
@@ -1856,13 +1897,142 @@ TODO
 
 ## 10.2 Bottoms and lifting
 
-TODO
+> Definition 10.2.1 A dcpo is called a _cpo_ iff it has a least
+> element (called bottom or `⊥`).
+>
+> More generally, a _topological system with bottom_ is a topological
+> system equipped with a point `⊥` such that `⊥ |= a` iff `a =
+> true`.
+>
+> A continuous map f between two topological systems with bottom is
+> _strict_ iff `pt f(⊥) = ⊥`.
+
+越大的类型包含更多的元素；
+越具体的元素属于更多的类型合。
+
+`⊥` 是最不具体的元素，只包含在 `true` 这个最大的类型中。
+
+介绍如何用 bottom 和函数迭代，找到单调函数的不动点。
+注意，由于这里需要对迭代次数取极限，
+所以需要用合适的拓扑学公理来保证极限存在。
 
 ## 10.3 Products
+
+就是 topological product。
+
 ## 10.4 Sums
+
+就是 topological sum。
+
 ## 10.5 Function spaces and Scott domains
+
+这里用 presentation 构造 function space 的方式很新奇。
+`D -> E` 的生成元是 `[x -> b]`，
+其中 `x: pt D` 而 `b: Ω Ε`。
+`b` 是 `E` 的子集所构成的代数中的元素。
+
 ## 10.6 Strongly algebraic locales (SFP)
 ## 10.7 Domain equations
+
+方程如果形如递归定义，
+那么就可以用类似处理函数递归定义的方式，
+用迭代的极限，找到方程的解。
+
+可以说，这是在解 type 之间的方程。
+而之前定义递归函数，是在解 value 之间的方程。
+
+locale 的拓扑结构比 domain 还丰富，
+当然也可以用函数的迭代的极限来求解。
+
+只需要注意，这里的函数是 locale 之间的函数，用到 locale 构造子。
+
+> **Function spaces and the untyped λ-calculus**
+
+> In the untyped λ-calculus (the classic reference is Barendregt
+> [84]; a useful introduction is Hindley and Seldin [86]) everything
+> is supposed to be a function.  Any element can be applied to any
+> other, including itself. This is thus clearly related to the domain
+> equation
+>
+>     D = [D -> D]
+
+为了得到非平凡的解，首先需要添加 bottom，得到新的方程：
+
+     D = [D -> D] | ⊥
+
+> This has been studied by Abramsky [87], and also, following him, by
+> Ong [88].  in connection with the lazy λ-calculus. The effect of
+> the lifting is to make a distinction between `⊥`, a completely
+> divergent object, and `λx.⊥`, which is known to be a function but
+> which diverges whenever it is applied to an argument.
+
+> Computationally, this corresponds to not trying to evaluate a
+> function beyond the λ until application time, and is the way things
+> are generally done in practice.
+
+提到了进一步学习 domain theory 的材料：
+
+> The standard reference for domain theory is the excellent and
+> comprehensive lecture notes of Plotkin [81], which, unfortunately,
+> have never appeared in book form. A good (though now slightly
+> old-fashioned) account of domain theory as a tool for denotational
+> semantics is Stoy [77].
+
+GORDON PLOTKIN:
+
+- [81] Post-Graduate Lecture Notes in Advanced Domain Theory
+  (incorporating the "Pisa Notes"),
+  Dept of Computing Science,
+  University of Edinburgh, 1981.
+
+JOSEPH Ε STOY:
+
+- [77] Denotational semantics:
+  the Scott-Strachey approach to programming language theory,
+  MIT Press, Cambridge, Massachusetts, 1977.
+
+> Section 10.1 -- Domain Theory is traditionally seen as a theory of
+> cpos -- Manes and Arbib [86] is a good exposition of this kind of
+> approach. This order theoretic account usually works well in
+> describing the points of constructed domains and their order, but is
+> less natural in saying which points are compact (look at function
+> spaces, for example).
+
+ERNEST G. MANES and MICHAEL A. ARBIB:
+
+- [86] Algebraic Approaches to Program Semantics,
+  Springer-Verlag, New York, 1986.
+
+> Plotkin and Smyth together seem to have developed the idea that
+> topological notions are computationally useful, and in [83] Smyth
+> addressed the Stone duality between functions and their inverse
+> image maps. Tnis was already known to computer science in a very
+> restricted context, as the theory of predicate transformers, but
+> Smyth showed how much deeper this went. He also pointed out that it
+> implied links between domain theory and Dijkstra's axiomatic
+> semantics, and this led Abramsky [87, 88] to the idea of
+> formalizing - roughly speaking - the Stone dual of domain
+> theory. Our presentation of domain theory is derived from his work.
+
+这里提到的和 Dijkstra 相关的工作可以看看。
+
+M. SMYTH:
+
+- [78] "Power domains", in JCSS 16,1978.
+- [83] "Powerdomains and predicate transformers: a topological view",
+  pp. 662-675 in J.Diaz (ed.) Automata, Languages and Programming,
+  Lecture Notes in Computer Science 154, Springer-Verlag, Berlin, 1983.
+
+> Sections 10.2-10.5 -- The basic work of the domain theory is due to
+> Dana Scott. He formalized the notion of Scott domain, and showed
+> that this class of domains was closed under the various
+> constructions. In his original papers (e.g. Scott [70], Scott and
+> Strachey [71]), Scott domains as we now know them were made into
+> complete lattices by adjoining a top, "overdefined" element, and
+> this method is followed in Stoy [77].
+
+这种带有 top 的 lattice 正是我在 propagator model 中所需要的！
+看来 Stoy [77] 是需要看看了。
 
 # 11 Power domains
 
