@@ -42,7 +42,7 @@ year: 1985
 
 # Introduction
 
-批评 algol68 没有 polymorphism，例如。
+批评 algol68 没有 polymorphism，例如：
 
 ```algol68
 struct IntList = (Int hd, Ref IntList tl);
@@ -65,7 +65,7 @@ struct RealList = (Real hd, Ref RealList tl);
 ```
 
 ```scheme
-(claim compute
+(claim compose
   (nu (A B C)
     (-> (-> A B) (-> C A)
         (-> C B))))
@@ -308,6 +308,10 @@ substitution 必须被明显地（explicitly）表示在语法中，
   ...)
 ```
 
+```scheme
+(define-type subst-t (-> type-var-t type-t))
+```
+
 > A substitution `S` extends naturally to a map from types to types by
 > replacing (simultaneously) each occurrence of a variable `α` in a
 > type with `S α` (the same can be done when instead of types we have
@@ -366,11 +370,10 @@ TODO 上面这种对 combinatory logic 的理解正确吗？
 ```scheme
 (claim subst-restriction (-> subst-t (set-t type-var-t) subst-t))
 (define (subst-restriction subst vars)
-  (make-subst
-   (lambda (v)
+  (lambda (v)
      (if (set-has? vars v)
        (subst v)
-       v))))
+       v)))
 ```
 
 定义 substitution 的 simultaneous composition，
@@ -412,6 +415,10 @@ TODO 上面这种对 combinatory logic 的理解正确吗？
 > there is a substitution `S` such that `t' = S t`.
 
 `<type>` 在 substitution 的诱导下，形成序关系。
+
+如何理解这里序关系的方向？
+由于是在讨论类型，而不是 value，
+因此 substitution instance 是更具体的类型，因此应该「更小」。
 
 > If `t` and `t'` are instances of each other then we will say that
 > `t'` is a _trivial variant_ of `t`.
