@@ -959,6 +959,8 @@ its subexpressions in a way which satisfies certain laws."
 
 ## 3.4 Types and their Semantics
 
+TODO 补全这里的内容
+
 > Polytypes thereby also stand for subsets of V, and these are also
 > directed complete. The reader may like to think of each type
 > variable in a polytype as universally quantified at the outermost;
@@ -998,6 +1000,8 @@ its subexpressions in a way which satisfies certain laws."
 Proposition 1 说这与子类型关系的性质刚好相反。
 
 ## 3.5 Type Assignments
+
+TODO 补全这里的内容
 
 > To prepare the ground for the theorem that well-typed expressions
 > cannot "go wrong," we need to define what is meant by _typing_ an
