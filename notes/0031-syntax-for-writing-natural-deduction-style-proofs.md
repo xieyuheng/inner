@@ -3,7 +3,7 @@ title: Syntax for writing natural deduction style proofs
 date: 2022-05-07
 ---
 
-In [00017](00017-reversed-inference-rule-style-function-application-syntax.md),
+In [0017](0017-reversed-inference-rule-style-function-application-syntax.md),
 we use changed function application syntax,
 aiming to get good syntax for writing proofs.
 

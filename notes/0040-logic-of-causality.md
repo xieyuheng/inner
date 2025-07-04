@@ -34,4 +34,4 @@ causal logic will have a rich probability theory as its model.
   also is a rich model of graph theory (axioms of graphoid).
 
 For the meaning of "cause",
-see [00041-causality-is-reactivity.md](./00041-causality-is-reactivity.md).
+see [0041-causality-is-reactivity.md](./0041-causality-is-reactivity.md).

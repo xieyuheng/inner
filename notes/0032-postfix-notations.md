@@ -11,7 +11,7 @@ Postfix notation is simply too unfamiliar to us.
 
 ## Bad for editing code
 
-Postfix notation is bad for [editing code](00007-prefix-and-postfix-notation-are-not-symmetrical-because-of-the-direction-of-human-writing.md).
+Postfix notation is bad for [editing code](0007-prefix-and-postfix-notation-are-not-symmetrical-because-of-the-direction-of-human-writing.md).
 
 ## No parentheses to denote the borders of applications
 

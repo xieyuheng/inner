@@ -3,7 +3,7 @@ title: Revised theory of Knowledge
 date: 2022-06-05
 ---
 
-An update to [00006-peirce-s-pragmatic-theory-about-knowledge.md](00006-peirce-s-pragmatic-theory-about-knowledge.md),
+An update to [0006-peirce-s-pragmatic-theory-about-knowledge.md](0006-peirce-s-pragmatic-theory-about-knowledge.md),
 after I learned Judea's work about causation.
 
 # Introduction

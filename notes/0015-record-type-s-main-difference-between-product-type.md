@@ -10,6 +10,6 @@ can be used to define subtype relation.
 
 But for product type, we can not do this at all.
 
-See also: [Subtyping by record type][00003]
+See also: [Subtyping by record type][0003]
 
-[00003]: 00003-subtyping-by-record-type-does-not-contradict-the-principle-of-type-theory.md
+[0003]: 0003-subtyping-by-record-type-does-not-contradict-the-principle-of-type-theory.md

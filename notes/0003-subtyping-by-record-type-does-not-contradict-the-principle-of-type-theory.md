@@ -4,7 +4,7 @@ date: 2021-09-02
 ---
 
 Subtyping, **when expressed by record type**,
-does not contradict the [principle of type theory][00001].
+does not contradict the [principle of type theory][0001].
 
 The concept of *subtype* come from the concept of *subset* of set theory.
 
@@ -22,4 +22,4 @@ the definition is indeed purely syntactic.
 Thus, subtyping, when expressed by record type,
 does not contradict the principle of type theory.
 
-[00001]: 00001-the-principle-of-type-theory.md
+[0001]: 0001-the-principle-of-type-theory.md

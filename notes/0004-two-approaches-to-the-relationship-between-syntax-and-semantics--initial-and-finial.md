@@ -16,7 +16,7 @@ In this approach, the process of interpretation is the semantics.
 
 # Finial approach -- Denotational
 
-In the note about [logic theory and its models][00002],
+In the note about [logic theory and its models][0002],
 a logic theory is the syntax, and its models are its semantics.
 
 Which means a *class* is the syntax, and its *objects* are its semantics.
@@ -25,7 +25,7 @@ Or speaking more generally,
 any abstract pattern is the syntax,
 and its concrete instances are the semantics.
 
-[00002]: 00002-model-theory-can-be-implemented-by-class-and-object.md
+[0002]: 0002-model-theory-can-be-implemented-by-class-and-object.md
 
 # Terminology
 

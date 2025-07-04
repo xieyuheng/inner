@@ -16,7 +16,7 @@ when creating and engineering a mathematical model
 
 For examples,
 
-- In [00008-the-aim-of-a-type-system](00008-the-aim-of-a-type-system.md),
+- In [0008-the-aim-of-a-type-system](0008-the-aim-of-a-type-system.md),
   we declared
 
   > A type system interact with people by providing feedback about ones reasoning.
