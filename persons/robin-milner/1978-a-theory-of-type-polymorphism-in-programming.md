@@ -91,6 +91,48 @@ year: 1978
 以 domain theory 为 meta-language 写解释器，
 与用 lisp 为 meta-language 写解释器是等价的。
 
+这并不是说 domain theory 无用。
+domain theory 有大用。
+这只是说用 domain theory
+去理解递归函数与 lambda 演算，用处不大。
+
+domain theory 的大用在哪里？
+就在对 propagator system 的分析当中。
+首先我们应该要求 domain 是 complete lattice，
+这正式 Scott 起初所要求的。
+只不过后面的学者弱化了这个要求，
+把 domain 定义为了 cpo。
+
+一旦要求 complete lattice，
+就能用于 propagator system。
+因为 propagator system 中的每个 cell 所能保存的都是 lattice，
+cell 的 merge 是 lattice 的 join，
+propagator 作为 cell 之间的多方向的函数，
+是就 lattice 而言的单调函数。
+
+有了这些理论基础，
+就能分析 propagator system 的长期行为，
+即给定 propagator system 的初始条件，
+预测其静止时（quiescence）的稳态。
+
+这就像分析微分方程的长期行为一样，
+同属于对分析动力系统长期行为的研究。
+
+这也和编程一样，
+因为编程就是在一个计算模型内，
+构造初始状态，初始状态就是所写的程序，
+让程序运行，就是让动力系统演化，
+动力系统的最终稳态就是计算结果。
+
+当使用 propagator model 这个计算模型来编程时，
+对最终稳态的分析尤为重要，因为那就是计算结果，
+因此 lattice theory（domain theory）也就十分重要，
+所以我说 domain theory 有大用处。
+
+计算模型就是动力系统。
+比如 lambda 演算的 Church-Rosser theorem
+就可以看作是对动力系统长期行为的分析。
+
 # Abstract
 
 > The aim of this work is largely a practical one. A widely employed
