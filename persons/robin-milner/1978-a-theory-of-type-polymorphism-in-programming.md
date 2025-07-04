@@ -669,7 +669,6 @@ check 显然是简单的：
 
 [2025-06-13] 为了理解这里所用的 denotational semantics，
 看完 Scott 的 1969-a-type-theoretical-alternative-to-ISWIM-CUCH-OWHY 回来了。
-在 Scott 的论文中这里的 "wrong" 代表 "undefined"。
 
 每个 domain 都有 bottom，并且对取 domain 的任意子集的最小上界封闭。
 
@@ -692,7 +691,7 @@ check 显然是简单的：
 ```bnf
 V := B0 + B1 + ... + F + W -- disjoint sum of domains
 F := V -> V                -- continuous functions from V to V
-W := {}                    -- error
+W := {·}                   -- error
 ```
 
 > The solution (up to isomorphism) of such a set of domain equations

@@ -30,10 +30,6 @@ Milner 之所以推崇 domain theory，是想用永恒的方式写程序。
 如果对于理论的实用性也做一个排序，
 相比用 lisp 写解释器，这种处理方式无疑是实用性很低的。
 
-除非我们直接把 domain 理解为，
-用来实现解释器的程序语言中，
-具体的数据类型。
-
 Domain theory 也确实可以为我所用，
 因为首先可以把 domain 扩展为 complete lattice，
 然后用来作为 propagator model 的理论基础。
@@ -44,6 +40,16 @@ Domain theory 也确实可以为我所用，
 
 注意，function domain 的序关系是逐点（pointwise）定义的，
 看起来更复杂，但是逐点定义的有限情况就像是 record，所以也不复杂。
+
+在今后，我会直接把 domain 理解为，具体程序语言中的具体数据类型。
+并且把 denotational semantics 理解为，用具体的语言去写编译器和解释器。
+
+尽管如此，我还是认为 Milner 和 Scott
+想要把程序表示为数学对象的行为是本质上错误的，
+因为正如 Sussman 所说，
+计算机科学给我们提供了一种语言，
+使得我们可以记录过程性的知识。
+这与数学的研究对象有着本质上的不同。
 
 # Abstract
 
