@@ -1930,9 +1930,23 @@ TODO
 
 就是 topological sum。
 
-## 10.5 Function spaces and Scott domains
+## 10.5 Function spaces and Scott 这里用
 
-这里用 presentation 构造 function space 的方式很新奇。
+> We saw in Section 10.1 that function types were desirable and also a
+> source of difficulty. They were a prime reason for including
+> topological structure in domains, and we want the points of a
+> function domain `[D -> E]` to be the continuous maps --
+> specifically, the Scott continuous maps -- from `D` to `E`. We show
+> first that `[D -> E]` is readily made into a cpo, comprising the
+> points of a spectral locale.  However, it will not in general be
+> algebraic, and we shall introduce the class of Scott domains to
+> remedy this.
+
+这里重要的一点是要知道 `[D -> E]` 上的 specialization order
+是用 pointwise order 定义的。
+其中的 bottom 定义为对于任意参数都返回 bottom。
+
+presentation 构造 function space 的方式很新奇。
 `D -> E` 的生成元是 `[x -> b]`，
 其中 `x: pt D` 而 `b: Ω Ε`。
 `b` 是 `E` 的子集所构成的代数中的元素。

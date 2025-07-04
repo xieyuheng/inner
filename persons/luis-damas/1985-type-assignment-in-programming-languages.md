@@ -12,6 +12,37 @@ year: 1985
 还是直接实现实用的 x-lisp，
 取决于读这篇论文的感受。
 
+# My Notes
+
+## domain theory 是否实用？
+
+Milner 之所以推崇 domain theory，是想用永恒的方式写程序。
+比如先定义好 value 的 domain，然后在 domain theory 中写解释器，
+把表达式映射到 value。
+
+之所以 Milner 认为这种方式是永恒的，
+是因为所构造的 value domain 是数学对象。
+
+但是在我看来这无疑是强迫自己以不能运行也不能测试的方式写程序。
+
+如果对于理论的实用性也做一个排序，
+相比用 lisp 写解释器，这种处理方式无疑是实用性很低的。
+
+除非我们直接把 domain 理解为，
+用来实现解释器的程序语言中，
+具体的数据类型。
+
+Domain theory 也确实可以为我所用，
+因为首先可以把 domain 扩展为 complete lattice，
+然后用来作为 propagator model 的理论基础。
+
+给一般的集合添加 bottom 而形成的 flat domain，
+其中序关系是非常具体的，
+`x ⊑ y` 只有两种可能 `x = y` 或者 `x = ⊥ ⊑ y`。
+
+注意，function domain 的序关系是逐点（pointwise）定义的，
+看起来更复杂，但是逐点定义的有限情况就像是 record，所以也不复杂。
+
 # Abstract
 
 > The purpose of this work is to present and study a family of
@@ -431,19 +462,38 @@ TODO 上面这种对 combinatory logic 的理解正确吗？
 
 沿用 Scott 和 Milner 的指称语义。
 
-根据对 propagator model 和 domain theory 中使用 lattice 方式的讨论，
-这里的 order 与我想使用的符合集合论直觉的 order 刚好相反。
-
 > A _complete partial order (cpo)_ `D` is a partial order with a least
-> or _bottom_ element and such that every ascending ω-chain in D has a
-> least upper bound (lub).
+> or _bottom_ element and such that every ascending ω-chain in `D` has a
+> least upper bound (lub) [in `D`].
 
 > A map between cpos is _continuous_ iff it is monotonic and also
 > preserves lubs of ω-chain.
 
-TODO complete partial order 中 ω-chain 的定义是什么？
+cpo 的定义很乱。
+这种也称为 ω-complete partial order (ω-cpo)，
+其中 ω-chain 就是形如 {x1 ≤ x2 ≤ x3 ≤ ...} 的序列。
 
-TODO
+为的是保证 `f` 的迭代所构成的序列有极限存在。
+要求 bottom 存在就是让 bottom 作为 `f` 第一次迭代的参数。
+
+定义如何给集合的 discrete order 添加 bottom 以形成 cpo。
+
+定义 cpo 之间的 _coalesced sum_，
+即 disjoint union 外加把所有的 bottom 等同。
+
+重复 Milner 论文中所定义的一些函数。
+
+> Starting with a given domain `B` of _basic values_ we define the
+> domains of _values_ `V`, of _functions_ `F` and of the _error value_
+> `W`, by the following domain equations
+
+```
+V = B0 + B1 + ... + F + W   (disjoint sum)
+F = V → V                   (function space)
+W = {·}                     (error element)
+```
+
+下面就是要写解释器。
 
 ## 1.5 Type inference
 ## 1.6 A type assignment algorithm
