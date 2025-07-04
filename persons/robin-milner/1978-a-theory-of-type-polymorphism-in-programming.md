@@ -792,15 +792,15 @@ W := {}                    -- error
     ([(the exp-t target) body]
      (let ((f (evaluate target env))
            (arg (evaluate body env)))
-       (when (not (in f function-t)) error)
-       (when (in arg error-t) error)
-       (f arg)))
+       (cond ((not (in f function-t)) error)
+             ((in arg error-t) error)
+             (else (f arg)))))
     (`(if ,e1 ,e2 ,e3)
      (let ((p (evaluate e1 env))
            (t (evaluate e2 env))
            (f (evaluate e3 env)))
-       (when (not (in p bool-t)) error)
-       (if p t f)))
+       (cond ((not (in p bool-t)) error)
+             (else (if p t f)))))
     (`(lambda (,x) ,e)
      ;; milner didn't use closure,
      ;; but use partial evaluation.
@@ -813,8 +813,8 @@ W := {}                    -- error
           `(lambda (,v) ,r))))
     (`(let ((,x ,e1)) ,e2)
      (let ((v1 (evaluate e1 env)))
-       (when (in v1 error-t) error)
-       (evaluate e2 (env-cons env x v1))))))
+       (cond ((in v1 error-t) error)
+             (else (evaluate e2 (env-cons env x v1))))))))
 ```
 
 > (1) Y is the least fixed-point operation.

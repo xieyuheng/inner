@@ -16,6 +16,8 @@ year: 1985
 
 ## domain theory 是否实用？
 
+[2025-07-04]
+
 Milner 之所以推崇 domain theory，是想用永恒的方式写程序。
 比如先定义好 value 的 domain，然后在 domain theory 中写解释器，
 把表达式映射到 value。
@@ -494,6 +496,8 @@ W = {·}                     (error element)
 ```
 
 下面就是要写解释器。
+
+TODO
 
 ## 1.5 Type inference
 ## 1.6 A type assignment algorithm
