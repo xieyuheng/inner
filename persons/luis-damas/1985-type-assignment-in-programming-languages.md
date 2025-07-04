@@ -497,6 +497,20 @@ W = {·}                     (error element)
 
 下面就是要写解释器。
 
+TODO 设计用 lisp 描述 domain 的方式，
+把解释器写出来，注意 wrong 不是 undefined。
+
+和 Milner 的论文一样，没有用 closure，用了 partial evaluation。
+与 Milner 的解释器的差异在于，
+这里对参数（包括 let 的 rhs）为 wrong 的情况没有提前返回。
+
+> The semantics above is an extension of the formal semantics of the
+> λ-calculus defined in [Stoy 77].
+
+这里提到了 [Stoy 77]，
+damas 可能是看 stoy 的 1977-denotational-semantics
+学习的 domain theory。
+
 TODO
 
 ## 1.5 Type inference

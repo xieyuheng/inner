@@ -793,6 +793,7 @@ W := {}                    -- error
      (let ((f (evaluate target env))
            (arg (evaluate body env)))
        (cond ((not (in f function-t)) error)
+             ;; strict about the error of arg.
              ((in arg error-t) error)
              (else (f arg)))))
     (`(if ,e1 ,e2 ,e3)
