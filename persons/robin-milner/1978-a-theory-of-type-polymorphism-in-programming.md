@@ -31,7 +31,7 @@ year: 1978
 > simple programming language, and a compile time type-checking
 > algorithm W which enforces the discipline.  A Semantic Soundness
 > Theorem (based on a formal semantics for the language) states that
-> well-type programs cannot “go wrong” and a Syntactic Soundness
+> well-type programs cannot "go wrong" and a Syntactic Soundness
 > Theorem states that if W accepts a program then it is well typed.
 > We also discuss extending these results to richer languages; a
 > type-checking algorithm based on W is in fact already implemented
@@ -59,7 +59,7 @@ luca cardelli 的 1993 论文 "subtyping recursive types" 来解决，
 > which precludes the flexibility mentioned above, also precludes the
 > programming style which we are talking about. ALGOL 60 was more
 > flexible -- in that it required procedure parameters to be specified
-> only as “procedure” (rather than say “integer to realprocedure”) --
+> only as "procedure" (rather than say "integer to realprocedure") --
 > but the flexibility was not uniform, and not sufficient.
 
 就像有人在 typescript 中只用 `Function` 类型，
@@ -67,12 +67,12 @@ luca cardelli 的 1993 论文 "subtyping recursive types" 来解决，
 
 > An early discussion of such flexibility can be found in Strachey
 > [19], who was probably the first to call it polymorphism. In fact he
-> qualified it as “parametric” polymorphism, in contrast to what he
-> called “adhoc” polymorphism.  An example of the latter is the use of
-> “+” to denote both integer and real addition (in fact it may be
+> qualified it as "parametric" polymorphism, in contrast to what he
+> called "adhoc" polymorphism.  An example of the latter is the use of
+> "+" to denote both integer and real addition (in fact it may be
 > further extended to denote complex addition, vector addition, etc.);
 > this use of an identifier at several distinct types is often now
-> called “overloading,” and we are not doncerned with it in this
+> called "overloading," and we are not doncerned with it in this
 > paper.
 
 从 Strachey 1967 年的论文 "fundamental concepts in programming languages"，
@@ -117,7 +117,7 @@ luca cardelli 的 1993 论文 "subtyping recursive types" 来解决，
 > assigned a _monotype_).
 
 > We do not discuss in this paper -- except briefly at the end --
-> either coercions or the “overloading” of identifiers. Our view is
+> either coercions or the "overloading" of identifiers. Our view is
 > that these concepts, and also run-time type manipulation, are
 > somewhat orthogonal to a compile-time polymorphic type discipline,
 > and may (to some extent) be incorporated without invalidating it.
@@ -144,9 +144,9 @@ luca cardelli 的 1993 论文 "subtyping recursive types" 来解决，
 > difficulty in the two soundness theorems.
 
 > Our work is a step towards solving the problem expressed by Morris
-> [10] in his thesis as follows: “to design a language and a type
+> [10] in his thesis as follows: "to design a language and a type
 > system in which a programmer may define functions whose parameters
-> may have different types for different calls of the function.”  We
+> may have different types for different calls of the function."  We
 > recommend Chapter 4 of this thesis as a lucid introduction to the
 > problem.
 
@@ -158,11 +158,11 @@ luca cardelli 的 1993 论文 "subtyping recursive types" 来解决，
 
 看起来值得一读，尤其是通过解方程来做类型推导的过程：
 
-- [10] “Lambda-Calculus Models of Programming Languages”,
+- [10] "Lambda-Calculus Models of Programming Languages",
   J. H. Morris, Ph.D. Thesis, 1968.
 
 > After doing this work we became aware of Hindley’s [5] method for
-> deriving the “principal type scheme” (which is what we call a
+> deriving the "principal type scheme" (which is what we call a
 > polymorphic type) for a term in combinatory logic. Hindley appears
 > to have been the first to notice that the Unification Algorithm of
 > Robinson [14] is appropriate to this problem. Our work can be
@@ -186,7 +186,7 @@ Hindley-Milner type system 名字的由来。
 
 也许值得一读：
 
-- [1] “Recursive Programming Techniques”,
+- [1] "Recursive Programming Techniques",
   W. H. BURGE, 1975.
 
 > Example 1. Mapping a function over a list.
@@ -211,7 +211,7 @@ Hindley-Milner type system 名字的由来。
 ```
 
 > How is this type determined from the bare declaration of map?
-> First, the generic types (we discuss “generic” later) of the
+> First, the generic types (we discuss "generic" later) of the
 > identifiers occurring free in the declaration are given by
 
 ```scheme
@@ -351,7 +351,7 @@ Hindley-Milner type system 名字的由来。
 ```
 
 > Now we can explain, without setting up equations, how our well-typing algorithm
-> tackles this declaration. It first assigns “unknown” types (i.e., type variables)
+> tackles this declaration. It first assigns "unknown" types (i.e., type variables)
 > A, B, and C to a, b, and c. Then [[a b] [a c]] acquires type
 > (tau (tau A B) (tau A C)) and the lambda-expression acquires
 
@@ -672,7 +672,7 @@ check 显然是简单的：
 > bindings for certain identifiers in an initial environment.
 
 > We give an ordinary denotational semantics for Exp, in which we
-> include a value “wrong,” which corresponds to the detection of a
+> include a value "wrong," which corresponds to the detection of a
 > failure at run-time.
 
 > In this small language, the only failures are
@@ -713,7 +713,9 @@ W := {·}                   -- error
 注意 `W` 我们写作 `wrong-t`，是一个有单一元素 `wrong` 的集合，
 补充元素 `(undefined wrong-t)` 成为 domain。
 
-`wrong` 与 `undefined` 不一样。
+`wrong` 与 `undefined` 不一样。为什么需要有这个区分呢？
+可以理解为 `undefined` 是 meta-language 中的 runtime error，
+而 `wrong` 代表所实现的 language 的 runtime error。
 
 ```scheme
 (claim wrong wrong-t)
@@ -910,29 +912,32 @@ W := {·}                   -- error
 > We now proceed, in outline, as follows. We define a new class of
 > expressions which we shall call types; then we say what is meant by
 > a value _possessing_ a type. Some values have many types, and some
-> have no type at all. In fact “wrong” has no type. But if a
+> have no type at all. In fact "wrong" has no type. But if a
 > functional value has a type, then as long as it is applied to the
 > right kind (type) of argument it will produce the right kind (type)
-> of result -- which cannot be “wrong”!
+> of result -- which cannot be "wrong"!
+
+注意，这里是 value 有 type，而不是 expression 有 type。
 
 > Now we wish to be able to show that -- roughly speaking -- an Exp
 > expression evaluates (in an appropriate environment) to a value
 > which has a type, and so cannot be wrong.  In fact, we can give a
 > sufficient syntactic condition that an expression has this robust
 > quality; the condition is just that the expression has a
-> “well-typing” with respect to the environment, which means that we
+> "well-typing" with respect to the environment, which means that we
 > can assign types to it and all its subexpressions in a way which
 > satisfies certain laws.
 
-注意最后这句话，"which means that we can assign types to it and all
+注意，最后这句话，"which means that we can assign types to it and all
 its subexpressions in a way which satisfies certain laws."
-看起来非常 适合用 propagator model 实现。
+看起来非常适合用 propagator model 实现，
+因为每个 subexpression 都可以实现为一个 cell。
 
 > So there are two main tasks,
 > once the laws of type assignment are given.
 >
 > - The first -- to show that an expression (or program) with a legal
->   type assignment cannot “go wrong” -- is tackled in this section;
+>   type assignment cannot "go wrong" -- is tackled in this section;
 >   surprisingly enough, it is the easier task (at least for an
 >   applicative language).
 >
@@ -959,7 +964,7 @@ its subexpressions in a way which satisfies certain laws."
 > variable in a polytype as universally quantified at the outermost;
 > for example,
 >
->     A -> A “means” forall (A) A -> A
+>     A -> A "means" forall (A) A -> A
 >
 > where the bound A ranges over monotypes. In fact, it is because A
 > here ranges over monotypes (not all types) and because we do not
@@ -995,7 +1000,7 @@ Proposition 1 说这与子类型关系的性质刚好相反。
 ## 3.5 Type Assignments
 
 > To prepare the ground for the theorem that well-typed expressions
-> cannot “go wrong,” we need to define what is meant by _typing_ an
+> cannot "go wrong," we need to define what is meant by _typing_ an
 > expression. We need first some notion of a type environment to give
 > types to the free variables in an expression.
 
