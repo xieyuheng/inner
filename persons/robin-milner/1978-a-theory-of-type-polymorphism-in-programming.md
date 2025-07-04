@@ -41,6 +41,56 @@ year: 1978
 我非常熟悉的过程，
 即「写解释器」！
 
+这么说来，我刚刚学会写程序的时候，
+从 SICP 和 the little schemer 中，
+学会写 meta circular interpreter 的时候，
+我就已经是 denotational semantics 的大师了。
+
+既然这样，我又想质疑 domain theory 是否实用了。
+因为 domain theory 中，
+人们引入拓扑概念，模仿无穷级数的分析，
+费心去证明递归函数作为迭代的极限而存在。
+而我在用 meta-language 来写解释器的时候，
+已经在使用递归函数了，
+那么这里的递归函数为什么存在呢？
+这里的递归函数之存在，
+是实现 meta-language 的人构造出来的，
+这种「存在」显然更具体也更实用。
+
+如果说「去证明这里的递归函数」确实是重要的问题，
+那么这里通过构造与实现所证明的递归函数存在，
+对于 denotational semantics 有什么启示呢？
+是不是不应该去构造 domain theory，并且引入拓扑和极限？
+而是应该像实现在机器中所存在的那样，
+即潜在无穷的树，是通过带有圈的有向图中的路径来生成的。
+有向图是有限的，是很容易构造的。
+实际实现中，递归函数都是如此。
+
+这里也是受到了 roberto amadio 和 luca cardelli 的论文
+"subtyping recursive types" 的启发。
+否则想不到去用带有圈的有限有向图来生成树的。
+
+但是为什么要证明递归函数（还有递归定义的类型等等）之存在呢？
+递归函数的理论不是和图灵机以及 lambda 演算等价吗？
+都可以作为可计算性的定义。
+递归函数与拓扑空间外加极限相比，谁是谁的基础？
+数学分析中，无穷级数的收敛问题，
+显然可以转化成递归函数的收敛问题。
+
+学习 domain theory，绕了一个大圈子，
+写一个 domain theory 中的解释器之后，
+却发现自己又从「数学家」回到了写「解释器实现者」这个身份，
+只不过更心安理得了。
+
+或者从 peirce 的使用主义原则来看，
+所绕的这个圈子也是有用的，
+用处就在于让我能看透用 denotational semantics
+和 domain theory 写论文的人，所做的本质究竟是什么了。
+
+因为按照 peirce 的原则，
+以 domain theory 为 meta-language 写解释器，
+与用 lisp 为 meta-language 写解释器是等价的。
+
 # Abstract
 
 > The aim of this work is largely a practical one. A widely employed
