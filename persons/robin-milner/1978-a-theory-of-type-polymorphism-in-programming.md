@@ -172,6 +172,9 @@ luca cardelli 的 1993 论文 "subtyping recursive types" 来解决，
 
 Hindley-Milner type system 名字的由来。
 
+也就是说 Hindley 没有给 lambda expression 增加 let，
+就能形成类型推导吗？
+
 # 2 Illustrations of The Type Discipline
 
 > We illustrate our notion of polymorphism by means of some simple
@@ -545,14 +548,22 @@ Burge [1] 看来也是必须要读的了。
 
 > First, Burge leaves implicit the coercion functions between a
 > disjoint sum type and its summand types; we needed to make these
-> explicit (this point was mentioned in our Introduction).  Second, we
-> used the ML abstract type construct (see Section 5 for an example)
-> to formulate the recursive type definitions used by Burge. In this
-> construct, the isomorphism between a defined abstract type and its
-> representation is made explicit and must be used explicitly. To see
-> the need for this requirement consider the case of an A stream,
-> which is defined to be a function which yields a pair consisting of
-> an A and an A stream. The type equation
+> explicit (this point was mentioned in our Introduction).
+
+implicit coercion 是否可以理解为是 union，
+而不是 disjoint union？
+
+> Second, we used the ML abstract type construct (see Section 5 for an
+> example) to formulate the recursive type definitions used by
+> Burge.
+
+就是说 Burge 在用 structural type？
+
+> In this construct, the isomorphism between a defined abstract
+> type and its representation is made explicit and must be used
+> explicitly. To see the need for this requirement consider the case
+> of an A stream, which is defined to be a function which yields a
+> pair consisting of an A and an A stream. The type equation
 >
 >     (stream-t A) = (-> (tau A (stream-t A)))
 >
@@ -573,7 +584,7 @@ Burge [1] 看来也是必须要读的了。
    (lambda (x) (f (x x)))))
 ```
 
-> since self-application is ill typed for us. But Zetrec avoids the
+> since self-application is ill typed for us. But letrec avoids the
 > need for Y.
 
 如果不考虑 infer，check 显然是可以支持 Y 的：
@@ -662,10 +673,15 @@ check 显然是简单的：
 
 > We give an ordinary denotational semantics for Exp, in which we
 > include a value “wrong,” which corresponds to the detection of a
-> failure at run-time. In this small language, the only failures are
-> the occurrence of a non-Boolean value as the condition of a
-> conditional, and the occurrence of a nonfunctional value as the
-> operator of an application.
+> failure at run-time.
+
+> In this small language, the only failures are
+>
+> - the occurrence of a non-Boolean value as the condition of a
+>   conditional;
+>
+> - the occurrence of a nonfunctional value as the operator of an
+>   application.
 
 [2025-06-13] 为了理解这里所用的 denotational semantics，
 看完 Scott 的 1969-a-type-theoretical-alternative-to-ISWIM-CUCH-OWHY 回来了。
@@ -694,44 +710,92 @@ F := V -> V                -- continuous functions from V to V
 W := {·}                   -- error
 ```
 
+注意 `W` 我们写作 `wrong-t`，是一个有单一元素 `wrong` 的集合，
+补充元素 `(undefined wrong-t)` 成为 domain。
+
+`wrong` 与 `undefined` 不一样。
+
+```scheme
+(claim wrong wrong-t)
+
+(claim true bool-t)
+(claim false bool-t)
+
+(define-type value-t
+  (union bool-t
+         ...
+         (-> value-t value-t)
+         wrong-t))
+```
+
 > The solution (up to isomorphism) of such a set of domain equations
 > is assured by Scott [15]. Although he worked with complete lattices,
 > the solution also exists in cpos (see Plotkin [11]).
 
 这里的两个引用：
+
 - [15] "Lattice theoretic models for various type-free calculi", Scott, 1972.
 - [11] "A power-domain construction", Plotkin, 1976.
 
-> The semantic function is E ∈ Exp -> Env -> V, where Env = Id -> V,
-> the domain of environments.
+> The semantic function is `E ∈ Exp -> Env -> V`,
+> where `Env = Id -> V`, the domain of environments.
+
+我用 `evaluate` 代表这里的 `E`。
 
 ```scheme
-(define env-t (-> var-t value-t))
+(define-type env-t (-> var-t value-t))
 (claim evaluate (-> exp-t env-t value-t))
 ```
 
 > In defining `evaluate`, and later, we use some familiar notation of
-> Scott and Strachey [16], illustrated by these examples (where D is
-> some summand of V):
+> Scott and Strachey [16], illustrated by these examples (where `D` is
+> some summand of `V`):
 
-(1) 那么存在 D 到 value-t 的 injection。
+> (1) If `d ∈ D`, then `d in V` is the image of `d` under the
+> injection of `D` into `V`.
 
-(2) 一个判断元素是否属于类型的函数：
+不声不响定义了一个叫做 `in` 的 infix operator，
+这里不注意的话，读起后面的代码来，真是让人困惑。
+
+我们的实现用 structural type，所以不需要这种 injection（cast）。
+
+> (2) If `v ∈ V`, then
+>
+>     v E D = true                -- if v = d in V for some d ∈ D
+>           = (undefined bool-t)  -- if v = (undefined value-t)
+>           = false               -- otherwise
+
+一个判断元素是否属于类型的函数：
 
 ```scheme
-(claim in (-> value-t type-t))
-(define (in v D)
-  (cond ((check v D) true)
+(claim in? (-> value-t type-t bool-t))
+(define (in? v D)
+  (cond ((element-of? v D) true)
         ((equal? v (undefined value-t))
          (undefined bool-t))
         (else false)))
 ```
 
-(3) 一个判断元素是否属于类型，并且返回这个元素本身的函数：
+> (3) If `v ∈ V`, then
+>
+>     v | D = d                   -- if v = d in V for some d ∈ D
+>           = (undefined D)       -- otherwise
+
+一个判断元素是否属于类型，并且返回这个元素本身的函数。
+只要使用 structural type，就可以直接以给出的参数 `v` 为返回值。
+如果不用 structural type，就需要 match 所给 datatype `D` 的 data constructor，
+然后把 data constructor 的参数数据取出来。
 
 ```scheme
-(claim the (-> type-t value-t))
-(define (the D v) (if (in v D) v (undefined D)))
+(claim check (pi ((v value-t) (D type-t)) D))
+(define (check v D) (if (in? v D) v (undefined D)))
+```
+
+参数顺序反过来，就是 the little typer 的 `the`：
+
+```scheme
+(claim the (pi ((D type-t) (v value-t)) D))
+(define (the D v) (check v D))
 ```
 
 关于 env 的函数：
@@ -739,10 +803,7 @@ W := {·}                   -- error
 ```scheme
 (claim env-cons (-> env-t var-t value-t env-t))
 (define (env-cons env name value)
-  (lambda (x)
-    (if (equal? x name)
-      value
-      (env x))))
+  (lambda (x) (if (equal? x name) value (env x))))
 ```
 
 ## 3.2 Semantic Equations for Exp
@@ -775,13 +836,8 @@ W := {·}                   -- error
 解释器：
 
 ```scheme
-(define env-t (-> var-t value-t))
-
-(define function-t (-> value-t value-t))
-
-(define error-t (enum (undefined value-t)))
-(claim error error-t)
-(define error (undefined value-t))
+(define-type env-t (-> var-t value-t))
+(define-type function-t (-> value-t value-t))
 
 (claim evaluate (-> exp-t env-t value-t))
 (define (evaluate exp env)
@@ -791,19 +847,17 @@ W := {·}                   -- error
     ([(the exp-t target) body]
      (let ((f (evaluate target env))
            (arg (evaluate body env)))
-       (cond ((not (in f function-t)) error)
-             ;; strict about the error of arg.
-             ((in arg error-t) error)
-             (else (f arg)))))
+       (if (in? f function-t)
+         ;; be strict about arg be wrong.
+         (if (in? arg wrong-t) wrong (f arg))
+         wrong)))
     (`(if ,e1 ,e2 ,e3)
      (let ((p (evaluate e1 env))
            (t (evaluate e2 env))
            (f (evaluate e3 env)))
-       (cond ((not (in p bool-t)) error)
-             (else (if p t f)))))
+       (if (in? p bool-t) (if p t f) wrong)))
     (`(lambda (,x) ,e)
-     ;; milner didn't use closure,
-     ;; but use partial evaluation.
+     ;; do partial evaluation instead of make closure.
      (let ((v (fresh-var))
            (r (evaluate e (env-cons env x v))))
        `(lambda (,v) ,r)))
@@ -813,9 +867,12 @@ W := {·}                   -- error
           `(lambda (,v) ,r))))
     (`(let ((,x ,e1)) ,e2)
      (let ((v1 (evaluate e1 env)))
-       (cond ((in v1 error-t) error)
-             (else (evaluate e2 (env-cons env x v1))))))))
+       (if (in? v1 wrong-t)
+         wrong-t
+         (evaluate e2 (env-cons env x v1)))))))
 ```
+
+> **Notes**
 
 > (1) Y is the least fixed-point operation.
 > In many languages the e in
@@ -842,8 +899,8 @@ W := {·}                   -- error
 > operand, and need more careful treatment.
 
 > (3) The semantics for `(e1 e2)` corresponds to call-by-value, since
-> the test `(in arg error-t)` ensures that the meaning of `(e1 e2)` is
-> `error` if the meaning of `e2` is `error` . The omission of this
+> the test `(in? arg wrong-t)` ensures that the meaning of `(e1 e2)`
+> is `wrong` if the meaning of `e2` is `wrong`. The omission of this
 > test gives a call-by-name semantics (a similar test may be omitted
 > in the semantics of the let construct), and the Semantic Soundness
 > Theorem goes through equally in this case.
