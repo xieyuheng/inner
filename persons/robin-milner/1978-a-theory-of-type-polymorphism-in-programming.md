@@ -900,16 +900,11 @@ W = {·}                   -- error
 如果不用 structural type，就需要 match 所给 datatype `D` 的 data constructor，
 然后把 data constructor 的参数数据取出来。
 
-```scheme
-(claim check (pi ((v value-t) (D type-t)) D))
-(define (check v D) (if (in? v D) v (undefined D)))
-```
-
 参数顺序反过来，就是 the little typer 的 `the`：
 
 ```scheme
 (claim the (pi ((D type-t) (v value-t)) D))
-(define (the D v) (check v D))
+(define (the D v) (if (in? v D) v (undefined D)))
 ```
 
 关于 env 的函数：
@@ -977,6 +972,7 @@ W = {·}                   -- error
      (Y (lambda (v) (evaluate e (env-cons env x v)))))
     (`(let ((,x ,e1)) ,e2)
      (let ((v1 (evaluate e1 env)))
+       ;; be strict about rhs be wrong.
        (if (in? v1 wrong-t)
          wrong-t
          (evaluate e2 (env-cons env x v1)))))))

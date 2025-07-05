@@ -491,41 +491,187 @@ cpo 的定义很乱。
 
 重复 Milner 论文中所定义的一些函数。
 
+```scheme
+(claim in? (-> value-t type-t bool-t))
+(define (in? v D)
+  (cond ((element-of? v D) true)
+        ((equal? v (undefined value-t))
+         (undefined bool-t))
+        (else false)))
+```
+
+```scheme
+(claim the (pi ((D type-t) (v value-t)) D))
+(define (the D v) (if (in? v D) v (undefined D)))
+```
+
 > Starting with a given domain `B` of _basic values_ we define the
 > domains of _values_ `V`, of _functions_ `F` and of the _error value_
 > `W`, by the following domain equations
 
 ```
-V = B0 + B1 + ... + F + W   (disjoint sum)
-F = V → V                   (function space)
-W = {·}                     (error element)
+V = B + F + W   (disjoint sum)
+F = V → V       (function space)
+W = {·}         (error element)
+```
+
+```scheme
+(claim wrong wrong-t)
+
+(claim true bool-t)
+(claim false bool-t)
+
+(define-type value-t
+  (union bool-t
+         (-> value-t value-t)
+         wrong-t))
 ```
 
 下面就是要写解释器。
-
-TODO 设计用 lisp 描述 domain 的方式，
-把解释器写出来，注意 wrong 不是 undefined。
-
-和 Milner 的论文一样，没有用 closure，用了 partial evaluation。
 与 Milner 的解释器的差异在于，
-这里对参数（包括 let 的 rhs）为 wrong 的情况没有提前返回。
+这里对于参数为 wrong 的情况，
+和 let 的 rhs 为 wrong 的情况，
+没有提前返回 wrong。
+
+```scheme
+(define-type env-t (-> var-t value-t))
+(define-type function-t (-> value-t value-t))
+
+(claim evaluate (-> exp-t env-t value-t))
+(define (evaluate exp env)
+  (match exp
+    ((the var-t x)
+     (env x))
+    ([(the exp-t target) body]
+     (let ((f (evaluate target env))
+           (arg (evaluate body env)))
+       (if (in? f function-t) (f arg) wrong)))
+    (`(lambda (,x) ,e)
+     ;; use the lambda of meta-language instead of closure.
+     (lambda (v) (evaluate e (env-cons env x v))))
+    (`(let ((,x ,e1)) ,e2)
+     (evaluate e2 (env-cons env x (evaluate e1 env))))))
+```
 
 > The semantics above is an extension of the formal semantics of the
-> λ-calculus defined in [Stoy 77].
+> λ-calculus defined in [Stoy 77]. Since one obviously has
+
+```scheme
+(evaluate `(let ((,x ,e1)) ,e2)) =
+(evaluate `((lambda (,x) e2) ,e1))
+```
+
+> it follows that the results of [Stoy 77] stating that the value
+> denoted by a A-term is not altered by any of the conversion rules,
+> still holds for expressions and for let-conversion.
 
 这里提到了 [Stoy 77]，
 damas 可能是看 stoy 的 1977-denotational-semantics
 学习的 domain theory。
 
-TODO
+> Comparing our semantics with the one defined by [Milner 78] for a
+> similar language we see that the latter is more strict in its
+> treatment of non-termination and of error values and more near
+> actual implementations of applicative languages. We will refer to it
+> as the _strict_ semantics for expressions.
+
+Milner 对 application 和 let 的 evaluate 定义不同：
+
+```scheme
+(define (evaluate exp env)
+  (match exp
+    ...
+    ([(the exp-t target) body]
+     (let ((f (evaluate target env))
+           (arg (evaluate body env)))
+       (if (in? f function-t)
+         ;; be strict about arg be wrong.
+         (if (in? arg wrong-t) wrong (f arg))
+         wrong)))
+    ...
+    (`(let ((,x ,e1)) ,e2)
+     (let ((v1 (evaluate e1 env)))
+       ;; be strict about rhs be wrong.
+       (if (in? v1 wrong-t)
+         wrong-t
+         (evaluate e2 (env-cons env x v1)))))))
+```
+
+下面将要用 domain `V` 的 ideal 来把类型映射为数学对象。
+domain 的 ideal 的集合，构成 "topology via logic" 中的 frame。
+注意，这里是利用所有 value 的类型 `value-t`，
+把整个类型系统理解为了一个 frame，
+而不是把一个类型理解为一个 frame。
+
+注意，这里对函数类型的 ideal 的定义方式。
+
+给类型语义：
+
+```scheme
+(define-type type-valuation-t (-> type-var-t (ideal-t value-t)))
+(claim evaluate-type (-> type-t type-valuation-t (ideal-t value-t)))
+
+(claim evaluate-type
+  (-> type-t
+      (-> type-var-t (ideal-t value-t))
+      (ideal-t value-t)))
+```
+
+`type-valuation-t` 是语法元素 `type-context-t` 的语义。
+
+想要在具体的 meta-language 中实现 `evaluate-type`，
+就必须能实现 `ideal-t`，只要考虑 `(ideal-t V)`
+作为 frame 的 presentation 就可以，
+因为 presentation 可以被实现为 inductive datatype。
+
+TODO 补充这里的语义定义。
+
+下面主要是想用数学语言（一阶逻辑和集合论），
+定义语法元素上的关系 `A |= e: τ`：
+
+```scheme
+(claim check (-> type-context-t exp-t type-t relation-t))
+```
+
+这个关系要定义两次 `|=` 代表利用 model 的定义，
+`|-` 代表利用 inference rule 的定义。
 
 ## 1.5 Type inference
+
+这里不过把 `|-` 用 inference rule 定义，
+还把 check 改成了 infer：
+
+```scheme
+(claim infer (-> type-context-t exp-t type-t))
+```
+
+TODO
+
 ## 1.6 A type assignment algorithm
 ## 1.7 Principal types and completeness of T
 ## 1.8 Type schemes, assumption schemes and type inference
 ## 1.9 Type assignment and overloading
 
 # 2 A type scheme inference system
+
+> The theory supporting the polymorphic type discipline of ML, the
+> metalanguage of the LCF system [Gordon et al 79], was studied in
+> [Milner 78].
+
+> Here we reformulate that theory by using quantifiers to make the
+> _generic type variabLes_ of [Milner 78] explicit. This leads to a
+> set of rules for inferring type schemes for expressions which is in
+> contrast with chapter I where the inference system only dealt with
+> types although type schemes were used to describe the set of types
+> that could be derived for an expression.
+
+> The main advantage of such a reformulation is that it enables us to
+> prove both the completeness, conjectured in [Milner 78], of the type
+> assignment algorithm W and the existence of principal type schemes
+> of an expression under particular sets of assumptions. Those
+> constitute the main results of this chapter. Finally we will also
+> study the relation between the inference system of chapter I and the
+> one defined here.
 
 ## 2.1 Introduction
 ## 2.2 Preliminaries
