@@ -630,7 +630,7 @@ TODO 补充这里的语义定义。
 定义语法元素上的关系 `A |= e: τ`：
 
 ```scheme
-(claim check (-> type-context-t exp-t type-t relation-t))
+(claim check (-> type-context-t exp-t type-t judgement-t))
 ```
 
 这个关系要定义两次 `|=` 代表利用 model 的定义，
@@ -638,15 +638,26 @@ TODO 补充这里的语义定义。
 
 ## 1.5 Type inference
 
-这里不过把 `|-` 用 inference rule 定义，
-还把 check 改成了 infer：
-
-```scheme
-(claim infer (-> type-context-t exp-t type-t))
-```
-
 我就不重复用 lisp 写推演规则了。
 注意这里的 `LET` 规则处理了 overloading。
+
+也可能不是 overloading，
+而是 `let` 的 variable
+在 body 中的多次出现可能有不同的类型。
+
+但是感觉这种情况不应该在这个 rule 以这种方式处理。
+在下一章使用 type scheme 应该可以避免这种方式。
+
+> **Theorem 1** (Semantic soundness of type inference).
+> For any expression `e` type `τ` and assumptions `A` if
+>
+>     A |- e: τ
+>
+> holds then
+>
+>     A |= e: τ
+>
+> also holds.
 
 TODO
 
