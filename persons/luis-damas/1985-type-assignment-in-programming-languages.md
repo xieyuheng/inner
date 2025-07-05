@@ -645,6 +645,9 @@ TODO 补充这里的语义定义。
 (claim infer (-> type-context-t exp-t type-t))
 ```
 
+我就不重复用 lisp 写推演规则了。
+注意这里的 `LET` 规则处理了 overloading。
+
 TODO
 
 ## 1.6 A type assignment algorithm
