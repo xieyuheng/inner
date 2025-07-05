@@ -1178,8 +1178,6 @@ monotype 的语义讨论完了，
 也许其他 formal system 中，由全称量词构成的命题，
 也都要针对 system 中递归定义的元素，做归纳法证明。
 
-TODO
-
 > Polytypes thereby also stand for subsets of V, and these are also
 > directed complete. The reader may like to think of each type
 > variable in a polytype as universally quantified at the outermost;
@@ -1203,11 +1201,16 @@ TODO
 
 [12] "Towards a Theory of Type Structure", Reynolds, 1974.
 
+`(∀ α. α -> α) -> (∀ α. α -> α)` 作为表达式，
+可以被 evaluate 成 `(α1 -> α1) -> (α2 -> α2)`，
+然后再把所有的自由类型变元，
+都视为是被一个最外层的 `∀` 所约束。
+
 > We need the following simple properties,
 > which are immediate from our definitions.
 >
-> - Proposition 1. if v: d and t ≤ d, then v: t.
-> - Proposition 2. If v: d -> t and v': d, then (v v'): t.
+> - Proposition 1. if v: σ and τ ≤ σ, then v: τ.
+> - Proposition 2. If v: σ -> τ and v': σ, then (v v'): τ.
 >
 > In each case, a property of monotypes is lifted to polytypes.
 
@@ -1217,8 +1220,6 @@ TODO
 Proposition 1 说这与子类型关系的性质刚好相反。
 
 ## 3.5 Type Assignments
-
-TODO 补全这里的内容
 
 > To prepare the ground for the theorem that well-typed expressions
 > cannot "go wrong," we need to define what is meant by _typing_ an
@@ -1253,6 +1254,8 @@ prefix 不只记录了 var 到 type 的 mapping，
 > typed pe’s to typed pe’s, etc.
 
 也许在命名上应该强调这里的 substitution 是 type-substitution。
+
+"typed pe" 就是 type context。
 
 > We need substitutions extensively in the second part of this paper,
 > but for the present we need only one property relating substitutions
