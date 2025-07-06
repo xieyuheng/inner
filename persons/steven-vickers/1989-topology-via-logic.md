@@ -225,6 +225,21 @@ tuple type、record type 和 function type，
 不用考虑集合论意义上的所有 subset，
 而是要考虑 frame 的 presentation 所能生成的 subtype。
 
+考虑 frame 的公理具体体现在 structural type system 中的情况，
+无限 join 存在，因为需要保证递归定义的 type 存在，比如 list；
+无限 meet 不存在，可以排除下面这种 record 的极限存在：
+
+```typescript
+class C {
+  c: C
+}
+
+{ c: any }
+{ c: { c: any } }
+{ c: { c: { c: any } } }
+...
+```
+
 注意，对于 function space，
 要引入 `->` 这个 type constructor，
 引入一个 type constructor，就是引入一组 generator，
