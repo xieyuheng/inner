@@ -3,6 +3,7 @@ title: History of Formal Semantics at Oxford University
 subtitle: the scott strachey approach to programming language theory
 author: joseph e stoy
 youtube: "https://www.youtube.com/watch?v=8pwlnuelmjg"
+bilibili: "https://www.bilibili.com/video/BV1LJ3QzDEr5"
 year: 1977
 ---
 
