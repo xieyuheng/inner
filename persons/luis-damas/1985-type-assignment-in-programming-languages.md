@@ -659,48 +659,132 @@ TODO 补充这里的语义定义。
 >
 > also holds.
 
-TODO
-
 ## 1.6 A type assignment algorithm
-## 1.7 Principal types and completeness of T
-## 1.8 Type schemes, assumption schemes and type inference
+
+令人惊讶的是，`infer` 不是把 ctx 当作参数，
+而是把 ctx 当作返回值的一部分。
 
 ```scheme
 (define-type ctx-t (list-t [var-t type-t]))
 
-(define subst-t (list-t (tau type-var-t type-t)))
+(define-type subst-t (list-t (tau type-var-t type-t)))
 (claim subst-on-type (-> subst-t type-t type-t))
 (claim subst-on-ctx (-> subst-t ctx-t ctx-t))
 
 (claim infer (-> exp-t (tau ctx-t type-t)))
 (define (infer exp)
   (match exp
-    ((the var-t var)
-     (let ((var-type (type-var-gen)))
-       [[var var-type] var-type]))
+    ((the var-t v)
+     (= var-type (type-var-gen))
+     [[v var-type] var-type])
     ([(the exp-t e1) e2]
-     (let (([ctx1 target-type] (infer e1 env))
-           ([ctx2 arg-type] (infer e2 env)))
-       (let* ((ret-type (type-var-gen))
-              (subst (unify target-type ['-> arg-type ret-type])))
-         [(subst-on-ctx subst (ctx-merge ctx1 ctx2))
-          (subst-on-type subst ret-type)])))
-    (`(lambda (,var) ,body)
-     (let ([ctx body-type] (infer body))
-       (cond ((not (ctx-has? ctx var))
-              [ctx [-> (type-var-gen) body-type]])
-             ((ctx-has-one? ctx var)
-              [(ctx-remove ctx var)
-               [-> (ctx-get ctx var) body-type]])
-             ((ctx-has-many? ctx var)
-              (let ((subst (unify-many (ctx-get-many ctx var))))
-                [(subst-on-ctx (ctx-remove-many ctx var))
-                 (subst-on-type [-> (ctx-get ctx var) body-type])])))))
-    (`(let ((,var ,rhs)) ,body)
-     TODO)))
+     (= [ctx1 target-type] (infer e1))
+     (= [ctx2 arg-type] (infer e2))
+     (= ret-type (type-var-gen))
+     (= subst (unify target-type ['-> arg-type ret-type]))
+     [(subst-on-ctx subst (ctx-merge ctx1 ctx2))
+      (subst-on-type subst ret-type)])
+    (`(lambda (,v) ,e)
+     (= [ctx body-type] (infer e))
+     (cond ((not (ctx-has? ctx v))
+            [ctx [-> (type-var-gen) body-type]])
+           ((ctx-has-one? ctx v)
+            [(ctx-delete ctx v)
+             [-> (ctx-get ctx v) body-type]])
+           ;; the following case actually covers the above case.
+           ((ctx-has-many? ctx v)
+            (= (subst (unify-many (ctx-get-many ctx v))))
+            [(subst-on-ctx (ctx-delete-many ctx v))
+             (subst-on-type [-> (ctx-get ctx v) body-type])])))
+    (`(let ((,v ,e1)) ,e2)
+     (= [ctx2 body-type] (infer e2))
+     (if (not (ctx-has? ctx2 v))
+       [ctx2 body-type]
+       (begin
+         (= [ctx1 rhs-type] (infer e1))
+         (= found-types (ctx-get-many ctx2 v))
+         (claim refresh (-> (tau ctx-t type-t) (tau ctx-t type-t)))
+         (= fresh-results
+            (repeat (length found-types)
+                    (lambda () (refresh [ctx1 rhs-type]))))
+         (= fresh-rhs-types (map fresh-results second))
+         (= fresh-rhs-ctxs (map fresh-results first))
+         (= subst (unify-list found-types fresh-rhs-types))
+         [(subst-on-ctx (ctx-merge-many
+                         (cons (ctx-delete-many ctx2 v)
+                               fresh-rhs-ctxs)))
+          (subst-on-type body-type)])))))
 ```
 
+> A comparison of our algorithm with the Curry-Hindley one for the
+> lambda calculus [yelles 79] reveals that, as far as lambda terms are
+> concerned, the second returns a single assumption for each free
+> variable in the term while ours returns a different assumption for
+> each occurrence of a free variable in the term. It is also not
+> difficult to realise that, for an expression, `T` [`infer`] returns
+> an assumption for each occurrence of a free variable in the let-free
+> form of the expression.
+
+[Yelles 79] "Type Assignment in the Lambda-Calculus: Syntax and Semantics.",
+C.B. Yelles, PhD thesis, University of Wales, 1979.
+
+> **Proposition 7** (Soundness of T).
+>
+> If `T(e)` succeeds with `(A, τ)` then there is a derivation of
+>
+>     A |- e: τ
+
+## 1.7 Principal types and completeness of T
+
+> **Proposition 8** (Completeness of T).
+>
+> Given an expression `e` if there is a type `ν` and a set of
+> assumptions `B` such that
+>
+>     B |- e: ν
+>
+> holds, then
+>
+> (1) `T(e)` succeeds;
+>
+> (2) If `T(e) = (A, τ)` then there is a subset `B'` of `B` such that
+> `B' |- e: ν` is an instance of `A |- e: τ`.
+
+## 1.8 Type schemes, assumption schemes and type inference
+
+> This section is concerned with providing a description of the set of
+> types which can be inferred for an expression from a given set of
+> assumptions. In fact we shall see that it is possible to define an
+> algorithm which achieves that purpose for any expression and for a
+> large class of sets of assumptions which can be described in a
+> finite way.
+
+下面就要引入带有局部类型变元的 polymorphic 类型了，
+但是这里所描述的动机很有趣，
+是说如果 `B |- e: τ`，那么对于那些在 `τ` 中出现，
+但是不在 `B` 中出现的类型变量，
+带入任何类型得到新的 `τ'`，
+`B |- e: τ'` 依然成立。
+
+> **Definition.** A _type scheme_ `η` is either a type `τ` or a term
+> of the form
+>
+>     ∀ a1 ... an τ
+>
+> where τ is a type and `a1`, ..., `an` are type variables which will
+> be called the _generic variables_ of `η`.
+
+总结一下：
+
+- monotype -- 不允许类型变量。
+- polytype -- 允许出现全局类型变量。
+- type scheme -- 允许出现全局类型变量和局部类型变量。
+
+TODO
+
 ## 1.9 Type assignment and overloading
+
+TODO
 
 # 2 A type scheme inference system
 

@@ -152,7 +152,7 @@ e ::= x | e e' | λx.e | let x = e in e'
 > type context] containing type-schemes.
 
 ```scheme
-(define subst-t (list-t (tau type-var-t type-t)))
+(define-type subst-t (list-t (tau type-var-t type-t)))
 
 (claim subst-on-type (-> subst-t type-scheme-t type-scheme-t))
 (claim subst-on-ctx (-> subst-t ctx-t ctx-t))
