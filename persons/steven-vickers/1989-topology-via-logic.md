@@ -207,6 +207,40 @@ filter 也称为 dual ideal，
 这应该是我之后的研究方向，
 继续 Schönfinkel 和 Curry 未完成的事业。
 
+## structural type system 能被视为 topological system
+
+[2025-07-07] 在本书中，强调了一个 topological system，
+或者说一个 frame，对应一个 type，而不是一个 type system。
+想要形成 type system，还需要考虑 type constructors。
+
+但是对于 structural type system 来说，
+基本的 type operator 就是 union 和 intersection，
+这确实构成 frame，因此也构成 topological system。
+
+或者说，structural type system 中的
+tuple type、record type 和 function type，
+使得 topological system 是 Cartesian closed。
+
+考虑 type 之间的 subtype 关系时，
+不用考虑集合论意义上的所有 subset，
+而是要考虑 frame 的 presentation 所能生成的 subtype。
+
+注意，对于 function space，
+要引入 `->` 这个 type constructor，
+引入一个 type constructor，就是引入一组 generator，
+想要描述 type constructor 所构造的 type
+与别的 type 之间的 lattice equations，
+就要说明 type constructor 如何与 join 和 meet 交换
+（分配律可以理解为特殊的交换律）。
+
+比如 function type `(-> A B)`
+对参数位置的 `A` subtype 关系反变，
+对返回值位置的 `B` subtype 关系协变。
+就是用 lattice equation 反应出来的。
+
+注意，想要描述这里的 lattice equation，是需要全称量词的。
+所以这是 high-order universal algebra。
+
 # Preface
 
 > Both [this book's] subject matter and its approach derive from a
