@@ -953,12 +953,12 @@ W = {·}                   -- error
   (match exp
     ((the var-t x)
      (env x))
-    ([(the exp-t target) body]
-     (let ((f (evaluate target env))
-           (arg (evaluate body env)))
-       (if (in? f function-t)
+    ([(the exp-t e1) e2]
+     (let ((target (evaluate e1 env))
+           (arg (evaluate e2 env)))
+       (if (in? target function-t)
          ;; be strict about arg be wrong.
-         (if (in? arg wrong-t) wrong (f arg))
+         (if (in? x wrong-t) wrong (target x))
          wrong)))
     (`(if ,e1 ,e2 ,e3)
      (let ((p (evaluate e1 env))

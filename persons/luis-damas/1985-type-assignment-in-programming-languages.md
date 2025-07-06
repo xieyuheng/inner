@@ -542,10 +542,10 @@ W = {·}         (error element)
   (match exp
     ((the var-t x)
      (env x))
-    ([(the exp-t target) body]
-     (let ((f (evaluate target env))
-           (arg (evaluate body env)))
-       (if (in? f function-t) (f arg) wrong)))
+    ([(the exp-t e1) e2]
+     (let ((target (evaluate e1 env))
+           (arg (evaluate e2 env)))
+       (if (in? target function-t) (target arg) wrong)))
     (`(lambda (,x) ,e)
      ;; use the lambda of meta-language instead of closure.
      (lambda (v) (evaluate e (env-cons env x v))))
@@ -581,12 +581,12 @@ Milner 对 application 和 let 的 evaluate 定义不同：
 (define (evaluate exp env)
   (match exp
     ...
-    ([(the exp-t target) body]
-     (let ((f (evaluate target env))
-           (arg (evaluate body env)))
-       (if (in? f function-t)
+    ([(the exp-t e1) e2]
+     (let ((target (evaluate e1 env))
+           (arg (evaluate e2 env)))
+       (if (in? target function-t)
          ;; be strict about arg be wrong.
-         (if (in? arg wrong-t) wrong (f arg))
+         (if (in? arg wrong-t) wrong (target arg))
          wrong)))
     ...
     (`(let ((,x ,e1)) ,e2)
@@ -664,6 +664,30 @@ TODO
 ## 1.6 A type assignment algorithm
 ## 1.7 Principal types and completeness of T
 ## 1.8 Type schemes, assumption schemes and type inference
+
+```scheme
+(define-type type-context-t (list-t [var-t type-t]))
+
+(define substitution-t (list-t (tau type-var-t type-t)))
+(claim subst-type (-> substitution-t type-t type-t))
+(claim subst-type-context (-> substitution-t type-context-t type-context-t))
+
+(claim infer (-> exp-t (tau type-context-t type-t)))
+(define (infer exp)
+  (match exp
+    ((the var-t v)
+     (let ((tv (type-var-gen)))
+       [[v tv] tv]))
+    ([(the exp-t e1) e2]
+     (let (([ctx1 target-type] (infer e1 env))
+           ([ctx2 arg-type] (infer e2 env))
+           (ret-type (type-var-gen))
+           (subst (unify target-type ['-> arg-type ret-type])))
+       [(subst-type-context subst (type-context-merge ctx1 ctx2))
+        (subst-type subst ret-type)]))
+    TODO))
+```
+
 ## 1.9 Type assignment and overloading
 
 # 2 A type scheme inference system
