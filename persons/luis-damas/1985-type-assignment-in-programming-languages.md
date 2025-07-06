@@ -668,9 +668,9 @@ TODO
 ```scheme
 (define-type context-t (list-t [var-t type-t]))
 
-(define substitution-t (list-t (tau type-var-t type-t)))
-(claim subst-type (-> substitution-t type-t type-t))
-(claim subst-context (-> substitution-t context-t context-t))
+(define subst-t (list-t (tau type-var-t type-t)))
+(claim subst-type (-> subst-t type-t type-t))
+(claim subst-context (-> subst-t context-t context-t))
 
 (claim infer (-> exp-t (tau context-t type-t)))
 (define (infer exp)

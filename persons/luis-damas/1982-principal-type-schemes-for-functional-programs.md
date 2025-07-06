@@ -152,10 +152,10 @@ e ::= x | e e' | λx.e | let x = e in e'
 > type context] containing type-schemes.
 
 ```scheme
-(define substitution-t (list-t (tau type-var-t type-t)))
+(define subst-t (list-t (tau type-var-t type-t)))
 
-(claim subst (-> substitution-t type-scheme-t type-scheme-t))
-(claim subst (-> substitution-t context-t context-t))
+(claim subst (-> subst-t type-scheme-t type-scheme-t))
+(claim subst (-> subst-t context-t context-t))
 ```
 
 注意，substitution 作为 map 的 key 是 type-var，
