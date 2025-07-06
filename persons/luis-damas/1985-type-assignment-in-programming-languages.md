@@ -617,7 +617,7 @@ domain 的 ideal 的集合，构成 "topology via logic" 中的 frame。
       (ideal-t value-t)))
 ```
 
-`type-valuation-t` 是语法元素 `type-context-t` 的语义。
+`type-valuation-t` 是语法元素 `context-t` 的语义。
 
 想要在具体的 meta-language 中实现 `evaluate-type`，
 就必须能实现 `ideal-t`，只要考虑 `(ideal-t V)`
@@ -630,7 +630,7 @@ TODO 补充这里的语义定义。
 定义语法元素上的关系 `A |= e: τ`：
 
 ```scheme
-(claim check (-> type-context-t exp-t type-t judgement-t))
+(claim check (-> context-t exp-t type-t judgement-t))
 ```
 
 这个关系要定义两次 `|=` 代表利用 model 的定义，
@@ -666,13 +666,13 @@ TODO
 ## 1.8 Type schemes, assumption schemes and type inference
 
 ```scheme
-(define-type type-context-t (list-t [var-t type-t]))
+(define-type context-t (list-t [var-t type-t]))
 
 (define substitution-t (list-t (tau type-var-t type-t)))
 (claim subst-type (-> substitution-t type-t type-t))
-(claim subst-type-context (-> substitution-t type-context-t type-context-t))
+(claim subst-context (-> substitution-t context-t context-t))
 
-(claim infer (-> exp-t (tau type-context-t type-t)))
+(claim infer (-> exp-t (tau context-t type-t)))
 (define (infer exp)
   (match exp
     ((the var-t v)
@@ -683,7 +683,7 @@ TODO
            ([ctx2 arg-type] (infer e2 env))
            (ret-type (type-var-gen))
            (subst (unify target-type ['-> arg-type ret-type])))
-       [(subst-type-context subst (type-context-merge ctx1 ctx2))
+       [(subst-context subst (context-merge ctx1 ctx2))
         (subst-type subst ret-type)]))
     TODO))
 ```

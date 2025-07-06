@@ -155,11 +155,11 @@ e ::= x | e e' | λx.e | let x = e in e'
 (define substitution-t (list-t (tau type-var-t type-t)))
 
 (claim subst (-> substitution-t type-scheme-t type-scheme-t))
-(claim subst (-> substitution-t type-context-t type-context-t))
+(claim subst (-> substitution-t context-t context-t))
 ```
 
 注意，substitution 作为 map 的 key 是 type-var，
-而 type-context 作为 map 的 key 是 var。
+而 context 作为 map 的 key 是 var。
 
 > By contrast a type-scheme σ = ∀α1...αm τ
 > has a _generic instance_ σ' = ∀β1...βn τ'
@@ -261,8 +261,8 @@ W = {·}                     (error element)
 可以回顾一下其在（最简单的）命题演算中的定义。
 
 ```scheme
-(define type-context-t (list-t (tau var-t type-scheme-t)))
-(claim check (-> type-context-t exp-t type-scheme-t judgment-t))
+(define context-t (list-t (tau var-t type-scheme-t)))
+(claim check (-> context-t exp-t type-scheme-t judgment-t))
 ```
 
 > If the assertion is closed, i.e. if A and σ contain no free type
@@ -271,7 +271,7 @@ W = {·}                     (error element)
 > it follows that evaluate [[e]] η: σ.
 
 用对 environment 的全称量词来从语义上（数学意义上）定义 judgment。
-即，对于任意 environment，如果 type-context 中的属于关系都成立，
+即，对于任意 environment，如果 context 中的属于关系都成立，
 那么结论中的属于关系在这个 environment 的 evaluate 下也成立。
 这就是 model theory 中 semantic entailment -- `|=` 的定义。
 
@@ -347,8 +347,8 @@ W = {·}                     (error element)
 为了方便排版，我们反过来写推理树：
 
 ```scheme
-(define type-context-t (list-t (tau var-t type-scheme-t)))
-(claim check (-> type-context-t exp-t type-scheme-t judgment-t))
+(define context-t (list-t (tau var-t type-scheme-t)))
+(claim check (-> context-t exp-t type-scheme-t judgment-t))
 
 (define-rule TAUT (check A x σ)
   (equal? (lookup A x) σ))
@@ -481,7 +481,7 @@ TODO 实现这里的算法。
 # 7 Completeness of W
 
 这里所说的 A' be an instance of A，
-应该只是针对 type-context 的 value 而言的。
+应该只是针对 context 的 value 而言的。
 
 > The detailed proofs of results in this paper, and related results,
 > will appear in the first author’s forthcoming Ph.D. Thesis.
