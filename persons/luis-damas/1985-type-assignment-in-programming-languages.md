@@ -617,7 +617,7 @@ domain 的 ideal 的集合，构成 "topology via logic" 中的 frame。
       (ideal-t value-t)))
 ```
 
-`type-valuation-t` 是语法元素 `context-t` 的语义。
+`type-valuation-t` 是语法元素 `ctx-t` 的语义。
 
 想要在具体的 meta-language 中实现 `evaluate-type`，
 就必须能实现 `ideal-t`，只要考虑 `(ideal-t V)`
@@ -630,7 +630,7 @@ TODO 补充这里的语义定义。
 定义语法元素上的关系 `A |= e: τ`：
 
 ```scheme
-(claim check (-> context-t exp-t type-t judgement-t))
+(claim check (-> ctx-t exp-t type-t judgement-t))
 ```
 
 这个关系要定义两次 `|=` 代表利用 model 的定义，
@@ -666,13 +666,13 @@ TODO
 ## 1.8 Type schemes, assumption schemes and type inference
 
 ```scheme
-(define-type context-t (list-t [var-t type-t]))
+(define-type ctx-t (list-t [var-t type-t]))
 
 (define subst-t (list-t (tau type-var-t type-t)))
 (claim subst-on-type (-> subst-t type-t type-t))
-(claim subst-on-context (-> subst-t context-t context-t))
+(claim subst-on-ctx (-> subst-t ctx-t ctx-t))
 
-(claim infer (-> exp-t (tau context-t type-t)))
+(claim infer (-> exp-t (tau ctx-t type-t)))
 (define (infer exp)
   (match exp
     ((the var-t var)
@@ -680,23 +680,24 @@ TODO
        [[var var-type] var-type]))
     ([(the exp-t e1) e2]
      (let (([ctx1 target-type] (infer e1 env))
-           ([ctx2 arg-type] (infer e2 env))
-           (ret-type (type-var-gen))
-           (subst (unify target-type ['-> arg-type ret-type])))
-       [(subst-on-context subst (context-merge ctx1 ctx2))
-        (subst-on-type subst ret-type)]))
+           ([ctx2 arg-type] (infer e2 env)))
+       (let* ((ret-type (type-var-gen))
+              (subst (unify target-type ['-> arg-type ret-type])))
+         [(subst-on-ctx subst (ctx-merge ctx1 ctx2))
+          (subst-on-type subst ret-type)])))
     (`(lambda (,var) ,body)
      (let ([ctx body-type] (infer body))
-       (cond ((not (context-has? ctx var))
+       (cond ((not (ctx-has? ctx var))
               [ctx [-> (type-var-gen) body-type]])
-             ((context-has-one? ctx var)
-              [(context-remove ctx var)
-               [-> (context-get ctx var) body-type]])
-             ((context-has-many? ctx var)
-              (let ((subst (unify-many (context-get-many ctx var))))
-                [(subst-on-context (context-remove-many ctx var))
-                 (subst-on-type [-> (context-get ctx var) body-type])])))))
-    TODO))
+             ((ctx-has-one? ctx var)
+              [(ctx-remove ctx var)
+               [-> (ctx-get ctx var) body-type]])
+             ((ctx-has-many? ctx var)
+              (let ((subst (unify-many (ctx-get-many ctx var))))
+                [(subst-on-ctx (ctx-remove-many ctx var))
+                 (subst-on-type [-> (ctx-get ctx var) body-type])])))))
+    (`(let ((,var ,rhs)) ,body)
+     TODO)))
 ```
 
 ## 1.9 Type assignment and overloading
