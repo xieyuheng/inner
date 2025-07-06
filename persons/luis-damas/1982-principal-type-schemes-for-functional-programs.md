@@ -154,8 +154,8 @@ e ::= x | e e' | λx.e | let x = e in e'
 ```scheme
 (define subst-t (list-t (tau type-var-t type-t)))
 
-(claim subst (-> subst-t type-scheme-t type-scheme-t))
-(claim subst (-> subst-t context-t context-t))
+(claim subst-on-type (-> subst-t type-scheme-t type-scheme-t))
+(claim subst-on-context (-> subst-t context-t context-t))
 ```
 
 注意，substitution 作为 map 的 key 是 type-var，
