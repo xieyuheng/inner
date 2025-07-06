@@ -241,6 +241,23 @@ tuple type、record type 和 function type，
 注意，想要描述这里的 lattice equation，是需要全称量词的。
 所以这是 high-order universal algebra。
 
+是否允许 domain 的单个元素或者元素的集合，
+通过 `enum` 类型构造子形成新的类型，
+应该是对应于 frame 是否能 space 化或 locale 化，
+具体还需要仔细研究。
+
+## Galois connection 是「属于」关系的推广
+
+[2025-07-07] 这里处理 domain 和 frame 之间的关系，
+以形成 topological system 的方式，
+是对「属于」关系的推广。
+
+而这种 topological system 就是特殊的 Galois connection。
+
+因此 Galois connection 就是对「属于」关系的推广。
+
+这就可以联系到很多理论，比如 formal concept analysis。
+
 # Preface
 
 > Both [this book's] subject matter and its approach derive from a
