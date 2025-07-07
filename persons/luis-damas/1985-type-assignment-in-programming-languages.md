@@ -665,8 +665,7 @@ TODO 补充这里的语义定义。
 而是把 ctx 当作返回值的一部分。
 
 ```scheme
-(define-type ctx-t (list-t [var-t type-t]))
-
+(define-type ctx-t (list-t (tau var-t type-t)))
 (define-type subst-t (list-t (tau type-var-t type-t)))
 (claim subst-on-type (-> subst-t type-t type-t))
 (claim subst-on-ctx (-> subst-t ctx-t ctx-t))
@@ -813,6 +812,8 @@ TODO 实现了基础的 Hindley-Milner type system 之后再回来看这个功�
 
 # 2 A type scheme inference system
 
+## 2.1 Introduction
+
 > The theory supporting the polymorphic type discipline of ML, the
 > metalanguage of the LCF system [Gordon et al 79], was studied in
 > [Milner 78].
@@ -832,12 +833,100 @@ TODO 实现了基础的 Hindley-Milner type system 之后再回来看这个功�
 > study the relation between the inference system of chapter I and the
 > one defined here.
 
-## 2.1 Introduction
+为什么不直接介绍这个版本的更好的类型系统？
+目前所形成的唯一效果就是推迟引入 type scheme。
+type scheme 并不是什么复杂的概念，
+比 lambda abstraction 还简单，
+没必要推迟引入。
+
 ## 2.2 Preliminaries
+
+增加 type scheme：
+
+```bnf
+<type> ::= <type-var> | <primitive-type> | (-> <type> <type>)
+<type-scheme> ::= <type> | (nu (<type-var>) <type-scheme>)
+```
+
+这里还提了一下 type-scheme 的 denotational semantics，
+但是用到了 ideal 的无限 meet。
+可以这么用吗？
+
 ## 2.3 Type inference
+
+> From now on, and in contrast with chapter I, we shall assume that
+> `A` contains at most one assumption about each identifier `x`.
+
+由于增加 type scheme，
+导致与第一章相比，增加了 rule INST 和 GEN，
+并且 rule LET 变了，
+不是给约束变元的每次出现都生成一个 type 保存在 ctx 中，
+而是只把一个 type scheme 保存在 ctx 中。
+
+需要的时候，可以通过 INST rule
+把具体的 type 从 type scheme 通过代换找回来。
+
 ## 2.4 The type assignment algorithm W
+
+与第一章不同的是，
+这里 `infer` 带上参数 `ctx` 了，
+返回值中的 `ctx` 也变成了 `subst`。
+
+为了方便未来使用组合子，
+我把 `ctx` 当成 `infer` 的最后一个（第二个）参数。
+
+```scheme
+(define-type ctx-t (list-t (tau var-t type-scheme-t)))
+(define-type subst-t (list-t (tau type-var-t type-t)))
+(claim subst-compose (-> (list-t subst-t) subst-t))
+(claim subst-on-type (-> subst-t type-t type-t))
+(claim subst-on-type-scheme (-> subst-t type-scheme-t type-scheme-t))
+(claim subst-on-ctx (-> subst-t ctx-t ctx-t))
+
+(claim infer (-> exp-t ctx-t (tau subst-t type-t)))
+(define (infer exp ctx)
+  (match exp
+    ((the var-t v)
+     [[]
+      (type-scheme-gen (ctx-get ctx v))])
+    ([(the exp-t e1) e2]
+     (= [S1 target-type] (infer e1 ctx))
+     (= [S2 arg-type] (infer e2 (subst-on-ctx S1 ctx)))
+     (= ret-type (type-var-gen))
+     (= U (unify (subst-on-type S2 target-type)
+                 ['-> arg-type ret-type]))
+     [(subst-compose [U S2 S1])
+      (subst-on-type U ret-type)])
+    (`(lambda (,v) ,e)
+     (= arg-type (type-var-gen))
+     (= [S ret-type] (infer e (ctx-update ctx v arg-type)))
+     [S
+      ['-> arg-type ret-type]])
+    (`(let ((,v ,e1)) ,e2)
+     (= [S1 rhs-type] (infer e1 ctx))
+     (claim create-type-closure (-> ctx-t type-t type-scheme-t))
+     (= rhs-type-scheme (create-type-closure (subst-on-ctx S1 ctx) rhs-type))
+     (= body-ctx (subst-on-ctx S1 (ctx-update ctx v rhs-type-scheme)))
+     (= [S2 body-type] (infer e2 body-ctx))
+     [(subst-compose [S2 S1])
+      body-type])))
+```
+
+> **Theorem 2** (Soundness of W). If `W(A, e)` succeeds with `(S, τ)`
+> then there is a derivation of `(S A) |- e: τ`.
+
+> Finally we note that since `(S A) |- e: τ` holds then
+> `(S A) |- e: (create-type-closure (S A) τ)` also holds.
+> We will refer to `(create-type-closure (S A) τ)`
+> as the type scheme computed by W for `e`.
+
 ## 2.5 The completeness of W and principal type schemes
+
+TODO
+
 ## 2.6 Comparison with the inference system of chapter I
+
+TODO
 
 # 3 References to a store and type inference
 
