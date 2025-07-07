@@ -866,6 +866,15 @@ type scheme 并不是什么复杂的概念，
 需要的时候，可以通过 INST rule
 把具体的 type 从 type scheme 通过代换找回来。
 
+> Given a set of variables `V` and a type `τ` we define the _closure_
+> of `τ` under `V` -- `(type-closure V τ)`, as being the type scheme
+> `(nu (A1 A2 ...) τ)` there `(A1 A2 ...)` are all the type variables
+> occurring in `τ` which are not in `V`.
+
+> For any assumptions `A` we will use `(type-closure A τ)` to denote
+> the closure of `τ` under the set of type variables which occur in
+> `A`.
+
 ## 2.4 The type assignment algorithm W
 
 与第一章不同的是，
@@ -904,8 +913,8 @@ type scheme 并不是什么复杂的概念，
       ['-> arg-type ret-type]])
     (`(let ((,v ,e1)) ,e2)
      (= [S1 rhs-type] (infer e1 ctx))
-     (claim create-type-closure (-> ctx-t type-t type-scheme-t))
-     (= rhs-type-scheme (create-type-closure (subst-on-ctx S1 ctx) rhs-type))
+     (claim type-closure (-> ctx-t type-t type-scheme-t))
+     (= rhs-type-scheme (type-closure (subst-on-ctx S1 ctx) rhs-type))
      (= body-ctx (subst-on-ctx S1 (ctx-update ctx v rhs-type-scheme)))
      (= [S2 body-type] (infer e2 body-ctx))
      [(subst-compose [S2 S1])
@@ -916,15 +925,20 @@ type scheme 并不是什么复杂的概念，
 > then there is a derivation of `(S A) |- e: τ`.
 
 > Finally we note that since `(S A) |- e: τ` holds then
-> `(S A) |- e: (create-type-closure (S A) τ)` also holds.
-> We will refer to `(create-type-closure (S A) τ)`
+> `(S A) |- e: (type-closure (S A) τ)` also holds.
+> We will refer to `(type-closure (S A) τ)`
 > as the type scheme computed by W for `e`.
 
 ## 2.5 The completeness of W and principal type schemes
 
-TODO
+> In this section we prove the completeness of the type assignment
+> algorithm W and use this result to prove the existence of principal
+> type schemes.
 
 ## 2.6 Comparison with the inference system of chapter I
+
+> We will close this chapter with a comparison of the inference system
+> defined in this chapter with the one defined in chapter I.
 
 TODO
 
