@@ -780,11 +780,36 @@ C.B. Yelles, PhD thesis, University of Wales, 1979.
 - polytype -- 允许出现全局类型变量。
 - type scheme -- 允许出现全局类型变量和局部类型变量。
 
-TODO
+`[τ1, ..., τ2 /a1, ..., an] τ` 是 `∀ a1 ... an τ` 的 generic instance。
+
+这里定义了一个 type 和 type scheme 之间的 instance 关系，论文中记录为 `ν < η`。
+因此一个 type scheme 对应一个 type 的集合，
+这个集合之间的 inclusion 关系又可以用来定义 type scheme 之间的序关系。
+
+> Given a type scheme `η` we will let a substitution `S` act on `η`
+> by acting on the free variables of `η` while renaming, if
+> necessary, the generic variables of `η` to avoid clashes with
+> variables involved in `S`.
 
 ## 1.9 Type assignment and overloading
 
-TODO
+> By overloading an identifier we will mean using that identifier to
+> denote more than one value.
+
+> The way the ambiguities that arise from overloading are handled is
+> by using typechecking considerations to decide which value is
+> intended by each occurrence of an overloaded identifier. This
+> implies that each of the values represented by an overloaded
+> identifier has type(s) distinct from those of the others. The
+> process of identification just referred can be regarded as a
+> transformation which produces a copy of the original program but
+> with overloaded identifiers replaced by normal ones, e.g., each
+> occurrence of `+` would be replaced by either `+int`. or `+real`.
+
+这种方式不能用来实现 generic dispatching。
+但是能够给如何实现带有类型的 generic dispatching 以启发？
+
+TODO 实现了基础的 Hindley-Milner type system 之后再回来看这个功能。
 
 # 2 A type scheme inference system
 
