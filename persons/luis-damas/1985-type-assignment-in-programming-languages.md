@@ -881,8 +881,9 @@ type scheme 并不是什么复杂的概念，
 这里 `infer` 带上参数 `ctx` 了，
 返回值中的 `ctx` 也变成了 `subst`。
 
-为了方便未来使用组合子，
-我把 `ctx` 当成 `infer` 的最后一个（第二个）参数。
+为了迎合 denotational semantics，
+我把 `ctx` 当成 `infer` 的最后一个（第二个）参数，
+这样 `infer` 就把 `exp-t` 映射成 `(-> ctx-t (tau subst-t type-t))`。
 
 ```scheme
 (define-type ctx-t (list-t (tau var-t type-scheme-t)))
