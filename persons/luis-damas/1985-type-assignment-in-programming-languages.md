@@ -917,6 +917,10 @@ type scheme 并不是什么复杂的概念，
      [(subst-compose [S2 S1]) body-type])))
 ```
 
+TODO 对比类型检查推导函数，与类型 inference rules，
+看看能否从 inference rules 看出来算法应该如何实现。
+bidirectional type checker 是可以做到这一点的。
+
 > **Theorem 2** (Soundness of W). If `W(A, e)` succeeds with `(S, τ)`
 > then there is a derivation of `(S A) |- e: τ`.
 
@@ -936,11 +940,34 @@ type scheme 并不是什么复杂的概念，
 > We will close this chapter with a comparison of the inference system
 > defined in this chapter with the one defined in chapter I.
 
-TODO
+> Proposition 2. ...
+
+> It follows from the above result that the set of types that can be
+> inferred for an expression, from a set of assumption schemes
+> involving at most one assumption about each identifier, is the same
+> for both inference systems.
+
+> On the other hand the type discipline of chapter I can cope with
+> sets of assumption involving more then one assumption scheme about
+> each identifier and thus, that type discipline can be regarded as a
+> proper extension of the one studied in the present chapter.
+
+反而是第一章的类型系统更一般？
 
 # 3 References to a store and type inference
 
 # 3.1 Introduction
+
+> In this chapter we extend the methods and results of chapter II to
+> the case where the language semantics is no longer purely
+> applicative but includes references to an updatable store as first
+> class objects.
+
+这里对 `ref` 的讨论让人想起 EOPL，
+EOPL 中的 topics，应该是受到 Milner 的工作的启发的。
+
+TODO
+
 # 3.2 The language and its semantics
 # 3.3 Types, type schemes and their semantics
 # 3.4 Type inference
@@ -948,3 +975,88 @@ TODO
 # 3.6 Weak polymorphism and programming examples
 
 # 4 Conclusions and directions for further research
+
+> The main objective of this dissertation as set out in the
+> intoduction was to complete and extend the work of Robin Milner on
+> polymorphic type assignment in programming. Here we examine the
+> extent to which that objective was attained and also call the
+> readers attention to some aspects which we think deserve a deeper
+> study.
+
+> The type inference system studied in chapter 1 can be seen as an
+> extension of the system of Robin Milner to handle overloading. Apart
+> from that it is interesting in itself because it provides a
+> conceptually much more simple framework in which the theory of type
+> assignment can be studied.
+
+我一直认为带有局部类型变量的 type scheme 反而是更简单的。
+
+> One of the interesting points made in that chapter is not only that
+> typechecking can be supported by type assignment theory but also
+> that derivation trees and hence type assignment itself can be used
+> to formulate and justify the program transformations which need to
+> be done by compilers to support overloading.
+
+> We believe this use of derivation trees can be also made in relation
+> with other possible extensions to the language such as those
+> involving run-time type manipulation.
+
+run-time type manipulation 正是我需要的。
+
+> We should also point out that we have only presented a partial
+> solution to the problem of handling user defined overloading and we
+> think the way to overcome the limitation imposed is to design an
+> algorithm that, like the one of chapter II, will go directly from a
+> set of assumption schemes to the set of type schemes that can be
+> inferred for the expression.
+
+作者对 chapter 1 的某些处理也不甚满意。
+
+> The reformulation of Milner's system presented in Chapter II
+> provides a better insight on its features and in particular allowed
+> us to give an affirmative answer to the questions left open in his
+> work concerning the existence of principal types and the
+> completeness of the type assignment algorithm.
+
+作为 reformulation，主要包括引入 type context，
+来代替 Milner 使用的 prefix 概念。
+
+这里强调本论文的两个贡献：
+
+- the existence of principal types.
+- the completeness of the type assignment algorithm.
+
+> Chapter III shows that type assignment and type polymorphism need
+> not be confined to purely applicative languages. From a practical
+> point of view it also provides a type discipline which is
+> sufficiently powerful to handle a large class of programs involving
+> references as can be judged by the examples provided there.
+
+> Nevertheless we should point out that many of the features of that
+> system were forced on us by technical considerations such as the
+> existence of a semantics for types and of a type assignment
+> algorithm. This may explain why we were unable to do for this system
+> what chapter I does for Milner's system. One of the consequences of
+> this fact is that the question of how to handle references in the
+> presence of overloading is still left open, at least from a
+> theoretical point of view.
+
+> On the other hand we also should point that the technical problems
+> associated with the definition of a semantics for types have nothing
+> to do with polymorphism and would arise even if only monotypes were
+> involved, so the methods and models presented there are also
+> relevant to the study of the properties of typechecking for non
+> purely applicative programming languages using the techniques of
+> denotational semantics.
+
+没能直接给 polymorphism 以所指，而是用了无限 meet。
+我觉的这并不是什么好事。
+应该直接给出所指，并且所给出的所指，
+最好能增进我们对类型的理解。
+
+> Finally the notion of weak polymorphism and the syntactical
+> mechanisms used to enforce it, combined with program transformations
+> based on derivation trees, seem to be promising in handling other
+> extensions to the language such as those involving run-time type
+> manipulation where those mechanisms could be used to decide what
+> types needed to be dynamically passed to routines.
