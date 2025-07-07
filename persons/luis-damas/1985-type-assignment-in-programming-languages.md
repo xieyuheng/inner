@@ -896,29 +896,24 @@ type scheme 并不是什么复杂的概念，
 (define (infer exp ctx)
   (match exp
     ((the var-t v)
-     [[]
-      (type-scheme-gen (ctx-get ctx v))])
+     [[] (type-scheme-gen (ctx-get ctx v))])
     ([(the exp-t e1) e2]
      (= [S1 target-type] (infer e1 ctx))
      (= [S2 arg-type] (infer e2 (subst-on-ctx S1 ctx)))
      (= ret-type (type-var-gen))
-     (= U (unify (subst-on-type S2 target-type)
-                 ['-> arg-type ret-type]))
-     [(subst-compose [U S2 S1])
-      (subst-on-type U ret-type)])
+     (= U (unify (subst-on-type S2 target-type) ['-> arg-type ret-type]))
+     [(subst-compose [U S2 S1]) (subst-on-type U ret-type)])
     (`(lambda (,v) ,e)
      (= arg-type (type-var-gen))
      (= [S ret-type] (infer e (ctx-update ctx v arg-type)))
-     [S
-      ['-> arg-type ret-type]])
+     [S ['-> arg-type ret-type]])
     (`(let ((,v ,e1)) ,e2)
      (= [S1 rhs-type] (infer e1 ctx))
      (claim type-closure (-> ctx-t type-t type-scheme-t))
      (= rhs-type-scheme (type-closure (subst-on-ctx S1 ctx) rhs-type))
      (= body-ctx (subst-on-ctx S1 (ctx-update ctx v rhs-type-scheme)))
      (= [S2 body-type] (infer e2 body-ctx))
-     [(subst-compose [S2 S1])
-      body-type])))
+     [(subst-compose [S2 S1]) body-type])))
 ```
 
 > **Theorem 2** (Soundness of W). If `W(A, e)` succeeds with `(S, τ)`
