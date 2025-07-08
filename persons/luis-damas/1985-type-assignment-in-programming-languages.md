@@ -888,7 +888,7 @@ type scheme 并不是什么复杂的概念，
 ```scheme
 (define-type ctx-t (list-t (tau var-t type-scheme-t)))
 (define-type subst-t (list-t (tau type-var-t type-t)))
-(claim subst-compose (-> (list-t subst-t) subst-t))
+(claim subst-compose-many (-> (list-t subst-t) subst-t))
 (claim subst-on-type (-> subst-t type-t type-t))
 (claim subst-on-type-scheme (-> subst-t type-scheme-t type-scheme-t))
 (claim subst-on-ctx (-> subst-t ctx-t ctx-t))
@@ -903,7 +903,7 @@ type scheme 并不是什么复杂的概念，
      (= [S2 arg-type] (infer e2 (subst-on-ctx S1 ctx)))
      (= ret-type (type-var-gen))
      (= U (unify (subst-on-type S2 target-type) ['-> arg-type ret-type]))
-     [(subst-compose [U S2 S1]) (subst-on-type U ret-type)])
+     [(subst-compose-many [U S2 S1]) (subst-on-type U ret-type)])
     (`(lambda (,v) ,e)
      (= arg-type (type-var-gen))
      (= [S ret-type] (infer e (ctx-update ctx v arg-type)))
@@ -914,7 +914,7 @@ type scheme 并不是什么复杂的概念，
      (= rhs-type-scheme (type-closure (subst-on-ctx S1 ctx) rhs-type))
      (= body-ctx (subst-on-ctx S1 (ctx-update ctx v rhs-type-scheme)))
      (= [S2 body-type] (infer e2 body-ctx))
-     [(subst-compose [S2 S1]) body-type])))
+     [(subst-compose-many [S2 S1]) body-type])))
 ```
 
 TODO 对比类型检查推导函数，与类型 inference rules，
