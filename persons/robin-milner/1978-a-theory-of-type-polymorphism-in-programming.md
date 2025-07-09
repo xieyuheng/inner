@@ -809,7 +809,7 @@ check 显然是简单的：
   false    true
      \     /
       \   /
-  (undefined bool)
+ (undefined bool)
 ```
 
 我直接用 `bool-t` 来指代 B0。
@@ -1276,10 +1276,49 @@ TODO 熟悉这个证明的细节。
 
 ## 4.1 The Algorithm W
 
-TODO 实现算法的时候再来看细节。
+> In this section we tackle the question of finding a well typing for
+> a prefixed expression.  We present an algorithm W -- for this. We
+> would like to prove that W is both syntactically sound and (in some
+> sense) complete. By syntactic soundness, we mean that whenever W
+> succeeds it produces a wt; by completeness, we mean that whenever a
+> wt exists, W succeeds in finding one which is (in some sense) at
+> least as general.
+
+> Although W is probably complete, it is difficult to find a simple
+> proof. So we concentrate on soundness, and then comment on
+> implementation of W and on extending it to deal with richer
+> languages. Since a type-checking algorithm which simulates W has
+> been working successfully for nearly 2 years in the context of the
+> LCF metalanguage ML [2], we have evidence for its usefulness and
+> even -- to some extent -- for its completeness.
+
+`wt` well-typed 就是以根据推演规则而得到的，
+类型检查 judgment `(check ctx exp type)`。
+
+这里关于 W 的一致性和完备性，
+是作为推演规则的关系，
+和作为函数的 W 算法之间的关系。
+
+这与推演系统的一致性和完备性不同，
+后者是推演系统和模型的关系。
+
+类型的模型就是值的子集，
+到 Damas 的论文，才说类型的模型是 ideal。
+
+这篇论文没有证明完备性。
+相信完备性是因为有很多测试。
+Damas 的论文才证明了完备性。
 
 ## 4.2 The Soundness of W
 ## 4.3 Implementation of W; a Simplified Algorithm J
+
+> As it stands, W is hardly an efficient algorithm; substitutions are
+> applied too often.  It was formulated to aid the proof of soundness.
+> We now present a simpler algorithm J which simulates W in a precise
+> sense.
+
+把明显返回 subst 的算法，
+变成带有一个 subst 全局变量的算法。
 
 # 5 Types in Extended Languages
 
