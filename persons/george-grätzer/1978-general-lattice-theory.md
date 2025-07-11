@@ -52,11 +52,12 @@ year: 1978
 > to formalize propositional logic led to the concept of Boolean
 > algebras. While investigating the axiomiatics of Boolean algebras at
 > the end of the nineteenth century, Charles S. Peirce and Ernst
-> Schroder found it useful to introduce the lattice concept.
+> Schröder found it useful to introduce the lattice concept.
 > Independently, Richard Dedekind’s research on ideals of algebraic
 > numbers led to the same discovery.
 
 介绍 lattice 的起源可以追溯到 Peirce 和 Boole。
+这里提到的 Schröder 好像是 Peirce 工作的宣传者，也值得一读。
 Garrett Birkhoff 的贡献在于把 lattice 发展成了一个独立的数学分支。
 
 > The goal of the present volume can be stated very simply: to discuss
@@ -151,11 +152,90 @@ Garrett Birkhoff 的贡献在于把 lattice 发展成了一个独立的数学分
 
 真正需要用序关系才能证明的是吸收律。
 
-### Exercises I.1.1
+### Exercises
+
+**Posets**
+
+**Exercises I.1.2** 这个习题也暗示了，用严格的 `<` 也可以定义 poset。
+
+**Exercises I.1.3** 首先要证明在 poset 中，不只有：
+
+    (x ≤ y) and (y ≤ x) => (x = y)
+
+而是可以更进一步证明：
+
+    (x ≤ y) and (y ≤ x) <=> (x = y)
+
+然后就可以用逻辑中的吸收律，
+把所带有的 `(x ≤ y) or (x = y)` 的 `(x = y)` 消去：
+
+    (x ≤ y) or (x = y) <=>
+    (x ≤ y) or ((x ≤ y) and (y ≤ x))
+
+使用吸收律之后就回到了 `(x ≤ y)`。
+
+**Exercises I.1.4** 为了确保 enumeration 不遗漏，
+不能直接 enumerate 元素个数为 5 的情况，
+应该用一个保证不遗漏的递归方法，
+能从元素个数为 n 构造的结果，构造出元素个数为 n+1 结果，
+然后从元素个数为 1 开始，一直构造到元素个数为 5。
+
+**Exercises I.1.6** 可以利用 Exercises I.1.5 来证明，
+因为关系（relation）是笛卡尔积的子集，
+如果不这样证明的话，直接证明后者，就会很复杂。
+
+**Exercises I.1.8** 其实是想说 `(inf P) = (sup ∅)`。
+
+**Lattices as Posets**
+
+**Exercises I.1.12** 一个群的子群（或正规子群）的集合都构成 lattice。
+TODO 此时如何定义 join 和 meet？需要复习群论的。
+
+**Exercises I.1.13** 对于任意子集都有 inf 存在的 poset，
+构成 lattice，因为可以证明对于任意两个元素的子集 `{a, b}` 也有 sup 存在。
+
+TODO 应该取 `{a, b}` 的上界的集合的 inf。
+但是如何证明这个 inf 还是上界呢？
+如果上界的集合是有限的，
+可以用 meet 的等式来证明有限个上界的 inf 还是上界。
+但是如果是无限个上界呢？
+
+TODO 这里两个元素的子集是否可以替换成任意子集？
+"topology via logic" 里面有这个定理的证明。
+
+**Semilattices as Posets**
+
+**Exercises I.1.15** 一个群的有限生成子群，
+就子群关系而言所形成的序关系，是 join-semilaftice，
+但是不是 meet-semilaftice！
+
+TODO 为什么？
+
+**Exercises I.1.16** 这里利用 convex function，
+给出了是 meet-semilaftice，但是不是 join-semilaftice 的例子。
+
+**Lattices as Algebras**
+
+TODO
+
+**Miscellany**
 
 TODO
 
 ## I.2. How to Describe Lattices
+
+> To illustrate results and to refute conjectures we shall have to
+> describe a large number of examples of lattices. This can be done by
+> basing the examples on known mathematical structures, as illustrated
+> in the exercises of Section 1. I n this section we list a few other
+> methods.
+
+研究任何理论，都需要有能力 "to describe a large number of examples"。
+
+TODO 这一节描述 lattice 的方式总结：
+
+- TODO
+
 ## I.3. Some Algebraic Concepts
 ## I.4. Polynomials, Identities, and Inequalities
 ## I.5. Free Lattices
