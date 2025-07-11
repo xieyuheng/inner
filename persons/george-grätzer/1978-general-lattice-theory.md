@@ -30,6 +30,22 @@ year: 1978
 
 因此想通过这本书对 lattice theory 有一个更一般的了解。
 
+# My Notes
+
+## type system as lattice
+
+[2025-07-11]
+
+目前的想法：
+
+- tuple -- 某种 direct product。
+- record -- 用基础元素的 meet，表示所有 record，同时也是某种 direct product。
+- tau -- tuple 和 record 的某种 direct product。
+
+为了给已有的 lattice 引入新的 constructor，
+是否只需要定义这个 constructor
+和所有其他 constructors 之间的可能的 relations？
+
 # Introduction
 
 > The goal of the present volume can be stated very simply: to discuss
