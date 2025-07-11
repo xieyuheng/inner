@@ -32,4 +32,29 @@ year: 1978
 
 # Introduction
 
+> The goal of the present volume can be stated very simply: to discuss
+> in depth the basics of general lattice theory. In other words, I
+> tried to include what I consider the most important results and
+> research methods of all of lattice theory. To treat the rudimentary
+> results in depth and still keep the size of the volume from getting
+> out of hand, I had to omit a great deal.
+
+> ... It is hoped that even those whose main interest lies in areas not
+> treated here in detail will find this volume useful by obtaining
+> from this book the background in lattice theory so necessary in
+> allied fields.
+
+> In my view, distributive lattices have played a many faceted role in
+> the development of lattice theory. Historically, lattice theory
+> started with (Boolean) distributive lattices; as a result, the
+> theory of distributive lattices is one of the most extensive and
+> most satisfying chapters of lattice theory. Distributive lattices
+> have provided the motivation for many results in general lattice
+> theory. Many conditions on lattices and on elements and ideals of
+> lattices are weakened forms of distributivity. Therefore, a thorough
+> knowledge of distributive lattices is indispensable for work in
+> lattice theory. Finally, in many applications the condition of
+> distributivity is imposed on lattices arising in various areas of
+> mathematics, especially algebra.
+
 TODO

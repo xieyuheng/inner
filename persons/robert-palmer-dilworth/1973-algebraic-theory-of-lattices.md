@@ -34,9 +34,6 @@ year: 1973
 > lattice theoretical insights.
 
 # 1 Partially ordered sets
-
-TODO
-
 # 2 Lattice
 # 3 Distributive, modular and semimodular lattices
 # 4 Complemented lattices
