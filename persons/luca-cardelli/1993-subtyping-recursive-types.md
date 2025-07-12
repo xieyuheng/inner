@@ -55,6 +55,25 @@ year: 1993
 
 # 1 Introduction
 
+> Subtyping is an inclusion relation between types that is present to
+> some degree in many programming languages. Subtyping is especially
+> important in object-oriented languages, where it is crucial for
+> understanding the much more complex notions of inheritance and
+> subclassing.
+
+在我想要设计的 x-lisp 中，好像更简单，
+没有 subtyping 和 subclassing 之分。
+
+> Recursive types are also present in most languages. These types are
+> supposed to _unfold_ recursively to match other types. Moreover,
+> unfolding must preserve typing soundness and not cause the compiler
+> to diverge.
+
+在需要的时候 "to unfold recursively"，
+看起来就是用有限的表示来实现无限的 recursion 的唯一方法。
+
+TODO
+
 作者为了研究 structural type + recursive type，
 专门设计了两个语言 Amber 和 Quest，
 在这一节的开头有引用到相关的论文。
