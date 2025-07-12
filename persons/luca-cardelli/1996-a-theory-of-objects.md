@@ -1,10 +1,10 @@
 ---
 title: A Theory of Objects
-authors: Martin Abadi, Luca Cardelli
+authors: [martin abadi, luca cardelli]
 date: 1996
 ---
 
-# 笔记
+# My Notes
 
 ## Object 不是函数
 
