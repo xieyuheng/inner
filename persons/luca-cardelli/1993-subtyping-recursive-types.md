@@ -16,6 +16,8 @@ year: 1993
 
 # My Notes
 
+## directed graph 生成 infinite tree
+
 [2025-06-08] 只看算法而不看对算法正确性的证明的话，其实 idea 非常简单。
 本质上是要比较 infinite tree，
 而这些 infinite tree 都是由 rooted directed graph 生成的，
@@ -47,6 +49,9 @@ year: 1993
 > the uniquely determined coercion map between the two types.
 > Moreover, we derive an algorithm that, when given a term with
 > implicit coercions, can infer its least type whenever possible.
+
+需要用 coercion 是否代表这里所处理的 subtype 关系，
+并非纯粹的集合之间的 inclusion 关系？
 
 # 1 Introduction
 
@@ -99,12 +104,28 @@ Cell = {
 mu 来自 recursion theory 中的 mu operator。
 有时间了需要仔细学一下 recursion theory。
 
-用 lisp 的语法表示 mu，并且允许类型参数：
+论文中不允许类型参数：
+
+```scheme
+(define int-list-t (union unit-t (tau int-t int-list-t)))
+(define int-list-t (mu (T) (union unit-t (tau int-t T))))
+```
+
+我用 lisp 的语法表示 `mu`，
+并且允许类型参数：
 
 ```scheme
 (define (list-t A) (union unit-t (tau A (list-t A))))
 (define (list-t A) (mu (T) (union unit-t (tau A T))))
 ```
+
+当允许类型参数时，
+把递归定义的 type 函数 `list-t`，改写为使用 `mu` 的定义，
+假设了递归调用 `list-t` 时的参数不变。
+
+因为用 `mu` 引入的 `T` 并不能带参数。
+
+可以理解为是把「带类型参数」和「递归」这两件事分开表示了。
 
 > To say that L ≜ µt.Unit+(Int×t) (where ≜ means equal by definition)
 > is the solution of the List equation, implies that L must satisfy
