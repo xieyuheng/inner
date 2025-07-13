@@ -453,6 +453,11 @@ f(x) = 1 / (1 - x)
 而「错误方案 A」中的 `forall ... exists ...` 就是为了解决这个问题的。
 为什么不能用「错误方案 A」？
 
+看下面的例子，可能是因为 finite approximation
+和 finite unfolding 的定义完全不同，
+前者不带被递归定义的 name，
+后者依然带有被递归定义的 name。
+
 > Unfortunately, the formal subtyping rules for recursive types and
 > the related algorithms cannot rely on approximations, since
 > “`α^n ≤ β^n` for every `n`” involves testing an infinite number
@@ -472,6 +477,14 @@ f(x) = 1 / (1 - x)
 >
 >     if α ≤ β then µt.α ≤ µt.β    (1)
 
+写成推演规则（正向）：
+
+```
+|- α ≤ β
+--------------
+|- µt.α ≤ µt.β
+```
+
 由这个推演规则，可以推出 `µt.⊤→t ≤ µt.⊥→t`，这是正确的；
 但是也可以推出 `µt.t→⊥ ≤ µt.t→⊤`，这是错误的，
 因为展开两次可以得到 `(α→⊥)→⊥ ≤ (β→⊤)→⊤`。
@@ -489,8 +502,16 @@ f(x) = 1 / (1 - x)
 > can verify the inclusion of the bodies, then we can deduce the
 > inclusion of the recursive types.
 
-搜索 `{} µt.(t→⊥) ≤ µs.(s→⊤)`，
-可以从下面找到这个推演规则如何推出这个 inclusion 应判断为假。
+写成推演规则（正向）：
+
+```
+s ≤ t |- α ≤ β
+--------------
+|- µs.α ≤ µt.β
+```
+
+搜索 `|- µt.(t→⊥) ≤ µs.(s→⊤)` 可以从下面找到，
+这个推演规则如何推出这个 inclusion 应判断为假。
 
 判断为真的例子，假设 `Nat≤Int` 可以推出 `NatList≤IntList`：
 
@@ -515,9 +536,107 @@ IntCell ≜ µt. (Unit→Int) × (Int→t) × (t→t)
 
 ## 1.3 Equality of Recursive Types
 
+> We need now to consider strong notions of equality of recursive types.
+> This is necessary because the rule (2) above is weak in some areas;
+> for example, we cannot deduce directly from it that:
+>
+>     µt.t→t ≤ µs.s→s
+>
+> because this would require assuming both `s ≤ t` and `t ≤ s`.
+> The combination of rule (2) and equality rules will finally give us
+> all the power we need.
+
 强调等价的推演规则要独立于 subtyping 的推演规则给出。
 
-TODO
+也就是要为 `=` 增加推演规则（正向）：
+
+```
+s = t |- α = β
+--------------
+|- µs.α = µt.β
+```
+
+如果真是这样，那么由推演规则所定义的子类型关系，
+就不能用来定义类型所构成的 poset 了，
+因为不满足 antisymmetry。
+
+但是其实，搜索 `|- µt.(t→t) ≤ µs.(s→s)` 可以从下面找到，
+用 loopback 强化后的推演规则如何推出这个 inclusion 应判断为真。
+
+> This would work for `µt.t→t` and `µs.s→s`. But now consider the
+> types:
+>
+>     α ≜ µs.Int→s
+>     β ≜ µt.Int→Int→t
+>
+> They both expand infinitely into `Int→Int→Int→Int→...`, and they
+> also have the same set of values (for example, recursive terms like
+> `µf.λx:Int.f`).
+
+> However, the assumption `s=t` does not show `Int→s = Int→Int→t`;
+> we get stuck on the question whether `s = Int→t`.
+
+> Another attempt might involve expanding the `µ`'s, but unfortunately
+> we cannot expand them out of existence. By unfolding alone we can
+> get only:
+>
+>    α = µs.Int→s = Int→(µs.Int→s) = Int→Int→(µs.Int→s) = Int→Int→α
+>    β = µt.Int→Int→t = Int→Int→(µt.Int→Int→t) = Int→Int→β
+>
+> which after a few unfoldings leaves us with the original problem of
+> determining whether `α = β`.  This is what we meant earlier by the
+> insufficiency of “`α ≤ β` if for every expansion `α+` of `α`
+> there is a `β+` of `β` with `α+` ≤ `β+`”.
+
+> In fact, we seem to have made some progress here; we have come back
+> to the original question `α = β` only after analyzing the entire
+> structure of `α` and `β`. It seems that we should then be able to
+> conclude that `α = β`, because a complete analysis of `α` and
+> `β` has found no contradiction.
+
+> This kind of reasoning is possible but it has to be carefully
+> justified, and in general we need to determine the conditions under
+> which this stronger notion of equality does not lead to a circular
+> argument.
+
+注意，上面发现 subtyping 和 equality 的正确推演规则的方式，
+也是按照 "this kind of reasoning" 来的。
+虽然所 reason 的对象是 mu 表达式而不是递归，
+但是其实本质是一样的。
+
+这里说的用这种方法的时候要小心，
+就像是用「海伦方法」的迭代来计算平方根一样：
+[Heron's_method](https://en.wikipedia.org/wiki/Square_root_algorithms#Heron's_method)
+
+```math
+x * x = S
+x = S / x
+x = x + S / x
+x = (x + S / x) / 2
+```
+
+海伦等式总是成立的，
+但是显然只有当这个迭代收敛时，
+其计算才有效的。
+
+> Note that in the process above we have found a single context
+> `C[X] ≜ @ Int→Int→X` such that `α = C[α]` and `β = C[β]`; that is,
+> both `α` and `β` are fixpoints of `C`. We shall be able to show
+> that all the non-trivial (formally, _contractive_) type contexts
+> `C[X]` have unique fixpoints over infinite trees, and therefore if
+> they have two fixpoints these must be equal. Hence, the necessary
+> rule for determining type equality can be formulated as follows:
+
+>    α = C[α] ∧ β = C[β] ∧ C contractive ⇒ α=β    (3)
+
+> It remains to be shown how to generate contractive contexts that
+> allow us to equate any two types that have equal infinite
+> expansions. This can be done via an algorithm, and in fact a natural
+> one. We will show that this algorithm is sound (it will not equate
+> types with different infinite expansions) and complete (it will
+> equate all types that have equal infinite expansions). Such proofs
+> of correctness of algorithms are among our major goals here, but
+> first we need to carefully develop a formal framework.
 
 ## 1.4 Subtyping of Recursive Types
 
@@ -545,25 +664,25 @@ TODO
 > and how `µt.(t→⊥) ≤ µs.(s→⊤)` fails.
 
 ```
-{} µt.(t→t) ≤ µs.(s→s)
+|- µt.(t→t) ≤ µs.(s→s)
 ---------------------- {
-  {t ≤ s} t→t ≤ s→s
+  t ≤ s |- t→t ≤ s→s
   ----------------- {
-    {t ≤ s} t ≤ s
+    t ≤ s |- t ≤ s
     ------------- {
       success
     }
-    {t ≤ s} s ≤ t
+    t ≤ s |- s ≤ t
     ------------- [loopback s and t] {
-      {t ≤ s} µs.(s→s) ≤ µt.(t→t)
+      t ≤ s |- µs.(s→s) ≤ µt.(t→t)
       --------------------------- {
-        {t ≤ s, s ≤ t} s→s ≤ t→t
+        t ≤ s, s ≤ t |- s→s ≤ t→t
         ------------------------ {
-          {t ≤ s, s ≤ t} s ≤ t
+          t ≤ s, s ≤ t |- s ≤ t
           -------------------- {
             success
           }
-          {t ≤ s, s ≤ t} t ≤ s
+          t ≤ s, s ≤ t |- t ≤ s
           -------------------- {
             success
           }
@@ -575,28 +694,28 @@ TODO
 ```
 
 ```
-{} µt.(t→⊥) ≤ µs.(s→⊤)
+|- µt.(t→⊥) ≤ µs.(s→⊤)
 ---------------------- {
-  {t ≤ s} t→⊥ ≤ s→⊤
+  t ≤ s |- t→⊥ ≤ s→⊤
   ----------------- {
-    {t ≤ s} s ≤ t
+    t ≤ s |- s ≤ t
     ------------- [loopback s and t] {
-      {t ≤ s} µs.(s→⊤) ≤ µt.(t→⊥)
+      t ≤ s |- µs.(s→⊤) ≤ µt.(t→⊥)
       --------------------------- {
-        {t ≤ s, s ≤ t} s→⊤ ≤ t→⊥
+        t ≤ s, s ≤ t |- s→⊤ ≤ t→⊥
         ------------------------ {
-          {t ≤ s, s ≤ t} ⊤ ≤ ⊥
+          t ≤ s, s ≤ t |- ⊤ ≤ ⊥
           -------------------- {
             fail
           }
-          {t ≤ s, s ≤ t} t ≤ s
+          t ≤ s, s ≤ t |- t ≤ s
           -------------------- {
             success
           }
         }
       }
     }
-    {t ≤ s} ⊥ ≤ ⊤
+    t ≤ s |- ⊥ ≤ ⊤
     ------------- {
       success
     }
