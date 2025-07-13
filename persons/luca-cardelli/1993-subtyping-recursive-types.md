@@ -699,52 +699,184 @@ x = (x + S / x) / 2
 
 ## 1.5 Algorithm outline
 
-介绍利用 trail 来比较 rooted directed graph 的算法。
+> We describe the algorithm informally and we show some sample
+> runs. This is only an approximation of the algorithm analyzed in the
+> formal part, but it should explain the main ideas.  A more detailed
+> description is given in section 4.4.
 
-整个 idea 可以被总结为：
+> A recursive type of the form `µt. ...t...` can be represented in
+> memory as a cyclic linked structure such that every occurrence of
+> `t` in the recursive body is represented by the address of the
+> corresponding `µt` structure, i.e., by a _back-pointer_.
 
-- 递归定义所生成的无限树，某种意义上来说都是无限循环树，
-  正如分数所生成的无穷小数都是无限循环小数的。
-  无限循环数显然能被表示为有根有向图。
+递归定义在具体实现中的存在形式总是如此，
+即 rooted directed graph，其中 directed edge 就是 C 意义上的 pointer。
 
-- 想要递归地比较两个有根有向图，
-  只需要在比较时记录所走过的 path 为 trail。
+> Otherwise, all subexpressions of a type expression, including `µ`
+> subexpressions, are uniquely determined by their address in memory.
+> Every time the algorithm reaches a `µ` structure, possibly through a
+> back-pointer, it has the option of analyzing the interior of the
+> structure ("unfolding" the recursive type) or to compare its address
+> with other addresses as a termination condition.
 
-TODO
+> The algorithm for `α ≤ β` operates on a pair of linked structures
+> and a _trail_. A trail is a set of address pairs that records the
+> pairs of addresses that have been jointly encountered when following
+> a pair of paths in the two linked structures. To avoid diverging on
+> cyclic structures, the algorithms registers a local successful
+> termination when it reaches a pair of addresses that have already
+> been _seen_, that is, a pair of addresses that are contained in the
+> trail.
 
-> For other interesting examples,
-> check how `µt.(t→t) ≤ µs.(s→s)` succeeds,
-> and how `µt.(t→⊥) ≤ µs.(s→⊤)` fails.
+核心 idea 可以总结为：
+通过记录 trail -- a pair of pathes，
+来比较两个 rooted directed graph 是否相等。
 
+递归定义所生成的无限树，某种意义上来说都是无限循环树，
+正如分数所生成的无穷小数都是无限循环小数的。
+无限循环数显然能被表示为有根有向图。
+
+想要递归地比较两个有根有向图，
+只需要在比较时记录所走过的 path 为 trail。
+
+> The algorithm to determine whether `α ≤ β` starts with an empty trail
+> and proceeds through the following steps in sequence. We only
+> consider basic types, function types, and recursive types.
+>
+> - [1] Succeed if the pair of addresses of `α` and `β` (in this
+>   order) is contained in the trail.  (In this situation, we have
+>   completely explored a pair of cyclic paths and found no subtyping
+>   failures; hence we declare success for these paths.)
+>
+> - [2] Succeed if `α` and `β` are type constants that are equal or
+>   in the subtype relation.  (This is the base case for the given
+>   collection of basic types and basic inclusions.)
+>
+> - [3] When `α` is `α' → α"` and `β` is `β' → β"`, recur on
+>   `β' ≤ α'` and on `α" ≤ β"`. Succeed if both recursions
+>   succeed.  (This is the case for function types; note the swapping
+>   of inclusion on the domains because of antimonotonicity of `→`;
+>   no such swapping would occur for data type constructors such as
+>   `×` and `+`).
+>
+> - [4.1] When `α` is `µt.α'` and `β` is `µs.β'`, add the pair of
+>   addresses of `α` and `β` (in this order) to the trail, and recur
+>   on `α' ≤ β'`. Succeed if the recursion succeeds.  (The presence
+>   of `µ`'s signals potential cyclic paths, hence we store the current
+>   pair of addresses in the trail so that case [1] can prevent
+>   looping. We use an ordered pair of addresses because inclusion is,
+>   obviously, not symmetric; this detail differs from the standard
+>   trail algorithms for type equivalence. The next two cases are
+>   similar.)
+>
+> - [4.2] When `α` is `µt.α'`, add the pair of addresses of `α` and
+>   `β` to the trail, and recur on `α' ≤ β`.  Succeed if the
+>   recursion succeeds.
+>
+> - [4.3] When `β` is `µs.β'`, add the pair of addresses of `α` and
+>   `β` to the trail, and recur on `α ≤ β'`.  Succeed if the
+>   recursion succeeds.
+>
+> - [5] Otherwise, fail. (This means we have found a pair of
+>   incomparable type expressions, such as a function type and a base
+>   type.)
+
+注意，步骤 [4.2] 和 [4.3] 保存到 trail 的地址，
+包含一般表达式的地址，这些地址在递归展开的过程中不稳定，
+因此步骤 [1] 在判断 trail 中的一对元素是否相等时，
+如果遇到两个非 `µ` 的类型，还是需要用 deep equal，
+但是这种 deep equal 遇到 `µ` 不会展开。
+
+通过假设地址稳定，可以看出这种实现方式是正确的。
+
+> A faithful description of a run of this algorithm would involve
+> assigning arbitrary addresses to subexpressions of type expressions;
+> this would only obscure the exposition. Instead, we display the type
+> expressions and we leave their addresses implicit: the reader is
+> urged to keep this in mind.
+
+给每个 subexpressions 以地址的过程，
+可以被上面所说的 deep equal 代替。
+
+给 `µ` 以地址还是需要的，实现方式可以模仿 lambda 的 closure，
+每次求值 mu 表达式的时候，带上当前的 module 地址，
+外加一个 fresh recursive variable name。
+
+如果不用 `µ`，而是想直接处理递归定义，
+只要做 lazy unfolding 开就可以，
+被 lazy unfolding 的对象，
+可以是求值递归定义时获得一类新值，
+带上当前的 module 地址，不用生成 fresh name，
+直接以所定义的名字为 recursive variable name 就可以。
+
+我用 `|-` 来分割左边的 context 和右边的 judgement。
 
 带有 `{}` 的推演步骤是反向，
 用大括号 `{}` 将前提包裹起来，并放在结论的下方，
 类似 prolog 中个的 Horn clause。
 不带 `{}` 的推演规则是传统的正向。
 
-```
-|- µt.(t→t) ≤ µs.(s→s)
----------------------- {
-  t ≤ s |- t→t ≤ s→s
-  ----------------- {
-    t ≤ s |- t ≤ s
-    ------------- {
+> The first sample run involves two types with matching `µ`
+> structures; their inclusion is non-trivial because of
+> antimonotonicity.
+
+```logic
+|- µt.((t→t)→⊥) ≤ µs.((s→⊥)→⊤)
+------------------------------ [4.1] {
+  t≤s |- (t→t)→⊥ ≤ (s→⊥)→⊤
+  ------------------------ [3] {
+    t≤s |- s→⊥ ≤ t→t
+    ---------------- [3] {
+      t≤s |- t ≤ s
+      ------------ [1] {
+        success
+      }
+      t≤s |- ⊥ ≤ t
+      ------------ [2] {
+        success
+      }
+    }
+    t≤s |- ⊥ ≤ ⊤
+    ------------ [2] {
       success
     }
-    t ≤ s |- s ≤ t
-    ------------- [loopback s and t] {
-      t ≤ s |- µs.(s→s) ≤ µt.(t→t)
-      --------------------------- {
-        t ≤ s, s ≤ t |- s→s ≤ t→t
-        ------------------------ {
-          t ≤ s, s ≤ t |- s ≤ t
-          -------------------- {
-            success
-          }
-          t ≤ s, s ≤ t |- t ≤ s
-          -------------------- {
-            success
-          }
+  }
+}
+```
+
+其实可以完全省略 `---`：
+
+```logic
+|- µt.((t→t)→⊥) ≤ µs.((s→⊥)→⊤) [4.1] {
+  t≤s |- (t→t)→⊥ ≤ (s→⊥)→⊤ [3] {
+    t≤s |- s→⊥ ≤ t→t [3] {
+      t≤s |- t ≤ s [1] { success }
+      t≤s |- ⊥ ≤ t [2] { success }
+    }
+    t≤s |- ⊥ ≤ ⊤ [2] { success }
+  }
+}
+```
+
+> The second sample run involves two types with mismatching `µ`
+> structures. This mismatch introduces the need to examine a cyclic
+> path more that once. For this, we use a `loopback` step, which
+> corresponds to following a cyclic structure back to its original
+> entry point (an artificial loopback step is needed only because, as
+> we said, we keep the address information implicit). In the algorithm
+> above, a loopback situation corresponds to a failure of step [1]
+> followed by some dereferencing of back-pointers that leads to step
+> [4].
+
+```logic
+|- µt.(⊤→t) ≤ µs.(⊥→(⊥→s)) [4.1] {
+  t≤s |- ⊤→t ≤ ⊥→(⊥→s) [3] {
+    t≤s |- ⊥ ≤ ⊤ [2] { success }
+    t≤s |- t ≤ ⊥→s [loopback] {
+      t≤s |- µt.(⊤→t) ≤ ⊥→s [4.2] {
+        t≤s, t≤⊥→s |- ⊤→t ≤ ⊥→s [3] {
+          t≤s, t≤⊥→s |- ⊥ ≤ ⊤ [2] { success }
+          t≤s, t≤⊥→s |- t ≤ s [1] { success }
         }
       }
     }
@@ -752,32 +884,49 @@ TODO
 }
 ```
 
-```
-|- µt.(t→⊥) ≤ µs.(s→⊤)
----------------------- {
-  t ≤ s |- t→⊥ ≤ s→⊤
-  ----------------- {
-    t ≤ s |- s ≤ t
-    ------------- [loopback s and t] {
-      t ≤ s |- µs.(s→⊤) ≤ µt.(t→⊥)
-      --------------------------- {
-        t ≤ s, s ≤ t |- s→⊤ ≤ t→⊥
-        ------------------------ {
-          t ≤ s, s ≤ t |- ⊤ ≤ ⊥
-          -------------------- {
-            fail
-          }
-          t ≤ s, s ≤ t |- t ≤ s
-          -------------------- {
-            success
-          }
+> Hence, in this run we go around the `µt` loop twice in order to go
+> around the `µs` loop once.
+
+就像 unify 所得到的 subst 是等式的解一样，
+上面类型检查后所得到的 context 中的 constraints
+-- `t≤s, t≤⊥→s` 也可以被看成是不等式的解。
+
+这甚至和 subst 有类似的形式，
+因为如上所得的 constraint，
+总有一项是 recursive variable。
+
+> For other interesting examples,
+> check how `µt.(t→t) ≤ µs.(s→s)` succeeds,
+> and how `µt.(t→⊥) ≤ µs.(s→⊤)` fails.
+
+```logic
+|- µt.(t→t) ≤ µs.(s→s) {
+  t ≤ s |- t→t ≤ s→s {
+    t ≤ s |- t ≤ s { success }
+    t ≤ s |- s ≤ t [loopback s and t] {
+      t ≤ s |- µs.(s→s) ≤ µt.(t→t) {
+        t ≤ s, s ≤ t |- s→s ≤ t→t {
+          t ≤ s, s ≤ t |- s ≤ t { success }
+          t ≤ s, s ≤ t |- t ≤ s { success }
         }
       }
     }
-    t ≤ s |- ⊥ ≤ ⊤
-    ------------- {
-      success
+  }
+}
+```
+
+```logic
+|- µt.(t→⊥) ≤ µs.(s→⊤) {
+  t ≤ s |- t→⊥ ≤ s→⊤ {
+    t ≤ s |- s ≤ t [loopback s and t] {
+      t ≤ s |- µs.(s→⊤) ≤ µt.(t→⊥) {
+        t ≤ s, s ≤ t |- s→⊤ ≤ t→⊥ {
+          t ≤ s, s ≤ t |- ⊤ ≤ ⊥ { fail }
+          t ≤ s, s ≤ t |- t ≤ s { success }
+        }
+      }
     }
+    t ≤ s |- ⊥ ≤ ⊤ { success }
   }
 }
 ```
