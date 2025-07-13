@@ -72,28 +72,126 @@ year: 1993
 在需要的时候 "to unfold recursively"，
 看起来就是用有限的表示来实现无限的 recursion 的唯一方法。
 
-TODO
+> In this paper we investigate the interaction of _unrestricted
+> recursive_ types with subtyping.  This interaction is present in
+> some modern languages based on _structural type matching_ (where
+> type equality or subtyping is determined by some abstract type
+> structure, and not by how types are syntactically presented).
+
+这里说要处理 abstract type structure，
+而不是 syntactical type structure，
+但是后者才是我想要实现的 structural type。
+
+> Name-matching determines type equality by relying, at least
+> partially, on the names assigned to types in a given program,
+> instead of on their structure. With name matching, recursive
+> analysis can stop at occurrences of type names.
+
+> The inconsistency of name-matching rules becomes a problem in
+> distributed environments, where type definitions and data may
+> migrate outside the compiler or program run in which they are
+> created.  Types and data should have a meaning independent of
+> particular runs, hence languages such as Modula-3 [22] and other
+> experimental languages such as Amber [10] and Quest [9, 12]
+> concerned with data persistence and data migration, have again
+> adopted structural matching. Since these languages also rely on
+> subtyping, structural subtyping becomes an issue.  Because of
+> various language design issues, Modula-3 restricts itself to
+> structural equivalence plus a limited form of structural subtyping;
+> in this paper we deal with the unrestricted combination of recursion
+> and subtyping, which forms the basis of Amber and Quest.
+
+这里说所要实现的是 structural matching 而不是 name matching，
+看起来又是我想要实现的 structural type。
+
+难道说前面说的 "not by how types are syntactically presented"
+是指 name matching？
+
+这就是不给例子的坏处，
+因为消除这种误解的最佳方式是具体例子所带来的经验。
 
 作者为了研究 structural type + recursive type，
-专门设计了两个语言 Amber 和 Quest，
-在这一节的开头有引用到相关的论文。
+专门设计了两个语言 Amber 和 Quest。
+
+Summary:
+
+> - Section 1 provides the basic intuitions about recursive subtypes,
+>   and we illustrate the main problems along with several
+>   non-solutions.
+>
+> - Section 2 formalizes the syntax of a basic calculus with recursive
+>   types.
+>
+> - Section 3 introduces a subtyping relation based on a tree
+>   ordering.
+>
+> - Section 4 describes a subtyping algorithm.
+>
+> - Section 5 describes the corresponding type rules.
+>
+> - Section 6 gives a partial equivalence relation model.
+>
+> - Section 7 relates subtyping to type coercions.
 
 ## 1.1 Types
 
-> A type, as normally intended in programming languages, is a
+> A _type_, as normally intended in programming languages, is a
 > collection of values sharing a common structure or shape.
 
 从集合论意义上理解 type，这正是 structural type 的特点。
 
-recursive structural type 的例子：
+Examples:
+
+> - Basic types:
+>   - `Unit` -- the trivial type containing a single element.
+>   - `Int` -- the collection of integer numbers.
+> - Structured types:
+>   - `Int→Int` -- the functions from integers to integers.
+>   - `Int×Int` -- the pairs of two integers.
+>   - `Unit+Int` -- the disjoint union of `Unit` and `Int` consisting
+>     of either a unit value marked “left” or an integer marked
+>     “right” (given two arbitrary but distinct marks).
+
+这里用的是 disjoint union 而不是 union。
+
+> A recursive type is a type that satisfies a recursive type equation.
 
 ```cicada
 Tree = Int + (Tree × Tree)
+
 List = Unit + (Int × List)
 ```
 
+> Note that these are not definitions of `Tree` and `List`; they are
+> equational properties that any definition of `Tree` and `List` must
+> satisfy.
+
+为什么说这些等式不是对类型的定义？
+因为没有同时给出 data constructors 和 data eliminators？
+
+在我看来这已经是对类型的具体定理了。
+因为这里的定义利用了 either 和 pair 的 data constructors，
+而 pattren matching 可以作为 data eliminators。
+所以其实并不需要额外的定义了。
+
+看了后面的 mu 之后，
+这里说「等式不是类型的定义」，
+可能是指一个等式可能被多种不同个的 mu 满足。
+
+> There are also useful examples of recursion involving function
+> spaces, typical of the object-oriented style of programming:
+
 ```cicada
 Cell = (Unit → Int) × (Int → Cell) × (Cell → Cell)
+```
+
+> In each of these functions the current cell is implicit, so for
+> example add needs only to receive another cell in order to perform a
+> binary addition.
+
+用 record type 来写：
+
+```cicada
 Cell = {
   read: (Unit → Int),
   write: (Int → Cell),
@@ -104,20 +202,28 @@ Cell = {
 > Recursive types can hence be described by equations, and we shall
 > see that in fact they can be unambiguously _defined_ by equations.
 > To see this, we need some formal way of reasoning about the
-> solutions of type equations.
+> solutions of type equations.  To see this, we need some formal way
+> of reasoning about the solutions of type equations.  These formal
+> tools become particularly useful if we start examining problematic
+> equations such as `t = t`, `s = s×s`, `r = r→r`, etc., for which
+> it is not clear whether there are solutions or whether the solutions
+> are unique.
 
-> These formal tools become particularly useful if we start examining
-> problematic equations such as `t = t`, `s = s×s`, `r = r→r`, etc.,
-> for which it is not clear whether there are solutions or whether the
-> solutions are unique.
+这里的 formal tools 指 denotational semantics 吗？
 
 > It is appealing to set up sufficient conditions so that type
-> equations have canonical solutions.  Then, if we have an equation
-> such as `t = Unit+(Int×t)`, we can talk about the solution of the
+> equations have _canonical_ solutions.  Then, if we have an equation
+> such as `t = Unit+(Int×t)`, we can talk about _the_ solution of the
 > equation. Such a canonical solution can then be indicated by a term
 > such as `µt.Unit+(Int×t)`; the type `t` that is equal to
 > `Unit+(Int×t)`. Here `µt.α` is a new type construction just
 > introduced for denoting canonical solutions.
+
+用 mu 来做递归等式的解，就像是把递归的机制加入到语法中来，
+正如用 lambda 定义函数，是把 substitution 的机制加入到语法中来。
+
+combinatory logic 旨在保持语法简单，
+通过引入新的元素来处理这些机制。
 
 为什么人们总是用希腊字母 mu 来表示这里的解？
 mu 来自 recursion theory 中的 mu operator。
@@ -129,6 +235,28 @@ mu 来自 recursion theory 中的 mu operator。
 (define int-list-t (union unit-t (tau int-t int-list-t)))
 (define int-list-t (mu (T) (union unit-t (tau int-t T))))
 ```
+
+如果说不带类型参数的递归类型定义是方程：
+
+```math
+x = 1 + c * x
+x - c * x = 1
+x * (1 - c) = 1
+x = 1 / (1 - c)
+```
+
+那么带有参数的递归类型构造子定义就是函数方程：
+
+```math
+f(x) = 1 + x * f(x)
+f(x) - x * f(x) = 1
+f(x) * (1 - x) = 1
+f(x) = 1 / (1 - x)
+```
+
+当然，类型所构成的代数结构并不允许我们做上面的等式变换，
+比如集合之间的 union 不能把一项从右边，改变符号以转移到左边。
+因此，确定类型所构成的代数结构具体是什么，就很重要。
 
 我用 lisp 的语法表示 `mu`，
 并且允许类型参数：
@@ -162,6 +290,10 @@ mu 来自 recursion theory 中的 mu operator。
 >
 > which is the equation we expected to hold.
 
+正如 lambda calculus 中，
+关于 lambda term 的 beta-reduction 是用 substitution 定义的，
+这里关于 mu 的 one-step unfolding 也是用 substitution 定义的。
+
 用 lisp 语法表示：
 
 ```scheme
@@ -174,8 +306,6 @@ mu 来自 recursion theory 中的 mu operator。
   (union unit-t (tau int-t L)))
 ```
 
-TODO
-
 > Having discussed recursive types, we now need to determine when a
 > value belongs to a recursive type. The rule above for `µt.α` allows
 > us to expand recursive types arbitrarily far, for a finite number of
@@ -187,7 +317,11 @@ TODO
 
 > However, if the values are not finite, for example if they are
 > defined recursively, we may not be able to push the `µ`'s out of the
-> way. In that case, we need to provide adequate notions of finite
+> way.
+
+当考虑到递归定义的函数的时候，就会有这种问题。
+
+> In that case, we need to provide adequate notions of finite
 > _approximations_ of values and types, and postulate that a value
 > belongs to a type when every approximation of the value belongs to
 > some approximation of the type. An approximation `α^n` of a type
@@ -195,7 +329,8 @@ TODO
 > hence it is different from an unfolding. This will be made precise
 > in later sections.
 
-当考虑到递归定义的函数的时候，就会出现上面的问题。
+这里的 approximation 就类似「数列的极限」。
+但是这里不是数，而是一个类型系统中的类型，和一个程序语言中的值。
 
 ## 1.2 Subtypes
 
