@@ -477,7 +477,7 @@ f(x) = 1 / (1 - x)
 >
 >     if α ≤ β then µt.α ≤ µt.β    (1)
 
-写成推演规则（正向）：
+写成推演规则：
 
 ```
 |- α ≤ β
@@ -502,7 +502,7 @@ f(x) = 1 / (1 - x)
 > can verify the inclusion of the bodies, then we can deduce the
 > inclusion of the recursive types.
 
-写成推演规则（正向）：
+写成推演规则：
 
 ```
 s ≤ t |- α ≤ β
@@ -548,7 +548,7 @@ IntCell ≜ µt. (Unit→Int) × (Int→t) × (t→t)
 
 强调等价的推演规则要独立于 subtyping 的推演规则给出。
 
-也就是要为 `=` 增加推演规则（正向）：
+也就是要为 `=` 增加推演规则：
 
 ```
 s = t |- α = β
@@ -640,9 +640,62 @@ x = (x + S / x) / 2
 
 ## 1.4 Subtyping of Recursive Types
 
-介绍判断 recursive structural type 的 subtype relation 时的难点。
+> The problem of equating recursive types such as `α` and `β` above
+> can be related to well-known solvable problems, such as the
+> equivalence of finite-state automata. However, the similar problem
+> for subtyping has no well-known parallel.
 
-TODO
+最应该给出引用的地方，没有给出引用。
+
+就是说，上面提到的讨论 equality 时所遇到的例子，
+也许可以称为「结构错位」的例子，
+在处理 subtyping 时也会遇到。
+
+> Take, for example:
+>
+>     γ ≜ µs.Int→s
+>     δ ≜ µt.Nat→Nat→t
+>
+> Again, looking at the infinite expansions we obtain `γ =
+> Int→Int→...`, and `δ = Nat→Nat→...`, from which we would like
+> to deduce `γ ≤ δ` by antimonotonicity. But what are the exact
+> rules?  Attempts to unfold `γ` and `δ` fall into the same
+> difficulties as before.
+
+> The strategy here is to reduce the subtyping problem to an equality
+> problem, which we solve by rule (3), plus rule (2). That is, we
+> first show that `δ' ≜ µt.Nat→t = µt.Nat→Nat→t ≡ δ`. After
+> that, we can use rule (2) to show `γ ≤ δ'`, and hence `γ ≤ δ`.
+
+> Initially, this strategy suggests a two-step algorithm that first
+> synchronizes the recursions in some appropriate way, and then uses
+> rule (2) without additional folding/unfolding. Instead, we present
+> an algorithm that tests subtyping of recursive types directly; the
+> correspondence between the algorithm and the rules is then less
+> obvious.
+
+具体的算法比对推演规则的讨论还要容易理解。
+
+> As a slightly more plausible example, suppose we define the type of
+> lists of alternating integers and naturals:
+>
+>     IntNatList ≜ µt.Unit+Int×(Unit+Nat×t)
+
+> This definition could arise more naturally from a mutual recursion
+> construct in some programming language, for example:
+>
+>     IntNatList = Unit+Int×NatIntList
+>     NatIntList = Unit+Nat×IntNatList
+>
+> One would certainly expect `NatList ≤ IntNatList` to hold. But,
+>
+>     NatList ≜ µs.Unit+Nat×s
+>
+> hence we have first to show that
+>
+>     NatList = µs.Unit+Nat×(Unit+Nat×s)
+>
+> and only then can we apply rule (2) successfully.
 
 ## 1.5 Algorithm outline
 
@@ -662,6 +715,12 @@ TODO
 > For other interesting examples,
 > check how `µt.(t→t) ≤ µs.(s→s)` succeeds,
 > and how `µt.(t→⊥) ≤ µs.(s→⊤)` fails.
+
+
+带有 `{}` 的推演步骤是反向，
+用大括号 `{}` 将前提包裹起来，并放在结论的下方，
+类似 prolog 中个的 Horn clause。
+不带 `{}` 的推演规则是传统的正向。
 
 ```
 |- µt.(t→t) ≤ µs.(s→s)
