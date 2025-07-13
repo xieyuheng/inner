@@ -232,8 +232,8 @@ mu 来自 recursion theory 中的 mu operator。
 论文中不允许类型参数：
 
 ```scheme
-(define int-list-t (union unit-t (tau int-t int-list-t)))
-(define int-list-t (mu (T) (union unit-t (tau int-t T))))
+(define int-list-t (either-t unit-t (tau int-t int-list-t)))
+(define int-list-t (mu (T) (either-t unit-t (tau int-t T))))
 ```
 
 如果说不带类型参数的递归类型定义是方程：
@@ -262,8 +262,8 @@ f(x) = 1 / (1 - x)
 并且允许类型参数：
 
 ```scheme
-(define (list-t A) (union unit-t (tau A (list-t A))))
-(define (list-t A) (mu (T) (union unit-t (tau A T))))
+(define (list-t A) (either-t unit-t (tau A (list-t A))))
+(define (list-t A) (mu (T) (either-t unit-t (tau A T))))
 ```
 
 当允许类型参数时，
@@ -297,13 +297,13 @@ f(x) = 1 / (1 - x)
 用 lisp 语法表示：
 
 ```scheme
-(define L (mu (T) (union unit-t (tau int-t T))))
+(define L (mu (T) (either-t unit-t (tau int-t T))))
 
 (same-as-chart
   L
-  (mu (T) (union unit-t (tau int-t T)))
-  (let ((T L)) (union unit-t (tau int-t T)))
-  (union unit-t (tau int-t L)))
+  (mu (T) (either-t unit-t (tau int-t T)))
+  (let ((T L)) (either-t unit-t (tau int-t T)))
+  (either-t unit-t (tau int-t L)))
 ```
 
 > Having discussed recursive types, we now need to determine when a
@@ -365,7 +365,7 @@ f(x) = 1 / (1 - x)
 `f: Int→Cell` 蕴含了 `f: Nat→Cell`，
 因此前者是更小的集合。
 
-即 `A ⊆ B` 定义为，对于任意 `x ∈ A` 也有 `x ∈ B`。
+即 `A ⊆ B` 定义为，对于任意 `x ∈ A` 蕴含 `x ∈ B`。
 
 > Adequate subtyping rules can be found for all the other type
 > constructions we may have. For example, for products we have
@@ -376,9 +376,99 @@ f(x) = 1 / (1 - x)
 >
 >    α+β ≤ α'+β' if α≤α' and β≤β'.
 
+这里介绍了就子类型关系的判断而言，
+不同 type constructor 的推演规则分别是什么。
+那么就 lattice 中的 join（union）和 meet（inter）而言，
+子类型关系的推演规则是什么呢？
+
+注意，推演规则是为了手写证明，
+或者作为一个寻找判断关系之算法的中间步骤，
+对于 union 和 inter 的子类型关系的判断，
+可否直接找到算法？
+
+如果有 lattice 中的 normalization 算法，就可以判断子类型关系，
+因为 lattice 中的 less 判断，可以转化为等式的判断。
+
+但是先 normalization 再判断相等，可能会指数爆炸。
+实现子类型检查函数，主要的难点是 union，
+可能需要让函数带有当前 union 的所有参数。
+
+比如：
+
+```scheme
+(less (union (tau :x A :y C)
+             (tau :x B :y C))
+      (tau :x (union A B) :y C))
+```
+
+可以转化为：
+
+```scheme
+(and (less (tau :x A :y C)
+           (tau :x (union A B) :y C))
+     (less (tau :x B :y C)
+           (tau :x (union A B) :y C)))
+```
+
+但是：
+
+```scheme
+(less (tau :x (union A B) :y C)
+      (union (tau :x A :y C)
+             (tau :x B :y C)))
+```
+
+不能转化为：
+
+```scheme
+(or (less (tau :x (union A B) :y C)
+          (tau :x A :y C))
+    (less (tau :x (union A B) :y C)
+          (tau :x B :y C)))
+```
+
 > What is, then, subtyping for recursive types?
 
 下面介绍了几种错误的定义。
+
+> The intuition we adopt is that two recursive types `α` and `β` are
+> in the subtype relation if their _infinite_ unfoldings also are in
+> this relation, in some appropriate sense. We might at first just
+> consider finite unfoldings `α+` of a type `α`, and require that
+> “`α ≤ β` if for every `α+` of `α` there is a `β+` of `β`
+> with `α+ ≤ β+`”.
+
+这里的「错误方案 A」，是模仿用 approximation
+来定义「recursive value 属于 recursive type」的方式，
+来定义「recursive type 小于 recursive type」。
+
+> However, we shall see shortly that this condition is not strong
+> enough. Hence, we insist on inclusion of infinite unfoldings. This
+> is made precise by the notion, mentioned above, of finite
+> approximations `α^n` of a type `α`, and by defining “`α ≤ β`
+> if, for every `n`, `α^n ≤ β^n`”.
+
+这里严格要求 `n` 相互对映看起来是不对的，
+因为每次迭代两个递归类型展开的 wrapper 层数可能不一样。
+而「错误方案 A」中的 `forall ... exists ...` 就是为了解决这个问题的。
+为什么不能用「错误方案 A」？
+
+> Unfortunately, the formal subtyping rules for recursive types and
+> the related algorithms cannot rely on approximations, since
+> “`α^n ≤ β^n` for every `n`” involves testing an infinite number
+> of conditions. The subtyping rules should rely instead on
+> “finitary” rules, and it is therefore not so obvious how to invent
+> a collection of rules that achieve the desired effect.
+
+上面的「错误方案 A」是语义方面的错误方案，
+下面的「错误方案 B」是推演规则方面的，即语法方面的错误方案。
+
+或者根据 "topology via logic" 中，
+按照 finite observations 来给断言分类的方式来说，
+涉及到 "testing an infinite number of conditions" 的断言，
+是不可证实的（non-affirmative），可证伪的（refutative）。
+
+> For example, a first idea might be simply to say that:
 
 TODO
 
