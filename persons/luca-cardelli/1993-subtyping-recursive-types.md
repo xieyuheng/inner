@@ -469,8 +469,49 @@ f(x) = 1 / (1 - x)
 是不可证实的（non-affirmative），可证伪的（refutative）。
 
 > For example, a first idea might be simply to say that:
+>
+>     if α ≤ β then µt.α ≤ µt.β    (1)
 
-TODO
+由这个推演规则，可以推出 `µt.⊤→t ≤ µt.⊥→t`，这是正确的；
+但是也可以推出 `µt.t→⊥ ≤ µt.t→⊤`，这是错误的，
+因为展开两次可以得到 `(α→⊥)→⊥ ≤ (β→⊤)→⊤`。
+
+错误来自于在 antimonotonic 位置的递归展开，
+如果递归变元只是出现在 monotonic 位置，
+那么这个推演规则是没错的。
+
+> A correct (and finitary) rule for inclusion of recursive types is
+> instead the following:
+>
+>     (s ≤ t ⇒ α ≤ β) ⇒ µs.α ≤ µt.β    (2)
+>
+> That is, if by assuming the inclusion of the recursive variables we
+> can verify the inclusion of the bodies, then we can deduce the
+> inclusion of the recursive types.
+
+搜索 `{} µt.(t→⊥) ≤ µs.(s→⊤)`，
+可以从下面找到这个推演规则如何推出这个 inclusion 应判断为假。
+
+判断为真的例子，假设 `Nat≤Int` 可以推出 `NatList≤IntList`：
+
+```cicada
+NatList ≜ µs. Unit+(Nat×s)
+IntList ≜ µt. Unit+(Int×t)
+```
+
+判断为假的例子，不能推出 `NatCell≤IntCell`：
+
+```cicada
+NatCell ≜ µs. (Unit→Nat) × (Nat→s) × (s→s)
+IntCell ≜ µt. (Unit→Int) × (Int→t) × (t→t)
+```
+
+这应该为假，因为从程序员的直觉上说：
+
+> For example, a `NatCell` might have a _write_ function of type
+> `Nat→NatCell` that fails on negative numbers. If such a cell were
+> considered as an `IntCell`, it would be possible to pass a negative
+> integer to this write and cause it to fail.
 
 ## 1.3 Equality of Recursive Types
 
