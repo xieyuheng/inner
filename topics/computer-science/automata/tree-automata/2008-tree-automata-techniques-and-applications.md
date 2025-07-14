@@ -211,7 +211,22 @@ Context 可以被定义为 linear term，
 > discuss finite automata for unordered and/or unranked finite trees
 > in subsequent chapters.
 
+> We assume that the reader is familiar with finite automata. Words
+> over a finite alphabet can be viewed as unary terms. For instance a
+> word `abb` over `A = {a, b}` can be viewed as a unary term `t =
+> a(b(b(♯)))` over the ranked alphabet `F = {a(), b(), ♯}` where
+> `♯` is a new constant symbol.  The theory of tree automata arises
+> as a straightforward extension of the theory of word automata when
+> words are viewed as unary terms.
+
 ## 1.1 Finite Tree Automata
+
+TODO 首先要能用 rewrite system 的角度去看一般的 Finite Automata，
+然后 Finite Tree Automata 才能视为其自然推广。
+
+TODO 发现这种 rewrite system 和 interaction nets 一模一样，
+难怪前文强调了 linear term。
+
 ## 1.2 The Pumping Lemma for Recognizable Tree Languages
 ## 1.3 Closure Properties of Recognizable Tree Languages
 ## 1.4 Tree Homomorphisms
