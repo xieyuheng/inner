@@ -183,9 +183,33 @@ tree 的坐标称为 position，
 
 ## SubTerms
 
-TODO
+一个 position-t 就定义一个 subterm。
+用 subterm 关系定义 subterm ordering。
+定义 term 的集合的 subterm closed 概念。
+
+## Functions on Terms
+
+定义 term 的 size 和 height，
+计算时 variable 都不计。
+
+## Substitutions
+
+Substitution 定义为 variable 到 trem 的有限映射。
+这个映射可以扩展到 term 上。
+
+## Contexts
+
+Context 可以被定义为 linear term，
+其中每个 variable 只能出现一次。
 
 # 1 Recognizable Tree Languages and Finite Tree Automata
+
+> In this chapter, we present basic results on finite tree automata in
+> the style of the undergraduate textbook on finite automata by
+> Hopcroft and Ullman [HU79].  Finite tree automata deal with finite
+> ordered ranked trees or finite ordered trees with bounded rank. We
+> discuss finite automata for unordered and/or unranked finite trees
+> in subsequent chapters.
 
 ## 1.1 Finite Tree Automata
 ## 1.2 The Pumping Lemma for Recognizable Tree Languages
