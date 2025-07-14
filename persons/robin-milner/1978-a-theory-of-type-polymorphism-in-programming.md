@@ -133,6 +133,38 @@ propagator 作为 cell 之间的多方向的函数，
 比如 lambda 演算的 Church-Rosser theorem
 就可以看作是对动力系统长期行为的分析。
 
+## abstract type vs. datatype
+
+[2025-07-14] 在 hindley-milner type system 中，
+没有用 `define-datatype` 来定义 type constructor 的过程。
+
+而在 dependent type system 中，
+一个 datatype 的 type constructor，
+被其有固定类型的 data constructor 所定义。
+
+比如：
+
+```scheme
+(define-datatype (list-t A)
+  (null () (list-t A))
+  (cons ((head A) (tail (list-t A))) (list-t A)))
+```
+
+可以可以把 `list-t` 理解为完全没有意义的 symbol，
+然后引入所需要的 primitive functions：
+
+```scheme
+(claim null? (nu (A) (-> (list-t A) bool-t)))
+(claim null (nu (A) (list-t A)))
+(claim car (nu (A) (-> (list-t A) A)))
+(claim cdr (nu (A) (-> (list-t A) (list-t A))))
+(claim cons (nu (A) (-> A (list-t A) (list-t A))))
+```
+
+也许通过读 LCF 相关的论文，
+可以更深刻地理解这种差异，
+毕竟 LCF 也是辅助证明系统。
+
 # Abstract
 
 > The aim of this work is largely a practical one. A widely employed

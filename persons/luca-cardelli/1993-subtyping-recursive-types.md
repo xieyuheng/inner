@@ -232,9 +232,13 @@ mu 来自 recursion theory 中的 mu operator。
 论文中不允许类型参数：
 
 ```scheme
-(define int-list-t (either-t unit-t (tau int-t int-list-t)))
-(define int-list-t (mu (T) (either-t unit-t (tau int-t T))))
+(define-type int-list-t (either-t unit-t (tau int-t int-list-t)))
+(define-type int-list-t (mu (T) (either-t unit-t (tau int-t T))))
 ```
+
+也许可以模仿 `tau` 给 `either-t` 一个类似的扩展，
+比如 `(choice :left unit-t :right (tau int-t int-list-t))`，
+这样就可以用 structural 的名字来 choose，而不是用 `left` 和 `right`。
 
 如果说不带类型参数的递归类型定义是方程：
 
@@ -262,8 +266,8 @@ f(x) = 1 / (1 - x)
 并且允许类型参数：
 
 ```scheme
-(define (list-t A) (either-t unit-t (tau A (list-t A))))
-(define (list-t A) (mu (T) (either-t unit-t (tau A T))))
+(define-type (list-t A) (either-t unit-t (tau A (list-t A))))
+(define-type (list-t A) (mu (T) (either-t unit-t (tau A T))))
 ```
 
 当允许类型参数时，
@@ -297,7 +301,7 @@ f(x) = 1 / (1 - x)
 用 lisp 语法表示：
 
 ```scheme
-(define L (mu (T) (either-t unit-t (tau int-t T))))
+(define-type L (mu (T) (either-t unit-t (tau int-t T))))
 
 (same-as-chart
   L
@@ -798,16 +802,81 @@ x = (x + S / x) / 2
 给每个 subexpressions 以地址的过程，
 可以被上面所说的 deep equal 代替。
 
-给 `µ` 以地址还是需要的，实现方式可以模仿 lambda 的 closure，
+给 `µ` 以地址还是需要的，实现方式可以模仿 lambda 的 closure
+（因为 closure 作为 value 的 pointer 就是唯一地址），
 每次求值 mu 表达式的时候，带上当前的 module 地址，
-外加一个 fresh recursive variable name。
+外加一个 fresh recursive variable name（或者直接用 pointer）。
 
-如果不用 `µ`，而是想直接处理递归定义，
-只要做 lazy unfolding 开就可以，
-被 lazy unfolding 的对象，
-可以是求值递归定义时获得一类新值，
+```scheme
+(define-type int-list-t (mu (T) (either-t unit-t (tau int-t T))))
+
+['mu-value
+ :mod <mod>
+ :name 'T
+ :exp '(either-t unit-t (tau int-t T))]
+```
+
+如果不用 `µ`，而是想直接处理递归定义，只要做 lazy unfolding 就可以，
+被 lazy unfolding 的对象，可以是求值递归定义时获得一类新值，
 带上当前的 module 地址，不用生成 fresh name，
 直接以所定义的名字为 recursive variable name 就可以。
+
+```scheme
+(define-type int-list-t (either-t unit-t (tau int-t int-list-t)))
+
+['mod-mu-value
+ :mod <mod>
+ :name 'int-list-t
+ :exp '(either-t unit-t (tau int-t int-list-t))]
+```
+
+考虑带有类型参数的情况。
+
+（1）使用 `mu` 就和上面一样，
+只要把 `list-t` 看成是返回
+`mu-value` 的 closure 就行了。
+
+虽然 `list-t` 每次作用都会返回地址不同的 `mu-value`，
+但是 `list-t` 本身已经不是递归变量了，所以没有关系。
+
+```scheme
+(define-type (list-t A) (mu (T) (either-t unit-t (tau A T))))
+```
+
+（2）使用递归定义时，`list-t` 开始可以被处理成 closure，
+但是此时 loopback 的依据，不能是 type 的地址了，
+而是在形成 type 之前，type constructor 的地址，
+因为 type constructor 是递归变量。
+
+也就是说，谁是递归变量，谁的地址就是依据。
+
+type constructor 的地址，只是 loopback 依据的一部分，
+另外一部分是 type constructor 的 arguments。
+因此，当 type constructor 作用到 arguments 上，
+而得到 type 时，可以直接把这个 type 的来源记下来：
+
+```scheme
+(define-type (list-t A) (either-t unit-t (tau A (list-t A))))
+
+(list-t int-t)
+=>
+['delayed-type-constructor-application
+ :type-constructor list-t
+ :args [int-t]]
+=>
+['type
+ :type-constructor either-t
+ :args [unit-t
+        (tau int-t
+             ['delayed-type-constructor-application
+              :type-constructor list-t
+              :args [int-t]])]
+ :origin ['delayed-type-constructor-application
+          :type-constructor list-t
+          :args [int-t]]]
+```
+
+看起来是可行的。
 
 我用 `|-` 来分割左边的 context 和右边的 judgement。
 
@@ -947,6 +1016,9 @@ x = (x + S / x) / 2
 | (b) An algorithm                  | `α =A β, α ≤A β` | (Section 4) |
 | (c) A collection of typing rules  | `α =R β, α ≤R β` | (Section 5) |
 | (d) A collection of per models    | `α =M β, α ≤M β` | (Section 6) |
+
+从「工程师」的角度来说，"operational intuition" 是最为重要的，
+但是其他的视角也很重要，可以帮助我们看到当前理论与其他理论的联系。
 
 > The mathematical content of the paper consists mainly in analyzing
 > the relationships between these notions. For a simply typed lambda
