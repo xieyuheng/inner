@@ -142,6 +142,47 @@ book-homepage-redirect: "https://inria.hal.science/hal-03367725"
 
 # Preliminaries
 
+## Terms
+
+定义 term 的集合，其中每个函数 symbol 都有固定的 arity。
+
+## Terms and Trees
+
+Tree 被定义为作为坐标的自然数列表 `position: (list-t nat-t)`，
+到一个 label 集合的映射。要求路径的集合是 prefix closed。
+
+注意，本书的 index 从 1 开始。
+
+一个 term 可以视为一个 tree，
+其中 label 的集合为函数 symbol + variable symbol。
+
+这里强调了所定义的 tree 是 finite ordered ranked tree：
+
+- ordered 意思是 children 有序。
+- ranked 意思是每个节点 children 数量固定。
+
+> The reader should note that finite ordered trees with bounded rank
+> `k`, i.e. there is a bound `k` on the out-degrees of internal nodes,
+> can be encoded in finite ordered ranked trees: a label `e ∈ E` is
+> associated with `k` symbols `(e, 1)` of arity `1`, ..., `(e, k)` of
+> arity `k`.
+
+类似 prolog 中，name + arity 才能确定一个 relation。
+
+tree 的坐标称为 position，
+叶子节点的坐标称为 frontier position，
+变量节点的坐标称为 variable position。
+
+```scheme
+(define-type position-t (list-t nat-t))
+(define-type (tree-t L) (-> position-t L))
+```
+
+这种定义 tree 的方式我还是第一次见，
+不是定义一类具体的 tree，而是想要有一个框架能包含所有 tree。
+
+## SubTerms
+
 TODO
 
 # 1 Recognizable Tree Languages and Finite Tree Automata
