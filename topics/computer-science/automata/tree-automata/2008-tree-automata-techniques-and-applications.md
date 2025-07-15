@@ -181,6 +181,9 @@ tree 的坐标称为 position，
 这种定义 tree 的方式我还是第一次见，
 不是定义一类具体的 tree，而是想要有一个框架能包含所有 tree。
 
+这和 graph theory 中定义 tree 的方式很不一样。
+差别好像就在用 `(list-t nat-t)` 来当坐标系。
+
 ## SubTerms
 
 一个 position-t 就定义一个 subterm。

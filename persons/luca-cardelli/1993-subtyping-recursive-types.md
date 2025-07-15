@@ -1037,9 +1037,34 @@ type constructor 的地址，只是 loopback 依据的一部分，
 
 # 2 A Simply Typed λ-calculus with Recursive Types
 
-TODO
+> We consider a simply typed λ-calculus with recursive types and two
+> ground types bottom and top; the latter play the roles of least and
+> greatest elements in the subtype relation.  Although this calculus
+> is very simple, it already embodies the most interesting problems
+> for which we can provide solutions sufficiently general to extend to
+> other domains. In the conclusions we comment on which techniques can
+> be applied to more complex calculi.
+
+Conclusion 中提到了只有 regular tree 才能用这里的方法每，
+什么是 regular tree？能够被有限的 directed graph 生成的吗？
+递归的类型可以，但是递归函数不可以？
+
+可能可以通过读 "tree automata techniques and applications"
+来补全 regular tree 相关的知识。
+但是这应该在 x-lisp 的实现之后，
+用 x-lisp 来做实验。
 
 ## 2.1 Types
+
+> In an informal BNF notation, types are defined as follows:
+
+```bnf
+t, s, ... type variables and type constants, indifferently
+α ::= t | ⊥ | ⊤ | α→β | µt.α
+```
+
+> Types are identified up to renaming of bound variables.
+
 ## 2.2 Terms
 ## 2.3 Equations
 
@@ -1048,6 +1073,66 @@ TODO
 ## 3.1 Subtyping Non-recursive Types
 ## 3.2 Folding and Unfolding
 ## 3.3 Tree Expansion
+
+> Let us first explain how to associate a finitely branching, labeled,
+> regular tree with any recursive type.
+
+finitely branching 是说 rank 有上界，但是 tree 依然可以是无穷的。
+
+> Paths in a tree are represented by finite sequences of natural
+> numbers `π,σ ∈ ω*`, with `πσ` for concatenation and `nil` as
+> the empty sequence.
+
+> Nodes in a tree are labeled by a ranked alphabet
+>
+> L = {⊥/0, ⊤/0, →/2} ∪ {t/0 | t is a type variable},
+>
+> where the superscripts indicate arity.
+
+> A tree `A ∈ ω* -> L` is a partial function from (paths) `ω*` into
+> (node labels) `L`, whose domain is non-empty and prefix-closed, and
+> such that each node has a number of children equal to the rank of
+> the associated label.
+
+我不用 superscript，而用类似 prolog 的 arity 标记。
+
+这确实就是 "tree automata techniques and applications" 中定义 tree 的方式。
+这里竟然没有引用 tree automata 相关的文献。
+
+> Formally, let `A(π)↓` indicate that `π` is in the domain of `A`
+> (and `A(π)↑` indicate the opposite).  Then the collection
+> `Tree(L)` of finitely-branching labeled trees over `L`, is given by
+> the partial maps:
+>
+>     A: ω* -> L such that:
+>       A(nil)↓
+>       A(πσ)↓ ⇒ A(π)↓
+>       A(π) = p/i ⇒ ∀j:0≤j<i. A(πj)↓
+
+这其实是在定义 partial map 的 domain 需要满足的条件。
+
+下面定义 type 到 `Tree(L)` 的映射。
+
+只需要注意对 mu type 的处理：
+
+- `μt.t` 和 `μt.μt1.t` 之类的 type 被映射为了 bottom。
+- `T(µt.α)(π) ≜ T([µt.α/t]α)(π)` -- 就是说遇到 mu type 就展开。
+
+这种映射确实体现了 denotational semantics 的意义，
+首先 tree 作为数学对象的可构造性很强，
+其次考虑 tree 这种数学对象的时候，
+语法上的构造 mu 被消除了。
+
+语法构造与永恒的数学对象相比，
+前者给人的感受是相当任意的设计。
+
+感觉在计算机科学的，
+强调可构造和可计算的领域待地太久，
+我已经忘记数学的感受了。
+也许应该看 "proofs-from-the-book" 来复习一下。
+
+TODO
+
 ## 3.4 Finite Approximations
 
 # 4 An Algorithm
