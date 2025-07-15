@@ -1066,12 +1066,25 @@ t, s, ... type variables and type constants, indifferently
 > Types are identified up to renaming of bound variables.
 
 ## 2.2 Terms
+
+`fold` 和 `unfold` 被作为 explicit syntax 加入到了 term 的定义中。
+可能是因为使用了 church 风格的 term，
+在建立起 type 之间的等价理论之前，
+不这样做，就不能保证每个 term 有唯一个类型。
+
 ## 2.3 Equations
 
 # 3 Tree Ordering
 
 ## 3.1 Subtyping Non-recursive Types
+
+non-recursive types 的 subtyping 非常简单。
+
+可以发现，structural type system 中的 union 和 inter，
+其实是在把 poset 补全成 lattice。
+
 ## 3.2 Folding and Unfolding
+
 ## 3.3 Tree Expansion
 
 > Let us first explain how to associate a finitely branching, labeled,
@@ -1085,7 +1098,7 @@ finitely branching 是说 rank 有上界，但是 tree 依然可以是无穷的�
 
 > Nodes in a tree are labeled by a ranked alphabet
 >
-> L = {⊥/0, ⊤/0, →/2} ∪ {t/0 | t is a type variable},
+>     L = {⊥/0, ⊤/0, →/2} ∪ {t/0 | t is a type variable},
 >
 > where the superscripts indicate arity.
 
@@ -1131,13 +1144,90 @@ finitely branching 是说 rank 有上界，但是 tree 依然可以是无穷的�
 我已经忘记数学的感受了。
 也许应该看 "proofs-from-the-book" 来复习一下。
 
-TODO
+> **Remark 3.3.3** For every `α`, `Tα` is a regular tree, that is, a
+> tree with a finite number of different subtrees.
+
+> Every tree is completely specified by the language of its
+> occurrences, where if `p ∈ L` and `A ∈ Tree(L)` then the
+> occurrences are `Occ(p, A) ≜ {π ∈ ω* | A(π) = p}`. In particular,
+> every regular tree `A` has an associated set `{πp | π ∈ Occ(p, A),
+> p ∈ L}` which is a regular language [16].
+
+[16] Courcelle, B. Fundamental properties of infinite trees,
+Theoretical Computer Science, 25, pp 95-169, 1983.
+
+> From this it follows that given types `α`, `β`, the problem of
+> deciding if `Tα = Tβ` is reducible to the problem of the equivalence
+> of deterministic finite-state automata.
+
+这里说的甚至不是 tree automata，就是普通的 automata，
+这些关于 automata 和 tree automata 的基础知识是一定要学的了。
 
 ## 3.4 Finite Approximations
+
+用 tree 的 finite approximation，
+把 finite tree 上所定义的序关系，
+扩展到一般 tree 上。
+
+注意，这里用深度 k 截断来定义 approximation，
+截断之后会依据 antimonotonic 或 monotonic 位置，
+分别填 top 和 bottom 进去。
+
+这可以用来证明：`α ≜ µt.⊤→t ≤T µt.⊥→(⊥→t) ≜ β`。
+比如某个截断之后，分别得到：
+`⊤ → ⊤ → ⊤ → ⊥` 与
+`⊥ → ⊥ → ⊥ → ⊤`。
+
+这样就能用来定义一般 type 之间的序关系。
+
+type 到 tree 的转化相当于是做了一次 normalization，
+很多语法表示上不同的类型都被转化为相同的 tree 了。
+
+这样 finite approximation 就很好定义了。
+否则去考虑形态各异的 mu type 的有限展开就会很复杂。
+
+这种使用 denotational semantics 的方式很不错！
+
+如果我接受了被定义为函数的，
+可能 infinite 的 tree 为具体的数学结构，
+那么是否也能接受被定义为函数的实数了？
+这样也就不用批评 domain theory 里用到的拓扑和极限技巧了。
+
+Remarks 3.4.4 还提到了另外一种把 finite tree 上的序关系，
+扩展到一般 tree 的方式，就是简单地用递归定义。
+这确实也能把一些 infinite tree 包含到关系中来，
+但是这不能处理上面所提到的 approximation 所能处理的例子。
 
 # 4 An Algorithm
 
 ## 4.1 Canonical Forms
+
+在 type 的语法结构相等，
+和作为 tree 相等之间，
+在引入一层 canonical form 所定义的等价关系。
+
+> For example, the recursive type `(µt.µs.t→s)→ ((µt.t)→(µt.⊤))`
+> can be simplified to the canonical form `(µv.v→v)→(⊥→⊤)` without
+> changing the denoted tree.
+
+考虑如何用 directed graph 表示 mu type 就理解这种等价关系了，
+说 infinite tree 是由 rooted directed graph 生成的，
+说的就是这种 directed graph。
+
+这和 lambda expression 可以用 rooted directed graph 来表示类似，
+差异在于表示 mu type 的 directed graph 没有专门的 mu 节点，
+而表示 lambda expression 的 directed graph 有有专门的 lambda 节点。
+
+确实不做这种 canonical form 就没法使用第一章所提描述的算法。
+但是，如果我们直接写递归定义，而不是 mu type 这种东西，
+可能是不需要这里的 canonical form 的。
+
+这一节所用的技巧也非常有趣，说是处理 equations，
+其实是有方向的（等式两边不对称），
+这应该等价于处理 directed graph。
+
+TODO
+
 ## 4.2 Computational Rules
 ## 4.3 Soundness and Completeness of the Algorithm
 ## 4.4 An Implementation

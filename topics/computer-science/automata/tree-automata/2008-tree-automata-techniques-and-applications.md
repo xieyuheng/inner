@@ -30,6 +30,9 @@ book-homepage-redirect: "https://inria.hal.science/hal-03367725"
 - Chomsky hierarchy
 - 等等
 
+[2025-07-15] 这里的理论可能也和 "the little prover" 有关，
+因为后者中也是在用 position 来取 expression 的 sub-expression。
+
 # Introduction
 
 > Actually using tree automata has proved to be a powerful approach to
