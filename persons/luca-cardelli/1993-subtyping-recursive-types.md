@@ -1234,6 +1234,14 @@ TODO
 
 # 5 Typing Rules
 
+> In this section we introduce a certain number of axioms and rules
+> for type equality and subtyping. These are intended as natural rules
+> for a language based on subtyping, and as a specification of a
+> subtyping algorithm for such a language. In section 4 we have
+> studied such a subtyping algorithm; here we see that the algorithm
+> and the rules match each other perfectly, by relating them both to
+> trees.
+
 # 5.1 Type Equivalence Rules
 # 5.2 Completeness of Equivalence Rules
 # 5.3 Subtyping Rules
