@@ -708,6 +708,9 @@ x = (x + S / x) / 2
 > formal part, but it should explain the main ideas.  A more detailed
 > description is given in section 4.4.
 
+后面将会看到，这里描述的算法没法处理
+`µt.µs. ...t...s...` 之类的外层有多个 mu type 的情况。
+
 > A recursive type of the form `µt. ...t...` can be represented in
 > memory as a cyclic linked structure such that every occurrence of
 > `t` in the recursive body is represented by the address of the
@@ -715,6 +718,10 @@ x = (x + S / x) / 2
 
 递归定义在具体实现中的存在形式总是如此，
 即 rooted directed graph，其中 directed edge 就是 C 意义上的 pointer。
+
+考虑 directed graph 时，
+`µt.µs. ...t...s...` 的两个 back pointer 会指向同一个 root，
+把类型表达式转化为有向图，正是 section 4.4 处理这种情况的方式。
 
 > Otherwise, all subexpressions of a type expression, including `µ`
 > subexpressions, are uniquely determined by their address in memory.
