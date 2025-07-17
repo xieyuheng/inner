@@ -344,7 +344,15 @@ W = {·}                     (error element)
 >
 > if this instance may be derived from the following inference rules:
 
-为了方便排版，我们反过来写推理树：
+为了方便排版，我们反过来写推理树。
+
+`define-rule` 的语法是：
+
+```scheme
+(define-rule <rule-name> <conclusion>
+  <promise>
+  ...)
+```
 
 ```scheme
 (define ctx-t (list-t (tau var-t type-scheme-t)))
@@ -386,16 +394,8 @@ GEN: ---------------------
      |- (λx.x) : ∀α(α → α)
 ```
 
-用 lisp 语法（省略语法元素上的 quote）：
-
-```scheme
-(define P1
-  (prove (check [] (lambda (x) x) (nu (α) (-> α α))) GEN
-    (prove (check [] (lambda (x) x) (-> α α)) ABS
-      (prove (check [[x α]] x α) TAUT))))
-```
-
-展开应该是：
+用 lisp 语法（省略语法元素上的 quote），
+我们发现用 the little typer 的 `(the <type> <exp>)` 就能写证明树：
 
 ```scheme
 (define (P1)
@@ -407,18 +407,22 @@ GEN: ---------------------
 
 ```scheme
 (define (P2)
-  (prove (check [[i (nu (α) (-> α α))]] (i i) (-> α α)) COMB
-    (prove (check [[i (nu (α) (-> α α))]] i (-> (-> α α) (-> α α))) INST
-      (prove (check [[i (nu (α) (-> α α))]] i (nu (α) (-> α α))) TAUT))
-    (prove (check [[i (nu (α) (-> α α))]] i (-> α α)) INST
-      (prove (check [[i (nu (α) (-> α α))]] i (nu (α) (-> α α))) TAUT))))
+  (the (check [[i (nu (α) (-> α α))]] (i i) (-> α α))
+    (COMB (the (check [[i (nu (α) (-> α α))]] i (-> (-> α α) (-> α α)))
+            (INST (the (check [[i (nu (α) (-> α α))]] i (nu (α) (-> α α)))
+                    (TAUT))))
+          (the (check [[i (nu (α) (-> α α))]] i (-> α α))
+            (INST (the (check [[i (nu (α) (-> α α))]] i (nu (α) (-> α α)))
+                    (TAUT)))))))
 ```
 
 ```scheme
 (define (P3)
-  (prove (check [] (let ((i (lambda (x) x))) (i i)) (-> α α)) LET
-    (prove (check [] (lambda (x) x) (nu (α) (-> α α))) P1)
-    (prove (check [[i (nu (α) (-> α α))]] (i i) (-> α α)) P2)))
+  (the (check [] (let ((i (lambda (x) x))) (i i)) (-> α α))
+    (LET (the (check [] (lambda (x) x) (nu (α) (-> α α)))
+           (P1))
+         (the (check [[i (nu (α) (-> α α))]] (i i) (-> α α))
+           (P2)))))
 ```
 
 > The following proposition, stating the semantic soundness of
