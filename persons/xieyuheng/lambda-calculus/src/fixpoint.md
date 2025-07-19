@@ -67,6 +67,20 @@ f =
 (f (turing f))
 ```
 
+如果不支持 lazy evaluation，可以用：
+
+```scheme
+(define (Y f)
+  ((lambda (u) (u u))
+   (lambda (x) (f (lambda (t) ((x x) t))))))
+```
+
+检验如下：
+
+```scheme
+TODO
+```
+
 # 使用 Y 来实现递归函数
 
 以计算阶乘的递归函数 `factorial` 为例，
@@ -102,6 +116,14 @@ f =
 
 注意 `factorial-wrap` 的定义中并没有自我引用，
 `factorial` 是作为一个约束变元出现的。
+
+如果要声明类型，大概是这样：
+
+```scheme
+(claim factorial-wrap (-> (-> Nat Nat) (-> Nat Nat)))
+(claim (Y factorial-wrap) (-> Nat Nat))
+(claim Y (nu (A) (-> (-> A A) A)))
+```
 
 展开有限次嵌套试试，以三层 `factorial-wrap` 为例：
 
@@ -164,6 +186,12 @@ f =
     (mul n (self self (sub1 n)))))
 
 (define factorial (factorial-half factorial-half))
+```
+
+如果要声明类型的话，大概是：
+
+```scheme
+(claim factorial-half (mu (X) (-> X Nat Nat)))
 ```
 
 和 `factorial-wrap` 类似，
