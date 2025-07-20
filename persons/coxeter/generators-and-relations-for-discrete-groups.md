@@ -349,7 +349,7 @@ function f(x: G1): G2 {
 - the cayley is the universal covering space of torus.
 
 - in the construction of universal covering space of a space,
-  different pathes are distinct as different points.
+  different paths are distinct as different points.
 
 - a group defined by generators and relations,
   is the fundamental group of the corresponding space in AT1,

@@ -22,7 +22,7 @@ year: 1993
 本质上是要比较 infinite tree，
 而这些 infinite tree 都是由 rooted directed graph 生成的，
 想要比较两个 rooted directed graphs，
-只需要在遍历的过程中记录所走过的两个 pathes 上的 nodes 的 address pair，
+只需要在遍历的过程中记录所走过的两个 paths 上的 nodes 的 address pair，
 称这个 address pair 的 list 为 trail，
 递归的时候带上这个 trail 即可。
 
@@ -740,7 +740,7 @@ x = (x + S / x) / 2
 > trail.
 
 核心 idea 可以总结为：
-通过记录 trail -- a pair of pathes，
+通过记录 trail -- a pair of paths，
 来比较两个 rooted directed graph 是否相等。
 
 递归定义所生成的无限树，某种意义上来说都是无限循环树，

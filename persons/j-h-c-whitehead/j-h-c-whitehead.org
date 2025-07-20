@@ -127,7 +127,7 @@
         but the a new kind of compositor called homotopy-join
         - (homotopy-join A B)
           for every two points in each A B,
-          join them by a path, space form by such pathes is (homotopy-join A B).
+          join them by a path, space form by such paths is (homotopy-join A B).
 
       - [empty simplex]
         the set of an empty simplex is unique

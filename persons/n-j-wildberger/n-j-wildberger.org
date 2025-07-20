@@ -550,7 +550,7 @@
 
 *** Universal covering spaces
 
-    - universal-covering-space defined as space of pathes
+    - universal-covering-space defined as space of paths
       注意形變一個 path 時 要保持始末點
       需要驗證其構造滿足 定義 universal-covering-space 的兩個性質
 
