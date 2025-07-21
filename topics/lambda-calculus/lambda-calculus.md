@@ -816,9 +816,9 @@ TODO 即當以以"ͱ"爲核心的表達式爲有向圖的節點時
    等號是被濫用最多的數學符號
    在定義形式語言的時候一定要小心使用
    等號的基本語義
-   1) 賦值
-   2) 基本等詞
-   3) 等價關係
+   1. 賦值
+   2. 基本等詞
+   3. 等價關係
 6. priori == 先驗的
    在每個理論中 基本等詞 將是唯一的先驗的概念
 
@@ -932,8 +932,8 @@ TODO 即當以以"ͱ"爲核心的表達式爲有向圖的節點時
    並且這些集合中的點能夠組成一個有向圖
    在這個有向圖中有向邊就對應與歸納定義中的各個規則
 3. 在程序語言中有兩方面
-   1) 讀入的字符串
-   2) 語法解析字符串而形成內存中的鏈表
+   1. 讀入的字符串
+   2. 語法解析字符串而形成內存中的鏈表
 4. 比如
    ``` cicada
    define-type <lambda-exp>
@@ -1032,15 +1032,15 @@ TODO 即當以以"ͱ"爲核心的表達式爲有向圖的節點時
    of the following proposition
    λt.tzt =a= λs.szs
 4. λx.M pattern-matching λt.tzt
-   1) λ == λ, so
+   1. λ == λ, so
       the pattern is matched successfully
-   2) pattern-vars binding:
+   2. pattern-vars binding:
       x -- t
       M -- tzt
 5. λy.N pattern-matching λs.szs
-   1) λ == λ, so
+   1. λ == λ, so
       the pattern is matched successfully
-   2) pattern-vars binding:
+   2. pattern-vars binding:
       y -- s
       N -- szs
 6. performing M[x:=y]
@@ -1214,9 +1214,9 @@ TODO 即當以以"ͱ"爲核心的表達式爲有向圖的節點時
    of the following proposition
    λx.F(xx) λx.F(xx) -sb-> F(λx.F(xx) λx.F(xx))
 6. (λx.M)N pattern-matching λx.F(xx) λx.F(xx)
-   1) λ == λ, so
+   1. λ == λ, so
       the pattern is matched successfully
-   2) pattern-vars binding:
+   2. pattern-vars binding:
       x -- x
       M -- F(xx)
       N -- λx.F(xx)
@@ -1378,13 +1378,13 @@ LM -sb-> LN
     ----------
 12. 有四種引入上面兩個節點的可能性
     我必須說明每種都能推出M =b= L
-    1) M -b-> N
+    1. M -b-> N
        N -b-> L
        ---------
        M -b-> L
        ---------
        M =b= L
-    2) N -b-> M
+    2. N -b-> M
        N -b-> L
        ---------
        此時已經不能推出
@@ -1605,13 +1605,13 @@ L <-b- N
      而它們中都包含了"=b="
      所以這個推理規則被認爲是一個"歸納推步"
      此時有歸納假設:
-     1) M =b= L
+     1. M =b= L
         ----------
         ∃P1 :
         P1 <-b- M
         P1 <-b- L
 
-     2) L =b= N
+     2. L =b= N
         ----------
         ∃P2 :
         P2 <-b- L
@@ -1875,11 +1875,11 @@ APPLICATION:
 2. lemma
    every exp matchs one of the following two patterns
    or another [可以就歸納定義證明]
-   1) λ x1 ... xn . y N1 ... Nm
+   1. λ x1 ... xn . y N1 ... Nm
       + where n,m>=0
         pattern-var y matchs [free or non-free] var
         pattern-var Ni matchs exp
-   2) λx1...xn.(λy.N0)N1...Nm
+   2. λx1...xn.(λy.N0)N1...Nm
       + where n>=0, m>=1
 3. 上面這個引理也是廢屁話
 4. head normal form (hnf)
@@ -2321,10 +2321,10 @@ by induction on the derivation of M:σ
 1. 下面的分類是按Γ ͱ M:σ被推理規則生成的方式來分的
    Γ ͱ M:σ作爲有向圖中的一個節點
    它被添加入有向圖中的方式只有三種
-   1) (axiom)
+   1. (axiom)
       這是顯然的
       具體的實現設計到對列表Γ的處理
-   2) (->introduction)
+   2. (->introduction)
       已知Γ ͱ M:σ形如Γ ͱ (λx.M):(σ->τ)
       + 這個"已知"顯然是通過一個模式匹配來實現的
       是被Γ,x:σ ͱ M:τ引入的
@@ -2336,7 +2336,7 @@ by induction on the derivation of M:σ
         即需要x:σ不在Γ'中
         (或者是x不在dom(Γ')中???)
       然後就可以引入節點Γ' ͱ (λx.M):(σ->τ)
-   3) (->elimination)
+   3. (->elimination)
       已知Γ ͱ M:σ形如Γ ͱ (MN):τ
       是被Γ ͱ M:(σ->τ)    Γ ͱ N:σ引入的
       在Γ'⊃Γ的前提下
