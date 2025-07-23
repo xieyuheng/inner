@@ -22,3 +22,9 @@ function loggingIdentity<Type extends Lengthwise>(arg: Type): Type {
 ```
 
 就是这篇论文中的 bounded quantification。
+
+[2025-07-23] 在实现 lattice-lisp 的过程中，
+遇到了 union 的难点。
+读这篇论文休息一下。
+
+# TODO
