@@ -99,6 +99,9 @@ curry 不要求类型可以推导，church 要求类型总是可以推导。
 > illusion, because it is very easy to violate the type distinctions
 > we have just created.
 
+可能还是要以 untyped 语言为基础。
+否则都算是太复杂了。
+
 > In set theory, what is the set-union of the function successor and
 > the function predecessor?
 
@@ -107,10 +110,77 @@ curry 不要求类型可以推导，church 要求类型总是可以推导。
 
 ## 1.2. Static and Strong Typing
 
-TODO
+> A type may be viewed as a set of clothes (or a suit of armor) that
+> protects an underlying untyped representation from arbitrary or
+> unintended use. It provides a protective covering that hides the
+> underlying representation and constrains the way objects may
+> interact with other objects. In an untyped system untyped objects
+> are _naked_ in that the underlying representation is exposed for all
+> to see. Violating the type system involves removing the protective
+> set of clothing and operating directly on the naked representation.
+> Objects of a given type have a representation that respects the
+> expected properties of the data type.
+
+但是我想实现的 structural type 确实就是描述
+underlying representation 的结构而已，
+不会隐藏 untyped representation。
+
+作者这种理解类型的方式，
+对于为实用的语言设计类型系统而言是适用的。
+
+但是这并非全貌，
+比如辅助证明系统是以 type 为主，
+而把函数理解为证明的。
+
+这一节尝试定义
+"statically typed" 和 "strongly typed"，
+这些定义是没意义的。
 
 ## 1.3. Kinds of Polymorphism
+
+> Conventional typed languages, such as Pascal, are based on the idea
+> that functions and procedures, and hence their operands, have a
+> unique type. Such languages are said to be _monomorphic_, in the
+> sense that every value and variable can be interpreted to be of one
+> and only one type.
+
+> Monomorphic programming languages may be contrasted with
+> _polymorphic_ languages in which some values and variables may have
+> more than one type. Polymorphic functions are functions whose
+> operands (actual parameters) can have more than one type.
+
+> Strachey [Strachey 67] distinguished, informally, between two major
+> kinds of polymorphism.  _Parametric polymorphism_ is obtained when a
+> function works uniformly on a range of types: these types normally
+> exhibit some common structure. _Ad-hoc polymorphism_ is obtained
+> when a function works, or appears to work, on several different
+> types (which may not exhibit a common structure) and may behave in
+> unrelated ways for each type.
+
+> In terms of implementation, a universally polymorphic function will
+> execute the same code for arguments of any admissible type, while an
+> ad-hoc polymorphic function may execute different code for each type
+> of argument.
+
+> If we view a type as partially specifying the behavior, or intended
+> usage, of associated values, then monomorphic type systems constrain
+> objects to have just one behavior, while polymorphic type systems
+> allow values to be associated with more than one behavior.
+
+> Strictly monomorphic languages are too restrictive in their
+> expressive power because they do not allow values, or even syntactic
+> symbols that denote values, to exhibit different behavior in
+> different contexts of use.
+
+C 就是实用的 monomorphic language 的例子。
+比那些设计的不好的 polymorphic language 好多了。
+可见，如果不知道如何把一个功能设计好，还不如不设计。
+可见 untyped language 的重要。
+
 ## 1.4. The Evolution of Types in Programming Languages
+
+TODO
+
 ## 1.5. Type Expression Sublanguages
 ## 1.6. Preview of Fun
 
