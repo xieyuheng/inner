@@ -179,9 +179,12 @@ C 就是实用的 monomorphic language 的例子。
 
 ## 1.4. The Evolution of Types in Programming Languages
 
-TODO
+很枯燥的一节。
 
 ## 1.5. Type Expression Sublanguages
+
+TODO
+
 ## 1.6. Preview of Fun
 
 # 2. The λ-Calculus
