@@ -17,3 +17,4 @@ extended function 时，发现自己拖了很长时间没有验证 explicit subs
 同时，我们不光要勇于验证我们的假设，
 还要急于验证我们的假设，
 这样才能 fail faster。
+why-fail faster
