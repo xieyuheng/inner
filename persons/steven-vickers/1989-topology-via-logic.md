@@ -78,6 +78,22 @@ type 之间的序关系，
 和 value 之间的序关系。
 它们的方向是相反的。
 
+因此拥有越多属性的 record value 就越大（more defined），
+拥有越多属性的 record type 就越小（subtype type）。
+
+具体看 record value 的例子：
+
+    {x: 1} ≤ {x: 1, y: 2}
+
+因为
+
+    forall T: Type, {x: 1}: T -> {x: 1, y: 2}: T
+
+比如 `{x: 1}: {x: Int}` 那么就有 `{x: 1, y: 2}: {x: Int}`。
+
+注意，当考虑 record value 的 domain 时，
+已经不是相对平凡的 flat domain 了。
+
 ## domain theory 的起源
 
 Domain theory 首先起源于给程序语言中的概念，

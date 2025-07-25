@@ -289,10 +289,18 @@ variant 是完全 structural 的。
 Ideal 首先要求就元素的序关系而言向下封闭性（Downward Closed）：
 若 `x ∈ I` 且 `y ≤ x`，则 `y ∈ I`。
 
+注意 domain 上 record value 的序关系，
+与 record type 的子类型关系是相反的（Galois connection）。
+
+如果 type 被解释为 ideal，
+那么 ideal 的公理的具体的例子是，
+若 `{x: 1, y: 2}: {x: Int, y: Int}`
+且 `{x: 1} ≤ {x: 1, y: 2}`，
+则 `{x: 1}: {x: Int, y: Int}`，
+这显然不对呀！
+
 可能作者想要用这个属性来理解 record type 的意义。
-但是这需要先明确元素之间的序关系才行，
-因为 Scott 意义上的序关系（把 record 理解为 key 到 value 的函数）
-和 record 之间的系关系是相反的。
+但是这需要先明确元素之间的序关系才行。
 
 上面提到的两个引用可能有对这里 ideal 的详细定义：
 
@@ -304,6 +312,8 @@ Ideal 首先要求就元素的序关系而言向下封闭性（Downward Closed�
   Type Inference and Type Containment,
   in Semantics of Data Types, Lecture
   Notes in Computer Science 173, 51-67, Springer-Verlag, 1984.
+
+可能需要看 [MacQueen 84a]。
 
 > Hence, a type is an ideal, which is a set of values. Moreover, the
 > set of all types (ideals) over V, when ordered by set inclusion,
