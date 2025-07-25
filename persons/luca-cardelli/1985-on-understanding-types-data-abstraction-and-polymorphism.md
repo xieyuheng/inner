@@ -183,17 +183,103 @@ C 就是实用的 monomorphic language 的例子。
 
 ## 1.5. Type Expression Sublanguages
 
-TODO
+> The type expression sublanguage should be sufficiently rich to
+> support types for all values with which we wish to compute, but
+> sufficiently tractable to permit decidable and efficient type
+> checking. One of the purposes of this paper is to examine tradeoffs
+> between richness and tractability for type expression sublanguages
+> of strongly typed languages.
 
 ## 1.6. Preview of Fun
+
+> Fun is a λ-calculus-based language that enriches the first-order
+> typed λ-calculus with second-order features designed to model
+> polymorphism and object-oriented languages.
+
+> Section 2 reviews the untyped and typed λ-calculus and develops
+> first-order features of the Fun type expression sublanguage. Fun has
+> the basic types Bool, Int, Real, String and constructed types for
+> record, variant, function, and recursive types. This set of
+> first-order types is used as a base for introducing parametric
+> types, abstract data types, and type inheritance by means of
+> second-order language features in subsequent sections.
+
+> Section 3 briefly reviews theoretical models of types related to
+> features of Fun, especially models which view types as sets of
+> values. Viewing types as sets allows us to define parametric
+> polymorphism in terms of set intersection of associated types and
+> inheritance polymorphism in terms of subsets of associated
+> types. Data abstraction may also be defined in terms of set
+> operations (in this case unions) on associated types.
+
+这一章关于集合论的，正是我现在想要了解的。
+
+> Sections 4, 5, and 6 respectively augment the first-order
+> λ-calculus with universal quantification for realizing
+> parameterized types, existential quantification for realizing data
+> abstraction, and bounded quantification for realizing type
+> inheritance.
+
+> Section 7 briefly reviews type checking and type inheritance for
+> Fun. It is supplemented by an appendix listing type inference rules.
+
+> Section 8 provides a hierarchical classification of object-oriented
+> type systems. Fun represents the topmost (most general) type system
+> of this classification. The relation of Fun to less general systems
+> associated with ML, Galileo, Amber, and other languages with
+> interesting type systems is reviewed.
 
 # 2. The λ-Calculus
 
 ## 2.1. The Untyped λ-Calculus
+
+这里描述的语言很像 scala，可能是 scala 的起源。
+
 ## 2.2. The Typed λ-Calculus
 ## 2.3. Basic Types, Structured Types and Recursion
 
+这里在描述 intersection type 的时候，
+限制了 intersection 只能作用在 record type 上。
+
+record type = labeled product type
+variant type = labeled sum type
+
+这里用与 record 对称的语法来描述 variant 并不好，
+因为 record 的语法所表示的是 key-value collection。
+而 variant value 只能有一个 key。
+
+是否可以直接用 list 构造 variant type？
+把 list 的 head symbol 当作 label。
+好像完全可以：
+
+```scheme
+(define-variant int-list-t
+  (null)
+  (cons int-t int-list-t))
+
+(define-variant (list-t A)
+  (null)
+  (cons A (list-t A)))
+```
+
+这也许是正确的设计，因为绝大多数 union 都是为了表示 variant。
+
+```scheme
+(define-type int-list-t
+  (union (tau 'null)
+         (tau 'cons int-t int-list-t)))
+
+(define-type (list-t A)
+  (union (tau 'null)
+         (tau 'cons A (list-t A))))
+```
+
+注意，`define-variant` 与 `define-datatype` 不同，
+variant 是完全 structural 的。
+
 # 3. Types are Sets of Values
+
+TODO
 
 # 4. Universal Quantification
 
