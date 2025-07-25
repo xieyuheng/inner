@@ -279,12 +279,106 @@ variant 是完全 structural 的。
 
 # 3. Types are Sets of Values
 
-TODO
+> There is a universe V of all values, ... A type is a set of elements
+> of V. Not all subsets of V are legal types: they must obey some
+> technical properties. The subsets of V obeying such properties are
+> called _ideals_. All the types found in programming languages are
+> ideals in this sense, so we don't have to worry too much about
+> subsets of V which are not ideals.
+
+Ideal 首先要求就元素的序关系而言向下封闭性（Downward Closed）：
+若 `x ∈ I` 且 `y ≤ x`，则 `y ∈ I`。
+
+可能作者想要用这个属性来理解 record type 的意义。
+但是这需要先明确元素之间的序关系才行，
+因为 Scott 意义上的序关系（把 record 理解为 key 到 value 的函数）
+和 record 之间的系关系是相反的。
+
+上面提到的两个引用可能有对这里 ideal 的详细定义：
+
+- [MacQueen 84a] D.B.MacQueen, G.D.Plotkin, R.Sethi:
+  An ideal model for recursive polymorphic types,
+  Proc. Popl 1984. Also to appear in Information and Control.
+
+- [Mitchell 84] J.C.Mitchell:
+  Type Inference and Type Containment,
+  in Semantics of Data Types, Lecture
+  Notes in Computer Science 173, 51-67, Springer-Verlag, 1984.
+
+> Hence, a type is an ideal, which is a set of values. Moreover, the
+> set of all types (ideals) over V, when ordered by set inclusion,
+> forms a lattice. The top of this lattice is the type Top (the set of
+> all values, i.e. V itself). The bottom of the lattice is,
+> essentially, the empty set (actually, it is the singleton set
+> containing the least element of V).
+
+> The phrase _having a type_ is then interpreted as _membership_ in
+> the appropriate set. As ideals over V may overlap, a value can have
+> many types.
+
+> In the remaining sections of this paper we introduce more powerful
+> type constructors that allow us to talk about types corresponding to
+> infinite unions and intersections in the type lattice.
+>
+> - In particular, universal quantification will allow us to name
+>   types whose lattice points are infinite intersections of types,
+>
+> - while existential quantification will allow us to name types
+>   corresponding to infinite unions.
+>
+> Our reason for introducing universal and existential quantification
+> is the importance of the resulting types in increasing the
+> expressive power of typed programming languages. It is fortunate
+> that these concepts are also mathematically simple and that they
+> correspond to well-known mathematical constructions.
+
+> The ideal model is not the only model of types which has been
+> studied. With respect to other denotational models, however, it has
+> the advantage of explaining simple and polymorphic types in an
+> intuitive way, namely as sets of values, and of allowing a natural
+> treatment of inheritance. Less satisfactory is its treatment of type
+> parametrization, which is rather indirect since types cannot be
+> values, and its treatment of type operators, which involves getting
+> out of the model and considering functions over ideals.  In view of
+> this intuitive appeal, we have chosen the ideal model as our
+> underlying view of types, but much of our discussion could be
+> carried over, and sometimes even improved, if we chose to refer to
+> other models.
+
+> The idea of types as parameters is fully developed in the
+> second-order λ-calculus [Bruce 84]. The (only known) denotational
+> models the second-order λ-calculus are _retract models_ [Scott
+> 76]. Here, types are not sets of objects but special functions
+> (called retracts); these can be interpreted as identifying sets of
+> objects, but are objects themselves. Because of the property that
+> types are objects, retract models can more naturally explain
+> explicit type parameters, while ideal models can more naturally
+> explain implicit type parameters.
+
+这里的引用：
+
+- [Bruce 84] K.B.Bruce, R.Meyer:
+  The semantics of second order polymorphic lambda calculus,
+  in Sematics of Data Types, G.Kahn, D.B.MacQueen and G.Plotkin Ed.
+  Lecture Notes in Computer Science 173, Springer-Verlag, 1984.
+
+- [Scott 76] D.Scott:
+  Data types as lattices,
+  SIAM Journal of Computing, Vol 5, No 3, September 1976, pp. 523-587.
+
+为了理解上面的 ideal，
+我差点就去看了 "data types as lattices"，
+原来这篇论文所描述的是完全不同的语义。
 
 # 4. Universal Quantification
 
 ## 4.1. Universal Quantification and Generic Functions
+
+TODO
+
 ## 4.2. Parametric Types
+
+TODO
 
 # 5. Existential Quantification
 
