@@ -45,6 +45,10 @@ propagator 和 inet 的实现带来什么启发。
 [2025-05-24] 也许更适合用来为 pi calculus 之类的语言写解释器的，
 是 simply typed scheme，而不是 generic dispatching。
 
+[2025-08-12] 已经有了自己的动态类型 lisp
+-- occam-lisp：https://github.com/xieyuheng/occam-lisp.js
+现在想要用 occam-lisp 写自己的编译器。
+
 # My Notes
 
 [2025-06-05] 作为渐进的开发与教学的著作，
@@ -58,7 +62,7 @@ propagator 和 inet 的实现带来什么启发。
 但是实现多个 lang 渐进的时候，
 作者用到了 class 与 open recursion。
 在实际的实现中，
-可能根本不必保留多个 lang 的历史，
+根本不必保留多个 lang 的历史，
 因此不用使用这些更为复杂的语言功能。
 
 还有其他保持开发历史的方式：
@@ -98,6 +102,9 @@ propagator 和 inet 的实现带来什么启发。
 就还是需要 class 与 open recursion。
 
 有没有办法避免这种情况？
+
+[2025-08-12] 也许不应该在任何时候都避免重复代码，
+在适当的时候重复代码可以大大降低理解整体代码的复杂性。
 
 # Preface
 
