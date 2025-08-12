@@ -4,7 +4,7 @@ author: yves lafont
 year: 1988
 ---
 
-# 学习动机
+# My Motive
 
 理解 linear logic 的连接词。
 

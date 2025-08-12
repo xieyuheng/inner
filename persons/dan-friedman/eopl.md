@@ -3,7 +3,7 @@ title: Essentials of Programming Languages
 authors: [Daniel P. Friedman, Mitchell Wand]
 ---
 
-# 学习动机
+# My Motive
 
 [2025-01-22]
 很久之前就读过这本书，

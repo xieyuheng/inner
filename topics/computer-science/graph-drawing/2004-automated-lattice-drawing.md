@@ -4,7 +4,7 @@ author: ralph freese
 year: 2004
 ---
 
-# 学习动机
+# My Motive
 
 **动机 A：**
 

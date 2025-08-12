@@ -4,7 +4,7 @@ author: Yves Lafont
 year: 1997
 ---
 
-# 学习动机
+# My Motive
 
 [2024-11-15]
 新的 c inet 实现，

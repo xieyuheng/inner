@@ -5,7 +5,7 @@ authors: Jeremy G. Siek
 year: 2023
 ---
 
-# 学习动机
+# My Motive
 
 动机首先来自 Indiana 大学的传统，
 来自 Dan 介绍解释器的 EOPL。

@@ -4,7 +4,7 @@ authors: [Maribel Fernández, Ian Mackie]
 year: 1999
 ---
 
-# 学习动机
+# My Motive
 
 [2024-11-16]
 HVM2 2023 的论文中说语法是从这篇论文来的。

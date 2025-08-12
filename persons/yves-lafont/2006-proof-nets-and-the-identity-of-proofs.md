@@ -4,7 +4,7 @@ author: Lutz Straßburger
 year: 2006
 ---
 
-# 学习动机
+# My Motive
 
 想要给 inet 加上依赖类型系统。
 不能盲目地直接去加，

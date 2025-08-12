@@ -4,7 +4,7 @@ author: Kent Beck
 year: 1997
 ---
 
-# 学习动机
+# My Motive
 
 我是从 Martin Fowler 的 "Refactoring" 中，
 了解到「用不定冠词来命名变量」这个 ieda 的，

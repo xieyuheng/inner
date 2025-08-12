@@ -4,7 +4,7 @@ author: dana scott
 year: 1976
 ---
 
-# 学习动机
+# My Motive
 
 [2025-01-03]
 看了 1970-outline-of-a-mathematical-theory-of-computation，

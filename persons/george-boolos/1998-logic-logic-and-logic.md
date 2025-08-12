@@ -4,7 +4,7 @@ author: George Boolos
 year: 1998
 ---
 
-# 学习动机
+# My Motive
 
 这是 Boolos 的论文集。
 标题很吸引人，

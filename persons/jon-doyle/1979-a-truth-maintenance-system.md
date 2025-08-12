@@ -4,7 +4,7 @@ author: Jon Doyle
 year: 1979
 ---
 
-# 学习动机
+# My Motive
 
 - 动机 A：
 

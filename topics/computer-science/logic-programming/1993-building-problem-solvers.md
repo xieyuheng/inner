@@ -4,7 +4,7 @@ authors: [Kenneth D. Forbus, Johan de Kleer]
 year: 1993
 ---
 
-# 学习动机
+# My Motive
 
 动机 A：
 

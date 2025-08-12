@@ -4,7 +4,7 @@ author: dana scott
 year: 1970
 ---
 
-# 学习动机
+# My Motive
 
 [2025-01-02] 想要理解 linear logic 的起源：
 coherence semantics of the sum，

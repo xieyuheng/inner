@@ -4,7 +4,7 @@ author: Jean-Yves Girard
 year: 2022
 ---
 
-# 学习动机
+# My Motive
 
 [2025-01-14] 在考虑 inet 的类型系统时，遇到很多难点。
 这里想要看看这里的观点会给 inet 的类型系统什么启发。

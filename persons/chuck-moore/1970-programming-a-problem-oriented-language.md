@@ -4,7 +4,7 @@ author: Charles H. Moore
 year: 1970
 ---
 
-# 学习动机
+# My Motive
 
 [2024-11-07]
 

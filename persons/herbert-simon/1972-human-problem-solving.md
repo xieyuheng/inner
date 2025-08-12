@@ -4,7 +4,7 @@ authors: [Allen Newell, Herbert Simon]
 year: 1972
 ---
 
-# 学习动机
+# My Motive
 
 动机 A：
 

@@ -5,7 +5,7 @@ author: Jean-Yves Girard
 year: 2001
 ---
 
-# 学习动机
+# My Motive
 
 据说危 [Wikipedia / Ludics](https://en.wikipedia.org/wiki/Ludics)，
 这个概念和 pointer 有关！

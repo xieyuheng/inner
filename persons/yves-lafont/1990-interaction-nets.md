@@ -4,7 +4,7 @@ author: Yves Lafont
 year: 1990
 ---
 
-# 学习动机
+# My Motive
 
 [2024-11-06]
 实现了 inet 之后，我以为自己早已经熟悉这篇论文了，

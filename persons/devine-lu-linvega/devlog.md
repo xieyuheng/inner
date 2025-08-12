@@ -4,7 +4,7 @@ author: devine lu linvega
 source: https://wiki.xxiivv.com/site/devlog
 ---
 
-# 学习动机
+# My Motive
 
 我想模仿 uxn 写一个 vm，
 但是与之以 byte 为 value 的设计不同，

@@ -4,7 +4,7 @@ author: Yves Lafont
 year: 1995
 ---
 
-# 学习动机
+# My Motive
 
 [2025-01-01] 这篇论文在 1997-interaction-combinators 之前。
 需要看一下从 1990-interaction-nets 开始 inet 的发展。

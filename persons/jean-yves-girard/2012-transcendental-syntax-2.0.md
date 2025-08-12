@@ -4,7 +4,7 @@ author: Jean-Yves Girard
 year: 2012
 ---
 
-# 学习动机
+# My Motive
 
 [2025-01-14] 我怀疑 transcendental syntax 所实现的语言，
 与 graph-based rewriting 的 inet 类似。

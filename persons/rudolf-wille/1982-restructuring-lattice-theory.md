@@ -4,7 +4,7 @@ subtitle: An approach based on hierarchies of concepts
 year: 1982
 ---
 
-# 学习动机
+# My Motive
 
 **动机 A：**
 

@@ -5,7 +5,7 @@ Translaters: [Paul Taylor, Yves Lafont]
 year: 1989
 ---
 
-# 学习动机
+# My Motive
 
 [2025-01-01] 系统地学习 Girard 理解逻辑学的方式。
 

@@ -4,7 +4,7 @@ author: don d roberts
 year: 2009
 ---
 
-# 学习动机
+# My Motive
 
 在想要给 inet 加依赖类型系统的时候，
 发现了 proof net，也就是说现代的发展已经又开始重视 graph 了。

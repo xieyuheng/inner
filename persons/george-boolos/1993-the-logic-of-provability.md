@@ -4,7 +4,7 @@ author: George Boolos
 year: 1993
 ---
 
-# 学习动机
+# My Motive
 
 开阔眼界。
 

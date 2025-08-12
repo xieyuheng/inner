@@ -5,7 +5,7 @@ author: kent beck
 year: 2023
 ---
 
-# 学习动机
+# My Motive
 
 [2024-12-03] 我正在写一个基于 x window system 的 pixel canvas 程序，
 其中目前有 `canvas_t` 和 `canvas_window_t` 两个 class，

@@ -4,7 +4,7 @@ author: Jon Doyle
 year: 1974
 ---
 
-# 学习动机
+# My Motive
 
 这篇论文是 Jon Doyle 的学位论文，同时也是 TMS 的奠基论文。
 Sussman 是作者的老师，也是这篇论文的导师。

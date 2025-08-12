@@ -3,7 +3,7 @@ title: Formal Concept Analysis as Mathematical Theory of Concepts and Concept Hi
 year: 2005
 ---
 
-# 学习动机
+# My Motive
 
 这个论文是作者读了另一个作者的，
 一篇关于「概念」的哲学论文之后，

@@ -4,7 +4,7 @@ author: raymond smullyan
 year: 2014
 ---
 
-# 学习动机
+# My Motive
 
 [2025-01-05] 想要读 Yves Lafont 的 2017-linear-logic-pages，
 但是感觉需要复习一下命题逻辑和谓词逻辑。

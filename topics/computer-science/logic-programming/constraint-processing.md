@@ -4,7 +4,7 @@ author: Rina Dechter
 year: 2003
 ---
 
-# 学习动机
+# My Motive
 
 （1）增进对类型检查器的理解。
 
