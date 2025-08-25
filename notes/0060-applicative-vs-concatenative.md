@@ -1,5 +1,5 @@
 ---
-title: forth-like threaded code
+title: applicative vs. concatenative
 date: 2025-08-17
 ---
 
@@ -19,3 +19,8 @@ concatenative language 的核心语法一般理解为是 composition，
 
 相比之下，application language 的 lookup 是很简单的，
 就是取出 name 所对应的 value。
+
+在语法上，applicative 比 concatenative 多出来一些信息，
+即函数作用时候的参数个数。
+因此 applicative 语言可以区分 `(f x y)` 与 `(f x)`，
+从而实现 auto currying `(f x y) = ((f x) y)`。
