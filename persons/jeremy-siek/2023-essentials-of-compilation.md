@@ -49,6 +49,8 @@ propagator 和 inet 的实现带来什么启发。
 -- occam-lisp：https://github.com/xieyuheng/occam-lisp.js
 现在想要用 occam-lisp 写自己的编译器。
 
+[2025-08-30] 已经把目前写的 racket 代码翻译到了 occam-lisp。
+
 # My Notes
 
 [2025-06-05] 作为渐进的开发与教学的著作，
@@ -105,6 +107,46 @@ propagator 和 inet 的实现带来什么启发。
 
 [2025-08-12] 也许不应该在任何时候都避免重复代码，
 在适当的时候重复代码可以大大降低理解整体代码的复杂性。
+
+[2025-08-30] 目前的实现方式就是重复代码：
+
+`program.lisp`:
+
+```scheme
+(define-data program?
+  (cons-program
+   (info anything?)
+   (body exp?)))
+
+(define-data exp?
+  (var-exp (name symbol?))
+  (int-exp (value int?))
+  (prim-exp (op symbol?) (args (list? exp?)))
+  (let-exp (name symbol?) (rhs exp?) (body exp?)))
+```
+
+`c-program.lisp`:
+
+```scheme
+(define-data c-program?
+  (cons-c-program
+   (info anything?)
+   (seqs (record? seq?))))
+
+(define-data seq?
+  (return-seq (result c-exp?))
+  (cons-seq (stmt stmt?) (tail seq?)))
+
+(define-data stmt?
+  (assign-stmt (var var-c-exp?) (rhs c-exp?)))
+
+(define-data c-exp?
+  (var-c-exp (name symbol?))
+  (int-c-exp (value int?))
+  (prim-c-exp (op symbol?) (args (list? c-atom?))))
+
+(define c-atom? (union var-c-exp? int-c-exp?))
+```
 
 # Preface
 
