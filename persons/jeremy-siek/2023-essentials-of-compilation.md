@@ -225,7 +225,7 @@ extending the compiler as necessary.
 
 > This book does not cover the theory and implementation of parsing.
 
-直接用 sexp。
+直接从 sexp 开始，生成用 ADT 表示的 AST。
 
 > ASTs can be represented inside the compiler in many different ways,
 > depending on the programming language used to write the compiler.
@@ -247,7 +247,8 @@ extending the compiler as necessary.
 > links to go from one part of a program to its subparts.
 
 但是与 propagator model 相比，
-这里的 tree 能也只能从 parent to children。
+这里的 tree 能也只能从 parent 到 children，
+而不能从 children 到 parent。
 
 > We define a Racket `struct` for each kind of node. For this chapter
 > we require just two kinds of nodes: one for integer constants (aka
@@ -295,10 +296,12 @@ extending the compiler as necessary.
 
 > A programming language can be thought of as a _set_ of programs.
 
-这种 set theory 的观点承自 EOPL。
+这种 set theory 的观点继承自 EOPL。
 
 Jeremy 也有一个演讲是介绍这种观点的：
+
 - "Crash Course on Notation in Programming Language Theory - λC 2018"
+
   - [Part 1](https://www.youtube.com/watch?v=vU3caZPtT2I)
   - [Part 2](https://www.youtube.com/watch?v=MhuK_aepu1Y)
 
@@ -311,12 +314,21 @@ Jeremy 也有一个演讲是介绍这种观点的：
   使得给出这个集合中的任意两个元素，
   可以判断它们是否相等。
 
-而元素，可以理解为一个预先定义的
-[Domain of discourse](https://en.wikipedia.org/wiki/Domain_of_discourse)
-中的元素。例如：
+并且对于（1）和（2）中的「判断」，可以按照算法的复杂度进一步分类：
+
+- 对于 grammar 所定义的集合而言，（1）和（2）都有高效的算法。
+- 对于 program 所定义的集合而言，（1）有高效的算法，但是（2）没有。
+  即没有算法可以判断两个程序是否等价，
+  程序之间的等价定义为所能观察到的行为相同。
+
+考虑上面的定义中集合的「元素」时，
+可以理解为有一个预先定义的全集
+[Domain of discourse](https://en.wikipedia.org/wiki/Domain_of_discourse)。
+
+在这个全集中取元素，例如：
+
 - 所有 JSON 数据的集合。
 - 所有 sexp 表达式的的集合。
-等等。
 
 > The set is infinite (that is, one can always create larger
 > programs), so one cannot simply describe a language by listing all
