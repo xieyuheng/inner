@@ -527,6 +527,9 @@ Figure 2.2: The abstract syntax for `LVar`：
 > for LVar would handle the cases for variables and let but dispatch
 > to an interpreter for LInt in the rest of the cases.
 
+这是这本书最大的错误。
+不应该为了极少量「代码复用」而引入 class 之间复杂的依赖关系。
+
 > The problem with this naive approach is that it does not handle
 > situations in which an LVar feature is nested inside an LInt
 > feature.
@@ -536,12 +539,39 @@ Figure 2.2: The abstract syntax for `LVar`：
 > the functions are composed.  Object-oriented languages provide open
 > recursion via method overriding.
 
+用 method overriding 所带来的 open recursion，
+把一个 recursive function 拆开成相互继承的一串 class。
+是一串 class 甚至不是 tree，为了未来的代码复用而使用了复杂的语言 feature，
+但是复用代码的情况并没有出现。
+
+这带来的认知复杂负担太大了。
+说这是这本书的最大错误，
+是因为这是为了教学而写的书，
+设想如果没有这些额外的复杂度，
+这本书中的 idea 会更容易为学生所理解。
+
+Dan 在讲授编译器实现的时候，
+肯定会保持代码朴素，而不会用这些 OOP 的 feature，
+
 ### 2.1.2 Definitional Interpreter for LVar
 
 > The interpreter for LVar adds two new cases for variables and
 > let. For let, we need a way to communicate the value bound to a
 > variable to all the uses of the variable. To accomplish this, we
 > maintain a mapping from variables to values called an _environment_.
+
+这一节强调了，在有了 Definitional Interpreter 之后，
+编译器的正确性可以定义为下面两个函数等价：
+
+```scheme
+interp-Lvar = (compose interp-x86int compile)
+```
+
+在研究形式系统（formal system）之间的关系时，编译器起到重要作用。
+程序语言的编译器只是这种知识最实用的一面。
+
+注意，所谓「研究形式系统」就在于设计很多新的形式系统，
+并且研究它们之间的关系。
 
 ## 2.2 The x86Int Assembly Language
 
