@@ -398,7 +398,7 @@ Example exp in `LInt`：
 > is used to store auxiliary information, but for now it is just the
 > empty list.
 
-Figure 1.1: The concrete syntax for `LInt`：
+> **Figure 1.1**: The concrete syntax for `LInt`.
 
 ```bnf
 <type> ::= Integer
@@ -410,7 +410,7 @@ Figure 1.1: The concrete syntax for `LInt`：
 <LInt> ::= <exp>
 ```
 
-Figure 1.2: The abstract syntax for `LInt`：
+> **Figure 1.2**: The abstract syntax for `LInt`.
 
 ```bnf
 <type> ::= Integer
@@ -486,7 +486,7 @@ Figure 1.2: The abstract syntax for `LInt`：
 
 ## 2.1 The LVar Language
 
-Figure 2.1: The concrete syntax for `LVar`：
+> **Figure 2.1**: The concrete syntax for `LVar`.
 
 ```bnf
 <type> ::= Integer
@@ -501,7 +501,7 @@ Figure 2.1: The concrete syntax for `LVar`：
 <LVar> ::= <exp>
 ```
 
-Figure 2.2: The abstract syntax for `LVar`：
+> **Figure 2.2**: The abstract syntax for `LVar`.
 
 ```bnf
 <type> ::= Integer
@@ -575,7 +575,7 @@ interp-Lvar = (compose interp-x86int compile)
 
 ## 2.2 The x86Int Assembly Language
 
-Figure 2.6: The syntax of the x86Int assembly language (AT&T syntax).
+> **Figure 2.6**: The syntax of the x86Int assembly language (AT&T syntax).
 
 ```bnf
 <reg> ::= rsp | rbp | rax | rbx | rcx | rdx | rsi | rdi
@@ -597,9 +597,129 @@ Figure 2.6: The syntax of the x86Int assembly language (AT&T syntax).
              main: <instr> …
 ```
 
-## 2.3 Planning the Trip to x86
+> We exhibit the use of memory for storing intermediate results in the
+> next example.  Figure 2.8 lists an x86 program that computes (+ 52
+> (- 10)). This program uses a region of memory called the _procedure
+> call stack_ (_stack_ for short).  The stack consists of a separate
+> _frame_ for each procedure call. The memory layout for an individual
+> frame is shown in figure 2.9.
 
-Figure 2.10: The abstract syntax of x86Int assembly.
+> **Figure 2.9** Memory layout of a frame.
+
+| Position  | Contents       |
+|-----------|----------------|
+| 8(%rbp)   | return address |
+| 0(%rbp)   | old rbp        |
+| -8(%rbp)  | variable 1     |
+| -16(%rbp) | variable 2     |
+| ...       | ...            |
+| 0(%rsp)   | variable n     |
+
+这里对 stack 的展示方式是错误的。
+stack 之所以被设计成 push 的时候 index 减少，
+也就是向低地址位置延伸，就是为了让人们画图的时候，
+在「先画低地址，再画高地址」的前提下，
+可以把栈画成生活中堆叠的栈的样子，即向上延伸。
+此时 stack 的 top 和 bottom 有自然的解释。
+
+但是 Figure 2.9 还是把图画成了向下延伸。
+
+正确的画法是：
+
+| Position  | Contents       |
+|-----------|----------------|
+| 0(%rsp)   | variable n     |
+| ...       | ...            |
+| -16(%rbp) | variable 2     |
+| -8(%rbp)  | variable 1     |
+| 0(%rbp)   | old rbp        |
+| 8(%rbp)   | return address |
+
+注意，为了使用 procedure call stack，
+人们用了两个保留的 register：
+
+- rsp 用来指向 stack top；
+- rbp 用来指向当前 frame 的开始。
+
+call 和 ret 指令只会操作 rsp，
+而 rbp 是 c calling convention 的一部分。
+
+> In the program shown in figure 2.8, consider how control is
+> transferred from the operating system to the `main` function. The
+> operating system issues a `callq main` instruction that pushes its
+> return address on the stack and then jumps to `main`. In x86-64, the
+> stack pointer `rsp` must be divisible by 16 bytes prior to the
+> execution of any `callq` instruction, so that when control arrives
+> at main, the `rsp` is 8 bytes out of alignment (because the callq
+> pushed the return address).
+
+这个 16 byte alignment 是需要  caller 处理的，
+在 `main` 函数中不用管。
+
+> **Figure 2.8** An x86 program that computes (+ 52 (- 10)).
+
+```asm
+start:
+  movq $10, -8(%rbp)
+  negq -8(%rbp)
+  movq -8(%rbp), %rax
+  addq $52, %rax
+  jmp conclusion
+
+.globl main
+main:
+  pushq %rbp
+  movq %rsp, %rbp
+  subq $16, %rsp
+  jmp start
+
+conclusion:
+  addq $16, %rsp
+  popq %rbp
+  retq
+```
+
+> The first three instructions are the typical _prelude_ for a
+> procedure.
+>
+> - The instruction `pushq %rbp` first subtracts 8 from the stack
+>   pointer `rsp` and then saves the base pointer of the caller at
+>   address `rsp` on the stack.
+>
+> - The next instruction `movq %rsp, %rbp` sets the base pointer to
+>   the current stack pointer, which is pointing to the location of
+>   the old base pointer.
+>
+> - The instruction `subq $16, %rsp` moves the stack pointer down to
+>   make enough room for storing variables. This program needs one
+>   variable (8 bytes), but we round up to 16 bytes so that rsp is
+>   16-byte-aligned, and then we are ready to make calls to other
+>   functions.
+
+注意，这里预留 stack 空间，并且计算好 `rsp` 的 alignment，
+这样可以使得不用在每次 `callq` 的时候重新处理 `rsp` 的 alignment。
+如果不是为了这个 alignment，预留 stack 空间是没必要的。
+
+> The last instruction of the prelude is `jmp start`, which transfers
+> control to the instructions that were generated from the expression
+> (+ 52 (- 10)).
+
+这个 `jmp` 是没必要的，只是为了展示 `start` 这部分代码是来自 `(+ 52 (- 10))`。
+
+把 `main` 和 `conclusion` 写在一起，
+也是为了使得「预备代码」和「善后代码」的对应关系更明显：
+
+```asm
+main:
+  pushq %rbp
+  subq $16, %rsp
+
+conclusion:
+  addq $16, %rsp
+  popq %rbp
+```
+
+> **Figure 2.10**: The abstract syntax of x86Int assembly.
 
 ```bnf
 <reg> ::= rsp | rbp | rax | rbx | rcx | rdx | rsi | rdi
@@ -620,6 +740,11 @@ Figure 2.10: The abstract syntax of x86Int assembly.
 <x86Int> ::= (X86Program <info> ((<label> . <block>) … ))
 ```
 
+解释给汇编语言设计 AST 时需要注意的问题，
+比如 label 对应于 block，以及 call 带有 arity。
+
+## 2.3 Planning the Trip to x86
+
 > To compile one language to another, it helps to focus on the
 > differences between the two languages because the compiler will need
 > to bridge those differences. What are the differences between LVar
@@ -631,9 +756,13 @@ Figure 2.10: The abstract syntax of x86Int assembly.
 编译器不只是一类程序，它同时还代表了一种解决问题的思路，
 即通过翻译来解决问题，并且在实现翻译的时候可以用多层 pass 来控制复杂度。
 
+在动态类型的语言中，
+我们可以把每次 pass 前后的不变性表达为谓词，
+注意这些不变性经常是不能用类型表达的。
+
 ### 2.3.1 The CVar Intermediate Language
 
-Figure 2.12: The concrete syntax of the CVar intermediate language.
+> **Figure 2.12**: The concrete syntax of the CVar intermediate language.
 
 ```bnf
 <atm> ::= <int> | <var>
@@ -647,7 +776,7 @@ Figure 2.12: The concrete syntax of the CVar intermediate language.
 <CVar>::= (<label>: <tail>) …
 ```
 
-Figure 2.13: The abstract syntax of the CVar intermediate language.
+> **Figure 2.13**: The abstract syntax of the CVar intermediate language.
 
 ```bnf
 <atm> ::= (Int <int>)
@@ -711,7 +840,7 @@ Figure 2.13: The abstract syntax of the CVar intermediate language.
 
 ## 2.5 Remove Complex Operands
 
-Figure 2.15: LVarMon is LVar with operands restricted to atomic expressions.
+> **Figure 2.15**: LVarMon is LVar with operands restricted to atomic expressions.
 
 ```bnf
 <atm> ::= (Int <int>)
@@ -769,21 +898,12 @@ TODO
 TODO
 
 # 3 Register Allocation
-
 # 4 Booleans and Conditionals
-
 # 5 Loops and Dataflow Analysis
-
 # 6 Tuples and Garbage Collection
-
 # 7 Functions
-
 # 8 Lexically Scoped Functions
-
 # 9 Dynamic Typing
-
 # 10 Gradual Typing
-
 # 11 Generics
-
 # A Appendix
