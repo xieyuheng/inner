@@ -21,3 +21,10 @@ scott wlaschin 有一个关于 F# 的演讲，
   通过一点一点把 C# 示例代码翻译成 F# 代码，来介绍 F#。
   这是很好的向旧语言用户介绍新语言的方法，
   可以很直观地展示新语言的优势。
+
+- [The Power of Composition - Scott Wlaschin](https://www.youtube.com/watch?v=WhEkBCWpDas)
+  用 lego 积木和玩具火车中的 railway track 来类比函数。
+  在类比中可以强调函数的属性：
+  - 函数生来就是为了被复合与重用。
+  - 函数是独立的，使用函数不需要额外的依赖与条件。
+  上面的描述中，「函数」换成是「lego 积木」也是成立的。
