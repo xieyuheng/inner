@@ -11,6 +11,10 @@ scott wlaschin 有一个关于 F# 的演讲，
 这种使用 monad 的方式与 hashell 的 do notation 不同，
 并不需要专门的语法，更接近组合子演算的简单用法。
 
+[2025-09-03] 在设计 occam-lisp 的时候，
+我想起了 F# 的这种 monad 用法。
+觉得是值得学习的。
+
 演讲：
 
 - [F# for C# programmers](https://www.youtube.com/watch?v=KPa8Yw_Navk)
