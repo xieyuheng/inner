@@ -895,7 +895,8 @@ conclusion:
 
 ## 2.5 Remove Complex Operands
 
-> **Figure 2.15**: LVarMon is LVar with operands restricted to atomic expressions.
+> **Figure 2.15**: LVarMon is LVar with operands restricted to
+> atomic expressions.
 
 ```bnf
 <atm> ::= (Int <int>)
@@ -925,6 +926,11 @@ conclusion:
 > monadic normal form (Moggi 1991; Danvy 2003), which explains the mon
 > in the name LVarMon.
 
+这里的两个引用：
+
+- Moggi, Eugenio. 1991. “Notions of Computation and Monads.”
+- Danvy, Olivier. 2003. “A New One-Pass Transformation into Monadic Normal Form.”
+
 > We recommend implementing this pass with two mutually recursive
 > functions, `rco-atom` and `rco-exp`. The idea is to apply `rco-atom`
 > to subexpressions that need to become atomic and to apply `rco-exp`
@@ -932,6 +938,10 @@ conclusion:
 > expression as input. The `rco-exp` function returns an expression.
 > The `rco-atom` function returns two things: an atomic expression and
 > an alist mapping temporary variables to complex subexpressions.
+
+返回 exp + alist 代表 `rco-atom` 用了 writer monad.
+
+这里的 remove-complex-operands 也许可以称作 unnest。
 
 > In the example program with the expression `(+ 42 (- 10))`, the
 > subexpression `(- 10)` should be processed using the `rco-atom`
@@ -943,6 +953,13 @@ conclusion:
 (- 10)  =>  tmp.1
             ((tmp.1 . (- 10)))
 ```
+
+> In debugging your compiler, it is often useful to see the
+> intermediate programs that are output from each pass. To print the
+> intermediate programs, place `(debug-level 1)` before the call to
+> `interp-tests` in `run-tests.rkt`.
+
+我不用 `(debug-level 1)` 而是专门给每个 pass 写 snapshot test。
 
 ## 2.6 Explicate Control
 
