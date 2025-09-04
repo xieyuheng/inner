@@ -963,7 +963,54 @@ conclusion:
 
 ## 2.6 Explicate Control
 
-TODO
+> The `explicate-control` pass compiles `LVar` programs into `CVar`
+> programs that make the order of execution explicit in their syntax.
+> For now this amounts to flattening `let` constructs into a sequence
+> of assignment statements. For example, consider the following `LVar`
+> program:
+
+```scheme
+(let ([y (let ([x 20])
+           (+ x (let ([x 22]) x)))])
+  y)
+```
+
+逐步编译的过程如下：
+
+```scheme
+000 (program () (let ((y (let ((x 20)) (+ x (let ((x 22)) x))))) y))
+010 (program () (let ((y₁ (let ((x₁ 20)) (+ x₁ (let ((x₂ 22)) x₂))))) y₁))
+020 (program () (let ((y₁ (let ((x₁ 20)) (let ((x₂ 22)) (+ x₁ x₂))))) y₁))
+030 (c-program () (:start ((= x₁ 20) (= x₂ 22) (= y₁ (+ x₁ x₂)) (return y₁))))
+```
+
+> Recall that the right-hand side of a let executes before its body,
+> so that the order of evaluation for this program is to assign 20 to
+> `x₁`, 22 to `x₂`, and `(+ x₁ x₂)` to `y₁`, and then to return `y₁`.
+> Indeed, the output of `explicate-control` makes this ordering explicit.
+
+下面要依据 tail position 来写递归函数。
+
+> **Definition 2.1** The following rules define when an expression is
+> in tail position for the language `LVar`.
+>
+> 1. In `(Program () e)`, expression `e` is in tail position.
+> 2. If `(Let x e1 e2)` is in tail position, then so is `e2`.
+
+既然都说是 "tail position" 了，
+那 tail 在代码中的体现就应该是一个 field 的名字，
+而不是一个 data type 的名字。
+
+> The `explicate-assign` function is in accumulator-passing style: the
+> `cont` parameter is used for accumulating the output. This
+> accumulator-passing style plays an important role in the way that we
+> generate high-quality code for conditional expressions in
+> chapter 4. The abbreviation `cont` is for continuation because it
+> contains the generated code that should come after the current
+> assignment. This code organization is also related to
+> continuation-passing style, except that `cont` is not what happens
+> next during compilation but is what happens next in the generated
+> code.
 
 ## 2.7 Select Instructions
 
