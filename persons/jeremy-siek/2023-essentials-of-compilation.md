@@ -1014,6 +1014,25 @@ conclusion:
 
 ## 2.7 Select Instructions
 
+> In the `select-instructions` pass we begin the work of translating
+> from `CVar` to `x86Var`. The target language of this pass is a
+> variant of x86 that still uses variables, so we add an AST node of
+> the form `(Var var)` to the arg nonterminal of the `x86Int` abstract
+> syntax.
+
+这里需要处理的 difference 是 x86 汇编 operator 作用于寄存器时的限制。
+
+## 2.8 Assign Homes
+
+> The `assign-homes` pass compiles `x86Var` programs to `x86Var`
+> programs that no longer use program variables. Thus, the
+> `assign-homes` pass is responsible for placing all the program
+> variables in registers or on the stack.
+
+先不考虑寄存器分配，
+把所有的参数都保存在 stack 中，
+写一个简单的编译器出来。
+
 TODO
 
 # 3 Register Allocation
