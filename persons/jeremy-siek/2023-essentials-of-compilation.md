@@ -1024,7 +1024,7 @@ conclusion:
 
 ## 2.8 Assign Homes
 
-> The `assign-homes` pass compiles `x86Var` programs to `x86Var`
+> The `assign-homes` pass compiles `x86Var` programs to `x86Int`
 > programs that no longer use program variables. Thus, the
 > `assign-homes` pass is responsible for placing all the program
 > variables in registers or on the stack.
@@ -1033,9 +1033,75 @@ conclusion:
 把所有的参数都保存在 stack 中，
 写一个简单的编译器出来。
 
+## 2.9 Patch Instructions
+
+> The patch-instructions pass compiles from `x86Int` to `x86Int` by
+> making sure that each instruction adheres to the restriction that at
+> most one argument of an instruction may be a memory reference.
+
+```scheme
+(let ((a 42))
+  (let ((b a))
+    b))
+```
+
+```asm
+movq $42, -8(%rbp)
+movq -8(%rbp), -16(%rbp)
+movq -16(%rbp), %rax
+```
+
+> The second movq instruction is problematic because both arguments
+> are stack locations. We suggest fixing this problem by moving from
+> the source location to the register `rax` and then from `rax` to the
+> destination location, as follows.
+
+```asm
+movq -8(%rbp), %rax
+movq %rax, -16(%rbp)
+```
+
+> There is a similar corner case that also needs to be dealt with. If
+> one argument is an immediate integer larger than 2^16 and the other
+> is a memory reference, then the instruction is invalid. One can fix
+> this, for example, by first moving the immediate integer into `rax`
+> and then using `rax` in place of the integer.
+
+## 2.10 Generate Prelude and Conclusion
+
+> The last step of the compiler from `LVar` to x86 is to generate the
+> main function with a prelude and conclusion wrapped around the rest
+> of the program, as shown in figure 2.8 and discussed in section 2.2.
+
+回顾 **Figure 2.8**： An x86 program that computes (+ 52 (- 10)).
+
+```asm
+start:
+  movq $10, -8(%rbp)
+  negq -8(%rbp)
+  movq -8(%rbp), %rax
+  addq $52, %rax
+  jmp conclusion
+
+.globl main
+main:
+  pushq %rbp
+  movq %rsp, %rbp
+  subq $16, %rsp
+  jmp start
+
+conclusion:
+  addq $16, %rsp
+  popq %rbp
+  retq
+```
+
+## 2.11 Challenge: Partial Evaluator for LVar
+
 TODO
 
 # 3 Register Allocation
+
 # 4 Booleans and Conditionals
 # 5 Loops and Dataflow Analysis
 # 6 Tuples and Garbage Collection
