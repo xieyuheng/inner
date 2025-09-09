@@ -2,39 +2,6 @@
 title: real mode
 ---
 
-## 指令和数据没有语法上的区别(都是二进制数) 只有语义上的区别
-
-机器把某解二进制数理解为指令 把另一些二进制数理解为数据
-就像你把我所说的某一些音节理解位动词 而把另一些音节理解为名词
-我所说的音节流 有的被你理解为祈使句 有的被你理解疑问句
-当然我所说的音节流 在你的理解中所可能形成的语义是非常丰富的
-计算机对二进制数的理解未尝不是如此
-但是对计算机而言要形成更丰富的语义就要用编译器来作一些抽象
-
-算法和数据在更高层次上也能没有区别
-比如对lisp而言算法是sexp数据也是sexp
-比如对digrap而言算法是gexp数据也是gexp
-
-## 总线 与 CPU存储器(内存)的读写
-
-总线:
-1. 地址总线
-   64根地址总线所能寻址的内存大小为2^64 bytes
-2. 数据总线
-   其宽度决定了数据在CPU和内存之间的传送速度
-3. 控制总线
-   是很多控制总线的集合
-   有多少根控制总线 CPU就提供了对其他硬件的多少种控制
-
-## 设备
-
-每个设备都有相应的存储器
-至少有只读的存储器(ROM)来储存支持基本输入输出的软件(BIOS)
-这些存储器被CPU一视同仁
-CPU在控制硬件的时候把它们当作内存来待
-
-## 十六位的限制带来有趣而无奈的寻址方式
-
 ### cs:ip
 
 real mode:
@@ -379,9 +346,10 @@ CPU接收到中断信息(中断类型码)之后
 ## flag寄存器
 
 real mode:
-| 15 | 14 | 13 | 12 | 11 | 10 |  9 |  8 |  7 |  6 | 5 |  4 | 3 |  2 | 1 |  0 |
-|----+----+----+----+----+----+----+----+----+----+---+----+---+----+---+----|
+
+| 15 | 14 | 13 | 12 | 11 | 10 | 9  | 8  | 7  | 6  | 5 | 4  | 3 | 2  | 1 | 0  |
 |    |    |    |    | of | df | if | tf | sf | zf |   | af |   | pf |   | cf |
+
 flag总是记录CPU的算数运算指令和逻辑运算指令之后的结果
 只影响flag的指令 和 条件转跳 共同形成着谓词语义
 1. zf
@@ -458,15 +426,10 @@ cmp rax, rbx
    转移条件:cx(ecx,rcx) == 0
 2. 针对无符号数的比较(检验zf,cf):
    | je  | equal     | ==  | zf == 1            |
-   |-----+-----------+-----+--------------------|
    | jne | not equal | =/= | zf == 0            |
-   |-----+-----------+-----+--------------------|
    | jb  | below     | <   | cf == 1            |
-   |-----+-----------+-----+--------------------|
    | jnb | not below | >=  | cf == 0            |
-   |-----+-----------+-----+--------------------|
    | ja  | above     | >   | cf == 0 且 zf == 0 |
-   |-----+-----------+-----+--------------------|
    | jna | not above | <=  | cf == 1 或 zf == 1 |
 3. 针对有符号数的比较(检验zf,sf,of):
    TODO
@@ -483,29 +446,24 @@ cmp rax, rbx
 | Segment protection   | no                         | yes                      | yes                               |
 |----------------------|----------------------------|--------------------------|-----------------------------------|
 | Segment register     | segment base address / 16  | selector                 | selector                          |
-|----------------------|----------------------------|--------------------------|-----------------------------------|
 
 In protected mode, besides the segment base address,
 we also need the segment size (limit)
 and some flags indicating what the segment is used for.
 This information goes into an 8-byte data structure called a descriptor:
 
-|--------------|------------|----------|-----------|------------|--------|--------------------|--------------|
 | Lowest bytes | Byte 1     | Byte 2   | Byte 3    | Byte 4     | Byte 5 | Byte 6             | Highest byte |
 |--------------|------------|----------|-----------|------------|--------|--------------------|--------------|
 | Limit 7:0    | Limit 15:8 | Base 7:0 | Base 15:8 | Base 23:16 | Access | Flags, Limit 19:16 | Base 31:24   |
-|--------------|------------|----------|-----------|------------|--------|--------------------|--------------|
 
 This is a 32-bit ('386) descriptor.
 For 16-bit ('286) descriptors,
 the top two bytes (Limit 19:16, Flags, and Base 31:24) are zero.
 The Access byte indicates segment usage (data segment, stack segment, code segment, etc.):
 
-|-------------|-----------|-------|------------|--------------------------------|-------------------|------------|
 | Highest bit | Bits 6, 5 | Bit 4 | Bits 3     | Bit 2                          | Bit 1             | Lowest bit |
 |-------------|-----------|-------|------------|--------------------------------|-------------------|------------|
 | Present     | Privilege | 1     | Executable | Expansion direction/conforming | Writable/readable | Accessed   |
-|-------------|-----------|-------|------------|--------------------------------|-------------------|------------|
 
 * What's a selector?
   In protected mode, the segment registers contain selectors,
@@ -571,7 +529,7 @@ The Access byte indicates segment usage (data segment, stack segment, code segme
      You may know that a Windows (or OS/2, or Linux) DOS box runs in V86 mode,
      but you may not realize that memory managers such as EMM386 also put the CPU in V86 mode.
 * If you want to start simple, try these tips:
-  1. Don't worry about returning to real mode. Use the reset button :)
+  1. Don't worry about returning to real mode. Use the reset button.
   2. Leave interrupts disabled.
   3. Don't use an LDT.
   4. Put only four descriptors in the GDT: null, code, stack/data, and linear data (base address = 0).
