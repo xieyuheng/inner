@@ -452,6 +452,32 @@ Example exp in `LInt`：
 
 ## 1.6 Example Compiler: A Partial Evaluator
 
+> In this section we consider a compiler that translates `LInt` programs into `LInt`
+> programs that may be more efficient. The compiler eagerly computes the parts
+> of the program that do not depend on any inputs, a process known as _partial
+> evaluation_ (Jones, Gomard, and Sestoft 1993). For example, given the following
+> program
+
+这里的引用是：
+
+- "Partial Evaluation and Automatic Program Generation".
+  Jones, Neil D., Carsten K. Gomard, and Peter Sestoft. 1993.
+  Prentice Hall.
+
+感觉也是值得一看的。
+
+```scheme
+(+ (read) (- (+ 5 3)))
+```
+
+> our compiler translates it into the program
+
+```scheme
+(+ (read) -8)
+```
+
+> **Figure 1.5** A partial evaluator for `LInt`.
+
 ```scheme
 (define (pe-lang-int program)
   (match program
@@ -481,6 +507,18 @@ Example exp in `LInt`：
     [((Int n1) (Int n2)) (Int (fx- n1 n2))]
     [(_ _) (Prim '- (list r1 r2))]))
 ```
+
+> In figure 1.5, the structural recursion over exp is captured in the
+> `pe-exp` function, whereas the code for partially evaluating the
+> negation and addition operations is factored into three auxiliary
+> functions: `pe-neg`, `pe-add` and `pe-sub`. The input to these
+> functions is the output of partially evaluating the children. The
+> `pe-neg`, `pe-add` and `pe-sub` functions check whether their
+> arguments are integers and if they are, perform the appropriate
+> arithmetic. Otherwise, they create an AST node for the arithmetic
+> operation.
+
+这种递归的组合算是可以被命名为 partial evaluation 的 pattern。
 
 # 2 Integers and Variables
 
@@ -1098,7 +1136,68 @@ conclusion:
 
 ## 2.11 Challenge: Partial Evaluator for LVar
 
-TODO
+首先把之前对 `LInt` 的 partial evaluator 扩展到 `LVar`。
+
+然后处理这种情况：
+
+```scheme
+(+ 1 (+ (read) 1))
+=>
+(+ 2 (read))
+```
+
+> To accomplish this, the `pe-exp` function should produce output in
+> the form of the `<residual>` nonterminal of the following
+> grammar. The idea is that when processing an addition expression, we
+> can always produce one of the following:
+>
+> - (1) an integer constant,
+>
+> - (2) an addition expression with an integer constant on the
+>   left-hand side but not the right-hand side,
+>
+> - (3) an addition expression in which neither subexpression is a
+>   constant.
+
+```bnf
+<inert> ::= <var>
+          | (read)
+          | (- <var>)
+          | (- (read))
+          | (+ <inert> <inert>)
+          | (let ((<var> <residual>)) <residual>)
+
+<residual> ::= <int>
+             | (+ <int> <inert>)
+             | <inert>
+```
+
+也就是说利用加法的交换性，把所有的常量都放到左边。
+因此，排除了 `(+ (read) 1)` 这种情况。
+
+也许这里所描述的技巧，可以在之前的引用中找到更系统的叙述：
+
+- "Partial Evaluation and Automatic Program Generation".
+  Jones, Neil D., Carsten K. Gomard, and Peter Sestoft. 1993.
+  Prentice Hall.
+
+同时，这种优化也让我想到，
+是否 forth 的纯后缀表达式对于优化而言更具有优势，
+这一点可以参考 de bruijn 所发现的，后缀表达式的 lambda 演算语法中，
+可以发现更多的规律，找到更多的等价的 lambda term。
+
+> The `pe-add` and `pe-neg` functions may assume that their inputs are
+> residual expressions and they should return `<residual>` expressions.
+
+> Once the improvements are complete, make sure that your compiler
+> still passes all the tests. After all, fast code is useless if it
+> produces incorrect results!
+
+注意，这里的术语 inert 和 residual 模仿了化学反应的术语，
+这里所作的 partial evaluation 类似 rewrite until inert，
+确实类似化学反应。
+
+注意，这种 partial evaluation 与 normalization by evaluation (NbE) 不同。
 
 # 3 Register Allocation
 
