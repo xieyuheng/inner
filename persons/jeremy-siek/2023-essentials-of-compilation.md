@@ -1250,7 +1250,10 @@ After pass 040:
 > interfere (section 3.3). We then model register allocation as a
 > graph coloring problem (section 3.4).
 
-又是逻辑式编程可以派上用场的时候，
+这一章最重要的知识，就是问题层面的「编译器」，
+即如何把编译器分配问题转化为图的染色问题。
+
+感觉又是逻辑式编程可以派上用场的时候，
 但是这里应该是手写的。
 
 未来 x-lisp 稳定了，可以在 x-lisp 中嵌入逻辑式编程语言。
