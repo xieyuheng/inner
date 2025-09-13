@@ -1414,7 +1414,7 @@ start:
         addq %rcx, %rbx
         movq %rbx, %rax
         addq $42, %rax
-        jmp _conclusion
+        jmp conclusion
 
         .globl main
 main:
@@ -1488,6 +1488,116 @@ figure 3.2 的汇编代码中用的是 callee-saved `rbx`，
 是需要根据当前 stack 的使用情况来具体处理的。
 
 ## 3.2 Liveness Analysis
+
+> The `uncover-live` pass performs _liveness analysis_; that is, it
+> discovers which variables are in use in different regions of a
+> program. A variable or register is _live_ at a program point if its
+> current value is used at some later point in the program.
+
+> We refer to variables, stack locations, and registers collectively
+> as _locations_. Consider the following code fragment in which there
+> are two writes to `b`. Are variables `a` and `b` both live at the
+> same time?
+
+```asm
+1 movq $5, a
+2 movq $30, b
+3 movq a, c
+4 movq $10, b
+5 addq b, c
+```
+
+> The answer is no, because `a` is live from line 1 to 3 and `b` is
+> live from line 4 to 5.  The integer written to `b` on line 2 is
+> never used because it is overwritten (line 4) before the next read
+> (line 5).
+
+> The live locations for each instruction can be computed by
+> traversing the instruction sequence back to front (i.e., backward in
+> execution order). Let `I(1), … , I(n)` be the instruction
+> sequence. We write `L-after(k)` for the set of live locations after
+> instruction `I(k)` and write `L-before(k)` for the set of live
+> locations before instruction `I(k)`.
+
+总有 `L-after(k) = L-before(k + 1)`：
+
+```
+  L-before(1)
+I(1)
+  L-after(1)
+  L-before(2)
+I(2)
+  L-after(2)
+  L-before(3)
+I(3)
+  L-after(3)
+...
+```
+
+这种用 before 和 after 两个属性，
+来描述 sequence 的间隔中的数据的方式很不错，
+也许类似于 DOM element 的 API：
+
+```js
+const targetElement = document.getElementById('myElement')
+const previousElement = targetElement.previousElementSibling
+const nextElement = targetElement.nextElementSibling
+```
+
+假设 `I(n)` 是最后一条指令，从后向前的计算如下：
+
+```
+L-after(n) = {}
+L-before(k) = (L-after(k) - W(k)) ∪ R(k)
+```
+
+> where `W(k)` are the locations written to by instruction `I(k)`,
+> and `R(k)` are the locations read by instruction `I(k)`.
+
+因此向一个 location 写数据，就是 kill 这个 location，
+从一个 location 读数据，就是依赖这个 location。
+
+> There is a special case for `jmp` instructions. The locations that
+> are live before a `jmp` should be the locations in `L-before` at the
+> target of the jump. So, we recommend maintaining an alist named
+> `label->live` that maps each label to the `L-before` for the first
+> instruction in its block.
+
+> For now the only `jmp` in a `x86Var` program is the jump to the
+> conclusion. (For example, see figure 3.1.) The conclusion reads from
+> `rax` and `rsp`, so the alist should map conclusion to the set
+> `{rax, rsp}`.
+
+就是说就计算 `L-before` 和 `L-after` 而言，
+`jmp` 将两串指令拼起来，
+类似 instruction 之间的 unification。
+
+但是为什么 `jmp conclusion` 的 `L-before` 是 `{rax, rsp}`？
+
+```asm
+conclusion:
+  addq $16, %rsp
+  popq %rbp
+  retq
+```
+
+可能是 `retq` 需要 read `rax` 和 `rsp`：
+
+```asm
+conclusion:
+       {rax, rsp} = ({rax, rsp} - {rsp}) ∪ {} // ??? TODO
+  addq $16, %rsp
+       {rax, rsp} = ({rax, rsp} - {rsp, rbp}) ∪ {rsp} // TODO
+  popq %rbp
+       {rax, rsp}
+  retq
+       {}
+```
+
+注意 `L-before` 计算公式的顺序，
+
+另外注意 `popq %rbp` write `rsp` 和 `rbp`
+同时也 read `rsp`。
 
 TODO
 
