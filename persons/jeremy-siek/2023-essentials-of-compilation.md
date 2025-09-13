@@ -1301,7 +1301,12 @@ After pass 040:
 
 注意，前面在生成汇编代码的时候，
 已经需要考虑一部分 calling conventions 了，
-比如 `rsp` 作为 stack pointer，`rbp` 作为 stack base pointer。
+比如：
+
+- `rsp` 作为 stack pointer。
+- `rbp` 作为 stack base pointer。
+- `rax` 传递返回值。
+
 但是这些应该是 x86 的 calling conventions，
 而不是 System V calling conventions。
 
