@@ -1201,6 +1201,101 @@ conclusion:
 
 # 3 Register Allocation
 
+> The goal of register allocation is to fit as many variables into
+> registers as possible. Some programs have more variables than
+> registers, so we cannot always map each variable to a different
+> register. Fortunately, it is common for different variables to be in
+> use during different periods of time during program execution, and
+> in those cases we can map multiple variables to the same register.
+
+> **Figure 3.1** A running example for register allocation.
+
+```scheme
+(let ((v 1))
+  (let ((w 42))
+    (let ((x (iadd v 7)))
+      (let ((y x))
+        (let ((z (iadd x w)))
+          (iadd z (ineg y)))))))
+```
+
+After pass 040:
+
+```scheme
+((movq $1 v₁)
+ (movq $42 w₁)
+ (movq v₁ x₁)
+ (addq $7 x₁)
+ (movq x₁ y₁)
+ (movq x₁ z₁)
+ (addq w₁ z₁)
+ (movq y₁ _₁)
+ (negq _₁)
+ (movq z₁ %rax)
+ (addq _₁ %rax)
+ (jmp epilog))
+```
+
+> The program is almost completely in the x86 assembly language, but
+> it still uses variables. Consider variables `x` and `z`. After the
+> variable `x` has been moved to `z`, it is no longer in use.
+> Variable `z`, on the other hand, is used only after this point, so
+> `x` and `z` could share the same register.
+
+> The topic of section 3.2 is how to compute where a variable is in
+> use. Once we have that information, we compute which variables are
+> in use at the same time, that is, which ones _interfere_ with each
+> other, and represent this relation as an undirected graph whose
+> vertices are variables and edges indicate when two variables
+> interfere (section 3.3). We then model register allocation as a
+> graph coloring problem (section 3.4).
+
+又是逻辑式编程可以派上用场的时候，
+但是这里应该是手写的。
+
+未来 x-lisp 稳定了，可以在 x-lisp 中嵌入逻辑式编程语言。
+
+> If we run out of registers despite these efforts, we place the
+> remaining variables on the stack, similarly to how we handled
+> variables in chapter 2. It is common to use the verb _spill_ for
+> assigning a variable to a stack location. The decision to spill a
+> variable is handled as part of the graph coloring process.
+
+> We make the simplifying assumption that each variable is assigned to
+> one location (a register or stack address). A more sophisticated
+> approach is to assign a variable to one or more locations in
+> different regions of the program. For example, if a variable is used
+> many times in short sequence and then used again only after many
+> other instructions, it could be more efficient to assign the
+> variable to a register during the initial sequence and then move it
+> to the stack for the rest of its lifetime.  We refer the interested
+> reader to Cooper and Torczon (2011) (chapter 13) for more
+> information about that approach.
+
+这里的引用是：
+
+- Cooper, Keith, and Linda Torczon. 2011.
+  Engineering a Compiler. 2nd edition.
+  Morgan Kaufmann.
+
+对比这里的第 3章，那里要到第 13 章才处理这个问题。
+
+我想 IU 和 Dan 的写书风格应该是给每个问题一个具体的方案，
+然后去讲解这个方案的实现方式，以帮助学生入门，
+而不是系统地分析这个问题的所有方案。
+
+## 3.1 Registers and Calling Conventions
+
+TODO
+
+## 3.2 Liveness Analysis
+## 3.3 Build the Interference Graph
+## 3.4 Graph Coloring via Sudoku
+## 3.5 Patch Instructions
+## 3.6 Generate Prelude and Conclusion
+## 3.7 Challenge: Move Biasing
+## 3.8 Further Reading
+
 # 4 Booleans and Conditionals
 # 5 Loops and Dataflow Analysis
 # 6 Tuples and Garbage Collection
