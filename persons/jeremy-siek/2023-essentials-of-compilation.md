@@ -1326,12 +1326,168 @@ System V calling conventions 中关于寄存器的部分，
 >
 >     rsp rbp rbx r12 r13 r14 r15
 
+首先 `rax` 必须是 caller-saved，
+因为 callee 需要用 `rax` 来传递返回值给 caller。
+
+其次 `rsp` 和 `rbp` 作为 stack 相关的指针，必须是 callee-saved，
+以为 caller 需要保证返回时这些指针不变。
+
+为什么额外的寄存器 conventions 是必要的？
+假设除了 `rax` 之外所有的寄存器都是 callee-saved，
+此时 caller 可以假设除了 `rax` 之外的寄存器在调用函数后都不变，
+而 callee 如果用到了某个寄存器，就必须保存这个寄存器。
+这是可行的，但是如果均匀分配保存寄存器的职责，
+caller 和 callee 在使用寄存器的时候就有了偏好，
+这样在大部分情况下，caller 和 callee 都不用保存寄存器！
+
 > We can think about this caller/callee convention from two points of
 > view, the caller view and the callee view, as follows:
+>
+> - The caller should assume that all the caller-saved registers get
+>   overwritten with arbitrary values by the callee. On the other
+>   hand, the caller can safely assume that all the callee-saved
+>   registers retain their original values.
+>
+> - The callee can freely use any of the caller-saved registers.
+>   However, if the callee wants to use a callee-saved register, the
+>   callee must arrange to put the original value back in the register
+>   prior to returning to the caller. This can be accomplished by
+>   saving the value to the stack in the prelude of the function and
+>   restoring the value in the conclusion of the function.
+
+> In x86, registers are also used for passing arguments to a function
+> and for the return value. In particular, the first six arguments of
+> a function are passed in the following six registers, in this order.
+>
+>     rdi rsi rdx rcx r8 r9
+>
+> We refer to these six registers are the argument-passing registers.
+> If there are more than six arguments, the convention is to use space
+> on the frame of the caller for the rest of the arguments.
+
+这就意味着这六个寄存器也必须是 caller-saved，
+因此除了必须 caller-saved 寄存器之外，
+就只有 `r10` 和 `r11` 是额外的 conventions。
+
+为了方便记忆，列举一下这前四个寄存器的缩写：
+
+| reg | original meaning  |
+|-----|-------------------|
+| di  | destination index |
+| si  | source index      |
+| dx  | data register     |
+| cx  | count register    |
+
+deepseek 说基础这些参数寄存器的顺序的顺口溜是：
+"Diane's Silly Dog Chases Rabbits Ruthlessly."
+哈哈。
+
+> The next question is how these calling conventions impact register
+> allocation.  Consider the `LVar` program presented in figure 3.2. We
+> first analyze this example from the caller point of view and then
+> from the callee point of view. We refer to a variable that is in use
+> during a function call as a _call-live variable_.
+
+注意，说 call-live variable 时，
+指的是分配寄存器之前带有名字的变量，
+而 call-live 是这个变量就分配寄存器这个问题而言的属性。
+
+> **Figure 3.2** An example with function calls.
+
+```scheme
+(let ((x (read)))
+  (let ((y (read)))
+    (+ (+ x y) 42)))
+```
+
+> Generated x86 assembly:
+
+```asm
+start:
+        callq read_int
+        movq %rax, %rbx
+        callq read_int
+        movq %rax, %rcx
+        addq %rcx, %rbx
+        movq %rbx, %rax
+        addq $42, %rax
+        jmp _conclusion
+
+        .globl main
+main:
+        pushq %rbp
+        movq %rsp, %rbp
+        pushq %rbx
+        subq $8, %rsp
+        jmp start
+
+conclusion:
+        addq $8, %rsp
+        popq %rbx
+        popq %rbp
+        retq
+```
+
+> The program makes two calls to read. The variable `x` is call-live
+> because it is in use during the second call to `read`; we must
+> ensure that the value in `x` does not get overwritten during the
+> call to `read`. One obvious approach is to save all the values that
+> reside in caller-saved registers to the stack prior to each function
+> call and to restore them after each call. That way, if the register
+> allocator chooses to assign `x` to a caller-saved register, its
+> value will be preserved across the call to `read`. However, saving
+> and restoring to the stack is relatively slow. If `x` is not used
+> many times, it may be better to assign `x` to a stack location in
+> the first place. Or better yet, if we can arrange for `x` to be
+> placed in a callee-saved register, then it won’t need to be saved
+> and restored during function calls.
+
+figure 3.2 的汇编代码中用的是 callee-saved `rbx`，
+来临时保存第一次调用 `read` 的返回值。
+
+> On the other hand, for variables that are not call-live, we prefer
+> placing them in caller-saved registers to leave more room for
+> call-live variables in the callee-saved registers.
+
+> Returning to the example in figure 3.2, let us analyze the generated
+> x86 code on the right-hand side. Variable `x` is assigned to `rbx`,
+> a callee-saved register. Thus, it is already in a safe place during
+> the second call to `read_int`. Next, variable `y` is assigned to
+> `rcx`, a caller-saved register, because `y` is not a call-live
+> variable.
+
+> We have completed the analysis from the caller point of view, so now
+> we switch to the callee point of view, focusing on the prelude and
+> conclusion of the `main` function.
+
+> - As usual, the prelude begins with saving the `rbp` register to the
+>   stack and setting the `rbp` to the current stack pointer. We now
+>   know why it is necessary to save the `rbp`: it is a callee-saved
+>   register.
+
+> - The prelude then pushes `rbx` to the stack because (1) `rbx` is a
+>   callee-saved register and (2) `rbx` is assigned to a variable
+>   (`x`). The other callee-saved registers are not saved in the
+>   prelude because they are not used.
+>
+> - The prelude subtracts 8 bytes from the `rsp` to make it
+>   16-byte aligned.
+>
+> - Shifting attention to the conclusion, we see that `rbx` is
+>   restored from the stack with a `popq` instruction.
+
+也就是说，当前函数 `main` 作为 callee，
+只有用到某个寄存器时才需要保存这个寄存器，
+这里为了保存 read 的返回值用到了 `rbx`，
+而只要用到了 `callq`，就隐式地用到了 `rsp` 和 `rbp`。
+
+另外注意，这里 16-byte alignment
+是需要根据当前 stack 的使用情况来具体处理的。
+
+## 3.2 Liveness Analysis
 
 TODO
 
-## 3.2 Liveness Analysis
 ## 3.3 Build the Interference Graph
 ## 3.4 Graph Coloring via Sudoku
 ## 3.5 Patch Instructions
