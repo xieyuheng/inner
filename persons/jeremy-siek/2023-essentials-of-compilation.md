@@ -1236,6 +1236,24 @@ After pass 040:
  (jmp epilog))
 ```
 
+写成带有变量的 x86 伪代码：
+
+```asm
+start:
+       movq $1, v
+       movq $42, w
+       movq v, x
+       addq $7, x
+       movq x, y
+       movq x, z
+       addq w, z
+       movq y, _
+       negq _,
+       movq z, %rax
+       addq _, %rax
+       jmp epilog
+```
+
 > The program is almost completely in the x86 assembly language, but
 > it still uses variables. Consider variables `x` and `z`. After the
 > variable `x` has been moved to `z`, it is no longer in use.
@@ -1548,8 +1566,10 @@ const nextElement = targetElement.nextElementSibling
 
 ```
 L-after(n) = {}
-L-before(k) = (L-after(k) - W(k)) ∪ R(k)
+L-before(k) = L-after(k) - W(k) + R(k)
 ```
+
+其中 `-` 代表 `set-difference`，`+` 代表 `set-union`。
 
 > where `W(k)` are the locations written to by instruction `I(k)`,
 > and `R(k)` are the locations read by instruction `I(k)`.
@@ -1565,7 +1585,7 @@ L-before(k) = (L-after(k) - W(k)) ∪ R(k)
 
 > For now the only `jmp` in a `x86Var` program is the jump to the
 > conclusion. (For example, see figure 3.1.) The conclusion reads from
-> `rax` and `rsp`, so the alist should map conclusion to the set
+> `rax` and `rsp`, so the alist should map `conclusion` to the set
 > `{rax, rsp}`.
 
 就是说就计算 `L-before` 和 `L-after` 而言，
@@ -1581,27 +1601,90 @@ conclusion:
   retq
 ```
 
-可能是 `retq` 需要 read `rax` 和 `rsp`：
+重点是要知道每个指令的 `W(k)` 和 `R(k)` 如何计算。
+
+| instr          | write      | read       |
+|----------------|------------|------------|
+| addq $16, %rsp | {rsp}      | {rsp}      |
+| popq %rbp      | {rsp, rbp} | {rsp}      |
+| retq           | {rsp}      | {rsp, rax} |
+
+注意：
+
+- `addq` 会同时读写 destination location。
+- `retq` 读写 `rsp` 的同时，会假设 `rax` 中已有的值为返回值，
+  这个虽然不是直接读 `rax` 再做什么，
+  但是也可以被理解为依赖 `rax`，因此和读等价。
 
 ```asm
 conclusion:
-       {rax, rsp} = ({rax, rsp} - {rsp}) ∪ {} // ??? TODO
+                  {rsp, rax} = {rsp, rax} - {rsp} + {rsp}
   addq $16, %rsp
-       {rax, rsp} = ({rax, rsp} - {rsp, rbp}) ∪ {rsp} // TODO
+                  {rsp, rax} = {rsp, rax} - {rsp, rbp} + {rsp}
   popq %rbp
-       {rax, rsp}
+                  {rsp, rax} = {} - {rsp} + {rsp, rax}
   retq
-       {}
+                  {}
 ```
 
-注意 `L-before` 计算公式的顺序，
+回到本节开头的例子：
 
-另外注意 `popq %rbp` write `rsp` 和 `rbp`
-同时也 read `rsp`。
+```asm
+                {} = {a} - {a} + {}
+1 movq $5, a
+                {a} = {a} - {b} + {}
+2 movq $30, b
+                {a} = {c} - {c} + {a}
+3 movq a, c
+                {c} = {b, c} - {b} + {}
+4 movq $10, b
+                {b, c} = {} - {c} + {b, c}
+5 addq b, c
+                {}
+```
+
+**Exercise 3.1** 计算 the running example 的 liveness，
+即 figure 3.1 中带有变量的 x86 伪代码 的 liveness：
+
+TODO figure 3.1 liveness
+
+```asm
+start:
+       movq $1, v
+       movq $42, w
+       movq v, x
+       addq $7, x
+       movq x, y
+       movq x, z
+       addq w, z
+       movq y, _
+       negq _,
+       movq z, %rax
+                     {} = {rsp, rax} - {rax} + {_, rax}
+       addq _, %rax
+                     {rsp, rax}
+       jmp epilog
+```
+
+> **Exercise 3.2** Implement the `uncover-live` pass.  Store the
+> sequence of live-after sets in the _info_ field of the `Block`
+> structure.
+>
+> Hints:
+>
+> - The `callq` instruction should include all the caller-saved
+>   registers in its write set `W` because the calling convention says
+>   that those registers may be written to during the function call.
+>
+> - Likewise, the `callq` instruction should include the appropriate
+>   argument-passing registers in its read set `R`, depending on the
+>   arity of the function being called. (This is why the abstract
+>   syntax for `callq` includes the arity.)
+
+## 3.3 Build the Interference Graph
 
 TODO
 
-## 3.3 Build the Interference Graph
 ## 3.4 Graph Coloring via Sudoku
 ## 3.5 Patch Instructions
 ## 3.6 Generate Prelude and Conclusion
