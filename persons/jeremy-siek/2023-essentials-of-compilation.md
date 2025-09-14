@@ -1618,11 +1618,11 @@ conclusion:
 
 ```asm
 conclusion:
-                  {rsp, rax} = {rsp, rax} - {rsp} + {rsp}
+                  {rsp, rax} - {rsp} + {rsp} = {rsp, rax}
   addq $16, %rsp
-                  {rsp, rax} = {rsp, rax} - {rsp, rbp} + {rsp}
+                  {rsp, rax} - {rsp, rbp} + {rsp} = {rsp, rax}
   popq %rbp
-                  {rsp, rax} = {} - {rsp} + {rsp, rax}
+                  {} - {rsp} + {rsp, rax} = {rsp, rax}
   retq
                   {}
 ```
@@ -1630,15 +1630,15 @@ conclusion:
 回到本节开头的例子：
 
 ```asm
-                {} = {a} - {a} + {}
+                {a} - {a} + {} = {}
 1 movq $5, a
-                {a} = {a} - {b} + {}
+                {a} - {b} + {} = {a}
 2 movq $30, b
-                {a} = {c} - {c} + {a}
+                {c} - {c} + {a} = {a}
 3 movq a, c
-                {c} = {b, c} - {b} + {}
+                {b, c} - {b} + {} = {c}
 4 movq $10, b
-                {b, c} = {} - {c} + {b, c}
+                {} - {c} + {b, c} = {b, c}
 5 addq b, c
                 {}
 ```
@@ -1659,8 +1659,9 @@ start:
        addq w, z
        movq y, _
        negq _,
+                     TODO
        movq z, %rax
-                     {} = {rsp, rax} - {rax} + {_, rax}
+                     {rsp, rax} - {rax} + {_, rax} = {rsp, rax, _}
        addq _, %rax
                      {rsp, rax}
        jmp epilog
