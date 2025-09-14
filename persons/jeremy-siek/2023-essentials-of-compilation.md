@@ -1650,18 +1650,27 @@ TODO figure 3.1 liveness
 
 ```asm
 start:
+                     {rsp, v} - {v} + {} = {rsp}
        movq $1, v
+                     {rsp, w, v} - {w} = {rsp, v}
        movq $42, w
+                     {rsp, w, x} - {x} + {v} = {rsp, w, v}
        movq v, x
+                     {rsp, w, x} - {x} + {x} = {rsp, w, x}
        addq $7, x
+                     {rsp, y, w, x} - {y} + {x} = {rsp, w, x}
        movq x, y
+                     {rsp, y, w, z} - {z} + {x} = {rsp, y, w, x}
        movq x, z
+                     {rsp, z, y} - {z} + {w, z} = {rsp, y, w, z}
        addq w, z
+                     {rsp, z, _} - {_} + {y} = {rsp, z, y}
        movq y, _
+                     {rsp, _, z} - {_} + {_} = {rsp, z, _}
        negq _,
-                     TODO
+                     {rsp, _, rax} - {rax} + {z} = {rsp, _, z}
        movq z, %rax
-                     {rsp, rax} - {rax} + {_, rax} = {rsp, rax, _}
+                     {rsp, rax} - {rax} + {_, rax} = {rsp, _, rax}
        addq _, %rax
                      {rsp, rax}
        jmp epilog
