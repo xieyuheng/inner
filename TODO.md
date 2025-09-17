@@ -1,3 +1,5 @@
+# eoc
+
 > persons/jeremy-siek/2023-essentials-of-compilation.md
 
 3.3 Build the Interference Graph

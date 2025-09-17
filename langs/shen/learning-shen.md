@@ -252,7 +252,7 @@ The basic boolean operators are:
   都以相同的方式展開
   (@x _ _ _ _)
   =>
-  (@x _ (@x _ (@x _ _)
+  (@x _ (@x _ (@x _ _)))
 
 # side effect
 

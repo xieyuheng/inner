@@ -22,3 +22,6 @@ class 也是 object 就是 meta object protocol。
 
 - instance variables: look up in self
 - methods: look up in self's class
+
+另外通过在 class chain 中增加匿名 class 实现了很多功能，
+比如 singleton method 和 inlcude。
