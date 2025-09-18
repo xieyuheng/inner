@@ -1335,6 +1335,9 @@ start:
 System V calling conventions 中关于寄存器的部分，
 可以推迟到这一章才介绍。
 
+要想真的对 calling conventions 有更深刻的理解，
+还是需要尝试更多 alternatives，只看 System V 是不够的。
+
 > The calling conventions include rules about how functions share the
 > use of registers.  In particular, the caller is responsible for
 > freeing some registers prior to the function call for use by the
@@ -1351,7 +1354,7 @@ System V calling conventions 中关于寄存器的部分，
 因为 callee 需要用 `rax` 来传递返回值给 caller。
 
 其次 `rsp` 和 `rbp` 作为 stack 相关的指针，必须是 callee-saved，
-以为 caller 需要保证返回时这些指针不变。
+因为 caller 需要保证返回时这些指针不变。
 
 为什么额外的寄存器 conventions 是必要的？
 假设除了 `rax` 之外所有的寄存器都是 callee-saved，
@@ -1512,17 +1515,25 @@ figure 3.2 的汇编代码中用的是 callee-saved `rbx`，
 > program. A variable or register is _live_ at a program point if its
 > current value is used at some later point in the program.
 
+<question>
+What is the meaning of a variable or register is _live_ at a program point?
+<answer>
+A variable or register is _live_ at a program point if its
+current value is used at some later point in the program.
+</answer>
+</question>
+
 > We refer to variables, stack locations, and registers collectively
 > as _locations_. Consider the following code fragment in which there
 > are two writes to `b`. Are variables `a` and `b` both live at the
 > same time?
 
 ```asm
-1 movq $5, a
-2 movq $30, b
-3 movq a, c
-4 movq $10, b
-5 addq b, c
+ 1 | movq $5, a
+ 2 | movq $30, b
+ 3 | movq a, c
+ 4 | movq $10, b
+ 5 | addq b, c
 ```
 
 > The answer is no, because `a` is live from line 1 to 3 and `b` is
@@ -1551,6 +1562,15 @@ I(3)
   L-after(3)
 ...
 ```
+
+这里先给出直觉上的 liveness 定义，
+再找到合适的数学工具给出形式定义，
+并且给出计算方式。
+
+这个过程非常类似小学和初中的「应用题」，
+只不过这里的题是真的有所应用的。
+
+我认为这种解决问题的能力是比具体学习某个技术更核心的能力。
 
 这种用 before 和 after 两个属性，
 来描述 sequence 的间隔中的数据的方式很不错，
@@ -1630,17 +1650,17 @@ conclusion:
 回到本节开头的例子：
 
 ```asm
-                {a} - {a} + {} = {}
-1 movq $5, a
-                {a} - {b} + {} = {a}
-2 movq $30, b
-                {c} - {c} + {a} = {a}
-3 movq a, c
-                {b, c} - {b} + {} = {c}
-4 movq $10, b
-                {} - {c} + {b, c} = {b, c}
-5 addq b, c
-                {}
+   |               {a} - {a} + {} = {}
+ 1 | movq $5, a
+   |               {a} - {b} + {} = {a}
+ 2 | movq $30, b
+   |               {c} - {c} + {a} = {a}
+ 3 | movq a, c
+   |               {b, c} - {b} + {} = {c}
+ 4 | movq $10, b
+   |               {} - {c} + {b, c} = {b, c}
+ 5 | addq b, c
+   |               {}
 ```
 
 **Exercise 3.1** 计算 the running example 的 liveness，
