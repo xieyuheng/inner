@@ -99,11 +99,51 @@ video-backup: "https://space.bilibili.com/550104600/lists/4735899"
   可能是从 Dan 开始就玩的文字游戏，
   rator 和 rand 经常被用来在写程序的时候做命名。
 
+  这个 pass 的 structural recursion 可依据返回类型来写：
+
+  ```bnf
+  <atom-operand-exp>
+    ::= (var-exp <symbol>)
+      | (int-exp <int>)
+      | (let-exp <symbol>
+          <atom-operand-exp>
+          <atom-operand-exp>)
+      | (prim-exp <op> [<atom-exp> ...])
+  ```
+
+  - `<atom-operand-exp>` -- `(rco-exp)`
+  - `<atom-exp>` -- `(rco-atom)`
+
 - 介绍中间语言 C0，并且讲解 explicate-control。
 
   这里定义的函数除了翻译成 C0 这个职责，
   还返回了变量的列表，
   这是两个职责应该分两组函数实现。
+
+  这个 pass 的 structural recursion，
+  可以先把输入的 `<atom-operand-exe>` 分成两类
+  -- `<tail-exp>` v.s `<non-tail-exp>`：
+
+  ```bnf
+  <atom-operand-exe> ::= <tail-exp>
+  <tail-exp>
+    ::= (var-exp <symbol>)
+      | (int-exp <int>)
+      | (prim-exp <op> [<atom-exp> ...])
+      | (let-exp <symbol>
+          <non-tail-exp>
+          <tail-exp>)
+  <non-tail-exp>
+    ::= (var-exp <symbol>)
+      | (int-exp <int>)
+      | (prim-exp <op> [<atom-exp> ...])
+      | (let-exp <symbol>
+          <non-tail-exp>
+          <non-tail-exp>)
+  ```
+
+  - `<tail-exp>` -- `(explicate-tail)`
+  - `<non-tail-exp>` -- `(explicate-assign)`
 
 # 2020-09-03
 
