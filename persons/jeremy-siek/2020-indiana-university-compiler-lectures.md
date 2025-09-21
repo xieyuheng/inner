@@ -122,7 +122,7 @@ video-backup: "https://space.bilibili.com/550104600/lists/4735899"
 
   这个 pass 的 structural recursion，
   可以先把输入的 `<atom-operand-exe>` 分成两类
-  -- `<tail-exp>` v.s `<non-tail-exp>`：
+  -- `<tail-exp>` vs `<non-tail-exp>`：
 
   ```bnf
   <atom-operand-exe> ::= <tail-exp>
@@ -244,6 +244,37 @@ video-backup: "https://space.bilibili.com/550104600/lists/4735899"
   - 在函数调用之前 stack 必须 16 byte align。
 
 # 2020-09-10
+
+- 这节课将寄存器分配，语言不变，算是优化，只有三个 passes。
+
+  重点是如何把三个问题联系起来：
+
+  - 寄存器分配
+  - 图染色
+  - 数独
+
+- 首先最简单的方案是按顺序分配。
+
+  但是人们马上就发现
+  「有时候两个变量可以共用一个寄存器」，
+  前提就是它们不被同时用到。
+  对这个「是否同时用到」的分析就是 liveness analysis。
+
+- live 的定义。
+  强调 live 是就指令之间的位置（或者说时间）定义的。
+
+  为什么要定义 live？
+  因为如果两个变量 live 的时间不一样，
+  就可以共用一个寄存器。
+
+- 下面要计算每个位置的 liveness，
+  此时可以问学生为什么要从后面向前计算。
+  答案就在 live 的定义中。
+  重点在于教学生看定义，
+  就像 polya 的 how to solve it 所说的。
+
+  也许应该先 learn working example，
+  然后再回头分析如何自己解决这个问题。
 
 - TODO
 

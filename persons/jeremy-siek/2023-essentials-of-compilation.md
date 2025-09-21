@@ -1523,6 +1523,16 @@ current value is used at some later point in the program.
 </answer>
 </question>
 
+变量和寄存器，就是为了保存计算过程中的临时结果，
+然后在后面的计算中用到的，如果其中保存的值在后面真的能用到，
+就算是 live。
+
+目前说的还是 "will be used later"，
+加入 conditional 之后，就要说 "might be used later" 了。
+
+另外注意，判断 live 的点，
+是指令执行的前后间隙时间。
+
 > We refer to variables, stack locations, and registers collectively
 > as _locations_. Consider the following code fragment in which there
 > are two writes to `b`. Are variables `a` and `b` both live at the
@@ -1540,6 +1550,10 @@ current value is used at some later point in the program.
 > live from line 4 to 5.  The integer written to `b` on line 2 is
 > never used because it is overwritten (line 4) before the next read
 > (line 5).
+
+可以想象在为 instruction 建立数据库，
+每一个 instruction 有一个 id，
+L-after 和 L-before 就是这个 id 的属性。
 
 > The live locations for each instruction can be computed by
 > traversing the instruction sequence back to front (i.e., backward in
@@ -1591,6 +1605,12 @@ L-before(k) = L-after(k) - W(k) + R(k)
 ```
 
 其中 `-` 代表 `set-difference`，`+` 代表 `set-union`。
+
+想要理解为什么要从后向前计算？只需要注意 live 的定义：
+"A variable or register is _live_ at a program point if its
+current value is used at some later point in the program."
+一个变量在某一点 live 与否，是由其后面的所有指令决定的，
+所以要从最后一条指令开始计算，这是递归的初始步骤，此时后面的指令列表为空。
 
 > where `W(k)` are the locations written to by instruction `I(k)`,
 > and `R(k)` are the locations read by instruction `I(k)`.
