@@ -1573,8 +1573,9 @@ I(3)
 我认为这种解决问题的能力是比具体学习某个技术更核心的能力。
 
 这种用 before 和 after 两个属性，
-来描述 sequence 的间隔中的数据的方式很不错，
-也许类似于 DOM element 的 API：
+来描述 sequence 的间隔中的数据的方式很不错。
+这类似于解决平面几何问题是做的「辅助线」，
+也类似于 DOM element 的 API：
 
 ```js
 const targetElement = document.getElementById('myElement')

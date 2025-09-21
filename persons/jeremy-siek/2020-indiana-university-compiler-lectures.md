@@ -193,9 +193,60 @@ video-backup: "https://space.bilibili.com/550104600/lists/4735899"
 
 # 2020-09-08
 
-- TODO
+- 这节课是学生代码的 code review。
+
+- 评价 uniquify。
+
+  说 racket 的 for/list 比 map 好用。
+  要我说一点也不好，
+  因为每次看到这些语法关键词都要查文档，
+  比如在 for/list 之外，下面的代码还用到了 for/lists。
+
+  学生的代码处理 let 的 rhs 时候有 bug。
+
+- 评价 remove-complex-opera*。
+
+  强调 structural recursion。
+
+  但是 structural recursion 一般都是从外层到内层来实现，
+  也就是 top-down design，
+  但是这里的代码都是 bottom-up。
+
+  解释为什么在 scheme function 内部用大量 define，
+  因为为了避免 let 所引起的 indentation。
+
+  这里介绍了一个写 structural recursion 的建议，
+  就是不要在 extract 出来的辅助函数中做递归调用。
+  递归调用都应该在主函数中清晰凸显出来。
+  这个建议的极端范例就是 OOP。
+
+- 评价 select-instructions。
+
+  这里学生的代码对某些特殊情况进行了优化，
+  但是也许这些优化应该在后面的 pass 做。
+
+- 评价 assign-homes。
+
+  这里学生的代码没有用 structural recursion，
+  而是只写了一个递归函数。
+  这也与数据类型定义没有用 ADT，
+  而是用了自由的 racket struct 有关。
+
+- 评价 patch-instructions。
+
+  这里学生代码的命名没有遵循 structural recursion。
+
+- 评价 print-x86。
+
+  介绍 macos 的限制：
+
+  - 汇编 label 必须要加上 `_` 前缀。
+  - 在函数调用之前 stack 必须 16 byte align。
 
 # 2020-09-10
+
+- TODO
+
 # 2020-09-15
 # 2020-09-17
 # 2020-09-22
