@@ -147,9 +147,54 @@ video-backup: "https://space.bilibili.com/550104600/lists/4735899"
 
 # 2020-09-03
 
-TODO
+- 这节课介绍后续的 passes。
+
+- 讲解 select-instructions。
+
+  这里有一些对 special case 的简单优化
+  -- 对 self add 的优化，
+  这种优化被称作 special casing。
+  但是这种 self add 好像不会出现在目前所生成的 c-exp 中。
+
+- 讲解 assign-homes。
+
+  需要用到调用栈里的内存了，
+  因此需要讲解 calling conventions。
+  推迟到需要的时候才讲是正确的。
+
+- 有同学问如何 debug assembly code，介绍 gdb 和 lldb。
+
+  助教说，nanopass compiler 的意义就在于方便 debug，
+  可以少用 gdb。
+
+- 讲解 patch-instructions。
+
+  除了这里预留 rax 寄存器的方案，
+  还介绍了循环跑寄存器分配的方案，
+  我还没理解这第二个方案。
+
+  预留寄存器比较简单，并且速度比较快。
+  据说编译器的诸多 passes 主要的瓶颈就是寄存器分配，
+  别的 passes 都是 O(n)，只有寄存器分配是 O(n^2)。
+
+- 讲解 print-x86。
+
+  这里和书上的最后一个 pass 有差异。
+  书中这之前还有一个 prelude-and-conclusion。
+
+  这里需要用到 calling conventions 的知识。
+
+  在我的实现中，这个两个函数分别是：
+  format-x86-program 和 prolog-and-epilog。
+
+  课程中想要直接在汇编中定义 main，
+  其实可以在 runtime 中定义 main，
+  然后调用汇编中的 callback 函数。
 
 # 2020-09-08
+
+- TODO
+
 # 2020-09-10
 # 2020-09-15
 # 2020-09-17
