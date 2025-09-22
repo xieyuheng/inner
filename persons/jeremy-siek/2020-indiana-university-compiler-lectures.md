@@ -267,7 +267,8 @@ video-backup: "https://space.bilibili.com/550104600/lists/4735899"
   因为如果两个变量 live 的时间不一样，
   就可以共用一个寄存器。
 
-- 下面要计算每个位置的 liveness，
+- 下面要计算一个例子中每个位置的 liveness。
+
   此时可以问学生为什么要从后面向前计算。
   答案就在 live 的定义中。
   重点在于教学生看定义，
@@ -276,9 +277,62 @@ video-backup: "https://space.bilibili.com/550104600/lists/4735899"
   也许应该先 learn working example，
   然后再回头分析如何自己解决这个问题。
 
-- TODO
+- 讲解 interference graph。
+
+  在同一时刻 live 的两个 variables，
+  不能共用一个寄存器。
+  variable 之间的这种关系叫做 interfere。
+
+  把 variable 视为点，
+  把 liveness set 视为 hyperedge，
+  就得到了 hypergraph，
+  寄存器分配问题就转化为了图中点的着色问题。
+  限制条件是相邻的点不能有同一种颜色。
+
+  hypergraph 的结构就是 list of hyperedges，
+  而一个 hyperedge 就是 set of nodes。
+  这是极为常见的抽象数据结构，
+  也可以在这里介绍一下。
+
+- 有同学提问，不知道为什么需要解决寄存器分配问题。
+  所以开始的时候就应该介绍内存访问和寄存器访问的时间差异，
+  可以直接用真实数据介绍。
+
+- 讲解如何 build interference graph。
+
+  其实现有的数据已经形成 hypergraph 了，
+  但是转化成 graph 可以让判断 edge 的谓词速度更快。
+
+  这个过程中会 forget 一些 hypergraph 中的信息，
+  具体就是 forget 了 hyperedge，
+  也就是在那一个时刻发生了 interference 的信息。
+
+- 前面转化成 liveness set
+  其实也是忘记了具体 instructions 的信息，
+  忘记信息就是做抽象。
+  这一点也可以给同学讲讲。
+
+- 为了 build interference graph，
+  还需要有聪明的算法来减少这个转化的时间复杂度。
+
+  聪明的算法就是再次遍历指令列表，
+  以每个指令的 write set 和 live-after set 来构建 graph，
+  因为大部分指令只有一个 write dest，
+  所以这样可以避免一个对 set size 的复杂度。
+
+  但是为什么这样做不会有遗漏？
+
+  按照课程的介绍看来，
+  并不是简单的从 hypergraph 构建 graph，
+  而是还要用到具体的 instruction 信息，
+  比如 `movq x, y` 时，不需要增加 x 到 y 的 edge。
+
+  看书里的对应章节应该会解决这里的疑问。
 
 # 2020-09-15
+
+- TODO
+
 # 2020-09-17
 # 2020-09-22
 # 2020-09-24
