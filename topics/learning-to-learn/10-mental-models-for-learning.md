@@ -35,7 +35,7 @@ example mental models:
 - skills are specific
 
   - possibility of transferring knowledge across domains
-  - the breadth one's knowledge
+  - the breadth of one's knowledge
 
 - mental bandwidth is extremely limited
 
