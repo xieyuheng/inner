@@ -1734,6 +1734,60 @@ start:
 
 ## 3.3 Build the Interference Graph
 
+> On the basis of the liveness analysis, we know where each location
+> is live. However, during register allocation, we need to answer
+> questions of the specific form: are locations `u` and `v` live at
+> the same time? (If so, they cannot be assigned to the same
+> register.)
+
+> To make this question more efficient to answer, we create an
+> explicit data structure, an _interference graph_.
+
+> An interference graph is an undirected graph that has a node for
+> every variable and register and has an edge between two nodes if
+> they are live at the same time, that is, if they interfere with each
+> other.
+
+> A straightforward way to compute the interference graph is to look
+> at the set of live locations between each instruction and add an
+> edge to the graph for every pair of variables in the same set. This
+> approach is less than ideal for two reasons. First, it can be
+> expensive because it takes `O(n^2)` time to consider every pair in a
+> set of n live locations. Second, in the special case in which two
+> locations hold the same value (because one was assigned to the
+> other), they can be live at the same time without interfering with
+> each other.
+
+简单地从 hypergraph 转化到 graph 是不行的，
+还是需要用到 instruction 的具体信息。
+
+> A better way to compute the interference graph is to focus on writes
+> (Appel and Palsberg 2003). The writes performed by an instruction
+> must not overwrite something in a live location.
+
+但是我开始没有看出来，这样为什么不会遗漏 interference。
+也许顺着引用可以找到不会遗漏的证明。
+
+这里的引用是：
+
+- Appel, Andrew W., and Jens Palsberg. 2003.
+  Modern Compiler Implementation in Java.
+  Cambridge University Press.
+
+> So for each instruction, we create an edge between the locations
+> being written to and the live locations.
+>
+> - For the `callq` instruction, we consider all the caller-saved
+>   registers to have been written to, so an edge is added between
+>   every live variable> and every caller-saved register.
+>
+> - Also, for `movq` there is the special case of two variables
+>   holding the same value. If a live variable `v` is the source of
+>   the `movq`, then there is no need to add an edge between `v` and
+>   the destination, because they both hold the same value.
+
+两个变量有相同的值，当然就可以公用一个寄存器。
+
 TODO
 
 ## 3.4 Graph Coloring via Sudoku
