@@ -1765,21 +1765,30 @@ start:
 > (Appel and Palsberg 2003). The writes performed by an instruction
 > must not overwrite something in a live location.
 
-但是我开始没有看出来，这样为什么不会遗漏 interference。
-也许顺着引用可以找到不会遗漏的证明。
-
 这里的引用是：
 
 - Appel, Andrew W., and Jens Palsberg. 2003.
   Modern Compiler Implementation in Java.
   Cambridge University Press.
 
+这样为什么不会遗漏？
+之所以觉得会遗漏，是因为认为从 liveness 的 hypergraph，
+转化成 graph 才是全部的信息。
+其实不是的，不应该只通过 live 来定义 interference，
+而是要看 interference 的具体定义。
+其实具体想要避免的情况，
+就是一个寄存器被分配给了两个变量 -- 比如 `x` `y`，
+前面已经对 `x` 赋值了，
+但是后面在不能删除 `x` 的值的前提下，对 `y` 赋值了，
+此时由于这两个变量分配到了同一个寄存器，
+所以就会 overwrite 之前的值。
+
 > So for each instruction, we create an edge between the locations
 > being written to and the live locations.
 >
 > - For the `callq` instruction, we consider all the caller-saved
 >   registers to have been written to, so an edge is added between
->   every live variable> and every caller-saved register.
+>   every live variable and every caller-saved register.
 >
 > - Also, for `movq` there is the special case of two variables
 >   holding the same value. If a live variable `v` is the source of
@@ -1788,9 +1797,10 @@ start:
 
 两个变量有相同的值，当然就可以公用一个寄存器。
 
+## 3.4 Graph Coloring via Sudoku
+
 TODO
 
-## 3.4 Graph Coloring via Sudoku
 ## 3.5 Patch Instructions
 ## 3.6 Generate Prelude and Conclusion
 ## 3.7 Challenge: Move Biasing
