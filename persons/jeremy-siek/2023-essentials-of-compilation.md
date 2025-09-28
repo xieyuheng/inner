@@ -1799,9 +1799,48 @@ start:
 
 ## 3.4 Graph Coloring via Sudoku
 
-TODO
+> We come to the main event discussed in this chapter, mapping
+> variables to registers and stack locations. Variables that interfere
+> with each other must be mapped to different locations. In terms of
+> the interference graph, this means that adjacent vertices must be
+> mapped to different locations. If we think of locations as colors,
+> the register allocation problem becomes the graph coloring problem
+> (Balakrishnan 1996; Rosen 2002).
+
+这里的两个引用是：
+
+- Balakrishnan, V. K. 1996.
+  Introductory Discrete Mathematics.
+  Dover.
+
+- Rosen, Kenneth H. 2002.
+  Discrete Mathematics and Its Applications.
+  McGraw-Hill Higher Education.
+
+介绍如何把 sudoku 转化为 graph coloring 问题，
+作为 graph coloring 的例子。
+
+此处有一个引用：
+
+- Brélaz, Daniel. 1979.
+  “New Methods to Color the Vertices of a Graph.”
+  Commun. ACM 22 (4):251–256.
+
+将要介绍的算法中 saturation 定义为：
+colors already used by neighbors。
+
+> However, register allocation is easier than sudoku, because the
+> register allocator can fall back to assigning variables to stack
+> locations when the registers run out. Thus, it makes sense to
+> replace backtracking with greedy search: make the best choice at the
+> time and keep going.
+
+也就是上面论文中提到的 DSATUR graph coloring algorithm。
 
 ## 3.5 Patch Instructions
+
+TODO
+
 ## 3.6 Generate Prelude and Conclusion
 ## 3.7 Challenge: Move Biasing
 ## 3.8 Further Reading
