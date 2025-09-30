@@ -1,3 +1,10 @@
+# graph theory
+
+richard trudeau
+
+- the non-euclidean revolution
+- introduction to graph theory
+
 # modelling
 
 《模型思维》（The Model Thinker - Scott E. Page）
