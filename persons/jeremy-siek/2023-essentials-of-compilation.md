@@ -1839,11 +1839,22 @@ colors already used by neighbors。
 
 ## 3.5 Patch Instructions
 
-TODO
+> **Exercise 3.5**
+>
+> Update the `patch-instructions` compiler pass to delete trivial
+> moves. Run the script to test the `patch-instructions` pass.
 
 ## 3.6 Generate Prelude and Conclusion
+
+TODO
+
 ## 3.7 Challenge: Move Biasing
+
+这个优化当有很多例子能测试优化的有效性时再做。
+
 ## 3.8 Further Reading
+
+TODO
 
 # 4 Booleans and Conditionals
 # 5 Loops and Dataflow Analysis
