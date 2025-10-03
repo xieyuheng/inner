@@ -1846,7 +1846,18 @@ colors already used by neighbors。
 
 ## 3.6 Generate Prelude and Conclusion
 
-TODO
+> Recall that this pass generates the prelude and conclusion
+> instructions to satisfy the x86 calling conventions (section
+> 3.1). With the addition of the register allocator, the callee-saved
+> registers used by the register allocator must be saved in the
+> prelude and restored in the conclusion.
+
+要在 allocate-registers 传信息给 prelude-and-conclusion。
+
+另外需要移动 rsp 给保存 used callee-saved registers
+和 spilled variable locations，保留 stack 空间。
+
+如果是 macos 还要在调用函数之前 16 bytes align stack space。
 
 ## 3.7 Challenge: Move Biasing
 
@@ -1854,9 +1865,87 @@ TODO
 
 ## 3.8 Further Reading
 
-TODO
+> Earlier editions of the compiler course at Indiana University
+> (Dybvig and Keep 2010) were based on the algorithm of Briggs,
+> Cooper, and Torczon (1994).
+
+这里的两个引用是：
+
+- Dybvig, R. Kent, and Andrew Keep. 2010.
+  P523 Compiler Assignments.
+  Technical report. Indiana University.
+
+- Briggs, Preston, Keith D. Cooper, and Linda Torczon. 1994.
+  “Improvements to Graph Coloring Register Allocation.”
+  ACM Trans. Program. Lang. Syst. 16 (3): 428–455.
+
+Dybvig 的课程资料很难在网络上找到。
+
+后面这个引用的作者也写了关于 compiler 的书：
+
+- Cooper, Keith, and Linda Torczon. 2011.
+  Engineering a Compiler. 2nd edition.
+  Morgan Kaufmann.
+
+> The smallest-last ordering algorithm is one of many _greedy_
+> coloring algorithms. A greedy coloring algorithm visits all the
+> vertices in a particular order and assigns each one the first
+> available color.
+
+关于 graph coloring，mit 的课程也很精彩：
+
+- [lecture 6 / graph theory and coloring](https://www.youtube.com/watch?v=h9wxtqoa1jY)
+
+> An _offline_ greedy algorithm chooses the ordering up front, prior
+> to assigning colors. The algorithm of Chaitin et al. (1981) should
+> be considered offline because the vertex ordering does not depend on
+> the colors assigned. Other orderings are possible. For example, Chow
+> and Hennessy (1984) ordered variables according to an estimate of
+> runtime cost.
+
+Chaitin 相关的引用：
+
+- Chaitin, G. J. 1982.
+  “Register Allocation & Spilling via Graph Coloring.”
+  In SIGPLAN ’82: Proceedings of the 1982 SIGPLAN Symposium
+  on Compiler Construction, 98–105.
+  Association for Computing Machinery.
+
+- Chaitin, Gregory J., Marc A. Auslander,
+  Ashok K. Chandra, John Cocke, Martin E. Hopkins,
+  and Peter W. Markstein. 1981.
+  “Register Allocation via Coloring.”
+  Computer Languages 6:47–57.
+
+关于 Chow 和 Hennessy 的引用：
+
+- Chow, Frederick, and John Hennessy. 1984.
+  “Register Allocation by Priority-Based Coloring.”
+  In Proceedings of the 1984 SIGPLAN Symposium on Compiler Construction, 222–232.
+  Association for Computing Machinery.
+
+> An _online_ greedy coloring algorithm uses information about the
+> current assign- ment of colors to influence the order in which the
+> remaining vertices are colored.  The saturation-based algorithm
+> described in this chapter is one such algorithm. We choose to use
+> saturation-based coloring because it is fun to introduce graph
+> coloring via sudoku!
+
+> In situations in which compile time is of utmost importance, such as
+> in just-in- time compilers, graph coloring algorithms can be too
+> expensive, and the linear scan algorithm of Poletto and Sarkar
+> (1999) may be more appropriate.
+
+这里的引用为：
+
+- Poletto, Massimiliano, and Vivek Sarkar. 1999.
+  “Linear Scan Register Allocation.”
+  ACM Trans. Program. Lang. Syst. 21 (5): 895–913.
 
 # 4 Booleans and Conditionals
+
+TODO
+
 # 5 Loops and Dataflow Analysis
 # 6 Tuples and Garbage Collection
 # 7 Functions
