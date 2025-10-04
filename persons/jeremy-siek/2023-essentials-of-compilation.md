@@ -1719,7 +1719,9 @@ start:
 
 > **Exercise 3.2** Implement the `uncover-live` pass.  Store the
 > sequence of live-after sets in the _info_ field of the `Block`
-> structure.
+> structure. We recommend creating an auxiliary function that takes a
+> list of instructions and an initial live-after set (typically empty)
+> and returns the list of live-after sets.
 >
 > Hints:
 >
@@ -1785,11 +1787,13 @@ start:
 
 > So for each instruction, we create an edge between the locations
 > being written to and the live locations.
->
+
+TODO 为什么这里应该用 L-after 而不是 L-before？
+
 > - For the `callq` instruction, we consider all the caller-saved
 >   registers to have been written to, so an edge is added between
 >   every live variable and every caller-saved register.
->
+
 > - Also, for `movq` there is the special case of two variables
 >   holding the same value. If a live variable `v` is the source of
 >   the `movq`, then there is no need to add an edge between `v` and

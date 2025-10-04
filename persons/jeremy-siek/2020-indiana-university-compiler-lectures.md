@@ -384,9 +384,36 @@ video-backup: "https://space.bilibili.com/550104600/lists/4735899"
 
 # 2020-09-22
 
-[2020-10-01]
+[2025-10-04]
 
-- TODO
+- 这节课是对寄存器分配中的三个 pass 的 code review。
+
+- 在 code review 之前，用 running example 介绍生成代码的例子。
+
+- 再次介绍 16 bytes stack alignment：
+
+  - call 之前要 16 bytes stack align。
+  - call 之后保存了返回地址，所以 rsp 前进 8 bytes。
+  - call 的 prelude 保存当前 rbp，所有 rsp 又前进 8 bytes。
+  - 又回到 16 bytes stack alignment 的状态了，
+    后面就只需要考虑 local variable 所需要的 alignment 了。
+
+- 这里同学问：「在 prelude 中，
+  为什么先处理 rbp 再处理 callee-saved 寄存器的 push？」
+  老师回答这是一个惯例，是模仿 GCC 的做法，
+  使得学生以后读 GCC 所生成的代码时更方便。
+
+- 还有同学问：「在 prelude 中，
+  为什么不先给所有 spilled variable 留下空间，
+  再处理 callee-saved 寄存器的 push？」
+  老师回答这都可以，只是一种随意的选择，
+  也许某一种选择实现编译器的时候写起来更容易。
+
+- 介绍 live range splitting。
+
+  deepseek 说「SSA + Linear Scan 可以自动获得这种效果。」
+
+- 下面开始 code review。
 
 # 2020-09-24
 # 2020-09-29
