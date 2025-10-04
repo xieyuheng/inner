@@ -3,7 +3,7 @@ title: indiana university compiler lectures
 authors: Jeremy G. Siek
 year: 2020
 github: "https://github.com/IUCompilerCourse/IU-P423-P523-E313-E513-Fall-2020"
-video-backup: "https://space.bilibili.com/550104600/lists/4735899"
+video-backup: "https://space.bilibili.com/550104600/lists/6478233"
 ---
 
 # My Motive
@@ -414,6 +414,69 @@ video-backup: "https://space.bilibili.com/550104600/lists/4735899"
   deepseek 说「SSA + Linear Scan 可以自动获得这种效果。」
 
 - 下面开始 code review。
+
+- review uncover-live：
+
+  这里的代码没有按照书里描述的方式处理 jmp 和 retq。
+
+- review build-interference：
+
+  所有的 block 用来 build 了一个 graph，
+  保存到了 x86 program 的 info 中。
+  这是不对的。
+  应该每个 block build 一个 graph，
+  保存到 block 的 info 中。
+
+  另外这里在构造 graph 的时候，其实可以避免，
+  先用 list-product/no-diagonal 获得所有的 edge，
+  然后直接从 edge 构造 graph。
+
+- review allocate-registers：
+
+  这里好的一点是重用了 assign-homes。
+  但是是直接调用了 assign-homes-block，
+  而不是保持 assign-homes 这个 pass。
+
+  是不是这也可以在 pass 上体现出来？
+  也就是说，不是在 allocate-registers 中直接调用 assign-homes，
+  而是用 info 传递 assign-homes 所需要的信息。
+
+  这是我第一次发现可以 nanopass 的地方我没有 nanopass。
+
+- 这里为了做 move biasing 相关的优化，
+  所以没有用一般的 graph-coloring 函数。
+
+  这里老师承认自己重写了四次之后代码还是一坨。
+
+- 我发现这种上课方式很不错：
+
+  - 首先老师讲解问题
+  - 然后学生回家完成实现
+  - 最后一起 code review
+
+  因为这可以让学生对比出来，
+  自己的代码和老师的代码之间的优劣。
+
+  自己先实现一遍很重要，
+  因为这就像是 lattice 的元素的 join，
+  想要得到更好的解决方案，
+  需要自己的方案中有一些新 idea，
+  然后和老师的方案 join。
+
+  但是这其实就是最简单的上课方式：
+
+  - 老师讲课
+  - 学生回家写作业
+  - 最后一起对答案
+
+- 关于 assign-homes 我发现：
+
+  everybody home, but after then
+  they found that variables in the same home
+  can not live together at all!
+
+  everybody-home 是 kent 讲这门课的时候，
+  对 assign-homes 这个 pass 的命名。
 
 # 2020-09-24
 # 2020-09-29
