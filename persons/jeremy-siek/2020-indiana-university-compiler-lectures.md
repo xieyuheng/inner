@@ -376,9 +376,39 @@ video-backup: "https://space.bilibili.com/550104600/lists/6478233"
 
 # 2020-09-17
 
+[2025-10-04]
+
 - 这节课讲 conditional 了，
   而下一节课才是前面三个 pass 的 code review，
   所以可以先看下一节课。
+
+[2025-10-05]
+
+- 介绍 conditional 相关的具体语法。
+
+- 介绍 conditional 相关的解释器。
+
+  这里有一个错误是用 match（以及之后的 cond）
+  来做了 implicit assertion。
+  这里有同学因为对此困惑而产生了疑问。
+  正确的做法是直接写 assertion。
+
+- extract `interp-op`。
+
+- 强调了这里的解释器代码是课程提供的。
+
+  这里的哲学是：解释器用来定义语言，为编译器提供测试标准。
+
+- 下面讲类型检查。
+
+  因为带有 conditional 之后，我们将加上静态类型系统。
+
+  以已有的语言为例子 -- racket 和 typed racket。
+  介绍 runtime error 和 comptime error。
+
+- 之所以加静态类型系统，
+  是因为这可以让编译器实现起来更简单，
+  也就是不需要对 64 bit value 做 runtime tag 编码。
 
 - TODO
 
