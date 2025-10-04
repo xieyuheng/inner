@@ -1788,7 +1788,9 @@ start:
 > So for each instruction, we create an edge between the locations
 > being written to and the live locations.
 
-TODO 为什么这里应该用 L-after 而不是 L-before？
+为什么这里应该用 L-after 而不是 L-before？
+因为只有在 L-after 中，当前这条指令的信息才能被包含进来，
+而 interference 的定义是「假设运行了这条指令会有干扰」。
 
 > - For the `callq` instruction, we consider all the caller-saved
 >   registers to have been written to, so an edge is added between
