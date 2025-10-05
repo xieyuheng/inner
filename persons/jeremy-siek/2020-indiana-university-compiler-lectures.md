@@ -662,7 +662,49 @@ video-backup: "https://space.bilibili.com/550104600/lists/6478233"
 
 [2025-10-05]
 
-- TODO
+- 介绍编译 conditional 所需要的 x86 指令。
+
+- 介绍关于 conditional 的 instruction selection。
+
+- 介绍为了支持 conditional，需要如何扩展中间语言 -- C。
+  其实这里非常类似 SSA 了，但是没有直接说是 SSA。
+  比如，if 其实是 SSA 中受限制的 br。
+
+- 介绍如何把 S 的 conditional 编译到 C。
+
+  给出一个 running example，
+  然后介绍如何做 explicate-control。
+
+  这里的 running example 是在 if 的 condition 位置嵌套了另一个 if。
+  这种嵌套是需要在 explicate-control pass 消除的。
+
+- 这里老师说在编译代码的过程中，
+  一定要避免 duplicate 某段代码，
+  因为很容易构造输入程序，
+  使得这种 duplication 指数爆炸。
+
+  使用 graph 而用 tree，
+  就可以避免这种 duplication。
+
+  因为与 tree 相比，graph 中的 node 可以有多个 parent node。
+
+- unnest if 的过程不能在 AST 的阶段完成，
+  就是因为不能 duplication code。
+
+  但是这样 explicate-control 就和 unnest-if 被放在一个 pass 中了。
+
+  也许可以给 S 加一个 `let-block` 语法，
+  使得可以把 unnest-if 作为一个 pass
+  从 explicate-control 中 extract 出来。
+
+- 介绍如何修改 explicate-control 的中的递归函数，
+  以支持 conditional。
+
+- 直接对 running example 手动 trace `explicate-tail` 函数。
+  看看上面所修改的递归函数的运行效果。
+
+  能够手动 trace 递归函数是非常牛的技能，
+  是 the little book 所使用的核心技能。
 
 # 2020-09-29
 # 2020-10-01
