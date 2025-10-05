@@ -707,6 +707,107 @@ video-backup: "https://space.bilibili.com/550104600/lists/6478233"
   是 the little book 所使用的核心技能。
 
 # 2020-09-29
+
+[2025-10-06]
+
+- 介绍 explicate-control 的难点，
+  其实这个 pass 是在用 CPS 来把所有的 control 都变成 explicate，
+  而难点就在于，对于初学者来说 CPS 比较难理解。
+
+  一旦熟悉了 CPS 这个 pass 看起来就很简单。
+
+  这里间隔了一段时间，在课程的开头，
+  再次讲解 explicate-control 和 conditional 还有 CPS，
+  非常不错。
+
+  在递归函数中：
+
+  - explicate-assign 切换到 `(let)` 的 context 中。
+  - explicate-pred 切换到 `(if)` 的 context 中。
+
+  具体实现的时候的思想模型，
+  应该是在不同的语法 context 中切换。
+
+  另外，每个递归函数的参数不再是简单的一个 block，
+  而是需要在某些时候添加新的 block 到 CFG 中，
+  所以 CFG 本身也要作为参数（为了方便可以用副作用）。
+
+  具体在代码中，我们应该不会用 CFG 这个词，
+  因为它其实是一个 record 而不是 graph，
+  graph 的信息还没有被明显地提取出来。
+
+- 介绍 conditional 的 select-instructions。
+
+- 介绍 conditional 的 allocate-registers。
+
+- 首先是 uncover-live。
+
+  生成了很多 block 之后，
+  block 之间是 share variable 的，
+  所以 liveness 要一起分析。
+
+  注意：
+
+  - liveness 要从后向前分析。
+  - block 末尾是 branch 到两个 block 的时候，
+    要 union 两个 block 的 live-before sets。
+
+- 介绍上面用到的 order 是 reverse topological order，
+  所谓 topological order 就是必须沿着 edge 给点排序。
+
+  这里说实现的时候，可以选择先做有向图的拓扑排序，
+  然后用一个 for loop 就可以处理所有的 liveness 了。
+
+- 介绍 build-interference。
+
+  注意这里将会有多个 block share 同一个 interference-graph 的情况，
+  因此也会 share 同一个 coloring，实现的时候要避免重复 coloring。
+
+  新增的 case 是：
+
+  - `movzbq` -- 与 `movq` 类似。
+  - `al` -- 可以视为 `rax`。
+
+- 介绍 patch-instructions。
+
+  新增的 case 是：
+
+  - `cmpq` -- 第二个参数不能是 immediate。
+  - `movzbq` -- dest 参数必须是 register。
+
+- 下面介绍和 jump 有关的优化。
+
+  explicate-control 会给出 goto 一个 block，
+  但是这个 block 只有一个 statement，
+  这个 statement 也是 goto 一个 block，
+  这显然应该被合并。
+
+  这里的一个解决方案是用 `walk` 函数，
+  类似于在实现 unification 的时候对 logic variable 的 walk。
+
+  可以 walk 每个 goto statement，
+  直到遇到 non-trivial block。
+
+  最后删除没有被引用到的 block。
+  这可以作为一个独立的 pass。
+
+  另外一个优化是，如果一个 block 只有一个 in-edge，
+  那么这个 block 可以直接合并到 jump 到它的 parent block。
+
+  这里有同学问「这两个优化有什么区别？」
+  老师通过画 ASCII art 图来解释，非常不错。
+
+- 下面要进入下一个章节的内容了。
+  就是 "tuples and garbage collection"。
+
+  我实现完 conditional 之后再来看。
+
+  注意，书中在这之前还有一章
+  "loops and dataflow analysis"，
+  在课程视频，这一章节的内容放到了函数相关的内容之后。
+
+- TODO
+
 # 2020-10-01
 # 2020-10-06
 # 2020-10-08
