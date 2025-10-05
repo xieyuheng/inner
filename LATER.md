@@ -1,3 +1,8 @@
+# ruby
+
+https://sinatrarb.com/
+https://www.learnenough.com/courses
+
 # graph theory
 
 richard trudeau
