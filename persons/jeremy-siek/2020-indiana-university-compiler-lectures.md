@@ -410,7 +410,157 @@ video-backup: "https://space.bilibili.com/550104600/lists/6478233"
   是因为这可以让编译器实现起来更简单，
   也就是不需要对 64 bit value 做 runtime tag 编码。
 
-- TODO
+  注意，未来的章节还要讲解如何实现 tag 编码的动态类型语言，
+  到时候可以保留静态类型检查，二者并不冲突。
+
+- 介绍了三种错误处理：
+
+  - comptime
+  - runtime
+  - 不处理
+
+  有趣的是，x86 就是不处理的例子。
+  没人抱怨什么。
+
+  也许 BCPL 这种完全不处理的高阶语言也是有价值的。
+  可以作为编译器的中间语言。
+
+- 介绍 type checker 的实现。
+
+  为了保持简单，课程中个的实现总是假设返回类型是 int，
+  因为这方便实现与测试。
+
+  老师的借口是：c 的 main 函数就是如此。
+
+  但是这样并不好。
+  正确的做法是加上 `the` 这个语法关键词。
+
+- 这里还有一些错误：
+
+  - 把 type cheker 的 `context` 参数命名为 `env`。
+  - 把 `type-infer-exp` 函数命名为 `type-check-exp`。
+    没有 infer 和 check 的区别，
+    bidirectional type checking 的结构就不清晰了。
+
+- 这里有同学问：「`read` 的 type 是什么」？
+
+  其实目前还没有函数类型，
+  primitive operator 的类型检查是以临时地方式实现的。
+
+  这里还解释了，为了保持简单 `read` 只能返回 int。
+  既然如此，为什么不直接叫 `read-int` 呢？
+  这样就可以避免解释了。
+
+- 介绍 if 的 type checking 的时候，
+  强调了 if 的两个 branch 必须是同一个 type。
+
+  - 想要突破这个限制就必须要实现集合论意义上的 union type，
+    这是非常困难的，比如要处理递归定义的 type 中带有 union 的情况。
+
+  有同学问「如果 if 的一个 branch infer 了 int，
+  另一个 branch infer 了 bool，
+  可以不可以 cast bool 到 int？」
+
+  老师的回答是，不可以，
+  因为 type checker 的设计其实是受到已有的 interpreter 的约束的，
+  也就是受到语言 runtime 行为的定义的约束的。
+  可以说 type checker 在「预测」interpreter 的行为。
+
+  interpreter 中没有 cast，
+  那么 type checker 也不能 cast。
+
+  比如问「为什么 if 的 conditional 必须被 check 成 bool？」的时候，
+  答案必须从 interpreter 对语言的定义中找到。
+
+  这里的 type checker 要能检查出来
+  interpreter 中所有 undefined behavior。
+
+  这里是学生问的问题，
+  其实在自己设计语言的类型系统时，
+  也会有类似的迟疑，
+  重点就是记住要「回到定义」去找答案。
+
+- 这里有学生问「为什么 if 不能被实现为 primitive operator？」
+
+  这是 lisp 的基础知识了，
+  应该在整个课程开始之前有一些预习。
+
+  在用 sexp 设计语法时，
+  主要情况是用 `()` 代表函数作用，
+  也就是要为组合子演算设计一个语言。
+
+  但是在代表函数作用的过程中，
+  我们让渡了一部分 sexp 表达式出来，
+  代表特殊的语法关键词，比如 quote lambda 和 if。
+
+  if 有必要被实现为一个语法关键词，
+  是因为它不能被处理为一般的函数作用，
+  因为一般的函数作用要 eval 所有的参数位置的 exp，
+  而 if 只应该 eval 一个 branch 的 exp。
+
+  如果学生的问题意思是，
+  在实现中，为什么不用 prim-exp 来处理 if，
+  答案就是：meaningful distinctions deserve to be maintained -- bishop。
+
+  这个学生之所以问，
+  是因为发现 and 和 or 被老师实现为了 primitive operator，
+  这是错误的。
+
+- 下面要讲和 conditional 相关的第一个 pass 了。
+
+  这个 pass 是 shrink，或者叫 desugar，
+  意思是，在集合论的意义上，
+  把一个大语言缩小为一个小语言。
+
+  具体例子是：
+
+  ```scheme
+  (- e1 e2) => (+ e1 (- e2))
+  ```
+
+  但是这显然只是一个教学的例子，
+  实现的时候不能浪费 x86 的 `subq` instruction。
+
+  下面的 desugar 是合理的：
+
+  - 假设我们主要保留 `(< e1 e2)`。
+
+  ```scheme
+  (> e1 e2) => (< e2 e1)
+  (<= e1 e2) => (not (> e1 e2)) => (not (< e2 e1))
+  ```
+
+  但是上面这些变换有个问题，
+  就是按照目前的 interpreter，参数的位置决定了 eval 的顺序，
+  而上面的变换改变了参数的顺序，也就改变了 eval 的顺序。
+
+  正确的翻译要用到 `(let)`。
+
+  但是有个学生想到了：
+
+  ```scheme
+  (> e1 e2) => (< (- e1) (- e2))
+  ```
+
+  还有同学想到了把所有比较都翻译成 sub 相关的算术运算。
+
+  但是翻译成 `(let)` 是最简单的。
+
+  注意，类似的问题在 `partial-eval` 中也会出现，
+  也要保证 eval 的顺序不变。
+
+- 预告了一下，后面的难点是：
+
+  - explicate-control
+  - allocate-registers
+
+- 聊到了大家上课用到的 web app 的功能：
+
+  - 线上做题，自动打分，但是要隐藏答案和得分，
+  - 在某个固定的时间一起公布答案。
+    这样能避免学生之间利用提前公布的答案和得分。
+
+  也是不错的 web app 需求的例子。
 
 # 2020-09-22
 
@@ -509,6 +659,11 @@ video-backup: "https://space.bilibili.com/550104600/lists/6478233"
   对 assign-homes 这个 pass 的命名。
 
 # 2020-09-24
+
+[2025-10-05]
+
+- TODO
+
 # 2020-09-29
 # 2020-10-01
 # 2020-10-06
