@@ -61,10 +61,11 @@ source: "https://www.cs.cornell.edu/courses/cs6120/2020fa/lesson/2/"
 
   一个 basic block：
 
-  - 类似 jump 或 branch 的 instruction -- 称作 terminator，
+  - jump 与 branch -- 称作 terminator，
     只能出现在 basic block 的结尾。
+    注意 call 不是 terminator。
 
-  - label 的对象是（也就是 jump 或 call 或 branch 的 target）
+  - label 的对象是（也就是 jump 或 branch 的 target）
     只能 basic block 而不是 instruction。
 
 - 可以设想设计 lisp 语法，
