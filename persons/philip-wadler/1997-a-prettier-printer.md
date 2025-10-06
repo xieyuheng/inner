@@ -238,3 +238,10 @@ indentation 不是针对整个字符串的，
 > to speak). John Hughes made pretty printer libraries a prime example
 > of the algebraic approach.  The greatest homage is imitation, and
 > here I have paid as much homage as I can to Hughes and Bird.
+
+有点难懂，但是感觉很神奇。
+可以看看 Bird 的书。
+
+另外，这篇论文还有一个好懂的 ocaml版本：
+
+- christian-lindig/2000-stricty-pretty
