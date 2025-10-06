@@ -12,7 +12,7 @@ year: 1997
 
 看来在 CS 领域，能想到的 worth solving problem 都有论文。
 
-# TODO
+# Intro
 
 > Joyce Kilmer and most computer scientists agree: there is no poem as
 > lovely as a tree. In our love affair with the tree it is parsed,
@@ -40,5 +40,25 @@ John Hughes (1995) 的引用是：
   In J. Jeuring and E. Meijer, editors,
   Advanced Functional Programming,
   Springer Verlag LNCS 925, 1995.
+
+> A widely used imperative pretty-printer is
+> described by Derek Oppen (1980).
+
+这里的引用是：
+
+- Derek Oppen.
+  Pretty-printing.
+  ACM Transactions on Programming Languages and Systems, 2(4): 1980.
+
+> The pretty printer presented here uses an algorithm equivalent to
+> Oppen’s, but presented in a functional rather than an imperative
+> style.  Further comparison with Hughes’s and Oppen’s work appears
+> in the conclusions.
+
+能够把 imperative code 变成 algebric code，
+到底是什么意思？
+读 Richard Bird 那本书应该可以系统学习到。
+
+# 1 A simple pretty printer
 
 TODO
