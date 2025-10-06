@@ -1,3 +1,13 @@
+# richard-bird
+
+algebra-of-programming.djvu
+algorithm-design-with-haskell.pdf
+introduction-to-functional-programming.djvu
+introduction-to-functional-programming.pdf
+pearls-of-functional-algorithm-design.pdf
+the-algebra-of-programming.pdf
+thinking-functionally-with-haskell.pdf
+
 # basic-lisp.c
 
 create basic-lisp.c project
