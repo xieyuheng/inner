@@ -202,6 +202,9 @@ indentation 不是针对整个字符串的，
 
 还是需要更强的类型系统才能表达出来。
 
+[2025-10-07] 也许需要使用 `define-generic` 才能表达出来，
+正如实现 propagator 时所用的 monad。
+
 # 2 A pretty printer with alternative layouts
 
 > We now consider documents with multiple possible layouts. Whereas

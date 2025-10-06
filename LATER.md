@@ -1,3 +1,17 @@
+# tael
+
+使用 x-lisp 和 tael 的方案：
+
+- 像 php 和 ruby 的 template 语言一样，将 x-lisp 嵌入 xml。
+
+- 自己设计 pixel 风格的浏览器，直接以 tael 为 markup language。
+  可以写 uxn 风格的 app，比如 flash card app。
+  markup language 可以直接支持类似现代 web 前端框架中的 component。
+
+- 比浏览器更低一级的 API 就是 2D game engine 的 API。
+  此时 x-lisp 可以是 game engine 的脚本语言，
+  类似 lua 之存在。
+
 # richard-bird
 
 algebra-of-programming.djvu
