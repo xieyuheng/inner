@@ -102,6 +102,10 @@ type sdoc =
 其实是必要的，只有 `format` 函数需要。
 同样地，`i` 对于 `fits` 来说也是多余的。
 
+这里 `format` 的定义在需要调用 `fits` 的时候写错了，
+应该只把当前 group 的 `doc` 传给 `fits`，
+而这里还带上了后面的 `z` -- rest list of `doc`s。
+
 > The `fits` function of the lazy implementation does not work on
 > complex documents but on simple documents instead. The laziness of
 > Haskell permits to transform the alternative group variants into
