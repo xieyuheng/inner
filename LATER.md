@@ -1,8 +1,19 @@
+# scheme
+
+sussamn/1987-lisp-a-language-for-stratified-design.pdf
+
 # tael
 
 使用 x-lisp 和 tael 的方案：
 
-- 像 php 和 ruby 的 template 语言一样，将 x-lisp 嵌入 xml。
+- 像 php 一样，将 x-lisp 嵌入 xml。
+  用 `<? ?>` 因为这是 xml 标准。
+
+- 如果直接用 tael 生成 xml，
+  那么 markup language 和 template language 就都是 lisp。
+  就像 @quasiquote 和 @unquote 一样，
+  也像 @pattern 和 @escape 一样，
+  具有一致性。
 
 - 自己设计 pixel 风格的浏览器，直接以 tael 为 markup language。
   可以写 uxn 风格的 app，比如 flash card app。
