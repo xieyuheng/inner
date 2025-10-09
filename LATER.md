@@ -1,3 +1,11 @@
+# actor-lisp
+
+actor model 最适合写的就是 user login，
+然后 user 访问资源，修改资源。
+
+各种 login 和 register 机制，
+可以直接集成到语言的标准库中。
+
 # scheme
 
 sussamn/1987-lisp-a-language-for-stratified-design.pdf
@@ -6,8 +14,24 @@ sussamn/1987-lisp-a-language-for-stratified-design.pdf
 
 使用 x-lisp 和 tael 的方案：
 
-- 像 php 一样，将 x-lisp 嵌入 xml。
-  用 `<? ?>` 因为这是 xml 标准。
+- 像 vue 一样，将 x-lisp 嵌入 xml。
+
+  - 用 x-if x-for 等等。
+  - 用 `@(...)` 代替  `{{ ... }}` -- 因为 lisp 代码已经带有 `()` 了。
+    - 或用 `$(...)` -- 模仿 bash。
+
+  模仿 vue 的 template，
+  但是语义上完全模仿 php 的 server side rendering。
+
+  也可以模仿 alpine.js 的设计，而不是 vue，
+  因为其对 template 的理解更具有一致性。
+  比如 x-if 需要 template，x-show 不需要。
+  只支持 x-if 而不支持 x-else -- 因为这需要把 xml 当作语法来解析。
+
+  或者不知模仿 alpine.js，而是模仿 php 的 SSR，
+  和 alpine.js 的前端配合。
+  SSR 可以只是传数据给 alpine.js template，
+  而不需要任何 if 和 for 的 control flow。
 
 - 如果直接用 tael 生成 xml，
   那么 markup language 和 template language 就都是 lisp。
