@@ -1950,7 +1950,59 @@ Chaitin 相关的引用：
 
 # 4 Booleans and Conditionals
 
+> The `LVar` language has only a single kind of value, the
+> integers. In this chapter we add a second kind of value, the
+> Booleans, to create the `LIf` language.
+
+> With the addition of `if`, programs can have nontrivial control
+> flow, which impacts `explicate-control` and liveness analysis.
+> Also, because we now have two kinds of values, we need to handle
+> programs that apply an operation to the wrong kind of value, such as
+> `(not 1)` and `(car 1)`.
+
+> The `LIf` language performs type checking during compilation just as
+> Typed Racket. In chapter 9 we study the alternative choice, that is,
+> a dynamically typed language like Racket.
+
+先学静态类型，是因为就写编译器而言，静态类型更简单。
+这与写解释刚好相反，就写解释器而言，动态类型更简单。
+
+> We keep the type checker for `LIf` fairly simple because the focus
+> of this book is on compilation and not type systems, about which
+> there are already several excellent books (Pierce 2002, 2004; Harper
+> 2016; Pierce et al. 2018).
+
+- Pierce, Benjamin C. 2002.
+  Types and Programming Languages.
+  MIT Press.
+
+- Pierce, Benjamin C., ed. 2004.
+  Advanced Topics in Types and Programming Languages.
+  MIT Press.
+
+- Harper, Robert. 2016.
+  Practical Foundations for Programming Languages. 2nd edition.
+  Cambridge University Press.
+
+- Pierce, Benjamin C., and many. 2018.
+  Programming Language Foundations. Vol. 2. Software Foundations.
+
+## 4.1 The LIf Language
+
 TODO
+
+## 4.2 Type Checking LIf Programs
+## 4.3 The CIf Intermediate Language
+## 4.4 The x86If Language
+## 4.5 Shrink the LIf Language
+## 4.6 Uniquify Variables
+## 4.7 Remove Complex Operands
+## 4.8 Explicate Control
+## 4.9 Select Instructions
+## 4.10 Register Allocation
+## 4.11 Patch Instructions
+## 4.12 Challenge: Optimize Blocks and Remove Jumps
+## 4.13 Further Reading
 
 # 5 Loops and Dataflow Analysis
 # 6 Tuples and Garbage Collection
