@@ -1989,9 +1989,17 @@ Chaitin 相关的引用：
 
 ## 4.1 The LIf Language
 
-TODO
+尽管对 argument 的求值方式是 lazy 的，
+`and` 和 `or` 还是被实现为了 operator。
+也许 operator 可以是 lazy 的。
+
+定义语言就是写解释器，
+所以这一章写解释器。
 
 ## 4.2 Type Checking LIf Programs
+
+TODO
+
 ## 4.3 The CIf Intermediate Language
 ## 4.4 The x86If Language
 ## 4.5 Shrink the LIf Language
