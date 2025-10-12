@@ -48,7 +48,6 @@ source: "https://www.cs.cornell.edu/courses/cs6120/2020fa/lesson/2/"
   }
   ```
 
-
   其实用 lisp 就可以兼顾具体语法和 JSON AST 的优点：
 
   ```scheme

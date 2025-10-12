@@ -1998,10 +1998,33 @@ Chaitin 相关的引用：
 
 ## 4.2 Type Checking LIf Programs
 
-TODO
+> It is helpful to think about type checking in two complementary
+> ways.
+>
+> - A type checker predicts the type of value that will be produced by
+>   each expression in the program.
+>
+> - A second way to think about type checking is that it enforces a
+>   set of rules about which operators can be applied to which kinds
+>   of values.
+
+第一个其实是 infer，第二个是 check。
+但是按照书里这样说，就是没有把 bidirectional type checking 说清楚。
+可能是因为类型检查不是教学的主线，所以不细讲。
+
+> It [type checker function] returns an expression because there are
+> situations in which we want to change or update the expression.
+
+这是类型系统中的 elaboration，也没有直接点出来。
 
 ## 4.3 The CIf Intermediate Language
+
+增加 goto 和 branch。
+
 ## 4.4 The x86If Language
+
+TODO
+
 ## 4.5 Shrink the LIf Language
 ## 4.6 Uniquify Variables
 ## 4.7 Remove Complex Operands
