@@ -2043,11 +2043,50 @@ Chaitin 相关的引用：
 
 ## 4.5 Shrink the LIf Language
 
-TODO
+> The `shrink` pass translates some of the language features into
+> other features, thereby reducing the kinds of expressions in the
+> language.
+
+把 language 当成集合，就是集合论意义上的 shrink。
+
+目前只有两个：
+
+```scheme
+(and e1 e2) => (if e1 e2 #f)
+(or e1 e2)  => (if e1 #t e2)
+```
+
+从语法上看，减少语法就是 macro 展开。
 
 ## 4.6 Uniquify Variables
+
+> Add cases to `uniquify-exp` to handle Boolean constants and if
+> expressions.
+
 ## 4.7 Remove Complex Operands
+
+> The output language of `remove-complex-operands` is `Lmon-if`
+> (figure 4.11), the monadic normal form of `LIf`. A Boolean constant
+> is an atomic expression, but the if expression is not. All three
+> subexpressions of an `if` are allowed to be complex expressions, but
+> the operands of the `not` operator and comparison operators must be
+> atomic.
+
+> Add cases to the `rco-exp` and `rco-atom` functions for the new
+> features in `LIf`. In recursively processing subexpressions, recall
+> that you should invoke `rco-atom` when the output needs to be an
+> `atm` (as specified in the grammar for `Lmon-if` ) and invoke
+> `rco-exp` when the output should be `exp`.
+
+> Regarding if, it is particularly important NOT to replace its
+> condition with a temporary variable, because that would interfere
+> with the generation of high-quality output in the upcoming
+> `explicate-control` pass.
+
 ## 4.8 Explicate Control
+
+TODO
+
 ## 4.9 Select Instructions
 ## 4.10 Register Allocation
 ## 4.11 Patch Instructions
