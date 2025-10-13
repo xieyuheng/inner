@@ -2083,6 +2083,15 @@ Chaitin 相关的引用：
 > with the generation of high-quality output in the upcoming
 > `explicate-control` pass.
 
+也可以这样看：
+
+- unnest-operand -- remove-complex-operands
+- unnest-let -- explicate-control
+- unnest-if -- explicate-control
+
+其中 unnest-operand 与 if 无关，
+所以这里就是简单地递归下去。
+
 ## 4.8 Explicate Control
 
 TODO
