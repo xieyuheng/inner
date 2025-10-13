@@ -2094,7 +2094,110 @@ Chaitin 相关的引用：
 
 ## 4.8 Explicate Control
 
-TODO
+> Recall that the purpose of `explicate-control` is to make the order
+> of evaluation explicit in the syntax of the program. With the
+> addition of if, this becomes more interesting.
+
+> The `explicate-control` pass translates from LIf to CIf.
+
+> The main challenge to overcome is that the condition of an if can be
+> an arbitrary expression in `LIf`, whereas in `CIf` the condition
+> must be a comparison.
+
+明确所要 bridging 的 difference。
+
+> As a motivating example, consider the following program that has an
+> if expression nested in the condition of another if:
+
+```scheme
+(let ((x (read)))
+  (let ((y (read)))
+    (if (if (< x 1) (eq? x 0) (eq? x 2))
+      (+ y 2)
+      (+ y 10))))
+```
+
+简单地处理嵌套的 if 表达式，
+而编译成下面的汇编是不对的：
+
+```asm
+cmpq $1, x
+setl %al
+movzbq %al, tmp
+cmpq $1, tmp
+je .then_branch_1
+jmp .else_branch_1
+```
+
+应该编译成：
+
+```asm
+cmpq $1, x
+je .then_branch_1
+jmp .else_branch_1
+```
+
+一个思路是把内部 condition 位置的 if 换出来：
+
+```scheme
+(let ((x (read)))
+  (let ((y (read)))
+    (if (< x 1)
+      (if (eq? x 0)
+        (+ y 2)
+        (+ y 10))
+      (if (eq? x 2)
+        (+ y 2)
+        (+ y 10)))))
+```
+
+但是这样会重复代码，所以也是不行的。
+
+TODO 如果先转化成 SSA，
+是否可以在 SSA 层面处理这里遇到的问题？
+
+- 我们现在学习的其实是 compile with CPS 的简化版本，
+  也就是 Felleisen 提出的 A-normal form。
+  而 CPS ANF SSA 这三者是非常类似的，
+  但是又有差异的编译技术。
+
+> How can we apply this transformation without duplicating code? In
+> other words, how can two different parts of a program refer to one
+> piece of code? The answer is that we must move away from abstract
+> syntax _trees_ and instead use _graphs_.
+
+需要 graph of basis block 了，
+可是在代码中，`block` 这个类型名字被 x86 部分占用了，
+而 c 部分原本应该称作 block 的类型，
+被命名为了 `seq`（或书中的 `tail`）。
+
+- 这里只是练习代码，可以这样。
+  自己实现编译器的时候，
+  这种混乱的命名是绝对不允许的。
+
+`explicate-tail`：
+
+- 在进入 let 的 context 时调用 `explicate-assign`
+- 在进入 if 的 context 时调用 `explicate-pred`
+
+`explicate-pred` 称作 `explicate-if` 更好，
+因为是在 if 的 context 中。
+
+`explicate-assign` 可以继续称作 assign，
+因为在 x-lisp 中 assign 来自 body 中的 `=`，
+而不是来自 `let`。
+
+> The `explicate-pred` function should match on `cnd` (condition) with
+> a case for every kind of expression that can have type Boolean.
+
+所谓 explicate control 中的 control，
+就是先执行哪个后执行哪个。
+用解释器直接解释 expression 的时候，
+这个执行顺序是没有在 expression 中明显表达出来的。
+如果顺着解释器可能的执行顺序走一遍，
+可以发现记录下来的就是 explicate control 的输出。
+
+TODO 4.8.4 Interactions between Explicate and Shrink
 
 ## 4.9 Select Instructions
 ## 4.10 Register Allocation

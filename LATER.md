@@ -1,3 +1,19 @@
+# ssa
+
+1988-global-value-numbers-and-redundant-computations.pdf
+1995-a-correspondence-between-continuation-passing-style-and-static-single-assignment-form.pdf
+1991-efficiently-computing-static-single-assignment-form-and-the-control-dependence-graph.pdf
+1998-ssa-is-functional-programming--andrew-w-appel.pdf
+2009-the-development-of-static-single-assignment-form.pdf
+2022-ssa-based-compiler-design.pdf
+1986-code-motion-of-control-structures-in-high-level-languages.pdf
+
+# continuations
+
+1993-the-discoveries-of-continuations--john-c-reynolds.pdf
+1992-reasoning-about-programs-in-continuation-passing-style.pdf
+1993-the-essence-of-compiling-with-continuations.pdf
+
 # actor-lisp
 
 actor model 最适合写的就是 user login，

@@ -683,7 +683,7 @@ video-backup: "https://space.bilibili.com/550104600/lists/6478233"
   因为很容易构造输入程序，
   使得这种 duplication 指数爆炸。
 
-  使用 graph 而用 tree，
+  使用 graph 而不用 tree，
   就可以避免这种 duplication。
 
   因为与 tree 相比，graph 中的 node 可以有多个 parent node。
@@ -696,6 +696,10 @@ video-backup: "https://space.bilibili.com/550104600/lists/6478233"
   也许可以给 S 加一个 `let-block` 语法，
   使得可以把 unnest-if 作为一个 pass
   从 explicate-control 中 extract 出来。
+
+  - 给 S 增加语法也许是不对的，
+    因为 explicate-control 在于，
+    用 CPS 处理所有的 control flow。
 
 - 介绍如何修改 explicate-control 的中的递归函数，
   以支持 conditional。
@@ -716,7 +720,7 @@ video-backup: "https://space.bilibili.com/550104600/lists/6478233"
 
   一旦熟悉了 CPS 这个 pass 看起来就很简单。
 
-  这里间隔了一段时间，在课程的开头，
+  这里由于两节课之间间隔了一段时间，所以在课程的开头，
   再次讲解 explicate-control 和 conditional 还有 CPS，
   非常不错。
 
@@ -726,7 +730,7 @@ video-backup: "https://space.bilibili.com/550104600/lists/6478233"
   - explicate-pred 切换到 `(if)` 的 context 中。
 
   具体实现的时候的思想模型，
-  应该是在不同的语法 context 中切换。
+  就是在不同的语法 context 中切换。
 
   另外，每个递归函数的参数不再是简单的一个 block，
   而是需要在某些时候添加新的 block 到 CFG 中，
