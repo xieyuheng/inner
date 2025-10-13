@@ -2197,15 +2197,59 @@ TODO 如果先转化成 SSA，
 如果顺着解释器可能的执行顺序走一遍，
 可以发现记录下来的就是 explicate control 的输出。
 
-TODO 4.8.4 Interactions between Explicate and Shrink
+注意，由于 `shrink` 会把 `and` 和 `or` 翻译成 `if`，
+所以正常的代码中会有很多在 `if` 的 condition 位置出现嵌套的 `if` 的情况。
 
 ## 4.9 Select Instructions
+
+新增的情况非常少：
+
+- operator -- not
+- operator -- cmp-ops -- eq? lt? lteq? gt? gteq?
+- tail in seq -- branch-seq, goto-seq
+
+注意 bool 用 1 和 0 编码。
+
 ## 4.10 Register Allocation
+
+`uncover-live` 需要对所有 basis block
+按照 control flow graph 做拓扑排序，
+然后从后向前逐个处理。
+
+注意 control flow graph 是 multidigraph。
+
+TODO 可否直接用带有副作用的递归函数处理 graph 之间的依赖关系？
+因为这与程序语言 module 之间的依赖关系非常相似。
+
+后面的 5.2 所介绍的 dataflow analysis
+可以解决带有 loop 的 graph 的问题。
+
 ## 4.11 Patch Instructions
 ## 4.12 Challenge: Optimize Blocks and Remove Jumps
 ## 4.13 Further Reading
 
 # 5 Loops and Dataflow Analysis
+
+## 5.2 Cyclic Control Flow and Dataflow Analysis
+
+`uncover-live` 需要对所有 basis block 做拓扑排序，
+然后才能从后向前处理，而不遇到依赖问题。
+
+但是循环会导致 control flow graph 中有圈。
+
+解决方案是先假设空的 live-after sets
+然后在循环中逐步逼近正确答案。
+
+> This approach of iteratively analyzing a control-flow graph is
+> applicable to many static analysis problems and goes by the name
+> _dataflow analysis_. It was invented by Kildall (1973) in his PhD
+> thesis at the University of Washington.
+
+- Kildall, Gary A. 1973.
+  “A Unified Approach to Global Program Optimization.”
+
+TODO
+
 # 6 Tuples and Garbage Collection
 # 7 Functions
 # 8 Lexically Scoped Functions
