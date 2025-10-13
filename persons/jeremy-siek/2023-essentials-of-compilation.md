@@ -2023,9 +2023,28 @@ Chaitin 相关的引用：
 
 ## 4.4 The x86If Language
 
-TODO
+> As x86 does not provide direct support for Booleans, we take the
+> usual approach of encoding Booleans as integers, with True as 1 and
+> False as 0.
+
+用 xor 来实现 not -- `(not x) = (xor 1 y)`
+
+> The abstract syntax for the set instruction differs from the
+> concrete syntax in that it separates the instruction name from the
+> condition code.
+
+所谓 condition code 就是这里的 cc -- `set<cc>` 和 `jmp<cc>`，
+
+    cc ::= e | l | le | g | ge
+
+> Because the conditional jump instruction relies on the EFLAGS
+> register, it is common for it to be immediately preceded by a `cmpq`
+> instruction to set the EFLAGS register.
 
 ## 4.5 Shrink the LIf Language
+
+TODO
+
 ## 4.6 Uniquify Variables
 ## 4.7 Remove Complex Operands
 ## 4.8 Explicate Control
