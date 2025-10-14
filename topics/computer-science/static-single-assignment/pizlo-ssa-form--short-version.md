@@ -1,5 +1,6 @@
 ---
 title: Pizlo SSA form (short version)
+author: Filip Pizlo
 source: https://gist.github.com/pizlonator/79b0aa601912ff1a0eb1cb9253f5e98d
 ---
 
@@ -15,6 +16,12 @@ source: https://gist.github.com/pizlonator/79b0aa601912ff1a0eb1cb9253f5e98d
 另外，在刚开始学习 SSA 的时候，
 就发现一个新产生的更好的方案，
 是很棒的感觉。
+
+另外需要学习的文档：
+
+- 这篇文档的加长版本：https://gist.github.com/pizlonator/cf1e72b8600b1437dda8153ea3fdb963
+- 类 SSA 方案的总结：https://bernsteinbear.com/blog/ssa/
+- Filip Pizlo 的一些回答：https://news.ycombinator.com/item?id=43009952
 </motive>
 
 Here's a much more complete description of how I do SSA,
