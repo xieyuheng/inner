@@ -259,3 +259,34 @@ info: https://oleksii.shmalko.com/20211028115609/
   实际上按照我的经验，
   snapshot testing 用 unix pipe + git diff 就足够了，
   根本没必要再依赖额外的工具。
+
+# lesson 6 -- llvm
+
+[ [Webpage](https://www.cs.cornell.edu/courses/cs6120/2020fa/lesson/6/) ]
+
+[2025-10-15]
+
+这节课的内容是用 llvm 的 cpp api，
+来写一个简单的 pass：
+
+- 把所有的 binary operator 都改成 mul。
+
+- 实现这个 pass 的方式不是修改已有的 binary instruction，
+  而是创造一个修改了的新的 instruction 节点，
+  然后找到所有用到了原来 binary instruction 结果的地方，
+  把变量换成新的变量。
+
+- 实现过程中展现了 SSA 哲学，下面三个东西被视为是等同的：
+
+  - instruction
+  - 所生成的结果
+  - 保存结果的 variable
+
+SSA 这么简单的东西，
+被 llvm 包装成这么复杂的 OOP api，
+这太荒谬了。
+
+就像 clojure 经常说的那样，
+应该用数据，而不应该用 OOP。
+
+bril 就是数据驱动的例子。
