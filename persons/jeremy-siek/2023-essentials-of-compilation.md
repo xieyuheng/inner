@@ -2216,7 +2216,8 @@ TODO 如果先转化成 SSA，
 按照 control flow graph 做拓扑排序，
 然后从后向前逐个处理。
 
-注意 control flow graph 是 multidigraph。
+TODO 这里说 control-flow graph 是 multidigraph，
+但是为什么我观察是 digraph？
 
 TODO 可否直接用带有副作用的递归函数处理 graph 之间的依赖关系？
 因为这与程序语言 module 之间的依赖关系非常相似。
