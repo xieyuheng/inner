@@ -1,5 +1,5 @@
 ---
-title: lesson 2.1 -- introduction to bril
+title: lesson 2.2 -- introduction to bril
 source: "https://www.cs.cornell.edu/courses/cs6120/2020fa/lesson/2/"
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: lesson 2 -- representing programs
+title: lesson 2.1 -- representing programs
 source: "https://www.cs.cornell.edu/courses/cs6120/2020fa/lesson/2/"
 ---
 
