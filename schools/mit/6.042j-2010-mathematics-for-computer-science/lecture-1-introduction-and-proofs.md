@@ -97,4 +97,9 @@ video: "https://www.youtube.com/watch?v=L3LMbpZIKhQ&list=PLB7540DEDD482705B"
   最后一个例子是有实用价值的，
   因为和椭圆曲线和密码学有关。
 
-  TODO
+  老师介绍这些命题的例子，
+  主要是想向大家表明，
+  证明不能通过尝试有限个例子来完成，
+  因此后面将要引入的数学归纳法是必要的。
+
+- TODO
