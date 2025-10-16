@@ -14,7 +14,9 @@ video: "https://www.youtube.com/watch?v=L3LMbpZIKhQ&list=PLB7540DEDD482705B"
 
   老师的定义是：A proof is a method for ascertaining the truth.
 
-  这种定义不太理想。
+  其中 ascertain 的意思是：find (something) out for certain; make sure of.
+  因此 ascertain 其实就是以另一种方式说 to prove。
+  所以这种定义是不太理想的。
 
   我更认同 Bishop 的定义：A proof is any completely convincing argument.
 
@@ -39,3 +41,60 @@ video: "https://www.youtube.com/watch?v=L3LMbpZIKhQ&list=PLB7540DEDD482705B"
   基础的构造主义是「能够构造出来，才能证明存在」，
   可以被加强为「存在构造算法，才能证明存在」，
   可以被加强为「存在高效的构造算法，才能证明存在」。
+
+- 老师的目的是要介绍 first-order logic 中的概念。
+
+  通过一些数论中的例子来介绍：
+
+  ```scheme
+  (forall ((n nat?))
+    (prime? (add (square n) (add n 41))))
+  ```
+
+  在写 forall 的时候，老师说 natural number 是 "universe of discourse"，
+  这其实是不对的，因为 universe of discourse 是不用在 forall 语法中指出的。
+
+  universe of discourse 可以用 `in-universe` 语法给出：
+
+  ```scheme
+  (in-universe nat?
+    (forall (n)
+      (prime? (add (square n) (add n 41)))))
+  ```
+
+- 用类型论表示上面的命题是：
+
+  ```scheme
+  (forall ((n nat-t))
+    (prime-t (add (square n) (add n 41))))
+  ```
+
+  但是我们会强调集合论，
+  在古典数学基础的体系内，
+  用谓词系统来描述命题。
+
+  所以我们还是会写：
+
+  ```scheme
+  (forall ((n nat?))
+    (prime? (add (square n) (add n 41))))
+  ```
+
+  与类型论不同，
+  我们没法用形式语言编写证明，
+  并且由机器检查证明。
+  采用 `forall` 和 `exists` 等形式语法，
+  只是为了帮助我们清晰表达思想。
+
+  可能 "the little prover" 就是在这种古典框架内做证明的，
+  因此是非常值得学习的。
+
+- 当然，上面这个命题是错误的，n 为 41 时候就是反例。
+
+- 老师又给了几个例子，
+  都是丢番图方程的可解性所形成的命题。
+
+  最后一个例子是有实用价值的，
+  因为和椭圆曲线和密码学有关。
+
+  TODO
