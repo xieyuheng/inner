@@ -1,3 +1,5 @@
+https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-fall-2010/video_galleries/video-lectures/
+
 lecture 1: introduction and proofs
 lecture 2: induction
 lecture 3: strong induction
