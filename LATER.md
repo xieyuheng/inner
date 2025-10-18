@@ -1,3 +1,10 @@
+# functional programming and graph
+
+2001-inductive-graphs-and-functional-graph-algorithms--martin-erwig.pdf
+
+- https://web.engr.oregonstate.edu/~erwig/papers/abstracts.html#JFP01
+- https://web.engr.oregonstate.edu/~erwig/fgl/
+
 # ssa
 
 1988-global-value-numbers-and-redundant-computations.pdf

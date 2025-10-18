@@ -2226,6 +2226,12 @@ TODO 可否直接用带有副作用的递归函数处理 graph 之间的依赖�
 可以解决带有 loop 的 graph 的问题。
 
 ## 4.11 Patch Instructions
+
+新增的 case 是：
+
+- `cmpq` -- 第二个参数不能是 immediate。
+- `movzbq` -- dest 参数必须是 register。
+
 ## 4.12 Challenge: Optimize Blocks and Remove Jumps
 ## 4.13 Further Reading
 
@@ -2253,6 +2259,39 @@ TODO
 
 # 6 Tuples and Garbage Collection
 # 7 Functions
+
+先实现不带 lexical scope 的函数。
+
+## 7.1 The LFun Language
+
+这里表示函数类型的具体语法设计成了 `(type ... -> type)`
+而不是 `(-> type ... type)`。
+
+这也是错误的，因为引入脱离前缀表达式的语法是错误的。
+尤其是在在教学中，更不应该引入这种语法。
+
+TODO
+
+## 7.4 Reveal Functions and the LFunRef Language
+
+reveal 和 uncover，都是使得语言中某些信息变得明显的 pass 的名字。
+
+> The syntax of `LFun` is inconvenient for purposes of compilation in
+> that it conflates the use of function names and local
+> variables. This is a problem because we need to compile the use of a
+> function name differently from the use of a local variable. In
+> particular, we use leaq to convert the function name (a label in
+> x86) to an address in a register. Thus, we create a new pass that
+> changes function references from `(Var f)` to `(FunRef f n)` where
+> `n` is the arity of the function. This pass is named
+> `reveal-functions` and the output language is LFunRef.
+
+> Placing this pass after `uniquify` will make sure that there are no
+> local variables and functions that share the same name.  The
+> `reveal-functions` pass should come before `remove-complex-operands`
+> pass because function references should be categorized as complex
+> expressions.
+
 # 8 Lexically Scoped Functions
 # 9 Dynamic Typing
 # 10 Gradual Typing

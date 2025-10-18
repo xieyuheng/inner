@@ -810,9 +810,46 @@ video-backup: "https://space.bilibili.com/550104600/lists/6478233"
   "loops and dataflow analysis"，
   在课程视频，这一章节的内容放到了函数相关的内容之后。
 
-- TODO
+[2025-10-18]
+
+- 介绍 vector 和 void 数据类型。
+
+  这里的 vector 真的应该用 tuple，
+  因为 `(vector 1 2 #t)` 的类型是 `(Vector Int Int Bool)`。
+
+- 这里学生问 void 相关的问题，
+  为什么要使用 void。
+
+  老师强调了课程想要编译的语言是 racket 的一个子集。
+  并且所有的 expression 都要有一个 value，
+  这与 c 这种带有 statement 的语言不同。
+
+- tuple 是 reference value 与之前的 atom value（int 和 bool）不同。
+  reference value 的特点是可以有 alias。
+  通过副作用这种观察手段，可以区分 alias 与 copy。
+  alias 与 副作用 同时出现时，语言就很难静态分析。
+  SSA 有 alias 但是没有对变量的副作用。
+
+- 这里有同学质疑了老师给出的例子，
+  没有揭示出来 "tuple live forever"（因此需要 heap），
+  非常不错。
+
+- 其实 alias 和 live-forever 都可以用 atom value vs. reference value 来解释。
+  这种对 value 的分类程序员应该是很熟悉的。
+
+- 下面介绍垃圾回收的概念。
+
+- 老师介绍了之前这门课是要求学生自己写垃圾回收器的，
+  但是太难了。
 
 # 2020-10-01
+
+[2025-10-18]
+
+- 这节课继续将 tuple 与垃圾回收器。
+
+- TODO
+
 # 2020-10-06
 # 2020-10-08
 # 2020-10-13
