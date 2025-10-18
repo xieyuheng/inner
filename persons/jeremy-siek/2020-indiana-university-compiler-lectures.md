@@ -848,9 +848,154 @@ video-backup: "https://space.bilibili.com/550104600/lists/6478233"
 
 - 这节课继续将 tuple 与垃圾回收器。
 
-- TODO
+- 将要实现的就是简单的 copying GC。
+
+- 现代的动态语言都用 generational GC，
+  比如 java 和 chez-scheme。
+
+  generational GC 是可以在 copying GC 基础上做的一个重要的优化。
+
+- 我好奇在没有 runtime tag 的前提下如何实现 GC。
+  如何区分 pointer 与 int。
+
+- 下面介绍 copying GC 的工作原理。
+
+  老师在画图的时候用黑点表示 pointer，
+  这应该是 lisp 的传统，很不错。
+
+  copying GC 的一个问题就是 copy 之后 pointer 变了，
+  因此需要 update 很多 pointer。
+
+  我想我可能会实现以 malloc 为基础的 mark and sweep GC，
+  这样可以保证稳定的 pointer，
+  也不用担心内从中的 gap 问题。
+
+  其实 copying GC 在同时解决两个问题：
+
+  - 一个是避免内存泄漏。
+  - 一个是消除 gap。
+
+  我们可以考虑分层解决这两个问题，
+  把「消除 gap」的问题放到底层解决。
+
+- copying GC 的特点是不用 free dead data，
+  而只需要 copy live data。
+
+- copying GC 本质上是重建同构的 digraph 的问题，
+  或者说 pointer 本质上都是 digraph 问题。
+
+- 既然转化成了 digraph 的问题，
+  就又到了使用 queue 来遍历 graph 的时候了。
+
+  这里介绍的技巧是，
+  在从 from-space copy 到 to-space 的过程中，
+  只要给 to-space 增加一个指针作为 queue 的 front pointer，
+  就可以直接把 to-space 本身当作 queue。
+  不必再额外分配内存做一个 queue 出来。
+
+  这将会形成广度优先遍历。
+  这种实现方式叫做 cheney 算法。
+
+  注意，要避免一个 from-space 中的 data
+  被 enqueue 两次（被 copy 两次）。
+
+  - 我能想到的方案是，在每个 data 上留一个 field，
+    记录自己被 copy 到哪里了。
+
+    其实不需要额外 field，因为 copy 之后，
+    可以在这个 data 的位置上留下信息，
+    说这个 data 已经被 copy 到了什么地方。
+
+    但是这种方案可能也是需要有 tag 才方便，
+    静态类型还是需要预留 field。
+
+- 区分 stack 中 pointer 和 int 的方式是，
+  维护一个 shadow stack（root stack），
+  其中只有 pointer。
+
+  这其实挺复杂的，
+  首先正常的运行时要维护一个只有在 copy 时才会用到的 root stack，
+  其次在 copy 之前，要处理寄存器中保存着 pointer 的情况。
+
+  动态类型的 tag 编码，
+  就可以解决这个「寻找 root」的问题。
+
+- 区分 heap 中 pointer 和 int 的方式是，
+  在每个 data 开头加上个 header，
+  来保存关于 pointer 的 metadata。
+
+  - 1 bit -- forwarding -- 这个 data 是否已经被 copy 了，
+    数据中保存的是 forwarding address。
+
+  - 6 bits -- tuple length (vector length) -- 限制 length 最大是 64。
+    这样看实现这个 tuple 还不如直接实现古典的 lisp cons 呢，
+    起码能保持简单。
+
+  - 50 bits -- pointer mask -- 有进一步限制 tuple lisp 最大是 50。
+
+  - 7 bits -- 未使用。
+    可以想象这些 bits 可以用来实现任意长度的 vector。
+
+- 区分寄存器中的 pointer 和 int 的方式，
+  是在寄存器分配的时候做的，
+  但是细节我没理解。
+
+  可能是任何类型为 vector 的变量，
+  都要避免被分配到寄存器中？
+
+- 下面介绍说，要给 type check 加上 elaboration 了，
+  需要让 type check 返回的表达式都带有类型。
+
+- 介绍 `expose-allocation` pass。
+
+  要处理嵌套的 allocation，
+  也就是嵌套的 `(vector ...)` expression。
+
+  - 但是这不是在 `remove-complex-operands` 中处理过了吗？
+
+    我知道了，因为这个 `expose-allocation` pass 需要被放在
+    `remove-complex-operands` 之前。
+
+    也就是说重复了后面 pass 所作的工作，
+    这可能是一些线索，告诉我们应该把 `(vector ...)`
+    实现成 runtime 中的函数，
+    而不是在 comptime 处理。
+
+  另外这个 pass 要把 `(vector ...)` expression
+  都翻译成更底层的操作 GC 的 expression。
+
+  - 我认为这些完全可以在 runtime 中实现，
+    而不用编译器来实现，GC 的实现方式应该尽量少地暴露给编译器，
+    最好是完全不暴露给编译器。
+
+    看到这里 compile 出来的代码是带有 if 的，
+    就已经有问题了，因为这与运行时处理每什么差别。
+
+  - 我想老师可能是知道，
+    这里 runtime 和 comptime 的 trade-off
+    已经偏向 runtime 了。
+
+    但是在教学中可能不想让学生碰 runtime 代码。
+    或者是在教学中给学生一些 comptime 的挑战。
+
+- 介绍如何修改后续 passes。
+
+- 老师说，由于加了 elaboration 的类型信息，
+  他差点给每个 expression 都加上了 info field，
+  来保存 metadata。
+
+  这里可以看到老师在做很多设计决策，
+  为什么没有直接继承 IU 已有的课程中的决策？
+
+- 我不想再无效 refactor 了。
+  可能要看到「动态类型」的章节再上手继续实现。
+  
+- 这节课没有讲完后续的 passes 如何修改。
 
 # 2020-10-06
+
+- TODO
+
 # 2020-10-08
 # 2020-10-13
 # 2020-10-15
