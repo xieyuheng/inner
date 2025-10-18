@@ -1008,6 +1008,24 @@ video-backup: "https://space.bilibili.com/550104600/lists/6478233"
   - TODO 像总结解释器和类型检查器的实现知识一样，
     总结编译器的实现知识。
 
+    - 首先关键词是 unnest，要去掉各种嵌套的东西：
+
+      - 函数作用参数位置的嵌套
+      - let lhs 位置嵌套 let
+      - if condition 位置嵌套 if
+
+      unnest 的过程非常像是我之前编译到 forth 的过程，
+      但是感觉比 SSA 要简单一些。
+      那么 forth 是否可以作为 SSA 之前的一个中间语言呢？
+
+      forth 的 control 已经是 explicit 的了，
+      比如 tail-call 就真的在 tail 的位置。
+
+    - 另外一个关键的点是 basic block 所形成的 control flow graph，
+      这很适合 codegen。
+
+    - 还有就 SSA，这 append-only 的数据结构适合优化。
+
   并且如果有了 frontend 和 backend 的分层的话，
   整个项目的复杂度还能再度降低。
 
