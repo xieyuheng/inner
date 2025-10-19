@@ -441,12 +441,66 @@ bril 就是数据驱动的例子。
 
 - 画一个树状图总结 GC 的类型。
 
-# Lesson 11 -- dynamic compilers
+# lesson 11.1 -- dynamic compilers
 
 [2025-10-19]
 
 [ [Webpage](https://www.cs.cornell.edu/courses/cs6120/2020fa/lesson/11/) ]
 
 - 这节课的主题是 JIT。
+
+- 介绍 ahead of time 和 just in time 的区别。
+
+  我觉得传统的编译器才是神奇所在。
+  JIT 像是为了解决动态类型语言而做的 ad-hoc 设计。
+
+- AOT 的优点是简单。
+
+  JIT 的最重要优点是有更多优化的机会。
+
+  - 那么 JIT 可否解决 tagged value 的 inject 和 project 优化问题？
+
+  但是主要还是因为动态语言太难静态编译了。
+
+  毕竟，如果想要利用程序运行时的行为来优化程序，
+  可以用测试，不一定要用 production。
+
+- 这里老师澄清了解释器与编译器只是实现方式，
+  语言本身经常可以用多种方式实现。
+
+- 介绍 JIT 的实现方式，
+  要同时实现解释器与编译器，
+  然后在二者之间切换。
+
+  但是不学习具体的实现方式，
+  我还是不知道如何从编译器好的程序切换回到解释器。
+
+  难道是类似用 predicate 实现 generic dispatching？
+
+- 给出一个 tracing JIT 的例子。
+
+  tracing 的意思就是只是为 control flow graph 中的一个 path 而做编译，
+  在这个过程中，可以假设所有使得 flow 选择了这个 path 的条件都满足，
+  利用这些条件来优化编译器。
+
+  control flow graph 中的 branch 会被翻译为 guard，
+  如果偏离这个 path 了，就直接退出，然后重新回到解释器。
+
+  这样看好像确实有点道理。
+
+- 这看起来好像可以解决 tag 的 inject 和 project 问题，
+  因为很多 control flow graph 中的 branch 都是根据类型来的。
+
+- 这么看 JIT 对于我之后想要给 x-lisp 实现的
+  generic dispatching 而言也很重要。
+
+# lesson 11.2 -- Tracing via Speculation
+
+[2025-10-19]
+
+- 这节课的作业就是为 bril 写 tracing JIT。
+
+- 这用到了我之前看 bril 文档没看懂的 speculation 功能！
+  原来是为了实现 JIT 而设计的。
 
 - TODO
