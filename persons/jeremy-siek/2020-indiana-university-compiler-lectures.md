@@ -1094,10 +1094,6 @@ video-backup: "https://space.bilibili.com/550104600/lists/6478233"
 
 - 这节课继续介绍 GC。
 
-  但是由于我认为 vector 不应该被编译，
-  而应该放在 runtime 中实现。
-  所以我没有跟着实现这部分的代码。
-
 - 注意，这里的 GC 是可以支持没有 runtime tag 的静态类型语言。
 
   并且后续的动态类型语言实现中，
@@ -1106,9 +1102,81 @@ video-backup: "https://space.bilibili.com/550104600/lists/6478233"
 
   所以这种实现 GC 的方式是很重要的知识。
 
-- TODO
+- 介绍类型检查和 `HasType`。
+  将会在后面用类型信息保证类型为 vector 的变量不会被分配到寄存器，
+  而是被分配到 stack。
+
+  这是我觉得有些没法接受的。
+  一个解决方案是使用精确垃圾回收（precise garbage collection）。
+  意思是编译出来函数的同时，
+  保留一些函数的 metadata，
+  记录那些寄存器和局部变量的类型是 pointer。
+
+- 介绍 `(vector ...)` 的 `expose-allocation` pass。
+
+  给出一个具体的例子，
+  展示生成出来的新表达式如何被后续的 pass 处理。
+
+  我认为 vector 不应该被编译，
+  而应该放在 runtime 中实现。
+
+  除了这一点我要修改之外，
+  其他部分的实现都可以暂时跟着教程走。
+
+- 这里有个 `uncover-locals` pass 用来收集变量的数据类型。
+
+  目前我的实现中是 `check-c-program` 在做这件事，有点乱了。
+
+- 介绍 `select-instructions` pass。
+
+  为了编译 `(vector-set! vector n value)`，
+  又保留了一个临时寄存器 `r11`。
+  因为这里生成的 instruction，
+  可能需要被 `patch-instructions` pass 处理。
+
+  为了编译 `allocate`，
+  用到了 pc（program counter）relative addressing -- `free_ptr(%rip)`。
+  global variable 和 function 都可以用这种 addressing。
+
+- 介绍 `allocate-registers` pass。
+
+  这里需要处理保存 vector 的变量，
+  如果在调用 GC 的时候，
+  某个保存 vector 的变量是 live 的，
+  那么这个变量就不能被分配到寄存器，
+  而是必须用 root stack。
+
+- 提醒写 runtime c 代码的时候，
+  初始化的内存要清零。
+
+- 介绍这一章的三个挑战：
+
+  - 实现类似 racket 的 struct。
+    但是 getter 和 setter 都是函数，
+    所以这个功能应该在函数之后再实现。
+
+  - 实现 array。
+
+  - 实现 generational GC。
+
+- 介绍 generational GC。
+
+  heuristic 是：新 allocated 数据经常会被马上 free。
+
+  活过了几次 copy 的数据，
+  会被复制到一个专门为 old generation 准备的 from space。
+
+  old generation 不必经常 copy。
+
+  注意，当 old space 和 new space 的数据之间有相互引用的时候，
+  情况会非常复杂。
 
 # 2020-10-13
+
+[2025-10-19]
+
+- TODO
+
 # 2020-10-15
 # 2020-10-20
 # 2020-10-22
@@ -1159,6 +1227,30 @@ video-backup: "https://space.bilibili.com/550104600/lists/6478233"
 
   也许是的！
   应该可以把大量的 inject 和 project 连用的地方优化掉。
+
+  ```scheme
+  (+ e1
+     (+ e2
+        e3))
+  =>
+  (inject
+   (+ (project e1 Integer)
+      (project (inject
+                (+ (project e2 Integer)
+                   (project e3 Integer))
+                Integer) Integer))
+   Integer)
+  ```
+
+  显然可以被优化成：
+
+  ```scheme
+  (inject
+   (+ (project e1 Integer)
+      (+ (project e2 Integer)
+         (project e3 Integer)))
+   Integer)
+  ```
 
   带有 tag 的 value 与不带 tag 的 value 混用，
   并且在编译时处理动态类型的支持，是我没想到的。
