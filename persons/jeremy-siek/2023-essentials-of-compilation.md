@@ -2233,9 +2233,16 @@ TODO 可否直接用带有副作用的递归函数处理 graph 之间的依赖�
 - `movzbq` -- dest 参数必须是 register。
 
 ## 4.12 Challenge: Optimize Blocks and Remove Jumps
+
+TODO
+
 ## 4.13 Further Reading
 
+TODO
+
 # 5 Loops and Dataflow Analysis
+
+TODO
 
 ## 5.2 Cyclic Control Flow and Dataflow Analysis
 
@@ -2258,6 +2265,35 @@ TODO 可否直接用带有副作用的递归函数处理 graph 之间的依赖�
 TODO
 
 # 6 Tuples and Garbage Collection
+
+TODO
+
+## 6.12 Further Reading
+
+TODO
+
+> Researchers are continuously developing new techniques and
+> revisiting old trade-offs (Blackburn, Cheng, and McKinley 2004;
+> Jones, Hosking, and Moss 2011; Shahriyar et al. 2013; Cutler and
+> Morris 2015; Shidal et al. 2015; Österlund and Löwe 2016; Jacek and
+> Moss 2019; Gamari and Dietz 2020).
+
+> Researchers meet every year at the International Symposium on Memory
+> Management to present these findings.
+
+这里提到的 ISMM 主页是：
+
+- https://conf.researchr.org/series/ismm
+
+有很多线上视频：
+
+- [ISMM 2025](https://www.youtube.com/playlist?list=PLyrlk8Xaylp4NLXqZzBQifYnW2VWcDU8k)
+- [ISMM 2024](https://www.youtube.com/playlist?list=PLyrlk8Xaylp4aE6bM0FyT0avd0bGJmpee)
+
+另外还发现了 Steve Blackburn 的频道：
+
+- [Steve Blackburn / Youtube](https://www.youtube.com/@steveblackburn5388)。
+
 # 7 Functions
 
 先实现不带 lexical scope 的函数。

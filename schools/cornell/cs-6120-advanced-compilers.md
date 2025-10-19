@@ -290,3 +290,163 @@ SSA 这么简单的东西，
 应该用数据，而不应该用 OOP。
 
 bril 就是数据驱动的例子。
+
+# lesson 10 -- memory management
+
+[2025-10-19]
+
+[ [Webpage](https://www.cs.cornell.edu/courses/cs6120/2020fa/lesson/10/) ]
+
+- 这节课要讲的主题是 GC。
+
+- 介绍手动管理内存可能会出现的 bug。
+
+  这是人的问题不是语言的问题：
+
+  - Eskil Steenberg：
+
+    - [How I program C](https://www.youtube.com/watch?v=443UNeGrFoM)
+    - [Advanced C: The UB and optimizations that trick good programmers](https://www.youtube.com/watch?v=w3_e9vZj7D8)
+    - [Architecting LARGE software projects](https://www.youtube.com/watch?v=sSpULGNHyoI)
+    - [Debugging and the art of avoiding bugs](https://www.youtube.com/watch?v=sfrnU3-EpPI)
+
+- 介绍为什么静态分析很难完全解决内存分配问题。
+
+- 介绍 GC 的基本原理。
+
+- 介绍 GC 中的术语：
+
+  - collector -- 就是 runtime 的 GC 代码。
+  - mutator -- 从 GC 角度看，你的代码就是在修改 graph。
+  - live/dead -- 是否 reachable from root。
+
+- 解决 GC 问题就是要找到 dead data 然后 free。
+
+  解决方案有两大类：「引用计数」和「标记清扫」。
+
+  - 引用计数：
+
+    就是在数据中记录有向图意义上的 in-degree，
+    每次做 side-effect 都要更新这个记录。
+
+  - 标记清扫：
+
+    如果数据是有 runtime tag 的话，
+    就不需要额外的 metadata。
+
+    即使只是思考标记的过程（不是真的实现三染色算法），
+    也可以有三染色的概念：
+
+    - 白色：未访问
+    - 灰色：在 queue 中
+    - 黑色：已经访问过
+
+    对于图的遍历算法，
+    这种用染色辅助思考的方式都适用。
+
+- 分析两种方案的优点和缺点：
+
+  - 引用计数：
+
+    - 不用 stop the world。
+    - 实现简单。
+    - 但是没法处理 circle。
+
+  - 标记清扫
+
+    - 可以处理 circle。
+    - 有很大的设计空间可以探索各种算法。
+    - fast mutator，不用处理 metadata。
+
+- 下面主要讲不同类型的标记清扫 GC。
+
+  - 保守 GC：
+
+    主要是在没有 runtime tag 的情况下，
+    很难区分 int 和 pointer，导致了有些「保守」。
+    也就是有些 int 看起来像是 from-space 中的 pointer，
+    也会被当成 pointer。
+
+    老师说这是 GC 发展的后期才提出的方案，
+    这个方案之后 GC 才有「精确」与「保守」之分。
+
+    我觉得这个方案是完全可以接受的，
+    因为为了精确地找到所有的 root，
+    所付出的复杂度是非常高的。
+    另外可以通过经常更换 to-space 的位置，
+    让每次标记的过程所误判的 int 不一样。
+
+    老师说保守 GC 的优点就是，
+    适合在 C 和 C++ 这种没有 runtime tag 的语言中工作。
+
+    - 这个前提是，你能知道 malloc 返回的值的区间。
+
+    但是其实我们知道，有 runtime tag 的语言中，
+    可能会为了优化而混用 tagged value 和 untagged value。
+    所以也是需要保守 GC 的。
+
+    老师举例说，
+    apple 的 webkit js runtime 就是使用保守 GC 的。
+    尽管 js 是需要 runtime tag 的语言。
+
+    这里老师还引用了 boehm 的论文：
+
+    > The wasted memory seems bad, but "Bounding Space Usage of
+    > Conservative Garbage Collectors" by Hans-J. Boehm shows how data
+    > structures often don't have such a big problem.
+
+    boehm 的主页，以及 GC 有关的工作：
+
+    - https://www.hboehm.info
+    - https://www.hboehm.info/gc
+    - https://www.hboehm.info/gc/bounds.html
+
+    另外保守 GC 在 64-bits 机器上工作良好，
+    但是可以想象在 32-bits 机器上就会有更多的误判了，
+    真实的语言中确实出现过类似的情况，
+    导致在 32-bits 机器上 GC 根本就没法正常工作。
+
+    这其实是个挺令人担忧的 attack surface。
+    所以要谨慎使用保守 GC。
+
+    另外有一个重点是 保守 GC 不能是 copying GC，
+    因为 copying GC 需要更新 root，
+    而有可能误判 root 的时候是不能更新 root 的。
+
+- 介绍并行 GC。
+
+  首先是简单的 collector 自己并行。
+
+  然后是 collector 和 mutator 并行。
+
+  这种方案可以避免 stop the world，
+  但是一个 collector thread
+  可能会成为所有其他 thread 的瓶颈。
+
+  老师介绍这种 GC 非常难实现。
+
+- 介绍渐进 GC。
+
+  比如三染色 GC。
+
+- 介绍 copying GC。
+
+  这是另一个区分 GC 的维度。
+
+  这很适合用来分配长度可变的内存，
+  因为在解决自动 free 问题的同时，
+  还解决了内存碎片化的问题。
+
+- 介绍 generational GC。
+
+- 画一个树状图总结 GC 的类型。
+
+# Lesson 11 -- dynamic compilers
+
+[2025-10-19]
+
+[ [Webpage](https://www.cs.cornell.edu/courses/cs6120/2020fa/lesson/11/) ]
+
+- 这节课的主题是 JIT。
+
+- TODO
