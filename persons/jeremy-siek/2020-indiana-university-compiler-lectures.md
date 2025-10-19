@@ -764,7 +764,7 @@ video-backup: "https://space.bilibili.com/550104600/lists/6478233"
 
 - 介绍 build-interference。
 
-  注意这里将会有多个 block share 同一个 interference-graph 的情况，
+  注意，这里将会有多个 block share 同一个 interference-graph 的情况，
   因此也会 share 同一个 coloring，实现的时候要避免重复 coloring。
 
   新增的 case 是：
@@ -1018,8 +1018,16 @@ video-backup: "https://space.bilibili.com/550104600/lists/6478233"
       但是感觉比 SSA 要简单一些。
       那么 forth 是否可以作为 SSA 之前的一个中间语言呢？
 
+      注意，unnest if 的过程需要 control flow graph。
+
       forth 的 control 已经是 explicit 的了，
       比如 tail-call 就真的在 tail 的位置。
+
+    - 如果增加 forth 之后，
+      可能也需要在 frontend 和 backend 之间增加一个阶段。
+
+      也就是说，frontend 和 backend 其实是语言所切分出来的阶段，
+      每增加一个语言，都会多分出来一个阶段。
 
     - 另外一个关键的点是 basic block 所形成的 control flow graph，
       这很适合 codegen。
@@ -1029,9 +1037,59 @@ video-backup: "https://space.bilibili.com/550104600/lists/6478233"
   并且如果有了 frontend 和 backend 的分层的话，
   整个项目的复杂度还能再度降低。
 
-- TODO
+[2025-10-19]
+
+- 下面 review `explicate-control`。
+
+  老师认为这是目前遇到的最难的一个 pass。
+  老师觉得难，主要是因为 CPS。
+
+  主要是新增的 if expression 之后：
+
+  - `explicate-tail` -- 要增加 if case。
+  - `explicate-assign` -- 要增加 if case。
+  - `explicate-if` -- 主要处理 if case 的同时，还要处理 nested let。
+
+  也就是说新增一个 expression，
+  需要修改的代码的位置是 n。
+
+  也许用 rewrite system 可以更好地处理这个问题。
+
+  可能也不行，应为就算在 rewrite system 中不用修改已有的递归函数，
+  新增的 case 数量还是 n。
+
+- 这里有的学生的代码因为没有遵循 CPS，
+  不是传递 continuation 而是传递了 label。
+
+  这使得代码变得难以理解并且是错误的。
+
+  这有点像批作业，
+  但是修改有很多地方都是错误的代码，
+  是很难的。
+
+- 下面 review 对 jump 的优化。
+
+  思路类似 unification 算法中的 walk 函数，
+  对于一个 trivial block，
+  walk 直到 non-trivial block。
+
+  老师的实现方式是，
+  先构造一个 hash table，
+  保存 walk 函数的结果。
+
+- 注意，如果区分了 frontend 和 backend，
+  那么这个优化应该属于 backend。
+
+- 下面 review `select-instructions`。
+
+- 后面的几个 passes 没有讲，留给学生自己看了。
 
 # 2020-10-08
+
+[2025-10-19]
+
+- TODO
+
 # 2020-10-13
 # 2020-10-15
 # 2020-10-20
