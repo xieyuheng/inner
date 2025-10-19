@@ -1005,6 +1005,10 @@ video-backup: "https://space.bilibili.com/550104600/lists/6478233"
   看看对于编译 x-lisp 而言，还差什么知识。
   感觉很多难点都已经过了。
 
+  - 还欠缺的知识：
+
+    - 如何编译 closure。
+
   - TODO 像总结解释器和类型检查器的实现知识一样，
     总结编译器的实现知识。
 
@@ -1088,6 +1092,20 @@ video-backup: "https://space.bilibili.com/550104600/lists/6478233"
 
 [2025-10-19]
 
+- 这节课继续介绍 GC。
+
+  但是由于我认为 vector 不应该被编译，
+  而应该放在 runtime 中实现。
+  所以我没有跟着实现这部分的代码。
+
+- 注意，这里的 GC 是可以支持没有 runtime tag 的静态类型语言。
+
+  并且后续的动态类型语言实现中，
+  动态类型部分要和静态类型部分混用，
+  这对于优化来说非常重要。
+
+  所以这种实现 GC 的方式是很重要的知识。
+
 - TODO
 
 # 2020-10-13
@@ -1097,6 +1115,82 @@ video-backup: "https://space.bilibili.com/550104600/lists/6478233"
 # 2020-10-27
 # 2020-10-29
 # 2020-11-03
+
+[2025-10-19]
+
+- 这节课讲动态类型语言的编译器设计。
+
+  x-lisp 是动态类型语言，
+  所以我跳过来看一下。
+
+- 再次介绍动态语言与静态语言的差异。
+
+- 通过 `(inject exp type)` 和 `(project exp type)` operator，
+  在 value 和 tagged value 和之间转换。
+
+  这样是不是可以做到运行时的 C 代码，
+  不用知道我们对 value 的 runtime encoding 是什么？
+
+  看起来有机会在很多地方都直接用 value。
+
+  如果是这样的话，
+  那么作为中间语言的 basic-lisp
+  中的 value 就应该不带 tag 了。
+
+  但是这种带有 tag 的 value
+  和不带 tag 的 value 共存的设计，
+  还不一定对。
+
+- 介绍如何用 lower 3-bits 来做 tag。
+
+- 介绍我们会保留之前的实现，然后新增一个 `any` type。
+
+  但是这样也不太对，
+  因为如果能让所有的 value 都带有 tag，
+  就可以简化 GC。
+
+  但是如果保留了之前的实现，
+  GC 在增加 any 后就更复杂了。
+
+  但是明显地表达 inject 和 project，
+  就有机会在某些地方把它们优化掉。
+  如果真的有好的方法做这种优化，
+  那么混合两种 value 可能就是合理的。
+
+  也许是的！
+  应该可以把大量的 inject 和 project 连用的地方优化掉。
+
+  带有 tag 的 value 与不带 tag 的 value 混用，
+  并且在编译时处理动态类型的支持，是我没想到的。
+
+  但是这样也许还是不对的，
+  因为如果在实现 GC 的时候需要维护 shadow stack 来保存 GC 的 roots。
+  那么优化掉的 inject 和 project，
+  还不如维护这个 shadow stack 的开销大。
+  毕竟大部分 inject 和 project 只是寄存器上的操作，
+  而 shadow stack 是内存。
+
+  并且按照现在的 GC 实现来看，
+  好像不能把 reference value 保存在寄存器中。
+  这也不太对。
+
+- 介绍类型检查器。
+
+  有了动态类型为什么还要类型检查？
+  可能与 Gradual Typing 有关。
+
+- 介绍解释器。
+
+- 介绍 tag 对 value 的影响。
+  尤其是对 pointer 的影响。
+
+- 介绍 `shrink` pass。
+
+  - `project` 被翻译成底层 API 了，并且用到了 if expression。
+  - `inject` 也被翻译成底层 API 了。
+
+- TODO 剩下的实现到这里再看。
+
 # 2020-11-05
 # 2020-11-10
 # 2020-11-12
