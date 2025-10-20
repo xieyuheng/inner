@@ -496,11 +496,53 @@ bril 就是数据驱动的例子。
 
 # lesson 11.2 -- Tracing via Speculation
 
-[2025-10-19]
+[2025-10-20]
 
 - 这节课的作业就是为 bril 写 tracing JIT。
 
 - 这用到了我之前看 bril 文档没看懂的 speculation 功能！
   原来是为了实现 JIT 而设计的。
 
-- TODO
+- [Bril / Speculative Execution](https://capra.cs.cornell.edu/bril/lang/spec.html#speculative-execution)
+
+   - `(speculate)` 进入 speculative execution context，
+     也就是说实现的时候可能需要一个新的 frame，
+     像函数的 context 一样。
+
+     对于寄存器和栈中的变量可以如此，
+     但是对于内存的 side-effect 就不能用类似函数的 context 来实现了。
+
+     可能需要模仿 CPU 的 write buffer。
+
+   - `(commit)` 结束 execution context，commit side-effects。
+
+   - `(guard condition label-on-abort)`
+     如果 condition 失败就不要 commit，
+     直接 jump 到 about。
+
+- 老师说这个功能是在模仿 CPU 中的 speculative execution，
+  尽管一般的 ISA 不会暴露相关的 instruction，
+  我们还是可以在 IR 中实现这个功能来方便 frontend 实现 JIT。
+
+- 介绍 bril 的 speculative execution 扩展。
+
+  我还没有实现 bril（或者说我的 basic-lisp），
+  但是这里可以看出来 bril 可以让我们轻易地实验一些新的 idea。
+  这非常不错。
+
+- 关于 speculative execution 的实现：
+
+  - 要支持 speculative context 的嵌套。
+  - 不支持 rollback 对内存的修改。
+
+- 下面讲如何做 tracing。
+
+  直接修改 bril 的解释器，
+  使得它可以在运行时记录下来运行的 instruction 就可以了。
+
+  也就是说 JIT 可以完全在 backend 实现！
+
+- 这节课的作业就是实现基于 tracing 的优化。
+
+  tracing 出来的 instruction list 本身可能就可以被已有的 pass 优化了，
+  只不过之前在 control flow graph 中这些 pass 没机会运行。
