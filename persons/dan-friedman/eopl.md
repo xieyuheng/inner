@@ -565,7 +565,63 @@ if and only if :
 
 # 8 Modules
 
+> A program in our module language consists of a sequence of _module
+> definitions_ followed by an expression to be evaluated. Each module
+> definition binds a name to a _module_. A created module is either a
+> _simple module_, which is a set of bindings, much like an
+> environment, or a _module procedure_ that takes a module and
+> produces another module.
+
+这里的 module procedure 来自 SML 的 module system，
+如果这样设计，module 就有了更多职责：
+
+- 管理代码与局部命名。
+- 形成 abstraction。
+
+我认为形成 abstraction 这个职责应该交给语言本身，
+而不是交给模块系统，这样模块系统就能保持简单。
+
+比如这里 module procedure 的 abstraction 功能，
+完全可以交给 function 和 record 来实现。
+
+> Each module will have an _interface_. A module that is a set of
+> bindings will have a _simple interface_, which lists the bindings
+> offered by the module, and their types. A module procedure will have
+> an interface that specifies the interfaces of the argument and
+> result modules of the procedure, much as a procedure has a type that
+> specifies the types of its argument and result.
+
+这里 module procedure 与 procedure 的职责的相似性，
+已经值得警惕了。
+
+不过这种相似性，应该是提示了 module 的实现方式。
+要知道带有 lexical scope 的 procedure
+已经具有管理 local name 的功能了。
+
+我可以理解为什么有 module procedure，
+因为实现方式与 procedure 是一样的！
+
+import 就像是 call function，
+然后对返回的 record 进行 pattern match。
+
+但是「有意义的差异值得保留」，
+考虑编译中间语言，其中函数的 body 只能有 instructions，
+甚至不能有 nested application。
+
+但是对于编译器的中间语言，
+我们还是要设计一个模块系统的。
+这样编译器的 frontend 就不用重新实现模块系统了。
+
+此时把 module 视为 procedure 就不合适了。
+因为语言的表达能力很弱，
+导致其 procedure 不能被用作 module。
+
 ## 8.1 The Simple Module System
+
+> Our first language, SIMPLE-MODULES, has only simple modules. It does
+> not have module procedures, and it creates only very simple
+> abstraction boundaries. This module system is similar to that used
+> in several popular languages.
 
 ## 8.2 Modules That Declare Types
 
