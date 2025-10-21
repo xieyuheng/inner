@@ -17,9 +17,15 @@ year: 2006
 essentials of compilation（EOC）一书来学写编译器，
 因此想回顾一下之前所学的内容。
 
-平且看看，EOC 中 program 和 c-program 之分所带来的，
+并且看看，EOC 中 program 和 c-program 之分所带来的，
 代码组织方面的复杂性，在 aziz 手上是如何解决的。
 在学习 aziz 的方法之外，也可以看看 nanopass 的解决方案。
+
+[2025-10-21] c-program 应该被独立成类似 llvm 的 SSA IR，
+control flow graph of basic blocks -- basic-lisp。
+
+再读 aziz 的文章，看看每个 value 都是 tagged value 是否合理。
+因为 EOC 是可以优化掉 tagged value 的。
 
 # 1 Introduction
 
