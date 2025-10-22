@@ -269,6 +269,63 @@ info: https://oleksii.shmalko.com/20211028115609/
 
 [2025-10-22]
 
+- 优化分为三类：
+
+  - local optimization
+
+    就是针对某个 basic block 而言的，
+    而不是针对整个 function 的。
+
+  - function optimization
+
+  - inter function optimization
+
+- 先从简单的 local optimization 开始。
+
+- 首先实现的是 dead code elimination。
+
+  注意，这是一个 function optimization。
+
+  可以发现，虽然我们的数据结构叫做 control flow graph，
+  其中 graph 是依据 control flow 而建立的，
+  但是其实 instruction 之间，
+  按照 variable 的依赖关系，
+  也能构成一个 graph。
+
+  dead code elimination 就是要删除没有被依赖的 instruction。
+
+  这个优化非常像 GC！
+
+- 可以看出这个优化应该在 SSA 之后，
+  否则对变量的 assignment 会让问题变复杂。
+
+- 介绍了一个在 SSA 之前，
+  介绍两种 dead code elimination 算法：
+
+  - function 内完全没有被用到的变量。
+    这个可以用类似 GC 的算法，但是老师没用。
+
+  - 局部 block 内被 overwrite 但是之前的值没有被用到的变量。
+
+  这里两个算法的缺点都是一次只能消除一层 dead code，
+  要迭代到收敛才能消除所有 dead code。
+
+  这样效率会很低，先转化到 SSA 显然是更好的方案。
+
+- 老师在展示优化的时候指出，
+  可以通过让解释器记录所运行的 instruction 个数，
+  来做简单的 profiling。
+  以证明优化确实有效。
+
+  另外证明优化有效的方式是，
+  直接把优化之后的代码打印出来，
+
+- 好消息的 bril 的代码仓库中有很多测试和例子程序可以用。
+
+# lesson 3.1 -- local value numbering
+
+[2025-10-23]
+
 - TODO
 
 # lesson 6 -- llvm
