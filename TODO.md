@@ -1,7 +1,5 @@
 # gc
 
-2013-teaching-garbage-collection-without-implementing-compilers-or-interpreters.pdf
-1992-compiler-support-for-garbage-collection-in-a-statically-typed-language.pdf
 1992-uniprocessor-garbage-collection-techniques--acm--paul-wilson.pdf
 1992-uniprocessor-garbage-collection-techniques--paul-wilson.pdf
 2023-the-garbage-collection-handbook.djvu

@@ -260,6 +260,17 @@ info: https://oleksii.shmalko.com/20211028115609/
   snapshot testing 用 unix pipe + git diff 就足够了，
   根本没必要再依赖额外的工具。
 
+[2025-10-22]
+
+- 我已经在 x-lisp 项目中增加了 basic-lisp 子项目，
+  作为直接描述 basic block 的中间语言。
+
+# lesson 3.1 -- local optimization & dead code elimination
+
+[2025-10-22]
+
+- TODO
+
 # lesson 6 -- llvm
 
 [ [Webpage](https://www.cs.cornell.edu/courses/cs6120/2020fa/lesson/6/) ]
