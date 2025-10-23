@@ -454,6 +454,62 @@ info: https://oleksii.shmalko.com/20211028115609/
 
 [2025-10-23]
 
+- data flow 是一种框架类的 idea，
+  可以把很多 block 内的局部分析，
+  变成 control flow graph 上的全局分析。
+
+- 这里先考虑一个一般的 reaching definition problem。
+
+  对于一个 variable 的 definition（assignment），
+  和所有引用到这个 variable 的地方（use），
+  判断这个 definition 是否 reach 到这个 use 位置。
+  或者说，判断所 use 的是否是这个 variable 的这个 definition。
+
+  注意，这与 liveness 分析不同，
+  liveness 是针对 variable 的，
+  而这里的问题是针对 variable 的某个 definition 的。
+
+- 这里已经开始给一个 variable 的多个 assignment 分配不同的名字了，
+  这也预示着 SSA。
+
+- reaching definition problem 就是可以用 data flow 解决的例子。
+
+- data flow framework：
+
+  - 首先确定想要分析的信息是什么，
+    这个信息应该是就每个 block 的 entry 和 exit 而言的。
+
+    - 比如，就 reaching definition problem 问题而言，
+      所关心的信息就是 the set of reaching definitions。
+
+  - 就所关心的信息而言，
+    列方程表达出来 block 所导致的，
+    entry 位置和 exit 位置之间的关系。
+
+    这个方程经常叫做 transfer function。
+
+  - 就所关心的信息而言，
+    根据 control flow graph 中的 edge，
+    列方程表示 block 之间的关系。
+
+    - 比如，就 reaching definition problem 而言，
+      两个 in-edge 就需要 set union。
+
+  - 解方程。
+
+    这显然非常适合用 propagator model 实现！
+    每个 block 的 in 和 out，也就是 entry 和 exit，都是一个 cell。
+    方程就是 cell 之间的 propagator。
+
+- 介绍如何对 reaching definition problem 列方程。
+
+- 介绍 data flow 的 worklist 算法。
+
+  这也可以看作是 propagator model 的一种单线程实现方式。
+  只不过这里的 propagator 形式非常固定。
+
+  注意，worklist 算法有 forward 和 backward 两个版本。
+
 - TODO
 
 # lesson 6 -- llvm
