@@ -551,6 +551,238 @@ info: https://oleksii.shmalko.com/20211028115609/
 
 [2025-10-23]
 
+- 这节课继续 function 层次的 optimization。
+
+- 先介绍 control flow graph 中的一些概念：
+
+  - predecessor 和 successor -- 这就是 digraph 中的概念。
+
+  - path -- 就是 digraph 中的 path。
+
+- dominator -- A block dominates B block，
+  如果从 entry block 到 B block 的所有 path 都经过 A block。
+
+  也就是说，A 一定会在 B 之前被运行。
+  或者说，如果运行了 B 那么，A 一定已经运行过了。
+
+  domination 关系是自反的，一个 block dominates 自身。
+
+  这个关系当然也是可以在一般的 digraph 上定义的，
+  只不过在 control flow graph 上，这个意义很重要。
+
+  注意，在 tree 中，
+  domination relation 就是 predecessor relation。
+
+  并且可以用 domination tree 来完整表示，
+  任意一个 digraph 的 domination relation。
+  就是原来的 digraph 去掉了一些 edge。
+
+- domination frontier -- A 的 domination frontier，
+  就是以 A 为 root 的 domination tree，
+  再向前 successor 一步，所多出来的 vertices。
+
+- post-domination -- 与 domination 关系类似，
+  但是是就 exit 而言的。
+
+  也就是与 domination 是对偶的。
+
+  也就是说如果 A post-domination B，
+  那么想要从 B 到 exit，就一定要经过 A。
+
+  类似的也有 post-domination tree。
+
+  注意，control flow graph 总是有一个 entry 和一个 exit，
+  其实是因为，函数被调用时总是从某个固定的点开始运行，
+  并且总是要通过 return 把 control 还给 caller。
+
+  正是因为有了这个 one entry 和 one exit，
+  function 所代表的 control flow graph 才能 compose，
+  function 也才能 compose。
+
+- 给出计算 domination relation 的算法。
+
+  计算的结果 domination relation，
+  可以用 vertex 到 vertex set 的 map 表示，
+  也可以用 domination tree 表示。
+
+  老师用 map 表示，
+  并且是一个 loop until not change 算法。
+  我感觉这可能不是最好的算法。
+
+- 暂停，自己想一下。
+  好像可以一层一层地从 entry 开始构造 domination tree。
+
+  ```python
+  processed = {}
+  frontier = {entry}
+  # 通过找到每个 vertex 在 tree 中的唯一 parent 来完成
+  parent_relation = {}
+  while all_vertices != processed
+    next_level = progress(frontier) - processed
+    for vertex in next_level
+      parent_relation[vertex] =
+        least_common_predecessor(direct_predecessors(vertex), processed)
+    processed += next_level
+    frontier = next_level
+
+  def progress # 找到一个集合的 vertex 的 successor 的集合
+
+  # 在已经构造了的 tree 中找 least common predecessor
+  def least_common_predecessor(vertices, processed)
+    if length(vertices) == 1
+      return vertices[0]
+    else
+      # 一定是收敛的因为有唯一的 entry 作为 tree 的 root
+      vertices = intersection(progress(vertices), processed)
+      return least_common_predecessor(vertices, processed)
+  ```
+
+  这种类 python 的伪代码一点也不好。
+  不如类 scheme 的伪代码。
+
+- 老师给出的循环直到收敛算法，
+  在每个循环中要对所有的 vertex 更新当前所估计的 domination set。
+
+  这看起来很简单，但是如何分析其复杂性呢？
+
+  复杂性是 O(n^2)。
+
+  另外，如果 control flow graph 是 reducible 的，
+  那么在遍历所有 vertex 的时候用 reverse post-order，
+  就可以 O(n) -- 外层的循环是常数。
+
+  这是怎么证明的？
+  是不是所有的拓扑排序都可以？
+
+  老师说大部分程序语言的 CFG 都是 reducible 的。
+
+- 下面就要定义什么是 CFG 的 reducible。
+
+  先定义什么是 natural loop，
+  或者说一个 vertex 的集合，
+  何时算是 natural loop：
+
+  - 整体是个 circle，也就是说 strongly connected。
+
+    强联通就是说：任意两个顶点都在一个公共的环上。
+    其必要条件是：对于图中的每一个顶点，都必须存在于至少一个环中。
+
+  - 只有一个入口。
+
+    就是说不能有 goto 从外面跳到 loop 中间。
+
+  讽刺的是昨天刚刚看了 knuth 的一个问答演讲，
+  其中 knuth 吹嘘他如何用 goto 跳到一个 loop 中间的。
+  读 knuth 一定要带着批判的眼光去读，
+  他目标是写编译器的书，但是一直拖延，
+  拖延出来了几大本关于算法的书。
+  并不是什么值得学习的对象。
+
+- 关于强联通与环的关系 deepseek：
+
+  强连通性要求图中任意两个顶点都在一个公共的环上，
+  或者说，整个图是由多个环紧密嵌套、连接而成的。
+  单个的环是构成强连通图的基本单元，
+  但一个环本身只是一个最小的强连通子图。
+
+  从强连通分量（SCC）的角度理解：
+
+  这是理解两者关系最深刻的方式。
+
+  - 强连通分量（SCC） 是有向图的一个极大强连通子图。
+    所谓“极大”，意味着不能再添加任何其他顶点而不破坏其强连通性。
+
+  - 关键定理：一个有向图中的每一个顶点和每一条边，都恰好属于一个强连通分量。
+
+  现在，来看环和SCC的关系：
+
+  - 每个环都包含在一个SCC内：
+    考虑环上的任意两个顶点 u 和 v。
+    因为这是一个环，所以存在从 u 到 v 的路径，也存在从 v 到 u 的路径。
+    这正好满足了强连通性的定义。因此，这个环上的所有顶点都属于同一个强连通分量。
+
+  - 一个SCC可以由多个环“组成”：
+    一个SCC内部的结构非常复杂，
+    它包含了所有顶点之间互相可达的路径。
+    这些路径交织在一起，形成了许多大大小小的环。
+    可以说，SCC就是一个由无数环紧密耦合而成的结构。
+
+  - 最小的非平凡SCC就是一个环：
+    最简单的、包含多于1个顶点的强连通图是什么？
+    就是一个环。例如 A -> B -> A。
+    它本身就是一个SCC，并且它本身就是一个环。
+
+- 关于 loop 还有 backedge 的概念：
+
+  A edge A -> B, where B dominates A.
+
+- 给出找 backedge 的算法。
+
+  就是先用 breadth-first search，
+  找到所有 forward edge，
+  然后是删除所有 forward edge 剩下的就是 backedge。
+
+  好像任何遍历算法都可以，只要是从 entry 开始的就行。
+
+- 可以说 natural loop 是围绕 backedge 而产生的。
+  找包含 backedge 的最小强联通分支，
+  应该就是 natural loop 了。
+
+- reducible control flow graph 就是说，
+  每个 backedge 都有一个 natural loop。
+
+  包含一个 loop 的最小强联通分支总是存在的，
+  那么这里需要考虑的额外条件就是唯一 entry 了。
+
+  reducible 没有说 reduce 成什么？
+
+- structured programming 显然会给出 reducible control flow graph。
+
+- 给出 irreducible control flow graph 的例子。
+
+  只需要三个节点：
+
+  ```dot
+  A -> B
+  A -> C
+  B -> C
+  C -> B
+  ```
+
+  从这种简单的情况看来，
+  goto 也是合理的。
+
+- 下面介绍有了关于 CFG 的更多知识之后，
+  可以进行的优化。
+
+- loop-invariant code motion。
+
+  就是把没必在 loop 中反复计算的表达式，
+  从 loop 中提出来。
+
+- natural loop 相关的术语：
+
+  - header -- 就是 loop 的 header。
+  - tail -- 就是 backedge 的起点。
+  - preheader -- 就是进入 loop 的 block，可能有多个。
+
+- 这个优化就是要找到唯一 preheader，
+  如果不是唯一，可以构造一个新的 block。
+  然后把 loop-invariant code 从 loop 中提到这个 preheader 中。
+
+- 这里暂停思考：
+
+  - 怎么识别 loop-invariant code？
+  - 如何完成 move？
+
+[2025-10-24]
+
+- TODO
+
+# lesson 5.2 -- static single assignment
+
+[2025-10-23]
+
 - TODO
 
 # lesson 6 -- llvm

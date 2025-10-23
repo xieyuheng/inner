@@ -2,6 +2,16 @@
 
 学习康奈尔编译器课程，至少到 SSA。
 
+# 2025-10-24
+
+回到 EOC 课程，学习如何实现函数。
+
+# control-flow-graph
+可归约图为什么较
+这里的引用好像很好看：
+
+- https://en.wikipedia.org/wiki/Control-flow_graph
+
 # data flow
 
 topics/computer-science/semantic/2005-principles-of-program-analysis--flemming-nielson.pdf
