@@ -2,6 +2,10 @@
 
 学习康奈尔编译器课程，至少到 SSA。
 
+# data flow
+
+topics/computer-science/semantic/2005-principles-of-program-analysis--flemming-nielson.pdf
+
 # gc
 
 1992-uniprocessor-garbage-collection-techniques--acm--paul-wilson.pdf

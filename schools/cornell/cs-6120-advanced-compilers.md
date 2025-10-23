@@ -510,6 +510,47 @@ info: https://oleksii.shmalko.com/20211028115609/
 
   注意，worklist 算法有 forward 和 backward 两个版本。
 
+- 老师强调了这个算功支持 loop。
+
+- 下面介绍 data flow 的前提，也就是 propagator 的前提，
+  cell 里面保存的东西在 merge 的时候要符合 lattice 公理。
+
+- 带有 loop 的 graph 可以被理解为无穷多 path 的 merge。
+
+- 介绍其他适用于 data flow framework 的问题：
+
+  | 问题                  | 信息               | 方向     | merge |
+  |-----------------------|--------------------|----------|-------|
+  | reaching definitions  | set of definitions | forward  | union |
+  | liveness variables    | sef of variables   | backward | union |
+  | constant propagation  |                    |          |       |
+  | available expressions | set of expressions |          |       |
+  | interval analysis     | interval           |          |       |
+
+  我能理解 reaching definitions 和 liveness variables，
+  constant propagation 就是把所有的 constant variable 找出来。
+  老师提到的 interval analysis 已经完全是一般的 interval 算术了。
+
+- 这么说来，人们对 data flow 的研究，
+  也可以用于对 propagator 的研究！
+
+- 与 EOC 课程中个单独的 uncover-live pass 相比，
+  这里把类似的分析都放到一个框架内了，
+  并且这个框架还和 propagator model 有非常强的联系，
+  这很不错。
+
+- propagator model 厉害之处在于它适用于任何需要解方程的地方。
+
+# lesson 4.2 -- implementation task
+
+[2025-10-23]
+
+- 这是一个非常短的视频，补充介绍 data flow 这一节课的作业。
+
+# lesson 5.1 -- global analysis & optimization
+
+[2025-10-23]
+
 - TODO
 
 # lesson 6 -- llvm
