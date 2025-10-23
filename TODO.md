@@ -1,3 +1,7 @@
+# 2025-10-23
+
+学习康奈尔编译器课程，至少到 SSA。
+
 # gc
 
 1992-uniprocessor-garbage-collection-techniques--acm--paul-wilson.pdf

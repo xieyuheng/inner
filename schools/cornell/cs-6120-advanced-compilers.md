@@ -326,6 +326,134 @@ info: https://oleksii.shmalko.com/20211028115609/
 
 [2025-10-23]
 
+- 这节课讲如何用一个方法处理三个局部（block）优化：
+
+  - dead code elimination
+  - 消除连串的 copy（id）
+  - 消除相同的 sub-expression
+
+- 问题是，给出两个 variable，
+  以它们为 root 的 expression graph
+  可能代表了完全相同的计算过程。
+
+  local value numbering 就是要发现这一点。
+  其中计算过程被称为 value。
+  每个被分配以不同 number 的 value，
+  代表了可能产生不同 value 的计算过程。
+
+  | #  | value   | canonical home |
+  |----|---------|----------------|
+  | #1 |         | x              |
+  | #2 | #1 + #1 | a              |
+  | #3 | #2 * #1 | d              |
+  | #4 | #2 + #3 | c              |
+
+  就是说，对于每个变量 rhs 的表达式，
+  要用 partial evaluaton 找到其正规形式，
+  这样就能比较两个 rhs 是否相等。
+
+  - 这里的 numbering 类似 partial evaluaton 中的 neutral。
+    说这些 numbering 是 value 也没问题，
+    因为 neutral 可以通过 not-yet-value 被视为 value。
+
+  - 消除相同的 sub-expression 需要做这种判断，
+    因为消除的不是语法上相同的 sub-expression，
+    而是计算效果相同的 sub-expression。
+
+  其实现方式类似解释器，
+  但是 env 是关于 numbering 的 table。
+
+- 老师给出一个具体列表的例子。
+
+  老师在讲例子的时候，总是说 "in LVN"，
+  是 LVN 是 local value numbering 的缩写，
+  我经常错听成 LLVM。
+
+  ```c
+  main {
+    a: int = const 4;
+    b: int = const 2;
+    sum1: int = add a b;
+    sum2: int = add a b;
+    prod: int = mul sum1 sum2;
+    print prod;
+  }
+  ```
+
+  | #  | value     | canonical home |
+  |----|-----------|----------------|
+  | #1 | const 4   | a              |
+  | #2 | const 2   | b              |
+  | #3 | add #1 #2 | sum1           |
+  | #4 | mul #3 #3 | prod           |
+
+  注意 canonical home 只记录一个 variable，
+  我们还需要一个 variable 到 numbering 的 hash。
+
+- 这种方法比 partial evaluaton 更有趣，
+  partial evaluaton 显然也可以解决发现相同 sub-expression 的问题，
+  但是这里的方法类似于给所有可能出现的计算建立了 hash table，
+  给出一个表达式（atom-operand-exp），
+  通过查表就可以知道这个表达式是否代表未出现过的新的计算。
+
+  表达式的 operand 总能在 table 中找到，
+  因为 operand 是已经出现过的计算。
+
+- 下面介绍如何利用这个 table 来进行优化。
+
+  - 首先把 expression 代替为 partial evaluaton 之后的 expression。
+    这一步要利用到 canonical home。
+
+  - 其次遇到完全相同的计算比如上面的 sum2，可以直接删除。
+    或者按老师说的，用 identity instruction 来做一个 copy。
+    - 老师的意思是说，后续再运行 dead code elimination pass 来删除 dead code。
+    其实没有出现在 canonical home 中的 variable 都可以删除。
+
+- local value numbering (LVN) 的变体：
+
+  - 一般的消除 sub-expression 不需要知道 instruction 的语义，
+    只是需要知道它们没有副作用。
+
+    而想要消除连串的 copy，就需要用到 `id` 的语义。
+
+  - 在判断 value 是否相等的时候，考虑到交换律，
+    -- `add x y = add y x`。
+
+    老师处理这个问题的方案是：
+    让 value 列的 operands 按照递增的顺序排列。
+    这种 normalization 可以让我们直接用最简单的，
+    语言内置的 hash 来实现 table。
+
+    显然有很多方案能处理这种等价关系的问题。
+
+  - 与 `id` 的特殊性类似，特殊处理 `const` 的语义，
+    才能实现对 `const` 的 partial evaluaton。
+
+  看来不同的优化需要知道 instruction 的不同信息，
+  比如有没有副作用，是否具有交换性，等等。
+  如何在扩展 instruction 的时候扩展这些信息？
+
+- 介绍 constant folding。
+
+  其实就是 partial evaluaton 的最简单形式。
+
+- 强调 local value numbering 是 local 于 block 的。
+
+- 老师介绍自己的写的类似 python 的伪代码。
+
+  我发 python 可以在 if 中定义变量，
+  然后在 if 外面使用。
+
+  考虑 basic block 之间的使用变量的关系，这是合理的。
+  但是 scheme 做不到这一点。
+
+- 介绍了由于没有 SSA 导致 LVN 算法变复杂了。
+  预示了 SSA 的重要性。
+
+# lesson 4.1 -- data flow
+
+[2025-10-23]
+
 - TODO
 
 # lesson 6 -- llvm
