@@ -1,3 +1,10 @@
+# tagged value
+
+《Tag-free garbage collection for strongly typed programming languages》 (Appel, 1990)
+《Unboxed values and polymorphic typing》 (Leroy, 1992)
+《Optimizing ML with run-time code generation》 (P. Lee, 1996)
+《Soft typing》 (Cartwright, 1991)
+
 # cornell compiler course
 
 学完康奈尔编译器课程。
