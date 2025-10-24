@@ -1,13 +1,10 @@
-# 2025-10-23
-
-学习康奈尔编译器课程，至少到 SSA。
-
 # 2025-10-24
 
+学习康奈尔编译器课程，完成 SSA。
 回到 EOC 课程，学习如何实现函数。
 
 # control-flow-graph
-可归约图为什么较
+
 这里的引用好像很好看：
 
 - https://en.wikipedia.org/wiki/Control-flow_graph

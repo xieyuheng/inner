@@ -775,13 +775,77 @@ info: https://oleksii.shmalko.com/20211028115609/
   - 怎么识别 loop-invariant code？
   - 如何完成 move？
 
+  首先要通过 backedge 找到 natural loop。
+
 [2025-10-24]
 
-- TODO
+- 老师又给出一个 loop until no change 的算法。
+
+  iterate to convertgence:
+  - for every instruction in a given loop:
+    - mark it as loop-invariant iff:
+      forall operands of x, either:
+      - all reaching definitions of x are outside the loop
+      - there is exactly one definition,
+        and it is already marked as loop-invariant.
+
+  注意，这里如用到了 reaching definitions。
+
+- 另外需要给出判断什么时候可以 move
+  一个被标记为 loop-invariant 的 instruction：
+
+  - definition dominates all its uses.
+
+    否则第一次循环的时候，这个变量不是由这个 definition 定义的，
+    而其他循环中，这个 definition 是由这个 definition 定义的。
+    此时把这个 definition 放到外面，会导致第一次循环时，
+    这个变量也是由这个 definition 定义的。
+
+  - 没有对这个变量的其他定义。
+
+  - dominates all loop exits.
+
+    natural loop 只能有一个 entry，
+    但是是可以有多个 exits 的。
+
+    因为如果不 dominates 某个 exit，
+    那么这个 definition 就有可能在循环中运行不到。
+
+    这里的问题是，甚至对于一般的 for loop 而言，
+    loop 的 body 都不会 dominates exit，
+    因为 for loop 可能会 loop 0 次。
+
+    do while loop，如果没有 break 的话，
+    可以保证 loop body dominates exit。
+
+    - 这是我第一次知道 do while loop 的优点。
+      我几乎没有用过这种 loop。
+
+    对于 while loop 而言，
+    有时 loop 不能被运行 0 次，
+    但是我还是用 while loop 来表达了。
+    如果能发现不能运行 0 次，
+    就可以用这个优化。
+
+- 上面关于 move 的这第三个条件可以放宽：
+
+  如果提出这个 definition，
+  让它在 zero loop 的情况下也会额外运行一次，
+  不会影响后续的代码。
+
+  显然这要求这个 instruction 不能带有副作用。
+
+  其次后续代码对这个 definition 不能有依赖，
+  就是说所定义的 variable is dead after the loop。
+
+  - 别忘了，我们是用 liveness 来描述对于变量的实际依赖的。
+
+- 由于所有 sub-expression 都被 unnest 成 definitions 了，
+  所以这里提出 definition 的过程可以做到极限。
 
 # lesson 5.2 -- static single assignment
 
-[2025-10-23]
+[2025-10-24]
 
 - TODO
 
