@@ -1173,7 +1173,10 @@ video-backup: "https://space.bilibili.com/550104600/lists/6478233"
 
 # 2020-10-13
 
-[2025-10-19]
+[2025-10-24]
+
+- 这节课讲如何编译函数。
+  首先是不带 closure 的函数。
 
 - TODO
 

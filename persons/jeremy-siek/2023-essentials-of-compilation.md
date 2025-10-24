@@ -2266,6 +2266,70 @@ TODO
 
 # 6 Tuples and Garbage Collection
 
+已经看了这一章的课堂视频，
+知道这一章需要用到类型系统。
+
+先看 tuple 这一章是如何用到类型系统的。
+
+然后把现在类型系统实现，
+改为标准的带有 elaboration 的 bidirectional type checker。
+
+## 6.1 The LTup Language
+
+使用 tuple 的例子：
+
+```scheme
+(let ([t (vector 40 #t (vector 2))])
+  (if (vector-ref t 1)
+    (+ (vector-ref t 0)
+       (vector-ref (vector-ref t 2) 0))
+    44))
+```
+
+> Tuples raise several interesting new issues. First, variable binding
+> performs a shallow copy in dealing with tuples, which means that
+> different variables can refer to the same tuple; that is, two
+> variables can be _aliases_ for the same entity.
+
+```scheme
+(let ([t1 (vector 3 7)])
+  (let ([t2 t1])
+    (let ([t3 (vector 3 7)])
+      (if (and (eq? t1 t2) (not (eq? t1 t3)))
+        42
+        0))))
+```
+
+> Whether two variables are aliased or not affects what happens when
+> the underlying tuple is mutated.
+
+```scheme
+(let ([t1 (vector 3 7)])
+  (let ([t2 t1])
+    (let ([_ (vector-set! t2 0 42)])
+      (vector-ref t1 0))))
+```
+
+> The mutation through `t2` is visible in referencing the tuple from
+> `t1`, so the result of this program is 42.
+
+lifetime of tuple 不会受到 scope 的限制，比如下面的 `w`：
+
+```scheme
+(let ([v (vector (vector 44))])
+  (let ([x (let ([w (vector 42)])
+             (let ([_ (vector-set! v 0 w)])
+               0))])
+    (+ x (vector-ref (vector-ref v 0) 0))))
+```
+
+为了静态类型检查，这里限制了 `vector-ref` 的 index 参数必须是 int literal。
+
+在我的实现中，我将直接用我设计的 `tau` type，
+并且用只有 elements 的 `(@tael)` literal 代表 tuple。
+
+## 6.2 Garbage Collection
+
 TODO
 
 ## 6.12 Further Reading
