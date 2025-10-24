@@ -2330,6 +2330,53 @@ lifetime of tuple 不会受到 scope 的限制，比如下面的 `w`：
 
 ## 6.2 Garbage Collection
 
+> We define the _root set_ to be all the tuple addresses that are in
+> registers or on the procedure call stack.  We define the _live
+> objects_ to be the objects that are reachable from the root set.
+> Garbage collectors reclaim the space that is allocated to objects
+> that are no longer live.
+
+### 6.2.1 Two-Space Copying Collector
+
+> Here we study a relatively simple algorithm for garbage collection
+> that is the basis of many state-of-the-art garbage collectors
+> (Lieberman and Hewitt 1983; Ungar 1984; Jones and Lins 1996; Detlefs
+> et al. 2004; Dybvig 2006; Tene, Iyengar, and Wolf 2011). In
+> particular, we describe a two-space copying collector (Wilson 1992)
+> that uses Cheney’s algorithm to perform the copy (Cheney 1970).
+
+这里的引用：
+
+- Lieberman, Henry, and Carl Hewitt. 1983.
+  “A Real-Time Garbage Collector Based on the Lifetimes of Objects.”
+
+- Ungar, David. 1984.
+  “Generation Scavenging: A Non-Disruptive
+  High Performance Storage Reclamation Algorithm.”
+
+- Jones, Richard, and Rafael Lins. 1996.
+  Garbage Collection: Algorithms for Automatic Dynamic Memory Management.
+
+- Detlefs, David, Christine Flood, Steve Heller, and Tony Printezis. 2004.
+  “Garbage-First Garbage Collection.”
+
+- Dybvig, R. Kent. 2006.
+  “The Development of Chez Scheme.”
+
+- Tene, Gil, Balaji Iyengar, and Michael Wolf. 2011.
+  “C4: The Continuously Concurrent Compacting Collector.”
+
+- Wilson, Paul. 1992.
+  “Uniprocessor Garbage Collection Techniques.
+  Lecture Notes in Computer Science 637.”
+
+- Cheney, C. J. 1970.
+  “A Nonrecursive List Compacting Algorithm.”
+
+TODO
+
+## 6.3 Expose Allocation
+
 TODO
 
 ## 6.12 Further Reading
