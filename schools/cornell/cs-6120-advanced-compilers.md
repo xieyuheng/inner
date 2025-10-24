@@ -930,7 +930,77 @@ info: https://oleksii.shmalko.com/20211028115609/
 - 转化成 SSA 过程中的重命名很简单，
   重点是如何增加 phi node。
 
-  TODO
+  重点就是之前提到的 dominance frontier 的概念。
+  phi node 应该被加入到作为 dominance frontier 的 block 中。
+
+  在实现 basic-lisp 时，
+  要实现很方便的 API，
+  使得我们可以 query 这些 block 之间依赖关系，
+  以及 instruction 之间的依赖关系。
+
+- 算法分两步：
+
+  - 首先找到所有 dominance frontier 并在其中增加 phi node。
+  - 然后在 renaming 的过程中修改 phi node，使得它们具有正确的 SSA 形式。
+
+  注意，使用 put + use 的 SSA 算法可能不一样。
+  TODO 这个我之后再研究。
+
+- 暂停想一下如何实现上面的算法。
+
+  其中第一步是简单的。
+  所插入的 phi node 已经带有 label 了，
+  知识需要知道 renaming 之后的名字。
+
+  第二步，可以是记录 rename 之前原来的名字，
+  发现 phi node 中对原来名字的依赖时，
+  根据 block 的名字来修改 phi node 中的 label。
+
+- 老师给出的算法：
+
+  insert phi node:
+
+  - forall `v` that is a variable:
+    - forall `d` that is a block where v is defined:
+      注意，这里找的是 `v` 的 definition block，而不是 definition instruction。
+      - forall `b` that is a block in the dominance frontier of `d`:
+        别忘了 dominance frontier 是就某个 definition 而言的。
+        - insert phi node to `b` if not already
+        - add block `b` to definition blocks of `v` if not already
+          因为现在这个 phi node 也在定义 v 了！
+          但是这就是在循环中修改所循环的 collection 了，没有问题吗？
+
+  rename variables:
+
+  - 给每个 variable 分配一个 stack -- `stack[v]`
+    用来保存 `v` 的新名字。
+
+  - 这里的 rename 函数，
+    既是递归函数，又用到了 stack。
+    不是很好理解。
+
+    注意，递归的时候取的是 dominance tree 的 children。
+
+    需要实现的时候再来看这个算法。
+    另外，转化到 SSA 的算法应该有很多，
+    都可以参考一下。
+
+- 下面讲如何从 SSA 转化成不带 phi node 的形式。
+
+  这里要解决两个问题：
+
+  - basic block 的解释器不能解释 phi node。
+  - SSA 使用的变量太多了。
+
+  这第一个问题，如果使用 put + use，这一步好像是平凡的！
+
+  第二个问题好像可以直接通过寄存器分配来解决。
+
+- 这里老师给出的算法是把 phi node
+  变成两个 direct predecessor block。
+
+  这个新增的 direct predecessor block，
+  其也暗示了 put + use 风格的 SSA。
 
 # lesson 6 -- llvm
 
