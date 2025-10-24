@@ -821,6 +821,10 @@ info: https://oleksii.shmalko.com/20211028115609/
     - 这是我第一次知道 do while loop 的优点。
       我几乎没有用过这种 loop。
 
+      之后遇到这种情况，可以通过 do while loop，
+      来把 loop body 代码至少运行一次，
+      明显表达出来。
+
     对于 while loop 而言，
     有时 loop 不能被运行 0 次，
     但是我还是用 while loop 来表达了。
@@ -847,7 +851,86 @@ info: https://oleksii.shmalko.com/20211028115609/
 
 [2025-10-24]
 
-- TODO
+- 老师说 SSA 是一种哲学。
+
+  首先是其背后的「无副作用」idea 适用于很多地方。
+  其次 SSA 可以完全改变我们对 instruction 的理解，
+  使得一个 function 内的 basic block，
+  可以被理解为以 variable 为 key 的 key-value map。
+
+- 老师指出，之前很多优化中的难点，
+  都来自于对同一个 variable 的多次 assignment 所产生的副作用。
+
+- 首先要把一般函数翻译成 SSA，
+  这需要用到 phi instruction 或者类似的技巧。
+
+  最后还要从 SSA 翻译回来，
+  翻译回来这一步感觉就是寄存器分配。
+
+- 介绍 phi instruction。
+
+- 给出对带有循环的代码，添加 phi instruction 的例子。
+
+- phi instruction 所定义的 variable，
+  是会随着循环而变化的，
+  所有依赖这个 variable 的 instruction，
+  也会跟着变化。
+
+  在循环过程中，对变量的副作用（re-assignment）还是存在的，
+  只不过副作用出现的起点，被限制在了 phi instruction。
+
+- SSA 哲学，或者说 SSA 视角：
+
+  - variable == definition
+  - instruction == value
+  - argument == data flow graph edge
+
+  其实也有 variable == instruction。
+
+- 上面所提到的 data flow graph，
+  不是之前以 block 为 vertex 的 graph，
+  而是更细节地，以 variable 为 vertex 的 graph。
+
+  也就是说 variable 可以被理解为 propagator model 中的 cell。
+  并且每个 value instruction 都只有一个简单的，
+  以这个 variable 为 output cell 的 propagator。
+
+  注意，data flow 和 propagator 需要满足的 lattice 公理，
+  在这里并不成立。除非记录所有的变量的修改历史。
+
+- 考虑 phi instruction 如何被实现为 propagator 中的 cell。
+
+  可以理解为 phi instruction 的 variable，
+  依赖于两个 in-block 的 cell。
+
+  注意，构造 propagator 的时候，
+  其实只需要描述 cell 之间的依赖关系，
+  而不需要描述 block 之间的依赖关系。
+  这也预示着，`put!` + `use` 风格的 SSA。
+
+- 考虑 `put!` + `use` 风格的 SSA。
+
+  此时对 propagator 的构造很自然，
+  其构造与使用 phi 时是完全相同的。
+
+  并且可以发现，jump 其实是多余的，
+  就 cell 之间已经有了 reaction 关系，
+  没必要用 jump 和 label 来描述的额外的信息！
+
+- 可以发现，有了而 propagator model 这个通用的计算模型之后，
+  可以方便理解很多东西。
+
+- 下面要把一般的 block 转化为 SSA。
+
+  注意，新的课程：https://www.cs.cornell.edu/courses/cs6120/2025fa/lesson/6/
+  已经在使用新的 SSA 格式了：https://capra.cs.cornell.edu/bril/lang/ssa2.html
+
+  但是我们还是先学习 phi instruction。
+
+- 转化成 SSA 过程中的重命名很简单，
+  重点是如何增加 phi node。
+
+  TODO
 
 # lesson 6 -- llvm
 

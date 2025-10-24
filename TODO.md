@@ -1,6 +1,22 @@
 # 2025-10-24
 
-学习康奈尔编译器课程，完成 SSA。
+学习康奈尔编译器课程，学到 SSA。
+学习康奈尔编译器课程，直接学完。
+学一波 SSA 的论文和书。
+实现 basic-lisp 中的 SSA。
+
+# ssa
+
+1988-global-value-numbers-and-redundant-computations.pdf
+1995-a-correspondence-between-continuation-passing-style-and-static-single-assignment-form.pdf
+1991-efficiently-computing-static-single-assignment-form-and-the-control-dependence-graph.pdf
+1998-ssa-is-functional-programming--andrew-w-appel.pdf
+2009-the-development-of-static-single-assignment-form.pdf
+2022-ssa-based-compiler-design.pdf
+1986-code-motion-of-control-structures-in-high-level-languages.pdf
+
+# 2025-10-25
+
 回到 EOC 课程，学习如何实现函数。
 
 # control-flow-graph
