@@ -1,5 +1,3 @@
-The fast forward MBA in project management
-
 # 2025-10-24
 
 回到 EOC 课程，学习如何实现函数。
