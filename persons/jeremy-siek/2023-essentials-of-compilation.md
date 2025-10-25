@@ -2375,7 +2375,40 @@ lifetime of tuple 不会受到 scope 的限制，比如下面的 `w`：
 
 ### 6.2.2 Graph Copying via Cheney’s Algorithm
 
-TODO
+> Let us take a closer look at the copying of the live objects. The
+> allocated objects and pointers can be viewed as a graph, and we need
+> to copy the part of the graph that is reachable from the root set.
+
+copying GC 需要解决的问题：
+
+- 找到 roots。
+- 遍历 live objects，需要能处理 circle。
+- 从 from-space copy 到 to-space。
+- 更新 roots。
+
+> We use breadth-first search and a trick due to Cheney (1970) for
+> simultaneously representing the queue and copying tuples into the
+> ToSpace.
+
+GC 中非常著名的 Cheney 算法：
+
+- Cheney, C. J. 1970.
+  “A Nonrecursive List Compacting Algorithm.”
+  Commun. of the ACM 13 (11).
+
+to-space 已经需要一个 free-pointer 来标记下一个可以 copy 的位置了，
+而 queue 需要两个 pointer，那么再在 to-space 的前面增加一个 scan-potiner，
+就可以形成一个 queue 了。
+
+考虑 marking-based GC 的时候，
+别忘了可以用三染色的想法来理解算法：
+
+- black -- 已处理
+- gray  -- 待处理 -- 就是在 queue 中的
+- white -- 未处理
+
+注意，在 queue 中的 object 内，
+sub-object 的 pointer 都还是指向 from-space 的。
 
 ### 6.2.3 Data Representation
 
@@ -2499,21 +2532,136 @@ TODO
 
 ### 6.2.4 Implementation of the Garbage Collector
 
-TODO
+介绍老师用 C 实现的 GC。
+
+> ... We use half-open intervals to represent chunks of memory
+> (Dijkstra 1982).
+
+还引用到了 Dijkstra：
+
+- Dijkstra, E. W. 1982.
+  Why Numbering Should Start at Zero.
+  Technical report EWD831. University of Texas at Austin.
+
+注意，runtime 的接口是要通过全局变量暴露出来的，
+而不是通过 C 函数暴露出来的。
+
+正如 6.12 Further Reading 所说：
+
+> The strengths of copying collectors are that allocation is fast
+> (just a comparison and pointer increment), ...
+
+想要做到这一点，就只能用编译出来的汇编代码处理 allocation。
+
+running example:
+
+```scheme
+(vector-ref (vector-ref (vector (vector 42)) 0) 0)
+```
 
 ## 6.3 Expose Allocation
 
 TODO
 
+## 6.4 Remove Complex Operands
+## 6.5 Explicate Control and the CTup Language
+## 6.6 Select Instructions and the x86Global Language
+## 6.7 Register Allocation
+## 6.8 Generate Prelude and Conclusion
+## 6.9 Challenge: Simple Structures
+## 6.10 Challenge: Arrays
+## 6.11 Challenge: Generational Collection
 ## 6.12 Further Reading
 
-TODO
+> Appel (1990) describes many data representation approaches including
+> the ones used in the compilation of Standard ML.
 
+看来 Appel 的系列论文都值得一读：
+
+- Appel, Andrew W. 1990.
+  “A Runtime System.”
+  LISP and Symbolic Computation 3 (4): 343–380.
+
+> There are many alternatives to copying collectors (and their bigger
+> siblings, the generational collectors) with regard to garbage
+> collection, such as mark-and-sweep (McCarthy 1960) and reference
+> counting (Collins 1960).
+
+这里的引用是：
+
+- McCarthy, John. 1960.
+  “Recursive Functions of Symbolic Expressions
+  and their Computation by Machine, Part I.”
+
+- Collins, George E. 1960.
+  “A Method for Overlapping and Erasure of Lists.”
+  Commun. ACM 3 (12): 655–657.
+
+> The strengths of copying collectors are that allocation is fast
+> (just a comparison and pointer increment), there is no
+> fragmentation, cyclic garbage is collected, and the time complexity
+> of collection depends only on the amount of live data and not on the
+> amount of garbage (Wilson 1992).
+
+这里的引用是：
+
+- Wilson, Paul. 1992.
+  “Uniprocessor Garbage Collection Techniques.
+  Lecture Notes in Computer Science 637.”
+
+> The main disadvantages of a two-space copying collector is that it
+> uses a lot of extra space and takes a long time to perform the copy,
+> though these problems are ameliorated in generational collectors.
+
+> Racket programs tend to allocate many small objects and generate a
+> lot of garbage, so copying and generational collectors are a good
+> fit.
+
+> Garbage collection is an active research topic, especially
+> concurrent garbage collection (Tene, Iyengar, and Wolf 2011).
 > Researchers are continuously developing new techniques and
 > revisiting old trade-offs (Blackburn, Cheng, and McKinley 2004;
 > Jones, Hosking, and Moss 2011; Shahriyar et al. 2013; Cutler and
 > Morris 2015; Shidal et al. 2015; Österlund and Löwe 2016; Jacek and
 > Moss 2019; Gamari and Dietz 2020).
+
+这里的引用是：
+
+- Tene, Gil, Balaji Iyengar, and Michael Wolf. 2011.
+  “C4: The Continuously Concurrent Compacting Collector.”
+  In Proceedings of the International Symposium on Memory Management,
+  ISMM ’11, 79–88. Association for Computing Machinery.
+
+- Blackburn, Stephen M., Perry Cheng, and Kathryn S. McKinley. 2004.
+  “Myths and Realities: The Performance Impact of Garbage Collection.”
+  In Proceedings of the Joint International Conference on Measurement
+  and Modeling of Computer Systems.
+
+- Jones, Richard, Antony Hosking, and Eliot Moss. 2011.
+  The Garbage Collection Handbook:
+  The Art of Automatic Memory Management.
+  Chapman & Hall/CRC.
+
+- Shahriyar, Rifat, Stephen M. Blackburn,
+  Xi Yang, and Kathryn M. McKinley. 2013.
+  “Taking Off the Gloves with Reference Counting Immix.”
+
+- Cutler, Cody, and Robert Morris. 2015.
+  “Reducing Pause Times with Clustered Collection.”
+
+- Shidal, Jonathan, Ari J. Spilo, Paul T. Scheid,
+  Ron K. Cytron, and Krishna M. Kavi. 2015.
+  “Recycling Trash in Cache.”
+
+- Österlund, Erik, and Welf Löwe. 2016.
+  “Block-Free Concurrent GC: Stack Scanning and Copying.”
+
+- Jacek, Nicholas, and J. Eliot B. Moss. 2019.
+  “Learning When to Garbage Collect with Random Forests.”
+
+- Gamari, Ben, and Laura Dietz. 2020.
+  “Alligator Collector: A Latency-Optimized Garbage Collector
+  for Functional Programming Languages.”
 
 > Researchers meet every year at the International Symposium on Memory
 > Management to present these findings.
