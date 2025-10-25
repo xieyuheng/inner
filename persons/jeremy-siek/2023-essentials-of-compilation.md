@@ -2373,6 +2373,132 @@ lifetime of tuple 不会受到 scope 的限制，比如下面的 `w`：
 - Cheney, C. J. 1970.
   “A Nonrecursive List Compacting Algorithm.”
 
+### 6.2.2 Graph Copying via Cheney’s Algorithm
+
+TODO
+
+### 6.2.3 Data Representation
+
+> The garbage collector places some requirements on the data
+> representations used by our compiler. First, the garbage collector
+> needs to distinguish between pointers and other kinds of data such
+> as integers. The following are three ways to accomplish this:
+>
+> 1. Attach a tag to each object that identifies what type of object
+>    it is (McCarthy 1960).
+>
+> 2. Store different types of objects in different regions (Steele
+>    1977).
+>
+> 3. Use type information from the program to either (a) generate
+>    type-specific code for collecting, or (b) generate tables that
+>    guide the collector (Appel 1989; Goldberg 1991; Diwan, Moss, and
+>    Hudson 1992).
+
+这里的引用：
+
+- McCarthy, John. 1960.
+  “Recursive Functions of Symbolic Expressions
+  and their Computation by Machine, Part I.”
+
+- Steele, Guy L. 1977.
+  Data Representations in PDP-10 MacLISP.
+
+  - 这个也是前几个版本 chez scheme 所用的方案。
+
+- Appel, Andrew W. 1989.
+  “Runtime Tags Aren’t Necessary.”
+  LISP and Symbolic Computation 2 (2): 153–162.
+
+  Appel, Andrew W 还有一些引用：
+
+  - Appel, Andrew W. 1990.
+    “A Runtime System.”
+    LISP and Symbolic Computation 3 (4): 343–380.
+
+  - Appel, Andrew W. 1991.
+    Compiling with Continuations.
+    Cambridge University Press.
+
+- Goldberg, Benjamin. 1991.
+  “Tag-free Garbage Collection for Strongly Typed Programming Languages.”
+
+- Diwan, Amer, Eliot Moss, and Richard Hudson. 1992.
+  “Compiler Support for Garbage Collection in a Statically Typed Language.”
+
+  - 这个论文我看过了，感觉方案很一般，
+    另外有很多复杂性来源与所编译的语言本身的 pointer arithmetic。
+
+> Dynamically typed languages, such as Racket, need to tag objects in
+> any case, so option 1 is a natural choice for those languages.
+
+也就是说 racket 和 chez scheme 之类的，以及原始的 lisp，
+都是所有 value 带有 tag 的。
+
+所有 value 带有 tag，看起来不是什么特别低效的事情，因为：
+
+- pointer 上带的 tag 可以在编译时处理。
+
+- int 可以带有 zero tag，这样就不影响 add 和 sub，
+  对 mul 的影响也只是多一个 shift。
+
+要知道，多一个 shift 对于现代的 CPU 来说不算什么，
+多一次内存访问才是效率低的方案。
+
+所以给 tuple 加上 8 bytes 的 metadata
+可能才是效率低的方案。
+
+> However, LTup is a statically typed language, so it would be
+> unfortunate to require tags on every object, especially small and
+> pervasive objects like integers and Booleans. Option 3 is the
+> best-performing choice for statically typed languages, but it comes
+> with a relatively high implementation complexity. To keep this
+> chapter within a reasonable scope of complexity, we recommend a
+> combination of options 1 and 2, using separate strategies for the
+> stack and the heap.
+
+按我的理解，使用 shallow stack 应该算是方案 3 而不是方案 2。
+因为方案 2 一般指用不同的内存区域来区分不同的指针。
+
+> Regarding the stack, we recommend using a separate stack for
+> pointers, which we call the _root stack_ (aka shadow stack) (Siebert
+> 2001; Henderson 2002; Baker et al. 2009). That is, when a local
+> variable needs to be spilled and is of type Vector, we put it on the
+> root stack instead of putting it on the procedure call
+> stack.
+
+关于 shadow stack 的引用：
+
+- Siebert, Fridtjof. 2001.
+  “Constant-Time Root Scanning for Deterministic Garbage Collection.”
+
+- Henderson, Fergus. 2002.
+  “Accurate Garbage Collection in an Uncooperative Environment.”
+
+- Baker, J., A. Cunei, T. Kalibera, F. Pizlo, and J. Vitek. 2009.
+  “Accurate Garbage Collection in Uncooperative Environments Revisited.”
+
+> Furthermore, we always spill tuple-typed variables if they are live
+> during a call to the collector, thereby ensuring that no pointers
+> are in registers during a collection.
+
+上面这一段，就是在老师选择的整个方案中，我最在意的一点。
+
+因为假设语言有大量的 object 类数据（一般的动态类型语言都是如此），
+这会导致大部分 object 的 pinter 都不能保存在寄存器中。
+
+尽管如此，我还是应该按照书里的 value encoding 方案来做练习，
+这可能对于未来编译纯静态类型语言有用。
+
+> The problem of distinguishing between pointers and other kinds of
+> data also arises inside each tuple on the heap. We solve this
+> problem by attaching a tag, an extra 64 bits, to each tuple.
+
+在 heap 上给 object 加 header，
+会多出来的内存分配开销。
+
+### 6.2.4 Implementation of the Garbage Collector
+
 TODO
 
 ## 6.3 Expose Allocation
