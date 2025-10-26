@@ -2561,9 +2561,31 @@ running example:
 
 ## 6.3 Expose Allocation
 
-TODO
+> The pass `expose-allocation` lowers tuple creation into making a
+> conditional call to the collector followed by allocating the
+> appropriate amount of memory and initializing it.
+
+我决定实现成调用 running 函数，
+因此不需要复杂的 lowering。
+
+但是我还是需要把 tuple literal 翻译成 `(make-tuple size)`
+外加一系列 `(tuple-put! index value tuple)`。
+
+> This version of the type checker places a special AST node of the
+> form (`HasType` e type) around each tuple creation. The concrete
+> syntax for `HasType` is `has-type`.
+
+> The sequencing of the initializing expressions `e0, … , en–1`
+> prior to the `allocate` is important because they may trigger
+> garbage collection and we cannot have an allocated but uninitialized
+> tuple on the heap during a collection.
+
+这一点非常重要，否则就会出现很复杂的 bug。
 
 ## 6.4 Remove Complex Operands
+
+TODO
+
 ## 6.5 Explicate Control and the CTup Language
 ## 6.6 Select Instructions and the x86Global Language
 ## 6.7 Register Allocation
