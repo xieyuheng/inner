@@ -2343,7 +2343,10 @@ TODO
 > that is bound to each variable (in `Let`). The case for `Var`
 > unboxes the value.
 
-TODO 这种 box 会体现在中间语言与汇编代码中吗？
+注意，只有解释器需要用这种 box 来处理，
+box 不会体现在中间语言与汇编代码中，
+因为中间语言的 assignment 本身就是带有副作用的，
+这与 `set!` 语义相同。
 
 只支持对某些 reference value 的副作用，
 而不支持对变量的副作用，就可以避免这里的 `set!`。
@@ -2460,11 +2463,89 @@ Racket 的运营就跟玩笑一样：
 
 ## 5.5 Remove Complex Operands
 
-TODO
+```scheme
+(let ([x2 10])
+  (let ([y3 0])
+    (+ (+ (begin
+            (set! y3 (read))
+            (get! x2))
+          (begin
+            (set! x2 (read))
+            (get! y3)))
+       (get! x2))))
+=>
+(let ([x2 10])
+  (let ([y3 0])
+    (let ([tmp4 (begin
+                  (set! y3 (read))
+                  x2)])
+      (let ([tmp5 (begin
+                    (set! x2 (read))
+                    y3)])
+        (let ([tmp6 (+ tmp4 tmp5)])
+          (let ([tmp7 x2])
+            (+ tmp6 tmp7)))))))
+```
 
 ## 5.6 Explicate Control and C⟲
+
+> Recall that in the `explicate-control` pass we define one helper
+> function for each kind of position in the program.
+
+与其说是不同的 position，不说是不同的 context。
+这样可以直接用语法关键词（代表 context）来命名 helper 函数。
+
+> - For the LVar language of integers and variables, we needed
+>   assignment and tail positions.
+
+> - The `if` expressions of LIf introduced predicate positions.
+>
+> - For LWhile, the `begin` expression introduces yet another kind of
+>   position: effect position. Except for the last subexpression, the
+>   subexpressions inside a `begin` are evaluated only for their
+>   effect.  Their result values are discarded.  We can generate
+>   better code by taking this fact into account.
+
+对于 `begin` 可以定义 `explicate-effect` helper 函数来处理。
+
+中间语言 C 的变化：
+
+- 新增 `void` value。
+- `read` 被视为新的 stmt。
+
+我觉得不应该特殊处理 `read`，
+而应该有一个 `effect-stmt`。
+
+> The auxiliary functions for tail, assignment, and predicate
+> positions need to be updated. The three new language forms, `while`,
+> `set!`, and `begin`, can appear in assignment and tail positions.
+> Only `begin` may appear in predicate positions; the other two have
+> result type `Void`.
+
+每次这里的修改复杂度都是 O(n^2)。
+
 ## 5.7 Select Instructions
+
+新增的是：
+
+- `void` value -- 翻译成 0。
+- 作为 stmt 的 `read` -- 省去一个 `movq` 就行了。
+
 ## 5.8 Register Allocation
+
+> As discussed in section 5.2, the presence of loops in LWhile means
+> that the control-flow graphs may contain cycles, which complicates
+> the liveness analysis needed for register allocation. We recommend
+> using the generic `analyze-dataflow` function that was presented at
+> the end of section 5.2 to perform liveness analysis, replacing the
+> code in `uncover-live` that processed the basic blocks in
+> topological order (section 4.10.1).
+
+TODO 需要看完 5.2 才能明白这里的 `analyze-dataflow`。
+
+- 这里的 `analyze-dataflow` 应该是一个通用的 data-flow 分析函数。
+  就是 worklist 算法那一类，这里提到了 the transpose of the control-flow graph，
+  应该是指 backward 版本的 worklist 算法。
 
 # 6 Tuples and Garbage Collection
 
