@@ -2238,9 +2238,88 @@ TODO
 
 ## 4.13 Further Reading
 
-TODO
+> The algorithm for `explicate-control` is based on the
+> `expose-basic-blocks` pass in the course notes of Dybvig and Keep
+> (2010).
+
+- Dybvig, R. Kent, and Andrew Keep. 2010.
+  P523 Compiler Assignments.
+  Technical report. Indiana University.
+
+  这种东西竟然能拿来当作引用。
+
+> It has similarities to the algorithms of Danvy (2003) and Appel and
+> Palsberg (2003), and is related to translations into continuation
+> passing style (van Wijngaarden 1966; Fischer 1972; Reynolds 1972;
+> Plotkin 1975; Friedman, Wand, and Haynes 2001).
+
+- Danvy, Olivier. 2003.
+  “A New One-Pass Transformation into Monadic Normal Form.”
+
+  相关的还有：
+
+  - Danvy, Olivier. 1991.
+    Three Steps for the CPS Transformation.
+
+- Appel, Andrew W., and Jens Palsberg. 2003.
+  Modern Compiler Implementation in Java.
+
+- van Wijngaarden, Adriaan. 1966.
+  “Recursive Definition of Syntax and Semantics.”
+
+  这么早就有 CPS 可？
+
+- Fischer, Michael J. 1972.
+  “Lambda Calculus Schemata.”
+
+- Reynolds, John C. 1972.
+  “Definitional Interpreters for Higher-Order Programming Languages.”
+
+- Plotkin, G. D. 1975.
+  “Call-by-Name, Call-by-Value and the Lambda-Calculus.”
+
+- Friedman, Daniel P., Mitchell Wand, and Christopher T. Haynes. 2001.
+  Essentials of Programming Languages. 2nd edition.
+
+> The treatment of conditionals in the `explicate-control` pass is
+> similar to short-cut Boolean evaluation (Logothetis and Mishra 1981;
+> Aho et al. 2006; Clarke 1989; Danvy 2003) and the case-of-case
+> transformation (Peyton Jones and Santos 1998).
+
+- Logothetis, George, and Prateek Mishra. 1981.
+  “Compiling Short-Circuit Boolean Expressions in One Pass.”
+
+- Aho, Alfred V., Monica S. Lam, Ravi Sethi, and Jeffrey D. Ullman. 2006.
+  Compilers: Principles, Techniques, and Tools. 2nd edition.
+
+- Clarke, Keith. 1989.
+  “One-Pass Code Generation Using Continuations.”
+
+- Danvy, Olivier. 2003.
+  “A New One-Pass Transformation into Monadic Normal Form.”
+
+  又提到了这个论文。
+
+- Peyton Jones, Simon L., and André L. M. Santos. 1998.
+  “A Transformation-Based Optimiser for Haskell.”
 
 # 5 Loops and Dataflow Analysis
+
+> In this chapter we study two features that are the hallmarks of
+> imperative program- ming languages: loops and assignments to local
+> variables. The following example demonstrates these new features by
+> computing the sum of the first five positive integers:
+
+```scheme
+(let ([sum 0])
+  (let ([i 5])
+    (begin
+      (while (> i 0)
+        (begin
+          (set! sum (+ sum i))
+          (set! i (- i 1))))
+      sum)))
+```
 
 TODO
 
