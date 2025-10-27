@@ -2321,7 +2321,32 @@ TODO
       sum)))
 ```
 
-TODO
+> The primary purpose of both the `while` loop and `set!` is to cause
+> side effects, so they do not give a meaningful result value.
+> Instead, their result is the `#<void>` value.
+
+尤其是 `while`，
+除了 void 根本没可能有别的 value，
+因为 while 可能循环 0 次。
+
+> With the addition of side effect-producing features such as `while`
+> loop and `set!`, it is helpful to include a language feature for
+> sequencing side effects: the `begin` expression. It consists of one
+> or more subexpressions that are evaluated left to right.
+
+## 5.1 The LWhile Language
+
+这一节介绍解释器与类型检查。
+
+> To support assignment to variables and to make their lifetimes
+> indefinite (see the second example in section 8.2), we box the value
+> that is bound to each variable (in `Let`). The case for `Var`
+> unboxes the value.
+
+TODO 这种 box 会体现在中间语言与汇编代码中吗？
+
+只支持对某些 reference value 的副作用，
+而不支持对变量的副作用，就可以避免这里的 `set!`。
 
 ## 5.2 Cyclic Control Flow and Dataflow Analysis
 
@@ -2342,6 +2367,93 @@ TODO
   “A Unified Approach to Global Program Optimization.”
 
 TODO
+
+## 5.3 Mutable Variables and Remove Complex Operands
+
+这一节的例子，说明了为什么不应该支持对 variable 的 assignment。
+
+带有 side-effect 之后，`remove-complex-operands` 就出问题了。
+
+比如下面的例子应该返回 42，
+但是经过 `remove-complex-operands` pass 之后，
+会错误地返回 80：
+
+```scheme
+(let ([x 2])
+  (+ x (begin (set! x 40) x)))
+=>
+(let ([x 2])
+  (let ([tmp (begin (set! x 40) x)])
+    (+ x tmp)))
+```
+
+一个解决方案是把所有 read from mutable variable 的情况，
+都临时翻译成 explicit `get!`：
+
+```scheme
+(let ([x 2])
+  (let ([y 0])
+    (+ y (+ x (begin (set! x 40) x)))))
+=>
+(let ([x 2])
+  (let ([y 0])
+    (+ y (+ (get! x) (begin (set! x 40) (get! x))))))
+```
+
+`get!` 会被识别为 nested expression，
+因此在 `remove-complex-operands` pass 被提取出来，
+这时可以再消除 `get!`：
+
+```scheme
+(let ([x 2])
+  (let ([y 0])
+    (let ([t1 x])
+      (let ([t2 (begin (set! x 40) x)])
+        (let ([t3 (+ t1 t2)])
+          (+ y t3))))))
+```
+
+> The approach that we’ve sketched requires only a small modification
+> to `remove-complex-operands` to handle `get!`. However, it requires
+> a new pass, called `uncover-get!`, that we discuss in section 5.4.
+
+> As an aside, this problematic interaction between `set!` and the
+> pass `remove-complex-operands` is particular to Racket and not its
+> predecessor, the Scheme language. The key difference is that Scheme
+> does not specify an order of evaluation for the arguments of an
+> operator or function call (Sperber et al. 2009).  Thus, a compiler
+> for Scheme is free to choose any ordering: both 42 and 80 would be
+> correct results for the example program.
+
+注意，这里老师引用的是 r6rs 而不是 r7rs：
+
+- Sperber, Michael, R. Kent Dybvig, Matthew Flatt,
+  Anton van Straaten, Robby Findler, and Jacob Matthews. 2009.
+  “Revised6 Report on the Algorithmic Language Scheme.”
+
+小圈子，还搞分裂。
+
+> Interestingly, Racket is implemented on top of the Chez Scheme
+> compiler (Dybvig 2006) and an approach similar to the one presented
+> in this section (using extra let bindings to control the order of
+> evaluation) is used in the translation from Racket to Scheme (Flatt
+> et al. 2019).
+
+Racket 的运营就跟玩笑一样：
+
+- Flatt, Matthew, Caner Derici, R. Kent Dybvig, Andrew W. Keep,
+  Gustavo E. Massaccesi, Sarah Spall, Sam Tobin-Hochstadt,
+  and Jon Zeppieri. 2019.
+  “Rebuilding Racket on Chez Scheme (Experience Report).”
+
+## 5.4 Uncover get!
+
+TODO
+
+## 5.5 Remove Complex Operands
+## 5.6 Explicate Control and C⟲
+## 5.7 Select Instructions
+## 5.8 Register Allocation
 
 # 6 Tuples and Garbage Collection
 
