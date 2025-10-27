@@ -938,6 +938,12 @@ info: https://oleksii.shmalko.com/20211028115609/
   使得我们可以 query 这些 block 之间依赖关系，
   以及 instruction 之间的依赖关系。
 
+- TODO 我的编译器在开头就会对所有的 let 做 uniquify，
+  并且没有对变量的 assignment。
+  如此会对翻译成 SSA 的步骤有什么影响？
+  是否不用做 renaming 了？
+  是否还需要 phi node？
+
 - 算法分两步：
 
   - 首先找到所有 dominance frontier 并在其中增加 phi node。

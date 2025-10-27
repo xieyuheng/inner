@@ -2446,11 +2446,22 @@ Racket 的运营就跟玩笑一样：
   and Jon Zeppieri. 2019.
   “Rebuilding Racket on Chez Scheme (Experience Report).”
 
+主要的论点是 racket 有很多代码是用 C 写的，因此很难维护。
+不如说是这些人不会写可维护的 C 代码。
+
 ## 5.4 Uncover get!
+
+> By placing this pass after `uniquify`, we need not worry about
+> variable shadowing, and our logic for Let can remain simple, as in
+> this excerpt.
+
+由于有了 uniquify，所以收集所有的 `set!` lhs，
+还有修改所收集的 variable 为 `get!` 都很简单。
+
+## 5.5 Remove Complex Operands
 
 TODO
 
-## 5.5 Remove Complex Operands
 ## 5.6 Explicate Control and C⟲
 ## 5.7 Select Instructions
 ## 5.8 Register Allocation
