@@ -2,13 +2,29 @@
 title: The Zen Truth That Breaks Your Illusion of Control
 author: Alan Watts
 vedio: "https://www.youtube.com/watch?v=1qYe6_nOjEE"
+backup: "https://www.bilibili.com/video/BV1sUyCByEU8"
 ---
 
-人们认识世界的模型：
+天下皆知美之为美，斯恶已。
+皆知善之为善，斯不善已。
+
+正是因为看到了老师写的 OOP 代码，
+还有老师实现过程中的缺陷，
+我才能对比出来我的实现是更好的。
+
+人们总是在对比中认识世界：
 
 > 1. things
 > 2. agents
-> 3. rewards
+> 3. rewards and punishments
+
+graph theory 就是最典型的例子。
+
+但是其实这些都是人类发明概念（concept）。
+
+> 一珠映现一切珠，一切珠映现一珠。
+>
+> -- Indra's net / 因陀罗网
 
 想到了在设计一个语言的过程中，其实在对比很多语言。
 语言的不同特性，实现某个功能的不同方案，
@@ -32,10 +48,11 @@ FCA 好像捕捉了人们认识世界的方式中的重点，
 因为这种 APP 是 realtime 的，而 x-lisp 是带有 GC 的。
 x-lisp 非常适合用来写编译器这种只需要最后计算结果的程序。
 
-想到了我可以设计一个 c-lisp，
+又想到了在我想设计的诸多 lisp 中，
+可以有一个类似 c 的 lisp -- system-lisp，
 践行 scalable-c 的编程风格。
 语法方面，可以用 `=` 代表 local variable 的赋值，
 用 `:` 声明 local variable 的类型。
 在设计这个语言的过程中，
 可以大量学习 jai 和 odin 还有 zig 之类的语言。
-一旦有了 c-lisp，就可以用自己的语言写 runtime 而不必用 C。
+一旦有了这个 system-lisp，就可以用自己的语言写 runtime 而不必用 c。
