@@ -1,3 +1,8 @@
+# pattern-matching
+
+persons/peyton-jones-simon/1987-the-implementation-of-functional-programming-languages.pdf
+2008-compiling-pattern-matching-to-good-decision-trees--luc-maranget.pdf
+
 # tagged value
 
 《Tag-free garbage collection for strongly typed programming languages》 (Appel, 1990)

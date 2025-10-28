@@ -2348,6 +2348,19 @@ box 不会体现在中间语言与汇编代码中，
 因为中间语言的 assignment 本身就是带有副作用的，
 这与 `set!` 语义相同。
 
+在解释器中使用 box 会使得 value 的带有 boxed value，
+如果不想把这个东西从 value 中暴露出来，
+可以让 env 保存的不是简单的 value 而是 denotation。
+这个技巧是和 EOPL 学的。
+
+- 如果不想用 denotation 这个词，
+  可以用 binding：
+
+  - `value-binding`
+  - `boxed-binding`
+
+  为了方便处理，可以像 definition 一样总是带有 name field。
+
 只支持对某些 reference value 的副作用，
 而不支持对变量的副作用，就可以避免这里的 `set!`。
 
@@ -2365,6 +2378,8 @@ box 不会体现在中间语言与汇编代码中，
 > applicable to many static analysis problems and goes by the name
 > _dataflow analysis_. It was invented by Kildall (1973) in his PhD
 > thesis at the University of Washington.
+
+为什么老师要强调 the University of Washington？
 
 - Kildall, Gary A. 1973.
   “A Unified Approach to Global Program Optimization.”

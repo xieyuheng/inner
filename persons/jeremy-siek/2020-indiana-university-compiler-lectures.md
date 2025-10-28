@@ -1173,14 +1173,84 @@ video-backup: "https://space.bilibili.com/550104600/lists/6478233"
 
 # 2020-10-13
 
-[2025-10-24]
+[2025-10-28]
 
 - 这节课讲如何编译函数。
   首先是不带 closure 的函数。
 
-- TODO
+- 有学生问，我们今天讲的函数是否支持递归，
+  其实编译到 x86 之后，x86 的 label 易经支持相互递归了。
+
+- 老师在解释器中实现 top-level 函数相互递归的方式太糟糕了，
+  要在 pass 两次不说，还要在 lambda 的 env 上做副作用。
+
+  还介绍说这种技术叫做 back patching。
+
+  正确的方式是让 lambda 的 closure 在 env 之外还带有 module（mod）。
+  在处理 top-level 的时候对当前 module 做副作用。
+
+- 编译函数的时候需要用到 PC-relative addressing：
+
+  ```asm
+  leaq add1(%rip), %rbx
+  callq *%rbx
+  ```
+
+  但是既然已经知道是 `add1` 这个 label 了，
+  为什么不直接 call？这不是和 call `read` 一样吗？
+
+- TODO 可能在编译 x-lisp 到 basic-lisp 的时候，
+  basic-lisp 除了 `call` 之外还需要 `indirect-call`。
+
+  因为目前 `call` 的第一个参数只能是全局函数。
+
+- 这里说为了 tail-call，当参数个数超过 6 时，
+  最后一个传递参数的寄存器应该用 tuple 保存多余的参数，
+  而不是将多余的参数保存在 stack 上。
+
+  这就是说 tail-call 将会用到 GC。
+
+- 老师提到在早期就要用一个 pass `limit-function`，
+  来处理超过 6 个的参数问题。
+
+  我认为这最好可以在中间语言 basic-lisp 中处理，
+  因为不同构架参数个数限制不同。
+
+- 再次介绍函数调时 stack 中 frame 的情况。
+  注意，除了 x86 的 call stack，
+  还需要处理我们的 root stack。
+
+- 关于寄存器，我们已经保证了所有 call-live variables
+  （在一个 call 指令时 live 的 variables），
+  不会被分配到 caller-saved register。
+  因此在使用 call 的时候，不用再保存寄存器。
+
+  在函数的 prolog，还是需要保存所有用到了的 callee-saved registers。
+
+- 关于 tail-call。
+
+  由于所有的参数都保存在寄存器中，
+  所以准备好 tail-call 的参数之后，
+  可以放心 pop return stack。
+
+  注意，pop return stack 之前是需要 function epilog 的。
+  这里三个操作具体的顺序是什么？
+
+  好像只有可能是：
+
+  - 准备 arguments。
+  - 执行 epilog 中的部分代码，但是不要 ret。
+  - jmp。
+
+  TODO 为什么需要 epilog，然后再 jump 到函数 label？
+  而不是直接 jump 到函数的 body label？
 
 # 2020-10-15
+
+[2025-10-28]
+
+- TODO
+
 # 2020-10-20
 # 2020-10-22
 # 2020-10-27
