@@ -1249,6 +1249,38 @@ video-backup: "https://space.bilibili.com/550104600/lists/6478233"
 
 [2025-10-28]
 
+- 这节课介绍为了编译 function 需要修改哪些 pass。
+
+- 有同学问 `HasType` 应该放在 assignment statement 的什么地方，
+  老师回答应该放在 rhs，并且这就是 `HasType` 的目的，
+  放在 rhs 之后就可以实现 `uncover-locals`。
+
+  注意，书里没有出现 `uncover-locals`。
+
+- 首先是 `shrink` 要把 top-level expression 放到 `main` 函数中。
+
+- 新的 `reveal-functions` pass，
+  在编译时就把所有到函数的引用，
+  与对局部变量的引用区分开。
+
+  `(Var f) => (FunRef f)`
+
+  注意，只需要对 top-level function 做这个处理。
+
+  考虑语言的完整性，
+  这可能也意味着我们需要给 value 添加 function 类型
+  -- `function-t`。
+
+- 老师在这里介绍了自己实现的对函数定义的类型检查。
+  可以发现需要两个 stage，那么还不如把 `claim` 和 `define` 区分开。
+
+- 下面介绍 `limit-functions` pass。
+
+  就是当参数多余 6 个时，
+  把第 6 个和多余的参数放到 tuple 里。
+
+  对于 x-lisp 来说，这个 pass 完全可以放在 basic-lisp 这个 backend 里。
+
 - TODO
 
 # 2020-10-20
@@ -1360,6 +1392,13 @@ video-backup: "https://space.bilibili.com/550104600/lists/6478233"
 # 2020-11-10
 # 2020-11-12
 # 2020-11-17
+
+[2025-10-28]
+
+- 这节课讲 data-flow 分析，为下一节课编译 while loop 做准备。
+
+- TODO
+
 # 2020-11-19
 # 2020-12-01
 # 2020-12-08
