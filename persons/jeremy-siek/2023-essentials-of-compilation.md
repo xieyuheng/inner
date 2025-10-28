@@ -2625,14 +2625,16 @@ lifetime of tuple 不会受到 scope 的限制，比如下面的 `w`：
 
 在我的实现中，我将直接用我设计的 `tau` type，
 并且用只有 elements 的 `(@tael)` literal 代表 tuple。
+或者用 `(@tuple)` 也许更合理一些，可以强调 elements 的个数是有限的。
 
 ## 6.2 Garbage Collection
 
 > We define the _root set_ to be all the tuple addresses that are in
-> registers or on the procedure call stack.  We define the _live
-> objects_ to be the objects that are reachable from the root set.
-> Garbage collectors reclaim the space that is allocated to objects
-> that are no longer live.
+> registers or on the procedure call stack.
+
+> We define the _live objects_ to be the objects that are reachable
+> from the root set.  Garbage collectors reclaim the space that is
+> allocated to objects that are no longer live.
 
 ### 6.2.1 Two-Space Copying Collector
 
@@ -2869,9 +2871,50 @@ running example:
 但是我还是需要把 tuple literal 翻译成 `(make-tuple size)`
 外加一系列 `(tuple-put! index value tuple)`。
 
+并且应该带上类型，因为需要知道 tuple 的 tag
+-- `(the type (make-tuple size))`。
+
+就是这一步 pass 用到了 type checker elaboration 的结果！
+类型要从 tuple literal pass 到 `allocate` 上面。
+
+> The type information that you need for (allocate n type) can be
+> obtained by running the `type-check-Lvec-has-type` type checker
+> immediately before the `expose-allocation` pass.
+
+注意这里说提到的进行 type checking 的位置。
+是在 `uniquify` 和 `expose-allocation` 之间。
+
+注意，之前第二章的时候，
+给 program 的 info 加上了 `locals-types`，
+现在这成了多余的一次类型检查。
+
+- 并且之前用来计算 `locals-types` 的函数是 `type-check-Cvar`，
+  也就是针对中间语言进行的类型检查。
+
+  这样就完全乱了，因为在加入 `if` 之后，
+  想要直接对中间语言进行类型检查，
+  都需要拓扑排序了。
+  并且有 `which` loop 之后会更复杂。
+
+- 在视频课程中提到了一个 `uncover-locals` pass，
+  应该就是在有了新的类型检查器之后，
+  对计算 `locals-types` 的类型检查的调整。
+
+  `locals-types` 应该是 `explicate-control` 之后，
+  紧跟着的一个中间语言到中间语言的 pass。
+
 > This version of the type checker places a special AST node of the
 > form (`HasType` e type) around each tuple creation. The concrete
 > syntax for `HasType` is `has-type`.
+
+既然如此，后面的所有 pass 都应该假设，
+所有 expression 都是带有类型信息的。
+
+尤其是中间语言，现在应该是完全带有类型的了。
+
+我认为，就像 function 应该在一开始就引入一样，
+type 和 elaboration 也应该在一开始就引入，
+这样可以避免后续对代码的大改。
 
 > The sequencing of the initializing expressions `e0, … , en–1`
 > prior to the `allocate` is important because they may trigger
@@ -2882,10 +2925,34 @@ running example:
 
 ## 6.4 Remove Complex Operands
 
-TODO
+> The forms `collect`, `allocate`, and `global-value` should be
+> treated as complex operands.
 
 ## 6.5 Explicate Control and the CTup Language
+
+需要扩展中间语言，
+但是由于没有新增控制流语法，
+所以这个 pass 不用大改。
+
 ## 6.6 Select Instructions and the x86Global Language
+
+为了编译 tuple 的读写，又要预留一个 `r11` 寄存器。
+
+> We compile the allocate form to operations on the `free_ptr`, as
+> shown next. This approach is called _inline allocation_ because it
+> implements allocation without a function call by simply incrementing
+> the allocation pointer.
+
+这也是我觉得对于 x-lisp 而言 trade-off 不值得的优化。
+因为付出的复杂性太多了。
+
+对于更简单的 lisp 比如 occam-lisp 来说，这个 trade-off 是合理的。
+
+> The type annotation in the `allocate` form is used to determine the
+> pointer mask region of the tag.
+
+TODO
+
 ## 6.7 Register Allocation
 ## 6.8 Generate Prelude and Conclusion
 ## 6.9 Challenge: Simple Structures
