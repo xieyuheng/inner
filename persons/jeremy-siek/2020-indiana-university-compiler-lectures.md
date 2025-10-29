@@ -1242,12 +1242,15 @@ video-backup: "https://space.bilibili.com/550104600/lists/6478233"
   - 执行 epilog 中的部分代码，但是不要 ret。
   - jmp。
 
-  TODO 为什么需要 epilog，然后再 jump 到函数 label？
+  为什么需要 epilog，然后再 jump 到函数 label，
   而不是直接 jump 到函数的 body label？
+
+  因为 tail-call 的可能不是这个函数，而是另一个函数！
+  tail-call 这个函数自己的时候，确实可以直接 jump 到 body label。
 
 # 2020-10-15
 
-[2025-10-28]
+[2025-10-29]
 
 - 这节课介绍为了编译 function 需要修改哪些 pass。
 
@@ -1281,12 +1284,161 @@ video-backup: "https://space.bilibili.com/550104600/lists/6478233"
 
   对于 x-lisp 来说，这个 pass 完全可以放在 basic-lisp 这个 backend 里。
 
-- TODO
+- 对 `remove-complex-operands` pass 的影响。
+
+  `FunRef` 和 `Apply` 都算是 complex operand。
+
+  `Apply` 的参数必须都是 atom-exp。
+
+  为什么 `FunRef` 需要 unnest 呢？
+  因为对于每个 `FunRef`，我们都会用 lea 计算出地址，
+  然后把函数地址保存到 variable 中。
+
+  但是这是必要的吗？`FunRef` 已经是地址了。
+
+  unnest operand 的原则是什么？
+  operand 必须是 x86 的那三种 rand。
+
+- `explicate-control` pass。
+
+  每个 context 下都要增加 `FunRef` 而 `Apply` 的 case。
+  其中 tail context 中 `Apply` 要翻译成 tail-call。
+
+- 由于在 program 和 block 之间新增了 funtion 一层，
+  所以结构递归的开头要新增一个 helper funtion 来处理，
+  听起来也不是很难修改。
+
+- 介绍 `select-instructions` pass。
+
+  这里由于所有的 `FunRef` 被当作 complex operand 提取出去了，
+  所以被提取出去的 assignment 被翻译成了 `lea` 来计算函数地址，
+  call 被翻译成了 indirect-call。
+
+  TODO 实现的时候可以试试对于已知的 FunRef 用 direct-call。
+
+  翻译 tall-call 的时候使用了 tail-jump 这个 pseudo instruction，
+  因为寄存器分配之后，才能知道如何做 epilog。
+
+  还要处理函数定义中 parameter 到参数寄存器的映射，
+  就是在函数的开头，把通过寄存器传递的参数，
+  保存到 parameter 变量中。
+
+  - 注意，这些指令是要放在函数的 entry block 前面的，
+    而不是 prolog 前面。
+
+  - move biasing 那个优化，
+    可以在分配寄存器的时候优先考虑 move，
+    因此优化掉上面的 move。
+
+  TODO 我有一个问题是 `allocate-registers`
+  可否放在 `select-instructions` 之前，
+  也就是放在中间语言中来做。
+  因为对于中间语言，我们有丰富的 control flow graph 处理工具，
+  而对于 x86 的 block，我们不想重复实现这些工具。
+
+  这样 `select-instructions` 可以变成所有 pass 的最后一步。
+  保持这个是最简单的一步，才能方便我们 port 到其他构架。
+
+- 关于 `build-interference` pass。
+
+  之前编译 tuple 的时候，
+  为了能让 `collect` 找到所有的 root。
+  必须让所有保存了 tuple 的 variables
+  与所有的 callee-saved registers interference。
+  就是说不要把 tuple 保存到寄存器中，
+  总是在 root stack 中找到 tuple。
+
+  这里老师提到，既然所有的函数都有可能调用 `collect`，
+  那么所有的函数都应该导致上面的 interference。
+
+  这其实预示着老师的方案是有问题的，
+  因为这个 interference 会传递到所有的函数。
+
+  实际上具体会出现的情况是，
+  在调用 `collect` 时，
+  caller-saved registers 已经被保存了，
+  但是有一些 callee-saved registers，
+  可能是 `collect` 没有用到的，
+  因此不会被 `collect` 保存，
+  但是这些寄存器里保存着 caller 的数据，
+  这些数据可能是 tuple。
+  因此只要在 `collect` 之前保存所有寄存器就可以了。
+
+- 我突然感觉这种渐进式的编译器教学有点折磨，
+  每个修改都要修改一串 pass。
+
+  但是这可能代表了实际开发时增加 feature 的过程。
+
+  增加 feature 是如此，
+  但是初始开发的时候并非如此，
+  初始开发的时候既然知道了所有的信息，
+  就要避免无效的 refactoring。
+
+- 关于 `patch-instructions` pass。
+
+  新增的限制是：
+
+  - `leap` 的 `dest` 必须 register。
+  - `tail-jmp` 所用的寄存器因该是 `rax`。
+    或者说用 `rax` 是安全的。
+
+- 下面介绍 `print-x86` pass。
+
+  新增的情况是：
+
+  - `(FunRef label) => label(%rip)`
+  - `(IndirectCall arg) => call *arg`
+  - `(TailJmp rax)` 的处理非常复杂，老师在这里处理了。
+    我认为应该放在 `patch-instructions` 中处理，
+    或者放在 `prolog-and-epilog` 中处理，
+    因为是和 `epilog` 有关的。
+    或者独立一个 pass。
 
 # 2020-10-20
+
+[2025-10-30]
+
+- 这节课前半部分讲一个编译函数的例子。
+
+- TODO 可以实现完 function 再来看。
+
+[2025-10-30]
+
+- 最后十分钟，讲后面要实现的 lambda。
+
+  只是对 lambda 的基本介绍，
+  因为有的同学可能还不知道 lambda。
+
+  我想到了我开始学 lambda 的时候，
+  还不会写 lambda 演算的解释器的时候，
+  这还是非常难的概念。
+
 # 2020-10-22
+
+[2025-10-30]
+
+- 这节课讲 lambda 的 closure conversion。
+  这是这一整个课程中最重要的技巧。
+  编译器的高光时刻。
+
+- TODO
+
 # 2020-10-27
+
+[2025-10-30]
+
+- 这节课 code review 之前实现的 tuple。
+
+- TODO
+
 # 2020-10-29
+
+[2025-10-30]
+
+- 这节课继续讲 lambda。
+
+- TODO
+
 # 2020-11-03
 
 [2025-10-19]
