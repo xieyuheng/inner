@@ -1503,8 +1503,15 @@ video-backup: "https://space.bilibili.com/550104600/lists/6478233"
   在 apply flat-closure 的时候，
   先准备好对参数，再调用 function。
 
-  第二种方案可能更有利于寄存器分配，
-  因为少了一个用来保存 flat-closure 自身的变量。
+  - 第二种方案可能更有利于寄存器分配，
+    因为少了一个用来保存 flat-closure 自身的变量。
+
+  - 第二种方案其实很复杂，
+    因为为函数准备参数，需要从 vector 中取值出来，
+    这需要在每个 apply exp 的位置生成 let。
+
+    - 方案 A 也需要在 apply exp 的位置生成 let，
+      但是比较简单。
 
   如果使用方案 A，
   也许可以约定 lambda 内有 self 这个变量，
@@ -1523,9 +1530,43 @@ video-backup: "https://space.bilibili.com/550104600/lists/6478233"
 
 [2025-10-30]
 
-- 这节课继续讲 lambda。
+- 这节课讲为了实现 lambda 需要哪些 pass。
 
-- TODO
+  书中有两个 pass `convert-assignments` 和 `convert-to-closures`，
+  前者是处理 flat-closure 对 `set!` 的影响的。
+
+  - 我认为这又是一个我们不应该支持 `set!` 的证据。
+
+  这里我们只需要关心 `convert-to-closures`。
+  在课程中这个 pass 叫做 `closure-conversion`。
+
+- 介绍 `closure-conversion` pass。
+
+  重点是这个 pass 在 `reveal-functions` 之后。
+
+  具体实现方式其实很简单。
+  就是把 lambda exp 翻译成 literal vector exp，
+  然后增加一个函数到 top-level，
+  注意，增加到 top-level 的函数需要被递归处理，
+  因为里面可能还有 lambda。
+
+  注意，需要在这个翻译过程中保持类型。
+  也就是说，收集 free variable 的函数，还需要收集类型。
+
+- 在 x-lisp 实现中，我需要把 lambda exp 翻译成 curried exp，
+  注意，我还需要知道 curried exp 的 arity。
+
+  curried exp 将会被求值为 curried value，
+  它有自己的 API，而不是 vector。
+
+- 注意，`closure-conversion` 在解释器中也很有用，
+  因为把 lambda 翻译成 top-level function 的过程，
+  会给每个 lambda 一个名字，
+  这能够帮助 error report。
+
+- 下面介绍一个具体的的例子。
+
+  TODO 我可以等实现到这里的时候再看。
 
 # 2020-11-03
 
