@@ -1421,7 +1421,95 @@ video-backup: "https://space.bilibili.com/550104600/lists/6478233"
   这是这一整个课程中最重要的技巧。
   编译器的高光时刻。
 
-- TODO
+- 介绍如何用 closure 实现 lambda 的解释器。
+
+  介绍了如果不用 closure，每就会形成 dynamic scope。
+
+  dynamic scope 很容易在解释器中实现，
+  只需要在 apply 的时候 extend 当前的 env，
+  而不是 closure 中的 env，
+  就可以了。
+
+  但是，在编译器中，如何实现 dynamic scope？
+  首先要用特殊的变量语法，
+  比如 scheme 的 `make-parameter` 和 `parameterize`。
+  好像给每个 parameter 一个 stack，就可以实现。
+  如果是多线程的 lisp，
+  可以设计成每个 thread 对于每个 parameter 都有一个 stack。
+
+  老师说 dynamic scope 很难用，
+  其实是大部分时候应该用 lexical scope，
+  但是 dynamic scope 在很多情况下很好用，
+  比如函数的 options，可以直接用 dynamic scope 实现。
+  典型的例子是 the little learner 中用来实现机器学习中的参数。
+
+  另外，假设我要实现一个 system-lisp，其中有多种 allocator，
+  并且要求每次 allocation 都要指明使用哪个 allocator，
+  这时 allocator 就可以被实现为 dynamic scope 的变量。
+  这将会非常好用！
+
+  老师在谈 dynamic scope 的应用时，
+  举例是类似 canvas 的画图程序，
+  这就是有大量的 options 的程序的例子。
+  dynamic scope 可以让我们灵活地临时调整这些参数。
+
+- 老师又讲了如何在解释器里处理相互递归函数，
+  并且提到了 Y-combinator。
+
+  老师说，课程所实现的静态类型语言没法表达 Y-combinator，
+  因为类型检查不过（因为没有 polymorphic type）。
+  但是动态类型的版本可以。
+
+- 在看 lambda 的类型检查时，
+  老师在这里说他修改了类型检查器的实现，
+  不用在所有的地方都增加 `HasType` 了。
+
+  我觉得这样反而搞乱了 elaboration 这个步骤。
+
+  老师讲了他也不知道如何做 dynamic scope 的 type checking，
+  但是如果是使用 `make-parameter` 和 `parameterize` 来实现 dynamic scope，
+  用类似检查全局变量的方式就可以了。
+
+- 下面介绍 free variable，
+  lambda conversion 依赖于，
+  找到 lambda 的所有的 free variables。
+
+  free variable 其实是用 bound variable 的否定来定义的。
+
+- 介绍在 runtime 中实现 closure 的方式。
+
+  这种实现 closure 的方式，称作 "flat-closure"。
+  老师说这是 luca cardelli 发明的。
+  kent 也声称自己独立发明了这个 idea。
+
+  可以看出，GC 是 lambda 的前提，好像没法避免。
+  因为 lambda 也可以通过副作用形成对自身的循环引用，
+  也就是 lambda 所编译成的 tuple 到自身的循环引用。
+
+  除非是没有副作用的语言，
+  因为没有副作用的语言可以用引用计数来做自动内存管理。
+
+- 这里有学生问嵌套的 lambda 如何处理。
+  老师给出 K combinator 的例子。
+
+- 这里把 lambda 编译成 top-level 的方案 A 是：
+  让 function 的第一个参数是 flat-closure 自身，
+  然后用 let 把参数从 flat-closure 中取出来。
+
+  有点像是 object 的 method 的 self（或者说 this）参数。
+
+  另外一种方案 B 是，lambda 所编译成的 top-level function，
+  带有所有 free variable 为参数，
+  在 apply flat-closure 的时候，
+  先准备好对参数，再调用 function。
+
+  第二种方案可能更有利于寄存器分配，
+  因为少了一个用来保存 flat-closure 自身的变量。
+
+  如果使用方案 A，
+  也许可以约定 lambda 内有 self 这个变量，
+  或者 `recur` 这个变量（因为 self 在 system-lisp 中有他用）。
+  这样可以方便 lambda 递归调用自身。
 
 # 2020-10-27
 
