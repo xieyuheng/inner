@@ -10,6 +10,9 @@ year: 1995
 和 abdulaziz ghuloum 的编译器课程了，
 而这篇论文介绍的是更早的 dan 风格的编译器课程。
 
+[2025-10-31] 这里找到 free variable 的过程，
+类似 EOC 的 `reveal-functions` pass。
+
 # Abstract
 
 >  This paper describes a course in compiler design that focuses on
@@ -39,15 +42,23 @@ year: 1995
 
 那个时候还是 r4rs。
 
-> - the language is syntactically restricted so that
->   the only numbers accepted are integers in a bounded range,
-> - all lambda expressions have a fixed arity, i.e., no rest arguments.
-> - programs cannot have free variables other than
->   references to primitives in operator position,
+> - the language is syntactically restricted so that the only numbers
+>   accepted are integers in a bounded range,
+>
+> - all lambda expressions have a fixed arity, i.e., no rest
+>   arguments.
+>
+> - programs cannot have free variables other than references to
+>   primitives in operator position,
+>
 > - symbols cannot be interned at runtime,
+>
 > - first-class continuations and I/O are not supported,
+>
 > - derived syntax is not directly supported,
+>
 > - garbage-collection is not provided, and
+>
 > - the runtime library is minimal.
 
 > The compiler is described below, back to front. The run-time
@@ -62,16 +73,64 @@ year: 1995
 
 ## 2.1 The Run-time Model
 
-这里所描述的 run-time model，
-没有 forth 的 run-time model 简单，
-但是支持 closure。
+这里的 run-time 与 EOC 课程中类似，
+用的是类似 c 的 calling convention，
+但是不完全一样。
 
-与 forth 相比的主要区别就是，
-forth 用两个 stack，
-而一般的 run-time 用一个 stack。
+注意，这里画图描述 stack 的时候使用了我认为正确的方向：
 
-也可以基于这里所描述的 run-time model 写一个 vM，
-作为 intermediate language 的 specification。
+- address 从上到下递增。
+- stack 从向低地址增长，因此像是真实世界的 stack of things。
+
+> The `cp` register points to the closure of the active procedure, and
+> the closure holds the values of the procedure’s free variables.
+
+在 EOC 中，没有预留一个 register，
+而是将 closure 作为 self（或者说 recur）参数，
+传递给 lambda 所编译出来的 top-level function。
+
+> The procedure call convention for non-tail calls is as follows. The
+> caller first saves the closure pointer at the top of its frame. The
+> callee’s frame is then built by pushing a return address and then
+> evaluating each argument and pushing its value. The operator is
+> evaluated last, and its value is placed in the `cp` register.
+> Finally, the frame pointer is incremented to point to the base of
+> the callee’s frame and control is transferred by a jump indirect
+> through the closure pointer. On return, the callee places the return
+> value in the accumulator `ac0` and jumps to the return address at
+> the base of its frame. The caller restores the frame pointer to its
+> old position and reloads the `cp` register with its old value.
+
+这里与 c calling convention 的主要差异是，
+stack 中的 return address 保存的是到 closure 的 pointer，
+而不是到 function 的 pointer。
+
+> The calling convention is simpler for tail calls. The arguments are
+> evaluated and pushed, and the operator is then evaluated and stored
+> in the `cp` register. The arguments are moved downwards to overwrite
+> arguments of the caller’s frame, and control is transferred to the
+> callee. The frame pointer does not move.
+
+> Values are represented using 64-bit tagged pointers with the low
+> three bits used for tag information [23]. Four of the nine
+> data-types, booleans, characters, fixnums, and the empty list, are
+> immediate data-types and are encoded directly in the pointer.
+> Vectors, pairs, closures, strings, and symbols are allocated in the
+> heap. Since the low three bits are used for the tag, allocation must
+> proceed on eight-byte boundaries. A heap allocated object is tagged
+> by subtracting eight from the pointer to the object and then adding
+> the tag. Fields of the object can be referenced efficiently using a
+> displacement operand. A type check is also efficient, requiring at
+> worst a mask, compare, and branch.
+
+接受了 fully tagged value 的效率。
+
+这里的引用是：
+
+- [23] Peter A. Steenkiste.
+  The implementation of tags and run-time type checking.
+  In Peter Lee, editor, Topics in Advanced Language Implementation,
+  pages 3–24. MIT Press, 1991.
 
 ## 2.2 Code Generation
 
@@ -94,13 +153,20 @@ v ∈ Variables
 n ∈ N
 ```
 
-> The free and bound forms each include an index indicating the offset
-> from the cp or fp register at which the variable’s value can be
-> found, while the local form includes only the name of a
-> variable. Offsets from the fp for local are determined by the code
-> generator. The closure form is like lambda, but the locations of the
-> free variables are made explicit. Constants are restricted to
-> immediate values.
+注意，这里的 `begin` 只有两个 sub-expressions。
+并且 variable references 被分了一个独立的 ADT 出来。
+
+> The `free` and `bound` forms each include an index indicating the
+> offset from the `cp` or `fp` register at which the variable’s value
+> can be found, while the `local` form includes only the name of a
+> variable.
+
+可以共用同一种 index，意味着 `cp` 和 `fp` 所指向的数据的结构是一样的！
+
+> Offsets from the `fp` for `local` are determined by the
+> code generator. The `closure` form is like `lambda`, but the
+> locations of the free variables are made explicit. Constants are
+> restricted to immediate values.
 
 ```scheme
 (let ((f (lambda (x)
@@ -119,6 +185,33 @@ n ∈ N
     (((local f) 4) 5)))
 ```
 
+> Assignment is not part of the intermediate language, since variable
+> assignment cannot be directly supported using the chosen run-time
+> model.
+
+> Assembly code can be generated from intermediate programs in one
+> pass. Code is generated bottom-up with the invariant that the result
+> of evaluating a subexpression is left in the accumulator `ac0`.
+> Arguments to primitives are stored in temporary locations on the
+> stack, and code for primitives is generated inline. The code
+> generated for primitives is unsafe, i.e., no type checking is
+> performed.
+
+> Offsets for `free` and `bound` references are provided. Computing
+> frame offsets for local references requires a lexical environment to
+> be passed downwards. The environment maps local variable names to
+> frame offsets. The environment is necessary since temporary
+> locations used for primitive and procedure applications can be
+> interspersed with local bindings.
+
+> After code generation, the resulting assembly code is assembled
+> using the system assembler `as` and linked against a C and assembly
+> code stub using `ld`. The C stub obtains memory from the operating
+> system for the stack and heap. The assembly code stub initializes
+> the registers and places a return address back to C at the base of
+> the stack. Upon return to C, the value left in the accumulator `ac0`
+> is printed by a simple C-coded printer.
+
 ## 2.3 Compiling to Intermediate Code
 
 > The front-end of the compiler consists conceptually of three parts:
@@ -128,6 +221,19 @@ n ∈ N
 ### 2.3.1 Scanning and Parsing
 
 ### 2.3.2 Code Transformation
+
+> Three source-to-source transformations are performed on the forms
+> the parser produces.
+>
+> - The first transformation invokes the host system macro expander to
+>   expand the input program and then regularizes the expanded
+>   program.
+>
+> - The second transformation eliminates `set!` forms.
+>
+> - The third transformation eliminates complex quoted data.
+
+TODO
 
 ### 2.3.3 Variable Addressing
 
@@ -183,6 +289,22 @@ n ∈ N
 > - copy propagation and constant folding [1],
 > - register allocation [6], and
 > - type check elimination by abstract interpretation [16, 4].
+
+这里的 type check elimination 是比较重要的优化，其引用是：
+
+- [4] J. Michael Ashley.
+  A practical and flexible flow analysis for higher-order languages.
+  To appear in Proceedings of the ACM Symposium
+  on Principles of Programming Languages, 1996.
+
+- [16] Suresh Jagannathan and Andrew Wright.
+  Effective flow analysis for avoiding runtime checks.
+  In Proceedings of the 1995 International Static Analysis Symposium, 1995.
+
+原来所谓 abstract interpretation 就是干这个的。
+
+> The discussion of copy propagation, procedure integration, and
+> constant folding leads to (on-line) partial evaluation.
 
 ## 4.2 Run-time Topics
 
