@@ -285,9 +285,13 @@ TODO
 > in a follow-up course:
 >
 > - macro expansion [9],
+>
 > - destination-driven code generation [10],
+>
 > - copy propagation and constant folding [1],
+>
 > - register allocation [6], and
+>
 > - type check elimination by abstract interpretation [16, 4].
 
 这里的 type check elimination 是比较重要的优化，其引用是：
@@ -311,6 +315,51 @@ TODO
 > Some of the topics covered in a past course have been:
 >
 > - separate compilation,
+>
 > - buffered I/O,
+>
 > - first-class continuations [14], and
+>
 > - garbage collection.
+
+这里引用了一个：
+
+- [15] Erik Hilsdale and Daniel P. Friedman.
+  A Scheme-based course on compiler construction.
+  In Preparation.
+
+可惜这篇论文没发表。
+
+> To support first-class continuations, the stack model is generalized
+> to a series of linked stack segments. The model supports stack
+> overflow gracefully by treating overflow as an implicit continuation
+> capture in which a new stack is allocated and linked to the
+> overflowed segment.
+
+看来想要实现 first-class continuations
+就必须使用有别于 c 的 calling convention。
+
+> First-class continuations simplify memory management techniques. In
+> lecture, various types of memory management are presented, including
+> mark-sweep, reference counting, copying, and generational. The
+> students implement a copying collector in Scheme as a procedure of
+> no arguments that immediately reifies its current continuation.
+> Since registers are caller-save and the collector is a procedure of
+> no arguments, the continuation is the root of the collection.  The
+> collector is an iterative Scheme program that performs a bounded
+> amount of allocation. To detect when a garbage collection must
+> occur, heap overflow checks are inserted by the compiler before each
+> allocation.
+
+有遇到了找 root 这个难题，
+想要做到这里的「简化」，
+必须做到完全避免使用 callee-saved registers 才行。
+这不太实际。
+
+> Buffered I/O is a straightforward topic. The implementation requires
+> code in the C stub to interface to the operating system as well as
+> primitives supported by the code generator that call the C routines
+> in the stub.
+
+没有用 C 的 calling convention，如何调用 C 的函数？
+每个函数都要有所 wrap？
