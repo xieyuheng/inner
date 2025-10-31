@@ -3,6 +3,7 @@ title: The Zen Truth That Breaks Your Illusion of Control
 author: Alan Watts
 vedio: "https://www.youtube.com/watch?v=1qYe6_nOjEE"
 backup: "https://www.bilibili.com/video/BV1sUyCByEU8"
+date: 2025-10-29
 ---
 
 天下皆知美之为美，斯恶已。
