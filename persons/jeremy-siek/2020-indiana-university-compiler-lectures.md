@@ -1518,6 +1518,10 @@ video-backup: "https://space.bilibili.com/550104600/lists/6478233"
   或者 `recur` 这个变量（因为 self 在 system-lisp 中有他用）。
   这样可以方便 lambda 递归调用自身。
 
+- 我还是选择方案 B，
+  因为方案 B 所生成的代码，
+  类似于 refactor 过程中的人工手动生成的代码。
+
 # 2020-10-27
 
 [2025-10-30]
@@ -1558,6 +1562,13 @@ video-backup: "https://space.bilibili.com/550104600/lists/6478233"
 
   curried exp 将会被求值为 curried value，
   它有自己的 API，而不是 vector。
+
+- [2025-11-02] 不对。
+  因为 flat-closure 的自我引用是在 apply 的时候才形成的，
+  所以不能用 curried 来代替 flat-closure。
+
+  老师的方案不需要在运行时判断 apply，
+  是正常的函数也被处理为 closure 了。
 
 - 注意，`closure-conversion` 在解释器中也很有用，
   因为把 lambda 翻译成 top-level function 的过程，
