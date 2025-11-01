@@ -74,3 +74,78 @@ vue 和类似的前端 UI 框架，都是例证。
 
 这也是坏事，因为它证明了人群是荒谬的，
 这么多年下来，人们没能对 OOP 给出充分的批判。
+
+# 再反思
+
+[2025-11-01]
+
+我发现，虽然没有使用 OOP 的 dot syntax，
+也没有把 method 放到 class 里，
+但是我依然践行着 Sandi Metz 所教授的 OOP 技巧中的优点。
+
+只不过从 a lot of little objects and methods，
+变成了 a lot of little functions。
+
+以 x-lisp 中实现的 graph API 为例：
+
+```scheme
+(graph? vertex-p value)
+(graph-edge? vertex-p edge)
+(make-graph vertices edges)
+(make-empty-graph)
+(graph-copy graph)
+(graph-vertices graph)
+(graph-vertex-count graph)
+(graph-empty? graph)
+(graph-edges graph)
+(graph-equal-edge? lhs rhs)
+(graph-equal-edges? lhs rhs)
+(graph-neighbors vertex graph)
+(graph-add-vertex! vertex graph)
+(graph-has-vertex? vertex graph)
+(graph-delete-vertex! vertex graph)
+(graph-add-vertices! vertices graph)
+(graph-add-edge! edge graph)
+(graph-has-edge? edge graph)
+(graph-delete-edge! edge graph)
+(graph-add-edges! edges graph)
+(graph-adjacent? source target graph)
+(graph-degree vertex graph)
+(graph-max-degree graph)
+```
+
+从 OOP 的角度，上述简单 API 看来应该属于 graph 这个 class。
+可是下面的 coloring 却比较复杂，不应该作为 graph 的 method。
+
+```scheme
+(graph-coloring! coloring vertices graph)
+(graph-coloring graph)
+```
+
+我可以写一个 `graph-coloring` module，
+不必使用 OOP 的技巧定义新的 class，
+直接实现相关的函数。
+
+作为 `graph` module 的用户，
+所实现的 `graph-coloring!` 和 `graph-coloring` 函数，
+与 graph 本身的处理函数是同等级的。
+
+如果是 OOP，那么作为用户所实现的 method 就是次一级的 method 了，
+可能需要定义新的 class，不能直接用 graph 的 dot syntax。
+
+Sandi Metz 所讲授的 OOP 技巧还有一个重点是，
+"send message" 的时候不必知道 object 的具体 class，
+只要知道 object 可以接受这个 message，
+并且其行为符合某个 interface。
+
+在 x-lisp 中，大部分函数是需要知道 target 的具体类型的，
+但是其实也是可以做到 interface 的效果的，
+并且也需要 interface 的功能。
+实现这一效果的语言 feature，
+是 sussman 经常说 的 generic dispatching。
+比如在实现 propagator model 时，
+大量使用了 generic function。
+
+因此 Sandi 所讲授的技巧是完全适用的。
+只不过在 x-lisp 中，可以在大部分时间使用普通的函数，
+推迟实现 interface 的决定。
