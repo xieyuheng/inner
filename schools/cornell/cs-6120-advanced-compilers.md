@@ -1039,6 +1039,17 @@ SSA 这么简单的东西，
 
 bril 就是数据驱动的例子。
 
+# lesson 9 -- alias analysis
+
+[2025-11-03]
+
+- alias analysis 也叫 pointer analysis。
+
+- 强调不光是 C 中有 explicit pointer，
+  动态类型语言中的 object 也是 pointer。
+
+- TODO
+
 # lesson 10 -- memory management
 
 [2025-10-19]
