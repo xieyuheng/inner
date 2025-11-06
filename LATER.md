@@ -1,3 +1,15 @@
+# elf
+
+《ELF-64 Object File Format》
+《Linkers and Loaders》 by John R. Levine
+《Computer Systems: A Programmer's Perspective》 (CS:APP) 第 7 章详细讲解链接和可执行文件格式
+
+```
+man elf      # Linux 系统手册
+man readelf  # 读取 ELF 信息的工具
+man objdump  # 对象文件分析工具
+```
+
 # pattern-matching
 
 persons/peyton-jones-simon/1987-the-implementation-of-functional-programming-languages.pdf
