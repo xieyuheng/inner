@@ -149,3 +149,54 @@ Sandi Metz 所讲授的 OOP 技巧还有一个重点是，
 因此 Sandi 所讲授的技巧是完全适用的。
 只不过在 x-lisp 中，可以在大部分时间使用普通的函数，
 推迟实现 interface 的决定。
+
+# 抵抗 OOP API 的诱惑
+
+[2025-11-18]
+
+考虑 [honojs](https://hono.dev/docs/getting-started/basic) 的 context API：
+
+```js
+app.get('/posts/:id', (c) => {
+  const page = c.req.query('page')
+  const id = c.req.param('id')
+  c.header('X-Message', 'Hi!')
+  return c.text(`You want to see ${page} of ${id}`)
+})
+app.post('/posts', (c) => c.text('Created!', 201))
+app.delete('/posts/:id', (c) =>
+  c.text(`${c.req.param('id')} is deleted!`)
+)
+```
+
+也就是上面通过 c (context) export 的 API function：
+
+```
+c.req.query
+c.req.param
+c.header
+c.text
+```
+
+这类似于把 callback function 的参数当作模块系统来用，
+这种 API 看似很简洁，但是其实有问题。
+
+主要在于 library 和 framework 的设计者，不能穷尽所有的处理函数。
+这里想要处理的是 request 和 response，
+用户想要处理这些数据的方式是无穷的，
+把其中一部分实现为特殊的 context API，
+会使得用户所实现的处理函数为「二等公民」。
+
+这与对 nat class 所用的「归谬法」类似。
+
+上述 API 完全可以实现为多带一个参数的函数：
+
+```
+req-query(req)
+req-param(req)
+req-header(req)
+req-text(req)
+```
+
+这样用户所实现的处理函数，
+就和 library 作者所实现的处理函数同级别了。
