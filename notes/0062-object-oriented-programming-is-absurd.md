@@ -133,6 +133,17 @@ vue 和类似的前端 UI 框架，都是例证。
 如果是 OOP，那么作为用户所实现的 method 就是次一级的 method 了，
 可能需要定义新的 class，不能直接用 graph 的 dot syntax。
 
+- [2025-11-18]
+  这里还有一证是 ruby 的 monkey patching class 功能。
+
+  当 ruby 有这个功能允许人们这样做时，
+  人们最常见的赞许是，这使得他们可以实现，
+  和 class builtin method 一样的 first class method。
+
+  然而 monkey patching class，
+  在解决本不应该存在的问题时，
+  会引入新的模块系统问题。
+
 Sandi Metz 所讲授的 OOP 技巧还有一个重点是，
 "send message" 的时候不必知道 object 的具体 class，
 只要知道 object 可以接受这个 message，
