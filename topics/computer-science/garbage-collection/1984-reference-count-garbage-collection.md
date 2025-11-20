@@ -23,6 +23,12 @@ year: 1984
 就代表有额外的引用来自 stack 或 register，
 因此这个 object 就应该被作为 root。
 
+[2025-11-20]
+
+读其他在编译时保证 accurate root scanning 的论文，都觉得太复杂了。
+而这篇论文的方案是纯运行时的方案，这算是一个重要的备用方案。
+如果其他方案碰壁，可以 fallback 到这个方案。
+
 # SUMMARY
 
 > A garbage collection algorithm that permits a reference count
