@@ -73,4 +73,3 @@ shadow stack 中的每一个 frame 有一个 callback function `trace`，
 
 想要实现 henderson frame 就必须在翻译成 basic-lisp 的时候实现。
 但是这也不太合理，因为 henderson frame 用到了太多的 c 的功能了。
-
