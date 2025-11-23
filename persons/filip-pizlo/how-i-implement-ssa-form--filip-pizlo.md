@@ -584,8 +584,8 @@ say stuff like:
 And stuff like:
 
     Effects effects;
-    effects.add(inst1->effects();
-    effects.add(inst2->effects();
+    effects.add(inst1->effects());
+    effects.add(inst2->effects());
     if (effects.interferesWith(whatever))
         // stuff
 
