@@ -1,7 +1,8 @@
 ---
 title: How I implement SSA form
 author: Filip Pizlo
-source: https://gist.github.com/pizlonator/cf1e72b8600b1437dda8153ea3fdb963
+source: "https://gist.github.com/pizlonator/cf1e72b8600b1437dda8153ea3fdb963"
+date: 2025-02-12
 ---
 
 This document explains how I would implement an SSA-based compiler if

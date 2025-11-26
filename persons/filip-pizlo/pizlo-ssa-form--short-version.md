@@ -1,7 +1,8 @@
 ---
 title: Pizlo SSA form (short version)
 author: Filip Pizlo
-source: https://gist.github.com/pizlonator/79b0aa601912ff1a0eb1cb9253f5e98d
+source: "https://gist.github.com/pizlonator/79b0aa601912ff1a0eb1cb9253f5e98d"
+date: 2025-02-14
 ---
 
 <motive>
