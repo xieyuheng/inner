@@ -98,6 +98,35 @@ man 和 month 之间的关系，
 > shortens, the schedule.
 
 # 3 The Surgical Team
+
+> The conclusion is simple: if a 200-man project has 25 managers who
+> are the most competent and experienced programmers, fire the 175
+> troops and put the managers back to programming.
+
+这篇文章对 team 结构的描述，
+可以看出来 1960 年编程工作的情况和 2025 年有着翻天覆地般的差异。
+因此这本书的所有结论都应该谨慎对待。
+
+模仿外科手术团队：
+
+- the surgeon -- 主程序员 -- 类比外科医生，是就这个项目而言团队唯一的程序员。
+- the copilot -- 副手 -- 给主程提建议、研究方案，很少写代码，如果写也对代码不负责。
+- the administrator -- 负责帮助主程处理人事工作，但是所有的人事决策都有主程拍板。
+- the editor -- 帮助编辑主程所写的文档。
+- two secretaries -- 服务于 administrator 和 editor。
+- the program clerk -- 帮助记录和整理程序的输入输出文件。
+- the toolsmith -- 专门帮助主程写辅助工具类程序，包括 libraries。
+- the tester -- 帮助主程做测试。
+- the language lawyer -- 帮助主程使用程序语言，比如研究程序语言的新特性。
+
+> This, then, is how 10 people might contribute in well-differentiated
+> and specialized roles on a programming team built on the surgical
+> model.
+
+这看起来简直荒谬绝伦。
+但是不能因此摒弃这本书，
+因为所有古代的书都有类似的问题。
+
 # 4 Aristocracy, Democracy, and System Design
 # 5 The Second-System Effect
 # 6 Passing the Word
