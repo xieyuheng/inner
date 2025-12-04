@@ -127,7 +127,20 @@ man 和 month 之间的关系，
 但是不能因此摒弃这本书，
 因为所有古代的书都有类似的问题。
 
+## Scaling Up
+
+> So far, so good. The problem, however, is how to build things that
+> today take 5000 man-years, not things that take 20 or 30.
+
+既然已经说过了 man-month 不能作为 progress 的度量单位，
+这里却又在用 man-month 作为项目规模的度量单位。
+但是对项目的规模度量，其实就是对项目 progress 完结的度量。
+这不是互相矛盾吗？
+
 # 4 Aristocracy, Democracy, and System Design
+
+TODO
+
 # 5 The Second-System Effect
 # 6 Passing the Word
 # 7 Why Did the Tower of Babel Fail?
