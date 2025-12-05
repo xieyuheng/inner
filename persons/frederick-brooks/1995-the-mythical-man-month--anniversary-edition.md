@@ -139,9 +139,38 @@ man 和 month 之间的关系，
 
 # 4 Aristocracy, Democracy, and System Design
 
-TODO
+> I will contend that conceptual integrity is the most important
+> consideration in system design. It is better to have a system omit
+> certain anomalous features and improvements, but to reflect one set
+> of design ideas, than to have one that contains many good but
+> independent and uncoordinated ideas.
+
+> Because ease of use is the purpose, this ratio of function to
+> conceptual complexity is the ultimate test of system design.
+> Neither function alone nor simplicity alone defines a good design.
+> This point is widely misunderstood. Operating System/360
+
+因为一个系统的易用程度与其功能成正比，
+但是与其复杂度成反比。
+
+不要为了简单的功能设计复杂的系统，
+尽量设计简单的系统来实现复杂的功能。
+
+但是这一章很虚伪，
+作者不能接受金字塔状的团队不民主的事实，
+也不能接受团队的底层实现人员被剥夺了创造性工作这个事实。
+
+作者发现了生产力方面的问题，
+但是没有考虑生产关系上的创新，
+而是选择了抑制人们创造性的生产关系方案，
+来保证产品在设计上的一致性得以维系。
+
+zmq 团队的 C4，是从生产关系上创新来解决生产力问题的例子。
 
 # 5 The Second-System Effect
+
+TODO
+
 # 6 Passing the Word
 # 7 Why Did the Tower of Babel Fail?
 # 8 Calling the Shot
