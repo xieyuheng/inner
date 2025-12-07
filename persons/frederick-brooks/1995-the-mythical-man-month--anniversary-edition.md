@@ -169,9 +169,46 @@ zmq 团队的 C4，是从生产关系上创新来解决生产力问题的例子�
 
 # 5 The Second-System Effect
 
-TODO
+## Interactive Discipline for the Architect
+
+开篇就讲 architect 和 builder 的分工，
+然后讲 architect 如何压缩 builder 所预估的工期：
+
+- 用建议的语气而不是命令。
+- 准备接受自己建议被驳回。
+- 私下悄悄地提建议。
+- 把所建议的「改善」归功于 builder。
+
+不论作者如何粉饰这里的说辞，
+这种现象都揭露着 architect 和 builder 之间，
+阶级斗争似的矛盾。
+
+问题就在于软件不是建筑，
+现代的软件开发 architect 和 builder
+是统一的没有分工的。
+
+从建筑行业学来一套分工方式，
+强加于软件行业，显然是没有分析具体情况的，
+是不可取的。
+
+## Self-Discipline -- The Second-System Effect
+
+> An architect's first work is apt to be spare and clean. He knows he
+> doesn't know what he's doing, so he does it carefully and with great
+> restraint.
+
+> As he designs the first work, frill after frill and embellishment
+> after embellishment occur to him. These get stored away to he used
+> "next time." Sooner or later the first system is finished, and the
+> architect, with firm. confidence and a demonstrated mastery of that
+> class of systems, is ready to build a second system.
+
+> This second is the most dangerous system a man ever designs.
 
 # 6 Passing the Word
+
+TODO
+
 # 7 Why Did the Tower of Babel Fail?
 # 8 Calling the Shot
 # 9 Ten Pounds in a Five-Pound Sack
