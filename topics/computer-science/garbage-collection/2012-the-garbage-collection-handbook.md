@@ -82,21 +82,6 @@ root scanning 问题可能就讨论的不多。
 | vertex  | object                     |
 | edge    | address of field in object |
 
-也就是说：
-
-- 一个 object 中的 address，是一个 vertex 的潜在 edge。
-- 当这个 address 保存了另一个 object 时，
-  这两个 object 所代表的 vertex 之间才有了一个 edge。
-- 也可以用 null 来把所有未连接的潜在 edge 理解为连接到 null。
-
-这种理解 edge 的方式，是我之前没想到的。
-我之前把 pointer 理解为 digraph 的方式是诉诸直觉，
-而不是诉诸数学的（set theory 的），是不精确的。
-
-- 注意，digraph 中没有所谓「潜在的 edge」，
-  如果需要，那就是 ported digraph 了。
-  在 inet 中，我已经大量使用 ported graph 了。
-
 在这个模型下，就可以在 CG 中区分出来 mutator 和 collector 两种职责：
 
 > - The mutator executes application code, which allocates new objects
