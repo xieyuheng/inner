@@ -108,6 +108,28 @@ root scanning 问题可能就讨论的不多。
 > The next four chapters focus on these four basic styles of
 > collection. In Chapter 6 we compare their characteristics.
 
+## 2.1 The mark-sweep algorithm
+
+## 2.2 The tricolour abstraction
+
+> The _tricolour_ abstraction [Dijkstra et al., 1976, 1978] is a
+> useful characterisation of tracing collectors that permits reasoning
+> about collector correctness in terms of invariants that the
+> collector must preserve.
+
+| color | meaning                     | during mark-sweep       |
+|-------|-----------------------------|-------------------------|
+| white | 尚未搜索的                  | not marked              |
+| gray  | 当前搜索的边界（wavefront） | marked and in work list |
+| black | 搜索过的                    | marked                  |
+
+> The algorithm preserves an important invariant: at the end of each
+> iteration of the marking loop, there are no references from black to
+> white objects. Thus any white object that is reachable must be
+> reachable from a grey object.
+
+## 2.3 Improving mark-sweep
+
 TODO
 
 # 5 Reference counting
