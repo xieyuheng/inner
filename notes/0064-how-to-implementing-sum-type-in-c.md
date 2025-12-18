@@ -91,32 +91,27 @@ struct lambda_exp_t { struct exp_header_t header; char *parameter; exp_t *body; 
 
 属性：
 
-- 所有就 class 而言不变的数据（函数指针），
-  都放在 vtable 中，可以节约内存。
+- 所有就 class 而言不变的数据（函数指针），都放在 vtable 中，可以节约内存。
+  如果不需要节省空间，也可以直接将 vtable inline 到 header 中。
 
-也许不应该用 vtable 这个不清晰的名字，
-因为其中实际可以保存的数据是，
-与 instance variable 相对的 class variable。
+不应该用 vtable 这个不清晰的名字，
+因为其中实际可以保存的数据是与 instance variable 相对的 class variable。
+
+静态的 class 的地址可以取代 kind 的作用。
 
 ```c
 typedef struct exp_t exp_t;
-typedef struct exp_vtable_t exp_vtable_t;
+typedef struct exp_class_t exp_class_t;
 
-typedef enum {
-    VAR_EXP,
-    APPLY_EXP,
-    LAMBDA_EXP,
-} exp_kind_t;
-
-struct exp_vtable_t {
+struct exp_class_t {
+    char *name;
     void (*print)(const exp_t *);
     void (*free)(exp_t *);
 };
 
 struct exp_header_t {
-    exp_kind_t kind;
+    exp_class_t *class;
     struct exp_meta_t meta;
-    struct exp_vtable_t vtable;
 };
 
 struct exp_t { struct exp_header_t header; };
