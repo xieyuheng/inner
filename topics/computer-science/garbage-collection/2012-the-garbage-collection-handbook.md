@@ -95,6 +95,10 @@ root scanning 问题可能就讨论的不多。
 如果需要，那就是 ported digraph 了。
 在 inet 中，我已经大量使用 ported graph 了。
 
+# 2 Mark-sweep garbage collection
+
+TODO
+
 # 5 Reference counting
 
 TODO

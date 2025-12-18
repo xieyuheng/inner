@@ -1,3 +1,9 @@
+# machine learning
+
+hand-coded reward function (loss function) v.s. general reward mechanism,
+computer v.s. stored-program computer,
+primitive computation model v.s. turing complete computation model.
+
 # elf
 
 《ELF-64 Object File Format》
