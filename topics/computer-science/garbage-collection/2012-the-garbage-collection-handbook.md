@@ -71,7 +71,9 @@ root scanning 问题可能就讨论的不多。
 ### Liveness, correctness and reachability
 
 区分 liveness 和 reachability。
-更重要的是，介绍如何用 digraph 理论作为模型，
+
+更重要的是 object graph 这个概念，
+也就是如何用 digraph 理论作为模型，
 来理解编程时所用的 object 与 pointer。
 
 | digraph | memory management          |
@@ -91,11 +93,35 @@ root scanning 问题可能就讨论的不多。
 我之前把 pointer 理解为 digraph 的方式是诉诸直觉，
 而不是诉诸数学的（set theory 的），是不精确的。
 
-注意，digraph 中没有所谓「潜在的 edge」，
-如果需要，那就是 ported digraph 了。
-在 inet 中，我已经大量使用 ported graph 了。
+- 注意，digraph 中没有所谓「潜在的 edge」，
+  如果需要，那就是 ported digraph 了。
+  在 inet 中，我已经大量使用 ported graph 了。
+
+在这个模型下，就可以在 CG 中区分出来 mutator 和 collector 两种职责：
+
+> - The mutator executes application code, which allocates new objects
+>   and mutates the object graph by changing reference fields so that
+>   they refer to different destination objects.
+
+所谓 reference fields 就是 edges。
+
+> - The collector executes garbage collection code, which discovers
+>   unreachable objects and reclaims their storage.
 
 # 2 Mark-sweep garbage collection
+
+> All garbage collection schemes are based on one of four fundamental
+> approaches:
+>
+> - mark-sweep collection
+> - copying collection
+> - mark-compact collection
+> - reference counting
+>
+> or some combination of these.
+
+> The next four chapters focus on these four basic styles of
+> collection. In Chapter 6 we compare their characteristics.
 
 TODO
 
