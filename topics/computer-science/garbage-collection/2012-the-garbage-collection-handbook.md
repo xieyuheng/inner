@@ -130,6 +130,47 @@ root scanning 问题可能就讨论的不多。
 
 ## 2.3 Improving mark-sweep
 
+> Unfortunately, garbage collectors do not behave like typical
+> applications. The temporal locality of mark-sweep collection is
+> poor.
+
+## 2.4 Bitmap marking
+
+mark 信息保存在 object 之外。
+
+除非能够自己定制 allocator，
+否则就需要 object address 到 mark 的 hash map。
+
+这是一个重要的思路（不是说 bitmap，而是说使用额外的 hash map），
+因为 object 的 gc 相关的信息不用保存在 object 之内，
+不需要 header object，所以是 scalable 的。
+
+作者使用这个方案的目的是让 mark 保存在连续的内存中，
+以利用 CPU cache。
+
+> With a bitmap, marking will not modify any object, but will only
+> read pointer fields of live objects. Other than loading the type
+> descriptor field, no other part of pointer-free objects will be
+> accessed.
+
+因为 metadata 保存在额外的 hash map 中，
+所以不用 wrap c native object：
+
+> Bitmap marking dates to at least Lisp 1.5 but was adopted for a
+> conservative collector designed to provide automatic memory
+> management for uncooperative languages like C [Boehm and Weiser,
+> 1988].
+
+## 2.5 Lazy sweeping
+
+TODO
+
+## 2.6 Cache misses in the marking loop
+
+TODO
+
+## 2.7 Issues to consider
+
 TODO
 
 # 5 Reference counting
