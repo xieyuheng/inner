@@ -33,6 +33,9 @@ years: 2023
   - chapter 12 Language-specific concerns
     -- 关于 dead object 的 finalisation
 
+[2025-12-20] 感觉这里对大量的解决同一个问题的方案的比较，
+非常适合 FCA。
+
 # Preface
 
 > In this book, we have tried to bring together the wealth of
@@ -163,13 +166,117 @@ mark 信息保存在 object 之外。
 
 ## 2.5 Lazy sweeping
 
-TODO
+mutator 显然可以在 sweep 的时候就恢复运行。
+
+> The sweeper (or sweepers) could be executed as separate threads,
+> running concurrently with the mutator threads, but a simple solution
+> is to use _lazy sweeping_ [Hughes, 1982]. Lazy sweeping amortises
+> the cost of sweeping by having the _allocator_ perform the
+> sweep. Rather than a separate sweep phase, the responsibility for
+> finding free space is devolved to `allocate`. At its simplest,
+> `allocate` advances the sweep pointer until it finds sufficient
+> space in a sequence of unmarked objects. However, it is more
+> practical to sweep a block of several objects at a time.
+
+这要求定制 allocator，
+而 x-lisp 为了方便 c 扩展，
+要保持 allocator 与 gc 无关。
 
 ## 2.6 Cache misses in the marking loop
 
-TODO
+> However, cache misses will be incurred as the fields of an unmarked
+> object are read as part of the traversal. Thus, much of the
+> potential cache advantage of using mark bitmaps in the mark phase
+> will be lost as object fields are loaded.
+
+也就是说，bitmap 对于 mark 阶段减少 cache miss 来说没什么大用。
+
+> Boehm [2000] observes that marking dominates collection time, with
+> the cost of fetching the first pointer from an object accounting for
+> a third of the time spent marking on an Intel Pentium III system.
+
+在具体测量之前，我还是不要考虑这方面的优化。
+
+> Garner et al. observe that tracing edges rather than nodes can
+> improve performance even without software prefetching, speculating
+> that the structure of the loop and the first-in, first-out queue
+> enables more aggressive hardware speculation through more
+> predictable access patterns.
+
+这也是一个有趣的思路，只有有了 object graph 这个思维模型之后，才容易想
+到这个思路。
 
 ## 2.7 Issues to consider
+
+> Despite its antiquity as the first algorithm developed for garbage
+> collection [McCarthy, 1960], there are many reasons why mark-sweep
+> collection remains an attractive option for developers and users
+> today.
+
+### Mutator overhead
+
+> Mark-sweep in its simplest form imposes no overhead on mutator read
+> and write operations. In contrast, reference counting (which we
+> introduce in Chapter 5) imposes a significant overhead on the
+> mutator.
+
+> However, note that mark-sweep is also commonly used as a base
+> algorithm for more sophisticated collectors which do require some
+> synchronisation between mutator and collector.
+
+> Both generational collectors (Chapter 9), and concurrent and
+> incremental collectors (Chapter 15), require the mutator to inform
+> the collector when they modify pointers. However, the overhead of
+> doing so is typically small, a few percent of overall execution
+> time.
+
+### Throughput
+
+> Combined with lazy sweeping, mark-sweep offers good throughput. The
+> mark phase is cheap compared to other collection methods, and is
+> dominated by the cost of pointer chasing. It simply needs to set a
+> bit or byte for each live object discovered, in contrast to
+> algorithms like semispace copying collection (Chapter 4) or
+> mark-compact (Chapter 3) which must copy or move objects. On the
+> other hand, like all the tracing collectors in these initial
+> chapters, mark-sweep requires that all mutators be stopped while the
+> collector runs.  The pause time for collection depends on the
+> program being run and its input, but can easily extend to several
+> seconds or worse for large systems.
+
+对于 compiler 一类的应用来说，
+所需要优化的就是 throughput，
+而不用在乎 latency。
+
+### Space usage
+
+> Mark-sweep has significantly better space usage than approaches
+> based on semispace copying. It also potentially has better space
+> usage than reference counting algorithms.  Mark bits can often be
+> stored at no cost in spare bits in object headers.
+
+> On the debit side, non-compacting collectors, like mark-sweep and
+> reference counting, require more complex allocators, such as
+> segregated fits free-lists. The structures needed to support such
+> collectors impose a further, non-negligible overhead. Furthermore,
+> non-compacting collectors can suffer from fragmentation, thus
+> increasing their effective space usage.
+
+这是缺点，但是 more complex allocators 也可以直接用 c 标准库的。
+相反 compacting collectors 必须要定制 allocator。
+
+### To move or not to move?
+
+non-moving 可以把 GC 和 allocator 完全解耦。
+
+这里提到的 fragmentation 问题，
+可以完全交给 allocator 去解决。
+
+# 3 Mark-compact garbage collection
+
+TODO
+
+# 4 Copying garbage collection
 
 TODO
 
