@@ -455,6 +455,108 @@ mark-sweep 解耦了两个问题，
 > heap by half. It also requires processing all the bytes of each
 > object rather than only the pointers.
 
+## 4.3 Issues to consider
+
+> Copying collection offers two immediately attractive advantages over
+> non-moving garbage collectors like mark-sweep: it provides fast
+> allocation and elimination of fragmentation.
+
+> Simple copying collectors are also easier to implement than
+> mark-sweep or mark-compact collectors.
+
+我认为就实现之简单性而言，mark-sweep 最简单。
+
+### Allocation
+
+> Allocation in a compacted heap is fast because it is simple. In the
+> common case, it only requires a test against a heap or block limit
+> and that a free pointer be incremented. If a block-structured rather
+> than a contiguous heap is used, occasionally the test will fail and
+> a new block must be acquired.
+
+> Sequential allocation also works well with multithreaded
+> applications since each mutator can be given its own local
+> allocation buffer in which to allocate without needing to
+> synchronise with other threads. This arrangement is simpler and
+> requires little metadata, in contrast with local allocation schemes
+> for non-moving collectors where each thread might need its own size
+> class data structures for segregated-fits allocation.
+
+> The code sequence for such bump pointer allocation is short but,
+> even better, it is well behaved with respect to the cache as
+> allocation advances linearly through the heap.
+
+> Blackburn et al. [2004a] found that although sequential allocation
+> had an 11% advantage over free-list allocation in a micro-benchmark
+> limit study, allocation itself accounted for less than 10% of
+> overall running time in real applications. Thus, the difference in
+> cost between bump pointer allocation and free-list allocation may
+> not be significant.
+
+对极限 advantage 的研究，可以告诉我们哪些优化的方向根本不值得去实现。
+
+下面是解释，为什么 allocation 只占有 10%。
+
+> However, allocation is only part of the picture for the mutator
+> since the cost of creating a new object is likely to be dominated by
+> its initialisation, certainly in systems that distinguish these
+> actions.
+
+> Furthermore, objects share similar life-cycles in many applications.
+> The mutator creates some semantically related objects at around the
+> same time, uses them, and finally tends to abandon them all at
+> once. Here, compacted heaps offer good spatial locality, with
+> related objects typically allocated on the same page and maybe in
+> the same cache line if they are small. Such a layout is likely to
+> lead to fewer cache misses than if related objects are allocated
+> from different free-lists.
+
+这可能是 mark-sweep GC + 独立的 allocator 的设计中，
+allocator 怎么也做不到的，做不到 sequential allocation 这么好的 locality。
+
+### Space and locality
+
+一次 copy 之后 locality 属性就反转了：
+
+> So, sequential allocation tends to lay out contemporaneously
+> accessed objects contiguously, which helps to improve the mutator’s
+> cache miss rate. But copying collection then reorders surviving
+> objects in the heap. Although Cheney-style collectors need no
+> auxiliary stack to guide the trace, their breadth-first traversal
+> tends to separate parents and children.
+
+但是有补救方案：
+
+> Hierarchical decomposition offers a compromise between paying the
+> costs of a tracing stack and improving the layout of objects in the
+> heap.
+
+又反转了，补救方案没什么效果：
+
+> However, although careful reordering has benefits for some programs,
+> it often has negligible effects. Why is this?  Most objects have
+> short lifetimes and do not survive a collection. Moreover, many
+> applications concentrate accesses, and especially writes, on these
+> young objects [Blackburn and McKinley, 2003].
+
+### Moving objects
+
+有时候，因为没法 move objects，
+所以没得选，只能用 mark-sweep。
+
+> It is expensive to copy some objects. Although copying even a small
+> object is likely to be more expensive than marking it, the cost and
+> latency of doing so is often absorbed by the costs of chasing
+> pointers and discovering type information. On the other hand,
+> repeatedly copying large, pointer-free objects will lead to poor
+> performance. One solution is simply not to copy them but instead
+> devolve the management of large objects to a non-moving collector.
+> Another is to copy them virtually but not physically.  This can be
+> done either by holding such objects on a linked list maintained by
+> the collector, or by allocating large objects on their own virtual
+> memory pages which can be remapped. We consider such techniques in
+> Chapters 8 to 10.
+
 # 5 Reference counting
 
 TODO
