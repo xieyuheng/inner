@@ -36,6 +36,37 @@ years: 2023
 [2025-12-20] 感觉这里对大量的解决同一个问题的方案的比较，
 非常适合 FCA。
 
+我发现不止是 GC 这个领域有这种现象，
+计算机科学的所有领域的很多问题都有这种现象，
+即大量解决方案之间相互竞争的现象。
+
+一些例子：
+
+- 排序：有许多排序算法（快速排序、归并排序、堆排序、冒泡排序、插入排序等）。
+- 哈希：解决冲突的不同方法（链地址法、开放地址法、线性探测、二次探测、双重哈希等）。
+- 并发控制：在数据库中，有锁、时间戳、乐观并发控制等。
+- 内存管理：除了GC，还有分页策略（FIFO、LRU、时钟算法等）。
+- 图遍历：DFS、BFS等。
+- 最短路径算法：Dijkstra、Bellman-Ford、Floyd-Warshall等。
+- 字符串匹配：朴素算法、KMP、Boyer-Moore、Rabin-Karp等。
+- 数据压缩：霍夫曼编码、LZ77、LZ78、LZW等。
+- 公钥密码学：RSA、椭圆曲线密码、Diffie-Hellman等。
+- 共识算法：Paxos、Raft、拜占庭容错算法等。
+- 数值积分：梯形法则、辛普森法则、蒙特卡洛方法等。
+- 机器学习中的优化：梯度下降、随机梯度下降、Adam、RMSprop等。
+- 线性规划：单纯形法、内点法等。
+- 自动微分：前向模式、反向模式。
+- 解析：LL、LR、LALR等。
+- 虚拟内存：页面置换算法。
+- 缓存替换策略：LRU、LFU、FIFO等。
+- 调度算法：在操作系统中，先来先服务、最短作业优先、轮转等。
+- 负载均衡：轮询、最少连接、IP哈希等。
+- 图像渲染：光线追踪、光栅化等。
+
+可谓百舸争流，千帆竞渡。
+因此可能 FCA 在「对比方案」这个方向有广阔应用是有可能的。
+这个 FCA 项目可以叫做「竞渡」 -- jingdu analytics。
+
 # Preface
 
 > In this book, we have tried to bring together the wealth of
@@ -274,11 +305,155 @@ non-moving 可以把 GC 和 allocator 完全解耦。
 
 # 3 Mark-compact garbage collection
 
-TODO
+这么看来分类应该是：
+
+- mark-sweep
+- mark-compact
+- mark-compact by copying
+
+与 mark-sweep 相比 mark-compact 的主要难点是，
+在移动 object 在内存中的位置之后，
+需要更新引用了这个 object 的所有指针。
+
+注意，命名中的 mark 和 sweep/compact 是在描述每个阶段的目的，
+完成每个目的可能有不同的方法，
+比如 mark 阶段一般都以 mark by traversing 来完成。
+而 compact 阶段有很多方法：
+
+- compact by filling and updating
+- compact by sliding
+- compact by copying
+
+> The compaction order has locality implications. Any moving collector
+> may rearrange objects in the heap in one of three ways.
+>
+> - Arbitrary: objects are relocated without regard for their original
+>   order or whether they point to one another.
+
+> - Linearising: objects are relocated so that they are adjacent to
+>   related objects, such as ones to which they refer, which refer to
+>   them, which are siblings in a data structure, and so on, as far as
+>   this is possible.
+>
+> - Sliding: objects are slid to one end of the heap, squeezing out
+>   garbage, thereby maintaining their order of placement in the heap.
+
+## 3.1 Two-finger compaction
+
+> Edwards’s Two-Finger algorithm [Saunders, 1974] is a two-pass,
+> arbitrary order algorithm, designed to compact regions containing
+> objects of a fixed size. The idea is simple: given the volume of
+> live data in the region to be compacted, we know where the
+> high-water mark of the region will be after compaction. Live objects
+> above this threshold are moved into gaps below the threshold.
+
+注意这里需要 "objects of a fixed size"。
+也可以通过 "one level of indirect" 来处理任意 size 的 object。
+
+既然已经假设了 "objects of a fixed size"，
+为什么还需要 compact，而不是直接在 allocate 时找到下一个空位？
+
+> The second pass updates the old values of pointers that referred to
+> locations beyond the high-water mark with the forwarding addresses
+> found in those locations, that is, with the objects’ new locations.
+
+> Unfortunately, the order of objects in the heap that results from
+> this style of compaction is arbitrary, and this tends to harm the
+> mutator’s locality.
+
+看来这个算法可以被命名为 compact by filling and updating。
+
+这里的 two-finger 很形象地描述了程序员设计算法的过程，
+下一节还会用到。
+
+## 3.2 The Lisp 2 algorithm
+
+GC 这种明显分 stage 的算法，很方便用 forth 来描述：
+
+- mark
+  - traverse
+- compact
+  - compute forwarding address
+  - slide (relocate)
+  - update reference
+
+slide 和 update reference 两个阶段的顺序可以互换。
+
+这个方案可以用来 compact 同一个 heap，
+也可以用来把一个 heap compact 到一个新的 heap，类似 copy。
+
+- 但是后面要介绍的 mark-compact by copying，
+  直接融合了 mark 和 copy 两个阶段。
+
+## 3.3 Threaded compaction
+
+> The goal of threading is to allow all references to a node N to be
+> found from N. It does so by temporarily reversing the direction of
+> pointers.
+
+```
+A -> N
+B -> N
+C -> N
+```
+
+变成：
+
+```
+A <- B
+B <- C
+C <- N
+```
+
+我没看懂这样做意义何在。
+
+## 3.4 One-pass algorithms
+
+> If we are to reduce the number of passes a sliding collector makes
+> over the heap to two (one to mark and one to slide objects), and
+> avoid the expense of threading, then we must store forwarding
+> addresses in a side table that is preserved throughout compaction.
+
+好像只是为了不在 object header 中保存 forwarding address。
+
+确实，问题在于保存 metadata，而方案有两种：
+
+- 保存在 header 中。
+- 保存在额外的以 object address 为 key 的 table 中。
+
+## 3.5 Issues to consider
+
+总结来看，这一章只有 "3.2 The Lisp 2 algorithm" 所描述的，
+mark-compact by sliding 值得一学。
+
+而 "3.1 Two-finger compaction" 所描述的算法，
+只能用于 fixed sized object，根本没法接受。
+
+### Throughput costs of compaction
+
+> Sequential allocation in a compacted heap is fast.
+
+这是 compacting GC 的最大优点，
+-- allocation 就是简单地 increment a pointer。
+
+因为我们在同时解决 GC 与 allocation 问题，
+所以才能做到这一点。
+
+mark-sweep 解耦了两个问题，
+让实现变简单了，但是让整体的效率变低了。
+但是其实也没那么糟糕，分离出来的，
+专门解决 fragmentation 问题的 allocator 效率也可以很高。
+想象用这里提到的 segregated-fits 来实现 allocator，
+可以完全避免 fragmentation，而 allocation 就是找到合适大小的 chunk，
+然后 increment a pointer，速度也可以很快。
 
 # 4 Copying garbage collection
 
-TODO
+应该称为 mark-compact by copying。
+
+> Its chief disadvantage is that it reduces the size of the available
+> heap by half. It also requires processing all the bytes of each
+> object rather than only the pointers.
 
 # 5 Reference counting
 
