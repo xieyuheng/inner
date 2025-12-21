@@ -539,6 +539,9 @@ allocator 怎么也做不到的，做不到 sequential allocation 这么好的 l
 > applications concentrate accesses, and especially writes, on these
 > young objects [Blackburn and McKinley, 2003].
 
+可见对于效率来说，不做测试而只是纸上谈兵的话根本没有意义。
+纸上谈的只能是测试结果的总结与分析。
+
 ### Moving objects
 
 有时候，因为没法 move objects，
@@ -558,6 +561,17 @@ allocator 怎么也做不到的，做不到 sequential allocation 这么好的 l
 > Chapters 8 to 10.
 
 # 5 Reference counting
+
+> The algorithms considered so far have all been indirect. Each has
+> traced the graph of live objects from a set of known roots to
+> identify all live objects. In this chapter, we consider the last
+> class of fundamental algorithms, reference counting [Collins,
+> 1960]. Rather than tracing reachable objects and then inferring that
+> all unvisited objects must be garbage, reference counting operates
+> directly on objects as references are created or destroyed.
+
+从 FCA 的角度讲，区分 reference counting 和前面 GC 的属性，
+被作者称作 directness，即 liveness 信息是否是直接记录在 object 的 metadata 中的。
 
 TODO
 

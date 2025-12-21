@@ -1,3 +1,8 @@
+# hardware description language
+
+propagator model 所需要的程序语言的特性，
+与硬件描述语言所需要的特性几乎完全一样！
+
 # machine learning
 
 hand-coded reward function (loss function) v.s. general reward mechanism,
