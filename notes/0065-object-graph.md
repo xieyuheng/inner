@@ -10,11 +10,11 @@ date: 2025-12-19
 也就是如何用 digraph 理论作为模型，
 来理解编程时所用的 object 与 pointer。
 
-| digraph | memory management          |
-|---------|----------------------------|
-| digraph | object graph               |
-| vertex  | object                     |
-| edge    | address of field in object |
+| digraph | memory management          | implementation          |
+|---------|----------------------------|-------------------------|
+| digraph | object graph               | heap + stack + register |
+| vertex  | object                     | pointer                 |
+| edge    | address of field in object | pointer field           |
 
 也就是说：
 

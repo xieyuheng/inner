@@ -2,7 +2,7 @@
 title: the garbage collection handbook (2nd edition)
 subtitle: the art of automatic memory management
 authors: [richard jones, antony hosking, eliot moss]
-years: 2023
+years: 2012
 ---
 
 # 动机
@@ -67,6 +67,13 @@ years: 2023
 因此可能 FCA 在「对比方案」这个方向有广阔应用是有可能的。
 这个 FCA 项目可以叫做「竞渡」 -- jingdu analytics。
 
+[2025-12-23] 在实现 x-lisp-forth 的时候，
+是否应该让每个 vm 带有 gc？
+
+如何为并行计算保留设计余地？
+毕竟，并行在于使用 shared memory，
+而 shared memory 可能会要求我们用 global variable 来实现 gc。
+
 # Preface
 
 > In this book, we have tried to bring together the wealth of
@@ -110,11 +117,11 @@ root scanning 问题可能就讨论的不多。
 也就是如何用 digraph 理论作为模型，
 来理解编程时所用的 object 与 pointer。
 
-| digraph | memory management          |
-|---------|----------------------------|
-| digraph | object graph               |
-| vertex  | object                     |
-| edge    | address of field in object |
+| digraph | memory management          | implementation          |
+|---------|----------------------------|-------------------------|
+| digraph | object graph               | heap + stack + register |
+| vertex  | object                     | pointer                 |
+| edge    | address of field in object | pointer field           |
 
 在这个模型下，就可以在 CG 中区分出来 mutator 和 collector 两种职责：
 
@@ -644,3 +651,27 @@ TODO 实现到 GC 的 root scanning 的时候，再回来细读这里的方案�
 # 12 Language-specific concerns
 
 TODO
+
+## 13 Concurrency preliminaries
+
+这一章对并行计算的基础知识给出了很好的介绍。
+
+## 14 Parallel garbage collection
+
+> Up to now we have assumed that, although there may be many mutator
+> threads there is only a single collector thread. This is clearly a
+> poor use of resources on modern multicore or multiprocessor
+> hardware. In this chapter we consider how to parallelise garbage
+> collection, although we continue to assume that no mutators run
+> while garbage collection proceeds and that each collection cycle
+> terminates before the mutators can continue.
+
+通过并行，来加快 collector。
+
+## 15 Concurrent garbage collection
+
+> The basic principles of concurrent collection were initially devised
+> as a means to reduce pause times for garbage collection on
+> uniprocessors.
+
+## 16 Concurrent mark-sweep
