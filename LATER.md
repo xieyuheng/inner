@@ -1,3 +1,7 @@
+# gc and inet
+
+并行的 gc mark 问题，和 inet 问题相似！
+
 # hardware description language
 
 propagator model 所需要的程序语言的特性，
