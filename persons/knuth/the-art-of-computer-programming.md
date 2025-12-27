@@ -32,6 +32,7 @@ Completed:
 - Volume 4 Fascicle 4, Generating All Trees; History of Combinatorial Generation (2006)
 - Volume 4 Fascicle 5, Mathematical Preliminaries Redux; Introduction to Backtracking; Dancing Links (2019)
 - Volume 4 Fascicle 6, Satisfiability (2015)
+- Volume 4 Fascicle 7, The Constraint Satisfaction (2025)
 
 Planned:
 
