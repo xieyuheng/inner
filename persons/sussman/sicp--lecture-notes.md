@@ -6,96 +6,91 @@ date: timeless
 
 # 1A
 
-- 层次结构是为了控制复杂性
-  把复杂性控制在人类所能理解的范围内
+层次结构是为了控制复杂性
+把复杂性控制在人类所能理解的范围内
 
-- 其实
-  程序设计中的一大部分知识
-  是关于如何控制这种复杂性的
-  [关于表达的 而不是算法的时空消耗]
+其实
+程序设计中的一大部分知识
+是关于如何控制这种复杂性的
+[关于表达的 而不是算法的时空消耗]
 
-- 一个基本的控制表达的复杂性的方法是
-  设计更特殊化的新编程语言
+一个基本的控制表达的复杂性的方法是
+设计更特殊化的新编程语言
 
-- 有趣的是 在纯数学中
-  总想要把函数看成是点集
-  而在计算机科学中 发展了一套形式语言去描述过程
-  因此函数总被看成是对数据的操作
-  显然 后者更具体 它的语义更丰富
-  [例如 在 lambda-cal 中函数被理解为 代入转写]
+有趣的是 在纯数学中
+总想要把函数看成是点集
+而在计算机科学中 发展了一套形式语言去描述过程
+因此函数总被看成是对数据的操作
+显然 后者更具体 它的语义更丰富
+[例如 在 lambda-cal 中函数被理解为 代入转写]
 
-- 如何描述对与一个数学结构族而言的抽象函数[generic operation]
-  使得它可以使用于结构族中各个具体的结构
-  [例如以线性空间族 与线性空间]
-  - [2026-01-24] abstract class 或 interface 的概念，
-    对应于抽象的数学结构。
+如何描述对与一个数学结构族而言的抽象函数[generic operation]
+使得它可以使用于结构族中各个具体的结构
+[例如以线性空间族 与线性空间]
+- [2026-01-24] abstract class 或 interface 的概念，
+  对应于抽象的数学结构。
 
-- to show a language is to show
-  1. primitive elements
-  2. means of combination
-  3. means of abstraction
+to show a language is to show
+1. primitive elements
+2. means of combination
+3. means of abstraction
 
-- in lisp
-  1. primitive data & primitive procedures
-  2. using ( ) cond cons if
-  3. using define
+in lisp
+1. primitive data & primitive procedures
+2. using ( ) cond cons if
+3. using define
 
-- 构建和理解复杂系统的普遍方法：
-  识别原子单元，指定组合规则，并引入抽象以管理复杂性。
-  这不仅是语言的特征，也是数学、计算机科学和认知科学中的一般原则。
+构建和理解复杂系统的普遍方法：
+识别原子单元，指定组合规则，并引入抽象以管理复杂性。
+这不仅是语言的特征，也是数学、计算机科学和认知科学中的一般原则。
 
 # 1B
 
-- the key to understanding complicated things
-  is to know what not to look at
-  and what not to compute
-  and what not to think
+the key to understanding complicated things
+is to know what not to look at
+and what not to compute
+and what not to think
 
-- using Substitution Rule to explain evaluation (temporarily)
+using Substitution Rule to explain evaluation (temporarily)
 
-- 去学习这些术语
-  之后我们就可以用这些术语进行讨论了
-  one fo the things that every sorserer will tell you
-  is if you have the name of a spirit, you have power over it
+去学习这些术语
+之后我们就可以用这些术语进行讨论了
+one fo the things that every sorserer will tell you
+is if you have the name of a spirit, you have power over it
 
-- 培养直觉
-  一个特殊形状的 procedure or expression
-  如何给出一个特殊形状的 process
+培养直觉
+一个特殊形状的 procedure or expression
+如何给出一个特殊形状的 process
 
-- 关于 迭代 递归 尾部递归 算法复杂度
+关于 迭代 递归 尾部递归 算法复杂度
 
 # 2A
 
-- 用一级一级的抽象来使程序变得容易理解
-  这就是所说的
-  用层级结构来控制[就表达而言的]复杂性
-- 这种复杂性关乎于
-  一个人如何表达一个东西[比如对算法的表达]
-  而使得所作出的表达
-  易于被另一个人[或者将来的自己]所理解
-- 很明显
-  要从结构主义的角度定义所谓 关于表达的 复杂性
-  那么就必须指明
-  表达者 与 理解者
-  他们将给出用于定义复杂性的基本元素 等等
-- 这显然还没有把 "什么是复杂性" 这个问题研究清楚
-  这些陈述所未表达出来的还有很多
-- 比如 这样的层次结构还使得
-  写程序的人可以从 总体的性质 入手
-  从一个大的观念入手
-  而不必过早的去考虑 大的过程中的细节过程 是如何实现的
-  [即所谓的 wishful thinking]
-  可以说当使用这样的函数式编程范式时
-  就像是 lisp 语言在教你如何解决问题
-  即 去构造层次
+用一级一级的抽象来使程序变得容易理解
+这就是所说的
+用层级结构来控制[就表达而言的]复杂性
+
+这种复杂性关乎于
+一个人如何表达一个东西[比如对算法的表达]
+而使得所作出的表达
+易于被另一个人[或者将来的自己]所理解
+
+比如 这样的层次结构还使得
+写程序的人可以从 总体的性质 入手
+从一个大的观念入手
+而不必过早的去考虑 大的过程中的细节过程 是如何实现的
+[即所谓的 wishful thinking]
+可以说当使用这样的函数式编程范式时
+就像是 lisp 语言在教你如何解决问题
+即 去构造层次
 
 # 2B
 
 about compound data
 just like compound procedure
 
-构建数据结构的 同对过程的抽象一样 也是一种构建层次结构的手段
-理由是相同的:
+构建数据结构 同对过程的抽象一样 也是一种构建层次结构的手段
+形成层次的理由是相同的:
 1. 表达清晰 易于理解
 2. 解构之后的各个部分更易于修改
 3. 使人们可以从大观念入手来构造程序 并且保持灵活性
@@ -105,22 +100,26 @@ just like compound procedure
 因此在解决问题的过程中获得解决问题的能力
 
 而劣势在于:(反对意见相当单薄而易于反驳)
+
 1. 降低了机器那方面的效率
-   提高了人类的效率,并且这个劣势可以用好的编译器来弥补
+   提高了人类的效率，并且这个劣势可以用好的编译器来弥补
+
 2. 解构所带来的分离性
-   + 这样的分离性必须是绝对的
+
+   - 这样的分离性必须是绝对的
      即使得低一层次的改变(同时低一层必须保证自己完成了高一层次所部署下来的任务)
      完全不影响高一层次的工作
+
    可能使不同的工作这之间不能触及彼此的工作
-   或者可能造成对程序的权利的保护 这时无政府主义者所希望避免的
-   + See, in general, as systems designers,
-     you're forced with the necessity to make decisions about how you're going to do things,
+
+   - See, in general, as systems designers,
+     you're forced with the necessity to make decisions
+     about how you're going to do things,
      and in general, the way you'd like to retain flexibility is to
      never make up your mind about anything until you're forced to do it.
-   + 对内存处理的封锁有时候带来麻烦
+
 3. deferring decisions 有可能变成 outright procrastination
    推迟抉择 有可能变成 彻底的拖延
-   + 这也许是在那lisp的语法开玩笑呢
 
 the whole name of this scheme is that
 we'd like the programming language to express the concepts
@@ -128,95 +127,147 @@ that we have in our heads
 
 当一个存储单元存储另一个存储单元的地址
 这样所形成的关系满足图论中的有向图的定义
-所以就用箭头来表示,所以就有指针这个术语
+所以就用箭头来表示，所以就有指针这个术语
 
-术语Closure在数学结构中很常见,指一种完备性
-例如,通过cons得到的元素对本身也可以作为cons的对象来再次形成元素组
-即cons操作(运算)在lisp的所有数据集合中的封闭性
+术语 Closure 在数学结构中很常见，指一种完备性
+例如，通过 cons 得到的元素对本身也可以作为 cons 的对象来再次形成元素组
+即 cons 操作(运算)在 lisp 的所有数据集合中的封闭性
 + 数学中的经验是:
   有些时候去判断所定义出的一个过程
   或者形成新数据结构的组合方式
   是否具有某种程度的封闭性是本质重要的
   因为这种就不封闭性的完备化可以作为一个非常普使的思路来理解很多东西
 + 这才是闭包这个术语的意义
-  而"把环境包起来"只是表象
-  即"把环境包起来"是为了使得λ-term能够在某些运算下完备
+  "把环境包起来"只是表象
+  即为了使得λ-term能够在某些运算下完备
+
+完备化函子的实例：
+
+- λ闭包：从 语法项 到 语义值 的完备化
+- 数学闭包：从 子结构 到 完备结构 的完备化
 
 # 3A
 
-list in lisp is essentially just a conventional way for representing a sequence
+list in lisp is essentially just
+a conventional way for representing a sequence
 
 meta-linguistic abstraction
 
-如之前已经申明的,给出一个语言就在于:
+如之前已经申明的，给出一个语言就在于:
 1. primitives
 2. meams of combination
 3. means of abstraction
-又一次这些东西让人想起数学结构,只不过与静态的数学结构相比,这里的东西被想成时动态的过程,而第3条(其实第2条也类似)是独特与数学结构的,它指明如何用 基本的元素 与 基本的操作 来定义复杂的元素与操作.
+
+又一次这些东西让人想起数学结构，
+只不过与静态的数学结构相比，
+比如第3条指明如何用 基本的元素 与 基本的操作
+来定义复杂的元素与操作。
+
 联想一直困扰我的数学结构的层次问题!
-我有一个 一般的规则 来从 (起初只有基本后继关系的)自然数结构(或者其他任何具体的结构)衍生出包含 自然数结构 的更复杂结构,这个规则是:
-1. 去需找所有可能的运算(多元的或一元的),此时一种对于运算的有意义的分类是它们的对称性,即它们所能满足什么样的运算律
-2. 同态概念(等等类似的概念)是基本的 而且是在所给出的基本结构之外的
-3. 从 自然数 的 后继关系 能够 构造出 加法 在于 后继关系的自同态的集合(以结构中的 某些已有运算 为基础的 满足某些运算律(在自然数的例子中 运算律由 同态 指出)的 结构的基础集合上的 函数的集合) 能够在某种意义上与 自然数集等同;从 自然数 加法运算 能够构造出 乘法运算 在于 加法运算的自同态的集合 能够在某种意义上与自然数集等同;从乘法运算能够构造出加法运算 在于乘法运算的自同态的一部分 能够与自然数集等同.
-4. 如果某些(n元)运算的集合能够在某种意义下与结构的基本集本身等同,那么就可以形成一种(n+1元)运算,如果这些运算的集合满足某些运算律 那么这样形成的新运算就是有意以的或者有趣的.
-5. 以上都是在某个具体的数学结构的运算方面(更广泛的关系方面)作补充定义,同样重要的是在结构的基本集方面(结构的元素方面)作补充定义,这在于 对所引入的 新运算 以及它们的逆运算 作完备化,即补充定义新的元素使得运算完备.
-6. 从某种意义上来说 实数以及几乎全部数学 都 以这种方式 内蕴于 自然数集.
+我有一个 一般的规则
+来从 起初只有基本后继关系的自然数结构(或者其他任何具体的结构)
+衍生出包含 自然数结构 的更复杂结构，这个规则是:
+1. 去需找所有可能的运算(多元的或一元的)，
+   此时一种对于运算的有意义的分类是它们的对称性，
+   即它们所能满足什么样的运算律
+2. 同态概念(等等类似的概念)是基本的
+   而且是在所给出的基本结构之外的
+3. 从 自然数 的 后继关系 能够 构造出 加法
+   在于 后继关系的自同态的集合
+   (以结构中的 某些已有运算 为基础的
+    满足某些运算律(在自然数的例子中 运算律由 同态 指出)的
+    结构的基础集合上的 函数的集合)
+   能够在某种意义上与 自然数集等同;
+   从 自然数 加法运算 能够构造出 乘法运算
+   在于 加法运算的自同态的集合
+   能够在某种意义上与自然数集等同;
+   从乘法运算能够构造出加法运算
+   在于乘法运算的自同态的一部分
+   能够与自然数集等同。
+4. 如果某些(n元)运算的集合能够在某种意义下与结构的基本集本身等同，
+   那么就可以形成一种(n+1元)运算，
+   如果这些运算的集合满足某些运算律
+   那么这样形成的新运算就是有意以的或者有趣的。
+5. 以上都是在某个具体的数学结构的运算方面(更广泛的关系方面)作扩展定义，
+   同样重要的是在结构的基本集方面(结构的元素方面)作补充定义，
+   这在于 对所引入的 新运算 以及它们的逆运算 作完备化，
+   即补充定义新的元素使得运算完备。
+6. 从某种意义上来说 实数以及几乎全部数学
+   都 以这种方式 内蕴于 自然数集。
 
 (至少从形式上看来)这与所谓的 meta-linguistic abstraction 有很大的共通之处!
-现在问题来了,我能在某种程度上,利用 lisp 实现一个有趣的东西来介绍这些概念吗?
-这样的实现必须新颖并且意义丰富.
+现在问题来了，我能在某种程度上，利用 lisp 实现一个有趣的东西来介绍这些概念吗?
+这样的实现必须新颖并且意义丰富。
 
-这里所介绍的 meta-linguistic abstraction 是 Henderson-Escher example.
+这里所介绍的 meta-linguistic abstraction 是 Henderson-Escher example。
 
-here because the operations are closed,we could built up complexity so fast.(这是 embedded 所要求的性质吗?)
+here because the operations are closed,
+we could built up complexity so fast.
+(这是 embedded 所要求的性质吗?)
 
 a language embedded in lisp.
-lisp 作为强大的工具来处理和扩展 这个埋入 lisp 的语言.
-课程里想要展示的就是如何把一个语言埋入 lisp 中,
-这比在 lisp 中实现一个语言要好得多,因为它使得你不失 lisp 的全部原始力量(比如定义高阶过程的能力).
-也就是说,用形成了一个多层次结构的埋入 lisp 语言链 来 完成任务(解决问题),比用 把任务分解成任务树再来分部解决要好的多(两者都是用来控制复杂性的方法).
-比如 这样能获得 健壮性(insensitive to small changes: a small change in the problem should lead to only a small change in the solution.There ought to be a continuity. The space of solutions ought to be continuous in this space of problems.),对某个层次的语言中元素的改变可以被 高一层次捕获 而不影响整体.
-同时构建语言链,使得你用大量的词汇来描述一些细节性质,这使你对问题的理解更透彻,并且这带来了解决问题的灵活性.
+lisp 作为强大的工具来处理和扩展 这个嵌入 lisp 的语言。
+课程里想要展示的就是如何把一个语言嵌入 lisp 中，
+这比在 lisp 中实现一个语言要好得多，
+因为它使得你不失 lisp 的全部原始力量(比如定义高阶过程的能力)。
+也就是说，用形成了一个多层次结构的嵌入 lisp 语言链 来完成任务(解决问题)，
+比用 把任务分解成任务树再来分部解决要好的多(两者都是用来控制复杂性的方法)。
+比如 这样能获得 健壮性
+(insensitive to small changes:
+a small change in the problem
+should lead to only a small change in the solution.
+There ought to be a continuity.
+The space of solutions ought to be continuous
+in this space of problems.)
+对某个层次的语言中元素的改变可以被 高一层次捕获 而不影响整体。
+同时构建语言链，使得你用大量的词汇来描述一些细节性质，
+这使你对问题的理解更透彻，并且这带来了解决问题的灵活性。
 
 # >< 3B
 
 # 4A
 
-关于模式匹配 与 在指定规则下的替换.
+关于模式匹配 与 在指定规则下的替换。
 当想要描述一个替换规则时所使用的
 尤其是在符号计算中经常需要使用(用于对符号表达式的化简)
 
 方法就是
-1 匹配(有固定的规则 并且 用到 通配符(构造特殊的通配符来匹配类型 (??c?v)))
+1 匹配(有固定的规则 并且 用到 通配符)
 2 替换
 
 # 4B
 
-Generic operator means what it sort of precisely does depends on the kind of data that it's looking at.
+Generic operator means what it sort of precisely does
+depends on the kind of data that it's looking at.
 
-以复数的运算为例.(注意:与我的问题相联系的是,每当结构扩张,都需要补充定义运算 以实现这种运算符重载.)
+以复数的运算为例。
+(注意:与我的问题相联系的是，
+每当结构扩张，都需要补充定义运算
+以实现这种运算符重载。)
 
 typed data comes now!
 dispatch on type.
 
-首先,利用添加标签来实现,给不同类型的数据顺便贴上标签.
-之后,为了使新的数据结构容易被增加进来,把那个查表的管理者踢了,而直接用那张表.
+首先，利用添加标签来实现，给不同类型的数据顺便贴上标签。
+之后，为了使新的数据结构容易被增加进来，
+把那个查表的管理员踢了，而直接用那张表。
 
 data-directed programming.
-这时会作出标签链的.
+这时会作出标签链的。
 层次结构又出现了!
 
 decentralized control
 
 练习1:
-去发现Galois中可以用于符号计算 或一般计算的 题目,然后用 lisp 来实现,注意 要用4B中的方法.
+去发现Galois中可以用于符号计算 或一般计算的 题目，
+然后用 lisp 来实现，注意 要用4B中的方法。
 
 练习2:
-计算数论中的计算题目.
+计算数论中的计算题目。
 
-练习3:一阶语言.
+练习3:一阶语言。
 
-练习4:公理集合论.
+练习4:公理集合论。
 
 # 5A Assignment, State, and Side-effects
 
@@ -229,7 +280,7 @@ decentralized control
     用形式规则沿某一方向 找出一些等价的表达式
     即它们的计算结果将是相同的
     但是这些形式规则是人告诉机器的
-    并不是机器通过它所又能力执行的那个计算本身来获得的
+    并不是机器通过它所有能力执行的那个计算本身来获得的
     而计算本身理应包含这些形式规则
     人既知道自然数有加法 又知道加法有交换律
     而如何让机器把 就同一个具体的数学结构的
@@ -427,9 +478,11 @@ that communicate sending messages
 
 1. 寄存器机的特点就是
    函数的输入值与输出 都明依赖于以显地方式声明寄存器而完成
+
 2. 与forth这种栈机器相比
    可以说sicp寄存器机是针对对寄存器的操作来优化自己的语法的
    而forth是针对对栈的操作来优化自己的语法的
+
 3. 另外
    不同语言对函数语义的实现方式不一样
    也就是对函数的参数传递的实现方式不一样
@@ -439,29 +492,35 @@ that communicate sending messages
    而在一个函数返回的值可以被留在栈里之后在用
    而不是需要被立即使用
    在scheme中是通过局部变量来实现这种效果的
+
 4. 关于smalltalk中的协议和信息传递:
    在寄存器机里也有对函数参数的约定等等
    但是有什么区别呢???
    wordy-lisp如何呢???
+
 5. 这节反复说明 机器很笨
    + 类似于图灵的计算员隐喻 但是略有区别
-   但是正是机器的这种笨的但是能够被重复并且被通过积累而增加性能设计
+   但是正是机器的这种笨的
+   但是能够被重复并且被通过积累而增加性能的设计
    使得现代电子计算机这种机器非常成功
+
    ``` scheme
    (define gcd
      (lambda (a b)
        (if (zero? b)
          a
          (gcd b (remainder a b)))))
-   ;; (gcd 3 6)
-   ;; (gcd 3 7)
 
    (define remainder
      (lambda (n d)
        (if (< n d)
          n
          (remainder (- n d) d))))
+
+   ;; (gcd 3 6)
+   ;; (gcd 3 7)
    ```
+
 6. 极简主义的金玉良言:
    one of the important things for designing a computer,
    which i think most designers don't do,
@@ -469,61 +528,79 @@ that communicate sending messages
    and then use what you learn from studying the problem you want to solve
    to put in the mechanisms needed to solve it in the computer you're building,
    no more no less.
+
+   - [2026-01-24] 在这个建议的指导下，
+     研究想要设计的 lisp -- x-lisp 的特性，
+     然后专门设计中间语言与 vm 来实现这些特性。
+
 7. Now it may be that the problem you're trying to solve is everybody's problem,
    in which case you have to build in a universal interpreter of some language.
    But you shouldn't put any more in
    than required to build the universal interpreter of some language.
-8. 也就是说,如果你对你所想要解决的问题有充分而深入的研究,并且透彻理解了那个问题,
-   那么,在实现一个解决那个问题的方案的时候给出一个极简主义的设计就是水到渠成的了
 
+8. 也就是说，
+   如果你对你所想要解决的问题有充分而深入的研究，
+   并且透彻理解了那个问题，
+   那么，在实现一个解决那个问题的方案时，
+   给出一个极简主义的设计就是水到渠成的了。
 
-每个函数就像一个机器,大机器里可能有小机器
+每个函数就像一个机器，大机器里可能有小机器
 而这一节的语言是一种机器描述语言
 每个机器由两部分组成:
+
 1. 电路(data path)
    一个data path对应于汇编语言中的一个指令
    + 但是显然这是两种计算模型之间的类比
      这里的每个小机器都是特殊的计算机
      而 比如说 x86的机器是一个通用的计算机
      汇编命令是这个计算机用来模拟特殊的小计算机的方式
-   + 注意通用计算机所模拟的每个小机器都可以直接作为硬件被造出来
+   + 注意，通用计算机所模拟的每个小机器都可以直接作为硬件被造出来
+
 2. 控制器(controller)
    控制器对应于流程图
    它把小机器以某种方式链接起来变成大机器
    一些汇编指令的按顺序排列就是controller
    按顺序排列之外也可利用mark language形成流程图中的圈
    而时间可以看成是在流程图中运动的一个点
-参数在两个机器是之间的传递在于它们都读写某个共同的存储空间:寄存器,或者栈
 
-机器被理解为这样的东西(一个有向图):
+参数在两个机器是之间的传递，
+在于它们都读写某个共同的存储空间：寄存器，或者栈。
+
+机器被理解为这样的东西(一个有向图)：
+
 1. 寄存器
    一种可以存放值的节点
+
 2. 计算元件
    一个原子计算元件 或者是 一个被抽象起来的同类机器(归纳定义产生于这里)
    一种节点
-   有一些入边链接到某些寄存器,可以从这些寄存器里fetch(并不删除旧的值)出值来
-   有一些出边链接到某些寄存器,可以把计算的结果保存到这些寄存器中
+   有一些入边链接到某些寄存器，可以从这些寄存器里fetch(并不删除旧的值)出值来
+   有一些出边链接到某些寄存器，可以把计算的结果保存到这些寄存器中
    就像一些电流被过滤成了另一些电流
    这个节点上有一个开关来控制计算的进行
+
 3. 单向信息流导线(可以被理解为 特殊的计算元件)
    一种特殊的有向边
    两边都连到寄存器
    导线上有开关
    当按下开关时会把一个寄存器中的值复制到另一个中
+
 4. 指示灯
    一种节点
    与某个寄存器相连
    指示灯可以作为谓词对这个寄存器中的值形成一个判断
    也就是对寄存器中的值我们能够形成我们所能想像到的任何谓词
    控制器可以读指示灯
+
 5. 控制器
    来控制按那些开关的先后顺序
+
 machine == data path + controller
 
 ``` scheme
 (define-machine gcd
   (register <a> <b> <t>)
-  (controller;; 就像汇编语言 或者流程图
+  (controller ;; 就像汇编语言 或者流程图
    ;; 程序运行过程中的某一时刻 可以看成是流程图中的一个点
    ;; 而流程图中的一些操作可以看成是与机器中的开关的按钮相对应
    MAIN (assign <a> (read))
@@ -535,8 +612,8 @@ machine == data path + controller
         (assign <b> (fetch <t>))
         (goto LOOP)
    DONE (print (fetch <a>))
-        (goto MAIN)
-        ))
+        (goto MAIN)))
+
 ;; 在上面assign与fetch就代表了带有开关的有向边
 ;; + 这里计算元件也被分解了
 ;;   因为其实不需要那么多的开关 所以可以更精简一点
@@ -564,8 +641,7 @@ machine == data path + controller
         (<b> <-- <t>)
         (goto LOOP)
    DONE (print <-- <a>)
-        (goto MAIN)
-        ))
+        (goto MAIN)))
 ```
 
 上面是iterative(尾递归的)的函数所对应的机器
@@ -698,7 +774,7 @@ AFTER-fib:n-1
         ;; (restore <continue>)
         ;; (save <continue>)
         ;; peephole optimization:
-        ;; 当对一个寄存器的restore save assign三连,而中间无其他操作时
+        ;; 当对一个寄存器的restore save assign三连，而中间无其他操作时
         ;; 就可以作这样的优化
         (assign <continue> AFTER-fib:n-2)
     #2= (save <result>)
@@ -758,16 +834,16 @@ What LISP is good for is constructing within it
 the right language to solve the problems you want to solve,
 and that's how you should think about it.
 
-我想强调scheme的上面的这个性质
+我想强调 scheme 的上面的这个性质
 并且改进它 以使它更适合完成这类任务
 
-对于初学者来说,用元lisp解释器写一个lisp解释器会带来惊奇
-而写个lisp到某个机器的汇编的编译器就能消除这种惊奇
+对于初学者来说，用元 lisp 解释器写一个 lisp 解释器会带来惊奇
+而写个 lisp 到某个机器的汇编的编译器就能消除这种惊奇
 一种愉快的理解被代替为另一种愉快的理解
 
-这里是在用上节课所介绍的低级语言来写lisp的解释器
+这里是在用上节课所介绍的低级语言来写 lisp 的解释器
 
-注意展开者把值(保存后面的计算的指令的地址)入栈
+注意，展开者把值(保存后面的计算的指令的地址)入栈
 合起来者把值(保存后面的计算的指令的地址)出栈
 
 尾递归优化其实不是针对尾递归的
