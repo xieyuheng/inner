@@ -148,6 +148,63 @@ data-path diagram 的另外一种视角，
  gcd-done)
 ```
 
+不同的是：
+
+- 这里每个 operand 都要明显表示出来，比如 (reg) 和 (const)。
+  类似地，operator 也要用 (op) 表示出来，
+  label 要用 (label) 表示出来。
+- 这里的 (test) 和 (branch) 配合，而不是一个 (branch)。
+
+> This form of description is easier to read than the kind illustrated
+> in Figure 5.3, but it also has disadvantages:
+
+> - It is more verbose for large machines, because complete
+>   descriptions of the d ata-path elements are repeated whenever the
+>   elements are mentioned in the controller instruction sequence.
+>   (This is not a problem in the  GCD example, because each
+>   operation and button is used only once.) Moreover, repeating the
+>   data-path descriptions obscures the actual data-path structure of
+>   the machine; it is not obvious for a large machine how many
+>   registers, operations, and buttons there are and how they are
+>   interconnected.
+
+也就是说图可以表达出更多关于连接细节的信息。
+
+> - Because the controller instructions in a machine definition look
+>   like Lisp expressions, it is easy to forget that they are not
+>   arbitrary Lisp expressions. They can notate only legal machine
+>   operations.  For example, operations can operate directly only on
+>   constants and the contents of registers, not on the results of
+>   other operations.
+
+不能有嵌套的表达式，其实这个限制在上面的语法设计中已经能体现出来了。
+
+比如：
+
+```scheme
+   (assign t (op rem) (reg a) (reg b))
+```
+
+反之，如果写成下面这样，
+「不允许嵌套」就体现不出来了：
+
+```scheme
+   (assign t (rem (reg a) (reg b)))
+```
+
+此时下面的例子看起来也是合法的：
+
+```scheme
+   (assign t (rem (rem (reg a) (reg b))
+                  (rem (reg a) (reg b))))
+```
+
+> In spite of these disadvantages, we will use this register-machine
+> language throughout this chapter, because we will be more concerned
+> with understanding controllers than with understanding the elements
+> and connections in data paths. We should keep in mind, however, that
+> data-path design is crucial in designing real machines.
+
 > Exercise 5.2: Use the register-machine language to describe
 > the iterative factorial machine of Exercise 5.1.
 
@@ -167,11 +224,11 @@ data-path diagram 的另外一种视角，
   (controller
     test-counter
       (test (op > (reg counter) (reg n)))
-      (branch (label done))
+      (branch (label factorial-done))
       (assign product (op *) (reg counter) (reg product))
       (assign counter (op +) (reg counter) (const 1))
       (goto (label test-counter))
-    done))
+    factorial-done))
 ```
 
 > Figure 5.4: A GCD machine that reads inputs and prints results.
@@ -198,5 +255,42 @@ data-path diagram 的另外一种视角，
 > numbers, computes their GCD, and prints the result.
 
 ### 5.1.2 Abstraction in Machine Design
+
+> Figure 5.6: Controller instruction sequence for
+> the GCD machine in Figure 5.5.
+
+```scheme
+(controller
+ test-b
+   (test (op =) (reg b) (const 0))
+   (branch (label gcd-done))
+   (assign t (reg a))
+ rem-loop
+   (test (op <) (reg t) (reg b))
+   (branch (label rem-done))
+   (assign t (op -) (reg t) (reg b))
+   (goto (label rem-loop))
+ rem-done
+   (assign a (reg b))
+   (assign b (reg t))
+   (goto (label test-b))
+ gcd-done)
+```
+
+对比原来的：
+
+```scheme
+(controller
+ test-b
+   (test (op =) (reg b) (const 0))
+   (branch (label gcd-done))
+   (assign t (op rem) (reg a) (reg b))
+   (assign a (reg b))
+   (assign b (reg t))
+   (goto (label test-b))
+ gcd-done)
+```
+
+### 5.1.3 Subroutines
 
 TODO
