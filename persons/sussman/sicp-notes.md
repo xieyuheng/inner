@@ -293,4 +293,101 @@ data-path diagram 的另外一种视角，
 
 ### 5.1.3 Subroutines
 
+构拟 subroutine 被发明的历程。
+但是此时还没有处理嵌套的调用和递归函数。
+
+> Figure 5.10: Assigning labels to the continue register
+> simplifies and generalizes the strategy shown in Figure 5.9.
+
+```scheme
+gcd
+  (test (op =) (reg b) (const 0))
+  (branch (label gcd-done))
+  (assign t (op rem) (reg a) (reg b))
+  (assign a (reg b))
+  (assign b (reg t))
+  (goto (label gcd))
+gcd-done
+  (goto (reg continue))
+  ...
+
+  ;; Before calling gcd, we assign to continue
+  ;; the label to which gcd should return.
+  (assign continue (label after-gcd-1))
+  (goto (label gcd))
+after-gcd-1
+  ...
+
+  ;; Here is the second call to gcd,
+  ;; with a different continuation.
+  (assign continue (label after-gcd-2))
+  (goto (label gcd))
+after-gcd-2
+```
+
+### 5.1.4 Using a Stack to Implement Recursion
+
+> Figure 5.11: A recursive factorial machine.
+
+```scheme
+(controller
+   (assign continue (label fact-done))   ;set up final return address
+ fact-loop
+   (test (op =) (reg n) (const 1))
+   (branch (label base-case))
+   ;; Set up for the recursive call by saving n and continue.
+   ;; Set up continue so that the computation will continue
+   ;; at after-fact when the subroutine returns.
+   (save continue)
+   (save n)
+   (assign n (op -) (reg n) (const 1))
+   (assign continue (label after-fact))
+   (goto (label fact-loop))
+ after-fact
+   (restore n)
+   (restore continue)
+   (assign val (op *) (reg n) (reg val))  ;val now contains n(n - 1)!
+   (goto (reg continue))                  ;return to caller
+ base-case
+   (assign val (const 1))                 ;base case: 1! = 1
+   (goto (reg continue))                  ;return to caller
+ fact-done)
+```
+
+如果有 call 和 return：
+
+```scheme
+(define-machine factorial
+   (test (op =) (reg n) (const 1))
+   (branch (label base-case))
+   (save n)
+   (assign n (op -) (reg n) (const 1))
+   (assign val (call factorial) (reg n))
+   (restore n)
+   (assign val (op *) (reg n) (reg val))
+   (return val)
+ base-case
+   (assign val (const 1))
+   (return val))
+```
+
+或者更进一步假设 call 不能嵌套，
+并且假设 return 的 value 会被保存在 `(reg result)` 中：
+
+```scheme
+(define-machine factorial
+   (test (op =) (reg n) (const 1))
+   (branch (label base-case))
+   (save n)
+   (assign n (op -) (reg n) (const 1))
+   (call factorial)
+   (assign val (reg result))
+   (restore n)
+   (assign val (op *) (reg n) (reg val))
+   (return val)
+ base-case
+   (assign val (const 1))
+   (return val))
+```
+
 TODO
