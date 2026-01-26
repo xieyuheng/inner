@@ -1,7 +1,7 @@
 ---
 title: Structure and Interpretation of Computer Programs -- Video Lecture
 authors: [Harold Abelson, Gerald Jay Sussman, Julie Sussman]
-date: timeless
+year: 1996
 ---
 
 # 1A
