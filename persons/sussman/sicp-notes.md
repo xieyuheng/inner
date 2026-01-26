@@ -327,6 +327,13 @@ after-gcd-2
 
 ### 5.1.4 Using a Stack to Implement Recursion
 
+```scheme
+(define (factorial n)
+  (if (= n 1)
+    1
+    (* (factorial (- n 1)) n)))
+```
+
 > Figure 5.11: A recursive factorial machine.
 
 ```scheme
@@ -389,5 +396,93 @@ after-gcd-2
    (assign val (const 1))
    (return val))
 ```
+
+### 5.1.5 Instruction Summary
+
+> A controller instruction in our register-machine language has one of the
+> following forms, where each `<input.i>` is either `(reg <register-name>)`
+> or `(const <constant-value>)`. These instructions were introduced in
+> Section 5.1.1:
+
+```scheme
+(assign <register-name> (reg <register-name>))
+(assign <register-name> (const <constant-value>))
+(assign <register-name> (op <operation-name>) <input.1> ... <input.n>)
+(perform (op <operation-name>) <input.1> ... <input.n>)
+(test (op <operation-name>) <input.1> ... <input.n>)
+(branch (label <label-name>))
+(goto (label <label-name>))
+```
+
+> The use of registers to hold labels was introduced in Section 5.1.3:
+
+```scheme
+(assign <register-name> (label <label-name>))
+(goto (reg <register-name>))
+```
+
+> Instructions to use the stack were introduced in Section 5.1.4:
+
+```scheme
+(save <register-name>)
+(restore <register-name>)
+```
+
+> The only kind of `<constant-value>` we have seen so far is a number, but
+> later we will use strings, symbols, and lists. For example,
+
+```scheme
+(const "abc") is the string "abc",
+(const abc) is the symbol abc,
+(const (a b c)) is the list (a b c),
+and (const ()) is the empty list.
+```
+
+上面是用 `(const)` 代替 `(quote)` 了，
+也许我们应该直接用 lisp 的 literal 语法，
+写 `(literal 'abc)` 而不是 `(const abc)`。
+
+也许虚拟机的中间语言应该这样设计：
+
+- 不用 `(var n)` 而是直接写 `n`。
+- 既然用了 lisp 的 literal，那就直接可以区分了，
+  也没必要写 `(literal 1)` 了，可以直接写 `1`。
+
+```scheme
+(define (factorial n)
+  (if (= n 1)
+    1
+    (* (factorial (- n 1)) n)))
+
+(define-function (factorial n)
+  (test (prim equal?) n 1)
+  (branch (label base-case))
+  (= n1 (prim isub) n 1)
+  (= val (function factorial) n1)
+  (= val (prim imul) n val)
+  (return val)
+ base-case
+  (= val 1)
+  (return val))
+
+(define (fib n)
+  (if (< n 2)
+    n
+    (+ (fib (- n 1)) (fib (- n 2)))))
+
+(define-function (fib n)
+  (test (prim int-less?) n 2)
+  (branch (label base-case))
+  (= n1 (prim isub) n 1)
+  (= f1 (function fib) n1)
+  (= n2 (prim isub) n 2)
+  (= f2 (function fib) n2)
+  (= val (prim iadd) n1 n2)
+  (return val)
+ base-case
+  (return n))
+```
+
+## 5.2 A Register-Machine Simulator
 
 TODO
