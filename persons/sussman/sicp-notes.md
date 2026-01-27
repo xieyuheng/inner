@@ -522,3 +522,7 @@ and (const ()) is the empty list.
 ### 5.2.1 The Machine Model
 
 TODO
+
+## 5.3 Storage Allocation and Garbage Collection
+
+TODO
