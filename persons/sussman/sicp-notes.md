@@ -447,6 +447,8 @@ and (const ()) is the empty list.
 - 不用 `(var n)` 而是直接写 `n`。
 - 既然用了 lisp 的 literal，那就直接可以区分了，
   也没必要写 `(literal 1)` 了，可以直接写 `1`。
+- operand 不写 tag，operator 也不应该加 tag。
+- 保留 label，可以理解为 label 属于另一个 namespace。
 
 ```scheme
 (define (factorial n)
@@ -455,11 +457,11 @@ and (const ()) is the empty list.
     (* (factorial (- n 1)) n)))
 
 (define-function (factorial n)
-  (test (prim equal?) n 1)
+  (test (equal? n 1))
   (branch (label base-case))
-  (= n1 (prim isub) n 1)
-  (= val (function factorial) n1)
-  (= val (prim imul) n val)
+  (= n1 (isub n 1))
+  (= val (factorial n1))
+  (= val (imul n val))
   (return val)
  base-case
   (= val 1)
@@ -471,18 +473,52 @@ and (const ()) is the empty list.
     (+ (fib (- n 1)) (fib (- n 2)))))
 
 (define-function (fib n)
-  (test (prim int-less?) n 2)
+  (test (int-less? n 2))
   (branch (label base-case))
-  (= n1 (prim isub) n 1)
-  (= f1 (function fib) n1)
-  (= n2 (prim isub) n 2)
-  (= f2 (function fib) n2)
-  (= val (prim iadd) n1 n2)
+  (= n1 (isub n 1))
+  (= f1 (fib n1))
+  (= n2 (isub n 2))
+  (= f2 (fib n2))
+  (= val (iadd n1 n2))
   (return val)
  base-case
   (return n))
 ```
 
 ## 5.2 A Register-Machine Simulator
+
+> The simulator is a Scheme program with four interface procedures.
+
+```scheme
+(make-machine <register-names> <operations> <controller>)
+(set-register-contents! <machine-model> <register-name> <value>)
+(get-register-contents <machine-model> <register-name>)
+(start <machine-model>)
+```
+
+```scheme
+(define gcd-machine
+  (make-machine
+   '(a b t)
+   (list (list 'rem remainder) (list '= =))
+   '(test-b (test (op =) (reg b) (const 0))
+            (branch (label gcd-done))
+            (assign t (op rem) (reg a) (reg b))
+            (assign a (reg b))
+            (assign b (reg t))
+            (goto (label test-b))
+            gcd-done)))
+
+(set-register-contents! gcd-machine 'a 206)
+;; done
+(set-register-contents! gcd-machine 'b 40)
+;; done
+(start gcd-machine)
+;; done
+(get-register-contents gcd-machine 'a)
+;; 2
+```
+
+### 5.2.1 The Machine Model
 
 TODO
