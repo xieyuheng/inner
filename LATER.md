@@ -37,24 +37,6 @@ persons/peyton-jones-simon/1987-the-implementation-of-functional-programming-lan
 《Optimizing ML with run-time code generation》 (P. Lee, 1996)
 《Soft typing》 (Cartwright, 1991)
 
-# cornell compiler course
-
-学完康奈尔编译器课程。
-
-# ssa
-
-学一波 SSA 的论文和书。
-
-1988-global-value-numbers-and-redundant-computations.pdf
-1995-a-correspondence-between-continuation-passing-style-and-static-single-assignment-form.pdf
-1991-efficiently-computing-static-single-assignment-form-and-the-control-dependence-graph.pdf
-1998-ssa-is-functional-programming--andrew-w-appel.pdf
-2009-the-development-of-static-single-assignment-form.pdf
-2022-ssa-based-compiler-design.pdf
-1986-code-motion-of-control-structures-in-high-level-languages.pdf
-
-实现 basic-lisp 中的 SSA。
-
 # control-flow-graph
 
 这里的引用好像很好看：
