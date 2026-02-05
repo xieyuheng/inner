@@ -20,6 +20,10 @@ year: 2022
 > _unique names_ for _distinct entities_ reduces uncertainty and
 > imprecision.
 
+> This book is about the _Static Single Assignment form_ (SSA), which
+> is a naming convention for storage locations (variables) in
+> low-level representations of computer programs.
+
 TODO
 
 # Part II Analysis
