@@ -171,7 +171,7 @@ List = Unit + (Int × List)
 
 在我看来这已经是对类型的具体定理了。
 因为这里的定义利用了 either 和 pair 的 data constructors，
-而 pattren matching 可以作为 data eliminators。
+而 pattern matching 可以作为 data eliminators。
 所以其实并不需要额外的定义了。
 
 看了后面的 mu 之后，
@@ -598,6 +598,12 @@ s = t |- α = β
 > conclude that `α = β`, because a complete analysis of `α` and
 > `β` has found no contradiction.
 
+上面这段话所给出的直觉很重要。
+即是说，这种定义等价的方法之所以奏效，
+是因为假设 `α = β`，然后对 `α` 和 `β` 的结构进行分析，
+经过完整的分析又回到 `α = β` 时，没有遇到矛盾，
+就可以判定 `α = β`。
+
 > This kind of reasoning is possible but it has to be carefully
 > justified, and in general we need to determine the conditions under
 > which this stronger notion of equality does not lead to a circular
@@ -729,6 +735,14 @@ x = (x + S / x) / 2
 > back-pointer, it has the option of analyzing the interior of the
 > structure ("unfolding" the recursive type) or to compare its address
 > with other addresses as a termination condition.
+
+上面这段话对于设计类似的新算法很重要，
+即每次遇到一个 `µ` 时，都可以选择展开与不展开。
+这里所说的是 `µ`，考虑递归定义的类型时，
+显然对于递归变量也有展开与不展开两种选择。
+
+其中 "unfolding" 也预示了后续论文所区分的
+iso-recursive 和 equi-recursive。
 
 > The algorithm for `α ≤ β` operates on a pair of linked structures
 > and a _trail_. A trail is a set of address pairs that records the
