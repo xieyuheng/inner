@@ -1,3 +1,19 @@
+# type lattice
+
+之前在实现 lattice-lisp 时，
+发现 type 所组成的 lattice 是很有趣的数学结构，
+我并没能研究透彻。
+
+这个 lattice 在类型系统设计中很实用，
+并且是 FCA 的推广。
+
+主要在于，lattice 中有自由的 union 和 inter，
+还有自由的递归定义，以形成无限的树状类型。
+
+研究透彻，就在于给出判断这种 lattice 中，
+两个元素之等价的算法，
+或者证明其算法不存在。
+
 # gc and inet
 
 并行的 gc mark 问题，和 inet 问题相似！
