@@ -113,6 +113,22 @@ year: 1993
 作者为了研究 structural type + recursive type，
 专门设计了两个语言 Amber 和 Quest。
 
+- [9] Cardelli, L., and Wegner, P.
+  On understanding types, data abstraction and polymorphism,
+  Computing Surveys, 17, 4, pp 471-522, December 1985.
+
+- [10] Cardelli, L.
+  Amber,
+  Combinators and Functional Programming Languages,
+  Proc. of the 13th Summer School of the LITP,
+  Le Val D'Ajol, Vosges (France), May 1985.
+  Lecture Notes in Computer Science, vol. 242, Springer-Verlag.
+
+- [12] Cardelli, L.
+  Typeful programming,
+  in Formal Description of Programming Concepts,
+  E.J.Neuhold and M.Paul Eds., pp 431-507, Springer-Verlag, 1991.
+
 Summary:
 
 > - Section 1 provides the basic intuitions about recursive subtypes,
@@ -806,6 +822,9 @@ iso-recursive 和 equi-recursive。
 >   incomparable type expressions, such as a function type and a base
 >   type.)
 
+注意，步骤 [4.1] 同时遇到了可以展开的两个类型，就要同时展开。
+此时如果先展开一个的话，那么另一个分支就探索不到了。
+
 注意，步骤 [4.2] 和 [4.3] 保存到 trail 的地址，
 包含一般表达式的地址，这些地址在递归展开的过程中不稳定，
 因此步骤 [1] 在判断 trail 中的一对元素是否相等时，
@@ -898,6 +917,10 @@ type constructor 的地址，只是 loopback 依据的一部分，
 ```
 
 看起来是可行的。
+
+- [2026-02-14] 实际上不会有 `either-t`，而是用 `define-datatype`。
+  type-constructor apply 所得的结果有两种选择，
+  不展开是 delayed-datatype，展开就是 datatype 的 variants。
 
 我用 `|-` 来分割左边的 context 和右边的 judgement。
 
@@ -1089,11 +1112,32 @@ t, s, ... type variables and type constants, indifferently
 ## 2.2 Terms
 
 `fold` 和 `unfold` 被作为 explicit syntax 加入到了 term 的定义中。
+
+这类似程序语言中的 cast，
+exp 不同，exp 的 type 不同，
+但是 value 相同。
+
 可能是因为使用了 church 风格的 term，
-在建立起 type 之间的等价理论之前，
 不这样做，就不能保证每个 term 有唯一个类型。
+因为 mu 和其展开是两个不想等的 type，
 
 ## 2.3 Equations
+
+> Here are some fundamental equations for the calculus. In particular,
+> notice that the constants “fold” and “unfold” establish an
+> isomorphism between a recursive type and its unfolding.
+>
+> (β) (λx^α.M)N = [N/xα]M
+>
+> (µ) fold(unfold x) = x
+>     unfold(fold x) = x
+
+这就是 iso-recursive 一词的来源，
+与之对应的，带有更多 type 和 term 之间等价的，
+是 equi-recursive。
+
+> In section 6 we will consider a model in which many more types and
+> terms are equated, for example ...
 
 # 3 Tree Ordering
 
