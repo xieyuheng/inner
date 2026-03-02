@@ -41,11 +41,6 @@ man readelf  # 读取 ELF 信息的工具
 man objdump  # 对象文件分析工具
 ```
 
-# pattern-matching
-
-persons/peyton-jones-simon/1987-the-implementation-of-functional-programming-languages.pdf
-2008-compiling-pattern-matching-to-good-decision-trees--luc-maranget.pdf
-
 # tagged value
 
 《Tag-free garbage collection for strongly typed programming languages》 (Appel, 1990)
@@ -243,19 +238,6 @@ learn API design from fp library in js
 - https://underscorejs.org/docs/underscore-esm.html
 
 learn API design from clojure
-
-# meta-lisp.js
-
-> this is where we can test luca's idea of subtype of recursive types.
-
-> read papers about LCF
-
-persons/robin-milner/1984-the-use-of-machines-to-assist-in-rigorous-proof
-persons/robin-milner/1972-logic-for-computable-functions-description-of-a-machine-implementation
-persons/robin-milner/1976-models-of-lcf
-persons/robin-milner/1978-a-metalanguage-for-interactive-proof-in-lcf
-persons/robin-milner/1979-edinburgh-lcf--a-mechanised-logic-of-computation
-persons/robin-milner/1979-edinburgh-lcf--a-mechanised-logic-of-computation
 
 # luca cardelli
 
