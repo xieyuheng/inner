@@ -9,6 +9,12 @@ year: 1987
 [2026-02-28] 在实现 x-lisp 的编译器时，
 我需要学习如何实现 pattern matching 的编译与类型检查。
 
+[2026-03-04] 单独实现这里所描述的语言，
+也是一个不错的练习，可以叫做 miranda-lisp。
+
+相比之下 x-lisp 更像是 typescript，
+而不像 miranda 和 haskell。
+
 # 1 Introduction
 
 ## 1.2 Part I: Compiling High-level Functional Languages
@@ -80,3 +86,51 @@ operational equivalent class 定义为函数，
 
 - [From Dynamic to Static Semantics, Quantitatively, Thomas Seiller](https://ar5iv.labs.arxiv.org/html/1604.05047)
 - [A graph model for imperative computation, Guy McCusker](https://ar5iv.labs.arxiv.org/html/0910.5399)
+
+# 4 Structured Types and the Semantics of Pattern-matching
+
+## 4.2 Translating Miranda into the Enriched Lambda Calculus
+
+支持 pattern-matching 的方式：
+
+- 首先支持 pattern lambda abstraction（case-lambda），
+  其 application 可能返回 FAIL。
+  - 也许这个名字，可以具体化为 #pattern-match-fail。
+  - 注意，FAIL 与所有 pattern matching 失败后所得的 ERROR 不同。
+
+- 用 FAIL 这个特殊值，和类似 next 的 lazy operator（类似 or）
+  把多个 application 组合起来。
+
+- FAIL x = FAIL 可以用来处理多个参数的 application。
+
+- 处理用 pattern 定义的函数时，用 eta-convention
+  把函数转化为 pattern lambda abstraction 的 application。
+
+## 4.3 The Semantics of Pattem-matching Lambda Abstractions
+
+介绍如何写支持 case-lambda 的解释器。
+
+由于有了 case-lambda 的概念，
+所以写解释器的时候递归很顺利，
+而不需要专门实现 pattem-matching 相关的函数。
+
+## 4.4 Introducing case-expressions
+
+这里说的 case-expression 就是 `(match)`（不允许 nest），
+与之相比，application of case-lambda 的用法是灵活的，是可以自由组合的。
+
+对于新 lisp 语言的实现而言，可以直接实现 `(match)`。
+
+将 list lookup 优化为 map lookup，
+或者将连续的 if else 优化为 jump table。
+
+# 5 Efficient Compilation of Pattern-matching
+
+这里设计 pattern-matching 编译算法的过程非常值得学习。
+
+TODO 5.2.4 The Empty Rule
+
+# 6 Transforming the Enriched Lambda Calculus
+
+这章显然只有通过添加新的 constant 才能完成转换。
+这践行了 curry 想要用组合子表达一切的思路。
