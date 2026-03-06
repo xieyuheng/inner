@@ -134,3 +134,184 @@ TODO 5.2.4 The Empty Rule
 
 这章显然只有通过添加新的 constant 才能完成转换。
 这践行了 curry 想要用组合子表达一切的思路。
+
+注意，这里没有消除 lambda 表达式本身，
+而组合子甚至可以消除 lambda 表达式。
+
+这里的转化给人的印象是，在纯函数范式内是如此，
+任何语法都可以被转化成组合子。
+
+TODO 研究如何把 dependent type system
+中的语法构造转化为组合子。
+这可能就是 curry 未完成的事业。
+
+### 6.2.8 Dependency Analysis
+
+分析一个 letrec 所定义的变量之间的依赖关系，
+然后做排序和分组，分成 let 和 小的 letrec。
+
+分析的方式是先构造 dependency graph，
+然后用 graph 的方法来分析。
+
+directed graph 的 strongly connected component
+就是给 letrec 分组的依据。
+
+以 strongly connected component 为节点，
+又形成 directed graph（coalesced graph），
+这个 graph 是 acyclic 的，对这个 graph 做拓扑排序可以了。
+
+## 6.3 Transforming case-expressions
+
+`(match)` 会被编译为 `(case-list)`：
+
+```scheme
+(case-list list
+  (let ()
+    ...)
+  (let ((head (li-head list))
+        (tail (li-tail list)))
+    ...))
+```
+
+这样 `case-list` 的类型就类似：
+
+```scheme
+(polymorphic (A B)
+  (-> (list-t A) B B
+      B))
+```
+
+注意 `case-list` 对其后两个参数而言是 lazy 的，
+在 strict 语言中，需要用语法关键词的方式来实现 `case-list`，
+或者用：
+
+```scheme
+(case-list list
+  (lambda ()
+    (let ()
+      ...))
+  (lambda ()
+    (let ((head (li-head list))
+          (tail (li-tail list)))
+      ...)))
+
+(polymorphic (A B)
+  (-> (list-t A) (-> B) (-> B)
+      B))
+```
+
+但是这是不合理的，因为多了一层 lambda 会降低效率。
+
+注意，`case-list` 与 "the little typer" 中的 `match-list` 不同，
+后者的类型更复杂：
+
+```scheme
+(match-list list
+  ...
+  (lambda (head tail) ...))
+
+((list-matcher
+  ...
+  (lambda (head tail) ...))
+ list)
+```
+
+这样做的缺点是，match 函数（比如 `match-list`）
+不带有 variants 的名字，而是依赖顺序，
+这样当 sum type 的 variants 很多时就不方便。
+但是就编译器中间语言而言，也许是合理的。
+
+此时，如果能支持 keyword argument，就可以解决这个问题。
+
+```scheme
+(match-list list
+  :nil ...
+  :li (lambda (head tail) ...))
+```
+
+给每个 data constructor 生成一个 match 函数，
+然后再组合返回的 FAIL，也可以做到不依赖顺序：
+
+```scheme
+(match-sequence
+ (match-nil ... list)
+ (match-li (lambda (head tail) ...) list))
+
+((matcher-sequence
+  (match-nil ...)
+  (match-li (lambda (head tail) ...)))
+ list)
+```
+
+但是这种组合法的效率比一个 `match-list` 低，
+后者相当于 `(match)`，前者相当于 `(case-lambda)`。
+
+# 7 List Comprehensions
+
+# 8 Polymorphic Type-checking
+
+类型推导的重点是给每个表达式一个类型变量，
+然后根据表达式的结构，形成类型变量之间的方程。
+
+这种类型检查器的写法，只需要一个 infer 函数，
+infer 函数在递归遍历一个表达式的时候，
+有机会给每个表达式赋以类型变量。
+
+TODO 而 dependent type 的 bidirectional 类型检查器，
+同时使用 check 和 infer 两个函数。
+这是为什么？
+
+当类型不独立于值时，
+也就是当类型依赖于值时，
+也就是当类型中包含表达式时，
+为什么没法通过解方程类做类型推导了？
+
+给出一些无法利用解方程做类型推导的表达式的例子。
+
+## 8.3 Type Inference
+
+> In general, by examining the context of an expression, we may be
+> able to deduce an expression for the form of the type of an object
+> which can fit into that context. By examining the expression itself,
+> we may be able to deduce the form of the types which that expression
+> can take on. So we have two type expressions that will usually
+> contain variables, the first giving the form of the type required by
+> the context (deduced from the 'outside'), and the second giving the
+> form of type which the object can take (deduced from the 'inside').
+> For the whole expression to be well typed, these two type
+> expressions must match, in the sense that by substituting for the
+> schematic variables of the type expressions, they can be brought to
+> the same form.
+
+这里不是从列方程，然后求解的方式来理解类型推导的，
+而是理解为算两次 type 然后做比较：
+- 一次来自 "the context of an expression"；
+- 一次来自 "the expression itself"。
+
+从 "the expression itself" 计算 type
+就是 type inference 的过程，也就是 `infer` 函数。
+
+从 "the context of an expression" 计算 type
+的过程一般不会通过函数明显表达出来，
+而是写在 `infer` 函数的每个 case 中。
+
+在 bidirectional type checking 中，
+`check` 函数表达了一部分 "the context of an expression"，但是也不是全部，
+全部的信息还是在 `infer` 和 `check` 函数的每个 expression 的 case 中。
+
+## 8.4 The Intermediate Language
+
+TODO 这里说如果不先对 letrec 做 6.2.8 所提到的 dependency analysis，
+可能就没法完成类型检查，并且指向引用 [Mycroft 1984]。
+我需要知道为什么会这样。
+
+这里说对 pattern-matching 的类型检查，
+要先转化为类似 `case-list` 的形式，
+再使用这里的类型检查器，
+这大大简化了类型检查器的实现！
+
+TODO
+
+# 9 A Type-checker
+
+TODO
