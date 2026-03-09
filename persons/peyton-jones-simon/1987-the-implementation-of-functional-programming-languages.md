@@ -353,4 +353,29 @@ expression 被 elaborate 到 core expression 的过程，
 
 # 9 A Type-checker
 
-TODO
+## 9.3 Success and Failure
+
+关于报错，这里推荐了 philip wadler 的论文：
+
+- 1985-how-to-replace-failure-by-a-list-of-successes.pdf
+
+## 9.4 Solving Equations
+
+### 9.4.1 Substitutions
+
+用函数来表示 substitution，
+并且讨论 substitution 的相关概念：
+
+- identity
+- composition
+- idempotent
+  - 如果允许 not "fully worked out" 的 substitution，
+    就可以用 idempotent 来定义 "fully worked out" 的 substitution。
+    注意，这也排除了不能通过 occurrence check 的情况。
+- fixpoint
+  - 一个 substitution 的 fixpoint 就是 "deep walked" value。
+
+## 9.5 Keeping Track of Types
+
+介绍 "type scheme"，
+也就是我所说的 polymorphic type 或者 nu type。

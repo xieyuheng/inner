@@ -1,10 +1,8 @@
 # pattern-matching
 
-1987-the-implementation-of-functional-programming-languages.md
-- 学习作者是如何写类型检查器的。
-- 再读一遍 robin-milner/1978-a-theory-of-type-polymorphism-in-programming.pdf
-- 读 luca-cardelli/1985-on-understanding-types-data-abstraction-and-polymorphism.pdf
-- 读 gottlob-frege/1970-translations-from-the-philosophical-writings-of-gottlob-frege.pdf
+读 luca-cardelli/1985-on-understanding-types-data-abstraction-and-polymorphism.pdf
+再读一遍 robin-milner/1978-a-theory-of-type-polymorphism-in-programming.pdf
+- 以及 luis damas 的系列论文
 
 Simon L. Peyton Jones (ed.), Implementing Functional Languages: a tutorial (Prentice Hall, 1992)
 Simon Peyton Jones et al., Simple unification-based type inference for GADTs (Proc. of the 2006 ACM SIGPLAN International Conference on Functional Programming, ICFP'06)
