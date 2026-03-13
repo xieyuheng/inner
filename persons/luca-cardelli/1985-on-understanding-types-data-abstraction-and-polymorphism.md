@@ -64,7 +64,6 @@ function loggingIdentity<Type extends Lengthwise>(arg: Type): Type {
 
 这种类型系统可以说是起源于函数作为算法的具体结构。
 我们可以去考虑满足某个类型的元素所组成的集合，
-
 但是类型之间的操作与集合之间的操作已经有分歧了。
 比如，如果我们的类型系统中有类型的 inter 操作，
 并且我们希望把 `(-> int-t int-t)` 和 `(-> string-t string-t)`
