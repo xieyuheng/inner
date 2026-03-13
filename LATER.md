@@ -2,6 +2,14 @@
 
 luca-cardelli/1985-on-understanding-types-data-abstraction-and-polymorphism.pdf
 
+# wegner-peter
+
+1968-programming-languages-information-structures-and-machine-organization--wegner-peter.pdf
+1998-interactive-foundations-of-computing--peter-wegner.pdf
+2006-interactive-computation-the-new-paradigm.pdf
+2006-interactive-computation-the-new-paradigm~.pdf
+2015-a-view-of-computer-science-education--peter-wegner.pdf
+
 # pattern-matching
 
 Simon Peyton Jones et al., Simple unification-based type inference for GADTs (Proc. of the 2006 ACM SIGPLAN International Conference on Functional Programming, ICFP'06)
