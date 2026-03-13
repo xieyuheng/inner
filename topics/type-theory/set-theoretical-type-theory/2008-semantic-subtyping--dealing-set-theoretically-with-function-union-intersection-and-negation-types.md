@@ -53,4 +53,98 @@ syntactic 中需要手动构造的 proof。
 
 ## 2.3 A model of types
 
+> Note however that in order to define semantic subtyping all we need
+> is a set-theoretic _model of types_. The construction works even if
+> we do not have a model of terms. To push it to the extreme, in order
+> to define subtyping we do not need terms at all, since we could
+> imagine to define type inclusion for types independently from the
+> language we want to use these types for. More plainly, the
+> definition of a semantic subtyping relation needs neither an
+> interpretation for applications (that is an applicative model) nor,
+> thus, the solution of complicated domain equations.
+
+能够避免传统的 domain theory，正是我想要的。
+
+这种思路可以用于 dependent type 吗？
+
+- 如果 dependent type 所依赖的不是 expression 而是 value，那么也许是可能的。
+- 对于 dependent type 的 model，我们所关心的不只是 subset 关系。
+- dependent type 最明显的 model 就是拓扑空间，
+  或者说是 cell complex 或 cobordism 一类的构造。
+
+## 2.4 Types as sets of values
+
+不考虑 expression 的集合，
+而考虑 value 的集合，
+看似是可行的。
+
+但是 value 一旦包含了 lambda abstraction，
+lambda 的 body 就又包含 expression 了。
+
+expression 中又有 application，
+又需要 domain theory 了。
+
+这也回答了上面关于 dependent type 的问题。
+依赖 value 是不行的，因为 value 包含 lambda abstraction。
+比如：
+
+```scheme
+(the-equal-t (-> nat-t nat-t nat-t)
+  nat-add
+  (lambda (x y)
+    (nat-add y x)))
+```
+
+也许可以尝试用基于图论的 denotational semantics，
+来避免 domain theory。
+
+## 2.5 A circularity to break
+
+就是避免依赖 value。
+
+## 2.6 Set-theoretic models
+
+这里说明为什么函数类型所对应的集合，
+不能被理解为笛卡尔积的子集。
+
+因为 cardinality 上会有悖论，
+这个悖论也是 domain theory 被提出的原因。
+
+> Since this point is central to our model, let us explain it
+> differently.  Recall that the only reason why we want to accurately
+> state what the set-theoretic model of types is, is to precisely
+> define the subtyping relation for syntactic types.  In other words,
+> we do not define an interpretation of types in order to formally and
+> mathematically state what the syntactic types _mean_ but, more
+> simply, we define it in order to state how they are _related_.
+
+> So, even if we would like to say that a type `t→s` must be
+> interpreted in the model as [function image] as stated by (2), for
+> what it concerns the goal we are aiming at, it is enough to require
+> that a model must interpret functional types so that the induced
+> subtyping relation is the same as the one the condition (2) would
+> induce.
+
+也就是说，就用子集关系导出子类型关系而言，
+找出一个与「函数作为图像的集合」有同样效果的集合，
+作为函数类型的 model。
+
+这一节所推理出来的，
+是一个对 model 的限制，
+还不是具体的 model。
+
+函数类型按照直觉，应该对应于所有函数的集合，
+从集合论的角度看，也就是所有函数的图像的集合，
+函数图像作为笛卡尔积的子集，
+称其两个元素为「参数」和「返回值」，
+应该满足条件：
+如果参数在定义域中，那返回值必定在值域中。
+
+从后面 6.8 A universal model 的定义看来，
+具体的 model 就是把函数类型映射为，
+满足上面条件的（全集的）笛卡尔积的有限子集。
+
+所有有限子集的集合还是无限的，所以还是要找出一个，
+就这种 model 定义而言的，子类型检查算法。
+
 TODO
