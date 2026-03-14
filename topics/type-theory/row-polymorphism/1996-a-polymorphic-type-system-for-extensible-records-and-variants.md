@@ -56,4 +56,37 @@ year: 1996
 - 关于 row extension，wand 引入了 row variable。
   - [26] M. Wand. Complete type inference for simple objects
 
-TODO
+提到了，当前论文的工作了，
+是以 1994-qualified-types-theory-and-practice--mark-p-jones.pdf 为基础的。
+但是 jones 的论文看起来是处理 type class 的。
+难道 row polymorphism 和 type class 的实现机制是类似的？
+
+普通的 type system 对应于普通的 logic programming，
+qualified type system 对应于普通的 constraint logic programming。
+
+> The type system is an application of qualified types, extended to
+> deal with a general concept of rows. Positive information about the
+> fields in a given row is captured in the type language using row
+> extension, while negative information is reflected by the use of
+> predicates.
+
+为什么需要表达 negative information？
+
+# 2 Overview
+
+用来表达 row 的具体数据类型是 associative list：
+
+- associative list 作为 row 的等价判断要忽略顺序，而看对应的 key。
+- associative list 的末尾可能不是 null，而是一个类型变量。
+
+## 2.1 Basic operations
+
+> There is, however, one complication; we do not allow
+> repeated uses of any label within a particular row,
+> so the expression `{|l : α | r|}` is only valid
+> if `l` does not appear in `r`.
+
+这就是为什么要表达 negative，
+也是为什么要 qualified type，
+也是为什么 daan leijen 之后要写：
+2005-extensible-records-with-scoped-labels。
