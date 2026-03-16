@@ -1,3 +1,10 @@
+# for meta-lisp
+
+study/topics/mathematics/coinduction/2011-introduction-to-bisimulation-and-coinduction--davide-sangiorgi.pdf
+study/topics/type-theory/subtyping/inheritance-is-not-subtyping.pdf
+study/topics/type-theory//row-polymorphism/1987-complete-type-inference-for-simple-object--mitchell-wand.pdf
+study/persons/giuseppe-castagna/1997-object-oriented-programming-a-unified-foundation--castagna.pdf
+
 # polymorphism
 
 luca-cardelli/1985-on-understanding-types-data-abstraction-and-polymorphism.pdf
