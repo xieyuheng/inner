@@ -194,6 +194,64 @@ non-well-founded sets 包含了就 membership 而言递归定义的 set。
 
 # 1 Towards bisimulation
 
+介绍 bisimulation 技术如何起源于 process calculi。
+
+## 1.2 Interaction and behaviour
+
+> In the example of Section 1.1, the program fragments
+>
+>     X := 2  and  X := 1; X := X + 1
+>
+> should be distinguished because they _interact_ in a different way
+> with the memory. The difference is harmless within a sequential
+> language, as only the initial and final states are visible to the
+> rest of the world. But if other concurrent entities have access to
+> the same memory locations, then the patterns of the interactions
+> with the memory become significant because they may affect other
+> activities.
+
+> This brings up a key word: _interaction_. In concurrency,
+> computation is interaction.  Examples are: an access to a memory
+> cell, a query to a database and the selection of a programme in a
+> washing machine. The participants of an interaction are the
+> _processes_.
+
+> The _behaviour_ of a process should tell us _when_ and _how_ the
+> process can interact with the outside world -- its _environment_.
+> Therefore we first need suitable means for representing the
+> behaviour of a process.
+
+### 1.2.1 Labelled transition systems
+
+> The behaviour of the machine is what we can observe, by interacting
+> with the machine. This means experimenting with the machine:
+> pressing buttons and seeing what happens. We can observe which
+> buttons go down and when, which beverages [outputs] we can get and when.
+
+用 labelled transition systems（LTS）来描述 process 的 behaviour。
+
+LTS 与 automata 非常相似：
+
+- LTS 的 label 可能代表 output，而不只是 input。
+
+- automata 中的「转移函数」被改成了「转移关系」，
+  process 遇到 event 时，可能转移到多个 state。
+
+- LTS 不指定起始状态与结束状态，
+  这样更方便用代数工具处理。
+
+> LTSs are the most common structures used to represent the
+> interactions that a system can produce. They are essentially
+> labelled directed graphs.
+
+LTS 的组成部分：
+
+- processes (states)
+- actions (labels, events, input output)
+- transition relation
+
+### 1.2.2 Notation and terminologies for LTSs
+
 TODO
 
 # 2 Coinduction and the duality with induction
