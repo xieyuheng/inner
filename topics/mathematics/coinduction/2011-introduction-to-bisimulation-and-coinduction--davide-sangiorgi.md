@@ -28,6 +28,9 @@ pi-calculus 中也有很多要用到 coinduction 的地方。
 - 实现 meta-lisp 中对递归定义的类型的 unify 算法。
 - 实现 lambda-lisp 中递归定义的函数之间的等价关系的判断。
 
+与 deepseek 关于这本书的讨论：
+- https://chat.deepseek.com/a/chat/s/94755701-a749-404d-a861-08a33bbba4af
+
 # 0 General introduction
 
 ## 0.1 Why bisimulation and coinduction
@@ -221,6 +224,12 @@ non-well-founded sets 包含了就 membership 而言递归定义的 set。
 > Therefore we first need suitable means for representing the
 > behaviour of a process.
 
+> In the book, we will consider a particularly simple case: the
+> interactions of the process with its environment are pure handshake
+> synchronisations, without exchange of values. We hope this will make
+> the material easier to understand. The transport of the bisimulation
+> concept to other interaction models is the main topic of Chapter 7.
+
 ### 1.2.1 Labelled transition systems
 
 > The behaviour of the machine is what we can observe, by interacting
@@ -228,7 +237,15 @@ non-well-founded sets 包含了就 membership 而言递归定义的 set。
 > pressing buttons and seeing what happens. We can observe which
 > buttons go down and when, which beverages [outputs] we can get and when.
 
-用 labelled transition systems（LTS）来描述 process 的 behaviour。
+用 labelled transition systems（LTS）来描述 process 的行为。
+而定义 process 的就是 process 的行为，所以 LTS 就是 process 的定义。
+
+也就是说，我们用 labelled directed graph 这个近乎拓扑的概念，
+捕捉了 process 这个概念，为 process 这个概念提供了具体的数学模型。
+至少就「行为」所定义的 process 之间的等价关系而言，捕捉到了。
+
+就像给地铁画地图时，所用的 labelled directed graph，
+抽象掉了地铁站的具体细节，只保留了坐地铁的人所主要关心的信息。
 
 LTS 与 automata 非常相似：
 
@@ -240,9 +257,7 @@ LTS 与 automata 非常相似：
 - LTS 不指定起始状态与结束状态，
   这样更方便用代数工具处理。
 
-> LTSs are the most common structures used to represent the
-> interactions that a system can produce. They are essentially
-> labelled directed graphs.
+  - 类似欧式空间和仿射空间之间的关系。
 
 LTS 的组成部分：
 
@@ -252,7 +267,165 @@ LTS 的组成部分：
 
 ### 1.2.2 Notation and terminologies for LTSs
 
-TODO
+## 1.3 Equality of behaviours
+
+### 1.3.1 Equality in Graph Theory: isomorphism
+
+凡是 isomorphic 的 graph 都代表相同的 process，
+但是不是所有相同的 process 的 graph 都是 isomorphic 的。
+
+这里给出的例子：
+
+```
+P1 -a-> P2
+P2 -b-> P1
+
+Q1 -a-> Q2
+Q2 -b-> Q3
+Q3 -a-> Q2
+```
+
+看来可以用拓扑变换（retraction）来完成等价。
+
+那么，如果不考虑研究 process，
+反过研究代数拓扑结构，
+是否可以用 process 的方法，
+来研究拓扑结构的不变量？
+
+process 的 LTS，可以想象成是，
+在一个 graph 构成的空间中运动的点。
+把 graph 推广到高维的拓扑结构，
+然后再找到对应于 process 的概念，
+应该就能完成这种反向的研究。
+
+### 1.3.2 Equality in Automata Theory: trace equivalence
+
+由于固定了起始点，
+所以 automata（允许 non-deterministic automata）之间的等价，
+可以用其所能识别的 string 的集合之间的等价来定义。
+
+就识别 string 而言，在 non-deterministic 的时候，
+automata 可以尝试多个选择，其中一个能成功，就算成功识别了 string。
+但是对 process 而言，没有这个选择，
+而是需要能区分成功与失败路径（fig 1.4），
+并且区分 process non-deterministic choice
+和 deterministic choice（fig 1.3，fig 1.5）。
+
+## 1.4 Bisimulation
+
+process 之间的等价称为 bisimilarity，
+被定义为存在 bisimulation，
+也就是说可以构造出来 bisimulation。
+之后会证明 bisimilarity 是等价关系。
+
+构造 bisimulation 的过程，
+就是 luca 在递归类型的 subtype 算法中使用的 taril，
+taril 作为笛卡尔积的子集就是 bisimulation 关系。
+
+可见这种定义有很强的算法属性，
+定义中的「对于任意 P 的 action，存在对应的 Q 的 action」，
+可以作为在构造算法中，检验 P Q 不相等的依据。
+
+可以想象成一个运动的点，
+在一个 process P 的 LTS 中所走出来的任何 path，
+按照这个 path 在另一个 process Q 中也能走通。
+
+> Reducing the size of the relation to exhibit, and hence relieving
+> the proof work needed to establish bisimilarity results, is the
+> motivation for the enhancements of the bisimulation proof method
+> discussed in [PS12].
+
+这里的引用是：
+
+- [PS12] D. Pous and D. Sangiorgi.
+  Enhancements of the bisimulation proof method.
+  In Sangiorgi and Rutten [SR12].
+
+> Example 1.4.6 ... Other useful methods for proving results of
+> non-bisimilarity will be shown in Section 2.10.2, using the
+> approximants of bisimilarity, and in Section 2.12, using games.
+
+最简单的判定不相等的方法，来自 bisimulation 的定义本身，
+其他的方案也有，上面提到的两种在下一章讨论。
+
+> Exercise 1.4.11 ... In this exercise, when looking for the match for
+> a given transition, there may be choices possible, because a state
+> may have different outgoing transitions with the same label; in
+> these cases, following the existential quantifier in the definition
+> of bisimulation, we are asked to pick one, and we have to be careful
+> to pick a good one.
+
+对于这个练习想要说明的问题，想象点在图中的运动：
+在 P 与 Q 的 bisimulation 中，
+在 P 中的所有可能 path 都要能在 Q 中走通。
+但是当 Q 中有 non-deterministic choice 时，
+就要选择一个方向来尝试，所选择的方向可能走不通，
+再尝试别的方向。
+
+> Exercise 1.4.13
+>
+> - (1) Show that the union of two bisimulations on a
+>   given LTS is also a bisimulation.
+
+用点在图中的运动来考虑：
+一个 bisimulation 找出了路径之间的一种对应方法，
+另外一个 bisimulation 也找出了路径之间的一种对应方法，
+当把二者和起来时，对于一个边，其对应的边就有了更多选择，
+显然选择哪个都是可以的。
+
+> - (2) Show that, in contrast, the intersection of two bisimulations
+>   need not be a bisimulation.
+
+对于一个边，其所对应的边的选择在取交集时可能为空，
+导致没有所对应的边可选了。
+
+> Theorem 1.4.14
+>
+> - (1) bisimilarity is an equivalence relation.
+
+对称性来自二元关系的逆，
+传递性来自二元关系的复合。
+
+> - (2) bisimilarity itself is a bisimulation.
+
+既然 bisimilarity 作为 LTS 上的关系，被定义为存在 bisimulation 关系，
+那么 bisimilarity 作为关系，就是所有 bisimulation 关系的并。
+
+这是集合论所决定的，考虑某集合 L 上的一元关系，也就是谓词 P，
+假设 P 被定义为，存在满足某种性质 b 的谓词 Q。
+那么 P 所定义的集合，就是所有满足性质 b 的谓词 Q 所定义的集合的并。
+
+> Exercise 1.4.17 介绍 simulation 与 similarity，
+> 即只要求 bisimulation 中的一个方向。
+
+bisimilarity 是等价关系，
+similarity 是 preorder（等价关系去掉对称性）。
+
+两个方向的 similarity 可以定义 simulation equivalence，
+bisimilarity 严格蕴含于 simulation equivalence，
+是比 simulation equivalence 更细的等价关系。
+证明「严格蕴含」的反例就是 Figure 1.4。
+
+simulation 又严格蕴含于 trace equivalence。
+反例是 Figure 1.7 的 P2 和 Q2。
+
+trace equivalence 要求 P 中的一条路可以在 Q 中找到对应；
+而 bisimilarity 要求 P 中的一条路可以在与 Q 中对应时，
+每一步都能走到周围情况完全一样（对应）的位置；
+而 similarity 要求每一步都能走到周围依然能走通的位置。
+
+### 1.4.1 Towards coinduction
+
+在 Theorem 1.4.15 可以看到 bisimilarity 被定义为满足某个条件 B 的最大集合 P。
+证明一个元素 x 属于这个集合 P 的方式是，
+证明存在一个满足这个条件 B 的集合 P1，
+并且 x 属于 P1。
+
+这种定义集合为满足某个条件最大集合的方式，就称作 coinductive definition。
+这种证明某个元素属于所定义的集合的方式，就称作 coinduction。
+
+这种看似循环的定义，与 inductive definition 类似（也是一种循环定义），
+而这种模式化的证明方式，与 induction 类似（也是一种证明模式）。
 
 # 2 Coinduction and the duality with induction
 
