@@ -427,6 +427,14 @@ trace equivalence 要求 P 中的一条路可以在 Q 中找到对应；
 这种看似循环的定义，与 inductive definition 类似（也是一种循环定义），
 而这种模式化的证明方式，与 induction 类似（也是一种证明模式）。
 
+一个 inductive definition 会定义一个集合 D，
+induction 作为证明模式，是对某个属性（谓词）P 而言的，
+所证明的是集合 D 的每个所有元素，都满足属性 P，
+P 作为谓词所定义的集合是 D 的超集。
+D 是满足 inductive definition 的最小集合。
+
+相反 coinductive definition 定义的是最大集合。
+
 # 2 Coinduction and the duality with induction
 
 TODO
