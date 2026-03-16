@@ -160,6 +160,38 @@ non-well-founded sets 包含了就 membership 而言递归定义的 set。
 
 这看起来也可以解决 lambda-lisp 中等价判断的问题。
 
+## 0.5 Basic definitions and mathematical notation
+
+介绍集合论和关系，以及关系的诸多属性：
+
+> - reflexive if x R x, for all x ∈ X;
+> - symmetric if x R x′ implies x′ R x;
+> - transitive if x R x′ and x′ R x′′ imply x R x′′;
+> - irreflexive if there is no x with x R x;
+> - antisymmetric if x R y and y R x implies x = y;
+> - total if any pair of elements in the set are comparable
+>   (x R y or y R x holds, for all x and y);
+> - an equivalence if it is reflexive, symmetric and transitive;
+> - a total order if it is antisymmetric, transitive and total [thus reflexive];
+> - a partial order if it is reflexive, antisymmetric and transitive;
+> - a preorder if it is reflexive and transitive;
+> - well-founded if there are no infinite descending chains:
+>   ... R xi R ... R x1 R x0;
+> - non-well-founded if there are infinite descending chains.
+
+> Note that if R is well-founded then R must be irreflexive.
+
+> Moreover, if R is a well-founded relation on X, then any non-empty
+> subset S of X has at least one minimal element (an element x with x
+> ∈ S and such that there is no y ∈ S with y R x).
+
+介绍函数作为特殊的关系，并且说明在讨论 partial function 时，
+用关系来理解函数是有利的，因为一般说到函数时都要求 total function。
+
+介绍 ordinal numbers，
+并且说明它经常用来讨论 well-ordered [infinite] sets，
+比如 array 的 lexical order。
+
 # 1 Towards bisimulation
 
 TODO
