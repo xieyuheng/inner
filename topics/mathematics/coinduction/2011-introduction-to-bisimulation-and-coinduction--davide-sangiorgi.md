@@ -16,4 +16,15 @@ year: 2011
 coinduction 是非常核心的数学知识。
 所以必须像掌握 induction 一样，熟练掌握。
 
-# TODO
+递归定义的函数和类型，就是 coinduction 的主要来源，
+我之前处理不好其等价关系与子类型关系，
+就是因为不懂 coinduction。
+
+这本书的作者是为了研究 pi-calculus 而写的。
+pi-calculus 中也有很多要用到 coinduction 的地方。
+
+# General introduction
+
+# 1 Towards bisimulation
+
+# 2 Coinduction and the duality with induction
