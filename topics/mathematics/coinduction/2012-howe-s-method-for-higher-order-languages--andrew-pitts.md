@@ -10,6 +10,14 @@ year: 2012
 这篇论文处理了允许递归定义函数的 lambda calculus 中，
 如何判断函数之间的等价的问题。
 
+[2026-03-18] 受到这篇论文的启发，
+在 lambda-lisp 中实现了 `(assert-bisimilar)`，
+但是对于多种定义 fibonacci 的方式会死循环。
+
+- 也许不是每次都展开 head constant，
+  而是遍历所有可能被展开的 constant，
+  就可以避免死循环。
+
 ## 5.1 Introduction
 
 > A fundamental requirement for any notion of equality between
@@ -82,5 +90,3 @@ year: 2012
 - 展开 lambda reduction。
 
 TODO
-
-lambda-lisp -- save DelayedApply in trail!
