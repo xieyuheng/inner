@@ -82,3 +82,5 @@ year: 2012
 - 展开 lambda reduction。
 
 TODO
+
+lambda-lisp -- save DelayedApply in trail!
