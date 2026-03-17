@@ -11,12 +11,25 @@ year: 2012
 如何判断函数之间的等价的问题。
 
 [2026-03-18] 受到这篇论文的启发，
-在 lambda-lisp 中实现了 `(assert-bisimilar)`，
-但是对于多种定义 fibonacci 的方式会死循环。
+在 lambda-lisp 中实现了 `(assert-bisimilar)`。
+
+问题：但是对于多种 wrap 方式定义的 `fibonacci` 会死循环。
+
+方案 A：
 
 - 也许不是每次都展开 head constant，
   而是遍历所有可能被展开的 constant，
   就可以避免死循环。
+
+方案 B：
+
+- 目前 `evaluate` 遇到 constant 会形成 neutral，
+  这种 evaluation strategy 的性质我还不清楚。
+
+  - 也许应该只针对带有递归的 constant 形成 neutral。
+  - 也许应该对所有的 application 都形成 neutral。
+
+  重点在于 evaluation strategy 的分类与研究。
 
 ## 5.1 Introduction
 
