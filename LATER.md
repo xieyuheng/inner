@@ -1,3 +1,27 @@
+# how to compare equivalence between recursively defined lambda calculus
+
+./2010-simulation-in-the-call-by-need-lambda-calculus-with-letrec.pdf
+./2011-introduction-to-languages-and-the-theory-of-computation--john-martin.pdf
+./2013-introduction-to-the-theory-of-computation--michael-sipser.pdf
+./1993-recursion-theory--joseph-r-shoenfield.pdf
+./1993-recursion-theory--joseph-r-shoenfield~.pdf
+
+./pierre-louis-curien
+./pierre-louis-curien/1993-categorical-combinators-sequential-algorithms-and-functional-programming.pdf
+./pierre-louis-curien/1993-categorical-combinators-sequential-algorithms-and-functional-programming~.pdf
+./pierre-louis-curien/2014-revisiting-the-categorical-interpretation-of-dependent-type-theory.pdf
+./pierre-louis-curien/1989-alpha-conversion-conditions-on-variables-and-categorical-logic.pdf
+./pierre-louis-curien/1998-explicit-substitutions-a-short-survey.pdf
+./pierre-louis-curien/2000-the-duality-of-computation.pdf
+./pierre-louis-curien/1999-a-semantics-for-lambda-calculi-with-resources.pdf
+./pierre-louis-curien/1996-domains-and-lambda-calculi.pdf
+./pierre-louis-curien/2009-interactive-models-of-computation-and-program-behavior.pdf
+
+./piergiorgio-odifreddi
+./piergiorgio-odifreddi/2004-the-30-greatest-problems-of-thelast-100-years.pdf
+./piergiorgio-odifreddi/1992-classical-recursion-theory-the-theory-of-functions-and-sets-of-natural-numbers.pdf
+./piergiorgio-odifreddi/1992-classical-recursion-theory-the-theory-of-functions-and-sets-of-natural-numbers.djvu
+
 # for meta-lisp
 
 study/topics/mathematics/coinduction/2011-introduction-to-bisimulation-and-coinduction--davide-sangiorgi.pdf
