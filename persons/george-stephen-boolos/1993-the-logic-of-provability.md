@@ -1,6 +1,6 @@
 ---
 title: The Logic of Provability
-author: george stephen boolos
+author: george s. boolos
 year: 1993
 ---
 

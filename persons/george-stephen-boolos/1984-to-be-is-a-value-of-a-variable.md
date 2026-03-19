@@ -1,6 +1,6 @@
 ---
 title: To be is a value of a variable
-author: george stephen boolos
+author: george s. boolos
 year: 1984
 ---
 
