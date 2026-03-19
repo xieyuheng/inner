@@ -437,4 +437,36 @@ D 是满足 inductive definition 的最小集合。
 
 # 2 Coinduction and the duality with induction
 
+> After introducing bisimulation on processes in the previous chapter,
+> we see here other examples of predicates and relations that are
+> defined in a similar style, and proof techniques for them. This
+> style is quite different with respect to that of ordinary inductive
+> definitions and proofs. It is in fact the style of _coinduction_.
+> Through the examples we will begin to build up some intuition about
+> the difference between coinduction and induction. Then we will make
+> these intuitions formal, using fixed-point theory.
+
+从 luca 关于 subtype 的算法，还有 coinductive 的定义，
+我更深刻地体会到了「证明」和「算法」之间的关系。
+之后学习证明技巧的时候，都要考虑其算法属性。
+
+> Intuitively, a set A is defined _coinductively_ if it is the
+> _greatest_ solution of an inequation of a certain form; then the
+> _coinduction proof principle_ just says that any set that is
+> solution of the same inequation _is contained_ in A.
+
+为什么说是 inequation？
+是否是说 A 必须是具有序关系（preorder）性质的二元关系？
+也就是说 coinductive definition 只能用来定义类似序关系的集合？
+
+> Dually, a set A is defined _inductively_ if it is the _least_
+> solution of an inequation of a certain form, and the _induction
+> proof principle_ then says that any other set that is solution to
+> the same inequation _contains_ A. As we will see, familiar inductive
+> definitions and proofs can be formalised in this way.
+
+看来不是，因为 inductive definition 所能定义的集合是任意结构的。
+
+## 2.1 Examples of induction and coinduction
+
 TODO
