@@ -1,6 +1,6 @@
 ---
 title: Logic Logic and Logic
-author: George Boolos
+author: george stephen boolos
 year: 1998
 ---
 
