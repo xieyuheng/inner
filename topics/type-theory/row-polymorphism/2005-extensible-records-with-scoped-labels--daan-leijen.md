@@ -156,3 +156,13 @@ R1 = R2
 
 可能是把 lambda calculus 扩展成支持 named parameter，
 为什么会遇到与这里类似的 unification 的特殊情况？
+
+- [3] J. P. Furuse and J. Garrigue.
+  A label-selective lambda-calculus with optional arguments
+  and its compilation method.
+  RIMS Preprint 1041, Kyoto University, Oct. 1995.
+
+- [5] J. Garrigue and H. Ait-Kaci.
+  The typed polymorphic label selective calculus.
+  In 21th ACM Symp. on Principles of Programming Languages (POPL’94),
+  pages 35–47, Portland, OR, Jan. 1994.
