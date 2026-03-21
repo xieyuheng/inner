@@ -84,7 +84,8 @@ dependent interface（class） 来说很有用。
 进而得到 unify `{ x :: Int | B } = B`，
 这不能通过 occur check。
 
-解决方案是，先扩展 `A` 和 `B`，按照等号对面的 record 补全 fields：
+解决方案是，先扩展 `A` 和 `B`，
+按照等号对面的 record 补全（populate）fields：
 
 ```
 { x :: Int | A } = { y :: Int | B }
