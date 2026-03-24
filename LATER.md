@@ -1,3 +1,23 @@
+# giovanni-sambin
+
+1980-intuitionistic-type-theory-notes--giovanni-sambin.pdf
+1980-intuitionistic-type-theory-notes--giovanni-sambin~.pdf
+1980-intuitionistic-type-theory-notes--giovanni-sambin~~.pdf
+1995-twenty-five-years-of-constructive-type-theory--proceedings.pdf
+1995-twenty-five-years-of-constructive-type-theory--proceedings~.pdf
+1996-constructive-domain-theory-as-a-branch-of-intuitionistic-pointfree-topology.pdf
+2000-basic-logic-reflection-symmetry-visibility.pdf
+2000-formal-topologies-on-the-set-of-first-order-formulae.pdf
+2000-formal-topology-and-domains--giovanni-sambin.pdf
+2002-continuous-domains-as-formal-spaces--sara-negri.pdf
+2003-inductively-generated-formal-topologies.pdf
+2003-some-points-in-formal-topology.pdf
+2006-the-basic-picture--a-structural-basis-for-constructive-topology.pdf
+2008-finitary-formal-topologies-and-stone-s-representation-theorem.pdf
+2017-c-for-constructivism.pdf
+2020-topology-as-faithful-communication-through-relations.pdf
+intuitionistic-formal-spaces.pdf
+
 # how to compare equivalence between recursively defined lambda calculus
 
 ./2010-simulation-in-the-call-by-need-lambda-calculus-with-letrec.pdf
