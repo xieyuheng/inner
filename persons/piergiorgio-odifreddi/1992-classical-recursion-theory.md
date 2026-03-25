@@ -10,6 +10,10 @@ year: 1992
 [2026-03-25] 为了实现 lambda-lisp 中递归函数之间的等价关系，
 学习可计算理论，要知道可计算的等价关系的边界。
 
+# Chat
+
+https://chat.deepseek.com/a/chat/s/d8e7e308-71da-43b2-ba95-91ddb0d6e56f
+
 # 0 Introduction
 
 在作者的术语里，

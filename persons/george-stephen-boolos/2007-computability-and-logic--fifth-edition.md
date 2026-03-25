@@ -15,6 +15,10 @@ year: 2007
 如果找到了，就可以作为 dependent type system 的基础的等价关系。
 因此要学习可判定性的基础知识。
 
+# Chat
+
+https://chat.deepseek.com/a/chat/s/d8e7e308-71da-43b2-ba95-91ddb0d6e56f
+
 # 1 Enumerability
 
 > Our ultimate goal will be to present some celebrated theorems about
@@ -87,6 +91,21 @@ year: 2007
 之所以有用，就在于人们可以设计机器来帮助人类快速完成这类计算。
 这就要求描述计算方式（算法）步骤明确且没有歧义等等。
 但是现在 AI 的发展大大拓宽了机器可以帮助人类做的脑力劳动。
+
+> ... in principle it could be completed in a finite amount of time if
+> we stayed in good health so long, or the machine stayed in working
+> order so long; but in practice we will die, or the machine will
+> collapse, long before the process is complete.
+
+也就是说即便是 effectively computable 这种对计算的定义，也是不够实用的。
+想要有更实用的定义，还要考虑算法的复杂性。
+「可计算」要换成「可用高效地算法计算」。
+
+> Our eventual goal will be to prove that certain functions are _not_
+> computable, _even if_ practical limitations on time, speed, and
+> amount of material could somehow be overcome, and for this purpose
+> the essential requirement is that our notion of computability not be
+> too _narrow_.
 
 TODO
 
