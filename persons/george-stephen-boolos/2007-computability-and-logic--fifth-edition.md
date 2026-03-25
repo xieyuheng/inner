@@ -63,6 +63,8 @@ https://chat.deepseek.com/a/chat/s/d8e7e308-71da-43b2-ba95-91ddb0d6e56f
 
 给出 non-enumerable set 的构造方式。
 
+最重要的是，自然数（或正整数）的所有子集的集合是不可数的。
+
 # 3 Turing Computability
 
 > A function is _effectively computable_ if there are definite,
@@ -107,14 +109,78 @@ https://chat.deepseek.com/a/chat/s/d8e7e308-71da-43b2-ba95-91ddb0d6e56f
 > the essential requirement is that our notion of computability not be
 > too _narrow_.
 
-TODO
+能够知道哪些问题是在这种宽松的定义下为「不可计算」的，
+也是十分有用且重要的。
+因为这能避免人们为了寻找某个问题的算法而作无用功。
+
+介绍图灵机：
+
+- 用 flow graph 来代表图灵机程序。
+- 为了展示图灵机计算过程，设计了一种简洁的格式。
+- 以「翻倍」这个图灵机程序为例子，展示图灵机的运行过程与能力。
+
+下面介绍「奇偶」「加法」「乘法」。
+
+然后介绍一般的 n 元函数的参数以及返回值，
+如何表示在图灵机中。
+
+> A numerical function of k arguments is _Turing computable_ if there
+> is some Turing machine that computes it in the sense we have just
+> been specifying.
+
+图灵为什么用形式化的「图灵机」这种简单的机器，
+来捕捉「可计算性」这个概念，我们很熟悉了。
+但是在 AI 的时代，应该如何做出新的定义，
+以捕捉更广泛的 AI 的概念呢？
+
+可能就是「神经网络」吧？
 
 # 4 Uncomputability
 
 ## 4.1 The Halting Problem
-## 4.2 The Productivity Function
+
+能用图灵机表达的函数的集合显然是可数的，
+而所有（自然数的或正整数的）函数的集合是不可数的
+（因为谓词是特殊的函数，而谓词对应于子集）。
+
+因此有大量的函数都是不可计算的。
+
+为了证明自然数的所有子集的集合是不可数的，
+我们使用了「对角线方法」，这个方法本身就是具有构造性的。
+可以以此为基础来构造「不可计算函数」的例子。
+
+用对角线法所构造出来的函数是「图灵不可计算」的，
+但是回顾 effectively computable 的定义，
+这个函数看起来是可以计算的，
+有明确的规则让我们可以计算出它的每一个值。
+
+但是使用对角线法来构造「图灵不可计算函数」时，
+需要判断一个图灵机是否能停机。
+而停机问题是不可计算的。
+
+> This is the essential question: determining whether machine Mn,
+> started scanning the leftmost of an unbroken block of n strokes on
+> an otherwise blank tape, does or does not eventually halt.
+
+> Is _this_ perfectly routine? Must there be some point in the routine
+> process of following its operations at which it becomes clear that
+> it will never halt?
+
+在实现 lambda-lisp 中的等价判断函数使，我就是这种感觉。
+对于简单的例子，所实现的判断函数可以正常运行，
+但是对于复杂的例子，会无限循环。
+找出具体导致无限循环的问题，看似可以解决，
+但是如何知道没有别的更复杂的例子，
+其中包含了没有考虑到的情况，
+会再次导致判断函数无限循环？
+
+下面证明停机问题是图灵不可计算的。
+其归谬法构造独立于对角线方法，
+但也是受对角线方法的启发，有异曲同工之妙。
 
 # 5 Abacus Computability
+
+TODO
 
 ## 5.1 Abacus Machines
 ## 5.2 Simulating Abacus Machines by Turing Machines
