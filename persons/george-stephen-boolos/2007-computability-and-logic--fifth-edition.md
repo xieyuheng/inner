@@ -53,11 +53,42 @@ year: 2007
 
 ## 1.2 Enumerable Sets
 
-TODO
+给出了很多具体的 enumerable sets 的例子。
 
 # 2 Diagonalization
 
+给出 non-enumerable set 的构造方式。
+
 # 3 Turing Computability
+
+> A function is _effectively computable_ if there are definite,
+> explicit rules by following which one could in principle compute its
+> value for any given arguments.
+
+这章和后面几章，都是要尝试捕捉上面这个直觉定义。
+通过证明很多尝试捕捉 effectively computable 的定义等价，
+我们展示了我们成功捕捉到了这个直觉定义。
+
+就像第一章，用 listing 给出 enumerability 的直觉定义，
+然后用函数捕捉这个定义一样。
+
+用形式定义捕捉直觉定义的过程，
+其成功与否的判断，在于一致性与实用性。
+
+> The instructions must be completely definite and explicit. They
+> should tell you at each step what to do, not tell you to go ask
+> someone else what to do, or to figure out for yourself what to do:
+> the instructions should require no external sources of information,
+> and should require no ingenuity to execute, so that one might hope
+> to automate the process of applying the rules, and have it performed
+> by some mechanical device.
+
+尝试用来捕捉 effectively computable 这个直觉概念的定义，
+之所以有用，就在于人们可以设计机器来帮助人类快速完成这类计算。
+这就要求描述计算方式（算法）步骤明确且没有歧义等等。
+但是现在 AI 的发展大大拓宽了机器可以帮助人类做的脑力劳动。
+
+TODO
 
 # 4 Uncomputability
 

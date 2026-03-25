@@ -19,6 +19,8 @@ classical 意思是研究具体数学结构，
 这一章介绍了 recursion theory 作为对可计算性的分析，
 在各个领域中的应用。
 
+重点在于：the existence of a recursively enumerable, nonrecursive set.
+
 读了这一章，发现我想要了解的，
 作为数学基础的构造主义，
 就是限制构造方式的构造主义。
