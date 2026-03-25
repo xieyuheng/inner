@@ -28,9 +28,32 @@ year: 2007
 
 ## 1.1 Enumerability
 
-TODO
+> An _enumerable_, or _countable_, set is one whose members can be
+> enumerated: arranged in a single list with a first entry, a second
+> entry, and so on, so that every member of the set appears sooner or
+> later on the list.
+
+强调了 list 中所列的是元素的名字，而不是元素本身。
+
+> A list that enumerates a set may be finite or unending. An infinite
+> set that is enumerable is said to be _enumerably infinite_ or
+> _denumerable_.
+
+用直觉的方式定义可数集，
+然后解释如何用以自然数为定义域的映射来捕捉这个直觉概念。
+
+有限集当然是可数的。
+与自然数集之间的双射，就展示了无穷集的可数。
+如果考虑自然数集到某个集合的满射，
+那么有限集的可数也可以用函数展示。
+
+甚至偏函数（partial function）也可以，并且使用起来非常方便。
+因为重要的是要求每个元素都有自然数与其对应，
+而不是要求每个自然数都对应于一个元素。
 
 ## 1.2 Enumerable Sets
+
+TODO
 
 # 2 Diagonalization
 

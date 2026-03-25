@@ -30,4 +30,8 @@ classical 意思是研究具体数学结构，
 
 # 1 Recursiveness and Computability
 
+这章在于用多种等价的方式，
+来定义 effective computability，
+和 effectively computable 。
+
 TODO
