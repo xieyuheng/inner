@@ -1,3 +1,25 @@
+# richard-carl-jeffrey
+
+formal-logic-its-scope-and-limits.pdf
+probability-dynamics-and-causality--essays-in-honour-of-richard-c-jeffrey.pdf
+statistical-explanation-and-statistical-relevance.djvu
+studies-in-inductive-logic-and-probability--volume-ii.pdf
+subjective-probability-the-real-thing.pdf
+the-logic-of-decision.pdf
+the-logic-of-strategy.pdf
+the-logic-of-strategy~.pdf
+
+# john-patton-burgess
+
+fixing-frege.pdf
+formal-logic-its-scope-and-limits.pdf
+kripke.pdf
+mathematics-models-and-modality-selected-philosophical-essays.pdf
+philosophical-logic.pdf
+rigor-and-structure.pdf
+set-theory.pdf
+truth.pdf
+
 # giovanni-sambin
 
 1980-intuitionistic-type-theory-notes--giovanni-sambin.pdf
