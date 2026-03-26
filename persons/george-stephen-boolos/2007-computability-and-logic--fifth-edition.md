@@ -123,6 +123,8 @@ https://chat.deepseek.com/a/chat/s/d8e7e308-71da-43b2-ba95-91ddb0d6e56f
 
 然后介绍一般的 n 元函数的参数以及返回值，
 如何表示在图灵机中。
+这类似现在计算机构架中的 calling convention，
+只有约定好了 calling convention，函数才能复合。
 
 > A numerical function of k arguments is _Turing computable_ if there
 > is some Turing machine that computes it in the sense we have just
@@ -180,16 +182,99 @@ https://chat.deepseek.com/a/chat/s/d8e7e308-71da-43b2-ba95-91ddb0d6e56f
 
 # 5 Abacus Computability
 
-TODO
+这一章所构造的新机器将用于证明，
+所有的递归函数都是图灵可计算的。
+
+这种证明方式很像是编译器了：
+将 abacus machine 的程序编译到 turing machine。
 
 ## 5.1 Abacus Machines
+
+图灵机用于描述正整数上的函数很方便，因为 stroke 代表 1。
+但是为了方便证明别的捕捉可计算性的方式与图灵机等价，
+需要把正整数扩展为自然数。
+
+所谓 abacus machine，其实就是带有无穷多个寄存器的机器，
+并且不限制寄存器所能保存的自然数的大小。
+
+primitive instruction 只有两个：
+
+- add one to box m and go to r
+- if box m is not empty, then subtract one from box m and go to r
+  if box m is empty, then go to s.
+
+其他的 instruction 都可以用这两个来实现。
+
 ## 5.2 Simulating Abacus Machines by Turing Machines
+
+只给 abacus machine 两个 primitive instruction，
+就是为了编译到 turing machine 时方便。
+
+和 turing machine 一样，
+这里也要约定一个 calling convention，
+这里允许了函数的返回值被保存到指定的寄存器中，
+而不是像现代计算机构架一样，指定一个寄存器来保存返回值。
+
 ## 5.3 The Scope of Abacus Computability
+
+证明 abacus machine 能用来实现所有的递归函数。
 
 # 6 Recursive Functions
 
 ## 6.1 Primitive Recursive Functions
+
+这里的定义感觉这里所描述的计算模型才是对数学来说最自然的，
+虽然没有 lambda abstruction，
+不能用匿名函数来形成 abstruction，
+但是可以通过定义新函数来形成 abstruction。
+
+basic functions:
+
+- zero (constant function)
+- successor (add1)
+- identity and projection
+
+means of combination:
+
+- composition
+
+  ```scheme
+  (h/n x1 ... xn) = (f/m (g1/n x1 ... xn) ... (gn/n x1 ... xn))
+  ```
+
+- primitive recursion
+
+  ```scheme
+  (h x 0) = (f x)
+  (h x (add1 prev)) = (g x prev almost)
+    where almost = (h x prev)
+  ```
+
+  上面的 primitive recursion 只能用来定义二元函数，
+  想要定义多元函数，就必须把上面的 x 看成是 x1 ... xn 的缩写。
+
+  如果有 lambda，就不必带上 x，
+  可以用 "the little typer" 中的 `rec-Nat` 来实现 primitive recursion：
+
+  ```scheme
+  (define (rec-Nat n base step)
+    (match n
+      (zero base)
+      ((add1 prev)
+       (= almost (rec-Nat prev base step))
+       (step prev almost))))
+  ```
+
+由上述方法定义的函数称作 primitive recursive function。
+注意，不能自由地使用递归定义，只能用上面给定的递归组合子。
+
+使用递归组合子的意义在于：
+找到安全的递归定义模式，
+使得所定义的函数是 total function。
+
 ## 6.2 Minimization
+
+TODO
 
 # 7 Recursive Sets and Relations
 
