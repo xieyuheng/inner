@@ -274,9 +274,57 @@ means of combination:
 
 ## 6.2 Minimization
 
-TODO
+> We now introduce one further process for defining new functions from
+> old, which can take us beyond primitive recursive functions, and
+> indeed can take us beyond total functions to partial functions.
+
+回顾 effectively computable 的定义，
+这个定义是就 partial function 而言的，
+重点在于有步骤明确的算法，
+而不要求所定义的是 total function。
+
+比如 turing computable 所定义的函数，
+在某些参数上可能不 halt。
+
+因此允许自由地使用递归定义也是可以的，
+虽然所定义的递归函数在某些参数上不收敛。
+
+这一章想要定义的 minimization，
+是用搜索找函数的零点。
+这个搜索过程显然可能会导致 partial function。
+
+加上这个 minimization 算子后，
+所能定义的函数就从 primitive recursive function 的集合，
+变成了 recursive function 的集合。
+
+> The hypothesis that, conversely, all effectively computable total
+> functions are recursive is known as _Church’s thesis_ (the
+> hypothesis that all effectively computable partial functions are
+> recursive being known as the extended version of Church’s thesis.)
+
+> The interest of Church’s thesis derives largely from the following fact.
+> Later chapters will show that some particular functions of great
+> interest in logic and mathematics are nonrecursive.
+
+最简单的 nonrecursive function 的方式，
+和构造图灵不可计算函数类似，
+也是要用到对角线方法。
+
+对角线方法的重点在于给函数以编码，
+这个编码使得我们可以把作用于自然数的函数，
+视为作用于所对应的函数的函数。
+
+而在写解释器或者编译器的时候，
+函数的定义域扩展到了所有的 value，
+函数被编码到 value 的方式是自然且实用的。
+
+另外，好像只有只考虑一阶函数的时候才需要编码，
+如果像是在 lambda calculus 中，允许任意的高阶函数，
+halt function 就可以直接被视为高阶函数了。
 
 # 7 Recursive Sets and Relations
+
+TODO
 
 ## 7.1 Recursive Relations
 ## 7.2 Semirecursive Relations
