@@ -324,9 +324,33 @@ halt function 就可以直接被视为高阶函数了。
 
 # 7 Recursive Sets and Relations
 
+## 7.1 Recursive Relations
+
+> A set of, say, natural numbers is _effectively decidable_ if there
+> is an effective procedure that, applied to a natural number, in a
+> _finite amount of time_ gives the correct answer to the question
+> whether it belongs to the set.
+
+注意 "finite amount of time"，
+这要求 characteristic function 是 total function。
+
+> A set is called _recursively decidable_, or simply _recursive_ for
+> short, if its characteristic function is recursive, and is called
+> _primitive recursive_ if its characteristic function is primitive
+> recursive.
+
+用 recursive set 和 relation，配合 lisp 的 cond，
+可以很方便地定义大量新的 recursive 函数，
+几乎是一个实用的程序语言了。
+
+之所以方便，
+就在于作为 relation 的 characteristic function
+的 predicate 之间可以进行布尔运算。
+只不过布尔值不是独立的类型，
+而是嵌入在自然数中的 0 和 1。
+
 TODO
 
-## 7.1 Recursive Relations
 ## 7.2 Semirecursive Relations
 ## 7.3 Further Examples
 
