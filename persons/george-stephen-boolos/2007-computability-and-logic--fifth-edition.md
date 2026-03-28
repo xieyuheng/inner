@@ -349,6 +349,9 @@ halt function 就可以直接被视为高阶函数了。
 只不过布尔值不是独立的类型，
 而是嵌入在自然数中的 0 和 1。
 
+在想象 total recursive function 的能力时，
+可以直接想象 lisp 的表达 total function 的能力。
+
 TODO
 
 ## 7.2 Semirecursive Relations
