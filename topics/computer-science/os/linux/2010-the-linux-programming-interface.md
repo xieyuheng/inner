@@ -8,10 +8,6 @@ year: 2010
 
 ## 1: history and standards
 
-- unlike most commercial unix implementations,
-  linux separates implementation from distribution.
-  - x - one more level of market.
-
 ## 2: fundamental concepts
 
 ## 3: system programming concepts
