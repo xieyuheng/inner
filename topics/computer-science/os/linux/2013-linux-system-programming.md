@@ -24,6 +24,30 @@ year: 2013
 - symbolic link 是指向另一个文件的特殊文件，
   通过保存另一个文件的完整路径来实现。
 
-#  2 File I/O
+# 2 File I/O
+
+> Before a file can be read from or written to, it must be opened.
+
+因为需要从 path 找到 inode。
+
+> The kernel maintains a per-process list of open files, called the
+> _file table_. This table is indexed via nonnegative integers known
+> as _file descriptors_ (often abbreviated _fds_). Each entry in the
+> list contains information about an open file, including a pointer to
+> an in-memory copy of the file’s backing inode and associated
+> metadata, such as the file position and access modes.
+
+注意，每个 process 都有自己的 file table。
+一个 fd 只有在某个 process 的语境下才有意义。
+
+> By default, a child process receives a copy of its parent’s file
+> table. The list of open files and their access modes, current file
+> positions, and other metadata are the same, but a change in one
+> process -- say, the child closing a file -- does not affect the
+> other process’s file table.
+
+TODO
+
+# 3 Buffered I/O
 
 TODO
