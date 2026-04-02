@@ -21,7 +21,8 @@ year: 2013
 - directory 所保存的 link 称为 hard link，
   可以多 link 对应于一个 inode，
   inode 带有引用计数的。
-- symbolic link 是保存文件名的特殊文件。
+- symbolic link 是指向另一个文件的特殊文件，
+  通过保存另一个文件的完整路径来实现。
 
 #  2 File I/O
 
