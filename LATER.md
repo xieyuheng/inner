@@ -1,3 +1,14 @@
+# machine learning
+
+learn tinygrad
+
+# game engine
+
+learn godot
+learn love2d
+learn raylib
+learn uxn -- add canvas back to linn
+
 # richard-carl-jeffrey
 
 formal-logic-its-scope-and-limits.pdf
