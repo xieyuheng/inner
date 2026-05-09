@@ -114,6 +114,9 @@ scala 和别的带有 any type 的语言，其 any 的语义是 top，
   也许不应该支持 narrowing，而应该用 explicit cast。
 - TypeScript 的类型收窄（Narrowing）本质上就是集合运算，
   其中交集类型 (&) 是核心机制，而 any 则是一个需要特殊对待的边界情况。
+  而我们的类型系统是 hindley-milner 风格的，
+  不是 set-theoretical 的，没有 union 和 intersection。
+
 
 # Abstract
 
