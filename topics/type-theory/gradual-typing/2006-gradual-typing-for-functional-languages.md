@@ -76,6 +76,45 @@ typescript 的 unknown 和 never 分别是 top 和 bottom，
 但是实现的时候可能还是要用 typescript 的语义，
 甚至直接照搬 typescript 的 any、unknown 和 never。
 
+大概知道如何实现 any-t 了。
+我可以在 subtype 关系之外，实现论文中所说的 consistency 关系。
+但是我还不知道的是：
+- 如何定义 any-t 在 subtype 关系中的行为？
+  - deepseek 说 typescript 是用子类型关系来处理 any 的，
+    也就是直接把 any 视为 top 和 bottom。
+- 以及如何定义 any-t 在 unification 中的行为？
+
+在 typescript 中，是鼓励尽量少用 any，
+而是更多用 unknown + narrowing 吗？
+
+- 好像是这样的。
+  即便是我们要使用的 `(define-generic)` 和 `(define-handler)`，
+  也都是这种 unknown + narrowing 的情况。
+
+- 注意，如果考虑子类型作为集合的语义，any 既是全集也是空集。
+
+但是，我发现在我的类型检查器代码中，
+并没有用到子类型关系的传递性的地方。
+如果说传递性会引发塌缩呢？
+
+- 也许可以通过函数复合的构造，来是的传递性出现？
+  在类型检查中，传递性并不需要作为一个“算法步骤”显式实现。
+  它更多是推理规则组合的自然结果。
+
+scala 和别的带有 any type 的语言，其 any 的语义是 top，
+而不是类似 ts 的 top + bottom 吗？
+
+- 对，ts 的类型系统是特例，为了兼容 js。
+
+注意，typescript 的 unknown 是要与 narrowing 配合使用的。
+
+- typescript 的 narrowing 是否不只要处理 any，
+  还要要用到 intersection type？
+- narrowing 好像很复杂，还需要处理 and 和 or。
+  也许不应该支持 narrowing，而应该用 explicit cast。
+- TypeScript 的类型收窄（Narrowing）本质上就是集合运算，
+  其中交集类型 (&) 是核心机制，而 any 则是一个需要特殊对待的边界情况。
+
 # Abstract
 
 TODO
