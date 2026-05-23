@@ -294,10 +294,6 @@ richard trudeau
 《计算思维》（Jeannette M. Wing）
 《设计数据密集型应用》（Designing Data-Intensive Applications - Martin Kleppmann）
 
-# compiler
-
-persons/nils-m-holm -- https://t3x.org/index.html
-
 # programmer's life as a game
 
 读书如同 roguelike，可以做笔记，
