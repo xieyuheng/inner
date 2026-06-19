@@ -194,4 +194,51 @@ dynamic single assignment 在 automatic parallelization 中有用。
 
 ## 1.3 Comparison with Classical Data-Flow Analysis
 
+> As we will discover further in Chaps. 13 and 8, one of the major
+> advantages of SSA form concerns data-flow analysis. Data-flow
+> analysis collects information about programs at compile time in
+> order to make optimizing code transformations. During actual program
+> execution, information flows between variables. Static analysis
+> captures this behaviour by propagating _abstract_ information, or
+> data-flow facts, using an operational representation of the program
+> such as the control-flow graph (CFG). This is the approach used in
+> classical data-flow analysis.
+
+也就是说在 SSA 之前人们就在用 propagation 来解决静态分析中的问题了，只不过是用的是 CFG。
+SSA 是解决静态分析问题的方案之一，直接学习 LLVM 的人可能会忽略这一点。
+
+> Often, data-flow information can be propagated more efficiently
+> using a functional, or sparse, representation of the program such as
+> SSA.
+
+所谓 sparse，就是分析的单元从 CFG 的 basic block，
+改为更细的 instruction（SSA value）。
+
+> For other data-flow problems, properties may change at points that
+> are not variable definitions. These problems can be accommodated in
+> a sparse analysis framework by inserting additional
+> pseudo-definition functions at appropriate points to induce
+> additional variable renaming. See Chap. 13 for one such instance.
+
+看来 LLVM 的 MemoryDef 就是 pseudo-definition 的例子，
+当然还有 MemoryUse 作为 pseudo-use。
+
+> Part II of this textbook gives a comprehensive treatment of some
+> SSA-based data-flow analysis.
+
+## 1.4 SSA in Context
+
+> The majority of current commercial and open source compilers,
+> including GCC, LLVM, the HotSpot Java virtual machine, and the V8
+> JavaScript engine, use SSA as a key intermediate representation for
+> program analysis.
+
+> Many compilers that use SSA form perform SSA elimination before
+> register allocation, including GCC, HotSpot, and LLVM.  Recent
+> research on register allocation (see Chap. 22) even allows the
+> retention of SSA form until the very end of the code generation
+> process.
+
+# 2 Properties and Flavours (Philip Brisk and Fabrice Rastello)
+
 TODO
