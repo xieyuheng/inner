@@ -18,6 +18,21 @@ year: 2022
 因此现在需要重新设计 basic-lisp，增加类型系统，
 并且同时支持动态类型语言和静态类型语言的编译。
 
+现在我知道了，SSA 和 propagator model 基本上是同样的东西，
+只不过 SSA 中 side-effect 还是 implicit 的，
+需要被完全处理为 explicit（比如 LLVM 的 MemorySSA -- MemoryDef 和 MemoryUse）
+才能被完全视为是 propagator network。
+
+另外一个区别是 Sussman 在实现 propagator model 时，
+大量使用了 generic function，
+即同一个函数通过 generic dispatch 来处理不同类型的 cell value。
+而在 SSA 中处理 propagator network 时使用类型参数，
+即每次所有 cell 保存同类型的 value，
+propagator network 中的 propagator 原本只是 symbol，
+需要被重新解释为这些 value 的处理函数。
+
+这次学习的过程中，可以主要思考使用 propagator model 实现 SSA 的方式。
+
 # Foreword (Kenneth Zadeck, Mark N. Wegman)
 
 > Our initial motivation for SSA form was to build a sparse
