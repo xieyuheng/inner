@@ -69,25 +69,13 @@ propagator network 中的 propagator 原本只是 symbol，
 > humbled that our work has led to such a powerful set of directions
 > by others.
 
-# Part I Vanilla SSA
+# [2026-06-20] SSA 在于优化 propagator network
 
-## 1 Introduction (Jeremy Singer)
+注意 SSA 和 propagator network 的差异在于，
+SSA 在于利用 propagator network 对某些信息的 propagation 结果，
+来优化 propagator network，
+把 propagator network 转化为在某种意义上等价的更优的 propagator network。
 
-> In computer programming, as in real life, names are useful handles
-> for concrete entities. The key message of this book is that having
-> _unique names_ for _distinct entities_ reduces uncertainty and
-> imprecision.
-
-> This book is about the _Static Single Assignment form_ (SSA), which
-> is a naming convention for storage locations (variables) in
-> low-level representations of computer programs.
-
-### 1.1 Definition of SSA
-
-TODO
-
-# Part II Analysis
-
-# Part III Extensions
-
-# Part IV Machine Code Generation and Optimization
+这看来是比 propagator network 本身更高一级别的视角。
+除非我们去研究 propagator network 在运行的时候，
+如何利用 propagation 的结果来优化自身。
