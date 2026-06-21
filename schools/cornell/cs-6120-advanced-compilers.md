@@ -564,18 +564,29 @@ info: https://oleksii.shmalko.com/20211028115609/
 
   也就是说，A 一定会在 B 之前被运行。
   或者说，如果运行了 B 那么，A 一定已经运行过了。
+  即 A 在 B 的必经之路上。
 
   domination 关系是自反的，一个 block dominates 自身。
 
   这个关系当然也是可以在一般的 digraph 上定义的，
   只不过在 control flow graph 上，这个意义很重要。
 
-  注意，在 tree 中，
+  注意，在 tree 这种特殊的 digraph 中，
   domination relation 就是 predecessor relation。
 
-  并且可以用 domination tree 来完整表示，
-  任意一个 digraph 的 domination relation。
-  就是原来的 digraph 去掉了一些 edge。
+  反过来对于任意 digraph 我们可以定义 domination tree。
+  来完整地表示其 domination relation。
+  domination tree 中的每个节点，
+  要 dominate 它的子树（自身和所有后代节点）。
+
+  我们可以定义 strict dominate
+  和 immediate dominate 这两种关系：
+
+  - strict dominate -- 取消 dominate 的自反性。
+  - immediate dominate -- strict dominate 并且没有中间 node。
+
+  一个 node 在 dominate tree 中的 children
+  就是这个 node immediate dominate 的 nodes。
 
 - domination frontier -- A 的 domination frontier，
   就是以 A 为 root 的 domination tree，
@@ -602,12 +613,7 @@ info: https://oleksii.shmalko.com/20211028115609/
 - 给出计算 domination relation 的算法。
 
   计算的结果 domination relation，
-  可以用 vertex 到 vertex set 的 map 表示，
-  也可以用 domination tree 表示。
-
-  老师用 map 表示，
-  并且是一个 loop until not change 算法。
-  我感觉这可能不是最好的算法。
+  可以用 vertex 到 vertex set 的 map 表示。
 
 - 暂停，自己想一下。
   好像可以一层一层地从 entry 开始构造 domination tree。
@@ -625,7 +631,9 @@ info: https://oleksii.shmalko.com/20211028115609/
     processed += next_level
     frontier = next_level
 
-  def progress # 找到一个集合的 vertex 的 successor 的集合
+  def progress
+    # 找到一个集合的 vertex 的 successor 的集合
+    # 排除这个集合中的 vertex
 
   # 在已经构造了的 tree 中找 least common predecessor
   def least_common_predecessor(vertices, processed)
@@ -633,7 +641,7 @@ info: https://oleksii.shmalko.com/20211028115609/
       return vertices[0]
     else
       # 一定是收敛的因为有唯一的 entry 作为 tree 的 root
-      vertices = intersection(progress(vertices), processed)
+      vertices = intersection(back_progress(vertices), processed)
       return least_common_predecessor(vertices, processed)
   ```
 
@@ -853,8 +861,7 @@ info: https://oleksii.shmalko.com/20211028115609/
 
 - 老师说 SSA 是一种哲学。
 
-  首先是其背后的「无副作用」idea 适用于很多地方。
-  其次 SSA 可以完全改变我们对 instruction 的理解，
+  SSA 可以完全改变我们对 instruction 的理解，
   使得一个 function 内的 basic block，
   可以被理解为以 variable 为 key 的 key-value map。
 
@@ -895,9 +902,6 @@ info: https://oleksii.shmalko.com/20211028115609/
   并且每个 value instruction 都只有一个简单的，
   以这个 variable 为 output cell 的 propagator。
 
-  注意，data flow 和 propagator 需要满足的 lattice 公理，
-  在这里并不成立。除非记录所有的变量的修改历史。
-
 - 考虑 phi instruction 如何被实现为 propagator 中的 cell。
 
   可以理解为 phi instruction 的 variable，
@@ -917,7 +921,7 @@ info: https://oleksii.shmalko.com/20211028115609/
   就 cell 之间已经有了 reaction 关系，
   没必要用 jump 和 label 来描述的额外的信息！
 
-- 可以发现，有了而 propagator model 这个通用的计算模型之后，
+- 可以发现，有了 propagator model 这个通用的计算模型之后，
   可以方便理解很多东西。
 
 - 下面要把一般的 block 转化为 SSA。

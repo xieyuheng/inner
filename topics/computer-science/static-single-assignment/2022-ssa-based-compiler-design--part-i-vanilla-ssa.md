@@ -436,4 +436,183 @@ basic-lisp 语言本身不并不能保证 SSA。
 
 ## 3.1.1 Join Sets and Dominance Frontiers
 
+> Construction of minimal SSA requires for each variable `v` the
+> insertion of φ-functions at `J(Defs(v))`, where `Defs(v)` is the
+> set of nodes that contain definitions of `v`. The original
+> construction algorithm for SSA form uses the iterated dominance
+> frontier `DF+(Defs(v))`. This is an over-approximation of join set,
+> since `DF+(S) = J(S ∪ {r})`, i.e., the original algorithm assumes
+> an implicit definition of every variable at the entry node `r`.
+
+dominance 在于「必经之路」，
+dominance frontier 是对 dominance 的否定，
+因此 dominance frontier 在于「有岔路」。
+
+忘掉“支配谁”，记住“在哪里交汇”。
+把它想象成“控制流汇合处的哨兵”
+——它是判断“我的定义（Definition）
+是否需要在别的路径汇合点用 φ 函数合并”的唯一依据。
+
+# 6 Functional Representations of SSA (Lennart Beringer)
+
+> This chapter discusses alternative representations of SSA using the
+> terminology and structuring mechanisms of functional programming
+> languages. The reading of SSA as a discipline of functional
+> programming arises from a correspondence between dominance and
+> syntactic scope that subsequently extends to numerous aspects of
+> control and data-flow structure.
+
+如果我们给每个 instruction 一个 cell。
+然后根据 instruction 以及 scope，
+构造 cell 之间的 propagator network，
+是否可以绕过 SSA？
+
+质疑在于，我们为什么需要把没有 goto 的代码，
+转化为带有 goto 的代码（CFG 和 basic block），
+然后再进行分析呢？
+
+比如在类型检查的过程中，要为每个子表达式生成 cell，
+但是并不用提前把整个表达式转化为 SSA 格式（每个 cell 都有 name）。
+
+## 6.1 Low-Level Functional Program Representations
+
+```scheme
+(define (f x0 ... xn) e)
+```
+
+### 6.1.1 Variable Assignment Versus Binding
+
+```scheme
+(let ((x e1))
+  e2)
+```
+
+> In contrast to an assignment in an imperative language, a
+> let-binding for variable `x` hides any previous value bound to `x`
+> for the duration of evaluating `e2` but does not permanently
+> overwrite it.
+
+> ... the notion of scope makes explicit the invariant that each use
+> of a variable should be dominated by its (unique) definition.
+
+> In contrast to SSA, functional languages achieve the association of
+> definitions to uses without imposing the global uniqueness of
+> variables, as witnessed by the duplicate binding occurrences for v
+> in the above code.
+
+> As a consequence of this decoupling, functional languages enjoy a
+> strong notion of _referential transparency_: The choice of `x` as
+> the variable holding the result of `e1` depends only on the free
+> variables of `e2`.
+
+因为 `let` 语法只有对外部变量的遮挡，而没有「对变量重新赋值」这个副作用。
+SSA 给每个变量唯一的名字，也是为了避免「对变量重新赋值」这个副作用。
+
+> In order to avoid altering the meaning of the program, the choice of
+> the newly introduced variable has to be such that confusion with
+> other variables is avoided.
+
+referential transparency 是就 substitution 而言的。
+但是也需要注意，函数式的 substitution 过程中，
+由于没有 unique name，会有复杂的关于 name 冲突的规则。
+
+> A consequence of referential transparency, and thus a property
+> typically enjoyed by functional languages, is _compositional
+> equational reasoning_: the meaning of a piece of code e is only
+> dependent on its free variables and can be calculated from the
+> meaning of its subexpressions.
+
+### 6.1.2 Control Flow: Continuations
+
+所传递的 continuation 参数 k，
+就像是在 basic block 末尾通过 goto 到一个名为 k 的 block，
+并且 block 总是带有一个参数。
+
+> Programs in CPS equip _all_ function declarations with continuation
+> arguments. By interspersing ordinary code with continuation-forming
+> expressions as shown above, they model the flow of control
+> exclusively by communicating, constructing, and invoking
+> continuations.
+
+如果不支持 `call/cc` 其实没必要用这样的中间语言。
+
+### 6.1.3 Control Flow: Direct Style
+
+> An alternative to the explicit passing of continuation terms via
+> additional function arguments is the _direct style_, in which we
+> represent code as a set of locally named tail-recursive functions,
+> for which the last operation is a call to a function, eliminating
+> the need to save the return address.
+
+从带参数的 goto -- `(goto <label> <arg> ...)`，
+和带参数的 block -- `(block <label> (<parameter> ...) ...)` 来看，
+goto 就是 function application，
+block 就是 named function。
+当然，能够用函数调用来实现 goto 的前提是有尾递归优化。
+
+> ... rather than handing its result directly over to some
+> caller-specified receiver (as communicated by the continuation
+> argument `k`), h simply returns control back to the caller, who is
+> then responsible for any further execution.
+
+### 6.1.4 Let-Normal Form
+
+## 6.2 Functional Construction and Destruction of SSA
+
+### 6.2.1 Initial Construction Using Liveness Analysis
+
+首先要把 CFG 转化为 Let-Normal Form 的函数，一个 block 一个函数。
+
+> In order to determine the formal parameters of these functions we
+> perform a liveness analysis.
+
+跨 block live 的 variable 要透传，
+用于 block 结尾时的函数调用。
+
+把这种 functional 表示转化为 SSA，
+就是把对代表 block 的函数的所有调用，
+都列表收集到函数开头（一行一个参数，一列一个调用）。
+
+因此这种 block as function 的表示，与带有 phi 的 SSA 是完全等价的，
+想要计算前者，还是需要用同样的算法 -- dominance frontiers。
+
+> While resulting in a legal SSA program, the construction clearly
+> introduces more φ-functions than necessary. Each superfluous
+> φ-function corresponds to the situation where all call sites to
+> some function `fi` pass identical arguments. The technique for
+> eliminating such arguments is called λ-dropping and is the inverse
+> of the more widely known transformation λ-lifting.
+
+### 6.2.2 λ-Dropping
+
 TODO
+
+## 6.4 Further Reading and Concluding Remarks
+
+这一节有大量的关于 alternative 方案的介绍与引用，值得反复读。
+
+> Matsuno and Ohori [195] present a formalism that captures core
+> aspects of SSA in a notion of (non-standard) types while leaving the
+> program text in unstructured non-SSA form. Instead of classifying
+> values or computations, types represent the definition points of
+> variables. Contexts associate program variables at each program
+> point with types in the standard fashion, but the non-standard
+> notion of types means that this association models the
+> reaching-definitions relationship rather than characterizing the
+> values held in the variables at runtime. Noting a correspondence
+> between the types associated with a variable and the sets of def-use
+> paths, the authors admit types to be formulated over type variables
+> whose introduction and use corresponds to the introduction of
+> φ-nodes in SSA.
+
+这可能就是我想尝试的方案，
+在静态分析时，子表达式所对应的 cell 可以保存任何信息，
+而不只是 type。
+
+> Finally, Pop et al.’s model [233] dispenses with control flow
+> entirely and instead views programs as sets of equations that model
+> the assignment of values to variables in a style reminiscent of
+> partial recursive functions. This model is discussed in more detail
+> in Chap. 10.
+
+这个看起来也很有趣。
