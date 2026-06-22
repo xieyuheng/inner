@@ -1,6 +1,6 @@
 ---
 title: modern compiler implementation in ML
-author:  andrew w appel
+author: andrew w appel
 year: 1998
 ---
 
