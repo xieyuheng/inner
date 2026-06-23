@@ -13,7 +13,7 @@ elon musk's five steps algorithm for engineering
 - (2) try to delete the (process) steps,
   be not afraid to delete and put back in.
 - (3) only then, simplify it.
-- (4) any given thing can be sped up.
+- (4) any given thing can be speed up.
   but speeding up something should not exist is absurd.
 - (5) to automate it.
 
