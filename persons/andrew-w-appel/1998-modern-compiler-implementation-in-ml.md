@@ -64,7 +64,74 @@ the order is the key, imagine doing it backward:
 
 也就是 meta-lisp 中全局的 mod，以及局部的 env 和 ctx。
 
+# 6 Activation Records
+
+介绍了三种处理嵌套的函数的方式：
+
+- static links
+- displays
+- lambda lifting
+
+这里选择实现的是 static links。
+
+> Should we use displays instead of static links? Perhaps; but the
+> issue is more complicated. For languages such as Rascal and Tiger
+> with block structure but no function variables, displays work well.
+
+> But the full expressive power of block structure is obtained when
+> functions can be returned as results of other functions, as in
+> Scheme and ML. For such languages, there are more issues to consider
+> than just variable-access time and procedure entry-exit cost: there
+> is closure-building cost, and the problem of avoiding useless data
+> kept live in closures. Chapter 15 explains some of the issues.
+
 # 7 Translation to Intermediate Code
+
+这里定义的 TREE IR 分 statement 和 expression 两层，
+其中 expression 可以相互嵌套，
+甚至 expression 内可以嵌套 statement -- 类似 `begin`。
+
+这甚至还不如 EOC 中的 IR，
+其中 expression 不能嵌套，
+并且 expression 内不能嵌套 statement。
+
+# 8 Basic Blocks and Traces
+
+## 8.1 CANONICAL TREES
+
+在 TREE 内部取消嵌套。
+
+TREE 内部的转写被理解为 term rewriting system。
+
+# 9 Instruction Selection
+
+> The intermediate representation (Tree) language expresses only
+> oneoperation in each tree node: memory fetch or store, addition or
+> subtraction,conditional jump, and so on.  A real machine instruction
+> can often perform severalof these primitive operations.
+
+这里的思路不是想如何把 IR 翻译为 instructions，
+而是反过来看 instructions 所对应的 IR。
+
+> We can express a machine instruction as a fragment of an IR tree,
+> called a _tree pattern_. Then instruction selection becomes the task
+> of tiling the tree with a minimal set of tree patterns.
+
+> The fundamental idea of instruction selection using a tree -- based
+> intermediate representation is _tiling_ the IR tree. The _tiles_ are
+> the set of tree patterns corresponding to legal machine instructions,
+> and the goal is to cover the tree with nonoverlapping tiles.
+
+这无疑是把可以用简单的翻译函数解决的问题，
+转化为了需要复杂算法解决的问题。
+
+这里提到的 maximal munch 算法，就是简单的翻译函数。
+
+这里还提到了 tiling 问题对 CISC 和 RISC 的区别，
+其实现代的 CISC 的 CPU 在拿到指令之后，
+也是先翻译成更简单的指令然后才运行的。
+
+# 17 Dataflow Analysis
 
 TODO
 
