@@ -10,11 +10,39 @@ year: 2024
 需要实现属于我们自己的 x86 汇编器。
 因此学习一下 x86 汇编。
 
+# Introduction
+
+> Being a programmer is one thing above all else: It is understanding
+> how things work. Learning to be a programmer, furthermore, is almost
+> entirely a process of learning how things work.
+
+"understanding how things work" 应该成为程序员的习惯。
+
 # 1 It’s All in the Plan
+
+> A computer program is a list of steps and tests, nothing more.
+
+steps 很简单，所以要解释 tests。
+
+人在生活中看似复杂的选择，
+其实可以分解为简单的「是或否」的选择。
+
+"winning ways" 中，把游戏从数学上抽象为了选择。
+可否利用这种抽象来设计好玩的游戏（比如小丑牌）？
+
+> Assembly Language Programming As a Board Game
+
+这个比喻很有趣，大富翁游戏外面那一圈 path，
+就是 programming instructions。
+
+和汇编指令一样，大富翁也可能带有 jump，
+但是差别在于，汇编指令每次前进一步，
+而大富翁的前进的步数是随机的。
+
+# 2 Alien Bases
 
 TODO
 
-# 2 Alien Bases
 # 3 Lifting the Hood
 # 4 Location, Location, Location
 # 5 The Right to Assemble
