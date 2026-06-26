@@ -41,9 +41,24 @@ steps 很简单，所以要解释 tests。
 
 # 2 Alien Bases
 
-TODO
+> Hexadecimal is the programmer’s shorthand for the computer’s binary numbers.
+
+    1111 0000 0000 0000 1111 1010 0110 1110
+      F    0    0    0    F    A    6    E
+
+- 1  byte = 8 bits = two hex numbers
+- 4 bytes = 32 bits =  8 hex numbers
+- 8 bytes = 64 bits = 16 hex numbers
 
 # 3 Lifting the Hood
+
+首先解释 Memory：
+
+> Memory consists of containers for alterable patterns that retain an
+> entered pattern until someone or something alters the pattern.
+
+TODO Transistor Switches
+
 # 4 Location, Location, Location
 # 5 The Right to Assemble
 # 6 A Place to Stand, with Access to Tools
