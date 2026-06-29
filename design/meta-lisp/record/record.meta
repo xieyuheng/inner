@@ -1,0 +1,27 @@
+(module test-suite)
+
+(define-interface point-t
+  :x float-t
+  :y float-t)
+
+(define (with-color color point)
+  (extend point :color color))
+
+(define-test record-extend-test
+  (= point (@record :x 1.0 :y 2.0))
+  (assert-equal
+    (@record :x 1.0 :y 2.0 :color "red")
+    (with-color "red" point)))
+
+(define (point-put-x x point)
+  (update point :x x))
+
+(define (point-put-y! y point)
+  (update! point :y y))
+
+(define-test record-update-test
+  (= point (@record :x 1.0 :y 2.0))
+  (assert-equal (@record :x 2.0 :y 2.0) (point-put-x 2.0 point))
+  (assert-equal (@record :x 1.0 :y 2.0) point)
+  (assert-equal (@record :x 1.0 :y 1.0) (point-put-y! 1.0 point))
+  (assert-equal (@record :x 1.0 :y 1.0) point))

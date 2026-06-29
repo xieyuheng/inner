@@ -1,0 +1,14 @@
+(module test-suite)
+
+;; (claim my-atom? (any-t))
+;; (define (my-atom? ))
+
+;; (define-test my-atom-test
+;;   (= sexps (parse-sexps "1 2 3"))
+;;   (= x (car sexps))
+;;   (println (iadd x x)))
+
+;; (define-test my-atom-test
+;;   (= sexps [1 2 3])
+;;   (= x (car (the (list-t int-t) sexps)))
+;;   (println (iadd x x)))

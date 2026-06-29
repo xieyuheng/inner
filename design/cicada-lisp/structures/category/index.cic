@@ -1,0 +1,5 @@
+(import category-t "category")
+(import functor-t "functor")
+(import naturaltrans-formation-t "naturaltrans-formation")
+(import isomorphism-t "isomorphism")
+(import trivial-category-t "trivial-category")

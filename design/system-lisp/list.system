@@ -1,0 +1,60 @@
+(define-struct (node-t E)
+  (prev (pointer-t (node-t E)))
+  (next (pointer-t (node-t E)))
+  (value E))
+
+(define-struct (list-t E)
+  (first (pointer-t (node-t E)))
+  (last (pointer-t (node-t E)))
+  (cursor (pointer-t (node-t E)))
+  (length int-t)
+  (free-fn (-> E void-t))
+  (equal-fn (-> E E bool-t))
+  (copy-fn (-> E E)))
+
+(admit list-first
+  (polymorphic (E)
+    (-> (pointer-t (list-t E))
+        (pointer-t (node-t E)))))
+
+(admit list-put-first
+  (polymorphic (E)
+    (-> (pointer-t (list-t E)) (pointer-t (node-t E))
+        void-t)))
+
+(claim make-list
+  (polymorphic (E)
+    (-> (pointer-t (list-t E)))))
+
+;; - how about the size-of polymorphic E?
+;;   in scalable-c E can only be a pointer-t or a 64-bit value.
+
+(define (make-list)
+  (= self (allocate (size-of list-t)))
+  (list-put-length self 0)
+  self)
+
+(claim list-free
+  (polymorphic (E)
+    (-> (pointer-t (list-t E)) void-t)))
+
+(define (list-destroy self)
+  (list-purge self)
+  (free self))
+
+(claim list-purge
+  (polymorphic (E)
+    (-> (pointer-t (list-t E)) void-t)))
+
+(define (list-purge self)
+  (= node (list-first self))
+  (while (not (null? node))
+    (= next (node-next node))
+    (unless (null? (list-free-fn self))
+      ((list-free-fn self) (node-value node)))
+    (free node)
+    (= node next))
+  (list-put-first self null)
+  (list-put-last self null)
+  (list-put-cursor self null)
+  (list-put-length self 0))

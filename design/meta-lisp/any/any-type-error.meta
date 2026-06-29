@@ -1,0 +1,5 @@
+(error-module any-type-error)
+
+(define-test any-test
+  (= x (the any-t 1))
+  (println (iadd x x)))

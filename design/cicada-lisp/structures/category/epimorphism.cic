@@ -1,0 +1,15 @@
+(import category-t "category")
+
+(define-class epimorphism-t ()
+  (claim cat category-t)
+  (claim dom cat:object-t)
+  (claim cod cat:object-t)
+  (claim morphism (cat:morphism-t dom cod))
+  (claim cancel-left
+    (implicit ((x cat:object-t)
+               (f (cat:morphism-t cod x))
+               (g (cat:morphism-t cod x)))
+      (-> (equal-t (cat:morphism-t dom x)
+            (cat:compose morphism-t f)
+            (cat:compose morphism-t g))
+          (equal-t (cat:morphism-t cod x) f g)))))

@@ -1,0 +1,16 @@
+(error-module row-polymorphism-edge-case)
+
+;; - rows with a common tail but a distinct prefix.
+;;   ```caml
+;;   \r → if True then {x = 2 | r} else {y = 2 | r}
+;;   ```
+;; - in our language:
+;;   (extend-interface) with a common base-type
+;;   but distinct attribute-types.
+
+(define (f r)
+  (if true
+    (extend r
+      :x 2)
+    (extend r
+      :y 2)))

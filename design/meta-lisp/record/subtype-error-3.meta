@@ -1,0 +1,20 @@
+(error-module subtype-error-3)
+
+(define-interface point-t
+  :x float-t
+  :y float-t)
+
+(claim print-point (-> point-t void-t))
+
+(define (print-point point)
+  (print (:x point))
+  (write " ")
+  (print (:y point)))
+
+(claim print-point-example
+  (polymorphic (A)
+    (-> A void-t)))
+
+(define (print-point-example x)
+  (print-point x)
+  (print (:z x)))

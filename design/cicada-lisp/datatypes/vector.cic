@@ -1,0 +1,7 @@
+(define-datatype vector-t ((element-t type-t))
+  :indices ((length nat-t))
+  (vector-null () (vector-t element-t zero))
+  (vector-cons ((implicit prev nat-t)
+                (head element-t)
+                (tail (vector-t element-t prev)))
+               (vector-t element-t (add1 prev))))

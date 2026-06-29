@@ -1,0 +1,5 @@
+(module test-suite)
+
+(define-test any-test
+  (= x (the any-t 1))
+  void)
