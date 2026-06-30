@@ -131,7 +131,97 @@ TREE 内部的转写被理解为 term rewriting system。
 其实现代的 CISC 的 CPU 在拿到指令之后，
 也是先翻译成更简单的指令然后才运行的。
 
+# 10 Liveness Analysis
+
+TODO
+
+# 11 Register Allocation
+
+TODO
+
+# 13 Garbage Collection
+
+## 13.7 INTERFACE TO THE COMPILER
+
+TODO about root finding
+
 # 17 Dataflow Analysis
+
+> anal-y-sis: an examination of a complex, its elements, and their relations.
+
+> An optimizing compiler transforms programs to improve their
+> efficiency without changing their output. There are many
+> transformations that improve efficiency:
+>
+> - Register allocation: Keep two nonoverlapping temporaries in the
+>   same register.
+>
+> - Common-subexpression elimimination: If an expression is computed
+>   more than once, eliminate one of the computations.
+>
+> - Dead-code elimination: Delete a computation whose result will
+>   never be used.
+>
+> - Constant folding: If the operands of an expression are constants,
+>   do the computation at compile time.
+
+> Each of the optimizing transformations listed at the beginning of
+> the chapter can be applied using the following generic recipe:
+>
+> - Dataflow analysis: Traverse the flow graph, gathering information
+>   about what may happen at run time (this will necessarily be a
+>   conservative approximation).
+>
+> - Transformation: Modify the program to make it faster in some way;
+>   the information gathered by analysis will guarantee that the
+>   program's result is unchanged.
+
+> There are many dataflow analyses that can provide useful information
+> for optimizing transformations. Like the _liveness analysis_ described
+> in Chapter 10, most can be described by _dataflow equations_, a set of
+> simultaneous equations derived from nodes in the flow graph.
+
+## 17.1 QUADRUPLES
+
+```meta-lisp
+(= a (<op> b c))
+```
+
+## 17.2 VARIOUS DATAFLOW ANALYSES
+
+> A dataflow analysis of a control flow graph of quadruples collects
+> information about the execution of the program. One dataflow
+> analysis determines how definitions and uses are related to each
+> other, another estimates what values a variable might have at a
+> given point, and so on. The results of these analyses can be used to
+> make optimizing transformations of the program.
+
+这里使用没有 SSA 限制的 CFG：
+
+- 变量可以重名。
+- 没有 phi 或者 block 参数。
+
+每个 instruction 的前后位置（in 和 out 位置），
+都可以保存分析信息，然后根据具体的 instruction 来做 propagation。
+
+# 19 Static Single-Assignment Form
+
+## 19.1 CONVERTING TO SSA FORM
+
+TODO
+
+## 19.2 EFFICIENT COMPUTATION OF THE DOMINATOR TREE
+
+> A major reason for using SSA form is that it makes the optimizing
+> compiler faster. Instead of using costly iterative bit-vector
+> algorithms to link uses to definitions (to compute reaching
+> definitions, for example), the compiler can just look up the
+> (unique) definition, or the list of uses, of each variable.
+>
+> For SSA to help make a compiler faster, we must be able to compute
+> the SSA form quickly.
+
+## 19.3 OPTIMIZATION ALGORITHMS USING SSA
 
 TODO
 
