@@ -57,7 +57,11 @@ steps 很简单，所以要解释 tests。
 > Memory consists of containers for alterable patterns that retain an
 > entered pattern until someone or something alters the pattern.
 
-TODO Transistor Switches
+> Every byte of memory in the computer has its own unique address,
+> even in computers that process 2, 4, or 8 bytes of information at a
+> time.
+
+TODO
 
 # 4 Location, Location, Location
 # 5 The Right to Assemble
