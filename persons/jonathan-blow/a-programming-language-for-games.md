@@ -97,7 +97,7 @@ f := (float) -> float [capture] { ... };
 
 在 scheme 语法框架内也可以有类似的讨论。
 
-# 2014-10-31 Demo： Base language, compile-time execution
+# [2014-10-31] Demo： Base language, compile-time execution
 
 这是第一个带有语言实现的 talk。
 
@@ -135,7 +135,7 @@ accessors 和 modifiers 的参数都必须是 `(ref)`。
 这样就不用些很多 `(deref)` -- 这是主要使用情况，
 而是需要在处理 struct 本身的时候加上 `(ref)`。
 
-# 2014-12-11 Demo： Iteration and arrays, uninitialized values, enums
+# [2014-12-11] Demo： Iteration and arrays, uninitialized values, enums
 
 ## part 1
 
@@ -314,6 +314,117 @@ jai 的 enum 带有 runtime meta data，有 `<enum-type>.names` 之类的 API。
 
 inline 应该被设计为命令，而不是编译器的优化 hint。
 
-# 2015-01-21 Data-Oriented Demo： SOA, composition
+# [2015-01-21] Data-Oriented Demo： SOA, composition
+
+用 `using` 语法把 namespace 中的 name 释放到当前 scope。
+enum 和 struct 等等都带有 namespace。
+这个设计是为了对应 c++ 可以省略 this 的机制。
+
+```c
+entity.position.x;
+entity.position.y;
+entity.position.z;
+
+using entity.position;
+
+x;
+y;
+z;
+```
+
+`using` 可以用来修饰函数的参数，以及 struct 的 field。
+
+```c
+Entity :: struct {
+  position: Vector3;
+}
+
+Door :: struct {
+  using entity: Entity;
+
+  openness_current: float = 0;
+  openness_target: float = 0;
+}
+```
+
+作用于 `Entity` 的函数，也可以作用于 `Door`。
+也就是需要子类型或函数重载机制。
+
+用 `using` + pointer，可以实现 Entity Component System (ECS)：
+
+```c
+Entity :: struct {
+  using component1: ^ Component1;
+  using component2: ^ Component2;
+  ...
+}
+```
+
+或者只有一个 Entity，然后调整 hot 和 cold 的内存分配。
+
+只用修改类型，不用修改带代码：
+
+```c
+Entity_Hot :: struct {
+  ...
+}
+
+Entity_Code :: struct {
+  ...
+}
+
+Entity :: struct {
+  using hot: ^ Entity_Hot;
+  using cold: ^ Entity_Cold;
+  ...
+}
+```
+
+通过 `SOA` 类型 modifier，来切换 AOS vs SOA
+-- array of structs vs struct of arrays.
+
+```c
+a : [N] Vector3;
+b : [N] SOA Vector3;
+```
+
+pointer 也支持 SOA：
+
+```c
+Door :: struct {
+  using entity : ^ SOA Entity;
+  ...
+}
+```
+
+这种 pointer 需要保存 metadata，
+因此不是 8 bytes，而是 16 bytes。
+
+SOA 可以用于标记 struct：
+
+```c
+Entity :: struct SOA {
+  ...
+}
+```
+
+之后所有这个 `^ Entity` pointer 都是 SOA pointer。
+
+还介绍了如何用 size 更小的 index 类型代替 8 bytes pointer。
+
+但是我还是感觉把这些机制都设计在语言中太复杂了，
+可能有一个可以自定义 allocator 的机制就够了。
+
+SOA 和 EOC 的感觉就是以 index 为 id，
+每个属性都保存在一个连续的 array 中。
+
+下面介绍如何手动实现类似 c++ 的 vtable + subclass。
+在我们的设计中，应该可以直接避免 subclass 概念。
+
+在带有 dot 语法的语言中，dot 语法本身就是最需要 subclass 概念的语法。
+`using` 语法所带来的对 overload 的需求，就是 attribute 所带来的 subclass。
+而 pointer 和 struct 之通用所带来的 overload 的需求，不是 subclass。
+
+# [2015-02-12] Demo： Run-Time (and Compile-Time) Type Information
 
 TODO

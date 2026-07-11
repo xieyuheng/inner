@@ -61,6 +61,9 @@ steps 很简单，所以要解释 tests。
 > even in computers that process 2, 4, or 8 bytes of information at a
 > time.
 
+> The CPU’s immediate work in progress is held in temporary storage
+> containers called registers.
+
 TODO
 
 # 4 Location, Location, Location
