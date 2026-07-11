@@ -313,3 +313,7 @@ jai 的 enum 带有 runtime meta data，有 `<enum-type>.names` 之类的 API。
 ## part 7: inlining
 
 inline 应该被设计为命令，而不是编译器的优化 hint。
+
+# 2015-01-21 Data-Oriented Demo： SOA, composition
+
+TODO
