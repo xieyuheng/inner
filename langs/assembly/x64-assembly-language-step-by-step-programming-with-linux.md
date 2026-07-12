@@ -71,6 +71,8 @@ steps 很简单，所以要解释 tests。
 
 # 4 Location, Location, Location
 
+> **Registers, Memory Addressing, and Knowing Where Things Are**
+
 > The real job of a CPU, and the real challenge of assembly language,
 > lies in locating the required instructions and data in memory. Any
 > idiot can learn machine instructions.
@@ -106,11 +108,25 @@ segment register 保存 paragraph 的地址，
 可以理解为基地址 + 偏移量，
 只不过基地址都是 16 bytes 对齐的。
 
+寻址是重点。
+所以首次介绍寄存器，
+不是介绍寄存器如何保存 add 的参数，
+而是介绍寄存器如何用于寻址。
+
 ## protected-mode flat model
+
+64-bit long mode:
+
+- 64-bit value
+- 2^52 b memory
+- 64-bit address
+
+# 5 The Right to Assemble
+
+> **The Process of Creating Assembly Language Programs**
 
 TODO
 
-# 5 The Right to Assemble
 # 6 A Place to Stand, with Access to Tools
 # 7 Following Your Instructions
 # 8 Our Object All Sublime
