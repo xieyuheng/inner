@@ -64,9 +64,52 @@ steps 很简单，所以要解释 tests。
 > The CPU’s immediate work in progress is held in temporary storage
 > containers called registers.
 
-TODO
+> Computer programs are lists of binary machine instructions stored in
+> memory. They are no different from any other list of data bytes
+> stored in memory except in how they are interpreted when fetched by
+> the CPU.
 
 # 4 Location, Location, Location
+
+> The real job of a CPU, and the real challenge of assembly language,
+> lies in locating the required instructions and data in memory. Any
+> idiot can learn machine instructions.
+>
+>     The skill of assembly language consists of
+>     a deep comprehension of memory addressing.
+>
+> Everything else is details -- and easy details, at that.
+
+> Memory addressing is a difficult business, made much more difficult
+> by the fact that there are a fair number of different ways to
+> address memory in the Intel/AMD CPU family. Each of these ways is
+> called a _memory model_.
+
+## real-mode flat model
+
+- 8-bit value
+- 64 kb memory
+- 16-bit address
+
+## real-mode segmented model
+
+- 16-bit value
+- 16 * 64 kb memory = 1 mb memory
+- 20-bit address = 16-bit address + segment register
+
+segment register 保存 paragraph 的地址，
+一个 paragraph 是 16 bytes 对齐的地址。
+
+这样就可以用两个 16-bit 寄存器，
+来指向一个 20-bit 地址了。
+同一个地址可以有多种表示方式，
+可以理解为基地址 + 偏移量，
+只不过基地址都是 16 bytes 对齐的。
+
+## protected-mode flat model
+
+TODO
+
 # 5 The Right to Assemble
 # 6 A Place to Stand, with Access to Tools
 # 7 Following Your Instructions
