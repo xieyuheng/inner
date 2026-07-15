@@ -208,10 +208,36 @@ relocation 有「重新安置」的意思。
 relocation table 保存信息，
 用来在 relocate 一段代码之后重新安置其中的地址引用。
 
-## TODO
-
 # 6 A Place to Stand, with Access to Tools
+
+> **Linux and the Tools That Shape the Way You Work**
+
+教你使用 sasm。
+
+## I/O Redirection
+
+每个程序都可以假设有基本输入输出存在，
+使用程序的人或者程序，可以重定向基本输入输出。
+
+即使是想要写一个 filter 文件的程序，比如 `uppercaser`，
+也只需要在程序中处理基本输入输出，而不用处理文件名。
+
+在 terminal 中，基本输入输出会给程序以基础的 UI：
+
+- 在 input buffer 输入字符，按回车发送一次。
+- 程序输出到 stdout 的字符，直接打印在 terminal 中 cursor 的位置。
+- 输入一些 input 字符，不按回车，按 ctrl-d 也能发送一次；
+  但是如果当前 input buffer 为空，按 ctrl-d 就会发送 EOF（end of file）。
+- 按 ctrl-c 强制退出程序。
+
+用 IO 重定向，来实现对文件的处理（比如 filter）。
+
 # 7 Following Your Instructions
+
+> **Meeting Machine Instructions Up Close and Personal**
+
+TODO
+
 # 8 Our Object All Sublime
 # 9 Bits, Flags, Branches, and Tables
 # 10 Dividing and Conquering
