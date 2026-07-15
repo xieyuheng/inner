@@ -177,7 +177,38 @@ segment register 保存 paragraph 的地址，
 但是由于现代 CPU 和操作系统的虚拟内存地址机制的存在，relocation 是不可避免的，
 因此这种可执行文件格式以及 loader 的构架是不可避免的复杂度。
 
-TODO
+正如解释型语言器，
+需要首先用顶层 statement 把 definition 等等信息 setup 到内存，
+然后解释器再利用这些信息来进行解释。
+
+CPU 就是 instruction 的解释器。
+与一般的解释器相比，CPU 解释 instruction 之前的复杂性在于：
+- 需要序列化到可以快速加载的可执行文件，
+- 然后再通过 loader 加载。
+
+## Object Code, Linkers, and Libraries
+
+object file -> link -> executable file -> load
+
+我需要自己定义 loader（因为 lisp 语言的 symbol 的 relocation），
+如果不需要分布式地汇编，就可以把流程简化为：
+
+executable file -> load
+
+分布式的汇编是没必要的，
+因为汇编器的任务很简单，速度很快。
+
+分布式的编译可能是有必要的，
+也许可以通过给汇编语言增加模块系统来实现。
+
+## Relocatability
+
+relocatability 的意思是代码可以被转移（relocate）到任何内存位置。
+relocation 有「重新安置」的意思。
+relocation table 保存信息，
+用来在 relocate 一段代码之后重新安置其中的地址引用。
+
+## TODO
 
 # 6 A Place to Stand, with Access to Tools
 # 7 Following Your Instructions

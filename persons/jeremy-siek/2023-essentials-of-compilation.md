@@ -1403,7 +1403,7 @@ caller 和 callee 在使用寄存器的时候就有了偏好，
 | cx  | count register    |
 
 deepseek 说基础这些参数寄存器的顺序的顺口溜是：
-"Diane's Silly Dog Chases Rabbits Ruthlessly."
+"Diana's Silly Dog Chases Rabbits Ruthlessly."
 哈哈。
 
 > The next question is how these calling conventions impact register
