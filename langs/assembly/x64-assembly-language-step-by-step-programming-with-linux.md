@@ -50,6 +50,27 @@ steps 很简单，所以要解释 tests。
 - 4 bytes = 32 bits =  8 hex numbers
 - 8 bytes = 64 bits = 16 hex numbers
 
+应该记住每个十六进制所对应的四位二进制，这样 shorthand 的作用才有效：
+
+| 十进制 | 十六进制 | 四位二进制 |
+|-------:|---------:|-----------:|
+|      0 |        0 |       0000 |
+|      1 |        1 |       0001 |
+|      2 |        2 |       0010 |
+|      3 |        3 |       0011 |
+|      4 |        4 |       0100 |
+|      5 |        5 |       0101 |
+|      6 |        6 |       0110 |
+|      7 |        7 |       0111 |
+|      8 |        8 |       1000 |
+|      9 |        9 |       1001 |
+|     10 |        A |       1010 |
+|     11 |        B |       1011 |
+|     12 |        C |       1100 |
+|     13 |        D |       1101 |
+|     14 |        E |       1110 |
+|     15 |        F |       1111 |
+
 # 3 Lifting the Hood
 
 首先解释 Memory：
@@ -326,9 +347,59 @@ DEC:     -8   -7   -6   -5   -4   -3   -2   -1  |  0    1    2    3    4    5   
 | 7 | 0111 | 011_     | 1001 |
 | 6 | 0110 | 01__     | 1010 |
 
-TODO
+## Implicit Operands and MUL
+
+MUL 有一个 explicit operand 和两个 implicit operand：
+
+| INSTRUCTION | EXPLICIT   | IMPLICIT   | IMPLICIT  |
+|             | OPERAND    | OPERAND    | OPERAND   |
+|             | (FACTOR 1) | (FACTOR 2) | (PRODUCT) |
+|-------------|------------|------------|-----------|
+| MUL r/m8    | r/m8       | AL         | AX        |
+| MUL r/m16   | r/m16      | AX         | DX : AX   |
+| MUL r/m32   | r/m32      | EAX        | EDX : EAX |
+| MUL r/m64   | r/m64      | RAX        | RDX : RAX |
+
+DIV 作为 NUL 的逆运算，也用到两个 implicit operand：
+
+| INSTRUCTION | EXPLICIT  | IMPLICIT   | RESULT     | RESULT      |
+|             | OPERAND   | OPERAND    | QUOTIENT   | REMAINDER   |
+|             | (DIVISOR) | (DIVIDEND) | (QUOTIENT) | (REMAINDER) |
+|-------------|-----------|------------|------------|-------------|
+| DIV r/m8    | r/m8      | AX         | AL         | AH          |
+| DIV r/m16   | r/m16     | DX : AX    | AX         | DX          |
+| DIV r/m32   | r/m32     | EDX : EAX  | EAX        | EDX         |
+| DIV r/m64   | r/m64     | RDX : RAX  | RAX        | RDX         |
+
+```asm
+mov rax, 250    ; Dividend
+mov rbx, 5      ; Divisor
+div rbx         ; Do the DIV
+```
+
+报错：Program received signal SIGFPE, Arithmetic exception.
+
+因为实际被除数 = RDX * 2^64 + 250，这是一个极其巨大的数。
+而除数是 5，商必然远大于 64 位能表示的最大值（2^64 - 1），
+导致 除法溢出（#DE 异常），操作系统捕获后向进程发送 SIGFPE 信号（算术异常）。
+
+正确的做法：
+
+```asm
+xor rdx, rdx        ; 清零 RDX
+mov rax, 250
+mov rbx, 5
+div rbx
+```
+
+## An Assembly Language Reference for Beginners
+
+介绍 "Appendix B Partial x64 Instruction Reference" 的体例。
 
 # 8 Our Object All Sublime
+
+TODO
+
 # 9 Bits, Flags, Branches, and Tables
 # 10 Dividing and Conquering
 # 11 Strings and Things
