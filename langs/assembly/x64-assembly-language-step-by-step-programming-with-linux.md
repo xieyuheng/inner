@@ -236,6 +236,96 @@ relocation table 保存信息，
 
 > **Meeting Machine Instructions Up Close and Personal**
 
+## Instructions and Their Operands
+
+> The single most common activity in assembly language work is getting
+> data from here to there. There are several specialized ways to do
+> this, but only one truly general way: the MOV instruction. MOV can
+> move a byte, word (16 bits), double word (32 bits), or quad word (64
+> bits) of data from one register to another, from a register into
+> memory, or from memory into a register. What MOV cannot do is move
+> data directly from one address in memory to a different address in
+> memory.
+
+## Source and Destination Operands
+
+最典型的指令是 MOV，
+它同时承担 LOAD 和 STORE 的职责。
+
+## How Flags Change Program Execution
+
+> ... the purpose and real value of the flags doesn’t lie in their
+> values, per se, but in how they affect the flow of machine
+> instructions in your programs.
+
+> There is a whole category of machine instructions that "jump" to a
+> different location in your program based on the current value in one
+> or more of the flags. These instructions are called _conditional
+> jump_ instructions, and most of the flags in RFLAGS have one or more
+> associated conditional jump instructions.
+
+## Signed and Unsigned Values
+
+> The signed nature of a value lies in how we treat the value, not in
+> the nature of the underlying bit pattern that represents the value.
+
+为了记住二进制补码，不能死记硬背「取反加一」，可以记，在二进制补码中：
+
+- 1 + (-1) = 0
+- 只有一个 0
+
+相反如果直接用最高位表示正负（符号位），其余位表示数值，会出现两个致命问题：
+
+- 符号数与无符号数的算法不同，例如 0001 + 1001 = 1010，即 1 + (-1) = -2。
+- 存在 +0 和 -0，浪费编码且判断麻烦。
+
+以 4 bit 为例子：
+
+```
+HEX:      8    9    A    B    C    D    E    F  |  0    1    2    3    4    5    6    7
+BIN:    1000 1001 1010 1011 1100 1101 1110 1111 | 0000 0001 0010 0011 0100 0101 0110 0111
+DEC:     -8   -7   -6   -5   -4   -3   -2   -1  |  0    1    2    3    4    5    6    7
+ <============ 负半轴 (符号位 = 1) ============ | ======== 正半轴 (符号位 = 0) =========>
+                                                |
+                                    溢出回绕点  |
+                                    0111 + 0001 |
+                                  = 1000        |
+```
+
+符合同余计算规则 -- `−X` 的补码等于 `2^n - X`。
+因此可以用同一种算法，
+负半轴的数被解释为属于两个同余类。
+
+也可以用进位制的权重拆分来理解：
+
+对于 4 位补码 b3 b2 b1 b0：
+
+值 = (b3 * -2^3) + (b2 * 2^2) + (b1 * 2^1) + (b0 * 2^0)
+
+例如：
+
+| 二进制 |   b3 |  b2 |  b1 |  b0 |            计算结果 |
+|        | * -8 | * 4 | * 2 | * 1 |                     |
+|-------:|-----:|----:|----:|----:|--------------------:|
+|   0101 |    0 |   1 |   0 |   1 |  0 + 4 + 0 + 1 =  5 |
+|   1010 |    1 |   0 |   1 |   0 | -8 + 0 + 2 + 0 = -6 |
+|   1101 |    1 |   1 |   0 |   1 | -8 + 4 + 0 + 1 = -3 |
+|   0111 |    0 |   1 |   1 |   1 |  0 + 4 + 2 + 1 =  7 |
+|   1000 |    1 |   0 |   0 |   0 | -8 + 0 + 0 + 0 = -8 |
+|   1111 |    1 |   1 |   1 |   1 | -8 + 4 + 2 + 1 = -1 |
+
+快速口算：
+
+- 先写出正数的二进制。
+- 从右往左看，找到第一个 1，保留这个 1 不变，把左边的所有位全部取反。
+
+比如：
+
+|   | 正数 | 有待取反 | 负数 |
+|---|------|----------|------|
+| 7 | 0111 | 011_     | 1001 |
+| 6 | 0110 | 01__     | 1010 |
+
 TODO
 
 # 8 Our Object All Sublime
@@ -244,6 +334,6 @@ TODO
 # 11 Strings and Things
 # 12 Heading Out to C
 # Conclusion: Not the End, But Only the Beginning
-# Appendix A The Return of the Insight Debugger
 # Appendix B Partial x64 Instruction Reference
-# Appendix C Character Set Charts
+
+TODO
