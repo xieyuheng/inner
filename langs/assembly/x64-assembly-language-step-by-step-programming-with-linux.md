@@ -400,13 +400,89 @@ div rbx
 
 > **Creating Programs That Work**
 
+## Deriving String Length with EQU and $
+
+汇编言中常见的 EQU 语法，混淆了 label 与 constant。
+
+只是使用 $ 来做计算也是不方便的。
+assembly-lisp 可以在汇编时访问所有 `(define-data)` 所定义的静态数据，
+因此可以避免用 $ 来计算长度，可以直接通过访问 data 的 field 来计算长度。
+
+也许可以直接用 `(define)` 来定义汇编时常量。
+这样汇编器本身就是一个嵌入在 lisp 中的 DSL。
+这样汇编器就可以被理解为一个特殊的解释器。
+
+## Stacking Things Upside Down
+
+hex dump 的时候，是从低地址画到高地址的。
+但是在描述内存，尤其是 stack 的时候，
+人们总是从高地址画向低地址。
+
+## Using Linux Kernel Services Through Syscall
+
 TODO
 
 # 9 Bits, Flags, Branches, and Tables
 # 10 Dividing and Conquering
 # 11 Strings and Things
 # 12 Heading Out to C
+
+> **Calling External Functions Written in the C Language**
+
+TODO
+
 # Conclusion: Not the End, But Only the Beginning
+
+学习一个复杂的系统的时候，
+应该先掌握全局，理解系统的用处。
+再按用处把系统划分为子系统，逐步深入细节。
+
+> That’s how you conquer complexity, and that’s how I’ve presented
+> assembly language in this book.
+
+> The real goal was to conquer your fear of the complexity of the
+> subject, with some metaphors and plenty of pictures and (this really
+> matters!) a light heart.
+
+> As for your next book on assembly language, here are two I have and
+> recommend:
+
+> - The Art of 64-bit Assembly by Randall Hyde (No Starch Press, 2022)
+>
+>   It covers the complete AVX math subsystem, lots of other
+>   intermediate-to-advanced topics, and many more machine
+>   instructions. One caution: The book is targeted at Windows and the
+>   MASM assembler, and not all of it applies to Linux. The IDE
+>   required is Microsoft’s Visual Studio. (VS Code won’t work.)
+
+Randall Hyde 在 2003 年版本的书中，设计了所谓高阶汇编语言 HAL。
+也许是设计 assembly-lisp 时值得学习的。
+
+> - Modern x86 Assembly Language Programming by David Kusswurm (Apress, 2018)
+>
+>   If computational math intrigues you, this is the most complete AVX
+>   coverage I’ve seen in one book.
+
+> Becoming a master takes work, and time. Books can take you only so
+> far.  Eventually you will have to be your own teacher and direct
+> your own course of study.
+
+> But whichever way you end up going, _keep programming_. No matter
+> what sort of code you write, you will learn things while writing it
+> that lead to new challenges. Learning something new always involves
+> the realization that there is a lot more to learn. Study is
+> necessary, but without constant and fairly aggressive practice,
+> study won’t help, and static knowledge without reinforcement from
+> real-world experience goes stale in a big hurry.
+
+> It gets scary at times. The complexity of computing seems to double
+> every couple of years. Still, keep telling yourself: _I can do
+> this_.
+>
+> Coming to believe the truth in that statement is the essence of
+> stepping away from Square One -- and the rest of the road, like all
+> roads, is taken one step at a time.
+
 # Appendix B Partial x64 Instruction Reference
 
 TODO
