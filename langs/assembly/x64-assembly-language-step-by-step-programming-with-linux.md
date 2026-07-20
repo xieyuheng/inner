@@ -194,7 +194,7 @@ segment register 保存 paragraph 的地址，
 通过约定好的可执行文件格式，
 来完全控制 loader 的行为。
 
-我希望能有简单的 flat 汇编器，
+我们希望能有简单的 flat 汇编器，
 但是由于现代 CPU 和操作系统的虚拟内存地址机制的存在，relocation 是不可避免的，
 因此这种可执行文件格式以及 loader 的构架是不可避免的复杂度。
 
@@ -419,6 +419,33 @@ hex dump 的时候，是从低地址画到高地址的。
 人们总是从高地址画向低地址。
 
 ## Using Linux Kernel Services Through Syscall
+
+System V x86-64 ABI 规定：
+
+- syscall 的参数顺序是 RDI, RSI, RDX, R10, R8, R9。
+- call 的参数顺序是  RDI, RSI, RDX, RCX, R8, R9。
+
+因为硬件设计在前，ABI 设计在后。
+syscall 指令本身的硬件行为会强制覆盖 rcx 和 r11 寄存器。
+为了执行系统调用，syscall 指令需要一种快速、不依赖内存的方式来保存关键的返回状态。
+因此，它被设计为：
+
+- 将返回地址（RIP）存入 rcx 寄存器。
+- 将当前标志寄存器（RFLAGS）存入 r11 寄存器
+
+本身都应该选择 rcx 的，因为在 x86-64 指令集里，寄存器的编号决定了指令的长度：
+
+- rcx：属于“低 8 个通用寄存器”（rax ~ rdi）。
+  在指令编码中，它不需要额外的 REX 前缀字节。
+- r10：属于“扩展寄存器”（r8 ~ r15）。
+  在指令编码中，必须额外加一个 REX.B 前缀字节（0x41 或 0x4C 等）
+  才能被 CPU 识别。
+
+但是 rcx 被占用了，所以在 syscall 这个 slow path 的情况，退一步选择 r10。
+
+## Designing a Nontrivial Program
+
+详细介绍《大教堂与集市》每章的内容
 
 TODO
 
