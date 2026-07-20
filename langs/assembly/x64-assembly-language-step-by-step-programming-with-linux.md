@@ -445,7 +445,15 @@ syscall 指令本身的硬件行为会强制覆盖 rcx 和 r11 寄存器。
 
 ## Designing a Nontrivial Program
 
-详细介绍《大教堂与集市》每章的内容
+> In this section, we’ll approach the challenge of writing a utility
+> program from the engineering standpoint of solving a problem. This
+> involves more than just writing code. It involves stating the
+> problem, breaking it down into the problem’s component parts, and
+> then devising a solution to the problem as a series of steps and
+> tests that may be implemented as an assembly language program.
+
+> At the very highest level, the problem to be solved here can be stated this way:
+> _Convert any lowercase characters in a data file to uppercase._
 
 TODO
 
