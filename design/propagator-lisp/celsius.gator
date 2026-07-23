@@ -2,17 +2,17 @@
 
 (define-propagator (fahrenheit-to-celsius f c)
   (multiplier
-   (subtractor f 32)
-   (divider 5 9)
-   c))
+    (subtractor f 32)
+    (divider 5 9)
+    c))
 
 ;; use -g postfix to name all propagators:
 
 (define-propagator (fahrenheit-to-celsius-g f c)
   (mul-g
-   (sub-g f 32)
-   (div-g 5 9)
-   c))
+    (sub-g f 32)
+    (div-g 5 9)
+    c))
 
 (define-propagator (fahrenheit-celsius f c)
   (= a (cell))
