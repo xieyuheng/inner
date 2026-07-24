@@ -453,7 +453,54 @@ TODO
 
 # [2015-04-01] Polymorphic Procedures, part 1
 
-TODO
+```c
+find :: (array: [] $T, item: T) -> s64 {
+  for array if it == item return it_index;
+  return -1;
+}
+```
+
+`$T` 在引入类型变量 `T` 的同时，还能区分哪个是主要变量，
+这样报错的时候，如果第二个参数的类型不匹配，
+就可以报错说，第二个参数的类型是错误的。
+
+polymorphic function 的实现方式是，
+根据具体函数调用位置所传入的具体参数，
+来生成不带类型参数的具体函数。
+
+可以在带有 elaboration 的类型检查过程中实现这个功能。
+
+生成函数的方案有两种：
+
+- 方案 A：直接把具体参数类型编码在生成的函数中。
+- 方案 B：需要有一个从具体参数类型来查找所生成的函数名的机制。
+
+设计了一个 bake 机制：
+
+```c
+baked3 := #bake using_test(T = Vector3);
+```
+
+就是说有语言内的机制可以主动把 polymorphic function
+转化为 monomorphic function。
+
+有点类似于带有类型参数的函数，apply 到类型上。
+重点在于这些 apply 应该在 comptime 运行，
+根据 type 参数生成不同的函数。
+
+之所以需要这个机制是因为类型变量可能出现在返回类型中，
+函数调用不足以确定类型变量。
+
+```c
+random :: () -> $T {
+  ...
+}
+```
+
+设计 `#modify` 机制，可以让用户写代码来修改类型参数。
+主要用于通过参数类型生成返回值类型。
+
+比如，`sum` 的参数类型是 `u8` 时，返回类型改为 `u32`。
 
 # [2015-04-02] Polymorphic Procedures, part 2
 
