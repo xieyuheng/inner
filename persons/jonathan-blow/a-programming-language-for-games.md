@@ -428,3 +428,33 @@ SOA 和 EOC 的感觉就是以 index 为 id，
 # [2015-02-12] Demo： Run-Time (and Compile-Time) Type Information
 
 TODO
+
+# [2015-03-10] Arguments and Return Values
+
+这里设计了复杂的函数调用语法：
+
+- named argument
+- default argument
+- 可变长度的 argument
+- multi return value
+- named multi return value
+
+论据是函数调用是人们最常用的语言工具，
+所以应该设计很多强大的功能。
+
+但是我认为由于函数调用是人们最常用的工具，
+所以应该保持简单：
+
+- 每个函数都有固定数量的参数
+- 每个参数都是必须的
+
+对于静态类型的函数式语言来说，还可以支持 auto currying。
+甚至 auto currying 也可以不支持，因为 auto currying 也会让语言变复杂。
+
+# [2015-04-01] Polymorphic Procedures, part 1
+
+TODO
+
+# [2015-04-02] Polymorphic Procedures, part 2
+
+TODO
