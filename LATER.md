@@ -1,3 +1,13 @@
+# dependent type
+
+2025-simple-type-theory-a-practical-logic-for-expressing-and-reasoning-about-mathematical-ideas--william-m-farmer.pdf
+
+- Alonzo 的定位：
+  Alonzo 的设计哲学是实用性和易用性。
+  它的目标是让数学家、工程师和科学家能用一个相对简单的逻辑系统来有效地表达和推理数学思想。
+  它通过依赖拟类型等机制，在不引入完整依赖类型论复杂性的前提下，满足了大部分日常数学形式化的需求。
+  本书作者明确表示，依赖类型论的特性对于大多数数学从业者来说，可能是“一个主要的干扰，甚至是一座难以逾越的桥梁”。
+
 # machine learning
 
 learn tinygrad

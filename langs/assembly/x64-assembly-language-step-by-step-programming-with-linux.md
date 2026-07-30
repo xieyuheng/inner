@@ -455,9 +455,98 @@ syscall 指令本身的硬件行为会强制覆盖 rcx 和 r11 寄存器。
 > At the very highest level, the problem to be solved here can be stated this way:
 > _Convert any lowercase characters in a data file to uppercase._
 
-TODO
+## Successive Refinement
+
+> From our first complete but detail-challenged statement of the
+> solution, we move toward a more detailed statement of the solution.
+> We do this by refining the pseudocode statements so that each is
+> more specific about how the action being described is to be done. We
+> repeat this process, adding more details every time, until what we
+> have can be readily translated into actual assembly language
+> instructions. This process, called _successive refinement_, is not
+> specific to assembly language. It’s used with all programming
+> languages to one degree or another, but it works peculiarly well
+> with assembly.
+
+来自 Niklaus Wirth 1971 年的经典论文：
+
+- "Program Development by Stepwise Refinement"
+
+关于论文的讨论：
+
+- https://chat.deepseek.com/share/b37gwnxkj6enn6u7xy
+
+Wirth 开篇指出，教学和实践中最大的误区是，
+将编程等同于掌握一门编程语言的语法。他强调：
+
+- 编程是一种创造性的设计活动，其本质是做出一系列设计决策。
+- 这些决策包括：如何将任务分解为子任务，以及如何将数据分解为数据结构。
+- 程序的最终形态不是灵光一现的产物，而是通过逐层细化逐渐演化而来的。
+
+这与 sussman 说的「计算机科学的遗产」类似，
+百年之后人们回顾计算机科学对人类的贡献，
+其总结将是：计算机科学让人能够描述于过程有关的知识。
+
+逐步求精方法论（The Methodology）
+论文给出了指导程序开发的四条黄金法则：
+
+- 分解与并行细化：
+  每一步将一条指令分解为更详细的指令；
+  同时，数据也必须随之细化、分解或结构化。
+  程序和数据规格说明的细化应并行进行。
+
+- 推迟决策（Deferring Decisions）：
+  尽可能将细节的表示（如具体的数据类型、存储方式）推迟到后期决定。
+  这能提高程序的适应性和可移植性。
+
+- 解耦（Untangling）：
+  分解那些看似相互依赖的方面，
+  尽量使每一步的设计决策独立。
+
+- 决策树思维：
+  每个细化步骤都是一个决策节点，不同的选择产生不同的解决方案子树。
+  这种结构有助于在需求变化时轻松调整程序。
+
+在论文最后，Wirth 总结了几条教训：
+
+- 模块化的自然产出：
+  通过逐步求精得到的程序天然具有极高的模块性，易于验证和修改。
+
+- 符号要贴近问题：
+  在细化过程中，应尽可能长时间地使用问题领域的自然符号，
+  直到不得不转化为编程语言符号。
+
+- 对 Fortran 的尖锐批评：
+  Wirth 直言，在教授编程的语言中，
+  很难找到比 Fortran 更不符合 “逐步求精” 需求的
+  （因为Fortran缺乏递归、结构化控制语句和灵活的数据结构）。
+  这一观点极大地推动了后来 Pascal 等结构化语言的设计。
+
+- 学会 “回头”：
+  学生必须被教导，在发现某种表示不符合标准（如效率或清晰度）时，
+  要敢于撤销早期的设计决策，甚至退回到顶层重新设计。
+  即使程序在结果上是正确的，如果结构不佳，也应考虑拒绝该解决方案。
+
+- 编程绝非易事：
+  Wirth 指出，即使为了一个短短的程序，详细的开发过程也漫长而复杂。
+  若这篇论文能打破 “只要语言够强、机器够快，编程就很容易” 的迷思，便达到了目的。
+
+## Scanning a Buffer
+
+使用 buffered file I/O 来优化代码。
+自己在汇编中设置 buffer，而不是调用 c 函数。
+
+> The more interesting challenge, however, involves buffered file
+> I/O. The Unix read and write kernel calls are buffer-oriented and
+> not character-oriented, so we have to recast our pseudocode to fill
+> buffers with characters and then process the buffers.
+
+这里给了一个例子，来回到 pseudocode 之前的阶段重新设计。
 
 # 9 Bits, Flags, Branches, and Tables
+
+TODO
+
 # 10 Dividing and Conquering
 # 11 Strings and Things
 # 12 Heading Out to C
