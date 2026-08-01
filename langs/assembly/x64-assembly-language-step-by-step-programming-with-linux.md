@@ -52,24 +52,24 @@ steps 很简单，所以要解释 tests。
 
 应该记住每个十六进制所对应的四位二进制，这样 shorthand 的作用才有效：
 
-| 十进制 | 十六进制 | 四位二进制 |
-|-------:|---------:|-----------:|
-|      0 |        0 |       0000 |
-|      1 |        1 |       0001 |
-|      2 |        2 |       0010 |
-|      3 |        3 |       0011 |
-|      4 |        4 |       0100 |
-|      5 |        5 |       0101 |
-|      6 |        6 |       0110 |
-|      7 |        7 |       0111 |
-|      8 |        8 |       1000 |
-|      9 |        9 |       1001 |
-|     10 |        A |       1010 |
-|     11 |        B |       1011 |
-|     12 |        C |       1100 |
-|     13 |        D |       1101 |
-|     14 |        E |       1110 |
-|     15 |        F |       1111 |
+| 十进制 | 十六进制 | 四位二进制 |    分解 |
+|-------:|---------:|-----------:|--------:|
+|      0 |        0 |       0000 | 0 0 0 0 |
+|      1 |        1 |       0001 | 0 0 0 1 |
+|      2 |        2 |       0010 | 0 0 2 0 |
+|      3 |        3 |       0011 | 0 0 2 1 |
+|      4 |        4 |       0100 | 0 4 0 0 |
+|      5 |        5 |       0101 | 0 4 0 1 |
+|      6 |        6 |       0110 | 0 4 2 0 |
+|      7 |        7 |       0111 | 0 4 2 1 |
+|      8 |        8 |       1000 | 8 0 0 0 |
+|      9 |        9 |       1001 | 8 0 0 1 |
+|     10 |        A |       1010 | 8 0 2 0 |
+|     11 |        B |       1011 | 8 0 2 1 |
+|     12 |        C |       1100 | 8 4 0 0 |
+|     13 |        D |       1101 | 8 4 0 1 |
+|     14 |        E |       1110 | 8 4 2 0 |
+|     15 |        F |       1111 | 8 4 2 1 |
 
 # 3 Lifting the Hood
 
@@ -544,6 +544,68 @@ Wirth 开篇指出，教学和实践中最大的误区是，
 这里给了一个例子，来回到 pseudocode 之前的阶段重新设计。
 
 # 9 Bits, Flags, Branches, and Tables
+
+> **Easing Into Mainstream Assembly Coding**
+
+> As you’ve seen by now, my general method for explaining things
+> starts with the “view from a height” and then moves down toward
+> the details. That’s how I do things because that’s how people
+> learn: by plugging individual facts into a larger framework that
+> makes it clear how those facts relate to one another.
+
+> And so it is here. The big picture is mostly in place. From now on
+> in this book, we’ll be looking at the details of assembly code and
+> seeing how they fit into that larger view.
+
+## Bit Numbering
+
+> Dealing with bits requires that we have a way of specifying which
+> bits we’re dealing with. By convention, bits in assembly language
+> are numbered, starting from 0, at the least-significant bit in the
+> byte, word, double word, or other item we’re using as a bit map.
+
+> The least-significant bit is the one with the least value in the
+> binary number system. It’s also the bit on the far right, if you
+> write the value down as a binary number in the conventional manner.
+
+```
+         | 7 | 6 | 5 | 4 | 3 | 2 | 1 | 0 |
+           |                           |
+most-significant bit            least-significant bit
+```
+
+> When you count bits, start with the bit on the right-hand end,
+> and number them leftward from 0.
+
+一个 bit map 中 least-significant 在最右边，从最右边开始数。
+或者说 bit map 的 dump 从每一行的最右边开始数，
+二进制文件的 hex dump 也就是 byte dump 也应该从每一行的最右边开始数。
+这尤其适合 little endian，缺点是和 ASCII 区域所显示的单词不一样。
+
+## Shifting Bits
+
+```asm
+shl <register/memory>, <count>
+```
+
+> This <count> operand has a peculiar history. On the ancient 8086 and
+> 8088, it could be one of two things: the immediate digit 1, or else
+> the register CL. (Not CX!)
+
+> Even in x64, the shift instructions really do require either an
+> immediate value from 0–255 or CL. Any other register specified for
+> the count value will trigger an assembler error.
+
+> Now, there’s an important asterisk to the previous paragraph: You
+> can’t shift more positions than the destination register has. In
+> 64-bit long mode, you can’t shift (or rotate; see the next section)
+> more than 63 counts. Attempting to do so won’t trigger an error. It
+> just won’t work. It won’t work because before the instruction is
+> executed, the CPU masks the count value to the six lowest bits.
+
+## Bit-Bashing in Action
+
+用汇编写 hexdump。
 
 TODO
 
