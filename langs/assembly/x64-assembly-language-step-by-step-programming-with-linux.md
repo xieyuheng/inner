@@ -580,7 +580,8 @@ most-significant bit            least-significant bit
 一个 bit map 中 least-significant 在最右边，从最右边开始数。
 或者说 bit map 的 dump 从每一行的最右边开始数，
 二进制文件的 hex dump 也就是 byte dump 也应该从每一行的最右边开始数。
-这尤其适合 little endian，缺点是和 ASCII 区域所显示的单词不一样。
+这尤其适合 little endian，缺点是和 ASCII 区域所显示的单词不一样，
+但是这刚好可以和一个书写方向相反的 ASCII 区域互补。
 
 ## Shifting Bits
 
