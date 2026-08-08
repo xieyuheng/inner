@@ -760,9 +760,98 @@ mov byte [HexStr+rdx+2],al
 
 # 10 Dividing and Conquering
 
+> **Using Procedures and Macros to Battle Program Complexity**
+
+这一章讲如何在汇编中使用函数。
+
+## Procedures as Boxes for Code
+
+> The mistake I made in writing my APL text formatter is that I threw
+> the whole collection of 600 lines of APL code into one huge box
+> marked “text formatter.”
+
+> ollection of 600 lines of APL code into one huge box marked “text
+> formatter.”  While I was writing it, I should have been keeping my
+> eyes open for sequences of code statements that worked together on
+> some identifiable task. When I spotted such sequences, I should have
+> set them off as procedures and given each a descriptive name. Each
+> sequence would then have a memory tag (its name) for the sequence’s
+> function. If it took 10 statements to justify a line of text, those
+> 10 statements should have been gathered together and named
+> JustifyLine, and so on.
+
+这里更本质的问题是，开发过程中的认知产物，在最终的结果中被丢弃了。
+更进一步，对于之前提到的解决编程问题的
+"Program Development by Stepwise Refinement" 开发方法，
+也不应该丢弃。
+这就需要 markdown + 文学编程了。
+
+例子程序是 hexdump。
+
+> Here is how the program works, from a (high) height:
+
+```pseudocode
+As long as there is data available from stdin, do the following:
+    Read data from stdin
+    Convert data bytes to a suitable hexadecimal/ASCII display form
+    Insert formatted data bytes into a 16-byte hex dump line
+    Every 16 bytes, display the hex dump line
+```
+
+> This is a good example of an early pseudocode iteration, when you
+> know roughly what you want the program to do but are still a little
+> fuzzy on exactly how to do it. It should give you a head-start
+> understanding of the much more detailed (and how-oriented)
+> pseudocode shown here:
+
+```pseudocode
+Zero out the byte count total (RSI) and offset counter (RCX)
+Call LoadBuff to fill a buffer with first batch of data from stdin
+    Test number of bytes fetched into the buffer from stdin
+        If the number of bytes was 0, the file was empty; jump to Exit
+Scan:
+    Get a byte from the buffer and put it in AL
+    Derive the byte's position in the hex dump line string
+    Call DumpChar to poke the byte into the line string
+    Increment the total counter and the buffer offset counter
+    Test and see if we've processed the last byte in the buffer:
+        If so, call LoadBuff to fill the buffer with data from stdin
+        Test number of bytes fetched into the buffer from stdin
+            If the number of bytes was 0, we hit EOF; jump to Exit
+    Test and see if we've poked 16 bytes into the hex dump line
+        If so, call PrintLine to display the hex dump line
+ Loop back to Scan
+Exit:
+    Shut down the program gracefully per Linux requirements
+```
+
+## Calling and Returning
+
+和学习 forth 的时候一样，
+这里也可以用二维的图形来想象函数调用机制：
+
+```
+  (op)
+  (op)
+[ (op) ] - [ (op) ] - [ (op) ]
+  (op)       (op)       (op)
+             (op)
+```
+
+但是于 forth 不同的是：
+
+- 局部变量和返回地址都保存在 stack 中。
+- 参数首先用 register 传递，过多的用 stack 传递。
+- 返回值用 RAX 寄存器传递。
+
 TODO
 
 # 11 Strings and Things
+
+> **Those Amazing String Instructions**
+
+TODO
+
 # 12 Heading Out to C
 
 > **Calling External Functions Written in the C Language**
