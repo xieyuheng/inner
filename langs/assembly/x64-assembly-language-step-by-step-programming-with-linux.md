@@ -360,6 +360,20 @@ MUL 有一个 explicit operand 和两个 implicit operand：
 | MUL r/m32   | r/m32      | EAX        | EDX : EAX |
 | MUL r/m64   | r/m64      | RAX        | RDX : RAX |
 
+mul 是无符号乘法，只有一个操作数：
+
+```asm
+mul rcx       ;; 执行 RAX * RCX，结果存入 RDX:RAX。
+mul ecx       ;; 执行 EAX * ECX，结果存入 EDX:EAX。
+mul dword [x] ;; 执行 EAX * 内存中的32位值，结果存入 EDX:EAX。
+```
+
+有符号乘法是 imul，支持双操作数：
+
+```asm
+imul rax, rbx
+```
+
 DIV 作为 NUL 的逆运算，也用到两个 implicit operand：
 
 | INSTRUCTION | EXPLICIT  | IMPLICIT   | RESULT     | RESULT      |
@@ -608,9 +622,146 @@ shl <register/memory>, <count>
 
 用汇编写 hexdump。
 
-TODO
+## Flags
+
+> As I explained earlier, JZ jumps when ZF is 1, whereas JNZ jumps
+> when ZF is 0. Most instructions that perform some operation on an
+> operand (such as AND, OR, XOR, INC, DEC, and all arithmetic
+> instructions) set ZF according to the results of the operation. On
+> the other hand, instructions that simply move data around (such as
+> MOV, XCHG, PUSH, and POP) do not affect ZF nor any of the other
+> flags at all.
+
+> One irritating exception is the NOT instruction, which performs a
+> logical operation on its operand but does not set any flags—even
+> when it causes its operand to become 0. Before you write code that
+> depends on flags, check your instruction reference to make sure that
+> you have the flag etiquette down correctly for that particular
+> instruction.
+
+## Comparisons with CMP
+
+> CMP’s use is straightforward and intuitive. The second operand is
+> compared with the first, and several flags are set accordingly:
+
+```asm
+cmp <op1>,<op2>    ; Sets OF, SF, ZF, AF, PF, and CF
+```
+
+> The sense of the comparison can be remembered if you simply recast
+> the comparison in arithmetic terms:
+
+```asm
+Result = <op1> - <op2>
+```
+
+> CMP is very much a subtraction operation where the result of the
+> subtraction is thrown away, and only the flags are affected. The
+> second operand is subtracted from the first. Based on the results of
+> the subtraction, the flags it affects are set to appropriate values.
+
+## “Greater Than” Versus “Above”
+
+在 x86 64 中。
+
+对于二进制补码所编码的符号数而言，
+符号数算数与无符号数算数，用的是同一套电路，
+通过同时修改不同的 flag 来处理符合和无符号的差异。
+
+## Looking for 1-Bits with TEST
+
+> The x86/x64 instruction set recognizes that bit testing is done a
+> lot in assembly language, and it provides what amounts to a CMP
+> instruction for bits: TEST.  TEST performs an AND logical operation
+> between two operands and then sets the flags as the AND instruction
+> would, without altering the destination operand, as AND would.
+
+## X64 Long Mode Memory Addressing in Detail
+
+> 32-bit protected mode on the 386 CPU family introduced a
+> general-purpose memory-addressing scheme in which all the GP
+> registers could participate equally. Memory addressing in x64 long
+> mode implements the same scheme with very few changes.
+
+> I’ve sketched it out in Figure 9.9, which may well be the single
+> most important figure in this entire book. Memory addressing is the
+> key skill in assembly language work. If you don’t understand how
+> the CPU addresses memory, nothing else matters.
+
+> Figure 9.9:  x64 long mode memory addressing:
+
+```
+[ base + (index * scale) + disp ]
+
+- base: any general-purpose register
+- index: any general-purpose register
+- scale: 1 2 4 8
+- disp: 32-bit constant
+```
+
+其中 disp 可以是负数，
+base 和 index 按照这个公式的语义理解，都应该是无符号整数。
+
+RIP 是控制寄存器而不是通用寄存器，
+因此 RIP 相对寻址格式为 [ RIP + disp ]，
+与一般寻址的格式不同，指令编码也不同。
+
+## The x64 Displacement Size Problem
+
+即便是在 x64 模式下，
+displacement 也只能是 32-bit，这让编译器变复杂了。
+需要设置常量池，然后配合 loader 来处理变量地址的问题。
+
+## Base + Displacement Addressing
+
+```asm
+mov byte [HexStr+rdx+2],al
+```
+
+> What happens here is that an 8-bit character value stored in
+> register AL is written to the byte in memory addressed as
+> HexStr+RDX+2. This is a perfect example of a case where there are
+> two displacement terms that NASM combines into one. The variable
+> name HexStr resolves to a number (the address of HexStr), and it is
+> easily added to the literal constant 2. So, there is in truth only
+> one base term (RDX) and one displacement term.
+
+问题是 nasm 如何能保证 `HexStr` 的地址可以在 32 bit 之内？
+也许是 loader 调用 `mmap` 的时候使用 `MAP_32BIT`。
+
+## Character Table Translation
+
+为实现 hexdump 的 ASCII 区域做准备。
+
+> Any translation table can be thought of as expressing one or more
+> “rules” governing what happens during the translation process. The
+> UpCase table shown earlier expresses these translation rules:
+>
+> - All lowercase ASCII characters are translated to uppercase.
+>
+> - All printable ASCII characters less than 127 that are not
+>   lowercase are translated to themselves. (They’re not precisely
+>   “left alone” but are still translated, just to the same
+>   characters.)
+>
+> - All “high” character values from 127 through 255 are translated
+>   to the ASCII space character (32, or 20h).
+>
+> - All nonprintable ASCII characters (basically, values 0–31, plus
+>   127) are translated to spaces except for values 9 and 10.
+>
+> - Character values 9 and 10 (tab and EOL) are translated as
+>   themselves.
+
+## Tables Instead of Calculations
+
+类似以前没有计算机的时候，
+用预先计算好的表格来做计算。
 
 # 10 Dividing and Conquering
+
+TODO
+
 # 11 Strings and Things
 # 12 Heading Out to C
 
