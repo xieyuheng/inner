@@ -844,17 +844,150 @@ Exit:
 - 参数首先用 register 传递，过多的用 stack 传递。
 - 返回值用 RAX 寄存器传递。
 
-TODO
+## Saving the Caller’s Registers
+
+根据函数调用约定，
+caller 会假设一些寄存器中的值在函数调用之前和函数调用之后不变，
+因此 callee 如果需要使用这些寄存器来保存新值，
+就需要先 push 这些寄存器，并且在返回之前 pop 这些寄存器。
+
+为什么必须要区分 caller 和 callee saved 寄存器，
+而不能直接设计为全部 caller 或 callee save？
+
+因为在函数调用的边界处：
+
+```
+必须保存的数据 = 调用者当前存活的变量集合 ∩ 被调用者将要修改的寄存器集合
+Save = Live ∩ Used
+```
+
+如果全部是 caller save：
+由于 caller 不知道哪些是 Used，所以只能在函数调用之前保存所有 Live。
+
+如果全部是 callee save：
+由于 callee 不知道哪些是 Live，所以只能在函数开始前保存所有 Used。
+
+如果把寄存器分为「长期寄存器」和「临时寄存器」两类。
+
+- 在函数调用之前 caller 尽量把 lived 变量都分配在「长期寄存器」中，
+  只有当 lived 变量真的很多时，才保存在「临时寄存器」中。
+
+- 而 callee 尽量使用「临时寄存器」，只有 used 寄存器很多时，才使用「长期寄存器」。
+  这样就可以在简单的「函数 f 调用 g，而 g 不再调用别的函数」的情形，减少交集 Live ∩ Used。
+
+- 对于 caller 来说，「长期变量」需要分配在「临时寄存器」中时，就需要保存这些寄存器。
+  因此「临时寄存器」就是 caller saved。
+
+- 对于 callee 来说，在自由使用「临时寄存器」之外，
+  如果还需要用到「长期寄存器」，就需要保存这些寄存器。
+  因此「长期寄存器」就是 callee saved。
+
+```
+需要保存的寄存器 = caller 存活的变量 ∩ 临时寄存器 + callee 需要用到的寄存器 ∩ 长期寄存器
+save = live ∩ tmp + used ∩ long
+```
+
+这样就把 live ∩ used 优化成了 live ∩ tmp + used ∩ long。
+
+为了理解这个问题，不能只是考虑寄存器，
+而是要考虑，不同种类的变量，如何被分配到不同的寄存器。
+
+注意，调用约定中，用来传递参数和返回值的寄存器，一定是「临时寄存器」。
+而保存 stack based 寄存器，一定是「长期寄存器」。
+
+## Preserving Registers Across Linux System Calls
+
+> ... the SYSCALL instruction itself makes use of two registers:
+>
+> - SYSCALL stores the return address in the RCX register.
+> - SYSCALL stores RFlags in the R11 register.
+
+因为 SYSCALL 不能用 stack 来保存变量，
+因此只能把临时变量保存在 RCX 和 R11 中。
+
+> In x64 Linux, there is a system for register usage: The system call
+> number (in other words, which system call you’re calling) is always
+> in RAX. A system call will accept up to six parameters.  The
+> registers used to pass parameters are in this order: RDI, RSI, RDX,
+> R10, R8, and R9. In other words, the first parameter is passed in
+> RDI. The second parameter is passed in RSI, and so on.
+>
+> No system call requires any parameters be passed to it on the stack.
+>
+> Note: Whether or not a register (like R9, say) is used to pass a
+> parameter to a system call, _that register is not preserved_. Only
+> seven registers are preserved by Linux across a system call: R12,
+> R13, R14, R15, RBX, RSP, and RBP.
+>
+> After a SYSCALL, RAX will contain a return value. If RAX is
+> negative, it indicates an error occurred during the call. For most
+> system calls, a 0 value indicates success.
+
+## Local Data
+
+> The PUSH instructions place data on the stack. When part of your
+> code calls a procedure with the CALL instruction, it can pass data
+> down to that procedure by using PUSH one or more times before the
+> CALL instruction. The procedure can then access these PUSHed data
+> items on the stack. However, a word of warning: The procedure can’t
+> just pop those data items off the stack into registers, because _the
+> return address is in the way_.
+
+在 forth 中，return address 和 local data 分 stack 存放，因此更简单。
+但是 forth 的 working stack 通常又固定大小的 cell 组成，
+没有 c 的 stack frame 灵活。
 
 # 11 Strings and Things
 
 > **Those Amazing String Instructions**
 
-TODO
+## The Notion of an Assembly Language String
+
+> Assembly strings are wholly defined by values you place in
+> registers. There is a set of assumptions about strings and registers
+> baked into the silicon of the CPU. When you execute one of the
+> string instructions (as I will describe shortly), the CPU uses those
+> assumptions to determine which area of memory it reads from or
+> writes to.
 
 # 12 Heading Out to C
 
 > **Calling External Functions Written in the C Language**
+
+## Why Not gas?
+
+> You might be wondering why, if there’s a perfectly good assembler
+> installed automatically with every copy of Linux, I’ve bothered
+> showing you how to install and use another one. Two reasons:
+>
+> - The GNU assembler gas uses a peculiar syntax that is utterly
+>   unlike that of all the other familiar assemblers used in the
+>   x86/x64 world, including NASM. It has a whole set of instruction
+>   mnemonics unique to itself. I find them ugly, nonintuitive, and
+>   hard to read. This is the AT&T syntax, so named because it was
+>   created by AT&T as a portable assembly notation to make Unix
+>   easier to port from one underlying CPU to another. It’s ugly in
+>   part because it was designed to be generic, and it can be
+>   reconfigured for any reasonable CPU architecture that might
+>   appear.
+>
+> - More to the point, the notion of a “portable assembly language”
+>   is in my view a contradiction in terms. An assembly language
+>   should be a direct, complete, one-for-one reflection of the
+>   underlying machine architecture.  Any attempt to make an assembly
+>   language generic moves the language away from the machine and
+>   limits the ability of an assembly programmer to direct the CPU as
+>   it was designed to be directed. The organization that created and
+>   evolves a CPU architecture is in the best position to define a
+>   CPU’s instruction mnemonics and assembly language syntax without
+>   compromise. That’s why I will always use and teach the Intel
+>   mnemonics.
+
+这里对 “portable assembly language” 的批判有点道理。
+我也不应该设计 assembly-lisp，而是应该设计 x86-lisp。
+比如，如果未来有 arm-lisp，它们的 operand 可能是完全不同的。
+
+## Linking to the Standard C Library
 
 TODO
 
