@@ -11,12 +11,22 @@ website: "https://www.computerenhance.com/p/table-of-contents"
 
 # Prologue: The Five Multipliers
 
+**对于性能优化问题的认识**
+
 performance aware programming
 大概就是在写程序的时候，
 知道其最终被编译成为什么样的汇编代码。
 并且在设计数据结构的时候，知道它对 CPU cache 的影响。
 
 也就是说，要了解现实硬件的属性。
+
+**对于性能优化问题的分析**
+
+性能优化只有两种可能：
+
+- A 类：减少 CPU 需要执行的指令数量
+- B 类：提升 CPU 执行指令的速度
+  - 比如不要让 CPU 等待，和并行
 
 性能优化中的五个因子：
 
@@ -175,4 +185,33 @@ CUDA 的并行处理是为「计算密集型」任务而设计的，
 
 ## Python Revisited
 
-TODO
+回顾我们对性能优化问题的分析。
+
+两类有优化方法：
+
+- A: reduce instructions
+- B: increase instruction processing speed
+
+五个优化因子：
+
+- Waste -- A 类
+- Instructions Per Clock -- B 类
+- Single Instruction, Multiple Data A 类
+- Caching -- B 类
+- Multithreading -- B 类
+
+这种「分析」是类似亚里士多德式的分析。
+
+一般就写程序而言，我们会说实现的经验是最重要的。
+
+但是关于性能优化问题而言，
+重点不是在于实现某种具体的性能优化方案的知识，
+而是在于完整地分析性能优化问题的能力。
+
+这种分析的重点在于理解现实本身。
+包括理解汇编，理解 cache，理解内存带宽，等等。
+
+掌握了分析性能优化问题的一般方法，
+就可以知道哪些地方是可以优化的。
+因此大多数代码还是可以用慢速语言比如 python 写，
+只需要在性能攸关的地方改用 C。
