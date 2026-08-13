@@ -989,6 +989,89 @@ save = live ∩ tmp + used ∩ long
 
 ## Linking to the Standard C Library
 
+### 参数寄存器
+
+> The first six parameters are passed in specific registers in a very
+> specific order. This order is as follows:
+>
+> RDI RSI RDX RCX R8 R9
+
+Diana's silly dog chases rabbits ruthlessly.
+
+> This is true for calls via SYSCALL, and it’s also true for calling
+> C library functions.
+
+其实不是的。
+
+系统调用是用 RAX 传调用号，
+用 RDI RSI RDX R10 R8 R9 传参数，
+第四个参数不能用 RCX，因为：
+
+> ... the SYSCALL instruction itself makes use of two registers:
+>
+> - SYSCALL stores the return address in the RCX register.
+> - SYSCALL stores RFlags in the R11 register.
+
+因为 SYSCALL 不能用 stack 来保存变量，
+因此只能把临时变量保存在 RCX 和 R11 中。
+
+### 长期寄存器
+
+> These seven registers cannot be clobbered by a function:
+>
+> RSP RBP RBX R12 R13 R14 R15
+>
+> This group of registers is called the _nonvolatile_ registers, which
+> basically means registers that must be preserved (or left unused) by
+> the callee.
+
+七个「长期寄存器」。
+
+其中：
+
+- RSP -- stack pointer
+- RBP -- stack base pointer
+
+用来实现 C 的调用栈的 frame，因此必须是长期的。
+
+> Functions can call other functions. A function that calls another
+> function is the _caller_. The function that is called is the
+> _callee_. There’s a sort of trust relationship between the caller
+> and the callee: The callee promises the caller that the values of
+> RSP, RBP, RBX, R12, R13, R14, and R15 will be the same when the
+> callee finishes execution as they were when the callee began
+> execution.
+
+> The callee can use the nonvolatile registers, but those it uses must
+> first be saved (pushed onto the stack) and restored (popped off the
+> stack) before the callee returns to the caller.
+
+### 临时寄存器
+
+> The other registers are called volatile, meaning that the callee can
+> use and change them with impunity. These are
+>
+> RAX RCX RDX RSI RDI R8 R9 R10 R11
+>
+> If you’re sharp, you’ll notice that all six of the registers used
+> in the C calling convention are volatile registers. This makes sense
+> since the caller is already using them to pass values down to the
+> callee.
+
+> But what if the caller is already using some of the volatile
+> registers? If the caller wants any of the volatile registers to
+> survive a trip through the callee, the caller must save them before
+> calling the callee function. After the callee returns to the caller,
+> the caller then restores whatever volatile registers it had saved on
+> the stack by popping the saved values back into the registers.
+
+九个「临时寄存器」。
+
+除了 R11 之外，都是 CALL 或 SYSCALL 用来传递参数和返回值的，
+因此必须是临时的。
+
+### Setting Up a Stack Frame
+
 TODO
 
 # Conclusion: Not the End, But Only the Beginning
