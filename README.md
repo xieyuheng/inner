@@ -19,11 +19,4 @@
 | 翻译 | [translations/](translations) | 翻译作品（中 / 英） |
 | 其他 | [patterns/](patterns) · [reviews/](reviews) · [books/](books) · [misc/](misc) 等 | 零散收藏 |
 
-- 找主题：topics/主题名/，如 type-theory、lambda-calculus、philosophy
-- 找人：persons/人名/，如 alan-turing、peyton-jones-simon
-- 找语言：langs/语言名/
-- 编号笔记之间相互引用，从任意一张卡片沿链接就能走下去
-- 笔记多为中英混合，标题即内容提要，扫文件名就能判断是否相关
-
 - 阅读记录：[reading.log](reading.log)
-- 日记：[diary/](diary)
