@@ -1,3 +1,12 @@
+# Lenia
+
+大巴扎，背包乱斗，但是 Lenia。
+
+# william-m-farmer
+
+- 2025-simple-type-theory-a-practical-logic-for-expressing-and-reasoning-about-mathematical-ideas--william-m-farmer.pdf
+- 2026-monoid-theory-in-alonzo.pdf
+
 # dependent type
 
 2025-simple-type-theory-a-practical-logic-for-expressing-and-reasoning-about-mathematical-ideas--william-m-farmer.pdf
