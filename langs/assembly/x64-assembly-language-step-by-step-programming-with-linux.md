@@ -840,9 +840,9 @@ Exit:
 
 但是于 forth 不同的是：
 
-- 局部变量和返回地址都保存在 stack 中。
-- 参数首先用 register 传递，过多的用 stack 传递。
+- 参数首先用参数寄存器传递，过多的用 stack 传递。而不是区分返回栈与参数栈。
 - 返回值用 RAX 寄存器传递。
+- C 的 stack 可以理解为 forth 的返回栈 + 保存局部变量的区域。
 
 ## Saving the Caller’s Registers
 
@@ -857,34 +857,40 @@ caller 会假设一些寄存器中的值在函数调用之前和函数调用之�
 因为在函数调用的边界处：
 
 ```
-必须保存的数据 = 调用者当前存活的变量集合 ∩ 被调用者将要修改的寄存器集合
-Save = Live ∩ Used
+必须保存的寄存器集合 = 调用者当前存活的变量所占用的寄存器集合 ∩ 被调用者将要修改的寄存器集合
+save = live ∩ used
 ```
 
 如果全部是 caller save：
-由于 caller 不知道哪些是 Used，所以只能在函数调用之前保存所有 Live。
+由于 caller 不知道哪些是 used，所以只能在函数调用之前保存所有 live。
 
 如果全部是 callee save：
-由于 callee 不知道哪些是 Live，所以只能在函数开始前保存所有 Used。
+由于 callee 不知道哪些是 live，所以只能在函数开始前保存所有 used。
 
 如果把寄存器分为「长期寄存器」和「临时寄存器」两类。
 
 - 在函数调用之前 caller 尽量把 lived 变量都分配在「长期寄存器」中，
   只有当 lived 变量真的很多时，才保存在「临时寄存器」中。
+  或者干脆不要用临时寄存器来保存多余的变量，而是用栈来保存多余的变量。
 
 - 而 callee 尽量使用「临时寄存器」，只有 used 寄存器很多时，才使用「长期寄存器」。
-  这样就可以在简单的「函数 f 调用 g，而 g 不再调用别的函数」的情形，减少交集 Live ∩ Used。
+  这样就可以在简单的「函数 f 调用 g，而 g 不再调用别的函数」的情形，减少交集 live ∩ used。
+
+「临时寄存器」就是 caller saved，
+「长期寄存器」就是 callee saved：
 
 - 对于 caller 来说，「长期变量」需要分配在「临时寄存器」中时，就需要保存这些寄存器。
   因此「临时寄存器」就是 caller saved。
 
-- 对于 callee 来说，在自由使用「临时寄存器」之外，
+- 对于 callee 来说，在使用「临时寄存器」之外，
   如果还需要用到「长期寄存器」，就需要保存这些寄存器。
   因此「长期寄存器」就是 callee saved。
 
 ```
-需要保存的寄存器 = caller 存活的变量 ∩ 临时寄存器 + callee 需要用到的寄存器 ∩ 长期寄存器
-save = live ∩ tmp + used ∩ long
+需要保存的寄存器 = caller 存活的变量所占用的寄存器 ∩ 临时寄存器
+                 + callee 需要用到的寄存器 ∩ 长期寄存器
+save = live ∩ tmp
+     + used ∩ long
 ```
 
 这样就把 live ∩ used 优化成了 live ∩ tmp + used ∩ long。
@@ -893,7 +899,7 @@ save = live ∩ tmp + used ∩ long
 而是要考虑，不同种类的变量，如何被分配到不同的寄存器。
 
 注意，调用约定中，用来传递参数和返回值的寄存器，一定是「临时寄存器」。
-而保存 stack based 寄存器，一定是「长期寄存器」。
+stack base 寄存器 RBP 和 stack pointer 寄存器 RSP，一定是「长期寄存器」。
 
 ## Preserving Registers Across Linux System Calls
 
@@ -1072,7 +1078,59 @@ Diana's silly dog chases rabbits ruthlessly.
 
 ### Setting Up a Stack Frame
 
-TODO
+> One low-level mechanism that does bear on Linux assembly work is
+> that of the _stack frame_. Compilers depend on stack frames to
+> create local variables in functions.
+
+> A stack frame is a location on the stack marked as belonging to a
+> particular function. It is basically the region between the
+> addresses contained in two registers: base pointer RBP and stack
+> pointer RSP.
+
+> A stack frame is created by pushing a copy of RBP on the stack and
+> then copying the stack pointer RSP into register RBP. The first two
+> instructions in any assembly program that honors the C calling
+> conventions must be these:
+
+```asm
+.prolog:
+  push rbp      ;; 保存 caller 的 stack base
+  mov rbp, rsp  ;; 把当前的 stack pointer 保存为自己的当前的 stack base
+                ;; 之后 stack pointer 就可以自由移动了，一般会一次性给局部变量预留足够位置
+                ;; 在函数退出之前，可以利用 stack base 恢复 caller 的 stack pointer
+  sub rsp, X    ;; 移动 stack pointer，给局部变量预留空间
+```
+
+### Destroying a Stack Frame in the Epilog
+
+> ... any callee-saved registers and temporary values that you may
+> have pushed onto the stack during the program’s run must be
+> gone. _Pop what you push!_ With that done, we undo the logic we
+> followed in creating the stack frame: We pop the caller’s RBP value
+> off the stack and exit, via two instructions that together are often
+> called the epilog:
+
+```asm
+.epilog:
+  mov rsp, rbp ;; 恢复 push rbp 之前的 stack pointer
+  pop rbp      ;; 恢复 callor 的 stack base
+  ret
+```
+
+### Stack Alignment
+
+在 x86-64 中，调用一个函数之前，stack pointer RSP 必须是 16 byte 对齐的。
+
+这简直是 ABI 设计的暴行。
+
+如果要求 stack 16 byte 对齐，就是说手写汇编的时候，
+必须计算自己使用 push 和 pop 的次数，保证在 call 之前 16 byte 对齐。
+
+这样会让手写汇编变得非常复杂。
+不能依赖 push / pop 来分配局部空间，
+而是必须要用 sub rsp, X 一次性预留空间，并确保 X 是 16 的倍数。
+
+预留空间的时候，还必须考虑到实际保存的 callee saved registers 所占用的位置。
 
 # Conclusion: Not the End, But Only the Beginning
 
@@ -1128,4 +1186,5 @@ Randall Hyde 在 2003 年版本的书中，设计了所谓高阶汇编语言 HAL
 
 # Appendix B Partial x64 Instruction Reference
 
-TODO
+这个 Appendix 是这本书最重要的部分之一。
+用很好的体例，给出最常用的 x64 instruction 写了 reference。
