@@ -3,6 +3,20 @@
 - 1971-program-development-by-stepwise-refinement.md
   markdown 文学编程。
 
+# float
+
+学习浮点数 asm 的书。
+
+# llvm
+
+学习 llvm 的书与 talk。
+
+# gc
+
+学习 stack map 精确 gc：
+- topics/computer-science/compiler/2002-engineering-a-compiler.pdf
+- topics/computer-science/garbage-collection/2001-constant-time-root-scanning-for-deterministic-garbage-collection.pdf
+
 # Lenia
 
 大巴扎，背包乱斗，但是 Lenia。
