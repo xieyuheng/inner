@@ -579,14 +579,15 @@ Example exp in `LInt`：
 
 用 method overriding 所带来的 open recursion，
 把一个 recursive function 拆开成相互继承的一串 class。
-是一串 class 甚至不是 tree，为了未来的代码复用而使用了复杂的语言 feature，
+是一串 class 甚至不是 tree，没有分支。
+为了未来的代码复用而使用了复杂的语言 feature，
 但是复用代码的情况并没有出现。
 
-这带来的认知复杂负担太大了。
+这种写法带来的认知负担太大了。
 说这是这本书的最大错误，
 是因为这是为了教学而写的书，
-设想如果没有这些额外的复杂度，
-这本书中的 idea 会更容易为学生所理解。
+如果没有这些额外的复杂度，
+这本书中的想法会更容易为学生所理解。
 
 Dan 在讲授编译器实现的时候，
 肯定会保持代码朴素，而不会用这些 OOP 的 feature，
@@ -610,6 +611,7 @@ interp-Lvar = (compose interp-x86int compile)
 
 注意，所谓「研究形式系统」就在于设计很多新的形式系统，
 并且研究它们之间的关系。
+在于创造新的形式系统，而不是只学习一个具体的形式系统。
 
 ## 2.2 The x86Int Assembly Language
 
@@ -653,27 +655,9 @@ interp-Lvar = (compose interp-x86int compile)
 | ...       | ...            |
 | 0(%rsp)   | variable n     |
 
-这里对 stack 的展示方式是错误的。
-stack 之所以被设计成 push 的时候 index 减少，
-也就是向低地址位置延伸，就是为了让人们画图的时候，
-在「先画低地址，再画高地址」的前提下，
-可以把栈画成生活中堆叠的栈的样子，即向上延伸。
-此时 stack 的 top 和 bottom 有自然的解释。
+stack 向低地址位置生长。
 
-但是 Figure 2.9 还是把图画成了向下延伸。
-
-正确的画法是：
-
-| Position  | Contents       |
-|-----------|----------------|
-| 0(%rsp)   | variable n     |
-| ...       | ...            |
-| -16(%rbp) | variable 2     |
-| -8(%rbp)  | variable 1     |
-| 0(%rbp)   | old rbp        |
-| 8(%rbp)   | return address |
-
-注意，为了使用 procedure call stack，
+为了使用 procedure call stack，
 人们用了两个保留的 register：
 
 - rsp 用来指向 stack top；

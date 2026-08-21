@@ -1098,7 +1098,7 @@ Diana's silly dog chases rabbits ruthlessly.
   mov rbp, rsp  ;; 把当前的 stack pointer 保存为自己的当前的 stack base
                 ;; 之后 stack pointer 就可以自由移动了，一般会一次性给局部变量预留足够位置
                 ;; 在函数退出之前，可以利用 stack base 恢复 caller 的 stack pointer
-  sub rsp, X    ;; 移动 stack pointer，给局部变量预留空间
+  sub rsp, N    ;; 移动 stack pointer，给局部变量预留空间
 ```
 
 ### Destroying a Stack Frame in the Epilog
@@ -1112,7 +1112,7 @@ Diana's silly dog chases rabbits ruthlessly.
 
 ```asm
 .epilog:
-  mov rsp, rbp ;; 恢复 push rbp 之前的 stack pointer
+  add rsp, N   ;; 恢复 push rbp 之前的 stack pointer
   pop rbp      ;; 恢复 callor 的 stack base
   ret
 ```
@@ -1128,7 +1128,7 @@ Diana's silly dog chases rabbits ruthlessly.
 
 这样会让手写汇编变得非常复杂。
 不能依赖 push / pop 来分配局部空间，
-而是必须要用 sub rsp, X 一次性预留空间，并确保 X 是 16 的倍数。
+而是必须要用 sub rsp, N 一次性预留空间，并确保 N 是 16 的倍数。
 
 预留空间的时候，还必须考虑到实际保存的 callee saved registers 所占用的位置。
 
