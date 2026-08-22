@@ -816,6 +816,32 @@ conclusion:
 我们可以把每次 pass 前后的不变性表达为谓词，
 注意这些不变性经常是不能用类型表达的。
 
+- 在静态类型语言中，也可以用谓词来表达不变性。
+
+> Our compiler for LVar consists of the following passes:
+>
+> - `uniquify` deals with the shadowing of variables by renaming every
+>   variable to a unique name.
+>
+> - `remove_complex_operands` ensures that each subexpression of a
+>   primitive operation or function call is a variable or integer,
+>   that is, an atomic expression. We refer to nonatomic expressions
+>   as _complex_. This pass introduces temporary variables to hold the
+>   results of complex subexpressions.
+>
+> - `explicate_control` makes the execution order of the program
+>   explicit. It converts the abstract syntax tree representation into
+>   a graph in which each node is a labeled sequence of statements and
+>   the edges are `goto` statements.
+>
+> - `select_instructions` handles the difference between LVar
+>   operations and x86 instructions. This pass converts each LVar
+>   operation to a short sequence of instructions that accomplishes
+>   the same task.
+>
+> - `assign_homes` replaces variables with registers or stack
+>   locations.
+
 > The next question is, in what order should we apply these passes?
 > This question can be challenging because it is difficult to know
 > ahead of time which orderings will be better (that is, will be
