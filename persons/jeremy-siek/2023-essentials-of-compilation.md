@@ -855,6 +855,20 @@ conclusion:
 
 ### 2.3.1 The CVar Intermediate Language
 
+> The output of explicate_control is similar to the C language
+> (Kernighan and Ritchie 1988) in that it has separate syntactic
+> categories for expressions and statements, so we name it CVar.
+
+其实不是像 C，而是更像 SSA：
+
+- 没有嵌套的表达式。
+- 每个变量只赋值一次。
+- 只不过这里的 CVar 没有 phi 指令。
+
+> This style of intermediate language is also known as three-address
+> code, to emphasize that the typical form of a statement such as x =
+> (+ y z); involves three addresses: x, y, and z (Aho et al. 2006).
+
 > **Figure 2.12**: The concrete syntax of the CVar intermediate language.
 
 ```bnf
