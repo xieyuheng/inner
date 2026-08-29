@@ -132,7 +132,7 @@ f := (float) -> float [capture] { ... };
 ```
 
 accessors 和 modifiers 的参数都必须是 `(ref)`。
-这样就不用些很多 `(deref)` -- 这是主要使用情况，
+这样就不用写很多 `(deref)` -- 这是主要使用情况，
 而是需要在处理 struct 本身的时候加上 `(ref)`。
 
 # [2014-12-11] Demo： Iteration and arrays, uninitialized values, enums
