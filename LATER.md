@@ -1,3 +1,20 @@
+# simplicial complex
+
+- topics/mathematics/algebraic-topology/simplicial
+  - 2010-triangulations--structures-for-algorithms-and-applications.pdf
+
+Dmitry Kozlov, Combinatorial Algebraic Topology
+
+- topics/mathematics/combinatorial-group-theory/2008-combinatorial-algebraic-topology-dmitry-kozlov.pdf
+
+P. S. Aleksandrov, Combinatorial Topology
+
+- persons/pavel-sergeyevich-alexandrov
+
+V. G. Boltyanskii, Intuitive Combinatorial Topology
+
+- topics/mathematics/combinatorial-group-theory/2000-intuitive-combinatorial-topology-abe-shenitzer.djvu
+
 # niklaus wirth
 
 - 1971-program-development-by-stepwise-refinement.md
