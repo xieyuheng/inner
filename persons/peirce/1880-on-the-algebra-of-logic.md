@@ -1,5 +1,5 @@
 ---
 title: On the algebra of logic
-author: Charles Sanders Peirce
+author: Peirce
 year: 1880
 ---

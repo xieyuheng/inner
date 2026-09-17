@@ -1,7 +1,7 @@
 ---
 title: Description of a notation for the logic of relatives
 subtitle: Resulting from an Amplification of the Conceptions of Boole's Calculus of Logic
-author: Charles Sanders Peirce
+author: Peirce
 year: 1870
 ---
 

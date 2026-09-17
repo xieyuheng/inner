@@ -1,6 +1,6 @@
 ---
 title: The Logic Notebook
-author: Charles Sanders Peirce
+author: peirce
 date: 1867
 ---
 
