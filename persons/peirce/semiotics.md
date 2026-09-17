@@ -1,20 +1,18 @@
-# [note] semiotics (semeiotics)
+---
+title: semiotics
+---
 
-## etymology
+# etymology
 
-- semiotics
-  Coined by John Locke
-  from σημειωτικός (sēmeiōtikós, "fitted for marking, portending")
-  from σημειοῦν (sēmeioûn, "to mark, interpret as a portend")
-  from σημεῖον (sēmeîon, "a mark, sign, token")
-  from σῆμα (sêma, "mark, sign")
+semiotics
 
-- portend
-  Borrowed from Latin portendere ("to foretell")
-  from por- ("forward") + tendere ("to stretch"),
-  present active infinitive of tendo
+- Coined by John Locke
+- from σημειωτικός (sēmeiōtikós, "fitted for marking, portending")
+- from σημειοῦν (sēmeioûn, "to mark, interpret as a portend")
+- from σημεῖον (sēmeîon, "a mark, sign, token")
+- from σῆμα (sêma, "mark, sign")
 
-## triadic definition
+# triadic definition
 
 - [Semiotic_theory_of_Charles_Sanders_Peirce](https://en.wikipedia.org/wiki/Semiotic_theory_of_Charles_Sanders_Peirce)
 
@@ -48,6 +46,7 @@
   about purely hypothetical objects or cases.
 
 - [Interpretant](https://en.wikipedia.org/wiki/Interpretant)
+
   For example, one way to approach the concept of an interpretant
   is to think of a psycholinguistic process.
   In this context, an interpretant can be understood as

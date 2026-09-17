@@ -20,6 +20,19 @@ title: Charles Sanders Peirce
 5. [The Order of Nature (1878)](https://en.wikisource.org/wiki/Popular_Science_Monthly/Volume_13/June_1878/Illustrations_of_the_Logic_of_Science_V)
 6. [Deduction, Induction, and Hypothesis (1878)](https://en.wikisource.org/wiki/Popular_Science_Monthly/Volume_13/August_1878/Illustrations_of_the_Logic_of_Science_VI)
 
+# the monist
+
+皮尔士在《一元论者》上发表的部分重要文章：
+
+《理论的建筑学》（The Architecture of Theories）
+《必然性学说考察》（The Doctrine of Necessity Examined）
+《心灵法则》（The Law of Mind）
+《人的玻璃本质》（Man's Glassy Essence）
+《进化之爱》（Evolutionary Love）
+《再生逻辑》（The Regenerated Logic）
+《关系逻辑》（The Logic of Relatives）
+《什么是实用主义》（What Pragmatism is）
+
 # [note] pragmaticism and scientific method
 
 - **Xie**: When practicing physical science,
