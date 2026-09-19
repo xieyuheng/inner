@@ -11,16 +11,9 @@ title: Charles Sanders Peirce
 | [ARISBE](https://arisbe.sitehost.iu.edu)
 ]
 
-# Illustrations of the Logic of Science (1877-1878)
-
-1. [The Fixation of Belief (1877)](https://en.wikisource.org/wiki/Popular_Science_Monthly/Volume_12/November_1877/Illustrations_of_the_Logic_of_Science_I)
-2. [How to Make Our Ideas Clear (1878)](https://en.wikisource.org/wiki/Popular_Science_Monthly/Volume_12/January_1878/Illustrations_of_the_Logic_of_Science_II)
-3. [The Doctrine of Chances (1878)](https://en.wikisource.org/wiki/Popular_Science_Monthly/Volume_12/March_1878/Illustrations_of_the_Logic_of_Science_III)
-4. [The Probability of Induction (1878)](https://en.wikisource.org/wiki/Popular_Science_Monthly/Volume_12/April_1878/Illustrations_of_the_Logic_of_Science_IV)
-5. [The Order of Nature (1878)](https://en.wikisource.org/wiki/Popular_Science_Monthly/Volume_13/June_1878/Illustrations_of_the_Logic_of_Science_V)
-6. [Deduction, Induction, and Hypothesis (1878)](https://en.wikisource.org/wiki/Popular_Science_Monthly/Volume_13/August_1878/Illustrations_of_the_Logic_of_Science_VI)
-
 # Cognition Series
+
+https://chat.deepseek.com/share/mhbmx7tdp34brya75i
 
 皮尔士的“认知系列”（Cognition Series）是他在1868至1869年间发表于《思辨哲学杂志》（Journal of Speculative Philosophy）上的三篇论文，它们共同构成了一套连贯的反笛卡尔主义论证。
 
@@ -31,6 +24,15 @@ title: Charles Sanders Peirce
 《逻辑法则有效性的基础：四不能的进一步推论》（Grounds of Validity of the Laws of Logic: Further Consequences of Four Incapacities），发表于 1869年。
 
 这三篇文章的核心目标一致：通过逻辑分析来反驳笛卡尔式的心灵观念，为一种公共的、符号化的心灵观奠定基础。
+
+# Illustrations of the Logic of Science (1877-1878)
+
+1. [The Fixation of Belief (1877)](https://en.wikisource.org/wiki/Popular_Science_Monthly/Volume_12/November_1877/Illustrations_of_the_Logic_of_Science_I)
+2. [How to Make Our Ideas Clear (1878)](https://en.wikisource.org/wiki/Popular_Science_Monthly/Volume_12/January_1878/Illustrations_of_the_Logic_of_Science_II)
+3. [The Doctrine of Chances (1878)](https://en.wikisource.org/wiki/Popular_Science_Monthly/Volume_12/March_1878/Illustrations_of_the_Logic_of_Science_III)
+4. [The Probability of Induction (1878)](https://en.wikisource.org/wiki/Popular_Science_Monthly/Volume_12/April_1878/Illustrations_of_the_Logic_of_Science_IV)
+5. [The Order of Nature (1878)](https://en.wikisource.org/wiki/Popular_Science_Monthly/Volume_13/June_1878/Illustrations_of_the_Logic_of_Science_V)
+6. [Deduction, Induction, and Hypothesis (1878)](https://en.wikisource.org/wiki/Popular_Science_Monthly/Volume_13/August_1878/Illustrations_of_the_Logic_of_Science_VI)
 
 # the monist
 
