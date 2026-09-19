@@ -20,6 +20,18 @@ title: Charles Sanders Peirce
 5. [The Order of Nature (1878)](https://en.wikisource.org/wiki/Popular_Science_Monthly/Volume_13/June_1878/Illustrations_of_the_Logic_of_Science_V)
 6. [Deduction, Induction, and Hypothesis (1878)](https://en.wikisource.org/wiki/Popular_Science_Monthly/Volume_13/August_1878/Illustrations_of_the_Logic_of_Science_VI)
 
+# Cognition Series
+
+皮尔士的“认知系列”（Cognition Series）是他在1868至1869年间发表于《思辨哲学杂志》（Journal of Speculative Philosophy）上的三篇论文，它们共同构成了一套连贯的反笛卡尔主义论证。
+
+《关于所谓的人所具有的一些官能的问题》（Questions Concerning Certain Faculties Claimed for Man），发表于 1868年。
+
+《四不能的一些推论》（Some Consequences of Four Incapacities），发表于 1868年。
+
+《逻辑法则有效性的基础：四不能的进一步推论》（Grounds of Validity of the Laws of Logic: Further Consequences of Four Incapacities），发表于 1869年。
+
+这三篇文章的核心目标一致：通过逻辑分析来反驳笛卡尔式的心灵观念，为一种公共的、符号化的心灵观奠定基础。
+
 # the monist
 
 皮尔士在《一元论者》上发表的部分重要文章：
