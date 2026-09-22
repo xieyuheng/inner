@@ -502,3 +502,19 @@ immediate object 像是攀岩过程中「设保护点」或「打锚点」，
 ### 4.3.2 Additional Interpretants
 
 对于 interpretant 三分法的不同解读。
+
+> At various points in his final accounts of signs, Peirce
+> describes the division of interpretants as being:
+>
+> - immediate, dynamic and final;
+> - emotional, energetic, and logical;
+> - naïve, rogate and normal;
+> - intentional, effective and communicational;
+> - destinate, effective and explicit.
+
+> As Liszka (1990, 20) notes, “the received view in Peirce
+> scholarship suggests that the divisions of interpretant
+> into immediate, dynamic, and final are archetypal, all
+> other divisions being relatively synonymous with these
+> categories.” There are, however, some dissenters from
+> this view.
