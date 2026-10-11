@@ -10,6 +10,19 @@ FCA
 
 关于付费：开源免费，模仿 B 站 SC 的付费模式。
 
+AI agent 时代要快速开启项目，
+但是很多类似的工具被做成在 vps 上保存代码了：
+
+- https://stackblitz.com/
+- https://replit.com/
+
+可以把这些工具变成开源的，可以在本地运行的工具。
+
+web app 要做成方便 ai 使用的形式
+
+- wiki web app
+- 论坛 web app
+
 # simplicial complex
 
 - topics/mathematics/algebraic-topology/simplicial
